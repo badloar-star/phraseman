@@ -1,0 +1,2000 @@
+{
+  "schemaVersion": 3,
+  "bankVersion": "20260801-2",
+  "language": "fr",
+  "level": "C1",
+  "questions": [
+    {
+      "id": "fr-c1-001",
+      "level": "C1",
+      "difficulty": 4.017,
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "constructId": "fr-c1-grammar-literary-past-recognition",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception",
+        "CEFR-2020-C1-language-competence"
+      ],
+      "selectionRefs": [
+        "fr-selection-C1-grammar"
+      ],
+      "scenario": "reading an institutional history extract",
+      "prompt": "four-option contextual form-and-meaning discrimination",
+      "scenarioRu": "Рабочая ситуация",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Dans le récit formel de dossier161, l'auteur raconte une décision ponctuelle achevée. Quelle forme au passé simple convient ?",
+      "options": [
+        "Le comité approuva dossier161 au terme du débat.",
+        "Le comité approuvait dossier161 au terme ponctuel.",
+        "Le comité a approuver dossier161 au terme du débat.",
+        "Le comité approuverait dossier161 hier sans condition."
+      ],
+      "correctIndex": 0,
+      "explanation": "The keyed option is the only one that realizes recognition of passé simple in formal written narrative in the supplied context.",
+      "targetConstruct": "recognition of passé simple in formal written narrative",
+      "cefrRationale": "Can control recognition of passé simple in formal written narrative in reading an institutional history extract.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Le comité approuva dossier161 au terme du débat.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-form",
+      "knowledgeTarget": "target-language-form"
+    },
+    {
+      "id": "fr-c1-002",
+      "level": "C1",
+      "difficulty": 4.034,
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "constructId": "fr-c1-grammar-advanced-tense-sequence",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception",
+        "CEFR-2020-C1-language-competence"
+      ],
+      "selectionRefs": [
+        "fr-selection-C1-grammar"
+      ],
+      "scenario": "editing a policy meeting account",
+      "prompt": "four-option contextual form-and-meaning discrimination",
+      "scenarioRu": "Рабочая ситуация",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Maya rapporte aujourd'hui ce que Nora croyait hier au sujet d'une décision alors encore future dans dossier162. Quelle phrase ordonne correctement les points de vue ?",
+      "options": [
+        "Maya explique que Nora avait cru que le comité adoptera dossier162 demain sans repérage.",
+        "Maya explique que Nora croyait que le comité adopterait dossier162 le lendemain.",
+        "Maya explique que Nora croira que le comité adoptait dossier162 la veille.",
+        "Maya expliquait que Nora croit que le comité adopte hier dossier162."
+      ],
+      "correctIndex": 1,
+      "explanation": "The keyed option is the only one that realizes tense and mood sequence across layered reported viewpoints in the supplied context.",
+      "targetConstruct": "tense and mood sequence across layered reported viewpoints",
+      "cefrRationale": "Can control tense and mood sequence across layered reported viewpoints in editing a policy meeting account.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Maya explique que Nora croyait que le comité adopterait dossier162 le lendemain.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-form",
+      "knowledgeTarget": "target-language-form"
+    },
+    {
+      "id": "fr-c1-003",
+      "level": "C1",
+      "difficulty": 4.051,
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "constructId": "fr-c1-grammar-past-subjunctive",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception",
+        "CEFR-2020-C1-language-competence"
+      ],
+      "selectionRefs": [
+        "fr-selection-C1-grammar"
+      ],
+      "scenario": "discussing whether a condition was met",
+      "prompt": "four-option contextual form-and-meaning discrimination",
+      "scenarioRu": "Рабочая ситуация",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "La directrice regrette aujourd'hui une omission antérieure dans dossier163. Quelle forme convient ?",
+      "options": [
+        "La directrice regrette l'équipe avoir omis cette réserve dans dossier163.",
+        "La directrice regrette que l'équipe omettra cette réserve dans dossier163.",
+        "La directrice regrette que l'équipe ait omis cette réserve dans dossier163.",
+        "La directrice regrette que l'équipe a omis cette réserve dans dossier163."
+      ],
+      "correctIndex": 2,
+      "explanation": "The keyed option is the only one that realizes past subjunctive for an earlier event under stance in the supplied context.",
+      "targetConstruct": "past subjunctive for an earlier event under stance",
+      "cefrRationale": "Can control past subjunctive for an earlier event under stance in discussing whether a condition was met.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “La directrice regrette que l'équipe ait omis cette réserve dans dossier163.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-form",
+      "knowledgeTarget": "target-language-form"
+    },
+    {
+      "id": "fr-c1-004",
+      "level": "C1",
+      "difficulty": 4.068,
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "constructId": "fr-c1-grammar-detached-participle-clause",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception",
+        "CEFR-2020-C1-language-competence"
+      ],
+      "selectionRefs": [
+        "fr-selection-C1-grammar"
+      ],
+      "scenario": "compressing a professional report",
+      "prompt": "four-option contextual form-and-meaning discrimination",
+      "scenarioRu": "Рабочая ситуация",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Les données de dossier164 ont été vérifiées; cette étape achevée permet la publication. Quelle construction détachée a une référence claire ?",
+      "options": [
+        "Ayant été vérifié, le comité publie les données de dossier164.",
+        "Vérifiant les données de dossier164, la publication a été décidée par personne.",
+        "Les données de dossier164 vérifié, le comité pouvant publier.",
+        "Les données de dossier164 ayant été vérifiées, le comité peut publier le rapport."
+      ],
+      "correctIndex": 3,
+      "explanation": "The keyed option is the only one that realizes detached present or past participial clause with clear reference in the supplied context.",
+      "targetConstruct": "detached present or past participial clause with clear reference",
+      "cefrRationale": "Can control detached present or past participial clause with clear reference in compressing a professional report.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Les données de dossier164 ayant été vérifiées, le comité peut publier le rapport.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-form",
+      "knowledgeTarget": "target-language-form"
+    },
+    {
+      "id": "fr-c1-005",
+      "level": "C1",
+      "difficulty": 4.085,
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "constructId": "fr-c1-grammar-infinitive-subject-control",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception",
+        "CEFR-2020-C1-language-competence"
+      ],
+      "selectionRefs": [
+        "fr-selection-C1-grammar"
+      ],
+      "scenario": "revising formal procedural guidance",
+      "prompt": "four-option contextual form-and-meaning discrimination",
+      "scenarioRu": "Рабочая ситуация",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Dans dossier165, c'est le comité qui évalue avant de décider. Quelle phrase garde ce sujet implicite ?",
+      "options": [
+        "Après avoir évalué les risques de dossier165, le comité rendra sa décision.",
+        "Après avoir évalué les risques de dossier165, la décision sera rendue par le comité.",
+        "Avant décider dossier165, les risques ont évalué le comité.",
+        "En évaluant par la décision, le comité de dossier165 sera rendu."
+      ],
+      "correctIndex": 0,
+      "explanation": "The keyed option is the only one that realizes infinitive construction with correctly controlled implicit subject in the supplied context.",
+      "targetConstruct": "infinitive construction with correctly controlled implicit subject",
+      "cefrRationale": "Can control infinitive construction with correctly controlled implicit subject in revising formal procedural guidance.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Après avoir évalué les risques de dossier165, le comité rendra sa décision.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-form",
+      "knowledgeTarget": "target-language-form"
+    },
+    {
+      "id": "fr-c1-006",
+      "level": "C1",
+      "difficulty": 4.102,
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "constructId": "fr-c1-grammar-clitic-chain-scope",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception",
+        "CEFR-2020-C1-language-competence"
+      ],
+      "selectionRefs": [
+        "fr-selection-C1-grammar"
+      ],
+      "scenario": "editing a dense service explanation",
+      "prompt": "four-option contextual form-and-meaning discrimination",
+      "scenarioRu": "Рабочая ситуация",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Nora remettra les annexes de dossier166 à Maya demain. Quelle chaîne de pronoms respecte l'ordre et le sens ?",
+      "options": [
+        "Nora ajoute en tout en répétant les annexes de dossier166.",
+        "Nora les lui remettra demain pour dossier166.",
+        "Nora inverse les deux pronoms après le sujet dans dossier166.",
+        "Nora remplace Maya par y et conserve un complément direct répété dans dossier166."
+      ],
+      "correctIndex": 1,
+      "explanation": "The keyed option is the only one that realizes multi-clitic order and semantic scope in the supplied context.",
+      "targetConstruct": "multi-clitic order and semantic scope",
+      "cefrRationale": "Can control multi-clitic order and semantic scope in editing a dense service explanation.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Nora les lui remettra demain pour dossier166.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-form",
+      "knowledgeTarget": "target-language-form"
+    },
+    {
+      "id": "fr-c1-007",
+      "level": "C1",
+      "difficulty": 4.12,
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "constructId": "fr-c1-grammar-nominal-style-choice",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception",
+        "CEFR-2020-C1-language-competence"
+      ],
+      "selectionRefs": [
+        "fr-selection-C1-grammar"
+      ],
+      "scenario": "adapting an executive summary",
+      "prompt": "four-option contextual form-and-meaning discrimination",
+      "scenarioRu": "Рабочая ситуация",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Le rapport institutionnel de dossier167 veut mettre au premier plan le retrait de l'autorisation, non l'agent. Quelle formulation nominale convient ?",
+      "options": [
+        "Retirer dossier167, le lundi prendra effet.",
+        "L'autorisation de dossier167 retire le service lundi.",
+        "Le retrait de l'autorisation de dossier167 prendra effet lundi.",
+        "Le service retirera l'autorisation de dossier167, avec l'agent au premier plan."
+      ],
+      "correctIndex": 2,
+      "explanation": "The keyed option is the only one that realizes nominalization versus finite clause for information focus in the supplied context.",
+      "targetConstruct": "nominalization versus finite clause for information focus",
+      "cefrRationale": "Can control nominalization versus finite clause for information focus in adapting an executive summary.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Le retrait de l'autorisation de dossier167 prendra effet lundi.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-form",
+      "knowledgeTarget": "target-language-form"
+    },
+    {
+      "id": "fr-c1-008",
+      "level": "C1",
+      "difficulty": 4.137,
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "constructId": "fr-c1-grammar-syntactic-ambiguity-repair",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception",
+        "CEFR-2020-C1-language-competence"
+      ],
+      "selectionRefs": [
+        "fr-selection-C1-grammar"
+      ],
+      "scenario": "copy-editing a public consultation document",
+      "prompt": "four-option contextual form-and-meaning discrimination",
+      "scenarioRu": "Рабочая ситуация",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "La phrase « Maya a informé Nora de la décision de dossier168 avec le rapport » ne dit pas clairement qui possède le rapport. Maya a utilisé le rapport pour informer Nora. Quelle réécriture lève l'ambiguïté ?",
+      "options": [
+        "Maya a informé Nora de la décision de dossier168 avec le rapport.",
+        "Maya avec Nora a informé le rapport de dossier168.",
+        "Le rapport de Maya a informé Nora avec la décision de dossier168.",
+        "À l'aide du rapport, Maya a informé Nora de la décision concernant dossier168."
+      ],
+      "correctIndex": 3,
+      "explanation": "The keyed option is the only one that realizes restructuring a clause to remove attachment ambiguity in the supplied context.",
+      "targetConstruct": "restructuring a clause to remove attachment ambiguity",
+      "cefrRationale": "Can control restructuring a clause to remove attachment ambiguity in copy-editing a public consultation document.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “À l'aide du rapport, Maya a informé Nora de la décision concernant dossier168.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-form",
+      "knowledgeTarget": "target-language-form"
+    },
+    {
+      "id": "fr-c1-009",
+      "level": "C1",
+      "difficulty": 4.154,
+      "skill": "vocabulary",
+      "format": "gap-fill",
+      "constructId": "fr-c1-vocabulary-stance-nuance",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception",
+        "CEFR-2020-C1-language-competence"
+      ],
+      "selectionRefs": [
+        "fr-selection-C1-vocabulary"
+      ],
+      "scenario": "drafting an analytical commentary",
+      "prompt": "four-option contextual lexical-choice discrimination",
+      "scenarioRu": "Практическая лексика",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "L'auteur juge dossier169 possible tout en gardant une réserve explicite. Quelle expression marque cette distance ?",
+      "options": [
+        "dossier169 paraît plausible, sous réserve d'une vérification indépendante.",
+        "dossier169 est indubitablement certain et garanti.",
+        "dossier169 est une pure absurdité sans examen.",
+        "dossier169 existe peut-être, donc il est forcément vrai."
+      ],
+      "correctIndex": 0,
+      "explanation": "The keyed option is the only one that realizes stance lexis distinguishing certainty distance and reservation in the supplied context.",
+      "targetConstruct": "stance lexis distinguishing certainty distance and reservation",
+      "cefrRationale": "Can choose lexis for stance lexis distinguishing certainty distance and reservation in drafting an analytical commentary.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “dossier169 paraît plausible, sous réserve d'une vérification indépendante.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-lexis",
+      "knowledgeTarget": "target-language-lexis"
+    },
+    {
+      "id": "fr-c1-010",
+      "level": "C1",
+      "difficulty": 4.171,
+      "skill": "vocabulary",
+      "format": "gap-fill",
+      "constructId": "fr-c1-vocabulary-institutional-collocation",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception",
+        "CEFR-2020-C1-language-competence"
+      ],
+      "selectionRefs": [
+        "fr-selection-C1-vocabulary"
+      ],
+      "scenario": "revising an annual report",
+      "prompt": "four-option contextual lexical-choice discrimination",
+      "scenarioRu": "Практическая лексика",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Une autorité accepte officiellement la demande de dossier170 après examen. Quelle collocation institutionnelle convient ?",
+      "options": [
+        "Cultiver une suite de dossier170.",
+        "Donner suite à la demande de dossier170.",
+        "Faire suite la demande avec dossier170.",
+        "Porter suite sur la demande de dossier170."
+      ],
+      "correctIndex": 1,
+      "explanation": "The keyed option is the only one that realizes conventional collocations in institutional communication in the supplied context.",
+      "targetConstruct": "conventional collocations in institutional communication",
+      "cefrRationale": "Can choose lexis for conventional collocations in institutional communication in revising an annual report.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Donner suite à la demande de dossier170.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-lexis",
+      "knowledgeTarget": "target-language-lexis"
+    },
+    {
+      "id": "fr-c1-011",
+      "level": "C1",
+      "difficulty": 4.188,
+      "skill": "vocabulary",
+      "format": "gap-fill",
+      "constructId": "fr-c1-vocabulary-semantic-prosody",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception",
+        "CEFR-2020-C1-language-competence"
+      ],
+      "selectionRefs": [
+        "fr-selection-C1-vocabulary"
+      ],
+      "scenario": "interpreting a public debate article",
+      "prompt": "four-option contextual lexical-choice discrimination",
+      "scenarioRu": "Практическая лексика",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Le texte décrit une pratique nuisible qui se répand discrètement autour de dossier171. Quel verbe porte naturellement cette coloration négative ?",
+      "options": [
+        "La pratique pernicieuse félicite dossier171.",
+        "La pratique pernicieuse applaudit dossier171.",
+        "La pratique pernicieuse gangrène dossier171.",
+        "La pratique pernicieuse embellit dossier171."
+      ],
+      "correctIndex": 2,
+      "explanation": "The keyed option is the only one that realizes positive or negative colouring of a frequent collocation in the supplied context.",
+      "targetConstruct": "positive or negative colouring of a frequent collocation",
+      "cefrRationale": "Can choose lexis for positive or negative colouring of a frequent collocation in interpreting a public debate article.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “La pratique pernicieuse gangrène dossier171.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-lexis",
+      "knowledgeTarget": "target-language-lexis"
+    },
+    {
+      "id": "fr-c1-012",
+      "level": "C1",
+      "difficulty": 4.205,
+      "skill": "vocabulary",
+      "format": "gap-fill",
+      "constructId": "fr-c1-vocabulary-figurative-standard-use",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception",
+        "CEFR-2020-C1-language-competence"
+      ],
+      "selectionRefs": [
+        "fr-selection-C1-vocabulary"
+      ],
+      "scenario": "reading a long-form workplace essay",
+      "prompt": "four-option contextual lexical-choice discrimination",
+      "scenarioRu": "Практическая лексика",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Après des mois sans décision, dossier172 recommence enfin à progresser. Quelle expression figurée standard convient ?",
+      "options": [
+        "dossier172 mange le calendrier.",
+        "dossier172 peint le silence.",
+        "dossier172 ferme la lumière.",
+        "dossier172 sort de l'ornière."
+      ],
+      "correctIndex": 3,
+      "explanation": "The keyed option is the only one that realizes context-supported standard figurative expression in the supplied context.",
+      "targetConstruct": "context-supported standard figurative expression",
+      "cefrRationale": "Can choose lexis for context-supported standard figurative expression in reading a long-form workplace essay.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “dossier172 sort de l'ornière.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-lexis",
+      "knowledgeTarget": "target-language-lexis"
+    },
+    {
+      "id": "fr-c1-013",
+      "level": "C1",
+      "difficulty": 4.222,
+      "skill": "vocabulary",
+      "format": "gap-fill",
+      "constructId": "fr-c1-vocabulary-polysemy-context",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception",
+        "CEFR-2020-C1-language-competence"
+      ],
+      "selectionRefs": [
+        "fr-selection-C1-vocabulary"
+      ],
+      "scenario": "analysing a cross-sector briefing",
+      "prompt": "four-option contextual lexical-choice discrimination",
+      "scenarioRu": "Практическая лексика",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Dans « le ressort de dossier173 relève du conseil, non du tribunal », quel sens de « ressort » est activé ?",
+      "options": [
+        "Le domaine de compétence concernant dossier173.",
+        "Une pièce métallique de dossier173.",
+        "Une source d'eau liée à dossier173.",
+        "Un mouvement de saut dans dossier173."
+      ],
+      "correctIndex": 0,
+      "explanation": "The keyed option is the only one that realizes precise contextual sense of a polysemous abstract word in the supplied context.",
+      "targetConstruct": "precise contextual sense of a polysemous abstract word",
+      "cefrRationale": "Can choose lexis for precise contextual sense of a polysemous abstract word in analysing a cross-sector briefing.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Le domaine de compétence concernant dossier173.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-lexis",
+      "knowledgeTarget": "target-language-lexis"
+    },
+    {
+      "id": "fr-c1-014",
+      "level": "C1",
+      "difficulty": 4.239,
+      "skill": "vocabulary",
+      "format": "gap-fill",
+      "constructId": "fr-c1-vocabulary-discourse-community-register",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception",
+        "CEFR-2020-C1-language-competence"
+      ],
+      "selectionRefs": [
+        "fr-selection-C1-vocabulary"
+      ],
+      "scenario": "adapting a technical recommendation",
+      "prompt": "four-option contextual lexical-choice discrimination",
+      "scenarioRu": "Практическая лексика",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Un rapport destiné à des juristes doit désigner l'annulation rétroactive de dossier174. Quel choix marque le registre expert ?",
+      "options": [
+        "Le machin cassé concernant dossier174.",
+        "La nullité rétroactive de dossier174.",
+        "Le truc annulé de dossier174.",
+        "Le dossier174 qui ne marche plus, voilà."
+      ],
+      "correctIndex": 1,
+      "explanation": "The keyed option is the only one that realizes lexical choices marking expert civic or general register in the supplied context.",
+      "targetConstruct": "lexical choices marking expert civic or general register",
+      "cefrRationale": "Can choose lexis for lexical choices marking expert civic or general register in adapting a technical recommendation.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “La nullité rétroactive de dossier174.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-lexis",
+      "knowledgeTarget": "target-language-lexis"
+    },
+    {
+      "id": "fr-c1-015",
+      "level": "C1",
+      "difficulty": 4.256,
+      "skill": "vocabulary",
+      "format": "gap-fill",
+      "constructId": "fr-c1-vocabulary-evaluative-shading",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception",
+        "CEFR-2020-C1-language-competence"
+      ],
+      "selectionRefs": [
+        "fr-selection-C1-vocabulary"
+      ],
+      "scenario": "editing a funding assessment",
+      "prompt": "four-option contextual lexical-choice discrimination",
+      "scenarioRu": "Практическая лексика",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Le comité considère dossier175 audacieux et potentiellement utile, sans le juger imprudent. Quel adjectif convient ?",
+      "options": [
+        "Une proposition banale pour dossier175.",
+        "Une proposition négligente pour dossier175.",
+        "Une proposition novatrice pour dossier175.",
+        "Une proposition téméraire pour dossier175."
+      ],
+      "correctIndex": 2,
+      "explanation": "The keyed option is the only one that realizes near-synonymous adjectives with different evaluative force in the supplied context.",
+      "targetConstruct": "near-synonymous adjectives with different evaluative force",
+      "cefrRationale": "Can choose lexis for near-synonymous adjectives with different evaluative force in editing a funding assessment.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Une proposition novatrice pour dossier175.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-lexis",
+      "knowledgeTarget": "target-language-lexis"
+    },
+    {
+      "id": "fr-c1-016",
+      "level": "C1",
+      "difficulty": 4.273,
+      "skill": "vocabulary",
+      "format": "gap-fill",
+      "constructId": "fr-c1-vocabulary-lexical-cohesion-network",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception",
+        "CEFR-2020-C1-language-competence"
+      ],
+      "selectionRefs": [
+        "fr-selection-C1-vocabulary"
+      ],
+      "scenario": "following a complex policy argument",
+      "prompt": "four-option contextual lexical-choice discrimination",
+      "scenarioRu": "Практическая лексика",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Le texte appelle successivement dossier176 « le dispositif », « cette mesure » et « l'initiative ». Quel mécanisme relie ces expressions ?",
+      "options": [
+        "Trois sujets sans rapport remplacent dossier176.",
+        "Une contradiction grammaticale supprime dossier176.",
+        "Une liste chronologique change l'identité de dossier176.",
+        "Une chaîne de reformulations maintient la référence à dossier176."
+      ],
+      "correctIndex": 3,
+      "explanation": "The keyed option is the only one that realizes repeated paraphrase and lexical chains across a text in the supplied context.",
+      "targetConstruct": "repeated paraphrase and lexical chains across a text",
+      "cefrRationale": "Can choose lexis for repeated paraphrase and lexical chains across a text in following a complex policy argument.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Une chaîne de reformulations maintient la référence à dossier176.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-lexis",
+      "knowledgeTarget": "target-language-lexis"
+    },
+    {
+      "id": "fr-c1-017",
+      "level": "C1",
+      "difficulty": 4.29,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "fr-c1-reading-implicit-stance-network",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception"
+      ],
+      "selectionRefs": [
+        "fr-selection-C1-reading"
+      ],
+      "scenario": "analysing an institutional commentary",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Le chroniqueur écrit : « dossier177 serait, nous assure-t-on, la solution définitive. Il reconnaît ensuite trois exceptions et conclut que l'essai mérite au moins d'être observé. » Quelle stance ressort ?",
+      "options": [
+        "Il garde une distance sceptique envers la promesse de dossier177, tout en acceptant l'observation de l'essai.",
+        "Il garantit sans réserve la réussite définitive de dossier177.",
+        "Il rejette toute observation future de dossier177.",
+        "Il reprend la promesse officielle comme un fait certain."
+      ],
+      "correctIndex": 0,
+      "explanation": "The keyed option is the only one that realizes author stance inferred from qualification reporting and contrast in the supplied context.",
+      "targetConstruct": "author stance inferred from qualification reporting and contrast",
+      "cefrRationale": "Can derive author stance inferred from qualification reporting and contrast from a supplied text when analysing an institutional commentary.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Il garde une distance sceptique envers la promesse de dossier177, tout en acceptant l'observation de l'essai.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "Le chroniqueur écrit : « dossier177 serait, nous assure-t-on, la solution définitive. Il reconnaît ensuite trois exceptions et conclut que l'essai mérite au moins d'être observé. » Quelle stance ressort ?",
+          "correctIndex": 0,
+          "correctAnswer": "Il garde une distance sceptique envers la promesse de dossier177, tout en acceptant l'observation de l'essai.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "dossier177",
+              "answerToken": "dossier177"
+            }
+          ],
+          "linkingExplanation": "The source token dossier177 links directly to the answer token dossier177."
+        }
+      ]
+    },
+    {
+      "id": "fr-c1-018",
+      "level": "C1",
+      "difficulty": 4.307,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "fr-c1-reading-argument-assumption",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception"
+      ],
+      "selectionRefs": [
+        "fr-selection-C1-reading"
+      ],
+      "scenario": "evaluating a workplace policy case",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Le texte recommande dossier178 uniquement parce que « tous les usagers équipés l'adopteront rapidement ». Il ne discute aucune autre voie d'accès. Quelle hypothèse est nécessaire ?",
+      "options": [
+        "Le texte prouve que tous les usagers refusent dossier178.",
+        "La réussite de dossier178 suppose que la population concernée soit effectivement équipée.",
+        "dossier178 réussit même si personne ne peut y accéder.",
+        "L'équipement n'a aucun rapport avec l'adoption de dossier178."
+      ],
+      "correctIndex": 1,
+      "explanation": "The keyed option is the only one that realizes unstated assumption required by an explicit recommendation in the supplied context.",
+      "targetConstruct": "unstated assumption required by an explicit recommendation",
+      "cefrRationale": "Can derive unstated assumption required by an explicit recommendation from a supplied text when evaluating a workplace policy case.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “La réussite de dossier178 suppose que la population concernée soit effectivement équipée.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "Le texte recommande dossier178 uniquement parce que « tous les usagers équipés l'adopteront rapidement ». Il ne discute aucune autre voie d'accès. Quelle hypothèse est nécessaire ?",
+          "correctIndex": 1,
+          "correctAnswer": "La réussite de dossier178 suppose que la population concernée soit effectivement équipée.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "dossier178",
+              "answerToken": "dossier178"
+            }
+          ],
+          "linkingExplanation": "The source token dossier178 links directly to the answer token dossier178."
+        }
+      ]
+    },
+    {
+      "id": "fr-c1-019",
+      "level": "C1",
+      "difficulty": 4.324,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "fr-c1-reading-evidence-limitation",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception"
+      ],
+      "selectionRefs": [
+        "fr-selection-C1-reading"
+      ],
+      "scenario": "reading a research synthesis",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "L'étude sur dossier179 observe une amélioration dans une seule équipe volontaire pendant quatre semaines. Elle ne comporte ni groupe témoin ni suivi ultérieur. Quelle conclusion est la mieux calibrée ?",
+      "options": [
+        "dossier179 a échoué, puisque l'équipe était volontaire.",
+        "L'étude démontre un effet durable sur plusieurs années.",
+        "dossier179 paraît prometteur dans cette équipe, mais son effet général et durable reste à établir.",
+        "dossier179 est définitivement efficace dans toute organisation."
+      ],
+      "correctIndex": 2,
+      "explanation": "The keyed option is the only one that realizes limitation that narrows the strongest licensed conclusion in the supplied context.",
+      "targetConstruct": "limitation that narrows the strongest licensed conclusion",
+      "cefrRationale": "Can derive limitation that narrows the strongest licensed conclusion from a supplied text when reading a research synthesis.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “dossier179 paraît prometteur dans cette équipe, mais son effet général et durable reste à établir.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "L'étude sur dossier179 observe une amélioration dans une seule équipe volontaire pendant quatre semaines. Elle ne comporte ni groupe témoin ni suivi ultérieur. Quelle conclusion est la mieux calibrée ?",
+          "correctIndex": 2,
+          "correctAnswer": "dossier179 paraît prometteur dans cette équipe, mais son effet général et durable reste à établir.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "dossier179",
+              "answerToken": "dossier179"
+            }
+          ],
+          "linkingExplanation": "The source token dossier179 links directly to the answer token dossier179."
+        }
+      ]
+    },
+    {
+      "id": "fr-c1-020",
+      "level": "C1",
+      "difficulty": 4.341,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "fr-c1-reading-irony-textual-cues",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception"
+      ],
+      "selectionRefs": [
+        "fr-selection-C1-reading"
+      ],
+      "scenario": "reading a satirical office essay",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Le billet loue « l'efficacité remarquable » de dossier180, puis décrit six formulaires identiques, trois files d'attente et une réponse arrivée après la date limite. Quel effet produit ce contraste ?",
+      "options": [
+        "La louange confirme littéralement une procédure rapide.",
+        "L'auteur admire les files d'attente de dossier180 sans réserve.",
+        "Le contraste établit que dossier180 n'existe pas.",
+        "La louange est ironique et critique l'inefficacité de dossier180."
+      ],
+      "correctIndex": 3,
+      "explanation": "The keyed option is the only one that realizes irony established by conflict between praise and described outcomes in the supplied context.",
+      "targetConstruct": "irony established by conflict between praise and described outcomes",
+      "cefrRationale": "Can derive irony established by conflict between praise and described outcomes from a supplied text when reading a satirical office essay.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “La louange est ironique et critique l'inefficacité de dossier180.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "Le billet loue « l'efficacité remarquable » de dossier180, puis décrit six formulaires identiques, trois files d'attente et une réponse arrivée après la date limite. Quel effet produit ce contraste ?",
+          "correctIndex": 3,
+          "correctAnswer": "La louange est ironique et critique l'inefficacité de dossier180.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "dossier180",
+              "answerToken": "dossier180"
+            }
+          ],
+          "linkingExplanation": "The source token dossier180 links directly to the answer token dossier180."
+        }
+      ]
+    },
+    {
+      "id": "fr-c1-021",
+      "level": "C1",
+      "difficulty": 4.359,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "fr-c1-reading-multi-voice-attribution",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception"
+      ],
+      "selectionRefs": [
+        "fr-selection-C1-reading"
+      ],
+      "scenario": "reviewing a public debate analysis",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Le rapport dit : « Selon l'opérateur, dossier181 est stable. Les auditeurs contestent cette conclusion; l'auteur note seulement que les incidents ont diminué. » Qui affirme la stabilité ?",
+      "options": [
+        "L'opérateur affirme que dossier181 est stable.",
+        "Les auditeurs affirment unanimement la stabilité de dossier181.",
+        "L'auteur garantit lui-même la stabilité absolue de dossier181.",
+        "Aucune voix n'évoque la stabilité de dossier181."
+      ],
+      "correctIndex": 0,
+      "explanation": "The keyed option is the only one that realizes attribution of claims across author and cited voices in the supplied context.",
+      "targetConstruct": "attribution of claims across author and cited voices",
+      "cefrRationale": "Can derive attribution of claims across author and cited voices from a supplied text when reviewing a public debate analysis.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “L'opérateur affirme que dossier181 est stable.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "Le rapport dit : « Selon l'opérateur, dossier181 est stable. Les auditeurs contestent cette conclusion; l'auteur note seulement que les incidents ont diminué. » Qui affirme la stabilité ?",
+          "correctIndex": 0,
+          "correctAnswer": "L'opérateur affirme que dossier181 est stable.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "dossier181",
+              "answerToken": "dossier181"
+            }
+          ],
+          "linkingExplanation": "The source token dossier181 links directly to the answer token dossier181."
+        }
+      ]
+    },
+    {
+      "id": "fr-c1-022",
+      "level": "C1",
+      "difficulty": 4.376,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "fr-c1-reading-conceptual-progression",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception"
+      ],
+      "selectionRefs": [
+        "fr-selection-C1-reading"
+      ],
+      "scenario": "reading a strategic essay",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Le premier paragraphe présente dossier182 comme une économie. Le second le redéfinit comme un transfert de coûts vers les usagers, puis le troisième l'évalue comme un choix distributif. Comment le concept progresse-t-il ?",
+      "options": [
+        "dossier182 devient un problème de grammaire sans lien avec les coûts.",
+        "dossier182 passe d'une économie apparente à une question de répartition des coûts.",
+        "dossier182 reste une simple économie sans aucune reformulation.",
+        "Le texte abandonne dossier182 après le premier paragraphe."
+      ],
+      "correctIndex": 1,
+      "explanation": "The keyed option is the only one that realizes development of a concept through reframing across paragraphs in the supplied context.",
+      "targetConstruct": "development of a concept through reframing across paragraphs",
+      "cefrRationale": "Can derive development of a concept through reframing across paragraphs from a supplied text when reading a strategic essay.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “dossier182 passe d'une économie apparente à une question de répartition des coûts.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "Le premier paragraphe présente dossier182 comme une économie. Le second le redéfinit comme un transfert de coûts vers les usagers, puis le troisième l'évalue comme un choix distributif. Comment le concept progresse-t-il ?",
+          "correctIndex": 1,
+          "correctAnswer": "dossier182 passe d'une économie apparente à une question de répartition des coûts.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "dossier182",
+              "answerToken": "dossier182"
+            }
+          ],
+          "linkingExplanation": "The source token dossier182 links directly to the answer token dossier182."
+        }
+      ]
+    },
+    {
+      "id": "fr-c1-023",
+      "level": "C1",
+      "difficulty": 4.393,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "fr-c1-reading-anaphora-long-distance",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception"
+      ],
+      "selectionRefs": [
+        "fr-selection-C1-reading"
+      ],
+      "scenario": "interpreting a complex report",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Le texte présente une commission, puis décrit plusieurs propositions. Deux paragraphes plus loin : « Celle-ci refusa finalement dossier183, car elle seule avait le pouvoir de statuer. » À quoi renvoie « Celle-ci » ?",
+      "options": [
+        "À un public absent du texte.",
+        "À dossier183 lui-même comme personne décisionnaire.",
+        "À la commission, seule entité dotée du pouvoir de statuer sur dossier183.",
+        "À chacune des propositions concernant dossier183."
+      ],
+      "correctIndex": 2,
+      "explanation": "The keyed option is the only one that realizes distant reference resolved through discourse constraints in the supplied context.",
+      "targetConstruct": "distant reference resolved through discourse constraints",
+      "cefrRationale": "Can derive distant reference resolved through discourse constraints from a supplied text when interpreting a complex report.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “À la commission, seule entité dotée du pouvoir de statuer sur dossier183.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "Le texte présente une commission, puis décrit plusieurs propositions. Deux paragraphes plus loin : « Celle-ci refusa finalement dossier183, car elle seule avait le pouvoir de statuer. » À quoi renvoie « Celle-ci » ?",
+          "correctIndex": 2,
+          "correctAnswer": "À la commission, seule entité dotée du pouvoir de statuer sur dossier183.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "dossier183",
+              "answerToken": "dossier183"
+            }
+          ],
+          "linkingExplanation": "The source token dossier183 links directly to the answer token dossier183."
+        }
+      ]
+    },
+    {
+      "id": "fr-c1-024",
+      "level": "C1",
+      "difficulty": 4.41,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "fr-c1-reading-counterargument-function",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception"
+      ],
+      "selectionRefs": [
+        "fr-selection-C1-reading"
+      ],
+      "scenario": "analysing a policy opinion piece",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "L'auteur défend dossier184 pour réduire les délais. Il concède qu'une phase de formation ralentira le premier mois, puis montre que ce coût disparaît ensuite. Quel rôle joue la concession ?",
+      "options": [
+        "Elle réfute définitivement tout avantage de dossier184.",
+        "Elle introduit un sujet sans rapport avec dossier184.",
+        "Elle garantit que la formation n'aura aucun coût initial.",
+        "Elle reconnaît un coût temporaire afin de préserver l'argument à long terme pour dossier184."
+      ],
+      "correctIndex": 3,
+      "explanation": "The keyed option is the only one that realizes exact role of an objection in the author's reasoning in the supplied context.",
+      "targetConstruct": "exact role of an objection in the author's reasoning",
+      "cefrRationale": "Can derive exact role of an objection in the author's reasoning from a supplied text when analysing a policy opinion piece.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Elle reconnaît un coût temporaire afin de préserver l'argument à long terme pour dossier184.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "L'auteur défend dossier184 pour réduire les délais. Il concède qu'une phase de formation ralentira le premier mois, puis montre que ce coût disparaît ensuite. Quel rôle joue la concession ?",
+          "correctIndex": 3,
+          "correctAnswer": "Elle reconnaît un coût temporaire afin de préserver l'argument à long terme pour dossier184.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "dossier184",
+              "answerToken": "dossier184"
+            }
+          ],
+          "linkingExplanation": "The source token dossier184 links directly to the answer token dossier184."
+        }
+      ]
+    },
+    {
+      "id": "fr-c1-025",
+      "level": "C1",
+      "difficulty": 4.427,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "fr-c1-reading-cross-text-synthesis",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception"
+      ],
+      "selectionRefs": [
+        "fr-selection-C1-reading"
+      ],
+      "scenario": "comparing two expert memos",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Texte A : « dossier185 élargit l'accès, mais sa qualité doit être contrôlée. » Texte B : « Le contrôle est indispensable; toutefois, limiter dossier185 réduirait l'accès. » Quelle synthèse est fidèle ?",
+      "options": [
+        "Les deux textes soutiennent l'accès offert par dossier185 et exigent un contrôle, avec des emphases différentes.",
+        "A veut supprimer tout contrôle et B veut supprimer tout accès.",
+        "Les textes s'opposent sur l'existence même de dossier185.",
+        "A et B garantissent une qualité parfaite sans contrôle."
+      ],
+      "correctIndex": 0,
+      "explanation": "The keyed option is the only one that realizes synthesis of compatible and conflicting claims in two supplied texts in the supplied context.",
+      "targetConstruct": "synthesis of compatible and conflicting claims in two supplied texts",
+      "cefrRationale": "Can derive synthesis of compatible and conflicting claims in two supplied texts from a supplied text when comparing two expert memos.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Les deux textes soutiennent l'accès offert par dossier185 et exigent un contrôle, avec des emphases différentes.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "Texte A : « dossier185 élargit l'accès, mais sa qualité doit être contrôlée. » Texte B : « Le contrôle est indispensable; toutefois, limiter dossier185 réduirait l'accès. » Quelle synthèse est fidèle ?",
+          "correctIndex": 0,
+          "correctAnswer": "Les deux textes soutiennent l'accès offert par dossier185 et exigent un contrôle, avec des emphases différentes.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "dossier185",
+              "answerToken": "dossier185"
+            }
+          ],
+          "linkingExplanation": "The source token dossier185 links directly to the answer token dossier185."
+        }
+      ]
+    },
+    {
+      "id": "fr-c1-026",
+      "level": "C1",
+      "difficulty": 4.444,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "fr-c1-reading-metaphor-argument-role",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception"
+      ],
+      "selectionRefs": [
+        "fr-selection-C1-reading"
+      ],
+      "scenario": "reading a leadership commentary",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "L'auteur appelle dossier186 « un pont provisoire » entre deux systèmes. Il précise qu'il facilite le passage sans constituer la destination finale. Que fait la métaphore ?",
+      "options": [
+        "Elle remplace tout argument par une décoration sans sens.",
+        "Elle présente dossier186 comme un moyen transitoire, utile mais non définitif.",
+        "Elle décrit littéralement un ouvrage routier nommé dossier186.",
+        "Elle affirme que dossier186 constitue l'objectif final."
+      ],
+      "correctIndex": 1,
+      "explanation": "The keyed option is the only one that realizes contribution of a sustained metaphor to an explicit argument in the supplied context.",
+      "targetConstruct": "contribution of a sustained metaphor to an explicit argument",
+      "cefrRationale": "Can derive contribution of a sustained metaphor to an explicit argument from a supplied text when reading a leadership commentary.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Elle présente dossier186 comme un moyen transitoire, utile mais non définitif.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "L'auteur appelle dossier186 « un pont provisoire » entre deux systèmes. Il précise qu'il facilite le passage sans constituer la destination finale. Que fait la métaphore ?",
+          "correctIndex": 1,
+          "correctAnswer": "Elle présente dossier186 comme un moyen transitoire, utile mais non définitif.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "dossier186",
+              "answerToken": "dossier186"
+            }
+          ],
+          "linkingExplanation": "The source token dossier186 links directly to the answer token dossier186."
+        }
+      ]
+    },
+    {
+      "id": "fr-c1-027",
+      "level": "C1",
+      "difficulty": 4.461,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "fr-c1-reading-conditional-evidence",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception"
+      ],
+      "selectionRefs": [
+        "fr-selection-C1-reading"
+      ],
+      "scenario": "reviewing a programme evaluation",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Le rapport autorise dossier187 si l'audit confirme la sécurité et si le budget reste sous le plafond; il exclut toutefois les sites sans personnel formé. Quelle conclusion est permise ?",
+      "options": [
+        "Un budget conforme suffit même sans sécurité ni formation.",
+        "Les sites sans personnel formé sont prioritaires pour dossier187.",
+        "dossier187 peut être autorisé seulement avec audit favorable, budget conforme et personnel formé.",
+        "dossier187 est autorisé partout sans condition."
+      ],
+      "correctIndex": 2,
+      "explanation": "The keyed option is the only one that realizes conclusion licensed only under several textual conditions in the supplied context.",
+      "targetConstruct": "conclusion licensed only under several textual conditions",
+      "cefrRationale": "Can derive conclusion licensed only under several textual conditions from a supplied text when reviewing a programme evaluation.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “dossier187 peut être autorisé seulement avec audit favorable, budget conforme et personnel formé.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "Le rapport autorise dossier187 si l'audit confirme la sécurité et si le budget reste sous le plafond; il exclut toutefois les sites sans personnel formé. Quelle conclusion est permise ?",
+          "correctIndex": 2,
+          "correctAnswer": "dossier187 peut être autorisé seulement avec audit favorable, budget conforme et personnel formé.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "dossier187",
+              "answerToken": "dossier187"
+            }
+          ],
+          "linkingExplanation": "The source token dossier187 links directly to the answer token dossier187."
+        }
+      ]
+    },
+    {
+      "id": "fr-c1-028",
+      "level": "C1",
+      "difficulty": 4.478,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "fr-c1-reading-information-hierarchy",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception"
+      ],
+      "selectionRefs": [
+        "fr-selection-C1-reading"
+      ],
+      "scenario": "briefing decision-makers on a dense note",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Le document affirme d'abord que dossier188 doit rester expérimental. Dans une note, il précise qu'un déploiement limité serait possible après audit, puis détaille des exemples secondaires. Quelle est la thèse principale ?",
+      "options": [
+        "dossier188 doit être déployé partout immédiatement.",
+        "Les exemples secondaires constituent l'unique conclusion.",
+        "L'audit est déjà achevé et sans importance.",
+        "dossier188 doit pour l'instant conserver un statut expérimental."
+      ],
+      "correctIndex": 3,
+      "explanation": "The keyed option is the only one that realizes primary claim distinguished from embedded qualifications in the supplied context.",
+      "targetConstruct": "primary claim distinguished from embedded qualifications",
+      "cefrRationale": "Can derive primary claim distinguished from embedded qualifications from a supplied text when briefing decision-makers on a dense note.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “dossier188 doit pour l'instant conserver un statut expérimental.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "Le document affirme d'abord que dossier188 doit rester expérimental. Dans une note, il précise qu'un déploiement limité serait possible après audit, puis détaille des exemples secondaires. Quelle est la thèse principale ?",
+          "correctIndex": 3,
+          "correctAnswer": "dossier188 doit pour l'instant conserver un statut expérimental.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "dossier188",
+              "answerToken": "dossier188"
+            }
+          ],
+          "linkingExplanation": "The source token dossier188 links directly to the answer token dossier188."
+        }
+      ]
+    },
+    {
+      "id": "fr-c1-029",
+      "level": "C1",
+      "difficulty": 4.495,
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "constructId": "fr-c1-pragmatics-layered-politeness",
+      "descriptorRefs": [
+        "CEFR-2020-C1-pragmatics"
+      ],
+      "selectionRefs": [
+        "fr-selection-C1-pragmatics"
+      ],
+      "scenario": "writing to a senior external partner",
+      "prompt": "four-option context-sensitive intent or response choice",
+      "scenarioRu": "Намерение собеседника",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Une directrice sollicite une correction urgente de dossier189 auprès d'un partenaire externe. Quelle formulation combine déférence, atténuation et action explicite ?",
+      "options": [
+        "Je vous serais reconnaissante de bien vouloir vérifier dossier189 et, si possible, de nous transmettre la correction avant 16 heures.",
+        "Corrigez dossier189 immédiatement; votre retard est inadmissible.",
+        "Peut-être dossier189, enfin vous voyez, aucune action précise.",
+        "Salut, arrange dossier189 quand tu veux."
+      ],
+      "correctIndex": 0,
+      "explanation": "The keyed option is the only one that realizes politeness distributed across mitigation deference and explicit action in the supplied context.",
+      "targetConstruct": "politeness distributed across mitigation deference and explicit action",
+      "cefrRationale": "Can interpret or produce politeness distributed across mitigation deference and explicit action when writing to a senior external partner.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Je vous serais reconnaissante de bien vouloir vérifier dossier189 et, si possible, de nous transmettre la correction avant 16 heures.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "pragmatic-intent",
+      "knowledgeTarget": "pragmatic-intent",
+      "answerEvidence": [
+        {
+          "quote": "Une directrice sollicite une correction urgente de dossier189 auprès d'un partenaire externe. Quelle formulation combine déférence, atténuation et action explicite ?",
+          "correctIndex": 0,
+          "correctAnswer": "Je vous serais reconnaissante de bien vouloir vérifier dossier189 et, si possible, de nous transmettre la correction avant 16 heures.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "dossier189",
+              "answerToken": "dossier189"
+            }
+          ],
+          "linkingExplanation": "The source token dossier189 links directly to the answer token dossier189."
+        }
+      ]
+    },
+    {
+      "id": "fr-c1-030",
+      "level": "C1",
+      "difficulty": 4.512,
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "constructId": "fr-c1-pragmatics-institutional-voice",
+      "descriptorRefs": [
+        "CEFR-2020-C1-pragmatics"
+      ],
+      "selectionRefs": [
+        "fr-selection-C1-pragmatics"
+      ],
+      "scenario": "interpreting an official response",
+      "prompt": "four-option context-sensitive intent or response choice",
+      "scenarioRu": "Намерение собеседника",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Maya peut recommander dossier190 personnellement, mais seule la direction peut engager l'institution. Quelle phrase sépare les voix ?",
+      "options": [
+        "Je refuse de distinguer mon avis de l'engagement sur dossier190.",
+        "À titre personnel, je recommande dossier190; la décision officielle appartient toutefois à la direction.",
+        "Au nom de toute l'institution, je garantis dossier190 sans mandat.",
+        "La direction et moi sommes forcément la même voix sur dossier190."
+      ],
+      "correctIndex": 1,
+      "explanation": "The keyed option is the only one that realizes distinction between personal delegated and institutional commitment in the supplied context.",
+      "targetConstruct": "distinction between personal delegated and institutional commitment",
+      "cefrRationale": "Can interpret or produce distinction between personal delegated and institutional commitment when interpreting an official response.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “À titre personnel, je recommande dossier190; la décision officielle appartient toutefois à la direction.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "pragmatic-intent",
+      "knowledgeTarget": "pragmatic-intent",
+      "answerEvidence": [
+        {
+          "quote": "Maya peut recommander dossier190 personnellement, mais seule la direction peut engager l'institution. Quelle phrase sépare les voix ?",
+          "correctIndex": 1,
+          "correctAnswer": "À titre personnel, je recommande dossier190; la décision officielle appartient toutefois à la direction.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "dossier190",
+              "answerToken": "dossier190"
+            }
+          ],
+          "linkingExplanation": "The source token dossier190 links directly to the answer token dossier190."
+        }
+      ]
+    },
+    {
+      "id": "fr-c1-031",
+      "level": "C1",
+      "difficulty": 4.529,
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "constructId": "fr-c1-pragmatics-constructive-critique",
+      "descriptorRefs": [
+        "CEFR-2020-C1-pragmatics"
+      ],
+      "selectionRefs": [
+        "fr-selection-C1-pragmatics"
+      ],
+      "scenario": "reviewing a colleague's proposal",
+      "prompt": "four-option context-sensitive intent or response choice",
+      "scenarioRu": "Намерение собеседника",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "L'analyse de dossier191 repose sur des données utiles mais omet la période étudiée. Quelle critique propose une révision ?",
+      "options": [
+        "Tout est parfait dans dossier191 malgré l'omission.",
+        "La période manque, donc aucune amélioration n'est possible.",
+        "Les résultats de dossier191 sont éclairants; pour en apprécier la portée, précisons la période et ajoutons cette information au tableau.",
+        "L'analyse de dossier191 est inutile et doit être jetée."
+      ],
+      "correctIndex": 2,
+      "explanation": "The keyed option is the only one that realizes critique combining evidence limitation and actionable revision in the supplied context.",
+      "targetConstruct": "critique combining evidence limitation and actionable revision",
+      "cefrRationale": "Can interpret or produce critique combining evidence limitation and actionable revision when reviewing a colleague's proposal.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Les résultats de dossier191 sont éclairants; pour en apprécier la portée, précisons la période et ajoutons cette information au tableau.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "pragmatic-intent",
+      "knowledgeTarget": "pragmatic-intent",
+      "answerEvidence": [
+        {
+          "quote": "L'analyse de dossier191 repose sur des données utiles mais omet la période étudiée. Quelle critique propose une révision ?",
+          "correctIndex": 2,
+          "correctAnswer": "Les résultats de dossier191 sont éclairants; pour en apprécier la portée, précisons la période et ajoutons cette information au tableau.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "dossier191",
+              "answerToken": "dossier191"
+            }
+          ],
+          "linkingExplanation": "The source token dossier191 links directly to the answer token dossier191."
+        }
+      ]
+    },
+    {
+      "id": "fr-c1-032",
+      "level": "C1",
+      "difficulty": 4.546,
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "constructId": "fr-c1-pragmatics-strategic-vagueness",
+      "descriptorRefs": [
+        "CEFR-2020-C1-pragmatics"
+      ],
+      "selectionRefs": [
+        "fr-selection-C1-pragmatics"
+      ],
+      "scenario": "analysing a negotiation statement",
+      "prompt": "four-option context-sensitive intent or response choice",
+      "scenarioRu": "Намерение собеседника",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Un négociateur ne veut pas s'engager sur la date de dossier192 avant l'accord budgétaire. Quelle réponse diffère volontairement l'engagement ?",
+      "options": [
+        "Je garantis que dossier192 commencera le 2 septembre.",
+        "dossier192 ne commencera jamais, quoi qu'il arrive.",
+        "La date précise de dossier192 est aujourd'hui et définitive.",
+        "Nous pourrons envisager une mise en œuvre de dossier192 au cours du prochain trimestre, sous réserve de l'accord budgétaire."
+      ],
+      "correctIndex": 3,
+      "explanation": "The keyed option is the only one that realizes intentional underspecification used to defer commitment in the supplied context.",
+      "targetConstruct": "intentional underspecification used to defer commitment",
+      "cefrRationale": "Can interpret or produce intentional underspecification used to defer commitment when analysing a negotiation statement.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Nous pourrons envisager une mise en œuvre de dossier192 au cours du prochain trimestre, sous réserve de l'accord budgétaire.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "pragmatic-intent",
+      "knowledgeTarget": "pragmatic-intent",
+      "answerEvidence": [
+        {
+          "quote": "Un négociateur ne veut pas s'engager sur la date de dossier192 avant l'accord budgétaire. Quelle réponse diffère volontairement l'engagement ?",
+          "correctIndex": 3,
+          "correctAnswer": "Nous pourrons envisager une mise en œuvre de dossier192 au cours du prochain trimestre, sous réserve de l'accord budgétaire.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "dossier192",
+              "answerToken": "dossier192"
+            }
+          ],
+          "linkingExplanation": "The source token dossier192 links directly to the answer token dossier192."
+        }
+      ]
+    },
+    {
+      "id": "fr-c1-033",
+      "level": "C1",
+      "difficulty": 4.563,
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "constructId": "fr-c1-pragmatics-rapport-irony",
+      "descriptorRefs": [
+        "CEFR-2020-C1-pragmatics"
+      ],
+      "selectionRefs": [
+        "fr-selection-C1-pragmatics"
+      ],
+      "scenario": "interpreting an established team's exchange",
+      "prompt": "four-option context-sensitive intent or response choice",
+      "scenarioRu": "Намерение собеседника",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Après une réunion interminable mais amicale sur dossier193, un collègue sourit : « Voilà une décision prise à la vitesse de l'éclair ! » Quel effet domine ?",
+      "options": [
+        "L'ironie sur dossier193 crée une connivence autour de la lenteur partagée.",
+        "La phrase annonce littéralement une décision instantanée.",
+        "Le collègue rompt toute coopération concernant dossier193.",
+        "La phrase constitue une menace institutionnelle."
+      ],
+      "correctIndex": 0,
+      "explanation": "The keyed option is the only one that realizes irony that builds rapport rather than delivering rejection in the supplied context.",
+      "targetConstruct": "irony that builds rapport rather than delivering rejection",
+      "cefrRationale": "Can interpret or produce irony that builds rapport rather than delivering rejection when interpreting an established team's exchange.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “L'ironie sur dossier193 crée une connivence autour de la lenteur partagée.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "pragmatic-intent",
+      "knowledgeTarget": "pragmatic-intent",
+      "answerEvidence": [
+        {
+          "quote": "Après une réunion interminable mais amicale sur dossier193, un collègue sourit : « Voilà une décision prise à la vitesse de l'éclair ! » Quel effet domine ?",
+          "correctIndex": 0,
+          "correctAnswer": "L'ironie sur dossier193 crée une connivence autour de la lenteur partagée.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "dossier193",
+              "answerToken": "dossier193"
+            }
+          ],
+          "linkingExplanation": "The source token dossier193 links directly to the answer token dossier193."
+        }
+      ]
+    },
+    {
+      "id": "fr-c1-034",
+      "level": "C1",
+      "difficulty": 4.58,
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "constructId": "fr-c1-pragmatics-high-stakes-clarification",
+      "descriptorRefs": [
+        "CEFR-2020-C1-pragmatics"
+      ],
+      "selectionRefs": [
+        "fr-selection-C1-pragmatics"
+      ],
+      "scenario": "resolving ambiguous safety instructions",
+      "prompt": "four-option context-sensitive intent or response choice",
+      "scenarioRu": "Намерение собеседника",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Une consigne ambiguë sur dossier194 pourrait exposer des données. Comment clarifier sans accuser ?",
+      "options": [
+        "La consigne est ambiguë, mais le risque ne mérite aucune question.",
+        "Pour éviter tout risque de divulgation dans dossier194, pouvez-vous confirmer si « partager » signifie uniquement avec l'équipe autorisée ?",
+        "Vous cherchez forcément à divulguer dossier194 illégalement.",
+        "Je partagerai dossier194 avec tout le monde sans vérifier."
+      ],
+      "correctIndex": 1,
+      "explanation": "The keyed option is the only one that realizes clarification that makes risk explicit without accusation in the supplied context.",
+      "targetConstruct": "clarification that makes risk explicit without accusation",
+      "cefrRationale": "Can interpret or produce clarification that makes risk explicit without accusation when resolving ambiguous safety instructions.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Pour éviter tout risque de divulgation dans dossier194, pouvez-vous confirmer si « partager » signifie uniquement avec l'équipe autorisée ?” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "pragmatic-intent",
+      "knowledgeTarget": "pragmatic-intent",
+      "answerEvidence": [
+        {
+          "quote": "Une consigne ambiguë sur dossier194 pourrait exposer des données. Comment clarifier sans accuser ?",
+          "correctIndex": 1,
+          "correctAnswer": "Pour éviter tout risque de divulgation dans dossier194, pouvez-vous confirmer si « partager » signifie uniquement avec l'équipe autorisée ?",
+          "lexicalLinks": [
+            {
+              "sourceToken": "dossier194",
+              "answerToken": "dossier194"
+            }
+          ],
+          "linkingExplanation": "The source token dossier194 links directly to the answer token dossier194."
+        }
+      ]
+    },
+    {
+      "id": "fr-c1-035",
+      "level": "C1",
+      "difficulty": 4.598,
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "constructId": "fr-c1-pragmatics-mediated-reframing",
+      "descriptorRefs": [
+        "CEFR-2020-C1-pragmatics"
+      ],
+      "selectionRefs": [
+        "fr-selection-C1-pragmatics"
+      ],
+      "scenario": "facilitating a difficult stakeholder meeting",
+      "prompt": "four-option context-sensitive intent or response choice",
+      "scenarioRu": "Намерение собеседника",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Sur dossier195, l'équipe technique veut plus de tests et la direction veut tenir la date publique. Quelle médiation révèle l'intérêt commun ?",
+      "options": [
+        "Une seule partie possède un intérêt légitime dans dossier195.",
+        "Annulons dossier195 sans reformuler les besoins.",
+        "Les deux parties veulent un lancement fiable de dossier195; examinons quels tests protègent cette fiabilité tout en préservant la date essentielle.",
+        "La technique veut échouer et la direction veut ignorer tout risque."
+      ],
+      "correctIndex": 2,
+      "explanation": "The keyed option is the only one that realizes neutral reframing that exposes shared interests in the supplied context.",
+      "targetConstruct": "neutral reframing that exposes shared interests",
+      "cefrRationale": "Can interpret or produce neutral reframing that exposes shared interests when facilitating a difficult stakeholder meeting.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Les deux parties veulent un lancement fiable de dossier195; examinons quels tests protègent cette fiabilité tout en préservant la date essentielle.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "pragmatic-intent",
+      "knowledgeTarget": "pragmatic-intent",
+      "answerEvidence": [
+        {
+          "quote": "Sur dossier195, l'équipe technique veut plus de tests et la direction veut tenir la date publique. Quelle médiation révèle l'intérêt commun ?",
+          "correctIndex": 2,
+          "correctAnswer": "Les deux parties veulent un lancement fiable de dossier195; examinons quels tests protègent cette fiabilité tout en préservant la date essentielle.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "dossier195",
+              "answerToken": "dossier195"
+            }
+          ],
+          "linkingExplanation": "The source token dossier195 links directly to the answer token dossier195."
+        }
+      ]
+    },
+    {
+      "id": "fr-c1-036",
+      "level": "C1",
+      "difficulty": 4.615,
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "constructId": "fr-c1-pragmatics-scope-limited-agreement",
+      "descriptorRefs": [
+        "CEFR-2020-C1-pragmatics"
+      ],
+      "selectionRefs": [
+        "fr-selection-C1-pragmatics"
+      ],
+      "scenario": "replying in a formal dispute",
+      "prompt": "four-option context-sensitive intent or response choice",
+      "scenarioRu": "Намерение собеседника",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Maya accepte que dossier196 réduise le temps de saisie, mais pas qu'il améliore la qualité. Quelle réponse limite précisément l'accord ?",
+      "options": [
+        "J'accepte donc toutes les conclusions sur dossier196.",
+        "Je nie même le gain de temps documenté de dossier196.",
+        "Je suis d'accord, mais je refuse de dire avec quoi.",
+        "Je vous rejoins sur le gain de temps de dossier196; les données présentées ne suffisent toutefois pas à établir un gain de qualité."
+      ],
+      "correctIndex": 3,
+      "explanation": "The keyed option is the only one that realizes agreement restricted to one premise rather than its conclusion in the supplied context.",
+      "targetConstruct": "agreement restricted to one premise rather than its conclusion",
+      "cefrRationale": "Can interpret or produce agreement restricted to one premise rather than its conclusion when replying in a formal dispute.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Je vous rejoins sur le gain de temps de dossier196; les données présentées ne suffisent toutefois pas à établir un gain de qualité.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "pragmatic-intent",
+      "knowledgeTarget": "pragmatic-intent",
+      "answerEvidence": [
+        {
+          "quote": "Maya accepte que dossier196 réduise le temps de saisie, mais pas qu'il améliore la qualité. Quelle réponse limite précisément l'accord ?",
+          "correctIndex": 3,
+          "correctAnswer": "Je vous rejoins sur le gain de temps de dossier196; les données présentées ne suffisent toutefois pas à établir un gain de qualité.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "dossier196",
+              "answerToken": "dossier196"
+            }
+          ],
+          "linkingExplanation": "The source token dossier196 links directly to the answer token dossier196."
+        }
+      ]
+    },
+    {
+      "id": "fr-c1-037",
+      "level": "C1",
+      "difficulty": 4.632,
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "constructId": "fr-c1-pragmatics-responsibility-positioning",
+      "descriptorRefs": [
+        "CEFR-2020-C1-pragmatics"
+      ],
+      "selectionRefs": [
+        "fr-selection-C1-pragmatics"
+      ],
+      "scenario": "drafting an incident response",
+      "prompt": "four-option context-sensitive intent or response choice",
+      "scenarioRu": "Намерение собеседника",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Le journal de dossier197 a été envoyé sans validation; les traces montrent que l'étape n'avait aucun responsable désigné. Quelle formulation attribue sans blâme infondé ?",
+      "options": [
+        "L'envoi de dossier197 a eu lieu avant validation parce que la responsabilité de cette étape n'avait pas été attribuée; désignons désormais un valideur.",
+        "Maya a saboté dossier197, bien qu'aucune preuve ne la nomme.",
+        "Personne n'est responsable et aucun processus ne doit changer.",
+        "Le journal de dossier197 s'est envoyé par malveillance."
+      ],
+      "correctIndex": 0,
+      "explanation": "The keyed option is the only one that realizes wording that assigns responsibility without unsupported blame in the supplied context.",
+      "targetConstruct": "wording that assigns responsibility without unsupported blame",
+      "cefrRationale": "Can interpret or produce wording that assigns responsibility without unsupported blame when drafting an incident response.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “L'envoi de dossier197 a eu lieu avant validation parce que la responsabilité de cette étape n'avait pas été attribuée; désignons désormais un valideur.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "pragmatic-intent",
+      "knowledgeTarget": "pragmatic-intent",
+      "answerEvidence": [
+        {
+          "quote": "Le journal de dossier197 a été envoyé sans validation; les traces montrent que l'étape n'avait aucun responsable désigné. Quelle formulation attribue sans blâme infondé ?",
+          "correctIndex": 0,
+          "correctAnswer": "L'envoi de dossier197 a eu lieu avant validation parce que la responsabilité de cette étape n'avait pas été attribuée; désignons désormais un valideur.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "dossier197",
+              "answerToken": "dossier197"
+            }
+          ],
+          "linkingExplanation": "The source token dossier197 links directly to the answer token dossier197."
+        }
+      ]
+    },
+    {
+      "id": "fr-c1-038",
+      "level": "C1",
+      "difficulty": 4.649,
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "constructId": "fr-c1-pragmatics-audience-shift",
+      "descriptorRefs": [
+        "CEFR-2020-C1-pragmatics"
+      ],
+      "selectionRefs": [
+        "fr-selection-C1-pragmatics"
+      ],
+      "scenario": "presenting the same recommendation twice",
+      "prompt": "four-option context-sensitive intent or response choice",
+      "scenarioRu": "Намерение собеседника",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Un expert doit expliquer au public que dossier198 utilise une « redondance distribuée ». Quelle reformulation garde le sens sans jargon ?",
+      "options": [
+        "Le public n'a pas besoin de comprendre dossier198.",
+        "Pour dossier198, plusieurs copies sont conservées à des endroits différents afin que le service continue si l'une devient indisponible.",
+        "dossier198 exploite une topologie répliquée multi-nœuds, point final.",
+        "dossier198 fait un truc technique impossible à expliquer."
+      ],
+      "correctIndex": 1,
+      "explanation": "The keyed option is the only one that realizes controlled register shift between expert and public audiences in the supplied context.",
+      "targetConstruct": "controlled register shift between expert and public audiences",
+      "cefrRationale": "Can interpret or produce controlled register shift between expert and public audiences when presenting the same recommendation twice.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Pour dossier198, plusieurs copies sont conservées à des endroits différents afin que le service continue si l'une devient indisponible.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "pragmatic-intent",
+      "knowledgeTarget": "pragmatic-intent",
+      "answerEvidence": [
+        {
+          "quote": "Un expert doit expliquer au public que dossier198 utilise une « redondance distribuée ». Quelle reformulation garde le sens sans jargon ?",
+          "correctIndex": 1,
+          "correctAnswer": "Pour dossier198, plusieurs copies sont conservées à des endroits différents afin que le service continue si l'une devient indisponible.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "dossier198",
+              "answerToken": "dossier198"
+            }
+          ],
+          "linkingExplanation": "The source token dossier198 links directly to the answer token dossier198."
+        }
+      ]
+    },
+    {
+      "id": "fr-c1-039",
+      "level": "C1",
+      "difficulty": 4.666,
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "constructId": "fr-c1-pragmatics-implicit-refusal",
+      "descriptorRefs": [
+        "CEFR-2020-C1-pragmatics"
+      ],
+      "selectionRefs": [
+        "fr-selection-C1-pragmatics"
+      ],
+      "scenario": "negotiating participation in a joint project",
+      "prompt": "four-option context-sensitive intent or response choice",
+      "scenarioRu": "Намерение собеседника",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Nora ne peut accepter dossier199 cette semaine, mais propose lundi prochain. Quelle réponse refuse sans rupture ?",
+      "options": [
+        "Je refuse dossier199 et toute solution future.",
+        "dossier199 sera fait hier, peut-être.",
+        "Cette semaine est déjà entièrement engagée; je pourrais toutefois reprendre dossier199 lundi matin si ce délai vous convient.",
+        "J'accepte dossier199 cette semaine sans aucune disponibilité."
+      ],
+      "correctIndex": 2,
+      "explanation": "The keyed option is the only one that realizes refusal conveyed through constraints and a viable alternative in the supplied context.",
+      "targetConstruct": "refusal conveyed through constraints and a viable alternative",
+      "cefrRationale": "Can interpret or produce refusal conveyed through constraints and a viable alternative when negotiating participation in a joint project.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Cette semaine est déjà entièrement engagée; je pourrais toutefois reprendre dossier199 lundi matin si ce délai vous convient.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "pragmatic-intent",
+      "knowledgeTarget": "pragmatic-intent",
+      "answerEvidence": [
+        {
+          "quote": "Nora ne peut accepter dossier199 cette semaine, mais propose lundi prochain. Quelle réponse refuse sans rupture ?",
+          "correctIndex": 2,
+          "correctAnswer": "Cette semaine est déjà entièrement engagée; je pourrais toutefois reprendre dossier199 lundi matin si ce délai vous convient.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "dossier199",
+              "answerToken": "dossier199"
+            }
+          ],
+          "linkingExplanation": "The source token dossier199 links directly to the answer token dossier199."
+        }
+      ]
+    },
+    {
+      "id": "fr-c1-040",
+      "level": "C1",
+      "difficulty": 4.683,
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "constructId": "fr-c1-pragmatics-critical-response",
+      "descriptorRefs": [
+        "CEFR-2020-C1-pragmatics"
+      ],
+      "selectionRefs": [
+        "fr-selection-C1-pragmatics"
+      ],
+      "scenario": "discussing an expert presentation",
+      "prompt": "four-option context-sensitive intent or response choice",
+      "scenarioRu": "Намерение собеседника",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Un collègue affirme que dossier200 doit être généralisé après un essai encourageant mais limité. Quelle réponse équilibre accord, défi et relation ?",
+      "options": [
+        "Vous avez entièrement tort sur dossier200 et votre travail ne vaut rien.",
+        "L'essai prouve tout, donc aucune vérification n'est utile.",
+        "Je n'ai lu aucun résultat de dossier200, mais je m'oppose.",
+        "Je partage votre intérêt pour les résultats de dossier200; leur portée reste limitée à une équipe, donc ajoutons un second essai avant de généraliser."
+      ],
+      "correctIndex": 3,
+      "explanation": "The keyed option is the only one that realizes response balancing alignment challenge and interpersonal stance in the supplied context.",
+      "targetConstruct": "response balancing alignment challenge and interpersonal stance",
+      "cefrRationale": "Can interpret or produce response balancing alignment challenge and interpersonal stance when discussing an expert presentation.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Je partage votre intérêt pour les résultats de dossier200; leur portée reste limitée à une équipe, donc ajoutons un second essai avant de généraliser.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "pragmatic-intent",
+      "knowledgeTarget": "pragmatic-intent",
+      "answerEvidence": [
+        {
+          "quote": "Un collègue affirme que dossier200 doit être généralisé après un essai encourageant mais limité. Quelle réponse équilibre accord, défi et relation ?",
+          "correctIndex": 3,
+          "correctAnswer": "Je partage votre intérêt pour les résultats de dossier200; leur portée reste limitée à une équipe, donc ajoutons un second essai avant de généraliser.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "dossier200",
+              "answerToken": "dossier200"
+            }
+          ],
+          "linkingExplanation": "The source token dossier200 links directly to the answer token dossier200."
+        }
+      ]
+    }
+  ]
+}

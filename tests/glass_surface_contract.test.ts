@@ -3,13 +3,16 @@ import path from 'node:path';
 
 const ROOT = path.resolve(__dirname, '..');
 const SOURCE = fs.readFileSync(path.join(ROOT, 'components', 'GlassSurface.tsx'), 'utf8');
+const FILL_SOURCE = fs.readFileSync(path.join(ROOT, 'constants', 'glassSurfaceFill.ts'), 'utf8');
 
 describe('GlassSurface premium tonal contract', () => {
   it('keeps exactly three static tonal levels and the wrapper-free fill helper', () => {
     expect(SOURCE).toContain("export type GlassTone = 'card' | 'subtle' | 'raised'");
-    expect(SOURCE).toContain('export function glassFill');
+    expect(SOURCE).toContain("export { glassFill } from '../constants/glassSurfaceFill'");
+    expect(FILL_SOURCE).toContain('export function glassFill');
     expect(SOURCE).toContain('backgroundColor');
-    expect(SOURCE).toContain("themeMode === 'businessLight'");
+    expect(SOURCE).toContain('isLightThemeMode(themeMode)');
+    expect(SOURCE).toContain('sagePorcelainShadow');
   });
 
   it('does not add runtime-heavy visual effects', () => {

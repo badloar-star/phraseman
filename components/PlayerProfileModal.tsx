@@ -38,7 +38,7 @@ import LeagueCrownName from './LeagueCrownName';
 import { memberNameStatusStyle } from './premiumMemberStyles';
 import { getBestAvatarForLevel } from '../constants/avatars';
 import { noAndroidOutline } from '../constants/androidGlow';
-import { getLevelFromXP } from '../constants/theme';
+import { getLevelFromXP, isLightThemeMode } from '../constants/theme';
 import { getTitleString } from '../constants/titles';
 import { triLang, type Lang } from '../constants/i18n';
 import { monoIcon, MONO_ICON } from '../constants/monoIcon';
@@ -414,9 +414,9 @@ function PlayerProfileModalBody({
   // prestigeGlow/Glint/Particle интерполяции удалены как мёртвый код.
   const prestigeActive = displayCardLevel > 0;
   const compassProfileSurface = isCompassTheme && !prestigeActive;
-  // AURORA-стекло: на тёмной престижной карточке — всегда; на светлой теме
-  // (businessLight) базовой карточки стекло нечитаемо, откат на токены темы.
-  const auroraGlass = prestigeActive || themeMode !== 'businessLight';
+  // AURORA-стекло: на тёмной престижной карточке — всегда; на светлой базовой
+  // карточке стекло нечитаемо, поэтому используем непрозрачные токены темы.
+  const auroraGlass = prestigeActive || !isLightThemeMode(themeMode);
   const glassPanel = auroraGlass ? AURORA_GLASS.panelBg : t.bgSurface;
   // зачем: panelBorder/chipBorder больше не используются — все кромки панелей и
   // чипов сняты по §0.D, разделение переведено на тон. Токены удалены, чтобы не
@@ -424,6 +424,7 @@ function PlayerProfileModalBody({
   const glassHairline = auroraGlass ? AURORA_GLASS.hairline : t.border;
   const glassChromeBg = auroraGlass ? AURORA_GLASS.chromeBg : t.bgSurface;
   const glassChipBg = auroraGlass ? AURORA_GLASS.chipBg : t.bgCard;
+  const activeMultiplierColor = isLightThemeMode(themeMode) ? t.accent : '#35D07F';
 
   // зачем: владелец не терпит обводок контейнеров — разделяем тоном/тенью/фоном
   // (хендоф docs/cards-redesign §0.D, приоритет над рамками из HTML-макета).
@@ -1592,7 +1593,7 @@ function PlayerProfileModalBody({
                   pl: "Modyfikatory XP",
                 })}
               </Text>
-              <Text style={{ color: multipliers.total > 1 ? '#35D07F' : t.textMuted, fontWeight: '800', fontSize: 19 }}>
+              <Text style={{ color: multipliers.total > 1 ? activeMultiplierColor : t.textMuted, fontWeight: '800', fontSize: 19 }}>
                 ×{multipliers.total.toFixed(2)}
               </Text>
             </View>

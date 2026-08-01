@@ -28,6 +28,7 @@ import { oskolokImageForPackShards } from '../app/oskolok';
 import { emitAppEvent } from '../app/events';
 import { navigateAfterModalClose } from '../app/safe_modal_navigation';
 import { triLang, type Lang } from '../constants/i18n';
+import { isLightThemeMode } from '../constants/theme';
 
 import { noAndroidOutline } from '../constants/androidGlow';
 interface StreakReviveModalProps {
@@ -239,10 +240,10 @@ function StreakReviveModal({ visible, offer, onClose, onRevived, shopReturnTo = 
 
   const accent = '#FF7A45';
   const accentDarkText = '#241008';
-  const isLightTheme = themeMode === 'businessLight';
-  const passSurface = isLightTheme ? '#F7F5FA' : '#171824';
-  const primarySurface = isLightTheme ? '#6E5AE8' : '#F3F0FF';
-  const primaryText = isLightTheme ? '#FFFFFF' : '#171421';
+  const isLightTheme = isLightThemeMode(themeMode);
+  const passSurface = isLightTheme ? t.bgCard : '#171824';
+  const primarySurface = isLightTheme ? t.accent : '#F3F0FF';
+  const primaryText = isLightTheme ? t.correctText : '#171421';
 
   if (!visible || !offer) return null;
 

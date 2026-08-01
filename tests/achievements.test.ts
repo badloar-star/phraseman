@@ -30,10 +30,17 @@ import {
   claimAchievementShardReward,
   devSeedAchievementsSmoke,
   loadAchievementStates,
+  loadAchievementStatesForTarget,
+  markAchievementsNotified,
 } from '../app/achievements';
 import { addShardsRaw } from '../app/shards_system';
 import { ACHIEVEMENT_ES } from '../app/achievements_es_locale';
 import { MAX_LEVEL } from '../constants/theme';
+import {
+  __resetAccountGenerationForTests,
+  beginAccountGeneration,
+  withAccountTransitionLock,
+} from '../app/account_generation';
 import {
   achievementLessonPerfectPassesKey,
   flashcardsSavedKey,
@@ -52,10 +59,96 @@ describe('achievements', () => {
   beforeEach(() => {
     (AsyncStorage as any).__reset?.();
     jest.clearAllMocks();
+    __resetAccountGenerationForTests();
+    beginAccountGeneration('achievements-test-account');
   });
 
   afterEach(() => {
     jest.useRealTimers();
+  });
+
+  it('does not let an omitted-token achievement event commit after account A switches to B', async () => {
+    let release!: (value: string | null) => void;
+    const statesRead = new Promise<string | null>((resolve) => { release = resolve; });
+    (AsyncStorage.getItem as jest.Mock).mockReturnValueOnce(statesRead);
+    beginAccountGeneration('account-a');
+
+    const request = checkAchievements({ type: 'energy_refill' });
+    for (let i = 0; i < 12 && (AsyncStorage.getItem as jest.Mock).mock.calls.length === 0; i += 1) {
+      await Promise.resolve();
+    }
+    expect(AsyncStorage.getItem).toHaveBeenCalledTimes(1);
+    beginAccountGeneration('account-b');
+    release(null);
+
+    await expect(request).resolves.toEqual([]);
+    expect(AsyncStorage.setItem).not.toHaveBeenCalled();
+  });
+
+  it('rejects exported achievement storage boundaries before identity initialization', async () => {
+    __resetAccountGenerationForTests();
+
+    await expect(loadAchievementStatesForTarget('en')).resolves.toEqual([]);
+    await expect(loadAchievementStates()).resolves.toEqual([]);
+    await expect(claimAchievementShardReward(ALL_ACHIEVEMENTS[0].id)).resolves.toBe(false);
+    await expect(markAchievementsNotified([ALL_ACHIEVEMENTS[0].id])).resolves.toBeUndefined();
+
+    expect(AsyncStorage.getItem).not.toHaveBeenCalled();
+    expect(AsyncStorage.setItem).not.toHaveBeenCalled();
+    expect(addShardsRaw).not.toHaveBeenCalled();
+  });
+
+  it('discards an omitted-token exported read when account A switches to B', async () => {
+    let release!: (value: string | null) => void;
+    const readA = new Promise<string | null>((resolve) => { release = resolve; });
+    (AsyncStorage.getItem as jest.Mock).mockReturnValueOnce(readA);
+    beginAccountGeneration('account-a');
+
+    const request = loadAchievementStatesForTarget('en');
+    for (let i = 0; i < 12 && (AsyncStorage.getItem as jest.Mock).mock.calls.length === 0; i += 1) {
+      await Promise.resolve();
+    }
+    beginAccountGeneration('account-b');
+    release(null);
+
+    await expect(request).resolves.toEqual([]);
+    expect(AsyncStorage.setItem).not.toHaveBeenCalled();
+  });
+
+  it('does not reserve or pay an achievement claim after account A switches to B', async () => {
+    let release!: (value: string | null) => void;
+    const statesRead = new Promise<string | null>((resolve) => { release = resolve; });
+    const id = ALL_ACHIEVEMENTS[0].id;
+    (AsyncStorage.getItem as jest.Mock).mockReturnValueOnce(statesRead);
+    beginAccountGeneration('account-a');
+
+    const claim = claimAchievementShardReward(id);
+    for (let i = 0; i < 12 && (AsyncStorage.getItem as jest.Mock).mock.calls.length === 0; i += 1) {
+      await Promise.resolve();
+    }
+    beginAccountGeneration('account-b');
+    release(JSON.stringify([{ id, unlockedAt: '2026-05-18T12:00:00.000Z', notified: true, shardClaimed: false }]));
+
+    await expect(claim).resolves.toBe(false);
+    expect(addShardsRaw).not.toHaveBeenCalled();
+  });
+
+  it('does not mark account A notifications after a deferred read resolves under account B', async () => {
+    let release!: (value: string | null) => void;
+    const statesRead = new Promise<string | null>((resolve) => { release = resolve; });
+    const id = ALL_ACHIEVEMENTS[0].id;
+    (AsyncStorage.getItem as jest.Mock).mockReturnValueOnce(statesRead);
+    beginAccountGeneration('account-a');
+
+    const marking = markAchievementsNotified([id]);
+    for (let i = 0; i < 12 && (AsyncStorage.getItem as jest.Mock).mock.calls.length === 0; i += 1) {
+      await Promise.resolve();
+    }
+    beginAccountGeneration('account-b');
+    release(JSON.stringify([{ id, unlockedAt: '2026-05-18T12:00:00.000Z', notified: false, shardClaimed: true }]));
+
+    await marking;
+    expect(AsyncStorage.setItem).not.toHaveBeenCalled();
   });
 
   it('has unique ids, Spanish copy and image entries for every achievement', () => {
@@ -175,6 +268,7 @@ describe('achievements', () => {
     expect(addShardsRaw).toHaveBeenCalledWith(1, `achievement:${id}`, expect.objectContaining({
       showEarnModal: false,
       skipServerAwait: true,
+      accountToken: expect.objectContaining({ stableId: 'achievements-test-account', phase: 'active' }),
     }));
     const stored = JSON.parse((await AsyncStorage.getItem('achievements_v1')) ?? '[]');
     expect(stored.find((s: { id: string }) => s.id === id)?.shardClaimed).toBe(true);
@@ -189,6 +283,39 @@ describe('achievements', () => {
     await expect(claimAchievementShardReward(id)).resolves.toBe(true);
     await expect(claimAchievementShardReward(id)).resolves.toBe(false);
     expect(addShardsRaw).toHaveBeenCalledTimes(1);
+  });
+
+  it('keeps a durable pending payout and retries the same id after a switch before payout confirmation', async () => {
+    const id = ALL_ACHIEVEMENTS[0].id;
+    await AsyncStorage.setItem('achievements_v1', JSON.stringify([
+      { id, unlockedAt: '2026-05-18T12:00:00.000Z', notified: true, shardClaimed: false },
+    ]));
+    let releasePayout!: (value: number) => void;
+    (addShardsRaw as jest.Mock).mockReturnValueOnce(new Promise<number>((resolve) => { releasePayout = resolve; }));
+    beginAccountGeneration('account-a');
+
+    const first = claimAchievementShardReward(id);
+    for (let i = 0; i < 30 && (addShardsRaw as jest.Mock).mock.calls.length === 0; i += 1) await Promise.resolve();
+    expect(addShardsRaw).toHaveBeenCalledTimes(1);
+    const firstOptions = (addShardsRaw as jest.Mock).mock.calls[0][2];
+    expect(firstOptions.idempotencyKey).toMatch(/^achievement:/);
+    const pendingKey = (await AsyncStorage.getAllKeys())
+      .find((key) => key.startsWith('achievement_shard_payout_pending_v1:'));
+    expect(pendingKey).toBeTruthy();
+
+    beginAccountGeneration('account-b');
+    releasePayout(1);
+    await expect(first).resolves.toBe(false);
+    const afterSwitch = JSON.parse((await AsyncStorage.getItem('achievements_v1')) ?? '[]');
+    expect(afterSwitch.find((state: { id: string }) => state.id === id)?.shardClaimed).toBe(false);
+
+    beginAccountGeneration('account-a');
+    (addShardsRaw as jest.Mock).mockResolvedValueOnce(1);
+    await expect(claimAchievementShardReward(id)).resolves.toBe(true);
+    const retryOptions = (addShardsRaw as jest.Mock).mock.calls[1][2];
+    expect(retryOptions.idempotencyKey).toBe(firstOptions.idempotencyKey);
+    const afterRetry = JSON.parse((await AsyncStorage.getItem('achievements_v1')) ?? '[]');
+    expect(afterRetry.find((state: { id: string }) => state.id === id)?.shardClaimed).toBe(true);
   });
 
   it('updates the achievement reward modal before the claim promise finishes', () => {
@@ -563,6 +690,24 @@ describe('achievements', () => {
     const lessonProgress = await AsyncStorage.getItem('lesson32_progress');
     expect(JSON.parse(lessonProgress ?? '[]').filter((x: string) => x === 'correct')).toHaveLength(50);
   });
+
+  it('lets account B and the transition lock proceed when account A achievement storage never resolves', async () => {
+    const never = new Promise<string | null>(() => {});
+    (AsyncStorage.getItem as jest.Mock).mockReturnValueOnce(never);
+    beginAccountGeneration('account-a');
+    void checkAchievements({ type: 'energy_refill' });
+    for (let i = 0; i < 12 && (AsyncStorage.getItem as jest.Mock).mock.calls.length === 0; i += 1) {
+      await Promise.resolve();
+    }
+
+    beginAccountGeneration('account-b');
+    const bResult = checkAchievements({ type: 'energy_refill' });
+    const transition = withAccountTransitionLock(async () => 'transition-settled');
+    const timeout = new Promise<'timeout'>((resolve) => setTimeout(() => resolve('timeout'), 100));
+
+    await expect(Promise.race([bResult.then(() => 'b-settled' as const), timeout])).resolves.toBe('b-settled');
+    await expect(Promise.race([transition, timeout])).resolves.toBe('transition-settled');
+  });
 });
 
 describe('запись состояния достижений не затирает параллельные правки', () => {
@@ -575,9 +720,9 @@ describe('запись состояния достижений не затира
   const source = fs.readFileSync(path.join(process.cwd(), 'app', 'achievements.ts'), 'utf8');
 
   it('пишет разблокировки через слияние со свежим снимком под общим мьютексом', () => {
-    expect(source).toContain('await withStorageLock(async () => {');
-    expect(source).toContain('const fresh = await loadAchievementStatesForTarget(eventStudyTarget);');
-    expect(source).toContain('await saveStates(Array.from(freshById.values()), eventStudyTarget);');
+    expect(source).toContain('return withStorageLock(async () => {');
+    expect(source).toContain('const fresh = await loadAchievementStatesForTargetInternal(eventStudyTarget, operationToken, false);');
+    expect(source).toContain('const saved = await saveStates(Array.from(freshById.values()), eventStudyTarget, operationToken);');
   });
 
   it('не пишет весь массив states напрямую в обход слияния', () => {

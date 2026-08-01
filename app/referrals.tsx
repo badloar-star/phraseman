@@ -59,7 +59,7 @@ import { useReferralRoulettePolicy } from './referral_roulette_flag';
 import { formatReferralSunsetDate, referralSunsetCopy } from './referral_sunset_copy';
 import { selectAccountScopedReferralState, selectReferralSurfaceState } from './referral_surface_state';
 import { copyReferralCodeForAccount } from './referral_code_clipboard';
-import { ensureInviteCodeShared, invalidateInviteCodeShared } from './invite_code_singleton';
+import { acquireInviteCodeShared, invalidateInviteCodeShared } from './invite_code_singleton';
 import { buildCloudReferralInviteShare } from './referral_invite_share';
 import { isReferralCloudEnabled } from './referral_cloud';
 import { safeRouterBack } from './navigation_back';
@@ -497,7 +497,8 @@ export default function ReferralsScreen() {
     let cancelled = false;
     const requestToken = captureAccountGeneration();
     const requestAccountScope = accountScopeKey(requestToken);
-    void ensureInviteCodeShared('User').then(code => {
+    const lease = acquireInviteCodeShared('User');
+    void lease.promise.then(code => {
       if (
         !cancelled
         && code
@@ -508,7 +509,10 @@ export default function ReferralsScreen() {
         setReferralCode(code);
       }
     });
-    return () => { cancelled = true; };
+    return () => {
+      cancelled = true;
+      lease.release();
+    };
   }, [marketingVisible, referralCode, renderAccountScope]);
 
   /** «Пригласить» — системный Share; с кэшированным кодом открывается мгновенно. */

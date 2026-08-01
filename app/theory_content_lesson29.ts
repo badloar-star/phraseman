@@ -76,9 +76,9 @@ export const LESSON29_THEORY: { titleRu: string; titleUk: string; titleEs: strin
         {
           kind: 'examples',
           examples: [
-            { en: 'I used to play football.', ru: '+  Раньше я играл в футбол.', uk: '+  Раніше я грав у футбол.', es: '+  Antes jugaba al fútbol.', hi: 'used to' },
-            { en: "She didn't use to drink coffee.", ru: '−  Раньше она не пила кофе.', uk: '−  Раніше вона не пила каву.', es: '−  Antes ella no tomaba café.', hi: 'use to' },
-            { en: 'Did you use to live here?', ru: '?  Ты раньше здесь жил?', uk: '?  Ти раніше тут жив?', es: '?  ¿Vivías aquí antes?', hi: 'use to' },
+            { en: 'I used to play football.', ru: '+ Раньше я играл в футбол.', uk: '+ Раніше я грав у футбол.', es: '+ Antes jugaba al fútbol.', hi: 'used to' },
+            { en: "She didn't use to drink coffee.", ru: '− Раньше она не пила кофе.', uk: '− Раніше вона не пила каву.', es: '− Antes ella no tomaba café.', hi: 'use to' },
+            { en: 'Did you use to live here?', ru: '? Ты раньше здесь жил?', uk: '? Ти раніше тут жив?', es: '? ¿Vivías aquí antes?', hi: 'use to' },
           ],
         },
         {

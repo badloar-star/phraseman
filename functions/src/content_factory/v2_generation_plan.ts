@@ -8,7 +8,6 @@ export type V2StageKind =
   | 'v2_episode_outline'
   | 'v2_scene_set'
   | 'v2_dialogue_script'
-  | 'v2_speaking_mission'
   | 'v2_voice_targets'
   | 'v2_activity_instances'
   | 'v2_activity_graph'
@@ -21,7 +20,6 @@ export type V2StageKind =
 export interface V2EpisodeRecipe {
   readonly episodeId: string;
   readonly dialogue?: boolean;
-  readonly speakingClub?: boolean;
 }
 
 export interface V2GenerationStage {
@@ -79,7 +77,6 @@ export function buildV2SeasonPlan(input: V2SeasonGenerationInput): readonly V2Ge
     const outline = stageId('v2_episode_outline', seasonId, episodeId);
     const sceneSet = stageId('v2_scene_set', seasonId, episodeId);
     const dialogue = stageId('v2_dialogue_script', seasonId, episodeId);
-    const speaking = stageId('v2_speaking_mission', seasonId, episodeId);
     const voice = stageId('v2_voice_targets', seasonId, episodeId);
     const instances = stageId('v2_activity_instances', seasonId, episodeId);
     const graph = stageId('v2_activity_graph', seasonId, episodeId);
@@ -90,11 +87,9 @@ export function buildV2SeasonPlan(input: V2SeasonGenerationInput): readonly V2Ge
     stages.push({ id: outline, kind: 'v2_episode_outline', episodeId, dependsOn: [seasonOutline] });
     stages.push({ id: sceneSet, kind: 'v2_scene_set', episodeId, dependsOn: [outline] });
     if (recipe?.dialogue) stages.push({ id: dialogue, kind: 'v2_dialogue_script', episodeId, dependsOn: [sceneSet] });
-    if (recipe?.speakingClub) stages.push({ id: speaking, kind: 'v2_speaking_mission', episodeId, dependsOn: [sceneSet] });
     stages.push({ id: voice, kind: 'v2_voice_targets', episodeId, dependsOn: [sceneSet] });
     const instanceDependencies = [outline, voice];
     if (recipe?.dialogue) instanceDependencies.push(dialogue);
-    if (recipe?.speakingClub) instanceDependencies.push(speaking);
     stages.push({ id: instances, kind: 'v2_activity_instances', episodeId, dependsOn: instanceDependencies });
     stages.push({ id: graph, kind: 'v2_activity_graph', episodeId, dependsOn: [instances] });
     stages.push({ id: assets, kind: 'v2_asset_manifest', episodeId, dependsOn: [graph] });

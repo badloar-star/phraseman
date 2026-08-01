@@ -37,7 +37,16 @@ describe('customization purchase validation', () => {
     expect(validateCustomizationPurchase(intent({ cost: 1 }), noPlus)).toBe(false);
   });
 
-  it.each(['aura-season', 'aura-premium'])('rejects non-purchasable aura %s', (itemId) => {
+  it.each(['aura-mint', 'aura-coral'])('accepts restored shard aura %s at the catalog price', (itemId) => {
+    expect(validateCustomizationPurchase(intent({ itemId }), noPlus)).toBe(true);
+    expect(validateCustomizationPurchase(intent({ itemId, cost: 119 }), noPlus)).toBe(false);
+  });
+
+  it.each([
+    'aura-flame-51',
+    'aura-season',
+    'aura-premium',
+  ])('rejects removed or non-purchasable aura %s', (itemId) => {
     expect(validateCustomizationPurchase(intent({ itemId }), noPlus)).toBe(false);
   });
 

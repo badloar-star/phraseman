@@ -77,6 +77,10 @@ import {
 } from '../app/flashcards_target_gate';
 import { SYSTEM_CARDS } from '../app/flashcards/system-cards';
 import { FRENCH_CONTENT_SOURCE_GATE } from '../app/french_content_source_gate';
+import {
+  __resetAccountGenerationForTests,
+  beginAccountGeneration,
+} from '../app/account_generation';
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('@react-native-firebase/firestore', () => jest.fn());
@@ -110,6 +114,8 @@ beforeAll(() => {
 
 beforeEach(async () => {
   jest.clearAllMocks();
+  __resetAccountGenerationForTests();
+  beginAccountGeneration('gustav-flashcards-test-account');
   __resetFrenchFlashcardMarketplaceRuntimeForTests();
   Object.keys(mockStorage).forEach((key) => delete mockStorage[key]);
   (AsyncStorage.getItem as jest.Mock).mockImplementation((key: string) =>

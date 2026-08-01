@@ -14,6 +14,7 @@ export interface CustomizationPurchaseValidationContext {
   snapshot: CustomizationSnapshot;
   isPremium: boolean;
   isVip: boolean;
+  isPro?: boolean;
 }
 
 function validAvatarOwnedValue(itemId: string, ownedValue: true | string): ownedValue is string {
@@ -56,6 +57,7 @@ export function validateCustomizationPurchase(
     ownedAuras: snapshot.ownedAuras,
     isPremium: context.isPremium,
     isVip: context.isVip,
+    isPro: context.isPro,
   }).find((candidate) => candidate.id === intent.itemId);
   return item?.kind === 'aura'
     && (item.availability.kind === 'shards' || (intent.phase === 'granted' && item.isOwned))
@@ -103,6 +105,7 @@ export function validateCustomizationPurchaseApply(
     ownedAuras,
     isPremium: context.isPremium,
     isVip: context.isVip,
+    isPro: context.isPro,
   }).find((candidate) => candidate.id === apply.storedAuraSelection);
   return auraItem?.isOwned === true;
 }

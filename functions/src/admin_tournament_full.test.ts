@@ -11,6 +11,7 @@ import {
   groupPlannedTasks,
   parseTournamentFullRequest,
   bulkTournamentTaskCanPublish,
+  rejectRetiredTournamentModeGeneration,
 } from './admin_tournament_full';
 import type { TournamentTask } from './tournament_core';
 import {
@@ -25,6 +26,11 @@ function expectRejected(run: () => unknown): void {
 }
 
 describe('разбор запроса генерации турнира', () => {
+  it('старый full/regenerate конвейер закрыт до трат и записей', () => {
+    expect(() => rejectRetiredTournamentModeGeneration())
+      .toThrow('tournament_legacy_mode_generation_retired');
+  });
+
   it('уровень по умолчанию A2, dryRun выключен', () => {
     expect(parseTournamentFullRequest(undefined)).toMatchObject({ level: 'A2', dryRun: false });
   });
@@ -97,8 +103,17 @@ describe('bulk folder publication lifecycle gate', () => {
     mode: 'guess_phrase',
     isVoice: false,
     difficulty: 1,
-    payload: { phrase: 'I am here', options: ['Я здесь', 'Как дела', 'Спасибо', 'Пока'], correctIndex: 0 },
-    tags: ['kind:choice'],
+    payload: {
+      phrase: 'I am here',
+      options: ['Я здесь', 'Я дома', 'Я готов', 'Я занят'], correctIndex: 0,
+      correctAnswer: 'Я здесь',
+    },
+    explanation: {
+      ruleNote: 'I am here означает «Я здесь».',
+      example: 'I am here now. — Я сейчас здесь.',
+      wrongOptionReasons: ['', 'Дом — другое значение.', 'Готовность — другое значение.', 'Занятость — другое значение.'],
+    },
+    tags: ['source:ai'],
     verified: false,
     source: 'ai',
   } as TournamentTask & { source: string; lifecycle?: string; aiVerdict?: string };

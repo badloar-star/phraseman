@@ -10,6 +10,9 @@ describe('admin revenue analytics contract', () => {
   const paywallASource = fs.readFileSync(path.join(root, 'app', 'paywall_a.tsx'), 'utf8');
   const onboardingSource = fs.readFileSync(path.join(root, 'components', 'CleanOnboarding.tsx'), 'utf8');
   const shardsShopSource = fs.readFileSync(path.join(root, 'app', 'shards_shop.tsx'), 'utf8');
+  const firestoreIndexes = JSON.parse(fs.readFileSync(path.join(root, 'firestore.indexes.json'), 'utf8')) as {
+    fieldOverrides?: Array<Record<string, unknown>>;
+  };
 
   const countOccurrences = (haystack: string, needle: string): number => haystack.split(needle).length - 1;
   const topLevelFunctionNames = (source: string): string[] =>
@@ -615,6 +618,34 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml.lastIndexOf('Arena profiles')).toBeGreaterThan(adminHtml.lastIndexOf('window.renderArenaRanksTable = function renderArenaRanksTable()'));
     expect(adminHtml.lastIndexOf('window.renderArenaRooms = function renderArenaRooms()')).toBeGreaterThan(adminHtml.indexOf('window.renderArenaRooms = function renderArenaRooms()'));
     expect(adminHtml.lastIndexOf('Total rooms')).toBeGreaterThan(adminHtml.lastIndexOf('window.renderArenaRooms = function renderArenaRooms()'));
+  });
+
+  it('renders referrals from the server-owned Plus and roulette dashboard projection', () => {
+    expect(adminHtml).toContain('adminGetReferralDashboard');
+    expect(adminHtml).toContain('Всего приглашено');
+    expect(adminHtml).toContain('Купили Plus');
+    expect(adminHtml).toContain('Конверсия в Plus');
+    expect(adminHtml).toContain('Прокрутили рулетку');
+    expect(adminHtml).toContain('Ожидает покупки');
+    expect(adminHtml).toContain('ref-filter');
+    expect(adminHtml).toContain("row.refCode || ''");
+    expect(adminHtml).toContain('@media (max-width: 1360px)');
+    expect(firestoreIndexes.fieldOverrides).toContainEqual({
+      collectionGroup: 'referral_spins',
+      fieldPath: 'creditId',
+      indexes: [{ order: 'ASCENDING', queryScope: 'COLLECTION_GROUP' }],
+    });
+    expect(adminHtml).not.toContain('ждём урок');
+  });
+
+  it('auto-loads the referral dashboard without a persistent refresh control', () => {
+    expect(adminHtml).toContain("if (tab === 'referrals' && typeof window.loadReferralsData === 'function')");
+    expect(adminHtml).toContain('void window.loadReferralsData(false, false)');
+    expect(adminHtml).not.toContain("tab === 'referrals' && !window._referralsLoaded");
+    expect(adminHtml).not.toContain('id="ref-refresh"');
+    expect(adminHtml).not.toContain('<header class="ref-dashboard-header">');
+    expect(adminHtml).toContain('<div class="ref-dashboard-header">');
+    expect(adminHtml).toContain('id="ref-retry"');
   });
 
   it('turns Push into a workflow composer with mode tabs and preview panel', () => {

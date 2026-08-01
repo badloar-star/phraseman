@@ -27,16 +27,13 @@ describe('app messages background refresh contract', () => {
     expect(refreshBlock).not.toContain('.onSnapshot(');
   });
 
-  it('keeps realtime subscription for the effective standalone or embedded surface while the closed badge refreshes', () => {
-    const subscriptionStart = inboxSource.indexOf('const sub = subscribeUserAppMessages');
-    const subscriptionEnd = inboxSource.indexOf('}, [applyAppMessagesSnapshot, effectiveVisible]);', subscriptionStart);
+  it('keeps the unified notification center cache-only while the closed badge refreshes', () => {
     const pollStart = inboxSource.indexOf('const refreshBadge = async () =>');
-    const pollEnd = inboxSource.indexOf('}, [applyAppMessagesSnapshot, effectiveVisible, isScreenFocused]);', pollStart);
+    const pollEnd = inboxSource.indexOf('}, [applyAppMessagesSnapshot, effectiveVisible, runtimeActive]);', pollStart);
     const pollBlock = inboxSource.slice(pollStart, pollEnd);
 
-    expect(subscriptionStart).toBeGreaterThan(0);
-    expect(subscriptionEnd).toBeGreaterThan(subscriptionStart);
-    expect(inboxSource).toContain('BADGE_FOREGROUND_REFRESH_MIN_INTERVAL_MS = 3 * 60 * 60_000');
+    expect(inboxSource).not.toContain('subscribeUserAppMessages');
+    expect(inboxSource).toContain('BADGE_FOREGROUND_REFRESH_MIN_INTERVAL_MS = 12 * 60 * 60_000');
     expect(pollBlock).toContain('readCachedAppMessagesSnapshot()');
     expect(pollBlock).toContain('minIntervalMs: BADGE_FOREGROUND_REFRESH_MIN_INTERVAL_MS');
     expect(pollBlock.indexOf('readCachedAppMessagesSnapshot()')).toBeLessThan(

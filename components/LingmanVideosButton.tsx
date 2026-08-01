@@ -1,7 +1,6 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
-import { AccessibilityInfo, Animated, AppState, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { AccessibilityInfo, Animated, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { useIsFocused } from '@react-navigation/native';
 import { useRouter } from 'expo-router';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
@@ -17,9 +16,12 @@ function readVideoButtonVisibility() {
   return { enabled: isVideoButtonEnabled() };
 }
 
-function LingmanVideosButton() {
+type LingmanVideosButtonProps = {
+  ownerActive?: boolean;
+};
+
+function LingmanVideosButton({ ownerActive = true }: LingmanVideosButtonProps) {
   const router = useRouter();
-  const isFocused = useIsFocused();
   const { lang } = useLang();
   const { theme: t, themeMode, isDark } = useTheme();
   const [unreadCount, setUnreadCount] = useState(0);
@@ -44,6 +46,7 @@ function LingmanVideosButton() {
   });
 
   useEffect(() => {
+    if (!ownerActive) return;
     const sync = () => {
       const next = readVideoButtonVisibility();
       setEnabled(next.enabled);
@@ -51,13 +54,7 @@ function LingmanVideosButton() {
     sync();
     const sub = onAppEvent('remote_config_changed', sync);
     return () => sub.remove();
-  }, []);
-
-  useEffect(() => {
-    if (!isFocused) return;
-    const next = readVideoButtonVisibility();
-    setEnabled(next.enabled);
-  }, [isFocused]);
+  }, [ownerActive]);
 
   const refresh = useCallback(() => {
     if (!isVideoButtonEnabled()) return () => {};
@@ -71,26 +68,14 @@ function LingmanVideosButton() {
   }, []);
 
   useEffect(() => {
-    if (!isFocused || !enabled) return;
+    if (!ownerActive || !enabled) return;
     return refresh();
-  }, [enabled, isFocused, refresh]);
-
-  useEffect(() => {
-    let cleanup: undefined | (() => void);
-    const sub = AppState.addEventListener('change', (state) => {
-      if (state !== 'active' || !isFocused || !enabled) return;
-      cleanup?.();
-      cleanup = refresh();
-    });
-    return () => {
-      cleanup?.();
-      sub.remove();
-    };
-  }, [enabled, isFocused, refresh]);
+  }, [enabled, ownerActive, refresh]);
 
   // Свежий пин/новый канал из «Пульта» (remote_config) → пересчитать бейдж
   // «новых», даже если экран уже открыт (не только по фокусу).
   useEffect(() => {
+    if (!ownerActive) return;
     let cleanup: undefined | (() => void);
     const sub = onAppEvent('remote_config_changed', () => {
       if (!isVideoButtonEnabled()) return;
@@ -101,19 +86,20 @@ function LingmanVideosButton() {
       cleanup?.();
       sub.remove();
     };
-  }, [refresh]);
+  }, [ownerActive, refresh]);
 
   useEffect(() => {
+    if (!ownerActive) return;
     void AccessibilityInfo.isReduceMotionEnabled().then(setReduceMotion);
     const subscription = AccessibilityInfo.addEventListener('reduceMotionChanged', setReduceMotion);
     return () => subscription.remove();
-  }, []);
+  }, [ownerActive]);
 
   useEffect(() => {
     // Пульс бейджа крутится только на видимом экране И на переднем плане (плюс
     // сохранённый reduce-motion гард): freezeOnBlur:false держит ушедшие экраны
     // живыми — без гарда луп грел бы телефон в фоне.
-    if (!enabled || unreadCount <= 0 || reduceMotion || !isFocused) {
+    if (!enabled || unreadCount <= 0 || reduceMotion || !ownerActive) {
       badgePulse.setValue(1);
       return;
     }
@@ -135,17 +121,11 @@ function LingmanVideosButton() {
       badgePulse.setValue(1);
     };
 
-    if (AppState.currentState === 'active') start();
-    const appSub = AppState.addEventListener('change', (state) => {
-      if (state === 'active') start();
-      else stop();
-    });
+    start();
     return () => {
-      appSub.remove();
-      loop?.stop();
-      loop = null;
+      stop();
     };
-  }, [badgePulse, enabled, reduceMotion, unreadCount, isFocused]);
+  }, [badgePulse, enabled, ownerActive, reduceMotion, unreadCount]);
 
   // Кнопка выключена из «Пульта» — не рендерим вход на экран видео (сам экран
   // /lingman_videos остаётся доступным по прямой ссылке). Все хуки выше вызваны

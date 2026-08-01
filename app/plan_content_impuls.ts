@@ -1994,7 +1994,7 @@ export const IMPULS_DAY_11: PlanContentDay = {
       title: { ru: 'Как спросить время', uk: 'Як запитати час', es: 'Cómo preguntar la hora' , 'pt-BR': 'Como perguntar a hora', vi: 'Cách hỏi thời gian', id: 'Bagaimana cara menanyakan waktu', tr: 'Saat nasıl sorulur', pl: 'Jak zapytać o godzinę'},
       body: {
         ru: 'Чтобы спросить время у другого человека, говори: "What time is it for you?" — дословно «какое время это для тебя?». Слово "for" здесь значит «у» или «по». Отвечай так: "It\'s 3 a.m. for me" — «у меня 3 утра». Схема простая: It\'s + время + for me.',
-        uk: 'Щоб запитати час у іншої людини, кажи: "What time is it for you?" — дослівно «який час це для тебе?». Слово "for" тут означає «у» або «по». Відповідай так: "It\'s 3 a.m. for me» — «у мене 3 ранку». Схема проста: It\'s + час + for me.',
+        uk: 'Щоб запитати час у іншої людини, кажи: "What time is it for you?" — дослівно «який час це для тебе?». Слово "for" тут означає «у» або «по». Відповідай так: "It\'s 3 a.m. for me" — «у мене 3 ранку». Схема проста: It\'s + час + for me.',
         es: 'Para preguntar la hora a otra persona di: "What time is it for you?" — literalmente «¿qué hora es para ti?». La palabra "for" equivale aquí a «para» en el sentido de zona horaria. Responde así: "It\'s 3 a.m. for me» — «para mí son las 3 de la madrugada». Esquema: It\'s + hora + for me.',
         'pt-BR': 'Para perguntar que horas são a outra pessoa, diga: "What time is it for you?" - literalmente "que horas são para você?" A palavra "for" aqui é equivalente a "for" no sentido de fuso horário. Responda assim: "It\'s 3 a.m. for me» — «para mim são 3 da manhã». Esquema: It\'s + hora + for me.',
         vi: 'Để hỏi giờ của người khác, hãy nói: "What time is it for you?" — nghĩa đen là "mấy giờ rồi?" Từ "for" ở đây tương đương với "for" theo nghĩa múi giờ. Trả lời như thế này: "It\'s 3 a.m. for me» — «đối với tôi là 3 giờ sáng». Sơ đồ: It\'s + thời gian + for me.',
@@ -9060,7 +9060,7 @@ export const IMPULS_DAY_45: PlanContentDay = {
     { word: 'cold', partOfSpeech: 'noun', translation: { ru: 'простуда', uk: 'застуда', es: 'resfriado' , 'pt-BR': 'um resfriado', vi: 'cảm lạnh', id: 'pilek', tr: 'soğuk', pl: 'przeziębienie'}, example: 'Can I have something for a cold?' },
     { word: 'headache', partOfSpeech: 'noun', translation: { ru: 'головная боль', uk: 'головний біль', es: 'dolor de cabeza' , 'pt-BR': 'dor de cabeça', vi: 'đau đầu', id: 'sakit kepala', tr: 'baş ağrısı', pl: 'ból głowy'}, example: 'I have a terrible headache today.' },
     { word: 'syrup', partOfSpeech: 'noun', translation: { ru: 'сироп', uk: 'сироп', es: 'jarabe' , 'pt-BR': 'xarope', vi: 'xi-rô', id: 'sirup', tr: 'şurup', pl: 'syrop'}, example: 'Do you have any cough syrup?' },
-    { word: 'fever', partOfSpeech: 'noun', translation: { ru: 'температура, жар', uk: 'температура, жар', es: 'fiebre' , 'pt-BR': 'febre', vi: 'sốt', id: 'demam', tr: 'ateş', pl: 'gorączka'}, example: 'I need tablets for a fever.' },
+    { word: 'fever', partOfSpeech: 'noun', translation: { ru: 'температура, жар', uk: 'температура, гарячка', es: 'fiebre' , 'pt-BR': 'febre', vi: 'sốt', id: 'demam', tr: 'ateş', pl: 'gorączka'}, example: 'I need tablets for a fever.' },
     { word: 'medicine', partOfSpeech: 'noun', translation: { ru: 'лекарство', uk: 'ліки', es: 'medicamento' , 'pt-BR': 'medicamento', vi: 'thuốc', id: 'obat', tr: 'ilaç', pl: 'medycyna'}, example: 'Can I take this medicine with food?' },
     { word: 'throat', partOfSpeech: 'noun', translation: { ru: 'горло', uk: 'горло', es: 'garganta' , 'pt-BR': 'garganta', vi: 'cổ họng', id: 'tenggorokan', tr: 'boğaz', pl: 'gardło'}, example: 'I have had a sore throat all day.' },
   ],
@@ -14316,7 +14316,7 @@ export const IMPULS_DAY_71: PlanContentDay = {
   vocabulary: [
     { word: 'headache', partOfSpeech: 'noun', translation: { ru: 'головная боль', uk: 'головний біль', es: 'dolor de cabeza' , 'pt-BR': 'dor de cabeça', vi: 'đau đầu', id: 'sakit kepala', tr: 'baş ağrısı', pl: 'ból głowy'}, example: 'I have a headache right now.' },
     { word: 'stomachache', partOfSpeech: 'noun', translation: { ru: 'боль в животе', uk: 'біль у животі', es: 'dolor de estómago' , 'pt-BR': 'dor de estômago', vi: 'đau bụng', id: 'sakit perut', tr: 'karın ağrısı', pl: 'ból brzucha'}, example: 'I have a bad stomachache today.' },
-    { word: 'fever', partOfSpeech: 'noun', translation: { ru: 'температура, жар', uk: 'температура, жар', es: 'fiebre' , 'pt-BR': 'febre', vi: 'sốt', id: 'demam', tr: 'ateş', pl: 'gorączka'}, example: 'He does not have a fever.' },
+    { word: 'fever', partOfSpeech: 'noun', translation: { ru: 'температура, жар', uk: 'температура, гарячка', es: 'fiebre' , 'pt-BR': 'febre', vi: 'sốt', id: 'demam', tr: 'ateş', pl: 'gorączka'}, example: 'He does not have a fever.' },
     { word: 'energy', partOfSpeech: 'noun', translation: { ru: 'энергия, силы', uk: 'енергія, сили', es: 'energía' , 'pt-BR': 'energiaa', vi: 'năng lượnga', id: 'energia', tr: 'enerjia', pl: 'energiaa'}, example: 'I do not have much energy.' },
     { word: 'well', partOfSpeech: 'adverb', translation: { ru: 'хорошо (о самочувствии)', uk: 'добре (про самопочуття)', es: 'bien (de salud)' , 'pt-BR': 'bem)', vi: 'Tốt)', id: 'Sehat)', tr: 'Peki)', pl: 'Dobrze)'}, example: 'I do not feel well today.' },
     { word: 'feel', partOfSpeech: 'verb', translation: { ru: 'чувствовать (себя)', uk: 'відчувати (себе)', es: 'sentir(se)' , 'pt-BR': 'sentir)', vi: 'cảm thấy)', id: 'merasa)', tr: 'hissetmek)', pl: 'czuć)'}, example: 'She does not feel well today.' },
@@ -14725,7 +14725,7 @@ export const IMPULS_DAY_73: PlanContentDay = {
   vocabulary: [
     { word: 'cold', partOfSpeech: 'noun', translation: { ru: 'простуда', uk: 'застуда', es: 'resfriado' , 'pt-BR': 'um resfriado', vi: 'cảm lạnh', id: 'pilek', tr: 'soğuk', pl: 'przeziębienie'}, example: 'Can I have something for a cold?' },
     { word: 'headache', partOfSpeech: 'noun', translation: { ru: 'головная боль', uk: 'головний біль', es: 'dolor de cabeza' , 'pt-BR': 'dor de cabeça', vi: 'đau đầu', id: 'sakit kepala', tr: 'baş ağrısı', pl: 'ból głowy'}, example: 'I have a headache and a fever.' },
-    { word: 'fever', partOfSpeech: 'noun', translation: { ru: 'температура, жар', uk: 'температура, жар', es: 'fiebre' , 'pt-BR': 'febre', vi: 'sốt', id: 'demam', tr: 'ateş', pl: 'gorączka'}, example: 'I have a headache and a fever.' },
+    { word: 'fever', partOfSpeech: 'noun', translation: { ru: 'температура, жар', uk: 'температура, гарячка', es: 'fiebre' , 'pt-BR': 'febre', vi: 'sốt', id: 'demam', tr: 'ateş', pl: 'gorączka'}, example: 'I have a headache and a fever.' },
     { word: 'tablets', partOfSpeech: 'noun', translation: { ru: 'таблетки', uk: 'таблетки', es: 'pastillas' , 'pt-BR': 'comprimidos', vi: 'máy tính bảng', id: 'tablet', tr: 'tabletler', pl: 'tabletki'}, example: 'Do you have any pain tablets?' },
     { word: 'prescription', partOfSpeech: 'noun', translation: { ru: 'рецепт (от врача)', uk: 'рецепт (від лікаря)', es: 'receta (médica)' , 'pt-BR': 'prescrição)', vi: 'đơn thuốc)', id: 'resep)', tr: 'reçete)', pl: 'recepta)'}, example: 'Can I get this without a prescription?' },
     { word: 'throat', partOfSpeech: 'noun', translation: { ru: 'горло', uk: 'горло', es: 'garganta' , 'pt-BR': 'garganta', vi: 'cổ họng', id: 'tenggorokan', tr: 'boğaz', pl: 'gardło'}, example: 'I need something for a sore throat.' },
@@ -15108,7 +15108,7 @@ export const IMPULS_DAY_75: PlanContentDay = {
   ],
   vocabulary: [
     { word: 'feel', partOfSpeech: 'verb', translation: { ru: 'чувствовать', uk: 'відчувати', es: 'sentir' , 'pt-BR': 'sentir', vi: 'cảm thấy', id: 'merasa', tr: 'hissetmek', pl: 'czuć'}, example: 'When will I feel better?' },
-    { word: 'fever', partOfSpeech: 'noun', translation: { ru: 'температура, жар', uk: 'температура, жар', es: 'fiebre' , 'pt-BR': 'febre', vi: 'sốt', id: 'demam', tr: 'ateş', pl: 'gorączka'}, example: 'When will the fever stop?' },
+    { word: 'fever', partOfSpeech: 'noun', translation: { ru: 'температура, жар', uk: 'температура, гарячка', es: 'fiebre' , 'pt-BR': 'febre', vi: 'sốt', id: 'demam', tr: 'ateş', pl: 'gorączka'}, example: 'When will the fever stop?' },
     { word: 'pass', partOfSpeech: 'verb', translation: { ru: 'пройти, закончиться', uk: 'минути, закінчитися', es: 'pasar, terminar' , 'pt-BR': 'passar, terminar', vi: 'vượt qua, kết thúc', id: 'lulus, selesai', tr: 'geçmek, bitirmek', pl: 'przejść, zakończyć'}, example: 'It will pass in a few days.' },
     { word: 'last', partOfSpeech: 'verb', translation: { ru: 'длиться, продолжаться', uk: 'тривати, тягнутися', es: 'durar' , 'pt-BR': 'período', vi: 'nhịp', id: 'menjangkau', tr: 'açıklık', pl: 'przęsło'}, example: 'How long will this last?' },
     { word: 'rest', partOfSpeech: 'verb', translation: { ru: 'отдыхать', uk: 'відпочивати', es: 'descansar' , 'pt-BR': 'descansar', vi: 'nghỉ ngơi', id: 'istirahat', tr: 'dinlenmek', pl: 'odpoczynek'}, example: 'Will I need to rest more?' },
@@ -26732,7 +26732,7 @@ export const IMPULS_DAY_133: PlanContentDay = {
     },
   ],
   vocabulary: [
-    { word: 'fever', partOfSpeech: 'noun', translation: { ru: 'температура, жар', uk: 'температура, жар', es: 'fiebre' , 'pt-BR': 'febre', vi: 'sốt', id: 'demam', tr: 'ateş', pl: 'gorączka'}, example: 'I have a fever and a cough.' },
+    { word: 'fever', partOfSpeech: 'noun', translation: { ru: 'температура, жар', uk: 'температура, гарячка', es: 'fiebre' , 'pt-BR': 'febre', vi: 'sốt', id: 'demam', tr: 'ateş', pl: 'gorączka'}, example: 'I have a fever and a cough.' },
     { word: 'should', partOfSpeech: 'modal', translation: { ru: 'стоит, следует', uk: 'варто, слід', es: 'deberías' , 'pt-BR': 'você deve', vi: 'bạn nên', id: 'kamu harus', tr: 'malısın', pl: 'powinieneś'}, example: 'You should see a doctor today.' },
     { word: 'had', partOfSpeech: 'verb', translation: { ru: 'было (прошлое от have)', uk: 'було (минуле від have)', es: 'tenía (pasado de have)' , 'pt-BR': 'Eu tinhaa (passou de have)', vi: 'Tôi đã cóa (trước đây từ have)', id: 'Saya punyaa (lewat dari have)', tr: 'a vardı (have tarihinden sonra)', pl: 'Miałema (w przeszłości od have)'}, example: 'I had a bad headache yesterday.' },
     { word: 'took', partOfSpeech: 'verb', translation: { ru: 'принял, взял (прошлое от take)', uk: 'прийняв, узяв (минуле від take)', es: 'tomé (pasado de take)' , 'pt-BR': 'levou (passado de tomar)', vi: 'đã lấy (quá khứ của lấy)', id: 'mengambil (melewati pengambilan)', tr: 'aldı (almayı geçmiş)', pl: 'wziął (przeszłość wzięcia)'}, example: 'I took the medicine after lunch.' },

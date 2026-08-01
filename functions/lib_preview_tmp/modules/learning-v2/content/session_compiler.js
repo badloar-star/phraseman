@@ -36,7 +36,6 @@ const FAMILY_LEARNING_FUNCTION = Object.freeze({
     microstory_radio: 'comprehend',
     branching_scene: 'transfer',
     scripted_dialogue: 'transfer',
-    speaking_club_mission: 'transfer',
     personalized_review: 'review',
     speed_match: 'retrieve',
 });

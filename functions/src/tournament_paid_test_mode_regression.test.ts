@@ -80,7 +80,7 @@ describe('paid scheduled and legacy test-room economy boundary', () => {
     expect(snapshot.botEntryGems).toBe(0);
   });
 
-  it('admits a legacy pre-marker now room as test only behind the server switch', () => {
+  it('admits a legacy pre-marker zero-economy now room independently of the server switch', () => {
     const legacy = room({
       roomId: 'now-daily_1200-123_Europe-Moscow_2026-07-28',
       slotId: 'now-daily_1200-123',
@@ -89,7 +89,7 @@ describe('paid scheduled and legacy test-room economy boundary', () => {
     });
 
     expect(tournamentRoomAdmissionMode(legacy, schedule({ testingEnabled: true }))).toBe('test');
-    expect(tournamentRoomAdmissionMode(legacy, schedule({ testingEnabled: false }))).toBeNull();
+    expect(tournamentRoomAdmissionMode(legacy, schedule({ testingEnabled: false }))).toBe('test');
   });
 
   it('preserves scheduled admission for paid now-prefixed and ordinary rooms', () => {

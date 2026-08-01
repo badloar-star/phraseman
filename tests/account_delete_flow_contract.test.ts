@@ -29,14 +29,18 @@ describe('account deletion rebuilt flow contract', () => {
     const start = authProvider.indexOf('export async function deleteAccountAndWipe');
     const end = authProvider.indexOf('export async function handleAccountDeletedOnAnotherDevice', start);
     const deleteSource = authProvider.slice(start, end);
+    // Замок ставится под таймаутом (withLocalStepDeadline) — локальная запись не
+    // имеет права держать пользователя; см. «через полчаса» в боевом отчёте.
     const persistGuard = authProvider.indexOf(
-      'const pendingDeleteLock = await persistAccountDeletePendingAuth(',
+      '() => persistAccountDeletePendingAuth(pendingDeleteProviderUid, pendingDeleteStableId),',
       start,
     );
     const enqueue = authProvider.indexOf('const cloudDeleteEnqueueOperation = startCloudDeletionEnqueue(pendingDeleteStableId)', start);
     const dispatchBarrier = authProvider.indexOf('await cloudDeleteEnqueueOperation.dispatchSettled', enqueue);
     const signOut = authProvider.indexOf('await signOutCurrentProvider()', start);
-    const localExit = authProvider.indexOf('const localExitComplete = await completePreparedAccountDeleteLocalExit(', signOut);
+    // Локальный выход теперь условный: без замка (аноним) доводить нечего —
+    // локальные данные уже стёрты в быстрой фазе.
+    const localExit = authProvider.indexOf('const localExitComplete = pendingDeleteLock', signOut);
 
     expect(persistGuard).toBeGreaterThan(start);
     expect(persistGuard).toBeLessThan(enqueue);
@@ -81,10 +85,12 @@ describe('account deletion rebuilt flow contract', () => {
   });
 
   it('blocks immediate same-provider re-login until background deletion is settled', () => {
-    const start = authProvider.indexOf('export async function deleteAccountAndWipe');
+    // Захват личности и постановка замка живут в быстрой фазе; локальные шаги
+    // обёрнуты в withLocalStepDeadline, чтобы Keychain не мог подвесить UI.
+    const start = authProvider.indexOf('async function prepareAccountDeletion');
     const captureProvider = authProvider.indexOf('const pendingDeleteProviderUid = getAuth()?.currentUser?.uid ?? null;', start);
-    const captureStable = authProvider.indexOf('const pendingDeleteStableId = await getStableId().catch(() => null);', start);
-    const persistGuard = authProvider.indexOf('const pendingDeleteLock = await persistAccountDeletePendingAuth(', start);
+    const captureStable = authProvider.indexOf('const pendingDeleteStableId = await withLocalStepDeadline(() => getStableId(), null);', start);
+    const persistGuard = authProvider.indexOf('() => persistAccountDeletePendingAuth(pendingDeleteProviderUid, pendingDeleteStableId),', start);
     const enqueue = authProvider.indexOf('const cloudDeleteEnqueueOperation = startCloudDeletionEnqueue(pendingDeleteStableId)', start);
     const localExitStart = authProvider.indexOf('async function completePreparedAccountDeleteLocalExit');
     const localExitEnd = authProvider.indexOf('async function handleAccountDeletePendingAuth', localExitStart);
@@ -192,26 +198,144 @@ describe('account deletion rebuilt flow contract', () => {
     const start = modalSource.indexOf('const handleConfirmDelete');
     const end = modalSource.indexOf('const handleCancel', start);
     const confirmSource = modalSource.slice(start, end);
-    const successStart = confirmSource.indexOf('onRequestClose();');
-    const successEnd = confirmSource.indexOf('} catch', successStart);
+    const successStart = confirmSource.indexOf('markAccountDeletedNoticePending();');
+    // Граница — catch ВСЕГО обработчика (в начале строки), а не вложенные
+    // try/catch вокруг навигации внутри самого успешного пути.
+    const successEnd = confirmSource.indexOf('\n    } catch', successStart);
     const successPath = confirmSource.slice(successStart, successEnd);
 
-    // Успешный путь не ставит алерт в очередь вовсе — подтверждение даёт перезапуск.
+    // Успешный путь не ставит в очередь ни алерт, ни какой-либо второй нативный
+    // <Modal>: подтверждение даёт плашка ВНУТРИ уже смонтированного онбординга.
     expect(successPath).toContain('emitAppEvent(\'account_deleted\')');
-    expect(successPath).toContain('void reloadAfterAccountDelete()');
+    expect(successPath).toContain('markAccountDeletedNoticePending()');
     expect(successPath).not.toContain('enqueueThemedBlockingInfoAlert');
     expect(successPath).not.toContain('showInfoAlert(');
 
-    // Перезапуск ждёт докрытия нативной модалки, а не стартует в том же тике.
+    // зачем: перезапуск приложения на успешном пути УБРАН намеренно. Он добавлял
+    // задержку поверх ожидания сети, а событие account_deleted и без него
+    // монтирует чистый онбординг. Возврат reloadAsync сюда — регрессия
+    // «настройки зависают намертво», которую чинили 2026-07-27.
+    expect(modalSource).not.toContain('reloadAsync');
+    expect(modalSource).not.toContain('DevSettings');
+
+    // Зазор на докрытие остаётся — он нужен путям ОШИБКИ, где алерт всё же есть.
     expect(modalSource).toContain('ACCOUNT_DELETE_DISMISS_SETTLE_MS = 360');
-    expect(modalSource).toMatch(
-      /async function reloadAfterAccountDelete[\s\S]*?setTimeout\(resolve, ACCOUNT_DELETE_DISMISS_SETTLE_MS\)[\s\S]*?reloadAsync\(\)/,
-    );
 
     // Путь ОШИБКИ тоже сначала закрывает окно, потом показывает алерт.
     expect(modalSource).toMatch(
       /const showInfoAlert = useCallback\([\s\S]*?onRequestClose\(\);[\s\S]*?setTimeout\(\(\) => enqueueInfoAlert\(title, message\), ACCOUNT_DELETE_DISMISS_SETTLE_MS\)/,
     );
+  });
+
+  // зачем: главный симптом, который чинили 2026-07-27 — «настройки зависают
+  // намертво». Причина была в том, что модалка ждала deleteAccountAndWipe()
+  // ЦЕЛИКОМ: enqueue Cloud Function, drain-таймауты, Google/Firebase signOut и
+  // ensureAnonUser — сетевые раунд-трипы, на плохой сети десятки секунд, во время
+  // которых окно блокировало само себя. Теперь UI ждёт только быструю локальную
+  // фазу. Любой возврат к ожиданию полного удаления — регрессия.
+  it('closes the delete dialog on the fast local phase, never on the network phase', () => {
+    // Модалка обязана звать быструю фазу, а не полный синхронный путь.
+    expect(modalSource).toContain('beginAccountDeletion');
+    expect(modalSource).not.toContain('deleteAccountAndWipe');
+
+    // Быстрая фаза не делает сетевых ожиданий: enqueue только СТАРТУЕТ в ней,
+    // а его подтверждения и signOut ждёт уже фоновая фаза.
+    const prepareStart = authProvider.indexOf('async function prepareAccountDeletion');
+    const prepareEnd = authProvider.indexOf('async function finishAccountDeletion', prepareStart);
+    expect(prepareStart).toBeGreaterThan(-1);
+    const prepareSource = authProvider.slice(prepareStart, prepareEnd);
+    expect(prepareSource).toContain('startCloudDeletionEnqueue');
+    expect(prepareSource).not.toContain('dispatchSettled');
+    expect(prepareSource).not.toContain('acknowledgment');
+    expect(prepareSource).not.toContain('signOutCurrentProvider');
+    expect(prepareSource).not.toContain('ensureAnonUser');
+    expect(prepareSource).not.toContain('quiesceCloudSyncForAccountTransition');
+
+    // Замок ставится ДО возврата в UI: иначе «мгновенный» выход выпустил бы
+    // пользователя на онбординг раньше, чем старая почта/Apple ID заблокированы.
+    expect(prepareSource).toContain('persistAccountDeletePendingAuth');
+
+    // Счётчик локального удаления держится всю фоновую фазу — иначе remote-монитор
+    // принял бы наше же удаление за «удалили с другого устройства».
+    const beginStart = authProvider.indexOf('export async function beginAccountDeletion');
+    const beginEnd = authProvider.indexOf('export async function deleteAccountAndWipe', beginStart);
+    const beginSource = authProvider.slice(beginStart, beginEnd);
+    expect(beginSource).toMatch(/finishAccountDeletion\(prepared\)[\s\S]*?endLocalAccountDeletionAttempt\(\)/);
+  });
+
+  // зачем: боевые отказы, из-за которых удаление «зависало и не срабатывало»
+  // (владелец, 2026-07-27). Три независимые причины, каждая давала пользователю
+  // «не удалось подготовить удаление» вместо онбординга.
+  it('never refuses deletion for anonymous users or on a repeated attempt', () => {
+    const persistStart = authProvider.indexOf('async function persistAccountDeletePendingAuth');
+    const persistEnd = authProvider.indexOf('async function readAccountDeletePendingAuth', persistStart);
+    const persistSource = authProvider.slice(persistStart, persistEnd);
+
+    // (1) Аноним. Раньше `if (!providerUid) return null` рубил удаление у всех,
+    // кто не привязал Google/Apple. Удалять есть что и без провайдера.
+    expect(persistSource).toContain('if (!rawProviderUid && !stableId) return null');
+    expect(persistSource).toContain('anon:${stableId}');
+
+    // (2) Залипший замок от оборванной попытки. Якорь сверяется по
+    // operationId+createdAt — они всегда новые, поэтому вторая попытка
+    // отвергалась НАВСЕГДА. Свой незавершённый замок обязаны перенимать.
+    expect(persistSource).toContain('adoptStaleAccountDeleteLock');
+    const adoptStart = authProvider.indexOf('async function adoptStaleAccountDeleteLock');
+    const adoptEnd = authProvider.indexOf('async function persistAccountDeletePendingAuth', adoptStart);
+    const adoptSource = authProvider.slice(adoptStart, adoptEnd);
+    // Чужой замок перенимать нельзя — иначе удаление уедет под другой аккаунт.
+    expect(adoptSource).toContain('if (!sameProvider && !sameStableId) return null');
+
+    // (3) Занятая резервация. Если удаление уже идёт, повторное нажатие обязано
+    // выпустить человека на онбординг, а не показать ошибку.
+    const beginStart = authProvider.indexOf('export async function beginAccountDeletion');
+    const beginEnd = authProvider.indexOf('export async function deleteAccountAndWipe', beginStart);
+    const beginSource = authProvider.slice(beginStart, beginEnd);
+    expect(beginSource).toContain('hasPendingAccountDeleteLock()');
+    expect(beginSource).toMatch(/alreadyPending[\s\S]*?return \{ ok: true/);
+  });
+
+  // зачем: боевой отказ у владельца (2026-07-27) — алерт «Не удалось безопасно
+  // подготовить удаление» ЧЕРЕЗ ПОЛЧАСА, аноним, на онбординг не попал.
+  // Причина: замок в SecureStore не встал (и висел), а код считал это поводом
+  // сохранить аккаунт. Теперь быстрая фаза стирает локальные данные БЕЗУСЛОВНО
+  // и под таймаутом, а замок — best-effort.
+  it('wipes local data in the fast phase and can never refuse deletion', () => {
+    const prepareStart = authProvider.indexOf('async function prepareAccountDeletion');
+    const prepareEnd = authProvider.indexOf('/** Фоновая фаза', prepareStart);
+    const prepareSource = authProvider.slice(prepareStart, prepareEnd);
+
+    // Локальные данные и весь AsyncStorage (включая onboarding_step/done/version)
+    // сносятся здесь же — иначе онбординг восстановил бы старый шаг.
+    expect(prepareSource).toContain('await wipeLocalAccountData()');
+    expect(prepareSource).toContain('await AsyncStorage.clear()');
+    // Ни одного раннего return null: отказать эта фаза не имеет права.
+    expect(prepareSource).not.toContain('return null');
+
+    // Локальные шаги ограничены по времени — «полчаса ожидания» невозможны.
+    expect(authProvider).toContain('ACCOUNT_DELETE_LOCAL_STEP_TIMEOUT_MS = 1_000');
+    expect(prepareSource).toContain('withLocalStepDeadline');
+
+    // Даже если быстрая фаза БРОСИТ, пользователь всё равно уходит на онбординг.
+    const beginStart = authProvider.indexOf('export async function beginAccountDeletion');
+    const beginEnd = authProvider.indexOf('export async function deleteAccountAndWipe', beginStart);
+    const beginSource = authProvider.slice(beginStart, beginEnd);
+    expect(beginSource).not.toContain("reason: 'pending_guard_persist_failed'");
+    expect(beginSource).toMatch(/if \(!prepared\)[\s\S]*?return \{ ok: true/);
+
+    // Ключи онбординга дублируются литералами намеренно: вынос в общую константу
+    // с импортом в CleanOnboarding создал цикл, модуль падал с ReferenceError и
+    // кнопка «Удалить» переставала работать (боевой лог 2026-07-27).
+    const onboarding = fs.readFileSync(path.join(__dirname, '..', 'components', 'CleanOnboarding.tsx'), 'utf8');
+    expect(onboarding).toContain("const FLOW_VERSION_KEY = 'onboarding_flow_version_v1'");
+    expect(onboarding).toContain("const STEP_KEY = 'onboarding_step'");
+    expect(onboarding).toContain("const DONE_KEY = 'onboarding_done'");
+    // Импорта/деструктуризации константы быть не должно — именно они ломали
+    // модуль циклом. Упоминание в комментарии безвредно, поэтому проверяем
+    // только исполняемые формы.
+    expect(onboarding).not.toContain('} from \'../app/account_deleted_notice\';\nconst [FLOW_VERSION_KEY');
+    expect(onboarding).not.toContain('] = ONBOARDING_RESET_KEYS_ON_ACCOUNT_DELETE');
+    expect(onboarding).not.toMatch(/import\s*\{[^}]*ONBOARDING_RESET_KEYS_ON_ACCOUNT_DELETE/);
   });
 
   it('covers Firestore cleanup paths that were easy to miss', () => {

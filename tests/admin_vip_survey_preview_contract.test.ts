@@ -6,7 +6,6 @@ describe('admin VIP survey preview', () => {
   const screen = fs.readFileSync(path.join(root, 'app', '_admin_settings_testers.tsx'), 'utf8');
   const inbox = fs.readFileSync(path.join(root, 'components', 'AppMessagesInbox.tsx'), 'utf8');
   const modal = fs.readFileSync(path.join(root, 'components', 'VipSurveyModal.tsx'), 'utf8');
-  const reviewPrompt = fs.readFileSync(path.join(root, 'components', 'VipSurveyReviewPromptModal.tsx'), 'utf8');
   const storeReview = fs.readFileSync(path.join(root, 'app', 'store_review.ts'), 'utf8');
   const surveyClient = fs.readFileSync(path.join(root, 'app', 'vip_survey.ts'), 'utf8');
   const surveyDevAuth = fs.readFileSync(path.join(root, 'app', 'vip_survey_dev_auth.ts'), 'utf8');
@@ -38,7 +37,7 @@ describe('admin VIP survey preview', () => {
 
   it('submits the test survey through the real callable and keeps admin results live', () => {
     expect(inbox).toContain('VipSurveyModal');
-    expect(inbox).toContain('VipSurveyReviewPromptModal');
+    expect(inbox).not.toContain('VipSurveyReviewPromptModal');
     expect(inbox).toContain('useIsFocused');
     expect(inbox).toContain('if (!renderButton) return null');
     expect(inbox).toContain('vip-survey-inbox-cta');
@@ -88,12 +87,6 @@ describe('admin VIP survey preview', () => {
     expect(persistBody).not.toContain('tester_no_premium');
     expect(surveyClient).toMatch(/if \(active\) \{\r?\n\s*emitAppEvent\('vip_activated'\);/);
     expect(surveyClient).toContain("emitAppEvent('premium_access_changed', { active, source: active ? 'vip' : 'none' })");
-    expect(reviewPrompt).toContain('Твой Plus активирован');
-    expect(reviewPrompt).toContain('Хочешь поделиться впечатлением о Phraseman?');
-    expect(reviewPrompt).toContain('Написать отзыв');
-    expect(reviewPrompt).toContain('vip-survey-review-write');
-    expect(reviewPrompt).toContain('openStoreReviewPage');
-    expect(reviewPrompt).toContain('recordVipSurveyReviewClickFromApp');
     expect(storeReview).toContain('itms-apps://itunes.apple.com/app/id');
     expect(storeReview).toContain('market://details?id=');
     expect(storeReview).toContain('WebBrowser.openBrowserAsync');

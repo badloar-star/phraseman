@@ -16,7 +16,6 @@ exports.V2_ACTIVITY_FAMILIES = Object.freeze([
     "microstory_radio",
     "branching_scene",
     "scripted_dialogue",
-    "speaking_club_mission",
     "personalized_review",
     "speed_match",
 ]);

@@ -13,5 +13,5 @@
   },
   "compileOnSave": true,
   "include": ["src", "../modules/learning-v2"],
-  "exclude": ["src/**/*.emulator.test.ts"]
+  "exclude": ["src/**/*.test.ts"]
 }

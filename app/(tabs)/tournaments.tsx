@@ -19,7 +19,7 @@
 
 import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { Image } from 'expo-image'; // guard-ok: декоративная жемчужина, число рядом — реальный индикатор
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import Animated, {
   cancelAnimation,
   Easing,
@@ -41,6 +41,7 @@ import { useRuntimeActive } from '../../hooks/use_runtime_active';
 import { safeRouterBack } from '../navigation_back';
 import TapScale from '../../components/TapScale';
 import { useTopFadeScroll } from '../../components/TopFadeScrollContext';
+import BouncyScrollView from '../../components/BouncyScrollView';
 import { useTheme } from '../../components/ThemeContext';
 import AvatarView from '../../components/AvatarView';
 import { coinIconForBalance } from '../coin_icons';
@@ -90,7 +91,10 @@ import {
   useTournamentRoom,
 } from '../tournament_client';
 
-import { useTabNav } from '../TabContext';
+// зачем 2026-07-27: хаб турниров стал push-экраном (релиз без турниров), и
+// гвардом видимости работает честный фокус экрана — контекст табов ему больше
+// не нужен. useIsScreenFocused безопасен вне навигации (в тестах не бросает).
+import { useIsScreenFocused as useIsFocused } from '../../hooks/use_is_screen_focused';
 
 import { noAndroidOutline } from '../../constants/androidGlow';
 /** Слот расписания — форма совпадает с TournamentSlotConfig на сервере. */
@@ -305,19 +309,18 @@ export default function TournamentsScreen() {
   }, [nextSlot]);
 
   /**
-   * зачем 2026-07-27 (владелец: «приложение греет телефон»): все пять табов
-   * живут внутри ОДНОГО роутного экрана `(tabs)`, поэтому useIsFocused()
-   * возвращает true для каждого из них одновременно — даже для невидимых.
-   * Единственный честный сигнал «этот таб сейчас на экране» — runtimeOwnerId
-   * из TabContext (его уже так использует components/today/TodayScreen.tsx).
+   * зачем 2026-07-27 (владелец: «релиз без турниров»): хаб перестал быть табом
+   * и стал обычным push-экраном поверх группы `(tabs)` — попасть сюда можно
+   * только дев-кнопкой из хедера главной. Поэтому гвардом видимости снова
+   * работает useIsFocused(): у push-экрана он честный (внутри `(tabs)` он был
+   * истинен для всех табов сразу, из-за чего гвард и держали на runtimeOwnerId).
    *
    * Это гейт для ВСЕЙ живой части хаба: подписки на комнату и секундных
-   * таймеров. Функционал сохраняется полностью — при возврате на таб подписка
+   * таймеров. Функционал сохраняется полностью — при возврате на экран подписка
    * поднимается мгновенно и первым снимком догоняет актуальное состояние.
    */
-  const { runtimeOwnerId } = useTabNav();
-  const tabVisible = runtimeOwnerId === 'tournaments';
-  const runtimeActive = useRuntimeActive(tabVisible);
+  const screenFocused = useIsFocused();
+  const runtimeActive = useRuntimeActive(screenFocused);
 
   const { room } = useTournamentRoom(roomId, runtimeActive);
 
@@ -438,9 +441,13 @@ export default function TournamentsScreen() {
    * Расписание при этом живо: пока окно идёт, играем именно комнату слота,
    * чтобы игроки попадали друг к другу, а не расходились по личным комнатам.
    */
-  const instantEntry = !joinWindowOpen;
-  // Temporary test rooms are free by server contract; scheduled tournaments stay paid.
-  const effectiveEntryGems = instantEntry && schedule?.testingEnabled === true ? 0 : entryGems;
+  // Fail closed: only the literal admin/server release flag may override a live
+  // schedule window. When it is absent or false, the paid scheduled route below
+  // remains unchanged. This keeps temporary QA access removable without a build.
+  const testModeReleaseActive = schedule?.testingEnabled === true;
+  const instantEntry = testModeReleaseActive || !joinWindowOpen;
+  // The released test surface is always free; production keeps the configured price.
+  const effectiveEntryGems = testModeReleaseActive ? 0 : entryGems;
   const notEnoughGems = coins < effectiveEntryGems;
 
   const openConfirm = useCallback(() => { setJoinError(''); setConfirmVisible(true); }, []);
@@ -492,7 +499,11 @@ export default function TournamentsScreen() {
       router.push({ pathname: '/tournament_lobby', params: { roomId: result?.roomId || joinRoomId } });
     } catch (error) {
       setCoins(balanceBefore);
-      const code = String((error as { message?: string })?.message ?? '');
+      const callableError = error as { message?: string; code?: string; details?: unknown };
+      if (__DEV__) console.warn('[tournaments] entry callable failed', callableError);
+      const code = [callableError.message, callableError.code, callableError.details]
+        .map((value) => String(value ?? ''))
+        .join(' ');
       // зачем: сервер — истина. Если он говорит «в этом окне уже играл» (а
       // локальная память об этом не знала, например после переустановки),
       // догоняем состояние, чтобы кнопка не звала жать повторно.
@@ -507,6 +518,8 @@ export default function TournamentsScreen() {
         ? 'Не хватает жемчужин'
         : code.includes('tournament_testing_disabled')
           ? 'Тестовый режим завершён. Следующий турнир — по расписанию.'
+        : code.includes('tournament_config_disabled')
+          ? 'Расписание турниров выключено. Включите тестовый режим в админке.'
         : code.includes('slot_already_played')
           ? 'В этом турнире вы уже играли. Ждём вас в следующем'
           : code.includes('join_cutoff_elapsed')
@@ -586,7 +599,7 @@ export default function TournamentsScreen() {
         style={styles.sheen}
         pointerEvents="none"
       />
-      <ScrollView
+      <BouncyScrollView
         contentContainerStyle={[styles.content, contentPadding]}
         showsVerticalScrollIndicator={false}
         bounces
@@ -698,9 +711,10 @@ export default function TournamentsScreen() {
                     соберётся по нажатию. */}
                 {notEnoughGems
                   ? `Пополнить · нужно ещё ${effectiveEntryGems - coins}`
-                  : joinWindowOpen
-                    ? 'Играть'
-                    : 'Играть сейчас'}
+                  : testModeReleaseActive ? 'Играть сейчас · тест'
+                    : joinWindowOpen
+                      ? 'Играть'
+                      : 'Играть сейчас'}
               </V2Cta>
             )}
             {/* зачем 2026-07-27 (владелец: «убирай дев полностью»): дев-кнопка
@@ -839,7 +853,7 @@ export default function TournamentsScreen() {
         <TapScale onPress={() => router.push('/tournament_season')} style={styles.seasonMore}>
           <Text style={styles.seasonMoreText} allowFontScaling={false}>Таблица сезона</Text>
         </TapScale>
-      </ScrollView>
+      </BouncyScrollView>
 
       {/* Шторка банка недели: доли, претенденты и моя позиция. */}
       <Sheet visible={bankVisible} onClose={closeBank}>
@@ -918,11 +932,13 @@ export default function TournamentsScreen() {
         {/* зачем 2026-07-27: при входе вне окна время слота показывать нельзя —
             турнир начнётся сейчас, а не в 15:20, и подпись бы врала. */}
         <Text style={styles.sheetSub}>
-          {instantEntry
-            ? 'Начнём сразу · 16 игроков'
-            : nextSlot
-              ? `Сегодня · ${nextSlot.displayTime} · 16 игроков`
-              : 'Ближайшая комната'}
+          {testModeReleaseActive
+            ? 'Тестовый вход · бесплатно · 16 игроков'
+            : instantEntry
+              ? 'Начнём сразу · 16 игроков'
+              : nextSlot
+                ? `Сегодня · ${nextSlot.displayTime} · 16 игроков`
+                : 'Ближайшая комната'}
         </Text>
         <View style={styles.sheetPrice}>
           <Image
@@ -974,11 +990,13 @@ const LiveDot = memo(function LiveDot({ color }: { color: string }) {
   // когда экран не в фокусе или приложение в фоне — иначе она жжёт батарею на
   // невидимом экране. Контракт tests/perf_freeze_contract.test.ts это стережёт.
   //
-  // зачем ownerVisible 2026-07-27: useIsFocused() внутри `(tabs)` истинен для
-  // ВСЕХ табов сразу, поэтому точка «дышала» и на невидимом табе. Настоящую
-  // видимость знает только runtimeOwnerId.
-  const { runtimeOwnerId } = useTabNav();
-  const runtimeActive = useRuntimeActive(runtimeOwnerId === 'tournaments');
+  // зачем ownerVisible 2026-07-27: хаб больше НЕ таб, а push-экран поверх
+  // `(tabs)` (релиз без турниров), поэтому useIsFocused() здесь честный и
+  // сам по себе достаточен. Раньше гвард держали на runtimeOwnerId, потому что
+  // внутри `(tabs)` фокус был истинен сразу для всех табов и точка «дышала» на
+  // невидимом экране; после переезда на push этой слепоты нет.
+  const screenFocused = useIsFocused();
+  const runtimeActive = useRuntimeActive(screenFocused);
 
   useEffect(() => {
     // Доступность: с «уменьшить движение» точка просто горит ровным светом.

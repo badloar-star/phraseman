@@ -12,5 +12,7 @@ describe('Home daily survey indicator', () => {
     expect(home).toContain('commitSurveyDailyTaskRequest(scope, requestId, survey);');
     expect(home).not.toContain('setDailyTaskBarCount(');
     expect(home).toContain('setTasksCompleted(counts.done);');
+    expect(home).toContain('testID="home-daily-task-progress"');
+    expect(home).toContain("minWidth: 30, alignItems: 'flex-end', flexShrink: 0");
   });
 });

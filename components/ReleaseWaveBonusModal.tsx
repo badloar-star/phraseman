@@ -10,20 +10,26 @@ import {
   persistNativeBuildIdAfterReleaseWaveFlow,
 } from '../app/release_wave_bonus';
 import { oskolokImageForPackShards } from '../app/oskolok';
+import {
+  ruKnowledgeShardsAfterNumber,
+  ukKnowledgeShardsAfterNumber,
+} from '../constants/shard_plurals';
 import RewardCardV2 from './reward_v2/RewardCardV2';
 
 const TEXTS = {
   ru: {
     kicker: 'Бонус обновления',
     value: 'Спасибо, что ты с нами! Подарок за свежий релиз.',
-    title: (n: number) => `+${n} жемчужин`,
+    // зачем: склонение по числу — «+1 жемчужина», а не «+1 жемчужин».
+    title: (n: number) => `+${n} ${ruKnowledgeShardsAfterNumber(n)}`,
     cta: 'Забрать',
     ctaPreview: 'Закрыть',
   },
   uk: {
     kicker: 'Бонус оновлення',
     value: 'Дякуємо, що ти з нами! Подарунок за свіжий реліз.',
-    title: (n: number) => `+${n} жемчужин`,
+    // зачем: было русское «жемчужин» в украинской строке + без склонения.
+    title: (n: number) => `+${n} ${ukKnowledgeShardsAfterNumber(n)}`,
     cta: 'Забрати',
     ctaPreview: 'Закрити',
   },

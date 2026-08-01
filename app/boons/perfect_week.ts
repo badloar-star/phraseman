@@ -8,8 +8,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getTodaysBoons } from './boon_engine';
 import type { BoonReward } from './boon_rewards';
 
-/** Крупный приз за полную неделю. §7: выплата монет обнулена (монеты только покупаются). */
-export const PERFECT_WEEK_REWARD: BoonReward = { shards: 0 };
+/**
+ * Приз за полную неделю (все 7 дней закрыты).
+ * зачем: §7 экономики обнулял выплату, и модал показывал «0 жемчужин начислено» —
+ * пустое окно. Владелец (2026-07-27) разрешил маленькую выплату; 5 — верх скромной
+ * шкалы сундука недели (MYSTERY_TIERS), т.к. полная неделя достаётся тяжелее
+ * случайного сундука и не должна давать меньше него.
+ */
+export const PERFECT_WEEK_REWARD: BoonReward = { shards: 5 };
 
 /** Ключ «приз за неделю X уже выдан» (значение = week_days_week_key). */
 const PERFECT_WEEK_CLAIMED_KEY = 'boon_perfect_week_claimed_v1';

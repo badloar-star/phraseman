@@ -36,6 +36,7 @@ const BOOT_PROFILE_KEYS = [
   USER_AVATAR_AURA_KEY,
   'user_total_xp',
   'premium_active',
+  'premium_plan',
 ] as const;
 
 const BOOT_PROGRESS_KEYS = [
@@ -125,6 +126,7 @@ function buildProfileSnapshot(
     totalXp,
     level: getLevelFromXP(totalXp),
     premiumActive: readBool(values.get('premium_active')),
+    premiumPlan: values.get('premium_plan')?.trim().toLowerCase() || undefined,
     vipActive: vipUntil > now,
   };
 }

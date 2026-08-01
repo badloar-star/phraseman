@@ -36,6 +36,7 @@ import { triLang, type Lang } from '../constants/i18n';
 import {
   NO_AVATAR_AURA_ID,
   getAvatarAuraById,
+  normalizeAvatarAuraId,
   type AvatarAuraDef,
 } from '../constants/avatar_auras';
 import {
@@ -337,6 +338,7 @@ function availabilityStatus(
     case 'shards': return `${item.availability.cost} ${localized(lang, { ru: 'жемчужин', uk: 'перлин', es: 'perlas', 'pt-BR': 'pérolas', vi: 'ngọc trai', id: 'mutiara', tr: 'inci', pl: 'pereł' })}`;
     case 'level': return `${localized(lang, { ru: 'Уровень', uk: 'Рівень', es: 'Nivel', 'pt-BR': 'Nível', vi: 'Cấp', id: 'Level', tr: 'Seviye', pl: 'Poziom' })} ${item.availability.level}`;
     case 'plus': return 'Plus';
+    case 'pro': return 'Pro';
     case 'reward': return copy.reward;
   }
 }
@@ -354,7 +356,7 @@ export default function AvatarSelect() {
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const { theme: t, themeMode } = useTheme();
   const { lang } = useLang();
-  const { isPremium, isVip } = usePremium();
+  const { isPremium, isVip, isPro } = usePremium();
   const copy = useMemo(() => studioCopy(lang), [lang]);
   const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onAnimatedScroll, scrollY } = useBouncy();
   const bouncyStyle = useBouncyStyle(bouncyStretch);
@@ -436,11 +438,13 @@ export default function AvatarSelect() {
       snapshot: confirmedRef.current,
       isPremium,
       isVip,
+      isPro,
     }),
     validateApply: (intent) => validateCustomizationPurchaseApply(intent, {
       snapshot: confirmedRef.current,
       isPremium,
       isVip,
+      isPro,
     }),
     onOwnershipGranted: async (target, itemId, ownedValue) => {
       const current = confirmedRef.current;
@@ -457,7 +461,7 @@ export default function AvatarSelect() {
           .catch(() => {});
       }
     },
-  }), [serviceDeps, isPremium, isVip]);
+  }), [serviceDeps, isPremium, isVip, isPro]);
 
   useEffect(() => {
     void resumePersistedCustomizationPurchase(purchaseDeps)
@@ -472,7 +476,7 @@ export default function AvatarSelect() {
       .catch(() => {});
   }, [purchaseDeps]);
 
-  const effectivePreviewAuraId = resolveEffectivePreviewAuraId(previewStoredAuraSelection, isPremium, isVip);
+  const effectivePreviewAuraId = resolveEffectivePreviewAuraId(previewStoredAuraSelection, isPremium, isVip, isPro);
   // зачем: «Аватар уровня» — первая плитка каталога вместо скрытого меню-трёх-точек:
   // возврат к уровню выбирается так же, как любой другой аватар («Вернуть аватар уровня»
   // больше не прячется за многоточием).
@@ -496,7 +500,8 @@ export default function AvatarSelect() {
     ownedAuras: confirmed.ownedAuras,
     isPremium,
     isVip,
-  }), [previewAvatarValue, confirmed.storedAuraSelection, confirmed.level, confirmed.ownedAuras, isPremium, isVip]);
+    isPro,
+  }), [previewAvatarValue, confirmed.storedAuraSelection, confirmed.level, confirmed.ownedAuras, isPremium, isVip, isPro]);
   const catalogItems = useMemo<CatalogCardItem[]>(
     () => activeTab === 'avatars' ? [levelTile, ...avatarItems] : auraItems,
     [activeTab, levelTile, avatarItems, auraItems],
@@ -505,9 +510,14 @@ export default function AvatarSelect() {
   const selectedAvatar = parseCustomAvatarValue(previewAvatarValue);
   const isLevelAvatarPreview = selectedAvatar === null;
   const selectedAvatarItem = avatarItems.find((item) => item.kind === 'custom-avatar' && item.id === selectedAvatar?.avatarId);
-  const selectedAuraItem = previewStoredAuraSelection === null
+  const previewAuraCatalogId = previewStoredAuraSelection === null
+    ? null
+    : previewStoredAuraSelection === NO_AVATAR_AURA_ID
+      ? 'none'
+      : normalizeAvatarAuraId(previewStoredAuraSelection);
+  const selectedAuraItem = previewAuraCatalogId === null
     ? undefined
-    : auraItems.find((item) => item.id === (previewStoredAuraSelection === NO_AVATAR_AURA_ID ? 'none' : previewStoredAuraSelection));
+    : auraItems.find((item) => item.id === previewAuraCatalogId);
   const avatarAvailability: CatalogAvailability = selectedAvatarItem?.availability ?? { kind: 'owned' };
   const auraAvailability: CatalogAvailability = selectedAuraItem?.availability ?? { kind: 'owned' };
   const resolvedAction = resolveCustomizationAction({
@@ -698,7 +708,7 @@ export default function AvatarSelect() {
       ? isLevelAvatarPreview
       : item.kind === 'custom-avatar'
         ? item.id === selectedAvatar?.avatarId
-        : item.id === (previewStoredAuraSelection === NO_AVATAR_AURA_ID ? 'none' : previewStoredAuraSelection);
+        : item.id === previewAuraCatalogId;
     return (
       <View style={styles.cell}>
         <CustomizationCatalogCard
@@ -710,7 +720,7 @@ export default function AvatarSelect() {
         />
       </View>
     );
-  }, [isLevelAvatarPreview, selectedAvatar?.avatarId, previewStoredAuraSelection, lang, copy, selectCatalogItem]);
+  }, [isLevelAvatarPreview, selectedAvatar?.avatarId, previewAuraCatalogId, lang, copy, selectCatalogItem]);
 
   const listHeader = useMemo(() => (
     <View>

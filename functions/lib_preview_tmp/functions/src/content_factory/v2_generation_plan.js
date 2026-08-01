@@ -45,7 +45,6 @@ function buildV2SeasonPlan(input) {
         const outline = stageId('v2_episode_outline', seasonId, episodeId);
         const sceneSet = stageId('v2_scene_set', seasonId, episodeId);
         const dialogue = stageId('v2_dialogue_script', seasonId, episodeId);
-        const speaking = stageId('v2_speaking_mission', seasonId, episodeId);
         const voice = stageId('v2_voice_targets', seasonId, episodeId);
         const instances = stageId('v2_activity_instances', seasonId, episodeId);
         const graph = stageId('v2_activity_graph', seasonId, episodeId);
@@ -57,14 +56,10 @@ function buildV2SeasonPlan(input) {
         stages.push({ id: sceneSet, kind: 'v2_scene_set', episodeId, dependsOn: [outline] });
         if (recipe?.dialogue)
             stages.push({ id: dialogue, kind: 'v2_dialogue_script', episodeId, dependsOn: [sceneSet] });
-        if (recipe?.speakingClub)
-            stages.push({ id: speaking, kind: 'v2_speaking_mission', episodeId, dependsOn: [sceneSet] });
         stages.push({ id: voice, kind: 'v2_voice_targets', episodeId, dependsOn: [sceneSet] });
         const instanceDependencies = [outline, voice];
         if (recipe?.dialogue)
             instanceDependencies.push(dialogue);
-        if (recipe?.speakingClub)
-            instanceDependencies.push(speaking);
         stages.push({ id: instances, kind: 'v2_activity_instances', episodeId, dependsOn: instanceDependencies });
         stages.push({ id: graph, kind: 'v2_activity_graph', episodeId, dependsOn: [instances] });
         stages.push({ id: assets, kind: 'v2_asset_manifest', episodeId, dependsOn: [graph] });

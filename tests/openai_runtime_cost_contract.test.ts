@@ -209,7 +209,6 @@ describe('OpenAI runtime cost controls', () => {
       'choice_explain_billing',
       'quiz_explain_billing',
       'mistake_explain_billing',
-      'speaking_club_billing',
     ];
     for (const collectionName of REQUIRED_BILLING_COLLECTIONS) {
       expect(budgetFn).toContain(`collection: '${collectionName}'`);

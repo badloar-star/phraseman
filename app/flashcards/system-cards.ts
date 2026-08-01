@@ -1258,7 +1258,7 @@ const SYSTEM_CARDS_SOURCE: CardItem[] = [
   { id: 'em4',  en:'exhausted',         ru:'вымотан / без сил',              uk:'вимотаний / без сил',              categoryId:'emotions', isSystem:true },
   { id: 'em5',  en:'relieved',          ru:'с облегчением / гора с плеч',    uk:'з полегшенням / гора з плечей',    categoryId:'emotions', isSystem:true },
   { id: 'em6',  en:'devastated',        ru:'убит горем / раздавлен',         uk:'приголомшений / розбитий',         categoryId:'emotions', isSystem:true },
-  { id: 'em7',  en:'fed up',            ru:'сыт по горло / надоело',         uk:'набридло / сит по горло',          categoryId:'emotions', isSystem:true },
+  { id: 'em7',  en:'fed up',            ru:'сыт по горло / надоело',         uk:'набридло / ситий по горло',          categoryId:'emotions', isSystem:true },
   { id: 'em8',  en:'thrilled',          ru:'в восторге / как я рад!',        uk:'у захваті / надзвичайно радий',    categoryId:'emotions', isSystem:true },
   { id: 'em9',  en:'nervous',           ru:'нервничаю / не по себе',         uk:'нервуюсь / не по собі',            categoryId:'emotions', isSystem:true },
   { id: 'em10', en:'terrified',         ru:'до смерти напуган / в ужасе',    uk:'страшенно наляканий / в жаху',     categoryId:'emotions', isSystem:true },

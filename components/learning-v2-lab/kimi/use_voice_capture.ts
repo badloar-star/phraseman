@@ -6,7 +6,10 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { buildSpeakingStartOptions } from '../../../app/speaking_recognition_options';
+import { LOUD_PLAYBACK_AUDIO_MODE } from '../../../app/audio_playback_mode';
+import { setManagedAudioMode } from '../../../app/audio_session_coordinator';
 import { speakingMatchedFlags, speakingTargetTokens } from '../../../app/speaking_word_match';
+import { useRuntimeActive } from '../../../hooks/use_runtime_active';
 // путь: components/learning-v2-lab/kimi → ../../../ = корень репозитория
 
 /** Состояния захвата, на которые опирается визуальная машина Kimi. */
@@ -53,6 +56,10 @@ function loadSpeechModule(): SpeechModule | null {
   }
 }
 
+function restoreLoudPlaybackMode(): void {
+  void setManagedAudioMode(LOUD_PLAYBACK_AUDIO_MODE).catch(() => undefined);
+}
+
 export interface UseVoiceCaptureInput {
   /** Фраза, которую ждём от ученика (биасит движок — главный рычаг точности). */
   readonly targetText: string;
@@ -81,8 +88,13 @@ export interface UseVoiceCapture {
  */
 export function useVoiceCapture(input: UseVoiceCaptureInput): UseVoiceCapture {
   const { targetText, locale = 'en-US', freeSpeech = false } = input;
+  const runtimeActive = useRuntimeActive();
+  const runtimeActiveRef = useRef(runtimeActive);
+  runtimeActiveRef.current = runtimeActive;
 
   const [status, setStatus] = useState<VoiceCaptureStatus>('idle');
+  const statusRef = useRef<VoiceCaptureStatus>('idle');
+  statusRef.current = status;
   const [partial, setPartial] = useState('');
   const [result, setResult] = useState<VoiceCaptureResult | null>(null);
 
@@ -93,8 +105,12 @@ export function useVoiceCapture(input: UseVoiceCaptureInput): UseVoiceCapture {
   // зачем: защита от гонок — поздний результат прошлой попытки не должен
   // затирать свежую (владелец: «поздний ответ не затирает свежее значение»).
   const attemptRef = useRef(0);
+  // A press can end while permission UI is pending. Keep the attempt token for
+  // final callbacks after a real stop, but separately revoke pending starts.
+  const startGenerationRef = useRef(0);
+  const pressActiveRef = useRef(false);
 
-  const cleanup = useCallback(() => {
+  const cleanupListeners = useCallback(() => {
     for (const sub of subsRef.current) sub?.remove?.();
     subsRef.current = [];
   }, []);
@@ -103,18 +119,41 @@ export function useVoiceCapture(input: UseVoiceCaptureInput): UseVoiceCapture {
     mountedRef.current = true;
     return () => {
       mountedRef.current = false;
-      cleanup();
+      attemptRef.current += 1;
+      startGenerationRef.current += 1;
+      pressActiveRef.current = false;
+      cleanupListeners();
       try {
         speechRef.current?.abort();
       } catch {
         /* модуль мог уже уйти — молча выходим */
       }
+      restoreLoudPlaybackMode();
     };
-  }, [cleanup]);
+  }, [cleanupListeners]);
+
+  // Speech capture lifecycle invariant: blur/background invalidates permission/start,
+  // removes native listeners, aborts capture, restores playback, and never auto-resumes.
+  useEffect(() => {
+    if (runtimeActive) return;
+    attemptRef.current += 1;
+    startGenerationRef.current += 1;
+    pressActiveRef.current = false;
+    cleanupListeners();
+    try {
+      speechRef.current?.abort();
+    } catch {
+      /* no-op */
+    }
+    restoreLoudPlaybackMode();
+    if (mountedRef.current && (statusRef.current === 'listening' || statusRef.current === 'evaluating')) {
+      setStatus('idle');
+    }
+  }, [runtimeActive, cleanupListeners]);
 
   const finish = useCallback(
     (attempt: number, transcript: string) => {
-      if (!mountedRef.current || attempt !== attemptRef.current) return;
+      if (!mountedRef.current || !runtimeActiveRef.current || attempt !== attemptRef.current) return;
       const flags = speakingMatchedFlags(targetText, transcript);
       const matched = flags.filter(Boolean).length;
       const ratio = flags.length > 0 ? matched / flags.length : 0;
@@ -125,6 +164,7 @@ export function useVoiceCapture(input: UseVoiceCaptureInput): UseVoiceCapture {
   );
 
   const start = useCallback(async () => {
+    if (!runtimeActiveRef.current) return;
     const speech = speechRef.current ?? loadSpeechModule();
     speechRef.current = speech;
     if (!speech) {
@@ -134,6 +174,9 @@ export function useVoiceCapture(input: UseVoiceCaptureInput): UseVoiceCapture {
 
     const attempt = attemptRef.current + 1;
     attemptRef.current = attempt;
+    const startGeneration = startGenerationRef.current + 1;
+    startGenerationRef.current = startGeneration;
+    pressActiveRef.current = true;
     bestRef.current = '';
     setPartial('');
     setResult(null);
@@ -144,7 +187,7 @@ export function useVoiceCapture(input: UseVoiceCaptureInput): UseVoiceCapture {
     } catch {
       granted = false;
     }
-    if (!mountedRef.current || attempt !== attemptRef.current) return;
+    if (!mountedRef.current || !runtimeActiveRef.current || attempt !== attemptRef.current || startGeneration !== startGenerationRef.current) return;
     if (!granted) {
       setStatus('permission_denied');
       return;
@@ -156,10 +199,11 @@ export function useVoiceCapture(input: UseVoiceCaptureInput): UseVoiceCapture {
     } catch {
       onDevice = false;
     }
-    if (!mountedRef.current || attempt !== attemptRef.current) return;
+    if (!mountedRef.current || !runtimeActiveRef.current || attempt !== attemptRef.current || startGeneration !== startGenerationRef.current) return;
 
-    cleanup();
+    cleanupListeners();
     const resultSub = speech.addListener('result', (event: unknown) => {
+      if (!mountedRef.current || !runtimeActiveRef.current || attempt !== attemptRef.current) return;
       const payload = event as { results?: { transcript?: string }[]; isFinal?: boolean };
       const alts = Array.isArray(payload?.results) ? payload.results : [];
       // Берём гипотезу, наиболее полно покрывающую цель, а не слепо первую.
@@ -175,15 +219,15 @@ export function useVoiceCapture(input: UseVoiceCaptureInput): UseVoiceCapture {
         }
       }
       bestRef.current = best;
-      if (mountedRef.current && attempt === attemptRef.current) setPartial(best);
+      setPartial(best);
       if (payload?.isFinal) finish(attempt, best);
     });
     const endSub = speech.addListener('end', () => {
-      if (!mountedRef.current || attempt !== attemptRef.current) return;
+      if (!mountedRef.current || !runtimeActiveRef.current || attempt !== attemptRef.current) return;
       finish(attempt, bestRef.current);
     });
     const errorSub = speech.addListener('error', () => {
-      if (!mountedRef.current || attempt !== attemptRef.current) return;
+      if (!mountedRef.current || !runtimeActiveRef.current || attempt !== attemptRef.current) return;
       // Ошибка движка = «не удалось расслышать», а не «неверно»: у Kimi это
       // нейтральное восстановление с бесплатным повтором.
       finish(attempt, bestRef.current);
@@ -206,9 +250,13 @@ export function useVoiceCapture(input: UseVoiceCaptureInput): UseVoiceCapture {
     } catch {
       setStatus('unavailable');
     }
-  }, [cleanup, finish, freeSpeech, locale, targetText]);
+  }, [cleanupListeners, finish, freeSpeech, locale, targetText]);
 
   const stop = useCallback(() => {
+    pressActiveRef.current = false;
+    // Only pending permission/capability continuations are invalidated here.
+    // Installed callbacks remain owned by `attempt` and may deliver stop's final.
+    startGenerationRef.current += 1;
     setStatus((current) => (current === 'listening' ? 'evaluating' : current));
     try {
       speechRef.current?.stop();
@@ -219,8 +267,10 @@ export function useVoiceCapture(input: UseVoiceCaptureInput): UseVoiceCapture {
 
   const reset = useCallback(() => {
     attemptRef.current += 1;
+    startGenerationRef.current += 1;
+    pressActiveRef.current = false;
     bestRef.current = '';
-    cleanup();
+    cleanupListeners();
     try {
       speechRef.current?.abort();
     } catch {
@@ -229,7 +279,7 @@ export function useVoiceCapture(input: UseVoiceCaptureInput): UseVoiceCapture {
     setPartial('');
     setResult(null);
     setStatus('idle');
-  }, [cleanup]);
+  }, [cleanupListeners]);
 
   const matchedFlags = speakingMatchedFlags(targetText, result?.transcript ?? partial);
 

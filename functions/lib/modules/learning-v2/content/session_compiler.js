@@ -10,14 +10,14 @@ exports.REQUIRED_SESSION_POLICY_V1 = Object.freeze([
     { zone: 'understand', support: 'full_text', families: ['listen_choose', 'sound_contrast', 'phrase_builder'] },
     { zone: 'understand', support: 'full_text', families: ['speed_match', 'phrase_builder', 'context_gap_grammar'] },
     { zone: 'understand', support: 'partial_cue', families: ['listen_choose', 'phrase_builder', 'scripted_repeat_compare'] },
-    { zone: 'use', support: 'partial_cue', families: ['phrase_builder', 'context_gap_grammar', 'quick_spoken_response'] },
-    { zone: 'use', support: 'partial_cue', families: ['listen_build_dictation', 'phrase_builder', 'shadowing_prosody'] },
-    { zone: 'use', support: 'partial_cue', families: ['context_gap_grammar', 'quick_spoken_response', 'listen_choose'] },
-    { zone: 'use', support: 'visual_only', families: ['listen_build_dictation', 'quick_spoken_response', 'scripted_dialogue'] },
-    { zone: 'master', support: 'visual_only', families: ['quick_spoken_response', 'listen_build_dictation', 'context_gap_grammar'] },
-    { zone: 'master', support: 'none', families: ['quick_spoken_response', 'scripted_dialogue', 'listen_build_dictation'] },
-    { zone: 'master', support: 'none', families: ['quick_spoken_response', 'scripted_dialogue', 'shadowing_prosody'] },
-    { zone: 'master', support: 'none', families: ['quick_spoken_response', 'scripted_dialogue', 'listen_build_dictation'] },
+    { zone: 'use', support: 'partial_cue', families: ['phrase_builder', 'context_gap_grammar', 'listen_build_dictation'] },
+    { zone: 'use', support: 'partial_cue', families: ['listen_build_dictation', 'phrase_builder', 'scripted_repeat_compare'] },
+    { zone: 'use', support: 'partial_cue', families: ['context_gap_grammar', 'listen_choose', 'speed_match'] },
+    { zone: 'use', support: 'visual_only', families: ['listen_build_dictation', 'scripted_repeat_compare', 'phrase_builder'] },
+    { zone: 'master', support: 'visual_only', families: ['speed_match', 'listen_build_dictation', 'context_gap_grammar'] },
+    { zone: 'master', support: 'none', families: ['scripted_repeat_compare', 'phrase_builder', 'listen_build_dictation'] },
+    { zone: 'master', support: 'none', families: ['scripted_repeat_compare', 'context_gap_grammar', 'speed_match'] },
+    { zone: 'master', support: 'none', families: ['phrase_builder', 'listen_choose', 'listen_build_dictation'] },
 ]);
 // зачем: языково-безопасный фолбэк может подменить семью ТОЛЬКО на семью той же
 // учебной функции — иначе сессия теряет смысл (нельзя менять диктант на «повтори вслух»).
@@ -36,15 +36,14 @@ const FAMILY_LEARNING_FUNCTION = Object.freeze({
     microstory_radio: 'comprehend',
     branching_scene: 'transfer',
     scripted_dialogue: 'transfer',
-    speaking_club_mission: 'transfer',
     personalized_review: 'review',
     speed_match: 'retrieve',
 });
-const MIN_CARDS = 7;
-const MAX_CARDS = 9;
+const MIN_CARDS = 12;
+const MAX_CARDS = 12;
 const SECONDS_PER_CARD = 25;
 const MIN_TARGET_SECONDS = 150;
-const MAX_TARGET_SECONDS = 240;
+const MAX_TARGET_SECONDS = 360;
 function deepFreeze(value) {
     if (typeof value === 'object' && value !== null) {
         for (const child of Object.values(value))

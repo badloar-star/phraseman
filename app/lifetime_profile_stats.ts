@@ -6,6 +6,12 @@ import { readCustomCards } from './flashcards/storage';
 import { getForegroundDailyMsMap } from './foreground_usage_ms';
 import { bumpStatsDaily } from './stats_daily_breakdown';
 import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  withAccountTransitionLock,
+  type AccountGenerationToken,
+} from './account_generation';
+import {
   diagnosticLastKey,
   lessonProgressKey,
   lessonWordsKey,
@@ -33,29 +39,57 @@ async function readCounter(key: string): Promise<number> {
   return parseIntSafe(await AsyncStorage.getItem(key), 0);
 }
 
-async function incCounter(key: string, delta: number): Promise<void> {
-  if (!Number.isFinite(delta) || delta <= 0) return;
+async function incCounter(
+  key: string,
+  delta: number,
+  accountToken: AccountGenerationToken,
+): Promise<boolean> {
+  if (!Number.isFinite(delta) || delta <= 0 || !isCurrentAccountGeneration(accountToken)) return false;
   try {
-    const cur = await readCounter(key);
-    await AsyncStorage.setItem(key, String(cur + Math.floor(delta)));
+    const increment = async (): Promise<boolean> => {
+      if (!isCurrentAccountGeneration(accountToken)) return false;
+      const cur = await readCounter(key);
+      if (!isCurrentAccountGeneration(accountToken)) return false;
+      await AsyncStorage.setItem(key, String(cur + Math.floor(delta)));
+      return isCurrentAccountGeneration(accountToken);
+    };
+    return withAccountTransitionLock(increment);
   } catch {
-    /* ignore */
+    return false;
   }
 }
 
-export async function bumpDailyTaskClaimed(studyTarget?: RuntimeStudyTarget): Promise<void> {
-  await incCounter(K_DAILY_CLAIMS, 1);
-  await bumpStatsDaily('daily_tasks_claimed', 1, studyTarget);
+export async function bumpDailyTaskClaimed(
+  studyTarget?: RuntimeStudyTarget,
+  accountToken?: AccountGenerationToken,
+): Promise<void> {
+  const operationToken = accountToken ?? captureAccountGeneration();
+  if (!operationToken.stableId || !isCurrentAccountGeneration(operationToken)) return;
+  const committed = await incCounter(K_DAILY_CLAIMS, 1, operationToken);
+  if (!committed || !isCurrentAccountGeneration(operationToken)) return;
+  await bumpStatsDaily('daily_tasks_claimed', 1, studyTarget, operationToken);
 }
 
-export async function bumpLifetimeShardsEarned(amount: number): Promise<void> {
-  await incCounter(K_SHARDS_EARNED, amount);
-  await bumpStatsDaily('shards_earned', amount);
+export async function bumpLifetimeShardsEarned(
+  amount: number,
+  accountToken?: AccountGenerationToken,
+): Promise<void> {
+  const operationToken = accountToken ?? captureAccountGeneration();
+  if (!operationToken.stableId || !isCurrentAccountGeneration(operationToken)) return;
+  const committed = await incCounter(K_SHARDS_EARNED, amount, operationToken);
+  if (!committed || !isCurrentAccountGeneration(operationToken)) return;
+  await bumpStatsDaily('shards_earned', amount, undefined, operationToken);
 }
 
-export async function bumpLifetimeShardsSpent(amount: number): Promise<void> {
-  await incCounter(K_SHARDS_SPENT, amount);
-  await bumpStatsDaily('shards_spent', amount);
+export async function bumpLifetimeShardsSpent(
+  amount: number,
+  accountToken?: AccountGenerationToken,
+): Promise<void> {
+  const operationToken = accountToken ?? captureAccountGeneration();
+  if (!operationToken.stableId || !isCurrentAccountGeneration(operationToken)) return;
+  const committed = await incCounter(K_SHARDS_SPENT, amount, operationToken);
+  if (!committed || !isCurrentAccountGeneration(operationToken)) return;
+  await bumpStatsDaily('shards_spent', amount, undefined, operationToken);
 }
 
 /**

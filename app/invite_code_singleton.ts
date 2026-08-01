@@ -21,27 +21,56 @@ const CODE_TTL_MS = 5 * 60 * 1000;
 const MAX_ATTEMPTS = 5;
 
 let cachedCode: { accountKey: string; code: string; expiresAt: number } | null = null;
-let inFlight: { accountKey: string; promise: Promise<string> } | null = null;
+type InviteCodeFlight = {
+  accountKey: string;
+  consumers: Set<symbol>;
+  promise: Promise<string>;
+  cancelRetryDelay: (() => void) | null;
+};
+
+export type InviteCodeLease = {
+  promise: Promise<string>;
+  release: () => void;
+};
+
+let inFlight: InviteCodeFlight | null = null;
 let invalidationEpoch = 0;
 let activeAccountKey: string | null = null;
 
-function sleep(ms: number): Promise<void> {
-  return new Promise((resolve) => setTimeout(resolve, ms));
+function waitForRetry(flight: InviteCodeFlight, ms: number): Promise<boolean> {
+  if (flight.consumers.size === 0) return Promise.resolve(false);
+  return new Promise((resolve) => {
+    let settled = false;
+    const finish = (retained: boolean) => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
+      if (flight.cancelRetryDelay === cancel) flight.cancelRetryDelay = null;
+      resolve(retained);
+    };
+    const cancel = () => finish(false);
+    const timer = setTimeout(() => finish(flight.consumers.size > 0), ms);
+    flight.cancelRetryDelay = cancel;
+  });
 }
 
-async function resolveCodeWithRetry(nameForFallback: string): Promise<string> {
+async function resolveCodeWithRetry(nameForFallback: string, flight: InviteCodeFlight): Promise<string> {
   // 1. Мгновенный путь: код уже на устройстве.
   const existing = await getReferralCode().catch(() => null);
+  if (flight.consumers.size === 0) return '';
   if (existing && existing.trim().length >= 4) return existing.trim().toUpperCase();
 
   // 2. Холодная гонка: auth_links готовится пару секунд — добиваем бэкоффом.
   for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt += 1) {
+    if (flight.consumers.size === 0) return '';
     try {
       await generateReferralCode(nameForFallback);
+      if (flight.consumers.size === 0) return '';
       const rc = await getReferralCode();
+      if (flight.consumers.size === 0) return '';
       if (rc && rc.trim().length >= 4) return rc.trim().toUpperCase();
     } catch { /* ещё не готово — повторим */ }
-    if (attempt < MAX_ATTEMPTS) await sleep(1500 * attempt);
+    if (attempt < MAX_ATTEMPTS && !(await waitForRetry(flight, 1500 * attempt))) return '';
   }
   return '';
 }
@@ -50,10 +79,10 @@ async function resolveCodeWithRetry(nameForFallback: string): Promise<string> {
  * Возвращает инвайт-код (или '' при неудаче). Параллельные вызовы делят один
  * сетевой проход; успешный результат кэшируется на 5 мин.
  */
-export function ensureInviteCodeShared(nameForFallback = 'User'): Promise<string> {
+export function acquireInviteCodeShared(nameForFallback = 'User'): InviteCodeLease {
   const accountToken = captureAccountGeneration();
   const currentAccountKey = accountScopeKey(accountToken);
-  if (!currentAccountKey) return Promise.resolve('');
+  if (!currentAccountKey) return { promise: Promise.resolve(''), release: () => {} };
   if (activeAccountKey !== currentAccountKey) invalidateInviteCodeShared(currentAccountKey);
   const now = Date.now();
   if (
@@ -61,13 +90,35 @@ export function ensureInviteCodeShared(nameForFallback = 'User'): Promise<string
     && cachedCode.accountKey === currentAccountKey
     && cachedCode.expiresAt > now
   ) {
-    return Promise.resolve(cachedCode.code);
+    return { promise: Promise.resolve(cachedCode.code), release: () => {} };
   }
-  if (inFlight?.accountKey === currentAccountKey) return inFlight.promise;
+  const consumer = Symbol('invite-code-consumer');
+  if (inFlight?.accountKey === currentAccountKey) {
+    const flight = inFlight;
+    flight.consumers.add(consumer);
+    let released = false;
+    return {
+      promise: flight.promise,
+      release: () => {
+        if (released) return;
+        released = true;
+        flight.consumers.delete(consumer);
+        if (flight.consumers.size === 0) {
+          if (inFlight === flight) inFlight = null;
+          flight.cancelRetryDelay?.();
+        }
+      },
+    };
+  }
 
   const requestEpoch = invalidationEpoch;
-  let promise!: Promise<string>;
-  promise = resolveCodeWithRetry(nameForFallback)
+  const flight: InviteCodeFlight = {
+    accountKey: currentAccountKey,
+    consumers: new Set([consumer]),
+    promise: Promise.resolve(''),
+    cancelRetryDelay: null,
+  };
+  flight.promise = resolveCodeWithRetry(nameForFallback, flight)
     .then((code) => {
       if (
         requestEpoch !== invalidationEpoch
@@ -84,10 +135,29 @@ export function ensureInviteCodeShared(nameForFallback = 'User'): Promise<string
       return code;
     })
     .finally(() => {
-      if (inFlight?.promise === promise) inFlight = null;
+      flight.cancelRetryDelay = null;
+      if (inFlight === flight) inFlight = null;
     });
-  inFlight = { accountKey: currentAccountKey, promise };
-  return promise;
+  inFlight = flight;
+  let released = false;
+  return {
+    promise: flight.promise,
+    release: () => {
+      if (released) return;
+      released = true;
+      flight.consumers.delete(consumer);
+      if (flight.consumers.size === 0) {
+        if (inFlight === flight) inFlight = null;
+        flight.cancelRetryDelay?.();
+      }
+    },
+  };
+}
+
+export function ensureInviteCodeShared(nameForFallback = 'User'): Promise<string> {
+  const lease = acquireInviteCodeShared(nameForFallback);
+  void lease.promise.then(lease.release, lease.release);
+  return lease.promise;
 }
 
 /** Сброс кэша (смена аккаунта / logout). Inflight-промис не отменяем — он добьёт и заполнит кэш. */
@@ -96,6 +166,8 @@ export function invalidateInviteCodeShared(nextAccountKey?: string | null): void
   if (nextAccountKey !== undefined && activeAccountKey === nextAccountKey) return;
   invalidationEpoch += 1;
   cachedCode = null;
+  inFlight?.consumers.clear();
+  inFlight?.cancelRetryDelay?.();
   inFlight = null;
   activeAccountKey = nextAccountKey ?? null;
 }

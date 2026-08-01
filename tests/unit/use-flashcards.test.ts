@@ -16,8 +16,18 @@ import {
   Flashcard,
   __resetFlashcardCacheForTests,
 } from '../../hooks/use-flashcards';
+import {
+  __resetAccountGenerationForTests,
+  beginAccountGeneration,
+} from '../../app/account_generation';
 
 jest.mock('@react-native-async-storage/async-storage');
+jest.mock('../../app/premium_guard', () => ({
+  getVerifiedPremiumStatus: jest.fn(),
+}));
+const { getVerifiedPremiumStatus: mockGetVerifiedPremiumStatus } = require('../../app/premium_guard') as {
+  getVerifiedPremiumStatus: jest.Mock;
+};
 
 const mockStorage = AsyncStorage as jest.Mocked<typeof AsyncStorage>;
 
@@ -41,12 +51,20 @@ const makeFullCard = (en: string): Flashcard => ({
 describe('use-flashcards', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    __resetAccountGenerationForTests();
+    beginAccountGeneration('flashcards-test-account');
     // clearAllMocks restores the manual AsyncStorage mock's default impl (reads a shared
     // singleton store); drain that store so a prior case's writes don't leak into this one.
     (mockStorage as unknown as { __reset?: () => void }).__reset?.();
     // The module keeps in-memory caches for the app lifetime; reset them so each case
     // reads its own AsyncStorage fixture instead of a value cached by a previous case.
     __resetFlashcardCacheForTests();
+    // Clear queued mockResolvedValueOnce values from prior cases; mockClear alone
+    // preserves that queue and can make a later storage boundary read stale data.
+    mockStorage.getItem.mockReset().mockResolvedValue(null);
+    mockStorage.setItem.mockReset().mockResolvedValue(undefined);
+    mockStorage.removeItem.mockReset().mockResolvedValue(undefined);
+    mockGetVerifiedPremiumStatus.mockReset().mockResolvedValue(false);
   });
 
   // ── loadFlashcards ─────────────────────────────────────────────────────────
@@ -166,6 +184,7 @@ describe('use-flashcards', () => {
         .mockResolvedValueOnce(null)                   // tester_no_premium
         .mockResolvedValueOnce(null);                  // tester_no_limits
       mockStorage.setItem.mockResolvedValue(undefined);
+      mockGetVerifiedPremiumStatus.mockResolvedValue(true);
 
       const result = await addFlashcard(makeCard('phrase beyond limit'));
       expect(result).toBe('added');
@@ -180,6 +199,7 @@ describe('use-flashcards', () => {
         .mockResolvedValueOnce('true')                 // premium_active
         .mockResolvedValueOnce('true')                 // tester_no_premium
         .mockResolvedValueOnce(null);                  // tester_no_limits
+      mockGetVerifiedPremiumStatus.mockResolvedValue(false);
 
       const result = await addFlashcard(makeCard('phrase beyond limit'));
       expect(result).toBe('limit_reached');

@@ -1905,37 +1905,6 @@
       }
     },
     {
-      "file": "app/speaking_club_home.tsx",
-      "ownerName": "SpeakingClubHome",
-      "ownerPath": "SpeakingClubHome",
-      "ancestorPath": [
-        "ScreenGradient",
-        "SafeAreaView",
-        "ScrollView",
-        "TouchableOpacity",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "2",
-      "testID": null,
-      "fingerprint": "28a2980457273bd25e4ad020bafabde29a26d100057e55ac69674e7b49caac9b",
-      "count": 1,
-      "lineHints": [
-        285
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "app/flashcards_audio.tsx",
       "ownerName": "renderCardLayer",
       "ownerPath": "FlashcardsAudioScreen>renderPlayer>renderCardLayer",
@@ -3043,37 +3012,6 @@
       }
     },
     {
-      "file": "app/speaking_club_session.tsx",
-      "ownerName": "SpeakingClubSession",
-      "ownerPath": "SpeakingClubSession",
-      "ancestorPath": [
-        "ScreenGradient",
-        "SafeAreaView",
-        "KeyboardAvoidingView",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "479c877e100494b0b6d141dd3d8b0280e2f2aa26aace468929a434470ac33387",
-      "count": 2,
-      "lineHints": [
-        709,
-        714
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "components/PersonalPlanHomeRouteCard.tsx",
       "ownerName": "PersonalPlanHomeRouteCard",
       "ownerPath": "PersonalPlanHomeRouteCard",
@@ -3614,37 +3552,6 @@
       }
     },
     {
-      "file": "app/speaking_club_session.tsx",
-      "ownerName": "SpeakingClubSession",
-      "ownerPath": "SpeakingClubSession",
-      "ancestorPath": [
-        "ScreenGradient",
-        "SafeAreaView",
-        "KeyboardAvoidingView",
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "2",
-      "testID": null,
-      "fingerprint": "57936014a5262ef0fe232600635f797bea3ee172d35b089a9f25aede80cbbe93",
-      "count": 1,
-      "lineHints": [
-        984
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "app/compass/compass_stats_block.tsx",
       "ownerName": "Stat",
       "ownerPath": "Stat",
@@ -3695,37 +3602,6 @@
         3149,
         3161,
         3199
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "app/speaking_club_home.tsx",
-      "ownerName": "SpeakingClubHome",
-      "ownerPath": "SpeakingClubHome",
-      "ancestorPath": [
-        "ScreenGradient",
-        "SafeAreaView",
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "5a983cbfc875e8f645a5bc0bcad3ce10d4e51fbc9de80593f1f452520eb0d0bc",
-      "count": 2,
-      "lineHints": [
-        149,
-        161
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -3940,37 +3816,6 @@
         449,
         641,
         737
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "app/speaking_club_home.tsx",
-      "ownerName": "SpeakingClubHome",
-      "ownerPath": "SpeakingClubHome",
-      "ancestorPath": [
-        "ScreenGradient",
-        "SafeAreaView",
-        "ScrollView",
-        "TouchableOpacity",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "604b8745283ce70042921874301e968fb210dd716c9745a5417460b4332a5f61",
-      "count": 1,
-      "lineHints": [
-        282
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -4794,38 +4639,6 @@
       "count": 1,
       "lineHints": [
         293
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "app/speaking_club_session.tsx",
-      "ownerName": "SpeakingClubSession",
-      "ownerPath": "SpeakingClubSession",
-      "ancestorPath": [
-        "ScreenGradient",
-        "SafeAreaView",
-        "KeyboardAvoidingView",
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "71ca6ba8179521bbb138f694bb26914496ac6d5cc3066637bf6247eac6630152",
-      "count": 2,
-      "lineHints": [
-        652,
-        655
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",

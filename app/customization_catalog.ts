@@ -2,6 +2,7 @@ import {
   AVATAR_AURA_BUY_COST,
   AVATAR_AURAS,
   NO_AVATAR_AURA_ID,
+  normalizeAvatarAuraId,
   type AvatarAuraDef,
 } from '../constants/avatar_auras';
 import {
@@ -21,6 +22,7 @@ export type CatalogAvailability =
   | { kind: 'shards'; cost: number }
   | { kind: 'level'; level: number }
   | { kind: 'plus' }
+  | { kind: 'pro' }
   | { kind: 'reward' }
   | { kind: 'none' };
 
@@ -66,6 +68,7 @@ export interface BuildAuraCatalogInput {
   ownedAuras: OwnedAuras;
   isPremium: boolean;
   isVip: boolean;
+  isPro?: boolean;
 }
 
 function ownedAvatarStyle(
@@ -111,15 +114,20 @@ function auraAvailability(
   aura: AvatarAuraDef,
   input: BuildAuraCatalogInput,
 ): { isOwned: boolean; availability: CatalogAvailability } {
-  const plusAura = aura.premiumOnly === true || aura.vipOnly === true;
+  if (aura.proOnly && !input.isPro) {
+    return { isOwned: false, availability: { kind: 'pro' } };
+  }
+  const plusAura = !aura.proOnly && (aura.premiumOnly === true || aura.vipOnly === true);
   const hasPlusAuraAccess = input.isPremium || input.isVip;
   if (plusAura && !hasPlusAuraAccess) {
     return { isOwned: false, availability: { kind: 'plus' } };
   }
   const unlockedByLevel = aura.unlockLevel !== undefined && input.level >= aura.unlockLevel;
+  const normalizedActiveAuraId = normalizeAvatarAuraId(input.activeAuraId);
   const isOwned = !!input.ownedAuras[aura.id]
-    || input.activeAuraId === aura.id
+    || normalizedActiveAuraId === aura.id
     || (plusAura && hasPlusAuraAccess)
+    || (aura.proOnly === true && input.isPro === true)
     || unlockedByLevel;
   if (isOwned) return { isOwned: true, availability: { kind: 'owned' } };
   // зачем: rewardOnly остался только у ручных наград админки («Нимб») — арена-ауры
@@ -134,13 +142,14 @@ function auraAvailability(
 }
 
 export function buildAuraCatalog(input: BuildAuraCatalogInput): CustomizationCatalogItem[] {
+  const normalizedActiveAuraId = normalizeAvatarAuraId(input.activeAuraId);
   const noneItem: CustomizationCatalogItem = {
     id: 'none',
     kind: 'none-aura',
     previewAvatar: input.activeAvatar,
     auraId: NO_AVATAR_AURA_ID,
     isOwned: true,
-    isActive: input.activeAuraId === NO_AVATAR_AURA_ID,
+    isActive: normalizedActiveAuraId === NO_AVATAR_AURA_ID,
     availability: { kind: 'none' },
   };
   return [noneItem, ...AVATAR_AURAS.map((aura): CustomizationCatalogItem => {
@@ -151,7 +160,7 @@ export function buildAuraCatalog(input: BuildAuraCatalogInput): CustomizationCat
       aura,
       previewAvatar: input.activeAvatar,
       auraId: aura.id,
-      isActive: input.activeAuraId === aura.id,
+      isActive: normalizedActiveAuraId === aura.id,
       ...access,
     };
   })];

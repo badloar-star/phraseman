@@ -31,7 +31,7 @@ const AVATAR_AURA_GIFT_OWNED_KEY = 'avatar_aura_gift_owned_v1';
 const USER_AVATAR_AURA_KEY = 'user_avatar_aura';
 const CUSTOM_AVATAR_OWNED_KEY = 'custom_avatar_owned_v1';
 const CUSTOM_AVATAR_GIFT_OWNED_KEY = 'custom_avatar_gift_owned_v1';
-const AVATAR_AURA_IDS = ['aura-aurora', 'aura-ember', 'aura-mint', 'aura-violet', 'aura-gold', 'aura-coral'] as const;
+const AVATAR_AURA_IDS = ['aura-aurora', 'aura-ember', 'aura-violet'] as const;
 const CUSTOM_AVATAR_DROP_IDS = Array.from(
   { length: 30 },
   (_, index) => `custom-gen-${String(index + 1).padStart(2, '0')}`,
@@ -191,6 +191,10 @@ function sumShardDrops(drops: RewardDrop[]): number {
       ? sum + Math.max(0, readInt(drop.amount, 0))
       : sum
   ), 0);
+}
+
+function isLeagueChestAuraId(value: unknown): value is typeof AVATAR_AURA_IDS[number] {
+  return typeof value === 'string' && AVATAR_AURA_IDS.includes(value as typeof AVATAR_AURA_IDS[number]);
 }
 
 function buildClaimedRewardResponse(params: {
@@ -364,8 +368,8 @@ export function buildRewardProgressPatch(params: {
     progressPatch[PACK_TRIAL_GIFT_KEY] = JSON.stringify({ packId: 'league_bonus_voucher', expiresAt: now + PACK_TRIAL_MS });
   }
 
-  const auraDrop = drops.find((drop) => drop.kind === 'avatar_aura' && drop.auraId);
-  if (auraDrop?.auraId) {
+  const auraDrop = drops.find((drop) => drop.kind === 'avatar_aura' && isLeagueChestAuraId(drop.auraId));
+  if (auraDrop?.auraId && isLeagueChestAuraId(auraDrop.auraId)) {
     const owned = parseJsonObject(getExistingField(user, AVATAR_AURA_OWNED_KEY));
     progressPatch[AVATAR_AURA_OWNED_KEY] = JSON.stringify({ ...owned, [auraDrop.auraId]: true });
     progressPatch[AVATAR_AURA_GIFT_OWNED_KEY] = auraDrop.auraId;

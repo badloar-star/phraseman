@@ -11,7 +11,7 @@ import {
   StyleSheet,
   ActivityIndicator,
 } from 'react-native';
-import Reanimated, { runOnJS, useSharedValue } from 'react-native-reanimated';
+import Reanimated from 'react-native-reanimated';
 import { LinearGradient } from 'expo-linear-gradient';
 import TapScale from '../../components/TapScale';
 import { useRouter } from 'expo-router';
@@ -85,6 +85,7 @@ import { openStoreReviewPage } from '../store_review';
 
 import { patchAppSnapshot, useAppSnapshotSelector } from '../app_snapshot_store';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
+import { useRuntimeActive } from '../../hooks/use_runtime_active';
 import { readVipSnapshotForGeneration } from '../premium_vip_storage';
 
 /** Картинка инвайт-баннера настроек (wire first, generate second — правило asset-хайджины). */
@@ -392,40 +393,14 @@ export default function SettingsMain() {
   const topFadeScroll = useTopFadeScroll();
   // Маска шапки (TopFadeMask) слушает scrollY порогом showThreshold=6, поэтому JS
   // дёргаем только при пересечении порога, а не каждый кадр — скролл идёт UI-потоком.
-  const topFadeShown = useSharedValue(false);
-  const topFadeOnScroll = topFadeScroll?.onScroll;
-  const notifyTopFade = useCallback((y: number) => {
-    topFadeOnScroll?.({ nativeEvent: { contentOffset: { y } } });
-  }, [topFadeOnScroll]);
-  // зачем: таббар схлопывается ЗА ПАЛЬЦЕМ и должен видеть ход жеста, а не только
-  // пересечение порога маски. Мост будим шагами по 4px — глазом неотличимо от
-  // покадрового, но JS-поток не захлёбывается.
-  const reportTabBarOffset = topFadeScroll?.reportTabBarOffset;
-  const notifyTabBar = useCallback((y: number) => {
-    reportTabBarOffset?.(y);
-  }, [reportTabBarOffset]);
-  const rememberSettingsScroll = useCallback((y: number) => {
-    settingsScrollYRef.current = Math.max(0, y);
-  }, []);
-  const tabBarReportedY = useSharedValue(0);
-  const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onAnimatedScroll } = useBouncy({
-    onScrollWorklet: (y: number) => {
-      'worklet';
-      if (Math.abs(y - tabBarReportedY.value) >= 4) {
-        tabBarReportedY.value = y;
-        runOnJS(notifyTabBar)(y);
-        runOnJS(rememberSettingsScroll)(y);
-      }
-      const shown = y > 6;
-      if (shown !== topFadeShown.value) {
-        topFadeShown.value = shown;
-        runOnJS(notifyTopFade)(y);
-      }
-    },
-  });
+  const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
+  const handleSettingsScroll = useCallback((e: any) => {
+    topFadeScroll?.onScroll?.(e);
+    settingsScrollYRef.current = Math.max(0, e?.nativeEvent?.contentOffset?.y ?? 0);
+    onBouncyScroll(e);
+  }, [onBouncyScroll, topFadeScroll]);
   const bouncyStyle = useBouncyStyle(bouncyStretch);
-  const { activeIdx, focusTick, goHome } = useTabNav();
-  const SETTINGS_TAB_IDX = 4;
+  const { focusTick, goHome, runtimeOwnerId } = useTabNav();
   // Повторные показы подсказок ограничены (наборы №2..№6); после последнего
   // кнопка исчезает навсегда — финальный набор прямо обещает это юзеру.
   const [homeTipsReplayCount, setHomeTipsReplayCount] = useState(0);
@@ -456,7 +431,8 @@ export default function SettingsMain() {
         goHome();
       });
   }, [goHome, homeTipsReplayCount]);
-  const settingsTabVisible = activeIdx === SETTINGS_TAB_IDX;
+  const settingsTabVisible = runtimeOwnerId === 'settings';
+  const settingsRuntimeActive = useRuntimeActive(settingsTabVisible);
 
   useEffect(() => {
     if (settingsTabVisible && scrollRef.current) {
@@ -528,6 +504,9 @@ export default function SettingsMain() {
   const [linkedAuth, setLinkedAuth] = useState<LinkedAuth | null>(null);
   /** Пока false — getLinkedAuthInfo ещё не завершился (избегаем кадра «Не привязан»). */
   const [authReady, setAuthReady] = useState(false);
+  const linkedAuthDirtyRef = useRef(true);
+  const linkedAuthGenerationRef = useRef(0);
+  const linkedAuthInFlightRef = useRef<Promise<void> | null>(null);
   const [authPromptVisible, setAuthPromptVisible] = useState(false);
   const [accountModalVisible, setAccountModalVisible] = useState(false);
   const [deleteAccountModalVisible, setDeleteAccountModalVisible] = useState(false);
@@ -540,7 +519,7 @@ export default function SettingsMain() {
   const [switchAccountStage, setSwitchAccountStage] = useState<'idle' | 'confirm' | 'wiping'>('idle');
 
   useEffect(() => {
-    if (!settingsTabVisible || settingsReferralSurface.emergencyStop) return;
+    if (!settingsRuntimeActive || settingsReferralSurface.emergencyStop) return;
     const token = captureAccountGeneration();
     if (accountScopeKey(token) !== settingsReferralAccountKey) return;
     const cached = readReferralDrain(token);
@@ -560,7 +539,7 @@ export default function SettingsMain() {
     settingsReferralSurface.emergencyStop,
     settingsReferralSurface.softEnabled,
     settingsReferralAccountKey,
-    settingsTabVisible,
+    settingsRuntimeActive,
   ]);
 
   const [hapticTap,  setHapticTap]   = useState(() => appSnapshot.settings?.tapHaptics ?? true);
@@ -601,12 +580,9 @@ export default function SettingsMain() {
     setStudyTarget(await getStoredStudyTarget(lang));
   }, [lang]);
   useEffect(() => {
+    if (!settingsRuntimeActive) return;
     void loadStudyTarget();
-  }, [loadStudyTarget]);
-  useEffect(() => {
-    if (!settingsTabVisible) return;
-    void loadStudyTarget();
-  }, [settingsTabVisible, focusTick, loadStudyTarget]);
+  }, [settingsRuntimeActive, focusTick, loadStudyTarget]);
   const currentThemeLabel = (() => {
     const names: Record<string, Record<Lang, string>> = {
       dark: { ru: 'Форест', uk: 'Форест', es: 'Bosque', 'pt-BR': 'Floresta', vi: 'Rừng', id: 'Hutan', tr: 'Orman', pl: 'Las' },
@@ -639,7 +615,7 @@ export default function SettingsMain() {
 
 
   useEffect(() => {
-    if (!settingsTabVisible && settingsStorageHydratedRef.current) return;
+    if (!settingsRuntimeActive && settingsStorageHydratedRef.current) return;
     settingsStorageHydratedRef.current = true;
     let cancelled = false;
     const token = captureAccountGeneration();
@@ -676,7 +652,7 @@ export default function SettingsMain() {
     setTopHelpersOn(isTopHelpersEnabled());
     refreshSupplementalAccessState();
     return () => { cancelled = true; };
-  }, [settingsTabVisible, refreshSupplementalAccessState]); // warm once, refresh when opening Settings
+  }, [settingsRuntimeActive, refreshSupplementalAccessState]); // warm once, refresh when opening Settings
 
   useEffect(() => {
     const refreshRemoteFlags = () => {
@@ -701,39 +677,59 @@ export default function SettingsMain() {
     };
   }, [refreshSupplementalAccessState]);
 
-  useEffect(() => {
-    let alive = true;
-    const refreshLinkedAuth = async () => {
-      try {
-        const info = await getLinkedAuthInfo();
-        if (alive) setLinkedAuth(info);
-      } catch {
-        if (alive) setLinkedAuth(null);
-      } finally {
-        if (alive) setAuthReady(true);
-      }
-    };
-    refreshLinkedAuth();
-    const sub = DeviceEventEmitter.addListener('auth_provider_linked', refreshLinkedAuth);
-    return () => { alive = false; sub.remove(); };
+  const invalidateLinkedAuthWork = useCallback(() => {
+    linkedAuthGenerationRef.current += 1;
+    linkedAuthDirtyRef.current = true;
+    linkedAuthInFlightRef.current = null;
   }, []);
+
+  const refreshLinkedAuth = useCallback((): Promise<void> => {
+    if (!settingsRuntimeActive) {
+      linkedAuthDirtyRef.current = true;
+      return Promise.resolve();
+    }
+    if (linkedAuthInFlightRef.current) return linkedAuthInFlightRef.current;
+    linkedAuthDirtyRef.current = false;
+    const generation = linkedAuthGenerationRef.current;
+    const task = getLinkedAuthInfo()
+      .then((info) => {
+        if (settingsRuntimeActive && generation === linkedAuthGenerationRef.current) setLinkedAuth(info);
+      })
+      .catch(() => {
+        if (settingsRuntimeActive && generation === linkedAuthGenerationRef.current) setLinkedAuth(null);
+      })
+      .finally(() => {
+        if (settingsRuntimeActive && generation === linkedAuthGenerationRef.current) setAuthReady(true);
+        if (linkedAuthInFlightRef.current === task) linkedAuthInFlightRef.current = null;
+      });
+    linkedAuthInFlightRef.current = task;
+    return task;
+  }, [settingsRuntimeActive]);
 
   /** Повтор при открытии «Настройки»: Firestore раньше мог не ответить, а вкладка кэширована. */
   useEffect(() => {
-    if (!settingsTabVisible) return;
-    let cancelled = false;
-    void (async () => {
-      try {
-        const info = await getLinkedAuthInfo();
-        if (!cancelled) setLinkedAuth(info);
-      } catch {
-        if (!cancelled) setLinkedAuth(null);
-      } finally {
-        if (!cancelled) setAuthReady(true);
-      }
-    })();
-    return () => { cancelled = true; };
-  }, [settingsTabVisible, focusTick]);
+    if (!settingsRuntimeActive) return;
+    if (linkedAuthDirtyRef.current || !authReady) void refreshLinkedAuth();
+  }, [settingsRuntimeActive, focusTick, authReady, refreshLinkedAuth]);
+
+  useEffect(() => {
+    if (!settingsRuntimeActive) {
+      invalidateLinkedAuthWork();
+    }
+  }, [invalidateLinkedAuthWork, settingsRuntimeActive]);
+
+  useEffect(() => {
+    return () => invalidateLinkedAuthWork();
+  }, [invalidateLinkedAuthWork]);
+
+  useEffect(() => {
+    const sub = DeviceEventEmitter.addListener('auth_provider_linked', () => {
+      linkedAuthGenerationRef.current += 1;
+      linkedAuthDirtyRef.current = true;
+      void refreshLinkedAuth();
+    });
+    return () => sub.remove();
+  }, [refreshLinkedAuth]);
 
   const BAD_WORDS = ['хуй','піздець','пизда','блядь','бляд','ёбан','єбан','єбать','ебать','ебал','залупа','мудак','мудила','сука','пидор','пидар','хуйня','піздюк','нахуй','нахій','сучка','мразь','тварь','ублюдок','ёб','йоб','fuck','shit','bitch','cunt','dick','ass','asshole','faggot','nigger','bastard'];
   const containsBadWord = (s: string) => {
@@ -1122,7 +1118,7 @@ export default function SettingsMain() {
         bounces
         alwaysBounceVertical
         overScrollMode="always"
-        onScroll={onAnimatedScroll}
+        onScroll={handleSettingsScroll}
       >
 
         {/* Хедер. зачем: паддинг 16 — заголовок и карточки стоят на одной оси (референс). */}
@@ -1207,7 +1203,7 @@ export default function SettingsMain() {
                 style={{ flexDirection: 'row', alignItems: 'center', minHeight: 56, paddingVertical: 13 }}
               >
                 <SettingsIconTile icon={codeEntryMode === 'promo' ? 'ticket-outline' : 'gift'} color={codeEntryMode === 'promo' ? 'purple' : 'pink'} />
-                <Text style={{ flex: 1, marginLeft: 12, marginRight: 8, color: screenPrimary, fontSize: f.bodyLg, fontWeight: '600' }} numberOfLines={2}>
+                <Text style={{ flex: 1, marginLeft: 12, marginRight: 8, color: screenPrimary, fontSize: f.bodyLg, fontWeight: '600' }}>
                   {codeEntryMode === 'promo'
                     ? L('Ввести промокод', 'Ввести промокод', 'Introducir código', 'Inserir código', 'Nhập mã', 'Masukkan kode', 'Kodu gir', 'Wpisz kod')
                     : L('Ввести реферальный код', 'Ввести реферальний код', 'Introducir código de invitación', 'Inserir código de indicação', 'Nhập mã giới thiệu', 'Masukkan kode referal', 'Davet kodunu gir', 'Wpisz kod polecenia')}
@@ -1411,7 +1407,7 @@ export default function SettingsMain() {
                   {/* зачем: динамическое сжатие шрифта убрано (запрещённый паттерн) — подпись
                       короткое слово в равнодолевой (flex:1) плитке без фиксированной высоты,
                       при нехватке места просто перенесётся на 2 строки, guard-ok */}
-                  <Text numberOfLines={2} style={{ fontSize: f.label, color: fontSize === sz ? chipTextOn : t.textMuted, marginTop: 4, textAlign: 'center' }}>
+                  <Text style={{ fontSize: f.label, color: fontSize === sz ? chipTextOn : t.textMuted, marginTop: 4, textAlign: 'center' }}>
                     {L(
                       sz === 'small' ? 'Малый' : sz === 'medium' ? 'Средний' : 'Большой',
                       sz === 'small' ? 'Малий' : sz === 'medium' ? 'Середній' : 'Великий',
@@ -1635,7 +1631,9 @@ export default function SettingsMain() {
         onClose={() => setAuthPromptVisible(false)}
         onSignedIn={() => {
           setAuthPromptVisible(false);
-          getLinkedAuthInfo().then(setLinkedAuth).catch(() => {});
+          linkedAuthGenerationRef.current += 1;
+          linkedAuthDirtyRef.current = true;
+          void refreshLinkedAuth();
         }}
       />
 

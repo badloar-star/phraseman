@@ -221,9 +221,6 @@ export async function navigateDailyTask({ lang, router, studyTarget, task }: Nav
     case 'streak_freeze_use':
       router.push('/streak_stats' as any);
       break;
-    case 'club_attend':
-      router.push('/club_screen' as any);
-      break;
     case 'mentor_friend':
       // Как invite_friend: единый экран рефералов.
       router.push('/referrals' as any);

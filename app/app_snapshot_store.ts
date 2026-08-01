@@ -27,6 +27,7 @@ export interface AppSnapshotProfile extends AppSnapshotMeta {
   totalXp: number;
   level: number;
   premiumActive: boolean;
+  premiumPlan?: string;
   vipActive: boolean;
 }
 

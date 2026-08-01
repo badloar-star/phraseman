@@ -1,5 +1,7 @@
 import {
   NO_AVATAR_AURA_ID,
+  PLUS_AVATAR_AURA_ID,
+  PRO_AVATAR_AURA_ID,
   PREMIUM_AVATAR_AURA_ID,
   VIP_AVATAR_AURA_ID,
   getEffectiveAvatarAuraId,
@@ -14,27 +16,39 @@ describe('avatar aura selection', () => {
   });
 
   it('still falls back to premium aura when no explicit choice exists', () => {
-    expect(getEffectiveAvatarAuraId('', true)).toBe(PREMIUM_AVATAR_AURA_ID);
-    expect(getEffectiveAvatarAuraId(null, true)).toBe(PREMIUM_AVATAR_AURA_ID);
+    expect(getEffectiveAvatarAuraId('', true)).toBe(PLUS_AVATAR_AURA_ID);
+    expect(getEffectiveAvatarAuraId(null, true)).toBe(PLUS_AVATAR_AURA_ID);
   });
 
-  it('uses Premium aura above VIP aura when both statuses are active', () => {
-    expect(getEffectiveAvatarAuraId('', true, true)).toBe(PREMIUM_AVATAR_AURA_ID);
-    expect(getEffectiveAvatarAuraId(null, true, true)).toBe(PREMIUM_AVATAR_AURA_ID);
-    expect(getEffectiveAvatarAuraId('', false, true)).toBe(VIP_AVATAR_AURA_ID);
+  it('resolves paid and admin-granted Plus to one canonical gold aura', () => {
+    expect(PREMIUM_AVATAR_AURA_ID).toBe(PLUS_AVATAR_AURA_ID);
+    expect(VIP_AVATAR_AURA_ID).toBe(PLUS_AVATAR_AURA_ID);
+    expect(getEffectiveAvatarAuraId('', true, true)).toBe(PLUS_AVATAR_AURA_ID);
+    expect(getEffectiveAvatarAuraId('', false, true)).toBe(PLUS_AVATAR_AURA_ID);
+    expect(normalizeAvatarAuraId('aura-premium')).toBe(PLUS_AVATAR_AURA_ID);
+    expect(normalizeAvatarAuraId('aura-vip')).toBe(PLUS_AVATAR_AURA_ID);
   });
 
-  it('presents paid and admin-granted Plus aura variants under the same user-facing label', () => {
-    const paidPlusAura = getAvatarAuraById(PREMIUM_AVATAR_AURA_ID);
-    const vipAura = getAvatarAuraById(VIP_AVATAR_AURA_ID);
+  it('renders legacy Plus IDs through the canonical catalog definition', () => {
+    const paidPlusAura = getAvatarAuraById('aura-premium');
+    const vipAura = getAvatarAuraById('aura-vip');
 
     expect(paidPlusAura).toBeDefined();
     expect(vipAura).toBeDefined();
+    expect(paidPlusAura).toBe(vipAura);
+    expect(paidPlusAura?.id).toBe(PLUS_AVATAR_AURA_ID);
 
     const labelKeys = ['nameRu', 'nameUk', 'nameEs', 'namePtBr', 'nameVi', 'nameId', 'nameTr', 'namePl'] as const;
     for (const key of labelKeys) {
       expect(paidPlusAura![key]).toBe('Plus');
       expect(vipAura![key]).toBe('Plus');
     }
+  });
+
+  it('exposes Pro only to a verified lifetime plan while still allowing locked preview lookup', () => {
+    expect(getAvatarAuraById(PRO_AVATAR_AURA_ID)).toMatchObject({ id: PRO_AVATAR_AURA_ID, proOnly: true, material: 'satin' });
+    expect(getEffectiveAvatarAuraId(PRO_AVATAR_AURA_ID, true, false, false)).toBeUndefined();
+    expect(getEffectiveAvatarAuraId(PRO_AVATAR_AURA_ID, true, false, true)).toBe(PRO_AVATAR_AURA_ID);
+    expect(getEffectiveAvatarAuraId(PRO_AVATAR_AURA_ID, true, false)).toBe(PRO_AVATAR_AURA_ID);
   });
 });

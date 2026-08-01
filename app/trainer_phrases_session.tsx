@@ -31,6 +31,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import SpeakingButton from '../components/SpeakingButton';
+import SpeakingPanel, { buildSpeakingPanelTheme } from '../components/SpeakingPanel';
+import SpeakingInlineSlot from '../components/SpeakingInlineSlot';
 import { trackEvent } from './analytics';
 import ScreenGradient from '../components/ScreenGradient';
 import { TrainerLoadingView, TrainerErrorView } from '../components/TrainerLoadStates';
@@ -131,11 +133,16 @@ function WordBankMode({ item, onResult, onAdvance, speakAnswer }: WordBankProps)
   const [bank] = useState<WordBankTile[]>(() => buildSessionWordBank(phrase));
   const [selected, setSelected] = useState<WordBankTile[]>([]);
   const [feedback, setFeedback] = useState<'none' | 'correct' | 'wrong'>('none');
+  const [speakingOpen, setSpeakingOpen] = useState(false);
+  const [speakingHoldActive, setSpeakingHoldActive] = useState(false);
   const hasRecordedResult = useRef(false);
   const shakeAnim = useRef(new Animated.Value(0)).current;
   const { flashKey, flash } = useWordFlash();
 
   const correctTokens = useMemo(() => sessionMeaningfulTokens(phrase), [phrase]);
+  // Tiles deliberately exclude punctuation so they remain easy to tap and grade;
+  // keep a sentence-final mark in the assembled visual phrase.
+  const terminalPunctuation = useMemo(() => phrase.match(/[.?!]+$/)?.[0] ?? '', [phrase]);
   const canCheck = selected.length === correctTokens.length && correctTokens.length > 0;
   const usedSlots = useMemo(() => new Set(selected.map(tile => tile.slot)), [selected]);
   // Перевод-задание: у арены перевода нет — честно показываем нейтральную формулировку.
@@ -218,7 +225,7 @@ function WordBankMode({ item, onResult, onAdvance, speakAnswer }: WordBankProps)
       : canCheck ? (isCompassTheme ? COMPASS_RICH.textDark : t.correctText) : t.textMuted;
 
   return (
-    <View style={{ flex: 1, gap: 14 }}>
+    <View style={{ flex: 1, gap: 14, position: 'relative' }}>
       {/* Перевод — карточка-задание */}
       <View style={[styles.promptCard, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderWidth: 0, borderRadius: isCompassTheme ? 9 : 20, overflow: isCompassTheme ? 'hidden' : 'visible' }]}>
         {isCompassTheme ? <CompassDepthSurface radius={9} quiet /> : null}
@@ -260,7 +267,7 @@ function WordBankMode({ item, onResult, onAdvance, speakAnswer }: WordBankProps)
               })}
             </Text>
           : <View style={styles.tilesRow}>
-              {selected.map(tile => (
+              {selected.map((tile, index) => (
                 // Влёт снизу с пружинкой — как в макете (bTileIn: translateY +16 → 0, fade).
                 <Reanimated.View key={tile.slot} entering={FadeInUp.springify().damping(12).stiffness(180)}>
                   <TouchableOpacity
@@ -268,7 +275,7 @@ function WordBankMode({ item, onResult, onAdvance, speakAnswer }: WordBankProps)
                     style={[styles.tile, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : answerSoftBg, borderRadius: isCompassTheme ? 8 : 11, overflow: isCompassTheme ? 'hidden' : 'visible' }]}
                   >
                     {isCompassTheme ? <CompassDepthSurface radius={8} selected /> : null}
-                    <Text style={[styles.tileText, { color: t.textPrimary, fontSize: f.body, fontWeight: '800' }]}>{tile.text}</Text>
+                    <Text style={[styles.tileText, { color: t.textPrimary, fontSize: f.body, fontWeight: '800' }]}>{tile.text}{index === selected.length - 1 ? terminalPunctuation : ''}</Text>
                   </TouchableOpacity>
                 </Reanimated.View>
               ))}
@@ -324,6 +331,32 @@ function WordBankMode({ item, onResult, onAdvance, speakAnswer }: WordBankProps)
         })}
       </View>
 
+      <SpeakingInlineSlot>
+        {speakingOpen && (
+          <SpeakingPanel
+            targetText={phrase}
+            lang={lang}
+            theme={buildSpeakingPanelTheme(t)}
+            presentation="inline"
+            holdActive={speakingHoldActive}
+            onPass={({ score }) => {
+              void trackEvent('speaking_attempt_passed', { source: 'trainer', score });
+              if (feedback !== 'none') return;
+              setSelected(correctTokens.map((text, slot) => ({ slot, text })));
+              setFeedback('correct');
+              hapticSuccess();
+              playCorrect();
+              void speakAnswer(phrase, studyTarget);
+              recordResult(true);
+            }}
+            onClose={() => {
+              setSpeakingHoldActive(false);
+              setSpeakingOpen(false);
+            }}
+          />
+        )}
+      </SpeakingInlineSlot>
+
           {/* Кнопка проверки: при верном ответе сама становится зелёной «Верно!» */}
           <TouchableOpacity
             onPress={check}
@@ -363,22 +396,17 @@ function WordBankMode({ item, onResult, onAdvance, speakAnswer }: WordBankProps)
           раскладывает правильные слова по ячейкам и засчитывает фразу — юзеру не
           надо после «Готово» вручную собирать слова. */}
       <SpeakingButton
-        targetText={correctTokens.join(' ')}
+        targetText={phrase}
         lang={lang}
         variant="pill"
-        onPass={({ score }) => {
-          void trackEvent('speaking_attempt_passed', { source: 'trainer', score });
-          if (feedback !== 'none') return; // карточка уже оценена — не вмешиваемся
-          // Заполняем поле ответа каноническими словами (слоты совпадают с банком,
-          // поэтому все плитки банка гаснут как использованные).
-          setSelected(correctTokens.map((text, slot) => ({ slot, text })));
-          // Верный устный ответ = правильная фраза, поэтому засчитываем сразу, не
-          // дожидаясь асинхронного selected (иначе check() прочитал бы старое состояние).
-          setFeedback('correct');
-          hapticSuccess();
-          playCorrect();
-          void speakAnswer(phrase, studyTarget);
-          recordResult(true);
+        inlineHold={{
+          onStart: () => {
+            setSpeakingOpen(true);
+            setSpeakingHoldActive(true);
+          },
+          onEnd: () => {
+            setSpeakingHoldActive(false);
+          },
         }}
       />
 

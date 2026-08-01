@@ -215,11 +215,10 @@ const validateV2SessionSet = (input) => {
             issues.push("session_set_required_order");
         if (!Number.isSafeInteger(candidate.targetSeconds) ||
             Number(candidate.targetSeconds) < 150 ||
-            Number(candidate.targetSeconds) > 240)
+            Number(candidate.targetSeconds) > 360)
             issues.push("session_target_seconds");
         if (!Array.isArray(candidate.cards) ||
-            candidate.cards.length < 7 ||
-            candidate.cards.length > 9) {
+            candidate.cards.length !== 12) {
             issues.push("session_card_count");
             return;
         }

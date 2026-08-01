@@ -418,6 +418,7 @@ export function audioTaskFrom(
         phrase,
         options: [wordA, wordB],
         correctIndex: Number(item.correctIndex),
+        contrast: trimmed(item.contrast),
       },
       tags,
       verified: false,

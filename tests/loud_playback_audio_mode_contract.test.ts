@@ -105,7 +105,6 @@ describe('shared speaking recording audio mode', () => {
     const runtimeFiles = [
       path.join(ROOT, 'app', 'ai_dialog_session.tsx'),
       path.join(ROOT, 'app', 'personal_plan_exercise.tsx'),
-      path.join(ROOT, 'app', 'speaking_club_session.tsx'),
       path.join(ROOT, 'components', 'SpeakingPanel.tsx'),
       path.join(ROOT, 'components', 'onboarding_aha', 'aha_audio.ts'),
       path.join(ROOT, 'components', 'onboarding_aha', 'SpeechBeat.tsx'),

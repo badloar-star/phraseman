@@ -125,6 +125,9 @@
 - Provider sign-in must not use a client Firestore transaction to create/update `users/*` or `auth_links/*`. Stable-link writes and repair belong on server callables. A return of `transaction_[firestore/permission-denied]` from `signInWithProvider` is a regression.
 - `auth_links/{providerUid}` is the provider identity anchor. If server/callable discovers an existing provider-linked `stableUid`, it wins over the local anonymous `stable_id`; do not silently create a new account from an unverified Firestore fallback.
 - `deleteAccountAndWipe()` intentionally starts `deleteCloudData()` in the background, then signs out, wipes local account data, clears `stable_id`, and writes the local `account_delete_pending_auth_v1` guard. Do not make account deletion wait synchronously on the cloud delete before local exit.
+- Account deletion is split in two phases and **the UI must only ever await the fast one**. `beginAccountDeletion()` returns as soon as `prepareAccountDeletion()` has written the `account_delete_pending_auth_v1` guard (point of no return: the old email / Apple ID can no longer sign back in); everything network-bound — enqueue acknowledgement, transition drains, `signOutCurrentProvider()`, `ensureAnonUser()` — runs in the returned `completion` promise. `DeleteAccountConfirmModal` awaits `beginAccountDeletion()`, never `deleteAccountAndWipe()`; making it await the full flow reintroduces the shipped freeze where Settings locked up for tens of seconds on a slow network.
+- The success path must NOT restart the app (`expo-updates` `reloadAsync` / `DevSettings.reload`) and must NOT present a second native `<Modal>`. `emitAppEvent('account_deleted')` already mounts a clean onboarding in-place; confirmation is a 3s in-onboarding pill (`components/AccountDeletedNotice.tsx`, flagged via `app/account_deleted_notice.ts`), because presenting an alert during the delete modal's dismiss breaks the iOS presentation stack.
+- If the background phase dies (no network, app killed), `resumePendingAccountDeleteLocalExit()` finishes it on the next launch — that is why the guard is written before, not after, the network work.
 - `signInWithProvider()` must check `readAccountDeletePendingAuth(firebaseProviderUid)` immediately after `signInWithCredential` and before reading/writing `auth_links`. If the same provider UID is still pending deletion, it must `signOutCurrentProvider()`, best-effort `ensureAnonUser()`, and return `account_delete_pending` without writing Critical App Health.
 - Account switch/reset flows must use `signOutAndWipeForAccountSwitch()` rather than composing `signOutCurrentProvider()`, `clearStableId()`, and `ensureAnonUser()` manually; otherwise old account data can leak into a new account.
 - When touching this area, run the narrow guards: `tests/auth_provider_stable_link.test.ts`, `tests/account_delete_flow_contract.test.ts`, `tests/firestore_rules_security.test.ts`, `tests/stable_id.test.ts`, and `tests/auth_identity_anon_relink.test.ts`.
@@ -255,6 +258,39 @@ Guarded by `tests/layout_stability_contract.test.ts` + baseline `config/layout-s
   т.е. на открытие/закрытие ящика).
 - Настройка читается из `firebase.json` в build-time → после её изменения нужна ПЕРЕСБОРКА
   Android-бинарника, JS-релиз её не подхватит.
+
+## EAS Production Build Gates (читать ДО подъёма версий)
+
+Профиль `production` запускает в post-install hook два сторожа подряд
+(`package.json` → `eas-build-post-install`). Оба падают на сервере уже ПОСЛЕ загрузки
+архива, то есть сжигают платную сборку. Прогоняй их локально до `eas build`.
+
+**`scripts/release_keys_gate.mjs`** — самое частое падение:
+- `android.versionCode` ОБЯЗАН быть РАВЕН `ios.buildNumber`. Разные номера (например
+  106 и 105) роняют сборку на обеих платформах. Поднимаешь один — поднимай оба на то же
+  число. Уникальность обеспечивается тем, что число растёт, а не тем, что платформы
+  расходятся.
+- Требует на месте `google-services.json`, `GoogleService-Info.plist`, упоминания
+  RC/Google/Apple-ключей в `app/revenuecat_init.ts` и `app/auth_provider.ts`,
+  `EXPO_PUBLIC_STORE_RELEASE=1` в `eas.json`.
+
+**`scripts/eas_production_version_gate.mjs`** — сверяет `app.json` с `origin/master`:
+- `version` изменена, `versionCode` > baseline, `ios.buildNumber` > baseline.
+
+Локальная проверка перед запуском сборки (обе должны дать EXIT=0):
+```
+node scripts/release_keys_gate.mjs
+EAS_BUILD_PROFILE=production EAS_BUILD_PLATFORM=android EXPO_PUBLIC_STORE_RELEASE=1 \
+  EXPO_PUBLIC_RC_ANDROID=goog_test EXPO_PUBLIC_RC_IOS=appl_test \
+  node scripts/eas_production_version_gate.mjs
+```
+
+Отдельно: `NSPhotoLibraryUsageDescription` и `NSFaceIDUsageDescription` в
+`ios.infoPlist` обязательны, хотя приложение ни галерею, ни Face ID не использует —
+`expo-file-system`/`expo-image` компилируют ссылку на `PHPhotoLibrary`, а
+`expo-secure-store` на `LAContext`, и робот Apple отклоняет бинарник с ITMS-90683.
+Удалить эти ключи нельзя: механизма strip-а разрешений у Expo нет. Privacy policy при
+этом обновлять НЕ надо — Apple требует описывать только реально собираемые данные.
 
 ## Session Communication And Impact-Analysis Protocol
 

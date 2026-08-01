@@ -10,6 +10,7 @@ import {
   CELL_HEALTHY,
   ROUND_DIFFICULTIES,
   TOURNAMENT_MODES,
+  isTournamentMode,
   planGenerationOrders,
   planPoolGaps,
   poolIsTournamentReady,
@@ -34,24 +35,28 @@ describe('планировщик комплекта турнира', () => {
     expect(orders.every((order) => order.count === TASKS_PER_ROUND)).toBe(true);
   });
 
-  it('реальный прод-пул 2026-07-27 собирает все четыре раунда', () => {
-    // Тот самый пул, из-за которого искали блокер: 44 опубликованных задания.
-    const counts = {
-      'fill_gap:2': 4, 'fill_gap:3': 4,
-      'find_oddity:1': 2, 'find_oddity:2': 14,
-      'guess_phrase:1': 4, 'guess_phrase:2': 4,
-      'translate_build:1': 12, 'translate_build:2': 2, 'translate_build:3': 2,
+  it('не считает неполный пул готовым', () => {
+    const legacyCounts = {
+      'listen_choose:1': 40,
+      'sound_contrast:1': 40,
+      'listen_build:1': 40,
     };
+    expect(poolIsTournamentReady(legacyCounts)).toBe(false);
+    expect(planGenerationOrders(legacyCounts, { maxTasks: 1000 })
+      .some((order) => Object.prototype.hasOwnProperty.call(legacyCounts, `${order.mode}:${order.difficulty}`)))
+      .toBe(false);
+    expect(planGenerationOrders({}, {
+      maxTasks: 1000,
+      modes: ['voice', 'listen_choose'] as never,
+    })).toEqual([]);
+
+    const counts = Object.fromEntries(
+      TOURNAMENT_MODES.flatMap((mode) => [1, 2, 3].map((difficulty) => [
+        `${mode}:${difficulty}`, TASKS_PER_ROUND,
+      ])),
+    );
     const rounds = roundReadiness(counts);
     expect(rounds.every((round) => round.ok)).toBe(true);
-    // зачем 2026-07-27: раньше здесь был снимок готовых режимов при пороге 6
-    // (только translate_build и find_oddity). После перевода раунда на 4
-    // задания планку проходят и другие ячейки — это и есть смысл правки.
-    // Поэтому проверяем ПРАВИЛО, а не замороженный список: готов ровно тот
-    // режим, у которого в ячейке набралось TASKS_PER_ROUND заданий.
-    expect(rounds[0].readyModes).toEqual(
-      expect.arrayContaining(['translate_build', 'guess_phrase']));
-    expect(rounds[2].readyModes).toContain('find_oddity');
     const cells: Record<string, number> = counts;
     rounds.forEach((round, index) => {
       for (const mode of round.readyModes) {
@@ -97,13 +102,13 @@ describe('планировщик комплекта турнира', () => {
     // случайное добавление режима меняет требования к пулу и может тихо
     // сломать сборку раунда, поэтому изменение состава — осознанное действие.
     expect([...TOURNAMENT_MODES]).toEqual([
-      'guess_phrase', 'fill_gap', 'find_oddity', 'translate_build',
-      'listen_choose', 'sound_contrast', 'listen_build', 'speed_match',
+      'guess_phrase', 'fill_gap', 'find_oddity', 'translate_build', 'speed_match',
     ]);
-    // Голосовые ответы игрока и диалоги в турнир не идут: не проверяются
-    // сервером объективно (verifyTournamentAnswer для voice всегда false).
-    for (const banned of ['shadowing', 'speaking_club', 'quick_response', 'repeat_compare']) {
-      expect(TOURNAMENT_MODES).not.toContain(banned);
+    for (const banned of [
+      'voice', 'listen_choose', 'sound_contrast', 'listen_build',
+      'shadowing', 'quick_response', 'repeat_compare',
+    ]) {
+      expect(isTournamentMode(banned)).toBe(false);
     }
   });
 });

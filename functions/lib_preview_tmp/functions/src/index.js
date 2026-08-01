@@ -94,7 +94,6 @@ const { premiumDialogSend, premiumDialogTranslate } = require('./premium_dialog'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { premiumDialogReview } = require('./premium_dialog_review');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { speakingClubSend, speakingClubReview } = require('./speaking_club');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { weeklyReviewGenerate } = require('./weekly_review');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -201,8 +200,6 @@ exports.referralListMyInvites = referralListMyInvites;
 exports.premiumDialogSend = premiumDialogSend;
 exports.premiumDialogTranslate = premiumDialogTranslate;
 exports.premiumDialogReview = premiumDialogReview;
-exports.speakingClubSend = speakingClubSend;
-exports.speakingClubReview = speakingClubReview;
 exports.weeklyReviewGenerate = weeklyReviewGenerate;
 exports.statsInsightsGenerate = statsInsightsGenerate;
 exports.explainPhrase = explainPhrase;

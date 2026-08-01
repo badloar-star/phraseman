@@ -10,7 +10,6 @@ Status: `capture_required`. This document is a requirements map, not competitor 
 | `guided-phrase-pronunciation` | Hear, record, receive a bounded repair cue, and retry. | `VoiceActivityShell` |
 | `prompted-translation-by-voice` | Speak a response, confirm the transcript, and submit or retry. | `VoiceActivityShell` |
 | `contextual-dialogue-mission` | Complete supported turns before a freer response. | `ScenarioShell`, `VoiceActivityShell` |
-| `speaking-club-mission` | Complete a bounded capstone with consent, interruption, report, and resume states. | `ScenarioShell`, `VoiceActivityShell` |
 
 ## Exact state and condition axes
 

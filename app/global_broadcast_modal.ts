@@ -10,6 +10,10 @@ import { WAGER_DISCOUNT_KEY } from './level_gift_system';
 import { isPremiumAccessProgressActive } from './premium_progress';
 import type { RuntimeStudyTarget } from './target_storage_keys';
 import { submitClientReport } from './client_reports';
+import {
+  ruKnowledgeShardsAfterNumber,
+  ukKnowledgeShardsAfterNumber,
+} from '../constants/shard_plurals';
 
 const COLLECTION = 'global_broadcast_modals';
 
@@ -178,8 +182,9 @@ export function getGlobalBroadcastRewardBadge(payload: GlobalBroadcastModalPaylo
     case 'shards':
       return {
         icon: '💎',
-        labelRu: `+${amount} жемчужин`,
-        labelUk: `+${amount} перлин`,
+        // зачем: склонение по числу — «+1 жемчужина», а не «+1 жемчужин».
+        labelRu: `+${amount} ${ruKnowledgeShardsAfterNumber(amount)}`,
+        labelUk: `+${amount} ${ukKnowledgeShardsAfterNumber(amount)}`,
         labelEs:
           amount === 1
             ? '+1 fragmento'

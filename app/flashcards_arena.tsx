@@ -13,6 +13,7 @@ import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { triLang, type Lang } from '../constants/i18n';
 import { hapticTap, hapticSuccess } from '../hooks/use-haptics';
 import { safeRouterBack } from './navigation_back';
@@ -61,6 +62,7 @@ export default function FlashcardsArenaScreen() {
   const { studyTarget } = useStudyTarget();
   const insets = useStableSafeAreaInsets();
   const reduceMotion = useReduceMotion();
+  const runtimeActive = useRuntimeActive();
 
   const [phase, setPhase] = useState<Phase>('loading');
   const [questions, setQuestions] = useState<ArenaQuestion[]>([]);
@@ -74,6 +76,12 @@ export default function FlashcardsArenaScreen() {
   const shakeAnim = useRef(new Animated.Value(0)).current;
   const advanceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const tickTimer = useRef<ReturnType<typeof setInterval> | null>(null);
+  const answerLockRef = useRef(false);
+  const questionTokenRef = useRef('');
+  const questionRemainingMsRef = useRef(ARENA_SECONDS_PER_QUESTION * 1000);
+  const questionDeadlineRef = useRef(0);
+  const advanceRemainingMsRef = useRef(0);
+  const advanceDeadlineRef = useRef(0);
 
   const s = useMemo(
     () => ({
@@ -172,21 +180,22 @@ export default function FlashcardsArenaScreen() {
 
   const goNext = useCallback(() => {
     clearTimers();
+    answerLockRef.current = false;
+    advanceRemainingMsRef.current = 0;
     setPicked(null);
-    setIndex((i) => {
-      const next = i + 1;
-      if (next >= questions.length) {
-        setPhase('done');
-        return i;
-      }
-      return next;
-    });
-  }, [clearTimers, questions.length]);
+    const next = index + 1;
+    if (next >= questions.length) {
+      setPhase('done');
+      return;
+    }
+    setIndex(next);
+  }, [clearTimers, index, questions.length]);
 
   /** Ответ (или истёкшее время при pickedIndex = -1). */
   const answer = useCallback(
     (pickedIndex: number) => {
-      if (!current || picked !== null) return;
+      if (!runtimeActive || !current || answerLockRef.current) return;
+      answerLockRef.current = true;
       clearTimers();
       setPicked(pickedIndex);
       const correct = pickedIndex === current.correctIndex;
@@ -205,16 +214,38 @@ export default function FlashcardsArenaScreen() {
         }
       }
       // A-42: пауза перед следующим вопросом — 1500мс на неверном, короче на верном.
-      advanceTimer.current = setTimeout(goNext, correct ? 700 : 1500);
+      advanceRemainingMsRef.current = correct ? 700 : 1500;
     },
-    [clearTimers, current, goNext, picked, reduceMotion, shakeAnim],
+    [clearTimers, current, goNext, reduceMotion, runtimeActive, shakeAnim],
   );
+
+  useEffect(() => {
+    if (phase !== 'playing' || picked === null || !runtimeActive || advanceRemainingMsRef.current <= 0) return;
+    advanceDeadlineRef.current = Date.now() + advanceRemainingMsRef.current;
+    advanceTimer.current = setTimeout(() => {
+      advanceRemainingMsRef.current = 0;
+      goNext();
+    }, advanceRemainingMsRef.current);
+    return () => {
+      advanceRemainingMsRef.current = Math.max(0, advanceDeadlineRef.current - Date.now());
+      if (advanceTimer.current) { clearTimeout(advanceTimer.current); advanceTimer.current = null; }
+    };
+  }, [goNext, phase, picked, runtimeActive]);
 
   // ── Таймер вопроса ─────────────────────────────────────────────────────────
   useEffect(() => {
     if (phase !== 'playing' || !current || picked !== null) return;
-    setSecondsLeft(ARENA_SECONDS_PER_QUESTION);
-    ringAnim.setValue(1);
+    const token = `${current.cardId}:${index}`;
+    if (questionTokenRef.current !== token) {
+      questionTokenRef.current = token;
+      questionRemainingMsRef.current = ARENA_SECONDS_PER_QUESTION * 1000;
+      answerLockRef.current = false;
+    }
+    const durationMs = questionRemainingMsRef.current;
+    setSecondsLeft(Math.max(0, Math.ceil(durationMs / 1000)));
+    ringAnim.setValue(durationMs / (ARENA_SECONDS_PER_QUESTION * 1000));
+    if (!runtimeActive) return;
+    questionDeadlineRef.current = Date.now() + durationMs;
     // A-43: дуга уходит по кругу; при reduce-motion не анимируем, только цифры.
     if (!reduceMotion) {
       // guard-ok (perf): useNativeDriver:false здесь обязателен — анимируем
@@ -224,26 +255,27 @@ export default function FlashcardsArenaScreen() {
       // элемента) не даёт «убывающую» дугу из макета.
       Animated.timing(ringAnim, {
         toValue: 0,
-        duration: ARENA_SECONDS_PER_QUESTION * 1000,
+        duration: durationMs,
         easing: Easing.linear,
         useNativeDriver: false, // guard-ok: strokeDashoffset нативный драйвер не умеет
       }).start();
     }
-    tickTimer.current = setInterval(() => {
-      setSecondsLeft((v) => {
-        if (v <= 1) {
+    const tick = () => {
+      const remainingMs = Math.max(0, questionDeadlineRef.current - Date.now());
+      questionRemainingMsRef.current = remainingMs;
+      setSecondsLeft(Math.ceil(remainingMs / 1000));
+      if (remainingMs <= 0) {
           // Время вышло — засчитываем как неверный, чтобы слово попало в слабые.
-          answer(-1);
-          return 0;
-        }
-        return v - 1;
-      });
-    }, 1000);
+        answer(-1);
+      }
+    };
+    tickTimer.current = setInterval(tick, 1000);
     return () => {
+      questionRemainingMsRef.current = Math.max(0, questionDeadlineRef.current - Date.now());
       if (tickTimer.current) { clearInterval(tickTimer.current); tickTimer.current = null; }
       ringAnim.stopAnimation();
     };
-  }, [phase, index, current, picked, reduceMotion, ringAnim, answer]);
+  }, [phase, index, current, picked, reduceMotion, ringAnim, answer, runtimeActive]);
 
   useEffect(() => () => clearTimers(), [clearTimers]);
 

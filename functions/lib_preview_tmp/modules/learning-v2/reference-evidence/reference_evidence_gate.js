@@ -13,7 +13,6 @@ exports.SELECTED_REFERENCE_MODE_IDS = [
     'guided-phrase-pronunciation',
     'prompted-translation-by-voice',
     'contextual-dialogue-mission',
-    'speaking-club-mission',
 ];
 const PREVIEW_STATES = [
     'prompt',

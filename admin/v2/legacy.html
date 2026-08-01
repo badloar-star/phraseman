@@ -3298,6 +3298,306 @@
       letter-spacing: 0.06em;
       text-transform: uppercase;
     }
+    body[data-admin-skin="onboarding"] #tab-referrals {
+      max-width: 1240px;
+      min-width: 0;
+      overflow-x: hidden;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-dashboard-shell {
+      width: 100%;
+      min-width: 0;
+      padding: 20px 24px 36px;
+      box-sizing: border-box;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-dashboard-header,
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-dashboard-actions,
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-dashboard-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-dashboard-header {
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-dashboard-title {
+      margin: 0;
+      color: var(--admin-text);
+      font-size: 26px;
+      line-height: 1.25;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-dashboard-description {
+      max-width: 720px;
+      margin: 6px 0 0;
+      color: var(--admin-muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals button,
+    body[data-admin-skin="onboarding"] #tab-referrals input,
+    body[data-admin-skin="onboarding"] #tab-referrals select {
+      min-height: 44px;
+      box-sizing: border-box;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals button {
+      cursor: pointer;
+      transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals button:focus-visible,
+    body[data-admin-skin="onboarding"] #tab-referrals input:focus-visible,
+    body[data-admin-skin="onboarding"] #tab-referrals select:focus-visible {
+      outline: 3px solid #38bdf8 !important;
+      outline-offset: 2px;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-primary {
+      background: #4ade80 !important;
+      border-color: #4ade80 !important;
+      color: #07110a !important;
+      font-weight: 800;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-primary:hover {
+      background: #86efac !important;
+      border-color: #86efac !important;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-metric,
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-panel {
+      border: 1px solid var(--admin-border);
+      border-radius: 8px;
+      background: #16181f;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-metric {
+      min-height: 104px;
+      padding: 14px;
+      box-sizing: border-box;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-metric-label {
+      color: var(--admin-muted);
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-metric-value {
+      margin-top: 8px;
+      color: var(--admin-text);
+      font-size: 28px;
+      font-weight: 800;
+      line-height: 1;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-dashboard-controls {
+      margin-bottom: 12px;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-field {
+      display: grid;
+      gap: 5px;
+      min-width: min(280px, 100%);
+      flex: 1 1 280px;
+      color: var(--admin-muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-field select,
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-field input {
+      width: 100%;
+      min-width: 0;
+      padding: 9px 12px;
+      border: 1px solid var(--admin-border);
+      border-radius: 7px;
+      background: #111318;
+      color: var(--admin-text);
+      font: inherit;
+      font-size: 16px;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-panel {
+      min-width: 0;
+      overflow: hidden;
+      margin-bottom: 18px;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-grid-row {
+      display: grid;
+      grid-template-columns: minmax(170px, 1.2fr) 44px minmax(170px, 1.2fr) minmax(155px, .9fr) minmax(155px, .9fr) minmax(150px, .8fr);
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      padding: 12px 14px;
+      border-top: 1px solid var(--admin-border);
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-grid-head {
+      border-top: 0;
+      background: #111318;
+      color: var(--admin-faint);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-person {
+      display: grid;
+      grid-template-columns: 36px minmax(0, 1fr);
+      align-items: center;
+      gap: 9px;
+      min-width: 0;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-avatar {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #27303d;
+      color: #e5e7eb;
+      font-size: 12px;
+      font-weight: 800;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-person-name {
+      min-width: 0;
+      overflow-wrap: anywhere;
+      color: var(--admin-text);
+      font-size: 14px;
+      font-weight: 750;
+      line-height: 1.35;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-arrow {
+      color: var(--admin-faint);
+      text-align: center;
+      font-size: 18px;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-status-pill {
+      min-height: 30px;
+      text-transform: none;
+      letter-spacing: normal;
+      text-align: center;
+      white-space: normal;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-status-pill.is-plus {
+      background: #4ade80;
+      border-color: #4ade80;
+      color: #07110a;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-status-pill.is-waiting {
+      background: #272b33;
+      color: #d1d5db;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-row-actions {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-row-actions button {
+      min-height: 44px;
+      padding: 7px 10px;
+      font-size: 12px;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-row-actions .ref-revoke-btn {
+      background: #3b171a !important;
+      border-color: #7f1d1d !important;
+      color: #fecaca !important;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-danger-zone {
+      display: inline-flex;
+      margin-left: 4px;
+      padding-left: 8px;
+      border-left: 1px solid #7f1d1d;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-state {
+      min-height: 112px;
+      padding: 24px;
+      box-sizing: border-box;
+      color: var(--admin-muted);
+      line-height: 1.5;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-skeleton-line {
+      width: min(520px, 88%);
+      height: 14px;
+      margin: 8px 0;
+      border-radius: 5px;
+      background: #262a32;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-analytics-grid {
+      display: grid;
+      grid-template-columns: minmax(220px, .7fr) minmax(0, 1.3fr);
+      gap: 14px;
+      padding: 16px;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-bars {
+      display: grid;
+      gap: 10px;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-bar-row {
+      display: grid;
+      grid-template-columns: minmax(90px, 140px) minmax(80px, 1fr) 52px;
+      align-items: center;
+      gap: 9px;
+      color: var(--admin-muted);
+      font-size: 12px;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-bar-track {
+      height: 9px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: #272b33;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-bar-fill {
+      height: 100%;
+      border-radius: inherit;
+      background: #60a5fa;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-prize-table {
+      width: 100%;
+      border-collapse: collapse;
+      color: var(--admin-muted);
+      font-size: 13px;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-prize-table th,
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-prize-table td {
+      padding: 9px;
+      border-top: 1px solid var(--admin-border);
+      text-align: left;
+    }
+    @media (max-width: 1360px) {
+      body[data-admin-skin="onboarding"] #tab-referrals .ref-summary-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      body[data-admin-skin="onboarding"] #tab-referrals .ref-grid-head { display: none; }
+      body[data-admin-skin="onboarding"] #tab-referrals .ref-grid-row:not(.ref-grid-head) {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 10px;
+        margin: 10px;
+        padding: 14px;
+        border: 1px solid var(--admin-border);
+        border-radius: 8px;
+        background: #111318;
+      }
+      body[data-admin-skin="onboarding"] #tab-referrals .ref-grid-row:not(.ref-grid-head) > [data-label]::before {
+        display: block;
+        margin-bottom: 5px;
+        color: var(--admin-faint);
+        content: attr(data-label);
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: .04em;
+        text-transform: uppercase;
+      }
+      body[data-admin-skin="onboarding"] #tab-referrals .ref-arrow { transform: rotate(90deg); }
+    }
+    @media (max-width: 720px) {
+      body[data-admin-skin="onboarding"] #tab-referrals .ref-dashboard-shell { padding: 16px 12px 28px; }
+      body[data-admin-skin="onboarding"] #tab-referrals .ref-dashboard-header { align-items: flex-start; }
+      body[data-admin-skin="onboarding"] #tab-referrals .ref-dashboard-actions { width: 100%; }
+      body[data-admin-skin="onboarding"] #tab-referrals .ref-dashboard-actions button { flex: 1 1 140px; }
+      body[data-admin-skin="onboarding"] #tab-referrals .ref-analytics-grid { grid-template-columns: minmax(0, 1fr); padding: 12px; }
+      body[data-admin-skin="onboarding"] #tab-referrals .ref-bar-row { grid-template-columns: minmax(76px, 110px) minmax(60px, 1fr) 44px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      body[data-admin-skin="onboarding"] #tab-referrals * { transition: none !important; }
+    }
     body[data-admin-skin="onboarding"] #push-mode-uid,
     body[data-admin-skin="onboarding"] #push-mode-segment,
     body[data-admin-skin="onboarding"] #push-mode-reactivate,
@@ -12380,7 +12680,8 @@
   <div style="padding:4px 0 16px;max-width:1080px">
     <h2 style="margin:0 0 8px;font-size:22px;font-weight:800;color:#fafafa">🏆 Турниры</h2>
     <p style="margin:0;font-size:13px;color:#9ca3af;line-height:1.5">
-      Вопросы придумывает ИИ специально для соревнования. Ничего не уходит игрокам без вашей проверки.
+      Вопросы придумывает ИИ специально для соревнования. Автопроверка отсеивает технически неверные задания,
+      затем решение человека определяет, что можно добавить в игру.
     </p>
   </div>
 
@@ -12396,10 +12697,9 @@
   <div style="background:#12121a;border-radius:12px;padding:16px 18px;margin-bottom:16px;max-width:1080px">
     <div style="font-size:15px;font-weight:800;color:#fafafa;margin-bottom:4px">🤖 Наполнить пул заданиями</div>
     <p style="margin:0 0 12px;font-size:12px;color:#9ca3af;line-height:1.5">
-      Одна кнопка делает всё: сервер смотрит, каких заданий не хватает раундам, и создаёт
-      их — все типы сразу, и текстовые, и на слух. Сначала закрывает то, без чего раунд не
-      соберётся. Всё попадает «На проверку»: в игру без вашего одобрения не уходит.
-      Озвучка записывается при публикации, поэтому черновики бесплатны.
+      Одна кнопка создаёт недостающие задания всех активных типов. Каждый черновик проходит
+      автоматический валидатор и остаётся вне игрового пула. Только ваше явное решение человека
+      на следующем шаге добавляет выбранное задание в игру.
     </p>
     <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
       <select id="tn-fill-level" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#cbd5e1;padding:7px 12px;font-size:13px">
@@ -12445,10 +12745,10 @@
 
   <!-- Шаг 2: проверка -->
   <div style="background:#12121a;border-radius:12px;padding:16px 18px;margin-bottom:16px;max-width:1080px">
-    <div style="font-size:15px;font-weight:800;color:#fafafa;margin-bottom:12px">Шаг 2 — проверить и опубликовать</div>
+    <div style="font-size:15px;font-weight:800;color:#fafafa;margin-bottom:12px">Шаг 2 — Автопроверка и решение человека</div>
     <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px">
       <select id="tn-status" onchange="tnLoadTasks(true)" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#cbd5e1;padding:7px 12px;font-size:13px">
-        <option value="awaiting_approval">Ожидают одобрения</option>
+        <option value="awaiting_approval">Ждут решения человека</option>
         <option value="draft">Все черновики</option>
         <option value="published">В игре</option>
         <option value="">Все</option>
@@ -12462,8 +12762,8 @@
       <button type="button" onclick="tnLoadTasks(true)"
         style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">🔄 Обновить</button>
       <span style="flex:1"></span>
-      <button type="button" id="tn-publish" onclick="tnPublishVisible()" title="Опубликовать отмеченные задания, прошедшие проверку ИИ. Они станут доступны игрокам." aria-label="Опубликовать отмеченные задания, прошедшие проверку ИИ"
-        style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">Опубликовать одобренные</button>
+      <button type="button" id="tn-publish" onclick="tnPublishVisible()" title="Одобрить выбранные задания вручную после пройденной автопроверки и добавить их в игровой пул. Отменить можно снятием задания с публикации." aria-label="Одобрить выбранные задания вручную и добавить в игру"
+        style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">Одобрить и добавить в игру</button>
       <span class="reports-count" id="tn-count"></span>
     </div>
     <!-- зачем: владелец просил папки — «зайти, просмотреть каждое удобно и
@@ -12521,7 +12821,6 @@
 <!-- REFERRALS TAB -->
 <div id="tab-referrals" class="reports-tab">
   <div class="reports-toolbar" style="flex-wrap:wrap;align-items:center;gap:12px">
-    <button type="button" onclick="loadReferralsData(true)" data-i18n-es="🔄 Cargar" style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80">🔄 Загрузить</button>
     <button type="button" onclick="exportReferralsCSV()" style="background:#1f2937;border:1px solid #374151;color:#9ca3af">⬇ CSV</button>
     <input type="text" id="ref-search" placeholder="🔍 Код, UID, имя…" data-i18n-es="🔍 Código, UID, nombre…" oninput="renderReferralsTable()"
       style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e0e0e0;padding:7px 12px;min-width:240px;font-size:13px" />
@@ -12529,7 +12828,7 @@
   </div>
   <div id="ref-summary-stats" style="padding:0 24px 16px;display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px"></div>
   <p data-i18n-es="referral_attributions: quién invitó a quién, estado y fragmentos acreditados. Haz clic en una fila para abrir el perfil del invitado (como en Usuarios). Botones: abrir referidor o invitado." style="padding:0 24px 12px;font-size:13px;color:#888;max-width:960px;line-height:1.5">
-    <code style="color:#a78bfa" data-i18n-es="referral_attributions">referral_attributions</code>: <span data-i18n-es="quién invitó a quién, estado y días VIP acreditados.">кто кого пригласил, статус и выданные дни VIP (7+7). Цепочка: <b>pending</b> — код введён, ждём урок 1 → <b>qualified</b> — урок 1 пройден, приглашённому дни выданы, реферер ещё не нажал «Открыть» → <b>rewarded</b> — оба получили дни.</span>
+    Покупка настоящего Plus или Pro приглашённым открывает прокрутку рулетки пригласившему. Статус покупки берётся только из серверных магазинных данных.
     <span data-i18n-es="Haz clic en una fila para abrir el perfil del">Клик по строке — профиль</span> <strong data-i18n-es="invitado">приглашённого</strong> <span data-i18n-es="(como en Usuarios). Botones: abrir referidor o invitado.">(как на вкладке «Пользователи»). Кнопки — открыть реферера или приглашённого.</span>
   </p>
   <div id="ref-loading" class="loading" data-i18n-es="⏳ Cargando…" style="display:none;padding:0 24px">⏳ Загрузка…</div>
@@ -12548,7 +12847,7 @@
           <th data-i18n-es="VIP invit. (días)">VIP пригл., дн.</th>
           <th data-i18n-es="VIP ref. (días)">VIP реф., дн.</th>
           <th data-i18n-es="Aplicado">Применено</th>
-          <th data-i18n-es="Lección 1">Урок 1</th>
+          <th>Покупка Plus</th>
           <th data-i18n-es="Recompensa">Награда</th>
           <th data-i18n-es="Acciones">Действия</th>
         </tr>
@@ -12766,6 +13065,47 @@
     <button type="button" id="onboarding-screens-preview-btn" onclick="previewOnboardingScreens()" title="Показать точные изменения до публикации">Предпросмотр</button>
     <button type="button" id="onboarding-screens-publish-btn" onclick="publishOnboardingScreens()" style="display:none;background:#4f46e5;color:#fff;font-weight:700" title="Опубликовать изменения в remote_config">Опубликовать</button>
   </div>
+
+  <section aria-labelledby="onboarding-funnel-title" style="margin:0 0 22px">
+    <div class="reports-toolbar" style="padding:14px 0 12px 0;align-items:flex-start">
+      <div style="flex:1;min-width:260px">
+        <h2 id="onboarding-funnel-title" style="display:flex;align-items:center;gap:8px;margin:0 0 4px;color:#fff;font-size:18px">
+          <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h18l-7 8v6l-4 2v-8L3 4z"></path></svg>
+          Воронка онбординга
+        </h2>
+        <div class="tab-desc" style="font-size:13px;color:#888;line-height:1.45">
+          Сколько запусков начали и завершили онбординг. Серверные агрегаты с момента запуска счётчика;
+          app_activity не используется. Имена, UID и идентификаторы устройств в агрегаты не записываются.
+        </div>
+      </div>
+      <div class="revenue-controls">
+        <div class="revenue-field">
+          <label for="onboarding-funnel-range">Период</label>
+          <select id="onboarding-funnel-range" onchange="loadOnboardingFunnel(true)" title="Показать агрегаты за последние 7, 28 или 90 дней">
+            <option value="7">7 дней</option>
+            <option value="28" selected>28 дней</option>
+            <option value="90">90 дней</option>
+          </select>
+        </div>
+        <div class="revenue-field">
+          <label for="onboarding-funnel-platform">Платформа</label>
+          <select id="onboarding-funnel-platform" onchange="loadOnboardingFunnel(true)" title="Отфильтровать агрегаты по платформе">
+            <option value="all">Все</option>
+            <option value="ios">iPhone / iOS</option>
+            <option value="android">Android</option>
+            <option value="web">Web</option>
+          </select>
+        </div>
+        <button type="button" id="onboarding-funnel-refresh" onclick="loadOnboardingFunnel(true)" title="Перечитать серверные агрегаты. Данные и настройки не изменятся">Обновить</button>
+      </div>
+    </div>
+    <div id="onboarding-funnel-status" class="reports-empty revenue-analytics-status" aria-live="polite" style="margin-bottom:12px">Агрегаты загрузятся при открытии вкладки.</div>
+    <div id="onboarding-funnel-summary" class="stats" style="padding:0;margin-bottom:8px">
+      <div class="stat-card"><div class="label">Начали</div><div class="value">—</div></div>
+      <div class="stat-card"><div class="label">Завершили</div><div class="value">—</div></div>
+      <div class="stat-card"><div class="label">Конверсия</div><div class="value">—</div></div>
+    </div>
+  </section>
 
   <div class="reports-toolbar" style="padding:14px 0 12px 0;align-items:flex-start">
     <div style="flex:1;min-width:260px">
@@ -13509,12 +13849,15 @@
     setTimeout(next, 500);
   }
 
-  const _googleProvider = new GoogleAuthProvider();
-  // зачем: владелец заходит с разных устройств и аккаунтов Google в одном
-  // браузере — без select_account Google молча берёт «последний» аккаунт и
-  // логин уходит не в тот, что имеет права admin.
-  _googleProvider.setCustomParameters({ prompt: 'select_account' });
-  setAdminSignInBusy(false);
+  // Выбор аккаунта нужен только после явного нажатия «Войти». Сохранённую
+  // admin-сессию при загрузке страницы не трогаем и не заменяем другим Google
+  // аккаунтом из браузера.
+  function createInteractiveAdminGoogleProvider() {
+    const provider = new GoogleAuthProvider();
+    provider.setCustomParameters({ prompt: 'select_account' });
+    return provider;
+  }
+  setAdminSignInBusy(true, 'ПРОВЕРЯЕМ СЕССИЮ...');
 
   // зачем: на телефоне popup-вход блокируется/зависает, поэтому там сразу
   // редирект. Редирект возвращает пользователя обратно на эту же страницу, и
@@ -13549,14 +13892,15 @@
   async function handleAdminGoogleSignIn() {
     setLoginError('');
     setAdminSignInBusy(true, 'ОТКРЫВАЕМ GOOGLE...');
+    const googleProvider = createInteractiveAdminGoogleProvider();
     try {
       await _adminAuthPersistenceReady;
       await setPersistence(auth, browserLocalPersistence);
       if (isMobileAdminBrowser()) {
-        await signInWithRedirect(auth, _googleProvider);
+        await signInWithRedirect(auth, googleProvider);
         return;
       }
-      await signInWithPopup(auth, _googleProvider);
+      await signInWithPopup(auth, googleProvider);
     } catch (err) {
       const c = err?.code;
       if (c === 'auth/popup-closed-by-user' || c === 'auth/cancelled-popup-request') {
@@ -13570,7 +13914,7 @@
         c === 'auth/internal-error';
       if (tryRedirect) {
         try {
-          await signInWithRedirect(auth, _googleProvider);
+          await signInWithRedirect(auth, googleProvider);
           return;
         } catch (e2) {
           setLoginError((e2?.message || String(e2)) + ' Разрешите всплывающие окна для сайта или добавьте домен в Firebase → Authentication → Authorized domains.');
@@ -13788,7 +14132,7 @@
     }
     let tr;
     try {
-      tr = await user.getIdTokenResult(true);
+      tr = await user.getIdTokenResult(false);
     } catch (e) {
       setAdminSignInBusy(false);
       setLoginError('Сессия сохранена, но сейчас не удалось проверить токен: ' + (e?.message || e) + '. Обновите страницу или проверьте сеть.');
@@ -13804,15 +14148,9 @@
       }
     }
     if (!tr.claims || tr.claims.admin !== true) {
-      const u = user.uid;
-      const em = user.email || '';
       await signOut(auth);
       setAdminSignInBusy(false);
-      setLoginError(
-        'Нет прав admin. На ПК с service account: node scripts/set_admin_claim.mjs --uid ' +
-          u +
-          (em ? '  (или: node scripts/set_admin_claim.mjs ' + em + ')' : ''),
-      );
+      setLoginError('У этого Google-аккаунта нет доступа к админке. Войдите под аккаунтом администратора или обратитесь к владельцу.');
       return;
     }
     setAdminSignInBusy(false);
@@ -14673,7 +15011,7 @@
       const pending = rows.filter((r) => r.status === 'pending').length;
       const qualified = rows.filter((r) => r.status === 'qualified').length;
       const done = rows.filter((r) => r.status === 'rewarded' || r.status === 'skipped_referrer_cap').length;
-      let stLine = `Показано: ${rows.length}${fullSnapshotHint ? ' · ' + fullSnapshotHint : ''} · ждут урок: ${pending} · урок пройден (не забрано): ${qualified} · выдано: ${done}`;
+      let stLine = `Показано: ${rows.length}${fullSnapshotHint ? ' · ' + fullSnapshotHint : ''} · ожидают покупки: ${pending} · Plus куплен: ${qualified} · рулетка прокручена: ${done}`;
       if (window._referralsHasMore && !fullSnapshotHint) stLine += ' · догрузка порциями по ' + REFERRALS_PAGE;
       if (st) st.textContent = stLine;
       if (moreBtn) moreBtn.style.display = window._referralsHasMore && !fullSnapshotHint ? 'inline-block' : 'none';
@@ -16146,17 +16484,18 @@
       return ts ? String(ts) : '';
     };
     exportToCsv(window._referralsRows || [], [
-      { header: 'Code', get: r => r.refCode || '' },
       { header: 'Referee UID', get: r => r.refereeId || '' },
       { header: 'Referee', get: r => r.refereeName || '' },
       { header: 'Referrer UID', get: r => r.referrerId || '' },
       { header: 'Referrer', get: r => r.referrerName || '' },
-      { header: 'Статус', get: r => r.status || '' },
-      { header: 'VIP days referee', get: r => r.refereeVipDays ?? '' },
-      { header: 'VIP days referrer', get: r => r.referrerVipDays ?? '' },
-      { header: 'Applied', get: r => csvDate(r.createdAt) },
-      { header: 'Lesson1 passed', get: r => csvDate(r.qualifiedAt) },
-      { header: 'Rewarded', get: r => csvDate(r.rewardedAt) },
+      { header: 'Invited at', get: r => csvDate(r.createdAtMs) },
+      { header: 'Plus purchased', get: r => r.plusPurchased ? 'yes' : 'no' },
+      { header: 'Purchased at', get: r => csvDate(r.purchasedAtMs) },
+      { header: 'Roulette', get: r => r.roulette?.state === 'spun' ? 'spun' : 'not spun' },
+      { header: 'Prize kind', get: r => r.roulette?.state === 'spun' ? r.roulette.prizeKind : '' },
+      { header: 'Prize days', get: r => r.roulette?.state === 'spun' ? r.roulette.prizeDays : '' },
+      { header: 'Prize pearls', get: r => r.roulette?.state === 'spun' ? r.roulette.prizePearls : '' },
+      { header: 'Spun at', get: r => r.roulette?.state === 'spun' ? csvDate(r.roulette.createdAtMs) : '' },
     ], 'referrals');
   };
   window.exportUserReportsCSV = function() {
@@ -17741,6 +18080,7 @@
     }
     if (tab === 'onboarding-screens') {
       if (typeof window.loadOnboardingScreens === 'function') void window.loadOnboardingScreens();
+      if (typeof window.loadOnboardingFunnel === 'function') void window.loadOnboardingFunnel();
       if (typeof window.loadOnboardingExits === 'function') void window.loadOnboardingExits();
     }
     if (tab === 'openai-budget' && typeof window.loadOpenAiBudgetDashboard === 'function') {
@@ -17797,8 +18137,8 @@
     if (tab === 'clubs' && !window._clubsLoaded && typeof window.loadClubsData === 'function') {
       void window.loadClubsData(false);
     }
-    if (tab === 'referrals' && !window._referralsLoaded && typeof window.loadReferralsData === 'function') {
-      void window.loadReferralsData(false);
+    if (tab === 'referrals' && typeof window.loadReferralsData === 'function') {
+      void window.loadReferralsData(false, false);
     }
     if (tab === 'ban-list' && !window._banListLoaded && typeof window.loadBanList === 'function') {
       void window.loadBanList(false);
@@ -21105,6 +21445,8 @@
       '5. ЧТО ПИСАТЬ в ответе:',
       '   • confirmed_fixed → поблагодари; скажи, что именно исправлено; добавь, что изменения',
       '     вступят в силу со следующим обновлением приложения; награду упоминай только при shards > 0.',
+      '     Если у юзера в репорте устаревшая версия приложения, а проблема уже исправлена в актуальной версии,',
+      '     прямо порекомендуй обновить приложение — не обещай при этом, что исправление появится только в будущем.',
       '   • confirmed_investigating → честно скажи, что проблема подтверждена и команда разбирается;',
       '     не обещай срок или следующее обновление; награду указывай только если она есть в shards.',
       '   • duplicate → дай обычный тёплый ответ по сути проблемы; не называй сообщение дубликатом и не объясняй внутреннюю логику.',
@@ -21117,9 +21459,13 @@
       '   • серьёзный баг / влияет на многих юзеров = 2-3;',
       '   • НЕ подтвердилось, «так задумано», спам/оскорбления/бессмыслица = 0.',
       '   В ТЕКСТЕ ДЛЯ ПОЛЬЗОВАТЕЛЯ: если shards = 0, вообще не упоминай награду;',
-      '   если shards > 0, назови точное количество осколков один раз и без внутренних пояснений.',
+      '   если shards > 0, назови точное количество ЖЕМЧУЖИН один раз и без внутренних пояснений',
+      '   (валюта в приложении называется «жемчужины», НЕ «осколки» и НЕ «монеты» —',
+      '   поле называется shards только внутри кода, юзеру это слово показывать нельзя).',
       '   ДУБЛИКАТЫ: награду (shards≥1) даёт ТОЛЬКО одному автору — первому по времени (createdAt);',
       '   остальным по тому же багу — тёплый ответ с shards:0 без обсуждения награды или правил.',
+      '   ТОП ХЕЛПЕРОВ: каждый подтверждённый репорт с shards≥1 должен быть учтён в рейтинге автора;',
+      '   после ручной отправки ответов это делает штатный путь автоматически — не создавай записи вручную.',
       '',
       '7. Для результата подготовь отдельный ответ для каждого reportId и собери файл replies.json — массив объектов:',
       '   { "reportId": "<id>", "uid": "<uid>", "title": "<заголовок, до 120 знаков>",',
@@ -21130,7 +21476,9 @@
       '   просто пропусти их (скрипт их тоже отсеет, но не трать на них ответы).',
       '',
       '8. ОСНОВНОЙ ПУТЬ: после подготовки автоматически добавь проверенные черновики в PREPARED_REPORT_REPLIES,',
-      '   проверь превью и сразу задеплой только Firebase Hosting admin. Дополнительного подтверждения для превью не требуется.',
+      '   проверь превью и сразу задеплой только Firebase Hosting admin. Это ОБЯЗАТЕЛЬНО для КАЖДОЙ пачки, без исключений:',
+      '   тексты должны появиться в рабочей админке, чтобы администратор мог их прочитать и отправить вручную.',
+      '   Дополнительного подтверждения для публикации превью не требуется.',
       '   Отправляй ответы пользователям только отдельной ручной кнопкой; CLI нужен только для технического dry-run.',
       '',
       '9. ОБЯЗАТЕЛЬНО сначала прогон вхолостую: node scripts/reply_to_reports.mjs replies.json --dry-run',
@@ -21388,63 +21736,71 @@
   // 2026-07-04. Кнопка «📋 Мой готовый ответ» в модалке подставляет их по reportId —
   // админ читает/редактирует/шлёт вручную. Verdict определяется по shards (>0 = подтвердилось).
   const PREPARED_REPORT_REPLIES = {
+    "YYH2EDPsOc4db4DyIOrz": {title:"Спасибо, мы проверили формулировку",body:"Спасибо за внимательный вопрос. В этой фразе someone выбран намеренно: такой вопрос предполагает, что телефон, вероятно, взяли; вариант anyone был бы более нейтральным. Ошибки в задании не нашли.",shards:0,resolution:"by_design",rewardGroup:"lesson21-someone-anyone-context"},
+    "IcA0yYtXv3kG0A20D4CJ": {title:"Спасибо, мы проверили перевод",body:"Спасибо, что обратили внимание на перевод. В русском «ему» здесь соответствует he: это тот, кто не должен быстро ехать; him употреблялось бы в другой роли, например после предлога или глагола. Ошибки в задании не нашли.",shards:0,resolution:"by_design",rewardGroup:"lesson10-he-him-translation"},
+    "we7H8AAE70Dt9zvLZHe6": {title:"Спасибо, мы проверили варианты",body:"Спасибо за вопрос. Everyone и everybody в этой фразе равнозначны, поэтому вариант everybody уже принимается как правильный. Основной вариант оставили без изменений.",shards:0,resolution:"by_design",rewardGroup:"lesson21-everyone-everybody"},
+    "GGUVYjejrY975CDf2SNo": {title:"Спасибо, длинные варианты исправлены",body:"Спасибо, что прислали ещё один пример. Мы уже исправили отображение длинных вариантов: слово и его окончание больше не должны обрезаться. У вас была устаревшая версия приложения — пожалуйста, обновите его до актуальной версии.",shards:0,resolution:"duplicate",rewardGroup:"lesson-long-word-options"},
+    "zGtSyeREvfPSHUWqzOSK": {title:"Исправили длинные варианты в задании",body:"Спасибо, вы помогли подтвердить проблему с длинными вариантами. Мы убрали обрезание слов в плитках, поэтому окончания теперь должны быть видны полностью. У вас была устаревшая версия приложения — пожалуйста, обновите его до актуальной версии. Вам начислена 1 жемчужина.",shards:1,resolution:"confirmed_fixed",rewardGroup:"lesson-long-word-options"},
+    "54mrJ9DZPgcCw681JVVd": {title:"Спасибо, мы проверили фразу",body:"Спасибо за точное замечание о контексте. Без указания на действие прямо сейчас We wait here — корректная учебная фраза; для акцента на происходящем в момент речи использовалось бы We're waiting here. Ошибки в задании не нашли.",shards:0,resolution:"by_design",rewardGroup:"lesson3-present-simple-context"},
+    "wYkIlAIS1dCsOdiRBJr8": {title:"Исправили язык перевода в тренажёре",body:"Спасибо, вы верно заметили проблему: в тренажёре вместо русского мог показываться испанский перевод. В актуальной версии это исправлено. У вас была устаревшая версия приложения — пожалуйста, обновите его до актуальной версии. Вам начислена 1 жемчужина.",shards:1,resolution:"confirmed_fixed",rewardGroup:"trainer-source-language"},
+    "2w9CzMTFMBzqmCGfYuVh": {title:"Исправили обратную связь в тренажёре",body:"Спасибо, вы помогли заметить важный сценарий в тренажёре. После неверной попытки карточка теперь остаётся на экране с правильной фразой и переводом, а верно решённое задание не должно сразу повторяться. У вас была устаревшая версия приложения — пожалуйста, обновите его до актуальной версии. Вам начислена 1 жемчужина.",shards:1,resolution:"confirmed_fixed",rewardGroup:"trainer-wrong-answer-feedback"},
     "KQ3a5NdHJJCq7cPIgzyL": {title:"Спасибо, мы проверили перевод",body:"Спасибо, что обратили внимание на оттенок значения. В этой фразе enjoy означает «нравится, получаю удовольствие», а love выражает более сильное чувство, поэтому текущий перевод «Мне нравится читать» соответствует заданию.",shards:0,resolution:"by_design",rewardGroup:"lesson22-enjoy-meaning"},
     "JDbcUxXynyyBiCvsBzk2": {title:"Спасибо, разбираемся со звуком",body:"Спасибо, что подробно описали проблему. Мы подтвердили, что в задании на слух фраза у части пользователей может не воспроизводиться, и сейчас разбираемся с причиной.",shards:0,resolution:"duplicate",rewardGroup:"personal-plan-impuls-listening"},
-    "IsA4gslKhWuiIyL9Rb5E": {title:"Спасибо, проблему со звуком подтвердили",body:"Спасибо, что сообщили о неработающей кнопке «Слушать». Проблема подтверждена, команда разбирается с воспроизведением; за находку вам начислен 1 осколок.",shards:1,resolution:"confirmed_investigating",rewardGroup:"personal-plan-impuls-listening"},
+    "IsA4gslKhWuiIyL9Rb5E": {title:"Спасибо, проблему со звуком подтвердили",body:"Спасибо, что сообщили о неработающей кнопке «Слушать». Проблема подтверждена, команда разбирается с воспроизведением; за находку вам начислена 1 жемчужина.",shards:1,resolution:"confirmed_investigating",rewardGroup:"personal-plan-impuls-listening"},
     "AJytlM5NdHtyQMnZ1OiR": {title:"Спасибо, мы проверили озвучку ответа",body:"Спасибо за сообщение. Мы проверили озвучку после ответа: она запускается, когда в настройках включено произношение, поэтому подтверждённой ошибки в этом задании не нашли.",shards:0,resolution:"not_reproduced",rewardGroup:"lesson-result-audio-setting"},
-    "pBOO1fDwVk4th3GnFkpc": {title:"Спасибо, исправили произношение вариантов",body:"Спасибо, вы точно заметили проблему: при выборе варианта могло звучать другое, правильное слово. Теперь приложение произносит именно выбранную форму, поэтому разницу между sang и sung можно услышать; изменение вступит в силу со следующим обновлением приложения, а вам начислен 1 осколок.",shards:1,resolution:"confirmed_fixed",rewardGroup:"irregular-selected-form-audio"},
+    "pBOO1fDwVk4th3GnFkpc": {title:"Спасибо, исправили произношение вариантов",body:"Спасибо, вы точно заметили проблему: при выборе варианта могло звучать другое, правильное слово. Теперь приложение произносит именно выбранную форму, поэтому разницу между sang и sung можно услышать; изменение вступит в силу со следующим обновлением приложения, а вам начислена 1 жемчужина.",shards:1,resolution:"confirmed_fixed",rewardGroup:"irregular-selected-form-audio"},
     "2DnpiLpbGscGtxQ1KoQq": {title:"Спасибо, проверяем чувствительность записи",body:"Спасибо, что подробно описали, как работает запись на вашем устройстве. Мы приняли отзыв и продолжаем проверять чувствительность распознавания в разных условиях.",shards:0,resolution:"not_reproduced",rewardGroup:"speaking-microphone-sensitivity"},
     "DAShjpK0W1KEKFraeVl1": {title:"Спасибо, мы проверили эту фразу",body:"Спасибо, что сообщили о несовпадении. В указанном задании сейчас написано и озвучивается «Did anybody see him?», поэтому расхождение между somebody и someone подтвердить не удалось.",shards:0,resolution:"not_reproduced",rewardGroup:"lesson21-anybody-pronunciation"},
-    "wMvOxNNxICJCOqZKrRen": {title:"Спасибо, обновление прогресса друзей исправлено",body:"Спасибо, вы помогли найти причину: уровень и цепочка друга могли оставаться устаревшими после повторного открытия вкладки. Теперь приложение заново проверяет прогресс при возвращении на экран; изменение вступит в силу со следующим обновлением приложения, а вам начислен 1 осколок.",shards:1,resolution:"confirmed_fixed",rewardGroup:"friends-profile-revalidation"},
+    "wMvOxNNxICJCOqZKrRen": {title:"Спасибо, обновление прогресса друзей исправлено",body:"Спасибо, вы помогли найти причину: уровень и цепочка друга могли оставаться устаревшими после повторного открытия вкладки. Теперь приложение заново проверяет прогресс при возвращении на экран; изменение вступит в силу со следующим обновлением приложения, а вам начислена 1 жемчужина.",shards:1,resolution:"confirmed_fixed",rewardGroup:"friends-profile-revalidation"},
     "rpkfHaBEibfiu146HQSZ": {title:"Спасибо за сообщение о повторении речи",body:"Спасибо, что написали нам. Мы уже разбираемся, почему упражнение на повторение речи иногда не переходит дальше после ответа. Ваше сообщение помогло нам точнее проверить этот сценарий.",shards:0,resolution:"duplicate",rewardGroup:"personal-plan-pronunciation"},
     "532kHSSOjRLPGo69mNQd": {title:"Спасибо за сообщение о поле ответа",body:"Спасибо, что рассказали о проблеме с полем ответа. Мы проверяем, почему в этом задании клавиатура иногда не открывается. Ваше описание помогло нам уточнить условия, при которых это происходит.",shards:0,resolution:"duplicate",rewardGroup:"personal-plan-recall"},
-    "bRrwilUdP4e1mTfB849I": {title:"Исправили открытие клавиатуры в плане",body:"Спасибо, что подробно описали проблему. Мы исправили поле ответа в персональном плане: теперь при переходе к заданию оно сразу получает фокус и открывает клавиатуру. Изменение появится в следующем обновлении приложения. В благодарность за помощь мы начислили Вам 1 осколок.",shards:1,resolution:"confirmed_fixed",rewardGroup:"personal-plan-recall"},
-    "F97swPTDukrVzISudYD9": {title:"Исправили зависание после ввода ответа",body:"Спасибо, что сообщили о зависании после ввода ответа. Мы проверили этот сценарий: после отправки ответа поле теперь освобождает фокус и не удерживает экран проверки. Изменение появится в следующем обновлении приложения. В благодарность за помощь мы начислили Вам 1 осколок.",shards:1,resolution:"confirmed_fixed",rewardGroup:"lesson9-input-freeze"},
-    "ADMa6ziN8hgLnckMQnuS": {title:"Исправили состояние кнопки проверки",body:"Спасибо, что обратили наше внимание на кнопку проверки. Теперь она становится доступной только после того, как фраза полностью собрана. Исправление появится в следующем обновлении приложения. В благодарность за помощь мы начислили Вам 1 осколок.",shards:1,resolution:"confirmed_fixed",rewardGroup:"trainer-check-button"},
-    "wH9Emg3STsLSldVaYDhV": {title:"Исправили пропадающую озвучку результата",body:"Спасибо, что рассказали о пропадающей озвучке. Мы исправили управление аудиоплеером между заданиями, чтобы озвучка результата не прекращалась после нескольких фраз. Изменение появится в следующем обновлении приложения. В благодарность за помощь мы начислили Вам 1 осколок.",shards:1,resolution:"confirmed_fixed",rewardGroup:"lesson-result-audio"},
-    "HAhW4bPE5GCzYQ7SmRMa": {title:"Исправили переход после записи ответа",body:"Спасибо за подробное описание. Мы нашли состояние, в котором распознавание могло не завершиться и оставить упражнение без перехода дальше. Теперь попытка завершается даже тогда, когда устройство не присылает финальное событие. Изменение появится в следующем обновлении приложения. В благодарность за помощь мы начислили Вам 1 осколок.",shards:1,resolution:"confirmed_fixed",rewardGroup:"personal-plan-pronunciation"},
+    "bRrwilUdP4e1mTfB849I": {title:"Исправили открытие клавиатуры в плане",body:"Спасибо, что подробно описали проблему. Мы исправили поле ответа в персональном плане: теперь при переходе к заданию оно сразу получает фокус и открывает клавиатуру. Изменение появится в следующем обновлении приложения. В благодарность за помощь мы начислили Вам 1 жемчужину.",shards:1,resolution:"confirmed_fixed",rewardGroup:"personal-plan-recall"},
+    "F97swPTDukrVzISudYD9": {title:"Исправили зависание после ввода ответа",body:"Спасибо, что сообщили о зависании после ввода ответа. Мы проверили этот сценарий: после отправки ответа поле теперь освобождает фокус и не удерживает экран проверки. Изменение появится в следующем обновлении приложения. В благодарность за помощь мы начислили Вам 1 жемчужину.",shards:1,resolution:"confirmed_fixed",rewardGroup:"lesson9-input-freeze"},
+    "ADMa6ziN8hgLnckMQnuS": {title:"Исправили состояние кнопки проверки",body:"Спасибо, что обратили наше внимание на кнопку проверки. Теперь она становится доступной только после того, как фраза полностью собрана. Исправление появится в следующем обновлении приложения. В благодарность за помощь мы начислили Вам 1 жемчужину.",shards:1,resolution:"confirmed_fixed",rewardGroup:"trainer-check-button"},
+    "wH9Emg3STsLSldVaYDhV": {title:"Исправили пропадающую озвучку результата",body:"Спасибо, что рассказали о пропадающей озвучке. Мы исправили управление аудиоплеером между заданиями, чтобы озвучка результата не прекращалась после нескольких фраз. Изменение появится в следующем обновлении приложения. В благодарность за помощь мы начислили Вам 1 жемчужину.",shards:1,resolution:"confirmed_fixed",rewardGroup:"lesson-result-audio"},
+    "HAhW4bPE5GCzYQ7SmRMa": {title:"Исправили переход после записи ответа",body:"Спасибо за подробное описание. Мы нашли состояние, в котором распознавание могло не завершиться и оставить упражнение без перехода дальше. Теперь попытка завершается даже тогда, когда устройство не присылает финальное событие. Изменение появится в следующем обновлении приложения. В благодарность за помощь мы начислили Вам 1 жемчужину.",shards:1,resolution:"confirmed_fixed",rewardGroup:"personal-plan-pronunciation"},
     "dc2I7HPKFAQS7BDA8MAZ": {title:"Спасибо за сообщение о записи ответа",body:"Спасибо, что написали нам. Мы уже проверяем, почему запись ответа иногда не запускается в этом упражнении. Ваше сообщение помогло нам точнее восстановить последовательность действий.",shards:0,resolution:"duplicate",rewardGroup:"personal-plan-gavan"},
-    "2xF0KadDOkQIIPG976H3": {title:"Исправили фразу о дне рождения",body:"Спасибо, что обратили внимание на формулировку. Мы заменили неестественный вариант фразы о дне рождения на более естественный. Изменение появится в следующем обновлении приложения. В благодарность за помощь мы начислили Вам 1 осколок.",shards:1,resolution:"confirmed_fixed",rewardGroup:"lesson8-birthday-content"},
-    "83gFLkE2IMbWPhon1X4K": {title:"Добавили понятную инструкцию к заданию",body:"Спасибо, что заметили нехватку пояснения. Мы добавили явную инструкцию перед фразой, чтобы сразу было понятно, что нужно сделать. Изменение появится в следующем обновлении приложения. В благодарность за помощь мы начислили Вам 1 осколок.",shards:1,resolution:"confirmed_fixed",rewardGroup:"lesson-task-instruction"},
+    "2xF0KadDOkQIIPG976H3": {title:"Исправили фразу о дне рождения",body:"Спасибо, что обратили внимание на формулировку. Мы заменили неестественный вариант фразы о дне рождения на более естественный. Изменение появится в следующем обновлении приложения. В благодарность за помощь мы начислили Вам 1 жемчужину.",shards:1,resolution:"confirmed_fixed",rewardGroup:"lesson8-birthday-content"},
+    "83gFLkE2IMbWPhon1X4K": {title:"Добавили понятную инструкцию к заданию",body:"Спасибо, что заметили нехватку пояснения. Мы добавили явную инструкцию перед фразой, чтобы сразу было понятно, что нужно сделать. Изменение появится в следующем обновлении приложения. В благодарность за помощь мы начислили Вам 1 жемчужину.",shards:1,resolution:"confirmed_fixed",rewardGroup:"lesson-task-instruction"},
     "9jlPHMEmuoegEzPF8gyN": {title:"Проверили варианты Can и May",body:"Спасибо за вопрос. В этом задании Can I ask a question? — корректный и естественный вариант. May I ask a question? тоже возможен, но звучит заметно формальнее, поэтому менять упражнение не требуется.",shards:0,resolution:"by_design",rewardGroup:"english-grammar-choice"},
     "4Z6PiXniwSvniRxOPOBC": {title:"Спасибо за сообщение о формулировке задания",body:"Спасибо, что написали нам о непонятных словах в условии. Мы проверяем формулировку задания и учитываем Ваш комментарий при его доработке.",shards:0,resolution:"duplicate",rewardGroup:"lesson31-phrase31-extra-words"},
     "xSw4yza4L2itsNxXwXGV": {title:"Спасибо за сообщение о записи ответа",body:"Спасибо, что рассказали о проблеме с записью. Мы проверяем, почему она иногда не запускается в этом упражнении. Ваше описание помогло нам уточнить сценарий.",shards:0,resolution:"duplicate",rewardGroup:"personal-plan-gavan"},
     "OfkRERmqyhwo5pP08hfW": {title:"Проверили английскую озвучку карточек",body:"Спасибо, что написали нам. Мы проверили английскую озвучку карточек в текущей версии и не нашли пропущенных аудиофайлов. Если звук снова исчезнет, пожалуйста, укажите карточку и момент, когда это произошло, — это поможет проверить конкретный случай.",shards:0,resolution:"not_reproduced",rewardGroup:"flashcards-audio"},
-    "M94pFbln5gSWOrePqZ1M": {title:"Исправили зависание распознавания ответа",body:"Спасибо, что подробно описали ситуацию. Мы исправили случай, когда распознавание прекращалось без результата и экран оставался в состоянии проверки. Теперь такая попытка корректно завершается, и упражнение можно продолжить. Изменение появится в следующем обновлении приложения. В благодарность за помощь мы начислили Вам 1 осколок.",shards:1,resolution:"confirmed_fixed",rewardGroup:"personal-plan-gavan"},
+    "M94pFbln5gSWOrePqZ1M": {title:"Исправили зависание распознавания ответа",body:"Спасибо, что подробно описали ситуацию. Мы исправили случай, когда распознавание прекращалось без результата и экран оставался в состоянии проверки. Теперь такая попытка корректно завершается, и упражнение можно продолжить. Изменение появится в следующем обновлении приложения. В благодарность за помощь мы начислили Вам 1 жемчужину.",shards:1,resolution:"confirmed_fixed",rewardGroup:"personal-plan-gavan"},
     "b8mvjjsn3ipk5bgyLVvo": {title:"Исправили заглавную букву на первой плитке",body:"Спасибо, что обратили внимание на первую плитку. Мы исправили лишнюю заглавную букву, и изменение появится в следующем обновлении приложения.",shards:0,resolution:"duplicate",rewardGroup:"trainer-first-tile-capitalization"},
-    "9hb6NrZbIGKD34DDpepg": {title:"Исправили перемешивание слов в тренере",body:"Спасибо, что заметили неправильный порядок слов. Теперь плитки перемешиваются перед началом задания и не остаются в готовой последовательности. Исправление появится в следующем обновлении приложения. В благодарность за помощь мы начислили Вам 1 осколок.",shards:1,resolution:"confirmed_fixed",rewardGroup:"trainer-word-order"},
-    "M1PRD3ocoWg1gqWA3GOE": {title:"Уточнили вопрос уровня A1",body:"Спасибо, что обратили внимание на двусмысленность. Мы изменили формулировку вопроса, чтобы у него оставался один понятный смысл. Обновление появится в следующей версии приложения. В благодарность за помощь мы начислили Вам 1 осколок.",shards:1,resolution:"confirmed_fixed",rewardGroup:"level-exam-ambiguous-question"},
+    "9hb6NrZbIGKD34DDpepg": {title:"Исправили перемешивание слов в тренере",body:"Спасибо, что заметили неправильный порядок слов. Теперь плитки перемешиваются перед началом задания и не остаются в готовой последовательности. Исправление появится в следующем обновлении приложения. В благодарность за помощь мы начислили Вам 1 жемчужину.",shards:1,resolution:"confirmed_fixed",rewardGroup:"trainer-word-order"},
+    "M1PRD3ocoWg1gqWA3GOE": {title:"Уточнили вопрос уровня A1",body:"Спасибо, что обратили внимание на двусмысленность. Мы изменили формулировку вопроса, чтобы у него оставался один понятный смысл. Обновление появится в следующей версии приложения. В благодарность за помощь мы начислили Вам 1 жемчужину.",shards:1,resolution:"confirmed_fixed",rewardGroup:"level-exam-ambiguous-question"},
     "G28iT7FJ2jMngVsdXqxv": {title:"Проверили отображение фразы в уроке 16",body:"Спасибо, что написали нам. Мы проверили эту фразу в текущей версии урока 16: сейчас она отображается полностью. Если часть текста снова пропадёт, пожалуйста, пришлите снимок экрана — мы проверим конкретный размер устройства.",shards:0,resolution:"not_reproduced",rewardGroup:"lesson16-phrase-rendering"},
     "G4noAyBwynmbWeIv1T9D": {title:"Проверили форму work в предложении",body:"Спасибо за вопрос. В этой конструкции используется базовая форма work, поэтому вариант worked здесь не подходит. Текущий ответ в задании оставляем без изменений.",shards:0,resolution:"user_error",rewardGroup:"lesson3-tense"},
     "RV2nryETovG1abzZ41f9": {title:"Добавили слово mural в обучающую часть",body:"Спасибо, что обратили внимание на порядок материала. Вы были правы: слово mural появлялось в упражнении без предварительного примера. Мы добавили его в обучающую часть до проверки. Изменение появится в следующем обновлении приложения.",shards:0,resolution:"confirmed_fixed",rewardGroup:"lesson31-vocabulary-sequencing"},
-    "m8b0pGo0jp0BOpNFc7uB": {title:"Исправили объяснение неправильного ответа",body:"Спасибо, что сообщили о пропадающем объяснении. Мы исправили этот случай: если сервис объяснений недоступен или устройство находится без интернета, карточка больше не исчезает и показывает понятное сравнение Вашего ответа с правильным. Изменение появится в следующем обновлении приложения. В благодарность за помощь мы начислили Вам 1 осколок.",shards:1,resolution:"confirmed_fixed",rewardGroup:"lesson31-mistake-explanation"},
-    "zeZ2ttjlEdLRH7XEGQBm": {title:"Исправили озвучку ответа в уроке 31",body:"Спасибо, что сообщили об отсутствии звука. Аудиофайл у фразы был, но приложение могло искать его по изменённому тексту произношения и пропускать готовую запись. Теперь поиск выполняется по самой фразе. Изменение появится в следующем обновлении приложения. В благодарность за помощь мы начислили Вам 1 осколок.",shards:1,resolution:"confirmed_fixed",rewardGroup:"lesson31-audio"},
-    "hshIwVDQGRC6WVvmQorW": {title:"Исправили произношение слова read",body:"Спасибо, что заметили неправильное звучание. Мы добавили подходящее произношение слова read для этого контекста. Изменение появится в следующем обновлении приложения. В благодарность за помощь мы начислили Вам 1 осколок.",shards:1,resolution:"confirmed_fixed",rewardGroup:"lesson31-read-pronunciation"},
+    "m8b0pGo0jp0BOpNFc7uB": {title:"Исправили объяснение неправильного ответа",body:"Спасибо, что сообщили о пропадающем объяснении. Мы исправили этот случай: если сервис объяснений недоступен или устройство находится без интернета, карточка больше не исчезает и показывает понятное сравнение Вашего ответа с правильным. Изменение появится в следующем обновлении приложения. В благодарность за помощь мы начислили Вам 1 жемчужину.",shards:1,resolution:"confirmed_fixed",rewardGroup:"lesson31-mistake-explanation"},
+    "zeZ2ttjlEdLRH7XEGQBm": {title:"Исправили озвучку ответа в уроке 31",body:"Спасибо, что сообщили об отсутствии звука. Аудиофайл у фразы был, но приложение могло искать его по изменённому тексту произношения и пропускать готовую запись. Теперь поиск выполняется по самой фразе. Изменение появится в следующем обновлении приложения. В благодарность за помощь мы начислили Вам 1 жемчужину.",shards:1,resolution:"confirmed_fixed",rewardGroup:"lesson31-audio"},
+    "hshIwVDQGRC6WVvmQorW": {title:"Исправили произношение слова read",body:"Спасибо, что заметили неправильное звучание. Мы добавили подходящее произношение слова read для этого контекста. Изменение появится в следующем обновлении приложения. В благодарность за помощь мы начислили Вам 1 жемчужину.",shards:1,resolution:"confirmed_fixed",rewardGroup:"lesson31-read-pronunciation"},
     "UWQf8qyHAXpxsflgJDFz": {title:"Исправили первую плитку в тренере",body:"Спасибо, что обратили внимание на первую плитку. Мы убрали лишнюю заглавную букву, и исправление появится в следующем обновлении приложения.",shards:0,resolution:"duplicate",rewardGroup:"trainer-first-tile-capitalization"},
     "BUJqW6qkDt5Nn1HDhxg5": {title:"Исправили первую плитку в тренере",body:"Спасибо, что написали нам о заглавной букве. Первая плитка теперь показывается в правильном регистре. Изменение появится в следующем обновлении приложения.",shards:0,resolution:"duplicate",rewardGroup:"trainer-first-tile-capitalization"},
     "ABtJYSggjz8q4riAHDLc": {title:"Исправили регистр первой плитки",body:"Спасибо, что заметили эту неточность. Мы исправили регистр первой плитки, и обновлённый вариант появится в следующей версии приложения.",shards:0,resolution:"duplicate",rewardGroup:"trainer-first-tile-capitalization"},
     "0kljwtZ3fkHxQh0Yn0mH": {title:"Исправили заглавную букву на плитке",body:"Спасибо, что сообщили о первой плитке. Мы убрали лишнюю заглавную букву. Исправление появится в следующем обновлении приложения.",shards:0,resolution:"duplicate",rewardGroup:"trainer-first-tile-capitalization"},
     "I1lTNfjKg0MD4F7YBMdO": {title:"Проверили фразу that ancient map",body:"Спасибо за вопрос. В этой фразе that ancient map обозначает конкретную карту, о которой идёт речь, поэтому указательное слово выбрано намеренно. Текущий вариант соответствует смыслу задания.",shards:0,resolution:"by_design",rewardGroup:"lesson31-demonstrative-meaning"},
     "5cNNVYCe57UkwrmGUICR": {title:"Проверили the problem и this problem",body:"Спасибо за вопрос. Оба варианта возможны, но используются в разных ситуациях. В текущем задании выбран вариант, который точнее соответствует русской фразе, поэтому менять ответ не требуется.",shards:0,resolution:"by_design",rewardGroup:"lesson25-answer-alternatives"},
-    "asKqjZdGLbS420MaAysh": {title:"Исправили замену ежедневного задания",body:"Спасибо, что сообщили о списании осколков. Мы исправили замену ежедневного задания: теперь осколки не списываются, если новое задание нельзя корректно выдать. Изменение появится в следующем обновлении приложения. В благодарность за помощь мы начислили Вам 2 осколка.",shards:2,resolution:"confirmed_fixed",rewardGroup:"daily-words-reroll"},
-    "eJCmlpZJxNbmMwfXzaI0": {title:"Исправили перевод фразы",body:"Спасибо, что заметили неточность в переводе. Мы добавили недостающее указательное слово, чтобы русский вариант точно передавал смысл английской фразы. Обновление появится в следующей версии приложения. В благодарность за помощь мы начислили Вам 1 осколок.",shards:1,resolution:"confirmed_fixed",rewardGroup:"lesson31-phrase31-extra-words"},
-    "I96MnckQyQ4IxPDWvet9": {title:"Проверили порядок введения слова complex",body:"Спасибо, что обратили внимание на порядок новых слов. Мы внимательно проверили урок 31: слово complex уже показано в обучающем примере до второго задания, поэтому порядок материала здесь корректный. В благодарность за внимательность мы начислили Вам 1 осколок.",shards:1,resolution:"not_reproduced",rewardGroup:"lesson31-vocabulary-sequencing"},
+    "asKqjZdGLbS420MaAysh": {title:"Исправили замену ежедневного задания",body:"Спасибо, что сообщили о списании жемчужин. Мы исправили замену ежедневного задания: теперь жемчужины не списываются, если новое задание нельзя корректно выдать. Изменение появится в следующем обновлении приложения. В благодарность за помощь мы начислили Вам 2 жемчужины.",shards:2,resolution:"confirmed_fixed",rewardGroup:"daily-words-reroll"},
+    "eJCmlpZJxNbmMwfXzaI0": {title:"Исправили перевод фразы",body:"Спасибо, что заметили неточность в переводе. Мы добавили недостающее указательное слово, чтобы русский вариант точно передавал смысл английской фразы. Обновление появится в следующей версии приложения. В благодарность за помощь мы начислили Вам 1 жемчужину.",shards:1,resolution:"confirmed_fixed",rewardGroup:"lesson31-phrase31-extra-words"},
+    "I96MnckQyQ4IxPDWvet9": {title:"Проверили порядок введения слова complex",body:"Спасибо, что обратили внимание на порядок новых слов. Мы внимательно проверили урок 31: слово complex уже показано в обучающем примере до второго задания, поэтому порядок материала здесь корректный. В благодарность за внимательность мы начислили Вам 1 жемчужину.",shards:1,resolution:"not_reproduced",rewardGroup:"lesson31-vocabulary-sequencing"},
     "reZCWp7UqS7wo8k7GS5P": {title:"Проверили указательное слово в переводе",body:"Спасибо за вопрос. Мы сверили английскую фразу и перевод: указательное слово в текущем варианте передаёт исходный смысл корректно. Изменения не требуются.",shards:0,resolution:"not_reproduced",rewardGroup:"lesson31-demonstratives"},
     "cuDrXH824NSMPzqP3B0Z": {title:"Проверили перевод фразы",body:"Спасибо, что обратили внимание на указательное слово. Мы ещё раз сверили перевод с английским оригиналом и подтвердили, что текущий вариант соответствует контексту.",shards:0,resolution:"not_reproduced",rewardGroup:"lesson31-demonstratives"},
     "Jj7znH21PEZL1K9BfN2p": {title:"Нужно немного больше деталей",body:"Спасибо, что написали нам. В сообщении недостаточно деталей, чтобы понять, что именно произошло. Если проблема повторится, пожалуйста, укажите экран и действие перед её появлением — мы обязательно проверим.",shards:0,resolution:"no_issue_details",rewardGroup:"test-report"},
     "Eaih4nB744GgKzZEIW86": {title:"Исправили длинные ответы на небольших экранах",body:"Спасибо, что обратили внимание на отображение длинных вариантов. Мы скорректировали размер текста для длинных ответов на небольших экранах, чтобы варианты помещались и оставались читаемыми. Изменение появится в следующем обновлении приложения.",shards:0,resolution:"confirmed_fixed",rewardGroup:"lesson21-layout-and-variants"},
     "xy1jWnPrnWi1FuEIv9do": {title:"Исправили первую плитку в тренере",body:"Спасибо, что сообщили о лишней заглавной букве. Мы исправили первую плитку, и обновлённый вариант появится в следующей версии приложения.",shards:0,resolution:"duplicate",rewardGroup:"trainer-first-tile-capitalization"},
     "UbwtYNs2xIKqVwAYF9GN": {title:"Исправили регистр первой плитки",body:"Спасибо, что обратили внимание на первую плитку. Теперь она отображается без лишней заглавной буквы. Исправление появится в следующем обновлении приложения.",shards:0,resolution:"duplicate",rewardGroup:"trainer-first-tile-capitalization"},
-    "km2yjVJdIKoGqaZDK55Z": {title:"Исправили искажённый перевод",body:"Спасибо, что заметили повреждённые символы в переводе. Мы исправили распознавание такого текста, чтобы тренер показывал нормальную фразу. Изменение появится в следующем обновлении приложения. В благодарность за помощь мы начислили Вам 1 осколок.",shards:1,resolution:"confirmed_fixed",rewardGroup:"trainer-legacy-mojibake"},
-    "NyL0rHoXd66GrFRIiWXZ": {title:"Исправили первую плитку тренера",body:"Спасибо, что сообщили о лишней заглавной букве. Теперь первая плитка показывается в правильном регистре. Исправление появится в следующем обновлении приложения. В благодарность за помощь мы начислили Вам 1 осколок.",shards:1,resolution:"confirmed_fixed",rewardGroup:"trainer-first-tile-capitalization"},
+    "km2yjVJdIKoGqaZDK55Z": {title:"Исправили искажённый перевод",body:"Спасибо, что заметили повреждённые символы в переводе. Мы исправили распознавание такого текста, чтобы тренер показывал нормальную фразу. Изменение появится в следующем обновлении приложения. В благодарность за помощь мы начислили Вам 1 жемчужину.",shards:1,resolution:"confirmed_fixed",rewardGroup:"trainer-legacy-mojibake"},
+    "NyL0rHoXd66GrFRIiWXZ": {title:"Исправили первую плитку тренера",body:"Спасибо, что сообщили о лишней заглавной букве. Теперь первая плитка показывается в правильном регистре. Исправление появится в следующем обновлении приложения. В благодарность за помощь мы начислили Вам 1 жемчужину.",shards:1,resolution:"confirmed_fixed",rewardGroup:"trainer-first-tile-capitalization"},
     "hdlK4smg08QbCyAdQx4I": {title:"Проверили форму глагола после would",body:"Спасибо за вопрос. После would используется базовая форма глагола, поэтому check в этом предложении стоит правильно. Текущий ответ в задании оставляем без изменений.",shards:0,resolution:"user_error",rewardGroup:"lesson27-would-base-form"},
-    "3Y1PapB1cyFmFrv3HVjV": {title:"Исправили подсветку слова Were",body:"Спасибо, что заметили расхождение. Мы исправили подсветку слова Were, и теперь она совпадает с текстом предложения. Изменение появится в следующем обновлении приложения. В благодарность за помощь мы начислили Вам 1 осколок.",shards:1,resolution:"confirmed_fixed",rewardGroup:"lesson25-theory-highlight"},
+    "3Y1PapB1cyFmFrv3HVjV": {title:"Исправили подсветку слова Were",body:"Спасибо, что заметили расхождение. Мы исправили подсветку слова Were, и теперь она совпадает с текстом предложения. Изменение появится в следующем обновлении приложения. В благодарность за помощь мы начислили Вам 1 жемчужину.",shards:1,resolution:"confirmed_fixed",rewardGroup:"lesson25-theory-highlight"},
     "l6mpcxYKVFFmwkJP0wY8": {title:"Нужно описание проблемы",body:"Спасибо, что написали нам. В сообщении нет описания конкретной проблемы, поэтому мы не можем восстановить ситуацию. Если это повторится, пожалуйста, кратко опишите экран и действие — мы проверим.",shards:0,resolution:"no_issue_details",rewardGroup:"lesson1-no-described-error"},
-    "YjTrxf5RntE9u6V1T6Iv": {title:"Исправили перевод Nothing is right",body:"Спасибо, что обратили внимание на перевод. Мы заменили неестественную формулировку на более естественный русский вариант. Изменение появится в следующем обновлении приложения. В благодарность за помощь мы начислили Вам 1 осколок.",shards:1,resolution:"confirmed_fixed",rewardGroup:"lesson21-translation"},
-    "BZRB6P5UK3s9QTpg5wnH": {title:"Исправили варианты в упражнении на предлоги",body:"Спасибо, что сообщили о вариантах ответа. Мы исправили набор в упражнении, и теперь на экране остаются все необходимые варианты для выбора. Изменение появится в следующем обновлении приложения. В благодарность за помощь мы начислили Вам 1 осколок.",shards:1,resolution:"confirmed_fixed",rewardGroup:"lesson8-preposition-options"},
+    "YjTrxf5RntE9u6V1T6Iv": {title:"Исправили перевод Nothing is right",body:"Спасибо, что обратили внимание на перевод. Мы заменили неестественную формулировку на более естественный русский вариант. Изменение появится в следующем обновлении приложения. В благодарность за помощь мы начислили Вам 1 жемчужину.",shards:1,resolution:"confirmed_fixed",rewardGroup:"lesson21-translation"},
+    "BZRB6P5UK3s9QTpg5wnH": {title:"Исправили варианты в упражнении на предлоги",body:"Спасибо, что сообщили о вариантах ответа. Мы исправили набор в упражнении, и теперь на экране остаются все необходимые варианты для выбора. Изменение появится в следующем обновлении приложения. В благодарность за помощь мы начислили Вам 1 жемчужину.",shards:1,resolution:"confirmed_fixed",rewardGroup:"lesson8-preposition-options"},
     "u7sWM2WEuUKPE2ytoc70": {title:"Проверили complex и difficult",body:"Спасибо за вопрос. Complex и difficult близки по смыслу, но не полностью взаимозаменяемы. В этом задании выбран перевод, который соответствует контексту, поэтому менять его не требуется.",shards:0,resolution:"by_design",rewardGroup:"lesson31-translation-word-choice"},
     "OSV3keL8TZ7D89MSTgVg": {title:"Спасибо за сообщение",body:"Спасибо, всё в порядке. Мы поняли, что сообщение было отправлено случайно.",shards:0,resolution:"no_issue_details",rewardGroup:"accidental-tap"},
-    "2AtnOwE6WpUM44cZkK8d": {title:"Спасибо, разобрались с Ареной",body:"Спасибо, что написали. Режим Арены мы закрыли, но в вашей версии приложения кнопка ещё осталась — поэтому вместо понятного объяснения появляется сообщение про очередь. Это наша недоработка, мы уберём эту кнопку в ближайшем обновлении. За находку начислили 2 осколка.",shards:2,resolution:"confirmed_investigating",rewardGroup:"arena-queue-decommissioned"},
+    "2AtnOwE6WpUM44cZkK8d": {title:"Спасибо, разобрались с Ареной",body:"Спасибо, что написали. Режим Арены мы закрыли, но в вашей версии приложения кнопка ещё осталась — поэтому вместо понятного объяснения появляется сообщение про очередь. Это наша недоработка, мы уберём эту кнопку в ближайшем обновлении. За находку начислили 2 жемчужины.",shards:2,resolution:"confirmed_investigating",rewardGroup:"arena-queue-decommissioned"},
     "O2BZQiYdSuwkDynowqXt": {title:"Спасибо, объясняем про Арену",body:"Спасибо, что сообщили. Режим Арены мы закрыли, а в вашей версии приложения кнопка ещё осталась — из-за этого и появляется сообщение про очередь вместо понятного пояснения. Соревноваться теперь можно в лиге, а лишнюю кнопку мы уберём в ближайшем обновлении.",shards:0,resolution:"duplicate",rewardGroup:"arena-queue-decommissioned"},
     "nFI5FcAlFH3TwxWqLZvA": {title:"Спасибо, рассказываем про Арену",body:"Спасибо за сообщение. Очередь не проходит потому, что режим Арены мы закрыли, а кнопка в вашей версии приложения ещё осталась. Ждать здесь бесполезно — соревноваться сейчас можно в лиге, а кнопку мы уберём в ближайшем обновлении.",shards:0,resolution:"duplicate",rewardGroup:"arena-queue-decommissioned"},
     "quaANgIbdHjB4GWkdMxW": {title:"Спасибо, поясняем про матчи",body:"Спасибо, что написали. Матч против соперника сейчас начать нельзя: режим Арены мы закрыли, а кнопка в вашей версии приложения ещё осталась и показывает сообщение про очередь. Соревноваться можно в лиге, а кнопку мы уберём в ближайшем обновлении.",shards:0,resolution:"duplicate",rewardGroup:"arena-queue-decommissioned"},
@@ -21453,58 +21809,58 @@
     "wu4lspXrYmvUjE7ZonD9": {title:"Thanks for writing to us",body:"Thanks for letting us know. We checked this phrase and it looks correct, so no changes are needed here. Happens to everyone when you are tired — take a break and come back to it later.",shards:0,resolution:"not_reproduced",rewardGroup:"lesson3-mistap"},
     "NrxjbPvlpDGIzz11F7mL": {title:"Thanks, no need to apologise",body:"No worries at all, and thanks for writing. We checked the phrase and it is correct as it stands, so nothing needs fixing here. Tiredness gets us all — rest up and carry on when you feel fresh.",shards:0,resolution:"not_reproduced",rewardGroup:"lesson3-mistap"},
     "jvj4S2ktPQFVQnMIxeLS": {title:"Спасибо, всё в порядке",body:"Спасибо, что написали. Мы проверили эту фразу — с ней всё в порядке, исправлять здесь нечего. Случайные нажатия бывают у всех, на ваш прогресс это почти не влияет.",shards:0,resolution:"not_reproduced",rewardGroup:"lesson3-mistap"},
-    "ctbYQt8yP1Yy7KqJjI2e": {title:"Спасибо, подтвердили обе проблемы",body:"Спасибо за подробное сообщение — вы указали сразу на две вещи. Длинные слова действительно могут обрезаться на узком экране, и обрыв озвучки при переходе к следующей фразе мы тоже подтвердили. Обе задачи взяли в работу, за находку начислили 2 осколка.",shards:2,resolution:"confirmed_investigating",rewardGroup:"word-tile-truncation"},
-    "6VGSm8Kf9xwXFgTDSzS9": {title:"Спасибо, транскрипцию исправили",body:"Спасибо за внимательность — вы поймали настоящую ошибку. В слове pharmacy действительно звучал звук «к» вместо «с», причём то же самое было и в других словах на -cy. Мы всё поправили, изменения появятся со следующим обновлением приложения. Начислили 2 осколка.",shards:2,resolution:"confirmed_fixed",rewardGroup:"transcription-soft-c"},
-    "uEf4nqVdiXbQ3ml3oQd1": {title:"Спасибо, нашли причину напоминаний",body:"Спасибо, что сообщили — вы помогли найти настоящую ошибку. Если у приложения нет разрешения на уведомления, расписание всё равно показывало «Сохранено», хотя напоминания не создавались. Теперь приложение честно предупредит об этом и подскажет, как включить разрешение. Начислили 2 осколка.",shards:2,resolution:"confirmed_fixed",rewardGroup:"notifications-permission-silent"},
+    "ctbYQt8yP1Yy7KqJjI2e": {title:"Спасибо, подтвердили обе проблемы",body:"Спасибо за подробное сообщение — вы указали сразу на две вещи. Длинные слова действительно могут обрезаться на узком экране, и обрыв озвучки при переходе к следующей фразе мы тоже подтвердили. Обе задачи взяли в работу, за находку начислили 2 жемчужины.",shards:2,resolution:"confirmed_investigating",rewardGroup:"word-tile-truncation"},
+    "6VGSm8Kf9xwXFgTDSzS9": {title:"Спасибо, транскрипцию исправили",body:"Спасибо за внимательность — вы поймали настоящую ошибку. В слове pharmacy действительно звучал звук «к» вместо «с», причём то же самое было и в других словах на -cy. Мы всё поправили, изменения появятся со следующим обновлением приложения. Начислили 2 жемчужины.",shards:2,resolution:"confirmed_fixed",rewardGroup:"transcription-soft-c"},
+    "uEf4nqVdiXbQ3ml3oQd1": {title:"Спасибо, нашли причину напоминаний",body:"Спасибо, что сообщили — вы помогли найти настоящую ошибку. Если у приложения нет разрешения на уведомления, расписание всё равно показывало «Сохранено», хотя напоминания не создавались. Теперь приложение честно предупредит об этом и подскажет, как включить разрешение. Начислили 2 жемчужины.",shards:2,resolution:"confirmed_fixed",rewardGroup:"notifications-permission-silent"},
     "WUL66aucpcxlwfYxl6ZC": {title:"Спасибо, что попробовали",body:"Спасибо, что заглянули в форму отчёта. В этот раз описания проблемы не было, поэтому проверять нечего. Если что-то будет работать не так — просто напишите пару слов, и мы разберёмся.",shards:0,resolution:"no_issue_details",rewardGroup:"empty-report"},
     "wSIqg0pAgEzuGbGe4W5j": {title:"Спасибо, разобрали ваш вопрос",body:"Спасибо за вдумчивый разбор. Вариант с had been solved тоже правильный, но и текущий работает: в английском в таких предложениях допустимо и простое прошедшее, когда речь идёт о состоянии, а не о последовательности событий. Поэтому фразу мы оставили как есть.",shards:0,resolution:"by_design",rewardGroup:"lesson32-reported-speech"},
     "EmeHXblwBWqWSJdEUrtr": {title:"Спасибо, поясняем про you",body:"Спасибо за внимательный вопрос. Здесь you — это не «ты» лично, а безличное обращение ко всем: так по-английски говорят об общих закономерностях. По-русски это как раз и передаётся оборотом «если нагреть», без местоимения, поэтому перевод верный.",shards:0,resolution:"by_design",rewardGroup:"lesson26-generic-you"},
     "KHAaB03K38P8qA3oIGJc": {title:"Спасибо, объясняем про лигу",body:"Спасибо, что написали. Опыт других участников обновляется только тогда, когда они сами заходят в приложение, поэтому между заходами их числа выглядят замершими. Ваш же опыт меняется сразу — отсюда и ощущение, что двигаетесь только вы.",shards:0,resolution:"duplicate",rewardGroup:"league-opponent-refresh"},
-    "ifASXJ8gFIrTl7oLV7C7": {title:"Спасибо, подтвердили про read",body:"Спасибо, вы совершенно правы: в прошедшем времени read читается как «рэд». У этого глагола все формы пишутся одинаково, и озвучка их не различает — поэтому звучит настоящее время. Это оказалось сложнее, чем просто поправить текст, поэтому мы ещё разбираемся. Начислили 1 осколок.",shards:1,resolution:"confirmed_investigating",rewardGroup:"irregular-read-homograph"},
-    "sKz5EtiZ0ZTeJb4Qihq5": {title:"Спасибо, опечатку исправили",body:"Спасибо за внимательность — опечатка действительно была, вы поймали её точно. Теперь в объяснении написано «Прямая речь», как и должно быть. Изменения появятся со следующим обновлением приложения, а вам начислили 1 осколок.",shards:1,resolution:"confirmed_fixed",rewardGroup:"lesson27-intro-typo"},
-    "4dCJaj8VXWRoWI2NIRhG": {title:"Спасибо, проблему со звуком приняли",body:"Спасибо за подробное описание — это очень помогает. Мы подтвердили, что прослушивание слова или фразы иногда срабатывает только один раз, и сейчас разбираемся с причиной. За находку начислили 2 осколка.",shards:2,resolution:"confirmed_investigating",rewardGroup:"tts-plays-once"},
+    "ifASXJ8gFIrTl7oLV7C7": {title:"Спасибо, подтвердили про read",body:"Спасибо, вы совершенно правы: в прошедшем времени read читается как «рэд». У этого глагола все формы пишутся одинаково, и озвучка их не различает — поэтому звучит настоящее время. Это оказалось сложнее, чем просто поправить текст, поэтому мы ещё разбираемся. Начислили 1 жемчужину.",shards:1,resolution:"confirmed_investigating",rewardGroup:"irregular-read-homograph"},
+    "sKz5EtiZ0ZTeJb4Qihq5": {title:"Спасибо, опечатку исправили",body:"Спасибо за внимательность — опечатка действительно была, вы поймали её точно. Теперь в объяснении написано «Прямая речь», как и должно быть. Изменения появятся со следующим обновлением приложения, а вам начислили 1 жемчужину.",shards:1,resolution:"confirmed_fixed",rewardGroup:"lesson27-intro-typo"},
+    "4dCJaj8VXWRoWI2NIRhG": {title:"Спасибо, проблему со звуком приняли",body:"Спасибо за подробное описание — это очень помогает. Мы подтвердили, что прослушивание слова или фразы иногда срабатывает только один раз, и сейчас разбираемся с причиной. За находку начислили 2 жемчужины.",shards:2,resolution:"confirmed_investigating",rewardGroup:"tts-plays-once"},
     "YSYqPhxZQGNiKoH67Qp1": {title:"Спасибо, уточним про практику",body:"Спасибо, что обратили внимание. Мы проверили раздел с фразами: там неверный ответ должен оставаться на экране и подсвечиваться, а рядом показываться правильный вариант. Подскажите, пожалуйста, в каком именно упражнении вариант исчезал — так мы быстрее найдём причину.",shards:0,resolution:"not_reproduced",rewardGroup:"practice-wrong-answer-feedback"},
     "Kg2r05fOPFWl2K6eLNp4": {title:"Спасибо, поясняем про лучший",body:"Спасибо за замечание. The best — это «самый лучший из всех», а здесь речь про «вариант получше», то есть a better option. По-русски «давайте найдём лучший вариант» звучит естественно именно в этом значении, поэтому фразу мы оставили без изменений.",shards:0,resolution:"by_design",rewardGroup:"lesson18-better-option"},
     "iiJqD4PDOgOQxfj4qF4h": {title:"Спасибо, разобрались с лигой",body:"Спасибо, что так подробно описали — понимаем ваше расстройство. Опыт соперников обновляется только когда они сами заходят в приложение, поэтому их числа и выглядели замершими всю неделю. Отдельно мы нашли расхождение процента лиги на главном экране и внутри и берём его в работу.",shards:0,resolution:"duplicate",rewardGroup:"league-opponent-refresh"},
     "WeD9DFrkrhxj59vSXkYB": {title:"Спасибо, мы проверили теорию",body:"Спасибо, что написали. Мы перечитали этот раздел: там сравниваются «This is mine phone» — так неправильно, и «This is my phone» — так правильно. Ошибки в тексте нет, но мы подумаем, как показать это сравнение нагляднее.",shards:0,resolution:"not_reproduced",rewardGroup:"theory15-mine-my"},
     "hpRjlxsFSo1VPizpyoVR": {title:"Дякуємо за уважність",body:"Дякуємо, що написали. Ми перевірили українську теорію цього уроку — в поясненнях скрізь використано «коли», російського слова там немає. Якщо ви бачили його на конкретному екрані, підкажіть, будь ласка, у якому саме місці, і ми одразу виправимо.",shards:0,resolution:"not_reproduced",rewardGroup:"theory8-uk-kogda"},
-    "p8HBSzlTjamup3bE7GPe": {title:"Спасибо, разбираемся с произношением",body:"Спасибо, что сообщили. Мы подтвердили, что распознавание речи иногда перестаёт засчитывать попытки, и сейчас ищем причину. Пока помогает выйти из упражнения и зайти в него заново. Начислили 1 осколок.",shards:1,resolution:"confirmed_investigating",rewardGroup:"speech-recognition-stuck-lesson"},
+    "p8HBSzlTjamup3bE7GPe": {title:"Спасибо, разбираемся с произношением",body:"Спасибо, что сообщили. Мы подтвердили, что распознавание речи иногда перестаёт засчитывать попытки, и сейчас ищем причину. Пока помогает выйти из упражнения и зайти в него заново. Начислили 1 жемчужину.",shards:1,resolution:"confirmed_investigating",rewardGroup:"speech-recognition-stuck-lesson"},
     "lF2pyPqugZgv533wbh57": {title:"Отвечаем на ваш вопрос",body:"Спасибо за вопрос. Режим Арены с рейтинговыми матчами мы закрыли, поэтому побеждать в нём сейчас не нужно и не получится. Ваше место теперь определяется опытом в лиге — просто занимайтесь, и позиция будет расти.",shards:0,resolution:"by_design",rewardGroup:"arena-rank-question"},
     "Kq58AwEEIaXBamf3wvmT": {title:"Дякуємо, пояснюємо про питання",body:"Дякуємо, що написали. У слова «питання» форми однини й множини збігаються, тому «Є питання?» — це саме множина й граматично правильно. Форма «питань» використовується після слів на кшталт «кілька», тут вона не підходить.",shards:0,resolution:"by_design",rewardGroup:"lesson9-uk-plural"},
     "8aQBAdAUftX5oEx3uu4L": {title:"Спасибо, поясняем про ранг",body:"Спасибо, что написали. Режим Арены мы закрыли, поэтому победы в нём больше не влияют на ранг. Сейчас место зависит только от опыта в лиге за неделю — он и поднимает вас выше.",shards:0,resolution:"by_design",rewardGroup:"arena-rank-question"},
     "g0cEY1ktRZWHxx2LHLwk": {title:"Спасибо, мы проверили подсказки",body:"Спасибо, что сообщили. Мы проверили это задание: слово documents среди вариантов есть. Скорее всего, оно не поместилось на узком экране — мы уже занимаемся тем, чтобы длинные слова показывались полностью.",shards:0,resolution:"duplicate",rewardGroup:"word-tile-truncation"},
-    "vgvGaIa0HJAtU82BBnU4": {title:"Спасибо, подтвердили обрезку слов",body:"Спасибо, что описали проблему — вы поймали настоящую недоработку. Длинные слова вроде understand действительно не помещаются в подсказку на узком экране и обрезаются, из-за чего приходится угадывать. Мы взяли это в работу, а вам начислили 2 осколка.",shards:2,resolution:"confirmed_investigating",rewardGroup:"word-tile-truncation-lesson13"},
+    "vgvGaIa0HJAtU82BBnU4": {title:"Спасибо, подтвердили обрезку слов",body:"Спасибо, что описали проблему — вы поймали настоящую недоработку. Длинные слова вроде understand действительно не помещаются в подсказку на узком экране и обрезаются, из-за чего приходится угадывать. Мы взяли это в работу, а вам начислили 2 жемчужины.",shards:2,resolution:"confirmed_investigating",rewardGroup:"word-tile-truncation-lesson13"},
     "W2fbpRqgJvDxCXJwH5qW": {title:"Спасибо, уточним по заданию",body:"Спасибо, что написали. Мы проверили это задание — все нужные слова для ответа в нём есть. Возможно, часть из них не поместилась на экране: подскажите, какого слова не хватало, и мы посмотрим внимательнее.",shards:0,resolution:"not_reproduced",rewardGroup:"lesson21-missing-words"},
-    "voHXvjdPDxOtUbsc253w": {title:"Спасибо, объясняем про профиль",body:"Добрый день, спасибо за спокойное и подробное сообщение. Так бывает, когда приложение открыто без входа через Google или Apple — тогда создаётся отдельный профиль со случайным именем и своей лигой. Войдите тем же способом, что и раньше, и прогресс вернётся на место. Начислили 1 осколок.",shards:1,resolution:"confirmed_investigating",rewardGroup:"profile-identity-drift"},
-    "LmXEQQEbsw8UD6fhK2pz": {title:"Спасибо, поправили сообщение",body:"Спасибо, что сообщили. Оказалось, что при проблемах со связью приложение писало «Нет доступных наборов», хотя на самом деле просто не смогло их загрузить. Теперь оно честно предложит проверить связь и попробовать снова. Начислили 1 осколок.",shards:1,resolution:"confirmed_fixed",rewardGroup:"flashcards-load-error"},
+    "voHXvjdPDxOtUbsc253w": {title:"Спасибо, объясняем про профиль",body:"Добрый день, спасибо за спокойное и подробное сообщение. Так бывает, когда приложение открыто без входа через Google или Apple — тогда создаётся отдельный профиль со случайным именем и своей лигой. Войдите тем же способом, что и раньше, и прогресс вернётся на место. Начислили 1 жемчужину.",shards:1,resolution:"confirmed_investigating",rewardGroup:"profile-identity-drift"},
+    "LmXEQQEbsw8UD6fhK2pz": {title:"Спасибо, поправили сообщение",body:"Спасибо, что сообщили. Оказалось, что при проблемах со связью приложение писало «Нет доступных наборов», хотя на самом деле просто не смогло их загрузить. Теперь оно честно предложит проверить связь и попробовать снова. Начислили 1 жемчужину.",shards:1,resolution:"confirmed_fixed",rewardGroup:"flashcards-load-error"},
     "8HNcgdqZKCSbqKwaRwLO": {title:"Спасибо, всё в порядке",body:"Спасибо, что написали. Мы проверили эту фразу — с ней всё в порядке, исправлять нечего. Случайные нажатия бывают у всех, на общий прогресс это почти не влияет.",shards:0,resolution:"not_reproduced",rewardGroup:"lesson2-mistap"},
     "WS5KVQI1hm4VlJTLR0h1": {title:"Спасибо, поясняем про kept",body:"Хороший вопрос, спасибо. Здесь не прошедшее время, а страдательный залог: «ключи хранятся» — это are kept, где вторая часть всегда стоит в третьей форме. Поэтому keep не подходит, хотя время действительно настоящее. Мы подумаем, как объяснить это понятнее.",shards:0,resolution:"by_design",rewardGroup:"lesson23-passive-voice"},
     "GcX99U1YjHmtpl52jsK7": {title:"Спасибо, поясняем про перевод",body:"Спасибо за замечание. Are you cold? — тоже верный вариант, но в этом задании мы отрабатываем оборот с глаголом feel, поэтому и фраза построена так. Русский перевод «Тебе холодно?» подходит к обоим вариантам.",shards:0,resolution:"by_design",rewardGroup:"lesson5-feel-cold"},
-    "g2s9HvOPkfkB2Y3tbESL": {title:"Спасибо, подтвердили расхождение",body:"Спасибо за внимательность — вы поймали настоящую нестыковку. Процент лиги на главном экране иногда показывался по устаревшим данным, а внутри лиги — по свежим, отсюда и разные числа. Мы взяли это в работу. Опыт соперников же меняется только когда они сами заходят в приложение. Начислили 2 осколка.",shards:2,resolution:"confirmed_investigating",rewardGroup:"league-opponent-refresh"},
-    "01UHnZnmy76zq8BFm2li": {title:"Спасибо, разбираемся с чатами",body:"Спасибо, что подробно описали, как это повторяется — очень помогает. Мы подтвердили, что чат открывается на мгновение и сразу закрывается, и сейчас ищем причину. Начислили 1 осколок.",shards:1,resolution:"confirmed_investigating",rewardGroup:"helpboard-chat-closes"},
+    "g2s9HvOPkfkB2Y3tbESL": {title:"Спасибо, подтвердили расхождение",body:"Спасибо за внимательность — вы поймали настоящую нестыковку. Процент лиги на главном экране иногда показывался по устаревшим данным, а внутри лиги — по свежим, отсюда и разные числа. Мы взяли это в работу. Опыт соперников же меняется только когда они сами заходят в приложение. Начислили 2 жемчужины.",shards:2,resolution:"confirmed_investigating",rewardGroup:"league-opponent-refresh"},
+    "01UHnZnmy76zq8BFm2li": {title:"Спасибо, разбираемся с чатами",body:"Спасибо, что подробно описали, как это повторяется — очень помогает. Мы подтвердили, что чат открывается на мгновение и сразу закрывается, и сейчас ищем причину. Начислили 1 жемчужину.",shards:1,resolution:"confirmed_investigating",rewardGroup:"helpboard-chat-closes"},
     "ETSPuxtOEJKFUkI5uEub": {title:"Спасибо за тонкое замечание",body:"Спасибо, наблюдение хорошее: с our фраза действительно звучит чуть естественнее. Вариант без него тоже правильный, поэтому ошибки здесь нет, но мы учтём это при следующем пересмотре урока.",shards:0,resolution:"by_design",rewardGroup:"lesson11-our-plans"},
-    "lRJJf7C3ogwEYiLNbj8z": {title:"Дякуємо, розбираємось з озвученням",body:"Дякуємо, що помітили і порахували картки — це дуже допомагає. Ми підтвердили, що англійське озвучення спрацьовує не на всіх картках, і зараз шукаємо причину. Нарахували 2 осколки.",shards:2,resolution:"confirmed_investigating",rewardGroup:"flashcards-audio-partial"},
-    "xrmM4khbKISZAgnV7VYZ": {title:"Дякуємо, кнопку виправили",body:"Дякуємо, ви маєте рацію — кнопка була підписана російською. Ми переклали її на «Слухати», зміни з'являться з наступним оновленням застосунку. Те, що вона не спрацьовує, ми теж підтвердили і зараз розбираємось. Нарахували 2 осколки.",shards:2,resolution:"confirmed_fixed",rewardGroup:"plan-listen-button-uk"},
-    "Oaxaqqek9Ksh7YQsxOrP": {title:"Спасибо, подтвердили проблему с микрофоном",body:"Спасибо за очень точное описание — вы отлично поймали закономерность. Мы подтвердили, что после неудачной попытки следующие записи перестают засчитываться, и сейчас разбираемся. Начислили 2 осколка.",shards:2,resolution:"confirmed_investigating",rewardGroup:"speech-recognition-stuck"},
+    "lRJJf7C3ogwEYiLNbj8z": {title:"Дякуємо, розбираємось з озвученням",body:"Дякуємо, що помітили і порахували картки — це дуже допомагає. Ми підтвердили, що англійське озвучення спрацьовує не на всіх картках, і зараз шукаємо причину. Нарахували 2 перлини.",shards:2,resolution:"confirmed_investigating",rewardGroup:"flashcards-audio-partial"},
+    "xrmM4khbKISZAgnV7VYZ": {title:"Дякуємо, кнопку виправили",body:"Дякуємо, ви маєте рацію — кнопка була підписана російською. Ми переклали її на «Слухати», зміни з'являться з наступним оновленням застосунку. Те, що вона не спрацьовує, ми теж підтвердили і зараз розбираємось. Нарахували 2 перлини.",shards:2,resolution:"confirmed_fixed",rewardGroup:"plan-listen-button-uk"},
+    "Oaxaqqek9Ksh7YQsxOrP": {title:"Спасибо, подтвердили проблему с микрофоном",body:"Спасибо за очень точное описание — вы отлично поймали закономерность. Мы подтвердили, что после неудачной попытки следующие записи перестают засчитываться, и сейчас разбираемся. Начислили 2 жемчужины.",shards:2,resolution:"confirmed_investigating",rewardGroup:"speech-recognition-stuck"},
     "YSrcz9sisnbMuzeeWxsC": {title:"Спасибо, разбираемся с маршрутом",body:"Спасибо, что сообщили. Похоже, из-за сбоя экрана день в маршруте сменился раньше времени и прежние фразы пропали. Мы разбираемся с этим — прогресс при этом не теряется, а пройденные фразы вернутся в повторение.",shards:1,resolution:"confirmed_investigating",rewardGroup:"personal-plan-day-skip"},
     "yr2VNNMxKsCQi6e8wTSP": {title:"Спасибо, посмотрим студию",body:"Спасибо, что сообщили. Мы проверим, почему списки аватаров и аур не прокручиваются до конца на вашем экране. Подскажите, пожалуйста, происходит это всегда или только после перехода с другого раздела — так мы быстрее найдём причину.",shards:0,resolution:"not_reproduced",rewardGroup:"studio-scroll"},
     "YrKR0mr2auRTNv6cmJIB": {title:"Спасибо, разбираемся с озвучкой",body:"Спасибо за спокойное и полезное сообщение. Это не задумка: слова someone и somebody равнозначны и оба засчитываются, но озвучка всегда проговаривает основной вариант, а не выбранный вами. Мы разбираемся, как это исправить.",shards:0,resolution:"duplicate",rewardGroup:"lesson21-synonym-audio"},
     "viauG6QXRrAWT8STNGnU": {title:"Спасибо, это та же причина",body:"Спасибо, что показали случай в обратную сторону — это подтверждает нашу догадку. Озвучка всегда читает основной вариант фразы, независимо от того, какой из равнозначных синонимов вы выбрали. Мы разбираемся с этим.",shards:0,resolution:"duplicate",rewardGroup:"lesson21-synonym-audio"},
     "LQjh1aNwH6Z8bzTws5J7": {title:"Спасибо, посмотрим клавиатуру",body:"Спасибо, что сообщили. Мы разбираемся, почему в этом упражнении не открывается клавиатура. Иногда помогает закрыть и снова открыть приложение — а мы поищем настоящую причину.",shards:1,resolution:"confirmed_investigating",rewardGroup:"plan-recall-keyboard"},
     "XpWwjcz3el2boDqHeUyj": {title:"Спасибо, помним про клавиатуру",body:"Спасибо, что написали ещё раз — так виднее, что это повторяется. Мы разбираемся с тем, почему клавиатура не появляется в этом задании, и сообщим, когда всё заработает.",shards:0,resolution:"duplicate",rewardGroup:"plan-recall-keyboard"},
-    "OuCXAt7xrHhlGL1WNUaU": {title:"Спасибо, подтвердили обрезку текста",body:"Спасибо за очень точное описание — с поворотом экрана вы сами нашли подсказку. Мы подтвердили, что часть объяснения обрезается на узких экранах, и взяли это в работу. Начислили 2 осколка.",shards:2,resolution:"confirmed_investigating",rewardGroup:"theory-text-clipping"},
+    "OuCXAt7xrHhlGL1WNUaU": {title:"Спасибо, подтвердили обрезку текста",body:"Спасибо за очень точное описание — с поворотом экрана вы сами нашли подсказку. Мы подтвердили, что часть объяснения обрезается на узких экранах, и взяли это в работу. Начислили 2 жемчужины.",shards:2,resolution:"confirmed_investigating",rewardGroup:"theory-text-clipping"},
     "1nViTydIBmysvd8yUcTO": {title:"Спасибо, поясняем про this и I've",body:"Спасибо за вопрос. Здесь нужно this, потому что речь о чём-то конкретном перед глазами, а it указывает на предмет более отвлечённо. Сокращение I've в живой речи действительно нормально — мы посмотрим, чтобы такие варианты тоже засчитывались.",shards:0,resolution:"by_design",rewardGroup:"lesson24-this-it"},
     "d2N7bGxzbrZdR45PXsIC": {title:"Спасибо, объясняем про подарки",body:"Спасибо, что проверили так внимательно. Подарки и прогресс хранятся отдельно для каждого профиля: если на одном устройстве вход был через Google или Apple, а на другом нет, получаются два разных профиля. Войдите одинаково на обоих — и данные сойдутся.",shards:0,resolution:"duplicate",rewardGroup:"profile-identity-drift-civi"},
     "8RrlTdogjvLXPGeH8813": {title:"Спасибо, уточним про сообщение",body:"Спасибо, что заметили. Кнопку «Идея» мы действительно скрыли, но упоминания о ней в приложении не нашли. Подскажите, пожалуйста, что именно там написано, или пришлите снимок экрана — тогда мы точно всё уберём.",shards:0,resolution:"not_reproduced",rewardGroup:"idea-button-stale-message"},
-    "9MJIHaZTHH0Y3YZBemmJ": {title:"Спасибо, причина та же",body:"Спасибо за дополнение. Разные уровни и разное число осколков объясняются тем же: телефон и планшет работают под разными профилями. После входа одним и тем же способом на обоих устройствах данные станут общими.",shards:0,resolution:"duplicate",rewardGroup:"profile-identity-drift-civi"},
-    "Mkm8anx7eHg20iEpJYkP": {title:"Спасибо, дополнение получили",body:"Спасибо, что уточнили. Причина всё та же: на устройствах разные профили, поэтому уровень и осколки считаются отдельно. Вход одним способом на обоих устройствах приведёт данные к одному виду.",shards:0,resolution:"duplicate",rewardGroup:"profile-identity-drift-civi"},
-    "VNidewOgwN31MxSK9KMG": {title:"Спасибо, нашли причину рассинхрона",body:"Здравствуйте и спасибо за подробную проверку — вы указали на важную вещь. Прогресс привязан к профилю, а не к аккаунту почты: если на планшете не был выполнен вход через Google или Apple, там ведётся отдельный профиль со своими днями и практикой. Мы сделаем это понятнее в приложении. Начислили 2 осколка.",shards:2,resolution:"confirmed_investigating",rewardGroup:"profile-identity-drift-civi"},
+    "9MJIHaZTHH0Y3YZBemmJ": {title:"Спасибо, причина та же",body:"Спасибо за дополнение. Разные уровни и разное число жемчужин объясняются тем же: телефон и планшет работают под разными профилями. После входа одним и тем же способом на обоих устройствах данные станут общими.",shards:0,resolution:"duplicate",rewardGroup:"profile-identity-drift-civi"},
+    "Mkm8anx7eHg20iEpJYkP": {title:"Спасибо, дополнение получили",body:"Спасибо, что уточнили. Причина всё та же: на устройствах разные профили, поэтому уровень и жемчужины считаются отдельно. Вход одним способом на обоих устройствах приведёт данные к одному виду.",shards:0,resolution:"duplicate",rewardGroup:"profile-identity-drift-civi"},
+    "VNidewOgwN31MxSK9KMG": {title:"Спасибо, нашли причину рассинхрона",body:"Здравствуйте и спасибо за подробную проверку — вы указали на важную вещь. Прогресс привязан к профилю, а не к аккаунту почты: если на планшете не был выполнен вход через Google или Apple, там ведётся отдельный профиль со своими днями и практикой. Мы сделаем это понятнее в приложении. Начислили 2 жемчужины.",shards:2,resolution:"confirmed_investigating",rewardGroup:"profile-identity-drift-civi"},
     "9wVACKVMMf6INNb2N6Zw": {title:"Спасибо, посмотрим это задание",body:"Спасибо, что сообщили. Мы проверим, почему в этом упражнении не показалась фраза. Если это повторится — попробуйте выйти и зайти в задание заново, а мы поищем причину.",shards:1,resolution:"confirmed_investigating",rewardGroup:"plan-recall-missing-phrase"},
     "1XR6lHHU8JDBCbw8JIHp": {title:"Дякуємо за пропозицію",body:"Дякуємо, що написали. «Вона не любить каву» — це звичайний і правильний переклад для like, адже українською про їжу та напої так кажуть постійно. Ваш варіант теж гарний, але помилки тут немає, тому фразу лишили без змін.",shards:0,resolution:"by_design",rewardGroup:"lesson4-uk-like"},
     "94u9YjQQ8YYhlAMdBvW4": {title:"Подскажем, с чего начать",body:"Спасибо, что написали. Начните с раздела уроков и проходите их по порядку — этого достаточно, остальное откроется само. Напишите, что именно оказалось непонятным, и мы подскажем подробнее.",shards:0,resolution:"no_issue_details",rewardGroup:"general-help-request"},
-    "XdqBqMPTzuxmPTXVHymA": {title:"Спасибо, поправили сообщение",body:"Спасибо, что сообщили. Мы нашли причину: при плохой связи карточки не успевали загрузиться, а приложение молчало об этом. Теперь оно предупредит и предложит попробовать снова. Начислили 1 осколок.",shards:1,resolution:"confirmed_fixed",rewardGroup:"flashcards-load-error-sergey"},
+    "XdqBqMPTzuxmPTXVHymA": {title:"Спасибо, поправили сообщение",body:"Спасибо, что сообщили. Мы нашли причину: при плохой связи карточки не успевали загрузиться, а приложение молчало об этом. Теперь оно предупредит и предложит попробовать снова. Начислили 1 жемчужину.",shards:1,resolution:"confirmed_fixed",rewardGroup:"flashcards-load-error-sergey"},
     "RfhqmedWaoLq3Gb3U26i": {title:"Спасибо, причина та же",body:"Спасибо, что показали ещё один пример. Nobody и no one равнозначны, оба засчитываются, но озвучка читает основной вариант фразы, а не выбранный вами. Мы разбираемся с этим.",shards:0,resolution:"duplicate",rewardGroup:"lesson21-synonym-audio"},
-    "mrE3R0Yor0EcZyQRehDT": {title:"Спасибо, подтвердили несовпадение озвучки",body:"Спасибо, вы подметили верно — и рассуждение совершенно правильное. Somebody и someone равнозначны, поэтому оба ответа засчитываются, но озвучка всегда читает основной вариант фразы, а не выбранный вами. Мы взяли это в работу, а вам начислили 2 осколка.",shards:2,resolution:"confirmed_investigating",rewardGroup:"lesson21-synonym-audio"},
+    "mrE3R0Yor0EcZyQRehDT": {title:"Спасибо, подтвердили несовпадение озвучки",body:"Спасибо, вы подметили верно — и рассуждение совершенно правильное. Somebody и someone равнозначны, поэтому оба ответа засчитываются, но озвучка всегда читает основной вариант фразы, а не выбранный вами. Мы взяли это в работу, а вам начислили 2 жемчужины.",shards:2,resolution:"confirmed_investigating",rewardGroup:"lesson21-synonym-audio"},
     "LsQVkpPJ10CaSocibvzb": {title:"Спасибо, мы проверили задание",body:"Спасибо, что написали. Мы проверили это задание — слово hotel среди вариантов есть. Возможно, оно не поместилось на экране: мы как раз работаем над тем, чтобы длинные слова были видны полностью.",shards:0,resolution:"not_reproduced",rewardGroup:"lesson19-missing-hotel"},
   };
   const resolutionLabels = {
@@ -26205,7 +26561,7 @@
   // Рубильники фич: булевы флаги remote_config/app.bools, читаемые клиентом
   // онлайн (onSnapshot). Дефолты держим в синхроне с app/remote_flags.ts.
   const CP_FEATURE_TOGGLES = [
-    { key: 'ai_global_disable',        label: '⛔ ВЫКЛЮЧИТЬ ВЕСЬ ИИ',            def: false, hint: 'ГЛАВНЫЙ РУБИЛЬНИК. Галочка = весь ИИ выключен у всех живьём (без релиза): Компас, «Объясни», разбор ошибок, диалоги, разговорный клуб, комментарий дня. Ручные вызовы → забавная плашка «Компас отдыхает»; фоновые → тихо не запускаются. Деньги на ИИ не тратятся. Снять галочку → всё возвращается.' },
+    { key: 'ai_global_disable',        label: '⛔ ВЫКЛЮЧИТЬ ВЕСЬ ИИ',            def: false, hint: 'ГЛАВНЫЙ РУБИЛЬНИК. Галочка = весь ИИ выключен у всех живьём (без релиза): Компас, «Объясни», разбор ошибок, диалоги и комментарий дня. Ручные вызовы → забавная плашка «Компас отдыхает»; фоновые → тихо не запускаются. Деньги на ИИ не тратятся. Снять галочку → всё возвращается.' },
     { key: 'speaking_enabled',         label: 'Режим «Устно»',                 def: true,  hint: 'Произношение/говорение в уроках и тренере.' },
     { key: 'collectibles_enabled',     label: '«Сокровищница» (коллекционные)', def: true,  hint: 'Дроп коллекционных фраз из уроков и арены.' },
     { key: 'explain_enabled',          label: '«Объясни как для 5-летнего»',     def: true,  hint: 'Кнопка объяснения фразы (платный ИИ). Дефолт ON (kill-switch).' },
@@ -28622,7 +28978,7 @@
     patterns: 'Паттерны ошибок', percentiles: 'Перцентили', personal_plan: 'Личный план', intro_ended: 'Конец пробного доступа',
     level_up: 'Новый уровень', premium_expired: 'Подписка истекла', vip_expired: 'VIP истёк',
     notification_upsell: 'Пуш-уведомление', language_add: 'Второй язык', ai_explain: 'ИИ-объяснение',
-    weekly_review: 'Недельный обзор', avatar_aura: 'Аура аватара', speaking_club: 'Разговорный клуб',
+    weekly_review: 'Недельный обзор', avatar_aura: 'Аура аватара',
     free_lessons_complete: 'Бесплатные уроки пройдены', winback: 'Возвращение после паузы',
     referral_ended: 'Реферальный доступ закончился', generic: 'Просто Plus',
   };
@@ -30937,8 +31293,17 @@
   ];
   const ONBOARDING_STEP_LABELS = Object.fromEntries(ONBOARDING_STEP_CATALOG);
   let _onboardingScreensLoaded = false;
+  let _onboardingFunnelLoaded = false;
   let _onboardingExitsLoaded = false;
   let _onboardingScreensSaved = null; // что реально лежит в remote_config
+  let _fnAdminGetOnboardingFunnel = null;
+
+  function getAdminOnboardingFunnelCallable() {
+    if (!_fnAdminGetOnboardingFunnel) {
+      _fnAdminGetOnboardingFunnel = httpsCallable(functionsUs, 'adminGetOnboardingFunnel');
+    }
+    return _fnAdminGetOnboardingFunnel;
+  }
 
   // Пустая строка/битый JSON = «включено всё» (та же логика, что в
   // parseEnabledOnboardingSteps на клиенте) — иначе админка показала бы всё
@@ -31095,6 +31460,55 @@
       if (status) status.textContent = `Не удалось опубликовать: ${e?.message || String(e)}`;
     } finally {
       if (publish) { publish.disabled = false; publish.textContent = 'Опубликовать'; }
+    }
+  };
+
+  // Источник истины для Started / Completed / Conversion — только серверные
+  // суточные агрегаты. app_activity остаётся отдельной consent-gated выборкой
+  // для выходов/пропусков и никогда не называется общим числом установок.
+  window.loadOnboardingFunnel = async function loadOnboardingFunnel(force = false) {
+    const status = document.getElementById('onboarding-funnel-status');
+    const summary = document.getElementById('onboarding-funnel-summary');
+    const refresh = document.getElementById('onboarding-funnel-refresh');
+    if (!status || !summary) return;
+    if (_onboardingFunnelLoaded && !force) return;
+    _onboardingFunnelLoaded = true;
+
+    const rawDays = Number(document.getElementById('onboarding-funnel-range')?.value || 28);
+    const rangeDays = [7, 28, 90].includes(rawDays) ? rawDays : 28;
+    const rawPlatform = String(document.getElementById('onboarding-funnel-platform')?.value || 'all');
+    const platform = ['all', 'ios', 'android', 'web'].includes(rawPlatform) ? rawPlatform : 'all';
+    status.textContent = 'Загружаем серверные агрегаты…';
+    summary.innerHTML = revenueSummaryCards([
+      ['Начали', '—'],
+      ['Завершили', '—'],
+      ['Конверсия', '—'],
+    ]);
+    if (refresh) { refresh.disabled = true; refresh.textContent = 'Загружаем…'; }
+
+    try {
+      const response = await getAdminOnboardingFunnelCallable()({ rangeDays, platform });
+      const data = response?.data || {};
+      const started = Math.max(0, Math.trunc(Number(data.started) || 0));
+      const completed = Math.max(0, Math.trunc(Number(data.completed) || 0));
+      const conversion = Number.isFinite(Number(data.conversionPercent))
+        ? `${Number(data.conversionPercent).toFixed(1).replace('.0', '')}%`
+        : '—';
+      summary.innerHTML = revenueSummaryCards([
+        ['Начали', started.toLocaleString('ru-RU')],
+        ['Завершили', completed.toLocaleString('ru-RU')],
+        ['Конверсия', conversion],
+        ['Платформа', platform],
+        ['Период', `${rangeDays} дн.`],
+      ]);
+      status.textContent = started > 0
+        ? `Учтены серверные агрегаты за ${rangeDays} дн. Данные доступны только с версии, где включён этот счётчик.`
+        : `За ${rangeDays} дн. агрегатов пока нет. История до запуска счётчика не восстанавливается.`;
+    } catch (error) {
+      _onboardingFunnelLoaded = false;
+      status.textContent = `Не удалось загрузить воронку: ${error?.message || String(error)}`;
+    } finally {
+      if (refresh) { refresh.disabled = false; refresh.textContent = 'Обновить'; }
     }
   };
 
@@ -32847,11 +33261,6 @@
   function applyCleanReferralsChrome() {
     const tab = document.getElementById('tab-referrals');
     if (!tab) return;
-    const loadBtn = tab.querySelector('button[onclick*="loadReferralsData(true)"]');
-    if (loadBtn) {
-      loadBtn.textContent = 'Refresh';
-      loadBtn.setAttribute('data-i18n-es', 'Refresh');
-    }
     const moreBtn = document.getElementById('ref-load-more');
     if (moreBtn) {
       moreBtn.textContent = 'Load 300 more';
@@ -32879,7 +33288,7 @@
   }
 
   function refCleanStatusLabel(st) {
-    if (st === 'pending') return 'pending L1';
+    if (st === 'pending') return 'awaiting purchase';
     if (st === 'rewarded') return 'rewarded';
     if (st === 'skipped_referrer_cap') return 'cap reached';
     if (st === 'revoked') return 'revoked';
@@ -33036,6 +33445,264 @@
     } catch (e) {
       if (loading) loading.textContent = 'Failed to load referrals';
       showToast('Referrals error: ' + e.message, 'err');
+    }
+  };
+
+  // Final live referrals dashboard. The earlier loader is retained only as
+  // legacy context; these assignments are the effective runtime surface.
+  let _fnAdminGetReferralDashboard = null;
+  function getAdminGetReferralDashboardCallable() {
+    if (!_fnAdminGetReferralDashboard) {
+      _fnAdminGetReferralDashboard = httpsCallable(functionsUs, 'adminGetReferralDashboard');
+    }
+    return _fnAdminGetReferralDashboard;
+  }
+
+  function ensureReferralDashboardChrome() {
+    const tab = document.getElementById('tab-referrals');
+    if (!tab || tab.dataset.refDashboardV2 === 'true') return;
+    tab.dataset.refDashboardV2 = 'true';
+    tab.innerHTML = `
+      <div class="ref-dashboard-shell">
+        <div class="ref-dashboard-header">
+          <div>
+            <h2 class="ref-dashboard-title">Рефералы</h2>
+            <p class="ref-dashboard-description">Покупка настоящего Plus приглашённым открывает прокрутку рулетки пригласившему.</p>
+          </div>
+          <div class="ref-dashboard-actions">
+            <button type="button" id="ref-export" title="Скачивает текущий список приглашений в CSV. Ничего не изменяет.">Экспорт CSV</button>
+          </div>
+        </div>
+        <section id="ref-summary-stats" class="ref-summary-grid" aria-label="Основные показатели рефералов"></section>
+        <div class="ref-dashboard-controls">
+          <label class="ref-field" for="ref-search">Поиск по имени или коду
+            <input type="search" id="ref-search" placeholder="Имя или код приглашения" autocomplete="off" />
+          </label>
+          <label class="ref-field" for="ref-filter">Фильтр
+            <select id="ref-filter">
+              <option value="all">Все приглашения</option>
+              <option value="plus">Купили Plus</option>
+              <option value="awaiting">Ожидают покупки</option>
+              <option value="spun">Крутили рулетку</option>
+              <option value="not-spun">Не крутили рулетку</option>
+            </select>
+          </label>
+          <span id="ref-status" class="reports-count" aria-live="polite"></span>
+        </div>
+        <section class="ref-panel" aria-label="Кто кого пригласил">
+          <div id="ref-loading" class="ref-state" aria-live="polite">
+            <strong>Загружаем приглашения…</strong>
+            <div class="ref-skeleton-line"></div><div class="ref-skeleton-line"></div><div class="ref-skeleton-line"></div>
+          </div>
+          <div id="ref-error" class="ref-state" role="alert" hidden></div>
+          <div id="ref-empty" class="ref-state" hidden>Приглашений по выбранным условиям пока нет.</div>
+          <div id="ref-table" role="table" aria-label="Связи приглашений" hidden>
+            <div class="ref-grid-row ref-grid-head" role="row">
+              <div role="columnheader">Пригласивший</div><div aria-hidden="true"></div><div role="columnheader">Приглашённый</div>
+              <div role="columnheader">Plus</div><div role="columnheader">Рулетка</div><div role="columnheader">Действия</div>
+            </div>
+            <div id="ref-tbody" role="rowgroup"></div>
+          </div>
+          <div style="padding:0 14px 14px"><button type="button" id="ref-load-more" title="Загружает следующую страницу приглашений." hidden>Показать ещё</button></div>
+        </section>
+        <section id="ref-aggregates" class="ref-panel" aria-label="Аналитика рулетки"></section>
+      </div>`;
+    document.getElementById('ref-export')?.addEventListener('click', () => window.exportReferralsCSV());
+    document.getElementById('ref-search')?.addEventListener('input', () => window.renderReferralsTable());
+    document.getElementById('ref-filter')?.addEventListener('change', () => window.renderReferralsTable());
+    document.getElementById('ref-load-more')?.addEventListener('click', () => void window.loadReferralsData(false, true));
+  }
+
+  function referralInitials(name) {
+    return String(name || '')
+      .trim()
+      .split(/\s+/)
+      .slice(0, 2)
+      .map((part) => part.slice(0, 1).toUpperCase())
+      .join('') || '—';
+  }
+
+  function referralDate(ms) {
+    const value = Number(ms) || 0;
+    return value > 0 ? new Date(value).toLocaleDateString('ru-RU') : '';
+  }
+
+  function referralPrizeLabel(roulette) {
+    if (!roulette || roulette.state !== 'spun') return 'Ещё не крутил';
+    if (roulette.prizeKind === 'pearls') return `Выпало: ${toSafeNumber(roulette.prizePearls, 0)} жемчужин`;
+    return `Выпало: ${toSafeNumber(roulette.prizeDays, 0)} дн. Plus`;
+  }
+
+  function referralAggregateLabel(key) {
+    const [kind, raw] = String(key || '').split(':');
+    const amount = toSafeNumber(raw, 0);
+    return kind === 'pearls' ? `${amount} жемчужин` : `${amount} дн. Plus`;
+  }
+
+  function renderReferralDashboardSummary(summary) {
+    const box = document.getElementById('ref-summary-stats');
+    if (!box) return;
+    const total = Math.max(0, toSafeNumber(summary?.totalInvited, 0));
+    const purchased = Math.max(0, toSafeNumber(summary?.plusPurchased, 0));
+    const spun = Math.max(0, toSafeNumber(summary?.rouletteSpun, 0));
+    const conversion = total > 0 ? `${Math.round((purchased / total) * 1000) / 10}%` : '—';
+    box.innerHTML = [
+      ['Всего приглашено', total],
+      ['Купили Plus', purchased],
+      ['Конверсия в Plus', conversion],
+      ['Прокрутили рулетку', spun],
+    ].map(([label, value]) => `<div class="ref-metric"><div class="ref-metric-label">${escapeHtml(label)}</div><div class="ref-metric-value">${escapeHtml(value)}</div></div>`).join('');
+  }
+
+  function renderReferralRouletteAnalytics(roulette) {
+    const box = document.getElementById('ref-aggregates');
+    if (!box) return;
+    const total = Math.max(0, toSafeNumber(roulette?.totalSpins, 0));
+    const entries = Object.entries(roulette?.byPrize || {})
+      .map(([key, count]) => ({ key, count: Math.max(0, toSafeNumber(count, 0)) }))
+      .filter((item) => item.count > 0)
+      .sort((a, b) => b.count - a.count || a.key.localeCompare(b.key));
+    if (total === 0 || entries.length === 0) {
+      box.innerHTML = '<div class="ref-state"><strong>Рулетка</strong><br>Прокрутов пока нет.</div>';
+      return;
+    }
+    const most = entries[0];
+    const share = (count) => Math.round((count / total) * 1000) / 10;
+    box.innerHTML = `
+      <div class="ref-analytics-grid">
+        <div>
+          <div class="ref-top-title">Рулетка</div>
+          <div class="ref-metric-value">${total}</div>
+          <div style="margin-top:5px;color:var(--admin-muted)">Всего прокрутов</div>
+          <div style="margin-top:18px;color:var(--admin-text);font-weight:750">Чаще всего выпадает</div>
+          <div style="margin-top:5px;color:var(--admin-muted)">${escapeHtml(referralAggregateLabel(most.key))} · ${most.count} (${share(most.count)}%)</div>
+        </div>
+        <div>
+          <div class="ref-bars" role="img" aria-label="Распределение призов рулетки">
+            ${entries.map((item) => `<div class="ref-bar-row"><span>${escapeHtml(referralAggregateLabel(item.key))}</span><span class="ref-bar-track"><span class="ref-bar-fill" style="display:block;width:${Math.min(100, share(item.count))}%"></span></span><strong>${item.count}</strong></div>`).join('')}
+          </div>
+          <table class="ref-prize-table"><caption style="text-align:left;padding:16px 9px 8px;color:var(--admin-text);font-weight:750">Точная расшифровка</caption><thead><tr><th>Приз</th><th>Количество</th><th>Доля</th></tr></thead><tbody>
+            ${entries.map((item) => `<tr><td>${escapeHtml(referralAggregateLabel(item.key))}</td><td>${item.count}</td><td>${share(item.count)}%</td></tr>`).join('')}
+          </tbody></table>
+        </div>
+      </div>`;
+  }
+
+  async function prepareReferralRevoke(refereeId) {
+    const row = (window._referralsRows || []).find((item) => item.refereeId === refereeId);
+    if (!row) { showToast('Запись не найдена', 'err'); return; }
+    try {
+      const snapshot = await getDoc(doc(db, 'referral_attributions', refereeId));
+      if (!snapshot.exists()) { showToast('Связь приглашения не найдена', 'err'); return; }
+      const data = snapshot.data() || {};
+      const status = String(data.status || '');
+      if (status !== 'pending' && status !== 'rewarded') {
+        showToast('Эту связь нельзя отозвать в текущем состоянии', 'warn');
+        return;
+      }
+      Object.assign(row, {
+        status,
+        refCode: data.refCode || '',
+        refereeShardBonus: data.refereeShardBonus,
+        referrerShardBonus: data.referrerShardBonus,
+      });
+      await window.revokeReferralAttribution(refereeId);
+    } catch (error) {
+      showToast('Не удалось проверить связь: ' + error.message, 'err');
+    }
+  }
+
+  window.renderReferralsTable = function renderReferralsTable() {
+    ensureReferralDashboardChrome();
+    const tbody = document.getElementById('ref-tbody');
+    const table = document.getElementById('ref-table');
+    const empty = document.getElementById('ref-empty');
+    const status = document.getElementById('ref-status');
+    if (!tbody || !table || !empty) return;
+    const queryText = String(document.getElementById('ref-search')?.value || '').trim().toLowerCase();
+    const filter = String(document.getElementById('ref-filter')?.value || 'all');
+    const list = [...(window._referralsRows || [])].filter((row) => {
+      const matchesText = !queryText || `${row.referrerName || ''} ${row.refereeName || ''} ${row.refCode || ''}`.toLowerCase().includes(queryText);
+      const spun = row.roulette?.state === 'spun';
+      const matchesFilter = filter === 'all'
+        || (filter === 'plus' && row.plusPurchased)
+        || (filter === 'awaiting' && !row.plusPurchased)
+        || (filter === 'spun' && spun)
+        || (filter === 'not-spun' && !spun);
+      return matchesText && matchesFilter;
+    });
+    if (status) status.textContent = `${list.length} из ${(window._referralsRows || []).length}`;
+    table.hidden = list.length === 0;
+    empty.hidden = list.length !== 0;
+    tbody.innerHTML = list.map((row) => {
+      const spun = row.roulette?.state === 'spun';
+      const plusLabel = row.plusPurchased ? 'Plus куплен' : 'Ожидает покупки';
+      const plusDate = row.plusPurchased && row.purchasedAtMs ? `<div class="ref-date">${escapeHtml(referralDate(row.purchasedAtMs))}</div>` : '';
+      const spinDate = spun && row.roulette.createdAtMs ? `<div class="ref-date">${escapeHtml(referralDate(row.roulette.createdAtMs))}</div>` : '';
+      const canAttemptRevoke = row.status !== 'revoked' && (!row.plusPurchased || spun);
+      return `<div class="ref-grid-row" role="row" data-referee="${escapeHtml(row.refereeId)}">
+        <div role="cell" data-label="Пригласивший"><div class="ref-person"><span class="ref-avatar" aria-hidden="true">${escapeHtml(referralInitials(row.referrerName))}</span><span class="ref-person-name">${escapeHtml(row.referrerName || 'Без имени')}</span></div></div>
+        <div class="ref-arrow" aria-label="пригласил">→</div>
+        <div role="cell" data-label="Приглашённый"><div class="ref-person"><span class="ref-avatar" aria-hidden="true">${escapeHtml(referralInitials(row.refereeName))}</span><span class="ref-person-name">${escapeHtml(row.refereeName || 'Без имени')}</span></div></div>
+        <div role="cell" data-label="Plus"><span class="ref-status-pill ${row.plusPurchased ? 'is-plus' : 'is-waiting'}">${plusLabel}</span>${plusDate}</div>
+        <div role="cell" data-label="Рулетка"><span class="ref-status-pill ${spun ? 'is-plus' : 'is-waiting'}">${escapeHtml(referralPrizeLabel(row.roulette))}</span>${spinDate}</div>
+        <div role="cell" data-label="Действия" class="ref-row-actions">
+          <button type="button" class="ref-open-btn" data-open="${escapeHtml(row.referrerId)}" title="Открывает профиль пригласившего. Ничего не изменяет.">Открыть пригласившего</button>
+          <button type="button" class="ref-open-btn" data-open="${escapeHtml(row.refereeId)}" title="Открывает профиль приглашённого. Ничего не изменяет.">Открыть приглашённого</button>
+          ${canAttemptRevoke ? `<span class="ref-danger-zone"><button type="button" class="ref-revoke-btn" data-referee="${escapeHtml(row.refereeId)}" title="Проверяет текущий статус и открывает подтверждение отзыва связи.">Отозвать связь</button></span>` : ''}
+        </div>
+      </div>`;
+    }).join('');
+    tbody.querySelectorAll('button.ref-open-btn').forEach((button) => button.addEventListener('click', () => {
+      const id = button.getAttribute('data-open');
+      if (id) void loadUserToCacheAndOpen(id);
+    }));
+    tbody.querySelectorAll('button.ref-revoke-btn').forEach((button) => button.addEventListener('click', () => {
+      const id = button.getAttribute('data-referee');
+      if (id) void prepareReferralRevoke(id);
+    }));
+  };
+
+  window.loadReferralsData = async function loadReferralsData(force, append) {
+    ensureReferralDashboardChrome();
+    if (!force && !append && window._referralsDashboardLoaded) return;
+    const loading = document.getElementById('ref-loading');
+    const errorBox = document.getElementById('ref-error');
+    const table = document.getElementById('ref-table');
+    const empty = document.getElementById('ref-empty');
+    const moreButton = document.getElementById('ref-load-more');
+    if (errorBox) { errorBox.hidden = true; errorBox.innerHTML = ''; }
+    if (!append && loading) loading.hidden = false;
+    if (!append && table) table.hidden = true;
+    if (!append && empty) empty.hidden = true;
+    try {
+      const cursor = append ? window._referralsCursor : null;
+      const response = await getAdminGetReferralDashboardCallable()({ limit: 100, cursor });
+      const data = response?.data || {};
+      const incoming = Array.isArray(data.rows) ? data.rows.map((row) => ({
+        ...row,
+        refereeId: String(row.refereeStableId || ''),
+        referrerId: String(row.referrerStableId || ''),
+      })) : [];
+      window._referralsRows = append ? [...(window._referralsRows || []), ...incoming] : incoming;
+      window._referralsCursor = data.nextCursor || null;
+      window._referralsSummary = data.summary || {};
+      window._referralsRoulette = data.roulette || {};
+      window._referralsDashboardLoaded = true;
+      renderReferralDashboardSummary(window._referralsSummary);
+      renderReferralRouletteAnalytics(window._referralsRoulette);
+      window.renderReferralsTable();
+      if (moreButton) moreButton.hidden = !window._referralsCursor;
+      if (loading) loading.hidden = true;
+      showToast('Данные рефералов обновлены');
+    } catch (error) {
+      if (loading) loading.hidden = true;
+      if (errorBox) {
+        errorBox.hidden = false;
+        errorBox.innerHTML = `<strong>Не удалось загрузить рефералы.</strong><br>${escapeHtml(error?.message || 'Неизвестная ошибка')}<br><button type="button" id="ref-retry" title="Повторяет безопасную загрузку данных.">Повторить</button>`;
+        document.getElementById('ref-retry')?.addEventListener('click', () => void window.loadReferralsData(true, false));
+      }
+      showToast('Ошибка загрузки рефералов', 'err');
     }
   };
 
@@ -36307,21 +36974,18 @@
   /** Черновик кураторского набора: раунд → список taskId. */
   let _tnCurated = { 1: [], 2: [], 3: [], 4: [] };
 
-  const TN_MODE_LABEL = {
+  /** Режимы, которые разрешено собирать, публиковать и запускать сейчас. */
+  const TN_ACTIVE_MODE_LABEL = Object.freeze({
     guess_phrase: 'Живая ситуация',
     fill_gap: 'Пропущенное слово',
     find_oddity: 'Так не говорят',
     translate_build: 'Собери фразу',
-    time_attack: 'Тайм-атака',
-    // зачем 2026-07-27: аудио-режимы Learning V2, отобранные владельцем.
-    // Озвучка генерится при публикации задания, не при создании черновика.
-    listen_choose: 'Выбор на слух',
-    sound_contrast: 'Пары звуков',
-    listen_build: 'Диктант',
     speed_match: 'Пары на скорость',
-  };
-  /** Режимы, которым нужна озвучка — у них своя кнопка генерации. */
-  const TN_AUDIO_MODES = ['listen_choose', 'sound_contrast', 'listen_build'];
+  });
+  /** Retired документы доступны только для аудита и не рекламируют старые режимы. */
+  const TN_RETIRED_MODES = new Set(['time_attack', 'listen_choose', 'sound_contrast', 'listen_build']);
+  const tnModeLabel = (mode) => TN_ACTIVE_MODE_LABEL[mode]
+    || (TN_RETIRED_MODES.has(mode) ? 'Архивное задание · не создаётся' : mode);
   const TN_DIFF_LABEL = { 1: 'Лёгкое', 2: 'Среднее', 3: 'Сложное' };
 
   function tnError(e) {
@@ -36345,7 +37009,7 @@
   /** Карточка одного задания: показываем правильный ответ — это экран проверки. */
   function tnRenderTask(task) {
     const p = task.payload || {};
-    const mode = TN_MODE_LABEL[task.mode] || task.mode;
+    const mode = tnModeLabel(task.mode);
     const diff = TN_DIFF_LABEL[task.difficulty] || task.difficulty;
     let body = '';
 
@@ -36378,7 +37042,7 @@
       const audio = String(p.audioUri || '');
       body = audio
         ? `<audio controls preload="none" src="${escapeHtml(audio)}" style="width:100%;height:32px;margin-bottom:8px"></audio>`
-        : `<div style="font-size:12px;color:#fbbf24;background:rgba(251,191,36,0.1);border-radius:6px;padding:6px 9px;margin-bottom:8px">Озвучка появится при публикации</div>`;
+        : `<div style="font-size:12px;color:#fbbf24;background:rgba(251,191,36,0.1);border-radius:6px;padding:6px 9px;margin-bottom:8px">Архивное задание без доступной записи</div>`;
       body += `<div style="font-size:13px;color:#9ca3af;margin-bottom:6px">Прозвучит: <b style="color:#fafafa">${escapeHtml(p.phrase || '')}</b></div>`;
       body += opts.map((o, i) => {
         const ok = i === p.correctIndex;
@@ -36390,7 +37054,7 @@
       const audio = String(p.audioUri || '');
       body = audio
         ? `<audio controls preload="none" src="${escapeHtml(audio)}" style="width:100%;height:32px;margin-bottom:8px"></audio>`
-        : `<div style="font-size:12px;color:#fbbf24;background:rgba(251,191,36,0.1);border-radius:6px;padding:6px 9px;margin-bottom:8px">Озвучка появится при публикации</div>`;
+        : `<div style="font-size:12px;color:#fbbf24;background:rgba(251,191,36,0.1);border-radius:6px;padding:6px 9px;margin-bottom:8px">Архивное задание без доступной записи</div>`;
       body += `<div style="font-size:15px;font-weight:700;color:#fafafa;margin-bottom:8px">${escapeHtml(p.phrase || '')}</div>`;
       body += `<div style="font-size:13px;color:#9ca3af;margin-bottom:6px">Чипы: ${bank.map((w) => {
         // Дистрактор (нет в правильном ответе) подсвечен — видно ловушку.
@@ -36422,12 +37086,12 @@
       : '';
     const publishable = task.valid !== false && task.lifecycle === 'awaiting_approval' && task.aiVerdict === 'approved';
     const lifecycleLabel = task.lifecycle === 'awaiting_approval'
-      ? '<span style="background:rgba(251,191,36,0.14);color:#fbbf24;border-radius:6px;padding:2px 9px;font-size:11px;font-weight:700">Ожидает одобрения</span>'
+      ? '<span style="background:rgba(251,191,36,0.14);color:#fbbf24;border-radius:6px;padding:2px 9px;font-size:11px;font-weight:700">Ждёт решения человека</span>'
       : task.lifecycle === 'published'
         ? '<span style="background:rgba(74,222,128,0.14);color:#4ade80;border-radius:6px;padding:2px 9px;font-size:11px;font-weight:700">В игре</span>'
         : '';
     const aiCheck = task.aiVerdict === 'approved'
-      ? '<span style="background:rgba(139,92,246,0.16);color:#c4b5fd;border-radius:6px;padding:2px 9px;font-size:11px;font-weight:700">ИИ: проверено</span>'
+      ? '<span style="background:rgba(139,92,246,0.16);color:#c4b5fd;border-radius:6px;padding:2px 9px;font-size:11px;font-weight:700">Автопроверка: пройдена</span>'
       : '';
     const aiReason = task.aiReason
       ? `<div style="margin-top:6px;font-size:12px;color:#9ca3af;line-height:1.5" title="${escapeHtml(task.aiReason)}" aria-label="Причина проверки ИИ: ${escapeHtml(task.aiReason)}">${escapeHtml(task.aiReason)}</div>`
@@ -36465,17 +37129,15 @@
   // просмотреть каждое и решить — заменить, перегенерировать или удалить.
 
   const TN_FOLDERS = [
-    { mode: '', icon: '📋', name: 'Все вопросы' },
-    { mode: 'guess_phrase', icon: '💬', name: 'Живая ситуация' },
-    { mode: 'fill_gap', icon: '␣', name: 'Пропущенное слово' },
-    { mode: 'find_oddity', icon: '🔍', name: 'Так не говорят' },
-    { mode: 'translate_build', icon: '🧩', name: 'Собери фразу' },
-    // Аудио-режимы: у карточек появляется плашка озвучки.
-    { mode: 'listen_choose', icon: '🎧', name: 'Выбор на слух' },
-    { mode: 'sound_contrast', icon: '🔊', name: 'Пары звуков' },
-    { mode: 'listen_build', icon: '✍️', name: 'Диктант' },
-    // Поле пар EN-RU: одно задание = целый раунд (решение владельца).
-    { mode: 'speed_match', icon: '⚡', name: 'Пары на скорость' },
+    { mode: '', name: 'Все вопросы' },
+    // Только пять режимов, утверждённых владельцем для новых турниров.
+    // Старые документы остаются доступными через «Все вопросы» для аудита,
+    // но не получают отдельной папки и не могут снова попасть в новый пул.
+    { mode: 'guess_phrase', name: 'Живая ситуация' },
+    { mode: 'fill_gap', name: 'Пропущенное слово' },
+    { mode: 'find_oddity', name: 'Так не говорят' },
+    { mode: 'translate_build', name: 'Собери фразу' },
+    { mode: 'speed_match', name: 'Пары на скорость' },
   ];
   let _tnFolder = '';
   let _fnTnBulk = null, _fnTnRegen = null;
@@ -36486,9 +37148,11 @@
     box.innerHTML = TN_FOLDERS.map((folder) => {
       const active = folder.mode === _tnFolder;
       const count = folder.mode ? (counts?.[folder.mode] ?? 0) : (counts?.__all ?? 0);
+      const folderName = escapeHtml(folder.name);
       return `<button type="button" onclick="tnOpenFolder('${folder.mode}')"
-        style="background:${active ? '#2a2a3a' : '#15151f'};border-radius:9px;color:${active ? '#fafafa' : '#9ca3af'};padding:9px 14px;cursor:pointer;font-weight:${active ? '800' : '600'};font-size:13px">
-        ${folder.icon} ${escapeHtml(folder.name)} <span style="color:${active ? '#c4b5fd' : '#6b7280'}">${count}</span>
+        title="Открыть: ${folderName}" data-tooltip="Открыть пул «${folderName}»" aria-label="Открыть пул ${folderName}"
+        style="min-height:44px;background:${active ? '#2a2a3a' : '#15151f'};border-radius:9px;color:${active ? '#fafafa' : '#9ca3af'};padding:9px 14px;cursor:pointer;font-weight:${active ? '800' : '600'};font-size:13px">
+        ${folderName} <span style="color:${active ? '#c4b5fd' : '#6b7280'}">${count}</span>
       </button>`;
     }).join('');
 
@@ -36496,10 +37160,12 @@
     const actions = document.getElementById('tn-folder-actions');
     if (!actions) return;
     actions.innerHTML = _tnFolder
-      ? `<button type="button" onclick="tnFolderBulk('publish')"
-           style="background:#1a3a2a;border-radius:8px;color:#4ade80;padding:7px 14px;cursor:pointer;font-weight:700;font-size:13px;margin-right:8px">✅ Опубликовать всю папку</button>
-         <button type="button" onclick="tnFolderBulk('delete')"
-           style="background:#2a1518;border-radius:8px;color:#fca5a5;padding:7px 14px;cursor:pointer;font-weight:700;font-size:13px">🗑 Удалить всю папку</button>`
+      ? `<button type="button" onclick="tnFolderBulk('publish')" title="Опубликовать все проверенные задания этой папки"
+           data-tooltip="Опубликовать проверенные задания" aria-label="Опубликовать всю папку"
+           style="min-height:44px;background:#1a3a2a;border-radius:8px;color:#4ade80;padding:7px 14px;cursor:pointer;font-weight:700;font-size:13px;margin-right:8px">Опубликовать всю папку</button>
+         <button type="button" onclick="tnFolderBulk('delete')" title="Безвозвратно удалить все задания этой папки"
+           data-tooltip="Удалить задания без возможности восстановления" aria-label="Удалить всю папку"
+           style="min-height:44px;background:#2a1518;border-radius:8px;color:#fca5a5;padding:7px 14px;cursor:pointer;font-weight:700;font-size:13px">Удалить всю папку</button>`
       : '';
   }
 
@@ -36718,6 +37384,7 @@
         + `<div style="margin-top:14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">
             <button type="button" onclick="tnSaveSchedule()" style="background:#4338ca;border:1px solid #6366f1;color:#fff;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">Сохранить расписание</button>
             <span style="font-size:12px;color:#6b7280">Время московское</span>
+            <span style="font-size:12px;color:#9ca3af">Тестовые турниры доступны только в специальных сборках и не включаются из админки.</span>
           </div>`;
     } catch (e) {
       box.innerHTML = `<div class="reports-empty" style="color:#fca5a5">Ошибка: ${escapeHtml(tnError(e))}</div>`;
@@ -36816,7 +37483,7 @@
 
       const orders = Array.isArray(data.orders) ? data.orders : [];
       const orderRows = orders.map((o) =>
-        `<div style="font-size:13px;padding:3px 0;color:#cbd5e1">${escapeHtml(TN_MODE_LABEL[o.mode] || o.mode)} · ${TN_DIFF_LABEL[o.difficulty] || o.difficulty} → <b style="color:#93c5fd">${o.count}</b></div>`).join('');
+        `<div style="font-size:13px;padding:3px 0;color:#cbd5e1">${escapeHtml(TN_ACTIVE_MODE_LABEL[o.mode] || o.mode)} · ${TN_DIFF_LABEL[o.difficulty] || o.difficulty} → <b style="color:#93c5fd">${o.count}</b></div>`).join('');
 
       if (dryRun) {
         if (result) {
@@ -36829,7 +37496,7 @@
       const done = results.filter((r) => r.ok).reduce((sum, r) => sum + (r.written || 0), 0);
       const failed = results.filter((r) => !r.ok);
       const failRow = failed.length
-        ? `<div style="font-size:12px;color:#fbbf24;margin-top:8px">Не получилось: ${failed.map((r) => escapeHtml(TN_MODE_LABEL[r.mode] || r.mode)).join(', ')} — можно повторить.</div>` : '';
+        ? `<div style="font-size:12px;color:#fbbf24;margin-top:8px">Не получилось: ${failed.map((r) => escapeHtml(TN_ACTIVE_MODE_LABEL[r.mode] || r.mode)).join(', ')} — можно повторить.</div>` : '';
       if (result) {
         result.innerHTML = `<div style="font-size:13px;color:#4ade80;margin-bottom:8px">Создано <b>${done}</b> заданий — лежат «На проверку».</div>${orderRows}${failRow}`;
       }
@@ -36857,15 +37524,9 @@
       if (status) status.textContent = '';
 
       // Раскладка по режимам: владелец сразу видит, что турнир разнообразный.
-      const MODE_NAMES = {
-        guess_phrase: 'Живая ситуация',
-        fill_gap: 'Пропущенное слово',
-        find_oddity: '«Так не говорят»',
-        translate_build: 'Собери фразу',
-      };
       const byMode = data.byMode || {};
       const modeRows = Object.keys(byMode).map((mode) =>
-        `<span style="background:#1a1a24;border-radius:7px;padding:3px 9px;margin-right:6px;font-size:12px;color:#cbd5e1">${escapeHtml(MODE_NAMES[mode] || mode)}: <strong style="color:#c4b5fd">${byMode[mode]}</strong></span>`
+        `<span style="background:#1a1a24;border-radius:7px;padding:3px 9px;margin-right:6px;font-size:12px;color:#cbd5e1">${escapeHtml(TN_ACTIVE_MODE_LABEL[mode] || mode)}: <strong style="color:#c4b5fd">${byMode[mode]}</strong></span>`
       ).join('');
 
       const head = dryRun

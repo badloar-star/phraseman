@@ -7,6 +7,7 @@ import {
   getVerifiedPremiumAccessStatus,
   getVerifiedRealPremiumStatus,
   getVerifiedVipStatus,
+  isLifetimePlanLocal,
   beginPremiumAccountTransition,
   getPremiumAccountTransitionEpoch,
   invalidatePremiumCache,
@@ -35,10 +36,16 @@ import { isFeatureGrantedByWeeklyBoon } from '../app/boons/boon_feature_grants';
 import { getAppSnapshot } from '../app/app_snapshot_store';
 import { captureAccountGeneration, isCurrentAccountGeneration } from '../app/account_generation';
 import { readVipSnapshotForAccount, writeVipSnapshotForAccount } from '../app/premium_vip_storage';
+import {
+  capturePremiumActivationEventGuard,
+  readPremiumActivationDisposition,
+} from '../app/premium_activation_event_guard';
 
 interface PremiumContextValue {
   isPremium: boolean;
   isVip: boolean;
+  /** True only for the verified lifetime (Phraseman Pro) store plan. */
+  isPro: boolean;
   hasPremiumAccess: boolean;
   /** True after the first local/cloud entitlement check has completed. */
   accessResolved: boolean;
@@ -63,6 +70,7 @@ const PREMIUM_LISTENER_RETRY_BACKOFF_MS = [2_500, 10_000, 30_000, 60_000, 120_00
 const PremiumContext = createContext<PremiumContextValue>({
   isPremium: false,
   isVip: false,
+  isPro: false,
   hasPremiumAccess: false,
   accessResolved: false,
   isIntroFullAccess: false,
@@ -145,10 +153,15 @@ function snapshotPremiumActive(): boolean {
 function snapshotVipActive(): boolean {
   return getAppSnapshot().profile?.vipActive === true;
 }
+function snapshotProActive(): boolean {
+  const profile = getAppSnapshot().profile;
+  return profile?.premiumActive === true && profile?.premiumPlan === 'lifetime';
+}
 
 export function PremiumProvider({ children }: { children: React.ReactNode }) {
   const [isPremium, setIsPremium] = useState(() => FORCE_PREMIUM || snapshotPremiumActive());
   const [isVip, setIsVip] = useState(() => snapshotVipActive());
+  const [isPro, setIsPro] = useState(snapshotProActive);
   const [hasPremiumAccess, setHasPremiumAccess] = useState(
     () => FORCE_PREMIUM || snapshotPremiumActive() || snapshotVipActive(),
   );
@@ -181,6 +194,7 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
     vipSnapshotStateRef.current = false;
     setIsPremium(false);
     setIsVip(false);
+    setIsPro(false);
     setHasPremiumAccess(false);
     setAccessResolved(false);
     setIsIntroFullAccess(false);
@@ -208,6 +222,7 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
       if (!isReloadCurrent()) return;
       setIsPremium(true);
       setIsVip(false);
+      setIsPro(false);
       setHasPremiumAccess(true);
       setIsIntroFullAccess(false);
       setIntroFullAccessEndsAt(null);
@@ -216,18 +231,20 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
       resolvedReloadEpochRef.current = reloadEpoch;
       return;
     }
-    let [realPremium, vip] = await Promise.all([
+    let [realPremium, vip, lifetimePlan] = await Promise.all([
       getVerifiedRealPremiumStatus(),
       getVerifiedVipStatus(),
+      isLifetimePlanLocal(),
     ]);
     if (!isReloadCurrent()) return;
     if (!realPremium && !vip) {
       const accessAfterCloud = await getVerifiedPremiumAccessStatus().catch(() => false);
       if (!isReloadCurrent()) return;
       if (accessAfterCloud) {
-        [realPremium, vip] = await Promise.all([
+        [realPremium, vip, lifetimePlan] = await Promise.all([
           getVerifiedRealPremiumStatus().catch(() => false),
           getVerifiedVipStatus().catch(() => false),
+          isLifetimePlanLocal().catch(() => false),
         ]);
         if (!isReloadCurrent()) return;
       }
@@ -247,8 +264,10 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
     if (!isReloadCurrent()) return;
     const effectivePremium = !noPremiumTester && (realPremium || testerNoLimits);
     const effectiveVip = !noPremiumTester && vip;
+    const effectivePro = !noPremiumTester && realPremium && lifetimePlan;
     setIsPremium(effectivePremium);
     setIsVip(effectiveVip);
+    setIsPro(effectivePro);
     setIsIntroFullAccess(introState.active);
     setIntroFullAccessEndsAt(introState.endsAt);
     setHasPremiumAccess(effectivePremium || effectiveVip || introState.active);
@@ -551,20 +570,30 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
 
   // Instant update on purchase — set true immediately, reload only syncs cache
   useEffect(() => {
+    let disposed = false;
+    let activationEventEpoch = 0;
     const sub = onAppEvent('premium_activated', () => {
+      activationEventEpoch += 1;
+      const activationGuard = capturePremiumActivationEventGuard(
+        activationEventEpoch,
+        () => activationEventEpoch,
+        () => disposed,
+      );
       void (async () => {
-        const activationTesterEntries = await AsyncStorage.multiGet(['tester_no_premium', 'tester_no_limits'])
-          .catch(() => [] as [string, string | null][]);
-        const activationTesterValues = Object.fromEntries(activationTesterEntries);
-        const activationNoPremium = activationTesterValues.tester_no_premium === 'true';
-        const activationNoLimits = activationTesterValues.tester_no_limits === 'true';
-        if (activationNoPremium || (activationNoLimits && IS_STORE_RELEASE)) {
+        const disposition = await readPremiumActivationDisposition(activationGuard, IS_STORE_RELEASE);
+        if (disposition === 'stale') return;
+        if (disposition === 'reload') {
           invalidatePremiumCache();
           await reload();
           return;
         }
+        if (!activationGuard.isCurrent()) return;
+
+        const lifetimePlan = await isLifetimePlanLocal();
+        if (!activationGuard.isCurrent()) return;
 
         setIsPremium(true);
+        setIsPro(lifetimePlan);
         setHasPremiumAccess(true);
         setTrialEligible(false);
         invalidatePremiumCache();
@@ -575,10 +604,17 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
         // (RC sandbox can have propagation delay, grace period in premium_guard handles it)
         void reload();
         emitAppEvent('premium_access_changed', { active: true, source: 'premium' });
-        void syncPublicProfileSnapshot({ reason: 'entitlement_change', isPremium: true, isVip }).catch(() => {});
+        void syncPublicProfileSnapshot(
+          { reason: 'entitlement_change', isPremium: true, isVip },
+          activationGuard.accountToken,
+        ).catch(() => {});
       })();
     });
-    return () => sub.remove();
+    return () => {
+      disposed = true;
+      activationEventEpoch += 1;
+      sub.remove();
+    };
   }, [reload]);
 
   // VIP can be activated from the in-app admin panel before the Firestore
@@ -631,6 +667,7 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const sub = onAppEvent('premium_deactivated', () => {
       setIsPremium(false);
+      setIsPro(false);
       setHasPremiumAccess(isVip);
       invalidatePremiumCache();
       void import('../app/lesson_lock_system')
@@ -647,8 +684,8 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
   // во все usePremium()-потребители по всему приложению (home, inbox, friends…),
   // умножая работу на каждом тике premium/VIP.
   const contextValue = useMemo<PremiumContextValue>(
-    () => ({ isPremium, isVip, hasPremiumAccess, accessResolved, isIntroFullAccess, introFullAccessEndsAt, trialEligible, reload }),
-    [isPremium, isVip, hasPremiumAccess, accessResolved, isIntroFullAccess, introFullAccessEndsAt, trialEligible, reload],
+    () => ({ isPremium, isVip, isPro, hasPremiumAccess, accessResolved, isIntroFullAccess, introFullAccessEndsAt, trialEligible, reload }),
+    [isPremium, isVip, isPro, hasPremiumAccess, accessResolved, isIntroFullAccess, introFullAccessEndsAt, trialEligible, reload],
   );
 
   return (

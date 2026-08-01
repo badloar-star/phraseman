@@ -965,7 +965,7 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'could', ru: 'Мог бы / смог бы', uk: 'Міг би / зміг би', es: 'podría', pos: 'verbs' },
     { en: 'might', ru: 'Возможно (мало вероятно)', uk: 'Можливо', es: 'quizá', pos: 'verbs' },
     { en: 'would', ru: 'Бы (условное намерение)', uk: 'Би (умовний)', es: 'condicional (‑ía)', pos: 'verbs' },
-    { en: 'will', ru: 'Буду / будет (будущее)', uk: 'У майбутньому (will)', es: 'futuro (‑rá)', pos: 'verbs' },
+    { en: 'will', ru: 'Буду / будет (будущее)', uk: 'Буду / буде (майбутній)', es: 'futuro (‑rá)', pos: 'verbs' },
     { en: 'need', ru: 'Нужно / нуждаться', uk: 'Потрібно / потребувати', es: 'necesitar', pos: 'verbs' },
     { en: 'translate', ru: 'Переводить', uk: 'Перекладати', es: 'traducir',
     'pt-BR': 'traduzir', pos: 'verbs' },

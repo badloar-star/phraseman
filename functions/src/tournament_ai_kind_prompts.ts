@@ -52,8 +52,8 @@ type KindSpec = {
 const KIND_SPECS: Readonly<Record<TournamentAiKind, KindSpec>> = Object.freeze({
   situation: {
     task: 'Write a vivid one-sentence situation in RUSSIAN (what just happened, where), then four ENGLISH replies a person could say next. Exactly one is natural and appropriate; the other three are grammatically fine but wrong in this moment — too rude, too formal, or simply not what this situation calls for.',
-    example: 'prompt: "Официант принёс не то блюдо. Что скажешь?" options: ["Sorry, I think this is not what I ordered.", "You brought the wrong thing.", "I demand another dish immediately.", "This food is a mistake of yours."] — the first is natural, the rest are rude or unnatural.',
-    promptRule: 'The "prompt" field holds the Russian situation, 4-12 words, ending with a question.',
+    example: 'prompt: "Официант принёс не то блюдо. Что скажешь?" options: ["Sorry, this is not what I ordered.", "You brought the wrong thing.", "I demand another dish immediately.", "This food is a mistake of yours."] — the first is natural, the rest are rude or unnatural.',
+    promptRule: 'The "prompt" field holds the Russian situation, 4-8 normalized words, ending with a question.',
   },
   gap: {
     task: 'Write one natural ENGLISH sentence with exactly one gap marked as ___ , and four candidates for that gap. The gap must sit on a point Russian speakers really get wrong: a preposition, a phrasal-verb particle, an article, or a tense form. Exactly one candidate is correct.',
@@ -66,8 +66,8 @@ const KIND_SPECS: Readonly<Record<TournamentAiKind, KindSpec>> = Object.freeze({
     promptRule: 'The "prompt" field is a short RUSSIAN instruction like "Какая фраза звучит неправильно?". The correct answer is the BROKEN sentence.',
   },
   assembly: {
-    task: 'Write one natural ENGLISH sentence of 4-8 words and a Russian prompt asking to build it. Provide the exact word tokens of that sentence plus 2-4 extra decoy words that plausibly belong to the same topic but are not in the sentence.',
-    example: 'prompt: "Соберите фразу: Я собираюсь позвонить ей завтра" answer: "I am going to call her tomorrow" decoys: ["will", "him", "yesterday"] — decoys are real competitors, not random words.',
+    task: 'Write one natural ENGLISH sentence of 4-8 normalized words and a Russian prompt asking to build it. Provide the exact word tokens of that sentence plus exactly 4 extra decoy words that plausibly belong to the same topic but are not in the sentence.',
+    example: 'prompt: "Соберите фразу: Я собираюсь позвонить ей завтра" answer: "I am going to call her tomorrow" decoys: ["will", "him", "yesterday", "already"] — decoys are real competitors, not random words.',
     promptRule: 'Decoys must be genuinely tempting: wrong tense markers, wrong pronouns, wrong time words — never random unrelated nouns.',
   },
 });
@@ -168,6 +168,7 @@ export function buildKindTask(params: KindPromptParams): string {
     `TASK TYPE: ${spec.task}`,
     `EXAMPLE OF THIS TYPE: ${spec.example}`,
     spec.promptRule,
+    'The "prompt" and correct answer fields must each contain at most 8 normalized words (letters or numbers; punctuation does not add a word).',
   ];
 
   if (KIND_TO_FORMAT[params.kind] === 'choice') {
@@ -178,7 +179,7 @@ export function buildKindTask(params: KindPromptParams): string {
     );
   } else {
     lines.push(
-      '"tokens" must be exactly the words of "answer" in order, split on spaces. "decoys" are 2-4 extra words NOT present in the answer.',
+      '"tokens" must be exactly the words of "answer" in order, split on spaces. "decoys" are exactly 4 extra words NOT present in the answer.',
       'No decoy may duplicate a token, and no token may repeat inside "tokens" unless the sentence genuinely repeats that word.',
     );
   }

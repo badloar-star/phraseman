@@ -163,7 +163,6 @@ export const DAILY_TASK_ID_ACHIEVEMENT_ICONS: Record<string, ImageSourcePropType
   "bs1": require('../assets/images/daily_task_icons/by_id/bs1.webp'),
   "bs2": require('../assets/images/daily_task_icons/by_id/bs2.webp'),
   "sf1": require('../assets/images/daily_task_icons/by_id/sf1.webp'),
-  "ca1": require('../assets/images/daily_task_icons/by_id/ca1.webp'),
   "wm1": require('../assets/images/daily_task_icons/by_id/wm1.webp'),
   "mf1": require('../assets/images/daily_task_icons/by_id/mf1.webp'),
 };

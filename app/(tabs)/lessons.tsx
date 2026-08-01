@@ -9,6 +9,7 @@ import Reanimated, {
   withTiming,
   withSpring,
   cancelAnimation,
+  runOnJS,
   Easing,
 } from 'react-native-reanimated';
 import { Image } from 'expo-image';
@@ -36,6 +37,7 @@ import GoldBevel from '../../components/GoldBevel';
 import { DEV_CONTENT_UNLOCK, ENABLE_DEV_TOOLS } from '../config';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useTabContentBottomPad } from '../../hooks/use-tab-content-bottom-pad';
+import { useRuntimeActive } from '../../hooks/use_runtime_active';
 import { getExamMedalTier, getEarnedDots } from '../medal_utils';
 import { prefetchLessonMenuCache } from '../lesson_menu';
 import ReportErrorButton from '../../components/ReportErrorButton';
@@ -783,6 +785,7 @@ export default function LessonsTab({ overlayIdentityEpoch: _overlayIdentityEpoch
     const topFadeScroll = useTopFadeScroll();
     const { goHome } = useTabNav();
     const { theme: t, f, themeMode } = useTheme();
+    const insets = useStableSafeAreaInsets();
     const isGoldTheme = themeMode === 'gold';
     const isCoralTheme = themeMode === 'coral';
     const goldBright = GOLD_RICH.champagne;
@@ -822,8 +825,10 @@ export default function LessonsTab({ overlayIdentityEpoch: _overlayIdentityEpoch
     const scrollRef = useRef<any>(null);
     const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
     const bouncyStyle = useBouncyStyle(bouncyStretch);
-    const { activeIdx, focusTick } = useTabNav();
+    const { activeIdx, focusTick, runtimeOwnerId } = useTabNav();
     const lessonsTabVisible = activeIdx === 1;
+    const lessonsOwnerActive = runtimeOwnerId === 'lessons';
+    const lessonsRuntimeActive = useRuntimeActive(lessonsOwnerActive);
     // Две страницы вкладки: список уроков и перенесённые ИИ-диалоги (если фича включена).
     const dialogsEnabled = isAiDialogEnabled();
     const [page, setPage] = useState<'lessons' | 'dialogs' | 'v2'>('lessons');
@@ -1284,11 +1289,11 @@ return (<LessonCard key={`l-${num}`}
 
     // ── Render ────────────────────────────────────────────────────────────────
     return (<>
-    <ScreenGradient>
+    <ScreenGradient forceFullBleed>
       {/* Фиксированная шапка (вне скролла): назад + заголовок + энергия.
           Верхний safe-area отступ даёт TabScaffold в (tabs)/_layout.tsx — здесь не дублируем. */}
       <View>
-        <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingTop: 12, paddingBottom: 8 }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingTop: insets.top + 12, paddingBottom: 8 }}>
           <TapScale
             onPress={() => goHome()}
             withHaptic={true}
@@ -1302,7 +1307,7 @@ return (<LessonCard key={`l-${num}`}
             </Text>
           </View>
           <View style={{ flexShrink: 0 }}>
-            <EnergyBar size={30}/>
+            <EnergyBar size={30} ownerActive={lessonsRuntimeActive}/>
           </View>
         </View>
 
@@ -1365,6 +1370,7 @@ return (<LessonCard key={`l-${num}`}
           <DialogsTabContent
             bottomPadding={tabContentBottomPad}
             onScroll={(e) => { topFadeScroll?.onScroll?.(e); }}
+            active={lessonsRuntimeActive && page === 'dialogs'}
           />
         </View>
       ) : null}

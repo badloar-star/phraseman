@@ -1,4 +1,4 @@
-import { starsForScore } from '../app/speaking_score_stars';
+import { inlineStarsForScore, starsForScore } from '../app/speaking_score_stars';
 
 // Star tiers replace the old percent ring in Speaking Mode. The mapping is
 // anchored on the phrase's pass bar so the visual stays coherent with the pass
@@ -36,5 +36,28 @@ describe('starsForScore (speaking result star tiers)', () => {
   it('clamps out-of-range scores', () => {
     expect(starsForScore(-10, 70)).toBe(0);
     expect(starsForScore(150, 70)).toBe(3);
+  });
+});
+
+describe('inlineStarsForScore (five-star inline feedback)', () => {
+  it.each([
+    [0, 0],
+    [1, 1],
+    [24, 1],
+    [25, 2],
+    [49, 2],
+    [50, 3],
+    [74, 3],
+    [75, 4],
+    [89, 4],
+    [90, 5],
+    [100, 5],
+  ])('maps score %i to %i inline stars', (score, expected) => {
+    expect(inlineStarsForScore(score)).toBe(expected);
+  });
+
+  it('clamps scores before mapping them', () => {
+    expect(inlineStarsForScore(-30)).toBe(0);
+    expect(inlineStarsForScore(140)).toBe(5);
   });
 });

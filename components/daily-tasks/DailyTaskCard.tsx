@@ -102,7 +102,7 @@ export function DailyTaskCard(props: DailyTaskCardProps) {
           <View testID={`${props.testID}-icon`} style={[styles.icon, props.variant === 'bonus' && styles.bonusIcon, { borderColor: props.accentColor }, props.iconStyle]}>{props.icon}</View>
           <View style={styles.copy}>
             <FlowText {...props.titleTextProps} testID={`${props.testID}-title`} provenance="authored" accessibilityLabel={props.title} style={[styles.title, props.titleTextProps?.style, { color: props.titleColor }]}>{props.title}</FlowText>
-            <FlowText {...props.descriptionTextProps} testID={`${props.testID}-description`} provenance="authored" accessibilityLabel={props.description} style={[styles.description, props.descriptionTextProps?.style, { color: props.descriptionColor }]}>{props.description}</FlowText>
+            {props.description ? <FlowText {...props.descriptionTextProps} testID={`${props.testID}-description`} provenance="authored" accessibilityLabel={props.description} style={[styles.description, props.descriptionTextProps?.style, { color: props.descriptionColor }]}>{props.description}</FlowText> : null}
           </View>
           <View style={[styles.actions, stacked && styles.actionsStacked]}>
             {props.action ? <CardAction testID={props.testID} action={props.action} onReflow={requestStack} variant={props.variant} /> : null}

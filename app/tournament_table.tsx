@@ -10,7 +10,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import TapScale from '../components/TapScale';
 import Animated, {
@@ -19,10 +19,10 @@ import Animated, {
   useSharedValue,
   withDelay,
   withSpring,
-  withTiming,
 } from 'react-native-reanimated';
 import { useRouter } from 'expo-router';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { LinearGradient } from 'expo-linear-gradient';
 import AvatarView from '../components/AvatarView';
 import {
@@ -39,7 +39,7 @@ import { V2Counter } from '../components/tournament/tournament_v2_ui';
 import { tournamentAvatarValue } from '../components/tournament/tournament_avatars';
 import { TournamentEdgeState } from '../components/tournament/TournamentEdgeState';
 import {
-  isRoundState, useTournamentRoom, type RoomPlayer } from './tournament_client';
+  isRoundState, orderTournamentPlayersForDisplay, shouldTableEnterRound, useTournamentRoom, type RoomPlayer } from './tournament_client';
 import { getStableId } from './stable_id';
 import { useLocalSearchParams } from 'expo-router';
 
@@ -52,6 +52,7 @@ function barTint(hex: string, alpha: number): string {
 const ROW_HEIGHT = 56;
 const ROW_GAP = 8;
 const TOTAL_ROUNDS = 4;
+const TABLE_TOP_ROWS = 5;
 
 type Row = {
   id: string;
@@ -63,9 +64,16 @@ type Row = {
   score: number;
   streak: number;
   isYou?: boolean;
+  /** Shared competition place: equal scores produce 1, 1, 3. */
+  place: number;
   /** Позиция в предыдущем раунде — для расчёта обгона. */
   prevPlace: number;
 };
+
+function sharedPlace(players: readonly RoomPlayer[], index: number): number {
+  const resultPlace = players[index]?.resultPlace;
+  return typeof resultPlace === 'number' && resultPlace > 0 ? resultPlace : index + 1;
+}
 
 /**
  * Игроки комнаты → строки таблицы, отсортированные по очкам.
@@ -79,8 +87,10 @@ function mapPlayersToRows(
   myId: string | null,
   previousPlaces: Map<string, number>,
 ): Row[] {
-  const sorted = [...players].sort((a, b) => Number(b.score ?? 0) - Number(a.score ?? 0));
-  return sorted.map((player, index) => ({
+  const ordered = orderTournamentPlayersForDisplay(players);
+  return ordered.map((player, index) => {
+    const place = sharedPlace(ordered, index);
+    return ({
     id: player.id,
     name: player.name || 'Игрок',
     // зачем 2026-07-27: было эмодзи-«лицо» — правило владельца требует
@@ -91,9 +101,11 @@ function mapPlayersToRows(
     score: Number(player.score ?? 0),
     streak: Number(player.streak ?? 0),
     isYou: Boolean(myId) && player.id === myId,
+    place,
     // Нет прошлой позиции (первый раунд) — стартуем с текущей, без «переезда».
-    prevPlace: previousPlaces.get(player.id) ?? index + 1,
-  }));
+    prevPlace: previousPlaces.get(player.id) ?? place,
+  });
+  });
 }
 
 export default function TournamentTableScreen() {
@@ -101,8 +113,10 @@ export default function TournamentTableScreen() {
   const styles = React.useMemo(() => makeStyles(P), [P]);
   const router = useRouter();
   const insets = useStableSafeAreaInsets();
-  const params = useLocalSearchParams<{ roomId?: string; spectate?: string }>();
+  const params = useLocalSearchParams<{ roomId?: string; spectate?: string; completedRound?: string }>();
   const roomId = typeof params.roomId === 'string' ? params.roomId : null;
+  const completedRound = typeof params.completedRound === 'string' ? Number(params.completedRound) : null;
+  const runtimeActive = useRuntimeActive();
   /**
    * зачем: зрителю (решение владельца 2026-07-26) показываем ТУ ЖЕ таблицу,
    * что игроки видят между раундами, но постоянно — она не уводит в раунд и
@@ -111,7 +125,7 @@ export default function TournamentTableScreen() {
    */
   const spectating = params.spectate === '1';
 
-  const { room, status, secondsLeft, retry } = useTournamentRoom(roomId);
+  const { room, status, freshSnapshot, secondsLeft, retry } = useTournamentRoom(roomId, runtimeActive);
   const [myId, setMyId] = useState<string | null>(null);
 
   /**
@@ -120,6 +134,7 @@ export default function TournamentTableScreen() {
    * строки переедут второй раз уже после приземления.
    */
   const previousPlacesRef = useRef<Map<string, number>>(new Map());
+  const previousVisibleIndexesRef = useRef<Map<string, number>>(new Map());
 
   useEffect(() => {
     let cancelled = false;
@@ -136,27 +151,42 @@ export default function TournamentTableScreen() {
     [room?.players, myId],
   );
 
+  const visibleRows = useMemo(() => {
+    const top = rows.slice(0, TABLE_TOP_ROWS);
+    const currentPlayer = rows.find((row) => row.isYou);
+    return currentPlayer && !top.some((row) => row.id === currentPlayer.id)
+      ? [...top, currentPlayer]
+      : top;
+  }, [rows]);
+
   // Запоминаем позиции ПОСЛЕ отрисовки — для следующего показа таблицы.
   useEffect(() => {
     if (rows.length === 0) return;
     const next = new Map<string, number>();
-    rows.forEach((row, index) => next.set(row.id, index + 1));
+    rows.forEach((row) => next.set(row.id, row.place));
     previousPlacesRef.current = next;
   }, [rows]);
+
+  useEffect(() => {
+    if (visibleRows.length === 0) return;
+    const next = new Map<string, number>();
+    visibleRows.forEach((row, index) => next.set(row.id, index));
+    previousVisibleIndexesRef.current = next;
+  }, [visibleRows]);
 
   // Переход дальше по СЕРВЕРНОМУ состоянию: локальный таймер только рисует
   // обратный отсчёт, решение о смене этапа принимает сервер.
   useEffect(() => {
-    if (!room || !roomId) return;
+    if (!runtimeActive || !freshSnapshot || !room || !roomId) return;
     // Зритель не играет: в раунд его не уводим, он остаётся на табло.
     if (spectating) return;
-    if (isRoundState(room.state)) {
+    if (shouldTableEnterRound(room.state, completedRound)) {
       router.replace({ pathname: '/tournament_round', params: { roomId } });
     }
     if (room.state === 'results' || room.state === 'rewards' || room.state === 'closed') {
       router.replace({ pathname: '/tournament_results', params: { roomId } });
     }
-  }, [room?.state, roomId, router, room, spectating]);
+  }, [completedRound, freshSnapshot, room?.state, roomId, router, room, runtimeActive, spectating]);
 
   // зачем: зритель должен уметь выйти с таблицы в любой момент — сервер его
   // отсюда не уводит. Возврат в хаб турниров, а не router.back(): на этот
@@ -164,7 +194,7 @@ export default function TournamentTableScreen() {
   const leaveTable = useCallback(() => router.replace('/tournaments'), [router]);
 
   const myScore = useMemo(() => rows.find((row) => row.isYou)?.score ?? 0, [rows]);
-  const listHeight = Math.max(1, rows.length) * (ROW_HEIGHT + ROW_GAP);
+  const listHeight = Math.max(1, visibleRows.length) * (ROW_HEIGHT + ROW_GAP);
   const maxScore = rows[0]?.score || 1;
   const isFinal = roundNo >= TOTAL_ROUNDS;
   // Зрителю показываем, что происходит прямо сейчас: идёт раунд или пауза.
@@ -206,20 +236,21 @@ export default function TournamentTableScreen() {
         ) : null}
       </View>
 
-      {/* зачем 2026-07-27 (владелец: «экран таблицы невозможно скролить»):
-          список из 16 плашек не помещается на экран, а лежал в View
-          фиксированной высоты — нижние места были недоступны. ScrollView с
-          известной высотой контента: перестановки FLIP по-прежнему не двигают
-          соседние блоки, но список теперь прокручивается. */}
-      <ScrollView
-        style={styles.listScroll}
-        contentContainerStyle={[styles.listContent, { height: listHeight }]}
-        showsVerticalScrollIndicator={false}
-      >
-        {rows.map((row, index) => (
-          <TableRow key={row.id} row={row} place={index + 1} maxScore={maxScore} />
+      {/* Шесть секунд не превращаем в задачу на прокрутку: видны верхние пять
+          мест и строка игрока, если он ниже. Полные 16 остаются в итогах. */}
+      <View style={[styles.listContent, { height: listHeight }]}>
+        {visibleRows.map((row, index) => (
+          <TableRow
+            key={row.id}
+            row={row}
+            place={row.place}
+            layoutIndex={index}
+            previousLayoutIndex={previousVisibleIndexesRef.current.get(row.id) ?? index}
+            maxScore={maxScore}
+            revealDelayMs={160 + index * 85}
+          />
         ))}
-      </ScrollView>
+      </View>
 
       <Text style={[styles.hint, { paddingBottom: insets.bottom + 12 }]}>
         {spectating
@@ -233,28 +264,46 @@ export default function TournamentTableScreen() {
 // ── Строка таблицы ──────────────────────────────────────────────────────────
 
 const TableRow = memo(function TableRow({
-  row, place, maxScore,
-}: { row: Row; place: number; maxScore: number }) {
+  row, place, layoutIndex, previousLayoutIndex, maxScore, revealDelayMs,
+}: {
+  row: Row;
+  place: number;
+  layoutIndex: number;
+  previousLayoutIndex: number;
+  maxScore: number;
+  revealDelayMs: number;
+}) {
   const P = useTournamentPalette();
   const styles = React.useMemo(() => makeStyles(P), [P]);
   // FLIP: строка стартует на СТАРОЙ позиции и пружиной переезжает на новую —
   // видно, кто кого обогнал, а не просто финальный порядок.
-  const fromY = (row.prevPlace - 1) * (ROW_HEIGHT + ROW_GAP);
-  const toY = (place - 1) * (ROW_HEIGHT + ROW_GAP);
+  const fromY = previousLayoutIndex * (ROW_HEIGHT + ROW_GAP);
+  const toY = layoutIndex * (ROW_HEIGHT + ROW_GAP);
   const translateY = useSharedValue(fromY);
+  // The first frame deliberately starts below full opacity: a server snapshot
+  // may already contain the settled ranking, so the visible reveal must not
+  // depend on a later reorder arriving from Firestore.
+  const revealOpacity = useSharedValue(0);
+  const revealScale = useSharedValue(0.96);
 
   const overtook = row.prevPlace > place;
   const fillRatio = Math.max(0.12, row.score / maxScore);
 
   useEffect(() => {
     translateY.value = withDelay(
-      420 + place * 30,
+      420 + layoutIndex * 30,
       withSpring(toY, motion.reorder),
     );
-  }, [toY, place, translateY]);
+  }, [layoutIndex, toY, translateY]);
+
+  useEffect(() => {
+    revealOpacity.value = withDelay(revealDelayMs, withSpring(1, { damping: 22, stiffness: 260 }));
+    revealScale.value = withDelay(revealDelayMs, withSpring(1, { damping: 18, stiffness: 220 }));
+  }, [revealDelayMs, revealOpacity, revealScale]);
 
   const animatedStyle = useAnimatedStyle(() => ({
-    transform: [{ translateY: translateY.value }],
+    opacity: revealOpacity.value,
+    transform: [{ translateY: translateY.value }, { scale: revealScale.value }],
   }));
 
   return (
@@ -336,10 +385,7 @@ const makeStyles = (P: TournamentV2) => StyleSheet.create({
   },
 
   list: { position: 'relative' },
-  // Прокрутка занимает всё свободное место между шапкой и подсказкой.
-  listScroll: { flex: 1 },
-  // height приходит из listHeight: плашки позиционированы абсолютно, поэтому
-  // контейнеру нужна явная высота, иначе ScrollView считает контент нулевым.
+  // height приходит из listHeight: плашки позиционированы абсолютно.
   listContent: { position: 'relative' },
   closeButton: {
     width: 40,

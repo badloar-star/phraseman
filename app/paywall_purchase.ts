@@ -12,7 +12,7 @@
 //  - реальное планирование напоминания
 // ════════════════════════════════════════════════════════════════════════════
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
-import { Alert, InteractionManager } from 'react-native';
+import { Alert, AppState } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter } from 'expo-router';
 import * as Crypto from 'expo-crypto';
@@ -209,6 +209,8 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
   const [impression] = useState(() => suppliedImpression ?? createPaywallAnalyticsImpression(Crypto.randomUUID));
   const [selected, setSelected] = useState<PaywallPlan>('yearly');
   const [packages, setPackages] = useState<PremiumPackages>({});
+  const packagesRef = useRef<PremiumPackages>({});
+  const offeringsLoadInFlightRef = useRef(false);
   const [loading, setLoading] = useState(false);
   // Сбой загрузки офферингов (сеть/стор). Влияет на видимость всех кнопок,
   // включая Phraseman Pro — поэтому даём ретрай, а не молча скрываем.
@@ -258,6 +260,8 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
     emitInitialResolution = false,
   ): Promise<void> => {
     if (DEV_IAP_BYPASS) return;
+    if (offeringsLoadInFlightRef.current) return;
+    offeringsLoadInFlightRef.current = true;
     setLoading(true);
     setOfferingsFailed(false);
     const attempt = async (): Promise<{ ok: boolean; resolvedPackages: PremiumPackages }> => {
@@ -265,7 +269,10 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         await initRevenueCat();
         const o = await Purchases.getOfferings();
         const resolvedPackages = resolvePremiumPackages(o.current?.availablePackages ?? []);
-        if (!deadRef.dead) setPackages(resolvedPackages);
+        if (!deadRef.dead) {
+          packagesRef.current = resolvedPackages;
+          setPackages(resolvedPackages);
+        }
         return { ok: true, resolvedPackages };
       } catch {
         return { ok: false, resolvedPackages: {} };
@@ -304,6 +311,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         });
       }
     } finally {
+      offeringsLoadInFlightRef.current = false;
       if (!deadRef.dead) setLoading(false);
     }
   }, [context, impression, source, variant]);
@@ -311,10 +319,20 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
   useEffect(() => {
     if (DEV_IAP_BYPASS) return;
     const deadRef = { dead: false };
-    const task = InteractionManager.runAfterInteractions(() => {
-      void loadOfferings(deadRef, true);
+    const refreshIfPackagesMissing = () => {
+      if (!packagesRef.current.monthly || !packagesRef.current.yearly) {
+        void loadOfferings(deadRef, true);
+      }
+    };
+
+    refreshIfPackagesMissing();
+    const subscription = AppState.addEventListener('change', (nextState) => {
+      if (nextState === 'active') refreshIfPackagesMissing();
     });
-    return () => { deadRef.dead = true; task.cancel(); };
+    return () => {
+      deadRef.dead = true;
+      subscription.remove();
+    };
   }, [loadOfferings]);
 
   // Ручной ретрай для UI (кнопка «Повторить» при offeringsFailed).

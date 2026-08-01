@@ -15,9 +15,16 @@ import {
   nextHotStreak,
   nextTournamentState,
   planBotJoinTimes,
+  planTournamentFinalization,
+  TOURNAMENT_BOT_FILL_WINDOW_MS,
   TOURNAMENT_BOT_FIRST_WAVE,
+  TOURNAMENT_ROOM_GATHER_MS,
   TOURNAMENT_BOT_JOIN_SPREAD_MAX_MS,
   TOURNAMENT_BOT_JOIN_SPREAD_MIN_MS,
+  TOURNAMENT_ROUND_MODE_PLAN,
+  TOURNAMENT_ROUND_INTRO_MS,
+  TOURNAMENT_REWARD_CLAIM_WINDOW_MS,
+  TOURNAMENT_ROOM_TTL_MS,
   normalizeTournamentSchedule,
   prizeForPlace,
   roundSeed,
@@ -34,33 +41,215 @@ import {
   simulateBotAnswers,
   slotStartMs,
   tableStateFor,
+  tournamentRoundDurationMs,
+  tournamentRoundTimingWindow,
+  tournamentRoundTaskSchedule,
+  tournamentTaskDurationMs,
+  assertTournamentAnswersWithinTaskSchedule,
+  TOURNAMENT_TASK_FEEDBACK_MS,
+  TOURNAMENT_TASK_READING_MS,
+  TOURNAMENT_TASK_SUBMISSION_GRACE_MS,
   tournamentRoomId,
   tournamentWeekId,
   type TournamentPlayer,
   type TournamentTask,
+  validateTournamentTaskForNewRoom,
 } from './tournament_core';
+
+describe('server-authored tournament task phases', () => {
+  it('anchors the first task after the authoritative intro without consuming gameplay time', () => {
+    const stateStartedAtMs = 900_000;
+    const tasks = [
+      { taskId: 'intro-q1', mode: 'guess_phrase' },
+      { taskId: 'intro-q2', mode: 'speed_match' },
+    ];
+
+    const timing = tournamentRoundTimingWindow(tasks, stateStartedAtMs);
+
+    expect(timing.introEndsAtMs).toBe(stateStartedAtMs + TOURNAMENT_ROUND_INTRO_MS);
+    expect(timing.taskSchedule[0]).toMatchObject({
+      introEndsAtMs: timing.introEndsAtMs,
+      startsAtMs: timing.introEndsAtMs,
+    });
+    expect(timing.taskSchedule[1].introEndsAtMs).toBe(timing.introEndsAtMs);
+    expect(timing.stateDeadlineAtMs).toBe(
+      timing.introEndsAtMs + tournamentRoundDurationMs(tasks),
+    );
+  });
+
+  it('persists reading, answer, and feedback windows without extending the existing task duration', () => {
+    const startedAtMs = 1_000_000;
+    const schedule = tournamentRoundTaskSchedule([
+      { taskId: 'phase-task', mode: 'guess_phrase' },
+      { taskId: 'next-task', mode: 'translate_build' },
+    ], startedAtMs);
+
+    expect(TOURNAMENT_TASK_READING_MS).toBeGreaterThanOrEqual(1_500);
+    expect(TOURNAMENT_TASK_READING_MS).toBeLessThanOrEqual(2_000);
+    expect(TOURNAMENT_TASK_FEEDBACK_MS).toBeGreaterThanOrEqual(1_500);
+    expect(TOURNAMENT_TASK_FEEDBACK_MS).toBeLessThanOrEqual(2_000);
+    expect(schedule[0]).toMatchObject({
+      startsAtMs: startedAtMs,
+      readingEndsAtMs: startedAtMs + TOURNAMENT_TASK_READING_MS,
+      feedbackEndsAtMs: startedAtMs + tournamentTaskDurationMs('guess_phrase'),
+      deadlineAtMs: startedAtMs + tournamentTaskDurationMs('guess_phrase'),
+    });
+    expect(schedule[0].answerDeadlineAtMs).toBe(
+      schedule[0].feedbackEndsAtMs! - TOURNAMENT_TASK_FEEDBACK_MS - TOURNAMENT_TASK_SUBMISSION_GRACE_MS,
+    );
+    expect(schedule[1].startsAtMs).toBe(schedule[0].feedbackEndsAtMs);
+  });
+
+  it('rejects reading and feedback submissions while preserving the network-only deadline grace', () => {
+    const timing = tournamentRoundTaskSchedule([
+      { taskId: 'phase-task', mode: 'guess_phrase' },
+    ], 10_000)[0];
+    const round = {
+      roundNo: 1, mode: 'guess_phrase', taskIds: ['phase-task'], results: {},
+      taskSchedule: [timing],
+    };
+
+    expect(() => assertTournamentAnswersWithinTaskSchedule(
+      round, ['phase-task'], timing.readingEndsAtMs! - 1,
+    )).toThrow('task_reading_in_progress');
+    expect(assertTournamentAnswersWithinTaskSchedule(
+      round, ['phase-task'], timing.readingEndsAtMs!,
+    )).toBe(true);
+    expect(assertTournamentAnswersWithinTaskSchedule(
+      round, ['phase-task'], timing.feedbackStartsAtMs! - 1,
+    )).toBe(true);
+    expect(() => assertTournamentAnswersWithinTaskSchedule(
+      round, ['phase-task'], timing.feedbackStartsAtMs!,
+    )).toThrow('task_deadline_elapsed');
+    expect(() => assertTournamentAnswersWithinTaskSchedule(
+      round, ['phase-task'], timing.feedbackEndsAtMs!,
+    )).toThrow('task_deadline_elapsed');
+  });
+});
+
+describe('active tournament forfeits', () => {
+  it('always ranks a forfeited player behind active finishers regardless of prior score', () => {
+    const forfeited = { ...player('quit-high', 999), forfeitedAtMs: 50_000, forfeitState: 'round2' as const };
+    const active = player('active-low', 1);
+    expect(computePlacements([forfeited, active]).standings.map((entry) => entry.id))
+      .toEqual(['active-low', 'quit-high']);
+  });
+
+  it('never grants a forfeited player a positional prize or winning season credit', () => {
+    const forfeited = { ...player('quit-high', 999), forfeitedAtMs: 50_000, forfeitState: 'round2' as const };
+    const room = {
+      roomId: 'forfeit-final', slotId: 'daily', seed: 'forfeit-final', state: 'results' as const,
+      startsAt: 1, stateDeadlineAtMs: 100, players: [forfeited, player('active-low', 1)],
+      rounds: [], version: 1, createdAtMs: 1,
+    };
+    const effect = planTournamentFinalization(room, 100).playerEffects
+      .find((entry) => entry.playerId === forfeited.id);
+    expect(effect).toMatchObject({ won: false, seasonPoints: 2, reward: { gems: 0, tickets: 0 } });
+  });
+
+  it('publishes authoritative ordered places, rewards, and absolute retention anchors at finalization', () => {
+    const finalizedAtMs = 50_000;
+    const forfeited = { ...player('quit-high', 999), forfeitedAtMs: 40_000, forfeitState: 'round4' as const };
+    const room = {
+      roomId: 'authoritative-results', slotId: 'daily', seed: 'authoritative-results', state: 'results' as const,
+      startsAt: 1, stateDeadlineAtMs: finalizedAtMs, players: [forfeited, player('winner', 8), player('runner-up', 4)],
+      rounds: [], version: 7, createdAtMs: 1,
+    };
+
+    const plan = planTournamentFinalization(room, finalizedAtMs);
+    const rewardByPlayer = new Map(plan.playerEffects.map((effect) => [effect.playerId, effect.reward.gems]));
+
+    expect(plan.room.players.map((entry) => entry.id)).toEqual(['winner', 'runner-up', 'quit-high']);
+    expect(plan.room.players.map((entry) => ({
+      id: entry.id, resultPlace: entry.resultPlace, rewardGems: entry.rewardGems,
+    }))).toEqual([
+      { id: 'winner', resultPlace: 1, rewardGems: rewardByPlayer.get('winner') },
+      { id: 'runner-up', resultPlace: 2, rewardGems: rewardByPlayer.get('runner-up') },
+      { id: 'quit-high', resultPlace: 3, rewardGems: 0 },
+    ]);
+    expect(plan.room).toMatchObject({
+      finalizedAtMs,
+      reviewRetentionUntilMs: finalizedAtMs + TOURNAMENT_REWARD_CLAIM_WINDOW_MS,
+      privateEvidenceRetentionUntilMs: finalizedAtMs + TOURNAMENT_ROOM_TTL_MS,
+    });
+  });
+});
 
 // «Турниры» Фаза 1 — чистая математика без Firestore (спека §5–§8, §11).
 
-const task = (taskId: string, mode: string, isVoice = false, verified = true): TournamentTask => ({
-  taskId,
-  mode,
-  isVoice,
-  difficulty: 1,
-  payload: isVoice
+const task = (taskId: string, mode: string, isVoice = false, verified = true): TournamentTask => {
+  const payload = isVoice
     ? { phrase: taskId, reference: `reference/${taskId}` }
-    : { phrase: taskId, options: ['yes', 'no', 'maybe', 'later'], correctIndex: 0 },
-  tags: [],
-  verified,
-});
+    : mode === 'listen_choose' || mode === 'sound_contrast'
+      ? {
+        audioUri: `https://example.com/${taskId}.mp3`, phrase: taskId,
+        options: ['yes', 'no'], correctIndex: 0,
+        ...(mode === 'sound_contrast' ? { contrast: '/ɪ/ vs /iː/' } : {}),
+      }
+      : { phrase: taskId, options: ['yes', 'no', 'maybe', 'later'], correctIndex: 0 };
+  const options = Array.isArray(payload.options) ? payload.options : [];
+  return {
+    taskId,
+    mode,
+    isVoice,
+    difficulty: 1,
+    payload,
+    explanation: {
+      ruleNote: 'Полный разбор задания.',
+      example: 'I am here. — Я здесь.',
+      wrongOptionReasons: options.map((_, index) => index === 0 ? '' : 'Этот вариант не соответствует фразе.'),
+    },
+    tags: [],
+    verified,
+  };
+};
 
 const player = (id: string, score: number, isBot = false): TournamentPlayer => ({
   id, isBot, name: id, avatar: '🦊', color: '#47C870', score, streak: 0,
 });
 
+describe('полный разбор для новых комнат', () => {
+  const choiceWithAnswerKey = (): TournamentTask => ({
+    taskId: 'review-ready-choice',
+    mode: 'guess_phrase',
+    isVoice: false,
+    difficulty: 1,
+    payload: {
+      phrase: 'I am here',
+      options: ['Я здесь', 'Я дома', 'Я готов', 'Я занят'],
+      correctIndex: 0,
+    },
+    tags: [],
+    verified: true,
+  });
+
+  it('не пускает в новую комнату старое задание без полного разбора', () => {
+    expect(validateTournamentTaskForNewRoom(choiceWithAnswerKey())).toEqual({
+      ok: false,
+      reason: 'task_full_explanation_required',
+    });
+  });
+
+  it('требует отдельную причину каждой неверной опции и принимает полный разбор', () => {
+    const incomplete = choiceWithAnswerKey();
+    incomplete.explanation = {
+      ruleNote: 'I am here означает, что говорящий находится в этом месте.',
+      example: 'I am here at the station. — Я здесь, на станции.',
+      wrongOptionReasons: ['', 'Here — не дома; вариант меняет место.', '', 'Here не означает, что говорящий занят.'],
+    };
+    expect(validateTournamentTaskForNewRoom(incomplete)).toEqual({
+      ok: false,
+      reason: 'task_full_explanation_required',
+    });
+
+    incomplete.explanation.wrongOptionReasons![2] = 'Ready — «готов», а не «здесь».';
+    expect(validateTournamentTaskForNewRoom(incomplete)).toEqual({ ok: true, kind: 'choice' });
+  });
+});
+
 // зачем 2026-07-27: шкала звёзд переписана по правилам владельца — «кто первый
-// ответил, тот три звезды, кто второй — две, кто третий и остальные — одну»,
-// плюс бонусы за стрик и камбэк. Старые тесты проверяли формулу «база 100 ×
+// ответил, тот три звезды, кто второй — две, кто третий и остальные — одну».
+// Стрики и камбэки сохраняются как состояние, но не повышают звёзды. Старые тесты проверяли формулу «база 100 ×
 // скорость × стрик» (до 420 за задание) — она давала нечитаемые тысячи очков.
 describe('звёзды за ответ (владелец 2026-07-27)', () => {
   const answer = (over: Partial<Parameters<typeof scoreAnswer>[0]> = {}) => scoreAnswer({
@@ -88,16 +277,21 @@ describe('звёзды за ответ (владелец 2026-07-27)', () => {
     expect(answer({ correct: false, answerRank: 1, streakBefore: 9 })).toBe(0);
   });
 
-  it('серия от 3 подряд добавляет звезду', () => {
-    expect(answer({ answerRank: 3, streakBefore: 2 })).toBe(1 + 1);
-    // Первому серия тоже добавляет: 3 + 1.
-    expect(answer({ answerRank: 1, streakBefore: 2 })).toBe(4);
+  it('never promotes rank 2 or rank 3+ for a correct-answer streak', () => {
+    expect(answer({ answerRank: 2, streakBefore: 99 })).toBe(2);
+    expect(answer({ answerRank: 3, streakBefore: 99 })).toBe(1);
+    expect(answer({ answerRank: 1, streakBefore: 2 })).toBe(3);
   });
 
-  it('камбэк после 3 ошибок подряд добавляет звезду', () => {
-    expect(answer({ answerRank: 3, missStreakBefore: 3 })).toBe(1 + 1);
-    // Двух ошибок мало — бонуса нет.
-    expect(answer({ answerRank: 3, missStreakBefore: 2 })).toBe(1);
+  it('never promotes rank 2 or rank 3+ after any miss streak', () => {
+    expect(answer({ answerRank: 2, missStreakBefore: 99 })).toBe(2);
+    expect(answer({ answerRank: 3, missStreakBefore: 99 })).toBe(1);
+  });
+
+  it('keeps the exact 3/2/1 rank scale when both streak counters are high', () => {
+    expect(answer({ answerRank: 1, streakBefore: 3, missStreakBefore: 3 })).toBe(3);
+    expect(answer({ answerRank: 2, streakBefore: 3, missStreakBefore: 3 })).toBe(2);
+    expect(answer({ answerRank: 3, streakBefore: 3, missStreakBefore: 3 })).toBe(1);
   });
 
   it('scoreRound копит серию и сбрасывает её на ошибке', () => {
@@ -105,26 +299,64 @@ describe('звёзды за ответ (владелец 2026-07-27)', () => {
       correct, elapsedMs: 1_000, maxMs: 10_000, streakBefore: 0, isVoice: false, answerRank: 3,
     }));
     const { roundScore, streakAfter } = scoreRound(answers);
-    // 1 + 1 + 2 (звезда за серию с 3-го) + 0 + 1 = 5
-    expect(roundScore).toBe(5);
+    expect(roundScore).toBe(4);
     expect(streakAfter).toBe(1);
   });
 
-  it('scoreRound даёт камбэк-звезду после трёх ошибок подряд', () => {
+  it('scoreRound does not promote a correct answer after three misses', () => {
     const answers = [false, false, false, true].map((correct) => ({
       correct, elapsedMs: 1_000, maxMs: 10_000, streakBefore: 0, isVoice: false, answerRank: 3,
     }));
-    // 0 + 0 + 0 + (1 базовая + 1 за камбэк) = 2
-    expect(scoreRound(answers).roundScore).toBe(2);
+    expect(scoreRound(answers).roundScore).toBe(1);
   });
 });
 
-describe('seeded task selection (§6)', () => {
+describe('authoritative per-mode tournament timing', () => {
+  it.each([
+    ['guess_phrase', 15_000],
+    ['fill_gap', 15_000],
+    ['find_oddity', 18_000],
+    ['translate_build', 25_000],
+    ['speed_match', 20_000],
+  ])('%s receives %i ms', (mode, expectedMs) => {
+    expect(tournamentTaskDurationMs(mode)).toBe(expectedMs);
+  });
+
+  it('sums the exact task durations for a mixed round', () => {
+    expect(tournamentRoundDurationMs([
+      { mode: 'guess_phrase' },
+      { mode: 'fill_gap' },
+      { mode: 'find_oddity' },
+      { mode: 'translate_build' },
+    ])).toBe(73_000);
+    expect(tournamentRoundDurationMs([
+      { mode: 'guess_phrase' },
+      { mode: 'fill_gap' },
+      { mode: 'find_oddity' },
+      { mode: 'speed_match' },
+    ])).toBe(68_000);
+  });
+
+  it('persists absolute server-authored task windows in task order', () => {
+    expect(tournamentRoundTaskSchedule([
+      { taskId: 'q1', mode: 'guess_phrase' },
+      { taskId: 'q2', mode: 'find_oddity' },
+      { taskId: 'q3', mode: 'speed_match' },
+    ], 1_000)).toMatchObject([
+      { taskId: 'q1', taskIndex: 0, durationMs: 15_000, startsAtMs: 1_000, deadlineAtMs: 16_000 },
+      { taskId: 'q2', taskIndex: 1, durationMs: 18_000, startsAtMs: 16_000, deadlineAtMs: 34_000 },
+      { taskId: 'q3', taskIndex: 2, durationMs: 20_000, startsAtMs: 34_000, deadlineAtMs: 54_000 },
+    ]);
+  });
+});
+
+describe('task selection and immutable owner plan (§6)', () => {
   const pool = [
-    ...Array.from({ length: 10 }, (_, i) => task(`q${i}`, 'quiz')),
-    ...Array.from({ length: 6 }, (_, i) => task(`f${i}`, 'flashcard')),
+    ...Array.from({ length: 10 }, (_, i) => task(`q${i}`, 'guess_phrase')),
+    ...Array.from({ length: 8 }, (_, i) => task(`f${i}`, 'fill_gap')),
+    ...Array.from({ length: 8 }, (_, i) => task(`o${i}`, 'find_oddity')),
     ...Array.from({ length: 4 }, (_, i) => task(`v${i}`, 'voice', true)),
-    task('unverified1', 'quiz', false, false),
+    task('unverified1', 'guess_phrase', false, false),
   ];
 
   it('same roomId+roundNo always yields the same task set', () => {
@@ -133,22 +365,35 @@ describe('seeded task selection (§6)', () => {
     expect(a.map((t) => t.taskId)).toEqual(b.map((t) => t.taskId));
   });
 
-  it('different rounds give different sets (seed = roomId + roundNo)', () => {
-    const r1 = selectRoundTasks({ pool, roomId: 'room1', roundNo: 1, count: 6, modeKind: 'mix' });
-    const r2 = selectRoundTasks({ pool, roomId: 'room1', roundNo: 2, count: 6, modeKind: 'mix' });
-    expect(r1.map((t) => t.taskId)).not.toEqual(r2.map((t) => t.taskId));
+  it('uses the fixed four-round owner-approved mode plan', () => {
+    expect(TOURNAMENT_ROUND_MODE_PLAN).toEqual([
+      ['guess_phrase', 'fill_gap', 'find_oddity', 'translate_build'],
+      ['guess_phrase', 'fill_gap', 'find_oddity', 'speed_match'],
+      ['guess_phrase', 'fill_gap', 'find_oddity', 'translate_build'],
+      ['guess_phrase', 'fill_gap', 'translate_build', 'speed_match'],
+    ]);
   });
 
-  it('single-mode rounds pick tasks of one mode only', () => {
-    for (let room = 0; room < 8; room += 1) {
-      const sel = selectRoundTasks({ pool, roomId: `room${room}`, roundNo: 1, count: 5, modeKind: 'single' });
-      const modes = new Set(sel.map((t) => t.mode));
-      expect(modes.size).toBe(1);
-    }
+  it('keeps all five text-only modes at their immutable 4/4/3/3/2 quota', () => {
+    const modes = TOURNAMENT_ROUND_MODE_PLAN.flat();
+    expect(new Set(modes)).toEqual(new Set([
+      'guess_phrase', 'fill_gap', 'find_oddity', 'translate_build', 'speed_match',
+    ]));
+    expect(modes.reduce<Record<string, number>>((counts, mode) => ({
+      ...counts,
+      [mode]: (counts[mode] ?? 0) + 1,
+    }), {})).toEqual({
+      guess_phrase: 4,
+      fill_gap: 4,
+      find_oddity: 3,
+      translate_build: 3,
+      speed_match: 2,
+    });
   });
 
   it('unverified tasks never enter a round', () => {
-    const sel = selectRoundTasks({ pool, roomId: 'room1', roundNo: 3, count: 20, modeKind: 'mix' });
+    const sel = selectRoundTasks({ pool, roomId: 'room1', roundNo: 1, count: 20, modeKind: 'mix' });
+    expect(sel.length).toBeGreaterThan(0);
     expect(sel.some((t) => t.taskId === 'unverified1')).toBe(false);
   });
 
@@ -213,7 +458,7 @@ describe('prizes / placements (§7)', () => {
     expect(prizeForPlace(4)).toBeNull();
   });
 
-  it('bots never take prize places; prizes shift to real players', () => {
+  it('bots keep general places while their positional prize shares go to the weekly bank', () => {
     const players = [
       player('bot-a', 900, true),
       player('u1', 800),
@@ -223,7 +468,15 @@ describe('prizes / placements (§7)', () => {
     ];
     const { standings, realPlacements } = computePlacements(players);
     expect(standings[0].id).toBe('bot-a');
-    expect(realPlacements.map((p) => [p.player.id, p.place])).toEqual([['u1', 1], ['u2', 2], ['u3', 3]]);
+    expect(realPlacements.map((p) => [p.player.id, p.place])).toEqual([['u1', 2], ['u2', 4], ['u3', 5]]);
+    const finalized = planTournamentFinalization({
+      roomId: 'bot-places', slotId: 'daily', seed: 'bot-places', state: 'results', startsAt: 0,
+      stateStartedAtMs: 0, stateDeadlineAtMs: 1, players, rounds: [], version: 0, createdAtMs: 0,
+    }, 2);
+    expect(finalized.playerEffects.map((effect) => [
+      effect.playerId, effect.place, effect.reward.gems,
+    ])).toEqual([['u1', 2, 3], ['u2', 4, 0], ['u3', 5, 0]]);
+    expect(finalized.weeklyBankGems).toBe(12);
   });
 });
 
@@ -582,7 +835,7 @@ describe('Phase-1 hardening contracts', () => {
     expect(hardening.verifyTournamentAnswer(timeattack, { selectedIndexes: [1, 1] })).toBe(false);
   });
 
-  it('publishes one answer fingerprint per speed-match pair', () => {
+  it('publishes no answer fingerprint for speed-match pairs', () => {
     const match = {
       ...choiceTask,
       taskId: 'match-1',
@@ -598,10 +851,7 @@ describe('Phase-1 hardening contracts', () => {
 
     const publicTask = hardening.toPublicTournamentTask(match, 'room-match');
     expect(publicTask?.kind).toBe('match');
-    expect(publicTask?.answerFingerprints).toEqual([
-      hardening.answerFingerprint('room-match', 'match-1', hardening.canonicalAnswerValue(0)),
-      hardening.answerFingerprint('room-match', 'match-1', hardening.canonicalAnswerValue(1)),
-    ]);
+    expect(publicTask).not.toHaveProperty('answerFingerprints');
   });
 
   it('never credits voice from a client-supplied reference string', () => {
@@ -624,7 +874,7 @@ describe('Phase-1 hardening contracts', () => {
     });
   });
 
-  it('excludes voice tasks from room selection while voice evidence is disabled', () => {
+  it('selects only approved non-audio tasks for a new room', () => {
     const voice = {
       ...choiceTask,
       taskId: 'voice-disabled',
@@ -632,24 +882,25 @@ describe('Phase-1 hardening contracts', () => {
       isVoice: true,
       payload: { phrase: 'I am ready', reference: 'voice/reference/1' },
     };
+    const listen = task('listen-retired', 'listen_choose');
+    const approvedText = task('guess-approved', 'guess_phrase');
     const selected = hardening.selectRoundTasks({
-      pool: [voice, choiceTask], roomId: 'room-no-voice', roundNo: 1, count: 10, modeKind: 'mix',
+      pool: [voice, choiceTask, listen, approvedText],
+      roomId: 'room-no-voice', roundNo: 1, count: 10, modeKind: 'mix',
     });
-    expect(selected.map((candidate: TournamentTask) => candidate.taskId)).toEqual(['choice-1']);
+    expect(selected.map((candidate: TournamentTask) => candidate.taskId)).toEqual(['guess-approved']);
   });
 
-  it('enforces the round difficulty progression before seeded mode selection', () => {
+  it('enforces round difficulty progression for approved fixed-plan candidates', () => {
     const pool = [1, 2, 3].flatMap((difficulty) => Array.from({ length: 8 }, (_, index) => ({
-      ...choiceTask,
-      taskId: `d${difficulty}-${index}`,
+      ...task(`d${difficulty}-${index}`, index % 2 === 0 ? 'guess_phrase' : 'fill_gap'),
       difficulty,
-      mode: index % 2 === 0 ? 'choice' : 'quiz',
     })));
     const expected: Record<number, number[]> = { 1: [1], 2: [1, 2], 3: [2], 4: [2, 3] };
     for (const roundNo of [1, 2, 3, 4]) {
       const selected = hardening.selectRoundTasks({
         pool, roomId: `room-difficulty-${roundNo}`, roundNo, count: 20,
-        modeKind: roundNo % 2 === 1 ? 'single' : 'mix',
+        modeKind: 'mix',
       });
       expect(new Set(selected.map((candidate: TournamentTask) => candidate.difficulty)))
         .toEqual(new Set(expected[roundNo]));
@@ -753,6 +1004,105 @@ describe('transaction plan semantics', () => {
     expect(replay.room).toEqual(afterRetry.room);
   });
 
+  it('assigns 3/2/1 live stars in transaction commit order for each correct task', () => {
+    const rankedRoom = {
+      ...room(),
+      players: [player('u1', 0), player('u2', 0), player('u3', 0)],
+    };
+    const answer = [{ taskId: 'q1', answer: { selectedIndex: 0 } }];
+    const first = plans.applyTournamentSubmission(rankedRoom, {
+      playerId: 'u1', roundNo: 1, answers: answer, tasks, receivedAtMs: 2_000,
+    });
+    const second = plans.applyTournamentSubmission(first.room, {
+      playerId: 'u2', roundNo: 1, answers: answer, tasks, receivedAtMs: 2_100,
+    });
+    const third = plans.applyTournamentSubmission(second.room, {
+      playerId: 'u3', roundNo: 1, answers: answer, tasks, receivedAtMs: 2_200,
+    });
+
+    expect(third.room.players.map((candidate: TournamentPlayer) => candidate.score)).toEqual([3, 2, 1]);
+  });
+
+  it('does not let an earlier wrong submission consume a correct-answer rank', () => {
+    const rankedRoom = { ...room(), players: [player('u1', 0), player('u2', 0)] };
+    const wrong = plans.applyTournamentSubmission(rankedRoom, {
+      playerId: 'u1', roundNo: 1,
+      answers: [{ taskId: 'q1', answer: { selectedIndex: 1 } }], tasks, receivedAtMs: 2_000,
+    });
+    const firstCorrect = plans.applyTournamentSubmission(wrong.room, {
+      playerId: 'u2', roundNo: 1,
+      answers: [{ taskId: 'q1', answer: { selectedIndex: 0 } }], tasks, receivedAtMs: 2_100,
+    });
+
+    expect(firstCorrect.room.players.find((candidate: TournamentPlayer) => candidate.id === 'u1')?.score).toBe(0);
+    expect(firstCorrect.room.players.find((candidate: TournamentPlayer) => candidate.id === 'u2')?.score).toBe(3);
+  });
+
+  it('tracks a recovered miss streak without promoting the rank award', () => {
+    const comebackTasks = Array.from({ length: 4 }, (_, index) => ({
+      ...tasks[0], taskId: `q${index + 1}`,
+    }));
+    const comebackRoom = {
+      ...room(),
+      players: [player('u1', 0)],
+      rounds: [{ roundNo: 1, mode: 'choice', taskIds: comebackTasks.map((candidate) => candidate.taskId), results: {} }],
+      stateDeadlineAtMs: 41_000,
+    };
+    const submitted = plans.applyTournamentSubmission(comebackRoom, {
+      playerId: 'u1', roundNo: 1,
+      answers: comebackTasks.map((candidate, index) => ({
+        taskId: candidate.taskId,
+        answer: { selectedIndex: index === 3 ? 0 : 1 },
+      })),
+      tasks: comebackTasks,
+      receivedAtMs: 2_000,
+    });
+
+    // The only correct player is rank 1, so the strict award is exactly three.
+    expect(submitted.result.roundScore).toBe(3);
+    expect(submitted.room.players[0]).toMatchObject({ score: 3, streak: 1, missStreak: 0 });
+  });
+
+  it('carries consecutive misses across rounds without adding a scoring bonus', () => {
+    const roundOneTasks = ['q1', 'q2'].map((taskId) => ({ ...tasks[0], taskId }));
+    const firstRoundRoom = {
+      ...room(),
+      players: [player('u1', 0)],
+      rounds: [
+        { roundNo: 1, mode: 'choice', taskIds: ['q1', 'q2'], results: {} },
+        { roundNo: 2, mode: 'choice', taskIds: ['q3', 'q4'], results: {} },
+      ],
+      stateDeadlineAtMs: 31_000,
+    };
+    const afterRoundOne = plans.applyTournamentSubmission(firstRoundRoom, {
+      playerId: 'u1', roundNo: 1,
+      answers: roundOneTasks.map((candidate) => ({ taskId: candidate.taskId, answer: { selectedIndex: 1 } })),
+      tasks: roundOneTasks,
+      receivedAtMs: 2_000,
+    });
+    expect(afterRoundOne.room.players[0]).toMatchObject({ score: 0, streak: 0, missStreak: 2 });
+
+    const roundTwoTasks = ['q3', 'q4'].map((taskId) => ({ ...tasks[0], taskId }));
+    const roundTwoRoom = {
+      ...afterRoundOne.room,
+      state: 'round2',
+      stateStartedAtMs: 40_000,
+      stateDeadlineAtMs: 70_000,
+    };
+    const afterRoundTwo = plans.applyTournamentSubmission(roundTwoRoom, {
+      playerId: 'u1', roundNo: 2,
+      answers: [
+        { taskId: 'q3', answer: { selectedIndex: 1 } },
+        { taskId: 'q4', answer: { selectedIndex: 0 } },
+      ],
+      tasks: roundTwoTasks,
+      receivedAtMs: 41_000,
+    });
+
+    expect(afterRoundTwo.result.roundScore).toBe(3);
+    expect(afterRoundTwo.room.players[0]).toMatchObject({ score: 3, streak: 1, missStreak: 0 });
+  });
+
   it('join then cancel refunds the joined provenance; cancel then join fails closed', () => {
     const lobby = { ...room(), state: 'lobby', players: [], rounds: [] };
     const entrant = {
@@ -850,6 +1200,78 @@ describe('transaction plan semantics', () => {
     expect(completed.room.state).toBe('table1');
   });
 
+  it('records one timed-out review row for every task when a human has zero receipts', () => {
+    const roundTasks = Array.from({ length: 4 }, (_, index) => ({
+      ...tasks[0], taskId: `timeout-q${index + 1}`,
+    }));
+    const zeroReceiptRoom = {
+      ...room(),
+      players: [player('u1', 0)],
+      rounds: [{
+        roundNo: 1,
+        mode: 'choice',
+        taskIds: roundTasks.map((candidate) => candidate.taskId),
+        results: {},
+      }],
+      stateDeadlineAtMs: 41_000,
+    };
+
+    const completed = plans.completeTournamentRoundAtDeadline(
+      zeroReceiptRoom, roundTasks, 41_001, {},
+    );
+
+    expect(completed.room.rounds[0].results.u1.review).toEqual(
+      roundTasks.map((candidate) => ({
+        taskId: candidate.taskId,
+        correct: false,
+        timedOut: true,
+        starsAwarded: 0,
+      })),
+    );
+  });
+
+  it('keeps sixteen unique timed-out review entries after four zero-receipt rounds', () => {
+    const allTasks = Array.from({ length: 16 }, (_, index) => ({
+      ...tasks[0], taskId: `round-timeout-q${index + 1}`,
+    }));
+    let currentRoom = {
+      ...room(),
+      players: [player('u1', 0)],
+      rounds: Array.from({ length: 4 }, (_, roundIndex) => ({
+        roundNo: roundIndex + 1,
+        mode: 'choice',
+        taskIds: allTasks
+          .slice(roundIndex * 4, roundIndex * 4 + 4)
+          .map((candidate) => candidate.taskId),
+        results: {},
+      })),
+      stateDeadlineAtMs: 41_000,
+    };
+
+    for (let roundNo = 1; roundNo <= 4; roundNo += 1) {
+      const deadlineAtMs = roundNo * 100_000;
+      currentRoom = {
+        ...currentRoom,
+        state: `round${roundNo}`,
+        stateStartedAtMs: deadlineAtMs - 40_000,
+        stateDeadlineAtMs: deadlineAtMs,
+      };
+      currentRoom = plans.completeTournamentRoundAtDeadline(
+        currentRoom,
+        allTasks.slice((roundNo - 1) * 4, roundNo * 4),
+        deadlineAtMs,
+        {},
+      ).room;
+    }
+
+    const review = currentRoom.rounds.flatMap((candidateRound: {
+      results: Record<string, { review?: Array<{ taskId: string; timedOut?: boolean }> }>;
+    }) => candidateRound.results.u1.review ?? []);
+    expect(review).toHaveLength(16);
+    expect(new Set(review.map((entry) => entry.taskId)).size).toBe(16);
+    expect(review.every((entry) => entry.timedOut === true)).toBe(true);
+  });
+
   it('repeated finalization plan emits season/played/streak/claim effects once', () => {
     const finalRoom = {
       ...room(), state: 'results', players: [player('u1', 100), player('u2', 50)],
@@ -918,14 +1340,30 @@ describe('bot join spread (анти-фальшь лобби)', () => {
     expect(new Set(times).size).toBeGreaterThan(1);
   });
 
-  it('первая волна уже в лобби, остальные растянуты во времени', () => {
-    const times = planBotJoinTimes({ seed: 'room-a', botCount: 15, fromMs: from, startsAtMs: startsAt });
-    const immediate = times.filter((value: number) => value === from);
-    expect(immediate).toHaveLength(TOURNAMENT_BOT_FIRST_WAVE);
-    for (const value of times.slice(TOURNAMENT_BOT_FIRST_WAVE)) {
-      expect(value).toBeGreaterThanOrEqual(from + TOURNAMENT_BOT_JOIN_SPREAD_MIN_MS);
-      expect(value).toBeLessThanOrEqual(from + TOURNAMENT_BOT_JOIN_SPREAD_MAX_MS);
+  /**
+   * зачем 2026-07-27 (владелец, точные правила подбора): две фазы
+   * вместо одной. Первые 30 секунд — окно ожидания живых, туда заходит
+   * НЕ БОЛЬШЕ пяти ботов и тоже вразброс (а не стеной в один момент,
+   * иначе видно подделку); следующие 45 секунд — добор остальных.
+   */
+  it('первая волна в окне ожидания, остальные — в окне добора', () => {
+    const roomy = from + 10 * 60 * 1000;
+    const times = planBotJoinTimes({ seed: 'room-a', botCount: 15, fromMs: from, startsAtMs: roomy });
+    const gatherEnd = from + TOURNAMENT_ROOM_GATHER_MS;
+
+    // Первая волна — внутри окна ожидания.
+    for (const value of times.slice(0, TOURNAMENT_BOT_FIRST_WAVE)) {
+      expect(value).toBeGreaterThanOrEqual(from);
+      expect(value).toBeLessThanOrEqual(gatherEnd);
     }
+    // Остальные — только после окна ожидания.
+    for (const value of times.slice(TOURNAMENT_BOT_FIRST_WAVE)) {
+      expect(value).toBeGreaterThanOrEqual(gatherEnd);
+      expect(value).toBeLessThanOrEqual(gatherEnd + TOURNAMENT_BOT_FILL_WINDOW_MS);
+    }
+    // В окно ожидания попадает РОВНО первая волна, не больше.
+    expect(times.filter((value: number) => value < gatherEnd).length)
+      .toBeLessThanOrEqual(TOURNAMENT_BOT_FIRST_WAVE);
   });
 
   it('детерминированно: у всех клиентов комнаты одна картина', () => {
@@ -936,12 +1374,13 @@ describe('bot join spread (анти-фальшь лобби)', () => {
     expect(other).not.toEqual(a);
   });
 
-  it('никто не появляется позже старта — иначе комната играет неполной', () => {
-    // Добор впритык: разлёт обязан сжаться, а не вылезти за старт.
+  it('короткий legacy-дедлайн не протаскивает ботов в human-only окно', () => {
+    // The owner contract is fail-closed: no bot may become visible before +45s.
+    // A stale legacy start marker therefore clamps to the gather boundary; an
+    // early start is achieved by human joins, which displace these reservations.
     const tight = planBotJoinTimes({ seed: 'room-a', botCount: 15, fromMs: from, startsAtMs: from + 5000 });
     for (const value of tight) {
-      expect(value).toBeGreaterThanOrEqual(from);
-      expect(value).toBeLessThanOrEqual(from + 5000);
+      expect(value).toBe(from + TOURNAMENT_ROOM_GATHER_MS);
     }
   });
 

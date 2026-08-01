@@ -15,7 +15,13 @@ import {
 } from './tournament_ai_generator';
 import { validateTournamentTask, toPublicTournamentTask } from './tournament_core';
 
-const pair = (en: string, ru: string): SpeedMatchItem => ({ en, ru, difficulty: 'easy' });
+const pair = (en: string, ru: string): SpeedMatchItem => ({
+  en,
+  ru,
+  difficulty: 'easy',
+  ruleNote: `«${en}» переводится как «${ru}».`,
+  example: `I know the word ${en}. — Я знаю слово ${en}.`,
+});
 
 const goodField: SpeedMatchItem[] = [
   pair('bread', 'хлеб'),
@@ -31,8 +37,8 @@ describe('пары на скорость', () => {
     const packet = buildSpeedMatchPromptPacket({ level: 'A2' });
     expect(packet.task).toContain('unambiguous');
     expect(packet.task).toContain('two valid answers');
-    // Поле разбирают на время — длинные слова читать некогда.
-    expect(packet.task).toContain('never longer than 3 words');
+    // Поле разбирают на время: каждая сторона — одно слово, не фраза.
+    expect(packet.task).toContain('exactly one word per side');
   });
 
   it('ОДИНАКОВЫЙ ПЕРЕВОД у разных слов отбрасывается', () => {
@@ -54,10 +60,10 @@ describe('пары на скорость', () => {
     }
   });
 
-  it('слишком длинные пары не проходят: их не прочесть на бегу', () => {
+  it('фразы из двух и более слов не проходят: speed-pair хранит только слова', () => {
     const items = [
       ...goodField,
-      pair('the whole entire situation', 'вся эта ситуация целиком'),
+      pair('bus stop', 'автобусная остановка'),
       pair('bus', 'автобус'),
       pair('door', 'дверь'),
       pair('night', 'ночь'),
@@ -65,8 +71,23 @@ describe('пары на скорость', () => {
     const result = validateSpeedMatchBatch({ items });
     expect(result.ok).toBe(true);
     if (result.ok) {
-      expect(result.rejected?.join(' ')).toContain('too long');
+      expect(result.rejected?.join(' ')).toContain('one word per side');
     }
+  });
+
+  it('пунктуация не становится частью speed-pair чипов', () => {
+    const punctuated = [
+      pair('bread!', 'хлеб.'), pair('water?', 'вода,'), pair('table;', 'стол:'),
+      pair('window…', 'окно!'), pair('street.', 'улица?'), pair('morning,', 'утро;'),
+    ];
+    const result = validateSpeedMatchBatch({ items: punctuated });
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    const items = result.items as unknown as SpeedMatchItem[];
+    expect(items.map((item) => item.en)).toEqual(['bread', 'water', 'table', 'window', 'street', 'morning']);
+    expect(items.map((item) => item.ru)).toEqual(['хлеб', 'вода', 'стол', 'окно', 'улица', 'утро']);
+    const task = speedMatchTaskFrom(items, 'A2');
+    expect((task?.payload as { rightOptions: string[] }).rightOptions.some((chip) => /[!?.,;:…]/u.test(chip))).toBe(false);
   });
 
   it('неполное поле бракуется целиком — раунд не соберётся', () => {
@@ -82,6 +103,17 @@ describe('пары на скорость', () => {
     expect(items).toHaveLength(SPEED_MATCH_PAIRS);
   });
 
+  it('каждая пара получает полный разбор и отдельные причины остальных переводов', () => {
+    const task = speedMatchTaskFrom(goodField, 'A2');
+    const items = task?.payload.items as Array<{ explanation: { ruleNote: string; example: string; wrongOptionReasons: string[] } }>;
+    expect(items).toHaveLength(SPEED_MATCH_PAIRS);
+    for (const item of items) {
+      expect(item.explanation.ruleNote).toBeTruthy();
+      expect(item.explanation.example).toBeTruthy();
+      expect(item.explanation.wrongOptionReasons.filter(Boolean)).toHaveLength(SPEED_MATCH_PAIRS - 1);
+    }
+  });
+
   it('дистракторы берутся С ЭТОГО ЖЕ поля', () => {
     // Иначе задание решается исключением: «такого слова на поле нет».
     const task = speedMatchTaskFrom(goodField, 'A2');
@@ -92,6 +124,37 @@ describe('пары на скорость', () => {
         expect(fieldTranslations.has(option)).toBe(true);
       }
     }
+  });
+
+  it('публикует единую уникальную правую колонку для макета 07', () => {
+    const task = speedMatchTaskFrom(goodField, 'A2');
+    const payload = task?.payload as {
+      rightOptions: string[];
+      items: Array<{ options: string[]; correctIndex: number }>;
+    };
+    expect(payload.rightOptions).toEqual(goodField.map((entry) => entry.ru));
+    expect(new Set(payload.rightOptions).size).toBe(SPEED_MATCH_PAIRS);
+    payload.items.forEach((item, index) => {
+      expect(item.options).toEqual(payload.rightOptions);
+      expect(item.correctIndex).toBe(index);
+    });
+
+    const publicTask = toPublicTournamentTask({ ...task!, verified: true });
+    expect(publicTask?.payload.rightOptions).toEqual(payload.rightOptions);
+    expect(publicTask?.payload).not.toHaveProperty('correctIndex');
+  });
+
+  it('не допускает старое 4-choice поле в новую комнату', () => {
+    const legacy = speedMatchTaskFrom(goodField, 'A2')!;
+    delete (legacy.payload as Record<string, unknown>).rightOptions;
+    const selected = require('./tournament_core').selectRoundTasks({
+      pool: [{ ...legacy, verified: true }],
+      roomId: 'new-room-no-legacy-match',
+      roundNo: 1,
+      count: 1,
+      modeKind: 'mix',
+    });
+    expect(selected).toEqual([]);
   });
 
   it('верный ответ каждой пары — её собственный перевод', () => {

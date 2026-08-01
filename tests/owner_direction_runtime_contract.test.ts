@@ -331,7 +331,7 @@ describe('owner runtime direction contract', () => {
     const modal = read('components/NoEnergyModal.tsx');
     expect(context).toContain('energyCountdownClock.subscribe(setNow)');
     expect(context).not.toContain('const id = setInterval(() => setNow(Date.now()), 1000)');
-    expect(bar).toContain('useEnergyCountdown({ visible: screenFocused })');
+    expect(bar).toContain('useEnergyCountdown({ visible: screenFocused && ownerActive })');
     expect(lightning).toContain('useEnergyCountdown({ visible: screenFocused })');
     expect(modal).toContain('useEnergyCountdown({ visible: modalVisible })');
   });

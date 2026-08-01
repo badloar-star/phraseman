@@ -80,9 +80,22 @@ describe('league club hub composition', () => {
     const row = read('components/league/LeagueLeaderboardRow.tsx');
     const mission = read('components/league/LeagueBonusMission.tsx');
     expect(screen).toContain('data={publicListGroup}');
-    expect(screen).toContain('const publicListGroup = useMemo(() => publicSortedGroup.slice(3), [publicSortedGroup]);');
+    expect(screen).toContain('const publicListGroup = useMemo(() => publicSortedGroup, [publicSortedGroup]);');
     expect(screen).toContain('name: leaguePublicName(member.name');
     expect(row).toContain('const displayName = leaguePublicName');
     expect(mission).toContain('leaguePublicName(model.boost.buyerName');
+  });
+
+  it('keeps rank zones aligned when the participant list includes the podium', () => {
+    const screen = read('app/club_screen.tsx');
+
+    // The FlatList receives every member, including the first three already
+    // shown in the arena. Its index is therefore the member's real rank index.
+    // Adding the old podium offset falsely puts safe members into relegation.
+    expect(screen).toContain('const publicListGroup = useMemo(() => publicSortedGroup, [publicSortedGroup]);');
+    expect(screen).toContain('const absIndex = index;');
+    expect(screen).not.toContain('const absIndex = index + 3;');
+    expect(screen).toContain('const idx = myLeagueRank - 1;');
+    expect(screen).not.toContain('const idx = myLeagueRank - 4;');
   });
 });

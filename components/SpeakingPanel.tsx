@@ -16,7 +16,7 @@ import * as Speech from 'expo-speech';
 
 import { LOUD_PLAYBACK_AUDIO_MODE, SPEAKING_RECORDING_AUDIO_MODE } from '../app/audio_playback_mode';
 import { setManagedAudioMode } from '../app/audio_session_coordinator';
-import { useAppRuntimeActive } from '../app/runtime_app_state_store';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { VoiceEqualizer, type VoiceEqualizerRef } from '../app/voice_equalizer';
 import {
   PLAN_PRONUNCIATION_PASS_THRESHOLD,
@@ -37,6 +37,7 @@ import {
   speakingBand,
   speakingBandLabel,
   speakingHintText,
+  type SpeakingBand,
   type SpeakingHint,
 } from '../app/speaking_score_bands';
 import {
@@ -78,7 +79,11 @@ import {
   type LoudnessSample,
 } from '../app/speaking_prosody';
 import SpeakingScoreStars from './SpeakingScoreStars';
-import { starsForScore } from '../app/speaking_score_stars';
+import {
+  INLINE_STAR_COUNT,
+  inlineStarsForScore,
+  starsForScore,
+} from '../app/speaking_score_stars';
 import { WordDrillCard } from './WordDrillCard';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useRecordStartCue } from '../hooks/use-record-start-cue';
@@ -163,6 +168,18 @@ export interface SpeakingPanelTheme {
 
 /** Фолбэк «нечёткого» жёлтого: янтарь читается и на тёмных, и на светлых темах. */
 const WARN_COLOR_FALLBACK = '#E6A23C';
+const INLINE_GOOD_COLOR = '#F2C94C';
+const INLINE_ALMOST_COLOR = '#F2994A';
+
+export function inlineSpeakingResultColor(
+  band: SpeakingBand,
+  theme: Pick<SpeakingPanelTheme, 'correct' | 'wrong'>,
+): string {
+  if (band === 'excellent') return theme.correct;
+  if (band === 'good') return INLINE_GOOD_COLOR;
+  if (band === 'almost') return INLINE_ALMOST_COLOR;
+  return theme.wrong;
+}
 
 /** Subset of the app theme that the speaking panel needs. */
 export interface SpeakingPanelThemeSource {
@@ -234,6 +251,10 @@ export interface SpeakingPanelProps {
    * state. Ignored outside preview (production hosts never pass it).
    */
   previewHoldMode?: boolean | 'preparing';
+  /** Embedded in an exercise's fixed reserved slot; never opens a Modal. */
+  presentation?: 'modal' | 'inline';
+  /** Controlled by the host's existing press-and-hold voice button. */
+  holdActive?: boolean;
 }
 
 type SpeechModule = {
@@ -277,6 +298,8 @@ export function SpeakingPanel({
   previewStatus,
   previewScore,
   previewHoldMode,
+  presentation = 'modal',
+  holdActive = false,
 }: SpeakingPanelProps) {
   const isPreview = previewStatus != null;
   // In preview mode the native speech module is never touched, so permission
@@ -284,7 +307,9 @@ export function SpeakingPanel({
   const speech = useMemo(() => (isPreview ? null : loadSpeechModule()), [isPreview]);
   // зачем: панель живёт внутри упражнения и при сворачивании приложения НЕ размонтируется —
   // нужен явный сигнал «приложение ушло в фон», чтобы отпустить микрофон (см. эффект ниже).
-  const appRuntimeActive = useAppRuntimeActive();
+  const runtimeActive = useRuntimeActive();
+  const runtimeActiveRef = useRef(runtimeActive);
+  runtimeActiveRef.current = runtimeActive;
   const { playRecordStart } = useRecordStartCue();
   const [status, setStatus] = useState<SpeakingPanelStatus>(previewStatus ?? 'idle');
   const statusRef = useRef<SpeakingPanelStatus>(previewStatus ?? 'idle');
@@ -312,6 +337,7 @@ export function SpeakingPanel({
   // Одиночная запись слова живёт в своём наборе слушателей / hold-рекордере,
   // чтобы не пересекаться с фразовой сессией.
   const wordListenersRef = useRef<Array<{ remove?: () => void }>>([]);
+  const wordWatchdogRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const wordSystemPressActiveRef = useRef(false);
   const wordHoldRecRef = useRef<HoldRecording | null>(null);
   const wordFinishingRef = useRef(false);
@@ -361,6 +387,8 @@ export function SpeakingPanel({
   const listenersRef = useRef<Array<{ remove?: () => void }>>([]);
   const audioEndSubRef = useRef<{ remove?: () => void } | null>(null);
   const mountedRef = useRef(true);
+  const captureGenerationRef = useRef(0);
+  const controlPassCancelRef = useRef<(() => void) | null>(null);
   const systemHoldPressActiveRef = useRef(false);
   // Watchdog: на Android нативный распознаватель может принять start(), но так и
   // не прислать НИ start, НИ result, НИ error (занятый/холодный сервис, нет
@@ -409,10 +437,11 @@ export function SpeakingPanel({
   // нейтрального движка против цели, или null когда прогон не дал пригодного
   // текста (ошибка/таймаут инфраструктуры — не вина говорящего, не штрафуем).
   const runControlPass = useCallback(
-    async (uri: string): Promise<number | null> => {
+    async (uri: string, captureGeneration: number): Promise<number | null> => {
       // Уровень B: сначала нейро-судья (whisper на устройстве) — он одинаков
       // на всех OEM и полностью офлайн. Недоступен/не успел → системный движок.
       const neural = await judgeWithNeuralEngine({ wavUri: uri, targetText });
+      if (!mountedRef.current || !runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return null;
       if (neural) return neural.controlScore;
       if (!speech) return null;
       // Тот же нативный модуль в роли НЕЙТРАЛЬНОГО судьи. Живой старт с его
@@ -427,17 +456,20 @@ export function SpeakingPanel({
           settled = true;
           clearTimeout(timer);
           subs.forEach((s) => s?.remove?.());
+          if (controlPassCancelRef.current === cancel) controlPassCancelRef.current = null;
           resolve(value);
         };
+        const cancel = () => {
+          if (settled) return;
+          try { neutralEngine.abort(); } catch { /* no-op */ }
+          settle(null);
+        };
+        controlPassCancelRef.current?.();
+        controlPassCancelRef.current = cancel;
         // Файловое распознавание короткой фразы обычно укладывается в ~1-2с;
         // 3.5с — потолок, дальше отдаём результат без поправки.
         const timer = setTimeout(() => {
-          try {
-            neutralEngine.abort();
-          } catch {
-            /* no-op */
-          }
-          settle(bestControl);
+          cancel();
         }, 3500);
         subs.push(
           neutralEngine.addListener('result', (event: any) => {
@@ -474,8 +506,9 @@ export function SpeakingPanel({
       text: string,
       segments: ReadonlyArray<{ segment?: string; confidence?: number }> | undefined,
       control: number | null,
+      captureGeneration: number,
     ) => {
-      if (!mountedRef.current) return;
+      if (!mountedRef.current || !runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return;
       const biased = scorePlanPronunciationTranscript({ targetText, transcript: text, segments });
       const { score: honestScore, flagged } = applyControlScore(biased.score, control);
       const passed = honestScore >= biased.threshold;
@@ -524,6 +557,12 @@ export function SpeakingPanel({
     wordListenersRef.current.forEach((sub) => sub?.remove?.());
     wordListenersRef.current = [];
   }, []);
+  const clearWordWatchdog = useCallback(() => {
+    if (wordWatchdogRef.current != null) {
+      clearTimeout(wordWatchdogRef.current);
+      wordWatchdogRef.current = null;
+    }
+  }, []);
 
   // Индексы слов, которые ПОСЛЕ попытки были проблемными (жёлтый/красный) — по
   // ним ведётся драка за 100% и по ним считается «фраза идеальна».
@@ -539,12 +578,15 @@ export function SpeakingPanel({
   // Слово стало чистым: помечаем в дрилл-стейте и в наложении цвета, при полном
   // закрытии всех проблемных слов — салют «фраза идеальна» (один раз).
   const markCleanedWord = useCallback(
-    (index: number) => {
+    (index: number, captureGeneration: number) => {
+      if (!mountedRef.current || !runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return;
       setDrill((prev) => {
+        if (captureGeneration !== captureGenerationRef.current) return prev;
         const next = markWordClean(prev, index);
         return next;
       });
       setDrillCleaned((prev) => {
+        if (!mountedRef.current || !runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return prev;
         if (prev.has(index)) return prev;
         const nextSet = new Set(prev);
         nextSet.add(index);
@@ -574,6 +616,7 @@ export function SpeakingPanel({
             clearAutoAdvance();
             autoAdvanceRef.current = setTimeout(() => {
               autoAdvanceRef.current = null;
+              if (!mountedRef.current || !runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return;
               advanceToWordRef.current?.(nextIndex);
             }, 900);
           }
@@ -621,8 +664,8 @@ export function SpeakingPanel({
   // Общий хвост оценки одного слова: из услышанного текста строим вердикт и
   // применяем к карте. index — позиция слова в токенах/отчёте.
   const applyWordResult = useCallback(
-    (index: number, heardTranscript: string) => {
-      if (!mountedRef.current) return;
+    (index: number, heardTranscript: string, captureGeneration: number) => {
+      if (!mountedRef.current || !runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return;
       const target = tokens[index] ?? '';
       const heard = heardTranscript.trim();
       if (!heard) {
@@ -637,7 +680,7 @@ export function SpeakingPanel({
       if (verdict.status === 'clean') {
         setWordPhase('clean');
         hapticSuccess();
-        markCleanedWord(index);
+        markCleanedWord(index, captureGeneration);
       } else {
         setWordPhase('fuzzy');
         hapticError();
@@ -657,6 +700,9 @@ export function SpeakingPanel({
         setWordPhase('no_speech');
         return;
       }
+      const captureGeneration = ++captureGenerationRef.current;
+      const isCurrentSession = () =>
+        mountedRef.current && runtimeActiveRef.current && captureGeneration === captureGenerationRef.current;
       const target = tokens[index] ?? '';
       cleanupWordListeners();
       let best = '';
@@ -676,30 +722,26 @@ export function SpeakingPanel({
       // Watchdog по образцу фразового пути (7с): раньше тренировка слова была
       // ЕДИНСТВЕННЫМ путём распознавания без таймера — зависший Android-движок
       // оставлял вечный спиннер «слушаю».
-      let wordWatchdog: ReturnType<typeof setTimeout> | null = null;
-      const clearWordWatchdog = () => {
-        if (wordWatchdog) {
-          clearTimeout(wordWatchdog);
-          wordWatchdog = null;
-        }
-      };
       const settle = () => {
+        if (!isCurrentSession()) return;
         if (settled) return;
         settled = true;
         clearWordWatchdog();
         cleanupWordListeners();
-        applyWordResult(index, best);
+        applyWordResult(index, best, captureGeneration);
       };
       // cue играем один раз по первому признаку жизни движка ('start' ИЛИ 'result'
       // — на редких OEM 'start' не эмитится), а не сразу после speech.start()
       // (прогрев ~100-300мс терял начало слова).
       let cuePlayed = false;
       const playCueOnce = () => {
+        if (!isCurrentSession()) return;
         if (cuePlayed) return;
         cuePlayed = true;
         playRecordStart();
       };
       const resultSub = speech.addListener('result', (event: any) => {
+        if (!isCurrentSession()) return;
         clearWordWatchdog(); // признак жизни движка — таймер больше не нужен
         if (wordSystemPressActiveRef.current) {
           setWordPhase((current) => (current === 'requesting' ? 'listening' : current));
@@ -711,6 +753,7 @@ export function SpeakingPanel({
         for (const alt of alts) consider(String(alt?.transcript ?? ''));
       });
       const startSub = speech.addListener('start', () => {
+        if (!isCurrentSession()) return;
         clearWordWatchdog();
         if (!wordSystemPressActiveRef.current) {
           try {
@@ -726,7 +769,7 @@ export function SpeakingPanel({
       const endSub = speech.addListener('end', () => settle());
       const errorSub = speech.addListener('error', () => settle());
       const noMatchSub = speech.addListener('nomatch', () => {
-        if (mountedRef.current) {
+        if (isCurrentSession()) {
           settled = true;
           clearWordWatchdog();
           cleanupWordListeners();
@@ -740,7 +783,7 @@ export function SpeakingPanel({
         Boolean,
       ) as Array<{ remove?: () => void }>;
       const permission = await requestSpeechPermissionForHold(speech);
-      if (!mountedRef.current) return;
+      if (!mountedRef.current || !runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return;
       if (permission === 'denied') {
         cleanupWordListeners();
         setWordPhase('no_speech');
@@ -763,18 +806,20 @@ export function SpeakingPanel({
       } catch {
         onDevice = false;
       }
-      if (!mountedRef.current) return;
+      if (!mountedRef.current || !runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return;
       try {
         await setManagedAudioMode(SPEAKING_RECORDING_AUDIO_MODE).catch(() => undefined);
-        if (!wordSystemPressActiveRef.current) {
+        if (!runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current || !wordSystemPressActiveRef.current) {
           cleanupWordListeners();
           setWordPhase('idle');
           restoreLoudPlaybackMode();
           return;
         }
-        wordWatchdog = setTimeout(() => {
-          wordWatchdog = null;
-          if (!mountedRef.current) return;
+        const watchdog = setTimeout(() => {
+          if (wordWatchdogRef.current !== watchdog) return;
+          wordWatchdogRef.current = null;
+          if (!mountedRef.current || !runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return;
+          if (!isCurrentSession()) return;
           try {
             speech.abort();
           } catch {
@@ -782,6 +827,7 @@ export function SpeakingPanel({
           }
           settle(); // best='' -> честное «не расслышал» вместо вечного спиннера
         }, 7000);
+        wordWatchdogRef.current = watchdog;
         speech.start(
           buildSpeakingStartOptions({
             lang: recognitionLocale,
@@ -800,15 +846,16 @@ export function SpeakingPanel({
         if (mountedRef.current) setWordPhase('no_speech');
       }
     },
-    [speech, tokens, recognitionLocale, cleanupWordListeners, applyWordResult, playRecordStart],
+    [speech, tokens, recognitionLocale, cleanupWordListeners, clearWordWatchdog, applyWordResult, playRecordStart],
   );
 
   const finishAttempt = useCallback(
     async (
       finalTranscript: string,
       segments?: ReadonlyArray<{ segment?: string; confidence?: number }>,
+      captureGeneration?: number,
     ) => {
-      if (!mountedRef.current) return;
+      if (captureGeneration == null || !mountedRef.current || !runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return;
       if (finishingRef.current) return;
       finishingRef.current = true;
       clearWatchdog();
@@ -831,9 +878,11 @@ export function SpeakingPanel({
       let control: number | null = null;
       if (!isPreview) {
         const uri = await waitForRecordingUri(700);
-        if (uri) control = await runControlPass(uri);
+        if (!runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return;
+        if (uri) control = await runControlPass(uri, captureGeneration);
       }
-      applyScoredResult(text, segments, control);
+      if (!runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return;
+      applyScoredResult(text, segments, control, captureGeneration);
     },
     [clearWatchdog, cleanupListeners, isPreview, waitForRecordingUri, runControlPass, applyScoredResult],
   );
@@ -841,7 +890,9 @@ export function SpeakingPanel({
   const stopListening = useCallback(() => {
     systemHoldPressActiveRef.current = false;
     clearWatchdog();
+    controlPassCancelRef.current?.();
     if (statusRef.current === 'requesting') {
+      captureGenerationRef.current += 1;
       cleanupListeners();
       try {
         speech?.abort();
@@ -861,6 +912,7 @@ export function SpeakingPanel({
   }, [speech, clearWatchdog, cleanupListeners]);
 
   const startListening = useCallback(async () => {
+    if (!runtimeActiveRef.current) return;
     if (isPreview) return; // mic is inert while previewing a fixed status
     if (statusRef.current === 'requesting' || statusRef.current === 'listening' || statusRef.current === 'scoring') return;
     if (!speech) {
@@ -871,6 +923,10 @@ export function SpeakingPanel({
       setStatus('unavailable');
       return;
     }
+    controlPassCancelRef.current?.();
+    const captureGeneration = ++captureGenerationRef.current;
+    const isCurrentSession = () =>
+      mountedRef.current && runtimeActiveRef.current && captureGeneration === captureGenerationRef.current;
     hapticTap();
     // «Сказать ещё раз» может прилететь, пока играет эталон или «Моя запись» —
     // глушим их, чтобы микрофон не поймал хвост воспроизведения.
@@ -888,6 +944,9 @@ export function SpeakingPanel({
     setScore(null);
     setWordReport(null);
     setHint(null);
+    deleteRecordingFile(recordingUriRef.current);
+    recordingUriRef.current = null;
+    setRecordingUri(null);
     equalizerRef.current?.setSample(0);
     prosodySamplesRef.current = [];
     // Запись прошлой попытки больше не нужна (реплей и контрольный прогон
@@ -899,7 +958,7 @@ export function SpeakingPanel({
     attemptStartRef.current = Date.now();
     setStatus('requesting');
     const permission = await requestSpeechPermissionForHold(speech);
-    if (!mountedRef.current) return;
+    if (!mountedRef.current || !runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return;
     if (permission === 'denied') {
       setStatus('denied');
       return;
@@ -949,11 +1008,13 @@ export function SpeakingPanel({
     // (прогрев ~100-300мс терял начало фразы).
     let cuePlayed = false;
     const playCueOnce = () => {
+      if (!isCurrentSession()) return;
       if (cuePlayed) return;
       cuePlayed = true;
       playRecordStart();
     };
     const resultSub = speech.addListener('result', (event: any) => {
+      if (!isCurrentSession()) return;
       // Первый результат = движок точно жив (на редких OEM 'start' не эмитится,
       // а сразу приходит result) — на всякий случай тоже снимаем watchdog.
       clearWatchdog();
@@ -988,6 +1049,7 @@ export function SpeakingPanel({
     // — снимаем watchdog. (На Android именно отсутствие этого события в течение
     // нескольких секунд и означало вечное «Готовимся слушать…».)
     const startSub = speech.addListener('start', () => {
+      if (!isCurrentSession()) return;
       clearWatchdog();
       if (!systemHoldPressActiveRef.current) {
         try {
@@ -1001,14 +1063,16 @@ export function SpeakingPanel({
       playCueOnce();
     });
     const endSub = speech.addListener('end', () => {
+      if (!isCurrentSession()) return;
       // Скорим по самому полному варианту, а не по последнему обрывку.
-      void finishAttempt(best || latest, bestSegments);
+      void finishAttempt(best || latest, bestSegments, captureGeneration);
     });
     const errorSub = speech.addListener('error', () => {
+      if (!isCurrentSession()) return;
       clearWatchdog();
       if (mountedRef.current) {
         const final = best || latest;
-        if (final) void finishAttempt(final, bestSegments);
+        if (final) void finishAttempt(final, bestSegments, captureGeneration);
         else {
           restoreLoudPlaybackMode();
           setStatus('no_speech');
@@ -1016,12 +1080,14 @@ export function SpeakingPanel({
       }
     });
     const noMatchSub = speech.addListener('nomatch', () => {
+      if (!isCurrentSession()) return;
       clearWatchdog();
       restoreLoudPlaybackMode();
       if (mountedRef.current) setStatus('no_speech');
     });
     // uri сохранённой записи попытки: питает «Мою запись» и контрольный прогон.
     audioEndSubRef.current = speech.addListener('audioend', (event: any) => {
+      if (!isCurrentSession()) return;
       const uri = typeof event?.uri === 'string' && event.uri.length > 0 ? event.uri : null;
       if (!uri) return;
       recordingUriRef.current = uri;
@@ -1030,7 +1096,7 @@ export function SpeakingPanel({
     // Live volume -> equalizer, pushed IMPERATIVELY (no setState → no re-render
     // of the modal on every sample). The equalizer derives loudness + tone tilt.
     const volumeSub = speech.addListener('volumechange', (event: any) => {
-      if (!mountedRef.current) return;
+      if (!isCurrentSession()) return;
       const value = Number(event?.value);
       equalizerRef.current?.setSample(value);
       // Collect the loudness contour for prosody (cap to keep memory bounded).
@@ -1057,7 +1123,7 @@ export function SpeakingPanel({
     } catch {
       onDevice = false;
     }
-    if (!mountedRef.current) return;
+    if (!mountedRef.current || !runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return;
 
     try {
       try {
@@ -1066,7 +1132,7 @@ export function SpeakingPanel({
         // Recognition can still work on runtimes that manage the native session
         // themselves; do not turn a mode-sync hiccup into a dead microphone.
       }
-      if (!mountedRef.current) return;
+      if (!mountedRef.current || !runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return;
       if (!systemHoldPressActiveRef.current) {
         cleanupListeners();
         restoreLoudPlaybackMode();
@@ -1078,9 +1144,10 @@ export function SpeakingPanel({
       // молчит). Прерываем и показываем «stalled» с кнопкой «Повторить», а не
       // оставляем юзера в вечном спиннере. Снимается любым событием жизни выше.
       clearWatchdog();
-      watchdogRef.current = setTimeout(() => {
+      const watchdog = setTimeout(() => {
+        if (watchdogRef.current !== watchdog) return;
         watchdogRef.current = null;
-        if (!mountedRef.current) return;
+        if (!mountedRef.current || !runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return;
         try {
           speech.abort();
         } catch {
@@ -1095,6 +1162,7 @@ export function SpeakingPanel({
         hapticError();
         restoreLoudPlaybackMode();
       }, 7000);
+      watchdogRef.current = watchdog;
       speech.start(
         buildSpeakingStartOptions({
           lang: recognitionLocale,
@@ -1102,7 +1170,7 @@ export function SpeakingPanel({
           interimResults: true,
           volumeMeter: true,
           onDevice,
-          holdToTalk: !pcmHoldModeRef.current,
+          holdToTalk: presentation === 'inline' || !pcmHoldModeRef.current,
           // Файл записи нужен ИМЕННО здесь: «Моя запись» + контрольный прогон.
           persistRecording: true,
         }),
@@ -1115,7 +1183,7 @@ export function SpeakingPanel({
       restoreLoudPlaybackMode();
       if (mountedRef.current) setStatus('unavailable');
     }
-  }, [isPreview, speech, recognitionLocale, targetText, cleanupListeners, cleanupAudioEndListener, finishAttempt, playRecordStart, clearWatchdog]);
+  }, [isPreview, speech, recognitionLocale, targetText, presentation, cleanupListeners, cleanupAudioEndListener, finishAttempt, playRecordStart, clearWatchdog]);
 
   // ===== Android: «зажми и говори» → запись → whisper (в обход системного
   // распознавателя). На iOS системный движок надёжен и whisper выключен, поэтому
@@ -1159,10 +1227,12 @@ export function SpeakingPanel({
   const holdModeView = isPreview ? previewHoldMode === true : holdMode;
 
   const startHold = useCallback(() => {
+    if (!runtimeActiveRef.current) return;
     if (!holdMode) return;
     if (holdRecRef.current) return; // уже держим
     holdFinishingRef.current = false;
     holdPressActiveRef.current = true;
+    const captureGeneration = ++captureGenerationRef.current;
     // Глушим эталон/реплей, чтобы микрофон не поймал хвост воспроизведения.
     try {
       replayPlayerRef.current?.pause();
@@ -1195,7 +1265,7 @@ export function SpeakingPanel({
     // Первого гранта ещё нет: показываем системный диалог вместо записи в тишину.
     void (async () => {
       const permission = await ensureHoldMicPermission();
-      if (!mountedRef.current) return;
+      if (!mountedRef.current || !runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return;
       if (permission === 'denied') {
         setStatus('denied'); // штатный blocked-UI с кнопкой «Открыть настройки»
         return;
@@ -1215,6 +1285,7 @@ export function SpeakingPanel({
   }, [holdMode, ensureHoldMicPermission, playRecordStart]);
 
   const endHold = useCallback(async () => {
+    const captureGeneration = captureGenerationRef.current;
     holdPressActiveRef.current = false;
     const rec = holdRecRef.current;
     if (!rec) {
@@ -1232,7 +1303,7 @@ export function SpeakingPanel({
     } catch {
       wavUri = null;
     }
-    if (!mountedRef.current) {
+    if (!mountedRef.current || !runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) {
       deleteHoldRecording(wavUri);
       return;
     }
@@ -1248,8 +1319,9 @@ export function SpeakingPanel({
       locale: recognitionLocale,
     });
     // Файл записи больше не нужен — реплей на hold-пути не используется.
-    deleteHoldRecording(wavUri);
-    if (!mountedRef.current) return;
+    if (!mountedRef.current || !runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return;
+    recordingUriRef.current = wavUri;
+    setRecordingUri(wavUri);
     const text = (verdict?.transcript ?? '').trim();
     if (!text) {
       setStatus('no_speech');
@@ -1258,8 +1330,25 @@ export function SpeakingPanel({
     }
     // whisper — уже НЕЙТРАЛЬНЫЙ движок (не знает цели), поэтому его же балл идёт
     // как контрольный: honesty-поправка не даёт biasing «подарить» зачёт.
-    applyScoredResult(text, undefined, verdict?.controlScore ?? null);
+    applyScoredResult(text, undefined, verdict?.controlScore ?? null, captureGeneration);
   }, [targetText, recognitionLocale, applyScoredResult]);
+
+  // The exercise owns the press target. Inline needs interim recognition for
+  // live word settlement, so it deliberately uses the system session even on
+  // Android devices where the modal can prefer post-release PCM/Whisper.
+  const previousInlineHoldRef = useRef(false);
+  useEffect(() => {
+    if (presentation !== 'inline') return;
+    const wasHolding = previousInlineHoldRef.current;
+    previousInlineHoldRef.current = holdActive;
+    if (holdActive && !wasHolding) {
+      systemHoldPressActiveRef.current = true;
+      void startListening();
+    }
+    if (!holdActive && wasHolding) {
+      stopListening();
+    }
+  }, [presentation, holdActive, startListening, stopListening]);
 
   // Hold-режим: «Сказать ещё раз» просто возвращает панель в исходное состояние —
   // юзер снова зажимает кнопку. (На системном пути ретрай перезапускает движок.)
@@ -1276,11 +1365,13 @@ export function SpeakingPanel({
   // системного распознавателя — тот же путь, что и для фразы =====
   const startWordHold = useCallback(
     (index: number) => {
+      if (!runtimeActiveRef.current) return;
       if (!pcmHoldMode) return;
       if (wordHoldRecRef.current) return;
       clearAutoAdvance(); // юзер начал повторять — висящий авто-переход отменяем
       wordFinishingRef.current = false;
       wordHoldPressActiveRef.current = true;
+      const captureGeneration = ++captureGenerationRef.current;
       try {
         replayPlayerRef.current?.pause();
       } catch {
@@ -1307,7 +1398,7 @@ export function SpeakingPanel({
       // Тот же гейт, что и у фразы: без гранта PCM-рекордер пишет тишину.
       void (async () => {
         const permission = await ensureHoldMicPermission();
-        if (!mountedRef.current) return;
+        if (!mountedRef.current || !runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return;
         if (permission === 'denied') {
           setWordPhase('no_speech'); // как системный word-путь при отказе
           setWordVerdict(null);
@@ -1330,6 +1421,7 @@ export function SpeakingPanel({
 
   const endWordHold = useCallback(
     async (index: number) => {
+      const captureGeneration = captureGenerationRef.current;
       wordHoldPressActiveRef.current = false;
       const rec = wordHoldRecRef.current;
       if (!rec) {
@@ -1347,7 +1439,7 @@ export function SpeakingPanel({
       } catch {
         wavUri = null;
       }
-      if (!mountedRef.current) {
+      if (!mountedRef.current || !runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) {
         deleteHoldRecording(wavUri);
         return;
       }
@@ -1364,8 +1456,8 @@ export function SpeakingPanel({
         locale: recognitionLocale,
       });
       deleteHoldRecording(wavUri);
-      if (!mountedRef.current) return;
-      applyWordResult(index, (verdict?.transcript ?? '').trim());
+      if (!mountedRef.current || !runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return;
+      applyWordResult(index, (verdict?.transcript ?? '').trim(), captureGeneration);
     },
     [tokens, recognitionLocale, applyWordResult],
   );
@@ -1386,6 +1478,7 @@ export function SpeakingPanel({
   const endWordSystemAttempt = useCallback(() => {
     wordSystemPressActiveRef.current = false;
     if (wordPhaseRef.current === 'requesting') {
+      captureGenerationRef.current += 1;
       cleanupWordListeners();
       try {
         speech?.abort();
@@ -1473,7 +1566,11 @@ export function SpeakingPanel({
     mountedRef.current = true;
     return () => {
       mountedRef.current = false;
+      captureGenerationRef.current += 1;
+      playbackTokenRef.current += 1;
       clearWatchdog();
+      controlPassCancelRef.current?.();
+      clearWordWatchdog();
       clearAutoAdvance();
       cleanupListeners();
       cleanupAudioEndListener();
@@ -1512,7 +1609,7 @@ export function SpeakingPanel({
       deleteRecordingFile(recordingUriRef.current);
       restoreLoudPlaybackMode();
     };
-  }, [speech, cleanupListeners, cleanupAudioEndListener, clearWatchdog, clearAutoAdvance]);
+  }, [speech, cleanupListeners, cleanupAudioEndListener, clearWatchdog, clearWordWatchdog, clearAutoAdvance]);
 
   // зачем: свернуть приложение — НЕ то же самое, что закрыть панель. Размонтирования не
   // происходит, cleanup выше не срабатывает, и распознавание продолжало слушать микрофон в
@@ -1521,10 +1618,24 @@ export function SpeakingPanel({
   // stopListening: тот при статусе 'listening' уводит в 'scoring', то есть запускает оценку
   // обрывка фразы уже в фоне. Возврат в приложение оставляем ручным — пользователь сам
   // нажмёт «говорить», молча возобновлять запись за него нельзя.
+  // Speech capture lifecycle invariant: blur/background cancels every capture path,
+  // invalidates async starts, stops capture playback, and never auto-resumes.
   useEffect(() => {
     if (isPreview) return;
-    if (appRuntimeActive) return;
+    if (runtimeActive) return;
+    const phraseCaptureWasActive = statusRef.current === 'requesting' || statusRef.current === 'listening' || statusRef.current === 'scoring';
+    const wordCaptureWasActive = wordPhaseRef.current === 'requesting' || wordPhaseRef.current === 'listening' || wordPhaseRef.current === 'scoring';
+    captureGenerationRef.current += 1;
+    playbackTokenRef.current += 1;
+    systemHoldPressActiveRef.current = false;
+    holdPressActiveRef.current = false;
+    wordSystemPressActiveRef.current = false;
+    wordHoldPressActiveRef.current = false;
+    holdFinishingRef.current = false;
+    wordFinishingRef.current = false;
     clearWatchdog();
+    controlPassCancelRef.current?.();
+    clearWordWatchdog();
     clearAutoAdvance();
     cleanupListeners();
     // зачем: 'audioend' живёт в отдельном ref и снимался только при размонтировании.
@@ -1563,8 +1674,10 @@ export function SpeakingPanel({
     }
     // Сессия захвата больше не нужна — возвращаем громкое воспроизведение.
     restoreLoudPlaybackMode();
-    if (mountedRef.current) setStatus('idle');
-  }, [appRuntimeActive, isPreview, speech, clearWatchdog, clearAutoAdvance, cleanupListeners, cleanupAudioEndListener, cleanupWordListeners]);
+    equalizerRef.current?.setSample(0);
+    if (mountedRef.current && phraseCaptureWasActive) setStatus('idle');
+    if (mountedRef.current && wordCaptureWasActive) setWordPhase('idle');
+  }, [runtimeActive, isPreview, speech, clearWatchdog, clearWordWatchdog, clearAutoAdvance, cleanupListeners, cleanupAudioEndListener, cleanupWordListeners]);
 
   // Модель whisper не смогла подготовиться (нет сети при первом запуске) —
   // откатываемся на системный путь, чтобы юзер не застрял на «идёт подготовка».
@@ -1662,9 +1775,17 @@ export function SpeakingPanel({
     void setManagedAudioMode(LOUD_PLAYBACK_AUDIO_MODE)
       .catch(() => undefined)
       .finally(() => {
-        if (playbackTokenRef.current !== token) return;
+        if (!mountedRef.current || !runtimeActiveRef.current || playbackTokenRef.current !== token) return;
         try {
           const player = createAudioPlayer(recordingUri);
+          if (!mountedRef.current || !runtimeActiveRef.current || playbackTokenRef.current !== token) {
+            try {
+              player.remove();
+            } catch {
+              /* no-op */
+            }
+            return;
+          }
           replayPlayerRef.current = player;
           try {
             player.volume = 1;
@@ -1859,6 +1980,134 @@ export function SpeakingPanel({
       ? tokens[openWordIndex]
       : null;
 
+  const referenceLabel = L(lang, {
+    ru: 'Эталон', uk: 'Зразок', es: 'Modelo', 'pt-BR': 'Modelo',
+    vi: 'Bản mẫu', id: 'Contoh', tr: 'Örnek', pl: 'Wzór',
+  });
+  const recordingLabel = L(lang, {
+    ru: 'Моя запись', uk: 'Мій запис', es: 'Mi grabación', 'pt-BR': 'Minha gravação',
+    vi: 'Bản ghi của tôi', id: 'Rekamanku', tr: 'Kaydım', pl: 'Moje nagranie',
+  });
+
+  if (presentation === 'inline') {
+    const isLive = status === 'requesting' || status === 'listening';
+    const resultScore = score ?? 0;
+    const resultBand = speakingBand(resultScore, passThreshold);
+    const resultColor = inlineSpeakingResultColor(resultBand, theme);
+    const earnedStars = inlineStarsForScore(resultScore);
+    const canOpenSettings = status === 'denied';
+    return (
+      <View
+        testID="speaking-inline-card"
+        pointerEvents={showResult || canOpenSettings ? 'auto' : 'none'}
+        style={[styles.inlineCard, { backgroundColor: theme.card, borderColor: theme.border }]}
+        accessibilityLiveRegion="polite"
+      >
+        {showResult ? (
+          <Text style={[styles.inlineResultPhrase, { color: resultColor }]}>
+            {targetText}
+          </Text>
+        ) : (
+          <View style={styles.inlineTokens}>
+            {tokens.map((token, index) => {
+              const settled = matched[index] === true;
+              const text = settled ? token : token.replace(/[\p{L}\p{N}]/gu, '_');
+              return (
+                <Text
+                  key={`inline-speaking-${index}`}
+                  style={[
+                    styles.inlineToken,
+                    {
+                      color: settled ? theme.correct : theme.textMuted,
+                      letterSpacing: settled ? 0 : 2,
+                    },
+                  ]}
+                >
+                  {text}
+                </Text>
+              );
+            })}
+          </View>
+        )}
+
+        {isLive && (
+          <VoiceEqualizer
+            ref={equalizerRef}
+            active={status === 'listening'}
+            color={theme.accent}
+            idleColor={theme.textMuted}
+          />
+        )}
+
+        {status === 'scoring' && <ActivityIndicator color={theme.accent} />}
+
+        {showResult && (
+          <View
+            style={styles.inlineStars}
+            accessibilityRole="image"
+            accessibilityLabel={`${earnedStars} / ${INLINE_STAR_COUNT}`}
+          >
+            {Array.from({ length: INLINE_STAR_COUNT }, (_, index) => (
+              <Ionicons
+                key={`inline-star-${index}`}
+                name={index < earnedStars ? 'star' : 'star-outline'}
+                size={20}
+                color={index < earnedStars ? resultColor : theme.textMuted}
+              />
+            ))}
+          </View>
+        )}
+
+        <Text style={[styles.inlineStatus, { color: showResult ? resultColor : theme.textSecond }]}>
+          {showResult ? speakingBandLabel(resultBand, lang) : statusLine}
+        </Text>
+
+        {showResult && (
+          <View style={styles.inlineActions}>
+            <Pressable
+              testID="speaking-inline-reference"
+              onPress={playReference}
+              accessibilityRole="button"
+              accessibilityLabel={referenceLabel}
+              style={[styles.inlineAction, { backgroundColor: theme.bg, borderColor: theme.border }]}
+            >
+              <Ionicons name="volume-high" size={17} color={theme.accent} />
+              <Text style={[styles.inlineActionText, { color: theme.textPrimary }]}>{referenceLabel}</Text>
+            </Pressable>
+            <Pressable
+              testID="speaking-inline-recording"
+              onPress={playMyRecording}
+              disabled={recordingUri == null}
+              accessibilityRole="button"
+              accessibilityLabel={recordingLabel}
+              accessibilityState={{ disabled: recordingUri == null }}
+              style={[
+                styles.inlineAction,
+                { backgroundColor: theme.bg, borderColor: theme.border, opacity: recordingUri == null ? 0.45 : 1 },
+              ]}
+            >
+              <Ionicons name="play" size={17} color={theme.accent} />
+              <Text style={[styles.inlineActionText, { color: theme.textPrimary }]}>{recordingLabel}</Text>
+            </Pressable>
+          </View>
+        )}
+
+        {canOpenSettings && (
+          <Pressable
+            onPress={openAppSettings}
+            accessibilityRole="button"
+            accessibilityLabel={L(lang, { ru: 'Открыть настройки', uk: 'Відкрити налаштування', es: 'Abrir ajustes', 'pt-BR': 'Abrir ajustes', vi: 'Mở cài đặt', id: 'Buka pengaturan', tr: 'Ayarları aç', pl: 'Otwórz ustawienia' })}
+            style={[styles.inlineSettingsAction, { backgroundColor: theme.accent }]}
+          >
+            <Text style={{ color: theme.onAccent, fontWeight: '800' }}>
+              {L(lang, { ru: 'Открыть настройки', uk: 'Відкрити налаштування', es: 'Abrir ajustes', 'pt-BR': 'Abrir ajustes', vi: 'Mở cài đặt', id: 'Buka pengaturan', tr: 'Ayarları aç', pl: 'Otwórz ustawienia' })}
+            </Text>
+          </Pressable>
+        )}
+        </View>
+    );
+  }
+
   return (
     <Modal transparent animationType="fade" onRequestClose={handleClose} visible>
       <Pressable style={styles.backdrop} onPress={handleClose}>
@@ -2049,29 +2298,6 @@ export function SpeakingPanel({
                   emptyColor={theme.border}
                   animate={!isPreview}
                 />
-                <Text style={[styles.ringTarget, { color: theme.textMuted }]}>
-                  {effectivePassed
-                    ? L(lang, {
-                        ru: 'идём дальше',
-                        uk: 'йдемо далі',
-                        es: 'seguimos',
-                        'pt-BR': 'vamos em frente',
-                        vi: 'đi tiếp',
-                        id: 'lanjut',
-                        tr: 'devam',
-                        pl: 'idziemy dalej',
-                      })
-                    : L(lang, {
-                        ru: 'ещё разок — соберём звёзды',
-                        uk: 'ще разок — зберемо зірки',
-                        es: 'otra vez: a por las estrellas',
-                        'pt-BR': 'mais uma — vamos às estrelas',
-                        vi: 'thử lại — gom sao nào',
-                        id: 'sekali lagi — kumpulkan bintang',
-                        tr: 'bir daha — yıldızları topla',
-                        pl: 'jeszcze raz — zbierzmy gwiazdki',
-                      })}
-                </Text>
               </View>
             ) : (
               <VoiceEqualizer
@@ -2276,6 +2502,47 @@ export function SpeakingPanel({
 }
 
 const styles = StyleSheet.create({
+  inlineCard: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 18,
+    borderWidth: 1,
+    paddingHorizontal: 14,
+    paddingVertical: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 6,
+  },
+  inlineTokens: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    columnGap: 7,
+    rowGap: 4,
+  },
+  inlineToken: { fontSize: 18, lineHeight: 24, fontWeight: '800' },
+  inlineResultPhrase: { fontSize: 19, lineHeight: 24, fontWeight: '900', textAlign: 'center' },
+  inlineStars: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 4 },
+  inlineStatus: { minHeight: 18, fontSize: 12, lineHeight: 16, fontWeight: '700', textAlign: 'center' },
+  inlineActions: { flexDirection: 'row', justifyContent: 'center', gap: 8 },
+  inlineAction: {
+    minHeight: 44,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 6,
+    borderWidth: 1,
+    borderRadius: 14,
+    paddingHorizontal: 12,
+  },
+  inlineActionText: { fontSize: 12, fontWeight: '800' },
+  inlineSettingsAction: {
+    minHeight: 44,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 14,
+    paddingHorizontal: 16,
+  },
   backdrop: {
     flex: 1,
     backgroundColor: 'rgba(0,0,0,0.55)',

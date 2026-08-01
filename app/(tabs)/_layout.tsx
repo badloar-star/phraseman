@@ -7,6 +7,7 @@ import Reanimated, {
   useAnimatedStyle,
   interpolate,
   withSpring,
+  withTiming,
   Extrapolation,
 } from 'react-native-reanimated';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
@@ -79,14 +80,14 @@ function loadLessonsScreen(): TabScreenComponent {
   return deferredLessonsScreen;
 }
 
-function loadTournamentsScreen(): TabScreenComponent {
-  deferredTournamentsScreen ??= (require('./tournaments') as DeferredTabModule).default;
-  return deferredTournamentsScreen;
-}
-
 function loadFriendsScreen(): TabScreenComponent {
   deferredFriendsScreen ??= (require('./friends') as DeferredTabModule).default;
   return deferredFriendsScreen;
+}
+
+function loadTournamentsScreen(): TabScreenComponent {
+  deferredTournamentsScreen ??= (require('./tournaments') as DeferredTabModule).default;
+  return deferredTournamentsScreen;
 }
 
 function loadSettingsScreen(): TabScreenComponent {
@@ -132,17 +133,18 @@ function DeferredTabScreen({
 /**
  * Панель таба с заморозкой невидимого содержимого.
  *
- * Freeze включается только ПОСЛЕ первого коммита (readyToFreeze): свежепремаунченный
- * таб успевает полностью смонтироваться и запустить свои начальные загрузки, и лишь
- * затем засыпает. Пока таб заморожен, его state продолжает обновляться (подписки/таймеры
- * живут по своим гардам), но рендеры не выполняются; при разморозке — один рендер
- * с актуальным состоянием. Таймеры/подписки Freeze НЕ останавливает — их по-прежнему
- * гейтят useIsScreenFocused/AppState-гарды внутри экранов.
+ * Freeze включается только ПОСЛЕ незамороженного коммита. Это нужно не только при
+ * первом премаунте: при прямом прыжке через несколько вкладок runtimeOwnerId и
+ * freezeWanted меняются одним родительским коммитом. react-freeze приостановил бы
+ * исходящее поддерево раньше, чем оно увидит потерю ownership и выполнит cleanup.
+ * Поэтому false -> true сначала коммитит children незамороженными, а пассивный
+ * effect вооружает Freeze следующим коммитом. false размораживает синхронно.
  */
 function TabPane({ freezeWanted, children }: { freezeWanted: boolean; children: React.ReactNode }) {
-  const [readyToFreeze, setReadyToFreeze] = useState(false);
-  useEffect(() => { setReadyToFreeze(true); }, []);
-  return <Freeze freeze={ENABLE_TAB_FREEZE && freezeWanted && readyToFreeze}>{children}</Freeze>;
+  const [freezeCommitted, setFreezeCommitted] = useState(false);
+  useEffect(() => { setFreezeCommitted(freezeWanted); }, [freezeWanted]);
+  const freezeActive = ENABLE_TAB_FREEZE && freezeWanted && freezeCommitted;
+  return <Freeze freeze={freezeActive}>{children}</Freeze>;
 }
 
 function todayClockScopeKey(): string {
@@ -199,10 +201,12 @@ function LessonsPaneBoundary({
   freezeWanted,
   shouldLoad,
   isActive,
+  topInset,
 }: {
   freezeWanted: boolean;
   shouldLoad: boolean;
   isActive: boolean;
+  topInset: number;
 }) {
   const { theme: t } = useTheme();
   const renderToken = useRef(captureAccountGeneration()).current;
@@ -262,7 +266,7 @@ function LessonsPaneBoundary({
     || activatedEpochRef.current < privacy.epoch;
 
   return (
-    <View style={[s.lessonsPaneBoundary, { backgroundColor: t.bgPrimary }]} collapsable={false}>
+    <View style={[s.lessonsPaneBoundary, { backgroundColor: t.bgPrimary, marginTop: -topInset }]} collapsable={false}>
       <View
         style={s.lessonsPaneContent}
         accessibilityElementsHidden={coverLessons}
@@ -298,7 +302,7 @@ type TabDef = {
   active: IconName;
 };
 
-/** Суффиксы путей четырёх основных табов. Таб 1 — «Журнал» (статистика);
+/** Суффиксы путей пяти основных табов. Таб 1 — «Журнал» (статистика);
  *  legacy-суффикс `/lessons` оставлен в маппинге, чтобы старые диплинки не терялись. */
 const TAB_PATH_SUFFIXES = ['/home', '/journal', '/lessons', '/tournaments', '/friends', '/settings'] as const;
 
@@ -306,8 +310,6 @@ const PATHNAME_TO_IDX: Record<(typeof TAB_PATH_SUFFIXES)[number], number> = {
   '/home': 0,
   '/journal': 1,
   '/lessons': 1,
-  // зачем: кубок стоит ПО ЦЕНТРУ (макет 01) — это акцентная вкладка режима,
-  // поэтому друзья и настройки сдвинулись на 3 и 4.
   '/tournaments': 2,
   '/friends': 3,
   '/settings': 4,
@@ -329,10 +331,7 @@ function addVisitedTab(prev: Set<number>, idx: number): Set<number> {
 
 /** Доп. зазор между плавающей капсулой и зоной системных жестов снизу. */
 const FLOATING_PILL_BOTTOM_GAP = 6;
-const ENABLE_TAB_HIGHLIGHT_TRAVEL = true;
 const ENABLE_TAB_PRESS_LIFT = true;
-const TAB_ACTIVE_PILL_WIDTH = 48;
-const TAB_ACTIVE_PILL_HEIGHT = 36;
 /** Фоновый премаунт соседних табов в idle: первое открытие любого таба — мгновенное,
  *  без «плейсхолдер → полный маунт на глазах». Дёшев в связке с ENABLE_TAB_FREEZE:
  *  премаунченный таб делает первый коммит (модуль + первый рендер + старт загрузок)
@@ -349,7 +348,8 @@ const BACKGROUND_TAB_PREMOUNT_FALLBACK_MS = 1600;
 const BACKGROUND_TAB_PREMOUNT_FIRST_DELAY_MS = 160;
 const BACKGROUND_TAB_PREMOUNT_STEP_MS = 180;
 const BACKGROUND_TAB_PREMOUNT_IDLE_TIMEOUT_MS = 1200;
-const BACKGROUND_TAB_PREMOUNT_ORDER = [1, 3, 2] as const;
+/** Фоново прогреваем все отложенные вкладки в их логическом порядке. */
+const BACKGROUND_TAB_PREMOUNT_ORDER = [1, 2, 3, 4] as const;
 // Guarded by tests/tabbar_scroll_chrome_contract.test.ts.
 //
 // зачем: владелец попросил таббар РОВНО как у Bevel — прогресс схлопывания привязан
@@ -385,13 +385,6 @@ const TAB_SCROLL_SETTLE_THRESHOLD = 0.5;
 /** Глубина ВЕРХНЕГО overscroll, начиная с которой подъём страницы на «Друзьях»
  *  считается осознанным. Отскок резинки сам по себе нуля не переходит, так что
  *  14 px — просто запас против дребезга на самой границе. */
-const TAB_SCROLL_LIFT_TO_EXPAND = 14;
-/** зачем: владелец попросил особую логику РОВНО для раздела «Друзья» — там бар,
- *  однажды свернувшись, не разворачивается сам (в т.ч. от отскока резинки), а ждёт,
- *  пока страницу поднимут вверх: подъём работает как кнопка «верни таббар».
- *  Привязка по индексу таба, а не по вычисляемому признаку «нет скролла»: автодетект
- *  по офсету угадывал неверно и залипал на обычных лентах. Индекс = TABS[3]. */
-const TAB_MANUAL_LIFT_TAB_IDX = 3;
 /** Пауза без единого кадра скролла, после которой жест считается завершённым. */
 const TAB_SCROLL_SETTLE_IDLE_MS = 90;
 /** Пружина довода. dampingRatio=1 — критическое затухание: доезжает плавно и
@@ -405,7 +398,6 @@ const TAB_ICONS_FADE_OUT_END = 0.34;
 const TAB_UNDERLAY_DIM_ALPHA = 0.95;
 const TAB_UNDERLAY_DIM_BG = `rgba(0,0,0,${TAB_UNDERLAY_DIM_ALPHA})`;
 const TAB_DARK_ICON_MUTED_ALPHA = 0.74;
-const TAB_DARK_ACTIVE_BG_ALPHA = 0.18;
 
 /** Имена сегментов expo-router под `app/(tabs)/*.tsx` (без ведущих скобочных групп). */
 const SEGMENT_TO_TAB_IDX: Record<string, number> = {
@@ -467,7 +459,6 @@ const TABS: TabDef[] = [
   // зачем: вкладка ведёт на список уроков (`journal.tsx` ре-экспортирует `lessons`),
   // а иконка осталась от прежнего «Журнала» — столбики статистики вводили в заблуждение.
   { key: 'index',       icon: 'book-outline',        active: 'book' },
-  // Кубок — акцентная вкладка режима «Турниры», по центру (макет 01).
   { key: 'tournaments', icon: 'trophy-outline',      active: 'trophy' },
   { key: 'friends',     icon: 'people-outline',      active: 'people' },
   { key: 'settings',    icon: 'settings-outline',    active: 'settings' },
@@ -490,11 +481,9 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
    *  без runtime blur, с цветными иконками от текущей темы. Обводок нет —
    *  разделение тоном и тенью (правило владельца). */
   const tabIconMuted = withAlpha(t.textSecond, TAB_DARK_ICON_MUTED_ALPHA);
-  const tabActiveBg = withAlpha(t.accent, TAB_DARK_ACTIVE_BG_ALPHA);
   const tabPillBottom = Math.max(PB, ds.spacing.sm) + FLOATING_PILL_BOTTOM_GAP;
   const tabOverlayHeight = tabBarHeight + tabPillBottom + ds.spacing.md;
   const [tabPillWidth, setTabPillWidth] = useState(0);
-  const tabHighlightAnim = useRef(new Animated.Value(activeIdx)).current;
   const tabPressAnim = useRef(new Animated.Value(0)).current;
   /** 0 = развёрнутая капсула, 1 = круглый орб. Reanimated shared value: пишется и
    *  читается на UI-потоке, поэтому анимация ширины не трогает JS-поток. */
@@ -522,19 +511,6 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
   const firstContentReadyEmittedRef = useRef(false);
   // Press feedback must not drive selection; otherwise release can restart the highlight spring.
   const visualTabIdx = visualIdx;
-
-  useEffect(() => {
-    if (!ENABLE_TAB_HIGHLIGHT_TRAVEL) {
-      tabHighlightAnim.setValue(visualTabIdx);
-      return;
-    }
-    Animated.spring(tabHighlightAnim, {
-      toValue: visualTabIdx,
-      speed: 18,
-      bounciness: 4,
-      useNativeDriver: true,
-    }).start();
-  }, [tabHighlightAnim, visualTabIdx]);
 
   const endTabPress = useCallback(() => {
     if (!ENABLE_TAB_PRESS_LIFT) {
@@ -572,16 +548,6 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
     outputRange: [1, 0.992],
   });
 
-  const tabActivePillPressScale = tabPressAnim.interpolate({
-    inputRange: [0, 1],
-    outputRange: [1, 1.1],
-  });
-
-  const tabActivePillPressOpacity = tabPressAnim.interpolate({
-    inputRange: [0, 1],
-    outputRange: [1, 0.92],
-  });
-
   /** Довод до одного из двух устойчивых состояний (капсула ↔ орб). Используется,
    *  когда прогресс перестал управляться пальцем: отпускание, тап по орбу, свайп,
    *  программная смена таба. */
@@ -615,16 +581,10 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
    * не нужен — он бы конкурировал с нативным скроллом (см. историю BouncyScrollView).
    */
   useEffect(() => {
-    // Отдельный канал, а не scrollY маски: маска дросселирует свои обновления порогом,
-    // а таббару нужен каждый кадр — включая отрицательный bounce на экранах без скролла.
     const scrollY = topFadeScroll?.tabBarScrollY;
     if (!scrollY) return undefined;
 
     let settleTimer: ReturnType<typeof setTimeout> | null = null;
-
-    /** Незавершённый жест не должен оставить бар «полусжатым». Таймер перевзводится
-     *  на каждом кадре скролла, поэтому срабатывает ровно один раз — когда движение
-     *  реально замерло (палец отпущен и инерция погасла). */
     const armSettle = (progress: number, fromBounce: boolean) => {
       if (settleTimer) clearTimeout(settleTimer);
       settleTimer = setTimeout(() => {
@@ -632,8 +592,6 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
         if (!tabScrollDrivenRef.current) return;
         tabScrollDrivenRef.current = false;
         const collapsed = progress >= TAB_SCROLL_SETTLE_THRESHOLD;
-        // Признак ставим только если реально свернулись — иначе он «залип» бы
-        // на развёрнутом баре и заблокировал будущий обычный разворот.
         tabScrollCollapsedFromBounceRef.current = collapsed && fromBounce;
         animateTabChrome(collapsed);
       }, TAB_SCROLL_SETTLE_IDLE_MS);
@@ -643,76 +601,35 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
       const y = value;
       const previousY = tabScrollLastYRef.current;
       tabScrollLastYRef.current = y;
-
-      // зачем: владелец попросил особую логику РОВНО для «Друзей» — там свёрнутый
-      // бар не разворачивается сам, а подъём страницы вверх работает как кнопка
-      // «верни таббар». Во всех остальных разделах поведение прежнее и не трогается.
-      const manualLiftTab = activeTabIdxRef.current === TAB_MANUAL_LIFT_TAB_IDX;
-
-      if (manualLiftTab && tabScrollCollapsedFromBounceRef.current) {
-        // Отскок резинки идёт К НУЛЮ и на нём замирает — он физически не уводит офсет
-        // НИЖЕ нуля. Поэтому уход в верхний overscroll — надёжный признак живого
-        // подъёма страницы (скорость таким признаком не является: её даёт и отскок).
-        if (y > -TAB_SCROLL_LIFT_TO_EXPAND) {
-          tabScrollAnchorYRef.current = Math.min(tabScrollAnchorYRef.current, y);
-          return;
-        }
-        tabScrollCollapsedFromBounceRef.current = false;
-        tabScrollAnchorYRef.current = y;
-        animateTabChrome(false);
-        return;
-      }
-
-      // Страница наверху — зона, где бар разворачивается.
       if (y <= TAB_SCROLL_TOP_ZONE_Y) {
-        // Якорь встаёт РОВНО на текущий офсет, а не min(): иначе он навсегда застревал
-        // бы на минимуме, и следующая прокрутка вниз давала бы гигантский путь —
-        // бар схлопывался бы рывком вместо плавного хода за пальцем.
         tabScrollAnchorYRef.current = y;
         if (tabScrollCollapsedRef.current || tabScrollDrivenRef.current) {
           if (settleTimer) { clearTimeout(settleTimer); settleTimer = null; }
           tabScrollDrivenRef.current = false;
           animateTabChrome(false);
         }
-        // На «Друзьях» контент короче экрана: офсет ВСЕГДА в этой зоне, и выходить
-        // здесь нельзя — иначе схлопывание там не сработало бы вообще. На остальных
-        // экранах верхняя зона означает «мы наверху», считать оттуда нечего.
-        if (!manualLiftTab) return;
+        return;
       }
-
-      // Движение вверх посреди ленты: якорь встаёт на самую верхнюю достигнутую точку,
-      // чтобы следующая тяга вниз считалась от неё, а не от начала экрана.
       if (y < previousY) {
         tabScrollAnchorYRef.current = Math.min(tabScrollAnchorYRef.current, y);
         return;
       }
-
       if (tabScrollCollapsedRef.current) return;
 
       const dragged = y - tabScrollAnchorYRef.current;
       if (dragged <= 0) return;
-
       const progress = Math.min(1, dragged / TAB_SCROLL_COLLAPSE_DISTANCE);
       tabScrollDrivenRef.current = true;
-      // Пока ведёт палец — пишем напрямую, без пружины: прогресс обязан совпадать
-      // с жестом кадр в кадр. Пружина включается только на доводе после отпускания.
       tabScrollProgress.value = progress;
-
-      // Признак «ждём ручного подъёма» живёт ТОЛЬКО на «Друзьях».
-      const collapsedFromBounce = manualLiftTab;
-
-      // Дожали до конца ещё внутри жеста — фиксируем свёрнутое состояние сразу,
-      // чтобы орб стал кликабельным не дожидаясь отпускания пальца.
       if (progress >= 1) {
         if (settleTimer) { clearTimeout(settleTimer); settleTimer = null; }
         tabScrollDrivenRef.current = false;
         tabScrollCollapsedRef.current = true;
-        tabScrollCollapsedFromBounceRef.current = collapsedFromBounce;
+        tabScrollCollapsedFromBounceRef.current = false;
         setTabChromeCollapsed(true);
         return;
       }
-
-      armSettle(progress, collapsedFromBounce);
+      armSettle(progress, false);
     });
 
     return () => {
@@ -810,17 +727,6 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
     ),
   }));
 
-  /* Подсветка активной вкладки не нужна в свёрнутом состоянии: круг сам и есть
-   * подсветка. Гаснет вместе с неактивными иконками. */
-  const tabActivePillFadeStyle = useAnimatedStyle(() => ({
-    opacity: interpolate(
-      tabScrollProgress.value,
-      [0, TAB_ICONS_FADE_OUT_END],
-      [1, 0],
-      Extrapolation.CLAMP,
-    ),
-  }));
-
   const orbPressScale = orbPressAnim.interpolate({
     inputRange: [0, 1],
     outputRange: [1, 0.94],
@@ -905,30 +811,10 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
                   tabPillWidth > 0 ? { width: tabPillWidth } : null,
                 ]}
               >
-              {ENABLE_TAB_HIGHLIGHT_TRAVEL && tabPillWidth > 0 && (
-                <Reanimated.View pointerEvents="none" style={tabActivePillFadeStyle}>
-                  <Animated.View
-                    pointerEvents="none"
-                    style={[
-                      s.tabActivePill,
-                      {
-                        top: (tabBarHeight - TAB_ACTIVE_PILL_HEIGHT) / 2,
-                        left: (tabPillWidth / TABS.length - TAB_ACTIVE_PILL_WIDTH) / 2,
-                        backgroundColor: tabActiveBg,
-                        opacity: tabActivePillPressOpacity,
-                        transform: [{
-                          translateX: tabHighlightAnim.interpolate({
-                            inputRange: TABS.map((_, i) => i),
-                            outputRange: TABS.map((_, i) => i * (tabPillWidth / TABS.length)),
-                            extrapolate: 'clamp',
-                          }),
-                        }, { scale: tabActivePillPressScale }],
-                      },
-                    ]}
-                  />
-                </Reanimated.View>
-              )}
-
+              {/* зачем: владелец убрал подложку-«пилюлю» под активной иконкой —
+                  на тёмном фоне её верхний край читался как полукруг под иконкой.
+                  Активная вкладка теперь обозначается ТОЛЬКО самой иконкой: залитый
+                  вариант (tab.active) + акцентный цвет вместо приглушённого. */}
               {TABS.map((tab, i) => {
                 const visuallyFocused = visualTabIdx === i;
                 const color = visuallyFocused ? t.accent : tabIconMuted;
@@ -949,15 +835,6 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
                     onPress={() => { goToTabExpanded(i); }}
                     activeOpacity={1}
                   >
-                    {/* Подсветка активного таба — мягкая «пилюля» под иконкой (как в Instagram). */}
-                    {!ENABLE_TAB_HIGHLIGHT_TRAVEL && visuallyFocused && (
-                      <View
-                        style={[
-                          s.tabActivePill,
-                          { backgroundColor: tabActiveBg },
-                        ]}
-                      />
-                    )}
                     {/* Иконка НИЧЕМ не масштабируется от прогресса схлопывания —
                         только press-федбек. Неактивные просто гаснут. */}
                     <Reanimated.View style={visuallyFocused ? undefined : tabInactiveIconStyle}>
@@ -1038,6 +915,7 @@ function scheduleIdleTask(run: () => void, timeoutMs: number): CancelableTask {
 
 export default function TabLayout() {
   const { width: tabPaneWidth } = useScreen();
+  const insets = useStableSafeAreaInsets();
   const { theme: t } = useTheme();
   const pathname = usePathname();
   const segments = useSegments();
@@ -1280,16 +1158,14 @@ export default function TabLayout() {
           freezeWanted={freezeWanted(1)}
           shouldLoad={shouldLoad(1)}
           isActive={activeIdx === 1 && physicalPageIdx === logicalTabToPhysicalPage(1)}
+          topInset={insets.top}
         />
       ) : placeholder('ph-index'),
-      // зачем: кубок стоит по центру (макет 01) — порядок здесь ОБЯЗАН
-      // совпадать с TABS и LOGICAL_TAB_IDS, иначе кнопка таббара открывает
-      // соседний экран, а последний вылетает.
       show(2) ? <TabPane key="tournaments" freezeWanted={freezeWanted(2)}><DeferredTabScreen shouldLoad={shouldLoad(2)} loadScreen={loadTournamentsScreen} /></TabPane> : placeholder('ph-tournaments'),
       show(3) ? <TabPane key="friends" freezeWanted={freezeWanted(3)}><DeferredTabScreen shouldLoad={shouldLoad(3)} loadScreen={loadFriendsScreen} /></TabPane> : placeholder('ph-friends'),
       show(4) ? <TabPane key="settings" freezeWanted={freezeWanted(4)}><DeferredTabScreen shouldLoad={shouldLoad(4)} loadScreen={loadSettingsScreen} /></TabPane> : placeholder('ph-settings'),
     ];
-  }, [activeIdx, mountedTabs, physicalPageIdx, t.bgPrimary, tabPaneWidth, visitedTabs]);
+  }, [activeIdx, insets.top, mountedTabs, physicalPageIdx, t.bgPrimary, tabPaneWidth, visitedTabs]);
 
   const runtimeOwnerId = physicalPageToRuntimeOwner(physicalPageIdx);
 
@@ -1372,14 +1248,6 @@ const s = StyleSheet.create({
   /** Ширина ячейки задаётся явно (tabPillWidth / TABS.length), а не flex:1 — иначе
    *  при сужении капсулы ячейки пересчитывались бы и иконки «съезжались». */
   tabBtn:     { alignItems: 'center', justifyContent: 'center', alignSelf: 'stretch', position: 'relative', zIndex: 10 },
-  /** Подсветка активного таба внутри капсулы — мягкая пилюля под иконкой. */
-  tabActivePill: {
-    position: 'absolute',
-    width: TAB_ACTIVE_PILL_WIDTH,
-    height: TAB_ACTIVE_PILL_HEIGHT,
-    borderRadius: TAB_ACTIVE_PILL_HEIGHT / 2,
-    borderWidth: 0,
-  },
   tabOrbBtn: {
     flex: 1,
     alignSelf: 'stretch',

@@ -8,6 +8,12 @@ import { getForegroundDailyMsMap } from './foreground_usage_ms';
 import type { Lang } from '../constants/i18n';
 import { syncToCloud } from './cloud_sync';
 import { statsDailyBreakdownKey, type RuntimeStudyTarget } from './target_storage_keys';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  withAccountTransitionLock,
+  type AccountGenerationToken,
+} from './account_generation';
 
 const STORAGE_KEY = 'stats_daily_breakdown_v1';
 
@@ -178,25 +184,35 @@ export async function bumpStatsDaily(
   metric: StatsDailyMetric,
   delta: number,
   studyTarget?: RuntimeStudyTarget,
+  accountToken?: AccountGenerationToken,
 ): Promise<void> {
   if (!Number.isFinite(delta) || delta <= 0) return;
+  const operationToken = accountToken ?? captureAccountGeneration();
+  if (!operationToken.stableId || !isCurrentAccountGeneration(operationToken)) return;
   const day = toDateStr(new Date());
   const add = Math.floor(delta);
   try {
     const raw = await AsyncStorage.getItem(statsDailyBreakdownKey(studyTarget));
+    if (!isCurrentAccountGeneration(operationToken)) return;
     const store = parseStore(raw);
     const row = { ...(store[day] ?? {}) };
     row[metric] = Math.max(0, Math.floor(Number(row[metric] ?? 0) + add));
     store[day] = row;
     const pruned = pruneStore(store);
-    await AsyncStorage.setItem(statsDailyBreakdownKey(studyTarget), JSON.stringify(pruned));
+    const commit = async (): Promise<boolean> => {
+      if (!isCurrentAccountGeneration(operationToken)) return false;
+      await AsyncStorage.setItem(statsDailyBreakdownKey(studyTarget), JSON.stringify(pruned));
+      return isCurrentAccountGeneration(operationToken);
+    };
+    const committed = await withAccountTransitionLock(commit);
+    if (!committed) return;
     void import('./activity_365_analytics')
       .then(({ invalidateActivity365Cache }) => invalidateActivity365Cache())
       .catch(() => {});
   } catch {
     /* ignore */
   }
-  void syncToCloud();
+  if (isCurrentAccountGeneration(operationToken)) void syncToCloud();
 }
 
 function randIntInclusive(min: number, max: number): number {

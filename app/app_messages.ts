@@ -12,6 +12,7 @@ import {
 } from './account_generation';
 import { VIP_SURVEY_ID } from './vip_survey_content';
 import type { Lang } from '../constants/i18n';
+import { createDisposableAdoption } from './disposable_adoption';
 
 export type AppMessageReaction = 'like' | 'dislike';
 export type AppMessageAudience = 'all' | 'free' | 'premium';
@@ -1373,9 +1374,7 @@ export function subscribeUserAppMessages(
   onError?: (error: unknown) => void,
 ): { remove: () => void } {
   let disposed = false;
-  let unsubscribeMessages: null | (() => void) = null;
-  let unsubscribeUserMessages: null | (() => void) = null;
-  let unsubscribeStates: null | (() => void) = null;
+  const lifetime = createDisposableAdoption();
   let messages: AppMessage[] = [];
   let userMessages: AppMessage[] = [];
   let states: AppMessageState[] = [];
@@ -1427,6 +1426,7 @@ export function subscribeUserAppMessages(
   void (async () => {
     const firestoreFactory = await getFirestoreModule();
     const uid = await getAppMessagesOwnerUid();
+    if (lifetime.isDisposed()) return;
     ownerUid = uid;
     reloadLocal();
     if (disposed || !firestoreFactory || !uid) {
@@ -1435,26 +1435,31 @@ export function subscribeUserAppMessages(
     }
 
     await flushPendingAppMessageVisibility(firestoreFactory, uid);
+    if (lifetime.isDisposed()) return;
     await flushPendingPersonalModalAcknowledgements(firestoreFactory, uid);
+    if (lifetime.isDisposed()) return;
 
     const db = firestoreFactory();
-    unsubscribeMessages = db
+    const unsubscribeMessages = db
       .collection(APP_MESSAGES_COLLECTION)
       .orderBy('createdAtMs', 'desc')
       .limit(APP_MESSAGES_BACKGROUND_FETCH_LIMIT)
       .onSnapshot(
         (snap: any) => {
+          if (lifetime.isDisposed()) return;
           messages = (snap.docs || []).map((docSnap: any) =>
             normalizeAppMessage(docSnap.id, docSnap.data?.() ?? {}),
           );
           emit();
         },
         (error: unknown) => {
+          if (lifetime.isDisposed()) return;
           onError?.(error);
         },
       );
+    lifetime.adopt(unsubscribeMessages);
 
-    unsubscribeUserMessages = db
+    const unsubscribeUserMessages = db
       .collection('users')
       .doc(uid)
       .collection(USER_MESSAGES_COLLECTION)
@@ -1462,6 +1467,7 @@ export function subscribeUserAppMessages(
       .limit(APP_MESSAGES_BACKGROUND_FETCH_LIMIT)
       .onSnapshot(
         (snap: any) => {
+          if (lifetime.isDisposed()) return;
           userMessages = (snap.docs || []).map((docSnap: any) =>
             normalizeOwnedUserAppMessage(docSnap.id, docSnap.data?.() ?? {}, uid),
           ).filter((message: AppMessage | null): message is AppMessage => !!message);
@@ -1476,6 +1482,7 @@ export function subscribeUserAppMessages(
           // ронять подписку на глобальные сообщения.
         },
       );
+    lifetime.adopt(unsubscribeUserMessages);
 
     // зачем: этот поток раньше подписывался на ВСЮ коллекцию состояний без лимита,
     // а она растёт монотонно (документ на каждое прочитанное/скрытое сообщение) и
@@ -1483,7 +1490,7 @@ export function subscribeUserAppMessages(
     // маппился в новый массив на каждое изменение — Android падал с OutOfMemoryError
     // в sendOnSnapshotEvent. Ограничиваем как два соседних потока (limit 80):
     // состояния нужны только для сообщений из тех же лент, а они сами лимитированы.
-    unsubscribeStates = db
+    const unsubscribeStates = db
       .collection('users')
       .doc(uid)
       .collection(APP_MESSAGE_STATES_COLLECTION)
@@ -1491,6 +1498,7 @@ export function subscribeUserAppMessages(
       .limit(APP_MESSAGES_BACKGROUND_FETCH_LIMIT)
       .onSnapshot(
         (snap: any) => {
+          if (lifetime.isDisposed()) return;
           states = (snap.docs || []).map((docSnap: any) =>
             normalizeAppMessageState(docSnap.id, docSnap.data?.() ?? {}),
           );
@@ -1505,18 +1513,18 @@ export function subscribeUserAppMessages(
           });
         },
         (error: unknown) => {
+          if (lifetime.isDisposed()) return;
           onError?.(error);
         },
       );
+    lifetime.adopt(unsubscribeStates);
   })();
 
   return {
     remove: () => {
       disposed = true;
       localSub.remove();
-      unsubscribeMessages?.();
-      unsubscribeUserMessages?.();
-      unsubscribeStates?.();
+      lifetime.dispose();
     },
   };
 }

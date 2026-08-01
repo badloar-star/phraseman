@@ -26,7 +26,6 @@ export const PROGRESS_EVENT_TYPES = [
   'diagnostic_test',
   'plan_task_complete',
   'wager_win',
-  'club_mission_complete',
 ] as const;
 
 export type ProgressEventType = typeof PROGRESS_EVENT_TYPES[number];
@@ -124,7 +123,6 @@ const EVENT_XP_CAP: Record<ProgressEventType, number> = {
   diagnostic_test: 2500,
   plan_task_complete: 1500,
   wager_win: 20000,
-  club_mission_complete: 1000,
 };
 
 /**

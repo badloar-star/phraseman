@@ -5,10 +5,11 @@
 // Слушает premium_deactivated / vip_deactivated. Показывает карточку ТОЛЬКО если
 // подписка реально была активна (флаг ставится на *_activated): события деактивации
 // эмитятся снапшотами PremiumContext и у юзеров, никогда не имевших подписки.
-import React, { memo, useCallback, useEffect, useState } from 'react';
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useRouter } from 'expo-router';
+import { usePathname, useRouter } from 'expo-router';
 import { emitAppEvent, onAppEvent } from '../app/events';
+import { isTournamentInterruptionProtectedPath } from '../app/tournament_interruption_guard';
 import {
   getVerifiedPremiumAccessStatus,
   getVerifiedRealPremiumStatus,
@@ -19,7 +20,6 @@ import { navigateAfterModalClose } from '../app/safe_modal_navigation';
 import { useLang } from './LangContext';
 import { useOverlayVisible } from './OverlayArbiter';
 import RewardCardV2 from './reward_v2/RewardCardV2';
-import { useReferralRouletteEnabled } from '../app/referral_roulette_flag';
 
 type Kind = 'premium' | 'vip';
 
@@ -36,143 +36,77 @@ const SHOW_COOLDOWN_MS = 7 * 24 * 60 * 60 * 1000;
 
 type Copy = { kicker: string; title: string; value: string; cta: string; ghost: string };
 
-const TEXTS: Record<string, Record<Kind, Copy>> = {
+const TEXTS: Record<string, Copy> = {
   ru: {
-    premium: {
-      kicker: 'Подписка завершилась',
-      title: 'Plus закончился',
-      value: 'Прогресс цел. Верни безлимит уроков и все темы.',
-      cta: 'Продлить',
-      ghost: 'Позже',
-    },
-    vip: {
-      kicker: 'Plus-доступ завершился',
-      title: 'Plus закончился',
-      value: 'Пригласи друга: когда он оформит Plus или Pro, получишь ключ. Награда — Plus от 1 дня до 365 дней.',
-      cta: 'Продлить Plus',
-      ghost: 'Позже',
-    },
+    kicker: 'Plus-доступ завершился',
+    title: 'Plus закончился',
+    value: 'Прогресс цел. Верни безлимит уроков и все темы.',
+    cta: 'Продлить Plus',
+    ghost: 'Позже',
   },
   uk: {
-    premium: {
-      kicker: 'Підписка завершилась',
-      title: 'Plus закінчився',
-      value: 'Прогрес цілий. Поверни безліміт уроків і всі теми.',
-      cta: 'Продовжити',
-      ghost: 'Пізніше',
-    },
-    vip: {
-      kicker: 'Plus-доступ завершився',
-      title: 'Plus закінчився',
-      value: 'Запроси друга: коли він оформить Plus або Pro, отримаєш ключ. Нагорода — Plus від 1 до 365 днів.',
-      cta: 'Продовжити Plus',
-      ghost: 'Пізніше',
-    },
+    kicker: 'Plus-доступ завершився',
+    title: 'Plus закінчився',
+    value: 'Прогрес цілий. Поверни безліміт уроків і всі теми.',
+    cta: 'Продовжити Plus',
+    ghost: 'Пізніше',
   },
   es: {
-    premium: {
-      kicker: 'Suscripción finalizada',
-      title: 'Plus terminó',
-      value: 'Tu progreso está a salvo. Recupera lecciones ilimitadas y todos los temas.',
-      cta: 'Renovar',
-      ghost: 'Más tarde',
-    },
-    vip: {
-      kicker: 'Acceso Plus finalizado',
-      title: 'Plus terminó',
-      value: 'Invita a un amigo: cuando compre Plus o Pro recibirás una llave. Recompensa: Plus de 1 a 365 días.',
-      cta: 'Pasar a Plus',
-      ghost: 'Más tarde',
-    },
+    kicker: 'Acceso Plus finalizado',
+    title: 'Plus terminó',
+    value: 'Tu progreso está a salvo. Recupera lecciones ilimitadas y todos los temas.',
+    cta: 'Renovar Plus',
+    ghost: 'Más tarde',
   },
   'pt-BR': {
-    premium: {
-      kicker: 'Assinatura encerrada',
-      title: 'O Plus acabou',
-      value: 'Seu progresso está salvo. Recupere aulas ilimitadas e todos os temas.',
-      cta: 'Renovar',
-      ghost: 'Depois',
-    },
-    vip: {
-      kicker: 'Acesso Plus encerrado',
-      title: 'O Plus acabou',
-      value: 'Convide um amigo: quando ele assinar Plus ou Pro você recebe uma chave. Recompensa: Plus de 1 a 365 dias.',
-      cta: 'Assinar Plus',
-      ghost: 'Depois',
-    },
+    kicker: 'Acesso Plus encerrado',
+    title: 'O Plus acabou',
+    value: 'Seu progresso está salvo. Recupere aulas ilimitadas e todos os temas.',
+    cta: 'Renovar Plus',
+    ghost: 'Depois',
   },
   vi: {
-    premium: {
-      kicker: 'Gói đã kết thúc',
-      title: 'Plus đã hết hạn',
-      value: 'Tiến độ vẫn an toàn. Lấy lại bài học không giới hạn và mọi chủ đề.',
-      cta: 'Gia hạn',
-      ghost: 'Để sau',
-    },
-    vip: {
-      kicker: 'Plus đã kết thúc',
-      title: 'Plus đã hết hạn',
-      value: 'Mời một người bạn: khi họ mua Plus hoặc Pro, bạn nhận một chìa khóa. Phần thưởng: Plus từ 1 đến 365 ngày.',
-      cta: 'Nâng cấp Plus',
-      ghost: 'Để sau',
-    },
+    kicker: 'Plus đã kết thúc',
+    title: 'Plus đã hết hạn',
+    value: 'Tiến độ vẫn an toàn. Lấy lại bài học không giới hạn và mọi chủ đề.',
+    cta: 'Gia hạn Plus',
+    ghost: 'Để sau',
   },
   id: {
-    premium: {
-      kicker: 'Langganan berakhir',
-      title: 'Plus berakhir',
-      value: 'Progresmu aman. Dapatkan kembali pelajaran tanpa batas dan semua tema.',
-      cta: 'Perpanjang',
-      ghost: 'Nanti',
-    },
-    vip: {
-      kicker: 'Akses Plus berakhir',
-      title: 'Plus berakhir',
-      value: 'Undang teman: saat dia membeli Plus atau Pro kamu mendapat kunci. Hadiah: Plus 1–365 hari.',
-      cta: 'Ambil Plus',
-      ghost: 'Nanti',
-    },
+    kicker: 'Akses Plus berakhir',
+    title: 'Plus berakhir',
+    value: 'Progresmu aman. Dapatkan kembali pelajaran tanpa batas dan semua tema.',
+    cta: 'Perpanjang Plus',
+    ghost: 'Nanti',
   },
   tr: {
-    premium: {
-      kicker: 'Abonelik sona erdi',
-      title: 'Plus bitti',
-      value: 'İlerlemen güvende. Sınırsız ders ve tüm temaları geri al.',
-      cta: 'Yenile',
-      ghost: 'Sonra',
-    },
-    vip: {
-      kicker: 'Plus erişimi sona erdi',
-      title: 'Plus bitti',
-      value: 'Bir arkadaşını davet et: Plus veya Pro satın aldığında bir anahtar kazan. Ödül: 1–365 gün Plus.',
-      cta: 'Plus’a geç',
-      ghost: 'Sonra',
-    },
+    kicker: 'Plus erişimi sona erdi',
+    title: 'Plus bitti',
+    value: 'İlerlemen güvende. Sınırsız ders ve tüm temaları geri al.',
+    cta: 'Plus’ı yenile',
+    ghost: 'Sonra',
   },
   pl: {
-    premium: {
-      kicker: 'Subskrypcja wygasła',
-      title: 'Plus się skończyło',
-      value: 'Twój postęp jest bezpieczny. Odzyskaj nielimitowane lekcje i wszystkie motywy.',
-      cta: 'Przedłuż',
-      ghost: 'Później',
-    },
-    vip: {
-      kicker: 'Dostęp Plus wygasł',
-      title: 'Plus się skończył',
-      value: 'Zaproś znajomego: gdy kupi Plus lub Pro, dostaniesz klucz. Nagroda: Plus od 1 do 365 dni.',
-      cta: 'Przejdź na Plus',
-      ghost: 'Później',
-    },
+    kicker: 'Dostęp Plus wygasł',
+    title: 'Plus się skończył',
+    value: 'Twój postęp jest bezpieczny. Odzyskaj nielimitowane lekcje i wszystkie motywy.',
+    cta: 'Przedłuż Plus',
+    ghost: 'Później',
   },
 };
 
 function EntitlementExpiredHost() {
   const { lang } = useLang();
   const router = useRouter();
-  const rouletteOn = useReferralRouletteEnabled();
+  const pathname = usePathname();
+  const pathnameRef = useRef(pathname);
+  pathnameRef.current = pathname;
+  const tournamentInterruptionProtected = isTournamentInterruptionProtectedPath(pathname);
   const [kind, setKind] = useState<Kind | null>(null);
-  const overlayVisible = useOverlayVisible('entitlementExpired', kind != null);
+  const overlayVisible = useOverlayVisible(
+    'entitlementExpired',
+    kind != null && !tournamentInterruptionProtected,
+  );
 
   const maybeShow = useCallback(async (k: Kind) => {
     try {
@@ -287,22 +221,23 @@ function EntitlementExpiredHost() {
 
   if (!kind || !overlayVisible) return null;
 
-  const langTexts = TEXTS[lang] ?? TEXTS.ru;
-  const copyKind: Kind = kind === 'vip' && !rouletteOn ? 'premium' : kind;
-  const tx = langTexts[copyKind];
+  const tx = TEXTS[lang] ?? TEXTS.ru;
 
   return (
     <RewardCardV2
       visible
-      semantic={copyKind === 'premium' ? 'gold' : 'social'}
+      semantic="gold"
       kicker={tx.kicker}
-      icon={copyKind === 'premium' ? '👑' : '🤝'}
+      allowKickerWrap
+      icon={'👑'}
       title={tx.title}
       value={tx.value}
       ctaLabel={tx.cta}
       onCta={() => {
-        const context = copyKind === 'premium' ? 'premium_expired' : 'vip_expired';
+        if (isTournamentInterruptionProtectedPath(pathnameRef.current)) return;
+        const context = kind === 'premium' ? 'premium_expired' : 'vip_expired';
         navigateAfterModalClose(markShownAndClose, () => {
+          if (isTournamentInterruptionProtectedPath(pathnameRef.current)) return;
           router.push({
             pathname: '/premium_modal',
             params: { context },
@@ -311,7 +246,7 @@ function EntitlementExpiredHost() {
       }}
       ghostLabel={tx.ghost}
       onGhost={markShownAndClose}
-      /** Маркетинговая карточка: тап по фону = «Позже», не CTA. */
+      /** Карточка продления: тап по фону = «Позже», не CTA. */
       backdropAction="ghost"
     />
   );

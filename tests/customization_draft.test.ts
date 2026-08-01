@@ -89,13 +89,15 @@ describe('resolveCustomizationAction', () => {
   });
 
   it.each([
-    [null, true, false, 'aura-premium'],
-    [null, false, true, 'aura-vip'],
-    ['none', true, true, null],
-    ['aura-aurora', true, true, 'aura-aurora'],
-    ['aura-premium', false, false, null],
-    ['aura-vip', false, false, null],
-  ] as const)('keeps stored %s distinct from effective fallback', (stored, premium, vip, effective) => {
-    expect(resolveEffectivePreviewAuraId(stored, premium, vip)).toBe(effective);
+    [null, true, false, false, 'aura-plus'],
+    [null, false, true, false, 'aura-plus'],
+    [null, true, false, true, 'aura-pro'],
+    ['none', true, true, true, null],
+    ['aura-aurora', true, true, false, 'aura-aurora'],
+    ['aura-premium', false, false, false, 'aura-plus'],
+    ['aura-vip', false, false, false, 'aura-plus'],
+    ['aura-pro', false, false, false, 'aura-pro'],
+  ] as const)('resolves preview %s independently from apply eligibility', (stored, premium, vip, pro, effective) => {
+    expect(resolveEffectivePreviewAuraId(stored, premium, vip, pro)).toBe(effective);
   });
 });

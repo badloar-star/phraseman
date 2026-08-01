@@ -22,6 +22,7 @@ import { useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import * as Haptics from 'expo-haptics';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
 // зачем: голый router.back() крашит Android/Fabric при teardown — тот же контракт,
 // что и в shards_shop.tsx/tournaments.tsx/tournament_season.tsx.
 import { safeRouterBack } from './navigation_back';
@@ -44,8 +45,9 @@ import {
 } from '../components/tournament/tournament_theme';
 import { TournamentEdgeState } from '../components/tournament/TournamentEdgeState';
 import {
-  claimReward,
   invalidateSeasonStandingsCache,
+  hasAuthoritativeTournamentResults,
+  orderTournamentPlayersForDisplay,
   useTournamentRoom,
   type RoomPlayer,
 } from './tournament_client';
@@ -55,7 +57,15 @@ import CollectibleDropModal from '../components/CollectibleDropModal';
 import { useOverlayVisible } from '../components/OverlayArbiter';
 import { maybeRollCollectibleDrop, type CollectibleDropOutcome } from './collectibles/storage';
 
-type Winner = { name: string; avatar: string; color: string; score: number; place: number };
+type Winner = {
+  id: string;
+  name: string;
+  avatar: string;
+  color: string;
+  score: number;
+  place: number;
+  rewardGems: number;
+};
 
 // зачем 2026-07-27 (владелец): блок PRIZES удалён целиком. В нём были
 // захардкоженные «🎟 + 50 жемчужин + титул «Чемпион дня»» — три ошибки разом:
@@ -66,15 +76,20 @@ type Winner = { name: string; avatar: string; color: string; score: number; plac
 // призёра, с анимацией начисления из банка под подиумом.
 
 /** Доли призёров на случай, если сервер ещё не прислал фактические выплаты. */
-const PRIZE_SHARES = [0.6, 0.25, 0.15] as const;
-
 /**
  * Итоговые места по очкам. Подиум ставится 2-1-3, как в макете 17: первое
  * место визуально по центру и выше.
  */
+function sharedPlace(players: readonly RoomPlayer[], index: number): number {
+  const resultPlace = players[index]?.resultPlace;
+  return typeof resultPlace === 'number' && resultPlace > 0 ? resultPlace : index + 1;
+}
+
 function buildPodium(players: readonly RoomPlayer[], P: TournamentV2): Winner[] {
-  const sorted = [...players].sort((a, b) => Number(b.score ?? 0) - Number(a.score ?? 0));
-  const top = sorted.slice(0, 3).map((player, index) => ({
+  if (!hasAuthoritativeTournamentResults(players)) return [];
+  const ordered = orderTournamentPlayersForDisplay(players);
+  const top = ordered.slice(0, 3).map((player, index) => ({
+    id: player.id,
     name: player.name || 'Игрок',
     // зачем: был эмодзи-фолбэк '🙂' — approved AvatarView сам рисует дефолтный
     // LevelBadge, если avatar пуст/невалиден, эмодзи-костыль не нужен.
@@ -83,7 +98,8 @@ function buildPodium(players: readonly RoomPlayer[], P: TournamentV2): Winner[] 
     // из общего токен-набора режима (тот же тон, что P.muted).
     color: player.color || P.muted,
     score: Number(player.score ?? 0),
-    place: index + 1,
+    place: sharedPlace(ordered, index),
+    rewardGems: player.forfeitedAtMs === undefined ? Math.max(0, player.rewardGems ?? 0) : 0,
   }));
   // Порядок колонн: серебро, золото, бронза.
   return [top[1], top[0], top[2]].filter((winner): winner is Winner => Boolean(winner));
@@ -96,12 +112,15 @@ export default function TournamentResultsScreen() {
   const insets = useStableSafeAreaInsets();
   const params = useLocalSearchParams<{ roomId?: string }>();
   const roomId = typeof params.roomId === 'string' ? params.roomId : null;
+  const runtimeActive = useRuntimeActive();
+  const runtimeActiveRef = useRef(runtimeActive);
+  runtimeActiveRef.current = runtimeActive;
   // зачем: у финального экрана не было пути назад кроме кнопки внизу — добавлена
   // компактная кнопка в шапке, тот же паттерн, что и в остальных экранах
   // турниров. Кнопка повторного запуска турнира отсутствует намеренно — см. шапку файла.
   const goBack = useCallback(() => safeRouterBack(router, '/(tabs)/tournaments' as any), [router]);
 
-  const { room, status, retry } = useTournamentRoom(roomId);
+  const { room, status, freshSnapshot, retry } = useTournamentRoom(roomId, runtimeActive);
   /**
    * Свой id — СИНХРОННО с первого кадра.
    *
@@ -114,8 +133,6 @@ export default function TournamentResultsScreen() {
    * (Performance Bible: первый кадр сразу в финальном виде).
    */
   const [myId, setMyId] = useState<string | null>(() => peekStableId());
-  const [claimState, setClaimState] = useState<'idle' | 'claiming' | 'done' | 'failed'>('idle');
-  const claimedRef = useRef(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -146,47 +163,51 @@ export default function TournamentResultsScreen() {
     const pot = Math.max(0, room?.potGems ?? 0);
     return pot > 0 ? Math.floor(pot * 0.8) : 0;
   }, [room?.prizePoolGems, room?.potGems]);
-
-  const prizeByPlace = useMemo(() => {
-    if (Array.isArray(room?.prizeGems) && room.prizeGems.length > 0) {
-      return room.prizeGems.map((gems) => Math.max(0, Math.trunc(Number(gems) || 0)));
-    }
-    if (prizePool <= 0) return [0, 0, 0];
-    const raw = PRIZE_SHARES.map((share) => Math.floor(prizePool * share));
-    // Остаток от округления — победителю, чтобы сумма сходилась с банком.
-    const remainder = prizePool - raw.reduce((sum, value) => sum + value, 0);
-    return raw.map((value, index) => (index === 0 ? value + remainder : value));
-  }, [room?.prizeGems, prizePool]);
+  const totalPot = Math.max(0, Math.trunc(room?.potGems ?? prizePool));
+  const weeklyBankGems = Math.max(0, totalPot - prizePool);
 
   const standings = useMemo(
-    () => [...players].sort((a, b) => Number(b.score ?? 0) - Number(a.score ?? 0)),
+    () => orderTournamentPlayersForDisplay(players),
     [players],
   );
-  const myIndex = myId ? standings.findIndex((player) => player.id === myId) : -1;
-  const myPlace = myIndex >= 0 ? myIndex + 1 : 0;
-  const me = myIndex >= 0 ? standings[myIndex] : null;
-  const won = myPlace > 0 && myPlace <= 3;
+  const standingsWithPlaces = useMemo(() => standings.map((player, index) => ({
+    player,
+    place: sharedPlace(standings, index),
+  })), [standings]);
+  const myStanding = myId
+    ? standingsWithPlaces.find(({ player }) => player.id === myId) ?? null
+    : null;
+  const myPlace = myStanding?.place ?? 0;
+  const me = myStanding?.player ?? null;
+  const hasFinalResults = hasAuthoritativeTournamentResults(players);
+  const myPrizeGems = hasFinalResults && me?.forfeitedAtMs === undefined
+    ? Math.max(0, me?.rewardGems ?? 0)
+    : 0;
+  const won = hasFinalResults && me?.forfeitedAtMs === undefined
+    && myPlace > 0 && myPlace <= 3 && myPrizeGems > 0;
   // зачем: момент победы должен ощущаться — конфетти и золотая волна на
   // призовом месте, как в эталоне V2. Только для топ-3: салют за 12-е место
   // обесценивает награду.
   const fxRef = useRef<TournamentFxApi>(null);
   const [fxSize, setFxSize] = useState({ width: 0, height: 0 });
-  const beaten = myPlace > 0 ? Math.max(0, standings.length - myPlace) : 0;
+  const beaten = me
+    ? standings.filter((player) => Number(player.score ?? 0) < Number(me.score ?? 0)).length
+    : 0;
 
   useEffect(() => {
-    if (!won || fxSize.width <= 0) return;
+    if (!runtimeActive || !freshSnapshot || !won || fxSize.width <= 0) return;
     const origin = { x: fxSize.width / 2, y: fxSize.height * 0.3 };
     const timer = setTimeout(() => {
       fxRef.current?.goldWave(P.gold);
       fxRef.current?.confetti(origin, [P.gold, P.accent, P.okGradA, P.text]);
     }, 900);
     return () => clearTimeout(timer);
-  }, [won, fxSize, P.gold, P.accent, P.okGradA, P.text]);
+  }, [runtimeActive, freshSnapshot, won, fxSize, P.gold, P.accent, P.okGradA, P.text]);
 
   useEffect(() => {
-    if (!won) return;
+    if (!runtimeActive || !freshSnapshot || !won) return;
     void Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-  }, [won]);
+  }, [runtimeActive, freshSnapshot, won]);
 
   /**
    * Забрать награду.
@@ -195,31 +216,8 @@ export default function TournamentResultsScreen() {
    * лишний вызов — лишние деньги и лишняя гонка. Поэтому один claim за экран,
    * а состояние кнопки меняется МГНОВЕННО, до ответа сервера.
    */
-  const claim = useCallback(async () => {
-    if (!roomId || claimedRef.current) return;
-    claimedRef.current = true;
-    setClaimState('claiming');
-    try {
-      await claimReward(roomId);
-      setClaimState('done');
-      void Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-    } catch {
-      // Откат: даём повторить, иначе игрок останется без приза из-за
-      // моргнувшей сети.
-      claimedRef.current = false;
-      setClaimState('failed');
-    }
-  }, [roomId]);
-
   // Награда забирается автоматически при открытии итогов — лишний тап здесь
   // не нужен, приз уже заслужен.
-  useEffect(() => {
-    if (!roomId || !room) return;
-    if (room.state !== 'results' && room.state !== 'rewards' && room.state !== 'closed') return;
-    if (claimedRef.current) return;
-    void claim();
-  }, [roomId, room, room?.state, claim]);
-
   // ── Дроп коллекционной карточки за участие в турнире ──────────────────────
   // зачем: владелец попросил давать шанс карточки за УЧАСТИЕ в турнире — всем,
   // кто играл, независимо от места. Правила выдачи те же, что у урока: общий
@@ -231,7 +229,7 @@ export default function TournamentResultsScreen() {
   const cardDropVisible = useOverlayVisible('collectibleDrop', cardDrop != null);
 
   useEffect(() => {
-    if (!roomId || !room) return;
+    if (!runtimeActive || !freshSnapshot || !roomId || !room) return;
     // Только когда турнир реально доигран — иначе роллим за незавершённое.
     if (room.state !== 'results' && room.state !== 'rewards' && room.state !== 'closed') return;
     // Участие = игрок есть в финальной таблице. Зрители карточку не получают.
@@ -241,9 +239,9 @@ export default function TournamentResultsScreen() {
     // Сюрприз ПОСЛЕ итогов, а не CTA до них: модалка приходит поверх подиума,
     // ничего не блокируя. Ошибка/офлайн — тихо, экран итогов не страдает.
     void maybeRollCollectibleDrop('tournament', roomId, { dailyScoped: false })
-      .then((drop) => { if (drop) setCardDrop(drop); })
+      .then((drop) => { if (runtimeActiveRef.current && drop) setCardDrop(drop); })
       .catch(() => {});
-  }, [roomId, room, room?.state, myPlace]);
+  }, [runtimeActive, freshSnapshot, roomId, room, room?.state, myPlace]);
 
   const share = useCallback(async () => {
     void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
@@ -317,31 +315,49 @@ export default function TournamentResultsScreen() {
           <View style={styles.podium}>
             {podium.map((winner) => (
               <PodiumColumn
-                key={`${winner.place}-${winner.name}`}
+                key={winner.id}
                 winner={winner}
-                gems={prizeByPlace[winner.place - 1] ?? 0}
+                gems={winner.rewardGems}
               />
             ))}
           </View>
 
-          {/* зачем 2026-07-27 (владелец): «показывается, сколько общий банк
-              собрался с этого турнира», и из него анимация отсчитывает
-              жемчужины к призёрам. Это же убирает выдуманные цифры: сумма
-              счётчиков над аватарами всегда равна банку под подиумом. */}
-          {prizePool > 0 ? (
+          {/* Деньги показаны как один проверяемый путь, а не как несколько
+              несвязанных чисел. Источник всех значений — финальная room. */}
+          <View style={styles.bankBreakdown}>
             <View style={styles.bankRow}>
-              <Text style={styles.bankLabel} allowFontScaling={false}>Банк турнира</Text>
+              <Text style={styles.bankLabel}>Общий банк</Text>
+              <Text style={styles.bankAmount}>{totalPot} жемч.</Text>
+            </View>
+            <View style={styles.bankRow}>
+              <Text style={styles.bankLabel}>В недельный банк</Text>
+              <Text style={styles.bankAmountSecondary}>− {weeklyBankGems} жемч.</Text>
+            </View>
+            <View style={styles.bankRow}>
+              <View style={styles.bankLabelGroup}>
+                <Text style={styles.bankLabelStrong}>Призовой фонд дня</Text>
+                <Text style={styles.bankHint}>Доли мест: 60 / 25 / 15</Text>
+              </View>
+              <Text style={styles.bankAmount}>{prizePool} жемч.</Text>
+            </View>
+            <View style={styles.playerShareRow}>
+              <View style={styles.bankLabelGroup}>
+                <Text style={styles.playerShareLabel}>Ваша доля</Text>
+                <Text style={styles.bankHint}>
+                  Серверная выплата: {myPrizeGems}
+                </Text>
+              </View>
               <View style={styles.bankValue}>
-                <Text style={styles.bankAmount} allowFontScaling={false}>{prizePool}</Text>
+                <Text style={styles.playerShareAmount}>{myPrizeGems}</Text>
                 <Image
                   source={pearlIconForTheme(themeMode)}
                   style={styles.bankPearl}
                   contentFit="contain"
-                  accessibilityLabel={`Банк турнира: ${prizePool} жемчужин`}
+                  accessibilityLabel={`Ваша доля: ${myPrizeGems} жемчужин`}
                 />
               </View>
             </View>
-          ) : null}
+          </View>
         </V2Card>
 
 
@@ -356,7 +372,7 @@ export default function TournamentResultsScreen() {
             <View style={styles.rewardBody}>
               <Text style={styles.rewardTitle}>Ваша награда</Text>
               <Text style={styles.rewardSub}>
-                {claimState === 'failed' ? 'не удалось начислить' : 'начислена'}
+                {me?.forfeitedAtMs !== undefined ? 'выход из турнира — без приза' : 'начислена сервером'}
               </Text>
             </View>
             <View style={styles.rewardValueBox}>
@@ -369,11 +385,7 @@ export default function TournamentResultsScreen() {
         </V2Card>
 
         <View style={styles.actions}>
-          {claimState === 'failed' ? (
-            <V2Cta onPress={claim}>Забрать награду</V2Cta>
-          ) : (
-            <V2Cta onPress={share}>Поделиться 📤</V2Cta>
-          )}
+          <V2Cta onPress={share}>Поделиться 📤</V2Cta>
           {roomId ? (
             <V2Cta
               tone="ghost"
@@ -600,22 +612,63 @@ const makeStyles = (P: TournamentV2) => StyleSheet.create({
   // Место под счётчик у непризовых колонн — подиум не «прыгает».
   podiumGemsSpacer: { height: 26 },
 
+  bankBreakdown: {
+    marginTop: 16,
+    padding: 14,
+    borderRadius: radius.md,
+    backgroundColor: P.elev2,
+    gap: 10,
+  },
   bankRow: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginTop: 16,
-    paddingTop: 14,
+    minHeight: 28,
+    gap: 12,
   },
-  bankLabel: { ...type.label, color: P.muted },
+  bankLabelGroup: { flex: 1, gap: 2 },
+  bankLabel: { ...type.label, color: P.muted, flex: 1 },
+  bankLabelStrong: { ...type.label, color: P.text, fontWeight: '800' },
+  bankHint: { fontSize: 11, color: P.muted, fontWeight: '600', fontVariant: ['tabular-nums'] },
   bankValue: { flexDirection: 'row', alignItems: 'center', gap: 6 },
   bankAmount: {
-    fontSize: 20,
+    minWidth: 78,
+    textAlign: 'right',
+    fontSize: 16,
     fontWeight: '900',
     color: P.text,
     fontVariant: ['tabular-nums'],
   },
+  bankAmountSecondary: {
+    minWidth: 78,
+    textAlign: 'right',
+    fontSize: 15,
+    fontWeight: '800',
+    color: P.muted,
+    fontVariant: ['tabular-nums'],
+  },
   bankPearl: { width: 18, height: 18 },
+  playerShareRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    minHeight: 52,
+    gap: 12,
+    marginTop: 2,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    borderRadius: radius.sm,
+    backgroundColor: P.accentSoft,
+  },
+  playerShareLabel: { fontSize: 14, fontWeight: '900', color: P.text },
+  playerShareAmount: {
+    minWidth: 28,
+    textAlign: 'right',
+    fontSize: 22,
+    fontWeight: '900',
+    color: P.accent,
+    fontVariant: ['tabular-nums'],
+  },
 
   rewardRow: { flexDirection: 'row', alignItems: 'center', gap: 14 },
   rewardAvatar: { width: 52, height: 52, borderRadius: 999, alignItems: 'center', justifyContent: 'center' },

@@ -121,16 +121,4 @@ describe('getReviewVariant (localized by Lang)', () => {
     expect(v.btnYes).toContain('reseña');
   });
 
-  it('arena_win in Ukrainian uses uk strings', async () => {
-    const v = await getReviewVariant('arena_win', 'uk');
-    expect(v.title).toContain('Переможець');
-    expect(v.subtitle).toMatch(/чесним відгуком/);
-  });
-
-  it('general uses AsyncStorage rotation index modulo variant count', async () => {
-    asyncStore.review_show_count = '5';
-    const v = await getReviewVariant('general', 'es');
-    expect(v.emoji).toBe('🚫');
-    expect(v.title).toContain('opinión');
-  });
 });

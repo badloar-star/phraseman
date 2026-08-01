@@ -9,7 +9,6 @@ screen is presented here as implementation-ready evidence.
 | `guided-phrase-pronunciation` | missing | missing | missing | 0 | missing |
 | `prompted-translation-by-voice` | missing | missing | missing | 0 | missing |
 | `contextual-dialogue-mission` | missing | missing | missing | 0 | missing |
-| `speaking-club-mission` | missing | missing | missing | 0 | missing |
 
 The future index entry for each mode must point to one original Phraseman PNG
 under `docs/v2/reference-evidence/contact-sheets/`, record at least six frames,

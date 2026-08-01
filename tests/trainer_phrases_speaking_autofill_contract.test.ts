@@ -38,10 +38,14 @@ describe('trainer phrases speaking auto-fill contract', () => {
     expect(source).toContain('opacity: used ? 0.18 : 1');
   });
 
-  it('grades the phrase immediately but leaves its completion under learner control', () => {
+  it('grades a correct voice answer without automatically leaving the phrase', () => {
     expect(onPassBody).toContain("setFeedback('correct')");
     expect(onPassBody).toContain('recordResult(true)');
-    expect(onPassBody).not.toContain('waitForPhraseAnswerFeedback');
+    expect(onPassBody).not.toContain('onAdvance();');
+  });
+
+  it('keeps terminal punctuation in the spoken target', () => {
+    expect(source).toContain('targetText={phrase}');
   });
 
   it('does not overwrite an already-graded card', () => {

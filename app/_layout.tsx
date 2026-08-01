@@ -94,12 +94,14 @@ import { hydrateAgeGateFromStorage } from './age_gate';
 import { prefetchMarketplacePacks } from './flashcards/marketplace';
 import { syncPublicProfileSnapshot } from './public_profile_snapshot';
 import { getVerifiedPremiumStatus, getVerifiedRealPremiumStatus, getVerifiedVipStatus } from './premium_guard';
+import { isTournamentInterruptionProtectedPath } from './tournament_interruption_guard';
 import { isFeatureFreeForEveryone } from './feature_gates';
 import { tryGrantPremiumMonthlyWagerFromLevelUp } from './streak_wager';
 import { incrementSessionCount } from './review_utils';
 import { checkForUpdate, UpdateInfo } from './update_check';
 import { registerXP, migrateXPFormulaV2 } from './xp_manager';
 import { flushPendingProgressEvents } from './progress_events_client';
+import { createDisposableAdoption } from './disposable_adoption';
 import { getShardAchievementEligibleBalance, getShardsBalance, loadShardsFromCloud } from './shards_system';
 import ActionToast from '../components/ActionToast';
 import DailyTaskRewardToast from '../components/DailyTaskRewardToast';
@@ -122,6 +124,7 @@ import {
   consumeRemoteAccountDeletionNotice,
   handleAccountDeletedOnAnotherDevice,
   isLocalAccountDeletionInProgress,
+  peekLinkedAuthFromCurrentUser,
   resumePendingAccountDeleteLocalExit,
 } from './auth_provider';
 import { startRemoteAccountDeletionMonitor } from './remote_account_deletion_monitor';
@@ -151,6 +154,7 @@ import { primeTrainerPracticeSnapshotFromStorage } from './trainer_practice_pers
 import { primeRemoteConfigCacheFromStorage } from './remote_config_client';
 import { createBootCloudRestoreCoordinator, type BootCloudRestoreOutcome } from './cloud_restore_coordinator';
 import { hasMeaningfulLocalAccountData } from './local_account_data';
+import { decideStartupCloudRecoveryPresentation } from './startup_cloud_recovery_presentation';
 import { OverlayArbiterProvider, useOverlayVisible } from '../components/OverlayArbiter';
 import ErrorBoundary from '../components/ErrorBoundary';
 import { trackActivity } from './app_activity';
@@ -178,6 +182,7 @@ import {
 } from './services/league_chest_rewards';
 import { lastOpenedLessonKey, type RuntimeStudyTarget } from './target_storage_keys';
 import { syncWidgetData } from './widget_bridge';
+import { scheduleCoalescedForegroundTask } from './app_resume_policy';
 import { DEV_UTILITY_ROUTE_NAMES, DEV_UTILITY_ROUTE_PATHS, PERSONAL_PLAN_RUNTIME_DEV_ROUTE, SETTINGS_TESTERS_ROUTE_NAME } from '../constants/devRoutes';
 import { APP_FONT_FAMILY } from './typography';
 import { getTodayKey } from './daily_tasks';
@@ -772,6 +777,10 @@ function GlobalLevelUpHandler() {
   const { studyTarget } = useStudyTarget();
   const { hasPremiumAccess } = usePremium();
   const globalParams = useGlobalSearchParams();
+  const pathname = usePathname();
+  const pathnameRef = useRef(pathname);
+  pathnameRef.current = pathname;
+  const tournamentInterruptionProtected = isTournamentInterruptionProtectedPath(pathname);
   const isGoldTheme = themeMode === 'gold';
 
   const [showLevelUp, setShowLevelUp] = useState(false);
@@ -962,6 +971,7 @@ function GlobalLevelUpHandler() {
 
   const lastForegroundFlushAtRef = useRef(0);
   useEffect(() => {
+    let scheduledFlush: { cancel: () => void } | null = null;
     const sub = AppState.addEventListener('change', (state) => {
       if (state !== 'active') return;
       // зачем: foreground-путь — лишь страховка на пропущенное level_up_pending;
@@ -969,9 +979,15 @@ function GlobalLevelUpHandler() {
       const now = Date.now();
       if (now - lastForegroundFlushAtRef.current < FOREGROUND_FLUSH_MIN_MS) return;
       lastForegroundFlushAtRef.current = now;
-      void flushQueue();
+      scheduledFlush?.cancel();
+      scheduledFlush = scheduleCoalescedForegroundTask('root_level_up_queue_flush', async () => {
+        await flushQueue();
+      });
     });
-    return () => sub.remove();
+    return () => {
+      sub.remove();
+      scheduledFlush?.cancel();
+    };
   }, [flushQueue]);
 
   useEffect(() => {
@@ -1005,12 +1021,19 @@ function GlobalLevelUpHandler() {
   // needs the app to write the new day). Foregrounding is the natural moment to
   // guarantee the widget shows today's phrase — the exact one the app shows.
   useEffect(() => {
+    let scheduledWidgetRefresh: { cancel: () => void } | null = null;
     const sub = AppState.addEventListener('change', (state) => {
       if (state === 'active') {
-        void syncWidgetData({ studyTarget, lang, themeMode });
+        scheduledWidgetRefresh?.cancel();
+        scheduledWidgetRefresh = scheduleCoalescedForegroundTask('root_widget_snapshot_refresh', async () => {
+          await syncWidgetData({ studyTarget, lang, themeMode });
+        });
       }
     });
-    return () => sub.remove();
+    return () => {
+      sub.remove();
+      scheduledWidgetRefresh?.cancel();
+    };
   }, [studyTarget, lang, themeMode]);
 
   // зачем: владелец: «открываю раздел — он чуть подпрыгивает, будто ассеты грузятся».
@@ -1029,7 +1052,7 @@ function GlobalLevelUpHandler() {
 
   const dismissLevelUp = () => {
     const accountToken = modalAccountTokenRef.current;
-    if (!canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) return;
+    if (!accountToken || !canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) return;
     if (dismissingLevelUpRef.current) return;
     dismissingLevelUpRef.current = true;
     // Держим слот арбитра на весь переход level-up → подарок (см. levelUpTransitioning).
@@ -1049,7 +1072,7 @@ function GlobalLevelUpHandler() {
             setShowGiftModal(true);
           }, Platform.OS === 'android' ? 260 : 180);
         });
-        void withAccountTransitionLock(async () => {
+        void (async () => {
           if (!canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) return;
           try {
             const name = (await AsyncStorage.getItem('user_name')) || userName;
@@ -1064,9 +1087,13 @@ function GlobalLevelUpHandler() {
               payload: {
                 level: currentLevel,
               },
+              accountToken,
             });
             if (!canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) return;
-            await tryGrantPremiumMonthlyWagerFromLevelUp();
+            await withAccountTransitionLock(async () => {
+              if (!canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) return;
+              await tryGrantPremiumMonthlyWagerFromLevelUp();
+            });
           } catch {
             /* background level-up extras must never delay the gift */
           }
@@ -1106,6 +1133,7 @@ function GlobalLevelUpHandler() {
           ]);
           if (!(await canShowAfterWinUpsell({ isPremium: prem, nowMs: Date.now() }))) return;
           if (!isLevelUpAccountTokenCurrent(accountToken)) return;
+          if (isTournamentInterruptionProtectedPath(pathnameRef.current)) return;
           // Сначала навигация: если push упадёт — гейт не «сгорит» впустую.
           globalRouter.push({ pathname: '/premium_modal', params: { context: 'level_up', source: 'afterwin_levelup' } } as any);
           await markAfterWinUpsellShown(Date.now());
@@ -1119,7 +1147,10 @@ function GlobalLevelUpHandler() {
   const newTitleDef = getTitleForLevel(currentLevel);
   const isNewTitle  = newTitleDef.minLevel === currentLevel;
   const titleColor  = getTitleColor(currentLevel, isDark);
-  const levelUpOverlayVisible = useOverlayVisible('levelUp', showLevelUp || showGiftModal || levelUpTransitioning);
+  const levelUpOverlayVisible = useOverlayVisible(
+    'levelUp',
+    !tournamentInterruptionProtected && (showLevelUp || showGiftModal || levelUpTransitioning),
+  );
   const levelUpGlowOpacity = levelUpGlow.interpolate({ inputRange: [0, 1], outputRange: [0.14, 0.44] });
   const levelUpModalScale = levelUpOpacity.interpolate({ inputRange: [0, 1], outputRange: USE_ELITE_LEVEL_UP_MODAL ? [0.9, 1] : [0.85, 1] });
   const levelUpAccent = rewardModalAccentColor(themeMode, t);
@@ -1475,6 +1506,7 @@ function AppContent() {
   const pathname = usePathname();
   const pathnameRef = useRef(pathname);
   pathnameRef.current = pathname;
+  const tournamentInterruptionProtected = isTournamentInterruptionProtectedPath(pathname);
   const coldExamBestPctRestoreOptions = useMemo(() => ({
     canPublishExamBestPctOverlay: () => {
       const currentPath = pathnameRef.current;
@@ -1818,10 +1850,19 @@ function AppContent() {
   useEffect(() => {
     if (!ENABLE_ROOT_LEAGUE_BONUS_WATCH) return;
     if (!ready || showOnboarding || isBanned) return;
+    let scheduledLeagueBonusCheck: { cancel: () => void } | null = null;
     const sub = AppState.addEventListener('change', (state) => {
-      if (state === 'active') runLeagueBonusAvailabilityCheck('foreground');
+      if (state === 'active') {
+        scheduledLeagueBonusCheck?.cancel();
+        scheduledLeagueBonusCheck = scheduleCoalescedForegroundTask('root_league_bonus_availability', () => {
+          runLeagueBonusAvailabilityCheck('foreground');
+        });
+      }
     });
-    return () => sub.remove();
+    return () => {
+      sub.remove();
+      scheduledLeagueBonusCheck?.cancel();
+    };
   }, [isBanned, ready, runLeagueBonusAvailabilityCheck, showOnboarding]);
 
   useEffect(() => {
@@ -2005,18 +2046,22 @@ function AppContent() {
   }, []); // deps пусты — читаем showAchievement через ref, не через closure
 
   useEffect(() => {
-    let subRemove: (() => void) | undefined;
+    const lifetime = createDisposableAdoption();
     void import('./referral_bootstrap')
       .then((m) => {
-        void Linking.getInitialURL().then((u) => m.captureReferralFromUrl(u)).catch((e) => { if (__DEV__) console.warn('[_layout]', e); });
-        subRemove = m.subscribeReferralUrl((u) => {
+        if (lifetime.isDisposed()) return;
+        void Linking.getInitialURL().then((u) => {
+          if (!lifetime.isDisposed()) return m.captureReferralFromUrl(u);
+          return undefined;
+        }).catch((e) => { if (__DEV__) console.warn('[_layout]', e); });
+        const subscription = m.subscribeReferralUrl((u) => {
+          if (lifetime.isDisposed()) return;
           void m.captureReferralFromUrl(u);
-        }).remove;
+        });
+        lifetime.adopt(() => subscription.remove());
       })
       .catch(() => {});
-    return () => {
-      subRemove?.();
-    };
+    return () => { lifetime.dispose(); };
   }, []);
 
   useEffect(() => {
@@ -2200,41 +2245,27 @@ function AppContent() {
           // Переустановка + упавший restore: юзер видит нулевой прогресс без
           // единого объяснения («всё пропало!»). Ошибку безопасной идентификации
           // не называем отсутствием интернета; локальные данные не трогаем.
-          if (bootRestoreFailureReason === 'provider_reauth_required') {
+          const recoveryPresentation = decideStartupCloudRecoveryPresentation({
+            failureReason: bootRestoreFailureReason,
+            hasLinkedProvider: peekLinkedAuthFromCurrentUser() !== null,
+            hasLocalAccountData: bootRestoreOutcome.hasLocalAccountData,
+          });
+          if (recoveryPresentation === 'provider_reauth_modal') {
             if (!startupAuthRecoveryOfferedRef.current) {
               startupAuthRecoveryOfferedRef.current = true;
               setStartupAuthRecoveryVisible(true);
             }
-          } else {
-            const secureIdentityUnavailable =
-              bootRestoreFailureReason === 'app_check_unavailable'
-              || bootRestoreFailureReason === 'identity_unavailable';
+          } else if (recoveryPresentation === 'cloud_unavailable_toast') {
             emitAppEvent('action_toast', {
-            type: 'info',
-            messageRu: secureIdentityUnavailable
-              ? 'Не удалось безопасно подтвердить аккаунт для восстановления. Локальный прогресс сохранён; попытка повторится автоматически.'
-              : 'Облако сейчас недоступно. Локальный прогресс сохранён; восстановление повторится автоматически.',
-            messageUk: secureIdentityUnavailable
-              ? 'Не вдалося безпечно підтвердити акаунт для відновлення. Локальний прогрес збережено; спроба повториться автоматично.'
-              : 'Хмара зараз недоступна. Локальний прогрес збережено; відновлення повториться автоматично.',
-            messageEs: secureIdentityUnavailable
-              ? 'No pudimos verificar tu cuenta de forma segura para restaurarla. Tu progreso local está guardado y se reintentará automáticamente.'
-              : 'La nube no está disponible ahora. Tu progreso local está guardado y la restauración se reintentará automáticamente.',
-            messagePtBr: secureIdentityUnavailable
-              ? 'Não foi possível verificar sua conta com segurança para restaurar. Seu progresso local está salvo e a tentativa será repetida automaticamente.'
-              : 'A nuvem está indisponível no momento. Seu progresso local está salvo e a restauração será repetida automaticamente.',
-            messageVi: secureIdentityUnavailable
-              ? 'Không thể xác minh tài khoản an toàn để khôi phục. Tiến độ trên máy vẫn được giữ và ứng dụng sẽ tự thử lại.'
-              : 'Đám mây hiện không khả dụng. Tiến độ trên máy vẫn được giữ và ứng dụng sẽ tự khôi phục lại.',
-            messageId: secureIdentityUnavailable
-              ? 'Akun belum dapat diverifikasi dengan aman untuk pemulihan. Progres lokal tetap tersimpan dan akan dicoba lagi otomatis.'
-              : 'Cloud sedang tidak tersedia. Progres lokal tetap tersimpan dan pemulihan akan dicoba lagi otomatis.',
-            messageTr: secureIdentityUnavailable
-              ? 'Hesap geri yükleme için güvenli biçimde doğrulanamadı. Yerel ilerleme korundu; otomatik olarak yeniden denenecek.'
-              : 'Bulut şu anda kullanılamıyor. Yerel ilerleme korundu; geri yükleme otomatik olarak yeniden denenecek.',
-            messagePl: secureIdentityUnavailable
-              ? 'Nie udało się bezpiecznie potwierdzić konta do przywrócenia. Lokalny postęp jest zachowany; próba zostanie ponowiona automatycznie.'
-              : 'Chmura jest teraz niedostępna. Lokalny postęp jest zachowany; przywracanie zostanie ponowione automatycznie.',
+              type: 'info',
+              messageRu: 'Облако сейчас недоступно. Откройте приложение позже, чтобы повторить восстановление.',
+              messageUk: 'Хмара зараз недоступна. Відкрийте застосунок пізніше, щоб повторити відновлення.',
+              messageEs: 'La nube no está disponible ahora. Abre la aplicación más tarde para volver a intentar la restauración.',
+              messagePtBr: 'A nuvem está indisponível no momento. Abra o aplicativo mais tarde para tentar restaurar novamente.',
+              messageVi: 'Đám mây hiện không khả dụng. Hãy mở lại ứng dụng sau để thử khôi phục lần nữa.',
+              messageId: 'Cloud sedang tidak tersedia. Buka aplikasi lagi nanti untuk mencoba pemulihan kembali.',
+              messageTr: 'Bulut şu anda kullanılamıyor. Geri yüklemeyi yeniden denemek için uygulamayı daha sonra açın.',
+              messagePl: 'Chmura jest teraz niedostępna. Otwórz aplikację później, aby ponowić przywracanie.',
             });
           }
         }
@@ -2634,6 +2665,7 @@ function AppContent() {
 
   const checkIntroFullAccessEndedModal = useCallback(async () => {
     if (!ready || effectiveShowOnboarding || isBanned || !firstContentReady) return;
+    if (isTournamentInterruptionProtectedPath(pathnameRef.current)) return;
     const state = await getIntroFullAccessState().catch(() => null);
     if (!state?.expiredUnseen) return;
     if (await hasVerifiedRealPremiumOrVip()) {
@@ -2641,6 +2673,7 @@ function AppContent() {
       return;
     }
     if (state?.expiredUnseen) {
+      if (isTournamentInterruptionProtectedPath(pathnameRef.current)) return;
       setIntroFullAccessModal('ended');
       // Воронка: показана модалка «72 часа закончились» — главный момент конверсии.
       void import('./analytics').then(({ trackEvent }) => trackEvent('intro_ended_shown', {})).catch(() => {});
@@ -2672,6 +2705,7 @@ function AppContent() {
   // иначе разрыв всегда ~0. Не показываем одновременно с intro_ended (не два пейвола разом).
   const checkWinbackOffer = useCallback(async () => {
     if (!ready || effectiveShowOnboarding || isBanned || !firstContentReady) return;
+    if (isTournamentInterruptionProtectedPath(pathnameRef.current)) return;
     try {
       const { shouldShowWinback, markWinbackShown, recordLastActive } = await import('./winback_offer');
       const isPremium = await hasVerifiedRealPremiumOrVip();
@@ -2682,6 +2716,7 @@ function AppContent() {
 
       const show = !introPending && (await shouldShowWinback({ isPremium, nowMs }));
       if (show) {
+        if (isTournamentInterruptionProtectedPath(pathnameRef.current)) return;
         // Сначала навигация, потом отметка — если push упадёт, не «сжигаем» окно winback.
         globalRouter.push({ pathname: '/premium_modal', params: { context: 'streak', source: 'winback' } } as any);
         await markWinbackShown(nowMs);
@@ -2918,7 +2953,13 @@ function AppContent() {
   const leagueBonusAvailableModalVisible = useOverlayVisible('leagueBonusAvailable', !!leagueBonusAvailable);
   const notifNudgeModalVisible = useOverlayVisible('notifNudge', notifNudgeVisible);
   const startupAuthRecoveryModalVisible = useOverlayVisible('authRecovery', startupAuthRecoveryVisible);
-  const introFullAccessModalVisible = useOverlayVisible('introFullAccess', introFullAccessModal !== null);
+  // A queued offer may have won the overlay slot immediately before the user
+  // entered a tournament. Active tournament screens are an uninterrupted flow:
+  // do not let that stale request cover the lobby or a live question.
+  const introFullAccessModalVisible = useOverlayVisible(
+    'introFullAccess',
+    !tournamentInterruptionProtected && introFullAccessModal !== null,
+  );
   // ⚠️ Модалка «задания дня при первом входе» ОТКЛЮЧЕНА (DailyTasksFirstVisitModal в проде
   // всегда возвращает null — её заменил брифинг Компаса). Поэтому ключ 'dailyPlan' НЕ ДОЛЖЕН
   // просить единственный слот арбитра: dailyPlanModalDue становился true раз в сутки, арбитр
@@ -2942,7 +2983,8 @@ function AppContent() {
 
   // Expo Router requires the root layout to mount a navigator on the first
   // render. Startup, onboarding, and blocked-account states cover it as overlays.
-  const appOverlaysEnabled = ready && !effectiveShowOnboarding && !isBanned;
+  const appOverlaysEnabled = ready && !effectiveShowOnboarding && !isBanned
+    && !tournamentInterruptionProtected;
   const startupSplashVisible = !ready || (!effectiveShowOnboarding && !isBanned && !firstContentReady);
   // «Чёрный кадр» между экранами: при 'none' native-stack мгновенно меняет контейнер до того,
   // как JS дорендерил новый экран, и в зазоре виден голый contentStyle (bgPrimary, почти
@@ -3233,7 +3275,7 @@ function AppContent() {
 
     {/* Bottomsheet первого урока после онбординга */}
     <IntroFullAccessModal
-      visible={appOverlaysEnabled && introFullAccessModalVisible}
+      visible={appOverlaysEnabled && !tournamentInterruptionProtected && introFullAccessModalVisible}
       variant={introFullAccessModal ?? 'welcome'}
       onPrimaryPress={() => {
         void closeIntroFullAccessModal('primary');

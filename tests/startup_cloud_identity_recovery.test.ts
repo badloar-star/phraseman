@@ -7,6 +7,7 @@ const read = (relativePath: string) => fs.readFileSync(path.join(root, relativeP
 
 describe('startup cloud identity recovery regression', () => {
   const cloudSync = read('app/cloud_sync.ts');
+  const recoveryPresentation = read('app/startup_cloud_recovery_presentation.ts');
   const publicProfile = read('app/public_profile_snapshot.ts');
   const layout = read('app/_layout.tsx');
   const premiumContext = read('components/PremiumContext.tsx');
@@ -66,8 +67,13 @@ describe('startup cloud identity recovery regression', () => {
     expect(cloudSync).toContain('export async function restoreFromCloudWithRecoveryDetails');
     expect(cloudSync).toContain('failureReason: CloudRestoreFailureReason | null');
     expect(layout).toContain('restoreFromCloudWithRecoveryDetails');
-    expect(layout).toContain("bootRestoreFailureReason === 'app_check_unavailable'");
-    expect(layout).toContain("bootRestoreFailureReason === 'identity_unavailable'");
+    expect(layout).toContain('decideStartupCloudRecoveryPresentation({');
+    expect(layout).toContain('failureReason: bootRestoreFailureReason');
+    expect(layout).toContain('hasLinkedProvider: peekLinkedAuthFromCurrentUser() !== null');
+    expect(layout).toContain('hasLocalAccountData: bootRestoreOutcome.hasLocalAccountData');
+    expect(recoveryPresentation).toContain("'app_check_unavailable'");
+    expect(recoveryPresentation).toContain("'identity_unavailable'");
+    expect(layout).not.toContain('Не удалось безопасно подтвердить аккаунт');
     expect(layout).not.toContain('Проверь интернет — он подтянется автоматически.');
   });
 
@@ -83,7 +89,8 @@ describe('startup cloud identity recovery regression', () => {
     expect(gate).toBeGreaterThan(ensure);
     expect(banRead).toBeGreaterThan(gate);
     expect(profileWrite).toBeGreaterThan(banRead);
-    expect(publicProfile).toContain('return syncPublicProfileSnapshotUnsafe(input).catch(() => {});');
+    expect(publicProfile).toContain('await syncPublicProfileSnapshotUnsafe(next, operationToken, ownerState);');
+    expect(publicProfile).toContain('ownerState.dirty = true;');
   });
 
   it('does not open or hot-retry the live premium listener after a stable-owner mismatch', () => {

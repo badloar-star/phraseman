@@ -29,6 +29,7 @@ import { useAudio } from '../hooks/use-audio';
 import { peekFlashcardsCache } from '../hooks/use-flashcards';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
 import BouncyScrollView from '../components/BouncyScrollView';
 import { checkAchievements } from './achievements';
 import { updateMultipleTaskProgress } from './daily_tasks';
@@ -93,6 +94,7 @@ export default function FlashcardsAudioScreen() {
   const flashcardsAccess = useFeatureAccess('flashcards');
   const { theme: t, statusBarLight, f } = useTheme();
   const { speak, stop } = useAudio();
+  const runtimeActive = useRuntimeActive();
 
   const cardContentLang = useMemo(() => flashcardContentLang(lang, studyTarget), [lang, studyTarget]);
   const officialPacksEnabled = flashcardsOfficialPacksAvailableForTarget(studyTarget, lang);
@@ -564,7 +566,7 @@ export default function FlashcardsAudioScreen() {
   }, [cardIndex, deck.length, goToPosition]);
 
   useEffect(() => {
-    if (phase !== 'play' || !isPlaying || !currentCard) return;
+    if (!runtimeActive || phase !== 'play' || !isPlaying || !currentCard) return;
     const token = runTokenRef.current + 1;
     runTokenRef.current = token;
     clearPlaybackTimers();
@@ -637,6 +639,7 @@ export default function FlashcardsAudioScreen() {
     phase,
     playbackNonce,
     registerFlipped,
+    runtimeActive,
     side,
     speak,
     stop,
@@ -1074,7 +1077,7 @@ export default function FlashcardsAudioScreen() {
           {/* зачем: A-35 — раньше не было никакой обратной связи «звук идёт»:
               кнопка play и тишина. Волна показывает воспроизведение и гаснет
               на паузе, вне фокуса и при «Уменьшении движения». */}
-          <AudioWaveform playing={isPlaying} color={t.accent} height={26} style={{ marginBottom: 14 }} />
+          <AudioWaveform active={runtimeActive} playing={isPlaying} color={t.accent} height={26} style={{ marginBottom: 14 }} />
           <View style={styles.controlRow}>
             <TapScale onPress={goToPreviousCard} disabled={cardIndex === 0} style={[styles.iconButton, { backgroundColor: t.bgSurface, opacity: cardIndex === 0 ? 0.45 : 1 }]}>
               <Ionicons name="play-skip-back" size={20} color={t.textSecond} />

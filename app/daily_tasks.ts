@@ -8,8 +8,9 @@ import { getStreakFreezeCostShards } from './remote_flags';
 import { actionToastTri, emitAppEvent } from './events';
 import { DebugLogger } from './debug-logger';
 import { withStorageLock } from './storage_mutex';
-import { getShardsBalance, spendShards } from './shards_system';
+import { getShardsBalance } from './shards_system';
 import { bumpDailyTaskClaimed } from './lifetime_profile_stats';
+import { captureAccountGeneration } from './account_generation';
 import { DAILY_TASK_STRINGS_ES } from './daily_tasks_es_locale';
 import { countDueItemsToday } from './active_recall';
 import { getTrainerCounts, type TrainerQueue } from './trainer_store';
@@ -92,7 +93,6 @@ export type MetaTaskType =
   | 'perfect_big_lesson'  // урок от 20 фраз без единой ошибки
   | 'blitz_speed'         // 10 верных ответов за 60 секунд в уроке
   | 'streak_freeze_use'   // использовать заморозку стрика
-  | 'club_attend'         // заглянуть в спикинг-клуб (первый заход за день)
   | 'weekend_marathon'    // 2 урока в выходной (добавляется 4-м заданием в сб/вс)
   | 'mentor_friend';      // приглашённый друг прошёл первый урок (нужен серверный сигнал)
 
@@ -1605,16 +1605,6 @@ const ALL_TASKS: DailyTask[] = [
     descTr:'İstatistik ekranında seri dondurmasını kullan.',
     descPl:'Użyj zamrożenia serii na ekranie statystyk.',
     descUK:'Використай заморозку стріка на екрані статистики.' },
-  { id:'ca1', type:'club_attend', icon:'🎤', target:1, xp:96,
-    titleRU:'Оратор', titleUK:'Оратор',
-    titlePtBr:'Orador', titleVi:'Diễn giả', titleId:'Orator', titleTr:'Hatip', titlePl:'Mówca',
-    descRU:'Загляни в спикинг-клуб и посмотри, что там обсуждают.',
-    descPtBr:'Visite o clube de conversação e veja o que está rolando.',
-    descVi:'Ghé câu lạc bộ nói và xem mọi người đang thảo luận gì.',
-    descId:'Mampir ke klub speaking dan lihat apa yang sedang dibahas.',
-    descTr:'Konuşma kulübüne göz at ve neler konuşulduğuna bak.',
-    descPl:'Zajrzyj do klubu rozmów i zobacz, o czym dyskutują.',
-    descUK:'Зазирни у спікінг-клуб і подивися, що там обговорюють.' },
   { id:'wm1', type:'weekend_marathon', icon:'🏁', target:2, xp:108,
     titleRU:'Выходной марафон', titleUK:'Вихідний марафон',
     titlePtBr:'Maratona de fim de semana', titleVi:'Marathon cuối tuần', titleId:'Maraton akhir pekan', titleTr:'Hafta sonu maratonu', titlePl:'Weekendowy maraton',
@@ -1672,14 +1662,14 @@ const DAILY_SETS_TIER1: string[][] = [
   ['fs3','ta9','pbl1'],       // день 26 — polyglot_day пока скрыт: второй язык ещё недоступен
   ['da3','tp1','pbl2'],         // день 27
   ['da4','dl1','pbl3'],         // день 28
-  ['ca1','fs1','dl2'],       // день 29 — club_attend
+  ['da1','fs1','dl2'],       // день 29
   ['da6','ra1','tp2'],         // день 30
 ];
 
 // Тир 2: уровни 16–30 — средние квизы, арены, серии, повторения
 const DAILY_SETS_TIER2: string[][] = [
   ['da1','ta2','bs1'],         // день 1
-  ['da2','ca1','cs1'],         // день 2
+  ['da2','da1','cs1'],         // день 2
   ['da3','ta7','cs4'],        // день 3
   ['ead2','cs5','dc1'],        // день 4 — early_all_done
   ['da5','cs3','dc2'],         // день 5
@@ -1717,7 +1707,7 @@ const DAILY_SETS_TIER3: string[][] = [
   ['da3','ta6','cs2'],        // день 3
   ['ead1','cs3','dc2'],        // день 4 — early_all_done
   ['da5','cs4','ff1'],         // день 5
-  ['ca1','wl4','cs5'],        // день 6 — club_attend
+  ['da1','wl4','cs5'],        // день 6
   ['da7','lnm3','ff2'],        // день 7
   ['pbl2','ta5','ff3'],       // день 8 — perfect_big_lesson
   ['da1','cs8','ff4'],         // день 9
@@ -1920,15 +1910,22 @@ function replaceRetiredQuizArenaTasks(tasks: readonly DailyTask[]): DailyTask[] 
   });
 }
 
-const getTodayTasksByLevel = (playerLevel: number): DailyTask[] => {
-  const sets = getSetsForPlayerLevel(playerLevel);
-  // UTC-день — как getTodayKey(), чтобы список заданий и прогресс сбрасывались
-  // в одну и ту же полночь (раньше список жил по локальной дате, а прогресс по UTC).
-  // Повторяемость «5-го числа каждого месяца» снимается сидом замен внутри
-  // replaceRetiredQuizArenaTasks — он привязан к полному dayKey, а не к дню месяца.
-  const setIdx = (new Date().getUTCDate() - 1) % sets.length;
-  const ids = sets[setIdx];
-  return replaceRetiredQuizArenaTasks(ids.map(id => ALL_TASKS.find(t => t.id === id)!).filter(Boolean));
+/** The legacy catalogue is readable for old snapshots only; new days use this vetted whitelist. */
+const ACTIVE_DAILY_TASK_ROTATION: readonly (readonly string[])[] = [
+  ['da1', 'tw1', 'tp1'], ['da1', 'wl1', 'ra1'], ['da1', 'vl1', 'tp1'],
+  ['da1', 'tw1', 'ra1'], ['da1', 'wl1', 'tp1'], ['da1', 'vl1', 'tw1'],
+  ['da1', 'ra1', 'tp1'], ['da1', 'wl1', 'tw1'], ['da1', 'vl1', 'ra1'],
+];
+const ACTIVE_DAILY_TASK_IDS = new Set(ACTIVE_DAILY_TASK_ROTATION.flat());
+// Replacement-only variants are never dealt as daily cards. They exist so the free reroll
+// can always offer a real, tracked alternative instead of an invalid legacy task.
+const ACTIVE_DAILY_REROLL_TASK_IDS = new Set([...ACTIVE_DAILY_TASK_IDS, 'tw2', 'tp2', 'ra2']);
+
+const getTodayTasksByLevel = (_playerLevel: number): DailyTask[] => {
+  const dayIndex = (new Date().getUTCDate() - 1) % ACTIVE_DAILY_TASK_ROTATION.length;
+  return ACTIVE_DAILY_TASK_ROTATION[dayIndex]
+    .map((id) => ALL_TASKS.find((task) => task.id === id))
+    .filter((task): task is DailyTask => Boolean(task));
 };
 
 // Оставляем для обратной совместимости (используется в паре мест)
@@ -1939,19 +1936,19 @@ export const getTodayTasks = (): DailyTask[] => getTodayTasksByLevel(1);
 // кода — так на диске лежит минимум байт, а после обновления приложения снапшот
 // сразу отдаёт АКТУАЛЬНЫЕ формулировки, а не замороженные копии прошлой версии.
 export const findDailyTaskById = (id: string): DailyTask | undefined =>
-  ALL_TASKS.find((task) => task.id === id);
+  ACTIVE_DAILY_REROLL_TASK_IDS.has(id) ? ALL_TASKS.find((task) => task.id === id) : undefined;
 
 // Резервные задания на случай если verb_learned недоступно (все глаголы выучены)
 const VERB_FALLBACKS: Record<string, string> = {
-  vl1: 'ta1',  vl2: 'ta2',  vl3: 'ta3',
-  vl4: 'ta9',  vl5: 'ta8',  vl6: 'ta3',  vl7: 'ta3',
+  vl1: 'ra1',  vl2: 'ra1',  vl3: 'ra1',
+  vl4: 'ra1',  vl5: 'ra1',  vl6: 'ra1',  vl7: 'ra1',
 };
 
 // A fully completed vocabulary has no possible progress for words_learned.
 // Resolve it to an answer task instead of showing an impossible card.
 const WORDS_FALLBACKS: Record<string, string> = {
-  wl1: 'ta1', wl2: 'ta2', wl3: 'ta3',
-  wl4: 'ta3', wl5: 'ta2', wl6: 'ta1', wl7: 'ta2',
+  wl1: 'ra1', wl2: 'ra1', wl3: 'ra1',
+  wl4: 'ra1', wl5: 'ra1', wl6: 'ra1', wl7: 'ra1',
 };
 
 export const FRENCH_UNAVAILABLE_DAILY_TASK_TYPES: ReadonlySet<TaskType> = new Set([
@@ -2030,25 +2027,25 @@ const TRAINER_QUEUE_BY_TASK_TYPE: Readonly<Partial<Record<TaskType, TrainerQueue
 };
 
 const TRAINER_TASK_FALLBACK_IDS: Record<string, readonly string[]> = {
-  tw1: ['ta1', 'ot1', 'cs1', 'ta8'],
-  tw2: ['ta2', 'ot1', 'cs1', 'ta1'],
-  tp1: ['ta1', 'ot1', 'cs1', 'ta8'],
-  tp2: ['ta2', 'ot1', 'cs1', 'ta1'],
+  tw1: ['wl1', 'vl1', 'ra1'],
+  tw2: ['wl1', 'vl1', 'ra1'],
+  tp1: ['vl1', 'wl1', 'ra1'],
+  tp2: ['vl1', 'wl1', 'ra1'],
 };
 
 const RECALL_TASK_FALLBACK_IDS: Record<string, readonly string[]> = {
-  rs1: ['ta1', 'ta8', 'ot1', 'cs1'],
-  rs2: ['ta8', 'ta1', 'ot1', 'cs1'],
-  rs3: ['ot1', 'ta1', 'ta8', 'cs1'],
-  ra1: ['ta2', 'ta1', 'ta8', 'cs1'],
-  ra2: ['ta3', 'ta2', 'ta1', 'cs1'],
-  ra3: ['ta9', 'ta1', 'ot1', 'cs1'],
-  ra4: ['ta4', 'ta3', 'ta2', 'cs1'],
-  ra5: ['ta8', 'ta1', 'ot1', 'cs1'],
-  ra6: ['ta2', 'ta1', 'ta8', 'cs1'],
-  rp1: ['cs1', 'ta1', 'ot1', 'ta8'],
-  rp2: ['cs1', 'ta8', 'ta1', 'ot1'],
-  rp3: ['cs1', 'ta2', 'ta1', 'ot1'],
+  rs1: ['da1', 'wl1', 'vl1', 'tw1', 'tp1'],
+  rs2: ['da1', 'wl1', 'vl1', 'tw1', 'tp1'],
+  rs3: ['da1', 'wl1', 'vl1', 'tw1', 'tp1'],
+  ra1: ['da1', 'wl1', 'vl1', 'tw1', 'tp1'],
+  ra2: ['da1', 'wl1', 'vl1', 'tw1', 'tp1'],
+  ra3: ['da1', 'wl1', 'vl1', 'tw1', 'tp1'],
+  ra4: ['da1', 'wl1', 'vl1', 'tw1', 'tp1'],
+  ra5: ['da1', 'wl1', 'vl1', 'tw1', 'tp1'],
+  ra6: ['da1', 'wl1', 'vl1', 'tw1', 'tp1'],
+  rp1: ['da1', 'wl1', 'vl1', 'tw1', 'tp1'],
+  rp2: ['da1', 'wl1', 'vl1', 'tw1', 'tp1'],
+  rp3: ['da1', 'wl1', 'vl1', 'tw1', 'tp1'],
 };
 
 const pickRecallUnavailableFallback = (
@@ -2056,7 +2053,7 @@ const pickRecallUnavailableFallback = (
   usedIds: Set<string>,
   studyTarget?: RuntimeStudyTarget,
 ): DailyTask => {
-  const fallbackIds = RECALL_TASK_FALLBACK_IDS[task.id] ?? ['ta1', 'ta8', 'ot1', 'cs1'];
+  const fallbackIds = RECALL_TASK_FALLBACK_IDS[task.id] ?? ['da1', 'wl1', 'vl1', 'tw1', 'tp1'];
   for (const id of fallbackIds) {
     if (usedIds.has(id)) continue;
     const fallback = ALL_TASKS.find((t) => t.id === id);
@@ -2109,11 +2106,11 @@ const getUserIsPremium = async (): Promise<boolean> => {
 };
 
 // ═══════════════════════════════════════════════════════════════════════════
-// DAILY TASK REROLL — замена надоевшего задания за осколки (1 раз/сутки)
+// DAILY TASK REROLL — одна бесплатная замена надоевшего задания в сутки
 // ═══════════════════════════════════════════════════════════════════════════
 
-/** Цена одной замены задания. Сильно дешевле страховых трат — sink ради вовлечения, не монетизации. */
-export const DAILY_TASK_REROLL_COST_SHARDS = 3;
+/** Цена одной замены задания: она не расходует валюту. */
+export const DAILY_TASK_REROLL_COST_SHARDS = 0;
 /** Сколько замен в сутки разрешено. Изменение требует обновления UI-подсказки на экране задач. */
 export const DAILY_TASK_REROLL_MAX_PER_DAY = 1;
 
@@ -2145,7 +2142,7 @@ const loadAdminTaskOverride = async (studyTarget?: RuntimeStudyTarget): Promise<
     if (!raw) return null;
     const parsed = JSON.parse(raw) as AdminTaskOverrideState;
     if (!parsed || parsed.dayKey !== getTodayKey() || !Array.isArray(parsed.taskIds)) return null;
-    const taskIds = parsed.taskIds.filter((id) => ALL_TASKS.some((t) => t.id === id));
+    const taskIds = parsed.taskIds.filter((id) => ACTIVE_DAILY_TASK_IDS.has(id));
     return taskIds.length > 0 ? { dayKey: parsed.dayKey, taskIds } : null;
   } catch {
     return null;
@@ -2163,11 +2160,12 @@ export const clearDailyTasksAdminOverride = async (studyTarget?: RuntimeStudyTar
 export const getDailyTaskAdminPacks = (packSize = 3): DailyTaskAdminPack[] => {
   const safeSize = Math.max(1, Math.min(6, Math.floor(packSize) || 3));
   const packs: DailyTaskAdminPack[] = [];
-  for (let i = 0; i < ALL_TASKS.length; i += safeSize) {
-    const tasks = ALL_TASKS.slice(i, i + safeSize);
+  const activeTasks = ALL_TASKS.filter((task) => ACTIVE_DAILY_TASK_IDS.has(task.id));
+  for (let i = 0; i < activeTasks.length; i += safeSize) {
+    const tasks = activeTasks.slice(i, i + safeSize);
     packs.push({
       id: `daily_tasks_admin_pack_${Math.floor(i / safeSize) + 1}`,
-      label: `${i + 1}-${i + tasks.length} / ${ALL_TASKS.length}`,
+      label: `${i + 1}-${i + tasks.length} / ${activeTasks.length}`,
       taskIds: tasks.map((t) => t.id),
       types: tasks.map((t) => t.type),
     });
@@ -2176,7 +2174,7 @@ export const getDailyTaskAdminPacks = (packSize = 3): DailyTaskAdminPack[] => {
 };
 
 export const getDailyTaskAdminPreviewTasks = (studyTarget?: RuntimeStudyTarget): DailyTask[] => (
-  filterDailyTasksForStudyTarget(ALL_TASKS, studyTarget)
+  filterDailyTasksForStudyTarget(ALL_TASKS.filter((task) => ACTIVE_DAILY_TASK_IDS.has(task.id)), studyTarget)
 );
 
 const makeAdminProgressRow = (task: DailyTask, mode: DailyTaskSeedMode): TaskProgress => {
@@ -2206,6 +2204,7 @@ export const seedDailyTasksAdminPack = async (
   studyTarget?: RuntimeStudyTarget,
 ): Promise<DailyTask[]> => {
   const requestedTasks = taskIds
+    .filter((id) => ACTIVE_DAILY_TASK_IDS.has(id))
     .map((id) => ALL_TASKS.find((t) => t.id === id))
     .filter((t): t is DailyTask => Boolean(t));
   const tasks = filterDailyTasksForStudyTarget(requestedTasks, studyTarget);
@@ -2280,7 +2279,7 @@ const replaceTrainerTasksWhenQueueIsInsufficient = async (
       return task;
     }
 
-    const fallbackIds = TRAINER_TASK_FALLBACK_IDS[task.id] ?? ['ta1', 'ot1', 'cs1', 'ta8'];
+    const fallbackIds = TRAINER_TASK_FALLBACK_IDS[task.id] ?? ['wl1', 'vl1', 'ra1'];
     for (const id of fallbackIds) {
       if (usedIds.has(id)) continue;
       const fallback = ALL_TASKS.find((candidate) => candidate.id === id);
@@ -2314,7 +2313,7 @@ export const countAvailableVocabularyWords = async (studyTarget?: RuntimeStudyTa
           });
         }
       } catch {
-        // Unknown progress is treated as unavailable, so a reroll is never charged blindly.
+        // Unknown progress is treated as unavailable, so the app never offers an impossible reroll.
       }
       wordKeys.forEach((word) => { if (!learned.has(word)) available += 1; });
     });
@@ -2372,7 +2371,6 @@ const TASK_TYPE_CATEGORY: Record<TaskType, DailyTaskCategory> = {
   comeback_lesson: 'engage',
   perfect_big_lesson: 'perfect',
   blitz_speed: 'perfect',
-  club_attend: 'social',
   mentor_friend: 'social',
 };
 
@@ -2380,8 +2378,10 @@ export function dailyTaskAvailableForStudyTarget(
   taskOrType: DailyTask | TaskType,
   studyTarget?: RuntimeStudyTarget,
 ): boolean {
-  void studyTarget;
   const type = typeof taskOrType === 'string' ? taskOrType : taskOrType.type;
+  if (storageStudyTarget(studyTarget) === 'fr' && FRENCH_UNAVAILABLE_DAILY_TASK_TYPES.has(type)) {
+    return false;
+  }
   return !TEMPORARILY_UNAVAILABLE_DAILY_TASK_TYPES.has(type);
 }
 
@@ -2443,14 +2443,13 @@ const pickRerollCandidate = async (
 ): Promise<DailyTask | null> => {
   const orig = ALL_TASKS.find((t) => t.id === taskId);
   if (!orig) return null;
-  const cat = TASK_TYPE_CATEGORY[orig.type];
   const usedIds = new Set(currentIds);
 
   // Доступны ли ещё неправильные глаголы (для возможной замены на verb_learned).
   let verbsAvailable = Number.POSITIVE_INFINITY;
   let wordsAvailable = Number.POSITIVE_INFINITY;
-  const trainerCounts = cat === 'trainer' ? await getTrainerCounts(studyTarget) : null;
-  if (cat === 'words') {
+  const trainerCounts = await getTrainerCounts(studyTarget);
+  if (orig.type === 'words_learned' || orig.type === 'verb_learned') {
     wordsAvailable = await countAvailableVocabularyWords(studyTarget);
     try {
       const raw = await AsyncStorage.getItem(irregularVerbsGlobalKey(studyTarget));
@@ -2465,17 +2464,17 @@ const pickRerollCandidate = async (
   }
 
   const candidates = ALL_TASKS.filter((t) => {
+    if (!ACTIVE_DAILY_REROLL_TASK_IDS.has(t.id)) return false;
     if (isRetiredQuizArenaTaskType(t.type)) return false;
     if (REROLL_INELIGIBLE_CONDITIONAL_TYPES.has(t.type)) return false;
     if (t.type === 'weekend_marathon' && !isWeekendToday()) return false;
     if (usedIds.has(t.id)) return false;
-    if (TASK_TYPE_CATEGORY[t.type] !== cat) return false;
     if ((t.minPlayerLevel ?? 1) > playerLevel) return false;
     if (isPremium && t.freeOnly) return false;
     if (t.type === 'words_learned' && t.target > wordsAvailable) return false;
     if (t.type === 'verb_learned' && t.target > verbsAvailable) return false;
     const trainerQueue = TRAINER_QUEUE_BY_TASK_TYPE[t.type];
-    if (trainerQueue && (!trainerCounts || t.target > trainerCounts[trainerQueue])) return false;
+    if (trainerQueue && t.target > trainerCounts[trainerQueue]) return false;
     if (!dailyTaskAvailableForStudyTarget(t, studyTarget)) return false;
     return true;
   });
@@ -2532,7 +2531,6 @@ export const rerollDailyTask = async (taskId: string, studyTarget?: RuntimeStudy
     const todayKey = getTodayKey();
     // Прежнее значение ключа запоминаем, чтобы при неудачном списании вернуть ИМЕННО его:
     // повторный реролл уже заменённого задания иначе потерял бы свою законную замену.
-    let previousReplacementForTask: string | undefined;
     const reserved = await withStorageLock(async (): Promise<boolean> => {
       const state = await loadRerollStateRaw(studyTarget);
       const replacements = state.replacements ?? {};
@@ -2541,32 +2539,12 @@ export const rerollDailyTask = async (taskId: string, studyTarget?: RuntimeStudy
       if (!isReplacingOwnEntry && Object.keys(replacements).length >= DAILY_TASK_REROLL_MAX_PER_DAY) {
         return false;
       }
-      previousReplacementForTask = isReplacingOwnEntry ? replacements[taskId] : undefined;
       await saveRerollState({ dayKey: todayKey, replacements: { ...replacements, [taskId]: candidate.id } }, studyTarget);
       return true;
     });
     if (!reserved) return { ok: false, reason: 'limit_reached' };
 
-    const spent = await spendShards(DAILY_TASK_REROLL_COST_SHARDS, 'daily_task_reroll');
-    if (!spent) {
-      // Осколков не хватило — снимаем резерв, иначе сгоревшая попытка съела бы суточный
-      // лимит впустую. Чужие замены не трогаем, а свою возвращаем к прежнему значению:
-      // если замена уже была, её нельзя просто удалить — задание «отыграло» бы назад.
-      // Откат идёт по compare-and-swap: если в хранилище уже НЕ наш candidate.id, значит
-      // параллельный реролл того же задания успел записать и оплатить свою замену — тогда
-      // не трогаем её вовсе, иначе стёрли бы то, за что пользователь заплатил.
-      await withStorageLock(async () => {
-        const state = await loadRerollStateRaw(studyTarget);
-        const rest = { ...(state.replacements ?? {}) };
-        if (rest[taskId] !== candidate.id) return;
-        if (previousReplacementForTask === undefined) delete rest[taskId];
-        else rest[taskId] = previousReplacementForTask;
-        await saveRerollState({ dayKey: todayKey, replacements: rest }, studyTarget);
-      }).catch(() => {});
-      return { ok: false, reason: 'insufficient_shards' };
-    }
-
-    // Резерв оплачен — обнуляем прогресс старого id (чтобы не «висел») под тем же замком.
+    // Замена бесплатная: резерв сразу обнуляет прогресс старой карточки.
     await withStorageLock(async () => {
       const key = dailyTasksProgressKey(todayKey, studyTarget);
       const raw = await AsyncStorage.getItem(key);
@@ -2675,8 +2653,6 @@ const isStreakFreezeTaskAvailable = async (isPremium: boolean): Promise<boolean>
  * — comeback_lesson: сегодня не день возвращения (перерыв < 3 дней);
  * — revision_lesson: нет урока, пройденного 7+ дней назад;
  * — streak_freeze_use: заморозка недоступна (нет стрика / нечем платить).
- * club_attend НЕ подменяем: клиент не может надёжно определить доступность
- * клуба (feature-flag/сессии), а заход на экран клуба возможен всегда.
  */
 const replaceConditionallyUnavailableDailyTasks = async (
   tasks: DailyTask[],
@@ -2731,16 +2707,8 @@ const replaceConditionallyUnavailableDailyTasks = async (
  * опроса-4-го-задания), обрезки до тройки нет. Порог «бонуса за день» считает
  * все N карточек — в выходной это 4 из 4 (осознанное усложнение выходного дня).
  */
-const appendWeekendMarathonTask = (tasks: DailyTask[], studyTarget?: RuntimeStudyTarget): DailyTask[] => {
-  if (!isWeekendToday()) return tasks;
-  if (tasks.some((task) => task.type === 'weekend_marathon')) return tasks;
-  const wm = ALL_TASKS.find((task) => task.id === 'wm1');
-  if (!wm || !dailyTaskAvailableForStudyTarget(wm, studyTarget)) return tasks;
-  return [...tasks, wm];
-};
-
-const DAILY_TASK_BASE_COUNT = 4;
-const DAILY_TASK_BASE_FILLER_IDS = ['dpr1', 'dps1', 'da1', 'fs1', 'ta1'] as const;
+const DAILY_TASK_BASE_COUNT = 3;
+const DAILY_TASK_BASE_FILLER_IDS = ['da1', 'wl1', 'vl1', 'tw1', 'tp1', 'ra1'] as const;
 
 /** Ensures the daily surface has four real objectives; a weekend task keeps its slot. */
 export function ensureDailyTaskBaseCount(
@@ -2775,6 +2743,7 @@ export const getTodayTasksSafe = async (studyTarget?: RuntimeStudyTarget): Promi
   const adminOverride = await loadAdminTaskOverride(studyTarget);
   if (adminOverride) {
     const adminTasks = adminOverride.taskIds
+      .filter((id) => ACTIVE_DAILY_TASK_IDS.has(id))
       .map((id) => ALL_TASKS.find((t) => t.id === id))
       .filter((t): t is DailyTask => Boolean(t));
     // Admin QA override показываем ДОСЛОВНО: ротация retired-типов здесь не применяется,
@@ -2830,10 +2799,10 @@ export const getTodayTasksSafe = async (studyTarget?: RuntimeStudyTarget): Promi
   const hasVerbTask = result.some(t => t.type === 'verb_learned');
   if (!hasVerbTask) {
     result = await replaceConditionallyUnavailableDailyTasks(result, isPremium, studyTarget);
-    return ensureDailyTaskBaseCount(appendWeekendMarathonTask(
+    return ensureDailyTaskBaseCount(
       filterDailyTasksForStudyTarget(replaceRetiredQuizArenaTasks(result), studyTarget),
       studyTarget,
-    ), studyTarget);
+    );
   }
 
   const raw = await AsyncStorage.getItem(irregularVerbsGlobalKey(studyTarget));
@@ -2852,10 +2821,10 @@ export const getTodayTasksSafe = async (studyTarget?: RuntimeStudyTarget): Promi
   });
 
   result = await replaceConditionallyUnavailableDailyTasks(result, isPremium, studyTarget);
-  return ensureDailyTaskBaseCount(appendWeekendMarathonTask(
+  return ensureDailyTaskBaseCount(
     filterDailyTasksForStudyTarget(replaceRetiredQuizArenaTasks(result), studyTarget),
     studyTarget,
-  ), studyTarget);
+  );
 };
 
 const STORAGE_PREFIX = 'daily_tasks_';
@@ -3362,6 +3331,7 @@ export const claimTaskWithReward = async (
   grantReward: () => Promise<number>,
   options?: ClaimTaskWithRewardOptions,
 ): Promise<{ claimed: boolean; awardedXp: number }> => {
+  const accountToken = captureAccountGeneration();
   /**
    * Источник правды — свежий getTodayTasksSafe() (тир уровня / Premium / реролл / фолбэки).
    * Снапшот с экрана (tasksForClaim) только если safe вернул пусто — иначе после смены тира в проде
@@ -3392,7 +3362,7 @@ export const claimTaskWithReward = async (
     if (!current.completed) return 'blocked';
     const updated = applyClaimForTaskToProgress(progress, tasks, taskId, task);
     await saveTodayProgress(updated, options?.studyTarget);
-    void bumpDailyTaskClaimed(options?.studyTarget);
+    void bumpDailyTaskClaimed(options?.studyTarget, accountToken);
     return 'fresh';
   });
   if (reservation === 'blocked') {

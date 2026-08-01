@@ -7125,7 +7125,7 @@ export const MITAP_DAY_25: PlanContentDay = {
       },
       examples: [
         { en: 'I need your help today.', gloss: { ru: 'Мне нужна твоя помощь сегодня.', uk: 'Мені потрібна твоя допомога сьогодні.', es: 'Necesito tu ayuda hoy.' , 'pt-BR': 'Preciso da sua ajuda hoje.', vi: 'Tôi cần sự giúp đỡ của bạn ngày hôm nay.', id: 'Saya butuh bantuan Anda hari ini.', tr: 'Bugün yardımına ihtiyacım var.', pl: 'Potrzebuję twojej pomocy dzisiaj.'} },
-        { en: 'I do not know the password.', gloss: { ru: 'Я не знаю пароль.', uk: 'Я не знаю пароль.', es: 'No sé la contraseña.' , 'pt-BR': 'Não sei a senha.', vi: 'Tôi không biết mật khẩu.', id: 'Saya tidak tahu kata sandinya.', tr: 'Şifreyi bilmiyorum.', pl: 'Nie znam hasła.'} },
+        { en: 'I do not know the password.', gloss: { ru: 'Я не знаю пароль.', uk: 'Я не знаю пароля.', es: 'No sé la contraseña.' , 'pt-BR': 'Não sei a senha.', vi: 'Tôi không biết mật khẩu.', id: 'Saya tidak tahu kata sandinya.', tr: 'Şifreyi bilmiyorum.', pl: 'Nie znam hasła.'} },
       ],
     },
   ],
@@ -7193,7 +7193,7 @@ export const MITAP_DAY_25: PlanContentDay = {
     {
       id: 'mitap_d25_p4',
       english: 'I do not know the password.',
-      meaning: { ru: 'Я не знаю пароль.', uk: 'Я не знаю пароль.', es: 'No sé la contraseña.' , 'pt-BR': 'Não sei a senha.', vi: 'Tôi không biết mật khẩu.', id: 'Saya tidak tahu kata sandinya.', tr: 'Şifreyi bilmiyorum.', pl: 'Nie znam hasła.'},
+      meaning: { ru: 'Я не знаю пароль.', uk: 'Я не знаю пароля.', es: 'No sé la contraseña.' , 'pt-BR': 'Não sei a senha.', vi: 'Tôi không biết mật khẩu.', id: 'Saya tidak tahu kata sandinya.', tr: 'Şifreyi bilmiyorum.', pl: 'Nie znam hasła.'},
       constructions: ['present-simple-negation'],
       explanation: {
         title: { ru: 'do not know = не знаю', uk: 'do not know = не знаю', es: 'do not know = no sé' , 'pt-BR': 'do not know = não sei', vi: 'do not know = không biết', id: 'do not know = tidak tahu', tr: 'do not know = bilmiyorum', pl: 'do not know = nie wiem'},
@@ -15025,7 +15025,7 @@ export const MITAP_DAY_59: PlanContentDay = {
   vocabulary: [
     { word: 'figures', partOfSpeech: 'noun', translation: { ru: 'цифры, данные', uk: 'цифри, дані', es: 'cifras, datos' , 'pt-BR': 'números, dados', vi: 'số liệu, dữ liệu', id: 'angka, data', tr: 'rakamlar, veriler', pl: 'liczby, dane'}, example: 'These figures have been checked twice already.' },
     { word: 'checked', partOfSpeech: 'verb', translation: { ru: 'проверили, проверен', uk: 'перевірили, перевірений', es: 'revisado, verificado' , 'pt-BR': 'revisado, verificado', vi: 'được xem xét, xác minh', id: 'ditinjau, diverifikasi', tr: 'incelendi, doğrulandı', pl: 'sprawdzone, zweryfikowane'}, example: 'These figures have been checked twice already.' },
-    { word: 'missed', partOfSpeech: 'verb', translation: { ru: 'упустили, пропустили', uk: 'упустили, пропустили', es: 'omitido, pasado por alto' , 'pt-BR': 'omitido, esquecido', vi: 'bị bỏ qua, bị bỏ qua', id: 'dihilangkan, diabaikan', tr: 'atlanmış, gözden kaçırılmış', pl: 'pominięty, przeoczony'}, example: 'I think something was missed in the report.' },
+    { word: 'missed', partOfSpeech: 'verb', translation: { ru: 'упустили, пропустили', uk: 'проґавили, пропустили', es: 'omitido, pasado por alto' , 'pt-BR': 'omitido, esquecido', vi: 'bị bỏ qua, bị bỏ qua', id: 'dihilangkan, diabaikan', tr: 'atlanmış, gözden kaçırılmış', pl: 'pominięty, przeoczony'}, example: 'I think something was missed in the report.' },
     { word: 'report', partOfSpeech: 'noun', translation: { ru: 'отчёт', uk: 'звіт', es: 'informe' , 'pt-BR': 'relatório', vi: 'báo cáo', id: 'laporan', tr: 'rapor', pl: 'raport'}, example: 'I think something was missed in the report.' },
     { word: 'data', partOfSpeech: 'noun', translation: { ru: 'данные', uk: 'дані', es: 'datos' , 'pt-BR': 'dados', vi: 'dữ liệu', id: 'data', tr: 'veri', pl: 'dane'}, example: 'Let me check the data once more.' },
     { word: 'quarter', partOfSpeech: 'noun', translation: { ru: 'квартал (три месяца)', uk: 'квартал (три місяці)', es: 'trimestre (tres meses)' , 'pt-BR': 'trimestre (três meses)', vi: 'quý (ba tháng)', id: 'triwulan (tiga bulan)', tr: 'çeyrek (üç ay)', pl: 'kwartał (trzy miesiące)'}, example: 'We had different numbers last quarter.' },
@@ -23679,7 +23679,7 @@ export const MITAP_DAY_102: PlanContentDay = {
       title: { ru: 'О чём этот урок', uk: 'Про що цей урок', es: 'De qué trata esta lección' , 'pt-BR': 'Sobre o que é esta lição?', vi: 'Bài học này nói về cái gì?', id: 'Tentang apa pelajaran ini?', tr: 'Bu ders neyle ilgili?', pl: 'O czym jest ta lekcja?'},
       body: {
         ru: 'Сегодня ты учишься говорить о карьерных целях по-английски. Ты скажешь, кем хочешь стать, и объяснишь, что произойдёт, когда это случится.',
-        uk: 'Сьогодні ти вчишся говорити про кар\'єрні цілі англійською. Ти скажеш,ким хочеш стати, і поясниш, що відбудеться, коли це станеться.',
+        uk: 'Сьогодні ти вчишся говорити про кар\'єрні цілі англійською. Ти скажеш, ким хочеш стати, і поясниш, що відбудеться, коли це станеться.',
         es: 'Hoy aprenderás a hablar sobre objetivos profesionales en inglés. Dirás en qué quieres convertirte y explicarás qué pasará cuando eso ocurra.',
         'pt-BR': 'Hoje você aprenderá a a falar sobre objetivos de carreira em inglês. Você dirá o que deseja se tornar e explicará o que acontecerá quando isso acontecer.',
         vi: 'Hôm nay bạn sẽ học a nói về mục tiêu nghề nghiệp bằng tiếng Anh. Bạn sẽ nói bạn muốn trở thành người như thế nào và giải thích điều gì sẽ xảy ra khi điều đó xảy ra.',

@@ -13,8 +13,8 @@ describe('home header shard placement', () => {
     const profile = header.indexOf('{renderHomeProfileButton()}');
     expect(shards).toBeGreaterThanOrEqual(0);
     expect(profile).toBeGreaterThan(shards);
-    expect(header).toContain('<LingmanVideosButton />');
+    expect(header).toContain('<LingmanVideosButton ownerActive={homeRuntimeActive} />');
     expect(header).not.toContain('CommunityChatHubButton');
-    expect(header).toContain('<NotificationCenterButton isHomeTabActive={isHomeOwner} homeFocusTick={focusTick} />');
+    expect(header).toContain('<NotificationCenterButton isHomeTabActive={homeRuntimeActive} homeFocusTick={focusTick} />');
   });
 });

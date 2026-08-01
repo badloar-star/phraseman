@@ -34,6 +34,7 @@ import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useScreen } from '../hooks/use-screen';
 import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { bundleLang, triLang, type Lang } from '../constants/i18n';
 import {
   ruKnowledgeShardsAccusativeAfterNumber,
@@ -784,6 +785,7 @@ export default function ShardsShopScreen() {
     };
   }, [effectiveOs, lang]);
   const params = useLocalSearchParams<{ need?: string; source?: string; tab?: string; returnTo?: string }>();
+  const shardsShopRuntimeActive = useRuntimeActive();
   /** Снимок нехватки из маршрута; сам по себе не обновляется после покупки. */
   const needFromRoute = useMemo(() => {
     const n = Number(params.need || 0);
@@ -1041,10 +1043,10 @@ export default function ShardsShopScreen() {
   );
 
   useEffect(() => {
-    if (packTrialHours == null || packTrialHours <= 0) return;
+    if (!shardsShopRuntimeActive || packTrialHours == null || packTrialHours <= 0) return;
     const id = setInterval(() => { void refreshPackTrial(); }, 60_000);
     return () => clearInterval(id);
-  }, [packTrialHours, refreshPackTrial]);
+  }, [packTrialHours, refreshPackTrial, shardsShopRuntimeActive]);
 
   useEffect(() => {
     const sub = onAppEvent('pack_trial_gift_set', () => { void refreshPackTrial(); });

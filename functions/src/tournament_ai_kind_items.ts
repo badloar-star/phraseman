@@ -14,8 +14,13 @@
 
 import { createHash } from 'node:crypto';
 import type { TournamentTask } from './tournament_core';
-import { TOURNAMENT_TASK_LIMITS, validateTournamentTask } from './tournament_core';
+import { TOURNAMENT_TASK_LIMITS, validateTournamentTaskForNewRoom } from './tournament_core';
 import { KIND_TO_FORMAT, KIND_TO_MODE, type TournamentAiKind } from './tournament_ai_blueprint';
+import {
+  TOURNAMENT_MAX_NORMALIZED_WORDS,
+  tournamentNormalizedWords,
+  withoutTournamentAnswerPunctuation,
+} from './tournament_ai_generator';
 
 const CHOICE_OPTIONS = 4;
 const SCENARIO_MAX_CHARS = 48;
@@ -23,8 +28,7 @@ const RULE_NOTE_MAX_BYTES = 500;
 const EXAMPLE_MAX_BYTES = 500;
 const MIN_ASSEMBLY_TOKENS = 4;
 const MAX_ASSEMBLY_TOKENS = 12;
-const MIN_DECOYS = 2;
-const MAX_DECOYS = 4;
+const ASSEMBLY_DECOYS = 4;
 
 // ── Общие помощники ─────────────────────────────────────────────────────────
 
@@ -60,6 +64,31 @@ function lengthGiveaway(options: readonly string[], correctIndex: number): boole
   return Math.abs(correctLen - mid) > Math.max(10, mid * 0.6);
 }
 
+function boundedUtf8(value: string, maxBytes: number): string {
+  if (bytes(value) <= maxBytes) return value;
+  let result = '';
+  for (const char of value) {
+    if (bytes(result + char) > maxBytes) break;
+    result += char;
+  }
+  return result.trim();
+}
+
+function choiceWrongOptionReasons(
+  options: readonly string[],
+  correctIndex: number,
+  ruleNote: string,
+): readonly string[] {
+  return Object.freeze(options.map((option, index) => (
+    index === correctIndex
+      ? ''
+      : boundedUtf8(
+        `Почему «${option}» — ловушка: ${ruleNote}`,
+        TOURNAMENT_TASK_LIMITS.explanationBytes,
+      )
+  )));
+}
+
 // ── Разобранное задание ─────────────────────────────────────────────────────
 
 export type ParsedKindItem = {
@@ -77,6 +106,8 @@ export type ParsedKindItem = {
   readonly scenario: string;
   readonly ruleNote: string;
   readonly example: string;
+  /** One human-readable reason per choice; the correct option stays empty. */
+  readonly wrongOptionReasons: readonly string[];
 };
 
 export type KindItemResult =
@@ -102,6 +133,9 @@ export function parseKindItem(raw: unknown, kind: TournamentAiKind): KindItemRes
   const example = String(raw.example ?? '').trim();
 
   if (!prompt || bytes(prompt) > TOURNAMENT_TASK_LIMITS.promptBytes) errors.push('kind_prompt_invalid');
+  if (tournamentNormalizedWords(prompt).length > TOURNAMENT_MAX_NORMALIZED_WORDS) {
+    errors.push('kind_prompt_word_limit');
+  }
   if (!scenario || scenario.length > SCENARIO_MAX_CHARS || !HAS_CYRILLIC.test(scenario)) {
     errors.push('kind_scenario_invalid');
   }
@@ -152,6 +186,9 @@ function parseChoice(
     if (options[correctIndex] !== correctAnswer) errors.push('kind_correct_mismatch');
     if (lengthGiveaway(options, correctIndex)) errors.push('kind_length_giveaway');
   }
+  if (tournamentNormalizedWords(correctAnswer).length > TOURNAMENT_MAX_NORMALIZED_WORDS) {
+    errors.push('kind_answer_word_limit');
+  }
 
   if (errors.length > 0) return { ok: false, errors: Object.freeze(errors) };
   return {
@@ -166,6 +203,7 @@ function parseChoice(
       scenario: common.scenario,
       ruleNote: common.ruleNote,
       example: common.example,
+      wrongOptionReasons: choiceWrongOptionReasons(options, correctIndex, common.ruleNote),
     }),
   };
 }
@@ -176,19 +214,27 @@ function parseAssembly(
   common: Common,
   errors: string[],
 ): KindItemResult {
-  const answer = String(raw.answer ?? '').trim();
-  const tokens = Array.isArray(raw.tokens) ? raw.tokens.map((token) => String(token ?? '').trim()) : [];
-  const decoys = Array.isArray(raw.decoys) ? raw.decoys.map((decoy) => String(decoy ?? '').trim()) : [];
+  const rawAnswer = String(raw.answer ?? '').trim();
+  const rawTokens = Array.isArray(raw.tokens) ? raw.tokens.map((token) => String(token ?? '').trim()) : [];
+  const rawDecoys = Array.isArray(raw.decoys) ? raw.decoys.map((decoy) => String(decoy ?? '').trim()) : [];
+  const answer = withoutTournamentAnswerPunctuation(rawAnswer);
+  const tokens = rawTokens.map(withoutTournamentAnswerPunctuation);
+  const decoys = rawDecoys.map(withoutTournamentAnswerPunctuation);
 
-  if (!answer || !HAS_LATIN.test(answer) || bytes(answer) > TOURNAMENT_TASK_LIMITS.answerBytes) {
+  if (!answer || !HAS_LATIN.test(answer) || bytes(rawAnswer) > TOURNAMENT_TASK_LIMITS.answerBytes) {
     errors.push('kind_answer_invalid');
   }
+  if (tournamentNormalizedWords(rawAnswer).length > TOURNAMENT_MAX_NORMALIZED_WORDS) {
+    errors.push('kind_answer_word_limit');
+  }
   if (tokens.length < MIN_ASSEMBLY_TOKENS || tokens.length > MAX_ASSEMBLY_TOKENS
-    || tokens.some((token) => !token || bytes(token) > TOURNAMENT_TASK_LIMITS.tokenBytes)) {
+    || tokens.some((token, index) => !token || bytes(rawTokens[index]) > TOURNAMENT_TASK_LIMITS.tokenBytes
+      || tournamentNormalizedWords(rawTokens[index]).length !== 1)) {
     errors.push('kind_tokens_invalid');
   }
-  if (decoys.length < MIN_DECOYS || decoys.length > MAX_DECOYS
-    || decoys.some((decoy) => !decoy || bytes(decoy) > TOURNAMENT_TASK_LIMITS.tokenBytes)) {
+  if (decoys.length !== ASSEMBLY_DECOYS
+    || decoys.some((decoy, index) => !decoy || bytes(rawDecoys[index]) > TOURNAMENT_TASK_LIMITS.tokenBytes
+      || tournamentNormalizedWords(rawDecoys[index]).length !== 1)) {
     errors.push('kind_decoys_invalid');
   }
 
@@ -226,6 +272,7 @@ function parseAssembly(
       scenario: common.scenario,
       ruleNote: common.ruleNote,
       example: common.example,
+      wrongOptionReasons: Object.freeze([]),
     }),
   };
 }
@@ -265,7 +312,11 @@ export function kindItemTaskId(item: ParsedKindItem): string {
 export function kindItemToTask(
   item: ParsedKindItem,
   params: { readonly level: string; readonly difficulty: number },
-): TournamentTask {
+): TournamentTask & {
+  readonly lifecycle: 'awaiting_approval';
+  readonly aiVerdict: 'approved';
+  readonly aiReason: string;
+} {
   const payload = KIND_TO_FORMAT[item.kind] === 'translate'
     ? {
       phrase: item.prompt,
@@ -289,6 +340,7 @@ export function kindItemToTask(
     explanation: {
       ruleNote: item.ruleNote,
       example: item.example,
+      wrongOptionReasons: [...item.wrongOptionReasons],
     },
     tags: [
       'source:ai',
@@ -297,10 +349,13 @@ export function kindItemToTask(
       `topic:${normalizedText(item.scenario).slice(0, 40)}`,
     ],
     verified: false,
+    lifecycle: 'awaiting_approval',
+    aiVerdict: 'approved',
+    aiReason: 'Passed automatic tournament content validation; human approval is still required.',
   };
 }
 
 /** Задание проходит серверный контракт? Проверяем ДО записи в Firestore. */
 export function kindTaskPassesServerContract(task: TournamentTask): boolean {
-  return validateTournamentTask({ ...task, verified: true }).ok;
+  return validateTournamentTaskForNewRoom({ ...task, verified: true }).ok;
 }

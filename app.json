@@ -3,13 +3,13 @@
     "name": "Phraseman",
     "owner": "badloar",
     "slug": "phraseman",
-    "version": "1.6.0",
+    "version": "1.6.4",
     "orientation": "default",
     "icon": "./assets/images/icon.png",
     "scheme": "phraseman",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
-    "runtimeVersion": "1.5.53",
+    "runtimeVersion": "1.6.4",
     "updates": {
       "enabled": true,
       "url": "https://u.expo.dev/87b454d9-0384-4213-8c26-fc12162e73d2",
@@ -60,7 +60,6 @@
         "assets/images/levels/league-v5-heraldry/*.png",
         "assets/images/levels/league-v5-heraldry/*.webp",
         "assets/images/levels/league-v6-icons/*.webp",
-        "assets/images/levels/league-v6-cards/*.webp",
         "assets/images/levels/generated-v5-dalle/*.webp",
         "assets/images/levels/*.webp",
         "assets/images/lesson_intro/*",
@@ -83,7 +82,7 @@
     "android": {
       "package": "app.phraseman",
       "googleServicesFile": "./google-services.json",
-      "versionCode": 104,
+      "versionCode": 109,
       "allowBackup": true,
       "adaptiveIcon": {
         "backgroundColor": "#06141B",
@@ -130,7 +129,7 @@
     "ios": {
       "bundleIdentifier": "app.phraseman",
       "icon": "./assets/images/ios-icon.png",
-      "buildNumber": "104",
+      "buildNumber": "109",
       "supportsTablet": true,
       "usesAppleSignIn": true,
       "associatedDomains": [
@@ -142,7 +141,11 @@
         "com.apple.developer.devicecheck.appattest-environment": "production"
       },
       "infoPlist": {
-        "ITSAppUsesNonExemptEncryption": false
+        "ITSAppUsesNonExemptEncryption": false,
+        "NSPhotoLibraryUsageDescription": "Phraseman не открывает вашу медиатеку. Разрешение запрашивается только если вы сами решите сохранить изображение с результатами обучения.",
+        "NSMicrophoneUsageDescription": "Микрофон нужен, чтобы проверять ваше произношение английских фраз и вести голосовой диалог с ИИ-собеседником.",
+        "NSSpeechRecognitionUsageDescription": "Распознавание речи проверяет, насколько верно вы произнесли английскую фразу, и позволяет отвечать голосом в диалогах.",
+        "NSFaceIDUsageDescription": "Face ID защищает сохранённые данные вашего аккаунта на устройстве."
       }
     },
     "web": {

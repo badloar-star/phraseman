@@ -148,4 +148,5 @@ describe('notification cache account isolation', () => {
 
     expect(notifications.map((notification) => notification.reportReply?.coins)).toEqual([1, 1]);
   });
+
 });

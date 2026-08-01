@@ -118,7 +118,7 @@ export function isAiGlobalBudgetError(error: unknown): boolean {
 export type AiOfflineToastKey =
   | 'explain' // объясни фразу / ошибку / вариант / викторину
   | 'compass_voice' // комментарий дня
-  | 'speaking'; // разговорный клуб / проверка миссии
+  | 'speaking'; // голосовая практика и проверка произношения
 
 const EXPLAIN_VARIANTS: readonly MultiLangPair[] = [
   {

@@ -40,7 +40,7 @@ describe('report replies in home notification center', () => {
     expect(button).toContain("import MotionModal from './MotionModal'");
     expect(button).toContain('<MotionModal');
     expect(button).not.toContain('<Modal');
-    expect(button).toContain('NOTIFICATION_FOREGROUND_REFRESH_MIN_INTERVAL_MS = 30_000');
+    expect(button).toContain('NOTIFICATION_FOREGROUND_REFRESH_MIN_INTERVAL_MS = 12 * 60 * 60_000');
     expect(button).toContain('minIntervalMs: NOTIFICATION_FOREGROUND_REFRESH_MIN_INTERVAL_MS');
     expect(button).not.toContain('subscribeUserNotifications((list)');
     expect(button).not.toContain('force: true');

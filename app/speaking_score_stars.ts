@@ -10,6 +10,7 @@
 //   • 3 stars — score ≥ the "great" bar (midpoint between pass and 100, min 90).
 
 export const STAR_COUNT = 3;
+export const INLINE_STAR_COUNT = 5;
 
 /** Map a 0..100 score to 0..3 earned stars using the pass bar as the anchor. */
 export function starsForScore(score: number, passThreshold: number): number {
@@ -21,6 +22,20 @@ export function starsForScore(score: number, passThreshold: number): number {
   if (s >= great) return 3;
   if (s >= pass) return 2;
   return 1;
+}
+
+/**
+ * Five-star mapping for the compact inline result card. Unlike the legacy
+ * three-star modal scale, every approved semantic band owns a distinct tier.
+ */
+export function inlineStarsForScore(score: number): number {
+  const value = Math.max(0, Math.min(100, Math.round(score)));
+  if (value <= 0) return 0;
+  if (value < 25) return 1;
+  if (value < 50) return 2;
+  if (value < 75) return 3;
+  if (value < 90) return 4;
+  return INLINE_STAR_COUNT;
 }
 
 /* expo-router route shim: app/ files are treated as routes and need a default export. */

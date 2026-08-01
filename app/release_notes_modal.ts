@@ -8,17 +8,28 @@ import { getAppReleaseBuildId } from './app_build_id';
 import { IS_EXPO_GO } from './config';
 
 /** false — окно «что нового» не показываем (текст устарел / не нужен). */
-export const RELEASE_NOTES_MODAL_ENABLED = false;
-export const RELEASE_NOTES_MIN_BUILD_ID = 73;
+export const RELEASE_NOTES_MODAL_ENABLED = true;
+
+/**
+ * зачем: тексты окна описывают релиз 1.6.0 (переименование валюты и раздела,
+ * снятие платы). На билдах до 104 этих изменений ещё нет — окно рассказало бы
+ * о том, чего пользователь у себя не увидит.
+ */
+export const RELEASE_NOTES_MIN_BUILD_ID = 104;
 
 /**
  * Установки с первого запуска не раньше этого момента (UTC) считаются «новыми» — окно не показываем.
- * Окно «что нового» видят ТОЛЬКО те, у кого приложение стояло ДО 22 июня 2026; установки
- * 22 июня 2026 и позже (новые юзеры) окно не видят.
+ * Окно «что нового» видят ТОЛЬКО те, у кого приложение стояло ДО 26 июля 2026 (день выкладки
+ * билда 104); установки 26 июля 2026 и позже — это новые юзеры, они застали уже переименованные
+ * «жемчужины» и «Турнир», и рассказ про переезд их только запутает.
  */
-export const RELEASE_NOTES_NEW_USER_CUTOFF_MS = Date.UTC(2026, 5, 22, 0, 0, 0, 0);
+export const RELEASE_NOTES_NEW_USER_CUTOFF_MS = Date.UTC(2026, 6, 26, 0, 0, 0, 0);
 
-const DISMISS_KEY = 'release_notes_dismissed_2026_05_23_polish_v1';
+/**
+ * зачем: ключ привязан к конкретному релизу. Старый ключ означал бы, что все, кто
+ * закрыл прошлогоднее окно «что нового», это окно уже не увидят.
+ */
+const DISMISS_KEY = 'release_notes_dismissed_2026_07_26_v160';
 
 export async function shouldOfferReleaseNotesModal(): Promise<boolean> {
   if (!RELEASE_NOTES_MODAL_ENABLED) return false;

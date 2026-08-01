@@ -16,7 +16,7 @@ import Animated, {
   Easing,
 } from 'react-native-reanimated';
 import Svg, { Circle } from 'react-native-svg';
-import { T, formatTimeLeft, type, useTournamentPalette, type TournamentPalette} from './tournament_theme';
+import { formatTimeLeft, type, useTournamentPalette, type TournamentPalette} from './tournament_theme';
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
@@ -69,9 +69,6 @@ export const TimeLeft = memo(function TimeLeft({
   return (
     <Text
       style={[styles.timer, { fontSize: size, color: resolvedColor, lineHeight: size * 1.05 }]}
-      // Ужимать нельзя (правило владельца) — размер фиксированный,
-      // формат гарантирует, что строка не станет длиннее.
-      allowFontScaling={false}
     >
       {text}
     </Text>
@@ -89,12 +86,12 @@ type RingProps = {
 };
 
 /**
- * Кольцо с числом внутри (макет 09-13). Красное на последних 5 секундах —
- * предупреждение без текста, чтобы не отвлекать от вопроса.
+ * Кольцо прогресса (макет 09-13). Красное на последних 5 секундах —
+ * предупреждение без числового отсчёта, чтобы не отвлекать от вопроса.
  */
 export const TimerRing = memo(function TimerRing({ seconds, total, size = 44 }: RingProps) {
   const P = useTournamentPalette();
-  const styles = React.useMemo(() => makeStyles(P), [P]);
+  const styles = useMemo(() => makeStyles(P), [P]);
   const stroke = 3;
   const r = (size - stroke) / 2;
   const circumference = 2 * Math.PI * r;
@@ -110,7 +107,12 @@ export const TimerRing = memo(function TimerRing({ seconds, total, size = 44 }: 
   const animatedProps = useAnimatedProps(() => ({ strokeDashoffset: dash.value }));
 
   return (
-    <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
+    <View
+      style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}
+      accessible
+      accessibilityRole="timer"
+      accessibilityLabel={low ? 'Последние секунды вопроса' : 'Время вопроса показано кольцом'}
+    >
       <Svg width={size} height={size} style={StyleSheet.absoluteFill}>
         <Circle
           cx={size / 2} cy={size / 2} r={r}
@@ -126,13 +128,20 @@ export const TimerRing = memo(function TimerRing({ seconds, total, size = 44 }: 
           animatedProps={animatedProps}
           transform={`rotate(-90 ${size / 2} ${size / 2})`}
         />
+        <Circle
+          cx={size / 2} cy={size / 2} r={Math.max(2, r - 7)}
+          stroke={low ? P.danger : P.accent}
+          strokeOpacity={0.42}
+          strokeWidth={1.5}
+          strokeDasharray="1.5 4"
+          fill="none"
+        />
+        <Circle
+          cx={size / 2} cy={size / 2} r={2.25}
+          fill={low ? P.danger : P.accent}
+        />
       </Svg>
-      <Text
-        style={[styles.ringText, { color: low ? P.danger : P.text }]}
-        allowFontScaling={false}
-      >
-        {Math.max(0, Math.ceil(seconds))}
-      </Text>
+      {low ? <Text style={styles.ringText}>{Math.ceil(seconds)}</Text> : null}
     </View>
   );
 });
@@ -144,7 +153,8 @@ const makeStyles = (P: TournamentPalette) => StyleSheet.create({
     fontVariant: ['tabular-nums'],
   },
   ringText: {
-    fontSize: 17,
+    color: P.danger,
+    fontSize: 16,
     fontWeight: '900',
     fontVariant: ['tabular-nums'],
   },

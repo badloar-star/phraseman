@@ -66,13 +66,13 @@ describe('V2 admin generation contract', () => {
     expect(() => parseV2AdminGenerationRequest({ ...base, templateBindings: [{ episodeId: 'episode-01', templateRefs: [ref('bad id')] }] })).toThrow('v2_generation_template_ref_invalid');
   });
 
-  it('keeps optional dialogue and Speaking Club recipe flags in the generated DAG', () => {
+  it('keeps the optional dialogue recipe flag in the generated DAG', () => {
     const request = parseV2AdminGenerationRequest({
       schemaVersion: 'v2-admin-generation-request.v1',
       seasonId: 'season-01',
       scope: 'vertical_slice',
       episodeIds: ['episode-01'],
-      recipes: [{ episodeId: 'episode-01', dialogue: true, speakingClub: true }],
+      recipes: [{ episodeId: 'episode-01', dialogue: true }],
       studyTarget: 'en',
       sourceLocale: 'ru',
       targetLocales: ['de'],
@@ -81,7 +81,7 @@ describe('V2 admin generation contract', () => {
       languageProfileRef,
     });
     const kinds = buildV2AdminGenerationPlan(request).stages.map((stage) => stage.kind);
-    expect(kinds).toEqual(expect.arrayContaining(['v2_dialogue_script', 'v2_speaking_mission']));
+    expect(kinds).toEqual(expect.arrayContaining(['v2_dialogue_script']));
   });
 
   it('requires an exact immutable language profile ref and fingerprints it', () => {

@@ -44,13 +44,14 @@ export default function BoonActivatedHost() {
   const { hasPremiumAccess } = usePremium();
   const visible = useOverlayVisible('boonActivated', wantShow);
 
-  const markShown = useCallback(async () => {
-    if (shownRef.current) return;
-    shownRef.current = true;
+  const markShown = useCallback(async (): Promise<boolean> => {
+    if (shownRef.current) return true;
     try {
       await AsyncStorage.setItem(SHOWN_KEY, getTodayKey());
+      shownRef.current = true;
+      return true;
     } catch {
-      // best-effort
+      return false;
     }
   }, []);
 
@@ -70,11 +71,15 @@ export default function BoonActivatedHost() {
     } catch {
       return;
     }
+    // Persist before asking the arbiter to display the modal. If the process is
+    // suspended or killed as the overlay appears, this keeps the same bonus
+    // from being shown again on the next app launch.
+    if (!await markShown()) return;
     if (alive()) {
       setBoon(primary);
       setWantShow(true);
     }
-  }, [hasPremiumAccess]);
+  }, [hasPremiumAccess, markShown]);
 
   useEffect(() => {
     let alive = true;

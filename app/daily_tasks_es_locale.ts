@@ -39,7 +39,6 @@ export const DAILY_TASK_STRINGS_ES: Record<string, DailyTaskSpanishStrings> = {
   dps3: { title: 'Marcar frase', desc: 'Guarda la frase del día en Tarjetas desde la pantalla de inicio.' },
   bs1: { title: 'Relámpago', desc: 'Acierta 10 respuestas en 60 segundos en una lección.' },
   bs2: { title: 'Velocidad de la luz', desc: '10 aciertos en un minuto: no frenes.' },
-  ca1: { title: 'Orador', desc: 'Pásate por el club de conversación y mira qué se comenta.' },
   cb1: { title: 'Fénix', desc: 'Completa una lección el día de tu regreso tras 3+ días de pausa.' },
   ead1: { title: 'Madrugador', desc: 'Completa el resto de tareas del día antes de las 12:00.' },
   ead2: { title: 'Antes que todos', desc: 'Termina el resto de tareas del día antes del mediodía.' },

@@ -17,7 +17,7 @@ describe('friends tab visibility runtime guard', () => {
     expect(effectEnd).toBeGreaterThan(syncIndex);
 
     const heavyEffect = source.slice(effectStart, effectEnd);
-    const visibilityGuard = heavyEffect.indexOf('if (!friendsTabVisible) return;');
+    const visibilityGuard = heavyEffect.indexOf('if (!friendsRuntimeActive) return;');
 
     expect(visibilityGuard).toBeGreaterThanOrEqual(0);
     expect(visibilityGuard).toBeLessThan(heavyEffect.indexOf('void syncMyInviteCode(() => cancelled);'));

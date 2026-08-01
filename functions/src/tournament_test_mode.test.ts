@@ -37,6 +37,18 @@ const schedule = (overrides: Partial<TournamentScheduleConfig> = {}): Tournament
 });
 
 describe('temporary tournament testing mode', () => {
+  it('fails closed unless the deployed release explicitly includes test mode', () => {
+    const runtime = require('./tournaments') as {
+      tournamentTestModeReleaseEnabled?: (env: NodeJS.ProcessEnv) => boolean;
+    };
+    const gate = runtime.tournamentTestModeReleaseEnabled;
+    expect(gate).toBeDefined();
+    if (!gate) return;
+    expect(gate({})).toBe(false);
+    expect(gate({ PHRASEMAN_TOURNAMENT_TEST_MODE_RELEASE: 'true' })).toBe(false);
+    expect(gate({ PHRASEMAN_TOURNAMENT_TEST_MODE_RELEASE: '1' })).toBe(true);
+  });
+
   it('normalizes testingEnabled fail-closed and accepts only literal true', () => {
     expect(normalizeTournamentSchedule({ slots: [], testingEnabled: true }).testingEnabled).toBe(true);
     expect(normalizeTournamentSchedule({ slots: [], testingEnabled: 'true' }).testingEnabled).not.toBe(true);
@@ -44,12 +56,12 @@ describe('temporary tournament testing mode', () => {
     expect(normalizeTournamentSchedule(null).testingEnabled).not.toBe(true);
   });
 
-  it('allows test-room admission only while the server-side flag is enabled', () => {
+  it('allows authenticated test-room admission independently of the schedule switch', () => {
     const testRoom = room({ testMode: true, slotId: 'test-now-1', ticketsRequired: 0 });
 
     expect(tournamentRoomAdmissionMode(testRoom, schedule({ testingEnabled: true }))).toBe('test');
-    expect(tournamentRoomAdmissionMode(testRoom, schedule({ testingEnabled: false }))).toBeNull();
-    expect(tournamentRoomAdmissionMode(testRoom, schedule())).toBeNull();
+    expect(tournamentRoomAdmissionMode(testRoom, schedule({ testingEnabled: false }))).toBe('test');
+    expect(tournamentRoomAdmissionMode(testRoom, schedule())).toBe('test');
   });
 
   it('does not turn scheduled or legacy paid rooms free when testing is enabled', () => {
@@ -91,15 +103,19 @@ describe('temporary tournament testing mode', () => {
     expect(plan.room.prizeGems).toEqual([]);
   });
 
-  it('gates start-now by server config without an admin-only access path', () => {
+  it('keeps start-now authenticated and zero-economy behind the release gate', () => {
     const source = fs.readFileSync(path.join(__dirname, 'tournaments.ts'), 'utf8');
     const start = source.indexOf('export const tournamentStartNow');
     const end = source.indexOf('export const tournamentRoundReview', start);
     const block = source.slice(start, end > start ? end : undefined);
 
     expect(block).toContain("if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required')");
+    expect(block).toContain('enforceAppCheck: false');
+    expect(block).toContain('if (!tournamentTestModeReleaseEnabled())');
     expect(block).toContain("throw new HttpsError('failed-precondition', 'tournament_testing_disabled')");
+    expect(block).not.toContain("throw new HttpsError('failed-precondition', 'no_slots_configured')");
     expect(block).toContain('testMode: true');
     expect(block).not.toContain('request.auth?.token?.admin');
+    expect(block).not.toContain('config.testingEnabled');
   });
 });

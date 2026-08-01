@@ -35,17 +35,17 @@ describe('startup provider reauthentication recovery', () => {
     expect(cloudSync).toContain("| 'provider_reauth_required'");
   });
 
-  it('opens the existing provider modal once per boot instead of emitting the identity toast', () => {
+  it('opens the existing provider modal once per boot instead of emitting a cloud toast', () => {
     expect(layout).toContain("import RegistrationPromptModal from '../components/RegistrationPromptModal';");
     expect(layout).toContain('const startupAuthRecoveryOfferedRef = useRef(false);');
-    expect(layout).toContain("bootRestoreFailureReason === 'provider_reauth_required'");
+    expect(layout).toContain("recoveryPresentation === 'provider_reauth_modal'");
     expect(layout).toContain('setStartupAuthRecoveryVisible(true);');
     expect(layout).toContain("useOverlayVisible('authRecovery', startupAuthRecoveryVisible)");
     expect(layout).toContain('<RegistrationPromptModal');
     expect(layout).toContain('context="startup_recovery"');
 
-    const recoveryBranchStart = layout.indexOf("if (bootRestoreFailureReason === 'provider_reauth_required')");
-    const recoveryElse = layout.indexOf('} else {', recoveryBranchStart);
+    const recoveryBranchStart = layout.indexOf("if (recoveryPresentation === 'provider_reauth_modal')");
+    const recoveryElse = layout.indexOf('} else if (', recoveryBranchStart);
     const recoveryBranch = layout.slice(recoveryBranchStart, recoveryElse);
     expect(recoveryBranchStart).toBeGreaterThan(-1);
     expect(recoveryElse).toBeGreaterThan(recoveryBranchStart);

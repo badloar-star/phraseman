@@ -113,8 +113,6 @@ const { premiumDialogSend, premiumDialogTranslate } = require('./premium_dialog'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { premiumDialogReview } = require('./premium_dialog_review');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { speakingClubSend, speakingClubReview } = require('./speaking_club');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { weeklyReviewGenerate } = require('./weekly_review');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { statsInsightsGenerate } = require('./stats_insights');
@@ -246,8 +244,6 @@ exports.referralListMyInvites = referralListMyInvites;
 exports.premiumDialogSend = premiumDialogSend;
 exports.premiumDialogTranslate = premiumDialogTranslate;
 exports.premiumDialogReview = premiumDialogReview;
-exports.speakingClubSend = speakingClubSend;
-exports.speakingClubReview = speakingClubReview;
 exports.weeklyReviewGenerate = weeklyReviewGenerate;
 exports.statsInsightsGenerate = statsInsightsGenerate;
 exports.explainPhrase = explainPhrase;
@@ -502,6 +498,8 @@ export { submitWebsiteContact } from './website_contact';
 
 export { siteStatsTrack } from './site_stats';
 
+export { recordOnboardingFunnelEvent, adminGetOnboardingFunnel } from './onboarding_funnel';
+
 export { revenueCatShardsWebhook } from './revenuecat_shards';
 
 export { adminPushJobCreated, adminPushJobsCron } from './admin_push_jobs';
@@ -516,10 +514,14 @@ export { webLeadCapture, webLeadNudgeCron } from './web_leads';
 export {
   tournamentCreateRooms,
   tournamentJoin,
+  tournamentLeave,
+  tournamentForfeit,
   tournamentFillBots,
   tournamentAdvanceRooms,
   tournamentAdvanceRound,
   tournamentRoundReview,
+  tournamentSubmitSpeedMatchAttempt,
+  tournamentSubmitTaskAnswer,
   tournamentSubmitAnswers,
   tournamentFinalize,
   tournamentClaimReward,
@@ -591,6 +593,7 @@ export { friendsGetProfiles } from './friends_profiles';
 // ── Админ-callables раздела «Рефералы» (гейт custom claim admin) ──
 export {
   adminListReferrals,
+  adminGetReferralDashboard,
   adminSpinStats,
   adminSpinLogs,
   adminSetSpinWeights,

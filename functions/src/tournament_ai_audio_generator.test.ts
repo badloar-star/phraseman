@@ -17,6 +17,7 @@ import {
   phoneticKey,
   validateAudioBatch,
 } from './tournament_ai_audio_generator';
+import { toPublicTournamentTask } from './tournament_core';
 
 const listenItem = {
   phrase: 'I can hear you',
@@ -204,5 +205,12 @@ describe('генератор аудио-заданий', () => {
     expect(task.payload.options).toEqual(['ship', 'sheep']);
     expect(task.payload.correctIndex).toBe(1);
     expect(task.payload.phrase).toBe('sheep');
+    expect(task.payload.contrast).toBe('/ɪ/ vs /iː/');
+    const publicTask = toPublicTournamentTask({
+      ...task,
+      verified: true,
+      payload: { ...task.payload, audioUri: 'https://example.com/sheep.mp3' },
+    });
+    expect(publicTask?.payload.contrast).toBe('/ɪ/ vs /iː/');
   });
 });

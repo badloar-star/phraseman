@@ -59,6 +59,8 @@ import { edgePull, BOUNCE_SPRING } from './bounceMath';
 export interface BouncyScrollViewProps extends ScrollViewProps {
   /** Высота вьюпорта для формулы сопротивления. По умолчанию — высота экрана. */
   dimension?: number;
+  /** Optional UI-thread scroll consumer for screen chrome. */
+  onScrollWorklet?: (y: number) => void;
 }
 
 type BouncyScroll = {
@@ -143,6 +145,8 @@ function applyEdgePull(
     // Палец внутри тела / отпустил край — мягко гасим остаточную оттяжку.
     stretch.value = withSpring(0, BOUNCE_SPRING);
   }
+
+  return target;
 }
 
 export function useBouncy({
@@ -150,12 +154,12 @@ export function useBouncy({
   onScrollWorklet,
 }: {
   dimension?: number;
+  onScrollWorklet?: (y: number) => void;
   /**
    * Доп. worklet, вызывается из onAnimatedScroll на UI-потоке с текущим contentOffset.y.
    * Для экранов, которым помимо резинки нужен свой скролл-эффект (fade шапки и т.п.)
    * без второго обработчика и без JS-моста. Тело обязано быть worklet'ом.
    */
-  onScrollWorklet?: (y: number) => void;
 } = {}): BouncyScroll {
   const { height: screenH } = useWindowDimensions();
   const dim = dimension ?? screenH;
@@ -177,7 +181,10 @@ export function useBouncy({
         .failOffsetX([-18, 18])
         .onUpdate((e) => {
           'worklet';
-          applyEdgePull(stretch, scrollY, layoutHeight, contentHeight, edgeAnchor, e.translationY, dim);
+          const edgeOffset = applyEdgePull(stretch, scrollY, layoutHeight, contentHeight, edgeAnchor, e.translationY, dim);
+          // Android clamps native contentOffset at zero. Mirror the visible top
+          // edge pull as a negative offset so chrome follows the same gesture as iOS.
+          if (onScrollWorklet && edgeOffset > 0) onScrollWorklet(-edgeOffset);
         })
         .onEnd(() => {
           'worklet';
@@ -208,6 +215,7 @@ export function useBouncy({
         layoutMeasurement.height,
         contentSize.height,
       );
+      if (onScrollWorklet) onScrollWorklet(e.nativeEvent.contentOffset.y);
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
@@ -270,10 +278,10 @@ export function useBouncyStyle(stretch: SharedValue<number>) {
 }
 
 const BouncyScrollView = forwardRef<ScrollView, BouncyScrollViewProps>(function BouncyScrollView(
-  { children, onScroll, dimension, style, ...rest },
+  { children, onScroll, onScrollWorklet, dimension, style, ...rest },
   ref,
 ) {
-  const { stretch, onBouncyScroll, GestureWrap } = useBouncy({ dimension });
+  const { stretch, onBouncyScroll, onAnimatedScroll, GestureWrap } = useBouncy({ dimension, onScrollWorklet });
   const animatedStyle = useBouncyStyle(stretch);
 
   const handleScroll = useCallback(
@@ -283,13 +291,14 @@ const BouncyScrollView = forwardRef<ScrollView, BouncyScrollViewProps>(function 
     },
     [onScroll, onBouncyScroll],
   );
+  const effectiveOnScroll = onScrollWorklet ? onAnimatedScroll : typeof onScroll === 'function' ? handleScroll : onAnimatedScroll;
 
   return (
     <GestureWrap style={animatedStyle}>
       <Animated.ScrollView
         ref={ref as any}
         scrollEventThrottle={16}
-        onScroll={handleScroll}
+        onScroll={effectiveOnScroll}
         bounces
         alwaysBounceVertical
         overScrollMode="never"

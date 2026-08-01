@@ -45,5 +45,9 @@ export function useMessageReceivedCue() {
     }
   }, [player]);
 
-  return { playMessageReceived };
+  const stopMessageReceived = useCallback(() => {
+    try { player.pause(); } catch {}
+  }, [player]);
+
+  return { playMessageReceived, stopMessageReceived };
 }

@@ -1,7 +1,8 @@
 import {
   NO_AVATAR_AURA_ID,
-  PREMIUM_AVATAR_AURA_ID,
-  VIP_AVATAR_AURA_ID,
+  PLUS_AVATAR_AURA_ID,
+  PRO_AVATAR_AURA_ID,
+  normalizeAvatarAuraId,
 } from '../constants/avatar_auras';
 import { CUSTOM_AVATAR_RESTYLE_COST, parseCustomAvatarValue } from '../constants/custom_avatars';
 import type { CatalogAvailability } from './customization_catalog';
@@ -35,19 +36,19 @@ export function resolveEffectivePreviewAuraId(
   storedAuraSelection: string | null,
   isPremium: boolean,
   isVip: boolean,
+  isPro = false,
 ): string | null {
   if (storedAuraSelection === NO_AVATAR_AURA_ID) return null;
-  if ((storedAuraSelection === PREMIUM_AVATAR_AURA_ID || storedAuraSelection === VIP_AVATAR_AURA_ID)
-    && !isPremium && !isVip) return null;
-  if (storedAuraSelection) return storedAuraSelection;
-  if (isPremium) return PREMIUM_AVATAR_AURA_ID;
-  if (isVip) return VIP_AVATAR_AURA_ID;
+  if (storedAuraSelection) return normalizeAvatarAuraId(storedAuraSelection) ?? null;
+  if (isPro) return PRO_AVATAR_AURA_ID;
+  if (isPremium || isVip) return PLUS_AVATAR_AURA_ID;
   return null;
 }
 
 function nonPurchaseBlocker(availability: CatalogAvailability): CustomizationAction | null {
   switch (availability.kind) {
     case 'plus':
+    case 'pro':
       return { kind: 'open-plus' };
     case 'level':
       return { kind: 'explain-level', level: availability.level };

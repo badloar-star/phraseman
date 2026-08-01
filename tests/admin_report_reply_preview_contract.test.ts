@@ -101,7 +101,10 @@ test('copied report instructions enforce respectful support replies', () => {
   expect(instructions).toContain('пиши как живой сотрудник поддержки');
   expect(instructions).toContain('не рассказывай пользователю о внутренних правилах');
   expect(instructions).toContain('если shards = 0, вообще не упоминай награду');
-  expect(instructions).toContain('если shards > 0, назови точное количество осколков');
+  // зачем: валюта в приложении — жемчужины. Инструкция обязана называть её так,
+  // иначе ИИ напишет живому юзеру «начислен 1 осколок» за подтверждённый репорт.
+  expect(instructions).toContain('если shards > 0, назови точное количество ЖЕМЧУЖИН');
+  expect(instructions).toContain('НЕ «осколки» и НЕ «монеты»');
   expect(instructions).toContain('подготовь отдельный ответ для каждого reportId');
   expect(instructions).not.toContain('По умолчанию на «ты»');
   expect(instructions).not.toContain('дополнительной награды нет');
@@ -159,10 +162,13 @@ test('all 48 replies use respectful support language and mention only awarded re
     expect(customerText).not.toMatch(informalAddress);
     expect(customerText).not.toMatch(internalOrRoboticLanguage);
     expect(row.body).toMatch(/^Спасибо/iu);
+    // зачем: валюта называется жемчужинами (ru) / перлинами (uk). Слово «осколки»
+    // — legacy-название поля shards в коде, живому юзеру его показывать нельзя.
+    expect(customerText).not.toMatch(/оскол/iu);
     if (row.shards > 0) {
-      expect(row.body).toMatch(new RegExp(`${row.shards}\\s+оскол`, 'iu'));
+      expect(row.body).toMatch(new RegExp(`${row.shards}\\s+(жемчужин|перлин)`, 'iu'));
     } else {
-      expect(row.body).not.toMatch(/наград|оскол/iu);
+      expect(row.body).not.toMatch(/наград|жемчужин|перлин/iu);
     }
   }
 });

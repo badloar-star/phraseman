@@ -119,6 +119,20 @@ describe('paywall inventory analytics contract', () => {
   });
 });
 
+describe('paywall store-price recovery', () => {
+  test('retries unresolved packages when the app returns from the background', () => {
+    const fs = require('fs');
+    const path = require('path');
+    const source = fs.readFileSync(path.join(process.cwd(), 'app', 'paywall_purchase.ts'), 'utf8');
+
+    expect(source).toContain("AppState.addEventListener('change'");
+    expect(source).toContain("nextState === 'active'");
+    expect(source).toContain('refreshIfPackagesMissing');
+    expect(source).toContain('!packagesRef.current.monthly || !packagesRef.current.yearly');
+    expect(source).not.toContain('InteractionManager.runAfterInteractions');
+  });
+});
+
 describe('storePriceTrim (paywall price normalization)', () => {
   test('returns "" for empty / null / undefined', () => {
     expect(storePriceTrim('')).toBe('');

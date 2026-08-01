@@ -61,6 +61,7 @@ import {
   type OnboardingStepId,
 } from '../app/onboarding_flow';
 import { markOnboardingWelcomePending } from '../app/onboarding_welcome_state';
+import { recordOnboardingFunnelCompletion, recordOnboardingFunnelStart } from '../app/onboarding_funnel';
 import {
   ONBOARDING_REQUESTED_STUDY_TARGET_KEY,
   prefetchAndRecordStudyTargetServerPack,
@@ -1242,6 +1243,14 @@ function CleanOnboarding({
     return () => { active = false; };
   }, [enabledOrder, persistStep, startAtNameStep]);
 
+  // Aggregate-only operational metric: it is independent of analytics consent
+  // and carries no user/device/stable identifier. The helper persists one opaque
+  // attempt token locally and the server deduplicates retries.
+  useEffect(() => {
+    if (!restored) return;
+    void recordOnboardingFunnelStart();
+  }, [restored]);
+
   useEffect(() => {
     let active = true;
     isGoogleSignInAvailable().then((ok) => { if (active) setGoogleAvailable(ok); }).catch(() => { if (active) setGoogleAvailable(false); });
@@ -1553,6 +1562,9 @@ function CleanOnboarding({
       } else {
         await setAnalyticsConsent('denied').catch(() => null);
       }
+      // Completion is emitted only after the validated finish path persisted
+      // DONE_KEY. It is intentionally non-blocking: telemetry cannot hold the UI.
+      void recordOnboardingFunnelCompletion();
       // зачем: владелец (2026-07-27) — приветственную шторку показываем НЕ поверх
       // последнего экрана анкеты, а когда уже открылась главная. Поэтому здесь
       // только ставим одноразовый флаг и сразу отдаём управление; шторку поднимет

@@ -54,7 +54,7 @@ describe('header accent buttons (vector icons)', () => {
     const home = homeSource();
 
     expect(home).not.toContain('<AppMessagesInbox />');
-    expect(home).toContain('<NotificationCenterButton isHomeTabActive={isHomeOwner} homeFocusTick={focusTick} />');
+    expect(home).toContain('<NotificationCenterButton isHomeTabActive={homeRuntimeActive} homeFocusTick={focusTick} />');
     expect(notificationSource()).toContain('mode="notification-center"');
     expect(home).not.toContain('CommunityChatHubButton');
   });

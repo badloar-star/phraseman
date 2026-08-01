@@ -55,11 +55,14 @@ function OnboardingWelcomeSheet({ visible, userName, onClose, testID }: Props) {
       testID={testID ?? 'onboarding-welcome-sheet'}
     >
       <View style={styles.body}>
+        {/* зачем: владелец (2026-07-27) — обещание персонального плана врало,
+            никакого плана под ответы мы не собираем. Оставляем ровно две мысли:
+            спасибо за установку + один совет про регулярность. */}
         <Text
           style={[styles.lead, { color: t.textPrimary, fontSize: f.body }]}
           maxFontSizeMultiplier={1.2}
         >
-          Всё готово — план собран под твои ответы.
+          Спасибо, что установил приложение.
         </Text>
         <Text
           style={[styles.note, { color: t.textSecond, fontSize: f.body }]}

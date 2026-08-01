@@ -155,7 +155,7 @@ describe('OverlayArbiter watchdog scope (anti — выселение живой 
       'premiumCelebration', 'vipCelebration', 'leagueResult', 'streakRevive',
       'entitlementExpired', 'referralWelcome', 'mysteryMondayChest', 'comebackDay',
       'perfectWeekReward', 'lessonResultsSequence', 'lessonCompleteNotif', 'arenaRoomConfirm',
-      'collectibleDrop', 'arenaInvite', 'coinsMigration',
+      'collectibleDrop', 'reviewPrompt', 'arenaInvite', 'coinsMigration',
     ];
     for (const k of protectedKeys) {
       expect(isForceEvictable(k)).toBe(false);
@@ -261,7 +261,7 @@ describe('OverlayArbiter: исчерпывающая классификация 
     // иначе празднование обрывается на середине, пока юзер его смотрит.
     'lessonResultsSequence',
     'lessonCompleteNotif', 'arenaRoomConfirm',
-    'collectibleDrop', 'arenaInvite',
+    'collectibleDrop', 'reviewPrompt', 'arenaInvite',
     // coinsMigration — одноразовый информ-модал: закрывает юзер по CTA, выселять нельзя.
     'coinsMigration',
   ];
@@ -305,12 +305,26 @@ describe('OverlayArbiter: исчерпывающая классификация 
 // Зазор нужен ТОЛЬКО при переходе одной нативной модалки в ДРУГУЮ нативную.
 // ════════════════════════════════════════════════════════════════════════════
 describe('OverlayArbiter native-modal handoff gap', () => {
+  it('serializes a pending review prompt after an active native modal with a handoff gap', () => {
+    const reviewPrompt = 'reviewPrompt' as OverlayKey;
+
+    expect(resolveNextOverlay('update', wants('update', reviewPrompt))).toBe('update');
+    expect(resolveNextOverlay('update', wants(reviewPrompt))).toBe(reviewPrompt);
+    expect(isNativeModal(reviewPrompt)).toBe(true);
+    expect(needsHandoffGap('update', reviewPrompt)).toBe(true);
+  });
+
+  it('classifies the streak revive prompt as a native modal requiring handoff', () => {
+    expect(isNativeModal('streakRevive')).toBe(true);
+    expect(needsHandoffGap('update', 'streakRevive')).toBe(true);
+  });
+
   it('isNativeModal: нативные модалки — да, тосты/in-place — нет', () => {
     for (const k of ['onboardingWelcome', 'authRecovery', 'update', 'notifNudge', 'introFullAccess', 'levelUp', 'perfectWeekReward', 'premiumCelebration', 'arenaRoomConfirm', 'collectibleDrop', 'entitlementExpired', 'referralWelcome'] as OverlayKey[]) {
       // arenaRoomConfirm = ThemedChoiceModal = нативный <Modal> → нужен handoff-зазор.
       expect(isNativeModal(k)).toBe(true);
     }
-    for (const k of ['actionToast', 'coachToast', 'streakRevive'] as OverlayKey[]) {
+    for (const k of ['actionToast', 'coachToast'] as OverlayKey[]) {
       expect(isNativeModal(k)).toBe(false);
     }
     expect(isNativeModal(null)).toBe(false);

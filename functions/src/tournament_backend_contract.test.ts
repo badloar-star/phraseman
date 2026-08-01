@@ -6,6 +6,7 @@ describe('tournament backend hardening source contracts', () => {
   const core = fs.readFileSync(path.join(__dirname, 'tournament_core.ts'), 'utf8');
   const index = fs.readFileSync(path.join(__dirname, 'index.ts'), 'utf8');
   const rules = fs.readFileSync(path.join(__dirname, '..', '..', 'firestore.rules'), 'utf8');
+  const admin = fs.readFileSync(path.join(__dirname, '..', '..', 'admin', 'v2', 'legacy.html'), 'utf8');
 
   it('exports a deadline advancement scheduler and closes rooms with TTL', () => {
     expect(source).toContain('export const tournamentAdvanceRooms = onSchedule');
@@ -89,12 +90,56 @@ describe('tournament backend hardening source contracts', () => {
     expect(rules).toMatch(/match \/tournament_receipts\/\{receiptId\}[\s\S]*?allow read:[\s\S]*?allow write: if false;/);
   });
 
-  it('freezes immutable task secrets per room and denies every client read', () => {
+  it('exposes review for 24 hours, retains private evidence seven days, and denies every client read', () => {
     expect(source).toContain("collection(TOURNAMENT_TASK_SECRETS_SUBCOLLECTION)");
     expect(source).toContain('tx.create(secretRef');
     expect(source).toContain('loadTasksByIds(db, initialRound.taskIds, roomId)');
     expect(rules).toMatch(/match \/tournamentRooms\/\{roomId\}\/taskSecrets\/\{taskId\}[\s\S]*?allow read, write: if false;/);
-    expect(source).toContain('for (const secretRef of secretRefsToDelete) tx.delete(secretRef)');
+    expect(source).toContain('TOURNAMENT_REVIEW_RETENTION_MS = 24 * 60 * 60 * 1000');
+    expect(source).toContain('TOURNAMENT_PRIVATE_EVIDENCE_RETENTION_MS = 7 * 24 * 60 * 60 * 1000');
+    expect(source).toContain('reviewRetentionUntilMs');
+    expect(source).toContain('tx.set(secretRef, { expireAt: evidenceExpireAt }, { merge: true })');
+    expect(source).not.toContain('for (const secretRef of secretRefsToDelete) tx.delete(secretRef)');
+    expect(source).toContain("throw new HttpsError('failed-precondition', 'tournament_review_expired')");
+    expect(source).toContain('export async function cleanupExpiredTournamentReviewEvidence');
+    expect(source).toContain("db.collectionGroup(TOURNAMENT_TASK_SECRETS_SUBCOLLECTION)");
+    expect(source).toContain('await cleanupExpiredTournamentReviewEvidence(db, { nowMs })');
+    expect(source).toContain("throw new HttpsError('failed-precondition', 'tournament_review_evidence_unavailable')");
+  });
+
+  it('gates free test tournaments by the deployed release and removes the runtime admin switch', () => {
+    const start = source.indexOf('export const tournamentStartNow');
+    const end = source.indexOf('export const tournamentRoundReview', start);
+    const startBlock = source.slice(start, end);
+    expect(source).toContain('export function tournamentTestModeReleaseEnabled');
+    expect(startBlock).toContain('if (!tournamentTestModeReleaseEnabled())');
+    expect(startBlock.indexOf('if (!tournamentTestModeReleaseEnabled())'))
+      .toBeLessThan(startBlock.indexOf('const db = admin.firestore()'));
+    expect(startBlock).not.toContain('testingEnabled');
+    const joinStart = source.indexOf('export async function tournamentJoinTransaction');
+    const joinEnd = source.indexOf('export async function tournamentLeaveTransaction', joinStart);
+    expect(source.slice(joinStart, joinEnd))
+      .toContain("if (admissionMode === 'test' && !tournamentTestModeReleaseEnabled())");
+    expect(admin).not.toContain('id="tn-testing-enabled"');
+    expect(admin).not.toContain('const testingEnabled =');
+  });
+
+  it('exports a server-authoritative first-answer callable backed by private receipts', () => {
+    expect(source).toContain('export const tournamentSubmitTaskAnswer = onCall');
+    expect(source).toContain('export async function tournamentSubmitTaskAnswerTransaction');
+    expect(source).toContain("kind: 'tournament_task_answer_v1'");
+    expect(source).toContain("throw new HttpsError('already-exists', 'task_answer_idempotency_key_mismatch')");
+    expect(index).toContain('tournamentSubmitTaskAnswer,');
+    expect(rules).toMatch(/match \/tournamentRooms\/\{roomId\}\/taskSecrets\/\{taskId\}[\s\S]*?allow read, write: if false;/);
+  });
+
+  it('exports an exact-once pre-start leave callable with a private refund receipt', () => {
+    expect(source).toContain('export async function tournamentLeaveTransaction');
+    expect(source).toContain('export const tournamentLeave = onCall');
+    expect(source).toContain("doc(`leave_${roomId}`)");
+    expect(source).toContain("kind: 'tournament_lobby_leave_v1'");
+    expect(source).toContain("throw new HttpsError('failed-precondition', 'room_not_leaveable')");
+    expect(index).toContain('tournamentLeave,');
   });
 
   it('offers participant-triggered deadline advancement with the scheduler as fallback', () => {
@@ -104,6 +149,11 @@ describe('tournament backend hardening source contracts', () => {
     expect(source).toContain("throw new HttpsError('failed-precondition', 'deadline_not_elapsed')");
   });
 
+  it('never manufactures bot reactions while creating or filling a room', () => {
+    expect(source).not.toContain('SERVER_BOT_REACTIONS');
+    expect(source).not.toContain('server_bot_');
+  });
+
   it('rechecks a join race before scheduler cancellation and fills when quorum arrived', () => {
     expect(source).toContain('async function settleAdvanceOutcome');
     expect((source.match(/settleAdvanceOutcome\(db,/g) || []).length).toBeGreaterThanOrEqual(3);
@@ -111,11 +161,16 @@ describe('tournament backend hardening source contracts', () => {
     expect(source).toContain("if (fillOutcome === 'filled')");
   });
 
-  it('returns a persisted replay before immutable task secrets are cleaned up', () => {
-    const replayIndex = source.indexOf('const initialReplay = initialRound.results?.[stableUid]');
-    const taskLoadIndex = source.indexOf('loadTasksByIds(db, initialRound.taskIds, roomId)');
-    expect(replayIndex).toBeGreaterThan(0);
-    expect(taskLoadIndex).toBeGreaterThan(replayIndex);
+  it('rechecks transactional access before returning a persisted replay without task secrets', () => {
+    const start = source.indexOf('export async function tournamentSubmitTransaction');
+    const end = source.indexOf('export const tournamentSubmitAnswers', start);
+    const submitSource = source.slice(start, end);
+    const accessIndex = submitSource.indexOf('assertTransactionalTournamentAccess(input.authUid, stableUid');
+    const replayIndex = submitSource.indexOf('if (existing && !existingTimedOut)');
+    const taskParseIndex = submitSource.indexOf('const tasks = snapshots.slice');
+    expect(accessIndex).toBeGreaterThan(0);
+    expect(replayIndex).toBeGreaterThan(accessIndex);
+    expect(taskParseIndex).toBeGreaterThan(replayIndex);
   });
 
   it('restricts in-progress room reads to recorded auth participants', () => {
@@ -162,6 +217,7 @@ describe('tournament backend hardening source contracts', () => {
       'tournamentFinalizeTransaction',
       'tournamentClaimTransaction',
       'advanceRoomAtDeadline',
+      'cleanupExpiredTournamentReviewEvidence',
       'scanLegacyTournamentRooms',
     ]) {
       expect(source).toContain(`export async function ${handler}`);

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import TapScale from '../components/TapScale';
 import {
   Linking,
@@ -38,6 +38,7 @@ import {
   beginLingmanSnapshotRequest, commitLingmanSnapshot, isLingmanSnapshotRequestCurrent,
   lingmanSnapshotCacheKey, patchLingmanUnread, readLingmanSnapshot,
 } from './lingman_youtube_cache';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
 
 function formatViews(count?: number): string {
   if (!Number.isFinite(count)) return '';
@@ -51,6 +52,9 @@ export default function LingmanVideosScreen() {
   const router = useRouter();
   const { lang } = useLang();
   const { theme: t, f, isDark, themeMode } = useTheme();
+  const screenRuntimeActive = useRuntimeActive(true);
+  const screenRuntimeActiveRef = useRef(screenRuntimeActive);
+  screenRuntimeActiveRef.current = screenRuntimeActive;
   const renderToken = captureAccountGeneration();
   const renderAccountScope = accountScopeKey(renderToken);
   const initialChannel = getActiveYoutubeChannel();
@@ -152,6 +156,7 @@ export default function LingmanVideosScreen() {
   }), [lang]);
 
   const load = useCallback(async (mode: 'initial' | 'refresh' = 'initial') => {
+    if (!screenRuntimeActiveRef.current) return;
     const token = captureAccountGeneration();
     if (accountScopeKey(token) !== renderAccountScope) return;
     const activeChannel = getActiveYoutubeChannel();
@@ -168,7 +173,7 @@ export default function LingmanVideosScreen() {
     if (warm?.isFresh && mode !== 'refresh') { setLoading(false); return; }
     try {
       const next = await getLingmanYoutubeSnapshot();
-      if (commitLingmanSnapshot(request, next)) {
+      if (screenRuntimeActiveRef.current && commitLingmanSnapshot(request, next)) {
         const committed = readLingmanSnapshot(token, activeChannel.channelId);
         setLoadedKey(requestKey);
         setCachedSnapshot(committed?.value ?? next);
@@ -176,7 +181,7 @@ export default function LingmanVideosScreen() {
     } catch {
       // Keep the last successful catalog visible.
     } finally {
-      if (isLingmanSnapshotRequestCurrent(request)) {
+      if (screenRuntimeActiveRef.current && isLingmanSnapshotRequestCurrent(request)) {
         setLoading(false);
         setRefreshing(false);
       }
@@ -184,15 +189,17 @@ export default function LingmanVideosScreen() {
   }, [renderAccountScope]);
 
   useEffect(() => {
+    if (!screenRuntimeActive) return;
     void load('initial');
-  }, [load]);
+  }, [load, screenRuntimeActive]);
 
   // Админ из «Пульта» добавил пин / сменил канал, пока экран открыт → перечитать
   // ленту живьём (remote_config_changed), чтобы новое видео появилось сверху.
   useEffect(() => {
+    if (!screenRuntimeActive) return;
     const sub = onAppEvent('remote_config_changed', () => { void load('refresh'); });
     return () => sub.remove();
-  }, [load]);
+  }, [load, screenRuntimeActive]);
 
   const openExternalUrl = (rawUrl: string, fallbackVideoId?: string) => {
     const trustedUrl = getTrustedLingmanYoutubeUrl(rawUrl, fallbackVideoId);

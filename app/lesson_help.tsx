@@ -449,7 +449,7 @@ export default function LessonHelp() {
   });
   const unavailableTheoryText = triLang(lang, {
     uk: `Теорія для уроку ${lessonId} незабаром з'явиться. Продовжуй практикуватись!`,
-    ru: `Теория для этого урока скоро появится. Пока практикуйся — это важнее!`,
+    ru: `Теория для урока ${lessonId} скоро появится. Пока практикуйся — это важнее!`,
     es: `La teoría de la lección ${lessonId} estará disponible pronto. ¡Sigue practicando!`,
     'pt-BR': `A teoria da lição ${lessonId} estará disponível em breve. Continue praticando!`,
     vi: `Lý thuyết của bài ${lessonId} sẽ sớm có. Hãy tiếp tục luyện tập!`,

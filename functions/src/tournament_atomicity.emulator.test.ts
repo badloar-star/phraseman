@@ -3,6 +3,7 @@ import { deleteApp, initializeApp, type App } from 'firebase-admin/app';
 import { getFirestore, type Firestore } from 'firebase-admin/firestore';
 
 const runtime = require('./tournaments') as Record<string, (...args: any[]) => Promise<any>>;
+const core = require('./tournament_core') as Record<string, any>;
 
 const PROJECT_ID = 'demo-phraseman-tournament-lifecycle';
 
@@ -40,8 +41,8 @@ describe('tournament timeout replacement pure timing', () => {
       answers: [{ taskId: task.taskId, answer: { selectedIndex: 0 } }],
       tasks: [task], receivedAtMs: 11_000, maxMsPerTask: 10_000,
     });
-    expect(applied.result.roundScore).toBe(150);
-    expect(applied.room.players[0]).toMatchObject({ score: 150, streak: 3 });
+    expect(applied.result.roundScore).toBe(3);
+    expect(applied.room.players[0]).toMatchObject({ score: 3, streak: 3 });
   });
 });
 
@@ -95,6 +96,493 @@ describe('tournament submit atomicity at the scheduler deadline', () => {
     expect(submitSource.slice(transaction)).not.toContain('Date.now()');
   });
 
+  test('enforces each persisted task deadline with the exact 1.5 second receive grace', async () => {
+    const core = require('./tournament_core');
+    expect(core.TOURNAMENT_TASK_SUBMISSION_GRACE_MS).toBe(1_500);
+    const seedRoom = async (suffix: string) => {
+      const roomId = `task-grace-${suffix}-${process.pid}`;
+      const taskId = `task-grace-${suffix}`;
+      const roomRef = db.collection('tournamentRooms').doc(roomId);
+      await Promise.all([
+        roomRef.set({
+          slotId: 'daily', seed: roomId, state: 'round1', startsAt: 1_000,
+          stateStartedAtMs: 1_000, stateDeadlineAtMs: 16_000,
+          players: [player(`task-grace-u-${suffix}`)],
+          rounds: [{
+            roundNo: 1, mode: 'mix', taskIds: [taskId], results: {},
+            taskSchedule: [{
+              taskId, taskIndex: 0, durationMs: 15_000, startsAtMs: 1_000, deadlineAtMs: 16_000,
+            }],
+          }],
+          version: 0, createdAtMs: 1,
+        }),
+        roomRef.collection('taskSecrets').doc(taskId).set({
+          mode: 'guess_phrase', isVoice: false, difficulty: 1,
+          payload: { phrase: 'Choose yes', options: ['yes', 'no', 'later', 'maybe'], correctIndex: 0 },
+          tags: [], verified: true,
+        }),
+      ]);
+      return { roomId, taskId, stableUid: `task-grace-u-${suffix}` };
+    };
+
+    const within = await seedRoom('within');
+    await expect(runtime.tournamentSubmitTransaction(db, {
+      ...within, roundNo: 1, idempotencyKey: 'task-grace-within-v1',
+      rawAnswers: [{ taskId: within.taskId, answer: { selectedIndex: 0 } }],
+      receivedAtMs: 17_500,
+    })).resolves.toMatchObject({ ok: true, replay: false, correct: 1 });
+
+    const late = await seedRoom('late');
+    await expect(runtime.tournamentSubmitTransaction(db, {
+      ...late, roundNo: 1, idempotencyKey: 'task-grace-late-v1',
+      rawAnswers: [{ taskId: late.taskId, answer: { selectedIndex: 0 } }],
+      receivedAtMs: 17_501,
+    })).rejects.toThrow('task_deadline_elapsed');
+
+    const early = await seedRoom('early');
+    await expect(runtime.tournamentSubmitTaskAnswerTransaction(db, {
+      ...early, roundNo: 1, idempotencyKey: 'task-grace-early-v1',
+      answer: { selectedIndex: 0 }, receivedAtMs: 999,
+    })).rejects.toThrow('task_not_started');
+  });
+
+  test('rejects a batch when an earlier answer misses its own schedule even before the round deadline', async () => {
+    const roomId = `batch-task-deadlines-${process.pid}`;
+    const roomRef = db.collection('tournamentRooms').doc(roomId);
+    const taskIds = ['batch-q1', 'batch-q2'];
+    await roomRef.set({
+      slotId: 'daily', seed: roomId, state: 'round1', startsAt: 1_000,
+      stateStartedAtMs: 1_000, stateDeadlineAtMs: 31_000,
+      players: [player('batch-deadline-u1')],
+      rounds: [{
+        roundNo: 1, mode: 'mix', taskIds, results: {},
+        taskSchedule: [
+          { taskId: taskIds[0], taskIndex: 0, durationMs: 15_000, startsAtMs: 1_000, deadlineAtMs: 16_000 },
+          { taskId: taskIds[1], taskIndex: 1, durationMs: 15_000, startsAtMs: 16_000, deadlineAtMs: 31_000 },
+        ],
+      }],
+      version: 0, createdAtMs: 1,
+    });
+    await Promise.all(taskIds.map((taskId) => roomRef.collection('taskSecrets').doc(taskId).set({
+      mode: 'guess_phrase', isVoice: false, difficulty: 1,
+      payload: { phrase: taskId, options: ['yes', 'no', 'later', 'maybe'], correctIndex: 0 },
+      tags: [], verified: true,
+    })));
+
+    await expect(runtime.tournamentSubmitTransaction(db, {
+      stableUid: 'batch-deadline-u1', roomId, roundNo: 1,
+      idempotencyKey: 'batch-task-deadlines-v1',
+      rawAnswers: taskIds.map((taskId) => ({ taskId, answer: { selectedIndex: 0 } })),
+      receivedAtMs: 17_501,
+    })).rejects.toThrow('task_deadline_elapsed');
+    expect((await roomRef.get()).data()?.rounds[0].results).toEqual({});
+  });
+
+  test('persists the first per-task answer and replays only the same key after deadline', async () => {
+    const roomId = `task-answer-receipt-${process.pid}`;
+    const taskId = 'task-answer-receipt-q1';
+    const stableUid = 'task-answer-receipt-u1';
+    const roomRef = db.collection('tournamentRooms').doc(roomId);
+    await Promise.all([
+      roomRef.set({
+        slotId: 'daily', seed: roomId, state: 'round1', startsAt: 1_000,
+        stateStartedAtMs: 1_000, stateDeadlineAtMs: 16_000,
+        players: [player(stableUid)],
+        rounds: [{
+          roundNo: 1, mode: 'mix', taskIds: [taskId], results: {},
+          taskSchedule: [{
+            taskId, taskIndex: 0, durationMs: 15_000, startsAtMs: 1_000, deadlineAtMs: 16_000,
+          }],
+        }],
+        version: 0, createdAtMs: 1,
+      }),
+      roomRef.collection('taskSecrets').doc(taskId).set({
+        mode: 'guess_phrase', isVoice: false, difficulty: 1,
+        payload: { phrase: 'Choose yes', options: ['yes', 'no', 'later', 'maybe'], correctIndex: 0 },
+        tags: [], verified: true,
+      }),
+    ]);
+    const request = {
+      stableUid, roomId, roundNo: 1, taskId,
+      idempotencyKey: 'task-answer-receipt-v1', answer: { selectedIndex: 0 },
+    };
+    const first = await runtime.tournamentSubmitTaskAnswerTransaction(db, {
+      ...request, receivedAtMs: 16_100,
+    });
+    await roomRef.update({ state: 'table1' });
+    const replay = await runtime.tournamentSubmitTaskAnswerTransaction(db, {
+      ...request, answer: { selectedIndex: 1 }, receivedAtMs: 17_500,
+    });
+    expect(first).toEqual({
+      ok: true, replay: false, taskId, acceptedAtMs: 16_100, correct: true,
+      earnedStars: 3,
+      zeroScoreReason: null,
+      explanation: null,
+      correctIndex: 0,
+    });
+    expect(replay).toEqual({ ...first, replay: true });
+
+    const receiptId = await runtime.tournamentTaskAnswerReceiptDocId(1, taskId, stableUid);
+    const receipt = (await roomRef.collection('taskSecrets').doc(receiptId).get()).data();
+    expect(receipt).toMatchObject({
+      kind: 'tournament_task_answer_v1', roundNo: 1, taskId, playerId: stableUid,
+      receivedAtMs: 16_100, correct: true, answer: { selectedIndex: 0 },
+    });
+    expect(receipt?.idempotencyKeyHash).toMatch(/^[a-f0-9]{64}$/);
+    expect(receipt).not.toHaveProperty('idempotencyKey');
+
+    await expect(runtime.tournamentSubmitTaskAnswerTransaction(db, {
+      ...request, idempotencyKey: 'task-answer-receipt-v2', receivedAtMs: 50_000,
+    })).rejects.toThrow('task_answer_idempotency_key_mismatch');
+    await expect(runtime.tournamentSubmitTaskAnswerTransaction(db, {
+      ...request, answer: { selectedIndex: 1 }, receivedAtMs: 50_000,
+    })).resolves.toEqual({ ...first, replay: true });
+  });
+
+  test('enforces persisted reading, answer, receive-grace, and feedback phases end to end', async () => {
+    const roomId = `task-phase-e2e-${process.pid}`;
+    const taskId = 'task-phase-e2e-q1';
+    const stableUid = 'task-phase-e2e-u1';
+    const lateStableUid = 'task-phase-e2e-late-u1';
+    const startedAtMs = 1_000;
+    const roomRef = db.collection('tournamentRooms').doc(roomId);
+    const task = {
+      taskId, mode: 'guess_phrase', isVoice: false, difficulty: 1,
+      payload: { phrase: 'Choose yes', options: ['yes', 'no', 'later', 'maybe'], correctIndex: 0 },
+      explanation: {
+        ruleNote: 'Choose the exact meaning.', example: 'Yes, I am ready.',
+        wrongOptionReasons: ['', 'No reverses the meaning.', 'Later changes the time.', 'Maybe changes certainty.'],
+      },
+      tags: [], verified: true,
+    };
+    const timing = core.tournamentRoundTaskSchedule([task], startedAtMs)[0];
+    await Promise.all([
+      roomRef.set({
+        roomId, slotId: 'daily', seed: roomId, state: 'round1', startsAt: startedAtMs,
+        stateStartedAtMs: startedAtMs, stateDeadlineAtMs: timing.feedbackEndsAtMs,
+        players: [player(stableUid), player(lateStableUid)],
+        rounds: [{ roundNo: 1, mode: 'guess_phrase', taskIds: [taskId], taskSchedule: [timing], results: {} }],
+        version: 0, createdAtMs: 1,
+      }),
+      roomRef.collection('taskSecrets').doc(taskId).set(task),
+      roomRef.collection('taskSecrets').doc('__bot_simulation_v1')
+        .set({ kind: 'bot_simulation_v1', expectedBotCount: 0, bots: [] }),
+    ]);
+    const request = {
+      stableUid, roomId, roundNo: 1, taskId,
+      idempotencyKey: 'task-phase-e2e-v1', answer: { selectedIndex: 0 },
+    };
+
+    await expect(runtime.tournamentSubmitTaskAnswerTransaction(db, {
+      ...request, receivedAtMs: timing.readingEndsAtMs - 1,
+    })).rejects.toThrow('task_reading_in_progress');
+    await expect(runtime.tournamentSubmitTaskAnswerTransaction(db, {
+      ...request, receivedAtMs: timing.feedbackStartsAtMs - 1,
+    })).resolves.toMatchObject({ correct: true, earnedStars: 3, correctIndex: 0 });
+    await expect(runtime.tournamentSubmitTaskAnswerTransaction(db, {
+      ...request, receivedAtMs: timing.feedbackStartsAtMs,
+    })).resolves.toMatchObject({ replay: true, acceptedAtMs: timing.feedbackStartsAtMs - 1 });
+    await expect(runtime.tournamentSubmitTaskAnswerTransaction(db, {
+      ...request,
+      stableUid: lateStableUid,
+      idempotencyKey: 'task-phase-e2e-late-v1',
+      receivedAtMs: timing.feedbackStartsAtMs,
+    })).rejects.toThrow('task_deadline_elapsed');
+    expect((await roomRef.get()).data()?.stateDeadlineAtMs).toBe(timing.feedbackEndsAtMs);
+    await expect(runtime.advanceRoomAtDeadline(db, roomRef, {
+      nowMs: () => timing.feedbackEndsAtMs,
+    })).resolves.toBe('advanced');
+    expect((await roomRef.get()).data()).toMatchObject({
+      state: 'table1', stateStartedAtMs: timing.feedbackEndsAtMs,
+    });
+  });
+
+  test('legacy final batch replays the result already finalized from timely per-task receipts', async () => {
+    const roomId = `task-answer-batch-${process.pid}`;
+    const stableUid = 'task-answer-batch-u1';
+    const taskIds = ['task-answer-batch-q1', 'task-answer-batch-q2'];
+    const roomRef = db.collection('tournamentRooms').doc(roomId);
+    await roomRef.set({
+      slotId: 'daily', seed: roomId, state: 'round1', startsAt: 1_000,
+      stateStartedAtMs: 1_000, stateDeadlineAtMs: 31_000,
+      players: [player(stableUid)],
+      rounds: [{
+        roundNo: 1, mode: 'mix', taskIds, results: {},
+        taskSchedule: [
+          { taskId: taskIds[0], taskIndex: 0, durationMs: 15_000, startsAtMs: 1_000, deadlineAtMs: 16_000 },
+          { taskId: taskIds[1], taskIndex: 1, durationMs: 15_000, startsAtMs: 16_000, deadlineAtMs: 31_000 },
+        ],
+      }],
+      version: 0, createdAtMs: 1,
+    });
+    await Promise.all(taskIds.map((taskId) => roomRef.collection('taskSecrets').doc(taskId).set({
+      mode: 'guess_phrase', isVoice: false, difficulty: 1,
+      payload: { phrase: taskId, options: ['yes', 'no', 'later', 'maybe'], correctIndex: 0 },
+      tags: [], verified: true,
+    })));
+    await runtime.tournamentSubmitTaskAnswerTransaction(db, {
+      stableUid, roomId, roundNo: 1, taskId: taskIds[0], answer: { selectedIndex: 0 },
+      idempotencyKey: 'task-answer-batch-q1-v1', receivedAtMs: 16_100,
+    });
+    await runtime.tournamentSubmitTaskAnswerTransaction(db, {
+      stableUid, roomId, roundNo: 1, taskId: taskIds[1], answer: { selectedIndex: 0 },
+      idempotencyKey: 'task-answer-batch-q2-v1', receivedAtMs: 31_100,
+    });
+
+    const finalRequest = {
+      stableUid, roomId, roundNo: 1, idempotencyKey: 'task-answer-batch-final-v1',
+      rawAnswers: taskIds.map((taskId) => ({ taskId, answer: { selectedIndex: 1 } })),
+    };
+    await expect(runtime.tournamentSubmitTransaction(db, {
+      ...finalRequest, receivedAtMs: 31_200,
+    })).resolves.toMatchObject({ ok: true, replay: true, correct: 2 });
+    await expect(runtime.tournamentSubmitTransaction(db, {
+      ...finalRequest, receivedAtMs: 32_500,
+    })).resolves.toMatchObject({ ok: true, replay: true, correct: 2 });
+    await expect(runtime.tournamentSubmitTransaction(db, {
+      ...finalRequest, receivedAtMs: 32_501,
+    })).rejects.toThrow('task_deadline_elapsed');
+  });
+
+  test('finalizes a fully answered per-task round once and replays the last receipt without rescoring', async () => {
+    const roomId = `task-answer-finalizes-${process.pid}`;
+    const stableUid = 'task-answer-finalizes-u1';
+    const taskIds = ['task-answer-finalizes-q1', 'task-answer-finalizes-q2'];
+    const roomRef = db.collection('tournamentRooms').doc(roomId);
+    await roomRef.set({
+      slotId: 'daily', seed: roomId, state: 'round1', startsAt: 1_000,
+      stateStartedAtMs: 1_000, stateDeadlineAtMs: 31_000,
+      players: [player(stableUid)],
+      rounds: [{
+        roundNo: 1, mode: 'mix', taskIds, results: {},
+        taskSchedule: [
+          { taskId: taskIds[0], taskIndex: 0, durationMs: 15_000, startsAtMs: 1_000, deadlineAtMs: 16_000 },
+          { taskId: taskIds[1], taskIndex: 1, durationMs: 15_000, startsAtMs: 16_000, deadlineAtMs: 31_000 },
+        ],
+      }],
+      version: 0, createdAtMs: 1,
+    });
+    await Promise.all(taskIds.map((taskId) => roomRef.collection('taskSecrets').doc(taskId).set({
+      mode: 'guess_phrase', isVoice: false, difficulty: 1,
+      payload: { phrase: taskId, options: ['yes', 'no', 'later', 'maybe'], correctIndex: 0 },
+      tags: [], verified: true,
+    })));
+
+    await runtime.tournamentSubmitTaskAnswerTransaction(db, {
+      stableUid, roomId, roundNo: 1, taskId: taskIds[0], answer: { selectedIndex: 0 },
+      idempotencyKey: 'task-answer-finalizes-q1-v1', receivedAtMs: 15_000,
+    });
+    expect((await roomRef.get()).data()?.rounds[0].results).toEqual({});
+
+    const lastRequest = {
+      stableUid, roomId, roundNo: 1, taskId: taskIds[1], answer: { selectedIndex: 0 },
+      idempotencyKey: 'task-answer-finalizes-q2-v1', receivedAtMs: 28_000,
+    };
+    await expect(runtime.tournamentSubmitTaskAnswerTransaction(db, lastRequest))
+      .resolves.toMatchObject({ ok: true, replay: false, correct: true });
+    const completed = (await roomRef.get()).data()!;
+    expect(completed.rounds[0].results[stableUid]).toMatchObject({
+      correct: 2, total: 2, submissionStatus: 'submitted',
+      review: [
+        { taskId: taskIds[0], correct: true, given: { selectedIndex: 0 } },
+        { taskId: taskIds[1], correct: true, given: { selectedIndex: 0 } },
+      ],
+    });
+    expect(completed.players[0].score).toBeGreaterThan(0);
+    expect(completed.stateDeadlineAtMs).toBe(
+      lastRequest.receivedAtMs + require('./tournament_core').TOURNAMENT_EARLY_ADVANCE_DELAY_MS,
+    );
+
+    await expect(runtime.tournamentSubmitTaskAnswerTransaction(db, {
+      ...lastRequest, answer: { selectedIndex: 1 }, receivedAtMs: 28_100,
+    })).resolves.toMatchObject({ ok: true, replay: true, correct: true });
+    const replayed = (await roomRef.get()).data()!;
+    expect(replayed.players).toEqual(completed.players);
+    expect(replayed.rounds).toEqual(completed.rounds);
+    expect(replayed.version).toBe(completed.version);
+    expect(replayed.stateDeadlineAtMs).toBe(completed.stateDeadlineAtMs);
+  });
+
+  test('deadline scores timely receipts and marks only unanswered tasks timed out', async () => {
+    const roomId = `task-answer-partial-deadline-${process.pid}`;
+    const stableUid = 'task-answer-partial-deadline-u1';
+    const zeroReceiptUid = 'task-answer-partial-deadline-u2';
+    const taskIds = [1, 2, 3, 4].map((taskNo) => `task-answer-partial-q${taskNo}`);
+    const roomRef = db.collection('tournamentRooms').doc(roomId);
+    await Promise.all([
+      roomRef.set({
+        slotId: 'daily', seed: roomId, state: 'round1', startsAt: 1_000,
+        stateStartedAtMs: 1_000, stateDeadlineAtMs: 61_000,
+        players: [player(zeroReceiptUid), player(stableUid)],
+        rounds: [{
+          roundNo: 1, mode: 'mix', taskIds, results: {},
+          taskSchedule: taskIds.map((taskId, taskIndex) => ({
+            taskId,
+            taskIndex,
+            durationMs: 15_000,
+            startsAtMs: 1_000 + taskIndex * 15_000,
+            deadlineAtMs: 1_000 + (taskIndex + 1) * 15_000,
+          })),
+        }],
+        version: 0, createdAtMs: 1,
+      }),
+      ...taskIds.map((taskId) => roomRef.collection('taskSecrets').doc(taskId).set({
+        mode: 'guess_phrase', isVoice: false, difficulty: 1,
+        payload: { phrase: taskId, options: ['yes', 'no', 'later', 'maybe'], correctIndex: 0 },
+        tags: [], verified: true,
+      })),
+      roomRef.collection('taskSecrets').doc('__bot_simulation_v1').set({
+        kind: 'bot_simulation_v1', expectedBotCount: 0, bots: [],
+      }),
+    ]);
+
+    await runtime.tournamentSubmitTaskAnswerTransaction(db, {
+      stableUid, roomId, roundNo: 1, taskId: taskIds[0], answer: { selectedIndex: 0 },
+      idempotencyKey: 'task-answer-partial-q1-v1', receivedAtMs: 15_000,
+    });
+    await expect(runtime.advanceRoomAtDeadline(db, roomRef, { nowMs: () => 61_000 }))
+      .resolves.toBe('advanced');
+
+    const completed = (await roomRef.get()).data()!;
+    expect(completed.state).toBe('table1');
+    expect(completed.players.find((candidate: { id: string }) => candidate.id === stableUid).score)
+      .toBeGreaterThan(0);
+    expect(completed.rounds[0].results[stableUid]).toMatchObject({
+      correct: 1, total: 4, submissionStatus: 'submitted',
+      review: [
+        { taskId: taskIds[0], correct: true, given: { selectedIndex: 0 } },
+        { taskId: taskIds[1], correct: false, timedOut: true },
+        { taskId: taskIds[2], correct: false, timedOut: true },
+        { taskId: taskIds[3], correct: false, timedOut: true },
+      ],
+    });
+    expect(completed.rounds[0].results[stableUid]).not.toHaveProperty('timedOut', true);
+    expect(completed.rounds[0].results[zeroReceiptUid]).toMatchObject({
+      correct: 0, roundScore: 0, submissionStatus: 'timed_out', timedOut: true,
+    });
+    expect(core.computePlacements(completed.players).standings.map((candidate: { id: string }) => candidate.id))
+      .toEqual([stableUid, zeroReceiptUid]);
+  });
+
+  test('ranks each correct task by receipt time, with player id as the deterministic tie-break', async () => {
+    const roomId = `task-answer-rank-${process.pid}`;
+    const taskIds = ['task-answer-rank-q1', 'task-answer-rank-q2'];
+    const roomRef = db.collection('tournamentRooms').doc(roomId);
+    await roomRef.set({
+      slotId: 'daily', seed: roomId, state: 'round1', startsAt: 1_000,
+      stateStartedAtMs: 1_000, stateDeadlineAtMs: 31_000,
+      players: [player('rank-a'), player('rank-b')],
+      rounds: [{
+        roundNo: 1, mode: 'mix', taskIds, results: {},
+        taskSchedule: [
+          { taskId: taskIds[0], taskIndex: 0, durationMs: 15_000, startsAtMs: 1_000, deadlineAtMs: 16_000 },
+          { taskId: taskIds[1], taskIndex: 1, durationMs: 15_000, startsAtMs: 16_000, deadlineAtMs: 31_000 },
+        ],
+      }],
+      version: 0, createdAtMs: 1,
+    });
+    await Promise.all(taskIds.map((taskId) => roomRef.collection('taskSecrets').doc(taskId).set({
+      mode: 'guess_phrase', isVoice: false, difficulty: 1,
+      payload: { phrase: taskId, options: ['yes', 'no', 'later', 'maybe'], correctIndex: 0 },
+      tags: [], verified: true,
+    })));
+    const submit = (playerId: string, taskId: string, receivedAtMs: number) => (
+      runtime.tournamentSubmitTaskAnswerTransaction(db, {
+        stableUid: playerId, roomId, roundNo: 1, taskId, answer: { selectedIndex: 0 },
+        idempotencyKey: `${playerId}-${taskId}-v1`, receivedAtMs,
+      })
+    );
+
+    await submit('rank-a', taskIds[0], 10_000);
+    await submit('rank-b', taskIds[0], 9_000);
+    await submit('rank-b', taskIds[1], 25_000); // B finalizes first, but was first only on q1.
+    await submit('rank-a', taskIds[1], 25_000); // Same q2 time: rank-a wins the stable id tie.
+
+    const completed = (await roomRef.get()).data()!;
+    expect(completed.rounds[0].results['rank-a'].roundScore).toBe(5); // q1 second=2, q2 first=3
+    expect(completed.rounds[0].results['rank-b'].roundScore).toBe(5); // q1 first=3, q2 second=2
+  });
+
+  test('replays a transient batch retry once under the same key while still inside grace', async () => {
+    const roomId = `batch-retry-grace-${process.pid}`;
+    const taskId = 'batch-retry-q1';
+    const stableUid = 'batch-retry-u1';
+    const roomRef = db.collection('tournamentRooms').doc(roomId);
+    await Promise.all([
+      roomRef.set({
+        slotId: 'daily', seed: roomId, state: 'round1', startsAt: 1_000,
+        stateStartedAtMs: 1_000, stateDeadlineAtMs: 16_000,
+        players: [player(stableUid)],
+        rounds: [{
+          roundNo: 1, mode: 'mix', taskIds: [taskId], results: {},
+          taskSchedule: [{
+            taskId, taskIndex: 0, durationMs: 15_000, startsAtMs: 1_000, deadlineAtMs: 16_000,
+          }],
+        }],
+        version: 0, createdAtMs: 1,
+      }),
+      roomRef.collection('taskSecrets').doc(taskId).set({
+        mode: 'guess_phrase', isVoice: false, difficulty: 1,
+        payload: { phrase: 'Retry me', options: ['yes', 'no', 'later', 'maybe'], correctIndex: 0 },
+        tags: [], verified: true,
+      }),
+    ]);
+    const request = {
+      stableUid, roomId, roundNo: 1, idempotencyKey: 'batch-retry-grace-v1',
+      rawAnswers: [{ taskId, answer: { selectedIndex: 0 } }],
+    };
+    const first = await runtime.tournamentSubmitTransaction(db, { ...request, receivedAtMs: 17_400 });
+    const retry = await runtime.tournamentSubmitTransaction(db, { ...request, receivedAtMs: 17_500 });
+    expect(first).toMatchObject({ replay: false, correct: 1 });
+    expect(retry).toMatchObject({ replay: true, correct: 1 });
+    expect((await roomRef.get()).data()?.players[0].score).toBe(first.roundScore);
+    await expect(runtime.tournamentSubmitTransaction(db, { ...request, receivedAtMs: 17_501 }))
+      .rejects.toThrow('task_deadline_elapsed');
+  });
+
+  test('all real submissions shorten the round only to the explicit answer-display delay', async () => {
+    const roomId = `early-all-real-${process.pid}`;
+    const taskId = `early-all-real-task-${process.pid}`;
+    const roomRef = db.collection('tournamentRooms').doc(roomId);
+    const originalDeadlineAtMs = 100_000;
+    const finalSubmitAtMs = 2_100;
+    const earlyDelayMs = require('./tournament_core').TOURNAMENT_EARLY_ADVANCE_DELAY_MS as number;
+    await Promise.all([
+      roomRef.set({
+        slotId: 'daily', seed: roomId, state: 'round1', startsAt: 1_000,
+        stateStartedAtMs: 1_000, stateDeadlineAtMs: originalDeadlineAtMs,
+        players: [player('early-u1'), player('early-u2')],
+        rounds: [{ roundNo: 1, mode: 'guess_phrase', taskIds: [taskId], results: {} }],
+        version: 0, createdAtMs: 1,
+      }),
+      roomRef.collection('taskSecrets').doc(taskId).set({
+        mode: 'guess_phrase', isVoice: false, difficulty: 1,
+        payload: { phrase: 'Choose yes', options: ['yes', 'no', 'later', 'maybe'], correctIndex: 0 },
+        tags: [], verified: true,
+      }),
+      roomRef.collection('taskSecrets').doc('__bot_simulation_v1').set({
+        kind: 'bot_simulation_v1', expectedBotCount: 0, bots: [],
+      }),
+    ]);
+
+    await runtime.tournamentSubmitTransaction(db, {
+      stableUid: 'early-u1', roomId, roundNo: 1,
+      rawAnswers: [{ taskId, answer: { selectedIndex: 0 } }], receivedAtMs: 2_000,
+    });
+    expect((await roomRef.get()).data()?.stateDeadlineAtMs).toBe(originalDeadlineAtMs);
+
+    await runtime.tournamentSubmitTransaction(db, {
+      stableUid: 'early-u2', roomId, roundNo: 1,
+      rawAnswers: [{ taskId, answer: { selectedIndex: 0 } }], receivedAtMs: finalSubmitAtMs,
+    });
+    const earlyDeadlineAtMs = finalSubmitAtMs + earlyDelayMs;
+    expect((await roomRef.get()).data()?.stateDeadlineAtMs).toBe(earlyDeadlineAtMs);
+    await expect(runtime.advanceRoomAtDeadline(db, roomRef, { nowMs: () => earlyDeadlineAtMs - 1 }))
+      .resolves.toBe('waiting');
+    await expect(runtime.advanceRoomAtDeadline(db, roomRef, { nowMs: () => earlyDeadlineAtMs }))
+      .resolves.toBe('advanced');
+  });
+
   test('an on-time submit replaces only the immediately-next timeout result and scores exactly once', async () => {
     const roomId = `atomic-timeout-race-${process.pid}`;
     const roomRef = db.collection('tournamentRooms').doc(roomId);
@@ -144,12 +632,12 @@ describe('tournament submit atomicity at the scheduler deadline', () => {
     const result = raced.rounds[0].results['atomic-u1'];
     expect(result).toMatchObject({
       correct: 1,
-      roundScore: 150,
+      roundScore: 3,
       submissionStatus: 'submitted',
       submittedAtMs: receivedAtMs,
     });
     expect(raced.players[0]).toMatchObject({
-      score: 150,
+      score: 3,
       streak: 3,
     });
 
@@ -190,6 +678,9 @@ describe('tournament submit atomicity at the scheduler deadline', () => {
       },
       tags: [],
       verified: true,
+    });
+    await closedRef.collection('taskSecrets').doc('__bot_simulation_v1').set({
+      kind: 'bot_simulation_v1', expectedBotCount: 0, bots: [],
     });
     await runtime.advanceRoomAtDeadline(db, closedRef, { nowMs: () => receivedAtMs });
     const tableDeadline = (await closedRef.get()).data()!.stateDeadlineAtMs as number;
@@ -241,9 +732,10 @@ describe('tournament submit atomicity at the scheduler deadline', () => {
     await runtime.tournamentCancelTransaction(db, roomId, 'legacy_gameplay_unverifiable', startsAt - 500);
     await runtime.tournamentCancelTransaction(db, roomId, 'legacy_gameplay_unverifiable', startsAt - 499);
     expect((await db.collection('tournamentBank').doc(weekId).get()).data()).toMatchObject({
-      total: 0,
-      contributions: 0,
+      total: 2,
+      contributions: 1,
     });
+    expect((await db.collection('users').doc('atomic-bank-u1').get()).data()?.shards).toBe(5);
     expect((await db.collection('users').doc('atomic-bank-u1').collection('inventory')
       .doc('tickets').get()).data()?.count).toBe(1);
     expect((await db.collection('users').doc('atomic-bank-u1').collection('tournament_receipts')
@@ -334,9 +826,9 @@ describe('tournament submit atomicity at the scheduler deadline', () => {
     expect((await roomRef.collection('taskSecrets').get()).size).toBe(0);
     expect((await db.collection('users').doc(stableUid).collection('inventory').doc('tickets').get()).data()?.count)
       .toBe(1);
-    expect((await db.collection('users').doc(stableUid).get()).data()?.shards).toBe(3);
+    expect((await db.collection('users').doc(stableUid).get()).data()?.shards).toBe(5);
     expect((await db.collection('tournamentBank').doc(weekId).get()).data()).toMatchObject({
-      total: 0, contributions: 0,
+      total: 2, contributions: 1,
     });
   });
 

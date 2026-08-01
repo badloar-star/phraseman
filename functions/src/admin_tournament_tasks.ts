@@ -25,6 +25,7 @@ import {
   normalizeTournamentCuratedSet,
   tournamentRoomId,
   validateTournamentTask,
+  validateTournamentTaskForNewRoom,
   type TournamentTask,
 } from './tournament_core';
 import {
@@ -81,6 +82,8 @@ import {
 } from './tournament_ai_generator';
 import { openAiChat } from './explain/explain_provider';
 import { assertJobEnabled, resolveJobConfig } from './openai_jobs_config';
+import { loadEligibleTournamentCellCounts } from './tournament_task_eligibility';
+import { isOwnerApprovedTournamentMode } from './tournament_mode_contract';
 
 const REGION = 'us-central1';
 const ID_RE = /^[A-Za-z0-9._:-]{1,160}$/;
@@ -88,6 +91,7 @@ const ID_RE = /^[A-Za-z0-9._:-]{1,160}$/;
 const WRITE_BATCH_SIZE = 400;
 const MAX_PUBLISH_PER_CALL = 2_000;
 const MAX_LIST_LIMIT = 100;
+const TOURNAMENT_TEXT_GENERATION_RETIRED: boolean = true;
 
 type CallRequest = { auth?: { token?: Record<string, unknown> }; data?: unknown };
 
@@ -236,6 +240,7 @@ export type ScheduleRequest = {
   readonly timezone: string;
   readonly freeWeeklyEntry: boolean;
   readonly ticketGemValue: number;
+  readonly testingEnabled: boolean;
 };
 
 /** Валидна ли IANA-таймзона — той же проверкой, что делает сервер комнат. */
@@ -251,7 +256,7 @@ function isValidTimezone(timezone: string): boolean {
 export function parseScheduleRequest(data: unknown): ScheduleRequest {
   const record = onlyKeys(
     data,
-    ['slots', 'timezone', 'freeWeeklyEntry', 'ticketGemValue'],
+    ['slots', 'timezone', 'freeWeeklyEntry', 'ticketGemValue', 'testingEnabled'],
     'tournament_schedule_invalid',
   );
   const slotsRaw = record.slots;
@@ -299,6 +304,7 @@ export function parseScheduleRequest(data: unknown): ScheduleRequest {
     timezone,
     freeWeeklyEntry: record.freeWeeklyEntry === true,
     ticketGemValue,
+    testingEnabled: record.testingEnabled === true,
   });
 }
 
@@ -596,6 +602,13 @@ export type TextGenerationParams = {
 };
 
 export async function runTextGeneration(input: TextGenerationParams): Promise<Record<string, unknown>> {
+  // Kept as a callable compatibility tombstone: deployed clients receive an
+  // explicit failure without Firestore writes or OpenAI spend. New tournament
+  // rooms use only the four owner-approved mockup modes.
+  if (TOURNAMENT_TEXT_GENERATION_RETIRED) {
+    throw new HttpsError('failed-precondition', 'tournament_text_modes_retired');
+  }
+
   const params = {
     level: input.level,
     batches: input.batches,
@@ -645,7 +658,7 @@ export async function runTextGeneration(input: TextGenerationParams): Promise<Re
         promptTokens += outcome.promptTokens;
         completionTokens += outcome.completionTokens;
         requests += outcome.requests;
-        if (!outcome.ok) {
+        if (outcome.ok === false) {
           rejectedBatches.push([...outcome.errors]);
           continue;
         }
@@ -822,9 +835,23 @@ export function aiLifecycleAfterTournamentTaskEdit(
 export function canPublishTournamentTask(
   task: TournamentTask & { source?: unknown; lifecycle?: unknown; aiVerdict?: unknown },
 ): boolean {
-  if (!validateTournamentTask({ ...task, verified: true }).ok) return false;
+  if (!validateTournamentTaskForNewRoom({ ...task, verified: true }).ok) return false;
   return task.source !== 'ai'
     || (task.lifecycle === 'awaiting_approval' && task.aiVerdict === 'approved');
+}
+
+/** Publication is the explicit human approval step after automatic validation. */
+export function humanApprovalAfterTournamentTaskPublish(
+  actor: string,
+  nowMs: number,
+): Readonly<Record<string, unknown>> {
+  return Object.freeze({
+    verified: true,
+    lifecycle: 'published',
+    publishedAtMs: nowMs,
+    humanApprovedAtMs: nowMs,
+    humanApprovedBy: actor,
+  });
 }
 
 /**
@@ -955,7 +982,7 @@ export const adminSetTournamentCurated = onCall(
     for (const snap of snaps) {
       const task = snap.exists ? snap.data() as TournamentTask : null;
       if (!task || task.verified !== true
-        || !validateTournamentTask({ ...task, taskId: snap.id, verified: true }).ok) {
+        || !validateTournamentTaskForNewRoom({ ...task, taskId: snap.id, verified: true }).ok) {
         rejected.push(snap.id);
       }
     }
@@ -1045,6 +1072,7 @@ export const adminMutateTournamentTasks = onCall(
 
     const db = admin.firestore();
     const collection = db.collection(TOURNAMENT_TASKS_COLLECTION);
+    const actor = String(request.auth?.token?.email ?? request.auth?.uid ?? 'admin');
     let affected = 0;
     const rejected: string[] = [];
 
@@ -1075,7 +1103,7 @@ export const adminMutateTournamentTasks = onCall(
           rejected.push(snapshot.id);
           continue;
         }
-        batch.update(snapshot.ref, { verified: true, publishedAtMs: Date.now(), lifecycle: 'published' });
+        batch.update(snapshot.ref, humanApprovalAfterTournamentTaskPublish(actor, Date.now()));
         affected += 1;
       }
       await batch.commit();
@@ -1167,15 +1195,7 @@ export const adminTournamentPoolStats = onCall(
     // одним режимом нужно TASKS_PER_ROUND заданий ОДНОГО режима, и ни в одной
     // ячейке их столько не было. Считаем по ячейкам режим×сложность.
     // guard-ok: агрегаты count(), документы не читаются.
-    const cellCounts: Record<string, number> = {};
-    await Promise.all(TOURNAMENT_MODES.flatMap((mode) => [1, 2, 3].map(async (difficulty) => {
-      const agg = await collection
-        .where('verified', '==', true)
-        .where('mode', '==', mode)
-        .where('difficulty', '==', difficulty)
-        .count().get();
-      cellCounts[`${mode}:${difficulty}`] = agg.data().count;
-    })));
+    const cellCounts = await loadEligibleTournamentCellCounts(collection);
 
     const readiness = roundReadiness(cellCounts);
     const rounds = readiness.map((round) => ({
@@ -1238,12 +1258,12 @@ export const adminSetTournamentSchedule = onCall(
     // создаваться и тут же отменяться, списывая билеты и возвращая их обратно.
     if (params.slots.some((slot) => slot.enabled)) {
       // guard-ok: агрегат count(), документы не читаются
-      const ready = await db.collection(TOURNAMENT_TASKS_COLLECTION)
-        .where('verified', '==', true).count().get();
-      if (ready.data().count < ROUND_TASK_TARGET) {
+      const readyCells = await loadEligibleTournamentCellCounts(db.collection(TOURNAMENT_TASKS_COLLECTION));
+      if (!poolIsTournamentReady(readyCells)) {
+        const readyCount = Object.values(readyCells).reduce((sum, count) => sum + count, 0);
         throw new HttpsError(
           'failed-precondition',
-          `tournament_pool_too_small:${ready.data().count}`,
+          `tournament_pool_too_small:${readyCount}`,
         );
       }
     }
@@ -1262,6 +1282,7 @@ export const adminSetTournamentSchedule = onCall(
       })),
       freeWeeklyEntry: params.freeWeeklyEntry,
       ticketGemValue: params.ticketGemValue,
+      testingEnabled: params.testingEnabled,
       updatedAtMs: Date.now(),
     }, { merge: true });
 
@@ -1285,6 +1306,7 @@ export const adminGetTournamentSchedule = onCall(
       exists: true,
       slots: Array.isArray(data.slots) ? data.slots : [],
       timezone: typeof data.timezone === 'string' ? data.timezone : 'Europe/Moscow',
+      testingEnabled: data.testingEnabled === true,
       updatedAtMs: Number(data.updatedAtMs ?? 0),
     };
   },
@@ -1487,7 +1509,9 @@ export const adminGenerateTournamentAudioTasksAi = onCall(
       'tournament_audio_ai_invalid');
     const mode = String(record.mode ?? '').trim();
     const level = String(record.level ?? '').trim().toUpperCase();
-    if (!isTournamentAudioMode(mode) || !isTournamentAiLevel(level)) {
+    // Retired modes may remain in historic documents, but may never consume
+    // generation budget or return to a newly assembled tournament.
+    if (!isTournamentAudioMode(mode) || !isOwnerApprovedTournamentMode(mode) || !isTournamentAiLevel(level)) {
       throw new HttpsError('invalid-argument', 'tournament_audio_ai_invalid');
     }
     return runAudioGeneration({
@@ -1625,6 +1649,10 @@ export async function runSpeedMatchGeneration(params: {
         payload: task.payload,
         tags: task.tags,
         verified: wasPublished,
+        lifecycle: wasPublished ? 'published' : 'awaiting_approval',
+        aiVerdict: 'approved',
+        aiReason: 'Passed automatic speed-match validation; human approval is still required.',
+        aiCheckedAtMs: nowMs,
         generatedAtMs: nowMs,
         source: 'ai',
         aiMeta: { note: `${SPEED_MATCH_PAIRS} пар`, level, model: cfg.model },
@@ -1687,15 +1715,7 @@ export const adminFillTournamentPool = onCall(
 
     // Текущий комплект: агрегаты, документы не читаются.
     // guard-ok: count() — серверные агрегаты.
-    const cellCounts: Record<string, number> = {};
-    await Promise.all(TOURNAMENT_MODES.flatMap((mode) => [1, 2, 3].map(async (difficulty) => {
-      const agg = await collection
-        .where('verified', '==', true)
-        .where('mode', '==', mode)
-        .where('difficulty', '==', difficulty)
-        .count().get();
-      cellCounts[`${mode}:${difficulty}`] = agg.data().count;
-    })));
+    const cellCounts = await loadEligibleTournamentCellCounts(collection);
 
     const orders = planGenerationOrders(cellCounts, { maxTasks, healthy });
     if (orders.length === 0) {
@@ -1789,15 +1809,7 @@ export const adminGetTournamentModeMix = onCall(
     const mix = snap.exists ? normalizeRoundMix(snap.data()) : defaultRoundMix();
 
     // guard-ok: count() — серверные агрегаты, документы не читаются.
-    const cells: Record<string, number> = {};
-    await Promise.all(TOURNAMENT_MODES.flatMap((mode) => [1, 2, 3].map(async (difficulty) => {
-      const agg = await collection
-        .where('verified', '==', true)
-        .where('mode', '==', mode)
-        .where('difficulty', '==', difficulty)
-        .count().get();
-      cells[`${mode}:${difficulty}`] = agg.data().count;
-    })));
+    const cells = await loadEligibleTournamentCellCounts(collection);
 
     const byMode: Record<string, number> = {};
     for (const mode of TOURNAMENT_MODES) {

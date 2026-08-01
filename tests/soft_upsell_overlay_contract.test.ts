@@ -29,12 +29,12 @@ describe('soft upsell overlay occupancy contract', () => {
     expect(new Set(Object.keys(EMPTY_OVERLAY_WANTS))).toEqual(new Set(OVERLAY_PRIORITY));
     expect(OVERLAY_PRIORITY).toEqual([
       'onboardingWelcome', 'update', 'authRecovery', 'releaseNotes', 'broadcast',
-      'leagueBonusAvailable', 'notifNudge', 'introFullAccess',
+      'personalAdminMessage', 'leagueBonusAvailable', 'notifNudge', 'introFullAccess',
       'dailyPlan', 'levelUp', 'themedAlert', 'premiumCelebration',
       'vipCelebration', 'leagueResult', 'streakRevive',
       'entitlementExpired', 'referralWelcome', 'mysteryMondayChest', 'comebackDay',
       'boonActivated', 'lessonResultsSequence', 'lessonCompleteNotif',
-      'arenaRoomConfirm', 'collectibleDrop', 'shardsEarned',
+      'arenaRoomConfirm', 'collectibleDrop', 'reviewPrompt', 'shardsEarned',
       'matchFoundToastScreen', 'matchFoundToast', 'arenaInvite',
       'achievementToast', 'dailyTaskRewardToast', 'coachToast', 'actionToast',
       'coinsMigration', 'perfectWeekReward',

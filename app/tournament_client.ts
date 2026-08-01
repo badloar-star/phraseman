@@ -11,6 +11,8 @@
 // ═══════════════════════════════════════════════════════════════════════════
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { initFirebaseAppCheckIfAvailable } from './app_check_init';
+import { ensureAnonUser } from './cloud_sync';
 
 /** Публичное задание: ключи ответов сервер вырезает до отправки клиенту. */
 export type PublicTask = {
@@ -22,8 +24,6 @@ export type PublicTask = {
   isVoice: boolean;
   difficulty: number;
   payload: Record<string, unknown>;
-  /** Room-salted hashes enable immediate UI feedback without exposing answer keys. */
-  answerFingerprints?: string[];
 };
 
 export type RoomPlayer = {
@@ -34,6 +34,12 @@ export type RoomPlayer = {
   color: string;
   score: number;
   streak: number;
+  /** Final server-authored placement. Absent until room finalization. */
+  resultPlace?: number;
+  /** Final server-authored automatic reward. Absent until room finalization. */
+  rewardGems?: number;
+  /** A forfeiter remains visible, but is never eligible for a prize. */
+  forfeitedAtMs?: number;
   /**
    * Когда игрок появляется в лобби (часы сервера).
    *
@@ -46,10 +52,27 @@ export type RoomPlayer = {
   joinAtMs?: number;
 };
 
+/** Absolute server-authored window for one activated round task. */
+export type RoomTaskTiming = {
+  taskId: string;
+  taskIndex: number;
+  durationMs: number;
+  startsAtMs: number;
+  deadlineAtMs: number;
+  /** Server boundary after which the client must not show its cosmetic intro. */
+  introEndsAtMs?: number;
+  /** Optional explicit phase boundaries for newly scheduled rooms. */
+  readingEndsAtMs?: number;
+  answerDeadlineAtMs?: number;
+  feedbackStartsAtMs?: number;
+  feedbackEndsAtMs?: number;
+};
+
 export type RoomRound = {
   roundNo: number;
   mode: string;
   tasks?: PublicTask[];
+  taskSchedule?: RoomTaskTiming[];
   results: Record<string, { roundScore: number; correct: number; total: number }>;
 };
 
@@ -71,6 +94,8 @@ export type Room = {
   players: RoomPlayer[];
   rounds: RoomRound[];
   stateDeadlineAtMs?: number;
+  /** Room-level fallback for the optional round-intro boundary. */
+  introEndsAtMs?: number;
   cancelReason?: string;
   /**
    * Реальная экономика турнира — приходит с сервера при финализации.
@@ -85,6 +110,14 @@ export type Room = {
   prizePoolGems?: number;
   /** Фактические выплаты по местам: [1-е, 2-е, 3-е]. */
   prizeGems?: number[];
+  lobbyEvents?: Array<{
+    eventId: string;
+    kind: 'bot_arrival';
+    playerId: string;
+    atMs: number;
+    potDeltaGems: number;
+    potGemsAfter: number;
+  }>;
 };
 
 export type RoomStatus = 'idle' | 'loading' | 'ready' | 'offline' | 'error';
@@ -92,6 +125,7 @@ export type RoomStatus = 'idle' | 'loading' | 'ready' | 'offline' | 'error';
 type RoomHook = {
   room: Room | null;
   status: RoomStatus;
+  freshSnapshot: boolean;
   /** Секунд до конца текущего состояния — из серверного дедлайна, не локального. */
   secondsLeft: number;
   retry: () => void;
@@ -100,6 +134,133 @@ type RoomHook = {
 /** Кэш расписания: обновляем не чаще, чем раз в 6 часов. */
 const SCHEDULE_TTL_MS = 6 * 60 * 60 * 1000;
 let scheduleCache: { at: number; value: unknown } | null = null;
+const ROOM_CACHE_MAX = 8;
+const roomCache = new Map<string, Room>();
+
+function rememberTournamentRoom(roomId: string, room: Room): void {
+  roomCache.delete(roomId);
+  roomCache.set(roomId, room);
+  while (roomCache.size > ROOM_CACHE_MAX) {
+    const oldest = roomCache.keys().next().value as string | undefined;
+    if (!oldest) break;
+    roomCache.delete(oldest);
+  }
+}
+
+export function tournamentSecondsUntil(deadlineAtMs: number, nowMs = Date.now()): number {
+  return Math.max(0, Math.ceil((deadlineAtMs - nowMs) / 1000));
+}
+
+/**
+ * Selects the task dictated by the immutable server schedule on mount/resume.
+ * When between windows the next task wins; after the round window the last
+ * task remains visible until the server advances the room state.
+ */
+export function resolveTournamentScheduledTaskIndex(
+  schedule: readonly RoomTaskTiming[] | undefined,
+  nowMs = tournamentNow(),
+): number {
+  if (!schedule?.length) return 0;
+  const ordered = schedule.slice().sort((left, right) => left.taskIndex - right.taskIndex);
+  const active = ordered.find((timing) => (
+    nowMs >= timing.startsAtMs
+    && nowMs < (timing.feedbackEndsAtMs ?? timing.deadlineAtMs)
+  ));
+  if (active) return active.taskIndex;
+  const upcoming = ordered.find((timing) => nowMs < timing.startsAtMs);
+  return (upcoming ?? ordered[ordered.length - 1]).taskIndex;
+}
+
+/** A task already shown in one round must never be replaced by an earlier task. */
+export function resolveTournamentVisibleTaskIndex(
+  schedule: readonly RoomTaskTiming[] | undefined,
+  nowMs = tournamentNow(),
+  sameRoundVisibleIndex?: number,
+): number {
+  const scheduledIndex = resolveTournamentScheduledTaskIndex(schedule, nowMs);
+  return Number.isInteger(sameRoundVisibleIndex) && Number(sameRoundVisibleIndex) >= 0
+    ? Math.max(scheduledIndex, Number(sameRoundVisibleIndex))
+    : scheduledIndex;
+}
+
+/**
+ * Final rooms publish resultPlace. Until then, the server's public score plus
+ * canonical id tie-break makes the interim table deterministic; a forfeiter
+ * is always last regardless of their pre-forfeit score.
+ */
+export function orderTournamentPlayersForDisplay(players: readonly RoomPlayer[]): RoomPlayer[] {
+  return players.slice().sort((left, right) => (
+    Number(left.forfeitedAtMs !== undefined) - Number(right.forfeitedAtMs !== undefined)
+    || (left.resultPlace !== undefined && right.resultPlace !== undefined
+      ? left.resultPlace - right.resultPlace
+      : Number(right.score ?? 0) - Number(left.score ?? 0))
+    || left.id.localeCompare(right.id)
+  ));
+}
+
+/** A results presentation must wait for the finalization snapshot, not scores alone. */
+export function hasAuthoritativeTournamentResults(players: readonly RoomPlayer[]): boolean {
+  return players.length > 0 && players.every((player) => (
+    typeof player.resultPlace === 'number' && player.resultPlace > 0
+  ));
+}
+
+/** Absolute server-time countdown value; mounting late never recreates a full intro. */
+export function resolveTournamentIntroCountdownValue(introEndsAtMs: number, nowMs = tournamentNow()): number {
+  return Math.max(0, Math.ceil((introEndsAtMs - nowMs) / 1000));
+}
+
+/** Local 3-2-1 is cosmetic and may only occupy server-authorized pre-start time. */
+export function shouldShowTournamentLocalIntro(
+  timing: Pick<RoomTaskTiming, 'startsAtMs' | 'introEndsAtMs'> | null | undefined,
+  nowMs = tournamentNow(),
+  roomIntroEndsAtMs?: number,
+): boolean {
+  if (!timing) return roomIntroEndsAtMs === undefined || nowMs < roomIntroEndsAtMs;
+  const introBoundaryMs = Math.min(
+    timing.startsAtMs,
+    timing.introEndsAtMs ?? roomIntroEndsAtMs ?? timing.startsAtMs,
+  );
+  return nowMs < introBoundaryMs;
+}
+
+function tournamentIdempotencyScopeHash(value: string): string {
+  let hash = 2166136261;
+  for (let index = 0; index < value.length; index += 1) {
+    hash ^= value.charCodeAt(index);
+    hash = Math.imul(hash, 16777619);
+  }
+  return (hash >>> 0).toString(36);
+}
+
+/** One key per task attempt; retries reuse the exact cached value. */
+export function getOrCreateTournamentTaskIdempotencyKey(
+  cache: Map<string, string>,
+  roomId: string,
+  roundNo: number,
+  taskId: string,
+  createNonce?: () => string,
+): string {
+  const scope = `${roomId}:${roundNo}:${taskId}`;
+  const cached = cache.get(scope);
+  if (cached) return cached;
+  const nonce = createNonce?.().replace(/[^A-Za-z0-9:_-]/g, '_').slice(0, 80);
+  const key = `task_${roundNo}_${tournamentIdempotencyScopeHash(scope)}${nonce ? `_${nonce}` : ''}`.slice(0, 160);
+  cache.set(scope, key);
+  return key;
+}
+
+export function resolveTournamentLobbyRoute(state?: string | null): 'round' | 'table' | 'results' | null {
+  if (isRoundState(state)) return 'round';
+  if (isTableState(state)) return 'table';
+  if (state === 'results' || state === 'rewards' || state === 'closed') return 'results';
+  return null;
+}
+
+export function shouldTableEnterRound(state: string | null | undefined, completedRound: number | null): boolean {
+  if (!isRoundState(state)) return false;
+  return completedRound == null || state !== `round${completedRound}`;
+}
 
 /**
  * Подписка на ОДИН документ комнаты.
@@ -125,8 +286,10 @@ let scheduleCache: { at: number; value: unknown } | null = null;
  * первым же снимком догоняет актуальное состояние.
  */
 export function useTournamentRoom(roomId: string | null, active = true): RoomHook {
-  const [room, setRoom] = useState<Room | null>(null);
-  const [status, setStatus] = useState<RoomStatus>(roomId ? 'loading' : 'idle');
+  const initialRoom = roomId ? roomCache.get(roomId) ?? null : null;
+  const [room, setRoom] = useState<Room | null>(initialRoom);
+  const [status, setStatus] = useState<RoomStatus>(roomId ? (initialRoom ? 'ready' : 'loading') : 'idle');
+  const [freshSnapshot, setFreshSnapshot] = useState(false);
   const [attempt, setAttempt] = useState(0);
   const unsubscribeRef = useRef<null | (() => void)>(null);
 
@@ -134,16 +297,23 @@ export function useTournamentRoom(roomId: string | null, active = true): RoomHoo
     if (!roomId) {
       setStatus('idle');
       setRoom(null);
+      setFreshSnapshot(false);
       return;
     }
+    const cached = roomCache.get(roomId) ?? null;
+    if (cached) {
+      setRoom(cached);
+      setStatus('ready');
+    } else {
+      setStatus('loading');
+    }
+    setFreshSnapshot(false);
     // Экран не виден — не держим сокет. Комнату в state НЕ чистим: при возврате
     // пользователь видит последние данные, а не скелетон (Performance Bible:
     // первый кадр = финальная геометрия).
     if (!active) return;
 
     let cancelled = false;
-    setStatus('loading');
-
     // зачем: приложение использует @react-native-firebase (цепочечный API),
     // а не веб-SDK. Импорт внутри эффекта — модуль не попадает в стартовый
     // бандл, если пользователь до турниров не дошёл (холодный старт).
@@ -156,6 +326,7 @@ export function useTournamentRoom(roomId: string | null, active = true): RoomHoo
           .collection('tournamentRooms')
           .doc(roomId)
           .onSnapshot(
+            { includeMetadataChanges: true },
             (snapshot: any) => {
               if (cancelled) return;
               if (!snapshot?.exists) {
@@ -163,7 +334,10 @@ export function useTournamentRoom(roomId: string | null, active = true): RoomHoo
                 setStatus('error');
                 return;
               }
-              setRoom(snapshot.data() as Room);
+              const nextRoom = snapshot.data() as Room;
+              rememberTournamentRoom(roomId, nextRoom);
+              setRoom(nextRoom);
+              setFreshSnapshot(snapshot.metadata?.fromCache !== true);
               setStatus('ready');
             },
             () => {
@@ -198,12 +372,12 @@ export function useTournamentRoom(roomId: string | null, active = true): RoomHoo
       setSecondsLeft(0);
       return;
     }
-    const tick = () => setSecondsLeft(Math.max(0, Math.round((deadline - Date.now()) / 1000)));
+    const tick = () => setSecondsLeft(tournamentSecondsUntil(deadline));
     tick();
-    if (!active) return;
+    if (!active || !freshSnapshot) return;
     const id = setInterval(tick, 1000);
     return () => clearInterval(id);
-  }, [room?.stateDeadlineAtMs, active]);
+  }, [room?.stateDeadlineAtMs, active, freshSnapshot]);
 
   /**
    * Дедлайн истёк — просим сервер перевести комнату дальше.
@@ -238,11 +412,14 @@ export function useTournamentRoom(roomId: string | null, active = true): RoomHoo
       void advanceRound(roomId, state, deadline).catch(() => {});
     }, Math.floor(Math.random() * 400));
     return () => clearTimeout(id);
-  }, [roomId, room?.state, room?.stateDeadlineAtMs, secondsLeft, active]);
+  }, [roomId, room?.state, room?.stateDeadlineAtMs, secondsLeft, active, freshSnapshot]);
 
   const retry = useCallback(() => setAttempt((value) => value + 1), []);
 
-  return useMemo(() => ({ room, status, secondsLeft, retry }), [room, status, secondsLeft, retry]);
+  return useMemo(
+    () => ({ room, status, freshSnapshot, secondsLeft, retry }),
+    [room, status, freshSnapshot, secondsLeft, retry],
+  );
 }
 
 /** Состояния, которые сервер умеет двигать по дедлайну (см. tournamentAdvanceRound). */
@@ -281,14 +458,18 @@ export const REACTION_COOLDOWN_MS = 900;
  * показываем лишь свежие реакции (старше TTL игнорируем): при входе в комнату
  * не сыплется история чужих тапов.
  */
-export function useTournamentReactions(roomId: string | null) {
+export function useTournamentReactions(roomId: string | null, active = true) {
   const [incoming, setIncoming] = useState<LiveReaction[]>([]);
   const lastSentAtRef = useRef(0);
   const seenRef = useRef<Map<string, number>>(new Map());
   const mountedAtRef = useRef(Date.now());
+  const activeRef = useRef(active);
+  const runtimeGenerationRef = useRef(0);
+  activeRef.current = active;
 
   useEffect(() => {
-    if (!roomId) return;
+    const runtimeGeneration = ++runtimeGenerationRef.current;
+    if (!roomId || !active) return;
     let cancelled = false;
     let unsubscribe: null | (() => void) = null;
     mountedAtRef.current = Date.now();
@@ -296,7 +477,7 @@ export function useTournamentReactions(roomId: string | null) {
     void (async () => {
       try {
         const firestore = (await import('@react-native-firebase/firestore')).default;
-        if (cancelled) return;
+        if (cancelled || !activeRef.current || runtimeGeneration !== runtimeGenerationRef.current) return;
         unsubscribe = firestore()
           .collection('tournamentRooms').doc(roomId).collection('reactions')
           // guard-ok: подколлекция ограничена размером комнаты (16 игроков =
@@ -304,7 +485,7 @@ export function useTournamentReactions(roomId: string | null) {
           // ставим явно — он защищает от разрастания, если состав вырастет.
           .limit(TOURNAMENT_ROOM_SIZE_CAP)
           .onSnapshot((snapshot: any) => {
-            if (cancelled || !snapshot) return;
+            if (cancelled || !activeRef.current || runtimeGeneration !== runtimeGenerationRef.current || !snapshot) return;
             const fresh: LiveReaction[] = [];
             const now = Date.now();
             snapshot.docChanges?.().forEach((change: any) => {
@@ -333,10 +514,11 @@ export function useTournamentReactions(roomId: string | null) {
 
     return () => {
       cancelled = true;
+      runtimeGenerationRef.current += 1;
       unsubscribe?.();
       seenRef.current.clear();
     };
-  }, [roomId]);
+  }, [roomId, active]);
 
   /** Реакция отыграна — убираем из очереди, чтобы список не рос. */
   const consume = useCallback((id: string, atMs: number) => {
@@ -350,7 +532,8 @@ export function useTournamentReactions(roomId: string | null) {
    * увидят этот тап, а свой полёт уже честно показан.
    */
   const send = useCallback(async (emoji: string, name: string): Promise<boolean> => {
-    if (!roomId) return false;
+    if (!roomId || !activeRef.current) return false;
+    const runtimeGeneration = runtimeGenerationRef.current;
     const now = Date.now();
     if (now - lastSentAtRef.current < REACTION_COOLDOWN_MS) return false;
     lastSentAtRef.current = now;
@@ -359,6 +542,7 @@ export function useTournamentReactions(roomId: string | null) {
         import('@react-native-firebase/firestore'),
         import('@react-native-firebase/auth'),
       ]);
+      if (!activeRef.current || runtimeGeneration !== runtimeGenerationRef.current) return false;
       const uid = auth().currentUser?.uid;
       if (!uid) return true;
       await firestore()
@@ -370,6 +554,7 @@ export function useTournamentReactions(roomId: string | null) {
         // Гонки двух устройств тоже не страшны: побеждает последний тап, что
         // и есть желаемое поведение для реакции.
         .set({ emoji, atMs: now, name });
+      if (!activeRef.current || runtimeGeneration !== runtimeGenerationRef.current) return false;
     } catch {
       // Молча: реакция — украшение, ронять из-за неё экран нельзя.
     }
@@ -407,6 +592,12 @@ async function callFunction<T>(
   // новые функции туда не деплоятся. Прод-callable остаются в us-central1.
   region: string = FUNCTIONS_REGION,
 ): Promise<T> {
+  // Every installation already owns an automatic Firebase-anonymous/stable
+  // account. Wait for that bootstrap here so tournament entry never depends on
+  // a Google/Apple sign-in screen and the server can still bind charges,
+  // participation and reward receipts to an authenticated identity.
+  await ensureAnonUser().catch(() => null);
+  await initFirebaseAppCheckIfAvailable().catch(() => {});
   const { getApp } = await import('@react-native-firebase/app');
   const { getFunctions, httpsCallable } = await import('@react-native-firebase/functions');
   const call = httpsCallable(getFunctions(getApp(), region), name);
@@ -451,17 +642,63 @@ export function joinTournament(roomId: string) {
   );
 }
 
+export type TournamentLeaveResult = {
+  ok: boolean;
+  alreadyLeft: boolean;
+  roomId: string;
+  refundedGems: number;
+  potGems: number;
+};
+
+/** Exact-once pre-start exit; automatic account bootstrap is owned by callFunction. */
+export function leaveTournament(roomId: string) {
+  return callFunction<TournamentLeaveResult>('tournamentLeave', { roomId });
+}
+
+export type TournamentForfeitResult = {
+  ok: boolean;
+  alreadyForfeited: boolean;
+  roomId: string;
+  refundedGems: 0;
+  potGems: number;
+};
+
+/** Active exit is irreversible and must always include an explicit confirmation. */
+export function forfeitTournament(roomId: string) {
+  return callFunction<TournamentForfeitResult>(
+    'tournamentForfeit',
+    { roomId, confirmForfeit: true },
+  );
+}
+
 /**
  * Дев-турнир (только владелец, admin claim): сервер мгновенно создаёт комнату
  * с ботами и возвращает roomId — вход доступен сразу, без ожидания слота.
  */
+export type TournamentReviewExplanation = {
+  ruleNote: string;
+  example: string;
+  /** Absent for pre-rollout rooms whose frozen secret did not contain it. */
+  wrongOptionReasons?: string[];
+};
+
 export type AggregateReviewItem = {
   prompt: string;
   options: string[];
   correctIndex: number | null;
   selectedIndex: number | null;
   correct: boolean;
-  explanation: { ruleNote: string; example: string } | null;
+  explanation: TournamentReviewExplanation | null;
+};
+
+/** A completed speed-match field, represented as explicit EN → RU mappings. */
+export type SpeedMatchReviewPair = {
+  english: string;
+  selectedRussian: string | null;
+  correctRussian: string;
+  correct: boolean;
+  selectedTrapReason: string | null;
+  explanation: TournamentReviewExplanation | null;
 };
 
 /** Разбор моих ответов после турнира: что выбрал, что было верно. */
@@ -470,16 +707,20 @@ export type ReviewItem = {
   taskId: string;
   mode: string;
   correct: boolean;
+  /** Present only when the server finalized this task without a timely answer. */
+  timedOut?: true;
   given: unknown;
   phrase: string;
   options: string[];
   correctIndex: number | null;
   correctTokens: string[];
   audioUri: string;
-  explanation: { ruleNote: string; example: string } | null;
+  explanation: TournamentReviewExplanation | null;
   /** Есть только у time_attack / speed_match; старые раунды честно остаются без него. */
   aggregatePrompt?: string;
   aggregateItems?: AggregateReviewItem[];
+  /** Present for speed_match so the review keeps its two-column pairing semantics. */
+  speedMatchPairs?: SpeedMatchReviewPair[];
 };
 
 /**
@@ -516,6 +757,82 @@ export function startTournamentNow() {
 /** Отправка ответов батча. Сервер сам считает очки — клиенту нельзя доверять. */
 export function submitAnswers(roomId: string, roundNo: number, answers: unknown[]) {
   return callFunction<{ ok: boolean }>('tournamentSubmitAnswers', { roomId, roundNo, answers });
+}
+
+export type TournamentTaskAnswerResult = {
+  ok: boolean;
+  replay: boolean;
+  taskId: string;
+  acceptedAtMs: number;
+  correct: boolean;
+  earnedStars: number;
+  zeroScoreReason: null | 'incorrect_answer' | 'speed_match_penalty';
+  explanation: null | { ruleNote: string; example: string };
+  selectedTrapReason?: string;
+  /** Present only for the submitted task after the server has verified it. */
+  correctIndex?: number;
+};
+
+export const TOURNAMENT_TASK_SUBMISSION_GRACE_MS = 1500;
+
+/** Only transient callable transport failures are safe to replay. */
+export function isRetryableTournamentTaskAnswerError(error: unknown): boolean {
+  const code = typeof error === 'object' && error !== null && 'code' in error
+    ? String((error as { code?: unknown }).code ?? '')
+    : '';
+  return code === 'functions/aborted'
+    || code === 'functions/cancelled'
+    || code === 'functions/deadline-exceeded'
+    || code === 'functions/internal'
+    || code === 'functions/resource-exhausted'
+    || code === 'functions/unavailable'
+    || code === 'functions/unknown';
+}
+
+export function canRetryTournamentTaskAnswer(
+  timing: Pick<RoomTaskTiming, 'deadlineAtMs' | 'answerDeadlineAtMs'> | null | undefined,
+  nowMs = tournamentNow(),
+): boolean {
+  return !timing || nowMs <= (timing.answerDeadlineAtMs ?? timing.deadlineAtMs) + TOURNAMENT_TASK_SUBMISSION_GRACE_MS;
+}
+
+/** Input is permitted only during the server-authored answer interval. */
+export function isTournamentAnswerWindowOpen(
+  timing: Pick<RoomTaskTiming, 'startsAtMs' | 'deadlineAtMs' | 'readingEndsAtMs' | 'answerDeadlineAtMs'> | null | undefined,
+  nowMs = tournamentNow(),
+): boolean {
+  if (!timing) return true;
+  const readingEndsAtMs = timing.readingEndsAtMs ?? timing.startsAtMs;
+  const answerDeadlineAtMs = timing.answerDeadlineAtMs ?? timing.deadlineAtMs;
+  return nowMs >= readingEndsAtMs && nowMs < answerDeadlineAtMs;
+}
+
+/** First accepted task answer is authoritative; the same key safely replays. */
+export function submitTaskAnswer(
+  roomId: string,
+  roundNo: number,
+  taskId: string,
+  answer: unknown,
+  idempotencyKey: string,
+) {
+  return callFunction<TournamentTaskAnswerResult>(
+    'tournamentSubmitTaskAnswer',
+    { roomId, roundNo, taskId, answer, idempotencyKey },
+  );
+}
+
+/** Server-authoritative speed-match tap; wrong retries are journaled privately. */
+export function submitSpeedMatchAttempt(
+  roomId: string,
+  roundNo: number,
+  taskId: string,
+  pairIndex: number,
+  selectedIndex: number,
+) {
+  return callFunction<{ ok: boolean; correct: boolean; completed: boolean; wrongAttempts: number }>(
+    'tournamentSubmitSpeedMatchAttempt',
+    { roomId, roundNo, taskId, pairIndex, selectedIndex },
+  );
 }
 
 /**

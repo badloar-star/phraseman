@@ -15,6 +15,10 @@ import {
   retryPendingLessonBonusGrants,
 } from '../app/lesson_bonus_grant';
 import { lessonBonusGrantedKey } from '../app/target_storage_keys';
+import {
+  __resetAccountGenerationForTests,
+  beginAccountGeneration,
+} from '../app/account_generation';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { registerXP } = require('../app/xp_manager');
@@ -26,6 +30,8 @@ const PENDING_KEY = 'lesson_bonus_pending_v1';
 beforeEach(() => {
   (AsyncStorage as unknown as { __reset: () => void }).__reset();
   jest.clearAllMocks();
+  __resetAccountGenerationForTests();
+  beginAccountGeneration('lesson-test-account');
   (registerXP as jest.Mock).mockResolvedValue({ finalDelta: 550, multiplier: 1, isBonus: false });
   (addShards as jest.Mock).mockResolvedValue(25);
 });

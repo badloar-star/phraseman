@@ -184,6 +184,7 @@ import RewardModalsExtraSection from '../components/admin_panel/sections/RewardM
 import SystemModalsExtraSection from '../components/admin_panel/sections/SystemModalsExtraSection';
 import BannersToastsExtraSection from '../components/admin_panel/sections/BannersToastsExtraSection';
 import VipSurveyExtraSection from '../components/admin_panel/sections/VipSurveyExtraSection';
+import ReviewPromptPreviewSection from '../components/admin_panel/sections/ReviewPromptPreviewSection';
 import LabsSection from '../components/admin_panel/sections/LabsSection';
 import SoftUpsellPreviewSection from '../components/admin_panel/sections/SoftUpsellPreviewSection';
 import UxOverhaulModalsSection from '../components/admin_panel/sections/UxOverhaulModalsSection';
@@ -3998,6 +3999,7 @@ export default function SettingsTestersFunctions() {
             onToggle={toggleSection}
           />
           <VipSurveyExtraSection open={openSection === 'vip_survey_extra'} onToggle={toggleSection} />
+          <ReviewPromptPreviewSection open={openSection === 'review_prompt_previews'} onToggle={toggleSection} />
           <LabsSection
             open={openSection === 'labs_hub'}
             onToggle={toggleSection}

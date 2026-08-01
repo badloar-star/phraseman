@@ -41,10 +41,17 @@ import {
   normalizeProfileCardPublicFocus,
   normalizeProfileCardTheme,
 } from './profile_card_system';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  type AccountGenerationToken,
+} from './account_generation';
 
 // Дебаунс для updateMyGroupPoints — не чаще 1 раза в 8 сек
 let _groupPtsTimer: ReturnType<typeof setTimeout> | null = null;
 let _pendingGroupPts: number | null = null;
+let _pendingGroupPtsAccountToken: AccountGenerationToken | null = null;
+let _pendingGroupPtsResolvers: Array<() => void> = [];
 
 function isJestRuntime(): boolean {
   return typeof process !== 'undefined' && Boolean(process.env.JEST_WORKER_ID);
@@ -939,34 +946,55 @@ export async function fetchLeagueTopMembers(
 // ── Обновить очки в группе (дебаунс 8с) ────────────────────────────────────
 // 8 секунд — компромисс: не спамим Firestore при серии уроков, но не теряем
 // очки при закрытии приложения через 10-20 сек после занятия.
-export function updateMyGroupPoints(weekPoints: number): Promise<void> {
+export function updateMyGroupPoints(
+  weekPoints: number,
+  accountToken?: AccountGenerationToken,
+): Promise<void> {
   if (!CLOUD_SYNC_ENABLED) return Promise.resolve();
   if (isJestRuntime()) return Promise.resolve();
+  const operationToken = accountToken ?? captureAccountGeneration();
+  if (!operationToken.stableId || !isCurrentAccountGeneration(operationToken)) return Promise.resolve();
   _pendingGroupPts = weekPoints;
+  _pendingGroupPtsAccountToken = operationToken;
   if (_groupPtsTimer) clearTimeout(_groupPtsTimer);
   return new Promise(resolve => {
+    _pendingGroupPtsResolvers.push(resolve);
     _groupPtsTimer = setTimeout(async () => {
       _groupPtsTimer = null;
       const pts = _pendingGroupPts;
+      const token = _pendingGroupPtsAccountToken;
+      const resolvers = _pendingGroupPtsResolvers;
       _pendingGroupPts = null;
-      if (pts === null) { resolve(); return; }
-      await _doUpdateGroupPoints(pts);
-      resolve();
+      _pendingGroupPtsAccountToken = null;
+      _pendingGroupPtsResolvers = [];
+      try {
+        if (pts === null || !token || !isCurrentAccountGeneration(token)) return;
+        await _doUpdateGroupPoints(pts, {}, token);
+      } finally {
+        resolvers.forEach((settle) => settle());
+      }
     }, 8_000);
     (_groupPtsTimer as any)?.unref?.();
   });
 }
 
-async function _doUpdateGroupPoints(weekPoints: number, options: { force?: boolean } = {}): Promise<void> {
+async function _doUpdateGroupPoints(
+  weekPoints: number,
+  options: { force?: boolean } = {},
+  accountToken: AccountGenerationToken,
+): Promise<void> {
+  const isCurrent = () => isCurrentAccountGeneration(accountToken);
+  if (!isCurrent()) return;
   const db = getFirestore();
   if (!db) return;
   const uid = await ensureAnonUser();
-  if (!uid) return;
+  if (!uid || !isCurrent()) return;
   try {
     const weekId = getWeekId();
     let leagueId = 0;
     try {
       const leagueRaw = await AsyncStorage.getItem(LEAGUE_STATE_V3_KEY);
+      if (!isCurrent()) return;
       const leagueState = leagueRaw ? JSON.parse(leagueRaw) : null;
       leagueId = normLeagueIdData(leagueState?.leagueId, 0);
     } catch {
@@ -974,11 +1002,13 @@ async function _doUpdateGroupPoints(weekPoints: number, options: { force?: boole
     }
 
     const cachedBeforeAuth = await readLeagueMemberSyncCache();
+    if (!isCurrent()) return;
     if (!options.force && shouldSkipLeaguePointsCallable(cachedBeforeAuth, weekId, leagueId, weekPoints)) return;
 
     await ensureStableAuthLink().catch(() => false);
+    if (!isCurrent()) return;
     const appCheckReady = await initFirebaseAppCheckIfAvailable().catch(() => false);
-    if (!appCheckReady) return;
+    if (!appCheckReady || !isCurrent()) return;
 
     const [
       [, avatarRaw],
@@ -1003,11 +1033,13 @@ async function _doUpdateGroupPoints(weekPoints: number, options: { force?: boole
       PROFILE_CARD_MOTION_KEY,
       PROFILE_CARD_PUBLIC_FOCUS_KEY,
     ]);
+    if (!isCurrent()) return;
     const [memberPremium, memberVip, memberLifetimeRaw] = await Promise.all([
       getVerifiedRealPremiumStatus().catch(() => false),
       getVerifiedVipStatus().catch(() => false),
       isLifetimePlanLocal().catch(() => false),
     ]);
+    if (!isCurrent()) return;
     const memberLifetime = memberPremium && memberLifetimeRaw;
     const memberTotalXp = totalXpRaw ? parseInt(totalXpRaw, 10) || 0 : 0;
     const memberName = (nameRaw ?? '').trim();
@@ -1031,13 +1063,16 @@ async function _doUpdateGroupPoints(weekPoints: number, options: { force?: boole
     const memberHash = leagueMemberHash(member);
     const profileHash = leagueMemberHash(member, false);
     const cachedSync = await readLeagueMemberSyncCache();
+    if (!isCurrent()) return;
     if (!options.force && shouldSkipLeagueMemberCallable(cachedSync, weekId, leagueId, profileHash, weekPoints)) return;
 
     const fn = callable<{ stableId?: string; member: Record<string, unknown> }, { ok: boolean; groupId?: string }>('leagueUpdateMyMember');
+    if (!isCurrent()) return;
     await fn({
       stableId: uid,
       member,
     });
+    if (!isCurrent()) return;
     if (cachedSync?.groupId && cachedSync.weekId === weekId) {
       writeLeagueMemberSyncCache({
         weekId,
@@ -1053,8 +1088,11 @@ async function _doUpdateGroupPoints(weekPoints: number, options: { force?: boole
 
 export async function syncMyLeagueMemberProfileNow(): Promise<void> {
   if (!CLOUD_SYNC_ENABLED) return;
+  const accountToken = captureAccountGeneration();
+  if (!accountToken.stableId || !isCurrentAccountGeneration(accountToken)) return;
   try {
     const weekPoints = await getMyWeekPoints();
+    if (!isCurrentAccountGeneration(accountToken)) return;
     const [[, nameRaw], [, leagueRaw]] = await AsyncStorage.multiGet(['user_name', LEAGUE_STATE_V3_KEY]);
     const name = (nameRaw ?? '').trim();
     if (name) {
@@ -1067,7 +1105,7 @@ export async function syncMyLeagueMemberProfileNow(): Promise<void> {
       }
       await getOrCreateLeagueGroup(getWeekId(), leagueId, name, weekPoints).catch(() => null);
     }
-    await _doUpdateGroupPoints(weekPoints, { force: true });
+    await _doUpdateGroupPoints(weekPoints, { force: true }, accountToken);
   } catch {}
 }
 

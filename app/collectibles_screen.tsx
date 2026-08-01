@@ -76,6 +76,7 @@ const CardCell = React.memo(function CardCell({
   onPress,
   textPrimary,
   cellW,
+  animated,
 }: {
   card: CollectibleCardData;
   onPress: () => void;
@@ -83,6 +84,8 @@ const CardCell = React.memo(function CardCell({
   /** Ширина арта в px (считается родителем по ширине окна) — без onLayout,
    *  чтобы высота строки была стабильной с первого кадра. */
   cellW: number;
+  /** Only the first visible row owns ambient GPU loops; all cards keep identical art. */
+  animated: boolean;
 }) {
   const rarityColor = COLLECTIBLE_RARITY_COLORS[card.rarity];
 
@@ -97,6 +100,7 @@ const CardCell = React.memo(function CardCell({
         svg={card.svg}
         tier={card.rarity as CollectibleArtTier}
         width={cellW}
+        animated={animated}
         accessibilityLabel={card.en}
         fallback={
           <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -129,12 +133,14 @@ const SecretCell = React.memo(function SecretCell({
   textPrimary,
   cellW,
   themeMode,
+  animated,
 }: {
   secret: CollectibleSecretData;
   onPress: () => void;
   textPrimary: string;
   cellW: number;
   themeMode: ReturnType<typeof useTheme>['themeMode'];
+  animated: boolean;
 }) {
   return (
     <TouchableOpacity
@@ -147,6 +153,7 @@ const SecretCell = React.memo(function SecretCell({
         svg={secret.svg}
         tier="secret"
         width={cellW}
+        animated={animated}
         accessibilityLabel={secret.en}
         fallback={
           <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -276,11 +283,12 @@ const SetAccordionRow = React.memo(function SetAccordionRow({
             paddingBottom: 12,
           }}
         >
-          {ownedCards.map((card) => (
+          {ownedCards.map((card, index) => (
             <CardCell
               key={card.id}
               card={card}
               cellW={cellW}
+              animated={index < 3}
               onPress={() => onOpenCard({ kind: 'card', set, card })}
               textPrimary={t.textPrimary}
             />
@@ -292,6 +300,7 @@ const SetAccordionRow = React.memo(function SetAccordionRow({
               onPress={() => onOpenCard({ kind: 'secret', set, card: set.secret })}
               textPrimary={t.textPrimary}
               themeMode={themeMode}
+              animated={ownedCards.length < 3}
             />
           )}
         </View>

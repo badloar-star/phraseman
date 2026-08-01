@@ -23,17 +23,9 @@ interface TopFadeScrollCtx {
    * Маска не ре-рендерится покадрово: scrollY слушается порогом, opacity — native-timing.
    */
   onScroll: (e: { nativeEvent: { contentOffset: { y: number } } }) => void;
-  /**
-   * Покадровый офсет для таббара.
-   *
-   * зачем: маске хватает порога (она гоняет JS только при пересечении 6px), но
-   * таббар в Bevel-режиме ведёт прогресс схлопывания ЗА ПАЛЬЦЕМ — ему нужен каждый
-   * кадр, включая ОТРИЦАТЕЛЬНЫЕ значения bounce на экранах без скролла. Отдельный
-   * канал, чтобы не снимать дросселирование с маски и не платить её ценой.
-   *
-   * Табы, которые дросселируют onScroll ради маски, обязаны звать это на каждом кадре.
-   */
   reportTabBarOffset: (y: number) => void;
+  setTabBarManualLift: (manual: boolean) => void;
+  isTabBarManualLift: () => boolean;
 }
 
 const Ctx = createContext<TopFadeScrollCtx | null>(null);
@@ -41,6 +33,7 @@ const Ctx = createContext<TopFadeScrollCtx | null>(null);
 export function TopFadeScrollProvider({ children }: { children: React.ReactNode }) {
   const scrollY = useRef(new Animated.Value(0)).current;
   const tabBarScrollY = useRef(new Animated.Value(0)).current;
+  const tabBarManualLiftRef = useRef(false);
   const value = useMemo<TopFadeScrollCtx>(
     () => ({
       scrollY,
@@ -54,6 +47,10 @@ export function TopFadeScrollProvider({ children }: { children: React.ReactNode 
       reportTabBarOffset: (y) => {
         if (typeof y === 'number') tabBarScrollY.setValue(y);
       },
+      setTabBarManualLift: (manual) => {
+        tabBarManualLiftRef.current = manual;
+      },
+      isTabBarManualLift: () => tabBarManualLiftRef.current,
       tabBarScrollY,
     }),
     [scrollY, tabBarScrollY],

@@ -32,7 +32,9 @@ import auth from '@react-native-firebase/auth';
  * (чат — к конкретному сообщению с подсветкой).
  */
 
-const NOTIFICATION_FOREGROUND_REFRESH_MIN_INTERVAL_MS = 30_000;
+// The header reads the server at app entry only when its 12-hour cache is stale.
+// Between refreshes it renders the cached unread count, without background polling.
+const NOTIFICATION_FOREGROUND_REFRESH_MIN_INTERVAL_MS = 12 * 60 * 60_000;
 
 type NotificationCenterButtonProps = {
   isHomeTabActive: boolean;
@@ -65,10 +67,12 @@ function reportReplyCopy(lang: Lang) {
       uk: `Забрати перлини (+${n})`,
       es: `Reclamar perlas (+${n})`,
       'pt-BR': `Resgatar pérolas (+${n})`,
-      vi: `Nhận xu (+${n})`,
-      id: `Ambil koin (+${n})`,
-      tr: `Jetonları al (+${n})`,
-      pl: `Odbierz monety (+${n})`,
+      // зачем: та же награда, что в инбоксе (AppMessagesInbox.claimCoins) — валюта
+      // называется жемчужинами; на vi/id/tr/pl тут оставалось legacy «монеты».
+      vi: `Nhận ngọc trai (+${n})`,
+      id: `Ambil mutiara (+${n})`,
+      tr: `İnci al (+${n})`,
+      pl: `Odbierz perły (+${n})`,
     }),
     claimed: triLang(lang, { ru: 'Награда получена', uk: 'Нагороду отримано', es: 'Recompensa recibida', 'pt-BR': 'Recompensa recebida', vi: 'Đã nhận thưởng', id: 'Hadiah diterima', tr: 'Ödül alındı', pl: 'Nagroda odebrana' }),
   };
@@ -354,6 +358,7 @@ function NotificationCenterButton({ isHomeTabActive, homeFocusTick }: Notificati
               onMessageCountChange={setTeamMessageCount}
               onDetailOpenChange={setTeamDetailOpen}
               notificationTargetRef={notificationTargetRef}
+              ownerActive={isHomeTabActive}
             />
             {teamDetailOpen ? null : visibleItems.length === 0 && teamMessageCount === 0 ? (
               <View style={{ minHeight: 320, alignItems: 'center', justifyContent: 'center', gap: 10, paddingHorizontal: 24 }}>

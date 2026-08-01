@@ -1,8 +1,8 @@
 // ═══════════════════════════════════════════════════════════════════════════
 // tournament_round.tsx — раунд турнира (макеты 09-13, 25-28).
 //
-// зачем: сердце режима. Батч из 5 вопросов, точки прогресса, кольцо таймера,
-// множитель серии, фидбек «Правильно!»/«Почти!» и авто-переход через 1.4с.
+// зачем: сердце режима. Батч из 4 вопросов, точки прогресса, кольцо таймера,
+// множитель серии, фидбек «Правильно!»/«Почти!» и переход по серверному окну.
 // Слово «неверно» запрещено — только «Почти!» (правило владельца).
 //
 // Layout stability: карточка вопроса и блок вариантов имеют фиксированную
@@ -11,15 +11,29 @@
 // ═══════════════════════════════════════════════════════════════════════════
 
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
-import Animated, { Easing, FadeIn, SlideInRight, SlideOutLeft, ZoomIn } from 'react-native-reanimated';
+import { Pressable, ScrollView, StyleSheet, Text, View, type TextProps } from 'react-native';
+import Animated, {
+  Easing,
+  FadeInDown,
+  SlideInRight,
+  SlideOutLeft,
+  useAnimatedStyle,
+  useSharedValue,
+  withDelay,
+  withSequence,
+  withTiming,
+} from 'react-native-reanimated';
 import { useRouter } from 'expo-router';
-import * as Haptics from 'expo-haptics';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
+import { fk } from './feedback/feedback_kit';
 import { TimerRing } from '../components/tournament/TournamentCountdown';
+import { Sheet } from '../components/tournament/tournament_ui';
 import {
   V2Card,
   V2Chip,
+  V2ChipGhost,
   V2Counter,
   V2Cta,
   V2Segments,
@@ -28,62 +42,95 @@ import {
 import {
   StarGlyph,
   TournamentFxHost,
-  type FxPoint,
   type TournamentFxApi,
 } from '../components/tournament/TournamentFx';
-import { T, motion, radius, type, useTournamentPalette, v2motion, type TournamentPalette} from '../components/tournament/tournament_theme';
-import { TournamentAudioButton } from '../components/tournament/TournamentAudioButton';
+import { radius, type, useTournamentPalette, v2motion, type TournamentPalette} from '../components/tournament/tournament_theme';
 import { TournamentEdgeState } from '../components/tournament/TournamentEdgeState';
 import { TournamentRoundIntro } from '../components/tournament/TournamentRoundIntro';
 import {
-  isTableState, submitAnswers, useTournamentReactions, useTournamentRoom,
+  canRetryTournamentTaskAnswer, forfeitTournament, getOrCreateTournamentTaskIdempotencyKey,
+  isTournamentAnswerWindowOpen,
+  isRetryableTournamentTaskAnswerError, isTableState, resolveTournamentScheduledTaskIndex,
+  resolveTournamentVisibleTaskIndex,
+  shouldShowTournamentLocalIntro,
+  submitSpeedMatchAttempt, submitTaskAnswer, tournamentNow, tournamentSecondsUntil,
+  useTournamentReactions, useTournamentRoom,
   type PublicTask } from './tournament_client';
 import { useLocalSearchParams } from 'expo-router';
+import { getStableId, peekStableId } from './stable_id';
 
 // зачем 2026-07-27 (владелец: «4 вопроса в раунде»): здесь лежала третья
 // версия одного и того же числа — сервер собирал 6 заданий, а клиент считал 5.
 // Значение используется только как запасное, пока задания не пришли; реальное
 // число берётся из questions.length, но расходиться они больше не должны.
 const QUESTIONS_PER_ROUND = 4;
-const SECONDS_PER_QUESTION = 15;
-const SECONDS_PER_MATCH = 20;
 const SPEED_MATCH_PAIRS = 6;
+const MATCH_SELECT_MS = 140;
+const MATCH_CORRECT_POP_MS = 160;
+const MATCH_CORRECT_FADE_MS = 240;
+const MATCH_WRONG_TONE_MS = 300;
 const LETTERS = ['A', 'B', 'C', 'D'] as const;
+const OWNER_APPROVED_TOURNAMENT_MODES = new Set([
+  'guess_phrase',
+  'fill_gap',
+  'find_oddity',
+  'translate_build',
+  'speed_match',
+]);
+const CHOICE_MODES = new Set(['guess_phrase', 'fill_gap', 'find_oddity']);
+const MODE_LABELS: Record<string, string> = {
+  guess_phrase: 'Живая ситуация',
+  fill_gap: 'Пропущенное слово',
+  find_oddity: 'Так не говорят',
+  translate_build: 'Собери фразу',
+  speed_match: 'Пары на скорость',
+};
 
 type MatchPair = { prompt: string; options: string[] };
 type MatchStatus = { verdict: 'correct' | 'wrong'; selectedIndex: number };
 
+const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
+const QUESTION_ENTER = SlideInRight.duration(v2motion.taskSwapMs)
+  .easing(Easing.bezier(...v2motion.bezierSlide).factory());
+const QUESTION_EXIT = SlideOutLeft.duration(v2motion.press)
+  .easing(Easing.bezier(...v2motion.bezierSlide).factory());
+
+/**
+ * Tournament cards have fixed, mock-approved geometry and the product contract
+ * explicitly caps question/answer copy at two rendered lines. Keep that native
+ * truncation exception in one reviewed component instead of scattering it
+ * across every interactive answer surface. Each parent control exposes the
+ * complete answer through its accessibility label.
+ */
+function TournamentTwoLineText(props: TextProps) {
+  // eslint-disable-next-line text-integrity/no-unsafe-text-truncation -- explicit tournament fixed-geometry product contract
+  return <Text {...props} numberOfLines={2} />;
+}
+
 type Question = {
   /** taskId исходного задания — на него ссылается ответ. */
   taskId: string;
-  // зачем 2026-07-27: аудио-режимы владельца. listen = услышал → выбрал,
-  // dictate = услышал → собрал из чипов. Отвечают как choice/translate,
-  // но вместо текста фразы игроку даётся ТОЛЬКО звук.
-  kind: 'choice' | 'timeattack' | 'translate' | 'listen' | 'dictate' | 'match';
+  /** Режим источника — один из пяти вариантов, утверждённых владельцем. */
+  mode: string;
+  kind: 'choice' | 'translate' | 'match';
   prompt: string;
-  /** Для аудио-режимов ПУСТО: услышанный текст и есть ответ. */
   phrase: string;
-  /** Озвучка задания (аудио-режимы). Пусто для текстовых. */
-  audioUri?: string;
-  /** Варианты для choice/timeattack; пусто для translate. */
+  /** Варианты для choice; пусто для translate/match. */
   options: string[];
-  /** Банк слов вразнобой для translate; пусто для choice/timeattack. */
+  /** Банк слов вразнобой для translate; пусто для choice/match. */
   wordBank: string[];
-  /**
-   * Позиция подвопроса внутри timeattack.items; для choice/translate всегда 0.
-   * зачем: одно timeattack-задание — это НЕСКОЛЬКО экранных вопросов с общим
-   * taskId, но сервер (verifyTournamentAnswer) ждёт один ответ на весь
-   * набор — массив selectedIndexes по всем items сразу. Поэтому ответы
-   * подвопросов одного taskId копятся отдельно и мержатся в один пункт
-   * пачки только при отправке (см. buildAnswerRow).
-   */
+  /** Позиция ответа внутри задания; для choice/translate всегда 0. */
   itemIndex: number;
-  /** Сколько всего подвопросов в этом задании — 1 для choice/translate. */
+  /** Сколько всего ответов в задании — 1 для choice/translate. */
   itemCount: number;
   /** One speed-match task is a single board with six independently answered pairs. */
   matchPairs?: MatchPair[];
-  /** Server-issued, room-salted answer fingerprints; never expose answer keys. */
-  answerFingerprints?: string[];
+  /**
+   * Общая правая колонка нового поля speed_match. Сам набор переводов не
+   * раскрывает соответствия; их связывают только room-salted fingerprints.
+   * Отсутствует у старого формата с 4 вариантами на строку.
+   */
+  matchOptions?: string[];
 };
 
 /**
@@ -93,36 +140,22 @@ type Question = {
  * поэтому подсветку верного варианта показывать нечем. Мгновенный отклик даём
  * по факту нажатия, а очки считает сервер — так накрутить нельзя.
  *
- * timeattack разворачивается в СПИСОК вопросов (по items.length штук) —
- * раньше здесь рисовался только items[0], и 5 из 6 подвопросов серии молча
- * терялись (найдено аудитом 2026-07-25).
+ * Исторические режимы могут оставаться в старых документах для аудита, но
+ * активный игровой экран их не интерпретирует и не показывает.
  */
 function taskToQuestions(task: PublicTask): Question[] {
   const payload = task.payload ?? {};
-  if (task.kind === 'choice') {
+  if (!OWNER_APPROVED_TOURNAMENT_MODES.has(task.mode)) return [];
+  if (task.kind === 'choice' && CHOICE_MODES.has(task.mode)) {
     const options = Array.isArray(payload.options) ? (payload.options as string[]) : [];
     const phrase = String(payload.phrase ?? '');
     if (!phrase || options.length < 2) return [];
     return [{
-      taskId: task.taskId, kind: 'choice', prompt: 'Что это значит?', phrase, options,
+      taskId: task.taskId, mode: task.mode, kind: 'choice', prompt: 'Что это значит?', phrase, options,
       wordBank: [], itemIndex: 0, itemCount: 1,
     }];
   }
-  if (task.kind === 'timeattack') {
-    const items = Array.isArray(payload.items) ? (payload.items as Record<string, unknown>[]) : [];
-    const prompt = String(payload.prompt ?? 'Переведи');
-    return items
-      .map((item, itemIndex): Question | null => {
-        const options = Array.isArray(item?.options) ? (item.options as string[]) : [];
-        if (options.length < 2) return null;
-        return {
-          taskId: task.taskId, kind: 'timeattack', prompt, phrase: String(item.prompt ?? ''),
-          options, wordBank: [], itemIndex, itemCount: items.length,
-        };
-      })
-      .filter((question): question is Question => question !== null);
-  }
-  if (task.kind === 'match') {
+  if (task.kind === 'match' && task.mode === 'speed_match') {
     const items = Array.isArray(payload.items) ? (payload.items as Record<string, unknown>[]) : [];
     const matchPairs = items.map((item): MatchPair | null => {
       const prompt = String(item?.prompt ?? '');
@@ -133,6 +166,7 @@ function taskToQuestions(task: PublicTask): Question[] {
     if (items.length !== SPEED_MATCH_PAIRS || matchPairs.length !== SPEED_MATCH_PAIRS) return [];
     return [{
       taskId: task.taskId,
+      mode: task.mode,
       kind: 'match',
       prompt: String(payload.prompt ?? 'Соедини пары'),
       phrase: '',
@@ -141,10 +175,12 @@ function taskToQuestions(task: PublicTask): Question[] {
       itemIndex: 0,
       itemCount: matchPairs.length,
       matchPairs,
-      answerFingerprints: task.answerFingerprints,
+      matchOptions: Array.isArray(payload.rightOptions)
+        ? (payload.rightOptions as string[])
+        : undefined,
     }];
   }
-  if (task.kind === 'translate') {
+  if (task.kind === 'translate' && task.mode === 'translate_build') {
     // зачем: генератор кладёт в пул 3276 заданий translate_build (столько же,
     // сколько choice) — сервер выбирает режим раунда случайно, поэтому без
     // этой ветки треть турниров зависала бы на «Готовим вопросы…» навсегда
@@ -153,60 +189,14 @@ function taskToQuestions(task: PublicTask): Question[] {
     const phrase = String(payload.phrase ?? '');
     if (!phrase || wordBank.length < 2) return [];
     return [{
-      taskId: task.taskId, kind: 'translate', prompt: 'Собери фразу', phrase,
+      taskId: task.taskId, mode: task.mode, kind: 'translate', prompt: 'Собери фразу', phrase,
       options: [], wordBank, itemIndex: 0, itemCount: 1,
     }];
   }
-  if (task.kind === 'listen') {
-    // зачем: без этой ветки аудио-задание давало пустой список вопросов, и
-    // турнир зависал на «Готовим вопросы…» — ровно тот класс бага, что уже
-    // ловили аудитом на translate_build.
-    const options = Array.isArray(payload.options) ? (payload.options as string[]) : [];
-    const audioUri = String(payload.audioUri ?? '');
-    if (!audioUri || options.length < 2) return [];
-    return [{
-      taskId: task.taskId,
-      kind: 'listen',
-      prompt: task.mode === 'sound_contrast' ? 'Какое слово прозвучало?' : 'Что ты слышишь?',
-      phrase: '',
-      audioUri,
-      options,
-      wordBank: [],
-      itemIndex: 0,
-      itemCount: 1,
-    }];
-  }
-  if (task.kind === 'dictate') {
-    const wordBank = Array.isArray(payload.wordBank) ? (payload.wordBank as string[]) : [];
-    const audioUri = String(payload.audioUri ?? '');
-    if (!audioUri || wordBank.length < 2) return [];
-    return [{
-      taskId: task.taskId,
-      kind: 'dictate',
-      prompt: 'Послушай и собери фразу',
-      phrase: '',
-      audioUri,
-      options: [],
-      wordBank,
-      itemIndex: 0,
-      itemCount: 1,
-    }];
-  }
-  // voice рисуется отдельной раскладкой — фаза 2 (серверный скоринг выключен).
   return [];
 }
 
-function answerFingerprint(roomId: string, taskId: string, selectedIndex: number): string {
-  const seed = `${roomId}|${taskId}|${String(selectedIndex).trim().toLowerCase()}`;
-  let hash = 2166136261;
-  for (let index = 0; index < seed.length; index += 1) {
-    hash ^= seed.charCodeAt(index);
-    hash = Math.imul(hash, 16777619);
-  }
-  return (hash >>> 0).toString(36);
-}
-
-type Phase = 'intro' | 'question' | 'feedback';
+type Phase = 'intro' | 'reading' | 'question' | 'feedback';
 
 export default function TournamentRoundScreen() {
   const P = useTournamentPalette();
@@ -215,26 +205,28 @@ export default function TournamentRoundScreen() {
   const insets = useStableSafeAreaInsets();
   const params = useLocalSearchParams<{ roomId?: string }>();
   const roomId = typeof params.roomId === 'string' ? params.roomId : null;
+  const runtimeActive = useRuntimeActive();
+  const reduceMotion = useReduceMotion();
 
-  const { room, status, secondsLeft: stateSecondsLeft, retry } = useTournamentRoom(roomId);
-  const { incoming: incomingReactions, consume: consumeReaction } = useTournamentReactions(roomId);
+  const { room, status, freshSnapshot, secondsLeft: stateSecondsLeft, retry } = useTournamentRoom(roomId, runtimeActive);
+  const { incoming: incomingReactions, consume: consumeReaction } = useTournamentReactions(roomId, runtimeActive);
 
-  const [index, setIndex] = useState(0);
+  const [navigation, setNavigation] = useState<{ roundKey: string; index: number } | null>(null);
   const [phase, setPhase] = useState<Phase>('intro');
   const [picked, setPicked] = useState<number | null>(null);
-  /**
-   * Явный флаг тайм-аута — раньше «был ли дан ответ» определялось через
-   * picked !== null, но у translate нет picked (ответ — собранный порядок
-   * слов, не индекс варианта), и фидбек всегда показывал бы «Время вышло»
-   * даже при собранной фразе.
-   */
-  const [timedOut, setTimedOut] = useState(false);
-  const [streak, setStreak] = useState(0);
-  // зачем 2026-07-27: звёзды и серия в языке Learning V2. ВАЖНО про честность:
-  // правильность ответа знает только сервер, поэтому звезда летит за ДАННЫЙ
-  // ответ (участие), а не за верный — иначе экран врал бы игроку. Итоговый
-  // счёт всё равно приходит с сервера в таблице между раундами.
-  const [stars, setStars] = useState(0);
+  const [feedbackCorrect, setFeedbackCorrect] = useState<boolean | null>(null);
+  const [feedbackEarnedStars, setFeedbackEarnedStars] = useState<number | null>(null);
+  const [feedbackZeroScoreReason, setFeedbackZeroScoreReason] = useState<null | 'incorrect_answer' | 'speed_match_penalty'>(null);
+  const [feedbackExplanation, setFeedbackExplanation] = useState<{ ruleNote: string; example: string } | null>(null);
+  const [feedbackCorrectIndex, setFeedbackCorrectIndex] = useState<number | null>(null);
+  const [forfeitConfirmVisible, setForfeitConfirmVisible] = useState(false);
+  const [forfeiting, setForfeiting] = useState(false);
+  const [forfeitError, setForfeitError] = useState('');
+  // Звёзды и серия — только из серверного snapshot. Публичное задание не
+  // содержит ключ ответа, поэтому любой локальный инкремент на тап выдавал бы
+  // неверный выбор за правильный. До следующего submit показываем последнее
+  // подтверждённое сервером значение, не прогноз.
+  const [myId, setMyId] = useState<string | null>(() => peekStableId());
   // Match rounds start perfect; every incorrect attempt removes one star permanently,
   // while the row itself remains available so the player can correct it.
   const [matchStars, setMatchStars] = useState(3);
@@ -243,30 +235,66 @@ export default function TournamentRoundScreen() {
   const starCounterRef = useRef<View>(null);
   const streakPillRef = useRef<View>(null);
   const [fxSize, setFxSize] = useState({ width: 0, height: 0 });
-  const [secondsLeft, setSecondsLeft] = useState(SECONDS_PER_QUESTION);
+  const [secondsLeft, setSecondsLeft] = useState<number | null>(null);
   const advanceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  /**
-   * Ответы по каждому подвопросу, ключ — `${taskId}:${itemIndex}`.
-   *
-   * зачем: сервер (verifyTournamentAnswer) проверяет timeattack ОДНИМ
-   * ответом на всё задание — { selectedIndexes: number[] } длиной
-   * items.length, а не по одному ответу на подвопрос. Раньше клиент слал
-   * голое число как answer и terealTaskId на каждый подвопрос — сервер
-   * получал бы answer не тем объектом, каким его ждёт verifyTournamentAnswer,
-   * и ответ был бы принят как неверный независимо от выбора игрока.
-   * Копим по taskId, на отправке (buildAnswerRows) собираем один пункт
-   * пачки на задание в точном серверном формате.
-   *
-   * Значение для choice/timeattack — индекс варианта (number). Для translate
-   * значение — уже собранный порядок токенов (string[]): сервер сверяет
-   * ЦЕЛУЮ последовательность слов, а не один индекс.
-   */
-  const answersByKeyRef = useRef<Map<string, number | string[] | null>>(new Map());
-  const submittedRef = useRef(false);
+  const taskAnswersRef = useRef(new Map<string, unknown>());
+  const taskIdempotencyKeysRef = useRef(new Map<string, string>());
+  const pendingTaskSubmissionsRef = useRef(new Map<string, string>());
+  const activeTaskSubmissionRef = useRef<string | null>(null);
+  const previousRuntimeActiveRef = useRef(runtimeActive);
+  const previousRoomStatusRef = useRef(status);
 
+  useEffect(() => {
+    if (runtimeActive && !previousRuntimeActiveRef.current) {
+      activeTaskSubmissionRef.current = null;
+      pendingTaskSubmissionsRef.current.clear();
+      if (phase !== 'intro') setPhase('question');
+      setPicked(null);
+      setFeedbackCorrect(null);
+      setFeedbackEarnedStars(null);
+      setFeedbackZeroScoreReason(null);
+      setFeedbackExplanation(null);
+      setFeedbackCorrectIndex(null);
+    }
+    previousRuntimeActiveRef.current = runtimeActive;
+  }, [phase, runtimeActive]);
+
+  useEffect(() => {
+    if (previousRoomStatusRef.current === 'offline' && status !== 'offline') {
+      activeTaskSubmissionRef.current = null;
+      pendingTaskSubmissionsRef.current.clear();
+      if (phase !== 'intro') setPhase('question');
+      setPicked(null);
+      setFeedbackCorrect(null);
+      setFeedbackEarnedStars(null);
+      setFeedbackZeroScoreReason(null);
+      setFeedbackExplanation(null);
+      setFeedbackCorrectIndex(null);
+    }
+    previousRoomStatusRef.current = status;
+  }, [phase, status]);
+
+  useEffect(() => {
+    activeTaskSubmissionRef.current = null;
+    let cancelled = false;
+    void getStableId().then((id) => { if (!cancelled) setMyId(id); });
+    return () => { cancelled = true; };
+  }, []);
+
+  const authoritativePlayer = useMemo(
+    () => (myId ? room?.players?.find((player) => player.id === myId) ?? null : null),
+    [myId, room?.players],
+  );
+  const streak = Math.max(0, Math.trunc(Number(authoritativePlayer?.streak ?? 0)));
+  const stars = Math.max(0, Math.trunc(Number(authoritativePlayer?.score ?? 0)));
+
+  const activeRoundNo = useMemo(() => {
+    const match = /^round([1-4])$/.exec(room?.state ?? '');
+    return match ? Number(match[1]) : null;
+  }, [room?.state]);
   const activeRound = useMemo(
-    () => room?.rounds?.find((round) => round.tasks && round.tasks.length > 0) ?? null,
-    [room?.rounds],
+    () => room?.rounds?.find((round) => round.roundNo === activeRoundNo) ?? null,
+    [activeRoundNo, room?.rounds],
   );
   const roundNo = activeRound?.roundNo ?? 1;
 
@@ -276,116 +304,213 @@ export default function TournamentRoundScreen() {
   }, [activeRound?.tasks]);
 
   const total = questions.length || QUESTIONS_PER_ROUND;
+  const roundKey = `${roomId ?? 'room'}:${roundNo}`;
+  const scheduleNowMs = tournamentNow();
+  const scheduledIndex = resolveTournamentScheduledTaskIndex(activeRound?.taskSchedule, scheduleNowMs);
+  const index = resolveTournamentVisibleTaskIndex(
+    activeRound?.taskSchedule,
+    scheduleNowMs,
+    navigation?.roundKey === roundKey ? navigation.index : undefined,
+  );
   const question = questions[index] ?? null;
-  const secondsForQuestion = question?.kind === 'match' ? SECONDS_PER_MATCH : SECONDS_PER_QUESTION;
-  const multiplier = streak >= 4 ? 2 : streak >= 2 ? 1.5 : 1;
-
-  /**
-   * Собирает пачку ответов в точном формате verifyTournamentAnswer:
-   *   choice     → { selectedIndex: number }
-   *   timeattack → { selectedIndexes: number[] } — по ВСЕМ подвопросам
-   *                задания, даже если часть не была отвечена (тогда -1,
-   *                сервер сам решит, что с ним делать при подсчёте)
-   *   translate  → { tokens: string[] } — собранный порядок слов
-   */
-  const buildAnswerRows = useCallback((): Array<{ taskId: string; answer: unknown }> => {
-    const byTask = new Map<string, { kind: Question['kind']; values: (number | string[] | null)[] }>();
-    for (const q of questions) {
-      const entry = byTask.get(q.taskId) ?? { kind: q.kind, values: [] };
-      if (q.kind === 'match') {
-        for (let pairIndex = 0; pairIndex < q.itemCount; pairIndex += 1) {
-          entry.values[pairIndex] = answersByKeyRef.current.get(`${q.taskId}:${pairIndex}`) ?? null;
-        }
-      } else {
-        entry.values[q.itemIndex] = answersByKeyRef.current.get(`${q.taskId}:${q.itemIndex}`) ?? null;
-      }
-      byTask.set(q.taskId, entry);
-    }
-    return Array.from(byTask.entries()).map(([taskId, entry]) => {
-      if (entry.kind === 'dictate' || entry.kind === 'translate') {
-        return { taskId, answer: { tokens: entry.values[0] ?? [] } };
-      }
-      if (entry.kind === 'choice' || entry.kind === 'listen') {
-        return { taskId, answer: { selectedIndex: entry.values[0] } };
-      }
-      return {
-        taskId,
-        answer: { selectedIndexes: entry.values.map((value) => (typeof value === 'number' ? value : -1)) },
-      };
-    });
-  }, [questions]);
-
+  const questionTiming = useMemo(() => {
+    if (!question) return null;
+    return activeRound?.taskSchedule?.find((timing) => (
+      timing.taskId === question.taskId && timing.taskIndex === index
+    )) ?? activeRound?.taskSchedule?.find((timing) => timing.taskId === question.taskId) ?? null;
+  }, [activeRound?.taskSchedule, index, question]);
+  const nextQuestionTiming = useMemo(() => (
+    activeRound?.taskSchedule?.find((timing) => timing.taskIndex === index + 1) ?? null
+  ), [activeRound?.taskSchedule, index]);
+  const secondsForQuestion = questionTiming?.durationMs
+    ? Math.max(1, Math.ceil(questionTiming.durationMs / 1000))
+    : Math.max(1, stateSecondsLeft);
+  const readingEndsAtMs = questionTiming?.readingEndsAtMs ?? questionTiming?.startsAtMs ?? null;
+  const answerDeadlineAtMs = questionTiming?.answerDeadlineAtMs ?? questionTiming?.deadlineAtMs ?? null;
+  const feedbackStartsAtMs = questionTiming?.feedbackStartsAtMs ?? answerDeadlineAtMs;
+  const feedbackEndsAtMs = questionTiming?.feedbackEndsAtMs
+    ?? nextQuestionTiming?.startsAtMs
+    ?? questionTiming?.deadlineAtMs
+    ?? null;
+  const feedbackVisible = phase === 'feedback'
+    && (feedbackStartsAtMs === null || tournamentNow() >= feedbackStartsAtMs);
+  const serverScheduleHasStarted = Boolean(activeRound?.taskSchedule?.some(
+    (timing) => tournamentNow() >= timing.startsAtMs,
+  ));
+  const showLocalIntro = !serverScheduleHasStarted && shouldShowTournamentLocalIntro(
+    questionTiming,
+    tournamentNow(),
+    room?.introEndsAtMs,
+  );
   // зачем 2026-07-27 (владелец: «потом отсчёт перед началом типа 3 2 1, потом
   // начинается первый вопрос»): фиксированная пауза 1600 мс заменена живым
   // отсчётом. Момент старта задаёт сам отсчёт (onDone), поэтому таймера здесь
   // больше нет — иначе два независимых таймера разошлись бы между собой.
-  const startQuestions = useCallback(() => setPhase('question'), []);
-
-  /**
-   * Прослушано ли аудио текущего вопроса.
-   *
-   * зачем 2026-07-27 (владелец: «таймер запускается не после первого
-   * воспроизведения, а сразу, и на ввод фразы остаётся меньше 2 секунд»):
-   * в режимах listen/dictate фраза звучит несколько секунд, и всё это время
-   * таймер уже тикал — на сам ответ (собрать фразу из слов!) не оставалось
-   * ничего. Теперь для аудио отсчёт стартует ПОСЛЕ первого проигрывания.
-   * Ключ по вопросу, иначе следующий вопрос унаследовал бы флаг предыдущего.
-   */
-  const [audioReadyKey, setAudioReadyKey] = useState<string | null>(null);
-  const isAudioQuestion = question?.kind === 'listen' || question?.kind === 'dictate';
-  const questionKey = question ? `${question.taskId}:${question.itemIndex}` : null;
-  const audioPlayed = !isAudioQuestion || audioReadyKey === questionKey;
-
-  const handleAudioPlayed = useCallback(() => {
-    if (questionKey) setAudioReadyKey(questionKey);
-  }, [questionKey]);
+  const startQuestions = useCallback(() => {
+    setNavigation({ roundKey, index: scheduledIndex });
+    const nowMs = tournamentNow();
+    setPhase(questionTiming && nowMs < (questionTiming.readingEndsAtMs ?? questionTiming.startsAtMs)
+      ? 'reading'
+      : questionTiming && nowMs >= (questionTiming.answerDeadlineAtMs ?? questionTiming.deadlineAtMs)
+        ? 'feedback'
+        : 'question');
+  }, [questionTiming, roundKey, scheduledIndex]);
 
   useEffect(() => {
+    if (phase === 'intro' && !showLocalIntro) startQuestions();
+  }, [phase, showLocalIntro, startQuestions]);
+
+  const questionKey = question ? `${question.taskId}:${question.itemIndex}` : null;
+
+  useEffect(() => {
+    setPicked(null);
+    setFeedbackCorrect(null);
+    setFeedbackEarnedStars(null);
+    setFeedbackZeroScoreReason(null);
+    setFeedbackExplanation(null);
+    setFeedbackCorrectIndex(null);
     setMatchStars(3);
     setMatchStatus({});
   }, [questionKey]);
 
-  // Таймер вопроса. Ноль = ответа не было, идём дальше без очков.
+  // Таймер задания читает только абсолютное серверное окно. Локальные часы
+  // участвуют лишь через уже скорректированный tournamentNow(); собственных
+  // gameplay-дедлайнов экран не создаёт.
   useEffect(() => {
-    if (phase !== 'question') return;
-    setSecondsLeft(secondsForQuestion);
-    // Аудио ещё не прозвучало — держим полное время на табло и не тикаем.
-    if (!audioPlayed) return;
-    const id = setInterval(() => {
-      setSecondsLeft((value) => {
-        if (value <= 1) { clearInterval(id); return 0; }
-        return value - 1;
-      });
-    }, 1000);
+    if (phase !== 'question') {
+      setSecondsLeft(null);
+      return;
+    }
+    // Старые уже идущие комнаты могли не иметь taskSchedule. Не выдумываем
+    // для них длительность режима: показываем общий серверный дедлайн раунда.
+    if (!questionTiming) {
+      setSecondsLeft(Math.max(0, stateSecondsLeft));
+      return;
+    }
+    if (!runtimeActive) return;
+    const tick = () => {
+      const serverNowMs = tournamentNow();
+      const remaining = serverNowMs < (questionTiming.readingEndsAtMs ?? questionTiming.startsAtMs)
+        ? secondsForQuestion
+        : tournamentSecondsUntil(questionTiming.answerDeadlineAtMs ?? questionTiming.deadlineAtMs, serverNowMs);
+      setSecondsLeft(Math.min(secondsForQuestion, remaining));
+    };
+    tick();
+    const id = setInterval(tick, 1000);
     return () => clearInterval(id);
-  }, [phase, index, audioPlayed, secondsForQuestion]);
-
-  /**
-   * Отправка пачки. Ровно один раз за раунд: сервер идемпотентен, но лишний
-   * вызов — лишние деньги и лишний риск гонки.
-   */
-  const flushAnswers = useCallback(() => {
-    if (!roomId || submittedRef.current) return;
-    submittedRef.current = true;
-    // Не ждём ответа: очки придут через подписку на комнату, а игрок в это
-    // время уже смотрит таблицу — блокировать экран нечем и незачем.
-    void submitAnswers(roomId, roundNo, buildAnswerRows()).catch(() => {
-      // Сеть моргнула — сервер засчитает таймаут по своему дедлайну.
-    });
-  }, [roomId, roundNo, buildAnswerRows]);
+  }, [phase, questionTiming, runtimeActive, secondsForQuestion, stateSecondsLeft]);
 
   const goNext = useCallback(() => {
     if (index + 1 >= total) {
-      flushAnswers();
-      router.replace(roomId ? { pathname: '/tournament_table', params: { roomId } } : '/tournament_table');
+      router.replace(roomId ? { pathname: '/tournament_table', params: { roomId, completedRound: String(roundNo) } } : '/tournament_table');
       return;
     }
-    setIndex((value) => value + 1);
+    setNavigation({ roundKey, index: index + 1 });
     setPicked(null);
-    setTimedOut(false);
+    setFeedbackCorrect(null);
     setMatchStatus({});
-    setPhase('question');
-  }, [index, total, flushAnswers, roomId, router]);
+    setPhase(nextQuestionTiming && tournamentNow() < nextQuestionTiming.startsAtMs ? 'reading' : 'question');
+  }, [index, nextQuestionTiming, total, roomId, roundKey, roundNo, router]);
+
+  // If the server exposes an upcoming task before its absolute startsAtMs,
+  // the question may be read but cannot be answered yet. No local reading
+  // constant exists: the schedule alone owns the transition.
+  useEffect(() => {
+    if (phase !== 'reading' || !questionTiming || !runtimeActive) return;
+    if (readingEndsAtMs === null) {
+      setPhase('question');
+      return;
+    }
+    const delayMs = Math.max(0, readingEndsAtMs - tournamentNow());
+    if (delayMs === 0) {
+      setPhase('question');
+      return;
+    }
+    const id = setTimeout(() => setPhase('question'), delayMs);
+    return () => clearTimeout(id);
+  }, [phase, questionTiming, readingEndsAtMs, runtimeActive]);
+
+  const feedbackAdvanceAtMs = feedbackEndsAtMs;
+  const scheduleFeedbackAdvance = useCallback(() => {
+    if (advanceRef.current) clearTimeout(advanceRef.current);
+    if (feedbackAdvanceAtMs === null) {
+      goNext();
+      return;
+    }
+    const delayMs = Math.max(0, feedbackAdvanceAtMs - tournamentNow());
+    if (delayMs === 0) {
+      goNext();
+      return;
+    }
+    advanceRef.current = setTimeout(goNext, delayMs);
+  }, [feedbackAdvanceAtMs, goNext]);
+
+  const confirmForfeit = useCallback(async () => {
+    if (!roomId || forfeiting || !runtimeActive) return;
+    setForfeiting(true);
+    setForfeitError('');
+    try {
+      await forfeitTournament(roomId);
+      router.replace('/tournaments');
+    } catch {
+      setForfeitError('Не удалось выйти из турнира. Попробуйте ещё раз.');
+      setForfeiting(false);
+    }
+  }, [forfeiting, roomId, router, runtimeActive]);
+
+  const submitCurrentTaskAnswer = useCallback(async (task: Question, optimisticAnswer: unknown) => {
+    if (!roomId || pendingTaskSubmissionsRef.current.has(task.taskId)) return;
+    const answer = taskAnswersRef.current.get(task.taskId) ?? optimisticAnswer;
+    taskAnswersRef.current.set(task.taskId, answer);
+    const idempotencyKey = getOrCreateTournamentTaskIdempotencyKey(
+      taskIdempotencyKeysRef.current,
+      roomId,
+      roundNo,
+      task.taskId,
+    );
+    const submissionToken = `${roundKey}:${task.taskId}:${idempotencyKey}`;
+    activeTaskSubmissionRef.current = submissionToken;
+    pendingTaskSubmissionsRef.current.set(task.taskId, submissionToken);
+    setNavigation({ roundKey, index });
+    setPhase('feedback');
+    setFeedbackCorrect(null);
+    setFeedbackEarnedStars(null);
+    setFeedbackZeroScoreReason(null);
+    setFeedbackExplanation(null);
+    setFeedbackCorrectIndex(null);
+    try {
+      const result = await submitTaskAnswer(roomId, roundNo, task.taskId, answer, idempotencyKey);
+      if (activeTaskSubmissionRef.current !== submissionToken) return;
+      setFeedbackCorrect(result.correct);
+      setFeedbackEarnedStars(result.earnedStars);
+      setFeedbackZeroScoreReason(result.zeroScoreReason);
+      setFeedbackExplanation(result.explanation);
+      setFeedbackCorrectIndex(typeof result.correctIndex === 'number' ? result.correctIndex : null);
+      if (result.correct) fk.correct();
+      else fk.wrong();
+      scheduleFeedbackAdvance();
+    } catch (error) {
+      if (activeTaskSubmissionRef.current !== submissionToken) return;
+      // The first payload and key stay cached. A user retry resends that exact
+      // attempt, so an accepted response lost in transit cannot mutate history.
+      if (isRetryableTournamentTaskAnswerError(error)
+        && canRetryTournamentTaskAnswer(questionTiming, tournamentNow())) {
+        setNavigation({ roundKey, index });
+        setPhase('question');
+      } else {
+        // Deadline/closed/idempotency failures are terminal. Drop local
+        // submission state and refresh the room, but never move this round back.
+        setNavigation({ roundKey, index });
+        setPhase('question');
+        void retry();
+      }
+      fk.wrong();
+    } finally {
+      if (pendingTaskSubmissionsRef.current.get(task.taskId) === submissionToken) {
+        pendingTaskSubmissionsRef.current.delete(task.taskId);
+      }
+    }
+  }, [index, questionTiming, retry, roomId, roundKey, roundNo, scheduleFeedbackAdvance]);
 
   /**
    * «Готово» — игрок закончил раунд раньше дедлайна.
@@ -397,87 +522,27 @@ export default function TournamentRoundScreen() {
    * реально прибавляет очки. Ждать общего дедлайна, сидя на отвеченном
    * вопросе, было бы прямой потерей.
    *
-   * Optimistic UI: уходим на таблицу СРАЗУ, не дожидаясь сети — пачка летит
-   * фоном (flushAnswers не ждёт ответа). Двойной тап закрыт submittedRef
-   * внутри flushAnswers и локальным finishing.
+   * Every completed task has already been accepted independently. This button
+   * only leaves the round; it does not create a second scoring path.
    */
   const [finishing, setFinishing] = useState(false);
 
   const finishEarly = useCallback(() => {
     if (finishing) return;
     setFinishing(true);
-    void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-    flushAnswers();
     router.replace(roomId
-      ? { pathname: '/tournament_table', params: { roomId } }
+      ? { pathname: '/tournament_table', params: { roomId, completedRound: String(roundNo) } }
       : '/tournament_table');
-  }, [finishing, flushAnswers, roomId, router]);
-
-  /**
-   * Полёт звезды от места ответа к счётчику + бонусы за серию.
-   * Координаты меряем в окне: слой эффектов сам переводит их в свои.
-   */
-  const flyStar = useCallback((from: FxPoint) => {
-    const counter = starCounterRef.current;
-    if (!counter) { setStars((value) => value + 1); return; }
-    counter.measureInWindow((x, y, width, height) => {
-      fxRef.current?.flyStar(from, { x: x + width / 2, y: y + height / 2 }, P.gold, () => {
-        setStars((value) => value + 1);
-      });
-    });
-  }, [P.gold]);
-
-  /** Веха серии: золотая волна + конфетти, как в эталоне V2. */
-  const celebrateStreak = useCallback((nextStreak: number) => {
-    if (nextStreak !== 3 && nextStreak !== 5 && nextStreak !== 7) return;
-    fxRef.current?.goldWave(P.gold);
-    const counter = starCounterRef.current;
-    counter?.measureInWindow((x, y, width, height) => {
-      fxRef.current?.confetti(
-        { x: x + width / 2, y: y + height / 2 },
-        [P.gold, P.accent, P.okGradA, P.text],
-      );
-    });
-    // Бонус-звёзды летят ОТ пилюли серии — связь «серия = звёзды» читается
-    // телом анимации, а не подписью.
-    const bonus = nextStreak >= 5 ? 2 : 1;
-    const pill = streakPillRef.current;
-    pill?.measureInWindow((x, y, width, height) => {
-      const origin = { x: x + width / 2, y: y + height / 2 };
-      fxRef.current?.floatLabel(`+${bonus}`, origin, P.gold);
-      for (let i = 0; i < bonus; i += 1) {
-        setTimeout(() => flyStar(origin), 300 + i * 170);
-      }
-    });
-  }, [P.gold, P.accent, P.okGradA, P.text, flyStar]);
+  }, [finishing, roomId, roundNo, router]);
 
   const answer = useCallback((optionIndex: number) => {
-    if (phase !== 'question' || !question) return;
-
-    // Мгновенный отклик: подсветка и вибрация СРАЗУ, до любой сети.
-    setPicked(optionIndex);
-    setTimedOut(false);
-    setPhase('feedback');
-    void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-
-    // Серию ведём локально для множителя; правильность знает только сервер,
-    // поэтому серию считаем по факту ответа, а очки не показываем до таблицы.
-    setStreak((value) => {
-      const next = value + 1;
-      celebrateStreak(next);
-      return next;
-    });
-    // Звезда стартует из центра экрана вопроса — точное место плиты не
-    // измеряем, чтобы не платить лишним measure на каждом тапе.
-    if (fxSize.width > 0) {
-      flyStar({ x: fxSize.width / 2, y: fxSize.height * 0.62 });
-    }
-    // guard-ok: это Map.set() в памяти (локальный буфер ответов), не запись
-    // в Firestore — итоговая пачка уходит одним submitAnswers ниже.
-    answersByKeyRef.current.set(`${question.taskId}:${question.itemIndex}`, optionIndex);
-
-    advanceRef.current = setTimeout(goNext, motion.answerFeedbackMs);
-  }, [phase, question, goNext, celebrateStreak, flyStar, fxSize]);
+    if (phase !== 'question' || !question
+      || !isTournamentAnswerWindowOpen(questionTiming, tournamentNow())) return;
+    const cached = taskAnswersRef.current.get(question.taskId) as { selectedIndex?: unknown } | undefined;
+    const selectedIndex = typeof cached?.selectedIndex === 'number' ? cached.selectedIndex : optionIndex;
+    setPicked(selectedIndex);
+    void submitCurrentTaskAnswer(question, { selectedIndex });
+  }, [phase, question, questionTiming, submitCurrentTaskAnswer]);
 
   /**
    * Подтверждение сборки фразы (translate) — вызывается, когда игрок собрал
@@ -486,94 +551,88 @@ export default function TournamentRoundScreen() {
    * ВЕСЬ собранный порядок слов, поэтому answer передаётся отдельно.
    */
   const answerTranslate = useCallback((tokens: string[]) => {
-    if (phase !== 'question' || !question) return;
-    setPhase('feedback');
-    void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-    setStreak((value) => {
-      const next = value + 1;
-      celebrateStreak(next);
+    if (phase !== 'question' || !question
+      || !isTournamentAnswerWindowOpen(questionTiming, tournamentNow())) return;
+    void submitCurrentTaskAnswer(question, { tokens });
+  }, [phase, question, questionTiming, submitCurrentTaskAnswer]);
+
+  const pendingMatchPairsRef = useRef(new Set<number>());
+  const answerMatch = useCallback(async (pairIndex: number, selectedIndex: number) => {
+    if (phase !== 'question' || question?.kind !== 'match' || !roomId
+      || !isTournamentAnswerWindowOpen(questionTiming, tournamentNow())) return false;
+    if (matchStatus[pairIndex]?.verdict === 'correct') return false;
+    if (pendingMatchPairsRef.current.has(pairIndex)) return false;
+    pendingMatchPairsRef.current.add(pairIndex);
+    setMatchStatus((current) => {
+      if (current[pairIndex]?.verdict !== 'wrong') return current;
+      const next = { ...current };
+      delete next[pairIndex];
       return next;
     });
-    if (fxSize.width > 0) {
-      flyStar({ x: fxSize.width / 2, y: fxSize.height * 0.5 });
+    try {
+      const result = await submitSpeedMatchAttempt(roomId, roundNo, question.taskId, pairIndex, selectedIndex);
+      const isCorrect = result.correct === true;
+      setMatchStatus((current) => ({
+        ...current,
+        [pairIndex]: { verdict: isCorrect ? 'correct' : 'wrong', selectedIndex },
+      }));
+      if (isCorrect) {
+        fk.correct();
+      } else {
+        fk.wrong();
+        setMatchStars((value) => Math.max(0, value - 1));
+      }
+      return true;
+    } catch {
+      // No verdict is invented on network failure; both cards remain retryable.
+      fk.wrong();
+      return false;
+    } finally {
+      pendingMatchPairsRef.current.delete(pairIndex);
     }
-    // guard-ok: Map.set() в памяти (локальный буфер ответов), не Firestore.
-    answersByKeyRef.current.set(`${question.taskId}:${question.itemIndex}`, tokens);
-    advanceRef.current = setTimeout(goNext, motion.answerFeedbackMs);
-  }, [phase, question, goNext, celebrateStreak, flyStar, fxSize]);
-
-  const answerMatch = useCallback((pairIndex: number, selectedIndex: number) => {
-    if (phase !== 'question' || question?.kind !== 'match' || !roomId) return;
-    if (matchStatus[pairIndex]?.verdict === 'correct') return;
-
-    const fingerprint = answerFingerprint(roomId, question.taskId, selectedIndex);
-    const isCorrect = fingerprint === question.answerFingerprints?.[pairIndex];
-    setMatchStatus((current) => ({
-      ...current,
-      [pairIndex]: { verdict: isCorrect ? 'correct' : 'wrong', selectedIndex },
-    }));
-    // A wrong tile is deliberately not locked. The next tap replaces its stored
-    // answer, allowing correction without restoring the lost star.
-    answersByKeyRef.current.set(`${question.taskId}:${pairIndex}`, selectedIndex);
-    if (isCorrect) {
-      void Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-    } else {
-      void Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
-      setMatchStars((value) => Math.max(0, value - 1));
-    }
-  }, [phase, question, roomId, matchStatus]);
+  }, [phase, question, questionTiming, roomId, roundNo, matchStatus]);
 
   const matchComplete = question?.kind === 'match'
     && question.matchPairs?.every((_, pairIndex) => matchStatus[pairIndex]?.verdict === 'correct');
 
   useEffect(() => {
-    if (!matchComplete || phase !== 'question') return;
-    advanceRef.current = setTimeout(goNext, motion.answerFeedbackMs);
-    return () => {
-      if (advanceRef.current) clearTimeout(advanceRef.current);
-    };
-  }, [matchComplete, phase, goNext]);
+    if (!matchComplete || phase !== 'question' || !question) return;
+    const selectedIndexes = question.matchPairs?.map((_, pairIndex) => (
+      matchStatus[pairIndex]?.selectedIndex ?? -1
+    )) ?? [];
+    void submitCurrentTaskAnswer(question, { selectedIndexes });
+  }, [matchComplete, matchStatus, phase, question, submitCurrentTaskAnswer]);
 
   // Время вышло — пропуск, серия обнуляется.
   useEffect(() => {
-    if (phase !== 'question' || secondsLeft > 0 || !question) return;
+    if (phase !== 'question' || secondsLeft !== 0 || !question) return;
     setPicked(null);
-    setTimedOut(true);
     setPhase('feedback');
-    setStreak(0);
-    // Пропуск — оставляем null в буфере (в timeattack это станет -1 в
-    // selectedIndexes при сборке пачки, см. buildAnswerRows).
-    if (question.kind === 'match') {
-      for (let pairIndex = 0; pairIndex < question.itemCount; pairIndex += 1) {
-        answersByKeyRef.current.set(`${question.taskId}:${pairIndex}`, null);
-      }
-    } else {
-      answersByKeyRef.current.set(`${question.taskId}:${question.itemIndex}`, null);
-    }
-    advanceRef.current = setTimeout(goNext, motion.answerFeedbackMs);
-  }, [phase, secondsLeft, question, goNext]);
+    setFeedbackCorrect(null);
+    scheduleFeedbackAdvance();
+  }, [phase, secondsLeft, question, scheduleFeedbackAdvance]);
 
   // Сервер перевёл комнату дальше — уходим, даже если локально не досчитали.
   useEffect(() => {
-    if (!room || !roomId) return;
+    if (!runtimeActive || !freshSnapshot || !room || !roomId) return;
     if (isTableState(room.state) || room.state === 'final') {
-      flushAnswers();
       router.replace({ pathname: '/tournament_table', params: { roomId } });
     }
-    if (room.state === 'results' || room.state === 'rewards') {
+    if (room.state === 'results' || room.state === 'rewards' || room.state === 'closed') {
       router.replace({ pathname: '/tournament_results', params: { roomId } });
     }
-  }, [room?.state, roomId, router, room, flushAnswers]);
+  }, [freshSnapshot, room?.state, roomId, router, room, runtimeActive]);
+
+  useEffect(() => {
+    if (!runtimeActive && advanceRef.current) {
+      clearTimeout(advanceRef.current);
+      advanceRef.current = null;
+    }
+  }, [runtimeActive]);
 
   useEffect(() => () => {
     if (advanceRef.current) clearTimeout(advanceRef.current);
   }, []);
-
-  // зачем: было picked !== null — у translate нет picked (ответ это собранный
-  // порядок слов, не индекс варианта), фидбек всегда лгал бы «Время вышло»
-  // даже при верно собранной фразе. timedOut выставляется явно в трёх местах.
-  const answered = !timedOut;
-  const dots = useMemo(() => Array.from({ length: total }, (_, i) => i), [total]);
 
   if (status === 'offline') {
     return (
@@ -590,18 +649,13 @@ export default function TournamentRoundScreen() {
     );
   }
 
-  if (phase === 'intro') {
-    // зачем: раньше здесь было захардкожено «Угадай перевод» для любого
-    // раунда — интро тайм-атаки лгало о своём режиме (найдено аудитом).
-    const firstKind = questions[0]?.kind;
-    const modeLabel = firstKind === 'timeattack' ? 'Тайм-атака'
-      : firstKind === 'listen' ? 'На слух'
-        : firstKind === 'dictate' ? 'Диктант'
-          : firstKind === 'translate' ? 'Собери фразу' : 'Угадай перевод';
+  if (phase === 'intro' && showLocalIntro) {
+    const modeLabel = MODE_LABELS[questions[0]?.mode ?? ''] ?? 'Турнирный раунд';
     return (
       <TournamentRoundIntro
         roundNo={roundNo}
         modeLabel={modeLabel}
+        introEndsAtMs={questionTiming?.introEndsAtMs ?? room?.introEndsAtMs ?? questionTiming?.startsAtMs ?? tournamentNow()}
         onDone={startQuestions}
       />
     );
@@ -638,31 +692,34 @@ export default function TournamentRoundScreen() {
         ]}
         showsVerticalScrollIndicator={false}
       >
-        {/* Шапка: прогресс батча, множитель, таймер */}
+        {/* Шапка: тот же двухъярусный ритм, что в V2-макетах. Верхний ряд
+            отвечает только за прогресс и время; режим и награды не сжимают
+            сегменты на узких экранах. */}
         <View style={styles.header}>
-          {/* зачем: было жёстко «из QUESTIONS_PER_ROUND» (константа 5) — в
-              timeattack-раунде реальных подвопросов 6, подпись лгала бы
-              «Вопрос 6 из 5» (найдено аудитом). total уже берёт questions.length. */}
+          <Pressable
+            onPress={() => { setForfeitError(''); setForfeitConfirmVisible(true); }}
+            style={styles.forfeitButton}
+            accessibilityRole="button"
+            accessibilityLabel="Выйти из текущего турнира"
+            accessibilityHint="Потребуется подтверждение; взнос не возвращается"
+          >
+            <Text style={styles.forfeitButtonText}>Выйти</Text>
+          </Pressable>
           <Text style={styles.progressLabel}>
             Вопрос {index + 1} <Text style={styles.progressLabelDim}>из {total}</Text>
           </Text>
-          <View style={styles.dots}>
-            {dots.map((dot) => (
-              <View
-                key={dot}
-                style={[
-                  styles.dot,
-                  dot === index && styles.dotActive,
-                  dot < index && styles.dotDone,
-                ]}
-              />
-            ))}
+          <V2Segments total={total} done={index + 1} />
+          <TimerRing seconds={secondsLeft ?? secondsForQuestion} total={secondsForQuestion} />
+        </View>
+        <View style={styles.statsRow}>
+          <View style={styles.modePill}>
+            <TournamentTwoLineText style={styles.modePillText}>
+              {MODE_LABELS[question.mode] ?? question.prompt}
+            </TournamentTwoLineText>
           </View>
-          {/* Серия и звёзды — язык V2: пилюля накаляется по ярусам, счётчик
-              подпрыгивает при начислении. Множитель ушёл в пилюлю. */}
+          <View style={styles.statsSpacer} />
           <V2StreakPill ref={streakPillRef} streak={streak} />
           <V2Counter ref={starCounterRef} value={question.kind === 'match' ? matchStars : stars} tone="stars" />
-          <TimerRing seconds={secondsLeft} total={secondsForQuestion} />
         </View>
 
         {/* Вопрос.
@@ -673,45 +730,40 @@ export default function TournamentRoundScreen() {
             Кривые те же, что в макете (--ease-slide / --ease-spring). */}
         <Animated.View
           key={questionKey ?? 'q'}
-          entering={SlideInRight.duration(v2motion.taskSwapMs)
-            .easing(Easing.bezier(...v2motion.bezierSlide).factory())}
-          exiting={SlideOutLeft.duration(v2motion.press)
-            .easing(Easing.bezier(...v2motion.bezierSlide).factory())}
-          style={styles.questionZone}
+          entering={reduceMotion ? undefined : QUESTION_ENTER}
+          exiting={reduceMotion ? undefined : QUESTION_EXIT}
+          style={[
+            styles.questionZone,
+            question.kind !== 'choice' && styles.questionZoneCompact,
+          ]}
         >
         {/* зачем 2026-07-27 (владелец): формулировка задания — НАД контейнером,
             а не внутри него. Внутри карточки она конкурировала с самим
             заданием (плеером/фразой) за первое место в чтении; вынесенная
             наверх, она читается как подпись к блоку. */}
-        <Text style={styles.questionPrompt}>{question.prompt}</Text>
+        <TournamentTwoLineText style={styles.questionPrompt}>{question.prompt}</TournamentTwoLineText>
         {question.kind !== 'match' ? <V2Card pad={22} style={styles.questionCard}>
-          {/* зачем: в аудио-режиме текст фразы — это и есть ответ, показывать
-              его нельзя. Вместо него кнопка: услышать можно только ушами. */}
-          {question.kind === 'listen' || question.kind === 'dictate' ? (
-            <TournamentAudioButton
-              key={question.taskId}
-              audioUri={question.audioUri ?? ''}
-              // Первое проигрывание запускает таймер вопроса (см. audioPlayed).
-              onPlayed={handleAudioPlayed}
-            />
-          ) : (
-            <Text style={styles.questionPhrase}>{question.phrase}</Text>
-          )}
+          {/* Фраза задания — основной учебный текст: её нельзя обрезать. */}
+          <Text style={styles.questionPhrase}>{question.phrase}</Text>
         </V2Card> : null}
         </Animated.View>
 
-        {/* Варианты (choice/timeattack) или сборка слов (translate) */}
+        {/* Варианты, сборка фразы или пары на скорость. */}
         {question.kind === 'match' ? (
           <MatchBoard
             matchPairs={question.matchPairs ?? []}
+            matchOptions={question.matchOptions}
             status={matchStatus}
+            disabled={phase !== 'question' || !isTournamentAnswerWindowOpen(questionTiming, tournamentNow())}
             onSelect={answerMatch}
           />
-        ) : question.kind === 'translate' || question.kind === 'dictate' ? (
+        ) : question.kind === 'translate' ? (
           <WordBank
             key={question.taskId}
             wordBank={question.wordBank}
-            revealed={phase === 'feedback'}
+            revealed={feedbackVisible}
+            disabled={phase !== 'question' || !isTournamentAnswerWindowOpen(questionTiming, tournamentNow())}
+            correct={feedbackCorrect}
             onSubmit={answerTranslate}
           />
         ) : (
@@ -723,20 +775,58 @@ export default function TournamentRoundScreen() {
                 text={option}
                 index={optionIndex}
                 picked={picked}
-                revealed={phase === 'feedback'}
+                revealed={feedbackVisible}
+                disabled={phase !== 'question' || !isTournamentAnswerWindowOpen(questionTiming, tournamentNow())}
+                authoritativeCorrect={feedbackCorrect}
+                authoritativeCorrectIndex={feedbackCorrectIndex}
                 onPress={answer}
               />
             ))}
           </View>
         )}
 
-        {/* зачем 2026-07-27 (владелец: «время вышло писать не надо, просто
-            анимация перехода на след задание как в Learning V2»): плашка
-            «Ответ принят / Время вышло» убрана. Приём ответа читается телом
-            движения — плита проседает, звезда улетает в счётчик, задание
-            уезжает влево, — как в эталоне 02-phrase-builder. Место больше не
-            резервируем: карточка вопроса теперь в своей зоне и варианты не
-            прыгают без этой распорки. */}
+        {question.kind === 'choice' ? (
+          <View style={styles.choiceFeedback} accessibilityLiveRegion="polite">
+            {feedbackVisible && feedbackCorrect !== null ? (
+              <Animated.View
+                entering={reduceMotion ? undefined : FadeInDown.duration(v2motion.fast)}
+                style={[
+                  styles.choiceFeedbackCard,
+                  feedbackCorrect ? styles.choiceFeedbackCorrect : styles.choiceFeedbackWrong,
+                ]}
+              >
+                <Text style={[
+                  styles.choiceFeedbackMark,
+                  { color: feedbackCorrect ? P.accent : P.danger },
+                ]}>
+                  {feedbackCorrect ? '✓' : '×'}
+                </Text>
+                <TournamentTwoLineText
+                  style={[styles.choiceFeedbackText, {
+                    color: feedbackCorrect ? P.accent : P.danger,
+                  }]}
+                >
+                  {feedbackCorrect === true ? 'Правильно!' : 'Почти!'}
+                </TournamentTwoLineText>
+                {feedbackEarnedStars !== null ? (
+                  <Text style={styles.feedbackSub}>
+                    {feedbackEarnedStars > 0 ? `+${feedbackEarnedStars} звёзд` : '0 звёзд'}
+                  </Text>
+                ) : null}
+                {feedbackZeroScoreReason && feedbackExplanation ? (
+                  <View style={styles.feedbackExplanation}>
+                    <Text style={styles.feedbackExplanationText}>{feedbackExplanation.ruleNote}</Text>
+                    <Text style={styles.feedbackExplanationExample}>{feedbackExplanation.example}</Text>
+                  </View>
+                ) : null}
+              </Animated.View>
+            ) : null}
+          </View>
+        ) : null}
+
+        {/* «Время вышло» не показываем. Для choice остаётся короткий бинарный
+            результат сервера в заранее зарезервированном слоте; ключ ответа
+            во время игры не раскрывается и выбранная плита не красится зелёным. */}
       </ScrollView>
 
       {/* Низ экрана: «Готово».
@@ -764,6 +854,20 @@ export default function TournamentRoundScreen() {
       {/* Слой полётов поверх экрана: звёзды, конфетти, золотая волна.
           pointerEvents=none внутри — тапы проходят сквозь него к вариантам. */}
       <TournamentFxHost ref={fxRef} width={fxSize.width} height={fxSize.height} />
+      <Sheet visible={forfeitConfirmVisible} onClose={() => !forfeiting && setForfeitConfirmVisible(false)}>
+        <Text style={styles.forfeitTitle}>Выйти из турнира?</Text>
+        <Text style={styles.forfeitText}>
+          Вы покинете текущий турнир и потеряете возможность получить награду.
+        </Text>
+        <Text style={styles.forfeitWarning}>Взнос не возвращается.</Text>
+        {forfeitError ? <Text style={styles.forfeitError}>{forfeitError}</Text> : null}
+        <View style={styles.forfeitActions}>
+          <V2Cta tone="ghost" disabled={forfeiting} onPress={() => setForfeitConfirmVisible(false)}>Остаться</V2Cta>
+          <V2Cta tone="ghost" disabled={forfeiting} onPress={confirmForfeit}>
+            {forfeiting ? 'Выходим…' : 'Подтвердить выход'}
+          </V2Cta>
+        </View>
+      </Sheet>
     </View>
   );
 }
@@ -771,94 +875,343 @@ export default function TournamentRoundScreen() {
 // ── Вариант ответа ──────────────────────────────────────────────────────────
 
 const OptionRow = memo(function OptionRow({
-  letter, text, index, picked, revealed, onPress,
+  letter, text, index, picked, revealed, disabled, authoritativeCorrect, authoritativeCorrectIndex, onPress,
 }: {
   letter: string;
   text: string;
   index: number;
   picked: number | null;
   revealed: boolean;
+  disabled: boolean;
+  authoritativeCorrect: boolean | null;
+  authoritativeCorrectIndex: number | null;
   onPress: (index: number) => void;
 }) {
+  const P = useTournamentPalette();
+  const styles = React.useMemo(() => makeStyles(P), [P]);
   // зачем 2026-07-27: плита варианта переведена на язык Learning V2 —
   // градиент, нижняя 3D-кромка, просадка на неё при нажатии. Выбранный
-  // вариант получает okPop-сквош; правильный ответ здесь НЕ раскрывается,
-  // он придёт с сервером в таблице.
+  // вариант не становится зелёным только потому, что был выбран. Во время
+  // игры сервер раскрывает лишь итог correct:boolean, но не ключ ответа;
+  // конкретный правильный вариант придёт позже в разборе турнира.
   const isPicked = picked === index;
+  const isCorrectOption = revealed && authoritativeCorrectIndex === index;
+  const verdict = isCorrectOption
+    ? 'ok'
+    : revealed && isPicked && authoritativeCorrect !== null
+    ? authoritativeCorrect ? 'ok' : 'bad'
+    : revealed && !isPicked ? 'dim' : 'idle';
+  const answerState = revealed && isPicked && authoritativeCorrect !== null
+    ? authoritativeCorrect ? ', ответ верный' : ', ответ не подошёл'
+    : '';
 
   return (
     <V2Chip
       block
-      verdict={isPicked ? 'ok' : revealed ? 'dim' : 'idle'}
-      disabled={revealed}
+      verdict={verdict}
+      selected={isPicked}
+      disabled={disabled || revealed}
       onPress={() => onPress(index)}
-      accessibilityLabel={`Вариант ${letter}: ${text}`}
+      accessibilityLabel={`Вариант ${letter}: ${text}${answerState}`}
+      left={(
+        <View style={[
+            styles.optionLetter,
+            isCorrectOption && styles.optionLetterCorrect,
+            revealed && isPicked && authoritativeCorrect === false && styles.optionLetterWrong,
+          ]}>
+          <Text style={[
+            styles.optionLetterText,
+            isCorrectOption && styles.optionLetterTextCorrect,
+          ]}>{letter}</Text>
+        </View>
+      )}
+      right={revealed && isPicked && authoritativeCorrect === false ? (
+        <Text style={[styles.optionMark, { color: P.danger }]}>×</Text>
+      ) : null}
     >
-      {text}
+      <TournamentTwoLineText style={[
+        styles.optionText,
+        isCorrectOption && styles.optionTextCorrect,
+        revealed && isPicked && authoritativeCorrect === false && styles.optionTextWrong,
+      ]}>{text}</TournamentTwoLineText>
     </V2Chip>
   );
 });
 
-// ── Сборка фразы из слов (translate) ────────────────────────────────────────
-
-/**
- * Собери фразу из слов: банк перемешанных слов внизу, собранная фраза
- * растёт сверху. Тап переносит слово из банка в собранную строку; повторный
- * тап на собранное слово возвращает его обратно — без этого опечатка
- * заставляла бы ждать конца вопроса, чтобы её исправить.
- *
- * Каждое слово в банке уникально по ПОЗИЦИИ (не по тексту): фраза может
- * содержать повторяющееся слово («I am, I think»), поэтому ключ — индекс
- * исходного банка, а не сам текст.
- */
 const MatchBoard = memo(function MatchBoard({
-  matchPairs, status, onSelect,
+  matchPairs, matchOptions, status, disabled, onSelect,
 }: {
   matchPairs: MatchPair[];
+  matchOptions?: string[];
   status: Record<number, MatchStatus>;
-  onSelect: (pairIndex: number, selectedIndex: number) => void;
+  disabled: boolean;
+  onSelect: (pairIndex: number, selectedIndex: number) => Promise<boolean>;
 }) {
   const P = useTournamentPalette();
   const styles = React.useMemo(() => makeStyles(P), [P]);
 
+  // Старые поля имели отдельные 4 варианта на каждую строку. Они не должны
+  // ломать уже начатую комнату, но в новые комнаты не попадают: у точного
+  // переноса 07 всегда общая правая колонка из шести карточек.
+  if (!matchOptions || matchOptions.length !== matchPairs.length) {
+    return (
+      <View style={styles.matchBoard} accessibilityLabel="Шесть пар слов на скорость">
+        {matchPairs.map((pair, pairIndex) => {
+          const pairStatus = status[pairIndex];
+          return (
+            <View key={`${pair.prompt}:${pairIndex}`} style={styles.matchRow}>
+              <View style={styles.matchPrompt}>
+                <TournamentTwoLineText style={styles.matchPromptText}>{pair.prompt}</TournamentTwoLineText>
+              </View>
+              <View style={styles.matchOptions}>
+                {pair.options.map((option, optionIndex) => (
+                  <V2Chip
+                    key={`${option}:${optionIndex}`}
+                    block
+                    verdict={pairStatus?.selectedIndex === optionIndex
+                      ? pairStatus.verdict === 'correct' ? 'ok' : 'bad'
+                      : 'idle'}
+                    disabled={disabled || pairStatus?.verdict === 'correct'}
+                    onPress={() => { void onSelect(pairIndex, optionIndex); }}
+                    accessibilityLabel={`${pair.prompt}: ${option}`}
+                    style={styles.matchOption}
+                  >
+                    <TournamentTwoLineText style={styles.optionText}>{option}</TournamentTwoLineText>
+                  </V2Chip>
+                ))}
+              </View>
+            </View>
+          );
+        })}
+      </View>
+    );
+  }
+
+  return <StrictMatchBoard
+    matchPairs={matchPairs}
+    matchOptions={matchOptions}
+    status={status}
+    disabled={disabled}
+    onSelect={onSelect}
+  />;
+});
+
+const MatchCard = memo(function MatchCard({
+  label,
+  accessibilityLabel,
+  selected,
+  wrong,
+  resolvingCorrect,
+  hidden,
+  disabled,
+  reduceMotion,
+  onPress,
+}: {
+  label: string;
+  accessibilityLabel: string;
+  selected: boolean;
+  wrong: boolean;
+  resolvingCorrect: boolean;
+  hidden: boolean;
+  disabled: boolean;
+  reduceMotion: boolean;
+  onPress: () => void;
+}) {
+  const P = useTournamentPalette();
+  const styles = React.useMemo(() => makeStyles(P), [P]);
+  const translateY = useSharedValue(0);
+  const scale = useSharedValue(1);
+  const opacity = useSharedValue(hidden ? 0 : 1);
+
+  useEffect(() => {
+    translateY.value = withTiming(selected && !reduceMotion ? -3 : 0, {
+      duration: reduceMotion ? 0 : MATCH_SELECT_MS,
+    });
+  }, [reduceMotion, selected, translateY]);
+
+  useEffect(() => {
+    if (hidden) {
+      opacity.value = withTiming(0, { duration: 0 });
+      return;
+    }
+    if (!resolvingCorrect) {
+      opacity.value = withTiming(1, { duration: reduceMotion ? 0 : MATCH_SELECT_MS });
+      scale.value = withTiming(1, { duration: reduceMotion ? 0 : MATCH_SELECT_MS });
+      return;
+    }
+    if (reduceMotion) {
+      opacity.value = withTiming(0, { duration: 0 });
+      return;
+    }
+    scale.value = withSequence(
+      withTiming(1.06, { duration: MATCH_CORRECT_POP_MS / 2 }),
+      withTiming(0.97, { duration: MATCH_CORRECT_POP_MS / 2 }),
+      withTiming(1, { duration: MATCH_CORRECT_FADE_MS }),
+    );
+    opacity.value = withDelay(
+      MATCH_CORRECT_POP_MS,
+      withTiming(0, { duration: MATCH_CORRECT_FADE_MS }),
+    );
+  }, [hidden, opacity, reduceMotion, resolvingCorrect, scale]);
+
+  const animatedStyle = useAnimatedStyle(() => ({
+    opacity: opacity.value,
+    transform: [{ translateY: translateY.value }, { scale: scale.value }] as const,
+  }));
+
   return (
-    <View style={styles.matchBoard} accessibilityLabel="Шесть пар слов на скорость">
-      {matchPairs.map((pair, pairIndex) => {
-        const pairStatus = status[pairIndex];
-        return (
-          <View key={`${pair.prompt}:${pairIndex}`} style={styles.matchRow}>
-            <View style={styles.matchPrompt}>
-              <Text style={styles.matchPromptText}>{pair.prompt}</Text>
-            </View>
-            <View style={styles.matchOptions}>
-              {pair.options.map((option, optionIndex) => (
-                <V2Chip
-                  key={`${option}:${optionIndex}`}
-                  block
-                  verdict={pairStatus?.selectedIndex === optionIndex
-                    ? pairStatus.verdict === 'correct' ? 'ok' : 'bad'
-                    : 'idle'}
-                  disabled={pairStatus?.verdict === 'correct'}
-                  onPress={() => onSelect(pairIndex, optionIndex)}
-                  accessibilityLabel={`${pair.prompt}: ${option}`}
-                  style={styles.matchOption}
-                >
-                  {option}
-                </V2Chip>
-              ))}
-            </View>
-          </View>
-        );
-      })}
+    <AnimatedPressable
+      accessibilityRole="button"
+      accessibilityLabel={accessibilityLabel}
+      accessibilityState={{ disabled: disabled || hidden, selected }}
+      accessibilityElementsHidden={hidden}
+      disabled={disabled || hidden}
+      onPress={onPress}
+      style={[
+        styles.strictMatchCard,
+        selected && styles.strictMatchCardPicked,
+        wrong && styles.strictMatchCardWrong,
+        resolvingCorrect && styles.strictMatchCardCorrect,
+        animatedStyle,
+      ]}
+    >
+      <TournamentTwoLineText style={styles.strictMatchText}>{label}</TournamentTwoLineText>
+    </AnimatedPressable>
+  );
+});
+
+const StrictMatchBoard = memo(function StrictMatchBoard({
+  matchPairs, matchOptions, status, disabled, onSelect,
+}: {
+  matchPairs: MatchPair[];
+  matchOptions: string[];
+  status: Record<number, MatchStatus>;
+  disabled: boolean;
+  onSelect: (pairIndex: number, selectedIndex: number) => Promise<boolean>;
+}) {
+  const P = useTournamentPalette();
+  const styles = React.useMemo(() => makeStyles(P), [P]);
+  const [pickedLeft, setPickedLeft] = useState<number | null>(null);
+  const [pickedRight, setPickedRight] = useState<number | null>(null);
+  const [wrong, setWrong] = useState<{ left: number; right: number } | null>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const attemptBaselineRef = useRef<MatchStatus | undefined>(undefined);
+  const reduceMotion = useReduceMotion();
+
+  useEffect(() => () => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+  }, []);
+
+  const evaluate = useCallback((left: number | null, right: number | null) => {
+    if (left === null || right === null) return;
+    // Selection stays visible until the server returns the room-salted verdict.
+    // Starting the 300ms window here used to clear slow-network selections
+    // before authoritative feedback arrived.
+    attemptBaselineRef.current = status[left];
+    void onSelect(left, right).then((accepted) => {
+      if (accepted) return;
+      setPickedLeft(null);
+      setPickedRight(null);
+      setWrong(null);
+      attemptBaselineRef.current = undefined;
+    });
+  }, [onSelect, status]);
+
+  const pickLeft = useCallback((index: number) => {
+    if (disabled || status[index]?.verdict === 'correct') return;
+    const next = pickedLeft === index ? null : index;
+    setPickedLeft(next);
+    evaluate(next, pickedRight);
+  }, [disabled, evaluate, pickedLeft, pickedRight, status]);
+  const pickRight = useCallback((index: number) => {
+    if (disabled) return;
+    const next = pickedRight === index ? null : index;
+    setPickedRight(next);
+    evaluate(pickedLeft, next);
+  }, [disabled, evaluate, pickedLeft, pickedRight]);
+
+  // A failed parent validation is observable only after `status` updates.
+  // Keep the cards toned for the same 300ms window before releasing them.
+  useEffect(() => {
+    if (pickedLeft === null || pickedRight === null) return;
+    const resolvedStatus = status[pickedLeft];
+    if (resolvedStatus === attemptBaselineRef.current) return;
+    const verdict = resolvedStatus?.verdict;
+    if (!verdict) return;
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    if (verdict === 'wrong') setWrong({ left: pickedLeft, right: pickedRight });
+    const holdMs = verdict === 'correct'
+      ? MATCH_CORRECT_POP_MS + MATCH_CORRECT_FADE_MS
+      : MATCH_WRONG_TONE_MS;
+    timeoutRef.current = setTimeout(() => {
+      setPickedLeft(null);
+      setPickedRight(null);
+      setWrong(null);
+      attemptBaselineRef.current = undefined;
+    }, reduceMotion ? 0 : holdMs);
+  }, [pickedLeft, pickedRight, reduceMotion, status]);
+
+  return (
+    <View style={styles.strictMatchBoard} accessibilityLabel="Поле пар: английские слова и переводы">
+      <View style={styles.strictMatchColumn}>
+        {matchPairs.map((pair, index) => {
+          const matched = status[index]?.verdict === 'correct';
+          const selected = pickedLeft === index;
+          const isWrong = wrong?.left === index;
+          const resolvingCorrect = selected && pickedRight !== null && matched;
+          return (
+            <Animated.View key={`left:${pair.prompt}:${index}`} entering={reduceMotion ? undefined : FadeInDown.delay(index * 40).duration(260)} style={styles.matchSlot}>
+              <MatchCard
+                label={pair.prompt}
+                accessibilityLabel={`Английское слово: ${pair.prompt}`}
+                selected={selected}
+                wrong={isWrong}
+                resolvingCorrect={resolvingCorrect}
+                hidden={matched && !resolvingCorrect}
+                disabled={disabled || matched}
+                onPress={() => pickLeft(index)}
+                reduceMotion={reduceMotion}
+              />
+            </Animated.View>
+          );
+        })}
+      </View>
+      <View style={styles.strictMatchColumn}>
+        {matchOptions.map((option, index) => {
+          const matched = Object.values(status).some((entry) => entry.verdict === 'correct' && entry.selectedIndex === index);
+          const selected = pickedRight === index;
+          const isWrong = wrong?.right === index;
+          const resolvingLeft = pickedLeft !== null ? status[pickedLeft] : undefined;
+          const resolvingCorrect = selected && resolvingLeft?.verdict === 'correct'
+            && resolvingLeft.selectedIndex === index;
+          return (
+            <Animated.View key={`right:${option}:${index}`} entering={reduceMotion ? undefined : FadeInDown.delay(index * 40).duration(260)} style={styles.matchSlot}>
+              <MatchCard
+                label={option}
+                accessibilityLabel={`Перевод: ${option}`}
+                selected={selected}
+                wrong={isWrong}
+                resolvingCorrect={resolvingCorrect}
+                hidden={matched && !resolvingCorrect}
+                disabled={disabled || matched}
+                onPress={() => pickRight(index)}
+                reduceMotion={reduceMotion}
+              />
+            </Animated.View>
+          );
+        })}
+      </View>
     </View>
   );
 });
 
 const WordBank = memo(function WordBank({
-  wordBank, revealed, onSubmit,
+  wordBank, revealed, disabled, correct, onSubmit,
 }: {
   wordBank: string[];
   revealed: boolean;
+  disabled: boolean;
+  correct: boolean | null;
   onSubmit: (tokens: string[]) => void;
 }) {
   const P = useTournamentPalette();
@@ -870,21 +1223,19 @@ const WordBank = memo(function WordBank({
   const usedSet = useMemo(() => new Set(usedPositions), [usedPositions]);
 
   const takeWord = useCallback((position: number) => {
-    if (revealed || usedSet.has(position)) return;
-    void Haptics.selectionAsync();
+    if (disabled || revealed || usedSet.has(position)) return;
     setUsedPositions((value) => [...value, position]);
-  }, [revealed, usedSet]);
+  }, [disabled, revealed, usedSet]);
 
   const returnWord = useCallback((slotIndex: number) => {
-    if (revealed) return;
-    void Haptics.selectionAsync();
+    if (disabled || revealed) return;
     setUsedPositions((value) => value.filter((_, index) => index !== slotIndex));
-  }, [revealed]);
+  }, [disabled, revealed]);
 
   const submit = useCallback(() => {
-    if (revealed || usedPositions.length !== wordBank.length) return;
+    if (disabled || revealed || usedPositions.length !== wordBank.length) return;
     onSubmit(usedPositions.map((position) => wordBank[position]));
-  }, [revealed, usedPositions, wordBank, onSubmit]);
+  }, [disabled, revealed, usedPositions, wordBank, onSubmit]);
 
   const collected = usedPositions.map((position) => wordBank[position]);
   const isComplete = collected.length === wordBank.length && wordBank.length > 0;
@@ -896,19 +1247,22 @@ const WordBank = memo(function WordBank({
           зачем 2026-07-27 (владелец): подсказка «Собирай слова снизу…» убрана —
           действие очевидно из самого экрана. Пустая зона ОСТАЁТСЯ (высота
           зарезервирована), иначе первое слово сдвинуло бы банк вверх. */}
-      <View style={styles.assembled}>
+      <View style={[
+        styles.assembled,
+        correct === true && styles.assembledCorrect,
+        correct === false && styles.assembledWrong,
+      ]}>
         {collected.map((word, slotIndex) => (
-          <Pressable
-            key={slotIndex}
-            onPress={() => returnWord(slotIndex)}
-            disabled={revealed}
-            style={styles.assembledChip}
-            accessibilityRole="button"
-            accessibilityState={{ disabled: revealed }}
-            accessibilityLabel={`Убрать слово ${word}`}
-          >
-            <Text style={styles.assembledChipText}>{word}</Text>
-          </Pressable>
+          <Animated.View key={`${word}:${slotIndex}`} entering={FadeInDown.duration(300).springify()}>
+            <V2Chip
+              onPress={() => returnWord(slotIndex)}
+              disabled={disabled || revealed}
+              accessibilityLabel={`Убрать слово ${word}`}
+              verdict={correct === true ? 'ok' : correct === false ? 'bad' : 'idle'}
+            >
+              <TournamentTwoLineText style={styles.assembledChipText}>{word}</TournamentTwoLineText>
+            </V2Chip>
+          </Animated.View>
         ))}
       </View>
 
@@ -917,33 +1271,29 @@ const WordBank = memo(function WordBank({
         {wordBank.map((word, position) => {
           const used = usedSet.has(position);
           return (
-            <Pressable
-              key={position}
-              onPress={() => takeWord(position)}
-              disabled={revealed || used}
-              style={[styles.bankChip, used && styles.bankChipUsed]}
-              accessibilityRole="button"
-              accessibilityState={{ disabled: revealed || used }}
-              accessibilityLabel={`Слово ${word}`}
-            >
-              <Text style={[styles.bankChipText, used && styles.bankChipTextUsed]}>{word}</Text>
-            </Pressable>
+            <Animated.View key={position} entering={FadeInDown.delay(position * 46).duration(260)}>
+              {used ? <V2ChipGhost label={word} /> : (
+                <V2Chip
+                  onPress={() => takeWord(position)}
+                  disabled={disabled || revealed}
+                  accessibilityLabel={`Слово ${word}`}
+                >
+                  <TournamentTwoLineText style={styles.bankChipText}>{word}</TournamentTwoLineText>
+                </V2Chip>
+              )}
+            </Animated.View>
           );
         })}
       </View>
 
       <View style={styles.submitSlot}>
         {isComplete ? (
-          <Pressable
+          <V2Cta
             onPress={submit}
-            disabled={revealed}
-            style={styles.submitButton}
-            accessibilityRole="button"
-            accessibilityState={{ disabled: revealed }}
-            accessibilityLabel="Подтвердить фразу"
+            disabled={disabled || revealed}
           >
-            <Text style={styles.submitButtonText}>Готово ✓</Text>
-          </Pressable>
+            Готово
+          </V2Cta>
         ) : null}
       </View>
     </View>
@@ -959,6 +1309,10 @@ const makeStyles = (P: TournamentPalette) => StyleSheet.create({
   content: { paddingHorizontal: 16, gap: 14, flexGrow: 1 },
   /** Вопрос занимает свободную высоту между шапкой и вариантами. */
   questionZone: { flex: 1, justifyContent: 'center', minHeight: 132 },
+  // Phrase building and the six-pair board already carry substantial vertical
+  // geometry. Let their question card size to content so the interaction stays
+  // visually connected to its prompt instead of being pushed down by flex.
+  questionZoneCompact: { flex: 0, minHeight: 0 },
   /** Полоса управления у нижнего края. Разделяем тоном, без обводки. */
   bottomBar: { paddingHorizontal: 16, paddingTop: 10, backgroundColor: P.bg },
 
@@ -967,13 +1321,33 @@ const makeStyles = (P: TournamentPalette) => StyleSheet.create({
   introMode: { ...type.section, color: P.accent, marginTop: 10 },
 
   header: { flexDirection: 'row', alignItems: 'center', gap: 10 },
+  forfeitButton: {
+    minHeight: 34,
+    paddingHorizontal: 10,
+    borderRadius: radius.sm,
+    justifyContent: 'center',
+    backgroundColor: P.dangerSoft,
+  },
+  forfeitButtonText: { color: P.danger, fontSize: 13, fontWeight: '900' },
   progressLabel: { fontSize: 15, fontWeight: '800', color: P.text },
   progressLabelDim: { color: P.muted, fontWeight: '600' },
-  dots: { flexDirection: 'row', gap: 5, alignItems: 'center' },
-  dot: { width: 7, height: 7, borderRadius: 999, backgroundColor: P.elev2 },
-  dotDone: { backgroundColor: P.accent, opacity: 0.5 },
-  dotActive: { width: 18, backgroundColor: P.accent },
-  multiplier: { marginLeft: 'auto', fontSize: 15, fontWeight: '800', color: P.muted },
+  statsRow: { flexDirection: 'row', alignItems: 'center', gap: 8, minHeight: 34 },
+  statsSpacer: { flex: 1 },
+  modePill: {
+    maxWidth: '56%',
+    minHeight: 34,
+    justifyContent: 'center',
+    borderRadius: 999,
+    paddingHorizontal: 12,
+    backgroundColor: P.accentSoft,
+  },
+  modePillText: {
+    color: P.accent,
+    fontSize: 13,
+    fontWeight: '900',
+    letterSpacing: 0.5,
+    textTransform: 'uppercase',
+  },
 
   questionCard: { minHeight: 128, justifyContent: 'center' },
   // Подпись к блоку задания: живёт НАД карточкой, поэтому нужен свой отступ
@@ -985,6 +1359,30 @@ const makeStyles = (P: TournamentPalette) => StyleSheet.create({
 
   options: { gap: 10 },
   matchBoard: { gap: 12 },
+  strictMatchBoard: { flexDirection: 'row', gap: 10, alignItems: 'stretch' },
+  strictMatchColumn: { flex: 1, gap: 10 },
+  // Fixed slot height is intentional: a matched pair fades to an invisible
+  // placeholder, so the two-column board never jumps upward.
+  matchSlot: { minHeight: 54 },
+  strictMatchCard: {
+    flex: 1,
+    minHeight: 54,
+    justifyContent: 'center',
+    paddingHorizontal: 11,
+    borderRadius: radius.sm,
+    backgroundColor: P.card,
+    shadowColor: '#000',
+    shadowOpacity: 0.16,
+    shadowRadius: 7,
+    shadowOffset: { width: 0, height: 3 },
+    elevation: 2,
+  },
+  strictMatchCardPicked: {
+    backgroundColor: P.elev2,
+  },
+  strictMatchCardWrong: { backgroundColor: P.dangerSoft },
+  strictMatchCardCorrect: { backgroundColor: P.accentSoft },
+  strictMatchText: { color: P.text, fontSize: 15, fontWeight: '800', textAlign: 'center' },
   matchRow: { gap: 8 },
   matchPrompt: {
     minHeight: 42,
@@ -1021,14 +1419,38 @@ const makeStyles = (P: TournamentPalette) => StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  optionLetterCorrect: { backgroundColor: P.accent },
+  optionLetterWrong: { backgroundColor: P.dangerSoft },
   optionLetterText: { fontSize: 15, fontWeight: '900', color: P.muted },
-  optionText: { flex: 1, fontSize: 16, fontWeight: '700' },
+  optionLetterTextCorrect: { color: P.accentText },
+  optionText: { flex: 1, fontSize: 16, lineHeight: 21, fontWeight: '700', color: P.text },
+  optionTextCorrect: { color: P.accent },
+  optionTextWrong: { color: P.danger },
   optionMark: { fontSize: 20, color: P.accent, fontWeight: '900' },
+
+  // The slot is always reserved, so the server result never moves answers.
+  choiceFeedback: { minHeight: 84, justifyContent: 'center' },
+  choiceFeedbackCard: {
+    minHeight: 72,
+    borderRadius: radius.md,
+    paddingHorizontal: 18,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+    overflow: 'hidden',
+  },
+  choiceFeedbackCorrect: { backgroundColor: P.accentSoft },
+  choiceFeedbackWrong: { backgroundColor: P.dangerSoft },
+  choiceFeedbackMark: { width: 28, fontSize: 24, lineHeight: 28, fontWeight: '900', textAlign: 'center' },
+  choiceFeedbackText: { flex: 1, fontSize: 20, lineHeight: 25, fontWeight: '900' },
 
   // Высота под фидбек зарезервирована заранее — иначе список вариантов
   // дёргался бы вверх при каждом ответе.
   feedbackTitle: { fontSize: 20, fontWeight: '900' },
   feedbackSub: { ...type.body, color: P.muted, marginTop: 6 },
+  feedbackExplanation: { gap: 3, marginTop: 8 },
+  feedbackExplanationText: { color: P.text, fontSize: 14, lineHeight: 19, fontWeight: '700' },
+  feedbackExplanationExample: { color: P.muted, fontSize: 13, lineHeight: 18, fontStyle: 'italic' },
 
   scoreLine: {
     textAlign: 'center',
@@ -1039,13 +1461,19 @@ const makeStyles = (P: TournamentPalette) => StyleSheet.create({
 
   // ── Сборка фразы из слов (translate) ──────────────────────────────────────
   assembled: {
-    minHeight: 56,
+    minHeight: 72,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 8,
+    gap: 10,
     alignItems: 'center',
-    paddingVertical: 8,
+    paddingHorizontal: 12,
+    paddingVertical: 10,
+    borderRadius: radius.md,
+    backgroundColor: P.card,
+    overflow: 'hidden',
   },
+  assembledCorrect: { backgroundColor: P.accentSoft },
+  assembledWrong: { backgroundColor: P.dangerSoft },
   assembledChip: {
     backgroundColor: P.accentSoft,
     borderRadius: radius.sm,
@@ -1057,8 +1485,9 @@ const makeStyles = (P: TournamentPalette) => StyleSheet.create({
   bank: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 8,
-    marginTop: 14,
+    gap: 10,
+    marginTop: 18,
+    justifyContent: 'center',
   },
   bankChip: {
     backgroundColor: P.card,
@@ -1079,4 +1508,9 @@ const makeStyles = (P: TournamentPalette) => StyleSheet.create({
     justifyContent: 'center',
   },
   submitButtonText: { fontSize: 17, fontWeight: '900', color: P.accentText },
+  forfeitTitle: { color: P.text, fontSize: 21, fontWeight: '900' },
+  forfeitText: { color: P.text, fontSize: 15, lineHeight: 21, marginTop: 10 },
+  forfeitWarning: { color: P.danger, fontSize: 15, fontWeight: '900', marginTop: 8 },
+  forfeitError: { color: P.danger, fontSize: 13, fontWeight: '700', marginTop: 10 },
+  forfeitActions: { gap: 10, marginTop: 18 },
 });

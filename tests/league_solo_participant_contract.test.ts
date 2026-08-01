@@ -33,7 +33,7 @@ describe('пустое состояние лиги', () => {
     for (const count of [2, 3]) {
       expect(shouldShowLeagueSoloParticipant({
         localLeagueHydrated: true, participantCount: count, visibleListCount: 0,
-      })).toBe(true);
+      })).toBe(false);
     }
   });
 

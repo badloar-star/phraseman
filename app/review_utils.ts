@@ -1,15 +1,12 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { Lang } from '../constants/i18n';
+import { decideReviewPrompt, type ReviewPromptInput } from './review_prompt_policy';
 
 const KEY_LAST_PROMPTED = 'review_prompted_at';
 const KEY_SESSIONS      = 'app_session_count';
 const KEY_SHOW_COUNT    = 'review_show_count';
 const KEY_RATED         = 'review_user_rated';
-const COOLDOWN_DAYS     = 30;
-const MIN_SESSIONS      = 5;
-const MAX_SHOWS         = 3;
-
-export type ReviewContext = 'general' | 'perfect_lesson' | 'arena_win';
+export type ReviewContext = 'perfect_lesson' | 'level_exam_pass' | 'streak_milestone';
 
 export interface ReviewVariant {
   emoji: string;
@@ -17,6 +14,7 @@ export interface ReviewVariant {
   subtitle: string;
   btnYes: string;
   btnNo: string;
+  presentation: 'dialog' | 'bottom_sheet';
 }
 
 type LocalizedCopy = Record<Lang, string>;
@@ -40,8 +38,33 @@ function localizeVariant(v: ReviewVariantDefinition, lang: Lang): ReviewVariant 
     subtitle: pickLoc(v.subtitle, lang),
     btnYes: pickLoc(v.btnYes, lang),
     btnNo: pickLoc(v.btnNo, lang),
+    presentation: 'dialog',
   };
 }
+
+const APPROVED_RU_COPY: Record<ReviewContext, Omit<ReviewVariant, 'presentation'>> = {
+  perfect_lesson: {
+    emoji: '',
+    title: '100%. Ты вообще оставил уроку шанс?',
+    subtitle: 'Поставь Phraseman оценку в магазине приложений и напиши пару слов. Мы прочитаем всё. Даже если там будет просто «норм».',
+    btnYes: 'Открыть магазин и оценить',
+    btnNo: 'Не сейчас',
+  },
+  level_exam_pass: {
+    emoji: '',
+    title: 'Зачёт сдан. Можно перестать выглядеть скромно.',
+    subtitle: 'Поставь Phraseman оценку в магазине приложений и напиши пару слов. Пусть другие тоже знают, куда идти за такими зачётами.',
+    btnYes: 'Открыть магазин и оценить',
+    btnNo: 'Не сейчас',
+  },
+  streak_milestone: {
+    emoji: '',
+    title: 'Это уже не серия. Это отношения с календарём.',
+    subtitle: 'Поставь Phraseman оценку в магазине приложений и напиши пару слов. Мы не будем делать вид, что случайно этого не ждали.',
+    btnYes: 'Открыть магазин и оценить',
+    btnNo: 'Не сейчас',
+  },
+};
 
 const REVIEW_ACTIONS = {
   btnYes: {
@@ -203,11 +226,17 @@ export const getReviewVariant = async (
   context: ReviewContext,
   lang: Lang = 'ru'
 ): Promise<ReviewVariant> => {
-  if (context === 'perfect_lesson') return localizeVariant(CONTEXTUAL.perfect_lesson, lang);
-  if (context === 'arena_win') return localizeVariant(CONTEXTUAL.arena_win, lang);
-  const raw = await AsyncStorage.getItem(KEY_SHOW_COUNT).catch(() => null);
-  const idx = (parseInt(raw || '0')) % GENERAL_VARIANTS.length;
-  return localizeVariant(GENERAL_VARIANTS[idx], lang);
+  if (lang === 'ru') {
+    return {
+      ...APPROVED_RU_COPY[context],
+      presentation: 'dialog',
+    };
+  }
+  const base = context === 'perfect_lesson' ? CONTEXTUAL.perfect_lesson : GENERAL_VARIANTS[0];
+  return {
+    ...localizeVariant(base, lang),
+    presentation: 'dialog',
+  };
 };
 
 export const incrementSessionCount = async (): Promise<void> => {
@@ -218,25 +247,34 @@ export const incrementSessionCount = async (): Promise<void> => {
   } catch {}
 };
 
-export const canShowReview = async (): Promise<boolean> => {
+export const canShowReview = async (input: Omit<ReviewPromptInput, 'nowMs' | 'priorPromptCount' | 'lastPromptedAtMs' | 'hasRated'>): Promise<boolean> => {
   try {
-    const [[, sessRaw], [, lastRaw], [, ratedRaw], [, showCountRaw]] = await AsyncStorage.multiGet([
-      KEY_SESSIONS,
+    const [[, lastRaw], [, ratedRaw], [, showCountRaw]] = await AsyncStorage.multiGet([
       KEY_LAST_PROMPTED,
       KEY_RATED,
       KEY_SHOW_COUNT,
     ]);
-    if (ratedRaw === '1') return false;
-    const sessions = parseInt(sessRaw || '0');
-    if (sessions < MIN_SESSIONS) return false;
-    const showCount = parseInt(showCountRaw || '0');
-    if (showCount >= MAX_SHOWS) return false;
-    if (lastRaw) {
-      const daysSince = (Date.now() - parseInt(lastRaw)) / (1000 * 60 * 60 * 24);
-      if (daysSince < COOLDOWN_DAYS) return false;
-    }
-    return true;
+    return decideReviewPrompt({
+      ...input,
+      nowMs: Date.now(),
+      priorPromptCount: parseInt(showCountRaw || '0', 10) || 0,
+      lastPromptedAtMs: lastRaw ? parseInt(lastRaw, 10) : null,
+      hasRated: ratedRaw === '1',
+    }).eligible;
   } catch { return false; }
+};
+
+export const getReviewActiveDays = async (): Promise<number> => {
+  try {
+    const raw = await AsyncStorage.getItem('daily_stats');
+    const stats = raw ? JSON.parse(raw) as Record<string, unknown> : {};
+    return Object.values(stats).filter((entry) => {
+      if (typeof entry === 'number') return entry > 0;
+      return typeof entry === 'object' && entry !== null && Number((entry as { points?: unknown }).points) > 0;
+    }).length;
+  } catch {
+    return 0;
+  }
 };
 
 /** Вызывать когда пользователь нажал "Да" — помечает как оценившего навсегда. */
@@ -285,6 +323,7 @@ export const requestNativeReview = async (): Promise<void> => {
       requestReview: () => Promise<void>;
     };
     if (await StoreReview.hasAction()) {
+      await markReviewPrompted();
       await StoreReview.requestReview();
     }
   } catch {}

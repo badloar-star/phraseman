@@ -81,19 +81,28 @@ export function useAudio() {
   const lastTextRef = useRef('');
   const lastSpeakAtRef = useRef(0);
   const pendingTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const clipStartTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const speechGenerationRef = useRef(0);
 
   useEffect(() => {
     return () => {
+      speechGenerationRef.current += 1;
       if (pendingTimerRef.current) clearTimeout(pendingTimerRef.current);
       pendingTimerRef.current = null;
+      if (clipStartTimerRef.current) clearTimeout(clipStartTimerRef.current);
+      clipStartTimerRef.current = null;
+      lastTextRef.current = '';
       safeSpeechStop();
       stopPhraseAudio();
     };
   }, []);
 
   const stop = useCallback(() => {
+    speechGenerationRef.current += 1;
     if (pendingTimerRef.current) clearTimeout(pendingTimerRef.current);
     pendingTimerRef.current = null;
+    if (clipStartTimerRef.current) clearTimeout(clipStartTimerRef.current);
+    clipStartTimerRef.current = null;
     lastTextRef.current = '';
     lastSpeakAtRef.current = 0;
     safeSpeechStop();
@@ -110,8 +119,12 @@ export function useAudio() {
     const dedupeKey = `${normalized}\u0000${spokenText}`;
     if (dedupeKey === lastTextRef.current && now - lastSpeakAtRef.current < 220) return;
 
+    speechGenerationRef.current += 1;
+    const generation = speechGenerationRef.current;
     if (pendingTimerRef.current) clearTimeout(pendingTimerRef.current);
     pendingTimerRef.current = null;
+    if (clipStartTimerRef.current) clearTimeout(clipStartTimerRef.current);
+    clipStartTimerRef.current = null;
     safeSpeechStop();
     stopPhraseAudio();
 
@@ -139,9 +152,14 @@ export function useAudio() {
       let clipStartTimer: ReturnType<typeof setTimeout> | null = null;
       const clearClipStartTimer = () => {
         if (clipStartTimer) clearTimeout(clipStartTimer);
+        if (clipStartTimerRef.current === clipStartTimer) clipStartTimerRef.current = null;
         clipStartTimer = null;
       };
       const fallbackOnce = () => {
+        if (speechGenerationRef.current !== generation) {
+          clearClipStartTimer();
+          return;
+        }
         if (fellBack) return;
         fellBack = true;
         clearClipStartTimer();
@@ -149,6 +167,7 @@ export function useAudio() {
         speakWithSystemTts();
       };
       clipStartTimer = setTimeout(fallbackOnce, CLIP_START_TIMEOUT_MS);
+      clipStartTimerRef.current = clipStartTimer;
       playPhraseByText(
         normalized,
         {
@@ -172,10 +191,13 @@ export function useAudio() {
     speakWithSystemTts();
 
     function speakWithSystemTts() {
+      if (speechGenerationRef.current !== generation) return;
       if (pendingTimerRef.current) clearTimeout(pendingTimerRef.current);
       pendingTimerRef.current = setTimeout(() => {
         pendingTimerRef.current = null;
+        if (speechGenerationRef.current !== generation) return;
         void setManagedAudioMode(LOUD_PLAYBACK_AUDIO_MODE).catch(() => undefined).finally(() => {
+          if (speechGenerationRef.current !== generation) return;
           if (lastTextRef.current !== dedupeKey) return;
           const speechOptions: SpeechOptions = {
             language,

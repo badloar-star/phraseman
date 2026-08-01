@@ -1,4 +1,8 @@
-import { CLOUD_SYNC_ENABLED, IS_EXPO_GO, IS_STORE_RELEASE } from './config';
+import {
+  APP_CHECK_REAL_ATTESTATION_ENABLED,
+  CLOUD_SYNC_ENABLED,
+  IS_EXPO_GO,
+} from './config';
 
 export type SecondaryRecoveryProvider = 'google' | 'apple';
 
@@ -163,9 +167,9 @@ async function initializeSecondaryAppCheck(app: unknown): Promise<void> {
 
   const debugToken = String(process.env.EXPO_PUBLIC_APP_CHECK_DEBUG_TOKEN || '').trim();
   const useDebugProvider =
-    !IS_STORE_RELEASE
+    !APP_CHECK_REAL_ATTESTATION_ENABLED
     && (process.env.EXPO_PUBLIC_ENABLE_APP_CHECK_DEBUG === '1' || debugToken.length > 0);
-  if (!IS_STORE_RELEASE && !useDebugProvider) {
+  if (!APP_CHECK_REAL_ATTESTATION_ENABLED && !useDebugProvider) {
     throw errorWithCode('secondary_app_check_unavailable');
   }
 

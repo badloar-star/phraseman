@@ -24,6 +24,18 @@ describe('settings poll vote outbox', () => {
     expect(await readSettingsPollVote('owner-b', 'poll-1')).toBeNull();
   });
 
+  it('prunes old synced votes but keeps the active outbox bounded', async () => {
+    await AsyncStorage.setItem('settings_poll_votes_v1:owner-a', JSON.stringify([{
+      messageId: 'expired-poll',
+      optionId: 'option_1',
+      requestId: 'old-request',
+      status: 'synced',
+      updatedAtMs: Date.now() - (91 * 24 * 60 * 60 * 1000),
+    }]));
+
+    await expect(readSettingsPollVote('owner-a', 'expired-poll')).resolves.toBeNull();
+  });
+
   it('serializes simultaneous taps and keeps one local answer', async () => {
     const pendingTransport: SettingsPollVoteTransport = async () => new Promise(() => {});
     const [first, second] = await Promise.all([

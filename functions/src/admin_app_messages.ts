@@ -97,6 +97,27 @@ function languageContent(translations: RecordValue, suffix: LanguageSuffix, fall
   };
 }
 
+function assertCompleteSettingsTranslations(
+  translations: RecordValue,
+  kind: 'message' | 'poll',
+  pollOptionCount: number,
+): void {
+  for (const suffix of LANGUAGES.filter((item) => item !== 'Ru')) {
+    const key = suffix === 'PtBr' ? 'ptBr' : suffix.toLowerCase();
+    const value = isRecord(translations[key]) ? translations[key] : {};
+    const hasCopy = Boolean(text(value.title, 160) && text(value.body, 2000));
+    const pollOptions = Array.isArray(value.pollOptions) ? value.pollOptions : [];
+    const hasPollCopy = kind !== 'poll' || (
+      Boolean(text(value.pollQuestion, 300))
+      && pollOptions.length === pollOptionCount
+      && pollOptions.every((option) => Boolean(text(option, 160)))
+    );
+    if (!hasCopy || !hasPollCopy) {
+      throw new HttpsError('invalid-argument', `settings_translations_required:${key}`);
+    }
+  }
+}
+
 export function normalizeAppMessageCreateInput(data: unknown, actorEmail: string, nowMs = Date.now()): NormalizedAppMessageCreateInput {
   if (!isRecord(data)) throw new HttpsError('invalid-argument', 'request object required');
   const command = requiredCommandFields(data);
@@ -106,8 +127,12 @@ export function normalizeAppMessageCreateInput(data: unknown, actorEmail: string
   const messageRu = text(ru.body, 2000);
   if (!titleRu || !messageRu) throw new HttpsError('invalid-argument', 'RU title and body are required');
   const kind = data.kind === 'poll' ? 'poll' : 'message';
-  const audience = ['all', 'free', 'premium'].includes(String(data.audience)) ? String(data.audience) : 'all';
   const deliverySurface = data.deliverySurface === 'settings' ? 'settings' : 'inbox';
+  const audienceRaw = String(data.audience ?? '');
+  if (deliverySurface === 'settings' && !['all', 'free', 'premium'].includes(audienceRaw)) {
+    throw new HttpsError('invalid-argument', 'settings_audience_required');
+  }
+  const audience = ['all', 'free', 'premium'].includes(audienceRaw) ? audienceRaw : 'all';
   const settingsSlot = deliverySurface === 'settings' && (data.settingsSlot === 'top' || data.settingsSlot === 'bottom')
     ? data.settingsSlot
     : null;
@@ -118,6 +143,9 @@ export function normalizeAppMessageCreateInput(data: unknown, actorEmail: string
   const ttlDays = Math.max(1, Math.min(30, Math.floor(Number(data.ttlDays ?? 30))));
   if (!Number.isFinite(priority) || !Number.isFinite(ttlDays)) throw new HttpsError('invalid-argument', 'priority or ttlDays invalid');
   const active = data.active === true;
+  if (deliverySurface === 'settings' && active && kind === 'message') {
+    assertCompleteSettingsTranslations(translations, kind, 0);
+  }
   const nowIso = new Date(nowMs).toISOString();
   const expiresAtMs = nowMs + ttlDays * 24 * 60 * 60 * 1000;
   const document: RecordValue = {
@@ -157,6 +185,9 @@ export function normalizeAppMessageCreateInput(data: unknown, actorEmail: string
     const maxPollOptions = deliverySurface === 'settings' ? 4 : 6;
     if (!questionRu || rawRuOptions.length < 2 || rawRuOptions.length > maxPollOptions) {
       throw new HttpsError('invalid-argument', `Poll requires a RU question and 2-${maxPollOptions} options`);
+    }
+    if (deliverySurface === 'settings' && active) {
+      assertCompleteSettingsTranslations(translations, kind, rawRuOptions.length);
     }
     const ruOptions = rawRuOptions.slice(0, maxPollOptions);
     const options = ruOptions.map((optionRu, index) => {
@@ -396,16 +427,24 @@ export const adminCreateAppMessage = onCall(
     const operationRef = db.collection('admin_command_operations').doc(input.idempotencyKey);
     const auditRef = db.collection('admin_log').doc();
     const fingerprint = input.requestFingerprint;
+    const settingsSlot = input.document.active === true && input.document.deliverySurface === 'settings'
+      && (input.document.settingsSlot === 'top' || input.document.settingsSlot === 'bottom')
+      ? input.document.settingsSlot
+      : null;
+    const settingsSlotRef = settingsSlot
+      ? db.collection('admin_config').doc(`settings_message_slot_${settingsSlot}`)
+      : null;
     return db.runTransaction(async (tx) => {
-      const settingsQuery = input.document.active === true && input.document.deliverySurface === 'settings'
+      const settingsQuery = settingsSlot
         ? db.collection('app_messages')
           .where('deliverySurface', '==', 'settings')
-          .where('settingsSlot', '==', input.document.settingsSlot)
+          .where('settingsSlot', '==', settingsSlot)
           .where('active', '==', true)
         : null;
       const [operation, activeInSlot] = await Promise.all([
         tx.get(operationRef),
         settingsQuery ? tx.get(settingsQuery) : Promise.resolve(null),
+        settingsSlotRef ? tx.get(settingsSlotRef) : Promise.resolve(null),
       ]);
       if (operation.exists) {
         const previous = operation.data() ?? {};
@@ -428,6 +467,14 @@ export const adminCreateAppMessage = onCall(
           updatedAtMs: archivedAtMs,
           updatedBy: actorEmail,
         }, { merge: true }));
+      }
+      if (settingsSlotRef) {
+        tx.set(settingsSlotRef, {
+          activeMessageId: messageRef.id,
+          settingsSlot,
+          updatedAtMs: Date.now(),
+          updatedBy: actorEmail,
+        }, { merge: true });
       }
       tx.create(messageRef, input.document);
       tx.create(auditRef, { ...audit, operationId: input.idempotencyKey });
@@ -461,13 +508,24 @@ export const adminSetAppMessageActive = onCall(
       const before = message.data() ?? {};
       assertGenericAppMessage(before);
       if (before.adminOperationLock) throw new HttpsError('aborted', 'app_message_operation_in_progress');
-      if (input.active && before.deliverySurface === 'settings' && (before.settingsSlot === 'top' || before.settingsSlot === 'bottom')) {
-        const activeInSlot = await tx.get(
+      const settingsSlot = before.deliverySurface === 'settings' && (before.settingsSlot === 'top' || before.settingsSlot === 'bottom')
+        ? before.settingsSlot
+        : null;
+      const settingsSlotRef = settingsSlot
+        ? db.collection('admin_config').doc(`settings_message_slot_${settingsSlot}`)
+        : null;
+      const [settingsSlotSnapshot, activeInSlot] = settingsSlotRef
+        ? await Promise.all([
+          tx.get(settingsSlotRef),
+          input.active ? tx.get(
           db.collection('app_messages')
             .where('deliverySurface', '==', 'settings')
-            .where('settingsSlot', '==', before.settingsSlot)
+            .where('settingsSlot', '==', settingsSlot)
             .where('active', '==', true),
-        );
+          ) : Promise.resolve(null),
+        ])
+        : [null, null];
+      if (activeInSlot) {
         const archivedAtMs = Date.now();
         activeInSlot.docs
           .filter((document) => document.id !== input.messageId)
@@ -488,6 +546,24 @@ export const adminSetAppMessageActive = onCall(
         updatedAtMs: Date.now(),
         updatedBy: actorEmail,
       };
+      if (settingsSlotRef) {
+        const currentActiveMessageId = String(settingsSlotSnapshot?.data()?.activeMessageId ?? '');
+        if (input.active) {
+          tx.set(settingsSlotRef, {
+            activeMessageId: messageRef.id,
+            settingsSlot,
+            updatedAtMs: Date.now(),
+            updatedBy: actorEmail,
+          }, { merge: true });
+        } else if (currentActiveMessageId === messageRef.id) {
+          tx.set(settingsSlotRef, {
+            activeMessageId: null,
+            settingsSlot,
+            updatedAtMs: Date.now(),
+            updatedBy: actorEmail,
+          }, { merge: true });
+        }
+      }
       const audit = createAuditRecord({
         action: 'app_message.toggle', actorUid, role,
         entity: { collection: 'app_messages', id: input.messageId }, reason: input.reason,

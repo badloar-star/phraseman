@@ -58,4 +58,14 @@ describe('settings message slots', () => {
     expect(second.assignments).toEqual(first.assignments);
     expect(Boolean(first.top)).toBe(first.assignments[0]?.variant === 'treatment');
   });
+
+  it('waits for a stable account id before assigning an experiment', () => {
+    const snapshot = mergeAppMessagesWithStates([
+      campaign('experiment', { controlPercent: 20 }),
+    ], [], NOW);
+
+    expect(selectSettingsMessageSlots(snapshot, {
+      stableId: '', hasPremiumAccess: false, appVersion: '1.0.0', controlSalt: 'stable-v1',
+    })).toEqual({ top: null, bottom: null, assignments: [], primaryAttribution: null });
+  });
 });

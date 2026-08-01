@@ -19,10 +19,13 @@ describe('settings message admin and vote contracts', () => {
     const callable = read('functions/src/settings_poll_vote.ts');
     const index = read('functions/src/index.ts');
     const rules = read('firestore.rules');
+    const adminCallable = read('functions/src/admin_app_messages.ts');
     expect(callable).toContain('enforceAppCheck: ENFORCE_APP_CHECK');
     expect(callable).toContain("collection('fixed_poll_votes').doc(stableUid)");
     expect(callable).toContain('transaction.create(voteRef');
     expect(index).toContain('submitSettingsPollVote');
+    expect(adminCallable).toContain("collection('admin_config').doc(`settings_message_slot_${settingsSlot}`)");
+    expect(adminCallable).toContain('activeMessageId: messageRef.id');
     expect(rules).toMatch(/match \/fixed_poll_votes\/\{userId\}[\s\S]*?allow create, update, delete: if false;/);
   });
 });

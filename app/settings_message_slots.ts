@@ -58,6 +58,9 @@ export function selectSettingsMessageSlots(
   snapshot: AppMessagesSnapshot | null,
   context: SettingsMessageSlotContext,
 ): SettingsMessageSlotSelection {
+  if (!context.stableId) {
+    return { top: null, bottom: null, assignments: [], primaryAttribution: null };
+  }
   const eligible = (snapshot?.messages ?? []).filter((message) => (
     message.deliverySurface === 'settings'
     && message.settingsSlot !== null

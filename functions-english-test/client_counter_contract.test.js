@@ -8,6 +8,12 @@ const appPath = require.resolve("../knowly-www/english-level-test/app.js");
 const i18nPath = path.join(path.dirname(appPath), "i18n.js");
 const htmlPath = path.join(path.dirname(appPath), "index.html");
 
+function loadI18nRegistry() {
+  const context = vm.createContext({ URL, URLSearchParams });
+  vm.runInContext(fs.readFileSync(i18nPath, "utf8"), context, { filename: i18nPath });
+  return context.EnglishTestI18n;
+}
+
 function memoryStorage(initial = {}) {
   const values = new Map(Object.entries(initial));
   return {
@@ -311,6 +317,9 @@ test("landing copy describes completed tests and the unified asset revision is 2
   );
   assert.match(source, /fetch\(EnglishTestI18n\.TESTS\[language\]\.bankUrl\)/);
   assert.doesNotMatch(source, /const BANK_URL/);
+  const i18n = loadI18nRegistry();
+  assert.deepEqual([...i18n.TEST_LANGUAGES], ["en", "de", "fr", "it", "es"]);
+  for (const code of i18n.TEST_LANGUAGES) assert.equal(i18n.TESTS[code].bankUrl, `./data/questions.${code}.json?v=20260801-2`);
   const scripts = [...html.matchAll(/<script src="([^"]+)"><\/script>/g)].map((match) => match[1]);
   const expectedScripts = [
     "./engine.js?v=20260801-2",

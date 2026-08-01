@@ -10,6 +10,12 @@ const CLIENT_DIR = path.dirname(
 const read = (file) => fs.readFileSync(path.join(CLIENT_DIR, file), 'utf8');
 const APP_SOURCE = read('app.js');
 
+function loadI18nRegistry() {
+  const context = vm.createContext({ URL, URLSearchParams });
+  vm.runInContext(read('i18n.js'), context, { filename: path.join(CLIENT_DIR, 'i18n.js') });
+  return context.EnglishTestI18n;
+}
+
 function loadAppFunction(name, context = {}) {
   const declaration = `${name === 'api' || name === 'getClientHash' ? 'async ' : ''}function ${name}`;
   const start = APP_SOURCE.indexOf(declaration);
@@ -127,6 +133,9 @@ test('all client assets and the bank use one new revision', () => {
     [`./styles.css?v=${expectedRevision}`],
   );
   assert.equal(stylesheets[1], '/assets/site-background.css?v=20260729-1');
+  const i18n = loadI18nRegistry();
+  assert.deepEqual([...i18n.TEST_LANGUAGES], ['en', 'de', 'fr', 'it', 'es']);
+  for (const code of i18n.TEST_LANGUAGES) assert.equal(i18n.TESTS[code].bankUrl, `./data/questions.${code}.json?v=${expectedRevision}`);
   assert.match(app, /fetch\(EnglishTestI18n\.TESTS\[language\]\.bankUrl\)/);
   assert.doesNotMatch(app, /const BANK_URL/);
   assert.doesNotMatch(`${html}\n${app}`, /20260722-3/);

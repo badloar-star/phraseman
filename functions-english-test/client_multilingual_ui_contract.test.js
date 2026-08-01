@@ -461,7 +461,8 @@ test('resolves only supported assessed languages and has complete immutable regi
     assert.equal(i18n.resolveTestLanguage(`?test=${code}`), code);
     const entry = i18n.TESTS[code];
     assert.match(entry.bcp47, /^[a-z]{2}(?:-[A-Z]{2})?$/);
-    assert.equal(entry.bankUrl, `./data/questions.${code}.json?v=20260801-1`);
+    assert.equal(entry.bankUrl, `./data/questions.${code}.json?v=20260801-2`);
+    assert.notEqual(entry.bankUrl, `./data/questions.${code}.json?v=20260801-1`);
     assert.equal(typeof entry.names.ru.nominative, 'string');
     assert.equal(typeof entry.names.ru.genitive, 'string');
     assert.equal(typeof entry.names.en.nominative, 'string');
@@ -487,6 +488,17 @@ test('resolves only supported assessed languages and has complete immutable regi
   assert.equal(i18n.TESTS.de.certificateNames.en, 'German');
   assert.equal(i18n.TESTS.fr.certificateNames.ru, 'французского языка');
   assert.equal(i18n.TESTS.fr.resultNames.ru, 'французского языка');
+});
+
+test('any single downgraded registry bank revision violates the allowlisted runtime registry contract', () => {
+  const source = fs.readFileSync(modulePath, 'utf8');
+  for (const code of ['en', 'de', 'fr', 'it', 'es']) {
+    const mutated = source.replace(`questions.${code}.json?v=20260801-2`, `questions.${code}.json?v=20260801-1`);
+    assert.notEqual(mutated, source, `${code} revision mutation must alter i18n source`);
+    const context = vm.createContext({ URL, URLSearchParams });
+    vm.runInContext(mutated, context, { filename: modulePath });
+    assert.throws(() => assert.equal(context.EnglishTestI18n.TESTS[code].bankUrl, `./data/questions.${code}.json?v=20260801-2`), assert.AssertionError);
+  }
 });
 
 test('handles unavailable storage without accepting untrusted saved values', () => {

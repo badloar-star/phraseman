@@ -49,7 +49,6 @@ export const PERSONAL_PLAN_TASK_VISUAL_THEMES: ThemeMode[] = [
   'dark',
   'coral',
   'gold',
-  'sagePorcelain',
 ];
 
 const DEFAULT_VISUAL_THEME: ThemeMode = 'midnight';

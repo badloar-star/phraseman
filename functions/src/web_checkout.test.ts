@@ -193,6 +193,56 @@ describe('gift certificate batch', () => {
   });
 
   it.each([
+    [true, true, 'named'],
+    [true, false, 'named'],
+    [false, true, 'named'],
+    [false, false, 'anonymous'],
+  ] as const)('creates independent batch visibility recipient=%s sender=%s', (showRecipientName, showSenderName, personalizationMode) => {
+    const plan = createGiftCertificateBatchPlan({
+      ...base,
+      input: {
+        ...base.input,
+        count: 1,
+        recipientNames: ['Recipient'],
+        senderNames: ['Sender'],
+        recipientEmails: ['recipient@example.com'],
+        showRecipientName,
+        showSenderName,
+      } as any,
+      codes: ['GIFT-7QW8E9R2TY'],
+    });
+    expect(plan.items[0].certificateDoc).toMatchObject({
+      personalizationMode,
+      showRecipientName,
+      showSenderName,
+      displayRecipientName: 'Recipient',
+      displaySenderName: 'Sender',
+    });
+  });
+
+  it('includes visibility and both saved names in the idempotency key', () => {
+    const makeKey = (patch: Record<string, unknown>) => buildGiftCertificateBatchRequestKey(createGiftCertificateBatchPlan({
+      ...base,
+      input: {
+        ...base.input,
+        count: 1,
+        recipientNames: ['Recipient'],
+        senderNames: ['Sender'],
+        recipientEmails: ['recipient@example.com'],
+        showRecipientName: false,
+        showSenderName: false,
+        ...patch,
+      } as any,
+      codes: ['GIFT-7QW8E9R2TY'],
+    }).items);
+    const baseline = makeKey({});
+    expect(makeKey({ showRecipientName: true })).not.toBe(baseline);
+    expect(makeKey({ showSenderName: true })).not.toBe(baseline);
+    expect(makeKey({ recipientNames: ['Another recipient'] })).not.toBe(baseline);
+    expect(makeKey({ senderNames: ['Another sender'] })).not.toBe(baseline);
+  });
+
+  it.each([
     ['invalid product', { product: 'weekly' }],
     ['zero count', { count: 0 }],
     ['oversized count', { count: 201 }],
@@ -740,6 +790,8 @@ describe('gift certificate canonical personalization and activation presentation
     expect(result.auditDetails).toEqual({
       certificateId,
       personalizationMode: 'named',
+      showRecipientName: true,
+      showSenderName: true,
       recipientEmailSet: true,
       recipientNameSet: true,
       senderNameSet: true,
@@ -913,6 +965,29 @@ describe('gift certificate canonical download display', () => {
     rewardDays: 366,
     rewardKind: 'days',
   };
+
+  it.each([
+    [true, true, 'Recipient', 'Sender'],
+    [true, false, 'Recipient', ''],
+    [false, true, '', 'Sender'],
+    [false, false, '', ''],
+  ] as const)('downloads recipient=%s sender=%s independently', (showRecipientName, showSenderName, recipientName, senderName) => {
+    const buildCanonicalDisplay = (webCheckoutModule as unknown as {
+      buildGiftCertificateDownloadDisplayRecord: (
+        id: string,
+        delivery: Record<string, unknown>,
+        promo: Record<string, unknown>,
+      ) => Record<string, unknown>;
+    }).buildGiftCertificateDownloadDisplayRecord;
+
+    expect(buildCanonicalDisplay(certificateId, {
+      ...record,
+      showRecipientName,
+      showSenderName,
+      displayRecipientName: 'Recipient',
+      displaySenderName: 'Sender',
+    }, validPromo)).toMatchObject({ showRecipientName, showSenderName, recipientName, senderName });
+  });
 
   it('derives all visible certificate copy from the persisted server record', () => {
     const buildCanonicalDisplay = (webCheckoutModule as unknown as {
@@ -1257,6 +1332,36 @@ describe('gift certificate prepared-delivery claim', () => {
 
 describe('buildActivationEmail', () => {
   const support = 'support.phraseman@gmail.com';
+
+  it.each([
+    [true, true, true, true],
+    [true, false, true, false],
+    [false, true, false, true],
+    [false, false, false, false],
+  ] as const)('renders email visibility recipient=%s sender=%s independently', (
+    showRecipientName,
+    showSenderName,
+    expectsRecipient,
+    expectsSender,
+  ) => {
+    const { html, text } = buildActivationEmail({
+      activationCode: 'GIFT-7QW8E9R2TY',
+      plan: 'yearly',
+      product: 'yearly',
+      gift: true,
+      showRecipientName,
+      showSenderName,
+      displayRecipientName: 'Recipient',
+      displaySenderName: 'Sender',
+      recipientEmail: 'recipient@example.com',
+      giftPhraseId: 'yearly-01',
+      codeExpiresAtMs: Date.UTC(2027, 6, 26),
+    }, support);
+    expect(html.includes('Для: Recipient')).toBe(expectsRecipient);
+    expect(text.includes('Для: Recipient')).toBe(expectsRecipient);
+    expect(html.includes('от Sender')).toBe(expectsSender);
+    expect(text.includes('От: Sender')).toBe(expectsSender);
+  });
 
   it('uses the same deterministic plan-first phrase for legacy missing or invalid saved ids', () => {
     const expected = GIFT_CERTIFICATE_PHRASES.yearly[0];

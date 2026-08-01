@@ -13,7 +13,6 @@ import {
   Modal,
   Platform,
   Pressable,
-  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -49,6 +48,8 @@ import AddToFlashcard from '../components/AddToFlashcard';
 import LessonEnergyLightning from '../components/LessonEnergyLightning';
 import TapScale from '../components/TapScale';
 import SpeakingPanel, { buildSpeakingPanelTheme } from '../components/SpeakingPanel';
+import SpeakingInlineSlot from '../components/SpeakingInlineSlot';
+import SpeakingInlineResultStars, { type SpeakingAttemptResult } from '../components/SpeakingInlineResultStars';
 import { isSpeakingEnabled } from './remote_flags';
 import { isTesterNoLimitsActive } from './premium_guard';
 import { usePremium, useFeatureAccess } from '../components/PremiumContext';
@@ -87,7 +88,12 @@ import { useEnergy } from '../components/EnergyContext';
 import { getLessonData, getLessonEncouragementScreens, getLessonIntroScreens } from './lesson_data_all';
 import { isInteractiveTheoryLesson } from './theory_topic_accents';
 import type { LessonPhrase } from './lesson_data_types';
-import { phraseAnswerAlternatives, phraseAnswerDisplayLine, phraseCanonicalAnswer, phraseHasStudyTargetContent, phrasePrimarySurface, phraseWordRowsForStudyTarget, ttsLocaleForStudyTarget } from './phrase_target_utils';
+import { answerDisplayLineWithCanonicalPunctuation, phraseAnswerAlternatives, phraseAnswerDisplayLine, phraseCanonicalAnswer, phraseHasStudyTargetContent, phrasePrimarySurface, phraseWordRowsForStudyTarget, ttsLocaleForStudyTarget } from './phrase_target_utils';
+
+// Enabled by default with the same emergency build-time rollback as the shared
+// navigation helper. Native dismissTo releases the abandoned lesson stack.
+const NATIVE_LESSON_DISMISS_ENABLED =
+  typeof process === 'undefined' || process.env.EXPO_PUBLIC_NATIVE_POP_TO_BACK !== '0';
 import { isCorrectLessonHardModeTypedAnswer } from './lesson_hard_mode_answer_tolerance';
 import { isFlexiblePlanNameAnswer, shouldSkipPlanGrammarAnalytics } from './personal_plan_mistake_context';
 import { getPersonalPlanPhraseLesson, personalizePlanPhraseLesson } from './personal_plan_phrase_lessons';
@@ -130,6 +136,7 @@ import { safeRouterBack } from './navigation_back';
 import { useMistakeExplain } from './use_mistake_explain';
 import { isExplainEnabled } from './explain_phrase_flags';
 import { resolveLessonAnswerFontSize } from '../lib/lesson_answer_layout';
+import { maskSpokenPhraseKeepInitial } from './speaking_word_report';
 
 import { noAndroidOutline } from '../constants/androidGlow';
 const GRAMMAR_HINTS = [
@@ -690,7 +697,12 @@ const LessonContent = React.memo(function LessonContent({
   // «Устно»: учитываем «Пульт» — если фича переведена в «Фри», замок снят у всех.
   const speakingIsPremium = useFeatureAccess('speaking');
   const speakingFeatureEnabled = isSpeakingEnabled();
+  const phraseEnterKey = phrase ? `${String(phrase.id ?? '')}:${String(phrase.english ?? phrase.spanish ?? '')}` : '';
+  const speakingPhraseKey = `${displayCell}:${realPhraseIdx}:${phraseEnterKey}`;
   const [speakingOpen, setSpeakingOpen] = useState(false);
+  const [speakingHoldActive, setSpeakingHoldActive] = useState(false);
+  const [speakingResult, setSpeakingResult] = useState<SpeakingAttemptResult | null>(null);
+  const speakingOpenedForPhraseRef = useRef<string | null>(null);
 
   // [REVIEW] Окно «Назад к фразам» — просмотр уже пройденных фраз урока (read-only).
   const [reviewOpen, setReviewOpen] = useState(false);
@@ -706,7 +718,7 @@ const LessonContent = React.memo(function LessonContent({
   const reviewGoPrev = useCallback(() => setReviewIndex(i => Math.max(0, i - 1)), []);
   const reviewGoNext = useCallback(() => setReviewIndex(i => Math.min(reviewCount - 1, i + 1)), [reviewCount]);
   const reviewCurrent = reviewOpen ? (reviewPhrases[reviewIndex] ?? null) : null;
-  const openSpeaking = useCallback(() => {
+  const startSpeakingHold = useCallback(() => {
     hapticTap();
     if (!speakingIsPremium) {
       router.push({ pathname: '/premium_modal', params: { context: 'speaking' } } as any);
@@ -716,15 +728,44 @@ const LessonContent = React.memo(function LessonContent({
     // «Моя запись» / «Сказать ещё раз», и 4-сек таймер не должен увести урок
     // вперёд, пока панель открыта. Переход дальше — только по явному действию юзера.
     onSpeakingActiveChange?.(true);
+    speakingOpenedForPhraseRef.current = speakingPhraseKey;
+    setSpeakingResult(null);
     setSpeakingOpen(true);
-  }, [speakingIsPremium, router, onSpeakingActiveChange]);
+    setSpeakingHoldActive(true);
+  }, [speakingIsPremium, router, onSpeakingActiveChange, speakingPhraseKey]);
+
+  const endSpeakingHold = useCallback(() => setSpeakingHoldActive(false), []);
 
   const closeSpeaking = useCallback(() => {
+    speakingOpenedForPhraseRef.current = null;
+    setSpeakingHoldActive(false);
     setSpeakingOpen(false);
     // Не перезапускаем авто-переход автоматически — юзер сам жмёт «Далее», когда
     // готов (кнопка lesson1-next доступна в состоянии result).
     onSpeakingActiveChange?.(false);
   }, [onSpeakingActiveChange]);
+
+  const handleSpeakingScore = useCallback((result: SpeakingAttemptResult) => {
+    setSpeakingResult(result);
+    closeSpeaking();
+  }, [closeSpeaking]);
+
+  useEffect(() => {
+    const openedForPhrase = speakingOpenedForPhraseRef.current;
+    if (openedForPhrase == null || openedForPhrase === speakingPhraseKey) return;
+    speakingOpenedForPhraseRef.current = null;
+    setSpeakingHoldActive(false);
+    setSpeakingOpen(false);
+    onSpeakingActiveChange?.(false);
+  }, [speakingPhraseKey, onSpeakingActiveChange]);
+
+  // Проверяется прямо во время рендера: новая фраза не успевает получить ни одного
+  // кадра с результатом предыдущей попытки, даже до запуска эффекта выше.
+  const speakingVisible = speakingOpen && speakingOpenedForPhraseRef.current === speakingPhraseKey;
+
+  useEffect(() => {
+    setSpeakingResult(null);
+  }, [speakingPhraseKey]);
 
   // [50/50] Затемняет неправильные плитки до ответа. Тратит тот же дневной кредит, что и «Объясни».
   const [fiftyFiftyActive, setFiftyFiftyActive] = useState(false);
@@ -785,7 +826,6 @@ const LessonContent = React.memo(function LessonContent({
   const wordDispatchTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   useEffect(() => () => { if (wordDispatchTimerRef.current) clearTimeout(wordDispatchTimerRef.current); }, []);
   const questionEnterAnim = useRef(new Animated.Value(1)).current;
-  const phraseEnterKey = phrase ? `${String(phrase.id ?? '')}:${String(phrase.english ?? phrase.spanish ?? '')}` : '';
   // Mirror of phraseEnterKey, read inside async callbacks to drop stale AI-explain responses
   // that resolve after the user has already moved to another phrase.
   const phraseEnterKeyRef = useRef(phraseEnterKey);
@@ -938,10 +978,15 @@ const LessonContent = React.memo(function LessonContent({
   const acceptedUserAnswerLine = settings.hardMode
     ? reportUserAnswer.replace(/\s+/g, ' ').trim()
     : cleanPhraseForDisplay(selectedAnswer).replace(/\s+/g, ' ').trim();
+  const canonicalResultLine = phrase ? phraseAnswerDisplayLine(phrase, studyTarget, lang) : '';
   const resultCorrectLine = phrase
     ? (status === 'result' && !wasWrong && acceptedUserAnswerLine.length > 0
-      ? acceptedUserAnswerLine
-      : phraseAnswerDisplayLine(phrase, studyTarget, lang))
+      ? answerDisplayLineWithCanonicalPunctuation(acceptedUserAnswerLine, canonicalResultLine)
+      : canonicalResultLine)
+    : '';
+  const spokenTargetLine = cleanPhraseForDisplay(gradeTarget);
+  const speakingPrimaryLine = speakingResult
+    ? (speakingResult.passed ? spokenTargetLine : maskSpokenPhraseKeepInitial(spokenTargetLine))
     : '';
   const interactiveAnswerText = settings.hardMode
     ? typedText
@@ -1142,8 +1187,36 @@ const LessonContent = React.memo(function LessonContent({
             return lessonPhraseMeaningForLang(phrase, lang, studyTarget);
           })()}</Text>
 
-          <View style={{ minHeight: linkedSliceCompact ? 46 : 60, alignSelf: 'stretch', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: emptyTapFlash ? '#F5A623' : t.border, marginBottom: linkedSliceCompact ? 8 : (compact ? 12 : 20), justifyContent: 'center', backgroundColor: emptyTapFlash ? 'rgba(245,166,35,0.08)' : 'transparent', borderRadius: emptyTapFlash ? 8 : 0 } as any}>
-            {settings.hardMode ? (
+          <View testID="lesson1-answer-divider" style={{ minHeight: linkedSliceCompact ? 46 : 60, alignSelf: 'stretch', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: emptyTapFlash ? '#F5A623' : t.border, marginBottom: speakingResult ? 4 : (linkedSliceCompact ? 8 : (compact ? 12 : 20)), justifyContent: 'center', backgroundColor: emptyTapFlash ? 'rgba(245,166,35,0.08)' : 'transparent', borderRadius: emptyTapFlash ? 8 : 0 } as any}>
+            {(status === 'result' || speakingResult) ? (
+              <View testID="lesson1-primary-answer-row" style={{ alignItems: 'center', justifyContent: 'center', width: '100%' }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', maxWidth: '100%' }}>
+                  <Text
+                    style={{
+                      color: status === 'result' || speakingResult?.passed ? t.correct : t.wrong,
+                      fontSize: status === 'result' ? resultAnswerFont : interactiveAnswerFont,
+                      textAlign: 'center',
+                      flexShrink: 1,
+                    }}
+                  >
+                    {status === 'result' ? resultCorrectLine : speakingPrimaryLine}
+                  </Text>
+                  {status === 'result' && (
+                    <View testID="lesson1-primary-save" style={{ marginLeft: 6 }}>
+                      <AddToFlashcard
+                        en={resultCorrectLine}
+                        ru={phrase.russian}
+                        uk={phrase.ukrainian || phrase.russian}
+                        es={spanishSurfacesEnabled(lang, studyTarget) ? phrase.spanish : undefined}
+                        sourceLocales={phrase.sourceLocales}
+                        source="lesson"
+                        sourceId={String(lessonId)}
+                      />
+                    </View>
+                  )}
+                </View>
+              </View>
+            ) : settings.hardMode ? (
               /* Keep TextInput always mounted in hardMode — prevents keyboard slide animation between questions */
               <TextInput
                 testID="lesson1-typed-input"
@@ -1187,6 +1260,16 @@ const LessonContent = React.memo(function LessonContent({
               </Text>
             )}
           </View>
+
+          {speakingResult && (
+            <View testID="lesson1-speaking-score-below-divider" style={{ minHeight: 24, marginBottom: linkedSliceCompact ? 8 : (compact ? 12 : 20), justifyContent: 'center' }}>
+              <SpeakingInlineResultStars
+                testID="lesson1-speaking-score"
+                result={speakingResult}
+                theme={buildSpeakingPanelTheme(t)}
+              />
+            </View>
+          )}
 
           </Pressable>
           </Animated.View>
@@ -1235,27 +1318,6 @@ const LessonContent = React.memo(function LessonContent({
                   </View>
                 </View>
               )}
-              <View style={{ backgroundColor: t.correctBg, padding: linkedSliceCompact ? 10 : 15, borderRadius: 10, borderLeftWidth: 3, borderLeftColor: t.correct, flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-                {/* зачем: обрезка снята — в компактном режиме плана скролл контейнера
-                    выключен (scrollEnabled={!linkedSliceCompact}), поэтому numberOfLines={2}
-                    делал правильный ответ физически нечитаемым («Правильное предложение:
-                    "The[y]» — репорт по уроку 14). Правильный ответ — суть обучения,
-                    он обязан быть виден целиком; блок растёт по высоте вместо обрезки. */}
-                <Text
-                  style={{ color: t.correct, fontSize: resultAnswerFont, flex: 1, textAlign: 'left' }}
-                >
-                  {resultCorrectLine}
-                </Text>
-                <AddToFlashcard
-                  en={resultCorrectLine}
-                  ru={phrase.russian}
-                  uk={phrase.ukrainian || phrase.russian}
-                  es={spanishSurfacesEnabled(lang, studyTarget) ? phrase.spanish : undefined}
-                  sourceLocales={phrase.sourceLocales}
-                  source="lesson" sourceId={String(lessonId)}
-                />
-              </View>
-
               {status === 'result' && wasWrong && (
                 <View style={{ marginTop: linkedSliceCompact ? 6 : 10 }}>
                   <AiMistakeCard
@@ -1309,6 +1371,26 @@ const LessonContent = React.memo(function LessonContent({
               />
 
             </Animated.View>
+          )}
+
+          {speakingFeatureEnabled && !!gradeTarget && (
+            <SpeakingInlineSlot variant="lesson" style={{ marginTop: linkedSliceCompact ? 14 : 18 }}>
+              {speakingVisible && (
+                <SpeakingPanel
+                  targetText={cleanPhraseForDisplay(gradeTarget)}
+                  lang={lang}
+                  theme={buildSpeakingPanelTheme(t)}
+                  presentation="inline"
+                  holdActive={speakingHoldActive}
+                  onScore={handleSpeakingScore}
+                  onPass={({ score }) => {
+                    void trackFeatureSuccess('speaking', 'attempt', { lessonId, score }, 'lesson1');
+                    onSpeakingFillAnswer(cleanPhraseForDisplay(gradeTarget));
+                  }}
+                  onClose={closeSpeaking}
+                />
+              )}
+            </SpeakingInlineSlot>
           )}
         </BouncyScrollView>
 
@@ -1550,7 +1632,8 @@ const LessonContent = React.memo(function LessonContent({
                 pl: 'Powiedz frazę na głos',
               })}
               style={{ flex: 1, alignItems: 'center' }}
-              onPress={openSpeaking}
+              onPressIn={startSpeakingHold}
+              onPressOut={endSpeakingHold}
             >
               <View style={{ position: 'relative' }}>
                 <Ionicons name="mic-outline" size={26} color={sx.second} />
@@ -1753,23 +1836,6 @@ const LessonContent = React.memo(function LessonContent({
           >
             <Text style={{ color: '#fff', fontSize: 11, fontWeight: '600' }}>DEV: grammar hint</Text>
           </TapScale>
-        )}
-
-        {/* [SPEAKING] Premium speaking panel overlay. Говорение — необязательная
-            надстройка над уже отвеченной фразой урока, поэтому отдельный XP не
-            начисляем (нет двойного счёта, на пейволе XP не обещан); успешную
-            попытку только фиксируем в аналитике фич. */}
-        {speakingOpen && speakingFeatureEnabled && !!gradeTarget && (
-          <SpeakingPanel
-            targetText={cleanPhraseForDisplay(gradeTarget)}
-            lang={lang}
-            theme={buildSpeakingPanelTheme(t)}
-            onPass={({ score }) => {
-              void trackFeatureSuccess('speaking', 'attempt', { lessonId, score }, 'lesson1');
-            }}
-            onFillAnswer={onSpeakingFillAnswer}
-            onClose={closeSpeaking}
-          />
         )}
 
         {/* [EXPLAIN] Общая шторка «Объясни проще» из футера. Объясняет английскую фразу/грамматику, НЕ русский смысл. */}
@@ -2162,8 +2228,6 @@ export default function LessonScreen() {
     lessonAnalyticsAttemptRef.current = createLessonAnalyticsAttempt(Crypto.randomUUID);
   }
   const differentLessonTrackedRef = useRef(false); // засчитали different_lessons для этого урока сегодня
-  const blitzCorrectTimesRef = useRef<number[]>([]); // метки последних верных ответов (blitz_speed)
-  const blitzFiredRef = useRef(false);              // blitz_speed уже засчитан в этом уроке
   // last_active_date на СТАРТЕ урока: первое начисление XP перезапишет её сегодняшней
   // датой, и «возвращение после перерыва» перестанет быть видно (comeback_lesson).
   const comebackLastActiveRef = useRef<string | null | undefined>(undefined);
@@ -2358,16 +2422,23 @@ export default function LessonScreen() {
   }, [stopAudio]);
 
   useEffect(() => {
-    if (status !== 'result' || !phrase || !settings.voiceOut) return;
+    if (lessonRuntimeActive) return;
+    if (autoTimer.current) { clearTimeout(autoTimer.current); autoTimer.current = null; }
+    if (replayAudioTimerRef.current) { clearTimeout(replayAudioTimerRef.current); replayAudioTimerRef.current = null; }
+    stopAudio();
+  }, [lessonRuntimeActive, stopAudio]);
+
+  useEffect(() => {
+    if (!lessonRuntimeActive || status !== 'result' || !phrase || !settings.voiceOut) return;
     const line = phraseAnswerDisplayLine(phrase, studyTarget, lang);
     const key = `${String(phrase.id ?? cellIndex)}:${line}`;
     if (!line || spokenResultKeyRef.current === key) return;
     spokenResultKeyRef.current = key;
     speakAudio(line, settings.speechRate, { language: ttsLocaleForStudyTarget(studyTarget), speechText: pronunciationOverrideForLessonPhrase(line) });
-  }, [cellIndex, lang, phrase, settings.speechRate, settings.voiceOut, speakAudio, status, studyTarget]);
+  }, [cellIndex, lang, lessonRuntimeActive, phrase, settings.speechRate, settings.voiceOut, speakAudio, status, studyTarget]);
 
   const replayResultPhraseAudio = useCallback(() => {
-    if (status !== 'result' || !phrase) return;
+    if (!lessonRuntimeActive || status !== 'result' || !phrase) return;
     const line = phraseAnswerDisplayLine(phrase, studyTarget, lang);
     if (!line) return;
     stopAudio();
@@ -2376,7 +2447,7 @@ export default function LessonScreen() {
       replayAudioTimerRef.current = null;
       speakAudio(line, settings.speechRate, { language: ttsLocaleForStudyTarget(studyTarget), speechText: pronunciationOverrideForLessonPhrase(line) });
     }, Platform.OS === 'android' ? 90 : 30);
-  }, [lang, phrase, settings.speechRate, speakAudio, status, stopAudio, studyTarget]);
+  }, [lang, lessonRuntimeActive, phrase, settings.speechRate, speakAudio, status, stopAudio, studyTarget]);
 
   // [REVIEW] «Назад к фразам» — список уже пройденных фраз урока для просмотра/сравнения
   // (read-only). Запрошено пользователем: вернуться и сравнить логику прошлых заданий.
@@ -2505,7 +2576,17 @@ export default function LessonScreen() {
           safeRouterBack(router, { pathname: '/(tabs)/lessons', params: { id: String(lessonId) } } as any);
           return;
         }
-        router.dismissTo({ pathname: '/(tabs)/lessons', params: { id: String(lessonId) } });
+        if (NATIVE_LESSON_DISMISS_ENABLED) {
+          router.dismissTo({ pathname: '/(tabs)/lessons', params: { id: String(lessonId) } });
+          return;
+        }
+        void trackActivity('navigation:native_lesson_dismiss_skipped', {
+          feature: 'navigation',
+          screen: 'lesson1',
+          result: 'info',
+          tags: { lessonId, from },
+        });
+        safeRouterBack(router, { pathname: '/(tabs)/lessons', params: { id: String(lessonId) } } as any);
       };
       void import('./lesson_menu')
         .then((m) => m.prefetchLessonMenuCache(lessonId, studyTargetRef.current))
@@ -2561,7 +2642,7 @@ export default function LessonScreen() {
 
   // Android: системный «Назад» = тот же выход, что и кнопка (без дублей в стеке).
   useEffect(() => {
-    if (Platform.OS !== 'android') return;
+    if (!lessonRuntimeActive || Platform.OS !== 'android') return;
     const sub = BackHandler.addEventListener('hardwareBackPress', () => {
       if (showNoEnergyModal) {
         resetNoEnergyModal();
@@ -2571,7 +2652,7 @@ export default function LessonScreen() {
       return true;
     });
     return () => sub.remove();
-  }, [showNoEnergyModal, handleLessonHeaderBack, resetNoEnergyModal]);
+  }, [lessonRuntimeActive, showNoEnergyModal, handleLessonHeaderBack, resetNoEnergyModal]);
 
   useEffect(() => { showEnergyEmptyFeedbackRef.current = showEnergyEmptyFeedback; }, [showEnergyEmptyFeedback]);
 
@@ -3045,17 +3126,6 @@ export default function LessonScreen() {
       correctStreakRef.current += 1;
       todayAnswersRef.current += 1;
       setComboCount(correctStreakRef.current);
-      // blitz_speed: скользящее окно — 10 верных ответов с размахом ≤60 секунд (раз в урок).
-      if (!blitzFiredRef.current) {
-        const nowMs = Date.now();
-        const times = blitzCorrectTimesRef.current;
-        times.push(nowMs);
-        if (times.length > 10) times.shift();
-        if (times.length === 10 && nowMs - times[0] <= 60_000) {
-          blitzFiredRef.current = true;
-          updateTaskProgress('blitz_speed', 1, studyTargetRef.current).catch(() => {});
-        }
-      }
       const lessonUpdates: Parameters<typeof updateMultipleTaskProgress>[0] = [
         { type: 'correct_streak' },
         { type: 'lesson_no_mistakes' },
@@ -3370,14 +3440,14 @@ export default function LessonScreen() {
     // Панель «Скажи вслух» открыта → не заряжаем авто-переход (юзер хочет остаться
     // на фразе: переслушать эталон/запись, перезаписать). И даже если таймер
     // как-то был заряжен, колбэк ещё раз проверит флаг перед прыжком.
-    if (settings.autoAdvance && isRight && !speakingSuspendRef.current) {
+    if (settings.autoAdvance && lessonRuntimeActive && isRight && !speakingSuspendRef.current) {
       autoTimer.current = setTimeout(() => {
         autoTimer.current = null;
-        if (speakingSuspendRef.current) return;
+        if (!lessonRuntimeActive || speakingSuspendRef.current) return;
         goNext(np);
       }, 4000);
     }
-  }, [progress, cellIndex, phrase, settings, fadeAnim, lessonId, overridePhraseCell, lang, persistErrorReplayToStorage, reduceMotion, studyTarget, isPlanLessonTask, planRequiredPhrases, isPlanPhraseLessonTask, lessonStorageId, SERVER_ATTEMPT_KEY]);
+  }, [progress, cellIndex, phrase, settings, fadeAnim, lessonId, overridePhraseCell, lang, lessonRuntimeActive, persistErrorReplayToStorage, reduceMotion, studyTarget, isPlanLessonTask, planRequiredPhrases, isPlanPhraseLessonTask, lessonStorageId, SERVER_ATTEMPT_KEY]);
 
   const goNext = useCallback(async (_currentProgress?: string[]) => {
     if (autoTimer.current) clearTimeout(autoTimer.current);

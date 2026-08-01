@@ -14,8 +14,8 @@ describe('team messages inside notification center', () => {
     expect(source).toContain('testID="notification-center-team-detail-back"');
     expect(source).toContain('onDetailOpenChange?.(!!selectedId)');
     expect(source).toContain("const effectiveVisible = mode === 'notification-center' ? centerVisible : visible");
-    expect(source).toContain('if (!effectiveVisible) return;');
-    expect(source).toContain("if (state === 'active') void flushPendingAppMessageVisibilityForCurrentOwner()");
+    expect(source).toContain('if (!runtimeActive) return;');
+    expect(source).toContain('minIntervalMs: effectiveVisible ? 0 : BADGE_FOREGROUND_REFRESH_MIN_INTERVAL_MS');
     const selectStart = source.indexOf('const selectMessage =');
     const dismissStart = source.indexOf('const dismissMessage =', selectStart);
     const selectHandler = source.slice(selectStart, dismissStart);

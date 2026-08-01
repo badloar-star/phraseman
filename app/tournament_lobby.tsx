@@ -9,11 +9,19 @@
 
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
-import Animated, { FadeIn, ZoomIn } from 'react-native-reanimated';
+import Animated, {
+  FadeIn,
+  ZoomIn,
+  useAnimatedStyle,
+  useSharedValue,
+  withSequence,
+  withTiming,
+} from 'react-native-reanimated';
 import { useRouter } from 'expo-router';
 import * as Haptics from 'expo-haptics';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { Sheet } from '../components/tournament/tournament_ui';
 import AvatarView from '../components/AvatarView';
 import {
@@ -23,14 +31,13 @@ import {
   V2Segments,
 } from '../components/tournament/tournament_v2_ui';
 import { tournamentAvatarValue } from '../components/tournament/tournament_avatars';
-import { useCountdown } from '../components/tournament/TournamentCountdown';
 import { T, formatTimeLeft, radius, type, useTournamentPalette, type TournamentPalette} from '../components/tournament/tournament_theme';
 import { TournamentEdgeState } from '../components/tournament/TournamentEdgeState';
 import { TournamentFxHost, type TournamentFxApi } from '../components/tournament/TournamentFx';
 import {
-  isRoundState,
-  isTableState, tournamentNow, useTournamentReactions, useTournamentRoom,
-  type RoomPlayer } from './tournament_client';
+  isRoundState, leaveTournament, resolveTournamentLobbyRoute, resolveTournamentRoomIdParam,
+  tournamentNow, useTournamentReactions, useTournamentRoom,
+  type RoomPlayer, type Room } from './tournament_client';
 import { getStableId } from './stable_id';
 import { useLocalSearchParams } from 'expo-router';
 
@@ -100,16 +107,77 @@ function mapPlayersToSeats(players: readonly RoomPlayer[], myId: string | null):
   });
 }
 
+type LobbyBotArrival = NonNullable<Room['lobbyEvents']>[number];
+
+const AnimatedBankAmount = memo(function AnimatedBankAmount({
+  amount,
+  events,
+}: {
+  amount: number;
+  events: readonly LobbyBotArrival[];
+}) {
+  const P = useTournamentPalette();
+  const styles = React.useMemo(() => makeStyles(P), [P]);
+  const reduceMotion = useReduceMotion();
+  const pulse = useSharedValue(1);
+  const [displayAmount, setDisplayAmount] = useState(amount);
+  const seenEventIdsRef = useRef(new Set<string>());
+  const initializedRef = useRef(false);
+
+  useEffect(() => {
+    if (!initializedRef.current) {
+      events.forEach((event) => seenEventIdsRef.current.add(event.eventId));
+      initializedRef.current = true;
+      setDisplayAmount(amount);
+      return;
+    }
+    const arrivals = events
+      .filter((event) => event.kind === 'bot_arrival' && !seenEventIdsRef.current.has(event.eventId))
+      .sort((left, right) => left.atMs - right.atMs);
+    if (arrivals.length === 0) {
+      setDisplayAmount(amount);
+      return;
+    }
+    arrivals.forEach((event) => seenEventIdsRef.current.add(event.eventId));
+    const timers = arrivals.map((event, index) => setTimeout(() => {
+      // `potGemsAfter` is authoritative. A zero test-mode delta keeps digits
+      // unchanged rather than inventing a bank gain.
+      setDisplayAmount(event.potGemsAfter);
+      if (reduceMotion) {
+        pulse.value = 1;
+      } else {
+        pulse.value = withSequence(withTiming(1.06, { duration: 120 }), withTiming(1, { duration: 180 }));
+      }
+    }, index * 360));
+    return () => timers.forEach(clearTimeout);
+  }, [amount, events, pulse, reduceMotion]);
+
+  const animatedStyle = useAnimatedStyle(() => ({ transform: [{ scale: pulse.value }] }));
+  return (
+    <Animated.View
+      style={[styles.bankAmountWrap, animatedStyle]}
+      accessibilityLiveRegion="polite"
+      accessibilityLabel={`Банк турнира: ${amount} жемчужин`}
+    >
+      <Text style={styles.bankAmountSlot}>{displayAmount}</Text>
+      <Text style={styles.bankUnit}>жемчужин</Text>
+    </Animated.View>
+  );
+});
+
 export default function TournamentLobbyScreen() {
   const P = useTournamentPalette();
   const styles = React.useMemo(() => makeStyles(P), [P]);
   const router = useRouter();
   const insets = useStableSafeAreaInsets();
-  const params = useLocalSearchParams<{ roomId?: string }>();
-  const roomId = typeof params.roomId === 'string' ? params.roomId : null;
+  const params = useLocalSearchParams<{ roomId?: string | string[] }>();
+  const roomId = resolveTournamentRoomIdParam(params.roomId);
+  const runtimeActive = useRuntimeActive();
 
-  const { room, status, secondsLeft, retry } = useTournamentRoom(roomId);
+  const { room, status, freshSnapshot, secondsLeft, retry } = useTournamentRoom(roomId, runtimeActive);
   const [selected, setSelected] = useState<Seat | null>(null);
+  const [leaving, setLeaving] = useState(false);
+  const [leaveError, setLeaveError] = useState('');
   const [myId, setMyId] = useState<string | null>(null);
   // authUid нужен, чтобы не проигрывать СВОЮ реакцию дважды: один раз
   // оптимистично при тапе и второй — когда она вернётся из подписки.
@@ -120,7 +188,7 @@ export default function TournamentLobbyScreen() {
     incoming: incomingReactions,
     send: sendLiveReaction,
     consume: consumeReaction,
-  } = useTournamentReactions(roomId);
+  } = useTournamentReactions(roomId, runtimeActive);
 
   // Свой id нужен, чтобы подсветить своё место в сетке.
   useEffect(() => {
@@ -138,11 +206,18 @@ export default function TournamentLobbyScreen() {
   // Переход в раунд по СЕРВЕРНОМУ состоянию, а не по локальному таймеру:
   // иначе игроки с неточными часами уйдут в раунд раньше или позже остальных.
   useEffect(() => {
-    if (!room || !roomId) return;
-    if (isRoundState(room.state) || isTableState(room.state)) {
+    if (!runtimeActive || !freshSnapshot || !room || !roomId) return;
+    if (isRoundState(room.state)) {
       router.replace({ pathname: '/tournament_round', params: { roomId } });
+      return;
     }
-  }, [room?.state, roomId, router, room]);
+    const route = resolveTournamentLobbyRoute(room.state);
+    if (route === 'table') {
+      router.replace({ pathname: '/tournament_table', params: { roomId } });
+    } else if (route === 'results') {
+      router.replace({ pathname: '/tournament_results', params: { roomId } });
+    }
+  }, [freshSnapshot, room?.state, roomId, router, room, runtimeActive]);
 
   /**
    * Секундный тик — по нему в лобби «подсаживаются» игроки, чьё время входа
@@ -156,7 +231,6 @@ export default function TournamentLobbyScreen() {
     () => (roomPlayers ?? []).every((player) => !player.joinAtMs || player.joinAtMs <= tournamentNow()),
     [roomPlayers, lobbyTick],
   );
-  const runtimeActive = useRuntimeActive();
   useEffect(() => {
     // Не тикаем в фоне и когда все уже собрались (Performance Bible).
     if (everyoneArrived || !runtimeActive) return;
@@ -178,6 +252,26 @@ export default function TournamentLobbyScreen() {
   const joined = seats.length;
   const full = joined >= SEATS;
   const secondsToStart = secondsLeft;
+  const bankGems = Math.max(0, Math.trunc(Number(room?.potGems ?? 0)));
+
+  const leaveLobby = useCallback(async () => {
+    if (!roomId || leaving || !runtimeActive) return;
+    setLeaving(true);
+    setLeaveError('');
+    try {
+      await leaveTournament(roomId);
+      void Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+      router.replace('/tournaments');
+    } catch (error) {
+      const details = error && typeof error === 'object'
+        ? `${String((error as { code?: unknown }).code ?? '')} ${String((error as { message?: unknown }).message ?? '')}`
+        : String(error ?? '');
+      setLeaveError(details.includes('room_not_leaveable')
+        ? 'Турнир уже начался — выйти нельзя'
+        : 'Не удалось выйти. Попробуйте ещё раз');
+      setLeaving(false);
+    }
+  }, [leaving, roomId, router, runtimeActive]);
 
 
   /**
@@ -195,13 +289,14 @@ export default function TournamentLobbyScreen() {
    */
   const myLaneRef = useRef(0);
   const sendReaction = useCallback((emoji: string) => {
+    if (!runtimeActive) return;
     void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     void sendLiveReaction(emoji, myName).then((accepted) => {
-      if (!accepted) return;
+      if (!accepted || !runtimeActive) return;
       myLaneRef.current = (myLaneRef.current + 1) % 5;
       fxRef.current?.flyReaction(emoji, myLaneRef.current);
     });
-  }, [sendLiveReaction, myName]);
+  }, [sendLiveReaction, myName, runtimeActive]);
 
   /**
    * Чужие реакции — тем же полётом, что и свои.
@@ -209,14 +304,14 @@ export default function TournamentLobbyScreen() {
    * список рос бы всё лобби.
    */
   useEffect(() => {
-    if (incomingReactions.length === 0) return;
+    if (!runtimeActive || incomingReactions.length === 0) return;
     incomingReactions.forEach((item, index) => {
       // Свою реакцию уже показали оптимистично — второй полёт был бы дублем.
       if (item.id === myAuthUid) { consumeReaction(item.id, item.atMs); return; }
       fxRef.current?.flyReaction(item.emoji, index % 5);
       consumeReaction(item.id, item.atMs);
     });
-  }, [incomingReactions, consumeReaction, myAuthUid]);
+  }, [incomingReactions, consumeReaction, myAuthUid, runtimeActive]);
 
 
   if (status === 'offline') {
@@ -251,9 +346,21 @@ export default function TournamentLobbyScreen() {
         showsVerticalScrollIndicator={false}
       >
         <View style={styles.header}>
+          <Pressable
+            onPress={leaveLobby}
+            disabled={leaving}
+            style={[styles.exitButton, leaving && styles.exitButtonDisabled]}
+            accessibilityRole="button"
+            accessibilityLabel="Выйти из лобби"
+            accessibilityHint="Вы покинете турнир; списанный взнос вернётся автоматически"
+            accessibilityState={{ disabled: leaving, busy: leaving }}
+          >
+            <Text style={styles.exitButtonText}>{leaving ? 'Выходим…' : 'Выйти'}</Text>
+          </Pressable>
           <Text style={styles.title}>Лобби</Text>
           <V2Counter value={`${joined}/${SEATS}`} tone={full ? 'gems' : 'plain'} />
         </View>
+        <Text style={styles.leaveError} accessibilityLiveRegion="polite">{leaveError}</Text>
 
         {/* Статус сбора + таймер */}
         <V2Card pad={20}>
@@ -261,9 +368,20 @@ export default function TournamentLobbyScreen() {
             <Text style={[styles.statusText, { color: full ? P.accent : P.text }]}>
               {full ? 'Все на месте' : 'Собираем игроков'}
             </Text>
-            <Text style={styles.statusTimer} allowFontScaling={false}>
-              {formatTimeLeft(secondsToStart)}
-            </Text>
+            {!full ? (
+              <Text style={styles.statusTimer} allowFontScaling={false}>
+                {formatTimeLeft(secondsToStart)}
+              </Text>
+            ) : null}
+          </View>
+          <View style={styles.bankRow}>
+            <Text style={styles.bankLabel}>Общий банк</Text>
+            <AnimatedBankAmount amount={bankGems} events={room?.lobbyEvents ?? []} />
+          </View>
+          <View style={styles.bankShares} accessibilityLabel="Доли призёров: 60, 25 и 15 процентов">
+            <Text style={styles.bankShare}>1 место · 60%</Text>
+            <Text style={styles.bankShare}>2 место · 25%</Text>
+            <Text style={styles.bankShare}>3 место · 15%</Text>
           </View>
           {/* Сегменты V2 вместо сплошной шкалы: каждый сегмент — четверть
               комнаты, заполняется отдельно, видно динамику сбора. */}
@@ -307,11 +425,6 @@ export default function TournamentLobbyScreen() {
           ))}
         </View>
 
-        {/* зачем: старт даёт СЕРВЕР по дедлайну — кнопка лишь сообщает статус.
-            Ручной переход раньше сервера показал бы вопросы, которых ещё нет. */}
-        <V2Cta disabled>
-          {full ? 'Начинаем' : `Ждём ещё ${Math.max(0, SEATS - joined)}`}
-        </V2Cta>
       </ScrollView>
 
       {/* Летящие реакции — общий слой: свои и чужие рисуются одинаково.
@@ -381,14 +494,33 @@ const makeStyles = (P: TournamentPalette) => StyleSheet.create({
   root: { flex: 1, backgroundColor: P.bg },
   content: { paddingHorizontal: 16, gap: 14 },
 
-  header: { flexDirection: 'row', alignItems: 'center' },
-  title: { ...type.title, color: P.text },
+  header: { flexDirection: 'row', alignItems: 'center', gap: 10 },
+  exitButton: {
+    minWidth: 56,
+    minHeight: 44,
+    borderRadius: radius.md,
+    backgroundColor: P.card,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 10,
+  },
+  exitButtonDisabled: { opacity: 0.6 },
+  exitButtonText: { color: P.text, fontSize: 14, fontWeight: '800' },
+  title: { ...type.title, color: P.text, flex: 1 },
   counter: {
     marginLeft: 'auto',
     fontSize: 17,
     fontWeight: '800',
     color: P.muted,
     fontVariant: ['tabular-nums'],
+  },
+  // Место зарезервировано всегда: ошибка сети не сдвигает карточку лобби.
+  leaveError: {
+    minHeight: 18,
+    color: P.danger,
+    fontSize: 12,
+    fontWeight: '700',
+    textAlign: 'center',
   },
 
   statusRow: { flexDirection: 'row', alignItems: 'center' },
@@ -399,6 +531,33 @@ const makeStyles = (P: TournamentPalette) => StyleSheet.create({
     fontWeight: '900',
     color: P.text,
     fontVariant: ['tabular-nums'],
+  },
+  bankRow: { flexDirection: 'row', alignItems: 'center', marginTop: 14 },
+  bankLabel: { color: P.muted, fontSize: 13, fontWeight: '700', flex: 1 },
+  bankAmountWrap: { flexDirection: 'row', alignItems: 'baseline', gap: 5 },
+  // Фиксированный цифровой слот + tabular nums сохраняют геометрию при
+  // авторитетном обновлении банка из snapshot комнаты.
+  bankAmountSlot: {
+    minWidth: 42,
+    textAlign: 'right',
+    color: P.text,
+    fontSize: 20,
+    fontWeight: '900',
+    fontVariant: ['tabular-nums'],
+  },
+  bankUnit: { color: P.muted, fontSize: 12, fontWeight: '700' },
+  bankShares: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    gap: 6,
+    marginTop: 10,
+  },
+  bankShare: {
+    flex: 1,
+    color: P.muted,
+    fontSize: 11,
+    fontWeight: '700',
+    textAlign: 'center',
   },
   progressTrack: {
     height: 8,

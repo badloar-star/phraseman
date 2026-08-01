@@ -16,8 +16,10 @@ import {
   parseMutateRequest,
   parseScheduleRequest,
   publicAdminTask,
+  runTextGeneration,
   aiLifecycleAfterTournamentTaskEdit,
   canPublishTournamentTask,
+  humanApprovalAfterTournamentTaskPublish,
   ROUND_DIFFICULTIES,
   ROUND_TASK_TARGET,
 } from './admin_tournament_tasks';
@@ -29,6 +31,12 @@ function expectRejected(run: () => unknown): void {
 }
 
 describe('разбор запроса генерации', () => {
+  it('старый текстовый ИИ-генератор закрыт до трат и записей', async () => {
+    await expect(runTextGeneration({
+      level: 'A2', batches: 1, topicHint: '', dryRun: false, actor: 'test',
+    })).rejects.toThrow('tournament_text_modes_retired');
+  });
+
   it('без параметров берёт все планы и все форматы', () => {
     const parsed = parseGenerateRequest(undefined);
     expect(parsed.plans).toEqual(TOURNAMENT_SOURCE_PLANS);
@@ -110,6 +118,8 @@ describe('разбор расписания', () => {
     expect(parsed.slots[1].enabled).toBe(true);
     expect(parsed.slots[0].timezone).toBe('Europe/Moscow');
     expect(parsed.slots[0].ticketsRequired).toBe(1);
+    expect(parsed.testingEnabled).toBe(false);
+    expect(parseScheduleRequest({ slots: [slot()], testingEnabled: true }).testingEnabled).toBe(true);
   });
 
   it('требует localTime в формате ЧЧ:ММ — hour/minute сервер не понимает', () => {
@@ -236,12 +246,21 @@ describe('разбор запроса правки задания', () => {
 
 describe('AI publication lifecycle gate', () => {
   const task = {
-    taskId: 'ai-choice-1',
+    taskId: 'ai-situation-1',
     mode: 'guess_phrase',
     isVoice: false,
     difficulty: 1,
-    payload: { phrase: 'I am here', options: ['Я здесь', 'Как дела', 'Спасибо', 'Пока'], correctIndex: 0 },
-    tags: ['kind:choice'],
+    payload: {
+      phrase: 'Ты встретил друга после работы. Что скажешь?',
+      options: ['How was work?', 'Blue is a colour.', 'I eat at midnight.', 'The bus has wings.'],
+      correctIndex: 0,
+    },
+    explanation: {
+      ruleNote: 'Фраза спрашивает, как прошла работа.',
+      example: 'How was work today? — Как прошла работа сегодня?',
+      wrongOptionReasons: ['', 'Цвет не отвечает на вопрос о работе.', 'Еда не относится к вопросу.', 'Автобусы не летают и не отвечают на вопрос.'],
+    },
+    tags: ['source:ai'],
     verified: false,
     source: 'ai',
   } as TournamentTask & { source: string; lifecycle?: string; aiVerdict?: string };
@@ -250,6 +269,59 @@ describe('AI publication lifecycle gate', () => {
     expect(canPublishTournamentTask({ ...task, lifecycle: 'awaiting_approval', aiVerdict: 'approved' })).toBe(true);
     expect(canPublishTournamentTask({ ...task, lifecycle: 'generated', aiVerdict: 'approved' })).toBe(false);
     expect(canPublishTournamentTask({ ...task, lifecycle: 'awaiting_approval', aiVerdict: 'pending' })).toBe(false);
+  });
+
+  it('records explicit human approval separately from the automatic validator receipt', () => {
+    expect(humanApprovalAfterTournamentTaskPublish('owner@example.com', 1_234)).toEqual({
+      verified: true,
+      lifecycle: 'published',
+      publishedAtMs: 1_234,
+      humanApprovedAtMs: 1_234,
+      humanApprovedBy: 'owner@example.com',
+    });
+  });
+
+  it('rejects retired audio and voice modes even when their legacy schema is valid', () => {
+    const approved = { ...task, lifecycle: 'awaiting_approval', aiVerdict: 'approved' };
+    expect(canPublishTournamentTask({
+      ...approved,
+      taskId: 'voice-legacy',
+      mode: 'voice',
+      isVoice: true,
+      payload: { phrase: 'Speak', reference: 'legacy/reference' },
+    })).toBe(false);
+    const legacyChoice = {
+      ...approved,
+      payload: {
+        phrase: 'I am here',
+        options: ['Я здесь', 'Я дома', 'Я готов', 'Я занят'],
+        correctIndex: 0,
+      },
+    };
+    for (const mode of ['listen_choose', 'sound_contrast', 'listen_build']) {
+      expect(canPublishTournamentTask({ ...legacyChoice, mode })).toBe(false);
+    }
+    expect(canPublishTournamentTask({
+      ...approved,
+      mode: 'translate_build',
+      payload: { phrase: 'Я здесь', wordBank: ['I', 'am', 'here'], correctTokens: ['I', 'am', 'here'] },
+      explanation: {
+        ruleNote: 'Здесь нужна связка I am и наречие here.',
+        example: 'I am here now. — Я сейчас здесь.',
+        wrongOptionReasons: [],
+      },
+    })).toBe(true);
+    expect(canPublishTournamentTask({
+      ...approved,
+      mode: 'speed_match',
+      payload: {
+        prompt: 'Соедини пары',
+        items: [
+          { prompt: 'one', options: ['один', 'два'], correctIndex: 0 },
+          { prompt: 'two', options: ['один', 'два'], correctIndex: 1 },
+        ],
+      },
+    })).toBe(false);
   });
 });
 

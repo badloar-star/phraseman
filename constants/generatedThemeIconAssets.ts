@@ -6,14 +6,14 @@ const LESSON_EXAM_ICONS: Record<ThemeMode, ImageSourcePropType> = {
   dark: require('../assets/images/generated_theme_icons/lesson-exam-dark.webp'),
   gold: require('../assets/images/generated_theme_icons/lesson-exam-gold.webp'),
   coral: require('../assets/images/generated_theme_icons/lesson-exam-coral.webp'),
-  minimalDark: require('../assets/images/generated_theme_icons/lesson-exam-minimalDark.webp'),
+  minimalDark: require('../assets/images/generated_theme_icons/lesson-exam-indigo.webp'),
   business: require('../assets/images/generated_theme_icons/lesson-exam-business.webp'),
   businessLight: require('../assets/images/generated_theme_icons/lesson-exam-businessLight.webp'),
   midnight: require('../assets/images/generated_theme_icons/lesson-exam-midnight.webp'),
   ember: require('../assets/images/generated_theme_icons/lesson-exam-ember.webp'),
   aurora: require('../assets/images/generated_theme_icons/lesson-exam-aurora.webp'),
   volt: require('../assets/images/generated_theme_icons/lesson-exam-volt.webp'),
-  candyBlue: require('../assets/images/generated_theme_icons/lesson-exam-candyBlue.webp'),
+  candyBlue: require('../assets/images/generated_theme_icons/lesson-exam-indigo.webp'),
   indigo: require('../assets/images/generated_theme_icons/lesson-exam-indigo.webp'),
 };
 

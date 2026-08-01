@@ -8,6 +8,7 @@ const REGION = 'us-central1';
 const MAX_SEARCH_RESULTS = 20;
 const MAX_SEARCH_CANDIDATES = 40;
 const SOURCE_LIMIT = 25;
+const COMMUNITY_PACK_FIXED_PRICE_SHARDS = 10;
 const UID_RE = /^[A-Za-z0-9._-]{2,160}$/;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -33,6 +34,16 @@ function finiteNumber(value: unknown, fallback = 0): number {
 
 function text(value: unknown, max = 500): string {
   return typeof value === 'string' ? value.trim().slice(0, max) : '';
+}
+
+export function canonicalizeCommunityPurchaseRows(rows: readonly Row[]): Row[] {
+  return rows.map((row) => {
+    const acquisitionSource = row.acquisitionSource === 'weekly_boon_gift'
+      ? 'weekly_boon_gift'
+      : 'paid_community_sale';
+    const price = acquisitionSource === 'weekly_boon_gift' ? 0 : COMMUNITY_PACK_FIXED_PRICE_SHARDS;
+    return { ...row, acquisitionSource, priceShards: price, price };
+  });
 }
 
 function errorText(error: unknown): string {
@@ -454,7 +465,7 @@ export const adminGetUserProfile = onCall(
       readRecentByField(db, 'revenuecat_shard_transactions', 'uid', uid),
       readRecentUserSubcollection(db, uid, 'shard_rewards'),
       readRecentByField(db, 'community_pack_purchases', 'buyerStableId', uid),
-      readRecentByField(db, 'community_pack_purchases', 'sellerStableId', uid),
+      readRecentByField(db, 'community_pack_purchases', 'authorStableId', uid),
       readRecentByField(db, 'referral_attributions', 'referrerStableId', uid),
       db.collection('referral_attributions').doc(uid).get().then((snap) => ({ snap, error: null as unknown })).catch((error: unknown) => ({ snap: null, error })),
     ]);
@@ -480,8 +491,18 @@ export const adminGetUserProfile = onCall(
       premiumEvents: adapterSource('revenuecat_premium_events', premiumEvents, ['id', 'eventType', 'type', 'productId', 'periodType', 'price', 'currency', 'createdAt', 'eventTimestampMs'], ['eventType', 'type', 'productId', 'periodType', 'currency']),
       shardTransactions: adapterSource('revenuecat_shard_transactions', shardTransactions, ['id', 'type', 'amount', 'productId', 'createdAt'], ['type', 'productId']),
       adminRewardHistory: adapterSource('users_shard_rewards', adminRewardHistory, ['id', 'ts', 'reason', 'amount', 'rewardType', 'label', 'adminEmail', 'comment'], ['reason', 'rewardType', 'label', 'comment']),
-      ugcBuys: adapterSource('community_pack_purchases_buyer', ugcBuys, ['id', 'packId', 'packTitle', 'status', 'priceShards', 'price', 'createdAt'], ['packId', 'packTitle', 'status']),
-      ugcSells: adapterSource('community_pack_purchases_seller', ugcSells, ['id', 'packId', 'packTitle', 'status', 'priceShards', 'price', 'createdAt'], ['packId', 'packTitle', 'status']),
+      ugcBuys: adapterSource(
+        'community_pack_purchases_buyer',
+        { ...ugcBuys, rows: canonicalizeCommunityPurchaseRows(ugcBuys.rows) },
+        ['id', 'packId', 'packTitle', 'status', 'acquisitionSource', 'priceShards', 'price', 'createdAt'],
+        ['packId', 'packTitle', 'status', 'acquisitionSource'],
+      ),
+      ugcSells: adapterSource(
+        'community_pack_purchases_seller',
+        { ...ugcSells, rows: canonicalizeCommunityPurchaseRows(ugcSells.rows) },
+        ['id', 'packId', 'packTitle', 'status', 'acquisitionSource', 'priceShards', 'price', 'createdAt'],
+        ['packId', 'packTitle', 'status', 'acquisitionSource'],
+      ),
       referrals: adapterSource('referral_attributions', referralsBy, ['id', 'status', 'createdAt', 'qualifiedAt', 'rewardedAt'], ['status']),
       invitedBy: invitedByRead.error || !invitedByRead.snap
         ? sourceResult('referral_attribution_owner', [], { limit: 1, error: invitedByRead.error || new Error('source unavailable') })

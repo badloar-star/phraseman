@@ -20,7 +20,7 @@ describe('Admin 2 detailed analytics integration', () => {
     }
   });
 
-  it('mounts the detailed views only on the Admin 2 analytics route', () => {
+  it('keeps the frozen Admin 2 contract mirrored on the single live legacy surface', () => {
     const core = read('admin/v2/scripts/admin-core.js');
     const legacy = read('admin/v2/legacy.html');
     for (const id of [
@@ -30,7 +30,7 @@ describe('Admin 2 detailed analytics integration', () => {
       'product-analytics-quality', 'subscription-analytics-panel', 'subscription-analytics-content',
     ]) {
       expect(core).toContain(`id="${id}"`);
-      expect(legacy).not.toContain(`id="${id}"`);
+      expect(legacy).toContain(`id="${id}"`);
     }
   });
 

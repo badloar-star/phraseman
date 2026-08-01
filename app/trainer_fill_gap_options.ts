@@ -5,6 +5,7 @@ import {
   type WordCategory,
 } from './pos_taxonomy';
 import type { RuntimeStudyTarget } from './target_storage_keys';
+import { shuffle } from './utils_shuffle';
 
 type FillGapOptionInput = {
   correctWord: string;
@@ -20,6 +21,22 @@ type FillGapOptionInput = {
 const FILL_GAP_OPTION_COUNT = 4;
 
 const OBJECT_PRONOUNS = new Set(['me', 'you', 'him', 'her', 'us', 'them', 'it']);
+const INDEFINITE_SUBJECT_PRONOUNS = new Set([
+  'someone', 'anyone', 'everyone', 'nobody',
+  'somebody', 'anybody', 'everybody',
+]);
+const SUBJECT_CAPABLE_PRONOUNS = new Set([
+  'i', 'you', 'he', 'she', 'it', 'we', 'they', 'this', 'that', 'these', 'those',
+  ...INDEFINITE_SUBJECT_PRONOUNS,
+]);
+const MODAL_WORDS = new Set([
+  'can', 'cannot', "can't", 'could', 'will', 'would', 'shall', 'should',
+  'may', 'might', 'must', 'need', 'dare', 'ought',
+]);
+const ARTICLE_OR_DEMONSTRATIVE_WORDS = new Set([
+  'a', 'an', 'the', 'this', 'that', 'these', 'those',
+]);
+const INVALID_MODAL_SLOT_FILLERS = ['is', 'does', 'has', 'are', 'was', 'were'] as const;
 const PLACE_SLOT_PREPOSITIONS = new Set(['in', 'at', 'to', 'from', 'near', 'inside', 'outside']);
 const PLAUSIBLE_OBJECT_VERBS = new Set([
   'ask',
@@ -60,8 +77,9 @@ const IRREGULAR_LEMMAS: Record<string, string> = {
 // pronoun that agrees with the SAME following verb is an alternative correct
 // answer, not a distractor (he/she/it/this/that all fit "____ doesn't have").
 // We classify the following verb into an agreement group and drop candidate
-// pronouns that share the correct answer's group. Tense-neutral verbs (past
-// simple, modals) impose no constraint, so every pronoun stays a valid option.
+// pronouns that share the correct answer's group. With tense-neutral verbs
+// (Past Simple, modals), every nominative subject is interchangeable and is
+// therefore rejected as a distractor.
 type PronounAgreement = 'third_singular' | 'plural';
 
 // Subject pronouns whose verb agreement we reason about. "you" is intentionally
@@ -69,7 +87,7 @@ type PronounAgreement = 'third_singular' | 'plural';
 // present verbs (I take/have) but with "was" — handled per-verb below.
 const THIRD_SINGULAR_SUBJECTS = new Set(['he', 'she', 'it', 'this', 'that']);
 const PLURAL_SUBJECTS = new Set(['i', 'you', 'we', 'they', 'these', 'those']);
-const SUBJECT_PRONOUNS = new Set([...THIRD_SINGULAR_SUBJECTS, ...PLURAL_SUBJECTS]);
+const SUBJECT_PRONOUNS = SUBJECT_CAPABLE_PRONOUNS;
 
 // Auxiliaries / copulas whose agreement is unambiguous from the surface form.
 const THIRD_SINGULAR_VERBS = new Set([
@@ -93,6 +111,7 @@ function lexicalVerbAgreement(verbKey: string): PronounAgreement | null {
 }
 
 function pronounSubjectGroup(pronounKey: string): PronounAgreement | null {
+  if (INDEFINITE_SUBJECT_PRONOUNS.has(pronounKey)) return 'third_singular';
   if (THIRD_SINGULAR_SUBJECTS.has(pronounKey)) return 'third_singular';
   if (PLURAL_SUBJECTS.has(pronounKey)) return 'plural';
   return null;
@@ -312,6 +331,12 @@ function isLikelyAlsoValidInSlot(candidateKey: string, correctKey: string, categ
   if (category === 'noun' && context.previous === 'the' && context.previous2 && PLACE_SLOT_PREPOSITIONS.has(context.previous2)) {
     return PLACE_NOUNS.has(lemma);
   }
+  // Other modals create valid sentences with different meanings
+  // (can/could/will/would), so they are not honest wrong answers.
+  if (category === 'modal' && MODAL_WORDS.has(candidateKey)) return true;
+  // Articles and demonstratives often differ only by intended reference:
+  // "the/this/that food" can all be grammatical.
+  if (category === 'article' && ARTICLE_OR_DEMONSTRATIVE_WORDS.has(candidateKey)) return true;
   // Subject-pronoun gap ("____ doesn't have an umbrella"): drop candidate
   // pronouns that agree with the SAME following verb as the correct answer —
   // they are alternative correct answers, not distractors. Only constrain when
@@ -326,6 +351,9 @@ function isLikelyAlsoValidInSlot(candidateKey: string, correctKey: string, categ
     SUBJECT_PRONOUNS.has(correctKey)
   ) {
     const verbAgreement = lexicalVerbAgreement(context.next);
+    // Past Simple and other agreement-neutral forms accept every nominative
+    // subject, so every alternative subject is equally grammatical.
+    if (!verbAgreement) return true;
     if (verbAgreement) {
       const correctGroup = pronounSubjectGroup(correctKey);
       const candidateGroup = pronounSubjectGroup(candidateKey);
@@ -357,7 +385,7 @@ function simpleLemma(value: string): string {
 }
 
 function shuffleOptions(options: string[], shouldShuffle: boolean): string[] {
-  return shouldShuffle ? [...options].sort(() => Math.random() - 0.5) : options;
+  return shouldShuffle ? shuffle(options) : options;
 }
 
 function alignOptionInitialCase(options: readonly string[], correctWord: string): string[] {
@@ -397,7 +425,12 @@ export function buildTrainerFillGapOptions({
   const context = fillGapSlotContext(phrase, correctKey);
   const distractorCount = Math.max(1, optionCount - 1);
   const distractors = uniqueCandidates(
-    [sourceDistractors ?? [], primaryPool, fallbackPool],
+    [
+      sourceDistractors ?? [],
+      primaryPool,
+      ...(resolvedCategory === 'modal' ? [INVALID_MODAL_SLOT_FILLERS] : []),
+      fallbackPool,
+    ],
     correctKey,
     blockedKeys,
     distractorCount,

@@ -10,6 +10,7 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { createAuditRecord } from './admin/audit_contract';
 import { hasPermission } from './admin/permissions';
 import { hasAdminRole, type AdminRole } from './admin/roles';
+import { resolveCanonicalAdminAccessTarget } from './admin_access_controls';
 import { ENFORCE_APP_CHECK } from './callable_options';
 
 const REGION = 'us-central1';
@@ -17,6 +18,7 @@ const UID_RE = /^[A-Za-z0-9._-]{2,160}$/;
 const TOKEN_RE = /^[A-Za-z0-9._-]{1,160}$/;
 const SHARDS_MIN = 1;
 const SHARDS_MAX = 10_000;
+const SHARD_BALANCE_MAX = 1_000_000;
 
 // зачем: Арена/квизы сняты (контракт tests/quiz_arena_decommission_contract.test.ts).
 // Клиент вычищен, а серверная награда 'arena_extra_5' осталась хвостом: админка
@@ -51,6 +53,22 @@ export interface AdminRewardMutation {
   readonly shardsAmount: number;
   readonly before: Readonly<Row>;
   readonly after: Readonly<Row>;
+}
+
+export interface AdminSetShardBalanceInput {
+  readonly uid: string;
+  readonly newBalance: number;
+  readonly reason: string;
+  readonly idempotencyKey: string;
+  readonly requestId: string;
+}
+
+export interface AdminShardBalanceMutation {
+  readonly updates: Readonly<Row>;
+  readonly shardLog: Readonly<Row>;
+  readonly before: Readonly<Row>;
+  readonly after: Readonly<Row>;
+  readonly delta: number;
 }
 
 function isRecord(value: unknown): value is Row {
@@ -106,6 +124,28 @@ export function adminGrantRewardFingerprint(input: AdminGrantRewardInput): strin
     reason: input.reason,
     comment: input.comment,
   });
+}
+
+export function normalizeAdminSetShardBalanceInput(data: unknown): AdminSetShardBalanceInput {
+  if (!isRecord(data)) throw new HttpsError('invalid-argument', 'shard balance command required');
+  const uid = text(data.uid, 161);
+  const newBalance = data.newBalance;
+  const reason = text(data.reason, 500);
+  const idempotencyKey = text(data.idempotencyKey, 161);
+  const requestId = text(data.requestId, 161);
+  if (!UID_RE.test(uid)) throw new HttpsError('invalid-argument', 'uid is invalid');
+  if (typeof newBalance !== 'number' || !Number.isSafeInteger(newBalance) || newBalance < 0 || newBalance > SHARD_BALANCE_MAX) {
+    throw new HttpsError('invalid-argument', `newBalance must be an integer from 0 to ${SHARD_BALANCE_MAX}`);
+  }
+  if (!reason) throw new HttpsError('invalid-argument', 'reason is required');
+  if (!TOKEN_RE.test(idempotencyKey) || !TOKEN_RE.test(requestId)) {
+    throw new HttpsError('invalid-argument', 'idempotencyKey and requestId are required');
+  }
+  return Object.freeze({ uid, newBalance, reason, idempotencyKey, requestId });
+}
+
+export function adminSetShardBalanceFingerprint(input: AdminSetShardBalanceInput): string {
+  return JSON.stringify({ action: 'set_shard_balance', uid: input.uid, newBalance: input.newBalance, reason: input.reason });
 }
 
 function utcDate(nowMs: number): string {
@@ -183,6 +223,37 @@ export function buildAdminRewardMutation(
   });
 }
 
+export function buildAdminShardBalanceMutation(
+  user: Readonly<Row>,
+  newBalance: number,
+  nowMs: number,
+): AdminShardBalanceMutation {
+  const previous = Math.max(0, Math.floor(finiteNumber(user.shards, 0)));
+  const delta = newBalance - previous;
+  const type = delta < 0 ? 'spend' : 'earn';
+  const nowIso = new Date(nowMs).toISOString();
+  return Object.freeze({
+    updates: Object.freeze({
+      shards: newBalance,
+      shards_updated_at_ms: nowMs,
+      shards_updated_op: type,
+      shards_updated_reason: 'admin_set_balance',
+      shards_admin_override_at: nowIso,
+    }),
+    shardLog: Object.freeze({
+      ts: nowIso,
+      type,
+      amount: Math.abs(delta),
+      reason: 'admin_set_balance',
+      balanceBefore: previous,
+      balanceAfter: newBalance,
+    }),
+    before: Object.freeze({ shards: previous }),
+    after: Object.freeze({ shards: newBalance }),
+    delta,
+  });
+}
+
 function requireRewardWriter(request: { auth?: { uid?: string; token?: Row } | null }): {
   actorUid: string;
   actorEmail: string;
@@ -211,6 +282,22 @@ export function assertAdminRewardReplay(
   }
   if (operation.requestFingerprint !== fingerprint) {
     throw new HttpsError('already-exists', 'idempotencyKey reused for another reward command');
+  }
+  if (operation.actorUid && operation.actorUid !== actorUid) {
+    throw new HttpsError('permission-denied', 'admin operation belongs to another actor');
+  }
+}
+
+export function assertAdminShardBalanceReplay(
+  operation: Readonly<Row>,
+  fingerprint: string,
+  actorUid: string,
+): void {
+  if (operation.action !== 'set_shard_balance') {
+    throw new HttpsError('already-exists', 'idempotencyKey belongs to another admin action');
+  }
+  if (operation.requestFingerprint !== fingerprint) {
+    throw new HttpsError('already-exists', 'idempotencyKey reused for another shard balance command');
   }
   if (operation.actorUid && operation.actorUid !== actorUid) {
     throw new HttpsError('permission-denied', 'admin operation belongs to another actor');
@@ -310,6 +397,75 @@ export const adminGrantReward = onCall(
       });
 
       return { ok: true, replayed: false, auditId: auditRef.id, ...result };
+    });
+  },
+);
+
+export const adminSetShardBalance = onCall(
+  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK },
+  async (request) => {
+    const actor = requireRewardWriter(request as { auth?: { uid?: string; token?: Row } });
+    const input = normalizeAdminSetShardBalanceInput(request.data);
+    const db = admin.firestore();
+    const operationRef = db.collection('admin_command_operations').doc(`shard_balance_${input.idempotencyKey}`);
+    const auditRef = db.collection('admin_log').doc();
+    const fingerprint = adminSetShardBalanceFingerprint(input);
+    const nowMs = Date.now();
+    const nowIso = new Date(nowMs).toISOString();
+
+    return db.runTransaction(async (tx) => {
+      const operationSnapshot = await tx.get(operationRef);
+      if (operationSnapshot.exists) {
+        const operation = operationSnapshot.data() ?? {};
+        assertAdminShardBalanceReplay(operation, fingerprint, actor.actorUid);
+        return { ...(isRecord(operation.result) ? operation.result : {}), replayed: true };
+      }
+
+      const target = await resolveCanonicalAdminAccessTarget(tx, db, input.uid);
+      const mutation = buildAdminShardBalanceMutation(target.snapshot.data() ?? {}, input.newBalance, nowMs);
+      const shardLogRef = target.ref.collection('shard_log').doc(`admin_balance_${input.idempotencyKey}`);
+      const audit = createAuditRecord({
+        action: 'set_shard_balance',
+        actorUid: actor.actorUid,
+        role: actor.role,
+        entity: { collection: 'users', id: target.uid },
+        reason: input.reason,
+        before: mutation.before,
+        after: mutation.after,
+        rollbackReference: null,
+        requestId: input.requestId,
+        timestamp: nowIso,
+      });
+      const result = {
+        ok: true,
+        uid: target.uid,
+        requestedUid: input.uid,
+        balance: input.newBalance,
+        delta: mutation.delta,
+        shardLogId: shardLogRef.id,
+        auditId: auditRef.id,
+      };
+
+      tx.update(target.ref, mutation.updates);
+      tx.create(shardLogRef, {
+        ...mutation.shardLog,
+        targetUid: target.uid,
+        adminUid: actor.actorUid,
+        adminEmail: actor.actorEmail,
+        adminReason: input.reason,
+        operationId: operationRef.id,
+      });
+      tx.create(auditRef, { ...audit, operationId: operationRef.id });
+      tx.create(operationRef, {
+        operationId: operationRef.id,
+        action: 'set_shard_balance',
+        requestFingerprint: fingerprint,
+        actorUid: actor.actorUid,
+        auditId: auditRef.id,
+        result,
+        createdAt: admin.firestore.FieldValue.serverTimestamp(),
+      });
+      return { ...result, replayed: false };
     });
   },
 );

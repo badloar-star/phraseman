@@ -22,7 +22,7 @@ const THEME_BG_GRADIENTS: Record<ThemeMode, string[]> = {
   ember: [...CINEMA.ember.bgGradient3],
   aurora: [...CINEMA.aurora.bgGradient3],
   volt: [...CINEMA.volt.bgGradient3],
-  // «Кенди Блу»: тёмный сине-графитовый холод.
+  // Legacy candyBlue compatibility palette.
   candyBlue: ['#0B161B', '#050C0F', '#010203'],
   // «Индиго»: тёмный индиго-сумрак.
   indigo: ['#14131F', '#0C0B16', '#010102'],

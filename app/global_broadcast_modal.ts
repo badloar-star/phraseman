@@ -6,10 +6,15 @@ import { addShardsRaw, loadShardsFromCloud } from './shards_system';
 import { grantClubGiftFreeBoostFromLevel } from './club_boosts';
 import { primeMarketplaceBuiltCardsCacheFromAccessibleStorage } from './flashcards/marketplace';
 import { setRandomPackGiftTrial48h } from './flashcards/pack_trial_gift';
+import { callFlashcardPackGiftGrantGlobalBroadcast } from './community_packs/functionsClient';
 import { WAGER_DISCOUNT_KEY } from './level_gift_system';
 import { isPremiumAccessProgressActive } from './premium_progress';
 import type { RuntimeStudyTarget } from './target_storage_keys';
 import { submitClientReport } from './client_reports';
+import {
+  ruKnowledgeShardsAfterNumber,
+  ukKnowledgeShardsAfterNumber,
+} from '../constants/shard_plurals';
 
 const COLLECTION = 'global_broadcast_modals';
 
@@ -178,8 +183,9 @@ export function getGlobalBroadcastRewardBadge(payload: GlobalBroadcastModalPaylo
     case 'shards':
       return {
         icon: '💎',
-        labelRu: `+${amount} жемчужин`,
-        labelUk: `+${amount} перлин`,
+        // зачем: склонение по числу — «+1 жемчужина», а не «+1 жемчужин».
+        labelRu: `+${amount} ${ruKnowledgeShardsAfterNumber(amount)}`,
+        labelUk: `+${amount} ${ukKnowledgeShardsAfterNumber(amount)}`,
         labelEs:
           amount === 1
             ? '+1 fragmento'
@@ -291,7 +297,11 @@ export function getGlobalBroadcastRewardBadge(payload: GlobalBroadcastModalPaylo
   }
 }
 
-async function applyBroadcastReward(payload: GlobalBroadcastModalPayload, studyTarget?: RuntimeStudyTarget): Promise<void> {
+async function applyBroadcastReward(
+  payload: GlobalBroadcastModalPayload,
+  studyTarget?: RuntimeStudyTarget,
+  stableId?: string,
+): Promise<void> {
   const amount = toSafePositiveInt(payload.rewardAmount, 0);
   const today = new Date().toISOString().split('T')[0];
   switch (payload.rewardType) {
@@ -331,7 +341,9 @@ async function applyBroadcastReward(payload: GlobalBroadcastModalPayload, studyT
       await AsyncStorage.setItem(WAGER_DISCOUNT_KEY, '0.25');
       return;
     case 'pack_trial_48h':
-      if (await setRandomPackGiftTrial48h(studyTarget)) {
+      if (!stableId) throw new Error('pack_gift_stable_id_required');
+      const grant = await callFlashcardPackGiftGrantGlobalBroadcast({ stableId, broadcastId: payload.id });
+      if (await setRandomPackGiftTrial48h(studyTarget, grant.voucherId, grant.expiresAt)) {
         await primeMarketplaceBuiltCardsCacheFromAccessibleStorage(studyTarget);
       }
       return;
@@ -379,7 +391,9 @@ function isRetiredLeagueSystemBroadcast(payload: GlobalBroadcastModalPayload): b
   return mentionsLeague && (mentionsSystemUpdate || mentionsCompensation || isShardCompensation);
 }
 
-export async function fetchPendingGlobalBroadcastModal(): Promise<GlobalBroadcastModalPayload | null> {
+export async function fetchPendingGlobalBroadcastModal(
+  studyTarget?: RuntimeStudyTarget,
+): Promise<GlobalBroadcastModalPayload | null> {
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
   const uid = await getCanonicalUserId().catch(() => null);
   if (!uid) return null;
@@ -426,6 +440,15 @@ export async function fetchPendingGlobalBroadcastModal(): Promise<GlobalBroadcas
     const claimId = `global_broadcast_${payload.id}`;
     const claimSnap = await db.collection('users').doc(uid).collection('reward_claims').doc(claimId).get();
     if (claimSnap.exists) {
+      if (payload.rewardType === 'pack_trial_48h') {
+        try {
+          // Another device may have written the claim before this installation
+          // persisted its local voucher. Replay the same server grant first.
+          await applyBroadcastReward(payload, studyTarget, uid);
+        } catch {
+          return payload;
+        }
+      }
       await AsyncStorage.setItem(dismissKey(payload.id), '1').catch(() => {});
       return null;
     }
@@ -465,14 +488,24 @@ export async function claimAndDismissGlobalBroadcastModal(
   studyTarget?: RuntimeStudyTarget,
 ): Promise<void> {
   if (!payload?.id) return;
-  await AsyncStorage.setItem(dismissKey(payload.id), '1').catch(() => {});
+  const requiresServerGrant = payload.rewardType === 'pack_trial_48h';
+  if (!requiresServerGrant) {
+    await AsyncStorage.setItem(dismissKey(payload.id), '1').catch(() => {});
+  }
 
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return;
   const uid = await getCanonicalUserId().catch(() => null);
   if (!uid) return;
 
-  // Always try local reward application first (works for offline-safe gifts too).
-  await applyBroadcastReward(payload, studyTarget).catch(() => {});
+  if (requiresServerGrant) {
+    // Access rewards are never materialized from the client broadcast flag alone.
+    // Keep the modal eligible for replay until the server has issued its receipt.
+    await applyBroadcastReward(payload, studyTarget, uid);
+    await AsyncStorage.setItem(dismissKey(payload.id), '1');
+  } else {
+    // Preserve best-effort behavior for ordinary, reversible local rewards.
+    await applyBroadcastReward(payload, studyTarget, uid).catch(() => {});
+  }
 
   try {
     const firestoreModule = await import('@react-native-firebase/firestore');

@@ -41,7 +41,8 @@ import { stageOwnedPackCardsForNavigation } from '../flashcards_collection';
 import { hasMeaningfulCommunityPackCreateDraft } from '../community_packs/communityPackDraftStorage';
 import { stageCommunityPackCardsForNavigation } from '../community_packs/staging';
 import { packTileImageForPack } from './packMarketplaceIcons';
-import { hasActivePackGiftVoucher } from './pack_trial_gift';
+import { hasActiveCommunityPackGiftVoucher, hasActivePackGiftVoucher } from './pack_trial_gift';
+import { syncFlashcardPackGiftState } from './pack_gift_sync';
 import DuoPressable from '../../components/DuoPressable';
 import FlashcardsHubHeader from '../../components/flashcards/FlashcardsHubHeader';
 import GlassSurface, { glassFill } from '../../components/GlassSurface';
@@ -136,20 +137,20 @@ export const FLASHCARDS_MODE_ICON_ASSETS: Record<ThemeMode, Record<FlashcardsMod
     collection: require('../../assets/images/flashcards/mode_icons/volt/collection.webp'),
   },
   minimalDark: {
-    saved: require('../../assets/images/flashcards/mode_icons/minimalDark/saved.webp'),
-    custom: require('../../assets/images/flashcards/mode_icons/minimalDark/custom.webp'),
-    training: require('../../assets/images/flashcards/mode_icons/minimalDark/training.webp'),
-    audio: require('../../assets/images/flashcards/mode_icons/minimalDark/audio.webp'),
-    arena: require('../../assets/images/flashcards/mode_icons/minimalDark/arena.webp'),
-    collection: require('../../assets/images/flashcards/mode_icons/minimalDark/collection.webp'),
+    saved: require('../../assets/images/flashcards/mode_icons/indigo/saved.webp'),
+    custom: require('../../assets/images/flashcards/mode_icons/indigo/custom.webp'),
+    training: require('../../assets/images/flashcards/mode_icons/indigo/training.webp'),
+    audio: require('../../assets/images/flashcards/mode_icons/indigo/audio.webp'),
+    arena: require('../../assets/images/flashcards/mode_icons/indigo/arena.webp'),
+    collection: require('../../assets/images/flashcards/mode_icons/indigo/collection.webp'),
   },
   candyBlue: {
-    saved: require('../../assets/images/flashcards/mode_icons/candyBlue/saved.webp'),
-    custom: require('../../assets/images/flashcards/mode_icons/candyBlue/custom.webp'),
-    training: require('../../assets/images/flashcards/mode_icons/candyBlue/training.webp'),
-    audio: require('../../assets/images/flashcards/mode_icons/candyBlue/audio.webp'),
-    arena: require('../../assets/images/flashcards/mode_icons/candyBlue/arena.webp'),
-    collection: require('../../assets/images/flashcards/mode_icons/candyBlue/collection.webp'),
+    saved: require('../../assets/images/flashcards/mode_icons/indigo/saved.webp'),
+    custom: require('../../assets/images/flashcards/mode_icons/indigo/custom.webp'),
+    training: require('../../assets/images/flashcards/mode_icons/indigo/training.webp'),
+    audio: require('../../assets/images/flashcards/mode_icons/indigo/audio.webp'),
+    arena: require('../../assets/images/flashcards/mode_icons/indigo/arena.webp'),
+    collection: require('../../assets/images/flashcards/mode_icons/indigo/collection.webp'),
   },
   indigo: {
     saved: require('../../assets/images/flashcards/mode_icons/indigo/saved.webp'),
@@ -531,6 +532,7 @@ export default function FlashcardsCategoryHub({
   // Подарок-ваучер на бесплатный официальный набор (48 ч). Без этого флага пейвол
   // никогда не откроется в режиме 'voucher' и подарок нельзя забрать с этого экрана.
   const [hasPackVoucher, setHasPackVoucher] = useState(false);
+  const [hasCommunityPackVoucher, setHasCommunityPackVoucher] = useState(false);
 
   const refreshHiddenCommunityPacks = useCallback(async (optimisticPackId?: string | null) => {
     if (optimisticPackId) {
@@ -545,34 +547,57 @@ export default function FlashcardsCategoryHub({
     setHiddenCommunityPackIds(new Set(ids));
   }, [studyTarget]);
 
+  const refreshVoucherState = useCallback(async (isCurrent: () => boolean = () => true) => {
+    const [voucher, communityVoucher] = await Promise.all([
+      hasActivePackGiftVoucher(studyTarget),
+      hasActiveCommunityPackGiftVoucher(studyTarget),
+    ]);
+    if (!isCurrent()) return;
+    setHasPackVoucher(voucher);
+    setHasCommunityPackVoucher(communityVoucher);
+  }, [studyTarget]);
+
   useFocusEffect(
     useCallback(() => {
       let cancelled = false;
+      let timer: ReturnType<typeof setInterval> | null = null;
+      const isCurrent = () => !cancelled;
+      const stopTimer = () => {
+        if (timer) clearInterval(timer);
+        timer = null;
+      };
+      const startTimer = () => {
+        stopTimer();
+        if (AppState.currentState !== 'active') return;
+        timer = setInterval(() => { void refreshVoucherState(isCurrent); }, 60_000);
+      };
       void (async () => {
         const ok = await hasMeaningfulCommunityPackCreateDraft(studyTarget, lang);
         if (!cancelled) setHasUnfinishedPackDraft(ok);
       })();
-      void (async () => {
-        const voucher = await hasActivePackGiftVoucher(studyTarget);
-        if (!cancelled) setHasPackVoucher(voucher);
-      })();
+      void refreshVoucherState(isCurrent);
+      void syncFlashcardPackGiftState().then(() => refreshVoucherState(isCurrent));
+      startTimer();
+      const appSub = AppState.addEventListener('change', (state) => {
+        if (state === 'active') {
+          void refreshVoucherState(isCurrent);
+          startTimer();
+        } else stopTimer();
+      });
       void refreshHiddenCommunityPacks();
       return () => {
         cancelled = true;
+        stopTimer();
+        appSub.remove();
       };
-    }, [lang, refreshHiddenCommunityPacks, studyTarget]),
+    }, [lang, refreshHiddenCommunityPacks, refreshVoucherState, studyTarget]),
   );
 
   // Ваучер выдаётся/сгорает вне фокуса этого экрана (подарок за уровень, redeem
   // в пейволе) — держим флаг в актуальном состоянии по событиям, а не только на фокус.
   useEffect(() => {
     let cancelled = false;
-    const refreshVoucher = () => {
-      void (async () => {
-        const voucher = await hasActivePackGiftVoucher(studyTarget);
-        if (!cancelled) setHasPackVoucher(voucher);
-      })();
-    };
+    const refreshVoucher = () => { void refreshVoucherState(() => !cancelled); };
     const subSet = onAppEvent('pack_trial_gift_set', refreshVoucher);
     const subConsumed = onAppEvent('pack_trial_gift_consumed', refreshVoucher);
     return () => {
@@ -580,11 +605,12 @@ export default function FlashcardsCategoryHub({
       subSet.remove();
       subConsumed.remove();
     };
-  }, [studyTarget]);
+  }, [refreshVoucherState]);
 
   const { openPaywall, CardPackPaywallModalEl } = useCardPackShardPaywall({
     balance: shardBalance,
     hasVoucher: hasPackVoucher,
+    hasCommunityVoucher: hasCommunityPackVoucher,
     studyTarget,
     lang,
     router,
@@ -621,6 +647,16 @@ export default function FlashcardsCategoryHub({
   const tabOffBg = t.bgSurface;
   const tabOffText = t.textSecond;
   const tabOffBorder = t.border;
+  const giftEligibleLabel = triLang(lang, {
+    ru: 'Можно навсегда забрать в подарок',
+    uk: 'Можна назавжди забрати в подарунок',
+    es: 'Se puede añadir para siempre como regalo',
+    'pt-BR': 'Pode ser adicionado para sempre como presente',
+    vi: 'Có thể thêm vĩnh viễn bằng quà tặng',
+    id: 'Bisa ditambahkan permanen sebagai hadiah',
+    tr: 'Hediye olarak kalıcı biçimde eklenebilir',
+    pl: 'Można dodać na stałe jako prezent',
+  });
 
   /**
    * Куплений UGC, авторський набір, або UGC id у спільному `ownedPackIds` (легасі/гілка без isCommunityUgc).
@@ -803,6 +839,7 @@ export default function FlashcardsCategoryHub({
   ) =>
     packList.map((pack) => {
       const owned = ownedFn(pack);
+      const giftEligible = (pack.isCommunityUgc ? hasCommunityPackVoucher : hasPackVoucher) && !owned;
       const showUgcReportShortcut = ugcCommunityCatalog && !!pack.isCommunityUgc && !owned;
       const displayTitle = packTitleForInterface(pack, lang);
       const hubCode = packHubCodeName(pack);
@@ -826,7 +863,7 @@ export default function FlashcardsCategoryHub({
         >
           <HubTileShell
             testID={`flashcards-hub-pack-${pack.id}`}
-            a11y={pack.isCommunityUgc ? `${pack.titleRu}. ${pack.titleUk}` : `${hubCode}. ${displayTitle}`}
+            a11y={`${pack.isCommunityUgc ? `${pack.titleRu}. ${pack.titleUk}` : `${hubCode}. ${displayTitle}`}${giftEligible ? `. ${giftEligibleLabel}` : ''}`}
             width={tileW}
             reduceMotion={reduceMotion}
             disabled={!owned && !!buyingPackId}
@@ -874,6 +911,28 @@ export default function FlashcardsCategoryHub({
                   reduceMotion={reduceMotion}
                 />
               )}
+              {giftEligible ? (
+                <View
+                  pointerEvents="none"
+                  accessible={false}
+                  style={{
+                    position: 'absolute',
+                    top: 8,
+                    right: 8,
+                    minWidth: 32,
+                    height: 32,
+                    paddingHorizontal: 7,
+                    borderRadius: 16,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    backgroundColor: t.gold,
+                    zIndex: 6,
+                    ...shadowForTile(t, 'shop'),
+                  }}
+                >
+                  <Ionicons name="gift-outline" size={18} color={t.bgPrimary} />
+                </View>
+              ) : null}
             </View>
           </HubTileShell>
           {showUgcReportShortcut && ugcReportHintPackId === pack.id ? (

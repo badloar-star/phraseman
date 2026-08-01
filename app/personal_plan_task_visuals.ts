@@ -42,7 +42,6 @@ export type PersonalPlanTaskVisual = {
 
 export const PERSONAL_PLAN_TASK_VISUAL_THEMES: ThemeMode[] = [
   'midnight',
-  'minimalDark',
   'ember',
   'aurora',
   'volt',
@@ -53,18 +52,18 @@ export const PERSONAL_PLAN_TASK_VISUAL_THEMES: ThemeMode[] = [
 
 const DEFAULT_VISUAL_THEME: ThemeMode = 'midnight';
 
-const MINIMAL_DARK_TASK_ASSETS: Record<PersonalPlanTaskVisualSource, ImageSourcePropType> = {
-  core_lesson: require('../assets/images/personal_plan_tasks_fit/minimalDark/core_lesson.webp'),
-  route_phrase: require('../assets/images/personal_plan_tasks_fit/minimalDark/route_gavan.webp'),
-  recall: require('../assets/images/personal_plan_tasks_fit/minimalDark/recall.webp'),
-  quiz: require('../assets/images/personal_plan_tasks_fit/minimalDark/choice.webp'),
-  practice: require('../assets/images/personal_plan_tasks_fit/minimalDark/practice.webp'),
-  choice: require('../assets/images/personal_plan_tasks_fit/minimalDark/choice.webp'),
-  listening: require('../assets/images/personal_plan_tasks_fit/minimalDark/listening.webp'),
-  sentence_build: require('../assets/images/personal_plan_tasks_fit/minimalDark/sentence_build.webp'),
-  speaking: require('../assets/images/personal_plan_tasks_fit/minimalDark/speaking.webp'),
-  trainer: require('../assets/images/personal_plan_tasks_fit/minimalDark/trainer.webp'),
-  flashcards: require('../assets/images/personal_plan_tasks_fit/minimalDark/flashcards.webp'),
+const LEGACY_THEME_TASK_FALLBACK: Record<PersonalPlanTaskVisualSource, ImageSourcePropType> = {
+  core_lesson: require('../assets/images/personal_plan_tasks_fit/midnight/core_lesson.webp'),
+  route_phrase: require('../assets/images/personal_plan_tasks_fit/midnight/route_gavan.webp'),
+  recall: require('../assets/images/personal_plan_tasks_fit/midnight/recall.webp'),
+  quiz: require('../assets/images/personal_plan_tasks_fit/midnight/choice.webp'),
+  practice: require('../assets/images/personal_plan_tasks_fit/midnight/practice.webp'),
+  choice: require('../assets/images/personal_plan_tasks_fit/midnight/choice.webp'),
+  listening: require('../assets/images/personal_plan_tasks_fit/midnight/listening.webp'),
+  sentence_build: require('../assets/images/personal_plan_tasks_fit/midnight/sentence_build.webp'),
+  speaking: require('../assets/images/personal_plan_tasks_fit/midnight/speaking.webp'),
+  trainer: require('../assets/images/personal_plan_tasks_fit/midnight/trainer.webp'),
+  flashcards: require('../assets/images/personal_plan_tasks_fit/midnight/flashcards.webp'),
 };
 
 const THEMED_TASK_ASSETS: Record<ThemeMode, Record<PersonalPlanTaskVisualSource, ImageSourcePropType>> = {
@@ -81,10 +80,9 @@ const THEMED_TASK_ASSETS: Record<ThemeMode, Record<PersonalPlanTaskVisualSource,
     trainer: require('../assets/images/personal_plan_tasks_fit/midnight/trainer.webp'),
     flashcards: require('../assets/images/personal_plan_tasks_fit/midnight/flashcards.webp'),
   },
-  minimalDark: MINIMAL_DARK_TASK_ASSETS,
-  // Новые темы переиспользуют набор minimalDark без новых ассетов (как business-fallback).
-  candyBlue: MINIMAL_DARK_TASK_ASSETS,
-  indigo: MINIMAL_DARK_TASK_ASSETS,
+  minimalDark: LEGACY_THEME_TASK_FALLBACK,
+  candyBlue: LEGACY_THEME_TASK_FALLBACK,
+  indigo: LEGACY_THEME_TASK_FALLBACK,
   business: {
     core_lesson: require('../assets/images/personal_plan_tasks_fit/business/core_lesson.webp'),
     route_phrase: require('../assets/images/personal_plan_tasks_fit/business/route_gavan.webp'),
@@ -191,12 +189,12 @@ const THEMED_TASK_ASSETS: Record<ThemeMode, Record<PersonalPlanTaskVisualSource,
   },
 };
 
-const MINIMAL_DARK_ROUTE_ASSETS: Record<PersonalPlanId, ImageSourcePropType> = {
-  gavan: require('../assets/images/personal_plan_tasks_fit/minimalDark/route_gavan.webp'),
-  voyazh: require('../assets/images/personal_plan_tasks_fit/minimalDark/route_voyazh.webp'),
-  mitap: require('../assets/images/personal_plan_tasks_fit/minimalDark/route_mitap.webp'),
-  impuls: require('../assets/images/personal_plan_tasks_fit/minimalDark/route_impuls.webp'),
-  echo: require('../assets/images/personal_plan_tasks_fit/minimalDark/route_echo.webp'),
+const LEGACY_THEME_ROUTE_FALLBACK: Record<PersonalPlanId, ImageSourcePropType> = {
+  gavan: require('../assets/images/personal_plan_tasks_fit/midnight/route_gavan.webp'),
+  voyazh: require('../assets/images/personal_plan_tasks_fit/midnight/route_voyazh.webp'),
+  mitap: require('../assets/images/personal_plan_tasks_fit/midnight/route_mitap.webp'),
+  impuls: require('../assets/images/personal_plan_tasks_fit/midnight/route_impuls.webp'),
+  echo: require('../assets/images/personal_plan_tasks_fit/midnight/route_echo.webp'),
 };
 
 const THEMED_ROUTE_ASSETS: Record<ThemeMode, Record<PersonalPlanId, ImageSourcePropType>> = {
@@ -207,9 +205,9 @@ const THEMED_ROUTE_ASSETS: Record<ThemeMode, Record<PersonalPlanId, ImageSourceP
     impuls: require('../assets/images/personal_plan_tasks_fit/midnight/route_impuls.webp'),
     echo: require('../assets/images/personal_plan_tasks_fit/midnight/route_echo.webp'),
   },
-  minimalDark: MINIMAL_DARK_ROUTE_ASSETS,
-  candyBlue: MINIMAL_DARK_ROUTE_ASSETS,
-  indigo: MINIMAL_DARK_ROUTE_ASSETS,
+  minimalDark: LEGACY_THEME_ROUTE_FALLBACK,
+  candyBlue: LEGACY_THEME_ROUTE_FALLBACK,
+  indigo: LEGACY_THEME_ROUTE_FALLBACK,
   business: {
     gavan: require('../assets/images/personal_plan_tasks_fit/business/route_gavan.webp'),
     voyazh: require('../assets/images/personal_plan_tasks_fit/business/route_voyazh.webp'),

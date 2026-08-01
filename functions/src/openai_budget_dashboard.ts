@@ -221,7 +221,6 @@ export const openAiBudgetDashboard = onCall({ region: REGION, enforceAppCheck: E
     { collection: 'league_compass_daily_billing', feature: 'Компас лиги (cron)' },
     { collection: 'choice_explain_billing', feature: 'Объяснение выбора' },
     { collection: 'mistake_explain_billing', feature: 'Объяснение ошибки' },
-    { collection: 'speaking_club_billing', feature: 'Разговорный клуб' },
     // ИИ-генератор турнирных заданий (адм. батчи): без регистрации здесь
     // дашборд повторил бы старый баг недосчёта трат.
     { collection: 'tournament_ai_billing', feature: 'Турниры: ИИ-генератор' },

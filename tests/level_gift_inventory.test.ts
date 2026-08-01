@@ -461,7 +461,7 @@ describe('level gift inventory', () => {
     ]);
   });
 
-  it('sanitizes stale English pack gifts out of French pending inventory previews', async () => {
+  it('keeps global trial vouchers in French pending previews while sanitizing permanent English packs', async () => {
     await saveUnclaimedGift(25, makeGift('pack_voucher_48h', 'epic'));
     await saveUnclaimedDualGift(30, {
       f2p: makeGift('pack_voucher_48h', 'epic'),
@@ -478,15 +478,19 @@ describe('level gift inventory', () => {
 
     const frenchItems = await loadPendingLevelGiftInventory('fr');
     expect(pendingGiftIds(frenchItems)).toEqual([
-      'shards_10',
+      'pack_voucher_48h',
       'prem_shards_20',
-      'shards_10',
+      'pack_voucher_48h',
     ]);
-    expect(pendingGiftIds(frenchItems).every((id) => !isFlashcardPackLevelGiftId(id))).toBe(true);
+    expect(pendingGiftIds(frenchItems)).not.toContain('prem_level_unlock_negotiator');
+    expect(pendingGiftIds(frenchItems).filter((id) => isFlashcardPackLevelGiftId(id))).toEqual([
+      'pack_voucher_48h',
+      'pack_voucher_48h',
+    ]);
     expect(pendingGiftIds(getPendingLevelGiftInventoryCache('fr'))).toEqual([
-      'shards_10',
+      'pack_voucher_48h',
       'prem_shards_20',
-      'shards_10',
+      'pack_voucher_48h',
     ]);
   });
 });

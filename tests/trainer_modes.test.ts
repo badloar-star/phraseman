@@ -3,6 +3,7 @@ import fs from 'fs';
 import { getAllItems, getTrainerItems, getTrainerModeCounts, markReviewed as markRecallReviewed, recordMistake as recordRecallMistake, SESSION_LIMIT } from '../app/active_recall';
 import {
   activateWordForTrainer,
+  devSeedTrainerScenario,
   getTrainerDashboard,
   getTrainerPremiumItems,
   markTrainerResult,
@@ -206,6 +207,35 @@ describe('trainerTranslationForLang', () => {
       expect(copy).not.toBe('UK copy');
       expect(copy).not.toBe('ES copy');
     }
+  });
+
+  it('restores the meaning for a legacy arena card whose stored translations are empty', () => {
+    const item = makeTrainerStoreItem({
+      key: 'I ___ never seen this before',
+      queue: 'arena',
+      translationRu: '',
+      translationUk: '',
+      arenaQuestion: {
+        question: 'I ___ never seen this before',
+        correct: 'have',
+        options: ['have', 'had', 'has', 'having'],
+        rule: 'Present Perfect',
+      },
+    });
+
+    expect(trainerTranslationForLang(item, 'ru')).toBe('Я никогда раньше этого не видел');
+  });
+
+  it('stores meanings on newly seeded arena cards', async () => {
+    await devSeedTrainerScenario('weak');
+
+    const stored = JSON.parse(mockStorage.trainer_store_v1) as TrainerItem[];
+    const arena = stored.find(item => item.key === 'I ___ never seen this before');
+    expect(arena).toEqual(expect.objectContaining({
+      translationRu: 'Я никогда раньше этого не видел',
+      translationUk: 'Я ніколи раніше цього не бачив',
+      translationEs: 'Nunca he visto esto antes',
+    }));
   });
 });
 

@@ -7,20 +7,18 @@ export const WEEKLY_COMPASS_ICON_ASSET_PATHS: Record<ThemeMode, string> = {
   dark: 'assets/images/weekly_compass_icons/dark.webp',
   gold: 'assets/images/weekly_compass_icons/gold.webp',
   coral: 'assets/images/weekly_compass_icons/coral.webp',
-  minimalDark: 'assets/images/weekly_compass_icons/minimalDark.webp',
+  minimalDark: 'assets/images/weekly_compass_icons/indigo.webp',
   business: 'assets/images/weekly_compass_icons/business.webp',
   businessLight: 'assets/images/weekly_compass_icons/businessLight.webp',
   midnight: 'assets/images/weekly_compass_icons/midnight.webp',
   ember: 'assets/images/weekly_compass_icons/ember.webp',
   aurora: 'assets/images/weekly_compass_icons/aurora.webp',
   volt: 'assets/images/weekly_compass_icons/volt.webp',
-  // Новые темы показывают иконку minimalDark (новые ассеты не требуются).
-  candyBlue: 'assets/images/weekly_compass_icons/candyBlue.webp',
+  candyBlue: 'assets/images/weekly_compass_icons/indigo.webp',
   indigo: 'assets/images/weekly_compass_icons/indigo.webp',
 };
 
 export const WEEKLY_COMPASS_ICON_GENERATION_ORDER: readonly ThemeMode[] = [
-  'minimalDark',
   'business',
   'businessLight',
   'dark',
@@ -53,14 +51,14 @@ const GENERATED_COMPASS_ICON_SOURCES: Partial<Record<ThemeMode, ImageSourcePropT
   dark: require('../assets/images/weekly_compass_icons/dark.webp'),
   gold: require('../assets/images/weekly_compass_icons/gold.webp'),
   coral: require('../assets/images/weekly_compass_icons/coral.webp'),
-  minimalDark: require('../assets/images/weekly_compass_icons/minimalDark.webp'),
+  minimalDark: require('../assets/images/weekly_compass_icons/indigo.webp'),
   business: require('../assets/images/weekly_compass_icons/business.webp'),
   businessLight: require('../assets/images/weekly_compass_icons/businessLight.webp'),
   midnight: require('../assets/images/weekly_compass_icons/midnight.webp'),
   ember: require('../assets/images/weekly_compass_icons/ember.webp'),
   aurora: require('../assets/images/weekly_compass_icons/aurora.webp'),
   volt: require('../assets/images/weekly_compass_icons/volt.webp'),
-  candyBlue: require('../assets/images/weekly_compass_icons/candyBlue.webp'),
+  candyBlue: require('../assets/images/weekly_compass_icons/indigo.webp'),
   indigo: require('../assets/images/weekly_compass_icons/indigo.webp'),
 };
 

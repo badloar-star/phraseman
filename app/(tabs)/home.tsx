@@ -83,7 +83,7 @@ import { computeAllPercentiles } from '../leaderboard_stats';
 import { getShardsBalance, peekLastKnownShardsBalance, spendShards, onStreakUpdated } from '../shards_system';
 import { coinIconForBalance } from '../coin_icons';
 import { buildLastLessonFromHydration, patchHomeScreenHydration, peekHomeScreenHydration, rememberHomeScreenHydration, resolveHomeProfileVisuals } from '../home_screen_hydration';
-import { patchAppSnapshot, useAppSnapshotSelector } from '../app_snapshot_store';
+import { patchAppSnapshot, resolveHydratedProfileName, useAppSnapshotSelector } from '../app_snapshot_store';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import LingmanVideosButton from '../../components/LingmanVideosButton';
 import NotificationCenterButton from '../../components/NotificationCenterButton';
@@ -519,6 +519,18 @@ export default function HomeScreen() {
     const { goToTab, activeIdx, focusTick, runtimeOwnerId } = useTabNav();
     const isHomeOwner = runtimeOwnerId === 'home';
     const homeRuntimeActive = useRuntimeActive(isHomeOwner);
+    const homeRuntimeActiveRef = useRef(homeRuntimeActive);
+    // Home may mount while another retained tab owns runtime work. Mark its
+    // first handoff dirty so the daily-task summary never remains at the
+    // placeholder 0 completed tasks.
+    const homeDataDirtyRef = useRef(true);
+    const homeDailySummaryDirtyRef = useRef(false);
+    const shardsDirtyRef = useRef(false);
+    const streakMarkersDirtyRef = useRef(false);
+    const reviveOfferDirtyRef = useRef(false);
+    useEffect(() => {
+        homeRuntimeActiveRef.current = homeRuntimeActive;
+    }, [homeRuntimeActive]);
     const firstHomeFrameEmittedRef = useRef(false);
     const notifyFirstHomeFrameReady = useCallback(() => {
         if (firstHomeFrameEmittedRef.current)
@@ -664,11 +676,11 @@ export default function HomeScreen() {
         return stableId ? peekSurveyDailyTask({ stableId, dayKey: getTodayKey(), lang }) : null;
     })();
     /** Сколько сегментов на плитке «Задания» — как на экране заданий (тот же getTodayTasksSafe). */
-    // This strip is fixed for the visible Home session. Late survey responses are
-    // cached for the next mount and must not add or remove dots under the user.
-    const [dailyTaskBarCount] = useState(initialSurveyDailyTask ? 5 : 4);
+    // Three ordinary quests are always present. A fourth segment appears only after
+    // the survey is confirmed for this user and this day.
+    const [dailyTaskBarCount, setDailyTaskBarCount] = useState(initialSurveyDailyTask ? 4 : 3);
     const [engineLeague, setEngineLeague] = useState<typeof LEAGUES[0] | null>(null);
-    const { isPremium, isVip, hasPremiumAccess } = usePremium();
+    const { isPremium, isVip, isPro, hasPremiumAccess } = usePremium();
     // Доступ именно к «Личному плану» с учётом «Пульта»: true = премиум ИЛИ фича
     // переведена в «Фри». Раньше уже СОЗДАННЫЙ план открывался фри-юзеру без замка
     // (карточка вела прямо в /personal_plan) — дыра в пейволе после снятия премиума.
@@ -682,7 +694,7 @@ export default function HomeScreen() {
     const [dueCount, setDueCount] = useState(() => hh?.dueCount ?? 0);
     const [userAvatar, setUserAvatar] = useState(() => initialVisuals.avatar);
     const [userAvatarAura, setUserAvatarAura] = useState<string | null>(() => initialVisuals.aura);
-    const effectiveUserAvatarAura = getEffectiveAvatarAuraId(userAvatarAura, isPremium, isVip);
+    const effectiveUserAvatarAura = getEffectiveAvatarAuraId(userAvatarAura, isPremium, isVip, isPro);
     const [userFrame, setUserFrame] = useState(() => initialVisuals.frame);
     // Бонусные баннеры
     const [loginBonus, setLoginBonus] = useState<{
@@ -842,10 +854,16 @@ export default function HomeScreen() {
     const [personalPlanSnapshot, setPersonalPlanSnapshot] = useState<PersonalPlanHomeSnapshot | null>(() => hh?.personalPlanSnapshot ?? null);
     const [hasActivePersonalPlanState, setHasActivePersonalPlanState] = useState(() => !!hh?.personalPlanSnapshot);
     const refreshDailyTaskSummary = useCallback(async () => {
+        const lostOwnership = () => {
+            if (homeRuntimeActiveRef.current) return false;
+            homeDailySummaryDirtyRef.current = true;
+            return true;
+        };
         try {
             const taskList = await getTodayTasksSafe(studyTarget);
+            if (lostOwnership()) return;
             const progress = await loadTodayProgress(taskList, studyTarget);
-            if (!mountedRef.current)
+            if (!mountedRef.current || lostOwnership())
                 return;
             const baseTotal = taskList.length > 0 ? taskList.length : 4;
             setTaskProgress(progress);
@@ -860,12 +878,12 @@ export default function HomeScreen() {
                 try {
                     const accountToken = captureAccountGeneration();
                     const stableId = await getCanonicalUserId();
-                    if (!stableId || !isCurrentAccountGeneration(accountToken, stableId)) return;
+                    if (lostOwnership() || !stableId || !isCurrentAccountGeneration(accountToken, stableId)) return;
                     const dayKey = getTodayKey();
                     const scope = { stableId, dayKey, lang };
                     let survey = peekSurveyDailyTask(scope);
                     const completed = await isSurveyDailyTaskDone({ stableId, dayKey });
-                    if (!isCurrentAccountGeneration(accountToken, stableId)) return;
+                    if (lostOwnership() || !isCurrentAccountGeneration(accountToken, stableId)) return;
                     if (completed) {
                         survey = buildServerConfirmedLegacyCompletion(lang);
                         const requestId = beginSurveyDailyTaskRequest(scope);
@@ -873,9 +891,9 @@ export default function HomeScreen() {
                     } else if (!survey && isSurveyCloudEnabled()) {
                         const requestId = beginSurveyDailyTaskRequest(scope);
                         const lookup = await fetchActiveSurveyWithRetry({ stableId, platform: Platform.OS, lang });
-                        if (!isCurrentAccountGeneration(accountToken, stableId)) return;
+                        if (lostOwnership() || !isCurrentAccountGeneration(accountToken, stableId)) return;
                         const migrated = await migrateLegacySurveyCompletion({ stableId, dayKey, completion: lookup.completion, lang });
-                        if (!isCurrentAccountGeneration(accountToken, stableId)) return;
+                        if (lostOwnership() || !isCurrentAccountGeneration(accountToken, stableId)) return;
                         survey = migrated
                             ? buildServerConfirmedLegacyCompletion(lang)
                             : lookup.survey && lookup.survey.questions.length > 0
@@ -885,9 +903,10 @@ export default function HomeScreen() {
                             survey = peekSurveyDailyTask(scope);
                         }
                     }
-                    if (!mountedRef.current || !isCurrentAccountGeneration(accountToken, stableId)) return;
+                    if (!mountedRef.current || lostOwnership() || !isCurrentAccountGeneration(accountToken, stableId)) return;
                     const counts = computeSurveyDailyCounts({ baseTotal, baseDone: nextTasksCompleted, survey });
                     setTasksCompleted(counts.done);
+                    setDailyTaskBarCount((previous) => previous === counts.total ? previous : counts.total);
                     patchHomeScreenHydration({ tasksCompleted: counts.done }, studyTarget);
                 } catch {
                     /* Keep the already-rendered ordinary task summary. */
@@ -1039,6 +1058,21 @@ export default function HomeScreen() {
     useEffect(() => {
         mountedRef.current = true;
         perfScreenMount('home');
+        const requestHomeDataRefresh = () => {
+            if (!homeRuntimeActiveRef.current) {
+                homeDataDirtyRef.current = true;
+                return;
+            }
+            loadData();
+        };
+        const requestDailyTaskSummaryRefresh = () => {
+            if (!homeRuntimeActiveRef.current) {
+                homeDailySummaryDirtyRef.current = true;
+                return;
+            }
+            homeDailySummaryDirtyRef.current = false;
+            void refreshDailyTaskSummary();
+        };
         let resumeTimer: ReturnType<typeof setTimeout> | null = null;
         let resumeTask: {
             cancel?: () => void;
@@ -1058,9 +1092,9 @@ export default function HomeScreen() {
                     resumeTimer = null;
                     resumeTask = InteractionManager.runAfterInteractions(() => {
                         if (refreshKind === 'cloud')
-                            loadData();
+                            requestHomeDataRefresh();
                         else
-                            void refreshDailyTaskSummary();
+                            requestDailyTaskSummaryRefresh();
                     });
                 }, refreshKind === 'cloud' ? FOREGROUND_CLOUD_REFRESH_DELAY_MS : FOREGROUND_LIGHT_REFRESH_DELAY_MS);
             }
@@ -1075,11 +1109,11 @@ export default function HomeScreen() {
             }
         });
         // Слушаем событие изменения XP (от тестеров и других экранов)
-        const xpSub = DeviceEventEmitter.addListener('xp_changed', () => { loadData(); });
-        const dailyTaskCompletedSub = onAppEvent('daily_task_completed', () => { void refreshDailyTaskSummary(); });
-        const dailyTaskClaimedSub = onAppEvent('daily_task_reward_claimed', () => { void refreshDailyTaskSummary(); });
-        const dailyTaskRerolledSub = onAppEvent('daily_task_rerolled', () => { void refreshDailyTaskSummary(); });
-        const dailyTaskSetRerolledSub = onAppEvent('daily_tasks_set_rerolled', () => { void refreshDailyTaskSummary(); });
+        const xpSub = DeviceEventEmitter.addListener('xp_changed', requestHomeDataRefresh);
+        const dailyTaskCompletedSub = onAppEvent('daily_task_completed', requestDailyTaskSummaryRefresh);
+        const dailyTaskClaimedSub = onAppEvent('daily_task_reward_claimed', requestDailyTaskSummaryRefresh);
+        const dailyTaskRerolledSub = onAppEvent('daily_task_rerolled', requestDailyTaskSummaryRefresh);
+        const dailyTaskSetRerolledSub = onAppEvent('daily_tasks_set_rerolled', requestDailyTaskSummaryRefresh);
         const personalPlanSub = onAppEvent('personal_plan_updated', (payload) => {
             if (payload?.snapshot) {
                 setHasActivePersonalPlanState(true);
@@ -1088,9 +1122,9 @@ export default function HomeScreen() {
             else if (payload?.planId) {
                 setHasActivePersonalPlanState(true);
             }
-            loadData();
+            requestHomeDataRefresh();
         });
-        const leagueStateSub = onAppEvent('league_local_state_updated', () => { loadData(); });
+        const leagueStateSub = onAppEvent('league_local_state_updated', requestHomeDataRefresh);
         const crownSub = onAppEvent('league_crown_updated', ({ expiresAt, crownCount }) => {
             setHomeLeagueCrownExpiresAt(expiresAt);
             setHomeLeagueCrownCount(Math.max(1, Math.floor(Number(crownCount) || 1)));
@@ -1099,7 +1133,15 @@ export default function HomeScreen() {
         const shardsSub = DeviceEventEmitter.addListener('shards_earned', (payload: {
             amount: number;
         }) => {
+            if (!homeRuntimeActiveRef.current) {
+                shardsDirtyRef.current = true;
+                return;
+            }
             getShardsBalance().then(bal => {
+                if (!homeRuntimeActiveRef.current) {
+                    shardsDirtyRef.current = true;
+                    return;
+                }
                 setShardsBalance(bal);
                 // зачем: надпись всплывает прямо над иконкой баланса жемчужин —
                 // эмодзи-алмаз 💎 дублировал бы ассет, который уже на экране.
@@ -1119,24 +1161,43 @@ export default function HomeScreen() {
         // Цепочка только что обнулена (или markStreakLost вызван из любого места) — подтянуть
         // оффер и поднять модалку, не дожидаясь следующего loadData.
         const reviveOfferSub = onAppEvent('streak_revive_offer', () => {
+            if (!homeRuntimeActiveRef.current) {
+                reviveOfferDirtyRef.current = true;
+                return;
+            }
             void getReviveOffer().then((o) => {
-                if (!mountedRef.current || !o)
+                if (!mountedRef.current)
+                    return;
+                if (!homeRuntimeActiveRef.current) {
+                    reviveOfferDirtyRef.current = true;
+                    return;
+                }
+                if (!o)
                     return;
                 setReviveOffer(o);
                 setReviveModalVisible(true);
             });
         });
         const refreshWeekMarkers = () => {
+            if (!homeRuntimeActiveRef.current) {
+                streakMarkersDirtyRef.current = true;
+                return;
+            }
             void readCurrentStreakWeekMarkers().then((markers) => {
-                if (mountedRef.current) setWeekMarkers(markers);
+                if (!mountedRef.current) return;
+                if (!homeRuntimeActiveRef.current) {
+                    streakMarkersDirtyRef.current = true;
+                    return;
+                }
+                setWeekMarkers(markers);
             }).catch(() => {});
         };
         const freezeUpdatedSub = onAppEvent('streak_freeze_updated', refreshWeekMarkers);
         const revivedSub = onAppEvent('streak_revived', () => {
             refreshWeekMarkers();
-            loadData();
+            requestHomeDataRefresh();
         });
-        const streakSeededSub = onAppEvent('streak_seeded', () => { loadData(); });
+        const streakSeededSub = onAppEvent('streak_seeded', requestHomeDataRefresh);
         return () => {
             mountedRef.current = false;
             sub.remove();
@@ -1420,7 +1481,7 @@ export default function HomeScreen() {
         });
     }, []);
     useEffect(() => {
-        if (!isHomeOwner) return;
+        if (!homeRuntimeActive) return;
         const homeRefreshKey = `${studyTarget}:${lang}`;
         // Returning from a section must reveal the preserved Home tree, not
         // restart its data pipeline. A real study-target/UI-language change is
@@ -1438,15 +1499,25 @@ export default function HomeScreen() {
                 return;
             }
             lastHomeRefreshRef.current = { key: homeRefreshKey, at: now };
-            void Promise.all([refreshDailyTaskSummary(), loadData()]);
+            if (!homeRuntimeActiveRef.current) {
+                homeDataDirtyRef.current = true;
+                return;
+            }
+            // Full loading includes the daily summary. Running both creates a
+            // race in which the light refresh may overwrite the full result.
+            void loadData();
         }, 80);
         return () => {
             if (homeRefreshTimerRef.current) {
                 clearTimeout(homeRefreshTimerRef.current);
                 homeRefreshTimerRef.current = null;
+                // The key was latched before the delayed work ran.  Re-open it
+                // through the normal dirty path when ownership returns.
+                homeRefreshKeyRef.current = null;
+                homeDataDirtyRef.current = true;
             }
         };
-    }, [isHomeOwner, studyTarget, lang, refreshDailyTaskSummary]);
+    }, [homeRuntimeActive, studyTarget, lang]);
     useEffect(() => {
         if (!isHomeOwner || homeLeagueCrownLoadedRef.current) return;
         homeLeagueCrownLoadedRef.current = true;
@@ -1555,6 +1626,8 @@ export default function HomeScreen() {
         }
         loadingRef.current = true;
         needsReloadRef.current = false;
+        const homeHydrationStartedAt = Date.now();
+        let streakPaywallOpenedThisLoad = false;
         if (streakTimerRef.current) {
             clearTimeout(streakTimerRef.current);
             streakTimerRef.current = null;
@@ -1636,8 +1709,9 @@ export default function HomeScreen() {
                 selectedTitleHydratedRef.current = true;
                 setSelectedTitleKey(storedTitleKey || null);
             }
-            if (name)
-                setUserName(name);
+            const hydratedName = resolveHydratedProfileName(homeHydrationStartedAt, name);
+            if (hydratedName)
+                setUserName(hydratedName);
             const currentStreakNum = parseInt(streakVal || '0') || 0;
             if (streakVal)
                 setStreak(currentStreakNum);
@@ -1818,7 +1892,7 @@ export default function HomeScreen() {
             setPremiumFreezeUsed(freeFreezeRaw === 'true');
             setTotalXPMulti(baseMulti);
             rememberHomeScreenHydration({
-                userName: name ?? '',
+                userName: hydratedName,
                 totalXP: xpSnap,
                 streak: currentStreakNum,
                 displayStreak: currentStreakNum,
@@ -1852,9 +1926,9 @@ export default function HomeScreen() {
             }, studyTarget);
             patchAppSnapshot({
                 profile: {
-                    source: 'local',
-                    updatedAt: Date.now(),
-                    name: name ?? '',
+                    source: 'storage',
+                    updatedAt: homeHydrationStartedAt,
+                    name: hydratedName,
                     avatar: avatarSnap,
                     frame: frameSnap,
                     aura: normalizeAvatarAuraId(savedAuraSnap) ?? undefined,
@@ -1920,7 +1994,11 @@ export default function HomeScreen() {
             patchHomeScreenHydration({ tasksCompleted: loadedTasksCompleted }, studyTarget);
             // The full Home load can finish after the light summary request. Run the
             // summary again so this late base update cannot hide the survey indicator.
-            void refreshDailyTaskSummary();
+            if (homeRuntimeActiveRef.current) {
+                void refreshDailyTaskSummary();
+            } else {
+                homeDataDirtyRef.current = true;
+            }
             if (leagueState) {
                 const league = LEAGUES.find(l => l.id === leagueState.leagueId) ?? null;
                 const freshLeagueBonus = await fetchLeagueBonusProgressSnapshot().catch(() => null);
@@ -2025,6 +2103,7 @@ export default function HomeScreen() {
                     if (shownToday !== today) {
                         await AsyncStorage.setItem('streak_paywall_shown', today);
                         router.push({ pathname: '/premium_modal', params: { context: 'streak', streak: String(streakBefore) } } as any);
+                        streakPaywallOpenedThisLoad = true;
                     }
                 }
             }
@@ -2034,7 +2113,11 @@ export default function HomeScreen() {
             const offer = await getReviveOffer();
             if (offer && mountedRef.current) {
                 setReviveOffer(offer);
-                setReviveModalVisible(true);
+                if (streakPaywallOpenedThisLoad) {
+                    reviveOfferDirtyRef.current = true;
+                } else {
+                    setReviveModalVisible(true);
+                }
             }
             // Premium celebration: pending выставлен в premium_modal (IAP) или cloud_sync (admin grant).
             const pending = await isCelebrationPending();
@@ -2091,23 +2174,74 @@ export default function HomeScreen() {
             loadingRef.current = false;
             // Если во время загрузки пришёл ещё один запрос — выполняем его сейчас
             if (needsReloadRef.current) {
+                if (!homeRuntimeActiveRef.current) {
+                    needsReloadRef.current = false;
+                    homeDataDirtyRef.current = true;
+                    return;
+                }
                 needsReloadRef.current = false;
                 if (deferredReloadTimerRef.current)
                     clearTimeout(deferredReloadTimerRef.current);
                 deferredReloadTaskRef.current?.cancel?.();
-                deferredReloadTimerRef.current = setTimeout(() => {
+            deferredReloadTimerRef.current = setTimeout(() => {
                     deferredReloadTimerRef.current = null;
                     if (!mountedRef.current)
                         return;
                     deferredReloadTaskRef.current = InteractionManager.runAfterInteractions(() => {
                         deferredReloadTaskRef.current = null;
-                        if (mountedRef.current)
+                        if (mountedRef.current && homeRuntimeActiveRef.current)
                             loadData();
+                        else if (mountedRef.current)
+                            homeDataDirtyRef.current = true;
                     });
                 }, 120);
             }
         }
     };
+    useEffect(() => {
+        if (!homeRuntimeActive) return;
+        if (homeDataDirtyRef.current) {
+            homeDataDirtyRef.current = false;
+            homeDailySummaryDirtyRef.current = false;
+            loadData();
+            return;
+        }
+        if (!homeDailySummaryDirtyRef.current) return;
+        homeDailySummaryDirtyRef.current = false;
+        void refreshDailyTaskSummary();
+    }, [homeRuntimeActive, focusTick, refreshDailyTaskSummary]);
+    useEffect(() => {
+        if (!homeRuntimeActive) {
+            shardsAnim.stopAnimation();
+            shardsBonusAnim.stopAnimation();
+            shardsAnim.setValue(1);
+            shardsBonusAnim.setValue(0);
+            return;
+        }
+        if (shardsDirtyRef.current) {
+            shardsDirtyRef.current = false;
+            void getShardsBalance().then((balance) => {
+                if (homeRuntimeActiveRef.current) setShardsBalance(balance);
+                else shardsDirtyRef.current = true;
+            });
+        }
+        if (streakMarkersDirtyRef.current) {
+            streakMarkersDirtyRef.current = false;
+            void readCurrentStreakWeekMarkers().then((markers) => {
+                if (homeRuntimeActiveRef.current) setWeekMarkers(markers);
+                else streakMarkersDirtyRef.current = true;
+            }).catch(() => {});
+        }
+        if (reviveOfferDirtyRef.current) {
+            reviveOfferDirtyRef.current = false;
+            void getReviveOffer().then((offer) => {
+                if (homeRuntimeActiveRef.current && offer) {
+                    setReviveOffer(offer);
+                    setReviveModalVisible(true);
+                } else if (!homeRuntimeActiveRef.current) reviveOfferDirtyRef.current = true;
+            });
+        }
+    }, [focusTick, homeRuntimeActive, shardsAnim, shardsBonusAnim]);
     const FREEZE_COST_SHARDS = getStreakFreezeCostShards();
     const handleFreezeStreak = async () => {
         hapticTap();
@@ -2161,12 +2295,13 @@ export default function HomeScreen() {
     };
     const weekDays = HOME_WEEK_DAYS[lang] ?? HOME_WEEK_DAYS.ru;
     const todayIdx = (new Date().getDay() + 6) % 7;
-    /** Индексы табов: 0 home, 1 journal, 2 tournaments, 3 friends, 4 settings —
+    /** Индексы табов: 0 home, 1 journal, 2 friends, 3 settings —
      *  см. app/(tabs)/_layout.tsx. Уроки больше не таб: список — полноэкранный
      *  /lesson_menu.
-     *  зачем: карта дублирует _layout.tsx, поэтому при добавлении вкладки
-     *  «Турниры» (кубок по центру) её обязательно править вместе с ним —
-     *  иначе переходы отсюда уводят не на тот экран. */
+     *  зачем: карта дублирует _layout.tsx, поэтому при любом изменении набора
+     *  вкладок её обязательно править вместе с ним — иначе переходы отсюда
+     *  уводят не на тот экран.
+     *  Индексы синхронизированы с нижним таббаром, включая вкладку турниров. */
     const TAB_IDX: Record<string, number> = {
         '/(tabs)/lessons': 1,
         lessons: 1,
@@ -2416,7 +2551,7 @@ export default function HomeScreen() {
         const visibleQuickItems = quickItems;
         // зачем: удалён мёртвый второй ряд плиток (activityQuickItems /
         // visibleActivityQuickItems / themedClubIcon) — он объявлялся, но никогда
-        // не рендерился, поэтому «Аттестация» и «Разговорный клуб» числились в
+        // не рендерился, поэтому «Аттестация» числилась в
         // коде как разделы главной, которых пользователь не видит. Реальный ряд —
         // visibleQuickItems (Урок / Практика / Карточки), см. рендер ниже.
         const xpPct = Math.min(100, Math.max(0, Math.round(progress * 100)));
@@ -2599,6 +2734,7 @@ export default function HomeScreen() {
                     level={level}
                     size={homeHeroAvatarSize}
                     auraId={effectiveUserAvatarAura}
+                    ownerActive={homeRuntimeActive}
                   />
                 </TouchableOpacity>
 
@@ -2761,7 +2897,7 @@ export default function HomeScreen() {
                     теперь колокольчик (с бейджем непрочитанных) идёт сразу после осколков,
                     а аватар/бюст профиля уходит на дальний правый край, где раньше был
                     колокольчик. onPress/бейдж каждой кнопки не тронуты. */}
-                <NotificationCenterButton isHomeTabActive={isHomeOwner} homeFocusTick={focusTick} />
+                <NotificationCenterButton isHomeTabActive={homeRuntimeActive} homeFocusTick={focusTick} />
                 <View style={{ flex: 1, minWidth: 0 }} />
                 {/* зачем: хедер сжат с 5 целей до 3 (осколки/профиль/колокольчик) —
                 {/* зачем: хедер — осколки/профиль/видео/колокольчик: владелец вернул
@@ -2781,7 +2917,7 @@ export default function HomeScreen() {
                     </TouchableOpacity>
                   </View>
                 )}
-                <LingmanVideosButton />
+                <LingmanVideosButton ownerActive={homeRuntimeActive} />
                 {renderHomeProfileButton()}
               </View>
               {/* Анимация начисления осколков */}
@@ -2979,7 +3115,7 @@ export default function HomeScreen() {
           {/* Persistent баннер "Сохрани прогресс" — для незалогиненных юзеров с XP ≥ 1000.
                 Сам решает показываться или нет (см. SaveProgressBanner.tsx). */}
           <View style={{ paddingHorizontal: 16, marginBottom: 10 }}>
-            <SaveProgressBanner />
+            <SaveProgressBanner ownerActive={homeRuntimeActive} />
           </View>
 
           {/* D4: секции ниже первого экрана (быстрый доступ, SRS-ряд, тренер, фраза дня,
@@ -3038,9 +3174,11 @@ export default function HomeScreen() {
                     </View>
                   ))}
                 </View>
-                <Text style={{ color: homeThemePanelMuted, fontSize: 13, fontWeight: '700', fontVariant: ['tabular-nums'] }} numberOfLines={1}>
-                  {tasksCompleted}/{dailyTaskBarCount}
-                </Text>
+                <View testID="home-daily-task-progress" style={{ minWidth: 30, alignItems: 'flex-end', flexShrink: 0 }}>
+                  <Text style={{ color: homeThemePanelMuted, fontSize: 13, fontWeight: '700', fontVariant: ['tabular-nums'] }}>
+                    {tasksCompleted}/{dailyTaskBarCount}
+                  </Text>
+                </View>
               </TouchableOpacity>
               <>
                 <View style={{ height: StyleSheet.hairlineWidth, backgroundColor: isLightTheme ? 'rgba(0,0,0,0.10)' : 'rgba(255,255,255,0.08)' }}/>

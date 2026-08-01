@@ -28,6 +28,8 @@ export type RewardCardSemantic = 'gold' | 'shards' | 'danger' | 'warning' | 'soc
 export type RewardCardBodyProps = {
   /** Короткая строка-категория сверху, БЕЗ эмодзи: «Уровень 12 · Эпический». */
   kicker: string;
+  /** Allows a long kicker to wrap instead of being truncated with an ellipsis. */
+  allowKickerWrap?: boolean;
   /** Контент кольца: строка = эмодзи, иначе любой ReactNode (Image/SVG). */
   icon: React.ReactNode;
   title: string;
@@ -81,6 +83,7 @@ export function rewardCardBackdropColor(themeMode: ReturnType<typeof useTheme>['
 
 export function RewardCardBody({
   kicker,
+  allowKickerWrap = false,
   icon,
   title,
   value,
@@ -208,9 +211,15 @@ export function RewardCardBody({
             style={styles.kickerRuleGrad}
             pointerEvents="none"
           />
-          <Text style={[styles.kicker, { color: accent, fontSize: Math.max(11, f.label - 1) }]} numberOfLines={1}>
-            {kicker.toUpperCase()}
-          </Text>
+          {allowKickerWrap ? (
+            <Text style={[styles.kicker, styles.kickerWrap, { color: accent, fontSize: Math.max(11, f.label - 1) }]}>
+              {kicker.toUpperCase()}
+            </Text>
+          ) : (
+            <Text style={[styles.kicker, { color: accent, fontSize: Math.max(11, f.label - 1) }]} numberOfLines={1}>
+              {kicker.toUpperCase()}
+            </Text>
+          )}
           <LinearGradient
             colors={[withAlpha(accent, '88'), 'transparent']}
             start={{ x: 0, y: 0.5 }}
@@ -383,6 +392,9 @@ const styles = StyleSheet.create({
     fontWeight: '900',
     letterSpacing: 2.5,
     textAlign: 'center',
+  },
+  kickerWrap: {
+    flexShrink: 1,
   },
   ringWrap: {
     marginTop: 20,

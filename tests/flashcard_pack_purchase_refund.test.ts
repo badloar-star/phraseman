@@ -62,7 +62,7 @@ describe('ваучер: порядок операций безопасен', () 
   it('пак выдаётся ДО списания ваучера, а не после', () => {
     const voucher = SRC.slice(SRC.indexOf('export async function redeemPackGiftVoucher'));
     const giveIdx = voucher.indexOf('addOwnedPackId');
-    const burnIdx = voucher.indexOf('consumePackGiftTrial(studyTarget)');
+    const burnIdx = voucher.indexOf('consumePackGiftTrial(trial.localVoucherId)');
     expect(giveIdx).toBeGreaterThan(0);
     expect(burnIdx).toBeGreaterThan(giveIdx);
   });

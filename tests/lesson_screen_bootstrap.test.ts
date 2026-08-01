@@ -60,6 +60,14 @@ describe('lesson screen bootstrap storage recovery', () => {
     expect(promptBlock).not.toContain('numberOfLines');
   });
 
+  it('does not render the rejected grammatical-number hint', () => {
+    const source = readFileSync(join(__dirname, '..', 'app', 'lesson1.tsx'), 'utf8');
+
+    expect(source).not.toContain('lesson1-grammar-number-hint');
+    expect(source).not.toContain('lessonGrammarNumberLabel');
+    expect(source).not.toContain('targetGrammarNumber');
+  });
+
   it('primes the active replay override so the first lesson frame is stable', () => {
     touchLessonScreenPrimed(7, {
       cell: 4,

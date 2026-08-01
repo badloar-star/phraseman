@@ -5,6 +5,8 @@ const onboarding = fs.readFileSync(path.join(process.cwd(), 'components', 'Clean
 const sheet = fs.readFileSync(path.join(process.cwd(), 'components', 'OnboardingWelcomeSheet.tsx'), 'utf8');
 const flags = fs.readFileSync(path.join(process.cwd(), 'app', 'remote_flags.ts'), 'utf8');
 const legacy = fs.readFileSync(path.join(process.cwd(), 'admin', 'v2', 'legacy.html'), 'utf8');
+const host = fs.readFileSync(path.join(process.cwd(), 'components', 'OnboardingWelcomeHost.tsx'), 'utf8');
+const rootLayout = fs.readFileSync(path.join(process.cwd(), 'app', '_layout.tsx'), 'utf8');
 
 // зачем: владелец (2026-07-26) — «Пропустить» на каждом экране кроме оплаты и
 // приветственная шторка после онбординга. Обе фичи обязаны оставаться
@@ -40,23 +42,48 @@ describe('Onboarding welcome sheet', () => {
     expect(sheet).toContain("import ReferralSheetShell from './referral_sheet_shell'");
   });
 
-  it('defers onDone until the sheet closes, exactly once', () => {
-    expect(onboarding).toContain('setWelcomeSheetVisible(true)');
-    expect(onboarding).toContain('if (welcomeDoneRef.current) return;');
-    expect(onboarding).toContain('welcomeDoneRef.current = true;');
+  // зачем: владелец (2026-07-27) — «модал должен быть не на этом экране, а когда
+  // открылся экран главной». Онбординг больше НЕ рисует шторку и не держит onDone:
+  // он ставит одноразовый флаг и сразу отпускает управление.
+  it('never renders the sheet itself — onboarding only raises a one-shot flag', () => {
+    expect(onboarding).not.toContain('OnboardingWelcomeSheet');
+    expect(onboarding).not.toContain('welcomeSheetVisible');
+    expect(onboarding).toContain('await markOnboardingWelcomePending();');
+  });
+
+  it('releases the app immediately, on both flag branches', () => {
+    // onDone() стоит ПОСЛЕ if-а, а не внутри else — управление отдаётся всегда.
+    expect(onboarding).toMatch(/if \(welcomeSheetEnabled\) \{[\s\S]*?\}\s*onDone\(\);/);
+  });
+
+  it('is raised over Home through the arbiter, not with a private visible', () => {
+    expect(rootLayout).toContain('<OnboardingWelcomeHost />');
+    // Первый в OVERLAY_PRIORITY — новичок видит приветствие раньше наград/update.
+    expect(host).toContain("useOverlayVisible('onboardingWelcome', wantShow)");
+  });
+
+  it('shows once: the pending flag is cleared when the sheet closes', () => {
+    expect(host).toContain('clearOnboardingWelcomePending()');
   });
 
   it('falls back to the old behaviour when disabled from the admin', () => {
     expect(flags).toContain("| 'onboarding_welcome_sheet_enabled'");
     expect(flags).toContain('onboarding_welcome_sheet_enabled: true');
     expect(onboarding).toContain('if (welcomeSheetEnabled) {');
-    // CRLF-безопасно: важен сам факт else-ветки с прямым onDone().
-    expect(onboarding).toMatch(/\}\s*else\s*\{\s*onDone\(\);\s*\}/);
+    // Рубильник проверяется и в хосте — выключили после установки флага → шторки нет.
+    expect(host).toContain("getRemoteBool('onboarding_welcome_sheet_enabled')");
   });
 
   it('greets without a name rather than inventing one', () => {
     // На последнем шаге имени нет (возраст + согласия), ник генерируется позже.
     expect(sheet).toContain("return name ? `Спасибо, ${name}!` : 'Спасибо!';");
+  });
+
+  // зачем: владелец (2026-07-27) — «план собран под твои ответы» врёт, никакого
+  // персонального плана мы не собираем. Только благодарность + совет.
+  it('does not promise a personal plan it never built', () => {
+    expect(sheet).not.toContain('план собран');
+    expect(sheet).toContain('Спасибо, что установил приложение.');
   });
 
   it('respects the owner design bans: no borders, weights only 400/700', () => {

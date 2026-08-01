@@ -99,7 +99,6 @@ describe('paywall_copy — контракт покрытия premium-конте�
     expect(normalizePremiumContext('flashcard_training')).toBe('flashcard_training');
     expect(normalizePremiumContext('flashcard_autoplay')).toBe('flashcard_autoplay');
     // Аудит «пейволы-объясняют»: раньше эти точки падали в generic.
-    expect(normalizePremiumContext('speaking_club')).toBe('speaking_club');
     expect(normalizePremiumContext('free_lessons_complete')).toBe('free_lessons_complete');
     expect(normalizePremiumContext('referral_ended')).toBe('referral_ended');
     expect(normalizePremiumContext('winback')).toBe('winback');

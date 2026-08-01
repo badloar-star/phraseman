@@ -24,6 +24,7 @@ import { buildSpokenWordReport, type SpokenWordEntry } from '../../app/speaking_
 import { hapticSuccess, hapticTap, hapticWarning } from '../../hooks/use-haptics';
 import { useIsScreenFocused } from '../../hooks/use_is_screen_focused';
 import { useRecordStartCue } from '../../hooks/use-record-start-cue';
+import { useRuntimeActive } from '../../hooks/use_runtime_active';
 
 import { trackAhaEvent } from './aha_events';
 import { AHA_STRINGS, pickTri } from './aha_scenes';
@@ -71,6 +72,9 @@ function pressTap(): void {
 
 export default function SpeechBeat({ scenario, lang, onDone, playSay }: SpeechBeatProps) {
   const { playRecordStart } = useRecordStartCue();
+  const runtimeActive = useRuntimeActive();
+  const runtimeActiveRef = useRef(runtimeActive);
+  runtimeActiveRef.current = runtimeActive;
   const [status, setStatus] = useState<AhaSpeechStatus>('preprompt');
   const statusRef = useRef<AhaSpeechStatus>('preprompt');
   statusRef.current = status;
@@ -91,8 +95,10 @@ export default function SpeechBeat({ scenario, lang, onDone, playSay }: SpeechBe
   const bestRef = useRef('');
   const recordingUriRef = useRef<string | null>(null);
   const replayPlayerRef = useRef<AudioPlayer | null>(null);
+  const playbackGenerationRef = useRef(0);
   const recordCuePlayedRef = useRef(false);
   const mountedRef = useRef(true);
+  const captureGenerationRef = useRef(0);
 
   const targetText = scenario.say.text;
   const t = useCallback((tri: TriText) => pickTri(lang, tri), [lang]);
@@ -130,14 +136,14 @@ export default function SpeechBeat({ scenario, lang, onDone, playSay }: SpeechBe
   );
 
   // end/error/nomatch → скоринг лучшей гипотезы. Всегда к тёплому исходу.
-  const finishAttempt = useCallback(() => {
+  const finishAttempt = useCallback((generation: number) => {
+    if (!mountedRef.current || !runtimeActiveRef.current || generation !== captureGenerationRef.current) return;
     if (finishingRef.current) return;
     finishingRef.current = true;
     pressActiveRef.current = false;
     clearWatchdog();
     removeSessionListeners();
     restoreLoudPlayback();
-    if (!mountedRef.current) return;
     setStatus('scoring');
     const attemptReport = buildSpokenWordReport({ targetText, transcript: bestRef.current });
     const result = softSpeechOutcome(attemptReport);
@@ -150,13 +156,17 @@ export default function SpeechBeat({ scenario, lang, onDone, playSay }: SpeechBe
   }, [clearWatchdog, removeSessionListeners, targetText]);
 
   const subscribeSession = useCallback(
-    (speech: PlanSpeechModule) => {
+    (speech: PlanSpeechModule, generation: number) => {
+      const isCurrentSession = () =>
+        mountedRef.current && runtimeActiveRef.current && generation === captureGenerationRef.current;
       const playCueOnce = () => {
+        if (!isCurrentSession()) return;
         if (recordCuePlayedRef.current) return;
         recordCuePlayedRef.current = true;
         playRecordStart();
       };
       const startSub = speech.addListener('start', () => {
+        if (!isCurrentSession()) return;
         clearWatchdog();
         if (!pressActiveRef.current) {
           safeCall(() => speech.abort());
@@ -166,11 +176,16 @@ export default function SpeechBeat({ scenario, lang, onDone, playSay }: SpeechBe
         playCueOnce();
       });
       const resultSub = speech.addListener('result', (event: any) => {
+        if (!isCurrentSession()) return;
         // Первый result = движок жив (на редких OEM 'start' не эмитится).
         clearWatchdog();
-        if (pressActiveRef.current && mountedRef.current) setStatus('listening');
-        if (!pressActiveRef.current) return;
-        playCueOnce();
+        if (pressActiveRef.current && mountedRef.current) {
+          setStatus('listening');
+          playCueOnce();
+        }
+        // stop() commonly queues the final result after press-out. Keep this
+        // session's accumulator alive until end/error; a new attempt changes
+        // the generation and is still rejected by isCurrentSession().
         const alternatives: Array<{ transcript?: string }> = Array.isArray(event?.results)
           ? event.results
           : [];
@@ -181,11 +196,12 @@ export default function SpeechBeat({ scenario, lang, onDone, playSay }: SpeechBe
         // Живая подсветка по лучшей гипотезе: слово, загоревшись, не гаснет.
         if (bestRef.current && mountedRef.current) setTranscript(bestRef.current);
       });
-      const endSub = speech.addListener('end', () => finishAttempt());
-      const errorSub = speech.addListener('error', () => finishAttempt());
-      const noMatchSub = speech.addListener('nomatch', () => finishAttempt());
+      const endSub = speech.addListener('end', () => finishAttempt(generation));
+      const errorSub = speech.addListener('error', () => finishAttempt(generation));
+      const noMatchSub = speech.addListener('nomatch', () => finishAttempt(generation));
       sessionSubsRef.current = [startSub, resultSub, endSub, errorSub, noMatchSub];
       audioEndSubRef.current = speech.addListener('audioend', (event: any) => {
+        if (!isCurrentSession()) return;
         const uri = typeof event?.uri === 'string' && event.uri.length > 0 ? event.uri : null;
         recordingUriRef.current = uri;
         if (mountedRef.current) setRecordingUri(uri);
@@ -195,7 +211,8 @@ export default function SpeechBeat({ scenario, lang, onDone, playSay }: SpeechBe
   );
 
   const beginAttempt = useCallback(
-    (speech: PlanSpeechModule) => {
+    (speech: PlanSpeechModule, generation: number) => {
+      if (!runtimeActiveRef.current || generation !== captureGenerationRef.current) return;
       // Сброс прошлой попытки: гипотезы, карта, запись, реплей-плеер.
       finishingRef.current = false;
       recordCuePlayedRef.current = false;
@@ -212,12 +229,13 @@ export default function SpeechBeat({ scenario, lang, onDone, playSay }: SpeechBe
       recordingUriRef.current = null;
       setRecordingUri(null);
 
-      subscribeSession(speech);
+      subscribeSession(speech, generation);
       setStatus('requesting');
       // Watchdog ставим ДО start(); снимается любым признаком жизни движка.
       clearWatchdog();
       watchdogRef.current = setTimeout(() => {
         watchdogRef.current = null;
+        if (!mountedRef.current || !runtimeActiveRef.current || generation !== captureGenerationRef.current) return;
         goFallback('stalled');
       }, WATCHDOG_MS);
       try {
@@ -251,8 +269,10 @@ export default function SpeechBeat({ scenario, lang, onDone, playSay }: SpeechBe
 
   // «Говорить»: guarded-загрузка нативного модуля → разрешение → слушаем.
   const startListening = useCallback(async () => {
+    if (!runtimeActiveRef.current) return;
     if (statusRef.current !== 'preprompt') return;
     pressActiveRef.current = true;
+    const generation = ++captureGenerationRef.current;
     setStatus('requesting');
     if (!isSpeakingEnabled()) {
       goFallback('disabled');
@@ -265,7 +285,7 @@ export default function SpeechBeat({ scenario, lang, onDone, playSay }: SpeechBe
       return;
     }
     const permission = await requestSpeechPermissionForHold(speech);
-    if (!mountedRef.current) return;
+    if (!mountedRef.current || !runtimeActiveRef.current || generation !== captureGenerationRef.current) return;
     if (permission === 'denied') {
       goFallback('denied');
       return;
@@ -276,10 +296,11 @@ export default function SpeechBeat({ scenario, lang, onDone, playSay }: SpeechBe
       return;
     }
     if (!pressActiveRef.current) return;
-    beginAttempt(speech);
+    beginAttempt(speech, generation);
   }, [beginAttempt, goFallback]);
 
   const retryAttempt = useCallback(() => {
+    captureGenerationRef.current += 1;
     pressActiveRef.current = false;
     clearWatchdog();
     removeSessionListeners();
@@ -295,6 +316,7 @@ export default function SpeechBeat({ scenario, lang, onDone, playSay }: SpeechBe
   const stopListening = useCallback(() => {
     pressActiveRef.current = false;
     if (statusRef.current === 'requesting') {
+      captureGenerationRef.current += 1;
       clearWatchdog();
       removeSessionListeners();
       removeAudioEndListener();
@@ -309,20 +331,29 @@ export default function SpeechBeat({ scenario, lang, onDone, playSay }: SpeechBe
   // «Моя запись»: сначала громкая сессия, иначе wav играет еле слышно.
   const playMyRecording = useCallback(() => {
     if (!recordingUri) return;
+    const playbackGeneration = ++playbackGenerationRef.current;
     setActiveTab('mine');
     safeCall(() => replayPlayerRef.current?.remove());
     replayPlayerRef.current = null;
     void setManagedAudioMode(LOUD_PLAYBACK_AUDIO_MODE)
       .catch(() => undefined)
       .finally(() => {
+        if (!mountedRef.current || !runtimeActiveRef.current || playbackGeneration !== playbackGenerationRef.current) return;
+        let player: AudioPlayer;
+        try {
+          player = createAudioPlayer(recordingUri);
+        } catch {
+          return;
+        }
+        if (!mountedRef.current || !runtimeActiveRef.current || playbackGeneration !== playbackGenerationRef.current) {
+          safeCall(() => player.remove());
+          return;
+        }
+        replayPlayerRef.current = player;
         safeCall(() => {
-          const player = createAudioPlayer(recordingUri);
-          replayPlayerRef.current = player;
-          safeCall(() => {
-            player.volume = 1;
-          });
-          player.play();
+          player.volume = 1;
         });
+        safeCall(() => player.play());
       });
   }, [recordingUri]);
 
@@ -350,6 +381,9 @@ export default function SpeechBeat({ scenario, lang, onDone, playSay }: SpeechBe
     trackAhaEvent('onboarding_aha_speech_prompt');
     return () => {
       mountedRef.current = false;
+      captureGenerationRef.current += 1;
+      playbackGenerationRef.current += 1;
+      pressActiveRef.current = false;
       if (watchdogRef.current != null) clearTimeout(watchdogRef.current);
       sessionSubsRef.current.forEach((sub) => sub?.remove?.());
       sessionSubsRef.current = [];
@@ -360,6 +394,25 @@ export default function SpeechBeat({ scenario, lang, onDone, playSay }: SpeechBe
       restoreLoudPlayback();
     };
   }, []);
+
+  // Speech capture lifecycle invariant: blur/background invalidates permission/start,
+  // removes recognition/audioend listeners, stops replay, and never auto-resumes.
+  useEffect(() => {
+    if (runtimeActive) return;
+    captureGenerationRef.current += 1;
+    playbackGenerationRef.current += 1;
+    pressActiveRef.current = false;
+    finishingRef.current = false;
+    clearWatchdog();
+    removeSessionListeners();
+    removeAudioEndListener();
+    safeCall(() => speechRef.current?.abort());
+    safeCall(() => replayPlayerRef.current?.pause());
+    restoreLoudPlayback();
+    if (mountedRef.current && (statusRef.current === 'requesting' || statusRef.current === 'listening' || statusRef.current === 'scoring')) {
+      setStatus('preprompt');
+    }
+  }, [runtimeActive, clearWatchdog, removeSessionListeners, removeAudioEndListener]);
 
   const isListeningPhase =
     status === 'requesting' || status === 'listening' || status === 'scoring';

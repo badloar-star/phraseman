@@ -5,7 +5,7 @@ function read(relativePath: string): string {
   return fs.readFileSync(path.join(process.cwd(), relativePath), 'utf8');
 }
 
-describe('website Apple-mobile / Legacy-desktop release contract', () => {
+describe('current website release contract', () => {
   it('keeps the approved Apple surface below the mobile breakpoint', () => {
     const css = read('knowly-www/assets/phraseman.css');
     const appleMobile = css.slice(css.indexOf('/* Approved Apple-style mobile surface.'));
@@ -17,14 +17,18 @@ describe('website Apple-mobile / Legacy-desktop release contract', () => {
     expect(appleMobile).toContain('.mobile-hero-cta');
   });
 
-  it('keeps the Legacy desktop composition and its edge-safe hero background', () => {
+  it('keeps the current homepage composition and responsive styles', () => {
     const html = read('knowly-www/index.html');
-    const css = read('knowly-www/assets/phraseman.css');
+    const css = read('knowly-www/assets/home.css');
 
-    expect(html).toContain('class="hero-rays"');
-    expect(html).toContain('phraseman-screen-home.webp');
-    expect(css).toContain('@media (min-width: 761px)');
-    expect(css).toContain('right: calc(50% - 50vw);');
+    expect(html).toContain('href="/assets/home.css?v=');
+    expect(html).toContain('class="stage" id="stage"');
+    expect(html).toContain('id="pm-title"');
+    expect(html).toContain('gift-bridge');
+    expect(html).toContain('id="gift-title"');
+    expect(html).toContain('Начать мой первый урок');
+    expect(css).toContain('@media (max-width: 720px)');
+    expect(css).toContain('.stage > .wrap');
   });
 
   it('blocks a hosting release unless the surface contract passes', () => {
@@ -38,7 +42,7 @@ describe('website Apple-mobile / Legacy-desktop release contract', () => {
       /^npm run website:surface-contract && /,
     );
     expect(verifier).toContain('mobile_apple_surface_missing');
-    expect(verifier).toContain('desktop_legacy_surface_missing');
+    expect(verifier).toContain('current_home_surface_missing');
     expect(verifier).toContain('mobile_must_resolve_to_minimal');
     expect(verifier).toContain('desktop_must_resolve_to_legacy');
     expect(verifier).toContain("!isMobileViewport(root.document)");

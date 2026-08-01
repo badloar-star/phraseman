@@ -26,12 +26,13 @@ const ENERGY_OVERRIDE_KEY = 'league_chest_energy_override_v1';
 const XP_OVERRIDE_KEY = 'league_chest_xp_override_v1';
 const STREAK_SHIELD_KEY = 'chain_shield';
 const PACK_TRIAL_GIFT_KEY = 'flashcard_pack_trial_gift_v1';
+const PACK_GIFT_GRANTS = 'flashcard_pack_gift_grants';
 const AVATAR_AURA_OWNED_KEY = 'avatar_aura_owned_v1';
 const AVATAR_AURA_GIFT_OWNED_KEY = 'avatar_aura_gift_owned_v1';
 const USER_AVATAR_AURA_KEY = 'user_avatar_aura';
 const CUSTOM_AVATAR_OWNED_KEY = 'custom_avatar_owned_v1';
 const CUSTOM_AVATAR_GIFT_OWNED_KEY = 'custom_avatar_gift_owned_v1';
-const AVATAR_AURA_IDS = ['aura-aurora', 'aura-ember', 'aura-mint', 'aura-violet', 'aura-gold', 'aura-coral'] as const;
+const AVATAR_AURA_IDS = ['aura-aurora', 'aura-ember', 'aura-mint', 'aura-violet', 'aura-coral'] as const;
 const CUSTOM_AVATAR_DROP_IDS = Array.from(
   { length: 30 },
   (_, index) => `custom-gen-${String(index + 1).padStart(2, '0')}`,
@@ -193,6 +194,10 @@ function sumShardDrops(drops: RewardDrop[]): number {
   ), 0);
 }
 
+function isLeagueChestAuraId(value: unknown): value is typeof AVATAR_AURA_IDS[number] {
+  return typeof value === 'string' && AVATAR_AURA_IDS.includes(value as typeof AVATAR_AURA_IDS[number]);
+}
+
 function buildClaimedRewardResponse(params: {
   claim: FirebaseFirestore.DocumentData | undefined;
   user: FirebaseFirestore.DocumentData | undefined;
@@ -207,6 +212,7 @@ function buildClaimedRewardResponse(params: {
     xpOverrideUses?: number;
     streakShieldCount?: number;
     themeGoldUnlocked?: boolean;
+    packGiftVoucherId?: string;
     expiresAt: number;
   };
   claimedAtMs: number;
@@ -223,6 +229,7 @@ function buildClaimedRewardResponse(params: {
       xpOverrideUses: Math.max(0, readInt(claim?.xpOverrideUses, 0)) || undefined,
       streakShieldCount: Math.max(0, readInt(claim?.streakShieldCount, 0)) || undefined,
       themeGoldUnlocked: claim?.themeGoldUnlocked === true,
+      packGiftVoucherId: sanitizeString(claim?.packGiftVoucherId, 180) || undefined,
       expiresAt,
     }
     : undefined;
@@ -364,8 +371,8 @@ export function buildRewardProgressPatch(params: {
     progressPatch[PACK_TRIAL_GIFT_KEY] = JSON.stringify({ packId: 'league_bonus_voucher', expiresAt: now + PACK_TRIAL_MS });
   }
 
-  const auraDrop = drops.find((drop) => drop.kind === 'avatar_aura' && drop.auraId);
-  if (auraDrop?.auraId) {
+  const auraDrop = drops.find((drop) => drop.kind === 'avatar_aura' && isLeagueChestAuraId(drop.auraId));
+  if (auraDrop?.auraId && isLeagueChestAuraId(auraDrop.auraId)) {
     const owned = parseJsonObject(getExistingField(user, AVATAR_AURA_OWNED_KEY));
     progressPatch[AVATAR_AURA_OWNED_KEY] = JSON.stringify({ ...owned, [auraDrop.auraId]: true });
     progressPatch[AVATAR_AURA_GIFT_OWNED_KEY] = auraDrop.auraId;
@@ -481,7 +488,7 @@ export const leagueChestClaim = onCall({ region: REGION, enforceAppCheck: ENFORC
     const firstReachedAt = existingReachedAt || now;
     const completedInMs = groupCreatedAt > 0 ? Math.max(0, firstReachedAt - groupCreatedAt) : null;
 
-    members.sort((a, b) => b.points - a.points);
+    members.sort((a, b) => b.points - a.points || a.uid.localeCompare(b.uid));
     const winner = members[0];
     const crown = winner
       ? {
@@ -559,6 +566,8 @@ export const leagueChestClaim = onCall({ region: REGION, enforceAppCheck: ENFORC
     const streakShieldCount = rewardDrops
       .filter((drop) => drop.kind === 'streak_shield')
       .reduce((sum, drop) => sum + Math.max(1, readInt(drop.amount, 1)), 0);
+    const packGiftDrop = rewardDrops.find((drop) => drop.kind === 'pack_trial_48h');
+    const packGiftVoucherId = packGiftDrop ? `league_${claimDocId(stableUid, weekId, groupId)}` : '';
     const userPatch: Record<string, unknown> = {
       ...buildRewardProgressPatch({ drops: rewardDrops, user, now, expiresAt }),
       updatedAt: now,
@@ -585,11 +594,22 @@ export const leagueChestClaim = onCall({ region: REGION, enforceAppCheck: ENFORC
       xpOverrideUses: xpBoost ? Math.max(1, readInt(xpBoost.uses, 3)) : 0,
       streakShieldCount,
       themeGoldUnlocked: rewardDrops.some((drop) => drop.kind === 'gold_theme'),
+      packGiftVoucherId: packGiftVoucherId || null,
       expiresAt,
       createdAt: now,
     });
 
     tx.set(userRef, userPatch, { merge: true });
+    if (packGiftDrop && packGiftVoucherId) {
+      tx.set(db.collection(PACK_GIFT_GRANTS).doc(packGiftVoucherId), {
+        ownerStableUid: stableUid,
+        source: 'league_chest',
+        sourceId: claimRef.id,
+        occurrenceId: packGiftVoucherId,
+        expiresAt: Math.max(now + 1, readInt(packGiftDrop.expiresAt, now)),
+        createdAt: now,
+      });
+    }
     if (shardReward > 0) {
       tx.set(userRef.collection('shard_log').doc(), {
         ts: new Date(now).toISOString(),
@@ -618,6 +638,7 @@ export const leagueChestClaim = onCall({ region: REGION, enforceAppCheck: ENFORC
         xpOverrideUses: xpBoost ? Math.max(1, readInt(xpBoost.uses, 3)) : undefined,
         streakShieldCount: streakShieldCount > 0 ? streakShieldCount : undefined,
         themeGoldUnlocked: rewardDrops.some((drop) => drop.kind === 'gold_theme'),
+        packGiftVoucherId: packGiftVoucherId || undefined,
         expiresAt,
       },
     };

@@ -2,8 +2,7 @@ import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import { createAuditRecord } from './admin/audit_contract';
-import { hasAdminRole, type AdminRole } from './admin/roles';
-import { hasPermission } from './admin/permissions';
+import { hasPermission, roleFromAdminToken } from './admin/permissions';
 
 const REGION = 'us-central1';
 const REMOTE_CONFIG_ID = 'app';
@@ -75,20 +74,14 @@ export function mergeRemoteConfigBranches(
   return merged;
 }
 
-function resolveRole(token: Record<string, unknown>): AdminRole | null {
-  const claimed = token.adminRole;
-  return hasAdminRole(claimed) ? claimed : null;
-}
-
 export const adminPublishRemoteConfig = onCall(
   { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK },
   async (request) => {
     if (!request.auth?.token?.admin) throw new HttpsError('permission-denied', 'Admin only');
     const input = parseRemoteConfigRequest(request.data);
     const actorUid = request.auth.uid;
-    const role = resolveRole(request.auth.token as Record<string, unknown>);
-    if (!role) throw new HttpsError('permission-denied', 'adminRole claim required');
-    if (!hasPermission(role, 'application.config.write')) {
+    const role = roleFromAdminToken(request.auth.token);
+    if (!role || !hasPermission(role, 'application.config.write')) {
       throw new HttpsError('permission-denied', 'Role cannot publish remote config');
     }
     const db = admin.firestore();
@@ -151,7 +144,7 @@ export const adminGetRemoteConfigWorkspace = onCall(
   { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK },
   async (request) => {
     if (!request.auth?.token?.admin) throw new HttpsError('permission-denied', 'Admin only');
-    const role = resolveRole(request.auth.token as Record<string, unknown>);
+    const role = roleFromAdminToken(request.auth.token);
     if (!role || !hasPermission(role, 'application.config.write')) throw new HttpsError('permission-denied', 'Role cannot read remote config');
     const db = admin.firestore();
     const [configSnap, historySnap] = await Promise.all([

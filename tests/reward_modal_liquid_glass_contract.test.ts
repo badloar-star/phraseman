@@ -6,7 +6,7 @@ const ROOT = path.join(__dirname, '..');
 const read = (file: string) => fs.readFileSync(path.join(ROOT, file), 'utf8');
 
 describe('reward modal liquid glass design contract', () => {
-  it('uses a shared static liquid-glass layer for level and boon gift moments', () => {
+  it('uses the shared static liquid-glass layer only for gift moments that retain it', () => {
     const backdrop = read('components/RewardModalBackdrop.tsx');
     const single = read('components/LevelGiftModal.tsx');
     const dual = read('components/LevelGiftDualModal.tsx');
@@ -15,7 +15,7 @@ describe('reward modal liquid glass design contract', () => {
     expect(backdrop).toContain('export function RewardModalLiquidGlass');
     expect(backdrop).toContain('testID="reward-modal-liquid-glass"');
     expect(single).toContain('<RewardModalLiquidGlass themeMode={themeMode} accent={accent} intensity="strong" />');
-    expect(dual).toContain('<RewardModalLiquidGlass themeMode={themeMode} accent={modalAccent} intensity="strong" />');
+    expect(dual).not.toContain('RewardModalLiquidGlass');
     expect(boon).toContain('<RewardModalLiquidGlass themeMode={themeMode} accent={accent} intensity="strong" />');
   });
 
@@ -32,11 +32,22 @@ describe('reward modal liquid glass design contract', () => {
     expect(sources).not.toContain('filter: blur');
   });
 
-  it('keeps elite dual gift modal separation tonal instead of decorative borders', () => {
+  it('keeps the elite dual gift modal fully dark and free of decorative highlights', () => {
     const dual = read('components/LevelGiftDualModal.tsx');
 
     expect(dual).toContain('borderWidth: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 0 : 1.5');
     expect(dual).toContain('borderWidth: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 0 : 1.2');
-    expect(dual).toContain("backgroundColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? (premVisual ? 'rgba(214,184,92,0.085)' : 'rgba(255,255,255,0.058)') : 'rgba(0,0,0,0.15)'");
+    expect(dual).toContain("backgroundColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? '#0B1018' : 'rgba(0,0,0,0.15)'");
+    expect(dual).not.toContain('rewardModalSoftSurface');
+    expect(dual).not.toContain('height: 84');
+  });
+
+  it('keeps the opening moment focused on the two reward icons and standard actions', () => {
+    const dual = read('components/LevelGiftDualModal.tsx');
+
+    expect(dual).toContain('{opened.size === 2 && f2pGift && premGift && (');
+    expect(dual).toContain("{presentationMode === 'apply' && (");
+    expect(dual).toContain('testID="level-gift-dual-claim"');
+    expect(dual).toContain('testID="level-gift-dual-save-opened"');
   });
 });

@@ -1,4 +1,6 @@
 import { HttpsError } from 'firebase-functions/v2/https';
+import fs from 'fs';
+import path from 'path';
 import {
   buildUserProfileSummary,
   buildLearningSnapshot,
@@ -11,8 +13,15 @@ import {
   resolveCanonicalStableId,
   sourceResult,
 } from './admin_user_profile';
+import * as adminUserProfileModule from './admin_user_profile';
 
 describe('admin user profile read contracts', () => {
+  it('queries community sales by the authoritative receipt author field', () => {
+    const source = fs.readFileSync(path.join(__dirname, 'admin_user_profile.ts'), 'utf8');
+    expect(source).toContain("readRecentByField(db, 'community_pack_purchases', 'authorStableId', uid)");
+    expect(source).not.toContain("readRecentByField(db, 'community_pack_purchases', 'sellerStableId', uid)");
+  });
+
   it('normalizes bounded search requests without allowing an unbounded directory scan', () => {
     expect(parseUserSearchRequest({ query: '  Alice@example.com ', limit: 999 })).toEqual({
       query: 'Alice@example.com',
@@ -93,6 +102,24 @@ describe('admin user profile read contracts', () => {
     }, ['id', 'type', 'amount', 'createdAt', 'nested'], ['type'])).toEqual({
       id: 'real-id', type: 'purchase', amount: 5, createdAt: 10000,
     });
+  });
+
+  it('canonicalizes only community purchase prices before admin projection', () => {
+    const canonicalize = (adminUserProfileModule as typeof adminUserProfileModule & {
+      canonicalizeCommunityPurchaseRows?: (rows: readonly Record<string, unknown>[]) => Record<string, unknown>[];
+    }).canonicalizeCommunityPurchaseRows;
+    expect(canonicalize).toEqual(expect.any(Function));
+    if (!canonicalize) return;
+
+    expect(canonicalize([
+      { id: 'paid', priceShards: 999, price: 777, acquisitionSource: 'paid_community_sale' },
+      { id: 'gift', priceShards: 999, price: 777, acquisitionSource: 'weekly_boon_gift' },
+      { id: 'legacy', priceShards: 123 },
+    ])).toEqual([
+      { id: 'paid', priceShards: 10, price: 10, acquisitionSource: 'paid_community_sale' },
+      { id: 'gift', priceShards: 0, price: 0, acquisitionSource: 'weekly_boon_gift' },
+      { id: 'legacy', priceShards: 10, price: 10, acquisitionSource: 'paid_community_sale' },
+    ]);
   });
 
   it('lets the authoritative banned_users document override a stale active users flag', () => {

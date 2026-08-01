@@ -113,9 +113,9 @@ jest.mock('@react-native-firebase/functions', () => ({
 }), { virtual: true });
 
 jest.mock('../app/config', () => ({
+  APP_CHECK_REAL_ATTESTATION_ENABLED: true,
   CLOUD_SYNC_ENABLED: true,
   IS_EXPO_GO: false,
-  IS_STORE_RELEASE: true,
 }));
 
 import {

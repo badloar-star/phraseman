@@ -166,6 +166,8 @@ describe('owner runtime direction contract', () => {
       // Конечный 40мс count-up результатов: сам останавливается примерно за 600мс
       // и дополнительно очищается при unmount.
       'app/exam.tsx': 1,
+      // Minute-level voucher expiry refresh, gated by focus and active AppState.
+      'app/flashcards/FlashcardsCategoryHub.tsx': 1,
       // Таймер вопроса арены: живёт только в активной игре, останавливается на
       // последней секунде и чистится при unmount.
       'app/flashcards_arena.tsx': 1,
@@ -331,7 +333,7 @@ describe('owner runtime direction contract', () => {
     const modal = read('components/NoEnergyModal.tsx');
     expect(context).toContain('energyCountdownClock.subscribe(setNow)');
     expect(context).not.toContain('const id = setInterval(() => setNow(Date.now()), 1000)');
-    expect(bar).toContain('useEnergyCountdown({ visible: screenFocused })');
+    expect(bar).toContain('useEnergyCountdown({ visible: screenFocused && ownerActive })');
     expect(lightning).toContain('useEnergyCountdown({ visible: screenFocused })');
     expect(modal).toContain('useEnergyCountdown({ visible: modalVisible })');
   });

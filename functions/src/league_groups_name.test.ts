@@ -54,18 +54,19 @@ function setDotted(target: Record<string, unknown>, key: string, value: unknown)
 }
 
 function makeDb(initial: Store) {
-  const store: Store = {
-    users: { ...(initial.users ?? {}) },
-    leaderboard: { ...(initial.leaderboard ?? {}) },
-    league_groups: { ...(initial.league_groups ?? {}) },
-    name_index: { ...(initial.name_index ?? {}) },
-    banned_users: { ...(initial.banned_users ?? {}) },
-  };
+  const store: Store = {};
+  for (const [collectionName, docs] of Object.entries(initial)) {
+    store[collectionName] = { ...(docs ?? {}) };
+  }
+  for (const collectionName of ['users', 'leaderboard', 'league_groups', 'name_index', 'banned_users']) {
+    store[collectionName] = store[collectionName] ?? {};
+  }
 
-  const snapFor = (id: string, data: Record<string, unknown> | undefined) => ({
+  const snapFor = (collectionName: string, id: string, data: Record<string, unknown> | undefined) => ({
     id,
     exists: !!data,
     data: () => data,
+    ref: docApi(collectionName, id),
   });
 
   const readField = (data: Record<string, unknown>, field: string): unknown => {
@@ -78,7 +79,8 @@ function makeDb(initial: Store) {
   };
 
   const docApi = (collectionName: string, id: string) => ({
-    get: async () => snapFor(id, store[collectionName]?.[id]),
+    collection: (subcollectionName: string) => collectionApi(`${collectionName}/${id}/${subcollectionName}`),
+    get: async () => snapFor(collectionName, id, store[collectionName]?.[id]),
     set: async (data: Record<string, unknown>, options?: { merge?: boolean }) => {
       store[collectionName] = store[collectionName] ?? {};
       const base = options?.merge ? { ...(store[collectionName][id] ?? {}) } : {};
@@ -87,19 +89,53 @@ function makeDb(initial: Store) {
     },
   });
 
-  currentDb = {
-    collection: (collectionName: string) => ({
-      doc: (id: string) => docApi(collectionName, id),
-      where: (field: string, op: string, value: unknown) => ({
-        limit: () => ({
-          get: async () => ({
-            docs: Object.entries(store[collectionName] ?? {})
-              .filter(([, data]) => data && op === '==' && readField(data, field) === value)
-              .map(([id, data]) => snapFor(id, data)),
-          }),
-        }),
-      }),
+  const queryApi = (
+    collectionName: string,
+    filters: Array<{ field: string; op: string; value: unknown }> = [],
+    max = Number.POSITIVE_INFINITY,
+    afterId = '',
+  ): any => ({
+    where: (field: string, op: string, value: unknown) => queryApi(
+      collectionName,
+      [...filters, { field, op, value }],
+      max,
+      afterId,
+    ),
+    orderBy: () => queryApi(collectionName, filters, max, afterId),
+    startAfter: (doc: { id?: string }) => queryApi(collectionName, filters, max, String(doc?.id || '')),
+    limit: (value: number) => queryApi(collectionName, filters, value, afterId),
+    get: async () => ({
+      docs: Object.entries(store[collectionName] ?? {})
+        .filter(([, data]) => data && filters.every(({ field, op, value }) => {
+          const actual = readField(data, field);
+          if (op === '==') return actual === value;
+          if (op === '<') return Number(actual) < Number(value);
+          return false;
+        }))
+        .filter(([id]) => !afterId || id > afterId)
+        .sort(([a], [b]) => a.localeCompare(b))
+        .slice(0, max)
+        .map(([id, data]) => snapFor(collectionName, id, data)),
     }),
+  });
+
+  const collectionApi = (collectionName: string) => ({
+    doc: (id: string) => docApi(collectionName, id),
+    where: (field: string, op: string, value: unknown) => queryApi(collectionName)
+      .where(field, op, value),
+  });
+
+  currentDb = {
+    collection: collectionApi,
+    batch: () => {
+      const writes: Promise<unknown>[] = [];
+      return {
+        set: (ref: any, data: Record<string, unknown>, options?: { merge?: boolean }) => {
+          writes.push(ref.set(data, options));
+        },
+        commit: async () => { await Promise.all(writes); },
+      };
+    },
     runTransaction: async (callback: (tx: any) => Promise<unknown>) => callback({
       get: (ref: any) => ref.get(),
       set: (ref: any, data: Record<string, unknown>, options?: { merge?: boolean }) => ref.set(data, options),
@@ -191,6 +227,213 @@ describe('league current-week points', () => {
 });
 
 describe('league join authoritative projection', () => {
+  it('waits for the previous-week server finalizer before an old client can join on Monday', async () => {
+    jest.useFakeTimers();
+    jest.setSystemTime(new Date('2026-08-03T00:04:00.000Z'));
+    try {
+      const weekId = currentWeekId();
+      const previousWeekId = '2026-W31';
+      const store = makeDb({
+        users: { 'stable-self': { progress: { user_name: 'Vitalii' } } },
+        leaderboard: {
+          'stable-self': { groupId: 'group-prev', groupWeekId: previousWeekId, leagueId: 2 },
+        },
+      });
+
+      await expect(callableRun(leagueJoinOrUpdateGroup, {
+        stableId: 'stable-self',
+        weekId,
+        leagueId: 2,
+        member: { name: 'Vitalii', points: 0 },
+      }, 'auth-self')).rejects.toMatchObject({ code: 'failed-precondition' });
+
+      expect(Object.keys(store.league_groups)).toHaveLength(0);
+      expect(store.leaderboard['stable-self']?.groupWeekId).toBe(previousWeekId);
+    } finally {
+      jest.useRealTimers();
+    }
+  });
+
+  it('keeps the server-owned current league when the client requests another tier', async () => {
+    const weekId = currentWeekId();
+    const store = makeDb({
+      users: {
+        'stable-self': {
+          progress: {
+            user_name: 'Vitalii',
+            weekly_xp: '50',
+            weekly_xp_period_start: currentMondayUtcIso(),
+          },
+        },
+      },
+      leaderboard: {
+        'stable-self': { groupId: 'group-1', groupWeekId: weekId, leagueId: 2 },
+      },
+      league_groups: {
+        'group-1': {
+          weekId,
+          leagueId: 2,
+          members: { 'stable-self': { uid: 'stable-self', name: 'Vitalii', points: 0 } },
+        },
+      },
+    });
+
+    const res = await callableRun(leagueJoinOrUpdateGroup, {
+      stableId: 'stable-self',
+      weekId,
+      leagueId: 50,
+      member: { name: 'Vitalii', points: 50 },
+    }, 'auth-self');
+
+    expect(res).toMatchObject({ ok: true, groupId: 'group-1', weekId, leagueId: 2 });
+    expect(store.league_groups['group-1']?.leagueId).toBe(2);
+    expect(Object.values(store.league_groups).some((group) => group?.leagueId === 50)).toBe(false);
+  });
+
+  it('repairs stale group XP from current-week server sources instead of preserving an old maximum', async () => {
+    const weekId = currentWeekId();
+    const store = makeDb({
+      users: {
+        'stable-self': { progress: { user_name: 'Vitalii' } },
+      },
+      leaderboard: {
+        'stable-self': {
+          groupId: 'group-1',
+          groupWeekId: weekId,
+          leagueId: 2,
+          weekKey: weekId,
+          weekPoints: 300,
+        },
+      },
+      league_groups: {
+        'group-1': {
+          weekId,
+          leagueId: 2,
+          members: { 'stable-self': { uid: 'stable-self', name: 'Vitalii', points: 3022 } },
+        },
+      },
+    });
+
+    const res = await callableRun(leagueJoinOrUpdateGroup, {
+      stableId: 'stable-self',
+      weekId,
+      leagueId: 2,
+      member: { name: 'Vitalii', points: 999_999 },
+    }, 'auth-self');
+
+    expect(res).toMatchObject({ ok: true, groupId: 'group-1', weekId, leagueId: 2 });
+    const member = (store.league_groups['group-1']?.members as Record<string, Record<string, unknown>>)['stable-self'];
+    expect(member.points).toBe(300);
+    expect(store.leaderboard['stable-self']?.weekPoints).toBe(300);
+  });
+
+  it('uses the finalized previous-week result for the first join of a new week', async () => {
+    const weekId = currentWeekId();
+    const previousWeekId = (() => {
+      const date = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+      const utc = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
+      const day = utc.getUTCDay() || 7;
+      utc.setUTCDate(utc.getUTCDate() + 4 - day);
+      const yearStart = new Date(Date.UTC(utc.getUTCFullYear(), 0, 1));
+      const weekNum = Math.ceil((((utc.getTime() - yearStart.getTime()) / 86400000) + 1) / 7);
+      return `${utc.getUTCFullYear()}-W${String(weekNum).padStart(2, '0')}`;
+    })();
+    const store = makeDb({
+      users: {
+        'stable-self': { progress: { user_name: 'Vitalii' } },
+      },
+      leaderboard: {
+        'stable-self': { groupId: 'group-prev', groupWeekId: previousWeekId, leagueId: 2 },
+      },
+      'users/stable-self/league_week_results': {
+        [previousWeekId]: {
+          weekId: previousWeekId,
+          groupId: 'group-prev',
+          prevLeagueId: 2,
+          newLeagueId: 3,
+          promoted: true,
+        },
+      },
+    });
+
+    const res = await callableRun(leagueJoinOrUpdateGroup, {
+      stableId: 'stable-self',
+      weekId,
+      leagueId: 9,
+      member: { name: 'Vitalii', points: 0 },
+    }, 'auth-self');
+
+    expect(res).toMatchObject({ ok: true, weekId, leagueId: 3 });
+    expect(Object.values(store.league_groups).some((group) => group?.leagueId === 9)).toBe(false);
+  });
+
+  it('finds an existing membership after the first 500 groups instead of creating a duplicate', async () => {
+    const weekId = currentWeekId();
+    const groups = Object.fromEntries(Array.from({ length: 501 }, (_, index) => {
+      const id = `group-${String(index).padStart(3, '0')}`;
+      return [id, {
+        weekId,
+        leagueId: 2,
+        memberCount: 1,
+        members: index === 500
+          ? { 'stable-self': { uid: 'stable-self', name: 'Vitalii', points: 10 } }
+          : { [`other-${index}`]: { uid: `other-${index}`, name: `Other ${index}`, points: 1 } },
+      }];
+    }));
+    const store = makeDb({
+      users: { 'stable-self': { progress: { user_name: 'Vitalii' } } },
+      leaderboard: { 'stable-self': { leagueId: 2, groupWeekId: weekId } },
+      league_groups: groups,
+    });
+
+    const res = await callableRun(leagueJoinOrUpdateGroup, {
+      stableId: 'stable-self',
+      weekId,
+      leagueId: 2,
+      member: { name: 'Vitalii', points: 10 },
+    }, 'auth-self');
+
+    expect(res).toMatchObject({ ok: true, groupId: 'group-500', weekId, leagueId: 2 });
+    expect(Object.keys(store.league_groups)).toHaveLength(501);
+  });
+
+  it('hides a duplicate membership on another 500-document page', async () => {
+    const weekId = currentWeekId();
+    const groups = Object.fromEntries(Array.from({ length: 501 }, (_, index) => {
+      const id = `group-${String(index).padStart(3, '0')}`;
+      const members: Record<string, Record<string, unknown>> = {
+        [`other-${index}`]: { uid: `other-${index}`, name: `Other ${index}`, points: 1 },
+      };
+      if (index === 0 || index === 500) {
+        members['stable-self'] = { uid: 'stable-self', name: 'Vitalii', points: 10 };
+      }
+      if (index === 500) {
+        members['canonical-peer'] = { uid: 'canonical-peer', name: 'Peer', points: 20 };
+      }
+      return [id, { weekId, leagueId: 2, memberCount: Object.keys(members).length, members }];
+    }));
+    const store = makeDb({
+      users: { 'stable-self': { progress: { user_name: 'Vitalii' } } },
+      leaderboard: { 'stable-self': { leagueId: 2 } },
+      league_groups: groups,
+    });
+
+    const res = await callableRun(leagueJoinOrUpdateGroup, {
+      stableId: 'stable-self',
+      weekId,
+      leagueId: 2,
+      member: { name: 'Vitalii', points: 10 },
+    }, 'auth-self');
+
+    expect(res).toMatchObject({ ok: true, groupId: 'group-500', weekId, leagueId: 2 });
+    const duplicate = (store.league_groups['group-000']?.members as Record<string, Record<string, unknown>>)['stable-self'];
+    expect(duplicate).toMatchObject({
+      identityHidden: true,
+      canonicalStableId: 'stable-self',
+      duplicateOfGroupId: 'group-500',
+    });
+  });
+
   it('overrides protected client fields and refreshes leaderboard without dropping group fields', async () => {
     const weekId = currentWeekId();
     const store = makeDb({

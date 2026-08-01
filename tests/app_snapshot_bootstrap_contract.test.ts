@@ -60,6 +60,25 @@ describe('app snapshot bootstrap contract', () => {
     expect(arena).toContain('arenaSnapshot.progress?.shards');
   });
 
+  it('timestamps delayed profile hydration when the read starts so it cannot undo a later rename', () => {
+    const store = readProjectFile('app', 'app_snapshot_store.ts');
+    const home = readProjectFile('app', '(tabs)', 'home.tsx');
+    const settings = readProjectFile('app', '(tabs)', 'settings.tsx');
+
+    expect(store).toContain('export function resolveHydratedProfileName');
+    expect(home).toContain('const homeHydrationStartedAt = Date.now();');
+    expect(home).toContain('updatedAt: homeHydrationStartedAt,');
+    expect(home).toContain('resolveHydratedProfileName(homeHydrationStartedAt, name)');
+    expect(home).toContain('userName: hydratedName,');
+    expect(home).toContain('name: hydratedName,');
+    expect(home).toMatch(/profile:\s*{\s*source: 'storage',\s*updatedAt: homeHydrationStartedAt,/);
+    expect(home).not.toMatch(/if \(name\)\s*setUserName\(name\)/);
+    expect(settings).toContain('const settingsHydrationStartedAt = Date.now();');
+    expect(settings).toContain('updatedAt: settingsHydrationStartedAt,');
+    expect(settings).toContain('resolveHydratedProfileName(settingsHydrationStartedAt, pairs[0][1])');
+    expect(settings).not.toContain('setUserName(pairs[0][1]);');
+  });
+
   it('clears the in-memory snapshot during account-level local wipe', () => {
     const cloudSync = readProjectFile('app', 'cloud_sync.ts');
 

@@ -86,17 +86,20 @@ describe('SpeakingPanel honest-assessment integration contract', () => {
     expect(source).toContain('ensureNeuralModel(');
   });
 
-  it('shows the per-word map, band verdict and one concrete hint after every attempt', () => {
+  it('keeps the per-word map and concrete hint without randomized humorous verdicts', () => {
     expect(source).toContain('buildSpokenWordReport(');
-    expect(source).toContain('speakingBandLabel(');
+    expect(source).not.toContain('pickSpeakingBandFeedback(');
+    expect(source).toContain('speakingBandLabel(band, lang)');
     expect(source).toContain('buildSpeakingHint(');
     expect(source).toContain('speakingHintText(');
   });
 
-  it('offers the «my recording ↔ reference» ear-comparison after an attempt', () => {
+  it('keeps recording playback for internal word practice without result comparison buttons', () => {
     expect(source).toContain('playMyRecording');
-    expect(source).toContain('playReference');
     expect(source).toContain('createAudioPlayer(recordingUri)');
-    expect(source).toContain('Speech.speak(targetText');
+    expect(source).not.toContain('playReference');
+    expect(source).not.toContain('Speech.speak(targetText');
+    expect(source).not.toContain('speaking-inline-reference');
+    expect(source).not.toContain('speaking-inline-recording');
   });
 });

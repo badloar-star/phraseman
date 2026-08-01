@@ -13,12 +13,13 @@ describe('league club hub composition', () => {
     expect(mission).toContain('onLikeBoost');
   });
 
-  it('keeps the arena scene and my-position bar above participant rows with profile actions', () => {
+  it('keeps the arena scene and participant rows without the floating my-position overlay', () => {
+    const screen = read('app/club_screen.tsx');
     const scene = read('components/league/LeagueArenaScene.tsx');
-    const bar = read('components/league/LeagueMyPositionBar.tsx');
     const row = read('components/league/LeagueLeaderboardRow.tsx');
     expect(scene).toContain('testID="league-arena-scene"');
-    expect(bar).toContain('testID="league-my-position-bar"');
+    expect(screen).not.toContain('LeagueMyPositionBar');
+    expect(screen).not.toContain('league-my-position-bar');
     expect(row).toContain('GroupMember');
     expect(row).toContain('onOpenProfile');
     expect(row).toContain('member.isMe');
@@ -80,9 +81,30 @@ describe('league club hub composition', () => {
     const row = read('components/league/LeagueLeaderboardRow.tsx');
     const mission = read('components/league/LeagueBonusMission.tsx');
     expect(screen).toContain('data={publicListGroup}');
-    expect(screen).toContain('const publicListGroup = useMemo(() => publicSortedGroup.slice(3), [publicSortedGroup]);');
+    expect(screen).toContain('const publicListGroup = useMemo(() => publicSortedGroup, [publicSortedGroup]);');
     expect(screen).toContain('name: leaguePublicName(member.name');
     expect(row).toContain('const displayName = leaguePublicName');
     expect(mission).toContain('leaguePublicName(model.boost.buyerName');
+  });
+
+  it('keeps rank zones aligned when the participant list includes the podium', () => {
+    const screen = read('app/club_screen.tsx');
+
+    // The FlatList receives every member, including the first three already
+    // shown in the arena. Its index is therefore the member's real rank index.
+    // Adding the old podium offset falsely puts safe members into relegation.
+    expect(screen).toContain('const publicListGroup = useMemo(() => publicSortedGroup, [publicSortedGroup]);');
+    expect(screen).toContain('const absIndex = index;');
+    expect(screen).not.toContain('const absIndex = index + 3;');
+    expect(screen).toContain('const idx = myLeagueRank - 1;');
+    expect(screen).not.toContain('const idx = myLeagueRank - 4;');
+  });
+
+  it('labels the repeated top-three rows as a full ranking rather than a second member list', () => {
+    const screen = read('app/club_screen.tsx');
+
+    expect(screen).toContain("ru: 'Полный рейтинг'");
+    expect(screen).toContain("uk: 'Повний рейтинг'");
+    expect(screen).not.toContain("ru: 'Участники клуба'");
   });
 });

@@ -2709,8 +2709,11 @@ export default function FlashcardsSwipeScreen() {
               {
                 width: cardWidth,
                 minHeight: cardHeight,
-                maxHeight: cardMaxHeight,
-                overflow: 'hidden',
+                // The feedback pane is independently capped and scrollable. Before it
+                // appears, let the card grow so a long localized translation remains
+                // readable on compact screens instead of being clipped by this cap.
+                maxHeight: feedback ? cardMaxHeight : undefined,
+                overflow: feedback ? 'hidden' : 'visible',
                 // зачем: обводка заменена на тон+тень — рамки вокруг блоков запрещены
                 // в проекте. Результат ответа теперь читается по подложке карточки и
                 // цвету тени, а не по контуру: мягче и «дороже», сигнал не потерян.

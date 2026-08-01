@@ -23,8 +23,8 @@ export interface V2EpisodeContentQualityReport {
 }
 
 const REQUIRED_SESSION_COUNT = 12;
-const MIN_CARDS = 7;
-const MAX_CARDS = 9;
+const MIN_CARDS = 12;
+const MAX_CARDS = 12;
 const MIN_FAMILIES = 3;
 const MAX_FAMILIES = 4;
 const MAX_OPTIONAL_TEMPLATES = 2;

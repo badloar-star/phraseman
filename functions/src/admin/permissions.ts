@@ -3,6 +3,7 @@ import { hasAdminRole, type AdminRole } from './roles';
 export type AdminPermission =
   | 'users.read'
   | 'users.write'
+  | 'users.delete'
   | 'users.auth_repair'
   | 'users.message.write'
   | 'money.read'
@@ -63,7 +64,7 @@ const IDEA_OPERATOR_PERMISSIONS: readonly AdminPermission[] = [
 
 const ROLE_PERMISSIONS: Readonly<Record<AdminRole, ReadonlySet<AdminPermission>>> = {
   owner: new Set([
-    'users.read', 'users.write', 'users.auth_repair', 'users.message.write', 'money.read', 'money.manual_access.write',
+    'users.read', 'users.write', 'users.delete', 'users.auth_repair', 'users.message.write', 'money.read', 'money.manual_access.write',
     'content.read', 'content.draft.write', 'content.publish', 'content.review', 'application.config.write', 'campaigns.read', 'campaigns.write',
     'diagnostics.read', 'community.moderate', 'admin.roles.write',
     ...SUPPORT_OPERATOR_PERMISSIONS, 'support.reply.resolve_ambiguous',

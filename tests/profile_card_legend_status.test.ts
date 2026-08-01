@@ -37,12 +37,18 @@ describe('legend status — золотое имя владельца карто�
     },
   );
 
-  it('gold applies only in the plain-name branch (vip/premium styles stay stronger)', () => {
+  it('every Plus identity uses the gold component and no live list uses the green VIP name', () => {
     for (const { source } of LIST_FILES) {
-      // VIP/premium ветки идут раньше простой — условие золота живёт только в простой.
       expect(source).toMatch(/PremiumGoldUserName/);
-      expect(source).toMatch(/VipGreenUserName/);
+      expect(source).not.toMatch(/VipGreenUserName/);
+      expect(source).toMatch(/isPremium\s*\|\|\s*\w+\.isVip|\.isPremium\s*\|\|\s*\.isVip/);
     }
+  });
+
+  it('the shared profile/result text style maps paid and granted Plus to the same gold style', () => {
+    const memberStyles = read('components', 'premiumMemberStyles.ts');
+    expect(memberStyles).toContain('if (opts.isPremium || opts.isVip) return premiumMemberNameStyle(base, true, opts.themeMode);');
+    expect(memberStyles).not.toContain('VIP_MEMBER_NAME_GREEN');
   });
 });
 

@@ -22,6 +22,7 @@ import {
   isEnergyBonusGiftId, isPremiumLevelGiftId, rollF2pLevelGiftForUser,
 } from '../app/level_gift_system';
 import { triLang, type Lang } from '../constants/i18n';
+import { emitAppEvent } from '../app/events';
 import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useEnergy } from './EnergyContext';
@@ -201,8 +202,21 @@ function LevelGiftModal({
       } else {
         const accountToken = openingAccountTokenRef.current;
         void (async () => {
-          const rolledGift = await rollF2pLevelGiftForUser(level, { studyTarget });
-          if (accountToken && isCurrentOpening(accountToken)) setGift(rolledGift);
+          try {
+            const rolledGift = await rollF2pLevelGiftForUser(level, { studyTarget });
+            if (accountToken && isCurrentOpening(accountToken)) setGift(rolledGift);
+          } catch {
+            // Reservation remains unclaimed and can be retried after connectivity returns.
+            if (accountToken && isCurrentOpening(accountToken)) {
+              emitAppEvent('action_toast', {
+                type: 'info',
+                messageRu: 'Подарок не потерян. Подключись к интернету и попробуй открыть его снова.',
+                messageUk: 'Подарунок не втрачено. Підключися до інтернету й спробуй відкрити його знову.',
+                messageEs: 'El regalo sigue guardado. Conéctate a internet e intenta abrirlo de nuevo.',
+              });
+              onClose(false);
+            }
+          }
         })();
       }
       fadeReveal.setValue(presentationMode === 'apply' ? 1 : 0);
@@ -230,7 +244,7 @@ function LevelGiftModal({
       );
       glowLoop.current.start();
     }
-  }, [visible, level, preRolledGift, fadeReveal, floatAnim, rockAnim, scaleAnim, shakeAnim, lidLift, orbRise, orbPulse, modalEntrance, modalGlow, presentationMode, studyTarget]);
+  }, [visible, level, preRolledGift, fadeReveal, floatAnim, rockAnim, scaleAnim, shakeAnim, lidLift, orbRise, orbPulse, modalEntrance, modalGlow, presentationMode, studyTarget, onClose]);
 
   useEffect(() => {
     if (!visible || !gift) {

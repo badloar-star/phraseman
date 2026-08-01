@@ -59,6 +59,11 @@ const AI_BUDGET_COLLECTION = 'tournament_ai_budget';
 const AI_MAX_REPAIRS = 2;
 const AI_TEMPERATURE = 0.35;
 
+/** Compatibility tombstone for generators that only know retired text modes. */
+export function rejectRetiredTournamentModeGeneration(): void {
+  throw new HttpsError('failed-precondition', 'tournament_legacy_mode_generation_retired');
+}
+
 /** Explicit wrapper keeps folder publication tied to the normal publish gate. */
 export function bulkTournamentTaskCanPublish(
   task: TournamentTask & { source?: unknown; lifecycle?: unknown; aiVerdict?: unknown },
@@ -251,6 +256,7 @@ export const adminGenerateTournamentAi = onCall(
   { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK, timeoutSeconds: 540, secrets: [OPENAI_API_KEY] },
   async (request) => {
     requirePermission(request, 'content.draft.write');
+    rejectRetiredTournamentModeGeneration();
     const params = parseTournamentFullRequest(request.data);
     const db = admin.firestore();
     const nowMs = Date.now();
@@ -370,6 +376,7 @@ export const adminRegenerateTournamentTask = onCall(
   { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK, timeoutSeconds: 300, secrets: [OPENAI_API_KEY] },
   async (request) => {
     requirePermission(request, 'content.draft.write');
+    rejectRetiredTournamentModeGeneration();
     const record = onlyKeys(request.data, ['taskId', 'topicHint'], 'tournament_regen_invalid');
     const taskId = String(record.taskId ?? '').trim();
     if (!/^[A-Za-z0-9._:-]{1,160}$/.test(taskId)) {

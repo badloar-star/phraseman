@@ -1,8 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<testsuites>
-  <testsuite name="Test Suite" device="Codex VIP E2E 16 125145 - iOS 26.4 - CB589208-FEED-4F34-A3DF-50E10049F1E4" tests="1" failures="1" time="131.0">
-    <testcase id="vip_survey_e2e" name="vip_survey_e2e" classname="vip_survey_e2e" time="131.0" status="ERROR">
-      <failure>Assertion is false: id: screen-settings-testers is visible</failure>
-    </testcase>
-  </testsuite>
-</testsuites>

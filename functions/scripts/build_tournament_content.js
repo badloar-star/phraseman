@@ -7,7 +7,8 @@
  * functions/, и .ts там никто не исполнит. Поэтому на этапе сборки вытаскиваем
  * ТОЛЬКО нужные генератору поля (english, meaning.ru, words, topic, level) в
  * компактный JSON рядом с функциями. Полный контент 20 МБ, выжимка — доли от
- * этого: в рантайм не тянем ни объяснения, ни теорию, ни словарь дня.
+ * этого: в рантайм не тянем объяснения и теорию; из словаря дня переносим
+ * только авторские EN↔RU пары, нужные speed_match.
  */
 const fs = require('node:fs');
 const path = require('node:path');
@@ -73,6 +74,13 @@ for (const planId of PLANS) {
       topic: day.topic && day.topic.ru ? { ru: String(day.topic.ru) } : undefined,
       level: day.level ? String(day.level) : undefined,
       phrases,
+      vocabulary: (day.vocabulary || [])
+        .filter((entry) => entry && entry.word && entry.translation && entry.translation.ru)
+        .map((entry) => ({
+          word: String(entry.word),
+          partOfSpeech: String(entry.partOfSpeech || ''),
+          translation: { ru: String(entry.translation.ru) },
+        })),
     });
   }
   console.log(`[ok] ${planId}: ${days.length} дней`);

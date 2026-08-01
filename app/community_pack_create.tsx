@@ -184,17 +184,6 @@ function communityPackValidationToast(
         tr: 'Paketin adını ve açıklamasını gir.',
         pl: 'Podaj nazwę i opis zestawu.',
       };
-    case 'price':
-      return {
-        ru: 'Что-то пошло не так с отправкой набора — попробуйте ещё раз.',
-        uk: 'Щось пішло не так з надсиланням набору — спробуйте ще раз.',
-        es: 'Algo salió mal al enviar el pack — inténtalo otra vez.',
-        'pt-BR': 'Algo deu errado ao enviar o pacote. Tente novamente.',
-        vi: 'Đã xảy ra lỗi khi gửi bộ thẻ. Hãy thử lại.',
-        id: 'Ada yang salah saat mengirim paket. Coba lagi.',
-        tr: 'Paket gönderilirken bir şey ters gitti. Tekrar dene.',
-        pl: 'Coś poszło nie tak przy wysyłaniu zestawu. Spróbuj ponownie.',
-      };
     case 'card_fields':
       return {
         ru: 'У каждой карточки должны быть EN и перевод.',
@@ -219,14 +208,14 @@ function communityPackValidationToast(
       };
     default:
       return {
-        ru: 'Проверь название, описание, цену и все карточки.',
-        uk: 'Перевірте назву, опис, ціну та всі картки.',
-        es: 'Revisa el título, la descripción, el precio y todas las tarjetas.',
-        'pt-BR': 'Verifique o título, a descrição, o preço e todos os cartões.',
-        vi: 'Kiểm tra tên, mô tả, giá và tất cả thẻ.',
-        id: 'Periksa judul, deskripsi, harga, dan semua kartu.',
-        tr: 'Adı, açıklamayı, fiyatı ve tüm kartları kontrol et.',
-        pl: 'Sprawdź nazwę, opis, cenę i wszystkie karty.',
+        ru: 'Проверь название, описание и все карточки.',
+        uk: 'Перевірте назву, опис і всі картки.',
+        es: 'Revisa el título, la descripción y todas las tarjetas.',
+        'pt-BR': 'Verifique o título, a descrição e todos os cartões.',
+        vi: 'Kiểm tra tên, mô tả và tất cả thẻ.',
+        id: 'Periksa judul, deskripsi, dan semua kartu.',
+        tr: 'Adı, açıklamayı ve tüm kartları kontrol et.',
+        pl: 'Sprawdź nazwę, opis i wszystkie karty.',
       };
   }
 }
@@ -961,6 +950,27 @@ export default function CommunityPackCreateScreen() {
                   'Di sini kamu bisa membuat paketmu. Jika lolos moderasi, pengguna lain bisa memakainya dan kamu akan mendapatkan fragmen.',
                   'Burada kendi paketini oluşturabilirsin. Moderasyondan geçerse diğer kullanıcılar kullanabilir ve sen jeton kazanırsın.',
                   'Tutaj możesz stworzyć swój pakiet. Jeśli przejdzie moderację, inni użytkownicy będą mogli z niego korzystać, a ty zdobędziesz monety.',
+                )}
+              </Text>
+              <Text
+                accessibilityRole="text"
+                style={{
+                  color: t.textSecond,
+                  fontSize: f.caption,
+                  lineHeight: 18,
+                  marginBottom: 14,
+                  fontWeight: '600',
+                }}
+              >
+                {L(
+                  'Цена набора для всех: 10 жемчужин. Изменить её нельзя.',
+                  'Ціна набору для всіх: 10 перлин. Її не можна змінити.',
+                  'Precio fijo para todos: 10 perlas. No se puede cambiar.',
+                  'Preço fixo para todos: 10 pérolas. Não pode ser alterado.',
+                  'Giá cố định cho mọi người: 10 ngọc trai. Không thể thay đổi.',
+                  'Harga tetap untuk semua: 10 mutiara. Tidak dapat diubah.',
+                  'Herkes için sabit fiyat: 10 inci. Değiştirilemez.',
+                  'Stała cena dla wszystkich: 10 pereł. Nie można jej zmienić.',
                 )}
               </Text>
               <Text style={labelStyle(t)}>{L('Название', 'Назва', 'Título', 'Título', 'Tên', 'Judul', 'Başlık', 'Tytuł')} *</Text>

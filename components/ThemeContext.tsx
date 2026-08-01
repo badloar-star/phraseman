@@ -214,18 +214,18 @@ const THEME_MAP: Record<ThemeMode, Theme> = {
   candyBlue: CANDY_BLUE,
   indigo: INDIGO,
 };
-const CYCLE: ThemeMode[] = ['indigo', 'midnight', 'minimalDark', 'ember', 'aurora', 'volt', 'candyBlue', 'dark', 'coral', 'gold'];
+const CYCLE: ThemeMode[] = ['indigo', 'midnight', 'ember', 'aurora', 'volt', 'dark', 'coral', 'gold'];
 /** Premium themes. Free theme: `indigo`; `gold` is unlocked only by reward. */
 // зачем: с 2026-07-27 бесплатная тема-витрина — «Индиго» (выбор владельца);
 // «Полночь» ушла в премиум, но у старых бесплатных юзеров не отбирается —
 // см. флаг-«дедушка» MIDNIGHT_GRANDFATHER_KEY.
-const PREMIUM_ONLY_THEMES: ThemeMode[] = ['dark', 'coral', 'minimalDark', 'midnight', 'ember', 'aurora', 'volt', 'candyBlue'];
+const PREMIUM_ONLY_THEMES: ThemeMode[] = ['dark', 'coral', 'midnight', 'ember', 'aurora', 'volt'];
 const DEV_THEME_UNLOCKS = DEV_MODE || ENABLE_DEV_TOOLS;
 const DEFAULT_THEME_MODE: ThemeMode = 'indigo';
 const MIDNIGHT_GRANDFATHER_KEY = 'app_theme_midnight_grandfather';
 // business/businessLight удалены из выбора (2026-07-02): пользователю не зашли.
 // vanilla удалена полностью (2026-07-25): владелец решил снять светлую тему из выбора.
-const REMOVED_THEME_MODES = new Set(['neon', 'minimalLight', 'compass', 'business', 'businessLight', 'vanilla']);
+const REMOVED_THEME_MODES = new Set(['neon', 'minimalLight', 'compass', 'business', 'businessLight', 'vanilla', 'minimalDark', 'candyBlue']);
 
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const { width: layoutW, height: layoutH } = useWindowDimensions();
@@ -280,9 +280,9 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
         void AsyncStorage.setItem('app_theme', DEFAULT_THEME_MODE);
       }
       const valid =
-        false || migrated === 'dark' || migrated === 'gold' || migrated === 'coral' || false || migrated === 'minimalDark' || false ||
+        false || migrated === 'dark' || migrated === 'gold' || migrated === 'coral' || false ||
         migrated === 'midnight' || migrated === 'ember' || migrated === 'aurora' || migrated === 'volt' ||
-        migrated === 'candyBlue' || migrated === 'indigo';
+        migrated === 'indigo';
       if (valid) {
         const t = migrated as ThemeMode;
         const goldLocked = t === 'gold' && !hasGoldReward && !DEV_THEME_UNLOCKS;

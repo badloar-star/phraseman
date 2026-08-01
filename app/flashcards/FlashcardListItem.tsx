@@ -441,7 +441,7 @@ function FlashcardListItemImpl({
     hintY.setValue(0);
     // Луп-подсказка бежит только на видимом экране (freezeOnBlur:false держит
     // ушедшие экраны живыми — иначе луп грел бы телефон в фоне).
-    if (!hasDetails || detailsExpanded || !isScreenFocused) return;
+    if (!hasDetails || detailsExpanded || !isRowInFocus || !isScreenFocused) return;
 
     let cancelled = false;
     let delayTimer: ReturnType<typeof setTimeout> | null = null;
@@ -490,7 +490,7 @@ function FlashcardListItemImpl({
       appSub.remove();
       stopNudge();
     };
-  }, [hasDetails, detailsExpanded, hintY, item.id, chevronHintDelayMs, isScreenFocused]);
+  }, [hasDetails, detailsExpanded, hintY, item.id, chevronHintDelayMs, isRowInFocus, isScreenFocused]);
 
   const voiceTextFront = isModernAbbrevCard
     ? (parsedAbbrevEn.rest || item.en)

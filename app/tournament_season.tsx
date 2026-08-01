@@ -11,6 +11,7 @@ import Animated, { FadeInDown } from 'react-native-reanimated';
 import { useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
 // зачем: голый router.back() крашит Android/Fabric при teardown — тот же контракт,
 // что и в shards_shop.tsx/tournaments.tsx, используем везде, где есть кнопка «назад».
 import { safeRouterBack } from './navigation_back';
@@ -53,6 +54,7 @@ export default function TournamentSeasonScreen() {
   const styles = React.useMemo(() => makeStyles(P), [P]);
   const router = useRouter();
   const insets = useStableSafeAreaInsets();
+  const tournamentSeasonRuntimeActive = useRuntimeActive();
   // зачем: экран пушится из tournaments.tsx («Сезон» card), но своей кнопки
   // «назад» не было — трапит пользователя. Паттерн 1:1 как на tournaments.tsx.
   const goBack = useCallback(() => safeRouterBack(router, '/(tabs)/tournaments' as any), [router]);
@@ -79,7 +81,7 @@ export default function TournamentSeasonScreen() {
   const secondsToReset = useCountdown(
     // От часов СЕРВЕРА: при сбитых часах устройства отсчёт врал бы так же.
     Math.max(0, Math.round((weeklyBankPayoutAtMs(tournamentNow()) - tournamentNow()) / 1000)),
-    true,
+    tournamentSeasonRuntimeActive,
   );
   const urgent = secondsToReset <= 3 * 3600;
 

@@ -8,14 +8,21 @@ import {
   primeMarketplaceBuiltCardsCacheFromOwnedStorage,
   type FlashcardMarketPack,
 } from './marketplace';
-import { consumePackGiftTrial, getPackGiftTrial } from './pack_trial_gift';
-import { purchaseCommunityPackWithShards } from '../community_packs/purchaseCommunityPack';
+import { bindPackGiftVoucherSelection, consumePackGiftTrial, getPackGiftTrial } from './pack_trial_gift';
+import {
+  ensureFirebaseUserSignedInForCallable,
+  purchaseCommunityPackWithShards,
+  redeemCommunityPackGiftVoucher,
+} from '../community_packs/purchaseCommunityPack';
 import { trackCardPackAcquiredAchievement } from './packAchievementTracking';
 import type { RuntimeStudyTarget } from '../target_storage_keys';
 import { flashcardsOfficialPacksAvailableForTarget } from '../flashcards_target_gate';
+import { callFlashcardPackGiftRedeem } from '../community_packs/functionsClient';
+import { getCanonicalUserId } from '../user_id_policy';
+import { storageStudyTarget } from '../target_storage_keys';
 
 export type CardPackShardPurchaseResult = 'ok' | 'insufficient' | 'spend_failed' | 'already_owned' | 'source_gated';
-export type CardPackVoucherRedeemResult = 'ok' | 'no_voucher' | 'not_eligible' | 'already_owned' | 'source_gated';
+export type CardPackVoucherRedeemResult = 'ok' | 'no_voucher' | 'already_owned' | 'source_gated' | 'redeem_failed';
 
 function emitSourceGatedPackToast(): void {
   emitAppEvent('action_toast', {
@@ -109,25 +116,69 @@ export async function purchaseCardPackWithShards(
 /**
  * Активувати 48-год ваучер для безкоштовного отримання набору.
  *
- * Працює тільки для офіційних паків (не community UGC). Ваучер «згоряє» одразу
- * незалежно від ціни паку. Викликається з voucher-modal у paywall флоу.
+ * Працює для офіційних і community-наборів. Ваучер «згоряє» тільки після того,
+ * як постійне володіння набором підтверджено й збережено.
  */
 export async function redeemPackGiftVoucher(
   pack: FlashcardMarketPack,
   studyTarget?: RuntimeStudyTarget,
 ): Promise<CardPackVoucherRedeemResult> {
-  if (pack.isCommunityUgc) return 'not_eligible';
+  if (pack.isCommunityUgc) {
+    return redeemCommunityPackGiftVoucher(pack, studyTarget);
+  }
+  const owned = await loadOwnedPackIds(studyTarget);
+  if (owned.includes(pack.id)) return 'already_owned';
+  const trial = await getPackGiftTrial(studyTarget, {
+    packId: pack.id, packType: 'official', studyTarget: storageStudyTarget(studyTarget),
+  });
+  if (!trial) {
+    emitAppEvent('action_toast', {
+      type: 'info',
+      messageRu: 'Срок подарка истёк.',
+      messageUk: 'Термін подарунка минув.',
+      messageEs: 'El regalo ha caducado.',
+    });
+    return 'no_voucher';
+  }
+  if (trial.claimBinding && (
+    trial.claimBinding.packId !== pack.id
+    || trial.claimBinding.packType !== 'official'
+    || trial.claimBinding.studyTarget !== storageStudyTarget(studyTarget)
+  )) return 'redeem_failed';
   if (!flashcardsOfficialPacksAvailableForTarget(studyTarget)) {
     emitSourceGatedPackToast();
     return 'source_gated';
   }
-  const trial = await getPackGiftTrial(studyTarget);
-  if (!trial) return 'no_voucher';
-  const owned = await loadOwnedPackIds(studyTarget);
-  if (owned.includes(pack.id)) return 'already_owned';
-  await addOwnedPackId(pack.id, studyTarget);
-  await primeMarketplaceBuiltCardsCacheFromOwnedStorage(studyTarget);
-  await consumePackGiftTrial(studyTarget);
+  const buyerStableId = await getCanonicalUserId().catch(() => null);
+  if (!buyerStableId || !(await ensureFirebaseUserSignedInForCallable())) return 'redeem_failed';
+  try {
+    const result = await callFlashcardPackGiftRedeem({
+      buyerStableId,
+      packType: 'official',
+      packId: pack.id,
+      studyTarget: storageStudyTarget(studyTarget),
+      voucherId: trial.voucherId,
+      voucherOccurrenceId: trial.occurrenceId,
+    });
+    if (result.alreadyOwned) return 'already_owned';
+    if (!result.gifted) return 'redeem_failed';
+    // The server receipt binds this exact deck before local writes. A failed save or
+    // consume leaves the voucher locally visible, so retry can replay only this deck.
+    await bindPackGiftVoucherSelection(trial.localVoucherId, {
+      packId: pack.id, packType: 'official', studyTarget: storageStudyTarget(studyTarget), confirmedAt: Date.now(),
+    });
+    await addOwnedPackId(pack.id, studyTarget);
+    await primeMarketplaceBuiltCardsCacheFromOwnedStorage(studyTarget).catch(() => {});
+    await consumePackGiftTrial(trial.localVoucherId);
+  } catch {
+    emitAppEvent('action_toast', {
+      type: 'error',
+      messageRu: 'Не удалось завершить подарок. Повтори выбор этого же набора.',
+      messageUk: 'Не вдалося завершити подарунок. Повтори вибір цього самого набору.',
+      messageEs: 'No se pudo completar el regalo. Vuelve a elegir el mismo pack.',
+    });
+    return 'redeem_failed';
+  }
   const voucherTitleEs =
     pack.titleEs.trim() || pack.titleUk.trim() || pack.titleRu.trim() || pack.id;
   emitAppEvent('action_toast', {

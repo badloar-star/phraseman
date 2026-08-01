@@ -1,0 +1,16 @@
+{
+  "startedAt": "2026-07-29T18:35:18.073Z",
+  "cwd": "C:\\appsprojects\\phraseman\\functions",
+  "command": [
+    "npm",
+    "run",
+    "build"
+  ],
+  "stdoutPath": ".codex-tmp/codex-safe-run/20260729_183518_npm/stdout.log",
+  "stderrPath": ".codex-tmp/codex-safe-run/20260729_183518_npm/stderr.log",
+  "finishedAt": "2026-07-29T18:35:18.079Z",
+  "exitCode": -4058,
+  "signal": null,
+  "stdoutBytes": 0,
+  "stderrBytes": 23
+}

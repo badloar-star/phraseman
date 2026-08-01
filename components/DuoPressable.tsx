@@ -1,5 +1,12 @@
 import React, { memo, useCallback, useEffect, useMemo } from 'react';
-import { Pressable, PressableProps, StyleProp, StyleSheet, ViewStyle } from 'react-native';
+import {
+  Pressable,
+  PressableProps,
+  StyleProp,
+  StyleSheet,
+  ViewStyle,
+  type GestureResponderEvent,
+} from 'react-native';
 import Reanimated, {
   interpolate,
   useAnimatedStyle,
@@ -21,6 +28,10 @@ type PassthroughPressableProps = Omit<
 interface Props extends PassthroughPressableProps {
   onPress?: () => void;
   onLongPress?: () => void;
+  /** Runs together with DuoPressable's built-in press animation. */
+  onPressIn?: PressableProps['onPressIn'];
+  /** Runs together with DuoPressable's built-in release animation. */
+  onPressOut?: PressableProps['onPressOut'];
   /** Стиль ВЕРХНЕЙ (нажимаемой) поверхности — фон/радиус/паддинги кнопки. */
   style?: StyleProp<ViewStyle>;
   /** Стиль внешней обёртки (margin, alignSelf, ширина в layout). */
@@ -61,6 +72,8 @@ interface Props extends PassthroughPressableProps {
 function DuoPressable({
   onPress,
   onLongPress,
+  onPressIn,
+  onPressOut,
   style,
   wrapStyle,
   children,
@@ -80,14 +93,16 @@ function DuoPressable({
   // программное удержание не затирали друг друга.
   const held = useSharedValue(0);
 
-  const pressIn = useCallback(() => {
+  const pressIn = useCallback((event: GestureResponderEvent) => {
     if (withHaptic && !disabled) hapticTap();
     press.value = withSpring(1, MOTION_SPRING.micro);
-  }, [press, withHaptic, disabled]);
+    onPressIn?.(event);
+  }, [press, withHaptic, disabled, onPressIn]);
 
-  const pressOut = useCallback(() => {
+  const pressOut = useCallback((event: GestureResponderEvent) => {
     press.value = withSpring(0, MOTION_SPRING.micro);
-  }, [press]);
+    onPressOut?.(event);
+  }, [press, onPressOut]);
 
   useEffect(() => {
     held.value = withSpring(pressedExternally ? 1 : 0, MOTION_SPRING.micro);

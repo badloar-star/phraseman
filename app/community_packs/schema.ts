@@ -37,13 +37,8 @@ export const COMMUNITY_SELLER_INBOX_SUBCOLLECTION = 'community_seller_inbox';
 export const COMMUNITY_PACK_CARD_COUNT_MIN = 10;
 export const COMMUNITY_PACK_CARD_COUNT_MAX = 50;
 
-/** Фиксированная цена UGC-набора в ЖЕМЧУГЕ (единая для всех наборов от людей).
- * зачем: 10 жемчужин = €0,17, автору после 15% комиссии оставалось ~€0,14 —
- * за набор из 10–50 карточек это не мотивировало создавать контент (нужно было
- * 30 продаж, чтобы отбить один пакет за €3.99). Плюс чужой труд стоил дешевле
- * рестайла своего аватара (25). 40 жемчужин ≈ €0,68: автору ~€0,58 с продажи,
- * покупателю всё ещё импульсная цена ниже ауры и аватара. */
-export const COMMUNITY_PACK_PRICE_SHARDS = 40;
+/** Фиксированная цена UGC-набора в жемчуге. Пользователь и сохранённые документы её не задают. */
+export const COMMUNITY_PACK_PRICE_SHARDS = 10;
 
 /** Доля «платформы» в осколках: базисные пункты (10000 = 100%). Например 1500 = 15% остаётся в экономике приложения (сжигание). */
 export const COMMUNITY_PACK_PLATFORM_FEE_BPS = 1500;
@@ -89,7 +84,8 @@ export type CommunityPackSubmissionPayload = {
   description: string;
   cardThemeKey?: CommunityPackCardThemeKey;
   cardBackKey?: CommunityPackCardBackKey;
-  priceShards: number;
+  /** Legacy transport field; reads and server writes always replace it with the fixed price. */
+  readonly priceShards?: number;
   cards: CommunityPackCardPayload[];
   sourceLang?: Lang;
   /** Legacy — ігнорується, якщо задані title/description. */
@@ -126,10 +122,6 @@ export function validateCommunityPackPayload(p: CommunityPackSubmissionPayload):
   if (!title || !description) return 'title_or_desc';
   const n = p.cards?.length ?? 0;
   if (n < COMMUNITY_PACK_CARD_COUNT_MIN || n > COMMUNITY_PACK_CARD_COUNT_MAX) return 'card_count';
-  const price = Math.floor(Number(p.priceShards));
-  if (!Number.isFinite(price) || price !== COMMUNITY_PACK_PRICE_SHARDS) {
-    return 'price';
-  }
   for (const c of p.cards) {
     const hasSource = !!(
       String(c?.ru ?? '').trim() ||

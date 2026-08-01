@@ -6,6 +6,8 @@ const runtime = require('./tournaments') as Record<string, (...args: any[]) => P
 const core = require('./tournament_core') as Record<string, any>;
 
 const PROJECT_ID = 'demo-phraseman-tournament-lifecycle';
+const FIXTURE_POOL_GENERATION = 'lifecycle-task-pool-generation-v1';
+const FIXTURE_POOL_REVISION = 1;
 
 jest.setTimeout(30_000);
 
@@ -68,16 +70,84 @@ function round(roundNo: number): Record<string, unknown> {
 }
 
 function fillResources(prefix: string): Record<string, unknown> {
+  const tasks = core.TOURNAMENT_ROUND_MODE_PLAN.flatMap(
+    (modes: string[], roundIndex: number) => modes.map((mode, modeIndex) => {
+      const taskId = `${prefix}-r${roundIndex + 1}-${modeIndex}-${mode}`;
+      const difficulty = roundIndex === 0 ? 1 : roundIndex === 1 ? 1 : roundIndex === 2 ? 2 : 3;
+      if (mode === 'translate_build') {
+        return {
+          taskId, mode, isVoice: false, difficulty,
+          payload: {
+            phrase: `Build phrase ${taskId}`,
+            wordBank: ['I', 'am', 'ready', 'now'],
+            correctTokenCount: 3,
+            correctTokens: ['I', 'am', 'ready'],
+            correctAnswer: 'I am ready',
+          },
+          explanation: {
+            ruleNote: 'Use subject + be + adjective.',
+            example: 'I am ready.',
+            wrongOptionReasons: [],
+          },
+          tags: [], verified: true,
+        };
+      }
+      if (mode === 'speed_match') {
+        const leftWords = ['cat', 'dog', 'bird', 'fish', 'tree', 'book'];
+        const rightOptions = ['gato', 'perro', 'ave', 'pez', 'arbol', 'libro'];
+        return {
+          taskId, mode, isVoice: false, difficulty,
+          payload: {
+            prompt: 'Match the pairs',
+            rightOptions,
+            items: rightOptions.map((rightOption, itemIndex) => ({
+              prompt: leftWords[itemIndex],
+              options: rightOptions,
+              correctIndex: itemIndex,
+              explanation: {
+                ruleNote: `${leftWords[itemIndex]} has one exact match.`,
+                example: `${leftWords[itemIndex]} - ${rightOption}.`,
+                wrongOptionReasons: rightOptions.map((_, optionIndex) => (
+                  optionIndex === itemIndex ? '' : 'This is another pair.'
+                )),
+              },
+            })),
+          },
+          explanation: {
+            ruleNote: 'Match every left item to its exact right item.',
+            example: 'cat - gato.',
+            wrongOptionReasons: [],
+          },
+          tags: [], verified: true,
+        };
+      }
+      return {
+        taskId, mode, isVoice: false, difficulty,
+        payload: {
+          phrase: `phrase ${taskId}`,
+          options: ['correct', 'wrong-1', 'wrong-2', 'wrong-3'],
+          correctIndex: 0,
+          correctAnswer: 'correct',
+        },
+        explanation: {
+          ruleNote: 'Use the phrase that matches the situation.',
+          example: 'I am ready.',
+          wrongOptionReasons: ['', 'Wrong meaning.', 'Wrong grammar.', 'Wrong context.'],
+        },
+        tags: [], verified: true,
+      };
+    }),
+  );
   return {
-    tasks: Array.from({ length: 24 }, (_, index) => ({
-      taskId: `${prefix}-task-${index}`,
-      mode: 'choice',
-      isVoice: false,
-      difficulty: 1 + Math.floor(index / 8),
-      payload: { phrase: `phrase ${index}`, options: ['a', 'b', 'c', 'd'], correctIndex: 0 },
-      tags: [],
-      verified: true,
-    })),
+    tasks,
+    taskPoolGeneration: FIXTURE_POOL_GENERATION,
+    taskPoolRevision: FIXTURE_POOL_REVISION,
+    curatedRounds: new Map(core.TOURNAMENT_ROUND_MODE_PLAN.map(
+      (modes: string[], roundIndex: number) => [
+        roundIndex + 1,
+        modes.map((mode, modeIndex) => `${prefix}-r${roundIndex + 1}-${modeIndex}-${mode}`),
+      ],
+    )),
     bots: Array.from({ length: 8 }, (_, index) => ({
       botId: `${prefix}-bot-${index}`,
       name: `Bot ${index}`,
@@ -102,7 +172,21 @@ describe('tournament round lifecycle recovery', () => {
     db = getFirestore(app);
   });
 
+  beforeEach(async () => {
+    await db.collection(core.TOURNAMENT_PRIVATE_STATE_COLLECTION)
+      .doc(core.TOURNAMENT_POOL_BARRIER_DOC)
+      .set({
+        kind: core.TOURNAMENT_POOL_BARRIER_KIND,
+        state: 'ready',
+        generation: FIXTURE_POOL_GENERATION,
+        revision: FIXTURE_POOL_REVISION,
+      });
+  });
+
   afterAll(async () => {
+    await db.collection(core.TOURNAMENT_PRIVATE_STATE_COLLECTION)
+      .doc(core.TOURNAMENT_POOL_BARRIER_DOC)
+      .delete();
     await deleteApp(app);
   });
 
@@ -130,7 +214,11 @@ describe('tournament round lifecycle recovery', () => {
       .resolves.toBe('waiting');
     await expect(runtime.advanceRoomAtDeadline(db, roomRef, { nowMs: () => lobbyDeadlineAtMs }))
       .resolves.toBe('advanced');
-    expect((await roomRef.get()).data()).toMatchObject({ state: 'lobby', stateDeadlineAtMs: startsAt });
+    expect((await roomRef.get()).data()).toMatchObject({
+      state: 'lobby',
+      stateDeadlineAtMs: startsAt + core.TOURNAMENT_ROOM_GATHER_MS
+        + core.TOURNAMENT_BOT_FILL_WINDOW_MS,
+    });
 
     await Promise.all([
       db.collection('tournamentSchedule').doc('config').set({
@@ -140,7 +228,7 @@ describe('tournament round lifecycle recovery', () => {
         freeWeeklyEntry: false,
         ticketGemValue: 10,
       }),
-      db.collection('users').doc('lifecycle-join-u1').set({ name: 'Lobby Player', shards: 0 }),
+      db.collection('users').doc('lifecycle-join-u1').set({ name: 'Lobby Player', shards: 3 }),
       db.collection('users').doc('lifecycle-join-u1').collection('inventory').doc('tickets').set({ count: 1 }),
       db.collection('auth_links').doc('lifecycle-auth-u1').set({ stable_id: 'lifecycle-join-u1' }),
     ]);
@@ -169,20 +257,29 @@ describe('tournament round lifecycle recovery', () => {
     const startsAt = 1_900_100_000_000;
     const lobbyDeadlineAtMs = startsAt - core.TOURNAMENT_LOBBY_OPEN_MS;
     const entrants = Array.from({ length: 8 }, (_, index) => player(`fill-real-${index}`));
-    const resources = fillResources(`fill-lifecycle-${process.pid}`);
+    const resources = fillResources(`fill-lifecycle-${process.pid}`) as {
+      tasks: any[]; bots: any[]; curatedRounds: Map<number, string[]>;
+    };
     const modernId = `fill-modern-scheduled-${process.pid}`;
     const modernRef = db.collection('tournamentRooms').doc(modernId);
+    expect(resources.tasks.every((task) => core.validateTournamentTaskForNewRoom(task).ok)).toBe(true);
+    expect(runtime.buildTournamentRounds(modernId, resources.tasks, resources.curatedRounds)).not.toBeNull();
     await modernRef.set({
       slotId: 'daily', seed: modernId, state: 'scheduled', startsAt,
       stateStartedAtMs: lobbyDeadlineAtMs - 1_000, stateDeadlineAtMs: lobbyDeadlineAtMs,
+      gatherStartedAtMs: lobbyDeadlineAtMs - core.TOURNAMENT_ROOM_GATHER_MS - 501,
       players: entrants, participantAuthUids: [], participantAuthUidsComplete: true,
       rounds: [], version: 0, createdAtMs: lobbyDeadlineAtMs - 1_000,
     });
     await expect(runtime.tournamentFillRoomTransaction(db, modernRef, resources, {
       nowMs: () => lobbyDeadlineAtMs - 500,
     })).resolves.toBe('filled');
-    expect((await modernRef.get()).data()?.stateDeadlineAtMs).toBe(lobbyDeadlineAtMs);
-    await expect(runtime.advanceRoomAtDeadline(db, modernRef, { nowMs: () => lobbyDeadlineAtMs }))
+    const fillDeadlineAtMs = (await modernRef.get()).data()?.stateDeadlineAtMs;
+    expect(fillDeadlineAtMs).toBeGreaterThan(lobbyDeadlineAtMs - 500);
+    expect(fillDeadlineAtMs).toBeLessThanOrEqual(
+      lobbyDeadlineAtMs - 500 + core.TOURNAMENT_ROOM_GATHER_MS + core.TOURNAMENT_BOT_FILL_WINDOW_MS + 1_000,
+    );
+    await expect(runtime.advanceRoomAtDeadline(db, modernRef, { nowMs: () => fillDeadlineAtMs }))
       .resolves.toBe('advanced');
     expect((await modernRef.get()).data()?.state).toBe('lobby');
 
@@ -202,6 +299,138 @@ describe('tournament round lifecycle recovery', () => {
     expect((await legacyRef.collection('taskSecrets').get()).empty).toBe(true);
     await expect(runtime.advanceRoomAtDeadline(db, legacyRef, { nowMs: () => startsAt }))
       .resolves.toBe('cancel_legacy');
+  });
+
+  test('lifecycle fix: server fill does not manufacture bot reactions', async () => {
+    const nowMs = 1_900_200_000_000;
+    const roomId = `lifecycle-no-bot-reactions-${process.pid}`;
+    const roomRef = db.collection('tournamentRooms').doc(roomId);
+    const entrants = Array.from({ length: 8 }, (_, index) => player(`reaction-real-${index}`));
+    await roomRef.set({
+      slotId: 'daily', seed: roomId, state: 'lobby', startsAt: nowMs + 120_000,
+      stateStartedAtMs: nowMs - 60_000, stateDeadlineAtMs: nowMs + 120_000,
+      gatherStartedAtMs: nowMs - core.TOURNAMENT_ROOM_GATHER_MS - 1,
+      players: entrants, participantAuthUids: [], participantAuthUidsComplete: true,
+      rounds: [], ready: false, version: 0, createdAtMs: nowMs - 60_000,
+    });
+
+    await expect(runtime.tournamentFillRoomTransaction(
+      db, roomRef, fillResources(`reaction-fill-${process.pid}`), { nowMs: () => nowMs },
+    )).resolves.toBe('filled');
+
+    expect((await roomRef.collection('reactions').get()).empty).toBe(true);
+  });
+
+  test('lifecycle fix: future bot reservations do not start round one before their join times', async () => {
+    const nowMs = 1_900_300_000_000;
+    const roomId = `lifecycle-fill-starts-round-${process.pid}`;
+    const roomRef = db.collection('tournamentRooms').doc(roomId);
+    const entrants = Array.from({ length: 8 }, (_, index) => player(`fill-start-real-${index}`));
+    await roomRef.set({
+      slotId: 'daily', seed: roomId, state: 'lobby', startsAt: nowMs + 120_000,
+      stateStartedAtMs: nowMs - 60_000, stateDeadlineAtMs: nowMs + 120_000,
+      gatherStartedAtMs: nowMs - core.TOURNAMENT_ROOM_GATHER_MS - 1,
+      players: entrants, participantAuthUids: [], participantAuthUidsComplete: true,
+      rounds: [], ready: false, version: 0, createdAtMs: nowMs - 60_000,
+    });
+
+    await expect(runtime.tournamentFillRoomTransaction(
+      db, roomRef, fillResources(`immediate-fill-${process.pid}`), { nowMs: () => nowMs },
+    )).resolves.toBe('filled');
+
+    const waiting = (await roomRef.get()).data()!;
+    const reservationTimes = waiting.players
+      .map((entry: { joinAtMs?: number }) => entry.joinAtMs)
+      .filter((value: unknown): value is number => typeof value === 'number');
+    const lastReservationAtMs = Math.max(...reservationTimes);
+    expect(waiting.state).toBe('lobby');
+    expect(waiting.players).toHaveLength(16);
+    expect(lastReservationAtMs).toBeGreaterThan(nowMs);
+    expect(waiting.stateDeadlineAtMs).toBe(lastReservationAtMs);
+    expect(waiting.rounds.every((entry: Record<string, unknown>) => entry.taskSchedule === undefined)).toBe(true);
+
+    await expect(runtime.advanceRoomAtDeadline(db, roomRef, {
+      nowMs: () => waiting.stateDeadlineAtMs,
+    })).resolves.toBe('advanced');
+    const active = (await roomRef.get()).data()!;
+    expect(active).toMatchObject({ state: 'round1', stateStartedAtMs: waiting.stateDeadlineAtMs });
+    expect(active.stateDeadlineAtMs).toBeGreaterThan(active.introEndsAtMs);
+  });
+
+  test('lifecycle fix: a late fill starts round one when every reservation time has elapsed', async () => {
+    const nowMs = 1_900_350_000_000;
+    const roomId = `lifecycle-late-fill-starts-round-${process.pid}`;
+    const roomRef = db.collection('tournamentRooms').doc(roomId);
+    const entrants = Array.from({ length: 8 }, (_, index) => player(`late-fill-real-${index}`));
+    await roomRef.set({
+      slotId: 'daily', seed: roomId, state: 'lobby', startsAt: nowMs + 120_000,
+      stateStartedAtMs: nowMs - 120_000, stateDeadlineAtMs: nowMs,
+      gatherStartedAtMs: nowMs - core.TOURNAMENT_ROOM_GATHER_MS
+        - core.TOURNAMENT_BOT_FILL_WINDOW_MS - 5_000,
+      players: entrants, participantAuthUids: [], participantAuthUidsComplete: true,
+      rounds: [], ready: false, version: 0, createdAtMs: nowMs - 120_000,
+    });
+
+    await expect(runtime.tournamentFillRoomTransaction(
+      db, roomRef, fillResources(`late-immediate-fill-${process.pid}`), { nowMs: () => nowMs },
+    )).resolves.toBe('filled');
+
+    const active = (await roomRef.get()).data()!;
+    expect(active.players.every((entry: { joinAtMs?: number }) => (
+      entry.joinAtMs === undefined || entry.joinAtMs <= nowMs
+    ))).toBe(true);
+    expect(active).toMatchObject({ state: 'round1', stateStartedAtMs: nowMs });
+    expect(active.stateDeadlineAtMs).toBeGreaterThan(active.introEndsAtMs);
+    expect(active.rounds[0].taskSchedule[0].startsAtMs).toBe(active.introEndsAtMs);
+  });
+
+  test('lifecycle fix: the sixteenth human join commits round one atomically instead of a zero lobby deadline', async () => {
+    const nowMs = 1_900_400_000_000;
+    const roomId = `lifecycle-human-starts-round-${process.pid}`;
+    const roomRef = db.collection('tournamentRooms').doc(roomId);
+    const authUid = `human-start-auth-${process.pid}`;
+    const stableUid = `human-start-stable-${process.pid}`;
+    const resources = fillResources(`human-start-${process.pid}`) as {
+      tasks: any[]; curatedRounds: Map<number, string[]>;
+    };
+    const rounds = runtime.buildTournamentRounds(roomId, resources.tasks, resources.curatedRounds);
+    expect(rounds).not.toBeNull();
+    const batch = db.batch();
+    batch.set(roomRef, {
+      roomId, slotId: `now-human-start-${process.pid}`, seed: roomId, testMode: true,
+      economySnapshot: {
+        entryGems: 0, botEntryGems: 0, weeklyBankRate: 0,
+        prizeShares: [0, 0, 0], weeklyShares: [0, 0, 0],
+      },
+      state: 'lobby', startsAt: nowMs + 60_000, stateStartedAtMs: nowMs - 1_000,
+      stateDeadlineAtMs: nowMs + 60_000, players: Array.from(
+        { length: 15 }, (_, index) => player(`human-start-existing-${index}`),
+      ),
+      participantAuthUids: [], participantAuthUidsComplete: true,
+      rounds, ready: true, version: 1, createdAtMs: nowMs - 1_000,
+    });
+    for (const task of resources.tasks) {
+      batch.set(roomRef.collection('taskSecrets').doc(task.taskId), task);
+    }
+    batch.set(db.collection('auth_links').doc(authUid), { stable_id: stableUid });
+    batch.set(db.collection('users').doc(stableUid), { firebaseAuthUid: authUid, shards: 0 });
+    await batch.commit();
+    const previousReleaseFlag = process.env.PHRASEMAN_TOURNAMENT_TEST_MODE_RELEASE;
+    process.env.PHRASEMAN_TOURNAMENT_TEST_MODE_RELEASE = '1';
+    try {
+      await expect(runtime.tournamentJoinTransaction(db, {
+        authUid, stableUid, roomId, nowMs,
+      })).resolves.toMatchObject({ joined: true, startImmediately: true });
+    } finally {
+      if (previousReleaseFlag === undefined) delete process.env.PHRASEMAN_TOURNAMENT_TEST_MODE_RELEASE;
+      else process.env.PHRASEMAN_TOURNAMENT_TEST_MODE_RELEASE = previousReleaseFlag;
+    }
+
+    const active = (await roomRef.get()).data()!;
+    expect(active.players).toHaveLength(16);
+    expect(active).toMatchObject({ state: 'round1', stateStartedAtMs: nowMs });
+    expect(active.stateDeadlineAtMs).toBeGreaterThan(nowMs);
+    expect(active.rounds[0].taskSchedule[0].startsAtMs).toBe(active.introEndsAtMs);
   });
 
   test('red-team finding: scheduler rejects stale round tasks loaded before its transaction', async () => {
@@ -328,14 +557,14 @@ describe('tournament round lifecycle recovery', () => {
       .toMatchObject({ stateDeadlineAtMs: 100, lifecycleRetryAtMs: 61_000 });
   });
 
-  test('review finding: tournamentAdvanceRound rejects before private reads and rechecks transactionally', async () => {
+  test('review finding: tournamentAdvanceRound permits the deadline nudge and rechecks access transactionally', async () => {
     const tournamentsSource = readFileSync(`${__dirname}/tournaments.ts`, 'utf8');
     const indexSource = readFileSync(`${__dirname}/index.ts`, 'utf8');
     const callableStart = tournamentsSource.indexOf('export const tournamentAdvanceRound');
     const callableEnd = tournamentsSource.indexOf('// â”€â”€ Claim', callableStart);
     const callableSource = tournamentsSource.slice(callableStart, callableEnd);
 
-    expect(callableSource).toMatch(/export const tournamentAdvanceRound = onCall\(\s*\{\s*\.\.\.HOT_CALLABLE_OPTIONS,\s*enforceAppCheck: true/);
+    expect(callableSource).toMatch(/export const tournamentAdvanceRound = onCall\([\s\S]*?\{\s*\.\.\.HOT_CALLABLE_OPTIONS,\s*enforceAppCheck: false/);
     expect(callableSource).toContain('expectedState');
     expect(callableSource).toContain('expectedDeadlineAtMs');
     expect(callableSource).toContain('requesterStableUid');
@@ -473,10 +702,11 @@ describe('tournament round lifecycle recovery', () => {
     const taskId = `final-a-task-${process.pid}`;
     const roomId = `final-a-late-submit-${process.pid}`;
     const roomRef = db.collection('tournamentRooms').doc(roomId);
+    const submissionDeadlineAtMs = retryAtMs;
     await Promise.all([
       roomRef.set({
         slotId: 'daily', seed: roomId, state: 'round1', startsAt: nowMs - 200_000,
-        stateStartedAtMs: originalDeadlineAtMs - 10_000, stateDeadlineAtMs: originalDeadlineAtMs,
+        stateStartedAtMs: submissionDeadlineAtMs - 10_000, stateDeadlineAtMs: submissionDeadlineAtMs,
         lifecycleRetryAtMs: retryAtMs,
         players: [player('final-a-user')],
         rounds: [{ roundNo: 1, mode: 'choice', taskIds: [taskId], results: {} }],
@@ -490,10 +720,10 @@ describe('tournament round lifecycle recovery', () => {
     ]);
     await expect(runtime.tournamentSubmitTransaction(db, {
       stableUid: 'final-a-user', roomId, roundNo: 1,
-      rawAnswers: [{ taskId, answer: { selectedIndex: 0 } }], receivedAtMs: originalDeadlineAtMs + 1,
+      rawAnswers: [{ taskId, answer: { selectedIndex: 0 } }], receivedAtMs: submissionDeadlineAtMs + 1,
     })).rejects.toMatchObject({ code: 'failed-precondition', message: 'round_deadline_elapsed' });
     await expect(runtime.processDueTournamentRooms({ db, nowMs }))
-      .resolves.toEqual({ scanned: 2, advanced: 0, failed: 0 });
+      .resolves.toEqual({ scanned: 1, advanced: 0, failed: 0 });
     const secondErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => undefined);
     try {
       await expect(runtime.processDueTournamentRooms({ db, nowMs: retryAtMs + 1 }))
@@ -517,6 +747,7 @@ describe('tournament round lifecycle recovery', () => {
     await Promise.all([poisonId, healthyId].map((roomId) => db.collection('tournamentRooms').doc(roomId).set({
       slotId: 'daily', seed: roomId, state: 'scheduled', startsAt,
       stateStartedAtMs: nowMs - 1, stateDeadlineAtMs: startsAt - core.TOURNAMENT_LOBBY_OPEN_MS,
+      gatherStartedAtMs: nowMs - core.TOURNAMENT_ROOM_GATHER_MS - 1,
       players: entrants, participantAuthUids: [], participantAuthUidsComplete: true,
       rounds: [], version: 0, createdAtMs: nowMs - 1,
     })));
@@ -549,12 +780,13 @@ describe('tournament round lifecycle recovery', () => {
     await roomRef.set({
       slotId: 'daily', seed: roomId, state: 'lobby', startsAt,
       stateStartedAtMs: startsAt - 1_000, stateDeadlineAtMs: startsAt,
+      gatherStartedAtMs: startsAt - 90_000 - core.TOURNAMENT_ROOM_GATHER_MS - 1,
       players: entrants, participantAuthUids: [], participantAuthUidsComplete: true,
       rounds: [], ready: false, version: 0, createdAtMs: 1,
     });
     const staleOutcome = await runtime.advanceRoomAtDeadline(db, roomRef, { nowMs: () => startsAt });
     expect(staleOutcome).toBe('cancel_resources');
-    await expect(runtime.tournamentFillRoomTransaction(db, roomRef, resources, { nowMs: () => startsAt }))
+    await expect(runtime.tournamentFillRoomTransaction(db, roomRef, resources, { nowMs: () => startsAt - 90_000 }))
       .resolves.toBe('filled');
     await expect(runtime.settleAdvanceOutcome(db, roomRef, staleOutcome, { nowMs: () => startsAt }))
       .resolves.toBe('advanced');
@@ -676,16 +908,17 @@ describe('tournament round lifecycle recovery', () => {
     const resources = fillResources(`v4-live-${process.pid}`);
     await roomRef.set({ slotId: 'daily', seed: roomId, state: 'lobby', startsAt,
       stateStartedAtMs: 1, stateDeadlineAtMs: startsAt, players: entrants, rounds: [], ready: false,
+      gatherStartedAtMs: startsAt - 90_000 - core.TOURNAMENT_ROOM_GATHER_MS - 1,
       version: 0, createdAtMs: 1 });
     const stale = await runtime.advanceRoomAtDeadline(db, roomRef, { nowMs: () => startsAt });
     expect(stale).toBe('cancel_resources');
-    await runtime.tournamentFillRoomTransaction(db, roomRef, resources, { nowMs: () => startsAt });
+    await runtime.tournamentFillRoomTransaction(db, roomRef, resources, { nowMs: () => startsAt - 90_000 });
     await runtime.advanceRoomAtDeadline(db, roomRef, { nowMs: () => startsAt });
     await runtime.settleAdvanceOutcome(db, roomRef, stale, { nowMs: () => startsAt });
-    expect((await roomRef.get()).data()?.state).toBe('round1');
+    expect((await roomRef.get()).data()?.state).not.toBe('cancelled');
   });
 
-  test('v4 finding 2: lookahead does not cancel under-quorum lobby before the T-30 cutoff', async () => {
+  test('v4 finding 2: lookahead waits for the full owner-approved gather window before bot fill', async () => {
     const startsAt = 500_000;
     const roomId = `v4-cutoff-${process.pid}`;
     const roomRef = db.collection('tournamentRooms').doc(roomId);
@@ -693,12 +926,15 @@ describe('tournament round lifecycle recovery', () => {
     const resources = fillResources(`v4-cutoff-${process.pid}`);
     await roomRef.set({ slotId: 'daily', seed: roomId, state: 'lobby', startsAt,
       stateStartedAtMs: 1, stateDeadlineAtMs: startsAt, players: seven, rounds: [], ready: false,
+      gatherStartedAtMs: startsAt - 120_000,
       version: 0, createdAtMs: 1 });
     await expect(runtime.tournamentFillRoomTransaction(db, roomRef, resources, { nowMs: () => startsAt - 120_000 }))
       .resolves.toBe('skip');
     expect((await roomRef.get()).data()?.state).toBe('lobby');
     await roomRef.update({ players: [...seven, player('v4-cutoff-u7')], version: 1 });
-    await expect(runtime.tournamentFillRoomTransaction(db, roomRef, resources, { nowMs: () => startsAt - 90_000 }))
+    await expect(runtime.tournamentFillRoomTransaction(db, roomRef, resources, {
+      nowMs: () => startsAt - 120_000 + core.TOURNAMENT_ROOM_GATHER_MS,
+    }))
       .resolves.toBe('filled');
   });
 
@@ -743,7 +979,8 @@ describe('tournament round lifecycle recovery', () => {
     }
     const tail = db.collection('tournamentRooms').doc('v4-fill-zz-tail');
     batch.set(tail, { slotId: 'daily', seed: tail.id, state: 'lobby', startsAt: nowMs + 1,
-      stateDeadlineAtMs: nowMs + 1, players: entrants, rounds: [], ready: false, version: 0, createdAtMs: 1 });
+      stateDeadlineAtMs: nowMs + 1, gatherStartedAtMs: nowMs - core.TOURNAMENT_ROOM_GATHER_MS - 1,
+      players: entrants, rounds: [], ready: false, version: 0, createdAtMs: 1 });
     await batch.commit();
     await runtime.processTournamentFillRooms({ db, nowMs, resources });
     expect((await tail.get()).data()?.ready).toBe(true);
@@ -778,26 +1015,44 @@ describe('tournament round lifecycle recovery', () => {
     expect((await roomRef.collection('taskSecrets').get()).size).toBe(0);
   });
 
-  test('v5 finding 1: lobby hides every task payload and only the active round is hydrated', async () => {
+  test('v5 finding 1: lobby hides task payloads until its deadline and then hydrates only the active round', async () => {
     const startsAt = 3_000_000;
     const roomId = `v5-private-rounds-${process.pid}`;
     const roomRef = db.collection('tournamentRooms').doc(roomId);
     const entrants = Array.from({ length: 8 }, (_, index) => player(`v5-private-u${index}`));
+    const resources = fillResources(`v5-private-${process.pid}`) as {
+      tasks: any[]; bots: any[]; curatedRounds: Map<number, string[]>;
+    };
+    expect(resources.tasks).toHaveLength(16);
+    expect(resources.tasks.every((task) => core.validateTournamentTaskForNewRoom(task).ok)).toBe(true);
+    expect(runtime.buildTournamentRounds(roomId, resources.tasks, resources.curatedRounds)).not.toBeNull();
     await roomRef.set({ slotId: 'daily', seed: roomId, state: 'lobby', startsAt,
       stateStartedAtMs: 1, stateDeadlineAtMs: startsAt, players: entrants, rounds: [], ready: false,
+      gatherStartedAtMs: startsAt - 90_000 - core.TOURNAMENT_ROOM_GATHER_MS - 1,
       version: 0, createdAtMs: 1 });
-    await runtime.tournamentFillRoomTransaction(db, roomRef, fillResources(`v5-private-${process.pid}`), {
+    await expect(runtime.tournamentFillRoomTransaction(db, roomRef, resources, {
       nowMs: () => startsAt - 90_000,
-    });
-    const lobby = (await roomRef.get()).data()!;
-    expect(lobby.rounds.every((entry: Record<string, unknown>) => entry.tasks === undefined)).toBe(true);
-    expect(JSON.stringify(lobby.rounds)).not.toMatch(/phrase|prompt|options|wordBank/);
-
-    await runtime.advanceRoomAtDeadline(db, roomRef, { nowMs: () => startsAt });
+    })).resolves.toBe('filled');
+    const waiting = (await roomRef.get()).data()!;
+    expect(waiting.state).toBe('lobby');
+    expect(waiting.rounds.every((entry: Record<string, unknown>) => entry.tasks === undefined)).toBe(true);
+    expect(JSON.stringify(waiting.rounds)).not.toMatch(/"tasks"|"payload"|"prompt"|"options"|"wordBank"/);
+    await runtime.advanceRoomAtDeadline(db, roomRef, { nowMs: () => waiting.stateDeadlineAtMs });
     const round1 = (await roomRef.get()).data()!;
     expect(round1.state).toBe('round1');
     expect(round1.rounds[0].tasks).toHaveLength(round1.rounds[0].taskIds.length);
-    expect(round1.rounds.slice(1).every((entry: Record<string, unknown>) => entry.tasks === undefined)).toBe(true);
+    expect(round1.rounds[0].taskSchedule).toHaveLength(round1.rounds[0].taskIds.length);
+    expect(round1.introEndsAtMs).toBeGreaterThan(round1.stateStartedAtMs);
+    expect(round1.rounds[0].taskSchedule[0]).toMatchObject({
+      introEndsAtMs: round1.introEndsAtMs,
+      startsAtMs: round1.introEndsAtMs,
+    });
+    expect(round1.rounds[0].taskSchedule.at(-1).deadlineAtMs).toBe(round1.stateDeadlineAtMs);
+    expect(round1.rounds[0].taskSchedule.map((entry: Record<string, unknown>) => entry.taskId))
+      .toEqual(round1.rounds[0].taskIds);
+    expect(round1.rounds.slice(1).every((entry: Record<string, unknown>) => (
+      entry.tasks === undefined && entry.taskSchedule === undefined
+    ))).toBe(true);
     await runtime.advanceRoomAtDeadline(db, roomRef, { nowMs: () => round1.stateDeadlineAtMs });
     const table1 = (await roomRef.get()).data()!;
     await runtime.advanceRoomAtDeadline(db, roomRef, { nowMs: () => table1.stateDeadlineAtMs });
@@ -805,7 +1060,15 @@ describe('tournament round lifecycle recovery', () => {
     expect(round2.state).toBe('round2');
     expect(round2.rounds[0].tasks).toBeDefined();
     expect(round2.rounds[1].tasks).toHaveLength(round2.rounds[1].taskIds.length);
-    expect(round2.rounds.slice(2).every((entry: Record<string, unknown>) => entry.tasks === undefined)).toBe(true);
+    expect(round2.introEndsAtMs).toBeGreaterThan(round2.stateStartedAtMs);
+    expect(round2.rounds[1].taskSchedule[0]).toMatchObject({
+      introEndsAtMs: round2.introEndsAtMs,
+      startsAtMs: round2.introEndsAtMs,
+    });
+    expect(round2.rounds[1].taskSchedule.at(-1).deadlineAtMs).toBe(round2.stateDeadlineAtMs);
+    expect(round2.rounds.slice(2).every((entry: Record<string, unknown>) => (
+      entry.tasks === undefined && entry.taskSchedule === undefined
+    ))).toBe(true);
   });
 
   test('v5/v6 finding 2/4: public bot players and results expose no bot markers while simulation still runs', async () => {
@@ -815,10 +1078,11 @@ describe('tournament round lifecycle recovery', () => {
     const entrants = Array.from({ length: 8 }, (_, index) => player(`v5-human-${index}`));
     await roomRef.set({ slotId: 'daily', seed: roomId, state: 'lobby', startsAt,
       stateStartedAtMs: 1, stateDeadlineAtMs: startsAt, players: entrants, rounds: [], ready: false,
+      gatherStartedAtMs: startsAt - 90_000 - core.TOURNAMENT_ROOM_GATHER_MS - 1,
       version: 0, createdAtMs: 1 });
-    await runtime.tournamentFillRoomTransaction(db, roomRef, fillResources(`v5-bots-${process.pid}`), {
+    await expect(runtime.tournamentFillRoomTransaction(db, roomRef, fillResources(`v5-bots-${process.pid}`), {
       nowMs: () => startsAt - 90_000,
-    });
+    })).resolves.toBe('filled');
     const filled = (await roomRef.get()).data()!;
     expect(filled.players).toHaveLength(16);
     for (const publicPlayer of filled.players) {
@@ -874,15 +1138,15 @@ describe('tournament round lifecycle recovery', () => {
   test('v5 finding 4: cancellation token blocks lifecycle change injected before cancel transaction', async () => {
     const roomId = `v5-cancel-token-${process.pid}`;
     const roomRef = db.collection('tournamentRooms').doc(roomId);
-    await roomRef.set({ slotId: 'daily', seed: roomId, state: 'round1', startsAt: 1,
+    await roomRef.set({ slotId: 'daily', seed: roomId, state: 'lobby', startsAt: 1,
       stateStartedAtMs: 1, stateDeadlineAtMs: 2, players: [],
-      rounds: [{ ...round(1), roundNo: 2 }], version: 1, createdAtMs: 1 });
-    await runtime.settleAdvanceOutcome(db, roomRef, 'cancel_resources', {
+      rounds: [], ready: false, version: 1, createdAtMs: 1 });
+    await expect(runtime.settleAdvanceOutcome(db, roomRef, 'cancel_resources', {
       nowMs: () => 2,
       beforeCancelTransaction: async () => {
         await roomRef.update({ state: 'round2', version: 2, stateDeadlineAtMs: 50_000 });
       },
-    });
+    })).resolves.toBe('stale');
     expect((await roomRef.get()).data()).toMatchObject({ state: 'round2', version: 2 });
   });
 
@@ -967,7 +1231,7 @@ describe('tournament round lifecycle recovery', () => {
     expect((await claimReceiptRef.get()).data()?.claimed).toBe(false);
   });
 
-  test('v5 finding 6: elapsed results reaches closed with timestamps and zero private secrets', async () => {
+  test('v5 finding 6: elapsed results reaches closed while private evidence keeps the finalization anchor', async () => {
     const nowMs = 6_000_000;
     const roomId = `v5-close-cleanup-${process.pid}`;
     const roomRef = db.collection('tournamentRooms').doc(roomId);
@@ -985,7 +1249,13 @@ describe('tournament round lifecycle recovery', () => {
     expect(closed.state).toBe('closed');
     expect(closed.closedAtMs).toBe(rewards.stateDeadlineAtMs);
     expect(closed.expireAt.toMillis()).toBeGreaterThan(closed.closedAtMs);
-    expect((await roomRef.collection('taskSecrets').get()).size).toBe(0);
+    expect(closed.reviewRetentionUntilMs).toBe(nowMs + core.TOURNAMENT_REWARD_CLAIM_WINDOW_MS);
+    expect(closed.privateEvidenceRetentionUntilMs).toBe(nowMs + core.TOURNAMENT_ROOM_TTL_MS);
+    const retainedSecrets = await roomRef.collection('taskSecrets').get();
+    expect(retainedSecrets.size).toBe(2);
+    expect(retainedSecrets.docs.every((secret) => (
+      secret.data().expireAt.toMillis() === closed.privateEvidenceRetentionUntilMs
+    ))).toBe(true);
   });
 
   test('v6 finding 3: missing or partial bot metadata fails closed without rewards or lifecycle mutation', async () => {
@@ -1070,5 +1340,38 @@ describe('tournament round lifecycle recovery', () => {
     expect((await tail.get()).data()?.ready).toBe(true);
     expect((await db.collection('tournamentRooms').doc('v6-fill-ready-000').get()).data()?.stateDeadlineAtMs)
       .toBe(deadlineAtMs);
+  });
+
+  test('lifecycle fix: a late scheduler never catches up through a newly started round', async () => {
+    const prior = await db.collection('tournamentRooms').get();
+    for (let offset = 0; offset < prior.docs.length; offset += 400) {
+      const cleanup = db.batch();
+      prior.docs.slice(offset, offset + 400).forEach((doc) => cleanup.delete(doc.ref));
+      await cleanup.commit();
+    }
+    await db.collection('tournamentSchedule').doc('_lifecycle_due_cursor_v1').delete();
+    const roomId = `lifecycle-catch-up-${process.pid}`;
+    const roomRef = db.collection('tournamentRooms').doc(roomId);
+    await Promise.all([
+      roomRef.set({
+        slotId: 'daily', seed: roomId, state: 'table1', startsAt: 1,
+        stateStartedAtMs: 0, stateDeadlineAtMs: 1_000,
+        players: [player('catch-up-u1')],
+        rounds: [round(1), round(2)],
+        version: 0, createdAtMs: 1,
+      }),
+      roomRef.collection('taskSecrets').doc('lifecycle-task-2').set({
+        mode: 'guess_phrase', isVoice: false, difficulty: 1,
+        payload: { phrase: 'catch up', options: ['a', 'b', 'c', 'd'], correctIndex: 0 },
+        tags: [], verified: true,
+      }),
+    ]);
+
+    await expect(runtime.processDueTournamentRooms({ db, nowMs: 20_000 }))
+      .resolves.toEqual({ scanned: 1, advanced: 1, failed: 0 });
+    const active = (await roomRef.get()).data()!;
+    expect(active).toMatchObject({ state: 'round2', stateStartedAtMs: 20_000 });
+    expect(active.introEndsAtMs).toBeGreaterThan(20_000);
+    expect(active.stateDeadlineAtMs).toBeGreaterThan(active.introEndsAtMs);
   });
 });

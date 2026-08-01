@@ -31,7 +31,6 @@ import { triLang } from '../constants/i18n';
 import AvatarView from '../components/AvatarView';
 import PremiumAvatarHalo from '../components/PremiumAvatarHalo';
 import PremiumGoldUserName from '../components/PremiumGoldUserName';
-import VipGreenUserName from '../components/VipGreenUserName';
 import LeagueCrownName from '../components/LeagueCrownName';
 import ProfileCardBadge from '../components/ProfileCardBadge';
 import PlayerProfileModal, { PlayerInfo } from '../components/PlayerProfileModal';
@@ -303,10 +302,8 @@ export default function TopHelpersScreen() {
               <View style={{ flexShrink: 1, minWidth: 0, overflow: 'hidden' }}>
                 {hasLeagueCrown ? (
                   <LeagueCrownName text={item.displayName} fontSize={isTop3 ? 16 : 15} count={displayCrownCount} />
-                ) : item.isPremium ? (
+                ) : item.isPremium || item.isVip ? (
                   <PremiumGoldUserName text={item.displayName} fontSize={isTop3 ? 16 : 15} />
-                ) : item.isVip ? (
-                  <VipGreenUserName text={item.displayName} fontSize={isTop3 ? 16 : 15} />
                 ) : (
                   <Text
                     numberOfLines={1}

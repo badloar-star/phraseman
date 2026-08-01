@@ -34,16 +34,16 @@ import DailyHeroRing from '../components/daily-tasks/DailyHeroRing';
 import { dailyTaskAccentAlpha, dailyTaskAccentHex } from '../components/daily-tasks/daily_task_theme_accents';
 import { safeRouterBack } from './navigation_back';
 import { checkAchievements } from './achievements';
-import { claimTaskWithReward, DailyTask, dailyTaskAvailableForStudyTarget, filterDailyTasksForStudyTarget, getTodayTasks, getTodayKey, getArenaComboRequirement, getTodayTasksSafe, loadTodayProgress, TaskProgress, TaskType, rerollDailyTask, getDailyRerollsLeftToday, DAILY_TASK_REROLL_COST_SHARDS, DAILY_TASK_REROLL_MAX_PER_DAY, } from './daily_tasks';
+import { claimTaskWithReward, DailyTask, dailyTaskAvailableForStudyTarget, filterDailyTasksForStudyTarget, getTodayTasks, getTodayKey, getArenaComboRequirement, getTodayTasksSafe, loadTodayProgress, TaskProgress, TaskType, rerollDailyTask, getDailyRerollsLeftToday, DAILY_TASK_REROLL_MAX_PER_DAY, } from './daily_tasks';
 import { LESSONS_WITH_IRREGULAR_VERBS } from './irregular_verbs_data';
 import { registerXP } from './xp_manager';
-import { claimDailyTasksAllShardsRewardDetailed, isDailyTasksAllShardsRewardClaimedForDay, SHARD_REWARDS, getShardsBalance, } from './shards_system';
+import { claimDailyTasksAllShardsRewardDetailed, isDailyTasksAllShardsRewardClaimedForDay, SHARD_REWARDS, } from './shards_system';
 import { Image } from 'expo-image';
 import { oskolokImageForPackShards } from './oskolok';
-import { pearlIconForTheme } from './coin_icons';
 import { primeLessonScreenFromStorage } from './lesson_screen_bootstrap';
 import { emitAppEvent, onAppEvent } from './events';
 import { DAILY_TASK_ACHIEVEMENT_ICONS, DAILY_TASK_ID_ACHIEVEMENT_ICONS } from './daily_task_achievement_icons';
+import { dailyTaskBackgroundArt } from './daily_task_background_art';
 import { dailyTasksAchievementAllDoneStreakKey, lastOpenedLessonKey, storageStudyTarget } from './target_storage_keys';
 import { dailyPhraseContentAvailableForTarget, frenchDailyPhraseGateCopy } from './daily_phrase_target_gate';
 import { flashcardsSourceGatedContentAvailableForTarget, frenchFlashcardsGateCopy } from './flashcards_target_gate';
@@ -126,9 +126,7 @@ const DAILY_TASK_META_ICON_FALLBACK: Partial<Record<TaskType, keyof typeof Ionic
     revision_lesson: 'refresh-circle-outline',
     polyglot_day: 'globe-outline',
     perfect_big_lesson: 'ribbon-outline',
-    blitz_speed: 'flash-outline',
     streak_freeze_use: 'shield-checkmark-outline',
-    club_attend: 'mic-outline',
     weekend_marathon: 'flag-outline',
     mentor_friend: 'people-outline',
 };
@@ -1999,51 +1997,6 @@ const getDailyTaskUiMeta = (type: TaskType, lang: Lang): DailyTaskUiMeta => {
             icon: 'cut',
             tone: '#63D98F',
         },
-        blitz_speed: {
-            stage: triLang(lang, {
-                ru: 'Скорость',
-                uk: 'Швидкість',
-                es: 'Velocidad',
-                'pt-BR': "Velocidade",
-                vi: "Tốc độ",
-                id: "Kecepatan",
-                tr: "Hız",
-                pl: "Szybkość",
-            }),
-            label: triLang(lang, {
-                ru: 'Блиц',
-                uk: 'Блиц',
-                es: 'Relámpago',
-                'pt-BR': "Blitz",
-                vi: "Chớp nhoáng",
-                id: "Blitz",
-                tr: "Yıldırım",
-                pl: "Błyskawica",
-            }),
-            reason: triLang(lang, {
-                ru: '10 верных ответов за 60 секунд в уроке.',
-                uk: '10 правильних відповідей за 60 секунд на уроці.',
-                es: '10 aciertos en 60 segundos en una lección.',
-                'pt-BR': "10 respostas certas em 60 segundos em uma lição.",
-                vi: "10 câu đúng trong 60 giây ở một bài học.",
-                id: "10 jawaban benar dalam 60 detik di pelajaran.",
-                tr: "Bir derste 60 saniyede 10 doğru.",
-                pl: "10 poprawnych odpowiedzi w 60 sekund.",
-            }),
-            cta: triLang(lang, {
-                ru: 'Открыть урок',
-                uk: 'Відкрити урок',
-                es: 'Abrir lección',
-                'pt-BR': "Abrir lição",
-                vi: "Mở bài học",
-                id: "Buka pelajaran",
-                tr: "Dersi aç",
-                pl: "Otwórz lekcję",
-            }),
-            minutes: '1-2 мин',
-            icon: 'flash',
-            tone: '#FACC15',
-        },
         streak_freeze_use: {
             stage: triLang(lang, {
                 ru: 'Стрик',
@@ -2088,51 +2041,6 @@ const getDailyTaskUiMeta = (type: TaskType, lang: Lang): DailyTaskUiMeta => {
             minutes: '1 мин',
             icon: 'shield-checkmark',
             tone: '#60A5FA',
-        },
-        club_attend: {
-            stage: triLang(lang, {
-                ru: 'Клуб',
-                uk: 'Клуб',
-                es: 'Club',
-                'pt-BR': "Clube",
-                vi: "Câu lạc bộ",
-                id: "Klub",
-                tr: "Kulüp",
-                pl: "Klub",
-            }),
-            label: triLang(lang, {
-                ru: 'Оратор',
-                uk: 'Оратор',
-                es: 'Orador',
-                'pt-BR': "Orador",
-                vi: "Diễn giả",
-                id: "Orator",
-                tr: "Hatip",
-                pl: "Mówca",
-            }),
-            reason: triLang(lang, {
-                ru: 'Загляни в спикинг-клуб.',
-                uk: 'Зазирни у спікінг-клуб.',
-                es: 'Pásate por el club de conversación.',
-                'pt-BR': "Visite o clube de conversação.",
-                vi: "Ghé câu lạc bộ nói.",
-                id: "Mampir ke klub speaking.",
-                tr: "Konuşma kulübüne göz at.",
-                pl: "Zajrzyj do klubu rozmów.",
-            }),
-            cta: triLang(lang, {
-                ru: 'В клуб',
-                uk: 'У клуб',
-                es: 'Al club',
-                'pt-BR': "Ao clube",
-                vi: "Đến CLB",
-                id: "Ke klub",
-                tr: "Kulübe",
-                pl: "Do klubu",
-            }),
-            minutes: '1 мин',
-            icon: 'mic',
-            tone: '#94A3B8',
         },
         weekend_marathon: {
             stage: triLang(lang, {
@@ -2320,6 +2228,7 @@ export default function DailyTasksScreen() {
     const [rerollConfirm, setRerollConfirm] = useState<{
         task: DailyTask;
     } | null>(null);
+    const [selectedQuest, setSelectedQuest] = useState<DailyTask | null>(null);
     /** taskId, для которого сейчас идёт сетевой запрос замены (одна за раз). */
     const [rerollBusyId, setRerollBusyId] = useState<string | null>(null);
     /** Антидребезг клейма: свежий getTodayTasksSafe + registerXP не дают второго тапа «в никуда». */
@@ -2518,16 +2427,6 @@ export default function DailyTasksScreen() {
             return;
         setRerollBusyId(target.id);
         try {
-            const balance = await getShardsBalance();
-            if (balance < DAILY_TASK_REROLL_COST_SHARDS) {
-                const need = Math.max(0, DAILY_TASK_REROLL_COST_SHARDS - balance);
-                setRerollConfirm(null);
-                router.push({
-                    pathname: '/shards_shop',
-                    params: { need: String(need), source: 'daily_task_reroll' },
-                } as any);
-                return;
-            }
             const r = await rerollDailyTask(target.id, studyTarget);
             if (r.ok) {
                 invalidateDailyTasksScreenSnapshot(captureAccountGeneration(), getTodayKey(), studyTarget);
@@ -2536,22 +2435,12 @@ export default function DailyTasksScreen() {
                 // а не эмодзи-алмазом 💎.
                 emitAppEvent('action_toast', {
                     type: 'success',
-                    messageRu: `Задание заменено · −${r.cost} ${slavicPlural(r.cost, 'жемчужина', 'жемчужины', 'жемчужин')}`,
-                    messageUk: `Завдання замінено · −${r.cost} ${slavicPlural(r.cost, 'перлина', 'перлини', 'перлин')}`,
-                    messageEs: `Tarea reemplazada · −${r.cost} ${r.cost === 1 ? 'perla' : 'perlas'}`,
+                    messageRu: 'Вызов заменён бесплатно.',
+                    messageUk: 'Завдання замінено безкоштовно.',
+                    messageEs: 'La tarea se reemplazó gratis.',
                 });
                 setRerollConfirm(null);
                 refreshTasksAndProgress(true);
-                return;
-            }
-            if (r.reason === 'insufficient_shards') {
-                const balance2 = await getShardsBalance();
-                const need = Math.max(0, DAILY_TASK_REROLL_COST_SHARDS - balance2);
-                setRerollConfirm(null);
-                router.push({
-                    pathname: '/shards_shop',
-                    params: { need: String(need), source: 'daily_task_reroll' },
-                } as any);
                 return;
             }
             const reasonMsg: Record<string, {
@@ -3010,7 +2899,6 @@ export default function DailyTasksScreen() {
             case 'weekend_marathon':
             case 'revision_lesson':
             case 'perfect_big_lesson':
-            case 'blitz_speed':
             case 'comeback_lesson':
                 await openLessonOrFrenchGate();
                 break;
@@ -3076,9 +2964,6 @@ export default function DailyTasksScreen() {
             case 'streak_freeze_use':
                 router.push('/streak_stats' as any);
                 break;
-            case 'club_attend':
-                router.push('/club_screen' as any);
-                break;
             case 'mentor_friend':
                 // Как invite_friend: единый экран рефералов.
                 router.push('/referrals' as any);
@@ -3091,7 +2976,7 @@ export default function DailyTasksScreen() {
     // Сортировка: готово к награде → в процессе → завершено
     const handleTaskCardPress = (task: DailyTask) => {
         hapticTap();
-        void handleTaskNav(task);
+        setSelectedQuest(task);
     };
     const sortedTasks = useMemo(() => [...tasks].sort((a, b) => {
         const pa = progress.find(p => p.taskId === a.id);
@@ -3332,7 +3217,7 @@ export default function DailyTasksScreen() {
           progress={<View style={[dailyTaskStyles.taskProgressTrack, isGoldTheme ? { backgroundColor: 'rgba(0,0,0,0.34)', borderWidth: 0, borderColor: GOLD_RICH.hairlineQuiet } : null]}><View style={{ height: '100%', width: `${dailyCounts.total ? Math.min((dailyCounts.done / dailyCounts.total) * 100, 100) : 0}%` as any, backgroundColor: trioShardsClaimed ? (isGoldTheme ? 'rgba(159,122,45,0.30)' : 'rgba(255,255,255,0.25)') : bonusAccent, borderRadius: 999 }} /></View>}
           action={!trioShardsClaimed ? { label: `${bonusClaimLabel} ${trioRewardCount}`, accessibilityLabel: bonusClaimAccessibilityLabel, labelProps: { style: { fontSize: Math.min(f.sub, 13), fontWeight: '900' } }, onPress: handleClaimTrioShards, foregroundColor: trioActionText, backgroundColor: trioActionBg, disabled: !trioClaimButtonEnabled, loading: trioClaimBusy, icon: <Image source={oskolokImageForPackShards(trioRewardCount)} style={{ width: 14, height: 14, opacity: trioClaimButtonEnabled ? 1 : 0.5 }} contentFit="contain" /> } : undefined}
           claimed={trioShardsClaimed}
-          claimedIndicator={<View style={[dailyTaskStyles.compactIconButton, { borderColor: isGoldTheme ? goldHairline : 'rgba(255,255,255,0.12)', backgroundColor: isGoldTheme ? GOLD_RICH.bronzeWash : 'rgba(255,255,255,0.06)' }]}><Ionicons name="checkmark-circle" size={18} color={isGoldTheme ? goldAccent : 'rgba(255,255,255,0.5)'} /></View>}
+          claimedIndicator={<View style={[dailyTaskStyles.compactIconButton, { backgroundColor: isGoldTheme ? GOLD_RICH.bronzeWash : 'rgba(255,255,255,0.06)' }]}><Ionicons name="checkmark-circle" size={18} color={isGoldTheme ? goldAccent : 'rgba(255,255,255,0.5)'} /></View>}
         />)}
 
 
@@ -3354,6 +3239,7 @@ export default function DailyTasksScreen() {
             const { title: taskTitle, desc: taskDesc } = localizedDailyTaskStrings(lang, task);
             const isPremiumTask = PREMIUM_TASK_TYPES.has(task.type);
             const achievementIcon = DAILY_TASK_ID_ACHIEVEMENT_ICONS[task.id] ?? DAILY_TASK_ACHIEVEMENT_ICONS[task.type];
+            const taskCardArt = dailyTaskBackgroundArt(task.type);
             // зачем: см. DAILY_TASK_META_ICON_FALLBACK — без него мета-задания рендерили пустую картинку.
             const metaIconFallback = achievementIcon ? undefined : DAILY_TASK_META_ICON_FALLBACK[task.type];
             const taskAccent = isGoldTheme
@@ -3373,14 +3259,11 @@ export default function DailyTasksScreen() {
                 ru: 'Забрать', uk: 'Забрати', es: 'Reclamar', 'pt-BR': 'Coletar',
                 vi: 'Nhận', id: 'Klaim', tr: 'Al', pl: 'Odbierz',
             });
-            // зачем: единая валюта приложения — ЖЕМЧУГ. Кнопка раньше обещала «монеты»,
-            // потом её починили на «осколки», но и это устарело: DAILY_TASK_REROLL_COST_SHARDS →
-            // spendShards(..., 'daily_task_reroll') списывает именно жемчуг (техническое имя
-            // shards в коде сохранено ради данных/импортов, см. constants/shard_plurals.ts).
+            // Один бесплатный реролл позволяет убрать неподходящий вызов без валютного барьера.
             const rerollLabel = triLang(lang, {
-                ru: 'Заменить вызов за жемчуг', uk: 'Замінити завдання за перлини', es: 'Reemplazar tarea por perlas',
-                'pt-BR': 'Substituir tarefa por pérolas', vi: 'Đổi nhiệm vụ bằng ngọc trai', id: 'Ganti tugas dengan mutiara',
-                tr: 'Görevi incilerle değiştir', pl: 'Zamień zadanie za perły',
+                ru: 'Заменить вызов бесплатно', uk: 'Замінити завдання безкоштовно', es: 'Reemplazar tarea gratis',
+                'pt-BR': 'Substituir tarefa grátis', vi: 'Đổi nhiệm vụ miễn phí', id: 'Ganti tugas gratis',
+                tr: 'Görevi ücretsiz değiştir', pl: 'Zamień zadanie bezpłatnie',
             });
             const entranceAnim = cardEntrances.current[task.id] ?? (cardEntrances.current[task.id] = new Animated.Value(entrancePlayedRef.current || reduceMotion ? 1 : 0));
             // зачем: п.1 — trackAnim (анимация отдельного прогресс-трека) удалён вместе
@@ -3390,13 +3273,14 @@ export default function DailyTasksScreen() {
               <DailyTaskCard
                 testID={`daily-task-${task.id}`}
                 title={taskTitle}
-                description={taskDesc}
+                description=""
                 titleColor={isGoldTheme ? t.textPrimary : '#FFFFFF'}
                 descriptionColor={isGoldTheme ? t.textSecond : 'rgba(255,255,255,0.78)'}
                 surfaceColor={taskTrackColor}
                 borderColor={taskHairline}
                 accentColor={taskAccent}
                 outerStyle={dailyTaskStyles.taskCapsuleCard}
+                iconStyle={[dailyTaskStyles.taskPortalIcon, { backgroundColor: dailyTaskAccentAlpha(taskAccent, 0.10) }]}
                 titleTextProps={{ style: [dailyTaskStyles.taskCapsuleTitle, { fontSize: f.body + 2 }] }}
                 descriptionTextProps={{ style: { fontSize: f.body, lineHeight: f.body * 1.28 } }}
                 onPress={completed || claimed ? undefined : () => handleTaskCardPress(task)}
@@ -3407,6 +3291,7 @@ export default function DailyTasksScreen() {
                 background={<>
                   <View pointerEvents="none" style={[dailyTaskStyles.taskCapsuleFill, taskFillSizeStyle, { backgroundColor: taskFillColor }]} />
                   <View pointerEvents="none" style={[dailyTaskStyles.taskCapsuleGlow, { backgroundColor: taskSurfaceGlow }]} />
+                  {taskCardArt ? <Image source={taskCardArt} style={dailyTaskStyles.taskPortalArt} contentFit="contain" contentPosition="right center" accessible={false} /> : null}
                   <View pointerEvents="none" style={[dailyTaskStyles.taskCapsuleAccentBar, { backgroundColor: taskAccent }]} />
                   {/* зачем: п.2 — «done/total» переехал с отдельного мета-ряда под карточкой
                       прямо на карточку (бейдж в правом верхнем углу), т.к. заливка карточки
@@ -3416,9 +3301,16 @@ export default function DailyTasksScreen() {
                     <Text style={{ color: taskAccent, fontSize: f.label - 1, fontWeight: '800', includeFontPadding: false, textAlign: 'center', fontVariant: ['tabular-nums'] }}>{Math.min(current, task.target)}/{task.target}</Text>
                   </View>
                 </>}
-                action={completed && !claimed ? { label: claimLabel, onPress: () => { void handleClaim(task.id, task.xp); }, foregroundColor: rewardActionText, backgroundColor: rewardActionBg, disabled: claimBusyId === task.id, loading: claimBusyId === task.id } : undefined}
-                claimed={claimed}
-                claimedIndicator={<View style={[dailyTaskStyles.compactIconButton, { borderColor: isGoldTheme ? goldHairline : 'rgba(255,255,255,0.12)', backgroundColor: isGoldTheme ? GOLD_RICH.bronzeWash : 'rgba(255,255,255,0.06)' }]}><Ionicons name="checkmark-circle" size={18} color={isGoldTheme ? goldAccent : 'rgba(255,255,255,0.5)'} /></View>}
+                // зачем: кнопки «Забрать» на карточке больше нет — XP за вызов дня
+                // начисляется автоматически в момент выполнения (см. DailyTaskRewardToast).
+                // Карточка только показывает состояние, забирать вручную нечего.
+                action={undefined}
+                // зачем: галочка теперь и на completed, а не только на claimed —
+                // раз кнопки нет, начисление идёт фоном, и в этот момент правая
+                // колонка не должна оставаться пустой (иначе выполненный вызов
+                // выглядит как невыполненный, пока не доедет ответ сервера).
+                claimed={claimed || completed}
+                claimedIndicator={<View style={[dailyTaskStyles.compactIconButton, { backgroundColor: isGoldTheme ? GOLD_RICH.bronzeWash : 'rgba(255,255,255,0.06)' }]}><Ionicons name="checkmark-circle" size={18} color={isGoldTheme ? goldAccent : 'rgba(255,255,255,0.5)'} /></View>}
                 reroll={!completed && !claimed && rerollsLeft > 0 ? { accessibilityLabel: rerollLabel, onPress: () => { hapticTap(); setRerollConfirm({ task }); }, icon: <Ionicons name="refresh" size={22} color={isGoldTheme ? goldAccent : 'rgba(255,255,255,0.62)'} /> } : undefined}
                 premium={isPremiumTask ? <Animated.View pointerEvents="box-none" style={{ position: 'absolute', bottom: -1, right: -1, zIndex: 10, transform: [{ scale: premiumPulse }], opacity: premiumSparkle.interpolate({ inputRange: [0, 1], outputRange: [0.86, 1] }), borderBottomRightRadius: 18, borderTopLeftRadius: 10, overflow: 'hidden' }}><PlusBadge themeMode={themeMode} size="sm" /></Animated.View> : undefined}
               />
@@ -3472,6 +3364,51 @@ export default function DailyTasksScreen() {
       </Reanimated.View>
       </ContentWrap>
 
+      <Modal visible={selectedQuest !== null} transparent animationType="slide" onRequestClose={() => setSelectedQuest(null)}>
+        <View style={dailyTaskStyles.questSheetOverlay}>
+          <Pressable style={StyleSheet.absoluteFill} onPress={() => setSelectedQuest(null)} />
+          {selectedQuest ? (() => {
+            const taskStrings = localizedDailyTaskStrings(lang, selectedQuest);
+            const taskToStart = selectedQuest;
+            const taskProgress = progress.find((entry) => entry.taskId === taskToStart.id)?.current ?? 0;
+            const modalAccent = isGoldTheme
+                ? goldTaskAccent(taskToStart.type, { completed: false, claimed: false })
+                : dailyTaskAccentHex(t, taskToStart.type);
+            const modalArtwork = dailyTaskBackgroundArt(taskToStart.type);
+            const modalIcon = DAILY_TASK_ID_ACHIEVEMENT_ICONS[taskToStart.id] ?? DAILY_TASK_ACHIEVEMENT_ICONS[taskToStart.type];
+            return <View style={[dailyTaskStyles.questSheet, { backgroundColor: t.bgCard, borderColor: t.border }]}> 
+              <View style={[dailyTaskStyles.questSheetHandle, { backgroundColor: t.border }]} />
+              <View style={[dailyTaskStyles.questSheetHero, { backgroundColor: dailyTaskAccentAlpha(modalAccent, 0.12), borderColor: dailyTaskAccentAlpha(modalAccent, 0.24) }]}>
+                {modalArtwork ? <Image source={modalArtwork} style={dailyTaskStyles.questSheetArtwork} contentFit="cover" accessible={false} /> : null}
+                <View style={[dailyTaskStyles.questSheetIcon, { backgroundColor: dailyTaskAccentAlpha(modalAccent, 0.18) }]}>
+                  {modalIcon ? <Image source={modalIcon} style={dailyTaskStyles.questSheetIconImage} contentFit="contain" accessible={false} /> : <Ionicons name="flag-outline" size={28} color={modalAccent} accessible={false} />}
+                </View>
+                <View style={dailyTaskStyles.questSheetHeroCopy}>
+                  <Text style={[dailyTaskStyles.questSheetEyebrow, { color: modalAccent, fontSize: f.caption }]}>{triLang(lang, { ru: 'Вызов дня', uk: 'Виклик дня', es: 'Reto del día', 'pt-BR': 'Desafio do dia', vi: 'Thử thách hôm nay', id: 'Tantangan hari ini', tr: 'Günün görevi', pl: 'Wyzwanie dnia' })}</Text>
+                  <Text style={[dailyTaskStyles.questSheetTitle, { color: t.textPrimary, fontSize: f.h2 }]}>{taskStrings.title}</Text>
+                </View>
+                <TouchableOpacity accessibilityRole="button" accessibilityLabel={triLang(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })} onPress={() => setSelectedQuest(null)} style={dailyTaskStyles.questSheetClose}>
+                  <Ionicons name="close" size={20} color={t.textMuted} />
+                </TouchableOpacity>
+              </View>
+              <Text style={[dailyTaskStyles.questSheetDescription, { color: t.textSecond, fontSize: f.body }]}>{taskStrings.desc}</Text>
+              <View style={[dailyTaskStyles.questSheetProgress, { backgroundColor: dailyTaskAccentAlpha(modalAccent, 0.10) }]}>
+                <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '800' }}>{triLang(lang, { ru: 'Прогресс', uk: 'Прогрес', es: 'Progreso', 'pt-BR': 'Progresso', vi: 'Tiến độ', id: 'Progres', tr: 'İlerleme', pl: 'Postęp' })}</Text>
+                <Text style={{ color: modalAccent, fontSize: f.body, fontWeight: '900' }}>{`${Math.min(taskProgress, taskToStart.target)} / ${taskToStart.target}`}</Text>
+              </View>
+              <TouchableOpacity
+                accessibilityRole="button"
+                accessibilityLabel={triLang(lang, { ru: 'Начать выполнение задания', uk: 'Почати виконання завдання', es: 'Empezar la tarea', 'pt-BR': 'Começar a tarefa', vi: 'Bắt đầu nhiệm vụ', id: 'Mulai tugas', tr: 'Göreve başla', pl: 'Rozpocznij zadanie' })}
+                onPress={() => { hapticTap(); setSelectedQuest(null); void handleTaskNav(taskToStart); }}
+                style={[dailyTaskStyles.questSheetStart, { backgroundColor: isGoldTheme ? goldAccent : t.accent }]}
+              >
+                <Text style={[dailyTaskStyles.questSheetStartText, { color: isGoldTheme ? t.textOnGold : t.correctText, fontSize: f.body }]}>{triLang(lang, { ru: 'Начать', uk: 'Почати', es: 'Empezar', 'pt-BR': 'Começar', vi: 'Bắt đầu', id: 'Mulai', tr: 'Başla', pl: 'Zacznij' })}</Text>
+              </TouchableOpacity>
+            </View>;
+          })() : null}
+        </View>
+      </Modal>
+
       {/* Confirm — заменить задание за осколки */}
       <Modal visible={rerollConfirm !== null} transparent animationType="fade" onRequestClose={() => {
             if (rerollBusyId)
@@ -3514,11 +3451,6 @@ export default function DailyTasksScreen() {
             })}
               </Text>)}
 
-            <View style={rerollStyles.priceRow}>
-              <Image source={oskolokImageForPackShards(DAILY_TASK_REROLL_COST_SHARDS)} style={{ width: 32, height: 32 }} contentFit="contain"/>
-              <Text style={[rerollStyles.priceNum, { color: t.textPrimary }]}>{DAILY_TASK_REROLL_COST_SHARDS}</Text>
-            </View>
-
             <Text style={[rerollStyles.hint, { color: t.textMuted }]}>
               {triLang(lang, {
             ru: 'Лимит — 1 замена в сутки. Старый вызов начнётся заново.',
@@ -3542,27 +3474,16 @@ export default function DailyTasksScreen() {
               {rerollBusyId ? <ActivityIndicator size="small" color={isGoldTheme ? t.textOnGold : t.correctText} /> : null}
               <Text style={[rerollStyles.btnPrimaryText, { color: isGoldTheme ? t.textOnGold : t.correctText, fontSize: f.body }]}>
                 {triLang(lang, {
-            ru: `Заменить · ${DAILY_TASK_REROLL_COST_SHARDS}`,
-            uk: `Замінити · ${DAILY_TASK_REROLL_COST_SHARDS}`,
-            es: `Reemplazar · ${DAILY_TASK_REROLL_COST_SHARDS}`,
-            'pt-BR': `Substituir · ${DAILY_TASK_REROLL_COST_SHARDS}`,
-            vi: `Đổi nhiệm vụ · ${DAILY_TASK_REROLL_COST_SHARDS}`,
-            id: `Ganti · ${DAILY_TASK_REROLL_COST_SHARDS}`,
-            tr: `Değiştir · ${DAILY_TASK_REROLL_COST_SHARDS}`,
-            pl: `Zamień · ${DAILY_TASK_REROLL_COST_SHARDS}`,
+            ru: 'Заменить бесплатно',
+            uk: 'Замінити безкоштовно',
+            es: 'Reemplazar gratis',
+            'pt-BR': 'Substituir grátis',
+            vi: 'Đổi miễn phí',
+            id: 'Ganti gratis',
+            tr: 'Ücretsiz değiştir',
+            pl: 'Zamień bezpłatnie',
         })}
               </Text>
-              {/* зачем: цена замены — в жемчужинах, значит и значок обязан быть
-                  ассетом жемчужины (как в магазине и на карточке профиля),
-                  а не эмодзи-алмазом 💎, который в каждой ОС рисуется по-своему. */}
-              {rerollBusyId ? null : (
-                <Image
-                  source={pearlIconForTheme(themeMode)}
-                  style={{ width: 18, height: 18 }}
-                  contentFit="contain"
-                  accessible={false}
-                />
-              )}
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => {
@@ -3591,6 +3512,21 @@ export default function DailyTasksScreen() {
     </ScreenGradient>);
 }
 const dailyTaskStyles = StyleSheet.create({
+    questSheetOverlay: { flex: 1, justifyContent: 'flex-end', backgroundColor: 'rgba(0,0,0,0.56)' },
+    questSheet: { borderTopWidth: 1, borderTopLeftRadius: 28, borderTopRightRadius: 28, paddingHorizontal: 24, paddingTop: 12, paddingBottom: 20 },
+    questSheetHandle: { width: 42, height: 4, borderRadius: 2, alignSelf: 'center', marginBottom: 14 },
+    questSheetHero: { minHeight: 78, overflow: 'hidden', borderWidth: 1, borderTopLeftRadius: 20, borderTopRightRadius: 8, borderBottomRightRadius: 20, borderBottomLeftRadius: 8, flexDirection: 'row', alignItems: 'center', paddingHorizontal: 12, gap: 10, marginBottom: 12 },
+    questSheetArtwork: { position: 'absolute', right: 0, top: 0, bottom: 0, width: '62%', opacity: 0.62 },
+    questSheetIcon: { width: 52, height: 52, borderTopLeftRadius: 14, borderTopRightRadius: 5, borderBottomRightRadius: 14, borderBottomLeftRadius: 5, alignItems: 'center', justifyContent: 'center', flexShrink: 0 },
+    questSheetIconImage: { width: 46, height: 46 },
+    questSheetHeroCopy: { flex: 1, minWidth: 0, zIndex: 1 },
+    questSheetClose: { width: 44, height: 44, alignItems: 'center', justifyContent: 'center', zIndex: 2 },
+    questSheetEyebrow: { fontWeight: '800', textTransform: 'uppercase', letterSpacing: 0.7, marginBottom: 3 },
+    questSheetTitle: { fontWeight: '900', lineHeight: 27, marginBottom: 0, flexShrink: 1 },
+    questSheetDescription: { lineHeight: 21, marginBottom: 10 },
+    questSheetProgress: { minHeight: 38, borderRadius: 12, paddingHorizontal: 12, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 },
+    questSheetStart: { minHeight: 48, borderRadius: 16, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 20 },
+    questSheetStartText: { fontWeight: '900' },
     bonusCard: {
         marginBottom: 8,
     },
@@ -3614,7 +3550,10 @@ const dailyTaskStyles = StyleSheet.create({
     },
     taskCapsuleCard: {
         minHeight: 92,
-        borderRadius: 22,
+        borderTopLeftRadius: 22,
+        borderTopRightRadius: 10,
+        borderBottomRightRadius: 22,
+        borderBottomLeftRadius: 10,
         paddingHorizontal: 22,
         justifyContent: 'flex-start',
     },
@@ -3624,8 +3563,8 @@ const dailyTaskStyles = StyleSheet.create({
         top: 0,
         bottom: 0,
         borderTopLeftRadius: 22,
-        borderBottomLeftRadius: 22,
-        borderTopRightRadius: 22,
+        borderBottomLeftRadius: 10,
+        borderTopRightRadius: 10,
         borderBottomRightRadius: 22,
     },
     taskCapsuleGlow: {
@@ -3636,6 +3575,16 @@ const dailyTaskStyles = StyleSheet.create({
         bottom: 0,
         opacity: 1,
     },
+    // Generated task artwork lives only in the right half, preserving the horizontal
+    // reading path: icon → title → progress → reroll.
+    taskPortalArt: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0,
+        opacity: 0.48,
+    },
     taskCapsuleAccentBar: {
         position: 'absolute',
         left: 0,
@@ -3645,6 +3594,12 @@ const dailyTaskStyles = StyleSheet.create({
         borderTopRightRadius: 4,
         borderBottomRightRadius: 4,
         opacity: 0.88,
+    },
+    taskPortalIcon: {
+        borderTopLeftRadius: 16,
+        borderTopRightRadius: 6,
+        borderBottomRightRadius: 16,
+        borderBottomLeftRadius: 6,
     },
     // зачем: счётчик «текущее/цель» бейджем в правом верхнем углу карточки
     // (см. background в рендере задачи) — pill без обводки (borderWidth:0),

@@ -21,6 +21,9 @@ import { hapticTap as doHaptic } from '../../hooks/use-haptics';
 
 export type LogoutStage = 'idle' | 'confirm' | 'wiping';
 
+/** Зазор на докрытие нативной модалки перед показом следующей (см. showInfoAlert). */
+const LOGOUT_MODAL_DISMISS_SETTLE_MS = 360;
+
 interface AccountLogoutFlowProps {
   stage: LogoutStage;
   onStageChange: (stage: LogoutStage) => void;
@@ -36,8 +39,17 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
     vi: string, id: string, tr: string, pl: string,
   ) => triLang(lang, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
 
+  // зачем: тот же класс бага, что чинили в удалении аккаунта (present-during-dismiss).
+  // ThemedBlockingAlertHost — нативный <Modal>. Если поставить алерт в очередь в том же
+  // тике, в котором onStageChange('idle') закрывает модалку этого флоу, на iOS present
+  // накладывается на идущий dismiss: стек презентаций ломается, алерт не виден, а экран
+  // перестаёт принимать тапы. Ждём кадр докрытия — как NATIVE_MODAL_HANDOFF_GAP_MS
+  // в OverlayArbiter (сюда он не достаёт: этот флоу живёт мимо арбитра).
   const showInfoAlert = useCallback((title: string, message: string) => {
-    void enqueueThemedBlockingInfoAlert(title, message, 'OK');
+    setTimeout(
+      () => { void enqueueThemedBlockingInfoAlert(title, message, 'OK'); },
+      LOGOUT_MODAL_DISMISS_SETTLE_MS,
+    );
   }, []);
 
   const runLogout = async () => {
@@ -165,13 +177,41 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
 
   return (
     <>
-      {/* ── Подтверждение выхода ── */}
+      {/* ── Подтверждение выхода + лоадер: ОДИН нативный <Modal> ──
+          зачем: раньше это были ДВА <Modal> (confirm и wiping). Переход confirm→wiping
+          закрывал первый и презентовал второй в одном кадре — present-during-dismiss,
+          от которого на iOS ломается стек презентаций (тот же баг, что ловили в удалении
+          аккаунта: окно пропадает, экран перестаёт реагировать). Теперь модал один, а
+          стадия меняет только его СОДЕРЖИМОЕ — нативного present/dismiss между стадиями
+          больше нет. */}
       <Modal
-        visible={stage === 'confirm'}
+        visible={stage === 'confirm' || stage === 'wiping'}
         transparent
         animationType="fade"
-        onRequestClose={() => onStageChange('idle')}
+        onRequestClose={() => { if (stage === 'confirm') onStageChange('idle'); }}
       >
+        {stage === 'wiping' ? (
+          <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.75)', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 32 }}>
+            <View
+              style={{
+                width: '100%',
+                maxWidth: 280,
+                backgroundColor: t.bgCard,
+                borderRadius: 16,
+                padding: 28,
+                alignItems: 'center',
+              }}
+            >
+              <Ionicons name="shield-checkmark" size={28} color={t.correct} />
+              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', marginTop: 16, textAlign: 'center' }}>
+                {L('Сохраняем прогресс', 'Зберігаємо прогрес', 'Guardando progreso', 'Salvando progresso', 'Đang lưu tiến độ', 'Menyimpan progres', 'İlerleme kaydediliyor', 'Zapisywanie postępu')}
+              </Text>
+              <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 6, textAlign: 'center' }}>
+                {L('Не закрывай приложение', 'Не закривай застосунок', 'No cierres la app', 'Não feche o app', 'Đừng đóng ứng dụng', 'Jangan tutup aplikasi', 'Uygulamayı kapatma', 'Nie zamykaj aplikacji')}
+              </Text>
+            </View>
+          </View>
+        ) : (
         <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.7)', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20 }}>
           <View
             style={{
@@ -236,30 +276,7 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
             </View>
           </View>
         </View>
-      </Modal>
-
-      {/* ── Лоадер во время forced sync + signOut + wipe ── */}
-      <Modal visible={stage === 'wiping'} transparent animationType="fade">
-        <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.75)', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 32 }}>
-          <View
-            style={{
-              width: '100%',
-              maxWidth: 280,
-              backgroundColor: t.bgCard,
-              borderRadius: 16,
-              padding: 28,
-              alignItems: 'center',
-            }}
-          >
-            <Ionicons name="shield-checkmark" size={28} color={t.correct} />
-            <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', marginTop: 16, textAlign: 'center' }}>
-              {L('Сохраняем прогресс', 'Зберігаємо прогрес', 'Guardando progreso', 'Salvando progresso', 'Đang lưu tiến độ', 'Menyimpan progres', 'İlerleme kaydediliyor', 'Zapisywanie postępu')}
-            </Text>
-            <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 6, textAlign: 'center' }}>
-              {L('Не закрывай приложение', 'Не закривай застосунок', 'No cierres la app', 'Não feche o app', 'Đừng đóng ứng dụng', 'Jangan tutup aplikasi', 'Uygulamayı kapatma', 'Nie zamykaj aplikacji')}
-            </Text>
-          </View>
-        </View>
+        )}
       </Modal>
     </>
   );

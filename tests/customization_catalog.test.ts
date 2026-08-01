@@ -12,6 +12,7 @@ const baseContext = {
   ownedAuras: {},
   isPremium: false,
   isVip: false,
+  isPro: false,
 };
 
 describe('customization catalog', () => {
@@ -48,33 +49,75 @@ describe('customization catalog', () => {
     expect(item?.availability).toEqual({ kind: 'shards', cost: 120 });
   });
 
+  it.each(['aura-mint', 'aura-coral'])('restores %s for purchase and owned selection', (id) => {
+    const purchasable = buildAuraCatalog(baseContext)
+      .find((candidate) => candidate.id === id);
+    const owned = buildAuraCatalog({
+      ...baseContext,
+      activeAuraId: id,
+      ownedAuras: { [id]: true },
+    }).find((candidate) => candidate.id === id);
+
+    expect(purchasable).toMatchObject({
+      isOwned: false,
+      availability: { kind: 'shards', cost: 120 },
+    });
+    expect(owned).toMatchObject({
+      isOwned: true,
+      isActive: true,
+      availability: { kind: 'owned' },
+    });
+  });
+
   it.each([
-    ['aura-premium', 'plus'],
-    ['aura-flame-51', 'level'],
-    // зачем: бывшие «Награды Арены» стали уровневыми (52-55), наградным остался только «Нимб».
-    ['aura-arena-starvortex', 'level'],
-    ['aura-season', 'level'],
-    ['aura-nimbus', 'reward'],
+    ['aura-plus', 'plus'],
+    ['aura-pro', 'pro'],
     ['aura-aurora', 'shards'],
   ] as const)('classifies %s as %s', (id, expected) => {
     expect(buildAuraCatalog(baseContext).find((item) => item.id === id)?.availability.kind).toBe(expected);
   });
 
-  it.each([
-    ['paid Plus', { isPremium: true, isVip: false }],
-    ['admin-granted Plus', { isPremium: false, isVip: true }],
-  ])('unlocks every Plus aura for %s', (_label, access) => {
-    const plusItems = buildAuraCatalog({ ...baseContext, ...access })
-      .filter((item) => item.kind === 'aura' && (item.aura.premiumOnly || item.aura.vipOnly));
+  it('hides the manual beta reward until it is granted or active', () => {
+    expect(buildAuraCatalog(baseContext).some((item) => item.id === 'aura-nimbus')).toBe(false);
 
-    expect(plusItems).toHaveLength(2);
-    expect(plusItems.every((item) => item.isOwned && item.availability.kind === 'owned')).toBe(true);
+    const granted = buildAuraCatalog({
+      ...baseContext,
+      ownedAuras: { 'aura-nimbus': true },
+    }).find((item) => item.id === 'aura-nimbus');
+    expect(granted).toMatchObject({ isOwned: true, availability: { kind: 'owned' } });
+
+    const active = buildAuraCatalog({
+      ...baseContext,
+      activeAuraId: 'aura-nimbus',
+    }).find((item) => item.id === 'aura-nimbus');
+    expect(active).toMatchObject({ isOwned: true, isActive: true, availability: { kind: 'owned' } });
   });
 
-  it.each(['aura-premium', 'aura-vip'])('re-locks expired active Plus aura %s', (activeAuraId) => {
+  it.each([
+    ['paid Plus', { isPremium: true, isVip: false, isPro: false }],
+    ['admin-granted Plus', { isPremium: false, isVip: true, isPro: false }],
+  ])('unlocks the same canonical Plus aura for %s', (_label, access) => {
+    const plusItems = buildAuraCatalog({ ...baseContext, ...access })
+      .filter((item) => item.kind === 'aura' && item.id === 'aura-plus');
+
+    expect(plusItems).toHaveLength(1);
+    expect(plusItems[0]).toMatchObject({ isOwned: true, availability: { kind: 'owned' } });
+  });
+
+  it.each(['aura-plus', 'aura-premium', 'aura-vip'])('re-locks expired active Plus aura %s', (activeAuraId) => {
     const item = buildAuraCatalog({ ...baseContext, activeAuraId })
-      .find((candidate) => candidate.id === activeAuraId);
+      .find((candidate) => candidate.id === 'aura-plus');
     expect(item).toMatchObject({ isOwned: false, availability: { kind: 'plus' } });
+  });
+
+  it('unlocks Pro only for the lifetime entitlement', () => {
+    const monthly = buildAuraCatalog({ ...baseContext, isPremium: true, isPro: false })
+      .find((item) => item.id === 'aura-pro');
+    const lifetime = buildAuraCatalog({ ...baseContext, isPremium: true, isPro: true })
+      .find((item) => item.id === 'aura-pro');
+
+    expect(monthly).toMatchObject({ isOwned: false, availability: { kind: 'pro' } });
+    expect(lifetime).toMatchObject({ isOwned: true, availability: { kind: 'owned' } });
   });
 
   it('mine contains only owned/access-granted items plus none aura', () => {

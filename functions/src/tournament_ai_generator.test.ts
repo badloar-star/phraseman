@@ -35,11 +35,11 @@ const PHRASES = [
   'I am running a bit late today.',
   'Do you mind if I open the window?',
   'Let me know when you are free.',
-  'I would like to book a table for two.',
+  'I would like a table for two.',
   'Sorry, I did not catch your name.',
   'How long does it take to get there?',
   'I have been meaning to call you.',
-  'Would you mind keeping an eye on my bag?',
+  'Could you watch my bag, please?',
   'It slipped my mind completely.',
 ] as const;
 
@@ -65,6 +65,10 @@ function goldenItem(index: number): TournamentAiItem {
     difficulty: DIFFICULTIES[index],
     scenario: SCENARIOS[index],
     ruleNote: `Верен вариант ${correctIndex + 1}: остальные — ловушки времени и предлога.`,
+    example: `I use phrase ${index} every day. — Я использую фразу ${index} каждый день.`,
+    wrongOptionReasons: options.map((_, optionIndex) => optionIndex === correctIndex
+      ? ''
+      : `Вариант ${optionIndex + 1} меняет смысл исходной фразы.`),
   };
 }
 
@@ -160,6 +164,20 @@ describe('tournament_ai_generator: классы брака', () => {
   it('фраза с кириллицей или пустая → ai_phrase_invalid', () => {
     expect(errorsOf(mutate(0, { phrase: 'Могу я получить счёт?' }))).toContain('ai_phrase_invalid');
     expect(errorsOf(mutate(0, { phrase: '' }))).toContain('ai_phrase_invalid');
+  });
+
+  it('фраза и правильный ответ ограничены восемью нормализованными словами', () => {
+    expect(errorsOf(mutate(0, {
+      phrase: 'I would really like to book a table for two tonight.',
+    }))).toContain('ai_phrase_word_limit');
+
+    const item = goldenItem(0);
+    const options = [...item.options];
+    options[item.correctIndex] = 'это слишком длинный правильный ответ для быстрого турнирного задания сегодня';
+    expect(errorsOf(mutate(0, {
+      options,
+      correctAnswer: options[item.correctIndex],
+    }))).toContain('ai_correct_answer_word_limit');
   });
 
   it('одинаковая фраза дважды → ai_phrase_duplicate', () => {
@@ -279,7 +297,12 @@ describe('tournament_ai_generator: классы брака', () => {
     // механическое — чиним перестановкой вариантов внутри вопроса.
     const batch = goldenBatch();
     batch.items = batch.items.map((item) => ({
-      ...item, correctIndex: 2, correctAnswer: item.options[2],
+      ...item,
+      correctIndex: 2,
+      correctAnswer: item.options[2],
+      wrongOptionReasons: item.options.map((_, optionIndex) => optionIndex === 2
+        ? ''
+        : `Вариант ${optionIndex + 1} меняет смысл исходной фразы.`),
     }));
     const result = validateTournamentAiBatch(batch, { level: 'A2' });
     expect(result.ok).toBe(true);
@@ -314,6 +337,12 @@ describe('tournament_ai_generator: классы брака', () => {
 
   it('пустая заметка для редактора → ai_rule_note_invalid', () => {
     expect(errorsOf(mutate(0, { ruleNote: '' }))).toContain('ai_rule_note_invalid');
+  });
+
+  it('не принимает генерацию без примера или отдельной причины каждой ловушки', () => {
+    expect(errorsOf(mutate(0, { example: '' }))).toContain('ai_example_invalid');
+    expect(errorsOf(mutate(0, { wrongOptionReasons: ['', 'первая', '', 'третья'] })))
+      .toContain('ai_wrong_option_reasons_invalid');
   });
 
   it('два смыслово одинаковых вопроса → ai_semantic_duplicate', () => {

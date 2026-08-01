@@ -27,7 +27,7 @@ import { hapticError, hapticTap } from '../hooks/use-haptics';
 import { useAudio } from '../hooks/use-audio';
 import { LOUD_PLAYBACK_AUDIO_MODE, SPEAKING_RECORDING_AUDIO_MODE } from './audio_playback_mode';
 import { setManagedAudioMode } from './audio_session_coordinator';
-import { useAppRuntimeActive } from './runtime_app_state_store';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
 import {
   dialogScenarioNextStepHint,
   dialogScenarioTitle,
@@ -199,7 +199,9 @@ export default function AiDialogSession() {
   const speechModule = useMemo(() => (isSpeakingEnabled() ? loadPlanSpeechModule() : null), []);
   // зачем: экран диалога не размонтируется при сворачивании приложения, поэтому нужен явный
   // сигнал «ушли в фон» — иначе распознавание речи продолжает слушать микрофон (см. эффект ниже).
-  const appRuntimeActive = useAppRuntimeActive();
+  const runtimeActive = useRuntimeActive();
+  const runtimeActiveRef = useRef(runtimeActive);
+  runtimeActiveRef.current = runtimeActive;
   const { playRecordStart } = useRecordStartCue();
   const params = useLocalSearchParams<{ scenarioId?: string; lessonId?: string }>();
   const aiDialogGateOpen = aiDialogContentAvailableForTarget(studyTarget);
@@ -259,6 +261,7 @@ export default function AiDialogSession() {
   // Invalidates an in-flight permission/model/start sequence when the finger is
   // released or the conversation mode is turned off.
   const voiceInputGenerationRef = useRef(0);
+  const voiceInputSessionRef = useRef(0);
   const holdPressActiveRef = useRef(false);
   useEffect(() => {
     conversationModeRef.current = conversationMode;
@@ -269,7 +272,7 @@ export default function AiDialogSession() {
   const sendVoiceTextRef = useRef<(text: string) => void>(() => undefined);
   const conversationReleasePendingRef = useRef(false);
   const conversationSendTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const finalizeConversationSendRef = useRef<() => void>(() => undefined);
+  const finalizeConversationSendRef = useRef<(session: number) => void>(() => undefined);
   // Идёт озвучка ответа ИИ (для подсказки «Отвечает…» под полем ввода).
   const [aiSpeaking, setAiSpeaking] = useState(false);
   // Watchdog против молчащего распознавателя (как в SpeakingPanel): Android-сервис
@@ -394,9 +397,13 @@ export default function AiDialogSession() {
   }, []);
 
   const startVoiceInput = useCallback(async () => {
+    if (!runtimeActiveRef.current) return;
     if (sending || ended || voiceInputStatus === 'requesting') return;
     if (!accessResolved) return;
     const generation = ++voiceInputGenerationRef.current;
+    const session = ++voiceInputSessionRef.current;
+    const isCurrentSession = () =>
+      voiceInputMountedRef.current && runtimeActiveRef.current && session === voiceInputSessionRef.current;
     hapticTap();
     // Глушим играющий ответ-TTS перед стартом микрофона: иначе он течёт в
     // распознаватель и портит транскрипт (образец: SpeakingPanel stopListening).
@@ -420,7 +427,7 @@ export default function AiDialogSession() {
 
     setVoiceInputStatus('requesting');
     const permission = await requestSpeechPermissionForHold(speechModule);
-    if (generation !== voiceInputGenerationRef.current || !voiceInputMountedRef.current) return;
+    if (!isCurrentSession() || generation !== voiceInputGenerationRef.current) return;
     if (permission === 'denied') {
       setVoiceInputStatus('denied');
       return;
@@ -435,6 +442,7 @@ export default function AiDialogSession() {
     const acc = new TranscriptAccumulator();
     let latest = '';
     const applyTranscript = (value: string) => {
+      if (!isCurrentSession()) return;
       const next = value.trim();
       if (!next) return;
       latest = next;
@@ -453,6 +461,7 @@ export default function AiDialogSession() {
     // не эмитится и сразу приходит result — поэтому один раз по любому из них.
     let cuePlayed = false;
     const playCueOnce = () => {
+      if (!isCurrentSession()) return;
       if (cuePlayed) return;
       cuePlayed = true;
       playRecordStart();
@@ -460,6 +469,7 @@ export default function AiDialogSession() {
     // Любой признак жизни движка снимает watchdog: на редких OEM 'start' не
     // эмитится, а сразу приходит result — снимаем и там, и там.
     const startSub = speechModule.addListener('start', () => {
+      if (!isCurrentSession()) return;
       clearRecognizerWatchdog();
       if (!holdPressActiveRef.current) {
         try {
@@ -473,6 +483,7 @@ export default function AiDialogSession() {
       playCueOnce();
     });
     const resultSub = speechModule.addListener('result', (event: any) => {
+      if (!isCurrentSession()) return;
       clearRecognizerWatchdog();
       if (holdPressActiveRef.current) {
         setVoiceInputStatus('listening');
@@ -496,9 +507,10 @@ export default function AiDialogSession() {
       }
     });
     const endSub = speechModule.addListener('end', () => {
+      if (!isCurrentSession()) return;
       clearRecognizerWatchdog();
       if (conversationReleasePendingRef.current) {
-        finalizeConversationSendRef.current();
+        finalizeConversationSendRef.current(session);
         return;
       }
       restoreLoudPlaybackMode();
@@ -506,9 +518,10 @@ export default function AiDialogSession() {
       if (voiceInputMountedRef.current) setVoiceInputStatus('idle');
     });
     const errorSub = speechModule.addListener('error', () => {
+      if (!isCurrentSession()) return;
       clearRecognizerWatchdog();
       if (conversationReleasePendingRef.current && latestTranscriptRef.current.trim()) {
-        finalizeConversationSendRef.current();
+        finalizeConversationSendRef.current(session);
         return;
       }
       restoreLoudPlaybackMode();
@@ -517,6 +530,7 @@ export default function AiDialogSession() {
       if (voiceInputMountedRef.current) setVoiceInputStatus(latest ? 'idle' : 'error');
     });
     const noMatchSub = speechModule.addListener('nomatch', () => {
+      if (!isCurrentSession()) return;
       clearRecognizerWatchdog();
       restoreLoudPlaybackMode();
       cleanupVoiceInputListeners();
@@ -532,7 +546,7 @@ export default function AiDialogSession() {
     } catch {
       onDevice = false;
     }
-    if (generation !== voiceInputGenerationRef.current || !voiceInputMountedRef.current) return;
+    if (!isCurrentSession() || generation !== voiceInputGenerationRef.current) return;
 
     try {
       try {
@@ -540,7 +554,7 @@ export default function AiDialogSession() {
       } catch {
         // expo-speech-recognition may own the native session on some devices.
       }
-      if (generation !== voiceInputGenerationRef.current || !voiceInputMountedRef.current) return;
+      if (!isCurrentSession() || generation !== voiceInputGenerationRef.current) return;
       if (!holdPressActiveRef.current) {
         cleanupVoiceInputListeners();
         restoreLoudPlaybackMode();
@@ -552,6 +566,7 @@ export default function AiDialogSession() {
       clearRecognizerWatchdog();
       recognizerWatchdogRef.current = setTimeout(() => {
         recognizerWatchdogRef.current = null;
+        if (!isCurrentSession()) return;
         try {
           speechModule.abort();
         } catch {
@@ -587,7 +602,7 @@ export default function AiDialogSession() {
       cleanupVoiceInputListeners();
       restoreLoudPlaybackMode();
       // start() кинул — почти всегда транзиентно (сервис занят/умер); даём «Повторить».
-      if (voiceInputMountedRef.current) setVoiceInputStatus('error');
+      if (isCurrentSession()) setVoiceInputStatus('error');
     }
   }, [
     accessResolved,
@@ -611,6 +626,9 @@ export default function AiDialogSession() {
     voiceInputMountedRef.current = true;
     return () => {
       voiceInputMountedRef.current = false;
+      voiceInputGenerationRef.current += 1;
+      voiceInputSessionRef.current += 1;
+      holdPressActiveRef.current = false;
       conversationReleasePendingRef.current = false;
       if (conversationSendTimerRef.current != null) {
         clearTimeout(conversationSendTimerRef.current);
@@ -631,8 +649,13 @@ export default function AiDialogSession() {
   // и распознавание продолжало держать микрофон открытым в фоне — большой расход батареи.
   // Обрываем жёстко (abort), снимаем отложенную отправку реплики и возвращаем режим
   // воспроизведения. Возобновление — только по явному действию пользователя.
+  // Speech capture lifecycle invariant: blur/background invalidates pending starts,
+  // aborts live capture, clears deferred delivery, and never auto-resumes on return.
   useEffect(() => {
-    if (appRuntimeActive) return;
+    if (runtimeActive) return;
+    voiceInputGenerationRef.current += 1;
+    voiceInputSessionRef.current += 1;
+    holdPressActiveRef.current = false;
     conversationReleasePendingRef.current = false;
     if (conversationSendTimerRef.current != null) {
       clearTimeout(conversationSendTimerRef.current);
@@ -652,7 +675,7 @@ export default function AiDialogSession() {
     }
     restoreLoudPlaybackMode();
     if (voiceInputMountedRef.current) setVoiceInputStatus('idle');
-  }, [appRuntimeActive, speechModule, clearRecognizerWatchdog, cleanupVoiceInputListeners, stopSpeaking]);
+  }, [runtimeActive, speechModule, clearRecognizerWatchdog, cleanupVoiceInputListeners, stopSpeaking]);
 
   const enterAnim = useRef(new Animated.Value(0)).current;
   useEffect(() => {
@@ -824,7 +847,8 @@ export default function AiDialogSession() {
   sendVoiceTextRef.current = (text: string) => {
     void send(text);
   };
-  finalizeConversationSendRef.current = () => {
+  finalizeConversationSendRef.current = (session: number) => {
+    if (!voiceInputMountedRef.current || !runtimeActiveRef.current || session !== voiceInputSessionRef.current) return;
     if (!conversationReleasePendingRef.current) return;
     conversationReleasePendingRef.current = false;
     if (conversationSendTimerRef.current != null) {
@@ -861,10 +885,12 @@ export default function AiDialogSession() {
   // Отпустил микрофон: сразу гасим красное active-состояние и останавливаем
   // recognizer. В разговорном режиме после финального result ещё авто-отправляем.
   const handleMicPressOut = useCallback(() => {
+    const session = voiceInputSessionRef.current;
     holdPressActiveRef.current = false;
     voiceInputGenerationRef.current += 1;
     clearRecognizerWatchdog();
     if (voiceInputStatusRef.current === 'requesting') {
+      voiceInputSessionRef.current += 1;
       conversationReleasePendingRef.current = false;
       cleanupVoiceInputListeners();
       try {
@@ -888,7 +914,7 @@ export default function AiDialogSession() {
       clearConversationSendTimer();
       conversationSendTimerRef.current = setTimeout(() => {
         conversationSendTimerRef.current = null;
-        finalizeConversationSendRef.current();
+        finalizeConversationSendRef.current(session);
       }, CONVERSATION_SEND_GRACE_MS);
     }
   }, [
@@ -2504,6 +2530,7 @@ export default function AiDialogSession() {
                       });
                       if (!next) {
                         voiceInputGenerationRef.current += 1;
+                        voiceInputSessionRef.current += 1;
                         holdPressActiveRef.current = false;
                         conversationReleasePendingRef.current = false;
                         // Выключаем — гасим всё голосовое, чтобы не «зависло».

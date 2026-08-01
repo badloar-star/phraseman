@@ -1,10 +1,29 @@
 import { LESSON_DATA } from '../app/lesson_data_all';
-import { phraseAnswerAlternatives, phraseCanonicalAnswer } from '../app/phrase_target_utils';
+import {
+  answerDisplayLineWithCanonicalPunctuation,
+  phraseAnswerAlternatives,
+  phraseCanonicalAnswer,
+} from '../app/phrase_target_utils';
 import { isCorrectAnswer } from '../constants/contractions';
 import fs from 'fs';
 import path from 'path';
 
 describe('reported content regressions', () => {
+  it.each([
+    ['Are the keys in the bag', 'Are the keys in the bag?', 'Are the keys in the bag?'],
+    ['Is the car outside the house ?', 'Is the car outside the house?', 'Is the car outside the house?'],
+    ['Do they have tickets.', 'Do they have tickets?', 'Do they have tickets?'],
+  ])('keeps canonical question punctuation on a correct result line', (answer, canonical, expected) => {
+    expect(answerDisplayLineWithCanonicalPunctuation(answer, canonical)).toBe(expected);
+  });
+
+  it('does not regenerate the rejected grammatical-number metadata', () => {
+    const generator = fs.readFileSync(path.join(process.cwd(), 'tools', 'prompt007_es_phrase_words.ts'), 'utf8');
+
+    expect(generator).not.toContain('targetGrammarNumber');
+    expect(generator).not.toContain("ALT_ES_BY_EN_ID['lesson9_phrase_3']");
+  });
+
   it('accepts clean up your room for lesson 18 phrase 20', () => {
     const phrase = LESSON_DATA[18].phrases.find((row) => row.id === 'lesson18_phrase_20');
 

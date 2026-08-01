@@ -24,9 +24,15 @@ test('daily challenge cards use extracted semantic presentation without calculat
 });
 
 test('screen retains every live task capability after removing duplicate renderers', () => {
-  for (const token of ['handleTaskCardPress', 'handleClaim(task.id', 'setRerollConfirm({ task })', 'PlusBadge', 'taskCapsuleFill']) {
+  // зачем: токен 'handleClaim(task.id' убран — владелец снял кнопку «Забрать» с
+  // карточки, XP за вызов дня начисляется автоматически при выполнении
+  // (DailyTaskRewardToast). Остальные возможности экрана контракт стережёт как прежде.
+  for (const token of ['handleTaskCardPress', 'setRerollConfirm({ task })', 'PlusBadge', 'taskCapsuleFill']) {
     expect(screen).toContain(token);
   }
+  // зачем: закрепляем новое правило — на карточке задания не должно появиться
+  // кнопки действия, иначе награду снова придётся забирать вручную.
+  expect(screen).toContain('action={undefined}');
 });
 
 test('task capsule preserves the card vertical padding for multiline copy', () => {
@@ -36,4 +42,9 @@ test('task capsule preserves the card vertical padding for multiline copy', () =
   expect(component).toMatch(/card:\s*\{[^}]*paddingVertical:\s*12/);
   expect(taskCapsuleStyle).toBeDefined();
   expect(taskCapsuleStyle).not.toMatch(/paddingVertical:/);
+});
+
+test('the compact card does not repeat the full task instruction', () => {
+  expect(screen).toContain('description=""');
+  expect(screen).toContain('selectedQuest');
 });

@@ -15,20 +15,20 @@ import {
   parseKindItem,
 } from './tournament_ai_kind_items';
 import { TOURNAMENT_AI_KINDS, KIND_TO_MODE } from './tournament_ai_blueprint';
-import { verifyTournamentAnswer } from './tournament_core';
+import { validateTournamentTaskForNewRoom, verifyTournamentAnswer } from './tournament_core';
 
 // ── Эталонные ответы модели ─────────────────────────────────────────────────
 
 const SITUATION = {
   prompt: 'Официант принёс не то блюдо. Что скажешь?',
   options: [
-    'Sorry, I think this is not what I ordered.',
+    'Sorry, this is not what I ordered.',
     'You brought me the wrong dish again.',
     'I demand another dish immediately now.',
     'This food here is a mistake of yours.',
   ],
   correctIndex: 0,
-  correctAnswer: 'Sorry, I think this is not what I ordered.',
+  correctAnswer: 'Sorry, this is not what I ordered.',
   scenario: 'кафе',
   ruleNote: 'Верно первое: вежливое сомнение. Остальные грамматичны, но звучат грубо.',
   example: 'I think this is not what I ordered. — Кажется, это не то, что я заказывал.',
@@ -63,7 +63,7 @@ const ASSEMBLY = {
   prompt: 'Соберите фразу: Я собираюсь позвонить ей завтра',
   answer: 'I am going to call her tomorrow',
   tokens: ['I', 'am', 'going', 'to', 'call', 'her', 'tomorrow'],
-  decoys: ['will', 'him', 'yesterday'],
+  decoys: ['will', 'him', 'yesterday', 'already'],
   scenario: 'планы',
   ruleNote: 'be going to — намерение. will — другое значение, him и yesterday не подходят.',
   example: 'We are going to visit them tomorrow. — Мы собираемся навестить их завтра.',
@@ -86,11 +86,26 @@ describe('четыре типа: золотой путь до турнира', (
 
     const task = kindItemToTask(parsed.item, { level: 'B1', difficulty: 2 });
     expect(kindTaskPassesServerContract(task)).toBe(true);
+    expect(validateTournamentTaskForNewRoom({ ...task, verified: true })).toMatchObject({ ok: true });
     expect(task.mode).toBe(KIND_TO_MODE[kind]);
     expect(task.verified).toBe(false);
+    expect(task).toMatchObject({
+      lifecycle: 'awaiting_approval',
+      aiVerdict: 'approved',
+    });
+    expect(task).not.toHaveProperty('humanApprovedBy');
     expect(task.tags).toContain('source:ai');
     expect(task.tags).toContain(`kind:${kind}`);
-    expect(task.explanation).toEqual({ ruleNote: parsed.item.ruleNote, example: parsed.item.example });
+    expect(task.explanation).toMatchObject({
+      ruleNote: parsed.item.ruleNote,
+      example: parsed.item.example,
+      wrongOptionReasons: parsed.item.wrongOptionReasons,
+    });
+    expect(parsed.item.wrongOptionReasons).toHaveLength(kind === 'assembly' ? 0 : 4);
+    if (kind !== 'assembly') {
+      expect(parsed.item.wrongOptionReasons[parsed.item.correctIndex]).toBe('');
+      expect(parsed.item.wrongOptionReasons.filter((reason) => reason.length > 0)).toHaveLength(3);
+    }
 
     const live = { ...task, verified: true };
     if (kind === 'assembly') {
@@ -194,6 +209,46 @@ describe('четыре типа: брак ловится', () => {
 });
 
 describe('сборка фразы: банк слов не выдаёт ответ', () => {
+  it('требует ровно четыре ловушки', () => {
+    const result = parseKindItem({ ...ASSEMBLY, decoys: ASSEMBLY.decoys.slice(0, 3) }, 'assembly');
+    expect(result.ok).toBe(false);
+    if (!result.ok) expect(result.errors).toContain('kind_decoys_invalid');
+  });
+
+  it('пунктуация не становится значимой частью ответа или отдельного чипа', () => {
+    const result = parseKindItem({
+      ...ASSEMBLY,
+      answer: 'I am going to call her tomorrow!',
+      tokens: ['I', 'am', 'going', 'to', 'call', 'her', 'tomorrow!'],
+      decoys: ['will,', 'him?', 'yesterday.', 'already!'],
+    }, 'assembly');
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.item.correctAnswer).toBe('I am going to call her tomorrow');
+    expect(result.item.correctTokens).toEqual(['I', 'am', 'going', 'to', 'call', 'her', 'tomorrow']);
+    expect(result.item.options).toEqual(expect.arrayContaining([
+      'tomorrow', 'will', 'him', 'yesterday', 'already',
+    ]));
+    expect(result.item.options.some((chip) => /[!?.,]/u.test(chip))).toBe(false);
+  });
+
+  it('ограничивает условие и правильный ответ восемью нормализованными словами', () => {
+    const longPrompt = parseKindItem({
+      ...GAP,
+      prompt: 'I have really been looking everywhere ___ since early this morning.',
+    }, 'gap');
+    expect(longPrompt.ok).toBe(false);
+    if (!longPrompt.ok) expect(longPrompt.errors).toContain('kind_prompt_word_limit');
+
+    const longAnswer = parseKindItem({
+      ...ASSEMBLY,
+      answer: 'I am definitely going to call her tomorrow morning',
+      tokens: ['I', 'am', 'definitely', 'going', 'to', 'call', 'her', 'tomorrow', 'morning'],
+    }, 'assembly');
+    expect(longAnswer.ok).toBe(false);
+    if (!longAnswer.ok) expect(longAnswer.errors).toContain('kind_answer_word_limit');
+  });
+
   it('слова перемешаны, но состав полный', () => {
     // Если банк идёт по порядку фразы, задание решается без знания языка.
     const parsed = parseKindItem(ASSEMBLY, 'assembly');

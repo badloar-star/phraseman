@@ -224,7 +224,7 @@ export const LIGHT_SAKURA = {
 // ─── MODERN MINIMAL (Apple-like) ─────────────────────────────────────────────
 // Neutral grayscale, generous whitespace, rounded cards, subtle contrast.
 export const MINIMAL_DARK = {
-  // «Оникс»: истинный чёрный оникс + карбоновые поверхности.
+  // Legacy minimalDark palette retained only for stored-data and asset compatibility.
   bgPrimary:   '#0B0B0C',
   bgCard:      '#121214',
   bgSurface:   '#171717',
@@ -402,7 +402,7 @@ export const BUSINESS_LIGHT = {
   bgGradient:  ['#FFFFFF', '#FFFFFF'] as [string, string],
 };
 
-// ─── «КЕНДИ БЛУ» (candyBlue) ─────────────────────────────────────────────────
+// Legacy candyBlue palette retained only for stored-data and asset compatibility.
 // Тёмная холодная синева + нежный «леденцовый» голубой акцент. На залитых
 // акцентом CTA — тёмный текст (UI Contrast Rule, как у lime/green тем).
 export const CANDY_BLUE = {

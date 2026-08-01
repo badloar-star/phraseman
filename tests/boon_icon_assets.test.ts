@@ -23,7 +23,7 @@ describe('weekly boon DALL-E icon assets', () => {
       (match) => match[1],
     );
 
-    expect(requiredAssets).toHaveLength(132);
+    expect(requiredAssets).toHaveLength(120);
     for (const relativeAssetPath of requiredAssets) {
       expect(existsSync(path.join(process.cwd(), relativeAssetPath))).toBe(true);
     }

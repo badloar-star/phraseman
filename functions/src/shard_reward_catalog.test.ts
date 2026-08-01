@@ -35,7 +35,6 @@ describe('generic shard earn compatibility catalog (zeroed by 2026-07-20 economy
     ['achievement:anything', 1],
     ['boon_comeback', 5],
     ['boon_perfect_week', 20],
-    ['legacy_arena_saturday', 5],
     ['level_gift', 3],
     ['level_premium_gift', 20],
     ['streak_wager_win', 60],

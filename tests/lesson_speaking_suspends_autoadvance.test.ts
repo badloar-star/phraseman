@@ -32,6 +32,15 @@ describe('lesson auto-advance is suspended while the speaking panel is open', ()
     expect(src).not.toContain('onClose={() => setSpeakingOpen(false)}');
   });
 
+  it('hides and resets the inline panel synchronously when the phrase identity changes', () => {
+    expect(src).toContain('const speakingPhraseKey = `${displayCell}:${realPhraseIdx}:${phraseEnterKey}`');
+    expect(src).toContain('const speakingOpenedForPhraseRef = useRef<string | null>(null)');
+    expect(src).toContain('speakingOpenedForPhraseRef.current = speakingPhraseKey');
+    expect(src).toContain('const speakingVisible = speakingOpen && speakingOpenedForPhraseRef.current === speakingPhraseKey');
+    expect(src).toContain('{speakingVisible && (');
+    expect(src).toMatch(/useEffect\(\(\) => \{[\s\S]*?setSpeakingOpen\(false\);[\s\S]*?onSpeakingActiveChange\?\.\(false\);[\s\S]*?\}, \[speakingPhraseKey, onSpeakingActiveChange\]\);/);
+  });
+
   it('wires the suspend callback from LessonScreen down into LessonContent', () => {
     expect(src).toContain('onSpeakingActiveChange?: (active: boolean) => void;');
     expect(src).toContain('onSpeakingActiveChange={setSpeakingAdvanceSuspended}');

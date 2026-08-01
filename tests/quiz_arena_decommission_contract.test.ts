@@ -72,6 +72,31 @@ const LEGACY_COLLECTION_MATCHES = [
 ] as const;
 
 describe('Quiz and Arena decommission contract', () => {
+  test('removes the retired Arena weekly boon from every release surface', () => {
+    const weeklyBoonReleaseSources = [
+      'app/boons/boon_types.ts',
+      'app/boons/boon_config.ts',
+      'app/boons/boon_bootstrap.ts',
+      'app/boons/boon_copy.ts',
+      'constants/boonIconAssets.ts',
+      'admin/v2/legacy.html',
+      'functions/src/community_packs.ts',
+      'functions/src/shard_reward_catalog.ts',
+      'functions/lib/functions/src/community_packs.js',
+      'functions/lib/functions/src/shard_reward_catalog.js',
+      'scripts/generate_business_line_icons.mjs',
+      'scripts/refit_weekly_boon_icons.mjs',
+    ].map(read).join('\n');
+
+    expect(weeklyBoonReleaseSources).not.toMatch(
+      /arena_saturday|legacy_arena_saturday|Бой за рейтинг/,
+    );
+
+    const retiredBoonAssets = listFiles('assets/images/weekly_boon_icons')
+      .filter((file) => /arena_saturday/i.test(file));
+    expect(retiredBoonAssets).toEqual([]);
+  });
+
   test('has no client routes or feature-owned client modules', () => {
     const clientFiles = [
       ...listFiles('app'),

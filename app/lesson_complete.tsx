@@ -5,7 +5,7 @@ import DuoPressable from '../components/DuoPressable';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Animated, BackHandler, Modal, Platform, Pressable, Share, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, BackHandler, Modal, Platform, Pressable, Share, Text, TouchableOpacity, View } from 'react-native';
 import { Image } from 'expo-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import BonusXPCard from '../components/BonusXPCard';
@@ -31,10 +31,9 @@ import { checkGemAchievements, loadMedalInfo, saveMedalProgress, type MedalTier 
 import { markNextNavigationAsReplace } from './navigation_back';
 import { scheduleD1PersonalizedReminder } from './notifications';
 import { tryUnlockLevelExam, tryUnlockLingmanExam } from './lesson_lock_system';
-import { canShowReview, markReviewPrompted, markReviewRated, getReviewVariant, ReviewContext, ReviewVariant } from './review_utils';
+import { canShowReview, getReviewActiveDays, markReviewPrompted, markReviewRated, getReviewVariant, ReviewContext, ReviewVariant } from './review_utils';
 import { openStoreReviewPage } from './store_review';
 import { recordLessonForRepair } from './streak_repair';
-import { registerXP } from './xp_manager';
 import { addShards, SHARD_REWARDS, type ShardSource } from './shards_system';
 import { normalizeProfileCardLevel, PROFILE_CARD_LEVEL_KEY, profileCardShardMultiplier } from './profile_card_system';
 import { grantLessonFirstCompleteBonus, retryPendingLessonBonusGrants } from './lesson_bonus_grant';
@@ -60,6 +59,7 @@ import { primeLessonScreenFromStorage } from './lesson_screen_bootstrap';
 import { prefetchLessonMenuCache } from './lesson_menu';
 import { COURSE_LEVEL_RANGES, getCourseLevelForLesson } from './course_levels';
 import RegistrationPromptModal from '../components/RegistrationPromptModal';
+import ReviewPromptModal from '../components/ReviewPromptModal';
 import CoachToast from '../components/CoachToast';
 import CompassDepthSurface from '../components/CompassDepthSurface';
 import { useOverlayVisible } from '../components/OverlayArbiter';
@@ -78,7 +78,6 @@ import { lessonSavedResultCopy } from './completion/progress_completion_copy';
 import { phraseHasStudyTargetContent } from './phrase_target_utils';
 import { frenchStudyActive } from './spanish_content_gate';
 import {
-  lessonBonusGrantedKey,
   lessonPerfectMilestoneKey,
   lessonProgressKey,
   lessonTopicShardGrantedKey,
@@ -548,8 +547,46 @@ export default function LessonComplete() {
   const { id } = params;
   const lessonId = parseInt(id || '1', 10);
   const c = s.lessonComplete;
+  const [completionRequiresPremium, setCompletionRequiresPremium] = useState(false);
+  const [completionAccessReady, setCompletionAccessReady] = useState(() => lessonId >= 32);
+  useEffect(() => {
+    if (lessonId >= 32) {
+      setCompletionRequiresPremium(false);
+      setCompletionAccessReady(true);
+      return;
+    }
+
+    let cancelled = false;
+    setCompletionAccessReady(false);
+    void Promise.all([
+      getVerifiedPremiumStatus().catch(() => false),
+      readLegacyFreeLessonCap(studyTarget).catch(() => undefined),
+    ]).then(([premium, legacyFreeLessonCap]) => {
+      if (cancelled) return;
+      setCompletionRequiresPremium(!premium && requiresPremiumForLesson(lessonId + 1, legacyFreeLessonCap));
+      setCompletionAccessReady(true);
+    });
+    return () => { cancelled = true; };
+  }, [lessonId, studyTarget]);
+  const nextLessonUnlockHint = completionRequiresPremium
+    ? triLang(lang, {
+        ru: 'Следующий урок доступен в Plus', uk: 'Наступний урок доступний у Plus', es: 'La siguiente lección está disponible en Plus',
+        'pt-BR': 'A próxima lição está disponível no Plus', vi: 'Bài học tiếp theo có trong Plus', id: 'Pelajaran berikutnya tersedia di Plus',
+        tr: 'Sonraki ders Plus’ta kullanılabilir', pl: 'Następna lekcja jest dostępna w Plus',
+      })
+    : lessonId < 32
+    ? triLang(lang, {
+        ru: 'Следующий урок уже разблокирован', uk: 'Наступний урок уже розблоковано', es: 'La siguiente lección ya está desbloqueada',
+        'pt-BR': 'A próxima lição já está desbloqueada', vi: 'Bài học tiếp theo đã được mở khóa', id: 'Pelajaran berikutnya sudah terbuka',
+        tr: 'Sonraki dersin kilidi açıldı', pl: 'Następna lekcja jest już odblokowana',
+      })
+    : triLang(lang, {
+        ru: 'Ты завершил весь курс', uk: 'Ти завершив увесь курс', es: 'Has terminado todo el curso',
+        'pt-BR': 'Você concluiu todo o curso', vi: 'Bạn đã hoàn thành toàn bộ khóa học', id: 'Kamu sudah menyelesaikan seluruh kursus',
+        tr: 'Tüm kursu tamamladın', pl: 'Ukończyłeś cały kurs',
+      });
   const [showReview, setShowReview] = useState(false);
-  const [reviewContext, setReviewContext] = useState<ReviewContext>('general');
+  const [reviewContext, setReviewContext] = useState<ReviewContext>('perfect_lesson');
   const [showAuthPrompt, setShowAuthPrompt] = useState(false);
   const [lessonScore, setLessonScore] = useState<number>(0);
   const [lessonCefr,  setLessonCefr]  = useState<string>('A1');
@@ -597,7 +634,7 @@ export default function LessonComplete() {
             ...lessonPurchaseContinuationParams(lessonId + 1),
           },
         } as any),
-  }), [router, softUpsell.onCta]);
+  }), [lessonId, router, softUpsell.onCta]);
   const handleSoftUpsellCta = useCallback(() => {
     if (!softUpsell.opportunity) return Promise.resolve();
     return runSoftUpsellCta(softUpsell.opportunity.trigger);
@@ -637,7 +674,7 @@ export default function LessonComplete() {
   const [resultsReady, setResultsReady] = useState(false);
   const [seqDone, setSeqDone] = useState(false);
   const resultsSequenceVisible = useOverlayVisible('lessonResultsSequence', !seqDone);
-  const sequenceShowing = resultsSequenceVisible && resultsReady;
+  const sequenceShowing = resultsSequenceVisible && resultsReady && completionAccessReady;
 
   // ReviewModal показывается только когда очередь нотификаций опустела — без конфликта.
   // pendingReview хранит намерение «показать ревью», а useEffect ждёт тишины.
@@ -666,7 +703,24 @@ export default function LessonComplete() {
   const [coachToast, setCoachToast] = useState<CoachToastDecision | null>(null);
 
   useEffect(() => {
-    const decision = coachToastDecisionFromRouteParams(params as Record<string, unknown>);
+    const decision = coachToastDecisionFromRouteParams({
+      coachCategory: params.coachCategory,
+      coachMistakeCount: params.coachMistakeCount,
+      coachWeaknessScore: params.coachWeaknessScore,
+      coachPriorityScore: params.coachPriorityScore,
+      coachRecoveryScore: params.coachRecoveryScore,
+      coachFocusWords: params.coachFocusWords,
+      coachMicroDiagnosis: params.coachMicroDiagnosis,
+      coachMicroLabelRu: params.coachMicroLabelRu,
+      coachMicroLabelUk: params.coachMicroLabelUk,
+      coachMicroLabelEs: params.coachMicroLabelEs,
+      coachMicroLabelPtBr: params.coachMicroLabelPtBr,
+      coachMicroLabelVi: params.coachMicroLabelVi,
+      coachMicroLabelId: params.coachMicroLabelId,
+      coachMicroLabelTr: params.coachMicroLabelTr,
+      coachMicroLabelPl: params.coachMicroLabelPl,
+      coachDiagnosisEvidenceCount: params.coachDiagnosisEvidenceCount,
+    });
     setCoachToast(decision.show ? decision : null);
   }, [
     params.coachCategory,
@@ -720,7 +774,7 @@ export default function LessonComplete() {
     }
   }, [lessonId, studyTarget]);
 
-  const dismissNotif = () => {
+  const dismissNotif = useCallback(() => {
     setActiveNotif(null);
     setNotifQueue(prev => {
       const rest = prev.slice(1);
@@ -730,7 +784,7 @@ export default function LessonComplete() {
       }
       return rest;
     });
-  };
+  }, [scheduleActiveNotif]);
 
   const grantBonus = useCallback(async () => {
       const grantAccountToken = captureAccountGeneration();
@@ -789,9 +843,14 @@ export default function LessonComplete() {
         const nP = await addShards('lesson_perfect', suppress);
         if (nP > 0) shardKeys.push('lesson_perfect');
       }
-      const eligible = await canShowReview();
+      const activeDays = wasPerfect ? await getReviewActiveDays() : 0;
+      const eligible = wasPerfect && await canShowReview({
+        trigger: 'perfect_lesson',
+        completedLessons: lessonCount,
+        activeDays,
+      });
       if (eligible) {
-        setReviewContext(wasPerfect ? 'perfect_lesson' : 'general');
+        setReviewContext('perfect_lesson');
         pendingReview.current = true;
       }
 // [SHARDS] 5 уроков подряд без ошибок
@@ -879,7 +938,7 @@ export default function LessonComplete() {
         tags: { lessonId, studyTarget: String(studyTarget ?? 'legacy') },
       });
     }
-  }, [lang, lessonId, studyTarget]);
+  }, [lang, lessonId, softUpsellStudyTarget, studyTarget]);
 
   useEffect(() => {
     // Доначисляем бонусы, зависшие из-за прошлых сбоев (сеть/лимит XP).
@@ -1058,17 +1117,6 @@ export default function LessonComplete() {
     };
   }, [lessonId]);
 
-  const openPremiumBanner = useCallback((nextLesson: number) => {
-    premiumBannerNextLesson.current = nextLesson;
-    setShowPremiumBanner(true);
-    Animated.spring(premiumBannerAnim, {
-      toValue: 1,
-      friction: 8,
-      tension: 60,
-      useNativeDriver: true,
-    }).start();
-  }, [premiumBannerAnim]);
-
   const goNext = () => {
     const next = lessonId + 1;
     if (next <= 32) {
@@ -1076,9 +1124,17 @@ export default function LessonComplete() {
         const premium = await getVerifiedPremiumStatus().catch(() => false);
         const legacyFreeLessonCap = await readLegacyFreeLessonCap(studyTarget);
         if (requiresPremiumForLesson(next, legacyFreeLessonCap) && !premium) {
-          // Показываем inline-баннер прямо на этом экране вместо немедленного replace.
-          // Пользователь видит свой результат, потом плавно получает предложение Premium.
-          openPremiumBanner(next);
+          // Экран результата остаётся единственным: для закрытого урока сразу открываем
+          // существующий путь Plus, без промежуточного баннера на завершении урока.
+          markNextNavigationAsReplace();
+          router.replace({
+            pathname: '/premium_modal',
+            params: {
+              context: lessonPaywallContext(next),
+              lessons_done: String(lessonId),
+              ...lessonPurchaseContinuationParams(next),
+            },
+          } as any);
           return;
         }
         await prefetchLessonMenuCache(next, studyTarget);
@@ -1119,8 +1175,8 @@ export default function LessonComplete() {
     if (Platform.OS !== 'android') return;
     const sub = BackHandler.addEventListener('hardwareBackPress', () => {
       if (sequenceShowing) {
-        // «Назад» во время секвенции наград = закрыть её (эквивалент CTA), не уходя с экрана.
-        setSeqDone(true);
+        // Не оставляем пустой промежуточный экран: «Назад» выходит в список уроков.
+        goBackFromComplete();
         return true;
       }
       if (showPremiumBanner) {
@@ -1157,8 +1213,58 @@ export default function LessonComplete() {
     showAuthPrompt,
     showReview,
     activeNotif,
+    dismissNotif,
     goBackFromComplete,
   ]);
+
+  // Единственный видимый результат завершения урока. ResultsSequence уже содержит
+  // проверенную поочерёдную анимацию трёх звёзд; здесь не создаём ни карточек,
+  // ни модалок, ни промежуточного экрана после неё.
+  const legacyCompletionSurfacesEnabled = false;
+  if (!legacyCompletionSurfacesEnabled) {
+    if (sequenceShowing) {
+      return (
+        <ScreenGradient>
+          <SafeAreaView style={{ flex: 1 }}>
+            <ProgressCompletionView
+              model={buildProgressCompletionModel({
+                fact: c.title,
+                accumulated: nextLessonUnlockHint,
+                nextStep: nextLessonUnlockHint,
+                primaryAction: {
+                  id: 'continue',
+                  label: completionRequiresPremium
+                    ? triLang(lang, { ru: 'Открыть Plus', uk: 'Відкрити Plus', es: 'Abrir Plus', 'pt-BR': 'Abrir Plus', vi: 'Mở Plus', id: 'Buka Plus', tr: 'Plus’ı aç', pl: 'Otwórz Plus' })
+                    : triLang(lang, { ru: 'Продолжить', uk: 'Продовжити', es: 'Continuar', 'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjutkan', tr: 'Devam et', pl: 'Kontynuuj' }),
+                },
+              })}
+              stars={3}
+              xp={0}
+              subtitle={nextLessonUnlockHint}
+              onAction={() => {
+                if (pendingReview.current) {
+                  pendingReview.current = false;
+                  setShowReview(true);
+                  return;
+                }
+                goNext();
+              }}
+            />
+            <ReviewPromptModal
+              visible={showReview}
+              context={reviewContext}
+              lang={lang}
+              onClose={goNext}
+            />
+          </SafeAreaView>
+        </ScreenGradient>
+      );
+    }
+
+    // Пока сохраняется результат урока, никакие старые поверхности завершения не
+    // монтируются. Сразу после готовности появляется экран со звёздами выше.
+    return <ScreenGradient />;
+  }
 
   return (
     <ScreenGradient>
@@ -1478,13 +1584,9 @@ export default function LessonComplete() {
           duration={2000}
         />
       )}
-      <ReviewModal
+      <ReviewPromptModal
         visible={showReview}
         context={reviewContext}
-        t={t}
-        f={f}
-        themeMode={themeMode}
-        bottomInset={bottomInset}
         lang={lang}
         onClose={() => setShowReview(false)}
       />

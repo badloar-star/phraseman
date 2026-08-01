@@ -25,7 +25,6 @@ import {
   flashcardsMarketplaceBuiltCardsCacheKey,
   flashcardsOpenedPacksKey,
   flashcardsOwnedPacksKey,
-  flashcardsPackTrialGiftKey,
   flashcardsProgressKey,
   flashcardsSavedKey,
 } from '../app/target_storage_keys';
@@ -66,6 +65,7 @@ import {
 import {
   consumePackGiftTrial,
   getPackGiftTrial,
+  getPackGiftTrials,
   setRandomPackGiftTrial48h,
 } from '../app/flashcards/pack_trial_gift';
 import {
@@ -77,6 +77,10 @@ import {
 } from '../app/flashcards_target_gate';
 import { SYSTEM_CARDS } from '../app/flashcards/system-cards';
 import { FRENCH_CONTENT_SOURCE_GATE } from '../app/french_content_source_gate';
+import {
+  __resetAccountGenerationForTests,
+  beginAccountGeneration,
+} from '../app/account_generation';
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('@react-native-firebase/firestore', () => jest.fn());
@@ -110,6 +114,8 @@ beforeAll(() => {
 
 beforeEach(async () => {
   jest.clearAllMocks();
+  __resetAccountGenerationForTests();
+  beginAccountGeneration('gustav-flashcards-test-account');
   __resetFrenchFlashcardMarketplaceRuntimeForTests();
   Object.keys(mockStorage).forEach((key) => delete mockStorage[key]);
   (AsyncStorage.getItem as jest.Mock).mockImplementation((key: string) =>
@@ -429,26 +435,18 @@ describe('Gustav flashcards target isolation', () => {
     await expect(loadHiddenCommunityPackIds('fr')).resolves.toEqual(['hidden_fr']);
   });
 
-  it('keeps pack gift vouchers target-scoped and source-gated for French', async () => {
-    const englishKey = flashcardsPackTrialGiftKey('en');
-    const frenchKey = flashcardsPackTrialGiftKey('fr');
+  it('keeps pack gift vouchers global while allowing French community redemption', async () => {
+    const english = await setRandomPackGiftTrial48h('en', 'gift-en');
+    const french = await setRandomPackGiftTrial48h('fr', 'gift-fr');
 
-    await expect(setRandomPackGiftTrial48h('en')).resolves.toMatchObject({ packId: expect.any(String) });
-    expect(mockStorage[englishKey]).toBeTruthy();
-    await expect(getPackGiftTrial('en')).resolves.toMatchObject({ packId: expect.any(String) });
+    await expect(getPackGiftTrial('en')).resolves.toMatchObject({ localVoucherId: expect.any(String) });
+    await expect(getPackGiftTrial('fr')).resolves.toMatchObject({ localVoucherId: expect.any(String) });
+    await expect(getPackGiftTrials()).resolves.toHaveLength(2);
 
-    await expect(setRandomPackGiftTrial48h('fr')).resolves.toBeNull();
-    expect(mockStorage[frenchKey]).toBeUndefined();
-
-    mockStorage[frenchKey] = JSON.stringify({
-      packId: 'official_peaky_blinders_en',
-      expiresAt: Date.now() + 48 * 60 * 60 * 1000,
-    });
-    await expect(getPackGiftTrial('fr')).resolves.toBeNull();
-    expect(mockStorage[frenchKey]).toBeUndefined();
-
-    await consumePackGiftTrial('en');
-    expect(mockStorage[englishKey]).toBeUndefined();
+    await consumePackGiftTrial(english!.localVoucherId);
+    await expect(getPackGiftTrials()).resolves.toEqual([
+      expect.objectContaining({ localVoucherId: french!.localVoucherId, voucherId: 'gift-fr' }),
+    ]);
   });
 
   it('threads studyTarget through flashcard UI save, collection, and swipe surfaces', () => {
@@ -556,8 +554,8 @@ describe('Gustav flashcards target isolation', () => {
     expect(categoryHubSource).toContain("frenchFlashcardsGateCopy('ru').body");
     expect(shardPurchaseSource).toContain('purchaseCommunityPackWithShards(pack, studyTarget)');
     expect(shardPurchaseSource).toContain('flashcardsOfficialPacksAvailableForTarget(studyTarget)');
-    expect(shardPurchaseSource).toContain('getPackGiftTrial(studyTarget)');
-    expect(shardPurchaseSource).toContain('consumePackGiftTrial(studyTarget)');
+    expect(shardPurchaseSource).toContain('getPackGiftTrial(studyTarget, {');
+    expect(shardPurchaseSource).toContain('consumePackGiftTrial(trial.localVoucherId)');
     expect(paywallModalSource).toContain('studyTarget?: RuntimeStudyTarget');
     expect(paywallModalSource).toContain('hideCommunityPackOnDevice(pack.id, studyTarget)');
     expect(reportModalSource).toContain('studyTarget?: RuntimeStudyTarget');
@@ -583,12 +581,14 @@ describe('Gustav flashcards target isolation', () => {
     expect(lifetimeSource).toContain('lessonProgressKey(lessonId, studyTarget)');
     expect(lifetimeSource).toContain('lessonWordsKey(id, studyTarget)');
     expect(lifetimeSource).toContain('readCustomCards(studyTarget)');
-    expect(levelGiftSource).toContain('setRandomPackGiftTrial48h(opts?.studyTarget)');
+    expect(levelGiftSource).toContain('setRandomPackGiftTrial48h(\n          opts?.studyTarget,\n          grant.voucherId,');
+    expect(levelGiftSource).toContain('studyTarget: storageStudyTarget(studyTarget)');
     expect(levelGiftSource).toContain('flashcardsOfficialPacksAvailableForTarget(studyTarget)');
-    expect(levelGiftSource).toContain('loadOwnedPackIds(studyTarget)');
+    expect(levelGiftSource).toContain('allowedPackId: receipt.allowedPackId');
+    expect(levelGiftSource).toContain('callFlashcardPackGiftRedeem({');
     expect(levelGiftSource).toContain('isFlashcardPackLevelGiftId(id)');
-    expect(leagueChestSource).toContain('setRandomPackGiftTrial48h(studyTarget)');
-    expect(globalBroadcastSource).toContain('setRandomPackGiftTrial48h(studyTarget)');
+    expect(leagueChestSource).toContain('rewardPack.packGiftVoucherId');
+    expect(globalBroadcastSource).toContain('setRandomPackGiftTrial48h(studyTarget, grant.voucherId, grant.expiresAt)');
     expect(globalBroadcastModalSource).toContain('claimAndDismissGlobalBroadcastModal(payload, studyTarget)');
     expect(clubSource).toContain('const { studyTarget } = useStudyTarget()');
     expect(levelGiftModalSource).toContain('rollF2pLevelGiftForUser(level, { studyTarget })');

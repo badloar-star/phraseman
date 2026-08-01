@@ -31,6 +31,7 @@ type Step = 'goal' | 'level' | 'minutes' | 'result' | 'all';
 
 const PLAN_IDS: PersonalPlanId[] = ['voyazh', 'mitap', 'gavan', 'impuls', 'echo'];
 const TOTAL_STEPS = 4;
+const PERSONAL_PLAN_SETUP_EXIT_FALLBACK = '/(tabs)/lessons';
 
 function stepIndex(step: Step): number {
   if (step === 'goal') return 1;
@@ -273,6 +274,7 @@ export default function PersonalPlanSetupScreen() {
   // Смена плана с экрана активного плана: НЕ показываем опрос (goal/level/minutes),
   // открываем сразу список планов на выбор (юзер уже всё это проходил).
   const directToPlans = (Array.isArray(params.directToPlans) ? params.directToPlans[0] : params.directToPlans) === '1';
+  const exitFallback = directToPlans ? '/personal_plan' : PERSONAL_PLAN_SETUP_EXIT_FALLBACK;
   const insets = useStableSafeAreaInsets();
   const { hasPremiumAccess } = usePremium();
   const { theme: t, themeMode } = useTheme();
@@ -302,6 +304,9 @@ export default function PersonalPlanSetupScreen() {
   const [goal, setGoal] = useState<PersonalPlanSetupGoal>('words');
   const [level, setLevel] = useState<PersonalPlanSetupLevel>('a1');
   const [selectedMinutes, setSelectedMinutes] = useState<PlanMinutesChoice>(15);
+  const [goalChosen, setGoalChosen] = useState(false);
+  const [levelChosen, setLevelChosen] = useState(false);
+  const [minutesChosen, setMinutesChosen] = useState(false);
 
   // Префилл ответами онбординга: онбординг (components/CleanOnboarding.tsx) уже
   // спросил тему/уровень/минуты и положил их в AsyncStorage + очередь pending-
@@ -332,13 +337,25 @@ export default function PersonalPlanSetupScreen() {
         const hasLevel = PERSONAL_PLAN_SETUP_LEVELS.some((item) => item.id === savedLevel);
         const hasMinutes = savedMinutesNum === 5 || savedMinutesNum === 10 || savedMinutesNum === 15 || savedMinutesNum === 20;
 
-        if (hasGoal) setGoal(savedGoal as PersonalPlanSetupGoal);
-        if (hasLevel) setLevel(savedLevel as PersonalPlanSetupLevel);
-        if (hasMinutes) setSelectedMinutes(savedMinutesNum as PlanMinutesChoice);
+        if (hasGoal) {
+          setGoal(savedGoal as PersonalPlanSetupGoal);
+          setGoalChosen(true);
+        }
+        if (hasLevel) {
+          setLevel(savedLevel as PersonalPlanSetupLevel);
+          setLevelChosen(true);
+        }
+        if (hasMinutes) {
+          setSelectedMinutes(savedMinutesNum as PlanMinutesChoice);
+          setMinutesChosen(true);
+        }
         // pending хранит planId (не goal) — используем его только как сигнал «есть
         // готовая очередь активации», а минуты из pending важнее дефолта, если
         // отдельно сохранённого ответа onboarding_plan_minutes почему-то нет.
-        if (pending != null && !hasMinutes) setSelectedMinutes(pending.minutesPerDay);
+        if (pending != null && !hasMinutes) {
+          setSelectedMinutes(pending.minutesPerDay);
+          setMinutesChosen(true);
+        }
 
         if ((hasGoal && hasLevel && hasMinutes) || pending != null) {
           setStep('result');
@@ -442,7 +459,7 @@ export default function PersonalPlanSetupScreen() {
           <ChoiceCard
             key={item.id}
             item={item}
-            selected={goal === item.id}
+            selected={goalChosen && goal === item.id}
             accent={accent}
             onAccent={onAccent}
             cardBg={cardBg}
@@ -455,6 +472,7 @@ export default function PersonalPlanSetupScreen() {
               hapticTap();
               animateStep(() => {
                 setGoal(item.id);
+                setGoalChosen(true);
                 setStep('level');
               });
             }}
@@ -471,7 +489,7 @@ export default function PersonalPlanSetupScreen() {
           <ChoiceCard
             key={item.id}
             item={item}
-            selected={level === item.id}
+            selected={levelChosen && level === item.id}
             accent={accent}
             onAccent={onAccent}
             cardBg={cardBg}
@@ -484,6 +502,7 @@ export default function PersonalPlanSetupScreen() {
               hapticTap();
               animateStep(() => {
                 setLevel(item.id);
+                setLevelChosen(true);
                 setSelectedPlanId(null);
                 setStep('minutes');
               });
@@ -501,7 +520,7 @@ export default function PersonalPlanSetupScreen() {
           <ChoiceCard
             key={item.id}
             item={item}
-            selected={selectedMinutes === item.id}
+            selected={minutesChosen && selectedMinutes === item.id}
             accent={accent}
             onAccent={onAccent}
             cardBg={cardBg}
@@ -514,6 +533,7 @@ export default function PersonalPlanSetupScreen() {
               hapticTap();
               animateStep(() => {
                 setSelectedMinutes(item.id);
+                setMinutesChosen(true);
                 setStep('result');
               });
             }}
@@ -651,13 +671,13 @@ export default function PersonalPlanSetupScreen() {
   const canGoBack = step !== 'goal' && !directToPlans;
   const handleBack = () => {
     hapticTap();
-    if (directToPlans) { safeRouterBack(router, '/personal_plan'); return; }
+    if (directToPlans) { safeRouterBack(router, exitFallback); return; }
     animateStep(() => {
       if (step === 'level') setStep('goal');
       else if (step === 'minutes') setStep('level');
       else if (step === 'result') setStep('minutes');
       else if (step === 'all') setStep('result');
-      else safeRouterBack(router, '/personal_plan');
+      else safeRouterBack(router, exitFallback);
     });
   };
 
@@ -676,7 +696,7 @@ export default function PersonalPlanSetupScreen() {
         {/* Top bar */}
         <View style={[styles.topBar, { paddingTop: insets.top + 10 }]}>
           <TapScale
-            onPress={canGoBack ? handleBack : () => safeRouterBack(router, '/personal_plan')}
+            onPress={canGoBack ? handleBack : () => safeRouterBack(router, exitFallback)}
             style={[styles.topBarBtn, { backgroundColor: t.bgCard, borderColor: border }]}
           >
             <Ionicons name="chevron-back" size={22} color={accent} />

@@ -538,7 +538,6 @@ const ALT_ES_BY_EN_ID: Record<string, string[]> = {};
 
 /** Ручные испанские параллели к англ. alternatives (инвариант региона нейтрален). */
 function seedAltMap() {
-  ALT_ES_BY_EN_ID['lesson9_phrase_3'] = ['¿Hay un parque amplio en esta ciudad?'];
   ALT_ES_BY_EN_ID['lesson9_phrase_7'] = ['Hay muchos coches por la calle.'];
   ALT_ES_BY_EN_ID['lesson9_phrase_21'] = ['Hay una mesa redonda en esta habitación.'];
   ALT_ES_BY_EN_ID['lesson9_phrase_37'] = ['Hay una bicicleta roja en mi garaje.'];

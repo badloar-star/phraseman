@@ -5,7 +5,9 @@ import { resolveStableUidForAuth } from './auth_identity';
 import { isVipActive, resolvePremiumAccess, resolveIsLifetimePlan } from './premium_status';
 
 const GROUP_SIZE = 30;
+const MAX_LEAGUE_ID = 11;
 const BROAD_GROUP_QUERY_LIMIT = 500;
+const LEAGUE_FINALIZATION_GRACE_MS = 15 * 60 * 1000;
 const LEAGUE_GROUP_BOOST_COST_SHARDS = 50;
 const LEAGUE_GROUP_BOOST_MULTIPLIER = 2;
 const LEAGUE_GROUP_BOOST_DURATION_MS = 3 * 60 * 60 * 1000;
@@ -49,6 +51,59 @@ function readIntOrNull(value: unknown): number | null {
   const raw = typeof value === 'string' ? value.trim() : value;
   const n = Math.trunc(Number(raw));
   return Number.isFinite(n) ? n : null;
+}
+
+function clampLeagueId(value: unknown, fallback = 0): number {
+  return Math.max(0, Math.min(MAX_LEAGUE_ID, readInt(value, fallback)));
+}
+
+async function resolveAuthoritativeLeagueId(
+  db: FirebaseFirestore.Firestore,
+  stableUid: string,
+  weekId: string,
+  leaderboard: FirebaseFirestore.DocumentData | undefined,
+  nowMs = Date.now(),
+): Promise<number> {
+  const leaderboardLeagueId = clampLeagueId(leaderboard?.leagueId, 0);
+  if (sanitizeString(leaderboard?.groupWeekId, 16) === weekId) return leaderboardLeagueId;
+
+  const previousWeekId = getWeekId(new Date(nowMs - 7 * 24 * 60 * 60 * 1000));
+  const previousWeekNeedsFinalization = sanitizeString(leaderboard?.groupWeekId, 16) === previousWeekId;
+  const now = new Date(nowMs);
+  const mondayStartMs = Date.UTC(
+    now.getUTCFullYear(),
+    now.getUTCMonth(),
+    now.getUTCDate() - ((now.getUTCDay() + 6) % 7),
+  );
+  const finalizationPending = previousWeekNeedsFinalization
+    && nowMs >= mondayStartMs
+    && nowMs - mondayStartMs < LEAGUE_FINALIZATION_GRACE_MS;
+  const resultSnap = await db
+    .collection('users')
+    .doc(stableUid)
+    .collection('league_week_results')
+    .doc(previousWeekId)
+    .get()
+    .catch(() => null);
+  if (!resultSnap?.exists) {
+    if (finalizationPending) {
+      throw new HttpsError('failed-precondition', 'league_finalization_pending');
+    }
+    return leaderboardLeagueId;
+  }
+
+  const result = resultSnap.data() || {};
+  const previousLeagueId = clampLeagueId(result.prevLeagueId, leaderboardLeagueId);
+  const nextLeagueId = clampLeagueId(result.newLeagueId, previousLeagueId);
+  const resultGroupId = sanitizeString(result.groupId, 180);
+  const leaderboardGroupId = sanitizeString(leaderboard?.groupId, 180);
+  const valid = previousLeagueId === leaderboardLeagueId
+    && Math.abs(nextLeagueId - previousLeagueId) <= 1
+    && (!leaderboardGroupId || !resultGroupId || resultGroupId === leaderboardGroupId);
+  if (!valid && finalizationPending) {
+    throw new HttpsError('failed-precondition', 'league_finalization_pending');
+  }
+  return valid ? nextLeagueId : leaderboardLeagueId;
 }
 
 function getCurrentWeekPointsFromV2(progress: Record<string, unknown>, currentWeekId: string): number {
@@ -243,11 +298,29 @@ type AuthoritativeLeagueFields = {
   isLifetime?: boolean;
 };
 
+function getAuthoritativeLeagueWeekPoints(
+  userData: FirebaseFirestore.DocumentData | undefined,
+  leaderboard: FirebaseFirestore.DocumentData | undefined,
+  weekId: string,
+  nowMs = Date.now(),
+): number {
+  const progress = userData?.progress && typeof userData.progress === 'object'
+    ? userData.progress as Record<string, unknown>
+    : {};
+  const progressPoints = getLeagueWeekPoints(progress, nowMs);
+  const leaderboardPoints = leaderboard?.weekKey === weekId
+    ? Math.max(0, Math.min(1_000_000_000, readInt(leaderboard.weekPoints, 0)))
+    : 0;
+  return Math.max(progressPoints, leaderboardPoints);
+}
+
 async function resolveAuthoritativeLeagueFields(
   db: FirebaseFirestore.Firestore,
   stableUid: string,
   userData: FirebaseFirestore.DocumentData | undefined,
   authUid: string,
+  weekId: string,
+  leaderboard: FirebaseFirestore.DocumentData | undefined,
 ): Promise<AuthoritativeLeagueFields> {
   const progress = userData?.progress && typeof userData.progress === 'object'
     ? userData.progress as Record<string, unknown>
@@ -257,7 +330,7 @@ async function resolveAuthoritativeLeagueFields(
     resolveIsLifetimePlan(db, stableUid, Date.now(), authUid).catch(() => undefined),
   ]);
   const result: AuthoritativeLeagueFields = {
-    points: getLeagueWeekPoints(progress),
+    points: getAuthoritativeLeagueWeekPoints(userData, leaderboard, weekId),
     streak: Math.max(0, Math.min(100_000, readInt(progress.streak_count, 0))),
     totalXp: Math.max(0, Math.min(1_000_000_000, readInt(progress.user_total_xp, 0))),
     isVip: isVipActive(progress as Parameters<typeof isVipActive>[0]),
@@ -290,7 +363,7 @@ function mergeCurrentWeekMember(
   return {
     ...(existing || {}),
     ...incoming,
-    points: Math.max(0, readInt(existing?.points, 0), readInt(incoming.points, 0)),
+    points: Math.max(0, readInt(incoming.points, 0)),
   };
 }
 
@@ -356,18 +429,25 @@ async function findExistingGroupForUser(
   leagueId: number,
   stableUid: string,
 ): Promise<string | null> {
-  const snap = await db
-    .collection('league_groups')
-    .where('weekId', '==', weekId)
-    .where('leagueId', '==', leagueId)
-    .limit(BROAD_GROUP_QUERY_LIMIT)
-    .get();
   let best: { id: string; n: number } | null = null;
-  for (const doc of snap.docs) {
-    const data = doc.data();
-    if (readInt(data.leagueId) !== leagueId || !data.members?.[stableUid]) continue;
-    const n = countMembers(data);
-    if (!best || n > best.n) best = { id: doc.id, n };
+  let lastDoc: FirebaseFirestore.QueryDocumentSnapshot | null = null;
+  while (true) {
+    let query: FirebaseFirestore.Query = db
+      .collection('league_groups')
+      .where('weekId', '==', weekId)
+      .where('leagueId', '==', leagueId)
+      .orderBy('__name__')
+      .limit(BROAD_GROUP_QUERY_LIMIT);
+    if (lastDoc) query = query.startAfter(lastDoc);
+    const snap = await query.get();
+    for (const doc of snap.docs) {
+      const data = doc.data();
+      if (readInt(data.leagueId) !== leagueId || !data.members?.[stableUid]) continue;
+      const n = countMembers(data);
+      if (!best || n > best.n) best = { id: doc.id, n };
+    }
+    if (snap.docs.length < BROAD_GROUP_QUERY_LIMIT) break;
+    lastDoc = snap.docs[snap.docs.length - 1];
   }
   return best?.id ?? null;
 }
@@ -378,45 +458,53 @@ async function hideDuplicateMemberships(
   stableUid: string,
   keepGroupId: string,
 ): Promise<number> {
-  const snap = await db
-    .collection('league_groups')
-    .where('weekId', '==', weekId)
-    .limit(BROAD_GROUP_QUERY_LIMIT)
-    .get();
-  if (snap.empty) return 0;
-
-  const batch = db.batch();
   let hidden = 0;
   const now = Date.now();
-  for (const doc of snap.docs) {
-    if (doc.id === keepGroupId) continue;
-    const data = doc.data() || {};
-    const members = data.members && typeof data.members === 'object'
-      ? { ...(data.members as Record<string, Record<string, unknown>>) }
-      : {};
-    if (!Object.prototype.hasOwnProperty.call(members, stableUid)) continue;
-    const member = members[stableUid] && typeof members[stableUid] === 'object'
-      ? members[stableUid]
-      : {};
-    if (member.identityHidden === true && member.canonicalStableId === stableUid) continue;
-    members[stableUid] = {
-      ...member,
-      uid: stableUid,
-      identityHidden: true,
-      canonicalStableId: stableUid,
-      duplicateOfGroupId: keepGroupId,
-      identityCanonicalizedAt: now,
-    };
-    batch.set(doc.ref, {
-      members,
-      memberCount: countMembers({ members }),
-      updatedAt: now,
-      identityCanonicalizedAt: now,
-    }, { merge: true });
-    hidden += 1;
-  }
+  let lastDoc: FirebaseFirestore.QueryDocumentSnapshot | null = null;
+  while (true) {
+    let query: FirebaseFirestore.Query = db
+      .collection('league_groups')
+      .where('weekId', '==', weekId)
+      .orderBy('__name__')
+      .limit(BROAD_GROUP_QUERY_LIMIT);
+    if (lastDoc) query = query.startAfter(lastDoc);
+    const snap = await query.get();
+    if (snap.empty) break;
 
-  if (hidden > 0) await batch.commit();
+    const batch = db.batch();
+    let pageHidden = 0;
+    for (const doc of snap.docs) {
+      if (doc.id === keepGroupId) continue;
+      const data = doc.data() || {};
+      const members = data.members && typeof data.members === 'object'
+        ? { ...(data.members as Record<string, Record<string, unknown>>) }
+        : {};
+      if (!Object.prototype.hasOwnProperty.call(members, stableUid)) continue;
+      const member = members[stableUid] && typeof members[stableUid] === 'object'
+        ? members[stableUid]
+        : {};
+      if (member.identityHidden === true && member.canonicalStableId === stableUid) continue;
+      members[stableUid] = {
+        ...member,
+        uid: stableUid,
+        identityHidden: true,
+        canonicalStableId: stableUid,
+        duplicateOfGroupId: keepGroupId,
+        identityCanonicalizedAt: now,
+      };
+      batch.set(doc.ref, {
+        members,
+        memberCount: countMembers({ members }),
+        updatedAt: now,
+        identityCanonicalizedAt: now,
+      }, { merge: true });
+      pageHidden += 1;
+    }
+    if (pageHidden > 0) await batch.commit();
+    hidden += pageHidden;
+    if (snap.docs.length < BROAD_GROUP_QUERY_LIMIT) break;
+    lastDoc = snap.docs[snap.docs.length - 1];
+  }
   return hidden;
 }
 
@@ -447,13 +535,13 @@ export const leagueJoinOrUpdateGroup = onCall(HOT_CALLABLE_OPTIONS, async (reque
 
   const weekId = sanitizeString(request.data?.weekId, 16) || getWeekId();
   if (weekId !== getWeekId()) throw new HttpsError('failed-precondition', 'stale_week');
-  const leagueId = Math.max(0, Math.min(50, readInt(request.data?.leagueId, 0)));
   const rawMember = (request.data?.member || {}) as Record<string, unknown>;
   const lbRef = db.collection('leaderboard').doc(stableUid);
   const [userSnap, lbSnap] = await Promise.all([
     db.collection('users').doc(stableUid).get().catch(() => null),
     lbRef.get().catch(() => null),
   ]);
+  const leagueId = await resolveAuthoritativeLeagueId(db, stableUid, weekId, lbSnap?.data());
   const member = sanitizeMember(rawMember, stableUid);
   // Premium/lifetime are server-owned. If their resolver is temporarily unavailable,
   // omit them so an existing true value is not downgraded to false.
@@ -466,7 +554,14 @@ export const leagueJoinOrUpdateGroup = onCall(HOT_CALLABLE_OPTIONS, async (reque
     lbSnap?.data(),
     rawMember.name,
   );
-  const authoritativeFields = await resolveAuthoritativeLeagueFields(db, stableUid, userSnap?.data(), authUid);
+  const authoritativeFields = await resolveAuthoritativeLeagueFields(
+    db,
+    stableUid,
+    userSnap?.data(),
+    authUid,
+    weekId,
+    lbSnap?.data(),
+  );
   Object.assign(member, authoritativeFields);
   const leaderboardProjection = leaderboardProjectionForMember(weekId, authoritativeFields, lbSnap?.data());
 
@@ -486,14 +581,21 @@ export const leagueJoinOrUpdateGroup = onCall(HOT_CALLABLE_OPTIONS, async (reque
   if (groupId) {
     await db.runTransaction(async (tx) => {
       const ref = db.collection('league_groups').doc(groupId as string);
-      const snap = await tx.get(ref);
+      const [snap, freshLbSnap] = await Promise.all([tx.get(ref), tx.get(lbRef)]);
       if (!snap.exists) throw new HttpsError('not-found', 'league_group_not_found');
       const data = snap.data() || {};
       if (data.weekId !== weekId || readInt(data.leagueId) !== leagueId) throw new HttpsError('permission-denied', 'room_mismatch');
+      const currentWeekPoints = getAuthoritativeLeagueWeekPoints(userSnap?.data(), freshLbSnap.data(), weekId);
+      const currentMember = { ...member, points: currentWeekPoints };
       const members = { ...(data.members || {}) };
-      members[stableUid] = mergeCurrentWeekMember(members[stableUid], member);
+      members[stableUid] = mergeCurrentWeekMember(members[stableUid], currentMember);
       tx.set(ref, { members, memberCount: countMembers({ members }), updatedAt: Date.now() }, { merge: true });
-      tx.set(lbRef, { groupId, groupWeekId: weekId, leagueId, ...leaderboardProjection }, { merge: true });
+      tx.set(lbRef, {
+        groupId,
+        groupWeekId: weekId,
+        leagueId,
+        ...leaderboardProjectionForMember(weekId, { ...authoritativeFields, points: currentWeekPoints }, freshLbSnap.data()),
+      }, { merge: true });
     });
     if (shouldCleanupDuplicates) {
       await cleanupDuplicateMembershipsBestEffort(db, weekId, stableUid, groupId);
@@ -507,15 +609,22 @@ export const leagueJoinOrUpdateGroup = onCall(HOT_CALLABLE_OPTIONS, async (reque
     let joined = false;
     await db.runTransaction(async (tx) => {
       const ref = db.collection('league_groups').doc(candidate);
-      const snap = await tx.get(ref);
+      const [snap, freshLbSnap] = await Promise.all([tx.get(ref), tx.get(lbRef)]);
       if (!snap.exists) return;
       const data = snap.data() || {};
       if (data.weekId !== weekId || readInt(data.leagueId) !== leagueId) return;
+      const currentWeekPoints = getAuthoritativeLeagueWeekPoints(userSnap?.data(), freshLbSnap.data(), weekId);
+      const currentMember = { ...member, points: currentWeekPoints };
       const members = { ...(data.members || {}) };
       if (!members[stableUid] && countMembers({ members }) >= GROUP_SIZE) return;
-      members[stableUid] = mergeCurrentWeekMember(members[stableUid], member);
+      members[stableUid] = mergeCurrentWeekMember(members[stableUid], currentMember);
       tx.set(ref, { members, memberCount: countMembers({ members }), updatedAt: Date.now() }, { merge: true });
-      tx.set(lbRef, { groupId: candidate, groupWeekId: weekId, leagueId, ...leaderboardProjection }, { merge: true });
+      tx.set(lbRef, {
+        groupId: candidate,
+        groupWeekId: weekId,
+        leagueId,
+        ...leaderboardProjectionForMember(weekId, { ...authoritativeFields, points: currentWeekPoints }, freshLbSnap.data()),
+      }, { merge: true });
       joined = true;
     });
     if (joined) {
@@ -582,7 +691,14 @@ export const leagueUpdateMyMember = onCall(HOT_CALLABLE_OPTIONS, async (request)
   if (Object.prototype.hasOwnProperty.call(raw, 'profileCardMotion')) updates[`members.${stableUid}.profileCardMotion`] = sanitizeString(raw.profileCardMotion, 32) || 'none';
   if (Object.prototype.hasOwnProperty.call(raw, 'profileCardPublicFocus')) updates[`members.${stableUid}.profileCardPublicFocus`] = sanitizeString(raw.profileCardPublicFocus, 32) || 'balanced';
 
-  const authoritativeFields = await resolveAuthoritativeLeagueFields(db, stableUid, userData, authUid);
+  const authoritativeFields = await resolveAuthoritativeLeagueFields(
+    db,
+    stableUid,
+    userData,
+    authUid,
+    groupWeekId,
+    lbSnap.data(),
+  );
   const weekPointsServer = authoritativeFields.points;
   updates[`members.${stableUid}.streak`] = authoritativeFields.streak;
   updates[`members.${stableUid}.totalXp`] = authoritativeFields.totalXp;
@@ -597,18 +713,17 @@ export const leagueUpdateMyMember = onCall(HOT_CALLABLE_OPTIONS, async (request)
   const groupRef = db.collection('league_groups').doc(groupId);
   let appliedWeekPoints = weekPointsServer;
   await db.runTransaction(async (tx) => {
-    const groupSnap = await tx.get(groupRef);
+    const [groupSnap, freshLbSnap] = await Promise.all([tx.get(groupRef), tx.get(lbRef)]);
     if (!groupSnap.exists || groupSnap.data()?.weekId !== groupWeekId) {
       throw new HttpsError('failed-precondition', 'league_group_not_current');
     }
-    const existingPoints = readInt(groupSnap.data()?.members?.[stableUid]?.points, 0);
-    appliedWeekPoints = Math.max(existingPoints, weekPointsServer);
+    appliedWeekPoints = getAuthoritativeLeagueWeekPoints(userData, freshLbSnap.data(), groupWeekId);
     updates[`members.${stableUid}.points`] = appliedWeekPoints;
     tx.set(groupRef, updates, { merge: true });
     tx.set(lbRef, leaderboardProjectionForMember(groupWeekId, {
       ...authoritativeFields,
       points: appliedWeekPoints,
-    }, lbSnap.data()), { merge: true });
+    }, freshLbSnap.data()), { merge: true });
   });
   return { ok: true, groupId, weekPoints: appliedWeekPoints };
 });

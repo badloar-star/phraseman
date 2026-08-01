@@ -30,7 +30,6 @@ import {
   buildAppMessagePreview,
   dismissAppMessage,
   filterAppMessagesSnapshotForAudience,
-  flushPendingAppMessageVisibilityForCurrentOwner,
   markAppMessageRead,
   pickAppMessagePollOptionText,
   pickAppMessagePollQuestion,
@@ -38,7 +37,6 @@ import {
   setAppMessageReaction,
   setAppMessagePollVote,
   claimReportReplyCoinsOptimistically,
-  subscribeUserAppMessages,
   readAnimatedMessageIds,
   markMessageIdsAnimated,
   readCachedAppMessagesSnapshot,
@@ -47,12 +45,12 @@ import {
 } from '../app/app_messages';
 import VipSurveyModal from './VipSurveyModal';
 import VipCelebrationModal from './VipCelebrationModal';
-import VipSurveyReviewPromptModal from './VipSurveyReviewPromptModal';
 import type { SubmitVipSurveyResponse } from '../app/vip_survey';
 import { HOME_NOTIFICATION_BADGE_COLOR, HOME_NOTIFICATION_BADGE_TEXT_COLOR } from './homeNotificationBadge';
 
 const BLUR_RENDER_GRACE_MS = 450;
-const BADGE_FOREGROUND_REFRESH_MIN_INTERVAL_MS = 3 * 60 * 60_000;
+// The unified notification center refreshes at app entry only when its cache is stale.
+const BADGE_FOREGROUND_REFRESH_MIN_INTERVAL_MS = 12 * 60 * 60_000;
 
 function inboxText(lang: Lang) {
   return {
@@ -103,10 +101,13 @@ function inboxText(lang: Lang) {
       uk: `Забрати перлини (+${n})`,
       es: `Reclamar perlas (+${n})`,
       'pt-BR': `Resgatar pérolas (+${n})`,
-      vi: `Nhận xu (+${n})`,
-      id: `Ambil koin (+${n})`,
-      tr: `Jetonları al (+${n})`,
-      pl: `Odbierz monety (+${n})`,
+      // зачем: валюта в приложении — жемчужины, а не монеты. На vi/id/tr/pl тут
+      // осталось legacy-название «монеты» — юзер получает жемчуг, а читает «xu/koin/
+      // jeton/monety». Названия сверены с каноном (CollectibleDropModal, магазин).
+      vi: `Nhận ngọc trai (+${n})`,
+      id: `Ambil mutiara (+${n})`,
+      tr: `İnci al (+${n})`,
+      pl: `Odbierz perły (+${n})`,
     }),
     claimed: triLang(lang, { ru: 'Награда получена', uk: 'Нагороду отримано', es: 'Recompensa recibida', 'pt-BR': 'Recompensa recebida', vi: 'Đã nhận thưởng', id: 'Hadiah diterima', tr: 'Ödül alındı', pl: 'Nagroda odebrana' }),
   };
@@ -139,6 +140,7 @@ type AppMessagesInboxProps = {
   onMessageCountChange?: (count: number) => void;
   onDetailOpenChange?: (open: boolean) => void;
   notificationTargetRef?: React.RefObject<View | null>;
+  ownerActive?: boolean;
 };
 
 function AppMessagesInbox({
@@ -148,8 +150,10 @@ function AppMessagesInbox({
   onMessageCountChange,
   onDetailOpenChange,
   notificationTargetRef,
+  ownerActive,
 }: AppMessagesInboxProps) {
   const isScreenFocused = useIsFocused();
+  const runtimeActive = ownerActive ?? isScreenFocused;
   const { lang } = useLang();
   const { hasPremiumAccess } = usePremium();
   const { f, isDark, themeMode, theme } = useTheme();
@@ -160,10 +164,9 @@ function AppMessagesInbox({
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [surveyTarget, setSurveyTarget] = useState<AppMessageWithState | null>(null);
   const [vipCelebrationVisible, setVipCelebrationVisible] = useState(false);
-  const [vipSurveyReviewPromptVisible, setVipSurveyReviewPromptVisible] = useState(false);
   const [undoMessage, setUndoMessage] = useState<AppMessageWithState | null>(null);
   const optimisticReportClaimIdsRef = useRef<Set<string>>(new Set());
-  const [renderButton, setRenderButton] = useState(isScreenFocused);
+  const [renderButton, setRenderButton] = useState(runtimeActive);
   const [animatedIdsReady, setAnimatedIdsReady] = useState(false);
   const badgePulse = useRef(new Animated.Value(1)).current;
   const surveyOpenTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -171,7 +174,9 @@ function AppMessagesInbox({
   const badgeRefreshInFlightRef = useRef(false);
 
   // ── «Письмо прилетает в иконку» — анимация + звук при новом сообщении ────────
-  const { playMessageReceived } = useMessageReceivedCue();
+  const { playMessageReceived, stopMessageReceived } = useMessageReceivedCue();
+  const ownerActiveRef = useRef(runtimeActive);
+  ownerActiveRef.current = runtimeActive;
   // Прогресс полёта конверта (0 — старт у центра сверху, 1 — влетел в иконку).
   const flyAnim = useRef(new Animated.Value(0)).current;
   // Масштаб самой иконки: лёгкий «приём» (подскок) в момент прилёта письма.
@@ -230,6 +235,7 @@ function AppMessagesInbox({
   const flightInProgressRef = useRef(false);
 
   const playEnvelopeFlight = useCallback(() => {
+    if (!ownerActiveRef.current) return;
     if (flightInProgressRef.current) return; // уже летит — не дублируем
     flightInProgressRef.current = true;
     measureIcon();
@@ -264,7 +270,7 @@ function AppMessagesInbox({
       blurRenderTimer.current = null;
     }
 
-    if (isScreenFocused) {
+    if (runtimeActive) {
       setRenderButton(true);
       return;
     }
@@ -282,7 +288,6 @@ function AppMessagesInbox({
     setSelectedId(null);
     setSurveyTarget(null);
     setVipCelebrationVisible(false);
-    setVipSurveyReviewPromptVisible(false);
 
     return () => {
       if (blurRenderTimer.current) {
@@ -290,7 +295,18 @@ function AppMessagesInbox({
         blurRenderTimer.current = null;
       }
     };
-  }, [isScreenFocused]);
+  }, [runtimeActive]);
+
+  useEffect(() => {
+    if (runtimeActive) return;
+    if (flyTimer.current) clearTimeout(flyTimer.current);
+    flyTimer.current = null;
+    flightInProgressRef.current = false;
+    flyAnim.stopAnimation();
+    iconReceiveScale.stopAnimation();
+    setFlying(false);
+    stopMessageReceived();
+  }, [flyAnim, iconReceiveScale, runtimeActive, stopMessageReceived]);
 
   const selected = useMemo(
     () => messages.find((message) => message.id === selectedId) ?? null,
@@ -305,21 +321,7 @@ function AppMessagesInbox({
   }, [hasPremiumAccess]);
 
   useEffect(() => {
-    if (!effectiveVisible) return;
-    const sub = subscribeUserAppMessages((snapshot) => {
-      applyAppMessagesSnapshot(snapshot);
-    });
-    const appSub = AppState.addEventListener('change', (state) => {
-      if (state === 'active') void flushPendingAppMessageVisibilityForCurrentOwner();
-    });
-    return () => {
-      appSub.remove();
-      sub.remove();
-    };
-  }, [applyAppMessagesSnapshot, effectiveVisible]);
-
-  useEffect(() => {
-    if (!isScreenFocused || effectiveVisible) return;
+    if (!runtimeActive) return;
     let cancelled = false;
 
     const refreshBadge = async () => {
@@ -329,7 +331,7 @@ function AppMessagesInbox({
         const cached = await readCachedAppMessagesSnapshot();
         if (!cancelled) applyAppMessagesSnapshot(cached);
         const refreshed = await refreshAppMessagesSnapshotOnce({
-          minIntervalMs: BADGE_FOREGROUND_REFRESH_MIN_INTERVAL_MS,
+          minIntervalMs: effectiveVisible ? 0 : BADGE_FOREGROUND_REFRESH_MIN_INTERVAL_MS,
         });
         if (!cancelled) applyAppMessagesSnapshot(refreshed);
       } finally {
@@ -346,7 +348,7 @@ function AppMessagesInbox({
       cancelled = true;
       appSub.remove();
     };
-  }, [applyAppMessagesSnapshot, effectiveVisible, isScreenFocused]);
+  }, [applyAppMessagesSnapshot, effectiveVisible, runtimeActive]);
 
   useEffect(() => {
     if (!hasPremiumAccess || !surveyTarget) return;
@@ -367,7 +369,7 @@ function AppMessagesInbox({
     // Пульс бейджа крутится только когда экран виден И приложение на переднем
     // плане: freezeOnBlur:false держит ушедшие экраны живыми — без гарда луп грел
     // бы телефон в фоне.
-    if (unreadCount <= 0 || !isScreenFocused) {
+    if (unreadCount <= 0 || !runtimeActive) {
       badgePulse.setValue(1);
       return;
     }
@@ -399,7 +401,7 @@ function AppMessagesInbox({
       loop?.stop();
       loop = null;
     };
-  }, [badgePulse, unreadCount, isScreenFocused]);
+  }, [badgePulse, unreadCount, runtimeActive]);
 
   // Новое сообщение прилетело: конверт «влетает» в иконку + звук — РОВНО ОДИН раз на
   // сообщение. Срабатывает для ID, которых ещё нет в сохранённом наборе animatedIds.
@@ -594,9 +596,7 @@ function AppMessagesInbox({
     }
     setSurveyTarget(null);
     setVisible(false);
-    if (result.alreadyGranted) {
-      setVipSurveyReviewPromptVisible(true);
-    } else {
+    if (!result.alreadyGranted) {
       void consumeVipCelebration(result.grantAt);
       setVipCelebrationVisible(true);
     }
@@ -1206,12 +1206,7 @@ function AppMessagesInbox({
         visible={vipCelebrationVisible}
         onClose={() => {
           setVipCelebrationVisible(false);
-          setVipSurveyReviewPromptVisible(true);
         }}
-      />
-      <VipSurveyReviewPromptModal
-        visible={vipSurveyReviewPromptVisible}
-        onClose={() => setVipSurveyReviewPromptVisible(false)}
       />
     </>
   );

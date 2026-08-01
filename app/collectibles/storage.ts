@@ -6,8 +6,18 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
 import { isCollectiblesEnabled } from '../remote_flags';
-import { replaceShardsBalanceLocal } from '../shards_system';
+import {
+  replaceShardsBalanceForAccountGeneration,
+  replaceShardsBalanceLocal,
+} from '../shards_system';
 import { emitAppEvent } from '../events';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  withAccountTransitionLock,
+  type AccountGenerationToken,
+} from '../account_generation';
+import { accountScopeKey } from '../account_scope_key';
 import {
   COLLECTIBLE_SETS,
   CollectibleRarity,
@@ -64,20 +74,46 @@ function parseOwnedMap(raw: unknown): CollectiblesOwnedMap {
 // КАЖДОМ открытии мелькал пустым состоянием до прихода данных. После первой
 // загрузки держим карту в памяти → повторные открытия рисуют сразу правильно,
 // без вспышки. Кэш обновляется на каждом успешном чтении/записи инвентаря.
-let ownedMapCache: CollectiblesOwnedMap | null = null;
+const ownedMapCacheByAccount = new Map<string, CollectiblesOwnedMap>();
+const OWNED_CACHE_MAX_ACCOUNT_GENERATIONS = 4;
+
+function setOwnedMapCache(key: string, value: CollectiblesOwnedMap): void {
+  ownedMapCacheByAccount.delete(key);
+  ownedMapCacheByAccount.set(key, value);
+  while (ownedMapCacheByAccount.size > OWNED_CACHE_MAX_ACCOUNT_GENERATIONS) {
+    const oldest = ownedMapCacheByAccount.keys().next().value as string | undefined;
+    if (!oldest) break;
+    ownedMapCacheByAccount.delete(oldest);
+  }
+}
+
+function accountOperationKey(token: AccountGenerationToken): string | null {
+  return token.stableId ? accountScopeKey(token) : null;
+}
+
+function isAccountOperationCurrent(token: AccountGenerationToken): boolean {
+  return isCurrentAccountGeneration(token);
+}
 
 /** Синхронный снимок инвентаря (или null, если ещё ни разу не читали). */
 export function getCollectiblesOwnedMapSync(): CollectiblesOwnedMap | null {
-  return ownedMapCache;
+  const cacheKey = accountOperationKey(captureAccountGeneration());
+  return cacheKey ? (ownedMapCacheByAccount.get(cacheKey) ?? null) : null;
 }
 
 export async function getCollectiblesOwnedMap(): Promise<CollectiblesOwnedMap> {
+  const accountToken = captureAccountGeneration();
+  const cacheKey = accountOperationKey(accountToken);
+  if (!cacheKey || !isAccountOperationCurrent(accountToken)) return {};
   try {
     const map = parseOwnedMap(await AsyncStorage.getItem(COLLECTIBLES_OWNED_KEY));
-    ownedMapCache = map;
+    if (!isAccountOperationCurrent(accountToken)) return {};
+    setOwnedMapCache(cacheKey, map);
     return map;
   } catch {
-    return ownedMapCache ?? {};
+    return isAccountOperationCurrent(accountToken)
+      ? (ownedMapCacheByAccount.get(cacheKey) ?? {})
+      : {};
   }
 }
 
@@ -91,9 +127,13 @@ export async function getCollectiblesProgress(): Promise<{ owned: number; total:
   return { owned, total: collectiblesTotalCount() };
 }
 
-export async function getCollectiblesSeenSet(): Promise<Set<string>> {
+async function getCollectiblesSeenSetForAccount(
+  accountToken: AccountGenerationToken,
+): Promise<Set<string>> {
+  if (!accountOperationKey(accountToken) || !isAccountOperationCurrent(accountToken)) return new Set();
   try {
     const raw = await AsyncStorage.getItem(COLLECTIBLES_SEEN_KEY);
+    if (!isAccountOperationCurrent(accountToken)) return new Set();
     const arr = raw ? JSON.parse(raw) : [];
     return new Set(Array.isArray(arr) ? arr.map(String) : []);
   } catch {
@@ -101,12 +141,22 @@ export async function getCollectiblesSeenSet(): Promise<Set<string>> {
   }
 }
 
+export async function getCollectiblesSeenSet(): Promise<Set<string>> {
+  return getCollectiblesSeenSetForAccount(captureAccountGeneration());
+}
+
 export async function markCollectiblesSeen(ids: string[]): Promise<void> {
   if (ids.length === 0) return;
+  const accountToken = captureAccountGeneration();
+  if (!accountOperationKey(accountToken) || !isAccountOperationCurrent(accountToken)) return;
   try {
-    const seen = await getCollectiblesSeenSet();
-    for (const id of ids) seen.add(id);
-    await AsyncStorage.setItem(COLLECTIBLES_SEEN_KEY, JSON.stringify([...seen]));
+    await withAccountTransitionLock(async () => {
+      if (!isAccountOperationCurrent(accountToken)) return;
+      const seen = await getCollectiblesSeenSetForAccount(accountToken);
+      if (!isAccountOperationCurrent(accountToken)) return;
+      for (const id of ids) seen.add(id);
+      await AsyncStorage.setItem(COLLECTIBLES_SEEN_KEY, JSON.stringify([...seen]));
+    });
   } catch {
     /* некритично — бейдж «новое» */
   }
@@ -135,17 +185,30 @@ function callable<TReq, TRes>(name: string): ((data: TReq) => Promise<{ data: TR
   }
 }
 
-async function applyDropLocally(outcome: CollectibleDropOutcome): Promise<void> {
+async function applyDropLocally(
+  outcome: CollectibleDropOutcome,
+  accountToken: AccountGenerationToken,
+): Promise<boolean> {
+  const accountKey = accountOperationKey(accountToken);
+  if (!accountKey || !isAccountOperationCurrent(accountToken)) return false;
   try {
     const owned = await getCollectiblesOwnedMap();
+    if (!isAccountOperationCurrent(accountToken)) return false;
     const now = Date.now();
     const next: CollectiblesOwnedMap = { ...owned, [outcome.cardId]: now };
     if (outcome.secretCardId) next[outcome.secretCardId] = now;
-    await AsyncStorage.setItem(COLLECTIBLES_OWNED_KEY, JSON.stringify(next));
-    ownedMapCache = next;
+    const committed = await withAccountTransitionLock(async () => {
+      if (!isAccountOperationCurrent(accountToken)) return false;
+      await AsyncStorage.setItem(COLLECTIBLES_OWNED_KEY, JSON.stringify(next));
+      return isAccountOperationCurrent(accountToken);
+    });
+    if (!committed) return false;
+    setOwnedMapCache(accountKey, next);
     emitAppEvent('collectibles_changed');
+    return true;
   } catch {
     /* облако — источник правды, локальный кэш догонит restore */
+    return false;
   }
 }
 
@@ -157,8 +220,12 @@ async function applyDropLocally(outcome: CollectibleDropOutcome): Promise<void> 
  */
 export async function devUnlockAllCollectibles(): Promise<number> {
   if (!__DEV__) return 0;
+  const accountToken = captureAccountGeneration();
+  const accountKey = accountOperationKey(accountToken);
+  if (!accountKey || !isAccountOperationCurrent(accountToken)) return 0;
   try {
     const owned = await getCollectiblesOwnedMap();
+    if (!isAccountOperationCurrent(accountToken)) return 0;
     const next: CollectiblesOwnedMap = { ...owned };
     const now = Date.now();
     for (const set of COLLECTIBLE_SETS) {
@@ -167,8 +234,13 @@ export async function devUnlockAllCollectibles(): Promise<number> {
       }
       if (!next[set.secret.id]) next[set.secret.id] = now;
     }
-    await AsyncStorage.setItem(COLLECTIBLES_OWNED_KEY, JSON.stringify(next));
-    ownedMapCache = next;
+    const committed = await withAccountTransitionLock(async () => {
+      if (!isAccountOperationCurrent(accountToken)) return false;
+      await AsyncStorage.setItem(COLLECTIBLES_OWNED_KEY, JSON.stringify(next));
+      return isAccountOperationCurrent(accountToken);
+    });
+    if (!committed) return 0;
+    setOwnedMapCache(accountKey, next);
     emitAppEvent('collectibles_changed');
     return Object.keys(next).length;
   } catch {
@@ -196,6 +268,7 @@ export type CollectibleDropKind =
   | 'pronounce' | 'dialog';
 
 const inFlight = new Set<string>();
+const COLLECTIBLE_IN_FLIGHT_MAX = 32;
 
 /**
  * Попытка дропа за qualifying-активность. Сервер сам решает: шанс/кап/pity.
@@ -211,15 +284,23 @@ export async function maybeRollCollectibleDrop(
   options?: { dailyScoped?: boolean },
 ): Promise<CollectibleDropOutcome | null> {
   if (!isCollectiblesEnabled()) return null;
+  const accountToken = captureAccountGeneration();
+  const accountKey = accountOperationKey(accountToken);
+  if (!accountKey || !isAccountOperationCurrent(accountToken)) return null;
   const fn = callable<{ eventId: string }, ClaimResponse>('collectiblesClaimDrop');
   if (!fn) return null;
 
   const dayPart = options?.dailyScoped === false ? '' : `:${todayKeyUtc()}`;
   const eventId = `${kind}:${sanitizeRef(ref)}${dayPart}`;
-  if (inFlight.has(eventId)) return null;
-  inFlight.add(eventId);
+  const flightKey = `${accountKey}|${eventId}`;
+  if (inFlight.has(flightKey)) return null;
+  // A native callable can theoretically stay pending forever. Keep the registry
+  // bounded so repeated account generations cannot become a process-lifetime leak.
+  if (inFlight.size >= COLLECTIBLE_IN_FLIGHT_MAX) return null;
+  inFlight.add(flightKey);
   try {
     const res = await fn({ eventId });
+    if (!isAccountOperationCurrent(accountToken)) return null;
     const data = res?.data ?? {};
     // Повторный вызов того же события: сервер вернёт тот же дроп, но модалку
     // второй раз не показываем — выдача уже применена локально в первый раз.
@@ -235,18 +316,30 @@ export async function maybeRollCollectibleDrop(
       secretCardId: data.secretCardId ? String(data.secretCardId) : null,
       bonusShards: Math.max(0, Math.floor(Number(data.bonusShards) || 0)),
     };
-    await applyDropLocally(outcome);
+    if (!await applyDropLocally(outcome, accountToken)) return null;
+    if (!isAccountOperationCurrent(accountToken)) return null;
     if (outcome.bonusShards > 0 && typeof data.shardsBalance === 'number') {
-      await replaceShardsBalanceLocal(data.shardsBalance, {
+      const options = {
         updatedAtMs: data.shardsUpdatedAtMs,
-        op: 'earn',
+        op: 'earn' as const,
         reason: 'collectible_set_bonus',
-      }).catch(() => {});
+      };
+      if (accountToken.phase === 'active' && accountToken.stableId) {
+        await replaceShardsBalanceForAccountGeneration(
+          data.shardsBalance,
+          accountToken,
+          accountToken.stableId,
+          options,
+        ).catch(() => 'failed' as const);
+      } else {
+        await replaceShardsBalanceLocal(data.shardsBalance, options).catch(() => {});
+      }
     }
+    if (!isAccountOperationCurrent(accountToken)) return null;
     return outcome;
   } catch {
     return null;
   } finally {
-    inFlight.delete(eventId);
+    inFlight.delete(flightKey);
   }
 }

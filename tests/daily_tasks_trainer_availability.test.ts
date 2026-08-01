@@ -3,7 +3,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getTodayTasksSafe, rerollDailyTask } from '../app/daily_tasks';
 import type { TrainerItem } from '../app/trainer_store';
 import { dailyTasksProgressKey, trainerStoreKey } from '../app/target_storage_keys';
-import { spendShards } from '../app/shards_system';
 
 let mockFrenchRemoteItems: TrainerItem[] = [];
 
@@ -15,11 +14,6 @@ jest.mock('../app/premium_guard', () => ({
   getVerifiedPremiumStatus: jest.fn(async () => false),
 }));
 
-jest.mock('../app/shards_system', () => ({
-  spendShards: jest.fn(async () => true),
-}));
-
-const mockSpendShards = spendShards as jest.MockedFunction<typeof spendShards>;
 
 function dueWord(key: string): TrainerItem {
   return {
@@ -54,7 +48,7 @@ describe('daily tasks trainer queue availability', () => {
 
   // зачем: trainer_arena удалён вместе с Ареной, задания такого типа больше нет
   // в каталоге. Тест сохранён как страховка: тип не должен вернуться, а выдача
-  // остаётся полной (DAILY_TASK_BASE_COUNT = 4).
+  // остаётся полной (DAILY_TASK_BASE_COUNT = 3).
   it('never serves the retired arena trainer task and keeps the daily surface full', async () => {
     jest.setSystemTime(new Date('2026-05-27T12:00:00Z'));
     await AsyncStorage.setItem('user_total_xp', '1000000000');
@@ -62,10 +56,10 @@ describe('daily tasks trainer queue availability', () => {
     const tasks = await getTodayTasksSafe('en');
 
     expect(tasks.some((task) => task.type === 'trainer_arena')).toBe(false);
-    expect(tasks).toHaveLength(4);
+    expect(tasks).toHaveLength(3);
   });
 
-  it('does not charge for a reroll when every replacement trainer queue is insufficient', async () => {
+  it('replaces an unavailable trainer quest with a free, verified alternative', async () => {
     jest.setSystemTime(new Date('2026-05-10T12:00:00Z'));
     await AsyncStorage.setItem(
       trainerStoreKey('en'),
@@ -75,8 +69,9 @@ describe('daily tasks trainer queue availability', () => {
     const tasks = await getTodayTasksSafe('en');
     expect(tasks.map((task) => task.id)).toContain('tw1');
 
-    await expect(rerollDailyTask('tw1', 'en')).resolves.toEqual({ ok: false, reason: 'no_candidates' });
-    expect(mockSpendShards).not.toHaveBeenCalled();
+    await expect(rerollDailyTask('tw1', 'en')).resolves.toEqual(
+      expect.objectContaining({ ok: true, cost: 0 }),
+    );
   });
 
   it('keeps a partially completed trainer task when saved progress plus due cards reaches its target', async () => {
@@ -94,7 +89,7 @@ describe('daily tasks trainer queue availability', () => {
   });
 
   it('keeps a French trainer task when the session-aware remote queue can satisfy it', async () => {
-    jest.setSystemTime(new Date('2026-05-27T12:00:00Z'));
+    jest.setSystemTime(new Date('2026-05-25T12:00:00Z'));
     mockFrenchRemoteItems = [duePhrase('un'), duePhrase('deux'), duePhrase('trois')];
 
     const tasks = await getTodayTasksSafe('fr');
@@ -102,7 +97,7 @@ describe('daily tasks trainer queue availability', () => {
     expect(tasks.map((task) => task.id)).toContain('tp1');
   });
 
-  it('accepts a French remote trainer queue as a paid reroll candidate', async () => {
+  it('accepts a French remote trainer queue as a free reroll candidate', async () => {
     jest.setSystemTime(new Date('2026-05-10T12:00:00Z'));
     await AsyncStorage.setItem(
       trainerStoreKey('fr'),
@@ -117,8 +112,7 @@ describe('daily tasks trainer queue availability', () => {
     ];
 
     await expect(rerollDailyTask('tw1', 'fr')).resolves.toEqual(
-      expect.objectContaining({ ok: true, cost: 3 }),
+      expect.objectContaining({ ok: true, cost: 0 }),
     );
-    expect(mockSpendShards).toHaveBeenCalledTimes(1);
   });
 });

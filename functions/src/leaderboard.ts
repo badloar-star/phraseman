@@ -343,7 +343,9 @@ export const nameReserve = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
         readProgressString(userData, 'user_name_lower') ||
         readProgressString(userData, 'user_name').toLowerCase() ||
         oldNameLower;
-      const oldIndexNameLower = oldNameLower || currentNameLower;
+      // users.progress is authoritative. oldName only covers legacy clients
+      // whose current name has not reached the user document yet.
+      const oldIndexNameLower = currentNameLower || oldNameLower;
       const oldRef = oldIndexNameLower && oldIndexNameLower !== nameLower ? db.collection(NAME_INDEX).doc(oldIndexNameLower) : null;
       const oldSnap = oldRef ? await tx.get(oldRef) : null;
       const previousChangeAt = readProgressMs(userData, 'nickname_changed_at');

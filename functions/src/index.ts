@@ -113,8 +113,6 @@ const { premiumDialogSend, premiumDialogTranslate } = require('./premium_dialog'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { premiumDialogReview } = require('./premium_dialog_review');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { speakingClubSend, speakingClubReview } = require('./speaking_club');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { weeklyReviewGenerate } = require('./weekly_review');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { statsInsightsGenerate } = require('./stats_insights');
@@ -246,8 +244,6 @@ exports.referralListMyInvites = referralListMyInvites;
 exports.premiumDialogSend = premiumDialogSend;
 exports.premiumDialogTranslate = premiumDialogTranslate;
 exports.premiumDialogReview = premiumDialogReview;
-exports.speakingClubSend = speakingClubSend;
-exports.speakingClubReview = speakingClubReview;
 exports.weeklyReviewGenerate = weeklyReviewGenerate;
 exports.statsInsightsGenerate = statsInsightsGenerate;
 exports.explainPhrase = explainPhrase;
@@ -374,6 +370,13 @@ export {
   communityAdminModeratePack,
   communityFetchPackCardsIfAccessible,
   communityPurchasePack,
+  adminRefundCommunityPackPurchase,
+  communityRedeemPackGiftVoucher,
+  flashcardPackGiftRedeem,
+  flashcardPackGiftGrantGlobalBroadcast,
+  flashcardPackGiftSyncState,
+  levelGiftReserve,
+  levelGiftActivatePackGift,
   communityListSellerInbox,
   communityMarkSellerInboxSeen,
 } from './community_packs';
@@ -412,8 +415,10 @@ export {
 export { adminReplyToReport, claimReportReward, adminDraftReportReply } from './report_replies';
 
 // ── Admin grant (типизированные награды из админки) ───────────────────────────
-export { adminGrantReward } from './admin_grant';
+export { adminGrantReward, adminSetShardBalance } from './admin_grant';
 export { adminGrantAccess, adminSetUserBan } from './admin_access_controls';
+export { adminQueueAccountDeletion } from './admin_account_delete';
+export { adminGetComplianceOverview, adminListSafetyFlags, adminMarkSafetyFlagsHandled } from './admin_compliance';
 // ── Починка/перепривязка auth-привязок из админки (permission users.auth_repair) ──
 export { adminRepairAuthLink, adminRelinkProvider } from './admin_auth_repair';
 
@@ -424,6 +429,7 @@ export { adminProductAnalytics } from './admin_product_analytics';
 export { adminSubscriptionAnalytics } from './admin_subscription_analytics';
 export { adminMonthlyDecisionPack } from './admin_monthly_decision_pack';
 export { adminGetAnalyticsSnapshot } from './admin_analytics';
+export { adminGetRevenueCatOverviewMetrics } from './admin_revenuecat_overview';
 export { adminGetAnalyticsTrends } from './admin_analytics_trends';
 export { adminGetDirectorDigest } from './admin_director_digest';
 export { adminGenerateDirectorDigestAudio } from './admin_director_digest_audio';
@@ -502,12 +508,29 @@ export { submitWebsiteContact } from './website_contact';
 
 export { siteStatsTrack } from './site_stats';
 
+export { recordOnboardingFunnelEvent, adminGetOnboardingFunnel } from './onboarding_funnel';
+export { recordAgeConsentSnapshot } from './record_age_consent_snapshot';
+
 export { revenueCatShardsWebhook } from './revenuecat_shards';
 
 export { adminPushJobCreated, adminPushJobsCron } from './admin_push_jobs';
 
 // ── Веб-оплата Premium с сайта (квиз-воронка /start/): Stripe + PayPal ────────
-export { webCheckoutCreate, stripeWebhook, paypalOrderCreate, paypalOrderCapture, webOrderStatus, webPrices } from './web_checkout';
+export {
+  webCheckoutCreate,
+  stripeWebhook,
+  paypalOrderCreate,
+  paypalOrderCapture,
+  webOrderStatus,
+  webPrices,
+  adminCreateGiftCertificateBatch,
+  adminListGiftCertificates,
+  adminGetGiftCertificateDownload,
+  adminUpdateGiftCertificateRecipient,
+  adminUpdateGiftCertificatePersonalization,
+  adminReplaceSyntheticGiftCertificate,
+  adminSendPreparedGiftCertificate,
+} from './web_checkout';
 
 // ── Email-лиды квиза /start/ (письмо с планом + догоняющие) ───────────────────
 export { webLeadCapture, webLeadNudgeCron } from './web_leads';
@@ -516,10 +539,14 @@ export { webLeadCapture, webLeadNudgeCron } from './web_leads';
 export {
   tournamentCreateRooms,
   tournamentJoin,
+  tournamentLeave,
+  tournamentForfeit,
   tournamentFillBots,
   tournamentAdvanceRooms,
   tournamentAdvanceRound,
   tournamentRoundReview,
+  tournamentSubmitSpeedMatchAttempt,
+  tournamentSubmitTaskAnswer,
   tournamentSubmitAnswers,
   tournamentFinalize,
   tournamentClaimReward,
@@ -590,7 +617,9 @@ export { friendsGetProfiles } from './friends_profiles';
 
 // ── Админ-callables раздела «Рефералы» (гейт custom claim admin) ──
 export {
+  adminRevokeReferralAttribution,
   adminListReferrals,
+  adminGetReferralDashboard,
   adminSpinStats,
   adminSpinLogs,
   adminSetSpinWeights,

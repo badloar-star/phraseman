@@ -27,7 +27,7 @@ describe('home social notification center', () => {
   it('refreshes the focused home bell and clears the badge immediately when opened', () => {
     const button = read(path.join('components', 'NotificationCenterButton.tsx'));
 
-    expect(button).toContain('NOTIFICATION_FOREGROUND_REFRESH_MIN_INTERVAL_MS = 30_000');
+    expect(button).toContain('NOTIFICATION_FOREGROUND_REFRESH_MIN_INTERVAL_MS = 12 * 60 * 60_000');
     expect(button).toContain('minIntervalMs: NOTIFICATION_FOREGROUND_REFRESH_MIN_INTERVAL_MS');
     expect(button).toContain('useIsScreenFocused');
     expect(button).not.toContain('subscribeUserNotifications((list)');
@@ -60,10 +60,10 @@ describe('home social notification center', () => {
     const home = read(path.join('app', '(tabs)', 'home.tsx'));
     const notifications = read(path.join('app', 'user_notifications.ts'));
 
-    expect(home).toContain('<NotificationCenterButton isHomeTabActive={isHomeOwner} homeFocusTick={focusTick} />');
+    expect(home).toContain('<NotificationCenterButton isHomeTabActive={homeRuntimeActive} homeFocusTick={focusTick} />');
     expect(button).toContain('isHomeTabActive: boolean;');
     expect(button).toContain('homeFocusTick: number;');
-    expect(button).toContain('NOTIFICATION_FOREGROUND_REFRESH_MIN_INTERVAL_MS = 30_000');
+    expect(button).toContain('NOTIFICATION_FOREGROUND_REFRESH_MIN_INTERVAL_MS = 12 * 60 * 60_000');
     expect(button).toContain('if (!isScreenFocused || !isHomeTabActive) return;');
     expect(notifications).toContain('refreshInFlightByOwner');
     expect(button).toContain('let authoritativeResultApplied = false;');

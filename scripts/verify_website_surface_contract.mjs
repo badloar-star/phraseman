@@ -20,31 +20,33 @@ const root = path.resolve(argument('--root', 'knowly-www'));
 const home = readRequired(path.join(root, 'index.html'), 'website_home_missing');
 const experimentPath = path.join(root, 'assets', 'landing-experiment.js');
 const isCompositeRelease = fs.existsSync(experimentPath);
-const legacyPath = isCompositeRelease ? path.join(root, 'legacy', 'index.html') : path.join(root, 'index.html');
-const legacy = readRequired(legacyPath, 'desktop_legacy_surface_missing');
 const legacyCss = readRequired(path.join(root, 'assets', 'phraseman.css'), 'desktop_legacy_styles_missing');
 
-requireAll(
-  legacy,
-  ['class="hero-rays"', 'phraseman-screen-home.webp', 'Скачать бесплатно и начать первый урок'],
-  'desktop_legacy_surface_missing',
-);
-requireAll(
-  legacyCss,
-  [
-    '@media (min-width: 761px)',
-    'right: calc(50% - 50vw);',
-    'width: calc(min(100%, 900px) + 50vw - 50%);',
-  ],
-  'desktop_legacy_surface_missing',
-);
-
 if (isCompositeRelease) {
+  const legacy = readRequired(
+    path.join(root, 'legacy', 'index.html'),
+    'desktop_legacy_surface_missing',
+  );
   const premiumCss = readRequired(
     path.join(root, 'assets', 'landing-premium.css'),
     'mobile_apple_surface_missing',
   );
   const experiment = readRequired(experimentPath, 'surface_router_missing');
+
+  requireAll(
+    legacy,
+    ['class="hero-rays"', 'phraseman-screen-home.webp', 'Скачать бесплатно и начать первый урок'],
+    'desktop_legacy_surface_missing',
+  );
+  requireAll(
+    legacyCss,
+    [
+      '@media (min-width: 761px)',
+      'right: calc(50% - 50vw);',
+      'width: calc(min(100%, 900px) + 50vw - 50%);',
+    ],
+    'desktop_legacy_surface_missing',
+  );
 
   requireAll(
     home,
@@ -79,6 +81,29 @@ if (isCompositeRelease) {
     'desktop_must_resolve_to_legacy',
   );
 } else {
+  const homeCss = readRequired(
+    path.join(root, 'assets', 'home.css'),
+    'current_home_styles_missing',
+  );
+
+  requireAll(
+    home,
+    [
+      'href="/assets/home.css?v=',
+      'class="stage" id="stage"',
+      'id="pm-title"',
+      'gift-bridge',
+      'id="gift-title"',
+      'Начать мой первый урок',
+    ],
+    'current_home_surface_missing',
+  );
+  requireAll(
+    homeCss,
+    ['@media (max-width: 720px)', '.stage > .wrap', '.nav-chips'],
+    'current_home_surface_missing',
+  );
+
   const appleMarker = legacyCss.indexOf('/* Approved Apple-style mobile surface.');
   const appleMobile = appleMarker >= 0 ? legacyCss.slice(appleMarker) : '';
 

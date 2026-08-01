@@ -15,9 +15,11 @@ import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { triLang, type PlannedInterfaceLang } from '../constants/i18n';
 import { hapticTap as doHaptic } from '../hooks/use-haptics';
-import { deleteAccountAndWipe } from '../app/auth_provider';
+import { beginAccountDeletion } from '../app/auth_provider';
 import { enqueueThemedBlockingInfoAlert } from '../app/themed_blocking_alert_queue';
+import { router } from 'expo-router';
 import { emitAppEvent } from '../app/events';
+import { markAccountDeletedNoticePending } from '../app/account_deleted_notice';
 import CompassDepthSurface from './CompassDepthSurface';
 import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 
@@ -32,24 +34,12 @@ type DeleteAccountCopy = {
   es: string;
 } & Record<PlannedInterfaceLang, string>;
 
-async function reloadAfterAccountDelete(): Promise<void> {
-  try {
-    const Updates = await import('expo-updates');
-    if (typeof Updates.reloadAsync === 'function') {
-      await Updates.reloadAsync();
-      return;
-    }
-  } catch {
-    // Fallback below covers dev clients where expo-updates reload is unavailable.
-  }
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const { DevSettings } = require('react-native');
-    DevSettings?.reload?.();
-  } catch {
-    // If reload is unavailable, account_deleted still forces onboarding in-root.
-  }
-}
+/**
+ * Зазор на докрытие нативной модалки перед показом следующей (см. showInfoAlert).
+ * Нужен только на путях ОШИБКИ: там следом презентуется алерт, и два present
+ * подряд на iOS ломают стек презентаций.
+ */
+const ACCOUNT_DELETE_DISMISS_SETTLE_MS = 360;
 
 /**
  * Единое окно подтверждения удаления аккаунта (Настройки, FAQ и т.д.).
@@ -82,8 +72,24 @@ function DeleteAccountConfirmModal({ visible, onRequestClose }: Props) {
   const [deleting, setDeleting] = useState(false);
   const [footerWidth, setFooterWidth] = useState(0);
   const deleteInFlightRef = useRef(false);
+  // зачем: toLocaleUpperCase(String(lang)) бросал RangeError, когда lang не был
+  // валидным языковым тегом (undefined/null из контекста до гидрации, служебное
+  // значение). Исключение летело прямо из рендера модалки — экран настроек
+  // вставал намертво: шторку свернуть можно, а раздел уже мёртв, и ввод слова
+  // «УДАЛИТЬ» ни к чему не приводил. Локаль тут нужна только ради турецкого i,
+  // поэтому берём её best-effort и при любой ошибке падаем на обычный
+  // toUpperCase — сравнение подтверждения важнее локальных тонкостей регистра.
   const normalizeConfirm = useCallback(
-    (value: string) => value.trim().normalize('NFC').toLocaleUpperCase(String(lang)),
+    (value: string) => {
+      const base = value.trim().normalize('NFC');
+      try {
+        return typeof lang === 'string' && lang.length > 0
+          ? base.toLocaleUpperCase(lang)
+          : base.toUpperCase();
+      } catch {
+        return base.toUpperCase();
+      }
+    },
     [lang],
   );
   const deleteConfirmMatches = normalizeConfirm(deleteConfirmInput) === normalizeConfirm(deleteConfirmWord);
@@ -102,7 +108,7 @@ function DeleteAccountConfirmModal({ visible, onRequestClose }: Props) {
     }
   }, [visible]);
 
-  const showInfoAlert = useCallback(
+  const enqueueInfoAlert = useCallback(
     (title: string, message: string) => {
       void enqueueThemedBlockingInfoAlert(title || L({
         ru: 'Сообщение',
@@ -118,13 +124,34 @@ function DeleteAccountConfirmModal({ visible, onRequestClose }: Props) {
     [L],
   );
 
+  // зачем: алерт об ошибке — тоже нативный <Modal> (ThemedChoiceModal). Показывать его,
+  // пока окно удаления ещё открыто, нельзя: два present подряд на iOS ломают стек
+  // презентаций (тот же фриз, что и на успешном пути) — алерт оказывается под окном и
+  // не виден, а тапы перестают работать. Сначала закрываем окно, ждём кадр докрытия,
+  // и только потом ставим алерт в очередь.
+  const showInfoAlert = useCallback(
+    (title: string, message: string) => {
+      onRequestClose();
+      setTimeout(() => enqueueInfoAlert(title, message), ACCOUNT_DELETE_DISMISS_SETTLE_MS);
+    },
+    [enqueueInfoAlert, onRequestClose],
+  );
+
   const handleConfirmDelete = useCallback(async () => {
     if (deleteInFlightRef.current || deleting || !deleteConfirmMatches) return;
     deleteInFlightRef.current = true;
     doHaptic();
     setDeleting(true);
     try {
-      const res = await deleteAccountAndWipe();
+      // зачем: ждём ТОЛЬКО быструю фазу — запись замка в SecureStore. После неё
+      // точка невозврата пройдена (старая почта/Apple ID уже не пускают в старый
+      // аккаунт), поэтому UI имеет право закрыться немедленно. Сеть — Cloud
+      // Function, signOut, новый анонимный аккаунт — доезжает фоном; если её
+      // оборвёт, следующий старт дочистит всё через
+      // resumePendingAccountDeleteLocalExit(). Раньше здесь ждали ВСЮ цепочку
+      // целиком, и на плохой сети настройки висели заблокированными десятки
+      // секунд — ровно то «зависает намертво», которое чиним.
+      const res = await beginAccountDeletion();
       if (!res.ok) {
         showInfoAlert(
           L({
@@ -162,32 +189,25 @@ function DeleteAccountConfirmModal({ visible, onRequestClose }: Props) {
         deleteInFlightRef.current = false;
         return;
       }
+      // зачем: подтверждение пользователю — короткая плашка на первом экране
+      // онбординга, а НЕ алерт. Второй нативный <Modal> в том же тике, в котором
+      // закрывается этот, на iOS ломает стек презентаций (экран настроек остаётся
+      // на месте, тапы мертвы). Плашка живёт внутри уже смонтированного
+      // онбординга — никакого present/dismiss.
+      markAccountDeletedNoticePending();
       onRequestClose();
+      // зачем: удаление вызывают и с ВЛОЖЕННЫХ экранов-маршрутов («Приватность и
+      // данные», «Аккаунт»), а не только из вкладки настроек. Оверлей онбординга
+      // рисуется поверх, но сам экран остаётся в стеке навигации под ним — и
+      // после онбординга пользователь возвращался на мёртвый экран удалённого
+      // аккаунта. Владелец потребовал: закрыться должно ВСЁ. Сбрасываем стек в
+      // корень до показа онбординга; ошибку глушим — навигация не должна
+      // отменять само удаление.
+      try { router.dismissAll?.(); } catch { /* стек мог быть уже корневым */ }
+      try { router.replace('/(tabs)/home' as never); } catch { /* ignore */ }
+      // Событие само монтирует чистый онбординг — перезапуск приложения не нужен
+      // и раньше только добавлял задержку поверх ожидания сети.
       emitAppEvent('account_deleted');
-      void enqueueThemedBlockingInfoAlert(
-        L({
-          ru: 'Аккаунт удаляется',
-          uk: 'Акаунт видаляється',
-          es: 'Eliminando cuenta',
-          'pt-BR': 'Excluindo conta',
-          vi: 'Đang xóa tài khoản',
-          id: 'Menghapus akun',
-          tr: 'Hesap siliniyor',
-          pl: 'Usuwanie konta',
-        }),
-        L({
-          ru: 'Безопасный выход с этого телефона завершён. Удаление поставлено в очередь и при необходимости повторится автоматически.',
-          uk: 'Безпечний вихід на цьому телефоні завершено. Видалення поставлено в чергу й за потреби повториться автоматично.',
-          es: 'La salida segura de este teléfono terminó. La eliminación quedó en cola y se reintentará automáticamente si hace falta.',
-          'pt-BR': 'A saída segura deste telefone foi concluída. A exclusão ficou na fila e será repetida automaticamente se necessário.',
-          vi: 'Đã thoát an toàn khỏi điện thoại này. Yêu cầu xóa đã được xếp hàng và sẽ tự thử lại nếu cần.',
-          id: 'Proses keluar aman dari ponsel ini selesai. Penghapusan telah masuk antrean dan akan dicoba lagi otomatis bila perlu.',
-          tr: 'Bu telefondaki güvenli çıkış tamamlandı. Silme işlemi kuyruğa alındı ve gerekirse otomatik olarak yeniden denenecek.',
-          pl: 'Bezpieczne wyjście z tego telefonu zostało zakończone. Usunięcie trafiło do kolejki i w razie potrzeby zostanie automatycznie ponowione.',
-        }),
-        'OK',
-      );
-      void reloadAfterAccountDelete();
     } catch {
       showInfoAlert(
         L({
@@ -222,15 +242,6 @@ function DeleteAccountConfirmModal({ visible, onRequestClose }: Props) {
     doHaptic();
     onRequestClose();
   }, [deleting, onRequestClose]);
-
-  const handleFooterRelease = useCallback((event: GestureResponderEvent) => {
-    const width = footerWidth || 1;
-    if (event.nativeEvent.locationX >= width / 2) {
-      void handleConfirmDelete();
-      return;
-    }
-    handleCancel();
-  }, [footerWidth, handleCancel, handleConfirmDelete]);
 
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={() => {
@@ -424,12 +435,14 @@ function DeleteAccountConfirmModal({ visible, onRequestClose }: Props) {
             </Text>
           )}
           </ScrollView>
+          {/* зачем: у футера стоял onStartShouldSetResponderCapture={() => true} —
+              он ПЕРЕХВАТЫВАЛ касание на фазе capture, до кнопок, и подменял его
+              вычислением половины по locationX. При изменившейся вёрстке (gap,
+              padding, RTL, узкий экран) точка попадала не в ту половину, и
+              нажатие «Удалить» уходило в «Отмена» либо терялось вовсе — кнопка
+              выглядела мёртвой. Убираем перехват целиком: пусть каждая кнопка
+              получает своё касание сама, как и положено. */}
           <View
-            onLayout={event => setFooterWidth(event.nativeEvent.layout.width)}
-            onStartShouldSetResponderCapture={() => true}
-            onStartShouldSetResponder={() => true}
-            onResponderTerminationRequest={() => false}
-            onResponderRelease={handleFooterRelease}
             style={{ flexDirection: 'row', gap: 12, paddingHorizontal: 24, paddingTop: 12, paddingBottom: 24, borderTopWidth: 1, borderTopColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border, backgroundColor: isCompassTheme ? COMPASS_RICH.charcoal : 'transparent' }}
           >
             <Pressable
@@ -476,9 +489,12 @@ function DeleteAccountConfirmModal({ visible, onRequestClose }: Props) {
                 tr: 'Sil',
                 pl: 'Usuń',
               })}
-              onStartShouldSetResponder={() => deleteConfirmMatches && !deleting}
-              onResponderRelease={handleConfirmDelete}
-              onTouchEnd={handleConfirmDelete}
+              // зачем: здесь висело ПЯТЬ обработчиков разом — onStartShouldSetResponder
+              // + onResponderRelease + onTouchEnd + onPress + onPressIn. Responder-пара
+              // забирала касание у Pressable, поэтому onPress мог не сработать вовсе,
+              // а onPressIn/onTouchEnd дублировали запуск. Оставляем ОДИН onPress:
+              // повторный вход всё равно закрыт deleteInFlightRef.
+              disabled={!deleteConfirmMatches || deleting}
               style={({ pressed }) => ({
                 flex: 1,
                 padding: 12,
@@ -496,7 +512,6 @@ function DeleteAccountConfirmModal({ visible, onRequestClose }: Props) {
                 opacity: deleting ? 0.78 : deleteConfirmMatches ? (pressed ? 0.82 : 1) : 0.35,
               })}
               onPress={handleConfirmDelete}
-              onPressIn={handleConfirmDelete}
             >
               {isCompassTheme && <CompassDepthSurface radius={9} selected={deleteConfirmMatches} quiet={!deleteConfirmMatches} />}
               <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 }}>

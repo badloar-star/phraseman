@@ -5,6 +5,7 @@ import BouncyScrollView from '../components/BouncyScrollView';
 import DuoPressable from '../components/DuoPressable';
 import { useWordFlash } from '../hooks/use-word-flash';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter } from 'expo-router';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
@@ -425,6 +426,7 @@ function FrenchLingmanExamUnavailable({
 
 export default function ExamScreen() {
   const router = useRouter();
+  const runtimeActive = useRuntimeActive();
   const {theme:t, f, themeMode } = useTheme();
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const {lang} = useLang();
@@ -458,7 +460,7 @@ export default function ExamScreen() {
   // уносил с экрана — часовая попытка терялась без единого вопроса.
   // Теперь во время quiz/review/countdown back требует подтверждения.
   useEffect(() => {
-    if (Platform.OS !== 'android') return;
+    if (!runtimeActive || Platform.OS !== 'android') return;
     const sub = BackHandler.addEventListener('hardwareBackPress', () => {
       const p = phaseBackRef.current;
       if (p !== 'quiz' && p !== 'review' && p !== 'countdown') return false;
@@ -487,7 +489,7 @@ export default function ExamScreen() {
     });
     return () => sub.remove();
     // eslint-disable-next-line react-hooks/exhaustive-deps -- t3/router стабильны в рамках экрана
-  }, []);
+  }, [runtimeActive]);
 
   const [lessonsCompleted, setCompleted] = useState(0);
   const [certificate, setCertificate] = useState<LingmanCertificate | null>(null);
@@ -528,6 +530,9 @@ export default function ExamScreen() {
   const [countdownNum, setCountdownNum] = useState(3);
   const timerRef = useRef<ReturnType<typeof setInterval>|null>(null);
   const countdownTimerRef = useRef<ReturnType<typeof setTimeout>|null>(null);
+  const examDeadlineRef = useRef<number | null>(null);
+  const countdownRemainingMsRef = useRef(3 * 650);
+  const countdownDeadlineRef = useRef(0);
   const examAttemptIdRef = useRef<string>(makeExamAttemptId());
   const countdownAnim = useRef(new Animated.Value(1)).current;
 
@@ -589,18 +594,24 @@ export default function ExamScreen() {
   },[frenchExamBlocked, studyTarget]);
 
   useEffect(()=>{
-    if(phase!=='quiz'){
+    if (phase !== 'quiz' && phase !== 'review') {
       if(timerRef.current) clearInterval(timerRef.current);
       return;
     }
-    timerRef.current = setInterval(()=>{
-      setTotalTimeLeft(p=>{
-        if(p<=1){ clearInterval(timerRef.current!); setPhase('review'); return 0; }
-        return p-1;
-      });
-    },1000);
+    if (!examDeadlineRef.current) {
+      examDeadlineRef.current = Date.now() + totalTimeLeft * 1000;
+    }
+    if (!runtimeActive) return;
+    const update = () => {
+      if (!examDeadlineRef.current) return;
+      const next = Math.max(0, Math.ceil((examDeadlineRef.current - Date.now()) / 1000));
+      setTotalTimeLeft(next);
+      if (next === 0 && phase === 'quiz') setPhase('review');
+    };
+    update();
+    timerRef.current = setInterval(update,1000);
     return ()=>{ if(timerRef.current) clearInterval(timerRef.current); };
-  },[phase]);
+  },[phase, runtimeActive]);
 
   useEffect(() => {
     if (phase !== 'countdown') {
@@ -610,29 +621,32 @@ export default function ExamScreen() {
       }
       return;
     }
-    setCountdownNum(3);
-    let current = 3;
+    if (!runtimeActive) return;
+    countdownDeadlineRef.current = Date.now() + countdownRemainingMsRef.current;
     const tick = () => {
-      if (current <= 1) {
+      const remainingMs = Math.max(0, countdownDeadlineRef.current - Date.now());
+      countdownRemainingMsRef.current = remainingMs;
+      if (remainingMs <= 0) {
         setPhase('quiz');
         countdownTimerRef.current = null;
         return;
       }
-      current -= 1;
-      setCountdownNum(current);
-      countdownTimerRef.current = setTimeout(tick, 650);
+      setCountdownNum(Math.max(1, Math.ceil(remainingMs / 650)));
+      const untilNextStep = remainingMs % 650 || 650;
+      countdownTimerRef.current = setTimeout(tick, untilNextStep);
     };
-    countdownTimerRef.current = setTimeout(tick, 650);
+    tick();
     return () => {
+      countdownRemainingMsRef.current = Math.max(0, countdownDeadlineRef.current - Date.now());
       if (countdownTimerRef.current) {
         clearTimeout(countdownTimerRef.current);
         countdownTimerRef.current = null;
       }
     };
-  }, [phase]);
+  }, [phase, runtimeActive]);
 
   useEffect(() => {
-    if (phase !== 'countdown') return;
+    if (phase !== 'countdown' || !runtimeActive) return;
     countdownAnim.setValue(0.9);
     Animated.spring(countdownAnim, {
       toValue: 1,
@@ -640,7 +654,8 @@ export default function ExamScreen() {
       friction: 7,
       tension: 140,
     }).start();
-  }, [countdownNum, phase, countdownAnim]);
+    return () => countdownAnim.stopAnimation();
+  }, [countdownNum, phase, countdownAnim, runtimeActive]);
 
   const { flashKey, flash } = useWordFlash();
 
@@ -703,6 +718,8 @@ export default function ExamScreen() {
       setChoices(Array(questions.length).fill(null));
       setFlagged(Array(questions.length).fill(false));
       setTotalTimeLeft(TOTAL_EXAM_SECONDS);
+      examDeadlineRef.current = Date.now() + TOTAL_EXAM_SECONDS * 1000;
+      countdownRemainingMsRef.current = 3 * 650;
       setPhase('countdown');
     } finally {
       // Сбрасываем не сразу — даём React закоммитить переход фазы; при failure

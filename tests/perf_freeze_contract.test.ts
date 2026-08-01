@@ -135,6 +135,16 @@ describe('perf freeze contract', () => {
     expect(read('hooks/use_runtime_active.ts')).toContain('ownerVisible');
   });
 
+  it('binds Friends and Settings network ownership to named runtime owners, not retired tab positions', () => {
+    const friends = read('app/(tabs)/friends.tsx');
+    expect(friends).toContain("runtimeOwnerId === 'friends'");
+    expect(friends).not.toContain('const friendsTabVisible = activeIdx === 3;');
+
+    const settings = read('app/(tabs)/settings.tsx');
+    expect(settings).toContain("runtimeOwnerId === 'settings'");
+    expect(settings).not.toContain('const SETTINGS_TAB_IDX = 4;');
+  });
+
   it('gates per-second timers in tab screens by real tab visibility', () => {
     // setInterval на невидимом табе = до 60 пробуждений JS-потока в минуту
     // впустую. Гвард обязан учитывать runtimeOwnerId, а не только AppState.
@@ -147,6 +157,38 @@ describe('perf freeze contract', () => {
       if (!source.includes('runtimeOwnerId')) offenders.push(rel);
     }
     expect(offenders).toEqual([]);
+  });
+
+  it('pauses countdown and refresh timers after their push screen loses foreground ownership', () => {
+    // freezeOnBlur stops rendering only; a JS interval survives unless the
+    // screen itself passes foreground ownership to the timer.  These screens
+    // stay on the native stack while users browse elsewhere.
+    const tournamentSeason = read('app/tournament_season.tsx');
+    expect(tournamentSeason).toContain("import { useRuntimeActive } from '../hooks/use_runtime_active'");
+    expect(tournamentSeason).toContain('const tournamentSeasonRuntimeActive = useRuntimeActive();');
+    expect(tournamentSeason).toContain('tournamentSeasonRuntimeActive,');
+
+    const shardsShop = read('app/shards_shop.tsx');
+    expect(shardsShop).toContain("import { useRuntimeActive } from '../hooks/use_runtime_active'");
+    expect(shardsShop).toContain('const shardsShopRuntimeActive = useRuntimeActive();');
+    const trialRefreshEffectStart = shardsShop.indexOf('if (!shardsShopRuntimeActive || packTrialHours == null || packTrialHours <= 0) return;');
+    const trialRefreshEffect = shardsShop.slice(
+      trialRefreshEffectStart,
+      shardsShop.indexOf("useEffect(() => {\n    const sub = onAppEvent('pack_trial_gift_set'", trialRefreshEffectStart),
+    );
+    expect(trialRefreshEffect).toContain('if (!shardsShopRuntimeActive || packTrialHours == null || packTrialHours <= 0) return;');
+    expect(trialRefreshEffect).toContain('[packTrialHours, refreshPackTrial, shardsShopRuntimeActive]');
+  });
+
+  it('coalesces Home refresh events while another tab owns the runtime', () => {
+    const home = read('app/(tabs)/home.tsx');
+    expect(home).toContain('const homeRuntimeActiveRef = useRef(homeRuntimeActive);');
+    expect(home).toContain('const homeDataDirtyRef = useRef(false);');
+    expect(home).toContain('const requestHomeDataRefresh = () => {');
+    expect(home).toContain('if (!homeRuntimeActiveRef.current) {');
+    expect(home).toContain('homeDataDirtyRef.current = true;');
+    expect(home).toContain("DeviceEventEmitter.addListener('xp_changed', requestHomeDataRefresh)");
+    expect(home).toContain('if (!homeRuntimeActive || !homeDataDirtyRef.current) return;');
   });
 
   it('gates firestore subscriptions in tab screens by real tab visibility', () => {

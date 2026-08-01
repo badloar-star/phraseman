@@ -15,6 +15,11 @@ import {
   tournamentPot,
   type TournamentEconomyConfig,
 } from './tournament_economy';
+import {
+  isOwnerApprovedTournamentMode,
+  type OwnerApprovedTournamentMode,
+} from './tournament_mode_contract';
+import { REDDIT_BOT_NAMES } from './tournament_reddit_bot_names';
 
 // ── Коллекции ───────────────────────────────────────────────────────────────
 
@@ -31,6 +36,9 @@ export const TOURNAMENT_TICKETS_DOC = 'tickets';
 export const TOURNAMENT_REWARD_CLAIMS_SUBCOLLECTION = 'reward_claims';
 /** Server-only tournament receipts. Unlike legacy reward_claims, clients cannot create these. */
 export const TOURNAMENT_RECEIPTS_SUBCOLLECTION = 'tournament_receipts';
+export const TOURNAMENT_PRIVATE_STATE_COLLECTION = 'tournamentPrivateState';
+export const TOURNAMENT_POOL_BARRIER_DOC = 'task_pool_generation_v1';
+export const TOURNAMENT_POOL_BARRIER_KIND = 'tournament_task_pool_barrier_v1';
 
 // ── Размеры и лимиты (§3, §11 cost-контролы) ────────────────────────────────
 
@@ -77,7 +85,7 @@ export const TOURNAMENT_ENTRY_WINDOW_MS = 30 * 60 * 1000;
  * Окно жёсткое: новые живые его НЕ продлевают (решение владельца), иначе
  * время ожидания стало бы непредсказуемым.
  */
-export const TOURNAMENT_ROOM_GATHER_MS = 30 * 1000;
+export const TOURNAMENT_ROOM_GATHER_MS = 45 * 1000;
 
 /**
  * Сколько длится добор ботами после окна ожидания.
@@ -109,13 +117,25 @@ export const TOURNAMENT_BOT_JOIN_SPREAD_MAX_MS = 30 * 1000;
  * мёртвой — но и забивать её ботами сразу нельзя, иначе живым не останется
  * мест. Пять из шестнадцати — комната ожила, одиннадцать мест ещё свободны.
  */
-export const TOURNAMENT_BOT_FIRST_WAVE = 5;
+// Compatibility export for older callers. The current contract reserves no bot
+// before the full human-only gather window has elapsed.
+export const TOURNAMENT_BOT_FIRST_WAVE = 0;
 export const TOURNAMENT_CANCEL_COMPENSATION_GEMS = 3; // «за ожидание» (§2)
-export const TOURNAMENT_TABLE_DISPLAY_MS = 12 * 1000;
+export const TOURNAMENT_TABLE_DISPLAY_MS = 5 * 1000;
+/** Short result reveal before an all-real-submitted round may advance early. */
+export const TOURNAMENT_EARLY_ADVANCE_DELAY_MS = 2 * 1000;
+/** Golden Plan [6]/[122]: network-only receive grace; no speed benefit is earned inside it. */
+export const TOURNAMENT_TASK_SUBMISSION_GRACE_MS = 1_500;
+/** Server-authored prompt-only phase before interaction becomes eligible. */
+export const TOURNAMENT_TASK_READING_MS = 1_500;
+/** Server-authored authoritative feedback phase before the next task begins. */
+export const TOURNAMENT_TASK_FEEDBACK_MS = 1_500;
 export const TOURNAMENT_FINAL_DISPLAY_MS = 5 * 1000;
 export const TOURNAMENT_RESULTS_DISPLAY_MS = 5 * 1000;
 export const TOURNAMENT_REWARD_CLAIM_WINDOW_MS = 24 * 60 * 60 * 1000;
 export const TOURNAMENT_ROOM_TTL_MS = 7 * 24 * 60 * 60 * 1000;
+/** Server-owned 3-2-1 boundary; task time begins only after it elapses. */
+export const TOURNAMENT_ROUND_INTRO_MS = 3_000;
 
 /**
  * Задержка старта дев-комнаты (кнопка владельца «сыграть с ботами сейчас»).
@@ -229,7 +249,9 @@ export function tournamentRoomAdmissionMode(
   room: Pick<TournamentRoomDoc, 'roomId' | 'slotId' | 'ticketsRequired' | 'testMode' | 'economySnapshot'>,
   config: TournamentScheduleConfig,
 ): TournamentRoomAdmissionMode | null {
-  if (isTournamentTestRoom(room)) return config.testingEnabled === true ? 'test' : null;
+  // Test rooms are authenticated, immutable zero-economy rooms. Their access
+  // does not depend on the production schedule or an admin runtime switch.
+  if (isTournamentTestRoom(room)) return 'test';
   // Historical/forged zero-price scheduled snapshots are quarantined. New paid
   // rooms are pinned to three at creation, so admitting one would revive the
   // free-reward farming path this boundary closes.
@@ -438,14 +460,23 @@ export type TournamentPlayer = {
   avatar: string;
   color: string;
   score: number;
+  /** Final authoritative competition place, published only after finalization. */
+  resultPlace?: number;
+  /** Final authoritative gem payout, published only after finalization. */
+  rewardGems?: number;
   /** Серия правильных ответов без ошибок (для стрик-множителя). */
   streak: number;
+  /** Серия неверных ответов без правильного — переносится между раундами для камбэка. */
+  missStreak?: number;
   /** Билет возвращён при отмене (только живые). */
   refunded?: boolean;
   /** Immutable join provenance used for exact cancellation refunds. */
   entry?: TournamentEntryProvenance;
   /** Snapshot of the seeded bot profile; avoids mutable profile reads mid-room. */
   botWinRate?: number;
+  /** Server-authored active-play forfeit. The player remains in standings and is always ranked last. */
+  forfeitedAtMs?: number;
+  forfeitState?: Extract<TournamentState, `round${number}` | `table${number}`>;
   /**
    * Когда игрок «появляется» в лобби. Живому — момент реального входа, боту —
    * рассчитанное время из волны (см. planBotJoinTimes).
@@ -471,6 +502,8 @@ export type TournamentRoundResult = {
   total: number;
   roundScore: number;
   submittedAtMs: number;
+  /** One-way operation identity retained for exact replay without exposing the client key. */
+  submissionIdempotencyKeyHash?: string;
   /**
    * Разбор ответов игрока — для экрана «что я ответил» после турнира.
    * зачем: раньше хранился только счёт, и разобрать ошибки было негде.
@@ -482,11 +515,21 @@ export type TournamentRoundResult = {
     correct: boolean;
     /** Что выбрал/собрал игрок — как есть, для показа. */
     given?: unknown;
+    /** This task had no timely server receipt when the round deadline finalized it. */
+    timedOut?: boolean;
+    /** Server-authoritative place among correct receipts for this exact task. */
+    answerRank?: number;
+    /** Mode-specific deduction captured so later receipt-rank reconciliation is exact. */
+    penaltyStars?: number;
+    /** Stars awarded for this task after rank and penalty. */
+    starsAwarded?: number;
   }>;
   /** Compatible lifecycle marker; timedOut remains for older room documents. */
   submissionStatus?: 'submitted' | 'timed_out' | 'simulated';
   /** Streak snapshot restored when an on-time submit races a timeout write. */
   streakBefore?: number;
+  /** Miss-streak snapshot restored when an on-time submit races a timeout write. */
+  missStreakBefore?: number;
   /** Original round clock anchor retained across the following table/final state. */
   roundStartedAtMs?: number;
   timedOut?: boolean;
@@ -498,16 +541,50 @@ export type TournamentRound = {
   taskIds: string[];
   /** Safe client payload; answer keys and voice references are never present. */
   tasks?: TournamentPublicTask[];
+  /** Absolute server-authored windows for the active/past round, in taskIds order. */
+  taskSchedule?: TournamentTaskTiming[];
   results: Record<string, TournamentRoundResult>;
+};
+
+export type TournamentTaskTiming = {
+  taskId: string;
+  taskIndex: number;
+  durationMs: number;
+  startsAtMs: number;
+  /** Shared server-authored intro boundary for this round. */
+  introEndsAtMs?: number;
+  /** Interaction is disabled before this absolute server time. */
+  readingEndsAtMs?: number;
+  /** Last gameplay millisecond; receive grace after this never earns speed. */
+  answerDeadlineAtMs?: number;
+  /** Feedback begins only after the network-only receive grace has elapsed. */
+  feedbackStartsAtMs?: number;
+  /** End of feedback and start of the following task. */
+  feedbackEndsAtMs?: number;
+  /** Compatibility alias for feedbackEndsAtMs / the complete task cycle end. */
+  deadlineAtMs: number;
+};
+
+export type TournamentLobbyEvent = {
+  eventId: string;
+  kind: 'bot_arrival';
+  playerId: string;
+  atMs: number;
+  potDeltaGems: number;
+  potGemsAfter: number;
 };
 
 export type TournamentRoomDoc = {
   /** Immutable economy terms captured when the room is created. */
   economySnapshot?: TournamentEconomyConfig;
+  /** Immutable task-pool generation used to select every task referenced by this room. */
+  taskPoolGeneration?: string;
   /** Immutable on-demand testing mode. Only legacy zero-economy now rooms may omit it. */
   testMode?: boolean;
   /** Банк турнира в жемчужинах: сумма взносов всех участников. */
   potGems?: number;
+  /** Bounded server-authored lobby timeline used to animate funded bot arrivals. */
+  lobbyEvents?: TournamentLobbyEvent[];
   /**
    * Фактические выплаты призёрам по местам (1-е, 2-е, 3-е).
    *
@@ -531,6 +608,8 @@ export type TournamentRoomDoc = {
   version: number;
   createdAtMs: number;
   stateStartedAtMs?: number;
+  /** Server-authored end of the active round intro; absent outside round states. */
+  introEndsAtMs?: number;
   stateDeadlineAtMs?: number;
   /** Operational scheduler retry gate; never changes the authoritative state deadline. */
   lifecycleRetryAtMs?: number;
@@ -544,6 +623,10 @@ export type TournamentRoomDoc = {
   cancelReason?: string;
   cancellationReceiptId?: string;
   finalizationReceiptId?: string;
+  /** Immutable finalization anchor for all post-game retention windows. */
+  finalizedAtMs?: number;
+  reviewRetentionUntilMs?: number;
+  privateEvidenceRetentionUntilMs?: number;
 };
 
 // ── Пул заданий (§6) ────────────────────────────────────────────────────────
@@ -553,6 +636,12 @@ export type TournamentTaskExplanation = {
   ruleNote: string;
   /** A natural English usage example with its Russian meaning. */
   example: string;
+  /**
+   * Explanation for every answer position. The correct position is an empty
+   * string; every distractor gets its own non-empty trap reason. Optional only
+   * so rooms frozen before the full-review rollout can still settle honestly.
+   */
+  wrongOptionReasons?: string[];
 };
 
 export type TournamentTask = {
@@ -598,7 +687,6 @@ export type TournamentPublicTask = {
    * Клиент сравнивает с отпечатком СВОЕГО ответа и мгновенно красит кнопку;
    * сам ответ по отпечатку не восстановить. См. answerFingerprint().
    */
-  answerFingerprints?: string[];
 };
 
 type TaskValidation = { ok: true; kind: TournamentTaskKind } | { ok: false; reason: string };
@@ -640,6 +728,12 @@ function boundedString(value: unknown, maxBytes: number): value is string {
   return nonEmptyString(value) && Buffer.byteLength(value as string, 'utf8') <= maxBytes;
 }
 
+const SINGLE_LEXICAL_WORD = /^\p{L}[\p{L}\p{M}]*(?:['’\-]\p{L}[\p{L}\p{M}]*)*$/u;
+
+function isSingleLexicalWord(value: unknown): value is string {
+  return typeof value === 'string' && value === value.trim() && SINGLE_LEXICAL_WORD.test(value);
+}
+
 function boundedStringArray(
   value: unknown,
   options: { maxItems: number; maxItemBytes: number; allowEmpty?: boolean },
@@ -653,6 +747,32 @@ function boundedStringArray(
 function hasOnlyKeys(value: Record<string, unknown>, allowed: readonly string[]): boolean {
   const allowlist = new Set(allowed);
   return Object.keys(value).every((key) => allowlist.has(key));
+}
+
+function hasExplanationShape(value: unknown): value is TournamentTaskExplanation {
+  return isRecord(value)
+    && boundedString(value.ruleNote, TOURNAMENT_TASK_LIMITS.explanationBytes)
+    && boundedString(value.example, TOURNAMENT_TASK_LIMITS.explanationBytes)
+    && (value.wrongOptionReasons === undefined || (Array.isArray(value.wrongOptionReasons)
+      && value.wrongOptionReasons.length <= TOURNAMENT_TASK_LIMITS.maxTimeattackOptions
+      && value.wrongOptionReasons.every((reason) => typeof reason === 'string'
+        && Buffer.byteLength(reason, 'utf8') <= TOURNAMENT_TASK_LIMITS.explanationBytes)))
+    && hasOnlyKeys(value, ['ruleNote', 'example', 'wrongOptionReasons']);
+}
+
+/** Full post-tournament explanation; legacy rooms remain readable without it. */
+function hasFullExplanationForOptions(
+  explanation: unknown,
+  options: readonly unknown[],
+  correctIndex: number | null,
+): boolean {
+  if (!hasExplanationShape(explanation) || !Array.isArray(explanation.wrongOptionReasons)
+    || explanation.wrongOptionReasons.length !== options.length) return false;
+  return explanation.wrongOptionReasons.every((reason, index) => (
+    index === correctIndex
+      ? reason === ''
+      : boundedString(reason, TOURNAMENT_TASK_LIMITS.explanationBytes)
+  ));
 }
 
 function taskKind(task: TournamentTask): TournamentTaskKind {
@@ -690,10 +810,7 @@ export function validateTournamentTask(task: TournamentTask): TaskValidation {
   if (!Number.isInteger(task.difficulty) || task.difficulty < 1 || task.difficulty > 3) {
     return { ok: false, reason: 'task_difficulty_invalid' };
   }
-  if (task.explanation !== undefined && (!isRecord(task.explanation)
-    || !boundedString(task.explanation.ruleNote, TOURNAMENT_TASK_LIMITS.explanationBytes)
-    || !boundedString(task.explanation.example, TOURNAMENT_TASK_LIMITS.explanationBytes)
-    || !hasOnlyKeys(task.explanation, ['ruleNote', 'example']))) {
+  if (task.explanation !== undefined && !hasExplanationShape(task.explanation)) {
     return { ok: false, reason: 'task_explanation_invalid' };
   }
   const kind = taskKind(task);
@@ -712,7 +829,10 @@ export function validateTournamentTask(task: TournamentTask): TaskValidation {
     // Услышал → выбрал. Текст фразы В ОТВЕТЕ НЕ УЧАСТВУЕТ, но хранится в
     // секрете: он нужен стражу свежести (текст поменяли → озвучка протухла)
     // и экрану разбора после турнира.
-    if (!hasOnlyKeys(task.payload, ['audioUri', 'phrase', 'options', 'correctIndex'])) {
+    const listenPayloadKeys = task.mode === 'sound_contrast'
+      ? ['audioUri', 'phrase', 'options', 'correctIndex', 'contrast']
+      : ['audioUri', 'phrase', 'options', 'correctIndex'];
+    if (!hasOnlyKeys(task.payload, listenPayloadKeys)) {
       return { ok: false, reason: 'task_payload_fields_invalid' };
     }
     const listenOptions = task.payload.options;
@@ -724,7 +844,9 @@ export function validateTournamentTask(task: TournamentTask): TaskValidation {
       })
       // 2 варианта — «Пары звуков» (ship/sheep), 3-4 — «Выбор на слух».
       || listenOptions.length < 2 || !Number.isInteger(listenIndex)
-      || Number(listenIndex) < 0 || Number(listenIndex) >= listenOptions.length) {
+      || Number(listenIndex) < 0 || Number(listenIndex) >= listenOptions.length
+      || (task.payload.contrast !== undefined
+        && !boundedString(task.payload.contrast, TOURNAMENT_TASK_LIMITS.optionBytes))) {
       return { ok: false, reason: 'listen_contract_invalid' };
     }
     return { ok: true, kind };
@@ -750,7 +872,7 @@ export function validateTournamentTask(task: TournamentTask): TaskValidation {
     return { ok: true, kind };
   }
   if (kind === 'translate') {
-    if (!hasOnlyKeys(task.payload, ['phrase', 'wordBank', 'correctTokens', 'correctAnswer'])) {
+    if (!hasOnlyKeys(task.payload, ['phrase', 'wordBank', 'correctTokenCount', 'correctTokens', 'correctAnswer'])) {
       return { ok: false, reason: 'task_payload_fields_invalid' };
     }
     const correctTokens = boundedStringArray(task.payload.correctTokens, {
@@ -758,12 +880,16 @@ export function validateTournamentTask(task: TournamentTask): TaskValidation {
       maxItemBytes: TOURNAMENT_TASK_LIMITS.tokenBytes,
     });
     const correctAnswer = boundedString(task.payload.correctAnswer, TOURNAMENT_TASK_LIMITS.answerBytes);
+    const correctTokenCount = task.payload.correctTokenCount;
+    const expectedTokenCount = Array.isArray(task.payload.correctTokens) ? task.payload.correctTokens.length : 0;
     if (!boundedString(task.payload.phrase, TOURNAMENT_TASK_LIMITS.phraseBytes)
       || !boundedStringArray(task.payload.wordBank, {
         maxItems: TOURNAMENT_TASK_LIMITS.maxWordBankItems,
         maxItemBytes: TOURNAMENT_TASK_LIMITS.tokenBytes,
       })
-      || (!correctTokens && !correctAnswer)) {
+      || (!correctTokens && !correctAnswer)
+      || (correctTokenCount !== undefined && (!Number.isInteger(correctTokenCount)
+        || !correctTokens || Number(correctTokenCount) !== expectedTokenCount))) {
       return { ok: false, reason: 'translate_contract_invalid' };
     }
     return { ok: true, kind };
@@ -773,7 +899,10 @@ export function validateTournamentTask(task: TournamentTask): TaskValidation {
   // пар против списка вопросов), но контракт данных и проверка ответов общие,
   // поэтому валидация переиспользуется, а не дублируется.
   if (kind === 'timeattack' || kind === 'match') {
-    if (!hasOnlyKeys(task.payload, ['prompt', 'items'])) {
+    const allowedPayloadKeys = kind === 'match'
+      ? ['prompt', 'items', 'rightOptions']
+      : ['prompt', 'items'];
+    if (!hasOnlyKeys(task.payload, allowedPayloadKeys)) {
       return { ok: false, reason: 'task_payload_fields_invalid' };
     }
     const items = task.payload.items;
@@ -781,7 +910,7 @@ export function validateTournamentTask(task: TournamentTask): TaskValidation {
       || !Array.isArray(items) || items.length === 0
       || items.length > TOURNAMENT_TASK_LIMITS.maxTimeattackItems
       || items.some((item) => {
-      if (!isRecord(item) || !hasOnlyKeys(item, ['prompt', 'options', 'correctIndex'])
+      if (!isRecord(item) || !hasOnlyKeys(item, ['prompt', 'options', 'correctIndex', 'explanation'])
         || !boundedString(item.prompt, TOURNAMENT_TASK_LIMITS.promptBytes)
         || !boundedStringArray(item.options, {
           maxItems: TOURNAMENT_TASK_LIMITS.maxTimeattackOptions,
@@ -789,8 +918,14 @@ export function validateTournamentTask(task: TournamentTask): TaskValidation {
         })
         || item.options.length < 2 || !Number.isInteger(item.correctIndex)) return true;
       const index = Number(item.correctIndex);
-      return index < 0 || index >= item.options.length;
+      return index < 0 || index >= item.options.length
+        || (item.explanation !== undefined && !hasExplanationShape(item.explanation));
     })) return { ok: false, reason: 'timeattack_contract_invalid' };
+    if (kind === 'match' && task.payload.rightOptions !== undefined
+      && !boundedStringArray(task.payload.rightOptions, {
+        maxItems: TOURNAMENT_TASK_LIMITS.maxTimeattackItems,
+        maxItemBytes: TOURNAMENT_TASK_LIMITS.optionBytes,
+      })) return { ok: false, reason: 'timeattack_contract_invalid' };
     return { ok: true, kind };
   }
   if (!hasOnlyKeys(task.payload, ['phrase', 'options', 'correctIndex', 'correctAnswer'])) {
@@ -810,6 +945,102 @@ export function validateTournamentTask(task: TournamentTask): TaskValidation {
   return { ok: true, kind };
 }
 
+function hasStrictSpeedMatchFieldContract(task: TournamentTask): boolean {
+  if (!isRecord(task.payload) || !Array.isArray(task.payload.rightOptions)
+    || !Array.isArray(task.payload.items)) return false;
+  const rightOptions = task.payload.rightOptions;
+  const items = task.payload.items;
+  if (rightOptions.length !== 6 || items.length !== 6
+    || !boundedStringArray(rightOptions, {
+      maxItems: TOURNAMENT_TASK_LIMITS.maxTimeattackItems,
+      maxItemBytes: TOURNAMENT_TASK_LIMITS.optionBytes,
+    }) || !rightOptions.every((value) => isSingleLexicalWord(value))) return false;
+  const normalized = rightOptions.map((value) => value.trim().toLocaleLowerCase('ru'));
+  if (new Set(normalized).size !== normalized.length) return false;
+  const correctIndexes = new Set<number>();
+  const prompts = new Set<string>();
+  for (const item of items) {
+    if (!isRecord(item) || !Array.isArray(item.options)
+      || item.options.length !== rightOptions.length
+      || !item.options.every((option, index) => option === rightOptions[index])
+      || !isSingleLexicalWord(item.prompt)
+      || !Number.isInteger(item.correctIndex)) return false;
+    prompts.add(item.prompt.trim().toLocaleLowerCase('en'));
+    const correctIndex = Number(item.correctIndex);
+    if (correctIndex < 0 || correctIndex >= rightOptions.length) return false;
+    correctIndexes.add(correctIndex);
+  }
+  return correctIndexes.size === rightOptions.length && prompts.size === items.length;
+}
+
+/** A phrase bank must contain every answer token (including duplicates) plus at most one trap. */
+function hasStrictTranslateBuildFieldContract(task: TournamentTask): boolean {
+  if (!Array.isArray(task.payload.correctTokens) || !Array.isArray(task.payload.wordBank)) return false;
+  const correctTokens = task.payload.correctTokens;
+  const wordBank = task.payload.wordBank;
+  if (!correctTokens.every((token) => typeof token === 'string' && token.trim())
+    || !wordBank.every((token) => typeof token === 'string' && token.trim())) return false;
+  const remaining = new Map<string, number>();
+  for (const rawToken of correctTokens) {
+    const token = rawToken.trim();
+    remaining.set(token, (remaining.get(token) ?? 0) + 1);
+  }
+  let traps = 0;
+  for (const rawToken of wordBank) {
+    const token = rawToken.trim();
+    const required = remaining.get(token) ?? 0;
+    if (required > 0) remaining.set(token, required - 1);
+    else traps += 1;
+  }
+  return traps <= 1 && Array.from(remaining.values()).every((count) => count === 0);
+}
+
+/**
+ * Compatibility-aware boundary for newly assembled rooms.
+ *
+ * validateTournamentTask deliberately remains able to parse stored legacy
+ * tasks so an already-running room can still settle. This stricter predicate
+ * is the only one used for new room selection and admin publication.
+ */
+export function validateTournamentTaskForNewRoom(task: TournamentTask): TaskValidation {
+  const validation = validateTournamentTask(task);
+  if (!validation.ok) return validation;
+  if (!isOwnerApprovedTournamentMode(task.mode) || task.isVoice === true) {
+    return { ok: false, reason: 'task_mode_retired' };
+  }
+  if (task.mode === 'speed_match' && !hasStrictSpeedMatchFieldContract(task)) {
+    return { ok: false, reason: 'speed_match_field_contract_invalid' };
+  }
+  // Legacy rooms may still settle with the historical payload, but every task
+  // selected for a newly assembled room must tell the client exactly how many
+  // tiles form the answer. Otherwise traps can make phrase construction
+  // impossible to finish without leaking the answer.
+  if (task.mode === 'translate_build'
+    && (!Number.isInteger(task.payload.correctTokenCount)
+      || !Array.isArray(task.payload.correctTokens)
+      || Number(task.payload.correctTokenCount) !== task.payload.correctTokens.length
+      || !hasStrictTranslateBuildFieldContract(task))) {
+    return { ok: false, reason: 'translate_token_count_required' };
+  }
+  const kind = validation.kind;
+  const directOptions = (kind === 'choice' || kind === 'listen') && Array.isArray(task.payload.options)
+    ? task.payload.options : [];
+  const directCorrectIndex = (kind === 'choice' || kind === 'listen')
+    && Number.isInteger(task.payload.correctIndex)
+    ? Number(task.payload.correctIndex) : null;
+  if (!hasFullExplanationForOptions(task.explanation, directOptions, directCorrectIndex)) {
+    return { ok: false, reason: 'task_full_explanation_required' };
+  }
+  if ((kind === 'timeattack' || kind === 'match') && Array.isArray(task.payload.items)
+    && !task.payload.items.every((item) => isRecord(item)
+      && Array.isArray(item.options)
+      && Number.isInteger(item.correctIndex)
+      && hasFullExplanationForOptions(item.explanation, item.options, Number(item.correctIndex)))) {
+    return { ok: false, reason: 'task_full_explanation_required' };
+  }
+  return validation;
+}
+
 function publicPayloadForTask(task: TournamentTask, kind: TournamentTaskKind): Record<string, unknown> {
   if (kind === 'choice') {
     return {
@@ -818,14 +1049,31 @@ function publicPayloadForTask(task: TournamentTask, kind: TournamentTaskKind): R
     };
   }
   if (kind === 'translate') {
+    const answerTokenCount = Array.isArray(task.payload.correctTokens)
+      ? task.payload.correctTokens.length
+      : String(task.payload.correctAnswer ?? '').trim().split(/\s+/).filter(Boolean).length;
     return {
       phrase: String(task.payload.phrase),
       wordBank: (task.payload.wordBank as string[]).slice(),
+      correctTokenCount: answerTokenCount,
     };
   }
-  if (kind === 'timeattack' || kind === 'match') {
+  if (kind === 'timeattack') {
     return {
       prompt: String(task.payload.prompt),
+      items: (task.payload.items as Record<string, unknown>[]).map((item) => ({
+        prompt: String(item.prompt),
+        options: (item.options as string[]).slice(),
+      })),
+    };
+  }
+  if (kind === 'match') {
+    const rightOptions = Array.isArray(task.payload.rightOptions)
+      ? (task.payload.rightOptions as string[]).slice()
+      : undefined;
+    return {
+      prompt: String(task.payload.prompt),
+      ...(rightOptions ? { rightOptions } : {}),
       items: (task.payload.items as Record<string, unknown>[]).map((item) => ({
         prompt: String(item.prompt),
         options: (item.options as string[]).slice(),
@@ -837,6 +1085,9 @@ function publicPayloadForTask(task: TournamentTask, kind: TournamentTaskKind): R
     return {
       audioUri: String(task.payload.audioUri),
       options: (task.payload.options as string[]).slice(),
+      ...(task.mode === 'sound_contrast' && typeof task.payload.contrast === 'string'
+        ? { contrast: task.payload.contrast }
+        : {}),
     };
   }
   if (kind === 'dictate') {
@@ -861,10 +1112,6 @@ function publicPayloadForTask(task: TournamentTask, kind: TournamentTaskKind): R
  * нельзя, а соль по комнате не даёт переиспользовать отпечатки в другом
  * турнире. Очки всё равно считает сервер: подделка хэша ничего не даёт.
  */
-export function answerFingerprint(roomId: string, taskId: string, answer: string): string {
-  return tournamentHash32(`${roomId}|${taskId}|${answer}`).toString(36);
-}
-
 /** Канонический вид ответа: одинаковый на сервере и на клиенте. */
 export function canonicalAnswerValue(value: unknown): string {
   if (Array.isArray(value)) return value.map((item) => String(item).trim().toLowerCase()).join('');
@@ -872,28 +1119,10 @@ export function canonicalAnswerValue(value: unknown): string {
 }
 
 /** Отпечатки правильных ответов задания (по подвопросам для timeattack). */
-function answerFingerprintsForTask(
-  task: TournamentTask,
-  kind: TournamentTaskKind,
-  roomId: string,
-): string[] {
-  const fp = (value: unknown) => answerFingerprint(roomId, task.taskId, canonicalAnswerValue(value));
-  if (kind === 'choice' || kind === 'listen') return [fp(task.payload.correctIndex)];
-  if (kind === 'translate' || kind === 'dictate') {
-    const tokens = task.payload.correctTokens as string[] | undefined;
-    return [fp(tokens ?? task.payload.correctAnswer)];
-  }
-  if (kind === 'timeattack' || kind === 'match') {
-    const items = (task.payload.items as Record<string, unknown>[]) ?? [];
-    return items.map((item) => fp(item.correctIndex));
-  }
-  return [];
-}
-
 export function toPublicTournamentTask(
   task: TournamentTask,
   // roomId нужен как соль отпечатков; без него отпечатки не отдаются вовсе.
-  roomId?: string,
+  _roomId?: string,
 ): TournamentPublicTask | null {
   const validation = validateTournamentTask(task);
   if (!validation.ok) return null;
@@ -904,9 +1133,6 @@ export function toPublicTournamentTask(
     isVoice: task.isVoice,
     difficulty: task.difficulty,
     payload: publicPayloadForTask(task, validation.kind),
-    ...(roomId
-      ? { answerFingerprints: answerFingerprintsForTask(task, validation.kind, roomId) }
-      : {}),
   };
 }
 
@@ -1022,6 +1248,58 @@ export function verifyTournamentAnswer(task: TournamentTask, answer: unknown): b
     && selected.every((index, itemIndex) => Number.isInteger(index) && index === items[itemIndex].correctIndex);
 }
 
+export type SpeedMatchAttemptProgress = {
+  matchedIndexes: number[];
+  triedIndexes: number[][];
+  wrongAttempts: number;
+};
+
+/**
+ * Pure server-side transition for one speed-match tap. Replaying the same tap
+ * is idempotent, while every distinct wrong choice is permanently journaled.
+ */
+export function applySpeedMatchAttempt(
+  task: TournamentTask,
+  current: SpeedMatchAttemptProgress | undefined,
+  pairIndex: number,
+  selectedIndex: number,
+): { correct: boolean; completed: boolean; progress: SpeedMatchAttemptProgress } {
+  const validation = validateTournamentTaskForNewRoom(task);
+  const items = Array.isArray(task.payload.items) ? task.payload.items as Record<string, unknown>[] : [];
+  if (!validation.ok || validation.kind !== 'match'
+    || !Number.isInteger(pairIndex) || pairIndex < 0 || pairIndex >= items.length
+    || !Number.isInteger(selectedIndex) || selectedIndex < 0 || selectedIndex >= items.length) {
+    throw new Error('speed_match_attempt_invalid');
+  }
+
+  const matchedIndexes = Array.from({ length: items.length }, (_, index) => (
+    Number.isInteger(current?.matchedIndexes?.[index]) ? current!.matchedIndexes[index] : -1
+  ));
+  const triedIndexes = Array.from({ length: items.length }, (_, index) => (
+    Array.isArray(current?.triedIndexes?.[index])
+      ? Array.from(new Set(current!.triedIndexes[index].filter((value) => Number.isInteger(value) && value >= 0 && value < items.length)))
+      : []
+  ));
+  let wrongAttempts = Math.max(0, Math.trunc(Number(current?.wrongAttempts ?? 0)));
+  const expectedIndex = Number(items[pairIndex].correctIndex);
+  const alreadyMatched = matchedIndexes[pairIndex] === expectedIndex;
+  const correct = alreadyMatched || selectedIndex === expectedIndex;
+
+  if (correct) {
+    matchedIndexes[pairIndex] = expectedIndex;
+  } else if (!triedIndexes[pairIndex].includes(selectedIndex)) {
+    triedIndexes[pairIndex].push(selectedIndex);
+    wrongAttempts += 1;
+  }
+
+  const progress = { matchedIndexes, triedIndexes, wrongAttempts };
+  return {
+    correct,
+    completed: matchedIndexes.every((value, index) => value === Number(items[index].correctIndex)),
+    progress,
+  };
+}
+
 export function tournamentFeatureGates(): Record<string, { enabled: false; reason: string }> {
   return {
     voiceScoring: { enabled: false, reason: 'verified_voice_evidence_contract_missing' },
@@ -1034,6 +1312,162 @@ export function tournamentFeatureGates(): Record<string, { enabled: false; reaso
 
 /** Чередование режимов раундов (§5): 1 и 3 — одиночный, 2 и 4 — микс. */
 export const TOURNAMENT_ROUND_MODE_KINDS = ['single', 'mix', 'single', 'mix'] as const;
+
+/**
+ * Immutable owner-approved layout for one complete tournament.
+ *
+ * Quota across all 16 fields: 4/4/3/3/2. Every four-field round contains
+ * four different modes, and the two pair fields are reserved for rounds 2
+ * and 4. Runtime percentage configuration must never override this contract.
+ */
+export const TOURNAMENT_ROUND_MODE_PLAN: readonly (
+  readonly OwnerApprovedTournamentMode[]
+)[] = Object.freeze([
+  Object.freeze(['guess_phrase', 'fill_gap', 'find_oddity', 'translate_build'] as const),
+  Object.freeze(['guess_phrase', 'fill_gap', 'find_oddity', 'speed_match'] as const),
+  Object.freeze(['guess_phrase', 'fill_gap', 'find_oddity', 'translate_build'] as const),
+  Object.freeze(['guess_phrase', 'fill_gap', 'translate_build', 'speed_match'] as const),
+]);
+
+/** Owner-approved server timing for each mode (Golden Plan decisions 98, 109-112). */
+export const TOURNAMENT_TASK_DURATION_MS = Object.freeze<Record<OwnerApprovedTournamentMode, number>>({
+  guess_phrase: 15_000,
+  fill_gap: 15_000,
+  find_oddity: 18_000,
+  translate_build: 25_000,
+  speed_match: 30_000,
+});
+
+/** Compatibility only for already-running rooms created with retired modes. */
+const LEGACY_TOURNAMENT_TASK_DURATION_MS = 15_000;
+
+export function tournamentTaskDurationMs(mode: unknown): number {
+  return isOwnerApprovedTournamentMode(mode)
+    ? TOURNAMENT_TASK_DURATION_MS[mode]
+    : LEGACY_TOURNAMENT_TASK_DURATION_MS;
+}
+
+export function tournamentRoundDurationMs(tasks: readonly Pick<TournamentTask, 'mode'>[]): number {
+  return tasks.reduce((total, task) => total + tournamentTaskDurationMs(task.mode), 0);
+}
+
+export function tournamentRoundTaskSchedule(
+  tasks: readonly Pick<TournamentTask, 'taskId' | 'mode'>[],
+  taskStartsAtMs: number,
+  introEndsAtMs?: number,
+): TournamentTaskTiming[] {
+  let startsAtMs = Math.max(0, Math.trunc(taskStartsAtMs));
+  const normalizedIntroEndsAtMs = Math.max(0, Math.trunc(introEndsAtMs ?? startsAtMs));
+  return tasks.map((task, taskIndex) => {
+    const durationMs = tournamentTaskDurationMs(task.mode);
+    const feedbackEndsAtMs = startsAtMs + durationMs;
+    const feedbackStartsAtMs = feedbackEndsAtMs - TOURNAMENT_TASK_FEEDBACK_MS;
+    const answerDeadlineAtMs = feedbackStartsAtMs - TOURNAMENT_TASK_SUBMISSION_GRACE_MS;
+    const timing = {
+      taskId: task.taskId,
+      taskIndex,
+      durationMs,
+      startsAtMs,
+      introEndsAtMs: normalizedIntroEndsAtMs,
+      readingEndsAtMs: startsAtMs + TOURNAMENT_TASK_READING_MS,
+      answerDeadlineAtMs,
+      feedbackStartsAtMs,
+      feedbackEndsAtMs,
+      deadlineAtMs: feedbackEndsAtMs,
+    };
+    if (timing.readingEndsAtMs >= timing.answerDeadlineAtMs) {
+      throw new Error('task_duration_too_short_for_phases');
+    }
+    startsAtMs = timing.feedbackEndsAtMs;
+    return timing;
+  });
+}
+
+export function tournamentRoundTimingWindow(
+  tasks: readonly Pick<TournamentTask, 'taskId' | 'mode'>[],
+  stateStartedAtMs: number,
+): { introEndsAtMs: number; stateDeadlineAtMs: number; taskSchedule: TournamentTaskTiming[] } {
+  const normalizedStateStartedAtMs = Math.max(0, Math.trunc(stateStartedAtMs));
+  const introEndsAtMs = normalizedStateStartedAtMs + TOURNAMENT_ROUND_INTRO_MS;
+  const taskSchedule = tournamentRoundTaskSchedule(tasks, introEndsAtMs, introEndsAtMs);
+  return {
+    introEndsAtMs,
+    stateDeadlineAtMs: introEndsAtMs + tournamentRoundDurationMs(tasks),
+    taskSchedule,
+  };
+}
+
+/**
+ * Enforce the immutable per-task receive windows for a modern room. Returns
+ * false only for a legacy round that predates taskSchedule, whose whole-round
+ * deadline remains the compatibility boundary.
+ */
+export function assertTournamentAnswersWithinTaskSchedule(
+  round: TournamentRound,
+  taskIds: readonly string[],
+  receivedAtMs: number,
+): boolean {
+  if (round.taskSchedule === undefined) return false;
+  const schedule = round.taskSchedule;
+  if (schedule.length !== round.taskIds.length || !Number.isFinite(receivedAtMs)) {
+    throw new Error('task_schedule_invalid');
+  }
+  const byTaskId = new Map<string, TournamentTaskTiming>();
+  for (let index = 0; index < schedule.length; index += 1) {
+    const timing = schedule[index];
+    const hasAnyPhaseField = timing && (
+      timing.readingEndsAtMs !== undefined || timing.answerDeadlineAtMs !== undefined
+      || timing.feedbackStartsAtMs !== undefined || timing.feedbackEndsAtMs !== undefined
+    );
+    const hasAllPhaseFields = timing
+      && Number.isFinite(timing.readingEndsAtMs) && Number.isFinite(timing.answerDeadlineAtMs)
+      && Number.isFinite(timing.feedbackStartsAtMs) && Number.isFinite(timing.feedbackEndsAtMs);
+    const readingEndsAtMs = Number(timing?.readingEndsAtMs);
+    const answerDeadlineAtMs = Number(timing?.answerDeadlineAtMs);
+    const feedbackStartsAtMs = Number(timing?.feedbackStartsAtMs);
+    const feedbackEndsAtMs = Number(timing?.feedbackEndsAtMs);
+    if (!timing || timing.taskId !== round.taskIds[index] || timing.taskIndex !== index
+      || !Number.isFinite(timing.startsAtMs) || !Number.isFinite(timing.deadlineAtMs)
+      || !Number.isFinite(timing.durationMs) || timing.durationMs <= 0
+      || timing.deadlineAtMs - timing.startsAtMs !== timing.durationMs
+      || (index > 0 && timing.startsAtMs !== schedule[index - 1].deadlineAtMs)
+      || (hasAnyPhaseField && !hasAllPhaseFields)
+      || (hasAllPhaseFields && (
+        readingEndsAtMs - timing.startsAtMs < 1_500
+        || readingEndsAtMs - timing.startsAtMs > 2_000
+        || answerDeadlineAtMs <= readingEndsAtMs
+        || feedbackStartsAtMs !== answerDeadlineAtMs + TOURNAMENT_TASK_SUBMISSION_GRACE_MS
+        || feedbackEndsAtMs - feedbackStartsAtMs < 1_500
+        || feedbackEndsAtMs - feedbackStartsAtMs > 2_000
+        || feedbackEndsAtMs !== timing.deadlineAtMs
+      ))
+      || byTaskId.has(timing.taskId)) {
+      throw new Error('task_schedule_invalid');
+    }
+    byTaskId.set(timing.taskId, timing);
+  }
+  const receiveTaskIds = taskIds.length > 0 ? taskIds : [round.taskIds[round.taskIds.length - 1]];
+  const seen = new Set<string>();
+  for (const taskId of receiveTaskIds) {
+    const timing = byTaskId.get(taskId);
+    if (!timing || seen.has(taskId)) throw new Error('task_schedule_invalid');
+    seen.add(taskId);
+    const hasPhases = Number.isFinite(timing.readingEndsAtMs)
+      && Number.isFinite(timing.answerDeadlineAtMs)
+      && Number.isFinite(timing.feedbackStartsAtMs);
+    const interactionStartsAtMs = hasPhases ? Number(timing.readingEndsAtMs) : timing.startsAtMs;
+    if (receivedAtMs < interactionStartsAtMs) {
+      throw new Error(hasPhases ? 'task_reading_in_progress' : 'task_not_started');
+    }
+    const receiveDeadlineAtMs = hasPhases
+      ? Number(timing.feedbackStartsAtMs) - 1
+      : timing.deadlineAtMs + TOURNAMENT_TASK_SUBMISSION_GRACE_MS;
+    if (receivedAtMs > receiveDeadlineAtMs) {
+      throw new Error('task_deadline_elapsed');
+    }
+  }
+  return true;
+}
 
 // ── Скоринг (§5): база + бонус скорости ≤+40% + стрик ×1.5/×2 ───────────────
 
@@ -1050,9 +1484,8 @@ export const TOURNAMENT_STREAK_X2_THRESHOLD = 5;
 // ── Звёзды (владелец 2026-07-27) ────────────────────────────────────────────
 //
 // Правило владельца дословно: «кто первый ответил — тот три звезды получит,
-// кто второй — две, кто третий и все остальные — одну» + «плюс бонусные звёзды
-// за стрики» + «за камбэк: если было три подряд неправильно, а потом правильно,
-// можно +1 звезду».
+// кто второй — две, кто третий и все остальные — одну». Серии правильных и
+// ошибочных ответов отслеживаются для состояния игрока, но не меняют награду.
 //
 // Скорость меряется НЕ секундами, а МЕСТОМ среди правильно ответивших в этом
 // задании — это прямое соревнование между игроками, и одинаковых сумм почти не
@@ -1064,12 +1497,6 @@ export const TOURNAMENT_STAR_FIRST = 3;
 export const TOURNAMENT_STAR_SECOND = 2;
 /** Третий и все последующие правильные ответы. */
 export const TOURNAMENT_STAR_REST = 1;
-/** Бонус за серию: +1 звезда начиная с 3-го правильного подряд. */
-export const TOURNAMENT_STAR_STREAK = 1;
-export const TOURNAMENT_STREAK_STAR_THRESHOLD = 3;
-/** Бонус за камбэк: +1 звезда за правильный ответ после 3 ошибок подряд. */
-export const TOURNAMENT_STAR_COMEBACK = 1;
-export const TOURNAMENT_COMEBACK_MISS_THRESHOLD = 3;
 /**
  * Тай-брейка НЕТ: звёзды целые, ничьи разрешены честно.
  *
@@ -1100,8 +1527,10 @@ export type ScoreInput = {
    * гонке, а не секундами: это прямое соревнование и почти исключает ничьи.
    */
   answerRank?: number;
-  /** Серия ОШИБОК до этого ответа — для бонуса за камбэк. */
+  /** Серия ОШИБОК до этого ответа; не меняет турнирные звёзды. */
   missStreakBefore?: number;
+  /** Mode-specific deduction applied after the rank award, bounded at zero. */
+  penaltyStars?: number;
 };
 
 export function serverBoundedElapsedMs(input: {
@@ -1123,9 +1552,8 @@ export function serverBoundedElapsedMs(input: {
  * зачем: старая формула (база 100 × голос 1.5 × скорость 1.4 × стрик 2 = 420
  * за задание) давала до ~10 000 очков за турнир — владелец увидел «4474» и
  * справедливо сказал, что таких чисел быть не должно. Новая шкала читаемая:
- *   +1 ⭐ — правильный ответ;
- *   +1 ⭐ — ответил быстро (уложился в половину времени);
- *   +1 ⭐ — серия от 3 правильных подряд.
+ * первый правильный получает 3⭐, второй — 2⭐, третий и последующие — 1⭐.
+ * Стрики и камбэки эту шкалу не повышают.
  * Максимум за турнир при 4 раундах × 4 задания = 48 звёзд.
  *
  * Ничьи РАЗРЕШЕНЫ: одинаковые звёзды = одинаковое место, а призовые доли таких
@@ -1141,28 +1569,19 @@ export function scoreAnswer(input: ScoreInput): number {
   if (!input.correct) return 0;
 
   const rank = Math.max(1, Math.trunc(input.answerRank ?? Number.MAX_SAFE_INTEGER));
-  let stars = rank === 1
+  const stars = rank === 1
     ? TOURNAMENT_STAR_FIRST
     : rank === 2
       ? TOURNAMENT_STAR_SECOND
       : TOURNAMENT_STAR_REST;
-
-  // streakBefore — серия ДО этого ответа; текущий ответ = streakBefore + 1.
-  if (input.streakBefore + 1 >= TOURNAMENT_STREAK_STAR_THRESHOLD) stars += TOURNAMENT_STAR_STREAK;
-
-  // Камбэк: правильный ответ после серии ошибок — «не сдался» тоже награда.
-  if ((input.missStreakBefore ?? 0) >= TOURNAMENT_COMEBACK_MISS_THRESHOLD) {
-    stars += TOURNAMENT_STAR_COMEBACK;
-  }
-
-  return stars;
+  return Math.max(0, stars - Math.max(0, Math.trunc(input.penaltyStars ?? 0)));
 }
 
 /** Итог раунда: очки и новая серия. Неверный ответ сбрасывает серию. */
 export function scoreRound(answers: ScoreInput[]): { roundScore: number; streakAfter: number } {
   let roundScore = 0;
   let streak = 0;
-  // Серия ОШИБОК подряд — для бонуса за камбэк (владелец 2026-07-27).
+  // Серия ошибок продолжает жить в состоянии игрока, но не повышает звёзды.
   let missStreak = 0;
   for (const a of answers) {
     const effective = {
@@ -1180,20 +1599,43 @@ export function scoreRound(answers: ScoreInput[]): { roundScore: number; streakA
 function scoreInputsWithStartingStreak(
   answers: ScoreInput[],
   streakStart: number,
-): { roundScore: number; correct: number; streakAfter: number } {
+  missStreakStart = 0,
+): { roundScore: number; correct: number; streakAfter: number; missStreakAfter: number } {
   let roundScore = 0;
   let correct = 0;
   let streak = Math.max(0, streakStart);
+  let missStreak = Math.max(0, missStreakStart);
   for (const answer of answers) {
-    roundScore += scoreAnswer({ ...answer, streakBefore: streak });
+    roundScore += scoreAnswer({ ...answer, streakBefore: streak, missStreakBefore: missStreak });
     if (answer.correct) {
       correct += 1;
       streak += 1;
+      missStreak = 0;
     } else {
       streak = 0;
+      missStreak += 1;
     }
   }
-  return { roundScore, correct, streakAfter: streak };
+  return { roundScore, correct, streakAfter: streak, missStreakAfter: missStreak };
+}
+
+/**
+ * Rank among server-confirmed correct submissions for one task.
+ *
+ * Firestore retries evaluate this against the newest room snapshot, so a wrong
+ * answer never consumes a place and concurrent correct submissions serialize
+ * to 1, 2, then 3+ without trusting client clocks or client-provided scores.
+ */
+function nextCorrectAnswerRank(
+  round: TournamentRound,
+  taskId: string,
+  playerId: string,
+): number {
+  const confirmedBefore = Object.values(round.results || {}).filter((result) => (
+    result.playerId !== playerId
+    && result.review?.some((entry) => entry.taskId === taskId && entry.correct === true)
+  )).length;
+  return confirmedBefore + 1;
 }
 
 export type TournamentSubmission = {
@@ -1202,7 +1644,16 @@ export type TournamentSubmission = {
   answers: Array<{ taskId: string; answer: unknown }>;
   tasks: TournamentTask[];
   receivedAtMs: number;
+  /** Server receipt timestamps for first per-task answers; absent entries use receivedAtMs. */
+  taskReceivedAtMs?: Record<string, number>;
+  idempotencyKeyHash?: string;
   maxMsPerTask?: number;
+  /** Server-loaded private journals keyed by speed-match taskId. */
+  speedMatchProgress?: Record<string, SpeedMatchAttemptProgress>;
+  /** Canonical per-task receipt ranks for every finalized real player in this transaction. */
+  answerRanksByPlayer?: Record<string, Record<string, number>>;
+  /** Tasks missing a timely receipt when the deadline finalized this partial submission. */
+  timedOutTaskIds?: readonly string[];
 };
 
 /**
@@ -1220,9 +1671,29 @@ export function applyTournamentSubmission(
 } {
   const roundIndex = room.rounds.findIndex((entry) => entry.roundNo === submission.roundNo);
   if (roundIndex < 0) throw new Error('round_not_found');
-  const existing = room.rounds[roundIndex].results?.[submission.playerId];
+  const round = room.rounds[roundIndex];
+  let scheduleEnforced = false;
+  const submittedTaskIds = submission.answers.map((answer) => answer.taskId);
+  if (submission.taskReceivedAtMs) {
+    for (const taskId of submittedTaskIds.length > 0
+      ? Array.from(new Set(submittedTaskIds))
+      : [round.taskIds[round.taskIds.length - 1]]) {
+      scheduleEnforced = assertTournamentAnswersWithinTaskSchedule(
+        round, [taskId], submission.taskReceivedAtMs[taskId] ?? submission.receivedAtMs,
+      ) || scheduleEnforced;
+    }
+  } else {
+    scheduleEnforced = assertTournamentAnswersWithinTaskSchedule(
+      round, submittedTaskIds, submission.receivedAtMs,
+    );
+  }
+  const existing = round.results?.[submission.playerId];
   const replacingTimedOut = existing?.submissionStatus === 'timed_out' || existing?.timedOut === true;
   if (existing && !replacingTimedOut) {
+    if (submission.idempotencyKeyHash && existing.submissionIdempotencyKeyHash
+      && submission.idempotencyKeyHash !== existing.submissionIdempotencyKeyHash) {
+      throw new Error('submission_idempotency_key_mismatch');
+    }
     return { room, replay: true, result: existing, allRealSubmitted: false };
   }
   const activeState = roundStateFor(submission.roundNo);
@@ -1233,9 +1704,12 @@ export function applyTournamentSubmission(
     throw new Error('round_not_active');
   }
   const deadlineAtMs = replacingTimedOut ? existing.submittedAtMs : room.stateDeadlineAtMs;
-  if (deadlineAtMs && submission.receivedAtMs > deadlineAtMs) throw new Error('round_deadline_elapsed');
+  if (!scheduleEnforced && deadlineAtMs && submission.receivedAtMs > deadlineAtMs) {
+    throw new Error('round_deadline_elapsed');
+  }
   const playerIndex = room.players.findIndex((entry) => !entry.isBot && entry.id === submission.playerId);
   if (playerIndex < 0) throw new Error('not_in_room');
+  if (room.players[playerIndex].forfeitedAtMs !== undefined) throw new Error('player_forfeited');
 
   const maxMsPerTask = Math.max(1, Math.trunc(submission.maxMsPerTask ?? 10_000));
   const taskCount = Math.max(1, room.rounds[roundIndex].taskIds.length);
@@ -1250,28 +1724,67 @@ export function applyTournamentSubmission(
   });
   const taskMap = new Map(submission.tasks.map((task) => [task.taskId, task]));
   const answerMap = new Map(submission.answers.map((entry) => [entry.taskId, entry.answer]));
+  const answerRanks = submission.answerRanksByPlayer?.[submission.playerId];
+  const timedOutTaskIds = new Set(submission.timedOutTaskIds ?? []);
+  const effectiveAnswer = (taskId: string, task: TournamentTask | undefined): unknown => {
+    const progress = submission.speedMatchProgress?.[taskId];
+    return task?.mode === 'speed_match' && progress
+      ? { selectedIndexes: progress.matchedIndexes }
+      : answerMap.get(taskId);
+  };
+  const isCorrect = (taskId: string, task: TournamentTask | undefined): boolean => {
+    return !!task && verifyTournamentAnswer(task, effectiveAnswer(taskId, task));
+  };
   const inputs: ScoreInput[] = room.rounds[roundIndex].taskIds.map((taskId) => {
     const task = taskMap.get(taskId);
+    const correct = isCorrect(taskId, task);
     return {
-      correct: !!task && verifyTournamentAnswer(task, answerMap.get(taskId)),
+      correct,
       elapsedMs,
       maxMs: maxMsPerTask,
       streakBefore: 0,
       isVoice: task?.isVoice === true,
+      answerRank: correct
+        ? answerRanks?.[taskId]
+          ?? nextCorrectAnswerRank(room.rounds[roundIndex], taskId, submission.playerId)
+        : undefined,
+      penaltyStars: task?.mode === 'speed_match'
+        ? submission.speedMatchProgress?.[taskId]?.wrongAttempts ?? 0
+        : 0,
     };
   });
   const player = room.players[playerIndex];
   const streakBefore = replacingTimedOut ? existing.streakBefore ?? player.streak : player.streak;
-  const scored = scoreInputsWithStartingStreak(inputs, streakBefore);
+  const missStreakBefore = replacingTimedOut
+    ? existing.missStreakBefore ?? player.missStreak ?? 0
+    : player.missStreak ?? 0;
+  const scored = scoreInputsWithStartingStreak(inputs, streakBefore, missStreakBefore);
   // Разбор: что игрок ответил на каждое задание и верно ли. Верный ответ
   // здесь НЕ храним — он лежит в taskSecrets, экран разбора берёт его оттуда
   // уже после турнира, когда подсматривать нечего.
-  const review = room.rounds[roundIndex].taskIds.map((taskId) => {
+  const review = room.rounds[roundIndex].taskIds.map((taskId, taskIndex) => {
     const task = taskMap.get(taskId);
+    const correct = isCorrect(taskId, task);
+    const penaltyStars = inputs[taskIndex].penaltyStars ?? 0;
+    const answerRank = correct ? inputs[taskIndex].answerRank : undefined;
     return {
       taskId,
-      correct: !!task && verifyTournamentAnswer(task, answerMap.get(taskId)),
-      given: answerMap.get(taskId),
+      correct,
+      ...(answerMap.has(taskId) || submission.speedMatchProgress?.[taskId]
+        ? { given: effectiveAnswer(taskId, task) }
+        : {}),
+      ...(timedOutTaskIds.has(taskId) ? { timedOut: true } : {}),
+      ...(answerRank !== undefined ? { answerRank } : {}),
+      ...(penaltyStars > 0 ? { penaltyStars } : {}),
+      starsAwarded: scoreAnswer({
+        correct,
+        elapsedMs,
+        maxMs: maxMsPerTask,
+        streakBefore: 0,
+        isVoice: task?.isVoice === true,
+        answerRank,
+        penaltyStars,
+      }),
     };
   });
   const result: TournamentRoundResult = {
@@ -1280,28 +1793,151 @@ export function applyTournamentSubmission(
     total: room.rounds[roundIndex].taskIds.length,
     roundScore: scored.roundScore,
     submittedAtMs: submission.receivedAtMs,
+    ...(submission.idempotencyKeyHash
+      ? { submissionIdempotencyKeyHash: submission.idempotencyKeyHash }
+      : {}),
     review,
     submissionStatus: 'submitted',
     streakBefore,
+    missStreakBefore,
     roundStartedAtMs,
   };
-  const players = room.players.map((entry, index) => index === playerIndex
+  let players = room.players.map((entry, index) => index === playerIndex
     ? {
       ...entry,
       score: entry.score - (replacingTimedOut ? existing.roundScore : 0) + scored.roundScore,
       streak: scored.streakAfter,
+      missStreak: scored.missStreakAfter,
     }
     : { ...entry });
   const rounds = room.rounds.map((entry, index) => index === roundIndex
     ? { ...entry, results: { ...(entry.results || {}), [submission.playerId]: result } }
     : { ...entry, results: { ...(entry.results || {}) } });
+  // A player can finish the round before another player whose earlier receipts
+  // deserve a better per-task rank. Reconcile every receipt-backed result in the
+  // same room transaction so finalization order can never mint the stars.
+  if (submission.answerRanksByPlayer) {
+    for (const [resultPlayerId, storedResult] of Object.entries(rounds[roundIndex].results)) {
+      const canonicalRanks = submission.answerRanksByPlayer[resultPlayerId];
+      if (!canonicalRanks || !storedResult.review?.length) continue;
+      const canReconcile = storedResult.review.every((entry) => (
+        !entry.correct || entry.starsAwarded !== undefined || resultPlayerId === submission.playerId
+      ));
+      if (!canReconcile) continue;
+      let reconciledScore = 0;
+      const reconciledReview = storedResult.review.map((entry) => {
+        if (!entry.correct) return entry;
+        const answerRank = canonicalRanks[entry.taskId];
+        if (answerRank === undefined) return entry;
+        const starsAwarded = scoreAnswer({
+          correct: true,
+          elapsedMs: 0,
+          maxMs: 1,
+          streakBefore: 0,
+          isVoice: false,
+          answerRank,
+          penaltyStars: entry.penaltyStars ?? 0,
+        });
+        reconciledScore += starsAwarded;
+        return { ...entry, answerRank, starsAwarded };
+      });
+      const scoreDelta = reconciledScore - storedResult.roundScore;
+      rounds[roundIndex].results[resultPlayerId] = {
+        ...storedResult,
+        roundScore: reconciledScore,
+        review: reconciledReview,
+      };
+      if (scoreDelta !== 0) {
+        players = players.map((entry) => entry.id === resultPlayerId
+          ? { ...entry, score: entry.score + scoreDelta }
+          : entry);
+      }
+    }
+  }
   const allRealSubmitted = players.filter((entry) => !entry.isBot)
     .every((entry) => !!rounds[roundIndex].results[entry.id]);
   return {
     room: { ...room, players, rounds, version: room.version + 1 },
     replay: false,
-    result,
+    result: rounds[roundIndex].results[submission.playerId],
     allRealSubmitted,
+  };
+}
+
+export type TournamentHumanLobbyJoinPlan = {
+  room: TournamentRoomDoc;
+  displacedBotPlayerId?: string;
+  startImmediately: boolean;
+};
+
+/**
+ * Plans one human lobby join without ever exceeding the fixed room capacity.
+ *
+ * Future bot entries are reservations, not occupied seats. A human arriving
+ * during the fill window replaces the latest future reservation atomically.
+ */
+export function planTournamentHumanLobbyJoin(
+  room: TournamentRoomDoc,
+  player: TournamentPlayer,
+  authUid: string,
+  nowMs?: number,
+): TournamentHumanLobbyJoinPlan {
+  if (room.state === TOURNAMENT_STATE_CANCELLED || room.state === 'closed') throw new Error('room_not_joinable');
+  const existing = room.players.some((entry) => !entry.isBot && entry.id === player.id);
+  if (existing) {
+    if (room.participantAuthUids?.includes(authUid)) {
+      return { room, startImmediately: false };
+    }
+    return {
+      room: {
+        ...room,
+        participantAuthUids: Array.from(new Set([...(room.participantAuthUids || []), authUid])),
+        version: room.version + 1,
+      },
+      startImmediately: false,
+    };
+  }
+  if (room.state !== 'lobby') throw new Error('room_not_joinable');
+  const hasFutureBotReservations = nowMs !== undefined && room.players.some((entry) => (
+    entry.isBot && typeof entry.joinAtMs === 'number' && entry.joinAtMs > nowMs
+  ));
+  const joinCutoffMs = hasFutureBotReservations
+    ? (room.stateDeadlineAtMs ?? room.startsAt)
+    : room.startsAt;
+  if (nowMs !== undefined && nowMs >= joinCutoffMs) throw new Error('join_cutoff_elapsed');
+
+  const players = room.players.map((entry) => ({ ...entry }));
+  let displacedBotPlayerId: string | undefined;
+  if (players.length >= TOURNAMENT_ROOM_SIZE) {
+    if (nowMs === undefined) throw new Error('room_full');
+    const futureBot = players
+      .map((entry, index) => ({ entry, index }))
+      .filter(({ entry }) => entry.isBot && typeof entry.joinAtMs === 'number' && entry.joinAtMs > nowMs)
+      .sort((left, right) => (right.entry.joinAtMs! - left.entry.joinAtMs!)
+        || right.entry.id.localeCompare(left.entry.id))[0];
+    if (!futureBot) throw new Error('room_full');
+    displacedBotPlayerId = futureBot.entry.id;
+    players[futureBot.index] = { ...player };
+  } else {
+    players.push({ ...player });
+  }
+
+  if (players.length > TOURNAMENT_ROOM_SIZE) throw new Error('room_full');
+  const startImmediately = players.length === TOURNAMENT_ROOM_SIZE
+    && players.every((entry) => !entry.isBot
+      || typeof entry.joinAtMs !== 'number'
+      || nowMs === undefined
+      || entry.joinAtMs <= nowMs);
+  return {
+    room: {
+      ...room,
+      players,
+      participantAuthUids: Array.from(new Set([...(room.participantAuthUids || []), authUid])),
+      ...(startImmediately && nowMs !== undefined ? { stateDeadlineAtMs: nowMs } : {}),
+      version: room.version + 1,
+    },
+    displacedBotPlayerId,
+    startImmediately,
   };
 }
 
@@ -1311,25 +1947,7 @@ export function applyTournamentJoin(
   authUid: string,
   nowMs?: number,
 ): TournamentRoomDoc {
-  if (room.state === TOURNAMENT_STATE_CANCELLED || room.state === 'closed') throw new Error('room_not_joinable');
-  const existing = room.players.some((entry) => !entry.isBot && entry.id === player.id);
-  if (existing) {
-    if (room.participantAuthUids?.includes(authUid)) return room;
-    return {
-      ...room,
-      participantAuthUids: Array.from(new Set([...(room.participantAuthUids || []), authUid])),
-      version: room.version + 1,
-    };
-  }
-  if (room.state !== 'lobby') throw new Error('room_not_joinable');
-  if (nowMs !== undefined && nowMs >= room.startsAt) throw new Error('join_cutoff_elapsed');
-  if (room.players.length >= TOURNAMENT_ROOM_SIZE) throw new Error('room_full');
-  return {
-    ...room,
-    players: [...room.players.map((entry) => ({ ...entry })), { ...player }],
-    participantAuthUids: Array.from(new Set([...(room.participantAuthUids || []), authUid])),
-    version: room.version + 1,
-  };
+  return planTournamentHumanLobbyJoin(room, player, authUid, nowMs).room;
 }
 
 export type TournamentCancellationPlan = {
@@ -1393,10 +2011,18 @@ export function planTournamentCancellation(
   };
 }
 
+export type TournamentDeadlineSubmission = {
+  answers: Array<{ taskId: string; answer: unknown }>;
+  taskReceivedAtMs: Record<string, number>;
+  answerRanksByPlayer?: Record<string, Record<string, number>>;
+  speedMatchProgress?: Record<string, SpeedMatchAttemptProgress>;
+};
+
 export function completeTournamentRoundAtDeadline(
   room: TournamentRoomDoc,
   tasks: TournamentTask[],
   nowMs: number,
+  receiptSubmissions: Record<string, TournamentDeadlineSubmission> = {},
 ): { room: TournamentRoomDoc; completedRoundNo: number } {
   const match = /^round([1-4])$/.exec(String(room.state));
   if (!match) throw new Error('round_not_active');
@@ -1404,11 +2030,36 @@ export function completeTournamentRoundAtDeadline(
   const roundNo = Number(match[1]);
   const roundIndex = room.rounds.findIndex((entry) => entry.roundNo === roundNo);
   if (roundIndex < 0) throw new Error('round_not_found');
-  const rounds = room.rounds.map((entry) => ({ ...entry, results: { ...(entry.results || {}) } }));
-  const players = room.players.map((entry) => ({ ...entry }));
   const taskMap = new Map(tasks.map((task) => [task.taskId, task]));
-  const roundTasks = rounds[roundIndex].taskIds.map((id) => taskMap.get(id)).filter((task): task is TournamentTask => !!task);
-  if (roundTasks.length !== rounds[roundIndex].taskIds.length) throw new Error('round_tasks_unavailable');
+  const originalRound = room.rounds[roundIndex];
+  const roundTasks = originalRound.taskIds.map((id) => taskMap.get(id)).filter((task): task is TournamentTask => !!task);
+  if (roundTasks.length !== originalRound.taskIds.length) throw new Error('round_tasks_unavailable');
+
+  let receiptAppliedRoom = room;
+  for (const player of room.players) {
+    if (player.isBot || originalRound.results[player.id]) continue;
+    const receiptSubmission = receiptSubmissions[player.id];
+    if (!receiptSubmission?.answers.length) continue;
+    const receivedAtMs = Math.max(...Object.values(receiptSubmission.taskReceivedAtMs));
+    const applied = applyTournamentSubmission(receiptAppliedRoom, {
+      playerId: player.id,
+      roundNo,
+      answers: receiptSubmission.answers,
+      tasks: roundTasks,
+      receivedAtMs,
+      taskReceivedAtMs: receiptSubmission.taskReceivedAtMs,
+      maxMsPerTask: Math.max(1, Math.ceil(tournamentRoundDurationMs(roundTasks) / roundTasks.length)),
+      speedMatchProgress: receiptSubmission.speedMatchProgress,
+      answerRanksByPlayer: receiptSubmission.answerRanksByPlayer,
+      timedOutTaskIds: originalRound.taskIds.filter((taskId) => (
+        !Object.prototype.hasOwnProperty.call(receiptSubmission.taskReceivedAtMs, taskId)
+      )),
+    });
+    receiptAppliedRoom = applied.room;
+  }
+
+  const rounds = receiptAppliedRoom.rounds.map((entry) => ({ ...entry, results: { ...(entry.results || {}) } }));
+  const players = receiptAppliedRoom.players.map((entry) => ({ ...entry }));
 
   for (let index = 0; index < players.length; index += 1) {
     const player = players[index];
@@ -1421,12 +2072,23 @@ export function completeTournamentRoundAtDeadline(
         total: rounds[roundIndex].taskIds.length,
         roundScore: 0,
         submittedAtMs: deadlineAtMs,
+        review: rounds[roundIndex].taskIds.map((taskId) => ({
+          taskId,
+          correct: false,
+          timedOut: true,
+          starsAwarded: 0,
+        })),
         submissionStatus: 'timed_out',
         streakBefore: player.streak,
+        missStreakBefore: player.missStreak ?? 0,
         roundStartedAtMs: room.stateStartedAtMs ?? deadlineAtMs,
         timedOut: true,
       };
-      players[index] = { ...player, streak: 0 };
+      players[index] = {
+        ...player,
+        streak: 0,
+        missStreak: (player.missStreak ?? 0) + rounds[roundIndex].taskIds.length,
+      };
       continue;
     }
     const profile: BotProfile = {
@@ -1439,8 +2101,13 @@ export function completeTournamentRoundAtDeadline(
       color: player.color,
     };
     const inputs = simulateBotAnswers(profile, { roomId: room.roomId, roundNo, tasks: roundTasks, maxMsPerTask: 10_000 });
-    const scored = scoreInputsWithStartingStreak(inputs, player.streak);
-    players[index] = { ...player, score: player.score + scored.roundScore, streak: scored.streakAfter };
+    const scored = scoreInputsWithStartingStreak(inputs, player.streak, player.missStreak ?? 0);
+    players[index] = {
+      ...player,
+      score: player.score + scored.roundScore,
+      streak: scored.streakAfter,
+      missStreak: scored.missStreakAfter,
+    };
     rounds[roundIndex].results[player.id] = {
       playerId: player.id,
       correct: scored.correct,
@@ -1449,6 +2116,7 @@ export function completeTournamentRoundAtDeadline(
       submittedAtMs: nowMs,
       submissionStatus: 'simulated',
       streakBefore: player.streak,
+      missStreakBefore: player.missStreak ?? 0,
       roundStartedAtMs: room.stateStartedAtMs ?? nowMs,
     };
   }
@@ -1459,12 +2127,14 @@ export function completeTournamentRoundAtDeadline(
   return {
     completedRoundNo: roundNo,
     room: {
-      ...room,
+      ...receiptAppliedRoom,
       players,
       rounds,
       state: nextState,
       stateStartedAtMs: nowMs,
       stateDeadlineAtMs: duration === null ? undefined : nowMs + duration,
+      // Deadline completion is one atomic room mutation even when it consumes
+      // several players' pending receipts.
       version: room.version + 1,
     },
   };
@@ -1513,37 +2183,78 @@ export function planTournamentFinalization(
   const realCount = room.players.filter((player) => !player.isBot).length;
   const botCount = room.players.length - realCount;
   const pot = tournamentPot(realCount, botCount, frozenEconomy);
-  // зачем 2026-07-27 (владелец): при равных звёздах доли призёров складываются
-  // и делятся поровну — «если у одного 70 и у другого 70, пусть начисляется
-  // поровну». Для этого выплатам нужны очки призёров в порядке мест.
-  const winnerScores = standings.slice(0, 3).map((player) => Number(player.score ?? 0));
-  const { payouts, unclaimedToWeekly } = tournamentPayouts(
-    pot,
-    standings.length,
-    frozenEconomy,
-    winnerScores,
-  );
-  const payoutByPlace = new Map(payouts.map((payout) => [payout.place, payout.gems]));
-  const botPrizeGems = standings.slice(0, 3).reduce((total, player, index) => (
-    player.isBot ? total + (payoutByPlace.get(index + 1) ?? 0) : total
+  // Start from the three positional prize shares, then expand every tie group
+  // across all equal-score players. This also handles a tie crossing the third
+  // position: the third share is divided by every player sharing third place.
+  const basePayout = tournamentPayouts(pot, standings.length, frozenEconomy);
+  const baseByPosition = new Map(basePayout.payouts.map((payout) => [payout.place, payout.gems]));
+  const positionalPayouts: Array<{ position: number; place: number; gems: number }> = [];
+  for (let start = 0; start < standings.length;) {
+    let end = start;
+    while (
+      end + 1 < standings.length
+      && tournamentPlayersSharePlacement(standings[end + 1], standings[start])
+    ) end += 1;
+    const place = start + 1;
+    const groupSize = end - start + 1;
+    const groupTotal = Array.from({ length: groupSize }, (_, offset) => (
+      baseByPosition.get(start + offset + 1) ?? 0
+    )).reduce((sum, gems) => sum + gems, 0);
+    const each = Math.floor(groupTotal / groupSize);
+    const remainder = groupTotal - each * groupSize;
+    for (let index = start; index <= end; index += 1) {
+      positionalPayouts.push({
+        position: index + 1,
+        place,
+        gems: each + (index - start < remainder ? 1 : 0),
+      });
+    }
+    start = end + 1;
+  }
+  const payoutByPlayerId = new Map(standings.map((player, index) => [
+    player.id,
+    positionalPayouts[index] ?? { position: index + 1, place: index + 1, gems: 0 },
+  ]));
+  const botPrizeGems = standings.reduce((total, player) => (
+    player.isBot ? total + (payoutByPlayerId.get(player.id)?.gems ?? 0) : total
+  ), 0);
+  const forfeitedPrizeGems = standings.reduce((total, player) => (
+    !player.isBot && player.forfeitedAtMs !== undefined
+      ? total + (payoutByPlayerId.get(player.id)?.gems ?? 0)
+      : total
   ), 0);
 
-  const playerEffects = (nonRewardingRoom ? [] : realPlacements).map(({ player, place }) => ({
-    playerId: player.id,
-    place,
-    seasonPoints: seasonPointsForPlace(place),
-    tournamentsPlayed: 1 as const,
-    won: place === 1,
-    reward: tournamentRewardPlan(place, payouts),
+  const playerEffects = (nonRewardingRoom ? [] : realPlacements).map(({ player, place }) => {
+    const forfeited = player.forfeitedAtMs !== undefined;
+    return {
+      playerId: player.id,
+      place,
+      seasonPoints: forfeited ? TOURNAMENT_SEASON_POINTS.participation : seasonPointsForPlace(place),
+      tournamentsPlayed: 1 as const,
+      won: !forfeited && place === 1,
+      reward: forfeited ? tournamentRewardPlan(Number.MAX_SAFE_INTEGER) : tournamentRewardPlan(place, [{
+        place,
+        gems: payoutByPlayerId.get(player.id)?.gems ?? 0,
+      }]),
+    };
+  });
+  const rewardByPlayerId = new Map(playerEffects.map((effect) => [effect.playerId, effect.reward.gems]));
+  const finalizedPlayers = standings.map((player) => ({
+    ...player,
+    resultPlace: payoutByPlayerId.get(player.id)?.place ?? standings.indexOf(player) + 1,
+    rewardGems: player.isBot || player.forfeitedAtMs !== undefined
+      ? 0
+      : rewardByPlayerId.get(player.id) ?? 0,
   }));
   return {
     receiptId,
     alreadyFinalized: false,
     playerEffects,
     // Сколько уходит в недельный банк: доля с турнира + неразыгранные места.
-    weeklyBankGems: pot.toWeeklyBank + unclaimedToWeekly + botPrizeGems,
+    weeklyBankGems: pot.toWeeklyBank + basePayout.unclaimedToWeekly + botPrizeGems + forfeitedPrizeGems,
     room: {
       ...room,
+      players: finalizedPlayers,
       state: 'rewards',
       potGems: pot.total,
       // зачем 2026-07-27 (владелец: «сейчас там захардкоженные цифры, их надо
@@ -1551,9 +2262,14 @@ export function planTournamentFinalization(
       // хотя сервер платит долю РЕАЛЬНОГО банка (при 16 игроках — 24/9/6).
       // Кладём фактические выплаты в комнату: экран показывает правду и может
       // анимировать начисление из банка к каждому призёру.
-      prizeGems: nonRewardingRoom ? [] : payouts.map((payout) => payout.gems),
+      prizeGems: nonRewardingRoom ? [] : positionalPayouts
+        .filter((payout) => payout.position <= 3 || payout.gems > 0)
+        .map((payout) => payout.gems),
       prizePoolGems: pot.toPrizes,
       finalizationReceiptId: receiptId,
+      finalizedAtMs: nowMs,
+      reviewRetentionUntilMs: nowMs + TOURNAMENT_REWARD_CLAIM_WINDOW_MS,
+      privateEvidenceRetentionUntilMs: nowMs + TOURNAMENT_ROOM_TTL_MS,
       stateStartedAtMs: nowMs,
       stateDeadlineAtMs: nowMs + TOURNAMENT_REWARD_CLAIM_WINDOW_MS,
       version: room.version + 1,
@@ -1607,43 +2323,26 @@ export function roundSeed(roomId: string, roundNo: number): string {
 export function planBotJoinTimes(input: {
   seed: string;
   botCount: number;
-  /** Момент добора — от него отсчитывается разлёт. */
+  /** Начало 45-секундного окна сбора только живых игроков. */
   fromMs: number;
-  /** Старт турнира: позже него не появляется никто. */
+  /** Жёсткий конец добора: позже него не появляется никто. */
   startsAtMs: number;
-  /** Сколько ботов видно сразу (по умолчанию TOURNAMENT_BOT_FIRST_WAVE). */
+  /** Deprecated compatibility input. Current contract always has a zero first wave. */
   firstWave?: number;
 }): number[] {
   const { seed, botCount, fromMs, startsAtMs } = input;
   if (botCount <= 0) return [];
-  const firstWave = Math.max(0, Math.trunc(input.firstWave ?? TOURNAMENT_BOT_FIRST_WAVE));
   const rand = tournamentPrng(`${seed}:bot_join`);
-
-  // зачем 2026-07-27 (владелец, точные правила подбора): раньше все боты
-  // появлялись от момента ДОБОРА и упирались в время слота. Теперь две фазы,
-  // обе отсчитываются от входа первого живого (fromMs = момент открытия
-  // комнаты для сбора):
-  //   • первые 30 секунд — окно ожидания живых, туда заходит НЕ БОЛЬШЕ пяти
-  //     ботов вразброс: комната оживает, но 11 мест ещё ждут людей;
-  //   • следующие 45 секунд — добор остальных, тоже вразброс.
-  // Живые могут занимать места в обеих фазах, поэтому ботов сажаем только на
-  // те места, которые к моменту расчёта ещё свободны.
-  const fillEnd = fromMs + TOURNAMENT_ROOM_GATHER_MS + TOURNAMENT_BOT_FILL_WINDOW_MS;
-  // Позже старта не появляется никто: если комната стартует раньше расчётного
-  // окна (все места заняли живые), обе фазы сжимаются пропорционально — иначе
-  // бот «зайдёт» в уже играющую комнату.
-  const hardStop = startsAtMs > fromMs ? Math.min(fillEnd, startsAtMs) : fillEnd;
-  // Граница фаз тоже не может пережить старт.
-  const gatherEnd = Math.min(fromMs + TOURNAMENT_ROOM_GATHER_MS, hardStop);
-
-  return Array.from({ length: botCount }, (_unused, index) => {
-    if (index < firstWave) {
-      // Окно ожидания: вразброс по первым 30 секундам, а не стеной сразу —
-      // иначе игрок видит мгновенные пять аватаров и понимает, что это боты.
-      return fromMs + Math.round(rand() * (gatherEnd - fromMs));
-    }
-    return gatherEnd + Math.round(rand() * Math.max(0, hardStop - gatherEnd));
-  });
+  // Exact owner contract: no bot reservation becomes visible during the first
+  // 45 seconds. All reservations are spread deterministically across the next
+  // 45 seconds. startsAtMs may shorten the tail, but can never pull a bot into
+  // the human-only gather window.
+  const gatherEnd = fromMs + TOURNAMENT_ROOM_GATHER_MS;
+  const fillEnd = gatherEnd + TOURNAMENT_BOT_FILL_WINDOW_MS;
+  const hardStop = Math.max(gatherEnd, Math.min(fillEnd, startsAtMs));
+  return Array.from({ length: botCount }, () => (
+    gatherEnd + Math.round(rand() * Math.max(0, hardStop - gatherEnd))
+  ));
 }
 
 /** Детерминированный shuffle (Fisher–Yates на seeded PRNG). */
@@ -1683,7 +2382,7 @@ export function selectRoundTasks(params: TaskSelectionParams): TournamentTask[] 
           : [];
   const voiceEnabled = Boolean(tournamentFeatureGates().voiceScoring.enabled);
   const verified = pool.filter((candidate) => {
-    const validation = validateTournamentTask(candidate);
+    const validation = validateTournamentTaskForNewRoom(candidate);
     return validation.ok
       && (validation.kind !== 'voice' || voiceEnabled)
       && allowedDifficulties.includes(candidate.difficulty);
@@ -1844,15 +2543,27 @@ export function legacyTournamentRecoveryAction(
   return room.stateDeadlineAtMs <= nowMs ? 'advance' : 'wait';
 }
 
-/** General standings. Bots keep their places; real players retain those same indices. */
+function tournamentPlayersSharePlacement(a: TournamentPlayer, b: TournamentPlayer): boolean {
+  return a.score === b.score
+    && (a.forfeitedAtMs !== undefined) === (b.forfeitedAtMs !== undefined);
+}
+
+/** General standings. Equal scores and forfeit states share one competition place (1, 1, 3). */
 export function computePlacements(players: TournamentPlayer[]): {
   standings: TournamentPlayer[];
   realPlacements: { player: TournamentPlayer; place: number }[];
 } {
-  const standings = players.slice().sort((a, b) => b.score - a.score || a.id.localeCompare(b.id));
-  const realPlacements = standings
-    .map((player, index) => ({ player, place: index + 1 }))
-    .filter(({ player }) => !player.isBot);
+  const standings = players.slice().sort((a, b) => (
+    Number(a.forfeitedAtMs !== undefined) - Number(b.forfeitedAtMs !== undefined)
+    || b.score - a.score
+    || a.id.localeCompare(b.id)
+  ));
+  let sharedPlace = 0;
+  const placements = standings.map((player, index) => {
+    if (index === 0 || !tournamentPlayersSharePlacement(player, standings[index - 1])) sharedPlace = index + 1;
+    return { player, place: sharedPlace };
+  });
+  const realPlacements = placements.filter(({ player }) => !player.isBot);
   return { standings, realPlacements };
 }
 
@@ -1974,11 +2685,26 @@ export type BotProfile = {
   color: string;
 };
 
-const BOT_NAMES = [
-  'Марина', 'Тёма', 'Соня', 'Дэн', 'Лера', 'Гоша', 'Настя', 'Петрович',
-  'Юля', 'Сева', 'Кира', 'Макс', 'Олеся', 'Тимур', 'Вера', 'Гриша',
-  'Даша', 'Эльдар', 'Милана', 'Савва', 'Алиса', 'Ратмир', 'Злата', 'Егор',
-] as const;
+/**
+ * Selects a unique seeded roster while excluding only the immediately prior
+ * room. Recent profiles are appended as a fallback when the approved fresh
+ * pool cannot satisfy the requested unique count.
+ */
+export function selectTournamentBotProfiles(input: {
+  profiles: readonly BotProfile[];
+  count: number;
+  seed: string;
+  recentBotIds?: readonly string[];
+}): BotProfile[] {
+  const uniqueProfiles = Array.from(new Map(
+    input.profiles.map((profile) => [profile.botId, profile] as const),
+  ).values());
+  const shuffled = seededShuffle(uniqueProfiles, `${input.seed}:bot_profiles`);
+  const recentIds = new Set(input.recentBotIds || []);
+  const fresh = shuffled.filter((profile) => !recentIds.has(profile.botId));
+  const recentFallback = shuffled.filter((profile) => recentIds.has(profile.botId));
+  return [...fresh, ...recentFallback].slice(0, Math.max(0, Math.trunc(input.count)));
+}
 
 const BOT_EMOJI = ['🦊', '🐼', '🦉', '🐸', '🐯', '🦁', '🐨', '🦜', '🐳', '🦄', '🐝', '🦖'] as const;
 const BOT_RANKS = ['bronze', 'silver', 'gold', 'platinum', 'diamond'] as const;
@@ -1988,7 +2714,9 @@ const BOT_TITLES = ['Фразовый маньяк', 'Спринтер', 'Тих
 /** winRate: среднее двух равномерных — треугольное распределение 0.15–0.85. */
 export function generateBotProfile(index: number, seed: string): BotProfile {
   const rand = tournamentPrng(`${seed}:bot:${index}`);
-  const name = BOT_NAMES[Math.floor(rand() * BOT_NAMES.length)];
+  // The approved 200-profile seed maps 1:1 to the reviewed Reddit corpus.
+  // Larger developer-only seeds wrap deterministically without changing IDs.
+  const name = REDDIT_BOT_NAMES[Math.max(0, Math.trunc(index)) % REDDIT_BOT_NAMES.length];
   const avatarEmoji = BOT_EMOJI[Math.floor(rand() * BOT_EMOJI.length)];
   const rank = BOT_RANKS[Math.floor(rand() * BOT_RANKS.length)];
   const color = BOT_COLORS[Math.floor(rand() * BOT_COLORS.length)];

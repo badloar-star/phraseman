@@ -11,6 +11,7 @@
   var DESKTOP = matchMedia('(min-width:720px)').matches;
   var HOVER = matchMedia('(hover:hover)').matches;
   var cfg = window.KNOWLY_SITE || {};
+  var PRICE_CACHE_KEY = 'pm_web_prices_cache_v1';
   var IOS = cfg.storeIos || 'https://apps.apple.com/app/id6764800879';
   var AND = cfg.storeAndroid || 'https://play.google.com/store/apps/details?id=app.phraseman';
   var isIos = /iPhone|iPad|iPod/i.test(navigator.userAgent || '');
@@ -18,6 +19,20 @@
   // зачем: телефон в ландшафте шире 720px — редирект решаем по устройству,
   // а не по ширине, чтобы телефон НИКОГДА не видел поповер с QR (вопрос владельца)
   var isPhoneOrTablet = isIos || isAndroid;
+
+  /* Цены нужны на /gift/ сразу после перехода, поэтому греем общий кэш ещё на главной. */
+  (function preloadWebPrices() {
+    if (!cfg.pricesEndpoint) return;
+    fetch(cfg.pricesEndpoint)
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (!data || !data.ok || !data.priceCents) return;
+        try {
+          localStorage.setItem(PRICE_CACHE_KEY, JSON.stringify({ ts: Date.now(), data: data }));
+        } catch (_) { /* cache is optional */ }
+      })
+      .catch(function () { /* the gift page retains its configured fallback */ });
+  })();
 
   /* ===== Аврора (WebGL, только десктоп; мобила и reduced-motion — CSS-фолбэк).
      Пауза, когда сцены нет на экране или вкладка в фоне: экономим GPU. ===== */

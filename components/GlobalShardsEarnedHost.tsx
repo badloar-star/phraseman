@@ -1,6 +1,10 @@
 import { memo, useEffect } from 'react';
 import { emitAppEvent, onAppEvent } from '../app/events';
 import { labelForShardModalReason } from '../app/shard_earn_ui';
+import {
+  ruKnowledgeShardsAfterNumber,
+  ukKnowledgeShardsAfterNumber,
+} from '../constants/shard_plurals';
 import { useLang } from './LangContext';
 
 /**
@@ -11,9 +15,10 @@ import { useLang } from './LangContext';
  * не должно блокировать экран (docs/reports/MODALS_TOASTS_AUDIT_2026-06-10.md, раздел 4).
  * Очередь/дедуп/арбитр — внутри ActionToast.
  */
+// зачем: RU/UK склоняются по числу — «+1 жемчужина», а не «+1 жемчужин».
 const SHARDS_WORD: Record<string, (n: number) => string> = {
-  ru: (n) => `+${n} жемчужин`,
-  uk: (n) => `+${n} перлин`,
+  ru: (n) => `+${n} ${ruKnowledgeShardsAfterNumber(n)}`,
+  uk: (n) => `+${n} ${ukKnowledgeShardsAfterNumber(n)}`,
   es: (n) => `+${n} perlas`,
   'pt-BR': (n) => `+${n} perlas`,
   vi: (n) => `+${n} xu`,

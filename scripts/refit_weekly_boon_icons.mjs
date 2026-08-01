@@ -26,7 +26,6 @@ const ICON_IDS = [
   'energy_free_window',
   'double_xp',
   'flashcard_friday',
-  'arena_saturday',
   'speaking_saturday',
   'early_bird',
   'perfect_week',

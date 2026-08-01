@@ -61,6 +61,7 @@ interface DialogsTabContentProps {
   topPadding?: number;
   onScroll?: (event: NativeSyntheticEvent<NativeScrollEvent>) => void;
   trackImpression?: boolean;
+  active?: boolean;
 }
 
 export default function DialogsTabContent({
@@ -69,6 +70,7 @@ export default function DialogsTabContent({
   topPadding = 0,
   onScroll,
   trackImpression = true,
+  active = true,
 }: DialogsTabContentProps) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
@@ -77,6 +79,12 @@ export default function DialogsTabContent({
   const { studyTarget } = useStudyTarget();
   const router = useRouter();
   const impressionFiredRef = useRef(false);
+  const activeRef = useRef(active);
+  const completedDirtyRef = useRef(false);
+  const xpDirtyRef = useRef(false);
+  const refreshGenerationRef = useRef(0);
+  const completedGenerationRef = useRef(0);
+  activeRef.current = active;
   const aiDialogGateOpen = aiDialogContentAvailableForTarget(studyTarget);
   const frenchGateCopy = frenchAiDialogGateCopy(lang);
 
@@ -105,33 +113,49 @@ export default function DialogsTabContent({
   }, [studyTarget]);
 
   const refreshCompleted = useCallback(() => {
-    void getCompletedDialogIds().then(setCompletedIds).catch(() => {});
+    if (!activeRef.current) {
+      completedDirtyRef.current = true;
+      return;
+    }
+    completedDirtyRef.current = false;
+    const generation = ++completedGenerationRef.current;
+    void getCompletedDialogIds().then((ids) => {
+      if (activeRef.current && generation === completedGenerationRef.current) setCompletedIds(ids);
+    }).catch(() => {});
   }, []);
   useEffect(() => {
-    refreshCompleted();
     const sub = onAppEvent('dialogs_progress_changed', refreshCompleted);
     return () => sub.remove();
   }, [refreshCompleted]);
 
   const refreshAccountLevel = useCallback(async () => {
+    if (!activeRef.current) {
+      xpDirtyRef.current = true;
+      return;
+    }
+    xpDirtyRef.current = false;
+    const generation = ++refreshGenerationRef.current;
     const raw = await AsyncStorage.getItem('user_total_xp').catch(() => null);
+    if (!activeRef.current || generation !== refreshGenerationRef.current) return;
     const totalXP = Math.max(0, parseInt(raw || '0', 10) || 0);
     setAccountLevel(getLevelFromXP(totalXP));
   }, []);
 
   useEffect(() => {
-    void refreshAccountLevel();
-    const xpChanged = onAppEvent('xp_changed', () => {
-      void refreshAccountLevel();
-    });
-    const xpUpdated = onAppEvent('xp_updated', () => {
-      void refreshAccountLevel();
-    });
+    const xpChanged = onAppEvent('xp_changed', () => { void refreshAccountLevel(); });
+    const xpUpdated = onAppEvent('xp_updated', () => { void refreshAccountLevel(); });
     return () => {
       xpChanged.remove();
       xpUpdated.remove();
     };
   }, [refreshAccountLevel]);
+
+  useEffect(() => {
+    if (!active) return;
+    // One active pass covers initial hydration and all hidden dirty events.
+    refreshCompleted();
+    void refreshAccountLevel();
+  }, [active, refreshAccountLevel, refreshCompleted]);
 
   useEffect(() => {
     if (!trackImpression || impressionFiredRef.current) return;

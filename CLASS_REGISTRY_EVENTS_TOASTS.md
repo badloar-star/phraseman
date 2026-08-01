@@ -105,7 +105,7 @@ Observed `useOverlayVisible(...)` owners:
 - `matchFoundToast` / `matchFoundToastScreen`: dynamic key in `components/MatchFoundToast.tsx`
 - `mysteryMondayChest`: `components/MysteryMondayHost.tsx`
 - `notifNudge`: `app/_layout.tsx`
-- `onboardingWelcome`: `app/onboarding_welcome/WelcomeHost.tsx`
+- `onboardingWelcome`: `components/OnboardingWelcomeHost.tsx`
 - `perfectWeekReward`: `components/PerfectWeekHost.tsx`
 - `premiumCelebration`: `app/(tabs)/home.tsx`
 - `referralWelcome`: `components/ReferralWelcomeHost.tsx`

@@ -5,6 +5,7 @@ type SafeBackRouter = {
   canDismiss?: () => boolean;
   back: () => void;
   dismiss?: (count?: number) => void;
+  dismissTo?: (target: any) => void;
   replace: (fallback: any) => void;
 };
 
@@ -30,6 +31,11 @@ type ModalDismissRouter = SafeBackRouter & {
 // ──────────────────────────────────────────────────────────────────────────
 
 const MAX_HISTORY = 50;
+// Native POP_TO removes the abandoned screens instead of leaving replace-created
+// instances behind. Keep a remote build-time kill switch for the old Android/Fabric
+// teardown regression: EXPO_PUBLIC_NATIVE_POP_TO_BACK=0 restores deterministic replace.
+const NATIVE_POP_TO_BACK_ENABLED =
+  typeof process === 'undefined' || process.env.EXPO_PUBLIC_NATIVE_POP_TO_BACK !== '0';
 let navigationStack: string[] = [];
 let suppressNextRemember = false;
 // Когда экран уходит через router.replace (свап, а не push) — следующий честный
@@ -212,12 +218,7 @@ export function safeRouterBack(
   fallback: any = HOME_BACK_FALLBACK,
 ): void {
   clearPendingNoopBackTimer();
-  // Native-stack router.back() hard-crashes the app on Android/Fabric during the
-  // Back teardown (see screenOptions note in app/_layout.tsx — the stack already
-  // forces animation:'none' to work around that native fault). Going back through
-  // router.back() re-exposes that crash on the universal "exit from any section"
-  // path. Since the stack has no animation, a deterministic replace to the previous
-  // route is visually identical and never triggers the native crash.
+  const leavingPath = currentPath();
 
   // Снимаем текущий маршрут со стека и берём предыдущий — честный «назад».
   if (navigationStack.length > 0) {
@@ -251,6 +252,25 @@ export function safeRouterBack(
     return;
   }
 
+  // `dismissTo` performs a native POP_TO: abandoned screens are actually unmounted,
+  // so their subscriptions/animations cannot survive as retained stack work. For two
+  // parameterized instances of the same pathname POP_TO is ambiguous, therefore pop
+  // exactly one native entry instead. The replace fallback remains remotely switchable.
+  const samePathDifferentIdentity =
+    !!leavingPath &&
+    leavingPath.split('?')[0] === String(safeTarget).split('?')[0] &&
+    basePath(leavingPath) !== basePath(String(safeTarget));
+  if (NATIVE_POP_TO_BACK_ENABLED) {
+    if (samePathDifferentIdentity && typeof router.canDismiss === 'function' && typeof router.dismiss === 'function' && router.canDismiss()) {
+      router.dismiss(1);
+      return;
+    }
+    if (typeof router.dismissTo === 'function') {
+      router.dismissTo(safeTarget);
+      return;
+    }
+  }
+
   // Гасим запись следующего rememberNavigationPath, иначе целевой маршрут
   // запушится заново и стек снова закольцуется.
   suppressNextRemember = true;
@@ -280,11 +300,16 @@ export function dismissPaywallModal(
 
   const shouldReplace = paywallDismissShouldReplace;
   paywallDismissShouldReplace = false;
-  suppressNextRemember = true;
   if (!forceSettingsFallback && !shouldReplace && typeof router.canDismiss === 'function' && typeof router.dismiss === 'function' && router.canDismiss()) {
     router.dismiss(1);
     return;
   }
 
+  if (NATIVE_POP_TO_BACK_ENABLED && typeof router.dismissTo === 'function') {
+    router.dismissTo(safeTarget);
+    return;
+  }
+
+  suppressNextRemember = true;
   router.replace(safeTarget);
 }

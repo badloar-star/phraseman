@@ -10,23 +10,25 @@ import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { BOT_PROFILES_COLLECTION, generateBotProfiles } from './tournament_core';
-
-const DEFAULT_BOT_COUNT = 200;
-const MAX_BOT_COUNT = 1000;
-const BOT_SEED = 'tournament-bots-v1';
+import {
+  TOURNAMENT_REDDIT_BOT_PROFILE_COUNT,
+  TOURNAMENT_REDDIT_BOT_SEED_VERSION,
+} from './tournament_reddit_bot_names';
 
 export const adminSeedBotProfiles = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
   if (request.auth?.token?.admin !== true) {
     throw new HttpsError('permission-denied', 'Admin only');
   }
-  const count = Math.min(
-    MAX_BOT_COUNT,
-    Math.max(1, Math.trunc(Number(request.data?.count)) || DEFAULT_BOT_COUNT),
-  );
-  const overwrite = request.data?.overwrite === true;
+  const requestedCount = request.data?.count;
+  if (requestedCount !== undefined
+    && Math.trunc(Number(requestedCount)) !== TOURNAMENT_REDDIT_BOT_PROFILE_COUNT) {
+    throw new HttpsError('invalid-argument', 'bot_count_must_equal_200');
+  }
+  const count = TOURNAMENT_REDDIT_BOT_PROFILE_COUNT;
+  const overwriteRequested = request.data?.overwrite === true;
 
   const db = admin.firestore();
-  const profiles = generateBotProfiles(count, BOT_SEED);
+  const profiles = generateBotProfiles(count, TOURNAMENT_REDDIT_BOT_SEED_VERSION);
   const nowMs = Date.now();
 
   let written = 0;
@@ -37,14 +39,24 @@ export const adminSeedBotProfiles = onCall(HOT_CALLABLE_OPTIONS, async (request)
       batch.set(ref, {
         ...profile,
         isBot: true,
-        seedVersion: BOT_SEED,
+        seedVersion: TOURNAMENT_REDDIT_BOT_SEED_VERSION,
         updatedAt: nowMs,
-      }, { merge: overwrite });
+      }, { merge: true });
       written += 1;
     }
     await batch.commit();
   }
 
-  console.log('[tournaments] bot profiles seeded', { count: written, overwrite });
-  return { ok: true, count: written, overwrite };
+  console.log('[tournaments] bot profiles seeded', {
+    count: written,
+    overwriteRequested,
+    preserveUnrelatedFields: true,
+  });
+  return {
+    ok: true,
+    count: written,
+    overwrite: false,
+    overwriteRequested,
+    preserveUnrelatedFields: true,
+  };
 });

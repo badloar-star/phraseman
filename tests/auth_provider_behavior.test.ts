@@ -850,6 +850,32 @@ test('a timed-out normal Google picker keeps blocking recovery until native sett
   }
 });
 
+// зачем: боевой баг владельца (2026-07-27) — «вход сработал только с 5 попытки,
+// обязано с первой». Нативный промис Google переиспользовался, чтобы не открыть
+// второй пикер поверх первого, но снимался лишь в следующем микротаске. Если
+// вызов ОТКЛОНЁН, повторное нажатие цеплялось к мёртвому промису и получало
+// мгновенную ошибку без пикера — пока очистка наконец не отработает.
+test('a rejected native Google sign-in does not poison the next attempt', async () => {
+  // Воспроизводим ГОНКУ: нативный вызов отклоняется не мгновенно, поэтому между
+  // отказом и очисткой в `.then` есть окно, в которое попадает второе нажатие.
+  let rejectNative!: (reason: unknown) => void;
+  googleSignInImpl.mockImplementationOnce(
+    () => new Promise((_resolve, reject) => { rejectNative = reject; }),
+  );
+  const { signInWithProvider } = loadAuthProvider();
+
+  const first = signInWithProvider('google');
+  await new Promise<void>((resolve) => setImmediate(resolve));
+  rejectNative(new Error('transient native failure'));
+  expect((await first).result).toBe('error');
+
+  // Вторая попытка обязана ОТКРЫТЬ НОВЫЙ пикер, а не упасть на мёртвом промисе.
+  const callsBefore = googleSignInImpl.mock.calls.length;
+  const second = await signInWithProvider('google');
+  expect(googleSignInImpl.mock.calls.length).toBeGreaterThan(callsBefore);
+  expect(second.result).not.toBe('error');
+});
+
 test('an over-deadline provider operation reports still-running instead of wedging every retry', async () => {
   let releaseGoogle!: (value: any) => void;
   googleSignInImpl.mockImplementationOnce(() => new Promise((resolve) => { releaseGoogle = resolve; }));
@@ -929,21 +955,29 @@ test('an enqueue failure is logged in the background without blocking local acco
   expect(logEvent.mock.calls.some(([name]) => name === 'auth_account_delete_enqueue_failed')).toBe(true);
 });
 
-test('account deletion aborts before enqueue or destructive exit when no durable pending guard can be saved', async () => {
+// зачем: РАНЬШЕ этот тест закреплял обратное — при недоступном SecureStore
+// удаление отменялось с 'pending_guard_persist_failed'. На боевом устройстве
+// владельца (2026-07-27) это и происходило: Keychain не отвечал, через полчаса
+// вылезал алерт «Не удалось безопасно подготовить удаление», аккаунт оставался,
+// на онбординг пользователь не попадал. Владелец потребовал обратного: удаление
+// обязано пройти всегда, в том числе у анонима, локальные данные стираются сразу.
+// Замок теперь best-effort: он блокирует повторный вход по почте/Apple ID, но
+// НЕ имеет права отменять удаление — без него блокировать попросту нечего.
+test('account deletion still wipes locally and succeeds when the durable guard cannot be saved', async () => {
   authState.isAnonymous = false;
   const storage = require('@react-native-async-storage/async-storage');
   const secureStore = require('expo-secure-store');
+  // Ровно один отказ: лишние mockRejectedValueOnce протекали в следующий тест
+  // (cold restart pending guard) и валили его.
   secureStore.setItemAsync.mockRejectedValueOnce(new Error('secure store unavailable'));
   storage.setItem.mockRejectedValueOnce(new Error('async storage unavailable'));
   const authProvider = loadAuthProvider();
 
   const result = await authProvider.deleteAccountAndWipe();
 
-  expect(result).toEqual({ ok: false, reason: 'pending_guard_persist_failed' });
-  expect(startCloudDeletionEnqueue).not.toHaveBeenCalled();
-  expect(authState.calls).not.toContain('signout');
-  expect(wipeLocalAccountData).not.toHaveBeenCalled();
-  expect(clearStableId).not.toHaveBeenCalled();
+  expect(result.ok).toBe(true);
+  // Локальные данные снесены несмотря на недоступный замок.
+  expect(wipeLocalAccountData).toHaveBeenCalled();
 });
 
 test('cold restart pending guard blocks before native sign-in, stable id, or auth callables', async () => {

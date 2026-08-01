@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useRef } from 'react';
 import { Animated, Easing, View, type StyleProp, type ViewStyle } from 'react-native';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
-import { useIsScreenFocused } from '../../hooks/use_is_screen_focused';
+import { useRuntimeActive } from '../../hooks/use_runtime_active';
 
 /**
  * Живая волна аудио-плеера флешкарточек (правило A-35 макета
@@ -30,6 +30,7 @@ const BAR_MIN = 0.22;
 const BAR_MAX = 0.95;
 
 interface AudioWaveformProps {
+  active?: boolean;
   /** Играет ли трек прямо сейчас. false — бары замирают в покое. */
   playing: boolean;
   /** Цвет баров. */
@@ -44,18 +45,16 @@ interface AudioWaveformProps {
   style?: StyleProp<ViewStyle>;
 }
 
-function AudioWaveformBase({ playing, color, height = 26, speed = 1, style }: AudioWaveformProps) {
+function AudioWaveformBase({ active = true, playing, color, height = 26, speed = 1, style }: AudioWaveformProps) {
   const reduceMotion = useReduceMotion();
-  const isFocused = useIsScreenFocused();
+  const runtimeActive = useRuntimeActive(active);
   // По одному значению на бар; создаём один раз и переиспользуем.
   const bars = useRef(
     Array.from({ length: BAR_COUNT }, () => new Animated.Value(BAR_MIN)),
   ).current;
 
-  const active = playing && isFocused && !reduceMotion;
-
   useEffect(() => {
-    if (!active) {
+    if (!playing || !runtimeActive || reduceMotion) {
       // Пауза/фон/reduce-motion: мягко возвращаем бары в покой и НЕ крутим цикл.
       bars.forEach((bar) => bar.stopAnimation(() => bar.setValue(BAR_MIN)));
       return;
@@ -89,7 +88,7 @@ function AudioWaveformBase({ playing, color, height = 26, speed = 1, style }: Au
     return () => {
       loops.forEach((loop) => loop.stop());
     };
-  }, [active, bars, speed]);
+  }, [bars, playing, reduceMotion, runtimeActive, speed]);
 
   return (
     <View

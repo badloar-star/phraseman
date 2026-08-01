@@ -37,7 +37,7 @@ describe('speaking Android recognizer availability contract', () => {
     expect(source).toContain('watchdogRef');
     expect(source).toContain("setStatus('stalled')");
     // Watchdog must be armed at start() and cleared on any sign of engine life.
-    expectBefore(source, 'watchdogRef.current = setTimeout(', 'speech.start(');
+    expectBefore(source, 'const watchdog = setTimeout(', 'speech.start(');
     expect(source).toContain("speech.addListener('start'");
     // stalled offers a retry path (mic button is not blocked, retry link shown).
     expect(source).toContain("status === 'stalled'");

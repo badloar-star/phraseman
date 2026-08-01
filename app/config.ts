@@ -57,6 +57,13 @@ export const DEV_MODE = true;
 export const IS_STORE_RELEASE = process.env.EXPO_PUBLIC_STORE_RELEASE === '1';
 export const TESTFLIGHT_DEV_TOOLS = process.env.EXPO_PUBLIC_TESTFLIGHT_DEV_TOOLS === '1';
 
+/**
+ * Real App Attest / Play Integrity mode is independent from store UI/revenue gates.
+ * Store-installed QA builds can keep dev tools while still requiring real attestation.
+ */
+export const APP_CHECK_REAL_ATTESTATION_ENABLED =
+  IS_STORE_RELEASE || process.env.EXPO_PUBLIC_APP_CHECK_REAL_ATTESTATION === '1';
+
 /** true только в реальном dev-рантайме Metro (не preview, не стор). */
 const IS_DEV_RUNTIME = typeof __DEV__ !== 'undefined' && __DEV__;
 
@@ -213,11 +220,9 @@ export const KNOWLY_LEGAL_PRIVACY_URL = 'https://knowlyapps.com/legal/privacy/';
 export const KNOWLY_LEGAL_TERMS_URL = 'https://knowlyapps.com/legal/terms/';
 
 // ── Update check ──────────────────────────────────────────────────────────────
-// version.json: { "versionCode": N, "message": "…" }. Пустая строка = проверка отключена.
-// ОТКЛЮЧЕНО: модал «Это Компас. У меня кое-что новое» (UpdateModal) больше не показываем.
-// Пустой URL → checkForUpdate() сразу возвращает null, модал не рендерится (см. app/update_check.ts).
-// Чтобы вернуть проверку — впиши URL обратно и подними versionCode в репо phraseman-version.
-export const UPDATE_CHECK_URL = '';
+// version.json: { "versionCode": N, "message": "…" }.
+// This remote manifest lets already installed builds discover a newer store release.
+export const UPDATE_CHECK_URL = 'https://raw.githubusercontent.com/badloar-star/phraseman-version/main/version.json';
 
 // ── Разовый бонус осколков за волну релиза — ОТКЛЮЧЁН (0 = никогда не показывать).
 // android.versionCode / ios.buildNumber для справки синхронизировали с волнами, когда фича была активна.

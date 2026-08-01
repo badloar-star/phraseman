@@ -236,6 +236,28 @@
               <span class="price" data-price="lifetime">$99.99</span>
             </div>
           </div>
+          <script>
+            (function () {
+              var PRICE_CACHE_KEY = 'pm_web_prices_cache_v1';
+              function money(cents, currency) {
+                try {
+                  return new Intl.NumberFormat('ru-RU', { style: 'currency', currency: String(currency || 'usd').toUpperCase(), maximumFractionDigits: 2 }).format(cents / 100);
+                } catch (_) { return (cents / 100).toFixed(2) + ' ' + String(currency || 'usd').toUpperCase(); }
+              }
+              function applyCachedPricesBeforePaint() {
+                try {
+                  var cached = JSON.parse(localStorage.getItem(PRICE_CACHE_KEY) || 'null');
+                  var data = cached && cached.data;
+                  if (!data || !data.ok || !data.priceCents) return;
+                  ['monthly', 'yearly', 'lifetime'].forEach(function (plan) {
+                    var cents = Number(data.priceCents[plan]);
+                    if (cents > 0) document.querySelector('[data-price="' + plan + '"]').textContent = money(cents, data.currency);
+                  });
+                } catch (_) { /* the configured price remains visible */ }
+              }
+              applyCachedPricesBeforePaint();
+            })();
+          </script>
 
           <form class="gform" id="giftForm" novalidate>
             <div class="row2">
@@ -374,26 +396,31 @@
         return new Intl.NumberFormat('ru-RU', { style: 'currency', currency: currency.toUpperCase(), maximumFractionDigits: 2 }).format(cents / 100);
       } catch (e) { return (cents / 100).toFixed(2) + ' ' + currency.toUpperCase(); }
     }
+    function applyFallbackPrices(prices) {
+      ['monthly', 'yearly', 'lifetime'].forEach(function (plan) {
+        if (prices[plan] && prices[plan].label) document.querySelector('[data-price="' + plan + '"]').textContent = prices[plan].label;
+      });
+    }
     function boot() {
       var c = cfg();
       var wp = c.webPrices || {};
-      ['monthly', 'yearly', 'lifetime'].forEach(function (plan) {
-        if (wp[plan] && wp[plan].label) document.querySelector('[data-price="' + plan + '"]').textContent = wp[plan].label;
-      });
-      if (!c.pricesEndpoint) { loadPaypal(); return; }
+      if (!c.pricesEndpoint) { applyFallbackPrices(wp); loadPaypal(); return; }
       fetch(c.pricesEndpoint)
         .then(function (r) { return r.json(); })
         .then(function (data) {
+          var appliedRemotePrices = false;
           if (data && data.ok && data.priceCents) {
             state.currency = String(data.currency || 'usd').toUpperCase();
             ['monthly', 'yearly', 'lifetime'].forEach(function (plan) {
               var cents = Number(data.priceCents[plan]);
               if (cents > 0) document.querySelector('[data-price="' + plan + '"]').textContent = money(cents, state.currency);
             });
+            appliedRemotePrices = true;
           }
+          if (!appliedRemotePrices) applyFallbackPrices(wp);
           loadPaypal();
         })
-        .catch(function () { loadPaypal(); });
+        .catch(function () { applyFallbackPrices(wp); loadPaypal(); });
     }
     /* site-config.js подключён с defer — ждём DOM, тогда KNOWLY_SITE уже есть */
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);

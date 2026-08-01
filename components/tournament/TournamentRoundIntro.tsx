@@ -28,6 +28,7 @@ import Svg, { Circle } from 'react-native-svg';
 import * as Haptics from 'expo-haptics';
 
 import { useRuntimeActive } from '../../hooks/use_runtime_active';
+import { resolveTournamentIntroCountdownValue, tournamentNow } from '../../app/tournament_client';
 import { useTournamentPalette, v2motion } from './tournament_theme';
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
@@ -38,13 +39,13 @@ const RING_RADIUS = (RING_SIZE - RING_STROKE) / 2;
 const RING_LENGTH = 2 * Math.PI * RING_RADIUS;
 
 /** С какой цифры начинаем. Три шага — привычный старт, как на табло. */
-const COUNT_FROM = 3;
-
 type Props = {
   /** Номер раунда — подпись над отсчётом. */
   roundNo: number;
   /** Название режима раунда: игрок заранее знает, что его ждёт. */
   modeLabel: string;
+  /** Absolute server boundary: a late mount shows only the remaining seconds. */
+  introEndsAtMs: number;
   /** Отсчёт закончился — экран раунда показывает первый вопрос. */
   onDone: () => void;
 };
@@ -56,13 +57,22 @@ type Props = {
  * loops) — иначе отсчёт продолжал бы тикать в фоне и греть телефон.
  */
 export const TournamentRoundIntro = memo(function TournamentRoundIntro({
-  roundNo, modeLabel, onDone,
+  roundNo, modeLabel, introEndsAtMs, onDone,
 }: Props) {
   const P = useTournamentPalette();
   const styles = React.useMemo(() => makeStyles(P), [P]);
   const runtimeActive = useRuntimeActive();
 
-  const [count, setCount] = useState(COUNT_FROM);
+  const [nowMs, setNowMs] = useState(() => tournamentNow());
+  const count = resolveTournamentIntroCountdownValue(introEndsAtMs, nowMs);
+  const nextTickAtMs = introEndsAtMs - Math.max(0, count - 1) * 1000;
+  const nextTickDelayMs = Math.max(1, nextTickAtMs - nowMs);
+
+  // A frozen screen keeps its prior React state; refresh the server clock on resume.
+  useEffect(() => {
+    if (runtimeActive) setNowMs(tournamentNow());
+  }, [introEndsAtMs, runtimeActive]);
+
 
   // Шаг отсчёта. Экран ушёл в фон — таймер не создаём вовсе.
   useEffect(() => {
@@ -71,9 +81,9 @@ export const TournamentRoundIntro = memo(function TournamentRoundIntro({
       onDone();
       return;
     }
-    const id = setTimeout(() => setCount((value) => value - 1), v2motion.countdownStepMs);
+    const id = setTimeout(() => setNowMs(tournamentNow()), nextTickDelayMs);
     return () => clearTimeout(id);
-  }, [count, onDone, runtimeActive]);
+  }, [count, nextTickDelayMs, onDone, runtimeActive]);
 
   // Тик — короткая вибрация: отсчёт чувствуется телом, а не только глазами.
   // зачем вибрация, а не звук: правило владельца — клик-звук только на
@@ -89,7 +99,7 @@ export const TournamentRoundIntro = memo(function TournamentRoundIntro({
       <Text style={styles.mode}>{modeLabel}</Text>
 
       <View style={styles.ringBox}>
-        <CountRing key={count} palette={P} active={runtimeActive} />
+        <CountRing key={count} palette={P} active={runtimeActive} durationMs={nextTickDelayMs} />
         <CountDigit key={`d${count}`} value={count} styles={styles} />
       </View>
     </View>
@@ -102,21 +112,21 @@ export const TournamentRoundIntro = memo(function TournamentRoundIntro({
  * стартует заново без ручного сброса значений.
  */
 const CountRing = memo(function CountRing({
-  palette, active,
-}: { palette: ReturnType<typeof useTournamentPalette>; active: boolean }) {
+  palette, active, durationMs,
+}: { palette: ReturnType<typeof useTournamentPalette>; active: boolean; durationMs: number }) {
   const progress = useSharedValue(0);
 
   useEffect(() => {
     if (!active) return;
     progress.value = 0;
     progress.value = withTiming(1, {
-      duration: v2motion.countdownStepMs,
+      duration: durationMs,
       easing: Easing.linear,
     });
     // Останавливаем анимацию при уходе: незавершённый таймер на UI-потоке
     // продолжал бы работать и после размонтирования.
     return () => cancelAnimation(progress);
-  }, [active, progress]);
+  }, [active, durationMs, progress]);
 
   const animatedProps = useAnimatedProps(() => ({
     strokeDashoffset: RING_LENGTH * progress.value,

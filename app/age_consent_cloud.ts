@@ -1,31 +1,234 @@
-/**
- * age_consent_cloud.ts — облачная запись возрастной метки и согласий в Firestore
- * `user_consents/{stableId}` для учёта в админке (accountability перед регулятором).
- *
- * Отдельная коллекция (не users/{id}) — чтобы не упираться в field-whitelist правил
- * прогресса. Правило: владелец пишет свой документ, читает агрегаты только admin
- * (см. firestore.rules → match /user_consents/{userId}).
- *
- * Best-effort: сбой облака не ломает UX (локальные значения уже сохранены в
- * age_gate / analytics_consent). Не вызывать в Expo Go.
- */
+/** Durable, privacy-minimized delivery for age and analytics consent metadata. */
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { IS_EXPO_GO } from './config';
-import { getStableId } from './stable_id';
-import { ensureStableAuthLink } from './cloud_sync';
+import Constants from 'expo-constants';
+import * as Crypto from 'expo-crypto';
+import { Platform } from 'react-native';
+import { getAnalyticsConsentState, setAnalyticsConsent, type AnalyticsConsentState } from './analytics_consent';
+import { getInstalledAppVersion } from './app_version';
+import { initFirebaseAppCheckIfAvailable } from './app_check_init';
+import {
+  ensureAnonUser,
+  ensureStableAuthLink,
+  getCurrentUid,
+  waitForAnonAuth,
+} from './cloud_sync';
+import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import {
   getAgeBracketSnapshot,
   restoreAgeBracket,
   type AgeBracket,
 } from './age_gate';
-import { getAnalyticsConsentState, setAnalyticsConsent } from './analytics_consent';
+import { getStableId } from './stable_id';
 
-/**
- * Локальный латч «Terms + Privacy приняты». Тот же литерал, что LEGAL_ACCEPTED_KEY
- * в CleanOnboarding.tsx (не импортируем оттуда — ключ должен жить и без онбординга).
- */
+const FUNCTIONS_REGION = 'us-central1';
+const PENDING_CONSENT_KEY = 'age_consent_cloud_pending_v1';
+const INTENT_ID_RE = /^[A-Za-z0-9_-]{16,80}$/;
+const MAX_COHORT_TEXT = 64;
+
 export const LEGAL_ACCEPTED_STORAGE_KEY = 'onboarding_terms_privacy_accepted_v1';
+
+type ConsentPlatform = 'ios' | 'android' | 'web';
+
+export type AgeConsentCloudSnapshot = {
+  schemaVersion: 1;
+  intentId: string;
+  ageBracket: AgeBracket;
+  analyticsConsent: AnalyticsConsentState;
+  legalAccepted: boolean;
+  appVersion: string;
+  build: string;
+  platform: ConsentPlatform;
+};
+
+type CapturedConsentSnapshot = Omit<AgeConsentCloudSnapshot, 'schemaVersion' | 'intentId'>;
+
+type DeliveryStorage = {
+  getItem(key: string): Promise<string | null>;
+  setItem(key: string, value: string): Promise<void>;
+};
+
+type DeliveryDependencies = {
+  storage: DeliveryStorage;
+  createIntentId(): string;
+  captureSnapshot(): Promise<CapturedConsentSnapshot>;
+  prepareDelivery(): Promise<boolean>;
+  send(snapshot: AgeConsentCloudSnapshot): Promise<{ ok: boolean; duplicate?: boolean }>;
+};
+
+type ReadinessDependencies = {
+  ensureAuthenticated(): Promise<unknown>;
+  waitForCurrentAuth(): Promise<boolean>;
+  hasCurrentAuth(): boolean;
+  initAppCheck(): Promise<boolean>;
+  ensureStableLink(): Promise<boolean>;
+};
+
+function isCohortText(value: unknown): value is string {
+  return typeof value === 'string' && value.length > 0 && value.length <= MAX_COHORT_TEXT;
+}
+
+function parsePendingSnapshot(raw: string | null): AgeConsentCloudSnapshot | null {
+  if (!raw) return null;
+  try {
+    const value = JSON.parse(raw) as Record<string, unknown>;
+    const allowed = new Set([
+      'schemaVersion',
+      'intentId',
+      'ageBracket',
+      'analyticsConsent',
+      'legalAccepted',
+      'appVersion',
+      'build',
+      'platform',
+    ]);
+    if (Object.keys(value).some((key) => !allowed.has(key))) return null;
+    if (value.schemaVersion !== 1) return null;
+    if (typeof value.intentId !== 'string' || !INTENT_ID_RE.test(value.intentId)) return null;
+    if (value.ageBracket !== 'adult' && value.ageBracket !== 'unknown') return null;
+    if (
+      value.analyticsConsent !== 'granted'
+      && value.analyticsConsent !== 'denied'
+      && value.analyticsConsent !== 'unset'
+    ) return null;
+    if (typeof value.legalAccepted !== 'boolean') return null;
+    if (!isCohortText(value.appVersion) || !isCohortText(value.build)) return null;
+    if (value.platform !== 'ios' && value.platform !== 'android' && value.platform !== 'web') return null;
+    return value as AgeConsentCloudSnapshot;
+  } catch {
+    return null;
+  }
+}
+
+export function createAgeConsentDeliveryReadiness(
+  dependencies: ReadinessDependencies,
+): () => Promise<boolean> {
+  return async () => {
+    try {
+      await dependencies.ensureAuthenticated();
+      if ((await dependencies.waitForCurrentAuth()) !== true) return false;
+      if (!dependencies.hasCurrentAuth()) return false;
+      if ((await dependencies.initAppCheck()) !== true) return false;
+      if ((await dependencies.ensureStableLink()) !== true) return false;
+      return dependencies.hasCurrentAuth();
+    } catch {
+      return false;
+    }
+  };
+}
+
+export function createAgeConsentCloudDelivery(dependencies: DeliveryDependencies) {
+  async function deliver(snapshot: AgeConsentCloudSnapshot): Promise<boolean> {
+    try {
+      if ((await dependencies.prepareDelivery()) !== true) return false;
+      const response = await dependencies.send(snapshot);
+      if (response?.ok !== true) return false;
+
+      const current = parsePendingSnapshot(
+        await dependencies.storage.getItem(PENDING_CONSENT_KEY).catch(() => null),
+      );
+      if (current?.intentId === snapshot.intentId) {
+        await dependencies.storage.setItem(PENDING_CONSENT_KEY, '');
+      }
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  return {
+    recordCurrentConsent: async (): Promise<boolean> => {
+      try {
+        const intentId = dependencies.createIntentId().trim();
+        if (!INTENT_ID_RE.test(intentId)) return false;
+        const snapshot = parsePendingSnapshot(JSON.stringify({
+          schemaVersion: 1,
+          intentId,
+          ...(await dependencies.captureSnapshot()),
+        }));
+        if (!snapshot) return false;
+        await dependencies.storage.setItem(PENDING_CONSENT_KEY, JSON.stringify(snapshot));
+        return deliver(snapshot);
+      } catch {
+        return false;
+      }
+    },
+    resumePending: async (): Promise<boolean> => {
+      const snapshot = parsePendingSnapshot(
+        await dependencies.storage.getItem(PENDING_CONSENT_KEY).catch(() => null),
+      );
+      if (!snapshot) return false;
+      return deliver(snapshot);
+    },
+  };
+}
+
+function currentPlatform(): ConsentPlatform {
+  if (Platform.OS === 'ios' || Platform.OS === 'android') return Platform.OS;
+  return 'web';
+}
+
+function boundedCohortText(value: unknown): string {
+  const normalized = String(value ?? '').trim();
+  return (normalized || 'unknown').slice(0, MAX_COHORT_TEXT);
+}
+
+function currentBuild(): string {
+  const configured = Platform.OS === 'ios'
+    ? (Constants.expoConfig?.ios as { buildNumber?: string } | undefined)?.buildNumber
+    : (Constants.expoConfig?.android as { versionCode?: number } | undefined)?.versionCode;
+  return boundedCohortText(Constants.nativeBuildVersion ?? configured);
+}
+
+let callable: ((snapshot: AgeConsentCloudSnapshot) => Promise<{ data: { ok: boolean; duplicate?: boolean } }>) | null = null;
+
+async function sendToServer(snapshot: AgeConsentCloudSnapshot): Promise<{ ok: boolean; duplicate?: boolean }> {
+  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED || !getCurrentUid()) return { ok: false };
+  if (!callable) {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { getApp } = require('@react-native-firebase/app');
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { getFunctions, httpsCallable } = require('@react-native-firebase/functions');
+    callable = httpsCallable(
+      getFunctions(getApp(), FUNCTIONS_REGION),
+      'recordAgeConsentSnapshot',
+    ) as typeof callable;
+  }
+  return (await callable!(snapshot)).data;
+}
+
+const prepareDefaultDelivery = createAgeConsentDeliveryReadiness({
+  ensureAuthenticated: () => ensureAnonUser(),
+  waitForCurrentAuth: () => waitForAnonAuth(),
+  hasCurrentAuth: () => Boolean(getCurrentUid()),
+  initAppCheck: () => initFirebaseAppCheckIfAvailable(),
+  ensureStableLink: () => ensureStableAuthLink(),
+});
+
+const defaultDelivery = createAgeConsentCloudDelivery({
+  storage: AsyncStorage,
+  createIntentId: () => Crypto.randomUUID(),
+  captureSnapshot: async () => ({
+    ageBracket: getAgeBracketSnapshot(),
+    analyticsConsent: getAnalyticsConsentState(),
+    legalAccepted: (await AsyncStorage.getItem(LEGAL_ACCEPTED_STORAGE_KEY).catch(() => null)) === '1',
+    appVersion: boundedCohortText(getInstalledAppVersion(Constants)),
+    build: currentBuild(),
+    platform: currentPlatform(),
+  }),
+  prepareDelivery: async () => (
+    !IS_EXPO_GO && CLOUD_SYNC_ENABLED && prepareDefaultDelivery()
+  ),
+  send: sendToServer,
+});
+
+export async function recordConsentToCloud(): Promise<void> {
+  await defaultDelivery.recordCurrentConsent();
+}
+
+export function resumePendingAgeConsent(): Promise<boolean> {
+  return defaultDelivery.resumePending();
+}
 
 function getFirestore(): any | null {
   if (IS_EXPO_GO) return null;
@@ -37,97 +240,7 @@ function getFirestore(): any | null {
   }
 }
 
-/**
- * Записать текущее состояние возраста + согласия на аналитику в облако.
- * Вызывать ПОСЛЕ локальных setBirthYear/setAnalyticsConsent.
- *
- * Для GDPR-accountability фиксируем РАЗДЕЛЬНО:
- *   - consentGrantedAt — момент ПЕРВОЙ выдачи согласия (не перетирается при
- *     повторных granted, чтобы сохранить «когда впервые дал»);
- *   - consentRevokedAt — момент ПОСЛЕДНЕГО отзыва (обновляется при каждом denied);
- *   - updatedAt — момент любого изменения.
- * Так в админке видно и «когда дал», и «когда отозвал» по отдельности.
- */
-export async function recordConsentToCloud(): Promise<void> {
-  const db = getFirestore();
-  if (!db) return;
-  try {
-    const stableId = await getStableId();
-    if (!stableId) return;
-
-    // ВАЖНО для сбора в облако: правило user_consents разрешает запись владельцу
-    // через stableUserMatchesAuth, который читает users/{stableId}.firebaseAuthUid.
-    // У brand-new юзера на ПЕРВОМ экране онбординга эта привязка могла ещё не
-    // успеть записаться (гонка с cloud-sync) → запись согласия была бы отклонена,
-    // и юзер пропал бы из учёта админки. Гарантируем линк ДО записи (best-effort).
-    await ensureStableAuthLink().catch(() => false);
-
-    const analyticsConsent = getAnalyticsConsentState();
-    const legalAccepted =
-      (await AsyncStorage.getItem(LEGAL_ACCEPTED_STORAGE_KEY).catch(() => null)) === '1';
-    const now = Date.now();
-    const ref = db.collection('user_consents').doc(stableId);
-
-    // Читаем прежнее состояние, чтобы не затереть первые даты согласий.
-    let prevGrantedAt: number | null = null;
-    let prevLegalAt: number | null = null;
-    try {
-      const snap = await ref.get();
-      const prev = (snap?.data?.() ?? {}) as Record<string, unknown>;
-      const g = prev.consentGrantedAt;
-      prevGrantedAt = typeof g === 'number' ? g : null;
-      const l = prev.legalAcceptedAt;
-      prevLegalAt = typeof l === 'number' ? l : null;
-    } catch {
-      /* нет доступа/документа — пишем как первый раз */
-    }
-
-    // зачем: год рождения мы не спрашиваем (онбординг = бинарное «есть ли 16»), поэтому
-    // и в облако его не пишем — раньше сюда уезжала синтетика (текущий год − 16),
-    // одинаковая у всех и бесполезная для учёта. Для accountability достаточно bracket.
-    const payload: Record<string, unknown> = {
-      birthYear: null,
-      ageBracket: getAgeBracketSnapshot(),
-      analyticsConsent,
-      platform: require('react-native').Platform.OS,
-      updatedAt: now,
-    };
-    if (analyticsConsent === 'granted') {
-      // Первую дату согласия выставляем только если её ещё не было.
-      payload.consentGrantedAt = prevGrantedAt ?? now;
-    } else if (analyticsConsent === 'denied') {
-      payload.consentRevokedAt = now;
-    }
-    if (legalAccepted) {
-      // Terms + Privacy: фиксируем факт и ПЕРВУЮ дату принятия (accountability).
-      payload.legalAccepted = true;
-      payload.legalAcceptedAt = prevLegalAt ?? now;
-    }
-
-    try {
-      await ref.set(payload, { merge: true });
-    } catch {
-      // Один ретрай: на самой первой записи привязка auth-линка могла ещё
-      // распространяться; перепривязываем и пробуем снова.
-      await ensureStableAuthLink().catch(() => false);
-      await ref.set(payload, { merge: true }).catch(() => {});
-    }
-  } catch {
-    /* best-effort: не ломаем UX */
-  }
-}
-
-/**
- * Восстановить возраст + согласия ИЗ облака в локальное состояние.
- *
- * Сценарий: реинсталл / новое устройство. Если нужно восстановить локальные
- * ключи возраста/согласий из user_consents, читаем их best-effort; runtime
- * reverify-модал для существующих пользователей не показывается.
- *
- * Восстанавливаем только то, что есть в документе; ничего не выдумываем.
- * Возвращает true, если хоть что-то восстановлено. Best-effort: офлайн/ошибка
- * → false.
- */
+/** Restore existing consent metadata without inventing deprecated birth-year data. */
 export async function restoreConsentStateFromCloud(): Promise<boolean> {
   const db = getFirestore();
   if (!db) return false;
@@ -141,9 +254,6 @@ export async function restoreConsentStateFromCloud(): Promise<boolean> {
     if (!data) return false;
 
     let restored = false;
-
-    // зачем: восстанавливаем только метку согласия. Год рождения игнорируем даже если
-    // он лежит в старом документе — это синтетика прошлых версий, не настоящий возраст.
     const bracket = data.ageBracket as AgeBracket | undefined;
     if (bracket === 'adult') {
       await restoreAgeBracket('adult');
@@ -160,7 +270,6 @@ export async function restoreConsentStateFromCloud(): Promise<boolean> {
       await AsyncStorage.setItem(LEGAL_ACCEPTED_STORAGE_KEY, '1').catch(() => {});
       restored = true;
     }
-
     return restored;
   } catch {
     return false;

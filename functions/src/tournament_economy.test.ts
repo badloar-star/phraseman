@@ -160,7 +160,11 @@ describe('настройки экономики из админки', () => {
   it('опечатка в цене входа не разоряет игроков', () => {
     expect(normalizeTournamentEconomy({ entryGems: 100000 }).entryGems)
       .toBe(DEFAULT_TOURNAMENT_ECONOMY.entryGems);
-    expect(normalizeTournamentEconomy({ entryGems: 0 }).entryGems)
+    // зачем 2026-07-27: владелец убрал требование на жемчужины — ноль это
+    // законная настройка «бесплатный вход», а не опечатка, поэтому он больше
+    // не откатывается на умолчание. Отрицательное значение — по-прежнему мусор.
+    expect(normalizeTournamentEconomy({ entryGems: 0 }).entryGems).toBe(0);
+    expect(normalizeTournamentEconomy({ entryGems: -5 }).entryGems)
       .toBe(DEFAULT_TOURNAMENT_ECONOMY.entryGems);
     expect(normalizeTournamentEconomy({ entryGems: 10 }).entryGems).toBe(10);
   });

@@ -126,6 +126,7 @@ export type LeagueChestClaim = {
     xpOverrideUses?: number;
     streakShieldCount?: number;
     themeGoldUnlocked?: boolean;
+    packGiftVoucherId?: string;
     expiresAt: number;
   };
 };
@@ -582,7 +583,14 @@ async function applyLocalRewardPack(
       // The Arena feature is retired. Keep the chest claim idempotent while
       // intentionally skipping its former Arena-only reward.
     } else if (drop.kind === 'pack_trial_48h') {
-      const trial = await setPackGiftTrial48hOnce(studyTarget, `${claimEffectId ?? 'league_chest'}:${drop.id}:pack_trial_48h`, drop.expiresAt);
+      const trial = await setPackGiftTrial48hOnce(
+        studyTarget,
+        `${claimEffectId ?? 'league_chest'}:${drop.id}:pack_trial_48h`,
+        drop.expiresAt,
+        rewardPack.packGiftVoucherId,
+        rewardPack.packGiftVoucherId,
+        'league_chest',
+      );
       if (trial) await primeMarketplaceBuiltCardsCacheFromAccessibleStorage(studyTarget);
     } else if (drop.kind === 'avatar_aura') {
       await grantAvatarAuraReward(drop.auraId);

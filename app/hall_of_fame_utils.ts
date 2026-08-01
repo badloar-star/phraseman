@@ -22,6 +22,11 @@ import type { Lang } from '../constants/i18n';
 import { getBestAvatarForLevel } from '../constants/avatars';
 import { getLevelFromXP } from '../constants/theme';
 import { getCurrentWeekStartIso } from './weekly_xp';
+import {
+  isCurrentAccountGeneration,
+  withAccountTransitionLock,
+  type AccountGenerationToken,
+} from './account_generation';
 
 export const LEVEL_BASE: Record<string, number> = { easy: 5, medium: 7, hard: 10 };
 
@@ -222,7 +227,9 @@ export const migrateWeekPointsIfNeeded = async (): Promise<void> => {
 
 // ── Обновить цепочку (дней подряд) и week_days_done при активности ───────────────────────────
 // Вызывать при ЛЮБОМ начислении опыта
-export const updateStreakOnActivity = async (): Promise<number> => {
+export const updateStreakOnActivity = async (
+  accountToken?: AccountGenerationToken,
+): Promise<number> => {
   try {
     await repairDevSeededStreakInStorage();
 
@@ -350,7 +357,7 @@ export const updateStreakOnActivity = async (): Promise<number> => {
 
     // Достижения по цепочке + пари (только при реальном изменении — не в firstLoads)
     if (!isSameLocalOrUtcDay(lastActive)) {
-      checkAchievements({ type: 'streak', streak }).catch(() => {});
+      checkAchievements({ type: 'streak', streak }, accountToken).catch(() => {});
       checkWagerProgress(streak).catch(() => {});
     }
 
@@ -372,7 +379,7 @@ export const updateStreakOnActivity = async (): Promise<number> => {
       await AsyncStorage.setItem('week_days_done', JSON.stringify(weekDone));
       // Проверяем идеальную неделю (все 7 дней)
       if (weekDone.every(Boolean)) {
-        checkAchievements({ type: 'perfect_week' }).catch(() => {});
+        checkAchievements({ type: 'perfect_week' }, accountToken).catch(() => {});
       }
     }
 
@@ -393,11 +400,12 @@ export const updateStreakOnActivity = async (): Promise<number> => {
  * 4. daily_stats      — для графика статистики (опыт за день)
  * 5. streak           — цепочка дней подряд + week_days_done
  */
-export const addOrUpdateScore = async (
+const addOrUpdateScoreUnsafe = async (
   name: string,
   delta: number,
   lang: string,
   avatar?: string,
+  accountToken?: AccountGenerationToken,
 ) => {
   // Разрешаем отрицательный опыт для списания ставок (wagers)
   if (!name || delta === 0) return;
@@ -462,7 +470,7 @@ export const addOrUpdateScore = async (
         if (finalizedWeekXp > prevPeakRoll) {
           await AsyncStorage.setItem(PB_KEY, String(finalizedWeekXp));
           if (prevPeakRoll > 0) {
-            checkAchievements({ type: 'personal_best' }).catch(() => {});
+            checkAchievements({ type: 'personal_best' }, accountToken).catch(() => {});
           }
         }
         wpData = { weekKey: currentWeekKey, points: 0 };
@@ -480,7 +488,7 @@ export const addOrUpdateScore = async (
     if (wpData.points > prevPeak) {
       await AsyncStorage.setItem(PB_KEY, String(wpData.points));
       if (prevPeak > 0) {
-        checkAchievements({ type: 'personal_best' }).catch(() => {});
+        checkAchievements({ type: 'personal_best' }, accountToken).catch(() => {});
       }
     }
   } catch (e) {
@@ -532,16 +540,101 @@ export const addOrUpdateScore = async (
 
   // ── 5. Цепочка и week_days_done — только при положительном начислении ────────
   if (delta > 0) {
-    await updateStreakOnActivity();
+    await updateStreakOnActivity(accountToken);
   }
 
   // ── 6. Синхронизируем клуб недели (fire-and-forget)
   // leaderboard теперь обновляется только через syncToCloud в xp_manager.ts
   // чтобы избежать race condition (pushMyScore читала старый XP до обновления)
   if (delta > 0) {
-    updateMyGroupPoints(newWeekPts).catch(() => {});
+    updateMyGroupPoints(newWeekPts, accountToken).catch(() => {});
   }
 
+};
+
+export const addOrUpdateScore = async (
+  name: string,
+  delta: number,
+  lang: string,
+  avatar?: string,
+  accountToken?: AccountGenerationToken,
+): Promise<void> => {
+  if (!accountToken) {
+    await addOrUpdateScoreUnsafe(name, delta, lang, avatar);
+    return;
+  }
+  await withAccountTransitionLock(async () => {
+    if (!isCurrentAccountGeneration(accountToken)) return;
+    await addOrUpdateScoreUnsafe(name, delta, lang, avatar, accountToken);
+  });
+};
+
+type PendingSecondaryXpProjection = {
+  name: string;
+  delta: number;
+  lang: string;
+  avatar?: string;
+  accountToken?: AccountGenerationToken;
+  timer: ReturnType<typeof setTimeout> | null;
+  waiters: Array<{ resolve: () => void; reject: (error: unknown) => void }>;
+};
+
+// Leaderboards, daily chart and streak mirrors are projections of already committed
+// XP. Coalescing a burst keeps the first-frame XP contract intact while replacing
+// dozens of repeated AsyncStorage read/write cycles with one account-scoped commit.
+const SECONDARY_XP_PROJECTION_BATCH_MS = 300;
+const pendingSecondaryXpProjections = new Map<string, PendingSecondaryXpProjection>();
+
+const secondaryProjectionKey = (accountToken?: AccountGenerationToken): string =>
+  accountToken ? `${accountToken.generation}:${accountToken.stableId ?? 'anonymous'}` : 'legacy';
+
+const flushSecondaryXpProjection = async (key: string): Promise<void> => {
+  const pending = pendingSecondaryXpProjections.get(key);
+  if (!pending) return;
+  pendingSecondaryXpProjections.delete(key);
+  if (pending.timer) clearTimeout(pending.timer);
+  try {
+    await addOrUpdateScore(pending.name, pending.delta, pending.lang, pending.avatar, pending.accountToken);
+    pending.waiters.forEach(({ resolve }) => resolve());
+  } catch (error) {
+    pending.waiters.forEach(({ reject }) => reject(error));
+  }
+};
+
+/** Batch non-authoritative score projections without delaying the visible XP award. */
+export const enqueueSecondaryXpProjection = (
+  name: string,
+  delta: number,
+  lang: string,
+  avatar?: string,
+  accountToken?: AccountGenerationToken,
+): Promise<void> => {
+  if (!name || delta === 0) return Promise.resolve();
+  const key = secondaryProjectionKey(accountToken);
+  return new Promise<void>((resolve, reject) => {
+    const existing = pendingSecondaryXpProjections.get(key);
+    if (existing) {
+      existing.name = name;
+      existing.delta += delta;
+      existing.lang = lang;
+      existing.avatar = avatar?.trim() || existing.avatar;
+      existing.waiters.push({ resolve, reject });
+      return;
+    }
+    const pending: PendingSecondaryXpProjection = {
+      name,
+      delta,
+      lang,
+      avatar,
+      accountToken,
+      timer: null,
+      waiters: [{ resolve, reject }],
+    };
+    pending.timer = setTimeout(() => {
+      void flushSecondaryXpProjection(key);
+    }, SECONDARY_XP_PROJECTION_BATCH_MS);
+    pendingSecondaryXpProjections.set(key, pending);
+  });
 };
 
 /**

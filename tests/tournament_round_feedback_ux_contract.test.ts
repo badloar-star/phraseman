@@ -1,0 +1,194 @@
+import { readFileSync } from 'node:fs';
+import path from 'node:path';
+
+const root = path.resolve(__dirname, '..');
+const round = readFileSync(path.join(root, 'app/tournament_round.tsx'), 'utf8');
+const countdown = readFileSync(
+  path.join(root, 'components/tournament/TournamentCountdown.tsx'),
+  'utf8',
+);
+
+function section(source: string, start: string, end: string): string {
+  const from = source.indexOf(start);
+  const to = source.indexOf(end, from + start.length);
+  expect(from).toBeGreaterThanOrEqual(0);
+  expect(to).toBeGreaterThan(from);
+  return source.slice(from, to);
+}
+
+describe('tournament question feedback UX', () => {
+  test('phrase building submits the answer length, never the whole bank including traps', () => {
+    expect(round).toContain('requiredTokenCount');
+    expect(round).toContain('usedPositions.length !== requiredTokenCount');
+    expect(round).not.toContain('usedPositions.length !== wordBank.length');
+  });
+
+  test('phrase building has one Ready action and fast reduced-motion-aware word transitions', () => {
+    const wordBank = section(round, 'const WordBank', 'const makeStyles');
+
+    expect(round).toContain("const showRoundFinish = question?.kind !== 'translate'");
+    expect(round).toContain('{showRoundFinish ? (');
+    expect(wordBank).toContain('const reduceMotion = useReduceMotion()');
+    expect(wordBank).toContain('entering={reduceMotion ? undefined : FadeInDown.duration(140)}');
+    expect(wordBank).not.toContain('.springify()');
+    expect(wordBank).not.toContain('delay(position * 46)');
+    expect(wordBank).toContain('correct === true && styles.assembledChipTextCorrect');
+  });
+
+  test('round completion is optimistic after a local answer and never exposes transport state', () => {
+    const submit = section(round, 'const submitCurrentTaskAnswer', '/**\n   *');
+
+    expect(round).toContain('allQuestionsResolved');
+    expect(round).toMatch(/secondsLeft !== 0[\s\S]*markTaskResolved\(question\.taskId\)/);
+    expect(submit).toMatch(/markTaskResolved\(task\.taskId\);[\s\S]*await submitTaskAnswer/);
+    expect(round).not.toContain('pendingSubmissionCount');
+    expect(round).not.toContain('Отправляем…');
+    expect(round).toContain("{finishing ? 'Переходим…' : 'Готово'}");
+    expect(round).not.toContain('allQuestionsAnswered');
+  });
+
+  test('answer countdown keeps following the absolute deadline during feedback', () => {
+    expect(round).toContain("const taskTimerActive = phase === 'question' || phase === 'feedback';");
+    expect(round).toContain('if (!taskTimerActive)');
+    expect(round).toContain('const displayedSecondsLeft = secondsLeft ?? deriveDisplayedSecondsLeft(');
+    expect(round).toContain('<TimerRing seconds={displayedSecondsLeft} total={secondsForQuestion} />');
+    expect(round).not.toContain('seconds={secondsLeft ?? secondsForQuestion}');
+  });
+
+  test('question TimerRing shows a numeric countdown only for the final five seconds', () => {
+    const timerRing = section(countdown, 'export const TimerRing', 'const makeStyles');
+
+    expect(timerRing).toContain('const low = seconds <= 5');
+    expect(timerRing).toContain('Math.ceil(seconds)');
+    expect(timerRing).toContain('styles.ringText');
+    expect(timerRing).toContain('accessibilityRole="timer"');
+  });
+
+  test('reading, answer, and feedback windows come only from the absolute server task schedule', () => {
+    const client = readFileSync(path.join(root, 'app/tournament_client.ts'), 'utf8');
+
+    expect(round).toContain("type Phase = 'intro' | 'reading' | 'question' | 'feedback'");
+    expect(client).toContain('readingEndsAtMs?: number;');
+    expect(client).toContain('answerDeadlineAtMs?: number;');
+    expect(client).toContain('feedbackStartsAtMs?: number;');
+    expect(client).toContain('feedbackEndsAtMs?: number;');
+    expect(round).toContain('readingEndsAtMs - tournamentNow()');
+    expect(round).toContain('const feedbackAdvanceAtMs = feedbackEndsAtMs;');
+    expect(round).toContain("const feedbackVisible = phase === 'feedback' && feedbackCorrect !== null;");
+    expect(round).not.toContain('feedbackStartsAtMs === null || tournamentNow() >= feedbackStartsAtMs');
+    expect(round).toContain('isTournamentAnswerWindowOpen(questionTiming, tournamentNow())');
+    expect(round).not.toContain('motion.answerFeedbackMs');
+  });
+
+  test('feedback advances from its absolute end before a slow answer result can resolve', () => {
+    const submit = section(round, 'const submitCurrentTaskAnswer', '/**\n   *');
+
+    expect(submit).toMatch(/setPhase\('feedback'\);[\s\S]*scheduleFeedbackAdvance\(\);[\s\S]*await submitTaskAnswer/);
+    expect(submit.match(/await submitTaskAnswer/g)).toHaveLength(2);
+    expect(submit).not.toContain("setPhase('question')");
+    expect(submit).toContain('activeTaskSubmissionRef.current !== submissionToken');
+    expect(submit).toContain('void retry();');
+    expect(round).toMatch(/const goNext[\s\S]*activeTaskSubmissionRef\.current = null/);
+  });
+
+  test('mount, resume, and reconnect derive the local phase from absolute task timing', () => {
+    const resume = section(
+      round,
+      '  useEffect(() => {\n    const resumed',
+      '  // зачем 2026-07-27',
+    );
+
+    expect(round).toContain('const derivePhaseFromTiming');
+    expect(resume).toContain('const scheduledQuestionTiming =');
+    expect(resume).toContain('derivePhaseFromTiming(scheduledQuestionTiming, tournamentNow())');
+    expect(round).not.toContain("if (phase !== 'intro') setPhase('question')");
+  });
+
+  test('resume and reconnect preserve the in-flight submission guard', () => {
+    const resume = section(
+      round,
+      '  useEffect(() => {\n    const resumed',
+      '  // зачем 2026-07-27',
+    );
+
+    expect(resume).toContain('const scheduledTaskHandled = scheduledTaskId !== null');
+    expect(resume).toContain('pendingTaskSubmissionsRef.current.get(scheduledTaskId) ?? null');
+    expect(resume).toContain('resolvedTaskIds.has(scheduledTaskId)');
+    expect(resume).toContain('const scheduledSubmissionToken = scheduledTaskId === null');
+    expect(resume).toMatch(/activeTaskSubmissionRef\.current !== scheduledSubmissionToken[\s\S]*activeTaskSubmissionRef\.current = null/);
+    expect(resume).toContain('activeQuestionKeyRef.current = scheduledQuestionKey;');
+    expect(resume).not.toContain('pendingTaskSubmissionsRef.current.clear()');
+    expect(resume).toMatch(/setPhase\(scheduledTaskHandled[\s\S]*derivePhaseFromTiming/);
+  });
+
+  test('async answer completions stop at unmount and network errors never sound wrong', () => {
+    const submit = section(round, 'const submitCurrentTaskAnswer', '/**\n   *');
+    const speedMatch = section(round, 'const answerMatch', 'const matchComplete');
+    const strictBoard = section(round, 'const StrictMatchBoard', 'const WordBank');
+    const speedMatchCatch = section(speedMatch, '    } catch {', '    } finally {');
+
+    expect(round).toContain('const screenMountedRef = useRef(true);');
+    expect(round).toContain('screenMountedRef.current = false;');
+    expect(submit).toContain('if (!screenMountedRef.current');
+    expect(speedMatch).toContain('if (!screenMountedRef.current || activeQuestionKeyRef.current !== attemptQuestionKey) return');
+    expect(speedMatch).toContain('const attemptQuestionKey = questionKey;');
+    expect(speedMatch).toContain('activeQuestionKeyRef.current !== attemptQuestionKey');
+    expect(speedMatch).toContain('const attemptKey = `${question.taskId}:${pairIndex}`;');
+    expect(speedMatch).toContain('pendingMatchPairsRef.current.has(attemptKey)');
+    expect(speedMatchCatch).not.toContain('fk.wrong()');
+    expect(strictBoard).toContain('const mountedRef = useRef(true);');
+    expect(strictBoard).toContain('if (!mountedRef.current) return;');
+  });
+
+  test('active forfeit requires an explicit loss-and-no-refund confirmation before the callable', () => {
+    const client = readFileSync(path.join(root, 'app/tournament_client.ts'), 'utf8');
+
+    expect(client).toContain("'tournamentForfeit'");
+    expect(client).toContain('{ roomId, confirmForfeit: true }');
+    expect(round).toContain('forfeitTournament(roomId)');
+    expect(round).toContain('Вы покинете текущий турнир');
+    expect(round).toContain('Взнос не возвращается');
+    expect(round).toContain('Подтвердить выход');
+  });
+
+  test('choice feedback announces the authoritative result and paints only a server-confirmed selection green', () => {
+    const client = readFileSync(path.join(root, 'app/tournament_client.ts'), 'utf8');
+    const optionRow = section(round, 'const OptionRow', 'const MatchBoard');
+
+    expect(client).toContain('earnedStars: number;');
+    expect(client).toContain("zeroScoreReason: null | 'incorrect_answer' | 'speed_match_penalty';");
+    expect(client).toContain('correctIndex?: number;');
+    expect(round).toContain("feedbackCorrect === true ? 'Правильно!' : 'Почти!'");
+    expect(round).toContain('setFeedbackEarnedStars(result.earnedStars);');
+    expect(round).toContain('setFeedbackCorrectIndex(typeof result.correctIndex');
+    expect(round).toMatch(/setPicked\(selectedIndex\);[\s\S]*void submitCurrentTaskAnswer/);
+    expect(optionRow).toContain('selected={isPicked}');
+    expect(optionRow).toContain('authoritativeCorrect');
+    expect(optionRow).toContain('authoritativeCorrectIndex');
+    expect(optionRow).toContain("authoritativeCorrect ? 'ok' : 'bad'");
+    expect(optionRow).toContain('styles.optionLetterCorrect');
+  });
+
+  test('FeedbackKit keeps tournament sound and haptic settings independent', () => {
+    expect(round).toContain("import { fk } from './feedback/feedback_kit'");
+    expect(round).toMatch(/if \(result\.correct\) fk\.correct\(\);\s*else fk\.wrong\(\);/);
+    expect(round).not.toContain("from 'expo-haptics'");
+  });
+
+  test('answer text is capped, while the primary tournament prompt is allowed to wrap fully', () => {
+    expect(round).toMatch(/function TournamentTwoLineText[\s\S]*numberOfLines=\{2\}/);
+    for (const style of [
+      'optionText',
+      'matchPromptText',
+      'bankChipText',
+    ]) {
+      expect(round).toMatch(new RegExp(`<TournamentTwoLineText[^>]*style=\\{(?:styles\\.)?${style}`));
+    }
+    expect(round).toContain('styles.strictMatchText,');
+    expect(round).toContain('styles.assembledChipText,');
+    expect(round).toContain('style={styles.questionPhrase}');
+    expect(round).not.toMatch(/<TournamentTwoLineText[^>]*style=\{styles\.questionPhrase/);
+    expect(round.match(/numberOfLines=\{2\}/g)).toHaveLength(1);
+    expect(round).not.toContain('adjustsFontSizeToFit');
+  });
+});

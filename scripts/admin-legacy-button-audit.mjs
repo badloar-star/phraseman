@@ -3,7 +3,7 @@ import path from 'node:path';
 import { createHash } from 'node:crypto';
 
 const root = process.cwd();
-const sourcePath = path.join(root, 'admin', 'legacy.html');
+const sourcePath = path.join(root, 'admin', 'v2', 'legacy.html');
 const outDir = path.join(root, '.codex-tmp', 'admin-audit');
 
 const html = fs.readFileSync(sourcePath, 'utf8');

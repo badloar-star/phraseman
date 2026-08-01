@@ -14,6 +14,8 @@ jest.mock('../app/hall_of_fame_utils', () => ({
   getLastWeekFinalPoints: jest.fn(async () => null),
 }));
 
+import { getOrCreateLeagueGroup } from '../app/firestore_leagues';
+
 import {
   calculateResult,
   capLeagueStep,
@@ -172,6 +174,25 @@ describe('league weekly rollover', () => {
     expect(getWeekId(new Date('2026-07-06T00:00:00.000Z'))).toBe('2026-W28');
   });
 
+  it('accepts a legitimate solo group after moving to a new week', async () => {
+    await saveState({
+      leagueId: 0,
+      weekId: '2026-W19',
+      group: makeGroup(1200),
+    });
+    jest.mocked(getOrCreateLeagueGroup).mockResolvedValueOnce([
+      { uid: 'me', name: 'QA Monday', points: 0, isMe: true },
+    ]);
+
+    const opened = await checkLeagueOnAppOpen('QA Monday', 0);
+
+    expect(opened.state.weekId).toBe(getWeekId());
+    expect(opened.state.group).toEqual([
+      expect.objectContaining({ uid: 'me', name: 'QA Monday', points: 0, isMe: true }),
+    ]);
+    expect(opened.state.group.some((member) => member.uid === 'u1')).toBe(false);
+  });
+
   it('keeps fifth place in a sixteen-person group because top zone is three', () => {
     const { group, myPoints } = makeGroupWithMyRank(16, 5);
     const result = calculateResult({
@@ -188,6 +209,36 @@ describe('league weekly rollover', () => {
       promoted: false,
       demoted: false,
     });
+  });
+
+  it('gives equal XP the same promotion rank at the top boundary', () => {
+    const result = calculateResult({
+      leagueId: 2,
+      weekId: '2026-W31',
+      group: [
+        { uid: 'other-top', name: 'Other', points: 100, isMe: false },
+        { uid: 'me', name: 'QA Monday', points: 100, isMe: true },
+        { uid: 'middle', name: 'Middle', points: 50, isMe: false },
+        { uid: 'bottom', name: 'Bottom', points: 0, isMe: false },
+      ],
+    }, 100);
+
+    expect(result).toMatchObject({ myRank: 1, promoted: true, demoted: false });
+  });
+
+  it('gives equal XP the same demotion outcome at the bottom boundary', () => {
+    const result = calculateResult({
+      leagueId: 2,
+      weekId: '2026-W31',
+      group: [
+        { uid: 'top', name: 'Top', points: 100, isMe: false },
+        { uid: 'middle', name: 'Middle', points: 50, isMe: false },
+        { uid: 'other-bottom', name: 'Other Bottom', points: 0, isMe: false },
+        { uid: 'me', name: 'QA Monday', points: 0, isMe: true },
+      ],
+    }, 0);
+
+    expect(result).toMatchObject({ myRank: 3, promoted: false, demoted: true });
   });
 
   it('keeps the current percentage promotion logic when XP promotion mode is off', () => {
@@ -406,7 +457,7 @@ describe('league weekly rollover', () => {
     expect(result).toMatchObject({
       prevLeagueId: 3,
       newLeagueId: 3,
-      myRank: 6,
+      myRank: 5,
       totalInGroup: 10,
       promoted: false,
       demoted: false,

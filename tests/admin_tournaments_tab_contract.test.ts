@@ -93,6 +93,23 @@ function runTab() {
 }
 
 describe('вкладка «Турниры» в админке', () => {
+  it('показывает двухступенчатый вход в пул и не предлагает retired audio modes', () => {
+    const start = html.indexOf('<div id="tab-tournaments"');
+    const end = html.indexOf('<!-- REFERRALS TAB -->', start);
+    const section = html.slice(start, end);
+    const liveTournament = `${section}\n${tournamentBlock()}`;
+
+    expect(liveTournament).toContain('Автопроверка');
+    expect(liveTournament).toContain('решение человека');
+    expect(liveTournament).toContain('Одобрить и добавить в игру');
+    for (const retiredLabel of ['Выбор на слух', 'Звуковой контраст', 'Сборка на слух']) {
+      expect(liveTournament).not.toContain(retiredLabel);
+    }
+    expect(liveTournament).not.toContain('и на слух');
+    expect(liveTournament).not.toContain('Озвучка записывается при публикации');
+    expect(liveTournament).not.toContain('Озвучка появится при публикации');
+  });
+
   it('зарегистрирована в навигации, разметке и списке вкладок', () => {
     expect(html).toContain("switchTab('tournaments')");
     expect(html).toContain('id="tab-tournaments"');

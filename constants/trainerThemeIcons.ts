@@ -116,9 +116,9 @@ export const TRAINER_THEME_ICON_ASSET_PATHS: Record<ThemeMode, Record<TrainerThe
     analytics: 'assets/images/trainer_theme_icons/coral/analytics.webp',
   },
   minimalDark: {
-    phrases: 'assets/images/trainer_theme_icons/minimalDark/phrases.webp',
-    words: 'assets/images/trainer_theme_icons/minimalDark/words.webp',
-    analytics: 'assets/images/trainer_theme_icons/minimalDark/analytics.webp',
+    phrases: 'assets/images/trainer_theme_icons/indigo/phrases.webp',
+    words: 'assets/images/trainer_theme_icons/indigo/words.webp',
+    analytics: 'assets/images/trainer_theme_icons/indigo/analytics.webp',
   },
   business: {
     phrases: 'assets/images/trainer_theme_icons/business/phrases.webp',
@@ -151,9 +151,9 @@ export const TRAINER_THEME_ICON_ASSET_PATHS: Record<ThemeMode, Record<TrainerThe
     analytics: 'assets/images/trainer_theme_icons/volt/analytics.webp',
   },
   candyBlue: {
-    phrases: 'assets/images/trainer_theme_icons/candyBlue/phrases.webp',
-    words: 'assets/images/trainer_theme_icons/candyBlue/words.webp',
-    analytics: 'assets/images/trainer_theme_icons/candyBlue/analytics.webp',
+    phrases: 'assets/images/trainer_theme_icons/indigo/phrases.webp',
+    words: 'assets/images/trainer_theme_icons/indigo/words.webp',
+    analytics: 'assets/images/trainer_theme_icons/indigo/analytics.webp',
   },
   indigo: {
     phrases: 'assets/images/trainer_theme_icons/indigo/phrases.webp',
@@ -179,9 +179,9 @@ const TRAINER_THEME_ICON_SOURCES: Record<ThemeMode, Record<TrainerThemeIconKind,
     analytics: require('../assets/images/trainer_theme_icons/coral/analytics.webp'),
   },
   minimalDark: {
-    phrases: require('../assets/images/trainer_theme_icons/minimalDark/phrases.webp'),
-    words: require('../assets/images/trainer_theme_icons/minimalDark/words.webp'),
-    analytics: require('../assets/images/trainer_theme_icons/minimalDark/analytics.webp'),
+    phrases: require('../assets/images/trainer_theme_icons/indigo/phrases.webp'),
+    words: require('../assets/images/trainer_theme_icons/indigo/words.webp'),
+    analytics: require('../assets/images/trainer_theme_icons/indigo/analytics.webp'),
   },
   business: {
     phrases: require('../assets/images/trainer_theme_icons/business/phrases.webp'),
@@ -214,9 +214,9 @@ const TRAINER_THEME_ICON_SOURCES: Record<ThemeMode, Record<TrainerThemeIconKind,
     analytics: require('../assets/images/trainer_theme_icons/volt/analytics.webp'),
   },
   candyBlue: {
-    phrases: require('../assets/images/trainer_theme_icons/candyBlue/phrases.webp'),
-    words: require('../assets/images/trainer_theme_icons/candyBlue/words.webp'),
-    analytics: require('../assets/images/trainer_theme_icons/candyBlue/analytics.webp'),
+    phrases: require('../assets/images/trainer_theme_icons/indigo/phrases.webp'),
+    words: require('../assets/images/trainer_theme_icons/indigo/words.webp'),
+    analytics: require('../assets/images/trainer_theme_icons/indigo/analytics.webp'),
   },
   indigo: {
     phrases: require('../assets/images/trainer_theme_icons/indigo/phrases.webp'),

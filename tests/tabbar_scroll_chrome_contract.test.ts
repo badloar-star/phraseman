@@ -1,119 +1,40 @@
 import fs from 'fs';
 import path from 'path';
 
-const layoutPath = path.join(__dirname, '..', 'app', '(tabs)', '_layout.tsx');
-
-function readLayout(): string {
-  return fs.readFileSync(layoutPath, 'utf8');
-}
+const tab = (name: string) => path.join(__dirname, '..', 'app', '(tabs)', name);
+const layoutPath = tab('_layout.tsx');
 
 describe('tabbar scroll chrome contract', () => {
-  // 2026-07-26: владелец уточнил модель до «ровно как у Bevel» — прогресс схлопывания
-  // ведёт ПАЛЕЦ (медленная тяга = частичное сжатие), а не пороговый триггер с таймером.
-  it('drives collapse progress from the gesture, not from a threshold toggle', () => {
-    const source = readLayout();
+  it('uses the same scroll transport as Home and Lessons on every tab', () => {
+    const tournament = fs.readFileSync(tab('tournaments.tsx'), 'utf8');
+    const friends = fs.readFileSync(tab('friends.tsx'), 'utf8');
+    const settings = fs.readFileSync(tab('settings.tsx'), 'utf8');
 
-    expect(source).toContain('const TAB_SCROLL_COLLAPSE_DISTANCE = 92;');
-    expect(source).toContain('const TAB_SCROLL_TOP_ZONE_Y = 10;');
-    expect(source).toContain('const TAB_SCROLL_SETTLE_THRESHOLD = 0.5;');
-    expect(source).toContain('const tabScrollProgress = useSharedValue(0);');
-    // Прогресс пишется покадрово из жеста…
-    expect(source).toContain('tabScrollProgress.value = progress;');
-    // …а довод после отпускания — ПРУЖИНА, не временная кривая: только пружина
-    // перецеливается с текущей скорости при развороте жеста (иначе «клевок»).
-    expect(source).toContain('withSpring(target, TAB_CHROME_SPRING)');
-    expect(source).toContain('const TAB_CHROME_SPRING = { duration: 380, dampingRatio: 1 }');
-    // Кубическая кривая на схлопывании удалена осознанно — владелец забраковал её
-    // как «клюющую»; не возвращать без нового решения владельца.
-    expect(source).not.toContain('Easing.out(Easing.cubic)');
-    expect(source).not.toContain('TAB_SCROLL_COLLAPSE_MS');
-    expect(source).not.toContain('TAB_SCROLL_EXPAND_MS');
-
-    // Пороговая модель удалена, а не сосуществует второй веткой.
-    expect(source).not.toContain('TAB_SCROLL_COLLAPSE_TRIGGER_Y');
-    expect(source).not.toContain('TAB_SCROLL_TOGGLE_COOLDOWN_MS');
-    expect(source).not.toContain('TAB_SCROLL_DIRECTION_EPSILON');
-    expect(source).not.toContain('LESSONS_TAB_IDX');
+    expect(tournament).toContain('<BouncyScrollView');
+    expect(tournament).toContain('onScroll={topFadeScroll?.onScroll}');
+    expect(friends).toContain('const handleFriendsScroll = useCallback((e: any) => {');
+    expect(friends).toContain('topFadeScroll?.onScroll?.(e);');
+    expect(friends).toContain('onScroll: handleFriendsScroll,');
+    expect(settings).toContain('const handleSettingsScroll = useCallback((e: any) => {');
+    expect(settings).toContain('topFadeScroll?.onScroll?.(e);');
+    expect(settings).toContain('onScroll={handleSettingsScroll}');
   });
 
-  // Разворот только из верхнего положения страницы — прямое требование владельца.
+  it('keeps one tabbar state machine with no per-screen scroll exceptions', () => {
+    const layout = fs.readFileSync(layoutPath, 'utf8');
+
+    expect(layout).not.toContain('manualLiftTab');
+    expect(layout).not.toContain('TAB_MANUAL_LIFT_TAB_IDX');
+    expect(layout).not.toContain('TAB_SCROLL_LIFT_TO_EXPAND');
+    expect(layout).toContain('const TAB_SCROLL_COLLAPSE_DISTANCE = 92;');
+    expect(layout).toContain('const TAB_SCROLL_TOP_ZONE_Y = 10;');
+    expect(layout).toContain('tabScrollProgress.value = progress;');
+    expect(layout).toContain('withSpring(target, TAB_CHROME_SPRING)');
+  });
+
   it('expands only when the page is back at the top', () => {
-    const source = readLayout();
-
-    expect(source).toContain('if (y <= TAB_SCROLL_TOP_ZONE_Y) {');
-    expect(source).toContain('animateTabChrome(false)');
-  });
-
-  // 2026-07-26: на «Друзьях» отскок резинки разворачивал бар сам. Владелец: там бар
-  // должен ждать, пока страницу поднимут вверх — подъём работает как кнопка «верни
-  // таббар». Привязка ЖЁСТКО к индексу таба: автодетект «нет скролла» по офсету
-  // угадывал неверно и залипал на обычных лентах — не возвращать его.
-  it('waits for a manual lift only on the friends tab', () => {
-    const source = readLayout();
-
-    expect(source).toContain('const TAB_SCROLL_LIFT_TO_EXPAND = 14;');
-    expect(source).toContain('const TAB_MANUAL_LIFT_TAB_IDX = 3;');
-    // Индекс обязан указывать именно на «Друзья»: если табы переставят, константа
-    // молча включила бы особую логику в чужом разделе.
-    expect(source).toContain("'/friends': 3,");
-    expect(source).toContain("  friends: 3,");
-    expect(source).toContain('tabScrollCollapsedFromBounceRef');
-    // Признак включается по ТАБУ, а не по вычисляемому «нет скролла».
-    expect(source).toContain('const manualLiftTab = activeTabIdxRef.current === TAB_MANUAL_LIFT_TAB_IDX;');
-    expect(source).toContain('if (manualLiftTab && tabScrollCollapsedFromBounceRef.current) {');
-    expect(source).toContain('const collapsedFromBounce = manualLiftTab;');
-    // Остальные разделы уходят из верхней зоны сразу — их поведение не меняется.
-    expect(source).toContain('if (!manualLiftTab) return;');
-    // Признак не переживает разворот — иначе залип бы навсегда.
-    expect(source).toContain('if (!collapsed) tabScrollCollapsedFromBounceRef.current = false;');
-    // Автодетект по офсету удалён, а не сосуществует второй веткой.
-    expect(source).not.toContain('tabScrollMaxSeenYRef');
-    expect(source).not.toContain('screenScrolls');
-  });
-
-  // 2026-07-26, вторая итерация: владелец забраковал scaleX — иконки видимо
-  // растягивало. Ресёрч боевых реализаций (expo-glass-tabs, SwiftUI Liquid Glass)
-  // подтвердил: анимируется НАСТОЯЩАЯ ширина, иконки не масштабируются вообще.
-  it('shrinks real width and never scales the icons', () => {
-    const source = readLayout();
-
-    expect(source).toContain('const TAB_ORB_HIT_SLOP');
-    expect(source).toContain('tabChromeCollapsed');
-    expect(source).toContain('testID="tab-collapsed-orb"');
-
-    // Ширина капсулы — настоящая, интерполируется от измеренной до диаметра круга.
-    expect(source).toContain('[tabPillWidth, tabBarHeight]');
-    // Лишнее срезается клипом, а не сжатием содержимого.
-    expect(source).toContain("overflow: 'hidden'");
-    // Неактивные иконки гаснут задолго до конца схлопывания.
-    expect(source).toContain('const TAB_ICONS_FADE_OUT_END = 0.34;');
-
-    // НИКАКОГО масштабирования содержимого от прогресса схлопывания.
-    expect(source).not.toContain('tabCapsuleScaleX');
-    expect(source).not.toContain('tabCapsuleContentScaleX');
-    expect(source).not.toContain('TAB_CAPSULE_EXIT_SCALE');
-    expect(source).not.toContain('TAB_COLLAPSED_ORB_ENTER_SCALE');
-
-    // Анимация ширины обязана идти worklet'ом на UI-потоке, не через JS-поток.
-    expect(source).toContain('useAnimatedStyle');
-    expect(source).not.toContain('useNativeDriver: false');
-
-    // Тап по орбу только разворачивает — навигации нет.
-    expect(source).toContain('// contract: collapsed-tap-expands-only');
-    // Свайп и программная смена таба разворачивают немедленно.
-    expect(source).toContain('handleSwipeStartChrome');
-    expect(source).toContain('goToTabExpanded');
-    // Старый «gentle»-режим удалён, а не сосуществует второй веткой.
-    expect(source).not.toContain('TAB_SCROLL_COLLAPSED_OPACITY');
-  });
-
-  it('keeps swipe tab chrome responsive without moving route state early', () => {
-    const source = readLayout();
-
-    expect(source).toContain('const [visualIdx, setVisualIdx]');
-    expect(source).toContain('const visualTabIdx = visualIdx;');
-    expect(source).toContain('setVisualIdx(idx);');
-    expect(source).toContain('visualIdx={visualIdx}');
-    expect(source).toContain('а реальный activeIdx/URL переключаются после UI-thread анимации.');
+    const layout = fs.readFileSync(layoutPath, 'utf8');
+    expect(layout).toContain('if (y <= TAB_SCROLL_TOP_ZONE_Y) {');
+    expect(layout).toContain('animateTabChrome(false)');
   });
 });

@@ -24,7 +24,7 @@ describe('распределение типов по раундам', () => {
   it('по умолчанию доли равные и дают ровно 100', () => {
     const mix = defaultModeMix();
     expect(sum(mix)).toBe(MIX_TOTAL);
-    // Остаток от деления не потерян: 100/8 = 12.5 → кто-то получает больше.
+    // Сумма ровно делится между четырьмя owner-approved режимами.
     const values = TOURNAMENT_MODES.map((mode) => mix[mode]);
     expect(Math.max(...values) - Math.min(...values)).toBeLessThanOrEqual(1);
   });
@@ -50,10 +50,10 @@ describe('распределение типов по раундам', () => {
   });
 
   it('100% на один режим обнуляет остальные, сумма верна', () => {
-    const mix = adjustModeMix(defaultModeMix(), 'listen_build', 100);
-    expect(mix.listen_build).toBe(100);
+    const mix = adjustModeMix(defaultModeMix(), 'translate_build', 100);
+    expect(mix.translate_build).toBe(100);
     expect(sum(mix)).toBe(MIX_TOTAL);
-    const others = TOURNAMENT_MODES.filter((m) => m !== 'listen_build');
+    const others = TOURNAMENT_MODES.filter((m) => m !== 'translate_build');
     expect(others.every((m) => mix[m] === 0)).toBe(true);
   });
 
@@ -92,18 +92,18 @@ describe('распределение типов по раундам', () => {
   });
 
   it('режим с большей долей не получает меньше слотов', () => {
-    const mix = normalizeModeMix({ guess_phrase: 70, fill_gap: 20, find_oddity: 10 });
+    const mix = normalizeModeMix({ guess_phrase: 70, fill_gap: 20, translate_build: 10 });
     const slots = mixToSlots(mix, 6);
     expect(slots).toHaveLength(6);
     const count = (mode: string) => slots.filter((s) => s === mode).length;
     expect(count('guess_phrase')).toBeGreaterThanOrEqual(count('fill_gap'));
-    expect(count('fill_gap')).toBeGreaterThanOrEqual(count('find_oddity'));
+    expect(count('fill_gap')).toBeGreaterThanOrEqual(count('translate_build'));
   });
 
   it('режим с нулевой долей в раунд не попадает', () => {
     const mix = normalizeModeMix({ guess_phrase: 50, fill_gap: 50 });
     const slots = mixToSlots(mix, 6);
-    expect(slots.includes('listen_build')).toBe(false);
+    expect(slots.includes('speed_match')).toBe(false);
     expect(slots).toHaveLength(6);
   });
 

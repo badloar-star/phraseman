@@ -82,7 +82,6 @@ const FIXED_REASON_CATALOG: Readonly<Record<string, CatalogEntry>> = Object.free
   boon_comeback: { amounts: [0], perSourceDailyMax: 5 },
   boon_mystery_monday: { amounts: [0], perSourceDailyMax: 15 },
   boon_perfect_week: { amounts: [0], perSourceDailyMax: 20 },
-  legacy_arena_saturday: { amounts: [0], perSourceDailyMax: 5 },
 });
 
 const ACHIEVEMENT_REASON_RE = /^achievement:[A-Za-z0-9_-]{1,48}$/;

@@ -1,90 +1,262 @@
-// Сид бот-персон турниров в Firestore (botProfiles/).
-// Запуск: node functions/scripts/seed_tournament_bots.js [--count 200] [--overwrite]
-// Детерминировано (seed 'tournament-bots-v1'): повторный запуск пишет те же профили.
+#!/usr/bin/env node
 
-const admin = require('firebase-admin');
-const serviceAccount = require('../../service-account.json');
+// Production-safe seeder for the reviewed 200-name Reddit tournament bot corpus.
+// Default mode is read-only. Applying requires --apply, an environment guard,
+// the exact reviewed corpus SHA, and credentials for the pinned Firebase project.
 
-admin.initializeApp({ credential: admin.credential.cert(serviceAccount) });
-const db = admin.firestore();
+const assert = require('node:assert/strict');
+const crypto = require('node:crypto');
+const fs = require('node:fs');
+const path = require('node:path');
 
-const args = process.argv.slice(2);
-const countArg = args.indexOf('--count');
-const COUNT = countArg >= 0 ? Math.max(1, parseInt(args[countArg + 1], 10) || 200) : 200;
-const OVERWRITE = args.includes('--overwrite');
-const SEED = 'tournament-bots-v1';
+require('tsx/cjs');
+const { generateBotProfiles } = require('../src/tournament_core.ts');
+const {
+  TOURNAMENT_REDDIT_BOT_NAMES_SHA256,
+  TOURNAMENT_REDDIT_BOT_PROFILE_COUNT,
+  TOURNAMENT_REDDIT_BOT_SEED_VERSION,
+} = require('../src/tournament_reddit_bot_names.ts');
 
-const BOT_NAMES = [
-  'Марина', 'Тёма', 'Соня', 'Дэн', 'Лера', 'Гоша', 'Настя', 'Петрович',
-  'Юля', 'Сева', 'Кира', 'Макс', 'Олеся', 'Тимур', 'Вера', 'Гриша',
-  'Даша', 'Эльдар', 'Милана', 'Савва', 'Алиса', 'Ратмир', 'Злата', 'Егор',
-];
-const BOT_EMOJI = ['🦊', '🐼', '🦉', '🐸', '🐯', '🦁', '🐨', '🦜', '🐳', '🦄', '🐝', '🦖'];
-const BOT_RANKS = ['bronze', 'silver', 'gold', 'platinum', 'diamond'];
-const BOT_COLORS = ['#47C870', '#FFC800', '#FF5B6C', '#16B7D9', '#B78CFF', '#FF9F43'];
-const BOT_TITLES = ['Фразовый маньяк', 'Спринтер', 'Тихий охотник', 'Ветеран слотов', 'Словарный запас'];
+const EXPECTED_PROJECT_ID = 'phraseman-ea0b3';
+const EXPECTED_NAMES_SHA256 = TOURNAMENT_REDDIT_BOT_NAMES_SHA256;
+const SEED_VERSION = TOURNAMENT_REDDIT_BOT_SEED_VERSION;
+const EXPECTED_COUNT = TOURNAMENT_REDDIT_BOT_PROFILE_COUNT;
+const APPLY_GUARD = 'PHRASEMAN_TOURNAMENT_REDDIT_BOT_APPLY';
 
-function hash32(seed) {
-  let h = 2166136261;
-  for (let i = 0; i < seed.length; i += 1) {
-    h ^= seed.charCodeAt(i);
-    h = Math.imul(h, 16777619);
+function argValue(name, argv = process.argv.slice(2)) {
+  const exact = `--${name}`;
+  const prefix = `${exact}=`;
+  const inline = argv.find((arg) => arg.startsWith(prefix));
+  if (inline) return inline.slice(prefix.length);
+  const index = argv.indexOf(exact);
+  return index >= 0 ? argv[index + 1] : undefined;
+}
+
+function resolveApplyIntent(argv = process.argv.slice(2), env = process.env) {
+  const requested = argv.includes('--apply');
+  if (!requested) return false;
+  assert.equal(env[APPLY_GUARD], '1', 'reddit_bot_apply_guard_missing');
+  return true;
+}
+
+function hashNames(names) {
+  return crypto.createHash('sha256').update(`${names.join('\n')}\n`).digest('hex');
+}
+
+function buildExpectedProfiles() {
+  const profiles = generateBotProfiles(EXPECTED_COUNT, SEED_VERSION).map((profile) => ({
+    ...profile,
+    isBot: true,
+    seedVersion: SEED_VERSION,
+  }));
+  assert.equal(profiles.length, EXPECTED_COUNT, 'reddit_bot_profile_count_mismatch');
+  assert.equal(
+    new Set(profiles.map((profile) => profile.name.toLowerCase())).size,
+    EXPECTED_COUNT,
+    'reddit_bot_names_not_unique',
+  );
+  assert.equal(
+    hashNames(profiles.map((profile) => profile.name)),
+    EXPECTED_NAMES_SHA256,
+    'reddit_bot_embedded_names_sha256_mismatch',
+  );
+  return profiles;
+}
+
+function assertExpectedNamesHash(argv = process.argv.slice(2)) {
+  const supplied = argValue('expected-names-sha256', argv);
+  assert.ok(supplied, 'expected_names_sha256_missing');
+  assert.equal(supplied, EXPECTED_NAMES_SHA256, 'expected_names_sha256_mismatch');
+}
+
+function sameValue(actual, expected) {
+  if (Array.isArray(expected)) {
+    return Array.isArray(actual)
+      && actual.length === expected.length
+      && actual.every((value, index) => sameValue(value, expected[index]));
   }
-  return h >>> 0;
+  if (expected && typeof expected === 'object') {
+    return actual && typeof actual === 'object'
+      && Object.keys(expected).every((key) => sameValue(actual[key], expected[key]));
+  }
+  return Object.is(actual, expected);
 }
 
-function prng(seed) {
-  let a = hash32(seed);
-  return () => {
-    a = (a + 0x6D2B79F5) | 0;
-    let t = Math.imul(a ^ (a >>> 15), 1 | a);
-    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-  };
+function planProfileChanges(expectedProfiles, existingById) {
+  const changed = [];
+  const unchangedIds = [];
+  for (const profile of expectedProfiles) {
+    const existing = existingById.get(profile.botId);
+    if (existing && sameValue(existing, profile)) {
+      unchangedIds.push(profile.botId);
+      continue;
+    }
+    changed.push({
+      id: profile.botId,
+      reason: existing ? 'different' : 'missing',
+      writeData: profile,
+    });
+  }
+  return { changed, unchangedIds };
 }
 
-function generateBotProfile(index) {
-  const rand = prng(`${SEED}:bot:${index}`);
-  const name = BOT_NAMES[Math.floor(rand() * BOT_NAMES.length)];
-  const avatarEmoji = BOT_EMOJI[Math.floor(rand() * BOT_EMOJI.length)];
-  const rank = BOT_RANKS[Math.floor(rand() * BOT_RANKS.length)];
-  const color = BOT_COLORS[Math.floor(rand() * BOT_COLORS.length)];
-  const titlesCount = rand() < 0.4 ? 1 : 0;
-  const titles = Array.from({ length: titlesCount }, () => BOT_TITLES[Math.floor(rand() * BOT_TITLES.length)]);
-  const winRate = Math.min(0.85, Math.max(0.15, Math.round(((rand() + rand()) / 2) * 70 + 15) / 100));
+function buildBackupPayload(expectedProfiles, existingById, generatedAt = new Date().toISOString()) {
   return {
-    botId: `bot_${String(index + 1).padStart(3, '0')}`,
-    name,
-    avatarEmoji,
-    rank,
-    titles,
-    winRate,
-    color,
+    kind: 'tournament_reddit_bot_seed_backup_v1',
+    generatedAt,
+    projectId: EXPECTED_PROJECT_ID,
+    targetSeedVersion: SEED_VERSION,
+    targetNamesSha256: EXPECTED_NAMES_SHA256,
+    entries: expectedProfiles.map((profile) => ({
+      id: profile.botId,
+      exists: existingById.has(profile.botId),
+      data: existingById.get(profile.botId) ?? null,
+    })),
   };
 }
 
-async function main() {
-  const nowMs = Date.now();
+function writeBackupFile(reportPath, expectedProfiles, existingById) {
+  const payload = buildBackupPayload(expectedProfiles, existingById);
+  const immutableBackupStamp = payload.generatedAt.replace(/[^0-9A-Za-z]+/g, '-');
+  const reportStem = reportPath.toLowerCase().endsWith('.json')
+    ? reportPath.slice(0, -5)
+    : reportPath;
+  const backupPath = `${reportStem}.${immutableBackupStamp}.before.json`;
+  const serialized = `${JSON.stringify(payload, null, 2)}\n`;
+  fs.mkdirSync(path.dirname(backupPath), { recursive: true });
+  fs.writeFileSync(backupPath, serialized, { encoding: 'utf8', flag: 'wx' });
+  return {
+    backupPath,
+    backupSha256: crypto.createHash('sha256').update(serialized).digest('hex'),
+  };
+}
+
+function resolveReportPath(argv = process.argv.slice(2)) {
+  const requested = argValue('report', argv)
+    || `.codex-tmp/tournament-reddit-bots/seed-${Date.now()}.json`;
+  const absolute = path.resolve(process.cwd(), requested);
+  const allowedRoot = `${path.resolve(process.cwd(), '.codex-tmp')}${path.sep}`;
+  assert.ok(absolute.startsWith(allowedRoot), 'report_path_must_be_under_codex_tmp');
+  return absolute;
+}
+
+function loadServiceAccount(argv = process.argv.slice(2)) {
+  const requested = argValue('service-account', argv);
+  assert.ok(requested, 'service_account_path_missing');
+  const absolute = path.resolve(process.cwd(), requested);
+  const account = JSON.parse(fs.readFileSync(absolute, 'utf8'));
+  assert.equal(account.project_id, EXPECTED_PROJECT_ID, 'service_account_project_mismatch');
+  return account;
+}
+
+async function readProfiles(db, expectedProfiles) {
+  const refs = expectedProfiles.map((profile) => db.collection('botProfiles').doc(profile.botId));
+  const snapshots = await db.getAll(...refs);
+  return new Map(snapshots
+    .filter((snapshot) => snapshot.exists)
+    .map((snapshot) => [snapshot.id, snapshot.data()]));
+}
+
+async function applyChanges(db, changes, nowMs) {
   let written = 0;
-  for (let i = 0; i < COUNT; i += 400) {
+  for (let index = 0; index < changes.length; index += 400) {
     const batch = db.batch();
-    for (let j = i; j < Math.min(COUNT, i + 400); j += 1) {
-      const profile = generateBotProfile(j);
-      batch.set(db.collection('botProfiles').doc(profile.botId), {
-        ...profile,
-        isBot: true,
-        seedVersion: SEED,
-        updatedAt: nowMs,
-      }, { merge: OVERWRITE });
+    for (const change of changes.slice(index, index + 400)) {
+      batch.set(
+        db.collection('botProfiles').doc(change.id),
+        { ...change.writeData, updatedAt: nowMs },
+        { merge: true },
+      );
       written += 1;
     }
     await batch.commit();
-    console.log(`seeded ${written}/${COUNT}`);
   }
-  console.log(`Done: ${written} botProfiles (overwrite=${OVERWRITE})`);
+  return written;
 }
 
-main().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});
+async function main(argv = process.argv.slice(2), env = process.env) {
+  const apply = resolveApplyIntent(argv, env);
+  assertExpectedNamesHash(argv);
+  const expectedProfiles = buildExpectedProfiles();
+  const serviceAccount = loadServiceAccount(argv);
+  const reportPath = resolveReportPath(argv);
+
+  const admin = require('firebase-admin');
+  const app = admin.apps.length > 0
+    ? admin.app()
+    : admin.initializeApp({
+      credential: admin.credential.cert(serviceAccount),
+      projectId: EXPECTED_PROJECT_ID,
+    });
+  const db = admin.firestore(app);
+  const before = await readProfiles(db, expectedProfiles);
+  const plan = planProfileChanges(expectedProfiles, before);
+  const report = {
+    kind: 'tournament_reddit_bot_seed_report_v1',
+    generatedAt: new Date().toISOString(),
+    projectId: EXPECTED_PROJECT_ID,
+    mode: apply ? 'apply' : 'dry-run',
+    seedVersion: SEED_VERSION,
+    namesSha256: EXPECTED_NAMES_SHA256,
+    expectedCount: EXPECTED_COUNT,
+    existingTargetDocs: before.size,
+    plannedWrites: plan.changed.length,
+    unchangedTargetDocs: plan.unchangedIds.length,
+    plannedIds: plan.changed.map((change) => change.id),
+    productionWrites: 0,
+    verifiedCount: 0,
+    verifiedNoFurtherWrites: false,
+    backupPath: null,
+    backupSha256: null,
+  };
+
+  if (apply && plan.changed.length > 0) {
+    const backup = writeBackupFile(reportPath, expectedProfiles, before);
+    report.backupPath = path.relative(process.cwd(), backup.backupPath).replaceAll('\\', '/');
+    report.backupSha256 = backup.backupSha256;
+    report.productionWrites = await applyChanges(db, plan.changed, Date.now());
+  }
+
+  const after = await readProfiles(db, expectedProfiles);
+  const verification = planProfileChanges(expectedProfiles, after);
+  report.verifiedCount = after.size;
+  report.verifiedNoFurtherWrites = verification.changed.length === 0;
+
+  if (apply) {
+    assert.equal(report.productionWrites, plan.changed.length, 'reddit_bot_write_count_mismatch');
+    assert.equal(after.size, EXPECTED_COUNT, 'reddit_bot_post_apply_count_mismatch');
+    assert.equal(verification.changed.length, 0, 'reddit_bot_post_apply_verification_failed');
+  } else {
+    assert.equal(report.productionWrites, 0, 'dry_run_must_not_write');
+  }
+
+  fs.mkdirSync(path.dirname(reportPath), { recursive: true });
+  fs.writeFileSync(reportPath, `${JSON.stringify(report, null, 2)}\n`, 'utf8');
+  process.stdout.write(`${JSON.stringify({ ...report, reportPath })}\n`);
+  return report;
+}
+
+module.exports = {
+  APPLY_GUARD,
+  EXPECTED_COUNT,
+  EXPECTED_NAMES_SHA256,
+  EXPECTED_PROJECT_ID,
+  SEED_VERSION,
+  argValue,
+  assertExpectedNamesHash,
+  buildBackupPayload,
+  buildExpectedProfiles,
+  hashNames,
+  loadServiceAccount,
+  main,
+  planProfileChanges,
+  resolveApplyIntent,
+  resolveReportPath,
+};
+
+if (require.main === module) {
+  main().catch((error) => {
+    process.stderr.write(`${error?.stack || error}\n`);
+    process.exitCode = 1;
+  });
+}

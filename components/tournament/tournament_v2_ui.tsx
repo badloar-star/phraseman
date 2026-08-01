@@ -27,7 +27,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { LinearGradient } from 'expo-linear-gradient';
-import * as Haptics from 'expo-haptics';
+import { hapticMediumImpact, hapticTap } from '../../hooks/use-haptics';
 import { METAL, radius, useTournamentPalette, v2motion, type TournamentV2 } from './tournament_theme';
 import { StarGlyph } from './TournamentFx';
 
@@ -107,7 +107,7 @@ export const V2Cta = memo(function V2Cta({
   const handlePress = useCallback(() => {
     if (disabled) return;
     // Хаптик только на управляющих кнопках — правило владельца.
-    void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    void hapticMediumImpact();
     onPress?.();
   }, [disabled, onPress]);
 
@@ -138,7 +138,7 @@ export const V2Cta = memo(function V2Cta({
         ) : null}
         <View style={styles.ctaRow}>
           {left}
-          <Text style={[styles.ctaText, { color: disabled ? P.ghost : ink }]} allowFontScaling={false}>
+          <Text style={[styles.ctaText, { color: disabled ? P.ghost : ink }]}>
             {children}
           </Text>
           {right}
@@ -161,6 +161,9 @@ type ChipProps = {
   style?: StyleProp<ViewStyle>;
   textStyle?: StyleProp<TextStyle>;
   disabled?: boolean;
+  left?: React.ReactNode;
+  right?: React.ReactNode;
+  selected?: boolean;
   /** Читалка экрана: без метки вариант ответа звучит как «кнопка». */
   accessibilityLabel?: string;
 };
@@ -170,14 +173,15 @@ type ChipProps = {
  * Нажатие — просадка на кромку (translateY 3px), как в эталоне.
  */
 export const V2Chip = memo(function V2Chip({
-  children, onPress, verdict = 'idle', block, style, textStyle, disabled, accessibilityLabel,
+  children, onPress, verdict = 'idle', block, style, textStyle, disabled,
+  accessibilityLabel, left, right, selected,
 }: ChipProps) {
   const P = useTournamentPalette();
   const depth = useSharedValue(0);
   const pop = useSharedValue(1);
 
   const animStyle = useAnimatedStyle(() => ({
-    transform: [{ translateY: depth.value }, { scale: pop.value }],
+    transform: [{ translateY: depth.value }, { scale: pop.value }] as const,
   }));
 
   React.useEffect(() => {
@@ -197,7 +201,7 @@ export const V2Chip = memo(function V2Chip({
   const handlePress = useCallback(() => {
     if (disabled) return;
     // Плитки/слова — вибрация, НЕ клик-звук (правило владельца).
-    void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    void hapticTap();
     onPress?.();
   }, [disabled, onPress]);
 
@@ -226,13 +230,21 @@ export const V2Chip = memo(function V2Chip({
         {verdict === 'bad' ? (
           <View style={[StyleSheet.absoluteFill, { backgroundColor: P.dangerSoft }]} pointerEvents="none" />
         ) : null}
+        {selected && verdict === 'idle' ? (
+          <View style={[StyleSheet.absoluteFill, { backgroundColor: P.accentSoft }]} pointerEvents="none" />
+        ) : null}
         <View style={[styles.topHi, { backgroundColor: P.chipHi }]} pointerEvents="none" />
-        <Text
-          style={[block ? styles.optText : styles.chipText, { color: ink }, textStyle]}
-          allowFontScaling={false}
-        >
-          {children}
-        </Text>
+        {left || right ? (
+          <View style={styles.optRow}>
+            {left}
+            <View style={styles.optCopy}>{children}</View>
+            {right}
+          </View>
+        ) : (
+          <Text style={[block ? styles.optText : styles.chipText, { color: ink }, textStyle]}>
+            {children}
+          </Text>
+        )}
       </AnimatedPressable>
     </View>
   );
@@ -243,7 +255,7 @@ export const V2ChipGhost = memo(function V2ChipGhost({ label }: { label: string 
   const P = useTournamentPalette();
   return (
     <View style={[styles.chipBody, styles.ghostChip, { backgroundColor: P.elev }]}>
-      <Text style={[styles.chipText, { color: 'transparent' }]} allowFontScaling={false}>{label}</Text>
+      <Text style={[styles.chipText, { color: 'transparent' }]}>{label}</Text>
     </View>
   );
 });
@@ -285,7 +297,7 @@ export const V2Counter = memo(React.forwardRef<View, {
       <View style={[styles.topHi, { backgroundColor: P.chipHi }]} pointerEvents="none" />
       <Animated.View style={[styles.pillRow, inner]}>
         {icon ?? (tone === 'stars' ? <StarGlyph size={14} color={fg} /> : null)}
-        <Text style={[styles.pillText, { color: fg }]} allowFontScaling={false}>{value}</Text>
+        <Text style={[styles.pillText, { color: fg }]}>{value}</Text>
       </Animated.View>
     </View>
   );
@@ -325,7 +337,7 @@ export const V2StreakPill = memo(React.forwardRef<View, { streak: number }>(
         <View style={[styles.topHi, { backgroundColor: P.chipHi }]} pointerEvents="none" />
         <View style={styles.pillRow}>
           <StarGlyph size={13} color={fg} />
-          <Text style={[styles.pillText, { color: fg }]} allowFontScaling={false}>{streak}</Text>
+          <Text style={[styles.pillText, { color: fg }]}>{streak}</Text>
         </View>
       </Animated.View>
     );
@@ -480,6 +492,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   optText: { fontSize: 16.5, fontWeight: '700', letterSpacing: 0.1, lineHeight: 22 },
+  optRow: { flexDirection: 'row', alignItems: 'center', gap: 14, minWidth: 0 },
+  optCopy: { flex: 1, minWidth: 0 },
   dim: { opacity: 0.38 },
   pill: {
     height: 34,

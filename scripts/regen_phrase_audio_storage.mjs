@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 /**
  * regen_phrase_audio_storage.mjs â€” heal textâ†”audio drift in the SHIPPED pipeline.
  *
@@ -37,8 +37,30 @@ const TTS_DIR = path.join(ROOT, '.codex-tmp', 'tts-voicing');
 const MAP_JSON = path.join(TTS_DIR, 'audio_url_map.json');
 const GAPS_JSON = path.join(TTS_DIR, 'audio_url_map_gaps.json');
 const REGEN_DIR = path.join(TTS_DIR, 'audio_regen');
+const RUNTIME_MAP = path.join(ROOT, 'app', 'phrase_audio_url_map.generated.ts');
 const NULL = os.platform() === 'win32' ? 'NUL' : '/dev/null';
 const APPLY = process.argv.includes('--apply');
+const requestedIds = new Set();
+const invalidRequestedIds = [];
+for (let i = 0; i < process.argv.length; i++) {
+  const arg = process.argv[i];
+  if (arg === '--id') {
+    const value = process.argv[i + 1];
+    if (!value || value.startsWith('--')) invalidRequestedIds.push(arg);
+    else {
+      requestedIds.add(value);
+      i++;
+    }
+  } else if (arg.startsWith('--id=')) {
+    const value = arg.slice('--id='.length);
+    if (value) requestedIds.add(value);
+    else invalidRequestedIds.push(arg);
+  }
+}
+if (invalidRequestedIds.length > 0) {
+  console.error(`Invalid empty --id argument(s): ${invalidRequestedIds.join(', ')}`);
+  process.exit(2);
+}
 
 // Match the corpus exactly (see .codex-tmp/tts-voicing/regen_one.mjs).
 const VOICE = 'fable';
@@ -70,25 +92,44 @@ function runAudit() {
 // upload to the correct existing object and overwrite in place.
 function buildIdIndex() {
   const byUrl = new Map();
+  const knownIds = new Set();
   for (const f of [MAP_JSON, GAPS_JSON]) {
     if (!fs.existsSync(f)) continue;
     let obj; try { obj = JSON.parse(fs.readFileSync(f, 'utf8')); } catch { continue; }
     for (const id of Object.keys(obj)) {
       const rec = obj[id];
-      if (rec && rec.url) byUrl.set(rec.url, { id, source: rec.source, file: f });
+      if (rec && rec.url) {
+        byUrl.set(rec.url, { id, source: rec.source, file: f });
+        knownIds.add(id);
+      }
     }
   }
-  return byUrl;
+  return { byUrl, knownIds };
 }
 
 const audit = runAudit();
-const drift = (audit.findings && audit.findings.AUDIO_SAYS_OLD) || [];
+const { byUrl, knownIds } = buildIdIndex();
+const unknownRequestedIds = [...requestedIds].filter((id) => !knownIds.has(id));
+if (unknownRequestedIds.length > 0) {
+  console.error(`Unknown --id value(s): ${unknownRequestedIds.join(', ')}`);
+  process.exit(2);
+}
+const allDrift = (audit.findings && audit.findings.AUDIO_SAYS_OLD) || [];
+const drift = requestedIds.size > 0
+  ? allDrift.filter((item) => requestedIds.has(item.id))
+  : allDrift;
+const selectedDriftIds = new Set(drift.map((item) => item.id));
+const requestedCleanIds = [...requestedIds].filter((id) => !selectedDriftIds.has(id));
+if (requestedCleanIds.length > 0) {
+  console.log(`Requested ids already clean: ${requestedCleanIds.join(', ')}`);
+}
 if (drift.length === 0) {
-  console.log('Nothing to do â€” audit reports no AUDIO_SAYS_OLD drift.');
+  console.log(requestedIds.size > 0
+    ? `Nothing to do â€” no AUDIO_SAYS_OLD drift for requested ids: ${[...requestedIds].join(', ')}`
+    : 'Nothing to do â€” audit reports no AUDIO_SAYS_OLD drift.');
   process.exit(0);
 }
 
-const byUrl = buildIdIndex();
 const plan = [];
 for (const d of drift) {
   const meta = byUrl.get(d.url);
@@ -197,7 +238,28 @@ function loadMapObj(file) {
   return obj;
 }
 
+function normalizeRuntimeKey(value) {
+  return String(value).trim().toLowerCase().replace(/\s+/g, ' ');
+}
+
+function patchRuntimeMapForPlan(items) {
+  let source = fs.readFileSync(RUNTIME_MAP, 'utf8');
+  for (const item of items) {
+    const url = publicUrl(objectName(item.mp3Id, item.source));
+    const oldLine = `  ${JSON.stringify(normalizeRuntimeKey(item.oldText))}: ${JSON.stringify(url)},`;
+    const newLine = `  ${JSON.stringify(normalizeRuntimeKey(item.newText))}: ${JSON.stringify(url)},`;
+    if (source.includes(newLine)) continue;
+    if (!source.includes(oldLine)) {
+      throw new Error(`Runtime audio map is missing the old key for ${item.mp3Id}`);
+    }
+    source = source.replace(oldLine, newLine);
+  }
+  fs.writeFileSync(RUNTIME_MAP, source, 'utf8');
+  console.log(`Patched ${path.relative(ROOT, RUNTIME_MAP)} for ${items.length} requested id(s)`);
+}
+
 let ok = 0, failed = 0;
+const uploadedPlan = [];
 for (const p of plan) {
   const dir = path.join(REGEN_DIR, p.source);
   fs.mkdirSync(dir, { recursive: true });
@@ -225,6 +287,7 @@ for (const p of plan) {
     const mapObj = loadMapObj(p.mapFile);
     const prev = mapObj[p.mp3Id] || {};
     mapObj[p.mp3Id] = { ...prev, url: publicUrl(objName), source: p.source, text: p.newText };
+    uploadedPlan.push(p);
     ok++;
   } catch (e) {
     console.error(`   âœ— upload failed: ${e.message}`);
@@ -238,11 +301,15 @@ if (uploadEnabled && ok > 0) {
     fs.writeFileSync(file, JSON.stringify(obj, null, 0));
     console.log(`\nPatched ${path.relative(ROOT, file)}`);
   }
-  const rebuild = spawnSync('node', [path.join('.codex-tmp', 'tts-voicing', 'build_map_ts.mjs')], {
-    cwd: ROOT, encoding: 'utf8', shell: process.platform === 'win32',
-  });
-  process.stdout.write(rebuild.stdout || '');
-  if (rebuild.status !== 0) console.error(rebuild.stderr || 'build_map_ts failed');
+  if (requestedIds.size > 0) {
+    patchRuntimeMapForPlan(uploadedPlan);
+  } else {
+    const rebuild = spawnSync('node', [path.join('.codex-tmp', 'tts-voicing', 'build_map_ts.mjs')], {
+      cwd: ROOT, encoding: 'utf8', shell: process.platform === 'win32',
+    });
+    process.stdout.write(rebuild.stdout || '');
+    if (rebuild.status !== 0) console.error(rebuild.stderr || 'build_map_ts failed');
+  }
 }
 
 console.log('\n' + 'â”€'.repeat(60));

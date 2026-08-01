@@ -43,7 +43,7 @@ describe('resolveTodaysBoons — single fixed boon per day', () => {
 });
 
 describe('resolveTodaysBoons — weekly rotation (alternating Saturday)', () => {
-  const c = cfg({ schedule: { 6: ['arena_saturday', 'speaking_saturday'] } });
+  const c = cfg({ schedule: { 6: ['speaking_saturday', 'turbo_regen'] } });
 
   it('alternates the boon between consecutive Saturdays', () => {
     const first = resolveTodaysBoons(c, SAT_A).primary;
@@ -51,7 +51,7 @@ describe('resolveTodaysBoons — weekly rotation (alternating Saturday)', () => 
     expect(first).not.toBeNull();
     expect(second).not.toBeNull();
     expect(first).not.toBe(second); // ровно чередуется неделя через неделю
-    expect([first, second].sort()).toEqual(['arena_saturday', 'speaking_saturday']);
+    expect([first, second].sort()).toEqual(['speaking_saturday', 'turbo_regen']);
   });
 
   it('always returns exactly ONE primary even with a rotation slot', () => {
@@ -60,18 +60,18 @@ describe('resolveTodaysBoons — weekly rotation (alternating Saturday)', () => 
 
   it('skips a disabled element in a rotation and falls back to the enabled one', () => {
     const disabled = cfg({
-      schedule: { 6: ['arena_saturday', 'speaking_saturday'] },
-      enabled: { arena_saturday: false },
+      schedule: { 6: ['speaking_saturday', 'turbo_regen'] },
+      enabled: { speaking_saturday: false },
     });
-    // Обе субботы должны отдать speaking, т.к. arena выключена.
-    expect(resolveTodaysBoons(disabled, SAT_A).primary).toBe('speaking_saturday');
-    expect(resolveTodaysBoons(disabled, SAT_B).primary).toBe('speaking_saturday');
+    // Обе субботы должны отдать turbo_regen, т.к. speaking выключен.
+    expect(resolveTodaysBoons(disabled, SAT_A).primary).toBe('turbo_regen');
+    expect(resolveTodaysBoons(disabled, SAT_B).primary).toBe('turbo_regen');
   });
 
   it('returns null when every element of a rotation is disabled', () => {
     const allOff = cfg({
-      schedule: { 6: ['arena_saturday', 'speaking_saturday'] },
-      enabled: { arena_saturday: false, speaking_saturday: false },
+      schedule: { 6: ['speaking_saturday', 'turbo_regen'] },
+      enabled: { speaking_saturday: false, turbo_regen: false },
     });
     expect(resolveTodaysBoons(allOff, SAT_A).primary).toBeNull();
   });

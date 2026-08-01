@@ -19,21 +19,7 @@ export type HomeMenuImageSet = {
 };
 
 export function getHomeMenuImages(themeMode: ThemeMode): HomeMenuImageSet {
-  if (themeMode === 'minimalDark') {
-    return {
-      lesson: require('../assets/images/home_menu/home-minimal-dark-lessons.webp'),
-      cards: require('../assets/images/home_menu/home-minimal-dark-cards.webp'),
-      dayTasks: require('../assets/images/home_menu/home-minimal-dark-daily-tasks.webp'),
-      league: require('../assets/images/home_menu/home-minimal-dark-league.webp'),
-      test: require('../assets/images/home_menu/home-minimal-dark-diagnostic-test.webp'),
-      practice: require('../assets/images/home_menu/home-minimal-dark-practice.webp'),
-      dialogs: require('../assets/images/home_menu/home-minimal-dark-dialogs.webp'),
-      exam: require('../assets/images/levels/exam-minimal-dark.webp'),
-      shop: require('../assets/images/levels/shop fog.webp'),
-      heroMap: require('../assets/images/levels/her man fog.webp'),
-    };
-  }
-  if (themeMode === 'indigo') {
+  if (themeMode === 'minimalDark' || themeMode === 'candyBlue' || themeMode === 'indigo') {
     return {
       lesson: require('../assets/images/home_menu/indigo/home-indigo-lessons.webp'),
       cards: require('../assets/images/home_menu/indigo/home-indigo-cards.webp'),
@@ -45,20 +31,6 @@ export function getHomeMenuImages(themeMode: ThemeMode): HomeMenuImageSet {
       exam: require('../assets/images/home_menu/indigo/home-indigo-exam.webp'),
       shop: require('../assets/images/home_menu/indigo/home-indigo-shop.webp'),
       heroMap: require('../assets/images/home_menu/indigo/home-indigo-hero-map.webp'),
-    };
-  }
-  if (themeMode === 'candyBlue') {
-    return {
-      lesson: require('../assets/images/home_menu/candyBlue/home-candyBlue-lessons.webp'),
-      cards: require('../assets/images/home_menu/candyBlue/home-candyBlue-cards.webp'),
-      dayTasks: require('../assets/images/home_menu/candyBlue/home-candyBlue-daily-tasks.webp'),
-      league: require('../assets/images/home_menu/candyBlue/home-candyBlue-league.webp'),
-      test: require('../assets/images/home_menu/candyBlue/home-candyBlue-diagnostic-test.webp'),
-      practice: require('../assets/images/home_menu/candyBlue/home-candyBlue-practice.webp'),
-      dialogs: require('../assets/images/home_menu/candyBlue/home-candyBlue-dialogs.webp'),
-      exam: require('../assets/images/home_menu/candyBlue/home-candyBlue-exam.webp'),
-      shop: require('../assets/images/home_menu/candyBlue/home-candyBlue-shop.webp'),
-      heroMap: require('../assets/images/home_menu/candyBlue/home-candyBlue-hero-map.webp'),
     };
   }
   if (themeMode === 'business') {

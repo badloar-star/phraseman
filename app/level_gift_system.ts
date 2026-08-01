@@ -26,8 +26,14 @@ import {
   OFFICIAL_ROYAL_TEA_EN_ID,
   OFFICIAL_WILD_WEST_EN_ID,
 } from './flashcards/bundles/packIds';
-import { addOwnedPackId, loadOwnedPackIds, primeMarketplaceBuiltCardsCacheFromAccessibleStorage } from './flashcards/marketplace';
+import { addOwnedPackId, primeMarketplaceBuiltCardsCacheFromAccessibleStorage } from './flashcards/marketplace';
 import { setRandomPackGiftTrial48h } from './flashcards/pack_trial_gift';
+import {
+  callFlashcardPackGiftRedeem,
+  callLevelGiftActivatePackGift,
+  callLevelGiftReserve,
+} from './community_packs/functionsClient';
+import { getCanonicalUserId } from './user_id_policy';
 import { flashcardsOfficialPacksAvailableForTarget } from './flashcards_target_gate';
 import {
   addShardsRaw,
@@ -76,6 +82,12 @@ export interface GiftDef {
   weight:  number;
   /** Choice reward: UI asks the user to pick one of these concrete rewards. */
   choices?: GiftDef[];
+  /** Server-owned roll receipt. Persisted with pending inventory for replay. */
+  levelGiftReservation?: {
+    reservationId: string;
+    lane: 'f2p' | 'premium';
+    allowedPackId?: string;
+  };
 }
 
 type PlannedGiftCopy = Record<PlannedInterfaceLang, string>;
@@ -739,7 +751,6 @@ async function pushPremiumPackUnlockGiftReceivedPackId(packId: string): Promise<
 }
 
 const ROUND_LEVELS = new Set([10, 20, 30, 40, 50]);
-const GIFT_HISTORY_KEY = 'level_gift_last_ids_v1';
 const WAGER_DISCOUNT_KEY = 'wager_discount';
 const PREMIUM_BLOCKED_F2P_IDS = new Set<GiftId>([
   'arena_extra_5',
@@ -763,6 +774,8 @@ export function isFlashcardPackLevelGiftId(gid: string | undefined | null): bool
 function flashcardPackLevelGiftsAllowed(studyTarget?: RuntimeStudyTarget): boolean {
   return flashcardsOfficialPacksAvailableForTarget(studyTarget);
 }
+
+const isTrialPackLevelGiftId = (id: GiftId): boolean => id === 'pack_voucher_48h' || id === 'prem_pack_48h';
 
 const weightedPick = (pool: GiftDef[], level: number): GiftDef => {
   const isRound = ROUND_LEVELS.has(level);
@@ -791,22 +804,6 @@ const weightedPick = (pool: GiftDef[], level: number): GiftDef => {
   return effective[effective.length - 1];
 };
 
-async function getRecentGiftIds(): Promise<string[]> {
-  try {
-    const raw = await AsyncStorage.getItem(GIFT_HISTORY_KEY);
-    if (!raw) return [];
-    const a = JSON.parse(raw);
-    return Array.isArray(a) ? a.filter((x: unknown) => typeof x === 'string') : [];
-  } catch { return []; }
-}
-
-async function pushGiftHistory(id: string): Promise<void> {
-  const cur = await getRecentGiftIds();
-  cur.push(id);
-  const next = cur.slice(-3);
-  await AsyncStorage.setItem(GIFT_HISTORY_KEY, JSON.stringify(next));
-}
-
 /**
  * Синхронный ролл (без премиум-ветки и без анти-повторов) — тесты / миграции.
  */
@@ -814,17 +811,37 @@ export function rollGift(level: number): GiftDef {
   return weightedPick(GIFT_F2P, level);
 }
 
-const getF2pPool = (premiumSafe: boolean, studyTarget?: RuntimeStudyTarget): GiftDef[] => {
-  const premiumFiltered = premiumSafe ? GIFT_F2P.filter(g => !PREMIUM_BLOCKED_F2P_IDS.has(g.id)) : GIFT_F2P;
-  return flashcardPackLevelGiftsAllowed(studyTarget)
-    ? premiumFiltered
-    : premiumFiltered.filter(g => !isFlashcardPackLevelGiftId(g.id));
-};
-
 const cloneGiftDef = (gift: GiftDef): GiftDef => ({
   ...gift,
   choices: gift.choices?.map(choice => ({ ...choice })),
+  levelGiftReservation: gift.levelGiftReservation ? { ...gift.levelGiftReservation } : undefined,
 });
+
+async function reserveServerLevelGift(
+  level: number,
+  lane: 'f2p' | 'premium',
+  studyTarget?: RuntimeStudyTarget,
+): Promise<GiftDef> {
+  const stableId = await getCanonicalUserId();
+  if (!stableId) throw new Error('level_gift_identity_unavailable');
+  const receipt = await callLevelGiftReserve({
+    stableId,
+    level,
+    lane,
+    studyTarget: storageStudyTarget(studyTarget),
+  });
+  const definition = [...GIFT_F2P, ...GIFT_PREMIUM, ...PREMIUM_LEVEL_GIFT_PACK_UNLOCK_DEFS]
+    .find((gift) => gift.id === receipt.giftId);
+  if (!definition) throw new Error('level_gift_catalog_mismatch');
+  return {
+    ...cloneGiftDef(definition),
+    levelGiftReservation: {
+      reservationId: receipt.reservationId,
+      lane,
+      ...(receipt.allowedPackId ? { allowedPackId: receipt.allowedPackId } : {}),
+    },
+  };
+}
 
 function sourceGatedFallbackGiftId(id: GiftId): GiftId {
   return id === 'pack_voucher_48h' ? 'shards_10' : 'prem_shards_20';
@@ -838,11 +855,13 @@ function sourceGatedFallbackGiftDef(gift: GiftDef): GiftDef {
 
 export function sanitizeLevelGiftForStudyTarget(gift: GiftDef, studyTarget?: RuntimeStudyTarget): GiftDef {
   if (flashcardPackLevelGiftsAllowed(studyTarget)) return cloneGiftDef(gift);
-  if (isFlashcardPackLevelGiftId(gift.id)) return sourceGatedFallbackGiftDef(gift);
+  if (isFlashcardPackLevelGiftId(gift.id) && !isTrialPackLevelGiftId(gift.id)) return sourceGatedFallbackGiftDef(gift);
   const cloned = cloneGiftDef(gift);
   if (cloned.choices?.length) {
     cloned.choices = cloned.choices.map(choice =>
-      isFlashcardPackLevelGiftId(choice.id) ? sourceGatedFallbackGiftDef(choice) : sanitizeLevelGiftForStudyTarget(choice, studyTarget),
+      isFlashcardPackLevelGiftId(choice.id) && !isTrialPackLevelGiftId(choice.id)
+        ? sourceGatedFallbackGiftDef(choice)
+        : sanitizeLevelGiftForStudyTarget(choice, studyTarget),
     );
   }
   return cloned;
@@ -880,55 +899,25 @@ export function getMilestoneLevelGift(level: number, opts?: { premiumSafe?: bool
 
 /** F2P-пул: анти-triple-hint_1 на круглых уровнях; premiumSafe исключает бесполезные для премиум награды. */
 export async function rollF2pLevelGiftForUser(level: number, opts?: { premiumSafe?: boolean; studyTarget?: RuntimeStudyTarget }): Promise<GiftDef> {
-  const studyTarget = opts?.studyTarget;
-  const milestone = getMilestoneLevelGift(level, { premiumSafe: !!opts?.premiumSafe, studyTarget });
-  if (milestone) {
-    await pushGiftHistory(milestone.id);
-    return milestone;
+  const milestone = getMilestoneLevelGift(level, opts);
+  if (milestone && !isFlashcardPackLevelGiftId(milestone.id)) return milestone;
+  try {
+    return await reserveServerLevelGift(level, 'f2p', opts?.studyTarget);
+  } catch (error) {
+    if (milestone && isFlashcardPackLevelGiftId(milestone.id)) throw error;
+    const safePool = GIFT_F2P.filter((gift) => !isFlashcardPackLevelGiftId(gift.id));
+    return sanitizeLevelGiftForStudyTarget(weightedPick(safePool, level), opts?.studyTarget);
   }
-  const isRound = ROUND_LEVELS.has(level);
-  const pool = getF2pPool(!!opts?.premiumSafe, studyTarget);
-  let attempts = 0;
-  let g: GiftDef;
-  do {
-    g = weightedPick(pool, level);
-    attempts++;
-    const hist = await getRecentGiftIds();
-    const bad = isRound && g.id === 'hint_1' && hist[hist.length - 1] === 'hint_1' && hist[hist.length - 2] === 'hint_1';
-    if (!bad) break;
-  } while (attempts < 12);
-  await pushGiftHistory(g.id);
-  return sanitizeLevelGiftForStudyTarget(g, studyTarget);
 }
 
 /** Второй сундук — GIFT_PREMIUM + с шансом `PREMIUM_LEVEL_PACK_GIFT_DROP_CHANCE` навсегда один из пяти наборов (без повтора). */
 export async function rollPremiumLevelGiftForUser(level: number, opts?: { studyTarget?: RuntimeStudyTarget }): Promise<GiftDef> {
-  const studyTarget = opts?.studyTarget;
-  const packGiftsAllowed = flashcardPackLevelGiftsAllowed(studyTarget);
-  const owned = packGiftsAllowed ? await loadOwnedPackIds(studyTarget) : [];
-  const granted = packGiftsAllowed ? await loadPremiumPackUnlockGiftReceivedIds() : new Set<string>();
-
-  const eligiblePackGifts = packGiftsAllowed ? PREMIUM_LEVEL_GIFT_PACK_UNLOCK_DEFS.filter((g) => {
-    const packId = PREMIUM_LEVEL_GIFT_ID_TO_PACK[g.id];
-    if (!packId) return false;
-    if (owned.includes(packId)) return false;
-    if (granted.has(packId)) return false;
-    return true;
-  }) : [];
-
-  const tryPack = eligiblePackGifts.length > 0 && Math.random() < PREMIUM_LEVEL_PACK_GIFT_DROP_CHANCE;
-  if (tryPack) {
-    const g = eligiblePackGifts[Math.floor(Math.random() * eligiblePackGifts.length)]!;
-    await pushGiftHistory(g.id);
-    return cloneGiftDef(g);
+  try {
+    return await reserveServerLevelGift(level, 'premium', opts?.studyTarget);
+  } catch {
+    const safePool = GIFT_PREMIUM.filter((gift) => !isFlashcardPackLevelGiftId(gift.id));
+    return sanitizeLevelGiftForStudyTarget(weightedPick(safePool, level), opts?.studyTarget);
   }
-
-  const premiumPool = packGiftsAllowed
-    ? GIFT_PREMIUM
-    : GIFT_PREMIUM.filter(g => !isFlashcardPackLevelGiftId(g.id));
-  const g = weightedPick(premiumPool, level);
-  await pushGiftHistory(g.id);
-  return sanitizeLevelGiftForStudyTarget(g, studyTarget);
 }
 
 /**
@@ -1234,6 +1223,26 @@ const applyEnergyBonusN = async (
 const safeLevelGiftEventPart = (value: unknown, max = 60): string =>
   String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
 
+async function activateReservedLevelPackGift(gift: GiftDef, studyTarget?: RuntimeStudyTarget): Promise<{
+  stableId: string;
+  voucherId: string;
+  expiresAt: number;
+  allowedPackId?: string;
+} | null> {
+  const reservationId = gift.levelGiftReservation?.reservationId;
+  if (!reservationId) return null;
+  const stableId = await getCanonicalUserId();
+  if (!stableId) return null;
+  const grant = await callLevelGiftActivatePackGift({ stableId, reservationId });
+  if (!grant.voucherId || !Number.isFinite(grant.expiresAt) || grant.expiresAt <= Date.now()) return null;
+  return {
+    stableId,
+    voucherId: grant.voucherId,
+    expiresAt: grant.expiresAt,
+    ...(grant.allowedPackId ? { allowedPackId: grant.allowedPackId } : {}),
+  };
+}
+
 export interface ApplyGiftOptions {
   isPremium?: boolean;
   studyTarget?: RuntimeStudyTarget;
@@ -1256,7 +1265,7 @@ const applyGiftUnlocked = async (
     if (isPremium && PREMIUM_BLOCKED_F2P_IDS.has(id)) {
       id = 'prem_shards_10';
     }
-    if (!flashcardPackLevelGiftsAllowed(opts?.studyTarget) && isFlashcardPackLevelGiftId(id)) {
+    if (!flashcardPackLevelGiftsAllowed(opts?.studyTarget) && isFlashcardPackLevelGiftId(id) && !isTrialPackLevelGiftId(id)) {
       id = sourceGatedFallbackGiftId(id);
     }
 
@@ -1391,13 +1400,25 @@ const applyGiftUnlocked = async (
         break;
       }
       case 'prem_pack_48h': {
-        const trial = await setRandomPackGiftTrial48h(opts?.studyTarget);
+        const grant = await activateReservedLevelPackGift(gift, opts?.studyTarget);
+        if (!grant) return { success: false };
+        const trial = await setRandomPackGiftTrial48h(
+          opts?.studyTarget,
+          grant.voucherId,
+          grant.expiresAt,
+        );
         if (!trial) return { success: false };
         scheduleMarketplaceCachePrime(opts?.studyTarget);
         break;
       }
       case 'pack_voucher_48h': {
-        const trial = await setRandomPackGiftTrial48h(opts?.studyTarget);
+        const grant = await activateReservedLevelPackGift(gift, opts?.studyTarget);
+        if (!grant) return { success: false };
+        const trial = await setRandomPackGiftTrial48h(
+          opts?.studyTarget,
+          grant.voucherId,
+          grant.expiresAt,
+        );
         if (!trial) return { success: false };
         scheduleMarketplaceCachePrime(opts?.studyTarget);
         break;
@@ -1409,6 +1430,16 @@ const applyGiftUnlocked = async (
       case 'prem_level_unlock_peaky_blinders': {
         const packIdGift = PREMIUM_LEVEL_GIFT_ID_TO_PACK[id];
         if (!packIdGift) break;
+        const grant = await activateReservedLevelPackGift(gift, opts?.studyTarget);
+        if (!grant || grant.allowedPackId !== packIdGift) return { success: false };
+        const redemption = await callFlashcardPackGiftRedeem({
+          buyerStableId: grant.stableId,
+          packId: packIdGift,
+          packType: 'official',
+          studyTarget: storageStudyTarget(opts?.studyTarget),
+          voucherId: grant.voucherId,
+        });
+        if (!redemption.gifted && !redemption.alreadyOwned) return { success: false };
         await addOwnedPackId(packIdGift, opts?.studyTarget);
         await pushPremiumPackUnlockGiftReceivedPackId(packIdGift);
         scheduleMarketplaceCachePrime(opts?.studyTarget);

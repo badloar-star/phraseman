@@ -3128,6 +3128,7 @@ function RecentAchievementsCard({
 // владельца); embedded скрывает кнопку «назад» — у таба её быть не должно.
 export default function StreakStats({ embedded = false }: { embedded?: boolean } = {}) {
     const statsRuntimeActive = useRuntimeActive();
+    const statsRefreshDirtyRef = useRef(false);
     const router = useRouter();
     const insets = useStableSafeAreaInsets();
     const { theme: t, f, isDark, themeMode } = useTheme();
@@ -3477,11 +3478,23 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
             setPercentiles(p);
         }).catch((error) => { debugStatsRoute('loadAll:percentilesError', String(error)); });
     }, [applyStatsSnapshot, studyTarget]);
+    const requestStatsRefresh = React.useCallback(() => {
+        if (!statsRuntimeActive) {
+            statsRefreshDirtyRef.current = true;
+            return;
+        }
+        statsRefreshDirtyRef.current = false;
+        void loadAll();
+    }, [loadAll, statsRuntimeActive]);
     // Reload data when screen regains focus (e.g. after tester functions).
     useFocusEffect(React.useCallback(() => {
-        void loadAll();
+        requestStatsRefresh();
         return undefined;
-    }, [loadAll]));
+    }, [requestStatsRefresh]));
+    useEffect(() => {
+        if (!statsRuntimeActive || !statsRefreshDirtyRef.current) return;
+        requestStatsRefresh();
+    }, [requestStatsRefresh, statsRuntimeActive]);
     const randomizeLifetimeChartsForDev = React.useCallback(async () => {
         if (!ENABLE_DEV_TOOLS)
             return;
@@ -3531,10 +3544,10 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
     }, [allDays.length, allTimeDays.length, bonusOpen, days.length, detailsOpen, isPremium, lifetimeStats, myTime7ms, myXp7, percentiles.daily7timeMs, percentiles.daily7xp, percentiles.streak, percentiles.weekXp, percentiles.xp, statsDevUnlock, statsReady]);
     useEffect(() => {
         const sub = onAppEvent('xp_changed', () => {
-            void loadAll();
+            requestStatsRefresh();
         });
         return () => sub.remove();
-    }, [loadAll]);
+    }, [requestStatsRefresh]);
     const countdownExpiries = [
         clubBoostMultiplier > 1 ? clubBoostExpiresAt : 0,
         leagueBoostMultiplier > 1 ? leagueBoostExpiresAt : 0,
@@ -3685,9 +3698,6 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
         // Ежедневное задание «Щит стрика»: ручная заморозка (бесплатная или за осколки).
         void updateTaskProgress('streak_freeze_use', 1, studyTarget).catch(() => {});
     };
-    // зачем: у бесплатного пользователя закрытые блоки (недельная аналитика и
-    // «Среди других») уезжают в конец списка, чтобы сверху сразу шли его реальные
-    // доступные данные, а не заглушки с замком. У Plus порядок прежний.
     const weekAnalyticsBlock = (
         <Reanimated.View key="week-analytics" entering={FadeInDown.duration(420).delay(210)}>
           <WeekAnalyticsCard
@@ -3733,7 +3743,16 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
             percent: time7,
             label: triLang(lang, { ru: 'Время за 7 дней', uk: 'Час за 7 днів', es: 'Tiempo en 7 días', 'pt-BR': 'Tempo em 7 dias', vi: 'Thời gian 7 ngày', id: 'Waktu 7 hari', tr: '7 günde süre', pl: 'Czas w 7 dni' }),
         });
-        if (pItems.length === 0) return null;
+        if (pItems.length === 0 && (isPremium || statsDevUnlock)) return null;
+        if (pItems.length === 0) {
+          return (
+            <Reanimated.View key="percentiles-locked" entering={FadeInDown.duration(420).delay(420)}>
+              <StatsPremiumBlur isPremium={isPremium} context="percentiles" snapshotKey="percentiles" devUnlock={statsDevUnlock}>
+                <View />
+              </StatsPremiumBlur>
+            </Reanimated.View>
+          );
+        }
         return (
           <Reanimated.View key="percentiles" entering={FadeInDown.duration(420).delay(420)}>
           <StatsPremiumBlur isPremium={isPremium} context="percentiles" snapshotKey="percentiles" devUnlock={statsDevUnlock}>
@@ -3766,8 +3785,6 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
           </Reanimated.View>
         );
     })();
-    /** Закрытые блоки: у Plus — на своих местах, у free — единым хвостом внизу. */
-    const lockedBlocksInline = isPremium || statsDevUnlock;
     return (<View style={{ flex: 1, backgroundColor: statsPageField(themeMode) }}>
     <StatsArtBackdrop />
     <SafeAreaView testID="screen-streak-stats" style={{ flex: 1 }}>
@@ -3999,7 +4016,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
           />
         </Reanimated.View>
 
-        {lockedBlocksInline ? weekAnalyticsBlock : null}
+        {(isPremium || statsDevUnlock) ? weekAnalyticsBlock : null}
 
         <Reanimated.View entering={FadeInDown.duration(420).delay(280)}>
           <AllMetricsFoldCard
@@ -4035,7 +4052,12 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
         </Reanimated.View>
         ) : null}
 
-        {lockedBlocksInline ? percentilesBlock : null}
+        {!(isPremium || statsDevUnlock) ? (
+          <View testID="stats-free-locked-analytics" style={{ gap: 12 }}>
+            {weekAnalyticsBlock}
+            {percentilesBlock}
+          </View>
+        ) : percentilesBlock}
 
         <Modal transparent visible={wagerOpen} animationType="fade" onRequestClose={() => setWagerOpen(false)}>
           <Pressable testID="stats-series-wager-modal" style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.62)', justifyContent: 'flex-end' }} onPress={() => setWagerOpen(false)}>
@@ -4673,15 +4695,6 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
           </TouchableOpacity>)}
         </View>)}
         </React.Fragment>)}
-
-        {/* Хвост для free: всё, что закрыто замком, — единым блоком в конце,
-            чтобы доступные данные читались сверху без прокрутки через заглушки. */}
-        {!lockedBlocksInline ? (
-          <View style={{ gap: 12 }}>
-            {weekAnalyticsBlock}
-            {percentilesBlock}
-          </View>
-        ) : null}
 
         <View style={{ alignItems: 'center', paddingVertical: 12 }}>
           <ReportErrorButton screen="streak_stats" dataId="streak_stats_main" dataText={triLang(lang, {

@@ -95,6 +95,7 @@ describe('accountDelete query plan', () => {
     expect(keys.has('subscription_cancel_surveys.uid.==.stable-123')).toBe(true);
     expect(keys.has('community_packs.authorStableId.==.stable-123')).toBe(true);
     expect(keys.has('community_pack_purchases.buyerStableId.==.stable-123')).toBe(true);
+    expect(keys.has('community_pack_gift_claims.buyerStableId.==.stable-123')).toBe(true);
     expect(keys.has('user_reports.reporterUid.==.stable-123')).toBe(true);
     expect(keys.has('revenuecat_premium_events.candidates.array-contains.stable-123')).toBe(true);
   });

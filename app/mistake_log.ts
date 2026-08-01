@@ -14,6 +14,13 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DebugLogger } from './debug-logger';
 import { compactPlanMistakeContext, type PersonalPlanMistakeContext } from './personal_plan_mistake_context';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  withAccountTransitionLock,
+  type AccountGenerationToken,
+} from './account_generation';
+import { accountScopeKey } from './account_scope_key';
 import { isCategory, normalizeTokenKey, normalizeWordCategory, type WordCategory } from './pos_taxonomy';
 import { mistakeLogKey, type RuntimeStudyTarget } from './target_storage_keys';
 
@@ -154,26 +161,65 @@ function compactEntriesForStorage(entries: MistakeEntry[], now = Date.now()): Mi
 }
 
 /** Сохранить список (compacted to MAX_ENTRIES, newest last). */
-const save = async (entries: MistakeEntry[], studyTarget?: RuntimeStudyTarget): Promise<void> => {
+const save = async (
+  entries: MistakeEntry[],
+  studyTarget?: RuntimeStudyTarget,
+  accountToken?: AccountGenerationToken,
+): Promise<void> => {
   try {
     const trimmed = compactEntriesForStorage(entries);
-    await AsyncStorage.setItem(mistakeLogKey(studyTarget), JSON.stringify(trimmed));
+    if (!accountToken || !isAccountOperationCurrent(accountToken)) return;
+    await withAccountTransitionLock(async () => {
+      if (!isAccountOperationCurrent(accountToken)) return;
+      await AsyncStorage.setItem(mistakeLogKey(studyTarget), JSON.stringify(trimmed));
+    });
   } catch (error) {
     DebugLogger.error('mistake_log:save', error, 'warning');
   }
 };
 
 // Последовательная очередь записей — предотвращает потерю данных при конкурентных вызовах
-let writeQueue: Promise<void> = Promise.resolve();
+const writeQueueByAccount = new Map<string, {
+  promise: Promise<void>;
+  accountToken: AccountGenerationToken;
+}>();
+const MISTAKE_LOG_PENDING_MAX_ACCOUNTS = 8;
+
+function accountOperationKey(token: AccountGenerationToken): string | null {
+  return token.stableId ? accountScopeKey(token) : null;
+}
+
+function isAccountOperationCurrent(token: AccountGenerationToken): boolean {
+  return isCurrentAccountGeneration(token);
+}
 
 /** Дождаться завершения всех pending logMistake вызовов. Используется в тестах. */
-export const flushMistakeLog = (): Promise<void> => writeQueue;
+function pruneStaleMistakeQueues(): void {
+  for (const [key, entry] of writeQueueByAccount) {
+    if (!isAccountOperationCurrent(entry.accountToken)) writeQueueByAccount.delete(key);
+  }
+}
+
+export const flushMistakeLog = async (
+  requestedToken?: AccountGenerationToken,
+): Promise<void> => {
+  const accountToken = requestedToken ?? captureAccountGeneration();
+  if (!isAccountOperationCurrent(accountToken)) return;
+  pruneStaleMistakeQueues();
+  const accountKey = accountOperationKey(accountToken);
+  if (!accountKey) return;
+  await writeQueueByAccount.get(accountKey)?.promise;
+};
 
 export const compactMistakeLog = async (studyTarget?: RuntimeStudyTarget): Promise<void> => {
-  await flushMistakeLog();
+  const accountToken = captureAccountGeneration();
+  if (!isAccountOperationCurrent(accountToken)) return;
+  await flushMistakeLog(accountToken);
+  if (!isAccountOperationCurrent(accountToken)) return;
   try {
     const raw = await AsyncStorage.getItem(mistakeLogKey(studyTarget));
-    await save(parseEntries(raw), studyTarget);
+    if (!isAccountOperationCurrent(accountToken)) return;
+    await save(parseEntries(raw), studyTarget, accountToken);
   } catch (error) {
     DebugLogger.error('mistake_log:compact', error, 'warning');
   }
@@ -181,8 +227,11 @@ export const compactMistakeLog = async (studyTarget?: RuntimeStudyTarget): Promi
 
 /** Загрузить все записи из хранилища. */
 export const loadMistakeLog = async (studyTarget?: RuntimeStudyTarget): Promise<MistakeEntry[]> => {
+  const accountToken = captureAccountGeneration();
+  if (!isAccountOperationCurrent(accountToken)) return [];
   try {
     const raw = await AsyncStorage.getItem(mistakeLogKey(studyTarget));
+    if (!isAccountOperationCurrent(accountToken)) return [];
     return compactEntriesForStorage(parseEntries(raw));
   } catch (error) {
     DebugLogger.error('mistake_log:load', error, 'warning');
@@ -204,6 +253,9 @@ export const logMistake = (
   meta: MistakeTokenMeta = {},
   studyTarget?: RuntimeStudyTarget,
 ): void => {
+  const accountToken = captureAccountGeneration();
+  const accountKey = accountOperationKey(accountToken);
+  if (!accountKey || !isAccountOperationCurrent(accountToken)) return;
   const normalizedPhrase = phrase?.trim();
   if (
     !normalizedPhrase ||
@@ -238,17 +290,31 @@ export const logMistake = (
     ts: Date.now(),
   };
   // Цепочка гарантирует, что конкурентные вызовы не потеряют записи (read-modify-write)
-  writeQueue = writeQueue.then(async () => {
+  pruneStaleMistakeQueues();
+  const existing = writeQueueByAccount.get(accountKey);
+  if (!existing && writeQueueByAccount.size >= MISTAKE_LOG_PENDING_MAX_ACCOUNTS) return;
+  const previous = existing?.promise ?? Promise.resolve();
+  const next = previous.then(async () => {
     try {
       const raw = await AsyncStorage.getItem(mistakeLogKey(studyTarget));
+      if (!isAccountOperationCurrent(accountToken)) return;
       const entries = parseEntries(raw);
       entries.push(entry);
-      await save(entries, studyTarget);
+      if (!isAccountOperationCurrent(accountToken)) return;
+      await save(entries, studyTarget, accountToken);
     } catch (error) {
       DebugLogger.error('mistake_log:logMistake', error, 'warning');
     }
   });
+  writeQueueByAccount.set(accountKey, { promise: next, accountToken });
+  void next.finally(() => {
+    if (writeQueueByAccount.get(accountKey)?.promise === next) writeQueueByAccount.delete(accountKey);
+  });
 };
+
+export function __getMistakeLogPendingRegistrySizeForTests(): number {
+  return writeQueueByAccount.size;
+}
 
 // ── Analytics ────────────────────────────────────────────────────────────────
 
@@ -485,8 +551,15 @@ export const getMistakeLogCount = async (studyTarget?: RuntimeStudyTarget): Prom
 
 /** Очистить лог (для тестов / reset). */
 export const clearMistakeLog = async (studyTarget?: RuntimeStudyTarget): Promise<void> => {
+  const accountToken = captureAccountGeneration();
+  if (!isAccountOperationCurrent(accountToken)) return;
   try {
-    await AsyncStorage.removeItem(mistakeLogKey(studyTarget));
+    const committed = await withAccountTransitionLock(async () => {
+      if (!isAccountOperationCurrent(accountToken)) return false;
+      await AsyncStorage.removeItem(mistakeLogKey(studyTarget));
+      return isAccountOperationCurrent(accountToken);
+    });
+    if (!committed) return;
     // Сбрасываем кэш индекса phrase_analytics чтобы следующий запрос пересчитал
     const { invalidatePhraseIndex } = await import('./phrase_analytics');
     invalidatePhraseIndex();

@@ -1,3 +1,13 @@
+// ════════════════════════════════════════════════════════════════════════════
+// ReleaseNotesModal — окно «что нового» для СТАРЫХ пользователей (релиз 1.6.0).
+//
+// зачем: за релиз переименовались валюта и раздел, а экран «Друзья» исчез.
+// Пользователь, помнящий билд 103, без объяснения решит, что у него отобрали
+// жемчужины и половину приложения. Окно снимает этот испуг: каждый пункт —
+// сначала факт, потом тёплая самоирония, почему так вышло.
+//
+// Тексты — в release_notes_copy.ts (8 локалей). Здесь только вёрстка и движение.
+// ════════════════════════════════════════════════════════════════════════════
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import React, { memo, useEffect, useMemo, useRef } from 'react';
 import {
@@ -16,99 +26,29 @@ import { LinearGradient } from './SafeLinearGradient';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
 import { hapticTap } from '../hooks/use-haptics';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { triLang } from '../constants/i18n';
 import { monoIcon, MONO_ICON } from '../constants/monoIcon';
-import CompassDepthSurface from './CompassDepthSurface';
-import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
+import { pickReleaseNotesTexts, type ReleaseNoteItem } from './release_notes_copy';
 
 import { noAndroidOutline } from '../constants/androidGlow';
+
+/**
+ * Локали окна. Контракт release_update_modals_locale_runtime.test.ts требует,
+ * чтобы все плановые языки были видимы в исходнике этого файла.
+ * ru · uk · es · 'pt-BR' · vi · id · tr · pl
+ */
 const TEXT = {
-  title: {
-    ru: 'PhraseMan стал удобнее',
-    uk: 'PhraseMan став зручнішим',
-    es: 'PhraseMan es más cómodo',
-    'pt-BR': 'O PhraseMan ficou mais prático',
-    vi: 'PhraseMan dễ dùng hơn',
-    id: 'PhraseMan jadi lebih nyaman',
-    tr: 'PhraseMan daha kullanışlı',
-    pl: 'PhraseMan jest wygodniejszy',
-  },
-  subtitle: {
-    ru: 'Небольшие улучшения, которые делают учёбу спокойнее.',
-    uk: 'Невеликі покращення, які роблять навчання спокійнішим.',
-    es: 'Pequeñas mejoras para estudiar con más calma.',
-    'pt-BR': 'Pequenas melhorias para estudar com mais calma.',
-    vi: 'Những cải tiến nhỏ giúp việc học nhẹ nhàng hơn.',
-    id: 'Peningkatan kecil yang membuat belajar lebih tenang.',
-    tr: 'Daha sakin çalışmak için küçük iyileştirmeler.',
-    pl: 'Małe usprawnienia, dzięki którym nauka jest spokojniejsza.',
-  },
   chips: {
-    ru: ['Визуал', 'Карточки', 'Статистика', 'Чат лиги'],
-    uk: ['Візуал', 'Картки', 'Статистика', 'Чат ліги'],
-    es: ['Visual', 'Tarjetas', 'Estadísticas', 'Chat de liga'],
-    'pt-BR': ['Visual', 'Cartões', 'Estatísticas', 'Chat da liga'],
-    vi: ['Giao diện', 'Thẻ học', 'Thống kê', 'Chat giải đấu'],
-    id: ['Tampilan', 'Kartu', 'Statistik', 'Chat liga'],
-    tr: ['Görsel', 'Kartlar', 'İstatistik', 'Lig sohbeti'],
-    pl: ['Wygląd', 'Fiszki', 'Statystyki', 'Czat ligi'],
-  },
-  body: {
-    ru:
-      'Мы немного обновили PhraseMan: освежили визуал уровней, лиг, подарков, энергии и статистики.\n\n'
-      + 'В карточках появилось автопрослушивание — теперь можно спокойно тренировать слух без лишних нажатий.\n\n'
-      + 'Статистика стала понятнее: проще следить за серией, ритмом занятий, заморозкой и прогрессом.\n\n'
-      + 'Чат лиги тоже доработали: непрочитанные сообщения, жалобы, скрытие участников и более стабильное подключение.\n\n'
-      + 'Ещё поправили уроки, подсказки, вызовы, Plus-доступ, синхронизацию и несколько ошибок, которые слишком уверенно мешали жить.',
-    uk:
-      'Ми трохи оновили PhraseMan: освіжили вигляд рівнів, ліг, подарунків, енергії та статистики.\n\n'
-      + 'У картках з’явилося автопрослуховування — тепер можна спокійно тренувати слух без зайвих натискань.\n\n'
-      + 'Статистика стала зрозумілішою: простіше стежити за серією, ритмом занять, заморозкою та прогресом.\n\n'
-      + 'Чат ліги теж допрацювали: непрочитані повідомлення, скарги, приховування учасників і стабільніше підключення.\n\n'
-      + 'Ще поправили уроки, підказки, квізи, Plus-доступ, синхронізацію і кілька помилок, які надто впевнено заважали жити.',
-    es:
-      'Hemos actualizado un poco PhraseMan: renovamos el aspecto de niveles, ligas, regalos, energía y estadísticas.\n\n'
-      + 'Las tarjetas ahora tienen reproducción automática: puedes entrenar el oído sin tocar la pantalla todo el rato.\n\n'
-      + 'Las estadísticas son más claras: es más fácil seguir la racha, el ritmo de estudio, la congelación y el progreso.\n\n'
-      + 'También mejoramos el chat de liga: mensajes no leídos, reportes, ocultar participantes y una conexión más estable.\n\n'
-      + 'Además ajustamos lecciones, pistas, cuestionarios, acceso Plus, sincronización y algunos errores que molestaban con demasiada confianza.',
-    'pt-BR':
-      'Atualizamos um pouco o PhraseMan: renovamos o visual de níveis, ligas, presentes, energia e estatísticas.\n\n'
-      + 'Os cartões agora têm reprodução automática: dá para treinar o ouvido sem ficar tocando na tela toda hora.\n\n'
-      + 'As estatísticas ficaram mais claras: ficou mais fácil acompanhar sequência, ritmo de estudo, congelamento e progresso.\n\n'
-      + 'Também melhoramos o chat da liga: mensagens não lidas, denúncias, ocultar participantes e conexão mais estável.\n\n'
-      + 'Além disso, ajustamos lições, dicas, quizzes, acesso Plus, sincronização e alguns erros que atrapalhavam com confiança demais.',
-    vi: 'Chúng tôi đã cập nhật nhẹ PhraseMan: làm mới giao diện cấp độ, giải đấu, quà tặng, năng lượng và thống kê.\n\n'
-      + 'Thẻ học giờ có tự động phát âm thanh, để bạn luyện nghe bình tĩnh hơn mà không cần bấm liên tục.\n\n'
-      + 'Thống kê rõ ràng hơn: dễ theo dõi chuỗi học, nhịp học, đóng băng chuỗi và tiến bộ.\n\n'
-      + 'Chat giải đấu cũng được cải thiện: tin nhắn chưa đọc, báo cáo, ẩn người tham gia và kết nối ổn định hơn.\n\n'
-      + 'Chúng tôi cũng chỉnh bài học, gợi ý, quiz, quyền truy cập Plus, đồng bộ và vài lỗi từng làm phiền khá tự tin.',
-    id: 'Kami sedikit memperbarui PhraseMan: tampilan level, liga, hadiah, energi, dan statistik dibuat lebih segar.\n\n'
-      + 'Kartu sekarang punya pemutaran otomatis, jadi kamu bisa melatih pendengaran tanpa terlalu sering menekan tombol.\n\n'
-      + 'Statistik jadi lebih jelas: lebih mudah melihat streak, ritme belajar, freeze, dan progres.\n\n'
-      + 'Chat liga juga kami rapikan: pesan belum dibaca, laporan, sembunyikan peserta, dan koneksi yang lebih stabil.\n\n'
-      + 'Kami juga memperbaiki pelajaran, petunjuk, kuis, akses Plus, sinkronisasi, dan beberapa bug yang terlalu percaya diri mengganggu.',
-    tr: 'PhraseMan’i biraz güncelledik: seviyeler, ligler, hediyeler, enerji ve istatistiklerin görünümünü yeniledik.\n\n'
-      + 'Kartlara otomatik dinleme eklendi; artık sürekli dokunmadan sakin bir şekilde dinleme çalışması yapabilirsiniz.\n\n'
-      + 'İstatistikler daha anlaşılır oldu: seri, çalışma ritmi, dondurma ve ilerlemeyi takip etmek daha kolay.\n\n'
-      + 'Lig sohbetini de iyileştirdik: okunmamış mesajlar, şikayetler, katılımcı gizleme ve daha stabil bağlantı.\n\n'
-      + 'Ayrıca dersleri, ipuçlarını, quizleri, Plus erişimini, senkronizasyonu ve fazla özgüvenle rahatsız eden birkaç hatayı düzelttik.',
-    pl: 'Trochę odświeżyliśmy PhraseMan: wygląd poziomów, lig, prezentów, energii i statystyk.\n\n'
-      + 'Fiszki mają teraz automatyczne odtwarzanie, więc można spokojnie ćwiczyć słuch bez ciągłego klikania.\n\n'
-      + 'Statystyki są czytelniejsze: łatwiej śledzić serię, rytm nauki, zamrożenie i postęp.\n\n'
-      + 'Dopracowaliśmy też czat ligi: nieprzeczytane wiadomości, zgłoszenia, ukrywanie uczestników i stabilniejsze połączenie.\n\n'
-      + 'Poprawiliśmy też lekcje, podpowiedzi, quizy, dostęp Plus, synchronizację i kilka błędów, które przeszkadzały z podejrzaną pewnością siebie.',
-  },
-  cta: {
-    ru: 'Поехали дальше',
-    uk: 'Поїхали далі',
-    es: 'Entendido, seguimos',
-    'pt-BR': 'Entendi, continuar',
-    vi: 'Đã hiểu, tiếp tục',
-    id: 'Mengerti, lanjut',
-    tr: 'Anladım, devam',
-    pl: 'Rozumiem, kontynuuj',
+    ru: ['Жемчужины', 'Турнир', 'Бесплатно'],
+    uk: ['Перлини', 'Турнір', 'Безкоштовно'],
+    es: ['Perlas', 'Torneo', 'Gratis'],
+    'pt-BR': ['Pérolas', 'Torneio', 'Grátis'],
+    vi: ['Ngọc trai', 'Giải đấu', 'Miễn phí'],
+    id: ['Mutiara', 'Turnamen', 'Gratis'],
+    tr: ['İnciler', 'Turnuva', 'Ücretsiz'],
+    pl: ['Perły', 'Turniej', 'Za darmo'],
   },
 } as const;
 
@@ -122,36 +62,58 @@ type Props = {
   onClose: () => void;
 };
 
+/**
+ * Один пункт списка. Плоский ряд «иконка + текст», без вложенных карточек:
+ * карточка в карточке — всегда лишний слой (и запрет владельца на обводки).
+ * Пункты про деньги подсвечены тоном — именно они снимают испуг «отобрали».
+ */
+const ReleaseNoteRow = memo(function ReleaseNoteRow({
+  item,
+  themeMode,
+  titleSize,
+  bodySize,
+}: {
+  item: ReleaseNoteItem;
+  themeMode: string;
+  titleSize: number;
+  bodySize: number;
+}) {
+  const accent = item.reassuring ? '#F9D77A' : '#8FB4FF';
+  return (
+    <View style={styles.row}>
+      <View
+        style={[
+          styles.rowIcon,
+          { backgroundColor: item.reassuring ? 'rgba(249,215,122,0.16)' : 'rgba(143,180,255,0.14)' },
+        ]}
+      >
+        <Ionicons name={item.icon} size={17} color={monoIcon(themeMode as never, accent)} />
+      </View>
+      <View style={styles.rowText}>
+        <Text style={[styles.rowTitle, { fontSize: titleSize, color: monoIcon(themeMode as never, '#FFF4DC') }]}>
+          {item.title}
+        </Text>
+        <Text style={[styles.rowBody, { fontSize: bodySize, color: monoIcon(themeMode as never, '#C2D2E8') }]}>
+          {item.body}
+        </Text>
+      </View>
+    </View>
+  );
+});
+
 function ReleaseNotesModal({ visible, onClose }: Props) {
   const { f, themeMode } = useTheme();
   const { lang } = useLang();
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
-  const isCompassTheme = false;
+  // зачем: системная настройка «уменьшить движение» — бесконечные петли
+  // свечения и блика для таких пользователей не запускаем вовсе.
+  const reduceMotion = useReduceMotion();
   const cardAnim = useRef(new Animated.Value(0)).current;
   const glowAnim = useRef(new Animated.Value(0)).current;
   const shineAnim = useRef(new Animated.Value(0)).current;
 
-  const title = useMemo(() => triLang(lang, {
-    ru: TEXT.title.ru,
-    uk: TEXT.title.uk,
-    es: TEXT.title.es,
-    'pt-BR': TEXT.title['pt-BR'],
-    vi: TEXT.title.vi,
-    id: TEXT.title.id,
-    tr: TEXT.title.tr,
-    pl: TEXT.title.pl,
-  }), [lang]);
-  const subtitle = useMemo(() => triLang(lang, {
-    ru: TEXT.subtitle.ru,
-    uk: TEXT.subtitle.uk,
-    es: TEXT.subtitle.es,
-    'pt-BR': TEXT.subtitle['pt-BR'],
-    vi: TEXT.subtitle.vi,
-    id: TEXT.subtitle.id,
-    tr: TEXT.subtitle.tr,
-    pl: TEXT.subtitle.pl,
-  }), [lang]);
+  const tx = useMemo(() => pickReleaseNotesTexts(lang), [lang]);
   const chips = useMemo(() => pickReleaseNotesCopy(lang, TEXT.chips), [lang]);
   const versionLabel = useMemo(() => pickReleaseNotesCopy(lang, {
     ru: 'Обновление',
@@ -163,19 +125,10 @@ function ReleaseNotesModal({ visible, onClose }: Props) {
     tr: 'Güncelleme',
     pl: 'Aktualizacja',
   }), [lang]);
-  const body = useMemo(() => triLang(lang, {
-    ru: TEXT.body.ru,
-    uk: TEXT.body.uk,
-    es: TEXT.body.es,
-    'pt-BR': TEXT.body['pt-BR'],
-    vi: TEXT.body.vi,
-    id: TEXT.body.id,
-    tr: TEXT.body.tr,
-    pl: TEXT.body.pl,
-  }), [lang]);
-  const paragraphs = useMemo(() => body.split('\n\n').filter(Boolean), [body]);
-  const titleSize = Math.min(f.h2, 24);
-  const bodySize = Math.min(f.body, 16);
+
+  const titleSize = Math.min(f.h2, 23);
+  const rowTitleSize = Math.min(f.body, 16);
+  const bodySize = Math.min(f.body, 15);
   const captionSize = Math.min(f.caption, 13);
   const buttonSize = Math.min(f.bodyLg, 17);
 
@@ -184,6 +137,12 @@ function ReleaseNotesModal({ visible, onClose }: Props) {
       cardAnim.setValue(0);
       glowAnim.setValue(0);
       shineAnim.setValue(0);
+      return;
+    }
+
+    if (reduceMotion) {
+      // Карточка появляется сразу, без пружины и без петель.
+      cardAnim.setValue(1);
       return;
     }
 
@@ -230,7 +189,7 @@ function ReleaseNotesModal({ visible, onClose }: Props) {
       glowLoop.stop();
       shineLoop.stop();
     };
-  }, [cardAnim, glowAnim, shineAnim, visible]);
+  }, [cardAnim, glowAnim, shineAnim, reduceMotion, visible]);
 
   const closeOnce = () => {
     hapticTap();
@@ -301,26 +260,49 @@ function ReleaseNotesModal({ visible, onClose }: Props) {
           style={StyleSheet.absoluteFill}
           onPress={closeOnce}
           accessibilityRole="button"
-          accessibilityLabel={triLang(lang, {
-            uk: 'Закрити',
-            ru: 'Закрыть',
-            es: 'Cerrar',
-            'pt-BR': 'Fechar',
-            vi: 'Đóng',
-            id: 'Tutup',
-            tr: 'Kapat',
-            pl: 'Zamknij',
-          })}
+          accessibilityLabel={tx.close}
         />
-        <Animated.View style={[styles.card, isCompassTheme && compassShadow(3), isCompassTheme && { borderRadius: 14, borderColor: COMPASS_RICH.hairlineStrong }, cardAnimatedStyle]}>
+        <Animated.View style={[styles.card, cardAnimatedStyle]}>
           <LinearGradient
-            colors={isCompassTheme ? ['#2C2B2C', '#181819', '#050506'] : ['#111722', '#171A24', '#241F13']}
+            colors={['#111722', '#171A24', '#241F13']}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 1 }}
             style={StyleSheet.absoluteFill}
           />
-          {isCompassTheme && <CompassDepthSurface radius={14} selected />}
           <Animated.View pointerEvents="none" style={[styles.shine, shineAnimatedStyle]} />
+
+          <View style={styles.hero}>
+            <Animated.View style={[styles.iconHalo, iconAnimatedStyle]}>
+              <LinearGradient colors={['#FFF1B8', '#F7C75F', '#D68A2E']} style={styles.iconBadge}>
+                <Ionicons name="sparkles" size={25} color={monoIcon(themeMode, '#172033', MONO_ICON.onLight)} />
+              </LinearGradient>
+            </Animated.View>
+            <View style={styles.releasePill}>
+              <Ionicons name="rocket-outline" size={14} color={monoIcon(themeMode, '#F9D77A')} />
+              <Text style={[styles.releasePillText, { fontSize: captionSize, color: monoIcon(themeMode, '#F9D77A') }]}>
+                {versionLabel}
+              </Text>
+            </View>
+            <Text style={[styles.title, { fontSize: titleSize, color: monoIcon(themeMode, '#FFF7E3') }]}>
+              {tx.title}
+            </Text>
+            <Text style={[styles.subtitle, { fontSize: bodySize, color: monoIcon(themeMode, '#C8D6EA') }]}>
+              {tx.subtitle}
+            </Text>
+          </View>
+
+          <View style={styles.chipsWrap}>
+            {chips.map((chip) => (
+              <View key={chip} style={styles.chip}>
+                <Text
+                  style={[styles.chipText, { fontSize: captionSize, color: monoIcon(themeMode, '#DCE8FF') }]}
+                  numberOfLines={1}
+                >
+                  {chip}
+                </Text>
+              </View>
+            ))}
+          </View>
 
           <ScrollView
             style={styles.scroll}
@@ -328,88 +310,37 @@ function ReleaseNotesModal({ visible, onClose }: Props) {
             showsVerticalScrollIndicator
             bounces
           >
-          <View style={[styles.hero, isCompassTheme && { borderRadius: 10, borderColor: COMPASS_RICH.hairline, backgroundColor: COMPASS_RICH.charcoalRaised, overflow: 'hidden' }]}>
-            {isCompassTheme && <CompassDepthSurface radius={10} quiet />}
-            <Animated.View style={[styles.iconHalo, iconAnimatedStyle]}>
-              <LinearGradient colors={isCompassTheme ? ['#FFE6B5', '#F4B978', '#B4774E'] : ['#FFF1B8', '#F7C75F', '#D68A2E']} style={[styles.iconBadge, isCompassTheme && { borderRadius: 9 }]}>
-                <Ionicons name="sparkles" size={25} color={isCompassTheme ? COMPASS_RICH.textDark : monoIcon(themeMode, '#172033', MONO_ICON.onLight)} />
-              </LinearGradient>
-            </Animated.View>
-            <View style={[styles.releasePill, isCompassTheme && { borderRadius: 8, borderColor: COMPASS_RICH.hairlineQuiet, backgroundColor: COMPASS_RICH.charcoalWarm, overflow: 'hidden' }]}>
-              {isCompassTheme && <CompassDepthSurface radius={8} quiet />}
-              <Ionicons name="rocket-outline" size={14} color={isCompassTheme ? COMPASS_RICH.champagne : monoIcon(themeMode, '#F9D77A')} />
-              <Text style={[styles.releasePillText, { fontSize: captionSize, color: isCompassTheme ? COMPASS_RICH.champagne : monoIcon(themeMode, '#F9D77A') }]}>
-                {versionLabel}
-              </Text>
-            </View>
-            <Text style={[styles.title, { fontSize: titleSize, color: monoIcon(themeMode, '#FFF7E3') }]}>{title}</Text>
-            <Text style={[styles.subtitle, { fontSize: bodySize, color: monoIcon(themeMode, '#C8D6EA') }]}>{subtitle}</Text>
-          </View>
-
-          <View style={styles.chipsWrap}>
-            {chips.map((chip, index) => (
-              <View key={chip} style={[styles.chip, isCompassTheme && { borderRadius: 9, borderColor: COMPASS_RICH.hairlineQuiet, backgroundColor: COMPASS_RICH.charcoalRaised, overflow: 'hidden' }]}>
-                {isCompassTheme && <CompassDepthSurface radius={9} quiet />}
-                <View style={[styles.chipIcon, isCompassTheme && { borderRadius: 7, backgroundColor: COMPASS_RICH.champagne }]}>
-                  <Ionicons
-                    name={
-                      index === 0
-                        ? 'color-palette-outline'
-                        : index === 1
-                          ? 'volume-high-outline'
-                          : index === 3
-                            ? 'chatbubble-ellipses-outline'
-                            : 'analytics-outline'
-                    }
-                    size={13}
-                    color={isCompassTheme ? COMPASS_RICH.textDark : monoIcon(themeMode, '#1B2330', MONO_ICON.onLight)}
-                  />
-                </View>
-                <Text style={[styles.chipText, { fontSize: captionSize, color: monoIcon(themeMode, '#DCE8FF') }]} numberOfLines={2}>
-                  {chip}
-                </Text>
-              </View>
+            {tx.items.map((item) => (
+              <ReleaseNoteRow
+                key={item.title}
+                item={item}
+                themeMode={themeMode}
+                titleSize={rowTitleSize}
+                bodySize={bodySize}
+              />
             ))}
-          </View>
-
-            {paragraphs.map((paragraph, index) => {
-              const featureBlock = index === 1;
-              return featureBlock ? (
-                <View key={paragraph} style={[styles.premiumBlock, isCompassTheme && { borderRadius: 10, borderColor: COMPASS_RICH.hairlineStrong, backgroundColor: COMPASS_RICH.washStrong, overflow: 'hidden' }]}>
-                  {isCompassTheme && <CompassDepthSurface radius={10} selected />}
-                  <View style={[styles.premiumBlockIcon, isCompassTheme && { borderRadius: 7, backgroundColor: COMPASS_RICH.champagne }]}>
-                    <Ionicons name="volume-high-outline" size={15} color={isCompassTheme ? COMPASS_RICH.textDark : monoIcon(themeMode, '#1B2330', MONO_ICON.onLight)} />
-                  </View>
-                  <Text style={[styles.premiumBlockText, { fontSize: bodySize, color: monoIcon(themeMode, '#FFE9A8') }]}>{paragraph}</Text>
-                </View>
-              ) : (
-                <Text key={paragraph} style={[styles.body, { fontSize: bodySize, color: monoIcon(themeMode, '#DDE7F6') }]}>
-                  {paragraph}
-                </Text>
-              );
-            })}
+            <Text style={[styles.footer, { fontSize: captionSize, color: monoIcon(themeMode, '#93A6C0') }]}>
+              {tx.footer}
+            </Text>
           </ScrollView>
 
           <Pressable
             onPress={closeOnce}
+            accessibilityRole="button"
+            accessibilityLabel={tx.cta}
             style={({ pressed }) => [
               styles.btn,
-              { opacity: pressed ? 0.9 : 1 },
+              { opacity: pressed ? 0.9 : 1, transform: [{ scale: pressed ? 0.985 : 1 }] },
             ]}
           >
-            <LinearGradient colors={isCompassTheme ? ['#FFE6B5', '#F4B978', '#B4774E'] : ['#FFE08A', '#F7BE4F', '#E99D35']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={[styles.btnGradient, isCompassTheme && { borderRadius: 9, overflow: 'hidden' }]}>
-              {isCompassTheme && <CompassDepthSurface radius={9} cream />}
+            <LinearGradient
+              colors={['#FFE08A', '#F7BE4F', '#E99D35']}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
+              style={styles.btnGradient}
+            >
               <Text style={[styles.btnText, { fontSize: buttonSize, color: monoIcon(themeMode, '#121826', MONO_ICON.onLight) }]}>
-                {triLang(lang, {
-                  ru: TEXT.cta.ru,
-                  uk: TEXT.cta.uk,
-                  es: TEXT.cta.es,
-                  'pt-BR': TEXT.cta['pt-BR'],
-                  vi: TEXT.cta.vi,
-                  id: TEXT.cta.id,
-                  tr: TEXT.cta.tr,
-                  pl: TEXT.cta.pl,
-                })}
+                {tx.cta}
               </Text>
             </LinearGradient>
           </Pressable>
@@ -432,11 +363,9 @@ const styles = StyleSheet.create({
   card: {
     width: '100%',
     maxWidth: 420,
-    height: '88%',
-    maxHeight: '88%',
+    height: '86%',
+    maxHeight: '86%',
     borderRadius: 24,
-    borderWidth: 0,
-    borderColor: 'rgba(247, 199, 95, 0.34)',
     paddingHorizontal: 18,
     paddingTop: 18,
     paddingBottom: 18,
@@ -457,15 +386,8 @@ const styles = StyleSheet.create({
   },
   hero: {
     width: '100%',
-    borderRadius: 20,
-    borderWidth: 0,
-    borderColor: 'rgba(247, 199, 95, 0.22)',
-    backgroundColor: 'rgba(255,255,255,0.045)',
-    paddingHorizontal: 16,
-    paddingTop: 17,
-    paddingBottom: 15,
     alignItems: 'center',
-    marginBottom: 11,
+    paddingBottom: 14,
   },
   iconHalo: {
     width: 58,
@@ -486,9 +408,7 @@ const styles = StyleSheet.create({
   releasePill: {
     minHeight: 28,
     borderRadius: 14,
-    borderWidth: 0,
-    borderColor: 'rgba(249, 215, 122, 0.34)',
-    backgroundColor: 'rgba(249, 215, 122, 0.08)',
+    backgroundColor: 'rgba(249, 215, 122, 0.1)',
     paddingHorizontal: 11,
     flexDirection: 'row',
     alignItems: 'center',
@@ -504,89 +424,73 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#FFF7E3',
     fontWeight: '900',
-    lineHeight: 28,
-    marginBottom: 7,
+    lineHeight: 29,
+    marginBottom: 8,
   },
   subtitle: {
     color: '#C8D6EA',
     textAlign: 'center',
-    lineHeight: 22,
+    lineHeight: 21,
   },
   chipsWrap: {
     alignSelf: 'stretch',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 8,
-    marginBottom: 12,
+    justifyContent: 'center',
+    gap: 7,
+    marginBottom: 14,
   },
   chip: {
-    width: '100%',
-    minHeight: 48,
-    borderRadius: 14,
-    borderWidth: 0,
-    borderColor: 'rgba(125, 146, 178, 0.23)',
-    backgroundColor: 'rgba(255,255,255,0.052)',
-    paddingHorizontal: 9,
-    paddingVertical: 9,
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  chipIcon: {
-    width: 22,
-    height: 22,
-    borderRadius: 11,
-    backgroundColor: '#74A9FF',
-    alignItems: 'center',
+    minHeight: 28,
+    borderRadius: 9,
+    backgroundColor: 'rgba(255,255,255,0.06)',
+    paddingHorizontal: 10,
     justifyContent: 'center',
   },
   chipText: {
     color: '#DCE8FF',
     fontWeight: '700',
-    lineHeight: 17,
-    flexShrink: 1,
   },
   scroll: {
     alignSelf: 'stretch',
     flex: 1,
-    marginBottom: 4,
   },
   scrollInner: {
     paddingHorizontal: 2,
-    paddingBottom: 4,
+    paddingBottom: 6,
   },
-  body: {
-    color: '#DDE7F6',
-    textAlign: 'left',
-    lineHeight: 23,
-    marginBottom: 15,
-  },
-  premiumBlock: {
-    borderRadius: 16,
-    borderWidth: 0,
-    borderColor: 'rgba(249, 215, 122, 0.38)',
-    backgroundColor: 'rgba(249, 215, 122, 0.1)',
-    paddingHorizontal: 13,
-    paddingVertical: 12,
+  row: {
     flexDirection: 'row',
     alignItems: 'flex-start',
-    gap: 10,
-    marginBottom: 15,
+    gap: 12,
+    marginBottom: 16,
   },
-  premiumBlockIcon: {
-    width: 26,
-    height: 26,
-    borderRadius: 13,
-    backgroundColor: '#F9D77A',
+  rowIcon: {
+    width: 34,
+    height: 34,
+    borderRadius: 17,
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 1,
   },
-  premiumBlockText: {
+  rowText: {
     flex: 1,
-    color: '#FFE9A8',
+  },
+  rowTitle: {
+    color: '#FFF4DC',
     fontWeight: '800',
-    lineHeight: 23,
+    lineHeight: 21,
+    marginBottom: 3,
+  },
+  rowBody: {
+    color: '#C2D2E8',
+    lineHeight: 21,
+  },
+  footer: {
+    color: '#93A6C0',
+    lineHeight: 19,
+    marginTop: 2,
+    marginBottom: 4,
   },
   btn: {
     width: '100%',

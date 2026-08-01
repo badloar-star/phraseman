@@ -34,6 +34,7 @@ import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useScreen } from '../hooks/use-screen';
 import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { bundleLang, triLang, type Lang } from '../constants/i18n';
 import {
   ruKnowledgeShardsAccusativeAfterNumber,
@@ -80,7 +81,12 @@ import {
   type FlashcardMarketPack,
 } from './flashcards/marketplace';
 import { packTileImageForPack } from './flashcards/packMarketplaceIcons';
-import { getPackGiftTrial, getPackTrialHoursLeft } from './flashcards/pack_trial_gift';
+import {
+  getPackGiftTrial,
+  getPackTrialHoursLeft,
+  hasActiveCommunityPackGiftVoucher,
+} from './flashcards/pack_trial_gift';
+import { syncFlashcardPackGiftState } from './flashcards/pack_gift_sync';
 import { useCardPackShardPaywall } from './flashcards/useCardPackShardPaywall';
 import { flashcardsOfficialPacksAvailableForTarget, frenchFlashcardsGateCopy } from './flashcards_target_gate';
 import { DEV_IAP_BYPASS, IS_EXPO_GO } from './config';
@@ -298,6 +304,7 @@ type ShopCtaProps = {
   busy: boolean;
   label: string;
   useLockIcon: boolean;
+  iconName?: keyof typeof Ionicons.glyphMap;
   shadow: object;
   fontSize: number;
   /** Узкая кнопка в карточках паков осколков */
@@ -314,7 +321,7 @@ type ShopCtaProps = {
   active?: boolean;
 };
 
-function ShopNeonCta({ accent, accentSoft, correctText, busy, label, useLockIcon, shadow, fontSize, dense = false, shimmer = true, active = true }: ShopCtaProps) {
+function ShopNeonCta({ accent, accentSoft, correctText, busy, label, useLockIcon, iconName, shadow, fontSize, dense = false, shimmer = true, active = true }: ShopCtaProps) {
   const ctaW = useSharedValue(0);
   const sh = useSharedValue(0);
   const [boxW, setBoxW] = useState(0);
@@ -401,11 +408,7 @@ function ShopNeonCta({ accent, accentSoft, correctText, busy, label, useLockIcon
         opacity: busy ? 0.88 : 1,
       }}
     >
-        {useLockIcon ? (
-          <Ionicons name="lock-closed" size={dense ? 16 : 18} color={correctText} />
-        ) : (
-          <Ionicons name="bag-handle" size={dense ? 16 : 18} color={correctText} />
-        )}
+        <Ionicons name={iconName ?? (useLockIcon ? 'lock-closed' : 'bag-handle')} size={dense ? 16 : 18} color={correctText} />
         <Text style={{ color: correctText, fontSize, fontWeight: '900' }}>{label}</Text>
       </LinearGradient>
       {shimmer && !busy && boxW > 0 ? (
@@ -539,7 +542,7 @@ const MarketPackCard = React.memo(function MarketPackCard({
               }}
             >
               {voucherEligible ? (
-                <Text style={{ color: t.gold, fontSize: f.caption, fontWeight: '900' }}>🎁</Text>
+                <Ionicons name="gift-outline" size={18} color={t.gold} />
               ) : (
                 <Image source={oskolokImageForPackShards(pack.priceShards)} style={{ width: 22, height: 22 }} contentFit="contain" />
               )}
@@ -617,14 +620,14 @@ const MarketPackCard = React.memo(function MarketPackCard({
               label={
                 voucherEligible
                   ? triLang(lang, {
-                    ru: '🎁 Использовать подарок',
-                    uk: '🎁 Використати подарунок',
-                    es: '🎁 Usar regalo',
-                    'pt-BR': '🎁 Usar presente',
-                    vi: '🎁 Dùng quà tặng',
-                    id: '🎁 Gunakan hadiah',
-                    tr: '🎁 Hediyeyi kullan',
-                    pl: '🎁 Użyj prezentu',
+                    ru: 'Использовать подарок',
+                    uk: 'Використати подарунок',
+                    es: 'Usar regalo',
+                    'pt-BR': 'Usar presente',
+                    vi: 'Dùng quà tặng',
+                    id: 'Gunakan hadiah',
+                    tr: 'Hediyeyi kullan',
+                    pl: 'Użyj prezentu',
                   })
                   : triLang(lang, {
                     // зачем: цена пака произвольная, а слово было захардкожено во
@@ -640,6 +643,7 @@ const MarketPackCard = React.memo(function MarketPackCard({
                   })
               }
               useLockIcon={false}
+              iconName={voucherEligible ? 'gift-outline' : 'bag-handle'}
               shadow={ctaShadow}
               fontSize={f.body}
               /* зачем: в списке блик отключён — см. комментарий у ShopCtaProps.shimmer */
@@ -784,6 +788,7 @@ export default function ShardsShopScreen() {
     };
   }, [effectiveOs, lang]);
   const params = useLocalSearchParams<{ need?: string; source?: string; tab?: string; returnTo?: string }>();
+  const shardsShopRuntimeActive = useRuntimeActive();
   /** Снимок нехватки из маршрута; сам по себе не обновляется после покупки. */
   const needFromRoute = useMemo(() => {
     const n = Number(params.need || 0);
@@ -799,6 +804,7 @@ export default function ShardsShopScreen() {
   );
   const [balance, setBalance] = useState(() => peekLastKnownShardsBalance() ?? 0);
   const [packTrialHours, setPackTrialHours] = useState<number | null>(null);
+  const [hasCommunityPackVoucher, setHasCommunityPackVoucher] = useState(false);
   const [processingPackId, setProcessingPackId] = useState<string | null>(null);
   useEffect(() => {
     const subscription = subscribeAccountGeneration(() => setProcessingPackId(null));
@@ -869,8 +875,12 @@ export default function ShardsShopScreen() {
   }, []);
 
   const refreshPackTrial = useCallback(async () => {
-    const tr = await getPackGiftTrial(studyTarget);
+    const [tr, communityVoucher] = await Promise.all([
+      getPackGiftTrial(studyTarget),
+      hasActiveCommunityPackGiftVoucher(studyTarget),
+    ]);
     setPackTrialHours(tr ? getPackTrialHoursLeft(tr.expiresAt) : null);
+    setHasCommunityPackVoucher(communityVoucher);
   }, [studyTarget]);
 
   useEffect(() => {
@@ -988,13 +998,14 @@ export default function ShardsShopScreen() {
    * реально влияет на вид строки, иначе теряется весь смысл мемоизации.
    */
   const marketListExtraData = useMemo(
-    () => ({ ownedPackIds, ownedResolved, buyingShardPackId, hasActiveVoucher, lang, themeMode, packCardWidth }),
-    [ownedPackIds, ownedResolved, buyingShardPackId, hasActiveVoucher, lang, themeMode, packCardWidth],
+    () => ({ ownedPackIds, ownedResolved, buyingShardPackId, hasActiveVoucher, hasCommunityPackVoucher, lang, themeMode, packCardWidth }),
+    [ownedPackIds, ownedResolved, buyingShardPackId, hasActiveVoucher, hasCommunityPackVoucher, lang, themeMode, packCardWidth],
   );
 
   const { openPaywall: openCardPackPaywall, CardPackPaywallModalEl: cardPackPaywallModal } = useCardPackShardPaywall({
     balance,
     hasVoucher: hasActiveVoucher,
+    hasCommunityVoucher: hasCommunityPackVoucher,
     studyTarget,
     lang: lb,
     router,
@@ -1016,6 +1027,7 @@ export default function ShardsShopScreen() {
         tags: { tab: shopTab },
       }).catch(() => {});
       void refreshPackTrial();
+      void syncFlashcardPackGiftState().then(() => refreshPackTrial());
       let cancelled = false;
       void (async () => {
         const next = await getShardsBalance();
@@ -1041,10 +1053,10 @@ export default function ShardsShopScreen() {
   );
 
   useEffect(() => {
-    if (packTrialHours == null || packTrialHours <= 0) return;
+    if (!shardsShopRuntimeActive || packTrialHours == null || packTrialHours <= 0) return;
     const id = setInterval(() => { void refreshPackTrial(); }, 60_000);
     return () => clearInterval(id);
-  }, [packTrialHours, refreshPackTrial]);
+  }, [packTrialHours, refreshPackTrial, shardsShopRuntimeActive]);
 
   useEffect(() => {
     const sub = onAppEvent('pack_trial_gift_set', () => { void refreshPackTrial(); });
@@ -1890,6 +1902,7 @@ export default function ShardsShopScreen() {
             */}
           <View style={{ flex: 1, display: shopTab === 'paid' ? 'flex' : 'none' }}>
             <FlashList
+              style={{ flex: 1 }}
               data={marketPacks}
               keyExtractor={(item) => `mkt_${item.id}`}
               extraData={marketListExtraData}
@@ -1951,8 +1964,8 @@ export default function ShardsShopScreen() {
                 // ни fetch ещё не отдали ответ), НЕ считаем пак «не куплен» — иначе все
                 // карточки на миг показывают «не куплено» и через доли секунды перекрашиваются.
                 const owned = ownedResolved && ownedPackIds.includes(pack.id);
-                /** Цей пак можна забрати безкоштовно за активним 48-год подарунком (лише офіційні, не community). */
-                const voucherEligible = hasActiveVoucher && !pack.isCommunityUgc && !owned;
+                /** Активний подарунок позначає кожен ще не отриманий набір. */
+                const voucherEligible = hasActiveVoucher && (!pack.isCommunityUgc || hasCommunityPackVoucher) && !owned;
                 return (
                   <MarketPackCard
                     pack={pack}

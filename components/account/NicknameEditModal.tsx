@@ -15,10 +15,12 @@
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
+  AccessibilityInfo,
   ActivityIndicator,
   Alert,
   Keyboard,
   Modal,
+  Platform,
   Pressable,
   Text,
   TextInput,
@@ -26,11 +28,18 @@ import {
   View,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../ThemeContext';
 import { useLang } from '../LangContext';
 import { triLang } from '../../constants/i18n';
 import { DebugLogger } from '../../app/debug-logger';
-import { reserveNameDetailed, warmNameAvailabilityAuth } from '../../app/firestore_leaderboard';
+import {
+  checkNameAvailabilityDetailed,
+  normalizeNameIndexKey,
+  reserveNameDetailed,
+  warmNameAvailabilityAuth,
+  type NameAvailabilityStatus,
+} from '../../app/firestore_leaderboard';
 import { syncMyLeagueMemberProfileNow } from '../../app/firestore_leagues';
 import { patchAppSnapshot } from '../../app/app_snapshot_store';
 import {
@@ -39,6 +48,10 @@ import {
   updateLocalNameReferences,
 } from '../../app/nickname_change_helpers';
 import { hapticTap as doHaptic } from '../../hooks/use-haptics';
+
+const NAME_AVAILABILITY_DEBOUNCE_MS = 600;
+const NAME_AVAILABILITY_CACHE_LIMIT = 12;
+type AvailabilityUiStatus = 'idle' | 'checking' | NameAvailabilityStatus;
 
 interface NicknameEditModalProps {
   visible: boolean;
@@ -70,15 +83,70 @@ export default function NicknameEditModal({
 
   const [newName, setNewName] = useState(currentName);
   const [saving, setSaving] = useState(false);
+  const [availabilityStatus, setAvailabilityStatus] = useState<AvailabilityUiStatus>('idle');
   const savingRef = useRef(false);
   /** last-write-guard: см. шапку файла. */
   const attemptGuardRef = useRef(0);
+  const availabilityRequestRef = useRef(0);
+  const availabilityCacheRef = useRef(new Map<string, NameAvailabilityStatus>());
 
   useEffect(() => {
     if (!visible) return;
+    // Results are only reused while this opening is active. A name may be
+    // claimed or released while the account screen remains mounted.
+    availabilityCacheRef.current.clear();
     setNewName(currentName);
     warmNameAvailabilityAuth();
   }, [visible, currentName]);
+
+  useEffect(() => {
+    const requestId = ++availabilityRequestRef.current;
+    if (!visible) {
+      setAvailabilityStatus('idle');
+      return;
+    }
+
+    const trimmed = newName.trim();
+    if (
+      trimmed === currentName.trim()
+      || trimmed.length < 2
+      || trimmed.length > 20
+      || containsBadWord(trimmed)
+    ) {
+      setAvailabilityStatus('idle');
+      return;
+    }
+
+    const cacheKey = normalizeNameIndexKey(trimmed);
+    const cached = availabilityCacheRef.current.get(cacheKey);
+    if (cached) {
+      setAvailabilityStatus(cached);
+      return;
+    }
+
+    setAvailabilityStatus('checking');
+    let active = true;
+    const timer = setTimeout(() => {
+      void checkNameAvailabilityDetailed(trimmed)
+        .then((result) => {
+          if (!active || availabilityRequestRef.current !== requestId) return;
+          if (result.status !== 'error') {
+            const cache = availabilityCacheRef.current;
+            if (cache.size >= NAME_AVAILABILITY_CACHE_LIMIT) cache.clear();
+            cache.set(cacheKey, result.status);
+          }
+          setAvailabilityStatus(result.status);
+        })
+        .catch(() => {
+          if (active && availabilityRequestRef.current === requestId) setAvailabilityStatus('error');
+        });
+    }, NAME_AVAILABILITY_DEBOUNCE_MS);
+
+    return () => {
+      active = false;
+      clearTimeout(timer);
+    };
+  }, [currentName, newName, visible]);
 
   const alertOverModal = useCallback((message: string) => {
     Alert.alert(
@@ -100,6 +168,7 @@ export default function NicknameEditModal({
 
   const saveName = async () => {
     if (savingRef.current) return;
+    if (availabilityStatus === 'checking' || availabilityStatus === 'taken') return;
     const trimmed = newName.trim();
     if (!trimmed) { alertOverModal(L('Введи имя', "Введіть ім\'я", 'Escribe un nombre o apodo', 'Digite um nome ou apelido', 'Nhập tên hoặc biệt danh', 'Masukkan nama atau nama panggilan', 'Bir ad veya takma ad gir', 'Wpisz imię lub pseudonim')); return; }
     if (trimmed.length < 2) { alertOverModal(L('Минимум 2 символа', 'Мінімум 2 символи', 'Mínimo 2 caracteres', 'Mínimo de 2 caracteres', 'Tối thiểu 2 ký tự', 'Minimal 2 karakter', 'En az 2 karakter', 'Minimum 2 znaki')); return; }
@@ -210,6 +279,41 @@ export default function NicknameEditModal({
     }
   };
 
+  const saveDisabled = saving || availabilityStatus === 'checking' || availabilityStatus === 'taken';
+
+  const availabilityMessage = (() => {
+    if (availabilityStatus === 'checking') {
+      return L('Проверяем имя…', 'Перевіряємо ім\'я…', 'Comprobando nombre…', 'Verificando nome…', 'Đang kiểm tra tên…', 'Memeriksa nama…', 'Ad kontrol ediliyor…', 'Sprawdzamy nazwę…');
+    }
+    if (availabilityStatus === 'available') {
+      return L('Имя свободно', 'Ім\'я вільне', 'El nombre está disponible', 'Nome disponível', 'Tên khả dụng', 'Nama tersedia', 'Ad kullanılabilir', 'Nazwa jest dostępna');
+    }
+    if (availabilityStatus === 'taken') {
+      return L('Имя уже занято', 'Ім\'я вже зайняте', 'El nombre ya está en uso', 'Este nome já está em uso', 'Tên đã được sử dụng', 'Nama sudah dipakai', 'Bu ad zaten kullanılıyor', 'Nazwa jest już zajęta');
+    }
+    if (availabilityStatus === 'error') {
+      return L('Проверим при сохранении', 'Перевіримо під час збереження', 'Lo comprobaremos al guardar', 'Verificaremos ao salvar', 'Sẽ kiểm tra khi lưu', 'Akan diperiksa saat menyimpan', 'Kaydederken kontrol edeceğiz', 'Sprawdzimy przy zapisie');
+    }
+    return '';
+  })();
+
+  useEffect(() => {
+    if (
+      !visible
+      || Platform.OS !== 'ios'
+      || availabilityStatus === 'idle'
+      || availabilityStatus === 'checking'
+      || !availabilityMessage
+    ) return;
+    AccessibilityInfo.announceForAccessibility(availabilityMessage);
+  }, [availabilityMessage, availabilityStatus, visible]);
+
+  const availabilityColor = availabilityStatus === 'available'
+    ? t.correct
+    : availabilityStatus === 'taken'
+      ? t.wrong
+      : t.textMuted;
+
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={close}>
       <Pressable
@@ -230,6 +334,7 @@ export default function NicknameEditModal({
               {L('Изменить имя', 'Змінити ім\'я', 'Cambiar nombre', 'Alterar nome', 'Đổi tên', 'Ubah nama', 'Adı değiştir', 'Zmień nazwę')}
             </Text>
             <TextInput
+              testID="nickname-input"
               accessibilityLabel={L('Имя профиля', 'Ім\'я профілю', 'Nombre de perfil', 'Nome do perfil', 'Tên hồ sơ', 'Nama profil', 'Profil adı', 'Nazwa profilu')}
               style={{
                 // Поле отделено тоном (bgPrimary на bgCard), без обводки — правило владельца.
@@ -238,7 +343,7 @@ export default function NicknameEditModal({
                 fontSize: f.h2,
                 padding: 14,
                 borderRadius: 10,
-                marginBottom: 20,
+                marginBottom: 8,
               }}
               value={newName}
               onChangeText={setNewName}
@@ -248,9 +353,31 @@ export default function NicknameEditModal({
               autoFocus
               maxLength={20}
               returnKeyType="done"
-              onSubmitEditing={() => { if (!saving) void saveName(); }}
+              onSubmitEditing={() => { if (!saveDisabled) void saveName(); }}
               blurOnSubmit
             />
+            <View
+              style={{ minHeight: 20, marginBottom: 12, flexDirection: 'row', alignItems: 'center', gap: 6 }}
+            >
+              {availabilityStatus === 'checking' ? (
+                <ActivityIndicator size="small" color={availabilityColor} />
+              ) : availabilityStatus === 'available' ? (
+                <Ionicons name="checkmark-circle-outline" size={16} color={availabilityColor} />
+              ) : availabilityStatus === 'taken' ? (
+                <Ionicons name="close-circle-outline" size={16} color={availabilityColor} />
+              ) : availabilityStatus === 'error' ? (
+                <Ionicons name="cloud-offline-outline" size={16} color={availabilityColor} />
+              ) : null}
+              {availabilityMessage ? (
+                <Text
+                  testID="nickname-availability"
+                  accessibilityLiveRegion="polite"
+                  style={{ color: availabilityColor, fontSize: f.caption, fontWeight: '600', flexShrink: 1 }}
+                >
+                  {availabilityMessage}
+                </Text>
+              ) : null}
+            </View>
             <View style={{ flexDirection: 'row', gap: 12 }}>
               <TouchableOpacity
                 activeOpacity={0.7}
@@ -270,8 +397,10 @@ export default function NicknameEditModal({
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity
+                testID="nickname-save"
                 activeOpacity={0.8}
-                disabled={saving}
+                disabled={saveDisabled}
+                accessibilityState={{ disabled: saveDisabled }}
                 style={{
                   flex: 1,
                   padding: 12,
@@ -280,9 +409,9 @@ export default function NicknameEditModal({
                   alignItems: 'center',
                   minHeight: 48,
                   justifyContent: 'center',
-                  opacity: saving ? 0.82 : 1,
+                  opacity: saveDisabled ? 0.72 : 1,
                 }}
-                onPress={() => { if (saving) return; doHaptic(); void saveName(); }}
+                onPress={() => { if (saveDisabled) return; doHaptic(); void saveName(); }}
               >
                 <View style={{ minHeight: 22, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, maxWidth: '100%' }}>
                   {saving ? (

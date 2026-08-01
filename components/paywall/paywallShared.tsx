@@ -220,7 +220,6 @@ const CONTEXT_GLYPH: Partial<Record<PremiumContext, keyof typeof Ionicons.glyphM
   ai_explain: 'bulb',
   weekly_review: 'calendar',
   avatar_aura: 'color-wand',
-  speaking_club: 'chatbubbles',
   free_lessons_complete: 'flag',
   winback: 'refresh',
   referral_ended: 'gift',

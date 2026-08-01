@@ -10,6 +10,9 @@ describe('admin revenue analytics contract', () => {
   const paywallASource = fs.readFileSync(path.join(root, 'app', 'paywall_a.tsx'), 'utf8');
   const onboardingSource = fs.readFileSync(path.join(root, 'components', 'CleanOnboarding.tsx'), 'utf8');
   const shardsShopSource = fs.readFileSync(path.join(root, 'app', 'shards_shop.tsx'), 'utf8');
+  const firestoreIndexes = JSON.parse(fs.readFileSync(path.join(root, 'firestore.indexes.json'), 'utf8')) as {
+    fieldOverrides?: Array<Record<string, unknown>>;
+  };
 
   const countOccurrences = (haystack: string, needle: string): number => haystack.split(needle).length - 1;
   const topLevelFunctionNames = (source: string): string[] =>
@@ -108,6 +111,37 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).toContain('_revenueAnalyticsLoaded = false');
   });
 
+  it('separates renewing subscribers from cancelled subscriptions that still have access', () => {
+    expect(adminHtml).toContain('id="an2-pay-cancelled"');
+    expect(adminHtml).toContain('Cancelled, access active');
+    expect(adminHtml).toContain('function an2CurrentCancelledUids(events)');
+    expect(adminHtml).toContain("e.type === 'CANCELLATION'");
+    expect(adminHtml).toContain("e.type === 'UNCANCELLATION'");
+    expect(adminHtml).toContain('const isRenewing = isStoreSubscription && !isCancelled');
+    expect(adminHtml).toContain("an2Set('an2-pay-cancelled', lifecycleReadable ? AN2_NUM(cancelled) : 'n/a')");
+    expect(adminHtml).toContain("an2Set('an2-pay-total', lifecycleReadable ? AN2_NUM(renewing) : 'n/a')");
+    expect(adminHtml).toContain('Auto-renewing store subscriptions.');
+    expect(adminHtml).toContain('Cancellation keeps access until the paid period ends');
+  });
+
+  it('uses the latest RevenueCat lifecycle state per user when classifying cancellations', () => {
+    const match = adminModuleScript.match(/function an2CurrentCancelledUids\(events\) \{([\s\S]*?)\n  \}\n\n  \/\/ Access comes from/);
+    expect(match).not.toBeNull();
+    const classify = new Function(`return function an2CurrentCancelledUids(events) {${match?.[1] || ''}\n}`)() as
+      (events: Array<Record<string, unknown>>) => Set<string>;
+    const cancelled = classify([
+      { uid: 'cancelled', originalTransactionId: 'a', type: 'INITIAL_PURCHASE', env: 'PRODUCTION', ms: 100 },
+      { uid: 'cancelled', originalTransactionId: 'a', type: 'CANCELLATION', env: 'PRODUCTION', ms: 200 },
+      { uid: 'restored', originalTransactionId: 'b', type: 'CANCELLATION', env: 'PRODUCTION', ms: 100 },
+      { uid: 'restored', originalTransactionId: 'b', type: 'UNCANCELLATION', env: 'PRODUCTION', ms: 200 },
+      { uid: 'repurchased', originalTransactionId: 'old', type: 'CANCELLATION', env: 'PRODUCTION', ms: 100 },
+      { uid: 'repurchased', originalTransactionId: 'new', type: 'INITIAL_PURCHASE', env: 'PRODUCTION', ms: 300 },
+      { uid: 'sandbox-only', originalTransactionId: 's', type: 'CANCELLATION', env: 'SANDBOX', ms: 400 },
+    ]);
+
+    expect([...cancelled]).toEqual(['cancelled']);
+  });
+
   it('keeps the revenue analytics dashboard compact without horizontal overflow', () => {
     expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #tab-analytics');
     expect(adminHtml).toContain('overflow-x: hidden');
@@ -198,7 +232,7 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).toContain('function setupAdminHashRouting');
     expect(adminHtml).toContain("window.addEventListener('hashchange'");
     expect(adminHtml).toContain('data-admin-goto="app-health"');
-    expect(adminHtml).toContain('data-admin-goto="arena-live"');
+    expect(adminHtml).not.toContain('data-admin-goto="arena-live"');
     expect(adminHtml).toContain("if (overviewTab) overviewTab.classList.toggle('active', tab === 'overview')");
   });
 
@@ -227,18 +261,22 @@ describe('admin revenue analytics contract', () => {
   });
 
   it('keeps safety and consent loaders retryable after auth or permission failures', () => {
-    const safetyStart = adminHtml.indexOf('window.loadSafetyFlags = async function()');
+    const safetyStart = adminHtml.indexOf('async function fetchSafetyFlagsPage(reset)');
     const ageStart = adminHtml.indexOf('window.loadAgeConsent = async function()');
     expect(safetyStart).toBeGreaterThan(0);
     expect(ageStart).toBeGreaterThan(safetyStart);
     const safetyLoader = adminHtml.slice(safetyStart, ageStart);
     const ageLoader = adminHtml.slice(ageStart, adminHtml.indexOf('window.loadUserReports = async function()', ageStart));
 
-    expect(safetyLoader.indexOf('getIdToken(true)')).toBeLessThan(safetyLoader.indexOf("collection(db, 'safety_flags')"));
-    expect(safetyLoader.indexOf('window._safetyFlagsLoaded = true')).toBeGreaterThan(safetyLoader.indexOf('filterSafetyFlags()'));
+    expect(safetyLoader).toContain('getAdminListSafetyFlagsCallable()');
+    expect(safetyLoader).not.toContain("collection(db, 'safety_flags')");
+    expect(safetyLoader).toContain('filteredTotal');
+    expect(safetyLoader).toContain('scanBoundReached');
+    expect(safetyLoader.indexOf('window._safetyFlagsLoaded = true')).toBeGreaterThan(safetyLoader.indexOf('renderSafetyFlags(_allSafetyFlags)'));
     expect(safetyLoader.indexOf('window._safetyFlagsLoaded = false')).toBeGreaterThan(safetyLoader.indexOf('catch(e)'));
 
-    expect(ageLoader.indexOf('getIdToken(true)')).toBeLessThan(ageLoader.indexOf("collection(db, 'user_consents')"));
+    expect(ageLoader).toContain('getAdminGetComplianceOverviewCallable()');
+    expect(ageLoader).not.toContain("collection(db, 'user_consents')");
     expect(ageLoader.indexOf('window._ageConsentLoaded = true')).toBeGreaterThan(ageLoader.indexOf('box.innerHTML = `'));
     expect(ageLoader.indexOf('window._ageConsentLoaded = false')).toBeGreaterThan(ageLoader.indexOf('catch(e)'));
   });
@@ -434,13 +472,12 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).toContain('#tab-cancel-surveys .report-card button');
     expect(adminHtml).toContain('applyCleanPremiumChrome');
     expect(adminHtml).toContain('pr-pill');
-    expect(adminHtml).toContain('Load Users first to inspect Plus accounts.');
     expect(adminHtml).toContain('Plus list refreshed');
     expect(adminHtml).toContain('Plus accounts');
     expect(adminHtml).toContain('Real Plus only: RevenueCat metadata');
     expect(adminHtml).toContain('Search UID, email, name...');
     expect(adminHtml).toContain('No Plus users match this filter.');
-    expect(adminHtml.lastIndexOf('window.renderPremiumList = function renderPremiumList()')).toBeGreaterThan(adminHtml.indexOf('window.renderPremiumList = function renderPremiumList()'));
+    expect(countOccurrences(adminHtml, 'window.renderPremiumList = function renderPremiumList()')).toBe(1);
     expect(adminHtml.lastIndexOf('Plus list refreshed')).toBeGreaterThan(adminHtml.lastIndexOf('window.loadPremiumData = async function loadPremiumData(force)'));
     expect(adminHtml).toContain('applyCleanCancelSurveysChrome');
     expect(adminHtml).toContain('cs-pill');
@@ -449,7 +486,7 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).toContain('Cancel survey load failed');
     expect(adminHtml).toContain('Search UID, name, reason, comment...');
     expect(adminHtml).toContain('Shows why users opened subscription management');
-    expect(adminHtml.lastIndexOf('window.renderCancelSurveys = function renderCancelSurveys()')).toBeGreaterThan(adminHtml.indexOf('window.renderCancelSurveys = function renderCancelSurveys()'));
+    expect(countOccurrences(adminHtml, 'window.renderCancelSurveys = function renderCancelSurveys()')).toBe(1);
     expect(adminHtml.lastIndexOf('Loading cancel surveys...')).toBeGreaterThan(adminHtml.lastIndexOf('window.loadCancelSurveys = async function loadCancelSurveys(force)'));
   });
 
@@ -487,9 +524,9 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).toContain('Card pack updated');
     expect(adminHtml).toContain('Publish card pack?');
     expect(adminHtml).toContain('Unpublish card pack?');
-    expect(adminHtml.lastIndexOf('window.renderUgcPurchases = function renderUgcPurchases()')).toBeGreaterThan(adminHtml.indexOf('window.renderUgcPurchases = function renderUgcPurchases()'));
+    expect(countOccurrences(adminHtml, 'window.renderUgcPurchases = function renderUgcPurchases()')).toBe(1);
     expect(adminHtml.lastIndexOf('Total purchases')).toBeGreaterThan(adminHtml.lastIndexOf('window.renderUgcPurchases = function renderUgcPurchases()'));
-    expect(adminHtml.lastIndexOf('window.renderCardPacks = function renderCardPacks()')).toBeGreaterThan(adminHtml.indexOf('window.renderCardPacks = function renderCardPacks()'));
+    expect(countOccurrences(adminHtml, 'window.renderCardPacks = function renderCardPacks()')).toBe(1);
     expect(adminHtml.lastIndexOf('Total packs')).toBeGreaterThan(adminHtml.lastIndexOf('window.renderCardPacks = function renderCardPacks()'));
   });
 
@@ -548,56 +585,20 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).toContain('Daily phrase updated');
     expect(adminHtml).toContain('Daily phrase disabled');
     expect(adminHtml).toContain('Seed daily phrases bundle?');
-    expect(adminHtml.lastIndexOf('window.renderDailyPhrases = function renderDailyPhrases()')).toBeGreaterThan(adminHtml.indexOf('window.renderDailyPhrases = function renderDailyPhrases()'));
+    expect(countOccurrences(adminHtml, 'window.renderDailyPhrases = function renderDailyPhrases()')).toBe(1);
     expect(adminHtml.lastIndexOf('<div class="label">Future queue</div>')).toBeGreaterThan(adminHtml.lastIndexOf('window.renderDailyPhrases = function renderDailyPhrases()'));
     expect(adminHtml.lastIndexOf('window.renderClubsPanel = renderClubsPanel = function renderClubsPanel()')).toBeGreaterThan(adminHtml.indexOf('function renderClubsPanel()'));
     expect(adminHtml.lastIndexOf('Loading clubs...')).toBeGreaterThan(adminHtml.lastIndexOf('window.loadClubsData = async function loadClubsData(force)'));
-    expect(adminHtml.lastIndexOf('window.openDailyPhraseEditor = function openDailyPhraseEditor(id)')).toBeGreaterThan(adminHtml.indexOf('window.openDailyPhraseEditor = function openDailyPhraseEditor(id)'));
+    expect(countOccurrences(adminHtml, 'window.openDailyPhraseEditor = function openDailyPhraseEditor(id)')).toBe(1);
     expect(adminHtml.lastIndexOf('English is required')).toBeGreaterThan(adminHtml.lastIndexOf('window.saveDailyPhraseEditor = async function saveDailyPhraseEditor()'));
   });
 
-  it('unifies Arena, referrals, and push operations sections', () => {
-    expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #tab-arena-ranks');
-    expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #tab-arena-live');
-    expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #tab-arena-bets');
-    expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #tab-arena-rooms');
+  it('keeps referrals and push operations sections after Arena retirement', () => {
     expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #tab-referrals');
     expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #tab-push-notify');
-    expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #al-content');
-    expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #ar-content');
     expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #ref-aggregates');
     expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #push-panel-uid');
-    expect(adminHtml).toContain('#tab-arena-bets > div:first-child');
     expect(adminHtml).toContain('#push-mode-scheduled');
-    expect(adminHtml).toContain('applyCleanArenaBetsChrome');
-    expect(adminHtml).toContain('arena-bets-card');
-    expect(adminHtml).toContain('Ranked wagers');
-    expect(adminHtml).toContain('Feature flag for wager mode in ranked Arena matches.');
-    expect(adminHtml).toContain('Arena wager status loaded');
-    expect(adminHtml).toContain('Enable ranked wagers?');
-    expect(adminHtml).toContain('Disable ranked wagers?');
-    expect(adminHtml).toContain('Ranked wagers enabled');
-    expect(adminHtml).toContain('applyCleanArenaRanksChrome');
-    expect(adminHtml).toContain('Loading arena ranks...');
-    expect(adminHtml).toContain('Arena profiles');
-    expect(adminHtml).toContain('With matches');
-    expect(adminHtml).toContain('class="arena-rank-row"');
-    expect(adminHtml).toContain('Load Users first, then open the arena profile row again.');
-    expect(adminHtml).toContain('applyCleanArenaLiveChrome');
-    expect(adminHtml).toContain('class="report-card arena-live-card');
-    expect(adminHtml).toContain('Loading arena live state...');
-    expect(adminHtml).toContain('Matchmaking queue');
-    expect(adminHtml).toContain('Active sessions');
-    expect(adminHtml).toContain('Private rooms');
-    expect(adminHtml).toContain('Force finish arena session?');
-    expect(adminHtml).toContain('Clean all stuck arena objects?');
-    expect(adminHtml).toContain('applyCleanArenaRoomsChrome');
-    expect(adminHtml).toContain('class="report-card arena-room-card');
-    expect(adminHtml).toContain('Loading arena rooms...');
-    expect(adminHtml).toContain('No arena rooms for this filter.');
-    expect(adminHtml).toContain('Total rooms');
-    expect(adminHtml).toContain('Close arena room?');
-    expect(adminHtml).toContain('Delete arena room?');
     expect(adminHtml).toContain('applyCleanReferralsChrome');
     expect(adminHtml).toContain('ref-status-pill');
     expect(adminHtml).toContain('Open referrer');
@@ -606,15 +607,36 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).toContain('Attributions');
     expect(adminHtml).toContain('Top referrers by completed invites');
     expect(adminHtml).toContain('Load 300 more');
-    expect(adminHtml.lastIndexOf('window.renderArenaLive = function renderArenaLive()')).toBeGreaterThan(adminHtml.indexOf('window.renderArenaLive = function renderArenaLive()'));
-    expect(adminHtml.lastIndexOf('Stuck over 5m')).toBeGreaterThan(adminHtml.lastIndexOf('window.renderArenaLive = function renderArenaLive()'));
-    expect(countOccurrences(adminHtml, 'window.loadArenaBetsFeature = async function loadArenaBetsFeature(force)')).toBe(1);
-    expect(adminHtml.lastIndexOf('window.renderArenaRanksTable = function renderArenaRanksTable()')).toBeGreaterThan(adminHtml.indexOf('window.renderArenaRanksTable = function renderArenaRanksTable()'));
-    expect(adminHtml.lastIndexOf('window.renderReferralsTable = function renderReferralsTable()')).toBeGreaterThan(adminHtml.indexOf('window.renderReferralsTable = function renderReferralsTable()'));
+    expect(countOccurrences(adminHtml, 'window.renderReferralsTable = function renderReferralsTable()')).toBe(1);
     expect(adminHtml.lastIndexOf('Top referrers by completed invites')).toBeGreaterThan(adminHtml.lastIndexOf('function renderCleanReferralSummary(rows, sumByRef, top)'));
-    expect(adminHtml.lastIndexOf('Arena profiles')).toBeGreaterThan(adminHtml.lastIndexOf('window.renderArenaRanksTable = function renderArenaRanksTable()'));
-    expect(adminHtml.lastIndexOf('window.renderArenaRooms = function renderArenaRooms()')).toBeGreaterThan(adminHtml.indexOf('window.renderArenaRooms = function renderArenaRooms()'));
-    expect(adminHtml.lastIndexOf('Total rooms')).toBeGreaterThan(adminHtml.lastIndexOf('window.renderArenaRooms = function renderArenaRooms()'));
+  });
+
+  it('renders referrals from the server-owned Plus and roulette dashboard projection', () => {
+    expect(adminHtml).toContain('adminGetReferralDashboard');
+    expect(adminHtml).toContain('Всего приглашено');
+    expect(adminHtml).toContain('Купили Plus');
+    expect(adminHtml).toContain('Конверсия в Plus');
+    expect(adminHtml).toContain('Прокрутили рулетку');
+    expect(adminHtml).toContain('Ожидает покупки');
+    expect(adminHtml).toContain('ref-filter');
+    expect(adminHtml).toContain("row.refCode || ''");
+    expect(adminHtml).toContain('@media (max-width: 1360px)');
+    expect(firestoreIndexes.fieldOverrides).toContainEqual({
+      collectionGroup: 'referral_spins',
+      fieldPath: 'creditId',
+      indexes: [{ order: 'ASCENDING', queryScope: 'COLLECTION_GROUP' }],
+    });
+    expect(adminHtml).not.toContain('ждём урок');
+  });
+
+  it('auto-loads the referral dashboard without a persistent refresh control', () => {
+    expect(adminHtml).toContain("if (tab === 'referrals' && typeof window.loadReferralsData === 'function')");
+    expect(adminHtml).toContain('void window.loadReferralsData(false, false)');
+    expect(adminHtml).not.toContain("tab === 'referrals' && !window._referralsLoaded");
+    expect(adminHtml).not.toContain('id="ref-refresh"');
+    expect(adminHtml).not.toContain('<header class="ref-dashboard-header">');
+    expect(adminHtml).toContain('<div class="ref-dashboard-header">');
+    expect(adminHtml).toContain('id="ref-retry"');
   });
 
   it('turns Push into a workflow composer with mode tabs and preview panel', () => {
@@ -637,7 +659,7 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).toContain('Push job created. Cloud Function will deliver it.');
     expect(adminHtml).toContain('Loading push jobs...');
     expect(adminHtml).toContain('No push jobs yet.');
-    expect(adminHtml.lastIndexOf("window.submitPushJob = async function(mode)")).toBeGreaterThan(adminHtml.indexOf("window.submitPushJob = async function(mode)"));
+    expect(countOccurrences(adminHtml, 'window.submitPushJob = async function(mode)')).toBe(1);
     expect(adminHtml.lastIndexOf('Push job created. Cloud Function will deliver it.')).toBeGreaterThan(adminHtml.lastIndexOf("window.submitPushJob = async function(mode)"));
   });
 
@@ -645,16 +667,12 @@ describe('admin revenue analytics contract', () => {
     const names = topLevelFunctionNames(adminModuleScript);
     const duplicateNames = names.filter((name, index) => names.indexOf(name) !== index);
     expect(duplicateNames).toEqual([]);
-    expect(countOccurrences(adminHtml, 'function renderArenaWagerFeature(data)')).toBe(1);
-    expect(countOccurrences(adminHtml, 'window.loadArenaBetsFeature = async function loadArenaBetsFeature(force)')).toBe(1);
   });
 
-  it('neutralizes legacy inline colors in dynamic commerce and arena lists', () => {
+  it('neutralizes legacy inline colors in dynamic commerce lists', () => {
     expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #tab-ugc-purchases .report-card span[style*="background"]');
     expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #tab-card-packs .report-card span[style*="background"]');
     expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #tab-daily-phrases td span[style*="background"]');
-    expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #tab-arena-live .report-card span[style*="background"]');
-    expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #tab-arena-rooms .report-card span[style*="background"]');
     expect(adminHtml).toContain('background: rgba(255,255,255,0.045) !important');
     expect(adminHtml).toContain('color: var(--admin-muted) !important');
   });
@@ -680,7 +698,7 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).toContain('No users in the ban list.');
     expect(adminHtml).toContain('Unban');
     expect(adminHtml).toContain('Banning also sets <code>users.banned = true</code>');
-    expect(adminHtml.lastIndexOf('window.renderBanList = function renderBanList()')).toBeGreaterThan(adminHtml.indexOf('window.renderBanList = function renderBanList()'));
+    expect(countOccurrences(adminHtml, 'window.renderBanList = function renderBanList()')).toBe(1);
     expect(adminHtml.lastIndexOf('Loading ban list...')).toBeGreaterThan(adminHtml.lastIndexOf('window.loadBanList = async function loadBanList(force)'));
     expect(adminHtml).toContain('applyCleanWebsiteInboxChrome');
     expect(adminHtml).toContain('wi-pill');
@@ -700,7 +718,7 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).toContain('Grant Plus');
     expect(adminHtml).toContain('Revoke Plus');
     expect(adminHtml).toContain('Full free tier only');
-    expect(adminHtml.lastIndexOf('window.renderVipSurveyResponses = function renderVipSurveyResponses()')).toBeGreaterThan(adminHtml.indexOf('window.renderVipSurveyResponses = function()'));
+    expect(countOccurrences(adminHtml, 'window.renderVipSurveyResponses = function renderVipSurveyResponses()')).toBe(1);
     expect(adminHtml.lastIndexOf('Loading Plus survey responses...')).toBeGreaterThan(adminHtml.lastIndexOf('window.loadVipSurveyResponses = async function loadVipSurveyResponses(force = false)'));
   });
 

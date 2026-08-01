@@ -13,7 +13,7 @@ type Routerish = { push: (h: any) => void };
  * Стан paywall-модалки (замість системного Alert) для покупки набору за осколки.
  *
  * Підтримує 3 режими:
- *  - voucher       — активний 48-год подарунок-ваучер (для офіційних паків): пропонуємо
+ *  - voucher       — активний 48-год подарунок-ваучер (офіційні + community): пропонуємо
  *                    забрати безкоштовно з попередженням, що подарунок «згорить».
  *  - confirm       — звичайна покупка за осколки.
  *  - insufficient  — балансу не вистачає, кидаємо в магазин осколків.
@@ -22,6 +22,8 @@ export function useCardPackShardPaywall(args: {
   balance: number;
   /** Чи активний зараз 48-год ваучер. Приходить з shards_shop / flashcards. */
   hasVoucher?: boolean;
+  /** Server-verifiable Flashcard Friday window for a permanent community entitlement. */
+  hasCommunityVoucher?: boolean;
   studyTarget?: RuntimeStudyTarget;
   lang: Lang;
   router: Routerish;
@@ -37,6 +39,7 @@ export function useCardPackShardPaywall(args: {
   const {
     balance,
     hasVoucher = false,
+    hasCommunityVoucher = false,
     studyTarget,
     lang,
     router,
@@ -53,8 +56,9 @@ export function useCardPackShardPaywall(args: {
   const openPaywall = useCallback(
     (pack: FlashcardMarketPack) => {
       if (purchasing) return;
-      // Ваучер працює тільки для офіційних паків (не community UGC).
-      const voucherEligible = hasVoucher && !pack.isCommunityUgc;
+      // Активний подарунок можна обміняти на будь-який доступний набір каталогу.
+      // Для community постійний entitlement підтверджує захищений server callable.
+      const voucherEligible = hasVoucher && (!pack.isCommunityUgc || hasCommunityVoucher);
       const mode: 'voucher' | 'confirm' | 'insufficient' = voucherEligible
         ? 'voucher'
         : balance < pack.priceShards
@@ -62,7 +66,7 @@ export function useCardPackShardPaywall(args: {
         : 'confirm';
       setPaywall({ pack, mode });
     },
-    [balance, hasVoucher, purchasing],
+    [balance, hasCommunityVoucher, hasVoucher, purchasing],
   );
 
   const closePaywall = useCallback(() => {
@@ -102,6 +106,11 @@ export function useCardPackShardPaywall(args: {
         // выровнял его — переключаем модалку в режим «не хватает» вместо тихого
         // отказа, чтобы юзер не жал «Купить» по кругу.
         setPaywall((prev) => (prev ? { ...prev, mode: 'insufficient' } : prev));
+      } else if (r === 'no_voucher' || r === 'redeem_failed') {
+        // The voucher expired or the server could not confirm it. The redeem helper
+        // emits the visible error; close the stale confirmation instead of leaving a
+        // tappable modal that can only repeat the same failure.
+        setPaywall(null);
       }
     } finally {
       setPurchasing(false);

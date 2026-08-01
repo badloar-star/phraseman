@@ -12,6 +12,11 @@
 // ═══════════════════════════════════════════════════════════════════════════
 
 import { TOURNAMENT_ROUND_MODE_KINDS } from './tournament_core';
+import {
+  OWNER_APPROVED_TOURNAMENT_MODES,
+  isOwnerApprovedTournamentMode,
+  type OwnerApprovedTournamentMode,
+} from './tournament_mode_contract';
 
 /**
  * Заданий в раунде — та же константа, что в tournaments.ts (TASKS_PER_ROUND).
@@ -36,26 +41,12 @@ export const TASKS_PER_ROUND = 4;
  * Добавление режима = одна строка здесь: планировщик, готовность раундов и
  * заказ для генератора пересчитаются автоматически.
  */
-export const TOURNAMENT_MODES = [
-  // Текстовые (пул уже наполнен ими).
-  'guess_phrase',
-  'fill_gap',
-  'find_oddity',
-  'translate_build',
-  // Аудио из Learning V2 — отобраны владельцем 2026-07-27 по макетам 03/04/05.
-  // Озвучка генерится при одобрении задания и качается в лобби заранее,
-  // поэтому таймер вопроса не наказывает за медленную сеть.
-  'listen_choose',   // услышал фразу → выбрал вариант (макет 03)
-  'sound_contrast',  // различил пару ship/sheep (макет 04)
-  'listen_build',    // диктант: услышал → собрал из чипов (макет 05)
-  // Поле пар EN-RU на время: играется ЦЕЛЫМ раундом, не по 6 вопросов.
-  'speed_match',     // макет 07
-] as const;
+export const TOURNAMENT_MODES = OWNER_APPROVED_TOURNAMENT_MODES;
 
-export type TournamentMode = typeof TOURNAMENT_MODES[number];
+export type TournamentMode = OwnerApprovedTournamentMode;
 
 export function isTournamentMode(value: unknown): value is TournamentMode {
-  return typeof value === 'string' && (TOURNAMENT_MODES as readonly string[]).includes(value);
+  return isOwnerApprovedTournamentMode(value);
 }
 
 /**
@@ -92,6 +83,10 @@ export type PoolCell = {
 
 export type PoolCounts = Record<string, number>;
 
+function approvedModes(modes: readonly unknown[]): TournamentMode[] {
+  return Array.from(new Set(modes.filter(isTournamentMode)));
+}
+
 /** Ключ ячейки в счётчике: `<mode>:<difficulty>`. */
 export function cellKey(cell: PoolCell): string {
   return `${cell.mode}:${cell.difficulty}`;
@@ -103,7 +98,8 @@ export function cellKey(cell: PoolCell): string {
  */
 export function requiredCells(modes: readonly TournamentMode[] = TOURNAMENT_MODES): PoolCell[] {
   const difficulties = Array.from(new Set(ROUND_DIFFICULTIES.flat())).sort();
-  return modes.flatMap((mode) => difficulties.map((difficulty) => ({ mode, difficulty })));
+  return approvedModes(modes)
+    .flatMap((mode) => difficulties.map((difficulty) => ({ mode, difficulty })));
 }
 
 export type CellGap = PoolCell & {
@@ -158,10 +154,11 @@ export function roundReadiness(
   counts: PoolCounts,
   modes: readonly TournamentMode[] = TOURNAMENT_MODES,
 ): RoundReadiness[] {
+  const eligibleModes = approvedModes(modes);
   return ROUND_DIFFICULTIES.map((difficulties, index) => {
     const roundNo = index + 1;
     const isSingle = TOURNAMENT_ROUND_MODE_KINDS[index] === 'single';
-    const perMode = modes.map((mode) => ({
+    const perMode = eligibleModes.map((mode) => ({
       mode,
       count: difficulties.reduce((sum, difficulty) => sum + Math.max(0, Number(counts[`${mode}:${difficulty}`] ?? 0)), 0),
     }));

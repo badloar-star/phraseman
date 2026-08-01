@@ -32,6 +32,7 @@ describe('speaking score bands', () => {
     // Unknown language falls back to Russian.
     expect(speakingBandLabel('good', 'xx')).toBe(speakingBandLabel('good', 'ru'));
   });
+
 });
 
 describe('speaking hint priority', () => {

@@ -38,6 +38,13 @@ export type SourcePhrase = {
   readonly alternatives?: readonly string[];
 };
 
+/** Author-reviewed day vocabulary used for exact word-to-word tournament pairs. */
+export type SourceVocabularyWord = {
+  readonly word: string;
+  readonly partOfSpeech: string;
+  readonly translation: { readonly ru: string } & Record<string, unknown>;
+};
+
 /** День плана — единица группировки: тема, уровень, порядковый номер. */
 export type SourceDay = {
   readonly planId: string;
@@ -46,6 +53,7 @@ export type SourceDay = {
   /** CEFR-полоса дня: A1/A2/B1/B2/C1 — основной сигнал сложности. */
   readonly level?: string;
   readonly phrases: readonly SourcePhrase[];
+  readonly vocabulary?: readonly SourceVocabularyWord[];
 };
 
 export type GeneratorOptions = {

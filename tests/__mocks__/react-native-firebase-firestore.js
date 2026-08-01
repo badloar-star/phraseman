@@ -6,7 +6,7 @@
  *   firestore.__resetTestState()
  */
 
-/** @type {{ rewardClaimExists: boolean; userDocExists: boolean; userShards: number | null; userShardsUpdatedAtMs: number | null; userShardsUpdatedOp: string | null; userShardsUpdatedReason: string | null; runTransactionCalls: number }} */
+/** @type {{ rewardClaimExists: boolean; userDocExists: boolean; userShards: number | null; userShardsUpdatedAtMs: number | null; userShardsUpdatedOp: string | null; userShardsUpdatedReason: string | null; runTransactionCalls: number; transactionGetBarrier: Promise<void> | null; transactionReturnBarrier: Promise<void> | null; userDocPaths: string[] }} */
 const testState = {
   rewardClaimExists: false,
   userDocExists: true,
@@ -15,6 +15,9 @@ const testState = {
   userShardsUpdatedOp: null,
   userShardsUpdatedReason: null,
   runTransactionCalls: 0,
+  transactionGetBarrier: null,
+  transactionReturnBarrier: null,
+  userDocPaths: [],
 };
 
 function applySet(path, data) {
@@ -22,6 +25,7 @@ function applySet(path, data) {
     testState.rewardClaimExists = true;
   }
   if (/^users\/[^/]+$/.test(path)) {
+    testState.userDocPaths.push(path);
     if (Object.prototype.hasOwnProperty.call(data, 'shards')) {
       testState.userShards = data.shards;
       testState.userDocExists = true;
@@ -90,6 +94,7 @@ function firestore() {
       testState.runTransactionCalls += 1;
       const transaction = {
         get: jest.fn(async (ref) => {
+          if (testState.transactionGetBarrier) await testState.transactionGetBarrier;
           const p = ref.__path || '';
           if (p.includes('/reward_claims/')) {
             return { exists: testState.rewardClaimExists, data: () => ({}) };
@@ -113,7 +118,9 @@ function firestore() {
           return Promise.resolve();
         }),
       };
-      return fn(transaction);
+      const result = await fn(transaction);
+      if (testState.transactionReturnBarrier) await testState.transactionReturnBarrier;
+      return result;
     },
   };
 }
@@ -132,6 +139,9 @@ firestore.__resetTestState = () => {
   testState.userShardsUpdatedOp = null;
   testState.userShardsUpdatedReason = null;
   testState.runTransactionCalls = 0;
+  testState.transactionGetBarrier = null;
+  testState.transactionReturnBarrier = null;
+  testState.userDocPaths = [];
 };
 
 firestore.default = firestore;

@@ -30,7 +30,6 @@ const LESSON_INTRO_CTA_IMAGES = [
   require('../assets/images/lesson_intro/intro-cta-dark.webp'),
   require('../assets/images/lesson_intro/intro-cta-premium-gold.webp'),
   require('../assets/images/lesson_intro/intro-cta-coral.webp'),
-  require('../assets/images/lesson_intro/intro-cta-minimal-dark.webp'),
 ];
 
 function isDevMetroAssetUri(uri: string) {

@@ -7552,7 +7552,7 @@
                 "uk": "мати день народження / день народження в...",
                 "ru": "иметь день рождения / день рождения в..."
               },
-              "He has a birthday in October"
+              "His birthday is in October"
             ]
           ]
         },
@@ -7805,7 +7805,7 @@
               }
             ],
             [
-              "He has a birthday in October",
+              "His birthday is in October",
               {
                 "uk": "У нього день народження в жовтні",
                 "ru": "У него день рождения в октябре"
@@ -8601,40 +8601,34 @@
           "type": "Table",
           "rows": [
             [
+              {
+                "uk": "Артикль",
+                "ru": "Артикль"
+              },
+              {
+                "uk": "Перед яким звуком",
+                "ru": "Перед каким звуком"
+              },
+              {
+                "uk": "Приклади",
+                "ru": "Примеры"
+              }
+            ],
+            [
               "a",
-              "an"
+              {
+                "uk": "приголосний",
+                "ru": "согласный"
+              },
+              "a problem, a question, a phone, a key, a ticket, a bag, a charger, a plan"
             ],
             [
-              "a problem",
-              "an idea"
-            ],
-            [
-              "a question",
-              ""
-            ],
-            [
-              "a phone",
-              ""
-            ],
-            [
-              "a key",
-              ""
-            ],
-            [
-              "a ticket",
-              ""
-            ],
-            [
-              "a bag",
-              ""
-            ],
-            [
-              "a charger",
-              ""
-            ],
-            [
-              "a plan",
-              ""
+              "an",
+              {
+                "uk": "голосний",
+                "ru": "гласный"
+              },
+              "an idea, an app, an option, an umbrella"
             ]
           ]
         },
@@ -14964,7 +14958,7 @@
               "We need a better plan",
               {
                 "uk": "Нам потрібен кращий план",
-                "ru": "Нам нужен лучший план"
+                "ru": "Нам нужен план получше"
               }
             ],
             [
@@ -15386,7 +15380,7 @@
               "We need a better plan",
               {
                 "uk": "Нам потрібен кращий план",
-                "ru": "Нам нужен лучший план"
+                "ru": "Нам нужен план получше"
               }
             ],
             [
@@ -18707,8 +18701,8 @@
             [
               "looking for problems",
               {
-                "uk": "шукаю проблеми",
-                "ru": "ищу проблемы"
+                "uk": "шукаю проблем",
+                "ru": "ищу проблем"
               },
               "I am not looking for problems"
             ]
@@ -22080,10 +22074,6 @@
             ],
             [
               "an idea",
-              "He has an idea / We chose an option"
-            ],
-            [
-              "an idea",
               "He has an idea"
             ],
             [
@@ -22269,8 +22259,8 @@
             [
               "The umbrella is near the door",
               {
-                "uk": "umbrella уже конкретна",
-                "ru": "umbrella уже конкретный"
+                "uk": "парасолька вже конкретна",
+                "ru": "зонт уже конкретный"
               }
             ],
             [
@@ -22451,8 +22441,8 @@
             [
               "I brought an umbrella",
               {
-                "uk": "одна нова umbrella",
-                "ru": "один новый umbrella"
+                "uk": "одна нова парасолька",
+                "ru": "один новый зонт"
               }
             ],
             [
@@ -23193,6 +23183,13 @@
           }
         },
         {
+          "type": "Tip",
+          "text": {
+            "uk": "Someone і somebody — це не різні граматичні правила, а майже взаємозамінні слова. У вправах можна ставити і someone, і somebody: значення однакове. Someone звучить нейтральніше і трохи звичніше в письмі; somebody трохи розмовніше і живіше. Якщо немає особливої підказки, обирай someone, але somebody теж правильний варіант у цьому уроці.",
+            "ru": "Someone и somebody — это не разные грамматические правила, а почти взаимозаменяемые слова. В упражнениях можно ставить и someone, и somebody: значение одно и то же. Someone звучит нейтральнее и чуть привычнее в письменной речи; somebody чуть разговорнее и живее. Если нет особой подсказки, выбирай someone, но somebody тоже правильный вариант в этом уроке."
+          }
+        },
+        {
           "type": "Body",
           "text": {
             "uk": "Someone і somebody означають \"хтось\". У цьому уроці вони використовуються, коли дія сталася, але ми не називаємо конкретну людину.",
@@ -23434,8 +23431,8 @@
             [
               "Everyone is ready",
               {
-                "uk": "is, не are",
-                "ru": "is, не are"
+                "uk": "потрібне is",
+                "ru": "нужно is"
               }
             ],
             [
@@ -23697,6 +23694,13 @@
           "text": {
             "uk": "У Past Simple питаннях з anyone, anybody або someone використовується Did. Після Did основна дія стоїть у базовій формі: call, see, take, find, bring.",
             "ru": "В Past Simple вопросах с anyone, anybody или someone используется Did. После Did основное действие стоит в базовой форме: call, see, take, find, bring."
+          }
+        },
+        {
+          "type": "Tip",
+          "text": {
+            "uk": "Anyone/anybody частіше звучить як нейтральне питання: хто-небудь взагалі? Someone/somebody можна використовувати, коли ситуація підказує, що хтось, імовірно, зробив дію. Did someone take my phone? = мовець бачить ситуацію і підозрює, що телефон хтось узяв.",
+            "ru": "Anyone/anybody чаще звучит как нейтральный вопрос: кто-нибудь вообще? Someone/somebody можно использовать, когда ситуация подсказывает, что кто-то, вероятно, сделал действие. Did someone take my phone? = говорящий видит ситуацию и подозревает, что телефон кто-то взял."
           }
         },
         {
@@ -25877,50 +25881,17 @@
           }
         },
         {
-          "type": "Table",
-          "rows": [
-            [
-              {
-                "uk": "Предмет",
-                "ru": "Предмет"
-              },
-              "is/are",
-              "V3",
-              {
-                "uk": "Фраза",
-                "ru": "Фраза"
-              }
-            ],
-            [
-              "The room",
-              "is",
-              "cleaned",
-              "The room is cleaned every day"
-            ],
-            [
-              "The documents",
-              "are",
-              "checked",
-              "The documents are checked every morning"
-            ],
-            [
-              "The tickets",
-              "are",
-              "sold",
-              "The tickets are sold online"
-            ],
-            [
-              "The food",
-              "is",
-              "cooked",
-              "The food is cooked here"
-            ],
-            [
-              "The coffee",
-              "is",
-              "made",
-              "The coffee is made in the morning"
-            ]
+          "type": "Formula",
+          "slots": [
+            {
+              "_raw": "{ text: isUK ? 'предмет' : 'предмет', sub: 'The room', role: 'subject' }"
+            },
+            {
+              "_raw": "{ text: 'is / are', sub: isUK ? 'звʼязка' : 'связка', role: 'link' }"
+            },
+            {
+              "_raw": "{ text: 'V3', sub: 'cleaned', role: 'verb' }"
+            }
           ]
         },
         {
@@ -25933,94 +25904,25 @@
         {
           "type": "Section",
           "title": {
-            "uk": "3. Is для одного предмета",
-            "ru": "3. Is для одного предмета"
+            "uk": "3-4. Is для одного, are для множини",
+            "ru": "3-4. Is для одного, are для множественного"
           }
         },
         {
           "type": "Body",
           "text": {
-            "uk": "Якщо предмет один або слово сприймається як одне ціле, використовуй is: the room is cleaned, the food is cooked, the coffee is made.",
-            "ru": "Если предмет один или слово воспринимается как одно целое, используй is: the room is cleaned, the food is cooked, the coffee is made."
+            "uk": "Якщо предмет один або слово сприймається як одне ціле, використовуй is. Якщо предметів кілька, використовуй are.",
+            "ru": "Если предмет один или слово воспринимается как одно целое, используй is. Если предметов несколько, используй are."
           }
         },
         {
-          "type": "Table",
-          "rows": [
-            [
-              {
-                "uk": "Фраза з уроку",
-                "ru": "Фраза из урока"
-              },
-              {
-                "uk": "Природний переклад",
-                "ru": "Естественный перевод"
-              }
-            ],
-            [
-              "The room is cleaned every day",
-              {
-                "uk": "Кімната прибирається щодня",
-                "ru": "Комната убирается каждый день"
-              }
-            ],
-            [
-              "The food is cooked here",
-              {
-                "uk": "Їжа готується тут",
-                "ru": "Еда готовится здесь"
-              }
-            ],
-            [
-              "The coffee is made in the morning",
-              {
-                "uk": "Кава готується вранці",
-                "ru": "Кофе готовится утром"
-              }
-            ],
-            [
-              "The door is closed at night",
-              {
-                "uk": "Двері зачиняються вночі",
-                "ru": "Дверь закрывается ночью"
-              }
-            ],
-            [
-              "The app is used by many people",
-              {
-                "uk": "Додаток використовується багатьма людьми",
-                "ru": "Приложение используется многими людьми"
-              }
-            ],
-            [
-              "The password is changed often",
-              {
-                "uk": "Пароль часто змінюється",
-                "ru": "Пароль часто меняется"
-              }
-            ],
-            [
-              "The plan is discussed every week",
-              {
-                "uk": "План обговорюється щотижня",
-                "ru": "План обсуждается каждую неделю"
-              }
-            ],
-            [
-              "The problem is solved quickly",
-              {
-                "uk": "Проблема швидко вирішується",
-                "ru": "Проблема быстро решается"
-              }
-            ],
-            [
-              "The work is finished on time",
-              {
-                "uk": "Робота закінчується вчасно",
-                "ru": "Работа заканчивается вовремя"
-              }
-            ]
-          ]
+          "type": "DuoCards",
+          "left": {
+            "_raw": "{\r\n        tag: 'is',\r\n        tagRole: 'link',\r\n        desc: isUK ? 'один предмет / одне ціле' : 'один предмет / одно целое',\r\n        highlight: 'is',\r\n        items: [\r\n          'The room is cleaned',\r\n          'The food is cooked',\r\n          'The coffee is made',\r\n          'The door is closed',\r\n          'The app is used',\r\n          'The password is changed',\r\n          'The plan is discussed',\r\n          'The problem is solved',\r\n          'The work is finished',\r\n        ],\r\n      }"
+          },
+          "right": {
+            "_raw": "{\r\n        tag: 'are',\r\n        tagRole: 'link',\r\n        desc: isUK ? 'кілька предметів' : 'несколько предметов',\r\n        highlight: 'are',\r\n        items: [\r\n          'The documents are checked',\r\n          'The tickets are sold',\r\n          'The windows are opened',\r\n          'The messages are sent',\r\n          'The phones are charged',\r\n          'The bags are checked',\r\n          'The keys are kept',\r\n          'The questions are answered',\r\n          'The rules are explained',\r\n          'The answers are checked',\r\n          'The ideas are supported',\r\n        ],\r\n      }"
+          }
         },
         {
           "type": "Warn",
@@ -26030,116 +25932,46 @@
           }
         },
         {
-          "type": "Section",
-          "title": {
-            "uk": "4. Are для множини",
-            "ru": "4. Are для множественного числа"
-          }
-        },
-        {
-          "type": "Body",
-          "text": {
-            "uk": "Якщо предметів кілька, використовуй are: documents are checked, tickets are sold, messages are sent.",
-            "ru": "Если предметов несколько, используй are: documents are checked, tickets are sold, messages are sent."
-          }
-        },
-        {
-          "type": "Table",
-          "rows": [
-            [
-              {
-                "uk": "Фраза з уроку",
-                "ru": "Фраза из урока"
-              },
-              {
-                "uk": "Природний переклад",
-                "ru": "Естественный перевод"
-              }
-            ],
-            [
-              "The documents are checked every morning",
-              {
-                "uk": "Документи перевіряються кожного ранку",
-                "ru": "Документы проверяются каждое утро"
-              }
-            ],
-            [
-              "The tickets are sold online",
-              {
-                "uk": "Квитки продаються онлайн",
-                "ru": "Билеты продаются онлайн"
-              }
-            ],
-            [
-              "The windows are opened in the morning",
-              {
-                "uk": "Вікна відкриваються вранці",
-                "ru": "Окна открываются утром"
-              }
-            ],
-            [
-              "The messages are sent every day",
-              {
-                "uk": "Повідомлення надсилаються щодня",
-                "ru": "Сообщения отправляются каждый день"
-              }
-            ],
-            [
-              "The phones are charged here",
-              {
-                "uk": "Телефони заряджаються тут",
-                "ru": "Телефоны заряжаются здесь"
-              }
-            ],
-            [
-              "The bags are checked here",
-              {
-                "uk": "Сумки перевіряються тут",
-                "ru": "Сумки проверяются здесь"
-              }
-            ],
-            [
-              "The keys are kept inside",
-              {
-                "uk": "Ключі зберігаються всередині",
-                "ru": "Ключи хранятся внутри"
-              }
-            ],
-            [
-              "The questions are answered quickly",
-              {
-                "uk": "На запитання швидко відповідають",
-                "ru": "На вопросы быстро отвечают"
-              }
-            ],
-            [
-              "The answers are checked carefully",
-              {
-                "uk": "Відповіді уважно перевіряються",
-                "ru": "Ответы внимательно проверяются"
-              }
-            ],
-            [
-              "The rules are explained clearly",
-              {
-                "uk": "Правила пояснюються зрозуміло",
-                "ru": "Правила объясняются понятно"
-              }
-            ],
-            [
-              "The ideas are supported here",
-              {
-                "uk": "Ідеї тут підтримуються",
-                "ru": "Идеи здесь поддерживаются"
-              }
-            ]
-          ]
-        },
-        {
           "type": "Warn",
           "text": {
             "uk": "❌ The documents is checked → ✅ The documents are checked. Documents - множина, тому are.",
             "ru": "❌ The documents is checked → ✅ The documents are checked. Documents - множественное число, поэтому are."
+          }
+        },
+        {
+          "type": "Section",
+          "title": {
+            "uk": "3. Повні приклади з is",
+            "ru": "3. Полные примеры с is"
+          }
+        },
+        {
+          "type": "Accordion",
+          "title": {
+            "uk": "Фрази з is",
+            "ru": "Фразы с is"
+          },
+          "count": {
+            "uk": "9 фраз",
+            "ru": "9 фраз"
+          }
+        },
+        {
+          "type": "Section",
+          "title": {
+            "uk": "4. Повні приклади з are",
+            "ru": "4. Полные примеры с are"
+          }
+        },
+        {
+          "type": "Accordion",
+          "title": {
+            "uk": "Фрази з are",
+            "ru": "Фразы с are"
+          },
+          "count": {
+            "uk": "11 фраз",
+            "ru": "11 фраз"
           }
         },
         {
@@ -26157,121 +25989,26 @@
           }
         },
         {
-          "type": "Table",
-          "rows": [
-            [
-              {
-                "uk": "Базова дія",
-                "ru": "Базовое действие"
-              },
-              "V3",
-              {
-                "uk": "Приклад з уроку",
-                "ru": "Пример из урока"
-              }
-            ],
-            [
-              "clean",
-              "cleaned",
-              "The room is cleaned every day"
-            ],
-            [
-              "check",
-              "checked",
-              "The documents are checked every morning"
-            ],
-            [
-              "cook",
-              "cooked",
-              "The food is cooked here"
-            ],
-            [
-              "close",
-              "closed",
-              "The door is closed at night"
-            ],
-            [
-              "open",
-              "opened",
-              "The windows are opened in the morning"
-            ],
-            [
-              "charge",
-              "charged",
-              "The phones are charged here"
-            ],
-            [
-              "change",
-              "changed",
-              "The password is changed often"
-            ],
-            [
-              "answer",
-              "answered",
-              "The questions are answered quickly"
-            ],
-            [
-              "explain",
-              "explained",
-              "The rules are explained clearly"
-            ],
-            [
-              "discuss",
-              "discussed",
-              "The plan is discussed every week"
-            ],
-            [
-              "solve",
-              "solved",
-              "The problem is solved quickly"
-            ],
-            [
-              "finish",
-              "finished",
-              "The work is finished on time"
-            ]
-          ]
+          "type": "Accordion",
+          "title": {
+            "uk": "Правильні: + ed",
+            "ru": "Правильные: + ed"
+          },
+          "count": {
+            "uk": "12 — натисни",
+            "ru": "12 — нажми"
+          }
         },
         {
-          "type": "Table",
-          "rows": [
-            [
-              {
-                "uk": "Базова дія",
-                "ru": "Базовое действие"
-              },
-              "V3",
-              {
-                "uk": "Приклад з уроку",
-                "ru": "Пример из урока"
-              }
-            ],
-            [
-              "sell",
-              "sold",
-              "The tickets are sold online"
-            ],
-            [
-              "make",
-              "made",
-              "The coffee is made in the morning"
-            ],
-            [
-              "send",
-              "sent",
-              "The messages are sent every day"
-            ],
-            [
-              "use",
-              "used",
-              "The app is used by many people"
-            ],
-            [
-              "keep",
-              "kept",
-              "The keys are kept inside"
-            ]
-          ]
+          "type": "Accordion",
+          "title": {
+            "uk": "Особливі форми (запамʼятати)",
+            "ru": "Особые формы (запомнить)"
+          },
+          "count": {
+            "uk": "5 — натисни",
+            "ru": "5 — нажми"
+          }
         },
         {
           "type": "Warn",
@@ -26302,59 +26039,28 @@
           }
         },
         {
-          "type": "Table",
-          "rows": [
-            [
-              {
-                "uk": "Твердження",
-                "ru": "Утверждение"
-              },
-              {
-                "uk": "Питання",
-                "ru": "Вопрос"
-              }
-            ],
-            [
-              "The room is cleaned every day",
-              "Is the room cleaned every day?"
-            ],
-            [
-              "The documents are checked every morning",
-              "Are the documents checked every morning?"
-            ],
-            [
-              "The tickets are sold online",
-              "Are the tickets sold online?"
-            ],
-            [
-              "The food is cooked here",
-              "Is the food cooked here?"
-            ],
-            [
-              "The door is closed at night",
-              "Is the door closed at night?"
-            ],
-            [
-              "The messages are sent every day",
-              "Are the messages sent every day?"
-            ],
-            [
-              "The app is used by many people",
-              "Is the app used by many people?"
-            ],
-            [
-              "The bags are checked here",
-              "Are the bags checked here?"
-            ],
-            [
-              "The password is changed often",
-              "Is the password changed often?"
-            ],
-            [
-              "The rules are explained clearly",
-              "Are the rules explained clearly?"
-            ]
-          ]
+          "type": "Transform",
+          "label": {
+            "uk": "З твердження The room is cleaned виходить питання Is the room cleaned?",
+            "ru": "Из утверждения The room is cleaned получается вопрос Is the room cleaned?"
+          },
+          "from": {
+            "_raw": "<ColoredPhrase text=\"The room is cleaned\" t={t} f={f} subject={['the', 'room']} link={['is']} verb={['cleaned']} />"
+          },
+          "to": {
+            "_raw": "<ColoredPhrase text=\"Is the room cleaned?\" t={t} f={f} subject={['the', 'room']} link={['is']} verb={['cleaned']} />"
+          }
+        },
+        {
+          "type": "Accordion",
+          "title": {
+            "uk": "Усі питання уроку",
+            "ru": "Все вопросы урока"
+          },
+          "count": {
+            "uk": "10 фраз",
+            "ru": "10 фраз"
+          }
         },
         {
           "type": "Warn",
@@ -26385,59 +26091,32 @@
           }
         },
         {
-          "type": "Table",
-          "rows": [
-            [
-              {
-                "uk": "Твердження",
-                "ru": "Утверждение"
-              },
-              {
-                "uk": "Заперечення",
-                "ru": "Отрицание"
-              }
-            ],
-            [
-              "The room is cleaned every day",
-              "The room is not cleaned every day"
-            ],
-            [
-              "The documents are checked here",
-              "The documents are not checked here"
-            ],
-            [
-              "The tickets are sold online",
-              "The tickets are not sold online"
-            ],
-            [
-              "The food is cooked here",
-              "The food is not cooked here"
-            ],
-            [
-              "The door is closed at night",
-              "The door is not closed at night"
-            ],
-            [
-              "The messages are sent on weekends",
-              "The messages are not sent on weekends"
-            ],
-            [
-              "The app is used often",
-              "The app is not used often"
-            ],
-            [
-              "The bags are checked inside",
-              "The bags are not checked inside"
-            ],
-            [
-              "The password is changed often",
-              "The password is not changed often"
-            ],
-            [
-              "The rules are explained clearly",
-              "The rules are not explained clearly"
-            ]
+          "type": "Formula",
+          "slots": [
+            {
+              "_raw": "{ text: isUK ? 'предмет' : 'предмет', sub: 'The room', role: 'subject' }"
+            },
+            {
+              "_raw": "{ text: 'is / are', role: 'link' }"
+            },
+            {
+              "_raw": "{ text: 'not', sub: isUK ? 'заперечення' : 'отрицание', role: 'neutral' }"
+            },
+            {
+              "_raw": "{ text: 'V3', sub: 'cleaned', role: 'verb' }"
+            }
           ]
+        },
+        {
+          "type": "Accordion",
+          "title": {
+            "uk": "Усі заперечення уроку",
+            "ru": "Все отрицания урока"
+          },
+          "count": {
+            "uk": "10 — натисни",
+            "ru": "10 — нажми"
+          }
         },
         {
           "type": "Warn",
@@ -26554,61 +26233,15 @@
           }
         },
         {
-          "type": "Table",
-          "rows": [
-            [
-              {
-                "uk": "Фраза з уроку",
-                "ru": "Фраза из урока"
-              },
-              {
-                "uk": "Природний переклад",
-                "ru": "Естественный перевод"
-              }
-            ],
-            [
-              "I am invited often",
-              {
-                "uk": "Мене часто запрошують",
-                "ru": "Меня часто приглашают"
-              }
-            ],
-            [
-              "You are invited too",
-              {
-                "uk": "Тебе теж запрошують",
-                "ru": "Тебя тоже приглашают"
-              }
-            ],
-            [
-              "He is called every day",
-              {
-                "uk": "Йому телефонують щодня",
-                "ru": "Ему звонят каждый день"
-              }
-            ],
-            [
-              "She is helped here",
-              {
-                "uk": "Їй тут допомагають",
-                "ru": "Ей здесь помогают"
-              }
-            ],
-            [
-              "We are asked many questions",
-              {
-                "uk": "Нам ставлять багато запитань",
-                "ru": "Нам задают много вопросов"
-              }
-            ],
-            [
-              "They are invited every week",
-              {
-                "uk": "Їх запрошують щотижня",
-                "ru": "Их приглашают каждую неделю"
-              }
-            ]
-          ]
+          "type": "Accordion",
+          "title": {
+            "uk": "Люди в пасиві",
+            "ru": "Люди в пассиве"
+          },
+          "count": {
+            "uk": "6 фраз",
+            "ru": "6 фраз"
+          }
         },
         {
           "type": "Warn",
@@ -26630,6 +26263,20 @@
             "uk": "У кінці уроку пасив зʼявляється після must і can. Після модального слова ставимо be, а потім третю форму дієслова.",
             "ru": "В конце урока пассив появляется после must и can. После модального слова ставим be, а потом третью форму глагола."
           }
+        },
+        {
+          "type": "Formula",
+          "slots": [
+            {
+              "_raw": "{ text: 'must / can', sub: isUK ? 'модальне' : 'модальное', role: 'subject' }"
+            },
+            {
+              "_raw": "{ text: 'be', role: 'link' }"
+            },
+            {
+              "_raw": "{ text: 'V3', sub: 'signed', role: 'verb' }"
+            }
+          ]
         },
         {
           "type": "Table",
@@ -26688,32 +26335,27 @@
           }
         },
         {
-          "type": "Table",
-          "rows": [
-            [
-              {
-                "uk": "Фраза",
-                "ru": "Фраза"
-              },
-              {
-                "uk": "Що означає",
-                "ru": "Что означает"
-              }
-            ],
-            [
-              "The room is being cleaned now",
-              {
-                "uk": "кімнату прибирають зараз, дія в процесі",
-                "ru": "комнату убирают сейчас, действие в процессе"
-              }
-            ],
-            [
-              "The documents were checked yesterday",
-              {
-                "uk": "документи були перевірені вчора, минулий час",
-                "ru": "документы были проверены вчера, прошедшее время"
-              }
-            ]
+          "type": "ExampleCard",
+          "rus": {
+            "uk": "кімнату прибирають зараз, дія в процесі",
+            "ru": "комнату убирают сейчас, действие в процессе"
+          },
+          "link": [
+            "is",
+            "being"
+          ]
+        },
+        {
+          "type": "ExampleCard",
+          "rus": {
+            "uk": "документи були перевірені вчора, минулий час",
+            "ru": "документы были проверены вчера, прошедшее время"
+          },
+          "link": [
+            "were"
+          ],
+          "verb": [
+            "checked"
           ]
         },
         {
@@ -26731,160 +26373,15 @@
           }
         },
         {
-          "type": "Table",
-          "rows": [
-            [
-              {
-                "uk": "Блок",
-                "ru": "Блок"
-              },
-              {
-                "uk": "Значення",
-                "ru": "Значение"
-              }
-            ],
-            [
-              "is cleaned",
-              {
-                "uk": "прибирається",
-                "ru": "убирается"
-              }
-            ],
-            [
-              "are checked",
-              {
-                "uk": "перевіряються",
-                "ru": "проверяются"
-              }
-            ],
-            [
-              "are sold",
-              {
-                "uk": "продаються",
-                "ru": "продаются"
-              }
-            ],
-            [
-              "is cooked",
-              {
-                "uk": "готується",
-                "ru": "готовится"
-              }
-            ],
-            [
-              "is made",
-              {
-                "uk": "готується / робиться",
-                "ru": "готовится / делается"
-              }
-            ],
-            [
-              "is closed",
-              {
-                "uk": "зачиняється / закрита",
-                "ru": "закрывается / закрыта"
-              }
-            ],
-            [
-              "are opened",
-              {
-                "uk": "відкриваються",
-                "ru": "открываются"
-              }
-            ],
-            [
-              "are sent",
-              {
-                "uk": "надсилаються",
-                "ru": "отправляются"
-              }
-            ],
-            [
-              "is used",
-              {
-                "uk": "використовується",
-                "ru": "используется"
-              }
-            ],
-            [
-              "are charged",
-              {
-                "uk": "заряджаються",
-                "ru": "заряжаются"
-              }
-            ]
-          ]
-        },
-        {
-          "type": "Table",
-          "rows": [
-            [
-              {
-                "uk": "Блок",
-                "ru": "Блок"
-              },
-              {
-                "uk": "Значення",
-                "ru": "Значение"
-              }
-            ],
-            [
-              "are kept inside",
-              {
-                "uk": "зберігаються всередині",
-                "ru": "хранятся внутри"
-              }
-            ],
-            [
-              "is changed often",
-              {
-                "uk": "часто змінюється",
-                "ru": "часто меняется"
-              }
-            ],
-            [
-              "are answered quickly",
-              {
-                "uk": "на них швидко відповідають",
-                "ru": "на них быстро отвечают"
-              }
-            ],
-            [
-              "are checked carefully",
-              {
-                "uk": "уважно перевіряються",
-                "ru": "внимательно проверяются"
-              }
-            ],
-            [
-              "are explained clearly",
-              {
-                "uk": "зрозуміло пояснюються",
-                "ru": "понятно объясняются"
-              }
-            ],
-            [
-              "is discussed every week",
-              {
-                "uk": "обговорюється щотижня",
-                "ru": "обсуждается каждую неделю"
-              }
-            ],
-            [
-              "is solved quickly",
-              {
-                "uk": "швидко вирішується",
-                "ru": "быстро решается"
-              }
-            ],
-            [
-              "is finished on time",
-              {
-                "uk": "закінчується вчасно",
-                "ru": "заканчивается вовремя"
-              }
-            ]
-          ]
+          "type": "Accordion",
+          "title": {
+            "uk": "Готові блоки",
+            "ru": "Готовые блоки"
+          },
+          "count": {
+            "uk": "18 — натисни",
+            "ru": "18 — нажми"
+          }
         },
         {
           "type": "Section",
@@ -28959,7 +28456,7 @@
             [
               "come",
               "coming",
-              "I came in"
+              "She was coming home"
             ]
           ]
         },
@@ -31326,7 +30823,7 @@
               "I said that I needed help"
             ],
             [
-              "I will call me",
+              "I will call you",
               "He said that he would call me"
             ]
           ]
@@ -36581,6 +36078,13 @@
               }
             ]
           ]
+        },
+        {
+          "type": "Tip",
+          "text": {
+            "uk": "У фразі helps you learn слово learn йде без to: після help + когось дія часто стоїть у простій формі. Helps you to learn теж граматично можливе, але урок показує коротшу природну форму.",
+            "ru": "В фразе helps you learn слово learn идёт без to: после help + кого-то действие часто стоит в простой форме. Helps you to learn тоже грамматически возможно, но урок показывает более короткую естественную форму."
+          }
         },
         {
           "type": "Warn",

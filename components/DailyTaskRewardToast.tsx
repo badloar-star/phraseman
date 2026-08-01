@@ -1,5 +1,5 @@
-import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
-import { Animated, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Animated, PanResponder, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from './SafeLinearGradient';
 import { useLang } from './LangContext';
@@ -7,7 +7,7 @@ import { useTheme } from './ThemeContext';
 import { useStudyTarget } from './StudyTargetContext';
 import { useOverlayVisible } from './OverlayArbiter';
 import { useGlobalBottomOverlayOffset } from '../hooks/use-global-bottom-overlay-offset';
-import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
+import { hapticError, hapticSuccess } from '../hooks/use-haptics';
 import { MOTION_DURATION, MOTION_SPRING_LEGACY as MOTION_SPRING } from '../constants/motion';
 import { triLang } from '../constants/i18n';
 import { onAppEvent, emitAppEvent } from '../app/events';
@@ -340,17 +340,18 @@ async function refreshDailyTaskAchievements(
 }
 
 function DailyTaskRewardToast() {
-  const { f, ds, themeMode } = useTheme();
+  const { f, themeMode } = useTheme();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const bottomOffset = useGlobalBottomOverlayOffset();
 
   const [toast, setToast] = useState<DailyTaskRewardToastItem | null>(null);
-  const [claiming, setClaiming] = useState(false);
   const [overlayWanted, setOverlayWanted] = useState(false);
   const overlayVisible = useOverlayVisible('dailyTaskRewardToast', overlayWanted);
 
   const translateY = useRef(new Animated.Value(150)).current;
+  const swipeX = useRef(new Animated.Value(0)).current;
+  const swipeY = useRef(new Animated.Value(0)).current;
   const opacity = useRef(new Animated.Value(0)).current;
   const scale = useRef(new Animated.Value(0.96)).current;
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -364,7 +365,6 @@ function DailyTaskRewardToast() {
   const finishCurrent = useCallback(() => {
     const next = queueRef.current.shift() ?? null;
     claimingRef.current = false;
-    setClaiming(false);
 
     if (next) {
       activeRef.current = next;
@@ -414,6 +414,49 @@ function DailyTaskRewardToast() {
     ]).start(finishCurrent);
   }, [finishCurrent, opacity, scale, toast, translateY]);
 
+  const swipeResponder = useMemo(() => PanResponder.create({
+    onStartShouldSetPanResponder: () => false,
+    onMoveShouldSetPanResponder: (_event, gesture) => (
+      Math.abs(gesture.dx) > 8 || Math.abs(gesture.dy) > 8
+    ),
+    onPanResponderGrant: () => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+        timerRef.current = null;
+      }
+    },
+    onPanResponderMove: (_event, gesture) => {
+      swipeX.setValue(gesture.dx);
+      swipeY.setValue(gesture.dy);
+    },
+    onPanResponderRelease: (_event, gesture) => {
+      const shouldDismiss = Math.abs(gesture.dx) > 36
+        || Math.abs(gesture.dy) > 36
+        || Math.abs(gesture.vx) > 0.5
+        || Math.abs(gesture.vy) > 0.5;
+      if (shouldDismiss) {
+        Animated.parallel([
+          Animated.timing(swipeX, { toValue: gesture.dx * 3, duration: MOTION_DURATION.fast, useNativeDriver: true }),
+          Animated.timing(swipeY, { toValue: gesture.dy * 3, duration: MOTION_DURATION.fast, useNativeDriver: true }),
+          Animated.timing(opacity, { toValue: 0, duration: MOTION_DURATION.fast, useNativeDriver: true }),
+        ]).start(() => dismissCurrent(false));
+        return;
+      }
+      Animated.parallel([
+        Animated.spring(swipeX, { toValue: 0, useNativeDriver: true, tension: 120, friction: 12 }),
+        Animated.spring(swipeY, { toValue: 0, useNativeDriver: true, tension: 120, friction: 12 }),
+      ]).start();
+      timerRef.current = setTimeout(() => dismissCurrent(), AUTO_DISMISS_MS);
+    },
+    onPanResponderTerminate: () => {
+      Animated.parallel([
+        Animated.spring(swipeX, { toValue: 0, useNativeDriver: true, tension: 120, friction: 12 }),
+        Animated.spring(swipeY, { toValue: 0, useNativeDriver: true, tension: 120, friction: 12 }),
+      ]).start();
+      timerRef.current = setTimeout(() => dismissCurrent(), AUTO_DISMISS_MS);
+    },
+  }), [dismissCurrent, opacity, swipeX, swipeY]);
+
   const enqueue = useCallback((item: DailyTaskRewardToastItem) => {
     const key = itemKey(item);
     if (inFlightClaimKeysRef.current.has(key)) return;
@@ -428,7 +471,6 @@ function DailyTaskRewardToast() {
 
     activeRef.current = item;
     activeKeyRef.current = key;
-    setClaiming(false);
     setToast(item);
     setOverlayWanted(true);
   }, []);
@@ -440,7 +482,6 @@ function DailyTaskRewardToast() {
       activeRef.current = item;
       activeKeyRef.current = itemKey(item);
       claimingRef.current = false;
-      setClaiming(false);
       setToast(item);
       setOverlayWanted(true);
       return;
@@ -518,6 +559,8 @@ function DailyTaskRewardToast() {
     if (rafRef.current != null) cancelAnimationFrame(rafRef.current);
 
     translateY.setValue(150);
+    swipeX.setValue(0);
+    swipeY.setValue(0);
     opacity.setValue(0);
     scale.setValue(0.96);
     rafRef.current = requestAnimationFrame(() => {
@@ -556,28 +599,28 @@ function DailyTaskRewardToast() {
         rafRef.current = null;
       }
     };
-  }, [dismissCurrent, opacity, overlayVisible, scale, toast, translateY]);
+  }, [dismissCurrent, opacity, overlayVisible, scale, swipeX, swipeY, toast, translateY]);
 
   useEffect(() => () => {
     if (timerRef.current) clearTimeout(timerRef.current);
     if (rafRef.current != null) cancelAnimationFrame(rafRef.current);
   }, []);
 
-  const handleClaim = useCallback(async () => {
+  // зачем: владелец убрал кнопку «Забрать» — награда за вызов дня начисляется
+  // САМА, как только задание выполнено. Тост стал уведомлением «+XP получено»,
+  // а не действием. Тело клейма не тронуто: claimTaskWithReward остаётся
+  // единственным путём начисления (идемпотентность по eventId, резерв и откат),
+  // поэтому автоматический вызов так же защищён от гонок и двойного начисления,
+  // как прежний тап по кнопке. Тост при этом НЕ закрывается — пользователь
+  // должен успеть прочитать, за что и сколько ему дали.
+  const claimReward = useCallback(async () => {
     const current = activeRef.current;
     if (!current) return;
     const claimKey = itemKey(current);
     if (claimingRef.current || inFlightClaimKeysRef.current.has(claimKey)) return;
 
-    hapticTap();
     claimingRef.current = true;
     inFlightClaimKeysRef.current.add(claimKey);
-    setClaiming(true);
-    if (timerRef.current) {
-      clearTimeout(timerRef.current);
-      timerRef.current = null;
-    }
-    dismissCurrent();
 
     try {
       if (current.previewOnly) {
@@ -658,21 +701,22 @@ function DailyTaskRewardToast() {
       });
     } finally {
       inFlightClaimKeysRef.current.delete(claimKey);
+      claimingRef.current = false;
     }
-  }, [dismissCurrent, lang]);
+  }, [lang]);
+
+  // зачем: автоначисление вместо кнопки. Запускаем ровно один раз на каждый
+  // показанный тост — ключ задания в зависимостях, а claimingRef/
+  // inFlightClaimKeysRef внутри claimReward гасят повторный вход, если эффект
+  // переиграется. previewOnly (админский предпросмотр) ничего не начисляет.
+  const activeToastKey = toast ? itemKey(toast) : null;
+  useEffect(() => {
+    if (!activeToastKey || !toast || toast.previewOnly) return;
+    void claimReward();
+  }, [activeToastKey, claimReward, toast]);
 
   if (!toast || !overlayVisible) return null;
 
-  const claimLabel = triLang(lang, {
-    ru: 'Забрать',
-    uk: 'Забрати',
-    es: 'Reclamar',
-    'pt-BR': 'Resgatar',
-    vi: 'Nhận',
-    id: 'Ambil',
-    tr: 'Al',
-    pl: 'Odbierz',
-  });
   const title = triLang(lang, {
     ru: 'Вызов дня выполнен',
     uk: 'Виклик дня виконано',
@@ -695,18 +739,15 @@ function DailyTaskRewardToast() {
   });
   const visualThemeMode = toast.previewThemeMode ?? themeMode;
   const themeStyle = DAILY_TASK_REWARD_TOAST_THEME_STYLES[visualThemeMode];
-  const claimBg = themeStyle.claimBg;
-  const claimFg = themeStyle.claimText;
-  const claimIcon = themeStyle.buttonIconName;
-
   return (
     <Animated.View
-      pointerEvents="box-none"
+      {...swipeResponder.panHandlers}
+      pointerEvents="auto"
       style={[
         styles.host,
         {
           bottom: bottomOffset,
-          transform: [{ translateY }, { scale }],
+          transform: [{ translateY }, { translateX: swipeX }, { translateY: swipeY }, { scale }],
           opacity,
         },
       ]}
@@ -780,35 +821,7 @@ function DailyTaskRewardToast() {
           </Text>
         </View>
 
-        <TouchableOpacity
-          accessibilityRole="button"
-          activeOpacity={0.86}
-          disabled={claiming}
-          onPress={handleClaim}
-          style={[
-            styles.claimButton,
-            {
-              backgroundColor: claimBg,
-              borderColor: themeStyle.claimBorderColor,
-              minHeight: Math.max(44, ds.buttonHeight - 8),
-            },
-          ]}
-        >
-          <Ionicons
-            name={claimIcon}
-            size={16}
-            color={claimFg}
-          />
-          <Text
-            numberOfLines={1}
-            style={[
-              styles.claimText,
-              { color: claimFg, fontSize: f.caption },
-            ]}
-          >
-            {claimLabel}
-          </Text>
-        </TouchableOpacity>
+        {/* Награда начисляется автоматически; свайп по карточке закрывает тост. */}
       </LinearGradient>
     </Animated.View>
   );
@@ -881,21 +894,6 @@ const styles = StyleSheet.create({
   },
   xp: {
     marginTop: 2,
-    fontWeight: '900',
-    letterSpacing: 0,
-  },
-  claimButton: {
-    width: 104,
-    borderRadius: 14,
-    borderWidth: 0,
-    paddingHorizontal: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'row',
-    gap: 5,
-  },
-  claimText: {
-    flexShrink: 1,
     fontWeight: '900',
     letterSpacing: 0,
   },

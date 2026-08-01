@@ -1,6 +1,7 @@
 import { getCachedDueItems, getDueItems, hasCachedTrainerItems, type TrainerDashboard, type TrainerItem, type TrainerQueue } from './trainer_store';
 import type { RuntimeSourceLocale, RuntimeStudyTarget } from './target_storage_keys';
 import { shuffleWordBankTiles, tokenizeRecallPhrase, type WordBankTile } from './review_evaluator';
+import { getLessonData } from './lesson_data_all';
 
 const PRACTICE_HALL_FALLBACK_ORDER: readonly TrainerQueue[] = ['phrases', 'words', 'arena'];
 
@@ -109,8 +110,19 @@ export interface TrainerSessionPhrase {
   errorWord: string;
 }
 
+function restoreCanonicalTerminalPunctuation(item: Pick<TrainerItem, 'key' | 'queue' | 'lessonId'>): string {
+  const stored = item.key.trim();
+  if (item.queue !== 'phrases' || /[.?!]+$/.test(stored)) return item.key;
+
+  const canonical = getLessonData(item.lessonId).find((phrase) =>
+    phrase.english.trim().replace(/[.?!]+$/, '') === stored,
+  )?.english.trim();
+
+  return canonical ?? item.key;
+}
+
 export function trainerSessionPhrase(
-  item: Pick<TrainerItem, 'key' | 'queue' | 'errorWord' | 'arenaQuestion'>,
+  item: Pick<TrainerItem, 'key' | 'queue' | 'errorWord' | 'arenaQuestion' | 'lessonId'>,
 ): TrainerSessionPhrase {
   if (item.queue === 'arena' && item.arenaQuestion) {
     const correct = item.arenaQuestion.correct.trim();
@@ -123,7 +135,7 @@ export function trainerSessionPhrase(
     // Маркер не найден — не додумываем: фраза как есть, fill_gap не назначается.
     return { phrase: item.key, errorWord: '' };
   }
-  return { phrase: item.key, errorWord: item.errorWord ?? '' };
+  return { phrase: restoreCanonicalTerminalPunctuation(item), errorWord: item.errorWord ?? '' };
 }
 
 /** Краевая пунктуация не участвует в сравнении слов; внутренние знаки (don't, mother-in-law) целы. */

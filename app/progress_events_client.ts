@@ -39,8 +39,7 @@ export type ProgressEventType =
   // tests/progress_event_type_contract сверяет списки как упорядоченные, чтобы новый тип события
   // нельзя было завести только на одной стороне.
   | 'plan_task_complete'
-  | 'wager_win'
-  | 'club_mission_complete';
+  | 'wager_win';
 
 export type ProgressEventRequest = {
   eventId?: string;
@@ -83,7 +82,11 @@ const PROGRESS_EVENT_QUEUE_KEY = 'progress_server_event_queue_v1';
 const PROGRESS_MIGRATED_KEY = 'progress_server_snapshot_migrated_v1';
 const PROGRESS_MIGRATION_BASELINE_KEY = 'progress_server_snapshot_baseline_v1';
 const PROGRESS_EVENT_DEAD_LETTER_KEY = 'progress_server_event_dead_letter_v1';
+const PROGRESS_EVENT_RETRY_KEY = 'progress_server_event_retry_v1';
 const PROGRESS_EVENT_DEAD_LETTER_MAX = 100;
+const PROGRESS_EVENT_FLUSH_BATCH_MAX = 10;
+const PROGRESS_EVENT_RETRY_MIN_MS = 5_000;
+const PROGRESS_EVENT_RETRY_MAX_MS = 300_000;
 const CALLABLE_TIMEOUT_MS = 15000;
 
 const SERVER_PROGRESS_BASE_KEYS = [
@@ -305,8 +308,7 @@ export async function hasPendingProgressServerEvents(): Promise<boolean> {
   try {
     const stableId = await getCanonicalUserId();
     if (!stableId) return false;
-    const queue = await readQueue(stableId);
-    return queue.length > 0;
+    return withOwnerQueueMutation(stableId, async (state) => state.queue!.length > 0);
   } catch {
     return false;
   }
@@ -416,10 +418,75 @@ function sameWeekPoints(raw: unknown, weekKey: string): number | null {
   }
 }
 
-// Prevents two concurrent flush loops from racing on the same queue.
-let flushInFlight: Promise<number> | null = null;
 const flushedProgressResults = new Map<string, ProgressEventResult>();
 const terminalProgressEvents = new Map<string, true>();
+
+type ProgressRetryState = {
+  headEventId: string;
+  attempts: number;
+  nextRetryAt: number;
+};
+
+type OwnerQueueState = {
+  stableId: string;
+  queue: QueuedProgressEvent[] | null;
+  eventIds: Set<string>;
+  mutationTail: Promise<void>;
+  pendingMutations: number;
+  flushInFlight: Promise<number> | null;
+};
+
+const OWNER_QUEUE_STATE_MAX = 8;
+const ownerQueueStates = new Map<string, OwnerQueueState>();
+
+function progressResultKey(stableId: string, eventId: string): string {
+  return `${encodeURIComponent(stableId)}:${eventId}`;
+}
+
+function getOwnerQueueState(stableId: string): OwnerQueueState {
+  const existing = ownerQueueStates.get(stableId);
+  if (existing) return existing;
+  if (ownerQueueStates.size >= OWNER_QUEUE_STATE_MAX) {
+    for (const [key, state] of ownerQueueStates) {
+      if (state.pendingMutations === 0 && !state.flushInFlight) {
+        ownerQueueStates.delete(key);
+        break;
+      }
+    }
+  }
+  const created: OwnerQueueState = {
+    stableId,
+    queue: null,
+    eventIds: new Set<string>(),
+    mutationTail: Promise.resolve(),
+    pendingMutations: 0,
+    flushInFlight: null,
+  };
+  ownerQueueStates.set(stableId, created);
+  return created;
+}
+
+async function withOwnerQueueMutation<T>(
+  stableId: string,
+  mutation: (state: OwnerQueueState) => Promise<T>,
+): Promise<T> {
+  const state = getOwnerQueueState(stableId);
+  const previous = state.mutationTail;
+  let release!: () => void;
+  state.pendingMutations += 1;
+  state.mutationTail = new Promise<void>((resolve) => { release = resolve; });
+  await previous;
+  try {
+    if (state.queue === null) {
+      state.queue = await readQueue(stableId);
+      state.eventIds = new Set(state.queue.map((event) => event.eventId));
+    }
+    return await mutation(state);
+  } finally {
+    state.pendingMutations -= 1;
+    release();
+  }
+}
 
 function terminalProgressEventKey(stableId: string, eventId: string): string {
   return `${encodeURIComponent(stableId)}:${eventId}`;
@@ -441,18 +508,18 @@ function takeTerminalProgressEvent(stableId: string, eventId: string): boolean {
 }
 
 async function enqueue(event: QueuedProgressEvent): Promise<void> {
-  const queue = await readQueue(event.stableId);
-  if (!queue.some((item) => item.eventId === event.eventId)) {
-    queue.push(event);
-    await writeQueue(event.stableId, queue);
-  }
+  await withOwnerQueueMutation(event.stableId, async (state) => {
+    if (state.eventIds.has(event.eventId)) return;
+    const next = [...state.queue!, event];
+    await writeQueue(event.stableId, next);
+    state.queue = next;
+    state.eventIds.add(event.eventId);
+  });
 }
 
-export async function ensureProgressSnapshotMigrated(): Promise<boolean> {
+async function ensureProgressSnapshotMigratedForOwner(stableId: string): Promise<boolean> {
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return true;
   await ensureAnonUser();
-  const stableId = await getCanonicalUserId();
-  if (!stableId) throw new Error('progress_stable_id_unavailable');
   const migratedKey = progressOwnerKey(PROGRESS_MIGRATED_KEY, stableId);
   if (await AsyncStorage.getItem(migratedKey)) return true;
   const appCheckReady = await initFirebaseAppCheckIfAvailable().catch(() => false);
@@ -464,6 +531,12 @@ export async function ensureProgressSnapshotMigrated(): Promise<boolean> {
   await AsyncStorage.setItem(migratedKey, '1');
   await AsyncStorage.removeItem(progressOwnerKey(PROGRESS_MIGRATION_BASELINE_KEY, stableId));
   return true;
+}
+
+export async function ensureProgressSnapshotMigrated(): Promise<boolean> {
+  const stableId = await getCanonicalUserId();
+  if (!stableId) throw new Error('progress_stable_id_unavailable');
+  return ensureProgressSnapshotMigratedForOwner(stableId);
 }
 
 export async function prepareProgressMigrationSnapshot(): Promise<Record<string, string> | null> {
@@ -479,12 +552,11 @@ export async function prepareProgressMigrationSnapshot(): Promise<Record<string,
 }
 
 async function ensureProgressSnapshotMigratedWithBaseline(
+  stableId: string,
   snapshotOverride?: Record<string, string> | null,
 ): Promise<boolean> {
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return true;
   await ensureAnonUser();
-  const stableId = await getCanonicalUserId();
-  if (!stableId) throw new Error('progress_stable_id_unavailable');
   const migratedKey = progressOwnerKey(PROGRESS_MIGRATED_KEY, stableId);
   if (await AsyncStorage.getItem(migratedKey)) return true;
   const appCheckReady = await initFirebaseAppCheckIfAvailable().catch(() => false);
@@ -571,7 +643,7 @@ async function submitQueuedEvent(event: QueuedProgressEvent): Promise<ProgressEv
     if (!isCurrentAccountGeneration(accountGeneration, event.stableId)) return;
     await mirrorProgressResultToLocal(res.data);
   });
-  flushedProgressResults.set(event.eventId, res.data);
+  flushedProgressResults.set(progressResultKey(event.stableId, event.eventId), res.data);
   while (flushedProgressResults.size > 256) {
     const oldest = flushedProgressResults.keys().next().value;
     if (!oldest) break;
@@ -580,10 +652,20 @@ async function submitQueuedEvent(event: QueuedProgressEvent): Promise<ProgressEv
   return res.data;
 }
 
-async function doFlush(): Promise<number> {
-  if (!(await ensureProgressSnapshotMigrated())) return 0;
-  const stableId = await getCanonicalUserId();
-  if (!stableId) throw new Error('progress_stable_id_unavailable');
+function parseRetryState(raw: string | null): ProgressRetryState | null {
+  try {
+    const parsed = raw ? JSON.parse(raw) as Partial<ProgressRetryState> : null;
+    if (!parsed || typeof parsed.headEventId !== 'string') return null;
+    const attempts = Math.max(0, Math.floor(Number(parsed.attempts) || 0));
+    const nextRetryAt = Math.max(0, Number(parsed.nextRetryAt) || 0);
+    return { headEventId: parsed.headEventId, attempts, nextRetryAt };
+  } catch {
+    return null;
+  }
+}
+
+async function doFlush(stableId: string): Promise<number> {
+  if (!(await ensureProgressSnapshotMigratedForOwner(stableId))) return 0;
   // Реферал: отложенный код (введён офлайн) должен примениться ДО отправки прогресса.
   // Квалификация «урок 1 пройден» срабатывает только по живому событию урока — если событие
   // долетит раньше attribution, оба участника навсегда останутся без своих 7 дней.
@@ -592,37 +674,75 @@ async function doFlush(): Promise<number> {
     const m = await import('./referral_bootstrap');
     await m.tryApplyPendingReferral();
   } catch { /* нет сети/кода — прогресс не блокируем, ретрай на следующем flush */ }
-  const queue = await readQueue(stableId);
-  if (queue.length === 0) return 0;
-  const remaining = [...queue];
-  let sent = 0;
-  while (remaining.length > 0) {
-    const next = remaining[0];
-    try {
-      await submitQueuedEvent(next);
-    } catch (error) {
-      if (!isPermanentProgressEventError(error)) {
-        // Transient transport/auth failures stay at the head for a later retry.
-        break;
-      }
-      markTerminalProgressEvent(stableId, next.eventId);
-      await appendDeadLetter(stableId, next, error).catch(() => {});
-      remaining.shift();
-      await writeQueue(stableId, remaining);
-      continue;
+  return withOwnerQueueMutation(stableId, async (state) => {
+    if (state.queue!.length === 0) return 0;
+    const retryKey = progressOwnerKey(PROGRESS_EVENT_RETRY_KEY, stableId);
+    const retry = parseRetryState(await AsyncStorage.getItem(retryKey));
+    const initialHead = state.queue![0];
+    if (retry?.headEventId === initialHead.eventId && Date.now() < retry.nextRetryAt) return 0;
+    if (retry && retry.headEventId !== initialHead.eventId) {
+      await AsyncStorage.removeItem(retryKey).catch(() => {});
     }
-    remaining.shift();
-    sent += 1;
-    await writeQueue(stableId, remaining);
-  }
-  return sent;
+
+    const remaining = [...state.queue!];
+    let sent = 0;
+    let removed = 0;
+    let processed = 0;
+    let transientFailure = false;
+    while (remaining.length > 0 && processed < PROGRESS_EVENT_FLUSH_BATCH_MAX) {
+      const next = remaining[0];
+      try {
+        await submitQueuedEvent(next);
+      } catch (error) {
+        if (!isPermanentProgressEventError(error)) {
+          const attempts = retry?.headEventId === next.eventId ? retry.attempts + 1 : 1;
+          const delay = Math.min(
+            PROGRESS_EVENT_RETRY_MAX_MS,
+            PROGRESS_EVENT_RETRY_MIN_MS * (2 ** Math.min(16, attempts - 1)),
+          );
+          await AsyncStorage.setItem(retryKey, JSON.stringify({
+            headEventId: next.eventId,
+            attempts,
+            nextRetryAt: Date.now() + delay,
+          }));
+          transientFailure = true;
+          break;
+        }
+        markTerminalProgressEvent(stableId, next.eventId);
+        await appendDeadLetter(stableId, next, error).catch(() => {});
+        remaining.shift();
+        removed += 1;
+        processed += 1;
+        continue;
+      }
+      remaining.shift();
+      sent += 1;
+      removed += 1;
+      processed += 1;
+    }
+    if (removed > 0) {
+      await writeQueue(stableId, remaining);
+      state.queue = remaining;
+      state.eventIds = new Set(remaining.map((event) => event.eventId));
+    }
+    if (!transientFailure && retry) await AsyncStorage.removeItem(retryKey).catch(() => {});
+    return sent;
+  });
 }
 
-export function flushPendingProgressEvents(): Promise<number> {
+async function flushPendingProgressEventsForOwner(stableId: string): Promise<number> {
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return Promise.resolve(0);
-  if (flushInFlight) return flushInFlight;
-  flushInFlight = doFlush().finally(() => { flushInFlight = null; });
-  return flushInFlight;
+  const state = getOwnerQueueState(stableId);
+  if (state.flushInFlight) return state.flushInFlight;
+  state.flushInFlight = doFlush(stableId).finally(() => { state.flushInFlight = null; });
+  return state.flushInFlight;
+}
+
+export async function flushPendingProgressEvents(): Promise<number> {
+  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return 0;
+  const stableId = await getCanonicalUserId();
+  if (!stableId) throw new Error('progress_stable_id_unavailable');
+  return flushPendingProgressEventsForOwner(stableId);
 }
 
 export async function submitProgressEvent(
@@ -657,14 +777,18 @@ export async function submitProgressEvent(
   // request must not lose a completed answer or its XP event.
   await enqueue(event);
   try {
-    await ensureProgressSnapshotMigratedWithBaseline(options?.migrationSnapshot);
-    await flushPendingProgressEvents();
-    const flushed = flushedProgressResults.get(event.eventId);
+    await ensureProgressSnapshotMigratedWithBaseline(stableId, options?.migrationSnapshot);
+    await flushPendingProgressEventsForOwner(stableId);
+    const resultKey = progressResultKey(stableId, event.eventId);
+    const flushed = flushedProgressResults.get(resultKey);
     if (flushed) {
-      flushedProgressResults.delete(event.eventId);
+      flushedProgressResults.delete(resultKey);
       return flushed;
     }
-    const stillQueued = (await readQueue(stableId)).some((item) => item.eventId === event.eventId);
+    const stillQueued = await withOwnerQueueMutation(
+      stableId,
+      async (state) => state.eventIds.has(event.eventId),
+    );
     if (stillQueued) throw new Error('progress_event_pending');
     if (
       takeTerminalProgressEvent(stableId, event.eventId)
@@ -685,6 +809,13 @@ export default function __RouteShim() { return null; }
 
 export const __progressEventsClientTestHooks = {
   progressOwnerKey,
+  progressResultKey,
   isPermanentProgressEventError,
+  resetRuntimeState: () => {
+    ownerQueueStates.clear();
+    flushedProgressResults.clear();
+    terminalProgressEvents.clear();
+  },
   PROGRESS_EVENT_DEAD_LETTER_MAX,
+  PROGRESS_EVENT_FLUSH_BATCH_MAX,
 };

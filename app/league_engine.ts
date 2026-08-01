@@ -22,7 +22,6 @@ export interface ClubDef {
   shortUK:    string;  // «Ініціатори»
   ionIcon:    string;
   imageUri?:  any;  // изображение клуба (require() asset)
-  cardImageUri?: any; // большая фоновая карточка лиги (require() asset)
   color:      string;
   frameId:    string;  // id рамки в FRAMES
   tagRU:      string;
@@ -36,7 +35,7 @@ export interface ClubDef {
 
 export const CLUBS: ClubDef[] = [
   {
-    id: 0, ionIcon: 'flag-outline', imageUri: require("../assets/images/levels/league-v6-icons/league-icon-med.webp"), cardImageUri: require("../assets/images/levels/league-v6-cards/league-card-med.webp"), color: '#7B9BB5', frameId: 'club_initiator',
+    id: 0, ionIcon: 'flag-outline', imageUri: require("../assets/images/levels/league-v6-icons/league-icon-med.webp"), color: '#7B9BB5', frameId: 'club_initiator',
     nameRU: 'Медная лига',  nameUK: 'Мідь', nameES: 'Cobre',
     shortRU: 'Медная лига', shortUK: 'Мідь',
     tagRU: 'Бонус: +0% XP', tagUK: 'Бонус: +0% XP', tagES: 'Bonificación: +0% XP',
@@ -46,7 +45,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Ласкаво просимо, ініціаторе! Кожен експерт колись стояв на твоєму місці. Головне — почати.',
   },
   {
-    id: 1, ionIcon: 'flame', imageUri: require("../assets/images/levels/league-v6-icons/league-icon-bronz.webp"), cardImageUri: require("../assets/images/levels/league-v6-cards/league-card-bronz.webp"), color: '#5BA88B', frameId: 'club_adept',
+    id: 1, ionIcon: 'flame', imageUri: require("../assets/images/levels/league-v6-icons/league-icon-bronz.webp"), color: '#5BA88B', frameId: 'club_adept',
     nameRU: 'Бронзовая лига', nameUK: 'Бронза', nameES: 'Bronce',
     shortRU: 'Бронзовая лига', shortUK: 'Бронза',
     tagRU: 'Бонус: +10% XP',  tagUK: 'Бонус: +10% XP', tagES: 'Bonificación: +10% XP',
@@ -56,7 +55,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Твою відданість помічено! Адепти знають: повторення — мати навчання. Продовжуй в тому ж дусі!',
   },
   {
-    id: 2, ionIcon: 'compass-outline', imageUri: require("../assets/images/levels/league-v6-icons/league-icon-serebro.webp"), cardImageUri: require("../assets/images/levels/league-v6-cards/league-card-serebro.webp"), color: '#4A90A4', frameId: 'club_seeker',
+    id: 2, ionIcon: 'compass-outline', imageUri: require("../assets/images/levels/league-v6-icons/league-icon-serebro.webp"), color: '#4A90A4', frameId: 'club_seeker',
     nameRU: 'Серебряная лига', nameUK: 'Срібло', nameES: 'Plata',
     shortRU: 'Серебряная лига', shortUK: 'Срібло',
     tagRU: 'Бонус: +20% XP', tagUK: 'Бонус: +20% XP', tagES: 'Bonificación: +20% XP',
@@ -66,7 +65,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Ти на вірному шляху, шукачу! Кожен новий урок — це відкриття нового горизонту.',
   },
   {
-    id: 3, ionIcon: 'hammer-outline', imageUri: require("../assets/images/levels/league-v6-icons/league-icon-zoloto.webp"), cardImageUri: require("../assets/images/levels/league-v6-cards/league-card-zoloto.webp"), color: '#7BA84A', frameId: 'club_practitioner',
+    id: 3, ionIcon: 'hammer-outline', imageUri: require("../assets/images/levels/league-v6-icons/league-icon-zoloto.webp"), color: '#7BA84A', frameId: 'club_practitioner',
     nameRU: 'Золотая лига',   nameUK: 'Золото', nameES: 'Oro',
     shortRU: 'Золотая лига',  shortUK: 'Золото',
     tagRU: 'Бонус: +30% XP', tagUK: 'Бонус: +30% XP', tagES: 'Bonificación: +30% XP',
@@ -76,7 +75,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Справа майстра боїться! Практики будують знання цеглина за цеглиною. Ти у відмінній формі!',
   },
   {
-    id: 4, ionIcon: 'analytics-outline', imageUri: require("../assets/images/levels/league-v6-icons/league-icon-platina.webp"), cardImageUri: require("../assets/images/levels/league-v6-cards/league-card-platina.webp"), color: '#C8A84A', frameId: 'club_analyst',
+    id: 4, ionIcon: 'analytics-outline', imageUri: require("../assets/images/levels/league-v6-icons/league-icon-platina.webp"), color: '#C8A84A', frameId: 'club_analyst',
     nameRU: 'Платиновая лига', nameUK: 'Платина', nameES: 'Platino',
     shortRU: 'Платиновая лига', shortUK: 'Платина',
     tagRU: 'Бонус: +40% XP', tagUK: 'Бонус: +40% XP', tagES: 'Bonificación: +40% XP',
@@ -86,7 +85,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Твій розум гостріший, ніж учора! Аналітики перетворюють складність на ясність. Ти мислиш системно!',
   },
   {
-    id: 5, ionIcon: 'library-outline', imageUri: require("../assets/images/levels/league-v6-icons/league-icon-izumrud.webp"), cardImageUri: require("../assets/images/levels/league-v6-cards/league-card-izumrud.webp"), color: '#CD7F32', frameId: 'club_erudite',
+    id: 5, ionIcon: 'library-outline', imageUri: require("../assets/images/levels/league-v6-icons/league-icon-izumrud.webp"), color: '#CD7F32', frameId: 'club_erudite',
     nameRU: 'Изумрудная лига', nameUK: 'Смарагд', nameES: 'Esmeralda',
     shortRU: 'Изумрудная лига', shortUK: 'Смарагд',
     tagRU: 'Бонус: +50% XP', tagUK: 'Бонус: +50% XP', tagES: 'Bonificación: +50% XP',
@@ -96,7 +95,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Знання — твоя сила! Ерудити — люди, яким завжди є що сказати. Ти заслужено тут!',
   },
   {
-    id: 6, ionIcon: 'diamond', imageUri: require("../assets/images/levels/league-v6-icons/league-icon-sapfir.webp"), cardImageUri: require("../assets/images/levels/league-v6-cards/league-card-sapfir.webp"), color: '#4A90D9', frameId: 'club_connoisseur',
+    id: 6, ionIcon: 'diamond', imageUri: require("../assets/images/levels/league-v6-icons/league-icon-sapfir.webp"), color: '#4A90D9', frameId: 'club_connoisseur',
     nameRU: 'Сапфировая лига', nameUK: 'Сапфір', nameES: 'Zafiro',
     shortRU: 'Сапфировая лига', shortUK: 'Сапфір',
     tagRU: 'Бонус: +60% XP', tagUK: 'Бонус: +60% XP', tagES: 'Bonificación: +60% XP',
@@ -106,7 +105,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Ти знаєш мову зсередини! Знавці помічають те, що інші пропускають. Ти в еліті!',
   },
   {
-    id: 7, ionIcon: 'flame-outline', imageUri: require("../assets/images/levels/league-v6-icons/league-icon-rubin.webp"), cardImageUri: require("../assets/images/levels/league-v6-cards/league-card-rubin.webp"), color: '#9B59B6', frameId: 'club_expert',
+    id: 7, ionIcon: 'flame-outline', imageUri: require("../assets/images/levels/league-v6-icons/league-icon-rubin.webp"), color: '#9B59B6', frameId: 'club_expert',
     nameRU: 'Рубиновая лига', nameUK: 'Рубін', nameES: 'Rubí',
     shortRU: 'Рубиновая лига', shortUK: 'Рубін',
     tagRU: 'Бонус: +70% XP', tagUK: 'Бонус: +70% XP', tagES: 'Bonificación: +70% XP',
@@ -116,7 +115,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Експертний рівень! Твої знання виходять за межі підручника. Ти говориш — всі слухають!',
   },
   {
-    id: 8, ionIcon: 'school-outline', imageUri: require("../assets/images/levels/league-v6-icons/league-icon-almaz.webp"), cardImageUri: require("../assets/images/levels/league-v6-cards/league-card-almaz.webp"), color: '#A8B4C0', frameId: 'club_magister',
+    id: 8, ionIcon: 'school-outline', imageUri: require("../assets/images/levels/league-v6-icons/league-icon-almaz.webp"), color: '#A8B4C0', frameId: 'club_magister',
     nameRU: 'Алмазная лига', nameUK: 'Діамант', nameES: 'Diamante',
     shortRU: 'Алмазная лига', shortUK: 'Діамант',
     tagRU: 'Бонус: +80% XP',  tagUK: 'Бонус: +80% XP', tagES: 'Bonificación: +80% XP',
@@ -126,7 +125,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Магістерська мантія тобі личить! Ти в абсолютній еліті тих, хто вивчає англійську. Капелюх долу!',
   },
   {
-    id: 9, ionIcon: 'sparkles-outline', imageUri: require("../assets/images/levels/league-v6-icons/league-icon-cherniy-almaz.webp"), cardImageUri: require("../assets/images/levels/league-v6-cards/league-card-cherniy-almaz.webp"), color: '#E87E30', frameId: 'club_thinker',
+    id: 9, ionIcon: 'sparkles-outline', imageUri: require("../assets/images/levels/league-v6-icons/league-icon-cherniy-almaz.webp"), color: '#E87E30', frameId: 'club_thinker',
     nameRU: 'Лига Черного Алмаза', nameUK: 'Чорний Діамант', nameES: 'Diamante negro',
     shortRU: 'Лига Черного Алмаза', shortUK: 'Чорний Діамант',
     tagRU: 'Бонус: +90% XP',   tagUK: 'Бонус: +90% XP', tagES: 'Bonificación: +90% XP',
@@ -136,7 +135,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Ти мислиш англійською! Це найвищий рівень занурення. Мислителі — рідкість і гордість ліги!',
   },
   {
-    id: 10, ionIcon: 'hammer', imageUri: require("../assets/images/levels/league-v6-icons/league-icon-efir.webp"), cardImageUri: require("../assets/images/levels/league-v6-cards/league-card-efir.webp"), color: '#D4A017', frameId: 'club_master',
+    id: 10, ionIcon: 'hammer', imageUri: require("../assets/images/levels/league-v6-icons/league-icon-efir.webp"), color: '#D4A017', frameId: 'club_master',
     nameRU: 'Эфирная лига',  nameUK: 'Ефір', nameES: 'Éter',
     shortRU: 'Эфирная лига', shortUK: 'Ефір',
     tagRU: 'Бонус: +100% XP',   tagUK: 'Бонус: +100% XP', tagES: 'Bonificación: +100% XP',
@@ -146,7 +145,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Майстер слова! Ти серед найкращих у додатку. Твоя англійська — це мистецтво. Ми пишаємось тобою!',
   },
   {
-    id: 11, ionIcon: 'trophy-outline', imageUri: require("../assets/images/levels/league-v6-icons/league-icon-vishaya.webp"), cardImageUri: require("../assets/images/levels/league-v6-cards/league-card-vishaya.webp"), color: '#FFD700', frameId: 'club_professor',
+    id: 11, ionIcon: 'trophy-outline', imageUri: require("../assets/images/levels/league-v6-icons/league-icon-vishaya.webp"), color: '#FFD700', frameId: 'club_professor',
     nameRU: 'Высшая лига',   nameUK: 'Вища Ліга', nameES: 'Liga suprema',
     shortRU: 'Высшая лига',  shortUK: 'Вища Ліга',
     tagRU: 'Бонус: +110% XP', tagUK: 'Бонус: +110% XP', tagES: 'Bonificación: +110% XP',
@@ -302,7 +301,7 @@ export function clubDescForLang(club: Pick<ClubDef, 'id' | 'descRU' | 'descUK'>,
 export const LEAGUES = CLUBS.map(c => ({
   id: c.id, nameRU: c.nameRU, nameUK: c.nameUK, nameES: c.nameES,
   shortRU: c.shortRU, shortUK: c.shortUK,
-  ionIcon: c.ionIcon, imageUri: c.imageUri, cardImageUri: c.cardImageUri, color: c.color, frameId: c.frameId,
+  ionIcon: c.ionIcon, imageUri: c.imageUri, color: c.color, frameId: c.frameId,
   icon: '', tagRU: c.tagRU, tagUK: c.tagUK, tagES: c.tagES, descRU: c.descRU, descUK: c.descUK,
   greetingRU: c.greetingRU, greetingUK: c.greetingUK,
 }));
@@ -548,6 +547,22 @@ export const getWeekId = (d: Date = new Date()): string => {
   return `${date.getUTCFullYear()}-W${String(weekNum).padStart(2, '0')}`;
 };
 
+const LEAGUE_FINALIZATION_GRACE_MS = 15 * 60 * 1000;
+
+/**
+ * The server finalizes the previous league week at 00:05 UTC. During the first
+ * minutes of Monday a missing result means "not ready yet", not "calculate it
+ * permanently from a possibly stale local snapshot".
+ */
+export const isLeagueFinalizationGracePeriod = (now: Date = new Date()): boolean => {
+  if (now.getUTCDay() !== 1) return false;
+  const elapsed = now.getUTCHours() * 60 * 60 * 1000
+    + now.getUTCMinutes() * 60 * 1000
+    + now.getUTCSeconds() * 1000
+    + now.getUTCMilliseconds();
+  return elapsed < LEAGUE_FINALIZATION_GRACE_MS;
+};
+
 // Сравнение weekId формата «YYYY-Www» по (год, номер недели).
 // >0: a позже b; 0: равны; <0: a раньше b (например, часы устройства откатили назад).
 const compareWeekIds = (a: string, b: string): number => {
@@ -629,7 +644,13 @@ export const markLeagueResultShown = async (result: LeagueResult): Promise<void>
   } catch {}
 };
 
-let _groupCache: { group: GroupMember[]; ts: number } | null = null;
+let _groupCache: {
+  group: GroupMember[];
+  ts: number;
+  weekId: string;
+  leagueId: number;
+  userKey: string;
+} | null = null;
 const GROUP_CACHE_TTL = 60_000; // 60 сек
 
 /** Скинути кеш групи (екран клубу / після фокусу), щоб fetchGroupForUser знову пішов у Firestore. */
@@ -680,12 +701,18 @@ const fetchGroupForUser = async (
   // Кэш на 60 сек чтобы не спамить Firestore при каждом рендере
   const now = Date.now();
   const myUid = await getMyUidSafe();
-  if (_groupCache && now - _groupCache.ts < GROUP_CACHE_TTL) {
+  const targetWeekId = weekId ?? getWeekId();
+  const userKey = myUid || `name:${myName.trim().toLocaleLowerCase()}`;
+  const cacheMatchesRequest = !!_groupCache
+    && _groupCache.weekId === targetWeekId
+    && _groupCache.leagueId === leagueId
+    && _groupCache.userKey === userKey;
+  if (_groupCache && cacheMatchesRequest && now - _groupCache.ts < GROUP_CACHE_TTL) {
     return ensureCurrentUserInGroup(_groupCache.group, myName, myWeekPoints, myUid);
   }
   // Пробуем получить реальную группу из Firestore
   const remoteGroup = await getOrCreateLeagueGroup(
-    weekId ?? getWeekId(),
+    targetWeekId,
     leagueId,
     myName,
     myWeekPoints,
@@ -695,8 +722,15 @@ const fetchGroupForUser = async (
     // зачем: схлопнутый ответ (только я) не должен попадать в 60-секундный кэш —
     // иначе повторные входы в течение минуты гарантированно получали бы «ты тут
     // один», даже когда следующий запрос вернул бы полную группу.
-    if (!isCollapsedLeagueGroup(repairedRemoteGroup, _groupCache?.group)) {
-      _groupCache = { group: repairedRemoteGroup, ts: Date.now() };
+    const knownSameGroup = cacheMatchesRequest ? _groupCache?.group : null;
+    if (!isCollapsedLeagueGroup(repairedRemoteGroup, knownSameGroup)) {
+      _groupCache = {
+        group: repairedRemoteGroup,
+        ts: Date.now(),
+        weekId: targetWeekId,
+        leagueId,
+        userKey,
+      };
     }
     return repairedRemoteGroup;
   }
@@ -737,14 +771,21 @@ export const calculateResult = (state: LeagueState, myWeekPoints: number): Leagu
   // отдавало мне топ-1 + автоматический promotion при reset/гонке. Помечаем как «вне группы»,
   // и hasValidGroup=false ниже отключает promotion/demotion целиком.
   const meIndex      = updated.findIndex(m => m.isMe);
-  const myRank       = meIndex >= 0 ? meIndex + 1 : total + 1;
   const meInGroup    = meIndex >= 0;
+  const myPoints     = meInGroup ? readMemberPoints(updated[meIndex], myWeekPoints) : 0;
+  // Competition ranking: equal XP means equal rank and therefore the same
+  // promotion/demotion outcome at a zone boundary.
+  const myRank       = meInGroup
+    ? 1 + updated.filter((member) => readMemberPoints(member, 0) > myPoints).length
+    : total + 1;
+  const myBottomRank = meInGroup
+    ? 1 + updated.filter((member) => readMemberPoints(member, 0) < myPoints).length
+    : total + 1;
 
   // Need at least 2 participants for meaningful ranking AND me present in the group
   const hasValidGroup = total >= 2 && meInGroup;
   const zoneSize     = getLeagueResultZoneSize(total);
   const topCutoff    = hasValidGroup ? zoneSize : 0;
-  const bottomCutoff = hasValidGroup ? total - zoneSize + 1 : total + 1;
   const xpPromotionMode = isLeagueXpPromotionEnabled();
   const xpPromotionThreshold = getLeagueXpPromotionThreshold();
   const promoted = xpPromotionMode
@@ -752,7 +793,7 @@ export const calculateResult = (state: LeagueState, myWeekPoints: number): Leagu
     : hasValidGroup && myRank <= topCutoff && state.leagueId < CLUBS.length - 1;
   const demoted = xpPromotionMode
     ? false
-    : hasValidGroup && myRank >= bottomCutoff && state.leagueId > 0 && !promoted;
+    : hasValidGroup && myBottomRank <= zoneSize && state.leagueId > 0 && !promoted;
 
   return {
     prevLeagueId: state.leagueId,
@@ -1016,6 +1057,19 @@ export const checkLeagueOnAppOpen = async (
         demoted: serverResult.demoted,
         group: rolloverGroup,
       };
+    } else if (
+      myUid
+      && CLOUD_SYNC_ENABLED
+      && !IS_EXPO_GO
+      && isLeagueFinalizationGracePeriod()
+    ) {
+      // Keep the previous-week state untouched. A later focus/open retries the
+      // authoritative result instead of making a local estimate irreversible.
+      return {
+        needShowResult: false,
+        result: null,
+        state: { ...state, group: rolloverGroup },
+      };
     } else {
       // Локальный резервный расчёт: кэш группы может отставать (юзер добрал очки в конце
       // недели, а снапшот не обновился) — берём максимум из кэша и финала,
@@ -1038,10 +1092,9 @@ export const checkLeagueOnAppOpen = async (
       group:    rolloverGroup,
     });
 
-    // зачем: та же защита от схлопывания, что и в ветке «та же неделя» ниже —
-    // неполный ответ не должен затирать перенесённую группу (см. isCollapsedLeagueGroup).
-    const rawRemote = await fetchGroupForUser(result.newLeagueId, myName, 0);
-    const remote = isCollapsedLeagueGroup(rawRemote, rolloverGroup) ? null : rawRemote;
+    // Новая неделя/лига означает новую комнату. Одиночная серверная группа здесь
+    // валидна и не должна сравниваться по размеру со снимком прошлой недели.
+    const remote = await fetchGroupForUser(result.newLeagueId, myName, 0, currentWeekId);
     const finalGroup = remote ?? rolloverGroup;
     const newState: LeagueState = {
       leagueId: result.newLeagueId,

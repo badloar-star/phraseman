@@ -657,12 +657,18 @@ export default function LessonMenu() {
 
   // Запись «последний открытый урок» на первый кадр не влияет — откладываем её за
   // анимацию перехода, чтобы не занимать поток в момент открытия экрана.
+  // зачем: запоминаем ТОЛЬКО доступный урок. Раньше заглянув в заблокированный
+  // урок (напр. №2 из списка), пользователь записывал его как «последний
+  // открытый», и кнопка «Урок» на Главной потом каждый раз приводила на экран
+  // «Урок заблокирован» — выглядело как поломка приложения. Ждём результат
+  // проверки блокировки (lockStateLoaded), чтобы не записать урок до неё.
   useEffect(() => {
+    if (!lockStateLoaded || isLessonLocked) return;
     const task = InteractionManager.runAfterInteractions(() => {
       void AsyncStorage.setItem(lastOpenedLessonKey(studyTarget), String(lessonId));
     });
     return () => task.cancel();
-  }, [lessonId, studyTarget]);
+  }, [lessonId, studyTarget, lockStateLoaded, isLessonLocked]);
 
   const openLessonFromMenu = useCallback(() => {
     if (frenchLessonSourceGated) {

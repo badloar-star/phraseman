@@ -21,6 +21,7 @@ import { isReferralCloudEnabled } from './referral_flags';
 
 const REGION = 'us-central1';
 const BATCH_CACHE_TTL_MS = 5 * 60 * 1000;
+const BATCH_CACHE_MAX_ENTRIES = 256;
 /** Размер пачки должен совпадать с MAX_UIDS_PER_CALL в functions/src/friends_profiles.ts. */
 const BATCH_SIZE = 100;
 
@@ -56,6 +57,24 @@ interface CacheEntry {
 const batchCache = new Map<string, CacheEntry>();
 const inFlight = new Map<string, Promise<FriendProfileBatchRecord | null>>();
 
+function pruneExpiredBatchCache(now: number): void {
+  for (const [uid, entry] of batchCache) {
+    if (now - entry.fetchedAt >= BATCH_CACHE_TTL_MS) batchCache.delete(uid);
+  }
+}
+
+function setBatchCacheEntry(uid: string, entry: CacheEntry): void {
+  // Map insertion order is the LRU order. Replacing first keeps repeated public
+  // profiles hot without allowing friend/account churn to grow memory forever.
+  batchCache.delete(uid);
+  batchCache.set(uid, entry);
+  while (batchCache.size > BATCH_CACHE_MAX_ENTRIES) {
+    const oldestUid = batchCache.keys().next().value as string | undefined;
+    if (oldestUid === undefined) break;
+    batchCache.delete(oldestUid);
+  }
+}
+
 async function fetchBatch(uids: string[]): Promise<Record<string, FriendProfileBatchRecord | null>> {
   await initFirebaseAppCheckIfAvailable().catch(() => {});
   const fn = callable<{ uids: string[] }, ProfilesResponse>('friendsGetProfiles');
@@ -86,10 +105,13 @@ export async function fetchFriendProfilesBatch(
   if (unique.length === 0) return result;
 
   const now = Date.now();
+  pruneExpiredBatchCache(now);
   const toFetch: string[] = [];
   for (const uid of unique) {
     const hit = batchCache.get(uid);
     if (!options.force && hit && now - hit.fetchedAt < BATCH_CACHE_TTL_MS) {
+      batchCache.delete(uid);
+      batchCache.set(uid, hit);
       result[uid] = hit.profile;
     } else {
       toFetch.push(uid);
@@ -112,7 +134,7 @@ export async function fetchFriendProfilesBatch(
     if (!isReferralCloudEnabled()) {
       // Без облака (Expo Go) — кладём null в кэш, вызывающий уйдёт в legacy-путь.
       for (const uid of owners) {
-        batchCache.set(uid, { profile: null, fetchedAt: now });
+        setBatchCacheEntry(uid, { profile: null, fetchedAt: now });
         result[uid] = null;
       }
     } else {
@@ -126,7 +148,7 @@ export async function fetchFriendProfilesBatch(
           for (const uid of chunk) {
             const perUid = request.then((map) => {
               const profile = map[uid] ?? null;
-              batchCache.set(uid, { profile, fetchedAt: Date.now() });
+              setBatchCacheEntry(uid, { profile, fetchedAt: Date.now() });
               return profile;
             });
             inFlight.set(uid, perUid);

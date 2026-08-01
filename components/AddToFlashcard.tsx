@@ -230,6 +230,8 @@ function AddToFlashcard({
             } else if (result === 'limit_reached') {
               setSaved(false);
               router.push({ pathname: '/premium_modal', params: { context: 'flashcard_limit', saved: '20' } } as any);
+            } else if (result === 'stale') {
+              setSaved(false);
             }
           } catch {
             setSaved(false);

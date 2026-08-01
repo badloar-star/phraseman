@@ -4,41 +4,42 @@ Run: `2026-05-19_fr_inventory_v0a1`
 
 Status: `HOLD`
 
-Generated at: 2026-07-26T16:11:01.212Z
+Generated at: 2026-08-01T08:45:05.715Z
 
 ## Summary
 
-- Files scanned: 3703
-- Records: 3390
-- Unique literal keys: 543
-- Key patterns: 59
-- Unknown expressions: 913
+- Files scanned: 3841
+- Records: 3435
+- Unique literal keys: 557
+- Key patterns: 55
+- Unknown expressions: 934
 - Cloud sync keys observed: 143
-- Learning-state records: 495
-- Target namespace required: 54
+- Learning-state records: 508
+- Target namespace required: 57
 - Blockers: 0
-- High risks: 53
-- Unknown-scope records: 157
+- High risks: 56
+- Unknown-scope records: 166
 
 ## Top Risks
 
 - `high` candidates.map(([key]: app/account_switch_backup_restore.ts:105 (unknown, multiGet)
 - `high` missing: app/account_switch_backup_restore.ts:112 (unknown, multiSet)
 - `high` missing.map(([key]: app/account_switch_backup_restore.ts:114 (unknown, multiRemove)
+- `high` achievementPayoutPendingKey(stableId: app/achievements.ts:3230 (unknown, get)
 - `high` ai_mistake_limit_notice_shown_v1: app/ai_mistake_explain_limit_session.ts:56 (legacy_english, get)
 - `high` ai_mistake_limit_notice_shown_v1: app/ai_mistake_explain_limit_session.ts:69 (legacy_english, set)
 - `high` doomed: app/cache_reset.ts:35 (unknown, multiRemove)
-- `high` stickyOwnedKeys: app/cloud_sync.ts:2525 (unknown, multiGet)
-- `high` stickyLessonKeys: app/cloud_sync.ts:2547 (unknown, multiGet)
-- `high` lateLearningV2Keys: app/cloud_sync.ts:3164 (unknown, multiRemove)
-- `high` sourceAccountKeys: app/cloud_sync.ts:3214 (unknown, multiGet)
-- `high` lessonIds.map((id: app/daily_tasks.ts:2791 (unknown, multiGet)
-- `high` ids.map((id: app/daily_tasks.ts:3134 (unknown, multiGet)
-- `high` ids.map((id: app/daily_tasks.ts:3135 (unknown, multiGet)
+- `high` stickyOwnedKeys: app/cloud_sync.ts:2526 (unknown, multiGet)
+- `high` stickyLessonKeys: app/cloud_sync.ts:2548 (unknown, multiGet)
+- `high` lateLearningV2Keys: app/cloud_sync.ts:3165 (unknown, multiRemove)
+- `high` sourceAccountKeys: app/cloud_sync.ts:3219 (unknown, multiGet)
+- `high` lessonIds.map((id: app/daily_tasks.ts:2272 (unknown, multiGet)
+- `high` ids.map((id: app/daily_tasks.ts:2593 (unknown, multiGet)
+- `high` ids.map((id: app/daily_tasks.ts:2594 (unknown, multiGet)
 - `high` storageKey(request: app/explain_local_cache.ts:51 (unknown, get)
 - `high` storageKey(request: app/explain_local_cache.ts:64 (unknown, set)
-- `high` flashcardsSwipeHintSeenKey(studyTarget: app/flashcards_swipe.tsx:2008 (unknown, get)
-- `high` flashcardsSwipeHintSeenKey(studyTarget: app/flashcards_swipe.tsx:2021 (unknown, set)
+- `high` flashcardsSwipeHintSeenKey(studyTarget: app/flashcards_swipe.tsx:2009 (unknown, get)
+- `high` flashcardsSwipeHintSeenKey(studyTarget: app/flashcards_swipe.tsx:2022 (unknown, set)
 - `high` legacyFreeLessonCapKey(studyTarget: app/legacy_free_lesson_access.ts:120 (unknown, get)
 - `high` [capKey, migrationKey]: app/legacy_free_lesson_access.ts:130 (unknown, multiGet)
 - `high` [[quarantineKey, raw], [key, '[]']]: app/level_up_reward_reconciler.ts:127 (unknown, multiSet)
@@ -49,6 +50,8 @@ Generated at: 2026-07-26T16:11:01.212Z
 - `high` LEVEL_UP_REWARD_FALLBACK_KEY: app/level_up_reward_reconciler.ts:346 (unknown, set)
 - `high` snapshotCommitPairs(stableId, values: app/premium_vip_storage.ts:114 (unknown, multiSet)
 - `high` snapshotCommitPairs(stableId, normalized: app/premium_vip_storage.ts:191 (unknown, multiSet)
+- `high` snapshotCacheKey(stableId: app/public_profile_snapshot.ts:106 (unknown, get)
+- `high` snapshotCacheKey(stableId: app/public_profile_snapshot.ts:115 (unknown, set)
 - `high` migrationKey: app/referral_system.ts:58 (unknown, get)
 - `high` scope.storageKey: app/referral_system.ts:69 (unknown, set)
 - `high` migrationKey: app/referral_system.ts:74 (unknown, set)
@@ -59,54 +62,49 @@ Generated at: 2026-07-26T16:11:01.212Z
 - `high` REFERRAL_STATE_STORAGE_KEY: app/referrals.tsx:298 (unknown, get)
 - `high` spinCreditsStorageKey(stableId: app/roulette_spin_client.ts:77 (unknown, set)
 - `high` spinCreditsStorageKey(stableId: app/roulette_spin_client.ts:92 (unknown, get)
-- `high` `${LEGACY_SHARD_DELTA_RESOLVED_PREFIX}${encodeURIComponent(expected.opId: app/shards_delta_queue.ts:197 (unknown, get)
-- `high` pendingStorageKey(token.stableId: app/shards_pending_grants.ts:147 (unknown, get)
-- `high` markerKey: app/shards_pending_grants.ts:300 (unknown, remove)
 
 ## Unknowns
 
-- tournament_weekly_prize_seen:${last.weekId} at app/(tabs)/tournaments.tsx:172
-- tournament_weekly_prize_seen:${last.weekId} at app/(tabs)/tournaments.tsx:174
+- tournament_weekly_prize_seen:${last.weekId} at app/(tabs)/tournaments.tsx:286
+- tournament_weekly_prize_seen:${last.weekId} at app/(tabs)/tournaments.tsx:287
 - candidates.map(([key] at app/account_switch_backup_restore.ts:105
 - missing at app/account_switch_backup_restore.ts:112
 - missing.map(([key] at app/account_switch_backup_restore.ts:114
-- app_messages_cache_v2 at app/app_messages.ts:31
-- app_messages_last_background_refresh_ms_v2 at app/app_messages.ts:32
-- app_messages_local_preview_v2 at app/app_messages.ts:35
-- app_message_local_preview_states_v2 at app/app_messages.ts:36
-- app_messages_report_reply_pending_claims_v2 at app/app_messages.ts:40
-- app_messages_report_reply_pending_claims_v1 at app/app_messages.ts:42
-- app_message_visibility_outbox_v1 at app/app_messages.ts:44
-- app_message_personal_modal_ack_outbox_v1 at app/app_messages.ts:46
-- app_message_received_anim_ids_v2 at app/app_messages.ts:49
-- app_messages_report_reply_pending_claims_v1 at app/app_messages.ts:617
-- app_messages_report_reply_pending_claims_v1 at app/app_messages.ts:619
-- remote_account_deleted_notice_v1 at app/auth_provider.ts:416
-- remote_account_deleted_notice_v1 at app/auth_provider.ts:2199
-- remote_account_deleted_notice_v1 at app/auth_provider.ts:2207
-- remote_account_deleted_notice_v1 at app/auth_provider.ts:2209
+- achievementPayoutPendingKey(stableId at app/achievements.ts:3230
+- age_consent_cloud_pending_v1 at app/age_consent_cloud.ts:25
+- app_messages_cache_v2 at app/app_messages.ts:32
+- app_messages_last_background_refresh_ms_v2 at app/app_messages.ts:33
+- app_messages_local_preview_v2 at app/app_messages.ts:36
+- app_message_local_preview_states_v2 at app/app_messages.ts:37
+- app_messages_report_reply_pending_claims_v2 at app/app_messages.ts:41
+- app_messages_report_reply_pending_claims_v1 at app/app_messages.ts:43
+- app_message_visibility_outbox_v1 at app/app_messages.ts:45
+- app_message_personal_modal_ack_outbox_v1 at app/app_messages.ts:47
+- app_message_received_anim_ids_v2 at app/app_messages.ts:50
+- app_messages_report_reply_pending_claims_v1 at app/app_messages.ts:618
+- app_messages_report_reply_pending_claims_v1 at app/app_messages.ts:620
+- remote_account_deleted_notice_v1 at app/auth_provider.ts:418
+- remote_account_deleted_notice_v1 at app/auth_provider.ts:2510
+- remote_account_deleted_notice_v1 at app/auth_provider.ts:2518
+- remote_account_deleted_notice_v1 at app/auth_provider.ts:2520
 - doomed at app/cache_reset.ts:35
 - shard_survey_last_at_ms at app/cloud_sync.ts:1
-- stickyOwnedKeys at app/cloud_sync.ts:2525
-- stickyLessonKeys at app/cloud_sync.ts:2547
-- lateLearningV2Keys at app/cloud_sync.ts:3164
-- sourceAccountKeys at app/cloud_sync.ts:3214
+- stickyOwnedKeys at app/cloud_sync.ts:2526
+- stickyLessonKeys at app/cloud_sync.ts:2548
+- lateLearningV2Keys at app/cloud_sync.ts:3165
+- sourceAccountKeys at app/cloud_sync.ts:3219
 - coin_exchange_quote_cache_v1 at app/coin_exchange_client.ts:24
 - coin_exchange_history_cache_v1 at app/coin_exchange_client.ts:25
 - coin_exchange_quote_cache_v1 at app/coin_exchange_client.ts:77
 - coin_exchange_history_cache_v1 at app/coin_exchange_client.ts:87
 - coin_exchange_quote_cache_v1 at app/coin_exchange_client.ts:102
 - coin_exchange_history_cache_v1 at app/coin_exchange_client.ts:115
-- coins_migration_modal_seen_v1 at app/coins_migration_modal.ts:15
-- coins_migration_modal_seen_v1 at app/coins_migration_modal.ts:68
-- coins_migration_modal_seen_v1 at app/coins_migration_modal.ts:76
-- coins_migration_modal_seen_v1 at app/coins_migration_modal.ts:85
-- lessonIds.map((id at app/daily_tasks.ts:2791
-- ids.map((id at app/daily_tasks.ts:3134
-- ids.map((id at app/daily_tasks.ts:3135
-- daily_polyglot_v1 at app/daily_tasks.ts:3604
-- daily_polyglot_v1 at app/daily_tasks.ts:3610
-- daily_polyglot_v1 at app/daily_tasks.ts:3626
+- lessonIds.map((id at app/daily_tasks.ts:2272
+- ids.map((id at app/daily_tasks.ts:2593
+- ids.map((id at app/daily_tasks.ts:2594
+- daily_polyglot_v1 at app/daily_tasks.ts:3054
+- daily_polyglot_v1 at app/daily_tasks.ts:3060
+- daily_polyglot_v1 at app/daily_tasks.ts:3076
 - ai_explain_local_cache_v1: at app/explain_local_cache.ts:4
 - storageKey(request at app/explain_local_cache.ts:51
 - storageKey(request at app/explain_local_cache.ts:64
@@ -116,16 +114,16 @@ Generated at: 2026-07-26T16:11:01.212Z
 - top_helpers_snapshot_v2 at app/firestore_top_helpers.ts:163
 - top_helpers_remote_at_v2 at app/firestore_top_helpers.ts:172
 - top_helpers_remote_at_v2 at app/firestore_top_helpers.ts:189
-- flashcardsSwipeHintSeenKey(studyTarget at app/flashcards_swipe.tsx:2008
-- flashcardsSwipeHintSeenKey(studyTarget at app/flashcards_swipe.tsx:2021
-- week_points_last_final at app/hall_of_fame_utils.ts:123
-- week_points_last_final at app/hall_of_fame_utils.ts:140
+- flashcardsSwipeHintSeenKey(studyTarget at app/flashcards_swipe.tsx:2009
+- flashcardsSwipeHintSeenKey(studyTarget at app/flashcards_swipe.tsx:2022
+- week_points_last_final at app/hall_of_fame_utils.ts:128
+- week_points_last_final at app/hall_of_fame_utils.ts:145
 - legacyFreeLessonCapKey(studyTarget at app/legacy_free_lesson_access.ts:120
 - [capKey, migrationKey] at app/legacy_free_lesson_access.ts:130
-- lesson_bonus_pending_v1 at app/lesson_bonus_grant.ts:21
-- lesson_bonus_pending_v1 at app/lesson_bonus_grant.ts:51
-- lesson_bonus_pending_v1 at app/lesson_bonus_grant.ts:63
-- lesson_bonus_pending_v1 at app/lesson_bonus_grant.ts:65
+- lesson_bonus_pending_v1 at app/lesson_bonus_grant.ts:28
+- lesson_bonus_pending_v1 at app/lesson_bonus_grant.ts:66
+- lesson_bonus_pending_v1 at app/lesson_bonus_grant.ts:82
+- lesson_bonus_pending_v1 at app/lesson_bonus_grant.ts:84
 - [[quarantineKey, raw], [key, '[]']] at app/level_up_reward_reconciler.ts:127
 - LEVEL_UP_REWARD_CONTEXT_QUARANTINE_KEY at app/level_up_reward_reconciler.ts:144
 - LEVEL_UP_REWARD_OWNER_KEY at app/level_up_reward_reconciler.ts:202
@@ -145,6 +143,8 @@ Generated at: 2026-07-26T16:11:01.212Z
 - generated_name_confirmed_v1 at app/nickname_guard.ts:14
 - generated_nickname_pending_v1 at app/nickname_guard.ts:15
 - name_index_synced_for_v1 at app/nickname_guard.ts:51
+- name_index_synced_for_v1 at app/nickname_guard.ts:63
+- name_index_synced_for_v1 at app/nickname_guard.ts:80
 
 ## Notes
 

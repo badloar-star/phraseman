@@ -35,7 +35,6 @@ import { LinearGradient } from '../../components/SafeLinearGradient';
 import AvatarView from '../../components/AvatarView';
 import PremiumAvatarHalo from '../../components/PremiumAvatarHalo';
 import PremiumGoldUserName from '../../components/PremiumGoldUserName';
-import VipGreenUserName from '../../components/VipGreenUserName';
 import LeagueCrownName from '../../components/LeagueCrownName';
 import ProfileCardBadge from '../../components/ProfileCardBadge';
 import { StreakChainIcon } from '../../components/StreakChainIcon';
@@ -86,7 +85,7 @@ import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
 import { getCanonicalUserId } from '../user_id_policy';
 import { ensureAnonUser } from '../cloud_sync';
 import { fetchFriendProfilesBatch, type FriendProfileBatchRecord } from '../friends_profiles_batch';
-import { ensureInviteCodeShared, invalidateInviteCodeShared } from '../invite_code_singleton';
+import { acquireInviteCodeShared, invalidateInviteCodeShared } from '../invite_code_singleton';
 import { isPremiumProgressActive, isVipProgressActive } from '../premium_progress';
 import { fetchActiveLeagueCrowns } from '../services/league_chest_rewards';
 import { randomSelfFriendCodeMessage } from '../friends_self_code_messages';
@@ -118,7 +117,10 @@ import {
   setActivityLikeCount,
 } from '../friend_activity_like_optimistic';
 import { trackActivity } from '../app_activity';
-import { getShardsBalance, replaceShardsBalanceLocal } from '../shards_system';
+import {
+  getShardsBalance,
+  replaceShardsBalanceForAccountGeneration,
+} from '../shards_system';
 import { oskolokImageForPackShards } from '../oskolok';
 import { claimUnseenFriendGifts, type IncomingFriendGift } from '../friend_gift_inbox';
 import { emitAppEvent } from '../events';
@@ -153,7 +155,7 @@ import {
   getTrackedReferralWindowEnd,
 } from '../referral_access_ended_tracker';
 import { useAppSnapshotSelector } from '../app_snapshot_store';
-import { captureAccountGeneration } from '../account_generation';
+import { captureAccountGeneration, isCurrentAccountGeneration } from '../account_generation';
 import { accountScopeKey } from '../account_scope_key';
 import { readVipSnapshotForGeneration } from '../premium_vip_storage';
 import {
@@ -817,10 +819,8 @@ function FriendRow({
             <View style={{ flexShrink: 1, minWidth: 0, overflow: 'hidden' }}>
               {hasLeagueCrown
                 ? <LeagueCrownName text={profile.name} fontSize={f.body} count={displayLeagueCrownCount} />
-                : profile.isPremium
+                : profile.isPremium || profile.isVip
                 ? <PremiumGoldUserName text={profile.name} fontSize={f.body} />
-                : profile.isVip
-                ? <VipGreenUserName text={profile.name} fontSize={f.body} />
                 : <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', ...((profile.profileCardLevel ?? 0) >= 5 ? LEGEND_CARD_NAME_GOLD : null) }} numberOfLines={1}>{profile.name}</Text>
               }
             </View>
@@ -903,10 +903,8 @@ function RequestRow({ profile, onAccept, onDecline, lang, t, f, chrome, themeMod
           <View style={{ flexShrink: 1, minWidth: 0, overflow: 'hidden' }}>
             {hasLeagueCrown
               ? <LeagueCrownName text={profile.name} fontSize={f.body} count={displayLeagueCrownCount} />
-              : profile.isPremium
+              : profile.isPremium || profile.isVip
               ? <PremiumGoldUserName text={profile.name} fontSize={f.body} />
-              : profile.isVip
-              ? <VipGreenUserName text={profile.name} fontSize={f.body} />
               : <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }} numberOfLines={1}>{profile.name}</Text>
             }
           </View>
@@ -1000,10 +998,8 @@ function FoundUserCard({ profile, onAdd, onClose, isAdding, lang, t, f, chrome, 
         <View style={{ flex: 1 }}>
           {hasLeagueCrown
             ? <LeagueCrownName text={profile.name} fontSize={f.h3 ?? f.body + 2} count={displayLeagueCrownCount} />
-            : profile.isPremium
+            : profile.isPremium || profile.isVip
             ? <PremiumGoldUserName text={profile.name} fontSize={f.h3 ?? f.body + 2} />
-            : profile.isVip
-            ? <VipGreenUserName text={profile.name} fontSize={f.h3 ?? f.body + 2} />
             : <Text style={{ color: t.textPrimary, fontSize: f.h3 ?? 18, fontWeight: '800' }}>{profile.name}</Text>
           }
           <Text style={{ color: t.textSecond, fontSize: f.body, marginTop: 2 }}>
@@ -1932,41 +1928,16 @@ export default function FriendsTabScreen() {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
   const router = useRouter();
-  const { goHome, activeIdx, focusTick } = useTabNav();
-  const friendsTabVisible = activeIdx === 3;
+  const { goHome, focusTick, runtimeOwnerId } = useTabNav();
+  const friendsTabVisible = runtimeOwnerId === 'friends';
+  const friendsRuntimeActive = useRuntimeActive(friendsTabVisible);
   const insets = useStableSafeAreaInsets();
   const topFadeScroll = useTopFadeScroll();
-  // Маска шапки (TopFadeMask) слушает scrollY порогом showThreshold=6 — будим JS
-  // только на пересечении порога, сам скролл идёт UI-потоком (onAnimatedScroll).
-  const topFadeShown = useSharedValue(false);
-  const topFadeOnScroll = topFadeScroll?.onScroll;
-  const notifyTopFade = useCallback((y: number) => {
-    topFadeOnScroll?.({ nativeEvent: { contentOffset: { y } } });
-  }, [topFadeOnScroll]);
-  // зачем: таббар схлопывается ЗА ПАЛЬЦЕМ, поэтому ему мало порога маски — нужен ход
-  // жеста, включая ОТРИЦАТЕЛЬНЫЙ офсет bounce (на этом экране контент часто короче
-  // экрана: обычного скролла нет, и тяга вниз выражается только им).
-  // Мост будим не каждый кадр, а шагами по 4px — глазом неотличимо от покадрового,
-  // но JS-поток не захлёбывается (ровно та причина, по которой маска дросселирует).
-  const reportTabBarOffset = topFadeScroll?.reportTabBarOffset;
-  const notifyTabBar = useCallback((y: number) => {
-    reportTabBarOffset?.(y);
-  }, [reportTabBarOffset]);
-  const tabBarReportedY = useSharedValue(0);
-  const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onAnimatedScroll } = useBouncy({
-    onScrollWorklet: (y: number) => {
-      'worklet';
-      if (Math.abs(y - tabBarReportedY.value) >= 4) {
-        tabBarReportedY.value = y;
-        runOnJS(notifyTabBar)(y);
-      }
-      const shown = y > 6;
-      if (shown !== topFadeShown.value) {
-        topFadeShown.value = shown;
-        runOnJS(notifyTopFade)(y);
-      }
-    },
-  });
+  const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
+  const handleFriendsScroll = useCallback((e: any) => {
+    topFadeScroll?.onScroll?.(e);
+    onBouncyScroll(e);
+  }, [onBouncyScroll, topFadeScroll]);
   const bouncyStyle = useBouncyStyle(bouncyStretch);
   const chrome = useMemo(() => makeFriendsChrome(themeMode, t), [themeMode, t]);
   const friendGiftSheetColors = [
@@ -2086,6 +2057,18 @@ export default function FriendsTabScreen() {
   const referralMarketingVisible = referralSurface.marketingVisible;
   const referralRefreshInFlightRef = useRef<Promise<void> | null>(null);
   const referralLastRefreshAtRef = useRef(0);
+  const friendsRuntimeActiveRef = useRef(friendsRuntimeActive);
+  const referralRuntimeGenerationRef = useRef(0);
+  const referralRefreshDirtyRef = useRef(false);
+  const inviteCodeDirtyRef = useRef(false);
+  friendsRuntimeActiveRef.current = friendsRuntimeActive;
+  useEffect(() => {
+    if (!friendsRuntimeActive) {
+      referralRuntimeGenerationRef.current += 1;
+      referralRefreshDirtyRef.current = true;
+      referralRefreshInFlightRef.current = null;
+    }
+  }, [friendsRuntimeActive]);
 
   useEffect(() => {
     const token = captureAccountGeneration();
@@ -2111,62 +2094,77 @@ export default function FriendsTabScreen() {
   }, [referralAccountKey, roulettePolicy.emergencyStop, roulettePolicy.softEnabled]);
 
   const refreshReferralState = useCallback(async (options: { force?: boolean } = {}) => {
+    if (!friendsRuntimeActiveRef.current) {
+      referralRefreshDirtyRef.current = true;
+      return;
+    }
     if (!referralEnabled || referralSurface.emergencyStop) return;
     const now = Date.now();
     if (!options.force && now - referralLastRefreshAtRef.current < FRIENDS_REFERRAL_REFRESH_TTL_MS) return;
     if (referralRefreshInFlightRef.current) return referralRefreshInFlightRef.current;
     referralLastRefreshAtRef.current = now;
     const requestToken = captureAccountGeneration();
-    if (!isReferralAccountRequestCurrent(requestToken, referralAccountKey)) return;
+    const runtimeGeneration = referralRuntimeGenerationRef.current;
+    const isCurrentRequest = () => {
+      const current = friendsRuntimeActiveRef.current
+      && runtimeGeneration === referralRuntimeGenerationRef.current
+      && isReferralAccountRequestCurrent(requestToken, referralAccountKey);
+      if (!current) referralRefreshDirtyRef.current = true;
+      return current;
+    };
+    if (!isCurrentRequest()) return;
+    referralRefreshDirtyRef.current = false;
     const task = (async () => {
     // Реферальный код (ensure на сервере). Без него «Пригласить» делилась бы friend-кодом,
     // которого нет в referral_codes → друг получал «код не найден» и наград не было (C1).
     if (referralMarketingVisible) try {
       // Кэш-код первым: серверный ensure только когда кода ещё нет, а не на каждый фокус таба.
       let rc = await getReferralCode();
-      if (!isReferralAccountRequestCurrent(requestToken, referralAccountKey)) return;
+      if (!isCurrentRequest()) return;
       if (!rc || rc.trim().length < 4) {
         await generateReferralCode(myProfile?.name ?? 'User');
-        if (!isReferralAccountRequestCurrent(requestToken, referralAccountKey)) return;
+        if (!isCurrentRequest()) return;
         rc = await getReferralCode();
-        if (!isReferralAccountRequestCurrent(requestToken, referralAccountKey)) return;
+        if (!isCurrentRequest()) return;
       }
       if (rc && rc.trim().length >= 4) {
         setReferralCodeAccountKey(accountScopeKey(requestToken));
         setReferralCode(rc.trim().toUpperCase());
       }
     } catch { /* нет auth_links / сети — добьём ретраем ниже (useEffect) */ }
-    if (!isReferralAccountRequestCurrent(requestToken, referralAccountKey)) return;
+    if (!isCurrentRequest()) return;
     const state = await getClaimableReferralState({ force: options.force });
-    if (state.ok && isReferralAccountRequestCurrent(requestToken, referralAccountKey)) {
+    if (state.ok && isCurrentRequest()) {
       setReferralStateAccountKey(accountScopeKey(requestToken));
       setReferralInvites(prev => referralInvitesKey(prev) === referralInvitesKey(state.invites) ? prev : state.invites);
       setReferralDrain(current => JSON.stringify(current) === JSON.stringify(state.drain) ? current : state.drain);
       setHasReferralServerDrain(true);
     }
-    if (!isReferralAccountRequestCurrent(requestToken, referralAccountKey)) return;
+    if (!isCurrentRequest()) return;
 
     // Модал окончания: трекер сам определяет «реферальность» окна (стикки-маркер переживает
     // зануление vip_plan при истечении). Гейт по текущему плану здесь НЕ нужен — это и был баг.
     try {
       const vip = await readVipSnapshotForGeneration(requestToken);
-      if (!isReferralAccountRequestCurrent(requestToken, referralAccountKey)) return;
+      if (!isCurrentRequest()) return;
       const plan = vip?.vip_plan ?? '';
       const until = Number(vip?.vip_until ?? '0') || 0;
       const show = await shouldShowReferralAccessEnded(plan, until);
-      if (show && isReferralAccountRequestCurrent(requestToken, referralAccountKey)) setAccessEndedOpen(true);
+      if (show && isCurrentRequest()) setAccessEndedOpen(true);
     } catch { /* нет данных — пропускаем */ }
     })();
-    referralRefreshInFlightRef.current = task.finally(() => {
-      referralRefreshInFlightRef.current = null;
+    const ownedTask = task.finally(() => {
+      if (referralRefreshInFlightRef.current === ownedTask) referralRefreshInFlightRef.current = null;
     });
-    return referralRefreshInFlightRef.current;
+    referralRefreshInFlightRef.current = ownedTask;
+    return ownedTask;
   }, [
     myProfile?.name,
     referralAccountKey,
     referralEnabled,
     referralMarketingVisible,
     referralSurface.emergencyStop,
+    friendsRuntimeActive,
   ]);
 
   /** Закрыть модал окончания, пометив ровно то окно, для которого он показан (фикс BUG 2). */
@@ -2317,7 +2315,7 @@ export default function FriendsTabScreen() {
   // премаунт запускал retry кода, профиль и Firestore cleanup, а их ответы продолжали
   // будить тяжёлое дерево friends после ухода на соседний таб.
   useEffect(() => {
-    if (!friendsTabVisible) return;
+    if (!friendsRuntimeActive) return;
     let cancelled = false;
     void syncMyInviteCode(() => cancelled);
     const task = InteractionManager.runAfterInteractions(() => {
@@ -2338,7 +2336,7 @@ export default function FriendsTabScreen() {
       void cleanupStaleFriendData();
     });
     return () => { cancelled = true; task.cancel(); };
-  }, [friendsTabVisible, syncMyInviteCode]);
+  }, [friendsRuntimeActive, syncMyInviteCode]);
 
   const pollIncomingFriendGifts = useCallback(async (cancelled: { current: boolean }) => {
     try {
@@ -2392,17 +2390,19 @@ export default function FriendsTabScreen() {
   }, []);
 
   useEffect(() => {
-    if (!friendsTabVisible) return;
+    if (!friendsRuntimeActive) return;
     const cancelled = { current: false };
     void startFriendsTabSwrPrime();
     // Подарки/квесты/рефералка — после первого кадра списка, не залпом с подписками.
     const task = InteractionManager.runAfterInteractions(() => {
       void pollIncomingFriendGifts(cancelled);
       void refreshFriendQuest(cancelled);
-      void refreshReferralState();
+      const force = referralRefreshDirtyRef.current;
+      referralRefreshDirtyRef.current = false;
+      void refreshReferralState({ force });
     });
     return () => { cancelled.current = true; task.cancel(); };
-  }, [friendsTabVisible, focusTick, pollIncomingFriendGifts, refreshFriendQuest, refreshReferralState]);
+  }, [friendsRuntimeActive, focusTick, pollIncomingFriendGifts, refreshFriendQuest, refreshReferralState]);
 
   // Реф-код один раз создаётся и НАВСЕГДА закрепляется за аккаунтом в AsyncStorage
   // (REFERRAL_KEY) — поэтому при каждом монтировании/возврате на вкладку читаем его
@@ -2437,27 +2437,39 @@ export default function FriendsTabScreen() {
   // зияет пустота. refreshReferralState бьёт лишь раз на фокус, поэтому добиваем код
   // ограниченным ретраем с бэкоффом, пока он не появится (auth готовится за пару секунд).
   useEffect(() => {
-    if (!referralMarketingVisible || referralCode) return;
+    if (!friendsRuntimeActive || !referralMarketingVisible || referralCode) return;
     let cancelled = false;
     const requestToken = captureAccountGeneration();
-    void ensureInviteCodeShared(myProfile?.name ?? 'User').then(code => {
+    const runtimeGeneration = referralRuntimeGenerationRef.current;
+    const isCurrentRequest = () => !cancelled
+      && friendsRuntimeActiveRef.current
+      && runtimeGeneration === referralRuntimeGenerationRef.current
+      && isReferralAccountRequestCurrent(requestToken, referralAccountKey);
+    const lease = acquireInviteCodeShared(myProfile?.name ?? 'User');
+    void lease.promise.then(code => {
       if (
-        !cancelled
+        isCurrentRequest()
         && code
-        && isReferralAccountRequestCurrent(requestToken, referralAccountKey)
       ) {
+        inviteCodeDirtyRef.current = false;
         setReferralCodeAccountKey(accountScopeKey(requestToken));
         setReferralCode(code);
+      } else if (!isCurrentRequest()) {
+        inviteCodeDirtyRef.current = true;
       }
     });
-    return () => { cancelled = true; };
-  }, [referralAccountKey, referralMarketingVisible, referralCode, myProfile?.name]);
+    return () => {
+      cancelled = true;
+      inviteCodeDirtyRef.current = true;
+      lease.release();
+    };
+  }, [friendsRuntimeActive, referralAccountKey, referralMarketingVisible, referralCode, myProfile?.name]);
 
   // ── Кеш с устройства → подписки: сначала SWR, затем live; пустой кеш Firestore не затирает SWR.
   // ──
 
   useEffect(() => {
-    if (!friendsTabVisible) return;
+    if (!friendsRuntimeActive) return;
     let cancelled = false;
     let unsubFriends: () => void = () => {};
     let unsubRequests: () => void = () => {};
@@ -2551,7 +2563,7 @@ export default function FriendsTabScreen() {
       unsubFriends();
       unsubRequests();
     };
-  }, [friendsTabVisible]);
+  }, [friendsRuntimeActive]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -2577,7 +2589,7 @@ export default function FriendsTabScreen() {
 
   useEffect(() => {
     const uids = [...new Set([...friends.map(f => f.uid), ...requests.map(r => r.fromUid)])];
-    if (!friendsTabVisible || uids.length === 0) return;
+    if (!friendsRuntimeActive || uids.length === 0) return;
     let cancelled = false;
     void (async () => {
       // profilesCacheRef.current уже загружен с диска при монтировании — не читаем снова
@@ -2590,7 +2602,7 @@ export default function FriendsTabScreen() {
       });
     })();
     return () => { cancelled = true; };
-  }, [friends, requests, friendsTabVisible, focusTick]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [friends, requests, friendsRuntimeActive, focusTick]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // ── Cleanup ────────────────────────────────────────────────────────────────
 
@@ -2920,6 +2932,12 @@ export default function FriendsTabScreen() {
       });
       return;
     }
+    const giftAccountToken = captureAccountGeneration();
+    if (
+      !accountScopeKey(giftAccountToken)
+      || !giftAccountToken.stableId
+      || !isCurrentAccountGeneration(giftAccountToken)
+    ) return;
     hapticTap();
     setGiftBusyId(giftId);
     const target = explicitTarget;
@@ -2935,10 +2953,15 @@ export default function FriendsTabScreen() {
       balanceAfter: optimisticBalance,
       dailyRemaining: undefined,
     });
-    void replaceShardsBalanceLocal(optimisticBalance, {
-      op: 'spend',
-      reason: 'friend_gift_optimistic',
-    });
+    void replaceShardsBalanceForAccountGeneration(
+      optimisticBalance,
+      giftAccountToken,
+      giftAccountToken.stableId,
+      {
+        op: 'spend',
+        reason: 'friend_gift_optimistic',
+      },
+    );
     showFeedback(L('Подарок отправлен', 'Подарунок надіслано', 'Regalo enviado', 'Presente enviado', 'Đã gửi quà', 'Hadiah terkirim', 'Hediye gönderildi', 'Prezent wysłany'));
     emitAppEvent('action_toast', {
       type: 'success',
@@ -2957,7 +2980,9 @@ export default function FriendsTabScreen() {
         giftId,
         senderDisplayName: myProfile?.name ?? '',
       });
+      if (!isCurrentAccountGeneration(giftAccountToken)) return;
       const guardedBalance = await getShardsBalance().catch(() => res.senderBalanceAfter);
+      if (!isCurrentAccountGeneration(giftAccountToken)) return;
       setGiftBalance(guardedBalance);
       setSentGiftReceipt({
         targetName: target.name,
@@ -2984,13 +3009,19 @@ export default function FriendsTabScreen() {
         tags: { giftId, targetUid: target.uid, cost: gift.costShards },
       });
     } catch (e) {
+      if (!isCurrentAccountGeneration(giftAccountToken)) return;
       const msg = e instanceof Error ? e.message : String(e);
       const kind = classifyFriendGiftError(e);
       setGiftBalance(balanceOverride);
-      void replaceShardsBalanceLocal(balanceOverride, {
-        op: 'replace',
-        reason: 'friend_gift_rollback',
-      });
+      void replaceShardsBalanceForAccountGeneration(
+        balanceOverride,
+        giftAccountToken,
+        giftAccountToken.stableId,
+        {
+          op: 'replace',
+          reason: 'friend_gift_rollback',
+        },
+      );
       setSentGiftReceipt(null);
       if (kind !== 'unknown') {
         const feedback =
@@ -3059,7 +3090,7 @@ export default function FriendsTabScreen() {
         tags: { giftId, targetUid: target.uid, error: msg },
       });
     } finally {
-      setGiftBusyId(null);
+      if (isCurrentAccountGeneration(giftAccountToken)) setGiftBusyId(null);
     }
   };
 
@@ -3260,7 +3291,7 @@ export default function FriendsTabScreen() {
     bounces: true,
     alwaysBounceVertical: true,
     overScrollMode: 'always' as const,
-    onScroll: onAnimatedScroll,
+    onScroll: handleFriendsScroll,
   };
 
   const listHeader = (

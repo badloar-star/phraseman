@@ -109,7 +109,7 @@ export function shouldShowLeagueSoloParticipant(input: {
   if (!input.localLeagueHydrated) return false;
   // полностью пустую лигу закрывает shouldShowLeagueEmptyParticipants
   if (input.participantCount <= 0) return false;
-  return input.visibleListCount <= 0;
+  return input.participantCount === 1;
 }
 
 export default function __RouteShim() { return null; }

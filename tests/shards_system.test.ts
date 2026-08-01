@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { addShardsLocalOnlyForPendingServerClaim, addShardsRaw, awardOneTime, getShardAchievementEligibleBalance, getShardsBalance, keepShardsBalanceLocalAtLeast, replaceShardsBalanceForAccountGeneration, replaceShardsBalanceLocal, spendShards } from '../app/shards_system';
+import { addShardsLocalOnlyForPendingServerClaim, addShardsRaw, awardOneTime, getShardAchievementEligibleBalance, getShardsBalance, keepShardsBalanceLocalAtLeast, replaceShardsBalanceForAccountGeneration, replaceShardsBalanceLocal, SHARD_REWARDS, spendShards } from '../app/shards_system';
 import { __resetAccountGenerationForTests, beginAccountGeneration, captureAccountGeneration, invalidateAccountGeneration, withAccountTransitionLock } from '../app/account_generation';
 import { emitAppEvent } from '../app/events';
 
@@ -30,6 +30,10 @@ beforeEach(() => {
   });
   __resetAccountGenerationForTests();
   beginAccountGeneration('test-owner');
+});
+
+afterEach(() => {
+  SHARD_REWARDS.diagnostic_test = 0;
 });
 
 describe('shards_system guards and one-time awards', () => {
@@ -89,9 +93,22 @@ describe('shards_system guards and one-time awards', () => {
   });
 
   it('awards one-time source only once', async () => {
+    SHARD_REWARDS.diagnostic_test = 1;
     await expect(awardOneTime('diagnostic_test')).resolves.toBe(1);
     await expect(awardOneTime('diagnostic_test')).resolves.toBe(0);
     await expect(getShardsBalance()).resolves.toBe(1);
+    SHARD_REWARDS.diagnostic_test = 0;
+  });
+
+  it('applies the same durable earn id only once while confirming retries', async () => {
+    const options = {
+      skipServerAwait: true,
+      idempotencyKey: 'achievement:ownerhash:first_steps',
+    };
+
+    await expect(addShardsRaw(2, 'achievement:first_steps', options)).resolves.toBe(2);
+    await expect(addShardsRaw(2, 'achievement:first_steps', options)).resolves.toBe(2);
+    await expect(getShardsBalance()).resolves.toBe(2);
   });
 
   it('excludes store-purchased shards from achievement balance', async () => {

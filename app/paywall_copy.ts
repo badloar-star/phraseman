@@ -63,7 +63,6 @@ export const PREMIUM_HERO_ART: Record<PremiumContext, PremiumHeroArt> = {
   ai_explain: { accent: '#FDE68A', accent2: '#A78BFA', shardAmount: 180 },
   weekly_review: { accent: '#72E6A9', accent2: '#FDE68A', shardAmount: 180 },
   avatar_aura: { accent: '#E879F9', accent2: '#38BDF8', shardAmount: 180 },
-  speaking_club: { accent: '#5EEAD4', accent2: '#FACC15', shardAmount: 180 },
   free_lessons_complete: { accent: '#63E6BE', accent2: '#FFD86B', shardAmount: 180 },
   winback: { accent: '#FFB020', accent2: '#66A8FF', shardAmount: 420 },
   referral_ended: { accent: '#FACC15', accent2: '#F0ABFC', shardAmount: 420 },
@@ -1377,38 +1376,9 @@ CONTEXT_BENEFITS_PLANNED.flashcard_autoplay = [
 ];
 
 // ── Аудит «пейволы-объясняют» (2026-07-25): новые контексты вместо generic ────
-// зачем: speaking_club / free_lessons_complete раньше падали в generic («Учись
+// зачем: free_lessons_complete раньше падали в generic («Учись
 // быстрее с Plus») — юзер не понимал, почему экран появился; winback показывал
 // streak-копию про сгоревшую серию; referral_ended шёл как generic.
-
-PAYWALL_COPY.speaking_club = {
-  titleRu: 'Миссия дня — пройдена',
-  titleUk: 'Місію дня пройдено',
-  titleEs: 'Misión del día completada',
-  subtitleRu: 'Plus открывает все миссии клуба: говори вслух столько, сколько хочешь, — каждый день.',
-  subtitleUk: 'Plus відкриває всі місії клубу: говори вголос стільки, скільки хочеш, — щодня.',
-  subtitleEs: 'Plus abre todas las misiones del club: habla en voz alta cuanto quieras, cada día.',
-};
-PAYWALL_PLANNED_COPY.speaking_club = {
-  title: { 'pt-BR': 'Missão do dia concluída', vi: 'Nhiệm vụ hôm nay đã xong', id: 'Misi hari ini selesai', tr: 'Günün görevi tamamlandı', pl: 'Misja dnia zaliczona' },
-  subtitle: {
-    'pt-BR': 'O Plus abre todas as missões do clube: fale em voz alta o quanto quiser, todos os dias.',
-    vi: 'Plus mở mọi nhiệm vụ của câu lạc bộ: nói thành tiếng bao nhiêu tùy thích, mỗi ngày.',
-    id: 'Plus membuka semua misi klub: bicara lantang sepuasnya, setiap hari.',
-    tr: 'Plus kulübün tüm görevlerini açar: her gün istediğin kadar sesli konuş.',
-    pl: 'Plus otwiera wszystkie misje klubu: mów na głos ile chcesz, codziennie.',
-  },
-};
-CONTEXT_BENEFITS.speaking_club = [
-  { ru: 'Все миссии клуба без дневной паузы', uk: 'Усі місії клубу без денної паузи', es: 'Todas las misiones del club sin pausa diaria', 'pt-BR': 'Todas as missões do clube sem pausa diária', vi: 'Mọi nhiệm vụ câu lạc bộ, không nghỉ theo ngày', id: 'Semua misi klub tanpa jeda harian', tr: 'Günlük ara olmadan tüm kulüp görevleri', pl: 'Wszystkie misje klubu bez dziennej przerwy' },
-  { ru: 'Разбор твоей речи после каждой миссии', uk: 'Розбір твого мовлення після кожної місії', es: 'Análisis de tu habla tras cada misión', 'pt-BR': 'Análise da sua fala após cada missão', vi: 'Phân tích phần nói sau mỗi nhiệm vụ', id: 'Ulasan ucapanmu setelah tiap misi', tr: 'Her görevden sonra konuşma analizi', pl: 'Analiza twojej mowy po każdej misji' },
-  { ru: 'Сценарии под твой уровень', uk: 'Сценарії під твій рівень', es: 'Escenarios según tu nivel', 'pt-BR': 'Cenários no seu nível', vi: 'Kịch bản theo trình độ của bạn', id: 'Skenario sesuai levelmu', tr: 'Seviyene uygun senaryolar', pl: 'Scenariusze pod twój poziom' },
-];
-CONTEXT_BENEFITS_PLANNED.speaking_club = [
-  { 'pt-BR': 'Todas as missões do clube sem pausa diária', vi: 'Mọi nhiệm vụ câu lạc bộ, không nghỉ theo ngày', id: 'Semua misi klub tanpa jeda harian', tr: 'Günlük ara olmadan tüm kulüp görevleri', pl: 'Wszystkie misje klubu bez dziennej przerwy' },
-  { 'pt-BR': 'Análise da sua fala após cada missão', vi: 'Phân tích phần nói sau mỗi nhiệm vụ', id: 'Ulasan ucapanmu setelah tiap misi', tr: 'Her görevden sonra konuşma analizi', pl: 'Analiza twojej mowy po każdej misji' },
-  { 'pt-BR': 'Cenários no seu nível', vi: 'Kịch bản theo trình độ của bạn', id: 'Skenario sesuai levelmu', tr: 'Seviyene uygun senaryolar', pl: 'Scenariusze pod twój poziom' },
-];
 
 PAYWALL_COPY.free_lessons_complete = {
   titleRu: 'Бесплатные уроки пройдены. Ты готов дальше',

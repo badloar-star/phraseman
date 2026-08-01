@@ -83,4 +83,21 @@ describe('app snapshot bootstrap account boundary', () => {
     expect(patchAppSnapshot).not.toHaveBeenCalled();
     expect(hydrateReferralStateFromRaw).not.toHaveBeenCalled();
   });
+
+  it('hydrates the lifetime plan into the synchronous profile snapshot', async () => {
+    const generation = await import('../app/account_generation');
+    generation.beginAccountGeneration('stable-pro');
+    asyncStore.premium_active = 'true';
+    asyncStore.premium_plan = 'lifetime';
+
+    const { primeAppSnapshotFromStorage } = await import('../app/app_snapshot_bootstrap');
+    await primeAppSnapshotFromStorage('en');
+
+    expect(patchAppSnapshot).toHaveBeenCalledWith(expect.objectContaining({
+      profile: expect.objectContaining({
+        premiumActive: true,
+        premiumPlan: 'lifetime',
+      }),
+    }));
+  });
 });

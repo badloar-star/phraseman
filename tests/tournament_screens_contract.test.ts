@@ -142,7 +142,7 @@ describe('экраны режима «Турниры»', () => {
     expect(lobby).toMatch(/Array\.from\(\{ length: SEATS \}/);
   });
 
-  it('раунд: батч из 4 вопросов и пауза перед следующим', () => {
+  it('раунд: батч из 4 вопросов и серверная пауза перед следующим', () => {
     // зачем 2026-07-27: было 5 — тест отстал от решения владельца. Правда
     // теперь одна на обе стороны: сервер раздаёт TASKS_PER_ROUND = 4
     // (functions/src/tournament_ai_blueprint.ts, зеркало DEFAULT_TASKS_PER_ROUND
@@ -150,15 +150,16 @@ describe('экраны режима «Турниры»', () => {
     // × 4 раунда = 16 заданий на турнир.
     const round = read('app/tournament_round.tsx');
     expect(round).toContain('const QUESTIONS_PER_ROUND = 4');
-    expect(round).toContain('motion.answerFeedbackMs');
+    expect(round).toContain('feedbackAdvanceAtMs - tournamentNow()');
+    expect(round).not.toContain('motion.answerFeedbackMs');
 
     // Клиент и сервер обязаны сходиться: расхождение = раунд не наберётся.
     const blueprint = read('functions/src/tournament_ai_blueprint.ts');
     expect(blueprint).toContain('export const TASKS_PER_ROUND = 4');
 
-    const theme = read('components/tournament/tournament_theme.ts');
-    // 1.4с — согласованный тайминг автоперехода после фидбека.
-    expect(theme).toMatch(/answerFeedbackMs:\s*1400/);
+    // Клиент не придумывает длительность feedback/reading: обе границы
+    // следуют абсолютному taskSchedule из снимка комнаты.
+    expect(round).toContain('questionTiming.readingEndsAtMs ?? questionTiming.startsAtMs');
   });
 
   // зачем 2026-07-27: плашка «Ответ принят / Время вышло» убрана по решению
@@ -180,6 +181,27 @@ describe('экраны режима «Турниры»', () => {
     expect(table).toContain('обгон');
     // Абсолютное позиционирование строк — иначе перестановка двигает соседей.
     expect(table).toMatch(/position:\s*'absolute'/);
+    expect(table).toContain('ZoomIn.delay(revealDelayMs + 160)');
+  });
+
+  it('межраундовая таблица показывает верх и свою строку без списка из 16 строк', () => {
+    const table = read('app/tournament_table.tsx');
+    expect(table).toContain('TABLE_TOP_ROWS = 5');
+    expect(table).toContain('visibleRows');
+    expect(table).toContain('row.isYou');
+    expect(table).not.toContain('<ScrollView');
+    expect(table).not.toContain('rows.map((row, index)');
+  });
+
+  it('таблица и результаты используют серверные места и не пересортировывают финал по счёту', () => {
+    const table = read('app/tournament_table.tsx');
+    const results = read('app/tournament_results.tsx');
+    expect(table).toContain('tournamentSharedPlacement');
+    expect(table).toContain('place={row.place}');
+    expect(results).toContain('sharedPlace');
+    expect(results).toContain('resultPlace');
+    expect(results).toContain('orderTournamentPlayersForDisplay');
+    expect(results).toContain('myPlace = myStanding?.place ?? 0');
   });
 
   it('результаты: подиум с короной и БЕЗ кнопки «сыграть ещё»', () => {
@@ -194,6 +216,14 @@ describe('экраны режима «Турниры»', () => {
     for (const literal of uiLiterals) {
       expect(literal).not.toMatch(/Сыграть ещё|Играть ещё|Реванш/i);
     }
+  });
+
+  it('результаты закрываются только крестиком в меню турниров', () => {
+    const results = read('app/tournament_results.tsx');
+    expect(results).toContain("const closeResults = useCallback(() => router.replace('/tournaments')");
+    expect(results).toContain('accessibilityLabel="Закрыть"');
+    expect(results).toContain('<Ionicons name="close"');
+    expect(results).not.toContain('>На главную</V2Cta>');
   });
 
   it('хаптик только на управляющих кнопках, не на плитках', () => {
@@ -246,6 +276,16 @@ describe('экраны режима «Турниры»', () => {
     expect(client).not.toMatch(/submitAnswers\([^)]*score/);
   });
 
+  it('раунд не выдумывает звёзды и серию до серверного результата', () => {
+    const round = read('app/tournament_round.tsx');
+    // Публичное задание намеренно не содержит ключ ответа: любой локальный
+    // setStars/setStreak на тап объявлял бы неверный выбор правильным.
+    expect(round).not.toMatch(/\bsetStars\s*\(/);
+    expect(round).not.toMatch(/\bsetStreak\s*\(/);
+    expect(round).toContain('authoritativePlayer');
+    expect(round).toContain('peekStableId');
+  });
+
   it('таймеры раундов идут от серверного дедлайна, а не локальных часов', () => {
     const client = read('app/tournament_client.ts');
     expect(client).toContain('stateDeadlineAtMs');
@@ -261,49 +301,58 @@ describe('экраны режима «Турниры»', () => {
     expect(edge).not.toContain('ActivityIndicator');
   });
 
-  it('вкладка «Турниры» согласована во ВСЕХ картах индексов', () => {
-    // зачем: индексы вкладок продублированы в пяти местах, включая копию
-    // в home.tsx. Рассинхрон не ломает сборку — просто переходы уводят
-    // не на тот экран, и это замечают только на устройстве.
+  it('режим «Турниры» исключён из таббара и свайпера до отдельного релизного решения', () => {
+    // зачем 2026-07-27 (владелец: «делаем релиз без турниров — они не доделаны,
+    // не должны быть ни доступны, ни даже видны»): раньше этот тест ТРЕБОВАЛ
+    // вкладку с кубком по центру. Теперь он охраняет обратное — что вкладки нет
+    // нигде: ни кнопкой в таббаре, ни страницей свайпера, ни в картах роутинга.
+    // Возврат режима = осознанно переписать этот тест обратно.
     const layout = read('app/(tabs)/_layout.tsx');
     const home = read('app/(tabs)/home.tsx');
+    const model = read('lib/today/tab_page_model.ts');
 
-    // Кубок стоит по центру: индекс 2, друзья 3, настройки 4.
+    expect(layout).toContain("key: 'tournaments'");
+    expect(layout).toContain('loadTournamentsScreen');
+    expect(model).toContain("'tournaments'");
+    expect(layout).toContain("'/tournaments': 2");
+    expect(layout).toContain("'/(tabs)/tournaments'");
     expect(layout).toMatch(/tournaments:\s*2/);
     expect(layout).toMatch(/friends:\s*3/);
     expect(layout).toMatch(/settings:\s*4/);
-    expect(layout).toMatch(/'\/tournaments':\s*2/);
-    expect(layout).toMatch(/2:\s*'\/\(tabs\)\/tournaments'/);
-    expect(layout).toContain("key: 'tournaments'");
-
-    // Копия карты в home.tsx обязана совпадать.
     expect(home).toMatch(/'\/\(tabs\)\/tournaments':\s*2/);
     expect(home).toMatch(/'\/\(tabs\)\/friends':\s*3/);
     expect(home).toMatch(/'\/\(tabs\)\/settings':\s*4/);
+    expect(home).not.toContain('HomeDevTournamentsButton');
   });
 
-  it('порядок страниц слайдера совпадает с порядком кнопок таббара', () => {
-    // Регрессия владельца: кнопка кубка открывала друзей, друзья —
-    // настройки, настройки вылетали. Причина: список страниц слайдера и
-    // LOGICAL_TAB_IDS остались на четырёх вкладках, хотя кнопок стало пять.
-    // Сборка при этом не падает — баг виден только на устройстве.
+  it('в хедере главной нет кнопки входа в турниры', () => {
+    const home = read('app/(tabs)/home.tsx');
+
+    expect(home).not.toContain('HomeDevTournamentsButton');
+    expect(home).not.toContain('Тест турниров');
+  });
+
+  it('карты слайдера не сохраняют удалённую вкладку турниров', () => {
+    // Регрессия владельца: кнопка открывала соседний экран, а последний
+    // вылетал. Причина: список страниц слайдера и LOGICAL_TAB_IDS разошлись с
+    // числом кнопок. Сборка при этом не падает — баг виден только на устройстве.
     const layout = read('app/(tabs)/_layout.tsx');
     const model = read('lib/today/tab_page_model.ts');
 
-    // Модель страниц знает про пятую вкладку.
-    expect(model).toContain("'home', 'lessons', 'tournaments', 'friends', 'settings'");
-    expect(model).toMatch(/LogicalTabIndex = 0 \| 1 \| 2 \| 3 \| 4/);
-    expect(model).toMatch(/PhysicalPageIndex = 0 \| 1 \| 2 \| 3 \| 4 \| 5/);
-
-    // Панели слайдера стоят в том же порядке, что кнопки.
-    expect(layout).toMatch(/key="tournaments"[\s\S]{0,120}loadScreen=\{loadTournamentsScreen\}/);
+    expect(model).toMatch(/LOGICAL_TAB_IDS\s*=\s*\['home', 'lessons', 'tournaments', 'friends', 'settings'\]/);
+    expect(model).toContain('export type LogicalTabIndex = 0 | 1 | 2 | 3 | 4;');
+    expect(model).toContain('export type PhysicalPageIndex = 0 | 1 | 2 | 3 | 4 | 5;');
+    expect(layout).toContain('loadTournamentsScreen');
+    expect(layout).toMatch(/TAB_PATH_SUFFIXES\s*=\s*\['\/home', '\/journal', '\/lessons', '\/tournaments', '\/friends', '\/settings'\]/);
+    expect(layout).toMatch(/const TABS:[\s\S]*?=\s*\[[\s\S]*?\];/);
+    expect(layout).toMatch(/const TABS:[\s\S]{0,900}tournaments/);
+    expect(layout).toContain('key="tournaments"');
+    expect(layout).toMatch(/key="tournaments"[\s\S]{0,160}loadScreen=\{loadTournamentsScreen\}/);
     expect(layout).toMatch(/shouldLoad\(3\)\} loadScreen=\{loadFriendsScreen\}/);
     expect(layout).toMatch(/shouldLoad\(4\)\} loadScreen=\{loadSettingsScreen\}/);
-
-    // Предзагрузка соседних вкладок — та же нумерация.
-    expect(layout).toMatch(/case 2: return loadTournamentsScreen\(\)/);
-    expect(layout).toMatch(/case 3: return loadFriendsScreen\(\)/);
-    expect(layout).toMatch(/case 4: return loadSettingsScreen\(\)/);
+    expect(layout).toContain('case 2: return loadTournamentsScreen();');
+    expect(layout).toContain('case 3: return loadFriendsScreen();');
+    expect(layout).toContain('case 4: return loadSettingsScreen();');
   });
 
   it('главный экран берёт данные с сервера, а не из заглушки', () => {
@@ -379,6 +428,47 @@ describe('экраны режима «Турниры»', () => {
     expect(round).not.toContain('const DEMO_QUESTIONS');
   });
 
+  it('лобби явно выходит через сервер и показывает стабильную схему банка 60/25/15', () => {
+    const lobby = read('app/tournament_lobby.tsx');
+    const client = read('app/tournament_client.ts');
+    expect(client).toContain('export function leaveTournament(roomId: string)');
+    expect(client).toContain("'tournamentLeave'");
+    expect(lobby).toContain('leaveTournament');
+    expect(lobby).toContain('await leaveTournament(roomId)');
+    expect(lobby).toContain("const [leaving, setLeaving] = useState(false)");
+    expect(lobby).toContain('disabled={leaving}');
+    expect(lobby).toContain('60%');
+    expect(lobby).toContain('25%');
+    expect(lobby).toContain('15%');
+    expect(lobby).toContain('useReduceMotion');
+    expect(lobby).toContain('withTiming');
+    expect(lobby).toMatch(/bankAmountSlot:\s*\{[^}]*minWidth:[^}]*fontVariant:\s*\['tabular-nums'\]/s);
+  });
+
+  it('анимирует только новые серверские bot_arrival события банка без выдуманного прироста', () => {
+    const lobby = read('app/tournament_lobby.tsx');
+    const client = read('app/tournament_client.ts');
+
+    expect(client).toContain("kind: 'bot_arrival';");
+    expect(client).toContain('potDeltaGems: number;');
+    expect(lobby).toContain("event.kind === 'bot_arrival'");
+    expect(lobby).toContain('seenEventIdsRef');
+    expect(lobby).toContain('setDisplayAmount(event.potGemsAfter);');
+    expect(lobby).toContain('zero test-mode delta keeps digits');
+  });
+
+  it('результаты объясняют путь денег от общего банка до выплаты игрока', () => {
+    const results = read('app/tournament_results.tsx');
+    for (const label of ['Общий банк', 'В недельный банк', 'Призовой фонд дня', 'Ваша доля']) {
+      expect(results).toContain(label);
+    }
+    expect(results).toContain('const totalPot');
+    expect(results).toContain('const weeklyBankGems');
+    expect(results).toContain('const myPrizeGems');
+    expect(results).toContain('rewardGems');
+    expect(results).toContain('60 / 25 / 15');
+  });
+
   it('переходы между этапами делает сервер, а не локальный таймер', () => {
     // Иначе игроки с неточными часами уходят в раунд раньше остальных
     // и видят вопросы, которых сервер ещё не выдал.
@@ -409,53 +499,54 @@ describe('экраны режима «Турниры»', () => {
     // ждать correctIndex, он либо сломается, либо кто-то протащит ответы
     // в клиент — а это накрутка очков.
     const round = read('app/tournament_round.tsx');
-    expect(round).not.toContain('correctIndex');
-    expect(round).toContain('Ответ принят');
+    expect(round).not.toContain('payload.correctIndex');
+    expect(round).toContain('result.correct');
+    expect(round).toContain('result.correctIndex');
+    // A selected answer may turn green only after the server returns its
+    // boolean verdict; no answer key is ever sent to the active client.
+    expect(round).toMatch(/authoritativeCorrect\s*\?\s*'ok'\s*:\s*'bad'/);
   });
 
   it('ответы уходят одной пачкой и ровно один раз за раунд', () => {
     const round = read('app/tournament_round.tsx');
-    expect(round).toContain('submitAnswers');
-    expect(round).toContain('submittedRef');
-    // Повторная отправка = лишние вызовы функции и риск гонки.
-    expect(round).toMatch(/if \(!roomId \|\| submittedRef\.current\) return/);
+    expect(round).toContain('submitTaskAnswer');
+    expect(round).toContain('taskIdempotencyKeysRef');
+    expect(round).toContain('getOrCreateTournamentTaskIdempotencyKey');
+    expect(round).not.toContain('submittedRef');
   });
 
   it('ответ уходит в точном формате verifyTournamentAnswer, а не голым числом', () => {
     // КРИТИЧНО: аудит нашёл, что клиент слал answer как голое число
     // (optionIndex), а сервер (verifyTournamentAnswer в tournament_core.ts)
     // требует answer объектом — { selectedIndex } для choice,
-    // { selectedIndexes } для timeattack. isRecord(answer) на числе даёт
+    // { selectedIndexes } для speed_match. isRecord(answer) на числе даёт
     // false и функция сразу возвращает false — ЛЮБОЙ ответ choice
     // засчитывался бы неверным независимо от того, что выбрал игрок.
     const round = read('app/tournament_round.tsx');
     expect(round).toContain('selectedIndex');
     expect(round).toContain('selectedIndexes');
-    // buildAnswerRows обязан существовать — это единственное место, где
-    // формируется объект ответа перед отправкой.
-    expect(round).toContain('buildAnswerRows');
+    expect(round).toContain('submitCurrentTaskAnswer(question, { selectedIndex })');
+    expect(round).toContain('submitCurrentTaskAnswer(question, { selectedIndexes })');
 
     const server = read('functions/src/tournament_core.ts');
     expect(server).toContain('selectedIndex');
     expect(server).toContain('selectedIndexes');
   });
 
-  it('timeattack разворачивается во ВСЕ подвопросы, не только первый', () => {
-    // КРИТИЧНО: генератор кладёт 6 подвопросов в items[], но клиент рисовал
-    // только items[0] — 5 из 6 вопросов серии молча терялись (аудит).
+  it('клиент принимает только пять утверждённых режимов', () => {
     const round = read('app/tournament_round.tsx');
     expect(round).toContain('taskToQuestions');
     expect(round).toMatch(/flatMap\(taskToQuestions\)/);
-    // Старая версия (один вопрос на задание) не должна вернуться в коде.
-    // Упоминание в комментарии-объяснении бага (аудит) не считается
-    // нарушением, поэтому ищем только исполняемое обращение к элементу.
-    expect(round).not.toMatch(/tasks\.map\(taskToQuestion\)/);
-    expect(round).not.toMatch(/items\[0\]\??\.\w/);
+    expect(round).toContain('OWNER_APPROVED_TOURNAMENT_MODES');
+    expect(round).toContain("'speed_match'");
+    expect(round).not.toContain('time_attack');
+    expect(round).not.toContain('listen_choose');
+    expect(round).not.toContain('sound_contrast');
+    expect(round).not.toContain('listen_build');
   });
 
   it('прогресс-подпись раунда показывает реальное число вопросов', () => {
-    // Было жёстко «из QUESTIONS_PER_ROUND» (5) — в timeattack-раунде
-    // подвопросов 6, подпись лгала бы «Вопрос 6 из 5».
+    // Подпись должна следовать фактически активированному сервером набору.
     const round = read('app/tournament_round.tsx');
     expect(round).toMatch(/из \{total\}/);
   });
@@ -477,14 +568,14 @@ describe('экраны режима «Турниры»', () => {
   it('ответ translate уходит как { tokens }, а не как индекс', () => {
     const round = read('app/tournament_round.tsx');
     expect(round).toContain('answerTranslate');
-    expect(round).toMatch(/answer:\s*\{\s*tokens:/);
+    expect(round).toContain('submitCurrentTaskAnswer(question, { tokens })');
   });
 
   it('банк слов не даёт использовать одно слово дважды', () => {
     // Защита от гонки/двойного тапа: слово, уже перенесённое в собранную
     // фразу, недоступно повторно, пока не вернётся обратно.
     const round = read('app/tournament_round.tsx');
-    expect(round).toMatch(/disabled=\{revealed \|\| used\}/);
+    expect(round).toContain('used ? <V2ChipGhost label={word} />');
   });
 
   it('экран турниров лежит внутри папки вкладок', () => {
@@ -500,6 +591,18 @@ describe('экраны режима «Турниры»', () => {
       expect(source).toContain('accessibilityRole');
       expect(source).toContain('accessibilityLabel');
     }
+  });
+});
+
+describe('tournament results navigation', () => {
+  it('closes directly to the tournament menu instead of navigating back to the table', () => {
+    const results = read('app/tournament_results.tsx');
+    expect(results).toContain("const closeResults = useCallback(() => router.replace('/tournaments'), [router]);");
+    expect(results).toContain('accessibilityLabel="Закрыть"');
+    expect(results).toContain('onPress={closeResults}');
+    expect(results).toContain('<Ionicons name="close"');
+    expect(results).not.toContain('safeRouterBack');
+    expect(results).not.toContain('name="chevron-back"');
   });
 });
 

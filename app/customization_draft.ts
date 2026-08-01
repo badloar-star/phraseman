@@ -1,7 +1,8 @@
 import {
   NO_AVATAR_AURA_ID,
-  PREMIUM_AVATAR_AURA_ID,
-  VIP_AVATAR_AURA_ID,
+  PLUS_AVATAR_AURA_ID,
+  PRO_AVATAR_AURA_ID,
+  normalizeAvatarAuraId,
 } from '../constants/avatar_auras';
 import { CUSTOM_AVATAR_RESTYLE_COST, parseCustomAvatarValue } from '../constants/custom_avatars';
 import type { CatalogAvailability } from './customization_catalog';
@@ -27,6 +28,7 @@ export type CustomizationAction =
   | { kind: 'buy-and-apply'; target: 'avatar' | 'aura'; purchaseKind: 'purchase' | 'restyle'; cost: number }
   | { kind: 'buy-only'; target: 'avatar' | 'aura'; purchaseKind: 'purchase' | 'restyle'; cost: number }
   | { kind: 'open-plus' }
+  | { kind: 'explain-pro-reward' }
   | { kind: 'explain-level'; level: number }
   | { kind: 'explain-reward' }
   | { kind: 'unchanged' };
@@ -35,13 +37,12 @@ export function resolveEffectivePreviewAuraId(
   storedAuraSelection: string | null,
   isPremium: boolean,
   isVip: boolean,
+  isPro = false,
 ): string | null {
   if (storedAuraSelection === NO_AVATAR_AURA_ID) return null;
-  if ((storedAuraSelection === PREMIUM_AVATAR_AURA_ID || storedAuraSelection === VIP_AVATAR_AURA_ID)
-    && !isPremium && !isVip) return null;
-  if (storedAuraSelection) return storedAuraSelection;
-  if (isPremium) return PREMIUM_AVATAR_AURA_ID;
-  if (isVip) return VIP_AVATAR_AURA_ID;
+  if (storedAuraSelection) return normalizeAvatarAuraId(storedAuraSelection) ?? null;
+  if (isPro) return PRO_AVATAR_AURA_ID;
+  if (isPremium || isVip) return PLUS_AVATAR_AURA_ID;
   return null;
 }
 
@@ -49,6 +50,8 @@ function nonPurchaseBlocker(availability: CatalogAvailability): CustomizationAct
   switch (availability.kind) {
     case 'plus':
       return { kind: 'open-plus' };
+    case 'pro':
+      return { kind: 'explain-pro-reward' };
     case 'level':
       return { kind: 'explain-level', level: availability.level };
     case 'reward':

@@ -5,7 +5,11 @@ import { getCanonicalUserId } from '../user_id_policy';
 import { replaceShardsBalanceLocal } from '../shards_system';
 import { packTitleForInterface, type FlashcardMarketPack } from '../flashcards/marketplace';
 import type { CardPackShardPurchaseResult } from '../flashcards/cardPackShardPurchase';
-import { callCommunityPurchasePack, isCommunityPacksCloudEnabled } from './functionsClient';
+import {
+  callCommunityPurchasePack,
+  callFlashcardPackGiftRedeem,
+  isCommunityPacksCloudEnabled,
+} from './functionsClient';
 import { addCommunityOwnedPackId, loadCommunityOwnedPackIds } from './communityOwnedStorage';
 import {
   trackCardPackAcquiredAchievement,
@@ -13,12 +17,14 @@ import {
 } from '../flashcards/packAchievementTracking';
 import type { RuntimeStudyTarget } from '../target_storage_keys';
 import { storageStudyTarget } from '../target_storage_keys';
+import { bindPackGiftVoucherSelection, consumePackGiftTrial, getPackGiftTrial } from '../flashcards/pack_trial_gift';
+import { COMMUNITY_PACK_PRICE_SHARDS } from './schema';
 
 /**
  * Cloud Functions (onCall) require Firebase Auth. `cloud_sync.ensureAnonUser` only starts
  * signInAnonymously() without await — purchse could run unauthenticated and fail.
  */
-async function ensureFirebaseUserSignedInForCallable(): Promise<boolean> {
+export async function ensureFirebaseUserSignedInForCallable(): Promise<boolean> {
   if (!isCommunityPacksCloudEnabled()) return false;
   try {
     if (auth().currentUser) return true;
@@ -171,7 +177,7 @@ export async function purchaseCommunityPackWithShards(
     }
     await addCommunityOwnedPackId(pack.id, studyTarget);
     void trackCardPackAcquiredAchievement(studyTarget);
-    void trackExternalShardSpendAchievement(pack.priceShards);
+    void trackExternalShardSpendAchievement(COMMUNITY_PACK_PRICE_SHARDS);
     const titleEs =
       pack.titleEs.trim()
       || pack.titleUk.trim()
@@ -196,6 +202,82 @@ export async function purchaseCommunityPackWithShards(
   } catch (e: unknown) {
     emitAppEvent('action_toast', actionToastTri('error', formatCommunityPurchaseError(e)));
     return 'spend_failed';
+  }
+}
+
+export type CommunityPackGiftRedeemResult = 'ok' | 'already_owned' | 'redeem_failed';
+
+/**
+ * Навсегда добавляет community-набор по активному бонусу «Колода в подарок».
+ * Доступ создаёт сервер: он сам проверяет окно недельного бонуса и одноразовость.
+ * Локальный ваучер сгорает только после подтверждённого entitlement и сохранения id.
+ */
+export async function redeemCommunityPackGiftVoucher(
+  pack: FlashcardMarketPack,
+  studyTarget?: RuntimeStudyTarget,
+): Promise<CommunityPackGiftRedeemResult> {
+  if (!isCommunityPacksCloudEnabled()) return 'redeem_failed';
+
+  const trial = await getPackGiftTrial(studyTarget, {
+    packId: pack.id, packType: 'community', studyTarget: storageStudyTarget(studyTarget),
+  });
+  if (!trial) return 'redeem_failed';
+  if (trial.claimBinding && (
+    trial.claimBinding.packId !== pack.id
+    || trial.claimBinding.packType !== 'community'
+    || trial.claimBinding.studyTarget !== storageStudyTarget(studyTarget)
+  )) return 'redeem_failed';
+
+  const buyerStableId = await getCanonicalUserId();
+  if (!buyerStableId || !(await ensureFirebaseUserSignedInForCallable())) {
+    emitAppEvent('action_toast', actionToastTri('error', {
+      ru: 'Не удалось подтвердить аккаунт для подарка. Попробуй ещё раз.',
+      uk: 'Не вдалося підтвердити акаунт для подарунка. Спробуй ще раз.',
+      es: 'No se pudo confirmar la cuenta para el regalo. Inténtalo de nuevo.',
+      'pt-BR': 'Não foi possível confirmar a conta para o presente. Tente novamente.',
+      vi: 'Không thể xác nhận tài khoản cho quà tặng. Hãy thử lại.',
+      id: 'Akun untuk hadiah tidak dapat dikonfirmasi. Coba lagi.',
+      tr: 'Hediye için hesap doğrulanamadı. Tekrar dene.',
+      pl: 'Nie udało się potwierdzić konta dla prezentu. Spróbuj ponownie.',
+    }));
+    return 'redeem_failed';
+  }
+
+  try {
+    const result = await callFlashcardPackGiftRedeem({
+      buyerStableId,
+      packId: pack.id,
+      packType: 'community',
+      studyTarget: storageStudyTarget(studyTarget),
+      voucherId: trial.voucherId,
+      voucherOccurrenceId: trial.occurrenceId,
+    });
+    if (result.alreadyOwned) return 'already_owned';
+    if (!result.gifted) return 'redeem_failed';
+
+    // Серверный entitlement уже создан. Если локальная запись упадёт, ваучер
+    // останется и идемпотентный повтор завершит сохранение на устройстве.
+    await bindPackGiftVoucherSelection(trial.localVoucherId, {
+      packId: pack.id, packType: 'community', studyTarget: storageStudyTarget(studyTarget), confirmedAt: Date.now(),
+    });
+    await addCommunityOwnedPackId(pack.id, studyTarget);
+    await consumePackGiftTrial(trial.localVoucherId);
+    void trackCardPackAcquiredAchievement(studyTarget);
+    const titleEs = pack.titleEs.trim() || pack.titleUk.trim() || pack.titleRu.trim() || pack.id;
+    emitAppEvent('action_toast', actionToastTri('success', {
+      ru: `Набор «${pack.titleRu}» навсегда добавлен в «Карточки».`,
+      uk: `Набір «${pack.titleUk}» назавжди додано в «Картки».`,
+      es: `El pack «${titleEs}» se añadió para siempre a Tarjetas.`,
+      'pt-BR': `O pacote “${pack.titlePtBr || titleEs}” foi adicionado para sempre aos Cartões.`,
+      vi: `Bộ thẻ “${pack.titleVi || titleEs}” đã được thêm vĩnh viễn vào Thẻ.`,
+      id: `Paket “${pack.titleId || titleEs}” ditambahkan permanen ke Kartu.`,
+      tr: `“${pack.titleTr || titleEs}” paketi Kartlara kalıcı olarak eklendi.`,
+      pl: `Zestaw „${pack.titlePl || titleEs}” dodano na stałe do Kart.`,
+    }));
+    return 'ok';
+  } catch (error) {
+    emitAppEvent('action_toast', actionToastTri('error', formatCommunityPurchaseError(error)));
+    return 'redeem_failed';
   }
 }
 

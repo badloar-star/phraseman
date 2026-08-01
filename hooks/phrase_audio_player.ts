@@ -173,16 +173,13 @@ function maybeSweepPhraseAudioCache(protectedUri?: string): void {
     });
 }
 
-function downloadFileWithTimeout(url: string, file: File): Promise<File | null> {
+function downloadFileWithTimeout(nativeDownload: Promise<string | null>): Promise<string | null> {
   let timer: ReturnType<typeof setTimeout> | null = null;
   const timeout = new Promise<null>((resolve) => {
     timer = setTimeout(() => resolve(null), DOWNLOAD_TIMEOUT_MS);
   });
-  // expo-file-system ships two structurally-identical `File` declarations
-  // (FileSystem vs ExpoFileSystem.types); downloadFileAsync resolves to the
-  // latter, so cast back to the imported `File` to keep the signature aligned.
   return Promise.race([
-    File.downloadFileAsync(url, file) as Promise<File>,
+    nativeDownload,
     timeout,
   ]).finally(() => {
     if (timer) clearTimeout(timer);
@@ -213,28 +210,35 @@ async function getCachedOrDownload(key: string, url: string): Promise<string | n
     // fall through to download
   }
 
-  if (inFlightDownloads.has(key)) return inFlightDownloads.get(key)!;
-
-  const task = (async (): Promise<string | null> => {
-    try {
-      const dir = cacheDir();
-      if (!dir.exists) dir.create({ intermediates: true });
-      const downloaded = await downloadFileWithTimeout(url, file);
-      if (!downloaded) return null;
-      if (downloaded.exists && (downloaded.size ?? 0) > MIN_VALID_AUDIO_BYTES) {
-        maybeSweepPhraseAudioCache(downloaded.uri);
-        return downloaded.uri;
+  let nativeDownload = inFlightDownloads.get(key);
+  if (!nativeDownload) {
+    nativeDownload = (async (): Promise<string | null> => {
+      try {
+        const dir = cacheDir();
+        if (!dir.exists) dir.create({ intermediates: true });
+        // expo-file-system ships two structurally-identical `File` declarations;
+        // the cast keeps the imported File API aligned.
+        const downloaded = await (File.downloadFileAsync(url, file) as Promise<File>);
+        if (downloaded.exists && (downloaded.size ?? 0) > MIN_VALID_AUDIO_BYTES) {
+          maybeSweepPhraseAudioCache(downloaded.uri);
+          return downloaded.uri;
+        }
+        return null;
+      } catch {
+        return null;
       }
-      return null;
-    } catch {
-      return null;
-    } finally {
-      inFlightDownloads.delete(key);
-    }
-  })();
+    })();
+    const ownedDownload = nativeDownload;
+    nativeDownload.finally(() => {
+      if (inFlightDownloads.get(key) === ownedDownload) inFlightDownloads.delete(key);
+    });
+    inFlightDownloads.set(key, nativeDownload);
+  }
 
-  inFlightDownloads.set(key, task);
-  return task;
+  // A slow native download keeps ownership in the map until it actually settles.
+  // The timeout releases only this caller so fallback TTS can start; later callers
+  // join the same native promise instead of starting a duplicate mp3 request.
+  return downloadFileWithTimeout(nativeDownload);
 }
 
 export function stopPhraseAudio(): void {

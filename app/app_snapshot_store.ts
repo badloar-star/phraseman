@@ -27,6 +27,7 @@ export interface AppSnapshotProfile extends AppSnapshotMeta {
   totalXp: number;
   level: number;
   premiumActive: boolean;
+  premiumPlan?: string;
   vipActive: boolean;
 }
 
@@ -100,8 +101,45 @@ function shallowPatchChanged(current: AppSnapshot, patch: Partial<AppSnapshot>):
   return Object.entries(patch).some(([key, value]) => current[key as keyof AppSnapshot] !== value);
 }
 
+function preserveNewerProfile(
+  current: Readonly<AppSnapshot>,
+  patch: Partial<AppSnapshot>,
+): Partial<AppSnapshot> {
+  const storageHydrationLostSameTick = Boolean(
+    patch.profile
+    && current.profile
+    && patch.profile.updatedAt === current.profile.updatedAt
+    && patch.profile.source === 'storage'
+    && current.profile.source !== 'storage',
+  );
+  if (
+    !patch.profile
+    || !current.profile
+    || (
+      patch.profile.updatedAt >= current.profile.updatedAt
+      && !storageHydrationLostSameTick
+    )
+  ) {
+    return patch;
+  }
+  return { ...patch, profile: current.profile };
+}
+
 export function getAppSnapshot(): Readonly<AppSnapshot> {
   return snapshot;
+}
+
+export function resolveHydratedProfileName(
+  hydrationStartedAt: number,
+  hydratedName: string | null | undefined,
+): string {
+  const candidate = String(hydratedName ?? '').trim();
+  const currentProfile = snapshot.profile;
+  if (!currentProfile) return candidate;
+  if (currentProfile.updatedAt >= hydrationStartedAt) {
+    return currentProfile.name || candidate;
+  }
+  return candidate || currentProfile.name;
 }
 
 export function subscribeAppSnapshot(listener: Listener): () => void {
@@ -112,7 +150,8 @@ export function subscribeAppSnapshot(listener: Listener): () => void {
 }
 
 export function patchAppSnapshot(patchOrFn: Patch): void {
-  const patch = typeof patchOrFn === 'function' ? patchOrFn(snapshot) : patchOrFn;
+  const requestedPatch = typeof patchOrFn === 'function' ? patchOrFn(snapshot) : patchOrFn;
+  const patch = requestedPatch ? preserveNewerProfile(snapshot, requestedPatch) : requestedPatch;
   if (!patch || !shallowPatchChanged(snapshot, patch)) return;
   snapshot = { ...snapshot, ...patch };
   emitSnapshotChanged();

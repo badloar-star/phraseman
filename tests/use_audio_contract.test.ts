@@ -27,6 +27,13 @@ describe('useAudio TTS resiliency', () => {
     expect(audioSource).toContain('speakWithSystemTts();');
   });
 
+  it('invalidates the delayed clip fallback on stop or unmount so TTS cannot start on a hidden screen', () => {
+    expect(audioSource).toContain('const clipStartTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);');
+    expect(audioSource).toContain('const speechGenerationRef = useRef(0);');
+    expect(audioSource).toContain('speechGenerationRef.current += 1;');
+    expect(audioSource).toContain('if (speechGenerationRef.current !== generation) return;');
+  });
+
   it('does not leave stalled phrase-audio downloads in the shared in-flight map forever', () => {
     expect(phraseAudioSource).toContain('DOWNLOAD_TIMEOUT_MS');
     expect(phraseAudioSource).toContain('downloadFileWithTimeout');

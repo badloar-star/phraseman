@@ -31,6 +31,9 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import SpeakingButton from '../components/SpeakingButton';
+import SpeakingPanel, { buildSpeakingPanelTheme } from '../components/SpeakingPanel';
+import SpeakingInlineSlot from '../components/SpeakingInlineSlot';
+import SpeakingInlineResultStars, { type SpeakingAttemptResult } from '../components/SpeakingInlineResultStars';
 import { trackEvent } from './analytics';
 import ScreenGradient from '../components/ScreenGradient';
 import { TrainerLoadingView, TrainerErrorView } from '../components/TrainerLoadStates';
@@ -84,6 +87,7 @@ import { buildTrainerFillGapOptions } from './trainer_fill_gap_options';
 import { frenchTrainerGateCopy, trainerSessionContentAvailableForTarget } from './trainer_target_gate';
 import type { LessonWord } from './lesson_data_types';
 import { isStudyTargetSourceUiLang, type StudyTargetLang } from './study_target_lang_dev';
+import { maskSpokenPhraseKeepInitial } from './speaking_word_report';
 import {
   markTrainerPlanTaskCompleted,
   readTrainerPlanTaskContext,
@@ -114,6 +118,10 @@ interface WordBankProps {
   speakAnswer: (text: string, studyTarget: StudyTargetLang) => Promise<void>;
 }
 
+// Keep the Reanimated builder stable across taps; recreating it inside the tile map
+// adds avoidable JS work on the exact interaction that must feel immediate.
+const WORD_BANK_TILE_ENTERING = FadeInUp.springify().damping(12).stiffness(180);
+
 function WordBankMode({ item, onResult, onAdvance, speakAnswer }: WordBankProps) {
   const { theme: t, f, themeMode } = useTheme();
   const isCompassTheme = false;
@@ -130,14 +138,34 @@ function WordBankMode({ item, onResult, onAdvance, speakAnswer }: WordBankProps)
   // чтобы selected и speaking-autofill совпадали с банком по слотам.
   const [bank] = useState<WordBankTile[]>(() => buildSessionWordBank(phrase));
   const [selected, setSelected] = useState<WordBankTile[]>([]);
+  const [previewTile, setPreviewTile] = useState<WordBankTile | null>(null);
   const [feedback, setFeedback] = useState<'none' | 'correct' | 'wrong'>('none');
+  const [speakingOpen, setSpeakingOpen] = useState(false);
+  const [speakingHoldActive, setSpeakingHoldActive] = useState(false);
+  const [speakingResult, setSpeakingResult] = useState<SpeakingAttemptResult | null>(null);
   const hasRecordedResult = useRef(false);
   const shakeAnim = useRef(new Animated.Value(0)).current;
   const { flashKey, flash } = useWordFlash();
 
+  const handleSpeakingScore = useCallback((result: SpeakingAttemptResult) => {
+    setSpeakingResult(result);
+    setSpeakingHoldActive(false);
+    setSpeakingOpen(false);
+  }, []);
+
   const correctTokens = useMemo(() => sessionMeaningfulTokens(phrase), [phrase]);
+  // Tiles deliberately exclude punctuation so they remain easy to tap and grade;
+  // keep a sentence-final mark in the assembled visual phrase.
+  const terminalPunctuation = useMemo(() => phrase.match(/[.?!]+$/)?.[0] ?? '', [phrase]);
   const canCheck = selected.length === correctTokens.length && correctTokens.length > 0;
   const usedSlots = useMemo(() => new Set(selected.map(tile => tile.slot)), [selected]);
+  // The visual move begins on press-in, while selected remains the committed answer.
+  // If iOS turns the touch into a ScrollView gesture, onPressOut removes the preview
+  // and onPress never mutates the answer.
+  const visibleSelected = useMemo(
+    () => previewTile ? [...selected, previewTile] : selected,
+    [previewTile, selected],
+  );
   // Перевод-задание: у арены перевода нет — честно показываем нейтральную формулировку.
   const promptText = useMemo(() => {
     const translation = trainerTranslationForLang(item, lang).trim();
@@ -193,14 +221,6 @@ function WordBankMode({ item, onResult, onAdvance, speakAnswer }: WordBankProps)
     }
   };
 
-  const retry = () => {
-    if (feedback === 'none') return;
-    void hapticTap();
-    setSelected([]);
-    setFeedback('none');
-    shakeAnim.setValue(0);
-  };
-
   const zoneBg = feedback === 'correct'
     ? t.correctBg
     : feedback === 'wrong'
@@ -218,7 +238,7 @@ function WordBankMode({ item, onResult, onAdvance, speakAnswer }: WordBankProps)
       : canCheck ? (isCompassTheme ? COMPASS_RICH.textDark : t.correctText) : t.textMuted;
 
   return (
-    <View style={{ flex: 1, gap: 14 }}>
+    <View style={{ flex: 1, gap: 14, position: 'relative' }}>
       {/* Перевод — карточка-задание */}
       <View style={[styles.promptCard, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderWidth: 0, borderRadius: isCompassTheme ? 9 : 20, overflow: isCompassTheme ? 'hidden' : 'visible' }]}>
         {isCompassTheme ? <CompassDepthSurface radius={9} quiet /> : null}
@@ -246,8 +266,12 @@ function WordBankMode({ item, onResult, onAdvance, speakAnswer }: WordBankProps)
         { backgroundColor: zoneBg, borderWidth: 0, borderRadius: isCompassTheme ? 10 : 18, overflow: isCompassTheme ? 'hidden' : 'visible', transform: [{ translateX: shakeAnim }] },
       ]}>
         {isCompassTheme ? <CompassDepthSurface radius={10} selected={feedback !== 'none'} quiet={feedback === 'none'} /> : null}
-        {selected.length === 0
-          ? <Text style={{ color: t.textMuted, fontSize: f.caption }}>
+        {visibleSelected.length === 0
+          ? speakingResult
+            ? <Text style={{ color: speakingResult.passed ? t.correct : t.wrong, fontSize: f.bodyLg, fontWeight: '800', textAlign: 'center' }}>
+                {speakingResult.passed ? phrase : maskSpokenPhraseKeepInitial(phrase)}
+              </Text>
+            : <Text style={{ color: t.textMuted, fontSize: f.caption }}>
               {triLang(lang, {
                 ru: 'Тут появятся слова…',
                 uk: 'Тут з\'являться слова…',
@@ -260,15 +284,15 @@ function WordBankMode({ item, onResult, onAdvance, speakAnswer }: WordBankProps)
               })}
             </Text>
           : <View style={styles.tilesRow}>
-              {selected.map(tile => (
+              {visibleSelected.map((tile, index) => (
                 // Влёт снизу с пружинкой — как в макете (bTileIn: translateY +16 → 0, fade).
-                <Reanimated.View key={tile.slot} entering={FadeInUp.springify().damping(12).stiffness(180)}>
+                <Reanimated.View key={tile.slot} entering={WORD_BANK_TILE_ENTERING}>
                   <TouchableOpacity
                     onPress={() => tapSelected(tile)}
                     style={[styles.tile, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : answerSoftBg, borderRadius: isCompassTheme ? 8 : 11, overflow: isCompassTheme ? 'hidden' : 'visible' }]}
                   >
                     {isCompassTheme ? <CompassDepthSurface radius={8} selected /> : null}
-                    <Text style={[styles.tileText, { color: t.textPrimary, fontSize: f.body, fontWeight: '800' }]}>{tile.text}</Text>
+                    <Text style={[styles.tileText, { color: t.textPrimary, fontSize: f.body, fontWeight: '800' }]}>{tile.text}{index === visibleSelected.length - 1 ? terminalPunctuation : ''}</Text>
                   </TouchableOpacity>
                 </Reanimated.View>
               ))}
@@ -276,26 +300,35 @@ function WordBankMode({ item, onResult, onAdvance, speakAnswer }: WordBankProps)
         }
       </Animated.View>
 
+      {speakingResult && (
+        <SpeakingInlineResultStars
+          testID="trainer-speaking-score"
+          result={speakingResult}
+          theme={buildSpeakingPanelTheme(t)}
+        />
+      )}
+
       {/* Банк слов — использованные гаснут, а не исчезают */}
       <View style={styles.tilesRow}>
         {bank.map(tile => {
           const used = usedSlots.has(tile.slot);
+          const previewed = previewTile?.slot === tile.slot;
+          const committedTileStyle = { opacity: used ? 0.18 : 1 };
           const tileKey = `${tile.slot}`;
           // зачем: юзер жаловался, что плитка не гаснет мгновенно. Тап ставил flash на 260мс,
           // и акцентная подсветка перебивала гашение — плитка сначала вспыхивала и только потом
           // тускнела. Взятая плитка гаснет сразу: used выигрывает у flash (`&& !used`).
-          const on = flashKey === tileKey && !used;
+          const on = flashKey === tileKey && !used && !previewed;
           return (
             <DuoPressable
               key={tile.slot}
               withHaptic={false}
-              // зачем: юзер жаловался что тап по плитке ощущается медленно. Причина —
-              // DuoPressable по умолчанию ждёт 90мс (unstable_pressDelay), чтобы отличить
-              // тап от старта скролла. Плитки банка слов — не скроллящийся контент сами
-              // по себе (скроллится вся BouncyScrollView), поэтому тап должен регистрироваться
-              // сразу; визуальный "осадочный" отклик (scale/opacity в DuoPressable) остаётся
-              // анимированным как был — откладываем только его, не сам факт нажатия.
+              // No 90ms press-in delay here: a reversible visual preview starts at touch-down.
+              // The answer itself is still committed by onPress, so a ScrollView takeover
+              // cancels the preview without accidentally selecting the word.
               delayPressIn={0}
+              onPressIn={() => setPreviewTile(tile)}
+              onPressOut={() => setPreviewTile(null)}
               disabled={used || feedback !== 'none'}
               edgeHeight={5}
               edgeColor={on ? t.accent : 'rgba(0,0,0,0.30)'}
@@ -306,14 +339,14 @@ function WordBankMode({ item, onResult, onAdvance, speakAnswer }: WordBankProps)
                   backgroundColor: on ? t.accent : (isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgSurface2),
                   borderColor: 'transparent',
                   borderWidth: 0,
-                  borderRadius: isCompassTheme ? 8 : 11,
-                  overflow: isCompassTheme ? 'hidden' : 'visible',
-                  opacity: used ? 0.18 : 1,
-                },
-              ]}
+                      borderRadius: isCompassTheme ? 8 : 11,
+                      overflow: isCompassTheme ? 'hidden' : 'visible',
+                    },
+                    committedTileStyle,
+                    previewed && { opacity: 0.18 },
+                  ]}
               onPress={() => {
                 flash(tileKey);
-                requestAnimationFrame(() => { void hapticTap(); });
                 tapBank(tile);
               }}
             >
@@ -324,7 +357,36 @@ function WordBankMode({ item, onResult, onAdvance, speakAnswer }: WordBankProps)
         })}
       </View>
 
-          {/* Кнопка проверки: при верном ответе сама становится зелёной «Верно!» */}
+      <SpeakingInlineSlot style={{ marginTop: 18 }}>
+        {speakingOpen && (
+          <SpeakingPanel
+            targetText={phrase}
+            lang={lang}
+            theme={buildSpeakingPanelTheme(t)}
+            presentation="inline"
+            holdActive={speakingHoldActive}
+            onScore={handleSpeakingScore}
+            onPass={({ score }) => {
+              void trackEvent('speaking_attempt_passed', { source: 'trainer', score });
+              if (feedback !== 'none') return;
+              setSelected(correctTokens.map((text, slot) => ({ slot, text })));
+              setFeedback('correct');
+              hapticSuccess();
+              playCorrect();
+              void speakAnswer(phrase, studyTarget);
+              recordResult(true);
+            }}
+            onClose={() => {
+              setSpeakingHoldActive(false);
+              setSpeakingOpen(false);
+            }}
+          />
+        )}
+      </SpeakingInlineSlot>
+
+      {feedback !== 'correct' && (
+          /* После верного ответа эта поверхность полностью исчезает: результат уже
+             показан карточкой произношения/действиями и не должен дублироваться. */
           <TouchableOpacity
             onPress={check}
             disabled={!canCheck || feedback !== 'none'}
@@ -339,9 +401,7 @@ function WordBankMode({ item, onResult, onAdvance, speakAnswer }: WordBankProps)
           >
             {isCompassTheme ? <CompassDepthSurface radius={9} cream={canCheck} quiet={!canCheck} /> : null}
         <Text style={[styles.checkBtnText, { color: checkBtnColor, fontSize: f.body }]}>
-          {feedback === 'correct'
-            ? triLang(lang, { ru: 'Верно!', uk: 'Вірно!', es: '¡Correcto!', 'pt-BR': 'Correto!', vi: 'Đúng rồi!', id: 'Benar!', tr: 'Doğru!', pl: 'Poprawnie!' })
-            : feedback === 'wrong'
+          {feedback === 'wrong'
               ? triLang(lang, { ru: 'Неверно', uk: 'Невірно', es: 'Incorrecto', 'pt-BR': 'Incorreto', vi: 'Sai rồi', id: 'Salah', tr: 'Yanlış', pl: 'Niepoprawnie' })
               : triLang(lang, {
                 ru: 'Проверить',
@@ -355,6 +415,7 @@ function WordBankMode({ item, onResult, onAdvance, speakAnswer }: WordBankProps)
               })}
         </Text>
       </TouchableOpacity>
+      )}
 
       {/* [SPEAKING] Произнести фразу вслух (premium). Говорение — необязательная
           надстройка: XP не начисляем (нет двойного счёта и обещания XP на пейволе);
@@ -363,22 +424,18 @@ function WordBankMode({ item, onResult, onAdvance, speakAnswer }: WordBankProps)
           раскладывает правильные слова по ячейкам и засчитывает фразу — юзеру не
           надо после «Готово» вручную собирать слова. */}
       <SpeakingButton
-        targetText={correctTokens.join(' ')}
+        targetText={phrase}
         lang={lang}
         variant="pill"
-        onPass={({ score }) => {
-          void trackEvent('speaking_attempt_passed', { source: 'trainer', score });
-          if (feedback !== 'none') return; // карточка уже оценена — не вмешиваемся
-          // Заполняем поле ответа каноническими словами (слоты совпадают с банком,
-          // поэтому все плитки банка гаснут как использованные).
-          setSelected(correctTokens.map((text, slot) => ({ slot, text })));
-          // Верный устный ответ = правильная фраза, поэтому засчитываем сразу, не
-          // дожидаясь асинхронного selected (иначе check() прочитал бы старое состояние).
-          setFeedback('correct');
-          hapticSuccess();
-          playCorrect();
-          void speakAnswer(phrase, studyTarget);
-          recordResult(true);
+        inlineHold={{
+          onStart: () => {
+            setSpeakingResult(null);
+            setSpeakingOpen(true);
+            setSpeakingHoldActive(true);
+          },
+          onEnd: () => {
+            setSpeakingHoldActive(false);
+          },
         }}
       />
 
@@ -392,16 +449,6 @@ function WordBankMode({ item, onResult, onAdvance, speakAnswer }: WordBankProps)
           >
             <Text style={[styles.resultActionText, { color: t.correctText, fontSize: f.body }]}>
               {triLang(lang, { ru: 'Готово →', uk: 'Готово →', es: 'Listo →', 'pt-BR': 'Concluído →', vi: 'Xong →', id: 'Selesai →', tr: 'Tamam →', pl: 'Gotowe →' })}
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={retry}
-            style={[styles.resultActionButton, { backgroundColor: t.bgSurface2 }]}
-            accessibilityRole="button"
-            accessibilityLabel={triLang(lang, { ru: 'Повторить эту фразу ещё раз', uk: 'Повторити цю фразу ще раз', es: 'Repetir esta frase otra vez', 'pt-BR': 'Repetir esta frase mais uma vez', vi: 'Lặp lại câu này một lần nữa', id: 'Ulangi frasa ini sekali lagi', tr: 'Bu ifadeyi tekrar et', pl: 'Powtórz tę frazę jeszcze raz' })}
-          >
-            <Text style={[styles.resultActionText, { color: t.textPrimary, fontSize: f.body }]}>
-              {triLang(lang, { ru: 'Повторить ещё раз', uk: 'Повторити ще раз', es: 'Repetir otra vez', 'pt-BR': 'Repetir mais uma vez', vi: 'Lặp lại lần nữa', id: 'Ulangi sekali lagi', tr: 'Tekrar et', pl: 'Powtórz jeszcze raz' })}
             </Text>
           </TouchableOpacity>
         </View>
@@ -432,6 +479,9 @@ function FillGapMode({ item, onResult, onAdvance, speakAnswer }: FillGapProps) {
   // дистракторы — авторские arenaQuestion.options (buildTrainerFillGapOptions сам
   // убирает correct, дедуплицирует и шафлит).
   const { phrase, errorWord } = trainerSessionPhrase(item);
+  // Без исходного смысла She/He/You suggested... и can/could/will start
+  // одновременно подходят. Перевод превращает угадывание в честное восстановление.
+  const promptText = useMemo(() => trainerTranslationForLang(item, lang).trim(), [item, lang]);
   const [options] = useState(() => buildTrainerFillGapOptions({
     correctWord: errorWord,
     phrase,
@@ -481,8 +531,7 @@ function FillGapMode({ item, onResult, onAdvance, speakAnswer }: FillGapProps) {
   };
 
   // зачем: продуктовое решение — в режиме "вставь пропущенное слово" оставляем
-  // только "Готово →"; кнопка "Повторить ещё раз" убрана, поэтому retry() и её
-  // обработчик здесь больше не нужны (WordBankMode свой retry не трогаем).
+  // только "Готово →"; повтор произношения доступен новым удержанием "Устно".
   const gapBg = feedback === 'correct'
     ? t.correctBg
     : feedback === 'wrong'
@@ -509,6 +558,11 @@ function FillGapMode({ item, onResult, onAdvance, speakAnswer }: FillGapProps) {
               pl: 'Wybierz brakujące słowo',
             })}
           </Text>
+          {promptText ? (
+            <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800', lineHeight: Math.round(f.body * 1.35) }}>
+              {promptText}
+            </Text>
+          ) : null}
           <View style={styles.phraseWrap}>
             {phraseWords.map((word, index) => (index === gapIndex ? (
               <View key={`gap-${index}`} style={[styles.gapSlot, { backgroundColor: gapBg }]}>
@@ -953,7 +1007,7 @@ export default function TrainerPhrasesSession() {
 
           <BouncyScrollView
             decelerationRate="normal"
-            contentContainerStyle={{ padding: 16, paddingTop: 8, flex: 1 }}
+            contentContainerStyle={{ padding: 16, paddingTop: 8, flexGrow: 1 }}
             keyboardShouldPersistTaps="handled"
             showsVerticalScrollIndicator={false}
             scrollEventThrottle={16}

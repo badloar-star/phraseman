@@ -12,4 +12,9 @@ describe('flashcard training feedback layout', () => {
     expect(source).toContain('const feedbackMaxHeight = Math.max(120, Math.floor(cardHeight * 0.5));');
     expect(source).toContain('minHeight: 56');
   });
+
+  it('does not clip a card translation before feedback is shown', () => {
+    expect(source).toContain('maxHeight: feedback ? cardMaxHeight : undefined');
+    expect(source).toContain("overflow: feedback ? 'hidden' : 'visible'");
+  });
 });

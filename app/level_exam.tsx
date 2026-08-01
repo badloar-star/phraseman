@@ -47,6 +47,8 @@ import { loadFrenchRemoteLevelExamQuestions } from './french_exam_remote_runtime
 import { recordLevelExamAttempt } from './level_exam_attempts';
 import { safeRouterBack } from './navigation_back';
 import { registerXP } from './xp_manager';
+import { canShowReview } from './review_utils';
+import ReviewPromptModal from '../components/ReviewPromptModal';
 import { monoIcon } from '../constants/monoIcon';
 
 const safeLevelExamEventPart = (value: unknown, max = 60): string =>
@@ -890,6 +892,15 @@ export default function LevelExam() {
   const correctCount = choices.filter((c, i) => c !== null && c === questions[i]?.correct).length;
   const pct = total > 0 ? Math.round(correctCount / total * 100) : 0;
   const passed = pct >= PASS_PCT;
+  const [reviewPromptVisible, setReviewPromptVisible] = useState(false);
+  const leaveResultAfterReview = useCallback(async () => {
+    hapticTap();
+    if (await canShowReview({ trigger: 'level_exam_pass', scorePercent: pct, userContinued: true })) {
+      setReviewPromptVisible(true);
+      return;
+    }
+    safeRouterBack(router, '/(tabs)/lessons' as any);
+  }, [pct, router]);
 
   if (frenchExamBlocked) {
     return (
@@ -1500,7 +1511,7 @@ export default function LevelExam() {
               </LinearGradient>
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => { hapticTap(); safeRouterBack(router, '/(tabs)/lessons' as any); }}
+              onPress={() => { void leaveResultAfterReview(); }}
               style={{
                 borderRadius: 14,
                 borderWidth: isGoldTheme ? 1 : 0,
@@ -1773,6 +1784,15 @@ export default function LevelExam() {
           safeRouterBack(router, '/(tabs)/lessons' as any);
         }}
         confirmVariant="accent"
+      />
+      <ReviewPromptModal
+        visible={reviewPromptVisible}
+        context="level_exam_pass"
+        lang={lang}
+        onClose={() => {
+          setReviewPromptVisible(false);
+          safeRouterBack(router, '/(tabs)/lessons' as any);
+        }}
       />
     </SafeAreaView>
     </ScreenGradient>

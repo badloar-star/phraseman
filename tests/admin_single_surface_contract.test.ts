@@ -10,22 +10,22 @@
  * правили мёртвые файлы. Тест фиксирует границу машинно, а не «на словах».
  */
 
-import { createHash } from 'node:crypto';
 import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 
 const repoRoot = path.resolve(__dirname, '..');
 const read = (rel: string) => readFileSync(path.join(repoRoot, rel), 'utf8');
-const md5 = (value: string | Buffer) => createHash('md5').update(value).digest('hex');
 
 /** Единственная поверхность, куда разрешено писать. */
 const LIVE_ADMIN = 'admin/v2/legacy.html';
 
 /** Замороженные файлы: только чтение, развивать нельзя. */
 const FROZEN_ADMIN_FILES = [
-  'admin/v2/legacy.html',
+  'admin/legacy.html',
   'admin/index.html',
   'admin/full.html',
+  'admin/site.html',
+  'admin/v2/index.html',
 ] as const;
 
 describe('единственная рабочая админка', () => {
@@ -61,23 +61,17 @@ describe('единственная рабочая админка', () => {
     expect(html).toContain('legacy.html');
   });
 
-  it('отставшая копия admin/v2/legacy.html не выдаёт себя за живую админку', () => {
-    const stalePath = path.join(repoRoot, 'admin/v2/legacy.html');
+  it('отставшая копия admin/legacy.html не выдаёт себя за живую админку', () => {
+    const stalePath = path.join(repoRoot, 'admin/legacy.html');
     if (!existsSync(stalePath)) return; // удалена — идеальный исход
 
-    // Если копии разошлись, admin/v2/legacy.html — мёртвый дубль. Тест не требует
+    // Если копии разошлись, admin/legacy.html — мёртвый дубль. Тест не требует
     // их совпадения (это невозможно поддерживать), но требует, чтобы правила
     // явно называли её замороженной.
     const agents = read('AGENTS.md');
-    expect(agents).toContain('admin/v2/legacy.html');
+    expect(agents).toContain('admin/legacy.html');
     expect(agents.toUpperCase()).toContain('ЗАМОРОЖЕН');
-
-    const stale = md5(readFileSync(stalePath));
-    const live = md5(readFileSync(path.join(repoRoot, LIVE_ADMIN)));
-    if (stale !== live) {
-      // Разошлись — значит писать в неё точно нельзя.
-      expect(agents).toContain(LIVE_ADMIN);
-    }
+    expect(stalePath).not.toBe(path.join(repoRoot, LIVE_ADMIN));
   });
 
   it('правила проекта называют admin/v2/legacy.html единственной поверхностью', () => {

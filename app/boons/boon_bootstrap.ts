@@ -9,16 +9,12 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getTodayKey } from '../daily_tasks';
 import { emitAppEvent } from '../events';
-import { getPackGiftTrial, setRandomPackGiftTrial48h } from '../flashcards/pack_trial_gift';
+import { setPackGiftTrial48hOnce } from '../flashcards/pack_trial_gift';
 import { applyMonthlyPremiumFreezeAllowance } from '../premium_freeze_allowance';
 import { isStreakFreezeActiveToday, parseStreakFreeze } from '../streak_freeze';
 import type { RuntimeStudyTarget } from '../target_storage_keys';
 import { getTodaysBoons } from './boon_engine';
 import { applyTurboRegenOverride } from './boon_effects_energy';
-import { grantBoonReward } from './boon_rewards';
-
-/** Сколько доп. попыток арены даёт «Турнирная суббота». */
-export const ARENA_SATURDAY_BONUS_PLAYS = 5;
 
 /** Date-guard: ключ «эффект X уже выдан в этот UTC-день». */
 function dayGuardKey(boon: string): string {
@@ -71,26 +67,11 @@ async function applyStreakSaver(todayKey: string): Promise<void> {
   }
 }
 
-/** Arena-суббота: +N попыток арены (функция СУММИРУЕТ → строгий date-guard). */
-async function applyArenaSaturday(todayKey: string): Promise<void> {
-  if (!(await notGrantedToday('arena_saturday', todayKey))) return;
-  // Keep already-scheduled legacy boon days valuable after the retired mode disappeared.
-  // §7: выплата монет обнулена (монеты только покупаются) — день помечаем, монеты не даём.
-  await grantBoonReward({ shards: 0 }, 'legacy_arena_saturday');
-  await markGrantedToday('arena_saturday', todayKey);
-}
-
-/** Flashcard-пятница: 48ч триал случайного пака. Гард: только если триала нет. */
+/** Flashcard-Friday is one global occurrence; unrelated vouchers may coexist. */
 async function applyFlashcardFriday(todayKey: string, studyTarget?: RuntimeStudyTarget): Promise<void> {
   if (!(await notGrantedToday('flashcard_friday', todayKey))) return;
-  // setRandomPackGiftTrial48h НЕ идемпотентна (рерандомит + продлевает 48ч), поэтому
-  // не вызываем, если уже есть активный ваучер.
-  const active = await getPackGiftTrial(studyTarget);
-  if (active) {
-    await markGrantedToday('flashcard_friday', todayKey);
-    return;
-  }
-  await setRandomPackGiftTrial48h(studyTarget);
+  const occurrenceId = `weekly_boon_${todayKey}`;
+  await setPackGiftTrial48hOnce(studyTarget, occurrenceId, undefined, undefined, occurrenceId, 'weekly_boon');
   await markGrantedToday('flashcard_friday', todayKey);
 }
 
@@ -118,9 +99,6 @@ export async function applyTodaysBoonsOnAppOpen(
     switch (primary) {
       case 'streak_saver':
         await applyStreakSaver(todayKey);
-        break;
-      case 'arena_saturday':
-        await applyArenaSaturday(todayKey);
         break;
       case 'flashcard_friday':
         await applyFlashcardFriday(todayKey, studyTarget);

@@ -16,17 +16,14 @@ describe('V2 generation stage plan', () => {
     expect(plan.at(-1)?.dependsOn).toHaveLength(32);
   });
 
-  it('keeps optional dialogue and Speaking Club branches recipe-aware', () => {
-    const withBranches = buildV2EpisodeSubgraph({ episodeId: 'e1', dialogue: true, speakingClub: true }, 's1');
+  it('keeps the optional dialogue branch recipe-aware', () => {
+    const withBranches = buildV2EpisodeSubgraph({ episodeId: 'e1', dialogue: true }, 's1');
     const withoutBranches = buildV2EpisodeSubgraph({ episodeId: 'e2' }, 's1');
     expect(withBranches.filter((stage) => stage.kind === 'v2_dialogue_script')).toHaveLength(1);
-    expect(withBranches.filter((stage) => stage.kind === 'v2_speaking_mission')).toHaveLength(1);
     expect(withBranches.find((stage) => stage.kind === 'v2_activity_instances')?.dependsOn).toEqual(expect.arrayContaining([
       'v2_dialogue_script:s1:e1',
-      'v2_speaking_mission:s1:e1',
     ]));
     expect(withoutBranches.some((stage) => stage.kind === 'v2_dialogue_script')).toBe(false);
-    expect(withoutBranches.some((stage) => stage.kind === 'v2_speaking_mission')).toBe(false);
   });
 
   it('rejects wrong scope cardinality and duplicate episode IDs', () => {
@@ -42,7 +39,7 @@ describe('V2 generation stage plan', () => {
       seasonId: 'season-13',
       scope: 'full_season',
       episodeIds: Array.from({ length: 32 }, (_, index) => `episode-${String(index + 1).padStart(2, '0')}`),
-      recipes: [{ episodeId: 'episode-01', dialogue: true, speakingClub: true }],
+      recipes: [{ episodeId: 'episode-01', dialogue: true }],
     });
     const kinds = new Set(plan.map((stage) => stage.kind));
     expect([...kinds].sort()).toEqual([
@@ -57,7 +54,6 @@ describe('V2 generation stage plan', () => {
       'v2_scene_set',
       'v2_season_outline',
       'v2_season_qa',
-      'v2_speaking_mission',
       'v2_voice_targets',
     ]);
   });

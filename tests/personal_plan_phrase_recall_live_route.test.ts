@@ -120,4 +120,38 @@ describe('personal plan phrase-recall live route', () => {
       }),
     }));
   });
+
+  it('does not pull a wrong attempt from a different plan day into previous-day recall', async () => {
+    const currentDayBlock: PlanExerciseBlock = {
+      ...wrongBlock,
+      id: 'impuls_d002_missing_word',
+      planId: 'impuls',
+      dayIndex: 2,
+      contentUnitIds: ['impuls_d002_content_unit_phrase_5'],
+    };
+    await appendPersonalPlanAttemptEvent(createPlanAttemptEvent(currentDayBlock, {
+      id: 'wrong_current_day',
+      planInstanceId: 'instance_impuls_1',
+      result: 'wrong',
+      contentUnitId: 'impuls_d002_content_unit_phrase_5',
+      expectedAnswer: 'The reason is clear.',
+      selectedAnswer: 'The reason clear.',
+      occurredAt: '2026-07-30T13:40:00.000Z',
+    }));
+
+    const items = await getPersonalPlanPhraseRecallItems({
+      planInstanceId: 'instance_impuls_1',
+      lessonId: 'impuls_d001_content_unit',
+      contentUnitIds: [
+        'impuls_d001_content_unit_phrase_1',
+        'impuls_d001_content_unit_phrase_2',
+        'impuls_d001_content_unit_phrase_3',
+        'impuls_d001_content_unit_phrase_4',
+      ],
+    });
+
+    expect(items).toHaveLength(4);
+    expect(items.every((item) => item.contentUnitId?.startsWith('impuls_d001_content_unit_phrase_'))).toBe(true);
+    expect(items.map((item) => item.targetText)).not.toContain('The reason is clear.');
+  });
 });

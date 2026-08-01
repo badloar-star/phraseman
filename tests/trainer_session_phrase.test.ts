@@ -64,6 +64,13 @@ describe('trainerSessionPhrase — сборка фразы арены из ма�
     const item = phraseItem('I have been there', 'have');
     expect(trainerSessionPhrase(item)).toEqual({ phrase: 'I have been there', errorWord: 'have' });
   });
+
+  it('restores a missing question mark from the canonical lesson phrase', () => {
+    const item = phraseItem('Does she have time on Friday', 'Does');
+    item.lessonId = 8;
+
+    expect(trainerSessionPhrase(item).phrase).toBe('Does she have time on Friday?');
+  });
 });
 
 describe('word_bank арены — банк содержит правильное слово', () => {

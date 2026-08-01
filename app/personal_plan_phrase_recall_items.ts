@@ -100,6 +100,7 @@ export async function getPersonalPlanPhraseRecallItems(
   const attempts = await listPersonalPlanAttemptEvents(input.planInstanceId);
   for (const event of latestOpenWrongAttempts(attempts)) {
     const phrase = event.contentUnitId ? phrasesById.get(event.contentUnitId) : phrasesByEnglish.get(normalizeKey(event.expectedAnswer));
+    if (!phrase) continue;
     const contentUnitId = event.contentUnitId || (phrase?.id === undefined ? undefined : String(phrase.id));
     const targetText = event.expectedAnswer?.trim() || phrase?.english;
     if (!targetText) continue;

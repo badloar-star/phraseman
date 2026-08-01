@@ -3,6 +3,7 @@ import {
   getAppSnapshot,
   patchAppSnapshot,
   pruneBoundedRecord,
+  resolveHydratedProfileName,
   resetAppSnapshotForAccountSwitch,
   subscribeAppSnapshot,
 } from '../app/app_snapshot_store';
@@ -38,6 +39,92 @@ describe('app snapshot store contract', () => {
     expect(changes).toBe(1);
 
     unsubscribe();
+  });
+
+  it('does not let an older hydration overwrite a nickname changed while it was loading', () => {
+    const baseProfile = {
+      source: 'storage' as const,
+      updatedAt: 100,
+      name: 'Old name',
+      avatar: '1',
+      frame: '',
+      totalXp: 120,
+      level: 2,
+      premiumActive: false,
+      vipActive: false,
+    };
+
+    patchAppSnapshot({ profile: baseProfile });
+    patchAppSnapshot({
+      profile: {
+        ...baseProfile,
+        source: 'local',
+        updatedAt: 300,
+        name: 'New name',
+      },
+    });
+
+    // The storage read started before the rename and completed afterwards.
+    patchAppSnapshot({
+      profile: {
+        ...baseProfile,
+        updatedAt: 200,
+      },
+    });
+
+    expect(getAppSnapshot().profile?.name).toBe('New name');
+    expect(getAppSnapshot().profile?.updatedAt).toBe(300);
+  });
+
+  it('keeps a same-millisecond local nickname ahead of a storage hydration', () => {
+    const baseProfile = {
+      source: 'storage' as const,
+      updatedAt: 100,
+      name: 'Old name',
+      avatar: '1',
+      frame: '',
+      totalXp: 120,
+      level: 2,
+      premiumActive: false,
+      vipActive: false,
+    };
+
+    patchAppSnapshot({
+      profile: {
+        ...baseProfile,
+        source: 'local',
+        updatedAt: 300,
+        name: 'New name',
+      },
+    });
+    patchAppSnapshot({
+      profile: {
+        ...baseProfile,
+        updatedAt: 300,
+      },
+    });
+
+    expect(getAppSnapshot().profile?.name).toBe('New name');
+    expect(getAppSnapshot().profile?.source).toBe('local');
+  });
+
+  it('resolves delayed screen hydration from the fresher shared profile', () => {
+    patchAppSnapshot({
+      profile: {
+        source: 'local',
+        updatedAt: 300,
+        name: 'New name',
+        avatar: '1',
+        frame: '',
+        totalXp: 120,
+        level: 2,
+        premiumActive: false,
+        vipActive: false,
+      },
+    });
+
+    expect(resolveHydratedProfileName(200, 'Old name')).toBe('New name');
+    expect(resolveHydratedProfileName(400, 'Newest storage name')).toBe('Newest storage name');
   });
 
   it('prunes bounded records by ttl while retaining pinned keys', () => {

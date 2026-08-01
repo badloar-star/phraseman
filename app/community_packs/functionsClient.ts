@@ -6,6 +6,7 @@ import { initFirebaseAppCheckIfAvailable } from '../app_check_init';
 /** Callable v2 задеплоєні в us-central1 (як у admin getFunctions(..., 'us-central1')). */
 const FUNCTIONS_REGION = 'us-central1';
 const communityPurchaseInFlight = new Map<string, Promise<CommunityPurchaseResponse>>();
+const communityGiftRedeemInFlight = new Map<string, Promise<CommunityGiftRedeemResponse>>();
 
 export function isCommunityPacksCloudEnabled(): boolean {
   return CLOUD_SYNC_ENABLED && !IS_EXPO_GO;
@@ -55,6 +56,88 @@ export async function callCommunityPurchasePack(data: {
     });
   communityPurchaseInFlight.set(key, request);
   return request;
+}
+
+export type CommunityGiftRedeemResponse = {
+  alreadyOwned?: boolean;
+  gifted?: boolean;
+  replayed?: boolean;
+  studyTarget?: 'en' | 'fr';
+};
+
+export type FlashcardPackGiftRedeemResponse = CommunityGiftRedeemResponse & {
+  packId?: string;
+  packType?: 'official' | 'community';
+};
+
+export async function callFlashcardPackGiftRedeem(data: {
+  buyerStableId: string;
+  packId: string;
+  packType: 'official' | 'community';
+  studyTarget?: 'en' | 'fr';
+  voucherId?: string;
+  voucherOccurrenceId?: string;
+}): Promise<FlashcardPackGiftRedeemResponse> {
+  const key = JSON.stringify(data);
+  const existing = communityGiftRedeemInFlight.get(key);
+  if (existing) return existing;
+  const request = callFunction<typeof data, FlashcardPackGiftRedeemResponse>('flashcardPackGiftRedeem', data)
+    .finally(() => communityGiftRedeemInFlight.delete(key));
+  communityGiftRedeemInFlight.set(key, request);
+  return request;
+}
+
+export type FlashcardPackGiftSyncStateResponse = {
+  vouchers: { voucherId?: string; occurrenceId?: string; expiresAt: number; source: string }[];
+  entitlements: { packId: string; packType: 'official' | 'community'; studyTarget: 'en' | 'fr' }[];
+};
+
+export async function callFlashcardPackGiftSyncState(data: { stableId: string }): Promise<FlashcardPackGiftSyncStateResponse> {
+  return callFunction<typeof data, FlashcardPackGiftSyncStateResponse>('flashcardPackGiftSyncState', data);
+}
+
+export async function callFlashcardPackGiftGrantGlobalBroadcast(data: {
+  stableId: string;
+  broadcastId: string;
+}): Promise<{ voucherId: string; expiresAt: number; replayed?: boolean }> {
+  return callFunction<typeof data, { voucherId: string; expiresAt: number; replayed?: boolean }>(
+    'flashcardPackGiftGrantGlobalBroadcast',
+    data,
+  );
+}
+
+export type LevelGiftReservationResponse = {
+  reservationId: string;
+  giftId: string;
+  allowedPackId?: string;
+  replayed?: boolean;
+};
+
+export async function callLevelGiftReserve(data: {
+  stableId: string;
+  level: number;
+  lane: 'f2p' | 'premium';
+  studyTarget?: 'en' | 'fr';
+}): Promise<LevelGiftReservationResponse> {
+  return callFunction<typeof data, LevelGiftReservationResponse>('levelGiftReserve', data);
+}
+
+export async function callLevelGiftActivatePackGift(data: {
+  stableId: string;
+  reservationId: string;
+}): Promise<{ voucherId: string; expiresAt: number; allowedPackId?: string; replayed?: boolean }> {
+  return callFunction<
+    typeof data,
+    { voucherId: string; expiresAt: number; allowedPackId?: string; replayed?: boolean }
+  >('levelGiftActivatePackGift', data);
+}
+
+export async function callCommunityRedeemPackGiftVoucher(data: {
+  buyerStableId: string;
+  packId: string;
+  studyTarget?: 'en' | 'fr';
+}): Promise<CommunityGiftRedeemResponse> {
+  return callFlashcardPackGiftRedeem({ ...data, packType: 'community' });
 }
 
 function communityPurchaseRequestKey(data: {

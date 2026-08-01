@@ -3560,7 +3560,7 @@ const THEORY: Record<number, TheoryContent> = {
         [isUK ? 'Українська / російська логіка' : 'Русская логика', isUK ? 'Англійська логіка' : 'Английская логика'],
         [isUK ? 'Є проблема' : 'Есть проблема', 'There is a problem'],
         [isUK ? 'Є проблеми' : 'Есть проблемы', 'There are problems'],
-        [isUK ? 'Є питання?' : 'Есть вопрос?', 'Is there a question?'],
+        [isUK ? 'Є проблема?' : 'Есть проблема?', 'Is there a problem?'],
         [isUK ? 'Немає проблем' : 'Нет проблем', 'There are no problems'],
       ]}
     />,
@@ -3658,8 +3658,8 @@ const THEORY: Record<number, TheoryContent> = {
       f={f}
       rows={[
         [isUK ? 'Твердження' : 'Утверждение', isUK ? 'Питання' : 'Вопрос'],
-        ['There is a question', 'Is there a question?'],
-        ['There are questions', 'Are there questions?'],
+        ['There is a problem', 'Is there a problem?'],
+        ['There are problems', 'Are there problems?'],
         ['There is a key', 'Is there a key?'],
         ['There are keys', 'Are there keys?'],
         ['There is a plan', 'Is there a plan?'],
@@ -3668,8 +3668,8 @@ const THEORY: Record<number, TheoryContent> = {
       ]}
     />,
 
-    <Warn key="w4" t={t} f={f} text={isUK ? '❌ There is a question? → ✅ Is there a question? Для нормального питання is виходить на перше місце.' : '❌ There is a question? → ✅ Is there a question? Для нормального вопроса is выходит на первое место.'} />,
-    <Warn key="w5" t={t} f={f} text={isUK ? '❌ Is there questions? → ✅ Are there questions? З множиною потрібне Are there.' : '❌ Is there questions? → ✅ Are there questions? С множественным числом нужно Are there.'} />,
+    <Warn key="w4" t={t} f={f} text={isUK ? '❌ There is a problem? → ✅ Is there a problem? Для нормального питання is виходить на перше місце.' : '❌ There is a problem? → ✅ Is there a problem? Для нормального вопроса is выходит на первое место.'} />,
+    <Warn key="w5" t={t} f={f} text={isUK ? '❌ Is there problems? → ✅ Are there problems? З множиною потрібне Are there.' : '❌ Is there problems? → ✅ Are there problems? С множественным числом нужно Are there.'} />,
 
     <Section key="s6" t={t} f={f} title={isUK ? '6. Заперечення: There is no / There are no' : '6. Отрицание: There is no / There are no'} />,
 
@@ -3824,8 +3824,8 @@ const THEORY: Record<number, TheoryContent> = {
         [isUK ? 'Блок' : 'Блок', isUK ? 'Значення' : 'Значение', isUK ? 'Приклад' : 'Пример'],
         ['there is a problem', isUK ? 'є проблема' : 'есть проблема', 'There is a problem'],
         ['there are problems', isUK ? 'є проблеми' : 'есть проблемы', 'There are problems'],
-        ['is there a question?', isUK ? 'є питання?' : 'есть вопрос?', 'Is there a question?'],
-        ['are there questions?', isUK ? 'є питання?' : 'есть вопросы?', 'Are there questions?'],
+        ['is there a problem?', isUK ? 'є проблема?' : 'есть проблема?', 'Is there a problem?'],
+        ['are there problems?', isUK ? 'є проблеми?' : 'есть проблемы?', 'Are there problems?'],
         ['there is no key', isUK ? 'немає ключа' : 'нет ключа', 'There is no key'],
         ['there are no keys', isUK ? 'немає ключів' : 'нет ключей', 'There are no keys'],
         ['there is no time', isUK ? 'немає часу' : 'нет времени', 'There is no time'],
@@ -3882,7 +3882,7 @@ const THEORY: Record<number, TheoryContent> = {
 
     <Warn key="w12" t={t} f={f} text={isUK ? '❌ There is problems → ✅ There are problems. З множиною потрібне are.' : '❌ There is problems → ✅ There are problems. С множественным числом нужно are.'} />,
     <Warn key="w13" t={t} f={f} text={isUK ? '❌ There are a problem → ✅ There is a problem. Один предмет бере is.' : '❌ There are a problem → ✅ There is a problem. Один предмет берёт is.'} />,
-    <Warn key="w14" t={t} f={f} text={isUK ? '❌ Is there questions? → ✅ Are there questions? Questions - множина.' : '❌ Is there questions? → ✅ Are there questions? Questions - множественное число.'} />,
+    <Warn key="w14" t={t} f={f} text={isUK ? '❌ Is there problems? → ✅ Are there problems? Problems - множина.' : '❌ Is there problems? → ✅ Are there problems? Problems - множественное число.'} />,
     <Warn key="w15" t={t} f={f} text={isUK ? '❌ Are there a key? → ✅ Is there a key? A key - один ключ.' : '❌ Are there a key? → ✅ Is there a key? A key - один ключ.'} />,
     <Warn key="w16" t={t} f={f} text={isUK ? '❌ There is not Wi-Fi → ✅ There is no Wi-Fi. У моделі уроку використовуємо no.' : '❌ There is not Wi-Fi → ✅ There is no Wi-Fi. В модели урока используем no.'} />,
     <Warn key="w17" t={t} f={f} text={isUK ? '❌ There are no Wi-Fi → ✅ There is no Wi-Fi. Wi-Fi тут не множина.' : '❌ There are no Wi-Fi → ✅ There is no Wi-Fi. Wi-Fi здесь не множественное число.'} />,

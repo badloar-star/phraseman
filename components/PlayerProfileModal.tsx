@@ -2081,9 +2081,12 @@ function PlayerProfileModal({ player, myInfo, onClose }: Props) {
     setFriendToast(message);
   }, []);
 
-  // Открытие: анимация; данные — после interactions.
+  // Открытие: множители запускаем сразу, чтобы первый профиль в сессии успел
+  // отрисовать реальные данные во время entrance-анимации. Более тяжёлое чтение
+  // leaderboard остаётся после interactions ниже.
   useEffect(() => {
     if (!player) return;
+    let cancelled = false;
 
     // зачем: не затираем кэш в null на каждое открытие — если peekLastMultiplierBreakdown()
     // уже дал значение синхронно при инициализации state, держим его видимым, пока
@@ -2095,6 +2098,12 @@ function PlayerProfileModal({ player, myInfo, onClose }: Props) {
         ? Math.max(0, Math.floor(Number(player.points)))
         : null;
     setResolvedTotalXp(initialTotalXp);
+
+    if (player.isMe) {
+      void getCurrentMultiplierBreakdown().then((m) => {
+        if (!cancelled) setMultipliers(m);
+      }).catch(() => {});
+    }
 
     slideAnim.stopAnimation();
     fadeAnim.stopAnimation();
@@ -2112,12 +2121,8 @@ function PlayerProfileModal({ player, myInfo, onClose }: Props) {
       Animated.timing(fadeAnim, { toValue: 1, duration: reduceMotion ? 150 : 220, useNativeDriver: true }),
     ]).start();
 
-    let cancelled = false;
     const task: { cancel: () => void } = InteractionManager.runAfterInteractions(() => {
       if (cancelled) return;
-      if (player.isMe) {
-        getCurrentMultiplierBreakdown().then((m) => { if (!cancelled) setMultipliers(m); }).catch(() => {});
-      }
       if (player.uid) {
         const lbDocIds = Array.from(new Set([player.friendUid, player.uid].filter(Boolean) as string[]));
         Promise.all(lbDocIds.map((id) => firestore().collection('leaderboard').doc(id).get().catch(() => null)))

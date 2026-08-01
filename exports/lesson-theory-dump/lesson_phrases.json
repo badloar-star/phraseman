@@ -1455,8 +1455,8 @@
       {
         "id": "lesson5_phrase_7",
         "english": "Does it cost much?",
-        "russian": "Это стоит дорого?",
-        "ukrainian": "Це коштує дорого?",
+        "russian": "Это стоит много?",
+        "ukrainian": "Це коштує багато?",
         "spanish": "¿Cuesta mucho?"
       },
       {
@@ -2706,7 +2706,7 @@
       },
       {
         "id": "lesson8_phrase_35",
-        "english": "He has a birthday in October",
+        "english": "His birthday is in October",
         "russian": "У него день рождения в октябре",
         "ukrainian": "У нього день народження в жовтні",
         "spanish": "Él cumple años en octubre."
@@ -4503,7 +4503,7 @@
         "id": "lesson13_phrase_40",
         "english": "Will I need cash?",
         "russian": "Мне понадобятся наличные?",
-        "ukrainian": "Мені знадобляться готівка?",
+        "ukrainian": "Мені знадобиться готівка?",
         "spanish": "¿Necesitaré dinero en efectivo?"
       },
       {
@@ -4742,7 +4742,7 @@
       {
         "id": "lesson14_phrase_24",
         "english": "That phone is older",
-        "russian": "Тот телефон старее",
+        "russian": "Тот телефон старше",
         "ukrainian": "Той телефон старший",
         "spanish": "Ese teléfono es más viejo."
       },
@@ -4889,7 +4889,7 @@
       {
         "id": "lesson14_phrase_45",
         "english": "We need a better plan",
-        "russian": "Нам нужен лучший план",
+        "russian": "Нам нужен план получше",
         "ukrainian": "Нам потрібен кращий план",
         "spanish": "Necesitamos un plan mejor."
       },
@@ -5467,8 +5467,8 @@
       {
         "id": "lesson16_phrase_27",
         "english": "I do not look for problems",
-        "russian": "Я не ищу проблемы",
-        "ukrainian": "Я не шукаю проблеми",
+        "russian": "Я не ищу проблем",
+        "ukrainian": "Я не шукаю проблем",
         "spanish": "No busco problemas."
       },
       {
@@ -6198,10 +6198,10 @@
       },
       {
         "id": "lesson18_phrase_31",
-        "english": "Can you help me?",
-        "russian": "Ты можешь помочь мне?",
-        "ukrainian": "Ти можеш допомогти мені?",
-        "spanish": "¿Puedes ayudarme?"
+        "english": "Can you reserve a table?",
+        "russian": "Ты можешь забронировать столик?",
+        "ukrainian": "Ти можеш забронювати столик?",
+        "spanish": "¿Puedes reservar una mesa?"
       },
       {
         "id": "lesson18_phrase_32",
@@ -6382,10 +6382,10 @@
       },
       {
         "id": "lesson19_phrase_7",
-        "english": "The chair is next to the table",
+        "english": "The chair is near the table",
         "russian": "Стул рядом со столом",
         "ukrainian": "Стілець поруч зі столом",
-        "spanish": "La silla está al lado de la mesa."
+        "spanish": "La silla está cerca de la mesa."
       },
       {
         "id": "lesson19_phrase_8",
@@ -6432,8 +6432,8 @@
       {
         "id": "lesson19_phrase_14",
         "english": "The shoes are under the bed",
-        "russian": "Обувь под кроватью",
-        "ukrainian": "Взуття під ліжком",
+        "russian": "Туфли под кроватью",
+        "ukrainian": "Туфлі під ліжком",
         "spanish": "Los zapatos están debajo de la cama."
       },
       {
@@ -6550,10 +6550,10 @@
       },
       {
         "id": "lesson19_phrase_31",
-        "english": "Put the bag next to the door",
+        "english": "Put the bag near the door",
         "russian": "Поставь сумку рядом с дверью",
         "ukrainian": "Постав сумку поруч з дверима",
-        "spanish": "Pon la bolsa al lado de la puerta."
+        "spanish": "Pon la bolsa cerca de la puerta."
       },
       {
         "id": "lesson19_phrase_32",
@@ -6614,8 +6614,8 @@
       {
         "id": "lesson19_phrase_40",
         "english": "There are shoes under the bed",
-        "russian": "Под кроватью есть обувь",
-        "ukrainian": "Під ліжком є взуття",
+        "russian": "Под кроватью есть туфли",
+        "ukrainian": "Під ліжком є туфлі",
         "spanish": "Hay zapatos debajo de la cama."
       },
       {
@@ -6690,6 +6690,13 @@
       }
     ],
     "20": [
+      {
+        "id": "lesson20_phrase_1",
+        "english": "I have a bag.",
+        "russian": "У меня есть сумка.",
+        "ukrainian": "У мене є сумка.",
+        "spanish": "Tengo una bolsa."
+      },
       {
         "id": "lesson20_phrase_2",
         "english": "I have a phone.",
@@ -6908,13 +6915,6 @@
         "spanish": "¿Tienes un teléfono?"
       },
       {
-        "id": "lesson20_phrase_33",
-        "english": "Is the phone on the table?",
-        "russian": "Телефон на столе?",
-        "ukrainian": "Телефон на столі?",
-        "spanish": "¿Está el teléfono sobre la mesa?"
-      },
-      {
         "id": "lesson20_phrase_34",
         "english": "Does she have a bag?",
         "russian": "У неё есть сумка?",
@@ -6945,8 +6945,8 @@
       {
         "id": "lesson20_phrase_38",
         "english": "There is a key on the desk.",
-        "russian": "На столе есть ключ.",
-        "ukrainian": "На столі є ключ.",
+        "russian": "На рабочем столе есть ключ.",
+        "ukrainian": "На робочому столі є ключ.",
         "spanish": "Hay una llave sobre el escritorio."
       },
       {
@@ -6994,8 +6994,8 @@
       {
         "id": "lesson20_phrase_45",
         "english": "The cup is on the desk.",
-        "russian": "Чашка на столе.",
-        "ukrainian": "Чашка на столі.",
+        "russian": "Чашка на рабочем столе.",
+        "ukrainian": "Чашка на робочому столі.",
         "spanish": "La taza está sobre el escritorio."
       },
       {
@@ -7015,8 +7015,8 @@
       {
         "id": "lesson20_phrase_48",
         "english": "She found a wallet outside the shop.",
-        "russian": "Она нашла кошелёк около магазина.",
-        "ukrainian": "Вона знайшла гаманець біля магазину.",
+        "russian": "Она нашла кошелёк снаружи магазина.",
+        "ukrainian": "Вона знайшла гаманець зовні магазину.",
         "spanish": "Ella encontró una billetera fuera de la tienda."
       },
       {
@@ -7192,8 +7192,8 @@
       {
         "id": "lesson21_phrase_22",
         "english": "Nothing is wrong",
-        "russian": "Ничего не так",
-        "ukrainian": "Нічого не так",
+        "russian": "Всё в порядке",
+        "ukrainian": "Все гаразд",
         "spanish": "No hay nada malo."
       },
       {
@@ -7580,7 +7580,7 @@
         "id": "lesson22_phrase_27",
         "english": "She hates losing money",
         "russian": "Она ненавидит терять деньги",
-        "ukrainian": "Вона ненавидить витрачати гроші",
+        "ukrainian": "Вона ненавидить втрачати гроші",
         "spanish": "Ella odia perder dinero"
       },
       {
@@ -10001,8 +10001,8 @@
       {
         "id": "lesson29_phrase_21",
         "english": "I used to forget keys, but now I check my bag",
-        "russian": "Раньше я забывал ключи, но сейчас проверяю сумку",
-        "ukrainian": "Раніше я забував ключі, але зараз перевіряю сумку",
+        "russian": "Раньше я забывал ключи, но сейчас проверяю свою сумку",
+        "ukrainian": "Раніше я забував ключі, але зараз перевіряю свою сумку",
         "spanish": "Antes olvidaba las llaves, pero ahora reviso mi bolso"
       },
       {
@@ -10506,10 +10506,10 @@
       },
       {
         "id": "lesson30_phrase_43",
-        "english": "Is she the woman whose bag is here?",
+        "english": "Is this the woman whose bag is here?",
         "russian": "Это та женщина, чья сумка здесь?",
         "ukrainian": "Це та жінка, чия сумка тут?",
-        "spanish": "¿Es ella la mujer cuya bolsa está aquí?"
+        "spanish": "¿Es esta la mujer cuya bolsa está aquí?"
       },
       {
         "id": "lesson30_phrase_44",
@@ -10775,15 +10775,15 @@
       {
         "id": "lesson31_phrase_31",
         "english": "I saw that stray dog cross that busy street.",
-        "russian": "Я видел, как тот бродячий пёс перебежал оживлённую улицу.",
-        "ukrainian": "Я бачив, як той вуличний пес перебіг жваву вулицю.",
+        "russian": "Я видел, как тот бродячий пёс перебежал ту оживлённую улицу.",
+        "ukrainian": "Я бачив, як той вуличний пес перебіг ту жваву вулицю.",
         "spanish": "Vi cruzar esa calle concurrida a ese perro callejero."
       },
       {
         "id": "lesson31_phrase_32",
         "english": "They heard that quiet student ask that difficult question.",
-        "russian": "Они слышали, как тот тихий ученик задал тот сложный вопрос.",
-        "ukrainian": "Вони чули, як той тихий учень поставив те складне запитання.",
+        "russian": "Они слышали, как тот тихий ученик задал тот трудный вопрос.",
+        "ukrainian": "Вони чули, як той тихий учень поставив те важке запитання.",
         "spanish": "Oyeron hacer a ese estudiante tranquilo esa pregunta difícil."
       },
       {
@@ -10803,8 +10803,8 @@
       {
         "id": "lesson31_phrase_35",
         "english": "That brave firefighter made that panicked family follow that emergency exit.",
-        "russian": "Тот храбрый пожарный заставил паникующую семью пройти к аварийному выходу.",
-        "ukrainian": "Той хоробрий пожежник змусив запаніковану родину пройти до аварійного виходу.",
+        "russian": "Тот храбрый пожарный заставил ту паникующую семью пройти к тому аварийному выходу.",
+        "ukrainian": "Той хоробрий пожежник змусив ту запаніковану родину пройти до того аварійного виходу.",
         "spanish": "Ese bombero valiente hizo seguir esa salida de emergencia a esa familia en pánico."
       },
       {
@@ -10852,8 +10852,8 @@
       {
         "id": "lesson31_phrase_42",
         "english": "She noticed that old man drop that metal key into that storm drain.",
-        "russian": "Она заметила, как тот пожилой мужчина уронил металлический ключ в тот дождевой лоток.",
-        "ukrainian": "Вона помітила, як той літній чоловік уронив металевий ключ у зливову решітку.",
+        "russian": "Она заметила, как тот пожилой мужчина уронил тот металлический ключ в тот дождевой лоток.",
+        "ukrainian": "Вона помітила, як той літній чоловік уронив той металевий ключ у ту зливову решітку.",
         "spanish": "Notó al hombre viejo dejar caer esa llave metálica en esa alcantarilla."
       },
       {
@@ -10880,8 +10880,8 @@
       {
         "id": "lesson31_phrase_46",
         "english": "She let that helpful guide show that ancient map to that tourist group.",
-        "russian": "Она разрешила тому готовому помочь гиду показать древнюю карту той группе туристов.",
-        "ukrainian": "Вона дозволила тому помічному гіду показати стародавню мапу тій групі туристів.",
+        "russian": "Она разрешила тому готовому помочь гиду показать ту древнюю карту той группе туристов.",
+        "ukrainian": "Вона дозволила тому помічному гіду показати ту стародавню мапу тій групі туристів.",
         "spanish": "Ella permitió que esa guía servicial mostrara ese mapa antiguo a ese grupo turístico."
       },
       {

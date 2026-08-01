@@ -121,13 +121,13 @@ function paywallModalCopy(lang: Lang): PaywallModalCopy {
       balanceBlockTitle: 'Для цього набору',
       ctaSub: 'Покупка в одне торкання',
       shopCtaSub: 'Пакети перлин у магазині',
-      voucherKicker: '🎁 Безкоштовний набір',
+      voucherKicker: 'Безкоштовний набір',
       voucherTitle: 'Використати подарунок?',
       voucherIntro:
-        'Цей набір додасться у «Картки» безкоштовно — перлини витрачати не потрібно.',
+        'Цей набір назавжди додасться у «Картки» безкоштовно — перлини витрачати не потрібно.',
       voucherWarn:
-        '⚠️ Подарунок одноразовий: одразу після підтвердження він зникне і вже не повернеться.',
-      voucherCta: '🎁 Використати подарунок',
+        'Подарунок одноразовий: одразу після підтвердження він зникне і вже не повернеться.',
+      voucherCta: 'Використати подарунок',
       voucherCtaBusy: '',
       voucherCtaSub: 'Подарунок «згорить» одразу після цього',
       packKindLabel: 'Набір',
@@ -157,13 +157,13 @@ function paywallModalCopy(lang: Lang): PaywallModalCopy {
       balanceBlockTitle: 'Para este paquete',
       ctaSub: 'Compra con un solo toque',
       shopCtaSub: `Paquetes de ${S} en la tienda`,
-      voucherKicker: '🎁 Paquete gratis',
+      voucherKicker: 'Paquete gratis',
       voucherTitle: '¿Usar el regalo?',
       voucherIntro:
-        `Este paquete se añadirá a «Tarjetas» gratis; no gastarás ${S}.`,
+        `Este paquete se añadirá para siempre a «Tarjetas» gratis; no gastarás ${S}.`,
       voucherWarn:
-        '⚠️ El regalo es de un solo uso: al confirmar, desaparecerá y no podrás recuperarlo.',
-      voucherCta: '🎁 Usar regalo',
+        'El regalo es de un solo uso: al confirmar, desaparecerá y no podrás recuperarlo.',
+      voucherCta: 'Usar regalo',
       voucherCtaBusy: '',
       voucherCtaSub: 'El regalo se consumirá al confirmar',
       packKindLabel: 'Paquete',
@@ -190,13 +190,13 @@ function paywallModalCopy(lang: Lang): PaywallModalCopy {
     balanceBlockTitle: 'Для этого набора',
     ctaSub: 'Откроется в одно касание',
     shopCtaSub: 'Пакеты жемчуга в магазине',
-    voucherKicker: '🎁 Набор в подарок',
+    voucherKicker: 'Набор в подарок',
     voucherTitle: 'Использовать подарок?',
     voucherIntro:
-      'Этот набор добавится в «Карточки» бесплатно — жемчуг тратить не нужно.',
+      'Этот набор навсегда добавится в «Карточки» бесплатно — жемчуг тратить не нужно.',
     voucherWarn:
-      '⚠️ Подарок одноразовый: сразу после подтверждения он исчезнет и больше не вернётся.',
-    voucherCta: '🎁 Использовать подарок',
+      'Подарок одноразовый: сразу после подтверждения он исчезнет и больше не вернётся.',
+    voucherCta: 'Использовать подарок',
     voucherCtaBusy: '',
     voucherCtaSub: 'Подарок «сгорит» сразу после этого',
     packKindLabel: 'Набор',
@@ -717,9 +717,12 @@ export default function CardPackShardPaywallModal({
                               backgroundColor: `${t.gold}14`,
                             }}
                           >
-                            <Text style={{ color: t.gold, fontSize: f.body, fontWeight: '700', lineHeight: 22 }}>
-                              {str.voucherWarn}
-                            </Text>
+                            <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 8 }}>
+                              <Ionicons name="alert-circle-outline" size={20} color={t.gold} />
+                              <Text style={{ flex: 1, color: t.gold, fontSize: f.body, fontWeight: '700', lineHeight: 22 }}>
+                                {str.voucherWarn}
+                              </Text>
+                            </View>
                           </Animated.View>
                         </>
                       ) : (
@@ -953,7 +956,9 @@ export default function CardPackShardPaywallModal({
                               >
                                 {purchasing ? (
                                   <ActivityIndicator size="small" color={t.bgPrimary} />
-                                ) : null}
+                                ) : (
+                                  <Ionicons name="gift-outline" size={22} color={t.bgPrimary} />
+                                )}
                                 <Text style={{ color: t.bgPrimary, fontSize: f.bodyLg, fontWeight: '900' }}>
                                   {str.voucherCta}
                                 </Text>

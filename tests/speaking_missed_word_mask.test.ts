@@ -4,7 +4,7 @@
 // Контракт: и пословная карта (SpeakingPanel), и подсказка «Не прозвучало»
 // (buildSpeakingHint) используют одну и ту же маску.
 
-import { maskSpokenWordKeepInitial } from '../app/speaking_word_report';
+import { maskSpokenPhraseKeepInitial, maskSpokenWordKeepInitial } from '../app/speaking_word_report';
 import { buildSpeakingHint } from '../app/speaking_score_bands';
 import fs from 'fs';
 import path from 'path';
@@ -30,6 +30,11 @@ describe('maskSpokenWordKeepInitial', () => {
 
   it('handles non-ASCII letters (unicode-aware)', () => {
     expect(maskSpokenWordKeepInitial('école')).toBe('é____');
+  });
+
+  it('masks every word of a failed phrase while preserving initials and spacing', () => {
+    expect(maskSpokenPhraseKeepInitial('They are calm')).toBe('T___ a__ c___');
+    expect(maskSpokenPhraseKeepInitial("We're well-known")).toBe("W_'__ w___-_____");
   });
 });
 

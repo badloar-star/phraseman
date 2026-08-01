@@ -169,16 +169,27 @@ function isTrainerPlannedLocale(lang: Lang): lang is PlannedInterfaceLang {
 }
 
 export function trainerTranslationForLang(
-  item: Pick<TrainerItem, 'translationRu' | 'translationUk' | 'translationEs' | 'sourceLocales'>,
+  item: Pick<TrainerItem, 'translationRu' | 'translationUk' | 'translationEs' | 'sourceLocales'>
+    & Partial<Pick<TrainerItem, 'key' | 'arenaQuestion'>>,
   lang: Lang,
 ): string {
+  // Old DEV arena rows were persisted with empty translations. Resolve their
+  // meaning from the canonical seed so an already-saved iPhone session is fixed
+  // immediately, without requiring the owner to clear or reseed AsyncStorage.
+  const arenaSeed = item.arenaQuestion
+    ? DEV_ARENA.find(candidate => candidate.question === (item.arenaQuestion?.question || item.key))
+    : undefined;
+  const translationRu = item.translationRu || arenaSeed?.translationRu || '';
+  const translationUk = item.translationUk || arenaSeed?.translationUk || '';
+  const translationEs = item.translationEs || arenaSeed?.translationEs || '';
+  const sourceLocales = item.sourceLocales || arenaSeed?.sourceLocales;
   if (isTrainerPlannedLocale(lang)) {
-    const planned = item.sourceLocales?.[lang]?.trim();
+    const planned = sourceLocales?.[lang]?.trim();
     return planned || TRAINER_TRANSLATION_NEEDS_REVIEW[lang];
   }
-  if (lang === 'uk') return item.translationUk || item.translationRu || item.translationEs || '';
-  if (lang === 'es') return item.translationEs || item.translationRu || item.translationUk || '';
-  return item.translationRu || item.translationUk || item.translationEs || '';
+  if (lang === 'uk') return translationUk || translationRu || translationEs;
+  if (lang === 'es') return translationEs || translationRu || translationUk;
+  return translationRu || translationUk || translationEs;
 }
 
 async function load(studyTarget?: RuntimeStudyTarget): Promise<TrainerItem[]> {
@@ -863,11 +874,31 @@ const DEV_WORDS_ES: Record<string, string> = Object.fromEntries(DEV_WORDS_ES_ITE
 const DEV_PHRASES_ES: Record<string, string> = Object.fromEntries(DEV_PHRASES_ES_ITEMS.map(item => [item.key, item.es]));
 
 const DEV_ARENA = [
-  { question: 'She ___ to the store yesterday', correct: 'went',    options: ['go', 'went', 'gone', 'goes'],   rule: 'Past Simple' },
-  { question: 'I ___ never seen this before',   correct: 'have',    options: ['have', 'had', 'has', 'having'], rule: 'Present Perfect' },
-  { question: 'They ___ waiting for an hour',   correct: 'were',    options: ['are', 'were', 'was', 'be'],     rule: 'Past Continuous' },
-  { question: 'He ___ his keys again',          correct: 'lost',    options: ['lose', 'lost', 'loses', 'loss'],rule: 'Past Simple' },
-  { question: 'We ___ finish by tomorrow',      correct: 'must',    options: ['must', 'can', 'may', 'might'],  rule: 'Modals' },
+  {
+    question: 'She ___ to the store yesterday', correct: 'went', options: ['go', 'went', 'gone', 'goes'], rule: 'Past Simple',
+    translationRu: 'Она ходила в магазин вчера', translationUk: 'Вона ходила до магазину вчора', translationEs: 'Ella fue a la tienda ayer',
+    sourceLocales: { 'pt-BR': 'Ela foi à loja ontem', vi: 'Hôm qua cô ấy đã đi đến cửa hàng', id: 'Dia pergi ke toko kemarin', tr: 'Dün mağazaya gitti', pl: 'Wczoraj poszła do sklepu' },
+  },
+  {
+    question: 'I ___ never seen this before', correct: 'have', options: ['have', 'had', 'has', 'having'], rule: 'Present Perfect',
+    translationRu: 'Я никогда раньше этого не видел', translationUk: 'Я ніколи раніше цього не бачив', translationEs: 'Nunca he visto esto antes',
+    sourceLocales: { 'pt-BR': 'Eu nunca vi isto antes', vi: 'Tôi chưa bao giờ thấy điều này trước đây', id: 'Saya belum pernah melihat ini sebelumnya', tr: 'Bunu daha önce hiç görmedim', pl: 'Nigdy wcześniej tego nie widziałem' },
+  },
+  {
+    question: 'They ___ waiting for an hour', correct: 'were', options: ['are', 'were', 'was', 'be'], rule: 'Past Continuous',
+    translationRu: 'Они ждали целый час', translationUk: 'Вони чекали цілу годину', translationEs: 'Llevaban una hora esperando',
+    sourceLocales: { 'pt-BR': 'Eles estavam esperando há uma hora', vi: 'Họ đã đợi suốt một giờ', id: 'Mereka sudah menunggu selama satu jam', tr: 'Bir saattir bekliyorlardı', pl: 'Czekali przez godzinę' },
+  },
+  {
+    question: 'He ___ his keys again', correct: 'lost', options: ['lose', 'lost', 'loses', 'loss'], rule: 'Past Simple',
+    translationRu: 'Он снова потерял ключи', translationUk: 'Він знову загубив ключі', translationEs: 'Volvió a perder las llaves',
+    sourceLocales: { 'pt-BR': 'Ele perdeu as chaves de novo', vi: 'Anh ấy lại làm mất chìa khóa', id: 'Dia kehilangan kuncinya lagi', tr: 'Anahtarlarını yine kaybetti', pl: 'Znowu zgubił klucze' },
+  },
+  {
+    question: 'We ___ finish by tomorrow', correct: 'must', options: ['must', 'can', 'may', 'might'], rule: 'Modals',
+    translationRu: 'Мы должны закончить к завтрашнему дню', translationUk: 'Ми маємо закінчити до завтра', translationEs: 'Debemos terminar para mañana',
+    sourceLocales: { 'pt-BR': 'Precisamos terminar até amanhã', vi: 'Chúng ta phải hoàn thành trước ngày mai', id: 'Kita harus selesai paling lambat besok', tr: 'Yarına kadar bitirmeliyiz', pl: 'Musimy skończyć do jutra' },
+  },
 ];
 
 const DEV_ANALYTICS_PICKED = ['go', 'in', 'the', 'has', 'wait', 'must to', 'call to', 'a', 'never not'];
@@ -983,10 +1014,15 @@ export async function devSeedTrainer(studyTarget?: RuntimeStudyTarget): Promise<
     if (existing) {
       existing.nextDue = todayMs;
       existing.archived = false;
+      existing.translationRu = a.translationRu;
+      existing.translationUk = a.translationUk;
+      existing.translationEs = a.translationEs;
+      existing.sourceLocales = a.sourceLocales;
     } else {
       items.push({
         key: a.question, queue: 'arena',
-        translationRu: '', translationUk: '',
+        translationRu: a.translationRu, translationUk: a.translationUk,
+        translationEs: a.translationEs, sourceLocales: a.sourceLocales,
         arenaQuestion: { question: a.question, correct: a.correct, options: a.options, rule: a.rule },
         lessonId: 0, mistakeCount: 1, correctStreak: 0,
         nextDue: todayMs, createdAt: now, archived: false,
@@ -1055,8 +1091,10 @@ export async function devSeedTrainerScenario(
     ...DEV_ARENA.map((a, i) => devItem({
       key: a.question,
       queue: 'arena',
-      translationRu: '',
-      translationUk: '',
+      translationRu: a.translationRu,
+      translationUk: a.translationUk,
+      translationEs: a.translationEs,
+      sourceLocales: a.sourceLocales,
       arenaQuestion: a,
       lessonId: 5 + i,
       mistakeCount: scenario === 'hard' ? 5 : 1 + (i % 2),

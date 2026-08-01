@@ -17,7 +17,6 @@ import UnifiedPlayerModal, { PlayerInfo as UnifiedPlayerInfo } from '../componen
 import ContentWrap from '../components/ContentWrap';
 import ScreenGradient from '../components/ScreenGradient';
 import PremiumGoldUserName from '../components/PremiumGoldUserName';
-import VipGreenUserName from '../components/VipGreenUserName';
 import LeagueCrownName from '../components/LeagueCrownName';
 import ProfileCardBadge from '../components/ProfileCardBadge';
 import AvatarView from '../components/AvatarView';
@@ -110,15 +109,15 @@ import {
 import { leaguePublicName } from './league_public_name';
 import { LeagueBonusMission } from '../components/league/LeagueBonusMission';
 import { LeagueArenaScene } from '../components/league/LeagueArenaScene';
-import { LeagueMyPositionBar } from '../components/league/LeagueMyPositionBar';
 import { LeagueRaceFeed, type LeagueRaceFeedItem } from '../components/league/LeagueRaceFeed';
 import { LeagueChestTeaserModal } from '../components/league/LeagueChestTeaserModal';
 import { LeagueHotHoursChip } from '../components/league/LeagueHotHoursChip';
 import { isLeagueHotHoursActive, leagueWeekEndsAtUtcMs, LEAGUE_HOT_HOURS_WINDOW_MS } from './league_hot_hours';
-import { participantsLabel, type LeagueHeroGap, type LeagueHeroZone } from '../components/league/leagueStatusShared';
+import { participantsLabel } from '../components/league/leagueStatusShared';
 import { LeagueLeaderboardRow, type LeagueLeaderboardZone } from '../components/league/LeagueLeaderboardRow';
 import type { LeagueHubPalette } from '../components/league/leagueHubPalette';
 import { getTodayKey, updateTaskProgress } from './daily_tasks';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
 
 // v2 — bumped после фикса race на signInAnonymously + остановки резервной записи
 // в league_state_v3. Старый таймер мог хранить «не обновлять» с момента, когда
@@ -388,6 +387,9 @@ export default function ClubScreen() {
   const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onAnimatedScroll } = useBouncy();
   const bouncyStyle = useBouncyStyle(bouncyStretch);
   const router = useRouter();
+  const runtimeActive = useRuntimeActive();
+  const runtimeActiveRef = useRef(runtimeActive);
+  runtimeActiveRef.current = runtimeActive;
   const { theme: t, f, themeMode } = useTheme();
   const insets = useStableSafeAreaInsets();
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
@@ -415,6 +417,7 @@ export default function ClubScreen() {
   const [localLeagueHydrated, setLocalLeagueHydrated] = useState(initialLeagueState != null);
   const [rankDelta, setRankDelta] = useState<RankDelta | null>(null);
   const [pendingLeagueResult, setPendingLeagueResult] = useState<LeagueResult | null>(null);
+  const deferredLeagueResultRef = useRef<LeagueResult | null>(null);
   const dismissedLeagueResultThisSessionRef = useRef<boolean>(false);
   const contentScrollRef = useRef<FlatList<GroupMember> | null>(null);
   /** Совпадает с RankChangeTestModal / тестовым превью — не менять без синхронизации. */
@@ -441,22 +444,6 @@ export default function ClubScreen() {
     void hasClubGiftFreeBoostFromLevel().then((v) => {
       if (isMountedRef.current) setFreeBoostGiftReady(v);
     }).catch(() => {});
-  }, []);
-  // club_attend: первый заход в спикинг-клуб за день (гард по UTC-дню, как у daily tasks).
-  useEffect(() => {
-    void (async () => {
-      try {
-        const guardKey = 'daily_club_attend_seen_v1';
-        const today = getTodayKey();
-        if ((await AsyncStorage.getItem(guardKey)) === today) return;
-        await AsyncStorage.setItem(guardKey, today);
-        await updateTaskProgress('club_attend', 1, studyTarget);
-      } catch {
-        // best-effort — заход в клуб не должен зависеть от задания
-      }
-    })();
-    // Считаем один раз за монтирование экрана; дневной гард внутри.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const [groupBoostBuying, setGroupBoostBuying] = useState(false);
   const [groupBoostLikeBusy, setGroupBoostLikeBusy] = useState(false);
@@ -608,6 +595,11 @@ export default function ClubScreen() {
   const loadData = useCallback(async (opts?: { forceRemote?: boolean }) => {
     const maybeShowPending = async (result: LeagueResult | null) => {
       if (!result) return;
+      if (!runtimeActiveRef.current) {
+        deferredLeagueResultRef.current = result;
+        return;
+      }
+      deferredLeagueResultRef.current = null;
       void checkAchievements({
         type: 'league_result',
         myRank: result.myRank,
@@ -780,6 +772,28 @@ export default function ClubScreen() {
   }, [lang]);
 
   useEffect(() => {
+    if (!runtimeActive) return;
+    const result = deferredLeagueResultRef.current;
+    if (!result) return;
+    deferredLeagueResultRef.current = null;
+    void checkAchievements({
+      type: 'league_result',
+      myRank: result.myRank,
+      totalInGroup: result.totalInGroup,
+      promoted: result.promoted,
+      newLeagueId: result.newLeagueId,
+    });
+    if (dismissedLeagueResultThisSessionRef.current) {
+      void clearPendingResult();
+      return;
+    }
+    if (!tryAcquireLeagueResultModal(getLeagueResultSignature(result))) return;
+    void markLeagueResultShown(result).then(() => {
+      if (runtimeActiveRef.current && isMountedRef.current) setPendingLeagueResult(result);
+    });
+  }, [runtimeActive]);
+
+  useEffect(() => {
     isMountedRef.current = true;
     loadData();
     return () => {
@@ -794,14 +808,15 @@ export default function ClubScreen() {
   // зачем: аудит нагрева 2026-07-25 — подписки буста жили в голом useEffect и
   // продолжали слушать Firestore, пока экран смонтирован (даже не в фокусе/в фоне).
   // Остальные realtime-эффекты этого файла уже на useFocusEffect — выравниваем.
-  useFocusEffect(
-    useCallback(() => subscribeToActiveLeagueGroupBoost((boost) => {
+  useEffect(() => {
+    if (!runtimeActive) return;
+    return subscribeToActiveLeagueGroupBoost((boost) => {
       if (!isMountedRef.current) return;
       if (!boost && activeGroupBoostRef.current && activeGroupBoostRef.current.expiresAt > Date.now()) return;
       setActiveGroupBoost(boost);
       setGroupBoostLikeTotal(boost?.likeCount ?? 0);
-    }), []),
-  );
+    });
+  }, [runtimeActive]);
 
   useEffect(() => {
     let cancelled = false;
@@ -820,8 +835,8 @@ export default function ClubScreen() {
   // зачем: аудит нагрева 2026-07-25 — секундный тик буста работал и вне фокуса
   // экрана (setState каждую секунду в фоне, пока активен буст). Гардим фокусом,
   // как соседний недельный countdown ниже.
-  useFocusEffect(
-    useCallback(() => {
+  useEffect(() => {
+      if (!runtimeActive) return;
       if (!activeGroupBoost) {
         setGroupBoostTimeLeft('');
         return;
@@ -838,14 +853,12 @@ export default function ClubScreen() {
       update();
       const id = setInterval(update, 1000);
       return () => clearInterval(id);
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [activeGroupBoost?.expiresAt]),
-  );
+  }, [activeGroupBoost?.expiresAt, runtimeActive]);
 
   // Таймер недели: общий visible wall clock (1 Гц), текст меняется максимум раз в минуту,
   // подписка живёт только пока экран в фокусе — новых setInterval не создаём.
-  useFocusEffect(
-    useCallback(() => {
+  useEffect(() => {
+      if (!runtimeActive) return;
       const update = (now: number) => {
         const next = formatLeagueWeekCountdown(lang ?? 'ru', leagueWeekEndsAtUtcMs(now) - now);
         setWeekCountdown((prev) => (prev.text === next.text && prev.urgent === next.urgent && prev.hot === next.hot ? prev : next));
@@ -853,8 +866,7 @@ export default function ClubScreen() {
       update(Date.now());
       const unsubscribe = visibleWallClock.subscribe(update);
       return () => unsubscribe();
-    }, [lang]),
-  );
+  }, [lang, runtimeActive]);
 
   const myLeague = LEAGUES[myLeagueId] ?? LEAGUES[0];
 
@@ -871,17 +883,14 @@ export default function ClubScreen() {
     })),
     [sortedGroup],
   );
-  const publicListGroup = useMemo(() => publicSortedGroup.slice(3), [publicSortedGroup]);
+  const publicListGroup = useMemo(() => publicSortedGroup, [publicSortedGroup]);
   const currentUserStreak = sortedGroup.find((p) => p.isMe)?.streak ?? null;
   const showEmptyParticipants = shouldShowLeagueEmptyParticipants({
     localLeagueHydrated,
     participantCount: sortedGroup.length,
   });
-  // зачем: список участников рисует только тех, кто ПОСЛЕ топ-3 (publicListGroup =
-  // slice(3)). Когда в лиге один игрок (или все влезли в топ-3), список пуст и под
-  // заголовком «Участники клуба» была немая пустота — читалось как поломка.
-  // Завязываемся на факт «в списке никого», а не на точное число участников:
-  // showEmptyParticipants уже закрывает случай полностью пустой лиги.
+  // Список содержит всех участников, включая тройку из подиума. Индекс строки
+  // поэтому всегда совпадает с индексом участника в общем рейтинге.
   const showSoloParticipant = shouldShowLeagueSoloParticipant({
     localLeagueHydrated,
     participantCount: sortedGroup.length,
@@ -1252,37 +1261,11 @@ export default function ClubScreen() {
       buyerName: leaguePublicName(activeGroupBoost.buyerName, activeGroupBoost.buyerUid),
     } : null,
   }), [activeGroupBoost, leagueChestClaimed, leagueChestGoal, leagueChestProgress, leagueChestReady, myLeagueChestContribution, publicSortedGroup]);
-  // ── Hero-статус: моё место, зона и отрыв до следующего места ────────────────
+  // Моё место остаётся источником для сцены, ленты гонки и наград.
   const myLeagueRank = useMemo(() => {
     const idx = sortedGroup.findIndex((m) => m.isMe);
     return idx >= 0 ? idx + 1 : 0;
   }, [sortedGroup]);
-  const myLeagueZone = useMemo<LeagueHeroZone | null>(() => {
-    if (myLeagueRank <= 0) return null;
-    if (leagueXpPromotionMode) {
-      const me = sortedGroup[myLeagueRank - 1];
-      const myPts = Math.max(0, Math.floor(Number(me?.points) || 0));
-      return myLeagueId < LEAGUES.length - 1 && myPts >= leagueXpPromotionThreshold ? 'promotion' : 'safe';
-    }
-    if (promotionCutoff > 0 && myLeagueRank <= promotionCutoff) return 'promotion';
-    if (sortedGroup.length >= 2 && myLeagueRank - 1 >= relegationStartIndex) return 'relegation';
-    return 'safe';
-  }, [leagueXpPromotionMode, leagueXpPromotionThreshold, myLeagueId, myLeagueRank, promotionCutoff, relegationStartIndex, sortedGroup]);
-  const myLeagueGap = useMemo<LeagueHeroGap | null>(() => {
-    if (myLeagueRank <= 0 || sortedGroup.length < 2) return null;
-    const myPts = Math.max(0, Math.floor(Number(sortedGroup[myLeagueRank - 1]?.points) || 0));
-    if (myLeagueRank === 1) {
-      const secondPts = Math.max(0, Math.floor(Number(sortedGroup[1]?.points) || 0));
-      return { kind: 'leader', xpAhead: Math.max(0, myPts - secondPts), ratio: 1 };
-    }
-    const abovePts = Math.max(0, Math.floor(Number(sortedGroup[myLeagueRank - 2]?.points) || 0));
-    return {
-      kind: 'to_rank',
-      targetRank: myLeagueRank - 1,
-      xpNeeded: Math.max(1, abovePts - myPts + 1),
-      ratio: abovePts > 0 ? Math.min(1, myPts / abovePts) : 1,
-    };
-  }, [myLeagueRank, sortedGroup]);
   const leagueBonusPct = useMemo(() => Math.max(0, Number(String(myLeague.tagRU).match(/([+-]?\d+)%/)?.[1] ?? '0') || 0), [myLeague.tagRU]);
   // Тизер «что в сундуке»: лидеру недели показываем расширенный набор силуэтов.
   const chestTeaserRarities = useMemo(() => buildLeagueChestPreviewRewards(myLeagueRank === 1).map((r) => r.rarity), [myLeagueRank]);
@@ -1412,11 +1395,9 @@ export default function ClubScreen() {
     const displayName = leaguePublicName(p.name, p.uid ?? p.botId ?? p.name);
     const name = hasLeagueCrownForMember(p)
       ? <LeagueCrownName text={displayName} fontSize={f.body} count={Math.max(1, crownCount)} />
-      : p.isVip
-        ? <VipGreenUserName text={displayName} fontSize={f.body} />
-        : p.isPremium
-          ? <PremiumGoldUserName text={displayName} fontSize={f.body} />
-          : <Text style={{ color: p.isMe ? t.textPrimary : t.textSecond, fontSize: f.body, fontWeight: p.isMe ? '800' : '600', ...((p.profileCardLevel ?? 0) >= 5 ? LEGEND_CARD_NAME_GOLD : null) }}>{displayName}</Text>;
+      : p.isPremium || p.isVip
+        ? <PremiumGoldUserName text={displayName} fontSize={f.body} />
+        : <Text style={{ color: p.isMe ? t.textPrimary : t.textSecond, fontSize: f.body, fontWeight: p.isMe ? '800' : '600', ...((p.profileCardLevel ?? 0) >= 5 ? LEGEND_CARD_NAME_GOLD : null) }}>{displayName}</Text>;
     return (
       <View style={{ minWidth: 0, maxWidth: '100%', overflow: 'hidden' }}>
         <View style={{ flexShrink: 1, minWidth: 0, overflow: 'hidden' }}>{name}</View>
@@ -1426,7 +1407,7 @@ export default function ClubScreen() {
   }, [f.body, hasLeagueCrownForMember, leagueCrownsByUid, t.textPrimary, t.textSecond]);
 
   const scrollToLeagueRank = useCallback(() => {
-    const idx = myLeagueRank - 4;
+    const idx = myLeagueRank - 1;
     if (idx <= 0) {
       contentScrollRef.current?.scrollToOffset({ offset: 0, animated: true });
       return;
@@ -1435,7 +1416,7 @@ export default function ClubScreen() {
   }, [myLeagueRank]);
 
   const renderLeagueMember = useCallback(({ item, index }: { item: GroupMember; index: number }) => {
-    const absIndex = index + 3;
+    const absIndex = index;
     const hasXpPromotion = leagueXpPromotionMode
       && myLeagueId < LEAGUES.length - 1
       && Math.max(0, Math.floor(Number(item.points) || 0)) >= leagueXpPromotionThreshold;
@@ -1614,8 +1595,8 @@ export default function ClubScreen() {
           <View style={{ marginTop: 6, marginBottom: 2, gap: 3, display: localLeagueHydrated ? 'flex' : 'none' }}>
             <Text style={{ color: t.textPrimary, fontSize: f.h3, fontWeight: '900' }}>
               {triLang(lang, {
-                ru: 'Участники клуба', uk: 'Учасники клубу', es: 'Miembros del club', 'pt-BR': 'Membros do clube',
-                vi: 'Thành viên câu lạc bộ', id: 'Anggota klub', tr: 'Kulüp üyeleri', pl: 'Członkowie klubu',
+                ru: 'Полный рейтинг', uk: 'Повний рейтинг', es: 'Clasificación completa', 'pt-BR': 'Classificação completa',
+                vi: 'Bảng xếp hạng đầy đủ', id: 'Peringkat lengkap', tr: 'Tam sıralama', pl: 'Pełny ranking',
               })}
             </Text>
             {showEmptyParticipants ? (
@@ -1669,17 +1650,6 @@ export default function ClubScreen() {
         </>)}
       />
       </BouncyWrap>
-      {localLeagueHydrated && myLeagueRank > 0 ? (
-        <LeagueMyPositionBar
-          lang={lang}
-          palette={hubPalette}
-          myRank={myLeagueRank}
-          zone={myLeagueZone}
-          gap={myLeagueGap}
-          avatar={renderLeagueMemberAvatar((sortedGroup.find((p) => p.isMe) ?? { name: userName, points: myLeagueRoomXp, isMe: true }) as GroupMember, 40)}
-          onPress={scrollToLeagueRank}
-        />
-      ) : null}
       </Reanimated.View>
 
       </ContentWrap>
@@ -1827,7 +1797,7 @@ export default function ClubScreen() {
       />
 
       <LeagueChestOpenModal
-        visible={leagueRaceVisible && leagueChestOpenModal !== null}
+        visible={runtimeActive && leagueRaceVisible && leagueChestOpenModal !== null}
         crownName={leagueChestOpenModal?.crownName}
         isCrownWinner={leagueChestOpenModal?.isCrownWinner}
         rewards={leagueChestOpenModal?.rewards}
@@ -1836,7 +1806,7 @@ export default function ClubScreen() {
 
       {pendingLeagueResult && (
         <LeagueResultModal
-          visible={true}
+          visible={runtimeActive}
           result={pendingLeagueResult}
           onClose={() => {
             // СИНХРОННО ставим оба гарда до любого await — иначе параллельный focus-loadData

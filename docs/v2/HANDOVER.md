@@ -5529,7 +5529,6 @@ Firestore, Rules/indexes, production, API или runtime consumer изменен
 
 Следующая исполнимая задача начинается с owner/evidence-custodian gate: он явно выбирает и
 авторизует ровно один ID из `sound-discrimination`, `guided-phrase-pronunciation`,
-`prompted-translation-by-voice`, `contextual-dialogue-mission`, `speaking-club-mission`. Только после
 этого для выбранного ID выполнить **Task 5A, Step 1–4**, без UI реализации: собрать lawful first-hand
 capture ledger и raw ignored inputs; подготовить оригинальные 3–6+ frame contact sheet,
 `phraseman-wireframes.md` и distinctiveness matrix; показать их владельцу и записать current

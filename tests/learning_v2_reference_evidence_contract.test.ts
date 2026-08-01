@@ -74,7 +74,6 @@ describe('Learning V2 reference evidence gate', () => {
       'guided-phrase-pronunciation',
       'prompted-translation-by-voice',
       'contextual-dialogue-mission',
-      'speaking-club-mission',
     ]);
   });
 
@@ -94,7 +93,7 @@ describe('Learning V2 reference evidence gate', () => {
     const result = evaluateReferenceEvidencePack(rootDir);
 
     expect(result.blockers.filter((code) => code.endsWith(':current_owner_approval_missing'))).toHaveLength(
-      5,
+      4,
     );
     expect(result.ready).toBe(false);
   });
@@ -130,7 +129,7 @@ describe('Learning V2 reference evidence gate', () => {
     }
   });
 
-  it('unblocks only one fully valid mode while the other four and aggregate remain blocked', () => {
+  it('unblocks only one fully valid mode while the other three and aggregate remain blocked', () => {
     const rootDir = createEvidenceRoot();
     try {
       const readyMode = SELECTED_REFERENCE_MODE_IDS[0];
@@ -147,7 +146,7 @@ describe('Learning V2 reference evidence gate', () => {
     }
   });
 
-  it('marks every mode and the aggregate ready only when all five modes are valid', () => {
+  it('marks every mode and the aggregate ready only when all four modes are valid', () => {
     const rootDir = createEvidenceRoot();
     try {
       for (const modeId of SELECTED_REFERENCE_MODE_IDS) writeValidMode(rootDir, modeId);

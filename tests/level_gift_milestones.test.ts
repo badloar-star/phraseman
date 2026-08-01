@@ -31,6 +31,12 @@ jest.mock('../app/flashcards/marketplace', () => ({
   addOwnedPackId: jest.fn().mockResolvedValue(undefined),
 }));
 jest.mock('../app/flashcards/pack_trial_gift', () => ({ setRandomPackGiftTrial48h: jest.fn() }));
+jest.mock('../app/community_packs/functionsClient', () => ({
+  callLevelGiftReserve: jest.fn().mockRejectedValue(new Error('offline')),
+  callLevelGiftActivatePackGift: jest.fn().mockRejectedValue(new Error('offline')),
+  callFlashcardPackGiftRedeem: jest.fn().mockRejectedValue(new Error('offline')),
+}));
+jest.mock('../app/user_id_policy', () => ({ getCanonicalUserId: jest.fn().mockRejectedValue(new Error('offline')) }));
 jest.mock('../app/firebase', () => ({}));
 jest.mock('../app/config', () => ({
   ...jest.requireActual<typeof import('../app/config')>('../app/config'),
@@ -104,7 +110,7 @@ describe('level gift milestone rewards', () => {
     await expect(rollF2pLevelGiftForUser(5)).resolves.toMatchObject({ id: 'xp_bank_150' });
     await expect(rollF2pLevelGiftForUser(10)).resolves.toMatchObject({ id: 'xp_bank_300' });
     await expect(rollF2pLevelGiftForUser(15)).resolves.toMatchObject({ id: 'cosmetic_avatar_common' });
-    await expect(rollF2pLevelGiftForUser(25)).resolves.toMatchObject({ id: 'pack_voucher_48h' });
+    await expect(rollF2pLevelGiftForUser(25)).rejects.toThrow('offline');
     await expect(rollF2pLevelGiftForUser(35)).resolves.toMatchObject({ id: 'cosmetic_avatar_aura' });
     await expect(rollF2pLevelGiftForUser(40)).resolves.toMatchObject({ id: 'xp_bank_600' });
     await expect(rollF2pLevelGiftForUser(45)).resolves.toMatchObject({ id: 'cosmetic_avatar_aura' });
@@ -114,7 +120,7 @@ describe('level gift milestone rewards', () => {
     await expect(rollF2pLevelGiftForUser(55)).resolves.toMatchObject({ id: 'chain_shield_3' });
     await expect(rollF2pLevelGiftForUser(70)).resolves.toMatchObject({ id: 'xp_2x_48h' });
     await expect(rollF2pLevelGiftForUser(80)).resolves.toMatchObject({ id: 'cosmetic_avatar_aura' });
-    await expect(rollF2pLevelGiftForUser(90)).resolves.toMatchObject({ id: 'pack_voucher_48h' });
+    await expect(rollF2pLevelGiftForUser(90)).rejects.toThrow('offline');
   });
 
   it('uses a dual-modal safe replacement for choice milestones', () => {
@@ -126,14 +132,27 @@ describe('level gift milestone rewards', () => {
     expect(getMilestoneLevelGift(100, { premiumSafe: true })?.id).toBe('xp_bank_600');
   });
 
-  it('source-gates pack gift milestones for French while preserving English legacy rewards', async () => {
+  it('keeps the global pack voucher milestone available for both study targets', async () => {
     expect(getMilestoneLevelGift(25, { studyTarget: 'en' })?.id).toBe('pack_voucher_48h');
-    expect(getMilestoneLevelGift(25, { studyTarget: 'fr' })?.id).toBe('shards_10');
+    expect(getMilestoneLevelGift(25, { studyTarget: 'fr' })?.id).toBe('pack_voucher_48h');
     expect(getMilestoneLevelGift(90, { studyTarget: 'en' })?.id).toBe('pack_voucher_48h');
-    expect(getMilestoneLevelGift(90, { studyTarget: 'fr' })?.id).toBe('shards_10');
+    expect(getMilestoneLevelGift(90, { studyTarget: 'fr' })?.id).toBe('pack_voucher_48h');
 
-    await expect(rollF2pLevelGiftForUser(25, { studyTarget: 'en' })).resolves.toMatchObject({ id: 'pack_voucher_48h' });
-    await expect(rollF2pLevelGiftForUser(25, { studyTarget: 'fr' })).resolves.toMatchObject({ id: 'shards_10' });
+    await expect(rollF2pLevelGiftForUser(25, { studyTarget: 'en' })).rejects.toThrow('offline');
+    await expect(rollF2pLevelGiftForUser(25, { studyTarget: 'fr' })).rejects.toThrow('offline');
+  });
+
+  it('returns guaranteed non-pack milestones without identity or network access', async () => {
+    await expect(rollF2pLevelGiftForUser(5)).resolves.toMatchObject({ id: 'xp_bank_150' });
+    await expect(rollF2pLevelGiftForUser(15)).resolves.toMatchObject({ id: 'cosmetic_avatar_common' });
+    await expect(rollF2pLevelGiftForUser(55)).resolves.toMatchObject({ id: 'chain_shield_3' });
+  });
+
+  it('falls back to non-access rewards when an ordinary random server roll is offline', async () => {
+    const f2p = await rollF2pLevelGiftForUser(17);
+    const premium = await rollPremiumLevelGiftForUser(17);
+    expect(isFlashcardPackLevelGiftId(f2p.id)).toBe(false);
+    expect(isFlashcardPackLevelGiftId(premium.id)).toBe(false);
   });
 
   it('does not roll English flashcard pack gifts from the French premium level chest', async () => {

@@ -18,6 +18,10 @@ import {
   PERFECT_WEEK_REWARD,
 } from '../app/boons/perfect_week';
 import { getThemedShardIcon } from '../constants/levelGiftRewardIcons';
+import {
+  ruKnowledgeShardsAfterNumber,
+  ukKnowledgeShardsAfterNumber,
+} from '../constants/shard_plurals';
 import BoonChestModal from './BoonChestModal';
 
 function makeL(lang: Lang) {
@@ -69,9 +73,11 @@ export default function PerfectWeekHost() {
     'Идеальная неделя', 'Ідеальний тиждень', 'Semana perfecta', 'Semana perfeita',
     'Tuần hoàn hảo', 'Minggu sempurna', 'Kusursuz hafta', 'Idealny tydzień',
   );
+  // зачем: склоняем слово по числу (было жёсткое «жемчужин» → «1 жемчужин»).
+  // UK-строка раньше использовала русское слово вместо «перлина/перлин».
   const rewardLine = L(
-    `Награда за неделю — ${PERFECT_WEEK_REWARD.shards} жемчужин начислено`,
-    `Нагорода за тиждень — ${PERFECT_WEEK_REWARD.shards} жемчужин зараховано`,
+    `Награда за неделю — ${PERFECT_WEEK_REWARD.shards} ${ruKnowledgeShardsAfterNumber(PERFECT_WEEK_REWARD.shards)} начислено`,
+    `Нагорода за тиждень — ${PERFECT_WEEK_REWARD.shards} ${ukKnowledgeShardsAfterNumber(PERFECT_WEEK_REWARD.shards)} зараховано`,
     `Recompensa de la semana: ${PERFECT_WEEK_REWARD.shards} perlas añadidos`,
     `Recompensa da semana: ${PERFECT_WEEK_REWARD.shards} perlas creditados`,
     `Phần thưởng tuần — đã cộng ${PERFECT_WEEK_REWARD.shards} mảnh`,

@@ -252,6 +252,33 @@ describe('nameReserve — atomic uniqueness', () => {
     });
   });
 
+  it('releases the authoritative current index when the client oldName is stale', async () => {
+    const { db, store } = makeDbStub({
+      users: {
+        'stable-a': {
+          firebaseAuthUid: 'auth-a',
+          progress: {
+            user_name: 'Civi',
+            user_name_lower: 'civi',
+            nickname_changed_at: '1776999999000',
+            nickname_free_change_available: '1',
+          },
+        },
+      },
+      name_index: { civi: { uid: 'stable-a', name: 'Civi', nameLower: 'civi' } },
+    });
+
+    const res: any = await callableRun(
+      nameReserve,
+      { stableId: 'stable-a', name: 'Nova', oldName: 'Stale client name', source: 'settings' },
+      'auth-a',
+    );
+
+    expect(res.status).toBe('ok');
+    expect(store.name_index['nova']).toMatchObject({ uid: 'stable-a', name: 'Nova', nameLower: 'nova' });
+    expect(store.name_index['civi']).toBeUndefined();
+  });
+
   it('allows changing an onboarding draft name before the profile is completed', async () => {
     const { db, store } = makeDbStub({
       users: {

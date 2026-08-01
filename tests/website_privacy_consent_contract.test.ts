@@ -6,12 +6,14 @@ function read(relativePath: string): string {
 }
 
 describe('website privacy consent contract', () => {
-  it('sends marketing consent separately from the requested quiz-plan email', () => {
+  it('requests only the quiz-plan email without marketing consent UI', () => {
     const start = read('knowly-www/assets/start.js');
 
-    expect(start).toContain('marketingConsent: !!marketingConsent');
-    expect(start).toContain('id: \'qlead-marketing-consent\'');
-    expect(start).toContain('name: \'marketingConsent\'');
+    expect(start).toContain('submitLead(email);');
+    expect(start).toContain('marketingConsent: false');
+    expect(start).toContain('На этот адрес придёт только ваш персональный план.');
+    expect(start).not.toContain('qlead-marketing-consent');
+    expect(start).not.toContain('Можно присылать мне до двух писем');
   });
 
   it('does not schedule marketing nudges without explicit consent', () => {

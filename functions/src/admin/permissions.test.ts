@@ -35,7 +35,7 @@ describe('admin permission matrix', () => {
 
   it('allows owners to use every defined permission', () => {
     const permissions: AdminPermission[] = [
-      'users.read', 'users.write', 'users.auth_repair', 'users.message.write',
+      'users.read', 'users.write', 'users.delete', 'users.auth_repair', 'users.message.write',
       'money.read', 'money.manual_access.write',
       'content.read', 'content.draft.write', 'content.publish', 'application.config.write',
       'diagnostics.read', 'community.moderate', 'admin.roles.write',
@@ -57,7 +57,7 @@ describe('admin permission matrix', () => {
     // Каждый ключ = одно право из union; TS не даст ни пропустить, ни выдумать лишнее.
     const exhaustive: Record<AdminPermission, true> = {
       'users.read': true, 'users.write': true, 'users.auth_repair': true,
-      'users.message.write': true,
+      'users.delete': true, 'users.message.write': true,
       'money.read': true, 'money.manual_access.write': true,
       'content.read': true, 'content.draft.write': true, 'content.publish': true,
     'content.review': true,
@@ -90,6 +90,16 @@ describe('admin permission matrix', () => {
       expect(hasPermission(role, 'users.auth_repair')).toBe(false);
       expect(hasPermission(role, 'users.message.write')).toBe(false);
     }
+  });
+
+  it('reserves full account deletion for owner and roleless owner-compatible admins', () => {
+    expect(hasPermission('owner', 'users.delete')).toBe(true);
+    for (const role of ['admin', 'support', 'moderator', 'analyst', 'developer', 'content_editor'] as const) {
+      expect(hasPermission(role, 'users.delete')).toBe(false);
+    }
+    expect(hasClaimedPermission({ admin: true }, 'users.delete')).toBe(true);
+    expect(hasClaimedPermission({ admin: true, adminRole: 'owner' }, 'users.delete')).toBe(true);
+    expect(hasClaimedPermission({ admin: true, adminRole: 'admin' }, 'users.delete')).toBe(false);
   });
 
   it('grants the ideas workflow to owner, admin and moderator only', () => {

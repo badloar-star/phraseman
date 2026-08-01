@@ -8,8 +8,8 @@ const assetPaths = [...source.matchAll(/require\('\.\.\/(assets\/images\/weekly_
   (match) => match[1],
 );
 
-if (assetPaths.length !== 132) {
-  throw new Error(`Weekly boon asset map must contain 132 static require() paths; found ${assetPaths.length}.`);
+if (assetPaths.length !== 120) {
+  throw new Error(`Weekly boon asset map must contain 120 static require() paths; found ${assetPaths.length}.`);
 }
 
 const missing = assetPaths.filter((assetPath) => !existsSync(path.join(root, assetPath)));

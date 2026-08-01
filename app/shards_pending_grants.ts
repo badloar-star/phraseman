@@ -3,6 +3,10 @@ import { withStorageLock } from './storage_mutex';
 import { getShardsBalance, loadShardsFromCloud, getShardAchievementEligibleBalance } from './shards_system';
 import { emitAppEvent } from './events';
 import { BRAND_SHARDS_ES } from '../constants/terms_es';
+import {
+  ruKnowledgeShardsAfterNumber,
+  ukKnowledgeShardsAfterNumber,
+} from '../constants/shard_plurals';
 import { DebugLogger } from './debug-logger';
 import {
   captureAccountGeneration,
@@ -434,8 +438,9 @@ async function resumePendingShardGrantsInternal(token: AccountGenerationToken): 
     });
     emitAppEvent('action_toast', {
       type: 'success',
-      messageRu: `Готово: +${grant.expectedShards} жемчужин`,
-      messageUk: `Готово: +${grant.expectedShards} перлин`,
+      // зачем: склонение по числу — «+1 жемчужина», а не «+1 жемчужин».
+      messageRu: `Готово: +${grant.expectedShards} ${ruKnowledgeShardsAfterNumber(grant.expectedShards)}`,
+      messageUk: `Готово: +${grant.expectedShards} ${ukKnowledgeShardsAfterNumber(grant.expectedShards)}`,
       messageEs: `Listo: +${grant.expectedShards} ${BRAND_SHARDS_ES.toLowerCase()}`,
       messagePtBr: `Pronto: +${grant.expectedShards} perlas`,
       messageVi: `Xong: +${grant.expectedShards} mảnh`,

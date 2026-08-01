@@ -416,13 +416,13 @@ const styles = StyleSheet.create({
   },
   streakNumber: {
     fontSize: 100,
-    lineHeight: 94,
+    lineHeight: 108,
     fontWeight: '900',
     letterSpacing: -5,
   },
   streakNumberCompact: {
     fontSize: 72,
-    lineHeight: 68,
+    lineHeight: 78,
     letterSpacing: -3,
   },
   streakLabel: {

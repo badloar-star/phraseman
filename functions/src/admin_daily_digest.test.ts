@@ -209,7 +209,10 @@ describe('aggregateDigestFacts', () => {
       ...EMPTY_ROWS,
       community: {
         referrals: [{ status: 'qualified' }, { status: 'pending' }, { status: 'qualified' }],
-        packPurchases: [{ packId: 'p1', priceShards: 50 }, { packId: 'p2', priceShards: 30 }],
+        packPurchases: ([
+          { packId: 'p1', priceShards: 50, acquisitionSource: 'paid_community_sale' },
+          { packId: 'p2', priceShards: 30, acquisitionSource: 'weekly_boon_gift' },
+        ] as unknown) as DigestSourceRows['community']['packPurchases'],
         promoRedemptions: [{ code: 'SUMMER' }, { code: 'SUMMER' }, { code: 'WELCOME' }],
         surveyResponses: [{ uid: 'u1' }],
         packSubmissions: [{ title: 'Идиомы делового английского', submissionKind: 'new' }],
@@ -218,7 +221,7 @@ describe('aggregateDigestFacts', () => {
     expect(facts.community.referrals.total).toBe(3);
     expect(facts.community.referrals.byStatus).toEqual({ qualified: 2, pending: 1 });
     expect(facts.community.packPurchases.total).toBe(2);
-    expect(facts.community.packPurchases.shardsSpent).toBe(80);
+    expect(facts.community.packPurchases.shardsSpent).toBe(10);
     expect(facts.community.promoRedemptions.byCode).toEqual({ SUMMER: 2, WELCOME: 1 });
     expect(facts.community.surveyResponses.total).toBe(1);
     expect(facts.community.packSubmissions.titles).toContain('Идиомы делового английского');

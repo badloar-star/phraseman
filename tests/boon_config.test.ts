@@ -26,13 +26,13 @@ describe('parseWeeklyBoonsConfig — fallback to default', () => {
 describe('parseWeeklyBoonsConfig — valid config', () => {
   it('читает расписание с одиночным бонусом и ротацией', () => {
     const raw = JSON.stringify({
-      schedule: { '0': 'streak_saver', '6': ['arena_saturday', 'speaking_saturday'] },
+      schedule: { '0': 'streak_saver', '6': ['speaking_saturday', 'turbo_regen'] },
       enabled: { double_xp: false },
       modifiersEnabled: { early_bird: false },
     });
     const c = parseWeeklyBoonsConfig(raw);
     expect(c.schedule[0]).toBe('streak_saver');
-    expect(c.schedule[6]).toEqual(['arena_saturday', 'speaking_saturday']);
+    expect(c.schedule[6]).toEqual(['speaking_saturday', 'turbo_regen']);
     expect(c.enabled.double_xp).toBe(false);
     expect(c.modifiersEnabled.early_bird).toBe(false);
   });

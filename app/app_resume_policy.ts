@@ -1,5 +1,11 @@
 export const SHORT_BACKGROUND_CLOUD_REFRESH_MS = 5 * 60 * 1000;
 export const LONG_BACKGROUND_CLOUD_REFRESH_MS = 30 * 60 * 1000;
+/**
+ * Reserve the first moment after foregrounding for touch handling and the next
+ * frame. Optional housekeeping is queued after this window instead of making
+ * the just-restored screen feel frozen.
+ */
+export const FOREGROUND_INTERACTION_GRACE_MS = 900;
 export const FOREGROUND_LIGHT_REFRESH_DELAY_MS = 900;
 export const FOREGROUND_CLOUD_REFRESH_DELAY_MS = 2_500;
 
@@ -106,7 +112,7 @@ async function drainForegroundTasks(): Promise<void> {
 export function scheduleCoalescedForegroundTask(
   key: string,
   run: () => Promise<void> | void,
-  delayMs = 0,
+  delayMs = FOREGROUND_INTERACTION_GRACE_MS,
 ): ScheduledForegroundTaskHandle {
   const previous = scheduledForegroundTasks.get(key);
   if (previous) previous.cancelled = true;

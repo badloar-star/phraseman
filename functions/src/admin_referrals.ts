@@ -14,7 +14,7 @@ import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import { createAuditRecord } from './admin/audit_contract';
-import { hasPermission } from './admin/permissions';
+import { hasPermission, roleFromAdminToken } from './admin/permissions';
 import { hasAdminRole, type AdminRole } from './admin/roles';
 import {
   REFERRAL_SPIN_PRIZE_DAYS,
@@ -26,7 +26,15 @@ import {
   referralRoulettePolicyFromData,
   type ReferralRoulettePolicy,
 } from './referral_roulette_policy';
-import { REFERRAL_SPIN_LEDGER } from './referral_spin_ledger';
+import { isStorePremiumActive, parseProgressMs } from './premium_status';
+import { referralDisplayNameFromUserData } from './referral';
+import {
+  REFERRAL_SPIN_LEDGER,
+  REFERRAL_SPIN_LEDGER_VERSION,
+  ledgerRowFromData,
+  reconcileLedgerRows,
+  referralCreditId,
+} from './referral_spin_ledger';
 import { summarizeReferralAdminDrain } from './referral_admin_drain_metrics';
 import {
   referralSoftToggleReplayResult,
@@ -44,6 +52,325 @@ const DAY_MS = 24 * 60 * 60 * 1000;
 const STALE_QUALIFIED_DAYS = 30;
 /** Health-выборки ограничены сверху — дешёвые проверки, а не полный скан. */
 const HEALTH_SAMPLE_USERS = 500;
+const FIRESTORE_IN_BATCH = 30;
+const FIRESTORE_GET_ALL_BATCH = 100;
+const ADMIN_COMMAND_OPERATIONS = 'admin_command_operations';
+const ADMIN_LOG = 'admin_log';
+const REFERRAL_REVOKE_LEDGER_LIMIT = 450;
+
+type ReferralRevocationRewardMode =
+  | 'none'
+  | 'spin_credit'
+  | 'vip_retained'
+  | 'legacy_shards'
+  | 'reward_retained';
+
+export type ReferralRevocationClassification = Readonly<{
+  allowed: boolean;
+  previousStatus: string;
+  error?: 'REFERRAL_ALREADY_REVOKED' | 'REFERRAL_STATUS_NOT_REVOCABLE';
+  rewardMode: ReferralRevocationRewardMode;
+  refereeShardBonus: number;
+  referrerShardBonus: number;
+}>;
+
+const REVOCABLE_REFERRAL_STATUSES = new Set([
+  'pending',
+  'qualified',
+  'rewarded',
+  'skipped_referrer_cap',
+]);
+
+function exactStoredShardBonus(value: unknown): number {
+  return typeof value === 'number' && Number.isFinite(value) && value >= 0 ? value : 0;
+}
+
+/**
+ * Pure classification shared with contract tests. Reward precedence is
+ * deliberate: stale legacy shard fields must never turn a spin/VIP grant into
+ * a balance clawback.
+ */
+export function classifyReferralRevocationRecord(
+  row: Record<string, unknown>,
+): ReferralRevocationClassification {
+  const previousStatus = String(row.status ?? '').trim();
+  if (previousStatus === 'revoked') {
+    return {
+      allowed: false,
+      previousStatus,
+      error: 'REFERRAL_ALREADY_REVOKED',
+      rewardMode: 'none',
+      refereeShardBonus: 0,
+      referrerShardBonus: 0,
+    };
+  }
+  if (!REVOCABLE_REFERRAL_STATUSES.has(previousStatus)) {
+    return {
+      allowed: false,
+      previousStatus,
+      error: 'REFERRAL_STATUS_NOT_REVOCABLE',
+      rewardMode: 'none',
+      refereeShardBonus: 0,
+      referrerShardBonus: 0,
+    };
+  }
+
+  if (previousStatus !== 'rewarded') {
+    return {
+      allowed: true,
+      previousStatus,
+      rewardMode: 'none',
+      refereeShardBonus: 0,
+      referrerShardBonus: 0,
+    };
+  }
+
+  const rewardKind = String(row.rewardKind ?? '').trim().toLowerCase();
+  if (rewardKind === 'spin_credit') {
+    return {
+      allowed: true,
+      previousStatus,
+      rewardMode: 'spin_credit',
+      refereeShardBonus: 0,
+      referrerShardBonus: 0,
+    };
+  }
+  if (rewardKind.includes('vip')) {
+    return {
+      allowed: true,
+      previousStatus,
+      rewardMode: 'vip_retained',
+      refereeShardBonus: 0,
+      referrerShardBonus: 0,
+    };
+  }
+
+  const hasStoredShardBonus = Object.prototype.hasOwnProperty.call(row, 'refereeShardBonus')
+    || Object.prototype.hasOwnProperty.call(row, 'referrerShardBonus');
+  const rewardMode: ReferralRevocationRewardMode = rewardKind === 'legacy_shards' || hasStoredShardBonus
+    ? 'legacy_shards'
+    : 'reward_retained';
+  return {
+    allowed: true,
+    previousStatus,
+    rewardMode,
+    refereeShardBonus: rewardMode === 'legacy_shards'
+      ? exactStoredShardBonus(row.refereeShardBonus)
+      : 0,
+    referrerShardBonus: rewardMode === 'legacy_shards'
+      ? exactStoredShardBonus(row.referrerShardBonus)
+      : 0,
+  };
+}
+
+type ReferralDashboardAttribution = Readonly<{
+  id: string;
+  referrerStableId?: string;
+  refCode?: string;
+  status?: string;
+  qualifiedBy?: string;
+  createdAt?: unknown;
+  createdAtMs?: unknown;
+  qualifiedAt?: unknown;
+  qualifiedAtMs?: unknown;
+}>;
+
+export type ReferralDashboardSpinReceipt = Readonly<{
+  creditId?: string;
+  creditSource?: string;
+  prizeDays?: number;
+  prizeKind?: string;
+  prizePearls?: number;
+  createdAt?: unknown;
+  createdAtMs?: unknown;
+}>;
+
+export type ReferralDashboardRow = Readonly<{
+  referrerStableId: string;
+  referrerName: string;
+  refereeStableId: string;
+  refereeName: string;
+  refCode: string;
+  createdAtMs: number;
+  plusPurchased: boolean;
+  purchasedAtMs: number;
+  roulette:
+    | Readonly<{ state: 'not_spun' }>
+    | Readonly<{
+      state: 'spun';
+      prizeDays: number;
+      prizeKind: 'days' | 'pearls';
+      prizePearls: number;
+      createdAtMs: number;
+    }>;
+}>;
+
+export type ReferralDashboardCursor = Readonly<{
+  seconds: number;
+  nanoseconds: number;
+  attributionId: string;
+}>;
+
+const FIRESTORE_TIMESTAMP_MIN_SECONDS = -62_135_596_800;
+const FIRESTORE_TIMESTAMP_MAX_SECONDS = 253_402_300_799;
+
+function validatedReferralDashboardCursor(
+  raw: Readonly<{ seconds?: unknown; nanoseconds?: unknown; attributionId?: unknown }>,
+): ReferralDashboardCursor | null {
+  const seconds = raw.seconds;
+  const nanoseconds = raw.nanoseconds;
+  const attributionId = typeof raw.attributionId === 'string' ? raw.attributionId.trim() : '';
+  if (typeof seconds !== 'number'
+    || !Number.isSafeInteger(seconds)
+    || seconds < FIRESTORE_TIMESTAMP_MIN_SECONDS
+    || seconds > FIRESTORE_TIMESTAMP_MAX_SECONDS
+    || typeof nanoseconds !== 'number'
+    || !Number.isInteger(nanoseconds)
+    || nanoseconds < 0
+    || nanoseconds > 999_999_999
+    || !attributionId
+    || attributionId.includes('/')
+    || Buffer.byteLength(attributionId, 'utf8') > 1_500) {
+    return null;
+  }
+  return {
+    seconds,
+    nanoseconds,
+    attributionId,
+  };
+}
+
+export function referralDashboardCursorFromAttribution(
+  attribution: Readonly<{ id: string; createdAt?: unknown }>,
+): ReferralDashboardCursor | null {
+  if (!attribution.createdAt || typeof attribution.createdAt !== 'object') return null;
+  const createdAt = attribution.createdAt as { seconds?: unknown; nanoseconds?: unknown };
+  return validatedReferralDashboardCursor({
+    seconds: createdAt.seconds,
+    nanoseconds: createdAt.nanoseconds,
+    attributionId: attribution.id,
+  });
+}
+
+function referralDashboardCursorFromData(raw: unknown): ReferralDashboardCursor | null {
+  if (!raw || typeof raw !== 'object') return null;
+  return validatedReferralDashboardCursor(
+    raw as { seconds?: unknown; nanoseconds?: unknown; attributionId?: unknown },
+  );
+}
+
+function dashboardDisplayName(value: unknown): string {
+  const name = String(value ?? '').trim();
+  return name || 'Без имени';
+}
+
+function spinReceiptFromData(data: ReferralDashboardSpinReceipt): ReferralDashboardSpinReceipt {
+  return {
+    creditId: String(data.creditId ?? ''),
+    creditSource: String(data.creditSource ?? ''),
+    prizeDays: Math.max(0, Math.floor(Number(data.prizeDays) || 0)),
+    prizeKind: data.prizeKind === 'pearls' ? 'pearls' : 'days',
+    prizePearls: Math.max(0, Math.floor(Number(data.prizePearls) || 0)),
+    createdAtMs: tsToMs(data.createdAt) || tsToMs(data.createdAtMs),
+  };
+}
+
+/**
+ * Pure, read-only projection used by both the callable and its contract tests.
+ * The purchase boolean deliberately comes only from server-owned store fields.
+ */
+export function projectReferralDashboardRow(input: Readonly<{
+  attribution: ReferralDashboardAttribution;
+  refereeProgress: Record<string, unknown> | null | undefined;
+  displayNames: Readonly<Record<string, string | null | undefined>>;
+  spinReceipts: readonly ReferralDashboardSpinReceipt[];
+  nowMs: number;
+}>): ReferralDashboardRow {
+  const refereeStableId = String(input.attribution.id ?? '').trim();
+  const referrerStableId = String(input.attribution.referrerStableId ?? '').trim();
+  const plusPurchased = isStorePremiumActive(input.refereeProgress, input.nowMs);
+  const expectedCreditId = referralCreditId(refereeStableId);
+  const receipt = input.spinReceipts
+    .filter((candidate) => (
+      String(candidate.creditId ?? '') === expectedCreditId
+      && String(candidate.creditSource ?? '') === 'referral'
+    ))
+    .map(spinReceiptFromData)
+    .sort((a, b) => tsToMs(b.createdAtMs) - tsToMs(a.createdAtMs))[0];
+  const prizeKind: 'days' | 'pearls' = receipt?.prizeKind === 'pearls' ? 'pearls' : 'days';
+
+  return {
+    referrerStableId,
+    referrerName: dashboardDisplayName(input.displayNames[referrerStableId]),
+    refereeStableId,
+    refereeName: dashboardDisplayName(input.displayNames[refereeStableId]),
+    refCode: String(input.attribution.refCode ?? '').trim(),
+    createdAtMs: tsToMs(input.attribution.createdAt) || tsToMs(input.attribution.createdAtMs),
+    plusPurchased,
+    purchasedAtMs: plusPurchased
+      ? parseProgressMs(input.refereeProgress?.premium_rc_purchased_at_ms)
+        || tsToMs(input.attribution.qualifiedAt)
+        || tsToMs(input.attribution.qualifiedAtMs)
+      : 0,
+    roulette: receipt
+      ? {
+        state: 'spun',
+        prizeDays: Math.max(0, Math.floor(Number(receipt.prizeDays) || 0)),
+        prizeKind,
+        prizePearls: Math.max(0, Math.floor(Number(receipt.prizePearls) || 0)),
+        createdAtMs: tsToMs(receipt.createdAtMs),
+      }
+      : { state: 'not_spun' },
+  };
+}
+
+function chunked<T>(items: readonly T[], size: number): T[][] {
+  const chunks: T[][] = [];
+  for (let index = 0; index < items.length; index += size) {
+    chunks.push(items.slice(index, index + size));
+  }
+  return chunks;
+}
+
+async function getUsersById(
+  db: FirebaseFirestore.Firestore,
+  ids: readonly string[],
+): Promise<Map<string, FirebaseFirestore.DocumentData>> {
+  const uniqueIds = [...new Set(ids.map((id) => String(id).trim()).filter(Boolean))];
+  const result = new Map<string, FirebaseFirestore.DocumentData>();
+  for (const batch of chunked(uniqueIds, FIRESTORE_GET_ALL_BATCH)) {
+    // eslint-disable-next-line no-await-in-loop
+    const snapshots = await db.getAll(...batch.map((id) => db.collection(USERS).doc(id)));
+    for (const snapshot of snapshots) {
+      if (snapshot.exists) result.set(snapshot.id, snapshot.data() ?? {});
+    }
+  }
+  return result;
+}
+
+export function displayNameFromUser(data: FirebaseFirestore.DocumentData | undefined): string | null {
+  return referralDisplayNameFromUserData(data);
+}
+
+function prizeAggregateKey(receipt: ReferralDashboardSpinReceipt): string {
+  return receipt.prizeKind === 'pearls'
+    ? `pearls:${Math.max(0, Math.floor(Number(receipt.prizePearls) || 0))}`
+    : `days:${Math.max(0, Math.floor(Number(receipt.prizeDays) || 0))}`;
+}
+
+export function summarizeReferralDashboardPurchases(input: Readonly<{
+  attributionIds: readonly string[];
+  progressByRefereeId: ReadonlyMap<string, Record<string, unknown>>;
+  nowMs: number;
+}>): Readonly<{ totalInvited: number; plusPurchased: number }> {
+  let plusPurchased = 0;
+  for (const attributionId of input.attributionIds) {
+    if (isStorePremiumActive(input.progressByRefereeId.get(attributionId), input.nowMs)) {
+      plusPurchased += 1;
+    }
+  }
+  return { totalInvited: input.attributionIds.length, plusPurchased };
+}
 
 /** TODO(verify): сверить с реальным admin-гейтом проекта. */
 function assertAdmin(request: { auth?: { uid: string; token?: Record<string, unknown> } | null }): void {
@@ -80,6 +407,396 @@ async function countOf(query: admin.firestore.Query): Promise<number> {
 }
 
 // ── a) Список приглашений ─────────────────────────────────────────────────────
+
+type AdminReferralRevokeInput = Readonly<{
+  refereeStableId: string;
+  reason: string;
+  requestId: string;
+  idempotencyKey: string;
+}>;
+
+type ReferralRevokeOutcome =
+  | 'no_reward'
+  | 'spin_credit_cancelled'
+  | 'spin_credit_already_expired'
+  | 'spin_credit_consumed_retained'
+  | 'spin_credit_missing_retained'
+  | 'vip_retained'
+  | 'legacy_shards_reversed'
+  | 'legacy_shards_partially_reversed'
+  | 'legacy_reward_retained';
+
+const COMMAND_TOKEN_RE = /^[A-Za-z0-9._:-]{1,160}$/;
+
+function isSafeFirestoreDocumentId(value: string): boolean {
+  return Boolean(value)
+    && value !== '.'
+    && value !== '..'
+    && !value.includes('/')
+    && Buffer.byteLength(value, 'utf8') <= 1_500;
+}
+
+function normalizeAdminReferralRevokeInput(data: unknown): AdminReferralRevokeInput {
+  if (!data || typeof data !== 'object') {
+    throw new HttpsError('invalid-argument', 'referral revoke command required');
+  }
+  const row = data as Record<string, unknown>;
+  const refereeStableId = String(row.refereeStableId ?? '').trim();
+  const reason = String(row.reason ?? '').trim().slice(0, 500);
+  const requestId = String(row.requestId ?? '').trim();
+  const idempotencyKey = String(row.idempotencyKey ?? '').trim();
+  if (
+    !isSafeFirestoreDocumentId(refereeStableId)
+    || !reason
+    || !COMMAND_TOKEN_RE.test(requestId)
+    || !COMMAND_TOKEN_RE.test(idempotencyKey)
+  ) {
+    throw new HttpsError(
+      'invalid-argument',
+      'refereeStableId, reason, requestId and idempotencyKey are required',
+    );
+  }
+  return Object.freeze({ refereeStableId, reason, requestId, idempotencyKey });
+}
+
+function finiteShardBalance(data: FirebaseFirestore.DocumentData | undefined): number {
+  const value = data?.shards;
+  return typeof value === 'number' && Number.isFinite(value) ? Math.max(0, value) : 0;
+}
+
+function storedOperationResult(data: FirebaseFirestore.DocumentData | undefined): Record<string, unknown> {
+  const result = data?.result;
+  return result && typeof result === 'object' && !Array.isArray(result)
+    ? result as Record<string, unknown>
+    : {};
+}
+
+/**
+ * Protected referral revocation. The attribution and its deterministic ledger
+ * credit are the source of truth; the browser supplies only the attribution id
+ * and the mandatory operator reason/command ids.
+ */
+export const adminRevokeReferralAttribution = onCall(CALLABLE_BASE, async (request) => {
+  assertAdmin(request);
+  const role = roleFromAdminToken(request.auth?.token);
+  if (!role || !hasPermission(role, 'users.write')) {
+    throw new HttpsError('permission-denied', 'USERS_WRITE_REQUIRED');
+  }
+  const actorUid = request.auth!.uid;
+  const input = normalizeAdminReferralRevokeInput(request.data);
+  const refereeStableId = input.refereeStableId;
+  const db = admin.firestore();
+  const attributionRef = db.collection(REFERRAL_ATTRIBUTIONS).doc(refereeStableId);
+  const operationRef = db
+    .collection(ADMIN_COMMAND_OPERATIONS)
+    .doc(`referral_revoke_${input.idempotencyKey}`);
+  const auditRef = db.collection(ADMIN_LOG).doc();
+  const nowMs = Date.now();
+  const nowIso = new Date(nowMs).toISOString();
+  const requestFingerprint = JSON.stringify({
+    action: 'referral.revoke',
+    refereeStableId,
+    reason: input.reason,
+    requestId: input.requestId,
+  });
+
+  return db.runTransaction(async (tx) => {
+    const [operationSnapshot, attributionSnapshot] = await Promise.all([
+      tx.get(operationRef),
+      tx.get(attributionRef),
+    ]);
+    if (operationSnapshot.exists) {
+      const operation = operationSnapshot.data() ?? {};
+      if (
+        operation.requestFingerprint !== requestFingerprint
+        || operation.actorUid !== actorUid
+      ) {
+        throw new HttpsError('already-exists', 'idempotency key replay mismatch');
+      }
+      return { ...storedOperationResult(operation), replayed: true };
+    }
+    if (!attributionSnapshot.exists) {
+      throw new HttpsError('not-found', 'REFERRAL_ATTRIBUTION_NOT_FOUND');
+    }
+
+    const attribution = attributionSnapshot.data() ?? {};
+    const classification = classifyReferralRevocationRecord(attribution);
+    if (!classification.allowed) {
+      throw new HttpsError('failed-precondition', classification.error ?? 'REFERRAL_STATUS_NOT_REVOCABLE');
+    }
+    const previousStatus = classification.previousStatus;
+    const referrerStableId = String(attribution.referrerStableId ?? '').trim();
+    const rewardKind = String(attribution.rewardKind ?? '').trim();
+    if (
+      classification.rewardMode !== 'none'
+      && classification.rewardMode !== 'reward_retained'
+      && !isSafeFirestoreDocumentId(referrerStableId)
+    ) {
+      throw new HttpsError('failed-precondition', 'REFERRAL_REFERRER_INVALID');
+    }
+
+    const referrerRef = isSafeFirestoreDocumentId(referrerStableId)
+      ? db.collection(USERS).doc(referrerStableId)
+      : null;
+    let creditRef: FirebaseFirestore.DocumentReference | null = null;
+    let creditSnapshot: FirebaseFirestore.DocumentSnapshot | null = null;
+    let availableCreditSnapshot: FirebaseFirestore.QuerySnapshot | null = null;
+    let referrerUserSnapshot: FirebaseFirestore.DocumentSnapshot | null = null;
+    let refereeUserSnapshot: FirebaseFirestore.DocumentSnapshot | null = null;
+
+    if (classification.rewardMode === 'spin_credit' && referrerRef) {
+      creditRef = referrerRef
+        .collection(REFERRAL_SPIN_LEDGER)
+        .doc(referralCreditId(refereeStableId));
+      [creditSnapshot, availableCreditSnapshot, referrerUserSnapshot] = await Promise.all([
+        tx.get(creditRef),
+        tx.get(
+          referrerRef
+            .collection(REFERRAL_SPIN_LEDGER)
+            .where('status', '==', 'available')
+            .limit(REFERRAL_REVOKE_LEDGER_LIMIT),
+        ),
+        tx.get(referrerRef),
+      ]);
+    } else if (classification.rewardMode === 'legacy_shards') {
+      const refereeRef = db.collection(USERS).doc(refereeStableId);
+      [refereeUserSnapshot, referrerUserSnapshot] = await Promise.all([
+        tx.get(refereeRef),
+        referrerRef ? tx.get(referrerRef) : Promise.resolve(null),
+      ]);
+    }
+
+    let rewardOutcome: ReferralRevokeOutcome = 'no_reward';
+    let retainedReward = false;
+    let refereeShardsReversed = 0;
+    let referrerShardsReversed = 0;
+
+    if (classification.rewardMode === 'spin_credit') {
+      if (!creditRef || !creditSnapshot || !availableCreditSnapshot || !referrerRef) {
+        rewardOutcome = 'spin_credit_missing_retained';
+        retainedReward = true;
+      } else if (!creditSnapshot.exists) {
+        rewardOutcome = 'spin_credit_missing_retained';
+        retainedReward = true;
+      } else {
+        const targetCredit = ledgerRowFromData(
+          creditSnapshot.id,
+          creditSnapshot.data() as Record<string, unknown>,
+        );
+        if (!targetCredit) {
+          throw new HttpsError('failed-precondition', 'LEDGER_INVALID_CREDIT');
+        }
+        if (
+          targetCredit.source !== 'referral'
+          || targetCredit.ownerStableId !== referrerStableId
+          || targetCredit.attributionId !== refereeStableId
+        ) {
+          throw new HttpsError('failed-precondition', 'LEDGER_CREDIT_OWNERSHIP_MISMATCH');
+        }
+        if (targetCredit.status === 'consumed') {
+          rewardOutcome = 'spin_credit_consumed_retained';
+          retainedReward = true;
+        } else if (targetCredit.status === 'expired') {
+          rewardOutcome = 'spin_credit_already_expired';
+        } else {
+          if (availableCreditSnapshot.size >= REFERRAL_REVOKE_LEDGER_LIMIT) {
+            throw new HttpsError('failed-precondition', 'LEDGER_RECONCILIATION_LIMIT');
+          }
+          const availableRows = availableCreditSnapshot.docs.map((snapshot) => {
+            const parsed = ledgerRowFromData(
+              snapshot.id,
+              snapshot.data() as Record<string, unknown>,
+            );
+            if (!parsed) throw new HttpsError('failed-precondition', 'LEDGER_INVALID_CREDIT');
+            return parsed;
+          });
+          if (!availableRows.some((row) => row.id === targetCredit.id)) {
+            availableRows.push(targetCredit);
+          }
+          const reconciledBefore = reconcileLedgerRows(availableRows, nowMs, { softEnabled: true });
+          const reconciledAfter = reconcileLedgerRows(
+            availableRows.filter((row) => row.id !== targetCredit.id),
+            nowMs,
+            { softEnabled: true },
+          );
+          for (const expiredCreditId of reconciledBefore.expiredIds) {
+            if (expiredCreditId === targetCredit.id) continue;
+            tx.set(referrerRef.collection(REFERRAL_SPIN_LEDGER).doc(expiredCreditId), {
+              status: 'expired',
+              expiredAt: admin.firestore.FieldValue.serverTimestamp(),
+              expiredAtMs: nowMs,
+              expiryReason: 'credit_expired_during_referral_revoke_reconciliation',
+            }, { merge: true });
+          }
+          const wasAlreadyExpired = targetCredit.expiresAtMs < nowMs;
+          tx.set(creditRef, {
+            status: 'expired',
+            expiredAt: admin.firestore.FieldValue.serverTimestamp(),
+            expiredAtMs: nowMs,
+            expiryReason: wasAlreadyExpired
+              ? 'credit_expired_before_referral_revoke'
+              : 'admin_referral_revoke',
+            revokedAttributionOperationId: operationRef.id,
+          }, { merge: true });
+          tx.set(referrerRef, {
+            progress: {
+              referral_spin_credits: reconciledAfter.availableCount,
+              referral_spin_ledger_version: REFERRAL_SPIN_LEDGER_VERSION,
+            },
+            updatedAt: nowMs,
+          }, { merge: true });
+          rewardOutcome = wasAlreadyExpired
+            ? 'spin_credit_already_expired'
+            : 'spin_credit_cancelled';
+        }
+      }
+    } else if (classification.rewardMode === 'vip_retained') {
+      rewardOutcome = 'vip_retained';
+      retainedReward = true;
+    } else if (classification.rewardMode === 'reward_retained') {
+      rewardOutcome = 'legacy_reward_retained';
+      retainedReward = true;
+    } else if (classification.rewardMode === 'legacy_shards') {
+      const refereeBefore = finiteShardBalance(refereeUserSnapshot?.data());
+      const referrerBefore = finiteShardBalance(referrerUserSnapshot?.data());
+      const sameUser = referrerStableId === refereeStableId;
+      refereeShardsReversed = refereeUserSnapshot?.exists
+        ? Math.min(refereeBefore, classification.refereeShardBonus)
+        : 0;
+      referrerShardsReversed = referrerUserSnapshot?.exists
+        ? Math.min(
+          sameUser ? Math.max(0, refereeBefore - refereeShardsReversed) : referrerBefore,
+          classification.referrerShardBonus,
+        )
+        : 0;
+
+      const refereeRef = db.collection(USERS).doc(refereeStableId);
+      if (sameUser) {
+        const totalReversed = refereeShardsReversed + referrerShardsReversed;
+        if (totalReversed > 0) {
+          tx.update(refereeRef, {
+            shards: Math.max(0, refereeBefore - totalReversed),
+            updatedAt: nowMs,
+          });
+        }
+      } else {
+        if (refereeShardsReversed > 0) {
+          tx.update(refereeRef, {
+            shards: Math.max(0, refereeBefore - refereeShardsReversed),
+            updatedAt: nowMs,
+          });
+        }
+        if (referrerShardsReversed > 0 && referrerRef) {
+          tx.update(referrerRef, {
+            shards: Math.max(0, referrerBefore - referrerShardsReversed),
+            updatedAt: nowMs,
+          });
+        }
+      }
+      if (refereeShardsReversed > 0) {
+        tx.create(refereeRef.collection('shard_log').doc(`${operationRef.id}_referee`), {
+          ts: nowIso,
+          createdAt: admin.firestore.FieldValue.serverTimestamp(),
+          type: 'spend',
+          amount: -refereeShardsReversed,
+          reason: 'admin_referral_revoke',
+          balanceAfter: Math.max(0, refereeBefore - refereeShardsReversed - (sameUser ? referrerShardsReversed : 0)),
+          actorUid,
+          targetUid: refereeStableId,
+          attributionId: refereeStableId,
+          operationId: operationRef.id,
+        });
+      }
+      if (referrerShardsReversed > 0 && referrerRef) {
+        tx.create(referrerRef.collection('shard_log').doc(`${operationRef.id}_referrer`), {
+          ts: nowIso,
+          createdAt: admin.firestore.FieldValue.serverTimestamp(),
+          type: 'spend',
+          amount: -referrerShardsReversed,
+          reason: 'admin_referral_revoke',
+          balanceAfter: sameUser
+            ? Math.max(0, refereeBefore - refereeShardsReversed - referrerShardsReversed)
+            : Math.max(0, referrerBefore - referrerShardsReversed),
+          actorUid,
+          targetUid: referrerStableId,
+          attributionId: refereeStableId,
+          operationId: operationRef.id,
+        });
+      }
+      const requestedShardReversal = classification.refereeShardBonus
+        + classification.referrerShardBonus;
+      const actualShardReversal = refereeShardsReversed + referrerShardsReversed;
+      rewardOutcome = actualShardReversal < requestedShardReversal
+        ? 'legacy_shards_partially_reversed'
+        : 'legacy_shards_reversed';
+      retainedReward = actualShardReversal < requestedShardReversal;
+    }
+
+    const result = {
+      ok: true,
+      refereeStableId,
+      referrerStableId,
+      previousStatus,
+      rewardKind,
+      rewardOutcome,
+      retainedReward,
+      refereeShardsReversed,
+      referrerShardsReversed,
+      auditId: auditRef.id,
+      replayed: false,
+    };
+    const audit = createAuditRecord({
+      action: 'referral.revoke',
+      actorUid,
+      role,
+      entity: { collection: REFERRAL_ATTRIBUTIONS, id: refereeStableId },
+      reason: input.reason,
+      before: {
+        status: previousStatus,
+        rewardKind: rewardKind || null,
+        referrerStableId: referrerStableId || null,
+        refereeShardBonus: attribution.refereeShardBonus ?? null,
+        referrerShardBonus: attribution.referrerShardBonus ?? null,
+      },
+      after: {
+        status: 'revoked',
+        previousStatus,
+        rewardOutcome,
+        retainedReward,
+        refereeShardsReversed,
+        referrerShardsReversed,
+        operationId: operationRef.id,
+      },
+      rollbackReference: attributionRef.path,
+      requestId: input.requestId,
+      timestamp: nowIso,
+    });
+
+    tx.set(attributionRef, {
+      status: 'revoked',
+      previousStatus,
+      revokedReason: input.reason,
+      revokedAt: admin.firestore.FieldValue.serverTimestamp(),
+      revokedAtMs: nowMs,
+      revokedBy: actorUid,
+      revocationRequestId: input.requestId,
+      revocationOperationId: operationRef.id,
+      revocationRewardOutcome: rewardOutcome,
+    }, { merge: true });
+    tx.create(auditRef, { ...audit, operationId: operationRef.id });
+    tx.create(operationRef, {
+      action: 'referral.revoke',
+      requestFingerprint,
+      actorUid,
+      entityId: refereeStableId,
+      auditId: auditRef.id,
+      result,
+      createdAt: admin.firestore.FieldValue.serverTimestamp(),
+      createdAtMs: nowMs,
+    });
+    return result;
+  });
+});
 
 export const adminListReferrals = onCall(CALLABLE_BASE, async (request) => {
   assertAdmin(request);
@@ -150,6 +867,116 @@ export const adminListReferrals = onCall(CALLABLE_BASE, async (request) => {
     rows,
     counts,
     nextCursor: rows.length === limit ? rows[rows.length - 1]?.createdAtMs ?? null : null,
+  };
+});
+
+// ── a2) Read-only dashboard: покупка Plus + результат конкретного spin-credit ─
+
+export const adminGetReferralDashboard = onCall(CALLABLE_BASE, async (request) => {
+  assertAdmin(request);
+  const limit = clampLimit(request.data?.limit, 100);
+  const cursor = referralDashboardCursorFromData(request.data?.cursor);
+  const nowMs = Date.now();
+  const db = admin.firestore();
+
+  let pageQuery: admin.firestore.Query = db
+    .collection(REFERRAL_ATTRIBUTIONS)
+    .orderBy('createdAt', 'desc')
+    .orderBy(admin.firestore.FieldPath.documentId(), 'desc');
+  if (cursor) {
+    pageQuery = pageQuery.startAfter(
+      new admin.firestore.Timestamp(cursor.seconds, cursor.nanoseconds),
+      cursor.attributionId,
+    );
+  }
+
+  const [pageSnap, allAttributionsSnap, allSpinsSnap] = await Promise.all([
+    pageQuery.limit(limit).get(),
+    db.collection(REFERRAL_ATTRIBUTIONS).select().get(),
+    db.collectionGroup(SPINS_SUBCOLLECTION)
+      .select('creditId', 'creditSource', 'prizeDays', 'prizeKind', 'prizePearls', 'createdAt', 'createdAtMs')
+      .get(),
+  ]);
+
+  const pageAttributions: ReferralDashboardAttribution[] = pageSnap.docs.map((doc) => ({
+    id: doc.id,
+    ...(doc.data() as Omit<ReferralDashboardAttribution, 'id'>),
+  }));
+  const allAttributionIds = allAttributionsSnap.docs.map((doc) => doc.id);
+  const pageUserIds = pageAttributions.flatMap((row) => [
+    row.id,
+    String(row.referrerStableId ?? ''),
+  ]);
+  const [pageUsers, allRefereeUsers] = await Promise.all([
+    getUsersById(db, pageUserIds),
+    getUsersById(db, allAttributionIds),
+  ]);
+
+  const pageCreditIds = pageAttributions.map((row) => referralCreditId(row.id));
+  const pageSpinReceipts: ReferralDashboardSpinReceipt[] = [];
+  for (const creditIds of chunked(pageCreditIds, FIRESTORE_IN_BATCH)) {
+    // eslint-disable-next-line no-await-in-loop
+    const snap = await db.collectionGroup(SPINS_SUBCOLLECTION)
+      .where('creditId', 'in', creditIds)
+      .get();
+    for (const doc of snap.docs) {
+      pageSpinReceipts.push(doc.data() as ReferralDashboardSpinReceipt);
+    }
+  }
+
+  const displayNames: Record<string, string | null> = {};
+  for (const [id, data] of pageUsers.entries()) {
+    displayNames[id] = displayNameFromUser(data);
+  }
+  const progressByUserId = new Map<string, Record<string, unknown>>();
+  for (const [id, data] of pageUsers.entries()) {
+    progressByUserId.set(id, (data.progress ?? {}) as Record<string, unknown>);
+  }
+  const rows = pageAttributions.map((attribution) => projectReferralDashboardRow({
+    attribution,
+    refereeProgress: progressByUserId.get(attribution.id),
+    displayNames,
+    spinReceipts: pageSpinReceipts,
+    nowMs,
+  }));
+
+  const allProgressByRefereeId = new Map<string, Record<string, unknown>>();
+  for (const [id, data] of allRefereeUsers.entries()) {
+    allProgressByRefereeId.set(id, (data.progress ?? {}) as Record<string, unknown>);
+  }
+  const purchaseSummary = summarizeReferralDashboardPurchases({
+    attributionIds: allAttributionIds,
+    progressByRefereeId: allProgressByRefereeId,
+    nowMs,
+  });
+
+  const allSpinReceipts = allSpinsSnap.docs.map((doc) => (
+    spinReceiptFromData(doc.data() as ReferralDashboardSpinReceipt)
+  ));
+  const byPrize: Record<string, number> = {};
+  const spunReferralCreditIds = new Set<string>();
+  for (const receipt of allSpinReceipts) {
+    const key = prizeAggregateKey(receipt);
+    byPrize[key] = (byPrize[key] ?? 0) + 1;
+    if (receipt.creditSource === 'referral' && receipt.creditId) {
+      spunReferralCreditIds.add(String(receipt.creditId));
+    }
+  }
+
+  return {
+    ok: true,
+    rows,
+    summary: {
+      ...purchaseSummary,
+      rouletteSpun: spunReferralCreditIds.size,
+    },
+    roulette: {
+      totalSpins: allSpinReceipts.length,
+      byPrize,
+    },
+    nextCursor: rows.length === limit && pageAttributions[pageAttributions.length - 1]
+      ? referralDashboardCursorFromAttribution(pageAttributions[pageAttributions.length - 1])
+      : null,
   };
 });
 

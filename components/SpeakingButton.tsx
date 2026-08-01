@@ -51,6 +51,13 @@ export interface SpeakingButtonProps {
   variant?: 'pill' | 'footer';
   style?: StyleProp<ViewStyle>;
   onPass?: (result: { score: number; transcript: string }) => void;
+  /** Host-owned inline slot: this button remains the premium-gated hold target. */
+  inlineHold?: SpeakingInlineHoldControl;
+}
+
+export interface SpeakingInlineHoldControl {
+  onStart: () => void;
+  onEnd: () => void;
 }
 
 export function SpeakingButton({
@@ -59,6 +66,7 @@ export function SpeakingButton({
   variant = 'pill',
   style,
   onPass,
+  inlineHold,
 }: SpeakingButtonProps) {
   const router = useRouter();
   const { theme: t, themeMode } = useTheme();
@@ -76,6 +84,20 @@ export function SpeakingButton({
     setOpen(true);
   }, [isPremium, router]);
 
+  const onPressIn = useCallback(() => {
+    if (!inlineHold) return;
+    hapticTap();
+    if (!isPremium) {
+      router.push({ pathname: '/premium_modal', params: { context: 'speaking' } } as any);
+      return;
+    }
+    inlineHold.onStart();
+  }, [inlineHold, isPremium, router]);
+
+  const onPressOut = useCallback(() => {
+    if (isPremium) inlineHold?.onEnd();
+  }, [inlineHold, isPremium]);
+
   if (!cleaned) return null;
   // Remote kill-switch: ops can disable speaking app-wide (e.g. a recognizer
   // regression) without a release. Default is ON, so this only hides the entry
@@ -91,7 +113,9 @@ export function SpeakingButton({
         <Pressable
           accessibilityRole="button"
           accessibilityLabel={a11y}
-          onPress={onPress}
+          onPress={inlineHold ? undefined : onPress}
+          onPressIn={onPressIn}
+          onPressOut={onPressOut}
           hitSlop={{ top: 12, bottom: 12, left: 16, right: 16 }}
           style={[{ alignItems: 'center', justifyContent: 'center', minHeight: 44 }, style]}
         >
@@ -109,7 +133,9 @@ export function SpeakingButton({
         <Pressable
           accessibilityRole="button"
           accessibilityLabel={a11y}
-          onPress={onPress}
+          onPress={inlineHold ? undefined : onPress}
+          onPressIn={onPressIn}
+          onPressOut={onPressOut}
           hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
           style={[
             {
@@ -133,7 +159,7 @@ export function SpeakingButton({
         </Pressable>
       )}
 
-      {open && (
+      {open && !inlineHold && (
         <SpeakingPanel
           targetText={cleaned}
           lang={lang}

@@ -13,6 +13,7 @@ import { getCurrentWeekStartIso, WEEKLY_XP_KEY, WEEKLY_XP_PERIOD_START_KEY } fro
 import { getStoredStudyTarget } from './study_target';
 import { lessonPassCountKey, storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
 import { getLocalDayKey, isSameLocalOrUtcDay } from './local_date';
+import { createDisposableAdoption } from './disposable_adoption';
 
 /** Android 8+: канал с high importance; `channelId` дублируется в каждом триггере. */
 const ANDROID_NOTIF_CHANNEL_ID = 'phraseman_reminders';
@@ -2416,6 +2417,7 @@ export const schedulePhraseOfDayNotification = async (
 export const setupNotificationTapHandler = (
   router: { push: (route: any) => void; replace?: (route: any) => void }
 ): (() => void) => {
+  const lifetime = createDisposableAdoption();
   // Тап по пушу на ХОЛОДНОМ старте прилетает до монтирования Root Layout —
   // прямой router.push/replace здесь крэшил приложение классом
   // «Attempted to navigate before mounting the Root Layout» (билд 1.5.50).
@@ -2434,8 +2436,9 @@ export const setupNotificationTapHandler = (
   };
   let subscription: any = null;
   getNotifications().then(N => {
-    if (!N) return;
+    if (!N || lifetime.isDisposed()) return;
     subscription = N.addNotificationResponseReceivedListener((response: any) => {
+      if (lifetime.isDisposed()) return;
       const data = response?.notification?.request?.content?.data;
       if (!data?.type) return;
       switch (data.type) {
@@ -2476,9 +2479,10 @@ export const setupNotificationTapHandler = (
           navTabHome();
       }
     });
+    lifetime.adopt(() => subscription.remove?.());
   });
   // Вернуть функцию отписки для useEffect cleanup
-  return () => { subscription?.remove?.(); };
+  return () => { lifetime.dispose(); };
 };
 
 // ── Напоминание о конце триала (обещание таймлайна пейвола v3) ───────────────

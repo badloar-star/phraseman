@@ -7,6 +7,13 @@ import {
   type RuntimeStudyTarget,
 } from '../app/target_storage_keys';
 import type { StudyTarget } from '../app/study_target';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  withAccountTransitionLock,
+  type AccountGenerationToken,
+} from '../app/account_generation';
+import { accountScopeKey } from '../app/account_scope_key';
 
 export interface Flashcard {
   id: string;
@@ -41,14 +48,70 @@ export interface Flashcard {
 export const FLASHCARDS_KEY = 'flashcards_v1';
 
 /** In-memory list after first read or any save — avoids 50× AsyncStorage on vocabulary screen. */
-let cardsInMemoryByTarget: Partial<Record<StudyTarget, Flashcard[]>> = {};
-let loadInFlightByTarget: Partial<Record<StudyTarget, Promise<Flashcard[]>>> = {};
+let cardsInMemoryByScope = new Map<string, Flashcard[]>();
+let loadInFlightByScope = new Map<string, {
+  promise: Promise<Flashcard[]>;
+  accountToken: AccountGenerationToken;
+}>();
 
 /** All read-modify-write must run one at a time, or rapid taps drop cards (last save overwrote previous). */
-let writeQueue: Promise<unknown> = Promise.resolve();
-function withWriteLock<T>(fn: () => Promise<T>): Promise<T> {
-  const result = writeQueue.then(() => fn());
-  writeQueue = result.finally(() => {});
+let writeQueueByAccount = new Map<string, {
+  tail: Promise<unknown>;
+  accountToken: AccountGenerationToken;
+}>();
+const FLASHCARD_CACHE_MAX_SCOPES = 8;
+const FLASHCARD_PENDING_MAX_SCOPES = 8;
+
+function setBoundedCache(key: string, cards: Flashcard[]): void {
+  cardsInMemoryByScope.delete(key);
+  cardsInMemoryByScope.set(key, cards);
+  while (cardsInMemoryByScope.size > FLASHCARD_CACHE_MAX_SCOPES) {
+    const oldest = cardsInMemoryByScope.keys().next().value as string | undefined;
+    if (!oldest) break;
+    cardsInMemoryByScope.delete(oldest);
+  }
+}
+
+function accountOperationKey(token: AccountGenerationToken): string | null {
+  return token.stableId ? accountScopeKey(token) : null;
+}
+
+function isAccountOperationCurrent(token: AccountGenerationToken): boolean {
+  return isCurrentAccountGeneration(token);
+}
+
+function scopedTargetKey(token: AccountGenerationToken, target: StudyTarget): string | null {
+  const accountKey = accountOperationKey(token);
+  return accountKey ? `${accountKey}|target:${target}` : null;
+}
+
+function pruneStalePendingRegistries(): void {
+  for (const [key, entry] of loadInFlightByScope) {
+    if (!isAccountOperationCurrent(entry.accountToken)) loadInFlightByScope.delete(key);
+  }
+  for (const [key, entry] of writeQueueByAccount) {
+    if (!isAccountOperationCurrent(entry.accountToken)) writeQueueByAccount.delete(key);
+  }
+}
+
+function withWriteLock<T>(
+  token: AccountGenerationToken,
+  fn: () => Promise<T>,
+  capacityFallback: T,
+): Promise<T> {
+  const accountKey = accountOperationKey(token);
+  if (!accountKey) return Promise.resolve(capacityFallback);
+  pruneStalePendingRegistries();
+  const existing = writeQueueByAccount.get(accountKey);
+  if (!existing && writeQueueByAccount.size >= FLASHCARD_PENDING_MAX_SCOPES) {
+    return Promise.resolve(capacityFallback);
+  }
+  const previous = existing?.tail ?? Promise.resolve();
+  const result = previous.then(() => fn());
+  const tail = result.finally(() => {
+    if (writeQueueByAccount.get(accountKey)?.tail === tail) writeQueueByAccount.delete(accountKey);
+  });
+  writeQueueByAccount.set(accountKey, { tail, accountToken: token });
   return result;
 }
 
@@ -58,9 +121,9 @@ function withWriteLock<T>(fn: () => Promise<T>): Promise<T> {
  * swap the AsyncStorage mock between cases must reset them so each case reads its own fixture.
  */
 export function __resetFlashcardCacheForTests(): void {
-  cardsInMemoryByTarget = {};
-  loadInFlightByTarget = {};
-  writeQueue = Promise.resolve();
+  cardsInMemoryByScope = new Map();
+  loadInFlightByScope = new Map();
+  writeQueueByAccount = new Map();
 }
 
 function parseStored(raw: string | null): Flashcard[] {
@@ -68,7 +131,7 @@ function parseStored(raw: string | null): Flashcard[] {
   try {
     const parsed = JSON.parse(raw);
     if (!Array.isArray(parsed)) return [];
-    return parsed.map((c: Flashcard) => ({ ...c }));
+    return parsed.map((c: Flashcard) => ({ ...c, uk: c.uk || c.ru }));
   } catch {
     return [];
   }
@@ -112,16 +175,24 @@ export function repairSavedFlashcardContent(card: Flashcard): Flashcard {
   };
 }
 
-export const loadFlashcards = async (studyTarget?: RuntimeStudyTarget): Promise<Flashcard[]> => {
+async function loadFlashcardsForAccount(
+  studyTarget: RuntimeStudyTarget | undefined,
+  accountToken: AccountGenerationToken,
+): Promise<Flashcard[]> {
   const target = cacheTarget(studyTarget);
-  const cached = cardsInMemoryByTarget[target];
+  const scopeKey = scopedTargetKey(accountToken, target);
+  if (!scopeKey || !isAccountOperationCurrent(accountToken)) return [];
+  const cached = cardsInMemoryByScope.get(scopeKey);
   if (cached !== undefined) {
     return cached.map(c => ({ ...repairSavedFlashcardContent(c) }));
   }
-  if (!loadInFlightByTarget[target]) {
-    loadInFlightByTarget[target] = (async () => {
+  pruneStalePendingRegistries();
+  if (!loadInFlightByScope.has(scopeKey)) {
+    if (loadInFlightByScope.size >= FLASHCARD_PENDING_MAX_SCOPES) return [];
+    const request = (async () => {
       try {
         const raw = await AsyncStorage.getItem(flashcardsSavedKey(target));
+        if (!isAccountOperationCurrent(accountToken)) return [];
         const parsed = parseStored(raw);
         let dirty = false;
         const repaired = parsed.map(card => {
@@ -129,38 +200,71 @@ export const loadFlashcards = async (studyTarget?: RuntimeStudyTarget): Promise<
           if (fixed !== card) dirty = true;
           return fixed;
         });
-        cardsInMemoryByTarget[target] = repaired;
+        setBoundedCache(scopeKey, repaired);
         if (dirty) {
-          await AsyncStorage.setItem(flashcardsSavedKey(target), JSON.stringify(repaired));
+          if (!isAccountOperationCurrent(accountToken)) return [];
+          const committed = await withAccountTransitionLock(async () => {
+            if (!isAccountOperationCurrent(accountToken)) return false;
+            await AsyncStorage.setItem(flashcardsSavedKey(target), JSON.stringify(repaired));
+            return isAccountOperationCurrent(accountToken);
+          });
+          if (!committed) return [];
         }
-        return cardsInMemoryByTarget[target] ?? [];
+        return cardsInMemoryByScope.get(scopeKey) ?? [];
       } catch {
-        cardsInMemoryByTarget[target] = [];
-        return cardsInMemoryByTarget[target] ?? [];
+        if (!isAccountOperationCurrent(accountToken)) return [];
+        setBoundedCache(scopeKey, []);
+        return [];
       } finally {
-        delete loadInFlightByTarget[target];
+        loadInFlightByScope.delete(scopeKey);
       }
     })();
+    loadInFlightByScope.set(scopeKey, { promise: request, accountToken });
   }
-  const base = await loadInFlightByTarget[target]!;
+  const base = await loadInFlightByScope.get(scopeKey)!.promise;
+  if (!isAccountOperationCurrent(accountToken)) return [];
   return base.map(c => ({ ...repairSavedFlashcardContent(c) }));
+}
+
+export function __getFlashcardPendingRegistrySizesForTests(): { loads: number; writes: number } {
+  return { loads: loadInFlightByScope.size, writes: writeQueueByAccount.size };
+}
+
+export const loadFlashcards = async (studyTarget?: RuntimeStudyTarget): Promise<Flashcard[]> => {
+  return loadFlashcardsForAccount(studyTarget, captureAccountGeneration());
 };
 
 export const peekFlashcardsCache = (studyTarget?: RuntimeStudyTarget): Flashcard[] | null => {
   const target = cacheTarget(studyTarget);
-  const cached = cardsInMemoryByTarget[target];
+  const scopeKey = scopedTargetKey(captureAccountGeneration(), target);
+  if (!scopeKey) return null;
+  const cached = cardsInMemoryByScope.get(scopeKey);
   if (cached === undefined) return null;
   return cached.map(c => ({ ...repairSavedFlashcardContent(c) }));
 };
 
-async function persistFlashcards(cards: Flashcard[], studyTarget?: RuntimeStudyTarget): Promise<void> {
+async function persistFlashcards(
+  cards: Flashcard[],
+  studyTarget: RuntimeStudyTarget | undefined,
+  accountToken: AccountGenerationToken,
+): Promise<boolean> {
   const target = cacheTarget(studyTarget);
   const snapshot = cards.map(c => ({ ...c }));
-  cardsInMemoryByTarget[target] = snapshot;
+  if (!isAccountOperationCurrent(accountToken)) return false;
+  const scopeKey = scopedTargetKey(accountToken, target);
+  if (!scopeKey) return false;
   try {
-    await AsyncStorage.setItem(flashcardsSavedKey(target), JSON.stringify(snapshot));
+    if (!isAccountOperationCurrent(accountToken)) return false;
+    const committed = await withAccountTransitionLock(async () => {
+      if (!isAccountOperationCurrent(accountToken)) return false;
+      await AsyncStorage.setItem(flashcardsSavedKey(target), JSON.stringify(snapshot));
+      return isAccountOperationCurrent(accountToken);
+    });
+    if (!committed) return false;
+    setBoundedCache(scopeKey, snapshot);
+    return true;
   } catch {
-    // silently fail
+    return false;
   }
 }
 
@@ -168,12 +272,14 @@ export const saveFlashcards = async (
   cards: Flashcard[],
   studyTarget?: RuntimeStudyTarget,
 ): Promise<void> => {
-  return withWriteLock(() => persistFlashcards(cards, studyTarget));
+  const accountToken = captureAccountGeneration();
+  if (!isAccountOperationCurrent(accountToken)) return;
+  await withWriteLock(accountToken, () => persistFlashcards(cards, studyTarget, accountToken), false);
 };
 
 export const FREE_FLASHCARD_LIMIT = 20;
 
-export type AddFlashcardResult = 'added' | 'duplicate' | 'limit_reached';
+export type AddFlashcardResult = 'added' | 'duplicate' | 'limit_reached' | 'stale';
 
 function cacheTarget(studyTarget?: RuntimeStudyTarget): StudyTarget {
   return storageStudyTarget(studyTarget);
@@ -183,53 +289,65 @@ export const addFlashcard = async (
   card: Omit<Flashcard, 'id' | 'addedAt'>,
   studyTarget?: RuntimeStudyTarget,
 ): Promise<AddFlashcardResult> => {
-  return withWriteLock(async () => {
+  const accountToken = captureAccountGeneration();
+  if (!isAccountOperationCurrent(accountToken)) return 'stale';
+  return withWriteLock<AddFlashcardResult>(accountToken, async () => {
     const target = cacheTarget(studyTarget);
-    const cards = await loadFlashcards(target);
+    const cards = await loadFlashcardsForAccount(target, accountToken);
+    if (!isAccountOperationCurrent(accountToken)) return 'stale';
     const normalizedEn = card.en.trim().toLowerCase();
     const duplicate = cards.some(c => c.en.trim().toLowerCase() === normalizedEn);
     if (duplicate) return 'duplicate';
 
     // «Пульт»: если карточки переведены в «Фри» — лимит снят, замок не показываем.
     const isPremium = await getVerifiedPremiumStatus();
+    if (!isAccountOperationCurrent(accountToken)) return 'stale';
     if (!isPremium && !isFeatureFreeForEveryone('flashcards') && cards.length >= FREE_FLASHCARD_LIMIT) {
       return 'limit_reached';
     }
 
     const id = `${card.source}_${normalizedEn.replace(/\s+/g, '_').slice(0, 40)}_${Date.now()}`;
     const newCard: Flashcard = { ...card, id, addedAt: Date.now(), studyTarget: target };
-    await persistFlashcards([...cards, newCard], target);
-    return 'added';
-  });
+    const committed = await persistFlashcards([...cards, newCard], target, accountToken);
+    return committed ? 'added' : 'stale';
+  }, 'stale');
 };
 
 export const removeFlashcard = async (id: string, studyTarget?: RuntimeStudyTarget): Promise<void> => {
-  return withWriteLock(async () => {
+  const accountToken = captureAccountGeneration();
+  if (!isAccountOperationCurrent(accountToken)) return;
+  return withWriteLock(accountToken, async () => {
     const target = cacheTarget(studyTarget);
-    const cards = await loadFlashcards(target);
-    await persistFlashcards(cards.filter(c => c.id !== id), target);
-  });
+    const cards = await loadFlashcardsForAccount(target, accountToken);
+    if (!isAccountOperationCurrent(accountToken)) return;
+    await persistFlashcards(cards.filter(c => c.id !== id), target, accountToken);
+  }, undefined);
 };
 
 export const removeFlashcardByEnglish = async (
   en: string,
   studyTarget?: RuntimeStudyTarget,
 ): Promise<boolean> => {
-  return withWriteLock(async () => {
+  const accountToken = captureAccountGeneration();
+  if (!isAccountOperationCurrent(accountToken)) return false;
+  return withWriteLock(accountToken, async () => {
     const target = cacheTarget(studyTarget);
-    const cards = await loadFlashcards(target);
+    const cards = await loadFlashcardsForAccount(target, accountToken);
+    if (!isAccountOperationCurrent(accountToken)) return false;
     const normalizedEn = en.trim().toLowerCase();
     const card = cards.find(c => c.en.trim().toLowerCase() === normalizedEn);
     if (!card) return false;
-    await persistFlashcards(cards.filter(c => c.id !== card.id), target);
+    await persistFlashcards(cards.filter(c => c.id !== card.id), target, accountToken);
     return true;
-  });
+  }, false);
 };
 
 /** Sync — only correct after the cache is loaded. Before load, returns false. */
 export const isEnSavedInCacheSync = (en: string, studyTarget?: RuntimeStudyTarget): boolean => {
   const target = cacheTarget(studyTarget);
-  const cached = cardsInMemoryByTarget[target];
+  const scopeKey = scopedTargetKey(captureAccountGeneration(), target);
+  if (!scopeKey) return false;
+  const cached = cardsInMemoryByScope.get(scopeKey);
   if (cached === undefined) return false;
   return hasEnInCards(en, cached);
 };
@@ -239,7 +357,9 @@ export const isFlashcardSaved = async (
   studyTarget?: RuntimeStudyTarget,
 ): Promise<boolean> => {
   const target = cacheTarget(studyTarget);
-  const cached = cardsInMemoryByTarget[target];
+  const scopeKey = scopedTargetKey(captureAccountGeneration(), target);
+  if (!scopeKey) return false;
+  const cached = cardsInMemoryByScope.get(scopeKey);
   if (cached !== undefined) {
     return hasEnInCards(en, cached);
   }
@@ -248,13 +368,21 @@ export const isFlashcardSaved = async (
 };
 
 export const clearAllFlashcards = async (studyTarget?: RuntimeStudyTarget): Promise<void> => {
-  return withWriteLock(async () => {
+  const accountToken = captureAccountGeneration();
+  if (!isAccountOperationCurrent(accountToken)) return;
+  return withWriteLock(accountToken, async () => {
     const target = cacheTarget(studyTarget);
-    cardsInMemoryByTarget[target] = [];
+    if (!isAccountOperationCurrent(accountToken)) return;
+    const scopeKey = scopedTargetKey(accountToken, target);
+    if (!scopeKey) return;
+    setBoundedCache(scopeKey, []);
     try {
-      await AsyncStorage.removeItem(flashcardsSavedKey(target));
+      await withAccountTransitionLock(async () => {
+        if (!isAccountOperationCurrent(accountToken)) return;
+        await AsyncStorage.removeItem(flashcardsSavedKey(target));
+      });
     } catch {
       // fail-soft
     }
-  });
+  }, undefined);
 };

@@ -40,12 +40,11 @@ describe('lingman YouTube quality gate', () => {
     expect(source).toContain('remote_config_changed');
   });
 
-  it('marks video notifications as seen from the player path, not from catalog load', () => {
+  it('marks video notifications as seen as soon as the catalog opens', () => {
     const catalog = catalogSource();
-    const loadBody = catalog.match(/const load = useCallback[\s\S]*?\n  \}, \[\]\);/)?.[0] ?? '';
 
-    expect(loadBody).not.toContain('markLingmanYoutubeCatalogSeen');
-    expect(catalog).toContain('markLingmanYoutubeCatalogSeen(video.id)');
+    expect(catalog).toContain('markLingmanYoutubeCatalogSeen(latestVideoId)');
+    expect(catalog).toContain('unreadCount: 0');
   });
 
   it('hardens player and external YouTube navigation', () => {

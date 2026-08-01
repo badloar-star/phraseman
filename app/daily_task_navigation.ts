@@ -157,7 +157,6 @@ export async function navigateDailyTask({ lang, router, studyTarget, task }: Nav
     case 'weekend_marathon':
     case 'revision_lesson':
     case 'perfect_big_lesson':
-    case 'blitz_speed':
     case 'comeback_lesson':
       await openLessonOrFrenchGate();
       break;
@@ -220,9 +219,6 @@ export async function navigateDailyTask({ lang, router, studyTarget, task }: Nav
       break;
     case 'streak_freeze_use':
       router.push('/streak_stats' as any);
-      break;
-    case 'club_attend':
-      router.push('/club_screen' as any);
       break;
     case 'mentor_friend':
       // Как invite_friend: единый экран рефералов.

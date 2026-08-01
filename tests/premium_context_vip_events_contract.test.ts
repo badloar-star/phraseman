@@ -3,6 +3,10 @@ import path from 'path';
 
 describe('PremiumContext VIP event contract', () => {
   const source = fs.readFileSync(path.join(process.cwd(), 'components', 'PremiumContext.tsx'), 'utf8');
+  const activationGuardSource = fs.readFileSync(
+    path.join(process.cwd(), 'app', 'premium_activation_event_guard.ts'),
+    'utf8',
+  );
 
   it('updates VIP access immediately when admin activation emits vip_activated', () => {
     const start = source.indexOf("onAppEvent('vip_activated'");
@@ -47,9 +51,12 @@ describe('PremiumContext VIP event contract', () => {
     expect(start).toBeGreaterThan(-1);
     const body = source.slice(start, source.indexOf("onAppEvent('vip_activated'", start));
 
-    expect(body).toContain("AsyncStorage.multiGet(['tester_no_premium', 'tester_no_limits'])");
-    expect(body).toContain('activationNoPremium || (activationNoLimits && IS_STORE_RELEASE)');
-    expect(body.indexOf('activationNoPremium || (activationNoLimits && IS_STORE_RELEASE)'))
+    expect(activationGuardSource).toContain("AsyncStorage.multiGet(['tester_no_premium', 'tester_no_limits'])");
+    expect(activationGuardSource).toContain('noPremium || (noLimits && isStoreRelease)');
+    expect(body).toContain('readPremiumActivationDisposition(activationGuard, IS_STORE_RELEASE)');
+    expect(body).toContain("if (disposition === 'stale') return");
+    expect(body).toContain('if (!activationGuard.isCurrent()) return');
+    expect(body.indexOf('if (!activationGuard.isCurrent()) return'))
       .toBeLessThan(body.indexOf('setIsPremium(true)'));
   });
 
@@ -69,6 +76,12 @@ describe('PremiumContext VIP event contract', () => {
     expect(body).not.toContain('setAccessResolved(true)');
     expect(resetBody).toContain('setIsIntroFullAccess(false)');
     expect(body).toContain("emitAppEvent('premium_access_changed', { active: false, source: 'none' })");
+  });
+
+  it('hydrates Pro synchronously from the primed profile snapshot', () => {
+    expect(source).toContain('function snapshotProActive(): boolean');
+    expect(source).toContain("profile?.premiumPlan === 'lifetime'");
+    expect(source).toContain('const [isPro, setIsPro] = useState(snapshotProActive);');
   });
 
   it('fails closed immediately on the reusable account transition event', () => {

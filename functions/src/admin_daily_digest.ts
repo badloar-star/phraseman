@@ -37,6 +37,11 @@ const DAY_MS = 24 * 60 * 60 * 1000;
 const DIGESTS_COLLECTION = 'admin_digests';
 const DIGEST_RUNS_COLLECTION = 'admin_digest_runs';
 const DIGEST_STATE_REF = 'admin_digest_state/owner';
+const COMMUNITY_PACK_FIXED_PRICE_SHARDS = 10;
+
+export function canonicalCommunityPackPurchaseShards(purchase: { acquisitionSource?: unknown }): number {
+  return purchase.acquisitionSource === 'weekly_boon_gift' ? 0 : COMMUNITY_PACK_FIXED_PRICE_SHARDS;
+}
 
 // ── Типы сырых строк из источников ────────────────────────────────────────────
 export interface DigestSourceRows {
@@ -71,7 +76,7 @@ export interface DigestSourceRows {
     /** referral_attributions: новые привязки рефералов (+ статус). */
     referrals: Array<{ status?: string }>;
     /** community_pack_purchases: покупки UGC-паков за 💎. */
-    packPurchases: Array<{ packId?: string; priceShards?: number }>;
+    packPurchases: Array<{ packId?: string; priceShards?: number; acquisitionSource?: string }>;
     /** promo_redemptions (collectionGroup): активации промокодов. */
     promoRedemptions: Array<{ code?: string }>;
     /** vip_survey_responses: ответы на Plus-опрос. */
@@ -358,7 +363,7 @@ export function aggregateDigestFacts(rows: DigestSourceRows, windowHours = 24): 
   ].filter((l) => l.total > 0);
 
   const c = rows.community;
-  const shardsSpent = c.packPurchases.reduce((sum, p) => sum + (Number(p.priceShards) || 0), 0);
+  const shardsSpent = c.packPurchases.reduce((sum, p) => sum + canonicalCommunityPackPurchaseShards(p), 0);
   const community = {
     referrals: { total: c.referrals.length, byStatus: countBy(c.referrals, (r) => r.status) },
     packPurchases: { total: c.packPurchases.length, shardsSpent },
@@ -839,7 +844,14 @@ export async function loadDigestSources(
     byMs('support_inbox', 'receivedAtMs', (d) => ({ subject: d.data().subject as string })),
     // — Community / маркетинг (разные поля времени) —
     loadReferrals(), // referral_attributions.createdAt = Timestamp
-    byMs('community_pack_purchases', 'createdAt', (d) => ({ packId: d.data().packId as string, priceShards: d.data().priceShards as number })), // createdAt числовое
+    byMs('community_pack_purchases', 'createdAt', (d) => {
+      const purchase = d.data();
+      return {
+        packId: purchase.packId as string,
+        acquisitionSource: purchase.acquisitionSource as string,
+        priceShards: canonicalCommunityPackPurchaseShards(purchase),
+      };
+    }), // createdAt числовое
     loadPromoRedemptions(), // collectionGroup promo_redemptions.redeemedAtMs
     byMs('vip_survey_responses', 'updatedAtMs', (d) => ({ uid: (d.data().uid as string) || d.id })),
     byMs('community_pack_submissions', 'submittedAt', (d) => {

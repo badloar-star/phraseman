@@ -1,8 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<testsuites>
-  <testsuite name="Test Suite" device="iPhone 17 Pro - iOS 26.4 - 4BDF4A55-6A84-4499-BD9E-13825AB77B3D" tests="1" failures="1" time="205.0">
-    <testcase id="league_chat_send_message" name="league_chat_send_message" classname="league_chat_send_message" time="205.0" status="ERROR">
-      <failure>Assertion is false: "maestro social smoke third 111738" is visible</failure>
-    </testcase>
-  </testsuite>
-</testsuites>

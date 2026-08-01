@@ -20,7 +20,7 @@ describe('home feature visibility', () => {
     const source = read('components/LingmanVideosButton.tsx');
 
     expect(source).toContain('return { enabled: isVideoButtonEnabled() };');
-    expect(source).toContain('if (!isFocused || !enabled) return;');
+    expect(source).toContain('if (!ownerActive || !enabled) return;');
     expect(source).toContain('if (!enabled) return null;');
   });
 });

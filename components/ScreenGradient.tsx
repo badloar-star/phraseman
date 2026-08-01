@@ -105,7 +105,7 @@ const THEME_ORBS: Record<ThemeMode, OrbSpec[]> = {
   ember: [],
   aurora: [],
   volt: [],
-  // «Кенди Блу»: холодные голубые орбы на тёмной синеве.
+  // Legacy candyBlue compatibility gradient.
   candyBlue: [
     { x: W * 0.82, y: 84,       r: 205, color: '#7FA0AD', opacity: 0.14 },
     { x: W * 0.08, y: H * 0.46, r: 160, color: '#3A5A68', opacity: 0.13 },

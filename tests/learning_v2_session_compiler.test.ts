@@ -18,10 +18,20 @@ test('compiles twelve ordered sessions in three zones', () => {
     'master', 'master', 'master', 'master',
   ]);
   result.sessions.forEach((session) => {
-    expect(session.cards.length).toBeGreaterThanOrEqual(7);
-    expect(session.cards.length).toBeLessThanOrEqual(9);
-    expect(new Set(session.cards.map((card) => card.family)).size).toBeGreaterThanOrEqual(3);
-    expect(new Set(session.cards.map((card) => card.family)).size).toBeLessThanOrEqual(4);
+    expect(session.cards).toHaveLength(12);
+    expect(
+      session.cards.every((card) =>
+        [
+          'phrase_builder',
+          'listen_choose',
+          'sound_contrast',
+          'listen_build_dictation',
+          'context_gap_grammar',
+          'speed_match',
+          'scripted_repeat_compare',
+        ].includes(card.family),
+      ),
+    ).toBe(true);
   });
 });
 

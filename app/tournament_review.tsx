@@ -29,14 +29,16 @@ import {
 import { V2Card, V2Counter, V2Cta } from '../components/tournament/tournament_v2_ui';
 import { StarGlyph } from '../components/tournament/TournamentFx';
 import { TournamentAudioButton } from '../components/tournament/TournamentAudioButton';
-import { loadRoundReview, type AggregateReviewItem, type ReviewItem } from './tournament_client';
+import {
+  loadRoundReview,
+  resolveTournamentRoomIdParam,
+  type AggregateReviewItem,
+  type ReviewItem,
+  type SpeedMatchReviewPair,
+} from './tournament_client';
 
 /** Человеческие названия режимов — те же, что видит владелец в админке. */
 const MODE_LABEL: Record<string, string> = {
-  guess_phrase: 'Живая ситуация',
-  fill_gap: 'Пропущенное слово',
-  find_oddity: 'Так не говорят',
-  translate_build: 'Собери фразу',
   listen_choose: 'Выбор на слух',
   sound_contrast: 'Пары звуков',
   listen_build: 'Диктант',
@@ -49,8 +51,8 @@ export default function TournamentReviewScreen() {
   const styles = useMemo(() => makeStyles(P), [P]);
   const router = useRouter();
   const insets = useStableSafeAreaInsets();
-  const params = useLocalSearchParams<{ roomId?: string }>();
-  const roomId = typeof params.roomId === 'string' ? params.roomId : null;
+  const params = useLocalSearchParams<{ roomId?: string | string[] }>();
+  const roomId = resolveTournamentRoomIdParam(params.roomId);
 
   const [items, setItems] = useState<ReviewItem[] | null>(null);
   const [failed, setFailed] = useState(false);
@@ -67,12 +69,7 @@ export default function TournamentReviewScreen() {
   }, [roomId]);
 
   // Ошибки первыми: ради них экран и открывают. Внутри группы — по порядку игры.
-  const ordered = useMemo(() => {
-    if (!items) return [];
-    const wrong = items.filter((item) => !item.correct);
-    const right = items.filter((item) => item.correct);
-    return [...wrong, ...right];
-  }, [items]);
+  const ordered = useMemo(() => items ?? [], [items]);
 
   const correctCount = items?.filter((item) => item.correct).length ?? 0;
   const total = items?.length ?? 0;
@@ -182,12 +179,14 @@ const ReviewCard = memo(function ReviewCard({ item }: { item: ReviewItem }) {
             color={item.correct ? P.accent : P.danger}
           />
           <Text style={[styles.verdictText, { color: item.correct ? P.accent : P.danger }]}>
-            {item.correct ? 'верно' : 'мимо'}
+            {item.correct ? 'верно' : item.timedOut ? 'Не успел' : 'мимо'}
           </Text>
         </View>
       </View>
 
-      {item.aggregateItems ? (
+      {item.speedMatchPairs ? (
+        <SpeedMatchReviewPairs pairs={item.speedMatchPairs} styles={styles} P={P} />
+      ) : item.aggregateItems ? (
         <>
           {item.aggregatePrompt ? <Text style={styles.phrase}>{item.aggregatePrompt}</Text> : null}
           <AggregateReviewRows parts={item.aggregateItems} styles={styles} P={P} />
@@ -274,6 +273,10 @@ const ReviewCard = memo(function ReviewCard({ item }: { item: ReviewItem }) {
               <Text style={styles.explanationTitle}>Разбор</Text>
               <Text style={styles.explanationText}>{item.explanation.ruleNote}</Text>
               <Text style={styles.exampleText}>{item.explanation.example}</Text>
+              {!item.correct && typeof givenIndex === 'number'
+                && item.explanation.wrongOptionReasons?.[givenIndex] ? (
+                  <Text style={styles.trapText}>{item.explanation.wrongOptionReasons[givenIndex]}</Text>
+                ) : null}
               {item.correct ? (
                 <TapScale
                   onPress={() => setExpanded(false)}
@@ -323,11 +326,52 @@ const AggregateReviewRows = memo(function AggregateReviewRows({
               <View style={styles.partExplanation}>
                 {part.explanation.ruleNote ? <Text style={styles.explanationText}>{part.explanation.ruleNote}</Text> : null}
                 {part.explanation.example ? <Text style={styles.exampleText}>{part.explanation.example}</Text> : null}
+                {!part.correct && part.selectedIndex !== null
+                  && part.explanation.wrongOptionReasons?.[part.selectedIndex] ? (
+                    <Text style={styles.trapText}>{part.explanation.wrongOptionReasons[part.selectedIndex]}</Text>
+                  ) : null}
               </View>
             ) : null}
           </View>
         );
       })}
+    </View>
+  );
+});
+
+const SpeedMatchReviewPairs = memo(function SpeedMatchReviewPairs({
+  pairs, styles, P,
+}: {
+  pairs: SpeedMatchReviewPair[];
+  styles: ReturnType<typeof makeStyles>;
+  P: TournamentV2;
+}) {
+  return (
+    <View style={styles.aggregateRows}>
+      {pairs.map((pair, index) => (
+        <View key={`${pair.english}-${index}`} style={styles.aggregatePart}>
+          <Text style={styles.aggregatePrompt}>{pair.english || `Пара ${index + 1}`}</Text>
+          <AnswerRow
+            label={pair.selectedRussian === null ? 'Пропущено' : pair.correct ? 'Ваш ответ' : 'Ваш ответ — ошибка'}
+            value={pair.selectedRussian ?? '— нет ответа'}
+            tone={pair.selectedRussian === null ? 'muted' : pair.correct ? 'ok' : 'bad'}
+            styles={styles}
+            P={P}
+          />
+          {!pair.correct ? (
+            <AnswerRow label="Правильная пара" value={pair.correctRussian} tone="ok" styles={styles} P={P} />
+          ) : null}
+          {pair.explanation ? (
+            <View style={styles.partExplanation}>
+              <Text style={styles.explanationText}>{pair.explanation.ruleNote}</Text>
+              <Text style={styles.exampleText}>{pair.explanation.example}</Text>
+              {!pair.correct && pair.selectedTrapReason
+                ? <Text style={styles.trapText}>{pair.selectedTrapReason}</Text>
+                : null}
+            </View>
+          ) : null}
+        </View>
+      ))}
     </View>
   );
 });
@@ -399,6 +443,7 @@ const makeStyles = (P: TournamentV2) => StyleSheet.create({
   explanationTitle: { color: P.text, fontSize: 14, fontWeight: '900' },
   explanationText: { color: P.text, fontSize: 14, lineHeight: 20 },
   exampleText: { color: P.muted, fontSize: 13, lineHeight: 19, fontStyle: 'italic' },
+  trapText: { color: P.danger, fontSize: 13, lineHeight: 19, fontWeight: '700' },
   explanationToggle: { minHeight: 36, flexDirection: 'row', alignItems: 'center', gap: 6 },
   explanationToggleText: { color: P.accent, fontSize: 13, fontWeight: '800' },
   answerRow: {

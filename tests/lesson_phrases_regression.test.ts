@@ -86,6 +86,30 @@ describe('lesson phrases regression', () => {
     expect(phrase?.wordsEn?.map((word) => word.correct)).toEqual(['When', 'do', 'they', 'close', 'the', 'cafe']);
   });
 
+  it('uses an explicit problem/problems contrast across lesson 9 locales', () => {
+    const singular = LESSON_DATA[9].phrases.find((phrase) => phrase.id === 'lesson9_phrase_3');
+    const plural = LESSON_DATA[9].phrases.find((phrase) => phrase.id === 'lesson9_phrase_4');
+
+    expect(singular).toMatchObject({
+      english: 'Is there a problem?',
+      russian: 'Есть проблема?',
+      ukrainian: 'Є проблема?',
+      spanish: '¿Hay un problema?',
+    });
+    expect(plural).toMatchObject({
+      english: 'Are there problems?',
+      russian: 'Есть проблемы?',
+      ukrainian: 'Є проблеми?',
+      spanish: '¿Hay problemas?',
+    });
+    expect(singular).not.toHaveProperty('targetGrammarNumber');
+    expect(plural).not.toHaveProperty('targetGrammarNumber');
+    expect(singular?.words.map((word) => word.correct)).toEqual(['¿', 'Hay', 'un', 'problema', '?']);
+    expect(plural?.words.map((word) => word.correct)).toEqual(['¿', 'Hay', 'problemas', '?']);
+    expect(singular?.wordsEn?.map((word) => word.correct)).toEqual(['Is', 'there', 'a', 'problem']);
+    expect(plural?.wordsEn?.map((word) => word.correct)).toEqual(['Are', 'there', 'problems']);
+  });
+
   it('reported phrase translations stay aligned with English answers', () => {
     const lesson1Phrase29 = LESSON_DATA[1].phrases.find((phrase) => phrase.id === 'lesson1_phrase_29');
     expect(lesson1Phrase29).toMatchObject({

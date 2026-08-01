@@ -48,7 +48,6 @@ const CORRECT_SLOT_TYPES: ReadonlySet<TaskType> = new Set([
   'recall_answers',
   'recall_perfect',
   'perfect_big_lesson',
-  'blitz_speed',
 ]);
 
 /**

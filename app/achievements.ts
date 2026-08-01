@@ -6,6 +6,13 @@ import { addShardsRaw, getShardsBalance } from './shards_system';
 import { registerXP } from './xp_manager';
 import { emitAppEvent } from './events';
 import { withStorageLock } from './storage_mutex';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  withAccountTransitionLock,
+  type AccountGenerationToken,
+} from './account_generation';
+import { accountScopeKey } from './account_scope_key';
 import { writeFriendEvent } from './firestore_friend_activity';
 import { DEV_MODE, IS_STORE_RELEASE } from './config';
 import {
@@ -1811,12 +1818,32 @@ const normalizeAchievementState = (s: AchievementState): AchievementState => ({
   shardClaimed: s.unlockedAt === null ? true : (s.shardClaimed === undefined ? false : s.shardClaimed),
 });
 
+const commitAchievementStoragePairs = async (
+  pairs: readonly (readonly [string, string])[],
+  accountToken: AccountGenerationToken,
+): Promise<boolean> => withAccountTransitionLock(async () => {
+  if (!isCurrentAccountGeneration(accountToken)) return false;
+  return withStorageLock(async () => {
+    if (!isCurrentAccountGeneration(accountToken)) return false;
+    for (const [key, value] of pairs) {
+      if (!isCurrentAccountGeneration(accountToken)) return false;
+      await AsyncStorage.setItem(key, value);
+      if (!isCurrentAccountGeneration(accountToken)) return false;
+    }
+    return true;
+  });
+});
+
 const loadAchievementStatesFromKey = async (
   key: string,
   ids: Set<string> = new Set(ALL_ACHIEVEMENTS.map(a => a.id)),
+  accountToken: AccountGenerationToken,
+  persistMigrations = true,
 ): Promise<AchievementState[]> => {
   try {
+    if (!isCurrentAccountGeneration(accountToken)) return [];
     const raw = await AsyncStorage.getItem(key);
+    if (!isCurrentAccountGeneration(accountToken)) return [];
     if (raw) {
       const parsed: AchievementState[] = JSON.parse(raw);
       let normalizedDirty = false;
@@ -1839,6 +1866,8 @@ const loadAchievementStatesFromKey = async (
       }
       let shouldWrite = hadObsolete || addedNew || normalizedDirty;
       const integrity = await AsyncStorage.getItem(`${SHARD_REOPEN_INTEGRITY_KEY}:${key}`);
+      if (!isCurrentAccountGeneration(accountToken)) return [];
+      const writes: Array<readonly [string, string]> = [];
       if (integrity !== '1') {
         for (const s of next) {
           if (s.unlockedAt !== null) {
@@ -1846,17 +1875,25 @@ const loadAchievementStatesFromKey = async (
           }
         }
         shouldWrite = true;
-        await AsyncStorage.setItem(`${SHARD_REOPEN_INTEGRITY_KEY}:${key}`, '1');
+        writes.push([`${SHARD_REOPEN_INTEGRITY_KEY}:${key}`, '1']);
       }
       if (shouldWrite) {
-        await AsyncStorage.setItem(key, JSON.stringify(next));
+        writes.push([key, JSON.stringify(next)]);
+      }
+      if (persistMigrations && writes.length > 0) {
+        const committed = await commitAchievementStoragePairs(writes, accountToken);
+        if (!committed) return [];
       }
       return next;
     }
     const initial: AchievementState[] = ALL_ACHIEVEMENTS
       .filter(a => ids.has(a.id))
       .map(a => ({ id: a.id, unlockedAt: null, notified: false, shardClaimed: true }));
-    await AsyncStorage.setItem(key, JSON.stringify(initial));
+    if (!isCurrentAccountGeneration(accountToken)) return [];
+    if (persistMigrations) {
+      const committed = await commitAchievementStoragePairs([[key, JSON.stringify(initial)]], accountToken);
+      if (!committed) return [];
+    }
     return initial;
   } catch { return []; }
 };
@@ -1867,25 +1904,55 @@ const targetAchievementIds = (): Set<string> =>
 const globalAchievementIds = (): Set<string> =>
   new Set(ALL_ACHIEVEMENTS.filter(a => !isTargetAchievement(a.id)).map(a => a.id));
 
-export const loadAchievementStatesForTarget = async (
-  studyTarget?: RuntimeStudyTarget,
+const loadAchievementStatesForTargetInternal = async (
+  studyTarget: RuntimeStudyTarget | undefined,
+  accountToken: AccountGenerationToken,
+  persistMigrations: boolean,
 ): Promise<AchievementState[]> => {
   const target = storageStudyTarget(studyTarget);
   if (target === 'fr') {
     const [globalStates, targetStates] = await Promise.all([
-      loadAchievementStatesFromKey(STORAGE_KEY, globalAchievementIds()),
-      loadAchievementStatesFromKey(achievementStateKey('fr'), targetAchievementIds()),
+      loadAchievementStatesFromKey(STORAGE_KEY, globalAchievementIds(), accountToken, persistMigrations),
+      loadAchievementStatesFromKey(
+        achievementStateKey('fr'),
+        targetAchievementIds(),
+        accountToken,
+        persistMigrations,
+      ),
     ]);
+    if (!isCurrentAccountGeneration(accountToken)) return [];
     return [...globalStates, ...targetStates];
   }
-  return loadAchievementStatesFromKey(STORAGE_KEY);
+  return loadAchievementStatesFromKey(STORAGE_KEY, undefined, accountToken, persistMigrations);
 };
 
-export const loadAchievementStates = async (): Promise<AchievementState[]> => {
+export const loadAchievementStatesForTarget = async (
+  studyTarget?: RuntimeStudyTarget,
+  accountToken?: AccountGenerationToken,
+): Promise<AchievementState[]> => {
+  const operationToken = accountToken ?? captureAccountGeneration();
+  if (!operationToken.stableId || !isCurrentAccountGeneration(operationToken)) return [];
+  return enqueueAchievementOperation(
+    operationToken,
+    () => loadAchievementStatesForTargetInternal(studyTarget, operationToken, true),
+    [],
+  );
+};
+
+const loadAchievementStatesInternal = async (
+  accountToken: AccountGenerationToken,
+  persistMigrations: boolean,
+): Promise<AchievementState[]> => {
   const [legacyStates, frenchStates] = await Promise.all([
-    loadAchievementStatesFromKey(STORAGE_KEY),
-    loadAchievementStatesFromKey(achievementStateKey('fr'), targetAchievementIds()),
+    loadAchievementStatesFromKey(STORAGE_KEY, undefined, accountToken, persistMigrations),
+    loadAchievementStatesFromKey(
+      achievementStateKey('fr'),
+      targetAchievementIds(),
+      accountToken,
+      persistMigrations,
+    ),
   ]);
+  if (!isCurrentAccountGeneration(accountToken)) return [];
   const byId = new Map<string, AchievementState>();
   for (const state of legacyStates) byId.set(state.id, state);
   for (const state of frenchStates) {
@@ -1903,21 +1970,41 @@ export const loadAchievementStates = async (): Promise<AchievementState[]> => {
   return ALL_ACHIEVEMENTS.map(a => byId.get(a.id)).filter(Boolean) as AchievementState[];
 };
 
-const saveStates = async (states: AchievementState[], studyTarget?: RuntimeStudyTarget) => {
+export const loadAchievementStates = async (
+  accountToken?: AccountGenerationToken,
+): Promise<AchievementState[]> => {
+  const operationToken = accountToken ?? captureAccountGeneration();
+  if (!operationToken.stableId || !isCurrentAccountGeneration(operationToken)) return [];
+  return enqueueAchievementOperation(
+    operationToken,
+    () => loadAchievementStatesInternal(operationToken, true),
+    [],
+  );
+};
+
+const achievementStatePairs = (
+  states: AchievementState[],
+  studyTarget?: RuntimeStudyTarget,
+): Array<readonly [string, string]> => {
   const target = storageStudyTarget(studyTarget);
   const targetIds = targetAchievementIds();
   if (target === 'fr') {
-    const globalRows = states.filter(s => !targetIds.has(s.id));
-    const targetRows = states.filter(s => targetIds.has(s.id));
-    try {
-      await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(globalRows));
-      await AsyncStorage.setItem(achievementStateKey('fr'), JSON.stringify(targetRows));
-    } catch (e) {
-      if (__DEV__) console.warn('[achievements]', e);
-    }
-    return;
+    return [
+      [STORAGE_KEY, JSON.stringify(states.filter(s => !targetIds.has(s.id)))],
+      [achievementStateKey('fr'), JSON.stringify(states.filter(s => targetIds.has(s.id)))],
+    ];
   }
-  try { await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(states)); } catch (e) { if (__DEV__) console.warn('[achievements]', e); }
+  return [[STORAGE_KEY, JSON.stringify(states)]];
+};
+
+const saveStates = async (
+  states: AchievementState[],
+  studyTarget?: RuntimeStudyTarget,
+  accountToken?: AccountGenerationToken,
+): Promise<boolean> => {
+  const operationToken = accountToken ?? captureAccountGeneration();
+  if (!operationToken.stableId || !isCurrentAccountGeneration(operationToken)) return false;
+  return commitAchievementStoragePairs(achievementStatePairs(states, studyTarget), operationToken);
 };
 
 const unlockOne = (states: AchievementState[], id: string): boolean => {
@@ -1958,16 +2045,22 @@ const shiftLocalDayKey = (key: string, days: number): string => {
   return localDayKey(date);
 };
 
-const bumpStoredCounter = async (key: string, amount = 1): Promise<number> => {
+const bumpStoredCounter = async (
+  key: string,
+  amount: number,
+  accountToken: AccountGenerationToken,
+): Promise<number> => {
+  if (!isCurrentAccountGeneration(accountToken)) return 0;
   const add = Math.max(0, Math.floor(Number.isFinite(amount) ? amount : 0));
   if (add <= 0) return parseInt((await AsyncStorage.getItem(key)) ?? '0', 10) || 0;
   const cur = parseInt((await AsyncStorage.getItem(key)) ?? '0', 10) || 0;
+  if (!isCurrentAccountGeneration(accountToken)) return 0;
   const next = cur + add;
-  await AsyncStorage.setItem(key, String(next));
-  return next;
+  return await commitAchievementStoragePairs([[key, String(next)]], accountToken) ? next : 0;
 };
 
-const bumpConsecutiveDayStreak = async (key: string): Promise<number> => {
+const bumpConsecutiveDayStreak = async (key: string, accountToken: AccountGenerationToken): Promise<number> => {
+  if (!isCurrentAccountGeneration(accountToken)) return 0;
   const today = localDayKey();
   let prev: { lastDay?: string; streak?: number } = {};
   try {
@@ -1976,16 +2069,20 @@ const bumpConsecutiveDayStreak = async (key: string): Promise<number> => {
   } catch {
     prev = {};
   }
+  if (!isCurrentAccountGeneration(accountToken)) return 0;
   if (prev.lastDay === today) return Math.max(1, Math.floor(prev.streak ?? 1));
   const yesterday = shiftLocalDayKey(today, -1);
   const nextStreak = prev.lastDay === yesterday
     ? Math.max(0, Math.floor(prev.streak ?? 0)) + 1
     : 1;
-  await AsyncStorage.setItem(key, JSON.stringify({ lastDay: today, streak: nextStreak }));
-  return nextStreak;
+  return await commitAchievementStoragePairs(
+    [[key, JSON.stringify({ lastDay: today, streak: nextStreak })]],
+    accountToken,
+  ) ? nextStreak : 0;
 };
 
-const bumpConsecutiveWeekStreak = async (key: string): Promise<number> => {
+const bumpConsecutiveWeekStreak = async (key: string, accountToken: AccountGenerationToken): Promise<number> => {
+  if (!isCurrentAccountGeneration(accountToken)) return 0;
   const week = localWeekKey();
   let prev: { lastWeek?: string; streak?: number } = {};
   try {
@@ -1994,13 +2091,16 @@ const bumpConsecutiveWeekStreak = async (key: string): Promise<number> => {
   } catch {
     prev = {};
   }
+  if (!isCurrentAccountGeneration(accountToken)) return 0;
   if (prev.lastWeek === week) return Math.max(1, Math.floor(prev.streak ?? 1));
   const previousWeek = localWeekKey(new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() - 7));
   const nextStreak = prev.lastWeek === previousWeek
     ? Math.max(0, Math.floor(prev.streak ?? 0)) + 1
     : 1;
-  await AsyncStorage.setItem(key, JSON.stringify({ lastWeek: week, streak: nextStreak }));
-  return nextStreak;
+  return await commitAchievementStoragePairs(
+    [[key, JSON.stringify({ lastWeek: week, streak: nextStreak })]],
+    accountToken,
+  ) ? nextStreak : 0;
 };
 
 const readConsecutiveDayStreakValue = async (key: string): Promise<number> => {
@@ -2011,7 +2111,10 @@ const readConsecutiveDayStreakValue = async (key: string): Promise<number> => {
   } catch { return 0; }
 };
 
-const bumpMonthlyActivityDays = async (key: string): Promise<{ monthKey: string; count: number; daysInMonth: number; isLastDay: boolean }> => {
+const bumpMonthlyActivityDays = async (
+  key: string,
+  accountToken: AccountGenerationToken,
+): Promise<{ monthKey: string; count: number; daysInMonth: number; isLastDay: boolean }> => {
   const now = new Date();
   const monthKey = localMonthKey(now);
   const today = localDayKey(now);
@@ -2023,15 +2126,22 @@ const bumpMonthlyActivityDays = async (key: string): Promise<{ monthKey: string;
   } catch {
     prev = {};
   }
+  if (!isCurrentAccountGeneration(accountToken)) return { monthKey, count: 0, daysInMonth, isLastDay: false };
   const days = prev.monthKey === monthKey && Array.isArray(prev.days)
     ? prev.days.filter((x): x is string => typeof x === 'string')
     : [];
   if (!days.includes(today)) days.push(today);
-  await AsyncStorage.setItem(key, JSON.stringify({ monthKey, days }));
+  const committed = await commitAchievementStoragePairs([[key, JSON.stringify({ monthKey, days })]], accountToken);
+  if (!committed) return { monthKey, count: 0, daysInMonth, isLastDay: false };
   return { monthKey, count: days.length, daysInMonth, isLastDay: now.getDate() === daysInMonth };
 };
 
-const addStoredSetValue = async (key: string, value: string): Promise<number> => {
+const addStoredSetValue = async (
+  key: string,
+  value: string,
+  accountToken: AccountGenerationToken,
+): Promise<number> => {
+  if (!isCurrentAccountGeneration(accountToken)) return 0;
   const normalized = value.trim();
   if (!normalized) {
     try {
@@ -2049,9 +2159,10 @@ const addStoredSetValue = async (key: string, value: string): Promise<number> =>
   } catch {
     values = [];
   }
+  if (!isCurrentAccountGeneration(accountToken)) return 0;
   if (!values.includes(normalized)) {
     values.push(normalized);
-    await AsyncStorage.setItem(key, JSON.stringify(values));
+    if (!await commitAchievementStoragePairs([[key, JSON.stringify(values)]], accountToken)) return 0;
   }
   return values.length;
 };
@@ -2071,12 +2182,17 @@ const readStoredCounter = async (key: string): Promise<number> =>
 // удалены вместе с достижениями викторин — счётчики achievement_quiz_* больше
 // никто не читает и не увеличивает.
 
-const setStoredCounterAtLeast = async (key: string, value: number): Promise<number> => {
+const setStoredCounterAtLeast = async (
+  key: string,
+  value: number,
+  accountToken: AccountGenerationToken,
+): Promise<number> => {
+  if (!isCurrentAccountGeneration(accountToken)) return 0;
   const safe = Math.max(0, Math.floor(Number.isFinite(value) ? value : 0));
   const cur = await readStoredCounter(key);
+  if (!isCurrentAccountGeneration(accountToken)) return 0;
   if (safe > cur) {
-    await AsyncStorage.setItem(key, String(safe));
-    return safe;
+    return await commitAchievementStoragePairs([[key, String(safe)]], accountToken) ? safe : 0;
   }
   return cur;
 };
@@ -2091,12 +2207,17 @@ const readStoredNumberSet = async (key: string): Promise<number[]> => {
   } catch { return []; }
 };
 
-const addStoredNumberSetValue = async (key: string, value: number): Promise<number> => {
+const addStoredNumberSetValue = async (
+  key: string,
+  value: number,
+  accountToken: AccountGenerationToken,
+): Promise<number> => {
   const safe = Math.max(0, Math.floor(Number.isFinite(value) ? value : 0));
   const values = await readStoredNumberSet(key);
+  if (!isCurrentAccountGeneration(accountToken)) return 0;
   if (safe > 0 && !values.includes(safe)) {
     values.push(safe);
-    await AsyncStorage.setItem(key, JSON.stringify(values));
+    if (!await commitAchievementStoragePairs([[key, JSON.stringify(values)]], accountToken)) return 0;
   }
   return values.length;
 };
@@ -2255,31 +2376,37 @@ const unlockWeeklyXpAchievements = async (unlock: (id: string) => void): Promise
   if (best >= 10000) unlock('weekly_xp_10000');
 };
 
-const markStreakSafetyUsed = async (): Promise<void> => {
+const markStreakSafetyUsed = async (accountToken: AccountGenerationToken): Promise<void> => {
   const streak = await readStoredCounter('streak_count');
-  await AsyncStorage.setItem('achievement_streak_safety_used_v1', JSON.stringify({
+  if (!isCurrentAccountGeneration(accountToken)) return;
+  await commitAchievementStoragePairs([['achievement_streak_safety_used_v1', JSON.stringify({
     streak,
     day: localDayKey(),
-  }));
+  })]], accountToken);
 };
 
 const backfillAchievementsFromLocalState = async (
   unlock: (id: string) => void,
   force = false,
   studyTarget?: RuntimeStudyTarget,
+  accountToken?: AccountGenerationToken,
 ): Promise<void> => {
+  if (!accountToken || !isCurrentAccountGeneration(accountToken)) return;
   if (!force && (await AsyncStorage.getItem(ACHIEVEMENT_BACKFILL_KEY)) === '1') return;
+  if (!isCurrentAccountGeneration(accountToken)) return;
 
   const [trainerCorrect, legacyRecallCorrect] = await Promise.all([
     readStoredCounter(trainerAchievementCorrectCountKey(studyTarget)),
     readStoredCounter(activeRecallAchievementCorrectCountKey(studyTarget)),
   ]);
+  if (!isCurrentAccountGeneration(accountToken)) return;
   const practiceCorrect = Math.max(trainerCorrect, legacyRecallCorrect);
   if (practiceCorrect > 0) {
     await Promise.all([
-      setStoredCounterAtLeast(trainerAchievementCorrectCountKey(studyTarget), practiceCorrect),
-      setStoredCounterAtLeast(activeRecallAchievementCorrectCountKey(studyTarget), practiceCorrect),
+      setStoredCounterAtLeast(trainerAchievementCorrectCountKey(studyTarget), practiceCorrect, accountToken),
+      setStoredCounterAtLeast(activeRecallAchievementCorrectCountKey(studyTarget), practiceCorrect, accountToken),
     ]);
+    if (!isCurrentAccountGeneration(accountToken)) return;
     if (practiceCorrect >= 1) unlock('recall_first');
     if (practiceCorrect >= 50) unlock('recall_50');
     if (practiceCorrect >= 100) unlock('trainer_100_correct');
@@ -2291,8 +2418,10 @@ const backfillAchievementsFromLocalState = async (
 
   const eventTargets = achievementProgressTargetsForEvent(studyTarget);
   const savedCards = await readStoredObjectLists(eventTargets.map(flashcardsSavedKey));
+  if (!isCurrentAccountGeneration(accountToken)) return;
   if (savedCards.length > 0) {
-    await setStoredCounterAtLeast(flashcardsAchievementSavedCountKey(studyTarget), savedCards.length);
+    await setStoredCounterAtLeast(flashcardsAchievementSavedCountKey(studyTarget), savedCards.length, accountToken);
+    if (!isCurrentAccountGeneration(accountToken)) return;
     if (savedCards.length >= 25) unlock('flashcards_save_25');
     if (savedCards.length >= 50) unlock('flashcards_save_50');
     if (savedCards.length >= 100) unlock('flashcards_save_100');
@@ -2305,9 +2434,10 @@ const backfillAchievementsFromLocalState = async (
     }
     const sourceSetKey = flashcardsAchievementSourceSetKey(studyTarget);
     const storedSources = await readStoredStringList(sourceSetKey);
+    if (!isCurrentAccountGeneration(accountToken)) return;
     storedSources.forEach(source => sources.add(source));
     if (sources.size > storedSources.length) {
-      await AsyncStorage.setItem(sourceSetKey, JSON.stringify([...sources]));
+      if (!await commitAchievementStoragePairs([[sourceSetKey, JSON.stringify([...sources])]], accountToken)) return;
     }
     if (sources.size >= 4) unlock('flashcards_sources_4');
   }
@@ -2317,6 +2447,7 @@ const backfillAchievementsFromLocalState = async (
     readStoredStringLists(eventTargets.map(flashcardsMarketDevOwnedPacksKey)),
     readStoredStringLists(eventTargets.map(flashcardsCommunityOwnedPacksKey)),
   ]);
+  if (!isCurrentAccountGeneration(accountToken)) return;
   const packCount = new Set([...officialPacks, ...legacyPacks, ...communityPacks]).size;
   if (packCount >= 1) unlock('pack_purchased');
   if (packCount >= 5) unlock('pack_5_purchased');
@@ -2324,12 +2455,15 @@ const backfillAchievementsFromLocalState = async (
   if (packCount >= 25) unlock('pack_25_purchased');
 
   const lifetimeSpent = await readStoredCounter('shards_lifetime_spent_v1');
-  const achievementSpent = await setStoredCounterAtLeast('achievement_shards_spent_total', lifetimeSpent);
+  if (!isCurrentAccountGeneration(accountToken)) return;
+  const achievementSpent = await setStoredCounterAtLeast('achievement_shards_spent_total', lifetimeSpent, accountToken);
+  if (!isCurrentAccountGeneration(accountToken)) return;
   if (achievementSpent >= 100) unlock('shards_spent_100');
   if (achievementSpent >= 500) unlock('shards_spent_500');
   if (achievementSpent >= 1000) unlock('shards_spent_1000');
 
   const totalXP = await readStoredCounter('user_total_xp');
+  if (!isCurrentAccountGeneration(accountToken)) return;
   if (totalXP >= 100) unlock('xp_100');
   if (totalXP >= 250) unlock('xp_250');
   if (totalXP >= 500) unlock('xp_500');
@@ -2351,78 +2485,97 @@ const backfillAchievementsFromLocalState = async (
   if (level >= 50) unlock('level_50');
 
   await unlockWeeklyXpAchievements(unlock);
+  if (!isCurrentAccountGeneration(accountToken)) return;
   await unlockLessonPassAchievements(unlock);
+  if (!isCurrentAccountGeneration(accountToken)) return;
   if (await countPerfectLessonsInRange(29, 32) >= 4) unlock('lesson_b2_perfect');
+  if (!isCurrentAccountGeneration(accountToken)) return;
   const perfectPasses = await readPerfectLessonPassCounts();
+  if (!isCurrentAccountGeneration(accountToken)) return;
   if (perfectPasses.filter(count => count >= 2).length >= 32) unlock('lesson_all_perfect_2x');
 
   // зачем: достижения арены и викторин удалены вместе с самими фичами, поэтому
   // счётчики achievement_quiz_* / achievement_arena_win_count больше никем не
   // читаются — убраны 4 лишних обращения к AsyncStorage на каждый пересчёт.
   const comboBest = await readStoredCounter(comboAchievementCounterKey(studyTarget));
+  if (!isCurrentAccountGeneration(accountToken)) return;
   if (comboBest >= 150) unlock('combo_150');
   if (comboBest >= 250) unlock('combo_250');
   if (comboBest >= 500) unlock('combo_500');
 
   const dailyAllStreak = await readConsecutiveDayStreakValue(dailyTasksAchievementAllDoneStreakKey(studyTarget));
+  if (!isCurrentAccountGeneration(accountToken)) return;
   if (dailyAllStreak >= 3) unlock('daily_all_3');
   if (dailyAllStreak >= 7) unlock('daily_all_7');
   if (dailyAllStreak >= 14) unlock('daily_all_14');
   if (dailyAllStreak >= 30) unlock('daily_all_30');
 
   const noRerollStreak = await readConsecutiveDayStreakValue(dailyTasksAchievementNoRerollStreakKey(studyTarget));
+  if (!isCurrentAccountGeneration(accountToken)) return;
   if (noRerollStreak >= 7) unlock('daily_no_reroll_7');
   if (noRerollStreak >= 30) unlock('daily_no_reroll_30');
 
   const phraseReads = await readStoredCounter(dailyPhraseAchievementReadCountKey(studyTarget));
+  if (!isCurrentAccountGeneration(accountToken)) return;
   if (phraseReads >= 30) unlock('daily_phrase_read_30');
   const phraseSaves = await readStoredCounter(dailyPhraseAchievementSaveCountKey(studyTarget));
+  if (!isCurrentAccountGeneration(accountToken)) return;
   if (phraseSaves >= 30) unlock('daily_phrase_save_30');
   if (phraseSaves >= 100) unlock('daily_phrase_save_100');
 
   const shards = await readStoredCounter('shards_balance');
+  if (!isCurrentAccountGeneration(accountToken)) return;
   if (shards >= 100) unlock('shards_100');
   if (shards >= 250) unlock('shards_250');
   if (shards >= 500) unlock('shards_500');
   if (shards >= 1000) unlock('shards_1000');
 
   const flips = await readStoredCounter(flashcardsAchievementFlipCountKey(studyTarget));
+  if (!isCurrentAccountGeneration(accountToken)) return;
   if (flips >= 100) unlock('flashcards_flip_100');
   if (flips >= 500) unlock('flashcards_flip_500');
   if (flips >= 1000) unlock('flashcards_flip_1000');
 
   const flashViewStreak = await readConsecutiveDayStreakValue(flashcardsAchievementViewStreakKey(studyTarget));
+  if (!isCurrentAccountGeneration(accountToken)) return;
   if (flashViewStreak >= 7) unlock('flashcards_view_7_days');
   if (flashViewStreak >= 14) unlock('flashcards_view_14_days');
   if (flashViewStreak >= 30) unlock('flashcards_view_30_days');
 
   const refills = await readStoredCounter('achievement_energy_refill_count');
+  if (!isCurrentAccountGeneration(accountToken)) return;
   if (refills >= 1) unlock('energy_refill_first');
   if (refills >= 5) unlock('energy_refill_5');
   if (refills >= 10) unlock('energy_refill_10');
   if (refills >= 25) unlock('energy_refill_25');
 
   const top3 = await readStoredCounter('achievement_league_top3_count');
+  if (!isCurrentAccountGeneration(accountToken)) return;
   if (top3 >= 5) unlock('league_top3_5');
   const champion = await readStoredCounter('achievement_league_champion_count');
+  if (!isCurrentAccountGeneration(accountToken)) return;
   if (champion >= 5) unlock('league_champion_5');
   if (champion >= 10) unlock('league_champion_10');
   if (await readConsecutiveDayStreakValue('achievement_league_diamond_week_streak_v1') >= 4) unlock('league_diamond_4_weeks');
+  if (!isCurrentAccountGeneration(accountToken)) return;
 
   const gifts = await readStoredCounter('achievement_gift_sent_count');
+  if (!isCurrentAccountGeneration(accountToken)) return;
   if (gifts >= 5) unlock('social_gift_5');
   if (gifts >= 10) unlock('social_gift_10');
   if (gifts >= 25) unlock('social_gift_25');
   if (gifts >= 100) unlock('social_gift_100');
 
   const perfectSessions = await readStoredCounter(trainerAchievementPerfectSessionCountKey(studyTarget));
+  if (!isCurrentAccountGeneration(accountToken)) return;
   if (perfectSessions >= 10) unlock('trainer_perfect_10_sessions');
   if (perfectSessions >= 50) unlock('trainer_perfect_50_sessions');
 
   const shares = await readStoredCounter(shareAchievementCounterKey(studyTarget));
+  if (!isCurrentAccountGeneration(accountToken)) return;
   if (shares >= 10) unlock('share_achievement_10');
 
-  await AsyncStorage.setItem(ACHIEVEMENT_BACKFILL_KEY, '1');
+  await commitAchievementStoragePairs([[ACHIEVEMENT_BACKFILL_KEY, '1']], accountToken);
 };
 
 export type AchievementEvent =
@@ -2472,13 +2625,53 @@ export type AchievementEvent =
   | { type: 'streak_freeze_used' }
   | { type: 'wager_win_streak'; count: number };
 
-let _achievementLock: Promise<unknown> = Promise.resolve();
+const ACHIEVEMENT_QUEUE_MAX_ACCOUNTS = 8;
+const achievementQueueByAccount = new Map<string, {
+  tail: Promise<unknown>;
+  accountToken: AccountGenerationToken;
+}>();
 
-export const checkAchievements = async (event: AchievementEvent): Promise<Achievement[]> => {
-  const result = _achievementLock.then(async () => {
+function pruneStaleAchievementQueues(): void {
+  for (const [key, entry] of achievementQueueByAccount) {
+    if (!isCurrentAccountGeneration(entry.accountToken)) achievementQueueByAccount.delete(key);
+  }
+}
+
+function enqueueAchievementOperation<T>(
+  accountToken: AccountGenerationToken,
+  operation: () => Promise<T>,
+  capacityFallback: T,
+): Promise<T> {
+  const accountKey = accountToken.stableId ? accountScopeKey(accountToken) : null;
+  if (!accountKey || !isCurrentAccountGeneration(accountToken)) return Promise.resolve(capacityFallback);
+  pruneStaleAchievementQueues();
+  const existing = achievementQueueByAccount.get(accountKey);
+  if (!existing && achievementQueueByAccount.size >= ACHIEVEMENT_QUEUE_MAX_ACCOUNTS) {
+    return Promise.resolve(capacityFallback);
+  }
+  const result = (existing?.tail ?? Promise.resolve()).then(operation);
+  const tail = result.then(
+    () => undefined,
+    () => undefined,
+  ).finally(() => {
+    if (achievementQueueByAccount.get(accountKey)?.tail === tail) achievementQueueByAccount.delete(accountKey);
+  });
+  achievementQueueByAccount.set(accountKey, { tail, accountToken });
+  return result;
+}
+
+export const checkAchievements = async (
+  event: AchievementEvent,
+  accountToken?: AccountGenerationToken,
+): Promise<Achievement[]> => {
+  const operationToken = accountToken ?? captureAccountGeneration();
+  if (!operationToken.stableId || !isCurrentAccountGeneration(operationToken)) return [];
+  return enqueueAchievementOperation(operationToken, async () => {
+  const execute = async (): Promise<Achievement[]> => {
   try {
     const eventStudyTarget = 'studyTarget' in event ? event.studyTarget : undefined;
-    const states = await loadAchievementStatesForTarget(eventStudyTarget);
+    const states = await loadAchievementStatesForTargetInternal(eventStudyTarget, operationToken, true);
+    if (!isCurrentAccountGeneration(operationToken)) return [];
     const justUnlocked: Achievement[] = [];
 
     const u = (id: string) => {
@@ -2488,7 +2681,24 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
       }
     };
 
-    await backfillAchievementsFromLocalState(u, event.type === 'backfill', eventStudyTarget);
+    // зачем: владелец на новом аккаунте увидел лавину тостов. Backfill — это НЕ достижение
+    // «прямо сейчас», а сверка уже накопленного локального состояния (пройденные уроки,
+    // сохранённые карточки, счётчики тренажёра). Раньше его разблокировки шли в общий поток
+    // и вываливались тостами по 3.8с штука. Теперь помечаем их notified сразу: XP за них
+    // начисляется как обычно, на экране достижений они видны, но празднования не устраивают.
+    const backfilledIds = new Set<string>();
+    const backfillUnlock = (id: string) => {
+      const before = justUnlocked.length;
+      u(id);
+      if (justUnlocked.length > before) backfilledIds.add(id);
+    };
+    await backfillAchievementsFromLocalState(
+      backfillUnlock,
+      event.type === 'backfill',
+      eventStudyTarget,
+      operationToken,
+    );
+    if (!isCurrentAccountGeneration(operationToken)) return [];
 
     switch (event.type) {
       case 'streak': {
@@ -2510,6 +2720,7 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
           let lastSafetyStreak: number | null = null;
           try {
             const raw = await AsyncStorage.getItem('achievement_streak_safety_used_v1');
+            if (!isCurrentAccountGeneration(operationToken)) return [];
             const parsed = raw ? JSON.parse(raw) : null;
             const n = Math.floor(Number(parsed?.streak));
             if (Number.isFinite(n) && n > 0) lastSafetyStreak = n;
@@ -2519,7 +2730,7 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
           if (lastSafetyStreak === null || s - lastSafetyStreak >= 365) u('streak_clean_365');
         }
         {
-          const month = await bumpMonthlyActivityDays('achievement_perfect_month_days_v1');
+          const month = await bumpMonthlyActivityDays('achievement_perfect_month_days_v1', operationToken);
           if (month.isLastDay && month.count >= month.daysInMonth) u('perfect_month');
         }
         break;
@@ -2544,11 +2755,14 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
         if (xp >= 1000000) u('xp_1000000');
         if (xp >= 2000000) u('xp_2000000');
         await unlockWeeklyXpAchievements(u);
+        if (!isCurrentAccountGeneration(operationToken)) return [];
         break;
       }
       case 'lesson_complete': {
         const storedLessonCount = await countCompletedLessonsAcrossAchievementTargets();
+        if (!isCurrentAccountGeneration(operationToken)) return [];
         const storedPerfectCount = await countPerfectLessonsInRange(1, 32);
+        if (!isCurrentAccountGeneration(operationToken)) return [];
         const c = Math.max(event.lessonCount, storedLessonCount);
         const perfectCount = Math.max(event.perfectCount ?? 0, storedPerfectCount);
         if (c >= 1)  u('lesson_1');
@@ -2566,19 +2780,22 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
         }
         if (perfectCount >= 10) u('lesson_perfect10');
         if (await countPerfectLessonsInRange(29, 32) >= 4) u('lesson_b2_perfect');
+        if (!isCurrentAccountGeneration(operationToken)) return [];
         if (event.lessonId && event.lessonId >= 1 && event.lessonId <= 32) {
           const dayKey = achievementLessonMarathonDayKey(localDayKey(), event.studyTarget);
-          const completedToday = await addStoredSetValue(dayKey, String(Math.floor(event.lessonId)));
+          const completedToday = await addStoredSetValue(dayKey, String(Math.floor(event.lessonId)), operationToken);
           if (completedToday >= 10) u('lesson_marathon_day');
         }
         await unlockLessonPassAchievements(u);
+        if (!isCurrentAccountGeneration(operationToken)) return [];
         break;
       }
       case 'lesson_perfect_pass': {
         const lessonId = Math.floor(event.lessonId);
         if (lessonId >= 1 && lessonId <= 32) {
-          await addStoredNumberSetValue(achievementLessonPerfectPassesKey(lessonId, event.studyTarget), event.passCount);
+          await addStoredNumberSetValue(achievementLessonPerfectPassesKey(lessonId, event.studyTarget), event.passCount, operationToken);
           const perfectPasses = await readPerfectLessonPassCounts();
+          if (!isCurrentAccountGeneration(operationToken)) return [];
           if (perfectPasses.filter(count => count >= 2).length >= 32) u('lesson_all_perfect_2x');
         }
         break;
@@ -2592,7 +2809,7 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
         break;
       }
       case 'combo': {
-        await setStoredCounterAtLeast(comboAchievementCounterKey(event.studyTarget), event.count);
+        await setStoredCounterAtLeast(comboAchievementCounterKey(event.studyTarget), event.count, operationToken);
         if (event.count >= 3)  u('combo_3');
         if (event.count >= 10) u('combo_10');
         if (event.count >= 20) u('combo_20');
@@ -2607,14 +2824,14 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
         u('daily_task_first');
         if (event.allDone) {
           u('all_daily');
-          const streak = await bumpConsecutiveDayStreak(dailyTasksAchievementAllDoneStreakKey(event.studyTarget));
+          const streak = await bumpConsecutiveDayStreak(dailyTasksAchievementAllDoneStreakKey(event.studyTarget), operationToken);
           if (streak >= 3) u('daily_all_3');
           if (streak >= 7) u('daily_all_7');
           if (streak >= 14) u('daily_all_14');
           if (streak >= 30) u('daily_all_30');
           if (event.noReroll) {
             u('daily_no_reroll');
-            const noRerollStreak = await bumpConsecutiveDayStreak(dailyTasksAchievementNoRerollStreakKey(event.studyTarget));
+            const noRerollStreak = await bumpConsecutiveDayStreak(dailyTasksAchievementNoRerollStreakKey(event.studyTarget), operationToken);
             if (noRerollStreak >= 7) u('daily_no_reroll_7');
             if (noRerollStreak >= 30) u('daily_no_reroll_30');
           }
@@ -2638,14 +2855,14 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
         // Раньше счётчик 3/10 висел на мёртвом событии arena_wager_win и достижения
         // были недостижимы — теперь копим на живом событии, ключ один.
         u('wager_win');
-        const wagerTotal = await bumpStoredCounter(WAGER_WIN_COUNT_KEY);
+        const wagerTotal = await bumpStoredCounter(WAGER_WIN_COUNT_KEY, 1, operationToken);
         if (wagerTotal >= 3)  u('wager_win_3');
         if (wagerTotal >= 10) u('wager_win_10');
         break;
       }
       case 'personal_best': u('personal_best'); break;
       case 'streak_repair':
-        await markStreakSafetyUsed();
+        await markStreakSafetyUsed(operationToken);
         u('streak_repair');
         break;
       case 'perfect_week':  u('perfect_week');  break;
@@ -2654,12 +2871,12 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
         const h = new Date().getHours();
         if (h >= 23 || h < 5) {
           u('night_owl');
-          const streak = await bumpConsecutiveDayStreak('achievement_night_xp_streak_v1');
+          const streak = await bumpConsecutiveDayStreak('achievement_night_xp_streak_v1', operationToken);
           if (streak >= 7) u('night_week');
         }
         if (h >= 5 && h < 7) {
           u('early_bird');
-          const streak = await bumpConsecutiveDayStreak('achievement_early_xp_streak_v1');
+          const streak = await bumpConsecutiveDayStreak('achievement_early_xp_streak_v1', operationToken);
           if (streak >= 7) u('early_week');
         }
         break;
@@ -2671,7 +2888,7 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
         u('exam_first');
         if (event.pct >= 90) {
           u('exam_ace');
-          const aces = await bumpStoredCounter('achievement_exam_ace_count');
+          const aces = await bumpStoredCounter('achievement_exam_ace_count', 1, operationToken);
           if (aces >= 5) u('exam_ace_5');
           if (aces >= 10) u('exam_ace_10');
         }
@@ -2679,19 +2896,19 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
       }
       case 'flashcards_session': u('flashcards_session'); break;
       case 'flashcard_saved': {
-        const saved = await bumpStoredCounter(flashcardsAchievementSavedCountKey(event.studyTarget), event.count ?? 1);
+        const saved = await bumpStoredCounter(flashcardsAchievementSavedCountKey(event.studyTarget), event.count ?? 1, operationToken);
         if (saved >= 25) u('flashcards_save_25');
         if (saved >= 50) u('flashcards_save_50');
         if (saved >= 100) u('flashcards_save_100');
         if (saved >= 250) u('flashcards_save_250');
         if (event.source) {
-          const sources = await addStoredSetValue(flashcardsAchievementSourceSetKey(event.studyTarget), event.source);
+          const sources = await addStoredSetValue(flashcardsAchievementSourceSetKey(event.studyTarget), event.source, operationToken);
           if (sources >= 4) u('flashcards_sources_4');
         }
         break;
       }
       case 'flashcard_flipped': {
-        const flips = await bumpStoredCounter(flashcardsAchievementFlipCountKey(event.studyTarget), event.count ?? 1);
+        const flips = await bumpStoredCounter(flashcardsAchievementFlipCountKey(event.studyTarget), event.count ?? 1, operationToken);
         if (flips >= 100) u('flashcards_flip_100');
         if (flips >= 500) u('flashcards_flip_500');
         if (flips >= 1000) u('flashcards_flip_1000');
@@ -2700,7 +2917,7 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
       case 'flashcard_viewed': {
         const count = Math.max(0, Math.floor(event.count ?? 1));
         if (count > 0) {
-          const streak = await bumpConsecutiveDayStreak(flashcardsAchievementViewStreakKey(event.studyTarget));
+          const streak = await bumpConsecutiveDayStreak(flashcardsAchievementViewStreakKey(event.studyTarget), operationToken);
           if (streak >= 7) u('flashcards_view_7_days');
           if (streak >= 14) u('flashcards_view_14_days');
           if (streak >= 30) u('flashcards_view_30_days');
@@ -2710,12 +2927,12 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
       case 'daily_phrase': {
         if (event.action === 'read') {
           u('daily_phrase_first');
-          const reads = await bumpStoredCounter(dailyPhraseAchievementReadCountKey(event.studyTarget));
+          const reads = await bumpStoredCounter(dailyPhraseAchievementReadCountKey(event.studyTarget), 1, operationToken);
           if (reads >= 30) u('daily_phrase_read_30');
         }
         if (event.action === 'save') {
           u('daily_phrase_save');
-          const saves = await bumpStoredCounter(dailyPhraseAchievementSaveCountKey(event.studyTarget));
+          const saves = await bumpStoredCounter(dailyPhraseAchievementSaveCountKey(event.studyTarget), 1, operationToken);
           if (saves >= 30) u('daily_phrase_save_30');
           if (saves >= 100) u('daily_phrase_save_100');
         }
@@ -2724,9 +2941,8 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
       case 'active_recall': {
         const key = activeRecallAchievementCorrectCountKey(event.studyTarget);
         const add = Math.max(1, Math.floor(event.correct ?? 1));
-        const current = parseInt((await AsyncStorage.getItem(key)) ?? '0', 10) || 0;
-        const next = current + add;
-        await AsyncStorage.setItem(key, String(next));
+        const next = await bumpStoredCounter(key, add, operationToken);
+        if (!isCurrentAccountGeneration(operationToken)) return [];
         if (next >= 1) u('recall_first');
         if (next >= 50) u('recall_50');
         break;
@@ -2745,14 +2961,14 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
         break;
       }
       case 'shards_spent': {
-        const spent = await bumpStoredCounter('achievement_shards_spent_total', event.amount);
+        const spent = await bumpStoredCounter('achievement_shards_spent_total', event.amount, operationToken);
         if (spent >= 100) u('shards_spent_100');
         if (spent >= 500) u('shards_spent_500');
         if (spent >= 1000) u('shards_spent_1000');
         break;
       }
       case 'energy_refill': {
-        const refills = await bumpStoredCounter('achievement_energy_refill_count');
+        const refills = await bumpStoredCounter('achievement_energy_refill_count', 1, operationToken);
         if (refills >= 1) u('energy_refill_first');
         if (refills >= 5) u('energy_refill_5');
         if (refills >= 10) u('energy_refill_10');
@@ -2765,25 +2981,25 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
         if (total >= 2) u('league_result_first');
         if (total >= 3 && rank <= 3) {
           u('league_top3');
-          const top3 = await bumpStoredCounter('achievement_league_top3_count');
+          const top3 = await bumpStoredCounter('achievement_league_top3_count', 1, operationToken);
           if (top3 >= 5) u('league_top3_5');
         }
         if (total >= 2 && rank === 1) {
           u('league_champion');
-          const champion = await bumpStoredCounter('achievement_league_champion_count');
+          const champion = await bumpStoredCounter('achievement_league_champion_count', 1, operationToken);
           if (champion >= 5) u('league_champion_5');
           if (champion >= 10) u('league_champion_10');
         }
         if (event.promoted) u('league_promoted');
         if ((event.newLeagueId ?? 0) >= 8) {
           u('league_diamond');
-          const diamondStreak = await bumpConsecutiveWeekStreak('achievement_league_diamond_week_streak_v1');
+          const diamondStreak = await bumpConsecutiveWeekStreak('achievement_league_diamond_week_streak_v1', operationToken);
           if (diamondStreak >= 4) u('league_diamond_4_weeks');
         }
         break;
       }
       case 'league_boost': {
-        const boosts = await bumpStoredCounter('achievement_league_boost_count');
+        const boosts = await bumpStoredCounter('achievement_league_boost_count', 1, operationToken);
         if (boosts >= 1) u('league_boost_first');
         if (boosts >= 5) u('league_boost_5');
         if (event.multiplier >= 3) u('league_boost_x3');
@@ -2800,6 +3016,7 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
           if (allDiamonds) u('gem_all_complete');
         }
         await unlockLessonPassAchievements(u);
+        if (!isCurrentAccountGeneration(operationToken)) return [];
         break;
       }
 
@@ -2815,9 +3032,8 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
       }
       case 'gift_sent': {
         const giftKey = 'achievement_gift_sent_count';
-        const cur = parseInt((await AsyncStorage.getItem(giftKey)) ?? '0', 10) || 0;
-        const next = cur + 1;
-        await AsyncStorage.setItem(giftKey, String(next));
+        const next = await bumpStoredCounter(giftKey, 1, operationToken);
+        if (!isCurrentAccountGeneration(operationToken)) return [];
         if (next >= 1) u('social_gift_send');
         if (next >= 5) u('social_gift_5');
         if (next >= 10) u('social_gift_10');
@@ -2840,11 +3056,11 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
       }
       case 'trainer_correct': {
         const trainerKey = trainerAchievementCorrectCountKey(event.studyTarget);
-        const cur = parseInt((await AsyncStorage.getItem(trainerKey)) ?? '0', 10) || 0;
         const add = Math.max(1, Math.floor(event.correct));
-        const next = cur + add;
-        await AsyncStorage.setItem(trainerKey, String(next));
-        await setStoredCounterAtLeast(activeRecallAchievementCorrectCountKey(event.studyTarget), next);
+        const next = await bumpStoredCounter(trainerKey, add, operationToken);
+        if (!isCurrentAccountGeneration(operationToken)) return [];
+        await setStoredCounterAtLeast(activeRecallAchievementCorrectCountKey(event.studyTarget), next, operationToken);
+        if (!isCurrentAccountGeneration(operationToken)) return [];
         if (next >= 1)   u('recall_first');
         if (next >= 50)  u('recall_50');
         if (next >= 100) u('trainer_100_correct');
@@ -2853,7 +3069,7 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
         if (next >= 2500) u('trainer_2500_correct');
         if (next >= 10000) u('trainer_10000_correct');
         {
-          const streak = await bumpConsecutiveDayStreak(trainerAchievementCorrectStreakKey(event.studyTarget));
+          const streak = await bumpConsecutiveDayStreak(trainerAchievementCorrectStreakKey(event.studyTarget), operationToken);
           if (streak >= 7) u('trainer_7_days');
         }
         break;
@@ -2862,7 +3078,7 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
         if (event.total > 0) u('trainer_session');
         if (event.total >= 5 && event.wrong <= 0 && event.correct >= event.total) {
           u('trainer_perfect_session');
-          const perfectSessions = await bumpStoredCounter(trainerAchievementPerfectSessionCountKey(event.studyTarget));
+          const perfectSessions = await bumpStoredCounter(trainerAchievementPerfectSessionCountKey(event.studyTarget), 1, operationToken);
           if (perfectSessions >= 10) u('trainer_perfect_10_sessions');
           if (perfectSessions >= 50) u('trainer_perfect_50_sessions');
         }
@@ -2886,7 +3102,7 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
       }
       case 'achievement_shared': {
         u('share_achievement');
-        const shares = await bumpStoredCounter(shareAchievementCounterKey(event.studyTarget));
+        const shares = await bumpStoredCounter(shareAchievementCounterKey(event.studyTarget), 1, operationToken);
         if (shares >= 10) u('share_achievement_10');
         break;
       }
@@ -2900,7 +3116,7 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
         break;
       }
       case 'streak_freeze_used': {
-        await markStreakSafetyUsed();
+        await markStreakSafetyUsed(operationToken);
         break;
       }
       case 'wager_win_streak': {
@@ -2922,28 +3138,37 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
       // прямой путь к залипанию. Поэтому пишем слиянием: под замком перечитываем свежий
       // снимок и накатываем на него ТОЛЬКО свои разблокировки, не трогая чужие поля.
       const unlockedIds = new Set(justUnlocked.map((a) => a.id));
-      await withStorageLock(async () => {
-        const fresh = await loadAchievementStatesForTarget(eventStudyTarget);
-        const freshById = new Map(fresh.map((s) => [s.id, s]));
-        for (const row of states) {
+      const fresh = await loadAchievementStatesForTargetInternal(eventStudyTarget, operationToken, false);
+      if (!isCurrentAccountGeneration(operationToken)) return [];
+      const freshById = new Map(fresh.map((s) => [s.id, s]));
+      for (const row of states) {
           if (!unlockedIds.has(row.id)) continue;
           const current = freshById.get(row.id);
           if (!current) {
-            freshById.set(row.id, row);
+            // Той же логикой гасим тост и когда строки в свежем снимке ещё нет:
+            // иначе backfill-достижение проскочило бы в очередь тостов этим путём.
+            freshById.set(row.id, backfilledIds.has(row.id) ? { ...row, notified: true } : row);
             continue;
           }
           // Разблокировка идемпотентна: если параллельный путь уже проставил unlockedAt,
           // оставляем более раннюю метку. Остальные поля (shardClaimed, notified) — чужая
           // зона ответственности, их снимок свежее нашего.
           if (current.unlockedAt === null) current.unlockedAt = row.unlockedAt;
-        }
-        await saveStates(Array.from(freshById.values()), eventStudyTarget);
-      });
+          // Тихий backfill: гасим тост сразу в том же снимке, чтобы getPendingNotifications
+          // его уже не поднял. Только для СВОИХ backfill-разблокировок (см. backfilledIds) —
+          // достижения, добытые живым действием игрока, празднуются как раньше.
+          if (backfilledIds.has(row.id)) current.notified = true;
+      }
+      const saved = await saveStates(Array.from(freshById.values()), eventStudyTarget, operationToken);
+      if (!saved) return [];
+      if (!isCurrentAccountGeneration(operationToken)) return [];
       emitAppEvent('achievement_unlocked');
 
       const userName = await AsyncStorage.getItem('user_name').catch(() => null);
+      if (!isCurrentAccountGeneration(operationToken)) return [];
       const lang = (await AsyncStorage.getItem('app_lang').catch(() => null))
         || (await AsyncStorage.getItem('user_lang').catch(() => null));
+      if (!isCurrentAccountGeneration(operationToken)) return [];
       const safeUser = userName || 'Player';
       const safeLang = (lang as 'ru' | 'uk') || 'ru';
       for (const ach of justUnlocked) {
@@ -2962,6 +3187,7 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
                 achievementId: ach.id,
                 nameRu: ach.nameRu,
               },
+              accountToken: operationToken,
             }).catch(() => {});
           }, 0);
         }
@@ -2970,23 +3196,77 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
     }
     return justUnlocked;
   } catch { return []; }
-  });
-  _achievementLock = result.catch(() => {});
-  return result;
+  };
+  return isCurrentAccountGeneration(operationToken) ? execute() : [];
+  }, []);
 };
 
-export const claimAchievementShardReward = async (achievementId: string): Promise<boolean> => {
-  const reserved = await withStorageLock(async () => {
-    const states = await loadAchievementStates();
-    const s = states.find(x => x.id === achievementId);
-    if (!s || s.unlockedAt === null || s.shardClaimed) {
-      return false;
-    }
-    s.shardClaimed = true;
-    await saveStates(states);
-    return true;
-  });
-  if (!reserved) return false;
+const ACHIEVEMENT_SHARD_PAYOUT_PENDING_PREFIX = 'achievement_shard_payout_pending_v1:';
+const ACHIEVEMENT_SHARD_PAYOUT_PENDING_LIMIT = 64;
+
+const achievementPayoutOwnerHash = (stableId: string): string => {
+  let hash = 2166136261;
+  for (let index = 0; index < stableId.length; index += 1) {
+    hash ^= stableId.charCodeAt(index);
+    hash = Math.imul(hash, 16777619);
+  }
+  return (hash >>> 0).toString(36);
+};
+
+const achievementPayoutOpId = (stableId: string, achievementId: string): string => {
+  const safeId = achievementId.replace(/[^A-Za-z0-9_-]/g, '_').slice(0, 48);
+  return `achievement:${achievementPayoutOwnerHash(stableId)}:${safeId}`;
+};
+
+const achievementPayoutPendingKey = (stableId: string): string =>
+  `${ACHIEVEMENT_SHARD_PAYOUT_PENDING_PREFIX}${encodeURIComponent(stableId)}`;
+
+const readAchievementPayoutPending = async (
+  stableId: string,
+  accountToken: AccountGenerationToken,
+): Promise<Record<string, string> | null> => {
+  if (!isCurrentAccountGeneration(accountToken, stableId)) return null;
+  try {
+    const raw = await AsyncStorage.getItem(achievementPayoutPendingKey(stableId));
+    if (!isCurrentAccountGeneration(accountToken, stableId)) return null;
+    const parsed: unknown = raw ? JSON.parse(raw) : {};
+    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) return {};
+    return Object.fromEntries(Object.entries(parsed as Record<string, unknown>)
+      .filter((entry): entry is [string, string] => (
+        typeof entry[0] === 'string'
+        && typeof entry[1] === 'string'
+        && /^[A-Za-z0-9_:-]{8,80}$/.test(entry[1])
+      ))
+      .slice(-ACHIEVEMENT_SHARD_PAYOUT_PENDING_LIMIT));
+  } catch {
+    return {};
+  }
+};
+
+export const claimAchievementShardReward = async (
+  achievementId: string,
+  accountToken?: AccountGenerationToken,
+): Promise<boolean> => {
+  const operationToken = accountToken ?? captureAccountGeneration();
+  if (!operationToken.stableId || !isCurrentAccountGeneration(operationToken)) return false;
+  return enqueueAchievementOperation(operationToken, async () => {
+  const states = await loadAchievementStatesInternal(operationToken, true);
+  if (!isCurrentAccountGeneration(operationToken)) return false;
+  const state = states.find(x => x.id === achievementId);
+  if (!state || state.unlockedAt === null || state.shardClaimed) return false;
+  const ownerStableId = operationToken.stableId ?? '';
+  const pending = await readAchievementPayoutPending(ownerStableId, operationToken);
+  if (!pending || !isCurrentAccountGeneration(operationToken, ownerStableId)) return false;
+  const payoutOpId = pending[achievementId] ?? achievementPayoutOpId(ownerStableId, achievementId);
+  if (!pending[achievementId]) {
+    pending[achievementId] = payoutOpId;
+    const pendingEntries = Object.entries(pending).slice(-ACHIEVEMENT_SHARD_PAYOUT_PENDING_LIMIT);
+    const journaled = await commitAchievementStoragePairs([[
+      achievementPayoutPendingKey(ownerStableId),
+      JSON.stringify(Object.fromEntries(pendingEntries)),
+    ]], operationToken);
+    if (!journaled || !isCurrentAccountGeneration(operationToken, ownerStableId)) return false;
+  }
 
   // зачем: владелец вернул награду за достижения — экран всё это время обещал
   // «+1 жемчужина» и показывал кнопку «Получить», но выплата была обнулена
@@ -2998,57 +3278,82 @@ export const claimAchievementShardReward = async (achievementId: string): Promis
   const n = await addShardsRaw(ACHIEVEMENT_SHARD_PAYOUT, `achievement:${achievementId}`, {
     showEarnModal: false,
     skipServerAwait: true,
+    accountToken: operationToken,
+    idempotencyKey: payoutOpId,
   });
+  if (!isCurrentAccountGeneration(operationToken, ownerStableId) || n < 1) return false;
   if (n >= 1) {
+    const freshStates = await loadAchievementStatesInternal(operationToken, false);
+    if (!isCurrentAccountGeneration(operationToken, ownerStableId)) return false;
+    const freshState = freshStates.find(x => x.id === achievementId);
+    if (!freshState || freshState.unlockedAt === null) return false;
+    freshState.shardClaimed = true;
+    delete pending[achievementId];
+    const finalized = await commitAchievementStoragePairs([
+      ...achievementStatePairs(freshStates),
+      [achievementPayoutPendingKey(ownerStableId), JSON.stringify(pending)],
+    ], operationToken);
+    if (!finalized || !isCurrentAccountGeneration(operationToken, ownerStableId)) return false;
     try {
       const balance = await getShardsBalance();
+      if (!isCurrentAccountGeneration(operationToken, ownerStableId)) return false;
       emitAppEvent('shards_balance_updated', { balance });
     } catch (e) {
       if (__DEV__) console.warn('[achievements]', e);
     }
     return true;
   }
-
-  await withStorageLock(async () => {
-    const states = await loadAchievementStates();
-    const s = states.find(x => x.id === achievementId);
-    if (s) {
-      s.shardClaimed = false;
-      await saveStates(states);
-    }
-  });
   return false;
+  }, false);
 };
 
 export const hasPendingShardReward = (state: AchievementState | undefined): boolean =>
   !!state && state.unlockedAt !== null && state.shardClaimed === false;
 
-export const markAchievementsNotified = async (ids: string[]) => {
-  try {
-    const states = await loadAchievementStates();
+export const markAchievementsNotified = async (
+  ids: string[],
+  accountToken?: AccountGenerationToken,
+): Promise<void> => {
+  const operationToken = accountToken ?? captureAccountGeneration();
+  if (!operationToken.stableId || !isCurrentAccountGeneration(operationToken)) return;
+  await enqueueAchievementOperation(operationToken, async () => {
+    const states = await loadAchievementStatesInternal(operationToken, true);
+    if (!isCurrentAccountGeneration(operationToken)) return;
     ids.forEach(id => {
       const s = states.find(s => s.id === id);
       if (s) s.notified = true;
     });
-    await saveStates(states);
-  } catch (e) {
-    if (__DEV__) console.warn('[achievements]', e);
-  }
+    await saveStates(states, undefined, operationToken);
+    if (!isCurrentAccountGeneration(operationToken)) return;
+  }, undefined);
 };
 
-export const getPendingNotifications = async (): Promise<Achievement[]> => {
+export const getPendingNotifications = async (
+  accountToken?: AccountGenerationToken,
+): Promise<Achievement[]> => {
+  const operationToken = accountToken ?? captureAccountGeneration();
+  if (!operationToken.stableId || !isCurrentAccountGeneration(operationToken)) return [];
+  return enqueueAchievementOperation(operationToken, async () => {
   try {
-    const states = await loadAchievementStates();
+    const states = await loadAchievementStatesInternal(operationToken, true);
+    if (!isCurrentAccountGeneration(operationToken)) return [];
     return states
       .filter(s => s.unlockedAt !== null && !s.notified)
       .map(s => ALL_ACHIEVEMENTS.find(a => a.id === s.id))
       .filter(Boolean) as Achievement[];
   } catch { return []; }
+  }, []);
 };
 
-export const unlockAllAchievements = async (): Promise<void> => {
+export const unlockAllAchievements = async (
+  accountToken?: AccountGenerationToken,
+): Promise<void> => {
+  const operationToken = accountToken ?? captureAccountGeneration();
+  if (!operationToken.stableId || !isCurrentAccountGeneration(operationToken)) return;
+  await enqueueAchievementOperation(operationToken, async () => {
   try {
-    const states = await loadAchievementStates();
+    const states = await loadAchievementStatesInternal(operationToken, true);
+    if (!isCurrentAccountGeneration(operationToken)) return;
     const now = new Date().toISOString();
     const existingIds = new Set(states.map(s => s.id));
 
@@ -3066,10 +3371,12 @@ export const unlockAllAchievements = async (): Promise<void> => {
       }
     });
 
-    await saveStates(states);
+    await saveStates(states, undefined, operationToken);
+    if (!isCurrentAccountGeneration(operationToken)) return;
   } catch (e) {
     if (__DEV__) console.warn('[achievements]', e);
   }
+  }, undefined);
 };
 
 export const devSeedAchievementsSmoke = async (): Promise<{ total: number; unlocked: number; missing: string[] }> => {
@@ -3078,8 +3385,15 @@ export const devSeedAchievementsSmoke = async (): Promise<{ total: number; unloc
   if ((!isDevRuntime && !DEV_MODE && !isTestRuntime) || IS_STORE_RELEASE) {
     throw new Error('devSeedAchievementsSmoke is not available in production builds');
   }
+  const operationToken = captureAccountGeneration();
+  if (!operationToken.stableId || !isCurrentAccountGeneration(operationToken)) {
+    return { total: ALL_ACHIEVEMENTS.length, unlocked: 0, missing: ALL_ACHIEVEMENTS.map(a => a.id) };
+  }
 
-  await unlockAllAchievements();
+  await unlockAllAchievements(operationToken);
+  if (!isCurrentAccountGeneration(operationToken)) {
+    return { total: ALL_ACHIEVEMENTS.length, unlocked: 0, missing: ALL_ACHIEVEMENTS.map(a => a.id) };
+  }
 
   const now = new Date().toISOString();
   const fullLessonProgress = JSON.stringify(Array.from({ length: 50 }, () => 'correct'));
@@ -3088,7 +3402,7 @@ export const devSeedAchievementsSmoke = async (): Promise<{ total: number; unloc
     fullLessonProgress,
   ]);
 
-  await AsyncStorage.multiSet([
+  const seeded = await commitAchievementStoragePairs([
     ['streak_count', '500'],
     ['user_total_xp', '100000'],
     ['login_bonus_v1', JSON.stringify({ consecutiveDays: 365, lastClaimDate: now })],
@@ -3111,9 +3425,15 @@ export const devSeedAchievementsSmoke = async (): Promise<{ total: number; unloc
     ['achievement_wager_win_count', '10'],
     ['pack_purchased_count', '5'],
     ...lessonPairs,
-  ]);
+  ], operationToken);
+  if (!seeded || !isCurrentAccountGeneration(operationToken)) {
+    return { total: ALL_ACHIEVEMENTS.length, unlocked: 0, missing: ALL_ACHIEVEMENTS.map(a => a.id) };
+  }
 
-  const states = await loadAchievementStates();
+  const states = await loadAchievementStates(operationToken);
+  if (!isCurrentAccountGeneration(operationToken)) {
+    return { total: ALL_ACHIEVEMENTS.length, unlocked: 0, missing: ALL_ACHIEVEMENTS.map(a => a.id) };
+  }
   const unlockedIds = new Set(states.filter(s => s.unlockedAt !== null).map(s => s.id));
   const missing = ALL_ACHIEVEMENTS.map(a => a.id).filter(id => !unlockedIds.has(id));
 

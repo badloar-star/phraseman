@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { SAGE_PORCELAIN } from '../constants/theme';
-import { sagePorcelainShadow } from '../constants/sagePorcelainChrome';
+import { SAGE_PORCELAIN_CHROME, sagePorcelainShadow } from '../constants/sagePorcelainChrome';
 
 describe('Sage Porcelain ThemeContext contract', () => {
   const source = fs.readFileSync(path.join(__dirname, '..', 'components', 'ThemeContext.tsx'), 'utf8');
@@ -29,5 +29,17 @@ describe('Sage Porcelain ThemeContext contract', () => {
     });
     expect(source).toContain("if (themeMode === 'sagePorcelain') return sagePorcelainShadow(level);");
     expect(SAGE_PORCELAIN.shadowDark).toBe('#23322B');
+  });
+
+  it('exports the approved Sage Porcelain chrome tokens', () => {
+    expect(SAGE_PORCELAIN_CHROME).toEqual({
+      accentHover: '#294E43',
+      accentPressed: '#223F37',
+      focusRing: '#8FC0AA',
+      info: '#2E5366',
+      infoBg: '#DDEBF0',
+      disabledBg: '#D1D9D1',
+      disabledText: '#61706A',
+    });
   });
 });

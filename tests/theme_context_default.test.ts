@@ -21,4 +21,11 @@ describe('ThemeContext default theme', () => {
     expect(settingsThemesSource).toMatch(/\{\s*mode: 'minimalDark'[^}]*premiumOnly: true/);
     expect(settingsThemesSource).toMatch(/\{\s*mode: 'gold'[^}]*rewardOnly: true/);
   });
+
+  it('preserves every Midnight grandfather exception', () => {
+    expect(source).toContain("const grandfathered = pairs[2]?.[1] === '1' || themeStr === 'midnight';");
+    expect(source).toContain("const premiumLocked = PREMIUM_ONLY_THEMES.includes(t) && !(t === 'midnight' && grandfathered);");
+    expect(source).toContain("if (m === 'midnight' && midnightGrandfathered) {");
+    expect(source).toContain("if (mode === 'midnight' && midnightGrandfathered) return true;");
+  });
 });

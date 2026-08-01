@@ -127,9 +127,11 @@
       .replace(/"/g, '&quot;');
   }
 
-  function sanitizeFilenameComponent(value, fallback, maxLength = 40) {
-    const safe = String(value ?? '').toLowerCase().replace(/[^a-z0-9-]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
-    return (safe || fallback).slice(0, maxLength);
+  function sanitizeFilenameComponent(value, fallback, maxLength = 40, unicode = false) {
+    const allowed = unicode ? /[^\p{L}\p{N}\p{M}]+/gu : /[^a-z0-9-]+/g;
+    const safe = String(value ?? '').normalize('NFKC').toLocaleLowerCase()
+      .replace(allowed, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+    return Array.from(safe || fallback).slice(0, maxLength).join('');
   }
 
   function certificateFilename(data, themeKey, locale) {
@@ -137,7 +139,7 @@
     const currentLocale = certificateLocale(locale);
     const languageSlug = sanitizeFilenameComponent(language.filenameSlugs[currentLocale] || language.filenameSlug, 'english');
     const level = CERTIFICATE_LEVELS.has(data.result?.estimatedLevel) ? data.result.estimatedLevel.toLowerCase() : 'unknown';
-    const name = sanitizeFilenameComponent(data.name, 'learner');
+    const name = sanitizeFilenameComponent(data.name, 'learner', 40, true);
     const theme = Object.prototype.hasOwnProperty.call(THEMES, themeKey) ? themeKey : 'gold';
     return `phraseman-${languageSlug}-level-${level}-${name}-${theme}.png`;
   }

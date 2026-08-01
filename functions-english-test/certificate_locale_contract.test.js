@@ -23,7 +23,7 @@ class Element {
   querySelectorAll(selector) { const all = []; const visit = (el) => { for (const child of el.children) { const data = selector.match(/^\[data-([\w-]+)="([^"]*)"\]$/); if ((selector.startsWith('.') && child.className.split(/\s+/).includes(selector.slice(1))) || (selector.startsWith('#') && child.attributes.id === selector.slice(1)) || (data && child.dataset[data[1].replace(/-([a-z])/g, (_, c) => c.toUpperCase())] === data[2]) || selector === child.tagName.toLowerCase()) all.push(child); visit(child); } }; visit(this); return all; }
   querySelector(selector) { if (selector.endsWith(' svg')) return { style: {}, outerHTML: '<svg />' }; return this.querySelectorAll(selector)[0] || null; }
   addEventListener(type, fn) { (this.listeners[type] ||= []).push(fn); }
-  click() { for (const fn of this.listeners.click || []) fn({ preventDefault() {} }); }
+  click() { if (this.tagName === 'a' && this.ownerDocument?.downloads) this.ownerDocument.downloads.push(this.download); for (const fn of this.listeners.click || []) fn({ preventDefault() {} }); }
   setAttribute(key, value) { this.attributes[key] = String(value); }
   removeAttribute(key) { delete this.attributes[key]; }
   getAttribute(key) { return this.attributes[key] ?? null; }
@@ -32,11 +32,11 @@ class Element {
   scrollIntoView() {}
 }
 
-function harness({ ios = false, reduced = true } = {}) {
-  const i18n = loadI18n(); const body = new Element('body'); const document = { body, activeElement: new Element('button'), createElement: (tag) => { const el = new Element(tag); el.ownerDocument = document; if (tag === 'canvas') { el.getContext = () => ({ scale() {}, drawImage() {} }); el.toBlob = (fn) => fn({}); } return el; }, addEventListener() {}, removeEventListener() {} }; body.ownerDocument = document; document.activeElement.ownerDocument = document;
-  const downloads = []; const alerts = []; const prints = []; let objectId = 0;
+function harness({ ios = false, reduced = true, pngFailure = false } = {}) {
+  const i18n = loadI18n(); const body = new Element('body'); const document = { body, activeElement: new Element('button'), downloads: [], listeners: {}, createElement: (tag) => { const el = new Element(tag); el.ownerDocument = document; if (tag === 'canvas') { el.getContext = () => ({ scale() {}, drawImage() {} }); el.toBlob = (fn) => fn(pngFailure ? null : {}); } return el; }, addEventListener(type, fn) { (this.listeners[type] ||= []).push(fn); }, removeEventListener(type, fn) { this.listeners[type] = (this.listeners[type] || []).filter((listener) => listener !== fn); }, dispatch(type, event) { for (const fn of this.listeners[type] || []) fn(event); } }; body.ownerDocument = document; document.activeElement.ownerDocument = document;
+  const downloads = document.downloads; const alerts = []; const prints = []; let objectId = 0;
   const win = { document, matchMedia: () => ({ matches: reduced }), open: () => { const printed = { document: { write: (value) => { printed.markup = value; }, close() {} } }; prints.push(printed); return printed; }, location: {}, navigator: ios ? { userAgent: 'iPhone' } : {}, URL: { createObjectURL: () => `blob:${++objectId}`, revokeObjectURL() {} } };
-  const context = vm.createContext({ EnglishTestI18n: i18n, window: win, navigator: win.navigator, document, URL: win.URL, Blob, XMLSerializer: class { serializeToString() { return '<svg />'; } }, Image: class { set src(_) { this.onload(); } }, alert: (message) => alerts.push(message), setTimeout, globalThis: win });
+  const context = vm.createContext({ EnglishTestI18n: i18n, window: win, navigator: win.navigator, document, URL: win.URL, Blob, XMLSerializer: class { serializeToString() { return '<svg />'; } }, Image: class { set src(_) { this.onload(); } }, alert: (message) => alerts.push(message), setTimeout: () => 0, globalThis: win });
   vm.runInContext(read('certificate.js'), context); return { i18n, certificate: win.EnglishTestCertificate, document, body, downloads, alerts, prints, win };
 }
 
@@ -76,6 +76,24 @@ test('certificate filename is locale-specific and safely bounded for hostile com
   assert.match(source, /filenameSlugs\[currentLocale\]/);
   assert.match(source, /certificateFilename\(data, themeKey, locale\)/);
   assert.match(source, /sanitizeFilenameComponent/);
+});
+
+test('normal PNG download uses active locale slug, Unicode learner name, level and selected theme', async () => {
+  const h = harness(); show(h, { testLanguage: 'de', name: 'Алексей 张伟 Élodie' }); click(h, '[data-theme="royal"]'); click(h, '[data-lang="ru"]'); click(h, '#certDownloadPng'); await new Promise((resolve) => setImmediate(resolve));
+  assert.equal(h.downloads.at(-1), 'phraseman-nemetskiy-yazyk-level-b2-алексей-张伟-élodie-royal.png');
+  assert.match(h.downloads.at(-1), /^phraseman-[\p{L}\p{N}-]+-level-(?:pre-a1|a1|a2|b1|b2|c1|c2|unknown)-[\p{L}\p{N}\p{M}-]+-(?:gold|dark|emerald|rose|royal)\.png$/u);
+});
+
+test('normal PNG rejects traversal controls and English switch updates German slug', async () => {
+  const h = harness(); show(h, { testLanguage: 'de', name: '../\\\u0000"..' }); click(h, '#certDownloadPng'); await new Promise((resolve) => setImmediate(resolve)); assert.equal(h.downloads.at(-1), 'phraseman-german-level-b2-learner-gold.png');
+});
+
+test('actual PNG failure alerts in the currently selected locale', async () => {
+  const h = harness({ pngFailure: true }); show(h); click(h, '[data-lang="ru"]'); click(h, '#certDownloadPng'); await new Promise((resolve) => setImmediate(resolve)); assert.deepEqual(h.alerts, [h.i18n.t('ru', 'certificate.pngFailure')]);
+});
+
+test('unknown show inputs fall back to English and Escape removes the modal and restores focus', () => {
+  const h = harness(); const before = h.document.activeElement; show(h, { uiLocale: 'unknown', testLanguage: 'unknown' }); assert.match(svg(h), /Phraseman English Level Check/); assert.equal(h.document.activeElement.className, 'elt-cert-close'); h.document.dispatch('keydown', { key: 'Escape', preventDefault() {} }); assert.equal(h.body.children.length, 0); assert.equal(h.document.activeElement, before);
 });
 
 test('iOS preview uses the active certificate locale for alt and hint', async () => {

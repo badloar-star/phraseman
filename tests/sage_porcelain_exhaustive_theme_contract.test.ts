@@ -21,6 +21,7 @@ describe('Sage Porcelain exhaustive visual coverage', () => {
     expect(source).toContain("const closeButtonBackground = isSagePorcelain ? '#E1E5DC'");
     expect(source).toContain("const closeButtonBorder = isSagePorcelain ? '#CFD6CE'");
     expect(source).toContain('backgroundColor: closeButtonBackground');
+    expect(source).toContain('borderWidth: isSagePorcelain ? 1 : 0');
     expect(source).toContain('borderColor: closeButtonBorder');
     expect(source).toContain('color: closeButtonText');
     expect(source).toContain('color: modalTitleColor');

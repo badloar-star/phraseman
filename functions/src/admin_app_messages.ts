@@ -107,6 +107,13 @@ export function normalizeAppMessageCreateInput(data: unknown, actorEmail: string
   if (!titleRu || !messageRu) throw new HttpsError('invalid-argument', 'RU title and body are required');
   const kind = data.kind === 'poll' ? 'poll' : 'message';
   const audience = ['all', 'free', 'premium'].includes(String(data.audience)) ? String(data.audience) : 'all';
+  const deliverySurface = data.deliverySurface === 'settings' ? 'settings' : 'inbox';
+  const settingsSlot = deliverySurface === 'settings' && (data.settingsSlot === 'top' || data.settingsSlot === 'bottom')
+    ? data.settingsSlot
+    : null;
+  if (deliverySurface === 'settings' && !settingsSlot) throw new HttpsError('invalid-argument', 'Settings slot must be top or bottom');
+  const controlPercent = Math.max(0, Math.min(50, Math.floor(Number(data.controlPercent ?? 0))));
+  if (!Number.isFinite(controlPercent)) throw new HttpsError('invalid-argument', 'controlPercent invalid');
   const priority = Math.max(0, Math.min(99, Math.floor(Number(data.priority ?? 0))));
   const ttlDays = Math.max(1, Math.min(30, Math.floor(Number(data.ttlDays ?? 30))));
   if (!Number.isFinite(priority) || !Number.isFinite(ttlDays)) throw new HttpsError('invalid-argument', 'priority or ttlDays invalid');
@@ -116,7 +123,13 @@ export function normalizeAppMessageCreateInput(data: unknown, actorEmail: string
   const document: RecordValue = {
     kind,
     active,
+    status: active ? 'live' : 'draft',
+    publishedAtMs: active ? nowMs : 0,
     audience,
+    deliverySurface,
+    settingsSlot,
+    voteMode: deliverySurface === 'settings' ? 'fixed' : 'changeable',
+    controlPercent,
     priority,
     ttlDays,
     createdAt: nowIso,
@@ -140,8 +153,12 @@ export function normalizeAppMessageCreateInput(data: unknown, actorEmail: string
 
   if (kind === 'poll') {
     const questionRu = text(ru.pollQuestion, 300);
-    const ruOptions = Array.isArray(ru.pollOptions) ? ru.pollOptions.map((item) => text(item, 160)).filter(Boolean).slice(0, 6) : [];
-    if (!questionRu || ruOptions.length < 2) throw new HttpsError('invalid-argument', 'Poll requires a RU question and 2-6 options');
+    const rawRuOptions = Array.isArray(ru.pollOptions) ? ru.pollOptions.map((item) => text(item, 160)).filter(Boolean) : [];
+    const maxPollOptions = deliverySurface === 'settings' ? 4 : 6;
+    if (!questionRu || rawRuOptions.length < 2 || rawRuOptions.length > maxPollOptions) {
+      throw new HttpsError('invalid-argument', `Poll requires a RU question and 2-${maxPollOptions} options`);
+    }
+    const ruOptions = rawRuOptions.slice(0, maxPollOptions);
     const options = ruOptions.map((optionRu, index) => {
       const option: RecordValue = { id: `option_${index + 1}`, textRu: optionRu };
       for (const suffix of LANGUAGES.filter((item) => item !== 'Ru')) {
@@ -160,7 +177,7 @@ export function normalizeAppMessageCreateInput(data: unknown, actorEmail: string
     document.pollVoteCount = 0;
     document.pollCountUpdatedAtMs = nowMs;
   }
-  const requestFingerprint = JSON.stringify({ kind, active, audience, priority, ttlDays, translations });
+  const requestFingerprint = JSON.stringify({ kind, active, audience, deliverySurface, settingsSlot, controlPercent, priority, ttlDays, translations });
   return Object.freeze({ document: Object.freeze(document), requestFingerprint, ...command });
 }
 
@@ -223,6 +240,10 @@ function contentPatchFromDocument(document: Readonly<RecordValue>): RecordValue 
   const patch: RecordValue = {
     kind: document.kind,
     audience: document.audience,
+    deliverySurface: document.deliverySurface,
+    settingsSlot: document.settingsSlot,
+    voteMode: document.voteMode,
+    controlPercent: document.controlPercent,
     priority: document.priority,
   };
   for (const suffix of LANGUAGES) {
@@ -376,7 +397,16 @@ export const adminCreateAppMessage = onCall(
     const auditRef = db.collection('admin_log').doc();
     const fingerprint = input.requestFingerprint;
     return db.runTransaction(async (tx) => {
-      const operation = await tx.get(operationRef);
+      const settingsQuery = input.document.active === true && input.document.deliverySurface === 'settings'
+        ? db.collection('app_messages')
+          .where('deliverySurface', '==', 'settings')
+          .where('settingsSlot', '==', input.document.settingsSlot)
+          .where('active', '==', true)
+        : null;
+      const [operation, activeInSlot] = await Promise.all([
+        tx.get(operationRef),
+        settingsQuery ? tx.get(settingsQuery) : Promise.resolve(null),
+      ]);
       if (operation.exists) {
         const previous = operation.data() ?? {};
         if (previous.requestFingerprint !== fingerprint) throw new HttpsError('already-exists', 'idempotencyKey reused for another payload');
@@ -389,6 +419,16 @@ export const adminCreateAppMessage = onCall(
         before: {}, after: input.document, requestId: input.requestId,
         rollbackReference: messageRef.id, timestamp: new Date().toISOString(),
       });
+      if (activeInSlot) {
+        const archivedAtMs = Date.now();
+        activeInSlot.docs.forEach((document) => tx.set(document.ref, {
+          active: false,
+          status: 'archived',
+          archivedAtMs,
+          updatedAtMs: archivedAtMs,
+          updatedBy: actorEmail,
+        }, { merge: true }));
+      }
       tx.create(messageRef, input.document);
       tx.create(auditRef, { ...audit, operationId: input.idempotencyKey });
       tx.create(operationRef, { operationId: input.idempotencyKey, requestFingerprint: fingerprint, actorUid, entityId: messageRef.id, auditId: auditRef.id, createdAt: admin.firestore.FieldValue.serverTimestamp() });
@@ -421,7 +461,33 @@ export const adminSetAppMessageActive = onCall(
       const before = message.data() ?? {};
       assertGenericAppMessage(before);
       if (before.adminOperationLock) throw new HttpsError('aborted', 'app_message_operation_in_progress');
-      const after = { ...before, active: input.active, updatedAt: new Date().toISOString(), updatedAtMs: Date.now(), updatedBy: actorEmail };
+      if (input.active && before.deliverySurface === 'settings' && (before.settingsSlot === 'top' || before.settingsSlot === 'bottom')) {
+        const activeInSlot = await tx.get(
+          db.collection('app_messages')
+            .where('deliverySurface', '==', 'settings')
+            .where('settingsSlot', '==', before.settingsSlot)
+            .where('active', '==', true),
+        );
+        const archivedAtMs = Date.now();
+        activeInSlot.docs
+          .filter((document) => document.id !== input.messageId)
+          .forEach((document) => tx.set(document.ref, {
+            active: false,
+            status: 'archived',
+            archivedAtMs,
+            updatedAtMs: archivedAtMs,
+            updatedBy: actorEmail,
+          }, { merge: true }));
+      }
+      const after = {
+        ...before,
+        active: input.active,
+        status: input.active ? 'live' : 'inactive',
+        publishedAtMs: input.active ? (Number(before.publishedAtMs || 0) || Date.now()) : Number(before.publishedAtMs || 0),
+        updatedAt: new Date().toISOString(),
+        updatedAtMs: Date.now(),
+        updatedBy: actorEmail,
+      };
       const audit = createAuditRecord({
         action: 'app_message.toggle', actorUid, role,
         entity: { collection: 'app_messages', id: input.messageId }, reason: input.reason,
@@ -481,6 +547,9 @@ export const adminUpdateAppMessage = onCall(
         throw new HttpsError('aborted', 'app_message_changed_after_preview');
       }
       const structureChanged = appMessagePollStructureChanged(before.poll, input.patch.poll);
+      if (before.deliverySurface === 'settings' && before.kind === 'poll' && structureChanged) {
+        throw new HttpsError('failed-precondition', 'settings_poll_requires_new_campaign');
+      }
       if (structureChanged && !input.resetPollEngagement) throw new HttpsError('failed-precondition', 'poll_structure_change_requires_reset');
       tx.set(messageRef, { active: false, adminOperationLock: input.idempotencyKey }, { merge: true });
       const pending = { operationId: input.idempotencyKey, requestFingerprint: input.requestFingerprint, actorUid, entityId: input.messageId, status: 'pending', before, structureChanged, createdAt: admin.firestore.FieldValue.serverTimestamp() };

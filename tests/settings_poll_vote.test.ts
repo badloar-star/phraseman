@@ -24,6 +24,16 @@ describe('settings poll vote outbox', () => {
     expect(await readSettingsPollVote('owner-b', 'poll-1')).toBeNull();
   });
 
+  it('serializes simultaneous taps and keeps one local answer', async () => {
+    const pendingTransport: SettingsPollVoteTransport = async () => new Promise(() => {});
+    const [first, second] = await Promise.all([
+      submitSettingsPollVoteOptimistically('owner-a', 'poll-1', 'option_1', pendingTransport),
+      submitSettingsPollVoteOptimistically('owner-a', 'poll-1', 'option_2', pendingTransport),
+    ]);
+    expect(first.optionId).toBe('option_1');
+    expect(second.optionId).toBe('option_1');
+  });
+
   it('adopts the immutable option returned by the server', async () => {
     const transport: SettingsPollVoteTransport = async () => ({
       accepted: false, alreadyVoted: true, optionId: 'option_2',

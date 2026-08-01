@@ -87,6 +87,11 @@ import { patchAppSnapshot, resolveHydratedProfileName, useAppSnapshotSelector } 
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import { useRuntimeActive } from '../../hooks/use_runtime_active';
 import { readVipSnapshotForGeneration } from '../premium_vip_storage';
+import { SettingsMessageSlotCard } from '../../components/settings/SettingsMessageSlotCard';
+import { peekAppMessagesSnapshot, refreshAppMessagesSnapshotOnce } from '../app_messages';
+import { selectSettingsMessageSlots, type SettingsMessageSlotSelection } from '../settings_message_slots';
+import { animateNextLayoutTransition } from '../smooth_layout';
+import { trackEvent } from '../analytics';
 
 /** Картинка инвайт-баннера настроек (wire first, generate second — правило asset-хайджины). */
 
@@ -476,6 +481,50 @@ export default function SettingsMain() {
     if (nameModal) warmNameAvailabilityAuth();
   }, [nameModal]);
   const { isPremium, isVip, hasPremiumAccess, isIntroFullAccess, introFullAccessEndsAt } = usePremium();
+  const initialSettingsMessageOwnerRef = useRef(captureAccountGeneration().stableId ?? '');
+  const [settingsMessageOwner, setSettingsMessageOwner] = useState(initialSettingsMessageOwnerRef.current);
+  const [settingsMessageSelection, setSettingsMessageSelection] = useState<SettingsMessageSlotSelection>(() => (
+    selectSettingsMessageSlots(peekAppMessagesSnapshot(), {
+      stableId: initialSettingsMessageOwnerRef.current,
+      hasPremiumAccess,
+      appVersion: Constants.expoConfig?.version ?? '',
+    })
+  ));
+
+  useEffect(() => {
+    if (!settingsRuntimeActive) return;
+    let cancelled = false;
+    const account = captureAccountGeneration();
+    void refreshAppMessagesSnapshotOnce({ minIntervalMs: 30_000 }).then((snapshot) => {
+      if (cancelled || !account.stableId || !isCurrentAccountGeneration(account, account.stableId)) return;
+      const next = selectSettingsMessageSlots(snapshot, {
+        stableId: account.stableId,
+        hasPremiumAccess,
+        appVersion: Constants.expoConfig?.version ?? '',
+      });
+      setSettingsMessageOwner(account.stableId);
+      setSettingsMessageSelection((current) => {
+        const currentKey = `${current.top?.id ?? ''}:${current.bottom?.id ?? ''}:${JSON.stringify(current.assignments)}`;
+        const nextKey = `${next.top?.id ?? ''}:${next.bottom?.id ?? ''}:${JSON.stringify(next.assignments)}`;
+        if (currentKey === nextKey) return current;
+        if (current.top?.id !== next.top?.id || current.bottom?.id !== next.bottom?.id) {
+          animateNextLayoutTransition();
+        }
+        return next;
+      });
+    }).catch(() => {});
+    return () => { cancelled = true; };
+  }, [hasPremiumAccess, settingsRuntimeActive]);
+
+  useEffect(() => {
+    settingsMessageSelection.assignments.forEach((assignment) => {
+      void trackEvent('experiment_exposure', {
+        experiment_id: `settings_message_${assignment.campaignId}`,
+        variant: assignment.variant,
+        slot: assignment.slot,
+      });
+    });
+  }, [settingsMessageSelection.assignments]);
   const [premiumPlan, setPremiumPlan] = useState<string | null>(null);
   const [vipPlan, setVipPlan] = useState('');
   const [vipUntilMs, setVipUntilMs] = useState(0);
@@ -1018,7 +1067,11 @@ export default function SettingsMain() {
         },
       } as any);
     } else {
-      router.push({ pathname: '/premium_modal', params: { context: 'generic', source: 'settings_premium' } } as any);
+      const attribution = settingsMessageSelection.primaryAttribution;
+      const context = attribution
+        ? `sm:${attribution.campaignId.slice(0, 24)}:${attribution.variant}`
+        : 'generic';
+      router.push({ pathname: '/premium_modal', params: { context, source: 'settings_premium' } } as any);
     }
   };
 
@@ -1166,6 +1219,15 @@ export default function SettingsMain() {
             onPress={plusRowPress}
           />
         </SettingsGroup>
+        {settingsMessageSelection.top ? (
+          <View testID="settings-message-slot-top">
+            <SettingsMessageSlotCard
+              campaign={settingsMessageSelection.top}
+              lang={lang}
+              ownerStableId={settingsMessageOwner}
+            />
+          </View>
+        ) : null}
         {promoCodesOn ? (
           <SettingsGroup marginTop={12} surfaceColor={settingsPanelBg} borderColor={settingsBorder} dividerColor={settingsDivider}>
             <SettingsRow
@@ -1613,6 +1675,17 @@ export default function SettingsMain() {
         </SettingsGroup>
 
         {premiumDetails}
+
+        {settingsMessageSelection.bottom ? (
+          <View testID="settings-message-slot-bottom">
+            <SettingsMessageSlotCard
+              campaign={settingsMessageSelection.bottom}
+              lang={lang}
+              ownerStableId={settingsMessageOwner}
+              marginTop={20}
+            />
+          </View>
+        ) : null}
 
         {/* Подвал — бренд и версия (юр. документы переехали в «Приватность и данные»). */}
         <View style={{ alignItems:'center', paddingVertical:32, marginTop:20, borderTopWidth:0.5, borderTopColor:screenBorder }}>

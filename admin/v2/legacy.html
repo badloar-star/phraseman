@@ -9787,7 +9787,7 @@
   <div class="tab" onclick="switchTab('cancel-surveys')">Cancel surveys</div>
   <div class="tab" onclick="switchTab('surveys')" title="Опросы за осколки: сводка ответов, лента, редактор, CSV" style="background:rgba(52,211,153,0.12);border:1px solid rgba(52,211,153,0.4);color:#6ee7b7;font-weight:700">📊 Опросы</div>
   <div class="tab" onclick="switchTab('review-promo')">Plus survey</div>
-  <div class="tab" onclick="switchTab('app-messages')" data-i18n-es="Mensajes">Messages</div>
+  <div class="tab" onclick="switchTab('app-messages')" data-i18n-es="Placas y mensajes">Плашки и сообщения</div>
   <div class="tab" onclick="switchTab('helpers-board')">🏆 Топ хелперов</div>
   <div class="tab" onclick="switchTab('remote-config')" data-i18n-es="Configuración remota">Remote Config</div>
   <div class="tab" onclick="switchTab('paywall-ab')">🧪 Paywall A/B</div>
@@ -11040,6 +11040,26 @@
     <div class="app-msg-kpi"><div class="label" data-i18n-es="Encuestas">Опросы</div><div class="value" id="am-kpi-polls">—</div></div>
     <div class="app-msg-kpi"><div class="label" data-i18n-es="Votos">Голоса</div><div class="value" id="am-kpi-poll-votes">—</div></div>
   </div>
+  <section id="settings-message-slots" aria-labelledby="settings-message-slots-title" style="max-width:1080px;margin:0 0 16px;padding:16px;background:#17191f;border:1px solid #2a2e38;border-radius:8px">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px">
+      <div>
+        <h2 id="settings-message-slots-title" style="margin:0 0 5px;font-size:18px">Плашки в настройках</h2>
+        <p style="margin:0;color:#9ca3af;font-size:13px;line-height:1.5">Два независимых места: сразу под Phraseman Plus и в конце настроек. Редактор, переводы и превью общие.</p>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px">
+      <div data-settings-slot="top" style="padding:14px;background:#111318;border-radius:8px">
+        <div style="font-weight:800;color:#f3f4f6">Верхняя плашка</div>
+        <div id="am-settings-slot-top-status" style="margin:6px 0 12px;color:#9ca3af;font-size:13px;line-height:1.5">Загружаем состояние…</div>
+        <button type="button" onclick="editSettingsMessageSlot('top')" title="Откроет общий редактор верхней плашки. После публикации пользователи увидят её под Phraseman Plus; выключить можно здесь же.">Редактировать верхнюю</button>
+      </div>
+      <div data-settings-slot="bottom" style="padding:14px;background:#111318;border-radius:8px">
+        <div style="font-weight:800;color:#f3f4f6">Нижняя плашка</div>
+        <div id="am-settings-slot-bottom-status" style="margin:6px 0 12px;color:#9ca3af;font-size:13px;line-height:1.5">Загружаем состояние…</div>
+        <button type="button" onclick="editSettingsMessageSlot('bottom')" title="Откроет общий редактор нижней плашки. После публикации пользователи увидят её в конце настроек; выключить можно здесь же.">Редактировать нижнюю</button>
+      </div>
+    </div>
+  </section>
   <div class="app-msg-shell">
     <div class="app-msg-panel" id="am-compose-panel">
       <div class="app-msg-collapse-toggle" onclick="toggleAppMessageComposer()">
@@ -11050,6 +11070,25 @@
       <div class="hint" style="margin-top:10px" data-i18n-es="El asunto y el mensaje se ven en la app como una tarjeta de correo limpia. La encuesta se añade dentro del mismo mensaje del inbox.">Тема и письмо выглядят в приложении как аккуратная почтовая карточка. Опрос добавляется внутрь того же inbox-сообщения.</div>
       <input type="hidden" id="am-edit-id" value="">
       <div class="app-msg-grid">
+        <div class="app-msg-field">
+          <label>Где показывать</label>
+          <select id="am-delivery-surface" aria-label="App message delivery surface" oninput="onAppMessageSurfaceChange()">
+            <option value="inbox">Inbox на главной</option>
+            <option value="settings">Настройки</option>
+          </select>
+        </div>
+        <div class="app-msg-field" id="am-settings-slot-field" style="display:none">
+          <label>Положение в настройках</label>
+          <select id="am-settings-slot" aria-label="Settings message slot" oninput="updateAppMessagePreview()">
+            <option value="top">Сверху — под Phraseman Plus</option>
+            <option value="bottom">Снизу — в конце настроек</option>
+          </select>
+        </div>
+        <div class="app-msg-field" id="am-control-percent-field" style="display:none">
+          <label>Контрольная группа, %</label>
+          <input id="am-control-percent" type="number" min="0" max="50" step="1" value="10" aria-label="Settings message control percent" oninput="updateAppMessagePreview()">
+          <div class="hint">Эти пользователи не увидят плашку; их покупки сравниваются с показанной группой.</div>
+        </div>
         <div class="app-msg-field">
           <label data-i18n-es="Formato">Формат</label>
           <select id="am-kind" aria-label="App message format" oninput="onAppMessageKindChange()">
@@ -11104,6 +11143,7 @@
         <div id="am-translations-fields" class="app-msg-translations-fields"></div>
       </details>
       <div id="am-poll-fields" class="app-msg-poll-box" style="display:none">
+        <div id="am-settings-fixed-vote-note" class="hint" style="display:none;margin-bottom:10px;color:#fbbf24">Голос после выбора изменить нельзя. Чтобы поменять опубликованный вопрос или варианты, будет создана новая кампания; старая статистика останется в архиве.</div>
         <div class="app-msg-field">
           <label data-i18n-es="Pregunta de la encuesta">Вопрос голосования</label>
           <input id="am-poll-question-ru" type="text" aria-label="App message poll question" placeholder="Например: Какой формат тренировки добавить следующим?" data-i18n-es="Ejemplo: ¿Qué formato de entrenamiento añadimos después?" oninput="updateAppMessagePreview()">
@@ -19242,7 +19282,7 @@
     'gift-certificates': 'Подарочные сертификаты',
     'cancel-surveys': 'Cancel surveys',
     'review-promo': 'Plus survey',
-    'app-messages': 'Messages',
+    'app-messages': 'Плашки и сообщения',
     'remote-config': 'Remote Config',
     'paywall-ab': 'Paywall A/B',
     'v2-generator': 'V2 Генератор',
@@ -25816,7 +25856,7 @@
     if (appMessageKindIsVipRedirect()) return;
     const titleRu = appMessageFieldValue('am-title-ru');
     const messageRu = appMessageFieldValue('am-message-ru');
-    if (!titleRu || !messageRu) { setTranslateStatus('Сначала заполни RU тему и сообщение.', '#fbbf24'); return; }
+    if (!titleRu || !messageRu) { setTranslateStatus('Сначала заполни RU тему и сообщение.', '#fbbf24'); return false; }
     const plan = buildAppMessageTranslationPlan();
     const btn = document.getElementById('am-translate-btn');
     if (btn) btn.disabled = true;
@@ -25839,9 +25879,11 @@
       if (details) details.open = true;
       window.updateAppMessagePreview();
       setTranslateStatus(filled ? '✅ Переведено на все языки' : '⚠️ Пустой ответ перевода', filled ? '#4ade80' : '#fbbf24');
+      return filled > 0;
     } catch (e) {
       const msg = (e && (e.message || e.code)) ? (e.message || e.code) : String(e);
       setTranslateStatus('❌ Ошибка перевода: ' + msg, '#f87171');
+      return false;
     } finally {
       if (btn) btn.disabled = false;
     }
@@ -25889,10 +25931,18 @@
     return appMessageFieldValue('am-kind') === 'poll';
   }
 
+  function appMessageIsSettingsDraft() {
+    return appMessageFieldValue('am-delivery-surface') === 'settings';
+  }
+
+  function appMessageMaxPollOptions() {
+    return appMessageIsSettingsDraft() ? 4 : APP_MESSAGE_POLL_MAX_OPTIONS;
+  }
+
   function appMessageClampPollOptionCount(value) {
     const n = Math.floor(Number(value || APP_MESSAGE_POLL_MIN_OPTIONS));
     if (!Number.isFinite(n)) return APP_MESSAGE_POLL_MIN_OPTIONS;
-    return Math.max(APP_MESSAGE_POLL_MIN_OPTIONS, Math.min(APP_MESSAGE_POLL_MAX_OPTIONS, n));
+    return Math.max(APP_MESSAGE_POLL_MIN_OPTIONS, Math.min(appMessageMaxPollOptions(), n));
   }
 
   function appMessageGetPollOptionCount() {
@@ -26043,6 +26093,22 @@
     window.updateAppMessagePreview();
   };
 
+  window.onAppMessageSurfaceChange = function() {
+    const settings = appMessageIsSettingsDraft();
+    const slotField = document.getElementById('am-settings-slot-field');
+    const controlField = document.getElementById('am-control-percent-field');
+    const fixedNote = document.getElementById('am-settings-fixed-vote-note');
+    if (slotField) slotField.style.display = settings ? '' : 'none';
+    if (controlField) controlField.style.display = settings ? '' : 'none';
+    if (fixedNote) fixedNote.style.display = settings && appMessageIsPollDraft() ? 'block' : 'none';
+    document.querySelectorAll('#am-poll-option-count option').forEach((option) => {
+      option.hidden = settings && Number(option.value) > 4;
+      option.disabled = settings && Number(option.value) > 4;
+    });
+    if (settings && appMessageGetPollOptionCount() > 4) appMessageSetPollOptionCount(4);
+    window.updateAppMessagePreview();
+  };
+
   window.updateAppMessagePreview = function() {
     buildAppMessageTranslationFields();
     applyAppMessageVipRedirectState();
@@ -26057,6 +26123,8 @@
     if (titleEl) titleEl.textContent = title;
     if (bodyEl) bodyEl.textContent = body;
     const isPoll = appMessageIsPollDraft();
+    const fixedNote = document.getElementById('am-settings-fixed-vote-note');
+    if (fixedNote) fixedNote.style.display = isPoll && appMessageIsSettingsDraft() ? 'block' : 'none';
     if (pollFields) pollFields.style.display = isPoll ? 'block' : 'none';
     const translations = document.getElementById('am-translations');
     if (translations) translations.classList.toggle('is-poll', isPoll);
@@ -26099,6 +26167,9 @@
       });
     });
     document.getElementById('am-kind').value = 'message';
+    document.getElementById('am-delivery-surface').value = 'inbox';
+    document.getElementById('am-settings-slot').value = 'top';
+    document.getElementById('am-control-percent').value = '10';
     document.getElementById('am-active').value = 'true';
     document.getElementById('am-audience').value = 'all';
     document.getElementById('am-priority').value = '0';
@@ -26108,6 +26179,7 @@
     const st = document.getElementById('am-status');
     if (st) st.textContent = '';
     window.updateAppMessagePreview();
+    window.onAppMessageSurfaceChange();
   };
 
   async function loadAppMessageReactionCounts(messageId, data) {
@@ -26144,6 +26216,57 @@
     return { pollCounts, pollVoteCount: snap.docs.length };
   }
 
+  function renderSettingsMessageSlots() {
+    const rows = window._appMessages || [];
+    ['top', 'bottom'].forEach((slot) => {
+      const status = document.getElementById(`am-settings-slot-${slot}-status`);
+      if (!status) return;
+      const campaigns = rows
+        .filter((row) => row.deliverySurface === 'settings' && row.settingsSlot === slot)
+        .sort((left, right) => Number(right.createdAtMs || 0) - Number(left.createdAtMs || 0));
+      const active = campaigns.find((row) => row.active === true && Number(row.expiresAtMs || 0) > Date.now());
+      const current = active || campaigns[0];
+      if (!current) {
+        status.textContent = 'Выключено · кампаний ещё нет';
+        return;
+      }
+      const counts = appMessagePollCountsFromData(current);
+      const pollStats = current.poll
+        ? `<div style="margin-top:5px">Голосов: <b style="color:#e5e7eb">${appMessagePollVoteTotal(current, counts)}</b> · ${Object.entries(counts).map(([id, count]) => `${escapeHtml(id)}: ${Number(count || 0)}`).join(' · ')}</div>`
+        : '';
+      const funnel = current.settingsFunnel;
+      const funnelStats = funnel ? `
+        <div style="margin-top:6px;color:#9ca3af">Покупки (согласившиеся на аналитику): treatment ${Number(funnel.treatment.purchases || 0)}/${Number(funnel.treatment.shown || 0)} · control ${Number(funnel.control.purchases || 0)}/${Number(funnel.control.shown || 0)}</div>
+        <div style="margin-top:3px;color:#6b7280">Цены завершённых покупок: ${escapeHtml([...funnel.treatment.prices, ...funnel.control.prices].join(', ') || '—')}</div>` : '';
+      status.innerHTML = `
+        <div><b style="color:${active ? '#86efac' : '#cbd5e1'}">${active ? 'Активно' : 'Выключено / архив'}</b> · ${current.poll ? 'голосование' : 'информация'} · ${escapeHtml(current.audience || 'all')}</div>
+        <div style="margin-top:4px;color:#d1d5db">${escapeHtml(current.titleRu || 'Без заголовка')}</div>
+        <div style="margin-top:4px">control ${Math.max(0, Number(current.controlPercent || 0))}% · id <code>${escapeHtml(current.id)}</code></div>
+        ${pollStats}${funnelStats}`;
+    });
+  }
+
+  window.editSettingsMessageSlot = function(slot) {
+    const normalizedSlot = slot === 'bottom' ? 'bottom' : 'top';
+    const row = (window._appMessages || [])
+      .filter((item) => item.deliverySurface === 'settings' && item.settingsSlot === normalizedSlot)
+      .sort((left, right) => Number(right.createdAtMs || 0) - Number(left.createdAtMs || 0))[0];
+    if (row) {
+      window.editAppMessage(row.id);
+      return;
+    }
+    window.resetAppMessageForm();
+    document.getElementById('am-delivery-surface').value = 'settings';
+    document.getElementById('am-settings-slot').value = normalizedSlot;
+    document.getElementById('am-title-ru').value = 'Важное от Phraseman';
+    document.getElementById('am-message-ru').value = normalizedSlot === 'top'
+      ? 'Каждая подписка Plus помогает выпускать новые уроки, улучшать материалы, исправлять ошибки и оплачивать серверы. Спасибо, что помогаете Phraseman расти.'
+      : '';
+    document.getElementById('am-form-title').textContent = normalizedSlot === 'top' ? 'Верхняя плашка' : 'Нижняя плашка';
+    window.onAppMessageSurfaceChange();
+    document.getElementById('am-compose-panel')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
   function renderAppMessages() {
     const list = document.getElementById('am-list');
     if (!list) return;
@@ -26163,6 +26286,7 @@
     document.getElementById('am-kpi-dislikes').textContent = String(dislikes);
     document.getElementById('am-kpi-polls').textContent = String(polls);
     document.getElementById('am-kpi-poll-votes').textContent = String(pollVotes);
+    renderSettingsMessageSlots();
 
     if (!rows.length) {
       list.innerHTML = '<div class="reports-empty" style="padding:30px 0">Сообщений пока нет</div>';
@@ -29201,6 +29325,33 @@
     }
   };
 
+  async function loadSettingsMessageFunnel(rows) {
+    const latestBySlot = new Map();
+    rows
+      .filter((row) => row.deliverySurface === 'settings' && (row.settingsSlot === 'top' || row.settingsSlot === 'bottom'))
+      .sort((left, right) => Number(right.createdAtMs || 0) - Number(left.createdAtMs || 0))
+      .forEach((row) => { if (!latestBySlot.has(row.settingsSlot)) latestBySlot.set(row.settingsSlot, row); });
+    await Promise.all([...latestBySlot.values()].map(async (campaign) => {
+      const prefix = `sm:${String(campaign.id).slice(0, 24)}:`;
+      const contexts = [`${prefix}treatment`, `${prefix}control`];
+      const snapshot = await getDocs(query(collection(db, 'paywall_funnel'), where('context', 'in', contexts))).catch(() => ({ docs: [] }));
+      const funnel = {
+        treatment: { shown: 0, purchases: 0, prices: [] },
+        control: { shown: 0, purchases: 0, prices: [] },
+      };
+      (snapshot.docs || []).forEach((document) => {
+        const row = document.data() || {};
+        const variant = String(row.context || '').endsWith(':control') ? 'control' : 'treatment';
+        if (row.step === 'shown') funnel[variant].shown += 1;
+        if (row.step === 'purchase_completed') {
+          funnel[variant].purchases += 1;
+          if (row.price && !funnel[variant].prices.includes(String(row.price))) funnel[variant].prices.push(String(row.price));
+        }
+      });
+      campaign.settingsFunnel = funnel;
+    }));
+  }
+
   window.loadAppMessages = async function(force) {
     window._appMessagesLoaded = true;
     const list = document.getElementById('am-list');
@@ -29213,6 +29364,7 @@
         const pollCounts = await loadAppMessagePollCounts(d.id, data).catch(() => ({ pollCounts: {}, pollVoteCount: 0 }));
         return { id: d.id, ...data, ...counts, ...pollCounts };
       }));
+      await loadSettingsMessageFunnel(rows);
       window._appMessages = rows;
       renderAppMessages();
     } catch (e) {
@@ -29220,6 +29372,46 @@
       showToast('❌ Не удалось загрузить сообщения: ' + (e.message || e), 'err');
     }
   };
+
+  let _fnAdminCreateSettingsMessage = null;
+  let _fnAdminToggleSettingsMessage = null;
+  function adminCreateSettingsMessageCallable() {
+    if (!_fnAdminCreateSettingsMessage) _fnAdminCreateSettingsMessage = httpsCallable(functionsUs, 'adminCreateAppMessage');
+    return _fnAdminCreateSettingsMessage;
+  }
+  function adminToggleSettingsMessageCallable() {
+    if (!_fnAdminToggleSettingsMessage) _fnAdminToggleSettingsMessage = httpsCallable(functionsUs, 'adminSetAppMessageActive');
+    return _fnAdminToggleSettingsMessage;
+  }
+  function appMessageCommandId(prefix) {
+    const random = globalThis.crypto?.randomUUID?.() || `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 12)}`;
+    return `${prefix}-${random}`;
+  }
+  function buildSettingsMessageTranslations(titleRu, messageRu, poll) {
+    const translations = {
+      ru: {
+        title: titleRu,
+        body: messageRu,
+        pollQuestion: poll?.questionRu || '',
+        pollOptions: (poll?.options || []).map((option) => option.textRu || ''),
+      },
+    };
+    APP_MESSAGE_TRANSLATION_LANGS.forEach((langDef) => {
+      const idPart = appMessageLangIdPart(langDef.suffix);
+      const title = appMessageFieldValue(`am-title-${idPart}`);
+      const body = appMessageFieldValue(`am-message-${idPart}`);
+      const pollQuestion = poll ? appMessageFieldValue(`am-poll-question-${idPart}`) : '';
+      const pollOptions = poll ? APP_MESSAGE_POLL_OPTION_NUMBERS
+        .slice(0, appMessageGetPollOptionCount())
+        .map((n) => appMessageFieldValue(`am-poll-option-${n}-${idPart}`)) : [];
+      if (!title || !body || (poll && (!pollQuestion || pollOptions.some((option) => !option)))) {
+        throw new Error(`Перевод ${langDef.label} не заполнен полностью. Нажми «Перевести через ИИ» и проверь результат.`);
+      }
+      const key = langDef.suffix === 'PtBr' ? 'ptBr' : langDef.suffix.toLowerCase();
+      translations[key] = { title, body, pollQuestion, pollOptions };
+    });
+    return translations;
+  }
 
   window.saveAppMessage = async function() {
     const val = (id) => String(document.getElementById(id)?.value || '').trim();
@@ -29245,6 +29437,9 @@
     const days = appMessageClampDays(val('am-days'));
     const previousRow = editId ? (window._appMessages || []).find((m) => m.id === editId) : null;
     const previousPoll = previousRow?.poll || null;
+    const deliverySurface = val('am-delivery-surface') === 'settings' ? 'settings' : 'inbox';
+    const settingsSlot = val('am-settings-slot') === 'bottom' ? 'bottom' : 'top';
+    const controlPercent = Math.max(0, Math.min(50, Math.floor(Number(val('am-control-percent') || 0))));
     const shouldResetPollEngagement = Boolean(
       editId
       && (poll || previousPoll)
@@ -29254,6 +29449,10 @@
       kind: poll ? 'poll' : 'message',
       active: val('am-active') !== 'false',
       audience: ['all','free','premium'].includes(val('am-audience')) ? val('am-audience') : 'all',
+      deliverySurface,
+      settingsSlot: deliverySurface === 'settings' ? settingsSlot : null,
+      voteMode: deliverySurface === 'settings' ? 'fixed' : 'changeable',
+      controlPercent: deliverySurface === 'settings' ? controlPercent : 0,
       priority: Math.max(0, Math.min(99, Math.floor(Number(val('am-priority') || 0)))),
       titleRu,
       messageRu,
@@ -29284,15 +29483,60 @@
     if (shouldResetPollEngagement) {
       payload.pollResetAtMs = nowMs;
     }
+    let settingsTranslations = null;
+    if (deliverySurface === 'settings') {
+      try {
+        settingsTranslations = buildSettingsMessageTranslations(titleRu, messageRu, poll);
+      } catch (_) {
+        const translated = await window.autoTranslateAppMessage();
+        if (!translated) { showToast('Не удалось подготовить переводы для всех языков', 'err'); return; }
+        try {
+          settingsTranslations = buildSettingsMessageTranslations(titleRu, messageRu, poll);
+        } catch (translationError) {
+          showToast(translationError.message || String(translationError), 'err');
+          return;
+        }
+      }
+    }
     const ok = await showConfirmModal({
-      title: editId ? 'Сохранить изменения сообщения?' : (poll ? 'Отправить опрос пользователям?' : 'Отправить сообщение пользователям?'),
-      desc: editId ? 'Текст обновится у пользователей в inbox.' : (poll ? 'Сообщение появится в inbox вместе с голосованием.' : 'Сообщение появится на главной в inbox у выбранной аудитории.'),
-      confirmLabel: editId ? 'Сохранить' : 'Отправить',
+      title: deliverySurface === 'settings' ? 'Опубликовать плашку в настройках?' : (editId ? 'Сохранить изменения сообщения?' : (poll ? 'Отправить опрос пользователям?' : 'Отправить сообщение пользователям?')),
+      desc: deliverySurface === 'settings'
+        ? `Положение: ${settingsSlot === 'top' ? 'под Phraseman Plus' : 'в конце настроек'}. Аудитория: ${payload.audience}. Control: ${controlPercent}%. Предыдущая активная плашка этого места уйдёт в архив.`
+        : (editId ? 'Текст обновится у пользователей в inbox.' : (poll ? 'Сообщение появится в inbox вместе с голосованием.' : 'Сообщение появится на главной в inbox у выбранной аудитории.')),
+      confirmLabel: deliverySurface === 'settings' ? 'Опубликовать плашку' : (editId ? 'Сохранить' : 'Отправить'),
       danger: false,
     });
     if (!ok) return;
     try {
-      if (editId) {
+      if (deliverySurface === 'settings') {
+        const commandId = appMessageCommandId(`settings-${settingsSlot}`);
+        if (editId && payload.active === false) {
+          const toggleId = appMessageCommandId(`settings-off-${settingsSlot}`);
+          await adminToggleSettingsMessageCallable()({
+            messageId: editId,
+            active: false,
+            reason: `Выключение ${settingsSlot} плашки перед сохранением черновика`,
+            idempotencyKey: toggleId,
+            requestId: toggleId,
+          });
+        }
+        await adminCreateSettingsMessageCallable()({
+          kind: poll ? 'poll' : 'message',
+          active: payload.active,
+          audience: payload.audience,
+          deliverySurface: 'settings',
+          settingsSlot,
+          controlPercent,
+          priority: payload.priority,
+          ttlDays: days,
+          translations: settingsTranslations,
+          reason: `${editId ? 'Новая версия' : 'Публикация'} ${settingsSlot} плашки настроек`,
+          idempotencyKey: commandId,
+          requestId: commandId,
+        });
+        logAction('settings_message_publish', `settings_slot:${settingsSlot}`, { titleRu, active: payload.active, kind: payload.kind, controlPercent });
+        showToast(payload.active ? '✅ Плашка опубликована' : '✅ Черновик плашки сохранён');
+      } else if (editId) {
         if (shouldResetPollEngagement) {
           await resetAppMessagePollEngagement(editId);
         }
@@ -29331,6 +29575,9 @@
     }
     buildAppMessageTranslationFields();
     document.getElementById('am-edit-id').value = row.id;
+    document.getElementById('am-delivery-surface').value = row.deliverySurface === 'settings' ? 'settings' : 'inbox';
+    document.getElementById('am-settings-slot').value = row.settingsSlot === 'bottom' ? 'bottom' : 'top';
+    document.getElementById('am-control-percent').value = String(Math.max(0, Number(row.controlPercent || 0)));
     document.getElementById('am-active').value = row.active === false ? 'false' : 'true';
     document.getElementById('am-audience').value = row.audience || 'all';
     document.getElementById('am-priority').value = String(row.priority || 0);
@@ -29371,6 +29618,7 @@
     const st = document.getElementById('am-status');
     if (st) st.textContent = `Редактируется ${row.id}. Срок хранения не продлевается.`;
     window.updateAppMessagePreview();
+    window.onAppMessageSurfaceChange();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 

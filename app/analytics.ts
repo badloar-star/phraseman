@@ -51,6 +51,8 @@ export type AnalyticsEvent =
   | 'soft_upsell_cta'
   | 'soft_upsell_dismiss'
   | 'soft_upsell_suppressed'
+  | 'settings_message_impression'
+  | 'settings_poll_vote'
   // обучение
   | 'app_open'
   | 'lesson_start'

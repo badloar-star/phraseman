@@ -13,6 +13,21 @@ describe('league club hub composition', () => {
     expect(mission).toContain('onLikeBoost');
   });
 
+  it('calls the shared XP action a league boost in every interface language', () => {
+    const mission = read('components/league/LeagueBonusMission.tsx');
+
+    expect(mission).toContain("ru: 'Ускорить лигу'");
+    expect(mission).toContain("uk: 'Прискорити лігу'");
+    expect(mission).toContain("es: 'Impulsar la liga'");
+    expect(mission).toContain("'pt-BR': 'Impulsionar a liga'");
+    expect(mission).toContain("vi: 'Tăng tốc giải đấu'");
+    expect(mission).toContain("id: 'Percepat liga'");
+    expect(mission).toContain("tr: 'Ligi hızlandır'");
+    expect(mission).toContain("pl: 'Przyspiesz ligę'");
+    expect(mission).toContain('accessibilityLabel={boostLeagueLabel}');
+    expect(mission).not.toContain('Ускорить весь клуб');
+  });
+
   it('keeps the arena scene and participant rows without the floating my-position overlay', () => {
     const screen = read('app/club_screen.tsx');
     const scene = read('components/league/LeagueArenaScene.tsx');

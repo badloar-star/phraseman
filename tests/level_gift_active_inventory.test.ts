@@ -72,6 +72,11 @@ describe('active level gift inventory', () => {
       title: 'Захист ланцюжка',
       desc: '2 дн.',
     }));
+    expect(items).toContainEqual(expect.objectContaining({
+      key: 'club_boost',
+      title: 'Буст ліги',
+      desc: '1 безкоштовна активація',
+    }));
   });
 
   it('does not list expired or empty active gift states', async () => {

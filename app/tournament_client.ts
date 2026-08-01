@@ -11,6 +11,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { ensureAnonUser } from './cloud_sync';
 
@@ -672,6 +673,15 @@ export type LiveReaction = {
 /** Потолок подписки: в комнате 16 мест, больше документов быть не может. */
 const TOURNAMENT_ROOM_SIZE_CAP = 16;
 
+/**
+ * Временный рубильник реакций турнира.
+ *
+ * зачем 2026-08-01: отправка через Firestore давала заметную задержку и короткий
+ * фриз после нажатия. Пока транспорт не станет мгновенным, не показываем кнопки,
+ * не открываем listener и не разрешаем отправку.
+ */
+export const TOURNAMENT_REACTIONS_ENABLED = false;
+
 /** Реакция живёт на экране столько же, сколько летит вверх. */
 export const REACTION_TTL_MS = 2600;
 /** Кулдаун между своими реакциями: спам-защита и защита от лишних записей. */
@@ -692,17 +702,18 @@ export const REACTION_COOLDOWN_MS = 900;
  * не сыплется история чужих тапов.
  */
 export function useTournamentReactions(roomId: string | null, active = true) {
+  const reactionsActive = active && TOURNAMENT_REACTIONS_ENABLED;
   const [incoming, setIncoming] = useState<LiveReaction[]>([]);
   const lastSentAtRef = useRef(0);
   const seenRef = useRef<Map<string, number>>(new Map());
   const mountedAtRef = useRef(Date.now());
-  const activeRef = useRef(active);
+  const activeRef = useRef(reactionsActive);
   const runtimeGenerationRef = useRef(0);
-  activeRef.current = active;
+  activeRef.current = reactionsActive;
 
   useEffect(() => {
     const runtimeGeneration = ++runtimeGenerationRef.current;
-    if (!roomId || !active) return;
+    if (!roomId || !reactionsActive) return;
     let cancelled = false;
     let unsubscribe: null | (() => void) = null;
     mountedAtRef.current = Date.now();
@@ -751,7 +762,7 @@ export function useTournamentReactions(roomId: string | null, active = true) {
       unsubscribe?.();
       seenRef.current.clear();
     };
-  }, [roomId, active]);
+  }, [roomId, reactionsActive]);
 
   /** Реакция отыграна — убираем из очереди, чтобы список не рос. */
   const consume = useCallback((id: string, atMs: number) => {
@@ -765,7 +776,7 @@ export function useTournamentReactions(roomId: string | null, active = true) {
    * увидят этот тап, а свой полёт уже честно показан.
    */
   const send = useCallback(async (emoji: string, name: string): Promise<boolean> => {
-    if (!roomId || !activeRef.current) return false;
+    if (!TOURNAMENT_REACTIONS_ENABLED || !roomId || !activeRef.current) return false;
     const runtimeGeneration = runtimeGenerationRef.current;
     const now = Date.now();
     if (now - lastSentAtRef.current < REACTION_COOLDOWN_MS) return false;
@@ -868,10 +879,21 @@ export function tournamentDateKey(timezone: string, at: Date = new Date()): stri
  * уходит в следующую комнату того же слота. Поэтому roomId из ответа — это
  * фактическая комната, и открывать надо именно её.
  */
-export function joinTournament(roomId: string) {
+async function loadTournamentProfileHint(): Promise<{ name: string; avatar: string; aura: string }> {
+  const rows = await AsyncStorage.multiGet(['user_name', 'user_avatar', 'user_avatar_aura'])
+    .catch(() => [] as [string, string | null][]);
+  const profile = new Map(rows);
+  return {
+    name: (profile.get('user_name') ?? '').normalize('NFKC').replace(/\s+/g, ' ').trim().slice(0, 48),
+    avatar: (profile.get('user_avatar') ?? '').trim().slice(0, 128),
+    aura: (profile.get('user_avatar_aura') ?? '').trim().slice(0, 64),
+  };
+}
+
+export async function joinTournament(roomId: string) {
   return callFunction<{ ok: boolean; roomId: string; entryGems?: number; gemsLeft?: number }>(
     'tournamentJoin',
-    { roomId },
+    { roomId, profile: await loadTournamentProfileHint() },
   );
 }
 
@@ -1003,14 +1025,18 @@ export function loadRoundReview(roomId: string) {
  * Жемчужины списывает эта же серверная транзакция — отдельный вызов входа не
  * нужен (иначе комната успевала стартовать, пока игрок читает подтверждение).
  */
-export function startTournamentNow() {
+export async function startTournamentNow() {
   return callFunction<{
     ok: boolean;
     roomId: string;
     startsAt: number;
     entryGems?: number;
     gemsLeft?: number;
-  }>('tournamentStartNow', {}, 'europe-west1');
+  }>(
+    'tournamentStartNow',
+    { profile: await loadTournamentProfileHint() },
+    'europe-west1',
+  );
 }
 
 /** Отправка ответов батча. Сервер сам считает очки — клиенту нельзя доверять. */

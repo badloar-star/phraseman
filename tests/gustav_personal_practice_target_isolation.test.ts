@@ -111,7 +111,7 @@ describe('Gustav personal practice target isolation', () => {
     expect(trainerSource).toContain('prefetchTrainerPracticeSnapshot({ studyTarget, sourceLocale, force: true })');
     const trainerPrefetchSource = fs.readFileSync(path.join(ROOT, 'app', 'trainer_practice_prefetch.ts'), 'utf8');
     expect(trainerPrefetchSource).toContain('loadResolvedPersonalTrainings({ studyTarget, sourceLocale: normalizedSourceLocale })');
-    expect(trainerPrefetchSource).toContain('ensureFrenchRemotePersonalPractice(normalizedSourceLocale)');
+    expect(trainerPrefetchSource).not.toContain('ensureFrenchRemotePersonalPractice');
     expect(trainerSource).toContain('trainerSessionContentAvailableForTarget(studyTarget)');
     expect(trainerSource).toContain('trainerSessionEnabled');
     expect(trainerPrefetchSource).toContain('Promise.resolve(null)');

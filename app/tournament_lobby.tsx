@@ -30,7 +30,7 @@ import {
   V2Cta,
   V2Segments,
 } from '../components/tournament/tournament_v2_ui';
-import { tournamentAvatarValue } from '../components/tournament/tournament_avatars';
+import { tournamentAvatarLevel, tournamentAvatarValue } from '../components/tournament/tournament_avatars';
 import { T, formatTimeLeft, radius, type, useTournamentPalette, type TournamentPalette} from '../components/tournament/tournament_theme';
 import { TournamentEdgeState } from '../components/tournament/TournamentEdgeState';
 import { TournamentFxHost, type TournamentFxApi } from '../components/tournament/TournamentFx';
@@ -38,7 +38,7 @@ import {
   isRoundState, leaveTournament, resolveTournamentLobbyRoute, resolveTournamentRoomIdParam,
   resolveTournamentExitStatus,
   runTournamentMutationWithRetry,
-  tournamentNow, useTournamentReactions, useTournamentRoom,
+  tournamentNow, TOURNAMENT_REACTIONS_ENABLED, useTournamentReactions, useTournamentRoom,
   type RoomPlayer, type Room } from './tournament_client';
 import { getStableId } from './stable_id';
 import { useLocalSearchParams } from 'expo-router';
@@ -453,20 +453,22 @@ export default function TournamentLobbyScreen() {
           })}
         </View>
 
-        {/* Реакции */}
-        <View style={styles.reactions}>
-          {REACTIONS.map((emoji) => (
-            <Pressable
-              key={emoji}
-              onPress={() => sendReaction(emoji)}
-              style={styles.reactionButton}
-              accessibilityRole="button"
-              accessibilityLabel={`Отправить реакцию ${emoji}`}
-            >
-              <Text style={styles.reactionEmoji}>{emoji}</Text>
-            </Pressable>
-          ))}
-        </View>
+        {/* Реакции временно скрыты вместе с транспортом: см. TOURNAMENT_REACTIONS_ENABLED. */}
+        {TOURNAMENT_REACTIONS_ENABLED ? (
+          <View style={styles.reactions}>
+            {REACTIONS.map((emoji) => (
+              <Pressable
+                key={emoji}
+                onPress={() => sendReaction(emoji)}
+                style={styles.reactionButton}
+                accessibilityRole="button"
+                accessibilityLabel={`Отправить реакцию ${emoji}`}
+              >
+                <Text style={styles.reactionEmoji}>{emoji}</Text>
+              </Pressable>
+            ))}
+          </View>
+        ) : null}
 
       </ScrollView>
 
@@ -481,7 +483,7 @@ export default function TournamentLobbyScreen() {
         {selected ? (
           <>
             <View style={styles.profileAvatar}>
-              <AvatarView avatar={selected.avatar} auraId={selected.aura} size={72} animateAura={false} />
+              <AvatarView avatar={selected.avatar} level={tournamentAvatarLevel(selected.avatar)} auraId={selected.aura} size={72} animateAura={false} />
             </View>
             <Text style={styles.profileName}>{selected.name}</Text>
             <Text style={styles.profileRank}>{selected.rank}</Text>
@@ -520,7 +522,7 @@ const SeatCard = memo(function SeatCard({ seat, onPress }: { seat: Seat; onPress
         accessibilityRole="button"
         accessibilityLabel={`Профиль ${seat.name}`}
       >
-        <AvatarView avatar={seat.avatar} auraId={seat.aura} size={44} animateAura={false} />
+        <AvatarView avatar={seat.avatar} level={tournamentAvatarLevel(seat.avatar)} auraId={seat.aura} size={44} animateAura={false} />
         {seat.streak > 0 ? <Text style={styles.seatStreak}>🔥</Text> : null}
         <Text
           style={[styles.seatName, seat.isYou && { color: P.accent }]}

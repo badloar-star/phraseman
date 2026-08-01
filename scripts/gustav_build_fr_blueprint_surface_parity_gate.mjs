@@ -36,7 +36,7 @@ const SURFACE_PLANS = {
   vocabulary_word_training: {
     copyProductContract: ['word token training shape', 'lesson router connection', 'same source-locale UI behavior'],
     rebuildNatively: ['French vocabulary banks from French lessons/features', 'French morphology-aware distractors', 'French audio references'],
-    currentFrenchArtifacts: ['app/french_personal_practice_remote_runtime.ts'],
+    currentFrenchArtifacts: [],
     nextBuildScripts: ['new scripts/gustav_build_fr_vocab_drill_parity_gate.mjs'],
     productionBlockers: ['FRENCH_VOCAB_BANK_NOT_PROVEN_AS_NATIVE_BANK'],
   },
@@ -71,7 +71,7 @@ const SURFACE_PLANS = {
   personal_practice_active_recall: {
     copyProductContract: ['practice routing', 'active recall session shape', 'mistake adapter isolation'],
     rebuildNatively: ['French practice banks', 'French mistake patterns', 'French spaced review prompts'],
-    currentFrenchArtifacts: ['app/french_personal_practice_remote_runtime.ts'],
+    currentFrenchArtifacts: [],
     nextBuildScripts: ['new scripts/gustav_build_fr_personal_practice_parity_gate.mjs'],
     productionBlockers: ['FRENCH_PERSONAL_PRACTICE_NOT_PROVEN_AS_NATIVE_BANK'],
   },

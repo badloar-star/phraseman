@@ -247,14 +247,14 @@ export function getGlobalBroadcastRewardBadge(payload: GlobalBroadcastModalPaylo
     case 'club_boost_free':
       return {
         icon: '👥',
-        labelRu: 'Бесплатный клубный буст',
-        labelUk: 'Безкоштовний клубний буст',
-        labelEs: 'Impulso de club gratuito',
-        labelPtBr: 'Impulso de clube grátis',
-        labelVi: 'Tăng lực câu lạc bộ miễn phí',
-        labelId: 'Boost klub gratis',
-        labelTr: 'Ücretsiz kulüp güçlendirmesi',
-        labelPl: 'Darmowy boost klubu',
+        labelRu: 'Бесплатный буст лиги',
+        labelUk: 'Безкоштовний буст ліги',
+        labelEs: 'Impulso de liga gratuito',
+        labelPtBr: 'Impulso de liga grátis',
+        labelVi: 'Tăng lực giải đấu miễn phí',
+        labelId: 'Boost liga gratis',
+        labelTr: 'Ücretsiz lig güçlendirmesi',
+        labelPl: 'Darmowy boost ligi',
       };
     case 'arena_extra_5':
       return {

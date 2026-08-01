@@ -394,6 +394,7 @@ describe('tournamentStartNow latency controls', () => {
       stableUid: 'stable-user',
       user: { shards: 77, firebaseAuthUid: 'auth-user', name: 'Fallback' },
       leaderboardProfile: { name: 'Leaderboard Name', avatar: 'L' },
+      publicProfile: { name: 'Correct Nick', avatar: 'custom:custom-gen-41:aurora:black', aura: 'aura-violet' },
       config: { slots: [], freeWeeklyEntry: false, ticketGemValue: 0 },
       currentEconomy: {
         entryGems: 99,
@@ -418,6 +419,11 @@ describe('tournamentStartNow latency controls', () => {
 
     expect(result.room.players).toHaveLength(16);
     expect(result.room.players.filter((player: any) => player.id === 'stable-user')).toHaveLength(1);
+    expect(result.room.players.find((player: any) => player.id === 'stable-user')).toMatchObject({
+      name: 'Correct Nick',
+      avatar: 'custom:custom-gen-41:aurora:black',
+      aura: 'aura-violet',
+    });
     expect(result.room.participantAuthUids).toEqual(['auth-user']);
     expect(result.room.version).toBe(1);
     expect(result.room.state).toBe('lobby');

@@ -14,4 +14,11 @@ describe('tournament automatic identity client contract', () => {
     expect(block.indexOf('await ensureAnonUser()')).toBeLessThan(block.indexOf('httpsCallable('));
     expect(source).not.toContain('signInWithProvider');
   });
+
+  it('sends the current local nickname, avatar, and aura with both join routes', () => {
+    expect(source).toContain("import AsyncStorage from '@react-native-async-storage/async-storage';");
+    expect(source).toContain("AsyncStorage.multiGet(['user_name', 'user_avatar', 'user_avatar_aura'])");
+    expect(source).toContain("'tournamentJoin',\n    { roomId, profile: await loadTournamentProfileHint() },");
+    expect(source).toContain("'tournamentStartNow',\n    { profile: await loadTournamentProfileHint() },");
+  });
 });

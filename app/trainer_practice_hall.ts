@@ -1,7 +1,16 @@
-import { getCachedDueItems, getDueItems, hasCachedTrainerItems, type TrainerDashboard, type TrainerItem, type TrainerQueue } from './trainer_store';
+import {
+  getCachedDueItems,
+  getDueItems,
+  hasCachedTrainerItems,
+  trainerTranslationForLang,
+  type TrainerDashboard,
+  type TrainerItem,
+  type TrainerQueue,
+} from './trainer_store';
 import type { RuntimeSourceLocale, RuntimeStudyTarget } from './target_storage_keys';
 import { shuffleWordBankTiles, tokenizeRecallPhrase, type WordBankTile } from './review_evaluator';
 import { getLessonData } from './lesson_data_all';
+import type { Lang } from '../constants/i18n';
 
 const PRACTICE_HALL_FALLBACK_ORDER: readonly TrainerQueue[] = ['phrases', 'words', 'arena'];
 
@@ -184,6 +193,44 @@ export interface SessionCard {
   mode: SessionMode;
 }
 
+export interface WordSessionCard {
+  item: TrainerItem;
+  shownTranslation: string;
+  isCorrectTranslation: boolean;
+}
+
+function pickWordSessionDecoy(
+  correctTranslation: string,
+  items: readonly TrainerItem[],
+  lang: Lang,
+  random: () => number,
+): string {
+  const pool = items
+    .map((item) => trainerTranslationForLang(item, lang))
+    .filter((translation) => translation && translation !== correctTranslation);
+  if (pool.length === 0) return correctTranslation;
+  return pool[Math.floor(random() * pool.length)] ?? correctTranslation;
+}
+
+export function buildTrainerWordSessionDeck(
+  items: TrainerItem[],
+  lang: Lang,
+  random: () => number = Math.random,
+): WordSessionCard[] {
+  return items.map((item) => {
+    const showCorrect = random() > 0.5;
+    const correctTranslation = trainerTranslationForLang(item, lang);
+    const shownTranslation = showCorrect
+      ? correctTranslation
+      : pickWordSessionDecoy(correctTranslation, items, lang, random);
+    return {
+      item,
+      shownTranslation,
+      isCorrectTranslation: showCorrect || shownTranslation === correctTranslation,
+    };
+  });
+}
+
 /**
  * Колода сессии: чередуем fill_gap и word_bank. fill_gap назначается ТОЛЬКО
  * когда слово-пропуск реально находится во фразе — иначе честный word_bank
@@ -219,4 +266,17 @@ export function getWarmPhraseSessionDeck(
   const items = getCachedPhraseSessionItems(limit, studyTarget, sourceLocale);
   if (items.length === 0) return null;
   return buildTrainerSessionDeck(items);
+}
+
+export function getWarmWordSessionDeck(
+  limit = WORD_SESSION_LIMIT,
+  studyTarget?: RuntimeStudyTarget,
+  sourceLocale?: RuntimeSourceLocale,
+  lang: Lang = 'ru',
+  random: () => number = Math.random,
+): WordSessionCard[] | null {
+  if (!hasCachedTrainerItems(studyTarget)) return null;
+  const items = getCachedDueItems('words', limit, studyTarget, sourceLocale);
+  if (items.length === 0) return null;
+  return buildTrainerWordSessionDeck(items, lang, random);
 }

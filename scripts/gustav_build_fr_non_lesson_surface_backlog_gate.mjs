@@ -116,9 +116,9 @@ const BACKLOG = [
     relatedParitySurfaces: ['personal_practice_active_recall'],
     priority: 5,
     why: 'Personal practice must train French weak spots with target-scoped storage and sourceLocale-safe prompts.',
-    exactFiles: ['app/french_personal_practice_remote_runtime.ts', 'app/personal_practice_target_gate.ts', 'app/active_recall.ts', 'app/review.tsx'],
-    exactScripts: ['scripts/gustav_build_fr_personal_practice_active_recall_v1.mjs'],
-    exactTests: ['tests/gustav_fr_personal_practice_active_recall_v1.test.ts'],
+    exactFiles: ['app/personal_practice_target_gate.ts', 'app/active_recall.ts', 'app/review.tsx'],
+    exactScripts: [],
+    exactTests: [],
     productionBlockers: ['FRENCH_PERSONAL_PRACTICE_NATIVE_BANK_NOT_COMPLETE', 'PROBLEM_COACH_ROUTE_STILL_HOLD'],
   },
   {

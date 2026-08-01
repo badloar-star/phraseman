@@ -69,7 +69,6 @@ describe('study target server prefetch contract', () => {
       'daily_phrase',
       'audio_metadata',
       'flashcard',
-      'personal_practice',
     ]);
     expect(frenchTargetObjectPrefix('ru', 'lesson')).toMatch(/^course-packs\/fr\/ru\/lesson\//);
     expect(frenchTargetObjectPrefix('uk', 'quiz')).toMatch(/^course-packs\/fr\/uk\/quiz\//);
@@ -182,7 +181,7 @@ describe('study target server prefetch contract', () => {
 
   it('would expose exactly source-locale-scoped French server registrations after the approval gate', () => {
     const registrations = getFrenchStudyTargetServerPackRegistrations('ru', () => true);
-    expect(registrations).toHaveLength(7);
+    expect(registrations).toHaveLength(6);
     expect(registrations.map((registration) => registration.surface)).toEqual([...FRENCH_TARGET_REMOTE_SURFACES]);
     for (const registration of registrations) {
       expect(registration.studyTarget).toBe('fr');
@@ -196,7 +195,7 @@ describe('study target server prefetch contract', () => {
     }
 
     const ukRegistrations = getFrenchStudyTargetServerPackRegistrations('uk', () => true);
-    expect(ukRegistrations).toHaveLength(7);
+    expect(ukRegistrations).toHaveLength(6);
     expect(ukRegistrations.every((registration) => registration.sourceLocale === 'uk')).toBe(true);
     expect(getFrenchStudyTargetServerPackRegistrations('es', () => true)).toEqual([]);
   });

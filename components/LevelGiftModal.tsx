@@ -38,8 +38,12 @@ import PlusBadge from './PlusBadge';
 import {
   RewardModalPanelBackdrop,
   RewardModalLiquidGlass,
+  rewardModalAccentColor,
   rewardModalPanelBorder,
   rewardModalPanelColors,
+  rewardModalPrimaryButtonColors,
+  rewardModalPrimaryButtonText,
+  rewardModalSoftSurface,
 } from './RewardModalBackdrop';
 import {
   markGiftClaimed,
@@ -482,8 +486,11 @@ function LevelGiftModal({
   if (!visible || !gift) return null;
 
   const rarity      = gift.rarity;
-  const palette     = paletteForRarity(rarity);
-  const accent      = palette.accent;
+  const rarityPalette = paletteForRarity(rarity);
+  const rarityAccent = rarityPalette.accent;
+  const modalAccent = rewardModalAccentColor(themeMode, t);
+  const primaryButtonColors = rewardModalPrimaryButtonColors(themeMode);
+  const primaryButtonText = rewardModalPrimaryButtonText(themeMode);
   const rarityLabel = giftRarityUiLabel(rarity, lang);
   const showPlusBadge = applyAsPremium === true || isPremiumLevelGiftId(gift.id);
   const cosmeticLabel = cosmeticLabelForLang(appliedResult, lang);
@@ -514,8 +521,8 @@ function LevelGiftModal({
           alignItems: 'center',
           overflow: 'hidden',
           borderWidth: 0,
-          borderColor: rewardModalPanelBorder(themeMode, t, `${accent}55`),
-          shadowColor: accent,
+          borderColor: rewardModalPanelBorder(themeMode, t),
+          shadowColor: modalAccent,
           shadowOpacity: 0.42,
           shadowRadius: 34,
           shadowOffset: { width: 0, height: 0 },
@@ -525,15 +532,7 @@ function LevelGiftModal({
           {/* Базовый материал reward-панели (непрозрачная подложка уже задана выше) */}
           <RewardModalPanelBackdrop themeMode={themeMode} intensity="strong" />
 
-          {/* Декоративный градиент по редкости — поверх непрозрачной подложки */}
-          <LinearGradient
-            pointerEvents="none"
-            colors={[palette.panelTop, palette.panelBottom]}
-            start={{ x: 0.5, y: 0 }}
-            end={{ x: 0.5, y: 1 }}
-            style={[StyleSheet.absoluteFill, { opacity: 0.92 }]}
-          />
-          <RewardModalLiquidGlass themeMode={themeMode} accent={accent} intensity="strong" />
+          <RewardModalLiquidGlass themeMode={themeMode} accent={modalAccent} intensity="strong" />
 
           {/* Верхняя линия-свечение */}
           <Animated.View
@@ -544,14 +543,14 @@ function LevelGiftModal({
               left: 30,
               right: 30,
               height: 1.5,
-              backgroundColor: accent,
+              backgroundColor: modalAccent,
               opacity: glowOpacity,
             }}
           />
-          {/* мягкая верхняя зона редкости */}
+          {/* мягкая верхняя зона активной темы */}
           <View
             pointerEvents="none"
-            style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 80, backgroundColor: palette.accentSoft }}
+            style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 80, backgroundColor: rewardModalSoftSurface(themeMode, t) }}
           />
 
           {canCloseWithIcon && (
@@ -581,10 +580,10 @@ function LevelGiftModal({
           )}
 
           {/* Header */}
-          <Text style={{ color: accent, fontSize: f.label, fontWeight: '800', textTransform: 'uppercase', letterSpacing: 1.4, marginBottom: 5 }}>
+          <Text style={{ color: modalAccent, fontSize: f.label, fontWeight: '800', textTransform: 'uppercase', letterSpacing: 1.4, marginBottom: 5 }}>
             {triLang(lang, { ru: `Уровень ${level}`, uk: `Рівень ${level}`, es: `Nivel ${level}`, 'pt-BR': `Nível ${level}`, vi: `Cấp ${level}`, id: `Level ${level}`, tr: `Seviye ${level}`, pl: `Poziom ${level}` })}
           </Text>
-          <Text style={{ color: '#FFFFFF', fontSize: f.numMd + 2, fontWeight: '900', marginBottom: 3, textAlign: 'center' }}>
+          <Text style={{ color: t.textPrimary, fontSize: f.numMd + 2, fontWeight: '900', marginBottom: 3, textAlign: 'center' }}>
             {triLang(lang, { ru: 'Подарок за уровень', uk: 'Твій подарунок', es: 'Tu regalo', 'pt-BR': 'Seu presente', vi: 'Quà của bạn', id: 'Hadiahmu', tr: 'Hediyen', pl: 'Twój prezent' })}
           </Text>
           <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '600', textAlign: 'center', marginBottom: 16 }}>
@@ -595,7 +594,7 @@ function LevelGiftModal({
             <>
               <TouchableOpacity testID="level-gift-box-open" activeOpacity={0.85} onPress={() => handleTap()} disabled={phase === 'opening' || !gift} style={{ alignItems: 'center' }}>
                 <GiftBox3D
-                  palette={palette}
+                  palette={rarityPalette}
                   size={LEVEL_GIFT_STAGE_SIZE}
                   idle={phase === 'box'}
                   opening={phase === 'opening'}
@@ -733,15 +732,15 @@ function LevelGiftModal({
                 flexDirection: 'row',
                 alignItems: 'center',
                 borderWidth: 0,
-                borderColor: `${accent}55`,
+                borderColor: `${rarityAccent}55`,
                 borderRadius: 999,
                 paddingVertical: 5,
                 paddingHorizontal: 12,
-                backgroundColor: palette.accentSoft,
+                backgroundColor: rarityPalette.accentSoft,
                 marginBottom: 8,
               }}>
                 <Text style={{
-                  color: rarity === 'common' ? t.textSecond : accent,
+                  color: rarity === 'common' ? t.textSecond : rarityAccent,
                   fontSize: f.caption,
                   fontWeight: '800',
                   letterSpacing: 1.2,
@@ -752,7 +751,7 @@ function LevelGiftModal({
               </View>
 
               <View style={{ alignItems: 'center', marginBottom: 6, gap: 6 }}>
-                <Text style={{ color: '#FFFFFF', fontSize: f.h2 + 4, fontWeight: '900', textAlign: 'center' }}>
+                <Text style={{ color: t.textPrimary, fontSize: f.h2 + 4, fontWeight: '900', textAlign: 'center' }}>
                   {gift ? giftDisplayTitleForLang(gift, lang) : ''}
                 </Text>
                 {showPlusBadge ? <PlusBadge themeMode={themeMode} size="xs" testID="level-gift-plus-badge" /> : null}
@@ -928,8 +927,8 @@ function LevelGiftModal({
                   paddingVertical: 15,
                   alignItems: 'center',
                   borderWidth: 0,
-                  borderColor: `${accent}66`,
-                  shadowColor: accent,
+                  borderColor: `${modalAccent}66`,
+                  shadowColor: modalAccent,
                   shadowOpacity: 0.28,
                   shadowRadius: 16,
                   shadowOffset: { width: 0, height: 0 },
@@ -938,14 +937,14 @@ function LevelGiftModal({
               >
                 <LinearGradient
                   pointerEvents="none"
-                  colors={palette.button}
+                  colors={primaryButtonColors}
                   start={{ x: 0, y: 0 }}
                   end={{ x: 1, y: 1 }}
                   style={StyleSheet.absoluteFill}
                 />
                 {/* верхний блик на кнопке */}
                 <View pointerEvents="none" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '50%', backgroundColor: 'rgba(255,255,255,0.22)' }} />
-                <Text style={{ color: palette.buttonInk, fontSize: f.bodyLg, fontWeight: '900' }}>
+                <Text style={{ color: primaryButtonText, fontSize: f.bodyLg, fontWeight: '900' }}>
                   {presentationMode === 'apply' && phase === 'box'
                     ? triLang(lang, { ru: 'Применить', uk: 'Застосувати', es: 'Aplicar', 'pt-BR': 'Usar', vi: 'Dùng', id: 'Pakai', tr: 'Kullan', pl: 'Użyj' })
                     : presentationMode === 'apply'

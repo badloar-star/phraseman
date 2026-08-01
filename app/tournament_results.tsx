@@ -41,6 +41,7 @@ import {
   type TournamentV2,
 } from '../components/tournament/tournament_theme';
 import { TournamentEdgeState } from '../components/tournament/TournamentEdgeState';
+import { tournamentAvatarLevel } from '../components/tournament/tournament_avatars';
 import {
   invalidateSeasonStandingsCache,
   hasAuthoritativeTournamentResults,
@@ -366,7 +367,7 @@ export default function TournamentResultsScreen() {
             {/* зачем: было хардкод-hex фолбэк-цвета + эмодзи-аватар — теперь
                 общий P.muted и настоящий AvatarView, как на подиуме выше. */}
             <View style={[styles.rewardAvatar, { backgroundColor: `${me?.color ?? P.muted}33` }]}>
-              <AvatarView avatar={me?.avatar ?? ''} auraId={me?.aura} size={40} animateAura={false} />
+              <AvatarView avatar={me?.avatar ?? ''} level={tournamentAvatarLevel(me?.avatar)} auraId={me?.aura} size={40} animateAura={false} />
             </View>
             <View style={styles.rewardBody}>
               <Text style={styles.rewardTitle}>Ваша награда</Text>
@@ -510,7 +511,7 @@ const PodiumColumn = memo(function PodiumColumn({
             first && styles.podiumAvatarFirst,
           ]}
         >
-          <AvatarView avatar={winner.avatar} auraId={winner.aura} size={first ? 74 : 62} animateAura={false} />
+          <AvatarView avatar={winner.avatar} level={tournamentAvatarLevel(winner.avatar)} auraId={winner.aura} size={first ? 74 : 62} animateAura={false} />
         </View>
       </Animated.View>
 

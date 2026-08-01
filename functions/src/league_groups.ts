@@ -805,7 +805,7 @@ async function activateLeagueGroupBoostForStableUid(db: FirebaseFirestore.Firest
     const userProgress = userData.progress && typeof userData.progress === 'object' && !Array.isArray(userData.progress)
       ? userData.progress as Record<string, unknown>
       : {};
-    // Подарок уровня «Буст клуба бесплатно»: клиент хранит флаг в AsyncStorage
+    // Подарок уровня «Буст лиги бесплатно»: клиент хранит флаг в AsyncStorage
     // (club_gift_free_boost_v1), cloud_sync зеркалит его в progress. Если ваучер
     // есть — активация бесплатна, ваучер гасится в этой же транзакции, чтобы
     // нельзя было использовать дважды.

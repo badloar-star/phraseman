@@ -27,7 +27,7 @@ import ContentWrap from '../components/ContentWrap';
 import CompassDepthSurface from '../components/CompassDepthSurface';
 import GradientProgressBar from '../components/GradientProgressBar';
 import { TrainerLoadingView, TrainerErrorView } from '../components/TrainerLoadStates';
-import { triLang, type Lang } from '../constants/i18n';
+import { triLang } from '../constants/i18n';
 import { screenTextOnGradient } from '../constants/theme';
 import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 import { statsThemeAccent, statsThemeSoftBg } from '../constants/statsThemeChrome';
@@ -38,10 +38,16 @@ import {
   getDueItems,
   getTrainerPremiumItemsForPlanQueue,
   markTrainerResult,
-  trainerTranslationForLang,
   type TrainerItem,
 } from './trainer_store';
-import { getCachedPhraseSessionItems, PHRASE_SESSION_LIMIT, WORD_SESSION_LIMIT } from './trainer_practice_hall';
+import {
+  buildTrainerWordSessionDeck,
+  getCachedPhraseSessionItems,
+  getWarmWordSessionDeck,
+  PHRASE_SESSION_LIMIT,
+  WORD_SESSION_LIMIT,
+  type WordSessionCard,
+} from './trainer_practice_hall';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { updateMultipleTaskProgress, type TaskType } from './daily_tasks';
 import { consumeTrainerSessionEntry } from './trainer_session';
@@ -53,7 +59,6 @@ import { useCorrectSound } from '../hooks/use-correct-sound';
 import { useSpeakAnswer } from '../hooks/use-speak-answer';
 import TrainerSessionReport from './trainer_session_report';
 import ReportErrorButton from '../components/ReportErrorButton';
-import { ensureFrenchRemotePersonalPractice } from './french_personal_practice_remote_runtime';
 import { frenchTrainerGateCopy, trainerSessionContentAvailableForTarget } from './trainer_target_gate';
 import { isStudyTargetSourceUiLang } from './study_target_lang_dev';
 import {
@@ -67,36 +72,9 @@ const { width: SCREEN_W } = Dimensions.get('window');
 const SWIPE_THRESHOLD = SCREEN_W * 0.3;
 const SWIPE_OUT_DURATION = 220;
 
-// ── Подбор ложного перевода ──────────────────────────────────────────────────
-// Все переводы слов из lesson_data — плоский список для выбора похожего.
-// Импортируем динамически чтобы не тащить весь контент при старте.
-async function pickDecoyTranslation(
-  correctTranslation: string,
-  allItems: TrainerItem[],
-  lang: Lang,
-): Promise<string> {
-  // Берём переводы других слов из очереди
-  const pool = allItems
-    .map(i => trainerTranslationForLang(i, lang))
-    .filter(t => t && t !== correctTranslation);
-  const correctRu = correctTranslation;
-
-  if (pool.length === 0) return correctRu; // нечего взять — вернём правильный (edge case)
-
-  // Случайный из пула
-  return pool[Math.floor(Math.random() * pool.length)];
-}
-
-// ── Типы ─────────────────────────────────────────────────────────────────────
-interface CardData {
-  item: TrainerItem;
-  shownTranslation: string;
-  isCorrectTranslation: boolean;
-}
-
 // ── Компонент одной карточки ─────────────────────────────────────────────────
 interface SwipeCardProps {
-  card: CardData;
+  card: WordSessionCard;
   onSwipe: (correct: boolean) => void;
   isTop: boolean;
   swipeOutRef: React.MutableRefObject<((dir: 'right' | 'left') => void) | null>;
@@ -288,19 +266,25 @@ export default function TrainerWordsSession() {
   const { playCorrect } = useCorrectSound();
   const { speakAnswer } = useSpeakAnswer();
 
-  const [deck, setDeck] = useState<CardData[]>([]);
+  const warmDeckRef = useRef<WordSessionCard[] | null>(
+    !trainerGateOpen || params.planTaskId || params.planTrainerTask
+      ? null
+      : getWarmWordSessionDeck(WORD_SESSION_LIMIT, studyTarget, sourceLocale, lang),
+  );
+  const warmDeck = warmDeckRef.current;
+  const [deck, setDeck] = useState<WordSessionCard[]>(() => warmDeck ?? []);
   const [current, setCurrent] = useState(0);
   const [correct, setCorrect] = useState(0);
   const [wrong, setWrong] = useState(0);
   const [done, setDone] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const [accessReady, setAccessReady] = useState(false);
+  const [loading, setLoading] = useState(() => warmDeck === null);
+  const [accessReady, setAccessReady] = useState(() => warmDeck !== null);
   const [loadError, setLoadError] = useState(false);
   const [reloadKey, setReloadKey] = useState(0);
-  const allItemsRef = useRef<TrainerItem[]>([]);
+  const allItemsRef = useRef<TrainerItem[]>(warmDeck?.map((card) => card.item) ?? []);
   const dailySessionTracked = useRef(false);
   const planTrainerCompletionTracked = useRef(false);
-  const sessionStartRef = useRef(0);
+  const sessionStartRef = useRef(warmDeck ? Date.now() : 0);
   const planTrainerContext = useMemo(() => readTrainerPlanTaskContext({
     mode: params.mode,
     planDayIndex: params.planDayIndex,
@@ -323,8 +307,9 @@ export default function TrainerWordsSession() {
 
   useEffect(() => {
     let cancelled = false;
+    const startedWarm = warmDeckRef.current !== null;
     setLoadError(false);
-    setLoading(true);
+    if (!startedWarm) setLoading(true);
     void (async () => {
       try {
         if (!trainerGateOpen) {
@@ -353,7 +338,6 @@ export default function TrainerWordsSession() {
           }
         }
         setAccessReady(true);
-        await ensureFrenchRemotePersonalPractice(sourceLocale);
         const items = planTrainerContext.taskId
           ? await getTrainerPremiumItemsForPlanQueue(
               planTrainerContext.planInstanceId,
@@ -367,29 +351,18 @@ export default function TrainerWordsSession() {
         allItemsRef.current = items;
         if (items.length === 0) { setDone(true); setLoading(false); return; }
 
-        // Строим колоду: каждая карточка имеет ~50% шанс ложного перевода
-        const cards: CardData[] = await Promise.all(
-          items.map(async (item) => {
-            const showCorrect = Math.random() > 0.5;
-            const correctTranslation = trainerTranslationForLang(item, lang);
-            const shownTranslation = showCorrect
-              ? correctTranslation
-              : await pickDecoyTranslation(correctTranslation, items, lang);
-            return {
-              item,
-              shownTranslation,
-              isCorrectTranslation: showCorrect || shownTranslation === correctTranslation,
-            };
-          }),
-        );
+        const cards = buildTrainerWordSessionDeck(items, lang);
         if (cancelled) return;
-        sessionStartRef.current = Date.now();
-        setDeck(cards);
+        if (!startedWarm) {
+          sessionStartRef.current = Date.now();
+          setDeck(cards);
+        }
         setLoading(false);
       } catch {
         // Сбой загрузки колоды (сеть/Firestore) больше не оставляет вечный
         // лоадер — показываем экран ошибки с retry и выходом.
         if (cancelled) return;
+        if (startedWarm) return;
         setLoadError(true);
         setLoading(false);
       }

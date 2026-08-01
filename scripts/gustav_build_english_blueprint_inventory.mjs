@@ -143,7 +143,6 @@ const FEATURE_SURFACES = [
     sourcePaths: [
       path.join(ROOT, 'app', 'french_quiz_remote_runtime.ts'),
       path.join(ROOT, 'app', 'french_flashcard_remote_runtime.ts'),
-      path.join(ROOT, 'app', 'french_personal_practice_remote_runtime.ts'),
       path.join(ROOT, 'app', 'cloud_sync.ts'),
       path.join(ROOT, 'admin', 'index.html'),
       path.join(ROOT, 'docs', 'gustav', 'GUSTAV_TARGET_STORAGE_PLAN.md'),

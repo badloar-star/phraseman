@@ -14,7 +14,7 @@ describe('reward modal liquid glass design contract', () => {
 
     expect(backdrop).toContain('export function RewardModalLiquidGlass');
     expect(backdrop).toContain('testID="reward-modal-liquid-glass"');
-    expect(single).toContain('<RewardModalLiquidGlass themeMode={themeMode} accent={accent} intensity="strong" />');
+    expect(single).toContain('<RewardModalLiquidGlass themeMode={themeMode} accent={modalAccent} intensity="strong" />');
     expect(dual).not.toContain('RewardModalLiquidGlass');
     expect(boon).toContain('<RewardModalLiquidGlass themeMode={themeMode} accent={accent} intensity="strong" />');
   });

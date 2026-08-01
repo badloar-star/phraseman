@@ -1913,14 +1913,30 @@ export function planTournamentHumanLobbyJoin(
   nowMs?: number,
 ): TournamentHumanLobbyJoinPlan {
   if (room.state === TOURNAMENT_STATE_CANCELLED || room.state === 'closed') throw new Error('room_not_joinable');
-  const existing = room.players.some((entry) => !entry.isBot && entry.id === player.id);
-  if (existing) {
-    if (room.participantAuthUids?.includes(authUid)) {
+  const existingIndex = room.players.findIndex((entry) => !entry.isBot && entry.id === player.id);
+  if (existingIndex >= 0) {
+    const existing = room.players[existingIndex];
+    const { aura: _existingAura, ...existingWithoutAura } = existing;
+    const refreshed: TournamentPlayer = {
+      ...existingWithoutAura,
+      name: player.name,
+      avatar: player.avatar,
+      ...(player.aura ? { aura: player.aura } : {}),
+    };
+    const profileChanged = existing.name !== refreshed.name
+      || existing.avatar !== refreshed.avatar
+      || existing.aura !== refreshed.aura;
+    const authChanged = !room.participantAuthUids?.includes(authUid);
+    if (!profileChanged && !authChanged) {
       return { room, startImmediately: false };
     }
+    const players = room.players.map((entry, index) => (
+      index === existingIndex ? refreshed : entry
+    ));
     return {
       room: {
         ...room,
+        players,
         participantAuthUids: Array.from(new Set([...(room.participantAuthUids || []), authUid])),
         version: room.version + 1,
       },
@@ -2686,6 +2702,83 @@ export function resolveTournamentPlayerAvatar(
   return '';
 }
 
+export type TournamentPlayerProfile = {
+  name: string;
+  avatar: string;
+  aura?: string;
+};
+
+function tournamentUserProgress(
+  user: Record<string, unknown> | null | undefined,
+): Record<string, unknown> {
+  const progress = user?.progress;
+  return progress && typeof progress === 'object' && !Array.isArray(progress)
+    ? progress as Record<string, unknown>
+    : {};
+}
+
+/** Resolves the current public tournament identity from canonical profile fields. */
+export function resolveTournamentPlayerProfile(
+  publicProfile: Record<string, unknown> | null | undefined,
+  leaderboard: Record<string, unknown> | null | undefined,
+  user: Record<string, unknown> | null | undefined,
+  profileHint?: Record<string, unknown> | null,
+): TournamentPlayerProfile {
+  const progress = tournamentUserProgress(user);
+  const nameCandidates = [
+    publicProfile?.name,
+    leaderboard?.name,
+    progress.user_name,
+    user?.user_name,
+    user?.name,
+    user?.displayName,
+    profileHint?.name,
+  ];
+  let name = TOURNAMENT_FALLBACK_NAME;
+  for (const candidate of nameCandidates) {
+    const value = String(candidate ?? '').normalize('NFKC').replace(/\s+/g, ' ').trim().slice(0, 48);
+    if (value && value !== TOURNAMENT_FALLBACK_NAME) {
+      name = value;
+      break;
+    }
+  }
+
+  const avatarCandidates = [
+    progress.user_avatar,
+    user?.user_avatar,
+    publicProfile?.avatar,
+    leaderboard?.avatar,
+    user?.avatar_emoji,
+    user?.avatar,
+    profileHint?.avatar,
+  ];
+  let avatar = '';
+  for (const candidate of avatarCandidates) {
+    const value = String(candidate ?? '').trim().slice(0, 128);
+    if (value) {
+      avatar = value;
+      break;
+    }
+  }
+
+  const auraCandidates = [
+    progress.user_avatar_aura,
+    user?.user_avatar_aura,
+    publicProfile?.aura,
+    leaderboard?.aura,
+    profileHint?.aura,
+  ];
+  let aura: string | undefined;
+  for (const candidate of auraCandidates) {
+    if (candidate === null || candidate === undefined) continue;
+    const value = String(candidate).trim().slice(0, 64);
+    if (value && value !== 'none') aura = value;
+    break;
+  }
+
+  return { name, avatar, ...(aura ? { aura } : {}) };
+}
+
 /**
  * Имя, которое уйдёт в запись недели.
  *
@@ -2752,11 +2845,11 @@ const BOT_AVATAR_AURAS = [
 ] as const;
 
 function botAvatarVisual(rand: () => number): { avatarEmoji: string; avatarAura?: string } {
-  const usesShopAvatar = rand() < 0.1;
+  const usesShopAvatar = rand() < 0.12;
   const avatarEmoji = usesShopAvatar
     ? `custom:custom-gen-${String(41 + Math.floor(rand() * 22)).padStart(2, '0')}:${BOT_AVATAR_GRADIENTS[Math.floor(rand() * BOT_AVATAR_GRADIENTS.length)]}:${rand() < 0.5 ? 'black' : 'white'}`
     : String(1 + Math.floor(rand() * 60));
-  const avatarAura = rand() < 0.22
+  const avatarAura = rand() < 0.05
     ? BOT_AVATAR_AURAS[Math.floor(rand() * BOT_AVATAR_AURAS.length)]
     : undefined;
   return avatarAura ? { avatarEmoji, avatarAura } : { avatarEmoji };

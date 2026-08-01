@@ -159,6 +159,14 @@ test('provides explicit accessible text-only assessment copy for every planned s
     'landing.trustLabel', 'landing.trustFree', 'landing.trustNoRegistration', 'landing.trustInstantResult',
     'landing.finalCtaTitle', 'landing.finalCtaButton', 'footer.about', 'footer.privacyLabel',
     'stats.skipped', 'result.pitchSubtitle', 'result.benefit1', 'result.benefit2', 'result.benefit3', 'aria.resultLevel',
+    'document.title', 'document.description', 'header.title', 'header.language', 'header.interface',
+    'landing.eyebrow', 'landing.title', 'landing.subtitle', 'landing.start', 'landing.duration',
+    'languageSelector.title', 'languageSelector.testLanguage', 'languageSelector.uiLanguage', 'languageSelector.continue',
+    'consent.text', 'consent.privacy', 'consent.accept', 'socialProof.text', 'timer.label', 'timer.expired',
+    'actions.next', 'actions.back', 'actions.finish', 'actions.exit', 'result.title', 'result.level', 'result.score', 'result.subject', 'result.scope',
+    'name.label', 'name.optional', 'alerts.copySuccess', 'alerts.copyError', 'sharing.title', 'sharing.webShareTitle', 'sharing.resultPayload', 'sharing.copied', 'sharing.clipboardPrompt',
+    'resultCta.title', 'resultCta.text', 'resultCta.open', 'aria.languageMenu', 'aria.close', 'aria.progress', 'aria.timer',
+    'alt.logo', 'alt.certificate', 'title.retry', 'title.close', 'title.copy',
   ];
   for (const locale of i18n.UI_LOCALES) {
     for (const key of REQUIRED_COPY_KEYS) assert.equal(typeof i18n.t(locale, key, { count: 1, correct: 1, answered: 1, language: 'English', level: 'A1' }), 'string', `${locale}.${key}`);
@@ -191,13 +199,11 @@ test('uses natural genitive result names and text-only level claims in both loca
 
 test('composes certificate completion copy with the assessed language for all five tests', () => {
   const i18n = loadI18n();
-  for (const code of i18n.TEST_LANGUAGES) {
-    const testLanguage = i18n.TESTS[code];
-    const en = i18n.t('en', 'certificate.completed', { language: testLanguage.certificateNames.en });
-    const ru = i18n.t('ru', 'certificate.completed', { language: testLanguage.certificateNames.ru });
-    assert.ok(en.includes(testLanguage.certificateNames.en));
-    assert.ok(ru.includes(testLanguage.certificateNames.ru));
+  const expected = {
+    en: { en: 'completed the Phraseman English Level Check', de: 'completed the Phraseman German Level Check', fr: 'completed the Phraseman French Level Check', it: 'completed the Phraseman Italian Level Check', es: 'completed the Phraseman Spanish Level Check' },
+    ru: { en: 'за прохождение проверки уровня английского языка Phraseman', de: 'за прохождение проверки уровня немецкого языка Phraseman', fr: 'за прохождение проверки уровня французского языка Phraseman', it: 'за прохождение проверки уровня итальянского языка Phraseman', es: 'за прохождение проверки уровня испанского языка Phraseman' },
+  };
+  for (const locale of i18n.UI_LOCALES) for (const code of i18n.TEST_LANGUAGES) {
+    assert.equal(i18n.t(locale, 'certificate.completed', { language: i18n.TESTS[code].certificateNames[locale] }), expected[locale][code]);
   }
-  assert.equal(i18n.t('en', 'certificate.completed', { language: i18n.TESTS.de.certificateNames.en }), 'completed the Phraseman German Level Check');
-  assert.equal(i18n.t('ru', 'certificate.completed', { language: i18n.TESTS.de.certificateNames.ru }), 'за прохождение проверки уровня немецкого языка Phraseman');
 });

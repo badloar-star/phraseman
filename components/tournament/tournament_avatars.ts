@@ -52,6 +52,13 @@ export function tournamentAvatarValue(player: TournamentPlayerLike): string {
   return String(1 + ((h >>> 2) % AVATARS.length));
 }
 
+/** Numeric level avatar to use as the first-frame image fallback. */
+export function tournamentAvatarLevel(avatar: string | null | undefined): number | undefined {
+  if (!avatar || !/^\d+$/.test(avatar)) return undefined;
+  const level = Number(avatar);
+  return Number.isInteger(level) && level >= 1 && level <= AVATARS.length ? level : undefined;
+}
+
 /** Уровень бота для рамки/материала аватара — стабильный, правдоподобный (3..42). */
 export function tournamentBotLevel(botId: string): number {
   return 3 + (fnv1a(botId) % 40);

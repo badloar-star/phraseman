@@ -549,6 +549,85 @@ describe('season / bank / hot streak (§8, §9)', () => {
 // leaderboard/{uid}. Заглушка уходила в рейтинг, где её видели ВСЕ.
 // Эти тесты фиксируют приоритет источников, чтобы он не уехал снова.
 describe('имя игрока в комнате и рейтинге', () => {
+  it('собирает полный актуальный профиль из public_profiles и users.progress', () => {
+    const resolveProfile = (require('./tournament_core') as {
+      resolveTournamentPlayerProfile?: (
+        publicProfile: Record<string, unknown>,
+        leaderboard: Record<string, unknown>,
+        user: Record<string, unknown>,
+      ) => { name: string; avatar: string; aura?: string };
+    }).resolveTournamentPlayerProfile;
+
+    expect(typeof resolveProfile).toBe('function');
+    if (!resolveProfile) return;
+    expect(resolveProfile(
+      { name: 'Correct Nick', avatar: '7', aura: 'aura-old' },
+      { name: 'Player', avatar: '1', aura: null },
+      { progress: {
+        user_name: 'Correct Nick',
+        user_avatar: 'custom:custom-gen-41:aurora:black',
+        user_avatar_aura: 'aura-violet',
+      } },
+    )).toEqual({
+      name: 'Correct Nick',
+      avatar: 'custom:custom-gen-41:aurora:black',
+      aura: 'aura-violet',
+    });
+  });
+
+  it('явный выбор без ауры не возвращает устаревшую ауру из рейтинга', () => {
+    const resolveProfile = (require('./tournament_core') as {
+      resolveTournamentPlayerProfile?: (
+        publicProfile: Record<string, unknown>,
+        leaderboard: Record<string, unknown>,
+        user: Record<string, unknown>,
+      ) => { name: string; avatar: string; aura?: string };
+    }).resolveTournamentPlayerProfile;
+
+    expect(resolveProfile?.(
+      { name: 'Correct Nick', avatar: '18', aura: 'aura-ember' },
+      { name: 'Correct Nick', avatar: '18', aura: 'aura-ember' },
+      { progress: { user_name: 'Correct Nick', user_avatar: '18', user_avatar_aura: 'none' } },
+    )).toEqual({ name: 'Correct Nick', avatar: '18' });
+  });
+
+  it('заглушка Player в публичных индексах не перекрывает настоящий ник пользователя', () => {
+    const { resolveTournamentPlayerProfile } = require('./tournament_core') as {
+      resolveTournamentPlayerProfile: (
+        publicProfile: Record<string, unknown>,
+        leaderboard: Record<string, unknown>,
+        user: Record<string, unknown>,
+      ) => { name: string; avatar: string; aura?: string };
+    };
+
+    expect(resolveTournamentPlayerProfile(
+      { name: 'Player', avatar: '1' },
+      { name: 'Player', avatar: '1' },
+      { progress: { user_name: 'Correct Nick', user_avatar: '22' } },
+    ).name).toBe('Correct Nick');
+  });
+
+  it('использует локальный профиль входа, когда облачные документы пусты', () => {
+    const { resolveTournamentPlayerProfile } = require('./tournament_core') as {
+      resolveTournamentPlayerProfile: (
+        publicProfile: Record<string, unknown>,
+        leaderboard: Record<string, unknown>,
+        user: Record<string, unknown>,
+        profileHint?: Record<string, unknown>,
+      ) => { name: string; avatar: string; aura?: string };
+    };
+
+    expect(resolveTournamentPlayerProfile({}, {}, {}, {
+      name: 'Local Correct Nick',
+      avatar: 'custom:custom-gen-41:aurora:black',
+      aura: 'aura-violet',
+    })).toEqual({
+      name: 'Local Correct Nick',
+      avatar: 'custom:custom-gen-41:aurora:black',
+      aura: 'aura-violet',
+    });
+  });
+
   it('берёт ник из leaderboard — там настоящий профиль', () => {
     expect(resolveTournamentPlayerName({ name: 'Radium 95935' }, {})).toBe('Radium 95935');
   });
@@ -1218,8 +1297,18 @@ describe('transaction plan semantics', () => {
       ...room(), state: 'lobby', startsAt: 10_000,
       players: [player('u1', 0)], participantAuthUids: ['old-auth'], rounds: [],
     };
-    const replay = plans.applyTournamentJoin(joined, player('u1', 0), 'new-auth', 9_000);
+    const replay = plans.applyTournamentJoin(joined, {
+      ...player('u1', 0),
+      name: 'Correct Nick',
+      avatar: 'custom:custom-gen-41:aurora:black',
+      aura: 'aura-violet',
+    }, 'new-auth', 9_000);
     expect(replay.players).toHaveLength(1);
+    expect(replay.players[0]).toMatchObject({
+      name: 'Correct Nick',
+      avatar: 'custom:custom-gen-41:aurora:black',
+      aura: 'aura-violet',
+    });
     expect(replay.participantAuthUids).toEqual(['old-auth', 'new-auth']);
     expect(replay.version).toBe(joined.version + 1);
   });

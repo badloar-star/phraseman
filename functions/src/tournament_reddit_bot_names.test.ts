@@ -11,6 +11,13 @@ import {
   isSafeTournamentBotName,
 } from './tournament_reddit_bot_names';
 
+const tournamentRuntime = require('./tournaments') as {
+  validBotProfile?: (id: string, data: Record<string, unknown>) => {
+    avatarEmoji: string;
+    avatarAura?: string;
+  } | null;
+};
+
 describe('tournament Reddit bot names', () => {
   test('ships exactly 200 unique, safe multilingual tournament names', () => {
     expect(REDDIT_BOT_NAMES).toHaveLength(200);
@@ -65,10 +72,43 @@ describe('tournament Reddit bot names', () => {
     expect(levelAvatars.length).toBeGreaterThanOrEqual(160);
     expect(shopAvatars.length).toBeGreaterThanOrEqual(8);
     expect(shopAvatars.length).toBeLessThanOrEqual(30);
-    expect(auras.length).toBeGreaterThanOrEqual(25);
-    expect(auras.length).toBeLessThanOrEqual(70);
+    expect(auras.length).toBeGreaterThanOrEqual(3);
+    expect(auras.length).toBeLessThanOrEqual(12);
+    expect(auras.length).toBeLessThan(shopAvatars.length);
     expect(new Set(profiles.map((profile) => `${profile.avatarEmoji}|${profile.avatarAura ?? ''}`)).size)
       .toBeGreaterThanOrEqual(80);
+  });
+
+  test('normalizes accepted legacy emoji profiles to the current rare visual mix', () => {
+    const validBotProfile = tournamentRuntime.validBotProfile;
+    expect(typeof validBotProfile).toBe('function');
+    if (!validBotProfile) return;
+
+    const profiles = TOURNAMENT_REDDIT_BOT_PROFILE_IDS.map((botId, index) => validBotProfile(botId, {
+      isBot: true,
+      seedVersion: 'tournament-bots-v2-reddit-20260801',
+      name: REDDIT_BOT_NAMES[index],
+      avatarEmoji: '🦊',
+      avatarAura: 'aura-aurora',
+      color: '#47C870',
+      winRate: 0.5,
+      rank: 'silver',
+      titles: [],
+    }));
+
+    expect(profiles.every(Boolean)).toBe(true);
+    const visuals = profiles.filter((profile): profile is NonNullable<typeof profile> => Boolean(profile));
+    const levelAvatars = visuals.filter((profile) => /^\d{1,2}$/.test(profile.avatarEmoji));
+    const shopAvatars = visuals.filter((profile) => profile.avatarEmoji.startsWith('custom:'));
+    const auras = visuals.filter((profile) => Boolean(profile.avatarAura));
+
+    expect(levelAvatars.length).toBeGreaterThanOrEqual(170);
+    expect(shopAvatars.length).toBeGreaterThanOrEqual(8);
+    expect(shopAvatars.length).toBeLessThanOrEqual(30);
+    expect(auras.length).toBeGreaterThanOrEqual(3);
+    expect(auras.length).toBeLessThanOrEqual(12);
+    expect(auras.length).toBeLessThan(shopAvatars.length);
+    expect(visuals.some((profile) => profile.avatarEmoji === '🦊')).toBe(false);
   });
 
   test('loads the complete 200-profile corpus for live room selection', () => {

@@ -206,6 +206,19 @@ describe('tournament backend hardening source contracts', () => {
     expect(replayIndex).toBeGreaterThan(0);
     expect(cutoffIndex).toBeGreaterThan(replayIndex);
     expect(source).toContain('participantAuthUids: replayRoom.participantAuthUids');
+    expect(source).toContain('players: replayRoom.players.map(publicTournamentPlayer)');
+  });
+
+  it('reads the canonical public profile for scheduled and Start Now joins', () => {
+    const reads = source.match(/db\.collection\('public_profiles'\)\.doc\(stableUid\)/g) ?? [];
+    expect(reads).toHaveLength(2);
+    expect(source).toContain('publicProfile: publicProfileSnap.exists');
+  });
+
+  it('accepts the authenticated client profile as a last-resort join hint', () => {
+    const callableForwards = source.match(/profileHint: request\.data\?\.profile/g) ?? [];
+    expect(callableForwards).toHaveLength(2);
+    expect(source).toContain('tournamentProfileHint(input.profileHint)');
   });
 
   it('exports the production transaction handlers used by callables and emulator tests', () => {

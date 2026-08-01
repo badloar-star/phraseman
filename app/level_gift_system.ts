@@ -1,7 +1,7 @@
 /**
  * Level-Up Gift System — подарок при повышении уровня.
  *
- * F2P — расширенный пул: осколки, энергия до полуночи, арена, бесплатный буст клуба, пари-скидка, …
+ * F2P — расширенный пул: осколки, энергия до полуночи, арена, бесплатный буст лиги, пари-скидка, …
  * Premium — отдельный пул: крупные осколки + редко проба набора 48ч + с низким шансом
  *   постоянное открытие одного из пяти фирменных наборов (Negotiator, Dark Logic, Wild West,
  *   Royal Tea, Peaky Blinders), без повторов того же набора из этой дорожки.
@@ -178,8 +178,8 @@ const LEVEL_GIFT_PLANNED_LOCALE: Partial<Record<GiftId, { title: PlannedGiftCopy
     desc: { 'pt-BR': 'Uma aura aleatória será desbloqueada grátis ao redor do avatar', vi: 'Một hào quang ngẫu nhiên sẽ mở khóa miễn phí quanh avatar', id: 'Aura acak terbuka gratis di sekitar avatar', tr: 'Avatarın etrafında rastgele bir aura ücretsiz açılır', pl: 'Losowa aura zostanie odblokowana za darmo wokół awatara' },
   },
   club_boost_free: {
-    title: { 'pt-BR': 'Boost de clube grátis', vi: 'Tăng lực câu lạc bộ miễn phí', id: 'Boost klub gratis', tr: 'Ücretsiz kulüp boostu', pl: 'Darmowy boost klubu' },
-    desc: { 'pt-BR': 'A próxima ativação de boost no clube não custa pérolas', vi: 'Lần kích hoạt tăng lực tiếp theo trong câu lạc bộ không tốn xu', id: 'Aktivasi boost klub berikutnya tidak membutuhkan koin', tr: 'Kulüpteki sonraki boost etkinleştirmesi jeton harcamaz', pl: 'Następna aktywacja boostu w klubie nie kosztuje monet' },
+    title: { 'pt-BR': 'Boost de liga grátis', vi: 'Tăng lực giải đấu miễn phí', id: 'Boost liga gratis', tr: 'Ücretsiz lig boostu', pl: 'Darmowy boost ligi' },
+    desc: { 'pt-BR': 'A próxima ativação do boost da liga não custa pérolas', vi: 'Lần kích hoạt tăng lực giải đấu tiếp theo không tốn xu', id: 'Aktivasi boost liga berikutnya tidak membutuhkan koin', tr: 'Bir sonraki lig boostu etkinleştirmesi jeton harcamaz', pl: 'Następna aktywacja boostu ligi nie kosztuje monet' },
   },
   xp_2x_48h: {
     title: { 'pt-BR': '+100% XP por 48 horas', vi: '+100% XP trong 48 giờ', id: '+100% XP selama 48 jam', tr: '48 saat +%100 XP', pl: '+100% XP przez 48 godz.' },
@@ -513,9 +513,9 @@ const GIFT_F2P: GiftDef[] = [
   },
   {
     id: 'club_boost_free', rarity: 'rare', icon: '👥', weight: 6,
-    titleRU: 'Буст клуба бесплатно', titleUK: 'Буст клубу безкоштовно', titleES: 'Impulso de liga gratis',
-    descRU: 'Следующая активация буста в клубе без жемчужин',
-    descUK: 'Наступна активація буста в клубі без жемчужин',
+    titleRU: 'Буст лиги бесплатно', titleUK: 'Буст ліги безкоштовно', titleES: 'Impulso de liga gratis',
+    descRU: 'Следующая активация буста лиги без жемчужин',
+    descUK: 'Наступна активація буста ліги без жемчужин',
     descES: 'La próxima activación del impulso en la liga no cuesta perlas',
   },
   {

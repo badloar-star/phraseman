@@ -1,6 +1,5 @@
 import { computeFrenchPhraseAnalytics } from './french_phrase_analytics';
 import { loadActivity365Analytics, type Activity365Day } from './activity_365_analytics';
-import { ensureFrenchRemotePersonalPractice } from './french_personal_practice_remote_runtime';
 import { computePhraseAnalytics, type PhraseAnalyticsResult } from './phrase_analytics';
 import { loadResolvedPersonalTrainings, type ResolvedPersonalTrainingsState } from './diagnosis_training_progress';
 import { personalPracticeCoachEnabledForTarget } from './personal_practice_target_gate';
@@ -84,9 +83,6 @@ export async function prefetchTrainerPracticeSnapshot({
   }
 
   const normalizedSourceLocale = storageSourceLocale(sourceLocale);
-  if (storageStudyTarget(studyTarget) === 'fr') {
-    await ensureFrenchRemotePersonalPractice(normalizedSourceLocale).catch(() => {});
-  }
   const analyticsPromise = loadTrainerPracticeAnalytics(studyTarget, normalizedSourceLocale);
   const snapshotPromise = Promise.all([
     getTrainerDashboard(studyTarget, normalizedSourceLocale, analyticsPromise),

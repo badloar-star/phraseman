@@ -27,8 +27,9 @@ describe('trainer phrases session — тёплый старт без скеле�
     expect(source).toContain('if (!startedWarm) setDeck(buildTrainerSessionDeck(items))');
   });
 
-  it('французский пак не блокирует старт для остальных таргетов', () => {
-    expect(source).toContain("storageStudyTarget(studyTarget) === 'fr'");
+  it('устаревший французский remote-пак больше не участвует в старте', () => {
+    expect(source).not.toContain('ensureFrenchRemotePersonalPractice');
+    expect(source).not.toContain('french_personal_practice_remote_runtime');
   });
 
   it('гейт лимита/премиума остаётся на месте', () => {

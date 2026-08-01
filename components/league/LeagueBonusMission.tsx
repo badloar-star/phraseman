@@ -32,6 +32,7 @@ interface LeagueBonusMissionProps {
 function LeagueBonusMissionComponent({ model, lang, palette, giftImage, renderContributorAvatar, onClaim, onBoost, onOpenBoostBuyer, onLikeBoost, boostLiked, boostLikeBusy, boostTimeLeft, onOpenRank, onChestPress }: LeagueBonusMissionProps) {
   const reduceMotion = useReduceMotion();
   const claimLabel = triLang(lang, { ru: 'Забрать бонус', uk: 'Забрати бонус', es: 'Recoger bono', 'pt-BR': 'Coletar bônus', vi: 'Nhận phần thưởng', id: 'Ambil bonus', tr: 'Bonusu al', pl: 'Odbierz bonus' });
+  const boostLeagueLabel = triLang(lang, { ru: 'Ускорить лигу', uk: 'Прискорити лігу', es: 'Impulsar la liga', 'pt-BR': 'Impulsionar a liga', vi: 'Tăng tốc giải đấu', id: 'Percepat liga', tr: 'Ligi hızlandır', pl: 'Przyspiesz ligę' });
 
   return (
     <Reanimated.View entering={reduceMotion ? undefined : FadeInUp.delay(120).duration(240)} style={[styles.shell, { backgroundColor: model.canClaim ? palette.accent : palette.surface }]} testID="league-bonus-mission">
@@ -100,9 +101,9 @@ function LeagueBonusMissionComponent({ model, lang, palette, giftImage, renderCo
           </Pressable>
         </View>
       ) : (
-        <Pressable accessibilityRole="button" accessibilityLabel={triLang(lang, { ru: 'Включить общий буст', uk: 'Увімкнути спільний буст', es: 'Activar boost común', 'pt-BR': 'Ativar boost comum', vi: 'Bật tăng tốc chung', id: 'Aktifkan boost bersama', tr: 'Ortak boost aç', pl: 'Włącz wspólny boost' })} onPress={onBoost} style={[styles.boost, { backgroundColor: model.canClaim ? 'rgba(7,17,10,0.14)' : palette.elevated }]} testID="league-group-boost-buy">
+        <Pressable accessibilityRole="button" accessibilityLabel={boostLeagueLabel} onPress={onBoost} style={[styles.boost, { backgroundColor: model.canClaim ? 'rgba(7,17,10,0.14)' : palette.elevated }]} testID="league-group-boost-buy">
           <Ionicons name="flash-outline" size={18} color={model.canClaim ? palette.accentText : palette.warning} />
-          <Text style={[styles.boostText, { color: model.canClaim ? palette.accentText : palette.text }]}>{triLang(lang, { ru: 'Ускорить весь клуб', uk: 'Прискорити весь клуб', es: 'Impulsar todo el club', 'pt-BR': 'Impulsionar todo o clube', vi: 'Tăng tốc cả câu lạc bộ', id: 'Percepat seluruh klub', tr: 'Tüm kulübü hızlandır', pl: 'Przyspiesz cały klub' })}</Text>
+          <Text style={[styles.boostText, { color: model.canClaim ? palette.accentText : palette.text }]}>{boostLeagueLabel}</Text>
         </Pressable>
       )}
 

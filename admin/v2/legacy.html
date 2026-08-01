@@ -8,6 +8,13 @@
   <meta name="phraseman-admin-build" content="2026-06-30-reports-observer-throttle" />
   <title data-i18n-es="PhraseMan Admin">PhraseMan Admin</title>
   <style>
+    @font-face {
+      font-family: 'Phraseman Certificate Script';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('https://fonts.gstatic.com/s/marckscript/v22/nwpTtK2oNgBA3Or78gapdwuCzw.ttf') format('truetype');
+    }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     /* === Clean admin base variables === */
     body {
@@ -3445,13 +3452,6 @@
       font-size: 12px;
       font-weight: 800;
     }
-    body[data-admin-skin="onboarding"] #tab-referrals .ref-person-name {
-      min-width: 0;
-      overflow-wrap: anywhere;
-      color: var(--admin-text);
-      font-size: 14px;
-      font-weight: 750;
-      line-height: 1.35;
     .promo-code-delete {
       width: 36px;
       min-width: 36px;
@@ -3468,6 +3468,13 @@
     .promo-code-delete:hover:not(:disabled) { background: #512024; border-color: #f87171; }
     .promo-code-delete:disabled { cursor: not-allowed; opacity: .55; }
     .promo-code-delete svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 2; }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-person-name {
+      min-width: 0;
+      overflow-wrap: anywhere;
+      color: var(--admin-text);
+      font-size: 14px;
+      font-weight: 750;
+      line-height: 1.35;
     }
     body[data-admin-skin="onboarding"] #tab-referrals .ref-arrow {
       color: var(--admin-faint);
@@ -4991,6 +4998,13 @@
     .gift-cert-page { width: min(1180px, 100%); margin: 0 auto; display: grid; gap: 16px; }
     .gift-cert-header, .gift-cert-panel-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
     .gift-cert-header { padding: 18px; border: 1px solid #2f323a; border-radius: 10px; background: #16181f; }
+    /* The admin shell styles its root <header> and first child. This section uses
+       a semantic header too, so reset that shell-only treatment here. */
+    body[data-admin-skin="onboarding"] .gift-cert-header { position: static; top: auto; z-index: auto; min-height: 0; padding: 18px; }
+    body[data-admin-skin="onboarding"] .gift-cert-header > div:first-child {
+      width: auto; height: auto; border: 0; border-radius: 0; display: block;
+      background: transparent; font-size: inherit !important;
+    }
     .gift-cert-header h2 { margin: 3px 0 6px; color: #f4f4f5; font-size: 24px; }
     .gift-cert-header p, .gift-cert-panel p { color: #a1a1aa; font-size: 13px; line-height: 1.55; }
     .gift-cert-kicker { color: #a3e635; font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
@@ -5015,6 +5029,9 @@
     .gift-cert-btn-primary { background: #a3e635; border-color: #a3e635; color: #07110a; }
     .gift-cert-btn-secondary { background: #24262e; color: #f4f4f5; }
     .gift-cert-btn-danger { background: #3b181b; border-color: #7f1d1d; color: #fecaca; }
+    .gift-cert-btn-icon { width: 44px; min-width: 44px; display: inline-grid; place-items: center; padding: 0; margin-left: auto; }
+    .gift-cert-btn-icon:hover:not(:disabled) { background: #512024; border-color: #f87171; }
+    .gift-cert-btn-icon svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; }
     .gift-cert-status { color: #a1a1aa; font-size: 12px; line-height: 1.45; }
     .gift-cert-sender { margin-top: 5px; color: #d9f99d !important; }
     .gift-cert-count { color: #a3e635; font-size: 12px; font-weight: 800; white-space: nowrap; }
@@ -5028,11 +5045,8 @@
     .gift-cert-visual-panel { position: absolute; z-index: 1; left: 4.25%; right: 4.25%; top: 23.7%; bottom: 6.1%; display: flex; flex-direction: column; padding: 4.2% 4.6% 3.8%; border: 1px solid rgba(89,66,19,.16); border-radius: 6%; background: rgba(255,251,242,.82); }
     .gift-cert-visual.is-lifetime { color: #fff8e8; }
     .gift-cert-visual.is-lifetime .gift-cert-visual-panel { border-color: rgba(222,181,92,.38); background: rgba(8,14,13,.84); }
-    .gift-cert-visual-recipient { font-size: clamp(11px, 1.4vw, 22px); font-weight: 900; line-height: 1.12; overflow-wrap: anywhere; }
-    .gift-cert-btn-icon { width: 44px; min-width: 44px; display: inline-grid; place-items: center; padding: 0; margin-left: auto; }
-    .gift-cert-btn-icon:hover:not(:disabled) { background: #512024; border-color: #f87171; }
-    .gift-cert-btn-icon svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; }
-    .gift-cert-visual-sender { margin-top: 1.5%; color: #6f6857; font-size: clamp(9px, .9vw, 14px); overflow-wrap: anywhere; }
+    .gift-cert-visual-recipient { text-align: center; font: 400 clamp(22px, 2.6vw, 42px)/1.12 'Phraseman Certificate Script', 'Marck Script', cursive; overflow-wrap: anywhere; }
+    .gift-cert-visual-sender { margin-top: 1.5%; color: #6f6857; text-align: center; font-size: clamp(9px, .9vw, 14px); overflow-wrap: anywhere; }
     .gift-cert-visual.is-lifetime .gift-cert-visual-sender { color: #d8ccb0; }
     .gift-cert-visual-product { margin-top: 4%; color: #8a6100; font-size: clamp(10px, 1.05vw, 17px); font-weight: 800; }
     .gift-cert-visual.is-lifetime .gift-cert-visual-product { color: #efca70; }
@@ -11978,10 +11992,28 @@
           <span>Количество</span>
           <input id="gift-certificate-count" min="1" max="200" type="number" inputmode="numeric" value="1" oninput="giftCertificateRefreshPreview()" />
         </label>
+        <fieldset class="gift-cert-field gift-cert-field-wide" style="border:0;padding:0">
+          <legend>Какие строки показать на сертификате</legend>
+          <div class="gift-cert-mode-options">
+            <label class="gift-cert-mode-option"><input id="gift-certificate-show-recipient-name" type="checkbox" checked onchange="giftCertificateRefreshPreview()" /> Показать «Получатель»</label>
+            <label class="gift-cert-mode-option"><input id="gift-certificate-show-sender-name" type="checkbox" checked onchange="giftCertificateRefreshPreview()" /> Показать «От кого»</label>
+          </div>
+          <small>Скрытые имена не стираются: их можно показать позже перед скачиванием или отправкой.</small>
+        </fieldset>
         <label class="gift-cert-field gift-cert-field-wide" for="gift-certificate-recipients">
-          <span>Получатели: Имя | email</span>
-          <textarea id="gift-certificate-recipients" rows="4" oninput="giftCertificateRefreshPreview()" placeholder="Профессор Лингман | badloar@gmail.com">Профессор Лингман | badloar@gmail.com</textarea>
-          <small>Имя обязательно и должно быть уникальным в пачке. Email необязателен до отправки.</small>
+          <span>Кому — имя на сертификате</span>
+          <textarea id="gift-certificate-recipients" rows="3" oninput="giftCertificateRefreshPreview()" placeholder="Профессор Лингман">Профессор Лингман</textarea>
+          <small>Одна строка — один сертификат. Имя обязательно.</small>
+        </label>
+        <label class="gift-cert-field gift-cert-field-wide" for="gift-certificate-senders">
+          <span>От кого</span>
+          <textarea id="gift-certificate-senders" rows="3" oninput="giftCertificateRefreshPreview()" placeholder="Phraseman">Phraseman</textarea>
+          <small>Одно имя можно использовать для всей пачки или указать по строке для каждого сертификата.</small>
+        </label>
+        <label class="gift-cert-field gift-cert-field-wide" for="gift-certificate-emails">
+          <span>Email для отправки</span>
+          <textarea id="gift-certificate-emails" rows="3" oninput="giftCertificateRefreshPreview()" placeholder="badloar@gmail.com">badloar@gmail.com</textarea>
+          <small>Одна строка — один сертификат. Можно оставить пустым и отправить позже из истории.</small>
         </label>
       </div>
       <div id="gift-certificate-preview" class="gift-cert-preview" role="status" aria-live="polite"></div>
@@ -13522,6 +13554,14 @@
     return _adminAppCheckReadyPromise;
   }
 
+  function giftCertificateParseCallableEnvelope(payload, ok, status) {
+    const responseData = payload?.data ?? payload?.result;
+    if (ok && responseData !== undefined) return { data: responseData };
+    const code = String(payload?.error?.code || `http_${status || 0}`);
+    const message = String(payload?.error?.message || `Сервер отклонил запрос (${status || 0}).`);
+    throw new Error(`${code}: ${message}`);
+  }
+
   function createAppCheckProtectedGiftCallable(name) {
     return async (data) => {
       const appCheckToken = await requireAdminAppCheckForGiftCertificates();
@@ -13540,10 +13580,7 @@
         body: JSON.stringify({ data }),
       });
       const payload = await response.json().catch(() => ({}));
-      if (!response.ok || !payload || !Object.prototype.hasOwnProperty.call(payload, 'data')) {
-        throw new Error(payload?.error?.message || `Сервер отклонил запрос (${response.status}).`);
-      }
-      return { data: payload.data };
+      return giftCertificateParseCallableEnvelope(payload, response.ok, response.status);
     };
   }
 
@@ -27264,6 +27301,7 @@
 
   let _fnPromoUpsert = null;
   let _fnPromoBatchUpsert = null;
+  let _fnPromoDelete = null;
   window._lastPromoCodes = [];
   let _promoBusy = false;
 
@@ -27301,7 +27339,6 @@
       return n ? (n + ' своих кодов') : 'свои коды из поля';
     }
     const count = Math.max(0, parseInt(promoGet('promo-batch-count') || '0', 10) || 0);
-  let _fnPromoDelete = null;
     const prefix = (promoGet('promo-prefix') || 'PM').toUpperCase();
     return (count || 0) + ' кодов с префиксом ' + prefix;
   }
@@ -27360,6 +27397,7 @@
       + '<span class="promo-code-muted">использ.: ' + escapeHtml(limStr) + '</span>'
       + '<span class="promo-code-muted">до: ' + escapeHtml(expStr) + '</span>'
       + (withCopy ? '<button type="button" class="promo-code-copy" onclick="copyPromoCode(' + promoJsonArg(code) + ')" title="Скопировать этот промокод">Копировать</button>' : '')
+      + (withCopy ? '<button type="button" class="promo-code-delete" onclick="deletePromoCode(' + promoJsonArg(code) + ', ' + Number(row.updatedAtMs || row.createdAtMs || 0) + ')" title="Удалить этот промокод навсегда" aria-label="Удалить промокод ' + escapeHtml(code) + '"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M9 6V4h6v2m-8 0 1 14h8l1-14M10 11v6m4-6v6"/></svg></button>' : '')
       + (row.note ? '<span class="promo-code-muted" style="grid-column:1/-1">' + escapeHtml(String(row.note)) + '</span>' : '')
       + '</div>';
   }
@@ -29346,6 +29384,27 @@
     }
   };
 
+  window.deletePromoCode = async function(code, expectedUpdatedAtMs) {
+    const normalizedCode = String(code || '').trim().toUpperCase();
+    if (!normalizedCode) return;
+    const confirmed = await showConfirmModal({
+      title: 'Удалить промокод?',
+      desc: `Промокод ${normalizedCode} перестанет работать сразу. Это действие нельзя отменить. Подарочный сертификат удаляйте кнопкой на его карточке — там код и сертификат удаляются вместе.`,
+      confirmLabel: 'Удалить навсегда',
+      danger: true,
+    });
+    if (!confirmed) return;
+    try {
+      if (!_fnPromoDelete) _fnPromoDelete = createAppCheckProtectedGiftCallable('promoCodeDelete');
+      await _fnPromoDelete({ code: normalizedCode, expectedUpdatedAtMs: Number(expectedUpdatedAtMs || 0) });
+      promoCopyStatus(`Промокод ${normalizedCode} удалён.`, '#4ade80');
+      window._promoCodesHtml = '';
+      await window.loadPromoCodes(true);
+    } catch (error) {
+      promoCopyStatus(`Промокод не удалён: ${error?.message || String(error)}`, '#f87171');
+    }
+  };
+
   async function loadSettingsMessageFunnel(rows) {
     const latestBySlot = new Map();
     rows
@@ -29384,27 +29443,6 @@
         const counts = await loadAppMessageReactionCounts(d.id, data).catch(() => ({ likes: 0, dislikes: 0 }));
         const pollCounts = await loadAppMessagePollCounts(d.id, data).catch(() => ({ pollCounts: {}, pollVoteCount: 0 }));
         return { id: d.id, ...data, ...counts, ...pollCounts };
-  window.deletePromoCode = async function(code, expectedUpdatedAtMs) {
-    const normalizedCode = String(code || '').trim().toUpperCase();
-    if (!normalizedCode) return;
-    const confirmed = await showConfirmModal({
-      title: '??????? ?????????',
-      desc: `???????? ${normalizedCode} ?????????? ???????? ?????. ??? ???????? ?????? ????????. ?????????? ?????????? ???????? ??????? ?? ??? ???????? ? ??? ??? ? ?????????? ????????? ??????.`,
-      confirmLabel: '??????? ????????',
-      danger: true,
-    });
-    if (!confirmed) return;
-    try {
-      if (!_fnPromoDelete) _fnPromoDelete = createAppCheckProtectedGiftCallable('promoCodeDelete');
-      await _fnPromoDelete({ code: normalizedCode, expectedUpdatedAtMs: Number(expectedUpdatedAtMs || 0) });
-      promoCopyStatus(`???????? ${normalizedCode} ??????.`, '#4ade80');
-      window._promoCodesHtml = '';
-      await window.loadPromoCodes(true);
-    } catch (error) {
-      promoCopyStatus(`???????? ?? ??????: ${error?.message || String(error)}`, '#f87171');
-    }
-  };
-
       }));
       await loadSettingsMessageFunnel(rows);
       window._appMessages = rows;
@@ -34685,6 +34723,7 @@
   let _fnAdminUpdateGiftCertificateRecipient = null;
   let _fnAdminUpdateGiftCertificatePersonalization = null;
   let _fnAdminGetGiftCertificateDownload = null;
+  let _fnAdminDeleteGiftCertificate = null;
   let _fnAdminReplaceSyntheticGiftCertificate = null;
   let _fnAdminSendPreparedGiftCertificate = null;
   let _giftCertificateBusy = false;
@@ -34723,7 +34762,6 @@
         } catch (error) {
           if (action !== 'send' || !dependencies.fail || !dependencies.retryPersonalization) throw error;
           if (dependencies.setBusy) await dependencies.setBusy(false);
-  let _fnAdminDeleteGiftCertificate = null;
           await dependencies.fail(error);
           const retryPersonalization = await dependencies.retryPersonalization();
           if (!retryPersonalization) {
@@ -34788,14 +34826,19 @@
       || !Object.prototype.hasOwnProperty.call(GIFT_CERTIFICATE_ASSETS, request.product)
       || !Number.isInteger(request.count) || request.count < 1 || request.count > 200
       || !Array.isArray(request.recipientNames) || request.recipientNames.length !== request.count
+      || !Array.isArray(request.senderNames) || request.senderNames.length !== request.count
       || !Array.isArray(request.recipientEmails) || request.recipientEmails.length !== request.count
       || request.source !== 'admin_gift_certificates'
       || request.authorization !== 'CREATE_GIFT_CERTIFICATES') {
       throw new Error('Сохранённый состав пачки не прошёл проверку.');
     }
     const recipientNames = request.recipientNames.map((value) => String(value || '').trim());
+    const senderNames = request.senderNames.map((value) => String(value || '').trim());
     const recipientEmails = request.recipientEmails.map((value) => String(value || '').trim().toLowerCase());
+    const showRecipientName = request.showRecipientName !== false;
+    const showSenderName = request.showSenderName !== false;
     if (recipientNames.some((value) => !value || value.length > 60)
+      || senderNames.some((value) => !value || value.length > 60)
       || recipientEmails.some((value) => value && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value))) {
       throw new Error('Сохранённые получатели не прошли проверку.');
     }
@@ -34806,7 +34849,10 @@
         product: request.product,
         count: request.count,
         recipientNames: Object.freeze(recipientNames),
+        senderNames: Object.freeze(senderNames),
         recipientEmails: Object.freeze(recipientEmails),
+        showRecipientName,
+        showSenderName,
         source: 'admin_gift_certificates',
         authorization: 'CREATE_GIFT_CERTIFICATES',
       }),
@@ -34884,6 +34930,60 @@
     return { product, count, recipientNames, recipientEmails };
   }
 
+  function giftCertificateReadSeparateFields() {
+    const product = giftCertificateText('gift-certificate-product');
+    if (!Object.prototype.hasOwnProperty.call(GIFT_CERTIFICATE_ASSETS, product)) throw new Error('Выбери тип сертификата.');
+    const count = Number(giftCertificateText('gift-certificate-count'));
+    if (!Number.isInteger(count) || count < 1 || count > 200) throw new Error('Количество должно быть от 1 до 200.');
+    const lines = (id, keepBlank = false) => String(document.getElementById(id)?.value || '')
+      .split(/\r?\n/).map((line) => line.trim()).filter((line) => keepBlank || Boolean(line));
+    const recipientNames = lines('gift-certificate-recipients');
+    if (recipientNames.length !== count) throw new Error(`Для ${count} сертификатов нужно ровно ${count} строк в поле «Кому».`);
+    const enteredSenders = lines('gift-certificate-senders');
+    if (!enteredSenders.length) throw new Error('Укажи, от кого сертификат.');
+    const senderNames = enteredSenders.length === 1
+      ? Array.from({ length: count }, () => enteredSenders[0])
+      : enteredSenders;
+    if (senderNames.length !== count || senderNames.some((name) => !name)) {
+      throw new Error(`В поле «От кого» укажи одно имя или ровно ${count} строк.`);
+    }
+    const rawEmails = String(document.getElementById('gift-certificate-emails')?.value || '').trim();
+    const recipientEmails = !rawEmails ? Array.from({ length: count }, () => '') : lines('gift-certificate-emails', true);
+    if (recipientEmails.length !== count) throw new Error(`В поле email укажи ровно ${count} строк или оставь его пустым.`);
+    recipientEmails.forEach((email, index) => {
+      if (email && !/^\S+@\S+\.\S{2,}$/.test(email)) throw new Error(`Проверь email для «${recipientNames[index]}».`);
+    });
+    return { product, count, recipientNames, senderNames, recipientEmails };
+  }
+
+  function giftCertificateReadConfiguredFields() {
+    const product = giftCertificateText('gift-certificate-product');
+    const count = Number(giftCertificateText('gift-certificate-count'));
+    if (!Object.prototype.hasOwnProperty.call(GIFT_CERTIFICATE_ASSETS, product)) throw new Error('Выбери тип сертификата.');
+    if (!Number.isInteger(count) || count < 1 || count > 200) throw new Error('Количество должно быть от 1 до 200.');
+    const readLines = (id, label, allowBlank) => {
+      const raw = String(document.getElementById(id)?.value || '').replace(/\r/g, '').trim();
+      if (!raw && allowBlank) return Array.from({ length: count }, () => '');
+      const values = raw ? raw.split('\n').map((line) => line.trim()) : [];
+      if (values.length !== count) throw new Error(`Для ${count} сертификатов нужно ровно ${count} строк: ${label}.`);
+      return values;
+    };
+    const showRecipientName = document.getElementById('gift-certificate-show-recipient-name')?.checked === true;
+    const showSenderName = document.getElementById('gift-certificate-show-sender-name')?.checked === true;
+    const recipientNames = readLines('gift-certificate-recipients', 'Получатель', !showRecipientName);
+    const enteredSenders = readLines('gift-certificate-senders', 'От кого', !showSenderName);
+    const senderNames = enteredSenders.length === 1 && enteredSenders[0]
+      ? Array.from({ length: count }, () => enteredSenders[0])
+      : enteredSenders;
+    const recipientEmails = readLines('gift-certificate-emails', 'Email', true).map((email) => email.toLowerCase());
+    if (showRecipientName && recipientNames.some((name) => !name)) throw new Error('Заполни каждую видимую строку «Получатель».');
+    if (showSenderName && senderNames.some((name) => !name)) throw new Error('Заполни каждую видимую строку «От кого».');
+    recipientEmails.forEach((email) => {
+      if (email && !/^\S+@\S+\.\S{2,}$/.test(email)) throw new Error(`Проверь email «${email}».`);
+    });
+    return { product, count, recipientNames, senderNames, recipientEmails, showRecipientName, showSenderName };
+  }
+
   function giftCertificateCreatePendingBatch(form) {
     if (!globalThis.crypto || typeof crypto.randomUUID !== 'function') {
       throw new Error('Браузер не поддерживает безопасный идентификатор операции. Обнови страницу в современном браузере.');
@@ -34901,7 +35001,10 @@
         product: form.product,
         count: form.count,
         recipientNames: Object.freeze([...form.recipientNames]),
+        senderNames: Object.freeze([...form.senderNames]),
         recipientEmails: Object.freeze([...form.recipientEmails]),
+        showRecipientName: form.showRecipientName !== false,
+        showSenderName: form.showSenderName !== false,
         source: 'admin_gift_certificates',
         authorization: 'CREATE_GIFT_CERTIFICATES',
       }),
@@ -34913,7 +35016,7 @@
     if (!preview) return;
     try {
       const pendingBatch = giftCertificatePendingBatchForCurrentAdmin();
-      const form = pendingBatch?.request || giftCertificateReadForm();
+      const form = pendingBatch?.request || giftCertificateReadConfiguredFields();
       const withEmail = form.recipientEmails.filter(Boolean).length;
       const prefix = pendingBatch ? 'Ожидает безопасного повтора' : 'Будет создано';
       preview.textContent = `${prefix}: ${form.count} · ${GIFT_CERTIFICATE_PRODUCT_LABELS[form.product]} · одноразовые коды · срок активации 365 дней · email указан у ${withEmail}.`;
@@ -34939,7 +35042,7 @@
     try {
       const restoredPendingBatch = giftCertificatePendingBatchForCurrentAdmin();
       const isRetry = Boolean(restoredPendingBatch);
-      const form = restoredPendingBatch?.request || giftCertificateReadForm();
+      const form = restoredPendingBatch?.request || giftCertificateReadConfiguredFields();
       const pendingBatch = giftCertificatePendingBatchForCurrentAdmin() || giftCertificateCreatePendingBatch(form);
       _giftCertificatePendingBatch = pendingBatch;
       giftCertificatePersistPendingBatch(pendingBatch);
@@ -35076,7 +35179,7 @@
       ? (Number(record.lastRedeemedAtMs || 0) > 0 ? `Дата активации: ${giftCertificateDate(record.lastRedeemedAtMs)}` : 'Дата активации не записана')
       : '';
     const personalizationHtml = displayPersonalization.showPersonalization
-      ? `<div class="gift-cert-visual-recipient">Для: ${escapeHtml(displayPersonalization.displayRecipientName)}</div><div class="gift-cert-visual-sender">от ${escapeHtml(displayPersonalization.displaySenderName)}</div>`
+      ? `<div class="gift-cert-visual-recipient">${escapeHtml(displayPersonalization.displayRecipientName)}</div><div class="gift-cert-visual-sender">от ${escapeHtml(displayPersonalization.displaySenderName)}</div>`
       : '';
     return `<article class="gift-cert-row" id="gift-cert-row-${escapeHtml(certificateId)}">
       <div class="gift-cert-visual ${record.product === 'lifetime' ? 'is-lifetime' : ''}" style="background-image:url('${escapeHtml(assetUrl)}')" role="img" aria-label="Визуальный макет сертификата ${escapeHtml(record.activationCode || certificateId)}">
@@ -35091,6 +35194,7 @@
       <div class="gift-cert-row-actions">
         <button type="button" class="gift-cert-btn gift-cert-btn-secondary" data-gift-certificate-id="${escapeHtml(certificateId)}" data-gift-certificate-action="download" onclick="downloadGiftCertificate('${escapeHtml(certificateId)}')" title="Настроить оформление и скачать этот сертификат" ${activationBlocked ? 'disabled' : ''}>Скачать</button>
         <button type="button" class="gift-cert-btn gift-cert-btn-primary" data-gift-certificate-id="${escapeHtml(certificateId)}" data-gift-certificate-action="send" onclick="sendGiftCertificateEmail('${escapeHtml(certificateId)}')" title="Настроить оформление и отправить через production Resend sender" ${activationBlocked || personalizationLocked ? 'disabled' : ''}>Отправить на email</button>
+        <button type="button" class="gift-cert-btn gift-cert-btn-danger gift-cert-btn-icon" data-gift-certificate-id="${escapeHtml(certificateId)}" data-gift-certificate-action="delete" onclick="deleteGiftCertificate('${escapeHtml(certificateId)}')" title="Удалить сертификат и его промокод навсегда" aria-label="Удалить сертификат ${escapeHtml(record.activationCode || certificateId)}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M9 6V4h6v2m-8 0 1 14h8l1-14M10 11v6m4-6v6"/></svg></button>
         <span class="gift-cert-status" data-gift-row-status aria-live="polite"></span>
       </div>
     </article>`;
@@ -35151,6 +35255,41 @@
     status.style.color = isError ? '#fca5a5' : '#d9f99d';
   }
 
+  window.deleteGiftCertificate = async function(certificateId) {
+    const normalizedCertificateId = String(certificateId || '').trim();
+    const record = _giftCertificateRecords.get(normalizedCertificateId);
+    if (!record) { showToast('Сертификат не найден в текущей истории.', 'err'); return; }
+    const activationCode = String(record.activationCode || normalizedCertificateId);
+    const confirmed = await showConfirmModal({
+      title: 'Удалить сертификат и промокод?',
+      desc: `Сертификат ${activationCode} и его рабочий промокод будут удалены вместе. Активация станет невозможной сразу. Действие нельзя отменить.`,
+      confirmLabel: 'Удалить навсегда',
+      danger: true,
+    });
+    if (!confirmed) return;
+    const row = document.getElementById(`gift-cert-row-${normalizedCertificateId}`);
+    const button = row?.querySelector('[data-gift-certificate-action="delete"]');
+    try {
+      if (button) button.disabled = true;
+      giftCertificateRowStatus(normalizedCertificateId, 'Удаляю сертификат и промокод…', false);
+      if (!_fnAdminDeleteGiftCertificate) {
+        _fnAdminDeleteGiftCertificate = createAppCheckProtectedGiftCallable('adminDeleteGiftCertificate');
+      }
+      await _fnAdminDeleteGiftCertificate({
+        certificateId: normalizedCertificateId,
+        expectedUpdatedAtMs: Number(record.updatedAtMs || record.createdAtMs || 0),
+      });
+      _giftCertificateRecords.delete(normalizedCertificateId);
+      giftCertificateRenderHistory([..._giftCertificateRecords.values()]);
+      window._promoCodesHtml = '';
+      if (typeof window.loadPromoCodes === 'function') void window.loadPromoCodes(true);
+      showToast(`Сертификат ${activationCode} и промокод удалены.`, 'ok');
+    } catch (error) {
+      giftCertificateRowStatus(normalizedCertificateId, `Удаление не выполнено: ${error?.message || String(error)}`, true);
+      if (button) button.disabled = false;
+    }
+  };
+
   function giftCertificateRestorePersonalizationFocus(previousFocus, descriptor, rootDocument = document) {
     if (previousFocus?.isConnected === true && typeof previousFocus.focus === 'function') {
       try {
@@ -35194,7 +35333,6 @@
       _giftCertificatePersonalizationPreviousFocus,
       _giftCertificatePersonalizationFocusDescriptor,
     );
-        <button type="button" class="gift-cert-btn gift-cert-btn-danger gift-cert-btn-icon" data-gift-certificate-id="${escapeHtml(certificateId)}" data-gift-certificate-action="delete" onclick="deleteGiftCertificate('${escapeHtml(certificateId)}')" title="??????? ?????????? ? ??? ???????? ????????" aria-label="??????? ?????????? ${escapeHtml(record.activationCode || certificateId)}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M9 6V4h6v2m-8 0 1 14h8l1-14M10 11v6m4-6v6"/></svg></button>
     _giftCertificatePersonalizationPreviousFocus = null;
     _giftCertificatePersonalizationFocusDescriptor = null;
     if (resolve) resolve(result || null);
@@ -35255,41 +35393,6 @@
     const modal = document.getElementById('gift-certificate-personalization-modal');
     const mode = modal?.querySelector('input[name="gift-certificate-personalization-mode"]:checked')?.value || 'named';
     const names = document.getElementById('gift-personalization-names');
-  window.deleteGiftCertificate = async function(certificateId) {
-    const normalizedCertificateId = String(certificateId || '').trim();
-    const record = _giftCertificateRecords.get(normalizedCertificateId);
-    if (!record) { showToast('?????????? ?? ?????? ? ??????? ???????.', 'err'); return; }
-    const activationCode = String(record.activationCode || normalizedCertificateId);
-    const confirmed = await showConfirmModal({
-      title: '??????? ?????????? ? ?????????',
-      desc: `?????????? ${activationCode} ? ??? ??????? ???????? ????? ??????? ??????. ????????? ?????? ??????????? ?????. ???????? ?????? ????????.`,
-      confirmLabel: '??????? ????????',
-      danger: true,
-    });
-    if (!confirmed) return;
-    const row = document.getElementById(`gift-cert-row-${normalizedCertificateId}`);
-    const button = row?.querySelector('[data-gift-certificate-action="delete"]');
-    try {
-      if (button) button.disabled = true;
-      giftCertificateRowStatus(normalizedCertificateId, '?????? ?????????? ? ?????????', false);
-      if (!_fnAdminDeleteGiftCertificate) {
-        _fnAdminDeleteGiftCertificate = createAppCheckProtectedGiftCallable('adminDeleteGiftCertificate');
-      }
-      await _fnAdminDeleteGiftCertificate({
-        certificateId: normalizedCertificateId,
-        expectedUpdatedAtMs: Number(record.updatedAtMs || record.createdAtMs || 0),
-      });
-      _giftCertificateRecords.delete(normalizedCertificateId);
-      giftCertificateRenderHistory([..._giftCertificateRecords.values()]);
-      window._promoCodesHtml = '';
-      if (typeof window.loadPromoCodes === 'function') void window.loadPromoCodes(true);
-      showToast(`?????????? ${activationCode} ? ???????? ???????.`, 'ok');
-    } catch (error) {
-      giftCertificateRowStatus(normalizedCertificateId, `???????? ?? ?????????: ${error?.message || String(error)}`, true);
-      if (button) button.disabled = false;
-    }
-  };
-
     if (names) names.hidden = mode === 'anonymous';
   }
 
@@ -35429,6 +35532,11 @@
       image.onerror = () => { URL.revokeObjectURL(objectUrl); reject(new Error('Не удалось открыть макет сертификата.')); };
       image.src = objectUrl;
     });
+  }
+
+  async function giftCertificateEnsureScriptFontLoaded() {
+    if (!document.fonts || typeof document.fonts.load !== 'function') return;
+    await document.fonts.load('400 42px "Phraseman Certificate Script"', 'Профессор Лингман').catch(() => {});
   }
 
   function giftCertificateWrapCanvasText(context, text, maxWidth) {
@@ -35609,6 +35717,7 @@
       const bytes = new Uint8Array(binary.length);
       for (let index = 0; index < binary.length; index += 1) bytes[index] = binary.charCodeAt(index);
       const image = await giftCertificateLoadImageBlob(new Blob([bytes], { type: 'image/webp' }));
+      await giftCertificateEnsureScriptFontLoaded();
       const canvas = document.createElement('canvas');
       canvas.width = image.naturalWidth || 1600;
       canvas.height = image.naturalHeight || 900;
@@ -35648,16 +35757,17 @@
 
       let cursorY = panelTop + panelPaddingTop;
       if (displayPersonalization.showPersonalization) {
-        cursorY += giftCertificateDrawTextBlock(context, `Для: ${displayPersonalization.displayRecipientName}`, {
-          x: contentX, y: cursorY, maxWidth: contentWidth, maxLines: 2,
-          startSize: 58 * scale, minSize: 20 * scale, lineHeight: 1.1,
-          weight: 900, color: palette.primary,
+        cursorY += giftCertificateDrawTextBlock(context, displayPersonalization.displayRecipientName, {
+          x: centerX, y: cursorY, maxWidth: contentWidth, maxLines: 2,
+          startSize: 62 * scale, minSize: 24 * scale, lineHeight: 1.18,
+          weight: 400, color: palette.primary, align: 'center',
+          family: '"Phraseman Certificate Script", "Marck Script", cursive',
         });
         cursorY += 14 * scale;
         cursorY += giftCertificateDrawTextBlock(context, `от ${displayPersonalization.displaySenderName}`, {
-          x: contentX, y: cursorY, maxWidth: contentWidth, maxLines: 2,
+          x: centerX, y: cursorY, maxWidth: contentWidth, maxLines: 2,
           startSize: 31 * scale, minSize: 18 * scale, lineHeight: 1.15,
-          weight: 500, color: palette.secondary,
+          weight: 500, color: palette.secondary, align: 'center',
         });
         cursorY += 19 * scale;
       }

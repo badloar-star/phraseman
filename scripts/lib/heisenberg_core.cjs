@@ -442,7 +442,6 @@ const SPANISH_STUDY_TARGET_ISOLATED_FILES = new Set([
   'app/french_flashcard_remote_runtime.ts',
   'app/french_lesson_remote_runtime.ts',
   'app/french_lesson_words_remote_runtime.ts',
-  'app/french_personal_practice_remote_runtime.ts',
   'app/french_quiz_remote_runtime.ts',
   'app/french_target_remote_registration.ts',
 ]);

@@ -80,8 +80,8 @@ describe('Gustav French trainer target gate', () => {
     const screenSource = fs.readFileSync(path.join(ROOT, 'app', 'trainer.tsx'), 'utf8');
 
     expect(storeSource).toContain('storageStudyTarget(studyTarget) ===');
-    expect(storeSource).toContain('getCachedFrenchRemotePersonalPractice');
-    expect(storeSource).toContain('mergeFrenchRemotePracticeItems');
+    expect(storeSource).not.toContain('getCachedFrenchRemotePersonalPractice');
+    expect(storeSource).not.toContain('mergeFrenchRemotePracticeItems');
     expect(storeSource).not.toContain("studyTarget === 'fr'");
     expect(screenSource).not.toContain("studyTarget === 'fr'");
   });

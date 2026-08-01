@@ -9,6 +9,7 @@ import { onSchedule } from 'firebase-functions/v2/scheduler';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import {
+  TOURNAMENT_REDDIT_BOT_PERSONA_SEED,
   TOURNAMENT_REDDIT_BOT_PROFILE_IDS,
   isAcceptedTournamentBotSeedVersion,
   isSafeTournamentBotName,
@@ -51,6 +52,7 @@ import {
   cancellationCreditGems,
   completeTournamentRoundAtDeadline,
   dateKeyInTimezone,
+  generateBotProfile,
   normalizeTournamentSchedule,
   normalizeTournamentCuratedSet,
   legacyTournamentRecoveryAction,
@@ -60,8 +62,7 @@ import {
   planTournamentCancellation,
   planTournamentFinalization,
   resolveSeasonEntryName,
-  resolveTournamentPlayerAvatar,
-  resolveTournamentPlayerName,
+  resolveTournamentPlayerProfile,
   roundStateFor,
   scoreAnswer,
   selectRoundTasks,
@@ -333,6 +334,10 @@ function sanitizeString(value: unknown, max: number): string {
   return String(value ?? '').replace(/\s+/g, ' ').trim().slice(0, max);
 }
 
+function tournamentProfileHint(value: unknown): Row {
+  return value && typeof value === 'object' && !Array.isArray(value) ? value as Row : {};
+}
+
 function readInt(value: unknown, fallback = 0): number {
   const parsed = Math.trunc(Number(value));
   return Number.isFinite(parsed) ? parsed : fallback;
@@ -492,20 +497,24 @@ export function assertTransactionalTournamentAccess(
   }
 }
 
-function validBotProfile(id: string, data: FirebaseFirestore.DocumentData): BotProfile | null {
+export function validBotProfile(id: string, data: FirebaseFirestore.DocumentData): BotProfile | null {
   if (data.isBot !== true || !isAcceptedTournamentBotSeedVersion(data.seedVersion)) return null;
   const name = sanitizeString(data.name, 48);
-  const avatarEmoji = sanitizeString(data.avatarEmoji, 64);
-  const avatarAura = sanitizeString(data.avatarAura, 32);
+  const storedAvatar = sanitizeString(data.avatarEmoji, 64);
   const color = sanitizeString(data.color, 16);
   const winRate = Number(data.winRate);
-  if (!id || !name || !isSafeTournamentBotName(name) || !avatarEmoji || !color
+  const profileIndex = TOURNAMENT_REDDIT_BOT_PROFILE_IDS.indexOf(id);
+  if (!id || profileIndex < 0 || !name || !isSafeTournamentBotName(name) || !storedAvatar || !color
     || !Number.isFinite(winRate) || winRate < 0.15 || winRate > 0.85) return null;
+  // The reviewed profile document remains authoritative for identity and skill,
+  // while visuals are normalized from the versioned deterministic generator.
+  // This upgrades accepted legacy emoji rows without a blocking Firestore seed.
+  const visual = generateBotProfile(profileIndex, TOURNAMENT_REDDIT_BOT_PERSONA_SEED);
   return {
     botId: id,
     name,
-    avatarEmoji,
-    ...(avatarAura ? { avatarAura } : {}),
+    avatarEmoji: visual.avatarEmoji,
+    ...(visual.avatarAura ? { avatarAura: visual.avatarAura } : {}),
     color,
     winRate,
     rank: sanitizeString(data.rank, 24) || 'silver',
@@ -1050,7 +1059,9 @@ export function planTournamentStartNowJoinedRoom(input: {
   authUid: string;
   stableUid: string;
   user: FirebaseFirestore.DocumentData;
+  publicProfile: FirebaseFirestore.DocumentData;
   leaderboardProfile: FirebaseFirestore.DocumentData;
+  profileHint?: unknown;
   config: TournamentScheduleConfig;
   currentEconomy: unknown;
   selectedTasks: readonly TournamentTask[];
@@ -1063,7 +1074,7 @@ export function planTournamentStartNowJoinedRoom(input: {
   joinResult: Row;
 } {
   const {
-    room, authUid, stableUid, user, leaderboardProfile, config,
+    room, authUid, stableUid, user, publicProfile, leaderboardProfile, config,
     currentEconomy, selectedTasks, nowMs,
   } = input;
   if (!input.testModeReleaseEnabled) {
@@ -1080,11 +1091,17 @@ export function planTournamentStartNowJoinedRoom(input: {
     throw new HttpsError('failed-precondition', 'tournament_test_economy_invalid');
   }
   const gemsBefore = readGemBalance(user.shards);
+  const playerProfile = resolveTournamentPlayerProfile(
+    publicProfile,
+    leaderboardProfile,
+    user,
+    tournamentProfileHint(input.profileHint),
+  );
   const player: TournamentPlayer = {
     id: stableUid,
     isBot: false,
-    name: resolveTournamentPlayerName(leaderboardProfile, user),
-    avatar: resolveTournamentPlayerAvatar(leaderboardProfile, user) || '🙂',
+    ...playerProfile,
+    avatar: playerProfile.avatar || '🙂',
     color: PLAYER_COLORS[room.players.length % PLAYER_COLORS.length],
     score: 0,
     streak: 0,
@@ -1250,7 +1267,13 @@ export const tournamentCreateRooms = onSchedule(
 
 export async function tournamentJoinTransaction(
   db: FirebaseFirestore.Firestore,
-  input: { authUid: string; stableUid: string; roomId: string; nowMs?: number },
+  input: {
+    authUid: string;
+    stableUid: string;
+    roomId: string;
+    nowMs?: number;
+    profileHint?: unknown;
+  },
 ): Promise<Row> {
   const { authUid, stableUid, roomId } = input;
   const requestedNowMs = input.nowMs;
@@ -1269,21 +1292,39 @@ export async function tournamentJoinTransaction(
   // турнир подставлял заглушку 'Player', и она уезжала в недельный рейтинг,
   // где её видели все. Читаем в ТОЙ ЖЕ транзакции — лишнего запроса нет.
   const leaderboardRef = db.collection('leaderboard').doc(stableUid);
+  const publicProfileRef = db.collection('public_profiles').doc(stableUid);
 
   return db.runTransaction(async (tx) => {
-    const [roomSnap, userSnap, economySnap, configSnap, authLinkSnap, bannedSnap, leaderboardSnap, botMetadataSnap]
+    const [roomSnap, userSnap, economySnap, configSnap, authLinkSnap, bannedSnap,
+      leaderboardSnap, publicProfileSnap, botMetadataSnap]
       = await tx.getAll(
-        roomRef, userRef, economyRef, configRef, authLinkRef, bannedRef, leaderboardRef, botMetadataRef,
+        roomRef, userRef, economyRef, configRef, authLinkRef, bannedRef,
+        leaderboardRef, publicProfileRef, botMetadataRef,
     );
     if (!roomSnap.exists) throw new HttpsError('not-found', 'room_not_found');
     assertTransactionalTournamentAccess(authUid, stableUid, authLinkSnap, userSnap, bannedSnap);
     const room = hydratePrivateBotMetadata(readRoom(roomSnap), botMetadataSnap.data());
     const nowMs = requestedNowMs ?? Date.now();
+    const user = userSnap.data() || {};
+    const profile = leaderboardSnap.exists ? leaderboardSnap.data() || {} : {};
+    const publicProfile = publicProfileSnap.exists ? publicProfileSnap.data() || {} : {};
+    const playerProfile = resolveTournamentPlayerProfile(
+      publicProfile,
+      profile,
+      user,
+      tournamentProfileHint(input.profileHint),
+    );
     const existingPlayer = room.players.find((player) => !player.isBot && player.id === stableUid);
     if (existingPlayer) {
-      const replayRoom = applyTournamentJoin(room, existingPlayer, authUid, nowMs);
+      const replayRoom = applyTournamentJoin(
+        room,
+        { ...existingPlayer, ...playerProfile, avatar: playerProfile.avatar || '🙂' },
+        authUid,
+        nowMs,
+      );
       if (replayRoom !== room) {
         tx.set(roomRef, {
+          players: replayRoom.players.map(publicTournamentPlayer),
           participantAuthUids: replayRoom.participantAuthUids,
           version: replayRoom.version,
           updatedAt: nowMs,
@@ -1333,8 +1374,6 @@ export async function tournamentJoinTransaction(
     );
     const entryGems = economy.entryGems;
     const weekId = tournamentWeekId(room.startsAt);
-    const user = userSnap.data() || {};
-
     // зачем 2026-07-27 (решение владельца): один турнир на слот на человека.
     // С шардингом комнат слота стало много, и без этого лимита можно было бы
     // за один слот пройти пять турниров подряд и нафармить банк недели —
@@ -1358,14 +1397,11 @@ export async function tournamentJoinTransaction(
       throw new HttpsError('failed-precondition', 'not_enough_gems');
     }
     const contribution = entryGems;
-    // Ник и аватар: сначала лидерборд (там настоящий профиль), потом users.
-    // Порядок источников вынесен в tournament_core и покрыт тестами.
-    const profile = leaderboardSnap.exists ? leaderboardSnap.data() || {} : {};
     const player: TournamentPlayer = {
       id: stableUid,
       isBot: false,
-      name: resolveTournamentPlayerName(profile, user),
-      avatar: resolveTournamentPlayerAvatar(profile, user) || '🙂',
+      ...playerProfile,
+      avatar: playerProfile.avatar || '🙂',
       color: PLAYER_COLORS[room.players.length % PLAYER_COLORS.length],
       score: 0,
       streak: 0,
@@ -1946,6 +1982,7 @@ export const tournamentJoin = onCall({ ...HOT_CALLABLE_OPTIONS, enforceAppCheck:
   await assertNotBanned(db, stableUid);
   const roomId = sanitizeString(request.data?.roomId, 160);
   if (!roomId) throw new HttpsError('invalid-argument', 'room_required');
+  const joinIdentity = { authUid, stableUid, profileHint: request.data?.profile };
 
   // зачем 2026-07-27 (шардинг): комната вмещает 16 игроков. Раньше 17-й
   // получал room_full и не мог играть вовсе — при большой аудитории на слот
@@ -1974,7 +2011,7 @@ export const tournamentJoin = onCall({ ...HOT_CALLABLE_OPTIONS, enforceAppCheck:
 
   const parsed = parseTournamentRoomId(roomId);
   if (!parsed) {
-    return tournamentJoinTransaction(db, { authUid, stableUid, roomId })
+    return tournamentJoinTransaction(db, { ...joinIdentity, roomId })
       .catch((error) => { logJoinFailure(error, 'direct'); throw error; });
   }
 
@@ -1982,7 +2019,7 @@ export const tournamentJoin = onCall({ ...HOT_CALLABLE_OPTIONS, enforceAppCheck:
   for (let shard = parsed.shard; shard < TOURNAMENT_MAX_SHARDS_PER_SLOT; shard += 1) {
     const shardRoomId = tournamentRoomId(parsed.slotId, parsed.timezone, parsed.dateKey, shard);
     try {
-      return await tournamentJoinTransaction(db, { authUid, stableUid, roomId: shardRoomId });
+      return await tournamentJoinTransaction(db, { ...joinIdentity, roomId: shardRoomId });
     } catch (error) {
       const code = error instanceof HttpsError ? error.code : '';
       const message = error instanceof Error ? error.message : '';
@@ -2005,7 +2042,7 @@ export const tournamentJoin = onCall({ ...HOT_CALLABLE_OPTIONS, enforceAppCheck:
           console.warn(`[tournaments] join failed: room_create_refused (shard${shard}, room=${roomId})`);
           throw error;
         }
-        return await tournamentJoinTransaction(db, { authUid, stableUid, roomId: shardRoomId })
+        return await tournamentJoinTransaction(db, { ...joinIdentity, roomId: shardRoomId })
           .catch((joinError) => { logJoinFailure(joinError, `shard${shard}_created`); throw joinError; });
       }
     }
@@ -3987,10 +4024,12 @@ export const tournamentStartNow = onCall(
     const authLinkRef = db.collection('auth_links').doc(authUid);
     const bannedRef = db.collection('banned_users').doc(stableUid);
     const leaderboardRef = db.collection('leaderboard').doc(stableUid);
+    const publicProfileRef = db.collection('public_profiles').doc(stableUid);
     const joined = await db.runTransaction(async (tx) => {
       const [recentSnap, userSnap, currentEconomySnap, currentConfigSnap,
-        authLinkSnap, bannedSnap, leaderboardSnap] = await tx.getAll(
-        recentRef, userRef, economyRef, configRef, authLinkRef, bannedRef, leaderboardRef,
+        authLinkSnap, bannedSnap, leaderboardSnap, publicProfileSnap] = await tx.getAll(
+        recentRef, userRef, economyRef, configRef, authLinkRef, bannedRef,
+        leaderboardRef, publicProfileRef,
       );
       assertTransactionalTournamentAccess(
         authUid, stableUid, authLinkSnap, userSnap, bannedSnap,
@@ -4026,7 +4065,9 @@ export const tournamentStartNow = onCall(
         authUid,
         stableUid,
         user: userSnap.data() || {},
+        publicProfile: publicProfileSnap.exists ? publicProfileSnap.data() || {} : {},
         leaderboardProfile: leaderboardSnap.exists ? leaderboardSnap.data() || {} : {},
+        profileHint: request.data?.profile,
         config: currentConfigSnap.exists
           ? normalizeTournamentSchedule(currentConfigSnap.data())
           : normalizeTournamentSchedule(null),

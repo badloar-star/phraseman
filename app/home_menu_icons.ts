@@ -63,16 +63,16 @@ export function getHomeMenuImages(themeMode: ThemeMode): HomeMenuImageSet {
   }
   if (themeMode === 'sagePorcelain') {
     return {
-      lesson: require('../assets/images/home_menu/businessLight/home-businessLight-lessons-lite.avif'),
-      cards: require('../assets/images/home_menu/businessLight/home-businessLight-cards-lite.avif'),
-      dayTasks: require('../assets/images/home_menu/businessLight/home-businessLight-daily-tasks-lite.avif'),
-      league: require('../assets/images/home_menu/businessLight/home-businessLight-league-lite.avif'),
-      test: require('../assets/images/home_menu/businessLight/home-businessLight-diagnostic-test-lite.avif'),
-      practice: require('../assets/images/home_menu/businessLight/home-businessLight-practice-lite.avif'),
-      dialogs: require('../assets/images/home_menu/businessLight/home-businessLight-dialogs-lite.avif'),
-      exam: require('../assets/images/home_menu/businessLight/home-businessLight-exam-lite.avif'),
-      shop: require('../assets/images/home_menu/businessLight/home-businessLight-shop-lite.avif'),
-      heroMap: require('../assets/images/home_menu/businessLight/home-businessLight-hero-map-lite.avif'),
+      lesson: require('../assets/images/home_menu/sagePorcelain/home-sagePorcelain-lessons.webp'),
+      cards: require('../assets/images/home_menu/sagePorcelain/home-sagePorcelain-cards.webp'),
+      dayTasks: require('../assets/images/home_menu/sagePorcelain/home-sagePorcelain-daily-tasks.webp'),
+      league: require('../assets/images/home_menu/sagePorcelain/home-sagePorcelain-league.webp'),
+      test: require('../assets/images/home_menu/sagePorcelain/home-sagePorcelain-diagnostic-test.webp'),
+      practice: require('../assets/images/home_menu/sagePorcelain/home-sagePorcelain-practice.webp'),
+      dialogs: require('../assets/images/home_menu/sagePorcelain/home-sagePorcelain-dialogs.webp'),
+      exam: require('../assets/images/home_menu/sagePorcelain/home-sagePorcelain-exam.webp'),
+      shop: require('../assets/images/home_menu/sagePorcelain/home-sagePorcelain-shop.webp'),
+      heroMap: require('../assets/images/home_menu/sagePorcelain/home-sagePorcelain-hero-map.webp'),
     };
   }
   if (themeMode === 'midnight') {

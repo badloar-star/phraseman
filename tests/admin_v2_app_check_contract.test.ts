@@ -38,6 +38,8 @@ describe('live admin web App Check contract', () => {
     expect(helper).toContain("Authorization: `Bearer ${idToken}`");
     expect(helper).toContain("'X-Firebase-AppCheck': appCheckToken");
     expect(helper).toContain("body: JSON.stringify({ data })");
+    expect(helper).toContain('const responseData = payload?.data ?? payload?.result;');
+    expect(helper).toContain('return { data: responseData };');
     expect(helper).not.toContain('httpsCallable(functionsUs, name)');
     expect(live).toContain('Защита App Check недоступна. Обновите страницу и повторите действие — запрос не отправлен.');
 

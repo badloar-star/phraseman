@@ -297,7 +297,7 @@ function main() {
       ],
       nextWork: personalPractice.nextRequiredGlobalSteps,
       blockers: personalPractice.remainingProductionHolds,
-      commands: ['node scripts/gustav_build_fr_personal_practice_active_recall_v1.mjs'],
+      commands: [],
     }),
     makeSurface({
       id: 'flashcards_marketplace',

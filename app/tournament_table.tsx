@@ -36,7 +36,7 @@ import {
 } from '../components/tournament/tournament_theme';
 import { StarGlyph } from '../components/tournament/TournamentFx';
 import { V2Counter } from '../components/tournament/tournament_v2_ui';
-import { tournamentAvatarValue } from '../components/tournament/tournament_avatars';
+import { tournamentAvatarLevel, tournamentAvatarValue } from '../components/tournament/tournament_avatars';
 import { TournamentEdgeState } from '../components/tournament/TournamentEdgeState';
 import {
   hasTournamentTableSettledScores, isRoundState, orderTournamentPlayersForDisplay, resolveTournamentDisplayRoundNo, resolveTournamentRoomIdParam, shouldTableEnterRound, tournamentSharedPlacement, useTournamentRoom, type RoomPlayer } from './tournament_client';
@@ -327,7 +327,7 @@ const TableRow = memo(function TableRow({
         </Text>
       )}
 
-      <AvatarView avatar={row.avatar} auraId={row.aura} size={36} animateAura={false} />
+      <AvatarView avatar={row.avatar} level={tournamentAvatarLevel(row.avatar)} auraId={row.aura} size={36} animateAura={false} />
 
       <Text
         style={[styles.name, row.isYou && { color: P.accent }]}

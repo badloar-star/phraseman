@@ -4,12 +4,6 @@ import { getTodayTasksSafe, rerollDailyTask } from '../app/daily_tasks';
 import type { TrainerItem } from '../app/trainer_store';
 import { dailyTasksProgressKey, trainerStoreKey } from '../app/target_storage_keys';
 
-let mockFrenchRemoteItems: TrainerItem[] = [];
-
-jest.mock('../app/french_personal_practice_remote_runtime', () => ({
-  getCachedFrenchRemotePersonalPractice: jest.fn(() => mockFrenchRemoteItems),
-}));
-
 jest.mock('../app/premium_guard', () => ({
   getVerifiedPremiumStatus: jest.fn(async () => false),
 }));
@@ -37,7 +31,6 @@ function duePhrase(key: string): TrainerItem {
 describe('daily tasks trainer queue availability', () => {
   beforeEach(() => {
     (AsyncStorage as any).__reset?.();
-    mockFrenchRemoteItems = [];
     jest.clearAllMocks();
     jest.useFakeTimers();
   });
@@ -88,28 +81,33 @@ describe('daily tasks trainer queue availability', () => {
     expect(tasks.map((task) => task.id)).toContain('tw1');
   });
 
-  it('keeps a French trainer task when the session-aware remote queue can satisfy it', async () => {
+  it('keeps a French trainer task when the local target-isolated queue can satisfy it', async () => {
     jest.setSystemTime(new Date('2026-05-25T12:00:00Z'));
-    mockFrenchRemoteItems = [duePhrase('un'), duePhrase('deux'), duePhrase('trois')];
+    await AsyncStorage.setItem(
+      trainerStoreKey('fr'),
+      JSON.stringify([duePhrase('un'), duePhrase('deux'), duePhrase('trois')]),
+    );
 
     const tasks = await getTodayTasksSafe('fr');
 
     expect(tasks.map((task) => task.id)).toContain('tp1');
   });
 
-  it('accepts a French remote trainer queue as a free reroll candidate', async () => {
+  it('accepts a French local trainer queue as a free reroll candidate', async () => {
     jest.setSystemTime(new Date('2026-05-10T12:00:00Z'));
     await AsyncStorage.setItem(
       trainerStoreKey('fr'),
-      JSON.stringify([dueWord('un'), dueWord('deux'), dueWord('trois')]),
+      JSON.stringify([
+        dueWord('un'),
+        dueWord('deux'),
+        dueWord('trois'),
+        duePhrase('phrase un'),
+        duePhrase('phrase deux'),
+        duePhrase('phrase trois'),
+        duePhrase('phrase quatre'),
+        duePhrase('phrase cinq'),
+      ]),
     );
-    mockFrenchRemoteItems = [
-      duePhrase('phrase un'),
-      duePhrase('phrase deux'),
-      duePhrase('phrase trois'),
-      duePhrase('phrase quatre'),
-      duePhrase('phrase cinq'),
-    ];
 
     await expect(rerollDailyTask('tw1', 'fr')).resolves.toEqual(
       expect.objectContaining({ ok: true, cost: 0 }),

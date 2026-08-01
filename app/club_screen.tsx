@@ -437,7 +437,7 @@ export default function ClubScreen() {
   const [groupBoostTimeLeft, setGroupBoostTimeLeft] = useState('');
   const [weekCountdown, setWeekCountdown] = useState(() => formatLeagueWeekCountdown(lang ?? 'ru', leagueWeekEndsAtUtcMs(Date.now()) - Date.now()));
   const [groupBoostConfirmVisible, setGroupBoostConfirmVisible] = useState(false);
-  // Подарок уровня «Буст клуба бесплатно»: следующая активация не списывает осколки.
+  // Подарок уровня «Буст лиги бесплатно»: следующая активация не списывает осколки.
   const [freeBoostGiftReady, setFreeBoostGiftReady] = useState(false);
 
   useEffect(() => {

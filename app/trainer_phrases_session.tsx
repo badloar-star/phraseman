@@ -81,8 +81,6 @@ import { isFeatureFreeForEveryone } from './feature_gates';
 // зачем: premium_guard больше не нужен — тренажёр бесплатный, гейт smart_trainer снят.
 import { logTrainerDirectGateBlocked } from './firebase';
 import TrainerSessionReport from './trainer_session_report';
-import { ensureFrenchRemotePersonalPractice } from './french_personal_practice_remote_runtime';
-import { storageStudyTarget } from './target_storage_keys';
 import { buildTrainerFillGapOptions } from './trainer_fill_gap_options';
 import { frenchTrainerGateCopy, trainerSessionContentAvailableForTarget } from './trainer_target_gate';
 import type { LessonWord } from './lesson_data_types';
@@ -758,13 +756,6 @@ export default function TrainerPhrasesSession() {
           }
         }
         setAccessReady(true);
-        // зачем: этот await — сетевой запрос французского пака, но mergeFrenchRemotePracticeItems
-        // выбрасывает его результат для любого таргета кроме 'fr'. Английские юзеры (подавляющее
-        // большинство) ждали загрузку ради данных, которые тут же отбрасываются. Ждём только там,
-        // где результат реально используется.
-        if (storageStudyTarget(studyTarget) === 'fr') {
-          await ensureFrenchRemotePersonalPractice(sourceLocale);
-        }
         // Plan-контекст: фразовая сессия обслуживает и арену плана — грузим обе
         // plan-очереди и объединяем тем же компаратором, что и свободную практику.
         const items = planTrainerContext.taskId

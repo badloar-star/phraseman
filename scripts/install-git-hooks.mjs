@@ -55,6 +55,43 @@ fi
 exit 0
 `;
 
+const REFERENCE_TRANSACTION_HOOK = `#!/bin/sh
+# Managed by scripts/install-git-hooks.mjs — do not edit by hand.
+# Blocks automated stash updates and creation of new local branches.
+[ "$1" = "prepared" ] || exit 0
+
+blocked_stash=0
+blocked_branch=0
+while read -r old new ref; do
+  case "$ref" in
+    refs/stash)
+      if [ -z "$__GIT_STASH_MANUAL_OK" ]; then blocked_stash=1; fi
+      ;;
+    refs/heads/*)
+      case "$old" in
+        0000000000000000000000000000000000000000)
+          if [ -z "$PHRASEMAN_ALLOW_BRANCH_CREATION" ]; then blocked_branch=1; fi
+          ;;
+      esac
+      ;;
+  esac
+done
+
+if [ "$blocked_stash" -eq 1 ]; then
+  echo "STOP: git stash is blocked for automated processes." 1>&2
+  echo "Use the owner's manual git stash-real wrapper for an explicit stash." 1>&2
+  exit 1
+fi
+
+if [ "$blocked_branch" -eq 1 ]; then
+  echo "STOP: creating a new branch is blocked for Phraseman." 1>&2
+  echo "An explicit owner request is required. For that exact operation only, set PHRASEMAN_ALLOW_BRANCH_CREATION=1." 1>&2
+  exit 1
+fi
+
+exit 0
+`;
+
 function main() {
   const gd = gitDir();
   if (!gd) {
@@ -72,6 +109,7 @@ function main() {
   const hooks = [
     ['pre-commit', PRE_COMMIT_HOOK],
     ['pre-push', PRE_PUSH_HOOK],
+    ['reference-transaction', REFERENCE_TRANSACTION_HOOK],
   ];
   for (const [name, content] of hooks) {
     const hookPath = join(targetHooksDir, name);

@@ -18,7 +18,7 @@ export interface ActiveLevelGiftInventoryItem {
   hint?: string;
   /**
    * Маршрут перехода по тапу (только для бонусов, которые нужно применить вручную:
-   * ваучер набора → витрина карточек, буст клуба → лига). Пассивные бонусы route не имеют.
+   * ваучер набора → витрина карточек, буст лиги → лига). Пассивные бонусы route не имеют.
    */
   actionRoute?: string;
 }
@@ -448,13 +448,16 @@ export const loadActiveLevelGiftInventory = async (
     active.push({
       key: 'club_boost',
       iconGiftId: 'club_boost_free',
-      title: triLang(lang, { ru: 'Буст клуба', uk: 'Буст клубу', es: 'Impulso de liga',
-    'pt-BR': 'Boost do clube',
-    vi: 'Tăng lực câu lạc bộ',
-    id: 'Boost klub',
-    tr: 'Kulüp boostu',
-    pl: 'Boost klubu',
-  }),
+      title: triLang(lang, {
+        ru: 'Буст лиги',
+        uk: 'Буст ліги',
+        es: 'Impulso de liga',
+        'pt-BR': 'Boost da liga',
+        vi: 'Tăng lực giải đấu',
+        id: 'Boost liga',
+        tr: 'Lig boostu',
+        pl: 'Boost ligi',
+      }),
       desc: triLang(lang, {
         ru: '1 бесплатная активация',
         uk: '1 безкоштовна активація',

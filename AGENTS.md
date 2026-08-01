@@ -1,5 +1,16 @@
 # Project Rules
 
+## Single Workspace And Branch Invariant
+
+- The only canonical checkout is `C:\appsprojects\phraseman`.
+- The only canonical working branch is `feature/referral-roulette` until the owner explicitly names a replacement.
+- Never create a branch, Git worktree, separate checkout, forked coding task, or delegated coding session without an explicit owner request to create that exact branch/worktree/task.
+- An explicit owner request is required for every exception. A general request to implement, fix, review, test, deploy, continue, parallelize, or use agents is not permission to create a branch or worktree.
+- All Codex sessions, agents, LAN Metro servers, Android/iOS emulators, builds, tests, scripts, and local web servers must run from the canonical checkout and canonical branch.
+- Before resuming a frozen task, move its work into the canonical checkout first. Do not resume work inside an old worktree.
+- Existing historical branches and worktrees are frozen evidence only. Do not write to, run from, or delete them unless the owner explicitly requests that exact action.
+- If the canonical checkout or branch is unavailable, stop and report the mismatch. Never create a replacement workspace automatically.
+
 ## ⛔ ЕДИНСТВЕННАЯ РАБОЧАЯ АДМИНКА — `admin/v2/legacy.html` (КРИТИЧНО, читать первым)
 
 Владелец пользуется ОДНОЙ админкой:

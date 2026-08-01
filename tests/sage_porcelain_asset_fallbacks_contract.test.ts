@@ -40,18 +40,17 @@ function requires(block: string): string[] {
   return [...block.matchAll(/require\('([^']+)'\)/g)].map((match) => match[1]);
 }
 
-function assertBusinessLightFallback(contract: SourceContract): void {
+function assertCompleteSageCoverage(contract: SourceContract): void {
   const text = source(contract.file);
   const businessLight = themeBlocks(text, 'businessLight');
   const sage = themeBlocks(text, 'sagePorcelain');
   expect(businessLight).toHaveLength(contract.businessLightBlocks);
   expect(sage).toHaveLength(contract.businessLightBlocks);
   expect(requires(sage.flat().join('\n'))).toHaveLength(contract.slots);
-  expect(requires(sage.flat().join('\n'))).toEqual(requires(businessLight.flat().join('\n')));
 }
 
-describe('sage porcelain static asset fallbacks', () => {
-  it('uses the complete businessLight static slot lists without adding assets', () => {
+describe('sage porcelain static asset coverage', () => {
+  it('keeps every static asset slot wired while dedicated Celadon art replaces fallbacks', () => {
     [
       { file: 'app/coin_icons.ts', businessLightBlocks: 1, slots: 1 },
       { file: 'app/flashcards/FlashcardsCategoryHub.tsx', businessLightBlocks: 1, slots: 6 },
@@ -62,12 +61,12 @@ describe('sage porcelain static asset fallbacks', () => {
       { file: 'constants/streakIconAssets.ts', businessLightBlocks: 5, slots: 11 },
       { file: 'constants/trainerThemeIcons.ts', businessLightBlocks: 3, slots: 3 },
       { file: 'constants/weeklyCompassIcons.ts', businessLightBlocks: 1, slots: 1 },
-      { file: 'constants/boonIconAssets.ts', businessLightBlocks: 2, slots: 11 },
+      { file: 'constants/boonIconAssets.ts', businessLightBlocks: 2, slots: 10 },
       { file: 'constants/leagueBonusGiftImages.ts', businessLightBlocks: 1, slots: 1 },
-    ].forEach(assertBusinessLightFallback);
+    ].forEach(assertCompleteSageCoverage);
   });
 
-  it('keeps all Sage fallback require paths literal and backed by existing businessLight assets', () => {
+  it('keeps all Sage require paths literal and backed by existing assets', () => {
     const files = [
       'app/coin_icons.ts', 'app/flashcards/FlashcardsCategoryHub.tsx',
       'app/personal_plan_task_visuals.ts', 'components/EnergyIcon.tsx', 'constants/generatedThemeIconAssets.ts',
@@ -78,17 +77,70 @@ describe('sage porcelain static asset fallbacks', () => {
       const sagePaths = requires(themeBlocks(source(file), 'sagePorcelain').join('\n'));
       expect(sagePaths.length).toBeGreaterThan(0);
       for (const relativePath of sagePaths) {
-        expect(relativePath).toContain('businessLight');
+        expect(relativePath).toMatch(/businessLight|sagePorcelain/);
         expect(existsSync(path.resolve(path.join(ROOT, path.dirname(file)), relativePath))).toBe(true);
       }
     }
   });
 
-  it('uses all ten businessLight home-menu slots for Sage', () => {
+  it('uses all ten home-menu slots and the generated Celadon artwork', () => {
     const text = source('app/home_menu_icons.ts');
     const branch = (theme: string) => text.match(new RegExp(`if \\(themeMode === '${theme}'\\) \\{([\\s\\S]*?)\\n  \\}`, 'm'))?.[1] ?? '';
-    expect(requires(branch('sagePorcelain'))).toEqual(requires(branch('businessLight')));
-    expect(requires(branch('sagePorcelain'))).toHaveLength(10);
+    const sagePaths = requires(branch('sagePorcelain'));
+    expect(sagePaths).toHaveLength(10);
+    expect(sagePaths).toEqual([
+      '../assets/images/home_menu/sagePorcelain/home-sagePorcelain-lessons.webp',
+      '../assets/images/home_menu/sagePorcelain/home-sagePorcelain-cards.webp',
+      '../assets/images/home_menu/sagePorcelain/home-sagePorcelain-daily-tasks.webp',
+      '../assets/images/home_menu/sagePorcelain/home-sagePorcelain-league.webp',
+      '../assets/images/home_menu/sagePorcelain/home-sagePorcelain-diagnostic-test.webp',
+      '../assets/images/home_menu/sagePorcelain/home-sagePorcelain-practice.webp',
+      '../assets/images/home_menu/sagePorcelain/home-sagePorcelain-dialogs.webp',
+      '../assets/images/home_menu/sagePorcelain/home-sagePorcelain-exam.webp',
+      '../assets/images/home_menu/sagePorcelain/home-sagePorcelain-shop.webp',
+      '../assets/images/home_menu/sagePorcelain/home-sagePorcelain-hero-map.webp',
+    ]);
+    for (const relativePath of sagePaths) {
+      expect(relativePath).toMatch(/businessLight|sagePorcelain/);
+      expect(existsSync(path.resolve(ROOT, 'app', relativePath))).toBe(true);
+    }
+  });
+
+  it('uses generated Celadon artwork for migrated flashcard modes', () => {
+    const paths = requires(themeBlocks(source('app/flashcards/FlashcardsCategoryHub.tsx'), 'sagePorcelain')[0]);
+    expect(paths).toHaveLength(6);
+    expect(paths).toEqual([
+      '../../assets/images/flashcards/mode_icons/sagePorcelain/saved.webp',
+      '../../assets/images/flashcards/mode_icons/sagePorcelain/custom.webp',
+      '../../assets/images/flashcards/mode_icons/sagePorcelain/training.webp',
+      '../../assets/images/flashcards/mode_icons/sagePorcelain/audio.webp',
+      '../../assets/images/flashcards/mode_icons/sagePorcelain/arena.webp',
+      '../../assets/images/flashcards/mode_icons/sagePorcelain/collection.webp',
+    ]);
+    for (const relativePath of paths) {
+      expect(existsSync(path.resolve(ROOT, 'app/flashcards', relativePath))).toBe(true);
+    }
+  });
+
+  it('uses generated Celadon artwork for migrated personal-plan tasks and routes', () => {
+    const blocks = themeBlocks(source('app/personal_plan_task_visuals.ts'), 'sagePorcelain');
+    const taskPaths = requires(blocks[0]);
+    const routePaths = requires(blocks[1]);
+    expect(taskPaths.slice(0, 5)).toEqual([
+      '../assets/images/personal_plan_tasks_fit/sagePorcelain/core_lesson.webp',
+      '../assets/images/personal_plan_tasks_fit/sagePorcelain/route_gavan.webp',
+      '../assets/images/personal_plan_tasks_fit/sagePorcelain/recall.webp',
+      '../assets/images/personal_plan_tasks_fit/sagePorcelain/choice.webp',
+      '../assets/images/personal_plan_tasks_fit/sagePorcelain/practice.webp',
+    ]);
+    expect(taskPaths[5]).toBe('../assets/images/personal_plan_tasks_fit/sagePorcelain/choice.webp');
+    expect(taskPaths[6]).toBe('../assets/images/personal_plan_tasks_fit/sagePorcelain/listening.webp');
+    expect(taskPaths[7]).toBe('../assets/images/personal_plan_tasks_fit/sagePorcelain/sentence_build.webp');
+    expect(taskPaths[8]).toBe('../assets/images/personal_plan_tasks_fit/sagePorcelain/speaking.webp');
+    expect(routePaths[0]).toBe('../assets/images/personal_plan_tasks_fit/sagePorcelain/route_gavan.webp');
+    for (const relativePath of [...taskPaths, ...routePaths]) {
+      expect(existsSync(path.resolve(ROOT, 'app', relativePath))).toBe(true);
+    }
   });
 
   it('uses Sage-specific trainer and streak chrome with the fixed porcelain palette', () => {

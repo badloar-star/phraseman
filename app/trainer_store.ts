@@ -14,12 +14,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { flushMistakeLog, logMistake } from './mistake_log';
 import { computeFrenchPhraseAnalytics } from './french_phrase_analytics';
-import { getCachedFrenchRemotePersonalPractice } from './french_personal_practice_remote_runtime';
 import { compactPlanMistakeContext, type PersonalPlanMistakeContext } from './personal_plan_mistake_context';
 import { computePhraseAnalytics, type PhraseAnalyticsResult } from './phrase_analytics';
 import { normalizeWordCategory, type WordCategory } from './pos_taxonomy';
 import { getPosMasterySnapshot } from './pos_workout_engine';
-import { storageSourceLocale, storageStudyTarget, trainerStoreKey, type RuntimeSourceLocale, type RuntimeStudyTarget } from './target_storage_keys';
+import { storageStudyTarget, trainerStoreKey, type RuntimeSourceLocale, type RuntimeStudyTarget } from './target_storage_keys';
 import { trainerSessionContentAvailableForTarget } from './trainer_target_gate';
 import type { Lang, PlannedInterfaceLang } from '../constants/i18n';
 
@@ -205,23 +204,10 @@ async function load(studyTarget?: RuntimeStudyTarget): Promise<TrainerItem[]> {
   }
 }
 
-function mergeFrenchRemotePracticeItems(
-  localItems: TrainerItem[],
-  studyTarget?: RuntimeStudyTarget,
-  sourceLocale?: RuntimeSourceLocale,
-): TrainerItem[] {
-  if (storageStudyTarget(studyTarget) !== 'fr') return localItems;
-  const remoteItems = getCachedFrenchRemotePersonalPractice(storageSourceLocale(sourceLocale));
-  if (remoteItems.length === 0) return localItems;
-  return uniqueTrainerItems([...localItems, ...remoteItems]);
-}
-
 async function loadTrainerItemsForSessions(
   studyTarget?: RuntimeStudyTarget,
-  sourceLocale?: RuntimeSourceLocale,
 ): Promise<TrainerItem[]> {
-  const items = await load(studyTarget);
-  return mergeFrenchRemotePracticeItems(items, studyTarget, sourceLocale);
+  return load(studyTarget);
 }
 
 function applyPlanMistakeContext(item: TrainerItem, context?: PersonalPlanMistakeContext): void {
@@ -535,7 +521,7 @@ export async function getTrainerDashboard(
   analyticsStatsInput?: PhraseAnalyticsResult | null | Promise<PhraseAnalyticsResult | null>,
 ): Promise<TrainerDashboard> {
   const target = storageStudyTarget(studyTarget);
-  const items = await loadTrainerItemsForSessions(studyTarget, sourceLocale);
+  const items = await loadTrainerItemsForSessions(studyTarget);
   const posMastery = await getPosMasterySnapshot(studyTarget);
   const end = todayEnd();
   const sessionContentEnabled = trainerSessionContentAvailableForTarget(studyTarget);
@@ -617,7 +603,7 @@ export async function getDueItems(
   sourceLocale?: RuntimeSourceLocale,
 ): Promise<TrainerItem[]> {
   if (!trainerSessionContentAvailableForTarget(studyTarget)) return [];
-  const items = await loadTrainerItemsForSessions(studyTarget, sourceLocale);
+  const items = await loadTrainerItemsForSessions(studyTarget);
   const end = todayEnd();
   return items
     .filter(i => i.queue === queue && !i.archived && i.nextDue > 0 && i.nextDue <= end)
@@ -646,7 +632,7 @@ export function getCachedDueItems(
 ): TrainerItem[] {
   if (!trainerSessionContentAvailableForTarget(studyTarget)) return [];
   const end = todayEnd();
-  return mergeFrenchRemotePracticeItems(trainerStoreCache.get(trainerStoreKey(studyTarget)) ?? [], studyTarget, sourceLocale)
+  return (trainerStoreCache.get(trainerStoreKey(studyTarget)) ?? [])
     .filter(i => i.queue === queue && !i.archived && i.nextDue > 0 && i.nextDue <= end)
     .sort((a, b) => b.mistakeCount - a.mistakeCount || a.nextDue - b.nextDue)
     .slice(0, limit);
@@ -696,7 +682,7 @@ export async function getTrainerPremiumItems(
   sourceLocale?: RuntimeSourceLocale,
 ): Promise<TrainerItem[]> {
   if (!trainerSessionContentAvailableForTarget(studyTarget)) return [];
-  const items = (await loadTrainerItemsForSessions(studyTarget, sourceLocale)).map(withTrainerCategory);
+  const items = (await loadTrainerItemsForSessions(studyTarget)).map(withTrainerCategory);
   const end = todayEnd();
   const active = items.filter(i => !i.archived && i.nextDue > 0);
   const categoryPriority = await loadCategoryPriorityScores(studyTarget);

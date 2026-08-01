@@ -58,6 +58,26 @@ describe('level_gift_system — locale coverage', () => {
     }
   });
 
+  it('names the free shared boost as a league boost in every interface language', () => {
+    const gift = ALL_LEVEL_GIFT_DEFS.find((item) => item.id === 'club_boost_free');
+    expect(gift).toBeDefined();
+
+    const expectedTitles = {
+      ru: 'Буст лиги бесплатно',
+      uk: 'Буст ліги безкоштовно',
+      es: 'Impulso de liga gratis',
+      'pt-BR': 'Boost de liga grátis',
+      vi: 'Tăng lực giải đấu miễn phí',
+      id: 'Boost liga gratis',
+      tr: 'Ücretsiz lig boostu',
+      pl: 'Darmowy boost ligi',
+    } as const;
+
+    for (const [lang, title] of Object.entries(expectedTitles)) {
+      expect(giftTitleForLang(gift!, lang as keyof typeof expectedTitles)).toBe(title);
+    }
+  });
+
   it('each gift resolves planned locale title and description without Cyrillic fallback', () => {
     for (const lang of PLANNED_LANGS) {
       for (const g of ALL_LEVEL_GIFT_DEFS) {

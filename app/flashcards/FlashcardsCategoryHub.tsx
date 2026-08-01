@@ -201,12 +201,12 @@ export const FLASHCARDS_MODE_ICON_ASSETS: Record<ThemeMode, Record<FlashcardsMod
     collection: require('../../assets/images/flashcards/mode_icons/businessLight/collection.webp'),
   },
   sagePorcelain: {
-    saved: require('../../assets/images/flashcards/mode_icons/businessLight/saved.webp'),
-    custom: require('../../assets/images/flashcards/mode_icons/businessLight/custom.webp'),
-    training: require('../../assets/images/flashcards/mode_icons/businessLight/training.webp'),
-    audio: require('../../assets/images/flashcards/mode_icons/businessLight/audio.webp'),
-    arena: require('../../assets/images/flashcards/mode_icons/businessLight/arena.webp'),
-    collection: require('../../assets/images/flashcards/mode_icons/businessLight/collection.webp'),
+    saved: require('../../assets/images/flashcards/mode_icons/sagePorcelain/saved.webp'),
+    custom: require('../../assets/images/flashcards/mode_icons/sagePorcelain/custom.webp'),
+    training: require('../../assets/images/flashcards/mode_icons/sagePorcelain/training.webp'),
+    audio: require('../../assets/images/flashcards/mode_icons/sagePorcelain/audio.webp'),
+    arena: require('../../assets/images/flashcards/mode_icons/sagePorcelain/arena.webp'),
+    collection: require('../../assets/images/flashcards/mode_icons/sagePorcelain/collection.webp'),
   },
 };
 

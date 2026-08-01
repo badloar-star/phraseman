@@ -198,10 +198,14 @@ export default function TournamentResultsScreen() {
   useEffect(() => {
     if (!runtimeActive || !freshSnapshot || !won || fxSize.width <= 0) return;
     const origin = { x: fxSize.width / 2, y: fxSize.height * 0.3 };
+    // зачем 2026-08-01 (аудит турнира): было 900 мс — победа уже подтверждена
+    // и заголовок виден, а салют почти секунду не приходил, из-за чего момент
+    // триумфа читался как «экран завис». 260 мс достаточно, чтобы подиум успел
+    // проявиться, но пауза уже не ощущается ожиданием.
     const timer = setTimeout(() => {
       fxRef.current?.goldWave(P.gold);
       fxRef.current?.confetti(origin, [P.gold, P.accent, P.okGradA, P.text]);
-    }, 900);
+    }, 260);
     return () => clearTimeout(timer);
   }, [runtimeActive, freshSnapshot, won, fxSize, P.gold, P.accent, P.okGradA, P.text]);
 
@@ -439,12 +443,17 @@ const PodiumColumn = memo(function PodiumColumn({
    */
   const [shownGems, setShownGems] = useState(0);
 
+  // зачем 2026-08-01 (аудит турнира): порядок событий сохранён (серебро →
+  // бронза → золото → корона → награда), но каждая пауза сжата примерно вдвое.
+  // Раньше весь каскад подиума занимал ~1.6 с, из которых почти секунда была
+  // пустым ожиданием: игрок смотрел на статичный экран после уже известного
+  // результата. Теперь тот же рисунок укладывается в ~0.6 с.
   useEffect(() => {
-    const delay = first ? 420 : winner.place === 2 ? 220 : 320;
+    const delay = first ? 200 : winner.place === 2 ? 90 : 145;
     avatarY.value = withDelay(delay, withSpring(0, motion.popIn));
     if (first) {
       // Корона прилетает пружиной с лёгким перелётом — момент триумфа.
-      crownScale.value = withDelay(760, withSequence(
+      crownScale.value = withDelay(360, withSequence(
         withSpring(1.25, motion.popIn),
         withSpring(1, motion.popIn),
       ));
@@ -454,9 +463,13 @@ const PodiumColumn = memo(function PodiumColumn({
   useEffect(() => {
     if (gems <= 0) { setShownGems(0); return; }
     // Жемчужины «долетают» из банка под подиумом — стартуем после аватара.
-    const startDelay = (first ? 900 : winner.place === 2 ? 700 : 800);
+    // зачем 2026-08-01 (аудит турнира): было 900 мс старта + ~700 мс тиканья —
+    // до финальной цифры награды проходило больше полутора секунд. Счётчик
+    // по-прежнему стартует ПОСЛЕ аватара (иначе жемчужины летят в пустоту), но
+    // ждёт ровно столько, сколько нужно пружине аватара.
+    const startDelay = (first ? 430 : winner.place === 2 ? 300 : 370);
     const steps = Math.min(gems, 24);
-    const stepMs = Math.max(28, Math.round(700 / steps));
+    const stepMs = Math.max(22, Math.round(440 / steps));
     let done = 0;
     let interval: ReturnType<typeof setInterval> | null = null;
 

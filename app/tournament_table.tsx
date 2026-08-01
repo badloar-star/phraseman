@@ -282,9 +282,13 @@ const TableRow = memo(function TableRow({
   const overtook = row.prevPlace > place;
   const fillRatio = Math.max(0.12, row.score / maxScore);
 
+  // зачем 2026-08-01 (аудит турнира): было 420 + index*30 — последняя из 16
+  // строк начинала переезд только через 870 мс, и почти секунду таблица
+  // выглядела замороженной вместо того, чтобы показывать обгоны. Каскад сверху
+  // вниз сохранён (он и делает обгон читаемым), но сжат втрое.
   useEffect(() => {
     translateY.value = withDelay(
-      420 + layoutIndex * 30,
+      90 + layoutIndex * 16,
       withSpring(toY, motion.reorder),
     );
   }, [layoutIndex, toY, translateY]);
@@ -336,8 +340,11 @@ const TableRow = memo(function TableRow({
         {row.name}
       </Text>
 
+      {/* зачем 2026-08-01: чип «обгон» ждал 700 мс и приезжал уже ПОСЛЕ того,
+          как строки закончили переезд — подпись отставала от события, которое
+          объясняет. Теперь появляется на подлёте строки к новому месту. */}
       {overtook ? (
-        <Animated.View entering={FadeIn.delay(700).duration(240)} style={styles.overtakeChip}>
+        <Animated.View entering={FadeIn.delay(320).duration(200)} style={styles.overtakeChip}>
           <Text style={styles.overtakeText}>обгон</Text>
         </Animated.View>
       ) : null}

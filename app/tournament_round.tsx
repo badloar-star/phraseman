@@ -27,6 +27,7 @@ import { useRouter } from 'expo-router';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
+import { useTimerTickCue } from '../hooks/use-timer-tick-cue';
 import { fk } from './feedback/feedback_kit';
 import { TimerRing } from '../components/tournament/TournamentCountdown';
 import { Sheet } from '../components/tournament/tournament_ui';
@@ -71,10 +72,16 @@ import { closeTournamentFlow } from './tournament_navigation';
 // число берётся из questions.length, но расходиться они больше не должны.
 const QUESTIONS_PER_ROUND = 4;
 const SPEED_MATCH_PAIRS = 6;
-const MATCH_SELECT_MS = 140;
-const MATCH_CORRECT_POP_MS = 160;
-const MATCH_CORRECT_FADE_MS = 240;
-const MATCH_WRONG_TONE_MS = 300;
+// зачем 2026-08-01 (аудит турнира): режим называется «Пары на скорость», но
+// сам себя тормозил — после каждого ответа поле было заблокировано
+// pendingTuple на 400 мс (160+240) при верной паре и на 300 мс при неверной.
+// На шести парах это до 2.4 секунды, отнятых у режима, который весь про темп.
+// Длительность самой анимации сохранена настолько, чтобы попадание читалось,
+// но окно блокировки ввода сжато почти вдвое.
+const MATCH_SELECT_MS = 110;
+const MATCH_CORRECT_POP_MS = 120;
+const MATCH_CORRECT_FADE_MS = 150;
+const MATCH_WRONG_TONE_MS = 200;
 const LETTERS = ['A', 'B', 'C', 'D'] as const;
 const OWNER_APPROVED_TOURNAMENT_MODES = new Set([
   'guess_phrase',
@@ -271,6 +278,7 @@ export default function TournamentRoundScreen() {
   const roomId = resolveTournamentRoomIdParam(params.roomId);
   const runtimeActive = useRuntimeActive();
   const reduceMotion = useReduceMotion();
+  const { playTimerTick, playTimerExpired } = useTimerTickCue();
 
   const { room, status, freshSnapshot, secondsLeft: stateSecondsLeft, retry } = useTournamentRoom(roomId, runtimeActive);
   const { incoming: incomingReactions, consume: consumeReaction } = useTournamentReactions(roomId, runtimeActive);
@@ -350,15 +358,28 @@ export default function TournamentRoundScreen() {
 
   const total = questions.length || QUESTIONS_PER_ROUND;
   const scheduleNowMs = tournamentNow();
-  const elapsedTaskIds = new Set(
-    (activeRound?.taskSchedule ?? [])
-      .filter((timing) => isTournamentTaskWindowResolved(timing, scheduleNowMs))
-      .map((timing) => timing.taskId),
+  // зачем 2026-08-01 (аудит турнира): elapsedTaskIds пересоздавал Set через
+  // filter+map на КАЖДОМ рендере, а экран перерисовывается минимум раз в
+  // секунду по таймеру задания. Мемоизируем по секундной сетке: окна заданий
+  // заданы в секундах, поэтому внутри одной секунды результат заведомо тот же,
+  // а привязка к самому scheduleNowMs (миллисекунды) сделала бы useMemo
+  // бесполезным — он пересчитывался бы каждый раз.
+  const scheduleNowSec = Math.floor(scheduleNowMs / 1000);
+  const elapsedTaskIds = useMemo(
+    () => new Set(
+      (activeRound?.taskSchedule ?? [])
+        .filter((timing) => isTournamentTaskWindowResolved(timing, scheduleNowSec * 1000))
+        .map((timing) => timing.taskId),
+    ),
+    [activeRound?.taskSchedule, scheduleNowSec],
   );
-  const allQuestionsResolved = questions.length > 0
-    && questions.every((candidate) => (
-      resolvedTaskIds.has(candidate.taskId) || elapsedTaskIds.has(candidate.taskId)
-    ));
+  const allQuestionsResolved = useMemo(
+    () => questions.length > 0
+      && questions.every((candidate) => (
+        resolvedTaskIds.has(candidate.taskId) || elapsedTaskIds.has(candidate.taskId)
+      )),
+    [questions, resolvedTaskIds, elapsedTaskIds],
+  );
   const markTaskResolved = useCallback((taskId: string) => {
     setResolvedTaskIds((previous) => {
       if (previous.has(taskId)) return previous;
@@ -834,15 +855,27 @@ export default function TournamentRoundScreen() {
     void submitCurrentTaskAnswer(question, { selectedIndexes });
   }, [confirmedMatchPairs, matchComplete, matchStatus, phase, question, submitCurrentTaskAnswer]);
 
+  // зачем: последние секунды слышно, а не только видно — TimerRing красит
+  // кольцо на `seconds <= 5`, звук берём с того же порога, чтобы картинка и
+  // звук говорили об одном. Повторы схлопывает кулдаун каталога.
+  useEffect(() => {
+    if (phase !== 'question' || !question) return;
+    if (secondsLeft == null || secondsLeft > 5 || secondsLeft <= 0) return;
+    playTimerTick();
+  }, [phase, question, secondsLeft, playTimerTick]);
+
   // Время вышло — пропуск, серия обнуляется.
   useEffect(() => {
     if (phase !== 'question' || secondsLeft !== 0 || !question) return;
+    // зачем: истечение времени — это исход задания, а не просто смена фазы;
+    // без звука пропуск по таймауту ощущался как «экран сам перещёлкнулся».
+    playTimerExpired();
     markTaskResolved(question.taskId);
     setPicked(null);
     setPhase('feedback');
     setFeedbackCorrect(null);
     scheduleFeedbackAdvance();
-  }, [markTaskResolved, phase, secondsLeft, question, scheduleFeedbackAdvance]);
+  }, [markTaskResolved, phase, secondsLeft, question, scheduleFeedbackAdvance, playTimerExpired]);
 
   // Сервер перевёл комнату дальше — уходим, даже если локально не досчитали.
   useEffect(() => {
@@ -933,8 +966,11 @@ export default function TournamentRoundScreen() {
             отвечает только за прогресс и время; режим и награды не сжимают
             сегменты на узких экранах. */}
         <View style={styles.header}>
+          {/* зачем 2026-08-01 (аудит турнира): выход из турнира — самое
+              весомое действие на экране, а открывалось оно «тихо», без
+              тактильного отклика, тогда как тот же выход в лобби его давал. */}
           <Pressable
-            onPress={() => setForfeitConfirmVisible(true)}
+            onPress={() => { fk.tap(); setForfeitConfirmVisible(true); }}
             style={styles.forfeitButton}
             accessibilityRole="button"
             accessibilityLabel="Выйти из текущего турнира"

@@ -65,10 +65,28 @@ describe('tournament round visual fidelity', () => {
   });
 
   test('speed pairs resolve motion only after authoritative status and keep fixed slots', () => {
-    expect(round).toContain('const MATCH_SELECT_MS = 140');
-    expect(round).toContain('const MATCH_CORRECT_POP_MS = 160');
-    expect(round).toContain('const MATCH_CORRECT_FADE_MS = 240');
-    expect(round).toContain('const MATCH_WRONG_TONE_MS = 300');
+    // зачем 2026-08-01 (аудит турнира): раньше контракт прибивал четыре
+    // конкретных числа (140/160/240/300). Но охранять надо не сами величины, а
+    // СВОЙСТВО: pendingTuple блокирует всё поле на время этой анимации, и на
+    // прежних значениях режим «пары на скорость» отнимал у игрока до 2.4 с за
+    // шесть пар. Теперь тест читает константы из исходника и проверяет
+    // потолок блокировки — попадание успевает прочитаться, но темп не страдает.
+    const matchConstant = (name: string): number => {
+      const found = new RegExp(`const ${name} = (\\d+);`).exec(round);
+      if (!found) throw new Error(`${name} не найдена в tournament_round.tsx`);
+      return Number(found[1]);
+    };
+    const selectMs = matchConstant('MATCH_SELECT_MS');
+    const correctPopMs = matchConstant('MATCH_CORRECT_POP_MS');
+    const correctFadeMs = matchConstant('MATCH_CORRECT_FADE_MS');
+    const wrongToneMs = matchConstant('MATCH_WRONG_TONE_MS');
+
+    // Анимация обязана быть видимой — мгновенное исчезновение читается как сбой.
+    expect(selectMs).toBeGreaterThanOrEqual(80);
+    expect(correctPopMs).toBeGreaterThanOrEqual(80);
+    // Верхняя граница блокировки ввода: верная пара ≤300 мс, неверная ≤220 мс.
+    expect(correctPopMs + correctFadeMs).toBeLessThanOrEqual(300);
+    expect(wrongToneMs).toBeLessThanOrEqual(220);
     expect(round).toContain('const [pendingTuple, setPendingTuple]');
     expect(round).toContain("verdict === 'correct'");
     expect(round).toContain('selected={selected}');

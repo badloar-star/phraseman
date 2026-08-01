@@ -147,6 +147,14 @@ const AnimatedBankAmount = memo(function AnimatedBankAmount({
       return;
     }
     arrivals.forEach((event) => seenEventIdsRef.current.add(event.eventId));
+    // зачем 2026-08-01 (аудит турнира): шаг был фиксированные 360 мс, поэтому
+    // пачка из 15 прибытий растягивала показ банка на ~5 секунд — всё это время
+    // цифра на экране была заведомо устаревшей. Теперь у каскада есть ПОТОЛОК:
+    // сколько бы событий ни пришло разом, последняя цифра встаёт на место не
+    // позже CASCADE_BUDGET_MS. Пересчёт по одному сохранён — он и создаёт
+    // ощущение, что соперники подходят по одному, а не появляются пачкой.
+    const CASCADE_BUDGET_MS = 900;
+    const stepMs = Math.min(160, Math.floor(CASCADE_BUDGET_MS / Math.max(1, arrivals.length)));
     const timers = arrivals.map((event, index) => setTimeout(() => {
       // `potGemsAfter` is authoritative. A zero test-mode delta keeps digits
       // unchanged rather than inventing a bank gain.
@@ -156,7 +164,7 @@ const AnimatedBankAmount = memo(function AnimatedBankAmount({
       } else {
         pulse.value = withSequence(withTiming(1.06, { duration: 120 }), withTiming(1, { duration: 180 }));
       }
-    }, index * 360));
+    }, index * stepMs));
     return () => timers.forEach(clearTimeout);
   }, [amount, events, pulse, reduceMotion]);
 

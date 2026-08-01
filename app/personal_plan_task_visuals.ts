@@ -239,8 +239,8 @@ const THEMED_ROUTE_ASSETS: Record<ThemeMode, Record<PersonalPlanId, ImageSourceP
     gavan: require('../assets/images/personal_plan_tasks_fit/sagePorcelain/route_gavan.webp'),
     voyazh: require('../assets/images/personal_plan_tasks_fit/sagePorcelain/route_voyazh.webp'),
     mitap: require('../assets/images/personal_plan_tasks_fit/sagePorcelain/route_mitap.webp'),
-    impuls: require('../assets/images/personal_plan_tasks_fit/businessLight/route_impuls.webp'),
-    echo: require('../assets/images/personal_plan_tasks_fit/businessLight/route_echo.webp'),
+    impuls: require('../assets/images/personal_plan_tasks_fit/sagePorcelain/route_impuls.webp'),
+    echo: require('../assets/images/personal_plan_tasks_fit/sagePorcelain/route_echo.webp'),
   },
   ember: {
     gavan: require('../assets/images/personal_plan_tasks_fit/ember/route_gavan.webp'),

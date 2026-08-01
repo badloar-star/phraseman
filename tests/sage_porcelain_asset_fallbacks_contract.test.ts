@@ -142,6 +142,8 @@ describe('sage porcelain static asset coverage', () => {
     expect(routePaths[0]).toBe('../assets/images/personal_plan_tasks_fit/sagePorcelain/route_gavan.webp');
     expect(routePaths[1]).toBe('../assets/images/personal_plan_tasks_fit/sagePorcelain/route_voyazh.webp');
     expect(routePaths[2]).toBe('../assets/images/personal_plan_tasks_fit/sagePorcelain/route_mitap.webp');
+    expect(routePaths[3]).toBe('../assets/images/personal_plan_tasks_fit/sagePorcelain/route_impuls.webp');
+    expect(routePaths[4]).toBe('../assets/images/personal_plan_tasks_fit/sagePorcelain/route_echo.webp');
     for (const relativePath of [...taskPaths, ...routePaths]) {
       expect(existsSync(path.resolve(ROOT, 'app', relativePath))).toBe(true);
     }
@@ -150,10 +152,27 @@ describe('sage porcelain static asset coverage', () => {
   it('uses Sage-specific trainer and streak chrome with the fixed porcelain palette', () => {
     const trainer = source('constants/trainerThemeIcons.ts');
     const streak = source('constants/streakIconAssets.ts');
+    const streakFirePaths = themeBlocks(streak, 'sagePorcelain')
+      .map(requires)
+      .find((paths) => paths.length === 10) ?? [];
     expect(themeBlocks(trainer, 'sagePorcelain')[0]).toContain("primary: '#315F50'");
     expect(themeBlocks(trainer, 'sagePorcelain')[0]).toContain("secondary: '#8B6320'");
     expect(themeBlocks(trainer, 'sagePorcelain')[0]).toContain("stroke: '#17201D'");
     expect(themeBlocks(trainer, 'sagePorcelain')[0]).toContain("muted: '#FCFDF9'");
+    expect(streakFirePaths.slice(0, 6)).toEqual([
+      '../assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-001.webp',
+      '../assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-002.webp',
+      '../assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-003.webp',
+      '../assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-005.webp',
+      '../assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-007.webp',
+      '../assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-010.webp',
+    ]);
+    expect(streak).toContain("1: 'assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-001.webp'");
+    expect(streak).toContain("2: 'assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-002.webp'");
+    expect(streak).toContain("3: 'assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-003.webp'");
+    expect(streak).toContain("5: 'assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-005.webp'");
+    expect(streak).toContain("7: 'assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-007.webp'");
+    expect(streak).toContain("10: 'assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-010.webp'");
     expect(streak).toContain("sagePorcelain: { rgb: [139, 99, 32], accent: '#315F50' }");
     expect(streak).toContain("sagePorcelain: { rgb: [97, 112, 106], accent: '#52605A' }");
   });

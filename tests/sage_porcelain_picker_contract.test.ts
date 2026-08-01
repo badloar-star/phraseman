@@ -2,12 +2,13 @@ import fs from 'fs';
 import path from 'path';
 
 describe('Sage Porcelain picker contract', () => {
-  const pickerSource = fs.readFileSync(path.join(__dirname, '..', 'app', 'settings_themes.tsx'), 'utf8');
-  const settingsSource = fs.readFileSync(path.join(__dirname, '..', 'app', '(tabs)', 'settings.tsx'), 'utf8');
+  const readSource = (...segments: string[]) => fs.readFileSync(path.join(__dirname, '..', ...segments), 'utf8').replace(/\r\n/g, '\n');
+  const pickerSource = readSource('app', 'settings_themes.tsx');
+  const settingsSource = readSource('app', '(tabs)', 'settings.tsx');
 
-  it('places the free Sage Porcelain choice directly after Indigo with every localized label', () => {
+  it('places the free Jade choice directly after Indigo with every localized label', () => {
     expect(pickerSource).toMatch(/mode: 'indigo'[\s\S]*?mode: 'sagePorcelain'[\s\S]*?mode: 'midnight'/);
-    expect(pickerSource).toMatch(/\{ mode: 'sagePorcelain'[^}]*labelRU: 'Фарфоровый шалфей'[^}]*labelUK: 'Порцелянова шавлія'[^}]*labelES: 'Salvia porcelana'[^}]*labelPtBr: 'Sálvia porcelana'[^}]*labelVi: 'Xô thơm sứ'[^}]*labelId: 'Sage porselen'[^}]*labelTr: 'Porselen adaçayı'[^}]*labelPl: 'Porcelanowa szałwia'[^}]*\}/);
+    expect(pickerSource).toMatch(/\{ mode: 'sagePorcelain'[^}]*labelRU: 'Нефрит'[^}]*labelUK: 'Нефрит'[^}]*labelES: 'Jade'[^}]*labelPtBr: 'Jade'[^}]*labelVi: 'Ngọc bích'[^}]*labelId: 'Giok'[^}]*labelTr: 'Yeşim'[^}]*labelPl: 'Jadeit'[^}]*\}/);
     expect(pickerSource).not.toMatch(/\{ mode: 'sagePorcelain'[^}]*premiumOnly: true/);
   });
 
@@ -27,7 +28,7 @@ describe('Sage Porcelain picker contract', () => {
     expect(pickerSource).toContain('borderColor: row.borderColor');
   });
 
-  it('shows the exact localized Sage Porcelain name on the settings summary row', () => {
-    expect(settingsSource).toMatch(/sagePorcelain: \{ ru: 'Фарфоровый шалфей', uk: 'Порцелянова шавлія', es: 'Salvia porcelana', 'pt-BR': 'Sálvia porcelana', vi: 'Xô thơm sứ', id: 'Sage porselen', tr: 'Porselen adaçayı', pl: 'Porcelanowa szałwia' \}/);
+  it('shows the exact localized Jade name on the settings summary row', () => {
+    expect(settingsSource).toMatch(/sagePorcelain: \{ ru: 'Нефрит', uk: 'Нефрит', es: 'Jade', 'pt-BR': 'Jade', vi: 'Ngọc bích', id: 'Giok', tr: 'Yeşim', pl: 'Jadeit' \}/);
   });
 });

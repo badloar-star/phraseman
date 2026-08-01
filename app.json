@@ -51,7 +51,7 @@
         "assets/images/friends/*",
         "assets/images/home/*",
         "assets/images/header_glyphs/*",
-        "assets/images/home_menu/*",
+        "assets/images/home_menu/**/*",
         "assets/images/league/league_crown.webp",
         "assets/images/league_bonus/*",
         "assets/images/lesson_cycle_end_modal/*",

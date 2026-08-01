@@ -10,7 +10,7 @@
  *  • Плоские «бизнес»-темы (isFlat) — их язык это волосяная линия и плоскость;
  *    GlassSurface НЕ навязывает стекло, а даёт плоскую заливку bgCard как раньше.
  *  • Светлые темы — прозрачная заливка на светлом фоне читается слабо, поэтому
- *    держим более плотную светлую заливку (чуть прозрачную, без рамки).
+ *    используем непрозрачные семантические поверхности и мягкую тему-тень.
  *  • Тёмные темы (dark/gold/coral/cinema) — полупрозрачная тёмная заливка: фон
  *    просвечивает. Опциональный тонкий верхний хайлайт-кант вместо обводки.
  *
@@ -20,6 +20,11 @@
 import React from 'react';
 import { View, type ViewProps, type ViewStyle } from 'react-native';
 import { useTheme } from './ThemeContext';
+import { isLightThemeMode } from '../constants/theme';
+import { sagePorcelainShadow } from '../constants/sagePorcelainChrome';
+import { glassFill } from '../constants/glassSurfaceFill';
+
+export { glassFill } from '../constants/glassSurfaceFill';
 
 export type GlassTone = 'card' | 'subtle' | 'raised';
 
@@ -29,25 +34,6 @@ export type GlassTone = 'card' | 'subtle' | 'raised';
  * НЕ-hex (rgb/rgba/имя) — не гадаем и возвращаем как есть (плотный фон лучше,
  * чем сломанный цвет): плитка просто будет непрозрачной, а не «стеклянной».
  */
-function alpha(color: string, a: number): string {
-  const c = String(color).trim();
-  if (c[0] !== '#') return c;
-  let hex = c.slice(1);
-  if (hex.length === 3) hex = hex.split('').map((ch) => ch + ch).join('');
-  if (hex.length !== 6) return c;
-  const n = parseInt(hex, 16);
-  if (Number.isNaN(n)) return c;
-  return `rgba(${(n >> 16) & 255},${(n >> 8) & 255},${n & 255},${a})`;
-}
-
-/**
- * Тот же хелпер для мест, где GlassSurface-обёртка неудобна (StyleSheet-экраны):
- * hex-цвет темы → rgba со стеклянной альфой. Для inline-стилей плиток/панелей.
- */
-export function glassFill(color: string, a: number): string {
-  return alpha(color, a);
-}
-
 interface GlassSurfaceProps extends ViewProps {
   /** Плотность заливки. По умолчанию 'card'. */
   tone?: GlassTone;
@@ -59,11 +45,6 @@ interface GlassSurfaceProps extends ViewProps {
    */
   highlight?: boolean;
   children?: React.ReactNode;
-}
-
-/** Является ли тема светлой (светлый bgCard → нужна плотная светлая заливка). */
-function isLightThemeMode(themeMode: string): boolean {
-  return themeMode === 'businessLight';
 }
 
 export default function GlassSurface({
@@ -89,12 +70,13 @@ export default function GlassSurface({
     );
   }
 
-  // Светлые темы: полупрозрачная светлая заливка (читается на светлом фоне).
+  // Светлые темы: непрозрачная семантическая поверхность + мягкая глубина.
   if (isLightThemeMode(themeMode)) {
-    const lightAlpha = tone === 'subtle' ? 0.55 : tone === 'raised' ? 0.9 : 0.75;
+    const lightFill = tone === 'subtle' ? t.bgSurface : t.bgCard;
+    const lightDepth = tone === 'raised' ? sagePorcelainShadow(2) : sagePorcelainShadow(1);
     return (
       <View
-        style={[{ backgroundColor: alpha(t.bgCard, lightAlpha), borderRadius: radius }, style]}
+        style={[{ backgroundColor: lightFill, borderRadius: radius, ...lightDepth }, style]}
         {...rest}
       >
         {children}
@@ -108,7 +90,7 @@ export default function GlassSurface({
   const fillAlpha = tone === 'subtle' ? 0.32 : tone === 'raised' ? 0.58 : 0.46;
   const fillHex = tone === 'raised' ? t.bgSurface : t.bgCard;
   const surfaceStyle: ViewStyle = {
-    backgroundColor: alpha(fillHex, fillAlpha),
+    backgroundColor: glassFill(fillHex, fillAlpha),
     borderRadius: radius,
   };
   // Верхний хайлайт-кант вместо обводки: тонкая акцентная линия сверху даёт

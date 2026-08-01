@@ -7,6 +7,9 @@ const source = readFileSync(assetMapPath, 'utf8');
 const assetPaths = [...source.matchAll(/require\('\.\.\/(assets\/images\/weekly_boon_icons\/png\/[\w/.-]+\.webp)'\)/g)].map(
   (match) => match[1],
 );
+const THEME_COUNT = 13;
+const LIVE_BOON_ID_COUNT = 10;
+const EXPECTED_STATIC_REQUIRES = THEME_COUNT * LIVE_BOON_ID_COUNT;
 
 if (assetPaths.length !== 130) {
   throw new Error(`Weekly boon asset map must contain 130 static require() paths; found ${assetPaths.length}.`);

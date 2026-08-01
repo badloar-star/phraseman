@@ -499,15 +499,19 @@ function TabBarIcon({
  * (без SafeAreaView сверху — иначе над контентом оставалась «плашка» из bgPrimary).
  */
 function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx }: TabScaffoldProps) {
-  const { theme: t, ds, statusBarLight } = useTheme();
+  const { theme: t, ds, statusBarLight, themeMode } = useTheme();
   const { tabBarHeight, bottomInset: PB } = useScreen();
   const insets = useStableSafeAreaInsets();
   const { goToTab, activeIdx, onSwipeStart, onSwipeComplete } = useTabNav();
   const topFadeScroll = useTopFadeScroll();
-  /** Подложка плавающей капсулы: 95% затемнение контента под таббаром
-   *  без runtime blur, с цветными иконками от текущей темы. Обводок нет —
-   *  разделение тоном и тенью (правило владельца). */
-  const tabIconMuted = withAlpha(t.textSecond, TAB_DARK_ICON_MUTED_ALPHA);
+  /** Sage использует собственную акцентную капсулу вместо чужого чёрного scrim.
+   * Белые состояния иконок держат контраст и в полном таббаре, и в свёрнутом орбе. */
+  const isSagePorcelainTabChrome = themeMode === 'sagePorcelain';
+  const tabPillBackground = isSagePorcelainTabChrome ? t.accent : TAB_UNDERLAY_DIM_BG;
+  const tabIconActive = isSagePorcelainTabChrome ? t.correctText : t.accent;
+  const tabIconMuted = isSagePorcelainTabChrome
+    ? withAlpha(t.correctText, 0.72)
+    : withAlpha(t.textSecond, TAB_DARK_ICON_MUTED_ALPHA);
   const tabPillBottom = Math.max(PB, ds.spacing.sm) + FLOATING_PILL_BOTTOM_GAP;
   const tabOverlayHeight = tabBarHeight + tabPillBottom + ds.spacing.md;
   const [tabPillWidth, setTabPillWidth] = useState(0);
@@ -819,11 +823,12 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
                   height: tabBarHeight,
                   borderRadius: tabBarHeight / 2,
                   shadowColor: t.shadowDark,
+                  borderWidth: isSagePorcelainTabChrome ? 1 : 0,
+                  borderColor: isSagePorcelainTabChrome ? t.btnShadow : 'transparent',
                 },
               ]}
             >
-              {/* 95% scrim: контент едва просвечивает, но затемняется без runtime blur. */}
-              <View pointerEvents="none" style={[s.tabPillFill, { backgroundColor: TAB_UNDERLAY_DIM_BG }]} />
+              <View pointerEvents="none" style={[s.tabPillFill, { backgroundColor: tabPillBackground }]} />
 
               {/* Ряд фиксированной ширины: при сужении капсулы ячейки НЕ пересчитываются,
                   иконки сохраняют геометрию, правые уходят под overflow:hidden. */}
@@ -840,10 +845,10 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
               {/* зачем: владелец убрал подложку-«пилюлю» под активной иконкой —
                   на тёмном фоне её верхний край читался как полукруг под иконкой.
                   Активная вкладка теперь обозначается ТОЛЬКО самой иконкой: залитый
-                  вариант (tab.active) + акцентный цвет вместо приглушённого. */}
+                  вариант (tab.active) + контрастный цвет вместо приглушённого. */}
               {TABS.map((tab, i) => {
                 const visuallyFocused = visualTabIdx === i;
-                const color = visuallyFocused ? t.accent : tabIconMuted;
+                const color = visuallyFocused ? tabIconActive : tabIconMuted;
                 const iconScale = pressedTabIdx === i
                   ? tabPressAnim.interpolate({ inputRange: [0, 1], outputRange: [1, 1.08] })
                   : 1;

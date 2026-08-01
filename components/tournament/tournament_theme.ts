@@ -115,7 +115,7 @@ export function placeMedal(place: number): string {
 // Теперь палитра собирается из полей выбранной темы, формат тот же — экраны
 // переходят заменой `T` на `useTournamentTheme()` без переписывания стилей.
 
-import type { Theme } from '../../constants/theme';
+import type { Theme, ThemeMode } from '../../constants/theme';
 
 export type TournamentPalette = { readonly [K in keyof typeof T]: string };
 
@@ -226,9 +226,10 @@ export type TournamentV2 = TournamentPalette & {
   onGold: string;
 };
 
-export function tournamentV2FromTheme(t: Theme): TournamentV2 {
+export function tournamentV2FromTheme(t: Theme, themeMode?: ThemeMode): TournamentV2 {
   const base = tournamentPaletteFromTheme(t);
   const accent = t.accent;
+  const isSagePorcelain = themeMode === 'sagePorcelain';
   return {
     ...base,
     accentText: t.correctText,
@@ -247,8 +248,8 @@ export function tournamentV2FromTheme(t: Theme): TournamentV2 {
     okGradA: tint(accent, 0.14),
     okGradB: shade(accent, 0.88),
     okInk: t.correctText,
-    heroGradA: '#FFFFFF',
-    heroGradB: tint(accent, 0.62),
+    heroGradA: isSagePorcelain ? t.textPrimary : '#FFFFFF',
+    heroGradB: isSagePorcelain ? t.accent : tint(accent, 0.62),
     sheen: hexToRgba(accent, 0.05),
     bgGradA: mixHex(accent, t.bgPrimary, 0.045),
     bgGradB: shade(t.bgPrimary, 0.3),
@@ -263,6 +264,6 @@ import { useMemo } from 'react';
 import { useTheme } from '../ThemeContext';
 
 export function useTournamentPalette(): TournamentV2 {
-  const { theme } = useTheme();
-  return useMemo(() => tournamentV2FromTheme(theme), [theme]);
+  const { theme, themeMode } = useTheme();
+  return useMemo(() => tournamentV2FromTheme(theme, themeMode), [theme, themeMode]);
 }

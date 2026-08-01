@@ -18,6 +18,7 @@ const THEME_MODES: ThemeMode[] = [
   'volt',
   'candyBlue',
   'indigo',
+  'sagePorcelain',
 ];
 
 function rgbFromHex(color: string): [number, number, number] {

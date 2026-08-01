@@ -44,6 +44,7 @@ import RegistrationPromptModal from '../components/RegistrationPromptModal';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { triLang, type Lang } from '../constants/i18n';
+import { isLightThemeMode } from '../constants/theme';
 import {
   getLinkedAuthInfo,
   peekAccountCreatedAtMs,
@@ -98,7 +99,7 @@ export default function AccountDetailsScreen() {
     vi: string, id: string, tr: string, pl: string,
   ) => triLang(lang, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
   const surface = SETTINGS_SURFACES[themeMode];
-  const isLightTheme = themeMode === 'businessLight';
+  const isLightTheme = isLightThemeMode(themeMode);
 
   // ── Синхронная гидрация (нулевой сетевой трафик на первый кадр) ────────────
   const snapshotName = useAppSnapshotSelector((s) => s.profile?.name ?? '', (a, b) => a === b);

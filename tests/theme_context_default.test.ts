@@ -13,12 +13,17 @@ describe('ThemeContext default theme', () => {
   });
 
   it('keeps Indigo and Sage Porcelain free, Midnight premium-grandfathered, and Gold reward-only', () => {
-    expect(source).toContain("const PREMIUM_ONLY_THEMES: ThemeMode[] = ['dark', 'coral', 'minimalDark', 'midnight', 'ember', 'aurora', 'volt', 'candyBlue']");
+    const premiumOnly = source.match(/const PREMIUM_ONLY_THEMES: ThemeMode\[\] = \[([^\]]*)\]/)?.[1] ?? '';
+    const premiumThemes = Array.from(premiumOnly.matchAll(/'([^']+)'/g)).map((match) => match[1]);
+    expect(premiumThemes).toEqual(['dark', 'coral', 'midnight', 'ember', 'aurora', 'volt']);
+    expect(premiumThemes).not.toContain('indigo');
+    expect(premiumThemes).not.toContain('sagePorcelain');
     expect(settingsThemesSource).toMatch(/\{\s*mode: 'midnight'[^}]*\}/);
     expect(settingsThemesSource).toMatch(/\{\s*mode: 'midnight'[^}]*premiumOnly: true/);
     expect(source).toContain("migrated === 'indigo'");
     expect(source).toContain("migrated === 'sagePorcelain'");
-    expect(settingsThemesSource).toMatch(/\{\s*mode: 'minimalDark'[^}]*premiumOnly: true/);
+    expect(source).toContain("'minimalDark', 'candyBlue'");
+    expect(settingsThemesSource).not.toMatch(/\{\s*mode: '(?:minimalDark|candyBlue)'/);
     expect(settingsThemesSource).toMatch(/\{\s*mode: 'gold'[^}]*rewardOnly: true/);
   });
 

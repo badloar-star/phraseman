@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Image } from 'expo-image';
+import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from './ThemeContext';
 import type { ThemeMode } from '../constants/theme';
 
@@ -22,13 +23,22 @@ const THEME_BANNERS: Record<ThemeMode, number> = {
 
 /** New DALL·E artwork is intentionally unique for every interface theme. */
 function ReferralInviteBannerArt() {
-  const { themeMode } = useTheme();
+  const { themeMode, theme } = useTheme();
   // зачем: без recyclingKey expo-image переиспользует нативную вьюху и держит
   // кадр прошлой темы — баннер не менялся при переключении темы. Ключ по теме
   // заставляет сбросить закешированный кадр ровно на смене темы (не каждый рендер).
   const banner = THEME_BANNERS[themeMode] ?? THEME_BANNERS.midnight;
   return (
-    <View testID={`settings-invite-art-${themeMode}`} pointerEvents="none" style={styles.root}>
+    <View
+      testID={`settings-invite-art-${themeMode}`}
+      pointerEvents="none"
+      style={[styles.root, { backgroundColor: theme.bgSurface2 }]}
+    >
+      {/* Первый кадр и аварийный fallback: место баннера никогда не выглядит пустым,
+          даже если OTA-ассет ещё не приехал или expo-image восстанавливает cache. */}
+      <View style={styles.fallback}>
+        <Ionicons name="gift-outline" size={44} color={theme.accent} />
+      </View>
       <Image
         key={themeMode}
         recyclingKey={themeMode}
@@ -45,7 +55,8 @@ function ReferralInviteBannerArt() {
 
 const styles = StyleSheet.create({
   root: { width: '100%', height: 132, overflow: 'hidden' },
-  image: { width: '100%', height: '100%' },
+  fallback: { ...StyleSheet.absoluteFillObject, alignItems: 'center', justifyContent: 'center' },
+  image: { ...StyleSheet.absoluteFillObject, width: '100%', height: '100%' },
 });
 
 export default memo(ReferralInviteBannerArt);

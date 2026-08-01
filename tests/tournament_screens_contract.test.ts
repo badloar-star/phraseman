@@ -473,7 +473,7 @@ describe('экраны режима «Турниры»', () => {
     expect(home).toContain('makeStyles(P)');
     // Сам хук обязан собирать палитру из активной темы приложения.
     const theme = read('components/tournament/tournament_theme.ts');
-    expect(theme).toContain('tournamentV2FromTheme(theme)');
+    expect(theme).toContain('tournamentV2FromTheme(theme, themeMode)');
     expect(theme).toContain('useTheme()');
   });
 

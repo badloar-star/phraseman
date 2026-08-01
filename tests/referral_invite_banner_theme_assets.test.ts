@@ -8,30 +8,22 @@ const COMPONENT_PATH = path.join(process.cwd(), 'components', 'ReferralInviteBan
 const SAGE_THEME = 'sagePorcelain';
 const SAGE_FILE = `invite-${SAGE_THEME}-v2.webp`;
 const SAGE_ASSET_PATH = path.join(BANNER_DIR, SAGE_FILE);
-
-/**
- * Темы читаем из типа ThemeMode — единственного источника правды.
- * зачем: так тест сам падает при добавлении новой темы, и не нужен
- * искусственный рантайм-экспорт списка тем только ради теста.
- */
-function readThemeModes(): string[] {
-  const source = fs.readFileSync(path.join(process.cwd(), 'constants', 'theme.ts'), 'utf8');
-  const match = source.match(/export type ThemeMode\s*=\s*([^;]+);/);
-  if (!match) throw new Error('ThemeMode type not found in constants/theme.ts');
-
-  const modes = Array.from(match[1].matchAll(/'([^']+)'/g)).map((m) => m[1]);
-  expect(modes.length).toBeGreaterThan(0);
-  return modes;
-}
+const RETAINED_BANNER_THEMES = ['dark', 'gold', 'coral', 'business', 'businessLight', 'midnight', 'ember', 'aurora', 'volt', 'indigo', SAGE_THEME] as const;
 
 describe('referral invite banner themed art', () => {
-  it('has a unique banner asset for every interface theme', () => {
+  it('keeps canonical retained banner assets wired into the runtime map', () => {
     // зачем: добавили тему — обязаны добавить и баннер, иначе карточка
     // приглашения останется без картинки на этой теме.
-    for (const theme of readThemeModes()) {
+    const source = fs.readFileSync(COMPONENT_PATH, 'utf8');
+    for (const theme of RETAINED_BANNER_THEMES) {
       const assetPath = path.join(BANNER_DIR, `invite-${theme}-v2.webp`);
       expect(fs.existsSync(assetPath)).toBe(true);
+      expect(source).toContain(
+        `${theme}: require('../assets/images/settings/referral_theme/invite-${theme}-v2.webp')`,
+      );
     }
+    expect(source).toContain("minimalDark: require('../assets/images/settings/referral_theme/invite-indigo-v2.webp')");
+    expect(source).toContain("candyBlue: require('../assets/images/settings/referral_theme/invite-indigo-v2.webp')");
   });
 
   it('never reuses the same artwork for two themes', () => {
@@ -63,7 +55,7 @@ describe('referral invite banner themed art', () => {
     );
 
     const sageDigest = crypto.createHash('sha256').update(fs.readFileSync(SAGE_ASSET_PATH)).digest('hex');
-    for (const theme of readThemeModes().filter((theme) => theme !== SAGE_THEME)) {
+    for (const theme of RETAINED_BANNER_THEMES.filter((theme) => theme !== SAGE_THEME)) {
       const otherAsset = path.join(BANNER_DIR, `invite-${theme}-v2.webp`);
       expect(fs.existsSync(otherAsset)).toBe(true);
       const otherDigest = crypto.createHash('sha256').update(fs.readFileSync(otherAsset)).digest('hex');

@@ -13,6 +13,7 @@ import { Image } from 'expo-image';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useGlobalSearchParams } from 'expo-router';
 import { useAudio } from '../hooks/use-audio';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { syncWidgetData } from '../app/widget_bridge';
 import { dailyPhraseChromeFor } from '../app/daily_phrase_chrome';
 import { LinearGradient } from './SafeLinearGradient';
@@ -60,6 +61,7 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const { speak } = useAudio();
+  const reduceMotion = useReduceMotion();
   const params = useGlobalSearchParams<{ openPhrase?: string; play?: string }>();
   const dailyPhraseGateOpen = dailyPhraseContentAvailableForTarget(studyTarget);
   const homeAdditional = variant === 'homeAdditional';
@@ -76,6 +78,7 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
   const shakeAnim = useRef(new Animated.Value(0)).current;
   const explanationAnim = useRef(new Animated.Value(0)).current;
   const successAnim = useRef(new Animated.Value(0)).current;
+  const modalEntranceAnim = useRef(new Animated.Value(0)).current;
   const answeredQuestKeysRef = useRef(new Set<string>()).current;
 
   useEffect(() => {
@@ -141,6 +144,30 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
     explanationAnim.setValue(0);
     successAnim.setValue(0);
   }, [phrase?.id, shakeAnim, explanationAnim, successAnim]);
+
+  useEffect(() => {
+    if (!detailsVisible) {
+      modalEntranceAnim.stopAnimation();
+      modalEntranceAnim.setValue(0);
+      return;
+    }
+
+    if (reduceMotion) {
+      modalEntranceAnim.setValue(1);
+      return;
+    }
+
+    modalEntranceAnim.setValue(0);
+    const entrance = Animated.timing(modalEntranceAnim, {
+      toValue: 1,
+      duration: 220,
+      easing: Easing.out(Easing.cubic),
+      useNativeDriver: true,
+    });
+    entrance.start();
+
+    return () => entrance.stop();
+  }, [detailsVisible, modalEntranceAnim, reduceMotion]);
 
   useEffect(() => {
     if (!dailyPhraseGateOpen || !detailsVisible || !phrase || questAnswered || showQuestExplanation) return;
@@ -308,6 +335,9 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
 
   const runWrongAnswerShake = () => {
     shakeAnim.setValue(0);
+    if (reduceMotion) {
+      return;
+    }
     Animated.sequence([
       Animated.timing(shakeAnim, { toValue: -8, duration: 45, easing: Easing.out(Easing.quad), useNativeDriver: true }),
       Animated.timing(shakeAnim, { toValue: 8, duration: 60, easing: Easing.out(Easing.quad), useNativeDriver: true }),
@@ -319,6 +349,10 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
 
   const runCorrectAnswerAnimation = () => {
     successAnim.setValue(0);
+    if (reduceMotion) {
+      successAnim.setValue(1);
+      return;
+    }
     Animated.sequence([
       Animated.timing(successAnim, {
         toValue: 0.78,
@@ -341,6 +375,9 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
     setQuestPreviouslyAnswered(false);
     setSelectedQuestOptionId(null);
     setQuestXpDelta(null);
+    shakeAnim.stopAnimation();
+    explanationAnim.stopAnimation();
+    successAnim.stopAnimation();
     shakeAnim.setValue(0);
     explanationAnim.setValue(0);
     successAnim.setValue(0);
@@ -349,6 +386,10 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
   const revealQuestExplanation = () => {
     explanationAnim.setValue(0);
     setShowQuestExplanation(true);
+    if (reduceMotion) {
+      explanationAnim.setValue(1);
+      return;
+    }
     Animated.timing(explanationAnim, {
       toValue: 1,
       duration: 230,
@@ -381,6 +422,7 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
   };
 
   const closeDetails = () => {
+    modalEntranceAnim.stopAnimation();
     setDetailsVisible(false);
     resetQuest();
   };
@@ -499,7 +541,9 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
         onRequestClose={closeDetails}
       >
         <View style={styles.modalRoot}>
-          <Pressable style={styles.backdrop} onPress={closeDetails} />
+          <Animated.View style={[styles.backdrop, { opacity: modalEntranceAnim }]}>
+            <Pressable style={StyleSheet.absoluteFillObject} onPress={closeDetails} />
+          </Animated.View>
           <Animated.View
             style={[
               styles.sheet,
@@ -507,8 +551,25 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
                 backgroundColor: t.bgCard,
                 borderColor: t.border,
                 shadowColor: t.accent,
+                opacity: modalEntranceAnim,
               },
-              { transform: [{ translateX: shakeAnim }] },
+              {
+                transform: [
+                  { translateX: shakeAnim },
+                  {
+                    translateY: modalEntranceAnim.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [14, 0],
+                    }),
+                  },
+                  {
+                    scale: modalEntranceAnim.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [0.985, 1],
+                    }),
+                  },
+                ],
+              },
             ]}
           >
             <TonalSurface pointerEvents="none" radius={24} tone="raised" style={StyleSheet.absoluteFillObject} />

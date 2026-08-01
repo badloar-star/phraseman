@@ -107,4 +107,13 @@ describe('DailyPhraseCard quest contract', () => {
     expect(source).toContain('accessibilityLabel={`${optionIndex + 1}. ${option.text}`}');
     expect(source).toContain('styles.explanationRail');
   });
+
+  it('uses one-shot native-driver motion that respects reduced-motion preferences', () => {
+    expect(source).toContain("import { useReduceMotion } from '../hooks/use_reduce_motion'");
+    expect(source).toContain('const reduceMotion = useReduceMotion();');
+    expect(source).toContain('const modalEntranceAnim = useRef(new Animated.Value(0)).current;');
+    expect(source).toContain('useNativeDriver: true');
+    expect(source).toContain('if (reduceMotion)');
+    expect(source).not.toContain('Animated.loop');
+  });
 });

@@ -35,6 +35,8 @@ const inferential = (item, language) => {
 };
 const EXTERNAL_FACT = /\b(?:atomic\s+number|chemical\s+element|bohrium|who|name|person|architect|painted|designed|born|capital|population|historical\s+fact|invented)\b(?:[\s\S]{0,100}\b(?:18\d{2}|19\d{2}|20\d{2}|is|was|of|the)\b)?|\b(?:18\d{2}|19\d{2}|20\d{2})\b[\s\S]{0,100}\b(?:who|name|person|architect|painted|designed|born|capital|population|historical\s+fact|invented)\b/iu;
 const ASSESSMENT = { grammar: ['target-language-form'], vocabulary: ['target-language-lexis'], reading: ['textual-information', 'discourse-inference'], pragmatics: ['pragmatic-intent', 'discourse-inference'] };
+const DESCRIPTOR_REF = /^CEFR-2020-(?:A1|A2|B1|B2|C1|C2)-(?:reception|pragmatics|language-competence)$/u;
+const ASSESSED_DESCRIPTOR_REF = /^CEFR-2020-(?:A1|A2|B1|B2|C1|C2)-(?:reception|pragmatics)$/u;
 const requiredReview = (review, incorrectIndexes) => REVIEW_FIELDS.every((field) => review?.[field] === 'pass') && review?.reviewStatus === 'reviewed' && ['authoringPass', 'adversarialPass', 'deterministicPass', 'levelCoveragePass'].every((field) => review?.[field] === 'pass') && incorrectIndexes.length === 3 && Object.keys(review?.rationales || {}).length === 3 && incorrectIndexes.every((index) => typeof review?.rationales?.[index] === 'string' && review.rationales[index].trim());
 
 export function auditSeparateReview({ sourceRaw, questions, review, language, level }) {
@@ -62,7 +64,7 @@ export function auditBlueprint(blueprint) {
       if (!quotas[item?.skill]) errors.push(`${level}: invalid skill`);
       for (const field of ['construct', 'canDo', 'itemFormat', 'adultContext', 'fairnessRisk', 'constructIrrelevantRisk', 'evidenceLabel', 'selectionEvidenceLabel', 'descriptorEvidenceLabel']) if (typeof item?.[field] !== 'string' || !item[field].trim()) errors.push(`${level}: missing ${field}`);
       if (item?.selectionEvidenceLabel !== 'SYNTHESIS' || item?.descriptorEvidenceLabel !== 'OFFICIAL_STANDARD') errors.push(`${level}: anchor evidence labels`);
-      if (!Array.isArray(item?.descriptorRefs) || !item.descriptorRefs.some((ref) => /^CEFR-2020-(?:reception|pragmatics)-[A-Z][0-9]-[\w-]+$/u.test(ref))) errors.push(`${level}: descriptorRefs must map to CEFR anchor`);
+      if (!Array.isArray(item?.descriptorRefs) || !item.descriptorRefs.some((ref) => ASSESSED_DESCRIPTOR_REF.test(ref)) || !item.descriptorRefs.every((ref) => DESCRIPTOR_REF.test(ref))) errors.push(`${level}: descriptorRefs must map to CEFR anchor`);
     }
     for (const [skill, count] of Object.entries(quotas)) if (plan.items.filter((item) => item.skill === skill).length !== count) errors.push(`${level}: ${skill} quota`);
   }
@@ -92,7 +94,7 @@ export function auditQuestionBank(bank, { allowDraft = false } = {}) {
       if (['C1', 'C2'].includes(level) && item.routingEligible !== false && item.upperBandEvidence !== true) errors.push(`${item.id}: routing-eligible upper-band item needs upperBandEvidence`);
       if (['C1', 'C2'].includes(level) && (item.externalKnowledgeRequired !== false || item.answerableFromStimulus !== true)) errors.push(`${item.id}: upper-band item must be answerable from stimulus without external knowledge`);
       if (item.culturalKnowledgeRequired !== false || item.externalKnowledgeRequired !== false || item.triviaRisk !== 'none') errors.push(`${item.id}: cultural/external knowledge and trivia metadata required`);
-      if (!Array.isArray(item.descriptorRefs) || !item.descriptorRefs.some((ref) => /^CEFR-2020-(?:reception|pragmatics)-[A-Z][0-9]-[\w-]+$/u.test(ref))) errors.push(`${item.id}: meaningless descriptorRefs`);
+      if (!Array.isArray(item.descriptorRefs) || !item.descriptorRefs.some((ref) => ASSESSED_DESCRIPTOR_REF.test(ref)) || !item.descriptorRefs.every((ref) => DESCRIPTOR_REF.test(ref))) errors.push(`${item.id}: meaningless descriptorRefs`);
       if (CYRILLIC.test((item.options || []).join(' '))) errors.push(`${item.id}: Russian leakage in target options`);
       const answer = item.options?.[item.correctIndex];
       for (const field of ['instructionRu', 'instructionEn']) if (hasLeak(item[field], answer, language)) errors.push(`${item.id}: ${field} leaks target answer`);

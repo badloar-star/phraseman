@@ -414,11 +414,30 @@ test('real language-reference inventories contain the complete allowlisted offic
   assert.throws(() => parseAnchors('- placeholder | OFFICIAL_STANDARD | https://example.test/a'), /non-allowlisted/u);
 });
 
+test('production descriptor anchors agree across blueprint, bank, and reference validation', async () => {
+  const audit = await import(pathToFileURL(path.join(ROOT, 'scripts', 'audit_language_test_bank.mjs')).href);
+  const anchors = audit.readAnchors(path.join(ROOT, 'content', 'language-tests', 'references', 'de.md'));
+  const quotas = (level) => ['A1', 'A2'].includes(level) ? { grammar: 12, vocabulary: 10, reading: 10, pragmatics: 8 } : ['B1', 'B2'].includes(level) ? { grammar: 10, vocabulary: 10, reading: 10, pragmatics: 10 } : { grammar: 8, vocabulary: 8, reading: 12, pragmatics: 12 };
+  const blueprint = { language: 'de', levels: {} }; const questions = [];
+  for (const level of LEVELS) {
+    blueprint.levels[level] = { items: Object.entries(quotas(level)).flatMap(([skill, count]) => Array.from({ length: count }, (_, index) => ({ constructId: `de-${level.toLowerCase()}-${skill}-${index}`, skill, construct: 'construct', canDo: 'Can do an adult task.', itemFormat: 'four-option choice', adultContext: 'adult context', fairnessRisk: 'none', constructIrrelevantRisk: 'none', evidenceLabel: 'SYNTHESIS', selectionEvidenceLabel: 'SYNTHESIS', descriptorEvidenceLabel: 'OFFICIAL_STANDARD', descriptorRefs: [`CEFR-2020-${level}-${skill === 'pragmatics' ? 'pragmatics' : 'reception'}`], selectionRefs: [`de-selection-${level}-${skill}`] }))) };
+    questions.push(...blueprint.levels[level].items.map((item, index) => ({ id: `${item.constructId}-question`, level, skill: item.skill, constructId: item.constructId, descriptorRefs: item.descriptorRefs, selectionRefs: item.selectionRefs, stimulus: `Unique ${level} ${item.skill} prompt ${index}.`, options: ['one', 'two', 'three', 'four'], correctIndex: 0, instructionRu: 'Выберите вариант.', instructionEn: 'Choose.', culturalKnowledgeRequired: false, externalKnowledgeRequired: false, triviaRisk: 'none', assessmentBasis: item.skill === 'grammar' ? 'target-language-form' : item.skill === 'vocabulary' ? 'target-language-lexis' : item.skill === 'reading' ? 'textual-information' : 'pragmatic-intent', knowledgeTarget: item.skill === 'grammar' ? 'target-language-form' : item.skill === 'vocabulary' ? 'target-language-lexis' : item.skill === 'reading' ? 'textual-information' : 'pragmatic-intent', answerableFromStimulus: !['reading', 'pragmatics'].includes(item.skill) })));
+  }
+  assert.deepEqual(audit.auditBlueprint(blueprint).errors, []);
+  assert.doesNotMatch(audit.auditQuestionBank({ language: 'de', questions }).errors.join('\n'), /meaningless descriptorRefs/);
+  assert.deepEqual(audit.validateAnchors(questions, anchors), []);
+  const invented = structuredClone(questions[0]); invented.descriptorRefs = ['CEFR-2020-A1-reception-invented'];
+  assert.match(audit.validateAnchors([invented], anchors).join('\n'), /non-standard descriptor anchor/);
+  const wrongLevel = structuredClone(blueprint); wrongLevel.levels.A1.items[0].descriptorRefs = ['CEFR-2020-C3-reception'];
+  assert.match(audit.auditBlueprint(wrongLevel).errors.join('\n'), /descriptorRefs/);
+  assert.throws(() => audit.parseAnchors('- CEFR-2020-A1-reception | OFFICIAL_STANDARD | https://evil.example/a'), /non-allowlisted/);
+});
+
 test('semantic-grounding contracts reject reviewer probes and swapped anchor labels', async () => {
   const audit = await import(pathToFileURL(path.join(ROOT, 'scripts', 'audit_language_test_bank.mjs')).href);
   const valid = {
     id: 'de-c2-reading-grounded', level: 'C2', skill: 'reading', constructId: 'de-c2-reading-grounded',
-    descriptorRefs: ['CEFR-2020-reception-C2-anchor'], stimulus: 'The committee requested revised evidence before Friday. The manager postponed the vote.',
+    descriptorRefs: ['CEFR-2020-C2-reception'], stimulus: 'The committee requested revised evidence before Friday. The manager postponed the vote.',
     options: ['The vote awaits revised evidence.', 'Mozart wrote it.', 'The moon is cheese.', 'No meeting occurred.'], correctIndex: 0,
     instructionRu: 'Выберите вариант.', instructionEn: 'Choose.', routingEligible: true, upperBandEvidence: true,
     assessmentBasis: 'textual-information', knowledgeTarget: 'textual-information', culturalKnowledgeRequired: false, externalKnowledgeRequired: false, triviaRisk: 'none', answerableFromStimulus: true,
@@ -438,7 +457,7 @@ test('semantic-grounding contracts reject reviewer probes and swapped anchor lab
   assert.match(audit.validateAnchors([{ id: 'swapped', descriptorRefs: ['CEFR-2020-A1-reception'], selectionRefs: ['de-selection-A1-reading'] }], anchors).join('\n'), /non-standard descriptor anchor[\s\S]*selection anchor must be SYNTHESIS/i);
   const badBlueprint = { language: 'de', levels: {} };
   for (const level of LEVELS) {
-    badBlueprint.levels[level] = { items: Array.from({ length: 40 }, (_, index) => ({ constructId: `de-${level.toLowerCase()}-reading-${index}`, skill: 'reading', construct: 'x', canDo: 'x', itemFormat: 'x', adultContext: 'x', fairnessRisk: 'x', constructIrrelevantRisk: 'x', evidenceLabel: 'x', selectionEvidenceLabel: 'OFFICIAL_STANDARD', descriptorEvidenceLabel: 'SYNTHESIS', descriptorRefs: [`CEFR-2020-reception-${level}`] })) };
+    badBlueprint.levels[level] = { items: Array.from({ length: 40 }, (_, index) => ({ constructId: `de-${level.toLowerCase()}-reading-${index}`, skill: 'reading', construct: 'x', canDo: 'x', itemFormat: 'x', adultContext: 'x', fairnessRisk: 'x', constructIrrelevantRisk: 'x', evidenceLabel: 'x', selectionEvidenceLabel: 'OFFICIAL_STANDARD', descriptorEvidenceLabel: 'SYNTHESIS', descriptorRefs: [`CEFR-2020-${level}-reception`] })) };
   }
   assert.match(audit.auditBlueprint(badBlueprint).errors.join('\n'), /anchor evidence labels/i);
 });
@@ -458,7 +477,7 @@ test('multilingual quality auditor rejects each deliberate survivor mutation wit
         level,
         skill,
         constructId: `de-${level.toLowerCase()}-${skill}-${index + 1}`,
-        descriptorRefs: [`CEFR-2020-reception-${level}-anchor`],
+        descriptorRefs: [`CEFR-2020-${level}-reception`],
         targetConstruct: `${skill} construct ${index + 1}`,
         canDo: `Can complete adult ${skill} task ${index + 1}.`,
         itemFormat: 'four-option contextual choice',
@@ -572,11 +591,11 @@ test('multilingual audit binds reviews from a separate, complete review file', a
 test('language-specific inflections normalize without suppressing meaningful short answer leakage', async () => {
   const audit = await import(pathToFileURL(path.join(ROOT, 'scripts', 'audit_language_test_bank.mjs')).href);
   for (const [language, article, noun] of [['de', 'den', 'Mann'], ['fr', 'des', 'livres'], ['it', 'uno', 'studente'], ['es', 'unos', 'libros']]) {
-    const item = (id, option) => ({ id: `${language}-a1-${id}`, level: 'A1', skill: 'grammar', constructId: `${language}-a1-${id}`, descriptorRefs: ['CEFR-2020-reception-A1-anchor'], stimulus: `Unique ${id}.`, options: [option, 'beta', 'gamma', 'delta'], correctIndex: 0, instructionRu: 'Выберите вариант.', instructionEn: 'Choose.' });
+    const item = (id, option) => ({ id: `${language}-a1-${id}`, level: 'A1', skill: 'grammar', constructId: `${language}-a1-${id}`, descriptorRefs: ['CEFR-2020-A1-reception'], stimulus: `Unique ${id}.`, options: [option, 'beta', 'gamma', 'delta'], correctIndex: 0, instructionRu: 'Выберите вариант.', instructionEn: 'Choose.' });
     const result = audit.auditQuestionBank({ language, questions: [item('one', `${article} ${noun}`), item('two', noun)] });
     assert.match(result.errors.join('\n'), /duplicate material/, `${language} article inflection`);
   }
-  const leak = { id: 'es-a1-leak', level: 'A1', skill: 'grammar', constructId: 'es-a1-leak', descriptorRefs: ['CEFR-2020-reception-A1-anchor'], stimulus: 'Unique leak.', options: ['sí', 'beta', 'gamma', 'delta'], correctIndex: 0, instructionRu: 'Выберите вариант.', instructionEn: 'Choose sí.' };
+  const leak = { id: 'es-a1-leak', level: 'A1', skill: 'grammar', constructId: 'es-a1-leak', descriptorRefs: ['CEFR-2020-A1-reception'], stimulus: 'Unique leak.', options: ['sí', 'beta', 'gamma', 'delta'], correctIndex: 0, instructionRu: 'Выберите вариант.', instructionEn: 'Choose sí.' };
   assert.match(audit.auditQuestionBank({ language: 'es', questions: [leak] }).errors.join('\n'), /instructionEn leaks/);
   leak.options[0] = 'la'; leak.instructionEn = 'Choose.';
   assert.doesNotMatch(audit.auditQuestionBank({ language: 'es', questions: [leak] }).errors.join('\n'), /instructionEn leaks/);
@@ -584,7 +603,7 @@ test('language-specific inflections normalize without suppressing meaningful sho
 
 test('C2 inference evidence must quote the stimulus and external-fact screens remain deterministic', async () => {
   const audit = await import(pathToFileURL(path.join(ROOT, 'scripts', 'audit_language_test_bank.mjs')).href);
-  const item = { id: 'de-c2-reading-proof', level: 'C2', skill: 'reading', constructId: 'de-c2-reading-proof', descriptorRefs: ['CEFR-2020-reception-C2-anchor'], stimulus: 'The manager postponed the vote. The committee requested revised evidence before Friday.', options: ['One', 'Two', 'Three', 'Four'], correctIndex: 0, instructionRu: 'Выберите вариант.', instructionEn: 'Choose.', routingEligible: true, upperBandEvidence: true, externalKnowledgeRequired: false, triviaRisk: 'none', answerableFromStimulus: true, answerEvidence: ['committee requested revised evidence'], inferenceEvidence: { premises: ['manager postponed the vote', 'committee requested revised evidence'], unstatedConclusion: 'The decision will wait for new evidence.', reasoning: 'The two statements jointly establish a delay pending evidence.', whyNotExplicit: 'No sentence explicitly gives that conclusion.' } };
+  const item = { id: 'de-c2-reading-proof', level: 'C2', skill: 'reading', constructId: 'de-c2-reading-proof', descriptorRefs: ['CEFR-2020-C2-reception'], stimulus: 'The manager postponed the vote. The committee requested revised evidence before Friday.', options: ['One', 'Two', 'Three', 'Four'], correctIndex: 0, instructionRu: 'Выберите вариант.', instructionEn: 'Choose.', routingEligible: true, upperBandEvidence: true, externalKnowledgeRequired: false, triviaRisk: 'none', answerableFromStimulus: true, answerEvidence: ['committee requested revised evidence'], inferenceEvidence: { premises: ['manager postponed the vote', 'committee requested revised evidence'], unstatedConclusion: 'The decision will wait for new evidence.', reasoning: 'The two statements jointly establish a delay pending evidence.', whyNotExplicit: 'No sentence explicitly gives that conclusion.' } };
   item.options[0] = 'The vote awaits evidence.'; item.culturalKnowledgeRequired = false; item.assessmentBasis = 'textual-information'; item.knowledgeTarget = 'textual-information';
   item.answerEvidence = [{ quote: 'committee requested revised evidence', correctIndex: 0, correctAnswer: item.options[0], lexicalLinks: [{ sourceToken: 'evidence', answerToken: 'evidence' }], linkingExplanation: 'The evidence token in the quote links to the evidence token in the answer.' }];
   item.inferenceEvidence = { premises: ['manager postponed the vote', 'committee requested revised evidence'], unstatedConclusion: item.options[0], reasoning: { explanation: 'The vote premise and evidence premise support the vote conclusion with evidence.', premiseLinks: [{ premiseIndex: 0, premiseToken: 'vote', conclusionToken: 'vote' }, { premiseIndex: 1, premiseToken: 'evidence', conclusionToken: 'evidence' }], conclusionToken: 'evidence' }, whyNotExplicit: 'No sentence explicitly gives that conclusion.' };
@@ -622,8 +641,8 @@ test('language audit CLI validates a complete 240-item reviewed fixture without 
   fs.rmSync(tempRoot, { recursive: true, force: true });
   const quotasFor = (level) => ['A1', 'A2'].includes(level) ? { grammar: 12, vocabulary: 10, reading: 10, pragmatics: 8 } : ['B1', 'B2'].includes(level) ? { grammar: 10, vocabulary: 10, reading: 10, pragmatics: 10 } : { grammar: 8, vocabulary: 8, reading: 12, pragmatics: 12 };
   const anchors = LEVELS.flatMap((level) => [
-    `- CEFR-2020-reception-${level}-anchor | OFFICIAL_STANDARD | https://www.coe.int/cefr/${level}/reception`,
-    `- CEFR-2020-pragmatics-${level}-anchor | OFFICIAL_STANDARD | https://www.coe.int/cefr/${level}/pragmatics`,
+    `- CEFR-2020-${level}-reception | OFFICIAL_STANDARD | https://www.coe.int/cefr/${level}/reception`,
+    `- CEFR-2020-${level}-pragmatics | OFFICIAL_STANDARD | https://www.coe.int/cefr/${level}/pragmatics`,
     ...Object.keys(quotasFor(level)).map((skill) => `- de-selection-${level}-${skill} | SYNTHESIS | https://www.goethe.de/selection/${level}/${skill}`),
   ]).join('\n');
   const write = (file, text) => { fs.mkdirSync(path.dirname(file), { recursive: true }); fs.writeFileSync(file, text, 'utf8'); };
@@ -635,7 +654,7 @@ test('language audit CLI validates a complete 240-item reviewed fixture without 
       const id = `de-${level.toLowerCase()}-${skill}-${index + 1}`;
       const upper = ['C1', 'C2'].includes(level) && ['reading', 'pragmatics'].includes(skill);
       const unique = [nonce(), nonce(), nonce(), nonce(), nonce()].join(' '); const second = `${nonce()} ${nonce()} ${nonce()} ${nonce()} today`;
-      return { id, level, skill, constructId: id, descriptorRefs: [`CEFR-2020-${skill === 'pragmatics' ? 'pragmatics' : 'reception'}-${level}-anchor`], selectionRefs: [`de-selection-${level}-${skill}`], targetConstruct: `${skill} ${index + 1}`, stimulus: upper ? `${unique}. ${second}.` : `${unique}.`, options: [`eins-${id}`, `zwei-${id}`, `drei-${id}`, `vier-${id}`], correctIndex: 0, instructionRu: 'Выберите естественный вариант.', instructionEn: 'Choose the natural option.', routingEligible: upper, upperBandEvidence: upper, externalKnowledgeRequired: false, triviaRisk: 'none', answerableFromStimulus: true, answerEvidence: ['reading', 'pragmatics'].includes(skill) ? [unique] : undefined, assessmentBasis: ['grammar', 'vocabulary'].includes(skill) ? 'target-language-form' : undefined, ...(level === 'C2' && skill === 'reading' && index === 0 ? { inferenceEvidence: { premises: [unique, second], unstatedConclusion: 'The decision will wait for evidence.', reasoning: 'The two quoted sentences establish a decision pending evidence.', whyNotExplicit: 'Neither sentence directly states the conclusion.' } } : {}) };
+      return { id, level, skill, constructId: id, descriptorRefs: [`CEFR-2020-${level}-${skill === 'pragmatics' ? 'pragmatics' : 'reception'}`], selectionRefs: [`de-selection-${level}-${skill}`], targetConstruct: `${skill} ${index + 1}`, stimulus: upper ? `${unique}. ${second}.` : `${unique}.`, options: [`eins-${id}`, `zwei-${id}`, `drei-${id}`, `vier-${id}`], correctIndex: 0, instructionRu: 'Выберите естественный вариант.', instructionEn: 'Choose the natural option.', routingEligible: upper, upperBandEvidence: upper, externalKnowledgeRequired: false, triviaRisk: 'none', answerableFromStimulus: true, answerEvidence: ['reading', 'pragmatics'].includes(skill) ? [unique] : undefined, assessmentBasis: ['grammar', 'vocabulary'].includes(skill) ? 'target-language-form' : undefined, ...(level === 'C2' && skill === 'reading' && index === 0 ? { inferenceEvidence: { premises: [unique, second], unstatedConclusion: 'The decision will wait for evidence.', reasoning: 'The two quoted sentences establish a decision pending evidence.', whyNotExplicit: 'Neither sentence directly states the conclusion.' } } : {}) };
     }));
     items.forEach((item) => {
       const token = item.stimulus.split(/\s+/u).find((value) => value.length > 3).replace(/[^\p{L}\p{N}]/gu, '');

@@ -32,6 +32,10 @@ function loadFunction(name, context = {}) {
   throw new Error(`Could not parse ${name}`);
 }
 
+function loadOptionalFunction(name, fallback) {
+  return source.includes(`function ${name}`) ? loadFunction(name) : fallback;
+}
+
 function loadProgressNormalizer() {
   const normalizeQuestionIdentity = loadFunction('normalizeQuestionIdentity');
   return loadFunction('normalizeProgressResponse', { normalizeQuestionIdentity });
@@ -46,11 +50,26 @@ function loadActionNormalizer() {
   const normalizeBankVersion = loadFunction('normalizeBankVersion', {
     BANK_VERSION: '2026-07-22.4',
   });
+  const normalizeTestLanguage = loadOptionalFunction(
+    'normalizeTestLanguage',
+    (value) => ['en', 'de', 'fr', 'it', 'es'].includes(value) ? value : 'en',
+  );
+  const normalizeUiLocale = loadOptionalFunction(
+    'normalizeUiLocale',
+    (value) => ['en', 'ru'].includes(value) ? value : 'en',
+  );
+  const normalizeAnalyticsDimensions = (body) => ({
+    testLanguage: normalizeTestLanguage(body?.testLanguage),
+    uiLocale: normalizeUiLocale(body?.uiLocale),
+  });
   return loadFunction('normalizeAnalyticsAction', {
+    normalizeAnalyticsDimensions,
     normalizeBankVersion,
     normalizeCompletedResult,
     normalizeProgressResponse,
     normalizeQuestionIdentity,
+    normalizeTestLanguage,
+    normalizeUiLocale,
   });
 }
 
@@ -173,17 +192,19 @@ test('attempt bank version is strictly normalized and bounded before persistence
   assert.doesNotMatch(attemptCreation, /bankVersion:\s*payload\.bankVersion/);
 });
 
-test('shared question identity validator returns only strict ID and bounded position', () => {
+test('shared question identity validator accepts only supported language IDs and bounded positions', () => {
   const normalizeQuestionIdentity = loadFunction('normalizeQuestionIdentity');
-  assert.deepEqual(
-    plain(normalizeQuestionIdentity({
-      questionId: 'en-c2-999',
-      position: 20,
-      prompt: 'raw text',
-      profile: { name: 'PII' },
-    })),
-    { questionId: 'en-c2-999', position: 20 },
-  );
+  for (const testLanguage of ['en', 'de', 'fr', 'it', 'es']) {
+    assert.deepEqual(
+      plain(normalizeQuestionIdentity({
+        questionId: `${testLanguage}-c2-040`,
+        position: 20,
+        prompt: 'raw text',
+        profile: { name: 'PII' },
+      })),
+      { questionId: `${testLanguage}-c2-040`, position: 20 },
+    );
+  }
 
   const invalid = [
     {},
@@ -191,6 +212,7 @@ test('shared question identity validator returns only strict ID and bounded posi
     { questionId: 'en-a1-001', position: 21 },
     { questionId: 'en-a1-001', position: 1.5 },
     { questionId: 'raw-question-id', position: 1 },
+    { questionId: 'xx-c2-040', position: 20 },
     { questionId: { id: 'en-a1-001' }, position: 1 },
     null,
     [],
@@ -392,7 +414,15 @@ test('analytics action validation rejects unknown and malformed payloads before 
       prompt: 'raw content',
       profile: { name: 'PII' },
     })),
-    { action: 'view', payload: { questionId: 'en-b2-004', position: 4 } },
+    {
+      action: 'view',
+      payload: {
+        questionId: 'en-b2-004',
+        position: 4,
+        testLanguage: 'en',
+        uiLocale: 'en',
+      },
+    },
   );
 });
 

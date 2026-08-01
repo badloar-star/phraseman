@@ -249,6 +249,27 @@ function validBank(language, version = '2026-08-01.1') {
   };
 }
 
+function readBankErrorSurfaces(view) {
+  const html = view.innerHTML;
+  return {
+    title: html.match(/<h1>([^<]*)<\/h1>/)?.[1],
+    body: html.match(/<p>([^<]*)<\/p>/)?.[1],
+    retryTitle: html.match(/id="retryBtn" title="([^"]*)"/)?.[1],
+    retryLabel: html.match(/id="retryBtn"[^>]*>([^<]*)<\/button>/)?.[1],
+  };
+}
+
+function assertLocalizedBankError(view, i18n, locale) {
+  const surfaces = readBankErrorSurfaces(view);
+  assert.deepEqual(surfaces, {
+    title: i18n.t(locale, 'error.title'),
+    body: i18n.t(locale, 'error.text'),
+    retryTitle: i18n.t(locale, 'error.retryTitle'),
+    retryLabel: i18n.t(locale, 'error.retry'),
+  });
+  return surfaces;
+}
+
 function loadKeyboardStateApp({ source = fs.readFileSync(appPath, 'utf8') } = {}) {
   const tail = `
   const __keyboardEffects = { api: [], answers: [] };
@@ -843,14 +864,42 @@ test('German error rerenders locally and retries German only after a failed requ
   });
   await fixture.context.window.__bankLoaderTest.start();
   const englishError = fixture.view().innerHTML;
+  assertLocalizedBankError(fixture.view(), i18n, 'en');
   fixture.view().querySelector('.elt-ui-locale-toggle').click();
   assert.equal(fixture.context.window.__bankLoaderTest.state().attemptTestLanguage, 'de');
   assert.notEqual(fixture.view().innerHTML, englishError);
+  const russianSurfaces = assertLocalizedBankError(fixture.view(), i18n, 'ru');
+  for (const value of Object.values({
+    title: i18n.t('en', 'error.title'),
+    body: i18n.t('en', 'error.text'),
+    retryTitle: i18n.t('en', 'error.retryTitle'),
+    retryLabel: i18n.t('en', 'error.retry'),
+  })) assert.ok(!Object.values(russianSurfaces).includes(value), `Russian error surface must not retain English literal: ${value}`);
   assert.deepEqual(fixture.context.window.__bankLoaderTest.state().effects.requests, [i18n.TESTS.de.bankUrl]);
   fixture.view().querySelector('#retryBtn').click();
   await fixture.context.window.__bankLoaderTest.pendingStart();
   assert.deepEqual(fixture.context.window.__bankLoaderTest.state().effects.requests, [i18n.TESTS.de.bankUrl, i18n.TESTS.de.bankUrl]);
   assert.equal(fixture.context.window.__bankLoaderTest.state().effects.engines, 1);
+});
+
+test('fixed-English renderError mutation fails localized bank-error surfaces after a locale toggle', async () => {
+  const source = fs.readFileSync(appPath, 'utf8');
+  const i18n = loadI18n();
+  const replacements = new Map([
+    ["copy('error.title')", JSON.stringify(i18n.t('en', 'error.title'))],
+    ["copy('error.text')", JSON.stringify(i18n.t('en', 'error.text'))],
+    ["copy('error.retryTitle')", JSON.stringify(i18n.t('en', 'error.retryTitle'))],
+    ["copy('error.retry')", JSON.stringify(i18n.t('en', 'error.retry'))],
+  ]);
+  let mutated = source;
+  for (const [from, to] of replacements) mutated = mutated.replace(from, to);
+  assert.notEqual(mutated, source, 'fixed-English mutation must alter renderError');
+
+  const fixture = loadBankLoaderApp({ href: 'https://example.test/level?ui=en&test=de', source: mutated });
+  fixture.context.window.__bankLoaderTest.setResponse(async () => ({ ok: false, json: async () => ({}) }));
+  await fixture.context.window.__bankLoaderTest.start();
+  fixture.view().querySelector('.elt-ui-locale-toggle').click();
+  assert.throws(() => assertLocalizedBankError(fixture.view(), i18n, 'ru'), assert.AssertionError);
 });
 
 test('concurrent rejected starts share one failed request and a later retry creates one new request', async () => {

@@ -12,6 +12,10 @@
 
 Per-construct selection uses `SYNTHESIS`; descriptor mapping uses `OFFICIAL_STANDARD`.
 
+Additional allowed IDs: `CEFR-2020-reception-A2-anchor`, `CEFR-2020-reception-B1-anchor`, `CEFR-2020-reception-B2-anchor`, `CEFR-2020-reception-C1-anchor`, `CEFR-2020-reception-C2-anchor`, `CEFR-2020-pragmatics-A2-anchor`, `CEFR-2020-pragmatics-B1-anchor`, `CEFR-2020-pragmatics-B2-anchor`, `CEFR-2020-pragmatics-C1-anchor`, `CEFR-2020-pragmatics-C2-anchor` — all `OFFICIAL_STANDARD` at the CEFR URL above.
+
+Allowed selection IDs (all `SYNTHESIS`): `fr-selection-A1-grammar`, `fr-selection-A1-vocabulary`, `fr-selection-A1-reading`, `fr-selection-A1-pragmatics`, `fr-selection-A2-grammar`, `fr-selection-A2-vocabulary`, `fr-selection-A2-reading`, `fr-selection-A2-pragmatics`, `fr-selection-B1-grammar`, `fr-selection-B1-vocabulary`, `fr-selection-B1-reading`, `fr-selection-B1-pragmatics`, `fr-selection-B2-grammar`, `fr-selection-B2-vocabulary`, `fr-selection-B2-reading`, `fr-selection-B2-pragmatics`, `fr-selection-C1-grammar`, `fr-selection-C1-vocabulary`, `fr-selection-C1-reading`, `fr-selection-C1-pragmatics`, `fr-selection-C2-grammar`, `fr-selection-C2-vocabulary`, `fr-selection-C2-reading`, `fr-selection-C2-pragmatics`.
+
 - Accessed: 2026-08-01.
 - [CEFR Companion Volume (2020)](https://rm.coe.int/common-european-framework-of-reference-for-languages-learning-teaching/16809ea0d4): reception and pragmatic descriptor anchors; `CEFR_2020_RECEPTION` / `CEFR_2020_PRAGMATICS`.
 - [France Éducation international — DELF A1–B2 samples](https://www.france-education-international.fr/diplome/delf-tout-public/sujets): `FEI_DELF_A1_B2_FORMAT`.

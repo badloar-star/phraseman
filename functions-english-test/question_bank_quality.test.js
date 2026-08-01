@@ -381,7 +381,7 @@ test('multilingual quality auditor rejects each deliberate survivor mutation wit
         level,
         skill,
         constructId: `de-${level.toLowerCase()}-${skill}-${index + 1}`,
-        descriptorRefs: [`CEFR-2020-${level}-reception-anchor`],
+        descriptorRefs: [`CEFR-2020-reception-${level}-anchor`],
         targetConstruct: `${skill} construct ${index + 1}`,
         canDo: `Can complete adult ${skill} task ${index + 1}.`,
         itemFormat: 'four-option contextual choice',
@@ -473,6 +473,19 @@ test('multilingual audit binds reviews from a separate, complete review file', a
   assert.match(audit.auditSeparateReview({ sourceRaw, questions: JSON.parse(sourceRaw).questions, review, language: 'de', level: 'A1' }).errors.join('\n'), /incomplete review/);
 });
 
+test('language-specific inflections normalize without suppressing meaningful short answer leakage', async () => {
+  const audit = await import(pathToFileURL(path.join(ROOT, 'scripts', 'audit_language_test_bank.mjs')).href);
+  for (const [language, article, noun] of [['de', 'den', 'Mann'], ['fr', 'des', 'livres'], ['it', 'uno', 'studente'], ['es', 'unos', 'libros']]) {
+    const item = (id, option) => ({ id: `${language}-a1-${id}`, level: 'A1', skill: 'grammar', constructId: `${language}-a1-${id}`, descriptorRefs: ['CEFR-2020-reception-A1-anchor'], stimulus: `Unique ${id}.`, options: [option, 'beta', 'gamma', 'delta'], correctIndex: 0, instructionRu: 'Выберите вариант.', instructionEn: 'Choose.' });
+    const result = audit.auditQuestionBank({ language, questions: [item('one', `${article} ${noun}`), item('two', noun)] });
+    assert.match(result.errors.join('\n'), /duplicate material/, `${language} article inflection`);
+  }
+  const leak = { id: 'es-a1-leak', level: 'A1', skill: 'grammar', constructId: 'es-a1-leak', descriptorRefs: ['CEFR-2020-reception-A1-anchor'], stimulus: 'Unique leak.', options: ['sí', 'beta', 'gamma', 'delta'], correctIndex: 0, instructionRu: 'Выберите вариант.', instructionEn: 'Choose sí.' };
+  assert.match(audit.auditQuestionBank({ language: 'es', questions: [leak] }).errors.join('\n'), /instructionEn leaks/);
+  leak.options[0] = 'la'; leak.instructionEn = 'Choose.';
+  assert.doesNotMatch(audit.auditQuestionBank({ language: 'es', questions: [leak] }).errors.join('\n'), /instructionEn leaks/);
+});
+
 test('all four current project blueprints are intentionally RED until Phase B supplies individual authoring objects', async () => {
   const audit = await import(pathToFileURL(path.join(ROOT, 'scripts', 'audit_language_test_bank.mjs')).href);
   for (const language of ['de', 'fr', 'it', 'es']) {
@@ -489,6 +502,51 @@ test('audit CLI rejects traversal, writes only confined reports, and --allow-dra
   assert.equal(run.status, 1, 'missing sources remain an error in draft mode');
   assert.match(run.stdout, /de: failed/);
   assert.doesNotMatch(run.stdout, /\.\.\\|\.\.\//);
+});
+
+test('language audit CLI validates a complete 240-item reviewed fixture without source writes', () => {
+  const tempRoot = path.join(ROOT, '.codex-tmp', 'language-test-audit-e2e');
+  const auditScript = path.join(ROOT, 'scripts', 'audit_language_test_bank.mjs');
+  fs.rmSync(tempRoot, { recursive: true, force: true });
+  const quotasFor = (level) => ['A1', 'A2'].includes(level) ? { grammar: 12, vocabulary: 10, reading: 10, pragmatics: 8 } : ['B1', 'B2'].includes(level) ? { grammar: 10, vocabulary: 10, reading: 10, pragmatics: 10 } : { grammar: 8, vocabulary: 8, reading: 12, pragmatics: 12 };
+  const anchors = LEVELS.flatMap((level) => [
+    `- \`CEFR-2020-reception-${level}-anchor\` | \`OFFICIAL_STANDARD\` | https://example.test/cefr/${level}/reception`,
+    `- \`CEFR-2020-pragmatics-${level}-anchor\` | \`OFFICIAL_STANDARD\` | https://example.test/cefr/${level}/pragmatics`,
+    ...Object.keys(quotasFor(level)).map((skill) => `- \`de-selection-${level}-${skill}\` | \`SYNTHESIS\` | https://example.test/selection/${level}/${skill}`),
+  ]).join('\n');
+  const write = (file, text) => { fs.mkdirSync(path.dirname(file), { recursive: true }); fs.writeFileSync(file, text, 'utf8'); };
+  let nonceSequence = 0;
+  const nonce = () => { let value = nonceSequence++; let word = ''; do { word += String.fromCharCode(97 + (value % 26)); value = Math.floor(value / 26); } while (value); return word.padEnd(5, 'q'); };
+  write(path.join(tempRoot, 'content', 'language-tests', 'references', 'de.md'), `# anchors\n\n${anchors}\n`);
+  const levels = LEVELS.map((level) => {
+    const items = Object.entries(quotasFor(level)).flatMap(([skill, count]) => Array.from({ length: count }, (_, index) => {
+      const id = `de-${level.toLowerCase()}-${skill}-${index + 1}`;
+      const upper = ['C1', 'C2'].includes(level) && ['reading', 'pragmatics'].includes(skill);
+      const unique = [nonce(), nonce(), nonce(), nonce(), nonce()].join(' ');
+      return { id, level, skill, constructId: id, descriptorRefs: [`CEFR-2020-${skill === 'pragmatics' ? 'pragmatics' : 'reception'}-${level}-anchor`], selectionRefs: [`de-selection-${level}-${skill}`], targetConstruct: `${skill} ${index + 1}`, stimulus: upper ? `${unique}. ${nonce()} ${nonce()} ${nonce()} ${nonce()} today.` : `${unique}.`, options: [`eins-${id}`, `zwei-${id}`, `drei-${id}`, `vier-${id}`], correctIndex: 0, instructionRu: 'Выберите естественный вариант.', instructionEn: 'Choose the natural option.', routingEligible: upper, upperBandEvidence: upper, externalKnowledgeRequired: false, answerableFromStimulus: true, ...(level === 'C2' && skill === 'reading' && index === 0 ? { logicalInference: { domain: 'reading_pragmatics', premises: ['The manager sent context.', 'The committee considered evidence.'], unstatedConclusion: 'The decision used the context.', whyNotExplicit: 'No sentence states that conclusion.' } } : {}) };
+    }));
+    const source = { schemaVersion: 1, bankVersion: 'e2e', language: 'de', level, questions: items };
+    const sourceFile = path.join(tempRoot, 'content', 'language-tests', 'questions', 'de', `${level}.json`);
+    const raw = `${JSON.stringify(source, null, 2)}\n`; write(sourceFile, raw);
+    const reviews = { language: 'de', level, sourceSha256: require('node:crypto').createHash('sha256').update(Buffer.from(raw)).digest('hex'), reviews: items.map((item) => ({ id: item.id, language: 'de', level, reviewStatus: 'reviewed', accuracy: 'pass', levelFit: 'pass', singleAnswer: 'pass', distractorExclusivity: 'pass', naturalness: 'pass', originality: 'pass', ruInstructionAccuracy: 'pass', enInstructionAccuracy: 'pass', authoringPass: 'pass', adversarialPass: 'pass', deterministicPass: 'pass', levelCoveragePass: 'pass', rationales: { 1: 'wrong agreement', 2: 'wrong register', 3: 'wrong meaning' } })) };
+    write(path.join(tempRoot, 'content', 'language-tests', 'reviews', 'de', `${level}.json`), `${JSON.stringify(reviews, null, 2)}\n`);
+    return source;
+  });
+  const blueprint = { language: 'de', levels: Object.fromEntries(LEVELS.map((level) => [level, { items: levels[LEVELS.indexOf(level)].questions.map((item) => ({ constructId: item.constructId, skill: item.skill, construct: item.targetConstruct, canDo: 'Can complete an adult task.', itemFormat: 'four-option contextual choice', adultContext: 'adult service context', fairnessRisk: 'avoid specialist knowledge', constructIrrelevantRisk: 'avoid typography clues', evidenceLabel: 'SYNTHESIS', selectionEvidenceLabel: 'SYNTHESIS', descriptorEvidenceLabel: 'OFFICIAL_STANDARD', descriptorRefs: item.descriptorRefs, selectionRefs: item.selectionRefs })) }])) };
+  write(path.join(tempRoot, 'content', 'language-tests', 'blueprints', 'de.json'), `${JSON.stringify(blueprint, null, 2)}\n`);
+  const bankText = `${JSON.stringify({ schemaVersion: 1, bankVersion: 'e2e', language: 'de', levels: LEVELS, questions: levels.flatMap((entry) => entry.questions) }, null, 2)}\n`;
+  const generated = [path.join(tempRoot, 'knowly-www', 'english-level-test', 'data', 'questions.de.json'), path.join(tempRoot, 'functions-english-test', 'data', 'questions.de.json')]; generated.forEach((file) => write(file, bankText));
+  const watched = [...LEVELS.flatMap((level) => [path.join(tempRoot, 'content', 'language-tests', 'questions', 'de', `${level}.json`), path.join(tempRoot, 'content', 'language-tests', 'reviews', 'de', `${level}.json`)]), ...generated];
+  const snapshot = () => watched.map((file) => ({ file, hash: require('node:crypto').createHash('sha256').update(fs.readFileSync(file)).digest('hex'), mtimeNs: fs.statSync(file, { bigint: true }).mtimeNs }));
+  const before = snapshot();
+  const strict = require('node:child_process').spawnSync(process.execPath, [auditScript, '--root', tempRoot, '--language', 'de'], { encoding: 'utf8' });
+  assert.equal(strict.status, 0, strict.stderr); assert.match(strict.stdout, /^de: passed \(0 errors, 0 warnings\); report /m); assert.deepEqual(snapshot(), before, 'strict CLI must not write inputs');
+  const reportPath = strict.stdout.match(/report (.+)\r?\n?$/m)[1].trim(); assert.ok(reportPath.startsWith(path.join(tempRoot, '.codex-tmp', 'language-test-audits')));
+  const report = JSON.parse(fs.readFileSync(path.join(reportPath, 'report.json'), 'utf8')); const markdown = fs.readFileSync(path.join(reportPath, 'report.md'), 'utf8'); assert.equal(report.files.length, 16); assert.match(markdown, /## Files/); assert.match(markdown, /Counts:/);
+  const reviewFile = path.join(tempRoot, 'content', 'language-tests', 'reviews', 'de', 'A1.json'); const badReview = JSON.parse(fs.readFileSync(reviewFile)); badReview.sourceSha256 = '0'.repeat(64); badReview.reviews[0].id = 'de-a1-wrong'; badReview.reviews[1].accuracy = 'fail'; badReview.reviews[2].rationales = { 0: 'wrong key', 1: 'x', 2: 'y' }; write(reviewFile, `${JSON.stringify(badReview, null, 2)}\n`); write(generated[0], `${bankText}x`);
+  const bad = require('node:child_process').spawnSync(process.execPath, [auditScript, '--root', tempRoot, '--language', 'de'], { encoding: 'utf8' }); assert.equal(bad.status, 1); assert.match(bad.stdout, /failed/);
+  const draft = require('node:child_process').spawnSync(process.execPath, [auditScript, '--root', tempRoot, '--language', 'de', '--allow-draft'], { encoding: 'utf8' }); assert.equal(draft.status, 1, 'generated-copy difference remains an error in draft mode'); assert.match(draft.stdout, /warnings/);
+  fs.rmSync(tempRoot, { recursive: true, force: true });
 });
 
 test('generic check rejects a one-byte line-ending drift without changing output bytes or mtimes', async () => {

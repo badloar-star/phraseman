@@ -78,7 +78,7 @@ export function auditQuestionBank(bank, { allowDraft = false } = {}) {
       if (!String(item.constructId || '').startsWith(`${language}-${level.toLowerCase()}-`)) errors.push(`${item.id}: constructId prefix/level mismatch`);
       if (['C1', 'C2'].includes(level) && item.routingEligible !== false && item.upperBandEvidence !== true) errors.push(`${item.id}: routing-eligible upper-band item needs upperBandEvidence`);
       if (['C1', 'C2'].includes(level) && (item.externalKnowledgeRequired !== false || item.answerableFromStimulus !== true)) errors.push(`${item.id}: upper-band item must be answerable from stimulus without external knowledge`);
-      if (!Array.isArray(item.descriptorRefs) || !item.descriptorRefs.some((ref) => /^CEFR-2020-[A-Z][0-9]-(?:reception|pragmatics)-[\w-]+$/u.test(ref))) errors.push(`${item.id}: meaningless descriptorRefs`);
+      if (!Array.isArray(item.descriptorRefs) || !item.descriptorRefs.some((ref) => /^CEFR-2020-(?:reception|pragmatics)-[A-Z][0-9]-[\w-]+$/u.test(ref))) errors.push(`${item.id}: meaningless descriptorRefs`);
       if (CYRILLIC.test((item.options || []).join(' '))) errors.push(`${item.id}: Russian leakage in target options`);
       const answer = item.options?.[item.correctIndex];
       for (const field of ['instructionRu', 'instructionEn']) if (hasLeak(item[field], answer, language)) errors.push(`${item.id}: ${field} leaks target answer`);

@@ -20,7 +20,7 @@ class Element {
   get innerHTML() { return this._html || ''; }
   appendChild(el) { el.parentNode = this; el.ownerDocument = this.ownerDocument; this.children.push(el); return el; }
   remove() { this.parentNode?.children.splice(this.parentNode.children.indexOf(this), 1); this.isConnected = false; }
-  querySelectorAll(selector) { const all = []; const visit = (el) => { for (const child of el.children) { const data = selector.match(/^\[data-([\w-]+)="([^"]*)"\]$/); if ((selector.startsWith('.') && child.className.split(/\s+/).includes(selector.slice(1))) || (selector.startsWith('#') && child.attributes.id === selector.slice(1)) || (data && child.dataset[data[1].replace(/-([a-z])/g, (_, c) => c.toUpperCase())] === data[2]) || selector === child.tagName.toLowerCase()) all.push(child); visit(child); } }; visit(this); return all; }
+  querySelectorAll(selector) { const all = []; const focusable = selector.startsWith('button:not('); const visit = (el) => { for (const child of el.children) { const data = selector.match(/^\[data-([\w-]+)="([^"]*)"\]$/); if ((focusable && ['button', 'a', 'input'].includes(child.tagName.toLowerCase())) || (selector.startsWith('.') && child.className.split(/\s+/).includes(selector.slice(1))) || (selector.startsWith('#') && child.attributes.id === selector.slice(1)) || (data && child.dataset[data[1].replace(/-([a-z])/g, (_, c) => c.toUpperCase())] === data[2]) || selector === child.tagName.toLowerCase()) all.push(child); visit(child); } }; visit(this); return all; }
   querySelector(selector) { if (selector.endsWith(' svg')) return { style: {}, outerHTML: '<svg />' }; return this.querySelectorAll(selector)[0] || null; }
   addEventListener(type, fn) { (this.listeners[type] ||= []).push(fn); }
   click() { if (this.tagName === 'a' && this.ownerDocument?.downloads) this.ownerDocument.downloads.push(this.download); for (const fn of this.listeners.click || []) fn({ preventDefault() {} }); }
@@ -71,11 +71,11 @@ test('all five themes remain available and selected after a locale switch', () =
   const h = harness(); show(h); for (const theme of ['gold', 'dark', 'emerald', 'rose', 'royal']) assert.ok(modal(h).querySelector(`[data-theme="${theme}"]`)); click(h, '[data-theme="royal"]'); click(h, '[data-lang="ru"]'); assert.ok(modal(h).querySelector('[data-theme="royal"]').className.includes('active'));
 });
 
-test('certificate filename is locale-specific and safely bounded for hostile components', () => {
-  const source = read('certificate.js');
-  assert.match(source, /filenameSlugs\[currentLocale\]/);
-  assert.match(source, /certificateFilename\(data, themeKey, locale\)/);
-  assert.match(source, /sanitizeFilenameComponent/);
+test('normal PNG download has exact locale filename in English and Russian', async () => {
+  for (const uiLocale of ['en', 'ru']) {
+    const h = harness(); show(h, { uiLocale, testLanguage: 'fr', name: 'Alex' }); click(h, '#certDownloadPng'); await new Promise((resolve) => setImmediate(resolve));
+    assert.equal(h.downloads.at(-1), `phraseman-${h.i18n.TESTS.fr.filenameSlugs[uiLocale]}-level-b2-alex-gold.png`);
+  }
 });
 
 test('normal PNG download uses active locale slug, Unicode learner name, level and selected theme', async () => {
@@ -104,6 +104,69 @@ test('print output uses current locale and assessed subject', () => { const h = 
 
 test('certificate escapes hostile name and result in rendered SVG', () => { const h = harness(); show(h, { name: '<img src=x>', result: { ...result, estimatedLevel: '<script>x</script>' } }); assert.doesNotMatch(svg(h), /<script>|<img src=x>/); assert.match(svg(h), /&lt;script&gt;/); });
 
-test('public modal retains focus restore, Escape, Tab handling and reduced-motion confetti guard', () => { const h = harness(); show(h); assert.match(read('certificate.js'), /e\.key === 'Escape'/); assert.match(read('certificate.js'), /e\.key !== 'Tab'/); assert.match(read('certificate.js'), /if \(!reducedMotion\) createConfetti/); });
+test('Tab and Shift+Tab wrap inside the live modal and close removes its listener', () => {
+  const h = harness(); const before = h.document.activeElement; show(h); const first = modal(h).querySelector('.elt-cert-close'); const buttons = modal(h).querySelectorAll('button:not([disabled]), a[href], input:not([disabled]), [tabindex]:not([tabindex="-1"])'); const last = buttons.at(-1);
+  last.focus(); h.document.dispatch('keydown', { key: 'Tab', preventDefault() {} }); assert.equal(h.document.activeElement, first);
+  first.focus(); h.document.dispatch('keydown', { key: 'Tab', shiftKey: true, preventDefault() {} }); assert.equal(h.document.activeElement, last);
+  h.document.dispatch('keydown', { key: 'Escape', preventDefault() {} }); assert.equal(h.document.listeners.keydown.length, 0); assert.equal(h.document.activeElement, before);
+});
 
-test('app integration freezes ui/test language and keeps certificate analytics anonymous', () => { const app = read('app.js'); assert.match(app, /uiLocale,\s*testLanguage:\s*attemptTestLanguage \|\| selectedTestLanguage/); assert.match(app, /certificateNames\[uiLocale\]/); assert.match(app, /api\('certificate', \{\}\)/); assert.doesNotMatch(app, /api\('certificate',\s*\{[^}]*name/); });
+test('reduced motion creates zero confetti while ordinary motion creates confetti', () => {
+  const reduced = harness({ reduced: true }); show(reduced); assert.equal(modal(reduced).children.filter((node) => node.style.cssText).length, 0);
+  const moving = harness({ reduced: false }); show(moving); assert.equal(modal(moving).children.filter((node) => node.style.cssText).length, 60);
+});
+
+test('runtime mutation runner rejects each required certificate regression', async () => {
+  const scenarios = [
+    ['wrong body title', (s) => s.replace("'certificate.bodyTitle'", "'certificate.close'"), (h) => assert.match(svg(h), /Certificate of Completion/)],
+    ['RU close English', (s) => s.replace("text('certificate.close')", "certificateCopy('en', 'certificate.close')"), (h) => { click(h, '[data-lang="ru"]'); assert.equal(modal(h).querySelector('#certClose').textContent, h.i18n.t('ru', 'certificate.close')); }],
+    ['Shift Tab removed', (s) => s.replace("if (e.shiftKey && document.activeElement === first)", 'if (false)'), (h) => { const first = modal(h).querySelector('.elt-cert-close'); first.focus(); h.document.dispatch('keydown', { key: 'Tab', shiftKey: true, preventDefault() {} }); assert.equal(h.document.activeElement, modal(h).querySelectorAll('button:not([disabled]), a[href], input:not([disabled]), [tabindex]:not([tabindex="-1"])').at(-1)); }],
+    ['reduced confetti', (s) => s.replace('if (!reducedMotion) createConfetti(container);', 'createConfetti(container);'), (h) => assert.equal(modal(h).children.filter((node) => node.style.cssText).length, 0)],
+    ['raw hostile filename component', (s) => s.replace("const level = CERTIFICATE_LEVELS.has(data.result?.estimatedLevel) ? data.result.estimatedLevel.toLowerCase() : 'unknown';", "const level = data.result?.estimatedLevel || 'unknown';"), async (h) => { show(h, { result: { ...result, estimatedLevel: '../X' } }); click(h, '#certDownloadPng'); await new Promise((r) => setImmediate(r)); assert.doesNotMatch(h.downloads.at(-1), /[\\/]/); }],
+  ];
+  for (const [, mutate, verify] of scenarios) {
+    const h = harnessWithSource(mutate(read('certificate.js'))); show(h); await assert.rejects(async () => verify(h), undefined, 'mutation must violate live contract');
+  }
+});
+
+test('each theme changes live certificate paint without changing learner data', () => {
+  const h = harness(); show(h, { name: 'Alex', testLanguage: 'it' }); const subject = svg(h).match(/Phraseman [^<]+ Level Check/)?.[0];
+  for (const theme of ['gold', 'dark', 'emerald', 'rose', 'royal']) { click(h, `[data-theme="${theme}"]`); assert.match(svg(h), new RegExp(subject)); assert.ok(modal(h).querySelector(`[data-theme="${theme}"]`).className.includes('active')); }
+});
+
+test('manual locale switch keeps learner, result, theme and document language independent', () => {
+  const h = harness(); h.document.documentElement = { lang: 'en', setAttribute(_, value) { this.lang = value; } }; show(h, { name: 'Ada', testLanguage: 'es', result: { ...result, estimatedLevel: 'C1' } }); click(h, '[data-theme="rose"]'); const before = svg(h); click(h, '[data-lang="ru"]'); assert.match(svg(h), /Ada/); assert.match(svg(h), /C1/); assert.match(before, /Spanish/); assert.ok(modal(h).querySelector('[data-theme="rose"]').className.includes('active')); assert.equal(h.document.documentElement.lang, 'en');
+});
+
+test('CTA click opens its supplied safe URL and invokes callback once', () => { const h = harness(); let clicks = 0; show(h, { cta: { text: 'CTA', label: 'Go', url: 'https://example.test', onClick: () => { clicks++; } } }); click(h, '#certCtaBtn'); assert.equal(clicks, 1); });
+
+test('sequential show closes stale modal before rendering new data', () => { const h = harness(); show(h, { name: 'First', testLanguage: 'de' }); show(h, { name: 'Second', testLanguage: 'fr' }); assert.equal(h.body.children.length, 1); assert.match(svg(h), /Second/); assert.match(svg(h), /French/); });
+
+test('hostile CTA is text, not executable markup', () => { const h = harness(); show(h, { cta: { text: '<img src=x onerror=boom>', label: '<script>bad</script>', url: 'https://example.test' } }); assert.equal(modal(h).querySelector('.elt-cert-cta-text').textContent, h.i18n.t('en', 'certificate.ctaText')); assert.doesNotMatch(modal(h).innerHTML, /<img src=x|<script>bad/); assert.match(modal(h).innerHTML, /&lt;img src=x onerror=boom&gt;/); });
+
+test('print re-renders each locale title and does not include hostile learner markup', () => { for (const uiLocale of ['en', 'ru']) { const h = harness(); show(h, { uiLocale, name: '<svg onload=bad>' }); click(h, '#certPrint'); assert.match(h.prints[0].markup, new RegExp(h.i18n.t(uiLocale, 'certificate.printTitle'))); assert.doesNotMatch(h.prints[0].markup, /<svg onload=bad>/); } });
+
+test('PNG download disables only during generation then restores its control state', async () => { const h = harness(); show(h); const button = modal(h).querySelector('#certDownloadPng'); click(h, '#certDownloadPng'); await new Promise((resolve) => setImmediate(resolve)); assert.equal(button.disabled, false); assert.equal(button.getAttribute('aria-busy'), null); });
+
+function harnessWithSource(source, options = {}) { const h = harness(options); const context = vm.createContext({ EnglishTestI18n: h.i18n, window: h.win, navigator: h.win.navigator, document: h.document, URL: h.win.URL, Blob, XMLSerializer: class { serializeToString() { return '<svg />'; } }, Image: class { set src(_) { this.onload(); } }, alert: (message) => h.alerts.push(message), setTimeout: () => 0, globalThis: h.win }); vm.runInContext(source, context); h.certificate = h.win.EnglishTestCertificate; return h; }
+
+function appHarness(source = read('app.js'), withCertificate = true) {
+  const i18n = loadI18n(); const app = new Element('main'); const writes = []; const certCalls = []; const document = { getElementById: () => app, createElement: (tag) => { const el = new Element(tag); el.ownerDocument = document; return el; }, documentElement: { setAttribute() {} }, querySelector: () => null, addEventListener() {}, title: '' };
+  const win = { matchMedia: () => ({ matches: true }), EnglishTestCertificate: withCertificate ? { show: (data) => certCalls.push(data) } : null, open: () => ({ document: { write: (html) => writes.push(html), close() {} } }), location: {}, navigator: { language: 'ru-RU', userAgent: '' } };
+  const tail = source.replace('      renderCTA(result);', '      /* fallback captured without mounting CTA */').replace(/  \/\/ ---------- Init ----------[\s\S]*/, '  window.__appCapture = { generateCertificate };\n})();');
+  vm.runInContext(tail, vm.createContext({ EnglishTestI18n: i18n, window: win, document, navigator: win.navigator, location: { search: '?ui=ru&test=de' }, localStorage: { getItem: () => null, setItem() {} }, crypto: { getRandomValues() {} }, URL, URLSearchParams, setTimeout: () => 0, clearTimeout() {}, fetch: async () => ({ ok: true, json: async () => ({}) }) }));
+  return { i18n, win, writes, certCalls };
+}
+
+test('executed app generateCertificate freezes locale and attempt language for module and localized fallback', () => {
+  const module = appHarness(); module.win.__appCapture.generateCertificate('Alex', result); assert.deepEqual(module.certCalls[0].uiLocale, 'ru'); assert.equal(module.certCalls[0].testLanguage, 'de');
+  const fallback = appHarness(read('app.js'), false); fallback.win.__appCapture.generateCertificate('<img>', result); assert.match(fallback.writes[0], new RegExp(fallback.i18n.t('ru', 'certificate.bodyTitle'))); assert.match(fallback.writes[0], /немецкого языка/); assert.doesNotMatch(fallback.writes[0], /<img>/);
+});
+
+test('app mutation runner catches forced English module inputs and English fallback', () => {
+  const scenarios = [
+    [(s) => s.replace('uiLocale,\n      testLanguage: attemptTestLanguage || selectedTestLanguage', "uiLocale: 'en',\n      testLanguage: 'en'"), true, (h) => { h.win.__appCapture.generateCertificate('Alex', result); assert.equal(h.certCalls[0].uiLocale, 'ru'); assert.equal(h.certCalls[0].testLanguage, 'de'); }],
+    [(s) => s.replace("copy('certificate.bodyTitle')", "EnglishTestI18n.t('en', 'certificate.bodyTitle')"), false, (h) => { h.win.__appCapture.generateCertificate('Alex', result); assert.match(h.writes[0], new RegExp(h.i18n.t('ru', 'certificate.bodyTitle'))); }],
+  ];
+  for (const [mutate, withCertificate, verify] of scenarios) { const h = appHarness(mutate(read('app.js')), withCertificate); assert.throws(() => verify(h)); }
+});

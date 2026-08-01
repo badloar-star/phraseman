@@ -95,6 +95,7 @@
   };
 
   let currentTheme = 'gold';
+  let activeCertificateClose = null;
 
   function certificateLocale(locale) {
     return locale === 'ru' ? 'ru' : 'en';
@@ -214,6 +215,7 @@
   }
 
   function renderCertificate(data) {
+    if (typeof activeCertificateClose === 'function') activeCertificateClose();
     let currentLang = certificateLocale(data.uiLocale);
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const previouslyFocused = document.activeElement;
@@ -419,6 +421,7 @@
     function close() {
       if (closed) return;
       closed = true;
+      if (activeCertificateClose === close) activeCertificateClose = null;
       document.removeEventListener('keydown', handleModalKeydown);
       clearSavePreview();
       inner.animate([
@@ -430,6 +433,7 @@
         if (typeof data.onClose === 'function') data.onClose();
       };
     }
+    activeCertificateClose = close;
   }
 
   async function svgToPng(svgEl) {

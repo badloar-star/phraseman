@@ -55,6 +55,8 @@ type ThemeChrome = {
   chipText: string;
   taskGlow: string;
   taskBorder: string;
+  errorText?: string;
+  errorBg?: string;
 };
 
 export const THEME_CHROME: Record<ThemeMode, ThemeChrome> = {
@@ -161,6 +163,8 @@ export const THEME_CHROME: Record<ThemeMode, ThemeChrome> = {
     chipText: '#17201D',
     taskGlow: 'rgba(49,95,80,0)',
     taskBorder: '#BDC8BD',
+    errorText: '#A8464D',
+    errorBg: '#F2DFE0',
   },
 };
 
@@ -577,7 +581,18 @@ export default function DailyTasksFirstVisitModal({
               )}
             </View>
 
-            {errorText && <Text style={[styles.errorText, { color: chrome.chipText, fontSize: f.sub }]}>{errorText}</Text>}
+            {errorText && (
+              <Text style={[
+                styles.errorText,
+                {
+                  backgroundColor: chrome.errorBg ?? 'transparent',
+                  color: chrome.errorText ?? chrome.chipText,
+                  fontSize: f.sub,
+                },
+              ]}>
+                {errorText}
+              </Text>
+            )}
 
             <TouchableOpacity
               accessibilityRole="button"
@@ -726,6 +741,9 @@ const styles = StyleSheet.create({
   },
   errorText: {
     marginTop: 12,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    borderRadius: 12,
     textAlign: 'center',
     fontWeight: '700',
     lineHeight: 18,

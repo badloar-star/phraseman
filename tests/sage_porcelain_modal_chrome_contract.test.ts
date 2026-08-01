@@ -1,9 +1,29 @@
 import fs from 'fs';
 import path from 'path';
+
+jest.mock('react-native', () => ({
+  StyleSheet: { absoluteFill: {}, absoluteFillObject: {} },
+  View: 'View',
+  Platform: { OS: 'ios' },
+}));
+jest.mock('expo-linear-gradient', () => ({ LinearGradient: 'LinearGradient' }));
+
 import { PAYWALL_THEME_CONFIG } from '../components/paywallThemeConfig';
 import { getCardPackPaywallTheme } from '../app/flashcards/cardPackPaywallTheme';
 import { getLeagueBonusPalette } from '../constants/leagueBonusPalette';
 import { SAGE_PORCELAIN } from '../constants/theme';
+import {
+  rewardModalAccentColor,
+  rewardModalBackdropGradientColors,
+  rewardModalPanelBorder,
+  rewardModalPanelColors,
+  rewardModalPanelGradientColors,
+  rewardModalPanelScrimColors,
+  rewardModalPrimaryButtonColors,
+  rewardModalPrimaryButtonText,
+  rewardModalScrimColors,
+  rewardModalSoftSurface,
+} from '../components/RewardModalBackdrop';
 
 const ROOT = path.resolve(__dirname, '..');
 const read = (relativePath: string) => fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
@@ -15,6 +35,10 @@ describe('sage porcelain modal, reward, and paywall chrome', () => {
     const energyModal = read('components/NoEnergyModal.tsx');
     expect(dailyModal).toContain("sagePorcelain: {\n    accent: '#315F50'");
     expect(dailyModal).toContain("taskGlow: 'rgba(49,95,80,0)'");
+    expect(dailyModal).toContain("errorText: '#A8464D'");
+    expect(dailyModal).toContain("errorBg: '#F2DFE0'");
+    expect(dailyModal).toContain("backgroundColor: chrome.errorBg ?? 'transparent'");
+    expect(dailyModal).toContain('color: chrome.errorText ?? chrome.chipText');
     expect(toast).toContain("sagePorcelain: {\n    cardColors: ['#FCFDF9', '#F5F7F2']");
     expect(toast).toContain("claimBg: '#315F50'");
     expect(toast).toContain("xpColor: '#8B6320'");
@@ -23,15 +47,17 @@ describe('sage porcelain modal, reward, and paywall chrome', () => {
   });
 
   it('uses explicit porcelain reward backdrop behavior instead of a dark fallback', () => {
-    const backdrop = read('components/RewardModalBackdrop.tsx');
-    expect((backdrop.match(/case 'sagePorcelain':/g) ?? [])).toHaveLength(10);
-    expect(backdrop).toContain("return ['#F0F1EC', '#FCFDF9', '#E1E5DC']");
-    expect(backdrop).toContain("return ['#FCFDF9', '#F5F7F2', '#E7EAE3']");
-    expect(backdrop).toContain("return '#BDC8BD'");
-    expect(backdrop).toContain("return ['#315F50', '#315F50']");
-    expect(backdrop).toContain("return '#FFFFFF'");
-    expect(backdrop).toContain("const opacity = strong ? '0.38' : '0.26'");
-    expect(backdrop).toContain("return ['rgba(23,32,29,0)', 'rgba(23,32,29,0)', 'rgba(23,32,29,0)']");
+    expect(rewardModalPanelColors('sagePorcelain', SAGE_PORCELAIN)).toEqual(['#FCFDF9', '#F5F7F2', '#E7EAE3']);
+    expect(rewardModalAccentColor('sagePorcelain', SAGE_PORCELAIN)).toBe('#315F50');
+    expect(rewardModalPanelBorder('sagePorcelain', SAGE_PORCELAIN)).toBe('#BDC8BD');
+    expect(rewardModalSoftSurface('sagePorcelain', SAGE_PORCELAIN)).toBe('#E1E5DC');
+    expect(rewardModalPrimaryButtonColors('sagePorcelain')).toEqual(['#315F50', '#315F50']);
+    expect(rewardModalPrimaryButtonText('sagePorcelain')).toBe('#FFFFFF');
+    expect(rewardModalBackdropGradientColors('sagePorcelain')).toEqual(['#F0F1EC', '#FCFDF9', '#E1E5DC']);
+    expect(rewardModalPanelGradientColors('sagePorcelain')).toEqual(['#FCFDF9', '#F5F7F2', '#E7EAE3']);
+    expect(rewardModalScrimColors('sagePorcelain', 'regular')).toEqual(['rgba(23,32,29,0.26)', 'rgba(23,32,29,0.26)', 'rgba(23,32,29,0.26)']);
+    expect(rewardModalScrimColors('sagePorcelain', 'strong')).toEqual(['rgba(23,32,29,0.38)', 'rgba(23,32,29,0.38)', 'rgba(23,32,29,0.38)']);
+    expect(rewardModalPanelScrimColors('sagePorcelain', 'strong')).toEqual(['rgba(23,32,29,0)', 'rgba(23,32,29,0)', 'rgba(23,32,29,0)']);
   });
 
   it('uses porcelain paywall, card-pack, and league reward roles', () => {

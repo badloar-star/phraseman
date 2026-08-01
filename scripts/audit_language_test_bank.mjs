@@ -22,8 +22,19 @@ const fingerprint = (item, language) => plain(String(item.stimulus || '').replac
 const hasLeak = (instruction, answer, language) => { const answerTokens = words(answer, language); const accented = new Set((String(answer || '').match(/\p{L}+/gu) || []).filter((token) => /[^\x00-\x7f]/u.test(token)).map(plain)); const meaningful = answerTokens.filter((token) => token.length > 2 || accented.has(token)); if (!meaningful.length) return false; const haystack = new Set(words(instruction, language)); return meaningful.every((token) => haystack.has(token)); };
 const sentenceDepth = (item, language) => String(item.stimulus || '').split(/[.!?]+/u).filter((sentence) => meaningfulWords(sentence, language).length >= 4).length >= 2;
 const quoteIn = (quote, stimulus) => String(quote || '').trim().split(/\s+/u).length >= 2 && String(stimulus || '').toLowerCase().includes(String(quote).trim().toLowerCase());
-const inferential = (item) => { const proof = item.inferenceEvidence; return Array.isArray(proof?.premises) && proof.premises.length >= 2 && proof.premises.every((premise) => quoteIn(premise, item.stimulus)) && String(proof.unstatedConclusion || '').trim() && !String(item.stimulus || '').toLowerCase().includes(String(proof.unstatedConclusion).trim().toLowerCase()) && String(proof.reasoning || '').trim().length >= 12 && String(proof.whyNotExplicit || '').trim().length >= 12; };
-const EXTERNAL_FACT = /\b(?:18\d{2}|19\d{2}|20\d{2})\b[\s\S]{0,100}\b(?:who|name|person|architect|painted|designed|altarpiece|population|born|invented|capital)\b|\b(?:who|name|person|architect|painted|designed|altarpiece|population|born|invented|capital)\b[\s\S]{0,100}\b(?:18\d{2}|19\d{2}|20\d{2})\b/iu;
+const nontrivialToken = (value, language) => meaningfulWords(value, language).length === 1 ? meaningfulWords(value, language)[0] : '';
+const includesToken = (value, token, language) => words(value, language).includes(token);
+const linked = (link, quote, answer, explanation, language) => {
+  const sourceToken = nontrivialToken(link?.sourceToken, language); const answerToken = nontrivialToken(link?.answerToken, language);
+  return Boolean(sourceToken && answerToken && includesToken(quote, sourceToken, language) && includesToken(answer, answerToken, language) && includesToken(explanation, sourceToken, language) && includesToken(explanation, answerToken, language));
+};
+const groundedAnswer = (item, language) => Array.isArray(item.answerEvidence) && item.answerEvidence.length > 0 && item.answerEvidence.every((proof) => proof && quoteIn(proof.quote, item.stimulus) && proof.correctIndex === item.correctIndex && normalized(proof.correctAnswer, language) === normalized(item.options?.[item.correctIndex], language) && Array.isArray(proof.lexicalLinks) && proof.lexicalLinks.length > 0 && typeof proof.linkingExplanation === 'string' && proof.linkingExplanation.trim().length >= 12 && proof.lexicalLinks.some((link) => linked(link, proof.quote, item.options?.[item.correctIndex], proof.linkingExplanation, language)));
+const inferential = (item, language) => {
+  const proof = item.inferenceEvidence; const answer = item.options?.[item.correctIndex]; const reasoning = proof?.reasoning;
+  return Array.isArray(proof?.premises) && proof.premises.length >= 2 && proof.premises.every((premise) => quoteIn(premise, item.stimulus)) && normalized(proof.unstatedConclusion, language) === normalized(answer, language) && normalized(proof.unstatedConclusion, language) && !plain(item.stimulus).includes(normalized(proof.unstatedConclusion, language)) && typeof reasoning?.explanation === 'string' && reasoning.explanation.trim().length >= 12 && Array.isArray(reasoning.premiseLinks) && proof.premises.every((premise, premiseIndex) => reasoning.premiseLinks.some((link) => link?.premiseIndex === premiseIndex && linked({ sourceToken: link.premiseToken, answerToken: link.conclusionToken }, premise, answer, reasoning.explanation, language))) && nontrivialToken(reasoning.conclusionToken, language) && includesToken(answer, nontrivialToken(reasoning.conclusionToken, language), language) && includesToken(reasoning.explanation, nontrivialToken(reasoning.conclusionToken, language), language) && String(proof.whyNotExplicit || '').trim().length >= 12;
+};
+const EXTERNAL_FACT = /\b(?:atomic\s+number|chemical\s+element|bohrium|who|name|person|architect|painted|designed|born|capital|population|historical\s+fact|invented)\b(?:[\s\S]{0,100}\b(?:18\d{2}|19\d{2}|20\d{2}|is|was|of|the)\b)?|\b(?:18\d{2}|19\d{2}|20\d{2})\b[\s\S]{0,100}\b(?:who|name|person|architect|painted|designed|born|capital|population|historical\s+fact|invented)\b/iu;
+const ASSESSMENT = { grammar: ['target-language-form'], vocabulary: ['target-language-lexis'], reading: ['textual-information', 'discourse-inference'], pragmatics: ['pragmatic-intent', 'discourse-inference'] };
 const requiredReview = (review, incorrectIndexes) => REVIEW_FIELDS.every((field) => review?.[field] === 'pass') && review?.reviewStatus === 'reviewed' && ['authoringPass', 'adversarialPass', 'deterministicPass', 'levelCoveragePass'].every((field) => review?.[field] === 'pass') && incorrectIndexes.length === 3 && Object.keys(review?.rationales || {}).length === 3 && incorrectIndexes.every((index) => typeof review?.rationales?.[index] === 'string' && review.rationales[index].trim());
 
 export function auditSeparateReview({ sourceRaw, questions, review, language, level }) {
@@ -80,7 +91,7 @@ export function auditQuestionBank(bank, { allowDraft = false } = {}) {
       if (!String(item.constructId || '').startsWith(`${language}-${level.toLowerCase()}-`)) errors.push(`${item.id}: constructId prefix/level mismatch`);
       if (['C1', 'C2'].includes(level) && item.routingEligible !== false && item.upperBandEvidence !== true) errors.push(`${item.id}: routing-eligible upper-band item needs upperBandEvidence`);
       if (['C1', 'C2'].includes(level) && (item.externalKnowledgeRequired !== false || item.answerableFromStimulus !== true)) errors.push(`${item.id}: upper-band item must be answerable from stimulus without external knowledge`);
-      if (item.externalKnowledgeRequired !== false || item.triviaRisk !== 'none') errors.push(`${item.id}: external knowledge/trivia metadata required`);
+      if (item.culturalKnowledgeRequired !== false || item.externalKnowledgeRequired !== false || item.triviaRisk !== 'none') errors.push(`${item.id}: cultural/external knowledge and trivia metadata required`);
       if (!Array.isArray(item.descriptorRefs) || !item.descriptorRefs.some((ref) => /^CEFR-2020-(?:reception|pragmatics)-[A-Z][0-9]-[\w-]+$/u.test(ref))) errors.push(`${item.id}: meaningless descriptorRefs`);
       if (CYRILLIC.test((item.options || []).join(' '))) errors.push(`${item.id}: Russian leakage in target options`);
       const answer = item.options?.[item.correctIndex];
@@ -89,9 +100,9 @@ export function auditQuestionBank(bank, { allowDraft = false } = {}) {
       if (/_{3,}/u.test(String(item.stimulus || ''))) { const reconstructed = String(item.stimulus).replace(/_{3,}/gu, String(answer || '')); const reconstructedKey = normalized(reconstructed, language); const prior = materials.get(reconstructedKey) || reconstructedMaterials.get(reconstructedKey); if (reconstructedKey && prior && prior !== item.id) errors.push(`${item.id}: reconstructed sentence duplicate with ${prior}`); else if (reconstructedKey) reconstructedMaterials.set(reconstructedKey, item.id); }
       const fp = fingerprint(item, language); const count = (fingerprints.get(fp) || 0) + 1; fingerprints.set(fp, count); if (count > 4) errors.push(`${item.id}: repeated structural fingerprint`);
       if (/\b(?:obscure|trivia|which year|which decree|capital of|architect(?:ed)?|chapel)\b/iu.test(String(item.stimulus || '')) || EXTERNAL_FACT.test(String(item.stimulus || ''))) errors.push(`${item.id}: external-knowledge/obscure-trivia proxy`);
-      if (['reading', 'pragmatics'].includes(item.skill) && (!item.answerableFromStimulus || !Array.isArray(item.answerEvidence) || !item.answerEvidence.length || !item.answerEvidence.every((quote) => quoteIn(quote, item.stimulus)))) errors.push(`${item.id}: ungrounded answer evidence`);
-      if (['grammar', 'vocabulary'].includes(item.skill) && !['target-language-form', 'target-language-lexis', 'target-language-pragmatics'].includes(item.assessmentBasis)) errors.push(`${item.id}: invalid assessment basis`);
-      if (level === 'C2' && ['reading', 'pragmatics'].includes(item.skill) && item.inferenceEvidence && !inferential(item)) errors.push(`${item.id}: ungrounded inference evidence`);
+      if (!ASSESSMENT[item.skill]?.includes(item.assessmentBasis) || item.knowledgeTarget !== item.assessmentBasis) errors.push(`${item.id}: invalid assessment basis/knowledge target`);
+      if (['reading', 'pragmatics'].includes(item.skill) && (!item.answerableFromStimulus || !groundedAnswer(item, language))) errors.push(`${item.id}: ungrounded answer evidence`);
+      if (level === 'C2' && ['reading', 'pragmatics'].includes(item.skill) && item.inferenceEvidence && !inferential(item, language)) errors.push(`${item.id}: ungrounded inference evidence`);
     }
   }
   const projection = (item) => [item.scenario, item.stimulus, ...(item.options || []), item.targetConstruct, item.explanation, item.ambiguityNotes].filter(Boolean).join(' ');
@@ -120,7 +131,7 @@ export function parseAnchors(raw, source = 'references') {
   return anchors;
 }
 export const readAnchors = (file) => parseAnchors(readFileSync(file, 'utf8'), file);
-const validateAnchors = (items, anchors, kind) => {
+export const validateAnchors = (items, anchors, kind) => {
   const errors = [];
   for (const item of items || []) {
     for (const ref of item.descriptorRefs || []) if (anchors.get(ref)?.label !== 'OFFICIAL_STANDARD') errors.push(`${item.id || item.constructId}: invented or non-standard descriptor anchor ${ref}`);

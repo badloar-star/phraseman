@@ -27,3 +27,8 @@ export type { FetchQualitySourceInput, FetchQualitySourceResult } from './qualit
 
 export { runQualityDepartment } from './quality_department';
 export type { RunQualityDepartmentInput, RunQualityDepartmentResult } from './quality_department';
+
+export { buildQualitySnapshot } from './quality_snapshot';
+export type { BuildQualitySnapshotInput, QualityFetcher, QualityFetcherMap, QualitySnapshot } from './quality_snapshot';
+
+export { jarvisGetQualitySnapshot } from './callables';

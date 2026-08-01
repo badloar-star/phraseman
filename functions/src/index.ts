@@ -478,6 +478,11 @@ export {
   agentManagerTelegramPublishApproval,
   agentManagerTransitionTask,
 } from './agent_manager';
+// зачем: первый видимый рубеж нового Джарвиса (2026-08-01) — департамент
+// «Качество» по требованию владельца через панель admin/v2/legacy.html.
+// Старые agent_office/agent_manager выше не тронуты и сносятся отдельным
+// шагом позже, когда у нового Джарвиса будет диалог и approvals.
+export { jarvisGetQualitySnapshot } from './jarvis';
 export { adminGetRemoteConfigWorkspace, adminPublishRemoteConfig } from './admin_remote_config';
 export { adminGetPaywallAbWorkspace, adminPublishPaywallAb } from './admin_paywall_ab';
 export { adminGetPaywallVariantStats } from './admin_paywall_variant_stats';

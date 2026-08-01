@@ -68,6 +68,7 @@
     .tab { padding: 12px 20px; font-size: 13px; color: #ccc; cursor: pointer; border: 1px solid transparent; border-radius: 8px; transition: background 0.15s, border-color 0.15s, color 0.15s; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; opacity: 0.82; }
     .tab:hover { color: #fff; opacity: 1; background: rgba(255,255,255,0.045); }
     .tab.active { color: var(--acc-soft); border-color: var(--panel-border); background: rgba(255,255,255,0.075); font-weight: 700; opacity: 1; text-shadow: none; }
+    #admin-nav-gift-certificates:focus-visible { outline: 3px solid var(--acc); outline-offset: 2px; opacity: 1; }
     .tab-n-badge { display: inline-block; min-width: 17px; text-align: center; border-radius: 10px; padding: 1px 6px; font-size: 10px; font-weight: 800; vertical-align: middle; line-height: 1.25; margin-left: 3px; }
 
     /* Счётчик чтений Firestore — цена текущего захода в админку.
@@ -4937,6 +4938,102 @@
       'Cola y publicación': {
         'pt-BR': 'Fila e publicação',
         vi: 'Hàng đợi và xuất bản',
+    /* Gift certificates: compact operational surface; lime actions always use dark text. */
+    #tab-gift-certificates { padding: 20px 24px 36px; }
+    .gift-cert-page { width: min(1180px, 100%); margin: 0 auto; display: grid; gap: 16px; }
+    .gift-cert-header, .gift-cert-panel-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+    .gift-cert-header { padding: 18px; border: 1px solid #2f323a; border-radius: 10px; background: #16181f; }
+    .gift-cert-header h2 { margin: 3px 0 6px; color: #f4f4f5; font-size: 24px; }
+    .gift-cert-header p, .gift-cert-panel p { color: #a1a1aa; font-size: 13px; line-height: 1.55; }
+    .gift-cert-kicker { color: #a3e635; font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .gift-cert-panel { padding: 18px; border: 1px solid #2f323a; border-radius: 10px; background: #16181f; }
+    .gift-cert-panel h3 { color: #f4f4f5; font-size: 17px; margin: 0 0 4px; }
+    .gift-cert-form-grid { display: grid; grid-template-columns: minmax(220px, 1fr) minmax(180px, .55fr); gap: 14px; margin-top: 16px; }
+    .gift-cert-field { display: flex; flex-direction: column; gap: 7px; color: #d4d4d8; font-size: 12px; font-weight: 700; }
+    .gift-cert-field-wide { grid-column: 1 / -1; }
+    .gift-cert-field input, .gift-cert-field select, .gift-cert-field textarea {
+      width: 100%; min-height: 44px; padding: 10px 12px; border: 1px solid #3f3f46; border-radius: 8px;
+      background: #101217; color: #f4f4f5; font: inherit; font-weight: 500; line-height: 1.45;
+    }
+    .gift-cert-field textarea { resize: vertical; }
+    .gift-cert-field small { color: #8b8b95; font-weight: 500; line-height: 1.45; }
+    .gift-cert-field input:focus-visible, .gift-cert-field select:focus-visible, .gift-cert-field textarea:focus-visible,
+    .gift-cert-btn:focus-visible, .gift-cert-repair summary:focus-visible { outline: 3px solid #a3e635; outline-offset: 2px; }
+    .gift-cert-preview { min-height: 48px; margin-top: 14px; padding: 12px; border: 1px solid #3b4723; border-radius: 8px; background: #151b0f; color: #d9f99d; font-size: 13px; line-height: 1.5; }
+    .gift-cert-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin-top: 14px; }
+    .gift-cert-btn { min-height: 44px; padding: 9px 14px; border-radius: 8px; border: 1px solid #3f3f46; cursor: pointer; font-weight: 800; transition: background-color .18s ease, border-color .18s ease; }
+    .gift-cert-btn:hover:not(:disabled) { border-color: #71717a; }
+    .gift-cert-btn:disabled { cursor: not-allowed; opacity: .5; }
+    .gift-cert-btn-primary { background: #a3e635; border-color: #a3e635; color: #07110a; }
+    .gift-cert-btn-secondary { background: #24262e; color: #f4f4f5; }
+    .gift-cert-btn-danger { background: #3b181b; border-color: #7f1d1d; color: #fecaca; }
+    .gift-cert-status { color: #a1a1aa; font-size: 12px; line-height: 1.45; }
+    .gift-cert-sender { margin-top: 5px; color: #d9f99d !important; }
+    .gift-cert-count { color: #a3e635; font-size: 12px; font-weight: 800; white-space: nowrap; }
+    .gift-cert-history { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 16px; }
+    .gift-cert-row { display: flex; flex-direction: column; gap: 12px; min-width: 0; padding: 13px; border: 1px solid #30323a; border-radius: 9px; background: #111318; }
+    .gift-cert-visual { position: relative; aspect-ratio: 3 / 2; overflow: hidden; border-radius: 8px; background-position: center; background-size: cover; color: #201c12; }
+    .gift-cert-visual::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(0,0,0,.03)); }
+    .gift-cert-visual-head { position: absolute; z-index: 1; top: 6.1%; left: 5%; right: 5%; text-align: center; }
+    .gift-cert-visual-kicker { font-size: clamp(7px, .7vw, 11px); font-weight: 800; letter-spacing: .17em; }
+    .gift-cert-visual-brand { margin-top: 1%; font-size: clamp(15px, 1.45vw, 23px); font-weight: 900; }
+    .gift-cert-visual-panel { position: absolute; z-index: 1; left: 4.25%; right: 4.25%; top: 23.7%; bottom: 6.1%; display: flex; flex-direction: column; padding: 4.2% 4.6% 3.8%; border: 1px solid rgba(89,66,19,.16); border-radius: 6%; background: rgba(255,251,242,.82); }
+    .gift-cert-visual.is-lifetime { color: #fff8e8; }
+    .gift-cert-visual.is-lifetime .gift-cert-visual-panel { border-color: rgba(222,181,92,.38); background: rgba(8,14,13,.84); }
+    .gift-cert-visual-recipient { font-size: clamp(11px, 1.4vw, 22px); font-weight: 900; line-height: 1.12; overflow-wrap: anywhere; }
+    .gift-cert-visual-sender { margin-top: 1.5%; color: #6f6857; font-size: clamp(9px, .9vw, 14px); overflow-wrap: anywhere; }
+    .gift-cert-visual.is-lifetime .gift-cert-visual-sender { color: #d8ccb0; }
+    .gift-cert-visual-product { margin-top: 4%; color: #8a6100; font-size: clamp(10px, 1.05vw, 17px); font-weight: 800; }
+    .gift-cert-visual.is-lifetime .gift-cert-visual-product { color: #efca70; }
+    .gift-cert-visual-phrase { margin-top: 4%; font-size: clamp(8px, .85vw, 13px); font-weight: 600; line-height: 1.32; }
+    .gift-cert-visual-code { margin-top: auto; color: #8a6100; font: 800 clamp(8px, .9vw, 14px) ui-monospace, SFMono-Regular, Consolas, monospace; text-align: center; }
+    .gift-cert-visual.is-lifetime .gift-cert-visual-code { color: #efca70; }
+    .gift-cert-row-meta { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 12px; align-items: start; }
+    .gift-cert-badges { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; }
+    .gift-cert-badge { display: inline-flex; align-items: center; min-height: 25px; padding: 3px 8px; border-radius: 999px; background: #a3e635; color: #07110a; font-size: 11px; font-weight: 900; }
+    .gift-cert-badge.is-muted { background: #30323a; color: #e4e4e7; }
+    .gift-cert-badge.is-danger { background: #7f1d1d; color: #fee2e2; }
+    .gift-cert-activation-detail { grid-column: 1 / -1; color: #a1a1aa; font-size: 11px; }
+    .gift-cert-meta { align-self: center; min-width: 0; }
+    .gift-cert-code { color: #f4f4f5; font: 700 13px ui-monospace, SFMono-Regular, Consolas, monospace; word-break: break-all; }
+    .gift-cert-submeta { margin-top: 5px; color: #8b8b95; font-size: 11px; line-height: 1.45; }
+    .gift-cert-row-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .gift-cert-row .gift-cert-btn { white-space: nowrap; }
+    .gift-cert-empty { padding: 20px; border: 1px dashed #3f3f46; border-radius: 8px; color: #8b8b95; text-align: center; }
+    .gift-cert-repair { border: 1px solid #5f2529; border-radius: 10px; background: #1c1215; }
+    .gift-cert-repair summary { min-height: 44px; padding: 13px 16px; color: #fecaca; cursor: pointer; font-weight: 800; }
+    .gift-cert-repair-body { padding: 0 16px 16px; }
+    .gift-cert-repair-body > p { color: #d6a8aa; font-size: 13px; line-height: 1.5; }
+    .gift-cert-modal-backdrop { position: fixed; z-index: 220; inset: 0; display: none; align-items: center; justify-content: center; padding: 20px; background: rgba(5,7,10,.78); }
+    .gift-cert-modal-backdrop.is-open { display: flex; }
+    .gift-cert-modal { width: min(520px, 100%); max-height: calc(100vh - 40px); overflow: auto; padding: 20px; border: 1px solid #3f3f46; border-radius: 12px; background: #16181f; box-shadow: 0 24px 70px rgba(0,0,0,.55); }
+    .gift-cert-modal [hidden] { display: none !important; }
+    .gift-cert-modal h3 { margin: 0 0 7px; color: #f4f4f5; font-size: 20px; }
+    .gift-cert-modal > p { margin: 0 0 16px; color: #a1a1aa; font-size: 13px; line-height: 1.5; }
+    .gift-cert-mode-options { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
+    .gift-cert-mode-option { display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 9px 11px; border: 1px solid #3f3f46; border-radius: 8px; color: #e4e4e7; cursor: pointer; }
+    .gift-cert-mode-option:has(input:checked) { border-color: #a3e635; background: #151b0f; }
+    .gift-cert-modal-error { min-height: 20px; margin-top: 10px; color: #fca5a5; font-size: 12px; }
+    .gift-cert-send-summary { margin: 0 0 14px; padding: 14px; border: 1px solid #3f3f46; border-radius: 10px; background: #101218; }
+    .gift-cert-send-summary dl { display: grid; grid-template-columns: minmax(110px, .7fr) 1.3fr; gap: 8px 12px; margin: 0; }
+    .gift-cert-send-summary dt { color: #a1a1aa; font-size: 12px; }
+    .gift-cert-send-summary dd { margin: 0; color: #f4f4f5; font-size: 13px; overflow-wrap: anywhere; }
+    .gift-cert-modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 12px; }
+    .gift-cert-modal :focus-visible { outline: 3px solid #a3e635; outline-offset: 2px; }
+    @media (max-width: 860px) {
+      #tab-gift-certificates { padding: 14px 12px 28px; }
+      .gift-cert-header, .gift-cert-panel-head { flex-direction: column; }
+      .gift-cert-form-grid { grid-template-columns: 1fr; }
+      .gift-cert-field-wide { grid-column: auto; }
+      .gift-cert-row-actions .gift-cert-btn { flex: 1 1 150px; }
+    }
+    @media (max-width: 700px) {
+      .gift-cert-history { grid-template-columns: 1fr; }
+      .gift-cert-mode-options { grid-template-columns: 1fr; }
+      .gift-cert-modal-actions { flex-direction: column-reverse; }
+      .gift-cert-modal-actions .gift-cert-btn { width: 100%; }
+    }
+    @media (prefers-reduced-motion: reduce) { .gift-cert-btn { transition: none; } }
         id: 'Antrean dan publikasi',
         tr: 'Sıra ve yayınlama',
         pl: 'Kolejka i publikacja',
@@ -9721,6 +9818,7 @@
   <div class="tab" onclick="switchTab('premium')" title="Real Plus (RevenueCat/store) и Admin Plus (выдан вручную) — один раздел, два подраздела">💚 Plus</div>
   <div class="tab" onclick="switchTab('plus-radar')" title="Find duplicate or suspicious Plus access cases">Plus Radar</div>
   <div class="tab" onclick="switchTab('promo-codes')">Промокоды</div>
+  <div id="admin-nav-gift-certificates" class="tab" role="button" tabindex="0" onclick="switchTab('gift-certificates')" onkeydown="if (event.currentTarget.closest('.tabs')?.dataset.navEdit !== 'true' &amp;&amp; (event.key === 'Enter' || event.key === ' ')) { event.preventDefault(); switchTab('gift-certificates'); }" title="Создать, скачать и отправить реальные подарочные сертификаты">Подарочные сертификаты</div>
   <div class="tab" onclick="switchTab('cancel-surveys')">Cancel surveys</div>
   <div class="tab" onclick="switchTab('surveys')" title="Опросы за осколки: сводка ответов, лента, редактор, CSV" style="background:rgba(52,211,153,0.12);border:1px solid rgba(52,211,153,0.4);color:#6ee7b7;font-weight:700">📊 Опросы</div>
   <div class="tab" onclick="switchTab('review-promo')">Plus survey</div>
@@ -11832,6 +11930,114 @@
   </div>
 </div>
 
+<!-- GIFT CERTIFICATES TAB: server-authoritative codes, persisted history and explicit delivery -->
+<div id="tab-gift-certificates" class="reports-tab">
+  <main class="gift-cert-page" aria-labelledby="gift-certificates-title">
+    <header class="gift-cert-header">
+      <div>
+        <div class="gift-cert-kicker">Деньги · Подарки</div>
+        <h2 id="gift-certificates-title">Подарочные сертификаты</h2>
+        <p>Создай реальные одноразовые сертификаты. Код, срок и тариф формирует только сервер; все записи остаются в истории.</p>
+      </div>
+      <button type="button" class="gift-cert-btn gift-cert-btn-secondary" onclick="loadGiftCertificates()" title="Заново загрузить всю историю сертификатов">Обновить историю</button>
+    </header>
+
+    <section class="gift-cert-panel" aria-labelledby="gift-certificate-create-title">
+      <div class="gift-cert-panel-head">
+        <div>
+          <h3 id="gift-certificate-create-title">Создать сертификаты</h3>
+          <p>Одна строка — один получатель. Email можно добавить сейчас или позже в истории.</p>
+        </div>
+      </div>
+      <div class="gift-cert-form-grid">
+        <label class="gift-cert-field" for="gift-certificate-product">
+          <span>Тип сертификата</span>
+          <select id="gift-certificate-product" onchange="giftCertificateRefreshPreview()">
+            <option value="monthly">Месяц Phraseman Plus</option>
+            <option value="yearly" selected>Год Phraseman Plus</option>
+            <option value="lifetime">Phraseman Pro — навсегда</option>
+          </select>
+        </label>
+        <label class="gift-cert-field" for="gift-certificate-count">
+          <span>Количество</span>
+          <input id="gift-certificate-count" min="1" max="200" type="number" inputmode="numeric" value="1" oninput="giftCertificateRefreshPreview()" />
+        </label>
+        <label class="gift-cert-field gift-cert-field-wide" for="gift-certificate-recipients">
+          <span>Получатели: Имя | email</span>
+          <textarea id="gift-certificate-recipients" rows="4" oninput="giftCertificateRefreshPreview()" placeholder="Профессор Лингман | badloar@gmail.com">Профессор Лингман | badloar@gmail.com</textarea>
+          <small>Имя обязательно и должно быть уникальным в пачке. Email необязателен до отправки.</small>
+        </label>
+      </div>
+      <div id="gift-certificate-preview" class="gift-cert-preview" role="status" aria-live="polite"></div>
+      <div class="gift-cert-actions">
+        <button type="button" id="gift-certificate-create-btn" class="gift-cert-btn gift-cert-btn-primary" onclick="createGiftCertificateBatch()" title="После подтверждения сервер создаст реальные одноразовые коды">Сгенерировать сертификаты</button>
+        <span id="gift-certificate-create-status" class="gift-cert-status" aria-live="polite"></span>
+      </div>
+    </section>
+
+    <section class="gift-cert-panel" aria-labelledby="gift-certificates-history-title">
+      <div class="gift-cert-panel-head">
+        <div>
+          <h3 id="gift-certificates-history-title" tabindex="-1">Все созданные сертификаты</h3>
+          <p>Имя и email сохраняются на сервере. Скачивание использует сохранённую запись и соответствующий ей оригинальный макет.</p>
+          <p class="gift-cert-sender">Отправитель: текущий production sender Phraseman (WEB_CHECKOUT_EMAIL_FROM через Resend)</p>
+        </div>
+        <span id="gift-certificates-count" class="gift-cert-count"></span>
+      </div>
+      <div id="gift-certificates-history" class="gift-cert-history" aria-live="polite">
+        <div class="gift-cert-empty">Открой раздел или нажми «Обновить историю».</div>
+      </div>
+    </section>
+
+    <details class="gift-cert-repair">
+      <summary>Опасные действия · заменить подтверждённый тестовый сертификат</summary>
+      <div class="gift-cert-repair-body">
+        <p>Только для точного неиспользованного кода и точной заметки ниже. Замена не отправляет письмо автоматически.</p>
+        <div class="gift-cert-form-grid">
+          <label class="gift-cert-field" for="gift-repair-old-code"><span>Старый код</span><input id="gift-repair-old-code" value="GIFT-TEST-FRNRYV23VS" readonly /></label>
+          <label class="gift-cert-field gift-cert-field-wide" for="gift-repair-old-note"><span>Точная заметка</span><textarea id="gift-repair-old-note" rows="2" readonly>Simulated gift purchase; no payment; requested 2026-07-29; recipient badloar@gmail.com</textarea></label>
+          <label class="gift-cert-field" for="gift-repair-name"><span>Имя получателя</span><input id="gift-repair-name" value="Профессор Лингман" /></label>
+          <label class="gift-cert-field" for="gift-repair-email"><span>Email получателя</span><input id="gift-repair-email" type="email" value="badloar@gmail.com" /></label>
+          <label class="gift-cert-field" for="gift-repair-from"><span>Подпись на сертификате</span><input id="gift-repair-from" value="Phraseman" /></label>
+          <label class="gift-cert-field gift-cert-field-wide" for="gift-repair-reason"><span>Причина</span><input id="gift-repair-reason" value="Replace the explicitly confirmed unused no-payment test certificate requested 2026-07-29" /></label>
+        </div>
+        <div class="gift-cert-actions">
+          <button type="button" id="gift-repair-btn" class="gift-cert-btn gift-cert-btn-danger" onclick="replaceVerifiedSyntheticGiftCertificate()" title="Отключить только точный старый код и подготовить новый годовой сертификат">Заменить точный тестовый код</button>
+          <span id="gift-repair-status" class="gift-cert-status" aria-live="polite"></span>
+        </div>
+      </div>
+    </details>
+  </main>
+</div>
+
+<div id="gift-certificate-personalization-modal" class="gift-cert-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="gift-personalization-title" aria-describedby="gift-personalization-desc" hidden>
+  <form class="gift-cert-modal" id="gift-personalization-form" novalidate>
+    <h3 id="gift-personalization-title">Оформить сертификат</h3>
+    <p id="gift-personalization-desc">Проверь, как сертификат будет выглядеть. Для отправки также нужен email получателя.</p>
+    <div class="gift-cert-mode-options" role="radiogroup" aria-label="Вид сертификата">
+      <label class="gift-cert-mode-option"><input type="radio" name="gift-certificate-personalization-mode" value="named" checked /> <span>Именной</span></label>
+      <label class="gift-cert-mode-option"><input type="radio" name="gift-certificate-personalization-mode" value="anonymous" /> <span>Анонимный</span></label>
+    </div>
+    <div id="gift-personalization-names" class="gift-cert-form-grid">
+      <label class="gift-cert-field" for="gift-personalization-recipient"><span>Кому</span><input id="gift-personalization-recipient" maxlength="60" autocomplete="off" /></label>
+      <label class="gift-cert-field" for="gift-personalization-sender"><span>От кого</span><input id="gift-personalization-sender" maxlength="60" autocomplete="off" /></label>
+    </div>
+    <label id="gift-personalization-email-field" class="gift-cert-field" for="gift-personalization-email" style="margin-top:14px"><span>Email получателя</span><input id="gift-personalization-email" type="email" maxlength="200" autocomplete="off" /></label>
+    <section id="gift-personalization-summary" class="gift-cert-send-summary" aria-label="Итоговые данные отправки" hidden>
+      <dl>
+        <dt>Получатель</dt><dd id="gift-personalization-summary-recipient"></dd>
+        <dt>Email</dt><dd id="gift-personalization-summary-email"></dd>
+        <dt>Оформление</dt><dd id="gift-personalization-summary-mode"></dd>
+      </dl>
+    </section>
+    <div id="gift-personalization-error" class="gift-cert-modal-error" role="alert" aria-live="assertive"></div>
+    <div class="gift-cert-modal-actions">
+      <button type="button" id="gift-personalization-cancel" class="gift-cert-btn gift-cert-btn-secondary" title="Закрыть без скачивания или отправки">Отмена</button>
+      <button type="submit" id="gift-personalization-primary" class="gift-cert-btn gift-cert-btn-primary" title="Сохранить оформление и продолжить">Продолжить</button>
+    </div>
+  </form>
+</div>
+
 <!-- SUBSCRIPTION CANCEL SURVEYS TAB -->
 <div id="tab-cancel-surveys" class="reports-tab">
   <div class="reports-toolbar" style="flex-wrap:wrap;gap:10px">
@@ -13110,6 +13316,7 @@
   import { getFirestore, collection, collectionGroup, getDocs as _fsGetDocs, getCountFromServer, addDoc, query, orderBy, where, limit, startAfter, startAt, endAt, deleteDoc, doc, updateDoc, getDoc as _fsGetDoc, setDoc, increment, runTransaction, writeBatch, deleteField, onSnapshot, documentId } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
   import { getAuth, onAuthStateChanged, signInWithPopup, signInWithRedirect, getRedirectResult, GoogleAuthProvider, signOut, setPersistence, browserLocalPersistence } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
   import { getFunctions, httpsCallable } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-functions.js';
+  import { initializeAppCheck, ReCaptchaEnterpriseProvider, getToken as getAppCheckToken } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app-check.js';
 
   async function resolveFirebaseConfig() {
     const injected = globalThis.PHR_MAN_FIREBASE_CONFIG;
@@ -13122,6 +13329,75 @@
   }
 
   const app = initializeApp(await resolveFirebaseConfig());
+
+  // Public reCAPTCHA Enterprise SCORE key registered in Google Cloud as
+  // "Phraseman Admin v2 App Check" for the production Firebase Hosting domains.
+  // This is the provider site key, never the reCAPTCHA secret.
+  const ADMIN_APP_CHECK_ENTERPRISE_SITE_KEY = '6LfteFAtAAAAAKa9jvjgCAeZjnN8je2BZZJlf2OR';
+  const ADMIN_APP_CHECK_UNAVAILABLE_MESSAGE = 'Защита App Check недоступна. Обновите страницу и повторите действие — запрос не отправлен.';
+  let _adminAppCheck = null;
+  let _adminAppCheckSetupError = null;
+  let _adminAppCheckReadyPromise = null;
+
+  try {
+    _adminAppCheck = initializeAppCheck(app, {
+      provider: new ReCaptchaEnterpriseProvider(ADMIN_APP_CHECK_ENTERPRISE_SITE_KEY),
+      isTokenAutoRefreshEnabled: true,
+    });
+  } catch (error) {
+    // Authentication and read-only admin diagnostics must remain available, but
+    // protected gift operations below stay fail-closed until App Check recovers.
+    _adminAppCheckSetupError = error;
+    console.error('admin App Check initialization failed', error);
+  }
+
+  async function requireAdminAppCheckForGiftCertificates() {
+    if (!_adminAppCheck) {
+      console.error('admin App Check unavailable', _adminAppCheckSetupError);
+      throw new Error(ADMIN_APP_CHECK_UNAVAILABLE_MESSAGE);
+    }
+    if (!_adminAppCheckReadyPromise) {
+      _adminAppCheckReadyPromise = getAppCheckToken(_adminAppCheck, false)
+        .then((result) => {
+          if (!result || typeof result.token !== 'string' || !result.token.trim()) {
+            throw new Error('admin_app_check_empty_token');
+          }
+          return result.token;
+        })
+        .catch((error) => {
+          _adminAppCheckReadyPromise = null;
+          console.error('admin App Check token unavailable', error);
+          throw new Error(ADMIN_APP_CHECK_UNAVAILABLE_MESSAGE);
+        });
+    }
+    return _adminAppCheckReadyPromise;
+  }
+
+  function createAppCheckProtectedGiftCallable(name) {
+    return async (data) => {
+      const appCheckToken = await requireAdminAppCheckForGiftCertificates();
+      const idToken = await auth.currentUser?.getIdToken();
+      const projectId = String(app.options.projectId || '');
+      if (!idToken || !/^[a-z0-9-]+$/.test(projectId)) {
+        throw new Error('Войдите в админку заново — запрос не отправлен.');
+      }
+      const response = await fetch(`https://us-central1-${projectId}.cloudfunctions.net/${encodeURIComponent(name)}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${idToken}`,
+          'X-Firebase-AppCheck': appCheckToken,
+        },
+        body: JSON.stringify({ data }),
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || !payload || !Object.prototype.hasOwnProperty.call(payload, 'data')) {
+        throw new Error(payload?.error?.message || `Сервер отклонил запрос (${response.status}).`);
+      }
+      return { data: payload.data };
+    };
+  }
+
   const db = getFirestore(app);
   const auth = getAuth(app);
 
@@ -13441,7 +13717,7 @@
   }
 
   const ADMIN_DEFAULT_TAB = 'control-panel';
-  const ADMIN_TAB_KEYS = ['control-panel','onboarding-screens','onboarding-sources','safety-flags','age-consent','compliance-radar','daily-digest','gmail-support','overview','mod-queue','ideas','analytics','openai-budget','app-health','users','testers','reports','emails','website-inbox','user-reports','explain-reports','explain-cache','compass','ban-list','premium','vip','plus-radar','promo-codes','cancel-surveys','surveys','review-promo','referrals','app-messages','helpers-board','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','french-quizzes','push-notify','clubs','tournaments','arena-ranks','arena-live','arena-bets','arena-rooms','archive','audit','ops-log','remote-config','paywall-ab','v2-generator','alerts'];
+  const ADMIN_TAB_KEYS = ['control-panel','onboarding-screens','onboarding-sources','safety-flags','age-consent','compliance-radar','daily-digest','gmail-support','overview','mod-queue','ideas','analytics','openai-budget','app-health','users','testers','reports','emails','website-inbox','user-reports','explain-reports','explain-cache','compass','ban-list','premium','vip','plus-radar','promo-codes','gift-certificates','cancel-surveys','surveys','review-promo','referrals','app-messages','helpers-board','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','french-quizzes','push-notify','clubs','tournaments','arena-ranks','arena-live','arena-bets','arena-rooms','archive','audit','ops-log','remote-config','paywall-ab','v2-generator','alerts'];
 
   function isAdminSwitchableTab(tab) {
     return ADMIN_TAB_KEYS.includes(tab) && tab !== 'testers';
@@ -18058,6 +18334,10 @@
   // bare-specifier problem the ESM zoom build has ('hammerjs', 'chart.js/helpers'),
   // and <script src> is covered by the deployed CSP script-src allowing unpkg.
   async function overviewTrendEnsureLib() {
+    if (tab === 'gift-certificates' && typeof window.loadGiftCertificates === 'function') {
+      window.giftCertificateRefreshPreview?.();
+      void window.loadGiftCertificates();
+    }
     if (_overviewTrend.chartLib) return _overviewTrend.chartLib;
     if (_overviewTrend.libLoading) return _overviewTrend.libLoading;
     _overviewTrend.libLoading = (async () => {
@@ -19210,6 +19490,7 @@
     tabsBox.dataset.navCustom = custom ? 'true' : 'false';
     tabsBox.dataset.navPinned = layout.pinned.length ? 'true' : 'false';
 
+    'gift-certificates': 'Подарочные сертификаты',
     const tabEls = Array.from(tabsBox.querySelectorAll(':scope > .tab'));
     const byKey = new Map();
     tabEls.forEach((tabEl) => {
@@ -19294,6 +19575,7 @@
     const pinnedSet = new Set(layout.pinned);
     const hiddenSet = new Set(layout.hidden);
     tabsBox.querySelectorAll(':scope > .tab').forEach((tabEl) => {
+    'gift-certificates': 'ticket',
       const key = tabEl.dataset.navKey || adminNavKeyFromElement(tabEl);
       if (!key) return;
       tabEl.dataset.navKey = key;
@@ -19363,6 +19645,7 @@
       btn.textContent = _adminNavEditMode ? '✓ Готово' : '✥ Порядок';
     }
     if (!_adminNavEditMode) adminNavClearGrab();
+    'gift-certificates': 'revenue',
     if (tabsBox) adminNavEnsureControls(tabsBox);
     adminNavSetStatus(_adminNavEditMode ? 'Правка порядка включена.' : '');
   };
@@ -34745,6 +35028,1088 @@
     const today = dpTodayKey();
     const batch = writeBatch(db);
     queue.forEach((row, idx) => {
+  // -- GIFT CERTIFICATES: all codes and metadata stay server-authoritative. --
+  const GIFT_CERTIFICATE_ASSETS = Object.freeze({
+    monthly: 'https://knowlyapps.com/assets/gift-certificates/gift-certificate-monthly.webp',
+    yearly: 'https://knowlyapps.com/assets/gift-certificates/gift-certificate-yearly.webp',
+    lifetime: 'https://knowlyapps.com/assets/gift-certificates/gift-certificate-lifetime.webp',
+  });
+  const GIFT_CERTIFICATE_PRODUCT_LABELS = Object.freeze({
+    monthly: 'Месяц Phraseman Plus',
+    yearly: 'Год Phraseman Plus',
+    lifetime: 'Phraseman Pro — навсегда',
+  });
+  let _fnAdminCreateGiftCertificateBatch = null;
+  let _fnAdminListGiftCertificates = null;
+  let _fnAdminUpdateGiftCertificateRecipient = null;
+  let _fnAdminUpdateGiftCertificatePersonalization = null;
+  let _fnAdminGetGiftCertificateDownload = null;
+  let _fnAdminReplaceSyntheticGiftCertificate = null;
+  let _fnAdminSendPreparedGiftCertificate = null;
+  let _giftCertificateBusy = false;
+  let _giftCertificatePersonalizationBusy = false;
+  let _giftCertificatePersonalizationResolve = null;
+  let _giftCertificatePersonalizationPreviousFocus = null;
+  let _giftCertificatePersonalizationFocusDescriptor = null;
+  let _giftCertificatePendingBatch = null;
+  const GIFT_CERTIFICATE_PENDING_BATCH_STORAGE_PREFIX = 'phraseman_admin_gift_certificate_pending_batch_v1';
+  const _giftCertificateRecords = new Map();
+
+  function giftCertificateCreateBusyGuard() {
+    let busy = false;
+    return {
+      tryEnter() {
+        if (busy) return false;
+        busy = true;
+        return true;
+      },
+      leave() { busy = false; },
+    };
+  }
+
+  async function giftCertificateRunAction(certificateId, action, dependencies) {
+    if (!dependencies.guard.tryEnter()) return { status: 'busy' };
+    try {
+      let personalization = await dependencies.openModal(certificateId, action);
+      if (!personalization) return { status: 'cancelled' };
+      if (dependencies.setBusy) await dependencies.setBusy(true);
+      let record;
+      for (;;) {
+        try {
+          record = await dependencies.persist(certificateId, personalization);
+          if (dependencies.afterPersist) await dependencies.afterPersist(record);
+          break;
+        } catch (error) {
+          if (action !== 'send' || !dependencies.fail || !dependencies.retryPersonalization) throw error;
+          if (dependencies.setBusy) await dependencies.setBusy(false);
+          await dependencies.fail(error);
+          const retryPersonalization = await dependencies.retryPersonalization();
+          if (!retryPersonalization) {
+            if (dependencies.cancel) await dependencies.cancel();
+            return { status: 'cancelled' };
+          }
+          if (typeof retryPersonalization === 'object') personalization = retryPersonalization;
+          if (dependencies.setBusy) await dependencies.setBusy(true);
+        }
+      }
+      if (action === 'send' && dependencies.showSummary && dependencies.confirm) {
+        await dependencies.showSummary(record);
+        if (dependencies.setBusy) await dependencies.setBusy(false);
+        const confirmed = await dependencies.confirm(record);
+        if (!confirmed) {
+          if (dependencies.cancel) await dependencies.cancel();
+          return { status: 'cancelled' };
+        }
+        if (dependencies.setBusy) await dependencies.setBusy(true);
+      }
+      for (;;) {
+        try {
+          await dependencies.execute(record);
+          if (dependencies.complete) await dependencies.complete(record);
+          return { status: 'completed', record };
+        } catch (error) {
+          if (action !== 'send' || !dependencies.fail || !dependencies.confirm) throw error;
+          if (dependencies.setBusy) await dependencies.setBusy(false);
+          await dependencies.fail(error, record);
+          const retry = await dependencies.confirm(record);
+          if (!retry) {
+            if (dependencies.cancel) await dependencies.cancel();
+            return { status: 'cancelled' };
+          }
+          if (dependencies.setBusy) await dependencies.setBusy(true);
+        }
+      }
+    } finally {
+      if (dependencies.setBusy) await dependencies.setBusy(false);
+      dependencies.guard.leave();
+    }
+  }
+
+  const _giftCertificateActionGuard = giftCertificateCreateBusyGuard();
+
+  function giftCertificatePendingBatchStorageKey() {
+    if (!auth || !auth.currentUser || !auth.currentUser.uid) return '';
+    const adminUid = String(auth.currentUser.uid).trim();
+    return adminUid ? `${GIFT_CERTIFICATE_PENDING_BATCH_STORAGE_PREFIX}:${adminUid}` : '';
+  }
+
+  function giftCertificateFreezePendingBatch(raw, expectedOwnerUid) {
+    if (!raw || typeof raw !== 'object') throw new Error('Сохранённая операция создания повреждена.');
+    const ownerUid = String(raw.ownerUid || '');
+    const operationId = String(raw.operationId || '');
+    const request = raw.request;
+    if (!expectedOwnerUid || ownerUid !== expectedOwnerUid) throw new Error('Сохранённая операция принадлежит другому администратору.');
+    if (!/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/.test(operationId)) {
+      throw new Error('Сохранённая операция содержит некорректный идентификатор.');
+    }
+    if (!request || typeof request !== 'object'
+      || !Object.prototype.hasOwnProperty.call(GIFT_CERTIFICATE_ASSETS, request.product)
+      || !Number.isInteger(request.count) || request.count < 1 || request.count > 200
+      || !Array.isArray(request.recipientNames) || request.recipientNames.length !== request.count
+      || !Array.isArray(request.recipientEmails) || request.recipientEmails.length !== request.count
+      || request.source !== 'admin_gift_certificates'
+      || request.authorization !== 'CREATE_GIFT_CERTIFICATES') {
+      throw new Error('Сохранённый состав пачки не прошёл проверку.');
+    }
+    const recipientNames = request.recipientNames.map((value) => String(value || '').trim());
+    const recipientEmails = request.recipientEmails.map((value) => String(value || '').trim().toLowerCase());
+    if (recipientNames.some((value) => !value || value.length > 60)
+      || recipientEmails.some((value) => value && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value))) {
+      throw new Error('Сохранённые получатели не прошли проверку.');
+    }
+    return Object.freeze({
+      ownerUid,
+      operationId,
+      request: Object.freeze({
+        product: request.product,
+        count: request.count,
+        recipientNames: Object.freeze(recipientNames),
+        recipientEmails: Object.freeze(recipientEmails),
+        source: 'admin_gift_certificates',
+        authorization: 'CREATE_GIFT_CERTIFICATES',
+      }),
+    });
+  }
+
+  function giftCertificatePendingBatchForCurrentAdmin() {
+    const storageKey = giftCertificatePendingBatchStorageKey();
+    if (!storageKey) {
+      _giftCertificatePendingBatch = null;
+      return null;
+    }
+    const ownerUid = String(auth.currentUser.uid);
+    if (_giftCertificatePendingBatch?.ownerUid === ownerUid) return _giftCertificatePendingBatch;
+    _giftCertificatePendingBatch = null;
+    const stored = window.localStorage ? localStorage.getItem(storageKey) : '';
+    if (!stored) return null;
+    try {
+      _giftCertificatePendingBatch = giftCertificateFreezePendingBatch(JSON.parse(stored), ownerUid);
+      return _giftCertificatePendingBatch;
+    } catch (error) {
+      throw new Error(`Незавершённая операция не восстановлена: ${error?.message || String(error)}`);
+    }
+  }
+
+  function giftCertificatePersistPendingBatch(pendingBatch) {
+    const storageKey = giftCertificatePendingBatchStorageKey();
+    if (!storageKey) throw new Error('Войди в аккаунт администратора перед созданием сертификатов.');
+    const ownerUid = String(auth.currentUser.uid);
+    if (pendingBatch?.ownerUid !== ownerUid) throw new Error('Операция не принадлежит текущему администратору.');
+    if (!window.localStorage) throw new Error('Браузер не поддерживает безопасное локальное сохранение операции.');
+    localStorage.setItem(storageKey, JSON.stringify(pendingBatch));
+  }
+
+  function giftCertificateClearPendingBatch(reason) {
+    if (!['verified_success', 'explicit_cancellation'].includes(reason)) {
+      throw new Error('Нельзя очистить незавершённую операцию без подтверждённого результата или явной отмены.');
+    }
+    const storageKey = giftCertificatePendingBatchStorageKey();
+    if (!storageKey) throw new Error('Не удалось определить аккаунт администратора для очистки операции.');
+    if (window.localStorage) localStorage.removeItem(storageKey);
+    _giftCertificatePendingBatch = null;
+  }
+
+  function giftCertificateText(id) {
+    return String(document.getElementById(id)?.value || '').trim();
+  }
+
+  function giftCertificateSetStatus(id, message, isError) {
+    const element = document.getElementById(id);
+    if (!element) return;
+    element.textContent = String(message || '');
+    element.style.color = isError ? '#fca5a5' : '#d9f99d';
+  }
+
+  function giftCertificateReadForm() {
+    const product = giftCertificateText('gift-certificate-product');
+    if (!Object.prototype.hasOwnProperty.call(GIFT_CERTIFICATE_ASSETS, product)) throw new Error('Выбери тип сертификата.');
+    const count = Number(giftCertificateText('gift-certificate-count'));
+    if (!Number.isInteger(count) || count < 1 || count > 200) throw new Error('Количество должно быть от 1 до 200.');
+    const lines = String(document.getElementById('gift-certificate-recipients')?.value || '')
+      .split(/\r?\n/).map((line) => line.trim()).filter(Boolean);
+    if (lines.length !== count) throw new Error(`Для ${count} сертификатов нужно ровно ${count} строк получателей.`);
+    const recipientNames = [];
+    const recipientEmails = [];
+    lines.forEach((line) => {
+      const parts = line.split('|');
+      const name = String(parts.shift() || '').trim();
+      const email = parts.join('|').trim().toLowerCase();
+      if (!name) throw new Error('В каждой строке нужно имя получателя.');
+      if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) throw new Error(`Проверь email для «${name}».`);
+      recipientNames.push(name);
+      recipientEmails.push(email);
+    });
+    return { product, count, recipientNames, recipientEmails };
+  }
+
+  function giftCertificateCreatePendingBatch(form) {
+    if (!globalThis.crypto || typeof crypto.randomUUID !== 'function') {
+      throw new Error('Браузер не поддерживает безопасный идентификатор операции. Обнови страницу в современном браузере.');
+    }
+    const operationId = crypto.randomUUID().toLowerCase();
+    if (!/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/.test(operationId)) {
+      throw new Error('Браузер вернул некорректный идентификатор операции.');
+    }
+    const storageKey = giftCertificatePendingBatchStorageKey();
+    if (!storageKey) throw new Error('Войди в аккаунт администратора перед созданием сертификатов.');
+    return Object.freeze({
+      ownerUid: String(auth.currentUser.uid),
+      operationId,
+      request: Object.freeze({
+        product: form.product,
+        count: form.count,
+        recipientNames: Object.freeze([...form.recipientNames]),
+        recipientEmails: Object.freeze([...form.recipientEmails]),
+        source: 'admin_gift_certificates',
+        authorization: 'CREATE_GIFT_CERTIFICATES',
+      }),
+    });
+  }
+
+  window.giftCertificateRefreshPreview = function() {
+    const preview = document.getElementById('gift-certificate-preview');
+    if (!preview) return;
+    try {
+      const pendingBatch = giftCertificatePendingBatchForCurrentAdmin();
+      const form = pendingBatch?.request || giftCertificateReadForm();
+      const withEmail = form.recipientEmails.filter(Boolean).length;
+      const prefix = pendingBatch ? 'Ожидает безопасного повтора' : 'Будет создано';
+      preview.textContent = `${prefix}: ${form.count} · ${GIFT_CERTIFICATE_PRODUCT_LABELS[form.product]} · одноразовые коды · срок активации 365 дней · email указан у ${withEmail}.`;
+      preview.style.borderColor = '#3b4723';
+      preview.style.color = '#d9f99d';
+    } catch (error) {
+      preview.textContent = error?.message || String(error);
+      preview.style.borderColor = '#7f1d1d';
+      preview.style.color = '#fecaca';
+    }
+  };
+
+  function giftCertificateSetBusy(value) {
+    _giftCertificateBusy = Boolean(value);
+    ['gift-certificate-create-btn', 'gift-repair-btn'].forEach((id) => {
+      const button = document.getElementById(id);
+      if (button) button.disabled = _giftCertificateBusy;
+    });
+  }
+
+  window.createGiftCertificateBatch = async function() {
+    if (_giftCertificateBusy) return;
+    try {
+      const restoredPendingBatch = giftCertificatePendingBatchForCurrentAdmin();
+      const isRetry = Boolean(restoredPendingBatch);
+      const form = restoredPendingBatch?.request || giftCertificateReadForm();
+      const pendingBatch = giftCertificatePendingBatchForCurrentAdmin() || giftCertificateCreatePendingBatch(form);
+      _giftCertificatePendingBatch = pendingBatch;
+      giftCertificatePersistPendingBatch(pendingBatch);
+      giftCertificateSetBusy(true);
+      const confirmed = await showConfirmModal({
+        title: isRetry ? 'Повторить незавершённую операцию?' : 'Создать подарочные сертификаты?',
+        desc: `${form.count} шт. · ${GIFT_CERTIFICATE_PRODUCT_LABELS[form.product]}\n${isRetry ? 'Будет повторно отправлен тот же идентификатор и тот же состав пачки; дубликаты не создадутся.' : 'Сервер создаст реальные одноразовые коды со сроком активации 365 дней.'}`,
+        confirmLabel: isRetry ? 'Повторить безопасно' : 'Создать',
+      });
+      if (!confirmed) {
+        giftCertificateClearPendingBatch('explicit_cancellation');
+        giftCertificateSetStatus('gift-certificate-create-status', 'Создание сертификатов отменено.', false);
+        return;
+      }
+      giftCertificateSetStatus('gift-certificate-create-status', isRetry ? 'Повторяю ту же операцию без создания дублей…' : 'Сервер создаёт и сохраняет сертификаты…', false);
+      if (!_fnAdminCreateGiftCertificateBatch) {
+        _fnAdminCreateGiftCertificateBatch = createAppCheckProtectedGiftCallable('adminCreateGiftCertificateBatch');
+      }
+      const response = await _fnAdminCreateGiftCertificateBatch({
+        ...pendingBatch.request,
+        operationId: pendingBatch.operationId,
+      });
+      if (response.data?.ok !== true
+        || response.data?.operationId !== pendingBatch.operationId
+        || !Array.isArray(response.data?.certificates)
+        || response.data.certificates.length !== pendingBatch.request.count) {
+        throw new Error('Сервер не подтвердил завершение операции. Безопасный идентификатор сохранён для повтора.');
+      }
+      giftCertificateClearPendingBatch('verified_success');
+      const created = response.data.certificates.length;
+      giftCertificateSetStatus('gift-certificate-create-status', `Создано и сохранено: ${created}.`, false);
+      await window.loadGiftCertificates();
+    } catch (error) {
+      const retryHint = _giftCertificatePendingBatch ? ' Повторная отправка использует тот же состав пачки и тот же идентификатор; отмена в окне подтверждения очистит операцию.' : '';
+      giftCertificateSetStatus('gift-certificate-create-status', `Ошибка: ${error?.message || String(error)}${retryHint}`, true);
+    } finally {
+      giftCertificateSetBusy(false);
+      window.giftCertificateRefreshPreview();
+    }
+  };
+
+  function giftCertificateDate(ms) {
+    const value = Number(ms || 0);
+    if (!(value > 0)) return '—';
+    try { return new Intl.DateTimeFormat('ru-RU', { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(value)); }
+    catch (_) { return new Date(value).toISOString().slice(0, 16).replace('T', ' '); }
+  }
+
+  function giftCertificatePersonalizationIsLocked(record) {
+    return ['sent', 'sending', 'delivery_unknown', 'reconciliation_required'].includes(String(record.status || ''));
+  }
+
+  function giftCertificateActivationBlocksActions(record) {
+    return record.activationStatus !== 'available' || Number(record.expiresAtMs || 0) <= Date.now();
+  }
+
+  function giftCertificateAssertAsset(record) {
+    if (!record) throw new Error('Сохранённая запись сертификата отсутствует.');
+    const expected = GIFT_CERTIFICATE_ASSETS[record.product];
+    if (!expected || record.assetUrl !== expected) throw new Error('Серверная запись не совпадает с макетом выбранного тарифа.');
+    if (!record.activationCode || record.activationCode !== record.certificateId) throw new Error('Код не совпадает с ID сохранённого сертификата.');
+    return expected;
+  }
+
+  function giftCertificateDisplayPersonalization(input) {
+    const personalizationMode = input?.personalizationMode === 'anonymous' ? 'anonymous' : 'named';
+    const savedRecipientName = String(input?.savedRecipientName ?? input?.displayRecipientName ?? input?.recipientName ?? '').trim();
+    const savedSenderName = String(input?.savedSenderName ?? input?.displaySenderName ?? input?.senderName ?? 'Phraseman').trim() || 'Phraseman';
+    const showPersonalization = personalizationMode === 'named';
+    return {
+      showPersonalization,
+      displayRecipientName: showPersonalization ? savedRecipientName : '',
+      displaySenderName: showPersonalization ? savedSenderName : '',
+    };
+  }
+
+  function giftCertificateValidatePersonalizationPayload(input) {
+    const action = input?.action === 'send' ? 'send' : 'download';
+    const personalizationMode = input?.personalizationMode === 'anonymous' ? 'anonymous' : 'named';
+    let displayRecipientName = String(input?.displayRecipientName || '').trim();
+    let displaySenderName = String(input?.displaySenderName || '').trim();
+    if (personalizationMode === 'anonymous') {
+      displayRecipientName ||= String(input?.savedRecipientName || '').trim();
+      displaySenderName ||= String(input?.savedSenderName || '').trim() || 'Phraseman';
+    } else if (!displayRecipientName || !displaySenderName) {
+      throw new Error('Для именного сертификата заполни оба поля: «Кому» и «От кого».');
+    }
+    if (Array.from(displayRecipientName).length > 60 || Array.from(displaySenderName).length > 60) {
+      throw new Error('Каждое имя должно быть не длиннее 60 символов.');
+    }
+    const recipientEmail = String(input?.recipientEmail || '').trim().toLowerCase();
+    if (action === 'send' && !recipientEmail) throw new Error('Для отправки введи email получателя.');
+    if (recipientEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(recipientEmail)) {
+      throw new Error('Проверь email получателя.');
+    }
+    return { personalizationMode, displayRecipientName, displaySenderName, recipientEmail };
+  }
+
+  function giftCertificateHandleModalKey(event, focusable, activeElement, cancel) {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      cancel();
+      return 'cancelled';
+    }
+    if (event.key !== 'Tab' || !focusable.length) return 'ignored';
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (event.shiftKey && activeElement === first) {
+      event.preventDefault();
+      last.focus();
+      return 'wrapped-backward';
+    }
+    if (!event.shiftKey && activeElement === last) {
+      event.preventDefault();
+      first.focus();
+      return 'wrapped-forward';
+    }
+    return 'unchanged';
+  }
+
+  function giftCertificateRowHtml(record) {
+    const certificateId = String(record.certificateId || '');
+    const activationBlocked = giftCertificateActivationBlocksActions(record);
+    const personalizationLocked = giftCertificatePersonalizationIsLocked(record);
+    const assetUrl = GIFT_CERTIFICATE_ASSETS[record.product] === record.assetUrl ? record.assetUrl : '';
+    const displayPersonalization = giftCertificateDisplayPersonalization(record);
+    const deliveryLabels = {
+      sent: 'Отправлен', sending: 'Отправляется', delivery_unknown: 'Статус доставки неизвестен',
+      reconciliation_required: 'Нужна сверка доставки', failed: 'Ошибка доставки', prepared: 'Не отправлен', generated: 'Не отправлен',
+    };
+    const deliveryLabel = deliveryLabels[String(record.status || '')] || 'Не отправлен';
+    const activationDanger = ['disabled', 'expired', 'invalid'].includes(String(record.activationStatus || ''));
+    const activationDetail = record.activationStatus === 'redeemed'
+      ? (Number(record.lastRedeemedAtMs || 0) > 0 ? `Дата активации: ${giftCertificateDate(record.lastRedeemedAtMs)}` : 'Дата активации не записана')
+      : '';
+    const personalizationHtml = displayPersonalization.showPersonalization
+      ? `<div class="gift-cert-visual-recipient">Для: ${escapeHtml(displayPersonalization.displayRecipientName)}</div><div class="gift-cert-visual-sender">от ${escapeHtml(displayPersonalization.displaySenderName)}</div>`
+      : '';
+    return `<article class="gift-cert-row" id="gift-cert-row-${escapeHtml(certificateId)}">
+      <div class="gift-cert-visual ${record.product === 'lifetime' ? 'is-lifetime' : ''}" style="background-image:url('${escapeHtml(assetUrl)}')" role="img" aria-label="Визуальный макет сертификата ${escapeHtml(record.activationCode || certificateId)}">
+        <div class="gift-cert-visual-head"><div class="gift-cert-visual-kicker">ПОДАРОЧНЫЙ СЕРТИФИКАТ</div><div class="gift-cert-visual-brand">Phraseman</div></div>
+        <div class="gift-cert-visual-panel">${personalizationHtml}<div class="gift-cert-visual-product">${escapeHtml(record.productTitle || GIFT_CERTIFICATE_PRODUCT_LABELS[record.product] || '')}</div><div class="gift-cert-visual-phrase">${escapeHtml(record.giftPhrase || '')}</div><div class="gift-cert-visual-code">${escapeHtml(record.activationCode || certificateId)}</div></div>
+      </div>
+      <div class="gift-cert-row-meta">
+        <div class="gift-cert-meta"><div class="gift-cert-code">${escapeHtml(record.activationCode || certificateId)}</div><div class="gift-cert-submeta">${escapeHtml(GIFT_CERTIFICATE_PRODUCT_LABELS[record.product] || record.product || '—')}<br>Создан: ${escapeHtml(giftCertificateDate(record.createdAtMs))}<br>Истекает: ${escapeHtml(giftCertificateDate(record.expiresAtMs))}</div></div>
+        <div class="gift-cert-badges"><span class="gift-cert-badge ${activationDanger ? 'is-danger' : ''}" data-gift-activation-status>${escapeHtml(record.activationStatusLabel || 'Недоступен')}</span><span class="gift-cert-badge is-muted" data-gift-delivery-status>${escapeHtml(deliveryLabel)}</span></div>
+        ${activationDetail ? `<div class="gift-cert-activation-detail">${escapeHtml(activationDetail)}</div>` : ''}
+      </div>
+      <div class="gift-cert-row-actions">
+        <button type="button" class="gift-cert-btn gift-cert-btn-secondary" data-gift-certificate-id="${escapeHtml(certificateId)}" data-gift-certificate-action="download" onclick="downloadGiftCertificate('${escapeHtml(certificateId)}')" title="Настроить оформление и скачать этот сертификат" ${activationBlocked ? 'disabled' : ''}>Скачать</button>
+        <button type="button" class="gift-cert-btn gift-cert-btn-primary" data-gift-certificate-id="${escapeHtml(certificateId)}" data-gift-certificate-action="send" onclick="sendGiftCertificateEmail('${escapeHtml(certificateId)}')" title="Настроить оформление и отправить через production Resend sender" ${activationBlocked || personalizationLocked ? 'disabled' : ''}>Отправить на email</button>
+        <span class="gift-cert-status" data-gift-row-status aria-live="polite"></span>
+      </div>
+    </article>`;
+  }
+
+  function giftCertificateRenderHistory(records) {
+    const host = document.getElementById('gift-certificates-history');
+    const count = document.getElementById('gift-certificates-count');
+    if (!host) return;
+    if (count) count.textContent = `Всего: ${records.length}`;
+    host.innerHTML = records.length
+      ? records.map(giftCertificateRowHtml).join('')
+      : '<div class="gift-cert-empty">Сертификатов пока нет.</div>';
+  }
+
+  window.loadGiftCertificates = async function() {
+    const host = document.getElementById('gift-certificates-history');
+    if (!host) return;
+    window.giftCertificateRefreshPreview();
+    host.innerHTML = '<div class="gift-cert-empty">Загружаю всю историю…</div>';
+    try {
+      if (!_fnAdminListGiftCertificates) {
+        _fnAdminListGiftCertificates = createAppCheckProtectedGiftCallable('adminListGiftCertificates');
+      }
+      const all = [];
+      const seen = new Set();
+      let response = await _fnAdminListGiftCertificates({ cursor: null });
+      const appendPage = (page) => {
+        (Array.isArray(page?.certificates) ? page.certificates : []).forEach((record) => {
+          const id = String(record?.certificateId || '');
+          if (id && !seen.has(id)) { seen.add(id); all.push(record); }
+        });
+      };
+      appendPage(response.data);
+      let nextCursor = response.data?.nextCursor || null;
+      const cursors = new Set();
+      while (nextCursor) {
+        const key = `${nextCursor.createdAtMs}:${nextCursor.certificateId}`;
+        if (cursors.has(key) || cursors.size >= 1000) throw new Error('История вернула повторяющийся курсор.');
+        cursors.add(key);
+        response = await _fnAdminListGiftCertificates({ cursor: nextCursor });
+        appendPage(response.data);
+        nextCursor = response.data?.nextCursor || null;
+      }
+      _giftCertificateRecords.clear();
+      all.forEach((record) => _giftCertificateRecords.set(String(record.certificateId), record));
+      giftCertificateRenderHistory(all);
+    } catch (error) {
+      host.innerHTML = `<div class="gift-cert-empty" style="color:#fca5a5">Ошибка истории: ${escapeHtml(error?.message || String(error))}</div>`;
+    }
+  };
+
+  function giftCertificateRowStatus(certificateId, message, isError) {
+    const row = document.getElementById(`gift-cert-row-${certificateId}`);
+    const status = row?.querySelector('[data-gift-row-status]');
+    if (!status) return;
+    status.textContent = String(message || '');
+    status.style.color = isError ? '#fca5a5' : '#d9f99d';
+  }
+
+  function giftCertificateRestorePersonalizationFocus(previousFocus, descriptor, rootDocument = document) {
+    if (previousFocus?.isConnected === true && typeof previousFocus.focus === 'function') {
+      try {
+        previousFocus.focus();
+        return 'original';
+      } catch (_) {
+        // Continue to the stable rerendered trigger below.
+      }
+    }
+    const certificateId = String(descriptor?.certificateId || '');
+    const action = descriptor?.action === 'download' || descriptor?.action === 'send' ? descriptor.action : '';
+    if (/^GIFT-[A-HJ-NP-Z2-9]{10}$/.test(certificateId) && action) {
+      const row = rootDocument?.getElementById?.(`gift-cert-row-${certificateId}`);
+      const replacement = row?.querySelector?.(`[data-gift-certificate-action="${action}"]`);
+      if (replacement?.disabled !== true
+        && replacement?.isConnected !== false
+        && replacement?.hidden !== true
+        && typeof replacement?.focus === 'function') {
+        replacement.focus();
+        return 'replacement';
+      }
+    }
+    const fallback = rootDocument?.getElementById?.('gift-certificates-history-title')
+      || rootDocument?.getElementById?.('gift-certificates-history');
+    if (typeof fallback?.focus === 'function') {
+      fallback.focus();
+      return 'fallback';
+    }
+    return 'none';
+  }
+
+  function giftCertificateClosePersonalizationModal(result) {
+    const modal = document.getElementById('gift-certificate-personalization-modal');
+    if (!modal) return;
+    modal.classList.remove('is-open');
+    modal.hidden = true;
+    const resolve = _giftCertificatePersonalizationResolve;
+    _giftCertificatePersonalizationResolve = null;
+    _giftCertificatePersonalizationBusy = false;
+    giftCertificateRestorePersonalizationFocus(
+      _giftCertificatePersonalizationPreviousFocus,
+      _giftCertificatePersonalizationFocusDescriptor,
+    );
+    _giftCertificatePersonalizationPreviousFocus = null;
+    _giftCertificatePersonalizationFocusDescriptor = null;
+    if (resolve) resolve(result || null);
+  }
+
+  function giftCertificateSetPersonalizationBusy(nextBusy) {
+    const modal = document.getElementById('gift-certificate-personalization-modal');
+    const form = document.getElementById('gift-personalization-form');
+    _giftCertificatePersonalizationBusy = nextBusy === true;
+    if (!modal || !form) return;
+    const locked = form.dataset.locked === 'true';
+    modal.querySelectorAll('input').forEach((input) => { input.disabled = _giftCertificatePersonalizationBusy || locked; });
+    const primary = document.getElementById('gift-personalization-primary');
+    const cancel = document.getElementById('gift-personalization-cancel');
+    if (primary) primary.disabled = _giftCertificatePersonalizationBusy;
+    if (cancel) cancel.disabled = _giftCertificatePersonalizationBusy;
+    form.setAttribute('aria-busy', _giftCertificatePersonalizationBusy ? 'true' : 'false');
+  }
+
+  function giftCertificateShowSendSummary(record) {
+    const form = document.getElementById('gift-personalization-form');
+    const modal = document.getElementById('gift-certificate-personalization-modal');
+    if (!form || !modal || !modal.classList.contains('is-open')) throw new Error('Окно подтверждения отправки закрыто.');
+    form.dataset.phase = 'summary';
+    const named = record.personalizationMode !== 'anonymous';
+    const recipient = named ? String(record.savedRecipientName || record.recipientName || '') : 'Анонимный сертификат';
+    document.getElementById('gift-personalization-summary-recipient').textContent = recipient;
+    document.getElementById('gift-personalization-summary-email').textContent = String(record.recipientEmail || '');
+    document.getElementById('gift-personalization-summary-mode').textContent = named ? 'Именной' : 'Анонимный';
+    modal.querySelector('.gift-cert-mode-options').hidden = true;
+    document.getElementById('gift-personalization-names').hidden = true;
+    document.getElementById('gift-personalization-email-field').hidden = true;
+    document.getElementById('gift-personalization-summary').hidden = false;
+    document.getElementById('gift-personalization-title').textContent = 'Подтвердите отправку';
+    document.getElementById('gift-personalization-desc').textContent = 'Проверьте итоговые данные. Следующая кнопка отправит письмо получателю и зафиксирует оформление.';
+    document.getElementById('gift-personalization-primary').textContent = 'Отправить сейчас';
+    document.getElementById('gift-personalization-error').textContent = '';
+  }
+
+  function giftCertificateAwaitSendConfirmation() {
+    const modal = document.getElementById('gift-certificate-personalization-modal');
+    if (!modal || !modal.classList.contains('is-open') || _giftCertificatePersonalizationResolve) {
+      return Promise.reject(new Error('Подтверждение отправки недоступно.'));
+    }
+    return new Promise((resolve) => { _giftCertificatePersonalizationResolve = resolve; });
+  }
+
+  function giftCertificateShowPersonalizationFailure(error) {
+    const message = error?.message || String(error);
+    const isSummary = document.getElementById('gift-personalization-form')?.dataset.phase === 'summary';
+    document.getElementById('gift-personalization-error').textContent = isSummary
+      ? `Отправка не выполнена: ${message}`
+      : `Оформление не сохранено: ${message}`;
+    document.getElementById('gift-personalization-primary').textContent = isSummary ? 'Повторить отправку' : 'Повторить сохранение';
+  }
+
+  function giftCertificateSyncPersonalizationMode() {
+    const modal = document.getElementById('gift-certificate-personalization-modal');
+    const mode = modal?.querySelector('input[name="gift-certificate-personalization-mode"]:checked')?.value || 'named';
+    const names = document.getElementById('gift-personalization-names');
+    if (names) names.hidden = mode === 'anonymous';
+  }
+
+  function giftCertificateOpenPersonalizationModal(certificateId, action) {
+    const record = _giftCertificateRecords.get(String(certificateId));
+    const modal = document.getElementById('gift-certificate-personalization-modal');
+    const form = document.getElementById('gift-personalization-form');
+    if (!record || !modal || !form) return Promise.reject(new Error('Сохранённый сертификат не найден в истории.'));
+    if (_giftCertificatePersonalizationResolve || modal.classList.contains('is-open')) return Promise.reject(new Error('Сначала завершите открытое оформление сертификата.'));
+    const locked = giftCertificatePersonalizationIsLocked(record);
+    const mode = record.personalizationMode === 'anonymous' ? 'anonymous' : 'named';
+    form.dataset.certificateId = certificateId;
+    form.dataset.action = action;
+    form.dataset.phase = 'edit';
+    form.dataset.locked = locked ? 'true' : 'false';
+    modal.querySelector('.gift-cert-mode-options').hidden = false;
+    document.getElementById('gift-personalization-email-field').hidden = false;
+    document.getElementById('gift-personalization-summary').hidden = true;
+    modal.querySelectorAll('input[name="gift-certificate-personalization-mode"]').forEach((input) => {
+      input.checked = input.value === mode;
+      input.disabled = locked;
+    });
+    const recipient = document.getElementById('gift-personalization-recipient');
+    const sender = document.getElementById('gift-personalization-sender');
+    const email = document.getElementById('gift-personalization-email');
+    recipient.value = String(record.savedRecipientName || record.recipientName || '');
+    sender.value = String(record.savedSenderName || record.senderName || 'Phraseman');
+    email.value = String(record.recipientEmail || '');
+    [recipient, sender, email].forEach((input) => { input.disabled = locked; });
+    email.required = action === 'send';
+    document.getElementById('gift-personalization-title').textContent = action === 'send' ? 'Оформить и отправить сертификат' : 'Оформить и скачать сертификат';
+    document.getElementById('gift-personalization-desc').textContent = 'Проверьте, как сертификат будет выглядеть. Для отправки также нужен email получателя.';
+    document.getElementById('gift-personalization-primary').textContent = action === 'send' ? 'Отправить на email' : 'Скачать PNG';
+    document.getElementById('gift-personalization-error').textContent = locked ? 'Оформление уже зафиксировано отправкой. Скачивание использует сохранённые значения.' : '';
+    giftCertificateSyncPersonalizationMode();
+    _giftCertificatePersonalizationPreviousFocus = document.activeElement;
+    _giftCertificatePersonalizationFocusDescriptor = {
+      certificateId: /^GIFT-[A-HJ-NP-Z2-9]{10}$/.test(String(certificateId)) ? String(certificateId) : '',
+      action: action === 'send' ? 'send' : 'download',
+    };
+    modal.hidden = false;
+    modal.classList.add('is-open');
+    return new Promise((resolve) => {
+      _giftCertificatePersonalizationResolve = resolve;
+      const first = modal.querySelector('input:not([disabled]), button:not([disabled])');
+      if (first) setTimeout(() => first.focus(), 0);
+    });
+  }
+
+  function giftCertificateInitPersonalizationModal() {
+    const modal = document.getElementById('gift-certificate-personalization-modal');
+    const form = document.getElementById('gift-personalization-form');
+    if (!modal || !form || modal.dataset.initialized === 'true') return;
+    modal.dataset.initialized = 'true';
+    modal.querySelectorAll('input[name="gift-certificate-personalization-mode"]').forEach((input) => input.addEventListener('change', giftCertificateSyncPersonalizationMode));
+    document.getElementById('gift-personalization-cancel')?.addEventListener('click', () => {
+      if (!_giftCertificatePersonalizationBusy) giftCertificateClosePersonalizationModal(null);
+    });
+    modal.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && _giftCertificatePersonalizationBusy) return;
+      const focusable = [...modal.querySelectorAll('button:not([disabled]), input:not([disabled])')].filter((element) => !element.closest('[hidden]'));
+      giftCertificateHandleModalKey(event, focusable, document.activeElement, () => giftCertificateClosePersonalizationModal(null));
+    });
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (_giftCertificatePersonalizationBusy) return;
+      if (form.dataset.phase === 'summary') {
+        const resolve = _giftCertificatePersonalizationResolve;
+        _giftCertificatePersonalizationResolve = null;
+        giftCertificateSetPersonalizationBusy(true);
+        if (resolve) resolve(true);
+        return;
+      }
+      const record = _giftCertificateRecords.get(String(form.dataset.certificateId || ''));
+      if (!record) return;
+      const personalizationMode = modal.querySelector('input[name="gift-certificate-personalization-mode"]:checked')?.value || record.personalizationMode || 'named';
+      const displayRecipientName = String(document.getElementById('gift-personalization-recipient')?.value || '').trim();
+      const displaySenderName = String(document.getElementById('gift-personalization-sender')?.value || '').trim();
+      const recipientEmail = String(document.getElementById('gift-personalization-email')?.value || '').trim().toLowerCase();
+      const error = document.getElementById('gift-personalization-error');
+      let personalization;
+      try {
+        personalization = giftCertificateValidatePersonalizationPayload({
+          action: form.dataset.action,
+          personalizationMode,
+          displayRecipientName,
+          displaySenderName,
+          recipientEmail,
+          savedRecipientName: record.savedRecipientName || record.recipientName,
+          savedSenderName: record.savedSenderName || record.senderName || 'Phraseman',
+        });
+      } catch (validationError) {
+        error.textContent = validationError?.message || String(validationError);
+        return;
+      }
+      const result = { ...personalization, locked: giftCertificatePersonalizationIsLocked(record) };
+      if (form.dataset.action === 'send') {
+        const resolve = _giftCertificatePersonalizationResolve;
+        _giftCertificatePersonalizationResolve = null;
+        giftCertificateSetPersonalizationBusy(true);
+        if (resolve) resolve(result);
+      } else {
+        giftCertificateClosePersonalizationModal(result);
+      }
+    });
+  }
+
+  async function persistGiftCertificatePersonalization(certificateId, personalization) {
+    const record = _giftCertificateRecords.get(String(certificateId));
+    if (!record) throw new Error('Сохранённый сертификат не найден в истории.');
+    if (personalization.locked || giftCertificatePersonalizationIsLocked(record)) {
+      return record;
+    }
+    if (!_fnAdminUpdateGiftCertificatePersonalization) {
+      _fnAdminUpdateGiftCertificatePersonalization = createAppCheckProtectedGiftCallable('adminUpdateGiftCertificatePersonalization');
+    }
+    const response = await _fnAdminUpdateGiftCertificatePersonalization({
+      certificateId,
+      personalizationMode: personalization.personalizationMode,
+      displayRecipientName: personalization.displayRecipientName,
+      displaySenderName: personalization.displaySenderName,
+      recipientEmail: personalization.recipientEmail,
+      expectedUpdatedAtMs: Number(record.updatedAtMs || record.createdAtMs || 0),
+      authorization: 'UPDATE_GIFT_CERTIFICATE_PERSONALIZATION',
+    });
+    const persisted = response.data?.certificate;
+    if (!persisted || persisted.certificateId !== certificateId) throw new Error('Сервер не вернул сохранённую запись.');
+    _giftCertificateRecords.set(certificateId, persisted);
+    return persisted;
+  }
+
+  function giftCertificateLoadImageBlob(blob) {
+    return new Promise((resolve, reject) => {
+      const objectUrl = URL.createObjectURL(blob);
+      const image = new Image();
+      image.onload = () => { URL.revokeObjectURL(objectUrl); resolve(image); };
+      image.onerror = () => { URL.revokeObjectURL(objectUrl); reject(new Error('Не удалось открыть макет сертификата.')); };
+      image.src = objectUrl;
+    });
+  }
+
+  function giftCertificateWrapCanvasText(context, text, maxWidth) {
+    const words = String(text || '').trim().split(/\s+/).filter(Boolean);
+    const lines = [];
+    let current = '';
+    const pushLongWord = (word) => {
+      let chunk = '';
+      Array.from(word).forEach((character) => {
+        const candidate = chunk + character;
+        if (chunk && context.measureText(candidate).width > maxWidth) {
+          lines.push(chunk);
+          chunk = character;
+        } else {
+          chunk = candidate;
+        }
+      });
+      current = chunk;
+    };
+    words.forEach((word) => {
+      const candidate = current ? `${current} ${word}` : word;
+      if (context.measureText(candidate).width <= maxWidth) {
+        current = candidate;
+        return;
+      }
+      if (current) {
+        lines.push(current);
+        current = '';
+      }
+      if (context.measureText(word).width > maxWidth) pushLongWord(word);
+      else current = word;
+    });
+    if (current) lines.push(current);
+    return lines.length ? lines : [''];
+  }
+
+  function giftCertificateFitCanvasText(context, text, options) {
+    const maxLines = Math.max(1, Number(options.maxLines || 1));
+    const minSize = Math.max(12, Number(options.minSize || 12));
+    const startSize = Math.max(minSize, Number(options.startSize || minSize));
+    const family = options.family || '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
+    const weight = options.weight || 700;
+    let result = { fontSize: minSize, lineHeight: minSize * 1.15, lines: [''] };
+    for (let fontSize = startSize; fontSize >= minSize; fontSize -= 2) {
+      context.font = `${weight} ${fontSize}px ${family}`;
+      const lines = giftCertificateWrapCanvasText(context, text, options.maxWidth);
+      result = { fontSize, lineHeight: fontSize * Number(options.lineHeight || 1.15), lines };
+      if (lines.length <= maxLines) return result;
+    }
+    // Never silently truncate persisted names or copy. If the readable floor
+    // still needs more lines, the caller receives every line and can use height.
+    return result;
+  }
+
+  function giftCertificateCanvasLayout(canvasWidth, canvasHeight, product) {
+    const scale = Math.min(canvasWidth / 1536, canvasHeight / 1024);
+    const isLifetime = product === 'lifetime';
+    const headerSmallTop = canvasHeight * (22 / 360);
+    const headerSmallFont = canvasHeight * (11.5 / 360);
+    const headerSmallLineHeight = canvasHeight * ((11.5 * 1.68) / 360);
+    const headerBrandTop = headerSmallTop + headerSmallLineHeight + canvasHeight * (4 / 360);
+    const headerBrandFont = canvasHeight * (22 / 360);
+    const headerBrandLineHeight = canvasHeight * ((22 * 1.68) / 360);
+    const panelTop = headerBrandTop + headerBrandLineHeight + canvasHeight * (17 / 360);
+    const panelBottomMargin = canvasHeight * (22 / 360);
+    const palette = isLifetime ? {
+      panel: 'rgba(8, 14, 13, .84)', border: 'rgba(222, 181, 92, .38)',
+      eyebrow: '#ead394', brand: '#fff8e8', primary: '#fff8e8', secondary: '#d8ccb0',
+      accent: '#efca70', phrase: '#f2e5c8',
+    } : {
+      panel: product === 'monthly' ? 'rgba(255, 249, 238, .84)' : 'rgba(255, 251, 242, .82)',
+      border: product === 'monthly' ? 'rgba(135, 48, 40, .15)' : 'rgba(89, 66, 19, .16)',
+      eyebrow: '#3a2905', brand: '#201c12', primary: '#201c12', secondary: '#6f6857',
+      accent: '#8a6100', phrase: '#4f4736',
+    };
+    return {
+      scale,
+      centerX: canvasWidth / 2,
+      headerSmallTop,
+      headerSmallFont,
+      headerSmallLineHeight,
+      headerBrandTop,
+      headerBrandFont,
+      headerBrandLineHeight,
+      panelX: canvasWidth * (22 / 520),
+      panelTop,
+      panelWidth: canvasWidth * ((520 - 44) / 520),
+      panelHeight: canvasHeight - panelTop - panelBottomMargin,
+      panelPaddingX: canvasWidth * (24 / 520),
+      panelPaddingTop: canvasHeight * (22 / 360),
+      panelPaddingBottom: canvasHeight * (20 / 360),
+      panelRadius: canvasHeight * (18 / 360),
+      palette,
+    };
+  }
+
+  function giftCertificateDrawTextBlock(context, text, options) {
+    const fitted = giftCertificateFitCanvasText(context, text, options);
+    context.font = `${options.weight || 700} ${fitted.fontSize}px ${options.family || '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'}`;
+    context.fillStyle = options.color;
+    context.textAlign = options.align || 'left';
+    context.textBaseline = 'top';
+    fitted.lines.forEach((line, index) => {
+      context.fillText(line, options.x, options.y + index * fitted.lineHeight);
+    });
+    return fitted.lines.length * fitted.lineHeight;
+  }
+
+  function giftCertificateDrawRoundedPanel(context, x, y, width, height, radius, fillStyle, strokeStyle) {
+    const safeRadius = Math.min(radius, width / 2, height / 2);
+    context.beginPath();
+    context.moveTo(x + safeRadius, y);
+    context.lineTo(x + width - safeRadius, y);
+    context.quadraticCurveTo(x + width, y, x + width, y + safeRadius);
+    context.lineTo(x + width, y + height - safeRadius);
+    context.quadraticCurveTo(x + width, y + height, x + width - safeRadius, y + height);
+    context.lineTo(x + safeRadius, y + height);
+    context.quadraticCurveTo(x, y + height, x, y + height - safeRadius);
+    context.lineTo(x, y + safeRadius);
+    context.quadraticCurveTo(x, y, x + safeRadius, y);
+    context.closePath();
+    context.fillStyle = fillStyle;
+    context.fill();
+    context.strokeStyle = strokeStyle;
+    context.lineWidth = Math.max(1, width * .0015);
+    context.stroke();
+  }
+
+  window.downloadGiftCertificate = async function(certificateId) {
+    try {
+      const result = await giftCertificateRunAction(certificateId, 'download', {
+        guard: _giftCertificateActionGuard,
+        openModal: (certificateId) => giftCertificateOpenPersonalizationModal(certificateId, 'download'),
+        persist: async (certificateId, personalization) => {
+          giftCertificateRowStatus(certificateId, 'Сохраняю оформление…', false);
+          return await persistGiftCertificatePersonalization(certificateId, personalization);
+        },
+        afterPersist: () => giftCertificateRenderHistory([..._giftCertificateRecords.values()]),
+        execute: (record) => giftCertificateExecuteDownload(certificateId, record),
+      });
+      if (result.status === 'busy') giftCertificateRowStatus(certificateId, 'Дождитесь завершения текущего действия.', true);
+    } catch (error) {
+      giftCertificateRowStatus(certificateId, error?.message || String(error), true);
+    }
+  };
+
+  async function giftCertificateExecuteDownload(certificateId, record) {
+    try {
+      giftCertificateAssertAsset(record);
+      giftCertificateRowStatus(certificateId, 'Сервер загружает оригинальный макет…', false);
+      if (!_fnAdminGetGiftCertificateDownload) {
+        _fnAdminGetGiftCertificateDownload = createAppCheckProtectedGiftCallable('adminGetGiftCertificateDownload');
+      }
+      const download = await _fnAdminGetGiftCertificateDownload({
+        certificateId,
+        expectedUpdatedAtMs: Number(record.updatedAtMs || record.createdAtMs || 0),
+      });
+      const canonical = download.data?.certificate;
+      if (!canonical || canonical.certificateId !== certificateId
+        || canonical.personalizationMode !== record.personalizationMode
+        || canonical.savedRecipientName !== record.savedRecipientName
+        || canonical.savedSenderName !== record.savedSenderName
+        || canonical.recipientEmail !== record.recipientEmail
+        || canonical.activationCode !== record.activationCode
+        || canonical.product !== record.product
+        || !String(canonical.productTitle || '').trim()
+        || !String(canonical.giftPhrase || '').trim()
+        || !(Number(canonical.expiresAtMs) > 0)) {
+        throw new Error('Сохранённая запись изменилась перед скачиванием. Обновите историю.');
+      }
+      const displayPersonalization = giftCertificateDisplayPersonalization(canonical);
+      giftCertificateAssertAsset(canonical);
+      if (download.data?.mimeType !== 'image/webp' || typeof download.data?.assetBase64 !== 'string'
+        || download.data.assetBase64.length < 4 || download.data.assetBase64.length > 750000) {
+        throw new Error('Сервер вернул некорректный макет сертификата.');
+      }
+      const binary = atob(download.data.assetBase64);
+      const bytes = new Uint8Array(binary.length);
+      for (let index = 0; index < binary.length; index += 1) bytes[index] = binary.charCodeAt(index);
+      const image = await giftCertificateLoadImageBlob(new Blob([bytes], { type: 'image/webp' }));
+      const canvas = document.createElement('canvas');
+      canvas.width = image.naturalWidth || 1600;
+      canvas.height = image.naturalHeight || 900;
+      const context = canvas.getContext('2d');
+      if (!context) throw new Error('Canvas недоступен.');
+      context.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+      const layout = giftCertificateCanvasLayout(canvas.width, canvas.height, canonical.product);
+      const {
+        scale, centerX, panelX, panelTop, panelWidth, panelHeight,
+        panelPaddingX, panelPaddingTop, panelPaddingBottom, panelRadius, palette,
+        headerSmallTop, headerSmallFont, headerSmallLineHeight,
+        headerBrandTop, headerBrandFont, headerBrandLineHeight,
+      } = layout;
+      const contentX = panelX + panelPaddingX;
+      const contentWidth = panelWidth - panelPaddingX * 2;
+
+      context.textAlign = 'center';
+      context.textBaseline = 'top';
+      context.fillStyle = palette.eyebrow;
+      context.font = `700 ${headerSmallFont}px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif`;
+      context.fillText('ПОДАРОЧНЫЙ СЕРТИФИКАТ', centerX, headerSmallTop);
+      context.fillStyle = palette.brand;
+      context.font = `900 ${headerBrandFont}px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif`;
+      context.fillText('Phraseman', centerX, headerBrandTop);
+
+      giftCertificateDrawRoundedPanel(
+        context,
+        panelX,
+        panelTop,
+        panelWidth,
+        panelHeight,
+        panelRadius,
+        palette.panel,
+        palette.border,
+      );
+
+      let cursorY = panelTop + panelPaddingTop;
+      if (displayPersonalization.showPersonalization) {
+        cursorY += giftCertificateDrawTextBlock(context, `Для: ${displayPersonalization.displayRecipientName}`, {
+          x: contentX, y: cursorY, maxWidth: contentWidth, maxLines: 2,
+          startSize: 58 * scale, minSize: 20 * scale, lineHeight: 1.1,
+          weight: 900, color: palette.primary,
+        });
+        cursorY += 14 * scale;
+        cursorY += giftCertificateDrawTextBlock(context, `от ${displayPersonalization.displaySenderName}`, {
+          x: contentX, y: cursorY, maxWidth: contentWidth, maxLines: 2,
+          startSize: 31 * scale, minSize: 18 * scale, lineHeight: 1.15,
+          weight: 500, color: palette.secondary,
+        });
+        cursorY += 19 * scale;
+      }
+      cursorY += giftCertificateDrawTextBlock(context, canonical.productTitle, {
+        x: contentX, y: cursorY, maxWidth: contentWidth, maxLines: 1,
+        startSize: 35 * scale, minSize: 24 * scale, lineHeight: 1.15,
+        weight: 800, color: palette.accent,
+      });
+      cursorY += 26 * scale;
+      giftCertificateDrawTextBlock(context, canonical.giftPhrase, {
+        x: contentX, y: cursorY, maxWidth: contentWidth, maxLines: 3,
+        startSize: 30 * scale, minSize: 21 * scale, lineHeight: 1.35,
+        weight: 600, color: palette.phrase,
+      });
+
+      const codeTop = panelTop + panelHeight - panelPaddingBottom - 92 * scale;
+      giftCertificateDrawTextBlock(context, `Код активации: ${canonical.activationCode}`, {
+        x: centerX, y: codeTop, maxWidth: contentWidth, maxLines: 1,
+        startSize: 39 * scale, minSize: 25 * scale, lineHeight: 1.1,
+        weight: 800, color: palette.accent, align: 'center',
+        family: 'ui-monospace, "SFMono-Regular", Consolas, monospace',
+      });
+      giftCertificateDrawTextBlock(context, `Активировать до: ${giftCertificateDate(canonical.expiresAtMs)}`, {
+        x: centerX, y: codeTop + 57 * scale, maxWidth: contentWidth, maxLines: 1,
+        startSize: 24 * scale, minSize: 18 * scale, lineHeight: 1.1,
+        weight: 600, color: palette.secondary, align: 'center',
+      });
+      const blob = await new Promise((resolve, reject) => canvas.toBlob((value) => value ? resolve(value) : reject(new Error('Не удалось собрать PNG.')), 'image/png'));
+      const downloadUrl = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = downloadUrl;
+      link.download = `phraseman-certificate-${canonical.activationCode}.png`;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      setTimeout(() => URL.revokeObjectURL(downloadUrl), 1000);
+      giftCertificateRowStatus(certificateId, 'Скачано из сохранённой записи.', false);
+    } catch (error) {
+      giftCertificateRowStatus(certificateId, error?.message || String(error), true);
+    }
+  }
+
+  window.replaceVerifiedSyntheticGiftCertificate = async function() {
+    if (_giftCertificateBusy) return;
+    const oldCode = giftCertificateText('gift-repair-old-code').toUpperCase();
+    const expectedOldNote = String(document.getElementById('gift-repair-old-note')?.value || '');
+    const recipientEmail = giftCertificateText('gift-repair-email').toLowerCase();
+    const giftTo = giftCertificateText('gift-repair-name');
+    const giftFrom = giftCertificateText('gift-repair-from');
+    const reason = giftCertificateText('gift-repair-reason');
+    const confirmed = await showConfirmModal({
+      title: 'Заменить только подтверждённый тестовый код?',
+      desc: `${oldCode}\nСервер ещё раз сверит точную заметку, неиспользованность и отсутствие оплаты. Письмо не отправится автоматически.`,
+      confirmLabel: 'Заменить код',
+      danger: true,
+    });
+    if (!confirmed) return;
+    try {
+      giftCertificateSetBusy(true);
+      giftCertificateSetStatus('gift-repair-status', 'Проверяю и заменяю точный код…', false);
+      if (!_fnAdminReplaceSyntheticGiftCertificate) {
+        _fnAdminReplaceSyntheticGiftCertificate = createAppCheckProtectedGiftCallable('adminReplaceSyntheticGiftCertificate');
+      }
+      const response = await _fnAdminReplaceSyntheticGiftCertificate({
+        oldCode,
+        expectedOldNote,
+        recipientEmail,
+        giftTo,
+        giftFrom,
+        giftPhraseId: 'yearly-01',
+        reason,
+        authorization: 'REPLACE_VERIFIED_SYNTHETIC_NO_PAYMENT_GIFT_CERTIFICATE',
+      });
+      giftCertificateSetStatus('gift-repair-status', `Подготовлен новый код ${response.data?.newCode || ''}. Найди его в истории и отдельно нажми «Отправить на email».`, false);
+      await window.loadGiftCertificates();
+    } catch (error) {
+      giftCertificateSetStatus('gift-repair-status', `Замена не выполнена: ${error?.message || String(error)}`, true);
+    } finally {
+      giftCertificateSetBusy(false);
+    }
+  };
+
+  window.sendPreparedGiftCertificate = async function(certificateId, expectedRecipientEmail) {
+    if (!_fnAdminSendPreparedGiftCertificate) {
+      _fnAdminSendPreparedGiftCertificate = createAppCheckProtectedGiftCallable('adminSendPreparedGiftCertificate');
+    }
+    return _fnAdminSendPreparedGiftCertificate({
+      deliveryId: certificateId,
+      expectedRecipientEmail,
+      authorization: 'SEND_PREPARED_GIFT_CERTIFICATE',
+    });
+  };
+
+  window.sendGiftCertificateEmail = async function(certificateId) {
+    try {
+      const result = await giftCertificateRunAction(certificateId, 'send', {
+        guard: _giftCertificateActionGuard,
+        openModal: (certificateId) => giftCertificateOpenPersonalizationModal(certificateId, 'send'),
+        persist: async (certificateId, personalization) => {
+          giftCertificateRowStatus(certificateId, 'Сохраняю оформление и email…', false);
+          return await persistGiftCertificatePersonalization(certificateId, personalization);
+        },
+        afterPersist: () => giftCertificateRenderHistory([..._giftCertificateRecords.values()]),
+        setBusy: (busy) => giftCertificateSetPersonalizationBusy(busy),
+        showSummary: (record) => giftCertificateShowSendSummary(record),
+        confirm: () => giftCertificateAwaitSendConfirmation(),
+        retryPersonalization: () => giftCertificateAwaitSendConfirmation(),
+        fail: (error) => giftCertificateShowPersonalizationFailure(error),
+        cancel: () => giftCertificateClosePersonalizationModal(null),
+        complete: () => giftCertificateClosePersonalizationModal(null),
+        execute: (record) => giftCertificateExecuteSend(certificateId, record),
+      });
+      if (result.status === 'busy') giftCertificateRowStatus(certificateId, 'Дождитесь завершения текущего действия.', true);
+    } catch (error) {
+      giftCertificateRowStatus(certificateId, `Отправка не выполнена: ${error?.message || String(error)}`, true);
+    }
+  };
+
+  async function giftCertificateExecuteSend(certificateId, record) {
+    if (!record.recipientEmail) throw new Error('Введите email получателя.');
+    giftCertificateRowStatus(certificateId, 'Отправляю через production Resend sender…', false);
+    await window.sendPreparedGiftCertificate(certificateId, record.recipientEmail);
+    giftCertificateRowStatus(certificateId, 'Письмо отправлено.', false);
+    await window.loadGiftCertificates();
+  }
+
+  giftCertificateInitPersonalizationModal();
+  window.giftCertificateRefreshPreview();
+  // END GIFT CERTIFICATES
+
       const scheduledDate = dpAddDays(today, idx);
       const order = idx + 1;
       batch.update(doc(db, 'daily_phrases', row.id), { scheduledDate, order, updatedAt: new Date().toISOString() });

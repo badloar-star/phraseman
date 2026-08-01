@@ -98,7 +98,7 @@ function loadLandingApp({ href = 'https://example.test/level?ui=en', source = fs
     crypto: { getRandomValues: (values) => values.fill(1) },
     fetch: () => new Promise(() => {}),
     performance: { now: () => 0 },
-    requestAnimationFrame: () => 0,
+    requestAnimationFrame: (callback) => { callback(0); return 0; },
     cancelAnimationFrame() {},
     setTimeout: () => 0,
     clearTimeout() {},
@@ -121,10 +121,15 @@ function loadI18n(globals = {}) {
 
 function loadLocaleStateApp({ source = fs.readFileSync(appPath, 'utf8') } = {}) {
   const tail = `
+  const __localeEffects = { api: [], completion: 0, certificate: 0, compute: 0, fetch: [] };
+  api = (action) => { __localeEffects.api.push(action); return null; };
+  fetch = (url) => { __localeEffects.fetch.push(String(url)); return Promise.resolve({ ok: true, json: async () => ({}) }); };
+  reportTestCompletion = () => { __localeEffects.completion += 1; };
+  generateCertificate = () => { __localeEffects.certificate += 1; };
   window.__localeStateTest = {
     enterQuestion(question, locked) {
       attemptTestLanguage = 'de';
-      engine = { history: [{ questionId: 'earlier' }], targetLevelIndex: 1 };
+      engine = { history: [{ questionId: 'earlier' }], targetLevelIndex: 1, computeResult() { __localeEffects.compute += 1; return {}; } };
       currentQuestion = question;
       selectedAnswerIndex = locked ? 1 : null;
       answerLocked = Boolean(locked);
@@ -134,7 +139,8 @@ function loadLocaleStateApp({ source = fs.readFileSync(appPath, 'utf8') } = {}) 
       renderQuestion(question, { preserveAttempt: true });
     },
     enterResult(result) { attemptTestLanguage = 'de'; renderResult(result); },
-    state() { return { currentQuestion, questionDeadline, questionStartTime, history: engine?.history || null, selectedAnswerIndex, answerLocked, activeView }; },
+    state() { return { currentQuestion, questionDeadline, questionStartTime, history: engine?.history || null, selectedAnswerIndex, answerLocked, lastProgress, activeView }; },
+    effects() { return JSON.parse(JSON.stringify(__localeEffects)); },
   };
 })();`;
   const instrumented = source.replace(/  updatePageLocale\(\);\r?\n  renderLanding\(\);\r?\n\}\)\(\);\s*$/, `  updatePageLocale();${tail}`);
@@ -146,6 +152,14 @@ function loadLocaleStateApp({ source = fs.readFileSync(appPath, 'utf8') } = {}) 
 function leafPaths(value, prefix = '') {
   if (typeof value === 'string') return [prefix];
   return Object.keys(value).flatMap((key) => leafPaths(value[key], prefix ? `${prefix}.${key}` : key));
+}
+
+function assertNoBannedVisibleLiterals(source) {
+  const banned = ['Не знаю', 'Выйти', 'Верно', 'Создать сертификат', 'Поделиться', 'Пройти тест ещё раз', "I don't know", 'Exit', 'Correct', 'Create certificate', 'Share', 'Take the test again'];
+  for (const literal of banned) {
+    const escaped = literal.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    assert.doesNotMatch(source, new RegExp(`(?:['\"]${escaped}['\"]|>${escaped}<)`), `${literal} must be obtained through copy()`);
+  }
 }
 
 test('loads one frozen browser global locale core', () => {
@@ -491,9 +505,12 @@ test('live question toggle preserves attempt state and changes only service inst
   const beforeHtml = fixture.view().innerHTML;
   const beforeTimer = beforeHtml.match(/id="qTimerNum">(\d+)/)[1];
   const beforeRing = beforeHtml.match(/stroke-dashoffset:([\d.]+)/)[1];
+  const beforeProgress = fixture.view().querySelector('.elt-progress-fill').style.width;
+  const effectsBefore = fixture.context.window.__localeStateTest.effects();
   fixture.view().querySelector('.elt-ui-locale-toggle').click();
   const after = fixture.context.window.__localeStateTest.state();
   const html = fixture.view().innerHTML;
+  const effectsAfter = fixture.context.window.__localeStateTest.effects();
   assert.match(beforeHtml, /EN scenario/);
   assert.match(html, /RU scenario/);
   assert.match(html, /lang="ru">RU instruction/);
@@ -505,15 +522,21 @@ test('live question toggle preserves attempt state and changes only service inst
   assert.deepEqual(after.history, before.history);
   assert.equal(after.selectedAnswerIndex, 1);
   assert.equal(after.answerLocked, true);
+  assert.equal(after.lastProgress, before.lastProgress);
+  assert.equal(fixture.view().querySelector('.elt-progress-fill').style.width, '10%');
+  assert.equal(beforeProgress, '10%');
   assert.ok(Number(html.match(/id="qTimerNum">(\d+)/)[1]) <= Number(beforeTimer));
   assert.notEqual(html.match(/stroke-dashoffset:([\d.]+)/)[1], undefined);
   assert.equal(beforeRing, html.match(/stroke-dashoffset:([\d.]+)/)[1]);
+  assert.ok(Number(beforeRing) > 0 && Number(beforeRing) < 100);
+  assert.deepEqual(effectsAfter, effectsBefore);
 });
 
 test('live result toggle preserves sanitized partial name and does not invoke certificate flow', () => {
   const fixture = loadLocaleStateApp();
   const result = { estimatedLevel: 'B1', correct: 7, answered: 9, totalQuestions: 10, skipped: 1 };
   fixture.context.window.__localeStateTest.enterResult(result);
+  const effectsBefore = fixture.context.window.__localeStateTest.effects();
   const input = fixture.view().querySelector('#certName');
   input.value = '  <Sam>   Lee  ';
   fixture.view().querySelector('.elt-ui-locale-toggle').click();
@@ -522,6 +545,7 @@ test('live result toggle preserves sanitized partial name and does not invoke ce
   assert.equal(fixture.context.window.__localeStateTest.state().activeView.data, result);
   assert.match(html, /value="&lt;Sam&gt; Lee"/);
   assert.equal(fixture.context.document.title, 'Тест уровня языка — Phraseman');
+  assert.deepEqual(fixture.context.window.__localeStateTest.effects(), effectsBefore);
 });
 
 test('live locale rerender restores toggle focus only when it owned focus', () => {
@@ -559,4 +583,25 @@ test('behavioral harness rejects timer reset, result header removal, and focus r
     fixture.context.window.__localeStateTest.enterResult({ estimatedLevel: 'A1', correct: 1, answered: 1, totalQuestions: 1, skipped: 0 });
     assert.ok(fixture.view().querySelector('.elt-ui-locale-toggle'));
   });
+});
+
+test('active visible-literal denylist rejects injected service copy regressions', () => {
+  const source = fs.readFileSync(appPath, 'utf8');
+  assertNoBannedVisibleLiterals(source);
+  assert.throws(() => assertNoBannedVisibleLiterals(source.replace('${copy(\'question.exit\')}', 'Exit')));
+});
+
+test('rerender side-effect mutation packets are observable through the live harness', () => {
+  const source = fs.readFileSync(appPath, 'utf8');
+  const packets = ["api('view', {})", "api('complete', {})", 'reportTestCompletion()', 'fetch(BANK_URL)', 'generateCertificate("x", {})', 'engine.computeResult()'];
+  for (const packet of packets) {
+    const mutated = source.replace('function rerenderForUiLocale() {', `function rerenderForUiLocale() { ${packet};`);
+    assert.throws(() => {
+      const fixture = loadLocaleStateApp({ source: mutated });
+      fixture.context.window.__localeStateTest.enterQuestion({ id: 'side', scenarioRu: 'ru', instructionRu: 'ri', scenario: 'en', prompt: 'ep', stimulus: 'de', options: ['a'], correctIndex: 0 });
+      const before = fixture.context.window.__localeStateTest.effects();
+      fixture.view().querySelector('.elt-ui-locale-toggle').click();
+      assert.deepEqual(fixture.context.window.__localeStateTest.effects(), before);
+    }, packet);
+  }
 });

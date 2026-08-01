@@ -159,13 +159,17 @@ describe('sage porcelain static asset coverage', () => {
     expect(themeBlocks(trainer, 'sagePorcelain')[0]).toContain("secondary: '#8B6320'");
     expect(themeBlocks(trainer, 'sagePorcelain')[0]).toContain("stroke: '#17201D'");
     expect(themeBlocks(trainer, 'sagePorcelain')[0]).toContain("muted: '#FCFDF9'");
-    expect(streakFirePaths.slice(0, 6)).toEqual([
+    expect(streakFirePaths).toEqual([
       '../assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-001.webp',
       '../assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-002.webp',
       '../assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-003.webp',
       '../assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-005.webp',
       '../assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-007.webp',
       '../assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-010.webp',
+      '../assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-020.webp',
+      '../assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-035.webp',
+      '../assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-060.webp',
+      '../assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-100.webp',
     ]);
     expect(streak).toContain("1: 'assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-001.webp'");
     expect(streak).toContain("2: 'assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-002.webp'");
@@ -173,7 +177,22 @@ describe('sage porcelain static asset coverage', () => {
     expect(streak).toContain("5: 'assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-005.webp'");
     expect(streak).toContain("7: 'assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-007.webp'");
     expect(streak).toContain("10: 'assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-010.webp'");
+    expect(streak).toContain("20: 'assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-020.webp'");
+    expect(streak).toContain("35: 'assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-035.webp'");
+    expect(streak).toContain("60: 'assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-060.webp'");
+    expect(streak).toContain("100: 'assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-100.webp'");
+    expect(streak).toContain("sagePorcelain: 'assets/images/streak_icons/sagePorcelain/streak-freeze-sagePorcelain.webp'");
+    expect(streak).toContain("sagePorcelain: require('../assets/images/streak_icons/sagePorcelain/streak-freeze-sagePorcelain.webp')");
     expect(streak).toContain("sagePorcelain: { rgb: [139, 99, 32], accent: '#315F50' }");
     expect(streak).toContain("sagePorcelain: { rgb: [97, 112, 106], accent: '#52605A' }");
+  });
+
+  it('uses generated Celadon artwork for migrated weekly boons', () => {
+    const boon = source('constants/boonIconAssets.ts');
+    const boonPaths = themeBlocks(boon, 'sagePorcelain')
+      .map(requires)
+      .find((paths) => paths.length === 10) ?? [];
+    expect(boonPaths[0]).toBe('../assets/images/weekly_boon_icons/png/sagePorcelain/streak_saver.webp');
+    expect(boon).toContain("streak_saver: 'assets/images/weekly_boon_icons/png/sagePorcelain/streak_saver.webp'");
   });
 });

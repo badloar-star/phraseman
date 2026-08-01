@@ -152,6 +152,9 @@ describe('sage porcelain static asset coverage', () => {
   it('uses Sage-specific trainer and streak chrome with the fixed porcelain palette', () => {
     const trainer = source('constants/trainerThemeIcons.ts');
     const streak = source('constants/streakIconAssets.ts');
+    const trainerPaths = themeBlocks(trainer, 'sagePorcelain')
+      .map(requires)
+      .find((paths) => paths.length === 3) ?? [];
     const streakFirePaths = themeBlocks(streak, 'sagePorcelain')
       .map(requires)
       .find((paths) => paths.length === 10) ?? [];
@@ -159,6 +162,7 @@ describe('sage porcelain static asset coverage', () => {
     expect(themeBlocks(trainer, 'sagePorcelain')[0]).toContain("secondary: '#8B6320'");
     expect(themeBlocks(trainer, 'sagePorcelain')[0]).toContain("stroke: '#17201D'");
     expect(themeBlocks(trainer, 'sagePorcelain')[0]).toContain("muted: '#FCFDF9'");
+    expect(trainerPaths[0]).toBe('../assets/images/trainer_theme_icons/sagePorcelain/phrases.webp');
     expect(streakFirePaths).toEqual([
       '../assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-001.webp',
       '../assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-002.webp',
@@ -192,7 +196,7 @@ describe('sage porcelain static asset coverage', () => {
     const boonPaths = themeBlocks(boon, 'sagePorcelain')
       .map(requires)
       .find((paths) => paths.length === 10) ?? [];
-    expect(boonPaths.slice(0, 9)).toEqual([
+    expect(boonPaths).toEqual([
       '../assets/images/weekly_boon_icons/png/sagePorcelain/streak_saver.webp',
       '../assets/images/weekly_boon_icons/png/sagePorcelain/mystery_monday.webp',
       '../assets/images/weekly_boon_icons/png/sagePorcelain/turbo_regen.webp',
@@ -202,6 +206,7 @@ describe('sage porcelain static asset coverage', () => {
       '../assets/images/weekly_boon_icons/png/sagePorcelain/speaking_saturday.webp',
       '../assets/images/weekly_boon_icons/png/sagePorcelain/early_bird.webp',
       '../assets/images/weekly_boon_icons/png/sagePorcelain/perfect_week.webp',
+      '../assets/images/weekly_boon_icons/png/sagePorcelain/comeback.webp',
     ]);
     expect(boon).toContain("streak_saver: 'assets/images/weekly_boon_icons/png/sagePorcelain/streak_saver.webp'");
     expect(boon).toContain("mystery_monday: 'assets/images/weekly_boon_icons/png/sagePorcelain/mystery_monday.webp'");
@@ -212,5 +217,6 @@ describe('sage porcelain static asset coverage', () => {
     expect(boon).toContain("speaking_saturday: 'assets/images/weekly_boon_icons/png/sagePorcelain/speaking_saturday.webp'");
     expect(boon).toContain("early_bird: 'assets/images/weekly_boon_icons/png/sagePorcelain/early_bird.webp'");
     expect(boon).toContain("perfect_week: 'assets/images/weekly_boon_icons/png/sagePorcelain/perfect_week.webp'");
+    expect(boon).toContain("comeback: 'assets/images/weekly_boon_icons/png/sagePorcelain/comeback.webp'");
   });
 });

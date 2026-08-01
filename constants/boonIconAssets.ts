@@ -105,7 +105,7 @@ export const WEEKLY_BOON_ICON_ASSET_PATHS: Record<ThemeMode, Record<WeeklyBoonIc
     speaking_saturday: 'assets/images/weekly_boon_icons/png/sagePorcelain/speaking_saturday.webp',
     early_bird: 'assets/images/weekly_boon_icons/png/sagePorcelain/early_bird.webp',
     perfect_week: 'assets/images/weekly_boon_icons/png/sagePorcelain/perfect_week.webp',
-    comeback: 'assets/images/weekly_boon_icons/png/businessLight/comeback.webp',
+    comeback: 'assets/images/weekly_boon_icons/png/sagePorcelain/comeback.webp',
   },
   midnight: {
     streak_saver: 'assets/images/weekly_boon_icons/png/midnight/streak_saver.webp',
@@ -264,7 +264,7 @@ const WEEKLY_BOON_ICON_SOURCES: Record<ThemeMode, Record<WeeklyBoonIconId, Image
     speaking_saturday: require('../assets/images/weekly_boon_icons/png/sagePorcelain/speaking_saturday.webp'),
     early_bird: require('../assets/images/weekly_boon_icons/png/sagePorcelain/early_bird.webp'),
     perfect_week: require('../assets/images/weekly_boon_icons/png/sagePorcelain/perfect_week.webp'),
-    comeback: require('../assets/images/weekly_boon_icons/png/businessLight/comeback.webp'),
+    comeback: require('../assets/images/weekly_boon_icons/png/sagePorcelain/comeback.webp'),
   },
   midnight: {
     streak_saver: require('../assets/images/weekly_boon_icons/png/midnight/streak_saver.webp'),

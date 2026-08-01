@@ -683,10 +683,10 @@ export type TournamentPublicTask = {
   difficulty: number;
   payload: Record<string, unknown>;
   /**
-   * Необратимые отпечатки правильных ответов (по подвопросам).
-   * Клиент сравнивает с отпечатком СВОЕГО ответа и мгновенно красит кнопку;
-   * сам ответ по отпечатку не восстановить. См. answerFingerprint().
+   * Room-scoped enumerable UX hints for instant local feedback. They are not an
+   * anti-cheat boundary; scoring and rewards remain server-authoritative.
    */
+  answerFingerprints?: string[];
 };
 
 type TaskValidation = { ok: true; kind: TournamentTaskKind } | { ok: false; reason: string };
@@ -1107,22 +1107,47 @@ function publicPayloadForTask(task: TournamentTask, kind: TournamentTaskKind): R
  * а не зелёной»): сервер намеренно не присылает правильный ответ — иначе его
  * вытащат из трафика и будут выигрывать все турниры, а призы реальные. Но и
  * ждать сеть на каждом ответе нельзя: это задержка и ×6 вызовов функций.
- * Компромисс: отдаём необратимый хэш ответа, солёный roomId. Клиент хэширует
- * СВОЙ ответ и сравнивает — совпало значит верно. Подобрать ответ по хэшу
- * нельзя, а соль по комнате не даёт переиспользовать отпечатки в другом
- * турнире. Очки всё равно считает сервер: подделка хэша ничего не даёт.
+ * UX-контракт: отдаём room-scoped отпечаток ответа. Клиент сравнивает с ним
+ * СВОЙ ответ и мгновенно красит интерфейс, не ожидая сеть. Это не anti-cheat
+ * секрет: варианты ответа перечислимы. Очки и награды всё равно подтверждает
+ * сервер, поэтому локальная окраска не меняет результат турнира.
  */
 /** Канонический вид ответа: одинаковый на сервере и на клиенте. */
 export function canonicalAnswerValue(value: unknown): string {
-  if (Array.isArray(value)) return value.map((item) => String(item).trim().toLowerCase()).join('');
-  return String(value ?? '').trim().toLowerCase();
+  if (Array.isArray(value)) return value.map((item) => String(item).trim()).join('');
+  return String(value ?? '').trim();
+}
+
+/** Enumerable UX hint only; tournament scoring remains server-authoritative. */
+export function answerFingerprint(roomId: string, taskId: string, answer: unknown): string {
+  return tournamentHash32(`${roomId}|${taskId}|${canonicalAnswerValue(answer)}`).toString(36);
+}
+
+function answerFingerprintsForTask(
+  task: TournamentTask,
+  kind: TournamentTaskKind,
+  roomId: string,
+): string[] {
+  const fingerprint = (answer: unknown) => answerFingerprint(roomId, task.taskId, answer);
+  if (kind === 'choice') return [fingerprint(task.payload.correctIndex)];
+  if (kind === 'translate') {
+    const correctTokens = Array.isArray(task.payload.correctTokens)
+      ? task.payload.correctTokens
+      : String(task.payload.correctAnswer ?? '').trim().split(/\s+/).filter(Boolean);
+    return [fingerprint(correctTokens)];
+  }
+  if (kind === 'timeattack' || kind === 'match') {
+    const items = (task.payload.items as Record<string, unknown>[]) ?? [];
+    return items.map((item) => fingerprint(item.correctIndex));
+  }
+  return [];
 }
 
 /** Отпечатки правильных ответов задания (по подвопросам для timeattack). */
 export function toPublicTournamentTask(
   task: TournamentTask,
   // roomId нужен как соль отпечатков; без него отпечатки не отдаются вовсе.
-  _roomId?: string,
+  roomId?: string,
 ): TournamentPublicTask | null {
   const validation = validateTournamentTask(task);
   if (!validation.ok) return null;
@@ -1133,6 +1158,9 @@ export function toPublicTournamentTask(
     isVoice: task.isVoice,
     difficulty: task.difficulty,
     payload: publicPayloadForTask(task, validation.kind),
+    ...(roomId
+      ? { answerFingerprints: answerFingerprintsForTask(task, validation.kind, roomId) }
+      : {}),
   };
 }
 

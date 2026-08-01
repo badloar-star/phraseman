@@ -7,13 +7,17 @@ const countdown = readFileSync(
   path.join(root, 'components/tournament/TournamentCountdown.tsx'),
   'utf8',
 );
+const client = readFileSync(path.join(root, 'app/tournament_client.ts'), 'utf8');
+const core = readFileSync(path.join(root, 'functions/src/tournament_core.ts'), 'utf8');
+const fingerprint = readFileSync(path.join(root, 'app/tournament_answer_fingerprint.ts'), 'utf8');
 
 function section(source: string, start: string, end: string): string {
-  const from = source.indexOf(start);
-  const to = source.indexOf(end, from + start.length);
+  const normalized = source.replace(/\r\n/gu, '\n');
+  const from = normalized.indexOf(start);
+  const to = normalized.indexOf(end, from + start.length);
   expect(from).toBeGreaterThanOrEqual(0);
   expect(to).toBeGreaterThan(from);
-  return source.slice(from, to);
+  return normalized.slice(from, to);
 }
 
 describe('tournament question feedback UX', () => {
@@ -36,7 +40,7 @@ describe('tournament question feedback UX', () => {
   });
 
   test('round completion is optimistic after a local answer and never exposes transport state', () => {
-    const submit = section(round, 'const submitCurrentTaskAnswer', '/**\n   *');
+    const submit = section(round, 'const submitCurrentTaskAnswer', '  const [finishing');
 
     expect(round).toContain('allQuestionsResolved');
     expect(round).toMatch(/secondsLeft !== 0[\s\S]*markTaskResolved\(question\.taskId\)/);
@@ -81,7 +85,7 @@ describe('tournament question feedback UX', () => {
   });
 
   test('feedback advances from its absolute end before a slow answer result can resolve', () => {
-    const submit = section(round, 'const submitCurrentTaskAnswer', '/**\n   *');
+    const submit = section(round, 'const submitCurrentTaskAnswer', '  const [finishing');
 
     expect(submit).toMatch(/setPhase\('feedback'\);[\s\S]*scheduleFeedbackAdvance\(\);[\s\S]*await submitTaskAnswer/);
     expect(submit.match(/await submitTaskAnswer/g)).toHaveLength(2);
@@ -91,11 +95,29 @@ describe('tournament question feedback UX', () => {
     expect(round).toMatch(/const goNext[\s\S]*activeTaskSubmissionRef\.current = null/);
   });
 
+  test('choice and phrase verdicts paint from room fingerprints before any network await', () => {
+    const submit = section(round, 'const submitCurrentTaskAnswer', '  const [finishing');
+    const choice = section(round, 'const answer = useCallback', '  const answerTranslate');
+    const translate = section(round, 'const answerTranslate', 'const answerMatch');
+
+    expect(client).toContain('answerFingerprints?: string[];');
+    expect(core).toContain('export function answerFingerprint(');
+    expect(core).toContain('answerFingerprintsForTask');
+    expect(round).toContain("import { answerFingerprint } from './tournament_answer_fingerprint';");
+    expect(fingerprint).toContain('export function answerFingerprint(');
+    expect(round).toContain('function localAnswerVerdict(');
+    expect(choice).toContain('const localCorrect = localAnswerVerdict(');
+    expect(choice).toContain('submitCurrentTaskAnswer(question, { selectedIndex }, localCorrect)');
+    expect(translate).toContain('const localCorrect = localAnswerVerdict(');
+    expect(translate).toContain('submitCurrentTaskAnswer(question, { tokens }, localCorrect)');
+    expect(submit).toMatch(/setFeedbackCorrect\(optimisticCorrect\);[\s\S]*await submitTaskAnswer/);
+  });
+
   test('mount, resume, and reconnect derive the local phase from absolute task timing', () => {
     const resume = section(
       round,
       '  useEffect(() => {\n    const resumed',
-      '  // зачем 2026-07-27',
+      '  const startQuestions',
     );
 
     expect(round).toContain('const derivePhaseFromTiming');
@@ -108,7 +130,7 @@ describe('tournament question feedback UX', () => {
     const resume = section(
       round,
       '  useEffect(() => {\n    const resumed',
-      '  // зачем 2026-07-27',
+      '  const startQuestions',
     );
 
     expect(resume).toContain('const scheduledTaskHandled = scheduledTaskId !== null');
@@ -122,7 +144,7 @@ describe('tournament question feedback UX', () => {
   });
 
   test('async answer completions stop at unmount and network errors never sound wrong', () => {
-    const submit = section(round, 'const submitCurrentTaskAnswer', '/**\n   *');
+    const submit = section(round, 'const submitCurrentTaskAnswer', '  const [finishing');
     const speedMatch = section(round, 'const answerMatch', 'const matchComplete');
     const strictBoard = section(round, 'const StrictMatchBoard', 'const WordBank');
     const speedMatchCatch = section(speedMatch, '    } catch {', '    } finally {');
@@ -133,7 +155,7 @@ describe('tournament question feedback UX', () => {
     expect(speedMatch).toContain('if (!screenMountedRef.current || activeQuestionKeyRef.current !== attemptQuestionKey) return');
     expect(speedMatch).toContain('const attemptQuestionKey = questionKey;');
     expect(speedMatch).toContain('activeQuestionKeyRef.current !== attemptQuestionKey');
-    expect(speedMatch).toContain('const attemptKey = `${question.taskId}:${pairIndex}`;');
+    expect(speedMatch).toContain('const attemptKey = `${question.taskId}:${pairIndex}:${selectedIndex}`;');
     expect(speedMatch).toContain('pendingMatchPairsRef.current.has(attemptKey)');
     expect(speedMatchCatch).not.toContain('fk.wrong()');
     expect(strictBoard).toContain('const mountedRef = useRef(true);');
@@ -151,8 +173,7 @@ describe('tournament question feedback UX', () => {
     expect(round).toContain('Подтвердить выход');
   });
 
-  test('choice feedback announces the authoritative result and paints only a server-confirmed selection green', () => {
-    const client = readFileSync(path.join(root, 'app/tournament_client.ts'), 'utf8');
+  test('choice feedback paints the local verdict immediately and reconciles server details silently', () => {
     const optionRow = section(round, 'const OptionRow', 'const MatchBoard');
 
     expect(client).toContain('earnedStars: number;');
@@ -163,9 +184,10 @@ describe('tournament question feedback UX', () => {
     expect(round).toContain('setFeedbackCorrectIndex(typeof result.correctIndex');
     expect(round).toMatch(/setPicked\(selectedIndex\);[\s\S]*void submitCurrentTaskAnswer/);
     expect(optionRow).toContain('selected={isPicked}');
-    expect(optionRow).toContain('authoritativeCorrect');
+    expect(optionRow).toContain('displayedCorrect');
     expect(optionRow).toContain('authoritativeCorrectIndex');
-    expect(optionRow).toContain("authoritativeCorrect ? 'ok' : 'bad'");
+    expect(optionRow).toContain("displayedCorrect ? 'ok' : 'bad'");
+    expect(optionRow).toContain('displayedCorrect === true');
     expect(optionRow).toContain('styles.optionLetterCorrect');
   });
 

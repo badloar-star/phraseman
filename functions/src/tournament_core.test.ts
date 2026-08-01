@@ -874,7 +874,7 @@ describe('Phase-1 hardening contracts', () => {
     expect(hardening.verifyTournamentAnswer(timeattack, { selectedIndexes: [1, 1] })).toBe(false);
   });
 
-  it('publishes no answer fingerprint for speed-match pairs', () => {
+  it('publishes one room-scoped answer fingerprint for every speed-match pair', () => {
     const match = {
       ...choiceTask,
       taskId: 'match-1',
@@ -890,7 +890,66 @@ describe('Phase-1 hardening contracts', () => {
 
     const publicTask = hardening.toPublicTournamentTask(match, 'room-match');
     expect(publicTask?.kind).toBe('match');
-    expect(publicTask).not.toHaveProperty('answerFingerprints');
+    expect(publicTask?.answerFingerprints).toEqual([
+      hardening.answerFingerprint('room-match', 'match-1', 0),
+      hardening.answerFingerprint('room-match', 'match-1', 1),
+    ]);
+  });
+
+  it('publishes room-scoped fingerprints for choice and phrase-builder answers', () => {
+    const choice = { ...choiceTask, mode: 'guess_phrase' };
+    const translate = {
+      ...choiceTask,
+      taskId: 'translate-fingerprint-1',
+      mode: 'translate_build',
+      payload: {
+        phrase: 'Я готов',
+        wordBank: ['ready', 'I', 'am'],
+        correctTokens: ['I', 'am', 'ready'],
+      },
+    };
+    const legacyTranslate = {
+      ...translate,
+      taskId: 'translate-fingerprint-legacy',
+      payload: {
+        phrase: 'Я готов',
+        wordBank: ['ready', 'I', 'am'],
+        correctAnswer: 'I am ready',
+      },
+    };
+
+    expect(hardening.toPublicTournamentTask(choice, 'room-a')?.answerFingerprints).toEqual([
+      hardening.answerFingerprint('room-a', choice.taskId, 0),
+    ]);
+    expect(hardening.toPublicTournamentTask(translate, 'room-a')?.answerFingerprints).toEqual([
+      hardening.answerFingerprint('room-a', translate.taskId, ['I', 'am', 'ready']),
+    ]);
+    expect(hardening.toPublicTournamentTask(legacyTranslate, 'room-a')?.answerFingerprints).toEqual([
+      hardening.answerFingerprint('room-a', legacyTranslate.taskId, ['I', 'am', 'ready']),
+    ]);
+    expect(hardening.toPublicTournamentTask(choice)?.answerFingerprints).toBeUndefined();
+    expect(hardening.toPublicTournamentTask(choice, 'room-b')?.answerFingerprints)
+      .not.toEqual(hardening.toPublicTournamentTask(choice, 'room-a')?.answerFingerprints);
+  });
+
+  it('keeps case-only phrase traps distinct in local fingerprints and server verdicts', () => {
+    const caseSensitiveTranslate = {
+      ...choiceTask,
+      taskId: 'translate-case',
+      mode: 'translate_build',
+      payload: {
+        phrase: 'Она готова',
+        wordBank: ['She', 'she'],
+        correctTokens: ['She'],
+      },
+    };
+
+    expect(hardening.verifyTournamentAnswer(caseSensitiveTranslate, { tokens: ['She'] })).toBe(true);
+    expect(hardening.verifyTournamentAnswer(caseSensitiveTranslate, { tokens: ['she'] })).toBe(false);
+    expect(hardening.answerFingerprint('room-case', caseSensitiveTranslate.taskId, ['She']))
+      .toBe('1492h78');
+    expect(hardening.answerFingerprint('room-case', caseSensitiveTranslate.taskId, ['she']))
+      .toBe('cwrldg');
   });
 
   it('never credits voice from a client-supplied reference string', () => {

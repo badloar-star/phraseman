@@ -30,9 +30,10 @@ describe('tournament round visual fidelity', () => {
     expect(round).toContain('styles.choiceFeedbackCard');
     expect(round).toContain('styles.choiceFeedbackCorrect');
     expect(round).toContain('styles.choiceFeedbackWrong');
-    // Green is allowed only after the callable's authoritative boolean verdict;
-    // no public payload key may paint an option correct optimistically.
-    expect(round).toMatch(/authoritativeCorrect\s*\?\s*'ok'\s*:\s*'bad'/);
+    // A room-scoped fingerprint paints the selected option immediately while
+    // the callable remains authoritative for score and review details.
+    expect(round).toMatch(/displayedCorrect\s*\?\s*'ok'\s*:\s*'bad'/);
+    expect(round).toContain('answerFingerprints');
     expect(round).toContain('result.correct');
     expect(round).not.toContain('payload.correctIndex');
     expect(ui).toMatch(/selected && verdict === 'idle'[\s\S]*backgroundColor: P\.accentSoft/);

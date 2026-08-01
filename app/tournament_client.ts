@@ -24,6 +24,8 @@ export type PublicTask = {
   isVoice: boolean;
   difficulty: number;
   payload: Record<string, unknown>;
+  /** Room-scoped, enumerable UX hints only; the server remains authoritative. */
+  answerFingerprints?: string[];
 };
 
 export type RoomPlayer = {

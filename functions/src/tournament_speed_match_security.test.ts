@@ -1,4 +1,5 @@
 import {
+  answerFingerprint,
   applySpeedMatchAttempt,
   applyTournamentSubmission,
   toPublicTournamentTask,
@@ -53,9 +54,16 @@ const room = (): TournamentRoomDoc => ({
 });
 
 describe('speed-match security contract', () => {
-  it('publishes no offline-enumerable answer oracle', () => {
+  it('publishes room-scoped feedback fingerprints without exposing correctIndex', () => {
     const publicTask = toPublicTournamentTask(speedTask(), 'room-secure');
-    expect(publicTask).not.toHaveProperty('answerFingerprints');
+    expect(publicTask?.answerFingerprints).toEqual([
+      answerFingerprint('room-secure', 'speed-secure', 0),
+      answerFingerprint('room-secure', 'speed-secure', 1),
+      answerFingerprint('room-secure', 'speed-secure', 2),
+      answerFingerprint('room-secure', 'speed-secure', 3),
+      answerFingerprint('room-secure', 'speed-secure', 4),
+      answerFingerprint('room-secure', 'speed-secure', 5),
+    ]);
     expect(JSON.stringify(publicTask)).not.toContain('correctIndex');
   });
 

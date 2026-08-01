@@ -494,7 +494,7 @@ describe('экраны режима «Турниры»', () => {
     expect(round).toMatch(/room\.state === 'results'/);
   });
 
-  it('правильный ответ не приходит на клиент — подглядеть нельзя', () => {
+  it('ключ ответа не приходит на клиент, а локальный fingerprint красит выбор сразу', () => {
     // Сервер вырезает ключи ответов из публичного payload. Если экран начнёт
     // ждать correctIndex, он либо сломается, либо кто-то протащит ответы
     // в клиент — а это накрутка очков.
@@ -502,9 +502,8 @@ describe('экраны режима «Турниры»', () => {
     expect(round).not.toContain('payload.correctIndex');
     expect(round).toContain('result.correct');
     expect(round).toContain('result.correctIndex');
-    // A selected answer may turn green only after the server returns its
-    // boolean verdict; no answer key is ever sent to the active client.
-    expect(round).toMatch(/authoritativeCorrect\s*\?\s*'ok'\s*:\s*'bad'/);
+    expect(round).toContain('answerFingerprints');
+    expect(round).toMatch(/displayedCorrect\s*\?\s*'ok'\s*:\s*'bad'/);
   });
 
   it('ответы уходят одной пачкой и ровно один раз за раунд', () => {
@@ -525,7 +524,7 @@ describe('экраны режима «Турниры»', () => {
     const round = read('app/tournament_round.tsx');
     expect(round).toContain('selectedIndex');
     expect(round).toContain('selectedIndexes');
-    expect(round).toContain('submitCurrentTaskAnswer(question, { selectedIndex })');
+    expect(round).toContain('submitCurrentTaskAnswer(question, { selectedIndex }, localCorrect)');
     expect(round).toContain('submitCurrentTaskAnswer(question, { selectedIndexes })');
 
     const server = read('functions/src/tournament_core.ts');
@@ -568,7 +567,7 @@ describe('экраны режима «Турниры»', () => {
   it('ответ translate уходит как { tokens }, а не как индекс', () => {
     const round = read('app/tournament_round.tsx');
     expect(round).toContain('answerTranslate');
-    expect(round).toContain('submitCurrentTaskAnswer(question, { tokens })');
+    expect(round).toContain('submitCurrentTaskAnswer(question, { tokens }, localCorrect)');
   });
 
   it('банк слов не даёт использовать одно слово дважды', () => {

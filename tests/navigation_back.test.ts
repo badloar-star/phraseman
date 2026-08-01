@@ -102,6 +102,17 @@ describe('safeRouterBack', () => {
     expect(router.dismissTo).toHaveBeenCalledWith('/lesson_menu?id=5');
   });
 
+  it('preserves the tournament room when closing the post-match review', () => {
+    const navigation = loadNavigationBack();
+    const router = makeRouter(true);
+
+    navigation.rememberNavigationPath('/tournament_results?roomId=room-42');
+    navigation.rememberNavigationPath('/tournament_review?roomId=room-42');
+    navigation.safeRouterBack(router, '/(tabs)/tournaments' as any);
+
+    expect(router.dismissTo).toHaveBeenCalledWith('/tournament_results?roomId=room-42');
+  });
+
   // Косметические query (вкладки/фильтры) внутри одного экрана НЕ должны плодить
   // записи в стеке: смена ?tab=a → ?tab=b остаётся одним экраном.
   it('does not stack cosmetic query changes within one screen', () => {

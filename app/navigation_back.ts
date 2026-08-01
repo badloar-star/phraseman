@@ -118,6 +118,7 @@ function currentPath(): string | null {
 // иначе смена вкладки/фильтра внутри одного экрана плодила бы записи в стеке.
 const IDENTITY_QUERY_KEYS: ReadonlySet<string> = new Set([
   'id',
+  'roomId',
   'lessonId',
   'level',
   'planId',

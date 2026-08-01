@@ -155,7 +155,7 @@ function leafPaths(value, prefix = '') {
 }
 
 function assertNoBannedVisibleLiterals(source) {
-  const banned = ['Не знаю', 'Выйти', 'Верно', 'Создать сертификат', 'Поделиться', 'Пройти тест ещё раз', "I don't know", 'Exit', 'Correct', 'Create certificate', 'Share', 'Take the test again'];
+  const banned = ['Начать бесплатно', 'Не знаю', 'Выйти', 'Верно', 'Создать сертификат', 'Поделиться', 'Пройти тест ещё раз', 'Start free', "I don't know", 'Exit', 'Correct', 'Create certificate', 'Share', 'Take the test again'];
   for (const literal of banned) {
     const escaped = literal.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     assert.doesNotMatch(source, new RegExp(`(?:['\"]${escaped}['\"]|>${escaped}<)`), `${literal} must be obtained through copy()`);
@@ -484,7 +484,7 @@ test('owns an explicit active view and rerenders every localized surface without
 
 test('uses dictionary copy for service chrome and keeps assessed question content in the test language', () => {
   const source = fs.readFileSync(appPath, 'utf8');
-  const banned = ['ÐÐµ Ð·Ð½Ð°ÑŽ', 'Ð’Ñ‹Ð¹Ñ‚Ð¸', 'Ð’ÐµÑ€Ð½Ð¾', 'Ð¡Ð¾Ð·Ð´Ð°Ñ‚ÑŒ ÑÐµÑ€Ñ‚Ð¸Ñ„Ð¸ÐºÐ°Ñ‚', 'ÐŸÐ¾Ð´ÐµÐ»Ð¸Ñ‚ÑŒÑÑ', 'Start free', "I don't know", 'Exit', 'Correct', 'Create certificate', 'Share', 'Take the test again'];
+  assertNoBannedVisibleLiterals(source);
   assert.match(source, /copy\('question\.skip'\)/);
   assert.match(source, /copy\('exitConfirm\.title'\)/);
   assert.match(source, /copy\('certificate\.create'\)/);
@@ -528,7 +528,8 @@ test('live question toggle preserves attempt state and changes only service inst
   assert.ok(Number(html.match(/id="qTimerNum">(\d+)/)[1]) <= Number(beforeTimer));
   assert.notEqual(html.match(/stroke-dashoffset:([\d.]+)/)[1], undefined);
   assert.equal(beforeRing, html.match(/stroke-dashoffset:([\d.]+)/)[1]);
-  assert.ok(Number(beforeRing) > 0 && Number(beforeRing) < 100);
+  const expectedRing = (2 * Math.PI * 15.5) * (1 - 32000 / 45000);
+  assert.ok(Math.abs(Number(beforeRing) - expectedRing) < 0.5, `deadline-derived ring offset ${beforeRing}`);
   assert.deepEqual(effectsAfter, effectsBefore);
 });
 
@@ -575,6 +576,12 @@ test('behavioral harness rejects timer reset, result header removal, and focus r
   };
   assert.throws(() => assert.notEqual(enterQuestion(source.replace('Math.max(0, questionDeadline - Date.now())', 'QUESTION_SECONDS * 1000')).view().innerHTML.match(/id="qTimerNum">(\d+)/)[1], '45'));
   assert.throws(() => {
+    const html = enterQuestion(source.replace('const timerOffset = (TIMER_CIRCUMFERENCE * (1 - timerLeftMs / (QUESTION_SECONDS * 1000))).toFixed(1);', "const timerOffset = '0.0';")).view().innerHTML;
+    const offset = Number(html.match(/stroke-dashoffset:([\d.]+)/)[1]);
+    const expected = (2 * Math.PI * 15.5) * (1 - 32000 / 45000);
+    assert.ok(Math.abs(offset - expected) < 0.5);
+  });
+  assert.throws(() => {
     const fixture = enterQuestion(source.replace("if (restoreLocaleToggleFocus) node.querySelector('.elt-ui-locale-toggle')?.focus?.();", ''));
     assert.notEqual(fixture.context.document.activeElement, fixture.view().parentNode.children.at(-2).querySelector('.elt-ui-locale-toggle'));
   });
@@ -588,12 +595,14 @@ test('behavioral harness rejects timer reset, result header removal, and focus r
 test('active visible-literal denylist rejects injected service copy regressions', () => {
   const source = fs.readFileSync(appPath, 'utf8');
   assertNoBannedVisibleLiterals(source);
-  assert.throws(() => assertNoBannedVisibleLiterals(source.replace('${copy(\'question.exit\')}', 'Exit')));
+  for (const literal of ['Exit', 'Start free', 'Начать бесплатно']) {
+    assert.throws(() => assertNoBannedVisibleLiterals(`${source}\nconst visible = '${literal}';`), literal);
+  }
 });
 
 test('rerender side-effect mutation packets are observable through the live harness', () => {
   const source = fs.readFileSync(appPath, 'utf8');
-  const packets = ["api('view', {})", "api('complete', {})", 'reportTestCompletion()', 'fetch(BANK_URL)', 'generateCertificate("x", {})', 'engine.computeResult()'];
+  const packets = ["api('view', {})", "api('complete', {})", 'reportTestCompletion()', 'fetch(BANK_URL)', 'fetchPublicCompleted()', 'generateCertificate("x", {})', 'engine.computeResult()'];
   for (const packet of packets) {
     const mutated = source.replace('function rerenderForUiLocale() {', `function rerenderForUiLocale() { ${packet};`);
     assert.throws(() => {

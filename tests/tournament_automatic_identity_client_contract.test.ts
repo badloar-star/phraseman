@@ -18,7 +18,11 @@ describe('tournament automatic identity client contract', () => {
   it('sends the current local nickname, avatar, and aura with both join routes', () => {
     expect(source).toContain("import AsyncStorage from '@react-native-async-storage/async-storage';");
     expect(source).toContain("AsyncStorage.multiGet(['user_name', 'user_avatar', 'user_avatar_aura'])");
-    expect(source).toContain("'tournamentJoin',\n    { roomId, profile: await loadTournamentProfileHint() },");
-    expect(source).toContain("'tournamentStartNow',\n    { profile: await loadTournamentProfileHint() },");
+    expect(source).toMatch(
+      /'tournamentJoin',\s*\{\s*roomId,\s*profile:\s*await loadTournamentProfileHint\(\)\s*\},/,
+    );
+    expect(source).toMatch(
+      /'tournamentStartNow',\s*\{\s*profile:\s*await loadTournamentProfileHint\(\)\s*\},/,
+    );
   });
 });

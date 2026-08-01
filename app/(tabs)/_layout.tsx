@@ -504,12 +504,13 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
   const insets = useStableSafeAreaInsets();
   const { goToTab, activeIdx, onSwipeStart, onSwipeComplete } = useTabNav();
   const topFadeScroll = useTopFadeScroll();
-  /** Светлая Sage-капсула обязана оставаться фарфоровой: почти чёрный scrim из
-   * тёмных тем превращал её в чужеродную полосу, а sage-иконки терялись на ней. */
+  /** Sage использует собственную акцентную капсулу вместо чужого чёрного scrim.
+   * Белые состояния иконок держат контраст и в полном таббаре, и в свёрнутом орбе. */
   const isSagePorcelainTabChrome = themeMode === 'sagePorcelain';
-  const tabPillBackground = isSagePorcelainTabChrome ? t.bgCard : TAB_UNDERLAY_DIM_BG;
+  const tabPillBackground = isSagePorcelainTabChrome ? t.accent : TAB_UNDERLAY_DIM_BG;
+  const tabIconActive = isSagePorcelainTabChrome ? t.correctText : t.accent;
   const tabIconMuted = isSagePorcelainTabChrome
-    ? t.textMuted
+    ? withAlpha(t.correctText, 0.72)
     : withAlpha(t.textSecond, TAB_DARK_ICON_MUTED_ALPHA);
   const tabPillBottom = Math.max(PB, ds.spacing.sm) + FLOATING_PILL_BOTTOM_GAP;
   const tabOverlayHeight = tabBarHeight + tabPillBottom + ds.spacing.md;
@@ -823,7 +824,7 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
                   borderRadius: tabBarHeight / 2,
                   shadowColor: t.shadowDark,
                   borderWidth: isSagePorcelainTabChrome ? 1 : 0,
-                  borderColor: isSagePorcelainTabChrome ? t.border : 'transparent',
+                  borderColor: isSagePorcelainTabChrome ? t.btnShadow : 'transparent',
                 },
               ]}
             >
@@ -844,10 +845,10 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
               {/* зачем: владелец убрал подложку-«пилюлю» под активной иконкой —
                   на тёмном фоне её верхний край читался как полукруг под иконкой.
                   Активная вкладка теперь обозначается ТОЛЬКО самой иконкой: залитый
-                  вариант (tab.active) + акцентный цвет вместо приглушённого. */}
+                  вариант (tab.active) + контрастный цвет вместо приглушённого. */}
               {TABS.map((tab, i) => {
                 const visuallyFocused = visualTabIdx === i;
-                const color = visuallyFocused ? t.accent : tabIconMuted;
+                const color = visuallyFocused ? tabIconActive : tabIconMuted;
                 const iconScale = pressedTabIdx === i
                   ? tabPressAnim.interpolate({ inputRange: [0, 1], outputRange: [1, 1.08] })
                   : 1;

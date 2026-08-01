@@ -47,7 +47,7 @@ describe('Fabric background layout guard', () => {
     expect(tabLayout).not.toContain('intensity={100}');
     expect(tabLayout).toContain('const TAB_UNDERLAY_DIM_ALPHA = 0.95;');
     expect(tabLayout).toContain('const TAB_UNDERLAY_DIM_BG = `rgba(0,0,0,${TAB_UNDERLAY_DIM_ALPHA})`;');
-    expect(tabLayout).toContain('const tabPillBackground = isSagePorcelainTabChrome ? t.bgCard : TAB_UNDERLAY_DIM_BG;');
+    expect(tabLayout).toContain('const tabPillBackground = isSagePorcelainTabChrome ? t.accent : TAB_UNDERLAY_DIM_BG;');
     expect(tabLayout).toContain('{ backgroundColor: tabPillBackground }');
     expect(tabLayout).toContain("position: 'absolute'");
     expect(tabLayout).toContain('bottom: 0');

@@ -25,13 +25,17 @@ function contrast(foreground: string, background: string): number {
 }
 
 describe('Sage Porcelain real-device visibility regressions', () => {
-  it('uses porcelain navigation chrome instead of the dark 95% scrim', () => {
+  it('uses the Sage accent navigation capsule with readable light icons', () => {
     const source = read('app/(tabs)/_layout.tsx');
 
     expect(source).toContain("const isSagePorcelainTabChrome = themeMode === 'sagePorcelain';");
-    expect(source).toContain('const tabPillBackground = isSagePorcelainTabChrome ? t.bgCard : TAB_UNDERLAY_DIM_BG;');
+    expect(source).toContain('const tabPillBackground = isSagePorcelainTabChrome ? t.accent : TAB_UNDERLAY_DIM_BG;');
+    expect(source).toContain('const tabIconActive = isSagePorcelainTabChrome ? t.correctText : t.accent;');
     expect(source).toContain('const tabIconMuted = isSagePorcelainTabChrome');
-    expect(source).toContain('borderColor: isSagePorcelainTabChrome ? t.border : \'transparent\'');
+    expect(source).toContain('withAlpha(t.correctText, 0.72)');
+    expect(source).toContain('const color = visuallyFocused ? tabIconActive : tabIconMuted;');
+    expect(source).toContain('borderColor: isSagePorcelainTabChrome ? t.btnShadow : \'transparent\'');
+    expect(contrast(SAGE_PORCELAIN.correctText, SAGE_PORCELAIN.accent)).toBeGreaterThanOrEqual(4.5);
   });
 
   it('gives Sage home tiles semantic light surfaces and bundles their nested icons', () => {
@@ -44,7 +48,10 @@ describe('Sage Porcelain real-device visibility regressions', () => {
     expect(source).toContain("const isPaperHomeTheme = themeMode === 'sagePorcelain';");
     expect(source).toContain("const sketchHomePanelGradient = [t.bgCard, t.bgSurface]");
     expect(source).toContain('borderColor: isPaperHomeTheme ? homeThemePanelBorder : \'transparent\'');
+    expect(source).toContain('const homeThemeTrackBg = isPaperHomeTheme ? t.bgSurface2');
+    expect(source).toContain('colors={isPaperHomeTheme ? [t.accent, t.accent]');
     expect(appJson.expo.updates.assetPatternsToBeBundled).toContain('assets/images/home_menu/**/*');
+    expect(contrast(SAGE_PORCELAIN.accent, SAGE_PORCELAIN.bgSurface2)).toBeGreaterThanOrEqual(3);
   });
 
   it('uses dark semantic ink on Sage lesson cards and removes the white glow', () => {

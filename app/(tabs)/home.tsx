@@ -805,7 +805,7 @@ export default function HomeScreen() {
                 ? lightPanelIconBg
                 : 'rgba(40,47,58,0.96)';
     const homeThemeChevronBg = isGoldTheme ? goldSoftBg : isPaperHomeTheme ? lightPanelChevronBg : 'rgba(255,255,255,0.09)';
-    const homeThemeTrackBg = isPaperHomeTheme ? 'rgba(56,52,44,0.18)' : 'rgba(83,96,116,0.72)';
+    const homeThemeTrackBg = isPaperHomeTheme ? t.bgSurface2 : 'rgba(83,96,116,0.72)';
     const energyEmptyTint = isSketchLightTheme
         ? 'rgba(47,49,59,0.42)'
         : 'rgba(255,245,252,0.38)';
@@ -2827,7 +2827,7 @@ export default function HomeScreen() {
                     backgroundColor: isPaperHomeTheme ? homeThemeTrackBg : isGoldTheme ? 'rgba(0,0,0,0.36)' : 'rgba(255,255,255,0.09)',
                     borderWidth: 0,
                   }}>
-                    <LinearGradient colors={isPaperHomeTheme ? [t.accent, t.correct] : isGoldTheme ? GOLD_GRADIENTS.progressMetal : [t.gold, '#FFF2B0', t.accent]} locations={isGoldTheme ? [0, 0.48, 1] : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{ width: `${xpPct}%` as any, height: '100%', borderRadius: 999, overflow: 'hidden' }}>
+                    <LinearGradient colors={isPaperHomeTheme ? [t.accent, t.accent] : isGoldTheme ? GOLD_GRADIENTS.progressMetal : [t.gold, '#FFF2B0', t.accent]} locations={isGoldTheme ? [0, 0.48, 1] : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{ width: `${xpPct}%` as any, height: '100%', borderRadius: 999, overflow: 'hidden' }}>
                     </LinearGradient>
                   </View>
 

@@ -31,3 +31,17 @@ test("knowly hosting applies a no-store API rule after the preserved global stat
     "specific API no-store rule must follow the global rule",
   );
 });
+
+test("level-test assets use one release stamp and bank URLs use each bankVersion", () => {
+  const clientDir = path.join(__dirname, "..", "knowly-www", "english-level-test");
+  const html = fs.readFileSync(path.join(clientDir, "index.html"), "utf8");
+  const i18n = fs.readFileSync(path.join(clientDir, "i18n.js"), "utf8");
+  for (const asset of ["styles.css", "engine.js", "i18n.js", "certificate.js", "app.js"]) {
+    assert.match(html, new RegExp(`\\./${asset.replace('.', '\\.') }\\?v=20260801-3`));
+  }
+  assert.match(html, /\/assets\/site-background\.css\?v=20260729-1/);
+  for (const language of ["en", "de", "fr", "it", "es"]) {
+    const bank = JSON.parse(fs.readFileSync(path.join(clientDir, "data", `questions.${language}.json`), "utf8"));
+    assert.match(i18n, new RegExp(`questions\\.${language}\\.json\\?v=${bank.bankVersion.replaceAll('.', '\\.')}['\"]`));
+  }
+});

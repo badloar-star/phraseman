@@ -11,7 +11,7 @@ import { createAuditRecord } from './admin/audit_contract';
 import { hasPermission } from './admin/permissions';
 import { hasAdminRole, type AdminRole } from './admin/roles';
 import { resolveCanonicalAdminAccessTarget } from './admin_access_controls';
-import { ENFORCE_APP_CHECK } from './callable_options';
+import { ADMIN_SENSITIVE_WRITE_OPTIONS, requireAdminAppCheck } from './callable_options';
 
 const REGION = 'us-central1';
 const UID_RE = /^[A-Za-z0-9._-]{2,160}$/;
@@ -318,8 +318,9 @@ function replayResult(operation: Readonly<Row>): Row {
 }
 
 export const adminGrantReward = onCall(
-  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK },
+  ADMIN_SENSITIVE_WRITE_OPTIONS,
   async (request) => {
+    requireAdminAppCheck(request);
     const actor = requireRewardWriter(request as { auth?: { uid?: string; token?: Row } });
     const input = normalizeAdminGrantRewardInput(request.data);
     const db = admin.firestore();
@@ -402,8 +403,9 @@ export const adminGrantReward = onCall(
 );
 
 export const adminSetShardBalance = onCall(
-  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK },
+  ADMIN_SENSITIVE_WRITE_OPTIONS,
   async (request) => {
+    requireAdminAppCheck(request);
     const actor = requireRewardWriter(request as { auth?: { uid?: string; token?: Row } });
     const input = normalizeAdminSetShardBalanceInput(request.data);
     const db = admin.firestore();

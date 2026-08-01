@@ -38,13 +38,17 @@ describe('admin revenue analytics contract', () => {
   });
 
   it('tracks onboarding paywall source from the personal-plan flow', () => {
-    expect(premiumModalSource).toContain('params: { ...params }');
+    expect(premiumModalSource).toContain("openPremiumPaywall(router, params, 'replace')");
     expect(paywallASource).toContain('params.source');
     expect(paywallASource).toContain("|| 'direct'");
-    expect(onboardingSource).toContain("trackOnboarding('onboarding_plan_paywall_view'");
+    expect(onboardingSource).toContain('function trackOnboardingPlanPaywallView');
+    expect(onboardingSource).toContain("void trackEvent('onboarding_plan_paywall_view'");
+    expect(onboardingSource).toContain("trackOnboardingActivity('onboarding_plan_paywall_view'");
+    expect(countOccurrences(onboardingSource, 'trackPaywallView: () => trackOnboardingPlanPaywallView(')).toBe(2);
     expect(onboardingSource).toContain('onPersonalPlanPaywallStart');
     expect(onboardingSource).toContain('queuePendingPersonalPlanActivation');
-    expect(onboardingSource).toContain("[PLAN_BILLING_KEY, 'yearly']");
+    expect(onboardingSource).toContain('[PLAN_BILLING_KEY, billing]');
+    expect(countOccurrences(onboardingSource, "createPendingPlan: () => queueSelectedPlan('yearly')")).toBe(2);
   });
 
   it('adds the requested revenue analytics controls and charts to the admin analytics tab', () => {
@@ -88,8 +92,12 @@ describe('admin revenue analytics contract', () => {
       "loadOnboardingSources(true)",
       "window.loadOnboardingSources",
       "collection(db, 'app_activity')",
-      "row.action === 'onboarding_source_select'",
-      "Latest answer per user",
+      "where('action', '==', 'onboarding_source_select')",
+      "orderBy('createdAtMs', 'asc')",
+      "limit(ONBOARDING_SOURCE_QUERY_PAGE_SIZE)",
+      "startAfter(cursor)",
+      "const latestByUser = new Map()",
+      "Latest answers",
       "onboarding_source_mix",
       "'onboarding-sources'",
       "Onboarding sources",
@@ -111,21 +119,22 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).toContain('_revenueAnalyticsLoaded = false');
   });
 
-  it('separates renewing subscribers from cancelled subscriptions that still have access', () => {
+  it('separates protected RevenueCat active totals from cancelled subscriptions that still have access', () => {
     expect(adminHtml).toContain('id="an2-pay-cancelled"');
     expect(adminHtml).toContain('Cancelled, access active');
     expect(adminHtml).toContain('function an2CurrentCancelledUids(events)');
     expect(adminHtml).toContain("e.type === 'CANCELLATION'");
     expect(adminHtml).toContain("e.type === 'UNCANCELLATION'");
-    expect(adminHtml).toContain('const isRenewing = isStoreSubscription && !isCancelled');
+    expect(adminHtml).toContain("const isStoreSubscription = info.active && info.source === 'revenuecat' && !isLifetime");
+    expect(adminHtml).toContain('if (isCancelled && isStoreSubscription) cancelled += 1');
     expect(adminHtml).toContain("an2Set('an2-pay-cancelled', lifecycleReadable ? AN2_NUM(cancelled) : 'n/a')");
-    expect(adminHtml).toContain("an2Set('an2-pay-total', lifecycleReadable ? AN2_NUM(renewing) : 'n/a')");
-    expect(adminHtml).toContain('Auto-renewing store subscriptions.');
+    expect(adminHtml).toContain("an2Set('an2-pay-total', overviewReadable ? AN2_NUM(_an2.rcOverview.activeSubscriptions) : 'n/a')");
+    expect(adminHtml).toContain('Active store subscriptions now.');
     expect(adminHtml).toContain('Cancellation keeps access until the paid period ends');
   });
 
   it('uses the latest RevenueCat lifecycle state per user when classifying cancellations', () => {
-    const match = adminModuleScript.match(/function an2CurrentCancelledUids\(events\) \{([\s\S]*?)\n  \}\n\n  \/\/ Access comes from/);
+    const match = adminHtml.match(/function an2CurrentCancelledUids\(events\) \{([\s\S]*?)\r?\n  \}\r?\n\r?\n  \/\/ Current totals/);
     expect(match).not.toBeNull();
     const classify = new Function(`return function an2CurrentCancelledUids(events) {${match?.[1] || ''}\n}`)() as
       (events: Array<Record<string, unknown>>) => Set<string>;
@@ -202,9 +211,12 @@ describe('admin revenue analytics contract', () => {
   });
 
   it('keeps the admin section menu as a left-side scrollable sidebar', () => {
+    const sidebarRule = Array.from(adminHtml.matchAll(/body\[data-admin-skin="onboarding"\] \.tabs \{([\s\S]*?)\n    \}/g))
+      .map((match) => match[1])
+      .find((rule) => rule.includes('position: fixed')) || '';
     expect(adminHtml).toContain('margin-left: 304px');
-    expect(adminHtml).toContain('left: 14px');
-    expect(adminHtml).not.toContain('right: 14px');
+    expect(sidebarRule).toContain('left: 14px');
+    expect(sidebarRule).not.toMatch(/\bright\s*:/);
   });
 
   it('adds search inside the left admin section menu', () => {
@@ -218,7 +230,8 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).toContain("content: 'Sections' !important");
     expect(adminHtml).toContain("tabsBox.dataset.filterEmpty");
     expect(adminHtml).toContain("visibleGroups.add(tabEl.dataset.adminGroup)");
-    expect(adminHtml).toContain("tabEl.style.display = matched ? '' : 'none'");
+    expect(adminHtml).toContain("if (matched) tabEl.style.removeProperty('display')");
+    expect(adminHtml).toContain("else tabEl.style.display = 'none'");
   });
 
   it('adds an operations overview as the first admin workspace screen', () => {
@@ -233,7 +246,7 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).toContain("window.addEventListener('hashchange'");
     expect(adminHtml).toContain('data-admin-goto="app-health"');
     expect(adminHtml).not.toContain('data-admin-goto="arena-live"');
-    expect(adminHtml).toContain("if (overviewTab) overviewTab.classList.toggle('active', tab === 'overview')");
+    expect(adminHtml).toContain("panel.classList.toggle('active', panel.id === 'tab-' + tab)");
   });
 
   it('sorts the sidebar into contiguous operational groups before adding group labels', () => {
@@ -256,8 +269,8 @@ describe('admin revenue analytics contract', () => {
       expect(adminHtml).toContain(`id="tab-${key}"`);
       expect(adminHtml).toContain(`tab==='${key}'`);
     }
-    expect(adminHtml).toContain("'safety-flags': 'users'");
-    expect(adminHtml).toContain("'age-consent': 'users'");
+    expect(adminHtml).toContain("'safety-flags': 'core'");
+    expect(adminHtml).toContain("'age-consent': 'core'");
   });
 
   it('keeps safety and consent loaders retryable after auth or permission failures', () => {
@@ -310,7 +323,7 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).toContain('0x0178: 0x9F');
     expect(adminHtml).toContain('new MutationObserver');
     expect(adminHtml).toContain("ADMIN_TAB_BASE_HTML");
-    expect(adminHtml).toContain("'arena-live'");
+    expect(adminHtml).not.toContain("'arena-live'");
     expect(adminHtml).toContain(`onclick="switchTab('users')" data-i18n-es="Usuarios">Users</div>`);
     expect(adminHtml).toContain(`onclick="switchTab('analytics')" data-i18n-es="Analítica">Analytics</div>`);
     expect(adminHtml).toContain(`onclick="switchTab('app-messages')" data-i18n-es="Mensajes">Messages</div>`);
@@ -446,7 +459,7 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).toContain('function setAdminText');
     expect(adminHtml).toContain('function setAdminAttr');
     expect(adminHtml).toContain('if (option.textContent !== next) option.textContent = next');
-    expect(adminHtml).toContain("setSelectOptionLabels('r-filter-status', { open: 'Open', fixed: 'Fixed', '': 'All statuses' })");
+    expect(adminHtml).toContain("setSelectOptionLabels('r-filter-status', { open: 'Open', fixed: 'Fixed', answered: 'Answered', '': 'All statuses' })");
     expect(adminHtml).toContain('Mark visible fixed');
     expect(adminHtml).toContain('Copy visible reports');
     expect(adminHtml).toContain('Global one-time modal');
@@ -548,9 +561,9 @@ describe('admin revenue analytics contract', () => {
   it('unifies daily phrases and clubs sections', () => {
     expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #tab-daily-phrases');
     expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #tab-clubs');
-    expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #dp-summary');
-    expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #clubs-wrap');
-    expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #league-chest-archive');
+    expect(adminHtml).toContain('id="dp-summary"');
+    expect(adminHtml).toContain('id="clubs-wrap"');
+    expect(adminHtml).toContain('id="league-chest-archive"');
     expect(adminHtml).not.toContain("switchTab('personal-training')");
     expect(adminHtml).not.toContain("'personal-training': 'Personal Training'");
     expect(adminHtml).not.toContain('tab-personal-training');
@@ -596,13 +609,14 @@ describe('admin revenue analytics contract', () => {
   it('keeps referrals and push operations sections after Arena retirement', () => {
     expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #tab-referrals');
     expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #tab-push-notify');
-    expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #ref-aggregates');
+    expect(adminHtml).toContain('id="ref-aggregates"');
+    expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #tab-referrals .ref-panel');
     expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #push-panel-uid');
     expect(adminHtml).toContain('#push-mode-scheduled');
     expect(adminHtml).toContain('applyCleanReferralsChrome');
     expect(adminHtml).toContain('ref-status-pill');
-    expect(adminHtml).toContain('Open referrer');
-    expect(adminHtml).toContain('Open invited');
+    expect(adminHtml).toContain('data-open="${escapeHtml(row.referrerId)}"');
+    expect(adminHtml).toContain('data-open="${escapeHtml(row.refereeId)}"');
     expect(adminHtml).toContain('Loading referrals...');
     expect(adminHtml).toContain('Attributions');
     expect(adminHtml).toContain('Top referrers by completed invites');

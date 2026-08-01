@@ -14,7 +14,7 @@ describe('admin app messages poll contract', () => {
   });
 
   it('renders six reusable option rows but only saves the selected count', () => {
-    const optionRows = html.match(/<div class="app-msg-field app-msg-poll-option-row" data-am-poll-option-row="/g) || [];
+    const optionRows = html.match(/<div class="app-msg-field app-msg-poll-option-row" data-am-poll-option-row="[1-6]"/g) || [];
     const optionInputs = html.match(/id="am-poll-option-\d"/g) || [];
 
     expect(optionRows).toHaveLength(6);
@@ -37,7 +37,9 @@ describe('admin app messages poll contract', () => {
     expect(html).toMatch(/payload\.pollCounts = appMessageEmptyPollCounts\(poll\)/);
     expect(html).toMatch(/payload\.pollVoteCount = 0/);
     expect(html).toMatch(/payload\.pollResetAtMs = nowMs/);
-    expect(html).toMatch(/await resetAppMessagePollEngagement\(editId\)/);
+    expect(html).toContain('getAdminUpdateAppMessageCallable()');
+    expect(html).toContain('resetPollEngagement: shouldResetPollEngagement');
+    expect(html).not.toMatch(/await resetAppMessagePollEngagement\(editId\)/);
     expect(html).toMatch(/pollOptionId: deleteField\(\)/);
   });
 

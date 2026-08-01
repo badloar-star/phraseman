@@ -417,6 +417,15 @@ export { adminReplyToReport, claimReportReward, adminDraftReportReply } from './
 // ── Admin grant (типизированные награды из админки) ───────────────────────────
 export { adminGrantReward, adminSetShardBalance } from './admin_grant';
 export { adminGrantAccess, adminSetUserBan } from './admin_access_controls';
+export {
+  adminDeleteDuplicateUser,
+  adminMigrateLegacyAdminPremium,
+  adminRequestUserMerge,
+  adminResetUserProgress,
+  adminResolveUserReport,
+  adminUpdateUserProfileField,
+  adminWarnUser,
+} from './admin_user_operations';
 export { adminQueueAccountDeletion } from './admin_account_delete';
 export { adminGetComplianceOverview, adminListSafetyFlags, adminMarkSafetyFlagsHandled } from './admin_compliance';
 // ── Починка/перепривязка auth-привязок из админки (permission users.auth_repair) ──
@@ -480,7 +489,11 @@ export {
   adminDeleteAppMessage,
   adminCleanupExpiredAppMessages,
   adminSendPersonalAppMessage,
+  adminLaunchVipSurveyCampaign,
+  adminDeactivateVipSurveyCampaign,
 } from './admin_app_messages';
+export { adminGetAdminConfigWorkspace, adminPublishNavLayout, adminPublishAlertsConfig, adminTestAlerts } from './admin_config_controls';
+export { adminResetLeaguePoints, adminMoveLeagueUser } from './admin_league_controls';
 export {
   adminListGlobalBroadcasts,
   adminPublishGlobalBroadcast,

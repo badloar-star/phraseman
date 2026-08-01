@@ -112,10 +112,11 @@ describe('app message edit and delete commands', () => {
     const result = normalizeAppMessageUpdateInput({
       ...base,
       messageId: 'message_123',
+      active: true,
       resetPollEngagement: false,
       translations: { ru: { title: 'Новая тема', body: 'Новый текст' } },
     });
-    expect(result).toMatchObject({ messageId: 'message_123', resetPollEngagement: false });
+    expect(result).toMatchObject({ messageId: 'message_123', active: true, resetPollEngagement: false });
     expect(result.patch).toMatchObject({ kind: 'message', audience: 'free', priority: 12, titleRu: 'Новая тема', messageRu: 'Новый текст' });
     expect(result.patch).not.toHaveProperty('createdAtMs');
     expect(result.patch).not.toHaveProperty('expiresAtMs');
@@ -135,11 +136,27 @@ describe('app message edit and delete commands', () => {
     const result = normalizeAppMessageUpdateInput({
       ...base,
       messageId: 'legacy_poll_1',
+      active: true,
       kind: 'poll',
       pollOptionIds: ['opt_1', 'opt_2'],
       translations: { ru: { title: 'Выбор', body: 'Ответьте', pollQuestion: 'Да или нет?', pollOptions: ['Да', 'Нет'] } },
     });
     expect(result.patch.poll).toMatchObject({ optionIds: ['opt_1', 'opt_2'], options: [{ id: 'opt_1' }, { id: 'opt_2' }] });
+  });
+
+  test('requires the requested post-edit active state and fingerprints it', () => {
+    const input = {
+      ...base,
+      messageId: 'message_123',
+      active: false,
+      translations: { ru: { title: 'Draft', body: 'Keep inactive' } },
+    };
+    const inactive = normalizeAppMessageUpdateInput(input);
+    const active = normalizeAppMessageUpdateInput({ ...input, active: true });
+    expect(inactive.active).toBe(false);
+    expect(active.active).toBe(true);
+    expect(active.requestFingerprint).not.toBe(inactive.requestFingerprint);
+    expect(() => normalizeAppMessageUpdateInput({ ...input, active: undefined })).toThrow(HttpsError);
   });
 
   test('requires a reasoned bounded delete command', () => {

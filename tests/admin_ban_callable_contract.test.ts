@@ -6,8 +6,8 @@ const source = readFileSync(
   'utf8',
 );
 
-function handler(name: 'banUser' | 'unbanUser'): string {
-  const start = source.indexOf(`window.${name} = async function(uid) {`);
+function handler(name: 'banUser' | 'unbanUser' | 'unbanFromList' | 'banByUidPrompt'): string {
+  const start = source.indexOf(`window.${name} = async function`);
   const next = source.indexOf('\n  window.', start + 1);
   expect(start).toBeGreaterThan(-1);
   expect(next).toBeGreaterThan(start);
@@ -49,6 +49,28 @@ describe('live admin ban callable contract', () => {
       expect(body).not.toContain("logAction('unban'");
     },
   );
+
+  it.each([
+    ['unbanFromList', false],
+    ['banByUidPrompt', true],
+  ] as const)('%s uses only the acknowledged server command with a mandatory reason', (name, banned) => {
+    const body = handler(name);
+    expect(body).toContain('showInputModal({');
+    expect(body).toContain('.trim();');
+    expect(body).toMatch(/if\s*\(!reason\)/);
+    expect(body).toContain('createAdminCommandId(');
+    expect(body).toContain('requestId,');
+    expect(body).toContain('idempotencyKey,');
+    expect(body).toContain('await getAdminSetUserBanCallable()({');
+    expect(body).toContain(`banned: ${String(banned)}`);
+    expect(body).toContain('reason,');
+    expect(body).toContain('response.data.ok !== true');
+    expect(body).not.toMatch(/\b(?:setDoc|updateDoc|deleteDoc)\s*\(/);
+    expect(body).not.toContain("doc(db, 'leaderboard'");
+    expect(body).not.toContain('.catch(() => {})');
+    expect(body).not.toContain("logAction('ban'");
+    expect(body).not.toContain("logAction('unban'");
+  });
 
   it.each(['banUser', 'unbanUser'] as const)(
     '%s mutates cached UI only after an acknowledged server success',

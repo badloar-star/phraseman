@@ -87,6 +87,16 @@ describe('DailyPhraseCard quest contract', () => {
     expect(liveHomeBranch).not.toContain('adjustsFontSizeToFit');
   });
 
+  it('scales the home additional kicker line height with its effective font size', () => {
+    expect(source).toContain('const homeKickerFontSize = Math.max(12, f.caption);');
+    expect(source).toContain('fontSize: homeKickerFontSize');
+    expect(source).toContain('lineHeight: Math.round(homeKickerFontSize * 1.3)');
+
+    const kickerStyleStart = source.indexOf('homeAdditionalKicker: {');
+    const kickerStyle = source.slice(kickerStyleStart, source.indexOf('  },', kickerStyleStart));
+    expect(kickerStyle).not.toContain('lineHeight:');
+  });
+
   it('loads the daily phrase as a one-shot value instead of keeping a live listener open', () => {
     expect(source).toContain('getTodayPhraseForTarget(studyTarget, lang)');
     expect(source).not.toContain('subscribeTodayPhraseForTarget');

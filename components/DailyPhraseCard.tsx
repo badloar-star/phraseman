@@ -65,6 +65,7 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
   const params = useGlobalSearchParams<{ openPhrase?: string; play?: string }>();
   const dailyPhraseGateOpen = dailyPhraseContentAvailableForTarget(studyTarget);
   const homeAdditional = variant === 'homeAdditional';
+  const homeKickerFontSize = Math.max(12, f.caption);
   const chrome = dailyPhraseChromeFor(themeMode);
   const [phrase, setPhrase] = useState<DailyPhrase | null>(() => (
     getTodayPhraseSyncForTarget(studyTarget, lang)
@@ -535,7 +536,7 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
           <View style={styles.plaqueCopy}>
             {homeAdditional ? (
               <>
-                <Text style={[styles.homeAdditionalKicker, { color: chrome.title, fontSize: Math.max(12, f.caption) }]}>
+                <Text style={[styles.homeAdditionalKicker, { color: chrome.title, fontSize: homeKickerFontSize, lineHeight: Math.round(homeKickerFontSize * 1.3) }]}>
                   {title}
                 </Text>
                 <Text style={[styles.homeAdditionalPhrase, { color: chrome.phrase, fontSize: Math.max(22, f.bodyLg), lineHeight: Math.round(Math.max(22, f.bodyLg) * 1.3) }]}>
@@ -945,7 +946,6 @@ const styles = StyleSheet.create({
   homeAdditionalKicker: {
     fontWeight: '900',
     letterSpacing: 0.7,
-    lineHeight: 16,
     marginBottom: 4,
     textTransform: 'uppercase',
   },

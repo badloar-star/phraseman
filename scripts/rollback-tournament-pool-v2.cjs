@@ -14,6 +14,7 @@ const {
   findBlockingRoomReferences,
   parsePoolBarrier,
   releasePoolMigrationBarrier,
+  resolveSourceGeneration,
 } = require('./apply-tournament-pool-v2.cjs');
 
 const EXPECTED_PROJECT_ID = 'phraseman-ea0b3';
@@ -34,7 +35,7 @@ function pinnedSha(name, argv) {
 
 function resolveRollbackIntent(argv = process.argv.slice(2), env = process.env) {
   if (!argv.includes('--apply')) return false;
-  if (env.PHRASEMAN_TOURNAMENT_POOL_V3_ROLLBACK !== '1') throw new Error('rollback_guard_missing');
+  if (env.PHRASEMAN_TOURNAMENT_POOL_V5_ROLLBACK !== '1') throw new Error('rollback_guard_missing');
   return true;
 }
 
@@ -230,6 +231,7 @@ async function main() {
   assert.equal(manifest.artifacts.newPoolSha256, expectedNewSha, 'manifest_new_pool_hash_mismatch');
   const oldRows = parseNdjson(rawBackup, 'backup');
   const newRows = parseNdjson(rawNew, 'new_pool');
+  const targetGeneration = resolveSourceGeneration(oldRows);
   assert.equal(oldRows.length, manifest.productionRead.existingDocuments, 'backup_count_mismatch');
   assert.equal(newRows.length, manifest.generated.taskCount, 'new_pool_count_mismatch');
   assert.equal(manifest.generated.taskCount, 180, 'new_pool_count_pin_mismatch');
@@ -266,7 +268,7 @@ async function main() {
   const stagedNewDocs = current.docs.filter((doc) => newIds.has(doc.id));
   const preflightReport = {
     ok: true,
-    kind: 'tournament_pool_v3_rollback_preflight_v1',
+    kind: 'tournament_pool_v5_rollback_preflight_v1',
     mode: apply ? 'apply' : 'dry-run',
     projectId: EXPECTED_PROJECT_ID,
     poolVersion: EXPECTED_VERSION,
@@ -282,7 +284,6 @@ async function main() {
     return;
   }
 
-  const targetGeneration = `legacy:${expectedBackupSha}`;
   const migrationId = `rollback:${manifestSha256}`;
   const barrierAcquisition = await acquirePoolRollbackBarrier(db, {
     expectedGeneration: EXPECTED_VERSION,
@@ -346,7 +347,7 @@ async function main() {
   });
   const report = {
     ...preflightReport,
-    kind: 'tournament_pool_v3_rollback_report_v1',
+    kind: 'tournament_pool_v5_rollback_report_v1',
     completedAt: new Date().toISOString(),
     restored: missingOld.length,
     removedNew: verifiedNewDocs.length,

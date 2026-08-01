@@ -447,6 +447,11 @@
   function mountView(node) {
     stopLandingCounterRefresh();
     const old = currentView;
+    const restoreLocaleToggleFocus = Boolean(
+      document.activeElement
+      && typeof document.activeElement.matches === 'function'
+      && document.activeElement.matches('.elt-ui-locale-toggle'),
+    );
     node.classList.add('elt-view');
     app.appendChild(node);
     currentView = node;
@@ -458,6 +463,7 @@
       old.setAttribute('aria-hidden', 'true');
       setTimeout(() => old.remove(), 420);
     }
+    if (restoreLocaleToggleFocus) node.querySelector('.elt-ui-locale-toggle')?.focus?.();
     return node;
   }
 
@@ -768,6 +774,10 @@
     const position = engine.history.length + 1;
     const progress = Math.min((position / 20) * 100, 100);
     const questionLanguage = EnglishTestI18n.TESTS[attemptTestLanguage || selectedTestLanguage].bcp47;
+    const serviceQuestion = uiLocale === 'ru' ? { scenario: q.scenarioRu, instruction: q.instructionRu, language: 'ru' } : { scenario: q.scenario, instruction: q.prompt, language: 'en' };
+    const timerLeftMs = options.preserveAttempt ? Math.max(0, questionDeadline - Date.now()) : QUESTION_SECONDS * 1000;
+    const timerSeconds = Math.ceil(timerLeftMs / 1000);
+    const timerOffset = (TIMER_CIRCUMFERENCE * (1 - timerLeftMs / (QUESTION_SECONDS * 1000))).toFixed(1);
 
     const node = el(`
       <div class="elt-test">
@@ -778,13 +788,13 @@
           <span class="elt-timer" id="qTimer" role="timer" aria-label="${copy('question.timerRemaining')}">
             <svg viewBox="0 0 36 36" aria-hidden="true">
               <circle class="elt-timer-track" cx="18" cy="18" r="15.5"></circle>
-              <circle class="elt-timer-ring" id="qTimerRing" cx="18" cy="18" r="15.5"></circle>
+              <circle class="elt-timer-ring" id="qTimerRing" cx="18" cy="18" r="15.5" style="stroke-dashoffset:${timerOffset}"></circle>
             </svg>
-            <b id="qTimerNum">${QUESTION_SECONDS}</b>
+            <b id="qTimerNum">${timerSeconds}</b>
           </span>
         </div>
-        <div class="elt-scenario" lang="${questionLanguage}">${escapeHtml(q.scenarioRu)}</div>
-        <div class="elt-instruction" lang="${questionLanguage}">${escapeHtml(q.instructionRu)}</div>
+        <div class="elt-scenario" lang="${serviceQuestion.language}">${escapeHtml(serviceQuestion.scenario)}</div>
+        <div class="elt-instruction" lang="${serviceQuestion.language}">${escapeHtml(serviceQuestion.instruction)}</div>
         ${q.stimulus
           ? `<div class="elt-stimulus" lang="${questionLanguage}">${escapeHtml(q.stimulus)}</div>`
           : ''}
@@ -1015,6 +1025,7 @@
     const cta = ctaContentFor(result.estimatedLevel);
     const node = el(`
       <div class="elt-result">
+        ${brandHeader()}
         <div class="elt-result-card">
           <div class="elt-level-badge">${escapeHtml(result.estimatedLevel)}</div>
           <h2>${copy('result.level', { level: escapeHtml(result.estimatedLevel) })}</h2>

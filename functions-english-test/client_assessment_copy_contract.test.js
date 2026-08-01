@@ -131,18 +131,19 @@ test('all client assets and the bank use one new revision', () => {
   assert.doesNotMatch(`${html}\n${app}`, /20260722-3/);
 });
 
-test('question screen separates Russian instructions from English assessment material', () => {
+test('question screen selects service instructions by UI locale and keeps assessed material in the test language', () => {
   const app = read('app.js');
   const styles = read('styles.css');
 
   assert.match(app, /const questionLanguage = EnglishTestI18n\.TESTS\[attemptTestLanguage \|\| selectedTestLanguage\]\.bcp47/);
-  assert.match(app, /class="elt-scenario" lang="\$\{questionLanguage\}"[^>]*>\$\{escapeHtml\(q\.scenarioRu\)\}/);
-  assert.match(app, /class="elt-instruction" lang="\$\{questionLanguage\}"[^>]*>\$\{escapeHtml\(q\.instructionRu\)\}/);
+  assert.match(app, /const serviceQuestion = uiLocale === 'ru' \? \{ scenario: q\.scenarioRu, instruction: q\.instructionRu, language: 'ru' \} : \{ scenario: q\.scenario, instruction: q\.prompt, language: 'en' \};/);
+  assert.match(app, /class="elt-scenario" lang="\$\{serviceQuestion\.language\}"[^>]*>\$\{escapeHtml\(serviceQuestion\.scenario\)\}/);
+  assert.match(app, /class="elt-instruction" lang="\$\{serviceQuestion\.language\}"[^>]*>\$\{escapeHtml\(serviceQuestion\.instruction\)\}/);
   assert.match(app, /class="elt-stimulus" lang="\$\{questionLanguage\}"/);
   assert.match(app, /escapeHtml\(q\.stimulus\)/);
   assert.match(app, /class="elt-option-text" lang="\$\{questionLanguage\}"/);
-  assert.doesNotMatch(app, /escapeHtml\(q\.scenario\)/);
-  assert.doesNotMatch(app, /escapeHtml\(q\.prompt\)/);
+  assert.match(app, /escapeHtml\(serviceQuestion\.scenario\)/);
+  assert.match(app, /escapeHtml\(serviceQuestion\.instruction\)/);
   assert.match(styles, /\.elt-instruction\s*\{/);
   assert.match(styles, /\.elt-stimulus\s*\{/);
 });

@@ -441,6 +441,9 @@ test('uses dictionary copy for service chrome and keeps assessed question conten
   assert.match(source, /copy\('certificate\.create'\)/);
   assert.match(source, /copy\('sharing\.webShareTitle'\)/);
   assert.match(source, /const questionLanguage = EnglishTestI18n\.TESTS\[attemptTestLanguage \|\| selectedTestLanguage\]\.bcp47/);
-  assert.match(source, /class="elt-scenario" lang="\$\{questionLanguage\}"/);
+  assert.match(source, /class="elt-scenario" lang="\$\{serviceQuestion\.language\}"/);
   assert.match(source, /class="elt-option-text" lang="\$\{questionLanguage\}"/);
+  assert.match(source, /<div class="elt-result">\s*\$\{brandHeader\(\)\}/);
+  assert.match(source, /const timerLeftMs = options\.preserveAttempt \? Math\.max\(0, questionDeadline - Date\.now\(\)\) : QUESTION_SECONDS \* 1000/);
+  assert.match(source, /restoreLocaleToggleFocus/);
 });

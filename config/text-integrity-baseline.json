@@ -4731,11 +4731,9 @@
       "value": "2",
       "testID": null,
       "fingerprint": "70ef98eafd01e8c49622ef383fec64f8300ebb92b7b29de931ba2a1649ce3313",
-      "count": 3,
+      "count": 1,
       "lineHints": [
-        492,
-        497,
-        501
+        558
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",

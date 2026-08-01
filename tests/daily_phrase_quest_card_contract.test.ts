@@ -75,6 +75,18 @@ describe('DailyPhraseCard quest contract', () => {
     expect(source).not.toContain('homeAdditionalMeaning');
   });
 
+  it('lets live home additional text expand without raw truncation', () => {
+    const liveHomeBranchStart = source.indexOf('{homeAdditional ? (');
+    const liveHomeBranch = source.slice(
+      liveHomeBranchStart,
+      source.indexOf('            ) : (', liveHomeBranchStart),
+    );
+
+    expect(liveHomeBranchStart).toBeGreaterThan(-1);
+    expect(liveHomeBranch).not.toContain('numberOfLines');
+    expect(liveHomeBranch).not.toContain('adjustsFontSizeToFit');
+  });
+
   it('loads the daily phrase as a one-shot value instead of keeping a live listener open', () => {
     expect(source).toContain('getTodayPhraseForTarget(studyTarget, lang)');
     expect(source).not.toContain('subscribeTodayPhraseForTarget');

@@ -535,10 +535,10 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
           <View style={styles.plaqueCopy}>
             {homeAdditional ? (
               <>
-                <Text style={[styles.homeAdditionalKicker, { color: chrome.title, fontSize: Math.max(12, f.caption) }]} numberOfLines={1}>
+                <Text style={[styles.homeAdditionalKicker, { color: chrome.title, fontSize: Math.max(12, f.caption) }]}>
                   {title}
                 </Text>
-                <Text style={[styles.homeAdditionalPhrase, { color: chrome.phrase, fontSize: Math.max(22, f.bodyLg), lineHeight: Math.round(Math.max(22, f.bodyLg) * 1.3) }]} numberOfLines={2}>
+                <Text style={[styles.homeAdditionalPhrase, { color: chrome.phrase, fontSize: Math.max(22, f.bodyLg), lineHeight: Math.round(Math.max(22, f.bodyLg) * 1.3) }]}>
                   {phrase.english}
                 </Text>
                 <View style={[styles.homeAdditionalAction, { backgroundColor: chrome.actionBg }]}>

@@ -67,11 +67,11 @@ describe('Admin v2 paywall variant stats panel', () => {
     expect(core).toContain('function renderPaywallAbStatsBarChart(rows)');
     expect(core).toContain('function renderPaywallAbStatsDonut(rows, mode)');
     expect(core).toContain('function renderPaywallAbStatsLegend(rows)');
-    expect(core).toContain('function renderPaywallAbStatsTable(rows, revenueKind)');
+    expect(core).toContain('function renderPaywallAbStatsTable(rows, revenueKind, verdict)');
     expect(core).toContain('function paywallVariantStatsRows(report)');
     expect(core).toContain('role="img"');
     expect(core).toContain('Покупки по вариантам');
-    expect(core).toContain('🏆 лидер');
+    expect(core).toContain('🏆 победитель');
     expect(core).toContain('ещё не получали трафик');
     expect(core).toContain('оценка');
     expect(core).toContain('нет данных о ценах');
@@ -84,6 +84,36 @@ describe('Admin v2 paywall variant stats panel', () => {
     expect(css).toContain('.paywall-stats-donut');
     expect(css).toContain('.paywall-stats-legend');
     expect(css).toContain('.paywall-stats-table');
+  });
+
+  // зачем: корона доставалась первой строке сортировки по АБСОЛЮТНЫМ покупкам и
+  // без порога значимости — вариант с большей долей показов «побеждал» при худшей
+  // конверсии, а 3 покупки из 20 читались так же уверенно, как 300 из 2000.
+  // Владелец объявляет победителя по метрике «платящие на показ»; вердикт считает
+  // сервер z-тестом. Контракт держит оба конца, чтобы ложный лидер не вернулся.
+  test('crowns a winner only when the server confirmed statistical significance', () => {
+    const core = read('admin/v2/scripts/admin-core.js');
+
+    expect(core).toContain("const winner = verdict && verdict.decision === 'significant' ? verdict.winner : null;");
+    expect(core).toContain('renderPaywallAbStatsTable(rows, revenueKind, verdict)');
+    // Старый выбор «первый непустой по покупкам» не должен вернуться.
+    expect(core).not.toContain('rows.find((row) => row.purchases > 0)');
+    // Все три исхода объяснены пользователю, включая «данных мало».
+    expect(core).toContain('можно катить на всех');
+    expect(core).toContain('Победителя пока нет');
+    expect(core).toContain('Данных ещё мало');
+  });
+
+  test('computes the verdict on the server with a two-proportion z-test', () => {
+    const server = read('functions/src/admin_paywall_variant_stats.ts');
+
+    expect(server).toContain('export function computePaywallVariantVerdict(');
+    expect(server).toContain('const VERDICT_MIN_SHOWN_PER_VARIANT = 300;');
+    expect(server).toContain('const VERDICT_ALPHA = 0.05;');
+    expect(server).toContain('verdict: computePaywallVariantVerdict(variants),');
+    // Сравнение идёт по конверсии, а не по абсолютным покупкам.
+    expect(server).toContain('(b.purchases / b.shown) - (a.purchases / a.shown)');
+    expect(server).toMatch(/decision: pValue < VERDICT_ALPHA \? 'significant' : 'not_significant'/);
   });
 
   test('wires the callable through the actions layer without browser Firestore access', () => {

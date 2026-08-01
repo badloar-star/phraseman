@@ -307,6 +307,66 @@ describe('buildPaywallVariantStatsReport', () => {
     const report = build([funnelDoc({ variant: 'A', context: longCtx, step: 'shown' })], []);
     expect(report.contexts[0].context).toHaveLength(40);
   });
+
+  // зачем: админка помечала «🏆 лидер» первую строку сортировки ПО АБСОЛЮТНЫМ
+  // покупкам и без всякого порога значимости. Это давало два ложных вывода:
+  // вариант с большей долей показов выигрывал при худшей конверсии, а 3 покупки
+  // из 20 показов выглядели таким же надёжным результатом, как 300 из 2000.
+  // Владелец выбрал метрику «платящие на показ» — вердикт считаем по ней и
+  // только когда разница переживает двухпропорциональный z-тест.
+  describe('significance verdict', () => {
+    function shows(variant: string, shown: number, purchases: number): DocData[] {
+      return [
+        ...Array.from({ length: shown }, () => funnelDoc({ variant, step: 'shown' })),
+        ...Array.from({ length: purchases }, () => funnelDoc({ variant, step: 'purchase_completed', plan: 'yearly' })),
+      ];
+    }
+
+    it('refuses to crown a winner while the sample is still tiny', () => {
+      // B конвертит вдвое лучше A, но на таких числах это шум.
+      const report = build([...shows('A', 20, 1), ...shows('B', 20, 2)], []);
+
+      expect(report.verdict).toMatchObject({
+        decision: 'insufficient_data',
+        winner: null,
+      });
+    });
+
+    it('never lets raw purchase volume beat a better conversion rate', () => {
+      // A: 60 покупок на 6000 показов = 1%. B: 40 покупок на 1000 = 4%.
+      // По абсолютным покупкам «лидер» был бы A — и это была бы ошибка.
+      const report = build([...shows('A', 6000, 60), ...shows('B', 1000, 40)], []);
+
+      expect(report.verdict.winner).toBe('B');
+      expect(report.verdict.decision).toBe('significant');
+    });
+
+    it('reports a real difference as significant with its p-value and lift', () => {
+      const report = build([...shows('A', 4000, 80), ...shows('B', 4000, 200)], []);
+
+      expect(report.verdict.decision).toBe('significant');
+      expect(report.verdict.winner).toBe('B');
+      expect(report.verdict.pValue).toBeLessThan(0.05);
+      // 5% против 2% — подъём втрое.
+      expect(report.verdict.liftPct).toBeGreaterThan(100);
+    });
+
+    it('stays undecided when two big variants perform the same', () => {
+      const report = build([...shows('A', 5000, 100), ...shows('B', 5000, 102)], []);
+
+      expect(report.verdict.decision).toBe('not_significant');
+      expect(report.verdict.pValue).toBeGreaterThan(0.05);
+    });
+
+    it('gives an all-zero range an honest empty verdict instead of a fake leader', () => {
+      const report = build([], []);
+      expect(report.verdict).toMatchObject({
+        decision: 'insufficient_data',
+        winner: null,
+        pValue: null,
+      });
+    });
+  });
 });
 
 // ── adminGetPaywallVariantStats callable ─────────────────────────────────────

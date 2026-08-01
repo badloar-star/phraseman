@@ -98,6 +98,35 @@ export interface PaywallContextStatsRow {
   readonly purchasesByVariant: Readonly<Record<PaywallStatsVariant, number>>;
 }
 
+/**
+ * Вердикт A/B: можно ли уже объявлять победителя.
+ *
+ * зачем: админка помечала «🏆 лидер» первую строку сортировки по АБСОЛЮТНЫМ
+ * покупкам и без порога значимости. Вариант с большей долей показов выигрывал
+ * при худшей конверсии, а 3 покупки из 20 выглядели так же надёжно, как 300 из
+ * 2000. Владелец выбрал метрику «платящие на показ» — сравниваем по ней и
+ * только когда разница переживает двухпропорциональный z-тест.
+ *
+ * - `insufficient_data` — выборки не хватает, победителя НЕ называем;
+ * - `not_significant`   — данных достаточно, но разница неотличима от шума;
+ * - `significant`       — разница устойчива, `winner` можно катить.
+ */
+export type PaywallVerdictDecision = 'insufficient_data' | 'not_significant' | 'significant';
+
+export interface PaywallVariantVerdict {
+  readonly decision: PaywallVerdictDecision;
+  /** Лучший вариант по конверсии; null пока решение не принято. */
+  readonly winner: PaywallStatsVariant | null;
+  /** С кем сравнивали — второй по конверсии среди набравших выборку. */
+  readonly runnerUp: PaywallStatsVariant | null;
+  /** Двусторонний p-value; null когда сравнивать нечего. */
+  readonly pValue: number | null;
+  /** Относительный подъём конверсии победителя над runnerUp, %. */
+  readonly liftPct: number | null;
+  /** Сколько показов не хватает слабейшему из двух до порога. */
+  readonly shownNeeded: number;
+}
+
 export interface PaywallVariantStatsReport {
   readonly ok: true;
   readonly rangeDays: PaywallStatsRangeDays;
@@ -113,6 +142,7 @@ export interface PaywallVariantStatsReport {
     readonly planPricesMicros: PaywallPlanPriceMap;
     readonly priceObservations: { readonly monthly: number; readonly yearly: number; readonly lifetime: number };
   };
+  readonly verdict: PaywallVariantVerdict;
   readonly variants: readonly PaywallVariantStatsRow[];
   /** Ситуации показа, отсортированы по числу показов (самые частые — первые). */
   readonly contexts: readonly PaywallContextStatsRow[];
@@ -191,6 +221,86 @@ function normalizePlan(value: unknown): PaywallStatsPlan | 'unknown' {
 function conversionPct(purchases: number, shown: number): number | null {
   if (shown <= 0) return null;
   return Math.round((purchases / shown) * 1000) / 10;
+}
+
+/**
+ * Минимум показов на вариант, ниже которого вердикт не выносится вообще.
+ * При конверсии единицы процентов меньшая выборка колеблется настолько, что
+ * z-тест на ней — самообман: он «поймает» случайный всплеск и назовёт победу.
+ */
+const VERDICT_MIN_SHOWN_PER_VARIANT = 300;
+/** Порог значимости: классические 5% для двустороннего теста. */
+const VERDICT_ALPHA = 0.05;
+
+/**
+ * Функция ошибок Гаусса, приближение Abramowitz & Stegun 7.1.26 (|ε| < 1.5e-7).
+ * Нужна для перевода z-статистики в p-value; тянуть внешнюю библиотеку ради
+ * одной формулы в Cloud Function не стоит — это лишний вес холодного старта.
+ */
+function erf(x: number): number {
+  const sign = x < 0 ? -1 : 1;
+  const absX = Math.abs(x);
+  const t = 1 / (1 + 0.3275911 * absX);
+  const y = 1 - ((((1.061405429 * t - 1.453152027) * t + 1.421413741) * t - 0.284496736) * t + 0.254829592)
+    * t * Math.exp(-absX * absX);
+  return sign * y;
+}
+
+/** Двусторонний p-value для z-статистики стандартного нормального распределения. */
+function twoSidedPValue(z: number): number {
+  return Math.max(0, Math.min(1, 1 - erf(Math.abs(z) / Math.SQRT2)));
+}
+
+/**
+ * Двухпропорциональный z-тест: отличается ли конверсия победителя от runner-up
+ * сильнее, чем можно объяснить случайностью. Сравниваем ДВА лучших варианта по
+ * конверсии, а не лучший с худшим: побить заведомо слабый экран легко и
+ * бесполезно, решение принимается против ближайшего конкурента.
+ */
+export function computePaywallVariantVerdict(
+  rows: readonly PaywallVariantStatsRow[],
+): PaywallVariantVerdict {
+  const empty = { winner: null, runnerUp: null, pValue: null, liftPct: null } as const;
+
+  // Кандидаты — только варианты, набравшие минимальную выборку.
+  const eligible = rows
+    .filter((row) => row.shown >= VERDICT_MIN_SHOWN_PER_VARIANT)
+    .sort((a, b) => (b.purchases / b.shown) - (a.purchases / a.shown));
+
+  if (eligible.length < 2) {
+    // Сколько показов не хватает: берём два самых «набранных» варианта — именно
+    // они ближе всего к тому, чтобы сравнение стало возможным.
+    const byShown = [...rows].sort((a, b) => b.shown - a.shown);
+    const secondBest = byShown[1]?.shown ?? 0;
+    return {
+      ...empty,
+      decision: 'insufficient_data',
+      shownNeeded: Math.max(0, VERDICT_MIN_SHOWN_PER_VARIANT - secondBest),
+    };
+  }
+
+  const [best, second] = eligible;
+  const pBest = best.purchases / best.shown;
+  const pSecond = second.purchases / second.shown;
+
+  // Объединённая пропорция под нулевой гипотезой «разницы нет».
+  const pooled = (best.purchases + second.purchases) / (best.shown + second.shown);
+  const standardError = Math.sqrt(pooled * (1 - pooled) * (1 / best.shown + 1 / second.shown));
+  if (!(standardError > 0)) {
+    return { ...empty, decision: 'not_significant', shownNeeded: 0 };
+  }
+
+  const pValue = twoSidedPValue((pBest - pSecond) / standardError);
+  const liftPct = pSecond > 0 ? Math.round(((pBest / pSecond) - 1) * 1000) / 10 : null;
+
+  return {
+    decision: pValue < VERDICT_ALPHA ? 'significant' : 'not_significant',
+    winner: pValue < VERDICT_ALPHA ? best.variant : null,
+    runnerUp: second.variant,
+    pValue: Math.round(pValue * 10000) / 10000,
+    liftPct,
+    shownNeeded: 0,
+  };
 }
 
 export interface BuildPaywallVariantStatsInput {
@@ -324,6 +434,7 @@ export function buildPaywallVariantStatsReport(input: BuildPaywallVariantStatsIn
     funnelDocsScanned: input.funnelDocs.length,
     priceRowsScanned: input.priceRowsScanned ?? input.priceRows.length,
     revenue: { kind: revenueKind, currency: 'USD', planPricesMicros, priceObservations },
+    verdict: computePaywallVariantVerdict(variants),
     variants: Object.freeze(variants),
     contexts: Object.freeze(contextRows),
     totals: {

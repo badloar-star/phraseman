@@ -1746,11 +1746,18 @@ function renderPaywallAbStatsLegend(rows) {
   return `<ul class="paywall-stats-legend">${rows.map((row) => `<li><span class="paywall-stats-chip" style="background:${row.color}"></span><span><strong>${row.letter}</strong> «${escapeHtml(row.name)}»</span></li>`).join('')}</ul>`;
 }
 
-// Таблица по вариантам, отсортирована по покупкам; лидер отмечен 🏆.
-function renderPaywallAbStatsTable(rows, revenueKind) {
-  const leader = rows.find((row) => row.purchases > 0) ?? null;
+// Таблица по вариантам. Корону ставим ТОЛЬКО подтверждённому победителю.
+//
+// зачем: раньше 🏆 доставалась первой строке сортировки по АБСОЛЮТНЫМ покупкам —
+// вариант с большей долей показов «выигрывал» при худшей конверсии, а 3 покупки
+// из 20 выглядели так же надёжно, как 300 из 2000. Владелец выбрал метрику
+// «платящие на показ»; победитель приходит с сервера уже проверенным z-тестом.
+function renderPaywallAbStatsTable(rows, revenueKind, verdict) {
+  const winner = verdict && verdict.decision === 'significant' ? verdict.winner : null;
   const body = rows.map((row) => {
-    const leaderMark = leader && row.letter === leader.letter ? ' <span class="paywall-stats-leader" title="Лидер по покупкам за период">🏆 лидер</span>' : '';
+    const leaderMark = winner && row.letter === winner
+      ? ' <span class="paywall-stats-leader" title="Победитель подтверждён статистически: разница по конверсии переживает проверку значимости">🏆 победитель</span>'
+      : '';
     const revenueCell = revenueKind === 'estimate' ? escapeHtml(formatPaywallStatsUsd(row.revenueMicros)) : '—';
     return `<tr><th scope="row"><span class="paywall-stats-chip" style="background:${row.color}"></span> ${row.letter} «${escapeHtml(row.name)}»${leaderMark}</th><td>${formatPaywallStatsCount(row.shown)}</td><td>${formatPaywallStatsCount(row.cta)}</td><td>${formatPaywallStatsCount(row.purchases)}</td><td>${formatPaywallStatsPct(row.conversionPct)}</td><td>${revenueCell}</td></tr>`;
   }).join('');
@@ -1791,6 +1798,28 @@ function renderPaywallAbStats() {
   const truncatedNotice = report.truncated === true
     ? '<div class="notice warning section"><strong>Данные обрезаны лимитом сканирования.</strong> Событий за период слишком много, сервер посчитал только первую часть. Сократите период для точных чисел.</div>'
     : '';
+  // зачем: главный вопрос владельца — «какой вариант катить на всех». Раньше на
+  // него отвечала корона у первой строки сортировки по покупкам, то есть по
+  // объёму, а не по эффективности, и без порога значимости. Здесь показываем
+  // прямой ответ по метрике «платящие на показ» и честно говорим, когда данных
+  // ещё не хватает: неназванный победитель лучше уверенно названного неверного.
+  const verdict = report.verdict && typeof report.verdict === 'object' ? report.verdict : null;
+  const variantName = (letter) => {
+    const found = rows.find((row) => row.letter === letter);
+    return found ? `${letter} «${escapeHtml(found.name)}»` : String(letter || '');
+  };
+  const verdictNotice = (() => {
+    if (!verdict) return '';
+    if (verdict.decision === 'significant' && verdict.winner) {
+      const lift = Number.isFinite(Number(verdict.liftPct)) ? `${formatPaywallStatsPct(verdict.liftPct)} ` : '';
+      return `<div class="notice success section"><strong>Победил вариант ${variantName(verdict.winner)} — можно катить на всех.</strong> Он обгоняет ближайшего конкурента ${variantName(verdict.runnerUp)} на ${lift}по доле платящих от показов. Вероятность, что это случайность — ${formatPaywallStatsPct((Number(verdict.pValue) || 0) * 100)}.</div>`;
+    }
+    if (verdict.decision === 'not_significant') {
+      return `<div class="notice section"><strong>Победителя пока нет — разница в пределах случайности.</strong> Лучшие варианты (${variantName(verdict.winner || rows[0]?.letter)} и ${variantName(verdict.runnerUp)}) идут вровень: вероятность случайного расхождения ${formatPaywallStatsPct((Number(verdict.pValue) || 0) * 100)}. Менять экран оплаты сейчас — решение по шуму, а не по данным.</div>`;
+    }
+    const needed = Math.max(0, Math.trunc(Number(verdict.shownNeeded) || 0));
+    return `<div class="notice warning section"><strong>Данных ещё мало — победителя не называем.</strong> Чтобы сравнение было честным, каждому из двух лучших вариантов нужно набрать хотя бы 300 показов${needed > 0 ? `; ближайшему не хватает ещё ${formatPaywallStatsCount(needed)}` : ''}. До этого любая разница в таблице — случайность, а не результат.</div>`;
+  })();
   const noTraffic = rows.filter((row) => row.shown === 0);
   const noTrafficNotice = noTraffic.length
     ? `<div class="notice section">Варианты ${noTraffic.map((row) => row.letter).join('–')} ещё не получали трафик за этот период — у них нули не из-за поломки, а из-за долей распределения.</div>`
@@ -1804,10 +1833,12 @@ function renderPaywallAbStats() {
       </div>
       ${renderPaywallAbStatsLegend(rows)}
       <h3>По вариантам</h3>
-      ${renderPaywallAbStatsTable(rows, revenueKind)}`
+      ${renderPaywallAbStatsTable(rows, revenueKind, verdict)}`
     : emptyState('За выбранный период событий воронки нет. Попробуйте увеличить период — варианты D–G могли ещё не получить трафик.');
   const fetchedLabel = stats.fetchedAtMs ? `<div class="section"><span class="hint">Обновлено: ${escapeHtml(new Date(stats.fetchedAtMs).toLocaleString('ru-RU'))} · источник: paywall_funnel + revenuecat_premium_events (только чтение)</span></div>` : '';
-  return `${header}${summaryCards}${revenueNotice}${truncatedNotice}${noTrafficNotice}${charts}${fetchedLabel}</div></section>`;
+  // Вердикт стоит сразу после метрик — это ответ на главный вопрос «что катить»,
+  // и он должен читаться раньше пояснений про оценку выручки.
+  return `${header}${summaryCards}${verdictNotice}${revenueNotice}${truncatedNotice}${noTrafficNotice}${charts}${fetchedLabel}</div></section>`;
 }
 
 const ONBOARDING_ENABLED_STEPS_KEY = 'onboarding_enabled_steps_v1';

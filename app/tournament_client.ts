@@ -850,6 +850,20 @@ async function callFunction<T>(
 }
 
 /**
+ * Deadline wake-ups already run inside a fresh, authenticated room session.
+ * Do not put the timing-critical request behind bootstrap work: RN Firebase
+ * attaches the current auth token, and the callable re-checks membership,
+ * expected state, and the exact server deadline before changing anything.
+ */
+async function callTournamentDeadlineAdvance<T>(payload: Record<string, unknown>): Promise<T> {
+  const { getApp } = await import('@react-native-firebase/app');
+  const { getFunctions, httpsCallable } = await import('@react-native-firebase/functions');
+  const call = httpsCallable(getFunctions(getApp(), FUNCTIONS_REGION), 'tournamentAdvanceRound');
+  const result = await call(payload);
+  return result.data as T;
+}
+
+/**
  * Идентификатор комнаты собирается детерминированно из слота, таймзоны и даты
  * — той же формулой, что на сервере (tournament_core.tournamentRoomId).
  *
@@ -1160,8 +1174,7 @@ export function submitSpeedMatchAttempt(
  * expectedDeadlineAtMs со своими и на досрочный вызов отвечает waiting.
  */
 export function advanceRound(roomId: string, expectedState: string, expectedDeadlineAtMs: number) {
-  return callFunction<{ ok: boolean; state?: string; outcome?: string }>(
-    'tournamentAdvanceRound',
+  return callTournamentDeadlineAdvance<{ ok: boolean; state?: string; outcome?: string }>(
     { roomId, expectedState, expectedDeadlineAtMs },
   );
 }

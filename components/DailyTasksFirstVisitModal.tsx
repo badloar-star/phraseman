@@ -21,7 +21,7 @@ import {
   type DailyTask,
   type TaskProgress,
 } from '../app/daily_tasks';
-import { DAILY_TASK_ACHIEVEMENT_ICONS, DAILY_TASK_ID_ACHIEVEMENT_ICONS } from '../app/daily_task_achievement_icons';
+import { getDailyTaskAchievementIcon } from '../app/daily_task_achievement_icons';
 import { navigateDailyTask } from '../app/daily_task_navigation';
 import { localizedDailyTaskStrings } from '../app/daily_tasks_es_locale';
 import type { RuntimeStudyTarget } from '../app/target_storage_keys';
@@ -199,7 +199,7 @@ function getDailyTitle(lang: Lang): string {
 }
 
 function getTaskIcon(task: DailyTask) {
-  return DAILY_TASK_ID_ACHIEVEMENT_ICONS[task.id] ?? DAILY_TASK_ACHIEVEMENT_ICONS[task.type];
+  return getDailyTaskAchievementIcon(task.type, task.id);
 }
 
 function taskTitle(task: DailyTask, lang: Lang): string {

@@ -48,3 +48,15 @@ test('the compact card does not repeat the full task instruction', () => {
   expect(screen).toContain('description=""');
   expect(screen).toContain('selectedQuest');
 });
+
+test('daily quest visuals keep category backgrounds while generated task art stays in the fixed left icon slot', () => {
+  const component = fs.readFileSync(componentPath, 'utf8');
+  expect(screen).toContain('getDailyTaskAchievementIcon(task.type, task.id)');
+  expect(screen).toContain('taskCapsuleHeroIcon');
+  expect(screen).toContain('dailyTaskBackgroundArt(task.type)');
+  expect(screen).toContain('taskPortalArt');
+  expect(screen).not.toContain('getDailyTaskArtwork');
+  expect(screen).not.toContain('artwork={');
+  expect(component).not.toContain('artwork?: ReactNode');
+  expect(component).not.toContain('copyWithArtwork');
+});

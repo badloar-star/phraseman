@@ -42,7 +42,7 @@ import { Image } from 'expo-image';
 import { oskolokImageForPackShards } from './oskolok';
 import { primeLessonScreenFromStorage } from './lesson_screen_bootstrap';
 import { emitAppEvent, onAppEvent } from './events';
-import { DAILY_TASK_ACHIEVEMENT_ICONS, DAILY_TASK_ID_ACHIEVEMENT_ICONS } from './daily_task_achievement_icons';
+import { getDailyTaskAchievementIcon } from './daily_task_achievement_icons';
 import { dailyTaskBackgroundArt } from './daily_task_background_art';
 import { dailyTasksAchievementAllDoneStreakKey, lastOpenedLessonKey, storageStudyTarget } from './target_storage_keys';
 import { dailyPhraseContentAvailableForTarget, frenchDailyPhraseGateCopy } from './daily_phrase_target_gate';
@@ -115,7 +115,7 @@ const formatHms = (totalSeconds: number): string => {
 };
 
 // зачем: 11 мета-типов задач (early_all_done…mentor_friend) не имеют .webp в
-// DAILY_TASK_ACHIEVEMENT_ICONS/DAILY_TASK_ID_ACHIEVEMENT_ICONS — achievementIcon
+// getDailyTaskAchievementIcon — achievementIcon
 // резолвился в undefined и карточка рендерила пустой Image. Вместо генерации новых
 // растровых ассетов — используем Ionicons (тот же single-color line-стиль, что и
 // остальная навигация/бейджи этого экрана: chevron-back, refresh, checkmark-circle).
@@ -3238,7 +3238,7 @@ export default function DailyTasksScreen() {
             const anim = claimAnims.current[task.id] ?? new Animated.Value(1);
             const { title: taskTitle, desc: taskDesc } = localizedDailyTaskStrings(lang, task);
             const isPremiumTask = PREMIUM_TASK_TYPES.has(task.type);
-            const achievementIcon = DAILY_TASK_ID_ACHIEVEMENT_ICONS[task.id] ?? DAILY_TASK_ACHIEVEMENT_ICONS[task.type];
+            const achievementIcon = getDailyTaskAchievementIcon(task.type, task.id);
             const taskCardArt = dailyTaskBackgroundArt(task.type);
             // зачем: см. DAILY_TASK_META_ICON_FALLBACK — без него мета-задания рендерили пустую картинку.
             const metaIconFallback = achievementIcon ? undefined : DAILY_TASK_META_ICON_FALLBACK[task.type];
@@ -3375,7 +3375,7 @@ export default function DailyTasksScreen() {
                 ? goldTaskAccent(taskToStart.type, { completed: false, claimed: false })
                 : dailyTaskAccentHex(t, taskToStart.type);
             const modalArtwork = dailyTaskBackgroundArt(taskToStart.type);
-            const modalIcon = DAILY_TASK_ID_ACHIEVEMENT_ICONS[taskToStart.id] ?? DAILY_TASK_ACHIEVEMENT_ICONS[taskToStart.type];
+            const modalIcon = getDailyTaskAchievementIcon(taskToStart.type, taskToStart.id);
             return <View style={[dailyTaskStyles.questSheet, { backgroundColor: t.bgCard, borderColor: t.border }]}> 
               <View style={[dailyTaskStyles.questSheetHandle, { backgroundColor: t.border }]} />
               <View style={[dailyTaskStyles.questSheetHero, { backgroundColor: dailyTaskAccentAlpha(modalAccent, 0.12), borderColor: dailyTaskAccentAlpha(modalAccent, 0.24) }]}>

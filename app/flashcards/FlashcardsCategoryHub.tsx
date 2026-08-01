@@ -92,6 +92,112 @@ const ENTRANCE_DURATION = 400;
 const FLASHCARD_HUB_ENTRANCE_MOTION_ENABLED = false;
 const FLASHCARD_HUB_REPEATING_MOTION_ENABLED = false;
 
+type FlashcardsModeAction = 'saved' | 'custom' | 'training' | 'audio' | 'arena' | 'collection';
+
+/**
+ * The action art is deliberately theme-specific instead of tinting one shared icon.
+ * Keep every entry as a static require: Metro must see the complete slot inventory at
+ * bundle time and per-theme art cannot safely be resolved with a dynamic path.
+ */
+const FLASHCARDS_MODE_ICON_ASSETS: Record<ThemeMode, Record<FlashcardsModeAction, ImageSourcePropType>> = {
+  midnight: {
+    saved: require('../../assets/images/flashcards/mode_icons/midnight/saved.webp'),
+    custom: require('../../assets/images/flashcards/mode_icons/midnight/custom.webp'),
+    training: require('../../assets/images/flashcards/mode_icons/midnight/training.webp'),
+    audio: require('../../assets/images/flashcards/mode_icons/midnight/audio.webp'),
+    arena: require('../../assets/images/flashcards/mode_icons/midnight/arena.webp'),
+    collection: require('../../assets/images/flashcards/mode_icons/midnight/collection.webp'),
+  },
+  ember: {
+    saved: require('../../assets/images/flashcards/mode_icons/ember/saved.webp'),
+    custom: require('../../assets/images/flashcards/mode_icons/ember/custom.webp'),
+    training: require('../../assets/images/flashcards/mode_icons/ember/training.webp'),
+    audio: require('../../assets/images/flashcards/mode_icons/ember/audio.webp'),
+    arena: require('../../assets/images/flashcards/mode_icons/ember/arena.webp'),
+    collection: require('../../assets/images/flashcards/mode_icons/ember/collection.webp'),
+  },
+  aurora: {
+    saved: require('../../assets/images/flashcards/mode_icons/aurora/saved.webp'),
+    custom: require('../../assets/images/flashcards/mode_icons/aurora/custom.webp'),
+    training: require('../../assets/images/flashcards/mode_icons/aurora/training.webp'),
+    audio: require('../../assets/images/flashcards/mode_icons/aurora/audio.webp'),
+    arena: require('../../assets/images/flashcards/mode_icons/aurora/arena.webp'),
+    collection: require('../../assets/images/flashcards/mode_icons/aurora/collection.webp'),
+  },
+  volt: {
+    saved: require('../../assets/images/flashcards/mode_icons/volt/saved.webp'),
+    custom: require('../../assets/images/flashcards/mode_icons/volt/custom.webp'),
+    training: require('../../assets/images/flashcards/mode_icons/volt/training.webp'),
+    audio: require('../../assets/images/flashcards/mode_icons/volt/audio.webp'),
+    arena: require('../../assets/images/flashcards/mode_icons/volt/arena.webp'),
+    collection: require('../../assets/images/flashcards/mode_icons/volt/collection.webp'),
+  },
+  minimalDark: {
+    saved: require('../../assets/images/flashcards/mode_icons/minimalDark/saved.webp'),
+    custom: require('../../assets/images/flashcards/mode_icons/minimalDark/custom.webp'),
+    training: require('../../assets/images/flashcards/mode_icons/minimalDark/training.webp'),
+    audio: require('../../assets/images/flashcards/mode_icons/minimalDark/audio.webp'),
+    arena: require('../../assets/images/flashcards/mode_icons/minimalDark/arena.webp'),
+    collection: require('../../assets/images/flashcards/mode_icons/minimalDark/collection.webp'),
+  },
+  candyBlue: {
+    saved: require('../../assets/images/flashcards/mode_icons/candyBlue/saved.webp'),
+    custom: require('../../assets/images/flashcards/mode_icons/candyBlue/custom.webp'),
+    training: require('../../assets/images/flashcards/mode_icons/candyBlue/training.webp'),
+    audio: require('../../assets/images/flashcards/mode_icons/candyBlue/audio.webp'),
+    arena: require('../../assets/images/flashcards/mode_icons/candyBlue/arena.webp'),
+    collection: require('../../assets/images/flashcards/mode_icons/candyBlue/collection.webp'),
+  },
+  indigo: {
+    saved: require('../../assets/images/flashcards/mode_icons/indigo/saved.webp'),
+    custom: require('../../assets/images/flashcards/mode_icons/indigo/custom.webp'),
+    training: require('../../assets/images/flashcards/mode_icons/indigo/training.webp'),
+    audio: require('../../assets/images/flashcards/mode_icons/indigo/audio.webp'),
+    arena: require('../../assets/images/flashcards/mode_icons/indigo/arena.webp'),
+    collection: require('../../assets/images/flashcards/mode_icons/indigo/collection.webp'),
+  },
+  dark: {
+    saved: require('../../assets/images/flashcards/mode_icons/dark/saved.webp'),
+    custom: require('../../assets/images/flashcards/mode_icons/dark/custom.webp'),
+    training: require('../../assets/images/flashcards/mode_icons/dark/training.webp'),
+    audio: require('../../assets/images/flashcards/mode_icons/dark/audio.webp'),
+    arena: require('../../assets/images/flashcards/mode_icons/dark/arena.webp'),
+    collection: require('../../assets/images/flashcards/mode_icons/dark/collection.webp'),
+  },
+  coral: {
+    saved: require('../../assets/images/flashcards/mode_icons/coral/saved.webp'),
+    custom: require('../../assets/images/flashcards/mode_icons/coral/custom.webp'),
+    training: require('../../assets/images/flashcards/mode_icons/coral/training.webp'),
+    audio: require('../../assets/images/flashcards/mode_icons/coral/audio.webp'),
+    arena: require('../../assets/images/flashcards/mode_icons/coral/arena.webp'),
+    collection: require('../../assets/images/flashcards/mode_icons/coral/collection.webp'),
+  },
+  gold: {
+    saved: require('../../assets/images/flashcards/mode_icons/gold/saved.webp'),
+    custom: require('../../assets/images/flashcards/mode_icons/gold/custom.webp'),
+    training: require('../../assets/images/flashcards/mode_icons/gold/training.webp'),
+    audio: require('../../assets/images/flashcards/mode_icons/gold/audio.webp'),
+    arena: require('../../assets/images/flashcards/mode_icons/gold/arena.webp'),
+    collection: require('../../assets/images/flashcards/mode_icons/gold/collection.webp'),
+  },
+  business: {
+    saved: require('../../assets/images/flashcards/mode_icons/business/saved.webp'),
+    custom: require('../../assets/images/flashcards/mode_icons/business/custom.webp'),
+    training: require('../../assets/images/flashcards/mode_icons/business/training.webp'),
+    audio: require('../../assets/images/flashcards/mode_icons/business/audio.webp'),
+    arena: require('../../assets/images/flashcards/mode_icons/business/arena.webp'),
+    collection: require('../../assets/images/flashcards/mode_icons/business/collection.webp'),
+  },
+  businessLight: {
+    saved: require('../../assets/images/flashcards/mode_icons/businessLight/saved.webp'),
+    custom: require('../../assets/images/flashcards/mode_icons/businessLight/custom.webp'),
+    training: require('../../assets/images/flashcards/mode_icons/businessLight/training.webp'),
+    audio: require('../../assets/images/flashcards/mode_icons/businessLight/audio.webp'),
+    arena: require('../../assets/images/flashcards/mode_icons/businessLight/arena.webp'),
+    collection: require('../../assets/images/flashcards/mode_icons/businessLight/collection.webp'),
+  },
+};
+
 const HUB_CATEGORY_PLANNED_LABELS: Record<string, { ptBR: string; vi: string; id: string; tr: string; pl: string }> = {
   saved: { ptBR: 'Salvos', vi: 'Đã lưu', id: 'Tersimpan', tr: 'Kaydedilenler', pl: 'Zapisane' },
   custom: { ptBR: 'Criar', vi: 'Tạo', id: 'Buat', tr: 'Oluştur', pl: 'Utwórz' },
@@ -493,6 +599,8 @@ export default function FlashcardsCategoryHub({
 
   /** Категорії хабу — компактні Ionicons. */
   const iconSize = Math.min(32, Math.floor(tileW * 0.38));
+  /** The action art fills its own touch area — it is not boxed inside a second square card. */
+  const modeIconSize = Math.min(104, Math.max(76, Math.floor(tileW * 0.9)));
   /** Платні набори: PNG/лінія — більший центр, щоб читалось як на скріні. */
   const packTileIconSize = Math.max(72, Math.floor(tileW * 0.86));
   const labelSize = Math.max(9, Math.min(11, Math.floor(tileW * 0.11)));
@@ -889,7 +997,7 @@ export default function FlashcardsCategoryHub({
         >
           <HubTileShell
             testID={`flashcards-hub-tile-${cat.id}`}
-            a11y={`qa-flashcards-hub-tile-${cat.id}`}
+            a11y={label}
             width={tileW}
             reduceMotion={reduceMotion}
             onPress={() =>
@@ -899,19 +1007,14 @@ export default function FlashcardsCategoryHub({
               } as any)
             }
           >
-            <GlassSurface
-              radius={TILE_RADIUS}
-              highlight
-              style={{
-                width: tileW,
-                height: tileW,
-                alignItems: 'center',
-                justifyContent: 'center',
-                position: 'relative',
-              }}
-            >
-              <Ionicons name={cat.icon as any} size={iconSize} color={t.textPrimary} />
-            </GlassSurface>
+            <View style={{ width: tileW, height: modeIconSize, alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+              <Image
+                source={FLASHCARDS_MODE_ICON_ASSETS[themeMode][cat.id as 'saved' | 'custom']}
+                style={{ width: modeIconSize, height: modeIconSize }}
+                contentFit="contain"
+                accessibilityLabel={label}
+              />
+            </View>
           </HubTileShell>
           <Text style={labelStyle(true)} numberOfLines={2}>
             {label}
@@ -941,25 +1044,20 @@ export default function FlashcardsCategoryHub({
       >
         <HubTileShell
           testID="flashcards-hub-tile-training"
-          a11y="qa-flashcards-hub-tile-training"
+          a11y={label}
           width={tileW}
           reduceMotion={reduceMotion}
           onPress={onTrainingPress}
         >
-          <GlassSurface
-            radius={TILE_RADIUS}
-            highlight
-            style={{
-              width: tileW,
-              height: tileW,
-              alignItems: 'center',
-              justifyContent: 'center',
-              position: 'relative',
-            }}
-          >
-            <Ionicons name="play-circle-outline" size={iconSize} color={t.textPrimary} />
+          <View style={{ width: tileW, height: modeIconSize, alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+            <Image
+              source={FLASHCARDS_MODE_ICON_ASSETS[themeMode].training}
+              style={{ width: modeIconSize, height: modeIconSize }}
+              contentFit="contain"
+              accessibilityLabel={label}
+            />
             {!hasFlashcardsPlus && <PlusCornerBadge themeMode={themeMode} />}
-          </GlassSurface>
+          </View>
         </HubTileShell>
         <Text style={labelStyle(true)} numberOfLines={2}>
           {label}
@@ -989,25 +1087,20 @@ export default function FlashcardsCategoryHub({
       >
         <HubTileShell
           testID="flashcards-hub-tile-audio"
-          a11y="qa-flashcards-hub-tile-audio"
+          a11y={label}
           width={tileW}
           reduceMotion={reduceMotion}
           onPress={onAudioPress}
         >
-          <GlassSurface
-            radius={TILE_RADIUS}
-            highlight
-            style={{
-              width: tileW,
-              height: tileW,
-              alignItems: 'center',
-              justifyContent: 'center',
-              position: 'relative',
-            }}
-          >
-            <Ionicons name="headset-outline" size={iconSize} color={t.textPrimary} />
+          <View style={{ width: tileW, height: modeIconSize, alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+            <Image
+              source={FLASHCARDS_MODE_ICON_ASSETS[themeMode].audio}
+              style={{ width: modeIconSize, height: modeIconSize }}
+              contentFit="contain"
+              accessibilityLabel={label}
+            />
             {!hasFlashcardsPlus && <PlusCornerBadge themeMode={themeMode} />}
-          </GlassSurface>
+          </View>
         </HubTileShell>
         <Text style={labelStyle(true)} numberOfLines={2}>
           {label}
@@ -1043,25 +1136,20 @@ export default function FlashcardsCategoryHub({
       >
         <HubTileShell
           testID="flashcards-hub-tile-arena"
-          a11y="qa-flashcards-hub-tile-arena"
+          a11y={label}
           width={tileW}
           reduceMotion={reduceMotion}
           onPress={onArenaPress}
         >
-          <GlassSurface
-            radius={TILE_RADIUS}
-            highlight
-            style={{
-              width: tileW,
-              height: tileW,
-              alignItems: 'center',
-              justifyContent: 'center',
-              position: 'relative',
-            }}
-          >
-            <Ionicons name="flash-outline" size={iconSize} color={t.textPrimary} />
+          <View style={{ width: tileW, height: modeIconSize, alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+            <Image
+              source={FLASHCARDS_MODE_ICON_ASSETS[themeMode].arena}
+              style={{ width: modeIconSize, height: modeIconSize }}
+              contentFit="contain"
+              accessibilityLabel={label}
+            />
             {!hasFlashcardsPlus && <PlusCornerBadge themeMode={themeMode} />}
-          </GlassSurface>
+          </View>
         </HubTileShell>
         <Text style={labelStyle(true)} numberOfLines={2}>
           {label}
@@ -1091,24 +1179,19 @@ export default function FlashcardsCategoryHub({
       >
         <HubTileShell
           testID="flashcards-hub-tile-collection"
-          a11y="qa-flashcards-hub-tile-collection"
+          a11y={label}
           width={tileW}
           reduceMotion={reduceMotion}
           onPress={() => router.push('/collectibles_screen' as any)}
         >
-          <GlassSurface
-            radius={TILE_RADIUS}
-            highlight
-            style={{
-              width: tileW,
-              height: tileW,
-              alignItems: 'center',
-              justifyContent: 'center',
-              position: 'relative',
-            }}
-          >
-            <Ionicons name="albums-outline" size={iconSize} color={t.textPrimary} />
-          </GlassSurface>
+          <View style={{ width: tileW, height: modeIconSize, alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+            <Image
+              source={FLASHCARDS_MODE_ICON_ASSETS[themeMode].collection}
+              style={{ width: modeIconSize, height: modeIconSize }}
+              contentFit="contain"
+              accessibilityLabel={label}
+            />
+          </View>
         </HubTileShell>
         <Text style={labelStyle(true)} numberOfLines={2}>
           {label}

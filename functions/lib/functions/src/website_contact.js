@@ -39,9 +39,10 @@ const logger = __importStar(require("firebase-functions/logger"));
 const firestore_1 = require("firebase-admin/firestore");
 const params_1 = require("firebase-functions/params");
 const crypto_1 = require("crypto");
+const resend_secret_1 = require("./resend_secret");
 /** Опционально: ключ Resend для письма на почту при новом обращении (Firebase params / secrets env). */
-const resendApiKey = (0, params_1.defineString)('RESEND_API_KEY', { default: '' });
 const notifyEmail = (0, params_1.defineString)('WEB_CONTACT_NOTIFY_EMAIL', { default: 'support.phraseman@gmail.com' });
+const contactEmailFrom = (0, params_1.defineString)('WEB_CONTACT_EMAIL_FROM', { default: '' });
 const EMAIL_RE = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 const RATE_COLLECTION = 'website_contact_rate_limits';
 const IP_RATE_WINDOW_MS = 10 * 60 * 1000;
@@ -137,8 +138,11 @@ async function reserveContactRateLimit(db, checks, now) {
     });
 }
 async function notifyViaResend(subject, text) {
-    const key = resendApiKey.value();
+    const key = resend_secret_1.RESEND_API_KEY.value();
     if (!key)
+        return false;
+    const from = contactEmailFrom.value().trim();
+    if (!from)
         return false;
     const to = notifyEmail.value();
     try {
@@ -146,7 +150,7 @@ async function notifyViaResend(subject, text) {
             method: 'POST',
             headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                from: 'PhraseMan Website <onboarding@resend.dev>',
+                from,
                 to: [to],
                 subject,
                 text,
@@ -169,6 +173,7 @@ exports.submitWebsiteContact = (0, https_1.onRequest)({
     timeoutSeconds: 30,
     maxInstances: 10,
     invoker: 'public',
+    secrets: [resend_secret_1.RESEND_API_KEY],
 }, async (req, res) => {
     const ao = pickAllowOrigin(typeof req.headers.origin === 'string' ? req.headers.origin : undefined);
     res.set('Access-Control-Allow-Origin', ao);

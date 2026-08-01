@@ -16,7 +16,7 @@
 // AsyncStorage-кэш (premium_plan/premium_rc_product_id) и живой RevenueCat-запрос
 // дальше уточняют план/дату/цену в фоне, не блокируя открытие.
 // ════════════════════════════════════════════════════════════════════════════
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
   View, Text, ScrollView, StyleSheet, TouchableOpacity, ActivityIndicator,
   Linking, Platform, TextInput,
@@ -25,7 +25,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import Purchases, { type CustomerInfo, PRORATION_MODE } from 'react-native-purchases';
+import Purchases, { type CustomerInfo } from 'react-native-purchases';
 
 import { LinearGradient } from '../components/SafeLinearGradient';
 import SkeletonBlock from '../components/SkeletonShimmer';
@@ -38,7 +38,6 @@ import {
   inferPremiumPlanFromCustomerInfo,
   inferPremiumPlanFromProductId,
   revenueCatPremiumMetadata,
-  persistStorePremiumLocally,
   type PremiumStorePlan,
 } from './premium_revenuecat_state';
 import { logCancelSurvey, logChangePlanStarted } from './firebase';
@@ -47,6 +46,17 @@ import { safeRouterBack } from './navigation_back';
 import { hapticTap } from '../hooks/use-haptics';
 import { emitAppEvent } from './events';
 import { invalidatePremiumCache } from './premium_guard';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  subscribeAccountGeneration,
+  type AccountGenerationToken,
+} from './account_generation';
+import {
+  changeManageSubscriptionPlanForGeneration,
+  isManageSubscriptionOperationCurrent,
+} from './manage_subscription_purchase';
+import { readRevenueCatCustomerInfoForGeneration } from './revenuecat_account_identity';
 
 type ManageSubscriptionCopy = {
   ru: string;
@@ -149,7 +159,10 @@ function localPremiumPlan(productId: unknown, storedPlan: unknown): PremiumStore
 
 export default function ManageSubscription() {
   const router = useRouter();
-  const params = useLocalSearchParams<{ plan?: string | string[] }>();
+  const params = useLocalSearchParams<{
+    plan?: string | string[];
+    accountGeneration?: string | string[];
+  }>();
   const { lang } = useLang();
   const L = lang as Lang;
   const chrome = usePaywallChrome();
@@ -171,9 +184,15 @@ export default function ManageSubscription() {
   // (см. settings.tsx plusRowPress + paywall_navigation.ts форвардинг) и от него же решаем
   // loading=false с первого кадра — контент рендерится сразу, RevenueCat лишь дотягивает
   // точную дату списания/цену в фоне и не блокирует первый рендер.
-  const routeParamPlan = normalizeStoredPremiumPlan(
-    Array.isArray(params.plan) ? params.plan[0] : params.plan,
+  const [screenAccount, setScreenAccount] = useState<AccountGenerationToken>(() => captureAccountGeneration());
+  const routeGeneration = Number(
+    Array.isArray(params.accountGeneration) ? params.accountGeneration[0] : params.accountGeneration,
   );
+  const routeParamPlan = !!screenAccount.stableId
+    && Number.isInteger(routeGeneration)
+    && routeGeneration === screenAccount.generation
+    ? normalizeStoredPremiumPlan(Array.isArray(params.plan) ? params.plan[0] : params.plan)
+    : null;
   const [info, setInfo] = useState<CustomerInfo | null>(null);
   const [fallbackPlan, setFallbackPlan] = useState<PremiumStorePlan | null>(routeParamPlan);
   const [loading, setLoading] = useState(routeParamPlan === null);
@@ -183,9 +202,41 @@ export default function ManageSubscription() {
   const [showCancelSheet, setShowCancelSheet] = useState(false);
   const [cancelReason, setCancelReason] = useState<string | null>(null);
   const [cancelText, setCancelText] = useState('');
+  const screenAccountRef = useRef(screenAccount);
+
+  useEffect(() => {
+    const acceptAccount = (next: AccountGenerationToken) => {
+      const previous = screenAccountRef.current;
+      if (
+        next.generation === previous.generation
+        && next.stableId === previous.stableId
+        && next.phase === previous.phase
+      ) return;
+      screenAccountRef.current = next;
+      setInfo(null);
+      setFallbackPlan(null);
+      setLoading(true);
+      setYearlyPkg(null);
+      setYearlyPriceStr('');
+      setChanging(false);
+      setShowCancelSheet(false);
+      setCancelReason(null);
+      setCancelText('');
+      setScreenAccount(next);
+    };
+    acceptAccount(captureAccountGeneration());
+    const subscription = subscribeAccountGeneration(acceptAccount);
+    return () => subscription.remove();
+  }, []);
 
   useEffect(() => {
     let dead = false;
+    const generation = screenAccount;
+    const isBootstrapCurrent = () => (
+      !dead
+      && !!generation.stableId
+      && isCurrentAccountGeneration(generation, generation.stableId)
+    );
     void (async () => {
       try {
         // Локальный AsyncStorage-кэш (записан persistStorePremiumLocally при покупке/смене
@@ -196,27 +247,29 @@ export default function ManageSubscription() {
         const storedPlan = localPairs.find(p => p[0] === 'premium_plan')?.[1];
         const storedProductId = localPairs.find(p => p[0] === 'premium_rc_product_id')?.[1];
         const nextFallbackPlan = localPremiumPlan(storedProductId, storedPlan);
-        if (!dead && nextFallbackPlan) {
+        if (isBootstrapCurrent() && nextFallbackPlan) {
           setFallbackPlan(nextFallbackPlan);
           setLoading(false);
         }
 
-        await initRevenueCat();
-        await syncRevenueCatIdentity();
-        const ci = await Purchases.getCustomerInfo();
-        if (!dead) setInfo(ci);
+        await initRevenueCat(isBootstrapCurrent);
+        if (!isBootstrapCurrent()) return;
+        if (!await syncRevenueCatIdentity(isBootstrapCurrent)) return;
+        const ci = await readRevenueCatCustomerInfoForGeneration(generation);
+        if (!ci || !isBootstrapCurrent()) return;
+        setInfo(ci);
 
         const o = await Purchases.getOfferings();
         const pkgs = resolvePremiumPackages(o.current?.availablePackages ?? []);
-        if (!dead && pkgs.yearly) {
+        if (isBootstrapCurrent() && pkgs.yearly) {
           setYearlyPkg(pkgs.yearly);
           setYearlyPriceStr(storePriceTrim(pkgs.yearly.product?.priceString));
         }
       } catch { /* данных нет — покажем минимум */ }
-      finally { if (!dead) setLoading(false); }
+      finally { if (isBootstrapCurrent()) setLoading(false); }
     })();
     return () => { dead = true; };
-  }, []);
+  }, [screenAccount]);
 
   const metadata = info ? revenueCatPremiumMetadata(info) : {};
   const currentPlan = inferPremiumPlanFromCustomerInfo(info, fallbackPlan);
@@ -235,53 +288,54 @@ export default function ManageSubscription() {
   // ── смена плана: месячный → годовой (DEFERRED-проплейшн на Android) ──────────
   const handleChangePlan = useCallback(async () => {
     if (changing || !yearlyPkg) return;
+    const generation = captureAccountGeneration();
+    const isOperationCurrent = () => (
+      !!generation.stableId && isCurrentAccountGeneration(generation, generation.stableId)
+    );
+    if (!isOperationCurrent()) return;
     hapticTap();
     void logChangePlanStarted('monthly', 'yearly');
     void trackEvent('change_plan_started', { from: 'monthly', to: 'yearly' });
     setChanging(true);
     try {
-      const latestInfo = await Purchases.getCustomerInfo();
-      setInfo(latestInfo);
-      const latestPlan = inferPremiumPlanFromCustomerInfo(latestInfo, fallbackPlan);
-      if (latestPlan && latestPlan !== 'monthly') {
-        const latestMeta = revenueCatPremiumMetadata(latestInfo);
-        await persistStorePremiumLocally(latestPlan, latestMeta);
-        invalidatePremiumCache();
-        emitAppEvent('premium_activated');
-        void trackEvent('change_plan_completed', { from: 'monthly', to: latestPlan });
-        return;
-      }
-      if (latestPlan == null) {
+      const result = await changeManageSubscriptionPlanForGeneration({
+        generation,
+        yearlyPackage: yearlyPkg,
+        currentProductId: metadata.productId,
+        fallbackPlan,
+      });
+      if (!isOperationCurrent() || result.status === 'stale') return;
+      setInfo(result.customerInfo);
+      if (result.status === 'unknown') {
         void trackEvent('change_plan_failed', { from: 'monthly', to: 'yearly', error: 'active_plan_unknown' });
         return;
       }
-      const opts = Platform.OS === 'android'
-        ? { googleProductChangeInfo: { oldProductIdentifier: metadata.productId ?? '', prorationMode: PRORATION_MODE.DEFERRED } }
-        : undefined;
-      const { customerInfo } = await Purchases.purchasePackage(yearlyPkg, opts as any);
-      const meta = revenueCatPremiumMetadata(customerInfo, yearlyPkg.product.identifier);
-      await persistStorePremiumLocally('yearly', meta);
       invalidatePremiumCache();
       emitAppEvent('premium_activated');
-      void trackEvent('change_plan_completed', { from: 'monthly', to: 'yearly' });
-      setInfo(customerInfo);
+      void trackEvent('change_plan_completed', { from: 'monthly', to: result.plan });
     } catch (err: unknown) {
       if (!(err as { userCancelled?: boolean })?.userCancelled) {
         void trackEvent('change_plan_failed', { from: 'monthly', to: 'yearly' });
       }
     } finally {
-      setChanging(false);
+      if (isManageSubscriptionOperationCurrent(generation)) setChanging(false);
     }
   }, [changing, yearlyPkg, metadata.productId, fallbackPlan]);
 
   // ── отмена: опрос → стор ────────────────────────────────────────────────────
   const submitCancel = useCallback(() => {
+    if (!isManageSubscriptionOperationCurrent(screenAccount)) {
+      setShowCancelSheet(false);
+      setCancelReason(null);
+      setCancelText('');
+      return;
+    }
     hapticTap();
     logCancelSurvey(cancelReason ?? 'unknown', cancelText, 'manage');
     void trackEvent('subscription_cancel_survey', { reason: cancelReason ?? 'unknown' });
     setShowCancelSheet(false);
     void Linking.openURL(getStoreManageUrl()).catch(() => {});
-  }, [cancelReason, cancelText]);
+  }, [cancelReason, cancelText, screenAccount]);
 
   return (
     <LinearGradient colors={chrome.bgColors} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }} style={S.root}>

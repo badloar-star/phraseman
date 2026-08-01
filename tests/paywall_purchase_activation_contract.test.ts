@@ -26,13 +26,14 @@ describe('new paywalls activate Premium locally after RevenueCat success', () =>
 
     const purchaseBody = sharedHook.slice(purchaseStart, restoreStart);
 
-    expect(purchaseBody).toContain('const { customerInfo } = await Purchases.purchasePackage(pkg)');
+    expect(purchaseBody).toContain('() => Purchases.purchasePackage(pkg)');
+    expect(purchaseBody).toContain('const { customerInfo } = purchaseResult.value;');
     expect(purchaseBody).toContain('revenueCatPremiumMetadata(customerInfo, pkg.product.identifier)');
     expect(purchaseBody).toContain('customerInfoConfirmsProductAccess(customerInfo, pkg.product.identifier)');
     expect(purchaseBody).not.toContain('Object.keys(customerInfo?.entitlements?.active ?? {}).length > 0');
     expect(purchaseBody).toContain('persistStorePremiumLocally');
     expect(purchaseBody).toContain("emitAppEvent('premium_activated')");
-    expect(purchaseBody).toContain('await refillToMax(isOperationAccountCurrent)');
+    expect(purchaseBody).toContain('await refillToMax(isCommitCurrent)');
     expect(purchaseBody).toContain('resumeLessonAfterPremium(router, resumeLessonId)');
   });
 
@@ -72,7 +73,7 @@ describe('new paywalls activate Premium locally after RevenueCat success', () =>
     expect(restoreBody).toContain('inferPremiumPlanFromProductId');
     expect(restoreBody).toContain('persistStorePremiumLocally');
     expect(restoreBody).toContain("emitAppEvent('premium_activated')");
-    expect(restoreBody).toContain('await refillToMax(isOperationAccountCurrent)');
+    expect(restoreBody).toContain('await refillToMax(isCommitCurrent)');
     expect(restoreBody).toContain('resumeLessonAfterPremium(router, resumeLessonId)');
   });
 
@@ -98,9 +99,10 @@ describe('new paywalls activate Premium locally after RevenueCat success', () =>
     expect(sharedHook).toContain('const isOperationAccountCurrent = () => isCurrentAccountGeneration(operationAccount);');
     expect(sharedHook).toContain('initRevenueCat(isOperationAccountCurrent)');
     expect(sharedHook).toContain('syncRevenueCatIdentity(isOperationAccountCurrent)');
-    expect(sharedHook).toContain('withAccountTransitionLock(async () => {');
-    expect(sharedHook).toMatch(/persistStorePremiumLocally\([\s\S]*?isOperationAccountCurrent,[\s\S]*?false,/);
-    expect(sharedHook).toContain('if (!persisted || !isOperationAccountCurrent()) return false;');
+    expect(sharedHook).toContain('runRevenueCatOperationForGeneration(');
+    expect(sharedHook).toContain('commitRevenueCatResultForGeneration(operationAccount');
+    expect(sharedHook).toMatch(/persistStorePremiumLocally\([\s\S]*?isCommitCurrent,[\s\S]*?false,[\s\S]*?true,/);
+    expect(sharedHook).toContain('if (!persisted || !isCommitCurrent()) return false;');
   });
 
   it('enforces the lifetime kill-switch in selection and purchase, not only in UI', () => {

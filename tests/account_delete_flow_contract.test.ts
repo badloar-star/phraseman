@@ -145,8 +145,18 @@ describe('account deletion rebuilt flow contract', () => {
     expect(indexSource).toContain('exports.accountDeleteWorker = accountDeleteWorker;');
   });
 
-  it('includes the durable deletion worker in the exact deploy:safe target list', () => {
-    expect(functionsPackage.scripts?.['deploy:safe']).toContain('functions:accountDeleteWorker');
+  it('includes every durable auth merge and account deletion endpoint in deploy:safe', () => {
+    const deploySafe = functionsPackage.scripts?.['deploy:safe'] ?? '';
+    for (const functionName of [
+      'accountMergeOutboxWorker',
+      'accountMergeOutboxRetryCron',
+      'accountDeleteMine',
+      'accountDeleteEnqueue',
+      'accountDeleteWorker',
+      'accountDeleteRetryCron',
+    ]) {
+      expect(deploySafe.match(new RegExp(`functions:${functionName}(?=,|\\\")`, 'g'))).toHaveLength(1);
+    }
   });
 
   it('atomically publishes an auth-scoped deletion marker for other signed-in devices', () => {

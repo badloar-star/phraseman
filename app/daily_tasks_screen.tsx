@@ -2252,7 +2252,6 @@ export default function DailyTasksScreen() {
     const isBusinessTheme = themeMode === 'business' || themeMode === 'businessLight';
     const goldAccent = GOLD_RICH.metalGold;
     const goldHairline = GOLD_RICH.hairline;
-    const goldSoftBg = GOLD_RICH.wash;
     const rewardActionBg = isGoldTheme ? GOLD_RICH.paleGold : t.correct;
     const rewardActionText = isGoldTheme ? t.textOnGold : t.correctText;
     const { lang } = useLang();
@@ -3352,8 +3351,6 @@ export default function DailyTasksScreen() {
             const taskTrackColor = isGoldTheme ? 'rgba(12,10,8,0.78)' : isBusinessTheme ? 'rgba(13,13,13,0.92)' : 'rgba(15,14,18,0.90)';
             const taskHairline = isGoldTheme ? goldHairline : `${taskAccent}${completed || claimed ? '8A' : '70'}`;
             const taskSurfaceGlow = isGoldTheme ? GOLD_RICH.wash : `${taskAccent}14`;
-            const taskIconPlateBg = isGoldTheme ? goldSoftBg : `${taskAccent}18`;
-            const taskIconPlateBorder = isGoldTheme ? goldHairline : `${taskAccent}55`;
             const claimLabel = triLang(lang, {
                 ru: 'Забрать', uk: 'Забрати', es: 'Reclamar', 'pt-BR': 'Coletar',
                 vi: 'Nhận', id: 'Klaim', tr: 'Al', pl: 'Odbierz',
@@ -3385,7 +3382,6 @@ export default function DailyTasksScreen() {
                 outerStyle={dailyTaskStyles.taskCapsuleCard}
                 titleTextProps={{ style: [dailyTaskStyles.taskCapsuleTitle, { fontSize: f.body + 2 }] }}
                 descriptionTextProps={{ style: { fontSize: f.body, lineHeight: f.body * 1.28 } }}
-                iconStyle={{ backgroundColor: taskIconPlateBg, borderColor: taskIconPlateBorder }}
                 onPress={completed || claimed ? undefined : () => handleTaskCardPress(task)}
                 icon={metaIconFallback
                     ? <Ionicons name={metaIconFallback} size={30} color={taskAccent} accessible={false} />
@@ -3670,18 +3666,9 @@ const dailyTaskStyles = StyleSheet.create({
         marginLeft: 24,
         marginRight: 18,
     },
-    taskCapsuleIconPlate: {
-        width: 56,
-        height: 56,
-        borderRadius: 18,
-        borderWidth: 0,
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexShrink: 0,
-    },
     taskCapsuleHeroIcon: {
-        width: 45,
-        height: 45,
+        width: 68,
+        height: 68,
         flexShrink: 0,
     },
     taskCapsuleRight: {

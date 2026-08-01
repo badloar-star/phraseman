@@ -89,16 +89,21 @@ const MAX_CODE_ATTEMPTS = 12;
 /** Referral reward: 7 days for the invited friend and 7 days for the referrer. */
 exports.REFERRAL_REWARD_DAYS = 7;
 const DAY_MS = 24 * 60 * 60 * 1000;
-/** Антифрод-кап: сколько друзей можно «обналичить» в VIP за календарный месяц. */
-exports.MAX_REFERRER_CLAIMS_PER_MONTH = 30;
 /**
- * Анти-фарм: сколько наград можно обналичить за КАЛЕНДАРНЫЙ ДЕНЬ. Главная защита от накрутки
- * свежими аккаунтами (created_at клиентоперезаписываем, stableId сбрасывается отключением
- * бэкапа — см. referralApply). created_at правилами до конца не закрыть; дневной throttle
- * ограничивает СКОРОСТЬ фарма при любом сбросе личности. Награды не теряются: за капом
- * остаются 'qualified' и обналичиваются на следующий день. Честный юзер редко зовёт >3/день.
+ * зачем: лимиты сняты по решению владельца (2026-07-25). Раньше условие награды было
+ * «друг прошёл урок 1» — бесплатно и накручиваемо, поэтому нужен был анти-фарм throttle
+ * (3/день, 30/мес). Теперь ключ выдаётся ТОЛЬКО когда приглашённый КУПИЛ Plus или Pro
+ * (см. qualifiedBy: 'premium_purchase'), то есть накрутка требует реальных платежей —
+ * она сама себя наказывает и в антифроде не нуждается. Дневной кап при этом бил по
+ * самым ценным юзерам: привёл 5 платящих друзей — получил 3 ключа.
+ *
+ * Значения остаются НЕ-нулевыми и настраиваемыми из «Пульта»
+ * (referral_max_claims_month / referral_max_claims_day, clamp 0..100000): это защитный
+ * потолок на случай, если понадобится срочно вернуть throttle без деплоя функций.
+ * 0 в этой схеме означал бы «запретить всё», поэтому ставим заведомо недостижимый предел.
  */
-exports.MAX_REFERRER_CLAIMS_PER_DAY = 3;
+exports.MAX_REFERRER_CLAIMS_PER_MONTH = 100000;
+exports.MAX_REFERRER_CLAIMS_PER_DAY = 100000;
 exports.REFERRAL_DEFAULTS = {
     rewardDays: exports.REFERRAL_REWARD_DAYS,
     maxClaimsPerMonth: exports.MAX_REFERRER_CLAIMS_PER_MONTH,

@@ -228,6 +228,9 @@ exports.openAiBudgetDashboard = (0, https_1.onCall)({ region: REGION, enforceApp
         { collection: 'choice_explain_billing', feature: 'Объяснение выбора' },
         { collection: 'mistake_explain_billing', feature: 'Объяснение ошибки' },
         { collection: 'speaking_club_billing', feature: 'Разговорный клуб' },
+        // ИИ-генератор турнирных заданий (адм. батчи): без регистрации здесь
+        // дашборд повторил бы старый баг недосчёта трат.
+        { collection: 'tournament_ai_billing', feature: 'Турниры: ИИ-генератор' },
     ];
     const fetchedDocs = await Promise.all(SOURCES.map((s) => openAiBudgetSafeGetDocs(s.collection, fromMs)));
     const fetched = SOURCES.map((s, i) => ({ ...s, ...fetchedDocs[i] }));

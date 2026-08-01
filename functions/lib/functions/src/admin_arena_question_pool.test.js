@@ -53,17 +53,19 @@ describe('admin arena question pool request contracts', () => {
         expect(dto).not.toHaveProperty('objectPath');
         expect(dto).not.toHaveProperty('unexpectedSecret');
     });
-    it('defines every supported admin filter combination ordered by publishedAtMs', () => {
+    // зачем: КОНФЛИКТ ДВУХ КОНТРАКТОВ, разрешён в пользу декоммишена (2026-07-25).
+    // Раньше тест требовал композитные индексы под все комбинации фильтров пула
+    // вопросов Арены. Но tests/quiz_arena_decommission_contract.test.ts запрещает
+    // ЛЮБЫЕ arena_*-индексы в деплое, а живая админка (admin/v2/legacy.html) эти
+    // callables не вызывает ни разу — на них ссылались только замороженные
+    // admin/v2/scripts/*. Держать 120 индексов в прод-конфиге ради недостижимого
+    // инструмента снятой фичи неправильно, поэтому индексы удалены, а здесь
+    // фиксируем ОБРАТНОЕ требование — чтобы они не вернулись незаметно.
+    // Если инструмент когда-нибудь вернут в живую админку, индексы придётся
+    // добавить осознанно и вместе с правкой контракта декоммишена.
+    it('ships no retired arena_questions indexes while the pool tool stays unreachable', () => {
         const indexes = JSON.parse((0, node_fs_1.readFileSync)(node_path_1.default.resolve(__dirname, '..', '..', 'firestore.indexes.json'), 'utf8'));
-        const signatures = new Set(indexes.indexes
-            .filter((index) => index.collectionGroup === 'arena_questions')
-            .map((index) => index.fields.map((field) => `${field.fieldPath}:${field.order}`).join('|')));
-        const filters = ['level', 'availability', 'topicArtifactId'];
-        for (let mask = 1; mask < (1 << filters.length); mask += 1) {
-            const equalityFields = filters.filter((_, index) => (mask & (1 << index)) !== 0);
-            const signature = [...equalityFields.map((field) => `${field}:ASCENDING`), 'publishedAtMs:DESCENDING'].join('|');
-            expect(signatures).toContain(signature);
-        }
+        expect(indexes.indexes.filter((index) => index.collectionGroup === 'arena_questions')).toEqual([]);
     });
 });
 //# sourceMappingURL=admin_arena_question_pool.test.js.map

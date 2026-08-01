@@ -55,7 +55,8 @@ describe('startup provider reauthentication recovery', () => {
   it('requires the chosen provider to prove ownership of the persisted stable id', () => {
     expect(registrationPrompt).toContain("| 'startup_recovery'");
     expect(registrationPrompt).toContain("requireCurrentStableIdOwnership: context === 'startup_recovery'");
-    expect(registrationPrompt).toContain('Войди тем же способом и в тот же аккаунт');
+    expect(registrationPrompt).toContain("testID=\"auth-recovery-entry\"");
+    expect(registrationPrompt).toContain('recoveryCopy.entry');
 
     expect(authProvider).toContain('requireCurrentStableIdOwnership?: boolean;');
     expect(authProvider).toContain('providerSignInInFlight.requireCurrentStableIdOwnership !== Boolean(options.requireCurrentStableIdOwnership)');

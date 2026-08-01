@@ -44,14 +44,14 @@ const https_1 = require("firebase-functions/v2/https");
 const callable_options_1 = require("./callable_options");
 const email_contacts_1 = require("./email_contacts");
 const email_unsubscribe_1 = require("./email_unsubscribe");
+const resend_secret_1 = require("./resend_secret");
 const REGION = 'us-central1';
 const MAX_RECIPIENTS = 5000;
 const SEND_CONCURRENCY = 8;
 const BACKFILL_PAGE_SIZE = 400;
 const MAX_BACKFILL_DOCS_PER_COLLECTION = 50000;
 const EMAIL_RE = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-const resendApiKey = (0, params_1.defineString)('RESEND_API_KEY', { default: '' });
-const adminEmailFrom = (0, params_1.defineString)('ADMIN_EMAIL_FROM', { default: 'Phraseman <onboarding@resend.dev>' });
+const adminEmailFrom = (0, params_1.defineString)('ADMIN_EMAIL_FROM', { default: '' });
 function cleanString(value, max) {
     const text = typeof value === 'string' ? value.trim() : '';
     return text.length > max ? text.slice(0, max) : text;
@@ -124,9 +124,15 @@ function buildHtmlBody(text, unsubscribeUrl) {
 }
 async function sendResendEmail(params) {
     try {
+        const headers = {
+            Authorization: `Bearer ${params.apiKey}`,
+            'Content-Type': 'application/json; charset=utf-8',
+        };
+        if (params.idempotencyKey)
+            headers['Idempotency-Key'] = params.idempotencyKey;
         const response = await fetch('https://api.resend.com/emails', {
             method: 'POST',
-            headers: { Authorization: `Bearer ${params.apiKey}`, 'Content-Type': 'application/json; charset=utf-8' },
+            headers,
             body: JSON.stringify({
                 from: params.from,
                 to: [params.to],
@@ -145,10 +151,22 @@ async function sendResendEmail(params) {
         });
         const body = await response.text();
         if (!response.ok) {
+            let errorName;
+            try {
+                const parsed = JSON.parse(body);
+                if (parsed.name === 'concurrent_idempotent_requests'
+                    || parsed.name === 'invalid_idempotent_request')
+                    errorName = parsed.name;
+            }
+            catch {
+                errorName = undefined;
+            }
             return {
                 ok: false,
-                error: body.slice(0, 500) || String(response.status),
+                error: errorName ?? 'resend_http_error',
                 errorKind: 'http',
+                httpStatus: response.status,
+                ...(errorName ? { errorName } : {}),
             };
         }
         try {
@@ -171,29 +189,46 @@ async function sendResendEmail(params) {
  * { ok: false, error: 'resend_key_missing' }, решение о HttpsError — у вызывающего.
  */
 async function sendTransactionalEmail(params) {
-    const apiKey = resendApiKey.value();
+    const idempotencyKey = params.idempotencyKey?.trim();
+    if (params.idempotencyKey !== undefined
+        && (!idempotencyKey || !/^[A-Za-z0-9_./:-]{1,256}$/.test(idempotencyKey))) {
+        return { ok: false, error: 'resend_idempotency_key_invalid' };
+    }
+    const apiKey = resend_secret_1.RESEND_API_KEY.value();
     if (!apiKey)
         return { ok: false, error: 'resend_key_missing' };
-    const from = adminEmailFrom.value() || 'Phraseman <onboarding@resend.dev>';
+    const from = adminEmailFrom.value().trim();
+    if (!from)
+        return { ok: false, error: 'resend_from_missing' };
     const result = await sendResendEmail({
         apiKey,
         from,
         to: params.to,
         subject: params.subject,
         text: params.text,
+        ...(idempotencyKey ? { idempotencyKey } : {}),
     });
     if (result.ok)
         return { ok: true, ...(result.id ? { id: result.id } : {}) };
+    const retryableHttp = result.errorKind === 'http'
+        && (result.httpStatus === 408
+            || result.httpStatus === 429
+            || (result.httpStatus ?? 0) >= 500
+            || (result.httpStatus === 409 && result.errorName === 'concurrent_idempotent_requests'));
     return {
         ok: false,
-        error: result.errorKind === 'http' ? 'resend_http_failed' : 'resend_transport_failed',
+        error: result.errorKind === 'http'
+            ? retryableHttp ? 'resend_http_retryable' : 'resend_http_failed'
+            : 'resend_transport_failed',
     };
 }
 async function sendBroadcastEmails(payload, campaignId) {
-    const apiKey = resendApiKey.value();
+    const apiKey = resend_secret_1.RESEND_API_KEY.value();
     if (!apiKey)
         throw new https_1.HttpsError('failed-precondition', 'resend_key_missing');
-    const from = adminEmailFrom.value() || 'Phraseman <onboarding@resend.dev>';
+    const from = adminEmailFrom.value().trim();
+    if (!from)
+        throw new https_1.HttpsError('failed-precondition', 'resend_from_missing');
     let sentCount = 0;
     let failedCount = 0;
     const errors = [];
@@ -421,6 +456,7 @@ exports.adminEmailBroadcast = (0, https_1.onCall)({
     enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK,
     timeoutSeconds: 540,
     memory: '512MiB',
+    secrets: [resend_secret_1.RESEND_API_KEY],
 }, async (request) => {
     if (!request.auth?.token?.admin) {
         throw new https_1.HttpsError('permission-denied', 'admin_only');

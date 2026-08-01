@@ -46,24 +46,47 @@ function collectionDocs(path) {
         .filter(([docPath]) => docPath.startsWith(prefix) && !docPath.slice(prefix.length).includes('/'))
         .map(([docPath, data]) => ({ id: docPath.slice(prefix.length), path: docPath, data }));
 }
+function queryFor(name, state) {
+    const run = (count) => {
+        let rows = collectionDocs(name)
+            .filter((doc) => state.eq.every(({ field, value }) => doc.data[field] === value));
+        if (state.orderField) {
+            const dir = state.orderDir === 'asc' ? 1 : -1;
+            rows = [...rows].sort((a, b) => {
+                const av = Number(a.data[state.orderField] ?? 0);
+                const bv = Number(b.data[state.orderField] ?? 0);
+                return av === bv ? 0 : (av < bv ? -dir : dir);
+            });
+        }
+        if (state.startAfterId) {
+            const at = rows.findIndex((doc) => doc.id === state.startAfterId);
+            // startAfter по несуществующему в выборке документу = пустая страница (как в Firestore).
+            rows = at >= 0 ? rows.slice(at + 1) : [];
+        }
+        const matches = rows
+            .slice(0, count)
+            .map((doc) => ({ id: doc.id, exists: true, data: () => doc.data }));
+        return { empty: matches.length === 0, docs: matches };
+    };
+    return {
+        limit: (count) => ({ get: async () => run(count) }),
+        orderBy: (field, dir = 'asc') => (queryFor(name, { ...state, orderField: field, orderDir: dir })),
+        startAfter: (cursorDoc) => (queryFor(name, { ...state, startAfterId: cursorDoc.id })),
+    };
+}
+const EMPTY_QUERY_STATE = { eq: [], orderField: '', orderDir: 'asc', startAfterId: '' };
 function collectionFor(name) {
+    const base = queryFor(name, EMPTY_QUERY_STATE);
     return {
         doc: (id) => refFor(`${name}/${id || `auto-${++autoId}`}`),
         where: (field, op, value) => {
             if (op !== '==')
                 throw new Error(`unsupported op ${op}`);
-            return {
-                limit: (count) => ({
-                    get: async () => {
-                        const matches = collectionDocs(name)
-                            .filter((doc) => doc.data[field] === value)
-                            .slice(0, count)
-                            .map((doc) => ({ id: doc.id, exists: true, data: () => doc.data }));
-                        return { empty: matches.length === 0, docs: matches };
-                    },
-                }),
-            };
+            return queryFor(name, { ...EMPTY_QUERY_STATE, eq: [{ field, value }] });
         },
+        orderBy: base.orderBy,
+        startAfter: base.startAfter,
+        limit: base.limit,
     };
 }
 function fakeDb() {
@@ -230,6 +253,112 @@ describe('adminDecideUserIdea', () => {
         const ideaId = await seedIdea();
         await callDecide({ ideaId, decision: 'approve' });
         await expect(callDecide({ ideaId, decision: 'reject' })).rejects.toMatchObject({ code: 'failed-precondition' });
+    });
+});
+// зачем: adminListUserIdeas — новый admin-callable (вернули воркфлоу «Идеи» в админку),
+// он читает чужие идеи вместе с uid авторов и ходит в Firestore с пагинацией.
+// Тестов на него не было вовсе: проверяем гейт доступа (по РОЛИ, а не только admin:true),
+// сортировку/курсор и потолок выборки — потолок держит стоимость чтений Firestore.
+describe('adminListUserIdeas', () => {
+    async function callList(data, token = { admin: true, adminRole: 'owner' }) {
+        const { adminListUserIdeas } = require('./user_ideas');
+        return adminListUserIdeas({ auth: token ? { uid: 'admin-1', token } : undefined, data });
+    }
+    /** Сеем идеи напрямую в фейковый Firestore — submit ограничен 1/сутки. */
+    function seedIdeas(rows) {
+        for (const row of rows) {
+            docs.set(`user_ideas/${row.id}`, {
+                uid: `stable-${row.id}`,
+                title: `Идея ${row.id}`,
+                description: 'Описание идеи достаточной длины для прохождения валидации.',
+                benefit: 'Польза',
+                category: row.category ?? 'feature',
+                status: row.status ?? 'pending',
+                createdAtMs: row.createdAtMs,
+            });
+        }
+    }
+    test('refuses callers without the ideas.read permission', async () => {
+        seedIdeas([{ id: 'a', createdAtMs: 1000 }]);
+        // Не админ вообще.
+        await expect(callList({}, null)).rejects.toMatchObject({ code: 'permission-denied' });
+        await expect(callList({}, {})).rejects.toMatchObject({ code: 'permission-denied' });
+        // admin:true, но роль НЕ даёт ideas.read — раньше такой вызов прошёл бы по одному флагу.
+        await expect(callList({}, { admin: true, adminRole: 'analyst' }))
+            .rejects.toMatchObject({ code: 'permission-denied' });
+        await expect(callList({}, { admin: true, adminRole: 'support' }))
+            .rejects.toMatchObject({ code: 'permission-denied' });
+        // Роль с правом, но без флага admin — тоже отказ.
+        await expect(callList({}, { adminRole: 'owner' })).rejects.toMatchObject({ code: 'permission-denied' });
+    });
+    test('allows owner, admin and moderator to read the queue', async () => {
+        seedIdeas([{ id: 'a', createdAtMs: 1000 }]);
+        for (const adminRole of ['owner', 'admin', 'moderator']) {
+            const res = await callList({}, { admin: true, adminRole });
+            expect(res.ok).toBe(true);
+            expect(res.items).toHaveLength(1);
+        }
+    });
+    test('returns pending ideas newest-first by default', async () => {
+        seedIdeas([
+            { id: 'old', createdAtMs: 1000 },
+            { id: 'newest', createdAtMs: 3000 },
+            { id: 'mid', createdAtMs: 2000 },
+            { id: 'approved-one', createdAtMs: 9000, status: 'approved' },
+        ]);
+        const res = await callList({});
+        // Дефолтный статус — pending: решённая идея не попадает в очередь.
+        expect(res.items.map((i) => i.id)).toEqual(['newest', 'mid', 'old']);
+        expect(res.items[0]).toMatchObject({ status: 'pending', title: 'Идея newest' });
+    });
+    test('filters by status and supports the all filter', async () => {
+        seedIdeas([
+            { id: 'p', createdAtMs: 1000 },
+            { id: 'a', createdAtMs: 2000, status: 'approved' },
+            { id: 'r', createdAtMs: 3000, status: 'rejected' },
+        ]);
+        expect((await callList({ status: 'approved' })).items.map((i) => i.id)).toEqual(['a']);
+        expect((await callList({ status: 'rejected' })).items.map((i) => i.id)).toEqual(['r']);
+        expect((await callList({ status: 'all' })).items.map((i) => i.id)).toEqual(['r', 'a', 'p']);
+    });
+    test('filters by category without leaking other categories', async () => {
+        seedIdeas([
+            { id: 'feat', createdAtMs: 2000, category: 'feature' },
+            { id: 'bug', createdAtMs: 1000, category: 'bug' },
+        ]);
+        const res = await callList({ category: 'bug' });
+        expect(res.items.map((i) => i.id)).toEqual(['bug']);
+    });
+    test('paginates with a cursor and reports the end of the queue', async () => {
+        seedIdeas([
+            { id: 'i3', createdAtMs: 3000 },
+            { id: 'i2', createdAtMs: 2000 },
+            { id: 'i1', createdAtMs: 1000 },
+        ]);
+        const first = await callList({ limit: 2 });
+        expect(first.items.map((i) => i.id)).toEqual(['i3', 'i2']);
+        expect(first.nextCursor).toBe('i2');
+        const second = await callList({ limit: 2, cursor: first.nextCursor });
+        expect(second.items.map((i) => i.id)).toEqual(['i1']);
+        // Последняя страница — курсор пуст, иначе клиент крутил бы бесконечный пейджинг.
+        expect(second.nextCursor).toBe('');
+    });
+    test('rejects a malformed cursor and a cursor that does not exist', async () => {
+        seedIdeas([{ id: 'i1', createdAtMs: 1000 }]);
+        // Инъекция пути/мусора в курсор не должна доходить до Firestore.
+        await expect(callList({ cursor: '../../users/stable-user' }))
+            .rejects.toMatchObject({ code: 'invalid-argument' });
+        await expect(callList({ cursor: 'nope-not-here' }))
+            .rejects.toMatchObject({ code: 'failed-precondition' });
+    });
+    test('caps the page size so a huge limit cannot drain Firestore reads', async () => {
+        // 60 идей при потолке 50: запрос limit=10000 обязан вернуть максимум 50.
+        seedIdeas(Array.from({ length: 60 }, (_, i) => ({ id: `bulk-${i}`, createdAtMs: 1000 + i })));
+        const res = await callList({ limit: 10000 });
+        expect(res.items).toHaveLength(50);
+        // Мусорный limit не роняет функцию и не снимает потолок.
+        const fallback = await callList({ limit: 'много' });
+        expect(fallback.items).toHaveLength(20);
     });
 });
 //# sourceMappingURL=user_ideas.test.js.map

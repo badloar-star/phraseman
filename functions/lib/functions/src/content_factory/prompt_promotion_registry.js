@@ -18,6 +18,13 @@ if (!baseline.passed || baseline.manifestHash !== (0, quality_regression_corpus_
 function profile(kind) {
     const isLesson = kind.startsWith('lesson_');
     const isFlashcard = kind.startsWith('flashcard_');
+    // зачем: arena_questions промотирован в prompt_registry.ts до v4 (schema v3, см. DEFINITIONS.set('arena_questions:v4', ...)),
+    // но эта функция раньше сваливала все не-lesson/flashcard kind'ы в общий question-studio-quality-v2 и никогда не была
+    // обновлена под Arena — из-за чего active-профиль расходился с реально промотированным промптом. arena_topic остаётся на v2.
+    if (kind === 'arena_questions')
+        return Object.freeze({ promptVersion: 'v4', schemaVersion: 3, qaPolicy: 'arena-studio-quality-v4', manifestHash: baseline.manifestHash, reportHash: baseline.reportHash });
+    if (kind === 'arena_topic' || kind === 'arena_question_replacement')
+        return Object.freeze({ promptVersion: 'v2', schemaVersion: 2, qaPolicy: 'arena-studio-quality-v2', manifestHash: baseline.manifestHash, reportHash: baseline.reportHash });
     return Object.freeze({ promptVersion: isLesson || isFlashcard ? 'v3' : 'v2', schemaVersion: isLesson || isFlashcard ? 3 : 2, qaPolicy: isLesson ? 'lesson-quality-v3' : isFlashcard ? 'flashcard-studio-quality-v3' : 'question-studio-quality-v2', manifestHash: baseline.manifestHash, reportHash: baseline.reportHash });
 }
 exports.ACTIVE_PROMPT_PROFILES = Object.freeze(Object.fromEntries(stage_contracts_1.GENERATION_STAGE_KINDS.map((kind) => [kind, profile(kind)])));

@@ -722,13 +722,12 @@ function mergeLegacyMemberIntoStable(stable, legacy, stableId) {
     return out;
 }
 async function stableMemberExistsInWeek(db, weekId, stableId) {
-    const snap = await db
+    const snap = await readIdentityOrThrow(db
         .collection(LEAGUE_GROUPS)
         .where('weekId', '==', weekId)
         .limit(500)
-        .get()
-        .catch(() => null);
-    return !!snap?.docs.some((doc) => {
+        .get());
+    return snap.docs.some((doc) => {
         const members = doc.data()?.members;
         return members && typeof members === 'object' && Object.prototype.hasOwnProperty.call(members, stableId);
     });
@@ -897,9 +896,9 @@ async function cleanupLegacyAuthIdentityDuplicates(db, stableId, authUid, opts) 
     const stableLbRef = db.collection(LEADERBOARD).doc(stableId);
     const legacyLbRef = db.collection(LEADERBOARD).doc(authUid);
     const [stableLbSnap, legacyLbSnap, authLinkSnap] = await Promise.all([
-        stableLbRef.get().catch(() => null),
+        readIdentityOrThrow(stableLbRef.get()),
         legacyLbRef.get().catch(() => null),
-        db.collection(AUTH_LINKS).doc(authUid).get().catch(() => null),
+        readIdentityOrThrow(db.collection(AUTH_LINKS).doc(authUid).get()),
     ]);
     const stableLeaderboardAuthUid = String(stableLbSnap?.data()?.firebaseAuthUid ?? '').trim();
     const linkedStableId = String(authLinkSnap?.data()?.stable_id ?? '').trim();
@@ -1289,9 +1288,15 @@ function maskEmailForRecoveryHint(email) {
     const domain = value.slice(at + 1);
     return `${local.slice(0, 3)}***@${domain}`;
 }
+const NEUTRAL_RECOVERY_HINT = {
+    found: false,
+    linked: false,
+    provider: null,
+    maskedEmail: null,
+};
 function buildRecoveryHintFromUserData(userData) {
     if (!userData)
-        return { found: false, linked: false, provider: null, maskedEmail: null };
+        return NEUTRAL_RECOVERY_HINT;
     const linkedAuth = userData.linkedAuth;
     const providerRaw = linkedAuth && typeof linkedAuth === 'object'
         ? String(linkedAuth.provider ?? '').trim()
@@ -1302,14 +1307,25 @@ function buildRecoveryHintFromUserData(userData) {
     const maskedEmail = maskEmailForRecoveryHint(linkedAuth.email);
     return { found: true, linked: true, provider, maskedEmail };
 }
-exports.authRecoveryHint = (0, https_1.onCall)(callable_options_1.HOT_CALLABLE_OPTIONS, async (request) => {
+exports.authRecoveryHint = (0, https_1.onCall)({
+    ...callable_options_1.HOT_CALLABLE_OPTIONS,
+    enforceAppCheck: true,
+}, async (request) => {
     if (!request.auth?.uid)
         throw new https_1.HttpsError('unauthenticated', 'auth_required');
+    if (!request.app)
+        throw new https_1.HttpsError('failed-precondition', 'app_check_required');
     const stableId = normalizeStableId(request.data?.stableId);
     if (!stableId)
-        return { found: false, linked: false, provider: null, maskedEmail: null };
+        return NEUTRAL_RECOVERY_HINT;
     const db = admin.firestore();
-    const snap = await db.collection(USERS).doc(stableId).get().catch(() => null);
+    const authLinkSnap = await readIdentityOrThrow(db.collection(AUTH_LINKS).doc(request.auth.uid).get());
+    const linkedStableId = authLinkSnap.exists
+        ? normalizeStableId(authLinkSnap.data()?.stable_id)
+        : '';
+    if (!linkedStableId || linkedStableId !== stableId)
+        return NEUTRAL_RECOVERY_HINT;
+    const snap = await readIdentityOrThrow(db.collection(USERS).doc(stableId).get());
     return buildRecoveryHintFromUserData(snap?.exists ? snap.data() : undefined);
 });
 // ── Anonymous-ownership claim (closes #11 safely) ────────────────────────────

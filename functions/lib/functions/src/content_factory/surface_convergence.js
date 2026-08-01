@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ARENA_COMPARATOR_VERSION = void 0;
 exports.compareArenaSurfaceArtifacts = compareArenaSurfaceArtifacts;
+exports.buildArenaShadowComparison = buildArenaShadowComparison;
 const node_crypto_1 = require("node:crypto");
 exports.ARENA_COMPARATOR_VERSION = 'arena-parity-v1';
 function record(value) { return typeof value === 'object' && value !== null && !Array.isArray(value) ? value : undefined; }
@@ -61,5 +62,21 @@ function compareArenaSurfaceArtifacts(input) {
     const severity = ordered.some((code) => CRITICAL.has(code)) ? 'critical' : ordered.length ? 'major' : 'none';
     const basis = { comparatorVersion: input.comparatorVersion, legacyFingerprint: sha({ identity: input.legacyIdentity, artifact: input.legacyArtifact, qa: input.legacyQaOutcome, error: input.legacyError ?? null }), stageFingerprint: sha({ identity: input.stageIdentity, artifact: input.stageArtifact, qa: input.stageQaOutcome, error: input.stageError ?? null }), legacyArtifactHash: input.legacyArtifactHash, stageArtifactHash: input.stageArtifactHash, mismatches: ordered, severity };
     return Object.freeze({ receiptId: sha(basis), ...basis, eligible: ordered.length === 0 });
+}
+function buildArenaShadowComparison(input) {
+    const shadowComparisonState = 'unavailable';
+    const candidate = Object.freeze({ providerRequestsAdded: Math.max(0, Math.trunc(input.providerRequestsAdded)) });
+    const basis = {
+        unitId: input.unitId,
+        comparatorVersion: input.comparatorVersion,
+        engineRequested: input.engineRequested,
+        engineResolved: input.engineResolved,
+        configRevision: input.configRevision,
+        legacyArtifactHash: input.legacyArtifactHash,
+        legacyQaOutcome: input.legacyQaOutcome,
+        shadowComparisonState,
+        candidate,
+    };
+    return Object.freeze({ documentId: sha(basis), ...basis, eligible: false });
 }
 //# sourceMappingURL=surface_convergence.js.map

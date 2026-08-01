@@ -964,7 +964,9 @@
         label: 'Скачать Phraseman бесплатно',
         url: primaryStoreUrl(),
         onClick: () => {
-          if (consent) api('cta_click', { store: 'cert_modal', level: result.estimatedLevel });
+          // зачем: source разделяет в отчёте «скачал после теста» и «скачал после
+          // сертификата» — владелец хочет видеть эти две воронки отдельно.
+          if (consent) api('cta_click', { store: 'cert_modal', level: result.estimatedLevel, source: 'certificate' });
         },
       },
     };
@@ -1073,12 +1075,13 @@
     hideBrokenBrandIcons(node);
 
     node.querySelector('#ctaPrimary').addEventListener('click', () => {
-      if (consent) api('cta_click', { store: 'primary', level: result.estimatedLevel });
+      // зачем: source:'result' — клик с экрана результата теста (не из сертификата).
+      if (consent) api('cta_click', { store: 'primary', level: result.estimatedLevel, source: 'result' });
       window.location.href = primaryStoreUrl();
     });
     node.querySelectorAll('.elt-store-badge').forEach((badge, i) => {
       badge.addEventListener('click', () => {
-        if (consent) api('cta_click', { store: i === 0 ? 'ios' : 'android', level: result.estimatedLevel });
+        if (consent) api('cta_click', { store: i === 0 ? 'ios' : 'android', level: result.estimatedLevel, source: 'result' });
       });
     });
     node.querySelector('#ctaShare').addEventListener('click', () => shareResult(result));

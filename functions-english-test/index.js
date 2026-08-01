@@ -233,9 +233,53 @@ function normalizeAnalyticsAction(action, body) {
         ? { action, payload: { channel: body.channel } }
         : null;
     }
+    // зачем: владельцу нужно видеть, сколько людей пошли скачивать приложение
+    // ПОСЛЕ теста и после сертификата. Клиент (knowly-www/english-level-test/app.js)
+    // уже слал cta_view/cta_click, но их не было в этом switch — default возвращал
+    // null, и события молча отбрасывались с 400. Теперь принимаем и считаем.
+    case 'cta_view':
+    // cert_reopen — вернулся к сертификату, не скачав его (app.js:1091).
+    // Тоже отбрасывался default-ветвью, поэтому «переоткрытий» не было видно.
+    case 'cert_reopen':
+      return { action, payload: { level: normalizeCtaLevel(body.level) } };
+    case 'cta_click':
+      return {
+        action,
+        payload: {
+          store: normalizeCtaStore(body.store),
+          level: normalizeCtaLevel(body.level),
+          // source различает «результат теста» и «окно сертификата» — ровно тот
+          // разрез, который нужен в отчёте.
+          source: normalizeCtaSource(body.store, body.source),
+        },
+      };
     default:
       return null;
   }
+}
+
+/** Куда ведёт кнопка. cert_modal шлётся из окна сертификата (app.js:967). */
+const CTA_STORES = ['ios', 'android', 'primary', 'cert_modal'];
+/** Откуда нажали: экран результата теста или окно сертификата. */
+const CTA_SOURCES = ['result', 'certificate'];
+const CTA_LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
+
+function normalizeCtaStore(value) {
+  return CTA_STORES.includes(value) ? value : 'unknown';
+}
+
+function normalizeCtaLevel(value) {
+  return CTA_LEVELS.includes(value) ? value : 'unknown';
+}
+
+/**
+ * Источник клика. Клиент помечает 'result' только на одной из кнопок, а клик из
+ * окна сертификата узнаётся по store==='cert_modal'. Выводим source сами, чтобы
+ * отчёт не зависел от того, проставил ли клиент поле.
+ */
+function normalizeCtaSource(store, value) {
+  if (store === 'cert_modal') return 'certificate';
+  return CTA_SOURCES.includes(value) ? value : 'result';
 }
 
 function coarseBucket(value, buckets) {
@@ -547,6 +591,24 @@ exports.englishTestApi = onRequest({
         if (ch && !channels.includes(ch)) channels.push(ch);
         update.shareChannels = channels;
         break;
+      case 'cta_view':
+        update.ctaViewed = true;
+        break;
+      case 'cert_reopen':
+        update.certReopened = true;
+        break;
+      case 'cta_click': {
+        // зачем: флаг на попытке даёт честную конверсию «прошёл тест → пошёл
+        // скачивать» по уникальным людям, а не по числу тапов (двойной тап по
+        // тем же кнопкам не должен раздувать конверсию).
+        const ctaClick = normalizedAction.payload;
+        update.ctaClicked = true;
+        update.ctaClickSource = ctaClick.source;
+        update.ctaClickStore = ctaClick.store;
+        if (ctaClick.source === 'certificate') update.ctaClickedFromCertificate = true;
+        else update.ctaClickedFromResult = true;
+        break;
+      }
       default:
         res.status(400).json({ error: 'Unknown action' });
         return;
@@ -555,7 +617,7 @@ exports.englishTestApi = onRequest({
     await docRef.update(update);
 
     // Update daily aggregate
-    await updateDailyAggregate(action, now);
+    await updateDailyAggregate(action, now, normalizedAction.payload);
 
     res.json({ ok: true });
   } catch (e) {
@@ -564,11 +626,10 @@ exports.englishTestApi = onRequest({
   }
 });
 
-async function updateDailyAggregate(action, timestamp) {
+async function updateDailyAggregate(action, timestamp, payload) {
   try {
     const date = new Date(timestamp).toISOString().slice(0, 10);
     const docRef = db.collection('english_test_daily').doc(date);
-    const field = `events.${action}`;
     await docRef.set(
       {
         date,
@@ -576,7 +637,14 @@ async function updateDailyAggregate(action, timestamp) {
       },
       { merge: true }
     );
-    await docRef.update({ [field]: FieldValue.increment(1) });
+    // зачем: Firebase-экономия — все инкременты дня идут ОДНОЙ записью в тот же
+    // документ, а не отдельным update на каждый разрез.
+    const increments = { [`events.${action}`]: FieldValue.increment(1) };
+    if (action === 'cta_click' && payload) {
+      increments[`ctaClicks.bySource.${payload.source}`] = FieldValue.increment(1);
+      increments[`ctaClicks.byStore.${payload.store}`] = FieldValue.increment(1);
+    }
+    await docRef.update(increments);
   } catch (e) {
     // Non-critical
   }
@@ -639,6 +707,13 @@ exports.adminEnglishTestAnalytics = onCall({
     complete: 0,
     certificate: 0,
     share: 0,
+    // зачем: владелец хочет видеть, сколько людей пошли СКАЧИВАТЬ приложение
+    // после теста и после сертификата. Считаем по уникальным попыткам (человек),
+    // а не по числу тапов — иначе двойной тап раздувает конверсию.
+    ctaView: 0,
+    downloadClick: 0,
+    downloadAfterTest: 0,
+    downloadAfterCertificate: 0,
   };
 
   for (const a of attempts) {
@@ -652,6 +727,10 @@ exports.adminEnglishTestAnalytics = onCall({
     if (a.status === 'completed') funnel.complete++;
     if (a.certificateEvent) funnel.certificate++;
     if ((a.shareChannels || []).length > 0) funnel.share++;
+    if (a.ctaViewed) funnel.ctaView++;
+    if (a.ctaClicked) funnel.downloadClick++;
+    if (a.ctaClickedFromResult) funnel.downloadAfterTest++;
+    if (a.ctaClickedFromCertificate) funnel.downloadAfterCertificate++;
   }
 
   // Level distribution

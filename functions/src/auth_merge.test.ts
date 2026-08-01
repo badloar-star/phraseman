@@ -3,8 +3,11 @@ import {
   mergeShards,
   mergeStableAccounts,
   mergeUserProgress,
+  processAccountMergeOutboxJob,
   repointReferralOnMerge,
 } from './auth_merge';
+import { createHash } from 'crypto';
+import { accountDeletePermanentDenialId } from './account_delete_job';
 
 const NOW = 1_777_000_000_000;
 const FUTURE = NOW + 30 * 24 * 60 * 60 * 1000; // +30d
@@ -134,19 +137,23 @@ describe('mergeUserProgress — numeric accumulation', () => {
 
 describe('mergeUserProgress — premium carries over (must never drop a paid user)', () => {
   it('carries an active store-premium block from the LOSER onto the result', () => {
-    const winner = { user_total_xp: '9999' }; // higher XP, but free
+    const winner = { user_total_xp: '9999', premium_rc_active_lineage: 'stale-winner-lineage' }; // higher XP, but free
     const loser = {
       user_total_xp: '10',
       premium_plan: 'yearly',
       premium_expiry: String(FUTURE),
       premium_rc_store: 'app_store',
       had_premium_ever: 'true',
+      premium_rc_active_lineage: 'paid-loser-lineage',
+      premium_rc_reconcile_needed: 'false',
     };
     const out = mergeUserProgress(winner, loser, NOW);
     expect(out.premium_plan).toBe('yearly');
     expect(out.premium_expiry).toBe(String(FUTURE));
     expect(out.premium_rc_store).toBe('app_store');
     expect(out.had_premium_ever).toBe('true');
+    expect(out.premium_rc_active_lineage).toBe('paid-loser-lineage');
+    expect(out.premium_rc_reconcile_needed).toBe('false');
   });
 
   it('prefers the side with the furthest premium expiry', () => {
@@ -262,6 +269,11 @@ function makeDbStub(
       ids: string[],
       mutate: (id: string, data: DocData | undefined) => void,
     ) => void;
+    afterQueryGetAny?: (
+      collection: string,
+      ids: string[],
+      mutate: (collection: string, id: string, data: DocData | undefined) => void,
+    ) => void;
   },
 ) {
   const store: Store = {
@@ -273,6 +285,14 @@ function makeDbStub(
     identity_cleanup_candidates: { ...(initial.identity_cleanup_candidates ?? {}) },
     account_deletion_auth_markers: { ...(initial.account_deletion_auth_markers ?? {}) },
     account_deletion_tombstones: { ...(initial.account_deletion_tombstones ?? {}) },
+    revenuecat_premium_lineages: { ...(initial.revenuecat_premium_lineages ?? {}) },
+    account_identity_owner_map: { ...(initial.account_identity_owner_map ?? {}) },
+    account_merge_outbox: { ...(initial.account_merge_outbox ?? {}) },
+    account_deletion_permanent_denials: { ...(initial.account_deletion_permanent_denials ?? {}) },
+    revenuecat_premium_events: { ...(initial.revenuecat_premium_events ?? {}) },
+    revenuecat_premium_denials: { ...(initial.revenuecat_premium_denials ?? {}) },
+    revenuecat_shard_transactions: { ...(initial.revenuecat_shard_transactions ?? {}) },
+    revenuecat_shard_refunds: { ...(initial.revenuecat_shard_refunds ?? {}) },
   };
   let docGetCount = 0;
   const queryLog: Array<{ collection: string; cursor: string; limit: number; ids: string[] }> = [];
@@ -297,7 +317,17 @@ function makeDbStub(
     },
     set: async (data: DocData) => {
       store[name] = store[name] ?? {};
-      store[name][id] = { ...(store[name][id] ?? {}), ...data };
+      const next = { ...(store[name][id] ?? {}), ...data };
+      for (const [key, value] of Object.entries(data)) {
+        if (!key.startsWith('progress.')) continue;
+        const progressKey = key.slice('progress.'.length);
+        const progress = { ...((next.progress as DocData | undefined) ?? {}) };
+        if (value && typeof value === 'object') delete progress[progressKey];
+        else progress[progressKey] = value;
+        next.progress = progress;
+        delete next[key];
+      }
+      store[name][id] = next;
       const path = pathFor(name, id);
       versions.set(path, (versions.get(path) ?? 0) + 1);
     },
@@ -317,9 +347,12 @@ function makeDbStub(
   });
 
   const matches = (data: DocData | undefined, field: unknown, op: string, value: unknown): boolean => {
-    if (!data || op !== '==') return false;
+    if (!data || (op !== '==' && op !== 'array-contains')) return false;
     const key = typeof field === 'string' ? field : String((field as { toString(): string }).toString());
-    return (data as Record<string, unknown>)[key] === value;
+    const fieldValue = (data as Record<string, unknown>)[key];
+    return op === 'array-contains'
+      ? Array.isArray(fieldValue) && fieldValue.includes(value)
+      : fieldValue === value;
   };
 
   const queryApi = (
@@ -357,6 +390,7 @@ function makeDbStub(
         docs.map((doc) => doc.id),
         (id, data) => mutate(name, id, data),
       );
+      options?.afterQueryGetAny?.(name, docs.map((doc) => doc.id), mutate);
       return { empty: docs.length === 0, docs, size: docs.length };
     },
   });
@@ -378,6 +412,9 @@ function makeDbStub(
         },
         delete: (ref: { delete: () => Promise<void> }) => {
           ops.push(() => ref.delete());
+        },
+        update: (ref: { set: (d: DocData) => Promise<void> }, data: DocData) => {
+          ops.push(() => ref.set(data));
         },
         commit: async () => { for (const fn of ops) await fn(); },
       };
@@ -426,6 +463,225 @@ describe('mergeStableAccounts', () => {
     jest.spyOn(console, 'warn').mockImplementation(() => {});
   });
   afterEach(() => jest.restoreAllMocks());
+
+  it('leases and idempotently completes merge outbox receipt repointing', async () => {
+    const bulkReceipts = Object.fromEntries(Array.from({ length: 101 }, (_, index) => [
+      `bulk-${index}`,
+      { uid: 'loser', eventId: `evt-bulk-${index}` },
+    ]));
+    const candidateOnlyReceipts = Object.fromEntries(Array.from({ length: 101 }, (_, index) => [
+      `candidate-only-${String(index).padStart(3, '0')}`,
+      { candidates: ['other', 'loser'], eventId: `evt-candidate-${index}` },
+    ]));
+    let mergeAdvanced = false;
+    const { db, store, queryLog } = makeDbStub({
+      account_merge_outbox: {
+        merge1: { winnerStableId: 'winner', loserStableId: 'loser', status: 'pending', attempts: 0 },
+      },
+      revenuecat_premium_events: {
+        ...bulkReceipts,
+        ...candidateOnlyReceipts,
+        receipt1: { uid: 'loser', eventId: 'evt-1' },
+        transfer1: { donorIds: ['loser', 'other'], candidates: ['loser', 'other'], recipientId: 'winner' },
+      },
+    }, {
+      afterQueryGetAny: (collection, ids, mutate) => {
+        if (!mergeAdvanced && collection === 'revenuecat_premium_events' && ids.length > 0) {
+          mergeAdvanced = true;
+          mutate('account_identity_owner_map', 'winner', { canonicalStableId: 'winner-next' });
+        }
+      },
+    });
+
+    await expect(processAccountMergeOutboxJob(db as any, 'merge1', NOW)).resolves.toEqual({
+      status: 'completed',
+      updated: 205,
+    });
+    expect(store.revenuecat_premium_events.receipt1).toMatchObject({
+      uid: 'winner-next',
+      canonicalOwnerUid: 'winner-next',
+    });
+    expect(store.revenuecat_premium_events.transfer1).toMatchObject({
+      donorIds: ['winner-next', 'other'],
+      candidates: ['winner-next', 'other'],
+      canonicalOwnerUid: 'winner-next',
+    });
+    expect(store.revenuecat_premium_events['bulk-100']).toMatchObject({ uid: 'winner-next' });
+    const candidateOnlyPages = queryLog.filter(({ ids }) => (
+      ids.some((id) => id.startsWith('candidate-only-'))
+    ));
+    expect(candidateOnlyPages).toHaveLength(2);
+    expect(candidateOnlyPages[0]?.ids).toHaveLength(100);
+    expect(candidateOnlyPages[1]?.ids).toContain('candidate-only-100');
+    const finalCandidateOnlyReceipt = store.revenuecat_premium_events['candidate-only-100']!;
+    expect(finalCandidateOnlyReceipt).toMatchObject({
+      candidates: ['other', 'winner-next'],
+      canonicalOwnerUid: 'winner-next',
+      previousOwnerUidHash: createHash('sha256').update('loser').digest('hex'),
+    });
+    expect(JSON.stringify(finalCandidateOnlyReceipt)).not.toContain('"loser"');
+    expect(store.account_merge_outbox.merge1).toMatchObject({ status: 'completed', updatedDocs: 205 });
+    await expect(processAccountMergeOutboxJob(db as any, 'merge1', NOW + 1)).resolves.toEqual({
+      status: 'already_completed',
+      updated: 0,
+    });
+  });
+
+  it('cancels receipt repointing when deletion denial wins the race', async () => {
+    let deletionStarted = false;
+    const { db, store } = makeDbStub({
+      account_merge_outbox: {
+        mergeDelete: { winnerStableId: 'winner', loserStableId: 'loser', status: 'pending' },
+      },
+      revenuecat_premium_events: {
+        receipt: { uid: 'loser' },
+      },
+    }, {
+      afterQueryGetAny: (collection, ids, mutate) => {
+        if (!deletionStarted && collection === 'revenuecat_premium_events' && ids.length > 0) {
+          deletionStarted = true;
+          mutate('account_deletion_permanent_denials', accountDeletePermanentDenialId('winner'), {
+            status: 'denied',
+          });
+        }
+      },
+    });
+
+    await expect(processAccountMergeOutboxJob(db as any, 'mergeDelete', NOW)).resolves.toEqual({
+      status: 'cancelled',
+      updated: 0,
+    });
+    expect(store.revenuecat_premium_events.receipt).toEqual({ uid: 'loser' });
+    expect(store.account_merge_outbox.mergeDelete).toMatchObject({ status: 'cancelled_by_deletion' });
+  });
+
+  it('fails closed when the latest canonical owner chain exceeds the bounded hop limit', async () => {
+    const ownerMaps = Object.fromEntries(Array.from({ length: 65 }, (_, index) => [
+      index === 0 ? 'winner' : `winner-${index}`,
+      { canonicalStableId: `winner-${index + 1}` },
+    ]));
+    const { db, store } = makeDbStub({
+      account_merge_outbox: {
+        mergeOverflow: { winnerStableId: 'winner', loserStableId: 'loser', status: 'pending' },
+      },
+      account_identity_owner_map: ownerMaps,
+      revenuecat_premium_events: { receipt: { uid: 'loser' } },
+    });
+
+    await expect(processAccountMergeOutboxJob(db as any, 'mergeOverflow', NOW))
+      .rejects.toThrow('account_merge_owner_map_overflow');
+    expect(store.revenuecat_premium_events.receipt).toEqual({ uid: 'loser' });
+    expect(store.account_merge_outbox.mergeOverflow).toMatchObject({ status: 'pending' });
+  });
+
+  it('repoints through a valid long canonical owner chain within the system cap', async () => {
+    const ownerMaps = Object.fromEntries(Array.from({ length: 9 }, (_, index) => [
+      index === 0 ? 'winner' : `winner-${index}`,
+      { canonicalStableId: `winner-${index + 1}` },
+    ]));
+    const { db, store } = makeDbStub({
+      account_merge_outbox: {
+        mergeLong: { winnerStableId: 'winner', loserStableId: 'loser', status: 'pending' },
+      },
+      account_identity_owner_map: ownerMaps,
+      revenuecat_premium_events: { receipt: { uid: 'loser' } },
+    });
+
+    await expect(processAccountMergeOutboxJob(db as any, 'mergeLong', NOW)).resolves.toEqual({
+      status: 'completed', updated: 1,
+    });
+    expect(store.revenuecat_premium_events.receipt).toMatchObject({
+      uid: 'winner-9', canonicalOwnerUid: 'winner-9',
+    });
+  });
+
+  it('does not let a stale failed worker overwrite a reclaimed terminal outbox state', async () => {
+    let reclaimed = false;
+    const { db, store } = makeDbStub({
+      account_merge_outbox: {
+        mergeReclaimed: { winnerStableId: 'winner', loserStableId: 'loser', status: 'pending' },
+      },
+      revenuecat_premium_events: { receipt: { uid: 'loser' } },
+    }, {
+      afterQueryGetAny: (collection, ids, mutate) => {
+        if (!reclaimed && collection === 'revenuecat_premium_events' && ids.length > 0) {
+          reclaimed = true;
+          mutate('account_merge_outbox', 'mergeReclaimed', {
+            winnerStableId: 'winner',
+            loserStableId: 'loser',
+            status: 'completed',
+            leaseToken: 'new-worker-token',
+          });
+        }
+      },
+    });
+
+    await expect(processAccountMergeOutboxJob(db as any, 'mergeReclaimed', NOW))
+      .rejects.toThrow('account_merge_outbox_lease_lost');
+    expect(store.account_merge_outbox.mergeReclaimed).toMatchObject({
+      status: 'completed', leaseToken: 'new-worker-token',
+    });
+    expect(store.revenuecat_premium_events.receipt).toEqual({ uid: 'loser' });
+  });
+
+  it('atomically rekeys loser RevenueCat lineages and records durable owner mapping/outbox', async () => {
+    const lineageHash = 'lineage-hash';
+    const oldLineageId = 'loser-owned-lineage';
+    const { db, store } = makeDbStub({
+      users: {
+        winner: { firebaseAuthUid: 'auth-rc', progress: { user_total_xp: '10' } },
+        loser: {
+          firebaseAuthUid: 'auth-rc',
+          progress: {
+            user_total_xp: '1',
+            premium_plan: 'yearly',
+            premium_expiry: '0',
+            premium_rc_active_lineage: lineageHash,
+          },
+        },
+      },
+      revenuecat_premium_lineages: {
+        [oldLineageId]: {
+          ownerUid: 'loser',
+          lineageHash,
+          plan: 'yearly',
+          revoked: false,
+          activeThroughMs: FUTURE,
+          productId: 'premium_yearly',
+          store: 'APP_STORE',
+          environment: 'PRODUCTION',
+          lastEventType: 'RENEWAL',
+          lastAccessEventTimeMs: 10,
+          lastAccessEventRank: 50,
+          lastAccessEventTieValue: 20,
+          lastAccessEventId: 'grant',
+          lastEventTimeMs: 10,
+          lastEventRank: 30,
+          lastEventId: 'grant',
+          lastEventFingerprint: 'fp',
+        },
+      },
+    });
+
+    await mergeStableAccounts(db as any, 'auth-rc', 'winner', 'loser', NOW);
+
+    const ownerHash = createHash('sha256').update('winner').digest('hex').slice(0, 32);
+    const canonicalLineageId = `lin_${ownerHash}_${lineageHash}`;
+    expect(store.revenuecat_premium_lineages[oldLineageId]).toBeUndefined();
+    expect(store.revenuecat_premium_lineages[canonicalLineageId]).toMatchObject({ ownerUid: 'winner', lineageHash });
+    expect(store.account_identity_owner_map.loser).toMatchObject({ canonicalStableId: 'winner' });
+    expect(Object.values(store.account_merge_outbox)).toEqual(expect.arrayContaining([
+      expect.objectContaining({ winnerStableId: 'winner', loserStableId: 'loser', status: 'pending' }),
+    ]));
+    expect(store.users.loser).toMatchObject({ identityHidden: true, canonicalStableId: 'winner' });
+    expect((store.users.loser!.progress as DocData).premium_plan).toBeUndefined();
+    expect((store.users.loser!.progress as DocData).premium_rc_active_lineage).toBeUndefined();
+    expect(store.users.winner!.progress).toMatchObject({
+      premium_plan: 'yearly',
+      premium_rc_active_lineage: lineageHash,
+      premium_rc_reconcile_needed: 'false',
+    });
+  });
 
   it('merges two stable ids into the higher-XP one and hides the loser', async () => {
     const { db, store } = makeDbStub({
@@ -646,6 +902,44 @@ describe('mergeStableAccounts', () => {
       mergeStableAccounts(db as any, 'google-link-race', 'stable-a', 'stable-b', NOW),
     ).rejects.toMatchObject({ code: 'failed-precondition', message: 'stable_identity_changed' });
     expect(store.users['stable-b']?.identityHidden).not.toBe(true);
+  });
+
+  it('rejects a foreign direct auth_links anchor with zero mutations', async () => {
+    const { db, store } = makeDbStub({
+      auth_links: {
+        'attacker-uid': { stable_id: 'stable-victim', provider: 'google', updatedAt: 111 },
+      },
+      users: {
+        'stable-victim': {
+          firebaseAuthUid: 'victim-uid',
+          progress: { user_total_xp: '9000' },
+        },
+        'stable-attacker-a': {
+          firebaseAuthUid: 'attacker-uid',
+          progress: { user_total_xp: '100' },
+        },
+        'stable-attacker-b': {
+          firebaseAuthUid: 'attacker-uid',
+          progress: { user_total_xp: '50' },
+        },
+      },
+    });
+    const before = JSON.parse(JSON.stringify(store));
+
+    await expect(
+      mergeStableAccounts(
+        db as any,
+        'attacker-uid',
+        'stable-attacker-a',
+        'stable-attacker-b',
+        NOW,
+      ),
+    ).rejects.toMatchObject({
+      code: 'permission-denied',
+      message: 'stable_id_mismatch',
+    });
+
+    expect(store).toEqual(before);
   });
 
   it('does not overwrite an auth_links anchor that moves to a protected raw id after preflight', async () => {
@@ -875,6 +1169,39 @@ describe('mergeStableAccounts', () => {
     expect(res.alreadyMerged).toBe(true);
     expect(res.canonicalStableId).toBe('stable-canon');
     expect(store.auth_links['google-3']).toEqual(originalLink);
+  });
+
+  it('accepts an auth_links anchor that resolves from hidden to an owned canonical account', async () => {
+    const originalLink = { stable_id: 'stable-hidden', provider: 'google', updatedAt: 111 };
+    const { db, store } = makeDbStub({
+      auth_links: { 'google-hidden': originalLink },
+      users: {
+        'stable-hidden': {
+          identityHidden: true,
+          canonicalStableId: 'stable-canonical',
+          progress: { user_total_xp: '10' },
+        },
+        'stable-canonical': {
+          firebaseAuthUid: 'google-hidden',
+          progress: { user_total_xp: '500' },
+        },
+      },
+    });
+
+    await expect(
+      mergeStableAccounts(
+        db as any,
+        'google-hidden',
+        'stable-hidden',
+        'stable-canonical',
+        NOW,
+      ),
+    ).resolves.toEqual({
+      canonicalStableId: 'stable-canonical',
+      mergedFromStableId: null,
+      alreadyMerged: true,
+    });
+    expect(store.auth_links['google-hidden']).toEqual(originalLink);
   });
 
   it('returns canonical without change when both ids are equal', async () => {

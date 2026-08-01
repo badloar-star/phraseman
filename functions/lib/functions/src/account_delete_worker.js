@@ -33,13 +33,17 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.accountDeleteRetryCron = exports.accountDeleteWorker = exports.ACCOUNT_DELETE_RETRY_OPTIONS = exports.ACCOUNT_DELETE_WORKER_OPTIONS = void 0;
+exports.accountDeleteRetryCron = exports.accountDeleteWorker = exports.ACCOUNT_DELETE_RETRY_OPTIONS = exports.ACCOUNT_DELETE_WORKER_OPTIONS = exports.ACCOUNT_DELETE_PERMANENT_DENIAL_GC_POLICY = void 0;
 exports.sweepAccountDeletionJobs = sweepAccountDeletionJobs;
 const admin = __importStar(require("firebase-admin"));
 const firestore_1 = require("firebase-functions/v2/firestore");
 const scheduler_1 = require("firebase-functions/v2/scheduler");
 const account_delete_1 = require("./account_delete");
 const account_delete_job_1 = require("./account_delete_job");
+exports.ACCOUNT_DELETE_PERMANENT_DENIAL_GC_POLICY = {
+    collection: account_delete_job_1.ACCOUNT_DELETE_PERMANENT_DENIALS,
+    purge: false,
+};
 exports.ACCOUNT_DELETE_WORKER_OPTIONS = {
     document: `${account_delete_job_1.ACCOUNT_DELETE_JOBS}/{jobId}`,
     region: 'us-central1',

@@ -75,6 +75,7 @@ const THEMED_SHARD_GIFT_ICONS: Record<ThemeMode, ImageSourcePropType> = {
   indigo: require('../assets/images/shards/indigo-80.webp'),
 };
 
+
 const LEVEL_GIFT_REWARD_ICONS: Record<LevelGiftRewardIconId, ImageSourcePropType> = {
   arena_extra_5: require('../assets/images/level_gift_reward_icons/shards_6.webp'),
   chain_shield_1: require('../assets/images/level_gift_reward_icons/chain_shield_1.webp'),

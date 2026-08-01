@@ -64,6 +64,9 @@ const FUNNEL_PAGE_SIZE = 1000;
 const FUNNEL_ROW_CAP = 30000;
 const PRICE_PAGE_SIZE = 500;
 const PRICE_ROW_CAP = 10000;
+/** Верхняя граница строк в разрезе по ситуациям — известных контекстов ~35,
+ *  запас на случай будущих/переходных значений без раздувания ответа. */
+const CONTEXT_ROW_CAP = 200;
 /** Окно наблюдения цен не зависит от периода отчёта: цена плана меняется редко,
  *  а за 7 дней покупок может не быть вовсе. */
 exports.PAYWALL_STATS_PRICE_WINDOW_DAYS = 90;
@@ -134,6 +137,19 @@ function conversionPct(purchases, shown) {
         return null;
     return Math.round((purchases / shown) * 1000) / 10;
 }
+// зачем: 40 символов — тот же лимит, что paywall_funnel.ts кладёт в context
+// на клиенте (String(...).slice(0, 40)); держим агрегатор синхронным с ним.
+const CONTEXT_MAX_LEN = 40;
+function normalizeContext(value) {
+    const raw = text(value);
+    return (raw || 'generic').slice(0, CONTEXT_MAX_LEN);
+}
+function emptyContextBucket() {
+    const purchasesByVariant = {};
+    for (const variant of exports.PAYWALL_STATS_VARIANTS)
+        purchasesByVariant[variant] = 0;
+    return { shown: 0, cta: 0, purchasesByVariant };
+}
 function buildPaywallVariantStatsReport(input) {
     const shown = new Map();
     const cta = new Map();
@@ -143,6 +159,7 @@ function buildPaywallVariantStatsReport(input) {
         cta.set(variant, 0);
         purchases.set(variant, { monthly: 0, yearly: 0, lifetime: 0, unknown: 0 });
     }
+    const contexts = new Map();
     for (const doc of input.funnelDocs) {
         if (doc.dev === true)
             continue; // дев-сборки не считаем, как и в продуктовой воронке
@@ -157,6 +174,20 @@ function buildPaywallVariantStatsReport(input) {
         else if (step === 'purchase_completed') {
             const bucket = purchases.get(variant);
             bucket[normalizePlan(doc.plan)] += 1;
+        }
+        // Разрез «какая ситуация показа конвертит лучше» — тот же проход, без
+        // повторного скана 30k документов. Не покупки-по-плану — контексту это
+        // не нужно, только показ/клик/покупка на ситуацию + кто выиграл.
+        if (step === 'shown' || step === 'cta_click' || step === 'purchase_completed') {
+            const ctxKey = normalizeContext(doc.context);
+            const ctxBucket = contexts.get(ctxKey) ?? emptyContextBucket();
+            if (step === 'shown')
+                ctxBucket.shown += 1;
+            else if (step === 'cta_click')
+                ctxBucket.cta += 1;
+            else
+                ctxBucket.purchasesByVariant[variant] += 1;
+            contexts.set(ctxKey, ctxBucket);
         }
     }
     const { planPricesMicros, priceObservations } = averagePlanPricesUsdMicros(input.priceRows);
@@ -193,6 +224,24 @@ function buildPaywallVariantStatsReport(input) {
     const totalsRevenue = revenueKind === 'estimate'
         ? variants.reduce((sum, row) => sum + (row.revenueMicros ?? 0), 0)
         : null;
+    // Сортировка по показам (самые частые ситуации сверху) — тот же принцип, что
+    // и у вариантов. CONTEXT_ROW_CAP страхует от раздутого ответа, если в базу
+    // когда-нибудь попадёт мусорный/произвольный context (лимит 40 символов на
+    // клиенте это не исключает — строк может быть много вариантов написания).
+    const contextRows = Array.from(contexts.entries())
+        .map(([context, bucket]) => {
+        const purchasesTotal = exports.PAYWALL_STATS_VARIANTS.reduce((sum, v) => sum + bucket.purchasesByVariant[v], 0);
+        return {
+            context,
+            shown: bucket.shown,
+            cta: bucket.cta,
+            purchases: purchasesTotal,
+            conversionPct: conversionPct(purchasesTotal, bucket.shown),
+            purchasesByVariant: Object.freeze({ ...bucket.purchasesByVariant }),
+        };
+    })
+        .sort((a, b) => b.shown - a.shown)
+        .slice(0, CONTEXT_ROW_CAP);
     return {
         ok: true,
         rangeDays: input.rangeDays,
@@ -204,6 +253,7 @@ function buildPaywallVariantStatsReport(input) {
         priceRowsScanned: input.priceRowsScanned ?? input.priceRows.length,
         revenue: { kind: revenueKind, currency: 'USD', planPricesMicros, priceObservations },
         variants: Object.freeze(variants),
+        contexts: Object.freeze(contextRows),
         totals: {
             shown: totalsShown,
             cta: totalsCta,

@@ -441,7 +441,7 @@ async function mergeStableAccountsTransactionally(db, authUid, rawA, rawB, now) 
                 throw new https_1.HttpsError('permission-denied', 'stable_id_mismatch');
             }
             const linkedIdentity = await resolveCanonical(linkedStableId);
-            if (!userDataOwnedByAuth(linkedIdentity.data, authUid) && linkedStableId !== linkedIdentity.stableId) {
+            if (!userDataOwnedByAuth(linkedIdentity.data, authUid)) {
                 throw new https_1.HttpsError('permission-denied', 'stable_id_mismatch');
             }
             return {

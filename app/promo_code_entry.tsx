@@ -14,7 +14,7 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ScreenGradient from '../components/ScreenGradient';
-import TapScale from '../components/TapScale';
+import SectionSheetHeader from '../components/SectionSheetHeader';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { triLang, type Lang } from '../constants/i18n';
@@ -26,6 +26,9 @@ import { emitAppEvent } from './events';
 import { consumeVipCelebration } from './vip_celebration_state';
 import VipCelebrationModal from '../components/VipCelebrationModal';
 import TonalSurface from '../components/TonalSurface';
+import { captureAccountGeneration, isCurrentAccountGeneration, type AccountGenerationToken } from './account_generation';
+import { writeVipSnapshotForAccount } from './premium_vip_storage';
+import { ensureAnonUser } from './cloud_sync';
 
 type Feedback = { kind: 'ok' | 'error'; text: string };
 
@@ -138,18 +141,24 @@ async function persistRedeemedPromoAccess(params: {
   rewardKind: 'days' | 'lifetime' | undefined;
   vipUntilMs: number | undefined;
   grantAtMs: number | undefined;
+  generation: AccountGenerationToken;
 }): Promise<string> {
+  const stableId = params.generation.stableId;
+  if (!stableId || !isCurrentAccountGeneration(params.generation, stableId)) {
+    throw new Error('stale_account_generation');
+  }
   const grantAt = String(params.grantAtMs && params.grantAtMs > 0 ? params.grantAtMs : Date.now());
   const vipUntil = String(Math.max(0, Math.floor(Number(params.vipUntilMs ?? 0))));
-  await AsyncStorage.multiSet([
-    ['vip_active', 'true'],
-    ['vip_plan', params.rewardKind === 'lifetime' ? 'promo_lifetime' : 'promo'],
-    ['vip_from', grantAt],
-    ['vip_until', vipUntil],
-    ['vip_admin_override', 'true'],
-    ['vip_admin_grant_at', grantAt],
-    ['promo_vip_last_code', params.code],
-  ]).catch(() => {});
+  await writeVipSnapshotForAccount(stableId, {
+    vip_active: 'true',
+    vip_plan: params.rewardKind === 'lifetime' ? 'promo_lifetime' : 'promo',
+    vip_from: grantAt,
+    vip_until: vipUntil,
+    vip_admin_override: 'true',
+    vip_admin_grant_at: grantAt,
+  });
+  if (!isCurrentAccountGeneration(params.generation, stableId)) throw new Error('stale_account_generation');
+  await AsyncStorage.setItem('promo_vip_last_code', params.code).catch(() => {});
   return grantAt;
 }
 
@@ -179,7 +188,11 @@ export default function PromoCodeEntryScreen() {
     setBusy(true);
     setFeedback(null);
     try {
+      const stableId = await ensureAnonUser();
+      const generation = captureAccountGeneration();
+      if (!stableId || !isCurrentAccountGeneration(generation, stableId)) return;
       const res = await redeemPromoCode(rawCode);
+      if (!isCurrentAccountGeneration(generation, stableId)) return;
       setFeedback(feedbackForStatus(res.status, res.rewardDays, res.rewardKind, L));
       if (res.status === 'redeemed') {
         const marker = await persistRedeemedPromoAccess({
@@ -187,7 +200,9 @@ export default function PromoCodeEntryScreen() {
           rewardKind: res.rewardKind,
           vipUntilMs: res.vipUntilMs,
           grantAtMs: res.grantAtMs,
+          generation,
         });
+        if (!generation.stableId || !isCurrentAccountGeneration(generation, generation.stableId)) return;
         setCelebrationMarker(marker);
         // VIP обновился на сервере — сбрасываем кэш и оповещаем приложение.
         invalidatePremiumCache();
@@ -225,29 +240,18 @@ export default function PromoCodeEntryScreen() {
   return (
     <ScreenGradient artBackdrop="friends">
       <SafeAreaView testID="screen-promo-code-entry" style={{ flex: 1 }}>
+        {/* зачем: стандарт «шторки раздела» — модал с выездом снизу; шапка
+            фиксированная над скроллом, закрытие крестиком вниз, не «назад». */}
+        <SectionSheetHeader
+          title={L('Промокод', 'Промокод', 'Código promocional', 'Código promocional', 'Mã khuyến mãi', 'Kode promo', 'Promo kod', 'Kod promocyjny')}
+          onClose={() => safeRouterBack(router, '/(tabs)/home' as any)}
+        />
         <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
           <ScrollView
             keyboardShouldPersistTaps="handled"
             showsVerticalScrollIndicator={false}
-            contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 12, paddingBottom: 34 }}
+            contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 16, paddingBottom: 34 }}
           >
-            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 18 }}>
-              <TapScale
-                accessibilityRole="button"
-                accessibilityLabel={L('Назад', 'Назад', 'Atrás', 'Voltar', 'Quay lại', 'Kembali', 'Geri', 'Wstecz')}
-                onPress={() => safeRouterBack(router, '/(tabs)/home' as any)}
-                style={{
-                  width: 44, height: 44, borderRadius: 22,
-                  alignItems: 'center', justifyContent: 'center',
-                  backgroundColor: t.bgSurface, borderWidth: 0, borderColor: t.border, marginRight: 12,
-                }}
-              >
-                <Ionicons name="chevron-back" size={24} color={t.textPrimary} />
-              </TapScale>
-              <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.h1 ?? 28, fontWeight: '900' }}>
-                {L('Промокод', 'Промокод', 'Código promocional', 'Código promocional', 'Mã khuyến mãi', 'Kode promo', 'Promo kod', 'Kod promocyjny')}
-              </Text>
-            </View>
 
             <TonalSurface radius={20} style={{ padding: 18, gap: 14 }}>
               <View style={{ width: 48, height: 48, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgSurface }}>

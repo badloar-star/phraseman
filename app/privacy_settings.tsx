@@ -15,8 +15,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import BouncyScrollView from '../components/BouncyScrollView';
-import TapScale from '../components/TapScale';
 import ScreenGradient from '../components/ScreenGradient';
+import SectionSheetHeader from '../components/SectionSheetHeader';
 import ContentWrap from '../components/ContentWrap';
 import CustomSwitch from '../components/CustomSwitch';
 import DeleteAccountConfirmModal from '../components/DeleteAccountConfirmModal';
@@ -70,17 +70,12 @@ export default function PrivacySettings() {
     <ScreenGradient>
       <SafeAreaView style={{ flex: 1 }}>
         <ContentWrap>
-          <View style={{ flexDirection: 'row', alignItems: 'center', padding: 15, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
-            <TapScale
-              onPress={() => safeRouterBack(router, '/(tabs)/settings' as never)}
-              style={{ width: 38, height: 38, borderRadius: 19, alignItems: 'center', justifyContent: 'center' }}
-            >
-              <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
-            </TapScale>
-            <Text style={{ color: t.textPrimary, fontSize: 18, fontWeight: '700', marginLeft: 8 }}>
-              {L({ ru: 'Приватность и данные', uk: 'Приватність і дані', es: 'Privacidad y datos', 'pt-BR': 'Privacidade e dados', vi: 'Quyền riêng tư và dữ liệu', id: 'Privasi dan data', tr: 'Gizlilik ve veriler', pl: 'Prywatność i dane' })}
-            </Text>
-          </View>
+          {/* зачем: стандарт «шторки раздела» — модал с выездом снизу, шапка
+              с центрированным заголовком и крестиком вместо стрелки «назад». */}
+          <SectionSheetHeader
+            title={L({ ru: 'Приватность и данные', uk: 'Приватність і дані', es: 'Privacidad y datos', 'pt-BR': 'Privacidade e dados', vi: 'Quyền riêng tư và dữ liệu', id: 'Privasi dan data', tr: 'Gizlilik ve veriler', pl: 'Prywatność i dane' })}
+            onClose={() => safeRouterBack(router, '/(tabs)/settings' as never)}
+          />
 
           <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ paddingTop: 12, paddingBottom: 36 }} scrollEventThrottle={16}>
             {/* Согласие на сбор данных об использовании (тумблер = мгновенный выбор). */}

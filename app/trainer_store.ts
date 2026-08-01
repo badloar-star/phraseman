@@ -611,6 +611,19 @@ export async function getDueItems(
     .slice(0, limit);
 }
 
+/**
+ * Прогрет ли in-memory кэш очереди для этого таргета.
+ *
+ * зачем: getCachedDueItems на холодном кэше возвращает `[]` — неотличимо от
+ * «сегодня нечего повторять». Экранам сессий нужно различать эти два случая,
+ * чтобы синхронно отрисовать первую карточку на прогретом кэше и не показать
+ * по ошибке экран «всё сделано» на холодном. Map.has различает «не грузили»
+ * и «загрузили пустое».
+ */
+export function hasCachedTrainerItems(studyTarget?: RuntimeStudyTarget): boolean {
+  return trainerStoreCache.has(trainerStoreKey(studyTarget));
+}
+
 export function getCachedDueItems(
   queue: TrainerQueue,
   limit = 20,

@@ -59,6 +59,7 @@ import {
   buildTrainerSessionDeck,
   getCachedPhraseSessionItems,
   getPhraseSessionItems,
+  getWarmPhraseSessionDeck,
   mergePhraseSessionItems,
   normalizeGapToken,
   PHRASE_SESSION_LIMIT,
@@ -78,6 +79,7 @@ import { getVerifiedPremiumStatus } from './premium_guard';
 import { logTrainerDirectGateBlocked } from './firebase';
 import TrainerSessionReport from './trainer_session_report';
 import { ensureFrenchRemotePersonalPractice } from './french_personal_practice_remote_runtime';
+import { storageStudyTarget } from './target_storage_keys';
 import { buildTrainerFillGapOptions } from './trainer_fill_gap_options';
 import { frenchTrainerGateCopy, trainerSessionContentAvailableForTarget } from './trainer_target_gate';
 import type { LessonWord } from './lesson_data_types';
@@ -279,7 +281,10 @@ function WordBankMode({ item, onResult, onAdvance, speakAnswer }: WordBankProps)
         {bank.map(tile => {
           const used = usedSlots.has(tile.slot);
           const tileKey = `${tile.slot}`;
-          const on = flashKey === tileKey;
+          // зачем: юзер жаловался, что плитка не гаснет мгновенно. Тап ставил flash на 260мс,
+          // и акцентная подсветка перебивала гашение — плитка сначала вспыхивала и только потом
+          // тускнела. Взятая плитка гаснет сразу: used выигрывает у flash (`&& !used`).
+          const on = flashKey === tileKey && !used;
           return (
             <DuoPressable
               key={tile.slot}
@@ -612,18 +617,37 @@ export default function TrainerPhrasesSession() {
   // переживает смену карточек, поэтому фраза доигрывает до конца.
   const { speakAnswer } = useSpeakAnswer();
 
-  const [deck, setDeck] = useState<SessionCard[]>([]);
+  // зачем: юзер жаловался, что «отработка ошибок» открывается через скелет «Загружаем…».
+  // Экран практики на каждом фокусе прогревает кэш (prefetchTrainerPracticeSnapshot), поэтому
+  // к моменту перехода колода уже лежит в памяти — берём её синхронно в инициализаторе
+  // useState и рисуем первую карточку в первом же кадре. Холодный кэш (или plan-сессия со
+  // своими очередями) отдаёт null → работает прежний async-путь со скелетом. Гейт лимита и
+  // премиума НЕ пропускается: эффект ниже всё равно его отрабатывает и уводит на пейвол.
+  // Читаем params.planTaskId напрямую (а не planTrainerContext) — он объявлен ниже, а нам
+  // нужно ровно одно вычисление на монтирование, до первого рендера.
+  const warmDeckRef = useRef<SessionCard[] | null>(
+    !trainerGateOpen || params.planTaskId || params.planTrainerTask
+      ? null
+      : getWarmPhraseSessionDeck(PHRASE_SESSION_LIMIT, studyTarget, sourceLocale),
+  );
+  const warmDeck = warmDeckRef.current;
+  const [deck, setDeck] = useState<SessionCard[]>(() => warmDeck ?? []);
   const [current, setCurrent] = useState(0);
   const [correct, setCorrect] = useState(0);
   const [wrong, setWrong] = useState(0);
   const [done, setDone] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const [accessReady, setAccessReady] = useState(false);
+  const [loading, setLoading] = useState(() => warmDeck === null);
+  // Тёплый старт показывает карточку сразу, не дожидаясь проверки лимита. Сама проверка
+  // никуда не делась: эффект ниже её отрабатывает и при отказе уводит на пейвол через
+  // router.replace — экран просто не висит скелетом на время двух чтений AsyncStorage.
+  const [accessReady, setAccessReady] = useState(() => warmDeck !== null);
   const [loadError, setLoadError] = useState(false);
   const [reloadKey, setReloadKey] = useState(0);
   const dailySessionTracked = useRef(false);
   const planTrainerCompletionTracked = useRef(false);
-  const sessionStartRef = useRef(0);
+  // Тёплый старт: сессия реально начинается в первом кадре, а не когда добежит фоновая
+  // сверка — иначе длительность сессии в статистике занижалась бы на время гейта.
+  const sessionStartRef = useRef(warmDeck ? Date.now() : 0);
   const pendingResultRef = useRef<Promise<void>>(Promise.resolve());
   const advancingRef = useRef(false);
   const planTrainerContext = useMemo(() => readTrainerPlanTaskContext({
@@ -646,8 +670,12 @@ export default function TrainerPhrasesSession() {
 
   useEffect(() => {
     let cancelled = false;
+    // Тёплый старт: колода уже отрисована из кэша — не откатываем экран обратно в скелет,
+    // пока фоном идёт гейт и точная загрузка. Иначе первый кадр был бы карточкой, а второй —
+    // «Загружаем…», что хуже, чем просто загрузка.
+    const startedWarm = warmDeckRef.current !== null;
     setLoadError(false);
-    setLoading(true);
+    if (!startedWarm) setLoading(true);
     void (async () => {
       try {
         if (!trainerGateOpen) {
@@ -682,7 +710,13 @@ export default function TrainerPhrasesSession() {
           }
         }
         setAccessReady(true);
-        await ensureFrenchRemotePersonalPractice(sourceLocale);
+        // зачем: этот await — сетевой запрос французского пака, но mergeFrenchRemotePracticeItems
+        // выбрасывает его результат для любого таргета кроме 'fr'. Английские юзеры (подавляющее
+        // большинство) ждали загрузку ради данных, которые тут же отбрасываются. Ждём только там,
+        // где результат реально используется.
+        if (storageStudyTarget(studyTarget) === 'fr') {
+          await ensureFrenchRemotePersonalPractice(sourceLocale);
+        }
         // Plan-контекст: фразовая сессия обслуживает и арену плана — грузим обе
         // plan-очереди и объединяем тем же компаратором, что и свободную практику.
         const items = planTrainerContext.taskId
@@ -708,12 +742,18 @@ export default function TrainerPhrasesSession() {
           : await getPhraseSessionItems(PHRASE_SESSION_LIMIT, studyTarget, sourceLocale);
         if (cancelled) return;
         if (items.length === 0) { setDone(true); setLoading(false); return; }
-        sessionStartRef.current = Date.now();
-        setDeck(buildTrainerSessionDeck(items));
+        if (!startedWarm) sessionStartRef.current = Date.now();
+        // Тёплый старт: пользователь уже видит и, возможно, отвечает на карточку из кэша —
+        // подменять колоду под ним нельзя (сбились бы прогресс и текущий индекс). Точная
+        // загрузка нужна была только чтобы подтвердить гейт и наличие айтемов.
+        if (!startedWarm) setDeck(buildTrainerSessionDeck(items));
         setLoading(false);
       } catch {
         // Сбой загрузки колоды → экран ошибки с retry вместо вечного лоадера.
         if (cancelled) return;
+        // Тёплый старт уже показывает рабочую колоду из кэша — рушить её экраном ошибки
+        // из-за сбоя фоновой сверки нельзя, сессия полностью играбельна.
+        if (startedWarm) return;
         setLoadError(true);
         setLoading(false);
       }

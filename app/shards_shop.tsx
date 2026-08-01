@@ -14,6 +14,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Image } from 'expo-image';
+import * as Crypto from 'expo-crypto';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import Animated, {
   cancelAnimation,
@@ -46,7 +47,13 @@ import { COMPASS_GRADIENTS, COMPASS_RICH, COMPASS_SURFACE_LOCATIONS, compassShad
 import { addShardsRaw, getShardAchievementEligibleBalance, getShardsBalance, loadShardsFromCloud, peekLastKnownShardsBalance } from './shards_system';
 import { SHARDS_PACKS, totalShardsFromPack, type ShardsPack } from './shards_shop_catalog';
 import { safeRouterBack } from './navigation_back';
-import { clearPendingShardGrant, recordPendingShardGrant, resumePendingShardGrants } from './shards_pending_grants';
+import {
+  clearPendingShardGrant,
+  clearPendingShardRecoveryNeeded,
+  markPendingShardRecoveryNeeded,
+  recordPendingShardGrant,
+  resumePendingShardGrants,
+} from './shards_pending_grants';
 import {
   getWarmShardsPackagesMap,
   isCompleteShardsPackageMap,
@@ -71,7 +78,13 @@ import { getPackGiftTrial, getPackTrialHoursLeft } from './flashcards/pack_trial
 import { useCardPackShardPaywall } from './flashcards/useCardPackShardPaywall';
 import { flashcardsOfficialPacksAvailableForTarget, frenchFlashcardsGateCopy } from './flashcards_target_gate';
 import { DEV_IAP_BYPASS, IS_EXPO_GO } from './config';
-import { initRevenueCat } from './revenuecat_init';
+import { initRevenueCat, syncRevenueCatIdentity } from './revenuecat_init';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  subscribeAccountGeneration,
+} from './account_generation';
+import { runRevenueCatOperationForGeneration } from './revenuecat_account_identity';
 import { trackActivity } from './app_activity';
 import BouncyScrollView from '../components/BouncyScrollView';
 import { useEffectivePlatformOS } from './platform_ui_preview';
@@ -534,6 +547,10 @@ export default function ShardsShopScreen() {
   const [balance, setBalance] = useState(() => peekLastKnownShardsBalance() ?? 0);
   const [packTrialHours, setPackTrialHours] = useState<number | null>(null);
   const [processingPackId, setProcessingPackId] = useState<string | null>(null);
+  useEffect(() => {
+    const subscription = subscribeAccountGeneration(() => setProcessingPackId(null));
+    return () => subscription.remove();
+  }, []);
   const [packagesByProductId, setPackagesByProductId] = useState<Record<string, PurchasesPackage>>(() => getWarmShardsPackagesMap() ?? {});
   /** Завершён getOfferings (успех или нет) — кнопки/подсказки, не мешаем с кэшем с диска. */
   const [storeChecked, setStoreChecked] = useState(
@@ -580,8 +597,9 @@ export default function ShardsShopScreen() {
     return Math.max(280, Math.floor(column - scrollPad));
   }, [winW, contentMaxW, insets.left, insets.right]);
 
-  const refreshBalance = useCallback(async () => {
+  const refreshBalance = useCallback(async (isCurrent: () => boolean = () => true) => {
     const next = await getShardsBalance();
+    if (!isCurrent()) return;
     setBalance(next);
   }, []);
 
@@ -663,25 +681,35 @@ export default function ShardsShopScreen() {
     }
   }, [officialCardPacksEnabled, studyTarget]);
 
-  const syncAfterStoreAction = useCallback(async () => {
-    await loadShardsFromCloud();
-    await refreshBalance();
+  const syncAfterStoreAction = useCallback(async (isCurrent: () => boolean = () => true) => {
+    await loadShardsFromCloud(isCurrent);
+    if (!isCurrent()) return;
+    await refreshBalance(isCurrent);
+    if (!isCurrent()) return;
     /** Не блокує UI paywall — оновлення каталогу асинхронно (Firestore інколи не відповідає). */
     if (shopTab === 'paid' || cardMarketFetchedOnce.current) {
       void loadCardMarket({ background: true, force: true });
     }
   }, [refreshBalance, loadCardMarket, shopTab]);
 
-  const waitForServerShardGrant = useCallback(async (startingBalance: number, expectedShards: number): Promise<number> => {
+  const waitForServerShardGrant = useCallback(async (
+    startingBalance: number,
+    expectedShards: number,
+    isCurrent: () => boolean = () => true,
+  ): Promise<number> => {
     const expectedBalance = startingBalance + expectedShards;
     for (let i = 0; i < 8; i += 1) {
       await new Promise(resolve => setTimeout(resolve, i === 0 ? 1200 : 2500));
-      await loadShardsFromCloud();
+      if (!isCurrent()) return startingBalance;
+      await loadShardsFromCloud(isCurrent);
+      if (!isCurrent()) return startingBalance;
       const next = await getShardsBalance();
+      if (!isCurrent()) return startingBalance;
       setBalance(next);
       if (next >= expectedBalance) return next;
     }
-    return getShardsBalance();
+    const finalBalance = await getShardsBalance();
+    return isCurrent() ? finalBalance : startingBalance;
   }, []);
 
   /** Активний 48-год ваучер: на вкладці «Картки» ціни замінюються іконкою подарка, paywall відкривається в voucher-режимі. */
@@ -722,7 +750,8 @@ export default function ShardsShopScreen() {
         // Дотягиваем pending-начисления из прошлых покупок (если вебхук задержался
         // дольше окна waitForServerShardGrant ~18с). resumePendingShardGrants сам
         // обновит баланс и покажет toast «+N осколков», когда облако подтвердит.
-        void resumePendingShardGrants().catch(() => {});
+        const resumeAccount = captureAccountGeneration();
+        void resumePendingShardGrants(resumeAccount).catch(() => {});
       })();
       // Повторный визит на экран: тихо обновляем список наборов; первый fetch только из useEffect ниже.
       if (shopTab === 'paid' && cardMarketFetchedOnce.current) {
@@ -894,6 +923,12 @@ export default function ShardsShopScreen() {
   const buyPack = useCallback(
     async (packId: string, productId: string, shards: number) => {
       if (processingPackId) return;
+      const operationAccount = captureAccountGeneration();
+      const isOperationCurrent = () => (
+        !!operationAccount.stableId
+        && isCurrentAccountGeneration(operationAccount, operationAccount.stableId)
+      );
+      if (!isOperationCurrent()) return;
       setProcessingPackId(packId);
       try {
         if (isDevStoreBypass) {
@@ -921,8 +956,13 @@ export default function ShardsShopScreen() {
           });
           return;
         }
-        await initRevenueCat();
-        if (!(await Purchases.isConfigured())) {
+        await initRevenueCat(isOperationCurrent);
+        if (!isOperationCurrent()) return;
+        if (!(await syncRevenueCatIdentity(isOperationCurrent))) return;
+        if (!isOperationCurrent()) return;
+        const purchasesConfigured = await Purchases.isConfigured();
+        if (!isOperationCurrent()) return;
+        if (!purchasesConfigured) {
           emitAppEvent('action_toast', {
             type: 'error',
             messageRu: 'Платежи временно недоступны. Подожди несколько секунд и попробуй снова.',
@@ -953,20 +993,70 @@ export default function ShardsShopScreen() {
           return;
         }
         const beforePurchaseBalance = await getShardsBalance();
-        const purchaseResult = await Purchases.purchasePackage(pkg);
+        if (!isOperationCurrent()) return;
+        const purchaseOperation = await runRevenueCatOperationForGeneration(
+          operationAccount,
+          () => Purchases.purchasePackage(pkg),
+        );
+        if (purchaseOperation.status !== 'ok') return;
+        const purchaseResult = purchaseOperation.value;
         // СРАЗУ записываем pending — даже если вебхук задержится или упадёт,
         // `resumePendingShardGrants` при следующем заходе в магазин/на главную
         // дотянет осколки. Без этого деньги списывались, а осколки молча терялись.
-        const purchaseTxId = (purchaseResult as { transaction?: { transactionIdentifier?: string } } | undefined)
-          ?.transaction?.transactionIdentifier
-          ?? `${productId}:${Date.now()}`;
-        await recordPendingShardGrant({
+        const storeTransactionId = (purchaseResult as { transaction?: { transactionIdentifier?: string } } | undefined)
+          ?.transaction?.transactionIdentifier?.trim() || null;
+        const journalResult = await recordPendingShardGrant(operationAccount, {
+          journalId: Crypto.randomUUID(),
+          storeTransactionId: storeTransactionId,
           productId,
-          transactionId: purchaseTxId,
           expectedShards: shards,
           beforeBalance: beforePurchaseBalance,
           createdAtMs: Date.now(),
-        }).catch(() => {});
+        }).catch(() => ({ status: 'storage_unavailable' as const }));
+        if (!isOperationCurrent() || journalResult.status === 'stale') return;
+        if (journalResult.status !== 'recorded') {
+          await markPendingShardRecoveryNeeded(operationAccount).catch(() => false);
+          if (!isOperationCurrent()) return;
+          emitAppEvent('action_toast', {
+            type: 'error',
+            messageRu: 'Оплата прошла, автоматическое восстановление не сохранено; не повторяйте покупку, обновим баланс автоматически.',
+            messageUk: 'Оплата пройшла, автоматичне відновлення не збережено; не повторюйте покупку, баланс оновимо автоматично.',
+            messageEs: 'El pago se completó, pero no se guardó la recuperación automática. No repitas la compra; actualizaremos el saldo automáticamente.',
+            messagePtBr: 'O pagamento foi concluído, mas a recuperação automática não foi salva. Não repita a compra; atualizaremos o saldo automaticamente.',
+            messageVi: 'Thanh toán đã hoàn tất nhưng chưa lưu được khôi phục tự động. Đừng mua lại; số dư sẽ tự cập nhật.',
+            messageId: 'Pembayaran berhasil, tetapi pemulihan otomatis tidak tersimpan. Jangan ulangi pembelian; saldo akan diperbarui otomatis.',
+            messageTr: 'Ödeme tamamlandı ancak otomatik kurtarma kaydedilemedi. Satın almayı tekrarlamayın; bakiye otomatik güncellenecek.',
+            messagePl: 'Płatność zakończona, ale automatyczne odzyskiwanie nie zostało zapisane. Nie kupuj ponownie; saldo zaktualizujemy automatycznie.',
+          });
+          const recoveredBalance = await waitForServerShardGrant(beforePurchaseBalance, shards, isOperationCurrent);
+          if (!isOperationCurrent()) return;
+          await syncAfterStoreAction(isOperationCurrent);
+          if (!isOperationCurrent()) return;
+          if (recoveredBalance >= beforePurchaseBalance + shards) {
+            const eligibleAchievementBalance = await getShardAchievementEligibleBalance(recoveredBalance);
+            if (!isOperationCurrent()) return;
+            emitAppEvent('shards_balance_updated', {
+              balance: recoveredBalance,
+              op: 'earn',
+              reason: 'shards_store_purchase',
+              eligibleAchievementBalance,
+            });
+            await clearPendingShardRecoveryNeeded(operationAccount).catch(() => false);
+            if (!isOperationCurrent()) return;
+            emitAppEvent('action_toast', {
+              type: 'success',
+              messageRu: `Готово: +${shards} монет`,
+              messageUk: `Готово: +${shards} монет`,
+              messageEs: `Listo: +${shards} ${BRAND_SHARDS_ES.toLowerCase()}`,
+              messagePtBr: `Pronto: +${shards} monedas`,
+              messageVi: `Xong: +${shards} mảnh`,
+              messageId: `Selesai: +${shards} shard`,
+              messageTr: `Tamam: +${shards} parça`,
+              messagePl: `Gotowe: +${shards} monet`,
+            });
+          }
+          return;
+        }
         logShardsPurchased(productId, shards);
         void trackShardPackPurchase(packId).catch(() => {});
         void trackActivity('shards_shop:purchase_success', {
@@ -987,17 +1077,22 @@ export default function ShardsShopScreen() {
           messageTr: 'Satın alma onaylandı.',
           messagePl: 'Zakup potwierdzony.',
         });
-        const nextBalance = await waitForServerShardGrant(beforePurchaseBalance, shards);
-        await syncAfterStoreAction();
+        const nextBalance = await waitForServerShardGrant(beforePurchaseBalance, shards, isOperationCurrent);
+        if (!isOperationCurrent()) return;
+        await syncAfterStoreAction(isOperationCurrent);
+        if (!isOperationCurrent()) return;
+        const eligibleAchievementBalance = await getShardAchievementEligibleBalance(nextBalance);
+        if (!isOperationCurrent()) return;
         emitAppEvent('shards_balance_updated', {
           balance: nextBalance,
           op: 'earn',
           reason: 'shards_store_purchase',
-          eligibleAchievementBalance: await getShardAchievementEligibleBalance(nextBalance),
+          eligibleAchievementBalance,
         });
         if (nextBalance >= beforePurchaseBalance + shards) {
           // Дошёл — закрываем pending запись.
-          void clearPendingShardGrant(purchaseTxId).catch(() => {});
+          const cleared = await clearPendingShardGrant(operationAccount, journalResult.journalId).catch(() => false);
+          if (!cleared || !isOperationCurrent()) return;
           emitAppEvent('action_toast', {
             type: 'success',
             messageRu: `Готово: +${shards} монет`,
@@ -1023,6 +1118,7 @@ export default function ShardsShopScreen() {
           });
         }
       } catch (e: any) {
+        if (!isOperationCurrent()) return;
         if (e?.userCancelled) return;
         emitAppEvent('action_toast', {
           type: 'error',
@@ -1036,7 +1132,7 @@ export default function ShardsShopScreen() {
           messagePl: 'Błąd zakupu. Spróbuj ponownie.',
         });
       } finally {
-        setProcessingPackId(null);
+        if (isOperationCurrent()) setProcessingPackId(null);
       }
     },
     [syncAfterStoreAction, packagesByProductId, processingPackId, refreshBalance, loadCardMarket, waitForServerShardGrant],

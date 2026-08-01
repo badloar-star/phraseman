@@ -56,13 +56,17 @@ const UID_RE = /^[A-Za-z0-9._-]{2,160}$/;
 const TOKEN_RE = /^[A-Za-z0-9._-]{1,160}$/;
 const SHARDS_MIN = 1;
 const SHARDS_MAX = 10000;
+// зачем: Арена/квизы сняты (контракт tests/quiz_arena_decommission_contract.test.ts).
+// Клиент вычищен, а серверная награда 'arena_extra_5' осталась хвостом: админка
+// могла выдать «+5 рейтинговых игр» в режим, которого больше нет. Убираем тип —
+// попытка выдать его теперь отвергается валидацией (см. тест «rejects the retired
+// Arena reward type»).
 exports.ADMIN_GRANT_REWARD_TYPES = [
     'shards',
     'xp_boost_2x_24h',
     'xp_boost_2x_48h',
     'chain_shield_1',
     'chain_shield_3',
-    'arena_extra_5',
 ];
 function isRecord(value) {
     return typeof value === 'object' && value !== null && !Array.isArray(value);
@@ -169,16 +173,6 @@ function buildAdminRewardMutation(user, type, amount, nowMs) {
         label = `Щит серии на ${days} ${days === 1 ? 'день' : 'дня'}`;
         before = { chain_shield: previous };
         after = { chain_shield: next };
-    }
-    if (type === 'arena_extra_5') {
-        const previousRaw = isRecord(user.arena_extra_plays_today) ? user.arena_extra_plays_today : {};
-        const today = utcDate(nowMs);
-        const previous = previousRaw.date === today ? Math.max(0, Math.floor(finiteNumber(previousRaw.n, 0))) : 0;
-        const next = { date: today, n: previous + 5 };
-        updates.arena_extra_plays_today = next;
-        label = '+5 рейтинговых игр сегодня';
-        before = { arena_extra_plays_today: previousRaw };
-        after = { arena_extra_plays_today: next };
     }
     return Object.freeze({
         updates: Object.freeze(updates),

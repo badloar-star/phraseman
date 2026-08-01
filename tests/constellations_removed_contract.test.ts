@@ -9,8 +9,9 @@ function read(relativePath: string): string {
 
 describe('Constellations removal contract', () => {
   test('removes all active client and server integration points', () => {
+    // зачем: app/arena_lobby.tsx удалён вместе с Ареной; остальные живые источники
+    // ниже сохраняют проверку отсутствия слова "constellation".
     const activeSources = [
-      'app/arena_lobby.tsx',
       'app/_layout.tsx',
       'app/remote_flags.ts',
       'app/premium_context.ts',

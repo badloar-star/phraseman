@@ -143,11 +143,13 @@ jest.mock('../app/stable_id', () => {
 });
 
 const beginPremiumAccountTransition = jest.fn();
-const waitForPremiumAccountWorkIdle = jest.fn(async () => undefined);
+const waitForPremiumAccountWorkIdleWithDeadline = jest.fn(async (_timeoutMs: number) => true);
 jest.mock('../app/premium_guard', () => ({
   invalidatePremiumCache: jest.fn(),
   beginPremiumAccountTransition: (...args: unknown[]) => beginPremiumAccountTransition(...args),
-  waitForPremiumAccountWorkIdle: () => waitForPremiumAccountWorkIdle(),
+  waitForPremiumAccountWorkIdleWithDeadline: (timeoutMs: number) => (
+    waitForPremiumAccountWorkIdleWithDeadline(timeoutMs)
+  ),
 }));
 const mockLoadShardsFromCloud = jest.fn(async () => {});
 const preparePendingShardDeltasForAccountSwitch = jest.fn(async () => ({
@@ -194,7 +196,10 @@ jest.mock('../app/account_generation', () => ({
   invalidateAccountGeneration: jest.fn(),
   isCurrentAccountGeneration: jest.fn(() => true),
   waitForRestoreApplicationIdleWithDeadline: jest.fn(async () => true),
-  withAccountTransitionLock: jest.fn(async (work: () => Promise<unknown>) => work()),
+  withAccountTransitionLockWithDeadline: jest.fn(async (work: () => Promise<unknown>) => ({
+    completed: true,
+    value: await work(),
+  })),
 }));
 
 // @react-native-firebase/functions is required lazily (stampAnonOwnershipBeforeSignIn).
@@ -300,7 +305,10 @@ beforeEach(() => {
   accountGeneration.invalidateAccountGeneration.mockClear();
   accountGeneration.isCurrentAccountGeneration.mockClear();
   accountGeneration.isCurrentAccountGeneration.mockReturnValue(true);
-  accountGeneration.withAccountTransitionLock.mockClear();
+  accountGeneration.withAccountTransitionLockWithDeadline.mockClear();
+  accountGeneration.withAccountTransitionLockWithDeadline.mockImplementation(
+    async (work: () => Promise<unknown>) => ({ completed: true, value: await work() }),
+  );
   resetAnonAuthCacheForSignOut.mockClear();
   clearStableId.mockClear();
   mockLoadShardsFromCloud.mockReset();
@@ -327,7 +335,8 @@ beforeEach(() => {
   expoDigestStringAsyncImpl.mockReset();
   expoDigestStringAsyncImpl.mockImplementation(async (_algorithm, value) => `sha256:${value}`);
   beginPremiumAccountTransition.mockClear();
-  waitForPremiumAccountWorkIdle.mockClear();
+  waitForPremiumAccountWorkIdleWithDeadline.mockReset();
+  waitForPremiumAccountWorkIdleWithDeadline.mockResolvedValue(true);
 });
 
 let lastLoadedAuthProviderStorage: { getItem: (key: string) => Promise<string | null> };
@@ -349,6 +358,13 @@ function loadAuthProvider(
     mod = require('../app/auth_provider');
   });
   return mod;
+}
+
+async function waitForCall(mock: jest.Mock, label: string): Promise<void> {
+  for (let attempt = 0; attempt < 50 && mock.mock.calls.length === 0; attempt += 1) {
+    await Promise.resolve();
+  }
+  if (mock.mock.calls.length === 0) throw new Error(`${label} was not called`);
 }
 
 test('keeps Google sign-in visible when the Android Play Services preflight is temporarily unavailable', async () => {
@@ -699,6 +715,139 @@ test('a different provider cannot attach to an in-flight provider result', async
   expect(apple).toEqual({ result: 'error', error: 'auth_signin_in_progress_google' });
   releaseGoogle({ type: 'cancelled' });
   await google;
+});
+
+test('recovery acquires one Google native credential without mutating default account state', async () => {
+  const { acquireAuthRecoveryNativeCredential } = loadAuthProvider(undefined, 'android');
+
+  await expect(acquireAuthRecoveryNativeCredential('google')).resolves.toEqual({
+    idToken: 'fake-google-id-token',
+    email: 'u@example.com',
+    displayName: 'Test User',
+  });
+  expect(googleSignInImpl).toHaveBeenCalledTimes(1);
+  expect(authState.calls).toEqual([]);
+  expect(ensureAnonUser).not.toHaveBeenCalled();
+  expect(syncToCloud).not.toHaveBeenCalled();
+  expect(restoreFromCloud).not.toHaveBeenCalled();
+});
+
+test('recovery routes Apple to native iOS and browser Android exactly once', async () => {
+  const ios = loadAuthProvider(undefined, 'ios');
+  await expect(ios.acquireAuthRecoveryNativeCredential('apple')).resolves.toMatchObject({
+    idToken: 'fake-apple-id-token',
+    email: 'apple@example.com',
+    displayName: 'Apple User',
+    appleNonce: expect.any(String),
+  });
+  expect(appleSignInImpl).toHaveBeenCalledTimes(1);
+
+  process.env.EXPO_PUBLIC_APPLE_ANDROID_SERVICE_ID = 'com.phraseman.test';
+  const openAuthSessionAsync = require('expo-web-browser').openAuthSessionAsync as jest.Mock;
+  openAuthSessionAsync.mockClear();
+  const android = loadAuthProvider(undefined, 'android');
+  await expect(android.acquireAuthRecoveryNativeCredential('apple')).resolves.toEqual({ cancelled: true });
+  expect(openAuthSessionAsync).toHaveBeenCalledTimes(1);
+  expect(appleSignInImpl).toHaveBeenCalledTimes(1);
+  delete process.env.EXPO_PUBLIC_APPLE_ANDROID_SERVICE_ID;
+});
+
+test('recovery reservation releases after cancellation and native error', async () => {
+  googleSignInImpl
+    .mockResolvedValueOnce({ type: 'cancelled' })
+    .mockRejectedValueOnce(new Error('native-broke'))
+    .mockResolvedValueOnce({
+      type: 'success',
+      data: { idToken: 'retry-token', user: { email: 'retry@example.com', name: 'Retry User' } },
+    });
+  const { acquireAuthRecoveryNativeCredential } = loadAuthProvider(undefined, 'android');
+
+  await expect(acquireAuthRecoveryNativeCredential('google')).resolves.toEqual({ cancelled: true });
+  await expect(acquireAuthRecoveryNativeCredential('google')).rejects.toThrow('native-broke');
+  await expect(acquireAuthRecoveryNativeCredential('google')).resolves.toMatchObject({ idToken: 'retry-token' });
+  expect(googleSignInImpl).toHaveBeenCalledTimes(3);
+});
+
+test('normal sign-in and recovery acquisition exclude each other in both directions', async () => {
+  let releaseNormal!: (value: any) => void;
+  googleSignInImpl.mockImplementationOnce(() => new Promise(resolve => { releaseNormal = resolve; }));
+  const firstModule = loadAuthProvider(undefined, 'ios');
+  const normal = firstModule.signInWithProvider('google');
+  await new Promise<void>(resolve => setImmediate(resolve));
+  await expect(firstModule.acquireAuthRecoveryNativeCredential('apple'))
+    .rejects.toThrow('auth_recovery_credential_blocked_signin_google');
+  releaseNormal({ type: 'cancelled' });
+  await normal;
+
+  let releaseRecovery!: (value: any) => void;
+  googleSignInImpl.mockImplementationOnce(() => new Promise(resolve => { releaseRecovery = resolve; }));
+  const secondModule = loadAuthProvider(undefined, 'ios');
+  const recovery = secondModule.acquireAuthRecoveryNativeCredential('google');
+  await new Promise<void>(resolve => setImmediate(resolve));
+  await expect(secondModule.signInWithProvider('apple')).resolves.toEqual({
+    result: 'error',
+    error: 'auth_signin_in_progress_recovery_google',
+  });
+  await expect(secondModule.acquireAuthRecoveryNativeCredential('apple'))
+    .rejects.toThrow('auth_recovery_credential_in_progress_google');
+  releaseRecovery({ type: 'cancelled' });
+  await expect(recovery).resolves.toEqual({ cancelled: true });
+});
+
+test('a timed-out recovery Google picker keeps blocking normal sign-in until native settlement', async () => {
+  jest.useFakeTimers();
+  try {
+    let releaseRecovery!: (value: any) => void;
+    googleSignInImpl.mockImplementationOnce(() => new Promise(resolve => { releaseRecovery = resolve; }));
+    const mod = loadAuthProvider(undefined, 'ios');
+    const recovery = mod.acquireAuthRecoveryNativeCredential('google');
+    const recoveryTimedOut = expect(recovery).rejects.toThrow('google_signin_timeout');
+
+    await jest.advanceTimersByTimeAsync(30_001);
+    await recoveryTimedOut;
+    await expect(mod.signInWithProvider('apple')).resolves.toEqual({
+      result: 'error',
+      error: 'auth_signin_in_progress_recovery_google',
+    });
+    expect(authState.calls).toEqual([]);
+
+    releaseRecovery({ type: 'cancelled' });
+    await Promise.resolve();
+    await Promise.resolve();
+    googleSignInImpl.mockResolvedValueOnce({ type: 'cancelled' });
+    await expect(mod.acquireAuthRecoveryNativeCredential('google'))
+      .resolves.toEqual({ cancelled: true });
+  } finally {
+    jest.useRealTimers();
+  }
+});
+
+test('a timed-out normal Google picker keeps blocking recovery until native settlement', async () => {
+  jest.useFakeTimers();
+  try {
+    let releaseNormal!: (value: any) => void;
+    googleSignInImpl.mockImplementationOnce(() => new Promise(resolve => { releaseNormal = resolve; }));
+    const mod = loadAuthProvider(undefined, 'ios');
+    const normal = mod.signInWithProvider('google');
+
+    await jest.advanceTimersByTimeAsync(30_001);
+    await expect(normal).resolves.toMatchObject({
+      result: 'error',
+      error: expect.stringContaining('google_signin_timeout'),
+    });
+    await expect(mod.acquireAuthRecoveryNativeCredential('apple'))
+      .rejects.toThrow('auth_recovery_credential_blocked_signin_google');
+
+    releaseNormal({ type: 'cancelled' });
+    await Promise.resolve();
+    await Promise.resolve();
+    await expect(mod.acquireAuthRecoveryNativeCredential('apple')).resolves.toMatchObject({
+      idToken: 'fake-apple-id-token',
+      appleNonce: expect.any(String),
+    });
+  } finally {
+    jest.useRealTimers();
+  }
 });
 
 test('an over-deadline provider operation reports still-running instead of wedging every retry', async () => {
@@ -1171,6 +1320,92 @@ test('account deletion waits for authenticated dispatch but not the server ackno
   await Promise.resolve();
 });
 
+test('account switch holds the clean-recovery exclusion until its async work finishes', async () => {
+  authState.isAnonymous = false;
+  let resolveSync!: (value: boolean) => void;
+  forceSyncToCloud.mockImplementationOnce(() => new Promise(resolve => { resolveSync = resolve; }));
+  const authProvider = loadAuthProvider();
+
+  const switching = authProvider.signOutAndWipeForAccountSwitch();
+  await waitForCall(forceSyncToCloud, 'forceSyncToCloud');
+  const deletion = authProvider.deleteAccountAndWipe();
+  resolveSync(true);
+
+  await expect(deletion).resolves.toEqual({
+    ok: false,
+    reason: 'clean_recovery_transition_active',
+  });
+  await switching;
+});
+
+test('account deletion holds the clean-recovery exclusion until local exit finishes', async () => {
+  authState.isAnonymous = false;
+  let resolveDispatch!: () => void;
+  startCloudDeletionEnqueue.mockReturnValueOnce({
+    dispatchSettled: new Promise<void>(resolve => { resolveDispatch = resolve; }),
+    acknowledgment: new Promise(() => {}),
+  });
+  const authProvider = loadAuthProvider();
+
+  const deleting = authProvider.deleteAccountAndWipe();
+  await waitForCall(startCloudDeletionEnqueue, 'startCloudDeletionEnqueue');
+  const switching = authProvider.signOutAndWipeForAccountSwitch();
+  resolveDispatch();
+
+  await expect(switching).resolves.toEqual({
+    ok: false,
+    reason: 'clean_recovery_transition_active',
+  });
+  await deleting;
+});
+
+test('account deletion completes local privacy exit after the bounded premium drain times out', async () => {
+  authState.isAnonymous = false;
+  waitForPremiumAccountWorkIdleWithDeadline.mockResolvedValueOnce(false);
+  const authProvider = loadAuthProvider();
+
+  await expect(authProvider.deleteAccountAndWipe()).resolves.toEqual({ ok: true, cloudDeleted: false });
+
+  expect(waitForPremiumAccountWorkIdleWithDeadline).toHaveBeenCalledWith(1_500);
+  expect(authState.calls).toContain('signout');
+  expect(wipeLocalAccountData).toHaveBeenCalledTimes(1);
+  expect(clearStableId).toHaveBeenCalledTimes(1);
+  expect(await lastLoadedAuthProviderStorage.getItem('account_delete_pending_auth_v1'))
+    .toContain('provider-uid-1');
+  expect(logEvent).toHaveBeenCalledWith('auth_premium_account_work_drain_timed_out', {
+    timeoutMs: 1_500,
+  });
+});
+
+test('account switch preserves sign-out-before-wipe after the bounded premium drain times out', async () => {
+  authState.isAnonymous = false;
+  waitForPremiumAccountWorkIdleWithDeadline.mockResolvedValueOnce(false);
+  wipeLocalAccountData.mockImplementationOnce(async () => { authState.calls.push('wipe'); });
+  const { signOutAndWipeForAccountSwitch } = loadAuthProvider();
+
+  await expect(signOutAndWipeForAccountSwitch()).resolves.toEqual({ ok: true, synced: true });
+
+  expect(waitForPremiumAccountWorkIdleWithDeadline).toHaveBeenCalledWith(1_500);
+  expect(authState.calls.indexOf('signout')).toBeLessThan(authState.calls.indexOf('wipe'));
+  expect(clearStableId).toHaveBeenCalledTimes(1);
+});
+
+test('account switch aborts boundedly when an earlier native transition lock is still held', async () => {
+  authState.isAnonymous = false;
+  const accountGeneration = require('../app/account_generation');
+  accountGeneration.withAccountTransitionLockWithDeadline.mockResolvedValueOnce({ completed: false });
+  const { signOutAndWipeForAccountSwitch } = loadAuthProvider();
+
+  await expect(signOutAndWipeForAccountSwitch()).resolves.toEqual({ ok: false, reason: 'sync_failed' });
+
+  expect(authState.calls).not.toContain('signout');
+  expect(wipeLocalAccountData).not.toHaveBeenCalled();
+  expect(clearStableId).not.toHaveBeenCalled();
+  expect(logEvent).toHaveBeenCalledWith('auth_signout_wipe_sync_failed_aborted', {
+    stage: 'account_transition_lock_timeout',
+  });
+});
+
 test('recovery mismatch returns a recoverable error without anonymous rebind when Firebase sign-out fails', async () => {
   ensureStableAuthLinkForStableIdDetailed.mockResolvedValueOnce({
     ok: false,
@@ -1199,7 +1434,10 @@ test('account deletion exits locally but never binds anonymous identity when Fir
   expect(result).toEqual({ ok: false, reason: 'firebase_signout_failed' });
   expect(wipeLocalAccountData).toHaveBeenCalledTimes(1);
   expect(clearStableId).toHaveBeenCalledTimes(1);
-  expect(ensureAnonUser).not.toHaveBeenCalled();
+  // Both calls are the intentional pre-signout notification/push-token cleanup
+  // paths. The failed Firebase sign-out must not add a third call for identity
+  // rotation or turn the still-provider session into an anonymous account.
+  expect(ensureAnonUser).toHaveBeenCalledTimes(2);
   expect(authState.isAnonymous).toBe(false);
   expect(logEvent.mock.calls.some(([name]) => name === 'auth_account_deleted')).toBe(false);
   expect(logEvent.mock.calls.some(([name]) => name === 'auth_account_delete_quarantined')).toBe(true);

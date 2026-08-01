@@ -36,10 +36,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.adminSubscriptionAnalytics = exports.adminProductAnalytics = exports.openAiBudgetDashboard = exports.adminListPromoCodes = exports.promoCodeBatchUpsert = exports.promoCodeUpsert = exports.promoCodeRedeem = exports.adminRelinkProvider = exports.adminRepairAuthLink = exports.adminSetUserBan = exports.adminGrantAccess = exports.adminGrantReward = exports.adminDraftReportReply = exports.claimReportReward = exports.adminReplyToReport = exports.adminSupportSetStatus = exports.adminSupportSaveSignature = exports.adminSupportResolveReplyDelivery = exports.adminSupportCancelReplyBatch = exports.adminSupportDispatchReplyBatch = exports.adminSupportPrepareReplyBatch = exports.adminSupportCancelReply = exports.adminSupportSendReply = exports.adminSupportDispatchReply = exports.adminSupportPrepareReply = exports.adminSupportGenerateReply = exports.adminSupportList = exports.adminSupportPull = exports.adminRunAssetJob = exports.adminCreateAssetJob = exports.adminListAssetJobs = exports.adminGetDailyBriefing = exports.adminOpenDailyDigest = exports.adminGenerateDailyDigest = exports.friendSendGift = exports.premiumExpiryCron = exports.syncFriendActivityMirrorCron = exports.communityMarkSellerInboxSeen = exports.communityListSellerInbox = exports.communityPurchasePack = exports.communityFetchPackCardsIfAccessible = exports.communityAdminModeratePack = exports.communityModerateSubmission = exports.communitySubmitPackForReview = exports.gmailSupportPullCron = exports.premiumExpiryReminderCron = exports.reEngagePushCron = exports.cleanupExpiredAppMessagesCron = exports.resetWeeklyXpCron = exports.computeLeaderboardStatsCron = void 0;
 exports.adminCreateAppMessage = exports.adminListAppMessages = exports.adminGetPaywallVariantStats = exports.adminPublishPaywallAb = exports.adminGetPaywallAbWorkspace = exports.adminPublishRemoteConfig = exports.adminGetRemoteConfigWorkspace = exports.agentManagerTransitionTask = exports.agentManagerTelegramPublishApproval = exports.agentManagerRunReportTriageWorker = exports.agentManagerRunBoundedExecutionWorker = exports.agentManagerRunAnalyticsWorker = exports.agentManagerLocalRunnerSubmit = exports.agentManagerLocalRunnerRevokeCapability = exports.agentManagerLocalRunnerExchangePairing = exports.agentManagerLocalRunnerCreatePairing = exports.agentManagerLocalRunnerClaim = exports.agentManagerListTasks = exports.agentManagerListRunbooks = exports.agentManagerListAgents = exports.agentManagerIssueExecutionJob = exports.agentManagerInitializeRoster = exports.agentManagerCreateTask = exports.agentManagerCreateInboxTask = exports.agentOfficeTelegramWebhook = exports.agentOfficeSetKillSwitch = exports.agentOfficeListTasks = exports.agentOfficeListRecommendations = exports.agentOfficeListCases = exports.agentOfficeListAuditEvents = exports.agentOfficeGetControl = exports.agentOfficeGetCase = exports.agentOfficeGetAggregateHealth = exports.agentOfficeDecideRecommendation = exports.adminListPlans = exports.adminGetPlan = exports.adminCreatePlan = exports.adminListOpsLog = exports.adminListAuditLog = exports.adminUpdateReportStatus = exports.adminListReportQueue = exports.adminExportUnresolvedReports = exports.adminExportReportDocuments = exports.adminGetUserProfile = exports.adminSearchUsers = exports.adminGenerateDirectorDigestAudio = exports.adminGetDirectorDigest = exports.adminGetAnalyticsTrends = exports.adminGetAnalyticsSnapshot = exports.adminMonthlyDecisionPack = void 0;
 exports.paypalOrderCapture = exports.paypalOrderCreate = exports.stripeWebhook = exports.webCheckoutCreate = exports.adminPushJobsCron = exports.adminPushJobCreated = exports.revenueCatShardsWebhook = exports.siteStatsTrack = exports.submitWebsiteContact = exports.dailyPhraseSetSaved = exports.emailUnsubscribe = exports.adminEmailContactsBackfill = exports.adminEmailBroadcast = exports.adminTranslateMessage = exports.openAiJobsConfig = exports.openAiDialogQuotaConfig = exports.openAiDialogModelConfig = exports.adminRollbackCourseRelease = exports.adminActivateCourseRelease = exports.adminSealCourseRelease = exports.adminReviewCourseGeneration = exports.adminSaveV2SeasonDraft = exports.adminSaveV2EpisodeDraft = exports.CONTENT_FACTORY_OPENAI_API_KEY = exports.adminRunContentGenerationUnit = exports.adminGetContentFactoryRolloutMetrics = exports.adminGetContentFactoryWorkspace = exports.adminGetContentFactoryUnitPreview = exports.adminGetContentFactoryJobDetail = exports.CONTENT_STAGE_OPENAI_API_KEY = exports.adminRunContentStage = exports.adminEditContentStageArtifact = exports.adminCreateContentStageBulkPlan = exports.adminReviewContentStage = exports.adminPreviewContentStage = exports.adminGetContentStageCapabilities = exports.adminListContentStageDependencies = exports.adminListContentStages = exports.adminControlContentStage = exports.adminCreateContentStage = exports.adminListContentFactoryJobs = exports.adminCreateContentGenerationJob = exports.adminDeactivateGlobalBroadcasts = exports.adminPublishGlobalBroadcast = exports.adminListGlobalBroadcasts = exports.adminSendPersonalAppMessage = exports.adminCleanupExpiredAppMessages = exports.adminDeleteAppMessage = exports.adminUpdateAppMessage = exports.adminSetAppMessageActive = void 0;
-exports.adminReferralHealth = exports.adminSetReferralRouletteEmergencyStop = exports.adminSetReferralRouletteEnabled = exports.adminSetSpinWeights = exports.adminSpinLogs = exports.adminSpinStats = exports.adminListReferrals = exports.friendsGetProfiles = exports.feedPruneCron = exports.feedFanoutOnMyEvent = exports.referralDevGrantSpin = exports.referralClaimSpin = exports.referralSpin = exports.finalizeLearningV2AccessPurchase = exports.finalizeLearningV2DelayedCandidate = exports.adminRestoreArenaPoolQuestion = exports.adminRemoveArenaPoolQuestion = exports.adminPublishArenaQuestionBatch = exports.adminListArenaQuestionPool = exports.adminSeedBotProfiles = exports.tournamentClaimReward = exports.tournamentFinalize = exports.tournamentSubmitAnswers = exports.tournamentAdvanceRound = exports.tournamentAdvanceRooms = exports.tournamentFillBots = exports.tournamentJoin = exports.tournamentCreateRooms = exports.webLeadNudgeCron = exports.webLeadCapture = exports.webPrices = exports.webOrderStatus = void 0;
+exports.adminReferralHealth = exports.adminSetReferralRouletteEmergencyStop = exports.adminSetReferralRouletteEnabled = exports.adminSetSpinWeights = exports.adminSpinLogs = exports.adminSpinStats = exports.adminListReferrals = exports.friendsGetProfiles = exports.feedPruneCron = exports.feedFanoutOnMyEvent = exports.referralDevGrantSpin = exports.referralClaimSpin = exports.referralSpin = exports.finalizeLearningV2AccessPurchase = exports.finalizeLearningV2DelayedCandidate = exports.adminRestoreArenaPoolQuestion = exports.adminRemoveArenaPoolQuestion = exports.adminPublishArenaQuestionBatch = exports.adminListArenaQuestionPool = exports.adminGetTournamentCurated = exports.adminSetTournamentCurated = exports.adminSetTournamentSchedule = exports.adminGetTournamentSchedule = exports.adminTournamentPoolStats = exports.adminEditTournamentTask = exports.adminMutateTournamentTasks = exports.adminListTournamentTasks = exports.adminGenerateTournamentTasksAi = exports.adminGenerateTournamentTasks = exports.adminSeedBotProfiles = exports.tournamentClaimReward = exports.tournamentFinalize = exports.tournamentSubmitAnswers = exports.tournamentAdvanceRound = exports.tournamentAdvanceRooms = exports.tournamentFillBots = exports.tournamentJoin = exports.tournamentCreateRooms = exports.webLeadNudgeCron = exports.webLeadCapture = exports.webPrices = exports.webOrderStatus = void 0;
 const admin = __importStar(require("firebase-admin"));
 const functions = __importStar(require("firebase-functions/v2"));
 const quiz_arena_decommission_1 = require("./quiz_arena_decommission");
+const help_board_decommission_1 = require("./help_board_decommission");
 admin.initializeApp();
 // These imports must come AFTER initializeApp() — use require to control order
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -57,7 +58,7 @@ const { leagueJoinOrUpdateGroup, leagueUpdateMyMember, leagueSyncMyBoost, league
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { authEnsureStableLink, authStampAnonOwnership, authRecoveryHint } = require('./auth_identity');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { authRequestRecoveryCode, authConfirmRecoveryCode } = require('./auth_recovery');
+const { authRequestRecoveryCode, authConfirmRecoveryCode, authRequestCleanInstallRecoveryCode, authConfirmCleanInstallRecoveryCode, authCleanInstallRecoveryDeliveryWorker, authIssueRecoveryHandoffToken, authCompleteRecoveryHandoff, } = require('./auth_recovery');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { authMergeStableAccounts } = require('./auth_merge');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -120,7 +121,7 @@ const { getCoinExchangeQuote, getCoinExchangeHistory, exchangeCoinsForStars, adm
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { profileCardUpgrade } = require('./profile_card_upgrade');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { submitUserIdea, adminDecideUserIdea, adminDraftIdeaDecision } = require('./user_ideas');
+const { submitUserIdea, adminListUserIdeas, adminDecideUserIdea, adminDraftIdeaDecision } = require('./user_ideas');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { leagueFinalizeCron } = require('./league_finalize_cron');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -138,6 +139,11 @@ exports.authStampAnonOwnership = authStampAnonOwnership;
 exports.authRecoveryHint = authRecoveryHint;
 exports.authRequestRecoveryCode = authRequestRecoveryCode;
 exports.authConfirmRecoveryCode = authConfirmRecoveryCode;
+exports.authRequestCleanInstallRecoveryCode = authRequestCleanInstallRecoveryCode;
+exports.authConfirmCleanInstallRecoveryCode = authConfirmCleanInstallRecoveryCode;
+exports.authCleanInstallRecoveryDeliveryWorker = authCleanInstallRecoveryDeliveryWorker;
+exports.authIssueRecoveryHandoffToken = authIssueRecoveryHandoffToken;
+exports.authCompleteRecoveryHandoff = authCompleteRecoveryHandoff;
 exports.authMergeStableAccounts = authMergeStableAccounts;
 exports.accountDeleteMine = accountDeleteMine;
 exports.accountDeleteEnqueue = accountDeleteEnqueue;
@@ -163,6 +169,13 @@ exports.onArenaSessionFinished = quiz_arena_decommission_1.onArenaSessionFinishe
 exports.onArenaSessionAborted = quiz_arena_decommission_1.onArenaSessionAbortedDisabled;
 exports.onArenaRematchAccepted = quiz_arena_decommission_1.onArenaRematchAcceptedDisabled;
 exports.questionTimeout = quiz_arena_decommission_1.questionTimeoutDisabled;
+// зачем: Help Board и Compass-чат удалены владельцем (9af87817d), но живут в
+// проде — гасим надгробиями, чтобы старые клиенты получали внятный отказ,
+// а не ошибку соединения. Подробности — в help_board_decommission.ts.
+Object.assign(exports, help_board_decommission_1.HELP_BOARD_DECOMMISSIONED_EXPORTS);
+exports.helpBoardGenerateCompassForTopic = help_board_decommission_1.helpBoardGenerateCompassForTopicDisabled;
+exports.helpBoardCompassRetryCron = help_board_decommission_1.helpBoardCompassRetryCronDisabled;
+exports.compassChatDailyCron = help_board_decommission_1.compassChatDailyCronDisabled;
 exports.friendEnsureMyCode = friendEnsureMyCode;
 exports.friendLookupUser = friendLookupUser;
 exports.friendLikeActivity = friendLikeActivity;
@@ -226,6 +239,7 @@ exports.adminGetCoinExchangeCenter = adminGetCoinExchangeCenter;
 exports.claimCoinMigration = claimCoinMigration;
 exports.profileCardUpgrade = profileCardUpgrade;
 exports.submitUserIdea = submitUserIdea;
+exports.adminListUserIdeas = adminListUserIdeas;
 exports.adminDecideUserIdea = adminDecideUserIdea;
 exports.adminDraftIdeaDecision = adminDraftIdeaDecision;
 exports.leagueFinalizeCron = leagueFinalizeCron;
@@ -500,6 +514,19 @@ Object.defineProperty(exports, "tournamentFinalize", { enumerable: true, get: fu
 Object.defineProperty(exports, "tournamentClaimReward", { enumerable: true, get: function () { return tournaments_1.tournamentClaimReward; } });
 var tournament_bots_1 = require("./tournament_bots");
 Object.defineProperty(exports, "adminSeedBotProfiles", { enumerable: true, get: function () { return tournament_bots_1.adminSeedBotProfiles; } });
+// Раздел «Турниры» в админке: генерация заданий из контента планов, ревью-очередь,
+// публикация в пул, статистика готовности раундов, расписание слотов.
+var admin_tournament_tasks_1 = require("./admin_tournament_tasks");
+Object.defineProperty(exports, "adminGenerateTournamentTasks", { enumerable: true, get: function () { return admin_tournament_tasks_1.adminGenerateTournamentTasks; } });
+Object.defineProperty(exports, "adminGenerateTournamentTasksAi", { enumerable: true, get: function () { return admin_tournament_tasks_1.adminGenerateTournamentTasksAi; } });
+Object.defineProperty(exports, "adminListTournamentTasks", { enumerable: true, get: function () { return admin_tournament_tasks_1.adminListTournamentTasks; } });
+Object.defineProperty(exports, "adminMutateTournamentTasks", { enumerable: true, get: function () { return admin_tournament_tasks_1.adminMutateTournamentTasks; } });
+Object.defineProperty(exports, "adminEditTournamentTask", { enumerable: true, get: function () { return admin_tournament_tasks_1.adminEditTournamentTask; } });
+Object.defineProperty(exports, "adminTournamentPoolStats", { enumerable: true, get: function () { return admin_tournament_tasks_1.adminTournamentPoolStats; } });
+Object.defineProperty(exports, "adminGetTournamentSchedule", { enumerable: true, get: function () { return admin_tournament_tasks_1.adminGetTournamentSchedule; } });
+Object.defineProperty(exports, "adminSetTournamentSchedule", { enumerable: true, get: function () { return admin_tournament_tasks_1.adminSetTournamentSchedule; } });
+Object.defineProperty(exports, "adminSetTournamentCurated", { enumerable: true, get: function () { return admin_tournament_tasks_1.adminSetTournamentCurated; } });
+Object.defineProperty(exports, "adminGetTournamentCurated", { enumerable: true, get: function () { return admin_tournament_tasks_1.adminGetTournamentCurated; } });
 // ── Arena question pool (генератор/пул вопросов, админ-инструментарий; сама игра Арена выведена из эксплуатации) ──
 var admin_arena_question_pool_1 = require("./admin_arena_question_pool");
 Object.defineProperty(exports, "adminListArenaQuestionPool", { enumerable: true, get: function () { return admin_arena_question_pool_1.adminListArenaQuestionPool; } });

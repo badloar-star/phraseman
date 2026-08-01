@@ -16,6 +16,7 @@ jest.mock('../app/hall_of_fame_utils', () => ({
 
 import {
   calculateResult,
+  capLeagueStep,
   checkLeagueOnAppOpen,
   clearPendingResult,
   CLUBS,
@@ -111,6 +112,33 @@ describe('league locale coverage', () => {
     const legacyRuntimePattern = /\b(lang === 'ru'|lang === 'uk'|lang === 'es'|return\s+[^;\n]*(?:RU|UK|ES)\b|\?\?\s*[^;\n]*(?:RU|UK|ES)\b|fallback)\b/u;
 
     expect(source).not.toMatch(legacyRuntimePattern);
+  });
+});
+
+// зачем: регрессия по репорту 20.07.2026 (Natalia) — за один ролловер игрока перекинуло
+// с лиги 3 на лигу 6, потому что накопленные за пропущенные недели повышения применялись
+// суммой. Очки при этом не терялись, но смена лиги читалась как потеря прогресса.
+describe('league step cap (multi-week chain)', () => {
+  it('caps a multi-league promotion to a single step up', () => {
+    expect(capLeagueStep(3, 6)).toBe(4);
+  });
+
+  it('caps a multi-league demotion to a single step down', () => {
+    expect(capLeagueStep(6, 2)).toBe(5);
+  });
+
+  it('keeps a legitimate single-step transition untouched', () => {
+    expect(capLeagueStep(3, 4)).toBe(4);
+    expect(capLeagueStep(3, 2)).toBe(2);
+  });
+
+  it('keeps the same league when the chain ends where it started', () => {
+    expect(capLeagueStep(3, 3)).toBe(3);
+  });
+
+  it('never steps outside the ladder bounds', () => {
+    expect(capLeagueStep(0, -5)).toBe(0);
+    expect(capLeagueStep(CLUBS.length - 1, CLUBS.length + 5)).toBe(CLUBS.length - 1);
   });
 });
 

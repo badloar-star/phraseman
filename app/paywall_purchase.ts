@@ -66,8 +66,11 @@ import {
 import {
   captureAccountGeneration,
   isCurrentAccountGeneration,
-  withAccountTransitionLock,
 } from './account_generation';
+import {
+  commitRevenueCatResultForGeneration,
+  runRevenueCatOperationForGeneration,
+} from './revenuecat_account_identity';
 
 export type PaywallPlan = 'monthly' | 'yearly' | 'lifetime';
 type PremiumPackages = { monthly?: PurchasesPackage; yearly?: PurchasesPackage; lifetime?: PurchasesPackage };
@@ -447,8 +450,12 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         return;
       }
       const pkgTrial = getTrialInfo(pkg);
-      const { customerInfo } = await Purchases.purchasePackage(pkg); // RAW пакет — цена стора без изменений
-      if (!isOperationAccountCurrent()) return;
+      const purchaseResult = await runRevenueCatOperationForGeneration(
+        operationAccount,
+        () => Purchases.purchasePackage(pkg), // RAW пакет — цена стора без изменений
+      );
+      if (purchaseResult.status !== 'ok') return;
+      const { customerInfo } = purchaseResult.value;
       // Премиум включаем ТОЛЬКО при реально активном entitlement (как в restore):
       // deferred-исход / аномалия sandbox без этой проверки давали локальный
       // «премиум», которого нет на сервере, — доступ потом «отваливался».
@@ -465,25 +472,26 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
       }
       const metadata = revenueCatPremiumMetadata(customerInfo, pkg.product.identifier);
       const confirmedPlan = inferPremiumPlanFromProductId(metadata.productId, selected);
-      const applied = await withAccountTransitionLock(async () => {
-        if (!isOperationAccountCurrent()) return false;
+      const applied = await commitRevenueCatResultForGeneration(operationAccount, async (isCommitCurrent) => {
+        if (!isCommitCurrent()) return false;
         const persisted = await persistStorePremiumLocally(
           confirmedPlan,
           metadata,
-          isOperationAccountCurrent,
+          isCommitCurrent,
           false,
+          true,
         );
-        if (!persisted || !isOperationAccountCurrent()) return false;
+        if (!persisted || !isCommitCurrent()) return false;
         if (context !== 'personal_plan') {
-          if (!(await refillToMax(isOperationAccountCurrent))) return false;
+          if (!(await refillToMax(isCommitCurrent))) return false;
           // Разовая покупка Phraseman Pro (lifetime) → синяя Pro-анимация; подписка → жёлтый Plus.
           await markCelebrationPending(null, confirmedPlan === 'lifetime' ? 'pro' : 'premium');
-          if (!isOperationAccountCurrent()) return false;
+          if (!isCommitCurrent()) return false;
           emitAppEvent('premium_activated');
         }
-        return isOperationAccountCurrent();
+        return isCommitCurrent();
       });
-      if (!applied) return;
+      if (applied.status !== 'ok' || !applied.value) return;
       void trackEvent('purchase_completed', { context, source, plan: selected, product_id: pkg.product.identifier, with_trial: pkgTrial.hasTrial, paywall: variant, ...paywallImpressionParams(impression) });
       logPaywallFunnel('purchase_completed', { variant, context, plan: selected, price: storePriceTrim(pkg.product.priceString) || null });
       if (pkgTrial.hasTrial) {
@@ -530,10 +538,11 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
       }
       if (context === 'personal_plan') {
         if (!isOperationAccountCurrent()) return;
-        const activated = await withAccountTransitionLock(
-          () => finishPersonalPlanActivationFlow(isOperationAccountCurrent),
+        const activated = await commitRevenueCatResultForGeneration(
+          operationAccount,
+          (isCommitCurrent) => finishPersonalPlanActivationFlow(isCommitCurrent),
         );
-        if (!activated) return;
+        if (activated.status !== 'ok' || !activated.value) return;
         return;
       }
       if (!isOperationAccountCurrent()) return;
@@ -626,8 +635,12 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         );
         return;
       }
-      const info = await Purchases.restorePurchases();
-      if (!isOperationAccountCurrent()) return;
+      const restoreResult = await runRevenueCatOperationForGeneration(
+        operationAccount,
+        () => Purchases.restorePurchases(),
+      );
+      if (restoreResult.status !== 'ok') return;
+      const info = restoreResult.value;
       const activeSubscriptions = info.activeSubscriptions ?? [];
       if (revenueCatCustomerInfoHasPremiumAccess(info)) {
         const metadata = revenueCatPremiumMetadata(info);
@@ -640,34 +653,36 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
           : activeSubscriptions.some(s => /year|annual|12.?month/i.test(s)) ? 'yearly'
           : 'monthly';
         const plan = inferPremiumPlanFromProductId(metadata.productId, restoreDefault);
-        const applied = await withAccountTransitionLock(async () => {
-          if (!isOperationAccountCurrent()) return false;
+        const applied = await commitRevenueCatResultForGeneration(operationAccount, async (isCommitCurrent) => {
+          if (!isCommitCurrent()) return false;
           const persisted = await persistStorePremiumLocally(
             plan,
             metadata,
-            isOperationAccountCurrent,
+            isCommitCurrent,
             false,
+            true,
           );
-          if (!persisted || !isOperationAccountCurrent()) return false;
+          if (!persisted || !isCommitCurrent()) return false;
           if (context !== 'personal_plan') {
-            if (!(await refillToMax(isOperationAccountCurrent))) return false;
+            if (!(await refillToMax(isCommitCurrent))) return false;
             // То же празднование, что при покупке: без него после переустановки
             // юзер не понимал, что доступ вернулся, и порой оформлял заново.
             await markCelebrationPending(null, plan === 'lifetime' ? 'pro' : 'premium');
-            if (!isOperationAccountCurrent()) return false;
+            if (!isCommitCurrent()) return false;
             emitAppEvent('premium_activated');
           }
-          return isOperationAccountCurrent();
+          return isCommitCurrent();
         });
-        if (!applied) return;
+        if (applied.status !== 'ok' || !applied.value) return;
         void trackEvent('subscription_restored', { context, paywall: variant });
         logPaywallFunnel('restore_completed', { variant, context, plan });
         if (context === 'personal_plan') {
           if (!isOperationAccountCurrent()) return;
-          const activated = await withAccountTransitionLock(
-            () => finishPersonalPlanActivationFlow(isOperationAccountCurrent),
+          const activated = await commitRevenueCatResultForGeneration(
+            operationAccount,
+            (isCommitCurrent) => finishPersonalPlanActivationFlow(isCommitCurrent),
           );
-          if (!activated) return;
+          if (activated.status !== 'ok' || !activated.value) return;
           return;
         }
         if (!isOperationAccountCurrent()) return;

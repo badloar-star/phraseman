@@ -53,6 +53,8 @@ const generation_errors_1 = require("./content_factory/generation_errors");
 const generation_audit_1 = require("./content_factory/generation_audit");
 const generation_execution_1 = require("./content_factory/generation_execution");
 const artifact_retention_1 = require("./content_factory/artifact_retention");
+const surface_convergence_1 = require("./content_factory/surface_convergence");
+const surface_convergence_repository_1 = require("./content_factory/surface_convergence_repository");
 const REGION = 'us-central1';
 exports.CONTENT_FACTORY_OPENAI_API_KEY = (0, params_1.defineSecret)('OPENAI_API_KEY');
 const SURFACES = ['lesson', 'flashcard'];
@@ -192,6 +194,7 @@ exports.adminRunContentGenerationUnit = (0, https_1.onCall)({ region: REGION, en
         const receipt = await (0, artifact_storage_1.writeImmutableArtifact)(bucket, { releaseId, surface: input.surface, lessonId: input.lessonId, payload });
         const orphanCandidate = () => (0, artifact_retention_1.buildArtifactOrphanCandidate)(receipt, { entityCollection: 'content_factory_job_units', entityId: unitId, attempt: checkpoint.attempt, detectedAtMs: Date.now() });
         const recordOrphan = async () => { const orphan = orphanCandidate(); await db.collection('content_factory_artifact_orphans').doc(orphan.candidateId).set(orphan, { merge: false }); };
+        let committedRouting = null;
         const committed = await (0, generation_execution_1.runGuardedGenerationTransaction)({
             lease: checkpoint, allowedStates: ['running', 'generated'],
             runTransaction: (handler) => db.runTransaction(handler),
@@ -210,6 +213,7 @@ exports.adminRunContentGenerationUnit = (0, https_1.onCall)({ region: REGION, en
                     throw new https_1.HttpsError('data-loss', 'content_factory_progress_invalid');
                 }
                 const currentRouting = currentUnit;
+                committedRouting = { engineRequested: currentRouting.engineRequested ?? checkpoint.engineRequested, engineResolved: currentRouting.engineResolved ?? checkpoint.engineResolved, configRevision: currentRouting.configRevision ?? checkpoint.configRevision, comparatorVersion: currentRouting.comparatorVersion ?? checkpoint.comparatorVersion };
                 tx.set(unitRef, { unitId, state: 'succeeded', releaseId, objectPath: receipt.objectPath, contentHash: receipt.contentHash, objectGeneration: receipt.objectGeneration, byteSize: receipt.byteSize, artifactReferenceState: 'committed', artifactFinalizationKey: receipt.finalizationKey, qaReceipt, failureCounted: transition.failureCounted, engineRequested: currentRouting.engineRequested ?? checkpoint.engineRequested, engineResolved: currentRouting.engineResolved ?? checkpoint.engineResolved, configRevision: currentRouting.configRevision ?? checkpoint.configRevision, comparatorVersion: currentRouting.comparatorVersion ?? checkpoint.comparatorVersion, generatedPayload: admin.firestore.FieldValue.delete(), leaseToken: admin.firestore.FieldValue.delete(), leaseExpiresAtMs: admin.firestore.FieldValue.delete(), completedAt: admin.firestore.FieldValue.serverTimestamp() }, { merge: true });
                 const nextJobState = transition.jobState === 'needs_review' && currentJob.releaseCandidate !== true ? 'partial' : transition.jobState;
                 const audit = (0, generation_audit_1.buildGenerationTerminalAudit)({ actorUid, role, entity: { collection: 'content_factory_job_units', id: unitId }, attempt: checkpoint.attempt, leaseToken: checkpoint.leaseToken, outcome: 'succeeded', errorCategory: null, before: { state: currentUnit.state ?? null }, after: { state: 'succeeded', objectPath: receipt.objectPath, contentHash: receipt.contentHash } });
@@ -221,6 +225,27 @@ exports.adminRunContentGenerationUnit = (0, https_1.onCall)({ region: REGION, en
             await recordOrphan();
             return { ok: true, unitId, state: 'superseded', discarded: true };
         }
+        // зачем: коммит принял payload легаси-движка как есть (engineResolved === 'legacy' в shadow-режиме,
+        // см. resolveArenaEnginePolicy). Пишем лёгкую receipt-квитанцию о принятом решении роутинга без
+        // повторного вызова provider'а: candidate.providerRequestsAdded остаётся 0, а
+        // shadowComparisonState = 'unavailable', потому что полноценное semantic-сравнение
+        // (compareArenaSurfaceArtifacts) требует настоящего stage-кандидата, которого тут нет.
+        const currentRouting = committedRouting ?? { engineRequested: checkpoint.engineRequested, engineResolved: checkpoint.engineResolved, configRevision: checkpoint.configRevision, comparatorVersion: checkpoint.comparatorVersion };
+        const candidate = { providerRequestsAdded: 0 };
+        const shadowComparisonState = 'unavailable';
+        const shadowComparison = (0, surface_convergence_1.buildArenaShadowComparison)({
+            unitId,
+            comparatorVersion: String(currentRouting.comparatorVersion ?? ''),
+            engineRequested: currentRouting.engineRequested,
+            engineResolved: currentRouting.engineResolved,
+            configRevision: Number(currentRouting.configRevision ?? 0),
+            legacyArtifactHash: receipt.contentHash,
+            legacyQaOutcome: String(qaReceipt.status ?? ''),
+            providerRequestsAdded: candidate.providerRequestsAdded,
+        });
+        if (shadowComparison.shadowComparisonState !== shadowComparisonState)
+            throw new https_1.HttpsError('data-loss', 'arena_shadow_comparison_state_invalid');
+        await (0, surface_convergence_repository_1.persistArenaComparisonReceipt)(db, shadowComparison, admin.firestore.FieldValue.serverTimestamp());
         return { ok: true, unitId, state: 'succeeded', objectPath: receipt.objectPath, contentHash: receipt.contentHash };
     }
     catch (error) {

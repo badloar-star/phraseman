@@ -7,6 +7,7 @@ type FakeRef = {
   path: string;
   get: () => Promise<FakeSnap>;
   set: (data: DocData, opts?: { merge?: boolean }) => Promise<void>;
+  delete: () => Promise<void>;
 };
 
 type FakeSnap = {
@@ -47,6 +48,9 @@ function refFor(path: string): FakeRef {
     set: async (data: DocData, opts?: { merge?: boolean }) => {
       docs.set(path, opts?.merge ? deepMerge(docs.get(path) ?? {}, data) : { ...data });
     },
+    delete: async () => {
+      docs.delete(path);
+    },
   };
 }
 
@@ -70,6 +74,12 @@ function collectionDocs(path: string): Array<{ id: string; path: string; data: D
     }));
 }
 
+function storeSnapshot(): Array<[string, DocData]> {
+  return Array.from(docs.entries())
+    .sort(([left], [right]) => left.localeCompare(right))
+    .map(([path, data]) => [path, JSON.parse(JSON.stringify(data)) as DocData]);
+}
+
 function fakeDb() {
   return {
     collection: (name: string) => ({
@@ -80,6 +90,7 @@ function fakeDb() {
       set: (ref: FakeRef, data: DocData, opts?: { merge?: boolean }) => void;
       update: (ref: FakeRef, data: DocData) => void;
       create: (ref: FakeRef, data: DocData) => void;
+      delete: (ref: FakeRef) => void;
     }) => Promise<T>): Promise<T> => {
       const writes: Array<() => void> = [];
       const result = await fn({
@@ -99,6 +110,11 @@ function fakeDb() {
           writes.push(() => {
             if (docs.has(ref.path)) throw new Error('already exists');
             docs.set(ref.path, { ...data });
+          });
+        },
+        delete: (ref: FakeRef) => {
+          writes.push(() => {
+            docs.delete(ref.path);
           });
         },
       });
@@ -123,11 +139,32 @@ const mockGetUserByEmail = jest.fn(async (email: string) => ({
   displayName: 'Resolved User',
   providerData: [{ providerId: 'google.com' }],
 }));
+const mockGetUser = jest.fn(async (uid: string) => ({
+  uid,
+  email: 'direct-provider@example.com',
+  displayName: 'Direct Provider',
+  providerData: [
+    { providerId: 'password' },
+    { providerId: 'google.com' },
+  ],
+}));
+
+type CallableRegistration = {
+  options: Record<string, unknown>;
+  handler: (...args: any[]) => unknown;
+};
+const registeredCallables: CallableRegistration[] = [];
 
 jest.mock('firebase-functions/v2/https', () => ({
   HttpsError: FakeHttpsError,
-  onCall: (optsOrHandler: unknown, maybeHandler?: unknown) =>
-    typeof optsOrHandler === 'function' ? optsOrHandler : maybeHandler,
+  onCall: (optsOrHandler: unknown, maybeHandler?: unknown) => {
+    const options = typeof optsOrHandler === 'function'
+      ? {}
+      : (optsOrHandler ?? {}) as Record<string, unknown>;
+    const handler = (typeof optsOrHandler === 'function' ? optsOrHandler : maybeHandler) as (...args: any[]) => unknown;
+    registeredCallables.push({ options, handler });
+    return handler;
+  },
 }));
 
 jest.mock('firebase-admin', () => {
@@ -135,7 +172,7 @@ jest.mock('firebase-admin', () => {
   (firestore as unknown as { FieldValue: Record<string, unknown> }).FieldValue = {
     serverTimestamp: () => ({ __op: 'serverTimestamp' }),
   };
-  return { firestore, auth: () => ({ getUserByEmail: mockGetUserByEmail }) };
+  return { firestore, auth: () => ({ getUserByEmail: mockGetUserByEmail, getUser: mockGetUser }) };
 });
 
 const NOW = new Date('2026-07-22T12:00:00.000Z').getTime();
@@ -144,6 +181,7 @@ const baseInput = { uid: STABLE, reason: 'user lost access after reinstall', req
 
 function adminRequest(data: DocData, role: string | null = 'owner') {
   return {
+    app: { appId: 'test-app-id' },
     auth: role === null
       ? null
       : { uid: 'admin-uid-1', token: { admin: true, adminRole: role, email: 'owner@phraseman.app' } },
@@ -181,6 +219,8 @@ beforeEach(() => {
   docs.clear();
   autoId = 0;
   mockGetUserByEmail.mockClear();
+  mockGetUser.mockClear();
+  registeredCallables.length = 0;
 });
 
 afterEach(() => {
@@ -188,6 +228,27 @@ afterEach(() => {
 });
 
 describe('adminRepairAuthLink — доступ', () => {
+  it('enforces App Check in registration and at runtime for both mutating callables', async () => {
+    const { adminRepairAuthLink, adminRelinkProvider } = require('./admin_auth_repair');
+    const expectedOptions = { region: 'us-central1', enforceAppCheck: true };
+    expect(registeredCallables.filter(({ handler }) => handler === adminRepairAuthLink))
+      .toEqual([{ options: expectedOptions, handler: adminRepairAuthLink }]);
+    expect(registeredCallables.filter(({ handler }) => handler === adminRelinkProvider))
+      .toEqual([{ options: expectedOptions, handler: adminRelinkProvider }]);
+
+    seedLinkedUser();
+    const before = storeSnapshot();
+    const repairRequest = adminRequest(baseInput);
+    delete (repairRequest as { app?: unknown }).app;
+    const relinkRequest = adminRequest({ ...baseInput, providerUid: 'manual-uid-9' });
+    delete (relinkRequest as { app?: unknown }).app;
+    await expect(adminRepairAuthLink(repairRequest))
+      .rejects.toMatchObject({ code: 'failed-precondition', message: 'app_check_required' });
+    await expect(adminRelinkProvider(relinkRequest))
+      .rejects.toMatchObject({ code: 'failed-precondition', message: 'app_check_required' });
+    expect(storeSnapshot()).toEqual(before);
+  });
+
   it('permission-denied без claims, с support- и moderator-ролью', async () => {
     seedLinkedUser();
     await expect(callRepair(baseInput, null))
@@ -268,6 +329,38 @@ describe('adminRepairAuthLink — починка дрифта', () => {
       stable_id: STABLE,
       linkedAt: 42, // исходный linkedAt сохраняется
     });
+  });
+
+  it('rejects a live foreign auth_links anchor with zero writes', async () => {
+    seedLinkedUser();
+    docs.set('auth_links/provider-uid-1', {
+      stable_id: 'stable-foreign',
+      providerUid: 'provider-uid-1',
+      provider: 'google',
+      linkedAt: 42,
+    });
+    docs.set('users/stable-foreign', { firebaseAuthUid: 'provider-uid-1' });
+    const before = storeSnapshot();
+
+    await expect(callRepair(baseInput)).rejects.toMatchObject({
+      code: 'failed-precondition',
+      message: 'provider_link_conflict',
+    });
+    expect(storeSnapshot()).toEqual(before);
+  });
+
+  it.each([
+    ['target tombstone', `account_deletion_tombstones/${STABLE}`],
+    ['provider marker', 'account_deletion_auth_markers/provider-uid-1'],
+  ])('fails closed on a %s during repair', async (_case, path) => {
+    seedLinkedUser();
+    docs.set(path, { status: 'pending' });
+    const before = storeSnapshot();
+    await expect(callRepair(baseInput)).rejects.toMatchObject({
+      code: 'failed-precondition',
+      message: 'account_delete_pending',
+    });
+    expect(storeSnapshot()).toEqual(before);
   });
 
   it('нет дрифта → repaired:false без аудита, но с op-записью', async () => {
@@ -373,19 +466,84 @@ describe('adminRelinkProvider', () => {
     });
   });
 
-  it('перепривязка по providerUid напрямую (без вызова Auth), provider из старого linkedAuth', async () => {
+  it('resolves direct providerUid through Auth and scans all providerData entries', async () => {
     seedLinkedUser();
     const result = await callRelink({ ...baseInput, providerUid: 'manual-uid-9' });
 
-    expect(mockGetUserByEmail).not.toHaveBeenCalled();
+    expect(mockGetUser).toHaveBeenCalledWith('manual-uid-9');
     expect(result).toMatchObject({ ok: true, providerUid: 'manual-uid-9' });
     expect(docs.get('auth_links/manual-uid-9')).toMatchObject({
       stable_id: STABLE,
-      provider: 'google', // fallback на существующий linkedAuth.provider
+      provider: 'google',
       providerUid: 'manual-uid-9',
-      email: 'user@gmail.com',
+      email: 'direct-provider@example.com',
     });
     expect(docs.get(`users/${STABLE}`)?.firebaseAuthUid).toBe('manual-uid-9');
+  });
+
+  it('rejects a direct Auth record without a supported Google/Apple provider', async () => {
+    seedLinkedUser();
+    mockGetUser.mockResolvedValueOnce({
+      uid: 'manual-uid-9',
+      email: 'password@example.com',
+      displayName: 'Password User',
+      providerData: [{ providerId: 'password' }],
+    });
+    const before = storeSnapshot();
+
+    await expect(callRelink({ ...baseInput, providerUid: 'manual-uid-9' }))
+      .rejects.toMatchObject({ code: 'failed-precondition', message: 'provider_unsupported' });
+    expect(storeSnapshot()).toEqual(before);
+  });
+
+  it('rejects a foreign incoming live anchor with provider_link_conflict and zero writes', async () => {
+    seedLinkedUser();
+    docs.set('auth_links/manual-uid-9', { stable_id: 'stable-victim', providerUid: 'manual-uid-9' });
+    docs.set('users/stable-victim', { firebaseAuthUid: 'manual-uid-9' });
+    const before = storeSnapshot();
+
+    await expect(callRelink({ ...baseInput, providerUid: 'manual-uid-9' }))
+      .rejects.toMatchObject({ code: 'failed-precondition', message: 'provider_link_conflict' });
+    expect(storeSnapshot()).toEqual(before);
+  });
+
+  it.each([
+    ['target tombstone', `account_deletion_tombstones/${STABLE}`, false],
+    ['new provider marker', 'account_deletion_auth_markers/manual-uid-9', false],
+    ['old provider marker', 'account_deletion_auth_markers/provider-uid-1', false],
+    ['displaced tombstone', 'account_deletion_tombstones/stable-displaced', true],
+  ] as const)('fails closed on a %s with zero writes', async (_case, path, addDisplacedAnchor) => {
+    seedLinkedUser();
+    if (addDisplacedAnchor) {
+      docs.set('auth_links/manual-uid-9', { stable_id: 'stable-displaced', providerUid: 'manual-uid-9' });
+    }
+    docs.set(path, { status: 'pending' });
+    const before = storeSnapshot();
+
+    await expect(callRelink({ ...baseInput, providerUid: 'manual-uid-9' }))
+      .rejects.toMatchObject({ code: 'failed-precondition', message: 'account_delete_pending' });
+    expect(storeSnapshot()).toEqual(before);
+  });
+
+  it('atomically retires only proven old anchors that still point to the target', async () => {
+    seedLinkedUser();
+    docs.set(`users/${STABLE}`, {
+      ...(docs.get(`users/${STABLE}`) ?? {}),
+      firebaseAuthUid: 'old-auth-a',
+      linkedAuth: {
+        ...((docs.get(`users/${STABLE}`)?.linkedAuth as DocData) ?? {}),
+        providerUid: 'old-auth-b',
+      },
+    });
+    docs.set('auth_links/old-auth-a', { stable_id: STABLE, providerUid: 'old-auth-a' });
+    docs.set('auth_links/old-auth-b', { stable_id: 'stable-foreign', providerUid: 'old-auth-b' });
+    const foreignAnchor = { ...(docs.get('auth_links/old-auth-b') ?? {}) };
+
+    await expect(callRelink({ ...baseInput, providerUid: 'manual-uid-9' }))
+      .resolves.toMatchObject({ previousProviderUids: ['old-auth-a', 'old-auth-b'] });
+    expect(docs.get('auth_links/old-auth-a')).toBeUndefined();
+    expect(docs.get('auth_links/old-auth-b')).toEqual(foreignAnchor);
+    expect(docs.get('auth_links/manual-uid-9')).toMatchObject({ stable_id: STABLE });
   });
 
   it('идемпотентность relink: повтор → replayed:true, аудит один', async () => {

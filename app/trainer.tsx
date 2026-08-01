@@ -34,7 +34,6 @@ import { GOLD_RICH } from '../constants/goldTheme';
 import { statsHairline, statsThemeAccent, statsThemeSoftBg } from '../constants/statsThemeChrome';
 import { streakCalendarShortWeekdays } from '../constants/streak_stats_i18n';
 import { StatBars, type StatBar } from '../components/stats/StatBars';
-import { StatScoreRing } from '../components/stats/StatScoreRing';
 import { safeRouterBack } from './navigation_back';
 import { startReservedTrainerSession } from './trainer_session_navigation';
 import { getVerifiedPremiumStatus } from './premium_guard';
@@ -169,12 +168,12 @@ function chooseInlineDiagnosis(stat: WordCategoryStat, resolved: ResolvedPersona
 }
 
 /**
- * «Слабое место» — главная слабая тема бесплатно и сразу: кольцо с долей
- * ошибок, название категории, окно аналитики и ghost-кнопка «Тренировать».
+ * «Слабое место» — главная слабая тема бесплатно и сразу: название категории
+ * одной строкой, вся карточка — тап в тренировку.
  * Если персональные тренировки доступны и для категории есть диагноз — ведёт
  * в /problem_coach, иначе — на полный экран аналитики.
  */
-function WeakSpotCard({ stat, lang, t, f, router, resolvedPersonalTrainings, personalTrainingEnabled = true, accent, softBg, ringTrack }: {
+function WeakSpotCard({ stat, lang, t, f, router, resolvedPersonalTrainings, personalTrainingEnabled = true, accent, softBg }: {
     stat: WordCategoryStat;
     lang: Lang;
     t: ReturnType<typeof useTheme>['theme'];
@@ -184,7 +183,6 @@ function WeakSpotCard({ stat, lang, t, f, router, resolvedPersonalTrainings, per
     personalTrainingEnabled?: boolean;
     accent: string;
     softBg: string;
-    ringTrack: string;
 }) {
     const diagnosisId = personalTrainingEnabled ? chooseInlineDiagnosis(stat, resolvedPersonalTrainings) : null;
     const openWeakSpot = () => {
@@ -199,44 +197,27 @@ function WeakSpotCard({ stat, lang, t, f, router, resolvedPersonalTrainings, per
         router.push('/phrase_analytics_screen' as any);
     };
     return (
-      <TouchableOpacity accessibilityRole="button" onPress={openWeakSpot} activeOpacity={0.86} style={[styles.weakCard, { backgroundColor: t.bgCard }]}>
-        <StatScoreRing
-          progress={stat.pct}
-          centerValue={`${stat.pct}%`}
-          accent={accent}
-          trackColor={ringTrack}
-          size={58}
-          strokeWidth={6}
-          centerColor={t.textPrimary}
-          subColor={t.textMuted}
-          centerTextStyle={{ fontSize: 14, lineHeight: 17 }}
-        />
-        {/* зачем: убрали подпись «доля ошибок за N дней» под названием категории — карточка теперь
-            только имя+кольцо+кнопка (просьба владельца, п.2). numberOfLines={2}+flexShrink на самом
-            Text (без шрифт-сжатия, запрещённого в проекте) — длинные категории вроде «Существительные»
-            переносятся по словам, а не режутся посреди слова. guard-ok */}
-        <View style={{ flex: 1, minWidth: 0 }}>
-          <Text
-            style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '800', flexShrink: 1 }}
-            numberOfLines={2}
-          >
-            {trainerCategoryLabel(stat.category, lang)}
-          </Text>
+      <TouchableOpacity
+        accessibilityRole="button"
+        accessibilityLabel={trainerCategoryLabel(stat.category, lang)}
+        onPress={openWeakSpot}
+        activeOpacity={0.86}
+        style={[styles.weakCard, { backgroundColor: t.bgCard }]}
+      >
+        {/* зачем: владелец убрал кольцо с процентом и кнопку «Тренировать» — цифра доли ошибок
+            пользователю ничего не говорила, а кнопка дублировала тап по карточке. Осталась
+            строка «иконка + название + шеврон», один тап по всей карточке ведёт в тренировку.
+            numberOfLines={1} — название не переносится по строке (просьба владельца). guard-ok */}
+        <View style={[styles.queueIcon, { backgroundColor: softBg }]}>
+          <Ionicons name="pulse" size={18} color={accent} />
         </View>
-        <View style={[styles.ghostBtn, { backgroundColor: softBg }]}>
-          <Text style={{ color: accent, fontSize: f.caption, fontWeight: '800' }}>
-            {triLang(lang, {
-              ru: 'Тренировать',
-              uk: 'Тренувати',
-              es: 'Entrenar',
-              'pt-BR': 'Treinar',
-              vi: 'Luyện ngay',
-              id: 'Latih',
-              tr: 'Çalış',
-              pl: 'Trenuj',
-            })}
-          </Text>
-        </View>
+        <Text
+          style={{ flex: 1, minWidth: 0, color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '800' }}
+          numberOfLines={1}
+        >
+          {trainerCategoryLabel(stat.category, lang)}
+        </Text>
+        <Ionicons name="chevron-forward" size={18} color={t.textGhost} />
       </TouchableOpacity>
     );
 }
@@ -543,7 +524,6 @@ function TrainerScreenInner() {
                     personalTrainingEnabled={personalPracticeCoachEnabled}
                     accent={accent}
                     softBg={accentSoftBg}
-                    ringTrack={quietSoftBg}
                   />
                 ))}
               </Reanimated.View>
@@ -657,14 +637,6 @@ const styles = StyleSheet.create({
         padding: 14,
     },
     weakLabel: { fontWeight: '800', letterSpacing: 1, textTransform: 'uppercase' },
-    ghostBtn: {
-        height: 40,
-        paddingHorizontal: 15,
-        borderRadius: 12,
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexShrink: 0,
-    },
     rhythmCard: {
         borderRadius: 18,
         padding: 14,

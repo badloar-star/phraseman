@@ -511,6 +511,33 @@ describe('mergeStableAccounts', () => {
         await expect((0, auth_merge_1.mergeStableAccounts)(db, 'google-link-race', 'stable-a', 'stable-b', NOW)).rejects.toMatchObject({ code: 'failed-precondition', message: 'stable_identity_changed' });
         expect(store.users['stable-b']?.identityHidden).not.toBe(true);
     });
+    it('rejects a foreign direct auth_links anchor with zero mutations', async () => {
+        const { db, store } = makeDbStub({
+            auth_links: {
+                'attacker-uid': { stable_id: 'stable-victim', provider: 'google', updatedAt: 111 },
+            },
+            users: {
+                'stable-victim': {
+                    firebaseAuthUid: 'victim-uid',
+                    progress: { user_total_xp: '9000' },
+                },
+                'stable-attacker-a': {
+                    firebaseAuthUid: 'attacker-uid',
+                    progress: { user_total_xp: '100' },
+                },
+                'stable-attacker-b': {
+                    firebaseAuthUid: 'attacker-uid',
+                    progress: { user_total_xp: '50' },
+                },
+            },
+        });
+        const before = JSON.parse(JSON.stringify(store));
+        await expect((0, auth_merge_1.mergeStableAccounts)(db, 'attacker-uid', 'stable-attacker-a', 'stable-attacker-b', NOW)).rejects.toMatchObject({
+            code: 'permission-denied',
+            message: 'stable_id_mismatch',
+        });
+        expect(store).toEqual(before);
+    });
     it('does not overwrite an auth_links anchor that moves to a protected raw id after preflight', async () => {
         let moved = false;
         const { db, store } = makeDbStub({
@@ -696,6 +723,29 @@ describe('mergeStableAccounts', () => {
         expect(res.alreadyMerged).toBe(true);
         expect(res.canonicalStableId).toBe('stable-canon');
         expect(store.auth_links['google-3']).toEqual(originalLink);
+    });
+    it('accepts an auth_links anchor that resolves from hidden to an owned canonical account', async () => {
+        const originalLink = { stable_id: 'stable-hidden', provider: 'google', updatedAt: 111 };
+        const { db, store } = makeDbStub({
+            auth_links: { 'google-hidden': originalLink },
+            users: {
+                'stable-hidden': {
+                    identityHidden: true,
+                    canonicalStableId: 'stable-canonical',
+                    progress: { user_total_xp: '10' },
+                },
+                'stable-canonical': {
+                    firebaseAuthUid: 'google-hidden',
+                    progress: { user_total_xp: '500' },
+                },
+            },
+        });
+        await expect((0, auth_merge_1.mergeStableAccounts)(db, 'google-hidden', 'stable-hidden', 'stable-canonical', NOW)).resolves.toEqual({
+            canonicalStableId: 'stable-canonical',
+            mergedFromStableId: null,
+            alreadyMerged: true,
+        });
+        expect(store.auth_links['google-hidden']).toEqual(originalLink);
     });
     it('returns canonical without change when both ids are equal', async () => {
         const originalLink = { stable_id: 'stable-x', provider: 'google', updatedAt: 111 };

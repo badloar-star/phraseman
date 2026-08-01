@@ -1104,8 +1104,8 @@
       result,
       onClose: () => renderCTA(result),
       cta: {
-        text: EnglishTestI18n.t(attemptTestLanguage && attemptTestLanguage !== 'en' ? 'en' : uiLocale, 'certificate.ctaText'),
-        label: EnglishTestI18n.t(attemptTestLanguage && attemptTestLanguage !== 'en' ? 'en' : uiLocale, 'certificate.ctaButton'),
+        text: EnglishTestI18n.t(uiLocale, 'certificate.ctaText'),
+        label: EnglishTestI18n.t(uiLocale, 'certificate.ctaButton'),
         url: primaryStoreUrl(),
         onClick: () => {
           // зачем: source разделяет в отчёте «скачал после теста» и «скачал после
@@ -1160,7 +1160,7 @@
   // ---------- CTA (install Phraseman) ----------
 
   function ctaContentFor(level) {
-    const locale = attemptTestLanguage && attemptTestLanguage !== 'en' ? 'en' : uiLocale;
+    const locale = uiLocale;
     const band = String(level || '').slice(0, 2).toUpperCase();
     const key = band === 'PR' || band === 'A1' || band === 'A2' ? 'low' : (band === 'B1' || band === 'B2' ? 'mid' : 'high');
     return {

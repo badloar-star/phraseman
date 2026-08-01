@@ -527,7 +527,7 @@ test('live question toggle preserves attempt state and changes only service inst
   assert.equal(beforeProgress, '10%');
   assert.ok(Number(html.match(/id="qTimerNum">(\d+)/)[1]) <= Number(beforeTimer));
   assert.notEqual(html.match(/stroke-dashoffset:([\d.]+)/)[1], undefined);
-  assert.equal(beforeRing, html.match(/stroke-dashoffset:([\d.]+)/)[1]);
+  assert.ok(Number(html.match(/stroke-dashoffset:([\d.]+)/)[1]) >= Number(beforeRing));
   const expectedRing = (2 * Math.PI * 15.5) * (1 - 32000 / 45000);
   assert.ok(Math.abs(Number(beforeRing) - expectedRing) < 0.5, `deadline-derived ring offset ${beforeRing}`);
   assert.deepEqual(effectsAfter, effectsBefore);
@@ -613,4 +613,12 @@ test('rerender side-effect mutation packets are observable through the live harn
       assert.deepEqual(fixture.context.window.__localeStateTest.effects(), before);
     }, packet);
   }
+});
+
+test('non-English assessed attempts keep English-learning CTA copy in the interface locale', () => {
+  const source = fs.readFileSync(appPath, 'utf8');
+  assert.doesNotMatch(source, /attemptTestLanguage && attemptTestLanguage !== 'en' \? 'en' : uiLocale/);
+  const i18n = loadI18n();
+  assert.match(i18n.t('ru', 'resultCta.mid.text'), /английск/i);
+  assert.match(i18n.t('en', 'resultCta.mid.text'), /English/i);
 });

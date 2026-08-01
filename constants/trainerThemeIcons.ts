@@ -55,6 +55,13 @@ const THEME_ICON_PALETTES: Record<ThemeMode, TrainerThemeIconPalette> = {
     stroke: '#262626',
     muted: '#DBDBDB',
   },
+  sagePorcelain: {
+    primary: '#315F50',
+    secondary: '#8B6320',
+    tertiary: '#315F50',
+    stroke: '#17201D',
+    muted: '#FCFDF9',
+  },
   midnight: {
     primary: '#8FA0FF',
     secondary: '#B79CFF',
@@ -130,6 +137,11 @@ export const TRAINER_THEME_ICON_ASSET_PATHS: Record<ThemeMode, Record<TrainerThe
     words: 'assets/images/trainer_theme_icons/businessLight/words.webp',
     analytics: 'assets/images/trainer_theme_icons/businessLight/analytics.webp',
   },
+  sagePorcelain: {
+    phrases: 'assets/images/trainer_theme_icons/businessLight/phrases.webp',
+    words: 'assets/images/trainer_theme_icons/businessLight/words.webp',
+    analytics: 'assets/images/trainer_theme_icons/businessLight/analytics.webp',
+  },
   midnight: {
     phrases: 'assets/images/trainer_theme_icons/midnight/phrases.webp',
     words: 'assets/images/trainer_theme_icons/midnight/words.webp',
@@ -189,6 +201,11 @@ const TRAINER_THEME_ICON_SOURCES: Record<ThemeMode, Record<TrainerThemeIconKind,
     analytics: require('../assets/images/trainer_theme_icons/business/analytics.webp'),
   },
   businessLight: {
+    phrases: require('../assets/images/trainer_theme_icons/businessLight/phrases.webp'),
+    words: require('../assets/images/trainer_theme_icons/businessLight/words.webp'),
+    analytics: require('../assets/images/trainer_theme_icons/businessLight/analytics.webp'),
+  },
+  sagePorcelain: {
     phrases: require('../assets/images/trainer_theme_icons/businessLight/phrases.webp'),
     words: require('../assets/images/trainer_theme_icons/businessLight/words.webp'),
     analytics: require('../assets/images/trainer_theme_icons/businessLight/analytics.webp'),

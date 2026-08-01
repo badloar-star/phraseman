@@ -1,7 +1,8 @@
 import React, { createContext, useContext, useState, useEffect, useMemo, useCallback } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useWindowDimensions } from 'react-native';
-import { DARK, GOLD, CORAL, MINIMAL_DARK, MIDNIGHT, EMBER, AURORA, VOLT, BUSINESS, BUSINESS_LIGHT, CANDY_BLUE, INDIGO, Theme, ThemeMode } from '../constants/theme';
+import { DARK, GOLD, CORAL, MINIMAL_DARK, MIDNIGHT, EMBER, AURORA, VOLT, BUSINESS, BUSINESS_LIGHT, CANDY_BLUE, INDIGO, SAGE_PORCELAIN, Theme, ThemeMode, isLightThemeMode } from '../constants/theme';
+import { sagePorcelainShadow } from '../constants/sagePorcelainChrome';
 import { goldShadow } from '../constants/goldTheme';
 import { compassShadow } from '../constants/compassTheme';
 import { cinemaShadow, isCinemaMode } from '../constants/cinemaThemes';
@@ -115,6 +116,7 @@ export const getVolumetricShadow = (
   level: 1 | 2 | 3 = 2,
 ) => {
   if (themeMode === 'gold') return goldShadow(level);
+  if (themeMode === 'sagePorcelain') return sagePorcelainShadow(level);
   if (false) return compassShadow(level);
   if (isCinemaMode(themeMode)) return cinemaShadow(level);
   return {
@@ -213,8 +215,9 @@ const THEME_MAP: Record<ThemeMode, Theme> = {
   businessLight: BUSINESS_LIGHT,
   candyBlue: CANDY_BLUE,
   indigo: INDIGO,
+  sagePorcelain: SAGE_PORCELAIN,
 };
-const CYCLE: ThemeMode[] = ['indigo', 'midnight', 'ember', 'aurora', 'volt', 'dark', 'coral', 'gold'];
+const CYCLE: ThemeMode[] = ['indigo', 'sagePorcelain', 'midnight', 'ember', 'aurora', 'volt', 'dark', 'coral', 'gold'];
 /** Premium themes. Free theme: `indigo`; `gold` is unlocked only by reward. */
 // зачем: с 2026-07-27 бесплатная тема-витрина — «Индиго» (выбор владельца);
 // «Полночь» ушла в премиум, но у старых бесплатных юзеров не отбирается —
@@ -282,7 +285,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       const valid =
         false || migrated === 'dark' || migrated === 'gold' || migrated === 'coral' || false ||
         migrated === 'midnight' || migrated === 'ember' || migrated === 'aurora' || migrated === 'volt' ||
-        migrated === 'indigo';
+        migrated === 'indigo' || migrated === 'sagePorcelain';
       if (valid) {
         const t = migrated as ThemeMode;
         const goldLocked = t === 'gold' && !hasGoldReward && !DEV_THEME_UNLOCKS;
@@ -368,7 +371,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     [fontSize, uiScale, isFlat],
   );
   const theme = useMemo(() => THEME_MAP[themeMode], [themeMode]);
-  const isDark = true;
+  const isDark = !isLightThemeMode(themeMode);
   const statusBarLight = isDark;
   const ds = useMemo(() => {
     const px = (n: number) => Math.max(2, Math.round(n * uiScale));

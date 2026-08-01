@@ -33,6 +33,7 @@ type ThemeOption = {
   text: string;
   preview2: string;
   preview3: string;
+  colors?: [string, string, string];
   premiumOnly?: boolean;
   rewardOnly?: boolean;
 };
@@ -45,6 +46,7 @@ const THEME_OPTIONS: ThemeOption[] = [
   // зачем: «Индиго» — бесплатная тема-витрина (2026-07-27, выбор владельца);
   // «Полночь» ушла в премиум, но у «дедушек» (жили на ней бесплатно) открыта.
   { mode: 'indigo', labelRU: 'Индиго', labelUK: 'Індиго', labelES: 'Índigo', labelPtBr: 'Índigo', labelVi: 'Chàm', labelId: 'Indigo', labelTr: 'İndigo', labelPl: 'Indygo', bg: '#14131F', accent: '#C8C3FF', text: '#F1EFFF', preview2: '#273468', preview3: '#2A2952' },
+  { mode: 'sagePorcelain', labelRU: 'Фарфоровый шалфей', labelUK: 'Порцелянова шавлія', labelES: 'Salvia porcelana', labelPtBr: 'Sálvia porcelana', labelVi: 'Xô thơm sứ', labelId: 'Sage porselen', labelTr: 'Porselen adaçayı', labelPl: 'Porcelanowa szałwia', bg: '#FCFDF9', accent: '#315F50', text: '#17201D', preview2: '#F0F1EC', preview3: '#E1E5DC', colors: ['#FCFDF9', '#315F50', '#D1D9D1'] },
   { mode: 'midnight', labelRU: 'Полночь', labelUK: 'Північ', labelES: 'Medianoche', labelPtBr: 'Meia-noite', labelVi: 'Nửa đêm', labelId: 'Tengah malam', labelTr: 'Gece yarısı', labelPl: 'Północ', bg: '#010102', accent: '#8FA0FF', text: '#FFFFFF', preview2: '#5B7CFF', preview3: '#A95BFF', premiumOnly: true },
   { mode: 'ember', labelRU: 'Янтарь', labelUK: 'Бурштин', labelES: 'Ámbar', labelPtBr: 'Âmbar', labelVi: 'Hổ phách', labelId: 'Amber', labelTr: 'Kehribar', labelPl: 'Bursztyn', bg: '#010101', accent: '#FFA245', text: '#FFFFFF', preview2: '#FF8A2A', preview3: '#FF3D6E', premiumOnly: true },
   { mode: 'aurora', labelRU: 'Сияние', labelUK: 'Сяйво', labelES: 'Aurora', labelPtBr: 'Aurora', labelVi: 'Cực quang', labelId: 'Aurora', labelTr: 'Aurora', labelPl: 'Zorza', bg: '#010201', accent: '#3DE8A6', text: '#FFFFFF', preview2: '#2EE6A0', preview3: '#2E9DFF', premiumOnly: true },
@@ -83,6 +85,20 @@ function rgba(hex: string, alpha: number): string {
 }
 
 function themeRowColors(item: ThemeOption, active: boolean) {
+  if (item.mode === 'sagePorcelain') {
+    if (!item.colors) throw new Error('Sage Porcelain picker colors are required');
+    return {
+      gradient: ['#FCFDF9', '#F0F1EC', '#E1E5DC'] as const,
+      shine: ['rgba(255,255,255,0.78)', 'rgba(255,255,255,0.18)', 'rgba(49,95,80,0.03)'] as const,
+      borderColor: active ? '#315F50' : '#BDC8BD',
+      textColor: '#17201D',
+      mutedColor: '#52605A',
+      activeIconColor: '#315F50',
+      shadowColor: '#23322B',
+      swatches: item.colors,
+    };
+  }
+
   const swatches = themeSwatches(item);
   const cardText = '#F5F5F5';
   const accentWash = rgba(item.accent, active ? 0.14 : 0.06);
@@ -187,9 +203,9 @@ export default function SettingsThemes() {
                       paddingHorizontal: 14,
                       paddingVertical: 0,
                       height: themeRowHeight,
-                      backgroundColor: '#282B31',
+                      backgroundColor: item.mode === 'sagePorcelain' ? '#F0F1EC' : '#282B31',
                       borderRadius: themeRowRadius,
-                      borderWidth: 0,
+                      borderWidth: item.mode === 'sagePorcelain' ? 1 : 0,
                       borderColor: row.borderColor,
                       overflow: 'hidden',
                     }}

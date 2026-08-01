@@ -480,8 +480,14 @@ export const INDIGO = {
   bgGradient: ['#14131F', '#0C0B16', '#010102'] as unknown as [string, string],
 };
 
-export type ThemeMode = 'dark' | 'gold' | 'coral' | 'minimalDark' | 'midnight' | 'ember' | 'aurora' | 'volt' | 'business' | 'businessLight' | 'candyBlue' | 'indigo';
+export const SAGE_PORCELAIN = {
+  bgPrimary:'#F0F1EC', bgCard:'#FCFDF9', bgSurface:'#E1E5DC', bgSurface2:'#D1D9D1', textPrimary:'#17201D', textOnCard:'#17201D', textSecond:'#3C5A50', textMuted:'#52605A', textGhost:'#61706A', heroTextPrimary:'#17201D', heroTextMuted:'#52605A', border:'#CFD6CE', borderLight:'#BDC8BD', correct:'#2F6F4F', correctBg:'#DCEADF', wrong:'#A8464D', wrongBg:'#F2DFE0', gold:'#8B6320', goldBg:'#EEE5D1', textOnGold:'#FFFFFF', accent:'#315F50', accentBg:'#D9E9E1', correctText:'#FFFFFF', shadowDark:'#23322B', shadowLight:'rgba(252,253,249,0.78)', borderHighlight:'rgba(252,253,249,0.92)', isGlowEnabled:false, isGlossEnabled:false, btnShadow:'#264A3F', cardShadow:'rgba(35,50,43,0.14)', glow:'rgba(49,95,80,0.10)', cardGradient:['#FCFDF9','#F5F7F2'] as [string,string], bgGradient:['#F7F8F4','#E7EAE3'] as [string,string]
+};
+
+export type ThemeMode = 'dark' | 'gold' | 'coral' | 'minimalDark' | 'midnight' | 'ember' | 'aurora' | 'volt' | 'business' | 'businessLight' | 'candyBlue' | 'indigo' | 'sagePorcelain';
 export type Theme = typeof DARK;
+
+export function isLightThemeMode(mode: ThemeMode): boolean { return mode === 'sagePorcelain'; }
 
 export function screenTextOnGradient(theme: Theme, _themeMode: ThemeMode): {
   primary: string;
@@ -508,6 +514,7 @@ const _checkVOLT:     Theme = VOLT     as any;
 const _checkBUSINESS: Theme = BUSINESS as any;
 const _checkBUSINESS_LIGHT: Theme = BUSINESS_LIGHT as any;
 const _checkCANDY_BLUE: Theme = CANDY_BLUE as any;
+const _checkSAGE_PORCELAIN: Theme = SAGE_PORCELAIN as any;
 const _checkINDIGO: Theme = INDIGO as any;
 
 // ─── COLOURS ALIAS (for Expo template components) ────────────────────────────

@@ -17,6 +17,7 @@ const THEME_BG_GRADIENTS: Record<ThemeMode, string[]> = {
   business: ['#000000', '#000000'],
   // «Бизнес светлый»: тёплая бумажная подложка.
   businessLight: ['#FFFFFF', '#FFFFFF'],
+  sagePorcelain: ['#F7F8F4', '#F0F1EC', '#E7EAE3'],
   // «Чёрное кино»: чистый чёрный; блум рисуется слоем CinemaBloom поверх.
   midnight: [...CINEMA.midnight.bgGradient3],
   ember: [...CINEMA.ember.bgGradient3],

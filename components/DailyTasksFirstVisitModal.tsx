@@ -55,9 +55,11 @@ type ThemeChrome = {
   chipText: string;
   taskGlow: string;
   taskBorder: string;
+  errorText?: string;
+  errorBg?: string;
 };
 
-const THEME_CHROME: Record<ThemeMode, ThemeChrome> = {
+export const THEME_CHROME: Record<ThemeMode, ThemeChrome> = {
   dark: {
     accent: '#8FE5AD',
     accentSoft: 'rgba(143,229,173,0.16)',
@@ -153,6 +155,16 @@ const THEME_CHROME: Record<ThemeMode, ThemeChrome> = {
     chipText: '#ECEAFF',
     taskGlow: 'rgba(200,195,255,0.09)',
     taskBorder: 'rgba(200,195,255,0.28)',
+  },
+  sagePorcelain: {
+    accent: '#315F50',
+    accentSoft: '#D9E9E1',
+    chipBg: '#E1E5DC',
+    chipText: '#17201D',
+    taskGlow: 'rgba(49,95,80,0)',
+    taskBorder: '#BDC8BD',
+    errorText: '#A8464D',
+    errorBg: '#F2DFE0',
   },
 };
 
@@ -569,7 +581,19 @@ export default function DailyTasksFirstVisitModal({
               )}
             </View>
 
-            {errorText && <Text style={[styles.errorText, { color: chrome.chipText, fontSize: f.sub }]}>{errorText}</Text>}
+            {errorText && (
+              <Text style={[
+                styles.errorText,
+                {
+                  backgroundColor: chrome.errorBg ?? 'transparent',
+                  color: chrome.errorText ?? chrome.chipText,
+                  fontSize: f.sub,
+                  ...(chrome.errorBg ? { paddingHorizontal: 12, paddingVertical: 8, borderRadius: 12 } : {}),
+                },
+              ]}>
+                {errorText}
+              </Text>
+            )}
 
             <TouchableOpacity
               accessibilityRole="button"

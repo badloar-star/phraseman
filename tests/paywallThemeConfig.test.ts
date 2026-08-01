@@ -7,12 +7,12 @@ import type { ThemeMode } from '../constants/theme';
 
 const ALL_THEMES: ThemeMode[] = [
   'dark', 'gold', 'coral', 'minimalDark', 'business', 'businessLight', 'midnight', 'ember', 'aurora', 'volt',
-  'candyBlue', 'indigo',
+  'candyBlue', 'indigo', 'sagePorcelain',
 ];
 
 const DISTINCT_ACCENT_THEMES: ThemeMode[] = [
   'dark', 'gold', 'coral', 'minimalDark', 'business', 'midnight', 'ember', 'aurora', 'volt',
-  'candyBlue', 'indigo',
+  'candyBlue', 'indigo', 'sagePorcelain',
 ];
 
 const REQUIRED_KEYS: (keyof ThemePaywallConfig)[] = [
@@ -58,6 +58,16 @@ describe('PAYWALL_THEME_CONFIG — полнота', () => {
       expect(typeof config[key]).toBe('string');
       expect((config[key] as string).length).toBeGreaterThan(0);
     }
+  });
+});
+
+describe('PAYWALL_THEME_CONFIG — Sage Porcelain', () => {
+  it('uses porcelain panels, dark sage CTA, and bronze rewards', () => {
+    expect(PAYWALL_THEME_CONFIG.sagePorcelain).toMatchObject({
+      heroAccent: '#315F50', selectedCardBg: '#D9E9E1', unselectedCardBg: '#FCFDF9',
+      panelBg: '#F0F1EC', panelBgStrong: '#E1E5DC', ctaBg: '#315F50', ctaText: '#FFFFFF',
+      savingsBadgeBg: '#8B6320', savingsBadgeText: '#FFFFFF', urgencyBg: 'rgba(139,99,32,0.12)',
+    });
   });
 });
 

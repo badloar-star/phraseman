@@ -67,6 +67,15 @@ const CHROME_BY_THEME: Record<ThemeMode, Omit<ThemedToastChrome, 'title' | 'body
     shadowColor: 'rgba(0,0,0,0)',
     radius: 16,
   },
+  sagePorcelain: {
+    cardColors: ['#FCFDF9', '#F0F1EC', '#E1E5DC'],
+    accent: '#315F50',
+    accentSoft: '#D9E9E1',
+    border: '#CFD6CE',
+    closeBg: '#E1E5DC',
+    shadowColor: 'rgba(35,50,43,0.14)',
+    radius: 16,
+  },
   midnight: {
     cardColors: ['rgba(28,31,48,0.98)', 'rgba(13,15,27,0.97)', 'rgba(4,5,10,0.95)'],
     accent: '#8FA0FF',

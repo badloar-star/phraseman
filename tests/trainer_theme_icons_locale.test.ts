@@ -17,4 +17,10 @@ describe('trainer theme icons runtime locale guard', () => {
     expect(trainerThemeIconPalette('dark').primary).toBe('#2DD4BF');
     expect(trainerThemeIconPalette('unknown' as never)).toEqual(trainerThemeIconPalette('dark'));
   });
+
+  it('uses the dedicated Sage Porcelain trainer palette', () => {
+    expect(trainerThemeIconPalette('sagePorcelain')).toMatchObject({
+      primary: '#315F50', secondary: '#8B6320', stroke: '#17201D', muted: '#FCFDF9',
+    });
+  });
 });

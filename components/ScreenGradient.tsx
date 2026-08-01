@@ -30,6 +30,7 @@ const MOTION_OVERLAY_OPACITY: Record<ThemeMode, number> = {
   minimalDark: 1,
   business: 1,
   businessLight: 1,
+  sagePorcelain: 1,
   // «Чёрное кино»: альфы зашиты в стопы CinemaBloom, слой не глушим.
   midnight: 1,
   ember: 1,
@@ -46,7 +47,7 @@ type ScreenBgLayer = {
   backgroundColor: string;
   accent: string;
   isGold: boolean;
-  bloomMode: ThemeMode;
+  bloomMode: ThemeMode | null;
   gradColors: string[];
   orbs: OrbSpec[];
 };
@@ -61,6 +62,7 @@ const THEME_BLOOMS: Record<ThemeMode, BloomSpec> = {
   business: { bloomA: '#000000', bloomB: '#000000' },
   // «Бизнес светлый»: тёплый бумажный блум без цвета.
   businessLight: { bloomA: '#FFFFFF', bloomB: '#FFFFFF' },
+  sagePorcelain: { bloomA: '#D9E9E1', bloomB: '#F0F1EC' },
   midnight: { bloomA: CINEMA.midnight.bloomA, bloomB: CINEMA.midnight.bloomB },
   ember: { bloomA: CINEMA.ember.bloomA, bloomB: CINEMA.ember.bloomB },
   aurora: { bloomA: CINEMA.aurora.bloomA, bloomB: CINEMA.aurora.bloomB },
@@ -100,6 +102,7 @@ const THEME_ORBS: Record<ThemeMode, OrbSpec[]> = {
   business: [],
   // «Бизнес светлый»: чистая бумажная подложка без орбов.
   businessLight: [],
+  sagePorcelain: [],
   // «Чёрное кино»: вместо орбов — слой CinemaBloom (двухцветный блум снизу + звёзды).
   midnight: [],
   ember: [],
@@ -719,7 +722,7 @@ function ScreenGradient({ children, style, entranceOffsetY, staticParallaxY, for
   const defaultEntranceY = useRef(new Animated.Value(0)).current;
 
   const isGold = themeMode === 'gold';
-  const bloomMode = themeMode;
+  const bloomMode = themeMode === 'sagePorcelain' ? null : themeMode;
   const orbs = ORBS[themeMode] ?? ORBS.dark;
   const gradColors = useMemo(
     () => BG_GRADIENTS[themeMode] ?? [t.bgGradient[0], t.bgGradient[1]],

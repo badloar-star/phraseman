@@ -42,7 +42,7 @@ type NoEnergyModalChrome = {
   subtitleColor: string;
 };
 
-const NO_ENERGY_MODAL_CHROME: Record<ThemeMode, NoEnergyModalChrome> = {
+export const NO_ENERGY_MODAL_CHROME: Record<ThemeMode, NoEnergyModalChrome> = {
   dark: {
     glow: '#F59E0B',
     borderColor: 'rgba(245,158,11,0.34)',
@@ -138,6 +138,14 @@ const NO_ENERGY_MODAL_CHROME: Record<ThemeMode, NoEnergyModalChrome> = {
     cardGlowColors: ['rgba(200,195,255,0.22)', 'rgba(200,195,255,0.08)', 'transparent'],
     titleColor: '#F1EFFF',
     subtitleColor: '#B7B3D9',
+  },
+  sagePorcelain: {
+    glow: 'rgba(49,95,80,0)',
+    borderColor: '#BDC8BD',
+    surfaceColors: ['#FCFDF9', '#F5F7F2', '#E7EAE3'],
+    cardGlowColors: ['rgba(49,95,80,0)', 'rgba(49,95,80,0)', 'rgba(49,95,80,0)'],
+    titleColor: '#17201D',
+    subtitleColor: '#52605A',
   },
 };
 

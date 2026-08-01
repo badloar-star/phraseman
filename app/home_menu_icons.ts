@@ -61,6 +61,20 @@ export function getHomeMenuImages(themeMode: ThemeMode): HomeMenuImageSet {
       heroMap: require('../assets/images/home_menu/businessLight/home-businessLight-hero-map-lite.avif'),
     };
   }
+  if (themeMode === 'sagePorcelain') {
+    return {
+      lesson: require('../assets/images/home_menu/businessLight/home-businessLight-lessons-lite.avif'),
+      cards: require('../assets/images/home_menu/businessLight/home-businessLight-cards-lite.avif'),
+      dayTasks: require('../assets/images/home_menu/businessLight/home-businessLight-daily-tasks-lite.avif'),
+      league: require('../assets/images/home_menu/businessLight/home-businessLight-league-lite.avif'),
+      test: require('../assets/images/home_menu/businessLight/home-businessLight-diagnostic-test-lite.avif'),
+      practice: require('../assets/images/home_menu/businessLight/home-businessLight-practice-lite.avif'),
+      dialogs: require('../assets/images/home_menu/businessLight/home-businessLight-dialogs-lite.avif'),
+      exam: require('../assets/images/home_menu/businessLight/home-businessLight-exam-lite.avif'),
+      shop: require('../assets/images/home_menu/businessLight/home-businessLight-shop-lite.avif'),
+      heroMap: require('../assets/images/home_menu/businessLight/home-businessLight-hero-map-lite.avif'),
+    };
+  }
   if (themeMode === 'midnight') {
     return {
       lesson: require('../assets/images/home_menu/midnight/home-midnight-lessons.webp'),

@@ -125,6 +125,18 @@ export const DAILY_PHRASE_CHROME: Record<ThemeMode, DailyPhraseChrome> = {
     actionText: '#061624',
     shadow: 'rgba(0,0,0,0)',
   },
+  sagePorcelain: {
+    colors: ['#FCFDF9', '#F0F1EC', '#E1E5DC'],
+    border: '#CFD6CE',
+    glow: 'rgba(49,95,80,0.10)',
+    title: '#3C5A50',
+    phrase: '#17201D',
+    sub: '#52605A',
+    iconBg: '#D9E9E1',
+    iconBorder: '#BDC8BD',
+    ornament: '#315F50',
+    shadow: 'rgba(35,50,43,0.14)',
+  },
   midnight: {
     colors: ['#1A1D2C', '#0D0E16', '#050506'],
     border: 'rgba(143,160,255,0.42)',

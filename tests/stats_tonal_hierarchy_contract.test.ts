@@ -4,7 +4,7 @@ import path from 'path';
 const ROOT = path.join(__dirname, '..');
 const THEME_MODES = [
   'dark', 'gold', 'coral', 'minimalDark', 'business',
-  'businessLight', 'midnight', 'ember', 'aurora', 'volt',
+  'businessLight', 'sagePorcelain', 'midnight', 'ember', 'aurora', 'volt',
 ];
 
 describe('statistics tonal hierarchy contract', () => {
@@ -19,6 +19,19 @@ describe('statistics tonal hierarchy contract', () => {
     for (const themeMode of THEME_MODES) {
       expect(pageField).toMatch(new RegExp(`\\b${themeMode}:\\s*['\"]#`));
     }
+  });
+
+  it('gives Sage Porcelain a distinct page, card, quiet surface, text, and accent hierarchy', () => {
+    const chrome = fs.readFileSync(path.join(ROOT, 'constants', 'statsThemeChrome.ts'), 'utf8');
+    const pageFieldStart = chrome.indexOf('const STATS_PAGE_FIELD_BY_THEME');
+    const pageFieldEnd = chrome.indexOf('};', pageFieldStart) + 2;
+    const accentsStart = chrome.indexOf('const STATS_CHROME_ACCENT_BY_THEME');
+    const accentsEnd = chrome.indexOf('};', accentsStart) + 2;
+
+    expect(chrome.slice(pageFieldStart, pageFieldEnd)).toContain("sagePorcelain: '#F0F1EC'");
+    expect(chrome.slice(accentsStart, accentsEnd)).toContain('sagePorcelain: SAGE_PORCELAIN.accent');
+    expect(chrome).toContain('SAGE_PORCELAIN');
+    expect(chrome).toContain("const alpha = strength === 'strong' ? '2E' : strength === 'quiet' ? '14' : '22'");
   });
 
   it('applies the stats-only page field to the safe area and opts cards into the lighter stats scrim', () => {

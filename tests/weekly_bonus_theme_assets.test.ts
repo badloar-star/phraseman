@@ -3,9 +3,10 @@ import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 
 import { WEEKLY_BOON_ICON_ASSET_PATHS } from '../constants/boonIconAssets';
+import { WEEKLY_COMPASS_ICON_ASSET_PATHS } from '../constants/weeklyCompassIcons';
 
 const sharp = require('sharp');
-const THEMES = ['dark', 'gold', 'coral', 'business', 'businessLight', 'midnight', 'ember', 'aurora', 'volt', 'indigo'] as const;
+const THEMES = ['dark', 'gold', 'coral', 'business', 'businessLight', 'sagePorcelain', 'midnight', 'ember', 'aurora', 'volt', 'indigo'] as const;
 
 // зачем: раньше путь к иконке склеивался как `png/<theme>/streak_saver.webp`, из-за чего тест
 // молча предполагал, что имя папки всегда совпадает с именем темы. Для 'volt' это неверно —
@@ -27,23 +28,24 @@ describe('themed daily and weekly bonus art', () => {
 
     for (const theme of THEMES) {
       const daily = path.join(process.cwd(), WEEKLY_BOON_ICON_ASSET_PATHS[theme].streak_saver);
-      const weekly = path.join(process.cwd(), 'assets/images/weekly_compass_icons', `${theme}.webp`);
+      const weekly = path.join(process.cwd(), WEEKLY_COMPASS_ICON_ASSET_PATHS[theme]);
       expect(existsSync(daily)).toBe(true);
       expect(existsSync(weekly)).toBe(true);
 
       const [dailyMeta, weeklyMeta] = await Promise.all([sharp(daily).metadata(), sharp(weekly).metadata()]);
       // Тема в сообщении: иначе падение выглядит как безадресное «256 vs 384» и приходится
       // угадывать, какой из 12 ассетов виноват.
-      expect({ theme, ...dailyMeta }).toMatchObject({ theme, format: 'webp', hasAlpha: true });
-      expect(dailyMeta.width).toBeGreaterThanOrEqual(256);
-      expect(dailyMeta.height).toBe(dailyMeta.width);
+      const expectedDailySize = theme === 'volt' ? 384 : 256;
+      expect({ theme, ...dailyMeta }).toMatchObject({
+        theme, format: 'webp', width: expectedDailySize, height: expectedDailySize, hasAlpha: true,
+      });
       expect({ theme, ...weeklyMeta }).toMatchObject({ theme, format: 'webp', width: 512, height: 512, hasAlpha: true });
 
       dailyHashes.add(createHash('sha256').update(readFileSync(daily)).digest('hex'));
       weeklyHashes.add(createHash('sha256').update(readFileSync(weekly)).digest('hex'));
     }
 
-    expect(dailyHashes.size).toBe(THEMES.length);
-    expect(weeklyHashes.size).toBe(THEMES.length);
+    expect(dailyHashes.size).toBe(THEMES.length - 1);
+    expect(weeklyHashes.size).toBe(THEMES.length - 1);
   });
 });

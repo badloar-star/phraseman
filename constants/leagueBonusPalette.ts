@@ -502,6 +502,32 @@ const PALETTES: Record<ThemeMode, LeagueBonusPalette> = {
       shine: 'rgba(255,245,210,0.28)',
     },
   },
+  sagePorcelain: {
+    card: ['#FCFDF9', '#F5F7F2', '#E7EAE3'],
+    cardLocations: [0, 0.52, 1],
+    border: '#BDC8BD',
+    accent: '#315F50',
+    readyAccent: '#2F6F4F',
+    iconBg: '#D9E9E1',
+    iconBorder: '#BDC8BD',
+    textMuted: '#52605A',
+    track: '#E1E5DC',
+    trackBorder: '#D1D9D1',
+    fill: ['#D9E9E1', '#315F50', '#2F6F4F'],
+    readyFill: ['#DCEADF', '#2F6F4F', '#315F50'],
+    innerBg: '#F0F1EC',
+    innerBorder: '#BDC8BD',
+    modal: {
+      overlay: 'rgba(23,32,29,0.38)',
+      frame: ['#315F50', '#BDC8BD', '#D1D9D1'],
+      card: ['#FCFDF9', '#F5F7F2', '#E7EAE3'],
+      cardLocations: [0, 0.55, 1],
+      wash: ['rgba(49,95,80,0)', 'rgba(49,95,80,0)', 'rgba(49,95,80,0)'],
+      rail: '#BDC8BD', ribbon: '#D9E9E1', ribbonAlt: '#EEE5D1', halo: 'rgba(49,95,80,0)', haloBorder: 'rgba(49,95,80,0)',
+      crestBg: '#D9E9E1', crestBorder: '#BDC8BD', eyebrow: '#3C5A50', metaBg: '#F0F1EC', metaBorder: '#D1D9D1',
+      primary: ['#315F50', '#315F50', '#315F50'], primaryText: '#FFFFFF', rewardBg: '#EEE5D1', rewardBorder: '#8B6320', shine: 'rgba(49,95,80,0)',
+    },
+  },
 };
 
 export function getLeagueBonusPalette(theme: Theme, themeMode: ThemeMode): LeagueBonusPalette {

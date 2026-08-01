@@ -72,6 +72,7 @@ export function RewardModalLiquidGlass({
   accent,
   intensity = 'regular',
 }: RewardModalLiquidGlassProps) {
+  if (themeMode === 'sagePorcelain') return null;
   const strong = intensity === 'strong';
   const accentVeil = withAccentAlpha(accent, strong ? '42' : '30');
   const accentSoft = withAccentAlpha(accent, strong ? '24' : '18');
@@ -150,6 +151,8 @@ export function rewardModalPanelColors(themeMode: ThemeMode, _t: Theme): [string
       return ['#0B161B', '#122229', '#04090C'];
     case 'indigo':
       return ['#14131F', '#1C1B2E', '#060510'];
+    case 'sagePorcelain':
+      return ['#FCFDF9', '#F5F7F2', '#E7EAE3'];
     case 'dark':
     default:
       return ['#15231A', '#0A120E', '#040906'];
@@ -178,6 +181,8 @@ export function rewardModalAccentColor(themeMode: ThemeMode, t: Theme): string {
       return '#B2D5E5';
     case 'indigo':
       return '#C8C3FF';
+    case 'sagePorcelain':
+      return '#315F50';
     case 'dark':
     default:
       return t.gold;
@@ -207,6 +212,8 @@ export function rewardModalPanelBorder(themeMode: ThemeMode, _t: Theme, priority
       return 'rgba(178,213,229,0.30)';
     case 'indigo':
       return 'rgba(200,195,255,0.30)';
+    case 'sagePorcelain':
+      return '#BDC8BD';
     case 'dark':
     default:
       return 'rgba(88,204,137,0.30)';
@@ -235,6 +242,8 @@ export function rewardModalSoftSurface(themeMode: ThemeMode, _t: Theme): string 
       return 'rgba(178,213,229,0.08)';
     case 'indigo':
       return 'rgba(200,195,255,0.08)';
+    case 'sagePorcelain':
+      return '#E1E5DC';
     case 'dark':
     default:
       return 'rgba(255,255,255,0.055)';
@@ -263,6 +272,8 @@ export function rewardModalPrimaryButtonColors(themeMode: ThemeMode): [string, s
       return ['#E4F2F8', '#B2D5E5'];
     case 'indigo':
       return ['#ECEAFF', '#C8C3FF'];
+    case 'sagePorcelain':
+      return ['#315F50', '#315F50'];
     case 'dark':
     default:
       return ['#F0F7F2', '#8FE5AD'];
@@ -270,8 +281,12 @@ export function rewardModalPrimaryButtonColors(themeMode: ThemeMode): [string, s
 }
 
 export function rewardModalPrimaryButtonText(themeMode: ThemeMode): string {
-  if (false) return '#111827';
-  return false ? '#FFFDF6' : '#101214';
+  switch (themeMode) {
+    case 'sagePorcelain':
+      return '#FFFFFF';
+    default:
+      return '#101214';
+  }
 }
 
 /**
@@ -318,7 +333,7 @@ function withAccentAlpha(hex: string, alpha: string): string {
   return hex;
 }
 
-function rewardModalBackdropGradientColors(themeMode: ThemeMode): [string, string, string] {
+export function rewardModalBackdropGradientColors(themeMode: ThemeMode): [string, string, string] {
   switch (themeMode) {
     case 'gold':
       return ['#2A1707', '#171006', '#050302'];
@@ -340,13 +355,15 @@ function rewardModalBackdropGradientColors(themeMode: ThemeMode): [string, strin
       return ['#122229', '#0B161B', '#020506'];
     case 'indigo':
       return ['#1C1B2E', '#14131F', '#040309'];
+    case 'sagePorcelain':
+      return ['#F0F1EC', '#FCFDF9', '#E1E5DC'];
     case 'dark':
     default:
       return ['#0F2718', '#07110C', '#020503'];
   }
 }
 
-function rewardModalPanelGradientColors(themeMode: ThemeMode): [string, string, string] {
+export function rewardModalPanelGradientColors(themeMode: ThemeMode): [string, string, string] {
   switch (themeMode) {
     case 'gold':
       return ['#3A260C', '#1C1307', '#070402'];
@@ -368,15 +385,21 @@ function rewardModalPanelGradientColors(themeMode: ThemeMode): [string, string, 
       return ['#1C323B', '#0E1C22', '#020506'];
     case 'indigo':
       return ['#2A2952', '#16152A', '#040309'];
+    case 'sagePorcelain':
+      return ['#FCFDF9', '#F5F7F2', '#E7EAE3'];
     case 'dark':
     default:
       return ['#13301D', '#0A150F', '#030604'];
   }
 }
 
-function rewardModalScrimColors(themeMode: ThemeMode, intensity: 'regular' | 'strong'): [string, string, string] {
+export function rewardModalScrimColors(themeMode: ThemeMode, intensity: 'regular' | 'strong'): [string, string, string] {
   const strong = intensity === 'strong';
   switch (themeMode) {
+    case 'sagePorcelain': {
+      const opacity = strong ? '0.38' : '0.26';
+      return [`rgba(23,32,29,${opacity})`, `rgba(23,32,29,${opacity})`, `rgba(23,32,29,${opacity})`];
+    }
     case 'gold':
       return strong
         ? ['rgba(0,0,0,0.42)', 'rgba(0,0,0,0.50)', 'rgba(0,0,0,0.70)']
@@ -388,9 +411,11 @@ function rewardModalScrimColors(themeMode: ThemeMode, intensity: 'regular' | 'st
   }
 }
 
-function rewardModalPanelScrimColors(themeMode: ThemeMode, intensity: 'regular' | 'strong'): [string, string, string] {
+export function rewardModalPanelScrimColors(themeMode: ThemeMode, intensity: 'regular' | 'strong'): [string, string, string] {
   const strong = intensity === 'strong';
   switch (themeMode) {
+    case 'sagePorcelain':
+      return ['rgba(23,32,29,0)', 'rgba(23,32,29,0)', 'rgba(23,32,29,0)'];
     case 'gold':
       return strong
         ? ['rgba(12,8,2,0.34)', 'rgba(7,5,2,0.52)', 'rgba(0,0,0,0.76)']

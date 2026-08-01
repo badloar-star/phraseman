@@ -200,6 +200,14 @@ export const FLASHCARDS_MODE_ICON_ASSETS: Record<ThemeMode, Record<FlashcardsMod
     arena: require('../../assets/images/flashcards/mode_icons/businessLight/arena.webp'),
     collection: require('../../assets/images/flashcards/mode_icons/businessLight/collection.webp'),
   },
+  sagePorcelain: {
+    saved: require('../../assets/images/flashcards/mode_icons/businessLight/saved.webp'),
+    custom: require('../../assets/images/flashcards/mode_icons/businessLight/custom.webp'),
+    training: require('../../assets/images/flashcards/mode_icons/businessLight/training.webp'),
+    audio: require('../../assets/images/flashcards/mode_icons/businessLight/audio.webp'),
+    arena: require('../../assets/images/flashcards/mode_icons/businessLight/arena.webp'),
+    collection: require('../../assets/images/flashcards/mode_icons/businessLight/collection.webp'),
+  },
 };
 
 const HUB_CATEGORY_PLANNED_LABELS: Record<string, { ptBR: string; vi: string; id: string; tr: string; pl: string }> = {

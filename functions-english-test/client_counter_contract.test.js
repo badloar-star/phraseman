@@ -332,8 +332,17 @@ test("landing copy describes completed tests and the unified asset revision is 2
   assert.deepEqual(scripts, expectedScripts);
   assert.equal(new Set(scripts).size, expectedScripts.length);
   const stylesheets = [...html.matchAll(/<link rel="stylesheet" href="([^"]+)"/g)].map((match) => match[1]);
-  assert.deepEqual(stylesheets, ["./styles.css?v=20260801-2"]);
-  assert.equal(new Set(stylesheets).size, 1);
+  const expectedStylesheets = [
+    "./styles.css?v=20260801-2",
+    "/assets/site-background.css?v=20260729-1",
+  ];
+  assert.deepEqual(stylesheets, expectedStylesheets);
+  assert.equal(new Set(stylesheets).size, expectedStylesheets.length);
+  assert.deepEqual(
+    stylesheets.filter((asset) => asset.endsWith("?v=20260801-2")),
+    ["./styles.css?v=20260801-2"],
+  );
+  assert.equal(stylesheets[1], "/assets/site-background.css?v=20260729-1");
   assert.equal(html.includes("?v=20260801-1"), false);
   assert.equal((html.match(/v=20260722-1/g) || []).length, 0);
 });

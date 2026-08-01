@@ -114,8 +114,17 @@ test('all client assets and the bank use one new revision', () => {
   assert.ok(scripts.every((asset) => asset.endsWith(`?v=${expectedRevision}`)));
   assert.equal(html.includes(`?v=${baseRevision}`), false);
   const stylesheets = [...html.matchAll(/<link rel="stylesheet" href="([^"]+)"/g)].map((match) => match[1]);
-  assert.deepEqual(stylesheets, [`./styles.css?v=${expectedRevision}`]);
-  assert.equal(new Set(stylesheets).size, 1);
+  const expectedStylesheets = [
+    `./styles.css?v=${expectedRevision}`,
+    '/assets/site-background.css?v=20260729-1',
+  ];
+  assert.deepEqual(stylesheets, expectedStylesheets);
+  assert.equal(new Set(stylesheets).size, expectedStylesheets.length);
+  assert.deepEqual(
+    stylesheets.filter((asset) => asset.endsWith(`?v=${expectedRevision}`)),
+    [`./styles.css?v=${expectedRevision}`],
+  );
+  assert.equal(stylesheets[1], '/assets/site-background.css?v=20260729-1');
   assert.match(app, new RegExp(`questions\\.en\\.json\\?v=${expectedRevision}`));
   assert.doesNotMatch(`${html}\n${app}`, /20260722-3/);
 });

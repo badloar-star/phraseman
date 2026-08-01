@@ -2,8 +2,10 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
 describe('tournament temporary test-mode client contract', () => {
-  const source = readFileSync(resolve(__dirname, '../app/(tabs)/tournaments.tsx'), 'utf8');
-  const clientSource = readFileSync(resolve(__dirname, '../app/tournament_client.ts'), 'utf8');
+  const source = readFileSync(resolve(__dirname, '../app/(tabs)/tournaments.tsx'), 'utf8')
+    .replace(/\r\n/g, '\n');
+  const clientSource = readFileSync(resolve(__dirname, '../app/tournament_client.ts'), 'utf8')
+    .replace(/\r\n/g, '\n');
 
   it('forces the explicitly released test surface through free start-now even inside a schedule window', () => {
     expect(source).toContain('testingEnabled?: boolean');

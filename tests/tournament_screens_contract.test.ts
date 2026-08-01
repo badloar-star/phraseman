@@ -426,7 +426,8 @@ describe('экраны режима «Турниры»', () => {
       shards.indexOf('/** Локальный баланс', shards.indexOf('export const refreshShardsBalanceFromCloudAuthoritative')),
     );
     expect(authoritativeRefresh).toContain('withAccountTransitionLock(async () =>');
-    expect(authoritativeRefresh).toContain('replaceShardsBalanceLocalUnlocked');
+    expect(authoritativeRefresh).toContain('replaceShardsBalanceLocalWithOutcomeUnlocked');
+    expect(authoritativeRefresh).toContain("return outcome === 'applied' ? balance : null");
     expect(authoritativeRefresh).toContain('shards_updated_at_ms');
     expect(authoritativeRefresh).toContain('const documentUpdatedAtMs = parseUpdatedAtMs(data.updatedAt)');
     expect(authoritativeRefresh).toContain('Math.max(shardUpdatedAtMs ?? 0, documentUpdatedAtMs ?? 0)');

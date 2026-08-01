@@ -1,0 +1,725 @@
+<meta charset="utf-8">
+<title>Phraseman — куда прикручены звуки</title>
+<style>
+:root{
+  --bg:#030604; --card:#101710; --surface:#17241A; --surface2:#203028;
+  --ink:#F0F7F2; --ink-2:#8AB49A; --ink-3:#8FA89A;
+  --accent:#47C870; --gold:#FFC800; --wrong:#F05454;
+  --ease-out:cubic-bezier(.23,1,.32,1);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:radial-gradient(120% 70% at 50% -10%,#0B140D,transparent 60%),var(--bg);
+  color:var(--ink);font:15px/1.55 -apple-system,BlinkMacSystemFont,'Segoe UI',Inter,system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1240px;margin:0 auto;padding:44px 22px 90px}
+header h1{font-size:clamp(26px,3.6vw,40px);letter-spacing:-.03em;margin:0 0 10px;font-weight:680;text-wrap:balance}
+header p{margin:0;color:var(--ink-2);max-width:68ch;text-wrap:pretty}
+.hint{margin:18px 0 0;padding:14px 16px;background:var(--card);border-radius:14px;color:var(--ink-2);font-size:13.5px;max-width:68ch}
+.hint b{color:var(--ink)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(370px,1fr));gap:16px;margin-top:34px}
+.sc{background:var(--card);border-radius:18px;overflow:hidden;display:flex;flex-direction:column}
+
+.sc-h{padding:16px 18px 0;display:flex;gap:12px;align-items:flex-start}
+.sc-h .t{flex:1;min-width:0}
+.sc-h h3{margin:0;font-size:16px;font-weight:640;letter-spacing:-.01em}
+.sc-h .scr{font-size:12px;color:var(--gold);margin-top:2px}
+.sc-h code{display:block;margin-top:5px;font-size:10.5px;color:var(--ink-3);font-family:ui-monospace,Menlo,monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+.play{flex:none;width:40px;height:40px;border-radius:50%;border:0;cursor:pointer;background:var(--surface2);color:var(--ink);display:grid;place-items:center;transition:transform 160ms var(--ease-out),background 200ms var(--ease-out)}
+.play:hover{background:#2A3D33}
+.play:active{transform:scale(.94)}
+.play svg{width:15px;height:15px;fill:currentColor}
+
+/* ── СЦЕНА: макет реального экрана ───────────────────────────────────── */
+.stage{position:relative;height:210px;margin:14px 0 0;background:linear-gradient(#0A120C,#060C08);overflow:hidden;display:grid;place-items:center}
+.phone{position:relative;width:186px;height:178px;background:var(--surface);border-radius:20px;overflow:hidden;display:grid;place-items:center}
+
+/* галочка / крестик ответа */
+.verdict{width:74px;height:74px;border-radius:50%;display:grid;place-items:center;background:rgba(71,200,112,.18);will-change:transform}
+.verdict.bad{background:rgba(240,84,84,.16)}
+.verdict svg{width:38px;height:38px;fill:none;stroke:var(--accent);stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round}
+.verdict.bad svg{stroke:var(--wrong)}
+.verdict path{stroke-dasharray:48;stroke-dashoffset:0}
+
+/* звёзды */
+.stars{display:flex;gap:12px}
+.star{width:42px;height:42px;opacity:.16;will-change:transform,opacity}
+.star svg{width:100%;height:100%;fill:var(--gold)}
+
+/* счётчик комбо / уровня / стрика */
+.big{font-size:52px;font-weight:760;letter-spacing:-.04em;font-variant-numeric:tabular-nums;will-change:transform}
+.cap{font-size:12px;color:var(--ink-2);margin-top:2px;text-align:center}
+
+/* сундук */
+.chest{position:relative;width:96px;height:78px}
+.chest .lid{position:absolute;inset:0 0 46% 0;background:linear-gradient(#3E5C46,#22331F);border-radius:10px 10px 3px 3px;transform-origin:50% 100%;will-change:transform}
+.chest .box{position:absolute;inset:52% 0 0 0;background:linear-gradient(#2A3D33,#16211A);border-radius:3px 3px 10px 10px}
+.chest .light{position:absolute;left:50%;top:46%;width:6px;height:6px;background:var(--gold);border-radius:50%;opacity:0;will-change:transform,opacity}
+
+/* тост */
+.toast{position:absolute;left:12px;right:12px;bottom:14px;background:var(--surface2);border-radius:13px;padding:11px 13px;display:flex;gap:9px;align-items:center;transform:translateY(150%);will-change:transform}
+.toast .dot{width:22px;height:22px;border-radius:50%;background:rgba(71,200,112,.2);display:grid;place-items:center;flex:none}
+.toast.err .dot{background:rgba(240,84,84,.2)}
+.toast .dot svg{width:12px;height:12px;stroke:var(--accent);fill:none;stroke-width:3.4;stroke-linecap:round}
+.toast.err .dot svg{stroke:var(--wrong)}
+.toast span{font-size:12.5px;color:var(--ink)}
+
+/* пламя стрика */
+.flame{font-size:46px;line-height:1;will-change:transform,filter}
+
+/* шкала энергии */
+.bar{width:120px;height:12px;background:var(--surface2);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--gold),#FFE38A);border-radius:99px}
+.bolt{font-size:40px;line-height:1;will-change:transform,opacity}
+
+/* значок лиги */
+.badge{width:78px;height:78px;border-radius:20px;background:linear-gradient(150deg,#4C7A5A,#20301F);display:grid;place-items:center;font-size:34px;will-change:transform}
+
+/* карточка-коллекционка */
+.coll{position:relative;width:76px;height:100px;border-radius:12px;background:linear-gradient(155deg,#3B5C45,#131E17);overflow:hidden;display:grid;place-items:center;font-size:30px;will-change:transform}
+.coll .shine{position:absolute;top:-120%;left:-40%;width:56px;height:280%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent);transform:rotate(22deg)}
+
+/* точка записи */
+.rec{width:56px;height:56px;border-radius:50%;background:rgba(240,84,84,.2);display:grid;place-items:center;will-change:transform}
+.rec i{width:20px;height:20px;border-radius:50%;background:var(--wrong);display:block}
+
+/* медаль достижения */
+.medal{width:74px;height:74px;border-radius:50%;background:linear-gradient(150deg,#FFD75E,#B98700);display:grid;place-items:center;font-size:32px;will-change:transform}
+
+/* подарок */
+.gift{font-size:48px;line-height:1;will-change:transform}
+
+.spark{position:absolute;width:7px;height:7px;border-radius:50%;background:var(--gold);opacity:0;pointer-events:none;will-change:transform,opacity}
+.flash{position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.5),transparent 62%);opacity:0;pointer-events:none;will-change:opacity}
+
+/* дорожка волны */
+.wave{display:flex;align-items:flex-end;gap:1.5px;height:30px;padding:12px 18px 0}
+.wave i{flex:1;background:#3A4F42;border-radius:1px;min-height:2px;transform-origin:bottom}
+.wave i.lit{background:var(--accent)}
+
+.note{padding:10px 18px 0;font-size:12.5px;color:var(--ink-2);text-wrap:pretty}
+.meta{display:flex;flex-wrap:wrap;gap:6px;padding:12px 18px 18px;margin-top:auto}
+.m{font-size:11px;padding:3px 8px;border-radius:6px;background:var(--surface);color:var(--ink-2)}
+.m b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="wrap">
+<header>
+  <h1>Куда прикручены звуки</h1>
+  <p>Каждая сцена — макет реального элемента приложения, а не абстракция.
+     Анимация ведётся по огибающей того самого WAV, который звучит в этом месте:
+     вспышки падают на удары звука, длительность равна реальному звучанию.</p>
+  <div class="hint">Нажми <b>Play</b> на любой сцене. Сверху написано, <b>на каком экране</b> это
+     происходит и <b>в каком файле кода</b> сейчас вызывается звук.</div>
+</header>
+
+<div class="grid">
+<article class="sc" data-scene='{"id":"pm.learn.correct","file":"learning/pm_learn_correct_v1.wav","kind":"verdict-ok","comboN":null,"wave":{"effectiveMs":156,"attackMs":0,"hits":[{"tMs":78,"level":0.5554}],"shape":"perc","brightness":0.2793,"envelope":[1,0.5972,0.3147,0.212,0.158,0.5554,0.4994,0.3449,0.2118,0.1353,0.0981,0.0762,0.063,0.0558,0.0418,0.0331,0.0248,0.0168,0.0125,0.0089,0.0072,0.0051,0.0037,0.0033,0.002,0.0003,0.0003,0.0003,0.0003,0.0003,0.0003,0.0003,0.0003,0.0003,0.0003,0.0003,0.0003,0.0003,0.0003,0.0003,0.0003,0.0003,0.0003,0.0003,0.0003,0.0003,0.0003,0.0003,0.0003,0.0003,0.0003,0.0003,0.0003,0.0003,0.0003,0.0003,0.0003,0.0003,0.0003,0.0003,0.0003,0.0003,0.0003,0.0003]},"extra":[]}'>
+  <div class="sc-h">
+    <div class="t">
+      <h3>Верный ответ</h3>
+      <div class="scr">Урок</div>
+      <code>hooks/use-correct-sound.ts · feedback_kit</code>
+    </div>
+    <button class="play" aria-label="Показать Верный ответ"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+  </div>
+  <div class="stage"><div class="phone"><div class="verdict"><svg viewBox="0 0 24 24"><path d="M4 12.5l5.5 5.5L20 6.5"/></svg></div><div class="flash"></div></div></div>
+  <div class="wave"><i style="height:30px"></i><i style="height:18px"></i><i style="height:9px"></i><i style="height:6px"></i><i style="height:5px"></i><i style="height:17px"></i><i style="height:15px"></i><i style="height:10px"></i><i style="height:6px"></i><i style="height:4px"></i><i style="height:3px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i></div>
+  <div class="note">Самое частое событие в приложении. Звук 156 мс — анимация обязана быть такой же короткой, иначе она отстанет от следующего ответа.</div>
+  <div class="meta">
+    <span class="m">звук <b>156</b> мс</span>
+    <span class="m">атака <b>0</b> мс</span>
+    <span class="m">ударов <b>1</b></span>
+    <span class="m">perc</span>
+  </div>
+</article>
+<article class="sc" data-scene='{"id":"pm.learn.needs_work","file":"learning/pm_learn_needs_work_v1.wav","kind":"verdict-bad","comboN":null,"wave":{"effectiveMs":438,"attackMs":188,"hits":[{"tMs":16,"level":0.6868},{"tMs":188,"level":1},{"tMs":359,"level":0.4797}],"shape":"triple","brightness":0.0342,"envelope":[0.4679,0.6868,0.4396,0.3349,0.2603,0.2023,0.148,0.1112,0.085,0.0661,0.0525,0.3844,1,0.6738,0.4315,0.2902,0.1932,0.1386,0.1063,0.0794,0.061,0.0446,0.0458,0.4797,0.434,0.2232,0.155,0.114,0.0836,0.0557,0.0346,0.0195,0.0089,0.0031,0.0006,0.0006,0.0006,0.0006,0.0006,0.0006,0.0006,0.0006,0.0006,0.0006,0.0006,0.0006,0.0006,0.0006,0.0006,0.0006,0.0006,0.0006,0.0006,0.0006,0.0006,0.0006,0.0006,0.0006,0.0006,0.0006,0.0006,0.0006,0.0006,0.0006]},"extra":[]}'>
+  <div class="sc-h">
+    <div class="t">
+      <h3>Ответ неверный</h3>
+      <div class="scr">Урок</div>
+      <code>app/feedback/feedback_kit.ts</code>
+    </div>
+    <button class="play" aria-label="Показать Ответ неверный"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+  </div>
+  <div class="stage"><div class="phone"><div class="verdict bad"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></div><div class="flash"></div></div></div>
+  <div class="wave"><i style="height:14px"></i><i style="height:21px"></i><i style="height:13px"></i><i style="height:10px"></i><i style="height:8px"></i><i style="height:6px"></i><i style="height:4px"></i><i style="height:3px"></i><i style="height:3px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:12px"></i><i style="height:30px"></i><i style="height:20px"></i><i style="height:13px"></i><i style="height:9px"></i><i style="height:6px"></i><i style="height:4px"></i><i style="height:3px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:14px"></i><i style="height:13px"></i><i style="height:7px"></i><i style="height:5px"></i><i style="height:3px"></i><i style="height:3px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i></div>
+  <div class="note">Глухой низкий звук. Движение — короткая тряска, без «наказующей» драмы.</div>
+  <div class="meta">
+    <span class="m">звук <b>438</b> мс</span>
+    <span class="m">атака <b>188</b> мс</span>
+    <span class="m">ударов <b>3</b></span>
+    <span class="m">triple</span>
+  </div>
+</article>
+<article class="sc" data-scene='{"id":"pm.learn.combo_5","file":"learning/pm_learn_combo_5_v1.wav","kind":"combo","comboN":5,"wave":{"effectiveMs":219,"attackMs":141,"hits":[{"tMs":63,"level":0.6733},{"tMs":141,"level":1}],"shape":"double","brightness":0.9541,"envelope":[0.3192,0.0473,0.0122,0.0089,0.6733,0.251,0.0101,0.0068,0.0041,1,0.0417,0.0076,0.0033,0.2514,0.0209,0.0037,0.0019,0.0015,0.0011,0.0012,0.0012,0.0009,0.0007,0.0006,0.0008,0.0006,0.0006,0.0007,0.0005,0.0005,0.0006,0.0006,0.0005,0.0006,0.0004,0.0005,0.0004,0.0004,0.0004,0.0004,0.0003,0.0003,0.0003,0.0004,0.0003,0.0003,0.0003,0.0003,0.0003,0.0003,0.0003,0.0002,0.0002,0.0003,0.0002,0.0002,0.0002,0.0002,0.0002,0.0002,0.0002,0.0002,0.0002,0.0002]},"extra":[]}'>
+  <div class="sc-h">
+    <div class="t">
+      <h3>Серия из 5</h3>
+      <div class="scr">Урок</div>
+      <code>app/feedback/sound_bank.ts</code>
+    </div>
+    <button class="play" aria-label="Показать Серия из 5"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+  </div>
+  <div class="stage"><div class="phone"><div style="text-align:center"><div class="big" style="color:var(--accent)">5</div><div class="cap">подряд</div></div><div class="flash"></div></div></div>
+  <div class="wave"><i style="height:10px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:20px"></i><i style="height:8px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:30px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:8px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i></div>
+  <div class="note">Заменяет обычный звук верного ответа — не звучит поверх него.</div>
+  <div class="meta">
+    <span class="m">звук <b>219</b> мс</span>
+    <span class="m">атака <b>141</b> мс</span>
+    <span class="m">ударов <b>2</b></span>
+    <span class="m">double</span>
+  </div>
+</article>
+<article class="sc" data-scene='{"id":"pm.learn.combo_10","file":"learning/pm_learn_combo_10_v1.wav","kind":"combo","comboN":10,"wave":{"effectiveMs":375,"attackMs":78,"hits":[{"tMs":78,"level":1},{"tMs":141,"level":0.799},{"tMs":266,"level":0.381}],"shape":"triple","brightness":0.0437,"envelope":[0.034,0.0163,0.0142,0.0085,0.575,1,0.5709,0.6118,0.5353,0.799,0.598,0.4242,0.1577,0.1276,0.1625,0.1673,0.3269,0.381,0.2778,0.2318,0.2183,0.2256,0.1507,0.106,0.0771,0.0275,0.0362,0.0218,0.0128,0.0113,0.0074,0.0105,0.011,0.0131,0.0167,0.0131,0.0116,0.0157,0.0099,0.0137,0.0098,0.0088,0.006,0.0058,0.0037,0.0027,0.0026,0.0022,0.0021,0.0025,0.0015,0.0015,0.0026,0.0022,0.0017,0.0017,0.0014,0.0016,0.0018,0.0011,0.0012,0.0008,0.0006,0.0001]},"extra":[]}'>
+  <div class="sc-h">
+    <div class="t">
+      <h3>Серия из 10</h3>
+      <div class="scr">Урок</div>
+      <code>app/feedback/sound_bank.ts</code>
+    </div>
+    <button class="play" aria-label="Показать Серия из 10"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+  </div>
+  <div class="stage"><div class="phone"><div style="text-align:center"><div class="big" style="color:var(--accent)">10</div><div class="cap">подряд</div></div><div class="flash"></div></div></div>
+  <div class="wave"><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:17px"></i><i style="height:30px"></i><i style="height:17px"></i><i style="height:18px"></i><i style="height:16px"></i><i style="height:24px"></i><i style="height:18px"></i><i style="height:13px"></i><i style="height:5px"></i><i style="height:4px"></i><i style="height:5px"></i><i style="height:5px"></i><i style="height:10px"></i><i style="height:11px"></i><i style="height:8px"></i><i style="height:7px"></i><i style="height:7px"></i><i style="height:7px"></i><i style="height:5px"></i><i style="height:3px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i></div>
+  <div class="note">Три удара в звуке — три ступени разгона у счётчика.</div>
+  <div class="meta">
+    <span class="m">звук <b>375</b> мс</span>
+    <span class="m">атака <b>78</b> мс</span>
+    <span class="m">ударов <b>3</b></span>
+    <span class="m">triple</span>
+  </div>
+</article>
+<article class="sc" data-scene='{"id":"pm.complete.star_3","file":"completion/pm_complete_star_3_v1.wav","kind":"stars","comboN":null,"wave":{"effectiveMs":500,"attackMs":16,"hits":[{"tMs":16,"level":1},{"tMs":250,"level":0.3465}],"shape":"double","brightness":0.6289,"envelope":[0.8212,1,0.7208,0.6748,0.5826,0.5314,0.5143,0.4944,0.4904,0.481,0.4574,0.4408,0.4077,0.3959,0.3734,0.3448,0.3465,0.3086,0.2796,0.2737,0.2513,0.2384,0.216,0.1966,0.1893,0.1735,0.1563,0.1429,0.1337,0.1231,0.1137,0.1068,0.0946,0.0836,0.0735,0.0638,0.0526,0.0497,0.0441,0.0372,0.0325,0.03,0.0258,0.0218,0.019,0.0166,0.0145,0.0137,0.0118,0.0096,0.0083,0.0064,0.0051,0.0042,0.0035,0.0029,0.0024,0.0021,0.0018,0.0015,0.0014,0.0013,0.001,0.0003]},"extra":[{"effectiveMs":141,"hits":[]},{"effectiveMs":156,"hits":[]}]}'>
+  <div class="sc-h">
+    <div class="t">
+      <h3>Звёзды результата</h3>
+      <div class="scr">Итог урока</div>
+      <code>app/feedback/feedback_kit.ts</code>
+    </div>
+    <button class="play" aria-label="Показать Звёзды результата"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+  </div>
+  <div class="stage"><div class="phone"><div class="stars"><div class="star"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.8 7.4.8-5.5 5 1.5 7.3L12 18.3 5.6 21.9 7.1 14.6 1.6 9.6 9 8.8z"/></svg></div><div class="star"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.8 7.4.8-5.5 5 1.5 7.3L12 18.3 5.6 21.9 7.1 14.6 1.6 9.6 9 8.8z"/></svg></div><div class="star"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.8 7.4.8-5.5 5 1.5 7.3L12 18.3 5.6 21.9 7.1 14.6 1.6 9.6 9 8.8z"/></svg></div></div><div class="flash"></div></div></div>
+  <div class="wave"><i style="height:25px"></i><i style="height:30px"></i><i style="height:22px"></i><i style="height:20px"></i><i style="height:17px"></i><i style="height:16px"></i><i style="height:15px"></i><i style="height:15px"></i><i style="height:15px"></i><i style="height:14px"></i><i style="height:14px"></i><i style="height:13px"></i><i style="height:12px"></i><i style="height:12px"></i><i style="height:11px"></i><i style="height:10px"></i><i style="height:10px"></i><i style="height:9px"></i><i style="height:8px"></i><i style="height:8px"></i><i style="height:8px"></i><i style="height:7px"></i><i style="height:6px"></i><i style="height:6px"></i><i style="height:6px"></i><i style="height:5px"></i><i style="height:5px"></i><i style="height:4px"></i><i style="height:4px"></i><i style="height:4px"></i><i style="height:3px"></i><i style="height:3px"></i><i style="height:3px"></i><i style="height:3px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i></div>
+  <div class="note">Три звука подряд с паузой 180-220 мс. Каждая звезда влетает на свой звук — это единственная сцена, где важна последовательность.</div>
+  <div class="meta">
+    <span class="m">звук <b>500</b> мс</span>
+    <span class="m">атака <b>16</b> мс</span>
+    <span class="m">ударов <b>2</b></span>
+    <span class="m">double</span>
+  </div>
+</article>
+<article class="sc" data-scene='{"id":"pm.complete.session","file":"completion/pm_complete_session_v1.wav","kind":"session","comboN":null,"wave":{"effectiveMs":469,"attackMs":16,"hits":[{"tMs":16,"level":1},{"tMs":172,"level":0.9554},{"tMs":266,"level":0.5756}],"shape":"triple","brightness":0.1873,"envelope":[0.0003,1,0.7952,0.3941,0.216,0.132,0.0815,0.0504,0.0361,0.0258,0.5852,0.9554,0.5292,0.3074,0.1954,0.1188,0.4926,0.5756,0.4015,0.3091,0.2534,0.2208,0.2095,0.1911,0.1684,0.1583,0.1522,0.1327,0.1163,0.1076,0.0945,0.0821,0.0752,0.0693,0.0607,0.0517,0.0447,0.0375,0.0311,0.0266,0.0225,0.019,0.0158,0.014,0.0127,0.0104,0.0087,0.0074,0.0065,0.0055,0.0046,0.004,0.0033,0.0029,0.0025,0.0022,0.0019,0.0016,0.0014,0.0011,0.0009,0.0008,0.0008,0.0006]},"extra":[]}'>
+  <div class="sc-h">
+    <div class="t">
+      <h3>Урок завершён</h3>
+      <div class="scr">Итог урока</div>
+      <code>app/feedback/feedback_kit.ts</code>
+    </div>
+    <button class="play" aria-label="Показать Урок завершён"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+  </div>
+  <div class="stage"><div class="phone"><div style="text-align:center"><div class="big" style="color:var(--accent);font-size:40px">Урок</div><div class="cap">завершён</div></div><div class="flash"></div></div></div>
+  <div class="wave"><i style="height:2px"></i><i style="height:30px"></i><i style="height:24px"></i><i style="height:12px"></i><i style="height:6px"></i><i style="height:4px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:18px"></i><i style="height:29px"></i><i style="height:16px"></i><i style="height:9px"></i><i style="height:6px"></i><i style="height:4px"></i><i style="height:15px"></i><i style="height:17px"></i><i style="height:12px"></i><i style="height:9px"></i><i style="height:8px"></i><i style="height:7px"></i><i style="height:6px"></i><i style="height:6px"></i><i style="height:5px"></i><i style="height:5px"></i><i style="height:5px"></i><i style="height:4px"></i><i style="height:3px"></i><i style="height:3px"></i><i style="height:3px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i></div>
+  <div class="note">Три удара — три волны свечения от центра.</div>
+  <div class="meta">
+    <span class="m">звук <b>469</b> мс</span>
+    <span class="m">атака <b>16</b> мс</span>
+    <span class="m">ударов <b>3</b></span>
+    <span class="m">triple</span>
+  </div>
+</article>
+<article class="sc" data-scene='{"id":"pm.complete.exam_pass","file":"completion/pm_complete_exam_pass_v1.wav","kind":"exam","comboN":null,"wave":{"effectiveMs":773,"attackMs":361,"hits":[{"tMs":103,"level":0.4262},{"tMs":180,"level":0.2885},{"tMs":232,"level":0.562},{"tMs":284,"level":0.4363},{"tMs":361,"level":1}],"shape":"multi","brightness":0.529,"envelope":[0.0024,0.0056,0.0173,0.0543,0.4262,0.306,0.274,0.2885,0.2863,0.562,0.4256,0.4363,0.4282,0.4035,1,0.4861,0.2123,0.1531,0.1284,0.1149,0.1005,0.0824,0.2352,0.1568,0.063,0.0485,0.0487,0.0426,0.2539,0.1063,0.0501,0.0376,0.0291,0.0348,0.0316,0.0199,0.0158,0.0149,0.0142,0.0316,0.0252,0.0118,0.0102,0.0086,0.0072,0.0063,0.0054,0.0045,0.004,0.0032,0.0031,0.0026,0.0021,0.0017,0.0016,0.0015,0.0014,0.0012,0.001,0.0008,0.0007,0.0006,0.0005,0.0003]},"extra":[]}'>
+  <div class="sc-h">
+    <div class="t">
+      <h3>Экзамен сдан</h3>
+      <div class="scr">Экзамен уровня</div>
+      <code>app/level_exam.tsx</code>
+    </div>
+    <button class="play" aria-label="Показать Экзамен сдан"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+  </div>
+  <div class="stage"><div class="phone"><div style="text-align:center"><div class="big" style="color:var(--gold);font-size:38px">Сдан</div><div class="cap">уровень A2</div></div><div class="flash"></div></div></div>
+  <div class="wave"><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:13px"></i><i style="height:9px"></i><i style="height:8px"></i><i style="height:9px"></i><i style="height:9px"></i><i style="height:17px"></i><i style="height:13px"></i><i style="height:13px"></i><i style="height:13px"></i><i style="height:12px"></i><i style="height:30px"></i><i style="height:15px"></i><i style="height:6px"></i><i style="height:5px"></i><i style="height:4px"></i><i style="height:3px"></i><i style="height:3px"></i><i style="height:2px"></i><i style="height:7px"></i><i style="height:5px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:8px"></i><i style="height:3px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i></div>
+  <div class="note">Самый длинный звук в приложении — 773 мс, пять ударов. Можно позволить полноценное празднование.</div>
+  <div class="meta">
+    <span class="m">звук <b>773</b> мс</span>
+    <span class="m">атака <b>361</b> мс</span>
+    <span class="m">ударов <b>5</b></span>
+    <span class="m">multi</span>
+  </div>
+</article>
+<article class="sc" data-scene='{"id":"pm.reward.chest_open","file":"reward/pm_reward_chest_open_v1.wav","kind":"chest","comboN":null,"wave":{"effectiveMs":398,"attackMs":141,"hits":[{"tMs":141,"level":1},{"tMs":188,"level":0.9843},{"tMs":328,"level":0.4365}],"shape":"triple","brightness":0.0247,"envelope":[0.0523,0.0823,0.1848,0.1138,0.4194,0.76,1,0.6748,0.9843,0.9608,0.886,0.748,0.5622,0.3787,0.4365,0.2428,0.2628,0.0725,0.065,0.0783,0.0293,0.029,0.0205,0.0179,0.0164,0.0121,0.0099,0.0081,0.007,0.0056,0.0063,0.0063,0.0057,0.0048,0.0038,0.0047,0.0039,0.0027,0.0043,0.0053,0.004,0.0037,0.0037,0.003,0.0022,0.0024,0.0017,0.0014,0.0022,0.0019,0.0019,0.0012,0.0011,0.0006,0.0006,0.0004,0.0007,0.0006,0.0004,0.0006,0.0003,0.0002,0.0002,0.0003]},"extra":[]}'>
+  <div class="sc-h">
+    <div class="t">
+      <h3>Сундук открыт</h3>
+      <div class="scr">Модалка сундука</div>
+      <code>components/BoonChestModal.tsx</code>
+    </div>
+    <button class="play" aria-label="Показать Сундук открыт"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+  </div>
+  <div class="stage"><div class="phone"><div class="chest"><div class="light"></div><div class="lid"></div><div class="box"></div></div><div class="flash"></div></div></div>
+  <div class="wave"><i style="height:2px"></i><i style="height:2px"></i><i style="height:6px"></i><i style="height:3px"></i><i style="height:13px"></i><i style="height:23px"></i><i style="height:30px"></i><i style="height:20px"></i><i style="height:30px"></i><i style="height:29px"></i><i style="height:27px"></i><i style="height:22px"></i><i style="height:17px"></i><i style="height:11px"></i><i style="height:13px"></i><i style="height:7px"></i><i style="height:8px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i></div>
+  <div class="note">Глухой тёплый звук — крышка тяжёлая. Свет бьёт изнутри на третьем ударе.</div>
+  <div class="meta">
+    <span class="m">звук <b>398</b> мс</span>
+    <span class="m">атака <b>141</b> мс</span>
+    <span class="m">ударов <b>3</b></span>
+    <span class="m">triple</span>
+  </div>
+</article>
+<article class="sc" data-scene='{"id":"pm.reward.level_up","file":"reward/pm_reward_level_up_v1.wav","kind":"levelup","comboN":null,"wave":{"effectiveMs":900,"attackMs":350,"hits":[{"tMs":25,"level":0.9666},{"tMs":200,"level":0.7282},{"tMs":350,"level":1},{"tMs":500,"level":0.2833},{"tMs":600,"level":0.8162}],"shape":"multi","brightness":0.1274,"envelope":[0.4038,0.9666,0.8687,0.7872,0.7134,0.649,0.5813,0.6878,0.7282,0.7138,0.5497,0.5255,0.4455,0.5054,1,0.6857,0.4578,0.389,0.3615,0.2743,0.2833,0.2802,0.5401,0.787,0.8162,0.8067,0.633,0.5661,0.448,0.3283,0.2421,0.1993,0.1773,0.1742,0.1471,0.1153,0.0946,0.0724,0.054,0.0433,0.0339,0.0295,0.0248,0.0191,0.0155,0.012,0.014,0.0096,0.0067,0.0072,0.0078,0.0063,0.0067,0.0063,0.0051,0.0047,0.0042,0.0033,0.0041,0.0038,0.0033,0.0025,0.0019,0.0014]},"extra":[]}'>
+  <div class="sc-h">
+    <div class="t">
+      <h3>Новый уровень</h3>
+      <div class="scr">Поверх любого экрана</div>
+      <code>app/_layout.tsx</code>
+    </div>
+    <button class="play" aria-label="Показать Новый уровень"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+  </div>
+  <div class="stage"><div class="phone"><div style="text-align:center"><div class="big" style="color:var(--gold)">7</div><div class="cap">уровень</div></div><div class="flash"></div></div></div>
+  <div class="wave"><i style="height:12px"></i><i style="height:29px"></i><i style="height:26px"></i><i style="height:24px"></i><i style="height:21px"></i><i style="height:19px"></i><i style="height:17px"></i><i style="height:21px"></i><i style="height:22px"></i><i style="height:21px"></i><i style="height:16px"></i><i style="height:16px"></i><i style="height:13px"></i><i style="height:15px"></i><i style="height:30px"></i><i style="height:21px"></i><i style="height:14px"></i><i style="height:12px"></i><i style="height:11px"></i><i style="height:8px"></i><i style="height:8px"></i><i style="height:8px"></i><i style="height:16px"></i><i style="height:24px"></i><i style="height:24px"></i><i style="height:24px"></i><i style="height:19px"></i><i style="height:17px"></i><i style="height:13px"></i><i style="height:10px"></i><i style="height:7px"></i><i style="height:6px"></i><i style="height:5px"></i><i style="height:5px"></i><i style="height:4px"></i><i style="height:3px"></i><i style="height:3px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i></div>
+  <div class="note">Долгое нарастание 350 мс до пика — цифра успевает вырасти вместе со звуком.</div>
+  <div class="meta">
+    <span class="m">звук <b>900</b> мс</span>
+    <span class="m">атака <b>350</b> мс</span>
+    <span class="m">ударов <b>5</b></span>
+    <span class="m">multi</span>
+  </div>
+</article>
+<article class="sc" data-scene='{"id":"pm.reward.achievement","file":"reward/pm_reward_achievement_v1.wav","kind":"achievement","comboN":null,"wave":{"effectiveMs":406,"attackMs":141,"hits":[{"tMs":109,"level":0.7689},{"tMs":250,"level":0.5569}],"shape":"double","brightness":0.9572,"envelope":[0.1253,0.021,0.0213,0.2179,0.2212,0.0825,0.0713,0.7689,0.2216,1,0.8407,0.446,0.2362,0.2596,0.194,0.1182,0.5569,0.3282,0.141,0.2055,0.1012,0.1233,0.1559,0.0769,0.1235,0.1003,0.0368,0.0332,0.0421,0.0384,0.03,0.0275,0.0191,0.0245,0.0187,0.0268,0.0212,0.0155,0.0225,0.0165,0.0171,0.0149,0.0133,0.0079,0.0089,0.0089,0.006,0.007,0.006,0.0052,0.0048,0.0058,0.004,0.005,0.0052,0.0043,0.0035,0.0035,0.0025,0.0024,0.0025,0.0017,0.0016,0.0023]},"extra":[]}'>
+  <div class="sc-h">
+    <div class="t">
+      <h3>Достижение</h3>
+      <div class="scr">Тост поверх экрана</div>
+      <code>components/AchievementToast.tsx</code>
+    </div>
+    <button class="play" aria-label="Показать Достижение"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+  </div>
+  <div class="stage"><div class="phone"><div class="medal">🏅</div><div class="flash"></div></div></div>
+  <div class="wave"><i style="height:4px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:7px"></i><i style="height:7px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:23px"></i><i style="height:7px"></i><i style="height:30px"></i><i style="height:25px"></i><i style="height:13px"></i><i style="height:7px"></i><i style="height:8px"></i><i style="height:6px"></i><i style="height:4px"></i><i style="height:17px"></i><i style="height:10px"></i><i style="height:4px"></i><i style="height:6px"></i><i style="height:3px"></i><i style="height:4px"></i><i style="height:5px"></i><i style="height:2px"></i><i style="height:4px"></i><i style="height:3px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i></div>
+  <div class="note">Яркий звук — золото, а не зелень. Медаль въезжает сверху.</div>
+  <div class="meta">
+    <span class="m">звук <b>406</b> мс</span>
+    <span class="m">атака <b>141</b> мс</span>
+    <span class="m">ударов <b>2</b></span>
+    <span class="m">double</span>
+  </div>
+</article>
+<article class="sc" data-scene='{"id":"pm.streak.saved","file":"streak/pm_streak_saved_v1.wav","kind":"streak","comboN":null,"wave":{"effectiveMs":297,"attackMs":78,"hits":[{"tMs":78,"level":1},{"tMs":156,"level":0.4535}],"shape":"double","brightness":0.97,"envelope":[0.0804,0.1924,0.343,0.6101,0.7682,1,0.8518,0.5068,0.1702,0.3655,0.4535,0.3845,0.2133,0.1424,0.1366,0.1114,0.1149,0.1206,0.1086,0.0847,0.0654,0.045,0.0497,0.0439,0.0327,0.0205,0.0246,0.018,0.0123,0.0076,0.0103,0.0116,0.0111,0.01,0.0092,0.007,0.0067,0.0055,0.0042,0.0057,0.0075,0.0084,0.0069,0.0038,0.0048,0.0073,0.0079,0.0077,0.0082,0.0077,0.0053,0.0029,0.0027,0.0032,0.0034,0.0037,0.0029,0.0028,0.0023,0.0019,0.002,0.002,0.0012,0.0008]},"extra":[]}'>
+  <div class="sc-h">
+    <div class="t">
+      <h3>Стрик сохранён</h3>
+      <div class="scr">Главная</div>
+      <code>app/(tabs)/home.tsx:1200</code>
+    </div>
+    <button class="play" aria-label="Показать Стрик сохранён"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+  </div>
+  <div class="stage"><div class="phone"><div style="text-align:center"><div class="flame">🔥</div><div class="big" style="font-size:34px;color:var(--gold)">12</div></div><div class="flash"></div></div></div>
+  <div class="wave"><i style="height:2px"></i><i style="height:6px"></i><i style="height:10px"></i><i style="height:18px"></i><i style="height:23px"></i><i style="height:30px"></i><i style="height:26px"></i><i style="height:15px"></i><i style="height:5px"></i><i style="height:11px"></i><i style="height:14px"></i><i style="height:12px"></i><i style="height:6px"></i><i style="height:4px"></i><i style="height:4px"></i><i style="height:3px"></i><i style="height:3px"></i><i style="height:4px"></i><i style="height:3px"></i><i style="height:3px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i></div>
+  <div class="note">Пламя вспыхивает на обоих ударах звука, цифра щёлкает на первом.</div>
+  <div class="meta">
+    <span class="m">звук <b>297</b> мс</span>
+    <span class="m">атака <b>78</b> мс</span>
+    <span class="m">ударов <b>2</b></span>
+    <span class="m">double</span>
+  </div>
+</article>
+<article class="sc" data-scene='{"id":"pm.energy.empty","file":"energy/pm_energy_empty_v1.wav","kind":"energy-empty","comboN":null,"wave":{"effectiveMs":734,"attackMs":31,"hits":[{"tMs":31,"level":1},{"tMs":156,"level":0.3502},{"tMs":234,"level":0.3576},{"tMs":281,"level":0.4055},{"tMs":359,"level":0.3861},{"tMs":406,"level":0.4061},{"tMs":453,"level":0.416},{"tMs":500,"level":0.3839}],"shape":"multi","brightness":0.4425,"envelope":[0.658,0.9971,1,0.8859,0.7775,0.6662,0.5203,0.385,0.3397,0.3211,0.3502,0.3481,0.3369,0.3324,0.3546,0.3576,0.3554,0.3894,0.4055,0.3925,0.4312,0.4019,0.3677,0.3861,0.3731,0.3711,0.4061,0.3942,0.3978,0.416,0.3888,0.3811,0.3839,0.3457,0.3286,0.3194,0.2748,0.2572,0.2422,0.2037,0.1986,0.1794,0.1494,0.1468,0.1311,0.112,0.1011,0.0834,0.0709,0.0654,0.053,0.0444,0.039,0.0295,0.0262,0.021,0.0165,0.0145,0.0117,0.0099,0.008,0.0062,0.0054,0.0038]},"extra":[]}'>
+  <div class="sc-h">
+    <div class="t">
+      <h3>Энергия кончилась</h3>
+      <div class="scr">Модалка энергии</div>
+      <code>components/NoEnergyModal.tsx</code>
+    </div>
+    <button class="play" aria-label="Показать Энергия кончилась"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+  </div>
+  <div class="stage"><div class="phone"><div style="text-align:center"><div class="bolt">⚡</div><div class="cap">энергия кончилась</div></div><div class="flash"></div></div></div>
+  <div class="wave"><i style="height:20px"></i><i style="height:30px"></i><i style="height:30px"></i><i style="height:27px"></i><i style="height:23px"></i><i style="height:20px"></i><i style="height:16px"></i><i style="height:12px"></i><i style="height:10px"></i><i style="height:10px"></i><i style="height:11px"></i><i style="height:10px"></i><i style="height:10px"></i><i style="height:10px"></i><i style="height:11px"></i><i style="height:11px"></i><i style="height:11px"></i><i style="height:12px"></i><i style="height:12px"></i><i style="height:12px"></i><i style="height:13px"></i><i style="height:12px"></i><i style="height:11px"></i><i style="height:12px"></i><i style="height:11px"></i><i style="height:11px"></i><i style="height:12px"></i><i style="height:12px"></i><i style="height:12px"></i><i style="height:12px"></i><i style="height:12px"></i><i style="height:11px"></i><i style="height:12px"></i><i style="height:10px"></i><i style="height:10px"></i><i style="height:10px"></i><i style="height:8px"></i><i style="height:8px"></i><i style="height:7px"></i><i style="height:6px"></i><i style="height:6px"></i><i style="height:5px"></i><i style="height:4px"></i><i style="height:4px"></i><i style="height:4px"></i><i style="height:3px"></i><i style="height:3px"></i><i style="height:3px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i></div>
+  <div class="note">Восемь затухающих ударов — молния гаснет ступенями, а не плавно.</div>
+  <div class="meta">
+    <span class="m">звук <b>734</b> мс</span>
+    <span class="m">атака <b>31</b> мс</span>
+    <span class="m">ударов <b>8</b></span>
+    <span class="m">multi</span>
+  </div>
+</article>
+<article class="sc" data-scene='{"id":"pm.energy.refilled","file":"energy/pm_energy_refilled_v1.wav","kind":"energy-full","comboN":null,"wave":{"effectiveMs":531,"attackMs":281,"hits":[{"tMs":94,"level":0.4944},{"tMs":156,"level":0.5769},{"tMs":219,"level":0.4099},{"tMs":281,"level":1},{"tMs":344,"level":0.9092},{"tMs":391,"level":0.5085}],"shape":"multi","brightness":0.0547,"envelope":[0.0551,0.1497,0.1676,0.1552,0.0759,0.0316,0.4944,0.2543,0.1863,0.3038,0.5769,0.3487,0.4074,0.3968,0.4099,0.2921,0.1866,0.8182,1,0.8251,0.5627,0.6938,0.9092,0.8296,0.5045,0.5085,0.437,0.3343,0.2048,0.0914,0.1513,0.1491,0.1105,0.1463,0.0667,0.0261,0.0155,0.0382,0.0222,0.0235,0.0225,0.0115,0.0084,0.0052,0.0035,0.0058,0.0046,0.0052,0.0058,0.0052,0.0037,0.0026,0.0022,0.0037,0.0027,0.0029,0.0024,0.001,0.0017,0.0009,0.0008,0.0008,0.001,0.0004]},"extra":[]}'>
+  <div class="sc-h">
+    <div class="t">
+      <h3>Энергия восполнена</h3>
+      <div class="scr">Главная / модалка</div>
+      <code>app/energy_shard_refill.ts</code>
+    </div>
+    <button class="play" aria-label="Показать Энергия восполнена"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+  </div>
+  <div class="stage"><div class="phone"><div style="text-align:center"><div class="bolt">⚡</div><div style="height:10px"></div><div class="bar"><i></i></div></div><div class="flash"></div></div></div>
+  <div class="wave"><i style="height:2px"></i><i style="height:4px"></i><i style="height:5px"></i><i style="height:5px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:15px"></i><i style="height:8px"></i><i style="height:6px"></i><i style="height:9px"></i><i style="height:17px"></i><i style="height:10px"></i><i style="height:12px"></i><i style="height:12px"></i><i style="height:12px"></i><i style="height:9px"></i><i style="height:6px"></i><i style="height:25px"></i><i style="height:30px"></i><i style="height:25px"></i><i style="height:17px"></i><i style="height:21px"></i><i style="height:27px"></i><i style="height:25px"></i><i style="height:15px"></i><i style="height:15px"></i><i style="height:13px"></i><i style="height:10px"></i><i style="height:6px"></i><i style="height:3px"></i><i style="height:5px"></i><i style="height:4px"></i><i style="height:3px"></i><i style="height:4px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i></div>
+  <div class="note">Нарастание 281 мс — шкала заполняется ровно под подъём звука.</div>
+  <div class="meta">
+    <span class="m">звук <b>531</b> мс</span>
+    <span class="m">атака <b>281</b> мс</span>
+    <span class="m">ударов <b>6</b></span>
+    <span class="m">multi</span>
+  </div>
+</article>
+<article class="sc" data-scene='{"id":"pm.league.promoted","file":"league/pm_league_promoted_v1.wav","kind":"league-up","comboN":null,"wave":{"effectiveMs":1008,"attackMs":281,"hits":[{"tMs":94,"level":0.7092},{"tMs":141,"level":0.7295},{"tMs":281,"level":1},{"tMs":328,"level":0.9097},{"tMs":375,"level":0.8818},{"tMs":469,"level":0.68},{"tMs":727,"level":0.2889}],"shape":"multi","brightness":0.0721,"envelope":[0.1188,0.5084,0.6968,0.708,0.7092,0.5234,0.7295,0.7093,0.8575,0.8616,0.8952,0.9057,1,0.901,0.9097,0.8432,0.8818,0.84,0.7212,0.6695,0.68,0.6418,0.5945,0.5256,0.4852,0.4845,0.4134,0.3855,0.3306,0.3182,0.2649,0.2889,0.2317,0.2626,0.2022,0.2419,0.1828,0.1951,0.1508,0.1513,0.1344,0.122,0.1057,0.0966,0.087,0.0796,0.0726,0.0655,0.0525,0.0529,0.0537,0.0438,0.0415,0.0324,0.0253,0.0199,0.0142,0.0119,0.0094,0.0064,0.0046,0.0025,0.0018,0.0011]},"extra":[]}'>
+  <div class="sc-h">
+    <div class="t">
+      <h3>Повышение в лиге</h3>
+      <div class="scr">Модалка лиги</div>
+      <code>app/LeagueResultModal.tsx:252</code>
+    </div>
+    <button class="play" aria-label="Показать Повышение в лиге"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+  </div>
+  <div class="stage"><div class="phone"><div class="badge">🏆</div><div class="flash"></div></div></div>
+  <div class="wave"><i style="height:4px"></i><i style="height:15px"></i><i style="height:21px"></i><i style="height:21px"></i><i style="height:21px"></i><i style="height:16px"></i><i style="height:22px"></i><i style="height:21px"></i><i style="height:26px"></i><i style="height:26px"></i><i style="height:27px"></i><i style="height:27px"></i><i style="height:30px"></i><i style="height:27px"></i><i style="height:27px"></i><i style="height:25px"></i><i style="height:26px"></i><i style="height:25px"></i><i style="height:22px"></i><i style="height:20px"></i><i style="height:20px"></i><i style="height:19px"></i><i style="height:18px"></i><i style="height:16px"></i><i style="height:15px"></i><i style="height:15px"></i><i style="height:12px"></i><i style="height:12px"></i><i style="height:10px"></i><i style="height:10px"></i><i style="height:8px"></i><i style="height:9px"></i><i style="height:7px"></i><i style="height:8px"></i><i style="height:6px"></i><i style="height:7px"></i><i style="height:5px"></i><i style="height:6px"></i><i style="height:5px"></i><i style="height:5px"></i><i style="height:4px"></i><i style="height:4px"></i><i style="height:3px"></i><i style="height:3px"></i><i style="height:3px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i></div>
+  <div class="note">Самый длинный подъём — 1008 мс. Значок лиги поднимается всю длину звука.</div>
+  <div class="meta">
+    <span class="m">звук <b>1008</b> мс</span>
+    <span class="m">атака <b>281</b> мс</span>
+    <span class="m">ударов <b>7</b></span>
+    <span class="m">multi</span>
+  </div>
+</article>
+<article class="sc" data-scene='{"id":"pm.league.demoted","file":"league/pm_league_demoted_v1.wav","kind":"league-down","comboN":null,"wave":{"effectiveMs":656,"attackMs":422,"hits":[{"tMs":23,"level":0.9558},{"tMs":94,"level":0.4848},{"tMs":422,"level":1},{"tMs":492,"level":0.5167}],"shape":"multi","brightness":0.0552,"envelope":[0.0082,0.9558,0.6393,0.4833,0.4848,0.466,0.4631,0.4336,0.4178,0.3787,0.3223,0.2954,0.2525,0.2115,0.1838,0.1518,0.1315,0.3993,1,0.685,0.5022,0.5167,0.4094,0.3284,0.2449,0.2033,0.1448,0.1176,0.0996,0.074,0.063,0.0593,0.0543,0.0491,0.0489,0.0451,0.0359,0.0305,0.0297,0.0236,0.0183,0.0163,0.0134,0.0122,0.0159,0.0194,0.0177,0.019,0.0195,0.0157,0.0123,0.01,0.0083,0.0079,0.0074,0.0055,0.0053,0.0046,0.0035,0.0034,0.0029,0.0023,0.0021,0.0016]},"extra":[]}'>
+  <div class="sc-h">
+    <div class="t">
+      <h3>Понижение в лиге</h3>
+      <div class="scr">Модалка лиги</div>
+      <code>app/LeagueResultModal.tsx:252</code>
+    </div>
+    <button class="play" aria-label="Показать Понижение в лиге"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+  </div>
+  <div class="stage"><div class="phone"><div class="badge">🏆</div><div class="flash"></div></div></div>
+  <div class="wave"><i style="height:2px"></i><i style="height:29px"></i><i style="height:19px"></i><i style="height:14px"></i><i style="height:15px"></i><i style="height:14px"></i><i style="height:14px"></i><i style="height:13px"></i><i style="height:13px"></i><i style="height:11px"></i><i style="height:10px"></i><i style="height:9px"></i><i style="height:8px"></i><i style="height:6px"></i><i style="height:6px"></i><i style="height:5px"></i><i style="height:4px"></i><i style="height:12px"></i><i style="height:30px"></i><i style="height:21px"></i><i style="height:15px"></i><i style="height:16px"></i><i style="height:12px"></i><i style="height:10px"></i><i style="height:7px"></i><i style="height:6px"></i><i style="height:4px"></i><i style="height:4px"></i><i style="height:3px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i></div>
+  <div class="note">Тот же значок, но оседает вниз. Без красного — понижение не ошибка.</div>
+  <div class="meta">
+    <span class="m">звук <b>656</b> мс</span>
+    <span class="m">атака <b>422</b> мс</span>
+    <span class="m">ударов <b>4</b></span>
+    <span class="m">multi</span>
+  </div>
+</article>
+<article class="sc" data-scene='{"id":"pm.reward.collectible","file":"reward/pm_reward_collectible_v1.wav","kind":"collectible","comboN":null,"wave":{"effectiveMs":328,"attackMs":31,"hits":[{"tMs":31,"level":1},{"tMs":78,"level":0.7473},{"tMs":297,"level":0.3856}],"shape":"triple","brightness":0.9584,"envelope":[0.0642,0.1822,1,0.3056,0.2503,0.7473,0.3913,0.2099,0.069,0.2151,0.0384,0.024,0.0657,0.0331,0.1755,0.1896,0.0941,0.1054,0.0672,0.3856,0.1025,0.0857,0.0323,0.0437,0.0262,0.0265,0.0176,0.0073,0.0105,0.0095,0.0061,0.0065,0.0042,0.0038,0.0038,0.0031,0.0024,0.002,0.0015,0.0016,0.0013,0.0013,0.0011,0.001,0.001,0.0008,0.0008,0.0007,0.0008,0.0008,0.0007,0.0007,0.0005,0.0006,0.0005,0.0005,0.0005,0.0006,0.0004,0.0003,0.0004,0.0004,0.0004,0.0005]},"extra":[]}'>
+  <div class="sc-h">
+    <div class="t">
+      <h3>Коллекционный предмет</h3>
+      <div class="scr">Модалка дропа</div>
+      <code>components/CollectibleDropModal.tsx</code>
+    </div>
+    <button class="play" aria-label="Показать Коллекционный предмет"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+  </div>
+  <div class="stage"><div class="phone"><div class="coll">💎<div class="shine"></div></div><div class="flash"></div></div></div>
+  <div class="wave"><i style="height:2px"></i><i style="height:5px"></i><i style="height:30px"></i><i style="height:9px"></i><i style="height:8px"></i><i style="height:22px"></i><i style="height:12px"></i><i style="height:6px"></i><i style="height:2px"></i><i style="height:6px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:5px"></i><i style="height:6px"></i><i style="height:3px"></i><i style="height:3px"></i><i style="height:2px"></i><i style="height:12px"></i><i style="height:3px"></i><i style="height:3px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i></div>
+  <div class="note">Очень яркий звук — карточка ловит блик по диагонали.</div>
+  <div class="meta">
+    <span class="m">звук <b>328</b> мс</span>
+    <span class="m">атака <b>31</b> мс</span>
+    <span class="m">ударов <b>3</b></span>
+    <span class="m">triple</span>
+  </div>
+</article>
+<article class="sc" data-scene='{"id":"pm.social.gift_received","file":"social/pm_social_gift_received_v1.wav","kind":"gift","comboN":null,"wave":{"effectiveMs":656,"attackMs":281,"hits":[{"tMs":281,"level":1},{"tMs":352,"level":0.5646}],"shape":"double","brightness":0.7849,"envelope":[0.0012,0.0019,0.0048,0.0147,0.051,0.0776,0.102,0.1372,0.0589,0.1285,0.1634,0.6942,1,0.6791,0.5573,0.5646,0.3428,0.2438,0.2031,0.1436,0.1219,0.1162,0.0966,0.0991,0.1074,0.1037,0.1167,0.1163,0.0876,0.0501,0.0529,0.0438,0.0462,0.041,0.0307,0.0326,0.0239,0.0277,0.0314,0.0306,0.0303,0.0225,0.0179,0.015,0.0144,0.0143,0.0155,0.014,0.0113,0.0098,0.0086,0.0065,0.0069,0.0056,0.0043,0.0038,0.0035,0.0028,0.0024,0.0021,0.0019,0.0017,0.0013,0.001]},"extra":[]}'>
+  <div class="sc-h">
+    <div class="t">
+      <h3>Подарок от друга</h3>
+      <div class="scr">Поверх экрана</div>
+      <code>components/GlobalFriendGiftHost.tsx</code>
+    </div>
+    <button class="play" aria-label="Показать Подарок от друга"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+  </div>
+  <div class="stage"><div class="phone"><div class="gift">🎁</div><div class="flash"></div></div></div>
+  <div class="wave"><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:3px"></i><i style="height:4px"></i><i style="height:2px"></i><i style="height:4px"></i><i style="height:5px"></i><i style="height:21px"></i><i style="height:30px"></i><i style="height:20px"></i><i style="height:17px"></i><i style="height:17px"></i><i style="height:10px"></i><i style="height:7px"></i><i style="height:6px"></i><i style="height:4px"></i><i style="height:4px"></i><i style="height:3px"></i><i style="height:3px"></i><i style="height:3px"></i><i style="height:3px"></i><i style="height:3px"></i><i style="height:4px"></i><i style="height:3px"></i><i style="height:3px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i></div>
+  <div class="note">Ждёт, пока договорит озвучка (deferAfterVoice) — не перебивает урок.</div>
+  <div class="meta">
+    <span class="m">звук <b>656</b> мс</span>
+    <span class="m">атака <b>281</b> мс</span>
+    <span class="m">ударов <b>2</b></span>
+    <span class="m">double</span>
+  </div>
+</article>
+<article class="sc" data-scene='{"id":"pm.system.success","file":"system/pm_system_success_v1.wav","kind":"toast-ok","comboN":null,"wave":{"effectiveMs":281,"attackMs":188,"hits":[{"tMs":109,"level":0.4211},{"tMs":188,"level":1}],"shape":"double","brightness":0.9462,"envelope":[0.156,0.0606,0.0365,0.0373,0.192,0.1072,0.0528,0.4211,0.2717,0.1347,0.0709,0.0366,1,0.6447,0.3376,0.1968,0.162,0.1262,0.091,0.0751,0.0577,0.051,0.0407,0.0279,0.0171,0.0101,0.0115,0.015,0.0151,0.0137,0.0097,0.0061,0.0064,0.008,0.0076,0.0075,0.0064,0.0061,0.0033,0.0022,0.0044,0.0054,0.0039,0.0033,0.002,0.0014,0.0016,0.0017,0.0015,0.0014,0.0014,0.0014,0.0013,0.0011,0.001,0.0009,0.0009,0.0009,0.0008,0.0007,0.0006,0.0006,0.0006,0.0005]},"extra":[]}'>
+  <div class="sc-h">
+    <div class="t">
+      <h3>Тост «успешно»</h3>
+      <div class="scr">Тост снизу</div>
+      <code>components/ActionToast.tsx</code>
+    </div>
+    <button class="play" aria-label="Показать Тост «успешно»"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+  </div>
+  <div class="stage"><div class="phone"><div class="toast"><div class="dot"><svg viewBox="0 0 24 24"><path d="M4 12.5l5.5 5.5L20 6.5"/></svg></div><span>Сохранено</span></div><div class="flash"></div></div></div>
+  <div class="wave"><i style="height:5px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:6px"></i><i style="height:3px"></i><i style="height:2px"></i><i style="height:13px"></i><i style="height:8px"></i><i style="height:4px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:30px"></i><i style="height:19px"></i><i style="height:10px"></i><i style="height:6px"></i><i style="height:5px"></i><i style="height:4px"></i><i style="height:3px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i></div>
+  <div class="note">Тихий короткий звук — тост въезжает снизу, без празднования.</div>
+  <div class="meta">
+    <span class="m">звук <b>281</b> мс</span>
+    <span class="m">атака <b>188</b> мс</span>
+    <span class="m">ударов <b>2</b></span>
+    <span class="m">double</span>
+  </div>
+</article>
+<article class="sc" data-scene='{"id":"pm.system.error_recoverable","file":"system/pm_system_error_recoverable_v1.wav","kind":"toast-err","comboN":null,"wave":{"effectiveMs":344,"attackMs":109,"hits":[{"tMs":109,"level":1}],"shape":"perc","brightness":0.1744,"envelope":[0.2451,0.1373,0.0851,0.0637,0.0476,0.0339,0.5865,1,0.6893,0.6162,0.5087,0.465,0.3892,0.3102,0.2689,0.2252,0.1943,0.1715,0.1548,0.1382,0.1169,0.1017,0.0879,0.0777,0.0636,0.0559,0.0487,0.0413,0.0358,0.0335,0.0301,0.0264,0.0225,0.0197,0.0177,0.0155,0.0136,0.012,0.0105,0.0096,0.0085,0.0077,0.0066,0.0058,0.0052,0.0048,0.0041,0.0038,0.0034,0.0031,0.0027,0.0025,0.0021,0.0018,0.0016,0.0015,0.0013,0.0012,0.0009,0.0008,0.0006,0.0005,0.0004,0.0001]},"extra":[]}'>
+  <div class="sc-h">
+    <div class="t">
+      <h3>Тост «ошибка»</h3>
+      <div class="scr">Тост снизу</div>
+      <code>components/ActionToast.tsx</code>
+    </div>
+    <button class="play" aria-label="Показать Тост «ошибка»"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+  </div>
+  <div class="stage"><div class="phone"><div class="toast err"><div class="dot"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></div><span>Не удалось</span></div><div class="flash"></div></div></div>
+  <div class="wave"><i style="height:7px"></i><i style="height:4px"></i><i style="height:3px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:18px"></i><i style="height:30px"></i><i style="height:21px"></i><i style="height:18px"></i><i style="height:15px"></i><i style="height:14px"></i><i style="height:12px"></i><i style="height:9px"></i><i style="height:8px"></i><i style="height:7px"></i><i style="height:6px"></i><i style="height:5px"></i><i style="height:5px"></i><i style="height:4px"></i><i style="height:4px"></i><i style="height:3px"></i><i style="height:3px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i></div>
+  <div class="note">Один удар — одна короткая тряска. Не трясти дольше звука.</div>
+  <div class="meta">
+    <span class="m">звук <b>344</b> мс</span>
+    <span class="m">атака <b>109</b> мс</span>
+    <span class="m">ударов <b>1</b></span>
+    <span class="m">perc</span>
+  </div>
+</article>
+<article class="sc" data-scene='{"id":"pm.voice.record_ready","file":"voice/pm_voice_record_ready_v1.wav","kind":"record","comboN":null,"wave":{"effectiveMs":125,"attackMs":109,"hits":[{"tMs":109,"level":1}],"shape":"perc","brightness":0.8871,"envelope":[0.9172,0.0712,0.017,0.0089,0.0032,0.0023,0.0021,1,0.0832,0.0131,0.0047,0.002,0.0012,0.0007,0.0003,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001,0.0001]},"extra":[]}'>
+  <div class="sc-h">
+    <div class="t">
+      <h3>Запись началась</h3>
+      <div class="scr">Панель речи</div>
+      <code>hooks/use-record-start-cue.ts</code>
+    </div>
+    <button class="play" aria-label="Показать Запись началась"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+  </div>
+  <div class="stage"><div class="phone"><div class="rec"><i></i></div><div class="flash"></div></div></div>
+  <div class="wave"><i style="height:28px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:30px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i><i style="height:2px"></i></div>
+  <div class="note">Только iOS. Звук 125 мс — точка появляется мгновенно и начинает дышать.</div>
+  <div class="meta">
+    <span class="m">звук <b>125</b> мс</span>
+    <span class="m">атака <b>109</b> мс</span>
+    <span class="m">ударов <b>1</b></span>
+    <span class="m">perc</span>
+  </div>
+</article>
+</div>
+</div>
+
+<script>
+const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
+let currentAudio = null;
+
+function spark(host, tone, n, spread){
+  for (let i=0;i<n;i++){
+    const s=document.createElement('div'); s.className='spark'; s.style.background=tone;
+    host.appendChild(s);
+    const a=(Math.PI*2*i)/n + Math.random()*.6, d=spread+Math.random()*spread*.6;
+    s.animate([{transform:'translate(0,0) scale(1)',opacity:.95},
+               {transform:'translate('+(Math.cos(a)*d).toFixed(1)+'px,'+(Math.sin(a)*d).toFixed(1)+'px) scale(0)',opacity:0}],
+      {duration:420+Math.random()*260,easing:'cubic-bezier(.23,1,.32,1)'}).onfinish=()=>s.remove();
+  }
+}
+function flash(card, ms){
+  const f=card.querySelector('.flash');
+  f.animate([{opacity:0},{opacity:.85},{opacity:0}],{duration:ms,easing:'cubic-bezier(.23,1,.32,1)'});
+}
+
+// зачем: каждая сцена анимирует СВОЙ элемент интерфейса, но все тайминги берутся
+// из одного источника — измеренной огибающей звука (hits/effectiveMs/brightness).
+const PLAYERS = {
+  'verdict-ok': (card,wv,tone)=>{
+    const v=card.querySelector('.verdict'), p=card.querySelector('.verdict path');
+    v.animate([{transform:'scale(.86)'},{transform:'scale(1.14)'},{transform:'scale(1)'}],
+      {duration:wv.effectiveMs+220,easing:'cubic-bezier(.23,1,.32,1)'});
+    p.animate([{strokeDashoffset:48},{strokeDashoffset:0}],{duration:wv.effectiveMs+120,easing:'cubic-bezier(.23,1,.32,1)'});
+    wv.hits.forEach(h=>setTimeout(()=>spark(v,tone,7,42),h.tMs));
+    flash(card,wv.effectiveMs+180);
+  },
+  'verdict-bad': (card,wv)=>{
+    const v=card.querySelector('.verdict');
+    v.animate([{transform:'translateX(0)'},{transform:'translateX(-9px)'},{transform:'translateX(8px)'},
+               {transform:'translateX(-5px)'},{transform:'translateX(0)'}],
+      {duration:Math.max(260,wv.effectiveMs),easing:'cubic-bezier(.23,1,.32,1)'});
+  },
+  'combo': (card,wv,tone,d)=>{
+    const b=card.querySelector('.big');
+    b.animate([{transform:'scale(.7)',opacity:.4},{transform:'scale(1.28)',opacity:1},{transform:'scale(1)',opacity:1}],
+      {duration:wv.effectiveMs+280,easing:'cubic-bezier(.23,1,.32,1)'});
+    b.style.color=tone;
+    wv.hits.forEach((h,i)=>setTimeout(()=>spark(card.querySelector('.phone'),tone,8,58+i*14),h.tMs));
+    flash(card,wv.effectiveMs+200);
+  },
+  'stars': (card,wv,tone,d)=>{
+    // три звезды на три отдельных звука, с реальным cooldown 180-220 мс
+    const stars=[...card.querySelectorAll('.star')];
+    const gaps=[0,200,420];
+    // зачем: первая звезда должна стартовать СИНХРОННО с кликом (её звук уже
+    // играет), остальные две — по реальным паузам cooldown из каталога.
+    const fly=(st,i)=>{
+      st.style.opacity=1;
+      st.animate([{transform:'scale(.3) rotate(-35deg)',opacity:.16},
+                  {transform:'scale(1.3) rotate(8deg)',opacity:1},
+                  {transform:'scale(1) rotate(0)',opacity:1}],
+        {duration:420,easing:'cubic-bezier(.23,1,.32,1)',fill:'forwards'});
+      spark(st,'#FFC800',7,40);
+      if(i===2) flash(card,420);
+    };
+    stars.forEach((st,i)=>{ if(gaps[i]===0) fly(st,i); else setTimeout(()=>fly(st,i),gaps[i]); });
+    setTimeout(()=>stars.forEach(s=>s.style.opacity=.16),2400);
+  },
+  'session': (card,wv,tone)=>{
+    const b=card.querySelector('.big');
+    b.animate([{transform:'scale(.86)'},{transform:'scale(1.1)'},{transform:'scale(1)'}],
+      {duration:wv.effectiveMs+260,easing:'cubic-bezier(.23,1,.32,1)'});
+    wv.hits.forEach(h=>setTimeout(()=>{
+      const r=document.createElement('div');
+      r.className='spark';
+      r.style.cssText='width:70px;height:70px;border-radius:50%;background:transparent;box-shadow:0 0 0 2px '+tone+' inset;opacity:.9';
+      card.querySelector('.phone').appendChild(r);
+      r.animate([{transform:'scale(.5)',opacity:.9},{transform:'scale(2.6)',opacity:0}],
+        {duration:640,easing:'cubic-bezier(.23,1,.32,1)'}).onfinish=()=>r.remove();
+    },h.tMs));
+  },
+  'exam': (card,wv,tone)=>{
+    const b=card.querySelector('.big');
+    b.animate([{transform:'scale(.6) rotate(-8deg)',opacity:.3},{transform:'scale(1.22) rotate(4deg)',opacity:1},
+               {transform:'scale(1) rotate(0)',opacity:1}],{duration:wv.effectiveMs+320,easing:'cubic-bezier(.23,1,.32,1)'});
+    wv.hits.forEach((h,i)=>setTimeout(()=>spark(card.querySelector('.phone'),i%2?'#FFC800':tone,10,66+i*10),h.tMs));
+    flash(card,wv.effectiveMs+260);
+  },
+  'chest': (card,wv,tone)=>{
+    const lid=card.querySelector('.lid'), light=card.querySelector('.light');
+    lid.animate([{transform:'rotate(0)'},{transform:'rotate(-8deg)'},{transform:'rotate(-52deg)'}],
+      {duration:wv.effectiveMs+180,easing:'cubic-bezier(.23,1,.32,1)',fill:'forwards'});
+    const last=wv.hits[wv.hits.length-1];
+    setTimeout(()=>{
+      light.animate([{transform:'scale(1)',opacity:1},{transform:'scale(16)',opacity:0}],
+        {duration:620,easing:'cubic-bezier(.23,1,.32,1)'});
+      spark(card.querySelector('.phone'),'#FFC800',12,74);
+      flash(card,520);
+    },last?last.tMs:wv.attackMs);
+    setTimeout(()=>lid.animate([{transform:'rotate(-52deg)'},{transform:'rotate(0)'}],{duration:300,fill:'forwards'}),2200);
+  },
+  'levelup': (card,wv,tone)=>{
+    const b=card.querySelector('.big');
+    let n=7; const target=8;
+    b.animate([{transform:'translateY(14px) scale(.8)',opacity:.3},{transform:'translateY(0) scale(1.2)',opacity:1},
+               {transform:'translateY(0) scale(1)',opacity:1}],{duration:wv.effectiveMs+300,easing:'cubic-bezier(.23,1,.32,1)'});
+    setTimeout(()=>{b.textContent=target;},wv.attackMs);
+    setTimeout(()=>{b.textContent=n;},2600);
+    wv.hits.forEach(h=>setTimeout(()=>spark(card.querySelector('.phone'),'#FFC800',9,64),h.tMs));
+    flash(card,wv.effectiveMs+240);
+  },
+  'achievement': (card,wv,tone)=>{
+    const m=card.querySelector('.medal');
+    m.animate([{transform:'translateY(-58px) scale(.7)',opacity:0},{transform:'translateY(6px) scale(1.12)',opacity:1},
+               {transform:'translateY(0) scale(1)',opacity:1}],{duration:wv.effectiveMs+300,easing:'cubic-bezier(.23,1,.32,1)'});
+    wv.hits.forEach(h=>setTimeout(()=>spark(m,'#FFC800',9,52),h.tMs));
+  },
+  'streak': (card,wv,tone)=>{
+    const f=card.querySelector('.flame'), b=card.querySelector('.big');
+    f.animate([{transform:'scale(.8)'},{transform:'scale(1.3)'},{transform:'scale(1)'}],
+      {duration:wv.effectiveMs+240,easing:'cubic-bezier(.23,1,.32,1)'});
+    if(b){ setTimeout(()=>{b.textContent=+b.textContent+1; b.animate([{transform:'scale(1.4)'},{transform:'scale(1)'}],{duration:300,easing:'cubic-bezier(.23,1,.32,1)'});},wv.hits[0]?wv.hits[0].tMs:0);
+      setTimeout(()=>{b.textContent=+b.textContent-1;},2600); }
+    wv.hits.forEach(h=>setTimeout(()=>spark(f,'#FF9A3C',8,50),h.tMs));
+  },
+  'energy-empty': (card,wv)=>{
+    const bolt=card.querySelector('.bolt');
+    // восемь ударов — восемь ступеней затухания
+    wv.hits.forEach((h,i)=>setTimeout(()=>{
+      bolt.animate([{opacity:1,transform:'scale(1)'},{opacity:.25,transform:'scale(.9)'}],
+        {duration:150,easing:'cubic-bezier(.23,1,.32,1)'});
+    },h.tMs));
+    bolt.animate([{opacity:1},{opacity:.28}],{duration:wv.effectiveMs+200,fill:'forwards',easing:'cubic-bezier(.23,1,.32,1)'});
+    setTimeout(()=>bolt.animate([{opacity:.28},{opacity:1}],{duration:300,fill:'forwards'}),2400);
+  },
+  'energy-full': (card,wv,tone)=>{
+    const fill=card.querySelector('.bar i'), bolt=card.querySelector('.bolt');
+    fill.animate([{width:'8%'},{width:'100%'}],{duration:wv.effectiveMs+140,easing:'cubic-bezier(.23,1,.32,1)',fill:'forwards'});
+    bolt.animate([{transform:'scale(.85)'},{transform:'scale(1.24)'},{transform:'scale(1)'}],
+      {duration:wv.effectiveMs+240,easing:'cubic-bezier(.23,1,.32,1)'});
+    wv.hits.forEach(h=>setTimeout(()=>spark(bolt,'#FFC800',7,44),h.tMs));
+    setTimeout(()=>fill.animate([{width:'100%'},{width:'8%'}],{duration:300,fill:'forwards'}),2500);
+  },
+  'league-up': (card,wv,tone)=>{
+    const bd=card.querySelector('.badge');
+    bd.animate([{transform:'translateY(34px) scale(.82)',opacity:.4},{transform:'translateY(-8px) scale(1.14)',opacity:1},
+                {transform:'translateY(0) scale(1)',opacity:1}],{duration:wv.effectiveMs,easing:'cubic-bezier(.23,1,.32,1)'});
+    wv.hits.forEach(h=>setTimeout(()=>spark(bd,'#FFC800',8,58),h.tMs));
+    flash(card,wv.effectiveMs);
+  },
+  'league-down': (card,wv)=>{
+    const bd=card.querySelector('.badge');
+    bd.animate([{transform:'translateY(-16px) scale(1.04)',opacity:1},{transform:'translateY(16px) scale(.9)',opacity:.65},
+                {transform:'translateY(0) scale(1)',opacity:1}],{duration:wv.effectiveMs,easing:'cubic-bezier(.23,1,.32,1)'});
+  },
+  'collectible': (card,wv,tone)=>{
+    const c=card.querySelector('.coll'), sh=card.querySelector('.shine');
+    c.animate([{transform:'scale(.72) rotate(-12deg)',opacity:.3},{transform:'scale(1.16) rotate(5deg)',opacity:1},
+               {transform:'scale(1) rotate(0)',opacity:1}],{duration:wv.effectiveMs+280,easing:'cubic-bezier(.23,1,.32,1)'});
+    sh.animate([{transform:'rotate(22deg) translateX(-90px)'},{transform:'rotate(22deg) translateX(150px)'}],
+      {duration:wv.effectiveMs+300,easing:'cubic-bezier(.23,1,.32,1)'});
+    wv.hits.forEach(h=>setTimeout(()=>spark(c,'#FFC800',8,54),h.tMs));
+    flash(card,wv.effectiveMs+200);
+  },
+  'gift': (card,wv,tone)=>{
+    const g=card.querySelector('.gift');
+    g.animate([{transform:'scale(.7) rotate(-14deg)',opacity:.35},{transform:'scale(1.2) rotate(7deg)',opacity:1},
+               {transform:'scale(1) rotate(0)',opacity:1}],{duration:wv.effectiveMs+260,easing:'cubic-bezier(.23,1,.32,1)'});
+    wv.hits.forEach(h=>setTimeout(()=>spark(g,tone,8,52),h.tMs));
+  },
+  'toast-ok': (card,wv,tone)=>{
+    const t=card.querySelector('.toast');
+    t.animate([{transform:'translateY(150%)'},{transform:'translateY(0)'}],
+      {duration:280,easing:'cubic-bezier(.23,1,.32,1)',fill:'forwards'});
+    setTimeout(()=>t.animate([{transform:'translateY(0)'},{transform:'translateY(150%)'}],
+      {duration:200,easing:'cubic-bezier(.23,1,.32,1)',fill:'forwards'}),2100);
+  },
+  'toast-err': (card,wv)=>{
+    const t=card.querySelector('.toast');
+    t.animate([{transform:'translateY(150%)'},{transform:'translateY(0)'}],
+      {duration:260,easing:'cubic-bezier(.23,1,.32,1)',fill:'forwards'});
+    setTimeout(()=>t.animate([{transform:'translateY(0) translateX(0)'},{transform:'translateY(0) translateX(-7px)'},
+      {transform:'translateY(0) translateX(6px)'},{transform:'translateY(0) translateX(0)'}],
+      {duration:Math.max(240,wv.effectiveMs),easing:'cubic-bezier(.23,1,.32,1)'}),260);
+    setTimeout(()=>t.animate([{transform:'translateY(0)'},{transform:'translateY(150%)'}],
+      {duration:200,fill:'forwards'}),2200);
+  },
+  'record': (card,wv,tone)=>{
+    const r=card.querySelector('.rec');
+    r.animate([{transform:'scale(.7)',opacity:.4},{transform:'scale(1.14)',opacity:1},{transform:'scale(1)',opacity:1}],
+      {duration:wv.effectiveMs+200,easing:'cubic-bezier(.23,1,.32,1)'});
+    // после старта — «дыхание», как во время реальной записи
+    setTimeout(()=>r.animate([{transform:'scale(1)'},{transform:'scale(1.09)'},{transform:'scale(1)'}],
+      {duration:1100,iterations:2,easing:'ease-in-out'}),wv.effectiveMs);
+  },
+};
+
+document.querySelectorAll('.sc').forEach(card=>{
+  const d=JSON.parse(card.dataset.scene);
+  card.querySelector('.play').addEventListener('click',()=>{
+    if(currentAudio){currentAudio.pause();currentAudio.currentTime=0;}
+    const a=new Audio('../../assets/audio/sfx/v1/'+d.file);
+    currentAudio=a; a.play().catch(()=>{});
+
+    // звёзды: три отдельных звука с реальными паузами
+    if(d.kind==='stars'){
+      [200,420].forEach((delay,i)=>setTimeout(()=>{
+        const f=['completion/pm_complete_star_2_v1.wav','completion/pm_complete_star_3_v1.wav'][i];
+        const b=new Audio('../../assets/audio/sfx/v1/'+f); b.play().catch(()=>{});
+      },delay));
+    }
+
+    const tone = d.wave.brightness>0.55 ? '#FFC800' : '#47C870';
+    if(!REDUCED) (PLAYERS[d.kind]||(()=>{}))(card,d.wave,tone,d);
+
+    // бегунок по волне — синхронно со звучанием
+    const bars=[...card.querySelectorAll('.wave i')], t0=performance.now();
+    (function tick(){
+      const p=(performance.now()-t0)/d.wave.effectiveMs;
+      if(p>=1){bars.forEach(b=>b.classList.remove('lit'));return;}
+      const idx=Math.floor(p*bars.length);
+      bars.forEach((b,i)=>b.classList.toggle('lit',i<=idx));
+      requestAnimationFrame(tick);
+    })();
+  });
+});
+</script>

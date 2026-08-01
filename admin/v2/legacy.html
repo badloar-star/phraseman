@@ -356,7 +356,8 @@
     .promo-field select:focus,
     .promo-field textarea:focus,
     .promo-btn:focus-visible,
-    .promo-code-copy:focus-visible {
+    .promo-code-copy:focus-visible,
+    .promo-code-delete:focus-visible {
       border-color: #60a5fa !important;
       box-shadow: 0 0 0 3px rgba(96,165,250,.22);
       outline: none;
@@ -3451,6 +3452,22 @@
       font-size: 14px;
       font-weight: 750;
       line-height: 1.35;
+    .promo-code-delete {
+      width: 36px;
+      min-width: 36px;
+      min-height: 36px;
+      display: inline-grid;
+      place-items: center;
+      padding: 0;
+      background: #3b181b;
+      border: 1px solid #7f1d1d;
+      border-radius: 8px;
+      color: #fecaca;
+      cursor: pointer;
+    }
+    .promo-code-delete:hover:not(:disabled) { background: #512024; border-color: #f87171; }
+    .promo-code-delete:disabled { cursor: not-allowed; opacity: .55; }
+    .promo-code-delete svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 2; }
     }
     body[data-admin-skin="onboarding"] #tab-referrals .ref-arrow {
       color: var(--admin-faint);
@@ -5012,6 +5029,9 @@
     .gift-cert-visual.is-lifetime { color: #fff8e8; }
     .gift-cert-visual.is-lifetime .gift-cert-visual-panel { border-color: rgba(222,181,92,.38); background: rgba(8,14,13,.84); }
     .gift-cert-visual-recipient { font-size: clamp(11px, 1.4vw, 22px); font-weight: 900; line-height: 1.12; overflow-wrap: anywhere; }
+    .gift-cert-btn-icon { width: 44px; min-width: 44px; display: inline-grid; place-items: center; padding: 0; margin-left: auto; }
+    .gift-cert-btn-icon:hover:not(:disabled) { background: #512024; border-color: #f87171; }
+    .gift-cert-btn-icon svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; }
     .gift-cert-visual-sender { margin-top: 1.5%; color: #6f6857; font-size: clamp(9px, .9vw, 14px); overflow-wrap: anywhere; }
     .gift-cert-visual.is-lifetime .gift-cert-visual-sender { color: #d8ccb0; }
     .gift-cert-visual-product { margin-top: 4%; color: #8a6100; font-size: clamp(10px, 1.05vw, 17px); font-weight: 800; }
@@ -27281,6 +27301,7 @@
       return n ? (n + ' своих кодов') : 'свои коды из поля';
     }
     const count = Math.max(0, parseInt(promoGet('promo-batch-count') || '0', 10) || 0);
+  let _fnPromoDelete = null;
     const prefix = (promoGet('promo-prefix') || 'PM').toUpperCase();
     return (count || 0) + ' кодов с префиксом ' + prefix;
   }
@@ -29363,6 +29384,27 @@
         const counts = await loadAppMessageReactionCounts(d.id, data).catch(() => ({ likes: 0, dislikes: 0 }));
         const pollCounts = await loadAppMessagePollCounts(d.id, data).catch(() => ({ pollCounts: {}, pollVoteCount: 0 }));
         return { id: d.id, ...data, ...counts, ...pollCounts };
+  window.deletePromoCode = async function(code, expectedUpdatedAtMs) {
+    const normalizedCode = String(code || '').trim().toUpperCase();
+    if (!normalizedCode) return;
+    const confirmed = await showConfirmModal({
+      title: '??????? ?????????',
+      desc: `???????? ${normalizedCode} ?????????? ???????? ?????. ??? ???????? ?????? ????????. ?????????? ?????????? ???????? ??????? ?? ??? ???????? ? ??? ??? ? ?????????? ????????? ??????.`,
+      confirmLabel: '??????? ????????',
+      danger: true,
+    });
+    if (!confirmed) return;
+    try {
+      if (!_fnPromoDelete) _fnPromoDelete = createAppCheckProtectedGiftCallable('promoCodeDelete');
+      await _fnPromoDelete({ code: normalizedCode, expectedUpdatedAtMs: Number(expectedUpdatedAtMs || 0) });
+      promoCopyStatus(`???????? ${normalizedCode} ??????.`, '#4ade80');
+      window._promoCodesHtml = '';
+      await window.loadPromoCodes(true);
+    } catch (error) {
+      promoCopyStatus(`???????? ?? ??????: ${error?.message || String(error)}`, '#f87171');
+    }
+  };
+
       }));
       await loadSettingsMessageFunnel(rows);
       window._appMessages = rows;
@@ -34681,6 +34723,7 @@
         } catch (error) {
           if (action !== 'send' || !dependencies.fail || !dependencies.retryPersonalization) throw error;
           if (dependencies.setBusy) await dependencies.setBusy(false);
+  let _fnAdminDeleteGiftCertificate = null;
           await dependencies.fail(error);
           const retryPersonalization = await dependencies.retryPersonalization();
           if (!retryPersonalization) {
@@ -35151,6 +35194,7 @@
       _giftCertificatePersonalizationPreviousFocus,
       _giftCertificatePersonalizationFocusDescriptor,
     );
+        <button type="button" class="gift-cert-btn gift-cert-btn-danger gift-cert-btn-icon" data-gift-certificate-id="${escapeHtml(certificateId)}" data-gift-certificate-action="delete" onclick="deleteGiftCertificate('${escapeHtml(certificateId)}')" title="??????? ?????????? ? ??? ???????? ????????" aria-label="??????? ?????????? ${escapeHtml(record.activationCode || certificateId)}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M9 6V4h6v2m-8 0 1 14h8l1-14M10 11v6m4-6v6"/></svg></button>
     _giftCertificatePersonalizationPreviousFocus = null;
     _giftCertificatePersonalizationFocusDescriptor = null;
     if (resolve) resolve(result || null);
@@ -35211,6 +35255,41 @@
     const modal = document.getElementById('gift-certificate-personalization-modal');
     const mode = modal?.querySelector('input[name="gift-certificate-personalization-mode"]:checked')?.value || 'named';
     const names = document.getElementById('gift-personalization-names');
+  window.deleteGiftCertificate = async function(certificateId) {
+    const normalizedCertificateId = String(certificateId || '').trim();
+    const record = _giftCertificateRecords.get(normalizedCertificateId);
+    if (!record) { showToast('?????????? ?? ?????? ? ??????? ???????.', 'err'); return; }
+    const activationCode = String(record.activationCode || normalizedCertificateId);
+    const confirmed = await showConfirmModal({
+      title: '??????? ?????????? ? ?????????',
+      desc: `?????????? ${activationCode} ? ??? ??????? ???????? ????? ??????? ??????. ????????? ?????? ??????????? ?????. ???????? ?????? ????????.`,
+      confirmLabel: '??????? ????????',
+      danger: true,
+    });
+    if (!confirmed) return;
+    const row = document.getElementById(`gift-cert-row-${normalizedCertificateId}`);
+    const button = row?.querySelector('[data-gift-certificate-action="delete"]');
+    try {
+      if (button) button.disabled = true;
+      giftCertificateRowStatus(normalizedCertificateId, '?????? ?????????? ? ?????????', false);
+      if (!_fnAdminDeleteGiftCertificate) {
+        _fnAdminDeleteGiftCertificate = createAppCheckProtectedGiftCallable('adminDeleteGiftCertificate');
+      }
+      await _fnAdminDeleteGiftCertificate({
+        certificateId: normalizedCertificateId,
+        expectedUpdatedAtMs: Number(record.updatedAtMs || record.createdAtMs || 0),
+      });
+      _giftCertificateRecords.delete(normalizedCertificateId);
+      giftCertificateRenderHistory([..._giftCertificateRecords.values()]);
+      window._promoCodesHtml = '';
+      if (typeof window.loadPromoCodes === 'function') void window.loadPromoCodes(true);
+      showToast(`?????????? ${activationCode} ? ???????? ???????.`, 'ok');
+    } catch (error) {
+      giftCertificateRowStatus(normalizedCertificateId, `???????? ?? ?????????: ${error?.message || String(error)}`, true);
+      if (button) button.disabled = false;
+    }
+  };
+
     if (names) names.hidden = mode === 'anonymous';
   }
 

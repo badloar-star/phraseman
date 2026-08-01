@@ -1,0 +1,1922 @@
+{
+  "schemaVersion": 3,
+  "bankVersion": "20260801-2",
+  "language": "it",
+  "level": "A1",
+  "questions": [
+    {
+      "id": "it-a1-001",
+      "level": "A1",
+      "difficulty": 0.517,
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "constructId": "it-a1-grammar-subject-pronoun-expression",
+      "descriptorRefs": [
+        "CEFR-2020-A1-reception",
+        "CEFR-2020-A1-language-competence"
+      ],
+      "selectionRefs": [
+        "it-selection-A1-grammar"
+      ],
+      "scenario": "introducing a colleague and their role",
+      "prompt": "four-option contextual form-and-meaning discrimination",
+      "scenarioRu": "Рабочая ситуация",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Nella pratica001 il contesto contrappone Marco a Lucia. Quale frase rende esplicito il soggetto femminile?",
+      "options": [
+        "Lei prepara pratica001 oggi.",
+        "Lui prepara pratica001 oggi.",
+        "Io prepara pratica001 oggi.",
+        "Loro prepari pratica001 oggi."
+      ],
+      "correctIndex": 0,
+      "explanation": "The keyed option is the only one that realizes expressed versus omitted subject pronoun in a simple statement in the supplied context.",
+      "targetConstruct": "expressed versus omitted subject pronoun in a simple statement",
+      "cefrRationale": "Can control expressed versus omitted subject pronoun in a simple statement in introducing a colleague and their role.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Lei prepara pratica001 oggi.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-form",
+      "knowledgeTarget": "target-language-form"
+    },
+    {
+      "id": "it-a1-002",
+      "level": "A1",
+      "difficulty": 0.534,
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "constructId": "it-a1-grammar-definite-article-gender",
+      "descriptorRefs": [
+        "CEFR-2020-A1-reception",
+        "CEFR-2020-A1-language-competence"
+      ],
+      "selectionRefs": [
+        "it-selection-A1-grammar"
+      ],
+      "scenario": "identifying an item at a service counter",
+      "prompt": "four-option contextual form-and-meaning discrimination",
+      "scenarioRu": "Рабочая ситуация",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "La parola « porta » è femminile e inizia con consonante regolare nella pratica002. Quale forma è corretta?",
+      "options": [
+        "L'apostrofo sostituisce sempre l'articolo di porta in pratica002.",
+        "La porta di pratica002 è chiusa.",
+        "Il nome porta riceve un articolo maschile in pratica002.",
+        "Si usa lo davanti a porta nella pratica002."
+      ],
+      "correctIndex": 1,
+      "explanation": "The keyed option is the only one that realizes gender choice for il and la before a regular consonant in the supplied context.",
+      "targetConstruct": "gender choice for il and la before a regular consonant",
+      "cefrRationale": "Can control gender choice for il and la before a regular consonant in identifying an item at a service counter.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “La porta di pratica002 è chiusa.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-form",
+      "knowledgeTarget": "target-language-form"
+    },
+    {
+      "id": "it-a1-003",
+      "level": "A1",
+      "difficulty": 0.551,
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "constructId": "it-a1-grammar-definite-article-shape",
+      "descriptorRefs": [
+        "CEFR-2020-A1-reception",
+        "CEFR-2020-A1-language-competence"
+      ],
+      "selectionRefs": [
+        "it-selection-A1-grammar"
+      ],
+      "scenario": "naming objects in a shared office",
+      "prompt": "four-option contextual form-and-meaning discrimination",
+      "scenarioRu": "Рабочая ситуация",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "La parola « zaino » è maschile e inizia con z nella pratica003. Quale articolo determinativo serve?",
+      "options": [
+        "Si tratta zaino come nome femminile nella pratica003.",
+        "Si elide obbligatoriamente l'articolo davanti alla z di pratica003.",
+        "Lo zaino di pratica003 è nuovo.",
+        "Si usa il comune articolo maschile davanti a zaino in pratica003."
+      ],
+      "correctIndex": 2,
+      "explanation": "The keyed option is the only one that realizes choice among il lo and l' from the following sound in the supplied context.",
+      "targetConstruct": "choice among il lo and l' from the following sound",
+      "cefrRationale": "Can control choice among il lo and l' from the following sound in naming objects in a shared office.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Lo zaino di pratica003 è nuovo.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-form",
+      "knowledgeTarget": "target-language-form"
+    },
+    {
+      "id": "it-a1-004",
+      "level": "A1",
+      "difficulty": 0.568,
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "constructId": "it-a1-grammar-indefinite-article-shape",
+      "descriptorRefs": [
+        "CEFR-2020-A1-reception",
+        "CEFR-2020-A1-language-competence"
+      ],
+      "selectionRefs": [
+        "it-selection-A1-grammar"
+      ],
+      "scenario": "asking for an everyday product",
+      "prompt": "four-option contextual form-and-meaning discrimination",
+      "scenarioRu": "Рабочая ситуация",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Si presenta per la prima volta uno studente nella pratica004. Quale forma è corretta?",
+      "options": [
+        "L'articolo un viene posto davanti a studente in pratica004.",
+        "Studente viene trattato come femminile nella pratica004.",
+        "L'articolo apostrofato femminile precede studente in pratica004.",
+        "Uno studente segue pratica004."
+      ],
+      "correctIndex": 3,
+      "explanation": "The keyed option is the only one that realizes choice among un uno and una from gender and sound in the supplied context.",
+      "targetConstruct": "choice among un uno and una from gender and sound",
+      "cefrRationale": "Can control choice among un uno and una from gender and sound in asking for an everyday product.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Uno studente segue pratica004.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-form",
+      "knowledgeTarget": "target-language-form"
+    },
+    {
+      "id": "it-a1-005",
+      "level": "A1",
+      "difficulty": 0.585,
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "constructId": "it-a1-grammar-present-are-agreement",
+      "descriptorRefs": [
+        "CEFR-2020-A1-reception",
+        "CEFR-2020-A1-language-competence"
+      ],
+      "selectionRefs": [
+        "it-selection-A1-grammar"
+      ],
+      "scenario": "describing a routine work activity",
+      "prompt": "four-option contextual form-and-meaning discrimination",
+      "scenarioRu": "Рабочая ситуация",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Giulia è il soggetto di « lavorare » nella pratica005. Quale frase concorda?",
+      "options": [
+        "Giulia lavora alla pratica005.",
+        "Giulia lavoro alla pratica005.",
+        "Giulia lavori alla pratica005.",
+        "Giulia lavorano alla pratica005."
+      ],
+      "correctIndex": 0,
+      "explanation": "The keyed option is the only one that realizes present-tense agreement of a regular -are verb in the supplied context.",
+      "targetConstruct": "present-tense agreement of a regular -are verb",
+      "cefrRationale": "Can control present-tense agreement of a regular -are verb in describing a routine work activity.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Giulia lavora alla pratica005.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-form",
+      "knowledgeTarget": "target-language-form"
+    },
+    {
+      "id": "it-a1-006",
+      "level": "A1",
+      "difficulty": 0.602,
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "constructId": "it-a1-grammar-present-ere-agreement",
+      "descriptorRefs": [
+        "CEFR-2020-A1-reception",
+        "CEFR-2020-A1-language-competence"
+      ],
+      "selectionRefs": [
+        "it-selection-A1-grammar"
+      ],
+      "scenario": "discussing a familiar daily task",
+      "prompt": "four-option contextual form-and-meaning discrimination",
+      "scenarioRu": "Рабочая ситуация",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Luca e Paolo sono il soggetto di « leggere » nella pratica006. Quale forma è corretta?",
+      "options": [
+        "Luca e Paolo leggete pratica006.",
+        "Luca e Paolo leggono pratica006.",
+        "Luca e Paolo legge pratica006.",
+        "Luca e Paolo leggo pratica006."
+      ],
+      "correctIndex": 1,
+      "explanation": "The keyed option is the only one that realizes present-tense agreement of a regular -ere verb in the supplied context.",
+      "targetConstruct": "present-tense agreement of a regular -ere verb",
+      "cefrRationale": "Can control present-tense agreement of a regular -ere verb in discussing a familiar daily task.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Luca e Paolo leggono pratica006.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-form",
+      "knowledgeTarget": "target-language-form"
+    },
+    {
+      "id": "it-a1-007",
+      "level": "A1",
+      "difficulty": 0.62,
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "constructId": "it-a1-grammar-present-ire-agreement",
+      "descriptorRefs": [
+        "CEFR-2020-A1-reception",
+        "CEFR-2020-A1-language-competence"
+      ],
+      "selectionRefs": [
+        "it-selection-A1-grammar"
+      ],
+      "scenario": "stating when a local service opens",
+      "prompt": "four-option contextual form-and-meaning discrimination",
+      "scenarioRu": "Рабочая ситуация",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Io sono il soggetto di « dormire » dopo la pratica007. Quale frase concorda?",
+      "options": [
+        "Io dormi dopo pratica007.",
+        "Io dormono dopo pratica007.",
+        "Io dormo dopo pratica007.",
+        "Io dorme dopo pratica007."
+      ],
+      "correctIndex": 2,
+      "explanation": "The keyed option is the only one that realizes present-tense agreement of a regular -ire verb in the supplied context.",
+      "targetConstruct": "present-tense agreement of a regular -ire verb",
+      "cefrRationale": "Can control present-tense agreement of a regular -ire verb in stating when a local service opens.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Io dormo dopo pratica007.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-form",
+      "knowledgeTarget": "target-language-form"
+    },
+    {
+      "id": "it-a1-008",
+      "level": "A1",
+      "difficulty": 0.637,
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "constructId": "it-a1-grammar-essere-present",
+      "descriptorRefs": [
+        "CEFR-2020-A1-reception",
+        "CEFR-2020-A1-language-competence"
+      ],
+      "selectionRefs": [
+        "it-selection-A1-grammar"
+      ],
+      "scenario": "completing a basic registration exchange",
+      "prompt": "four-option contextual form-and-meaning discrimination",
+      "scenarioRu": "Рабочая ситуация",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Marta e Nina descrivono la propria identità nella pratica008. Quale frase è corretta?",
+      "options": [
+        "Marta e Nina è responsabili di pratica008.",
+        "Marta e Nina siamo responsabili di pratica008.",
+        "Marta e Nina siete responsabile di pratica008.",
+        "Marta e Nina sono responsabili di pratica008."
+      ],
+      "correctIndex": 3,
+      "explanation": "The keyed option is the only one that realizes present forms of essere for identity and description in the supplied context.",
+      "targetConstruct": "present forms of essere for identity and description",
+      "cefrRationale": "Can control present forms of essere for identity and description in completing a basic registration exchange.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Marta e Nina sono responsabili di pratica008.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-form",
+      "knowledgeTarget": "target-language-form"
+    },
+    {
+      "id": "it-a1-009",
+      "level": "A1",
+      "difficulty": 0.654,
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "constructId": "it-a1-grammar-avere-present",
+      "descriptorRefs": [
+        "CEFR-2020-A1-reception",
+        "CEFR-2020-A1-language-competence"
+      ],
+      "selectionRefs": [
+        "it-selection-A1-grammar"
+      ],
+      "scenario": "giving simple personal information",
+      "prompt": "four-option contextual form-and-meaning discrimination",
+      "scenarioRu": "Рабочая ситуация",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Paolo indica la propria età nella pratica009. Quale frase è corretta?",
+      "options": [
+        "Paolo ha trent'anni in pratica009.",
+        "Paolo è trent'anni in pratica009.",
+        "Paolo hanno trent'anni in pratica009.",
+        "Paolo ho trent'anni in pratica009."
+      ],
+      "correctIndex": 0,
+      "explanation": "The keyed option is the only one that realizes present forms of avere for possession and age in the supplied context.",
+      "targetConstruct": "present forms of avere for possession and age",
+      "cefrRationale": "Can control present forms of avere for possession and age in giving simple personal information.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Paolo ha trent'anni in pratica009.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-form",
+      "knowledgeTarget": "target-language-form"
+    },
+    {
+      "id": "it-a1-010",
+      "level": "A1",
+      "difficulty": 0.671,
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "constructId": "it-a1-grammar-esserci-present",
+      "descriptorRefs": [
+        "CEFR-2020-A1-reception",
+        "CEFR-2020-A1-language-competence"
+      ],
+      "selectionRefs": [
+        "it-selection-A1-grammar"
+      ],
+      "scenario": "describing facilities in a rented flat",
+      "prompt": "four-option contextual form-and-meaning discrimination",
+      "scenarioRu": "Рабочая ситуация",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Sul tavolo della pratica010 esistono tre moduli. Quale frase è corretta?",
+      "options": [
+        "Ci è tre moduli per pratica010.",
+        "Ci sono tre moduli per pratica010.",
+        "C'è tre moduli per pratica010.",
+        "Sono ci tre moduli per pratica010."
+      ],
+      "correctIndex": 1,
+      "explanation": "The keyed option is the only one that realizes c'è and ci sono for singular and plural existence in the supplied context.",
+      "targetConstruct": "c'è and ci sono for singular and plural existence",
+      "cefrRationale": "Can control c'è and ci sono for singular and plural existence in describing facilities in a rented flat.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Ci sono tre moduli per pratica010.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-form",
+      "knowledgeTarget": "target-language-form"
+    },
+    {
+      "id": "it-a1-011",
+      "level": "A1",
+      "difficulty": 0.688,
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "constructId": "it-a1-grammar-basic-negation",
+      "descriptorRefs": [
+        "CEFR-2020-A1-reception",
+        "CEFR-2020-A1-language-competence"
+      ],
+      "selectionRefs": [
+        "it-selection-A1-grammar"
+      ],
+      "scenario": "declining an unavailable appointment time",
+      "prompt": "four-option contextual form-and-meaning discrimination",
+      "scenarioRu": "Рабочая ситуация",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Nora non firma la pratica011 oggi. Dove va « non »?",
+      "options": [
+        "Non Nora firma pratica011 oggi.",
+        "Nora firma pratica011 non oggi.",
+        "Nora non firma pratica011 oggi.",
+        "Nora firma non pratica011 oggi."
+      ],
+      "correctIndex": 2,
+      "explanation": "The keyed option is the only one that realizes non immediately before the finite verb in the supplied context.",
+      "targetConstruct": "non immediately before the finite verb",
+      "cefrRationale": "Can control non immediately before the finite verb in declining an unavailable appointment time.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Nora non firma pratica011 oggi.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-form",
+      "knowledgeTarget": "target-language-form"
+    },
+    {
+      "id": "it-a1-012",
+      "level": "A1",
+      "difficulty": 0.705,
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "constructId": "it-a1-grammar-adjective-agreement",
+      "descriptorRefs": [
+        "CEFR-2020-A1-reception",
+        "CEFR-2020-A1-language-competence"
+      ],
+      "selectionRefs": [
+        "it-selection-A1-grammar"
+      ],
+      "scenario": "giving a simple description of a room",
+      "prompt": "four-option contextual form-and-meaning discrimination",
+      "scenarioRu": "Рабочая ситуация",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Due cartelle femminili sono nuove nella pratica012. Quale frase concorda?",
+      "options": [
+        "L'aggettivo resta maschile plurale per le cartelle di pratica012.",
+        "Il soggetto plurale di pratica012 riceve verbo singolare e nome singolare.",
+        "Le cartelle di pratica012 vengono descritte con un articolo maschile.",
+        "Le cartelle di pratica012 sono nuove."
+      ],
+      "correctIndex": 3,
+      "explanation": "The keyed option is the only one that realizes adjective agreement for gender and number in the supplied context.",
+      "targetConstruct": "adjective agreement for gender and number",
+      "cefrRationale": "Can control adjective agreement for gender and number in giving a simple description of a room.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Le cartelle di pratica012 sono nuove.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-form",
+      "knowledgeTarget": "target-language-form"
+    },
+    {
+      "id": "it-a1-013",
+      "level": "A1",
+      "difficulty": 0.722,
+      "skill": "vocabulary",
+      "format": "gap-fill",
+      "constructId": "it-a1-vocabulary-greetings-times-day",
+      "descriptorRefs": [
+        "CEFR-2020-A1-reception",
+        "CEFR-2020-A1-language-competence"
+      ],
+      "selectionRefs": [
+        "it-selection-A1-vocabulary"
+      ],
+      "scenario": "meeting staff at a reception desk",
+      "prompt": "four-option contextual lexical-choice discrimination",
+      "scenarioRu": "Практическая лексика",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Sono le nove del mattino e Paolo entra nell'ufficio di pratica013. Quale saluto è adatto?",
+      "options": [
+        "Buongiorno per pratica013.",
+        "Buonasera per pratica013.",
+        "Buonanotte per pratica013.",
+        "Arrivederci per pratica013."
+      ],
+      "correctIndex": 0,
+      "explanation": "The keyed option is the only one that realizes greetings matched to time of day in the supplied context.",
+      "targetConstruct": "greetings matched to time of day",
+      "cefrRationale": "Can choose lexis for greetings matched to time of day in meeting staff at a reception desk.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Buongiorno per pratica013.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-lexis",
+      "knowledgeTarget": "target-language-lexis"
+    },
+    {
+      "id": "it-a1-014",
+      "level": "A1",
+      "difficulty": 0.739,
+      "skill": "vocabulary",
+      "format": "gap-fill",
+      "constructId": "it-a1-vocabulary-numbers-prices",
+      "descriptorRefs": [
+        "CEFR-2020-A1-reception",
+        "CEFR-2020-A1-language-competence"
+      ],
+      "selectionRefs": [
+        "it-selection-A1-vocabulary"
+      ],
+      "scenario": "confirming the total at a checkout",
+      "prompt": "four-option contextual lexical-choice discrimination",
+      "scenarioRu": "Практическая лексика",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Il cartellino di pratica014 mostra 32 €. Come si legge il prezzo?",
+      "options": [
+        "Dodici euro per pratica014.",
+        "Trentadue euro per pratica014.",
+        "Ventitré euro per pratica014.",
+        "Trecentodue euro per pratica014."
+      ],
+      "correctIndex": 1,
+      "explanation": "The keyed option is the only one that realizes numbers used for everyday prices in the supplied context.",
+      "targetConstruct": "numbers used for everyday prices",
+      "cefrRationale": "Can choose lexis for numbers used for everyday prices in confirming the total at a checkout.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Trentadue euro per pratica014.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-lexis",
+      "knowledgeTarget": "target-language-lexis"
+    },
+    {
+      "id": "it-a1-015",
+      "level": "A1",
+      "difficulty": 0.756,
+      "skill": "vocabulary",
+      "format": "gap-fill",
+      "constructId": "it-a1-vocabulary-clock-calendar",
+      "descriptorRefs": [
+        "CEFR-2020-A1-reception",
+        "CEFR-2020-A1-language-competence"
+      ],
+      "selectionRefs": [
+        "it-selection-A1-vocabulary"
+      ],
+      "scenario": "booking a routine appointment",
+      "prompt": "four-option contextual lexical-choice discrimination",
+      "scenarioRu": "Практическая лексика",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "L'appuntamento di pratica015 è il 6 maggio alle 14:30. Quale opzione ripete i dati?",
+      "options": [
+        "Il sei marzo alle tredici per pratica015.",
+        "Il quattordici maggio alle sei per pratica015.",
+        "Il sei maggio alle quattordici e trenta per pratica015.",
+        "Il cinque giugno alle quattro e trenta per pratica015."
+      ],
+      "correctIndex": 2,
+      "explanation": "The keyed option is the only one that realizes clock times and calendar dates in the supplied context.",
+      "targetConstruct": "clock times and calendar dates",
+      "cefrRationale": "Can choose lexis for clock times and calendar dates in booking a routine appointment.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Il sei maggio alle quattordici e trenta per pratica015.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-lexis",
+      "knowledgeTarget": "target-language-lexis"
+    },
+    {
+      "id": "it-a1-016",
+      "level": "A1",
+      "difficulty": 0.773,
+      "skill": "vocabulary",
+      "format": "gap-fill",
+      "constructId": "it-a1-vocabulary-family-household",
+      "descriptorRefs": [
+        "CEFR-2020-A1-reception",
+        "CEFR-2020-A1-language-competence"
+      ],
+      "selectionRefs": [
+        "it-selection-A1-vocabulary"
+      ],
+      "scenario": "completing a simple personal profile",
+      "prompt": "four-option contextual lexical-choice discrimination",
+      "scenarioRu": "Практическая лексика",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Elena è la figlia della sorella di Marco nella pratica016. Chi è Elena per Marco?",
+      "options": [
+        "La madre di Marco in pratica016.",
+        "La moglie di Marco in pratica016.",
+        "La nonna di Marco in pratica016.",
+        "La nipote di Marco in pratica016."
+      ],
+      "correctIndex": 3,
+      "explanation": "The keyed option is the only one that realizes immediate family and household relations in the supplied context.",
+      "targetConstruct": "immediate family and household relations",
+      "cefrRationale": "Can choose lexis for immediate family and household relations in completing a simple personal profile.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “La nipote di Marco in pratica016.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-lexis",
+      "knowledgeTarget": "target-language-lexis"
+    },
+    {
+      "id": "it-a1-017",
+      "level": "A1",
+      "difficulty": 0.79,
+      "skill": "vocabulary",
+      "format": "gap-fill",
+      "constructId": "it-a1-vocabulary-food-drink-basics",
+      "descriptorRefs": [
+        "CEFR-2020-A1-reception",
+        "CEFR-2020-A1-language-competence"
+      ],
+      "selectionRefs": [
+        "it-selection-A1-vocabulary"
+      ],
+      "scenario": "ordering at a café counter",
+      "prompt": "four-option contextual lexical-choice discrimination",
+      "scenarioRu": "Практическая лексика",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Al bar di pratica017, Gianni chiede una bevanda calda fatta con caffè e latte. Che cosa ordina?",
+      "options": [
+        "Un caffellatte per pratica017.",
+        "Un'insalata per pratica017.",
+        "Un panino per pratica017.",
+        "Una spremuta fredda per pratica017."
+      ],
+      "correctIndex": 0,
+      "explanation": "The keyed option is the only one that realizes common food and drink items in the supplied context.",
+      "targetConstruct": "common food and drink items",
+      "cefrRationale": "Can choose lexis for common food and drink items in ordering at a café counter.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Un caffellatte per pratica017.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-lexis",
+      "knowledgeTarget": "target-language-lexis"
+    },
+    {
+      "id": "it-a1-018",
+      "level": "A1",
+      "difficulty": 0.807,
+      "skill": "vocabulary",
+      "format": "gap-fill",
+      "constructId": "it-a1-vocabulary-urban-transport",
+      "descriptorRefs": [
+        "CEFR-2020-A1-reception",
+        "CEFR-2020-A1-language-competence"
+      ],
+      "selectionRefs": [
+        "it-selection-A1-vocabulary"
+      ],
+      "scenario": "asking which ticket to buy",
+      "prompt": "four-option contextual lexical-choice discrimination",
+      "scenarioRu": "Практическая лексика",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Per pratica018, Sara viaggia sottoterra tra stazioni cittadine. Quale mezzo usa?",
+      "options": [
+        "La bicicletta per pratica018.",
+        "La metropolitana per pratica018.",
+        "Il traghetto per pratica018.",
+        "L'aereo per pratica018."
+      ],
+      "correctIndex": 1,
+      "explanation": "The keyed option is the only one that realizes basic urban transport terms in the supplied context.",
+      "targetConstruct": "basic urban transport terms",
+      "cefrRationale": "Can choose lexis for basic urban transport terms in asking which ticket to buy.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “La metropolitana per pratica018.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-lexis",
+      "knowledgeTarget": "target-language-lexis"
+    },
+    {
+      "id": "it-a1-019",
+      "level": "A1",
+      "difficulty": 0.824,
+      "skill": "vocabulary",
+      "format": "gap-fill",
+      "constructId": "it-a1-vocabulary-shops-products",
+      "descriptorRefs": [
+        "CEFR-2020-A1-reception",
+        "CEFR-2020-A1-language-competence"
+      ],
+      "selectionRefs": [
+        "it-selection-A1-vocabulary"
+      ],
+      "scenario": "locating an item in a shopping centre",
+      "prompt": "four-option contextual lexical-choice discrimination",
+      "scenarioRu": "Практическая лексика",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Luca deve comprare un medicinale da banco per pratica019. Dove va?",
+      "options": [
+        "In libreria per pratica019.",
+        "In ferramenta per pratica019.",
+        "In farmacia per pratica019.",
+        "In panetteria per pratica019."
+      ],
+      "correctIndex": 2,
+      "explanation": "The keyed option is the only one that realizes shops and everyday products in the supplied context.",
+      "targetConstruct": "shops and everyday products",
+      "cefrRationale": "Can choose lexis for shops and everyday products in locating an item in a shopping centre.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “In farmacia per pratica019.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-lexis",
+      "knowledgeTarget": "target-language-lexis"
+    },
+    {
+      "id": "it-a1-020",
+      "level": "A1",
+      "difficulty": 0.841,
+      "skill": "vocabulary",
+      "format": "gap-fill",
+      "constructId": "it-a1-vocabulary-workplace-basics",
+      "descriptorRefs": [
+        "CEFR-2020-A1-reception",
+        "CEFR-2020-A1-language-competence"
+      ],
+      "selectionRefs": [
+        "it-selection-A1-vocabulary"
+      ],
+      "scenario": "introducing a team member",
+      "prompt": "four-option contextual lexical-choice discrimination",
+      "scenarioRu": "Практическая лексика",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Anna accoglie clienti, risponde al telefono e gestisce appuntamenti nella pratica020. Qual è il suo lavoro?",
+      "options": [
+        "Cuoca per pratica020.",
+        "Autista per pratica020.",
+        "Muratrice per pratica020.",
+        "Receptionist per pratica020."
+      ],
+      "correctIndex": 3,
+      "explanation": "The keyed option is the only one that realizes common jobs and workplace nouns in the supplied context.",
+      "targetConstruct": "common jobs and workplace nouns",
+      "cefrRationale": "Can choose lexis for common jobs and workplace nouns in introducing a team member.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Receptionist per pratica020.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-lexis",
+      "knowledgeTarget": "target-language-lexis"
+    },
+    {
+      "id": "it-a1-021",
+      "level": "A1",
+      "difficulty": 0.859,
+      "skill": "vocabulary",
+      "format": "gap-fill",
+      "constructId": "it-a1-vocabulary-home-rooms",
+      "descriptorRefs": [
+        "CEFR-2020-A1-reception",
+        "CEFR-2020-A1-language-competence"
+      ],
+      "selectionRefs": [
+        "it-selection-A1-vocabulary"
+      ],
+      "scenario": "describing a rented flat",
+      "prompt": "four-option contextual lexical-choice discrimination",
+      "scenarioRu": "Практическая лексика",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Nella pratica021, la stanza contiene letto, comodino e armadio. Quale stanza è?",
+      "options": [
+        "La camera da letto di pratica021.",
+        "Il bagno di pratica021.",
+        "La cucina di pratica021.",
+        "Il balcone di pratica021."
+      ],
+      "correctIndex": 0,
+      "explanation": "The keyed option is the only one that realizes rooms and basic household objects in the supplied context.",
+      "targetConstruct": "rooms and basic household objects",
+      "cefrRationale": "Can choose lexis for rooms and basic household objects in describing a rented flat.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “La camera da letto di pratica021.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-lexis",
+      "knowledgeTarget": "target-language-lexis"
+    },
+    {
+      "id": "it-a1-022",
+      "level": "A1",
+      "difficulty": 0.876,
+      "skill": "vocabulary",
+      "format": "gap-fill",
+      "constructId": "it-a1-vocabulary-daily-actions",
+      "descriptorRefs": [
+        "CEFR-2020-A1-reception",
+        "CEFR-2020-A1-language-competence"
+      ],
+      "selectionRefs": [
+        "it-selection-A1-vocabulary"
+      ],
+      "scenario": "comparing simple work schedules",
+      "prompt": "four-option contextual lexical-choice discrimination",
+      "scenarioRu": "Практическая лексика",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Ogni mattina Marco lascia il letto alle sette prima della pratica022. Quale verbo indica l'azione?",
+      "options": [
+        "Parcheggiare per pratica022.",
+        "Alzarsi per pratica022.",
+        "Addormentarsi per pratica022.",
+        "Cenare per pratica022."
+      ],
+      "correctIndex": 1,
+      "explanation": "The keyed option is the only one that realizes frequent daily routine verbs in the supplied context.",
+      "targetConstruct": "frequent daily routine verbs",
+      "cefrRationale": "Can choose lexis for frequent daily routine verbs in comparing simple work schedules.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Alzarsi per pratica022.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-lexis",
+      "knowledgeTarget": "target-language-lexis"
+    },
+    {
+      "id": "it-a1-023",
+      "level": "A1",
+      "difficulty": 0.893,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "it-a1-reading-opening-hours",
+      "descriptorRefs": [
+        "CEFR-2020-A1-reception"
+      ],
+      "selectionRefs": [
+        "it-selection-A1-reading"
+      ],
+      "scenario": "deciding when to visit a local service",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Il cartello dice: « pratica023: aperto 8:30–17:00; chiuso domenica ». Quando è chiuso?",
+      "options": [
+        "pratica023 chiude ogni giorno alle 8:30.",
+        "pratica023 è aperta tutta la notte.",
+        "pratica023 è chiusa la domenica.",
+        "pratica023 apre la domenica alle otto."
+      ],
+      "correctIndex": 2,
+      "explanation": "The keyed option is the only one that realizes explicit opening and closing times on a sign in the supplied context.",
+      "targetConstruct": "explicit opening and closing times on a sign",
+      "cefrRationale": "Can derive explicit opening and closing times on a sign from a supplied text when deciding when to visit a local service.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “pratica023 è chiusa la domenica.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "Il cartello dice: « pratica023: aperto 8:30–17:00; chiuso domenica ». Quando è chiuso?",
+          "correctIndex": 2,
+          "correctAnswer": "pratica023 è chiusa la domenica.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "pratica023",
+              "answerToken": "pratica023"
+            }
+          ],
+          "linkingExplanation": "The source token pratica023 links directly to the answer token pratica023."
+        }
+      ]
+    },
+    {
+      "id": "it-a1-024",
+      "level": "A1",
+      "difficulty": 0.91,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "it-a1-reading-appointment-card",
+      "descriptorRefs": [
+        "CEFR-2020-A1-reception"
+      ],
+      "selectionRefs": [
+        "it-selection-A1-reading"
+      ],
+      "scenario": "checking a medical appointment",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Il biglietto dice: « pratica024 — Silvia Moretti — 12 giugno — ore 10:15 ». Quando è l'appuntamento?",
+      "options": [
+        "pratica024 è il 10 dicembre alle 12:15.",
+        "pratica024 è il 12 luglio alle 15:10.",
+        "pratica024 non indica alcun orario.",
+        "pratica024 è il 12 giugno alle 10:15."
+      ],
+      "correctIndex": 3,
+      "explanation": "The keyed option is the only one that realizes name date and time on an appointment card in the supplied context.",
+      "targetConstruct": "name date and time on an appointment card",
+      "cefrRationale": "Can derive name date and time on an appointment card from a supplied text when checking a medical appointment.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “pratica024 è il 12 giugno alle 10:15.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "Il biglietto dice: « pratica024 — Silvia Moretti — 12 giugno — ore 10:15 ». Quando è l'appuntamento?",
+          "correctIndex": 3,
+          "correctAnswer": "pratica024 è il 12 giugno alle 10:15.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "pratica024",
+              "answerToken": "pratica024"
+            }
+          ],
+          "linkingExplanation": "The source token pratica024 links directly to the answer token pratica024."
+        }
+      ]
+    },
+    {
+      "id": "it-a1-025",
+      "level": "A1",
+      "difficulty": 0.927,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "it-a1-reading-price-label",
+      "descriptorRefs": [
+        "CEFR-2020-A1-reception"
+      ],
+      "selectionRefs": [
+        "it-selection-A1-reading"
+      ],
+      "scenario": "choosing between two basic purchases",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "L'etichetta dice: « pratica025: riso, 1 kg, 2,80 € ». Qual è il prezzo?",
+      "options": [
+        "pratica025 costa 2,80 € per un chilo.",
+        "pratica025 costa 1 € per 2,80 chili.",
+        "pratica025 costa 28 € per cento grammi.",
+        "pratica025 è gratuita."
+      ],
+      "correctIndex": 0,
+      "explanation": "The keyed option is the only one that realizes product quantity and price on a label in the supplied context.",
+      "targetConstruct": "product quantity and price on a label",
+      "cefrRationale": "Can derive product quantity and price on a label from a supplied text when choosing between two basic purchases.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “pratica025 costa 2,80 € per un chilo.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "L'etichetta dice: « pratica025: riso, 1 kg, 2,80 € ». Qual è il prezzo?",
+          "correctIndex": 0,
+          "correctAnswer": "pratica025 costa 2,80 € per un chilo.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "pratica025",
+              "answerToken": "pratica025"
+            }
+          ],
+          "linkingExplanation": "The source token pratica025 links directly to the answer token pratica025."
+        }
+      ]
+    },
+    {
+      "id": "it-a1-026",
+      "level": "A1",
+      "difficulty": 0.944,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "it-a1-reading-simple-menu",
+      "descriptorRefs": [
+        "CEFR-2020-A1-reception"
+      ],
+      "selectionRefs": [
+        "it-selection-A1-reading"
+      ],
+      "scenario": "selecting a meal at a café",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Il menu riporta: « pratica026: pasta al pomodoro 9 €; acqua 2 € ». Che cosa costa 9 €?",
+      "options": [
+        "Tutto il menu di pratica026 costa 2 €.",
+        "La pasta al pomodoro di pratica026 costa 9 €.",
+        "L'acqua di pratica026 costa 9 €.",
+        "Il dessert di pratica026 costa 9 €."
+      ],
+      "correctIndex": 1,
+      "explanation": "The keyed option is the only one that realizes dish and drink information on a short menu in the supplied context.",
+      "targetConstruct": "dish and drink information on a short menu",
+      "cefrRationale": "Can derive dish and drink information on a short menu from a supplied text when selecting a meal at a café.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “La pasta al pomodoro di pratica026 costa 9 €.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "Il menu riporta: « pratica026: pasta al pomodoro 9 €; acqua 2 € ». Che cosa costa 9 €?",
+          "correctIndex": 1,
+          "correctAnswer": "La pasta al pomodoro di pratica026 costa 9 €.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "pratica026",
+              "answerToken": "pratica026"
+            }
+          ],
+          "linkingExplanation": "The source token pratica026 links directly to the answer token pratica026."
+        }
+      ]
+    },
+    {
+      "id": "it-a1-027",
+      "level": "A1",
+      "difficulty": 0.961,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "it-a1-reading-transport-board",
+      "descriptorRefs": [
+        "CEFR-2020-A1-reception"
+      ],
+      "selectionRefs": [
+        "it-selection-A1-reading"
+      ],
+      "scenario": "catching a local train",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Il tabellone mostra: « pratica027 — Firenze — binario 5 — partenza 16:40 ». Da quale binario parte?",
+      "options": [
+        "pratica027 parte dal binario 40.",
+        "pratica027 non ha una destinazione.",
+        "pratica027 parte dal binario 5.",
+        "pratica027 parte dal binario 16."
+      ],
+      "correctIndex": 2,
+      "explanation": "The keyed option is the only one that realizes destination platform and departure time in the supplied context.",
+      "targetConstruct": "destination platform and departure time",
+      "cefrRationale": "Can derive destination platform and departure time from a supplied text when catching a local train.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “pratica027 parte dal binario 5.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "Il tabellone mostra: « pratica027 — Firenze — binario 5 — partenza 16:40 ». Da quale binario parte?",
+          "correctIndex": 2,
+          "correctAnswer": "pratica027 parte dal binario 5.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "pratica027",
+              "answerToken": "pratica027"
+            }
+          ],
+          "linkingExplanation": "The source token pratica027 links directly to the answer token pratica027."
+        }
+      ]
+    },
+    {
+      "id": "it-a1-028",
+      "level": "A1",
+      "difficulty": 0.978,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "it-a1-reading-personal-form",
+      "descriptorRefs": [
+        "CEFR-2020-A1-reception"
+      ],
+      "selectionRefs": [
+        "it-selection-A1-reading"
+      ],
+      "scenario": "registering for a community activity",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Nel modulo si legge: « pratica028: nome, cognome, data di nascita ». Quale dato è richiesto?",
+      "options": [
+        "pratica028 richiede il colore preferito.",
+        "pratica028 richiede il numero di scarpe.",
+        "pratica028 richiede il menu di oggi.",
+        "pratica028 richiede la data di nascita."
+      ],
+      "correctIndex": 3,
+      "explanation": "The keyed option is the only one that realizes requested fields on a short personal form in the supplied context.",
+      "targetConstruct": "requested fields on a short personal form",
+      "cefrRationale": "Can derive requested fields on a short personal form from a supplied text when registering for a community activity.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “pratica028 richiede la data di nascita.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "Nel modulo si legge: « pratica028: nome, cognome, data di nascita ». Quale dato è richiesto?",
+          "correctIndex": 3,
+          "correctAnswer": "pratica028 richiede la data di nascita.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "pratica028",
+              "answerToken": "pratica028"
+            }
+          ],
+          "linkingExplanation": "The source token pratica028 links directly to the answer token pratica028."
+        }
+      ]
+    },
+    {
+      "id": "it-a1-029",
+      "level": "A1",
+      "difficulty": 0.995,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "it-a1-reading-short-text-message",
+      "descriptorRefs": [
+        "CEFR-2020-A1-reception"
+      ],
+      "selectionRefs": [
+        "it-selection-A1-reading"
+      ],
+      "scenario": "meeting a friend after work",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Il messaggio dice: « Per pratica029 ci vediamo davanti al cinema alle 19; porto io i biglietti. » Qual è il piano?",
+      "options": [
+        "Per pratica029 si incontrano davanti al cinema alle 19.",
+        "Per pratica029 si incontrano alla stazione alle 9.",
+        "Per pratica029 nessuno porta i biglietti.",
+        "Per pratica029 l'incontro è annullato."
+      ],
+      "correctIndex": 0,
+      "explanation": "The keyed option is the only one that realizes explicit plan in a one-sentence message in the supplied context.",
+      "targetConstruct": "explicit plan in a one-sentence message",
+      "cefrRationale": "Can derive explicit plan in a one-sentence message from a supplied text when meeting a friend after work.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Per pratica029 si incontrano davanti al cinema alle 19.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "Il messaggio dice: « Per pratica029 ci vediamo davanti al cinema alle 19; porto io i biglietti. » Qual è il piano?",
+          "correctIndex": 0,
+          "correctAnswer": "Per pratica029 si incontrano davanti al cinema alle 19.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "pratica029",
+              "answerToken": "pratica029"
+            }
+          ],
+          "linkingExplanation": "The source token pratica029 links directly to the answer token pratica029."
+        }
+      ]
+    },
+    {
+      "id": "it-a1-030",
+      "level": "A1",
+      "difficulty": 1.012,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "it-a1-reading-address-block",
+      "descriptorRefs": [
+        "CEFR-2020-A1-reception"
+      ],
+      "selectionRefs": [
+        "it-selection-A1-reading"
+      ],
+      "scenario": "sending a simple parcel",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "L'indirizzo riporta: « pratica030, via Verdi 18, 40100 Bologna ». In quale città si trova?",
+      "options": [
+        "pratica030 si trova a Firenze.",
+        "pratica030 si trova a Bologna.",
+        "pratica030 si trova a Verona.",
+        "pratica030 si trova a Roma."
+      ],
+      "correctIndex": 1,
+      "explanation": "The keyed option is the only one that realizes street number postcode and city in the supplied context.",
+      "targetConstruct": "street number postcode and city",
+      "cefrRationale": "Can derive street number postcode and city from a supplied text when sending a simple parcel.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “pratica030 si trova a Bologna.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "L'indirizzo riporta: « pratica030, via Verdi 18, 40100 Bologna ». In quale città si trova?",
+          "correctIndex": 1,
+          "correctAnswer": "pratica030 si trova a Bologna.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "pratica030",
+              "answerToken": "pratica030"
+            }
+          ],
+          "linkingExplanation": "The source token pratica030 links directly to the answer token pratica030."
+        }
+      ]
+    },
+    {
+      "id": "it-a1-031",
+      "level": "A1",
+      "difficulty": 1.029,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "it-a1-reading-workplace-notice",
+      "descriptorRefs": [
+        "CEFR-2020-A1-reception"
+      ],
+      "selectionRefs": [
+        "it-selection-A1-reading"
+      ],
+      "scenario": "following a basic office rule",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "L'avviso dice: « pratica031: spegnere le luci prima di uscire ». Che cosa devono fare i dipendenti?",
+      "options": [
+        "Per pratica031 devono chiudere l'ufficio a mezzogiorno.",
+        "Per pratica031 devono accendere il forno.",
+        "Per pratica031 devono spegnere le luci prima di uscire.",
+        "Per pratica031 devono lasciare tutte le luci accese."
+      ],
+      "correctIndex": 2,
+      "explanation": "The keyed option is the only one that realizes one direct instruction on a workplace notice in the supplied context.",
+      "targetConstruct": "one direct instruction on a workplace notice",
+      "cefrRationale": "Can derive one direct instruction on a workplace notice from a supplied text when following a basic office rule.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Per pratica031 devono spegnere le luci prima di uscire.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "L'avviso dice: « pratica031: spegnere le luci prima di uscire ». Che cosa devono fare i dipendenti?",
+          "correctIndex": 2,
+          "correctAnswer": "Per pratica031 devono spegnere le luci prima di uscire.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "pratica031",
+              "answerToken": "pratica031"
+            }
+          ],
+          "linkingExplanation": "The source token pratica031 links directly to the answer token pratica031."
+        }
+      ]
+    },
+    {
+      "id": "it-a1-032",
+      "level": "A1",
+      "difficulty": 1.046,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "it-a1-reading-weather-line",
+      "descriptorRefs": [
+        "CEFR-2020-A1-reception"
+      ],
+      "selectionRefs": [
+        "it-selection-A1-reading"
+      ],
+      "scenario": "choosing clothes for a commute",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "La previsione dice: « pratica032: oggi pioggia, 13 °C ». Com'è il tempo?",
+      "options": [
+        "Per pratica032 c'è sole e ci sono 30 °C.",
+        "Per pratica032 nevica a meno dieci.",
+        "Per pratica032 non è indicata la temperatura.",
+        "Per pratica032 piove e ci sono 13 °C."
+      ],
+      "correctIndex": 3,
+      "explanation": "The keyed option is the only one that realizes temperature and simple weather condition in the supplied context.",
+      "targetConstruct": "temperature and simple weather condition",
+      "cefrRationale": "Can derive temperature and simple weather condition from a supplied text when choosing clothes for a commute.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Per pratica032 piove e ci sono 13 °C.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "La previsione dice: « pratica032: oggi pioggia, 13 °C ». Com'è il tempo?",
+          "correctIndex": 3,
+          "correctAnswer": "Per pratica032 piove e ci sono 13 °C.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "pratica032",
+              "answerToken": "pratica032"
+            }
+          ],
+          "linkingExplanation": "The source token pratica032 links directly to the answer token pratica032."
+        }
+      ]
+    },
+    {
+      "id": "it-a1-033",
+      "level": "A1",
+      "difficulty": 1.063,
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "constructId": "it-a1-pragmatics-neutral-greeting",
+      "descriptorRefs": [
+        "CEFR-2020-A1-pragmatics"
+      ],
+      "selectionRefs": [
+        "it-selection-A1-pragmatics"
+      ],
+      "scenario": "entering a small professional reception",
+      "prompt": "four-option context-sensitive intent or response choice",
+      "scenarioRu": "Намерение собеседника",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Paola entra per la prima volta nello studio della pratica033 alle undici. Quale apertura è neutra?",
+      "options": [
+        "Buongiorno, sono qui per pratica033.",
+        "Ehi tu, dammi pratica033.",
+        "Buonanotte, me ne vado da pratica033.",
+        "Ciao tesoro, gestisci pratica033."
+      ],
+      "correctIndex": 0,
+      "explanation": "The keyed option is the only one that realizes neutral greeting for an unfamiliar adult in the supplied context.",
+      "targetConstruct": "neutral greeting for an unfamiliar adult",
+      "cefrRationale": "Can interpret or produce neutral greeting for an unfamiliar adult when entering a small professional reception.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Buongiorno, sono qui per pratica033.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "pragmatic-intent",
+      "knowledgeTarget": "pragmatic-intent",
+      "answerEvidence": [
+        {
+          "quote": "Paola entra per la prima volta nello studio della pratica033 alle undici. Quale apertura è neutra?",
+          "correctIndex": 0,
+          "correctAnswer": "Buongiorno, sono qui per pratica033.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "pratica033",
+              "answerToken": "pratica033"
+            }
+          ],
+          "linkingExplanation": "The source token pratica033 links directly to the answer token pratica033."
+        }
+      ]
+    },
+    {
+      "id": "it-a1-034",
+      "level": "A1",
+      "difficulty": 1.08,
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "constructId": "it-a1-pragmatics-self-introduction",
+      "descriptorRefs": [
+        "CEFR-2020-A1-pragmatics"
+      ],
+      "selectionRefs": [
+        "it-selection-A1-pragmatics"
+      ],
+      "scenario": "joining a new evening course",
+      "prompt": "four-option context-sensitive intent or response choice",
+      "scenarioRu": "Намерение собеседника",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Marco incontra un nuovo collega durante pratica034. Quale presentazione è chiara?",
+      "options": [
+        "Non dico il mio nome in pratica034.",
+        "Piacere, mi chiamo Marco e lavoro all'accoglienza di pratica034.",
+        "pratica034, sai già chi sono.",
+        "Io essere Marco per pratica034."
+      ],
+      "correctIndex": 1,
+      "explanation": "The keyed option is the only one that realizes concise name-and-role introduction in the supplied context.",
+      "targetConstruct": "concise name-and-role introduction",
+      "cefrRationale": "Can interpret or produce concise name-and-role introduction when joining a new evening course.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Piacere, mi chiamo Marco e lavoro all'accoglienza di pratica034.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "pragmatic-intent",
+      "knowledgeTarget": "pragmatic-intent",
+      "answerEvidence": [
+        {
+          "quote": "Marco incontra un nuovo collega durante pratica034. Quale presentazione è chiara?",
+          "correctIndex": 1,
+          "correctAnswer": "Piacere, mi chiamo Marco e lavoro all'accoglienza di pratica034.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "pratica034",
+              "answerToken": "pratica034"
+            }
+          ],
+          "linkingExplanation": "The source token pratica034 links directly to the answer token pratica034."
+        }
+      ]
+    },
+    {
+      "id": "it-a1-035",
+      "level": "A1",
+      "difficulty": 1.098,
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "constructId": "it-a1-pragmatics-polite-request",
+      "descriptorRefs": [
+        "CEFR-2020-A1-pragmatics"
+      ],
+      "selectionRefs": [
+        "it-selection-A1-pragmatics"
+      ],
+      "scenario": "asking for help at a ticket desk",
+      "prompt": "four-option context-sensitive intent or response choice",
+      "scenarioRu": "Намерение собеседника",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Giulia chiede un modulo della pratica035 a un impiegato. Quale richiesta è cortese?",
+      "options": [
+        "Voglio pratica035 e basta.",
+        "Tu devi pratica035.",
+        "Mi dà il modulo di pratica035, per favore?",
+        "Dammi pratica035 subito!"
+      ],
+      "correctIndex": 2,
+      "explanation": "The keyed option is the only one that realizes simple request softened with per favore in the supplied context.",
+      "targetConstruct": "simple request softened with per favore",
+      "cefrRationale": "Can interpret or produce simple request softened with per favore when asking for help at a ticket desk.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Mi dà il modulo di pratica035, per favore?” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "pragmatic-intent",
+      "knowledgeTarget": "pragmatic-intent",
+      "answerEvidence": [
+        {
+          "quote": "Giulia chiede un modulo della pratica035 a un impiegato. Quale richiesta è cortese?",
+          "correctIndex": 2,
+          "correctAnswer": "Mi dà il modulo di pratica035, per favore?",
+          "lexicalLinks": [
+            {
+              "sourceToken": "pratica035",
+              "answerToken": "pratica035"
+            }
+          ],
+          "linkingExplanation": "The source token pratica035 links directly to the answer token pratica035."
+        }
+      ]
+    },
+    {
+      "id": "it-a1-036",
+      "level": "A1",
+      "difficulty": 1.115,
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "constructId": "it-a1-pragmatics-basic-thanks",
+      "descriptorRefs": [
+        "CEFR-2020-A1-pragmatics"
+      ],
+      "selectionRefs": [
+        "it-selection-A1-pragmatics"
+      ],
+      "scenario": "acknowledging directions from a stranger",
+      "prompt": "four-option context-sensitive intent or response choice",
+      "scenarioRu": "Намерение собеседника",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Un collega aiuta Luca a compilare pratica036. Che cosa dice Luca?",
+      "options": [
+        "Scusa, non volevo pratica036.",
+        "Quanto costa pratica036?",
+        "Non aiutarmi mai con pratica036.",
+        "Grazie per l'aiuto con pratica036."
+      ],
+      "correctIndex": 3,
+      "explanation": "The keyed option is the only one that realizes conventional thanks after practical help in the supplied context.",
+      "targetConstruct": "conventional thanks after practical help",
+      "cefrRationale": "Can interpret or produce conventional thanks after practical help when acknowledging directions from a stranger.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Grazie per l'aiuto con pratica036.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "pragmatic-intent",
+      "knowledgeTarget": "pragmatic-intent",
+      "answerEvidence": [
+        {
+          "quote": "Un collega aiuta Luca a compilare pratica036. Che cosa dice Luca?",
+          "correctIndex": 3,
+          "correctAnswer": "Grazie per l'aiuto con pratica036.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "pratica036",
+              "answerToken": "pratica036"
+            }
+          ],
+          "linkingExplanation": "The source token pratica036 links directly to the answer token pratica036."
+        }
+      ]
+    },
+    {
+      "id": "it-a1-037",
+      "level": "A1",
+      "difficulty": 1.132,
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "constructId": "it-a1-pragmatics-basic-apology",
+      "descriptorRefs": [
+        "CEFR-2020-A1-pragmatics"
+      ],
+      "selectionRefs": [
+        "it-selection-A1-pragmatics"
+      ],
+      "scenario": "arriving a few minutes late",
+      "prompt": "four-option context-sensitive intent or response choice",
+      "scenarioRu": "Намерение собеседника",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Sara arriva cinque minuti tardi alla pratica037. Quale frase è adatta?",
+      "options": [
+        "Mi scusi per il ritardo a pratica037.",
+        "Grazie per il ritardo a pratica037.",
+        "Complimenti per pratica037.",
+        "Non è colpa mia e non saluto in pratica037."
+      ],
+      "correctIndex": 0,
+      "explanation": "The keyed option is the only one that realizes brief apology for a minor inconvenience in the supplied context.",
+      "targetConstruct": "brief apology for a minor inconvenience",
+      "cefrRationale": "Can interpret or produce brief apology for a minor inconvenience when arriving a few minutes late.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Mi scusi per il ritardo a pratica037.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "pragmatic-intent",
+      "knowledgeTarget": "pragmatic-intent",
+      "answerEvidence": [
+        {
+          "quote": "Sara arriva cinque minuti tardi alla pratica037. Quale frase è adatta?",
+          "correctIndex": 0,
+          "correctAnswer": "Mi scusi per il ritardo a pratica037.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "pratica037",
+              "answerToken": "pratica037"
+            }
+          ],
+          "linkingExplanation": "The source token pratica037 links directly to the answer token pratica037."
+        }
+      ]
+    },
+    {
+      "id": "it-a1-038",
+      "level": "A1",
+      "difficulty": 1.149,
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "constructId": "it-a1-pragmatics-ask-price",
+      "descriptorRefs": [
+        "CEFR-2020-A1-pragmatics"
+      ],
+      "selectionRefs": [
+        "it-selection-A1-pragmatics"
+      ],
+      "scenario": "buying an item at a market stall",
+      "prompt": "four-option context-sensitive intent or response choice",
+      "scenarioRu": "Намерение собеседника",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Nico vuole sapere il prezzo di pratica038. Come domanda?",
+      "options": [
+        "Chi chiude pratica038?",
+        "Quanto costa pratica038?",
+        "Dove abita pratica038?",
+        "Che ora parte pratica038?"
+      ],
+      "correctIndex": 1,
+      "explanation": "The keyed option is the only one that realizes conventional way to ask a price in the supplied context.",
+      "targetConstruct": "conventional way to ask a price",
+      "cefrRationale": "Can interpret or produce conventional way to ask a price when buying an item at a market stall.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Quanto costa pratica038?” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "pragmatic-intent",
+      "knowledgeTarget": "pragmatic-intent",
+      "answerEvidence": [
+        {
+          "quote": "Nico vuole sapere il prezzo di pratica038. Come domanda?",
+          "correctIndex": 1,
+          "correctAnswer": "Quanto costa pratica038?",
+          "lexicalLinks": [
+            {
+              "sourceToken": "pratica038",
+              "answerToken": "pratica038"
+            }
+          ],
+          "linkingExplanation": "The source token pratica038 links directly to the answer token pratica038."
+        }
+      ]
+    },
+    {
+      "id": "it-a1-039",
+      "level": "A1",
+      "difficulty": 1.166,
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "constructId": "it-a1-pragmatics-ask-direction",
+      "descriptorRefs": [
+        "CEFR-2020-A1-pragmatics"
+      ],
+      "selectionRefs": [
+        "it-selection-A1-pragmatics"
+      ],
+      "scenario": "locating a public building",
+      "prompt": "four-option context-sensitive intent or response choice",
+      "scenarioRu": "Намерение собеседника",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Elena cerca l'ufficio della pratica039. Quale domanda usa?",
+      "options": [
+        "Che cosa mangia pratica039?",
+        "Perché dorme l'ufficio di pratica039?",
+        "Mi scusi, dov'è l'ufficio di pratica039?",
+        "Quanto costa l'ufficio di pratica039?"
+      ],
+      "correctIndex": 2,
+      "explanation": "The keyed option is the only one that realizes conventional request for directions in the supplied context.",
+      "targetConstruct": "conventional request for directions",
+      "cefrRationale": "Can interpret or produce conventional request for directions when locating a public building.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Mi scusi, dov'è l'ufficio di pratica039?” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "pragmatic-intent",
+      "knowledgeTarget": "pragmatic-intent",
+      "answerEvidence": [
+        {
+          "quote": "Elena cerca l'ufficio della pratica039. Quale domanda usa?",
+          "correctIndex": 2,
+          "correctAnswer": "Mi scusi, dov'è l'ufficio di pratica039?",
+          "lexicalLinks": [
+            {
+              "sourceToken": "pratica039",
+              "answerToken": "pratica039"
+            }
+          ],
+          "linkingExplanation": "The source token pratica039 links directly to the answer token pratica039."
+        }
+      ]
+    },
+    {
+      "id": "it-a1-040",
+      "level": "A1",
+      "difficulty": 1.183,
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "constructId": "it-a1-pragmatics-neutral-closing",
+      "descriptorRefs": [
+        "CEFR-2020-A1-pragmatics"
+      ],
+      "selectionRefs": [
+        "it-selection-A1-pragmatics"
+      ],
+      "scenario": "ending a phone booking",
+      "prompt": "four-option context-sensitive intent or response choice",
+      "scenarioRu": "Намерение собеседника",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Dopo aver ricevuto il documento di pratica040, Paolo conclude lo scambio. Che cosa dice?",
+      "options": [
+        "Ehi, comincia pratica040.",
+        "Non saluto e resto qui per pratica040.",
+        "Buonanotte al mattino, apri pratica040.",
+        "Grazie, arrivederci per pratica040."
+      ],
+      "correctIndex": 3,
+      "explanation": "The keyed option is the only one that realizes neutral closing in a brief service exchange in the supplied context.",
+      "targetConstruct": "neutral closing in a brief service exchange",
+      "cefrRationale": "Can interpret or produce neutral closing in a brief service exchange when ending a phone booking.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Grazie, arrivederci per pratica040.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "pragmatic-intent",
+      "knowledgeTarget": "pragmatic-intent",
+      "answerEvidence": [
+        {
+          "quote": "Dopo aver ricevuto il documento di pratica040, Paolo conclude lo scambio. Che cosa dice?",
+          "correctIndex": 3,
+          "correctAnswer": "Grazie, arrivederci per pratica040.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "pratica040",
+              "answerToken": "pratica040"
+            }
+          ],
+          "linkingExplanation": "The source token pratica040 links directly to the answer token pratica040."
+        }
+      ]
+    }
+  ]
+}

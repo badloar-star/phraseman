@@ -192,7 +192,7 @@ describe('sage porcelain static asset coverage', () => {
     const boonPaths = themeBlocks(boon, 'sagePorcelain')
       .map(requires)
       .find((paths) => paths.length === 10) ?? [];
-    expect(boonPaths.slice(0, 7)).toEqual([
+    expect(boonPaths.slice(0, 9)).toEqual([
       '../assets/images/weekly_boon_icons/png/sagePorcelain/streak_saver.webp',
       '../assets/images/weekly_boon_icons/png/sagePorcelain/mystery_monday.webp',
       '../assets/images/weekly_boon_icons/png/sagePorcelain/turbo_regen.webp',
@@ -200,6 +200,8 @@ describe('sage porcelain static asset coverage', () => {
       '../assets/images/weekly_boon_icons/png/sagePorcelain/double_xp.webp',
       '../assets/images/weekly_boon_icons/png/sagePorcelain/flashcard_friday.webp',
       '../assets/images/weekly_boon_icons/png/sagePorcelain/speaking_saturday.webp',
+      '../assets/images/weekly_boon_icons/png/sagePorcelain/early_bird.webp',
+      '../assets/images/weekly_boon_icons/png/sagePorcelain/perfect_week.webp',
     ]);
     expect(boon).toContain("streak_saver: 'assets/images/weekly_boon_icons/png/sagePorcelain/streak_saver.webp'");
     expect(boon).toContain("mystery_monday: 'assets/images/weekly_boon_icons/png/sagePorcelain/mystery_monday.webp'");
@@ -208,5 +210,7 @@ describe('sage porcelain static asset coverage', () => {
     expect(boon).toContain("double_xp: 'assets/images/weekly_boon_icons/png/sagePorcelain/double_xp.webp'");
     expect(boon).toContain("flashcard_friday: 'assets/images/weekly_boon_icons/png/sagePorcelain/flashcard_friday.webp'");
     expect(boon).toContain("speaking_saturday: 'assets/images/weekly_boon_icons/png/sagePorcelain/speaking_saturday.webp'");
+    expect(boon).toContain("early_bird: 'assets/images/weekly_boon_icons/png/sagePorcelain/early_bird.webp'");
+    expect(boon).toContain("perfect_week: 'assets/images/weekly_boon_icons/png/sagePorcelain/perfect_week.webp'");
   });
 });

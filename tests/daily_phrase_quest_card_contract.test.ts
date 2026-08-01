@@ -81,24 +81,30 @@ describe('DailyPhraseCard quest contract', () => {
   });
 
   it('preserves every localized literal, explanation, and example value in the detail and save flows', () => {
+    const saveStart = source.indexOf('<AddToFlashcard');
+    const saveBlock = source.slice(saveStart, source.indexOf('/>', saveStart) + 2);
+
     expect(source).toContain('{phraseCopy.literal}');
     expect(source).toContain('{phraseCopy.meaning}');
     expect(source).toContain('{phraseCopy.text}');
-    expect(source).toContain('literalRu={phrase.literal}');
-    expect(source).toContain('literalUk={phrase.literal_uk}');
-    expect(source).toContain('literalEs={phrase.literal_es}');
-    expect(source).toContain('explanationRu={phrase.meaning}');
-    expect(source).toContain('explanationUk={phrase.meaning_uk}');
-    expect(source).toContain('explanationEs={phrase.meaning_es}');
-    expect(source).toContain('exampleRu={phrase.text}');
-    expect(source).toContain('exampleUk={phrase.text_uk}');
-    expect(source).toContain('exampleEs={phrase.text_es}');
+    expect(saveBlock).toContain('literalRu={phrase.literal}');
+    expect(saveBlock).toContain('literalUk={phrase.literal_uk}');
+    expect(saveBlock).toContain('literalEs={phrase.literal_es}');
+    expect(saveBlock).toContain('explanationRu={phrase.meaning}');
+    expect(saveBlock).toContain('explanationUk={phrase.meaning_uk}');
+    expect(saveBlock).toContain('explanationEs={phrase.meaning_es}');
+    expect(saveBlock).toContain('exampleRu={phrase.text}');
+    expect(saveBlock).toContain('exampleUk={phrase.text_uk}');
+    expect(saveBlock).toContain('exampleEs={phrase.text_es}');
+    expect(source).not.toContain("declare module '../app/daily_phrase_system'");
+    expect(source).not.toContain('example_ru?:');
   });
 
   it('numbers each quest option and presents the explanation as a dedicated story rail', () => {
     expect(source).toContain('questOptions.map((option, optionIndex) =>');
     expect(source).toContain('styles.optionMarker');
     expect(source).toContain('{optionIndex + 1}');
+    expect(source).toContain('accessibilityLabel={`${optionIndex + 1}. ${option.text}`}');
     expect(source).toContain('styles.explanationRail');
   });
 });

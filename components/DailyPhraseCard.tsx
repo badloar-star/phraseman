@@ -613,7 +613,7 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
                           key={option.id}
                           onPress={() => handleQuestOptionPress(option.id)}
                           accessibilityRole="button"
-                          accessibilityLabel={option.text}
+                          accessibilityLabel={`${optionIndex + 1}. ${option.text}`}
                           style={({ pressed }) => [
                             styles.questOption,
                             {

@@ -115,5 +115,53 @@ describe('DailyPhraseCard quest contract', () => {
     expect(source).toContain('useNativeDriver: true');
     expect(source).toContain('if (reduceMotion)');
     expect(source).not.toContain('Animated.loop');
+    expect(source).not.toContain('setInterval');
+    expect(source).not.toContain('setTimeout');
+  });
+
+  it('starts the entrance only for a closed-to-open modal transition', () => {
+    const entranceEffect = source.slice(
+      source.indexOf('const wasDetailsVisibleRef'),
+      source.indexOf('useEffect(() => {\n    if (!dailyPhraseGateOpen', source.indexOf('const wasDetailsVisibleRef')),
+    );
+
+    expect(entranceEffect).toContain('const opened = detailsVisible && !wasDetailsVisibleRef.current;');
+    expect(entranceEffect).toContain('wasDetailsVisibleRef.current = detailsVisible;');
+    expect(entranceEffect).toContain('if (!opened) return;');
+    expect(entranceEffect).toContain('if (reduceMotion)');
+    expect(entranceEffect).toContain('duration: 220');
+  });
+
+  it('settles active motion immediately when reduced motion changes live', () => {
+    const settleEffectStart = source.indexOf('useEffect(() => {\n    if (!reduceMotion) return;');
+    const settleEffect = source.slice(settleEffectStart, source.indexOf('  }, [', settleEffectStart));
+
+    expect(settleEffect).toContain('modalEntranceAnim.stopAnimation();');
+    expect(settleEffect).toContain('modalEntranceAnim.setValue(detailsVisible ? 1 : 0);');
+    expect(settleEffect).toContain('shakeAnim.stopAnimation();');
+    expect(settleEffect).toContain('shakeAnim.setValue(0);');
+    expect(settleEffect).toContain('explanationAnim.stopAnimation();');
+    expect(settleEffect).toContain('explanationAnim.setValue(questAnswered || showQuestExplanation ? 1 : 0);');
+    expect(settleEffect).toContain('successAnim.stopAnimation();');
+    expect(settleEffect).toContain('successAnim.setValue(questAnswered && selectedQuestCorrect ? 1 : 0);');
+  });
+
+  it('settles each feedback branch and close cleanup without replaying motion', () => {
+    const wrongAnswer = source.slice(source.indexOf('const runWrongAnswerShake'), source.indexOf('const runCorrectAnswerAnimation'));
+    const correctAnswer = source.slice(source.indexOf('const runCorrectAnswerAnimation'), source.indexOf('const resetQuest'));
+    const explanation = source.slice(source.indexOf('const revealQuestExplanation'), source.indexOf('const openDetails'));
+    const close = source.slice(source.indexOf('const closeDetails'), source.indexOf('const handleQuestOptionPress'));
+    const reset = source.slice(source.indexOf('const resetQuest'), source.indexOf('const revealQuestExplanation'));
+
+    expect(wrongAnswer).toContain('if (reduceMotion)');
+    expect(wrongAnswer).toContain('shakeAnim.setValue(0);');
+    expect(correctAnswer).toContain('if (reduceMotion)');
+    expect(correctAnswer).toContain('successAnim.setValue(1);');
+    expect(explanation).toContain('if (reduceMotion)');
+    expect(explanation).toContain('explanationAnim.setValue(1);');
+    expect(close).toContain('modalEntranceAnim.stopAnimation();');
+    expect(reset).toContain('shakeAnim.stopAnimation();');
+    expect(reset).toContain('explanationAnim.stopAnimation();');
+    expect(reset).toContain('successAnim.stopAnimation();');
   });
 });

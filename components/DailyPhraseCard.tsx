@@ -79,7 +79,15 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
   const explanationAnim = useRef(new Animated.Value(0)).current;
   const successAnim = useRef(new Animated.Value(0)).current;
   const modalEntranceAnim = useRef(new Animated.Value(0)).current;
+  const wasDetailsVisibleRef = useRef(false);
   const answeredQuestKeysRef = useRef(new Set<string>()).current;
+  const phraseLang: DailyPhraseInterfaceLang = lang;
+  const questOptions = phrase
+    ? buildDailyPhraseQuestOptions(phrase, IDIOMS, phraseLang)
+    : [];
+  const selectedQuestCorrect = selectedQuestOptionId
+    ? isDailyPhraseQuestAnswerCorrect(questOptions, selectedQuestOptionId)
+    : false;
 
   useEffect(() => {
     let cancelled = false;
@@ -146,11 +154,16 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
   }, [phrase?.id, shakeAnim, explanationAnim, successAnim]);
 
   useEffect(() => {
+    const opened = detailsVisible && !wasDetailsVisibleRef.current;
+    wasDetailsVisibleRef.current = detailsVisible;
+
     if (!detailsVisible) {
       modalEntranceAnim.stopAnimation();
       modalEntranceAnim.setValue(0);
       return;
     }
+
+    if (!opened) return;
 
     if (reduceMotion) {
       modalEntranceAnim.setValue(1);
@@ -168,6 +181,29 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
 
     return () => entrance.stop();
   }, [detailsVisible, modalEntranceAnim, reduceMotion]);
+
+  useEffect(() => {
+    if (!reduceMotion) return;
+
+    modalEntranceAnim.stopAnimation();
+    modalEntranceAnim.setValue(detailsVisible ? 1 : 0);
+    shakeAnim.stopAnimation();
+    shakeAnim.setValue(0);
+    explanationAnim.stopAnimation();
+    explanationAnim.setValue(questAnswered || showQuestExplanation ? 1 : 0);
+    successAnim.stopAnimation();
+    successAnim.setValue(questAnswered && selectedQuestCorrect ? 1 : 0);
+  }, [
+    detailsVisible,
+    explanationAnim,
+    modalEntranceAnim,
+    questAnswered,
+    reduceMotion,
+    selectedQuestCorrect,
+    shakeAnim,
+    showQuestExplanation,
+    successAnim,
+  ]);
 
   useEffect(() => {
     if (!dailyPhraseGateOpen || !detailsVisible || !phrase || questAnswered || showQuestExplanation) return;
@@ -293,7 +329,6 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
     tr: 'Kendini dene',
     pl: 'Sprawdź się',
   });
-  const phraseLang: DailyPhraseInterfaceLang = lang;
   const phraseCopy = dailyPhraseCopyForLang(phrase, phraseLang);
   const flashcardSourceLocales = {
     'pt-BR': phrase.sourceLocales?.['pt-BR']?.meaning,
@@ -303,10 +338,6 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
     pl: phrase.sourceLocales?.pl?.meaning,
   };
   const dailyPhraseImage = trainerThemeIconSource(themeMode, 'phrases');
-  const questOptions = buildDailyPhraseQuestOptions(phrase, IDIOMS, phraseLang);
-  const selectedQuestCorrect = selectedQuestOptionId
-    ? isDailyPhraseQuestAnswerCorrect(questOptions, selectedQuestOptionId)
-    : false;
   const successOverlayOpacity = successAnim.interpolate({
     inputRange: [0, 0.08, 0.78, 1],
     outputRange: [0, 1, 1, 0],

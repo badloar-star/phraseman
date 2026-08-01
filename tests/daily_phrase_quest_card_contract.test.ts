@@ -87,12 +87,12 @@ describe('DailyPhraseCard quest contract', () => {
     expect(source).toContain('literalRu={phrase.literal}');
     expect(source).toContain('literalUk={phrase.literal_uk}');
     expect(source).toContain('literalEs={phrase.literal_es}');
-    expect(source).toContain('explanationRu={phrase.text}');
-    expect(source).toContain('explanationUk={phrase.text_uk}');
-    expect(source).toContain('explanationEs={phrase.text_es}');
-    expect(source).toContain('exampleRu={phrase.example_ru}');
-    expect(source).toContain('exampleUk={phrase.example_uk}');
-    expect(source).toContain('exampleEs={phrase.example_es}');
+    expect(source).toContain('explanationRu={phrase.meaning}');
+    expect(source).toContain('explanationUk={phrase.meaning_uk}');
+    expect(source).toContain('explanationEs={phrase.meaning_es}');
+    expect(source).toContain('exampleRu={phrase.text}');
+    expect(source).toContain('exampleUk={phrase.text_uk}');
+    expect(source).toContain('exampleEs={phrase.text_es}');
   });
 
   it('numbers each quest option and presents the explanation as a dedicated story rail', () => {

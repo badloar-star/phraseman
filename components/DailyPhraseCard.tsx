@@ -47,14 +47,6 @@ import { useStudyTarget } from './StudyTargetContext';
 import { useTheme } from './ThemeContext';
 import TonalSurface from './TonalSurface';
 
-declare module '../app/daily_phrase_system' {
-  interface DailyPhrase {
-    example_ru?: string;
-    example_uk?: string;
-    example_es?: string;
-  }
-}
-
 // Chrome (per-theme palette) now lives in app/daily_phrase_chrome.ts so the
 // home/lock-screen widget can render the identical look. See that file.
 
@@ -730,12 +722,12 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
                   literalRu={phrase.literal}
                   literalUk={phrase.literal_uk}
                   literalEs={phrase.literal_es}
-                  explanationRu={phrase.text}
-                  explanationUk={phrase.text_uk}
-                  explanationEs={phrase.text_es}
-                  exampleRu={phrase.example_ru}
-                  exampleUk={phrase.example_uk}
-                  exampleEs={phrase.example_es}
+                  explanationRu={phrase.meaning}
+                  explanationUk={phrase.meaning_uk}
+                  explanationEs={phrase.meaning_es}
+                  exampleRu={phrase.text}
+                  exampleUk={phrase.text_uk}
+                  exampleEs={phrase.text_es}
                 />
               </View>
             )}

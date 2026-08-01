@@ -99,7 +99,8 @@ test('Pre-A1 and insufficient-data result wording stays neutral', () => {
 test('all client assets and the bank use one new revision', () => {
   const html = read('index.html');
   const app = read('app.js');
-  const expectedRevision = '20260801-1';
+  const baseRevision = '20260801-1';
+  const expectedRevision = '20260801-2';
 
   const scripts = [...html.matchAll(/<script src="([^"]+)"><\/script>/g)].map((match) => match[1]);
   const expectedScripts = [
@@ -110,6 +111,8 @@ test('all client assets and the bank use one new revision', () => {
   ];
   assert.deepEqual(scripts, expectedScripts);
   assert.equal(new Set(scripts).size, expectedScripts.length);
+  assert.ok(scripts.every((asset) => asset.endsWith(`?v=${expectedRevision}`)));
+  assert.equal(html.includes(`?v=${baseRevision}`), false);
   const stylesheets = [...html.matchAll(/<link rel="stylesheet" href="([^"]+)"/g)].map((match) => match[1]);
   assert.deepEqual(stylesheets, [`./styles.css?v=${expectedRevision}`]);
   assert.equal(new Set(stylesheets).size, 1);

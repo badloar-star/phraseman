@@ -11,6 +11,7 @@ const appPath = path.join(
   "english-level-test",
   "app.js",
 );
+const i18nPath = path.join(path.dirname(appPath), "i18n.js");
 const htmlPath = path.join(
   __dirname,
   "..",
@@ -34,7 +35,7 @@ function memoryStorage(initial = {}) {
   };
 }
 
-function loadHooks({ fetchImpl, storage = memoryStorage() } = {}) {
+function loadHooks({ fetchImpl, storage = memoryStorage(), uiLocale = "ru" } = {}) {
   let source = fs.readFileSync(appPath, "utf8");
   source = source.replace(
     /\s+renderLanding\(\);\s*\}\)\(\);\s*$/,
@@ -54,7 +55,9 @@ function loadHooks({ fetchImpl, storage = memoryStorage() } = {}) {
     performance: { now: () => 0 },
     fetch: fetchImpl || (async () => ({ ok: false, json: async () => null })),
     localStorage: storage,
-    navigator: { userAgent: "test" },
+    navigator: { language: uiLocale === "ru" ? "ru-RU" : "en-US", userAgent: "test" },
+    location: { href: `https://example.test/level?ui=${uiLocale}`, get search() { return new URL(this.href).search; } },
+    history: { replaceState() {} },
     screen: { width: 100, height: 100 },
     crypto: { subtle: {}, getRandomValues: (value) => value.fill(1) },
     document: { getElementById: () => ({}), addEventListener: () => {} },
@@ -66,6 +69,7 @@ function loadHooks({ fetchImpl, storage = memoryStorage() } = {}) {
     },
   };
   context.globalThis = context;
+  vm.runInNewContext(fs.readFileSync(i18nPath, "utf8"), context, { filename: i18nPath });
   vm.runInNewContext(source, context, { filename: appPath });
   return { hooks: context.__counterHooks, storage };
 }
@@ -252,7 +256,27 @@ test("landing applies the server completion total to visible text and truthful A
   hooks.applyCompletedCount(landing, 124321);
   assert.equal(Number(counter.textContent.replace(/\D/g, "")), 124321);
   assert.match(wrapper.attributes["aria-label"], /124[\s\u00a0]?321/);
-  assert.match(wrapper.attributes["aria-label"], /\u0442\u0435\u0441\u0442/i);
+  assert.match(wrapper.attributes["aria-label"], /\u0443\u0447\u0435\u043d\u0438\u043a\u043e\u0432.*\u0443\u0440\u043e\u0432\u0435\u043d\u044c/i);
+});
+
+test("late counter updates retain the active UI locale in visible and ARIA text", async () => {
+  for (const [uiLocale, expectedNumber, expectedCopy] of [
+    ["ru", /124[\s\u00a0]321/, /учеников уже проверили свой уровень/i],
+    ["en", /124,321/, /learners have already checked their level/i],
+  ]) {
+    const { hooks } = loadHooks({
+      uiLocale,
+      fetchImpl: async () => ({ ok: true, json: async () => ({ ok: true, completed: 124321 }) }),
+    });
+    const counter = { textContent: "0" };
+    const wrapper = { attributes: {}, setAttribute(name, value) { this.attributes[name] = value; } };
+    const landing = { isConnected: true, querySelector(selector) { return selector === "#proofCounter" ? counter : wrapper; } };
+    hooks.activateLandingForTest(landing);
+    await hooks.refreshLandingCounter(landing);
+    assert.match(counter.textContent, expectedNumber);
+    assert.match(wrapper.attributes["aria-label"], expectedNumber);
+    assert.match(wrapper.attributes["aria-label"], expectedCopy);
+  }
 });
 
 test("parallel refresh requests for the same visible landing share one GET", async () => {
@@ -287,7 +311,7 @@ test("parallel refresh requests for the same visible landing share one GET", asy
   await Promise.all([first, second]);
 });
 
-test("landing copy describes completed tests and the unified asset revision is 20260801-1", () => {
+test("landing copy describes completed tests and the unified asset revision is 20260801-2", () => {
   const source = fs.readFileSync(appPath, "utf8");
   const html = fs.readFileSync(htmlPath, "utf8");
   const counterBlock =
@@ -297,18 +321,19 @@ test("landing copy describes completed tests and the unified asset revision is 2
     counterBlock,
     /\u0441\u0435\u0440\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u043e\u0432 \u0443\u0436\u0435 \u0432\u044b\u0434\u0430\u043d\u043e/i,
   );
-  assert.match(source, /questions\.en\.json\?v=20260801-1/);
+  assert.match(source, /questions\.en\.json\?v=20260801-2/);
   const scripts = [...html.matchAll(/<script src="([^"]+)"><\/script>/g)].map((match) => match[1]);
   const expectedScripts = [
-    "./engine.js?v=20260801-1",
-    "./i18n.js?v=20260801-1",
-    "./certificate.js?v=20260801-1",
-    "./app.js?v=20260801-1",
+    "./engine.js?v=20260801-2",
+    "./i18n.js?v=20260801-2",
+    "./certificate.js?v=20260801-2",
+    "./app.js?v=20260801-2",
   ];
   assert.deepEqual(scripts, expectedScripts);
   assert.equal(new Set(scripts).size, expectedScripts.length);
   const stylesheets = [...html.matchAll(/<link rel="stylesheet" href="([^"]+)"/g)].map((match) => match[1]);
-  assert.deepEqual(stylesheets, ["./styles.css?v=20260801-1"]);
+  assert.deepEqual(stylesheets, ["./styles.css?v=20260801-2"]);
   assert.equal(new Set(stylesheets).size, 1);
+  assert.equal(html.includes("?v=20260801-1"), false);
   assert.equal((html.match(/v=20260722-1/g) || []).length, 0);
 });

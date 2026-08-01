@@ -151,7 +151,7 @@ html, body {
   padding: 6px 9px;
 }
 .elt-ui-locale-toggle svg { height: 18px; width: 18px; }
-.elt-ui-locale-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.elt-ui-locale-toggle:focus-visible { outline: 2px solid var(--text); outline-offset: 3px; }
 .elt-ui-locale-toggle:hover { border-color: var(--accent); }
 
 /* ========== Landing (selling page) ========== */
@@ -222,7 +222,7 @@ html, body {
 .elt-language-options { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
 .elt-language-option { align-items: center; background: var(--card); border: 1px solid var(--border); border-radius: 10px; color: var(--text); cursor: pointer; display: inline-flex; font: inherit; font-size: 0.9rem; gap: 6px; min-height: 44px; padding: 10px 12px; }
 .elt-language-option--active { background: rgba(232,161,60,0.16); border-color: var(--accent); color: var(--text); font-weight: 800; }
-.elt-language-option:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.elt-language-option:focus-visible { outline: 2px solid var(--text); outline-offset: 3px; }
 
 .elt-counter {
   margin: 26px auto 24px;

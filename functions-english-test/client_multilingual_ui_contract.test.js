@@ -312,9 +312,9 @@ test('composes certificate completion copy with the assessed language for all fi
 
 test('loads the versioned i18n core before the certificate and application scripts', () => {
   const html = fs.readFileSync(require.resolve('../knowly-www/english-level-test/index.html'), 'utf8');
-  const i18nScript = html.indexOf('./i18n.js?v=20260801-1');
-  const certificateScript = html.indexOf('./certificate.js?v=20260801-1');
-  const appScript = html.indexOf('./app.js?v=20260801-1');
+  const i18nScript = html.indexOf('./i18n.js?v=20260801-2');
+  const certificateScript = html.indexOf('./certificate.js?v=20260801-2');
+  const appScript = html.indexOf('./app.js?v=20260801-2');
   assert.ok(i18nScript >= 0, 'the i18n script is versioned');
   assert.ok(i18nScript < certificateScript, 'i18n loads before certificate.js');
   assert.ok(certificateScript < appScript, 'certificate.js loads before app.js');
@@ -344,8 +344,10 @@ test('keeps selection mutable only on landing and safely updates the URL without
   assert.match(source, /typeof document\.querySelector === 'function'/);
   assert.match(styles, /\.elt-ui-locale-toggle[\s\S]*min-width:\s*44px[\s\S]*min-height:\s*44px/);
   assert.match(styles, /\.elt-ui-locale-toggle:focus-visible/);
+  assert.match(styles, /\.elt-ui-locale-toggle:focus-visible\s*\{[^}]*outline:\s*2px solid var\(--text\)/);
   assert.match(styles, /\.elt-language-options[\s\S]*flex-wrap:\s*wrap/);
   assert.match(styles, /\.elt-language-option--active[\s\S]*border[^}]*[\s\S]*color:/);
+  assert.match(styles, /\.elt-language-option:focus-visible\s*\{[^}]*outline:\s*2px solid var\(--text\)/);
   assert.doesNotMatch(styles, /elt-language-(?:carousel|scroll)/);
 });
 

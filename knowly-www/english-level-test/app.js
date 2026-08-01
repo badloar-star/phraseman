@@ -9,7 +9,7 @@
   'use strict';
 
   const API_BASE = '/api/english-test';
-  const BANK_URL = './data/questions.en.json?v=20260801-1';
+  const BANK_URL = './data/questions.en.json?v=20260801-2';
 
   const STORE_URL_IOS = 'https://apps.apple.com/app/id6764800879';
   const STORE_URL_ANDROID = 'https://play.google.com/store/apps/details?id=app.phraseman';
@@ -343,12 +343,14 @@
     const completed = normalizePublicCompleted(value);
     const counter = landing?.querySelector('#proofCounter');
     const wrapper = landing?.querySelector('.elt-counter');
+    const localeTag = uiLocale === 'ru' ? 'ru-RU' : 'en-US';
+    const formattedCompleted = completed.toLocaleString(localeTag);
     countUp(counter, completed, {
       duration: 900,
-      format: (current) => Math.round(current).toLocaleString('ru-RU'),
+      format: (current) => Math.round(current).toLocaleString(localeTag),
     });
     if (wrapper) {
-      wrapper.setAttribute('aria-label', `${completed.toLocaleString('ru-RU')} тестов уже пройдено`);
+      wrapper.setAttribute('aria-label', copy('socialProof.text', { count: formattedCompleted }));
     }
   }
 

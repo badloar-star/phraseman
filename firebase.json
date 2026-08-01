@@ -17,8 +17,10 @@
         "migration.html"
       ],
       "redirects": [
-        { "source": "/v2", "destination": "/", "type": 302 },
-        { "source": "/v2/", "destination": "/", "type": 302 }
+        { "source": "/", "destination": "/legacy.html", "type": 302 },
+        { "source": "/index.html", "destination": "/legacy.html", "type": 302 },
+        { "source": "/v2", "destination": "/v2.html", "type": 302 },
+        { "source": "/v2/", "destination": "/v2.html", "type": 302 }
       ],
       "headers": [
         {

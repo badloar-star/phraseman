@@ -71,6 +71,7 @@ jest.mock('firebase-functions/logger', () => ({
 }));
 
 jest.mock('firebase-functions/params', () => ({
+  defineSecret: () => ({ value: () => '' }),
   defineString: () => ({ value: () => '' }),
 }));
 

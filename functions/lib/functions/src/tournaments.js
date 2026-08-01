@@ -193,9 +193,61 @@ async function loadResourcePool(db) {
     const tasks = tasksSnap.docs.map(parseTask).filter((task) => !!task);
     return { bots, tasks };
 }
-function buildRounds(roomId, pool) {
+/**
+ * зачем: владелец вручную отбирает задания для конкретного турнира в админке.
+ * Набор — мягкий приоритет: невалидный/неполный раунд молча откатывается на
+ * случайную выборку, чтобы кураторская ошибка не отменяла турнир людям.
+ * Стоимость: 1 чтение дока на комнату в окне создания/заполнения + точечный
+ * getAll только для заданий, которых нет в общем срезе пула.
+ */
+async function loadCuratedForRoom(db, roomId, pool) {
+    const snap = await db.collection(tournament_core_1.TOURNAMENT_CURATED_COLLECTION).doc(roomId).get();
+    if (!snap.exists)
+        return null;
+    const curated = (0, tournament_core_1.normalizeTournamentCuratedSet)(snap.data());
+    if (!curated || curated.rounds.length === 0)
+        return null;
+    const poolIds = new Set(pool.map((task) => task.taskId));
+    const missing = Array.from(new Set(curated.rounds.flatMap((round) => round.taskIds).filter((taskId) => !poolIds.has(taskId))));
+    const extraTasks = [];
+    if (missing.length > 0) {
+        const snaps = await db.getAll(...missing.map((taskId) => db.collection(tournament_core_1.TOURNAMENT_TASKS_COLLECTION).doc(taskId)));
+        for (const taskSnap of snaps) {
+            // parseTask пропускает только verified-задания с валидным контрактом.
+            const task = parseTask(taskSnap);
+            if (task)
+                extraTasks.push(task);
+        }
+    }
+    const available = new Set([...poolIds, ...extraTasks.map((task) => task.taskId)]);
+    const rounds = new Map();
+    for (const round of curated.rounds) {
+        if (round.taskIds.every((taskId) => available.has(taskId))) {
+            rounds.set(round.roundNo, [...round.taskIds]);
+        }
+        else {
+            console.warn('[tournaments] curated round incomplete, falling back to random', {
+                roomId, roundNo: round.roundNo,
+            });
+        }
+    }
+    return rounds.size > 0 ? { rounds, extraTasks } : null;
+}
+function buildRounds(roomId, pool, curatedRounds) {
+    const poolMap = new Map(pool.map((task) => [task.taskId, task]));
     const rounds = tournament_core_1.TOURNAMENT_ROUND_MODE_KINDS.map((modeKind, index) => {
         const roundNo = index + 1;
+        const curatedIds = curatedRounds?.get(roundNo);
+        if (curatedIds && curatedIds.every((taskId) => poolMap.has(taskId))) {
+            const selected = curatedIds.map((taskId) => poolMap.get(taskId));
+            const modes = new Set(selected.map((task) => task.mode));
+            return {
+                roundNo,
+                mode: modes.size === 1 ? selected[0].mode : 'mix',
+                taskIds: [...curatedIds],
+                results: {},
+            };
+        }
         const selected = (0, tournament_core_1.selectRoundTasks)({ pool, roomId, roundNo, count: DEFAULT_TASKS_PER_ROUND, modeKind });
         if (selected.length !== DEFAULT_TASKS_PER_ROUND)
             return null;
@@ -256,7 +308,9 @@ exports.tournamentCreateRooms = (0, scheduler_1.onSchedule)({ schedule: '*/5 * *
         if (nowMs < startsAt - tournament_core_1.TOURNAMENT_CREATE_AHEAD_MS || nowMs >= startsAt)
             continue;
         const roomId = (0, tournament_core_1.tournamentRoomId)(slot.slotId, slot.timezone, dateKey);
-        if (!buildRounds(roomId, resources.tasks)) {
+        const curated = await loadCuratedForRoom(db, roomId, resources.tasks);
+        const roomPool = curated ? [...resources.tasks, ...curated.extraTasks] : resources.tasks;
+        if (!buildRounds(roomId, roomPool, curated?.rounds)) {
             console.warn('[tournaments] create skipped: task_pool_unavailable', { roomId });
             continue;
         }
@@ -568,7 +622,7 @@ async function tournamentFillRoomTransaction(db, roomRef, resources, dependencie
             const cancelled = await cancelRoomInTransaction(db, tx, roomRef, room, 'not_enough_players', nowMs);
             return cancelled ? 'cancelled_players' : 'skip';
         }
-        const rounds = buildRounds(room.roomId, resources.tasks);
+        const rounds = buildRounds(room.roomId, resources.tasks, resources.curatedRounds);
         const needed = tournament_core_1.TOURNAMENT_ROOM_SIZE - room.players.length;
         const picked = resources.bots
             .filter((bot) => !room.players.some((player) => player.id === bot.botId))
@@ -656,7 +710,13 @@ async function processTournamentFillRooms(options) {
         scanned += rooms.size;
         for (const doc of rooms.docs) {
             try {
-                if (await fillRoom(db, doc.ref, resources) === 'filled')
+                // Кураторский набор комнаты (если владелец собрал его в админке) имеет
+                // приоритет над случайной выборкой. 1 чтение на комнату в окне фила.
+                const curated = await loadCuratedForRoom(db, doc.id, resources.tasks);
+                const roomResources = curated
+                    ? { ...resources, tasks: [...resources.tasks, ...curated.extraTasks], curatedRounds: curated.rounds }
+                    : resources;
+                if (await fillRoom(db, doc.ref, roomResources) === 'filled')
                     filled += 1;
             }
             catch (error) {

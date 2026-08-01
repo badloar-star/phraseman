@@ -9,9 +9,10 @@
 // чтобы этот модуль был полностью покрыт юнит-тестами без эмулятора.
 // ═══════════════════════════════════════════════════════════════════════════
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TOURNAMENT_HOT_STREAK_TIERS = exports.TOURNAMENT_BANK_RATE = exports.TOURNAMENT_SEASON_POINTS = exports.TOURNAMENT_PRIZES = exports.TOURNAMENT_STREAK_X2_THRESHOLD = exports.TOURNAMENT_STREAK_X15_THRESHOLD = exports.TOURNAMENT_MAX_SPEED_BONUS_RATIO = exports.TOURNAMENT_VOICE_BASE_MULTIPLIER = exports.TOURNAMENT_BASE_SCORE = exports.TOURNAMENT_ROUND_MODE_KINDS = exports.TOURNAMENT_FILL_SERIALIZED_BUDGET_BYTES = exports.TOURNAMENT_TASK_LIMITS = exports.TOURNAMENT_STATE_CANCELLED = exports.TOURNAMENT_STATES = exports.DEFAULT_TOURNAMENT_SCHEDULE = exports.TOURNAMENT_ROOM_TTL_MS = exports.TOURNAMENT_REWARD_CLAIM_WINDOW_MS = exports.TOURNAMENT_RESULTS_DISPLAY_MS = exports.TOURNAMENT_FINAL_DISPLAY_MS = exports.TOURNAMENT_TABLE_DISPLAY_MS = exports.TOURNAMENT_CANCEL_COMPENSATION_GEMS = exports.TOURNAMENT_FILL_CANCELLATION_CUTOFF_MS = exports.TOURNAMENT_FILL_BOTS_AHEAD_MS = exports.TOURNAMENT_CREATE_AHEAD_MS = exports.TOURNAMENT_LOBBY_OPEN_MS = exports.TOURNAMENT_ROUNDS = exports.TOURNAMENT_MIN_REAL_PLAYERS = exports.TOURNAMENT_ROOM_SIZE = exports.TOURNAMENT_RECEIPTS_SUBCOLLECTION = exports.TOURNAMENT_REWARD_CLAIMS_SUBCOLLECTION = exports.TOURNAMENT_TICKETS_DOC = exports.BOT_PROFILES_COLLECTION = exports.TOURNAMENT_BANK_COLLECTION = exports.TOURNAMENT_SEASON_ENTRIES_SUBCOLLECTION = exports.TOURNAMENT_SEASONS_COLLECTION = exports.TOURNAMENT_TASK_SECRETS_SUBCOLLECTION = exports.TOURNAMENT_TASKS_COLLECTION = exports.TOURNAMENT_ROOMS_COLLECTION = exports.TOURNAMENT_SCHEDULE_CONFIG_DOC = exports.TOURNAMENT_SCHEDULE_COLLECTION = void 0;
+exports.TOURNAMENT_HOT_STREAK_TIERS = exports.TOURNAMENT_BANK_RATE = exports.TOURNAMENT_SEASON_POINTS = exports.TOURNAMENT_PRIZES = exports.TOURNAMENT_STREAK_X2_THRESHOLD = exports.TOURNAMENT_STREAK_X15_THRESHOLD = exports.TOURNAMENT_MAX_SPEED_BONUS_RATIO = exports.TOURNAMENT_VOICE_BASE_MULTIPLIER = exports.TOURNAMENT_BASE_SCORE = exports.TOURNAMENT_ROUND_MODE_KINDS = exports.TOURNAMENT_FILL_SERIALIZED_BUDGET_BYTES = exports.TOURNAMENT_TASK_LIMITS = exports.TOURNAMENT_STATE_CANCELLED = exports.TOURNAMENT_STATES = exports.TOURNAMENT_CURATED_COLLECTION = exports.DEFAULT_TOURNAMENT_SCHEDULE = exports.TOURNAMENT_ROOM_TTL_MS = exports.TOURNAMENT_REWARD_CLAIM_WINDOW_MS = exports.TOURNAMENT_RESULTS_DISPLAY_MS = exports.TOURNAMENT_FINAL_DISPLAY_MS = exports.TOURNAMENT_TABLE_DISPLAY_MS = exports.TOURNAMENT_CANCEL_COMPENSATION_GEMS = exports.TOURNAMENT_FILL_CANCELLATION_CUTOFF_MS = exports.TOURNAMENT_FILL_BOTS_AHEAD_MS = exports.TOURNAMENT_CREATE_AHEAD_MS = exports.TOURNAMENT_LOBBY_OPEN_MS = exports.TOURNAMENT_ROUNDS = exports.TOURNAMENT_MIN_REAL_PLAYERS = exports.TOURNAMENT_ROOM_SIZE = exports.TOURNAMENT_RECEIPTS_SUBCOLLECTION = exports.TOURNAMENT_REWARD_CLAIMS_SUBCOLLECTION = exports.TOURNAMENT_TICKETS_DOC = exports.BOT_PROFILES_COLLECTION = exports.TOURNAMENT_BANK_COLLECTION = exports.TOURNAMENT_SEASON_ENTRIES_SUBCOLLECTION = exports.TOURNAMENT_SEASONS_COLLECTION = exports.TOURNAMENT_TASK_SECRETS_SUBCOLLECTION = exports.TOURNAMENT_TASKS_COLLECTION = exports.TOURNAMENT_ROOMS_COLLECTION = exports.TOURNAMENT_SCHEDULE_CONFIG_DOC = exports.TOURNAMENT_SCHEDULE_COLLECTION = void 0;
 exports.normalizeTournamentSchedule = normalizeTournamentSchedule;
 exports.tournamentRoomId = tournamentRoomId;
+exports.normalizeTournamentCuratedSet = normalizeTournamentCuratedSet;
 exports.dateKeyInTimezone = dateKeyInTimezone;
 exports.slotStartMs = slotStartMs;
 exports.isTournamentState = isTournamentState;
@@ -137,6 +138,50 @@ function normalizeTournamentSchedule(raw) {
 /** Детерминированный id комнаты: повторный запуск scheduler'а не создаёт дубль. */
 function tournamentRoomId(slotId, timezone, dateKey) {
     return `${slotId}_${timezone.replace(/[^\w]/g, '_')}_${dateKey}`.slice(0, 140);
+}
+// ── Кураторские наборы заданий ──────────────────────────────────────────────
+/**
+ * зачем: владелец хочет вручную отбирать конкретные задания для конкретного
+ * турнира. Документ-набор живёт под id комнаты (tournamentRoomId): раунды из
+ * набора имеют приоритет над случайной выборкой selectRoundTasks; раунды, не
+ * указанные в наборе, добираются случайно как обычно. Набор — мягкая
+ * подсказка: если задание из набора исчезло/снято с публикации, раунд
+ * откатывается на случайную выборку, а не отменяет турнир.
+ */
+exports.TOURNAMENT_CURATED_COLLECTION = 'tournamentCuratedSets';
+function normalizeTournamentCuratedSet(raw) {
+    if (!raw || typeof raw !== 'object' || Array.isArray(raw))
+        return null;
+    const data = raw;
+    const slotId = String(data.slotId ?? '').trim().slice(0, 60);
+    const timezone = String(data.timezone ?? '').trim().slice(0, 60);
+    const dateKey = String(data.dateKey ?? '').trim();
+    if (!slotId || !timezone || !/^\d{4}-\d{2}-\d{2}$/.test(dateKey))
+        return null;
+    const rawRounds = Array.isArray(data.rounds) ? data.rounds : [];
+    if (rawRounds.length > exports.TOURNAMENT_ROUNDS)
+        return null;
+    const seenRounds = new Set();
+    const rounds = [];
+    for (const entry of rawRounds) {
+        if (!entry || typeof entry !== 'object' || Array.isArray(entry))
+            return null;
+        const e = entry;
+        const roundNo = Number(e.roundNo);
+        if (!Number.isInteger(roundNo) || roundNo < 1 || roundNo > exports.TOURNAMENT_ROUNDS
+            || seenRounds.has(roundNo))
+            return null;
+        const idsRaw = Array.isArray(e.taskIds) ? e.taskIds : [];
+        const taskIds = idsRaw.map((id) => String(id ?? '').trim());
+        if (taskIds.length === 0 || taskIds.length > exports.TOURNAMENT_TASK_LIMITS.maxTaskIdsPerRound
+            || new Set(taskIds).size !== taskIds.length
+            || taskIds.some((id) => id.length === 0
+                || Buffer.byteLength(id, 'utf8') > exports.TOURNAMENT_TASK_LIMITS.taskIdBytes))
+            return null;
+        seenRounds.add(roundNo);
+        rounds.push({ roundNo, taskIds });
+    }
+    return { slotId, timezone, dateKey, rounds };
 }
 /** Дата YYYY-MM-DD в таймзоне слота (без Intl-полифиллов — через toLocaleString). */
 function dateKeyInTimezone(nowMs, timezone) {

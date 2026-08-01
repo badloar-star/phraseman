@@ -30,6 +30,8 @@ export const WEEKLY_COMPASS_ICON_GENERATION_ORDER: readonly ThemeMode[] = [
   'ember',
   'aurora',
   'volt',
+  'candyBlue',
+  'indigo',
 ];
 
 export const WEEKLY_COMPASS_ICON_DALLE_PROMPTS: Record<ThemeMode, string> = {

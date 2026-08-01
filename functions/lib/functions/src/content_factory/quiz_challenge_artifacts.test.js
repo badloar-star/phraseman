@@ -18,6 +18,38 @@ describe('quiz and challenge studio artifacts', () => {
         const grounding = { topic: topic('quiz_topic').result };
         expect((0, quiz_challenge_artifacts_1.validateQuestionBatchArtifact)({ stage: 'quiz_questions', items }, { kind: 'quiz_questions', count: 10, grounding })).toEqual(expect.arrayContaining(['question_choices_unique', 'question_correct_index_invalid', 'question_option_explanations_expected_4', 'question_semantic_duplicate', 'question_skill_tag_unapproved']));
     });
+    // зачем: регрессия по репорту «Нет здесь правильного ответа» (14.07.2026) — вопрос
+    // «Как по-английски "открывалка для банок"?» с вариантами tongs/jar/corkscrew/masher.
+    // Правильный ответ «jar opener» был усечён до дистрактора «jar», и uniqueness-проверка
+    // это пропускала, т.к. считает "jar" и "jar opener" разными строками.
+    it('rejects a distractor that is a truncated fragment of the correct answer', () => {
+        const items = Array.from({ length: 10 }, (_, index) => item(index + 1));
+        items[0] = {
+            ...items[0],
+            prompt: 'Как по-английски «открывалка для банок»?',
+            choices: ['jar opener', 'jar', 'corkscrew', 'masher'],
+            correctIndex: 0,
+        };
+        const grounding = { topic: topic('quiz_topic').result };
+        expect((0, quiz_challenge_artifacts_1.validateQuestionBatchArtifact)({ stage: 'quiz_questions', items }, { kind: 'quiz_questions', count: 10, grounding }))
+            .toContain('question_choice_truncation_conflict');
+    });
+    it('rejects a truncation conflict in a single-question replacement too', () => {
+        const original = item(1);
+        const replacement = { ...item(11), id: 'q-1', choices: ['can opener', 'opener', 'corkscrew', 'masher'], correctIndex: 0 };
+        const grounding = { replacementForQuestionId: 'q-1', originalQuestion: original, topic: topic('quiz_topic').result, previousQuestionKeys: [] };
+        expect((0, quiz_challenge_artifacts_1.validateQuestionReplacementArtifact)({ stage: 'quiz_question_replacement', result: { replacementForQuestionId: 'q-1', item: replacement } }, { kind: 'quiz_question_replacement', grounding }))
+            .toContain('question_replacement_choice_truncation_conflict');
+    });
+    it('does not flag legitimate distractors that merely share a word or look similar', () => {
+        const items = Array.from({ length: 10 }, (_, index) => item(index + 1));
+        // «cat»/«cats» — похожи посимвольно, но НЕ пословное вложение; такие проходят.
+        // «bottle opener» vs «jar opener» — общее слово, но ни одно не является куском другого.
+        items[0] = { ...items[0], choices: ['jar opener', 'bottle opener', 'cats', 'cat'], correctIndex: 0 };
+        const grounding = { topic: topic('quiz_topic').result };
+        expect((0, quiz_challenge_artifacts_1.validateQuestionBatchArtifact)({ stage: 'quiz_questions', items }, { kind: 'quiz_questions', count: 10, grounding }))
+            .not.toContain('question_choice_truncation_conflict');
+    });
     it('accepts one independently grounded replacement and rejects a semantic clone', () => {
         const original = item(1);
         const replacement = { ...item(11), id: 'q-1' };

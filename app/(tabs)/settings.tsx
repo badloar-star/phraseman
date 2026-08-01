@@ -1155,6 +1155,17 @@ export default function SettingsMain() {
             onPress={plusRowPress}
           />
         </SettingsGroup>
+        {promoCodesOn ? (
+          <SettingsGroup marginTop={12} surfaceColor={settingsPanelBg} borderColor={settingsBorder} dividerColor={settingsDivider}>
+            <SettingsRow
+              testID="settings-promo-code-row"
+              icon="ticket-outline"
+              color="purple"
+              label={L('Ввести промокод', 'Ввести промокод', 'Introducir código', 'Inserir código', 'Nhập mã', 'Masukkan kode', 'Kodu gir', 'Wpisz kod')}
+              onPress={() => { doHaptic(); router.push('/promo_code_entry' as any); }}
+            />
+          </SettingsGroup>
+        ) : null}
         {/*
           зачем: «Ввести код» — отдельная карточка под Plus (как «Enter referral
           code» в референсе Bevel). Один ряд с переключателем «реферальный /
@@ -1163,7 +1174,7 @@ export default function SettingsMain() {
           названию и выбранному чипу. Тап ведёт на готовый экран ввода
           (referrals?enter=1 / promo_code_entry) — серверные потоки без дублей.
         */}
-        {(settingsReferralSurface.marketingVisible || (!hasPremiumAccess && promoCodesOn)) ? (
+        {settingsReferralSurface.marketingVisible ? (
           <SettingsGroup marginTop={12} surfaceColor={settingsPanelBg} borderColor={settingsBorder} dividerColor={settingsDivider}>
             <SettingsCustomRow style={{ paddingVertical: 0 }}>
               <TouchableOpacity
@@ -1196,7 +1207,7 @@ export default function SettingsMain() {
               {/* Переключатель показываем только если оба типа кода доступны — иначе
                   переключать нечего. Состояния разделяем ТОЛЬКО тоном (chipOn +
                   приглушённый accent) — без обводки (правило владельца). */}
-              {settingsReferralSurface.marketingVisible && !hasPremiumAccess && promoCodesOn ? (
+              {false ? (
                 <View style={{ flexDirection: 'row', gap: 8, paddingBottom: 13 }}>
                   {(['referral', 'promo'] as const).map(mode => (
                     <TouchableOpacity

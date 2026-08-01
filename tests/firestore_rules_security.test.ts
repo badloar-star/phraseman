@@ -408,6 +408,8 @@ ${indent}}`,
     'premium_rc_expiry_ms',
     'premium_rc_purchased_at_ms',
     'premium_rc_cancelled_at',
+    'premium_rc_active_lineage',
+    'premium_rc_reconcile_needed',
     'admin_premium_override',
     'premium_admin_grant_at',
     'had_premium_ever',
@@ -745,6 +747,10 @@ ${indent}}`,
     'auth_recovery_codes',
     'auth_recovery_rate_limits',
     'auth_recovery_events',
+    'auth_recovery_challenges',
+    'auth_recovery_delivery_intents',
+    'auth_recovery_idempotency',
+    'auth_recovery_clean_rate_limits',
   ])('%s is server-only for every browser client, including admins', (collection) => {
     const blocks = exactRootMatchBlocks(`${collection}/{document=**}`);
     expect(blocks).toHaveLength(1);
@@ -764,6 +770,10 @@ ${indent}}`,
       'auth_recovery_codes',
       'auth_recovery_rate_limits',
       'auth_recovery_events',
+      'auth_recovery_challenges',
+      'auth_recovery_delivery_intents',
+      'auth_recovery_idempotency',
+      'auth_recovery_clean_rate_limits',
     ]) {
       expect(catchAllBlocks[0]).toContain(`&& collection != '${collection}'`);
     }
@@ -1025,6 +1035,33 @@ describe('firestore.rules Explain like I\'m five (Phase 5)', () => {
       expect(idx).toBeGreaterThan(-1);
       expect(idx).toBeLessThan(catchAllIdx);
     }
+  });
+});
+
+describe('RevenueCat premium lineage roots are server-only', () => {
+  const rules = readFileSync(rulesPath, 'utf8');
+
+  for (const collection of ['revenuecat_premium_lineages', 'revenuecat_premium_denials']) {
+    test(`${collection} denies all direct client access`, () => {
+      const block = rules.match(new RegExp(`match /${collection}/\\{docId\\} \\{[\\s\\S]*?\\n    \\}`));
+      expect(block).not.toBeNull();
+      expect(block![0]).toContain('allow read, write: if false;');
+      expect(block![0]).not.toContain('isAdmin()');
+      expect(block![0]).not.toContain('request.auth != null');
+      const catchAll = rules.match(/match \/\{collection\}\/\{document=\*\*\} \{[\s\S]*?\n    \}/);
+      expect(catchAll).not.toBeNull();
+      expect(catchAll![0]).toContain(`collection != '${collection}'`);
+    });
+  }
+
+  test('RevenueCat premium event receipts allow admin listing but deny browser-admin mutation', () => {
+    const block = rules.match(/match \/revenuecat_premium_events\/\{eventId\} \{[\s\S]*?\n    \}/);
+    expect(block).not.toBeNull();
+    expect(block![0]).toContain('allow list: if isAdmin();');
+    expect(block![0]).not.toMatch(/allow\s+(create|update|delete|write)/);
+    const catchAll = rules.match(/match \/\{collection\}\/\{document=\*\*\} \{[\s\S]*?\n    \}/);
+    expect(catchAll).not.toBeNull();
+    expect(catchAll![0]).toContain("collection != 'revenuecat_premium_events'");
   });
 });
 

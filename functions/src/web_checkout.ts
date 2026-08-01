@@ -25,6 +25,7 @@ import { defineSecret, defineString } from 'firebase-functions/params';
 import { onRequest } from 'firebase-functions/v2/https';
 
 import { upsertEmailContact } from './email_contacts';
+import { RESEND_API_KEY } from './resend_secret';
 import { buildPromoVipPatch } from './promo_codes';
 
 const REGION = 'us-central1';
@@ -39,8 +40,7 @@ const STRIPE_WEBHOOK_SECRET = defineSecret('STRIPE_WEBHOOK_SECRET');
 const PAYPAL_CLIENT_ID = defineSecret('PAYPAL_CLIENT_ID');
 const PAYPAL_CLIENT_SECRET = defineSecret('PAYPAL_CLIENT_SECRET');
 const PHRASEMAN_PREMIUM_BOT_TOKEN = defineSecret('PHRASEMAN_PREMIUM_BOT_TOKEN');
-const resendApiKey = defineString('RESEND_API_KEY', { default: '' });
-const webCheckoutEmailFrom = defineString('WEB_CHECKOUT_EMAIL_FROM', { default: 'Phraseman <onboarding@resend.dev>' });
+const webCheckoutEmailFrom = defineString('WEB_CHECKOUT_EMAIL_FROM', { default: '' });
 const webCheckoutSupportEmail = defineString('WEB_CHECKOUT_SUPPORT_EMAIL', { default: 'support.phraseman@gmail.com' });
 
 type WebPlan = 'monthly' | 'yearly' | 'lifetime';
@@ -310,10 +310,18 @@ async function sendActivationEmail(order: FirebaseFirestore.DocumentData): Promi
   const to = cleanEmail(order.email) ?? cleanEmail(order.customerEmail) ?? cleanEmail(order.payerEmail);
   if (!activationCode || !to) return false;
 
-  const key = resendApiKey.value();
+  const key = RESEND_API_KEY.value();
   if (!key) {
     await markActivationEmailStatus(orderId, {
       customerEmailStatus: 'skipped_no_resend_key',
+      customerEmailSentTo: to,
+    });
+    return false;
+  }
+  const from = webCheckoutEmailFrom.value().trim();
+  if (!from) {
+    await markActivationEmailStatus(orderId, {
+      customerEmailStatus: 'skipped_no_resend_from',
       customerEmailSentTo: to,
     });
     return false;
@@ -362,7 +370,7 @@ async function sendActivationEmail(order: FirebaseFirestore.DocumentData): Promi
       method: 'POST',
       headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        from: webCheckoutEmailFrom.value() || 'Phraseman <onboarding@resend.dev>',
+        from,
         to: [to],
         subject,
         text,
@@ -706,7 +714,7 @@ export const stripeWebhook = onRequest(
     timeoutSeconds: 30,
     maxInstances: 3,
     invoker: 'public',
-    secrets: [STRIPE_WEBHOOK_SECRET, PHRASEMAN_PREMIUM_BOT_TOKEN],
+    secrets: [STRIPE_WEBHOOK_SECRET, PHRASEMAN_PREMIUM_BOT_TOKEN, RESEND_API_KEY],
   },
   async (req, res) => {
     if (req.method !== 'POST') {
@@ -895,7 +903,7 @@ export const paypalOrderCapture = onRequest(
     timeoutSeconds: 30,
     maxInstances: 5,
     invoker: 'public',
-    secrets: [PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET, PHRASEMAN_PREMIUM_BOT_TOKEN],
+    secrets: [PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET, PHRASEMAN_PREMIUM_BOT_TOKEN, RESEND_API_KEY],
   },
   async (req, res) => {
     if (applyCors(req as unknown as AnyRequest, res as unknown as AnyResponse)) return;

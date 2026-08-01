@@ -13,6 +13,7 @@ import * as DailyTasks from '../app/daily_tasks';
 
 (globalThis as typeof globalThis & { __DEV__?: boolean }).__DEV__ = true;
 import { normalizeDevSeededStreakValue } from '../app/streak_safety';
+import { readVipSnapshotForAccount } from '../app/premium_vip_storage';
 import { DIAGNOSIS_TRAINING_IDS } from '../app/personal_practice_training_ids';
 import {
   activeRecallItemsKey,
@@ -1011,7 +1012,7 @@ describe('premium cloud sync safety', () => {
       vip_until: expiry,
       vip_admin_override: 'true',
       vip_admin_grant_at: String(Date.now()),
-    }));
+    }), undefined, undefined, 'cloud-stable');
 
     expect(restored).toBe(true);
     await expect(AsyncStorage.getItem('vip_plan')).resolves.toBe('admin_vip');
@@ -1036,12 +1037,32 @@ describe('premium cloud sync safety', () => {
       premium_plan: 'admin_grant',
       admin_premium_override: 'true',
       premium_expiry: { toMillis: () => expiryMs },
-    }));
+    }), undefined, undefined, 'cloud-stable');
 
     expect(restored).toBe(true);
     await expect(AsyncStorage.getItem('premium_expiry')).resolves.toBe(String(Math.floor(expiryMs)));
     await expect(AsyncStorage.getItem('vip_until')).resolves.toBe(String(Math.floor(expiryMs)));
     await expect(AsyncStorage.getItem('vip_active')).resolves.toBe('true');
     await expect(AsyncStorage.getItem('premium_active')).resolves.toBe('false');
+  });
+
+  it('restores a cloud-only admin VIP into the scoped owner on an otherwise empty install', async () => {
+    const expiry = String(Date.now() + 30 * 24 * 60 * 60 * 1000);
+    const restored = await __cloudSyncTestHooks.applyRestoreFromUserDoc(makeCloudUserDoc({
+      vip_active: 'true',
+      vip_plan: 'admin_vip',
+      vip_until: expiry,
+      vip_admin_override: 'true',
+      vip_admin_grant_at: '123',
+    }), undefined, undefined, 'clean-install-stable');
+
+    expect(restored).toBe(true);
+    await expect(readVipSnapshotForAccount('clean-install-stable')).resolves.toMatchObject({
+      vip_active: 'true',
+      vip_plan: 'admin_vip',
+      vip_until: expiry,
+      vip_admin_override: 'true',
+      vip_admin_grant_at: '123',
+    });
   });
 });

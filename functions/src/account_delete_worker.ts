@@ -5,9 +5,15 @@ import { executeAccountDeletion } from './account_delete';
 import {
   ACCOUNT_DELETE_AUTH_MARKERS,
   ACCOUNT_DELETE_JOBS,
+  ACCOUNT_DELETE_PERMANENT_DENIALS,
   ACCOUNT_DELETE_TOMBSTONES,
   processAccountDeletionJob,
 } from './account_delete_job';
+
+export const ACCOUNT_DELETE_PERMANENT_DENIAL_GC_POLICY = {
+  collection: ACCOUNT_DELETE_PERMANENT_DENIALS,
+  purge: false,
+} as const;
 
 export const ACCOUNT_DELETE_WORKER_OPTIONS = {
   document: `${ACCOUNT_DELETE_JOBS}/{jobId}`,

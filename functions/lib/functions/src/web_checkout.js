@@ -62,6 +62,7 @@ const logger = __importStar(require("firebase-functions/logger"));
 const params_1 = require("firebase-functions/params");
 const https_1 = require("firebase-functions/v2/https");
 const email_contacts_1 = require("./email_contacts");
+const resend_secret_1 = require("./resend_secret");
 const promo_codes_1 = require("./promo_codes");
 const REGION = 'us-central1';
 const ORDERS_COLLECTION = 'web_premium_orders';
@@ -74,8 +75,7 @@ const STRIPE_WEBHOOK_SECRET = (0, params_1.defineSecret)('STRIPE_WEBHOOK_SECRET'
 const PAYPAL_CLIENT_ID = (0, params_1.defineSecret)('PAYPAL_CLIENT_ID');
 const PAYPAL_CLIENT_SECRET = (0, params_1.defineSecret)('PAYPAL_CLIENT_SECRET');
 const PHRASEMAN_PREMIUM_BOT_TOKEN = (0, params_1.defineSecret)('PHRASEMAN_PREMIUM_BOT_TOKEN');
-const resendApiKey = (0, params_1.defineString)('RESEND_API_KEY', { default: '' });
-const webCheckoutEmailFrom = (0, params_1.defineString)('WEB_CHECKOUT_EMAIL_FROM', { default: 'Phraseman <onboarding@resend.dev>' });
+const webCheckoutEmailFrom = (0, params_1.defineString)('WEB_CHECKOUT_EMAIL_FROM', { default: '' });
 const webCheckoutSupportEmail = (0, params_1.defineString)('WEB_CHECKOUT_SUPPORT_EMAIL', { default: 'support.phraseman@gmail.com' });
 const PLAN_LABELS = {
     monthly: 'месяц',
@@ -302,10 +302,18 @@ async function sendActivationEmail(order) {
     const to = cleanEmail(order.email) ?? cleanEmail(order.customerEmail) ?? cleanEmail(order.payerEmail);
     if (!activationCode || !to)
         return false;
-    const key = resendApiKey.value();
+    const key = resend_secret_1.RESEND_API_KEY.value();
     if (!key) {
         await markActivationEmailStatus(orderId, {
             customerEmailStatus: 'skipped_no_resend_key',
+            customerEmailSentTo: to,
+        });
+        return false;
+    }
+    const from = webCheckoutEmailFrom.value().trim();
+    if (!from) {
+        await markActivationEmailStatus(orderId, {
+            customerEmailStatus: 'skipped_no_resend_from',
             customerEmailSentTo: to,
         });
         return false;
@@ -352,7 +360,7 @@ async function sendActivationEmail(order) {
             method: 'POST',
             headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                from: webCheckoutEmailFrom.value() || 'Phraseman <onboarding@resend.dev>',
+                from,
                 to: [to],
                 subject,
                 text,
@@ -667,7 +675,7 @@ exports.stripeWebhook = (0, https_1.onRequest)({
     timeoutSeconds: 30,
     maxInstances: 3,
     invoker: 'public',
-    secrets: [STRIPE_WEBHOOK_SECRET, PHRASEMAN_PREMIUM_BOT_TOKEN],
+    secrets: [STRIPE_WEBHOOK_SECRET, PHRASEMAN_PREMIUM_BOT_TOKEN, resend_secret_1.RESEND_API_KEY],
 }, async (req, res) => {
     if (req.method !== 'POST') {
         res.status(405).send('method_not_allowed');
@@ -843,7 +851,7 @@ exports.paypalOrderCapture = (0, https_1.onRequest)({
     timeoutSeconds: 30,
     maxInstances: 5,
     invoker: 'public',
-    secrets: [PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET, PHRASEMAN_PREMIUM_BOT_TOKEN],
+    secrets: [PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET, PHRASEMAN_PREMIUM_BOT_TOKEN, resend_secret_1.RESEND_API_KEY],
 }, async (req, res) => {
     if (applyCors(req, res))
         return;

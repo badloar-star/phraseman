@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react'
 import { normalizeSafeAreaBottomInset } from '../../hooks/use-screen';
 import { tabSwipeLock } from '../tabSwipeLock';
 import { getStreakFreezeCostShards } from '../remote_flags';
-import { View, Text, StyleSheet, Pressable, ScrollView, Animated, Dimensions, Modal, AppState, DeviceEventEmitter, InteractionManager, Easing, type GestureResponderEvent, type PressableProps, type PressableStateCallbackType, type StyleProp, type ViewStyle, } from 'react-native';
+import { View, Text, StyleSheet, Pressable, ScrollView, Animated, Dimensions, Modal, AppState, DeviceEventEmitter, InteractionManager, Easing, Platform, type GestureResponderEvent, type PressableProps, type PressableStateCallbackType, type StyleProp, type ViewStyle, } from 'react-native';
 import { Image } from 'expo-image';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import TapScale from '../../components/TapScale';
@@ -33,7 +33,7 @@ import { consumeCelebration, getPendingCelebrationMarker, getPendingCelebrationV
 import { consumeVipCelebration, getPendingVipCelebrationMarker, isVipCelebrationPending } from '../vip_celebration_state';
 import PremiumCelebrationModal from '../../components/PremiumCelebrationModal';
 import VipCelebrationModal from '../../components/VipCelebrationModal';
-import { getTodayTasksSafe, loadTodayProgress, TaskProgress } from '../daily_tasks';
+import { getTodayKey, getTodayTasksSafe, loadTodayProgress, TaskProgress } from '../daily_tasks';
 import { getXPProgress, getLevelFromXP, getNextEnergyUnlockLevel, type ThemeMode } from '../../constants/theme';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../../constants/goldTheme';
 import { configureAccordionLayout } from '../../constants/layoutAnimation';
@@ -95,7 +95,6 @@ import { emitAppEvent, onAppEvent } from '../events';
 import { ensureAnonUser } from '../cloud_sync';
 import { FOREGROUND_CLOUD_REFRESH_DELAY_MS, FOREGROUND_LIGHT_REFRESH_DELAY_MS, getForegroundRefreshKind } from '../app_resume_policy';
 import { fetchActiveLeagueCrowns, fetchLeagueBonusProgressSnapshot, getLeagueChestGoal } from '../services/league_chest_rewards';
-import { shouldShowLeagueRace } from '../league_race_visibility';
 import { getHomeMenuImages } from '../home_menu_icons';
 import { isStreakFreezeActiveToday } from '../streak_freeze';
 import { isStudyTargetSourceUiLang } from '../study_target_lang_dev';
@@ -111,6 +110,12 @@ import { getStreakFireIconVariant, getStreakFreezeIconVariant } from '../../cons
 import { COMPASS_GRADIENTS, COMPASS_RICH, COMPASS_SURFACE_LOCATIONS, compassShadow } from '../../constants/compassTheme';
 import { themedToastChrome } from '../../constants/themedToastChrome';
 import { themedWeekDot } from '../../constants/weekDotTheme';
+import { isSurveyCloudEnabled, fetchActiveSurveyWithRetry } from '../survey_client';
+import { isSurveyDailyTaskDone, migrateLegacySurveyCompletion } from '../survey_daily_task';
+import { buildActiveSurveyDailyChallenge, buildServerConfirmedLegacyCompletion, computeSurveyDailyCounts } from '../survey_daily_challenge_model';
+import { beginSurveyDailyTaskRequest, commitSurveyDailyTaskRequest, peekSurveyDailyTask } from '../survey_daily_task_cache';
+import { getCanonicalUserId } from '../user_id_policy';
+import { captureAccountGeneration, isCurrentAccountGeneration } from '../account_generation';
 const { width: SCREEN_W, height: SCREEN_H } = Dimensions.get('window');
 /** Ширина всплывающей подсказки энергии (clamp по экрану, стрелка привязана к иконкам). */
 const ENERGY_TOOLTIP_W = 220;
@@ -805,8 +810,9 @@ export default function HomeScreen() {
             const progress = await loadTodayProgress(taskList, studyTarget);
             if (!mountedRef.current)
                 return;
+            const baseTotal = taskList.length > 0 ? taskList.length : 3;
             setTaskProgress(progress);
-            setDailyTaskBarCount(taskList.length > 0 ? taskList.length : 3);
+            setDailyTaskBarCount(baseTotal);
             const progressById = new Map(progress.map((row) => [row.taskId, row]));
             const nextTasksCompleted = taskList.filter((task) => progressById.get(task.id)?.completed === true).length;
             setTasksCompleted(nextTasksCompleted);
@@ -814,11 +820,49 @@ export default function HomeScreen() {
             // иначе выполнение задания между полными загрузками не долетает до кэша,
             // и следующее открытие Home снова покажет устаревшее число до второго прохода.
             patchHomeScreenHydration({ tasksCompleted: nextTasksCompleted }, studyTarget);
+            void (async () => {
+                try {
+                    const accountToken = captureAccountGeneration();
+                    const stableId = await getCanonicalUserId();
+                    if (!stableId || !isCurrentAccountGeneration(accountToken, stableId)) return;
+                    const dayKey = getTodayKey();
+                    const scope = { stableId, dayKey, lang };
+                    let survey = peekSurveyDailyTask(scope);
+                    const completed = await isSurveyDailyTaskDone({ stableId, dayKey });
+                    if (!isCurrentAccountGeneration(accountToken, stableId)) return;
+                    if (completed) {
+                        survey = buildServerConfirmedLegacyCompletion(lang);
+                        const requestId = beginSurveyDailyTaskRequest(scope);
+                        commitSurveyDailyTaskRequest(scope, requestId, survey);
+                    } else if (!survey && isSurveyCloudEnabled()) {
+                        const requestId = beginSurveyDailyTaskRequest(scope);
+                        const lookup = await fetchActiveSurveyWithRetry({ stableId, platform: Platform.OS, lang });
+                        if (!isCurrentAccountGeneration(accountToken, stableId)) return;
+                        const migrated = await migrateLegacySurveyCompletion({ stableId, dayKey, completion: lookup.completion, lang });
+                        if (!isCurrentAccountGeneration(accountToken, stableId)) return;
+                        survey = migrated
+                            ? buildServerConfirmedLegacyCompletion(lang)
+                            : lookup.survey && lookup.survey.questions.length > 0
+                                ? buildActiveSurveyDailyChallenge({ survey: lookup.survey, lang })
+                                : null;
+                        if (!commitSurveyDailyTaskRequest(scope, requestId, survey)) {
+                            survey = peekSurveyDailyTask(scope);
+                        }
+                    }
+                    if (!mountedRef.current || !isCurrentAccountGeneration(accountToken, stableId)) return;
+                    const counts = computeSurveyDailyCounts({ baseTotal, baseDone: nextTasksCompleted, survey });
+                    setDailyTaskBarCount(counts.total);
+                    setTasksCompleted(counts.done);
+                    patchHomeScreenHydration({ tasksCompleted: counts.done }, studyTarget);
+                } catch {
+                    /* Keep the already-rendered ordinary task summary. */
+                }
+            })();
         }
         catch {
             /* keep previous summary */
         }
-    }, [studyTarget]);
+    }, [lang, studyTarget]);
     const [shardsBalance, setShardsBalance] = useState(() => peekLastKnownShardsBalance() ?? hh?.shardsBalance ?? snapshotShards);
     const [homeXpPercentile, setHomeXpPercentile] = useState<number | null>(null);
     const [homeLeagueCrownExpiresAt, setHomeLeagueCrownExpiresAt] = useState(() => hh?.homeLeagueCrownExpiresAt ?? 0);
@@ -1776,17 +1820,18 @@ export default function HomeScreen() {
             // зачем: обновляем снапшот сразу после свежих данных — при следующем открытии
             // Home второй проход (belowFoldReady) стартует с этого числа, а не с 0.
             patchHomeScreenHydration({ tasksCompleted: loadedTasksCompleted }, studyTarget);
+            // The full Home load can finish after the light summary request. Run the
+            // summary again so this late base update cannot hide the survey indicator.
+            void refreshDailyTaskSummary();
             if (leagueState) {
                 const league = LEAGUES.find(l => l.id === leagueState.leagueId) ?? null;
-                const showLeagueRace = shouldShowLeagueRace(leagueState.group?.length ?? 0, name);
                 const freshLeagueBonus = await fetchLeagueBonusProgressSnapshot().catch(() => null);
                 const matchingFreshBonus = freshLeagueBonus
                     && freshLeagueBonus.weekId === leagueState.weekId
                     && freshLeagueBonus.leagueId === leagueState.leagueId
                     ? freshLeagueBonus
                     : null;
-                const nextHomeLeagueChest = showLeagueRace
-                    ? buildHomeLeagueChest(leagueState.group ?? [], league ? clubTierShortName(league, lang) : triLang(lang, {
+                const nextHomeLeagueChest = buildHomeLeagueChest(leagueState.group ?? [], league ? clubTierShortName(league, lang) : triLang(lang, {
                         ru: 'Лига недели',
                         uk: 'Ліга тижня',
                         es: 'Liga semanal',
@@ -1795,8 +1840,7 @@ export default function HomeScreen() {
                         id: "Liga mingguan",
                         tr: "Haftalık lig",
                         pl: "Liga tygodnia",
-                    }), leagueState.leagueId, matchingFreshBonus?.leaguePoints)
-                    : null;
+                    }), leagueState.leagueId, matchingFreshBonus?.leaguePoints);
                 setEngineLeague(league);
                 setHomeLeagueChest((prev) => nextHomeLeagueChest ?? prev);
                 patchHomeScreenHydration({

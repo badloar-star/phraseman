@@ -42,10 +42,18 @@ describe('referralClaimSlotsLeft — анти-фарм: сколько нагр�
     });
     it('не уходит в минус при «грязных» счётчиках', () => {
         expect((0, referral_1.referralClaimSlotsLeft)(-5, -5)).toBe(referral_1.MAX_REFERRER_CLAIMS_PER_DAY);
-        expect((0, referral_1.referralClaimSlotsLeft)(999, 999)).toBe(0);
+        // зачем: считаем «за капом» ОТ САМИХ КОНСТАНТ, а не от литерала 999 — иначе тест
+        // ломается при каждом изменении лимитов (владелец снял их 2026-07-25).
+        const over = Math.max(referral_1.MAX_REFERRER_CLAIMS_PER_MONTH, referral_1.MAX_REFERRER_CLAIMS_PER_DAY) + 1;
+        expect((0, referral_1.referralClaimSlotsLeft)(over, over)).toBe(0);
     });
-    it('дневной кап строго меньше месячного (иначе бессмысленно)', () => {
-        expect(referral_1.MAX_REFERRER_CLAIMS_PER_DAY).toBeLessThan(referral_1.MAX_REFERRER_CLAIMS_PER_MONTH);
+    // зачем: владелец снял лимиты (2026-07-25) — ключ теперь даётся только за РЕАЛЬНУЮ
+    // покупку Plus/Pro приглашённым, поэтому throttle против бесплатного фарма не нужен.
+    // Капы остаются настраиваемыми из «Пульта» (аварийный возврат без деплоя), но дефолты
+    // заведомо недостижимы. Проверяем именно это, а не старое «день < месяц».
+    it('дефолтные капы недостижимы — лимиты фактически сняты', () => {
+        expect(referral_1.MAX_REFERRER_CLAIMS_PER_DAY).toBeGreaterThanOrEqual(100000);
+        expect(referral_1.MAX_REFERRER_CLAIMS_PER_MONTH).toBeGreaterThanOrEqual(100000);
     });
     it('принимает капы из «Пульта» параметрами (override дефолтов)', () => {
         // день=1, месяц=10 → минимум остатка = 1

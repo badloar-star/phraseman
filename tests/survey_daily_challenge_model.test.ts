@@ -18,6 +18,10 @@ describe('survey daily challenge model', () => {
     expect(computeSurveyDailyChallengeCounts({ baseTotal: 3, baseDone: 2, survey: { survey, phase: 'active' } })).toEqual({ total: 4, done: 2, rewardThreshold: 3 });
   });
 
+  it('keeps five progress indicators for a four-task weekend set with an active survey', () => {
+    expect(computeSurveyDailyChallengeCounts({ baseTotal: 4, baseDone: 0, survey: { survey, phase: 'active' } })).toEqual({ total: 5, done: 0, rewardThreshold: 3 });
+  });
+
   it('counts a completed survey while retaining the three-task threshold', () => {
     expect(computeSurveyDailyChallengeCounts({ baseTotal: 3, baseDone: 2, survey: { survey: null, phase: 'completed' } })).toEqual({ total: 4, done: 3, rewardThreshold: 3 });
   });

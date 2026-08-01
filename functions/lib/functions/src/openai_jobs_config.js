@@ -57,7 +57,7 @@ const callable_options_1 = require("./callable_options");
 const REGION = 'us-central1';
 const CONFIG_COLLECTION = 'admin_runtime_config';
 const CONFIG_DOC = 'openai_jobs';
-exports.OPENAI_JOBS = ['weekly', 'stats', 'explain', 'dialog', 'choice', 'compass', 'quiz', 'digest', 'support', 'content_factory', 'image_assets'];
+exports.OPENAI_JOBS = ['weekly', 'stats', 'explain', 'dialog', 'choice', 'compass', 'quiz', 'digest', 'support', 'content_factory', 'image_assets', 'tournament'];
 exports.ALLOWED_JOB_MODELS = [
     'gpt-4.1-nano',
     'gpt-4.1-mini',
@@ -86,6 +86,11 @@ const JOB_DEFAULTS = {
     support: { model: 'gpt-4o-mini', globalDailyCap: 500 },
     content_factory: { model: 'gpt-4.1-mini', globalDailyCap: 500 },
     image_assets: { model: 'gpt-image-1', globalDailyCap: 40 },
+    // ИИ-генератор турнирных заданий: батчи по 10 вопросов из админки. Кап —
+    // на БАТЧИ в сутки; каждый батч может стоить до 3 реальных запросов OpenAI
+    // (генерация + до 2 починок), т.е. фактический потолок запросов = 3×кап.
+    // Реальные траты по токенам видны в дашборде (tournament_ai_billing).
+    tournament: { model: 'gpt-4.1-mini', globalDailyCap: 300 },
 };
 function text(value, max = 120) {
     return String(value ?? '').trim().slice(0, max);

@@ -122,9 +122,14 @@ async function computeLeaderboardStats() {
     const currentWeekKey = getWeekKey();
     let lastUserDoc = null;
     while (true) {
+        // зачем: перцентили считаются ровно по трём полям, а страница тянула документы users
+        // целиком — это самые «толстые» доки в базе. Проекция режет трафик и память функции,
+        // не меняя ни логику, ни число тарифицируемых чтений. Имена полей вложенные, поэтому
+        // указаны через точку — Firestore вернёт их внутри объекта progress, как и раньше.
         let q = db.collection('users')
             .orderBy('__name__')
-            .limit(500);
+            .limit(500)
+            .select('progress.user_total_xp', 'progress.streak_count', 'progress.week_points_v2');
         if (lastUserDoc)
             q = q.startAfter(lastUserDoc);
         const snap = await q.get();

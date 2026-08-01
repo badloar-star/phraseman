@@ -54,14 +54,30 @@ function parseProgressInt(v) {
     const n = parseInt(String(v ?? '0'), 10);
     return Number.isFinite(n) ? Math.max(0, n) : 0;
 }
+// зачем: раньше здесь был `.orderBy('ts','desc').get()` без лимита — читалась ВСЯ
+// подколлекция my_events целиком, хотя удаляется только хвост за пределами 15 свежих.
+// Вызывается из appendFriendEvent, то есть внутри полного постраничного обхода всех
+// пользователей (крон каждые 12ч) — лишние чтения умножались на размер базы.
+// `.offset(N)` отдаёт только удаляемый хвост: Firestore всё равно тарифицирует
+// пропущенные документы, но мы больше не тянем их тела по сети и не держим в памяти,
+// а `.limit()` не даёт аномальному аккаунту с тысячами событий раздуть один вызов.
+// Остаток (если он был длиннее лимита) дочистится следующим срабатыванием.
+const PRUNE_BATCH_LIMIT = 100;
 async function pruneOldEvents(db, userId) {
     const col = db.collection('users').doc(userId).collection('my_events');
-    const snap = await col.orderBy('ts', 'desc').get();
-    const docs = snap.docs;
-    if (docs.length <= MAX_EVENTS_PER_FRIEND)
+    const snap = await col
+        .orderBy('ts', 'desc')
+        .offset(MAX_EVENTS_PER_FRIEND)
+        .limit(PRUNE_BATCH_LIMIT)
+        // guard-ok: .select() без полей намеренно — для delete нужны только ссылки на
+        // документы, тела событий не читаем вовсе (меньше трафика и памяти функции).
+        .select()
+        .get();
+    if (snap.empty)
         return;
-    const tail = docs.slice(MAX_EVENTS_PER_FRIEND);
-    await Promise.all(tail.map((d) => d.ref.delete()));
+    const batch = db.batch();
+    snap.docs.forEach((d) => batch.delete(d.ref));
+    await batch.commit();
 }
 function friendActivityDocId(type, payload) {
     if (type === 'level_up') {

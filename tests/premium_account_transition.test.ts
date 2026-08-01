@@ -81,4 +81,116 @@ describe('premium account transition signal', () => {
     expect(staleEvent).not.toHaveBeenCalled();
     expect(staleProfile).not.toHaveBeenCalled();
   });
+
+  it('bounds an entitlement drain when native RevenueCat work never settles', async () => {
+    jest.useFakeTimers();
+    try {
+      const guard = await import('../app/premium_guard');
+      const epoch = guard.getPremiumAccountTransitionEpoch();
+      void guard.runPremiumAccountScopedWork(epoch, async () => new Promise<void>(() => {}));
+      await Promise.resolve();
+
+      guard.beginPremiumAccountTransition();
+      const drained = guard.waitForPremiumAccountWorkIdleWithDeadline(1_500);
+      expect(guard.__getPremiumAccountWorkIdleWaiterCountForTests()).toBe(1);
+      await jest.advanceTimersByTimeAsync(1_499);
+      let settled = false;
+      void drained.then(() => { settled = true; });
+      await Promise.resolve();
+      expect(settled).toBe(false);
+
+      await jest.advanceTimersByTimeAsync(1);
+      await expect(drained).resolves.toBe(false);
+      expect(guard.__getPremiumAccountWorkIdleWaiterCountForTests()).toBe(0);
+
+      // The poisoned work belongs to the retired epoch. It must not charge every
+      // later transition another full timeout when the immediately-prior epoch is idle.
+      guard.beginPremiumAccountTransition();
+      await expect(guard.waitForPremiumAccountWorkIdleWithDeadline(1_500)).resolves.toBe(true);
+      expect(jest.getTimerCount()).toBe(0);
+    } finally {
+      jest.useRealTimers();
+    }
+  });
+
+  it('returns true immediately when idle and clears the deadline when active work settles', async () => {
+    jest.useFakeTimers();
+    try {
+      const guard = await import('../app/premium_guard');
+      await expect(guard.waitForPremiumAccountWorkIdleWithDeadline(1_500)).resolves.toBe(true);
+
+      let release!: () => void;
+      const gate = new Promise<void>((resolve) => { release = resolve; });
+      const epoch = guard.getPremiumAccountTransitionEpoch();
+      const work = guard.runPremiumAccountScopedWork(epoch, async () => gate);
+      const drained = guard.waitForPremiumAccountWorkIdleWithDeadline(1_500);
+      expect(jest.getTimerCount()).toBe(1);
+      release();
+      await work;
+      await expect(drained).resolves.toBe(true);
+      expect(jest.getTimerCount()).toBe(0);
+      expect(guard.__getPremiumAccountWorkIdleWaiterCountForTests()).toBe(0);
+    } finally {
+      jest.useRealTimers();
+    }
+  });
+
+  it('settles the drain after rejected scoped work and ignores a late stale callback after timeout', async () => {
+    jest.useFakeTimers();
+    try {
+      const guard = await import('../app/premium_guard');
+      let rejectWork!: (error: Error) => void;
+      const rejectedGate = new Promise<void>((_resolve, reject) => { rejectWork = reject; });
+      const epoch = guard.getPremiumAccountTransitionEpoch();
+      const rejectedWork = guard.runPremiumAccountScopedWork(epoch, async () => rejectedGate);
+      const rejectedExpectation = expect(rejectedWork).rejects.toThrow('native failure');
+      const rejectedDrain = guard.waitForPremiumAccountWorkIdleWithDeadline(1_500);
+      rejectWork(new Error('native failure'));
+      await rejectedExpectation;
+      await expect(rejectedDrain).resolves.toBe(true);
+
+      const staleCommit = jest.fn();
+      let releaseLate!: () => void;
+      const lateGate = new Promise<void>((resolve) => { releaseLate = resolve; });
+      const lateEpoch = guard.getPremiumAccountTransitionEpoch();
+      const lateWork = guard.runPremiumAccountScopedWork(lateEpoch, async (isCurrent) => {
+        await lateGate;
+        if (isCurrent()) staleCommit();
+      });
+      guard.beginPremiumAccountTransition();
+      const lateDrain = guard.waitForPremiumAccountWorkIdleWithDeadline(1_500);
+      await jest.advanceTimersByTimeAsync(1_500);
+      await expect(lateDrain).resolves.toBe(false);
+      expect(guard.__getPremiumAccountWorkIdleWaiterCountForTests()).toBe(0);
+      releaseLate();
+      await lateWork;
+      expect(staleCommit).not.toHaveBeenCalled();
+      expect(guard.__getPremiumAccountWorkIdleWaiterCountForTests()).toBe(0);
+    } finally {
+      jest.useRealTimers();
+    }
+  });
+
+  it('times out lock acquisition without starting queued work or breaking exclusion', async () => {
+    jest.useFakeTimers();
+    try {
+      const generation = await import('../app/account_generation');
+      const never = new Promise<void>(() => {});
+      void generation.withAccountTransitionLock(async () => never);
+      await Promise.resolve();
+      const queued = jest.fn(async () => 'queued-A');
+      const timed = generation.withAccountTransitionLockWithDeadline(queued, 1_500);
+      await jest.advanceTimersByTimeAsync(1_500);
+      await expect(timed).resolves.toEqual({ completed: false });
+      expect(queued).not.toHaveBeenCalled();
+
+      const after = jest.fn(async () => 'account-B');
+      const blocked = generation.withAccountTransitionLockWithDeadline(after, 1_500);
+      await jest.advanceTimersByTimeAsync(1_500);
+      await expect(blocked).resolves.toEqual({ completed: false });
+      expect(after).not.toHaveBeenCalled();
+    } finally {
+      jest.useRealTimers();
+    }
+  });
 });

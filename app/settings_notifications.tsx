@@ -14,6 +14,7 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import ContentWrap from '../components/ContentWrap';
 import ScreenGradient from '../components/ScreenGradient';
 import ReportErrorButton from '../components/ReportErrorButton';
+import SectionSheetHeader from '../components/SectionSheetHeader';
 import BouncyScrollView from '../components/BouncyScrollView';
 import CompassDepthSurface from '../components/CompassDepthSurface';
 import { hapticTap } from '../hooks/use-haptics';
@@ -268,55 +269,39 @@ export default function SettingsNotifications() {
     <ScreenGradient>
     <SafeAreaView style={{ flex:1 }}>
       <ContentWrap>
-      <View style={{ flexDirection:'row', alignItems:'center', padding:15, borderBottomWidth:0.5, borderBottomColor:t.border }}>
-        <TapScale
-          onPress={() => {
-          hapticTap();
+      {/* зачем: стандарт «шторки раздела» — модал с выездом снизу; статус
+          «сохранено» живёт в шапке как аксессуар рядом с крестиком. */}
+      <SectionSheetHeader
+        title={screenTitle}
+        onClose={() => {
           // Экран открывается из вкладки «Настройки» — возвращаемся на settings, не на home.
           safeRouterBack(router, '/(tabs)/settings' as any);
         }}
-          style={{
-            width: 38,
-            height: 38,
-            borderRadius: isCompassTheme ? 8 : 19,
-            alignItems: 'center',
-            justifyContent: 'center',
-            backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : 'transparent',
-            borderWidth: 0,
-            borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent',
-            overflow: 'hidden',
-            ...(isCompassTheme ? compassShadow(1) : {}),
-          }}
-        >
-          {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
-          <Ionicons name="chevron-back" size={28} color={t.textPrimary}/>
-        </TapScale>
-        <Text style={{ color:t.textPrimary, fontSize:18, fontWeight:'700', marginLeft:8, flex:1 }} numberOfLines={1}>
-          {screenTitle}
-        </Text>
-        {saved && !needsPermission && (
-          <View style={{ flexDirection:'row', alignItems:'center', gap:4, marginRight: 8 }}>
-            <Ionicons name="checkmark-circle" size={16} color={t.correct}/>
-            <Text style={{ color:t.correct, fontSize:13 }}>{savedLabel}</Text>
-          </View>
+        accessory={(
+          <>
+            {saved && !needsPermission && (
+              <View style={{ flexDirection:'row', alignItems:'center', gap:4 }}>
+                <Ionicons name="checkmark-circle" size={16} color={t.correct}/>
+                <Text style={{ color:t.correct, fontSize:13 }}>{savedLabel}</Text>
+              </View>
+            )}
+            <ReportErrorButton
+              screen="settings_notifications"
+              dataId="settings_notifications"
+              dataText={screenTitle}
+              variant="icon-flag"
+              accessibilityLabel="Сообщить о баге на экране уведомлений"
+              style={{
+                width: 32,
+                height: 32,
+                borderRadius: 16,
+                backgroundColor: t.bgCard,
+                borderWidth: 0,
+              }}
+            />
+          </>
         )}
-        <ReportErrorButton
-          screen="settings_notifications"
-          dataId="settings_notifications"
-          dataText={screenTitle}
-          variant="icon-flag"
-          accessibilityLabel="Сообщить о баге на экране уведомлений"
-          style={{
-            width: 38,
-            height: 38,
-            borderRadius: isCompassTheme ? 8 : 19,
-            backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
-            borderWidth: 0,
-            borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
-            ...(isCompassTheme ? compassShadow(1) : {}),
-          }}
-        />
-      </View>
+      />
 
       <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ paddingBottom:40 }}>
         {/* зачем: без разрешения напоминания молча не сработают — раньше юзер видел

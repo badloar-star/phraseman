@@ -71,7 +71,14 @@ describe('parseReEngageUser', () => {
       streakCount: 7,
       lastReEngagePushAt: NOW - 10 * DAY,
       userName: 'Ana',
+      pushPrefs: null,
     });
+  });
+  it('парсит pushPrefs (булевы), мусор внутри игнорирует', () => {
+    const parsed = parseReEngageUser('uZ', {
+      pushPrefs: { streak: false, offers: 'да' },
+    });
+    expect(parsed.pushPrefs).toEqual({ streak: false, offers: undefined });
   });
   it('терпит отсутствие полей', () => {
     const parsed = parseReEngageUser('uY', undefined);
@@ -138,6 +145,22 @@ describe('classifyReEngageUser', () => {
     expect(classifyReEngageUser(user({ lastActiveAt: null }), NOW)).toBeNull();
   });
 
+  it('pushPrefs.streak === false: стрик-риск НЕ шлём (юзер выключил категорию)', () => {
+    const u = user({
+      streakCount: STREAK_AT_RISK_MIN,
+      lastActiveAt: NOW - 22 * HOUR,
+      pushPrefs: { streak: false },
+    });
+    expect(classifyReEngageUser(u, NOW)).toBeNull();
+  });
+  it('pushPrefs.streak === false НЕ трогает inactive_return (другая категория)', () => {
+    const u = user({ lastActiveAt: NOW - 5 * DAY, pushPrefs: { streak: false } });
+    expect(classifyReEngageUser(u, NOW)).toBe('inactive_return');
+  });
+  it('pushPrefs отсутствует (старый клиент) — стрик-риск шлём как раньше', () => {
+    const u = user({ streakCount: STREAK_AT_RISK_MIN, lastActiveAt: NOW - 22 * HOUR, pushPrefs: null });
+    expect(classifyReEngageUser(u, NOW)).toBe('streak_at_risk');
+  });
   it('приоритет: стрик-риск важнее (серия 10, 23ч без захода)', () => {
     const u = user({ streakCount: 10, lastActiveAt: NOW - 23 * HOUR });
     expect(classifyReEngageUser(u, NOW)).toBe('streak_at_risk');
@@ -232,6 +255,7 @@ describe('проекция полей в скане users', () => {
     'lastReEngagePushAt',
     'progress.streak_count',
     'progress.user_name',
+    'pushPrefs',
   ])('проекция включает поле %s, которое читает parseReEngageUser', (field) => {
     expect(projection).toContain(`'${field}'`);
   });

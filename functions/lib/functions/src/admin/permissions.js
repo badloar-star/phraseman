@@ -21,24 +21,29 @@ const BRIEFING_OPERATOR_PERMISSIONS = [
     'briefing.read',
     'briefing.generate',
 ];
+// зачем: вернули полноценный воркфлоу "Идеи" в новую админку (был урезан до 3 карточек без действий) — права те же роли, что уже решают судьбу репортов/контента
+const IDEA_OPERATOR_PERMISSIONS = [
+    'ideas.read',
+    'ideas.decide',
+];
 const ROLE_PERMISSIONS = {
     owner: new Set([
         'users.read', 'users.write', 'users.auth_repair', 'users.message.write', 'money.read', 'money.manual_access.write',
         'content.read', 'content.draft.write', 'content.publish', 'application.config.write', 'campaigns.read', 'campaigns.write',
         'diagnostics.read', 'community.moderate', 'admin.roles.write',
         ...SUPPORT_OPERATOR_PERMISSIONS, 'support.reply.resolve_ambiguous',
-        ...REPORT_OPERATOR_PERMISSIONS, ...BRIEFING_OPERATOR_PERMISSIONS, 'diagnostics.status.write',
+        ...REPORT_OPERATOR_PERMISSIONS, ...BRIEFING_OPERATOR_PERMISSIONS, ...IDEA_OPERATOR_PERMISSIONS, 'diagnostics.status.write',
     ]),
     admin: new Set([
         'users.read', 'users.write', 'users.auth_repair', 'users.message.write', 'money.read', 'money.manual_access.write',
         'content.read', 'content.draft.write', 'content.publish', 'application.config.write', 'campaigns.read', 'campaigns.write',
         'diagnostics.read', 'community.moderate',
         ...SUPPORT_OPERATOR_PERMISSIONS, 'support.reply.resolve_ambiguous',
-        ...REPORT_OPERATOR_PERMISSIONS, ...BRIEFING_OPERATOR_PERMISSIONS, 'diagnostics.status.write',
+        ...REPORT_OPERATOR_PERMISSIONS, ...BRIEFING_OPERATOR_PERMISSIONS, ...IDEA_OPERATOR_PERMISSIONS, 'diagnostics.status.write',
     ]),
     support: new Set(['users.read', 'diagnostics.read', ...SUPPORT_OPERATOR_PERMISSIONS, ...REPORT_OPERATOR_PERMISSIONS]),
     content_editor: new Set(['content.read', 'content.draft.write']),
-    moderator: new Set(['users.read', 'community.moderate', 'reports.read', 'reports.status.write']),
+    moderator: new Set(['users.read', 'community.moderate', 'reports.read', 'reports.status.write', ...IDEA_OPERATOR_PERMISSIONS]),
     analyst: new Set(['users.read', 'money.read', 'content.read', 'campaigns.read', 'diagnostics.read', 'briefing.read', 'reports.read']),
     developer: new Set(['content.read', 'diagnostics.read', 'briefing.read', 'diagnostics.status.write']),
 };

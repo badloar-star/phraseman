@@ -22,18 +22,29 @@ describe('cloud sync account-transition race contract', () => {
       authProviderSource.indexOf('export async function deleteAccountAndWipe()'),
       authProviderSource.indexOf('export async function signOutCurrentProvider()'),
     );
+    const transitionHelper = authProviderSource.slice(
+      authProviderSource.indexOf('async function beginEntitlementSafeAccountTransition()'),
+      authProviderSource.indexOf('// ── Lazy native modules'),
+    );
+    const generationInvalidation = transitionHelper.indexOf('invalidateAccountGeneration()');
+    const premiumInvalidation = transitionHelper.indexOf('beginPremiumAccountTransition()');
+    const premiumDrain = transitionHelper.indexOf('waitForPremiumAccountWorkIdleWithDeadline(');
     expect(deleteFlow.indexOf('startCloudDeletionEnqueue(')).toBeGreaterThanOrEqual(0);
     expect(deleteFlow.indexOf('await cloudDeleteEnqueueOperation.dispatchSettled')).toBeGreaterThan(
       deleteFlow.indexOf('startCloudDeletionEnqueue('),
     );
-    expect(deleteFlow.indexOf('invalidateAccountGeneration()')).toBeGreaterThan(
+    expect(deleteFlow.indexOf('beginEntitlementSafeAccountTransition()')).toBeGreaterThan(
       deleteFlow.indexOf('startCloudDeletionEnqueue('),
     );
+    expect(generationInvalidation).toBeGreaterThanOrEqual(0);
+    expect(generationInvalidation).toBeLessThan(premiumInvalidation);
+    expect(premiumInvalidation).toBeLessThan(premiumDrain);
     expect(deleteFlow.indexOf('waitForRestoreApplicationIdleWithDeadline(')).toBeGreaterThan(
-      deleteFlow.indexOf('invalidateAccountGeneration()'),
+      deleteFlow.indexOf('beginEntitlementSafeAccountTransition()'),
     );
     expect(deleteFlow.indexOf('quiesceCloudSyncForAccountTransition(')).toBeGreaterThan(
-      deleteFlow.indexOf('invalidateAccountGeneration()'),
+      deleteFlow.indexOf('beginEntitlementSafeAccountTransition()'),
     );
+    expect(deleteFlow).not.toContain('invalidateAccountGeneration()');
   });
 });

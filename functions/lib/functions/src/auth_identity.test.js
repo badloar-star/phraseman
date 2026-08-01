@@ -50,13 +50,25 @@ function makeDbStub(initial = {}, options = {}) {
                 op,
                 value,
                 get: async () => {
-                    maybeThrowReadFault(`query:${name}:${field}:${String(value)}`);
+                    const fieldKey = typeof field === 'string' ? field : 'membersUid';
+                    maybeThrowReadFault(`query:${name}:${fieldKey}:${String(value)}`);
                     const readField = (data, fieldPath) => fieldPath.split('.').reduce((current, key) => (current && typeof current === 'object'
                         ? current[key]
                         : undefined), data);
                     const docs = Object.entries(store[name] ?? {})
-                        .filter(([, data]) => data && op === '==' && readField(data, field) === value)
-                        .map(([id, data]) => snapFor(id, data));
+                        .filter(([, data]) => {
+                        if (!data || op !== '==')
+                            return false;
+                        if (typeof field === 'string')
+                            return readField(data, field) === value;
+                        const members = data.members;
+                        return Boolean(members && typeof members === 'object' && Object.values(members).some((member) => member && typeof member === 'object'
+                            && member.uid === value));
+                    })
+                        .map(([id, data]) => ({
+                        ...snapFor(id, data),
+                        ref: collection(name).doc(id),
+                    }));
                     return { empty: docs.length === 0, docs };
                 },
             }),
@@ -64,6 +76,23 @@ function makeDbStub(initial = {}, options = {}) {
     });
     const db = {
         collection,
+        batch: () => {
+            const writes = [];
+            return {
+                set: (ref, data, writeOptions) => {
+                    writes.push({ ref, data, options: writeOptions });
+                },
+                commit: async () => {
+                    for (const write of writes) {
+                        store[write.ref.collectionName] = store[write.ref.collectionName] ?? {};
+                        store[write.ref.collectionName][write.ref.id] = write.options
+                            ? { ...(store[write.ref.collectionName][write.ref.id] ?? {}), ...write.data }
+                            : { ...write.data };
+                        sets.push({ path: write.ref.path, data: write.data, options: write.options });
+                    }
+                },
+            };
+        },
         runTransaction: async (callback) => {
             options.beforeTransactionStart?.(store);
             for (let attempt = 0; attempt < 3; attempt += 1) {
@@ -319,6 +348,70 @@ describe('linkStableAuthUid', () => {
         await (0, auth_identity_1.linkStableAuthUid)(db, 'stable-safe-retry', 'new-safe-auth');
         expect(store.users['stable-safe-retry']).toMatchObject({ firebaseAuthUid: 'new-safe-auth' });
         expect(transactionCommits).toEqual([['users/stable-safe-retry']]);
+    });
+});
+describe('cleanupLegacyAuthIdentityDuplicates read-failure boundary', () => {
+    const stableId = 'stable-cleanup';
+    const authUid = 'legacy-auth';
+    it('fails closed when the stable-member week query is unavailable and performs zero writes', async () => {
+        const { db, store, sets, transactionCommits } = makeDbStub({
+            users: {
+                [stableId]: { firebaseAuthUid: authUid },
+            },
+            auth_links: {
+                [authUid]: { stable_id: stableId },
+            },
+            leaderboard: {
+                [stableId]: { firebaseAuthUid: authUid, points: 900, name: 'Stable Profile' },
+            },
+            league_groups: {
+                'legacy-group': {
+                    weekId: '2026-W30',
+                    members: {
+                        [authUid]: { uid: authUid, points: 12, name: 'Legacy Profile' },
+                    },
+                },
+                'stable-group': {
+                    weekId: '2026-W30',
+                    members: {
+                        [stableId]: { uid: stableId, points: 120, name: 'Stable Profile' },
+                    },
+                },
+            },
+        }, {
+            readFaultAt: { 'query:league_groups:weekId:2026-W30': 1 },
+        });
+        const before = JSON.stringify(store);
+        await expect((0, auth_identity_1.cleanupLegacyAuthIdentityDuplicates)(db, stableId, authUid))
+            .rejects.toMatchObject({ code: 'unavailable', message: 'identity_check_unavailable' });
+        expect(JSON.stringify(store)).toBe(before);
+        expect(sets).toEqual([]);
+        expect(transactionCommits).toEqual([]);
+    });
+    it.each([
+        ['stable leaderboard', `leaderboard/${stableId}`],
+        ['auth-link anchor', `auth_links/${authUid}`],
+    ])('fails closed when the authoritative %s read is unavailable and never merges legacy data', async (_case, faultPath) => {
+        const { db, store, sets, transactionCommits } = makeDbStub({
+            users: {
+                [stableId]: { firebaseAuthUid: authUid },
+            },
+            auth_links: {
+                [authUid]: { stable_id: stableId },
+            },
+            leaderboard: {
+                [stableId]: { firebaseAuthUid: authUid, points: 900, name: 'Stable Profile' },
+                [authUid]: { firebaseAuthUid: authUid, points: 10, name: 'Legacy Lower Profile' },
+            },
+        }, {
+            readFaultAt: { [faultPath]: 1 },
+        });
+        const before = JSON.stringify(store);
+        await expect((0, auth_identity_1.cleanupLegacyAuthIdentityDuplicates)(db, stableId, authUid))
+            .rejects.toMatchObject({ code: 'unavailable', message: 'identity_check_unavailable' });
+        expect(JSON.stringify(store)).toBe(before);
+        expect(sets).toEqual([]);
+        expect(transactionCommits).toEqual([]);
     });
 });
 describe('ensureAuthLinkDoc', () => {

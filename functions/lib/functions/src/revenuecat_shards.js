@@ -39,10 +39,13 @@ exports.isSandboxEvent = isSandboxEvent;
 exports.transferTargetIds = transferTargetIds;
 exports.transferSourceIds = transferSourceIds;
 const admin = __importStar(require("firebase-admin"));
+const crypto_1 = require("crypto");
 const https_1 = require("firebase-functions/v2/https");
 const logger = __importStar(require("firebase-functions/logger"));
 const params_1 = require("firebase-functions/params");
 const revenuecat_financial_normalization_1 = require("./revenuecat_financial_normalization");
+const revenuecat_premium_lineage_1 = require("./revenuecat_premium_lineage");
+const account_delete_job_1 = require("./account_delete_job");
 const REGION = 'us-central1';
 const REVENUECAT_WEBHOOK_AUTH = (0, params_1.defineSecret)('REVENUECAT_WEBHOOK_AUTH');
 const SHARD_PACKS_BY_PRODUCT_ID = {
@@ -59,6 +62,7 @@ const PREMIUM_ACTIVE_EVENTS = new Set([
     'PRODUCT_CHANGE',
     'SUBSCRIPTION_EXTENDED',
     'TEMPORARY_ENTITLEMENT_GRANT',
+    'REFUND_REVERSED',
 ]);
 const PREMIUM_KEEP_ACTIVE_EVENTS = new Set([
     'CANCELLATION',
@@ -138,6 +142,19 @@ function candidateUserIds(event) {
     }
     return [...out];
 }
+function premiumAuthoritativeUserIds(event) {
+    const out = new Set();
+    for (const raw of [
+        event.app_user_id,
+        event.original_app_user_id,
+        ...(Array.isArray(event.aliases) ? event.aliases : []),
+    ]) {
+        const candidate = cleanId(raw);
+        if (candidate && !isRevenueCatAnonymousId(candidate))
+            out.add(candidate);
+    }
+    return [...out];
+}
 function entitlementIds(event) {
     const out = new Set();
     const one = cleanId(event.entitlement_id);
@@ -152,13 +169,23 @@ function entitlementIds(event) {
 }
 function looksLikePremiumSubscription(event) {
     const productId = cleanId(event.product_id).toLowerCase();
-    const offeringId = cleanId(event.presented_offering_id).toLowerCase();
     const entitlements = entitlementIds(event);
-    if (entitlements.includes('premium'))
-        return true;
-    if (/premium|monthly|month|yearly|annual|subscription|sub/.test(productId))
-        return true;
-    return /premium|subscription|sub/.test(offeringId);
+    const legacyPremiumProducts = new Set([
+        'premium_monthly',
+        'premium_yearly',
+        'premium_lifetime',
+        'phraseman_premium_monthly',
+        'phraseman_premium_yearly',
+        'phraseman_premium_yearly_2399',
+        'phraseman_premium_yearly_2999',
+        'phraseman_premium_lifetime_v1',
+    ]);
+    if (entitlements.length === 0)
+        return legacyPremiumProducts.has(productId);
+    if (!entitlements.includes('premium'))
+        return false;
+    return /^phraseman_premium_(monthly|yearly)(?:_[0-9]{1,6})?$/.test(productId)
+        || productId === 'phraseman_premium_lifetime_v1';
 }
 function premiumPlanFromEvent(event) {
     const productId = cleanId(event.product_id).toLowerCase();
@@ -218,128 +245,280 @@ async function findExistingUserRef(tx, db, candidates) {
         ref = db.collection('users').doc(uid);
         snap = await tx.get(ref);
     }
+    if (!snap.exists)
+        return null;
     return { uid, ref, snap };
 }
+async function resolvePremiumOwnerRef(tx, db, candidates) {
+    const userSnapshots = new Map();
+    const canonicalCandidates = [];
+    const addCanonicalCandidate = (raw) => {
+        const uid = cleanId(raw);
+        if (uid && !uid.includes('/') && !canonicalCandidates.includes(uid))
+            canonicalCandidates.push(uid);
+    };
+    for (const candidate of candidates) {
+        const userRef = db.collection('users').doc(candidate);
+        const linkRef = db.collection('auth_links').doc(candidate);
+        const userSnap = await tx.get(userRef);
+        const linkSnap = await tx.get(linkRef);
+        userSnapshots.set(candidate, userSnap);
+        if (userSnap.exists) {
+            const userData = userSnap.data() ?? {};
+            addCanonicalCandidate(userData.identityHidden === true
+                ? userData.canonicalStableId
+                : candidate);
+        }
+        if (linkSnap.exists)
+            addCanonicalCandidate(linkSnap.data()?.stable_id);
+    }
+    const resolved = new Map();
+    for (const initialUid of canonicalCandidates) {
+        let uid = initialUid;
+        const seen = new Set();
+        for (let depth = 0; depth <= revenuecat_premium_lineage_1.MAX_OWNER_LINEAGES; depth += 1) {
+            if (!uid || seen.has(uid))
+                break;
+            seen.add(uid);
+            let snap = userSnapshots.get(uid);
+            if (!snap) {
+                snap = await tx.get(db.collection('users').doc(uid));
+                userSnapshots.set(uid, snap);
+            }
+            if (!snap.exists)
+                break;
+            const data = snap.data() ?? {};
+            if (data.identityHidden !== true) {
+                resolved.set(uid, snap);
+                break;
+            }
+            uid = cleanId(data.canonicalStableId);
+        }
+    }
+    const ownerUids = [...resolved.keys()];
+    if (ownerUids.length === 0)
+        return { status: 'missing', reason: 'missing_canonical_owner' };
+    if (ownerUids.length > 1) {
+        return { status: 'ambiguous', reason: 'conflicting_canonical_owners', ownerUids };
+    }
+    const uid = ownerUids[0];
+    return {
+        status: 'resolved',
+        uid,
+        ref: db.collection('users').doc(uid),
+        snap: resolved.get(uid),
+    };
+}
+function premiumReceiptDocId(eventId) {
+    return `evt_${(0, crypto_1.createHash)('sha256').update(eventId).digest('hex')}`;
+}
+function premiumLineageDocId(uid, lineageHash) {
+    const ownerHash = (0, crypto_1.createHash)('sha256').update(uid).digest('hex').slice(0, 32);
+    return `lin_${ownerHash}_${lineageHash}`;
+}
+async function writePremiumDenialReceipt(event, denialId, reason, details = {}) {
+    const db = admin.firestore();
+    await db.collection('revenuecat_premium_denials').doc(denialId).set({
+        reason,
+        eventId: cleanId(event.id) || null,
+        eventType: cleanId(event.type).toUpperCase() || null,
+        ...details,
+        createdAt: admin.firestore.FieldValue.serverTimestamp(),
+    }, { merge: false });
+}
 async function handlePremiumSubscriptionEvent(event, eventType, productId, res) {
-    const candidates = candidateUserIds(event);
-    if (candidates.length === 0) {
-        res.status(400).send('Missing app_user_id');
+    const normalized = (0, revenuecat_premium_lineage_1.normalizePremiumLineageEvent)(event);
+    if (normalized.status === 'quarantine') {
+        try {
+            await writePremiumDenialReceipt(event, `quarantine_${normalized.rawFingerprint}`, normalized.reason, { rawFingerprint: normalized.rawFingerprint });
+            res.status(202).json({ ok: true, kind: 'premium', quarantined: true, reason: normalized.reason });
+        }
+        catch (error) {
+            logger.error('revenuecat_premium_quarantine_failed', error);
+            res.status(500).send('Internal error');
+        }
         return;
     }
-    const transactionId = cleanId(event.transaction_id ||
-        event.original_transaction_id ||
-        event.id ||
-        `${eventType}_${event.event_timestamp_ms || Date.now()}_${candidates[0]}`);
-    // При RENEWAL event.id уникален для каждого события; если отсутствует —
-    // добавляем timestamp чтобы разные RENEWAL одной подписки не коллизировали.
-    const eventId = cleanId(event.id)
-        || (eventType === 'RENEWAL' || eventType === 'INITIAL_PURCHASE'
-            ? `${eventType}_${transactionId}_${event.event_timestamp_ms || Date.now()}`
-            : transactionId);
-    const expiryMs = eventMs(event.expiration_at_ms);
-    const purchasedMs = eventMs(event.purchased_at_ms);
-    const now = Date.now();
-    const plan = premiumPlanFromEvent(event);
-    const periodType = cleanId(event.period_type).toUpperCase();
+    const canonicalEvent = normalized.event;
+    const boundedCandidates = (0, revenuecat_premium_lineage_1.boundPremiumOwnerCandidates)(premiumAuthoritativeUserIds(event));
+    if (boundedCandidates.status === 'quarantine') {
+        try {
+            await writePremiumDenialReceipt(event, premiumReceiptDocId(canonicalEvent.eventId), boundedCandidates.reason, { fingerprint: canonicalEvent.fingerprint });
+            res.status(202).json({ ok: true, kind: 'premium', quarantined: true, reason: boundedCandidates.reason });
+        }
+        catch (error) {
+            logger.error('revenuecat_premium_candidate_quarantine_failed', error);
+            res.status(500).send('Internal error');
+        }
+        return;
+    }
+    const candidates = boundedCandidates.candidates;
+    if (candidates.length === 0) {
+        const hasAnonymousIdentity = [event.app_user_id, event.original_app_user_id]
+            .some(isRevenueCatAnonymousId);
+        const reason = hasAnonymousIdentity ? 'ambiguous_anonymous_owner' : 'missing_authoritative_owner';
+        try {
+            await writePremiumDenialReceipt(event, premiumReceiptDocId(canonicalEvent.eventId), reason, {
+                fingerprint: canonicalEvent.fingerprint,
+                evidenceCandidates: candidateUserIds(event),
+            });
+            res.status(202).json({ ok: true, kind: 'premium', quarantined: true, reason });
+        }
+        catch (error) {
+            logger.error('revenuecat_premium_owner_quarantine_failed', error);
+            res.status(500).send('Internal error');
+        }
+        return;
+    }
     const db = admin.firestore();
-    const processedRef = db.collection('revenuecat_premium_events').doc(eventId);
+    const receiptId = premiumReceiptDocId(canonicalEvent.eventId);
+    const processedRef = db.collection('revenuecat_premium_events').doc(receiptId);
+    const denialRef = db.collection('revenuecat_premium_denials').doc(receiptId);
     try {
         const out = await db.runTransaction(async (tx) => {
+            // All denial/idempotency/deletion reads happen before any user, lineage,
+            // projection, or receipt write in this transaction.
             const processedSnap = await tx.get(processedRef);
-            if (processedSnap.exists) {
-                return { updated: false, reason: 'duplicate' };
+            const denialSnap = await tx.get(denialRef);
+            const deletionSnapshots = [];
+            for (const candidate of candidates) {
+                deletionSnapshots.push(await tx.get(db.collection(account_delete_job_1.ACCOUNT_DELETE_TOMBSTONES).doc(candidate)));
+                deletionSnapshots.push(await tx.get(db.collection(account_delete_job_1.ACCOUNT_DELETE_AUTH_MARKERS).doc(candidate)));
             }
-            const match = await findExistingUserRef(tx, db, candidates);
-            if (!match) {
+            if (denialSnap.exists) {
+                return { updated: false, reason: 'denied_receipt_exists' };
+            }
+            if (processedSnap.exists) {
+                const replay = (0, revenuecat_premium_lineage_1.receiptReplayDecision)(processedSnap.data() ?? {}, canonicalEvent);
+                if (replay === 'duplicate')
+                    return { updated: false, reason: 'duplicate' };
+                tx.set(denialRef, {
+                    reason: 'event_id_fingerprint_conflict',
+                    eventId: canonicalEvent.eventId,
+                    fingerprint: canonicalEvent.fingerprint,
+                    existingFingerprint: cleanId(processedSnap.data()?.fingerprint),
+                    createdAt: admin.firestore.FieldValue.serverTimestamp(),
+                });
+                return { updated: false, reason: 'event_id_fingerprint_conflict' };
+            }
+            if (deletionSnapshots.some((snapshot) => snapshot.exists)) {
+                tx.set(denialRef, {
+                    reason: 'account_deletion_pending_or_tombstoned',
+                    eventId: canonicalEvent.eventId,
+                    fingerprint: canonicalEvent.fingerprint,
+                    candidates,
+                    createdAt: admin.firestore.FieldValue.serverTimestamp(),
+                });
+                return { updated: false, reason: 'account_deletion_pending_or_tombstoned' };
+            }
+            if (candidates.length === 0) {
+                tx.set(denialRef, {
+                    reason: 'missing_user_candidate',
+                    eventId: canonicalEvent.eventId,
+                    fingerprint: canonicalEvent.fingerprint,
+                    createdAt: admin.firestore.FieldValue.serverTimestamp(),
+                });
                 return { updated: false, reason: 'missing_user_candidate' };
             }
-            const { uid, ref: userRef, snap: userSnap } = match;
+            const ownerResolution = await resolvePremiumOwnerRef(tx, db, candidates);
+            if (ownerResolution.status !== 'resolved') {
+                tx.set(denialRef, {
+                    reason: ownerResolution.reason,
+                    eventId: canonicalEvent.eventId,
+                    fingerprint: canonicalEvent.fingerprint,
+                    candidates,
+                    ...(ownerResolution.status === 'ambiguous' ? { ownerUids: ownerResolution.ownerUids } : {}),
+                    createdAt: admin.firestore.FieldValue.serverTimestamp(),
+                });
+                return { updated: false, reason: ownerResolution.reason };
+            }
+            const { uid, ref: userRef, snap: userSnap } = ownerResolution;
+            const canonicalDeletionSnapshots = [
+                await tx.get(db.collection(account_delete_job_1.ACCOUNT_DELETE_TOMBSTONES).doc(uid)),
+                await tx.get(db.collection(account_delete_job_1.ACCOUNT_DELETE_AUTH_MARKERS).doc(uid)),
+            ];
+            if (canonicalDeletionSnapshots.some((snapshot) => snapshot.exists)) {
+                tx.set(denialRef, {
+                    reason: 'account_deletion_pending_or_tombstoned',
+                    eventId: canonicalEvent.eventId,
+                    fingerprint: canonicalEvent.fingerprint,
+                    candidates,
+                    ownerUid: uid,
+                    createdAt: admin.firestore.FieldValue.serverTimestamp(),
+                });
+                return { updated: false, reason: 'account_deletion_pending_or_tombstoned' };
+            }
+            const lineageQuery = db.collection('revenuecat_premium_lineages')
+                .where('ownerUid', '==', uid)
+                .limit(revenuecat_premium_lineage_1.MAX_OWNER_LINEAGES + 1);
+            const lineageSnapshot = await tx.get(lineageQuery);
+            const existingLineages = lineageSnapshot.docs.map((doc) => doc.data());
+            const currentLineage = existingLineages.find((lineage) => lineage.lineageHash === canonicalEvent.lineageHash) ?? null;
+            if (!currentLineage && existingLineages.length >= revenuecat_premium_lineage_1.MAX_OWNER_LINEAGES) {
+                tx.set(denialRef, {
+                    reason: 'owner_lineage_limit',
+                    ownerUid: uid,
+                    eventId: canonicalEvent.eventId,
+                    fingerprint: canonicalEvent.fingerprint,
+                    createdAt: admin.firestore.FieldValue.serverTimestamp(),
+                });
+                return { updated: false, reason: 'owner_lineage_limit' };
+            }
+            const reduced = (0, revenuecat_premium_lineage_1.applyPremiumLineageEvent)(currentLineage, canonicalEvent);
             const progress = (userSnap.data()?.progress ?? {});
-            const progressPlan = cleanId(progress.premium_plan).toLowerCase();
-            const adminOverrideValue = cleanId(progress.admin_premium_override).toLowerCase();
-            const legacyAdminVip = adminOverrideValue === 'true' || (progressPlan === 'admin_grant' && adminOverrideValue !== 'false');
-            const activeEvent = PREMIUM_ACTIVE_EVENTS.has(eventType);
-            const keepActiveEvent = PREMIUM_KEEP_ACTIVE_EVENTS.has(eventType);
-            const inactiveEvent = PREMIUM_INACTIVE_EVENTS.has(eventType);
-            const progressPatch = {
-                premium_rc_product_id: productId,
-                premium_rc_period_type: periodType,
-                premium_rc_store: cleanId(event.store).toUpperCase(),
-                premium_rc_environment: cleanId(event.environment).toUpperCase(),
-                premium_rc_event_type: eventType,
-                premium_rc_updated_at: String(now),
-            };
-            if (expiryMs != null)
-                progressPatch.premium_rc_expiry_ms = String(expiryMs);
-            if (purchasedMs != null)
-                progressPatch.premium_rc_purchased_at_ms = String(purchasedMs);
-            if (legacyAdminVip) {
-                const legacyExpiryMs = eventMs(progress.premium_expiry);
-                const legacyGrantAt = cleanId(progress.premium_admin_grant_at) || String(now);
-                const legacyActive = legacyExpiryMs == null || legacyExpiryMs > now;
-                progressPatch.vip_active = legacyActive ? 'true' : 'false';
-                progressPatch.vip_plan = legacyActive ? 'admin_vip' : '';
-                progressPatch.vip_from = cleanId(progress.vip_from) || legacyGrantAt;
-                progressPatch.vip_until = legacyExpiryMs == null ? '0' : String(legacyExpiryMs);
-                progressPatch.vip_admin_override = legacyActive ? 'true' : 'false';
-                progressPatch.vip_admin_grant_at = cleanId(progress.vip_admin_grant_at) || legacyGrantAt;
-                progressPatch.vip_migrated_from_admin_grant_at = String(now);
-                progressPatch.admin_premium_override = 'false';
-            }
-            if (activeEvent || keepActiveEvent) {
-                progressPatch.premium_plan = plan;
-                progressPatch.premium_expiry = '0';
-                progressPatch.had_premium_ever = '1';
-                if (keepActiveEvent) {
-                    progressPatch.premium_rc_cancelled_at = String(now);
-                }
-            }
-            else if (inactiveEvent) {
-                // EXPIRATION на lifetime НЕ деактивируем (см. shouldDeactivateOnInactiveEvent):
-                // спурьёзный EXPIRATION иначе молча даунгрейднул бы платящего lifetime до free.
-                // REFUND снимает доступ как обычно (вернули деньги).
-                if (shouldDeactivateOnInactiveEvent(eventType, plan)) {
-                    progressPatch.premium_plan = '';
-                    progressPatch.premium_expiry = String(expiryMs ?? now);
-                }
-            }
-            tx.set(processedRef, {
+            const receipt = {
                 uid,
                 candidates,
                 productId,
-                eventId,
+                eventId: canonicalEvent.eventId,
+                fingerprint: canonicalEvent.fingerprint,
+                lineageHash: canonicalEvent.lineageHash,
                 eventType,
-                periodType,
-                store: cleanId(event.store),
-                environment: cleanId(event.environment),
-                transactionId,
-                originalTransactionId: cleanId(event.original_transaction_id),
-                purchasedAtMs: purchasedMs,
-                expirationAtMs: expiryMs,
-                eventTimestampMs: eventMs(event.event_timestamp_ms),
+                periodType: cleanId(event.period_type).toUpperCase(),
+                store: canonicalEvent.store,
+                environment: canonicalEvent.environment,
+                transactionId: canonicalEvent.transactionId,
+                originalTransactionId: canonicalEvent.originalTransactionId,
+                purchasedAtMs: eventMs(event.purchased_at_ms),
+                expirationAtMs: canonicalEvent.expirationAtMs,
+                eventTimestampMs: canonicalEvent.eventTimeMs,
                 billingCadence: (0, revenuecat_financial_normalization_1.classifyRevenueCatBillingCadence)(event),
                 ...(0, revenuecat_financial_normalization_1.normalizeRevenueCatFinancials)(event),
                 ...revenueCatLifecycleReasonFields(event, eventType),
-                userDocExists: userSnap.exists,
+                reduction: reduced.status,
+                userDocExists: true,
                 createdAt: admin.firestore.FieldValue.serverTimestamp(),
-            });
+            };
+            const projectedLineages = existingLineages
+                .filter((lineage) => lineage.lineageHash !== reduced.state.lineageHash)
+                .concat(reduced.state);
+            const aggregate = (0, revenuecat_premium_lineage_1.aggregatePremiumLineages)(projectedLineages, progress, Date.now());
+            const lineageRef = db.collection('revenuecat_premium_lineages')
+                .doc(premiumLineageDocId(uid, canonicalEvent.lineageHash));
+            tx.set(lineageRef, {
+                ownerUid: uid,
+                ...reduced.state,
+                updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+            }, { merge: false });
+            tx.set(processedRef, receipt);
             tx.set(userRef, {
-                progress: progressPatch,
-                updatedAt: now,
-                last_active_at: now,
+                progress: aggregate.progressPatch,
+                updatedAt: Date.now(),
+                last_active_at: Date.now(),
             }, { merge: true });
             return {
-                updated: true,
+                updated: reduced.status === 'applied',
+                ...(reduced.status === 'stale' ? { reason: 'stale_event' } : {}),
                 uid,
-                userDocExists: userSnap.exists,
-                active: activeEvent || keepActiveEvent,
-                migratedLegacyAdminVip: legacyAdminVip,
+                active: aggregate.winnerLineageHash !== undefined,
+                aggregateStatus: aggregate.status,
+                winnerLineageHash: aggregate.winnerLineageHash ?? null,
             };
         });
         res.status(200).json({ ok: true, kind: 'premium', ...out });
     }
     catch (error) {
-        logger.error('revenuecat_premium_webhook_failed', error);
+        logger.error('revenuecat_premium_lineage_webhook_failed', error);
         res.status(500).send('Internal error');
     }
 }
@@ -432,11 +611,12 @@ async function handleShardPurchaseEvent(event, eventType, productId, pack, res) 
  */
 async function handleShardRefundEvent(event, productId, res) {
     const originalTxId = cleanId(event.original_transaction_id || event.transaction_id);
-    if (!originalTxId) {
-        res.status(400).send('Missing original_transaction_id for REFUND');
+    const eventId = cleanId(event.id);
+    const refundEventTimeMs = eventMs(event.event_timestamp_ms);
+    if (!originalTxId || !eventId || refundEventTimeMs === null) {
+        res.status(400).send('Missing immutable REFUND identity');
         return;
     }
-    const eventId = cleanId(event.id) || `REFUND_${originalTxId}_${event.event_timestamp_ms || Date.now()}`;
     const db = admin.firestore();
     const refundRef = db.collection('revenuecat_shard_refunds').doc(eventId);
     const originalRef = db.collection('revenuecat_shard_transactions').doc(originalTxId);
@@ -727,6 +907,8 @@ exports.revenueCatShardsWebhook = (0, https_1.onRequest)({ region: REGION, secre
 });
 exports.__revenueCatWebhookTestHooks = {
     candidateUserIds,
+    premiumAuthoritativeUserIds,
+    resolvePremiumOwnerRef,
     isRevenueCatAnonymousId,
     looksLikePremiumSubscription,
     premiumPlanFromEvent,
@@ -736,5 +918,6 @@ exports.__revenueCatWebhookTestHooks = {
     transferSourceIds,
     revenueCatLifecycleReasonFields,
     handleTransferEvent,
+    handlePremiumSubscriptionEvent,
 };
 //# sourceMappingURL=revenuecat_shards.js.map

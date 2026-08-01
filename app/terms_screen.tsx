@@ -10,7 +10,7 @@ import { triLang } from '../constants/i18n';
 import { KNOWLY_LEGAL_TERMS_URL } from './config';
 import { hapticTap } from '../hooks/use-haptics';
 import TERMS_OF_USE_EN from './legal/terms_of_use_en.json';
-import TapScale from '../components/TapScale';
+import SectionSheetHeader from '../components/SectionSheetHeader';
 import TERMS_OF_USE_EN_IOS from './legal/terms_of_use_en_ios.json';
 import { useEffectivePlatformOS } from './platform_ui_preview';
 import { safeRouterBack } from './navigation_back';
@@ -31,17 +31,13 @@ export default function TermsScreen() {
   return (
     <ScreenGradient artBackdrop="settings">
       <SafeAreaView style={{ flex: 1 }}>
-        <View style={{
-          flexDirection: 'row', alignItems: 'center',
-          paddingHorizontal: 16, paddingVertical: 14,
-          borderBottomWidth: 0.5, borderBottomColor: t.border,
-        }}>
-          <TapScale onPress={() => safeRouterBack(router, '/(tabs)/settings' as any)} style={{ marginRight: 12, padding: 4 }}>
-            <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
-          </TapScale>
-          <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', flex: 1 }} numberOfLines={1}>
-            Terms of Use
-          </Text>
+        {/* зачем: стандарт «шторки раздела» (референс владельца — Bevel):
+            документ выезжает снизу как модал, шапка — центрированный заголовок
+            + крестик; «открыть на сайте» — аксессуар рядом с крестиком. */}
+        <SectionSheetHeader
+          title="Terms of Use"
+          onClose={() => safeRouterBack(router, '/(tabs)/settings' as any)}
+          accessory={(
           <TouchableOpacity
             onPress={() => {
               hapticTap();
@@ -60,9 +56,10 @@ export default function TermsScreen() {
               pl: 'Otwórz warunki na knowlyapps.com',
             })}
           >
-            <Ionicons name="open-outline" size={24} color={t.textSecond} />
+            <Ionicons name="open-outline" size={22} color={t.textSecond} />
           </TouchableOpacity>
-        </View>
+          )}
+        />
         <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ padding: 20, paddingBottom: 60 }} scrollEventThrottle={16}>
           {TERMS_EN.map((s, i) => (
                 <View key={i} style={{ marginBottom: 20 }}>

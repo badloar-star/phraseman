@@ -27,6 +27,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Reanimated, { FadeInDown } from 'react-native-reanimated';
 import ScreenGradient from '../components/ScreenGradient';
+import SectionSheetHeader from '../components/SectionSheetHeader';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import TapScale from '../components/TapScale';
 import PrizeArc, { type PrizeArcHandle } from '../components/prize_arc';
@@ -508,53 +509,37 @@ export default function ReferralsScreen() {
   return (
     <ScreenGradient artBackdrop="friends">
       <SafeAreaView testID="screen-referrals" style={{ flex: 1 }}>
+        {/* зачем: стандарт «шторки раздела» — модал с выездом снизу; шапка
+            фиксированная над скроллом, «как это работает» — аксессуар у крестика. */}
+        <SectionSheetHeader
+          title={drainVisible
+            ? sunsetCopy.drainTitle
+            : L('Награда за друга', 'Нагорода за друга', 'Recompensa por amigo', 'Recompensa por amigo', 'Phần thưởng mời bạn', 'Hadiah undang teman', 'Arkadaş ödülü', 'Nagroda za znajomego')}
+          onClose={() => safeRouterBack(router, '/(tabs)/friends' as any)}
+          accessory={referralUiVisible ? (
+            <TapScale
+              testID="referrals-roulette-about"
+              accessibilityRole="button"
+              accessibilityLabel={L('Как это работает', 'Як це працює', 'Cómo funciona', 'Como funciona', 'Cách hoạt động', 'Cara kerjanya', 'Nasıl çalışır', 'Jak to działa')}
+              onPress={() => setHowSheetOpen(true)}
+              style={{
+                width: 32,
+                height: 32,
+                borderRadius: 16,
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: t.bgCard,
+              }}
+            >
+              <Text style={{ color: t.textSecond, fontSize: f.sub ?? 13, fontFamily: ds.fontFamily, fontWeight: '700' }}>?</Text>
+            </TapScale>
+          ) : undefined}
+        />
         <ScrollView
           showsVerticalScrollIndicator={false}
           refreshControl={<RefreshControl refreshing={refreshing} onRefresh={refresh} tintColor={t.accent} />}
-          contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 12, paddingBottom: 34, gap: 16 }}
+          contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 16, paddingBottom: 34, gap: 16 }}
         >
-          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-            <TapScale
-              accessibilityRole="button"
-              accessibilityLabel={L('Назад', 'Назад', 'Atrás', 'Voltar', 'Quay lại', 'Kembali', 'Geri', 'Wstecz')}
-              onPress={() => safeRouterBack(router, '/(tabs)/friends' as any)}
-              style={{
-                width: 44,
-                height: 44,
-                borderRadius: 22,
-                alignItems: 'center',
-                justifyContent: 'center',
-                backgroundColor: t.bgSurface,
-                marginRight: 12,
-              }}
-            >
-              <Ionicons name="chevron-back" size={24} color={t.textPrimary} />
-            </TapScale>
-            <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.h1 ?? 28, fontWeight: '700' }} numberOfLines={1}>
-              {drainVisible
-                ? sunsetCopy.drainTitle
-                : L('Награда за друга', 'Нагорода за друга', 'Recompensa por amigo', 'Recompensa por amigo', 'Phần thưởng mời bạn', 'Hadiah undang teman', 'Arkadaş ödülü', 'Nagroda za znajomego')}
-            </Text>
-            {referralUiVisible && (
-              <TapScale
-                testID="referrals-roulette-about"
-                accessibilityRole="button"
-                accessibilityLabel={L('Как это работает', 'Як це працює', 'Cómo funciona', 'Como funciona', 'Cách hoạt động', 'Cara kerjanya', 'Nasıl çalışır', 'Jak to działa')}
-                onPress={() => { hapticTap(); setHowSheetOpen(true); }}
-                style={{
-                  width: 44,
-                  height: 44,
-                  borderRadius: 22,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  backgroundColor: t.bgSurface,
-                  marginLeft: 12,
-                }}
-              >
-                <Text style={{ color: t.textSecond, fontSize: f.body ?? 16, fontFamily: ds.fontFamily, fontWeight: '700' }}>?</Text>
-              </TapScale>
-            )}
-          </View>
 
           {referralUiVisible && (
             <View testID="referrals-roulette-hero" style={{ gap: 12 }}>

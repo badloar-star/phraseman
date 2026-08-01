@@ -54,6 +54,11 @@ import { resetMultiplierBreakdownCache } from './xp_manager';
 // ранга/группы/участников лиги предыдущего аккаунта в club_screen).
 import { clearCachedLeagueStateSnapshot } from './league_open_cache_policy';
 import {
+  isVipSnapshotStorageKey,
+  VIP_STORAGE_KEYS,
+  writeVipSnapshotForAccount,
+} from './premium_vip_storage';
+import {
   extractExamBestPctOverlay,
   publishExamBestPctOverlay,
 } from './exam_best_pct_overlay';
@@ -618,9 +623,11 @@ async function listLearningV2AccountLocalKeys(): Promise<string[]> {
 }
 
 async function collectAccountLocalDataKeys(): Promise<string[]> {
+  const vipSnapshotKeys = (await AsyncStorage.getAllKeys()).filter(isVipSnapshotStorageKey);
   return Array.from(new Set([
     ...accountLocalDataKeysForToday(),
     ...await listLearningV2AccountLocalKeys(),
+    ...vipSnapshotKeys,
   ]));
 }
 
@@ -1769,6 +1776,39 @@ export type AuthRecoveryHint = {
   maskedEmail?: string | null;
 };
 
+export type AuthRecoveryCodeRequestResult = {
+  ok: true;
+  maskedEmail: string;
+  expiresInSec: number;
+  provider: 'google' | 'apple';
+};
+
+export type AuthRecoveryCodeConfirmResult = {
+  ok: true;
+  stableId: string;
+  recoveryEventId: string;
+  handoffEligibleUntil: number;
+};
+
+export class AuthSessionChangedError extends Error {
+  readonly code = 'auth_session_changed' as const;
+
+  constructor() {
+    super('auth_session_changed');
+    this.name = 'AuthSessionChangedError';
+  }
+}
+
+function captureRecoveryAuthSession(): string {
+  const authUid = getCurrentUid();
+  if (!authUid) throw new AuthSessionChangedError();
+  return authUid;
+}
+
+function assertRecoveryAuthSession(expectedAuthUid: string): void {
+  if (getCurrentUid() !== expectedAuthUid) throw new AuthSessionChangedError();
+}
+
 /**
  * Подсказка «каким аккаунтом входить» для recovery-модалки: сервер отдаёт
  * только МАСКУ email (usk***@gmail.com) и провайдера по stable_id — полный
@@ -1788,6 +1828,116 @@ export async function fetchAuthRecoveryHint(stableIdRaw: string): Promise<AuthRe
   } catch {
     return null;
   }
+}
+
+/**
+ * Запрашивает email-код восстановления. Ошибки callable намеренно не
+ * преобразуются: UI должен различать исходные Firebase/HttpsError code и message
+ * (`resource-exhausted`, `recovery_no_email`, `account_delete_pending`, ...).
+ */
+export async function requestAuthRecoveryCode(
+  stableIdRaw: string,
+): Promise<AuthRecoveryCodeRequestResult> {
+  const stableId = String(stableIdRaw || '').trim();
+  const expectedAuthUid = captureRecoveryAuthSession();
+  await initFirebaseAppCheckIfAvailable().catch(() => false);
+  assertRecoveryAuthSession(expectedAuthUid);
+  const fn = callable<{ stableId: string }, AuthRecoveryCodeRequestResult>(
+    'authRequestRecoveryCode',
+    { timeout: STABLE_AUTH_LINK_TIMEOUT_MS },
+  );
+  const res = await fn({ stableId });
+  assertRecoveryAuthSession(expectedAuthUid);
+  const data = res?.data;
+  if (
+    data?.ok !== true
+    || typeof data.maskedEmail !== 'string'
+    || !data.maskedEmail.trim()
+    || typeof data.expiresInSec !== 'number'
+    || !Number.isFinite(data.expiresInSec)
+    || data.expiresInSec <= 0
+    || (data.provider !== 'google' && data.provider !== 'apple')
+  ) {
+    throw new Error('auth_recovery_request_response_invalid');
+  }
+  return {
+    ok: true,
+    maskedEmail: data.maskedEmail.trim(),
+    expiresInSec: data.expiresInSec,
+    provider: data.provider,
+  };
+}
+
+/** Подтверждает код, сохраняя исходный HttpsError для точного UI-mapping. */
+export async function confirmAuthRecoveryCode(
+  stableIdRaw: string,
+  codeRaw: string,
+): Promise<AuthRecoveryCodeConfirmResult> {
+  const stableId = String(stableIdRaw || '').trim();
+  const code = String(codeRaw || '').trim();
+  const expectedAuthUid = captureRecoveryAuthSession();
+  await initFirebaseAppCheckIfAvailable().catch(() => false);
+  assertRecoveryAuthSession(expectedAuthUid);
+  const fn = callable<
+    { stableId: string; code: string },
+    AuthRecoveryCodeConfirmResult
+  >('authConfirmRecoveryCode', { timeout: STABLE_AUTH_LINK_TIMEOUT_MS });
+  const res = await fn({ stableId, code });
+  assertRecoveryAuthSession(expectedAuthUid);
+  const data = res?.data;
+  const recoveryEventId = String(data?.recoveryEventId ?? '').trim();
+  if (
+    data?.ok !== true
+    || String(data.stableId ?? '').trim() !== stableId
+    || !recoveryEventId
+    || recoveryEventId.length > 160
+    || recoveryEventId.includes('/')
+    || typeof data.handoffEligibleUntil !== 'number'
+    || !Number.isFinite(data.handoffEligibleUntil)
+    || data.handoffEligibleUntil <= Date.now()
+  ) {
+    throw new Error('auth_recovery_confirm_response_invalid');
+  }
+  return {
+    ok: true,
+    stableId,
+    recoveryEventId,
+    handoffEligibleUntil: data.handoffEligibleUntil,
+  };
+}
+
+export type AuthRecoveryHandoffCompleteResult = Readonly<{
+  ok: true;
+  recoveryEventId: string;
+  completed: true;
+}>;
+
+/** Acks an adopted recovery session on the default Auth app with UID drift guards. */
+export async function completeAuthRecoveryHandoffViaServer(
+  recoveryEventIdRaw: string,
+): Promise<AuthRecoveryHandoffCompleteResult> {
+  const recoveryEventId = String(recoveryEventIdRaw ?? '').trim();
+  if (!recoveryEventId || recoveryEventId.length > 160 || recoveryEventId.includes('/')) {
+    throw new Error('auth_recovery_event_id_invalid');
+  }
+  const expectedAuthUid = captureRecoveryAuthSession();
+  await initFirebaseAppCheckIfAvailable().catch(() => false);
+  assertRecoveryAuthSession(expectedAuthUid);
+  const fn = callable<
+    { recoveryEventId: string },
+    AuthRecoveryHandoffCompleteResult
+  >('authCompleteRecoveryHandoff', { timeout: STABLE_AUTH_LINK_TIMEOUT_MS });
+  const res = await fn({ recoveryEventId });
+  assertRecoveryAuthSession(expectedAuthUid);
+  const data = res?.data;
+  if (
+    data?.ok !== true
+    || data.completed !== true
+    || String(data.recoveryEventId ?? '').trim() !== recoveryEventId
+  ) {
+    throw new Error('auth_recovery_handoff_response_invalid');
+  }
+  return { ok: true, recoveryEventId, completed: true };
 }
 
 export type MergeStableAccountsResult = {
@@ -2148,6 +2298,7 @@ async function applyRestoreFromUserDoc(
   doc: { exists: boolean; data: () => Record<string, unknown> | undefined },
   isCurrent: () => boolean = () => true,
   afterLegacyRestore?: (root: Record<string, unknown>) => void,
+  vipOwnerStableId?: string,
 ): Promise<boolean> {
   const assertCurrent = () => {
     if (!isCurrent()) throw new Error('stale_account_generation');
@@ -2463,21 +2614,27 @@ async function applyRestoreFromUserDoc(
       }
     }
     stickyPairs.push(...await buildGiftEntitlementStickyPairs(cloudData));
-    // tester «Снять премиум»: не восстанавливаем VIP-доступ из облака (см. выше).
-    if (cloudVipActive !== null && !stripPremiumActive) {
-      stickyPairs.push(
-        ['vip_active', cloudVipActive ? 'true' : 'false'],
-        ['vip_plan', cloudVipActive ? (cloudVipState?.plan ?? 'admin_vip') : ''],
-        ['vip_from', cloudVipActive ? (cloudVipState?.fromValue ?? '0') : '0'],
-        ['vip_until', cloudVipActive ? (cloudVipState?.untilValue ?? '0') : '0'],
-        ['vip_admin_override', cloudVipActive ? 'true' : 'false'],
-      );
-      if (cloudVipState?.grantAt) stickyPairs.push(['vip_admin_grant_at', cloudVipState.grantAt]);
-    }
+    let appliedStickyState = false;
     if (stickyPairs.length > 0) {
       assertCurrent();
       await AsyncStorage.multiSet(sanitizeStoragePairs(stickyPairs));
       assertCurrent();
+      appliedStickyState = true;
+    }
+    // tester «Снять премиум»: не восстанавливаем VIP-доступ из облака (см. выше).
+    if (cloudVipActive !== null && !stripPremiumActive && vipOwnerStableId) {
+      await writeVipSnapshotForAccount(vipOwnerStableId, {
+        vip_active: cloudVipActive ? 'true' : 'false',
+        vip_plan: cloudVipActive ? (cloudVipState?.plan ?? 'admin_vip') : '',
+        vip_from: cloudVipActive ? (cloudVipState?.fromValue ?? '0') : '0',
+        vip_until: cloudVipActive ? (cloudVipState?.untilValue ?? '0') : '0',
+        vip_admin_override: cloudVipActive ? 'true' : 'false',
+        vip_admin_grant_at: cloudVipState?.grantAt ?? '',
+      });
+      assertCurrent();
+      appliedStickyState = true;
+    }
+    if (appliedStickyState) {
       if (cloudHasVipEntitlementState) invalidatePremiumCache();
       await reconcileRestoredDayDailyStorageIfNeeded(restoredDailyTaskTargets);
       assertCurrent();
@@ -2525,6 +2682,9 @@ async function applyRestoreFromUserDoc(
       key === 'app_version' ||
       key === 'device_platform'
     ) {
+      continue;
+    }
+    if ((VIP_STORAGE_KEYS as readonly string[]).includes(key) || key === 'vip_expiry' || key === 'vip_grant_at') {
       continue;
     }
     // tester «Снять премиум»: не воскрешаем премиум/VIP/admin-grant из облака.
@@ -2591,17 +2751,18 @@ async function applyRestoreFromUserDoc(
     assertCurrent();
     if (cloudHasVipEntitlementState) invalidatePremiumCache();
   }
-  if (cloudVipActive !== null) {
-    const vipPairs: [string, string][] = [
-      ['vip_active', cloudVipActive ? 'true' : 'false'],
-      ['vip_plan', cloudVipActive ? (cloudVipState?.plan ?? 'admin_vip') : ''],
-      ['vip_from', cloudVipActive ? (cloudVipState?.fromValue ?? '0') : '0'],
-      ['vip_until', cloudVipActive ? (cloudVipState?.untilValue ?? '0') : '0'],
-      ['vip_admin_override', cloudVipActive ? 'true' : 'false'],
-    ];
-    if (cloudVipState?.grantAt) vipPairs.push(['vip_admin_grant_at', cloudVipState.grantAt]);
+  if (cloudVipActive !== null && !stripPremiumActive) {
     assertCurrent();
-    await AsyncStorage.multiSet(sanitizeStoragePairs(vipPairs));
+    if (vipOwnerStableId) {
+      await writeVipSnapshotForAccount(vipOwnerStableId, {
+        vip_active: cloudVipActive ? 'true' : 'false',
+        vip_plan: cloudVipActive ? (cloudVipState?.plan ?? 'admin_vip') : '',
+        vip_from: cloudVipActive ? (cloudVipState?.fromValue ?? '0') : '0',
+        vip_until: cloudVipActive ? (cloudVipState?.untilValue ?? '0') : '0',
+        vip_admin_override: cloudVipActive ? 'true' : 'false',
+        vip_admin_grant_at: cloudVipState?.grantAt ?? '',
+      });
+    }
     assertCurrent();
     if (cloudHasVipEntitlementState) invalidatePremiumCache();
   }
@@ -2732,7 +2893,7 @@ async function restoreAndMigrateFromCloudResult(
           isCurrent,
           options.canPublishExamBestPctOverlay,
         )
-        : undefined)
+        : undefined, uid)
     ));
     if (!isCurrent()) return failedCloudRestoreAttempt('identity_unavailable');
     return completedCloudRestoreAttempt(applied);
@@ -3018,6 +3179,39 @@ async function wipeLocalAccountDataUnsafe(): Promise<void> {
 
 export async function wipeLocalAccountData(): Promise<void> {
   await withAccountTransitionLock(wipeLocalAccountDataUnsafe);
+}
+
+const CLEAN_INSTALL_RECOVERY_PRESERVED_KEYS = [
+  'auth_clean_install_recovery_v1',
+  'auth_clean_install_recovery_adoption_v1',
+] as const;
+
+/**
+ * Wipes only account-scoped source data during an authoritative clean-install
+ * L→S adoption. Both nonsecret recovery journals are verified before and after
+ * the wipe so a crash remains resumable and source data is never merged into S.
+ */
+export async function wipeLocalAccountDataForCleanInstallRecovery(): Promise<void> {
+  await withAccountTransitionLock(wipeLocalAccountDataForCleanInstallRecoveryWhileLocked);
+}
+
+/** Internal recovery primitive: caller must already own the account-transition lock. */
+export async function wipeLocalAccountDataForCleanInstallRecoveryWhileLocked(): Promise<void> {
+  const before = await AsyncStorage.multiGet([...CLEAN_INSTALL_RECOVERY_PRESERVED_KEYS]);
+  if (before.some(([, raw]) => raw === null)) {
+    throw new Error('clean_recovery_journal_required_for_wipe');
+  }
+  const sourceAccountKeys = await collectAccountLocalDataKeys();
+  await wipeLocalAccountDataUnsafe();
+  const residualSourceRows = await AsyncStorage.multiGet(sourceAccountKeys);
+  if (residualSourceRows.some(([, raw]) => raw !== null)) {
+    throw new Error('clean_recovery_source_wipe_incomplete');
+  }
+  for (const [key, expectedRaw] of before) {
+    if (await AsyncStorage.getItem(key) !== expectedRaw) {
+      throw new Error('clean_recovery_journal_changed_during_wipe');
+    }
+  }
 }
 
 // ── Удалить все данные пользователя из облака ────────────────────────────────

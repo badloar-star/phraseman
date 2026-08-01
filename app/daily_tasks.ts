@@ -2106,7 +2106,7 @@ const DAILY_SETS_TIER1: string[][] = [
   ['da7','ta8','dw2'],         // день 23
   ['da8','es3','dw1'],         // день 24
   ['da1','lnm6','dp2w1'],       // день 25
-  ['pg1','ta9','arup1'],       // день 26 — polyglot_day
+  ['fs3','ta9','arup1'],       // день 26 — polyglot_day пока скрыт: второй язык ещё недоступен
   ['da3','tp1','dp1'],         // день 27
   ['da4','dl1','dw1'],         // день 28
   ['ca1','fs1','dp3'],       // день 29 — club_attend
@@ -2177,7 +2177,7 @@ const DAILY_SETS_TIER3: string[][] = [
   ['da2','ta5','dp3'],         // день 26
   ['bs2','tar2','dp5'],        // день 27 — blitz_speed
   ['da4','dl2','dp2w1'],       // день 28 — 2 матча в Арене + ≥1 победа
-  ['pg1','fs3','dw5'],        // день 29 — polyglot_day
+  ['lnm5','fs3','dw5'],       // день 29 — polyglot_day пока скрыт: второй язык ещё недоступен
   ['da6','dp2','ta10'],         // день 30
 ];
 
@@ -2396,6 +2396,14 @@ export const FRENCH_UNAVAILABLE_DAILY_TASK_TYPES: ReadonlySet<TaskType> = new Se
   'daily_phrase_read',
   'daily_phrase_save',
   'diagnostic_complete',
+]);
+
+/**
+ * Задания, которые требуют ещё не выпущенной возможности. Не показываем их
+ * пользователям до запуска второго языка, но сохраняем данные для возврата.
+ */
+export const TEMPORARILY_UNAVAILABLE_DAILY_TASK_TYPES: ReadonlySet<TaskType> = new Set([
+  'polyglot_day',
 ]);
 
 export const FRENCH_LESSON_CONTENT_DAILY_TASK_TYPES: ReadonlySet<TaskType> = new Set([
@@ -2855,17 +2863,16 @@ export function dailyTaskAvailableForStudyTarget(
   taskOrType: DailyTask | TaskType,
   studyTarget?: RuntimeStudyTarget,
 ): boolean {
-  if (storageStudyTarget(studyTarget) !== 'fr') return true;
-  void taskOrType;
-  return true;
+  void studyTarget;
+  const type = typeof taskOrType === 'string' ? taskOrType : taskOrType.type;
+  return !TEMPORARILY_UNAVAILABLE_DAILY_TASK_TYPES.has(type);
 }
 
 export function filterDailyTasksForStudyTarget(
   tasks: DailyTask[],
   studyTarget?: RuntimeStudyTarget,
 ): DailyTask[] {
-  if (storageStudyTarget(studyTarget) !== 'fr') return tasks;
-  return tasks;
+  return tasks.filter((task) => dailyTaskAvailableForStudyTarget(task, studyTarget));
 }
 
 /**

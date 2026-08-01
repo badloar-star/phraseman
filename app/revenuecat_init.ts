@@ -16,8 +16,11 @@ import { invalidatePremiumCache } from './premium_guard';
 import {
   captureAccountGeneration,
   isCurrentAccountGeneration,
-  withAccountTransitionLock,
+  withAccountTransitionLockWithDeadline,
 } from './account_generation';
+import { readVipSnapshotForGeneration, writeVipSnapshotForAccount } from './premium_vip_storage';
+
+const RC_ACCOUNT_STORAGE_LOCK_TIMEOUT_MS = 1_500;
 
 // Мгновенная доставка премиума: RevenueCat шлёт CustomerInfo при покупке/RENEWAL/
 // восстановлении. Без слушателя клиент узнаёт о продлении только через 5-мин кэш или
@@ -209,11 +212,11 @@ export async function syncRevenueCatIdentity(callerIsCurrent?: () => boolean): P
       'monthly',
     );
     if (!isCurrent()) return false;
-    const persisted = await withAccountTransitionLock(async () => {
+    const persisted = await withAccountTransitionLockWithDeadline(async () => {
       if (!isCurrent()) return false;
-      return persistStorePremiumLocally(plan, metadata, isCurrent, false);
-    });
-    if (!persisted || !isCurrent()) {
+      return persistStorePremiumLocally(plan, metadata, isCurrent, false, true);
+    }, RC_ACCOUNT_STORAGE_LOCK_TIMEOUT_MS);
+    if (!persisted.completed || !persisted.value || !isCurrent()) {
       return false;
     }
   }
@@ -250,7 +253,7 @@ async function applyPushedCustomerInfo(
       if (!isCurrent()) return;
       const inferred = inferPremiumPlanFromProductId(metadata.productId ?? subs?.[0], 'monthly');
       const plan = existingPlan === 'lifetime' && inferred === 'monthly' ? 'lifetime' : inferred;
-      await persistStorePremiumLocally(plan, metadata, isCurrent, false); // внутри invalidatePremiumCache + RC_LAST_SEEN
+      await persistStorePremiumLocally(plan, metadata, isCurrent, false, true); // внутри invalidatePremiumCache + RC_LAST_SEEN
     } else {
       if (!isCurrent()) return;
       invalidatePremiumCache();
@@ -310,8 +313,9 @@ async function _doInit(): Promise<void> {
           void (async () => {
             const currentInfo = await readCurrentRevenueCatCustomerInfo(isEventAccountCurrent);
             if (!currentInfo || !isEventAccountCurrent()) return;
-            await withAccountTransitionLock(
+            await withAccountTransitionLockWithDeadline(
               () => applyPushedCustomerInfo(currentInfo, isEventAccountCurrent),
+              RC_ACCOUNT_STORAGE_LOCK_TIMEOUT_MS,
             );
           })();
         });
@@ -328,14 +332,16 @@ async function _doInit(): Promise<void> {
     if (!identityReady || !isInitAccountCurrent()) return;
 
     const info = await Promise.race([
-      Purchases.getCustomerInfo(),
+      readCurrentRevenueCatCustomerInfo(isInitAccountCurrent),
       new Promise<null>(resolve => setTimeout(() => resolve(null), RC_TIMEOUT_MS)),
     ]);
 
     if (info && isInitAccountCurrent()) {
-      await withAccountTransitionLock(async () => {
+      await withAccountTransitionLockWithDeadline(async () => {
       if (!isInitAccountCurrent()) return;
       if (revenueCatCustomerInfoHasPremiumAccess(info as any)) {
+        const scopedVip = await readVipSnapshotForGeneration(initAccount);
+        if (!isInitAccountCurrent()) return;
         // Тестер «Снять премиум» — не перезаписывать локальное «без премиума» флагом из RC
         const pairs = await AsyncStorage.multiGet([
           'tester_no_premium',
@@ -343,9 +349,6 @@ async function _doInit(): Promise<void> {
           'premium_plan',
           'premium_expiry',
           'premium_admin_grant_at',
-          'vip_active',
-          'vip_plan',
-          'vip_admin_grant_at',
         ]);
         if (!isInitAccountCurrent()) return;
         const noPremium = pairs.find(p => p[0] === 'tester_no_premium')?.[1];
@@ -364,18 +367,20 @@ async function _doInit(): Promise<void> {
             const expiry = Number.isFinite(expiryRaw) ? Math.max(0, Math.floor(expiryRaw)) : 0;
             const active = expiry <= 0 || expiry > now;
             const grantAt =
-              String(pairs.find(p => p[0] === 'vip_admin_grant_at')?.[1] ?? '').trim() ||
+              String(scopedVip?.vip_admin_grant_at ?? '').trim() ||
               String(pairs.find(p => p[0] === 'premium_admin_grant_at')?.[1] ?? '').trim() ||
               String(now);
-            await AsyncStorage.multiSet([
-              ['vip_active', active ? 'true' : 'false'],
-              ['vip_plan', active ? 'admin_vip' : ''],
-              ['vip_from', grantAt],
-              ['vip_until', expiry > 0 ? String(expiry) : '0'],
-              ['vip_admin_override', active ? 'true' : 'false'],
-              ['vip_admin_grant_at', grantAt],
-              ['admin_premium_override', 'false'],
-            ]);
+            if (!initAccount.stableId) return;
+            await writeVipSnapshotForAccount(initAccount.stableId, {
+              vip_active: active ? 'true' : 'false',
+              vip_plan: active ? 'admin_vip' : '',
+              vip_from: grantAt,
+              vip_until: expiry > 0 ? String(expiry) : '0',
+              vip_admin_override: active ? 'true' : 'false',
+              vip_admin_grant_at: grantAt,
+            });
+            if (!isInitAccountCurrent()) return;
+            await AsyncStorage.setItem('admin_premium_override', 'false');
             if (!isInitAccountCurrent()) return;
           }
           const existingStorePlan =
@@ -386,10 +391,10 @@ async function _doInit(): Promise<void> {
             metadata.productId ?? (info as any).activeSubscriptions?.[0],
             'monthly',
           );
-          await persistStorePremiumLocally(plan, metadata, isInitAccountCurrent, false);
+          await persistStorePremiumLocally(plan, metadata, isInitAccountCurrent, false, true);
         }
       }
-      });
+      }, RC_ACCOUNT_STORAGE_LOCK_TIMEOUT_MS);
     }
   } catch (e) {
     if (__DEV__) console.warn('[RevenueCat] init error:', e);

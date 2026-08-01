@@ -14,6 +14,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
+import SectionSheetHeader from '../components/SectionSheetHeader';
 import BouncyScrollView from '../components/BouncyScrollView';
 import { hapticTap } from '../hooks/use-haptics';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
@@ -166,32 +167,12 @@ export default function IdeasSubmitScreen() {
   return (
     <ScreenGradient artBackdrop="settings">
       <SafeAreaView style={{ flex: 1 }} edges={['top', 'left', 'right']}>
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            paddingHorizontal: 16,
-            paddingVertical: 14,
-            borderBottomWidth: 0.5,
-            borderBottomColor: t.border,
-          }}
-        >
-          <TouchableOpacity
-            onPress={() => {
-              hapticTap();
-              safeRouterBack(router, '/(tabs)/settings' as any);
-            }}
-            style={{ marginRight: 12, width: 38, height: 38, alignItems: 'center', justifyContent: 'center' }}
-          >
-            <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
-          </TouchableOpacity>
-          <Text
-            style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', flex: 1 }}
-            numberOfLines={1}
-          >
-            {L('Идеи', 'Ідеї', 'Ideas', 'Ideias', 'Ý tưởng', 'Ide', 'Fikirler', 'Pomysły')}
-          </Text>
-        </View>
+        {/* зачем: стандарт «шторки раздела» — модал с выездом снизу, шапка
+            с центрированным заголовком и крестиком вместо стрелки «назад». */}
+        <SectionSheetHeader
+          title={L('Идеи', 'Ідеї', 'Ideas', 'Ideias', 'Ý tưởng', 'Ide', 'Fikirler', 'Pomysły')}
+          onClose={() => safeRouterBack(router, '/(tabs)/settings' as any)}
+        />
 
         <BouncyScrollView
           decelerationRate="normal"

@@ -899,9 +899,21 @@ function assertDialogTranslationLanguage(translation: string, targetLang: string
   assertAiOutputLanguage({ text: translation, targetLang, feature: 'premium_dialog_translate' });
 }
 
+/**
+ * зачем: версия промпта входит в ключ кэша. Переводы хранятся в Firestore навсегда, и
+ * дословно переведённая идиома («Let me ring that up for you» → «позвольте мне позвонить
+ * вам») отдавалась ВСЕМ, кто откроет ту же реплику. Правка промпта без смены ключа
+ * ничего бы не исправила для уже закэшированных фраз.
+ *
+ * Бампать LANGUAGE_CONTRACT_VERSION нельзя — она гейтит ещё генерацию реплик и ревью,
+ * то есть сбросила бы втрое больше кэша и утроила расход OpenAI на прогрев. Отдельная
+ * версия сбрасывает ровно переводы; они прогреются заново естественным чтением.
+ */
+const TRANSLATE_PROMPT_VERSION = 'tp2-idioms-by-meaning';
+
 function translationCacheId(sourceText: string, targetLang: string, sourceStudyTarget: StudyTarget = 'en'): string {
   const hash = createHash('sha256')
-    .update(`${sourceStudyTarget}|${targetLang}|${sourceText}`)
+    .update(`${TRANSLATE_PROMPT_VERSION}|${sourceStudyTarget}|${targetLang}|${sourceText}`)
     .digest('hex')
     .slice(0, 48);
   return `tr_${hash}`;
@@ -964,9 +976,15 @@ export const premiumDialogTranslate = onCall({
 
   const dialogModel = await resolveConfiguredDialogModel(db, process.env.OPENAI_DIALOG_MODEL);
 
+  // зачем: без правила про идиомы фразовые глаголы переводились дословно — реплика
+  // кассира «Let me ring that up for you» («сейчас пробью на кассе») превращалась в
+  // «позвольте мне позвонить вам», и пользователь решил, что реплика не к месту.
+  // Пример-якорь встроен намеренно: это ровно тот случай из репорта.
   const systemPrompt =
     `You are a precise translator inside a language-learning app. ` +
     `Translate the user's ${studyTargetName(sourceStudyTarget)} message into ${targetLangName}. ` +
+    `Translate idioms, phrasal verbs and fixed expressions by MEANING, never word-for-word — ` +
+    `e.g. "let me ring that up for you" means processing the payment at the register, not making a phone call. ` +
     `Return ONLY the translation — natural, conversational, faithful to tone. ` +
     `No quotes, no notes, no explanations, no transliteration. Keep it the same length range.`;
 

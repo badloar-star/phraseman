@@ -834,6 +834,13 @@
     .u360-pill.p-fixed, .u360-pill.p-resolved, .u360-pill.p-approved { background: #0f2a1a; color: #4ade80; }
     .u360-pill.p-deleted, .u360-pill.p-rejected, .u360-pill.p-banned { background: #3a1414; color: #f87171; }
     .u360-empty { color: #6b7280; font-size: 12px; padding: 6px 0; }
+    .auth-links-card { display: grid; gap: 8px; }
+    .auth-links-state { display: inline-flex; align-items: center; min-height: 28px; padding: 3px 9px; border: 1px solid; border-radius: 999px; font: 700 11px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .auth-links-state.linked { color: #4ade80; background: #0f2a1a; border-color: #14532d; }
+    .auth-links-state.missing { color: #fbbf24; background: #2a2410; border-color: #5a4a1a; }
+    .auth-links-state.mismatch { color: #f87171; background: #3a1414; border-color: #6b2a2a; }
+    .auth-links-refresh { min-height: 44px; margin-top: 4px; padding: 8px 12px; border: 1px solid #3f3f52; border-radius: 9px; background: #20202e; color: #e4e4e7; font-weight: 700; cursor: pointer; }
+    .auth-links-refresh:disabled { cursor: wait; opacity: .6; }
     .prepared-resolution-badge { color:#c7d2fe; background:#1e1b4b; border:1px solid #3730a3; border-radius:5px; padding:2px 7px; font-size:11px; font-weight:700; }
 
     .analytics-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
@@ -17168,6 +17175,7 @@
       ${acc('payments', '💳 Платежи / Plus-история', lazyPlaceholder, { lazy: 'payments' })}
       ${acc('chat', '💬 Чат лиг / UGC / рефералы', lazyPlaceholder, { lazy: 'social' })}
       ${acc('unified', '🧩 Единый профиль (сервер)', lazyPlaceholder, { lazy: 'unified' })}
+      ${acc('auth-links', '🔗 Auth Links', lazyPlaceholder, { lazy: 'auth-links' })}
       ${acc('auth', '🔐 Аккаунт (auth)', (()=>{
           const la = u.linkedAuth;
           if (!la || !la.provider) { return authDetailHtml(u); }
@@ -17317,11 +17325,68 @@
     if (!rows.length) return `<div class="u360-empty">${escapeHtml(emptyText || 'Нет записей')}</div>`;
     return rows.map(renderRow).join('');
   }
+
+  function authLinksDiagnosticState(profile, requestedUid) {
+    const identity = profile && profile.identity && typeof profile.identity === 'object' ? profile.identity : {};
+    const summary = profile && profile.summary && typeof profile.summary === 'object' ? profile.summary : {};
+    const auth = summary && summary.auth && typeof summary.auth === 'object' ? summary.auth : {};
+    const canonicalStableId = String((profile && profile.canonicalUid) || identity.canonicalUid || requestedUid || '').trim();
+    const firebaseAuthUid = String(identity.providerUid || '').trim();
+    const providerUid = String(auth.providerUid || '').trim();
+    const authLinkAnchorUid = firebaseAuthUid || providerUid;
+    const reason = String(identity.reason || 'unresolved');
+    if (!authLinkAnchorUid) {
+      return { state: 'missing', canonicalStableId, firebaseAuthUid, providerUid, provider: auth.provider || '', reason };
+    }
+    if (reason === 'auth_link' && canonicalStableId) {
+      return { state: 'linked', canonicalStableId, firebaseAuthUid, providerUid, provider: auth.provider || '', reason };
+    }
+    return { state: 'mismatch', canonicalStableId, firebaseAuthUid, providerUid, provider: auth.provider || '', reason };
+  }
+
+  async function u360LoadAuthLinksDiagnostic(uid, bodyEl) {
+    if (!bodyEl) return;
+    bodyEl.innerHTML = '<div class="u360-loading" role="status" aria-live="polite">Проверяем canonical Auth Link…</div>';
+    try {
+      const result = await getAdminGetUserProfileCallable()({ uid });
+      const profile = result && result.data ? result.data : result;
+      if (!profile || profile.ok !== true) throw new Error('Сервер не вернул профиль');
+      const diagnostic = authLinksDiagnosticState(profile, uid);
+      const stateMeta = {
+        linked: { icon: '✅', title: 'linked', note: 'auth_links подтверждает канонический stable ID.' },
+        missing: { icon: '⚠️', title: 'missing', note: 'Provider UID отсутствует; каноническая привязка не подтверждена.' },
+        mismatch: { icon: '⛔', title: 'mismatch', note: 'Auth Link не является каноническим источником для этого профиля. Нужна отдельная проверка.' },
+      }[diagnostic.state];
+      const reasonLabel = ({ auth_link: 'auth_links/{providerUid}', canonical_field: 'users.canonicalStableId', provider_uid: 'users/{providerUid}', requested: 'requested users/{uid}', unresolved: 'unresolved fallback' })[diagnostic.reason] || diagnostic.reason;
+      const mono = (value) => value ? escapeHtml(value) : '<span style="color:#6b7280">—</span>';
+      bodyEl.innerHTML = `
+        <div class="auth-links-card">
+          <div class="u360-list-item"><div class="u360-li-top"><span>Auth Link state</span><span class="auth-links-state ${escapeHtml(diagnostic.state)}">${stateMeta.icon} ${escapeHtml(stateMeta.title)}</span></div><div style="color:#8b8b9a;margin-top:5px">${escapeHtml(stateMeta.note)}</div></div>
+          <div class="drow"><span class="k">Canonical stable ID</span><span class="v" style="font-family:monospace;font-size:11px;word-break:break-all">${mono(diagnostic.canonicalStableId)}</span></div>
+          <div class="drow"><span class="k">Firebase Auth UID</span><span class="v" style="font-family:monospace;font-size:11px;word-break:break-all">${mono(diagnostic.firebaseAuthUid)}</span></div>
+          <div class="drow"><span class="k">Provider UID</span><span class="v" style="font-family:monospace;font-size:11px;word-break:break-all">${mono(diagnostic.providerUid)}</span></div>
+          <div class="drow"><span class="k">Provider</span><span class="v">${diagnostic.provider ? escapeHtml(String(diagnostic.provider)) : '—'}</span></div>
+          <div class="drow"><span class="k">Provenance</span><span class="v">adminGetUserProfile → ${escapeHtml(reasonLabel)}</span></div>
+          <div class="u360-empty">Диагностика не изменяет привязки и аккаунты.</div>
+          <button type="button" class="auth-links-refresh" data-auth-links-refresh title="Обновить Auth Links диагностику" data-tooltip="Обновить Auth Links диагностику">↻ Обновить диагностику</button>
+        </div>`;
+      const refresh = bodyEl.querySelector('[data-auth-links-refresh]');
+      if (refresh) refresh.addEventListener('click', () => { u360LoadAuthLinksDiagnostic(uid, bodyEl); });
+    } catch (e) {
+      bodyEl.innerHTML = `<div class="u360-empty" role="status" aria-live="polite" style="color:#f87171">Auth Links недоступен: ${escapeHtml(e && e.message ? e.message : String(e))}</div>
+        <button type="button" class="auth-links-refresh" data-auth-links-refresh title="Обновить Auth Links диагностику" data-tooltip="Обновить Auth Links диагностику">↻ Повторить</button>`;
+      const refresh = bodyEl.querySelector('[data-auth-links-refresh]');
+      if (refresh) refresh.addEventListener('click', () => { u360LoadAuthLinksDiagnostic(uid, bodyEl); });
+    }
+  }
+
   window.u360LoadLazySection = async function(kind, uid, bodyEl) {
     if (!bodyEl) return;
     bodyEl.innerHTML = '<div class="u360-loading">Загрузка…</div>';
     try {
-      if (kind === 'reputation') {
+      if (kind === 'auth-links') {
+        await u360LoadAuthLinksDiagnostic(uid, bodyEl);
+      } else if (kind === 'reputation') {
         const [against, by, banSnap] = await Promise.all([
           u360Query('user_reports', 'reportedUid', uid, 'createdAt', 25).catch(() => []),
           u360Query('user_reports', 'reporterUid', uid, 'createdAt', 25).catch(() => []),

@@ -339,7 +339,15 @@ async function runReEngagePush(now = Date.now()) {
     // 1) Scan + отбор кандидатов.
     // eslint-disable-next-line no-constant-condition
     while (true) {
-        let query = db.collection('users').orderBy('__name__').limit(PAGE_SIZE);
+        // зачем: раньше страница тянула документы users целиком, хотя ниже используется ровно
+        // тот набор полей, который читает parseReEngageUser. Проекция режет трафик и память
+        // функции (доки users самые «толстые» в базе), число тарифицируемых чтений не меняется.
+        // ВАЖНО: список ниже обязан совпадать с полями parseReEngageUser — добавляешь поле
+        // туда, добавь и сюда, иначе оно молча придёт пустым и кандидат отсеется.
+        let query = db.collection('users')
+            .orderBy('__name__')
+            .limit(PAGE_SIZE)
+            .select('expoPushToken', 'pushTokenLang', 'pushTokenTimezone', 'last_active_at', 'lastReEngagePushAt', 'progress.streak_count', 'progress.user_name');
         if (lastDoc)
             query = query.startAfter(lastDoc);
         const snap = await query.get();

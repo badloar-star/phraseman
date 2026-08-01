@@ -95,8 +95,12 @@ describe('PremiumContext VIP event contract', () => {
     expect(listenerBody).toContain('runPremiumAccountScopedWork');
     expect(listenerBody).toContain('const listenerEpoch = getPremiumAccountTransitionEpoch()');
     expect(listenerBody).toContain('if (!isListenerCurrent()) return;');
+    expect(listenerBody).toContain('const listenerGeneration = captureAccountGeneration()');
+    expect(listenerBody).toContain('const listenerStableId = listenerGeneration.stableId');
+    expect(listenerBody).toContain('isCurrentAccountGeneration(listenerGeneration, listenerStableId)');
+    expect(listenerBody).toContain('writeVipSnapshotForAccount(listenerStableId,');
     expect(listenerBody.indexOf('if (!isListenerCurrent()) return;')).toBeLessThan(
-      listenerBody.indexOf('AsyncStorage.multiSet(pairs)'),
+      listenerBody.indexOf('writeVipSnapshotForAccount(listenerStableId,'),
     );
     expect(listenerBody).toContain('premiumAccountTransitionActiveRef.current');
   });

@@ -1,4 +1,3 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { Platform } from 'react-native';
@@ -16,6 +15,8 @@ import {
   type VipSurveyAnswers,
 } from './vip_survey_content';
 import { readSavedDevCredential, signInWithDevEmailCredential } from './vip_survey_dev_auth';
+import { captureAccountGeneration, isCurrentAccountGeneration, type AccountGenerationToken } from './account_generation';
+import { writeVipSnapshotForAccount } from './premium_vip_storage';
 
 const FUNCTIONS_REGION = 'us-central1';
 let vipCallableAuthPromise: Promise<string> | null = null;
@@ -142,19 +143,24 @@ async function ensureFirebaseAuthUidForVipCallable(): Promise<string> {
   return vipCallableAuthPromise;
 }
 
-async function persistVipResult(result: SubmitVipSurveyResponse): Promise<void> {
+async function persistVipResult(
+  result: SubmitVipSurveyResponse,
+  generation: AccountGenerationToken,
+): Promise<void> {
+  const stableId = generation.stableId;
+  if (!stableId || !isCurrentAccountGeneration(generation, stableId)) return;
   const grantAt = String(result.grantAt || Date.now());
   const vipUntilMs = Number(result.vipUntil || 0);
   const active = vipUntilMs <= 0 || vipUntilMs > Date.now();
-  const storagePairs: [string, string][] = [
-    ['vip_active', active ? 'true' : 'false'],
-    ['vip_plan', result.vipPlan || 'survey_vip'],
-    ['vip_from', result.vipFrom || grantAt],
-    ['vip_until', result.vipUntil || '0'],
-    ['vip_admin_override', 'true'],
-    ['vip_admin_grant_at', grantAt],
-  ];
-  await AsyncStorage.multiSet(storagePairs);
+  await writeVipSnapshotForAccount(stableId, {
+    vip_active: active ? 'true' : 'false',
+    vip_plan: result.vipPlan || 'survey_vip',
+    vip_from: result.vipFrom || grantAt,
+    vip_until: result.vipUntil || '0',
+    vip_admin_override: 'true',
+    vip_admin_grant_at: grantAt,
+  });
+  if (!isCurrentAccountGeneration(generation, stableId)) return;
   invalidatePremiumCache();
   if (active && !result.alreadyGranted) {
     await markVipCelebrationPending(grantAt);
@@ -190,6 +196,8 @@ export async function submitVipSurveyFromApp(params: {
   await ensureFirebaseAuthUidForVipCallable();
   const stableId = await ensureAnonUser();
   if (!stableId) throw new Error('user_unavailable');
+  const generation = captureAccountGeneration();
+  if (!isCurrentAccountGeneration(generation, stableId)) throw new Error('stale_account_generation');
   await ensureStableAuthLinkForStableId(stableId).catch(() => false);
   await initFirebaseAppCheckIfAvailable().catch(() => {});
 
@@ -204,7 +212,8 @@ export async function submitVipSurveyFromApp(params: {
     platform: Platform.OS,
   };
   const result = (await fn(payload)).data;
-  await persistVipResult(result);
+  if (!isCurrentAccountGeneration(generation, stableId)) throw new Error('stale_account_generation');
+  await persistVipResult(result, generation);
   return result;
 }
 

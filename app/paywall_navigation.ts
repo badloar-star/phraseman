@@ -79,7 +79,13 @@ export function openPremiumPaywall(
 ): void {
   const normalized = normalizePaywallParams(params);
   if (normalized.manage === '1') {
-    router[mode]('/manage_subscription' as any);
+    // зачем: раньше сюда доезжал голый '/manage_subscription' без параметров —
+    // экран терял уже известный план (settings.tsx уже знает premiumPlan синхронно)
+    // и был вынужден заново резолвить его из AsyncStorage/RevenueCat со спиннером.
+    // Форвардим остальные параметры (напр. plan), чтобы modal открывался мгновенно.
+    const { manage: _manage, ...rest } = normalized;
+    const hasRest = Object.keys(rest).length > 0;
+    router[mode](hasRest ? { pathname: '/manage_subscription', params: rest } as any : '/manage_subscription' as any);
     return;
   }
   router[mode]({

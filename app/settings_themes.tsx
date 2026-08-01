@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import BouncyScrollView from '../components/BouncyScrollView';
-import TapScale from '../components/TapScale';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -9,6 +8,7 @@ import { LinearGradient } from '../components/SafeLinearGradient';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
 import ReportErrorButton from '../components/ReportErrorButton';
+import SectionSheetHeader from '../components/SectionSheetHeader';
 import PlusBadge from '../components/PlusBadge';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
@@ -132,64 +132,46 @@ export default function SettingsThemes() {
     <ScreenGradient>
       <SafeAreaView style={{ flex: 1 }}>
         <ContentWrap>
-          <View style={{ flexDirection: 'row', alignItems: 'center', padding: 15, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
-            <TapScale
-              onPress={() => safeRouterBack(router, '/(tabs)/settings' as any)}
-              style={{
-                width: 38,
-                height: 38,
-                borderRadius: 19,
-                alignItems: 'center',
-                justifyContent: 'center',
-                backgroundColor: 'transparent',
-                borderWidth: 0,
-                borderColor: 'transparent',
-                overflow: 'hidden',
-
-              }}
-            >
-
-              <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
-            </TapScale>
-            <Text style={{ color: t.textPrimary, fontSize: 18, fontWeight: '700', marginLeft: 8 }}>
-              {triLang(lang, {
-                ru: 'Темы',
-                uk: 'Теми',
-                es: 'Temas',
-                'pt-BR': 'Temas',
-                vi: 'Chủ đề',
-                id: 'Tema',
-                tr: 'Temalar',
-                pl: 'Motywy',
-              })}
-            </Text>
-            <View style={{ flex: 1 }} />
-            <ReportErrorButton
-              screen="settings_themes"
-              dataId="settings_themes"
-              dataText={triLang(lang, {
-                ru: 'Экран выбора темы',
-                uk: 'Екран вибору теми',
-                es: 'Pantalla de selección de tema',
-                'pt-BR': 'Tela de seleção de tema',
-                vi: 'Màn hình chọn chủ đề',
-                id: 'Layar pemilihan tema',
-                tr: 'Tema seçme ekranı',
-                pl: 'Ekran wyboru motywu',
-              })}
-              variant="icon-flag"
-              accessibilityLabel="Сообщить о баге на экране темы"
-              style={{
-                width: 38,
-                height: 38,
-                borderRadius: 19,
-                backgroundColor: t.bgCard,
-                borderWidth: 0,
-                borderColor: t.border,
-
-              }}
-            />
-          </View>
+          {/* зачем: стандарт «шторки раздела» — модал с выездом снизу, шапка
+              с центрированным заголовком и крестиком вместо стрелки «назад». */}
+          <SectionSheetHeader
+            title={triLang(lang, {
+              ru: 'Темы',
+              uk: 'Теми',
+              es: 'Temas',
+              'pt-BR': 'Temas',
+              vi: 'Chủ đề',
+              id: 'Tema',
+              tr: 'Temalar',
+              pl: 'Motywy',
+            })}
+            onClose={() => safeRouterBack(router, '/(tabs)/settings' as any)}
+            accessory={(
+              <ReportErrorButton
+                screen="settings_themes"
+                dataId="settings_themes"
+                dataText={triLang(lang, {
+                  ru: 'Экран выбора темы',
+                  uk: 'Екран вибору теми',
+                  es: 'Pantalla de selección de tema',
+                  'pt-BR': 'Tela de seleção de tema',
+                  vi: 'Màn hình chọn chủ đề',
+                  id: 'Layar pemilihan tema',
+                  tr: 'Tema seçme ekranı',
+                  pl: 'Ekran wyboru motywu',
+                })}
+                variant="icon-flag"
+                accessibilityLabel="Сообщить о баге на экране темы"
+                style={{
+                  width: 32,
+                  height: 32,
+                  borderRadius: 16,
+                  backgroundColor: t.bgCard,
+                  borderWidth: 0,
+                }}
+              />
+            )}
+          />
 
           <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 12, paddingBottom: 36 }} scrollEventThrottle={16}>
             {THEME_OPTIONS.filter(item => !item.rewardOnly || DEV_THEME_UNLOCKS || (item.mode === 'gold' && isGoldThemeUnlocked)).map((item) => {

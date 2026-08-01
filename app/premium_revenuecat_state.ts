@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { CustomerInfo } from 'react-native-purchases';
 import { syncToCloud } from './cloud_sync';
 import { invalidatePremiumCache, markPremiumStoreSeenNow } from './premium_guard';
+import { withAccountTransitionLock } from './account_generation';
 import { activeRevenueCatPremiumEntitlement } from './revenuecat_premium_access';
 
 export {
@@ -102,7 +103,13 @@ export async function persistStorePremiumLocally(
   metadata: RevenueCatPremiumMetadata = {},
   isCurrent: () => boolean = () => true,
   syncCloud: boolean = true,
+  transitionLockHeld: boolean = false,
 ): Promise<boolean> {
+  if (!transitionLockHeld) {
+    return withAccountTransitionLock(() => (
+      persistStorePremiumLocally(plan, metadata, isCurrent, syncCloud, true)
+    ));
+  }
   const now = Date.now();
   const pairs: [string, string][] = [
     ['premium_plan', plan],
@@ -125,7 +132,7 @@ export async function persistStorePremiumLocally(
   if (!isCurrent()) return false;
   await AsyncStorage.multiSet(pairs);
   if (!isCurrent()) return false;
-  await markPremiumStoreSeenNow();
+  await markPremiumStoreSeenNow({ alreadyTransitionLocked: true, isCurrent });
   if (!isCurrent()) return false;
   invalidatePremiumCache();
   if (!isCurrent()) return false;

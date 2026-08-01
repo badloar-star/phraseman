@@ -223,6 +223,38 @@ describe('buildPaywallVariantStatsReport', () => {
         expect(report.priceRowsScanned).toBe(1);
         expect(report.funnelDocsScanned).toBe(1);
     });
+    it('aggregates a per-context breakdown alongside per-variant stats', () => {
+        const report = build([
+            funnelDoc({ variant: 'A', context: 'no_energy', step: 'shown' }),
+            funnelDoc({ variant: 'A', context: 'no_energy', step: 'shown' }),
+            funnelDoc({ variant: 'A', context: 'no_energy', step: 'cta_click' }),
+            funnelDoc({ variant: 'A', context: 'no_energy', step: 'purchase_completed', plan: 'yearly' }),
+            funnelDoc({ variant: 'B', context: 'no_energy', step: 'shown' }),
+            funnelDoc({ variant: 'B', context: 'no_energy', step: 'purchase_completed', plan: 'monthly' }),
+            funnelDoc({ variant: 'C', context: 'streak', step: 'shown' }),
+            // dev/close/legacy variant не должны попадать в разрез:
+            funnelDoc({ variant: 'A', context: 'no_energy', step: 'shown', dev: true }),
+            funnelDoc({ variant: 'A', context: 'no_energy', step: 'close' }),
+            funnelDoc({ variant: 'v1', context: 'no_energy', step: 'shown' }),
+            // пустой/отсутствующий context схлопывается в generic:
+            funnelDoc({ variant: 'D', context: undefined, step: 'shown' }),
+        ], []);
+        expect(report.contexts).toHaveLength(3);
+        const noEnergy = report.contexts.find((row) => row.context === 'no_energy');
+        expect(noEnergy).toMatchObject({ shown: 3, cta: 1, purchases: 2, conversionPct: 66.7 });
+        expect(noEnergy.purchasesByVariant).toMatchObject({ A: 1, B: 1, C: 0 });
+        const streak = report.contexts.find((row) => row.context === 'streak');
+        expect(streak).toMatchObject({ shown: 1, cta: 0, purchases: 0, conversionPct: 0 });
+        const generic = report.contexts.find((row) => row.context === 'generic');
+        expect(generic).toMatchObject({ shown: 1 });
+        // Отсортировано по показам, самое частое — первым.
+        expect(report.contexts[0].context).toBe('no_energy');
+    });
+    it('truncates context labels to 40 chars, same limit the client already enforces', () => {
+        const longCtx = 'x'.repeat(60);
+        const report = build([funnelDoc({ variant: 'A', context: longCtx, step: 'shown' })], []);
+        expect(report.contexts[0].context).toHaveLength(40);
+    });
 });
 // ── adminGetPaywallVariantStats callable ─────────────────────────────────────
 describe('adminGetPaywallVariantStats', () => {

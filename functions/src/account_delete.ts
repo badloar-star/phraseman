@@ -2,13 +2,18 @@ import * as admin from 'firebase-admin';
 import { createHash } from 'crypto';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK_SENSITIVE } from './callable_options';
-import { enqueueAccountDeletionJob } from './account_delete_job';
+import {
+  ACCOUNT_DELETE_PERMANENT_DENIALS,
+  accountDeletePermanentDenialId,
+  enqueueAccountDeletionJob,
+} from './account_delete_job';
 
 const REGION = 'us-central1';
 const DELETE_BATCH_LIMIT = 100;
 const ACCOUNT_DELETE_TIMEOUT_SECONDS = 540;
 const ACCOUNT_DELETE_PROGRESS_LOG_DOCS = 500;
 const MAX_ID_LEN = 180;
+const MAX_ACCOUNT_DELETE_IDENTITIES = 64;
 
 const ACCOUNT_DELETE_OPTIONS = {
   region: REGION,
@@ -123,10 +128,19 @@ const FIELD_QUERY_SPECS: AccountDeleteQuerySpec[] = [
   { collection: 'vip_survey_responses', field: 'uid', values: 'stable' },
   { collection: 'shard_survey_responses', field: 'uid', values: 'stable' },
   { collection: 'subscription_cancel_surveys', field: 'uid', values: 'stable' },
+  { collection: 'revenuecat_premium_lineages', field: 'ownerUid', values: 'both' },
+  { collection: 'revenuecat_premium_denials', field: 'ownerUid', values: 'both' },
+  { collection: 'revenuecat_premium_denials', field: 'candidates', values: 'both', op: 'array-contains' },
   { collection: 'revenuecat_premium_events', field: 'uid', values: 'both' },
   { collection: 'revenuecat_premium_events', field: 'candidates', values: 'both', op: 'array-contains' },
+  { collection: 'revenuecat_premium_events', field: 'recipientId', values: 'both' },
+  { collection: 'revenuecat_premium_events', field: 'donorIds', values: 'both', op: 'array-contains' },
+  { collection: 'revenuecat_premium_events', field: 'transferredFrom', values: 'both', op: 'array-contains' },
+  { collection: 'revenuecat_premium_events', field: 'transferredTo', values: 'both', op: 'array-contains' },
   { collection: 'revenuecat_shard_transactions', field: 'uid', values: 'both' },
   { collection: 'revenuecat_shard_transactions', field: 'candidates', values: 'both', op: 'array-contains' },
+  { collection: 'revenuecat_shard_refunds', field: 'uid', values: 'both' },
+  { collection: 'revenuecat_shard_refunds', field: 'sourceUid', values: 'both' },
   { collection: 'league_chest_claims', field: 'uid', values: 'stable' },
   { collection: 'league_chest_claims', field: 'authUid', values: 'auth' },
   { collection: 'league_crowns', field: 'uid', values: 'stable' },
@@ -421,6 +435,98 @@ async function deleteDirectDocs(
   }
 }
 
+export async function resolveAccountDeleteIdentityClosure(
+  db: FirebaseFirestore.Firestore,
+  stableUid: string,
+  authUid: string,
+): Promise<string[]> {
+  const identities = new Set<string>();
+  const queue: string[] = [];
+  const add = (raw: unknown) => {
+    const id = cleanId(raw);
+    if (!id || identities.has(id)) return;
+    if (identities.size >= MAX_ACCOUNT_DELETE_IDENTITIES) {
+      throw new HttpsError('resource-exhausted', 'account_delete_identity_limit');
+    }
+    identities.add(id);
+    queue.push(id);
+  };
+  add(stableUid);
+  add(authUid);
+
+  for (let cursor = 0; cursor < queue.length; cursor += 1) {
+    const canonicalId = queue[cursor];
+    const [userSnap, directOwnerMap, hiddenUsers, reverseOwnerMaps, mergeOutbox] = await Promise.all([
+      db.collection('users').doc(canonicalId).get(),
+      db.collection('account_identity_owner_map').doc(canonicalId).get(),
+      db.collection('users')
+        .where('canonicalStableId', '==', canonicalId)
+        .limit(MAX_ACCOUNT_DELETE_IDENTITIES + 1)
+        .get(),
+      db.collection('account_identity_owner_map')
+        .where('canonicalStableId', '==', canonicalId)
+        .limit(MAX_ACCOUNT_DELETE_IDENTITIES + 1)
+        .get(),
+      db.collection('account_merge_outbox')
+        .where('winnerStableId', '==', canonicalId)
+        .limit(MAX_ACCOUNT_DELETE_IDENTITIES + 1)
+        .get(),
+    ]);
+    if (hiddenUsers.docs.length > MAX_ACCOUNT_DELETE_IDENTITIES
+      || reverseOwnerMaps.docs.length > MAX_ACCOUNT_DELETE_IDENTITIES
+      || mergeOutbox.docs.length > MAX_ACCOUNT_DELETE_IDENTITIES) {
+      throw new HttpsError('resource-exhausted', 'account_delete_identity_limit');
+    }
+    if (userSnap.exists && userSnap.data()?.identityHidden === true) {
+      add(userSnap.data()?.canonicalStableId);
+    }
+    if (directOwnerMap.exists) add(directOwnerMap.data()?.canonicalStableId);
+    hiddenUsers.docs.forEach((doc) => add(doc.id));
+    reverseOwnerMaps.docs.forEach((doc) => add(doc.id));
+    mergeOutbox.docs.forEach((doc) => add(doc.data()?.loserStableId));
+  }
+
+  return [...identities];
+}
+
+async function persistPermanentDeletionDenials(
+  db: FirebaseFirestore.Firestore,
+  identities: string[],
+): Promise<void> {
+  const batch = db.batch();
+  for (const identity of identities) {
+    batch.set(db.collection(ACCOUNT_DELETE_PERMANENT_DENIALS).doc(accountDeletePermanentDenialId(identity)), {
+      identityHash: hashId(identity),
+      status: 'denied',
+      identityKind: 'account_delete_alias_closure',
+      updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+      createdAt: admin.firestore.FieldValue.serverTimestamp(),
+    }, { merge: true });
+  }
+  await batch.commit();
+}
+
+async function deleteMergeIdentityRecords(
+  db: FirebaseFirestore.Firestore,
+  identities: string[],
+  ctx: DeleteContext,
+  stats: DeleteStats,
+): Promise<void> {
+  for (const identity of identities) {
+    await deleteDocTree(ctx, db.collection('account_identity_owner_map').doc(identity));
+    await deleteQuery(
+      db.collection('account_merge_outbox').where('winnerStableId', '==', identity),
+      ctx,
+      stats,
+    );
+    await deleteQuery(
+      db.collection('account_merge_outbox').where('loserStableId', '==', identity),
+      ctx,
+      stats,
+    );
+  }
+}
+
 async function deleteFieldMatches(
   db: admin.firestore.Firestore,
   stableUid: string,
@@ -695,21 +801,46 @@ export async function executeAccountDeletion(
   authUid: string,
 ): Promise<DeleteStats> {
   const stats: DeleteStats = { docsDeleted: 0, docsUpdated: 0, queriesRun: 0, authDeleted: false };
+  const identities = await resolveAccountDeleteIdentityClosure(db, stableUid, authUid);
   const ctx = createDeleteContext(db, stableUid, authUid, stats);
-  const emails = await getEmailsForDeletion(db, authUid, stableUid);
 
   try {
-    accountDeleteLog(ctx, 'start', stats, { emailCount: emails.length });
-    await runDeleteStage(ctx, stats, 'direct_docs', () => deleteDirectDocs(db, stableUid, authUid, ctx));
-    await runDeleteStage(ctx, stats, 'arena_sessions_and_match_history', () => deleteArenaSessionsAndMatchHistory(db, stableUid, authUid, ctx, stats));
-    await runDeleteStage(ctx, stats, 'arena_season_entries', () => deleteArenaSeasonEntries(db, stableUid, authUid, ctx, stats));
-    await runDeleteStage(ctx, stats, 'field_matches', () => deleteFieldMatches(db, stableUid, authUid, ctx, stats));
-    await runDeleteStage(ctx, stats, 'collection_group_matches', () => deleteCollectionGroupMatches(db, stableUid, authUid, ctx, stats));
+    await runDeleteStage(ctx, stats, 'permanent_denials', () => persistPermanentDeletionDenials(db, identities));
+    const emails = [...new Set((await Promise.all(
+      identities.map((identity) => getEmailsForDeletion(db, authUid, identity)),
+    )).flat())];
+    accountDeleteLog(ctx, 'start', stats, { emailCount: emails.length, identityCount: identities.length });
+    await runDeleteStage(ctx, stats, 'direct_docs', async () => {
+      for (const identity of identities) await deleteDirectDocs(db, identity, authUid, ctx);
+    });
+    await runDeleteStage(ctx, stats, 'arena_sessions_and_match_history', async () => {
+      for (const identity of identities) await deleteArenaSessionsAndMatchHistory(db, identity, authUid, ctx, stats);
+    });
+    await runDeleteStage(ctx, stats, 'arena_season_entries', async () => {
+      for (const identity of identities) await deleteArenaSeasonEntries(db, identity, authUid, ctx, stats);
+    });
+    await runDeleteStage(ctx, stats, 'field_matches', async () => {
+      for (const identity of identities) await deleteFieldMatches(db, identity, authUid, ctx, stats);
+    });
+    await runDeleteStage(ctx, stats, 'collection_group_matches', async () => {
+      for (const identity of identities) await deleteCollectionGroupMatches(db, identity, authUid, ctx, stats);
+    });
     await runDeleteStage(ctx, stats, 'email_matches', () => deleteEmailMatches(db, emails, ctx, stats));
-    await runDeleteStage(ctx, stats, 'league_groups', () => removeFromLeagueGroups(db, stableUid, stats));
-    await runDeleteStage(ctx, stats, 'arena_club_events', () => removeFromArenaClubEvents(db, stableUid, stats));
-    await runDeleteStage(ctx, stats, 'activity_like_stats', () => anonymizeActivityLikeStats(db, stableUid, stats));
-    await runDeleteStage(ctx, stats, 'friend_gift_daily_limits', () => removeFromFriendGiftDailyLimits(db, stableUid, stats));
+    await runDeleteStage(ctx, stats, 'league_groups', async () => {
+      for (const identity of identities) await removeFromLeagueGroups(db, identity, stats);
+    });
+    await runDeleteStage(ctx, stats, 'arena_club_events', async () => {
+      for (const identity of identities) await removeFromArenaClubEvents(db, identity, stats);
+    });
+    await runDeleteStage(ctx, stats, 'activity_like_stats', async () => {
+      for (const identity of identities) await anonymizeActivityLikeStats(db, identity, stats);
+    });
+    await runDeleteStage(ctx, stats, 'friend_gift_daily_limits', async () => {
+      for (const identity of identities) await removeFromFriendGiftDailyLimits(db, identity, stats);
+    });
+    await runDeleteStage(ctx, stats, 'merge_identity_records', () => (
+      deleteMergeIdentityRecords(db, identities, ctx, stats)
+    ));
     await closeDeleteWriter(ctx);
     await runDeleteStage(ctx, stats, 'tombstone', () => markAccountDeletionTombstone(db, stableUid, authUid, stats));
 
@@ -812,6 +943,7 @@ export const __accountDeleteTestHooks = {
   COLLECTION_GROUP_DOCUMENT_ID_SPECS,
   DIRECT_DOCUMENT_SPECS,
   resolveStableUidForDelete,
+  resolveAccountDeleteIdentityClosure,
   enqueueForAuthenticatedAccount,
   removeFromFriendGiftDailyLimits,
   deleteCrossUserDocumentIdMatches,

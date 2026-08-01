@@ -147,6 +147,44 @@ export async function registerPushTokenForServerPush(lang: string): Promise<bool
   }
 }
 
+/** Пользовательский выбор для СЕРВЕРНЫХ пушей: false = этот тип не слать. */
+export type ServerPushPrefs = { streak: boolean; offers: boolean };
+
+/** Локальный кэш последних записанных префов — чтобы не писать в Firestore повторно. */
+const PUSH_PREFS_LOCAL_KEY = 'server_push_prefs_last_written';
+
+/**
+ * Зеркалит выбор юзера «какие уведомления получать» в users/{stableId}.pushPrefs.
+ * Серверные кроны (re_engage_push) читают это поле перед отправкой.
+ * зачем: раздел уведомлений даёт выбор по типам; без зеркала сервер слал бы
+ * streak-пуши юзеру, который выключил «Серия под угрозой». Пишем ТОЛЬКО при
+ * реальном изменении (кэш) — Firebase-экономия: 1 write на смену настройки.
+ */
+export async function updateServerPushPrefs(prefs: ServerPushPrefs): Promise<void> {
+  try {
+    const db = getFirestore();
+    if (!db) return;
+
+    const stableId = await ensureAnonUser();
+    if (!stableId) return;
+    const linkOk = await ensureStableAuthLinkForStableId(stableId).catch(() => false);
+    if (!linkOk) return;
+
+    const cacheKey = `${stableId}:${prefs.streak ? 1 : 0}${prefs.offers ? 1 : 0}`;
+    const lastWritten = await AsyncStorage.getItem(PUSH_PREFS_LOCAL_KEY);
+    if (lastWritten === cacheKey) return;
+
+    await db.collection('users').doc(stableId).set(
+      { pushPrefs: { streak: prefs.streak, offers: prefs.offers } },
+      { merge: true },
+    );
+    await AsyncStorage.setItem(PUSH_PREFS_LOCAL_KEY, cacheKey);
+  } catch (error) {
+    if (isFirestorePermissionDenied(error)) return;
+    DebugLogger.error('push_token_registration.ts:updateServerPushPrefs', error, 'warning');
+  }
+}
+
 /**
  * Удалить токен из облака (например, при выходе/смене аккаунта или отключении
  * уведомлений) — чтобы сервер перестал слать пуши на чужой/недействительный токен.

@@ -59,13 +59,13 @@ const https_1 = require("firebase-functions/v2/https");
 const scheduler_1 = require("firebase-functions/v2/scheduler");
 const email_contacts_1 = require("./email_contacts");
 const email_unsubscribe_1 = require("./email_unsubscribe");
+const resend_secret_1 = require("./resend_secret");
 const REGION = 'us-central1';
 const LEADS_COLLECTION = 'web_leads';
 const ORDERS_COLLECTION = 'web_premium_orders';
 const SUPPRESSIONS_COLLECTION = 'email_suppressions';
 const SITE_ORIGIN = 'https://knowlyapps.com';
-const resendApiKey = (0, params_1.defineString)('RESEND_API_KEY', { default: '' });
-const webCheckoutEmailFrom = (0, params_1.defineString)('WEB_CHECKOUT_EMAIL_FROM', { default: 'Phraseman <onboarding@resend.dev>' });
+const webCheckoutEmailFrom = (0, params_1.defineString)('WEB_CHECKOUT_EMAIL_FROM', { default: '' });
 const webCheckoutSupportEmail = (0, params_1.defineString)('WEB_CHECKOUT_SUPPORT_EMAIL', { default: 'support.phraseman@gmail.com' });
 const PAID_STATUSES = new Set(['paid_pending_activation', 'paid_pending_manual_activation', 'activated']);
 /** Пауза перед письмом №2 и между №2 и №3. Не в часах «ровно» — крон дискретный. */
@@ -202,8 +202,11 @@ function ctaButtonHtml(href, label) {
         + `padding:13px 26px;border-radius:12px;display:inline-block">${htmlEscape(label)}</a></p>`;
 }
 async function sendResendEmail(params) {
-    const key = resendApiKey.value();
+    const key = resend_secret_1.RESEND_API_KEY.value();
     if (!key)
+        return false;
+    const from = webCheckoutEmailFrom.value().trim();
+    if (!from)
         return false;
     try {
         const unsubscribeUrl = (0, email_unsubscribe_1.unsubscribeUrlFor)(params.to);
@@ -211,7 +214,7 @@ async function sendResendEmail(params) {
             method: 'POST',
             headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                from: webCheckoutEmailFrom.value() || 'Phraseman <onboarding@resend.dev>',
+                from,
                 to: [params.to],
                 subject: params.subject,
                 text: params.text,
@@ -330,6 +333,7 @@ exports.webLeadCapture = (0, https_1.onRequest)({
     timeoutSeconds: 20,
     maxInstances: 3,
     invoker: 'public',
+    secrets: [resend_secret_1.RESEND_API_KEY],
 }, async (req, res) => {
     if (applyCors(req, res))
         return;
@@ -392,7 +396,10 @@ exports.webLeadCapture = (0, https_1.onRequest)({
     }
 });
 /* ───────────────────────── Догоняющие письма ───────────────────────── */
-exports.webLeadNudgeCron = (0, scheduler_1.onSchedule)({ schedule: '17 */6 * * *', timeZone: 'Etc/UTC', region: REGION, memory: '256MiB', timeoutSeconds: 300 }, async () => {
+exports.webLeadNudgeCron = (0, scheduler_1.onSchedule)({
+    schedule: '17 */6 * * *', timeZone: 'Etc/UTC', region: REGION,
+    memory: '256MiB', timeoutSeconds: 300, secrets: [resend_secret_1.RESEND_API_KEY],
+}, async () => {
     const db = (0, firestore_1.getFirestore)();
     const snap = await db.collection(LEADS_COLLECTION).where('status', '==', 'active').limit(300).get();
     if (snap.empty)

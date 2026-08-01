@@ -16,7 +16,7 @@ describe('RegistrationPromptModal responsive layout contract', () => {
     expect(src).toContain('maxHeight: cardMaxHeight');
     expect(src).toContain("overflow: 'hidden'");
     expect(src).toContain('<ScrollView');
-    expect(src).toContain('contentContainerStyle={[styles.cardContent, { padding: cardPadding }]}');
+    expect(src).toContain('contentContainerStyle={[styles.sheetContent, { paddingHorizontal: cardPadding');
     expect(src).toContain('keyboardShouldPersistTaps="handled"');
   });
 
@@ -25,7 +25,7 @@ describe('RegistrationPromptModal responsive layout contract', () => {
 
     expect(src).toContain('testID="auth-prompt-later"');
     expect(src).toContain('const captionLineHeight = Math.max(18, Math.round(f.caption * 1.4))');
-    expect(src).toContain('styles.privacy');
+    expect(src).toContain('styles.footerCol');
     expect(src).toContain('styles.legalLinks');
     expect(src).toContain("flexWrap: 'wrap'");
     expect(src).toContain("width: '100%'");
@@ -54,7 +54,7 @@ describe('RegistrationPromptModal responsive layout contract', () => {
     expect(laterBody).toContain('if (loadingProvider !== null && !signInSlow) return;');
     expect(laterBody).toContain('attemptLifecycle.invalidateActiveAttempt()');
     expect(laterBody).toContain('clearSlowTimer()');
-    expect(src).toContain('disabled={loadingProvider !== null && !signInSlow}');
+    expect(src).toContain('disabled={(loadingProvider !== null && !signInSlow) || !recoveryDismissAllowed}');
     expect(src).toContain('accessibilityRole="button"');
   });
 });

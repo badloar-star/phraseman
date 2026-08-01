@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.questionSemanticKey = questionSemanticKey;
+exports.findTruncatedChoiceConflict = findTruncatedChoiceConflict;
 exports.validateTopicArtifact = validateTopicArtifact;
 exports.validateQuestionBatchArtifact = validateQuestionBatchArtifact;
 exports.validateQuestionReplacementArtifact = validateQuestionReplacementArtifact;
@@ -11,6 +12,55 @@ function questionSemanticKey(value) {
     const item = record(value);
     const choices = Array.isArray(item?.choices) ? item.choices.map(normalized).sort() : [];
     return `${normalized(item?.prompt)}\u0000${choices.join('|')}`;
+}
+/**
+ * зачем: репорт «Нет здесь правильного ответа» — вопрос «Как по-английски "открывалка
+ * для банок"?» с вариантами tongs / jar / corkscrew / masher. Правильный ответ
+ * («jar opener») был усечён до дистрактора «jar», и валидация это пропустила:
+ * uniqueness-проверка на строке ниже считает "jar" и "jar opener" РАЗНЫМИ строками.
+ *
+ * Здесь ловим именно этот класс: ни один дистрактор не должен быть обрезком правильного
+ * ответа (пословное вложение) и наоборот. Такая пара — почти всегда признак того, что
+ * модель усекла correct или слепила дистрактор из его же куска, и вопрос становится
+ * неотвечаемым. Родственная arena_questions уже защищена (arena_correct_identity_mismatch),
+ * тематические квизы этой защиты не получали.
+ *
+ * Сравнение по НОРМАЛИЗОВАННЫМ токенам, чтобы регистр/пунктуация не мешали. Варианты
+ * равной длины в токенах не трогаем — они уже покрыты uniqueness-проверкой, а сравнение
+ * посимвольно давало бы ложные срабатывания на «cat»/«cats».
+ */
+function findTruncatedChoiceConflict(choices, correctIndex) {
+    const correct = choices[correctIndex];
+    if (!correct)
+        return false;
+    const correctTokens = normalized(correct).split(' ').filter(Boolean);
+    if (correctTokens.length === 0)
+        return false;
+    return choices.some((choice, index) => {
+        if (index === correctIndex)
+            return false;
+        const tokens = normalized(choice).split(' ').filter(Boolean);
+        if (tokens.length === 0)
+            return false;
+        const [shortTokens, longTokens] = tokens.length < correctTokens.length
+            ? [tokens, correctTokens]
+            : [correctTokens, tokens];
+        if (shortTokens.length >= longTokens.length)
+            return false;
+        const limit = longTokens.length - shortTokens.length;
+        for (let start = 0; start <= limit; start += 1) {
+            let matched = true;
+            for (let offset = 0; offset < shortTokens.length; offset += 1) {
+                if (longTokens[start + offset] !== shortTokens[offset]) {
+                    matched = false;
+                    break;
+                }
+            }
+            if (matched)
+                return true;
+        }
+        return false;
+    });
 }
 function validateTopicArtifact(artifact, expected) {
     const output = record(artifact);
@@ -63,6 +113,10 @@ function validateQuestionBatchArtifact(artifact, expected) {
             errors.push('question_choices_unique');
         if (!Number.isInteger(item.correctIndex) || Number(item.correctIndex) < 0 || Number(item.correctIndex) > 3)
             errors.push('question_correct_index_invalid');
+        // зачем: ловит усечённый правильный ответ («jar opener» → дистрактор «jar»),
+        // из-за которого вопрос становился неотвечаемым. Uniqueness выше это пропускает.
+        if (findTruncatedChoiceConflict(choices, Number(item.correctIndex)))
+            errors.push('question_choice_truncation_conflict');
         if (explanations.length !== 4 || explanations.some((explanation) => !explanation))
             errors.push('question_option_explanations_expected_4');
         if (!['easy', 'medium', 'hard'].includes(String(item.difficulty)))
@@ -103,6 +157,10 @@ function validateQuestionReplacementArtifact(artifact, expected) {
         errors.push('question_replacement_choices_invalid');
     if (!Number.isInteger(item.correctIndex) || Number(item.correctIndex) < 0 || Number(item.correctIndex) > 3)
         errors.push('question_replacement_correct_index_invalid');
+    // зачем: та же защита от усечённого правильного ответа, что и в батче — иначе замена
+    // вопроса могла вернуть такой же неотвечаемый вариант.
+    if (Array.isArray(item.choices) && findTruncatedChoiceConflict(item.choices.map(text), Number(item.correctIndex)))
+        errors.push('question_replacement_choice_truncation_conflict');
     if (!Array.isArray(item.optionExplanations) || item.optionExplanations.length !== 4 || item.optionExplanations.some((value) => !text(value)))
         errors.push('question_replacement_explanations_invalid');
     if (!Array.isArray(topic?.skillTags) || !topic.skillTags.map(normalized).includes(normalized(item.skillTag)))

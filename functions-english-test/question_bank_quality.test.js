@@ -625,25 +625,22 @@ test('C2 inference evidence must quote the stimulus and external-fact screens re
   assert.match(result.errors.join('\n'), /external-knowledge/);
 });
 
-test('German, French, and Italian blueprints are GREEN while Spanish stays intentionally RED', async () => {
+test('all four Phase B blueprints are GREEN', async () => {
   const audit = await import(pathToFileURL(path.join(ROOT, 'scripts', 'audit_language_test_bank.mjs')).href);
-  for (const language of ['de', 'fr', 'it']) {
+  for (const language of ['de', 'fr', 'it', 'es']) {
     const blueprint = JSON.parse(fs.readFileSync(path.join(ROOT, 'content', 'language-tests', 'blueprints', `${language}.json`), 'utf8'));
     assert.deepEqual(audit.auditBlueprint(blueprint).errors, [], language);
-  }
-  for (const language of ['es']) {
-    const blueprint = JSON.parse(fs.readFileSync(path.join(ROOT, 'content', 'language-tests', 'blueprints', `${language}.json`), 'utf8'));
-    assert.match(audit.auditBlueprint(blueprint).errors.join('\n'), /40 individual construct objects/, language);
   }
 });
 
 test('GREEN Phase B blueprints contain no known cross-language grammar contamination', () => {
-  const blueprints = Object.fromEntries(['fr', 'it'].map((language) => [
+  const blueprints = Object.fromEntries(['fr', 'it', 'es'].map((language) => [
     language,
     fs.readFileSync(path.join(ROOT, 'content', 'language-tests', 'blueprints', `${language}.json`), 'utf8'),
   ]));
   assert.doesNotMatch(blueprints.fr, /nicht|kein|müssen|dürfen|dass|weil|Konjunktiv/iu, 'fr contains German material');
   assert.doesNotMatch(blueprints.it, /s'il vous plaît|passé composé|imparfait|subjonctif|est-ce que/iu, 'it contains French material');
+  assert.doesNotMatch(blueprints.es, /s'il vous plaît|passé composé|imparfait|subjonctif|per favore|passato prossimo|imperfetto|congiuntivo/iu, 'es contains French or Italian material');
 });
 
 test('blueprint audit binds selection evidence and rejects duplicated authoring substance', async () => {

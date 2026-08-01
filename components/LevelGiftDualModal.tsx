@@ -716,8 +716,8 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
   const primaryButtonText = rewardModalPrimaryButtonText(themeMode);
   const isSagePorcelain = themeMode === 'sagePorcelain';
   const modalTitleColor = isSagePorcelain ? t.textPrimary : '#FFFFFF';
-  const closeButtonBackground = isSagePorcelain ? '#E1E5DC' : USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 'rgba(3,5,10,0.42)' : 'rgba(0,0,0,0.16)';
-  const closeButtonBorder = isSagePorcelain ? '#CFD6CE' : USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 'rgba(255,255,255,0.18)' : t.border;
+  const closeButtonBackground = isSagePorcelain ? t.bgSurface : USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 'rgba(3,5,10,0.42)' : 'rgba(0,0,0,0.16)';
+  const closeButtonBorder = isSagePorcelain ? t.border : USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 'rgba(255,255,255,0.18)' : t.border;
   const closeButtonText = t.textPrimary;
   const screenDim = USE_ELITE_DUAL_LEVEL_GIFT_MODAL
     ? (false ? 'rgba(24,18,10,0.32)' : 'rgba(0,0,0,0.48)')

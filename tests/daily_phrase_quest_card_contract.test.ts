@@ -66,26 +66,54 @@ describe('DailyPhraseCard quest contract', () => {
     expect(source).toContain('radius={16} tone="subtle"');
   });
 
-  it('renders a stable compact action card on the home plaque', () => {
+  it('renders a stable compact action below the editorial home phrase', () => {
+    const liveHomeBranchStart = source.indexOf('{homeAdditional ? (');
+    const liveHomeBranch = source.slice(
+      liveHomeBranchStart,
+      source.indexOf('            ) : (', liveHomeBranchStart),
+    );
+
     expect(source).toContain('const homeActionLabel = triLang(lang, {');
     expect(source).toContain('{homeActionLabel}');
     expect(source).toContain('backgroundColor: chrome.actionBg');
-    expect(source).toContain('color={chrome.actionText}');
     expect(source).toContain('styles.homeAdditionalActionText, { color: chrome.actionText');
+    expect(liveHomeBranch).not.toContain('name="arrow-forward"');
     expect(source).not.toContain('cardQuestAnswered');
     expect(source).not.toContain('questTeaser');
     expect(source).not.toContain('homeAdditionalMeaning');
   });
 
-  it('centers the home phrase and action independently of the decorative asset', () => {
+  it('uses a centered content-sized editorial accent instead of a home plaque', () => {
+    const editorialStyleStart = source.indexOf('homeAdditionalEditorial: {');
+    const editorialStyle = source.slice(
+      editorialStyleStart,
+      source.indexOf('  },', editorialStyleStart),
+    );
+    const homePressableStart = source.indexOf('accessibilityLabel={homeAdditional ?');
+    const homePressable = source.slice(
+      homePressableStart,
+      source.indexOf(
+        '<View style={homeAdditional ? styles.homeAdditionalContent',
+        homePressableStart,
+      ),
+    );
+
+    expect(source).toContain('homeAdditional ? styles.homeAdditionalEditorial : styles.plaque');
+    expect(homePressable).toContain('!homeAdditional && {');
+    expect(homePressable).toContain('{!homeAdditional && (');
     expect(source).toContain('homeAdditional && styles.homeAdditionalCopy');
     expect(source).toMatch(/homeAdditionalContent:\s*\{[\s\S]*?alignItems:\s*'center'/);
-    expect(source).toMatch(/homeAdditionalContent:\s*\{[\s\S]*?paddingHorizontal:\s*72/);
     expect(source).toMatch(/homeAdditionalCopy:\s*\{[\s\S]*?alignItems:\s*'center'/);
     expect(source).toMatch(/homeAdditionalKicker:\s*\{[\s\S]*?textAlign:\s*'center'/);
     expect(source).toMatch(/homeAdditionalPhrase:\s*\{[\s\S]*?textAlign:\s*'center'/);
     expect(source).toMatch(/homeAdditionalAction:\s*\{[\s\S]*?alignSelf:\s*'center'/);
-    expect(source).not.toMatch(/homeAdditionalContent:\s*\{[\s\S]*?paddingRight:/);
+    expect(editorialStyle).toContain("alignSelf: 'center'");
+    expect(editorialStyle).toContain("maxWidth: '90%'");
+    expect(source).not.toContain('homeAdditionalGhostWrap');
+    expect(editorialStyle).not.toContain('minHeight:');
+    expect(editorialStyle).not.toContain('backgroundColor:');
+    expect(editorialStyle).not.toContain('borderWidth:');
+    expect(editorialStyle).not.toContain('shadowOpacity:');
   });
 
   it('lets live home additional text expand without raw truncation', () => {

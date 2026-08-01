@@ -248,30 +248,34 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
         accessibilityRole="text"
         accessibilityLabel={gateCopy.title}
         style={[
-          homeAdditional ? styles.homeAdditionalPlaque : styles.plaque,
-          {
+          homeAdditional ? styles.homeAdditionalEditorial : styles.plaque,
+          !homeAdditional && {
             backgroundColor: chrome.colors[1] || t.bgCard,
             borderColor: chrome.border,
             shadowColor: chrome.shadow,
           },
         ]}
       >
-        <LinearGradient
-          pointerEvents="none"
-          colors={chrome.colors}
-          locations={[0, 0.56, 1]}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 1 }}
-          style={StyleSheet.absoluteFillObject}
-        />
-        <View pointerEvents="none" style={[styles.plaqueGlow, { backgroundColor: chrome.glow }]} />
+        {!homeAdditional && (
+          <>
+            <LinearGradient
+              pointerEvents="none"
+              colors={chrome.colors}
+              locations={[0, 0.56, 1]}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
+              style={StyleSheet.absoluteFillObject}
+            />
+            <View pointerEvents="none" style={[styles.plaqueGlow, { backgroundColor: chrome.glow }]} />
+          </>
+        )}
         <View style={homeAdditional ? styles.homeAdditionalContent : styles.plaqueContent}>
           {!homeAdditional && (
             <View style={[styles.plaqueIcon, { backgroundColor: chrome.iconBg, borderColor: chrome.iconBorder }]}>
               <Ionicons name="shield-checkmark-outline" size={22} color={chrome.title} />
             </View>
           )}
-          <View style={styles.plaqueCopy}>
+          <View style={[styles.plaqueCopy, homeAdditional && styles.homeAdditionalCopy]}>
             <View style={styles.titleRow}>
               <Text style={[homeAdditional ? styles.homeAdditionalTitle : styles.plaqueTitle, { color: chrome.title, fontSize: homeAdditional ? Math.max(20, f.bodyLg) : f.caption }]} numberOfLines={2}>
                 {gateCopy.title}
@@ -496,8 +500,8 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
         accessibilityRole="button"
         accessibilityLabel={homeAdditional ? `${title}. ${phrase.english}. ${homeActionLabel}` : title}
         style={({ pressed }) => [
-          homeAdditional ? styles.homeAdditionalPlaque : styles.plaque,
-          {
+          homeAdditional ? styles.homeAdditionalEditorial : styles.plaque,
+          !homeAdditional && {
             backgroundColor: chrome.colors[1] || t.bgCard,
             borderColor: chrome.border,
             shadowColor: chrome.shadow,
@@ -505,24 +509,19 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
           pressed && styles.pressed,
         ]}
       >
-        <LinearGradient
-          pointerEvents="none"
-          colors={chrome.colors}
-          locations={[0, 0.56, 1]}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 1 }}
-          style={StyleSheet.absoluteFillObject}
-        />
-        <View pointerEvents="none" style={[styles.plaqueGlow, { backgroundColor: chrome.glow }]} />
-        {homeAdditional && dailyPhraseImage ? (
-          <View pointerEvents="none" style={styles.homeAdditionalGhostWrap}>
-            <Image
-              source={dailyPhraseImage}
-              style={styles.homeAdditionalGhostImage}
-              contentFit="contain"
+        {!homeAdditional && (
+          <>
+            <LinearGradient
+              pointerEvents="none"
+              colors={chrome.colors}
+              locations={[0, 0.56, 1]}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
+              style={StyleSheet.absoluteFillObject}
             />
-          </View>
-        ) : null}
+            <View pointerEvents="none" style={[styles.plaqueGlow, { backgroundColor: chrome.glow }]} />
+          </>
+        )}
         <View style={homeAdditional ? styles.homeAdditionalContent : styles.plaqueContent}>
           {!homeAdditional && (
             <View style={[styles.plaqueIcon, { backgroundColor: chrome.iconBg, borderColor: chrome.iconBorder }]}>
@@ -546,7 +545,6 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
                   <Text style={[styles.homeAdditionalActionText, { color: chrome.actionText, fontSize: Math.max(13, f.label) }]}>
                     {homeActionLabel}
                   </Text>
-                  <Ionicons name="arrow-forward" size={16} color={chrome.actionText} />
                 </View>
               </>
             ) : (
@@ -854,21 +852,13 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 8 },
     ...noAndroidOutline,
   },
-  homeAdditionalPlaque: {
-    minHeight: 124,
-    marginHorizontal: 8,
+  homeAdditionalEditorial: {
+    alignSelf: 'center',
+    maxWidth: '90%',
     marginTop: 10,
     marginBottom: 16,
-    borderRadius: 20,
-    paddingHorizontal: 16,
-    paddingVertical: 16,
-    overflow: 'hidden',
-    // зачем: та же плашка на главном — квадрат вокруг скругления.
-    // Радиус 16 — потолок DESIGN.md (perf-guard).
-    shadowOpacity: 0.14,
-    shadowRadius: 16,
-    shadowOffset: { width: 0, height: 9 },
-    ...noAndroidOutline,
+    paddingHorizontal: 12,
+    paddingVertical: 10,
   },
   pressed: {
     opacity: 0.78,
@@ -896,14 +886,14 @@ const styles = StyleSheet.create({
     zIndex: 2,
   },
   homeAdditionalContent: {
-    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: 72,
     zIndex: 2,
   },
   homeAdditionalCopy: {
     alignItems: 'center',
+    flex: 0,
+    maxWidth: '100%',
   },
   plaqueGlow: {
     position: 'absolute',
@@ -913,18 +903,6 @@ const styles = StyleSheet.create({
     height: 132,
     borderRadius: 66,
     opacity: 0.62,
-  },
-  homeAdditionalGhostWrap: {
-    position: 'absolute',
-    right: 12,
-    top: 20,
-    width: 72,
-    height: 72,
-    opacity: 0.34,
-  },
-  homeAdditionalGhostImage: {
-    width: 72,
-    height: 72,
   },
   titleRow: {
     minHeight: 28,
@@ -946,6 +924,7 @@ const styles = StyleSheet.create({
     fontWeight: '900',
     lineHeight: 26,
     flexShrink: 1,
+    textAlign: 'center',
   },
   homeAdditionalKicker: {
     fontWeight: '900',
@@ -960,15 +939,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   homeAdditionalAction: {
-    minHeight: 32,
+    minHeight: 44,
     alignSelf: 'center',
-    flexDirection: 'row',
     alignItems: 'center',
-    gap: 6,
-    borderRadius: 16,
-    marginTop: 9,
-    paddingHorizontal: 11,
-    paddingVertical: 6,
+    justifyContent: 'center',
+    borderRadius: 22,
+    marginTop: 11,
+    paddingHorizontal: 18,
+    paddingVertical: 10,
   },
   homeAdditionalActionText: {
     fontWeight: '900',
@@ -978,7 +956,7 @@ const styles = StyleSheet.create({
     fontWeight: '800',
     lineHeight: 19,
     marginTop: 5,
-    minHeight: 38,
+    textAlign: 'center',
   },
   homeAdditionalTeaser: {
     fontWeight: '900',

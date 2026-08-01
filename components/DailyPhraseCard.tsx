@@ -469,7 +469,7 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
                   {phrase.english}
                 </Text>
                 <View style={[styles.homeAdditionalAction, { backgroundColor: chrome.actionBg }]}>
-                  <Text style={[styles.homeAdditionalActionText, { fontSize: Math.max(13, f.label) }]} color={chrome.actionText}>
+                  <Text style={[styles.homeAdditionalActionText, { color: chrome.actionText, fontSize: Math.max(13, f.label) }]}>
                     {homeActionLabel}
                   </Text>
                   <Ionicons name="arrow-forward" size={16} color={chrome.actionText} />

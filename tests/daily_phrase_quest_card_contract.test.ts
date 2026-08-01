@@ -69,6 +69,7 @@ describe('DailyPhraseCard quest contract', () => {
     expect(source).toContain('{homeActionLabel}');
     expect(source).toContain('backgroundColor: chrome.actionBg');
     expect(source).toContain('color={chrome.actionText}');
+    expect(source).toContain('styles.homeAdditionalActionText, { color: chrome.actionText');
     expect(source).not.toContain('cardQuestAnswered');
     expect(source).not.toContain('questTeaser');
     expect(source).not.toContain('homeAdditionalMeaning');

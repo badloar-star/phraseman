@@ -621,6 +621,7 @@ export default function SettingsMain() {
       volt: { ru: 'Лайм', uk: 'Лайм', es: 'Lima', 'pt-BR': 'Lima', vi: 'Chanh', id: 'Lime', tr: 'Limon', pl: 'Limetka' },
       candyBlue: { ru: 'Кенди Блу', uk: 'Кенді Блу', es: 'Azul caramelo', 'pt-BR': 'Azul candy', vi: 'Xanh kẹo', id: 'Biru permen', tr: 'Şeker mavisi', pl: 'Cukrowy błękit' },
       indigo: { ru: 'Индиго', uk: 'Індиго', es: 'Índigo', 'pt-BR': 'Índigo', vi: 'Chàm', id: 'Indigo', tr: 'İndigo', pl: 'Indygo' },
+      sagePorcelain: { ru: 'Фарфоровый шалфей', uk: 'Порцелянова шавлія', es: 'Salvia porcelana', 'pt-BR': 'Sálvia porcelana', vi: 'Xô thơm sứ', id: 'Sage porselen', tr: 'Porselen adaçayı', pl: 'Porcelanowa szałwia' },
     };
     const entry = names[themeMode] ?? names.minimalDark;
     return entry[lang];

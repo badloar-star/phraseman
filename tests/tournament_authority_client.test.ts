@@ -1,4 +1,5 @@
 import {
+  advanceRound,
   hasAuthoritativeTournamentResults,
   estimateTournamentServerClockSkew,
   orderTournamentPlayersForDisplay,
@@ -17,6 +18,8 @@ import {
   type RoomPlayer,
   type RoomTaskTiming,
 } from '../app/tournament_client';
+import { initFirebaseAppCheckIfAvailable } from '../app/app_check_init';
+import { ensureAnonUser } from '../app/cloud_sync';
 import { act, cleanup, renderHook } from '@testing-library/react-native';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
@@ -28,6 +31,7 @@ const mockOnRoomSnapshot = jest.fn((...args: unknown[]) => {
   return mockRoomUnsubscribe;
 });
 const mockDeadlineCallable = jest.fn();
+const mockGetFunctions = jest.fn((_app: unknown, region: string) => ({ region }));
 const mockHttpsCallableFactory = jest.fn((_functions: unknown, name: string) => {
   if (name === 'tournamentAdvanceRound') return mockDeadlineCallable;
   return jest.fn().mockResolvedValue({ data: { ok: true } });
@@ -43,7 +47,7 @@ jest.mock('@react-native-firebase/firestore', () => ({
 }));
 jest.mock('@react-native-firebase/app', () => ({ getApp: jest.fn(() => ({})) }));
 jest.mock('@react-native-firebase/functions', () => ({
-  getFunctions: jest.fn(() => ({})),
+  getFunctions: (...args: unknown[]) => mockGetFunctions(...args as [unknown, string]),
   httpsCallable: (...args: unknown[]) => mockHttpsCallableFactory(...args as [unknown, string]),
 }));
 jest.mock('../app/cloud_sync', () => ({ ensureAnonUser: jest.fn().mockResolvedValue({ uid: 'auth-user' }) }));
@@ -217,6 +221,39 @@ describe('tournament client authority boundaries', () => {
 
     expect(tournamentDeadlineNudgeRetryDelayMs({ code: 'functions/permission-denied' }, 0)).toBeNull();
     expect(tournamentDeadlineNudgeRetryDelayMs({ code: 'functions/invalid-argument' }, 0)).toBeNull();
+  });
+
+  test('sends the deadline nudge directly with established session auth and unchanged server guards', async () => {
+    const ensureAnonUserMock = jest.mocked(ensureAnonUser);
+    const appCheckMock = jest.mocked(initFirebaseAppCheckIfAvailable);
+    ensureAnonUserMock.mockClear();
+    appCheckMock.mockClear();
+    mockGetFunctions.mockClear();
+    mockHttpsCallableFactory.mockClear();
+    mockDeadlineCallable.mockReset().mockResolvedValue({ data: { ok: true, state: 'round4' } });
+
+    try {
+      await advanceRound('deadline-room', 'table3', 123_456);
+
+      expect(ensureAnonUserMock).not.toHaveBeenCalled();
+      expect(appCheckMock).not.toHaveBeenCalled();
+      expect(mockGetFunctions).toHaveBeenCalledWith({}, 'us-central1');
+      expect(mockHttpsCallableFactory).toHaveBeenCalledWith(
+        { region: 'us-central1' },
+        'tournamentAdvanceRound',
+      );
+      expect(mockDeadlineCallable).toHaveBeenCalledWith({
+        roomId: 'deadline-room',
+        expectedState: 'table3',
+        expectedDeadlineAtMs: 123_456,
+      });
+    } finally {
+      ensureAnonUserMock.mockClear();
+      appCheckMock.mockClear();
+      mockGetFunctions.mockClear();
+      mockHttpsCallableFactory.mockClear();
+      mockDeadlineCallable.mockReset();
+    }
   });
 
   test('a transient nudge failure schedules a second callable and room change cancels the pending retry', async () => {

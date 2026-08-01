@@ -163,6 +163,26 @@ function shellBusinessLight(): CardPackPaywallTheme {
   };
 }
 
+function shellSagePorcelain(): CardPackPaywallTheme {
+  return {
+    backdropBase: 'rgba(23,32,29,0.26)',
+    outerGlow: ['rgba(49,95,80,0)', 'rgba(49,95,80,0)', 'rgba(49,95,80,0)'],
+    borderAccent: '#BDC8BD',
+    handleColorLight: '#D1D9D1',
+    handleColorDark: '#3C5A50',
+    iconBg: ['#FCFDF9', '#E1E5DC'],
+    iconBorder: '#BDC8BD',
+    priceBorder: '#BDC8BD',
+    priceGradient: ['#FCFDF9', '#E1E5DC'],
+    priceTextOnCard: { label: '#52605A', value: '#17201D', unit: '#3C5A50' },
+    ctaColors: ['#315F50', '#315F50'],
+    ctaForeground: '#FFFFFF',
+    ctaGlowTop: 'rgba(49,95,80,0)',
+    goShopCta: ['#315F50', '#315F50'],
+    goShopForeground: '#FFFFFF',
+  };
+}
+
 /** NEON: той самий «ідеальний» лайм, темний текст на CTA (як correctText у NEON) */
 function shellNeon(): CardPackPaywallTheme {
   return {
@@ -313,6 +333,7 @@ const SHELL: Record<ThemeMode, CardPackPaywallTheme> = {
   minimalDark: shellDark(),
   business: shellBusiness(),
   businessLight: shellBusinessLight(),
+  sagePorcelain: shellSagePorcelain(),
   // «Чёрное кино»: переиспользуем графитовую оболочку — на чистом чёрном она садится без правок.
   midnight: shellOnboardingGraphite(),
   ember: shellOnboardingGraphite(),

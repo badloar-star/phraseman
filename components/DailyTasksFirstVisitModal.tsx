@@ -57,7 +57,7 @@ type ThemeChrome = {
   taskBorder: string;
 };
 
-const THEME_CHROME: Record<ThemeMode, ThemeChrome> = {
+export const THEME_CHROME: Record<ThemeMode, ThemeChrome> = {
   dark: {
     accent: '#8FE5AD',
     accentSoft: 'rgba(143,229,173,0.16)',
@@ -153,6 +153,14 @@ const THEME_CHROME: Record<ThemeMode, ThemeChrome> = {
     chipText: '#ECEAFF',
     taskGlow: 'rgba(200,195,255,0.09)',
     taskBorder: 'rgba(200,195,255,0.28)',
+  },
+  sagePorcelain: {
+    accent: '#315F50',
+    accentSoft: '#D9E9E1',
+    chipBg: '#E1E5DC',
+    chipText: '#17201D',
+    taskGlow: 'rgba(49,95,80,0)',
+    taskBorder: '#BDC8BD',
   },
 };
 

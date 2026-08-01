@@ -307,6 +307,26 @@ export const DAILY_TASK_REWARD_TOAST_THEME_STYLES: Record<ThemeMode, DailyTaskRe
     claimBorderColor: '#E8FF96',
     buttonIconName: 'sparkles-outline',
   },
+  sagePorcelain: {
+    cardColors: ['#FCFDF9', '#F5F7F2'],
+    sheenColors: ['rgba(49,95,80,0)', 'rgba(49,95,80,0)', 'rgba(49,95,80,0)'],
+    accentRailColor: '#315F50',
+    auraColor: 'rgba(49,95,80,0)',
+    borderColor: '#BDC8BD',
+    radius: 14,
+    shadowColor: 'rgba(23,32,29,0)',
+    iconName: 'gift-outline',
+    iconBg: '#D9E9E1',
+    iconBorderColor: '#BDC8BD',
+    iconColor: '#315F50',
+    titleColor: '#17201D',
+    taskColor: '#52605A',
+    xpColor: '#8B6320',
+    claimBg: '#315F50',
+    claimText: '#FFFFFF',
+    claimBorderColor: '#315F50',
+    buttonIconName: 'gift-outline',
+  },
 };
 
 function sameStorageTarget(a?: RuntimeStudyTarget, b?: RuntimeStudyTarget): boolean {

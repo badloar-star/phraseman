@@ -742,7 +742,7 @@ export default function HomeScreen() {
     const { energy: energyCount, bonusEnergy: energyBonus, maxEnergy: energyMax, recoveryIntervalMs: energyRecoveryIntervalMs, formattedTime: timeUntilNextEnergy, isUnlimited: energyUnlimited } = useEnergy();
     const showHomeEnergy = !hasPremiumAccess;
     const energyRecoveryMinutes = Math.max(1, Math.round(energyRecoveryIntervalMs / 60000));
-    const isSketchLightTheme = false;
+    const isSketchLightTheme = themeMode === 'sagePorcelain';
     const isLightTheme = isSketchLightTheme;
     const isGoldTheme = themeMode === 'gold';
     const isCompassTheme = false;
@@ -774,12 +774,12 @@ export default function HomeScreen() {
     const leagueBonusPalette = getLeagueBonusPalette(t, themeMode);
     const leagueBonusGiftImage = getLeagueBonusGiftImage(themeMode);
     const BONUS_ENERGY_COLOR = isGoldTheme ? goldBright : '#FFD700';
-    const isPaperHomeTheme = false;
-    const lightPanelBg = isSketchLightTheme ? 'rgba(255,252,246,0.94)' : 'rgba(255,255,255,0.50)';
-    const lightPanelBorder = isSketchLightTheme ? 'rgba(52,45,35,0.28)' : 'rgba(255,255,255,0.48)';
-    const lightPanelIconBg = isSketchLightTheme ? 'rgba(63,55,44,0.13)' : 'rgba(255,255,255,0.28)';
-    const lightPanelChevronBg = isSketchLightTheme ? 'rgba(63,55,44,0.14)' : 'rgba(255,255,255,0.58)';
-    const sketchHomePanelGradient = ['rgba(255,253,246,0.98)', 'rgba(237,227,210,0.94)'] as [string, string];
+    const isPaperHomeTheme = themeMode === 'sagePorcelain';
+    const lightPanelBg = t.bgCard;
+    const lightPanelBorder = t.border;
+    const lightPanelIconBg = t.accentBg;
+    const lightPanelChevronBg = t.bgSurface2;
+    const sketchHomePanelGradient = [t.bgCard, t.bgSurface] as [string, string];
     const homeThemePanelGradient = isGoldTheme
         ? goldPremiumPanel
         : isCompassTheme
@@ -2980,6 +2980,8 @@ export default function HomeScreen() {
                         borderRadius: isGoldTheme ? 14 : isCompassTheme ? compassHomeRadius : 18,
                         overflow: 'hidden',
                         backgroundColor: tilePanelBg,
+                        borderWidth: isPaperHomeTheme ? 1 : 0,
+                        borderColor: isPaperHomeTheme ? homeThemePanelBorder : 'transparent',
                         ...(isGoldTheme ? goldShadow(1) : isCompassTheme ? compassShadow(1) : {}),
                       }}>
                       <View style={{ flex: 1, minHeight: homeQuickIconPlateSize + 52, borderRadius: isGoldTheme ? 14 : isCompassTheme ? compassHomeRadius : 18, paddingHorizontal: 10, paddingVertical: 13, alignItems: 'center', gap: 6 }}>

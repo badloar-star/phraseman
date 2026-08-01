@@ -499,15 +499,18 @@ function TabBarIcon({
  * (без SafeAreaView сверху — иначе над контентом оставалась «плашка» из bgPrimary).
  */
 function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx }: TabScaffoldProps) {
-  const { theme: t, ds, statusBarLight } = useTheme();
+  const { theme: t, ds, statusBarLight, themeMode } = useTheme();
   const { tabBarHeight, bottomInset: PB } = useScreen();
   const insets = useStableSafeAreaInsets();
   const { goToTab, activeIdx, onSwipeStart, onSwipeComplete } = useTabNav();
   const topFadeScroll = useTopFadeScroll();
-  /** Подложка плавающей капсулы: 95% затемнение контента под таббаром
-   *  без runtime blur, с цветными иконками от текущей темы. Обводок нет —
-   *  разделение тоном и тенью (правило владельца). */
-  const tabIconMuted = withAlpha(t.textSecond, TAB_DARK_ICON_MUTED_ALPHA);
+  /** Светлая Sage-капсула обязана оставаться фарфоровой: почти чёрный scrim из
+   * тёмных тем превращал её в чужеродную полосу, а sage-иконки терялись на ней. */
+  const isSagePorcelainTabChrome = themeMode === 'sagePorcelain';
+  const tabPillBackground = isSagePorcelainTabChrome ? t.bgCard : TAB_UNDERLAY_DIM_BG;
+  const tabIconMuted = isSagePorcelainTabChrome
+    ? t.textMuted
+    : withAlpha(t.textSecond, TAB_DARK_ICON_MUTED_ALPHA);
   const tabPillBottom = Math.max(PB, ds.spacing.sm) + FLOATING_PILL_BOTTOM_GAP;
   const tabOverlayHeight = tabBarHeight + tabPillBottom + ds.spacing.md;
   const [tabPillWidth, setTabPillWidth] = useState(0);
@@ -819,11 +822,12 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
                   height: tabBarHeight,
                   borderRadius: tabBarHeight / 2,
                   shadowColor: t.shadowDark,
+                  borderWidth: isSagePorcelainTabChrome ? 1 : 0,
+                  borderColor: isSagePorcelainTabChrome ? t.border : 'transparent',
                 },
               ]}
             >
-              {/* 95% scrim: контент едва просвечивает, но затемняется без runtime blur. */}
-              <View pointerEvents="none" style={[s.tabPillFill, { backgroundColor: TAB_UNDERLAY_DIM_BG }]} />
+              <View pointerEvents="none" style={[s.tabPillFill, { backgroundColor: tabPillBackground }]} />
 
               {/* Ряд фиксированной ширины: при сужении капсулы ячейки НЕ пересчитываются,
                   иконки сохраняют геометрию, правые уходят под overflow:hidden. */}

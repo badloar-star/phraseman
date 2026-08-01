@@ -434,7 +434,8 @@ const LessonCard = React.memo(function LessonCard({
     isPremium, DEV_CONTENT_UNLOCK, noLimits, legacyFreeLessonCap,
     textPrimary: _tp, textMuted,
 }: LessonCardProps) {
-    const lockedCardHasLightFill = false;
+    const isSagePorcelainCard = _themeMode === 'sagePorcelain';
+    const lockedCardHasLightFill = _themeMode === 'sagePorcelain';
     const useFilledMetaText = isComplete && showLessonProgressFill;
     const useDarkMetaText = useFilledMetaText || (!isGoldTheme && !isCoralTheme && isUnlocked);
     return (<Animated.View style={{
@@ -482,9 +483,11 @@ const LessonCard = React.memo(function LessonCard({
             borderRadius: cardRadius,
             overflow: 'hidden',
             backgroundColor: isUnlocked ? 'transparent' : lockedCardBaseColor,
-            borderWidth: isGoldTheme ? 1 : USE_ELITE_LESSONS_MAP ? 1 : useSketchLessonVisual && isUnlocked ? 1.5 : 0,
+            borderWidth: isGoldTheme || isSagePorcelainCard ? 1 : USE_ELITE_LESSONS_MAP ? 1 : useSketchLessonVisual && isUnlocked ? 1.5 : 0,
             borderColor: isGoldTheme
                 ? (isCurrent ? GOLD_RICH.hairlineStrong : isUnlocked ? goldHairline : GOLD_RICH.hairlineQuiet)
+                : isSagePorcelainCard
+                    ? rgbaHexCached(lessonAccent, isCurrent ? 0.56 : isUnlocked ? 0.38 : 0.26)
                 :
                     USE_ELITE_LESSONS_MAP
                         ? rgbaHexCached(lessonAccent, isCurrent ? 0.70 : isUnlocked ? 0.36 : 0.16)
@@ -493,15 +496,19 @@ const LessonCard = React.memo(function LessonCard({
           {/* Card background */}
           {isUnlocked ? (<LinearGradient colors={isGoldTheme
                   ? (isCurrent ? goldCardGradient('selected') : lessonGoldLevel.card)
+                  : isSagePorcelainCard
+                      ? [bg, lightenHex(bg, 1.08), lightenHex(bg, 1.14)]
                   :
                       isCoralTheme
                           ? [darkenHexCached(bg, 0.62), darkenHexCached(bg, 0.43), darkenHexCached(bg, 0.30)]
                           : [darkenHexCached(bg, 0.52), darkBg, darkenHexCached(bg, 0.38)]} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 1 }} end={{ x: 1, y: 0 }} style={cardLayerStyle}/>) : levelLockedByExam ? (<LinearGradient colors={isGoldTheme
                   ? goldCardGradient('muted')
+                  : isSagePorcelainCard
+                      ? [lightenHex(bg, 1.04), bg, lightenHex(bg, 1.1)]
                   :
                       isCoralTheme
                           ? [darkenHexCached(bg, 0.34), darkenHexCached(bg, 0.28), darkenHexCached(bg, 0.23)]
-                          : [darkenHexCached(bg, 0.36), darkenHexCached(bg, 0.31), darkenHexCached(bg, 0.26)]} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 1 }} end={{ x: 1, y: 0 }} style={[cardLayerStyle, { opacity: isGoldTheme ? 0.68 : 1 }]}/>) : (<LinearGradient colors={isGoldTheme ? GOLD_GRADIENTS.mutedPanel : isCoralTheme ? ['#1A1113', '#24191C', '#130D0F'] : [darkenHexCached(bg, 0.30), darkenHexCached(bg, 0.25), darkenHexCached(bg, 0.20)]} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 1 }} end={{ x: 1, y: 0 }} style={cardLayerStyle}/>)}
+                          : [darkenHexCached(bg, 0.36), darkenHexCached(bg, 0.31), darkenHexCached(bg, 0.26)]} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 1 }} end={{ x: 1, y: 0 }} style={[cardLayerStyle, { opacity: isGoldTheme ? 0.68 : 1 }]}/>) : (<LinearGradient colors={isGoldTheme ? GOLD_GRADIENTS.mutedPanel : isSagePorcelainCard ? [lightenHex(bg, 1.02), bg, lightenHex(bg, 1.08)] : isCoralTheme ? ['#1A1113', '#24191C', '#130D0F'] : [darkenHexCached(bg, 0.30), darkenHexCached(bg, 0.25), darkenHexCached(bg, 0.20)]} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 1 }} end={{ x: 1, y: 0 }} style={cardLayerStyle}/>)}
           {isGoldTheme && (<LinearGradient colors={[
                   rgbaHexCached(lessonAccent, isUnlocked ? 0.22 : 0.08),
                   'rgba(0,0,0,0)',
@@ -584,7 +591,7 @@ const LessonCard = React.memo(function LessonCard({
                 color: lessonTextColor,
                 fontSize: f.body,
                 fontWeight: '700',
-                ...LESSON_CARD_WHITE_TEXT_SHADOW,
+                ...(isSagePorcelainCard ? {} : LESSON_CARD_WHITE_TEXT_SHADOW),
             }} numberOfLines={2} maxFontSizeMultiplier={1}>
               {name}
             </Text>
@@ -788,6 +795,7 @@ export default function LessonsTab({ overlayIdentityEpoch: _overlayIdentityEpoch
     const insets = useStableSafeAreaInsets();
     const isGoldTheme = themeMode === 'gold';
     const isCoralTheme = themeMode === 'coral';
+    const isSagePorcelainTheme = themeMode === 'sagePorcelain';
     const goldBright = GOLD_RICH.champagne;
     const goldAntique = GOLD_RICH.agedGold;
     const goldHairline = GOLD_RICH.hairline;
@@ -1227,7 +1235,9 @@ const cardLayerStyle = {
     borderRadius: cardRadius,
     overflow: 'hidden' as const,
 };
-const lessonTextColor = isGoldTheme
+const lessonTextColor = isSagePorcelainTheme
+    ? t.textPrimary
+    : isGoldTheme
     ? (isUnlocked ? t.textPrimary : 'rgba(247,241,228,0.44)')
     :
         !isUnlocked
@@ -1239,7 +1249,9 @@ const lessonTextColor = isGoldTheme
             : isCoralTheme
                 ? '#FFF8F4'
                 : 'rgba(255,255,255,0.97)';
-const lessonMetaColor = isGoldTheme
+const lessonMetaColor = isSagePorcelainTheme
+    ? t.textPrimary
+    : isGoldTheme
     ? (isUnlocked ? t.textMuted : 'rgba(184,173,146,0.36)')
     :
         !isUnlocked

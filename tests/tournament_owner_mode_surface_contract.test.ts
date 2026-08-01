@@ -100,7 +100,7 @@ describe('owner-approved tournament surfaces', () => {
 
     expect(lobby).toContain('onPress={leaveLobby}');
     expect(lobby).toContain('accessibilityLabel=');
-    expect(lobby).toContain("router.replace('/tournaments')");
+    expect(lobby).toContain('closeTournamentFlow(router)');
     expect(lobby).toContain('const bankGems = Math.max(0, Math.trunc(Number(room?.potGems ?? 0)));');
     expect(lobby).toContain('<AnimatedBankAmount amount={bankGems} events={room?.lobbyEvents ?? []} />');
     expect(lobby).toContain('setDisplayAmount(event.potGemsAfter);');

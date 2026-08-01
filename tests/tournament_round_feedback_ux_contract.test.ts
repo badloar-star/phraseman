@@ -55,14 +55,15 @@ describe('tournament question feedback UX', () => {
     expect(round).toContain("const taskTimerActive = phase === 'question' || phase === 'feedback';");
     expect(round).toContain('if (!taskTimerActive)');
     expect(round).toContain('const displayedSecondsLeft = secondsLeft ?? deriveDisplayedSecondsLeft(');
-    expect(round).toContain('<TimerRing seconds={displayedSecondsLeft} total={secondsForQuestion} />');
-    expect(round).not.toContain('seconds={secondsLeft ?? secondsForQuestion}');
+    expect(round).toContain('<TimerRing seconds={displayedSecondsLeft} total={answerWindowSeconds} />');
+    expect(round).not.toContain('seconds={secondsLeft ?? answerWindowSeconds}');
   });
 
   test('question TimerRing shows a numeric countdown only for the final five seconds', () => {
     const timerRing = section(countdown, 'export const TimerRing', 'const makeStyles');
 
     expect(timerRing).toContain('const low = seconds <= 5');
+    expect(timerRing).toContain('{low ? <Text');
     expect(timerRing).toContain('Math.ceil(seconds)');
     expect(timerRing).toContain('styles.ringText');
     expect(timerRing).toContain('accessibilityRole="timer"');
@@ -80,7 +81,8 @@ describe('tournament question feedback UX', () => {
     expect(round).toContain('const feedbackAdvanceAtMs = feedbackEndsAtMs;');
     expect(round).toContain("const feedbackVisible = phase === 'feedback' && feedbackCorrect !== null;");
     expect(round).not.toContain('feedbackStartsAtMs === null || tournamentNow() >= feedbackStartsAtMs');
-    expect(round).toContain('isTournamentAnswerWindowOpen(questionTiming, tournamentNow())');
+    expect(round).toContain('isTournamentAnswerSelectionWindowOpen(questionTiming, tournamentNow())');
+    expect(round).toContain('waitForTournamentAnswerWindow(questionTiming)');
     expect(round).not.toContain('motion.answerFeedbackMs');
   });
 
@@ -93,6 +95,12 @@ describe('tournament question feedback UX', () => {
     expect(submit).toContain('activeTaskSubmissionRef.current !== submissionToken');
     expect(submit).toContain('void retry();');
     expect(round).toMatch(/const goNext[\s\S]*activeTaskSubmissionRef\.current = null/);
+  });
+
+  test('question timer is a stable ring and shows digits only for the final five seconds', () => {
+    expect(round).toContain('const answerWindowSeconds =');
+    expect(round).toContain('<TimerRing seconds={displayedSecondsLeft} total={answerWindowSeconds} />');
+    expect(countdown).toContain("{low ? <Text");
   });
 
   test('choice and phrase verdicts paint from room fingerprints before any network await', () => {

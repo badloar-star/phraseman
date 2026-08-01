@@ -51,6 +51,7 @@ import {
 } from './tournament_client';
 import { getStableId, peekStableId } from './stable_id';
 import { useLocalSearchParams } from 'expo-router';
+import { closeTournamentFlow } from './tournament_navigation';
 import CollectibleDropModal from '../components/CollectibleDropModal';
 import { useOverlayVisible } from '../components/OverlayArbiter';
 import { maybeRollCollectibleDrop, type CollectibleDropOutcome } from './collectibles/storage';
@@ -117,7 +118,7 @@ export default function TournamentResultsScreen() {
   runtimeActiveRef.current = runtimeActive;
   // Финальный экран закрывается прямо в меню турниров. Предыдущие раунды и
   // межраундовые таблицы не являются допустимой точкой возврата.
-  const closeResults = useCallback(() => router.replace('/tournaments'), [router]);
+  const closeResults = useCallback(() => closeTournamentFlow(router), [router]);
 
   const { room, status, freshSnapshot, retry } = useTournamentRoom(roomId, runtimeActive);
   /**
@@ -263,7 +264,7 @@ export default function TournamentResultsScreen() {
   if (room?.state === 'cancelled') {
     return (
       <View style={styles.root}>
-        <TournamentEdgeState kind="cancelled" onRetry={() => router.replace('/tournaments')} />
+        <TournamentEdgeState kind="cancelled" onRetry={() => closeTournamentFlow(router)} />
       </View>
     );
   }

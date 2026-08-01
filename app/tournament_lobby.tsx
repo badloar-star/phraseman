@@ -8,7 +8,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { BackHandler, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Animated, {
   FadeIn,
   ZoomIn,
@@ -36,11 +36,20 @@ import { TournamentEdgeState } from '../components/tournament/TournamentEdgeStat
 import { TournamentFxHost, type TournamentFxApi } from '../components/tournament/TournamentFx';
 import {
   isRoundState, leaveTournament, resolveTournamentLobbyRoute, resolveTournamentRoomIdParam,
+  resolveTournamentExitStatus,
+  runTournamentMutationWithRetry,
   tournamentNow, useTournamentReactions, useTournamentRoom,
   type RoomPlayer, type Room } from './tournament_client';
 import { getStableId } from './stable_id';
 import { useLocalSearchParams } from 'expo-router';
 import { orderVisibleLobbyPlayers } from './tournament_lobby_seats';
+import {
+  cancelTournamentEntryTransition,
+  markTournamentEntryTransitionAdvanced,
+} from './tournament_entry_transition';
+import { actionToastTri, emitAppEvent } from './events';
+import { closeTournamentFlow } from './tournament_navigation';
+import { refreshShardsBalanceFromCloudAuthoritative } from './shards_system';
 
 const SEATS = 16;
 const REACTIONS = ['👍', '🔥', '😎', '⚔️', '🍀'] as const;
@@ -169,14 +178,18 @@ export default function TournamentLobbyScreen() {
   const styles = React.useMemo(() => makeStyles(P), [P]);
   const router = useRouter();
   const insets = useStableSafeAreaInsets();
-  const params = useLocalSearchParams<{ roomId?: string | string[] }>();
+  const params = useLocalSearchParams<{
+    roomId?: string | string[];
+    entryKey?: string | string[];
+  }>();
   const roomId = resolveTournamentRoomIdParam(params.roomId);
+  const entryKeyParam = Array.isArray(params.entryKey) ? params.entryKey[0] : params.entryKey;
+  const entryKey = typeof entryKeyParam === 'string' && entryKeyParam ? entryKeyParam : null;
   const runtimeActive = useRuntimeActive();
 
   const { room, status, freshSnapshot, secondsLeft, retry } = useTournamentRoom(roomId, runtimeActive);
   const [selected, setSelected] = useState<Seat | null>(null);
-  const [leaving, setLeaving] = useState(false);
-  const [leaveError, setLeaveError] = useState('');
+  const leavingRef = useRef(false);
   const [myId, setMyId] = useState<string | null>(null);
   // authUid нужен, чтобы не проигрывать СВОЮ реакцию дважды: один раз
   // оптимистично при тапе и второй — когда она вернётся из подписки.
@@ -205,18 +218,21 @@ export default function TournamentLobbyScreen() {
   // Переход в раунд по СЕРВЕРНОМУ состоянию, а не по локальному таймеру:
   // иначе игроки с неточными часами уйдут в раунд раньше или позже остальных.
   useEffect(() => {
-    if (!runtimeActive || !freshSnapshot || !room || !roomId) return;
+    if (!runtimeActive || !freshSnapshot || !room || !roomId || leavingRef.current) return;
     if (isRoundState(room.state)) {
+      if (entryKey) markTournamentEntryTransitionAdvanced(entryKey);
       router.replace({ pathname: '/tournament_round', params: { roomId } });
       return;
     }
     const route = resolveTournamentLobbyRoute(room.state);
     if (route === 'table') {
+      if (entryKey) markTournamentEntryTransitionAdvanced(entryKey);
       router.replace({ pathname: '/tournament_table', params: { roomId } });
     } else if (route === 'results') {
+      if (entryKey) markTournamentEntryTransitionAdvanced(entryKey);
       router.replace({ pathname: '/tournament_results', params: { roomId } });
     }
-  }, [freshSnapshot, room?.state, roomId, router, room, runtimeActive]);
+  }, [entryKey, freshSnapshot, room?.state, roomId, router, room, runtimeActive]);
 
   /**
    * Секундный тик — по нему в лобби «подсаживаются» игроки, чьё время входа
@@ -253,24 +269,54 @@ export default function TournamentLobbyScreen() {
   const secondsToStart = secondsLeft;
   const bankGems = Math.max(0, Math.trunc(Number(room?.potGems ?? 0)));
 
-  const leaveLobby = useCallback(async () => {
-    if (!roomId || leaving || !runtimeActive) return;
-    setLeaving(true);
-    setLeaveError('');
-    try {
-      await leaveTournament(roomId);
-      void Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-      router.replace('/tournaments');
-    } catch (error) {
-      const details = error && typeof error === 'object'
-        ? `${String((error as { code?: unknown }).code ?? '')} ${String((error as { message?: unknown }).message ?? '')}`
-        : String(error ?? '');
-      setLeaveError(details.includes('room_not_leaveable')
-        ? 'Турнир уже начался — выйти нельзя'
-        : 'Не удалось выйти. Попробуйте ещё раз');
-      setLeaving(false);
-    }
-  }, [leaving, roomId, router, runtimeActive]);
+  const leaveLobby = useCallback(() => {
+    if (leavingRef.current) return;
+    leavingRef.current = true;
+    if (entryKey) cancelTournamentEntryTransition(entryKey);
+    void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    closeTournamentFlow(router);
+    if (!roomId) return;
+    void runTournamentMutationWithRetry(() => leaveTournament(roomId))
+      .then(() => {
+        // Сервер уже вернул взнос: меню обновляет цифру фоном, без спиннера.
+        void refreshShardsBalanceFromCloudAuthoritative();
+      })
+      .catch(async (error) => {
+        const exitPlayerId = myId ?? await getStableId().catch(() => null);
+        const exitStatus = await resolveTournamentExitStatus(roomId, exitPlayerId);
+        if (exitStatus === 'left' || exitStatus === 'forfeited') {
+          void refreshShardsBalanceFromCloudAuthoritative();
+          return;
+        }
+        const details = error && typeof error === 'object'
+          ? `${String((error as { code?: unknown }).code ?? '')} ${String((error as { message?: unknown }).message ?? '')}`
+          : String(error ?? '');
+        emitAppEvent('action_toast', actionToastTri('error', details.includes('room_not_leaveable')
+          ? {
+            ru: 'Турнир уже начался — участие осталось активным',
+            uk: 'Турнір уже почався — участь залишилася активною',
+            es: 'El torneo ya empezó; la participación sigue activa',
+          }
+          : {
+            ru: 'Не удалось синхронизировать выход. Проверьте интернет',
+            uk: 'Не вдалося синхронізувати вихід. Перевірте інтернет',
+            es: 'No se pudo sincronizar la salida. Comprueba Internet',
+          }));
+        // Участие осталось серверно-активным: возвращаем маршрут, чтобы игрок
+        // мог продолжить или повторить выход, а не оставался в пустом меню.
+        if (!entryKey) {
+          router.push({ pathname: '/tournament_lobby', params: { roomId } });
+        }
+      });
+  }, [entryKey, myId, roomId, router]);
+
+  useEffect(() => {
+    const subscription = BackHandler.addEventListener('hardwareBackPress', () => {
+      leaveLobby();
+      return true;
+    });
+    return () => subscription.remove();
+  }, [leaveLobby]);
 
 
   /**
@@ -323,7 +369,7 @@ export default function TournamentLobbyScreen() {
   if (room?.state === 'cancelled') {
     return (
       <View style={styles.root}>
-        <TournamentEdgeState kind="cancelled" onRetry={() => router.replace('/tournaments')} />
+        <TournamentEdgeState kind="cancelled" onRetry={() => closeTournamentFlow(router)} />
       </View>
     );
   }
@@ -347,19 +393,17 @@ export default function TournamentLobbyScreen() {
         <View style={styles.header}>
           <Pressable
             onPress={leaveLobby}
-            disabled={leaving}
-            style={[styles.exitButton, leaving && styles.exitButtonDisabled]}
+            style={styles.exitButton}
             accessibilityRole="button"
             accessibilityLabel="Выйти из лобби"
             accessibilityHint="Вы покинете турнир; списанный взнос вернётся автоматически"
-            accessibilityState={{ disabled: leaving, busy: leaving }}
           >
-            <Text style={styles.exitButtonText}>{leaving ? 'Выходим…' : 'Выйти'}</Text>
+            <Text style={styles.exitButtonText}>Выйти</Text>
           </Pressable>
           <Text style={styles.title}>Лобби</Text>
           <V2Counter value={`${joined}/${SEATS}`} tone={full ? 'gems' : 'plain'} />
         </View>
-        <Text style={styles.leaveError} accessibilityLiveRegion="polite">{leaveError}</Text>
+        <Text style={styles.leaveError} />
 
         {/* Статус сбора + таймер */}
         <V2Card pad={20}>

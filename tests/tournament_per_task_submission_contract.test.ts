@@ -4,9 +4,12 @@ import {
   canRetryTournamentTaskAnswer,
   getOrCreateTournamentTaskIdempotencyKey,
   isRetryableTournamentTaskAnswerError,
+  isTournamentAnswerSelectionWindowOpen,
+  isTournamentAnswerWindowOpen,
   isTournamentTaskWindowResolved,
   resolveTournamentScheduledTaskIndex,
   resolveTournamentVisibleTaskIndex,
+  runTournamentMutationWithRetry,
   type RoomTaskTiming,
 } from '../app/tournament_client';
 
@@ -85,6 +88,37 @@ describe('tournament per-task client contract', () => {
 
     const round = readFileSync(resolve(__dirname, '../app/tournament_round.tsx'), 'utf8');
     expect(round).toContain('isTournamentTaskWindowResolved');
+  });
+
+  test('ambiguous tournament mutations retry once with the same idempotent operation', async () => {
+    const retryable = jest.fn()
+      .mockRejectedValueOnce({ code: 'functions/unavailable' })
+      .mockResolvedValueOnce({ ok: true });
+    await expect(runTournamentMutationWithRetry(retryable)).resolves.toEqual({ ok: true });
+    expect(retryable).toHaveBeenCalledTimes(2);
+
+    const terminal = jest.fn().mockRejectedValue({ code: 'functions/failed-precondition' });
+    await expect(runTournamentMutationWithRetry(terminal)).rejects.toEqual({ code: 'functions/failed-precondition' });
+    expect(terminal).toHaveBeenCalledTimes(1);
+  });
+
+  test('a visible task reacts immediately while transport waits for the server answer boundary', () => {
+    const timing: RoomTaskTiming = {
+      taskId: 'tap-now', taskIndex: 0, durationMs: 10_000,
+      startsAtMs: 1_000, readingEndsAtMs: 2_500,
+      answerDeadlineAtMs: 8_000, deadlineAtMs: 10_000,
+    };
+
+    expect(isTournamentAnswerSelectionWindowOpen(timing, 999)).toBe(false);
+    expect(isTournamentAnswerSelectionWindowOpen(timing, 1_000)).toBe(true);
+    expect(isTournamentAnswerSelectionWindowOpen(timing, 2_000)).toBe(true);
+    expect(isTournamentAnswerSelectionWindowOpen(timing, 8_000)).toBe(false);
+    expect(isTournamentAnswerWindowOpen(timing, 2_000)).toBe(false);
+    expect(isTournamentAnswerWindowOpen(timing, 2_500)).toBe(true);
+
+    const round = readFileSync(resolve(__dirname, '../app/tournament_round.tsx'), 'utf8');
+    expect(round).toContain('waitForTournamentAnswerWindow(questionTiming)');
+    expect(round).toContain('isTournamentAnswerSelectionWindowOpen(questionTiming, tournamentNow())');
   });
 
   test('round submits each task through the authoritative callable and reconciles feedback', () => {

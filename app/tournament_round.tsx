@@ -48,11 +48,13 @@ import { radius, type, useTournamentPalette, v2motion, type TournamentPalette} f
 import { TournamentEdgeState } from '../components/tournament/TournamentEdgeState';
 import { TournamentRoundIntro } from '../components/tournament/TournamentRoundIntro';
 import {
-  canRetryTournamentTaskAnswer, forfeitTournament, getOrCreateTournamentTaskIdempotencyKey,
-  isTournamentAnswerWindowOpen,
+      canRetryTournamentTaskAnswer, forfeitTournament, getOrCreateTournamentTaskIdempotencyKey,
+      isTournamentAnswerSelectionWindowOpen,
   isRetryableTournamentTaskAnswerError, isTableState, isTournamentTaskWindowResolved,
-  resolveTournamentRoomIdParam, resolveTournamentScheduledTaskIndex,
-  resolveTournamentVisibleTaskIndex,
+      resolveTournamentRoomIdParam, resolveTournamentScheduledTaskIndex,
+      resolveTournamentExitStatus,
+      resolveTournamentVisibleTaskIndex,
+      runTournamentMutationWithRetry,
   shouldShowTournamentLocalIntro,
   submitSpeedMatchAttempt, submitTaskAnswer, tournamentNow, tournamentSecondsUntil,
   useTournamentReactions, useTournamentRoom,
@@ -60,6 +62,8 @@ import {
 import { useLocalSearchParams } from 'expo-router';
 import { getStableId, peekStableId } from './stable_id';
 import { answerFingerprint } from './tournament_answer_fingerprint';
+import { actionToastTri, emitAppEvent } from './events';
+import { closeTournamentFlow } from './tournament_navigation';
 
 // зачем 2026-07-27 (владелец: «4 вопроса в раунде»): здесь лежала третья
 // версия одного и того же числа — сервер собирал 6 заданий, а клиент считал 5.
@@ -247,6 +251,17 @@ const deriveDisplayedSecondsLeft = (
   );
 };
 
+/** Optimistic paint is immediate; only the authoritative transport waits. */
+const waitForTournamentAnswerWindow = async (
+  timing: RoomTaskTiming | null,
+): Promise<void> => {
+  if (!timing) return;
+  const opensAtMs = timing.readingEndsAtMs ?? timing.startsAtMs;
+  const waitMs = Math.max(0, opensAtMs - tournamentNow());
+  if (waitMs === 0) return;
+  await new Promise<void>((resolve) => setTimeout(resolve, waitMs));
+};
+
 export default function TournamentRoundScreen() {
   const P = useTournamentPalette();
   const styles = React.useMemo(() => makeStyles(P), [P]);
@@ -269,8 +284,7 @@ export default function TournamentRoundScreen() {
   const [feedbackExplanation, setFeedbackExplanation] = useState<{ ruleNote: string; example: string } | null>(null);
   const [feedbackCorrectIndex, setFeedbackCorrectIndex] = useState<number | null>(null);
   const [forfeitConfirmVisible, setForfeitConfirmVisible] = useState(false);
-  const [forfeiting, setForfeiting] = useState(false);
-  const [forfeitError, setForfeitError] = useState('');
+  const forfeitingRef = useRef(false);
   // Звёзды и серия — только из серверного snapshot. Публичное задание не
   // содержит ключ ответа, поэтому любой локальный инкремент на тап выдавал бы
   // неверный выбор за правильный. До следующего submit показываем последнее
@@ -375,14 +389,21 @@ export default function TournamentRoundScreen() {
   const nextQuestionTiming = useMemo(() => (
     activeRound?.taskSchedule?.find((timing) => timing.taskIndex === index + 1) ?? null
   ), [activeRound?.taskSchedule, index]);
-  const secondsForQuestion = questionTiming?.durationMs
-    ? Math.max(1, Math.ceil(questionTiming.durationMs / 1000))
-    : Math.max(1, stateSecondsLeft);
+  const answerWindowDurationMs = questionTiming
+    ? Math.max(1,
+      (questionTiming.answerDeadlineAtMs ?? questionTiming.deadlineAtMs)
+      - (questionTiming.readingEndsAtMs ?? questionTiming.startsAtMs))
+    : 0;
+  const answerWindowSeconds = answerWindowDurationMs > 0
+    ? Math.max(1, Math.ceil(answerWindowDurationMs / 1000))
+    : questionTiming?.durationMs
+      ? Math.max(1, Math.ceil(questionTiming.durationMs / 1000))
+      : Math.max(1, stateSecondsLeft);
   const taskTimerActive = phase === 'question' || phase === 'feedback';
   const displayedSecondsLeft = secondsLeft ?? deriveDisplayedSecondsLeft(
     phase,
     questionTiming,
-    secondsForQuestion,
+    answerWindowSeconds,
     stateSecondsLeft,
     tournamentNow(),
   );
@@ -394,6 +415,8 @@ export default function TournamentRoundScreen() {
   // Selection paints immediately. As soon as the authoritative verdict lands,
   // reveal it without waiting for the cosmetic feedback boundary.
   const feedbackVisible = phase === 'feedback' && feedbackCorrect !== null;
+  const answerSelectionActive = (phase === 'reading' || phase === 'question')
+    && isTournamentAnswerSelectionWindowOpen(questionTiming, tournamentNow());
   const serverScheduleHasStarted = Boolean(activeRound?.taskSchedule?.some(
     (timing) => tournamentNow() >= timing.startsAtMs,
   ));
@@ -497,16 +520,17 @@ export default function TournamentRoundScreen() {
     const tick = () => {
       const serverNowMs = tournamentNow();
       const remaining = serverNowMs < (questionTiming.readingEndsAtMs ?? questionTiming.startsAtMs)
-        ? secondsForQuestion
+        ? answerWindowSeconds
         : tournamentSecondsUntil(questionTiming.answerDeadlineAtMs ?? questionTiming.deadlineAtMs, serverNowMs);
-      setSecondsLeft(Math.min(secondsForQuestion, remaining));
+      setSecondsLeft(Math.min(answerWindowSeconds, remaining));
     };
     tick();
     const id = setInterval(tick, 1000);
     return () => clearInterval(id);
-  }, [questionTiming, runtimeActive, secondsForQuestion, stateSecondsLeft, taskTimerActive]);
+  }, [answerWindowSeconds, questionTiming, runtimeActive, stateSecondsLeft, taskTimerActive]);
 
   const goNext = useCallback(() => {
+    if (forfeitingRef.current) return;
     // A previous request may resolve after the absolute feedback boundary.
     // Invalidate it before showing another task so it cannot repaint new UI.
     activeTaskSubmissionRef.current = null;
@@ -562,20 +586,31 @@ export default function TournamentRoundScreen() {
     if (phase === 'feedback' && runtimeActive) scheduleFeedbackAdvance();
   }, [phase, runtimeActive, scheduleFeedbackAdvance]);
 
-  const confirmForfeit = useCallback(async () => {
-    if (!roomId || forfeiting || !runtimeActive) return;
-    setForfeiting(true);
-    setForfeitError('');
-    try {
-      await forfeitTournament(roomId);
-      activeTaskSubmissionRef.current = null;
-      activeQuestionKeyRef.current = null;
-      router.replace('/tournaments');
-    } catch {
-      setForfeitError('Не удалось выйти из турнира. Попробуйте ещё раз.');
-      setForfeiting(false);
+  const confirmForfeit = useCallback(() => {
+    if (!roomId || forfeitingRef.current || !runtimeActive) return;
+    forfeitingRef.current = true;
+    setForfeitConfirmVisible(false);
+    activeTaskSubmissionRef.current = null;
+    activeQuestionKeyRef.current = null;
+    if (advanceRef.current) {
+      clearTimeout(advanceRef.current);
+      advanceRef.current = null;
     }
-  }, [forfeiting, roomId, router, runtimeActive]);
+    closeTournamentFlow(router);
+    void runTournamentMutationWithRetry(() => forfeitTournament(roomId)).catch(async () => {
+      const exitPlayerId = myId ?? await getStableId().catch(() => null);
+      const exitStatus = await resolveTournamentExitStatus(roomId, exitPlayerId);
+      if (exitStatus === 'forfeited' || exitStatus === 'left') return;
+      emitAppEvent('action_toast', actionToastTri('error', {
+        ru: 'Не удалось синхронизировать выход. Проверьте интернет',
+        uk: 'Не вдалося синхронізувати вихід. Перевірте інтернет',
+        es: 'No se pudo sincronizar la salida. Comprueba Internet',
+      }));
+      // Результат турнира сервер-авторитетный: если подтверждённый выход не
+      // записался, возвращаем живой раунд вместо пустого/ложного лобби.
+      router.push({ pathname: '/tournament_round', params: { roomId } });
+    });
+  }, [myId, roomId, router, runtimeActive]);
 
   const submitCurrentTaskAnswer = useCallback(async (
     task: Question,
@@ -608,6 +643,8 @@ export default function TournamentRoundScreen() {
     // not to network latency from the scoring callable.
     scheduleFeedbackAdvance();
     try {
+      await waitForTournamentAnswerWindow(questionTiming);
+      if (!screenMountedRef.current || activeTaskSubmissionRef.current !== submissionToken) return;
       let result;
       try {
         result = await submitTaskAnswer(roomId, roundNo, task.taskId, answer, idempotencyKey);
@@ -667,14 +704,13 @@ export default function TournamentRoundScreen() {
   }, [allQuestionsResolved, finishing, roomId, roundNo, router]);
 
   const answer = useCallback((optionIndex: number) => {
-    if (phase !== 'question' || !question
-      || !isTournamentAnswerWindowOpen(questionTiming, tournamentNow())) return;
+    if (!answerSelectionActive || !question) return;
     const cached = taskAnswersRef.current.get(question.taskId) as { selectedIndex?: unknown } | undefined;
     const selectedIndex = typeof cached?.selectedIndex === 'number' ? cached.selectedIndex : optionIndex;
     setPicked(selectedIndex);
     const localCorrect = localAnswerVerdict(roomId, question, selectedIndex);
     void submitCurrentTaskAnswer(question, { selectedIndex }, localCorrect);
-  }, [phase, question, questionTiming, roomId, submitCurrentTaskAnswer]);
+  }, [answerSelectionActive, question, roomId, submitCurrentTaskAnswer]);
 
   /**
    * Подтверждение сборки фразы (translate) — вызывается, когда игрок собрал
@@ -683,15 +719,13 @@ export default function TournamentRoundScreen() {
    * ВЕСЬ собранный порядок слов, поэтому answer передаётся отдельно.
    */
   const answerTranslate = useCallback((tokens: string[]) => {
-    if (phase !== 'question' || !question
-      || !isTournamentAnswerWindowOpen(questionTiming, tournamentNow())) return;
+    if (!answerSelectionActive || !question) return;
     const localCorrect = localAnswerVerdict(roomId, question, tokens);
     void submitCurrentTaskAnswer(question, { tokens }, localCorrect);
-  }, [phase, question, questionTiming, roomId, submitCurrentTaskAnswer]);
+  }, [answerSelectionActive, question, roomId, submitCurrentTaskAnswer]);
 
   const answerMatch = useCallback((pairIndex: number, selectedIndex: number): Promise<'correct' | 'wrong' | 'rejected'> => {
-    if (phase !== 'question' || question?.kind !== 'match' || !roomId
-      || !isTournamentAnswerWindowOpen(questionTiming, tournamentNow())) return Promise.resolve('rejected');
+    if (!answerSelectionActive || question?.kind !== 'match' || !roomId) return Promise.resolve('rejected');
     const attemptQuestionKey = questionKey;
     if (!attemptQuestionKey) return Promise.resolve('rejected');
     const attemptKey = `${question.taskId}:${pairIndex}:${selectedIndex}`;
@@ -709,6 +743,7 @@ export default function TournamentRoundScreen() {
     if (localCorrect === null) {
       return (async () => {
         try {
+          await waitForTournamentAnswerWindow(questionTiming);
           const result = await submitSpeedMatchAttempt(roomId, roundNo, question.taskId, pairIndex, selectedIndex);
           if (!screenMountedRef.current || activeQuestionKeyRef.current !== attemptQuestionKey
             || activeMatchSelectionsRef.current.get(pairIndex) !== selectedIndex) return 'rejected';
@@ -746,7 +781,8 @@ export default function TournamentRoundScreen() {
       setMatchStars((value) => Math.max(0, value - 1));
     }
 
-    void submitSpeedMatchAttempt(roomId, roundNo, question.taskId, pairIndex, selectedIndex)
+    void waitForTournamentAnswerWindow(questionTiming)
+      .then(() => submitSpeedMatchAttempt(roomId, roundNo, question.taskId, pairIndex, selectedIndex))
       .then((result) => {
         if (!screenMountedRef.current || activeQuestionKeyRef.current !== attemptQuestionKey
           || activeMatchSelectionsRef.current.get(pairIndex) !== selectedIndex) return;
@@ -783,7 +819,7 @@ export default function TournamentRoundScreen() {
       });
 
     return Promise.resolve(localVerdict);
-  }, [phase, question, questionKey, questionTiming, roomId, roundNo, matchStatus]);
+  }, [answerSelectionActive, question, questionKey, questionTiming, roomId, roundNo, matchStatus]);
 
   const matchComplete = question?.kind === 'match'
     && question.matchPairs?.every((_, pairIndex) => (
@@ -810,7 +846,7 @@ export default function TournamentRoundScreen() {
 
   // Сервер перевёл комнату дальше — уходим, даже если локально не досчитали.
   useEffect(() => {
-    if (!runtimeActive || !freshSnapshot || !room || !roomId) return;
+    if (!runtimeActive || !freshSnapshot || !room || !roomId || forfeitingRef.current) return;
     if (isTableState(room.state) || room.state === 'final') {
       activeTaskSubmissionRef.current = null;
       activeQuestionKeyRef.current = null;
@@ -844,7 +880,7 @@ export default function TournamentRoundScreen() {
   if (room?.state === 'cancelled') {
     return (
       <View style={styles.root}>
-        <TournamentEdgeState kind="cancelled" onRetry={() => router.replace('/tournaments')} />
+        <TournamentEdgeState kind="cancelled" onRetry={() => closeTournamentFlow(router)} />
       </View>
     );
   }
@@ -898,7 +934,7 @@ export default function TournamentRoundScreen() {
             сегменты на узких экранах. */}
         <View style={styles.header}>
           <Pressable
-            onPress={() => { setForfeitError(''); setForfeitConfirmVisible(true); }}
+            onPress={() => setForfeitConfirmVisible(true)}
             style={styles.forfeitButton}
             accessibilityRole="button"
             accessibilityLabel="Выйти из текущего турнира"
@@ -910,7 +946,7 @@ export default function TournamentRoundScreen() {
             Вопрос {index + 1} <Text style={styles.progressLabelDim}>из {total}</Text>
           </Text>
           <V2Segments total={total} done={index + 1} />
-          <TimerRing seconds={displayedSecondsLeft} total={secondsForQuestion} />
+          <TimerRing seconds={displayedSecondsLeft} total={answerWindowSeconds} />
         </View>
         <View style={styles.statsRow}>
           <View style={styles.modePill}>
@@ -955,7 +991,7 @@ export default function TournamentRoundScreen() {
             matchPairs={question.matchPairs ?? []}
             matchOptions={question.matchOptions}
             status={matchStatus}
-            disabled={phase !== 'question' || !isTournamentAnswerWindowOpen(questionTiming, tournamentNow())}
+            disabled={!answerSelectionActive}
             onSelect={answerMatch}
           />
         ) : question.kind === 'translate' ? (
@@ -964,7 +1000,7 @@ export default function TournamentRoundScreen() {
             wordBank={question.wordBank}
             requiredTokenCount={question.requiredTokenCount}
             revealed={feedbackVisible}
-            disabled={phase !== 'question' || !isTournamentAnswerWindowOpen(questionTiming, tournamentNow())}
+            disabled={!answerSelectionActive}
             correct={feedbackCorrect}
             onSubmit={answerTranslate}
           />
@@ -978,7 +1014,7 @@ export default function TournamentRoundScreen() {
                 index={optionIndex}
                 picked={picked}
                 revealed={feedbackVisible}
-                disabled={phase !== 'question' || !isTournamentAnswerWindowOpen(questionTiming, tournamentNow())}
+                disabled={!answerSelectionActive}
                 displayedCorrect={feedbackCorrect}
                 authoritativeCorrectIndex={feedbackCorrectIndex}
                 onPress={answer}
@@ -1062,18 +1098,15 @@ export default function TournamentRoundScreen() {
       {/* Слой полётов поверх экрана: звёзды, конфетти, золотая волна.
           pointerEvents=none внутри — тапы проходят сквозь него к вариантам. */}
       <TournamentFxHost ref={fxRef} width={fxSize.width} height={fxSize.height} />
-      <Sheet visible={forfeitConfirmVisible} onClose={() => !forfeiting && setForfeitConfirmVisible(false)}>
+      <Sheet visible={forfeitConfirmVisible} onClose={() => setForfeitConfirmVisible(false)}>
         <Text style={styles.forfeitTitle}>Выйти из турнира?</Text>
         <Text style={styles.forfeitText}>
           Вы покинете текущий турнир и потеряете возможность получить награду.
         </Text>
         <Text style={styles.forfeitWarning}>Взнос не возвращается.</Text>
-        {forfeitError ? <Text style={styles.forfeitError}>{forfeitError}</Text> : null}
         <View style={styles.forfeitActions}>
-          <V2Cta tone="ghost" disabled={forfeiting} onPress={() => setForfeitConfirmVisible(false)}>Остаться</V2Cta>
-          <V2Cta tone="ghost" disabled={forfeiting} onPress={confirmForfeit}>
-            {forfeiting ? 'Выходим…' : 'Подтвердить выход'}
-          </V2Cta>
+          <V2Cta tone="ghost" onPress={() => setForfeitConfirmVisible(false)}>Остаться</V2Cta>
+          <V2Cta tone="ghost" onPress={confirmForfeit}>Подтвердить выход</V2Cta>
         </View>
       </Sheet>
     </View>

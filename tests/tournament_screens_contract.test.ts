@@ -181,7 +181,10 @@ describe('экраны режима «Турниры»', () => {
     expect(table).toContain('обгон');
     // Абсолютное позиционирование строк — иначе перестановка двигает соседей.
     expect(table).toMatch(/position:\s*'absolute'/);
-    expect(table).toContain('ZoomIn.delay(revealDelayMs + 160)');
+    // Результаты видны в первый кадр; анимируется только последующая смена мест.
+    expect(table).toContain('const revealOpacity = useSharedValue(1)');
+    expect(table).not.toContain('revealDelayMs');
+    expect(table).not.toContain('ZoomIn.delay');
   });
 
   it('межраундовая таблица показывает все 16 строк в доступном скролле', () => {
@@ -231,7 +234,7 @@ describe('экраны режима «Турниры»', () => {
 
   it('результаты закрываются только крестиком в меню турниров', () => {
     const results = read('app/tournament_results.tsx');
-    expect(results).toContain("const closeResults = useCallback(() => router.replace('/tournaments')");
+    expect(results).toContain('const closeResults = useCallback(() => closeTournamentFlow(router)');
     expect(results).toContain('accessibilityLabel="Закрыть"');
     expect(results).toContain('<Ionicons name="close"');
     expect(results).not.toContain('>На главную</V2Cta>');
@@ -383,8 +386,52 @@ describe('экраны режима «Турниры»', () => {
     // составным условием (нет комнаты / уже заходим / не хватает жемчужин).
     // Проверяем СУТЬ защиты, а не конкретную формулировку пропса.
     const home = read('app/(tabs)/tournaments.tsx');
-    expect(home).toMatch(/if \(!\w*[Rr]oomId \|\| joining\) return/);
-    expect(home).toMatch(/disabled=\{[^}]*joining[^}]*\}/);
+    const entryBlock = home.slice(
+      home.indexOf('const enterLobby = useCallback'),
+      home.indexOf('const contentPadding'),
+    );
+    expect(home).toContain('const activeEntryKeyRef = useRef<string | null>(null);');
+    expect(home).toContain('beginTournamentEntryTransition');
+    expect(entryBlock).toContain('activeEntryKeyRef.current !== entryKey');
+    expect(entryBlock).toContain('activeEntryKeyRef.current === entryKey');
+    expect(entryBlock).toContain("transitionState !== 'advanced'");
+    expect(entryBlock).toContain('resolvedRoomId !== joinRoomId');
+    expect(entryBlock).toContain('recoverCancelledTournamentEntry(result.roomId, entryGeneration)');
+    expect(home).toContain('const entryGenerationRef = useRef(0);');
+    expect(home).toContain('entryGenerationRef.current !== cancelledGeneration');
+    expect(entryBlock).not.toContain('joiningRef.current = false');
+    expect(entryBlock.indexOf('router.push(')).toBeGreaterThanOrEqual(0);
+    expect(entryBlock.indexOf('router.push(')).toBeLessThan(entryBlock.indexOf('await startTournamentNow()'));
+    expect(entryBlock.indexOf('router.push(')).toBeLessThan(entryBlock.indexOf('await joinTournament('));
+    expect(home).not.toContain("joining ? 'Заходим…'");
+    expect(home).not.toContain('disabled={joining}');
+  });
+
+  it('возврат взноса после выхода тихо обновляет баланс меню турниров', () => {
+    const home = read('app/(tabs)/tournaments.tsx');
+    const shards = read('app/shards_system.ts');
+
+    expect(home).toContain("onAppEvent('shards_balance_updated'");
+    expect(home).toContain('if (activeEntryKeyRef.current) {');
+    expect(home).toContain('deferredBalanceRefreshRef.current = true;');
+    expect(home).toContain('reconcileDeferredBalance()');
+    expect(home).toContain('refreshShardsBalanceFromCloudAuthoritative()');
+    expect(home).not.toContain('replaceShardsBalanceLocal(serverBalance');
+    expect(home).not.toContain('replaceShardsBalanceLocal,');
+    expect(home).toMatch(/setCoins\(serverBalance\);[\s\S]{0,240}deferredBalanceRefreshRef\.current = true;[\s\S]{0,120}reconcileDeferredBalance\(\)/);
+    expect(home).toContain('setCoins(payload.balance);');
+    expect(home).not.toContain('getShardsBalance().then(setCoins)');
+    const authoritativeRefresh = shards.slice(
+      shards.indexOf('export const refreshShardsBalanceFromCloudAuthoritative'),
+      shards.indexOf('/** Локальный баланс', shards.indexOf('export const refreshShardsBalanceFromCloudAuthoritative')),
+    );
+    expect(authoritativeRefresh).toContain('withAccountTransitionLock(async () =>');
+    expect(authoritativeRefresh).toContain('replaceShardsBalanceLocalUnlocked');
+    expect(authoritativeRefresh).toContain('shards_updated_at_ms');
+    expect(authoritativeRefresh).toContain('const documentUpdatedAtMs = parseUpdatedAtMs(data.updatedAt)');
+    expect(authoritativeRefresh).toContain('Math.max(shardUpdatedAtMs ?? 0, documentUpdatedAtMs ?? 0)');
+    expect(authoritativeRefresh).toContain('if (serverUpdatedAtMs <= 0) return null');
+    expect(authoritativeRefresh).not.toContain('updatedAtMs: Date.now()');
   });
 
   it('roomId вычисляется той же формулой, что на сервере', () => {
@@ -435,6 +482,7 @@ describe('экраны режима «Турниры»', () => {
 
     expect(lobby).toContain('useTournamentRoom');
     expect(round).toContain('useTournamentRoom');
+    expect(lobby).toContain('markTournamentEntryTransitionAdvanced(entryKey)');
     expect(lobby).not.toContain('const DEMO_SEATS');
     expect(round).not.toContain('const DEMO_QUESTIONS');
   });
@@ -445,15 +493,56 @@ describe('экраны режима «Турниры»', () => {
     expect(client).toContain('export function leaveTournament(roomId: string)');
     expect(client).toContain("'tournamentLeave'");
     expect(lobby).toContain('leaveTournament');
-    expect(lobby).toContain('await leaveTournament(roomId)');
-    expect(lobby).toContain("const [leaving, setLeaving] = useState(false)");
-    expect(lobby).toContain('disabled={leaving}');
+    const leaveBlock = lobby.slice(
+      lobby.indexOf('const leaveLobby = useCallback'),
+      lobby.indexOf('/**', lobby.indexOf('const leaveLobby = useCallback')),
+    );
+    expect(lobby).toContain('cancelTournamentEntryTransition');
+    expect(lobby).toContain('leavingRef.current');
+    expect(leaveBlock).not.toContain('await leaveTournament(roomId)');
+    expect(leaveBlock.indexOf('closeTournamentFlow(router)')).toBeGreaterThanOrEqual(0);
+    expect(leaveBlock.indexOf('closeTournamentFlow(router)'))
+      .toBeLessThan(leaveBlock.indexOf('leaveTournament(roomId)'));
+    expect((leaveBlock.match(/Haptics\.impactAsync/g) ?? [])).toHaveLength(1);
+    expect(leaveBlock.indexOf('Haptics.impactAsync'))
+      .toBeLessThan(leaveBlock.indexOf('closeTournamentFlow(router)'));
+    expect(lobby).not.toContain("leaving ? 'Выходим…'");
+    expect(lobby).not.toContain('disabled={leaving}');
+    expect(lobby).not.toMatch(/useEffect\(\(\) => \(\) => \{\s*if \(entryKey\)/);
+    expect(lobby).toContain("BackHandler.addEventListener('hardwareBackPress'");
+    expect(lobby).toContain('leaveLobby();');
+    expect(leaveBlock).not.toContain('getShardsBalance()');
+    expect(leaveBlock).toContain('runTournamentMutationWithRetry');
+    expect(leaveBlock).toContain('refreshShardsBalanceFromCloudAuthoritative()');
+    expect(leaveBlock).toContain('myId ?? await getStableId().catch(() => null)');
+    expect(leaveBlock).toContain('resolveTournamentExitStatus(roomId, exitPlayerId)');
+    expect(leaveBlock).toContain("pathname: '/tournament_lobby'");
     expect(lobby).toContain('60%');
     expect(lobby).toContain('25%');
     expect(lobby).toContain('15%');
     expect(lobby).toContain('useReduceMotion');
     expect(lobby).toContain('withTiming');
     expect(lobby).toMatch(/bankAmountSlot:\s*\{[^}]*minWidth:[^}]*fontVariant:\s*\['tabular-nums'\]/s);
+  });
+
+  it('подтверждённый выход из активного раунда закрывает экран до сетевого ответа', () => {
+    const round = read('app/tournament_round.tsx');
+    const forfeitBlock = round.slice(
+      round.indexOf('const confirmForfeit = useCallback'),
+      round.indexOf('const submitCurrentTaskAnswer'),
+    );
+
+    expect(round).toContain('forfeitingRef.current');
+    expect(forfeitBlock).not.toContain('await forfeitTournament(roomId)');
+    expect(forfeitBlock.indexOf('closeTournamentFlow(router)')).toBeGreaterThanOrEqual(0);
+    expect(forfeitBlock.indexOf('closeTournamentFlow(router)'))
+      .toBeLessThan(forfeitBlock.indexOf('forfeitTournament(roomId)'));
+    expect(forfeitBlock).toContain('runTournamentMutationWithRetry');
+    expect(forfeitBlock).toContain('myId ?? await getStableId().catch(() => null)');
+    expect(forfeitBlock).toContain('resolveTournamentExitStatus(roomId, exitPlayerId)');
+    expect(round).not.toContain("forfeiting ? 'Выходим…'");
+    expect(round).not.toContain('disabled={forfeiting}');
+    expect(forfeitBlock).toContain("pathname: '/tournament_round'");
   });
 
   it('анимирует только новые серверские bot_arrival события банка без выдуманного прироста', () => {
@@ -593,6 +682,13 @@ describe('экраны режима «Турниры»', () => {
     expect(() => read('app/(tabs)/tournaments.tsx')).not.toThrow();
   });
 
+  it('главная вкладка турниров не показывает кнопку назад поверх таббара', () => {
+    const home = read('app/(tabs)/tournaments.tsx');
+    expect(home).not.toContain('safeRouterBack');
+    expect(home).not.toContain('accessibilityLabel="Назад"');
+    expect(home).not.toContain('name="chevron-back"');
+  });
+
   it('интерактивные элементы доступны для скринридера', () => {
     for (const screen of SCREENS) {
       const source = read(screen);
@@ -607,7 +703,7 @@ describe('экраны режима «Турниры»', () => {
 describe('tournament results navigation', () => {
   it('closes directly to the tournament menu instead of navigating back to the table', () => {
     const results = read('app/tournament_results.tsx');
-    expect(results).toContain("const closeResults = useCallback(() => router.replace('/tournaments'), [router]);");
+    expect(results).toContain('const closeResults = useCallback(() => closeTournamentFlow(router), [router]);');
     expect(results).toContain('accessibilityLabel="Закрыть"');
     expect(results).toContain('onPress={closeResults}');
     expect(results).toContain('<Ionicons name="close"');

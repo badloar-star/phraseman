@@ -13,6 +13,11 @@ describe('tournament temporary test-mode client contract', () => {
     expect(source).toContain("testModeReleaseActive ? 'Играть сейчас · тест'");
     expect(source).toContain("? 'Тестовый вход · бесплатно · 16 игроков'");
     expect(source).toContain("instantEntry\n        ? await startTournamentNow()\n        : await joinTournament(joinRoomId as string)");
+    const entryBlock = source.slice(
+      source.indexOf('const enterLobby = useCallback'),
+      source.indexOf('const contentPadding'),
+    );
+    expect(entryBlock.indexOf('router.push(')).toBeLessThan(entryBlock.indexOf('await startTournamentNow()'));
     expect(source).toContain('setCoins((current) => Math.max(0, current - effectiveEntryGems));');
   });
 

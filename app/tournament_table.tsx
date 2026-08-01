@@ -15,7 +15,6 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import TapScale from '../components/TapScale';
 import Animated, {
   FadeIn,
-  ZoomIn,
   useAnimatedStyle,
   useSharedValue,
   withDelay,
@@ -26,7 +25,6 @@ import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { LinearGradient } from 'expo-linear-gradient';
 import AvatarView from '../components/AvatarView';
-import SkeletonBlock from '../components/SkeletonShimmer';
 import {
   METAL,
   motion,
@@ -44,6 +42,7 @@ import {
   hasTournamentTableSettledScores, isRoundState, orderTournamentPlayersForDisplay, resolveTournamentDisplayRoundNo, resolveTournamentRoomIdParam, shouldTableEnterRound, tournamentSharedPlacement, useTournamentRoom, type RoomPlayer } from './tournament_client';
 import { getStableId } from './stable_id';
 import { useLocalSearchParams } from 'expo-router';
+import { closeTournamentFlow } from './tournament_navigation';
 
 /** Ступень оттенка акцента для полосы-рейтинга (прозрачность = насыщенность). */
 function barTint(hex: string, alpha: number): string {
@@ -179,7 +178,7 @@ export default function TournamentTableScreen() {
   // зачем: зритель должен уметь выйти с таблицы в любой момент — сервер его
   // отсюда не уводит. Возврат в хаб турниров, а не router.back(): на этот
   // экран попадают и по прямой ссылке, где истории навигации нет.
-  const leaveTable = useCallback(() => router.replace('/tournaments'), [router]);
+  const leaveTable = useCallback(() => closeTournamentFlow(router), [router]);
 
   const myScore = useMemo(() => rows.find((row) => row.isYou)?.score ?? 0, [rows]);
   const scoresSettled = hasTournamentTableSettledScores(room?.state, completedRound);
@@ -199,7 +198,7 @@ export default function TournamentTableScreen() {
   if (room?.state === 'cancelled') {
     return (
       <View style={styles.root}>
-        <TournamentEdgeState kind="cancelled" onRetry={() => router.replace('/tournaments')} />
+        <TournamentEdgeState kind="cancelled" onRetry={() => closeTournamentFlow(router)} />
       </View>
     );
   }
@@ -213,11 +212,7 @@ export default function TournamentTableScreen() {
         </View>
         {/* Зритель не играет — своих очков у него нет, показываем лидера.
             Счётчик в языке V2: пилюля со звездой и bump при изменении. */}
-        {scoresSettled ? (
-          <V2Counter value={spectating ? (rows[0]?.score ?? 0) : myScore} tone="stars" />
-        ) : (
-          <SkeletonBlock width={72} height={48} borderRadius={24} />
-        )}
+        <V2Counter value={spectating ? (rows[0]?.score ?? 0) : myScore} tone="stars" />
         {/* зачем 2026-07-27 (владелец: «экран таблицы невозможно закрыть, нет
             крестика»): у ЗРИТЕЛЯ таблица — тупик, сервер его никуда не уводит
             (см. `if (spectating) return` выше), и выйти было нечем. Игроку
@@ -238,27 +233,16 @@ export default function TournamentTableScreen() {
         nestedScrollEnabled
         accessibilityLabel="Все участники турнира"
       >
-        {scoresSettled
-          ? rows.map((row, index) => (
-            <TableRow
-              key={row.id}
-              row={row}
-              place={row.place}
-              layoutIndex={index}
-              previousLayoutIndex={previousVisibleIndexesRef.current.get(row.id) ?? index}
-              maxScore={maxScore}
-              revealDelayMs={160 + index * 85}
-            />
-          ))
-          : Array.from({ length: Math.max(1, rows.length) }, (_, index) => (
-            <SkeletonBlock
-              key={`pending-score-${index}`}
-              width="100%"
-              height={ROW_HEIGHT}
-              borderRadius={radius.md}
-              style={{ position: 'absolute', top: index * (ROW_HEIGHT + ROW_GAP) }}
-            />
-          ))}
+        {rows.map((row, index) => (
+          <TableRow
+            key={row.id}
+            row={row}
+            place={row.place}
+            layoutIndex={index}
+            previousLayoutIndex={previousVisibleIndexesRef.current.get(row.id) ?? index}
+            maxScore={maxScore}
+          />
+        ))}
       </ScrollView>
 
       <Text style={[styles.hint, { paddingBottom: insets.bottom + 12 }]}>
@@ -275,14 +259,13 @@ export default function TournamentTableScreen() {
 // ── Строка таблицы ──────────────────────────────────────────────────────────
 
 const TableRow = memo(function TableRow({
-  row, place, layoutIndex, previousLayoutIndex, maxScore, revealDelayMs,
+  row, place, layoutIndex, previousLayoutIndex, maxScore,
 }: {
   row: Row;
   place: number;
   layoutIndex: number;
   previousLayoutIndex: number;
   maxScore: number;
-  revealDelayMs: number;
 }) {
   const P = useTournamentPalette();
   const styles = React.useMemo(() => makeStyles(P), [P]);
@@ -291,11 +274,10 @@ const TableRow = memo(function TableRow({
   const fromY = previousLayoutIndex * (ROW_HEIGHT + ROW_GAP);
   const toY = layoutIndex * (ROW_HEIGHT + ROW_GAP);
   const translateY = useSharedValue(fromY);
-  // The first frame deliberately starts below full opacity: a server snapshot
-  // may already contain the settled ranking, so the visible reveal must not
-  // depend on a later reorder arriving from Firestore.
-  const revealOpacity = useSharedValue(0);
-  const revealScale = useSharedValue(0.96);
+  // Rows are fully visible on the first frame. Only later rank changes use
+  // FLIP motion; results must never look like another loading state.
+  const revealOpacity = useSharedValue(1);
+  const revealScale = useSharedValue(1);
 
   const overtook = row.prevPlace > place;
   const fillRatio = Math.max(0.12, row.score / maxScore);
@@ -306,11 +288,6 @@ const TableRow = memo(function TableRow({
       withSpring(toY, motion.reorder),
     );
   }, [layoutIndex, toY, translateY]);
-
-  useEffect(() => {
-    revealOpacity.value = withDelay(revealDelayMs, withSpring(1, { damping: 22, stiffness: 260 }));
-    revealScale.value = withDelay(revealDelayMs, withSpring(1, { damping: 18, stiffness: 220 }));
-  }, [revealDelayMs, revealOpacity, revealScale]);
 
   const animatedStyle = useAnimatedStyle(() => ({
     opacity: revealOpacity.value,
@@ -368,7 +345,6 @@ const TableRow = memo(function TableRow({
       <View style={styles.scoreRow}>
         <StarGlyph size={13} color={P.gold} />
         <Animated.Text
-          entering={ZoomIn.delay(revealDelayMs + 160).duration(180)}
           style={styles.score}
           allowFontScaling={false}
         >

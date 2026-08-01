@@ -888,6 +888,32 @@ export function leaveTournament(roomId: string) {
   return callFunction<TournamentLeaveResult>('tournamentLeave', { roomId });
 }
 
+export type TournamentExitStatus = 'active' | 'left' | 'forfeited' | 'unknown';
+
+/** One forced server read, used only after both idempotent exit attempts fail. */
+export async function resolveTournamentExitStatus(
+  roomId: string,
+  playerId: string | null,
+): Promise<TournamentExitStatus> {
+  if (!roomId || !playerId) return 'unknown';
+  try {
+    const firestore = (await import('@react-native-firebase/firestore')).default;
+    const snapshot = await firestore()
+      .collection('tournamentRooms')
+      .doc(roomId)
+      .get({ source: 'server' });
+    if (!snapshot.exists) return 'left';
+    const players = Array.isArray(snapshot.data()?.players)
+      ? snapshot.data()?.players as Array<Record<string, unknown>>
+      : [];
+    const player = players.find((candidate) => String(candidate.id ?? '') === playerId);
+    if (!player) return 'left';
+    return player.forfeitedAtMs !== undefined ? 'forfeited' : 'active';
+  } catch {
+    return 'unknown';
+  }
+}
+
 export type TournamentForfeitResult = {
   ok: boolean;
   alreadyForfeited: boolean;
@@ -1029,6 +1055,18 @@ export function canRetryTournamentTaskAnswer(
   return !timing || nowMs <= (timing.answerDeadlineAtMs ?? timing.deadlineAtMs) + TOURNAMENT_TASK_SUBMISSION_GRACE_MS;
 }
 
+/** Retry one ambiguous callable response; leave/forfeit receipts make replay safe. */
+export async function runTournamentMutationWithRetry<T>(
+  operation: () => Promise<T>,
+): Promise<T> {
+  try {
+    return await operation();
+  } catch (error) {
+    if (!isRetryableTournamentTaskAnswerError(error)) throw error;
+    return operation();
+  }
+}
+
 /** Input is permitted only during the server-authored answer interval. */
 export function isTournamentAnswerWindowOpen(
   timing: Pick<RoomTaskTiming, 'startsAtMs' | 'deadlineAtMs' | 'readingEndsAtMs' | 'answerDeadlineAtMs'> | null | undefined,
@@ -1038,6 +1076,19 @@ export function isTournamentAnswerWindowOpen(
   const readingEndsAtMs = timing.readingEndsAtMs ?? timing.startsAtMs;
   const answerDeadlineAtMs = timing.answerDeadlineAtMs ?? timing.deadlineAtMs;
   return nowMs >= readingEndsAtMs && nowMs < answerDeadlineAtMs;
+}
+
+/**
+ * Visible answers react from the first frame of the task. Transport still
+ * waits for readingEndsAtMs, but the user must never tap a dead card.
+ */
+export function isTournamentAnswerSelectionWindowOpen(
+  timing: Pick<RoomTaskTiming, 'startsAtMs' | 'deadlineAtMs' | 'answerDeadlineAtMs'> | null | undefined,
+  nowMs = tournamentNow(),
+): boolean {
+  if (!timing) return true;
+  const answerDeadlineAtMs = timing.answerDeadlineAtMs ?? timing.deadlineAtMs;
+  return nowMs >= timing.startsAtMs && nowMs < answerDeadlineAtMs;
 }
 
 /** First accepted task answer is authoritative; the same key safely replays. */

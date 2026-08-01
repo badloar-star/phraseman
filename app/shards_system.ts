@@ -336,6 +336,50 @@ export const getShardsBalance = async (): Promise<number> => {
   }
 };
 
+/**
+ * Explicit server read for competitive mutations whose callable response was
+ * delayed or retried. Unlike getShardsBalance(), this never treats the local
+ * AsyncStorage snapshot as authoritative.
+ */
+export const refreshShardsBalanceFromCloudAuthoritative = async (): Promise<number | null> => {
+  try {
+    if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
+    return await withAccountTransitionLock(async () => {
+      // Keep the forced read and local commit in one account mutation lane.
+      // A purchase/gift cannot commit locally between them and then be
+      // overwritten by this older snapshot.
+      const accountToken = captureAccountGeneration();
+      const stableId = await getCanonicalUserId();
+      if (!stableId || !isCurrentAccountGeneration(accountToken, stableId)) return null;
+      const snapshot = await firestore()
+        .collection('users')
+        .doc(stableId)
+        .get({ source: 'server' });
+      if (!isCurrentAccountGeneration(accountToken, stableId)) return null;
+      const data = snapshot.data?.() ?? {};
+      const balance = parseShardBalance(data.shards);
+      if (balance === null) return null;
+      const shardUpdatedAtMs = parseUpdatedAtMs(data.shards_updated_at_ms);
+      // Deployed join/leave stamp the whole user document but predate the
+      // dedicated shard version field. Use the newer of both server versions;
+      // preferring an old shard field would incorrectly discard a refund.
+      const documentUpdatedAtMs = parseUpdatedAtMs(data.updatedAt);
+      const serverUpdatedAtMs = Math.max(shardUpdatedAtMs ?? 0, documentUpdatedAtMs ?? 0);
+      if (serverUpdatedAtMs <= 0) return null;
+      const applied = await replaceShardsBalanceLocalUnlocked(balance, {
+        // Never invent a fresh timestamp for a possibly stale snapshot: a
+        // later purchase/gift response must remain able to win by version.
+        updatedAtMs: serverUpdatedAtMs,
+        op: 'replace',
+        reason: 'tournament_server_reconcile',
+      }, accountToken);
+      return applied ? balance : null;
+    });
+  } catch {
+    return null;
+  }
+};
+
 /** Локальный баланс = значение с сервера (после Cloud Function, без client-side spend). */
 export type AccountGenerationShardBalanceOutcome = 'applied' | 'already-newer' | 'stale-generation' | 'failed';
 

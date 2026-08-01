@@ -17,7 +17,7 @@
 // заглушек — экран ВСЕГДА рабочий (требование владельца).
 // ═══════════════════════════════════════════════════════════════════════════
 
-import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Image } from 'expo-image'; // guard-ok: декоративная жемчужина, число рядом — реальный индикатор
 import { StyleSheet, Text, View } from 'react-native';
 import Animated, {
@@ -37,15 +37,17 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import { useRuntimeActive } from '../../hooks/use_runtime_active';
-// зачем: голый router.back() крашит Android/Fabric при teardown — общий контракт.
-import { safeRouterBack } from '../navigation_back';
 import TapScale from '../../components/TapScale';
 import { useTopFadeScroll } from '../../components/TopFadeScrollContext';
 import BouncyScrollView from '../../components/BouncyScrollView';
 import { useTheme } from '../../components/ThemeContext';
 import AvatarView from '../../components/AvatarView';
 import { coinIconForBalance } from '../coin_icons';
-import { getShardsBalance, peekLastKnownShardsBalance } from '../shards_system';
+import {
+  getShardsBalance,
+  peekLastKnownShardsBalance,
+  refreshShardsBalanceFromCloudAuthoritative,
+} from '../shards_system';
 import {
   loadSeasonStandings,
   loadWeeklyBankInfo,
@@ -83,13 +85,23 @@ import {
   isRoundState,
   isTableState,
   joinTournament,
+  leaveTournament,
   loadSchedule,
+  resolveTournamentExitStatus,
+  runTournamentMutationWithRetry,
   startTournamentNow,
   tournamentDateKey,
   tournamentNow,
   tournamentRoomId,
   useTournamentRoom,
 } from '../tournament_client';
+import {
+  beginTournamentEntryTransition,
+  settleTournamentEntryTransition,
+} from '../tournament_entry_transition';
+import { closeTournamentFlow } from '../tournament_navigation';
+import { actionToastTri, emitAppEvent, onAppEvent } from '../events';
+import { getStableId } from '../stable_id';
 
 // зачем 2026-07-27: хаб турниров стал push-экраном (релиз без турниров), и
 // гвардом видимости работает честный фокус экрана — контекст табов ему больше
@@ -239,14 +251,14 @@ export default function TournamentsScreen() {
   const router = useRouter();
   const insets = useStableSafeAreaInsets();
   const topFadeScroll = useTopFadeScroll();
-  const goBack = useCallback(() => safeRouterBack(router, '/(tabs)/home' as any), [router]);
-
   // Баланс синхронно из кэша: без «0 → значение» прыжка на первом кадре.
   const [coins, setCoins] = useState<number>(() => peekLastKnownShardsBalance() ?? 0);
   const [bankInfo, setBankInfo] = useState<WeeklyBankInfo | null>(null);
   const bank = bankInfo?.bankGems ?? 0;
   const [confirmVisible, setConfirmVisible] = useState(false);
-  const [joining, setJoining] = useState(false);
+  const activeEntryKeyRef = useRef<string | null>(null);
+  const entryGenerationRef = useRef(0);
+  const deferredBalanceRefreshRef = useRef(false);
   const [joinError, setJoinError] = useState('');
   const [weeklyPrize, setWeeklyPrize] = useState<{ place: number; gems: number } | null>(null);
   // зачем 2026-07-27: карточка банка была мёртвой — игрок видел цифру 338 и не
@@ -275,7 +287,13 @@ export default function TournamentsScreen() {
   }, []);
 
   useEffect(() => {
-    void getShardsBalance().then(setCoins).catch(() => {});
+    void getShardsBalance().then((balance) => {
+      if (activeEntryKeyRef.current) {
+        deferredBalanceRefreshRef.current = true;
+        return;
+      }
+      setCoins(balance);
+    }).catch(() => {});
     void loadWeeklyBankInfo().then(async (info) => {
       setBankInfo(info);
       // зачем: банк начисляется кроном ночью — без шторки игрок узнал бы о
@@ -288,6 +306,55 @@ export default function TournamentsScreen() {
       setWeeklyPrize({ place: last.myPlace, gems: last.myGems });
     }).catch(() => {});
   }, []);
+
+  useEffect(() => {
+    const subscription = onAppEvent('shards_balance_updated', (payload) => {
+      // Не затираем более свежий optimistic debit уже начавшегося входа.
+      if (activeEntryKeyRef.current) {
+        deferredBalanceRefreshRef.current = true;
+        return;
+      }
+      setCoins(payload.balance);
+    });
+    return () => subscription.remove();
+  }, []);
+
+  const reconcileDeferredBalance = useCallback(() => {
+    if (!deferredBalanceRefreshRef.current || activeEntryKeyRef.current) return;
+    deferredBalanceRefreshRef.current = false;
+    void refreshShardsBalanceFromCloudAuthoritative().then((balance) => {
+      if (balance === null) deferredBalanceRefreshRef.current = true;
+    });
+  }, []);
+
+  const recoverCancelledTournamentEntry = useCallback((
+    cancelledRoomId: string,
+    cancelledGeneration: number,
+  ) => {
+    void runTournamentMutationWithRetry(() => leaveTournament(cancelledRoomId))
+      .then(() => {
+        void refreshShardsBalanceFromCloudAuthoritative();
+      })
+      .catch(async () => {
+        void refreshShardsBalanceFromCloudAuthoritative();
+        const stableId = await getStableId().catch(() => null);
+        const exitStatus = await resolveTournamentExitStatus(cancelledRoomId, stableId);
+        // Потерянный ответ callable не означает, что выход не применился.
+        // Сначала проверяем серверную комнату и не возвращаем уже вышедшего
+        // игрока в лобби старого входа.
+        if (exitStatus === 'left' || exitStatus === 'forfeited') return;
+        // Старый завершившийся запрос не имеет права перебить более новый вход.
+        if (entryGenerationRef.current !== cancelledGeneration) return;
+        // Сервер всё ещё считает участие активным (или статус недоступен):
+        // возвращаем комнату, где выход можно повторить.
+        emitAppEvent('action_toast', actionToastTri('error', {
+          ru: 'Выход не синхронизирован. Турнир снова открыт',
+          uk: 'Вихід не синхронізовано. Турнір знову відкрито',
+          es: 'La salida no se sincronizó. El torneo se abrió de nuevo',
+        }));
+        router.push({ pathname: '/tournament_lobby', params: { roomId: cancelledRoomId } });
+      });
+  }, [router]);
 
   const nextSlot = useMemo(() => pickNextSlot(schedule?.slots ?? []), [schedule]);
   // зачем 2026-07-27: слот для ВХОДА и комната для ПРОСМОТРА — разные вещи.
@@ -464,10 +531,28 @@ export default function TournamentsScreen() {
     // Комната нужна только для входа по расписанию: мгновенный турнир сервер
     // создаёт сам, поэтому там пустой joinRoomId — нормальное состояние.
     const targetRoomId = instantEntry ? 'instant' : joinRoomId;
-    if (!targetRoomId || joining) return;
-    setJoining(true);
+    if (!targetRoomId || activeEntryKeyRef.current) return;
     const balanceBefore = coins;
+    const entryGeneration = entryGenerationRef.current + 1;
+    entryGenerationRef.current = entryGeneration;
     setCoins((current) => Math.max(0, current - effectiveEntryGems)); // guard-ok: optimistic display mirrors the server-owned test/scheduled price
+    let entryKey = '';
+    entryKey = beginTournamentEntryTransition(() => {
+      // Callback старого входа не имеет права откатывать баланс нового.
+      if (activeEntryKeyRef.current !== entryKey) return;
+      activeEntryKeyRef.current = null;
+      setCoins(balanceBefore);
+      reconcileDeferredBalance();
+    });
+    activeEntryKeyRef.current = entryKey;
+    setConfirmVisible(false);
+    setJoinError('');
+    router.push({
+      pathname: '/tournament_lobby',
+      params: instantEntry
+        ? { entryKey }
+        : { roomId: joinRoomId as string, entryKey },
+    });
     try {
       // Окно закрыто — сервер соберёт обычную комнату прямо сейчас и сразу
       // посадит в неё игрока (вход и списание идут одной транзакцией, иначе
@@ -475,9 +560,21 @@ export default function TournamentsScreen() {
       const result = (instantEntry
         ? await startTournamentNow()
         : await joinTournament(joinRoomId as string)) as { gemsLeft?: number; roomId?: string } | undefined;
-      if (typeof result?.gemsLeft === 'number') setCoins(Math.max(0, result.gemsLeft)); // guard-ok: согласование с серверным балансом
-      setConfirmVisible(false);
-      setJoinError('');
+      const ownsEntry = activeEntryKeyRef.current === entryKey;
+      const transitionState = settleTournamentEntryTransition(entryKey);
+      if (!ownsEntry || transitionState === 'cancelled' || transitionState === 'missing') {
+        if (result?.roomId) recoverCancelledTournamentEntry(result.roomId, entryGeneration);
+        return;
+      }
+      activeEntryKeyRef.current = null;
+      if (typeof result?.gemsLeft === 'number') {
+        const serverBalance = Math.max(0, result.gemsLeft);
+        setCoins(serverBalance); // guard-ok: согласование с серверным балансом
+      }
+      // Persist only a versioned server snapshot. Stamping callable gemsLeft
+      // with a fast device clock could suppress a later valid server refund.
+      deferredBalanceRefreshRef.current = true;
+      reconcileDeferredBalance();
       // зачем 2026-07-27 (владелец: один турнир на окно): помечаем окно как
       // отыгранное СРАЗУ. Вернувшись с турнира, игрок увидит отсчёт до
       // следующего турнира, а не живую кнопку, которая упадёт slot_already_played.
@@ -496,9 +593,19 @@ export default function TournamentsScreen() {
       // при заполнении сажает игрока в СЛЕДУЮЩУЮ комнату того же слота. Идём в
       // ту комнату, которую вернул сервер, иначе игрок открыл бы лобби чужой
       // (полной) комнаты и не увидел бы себя среди участников.
-      router.push({ pathname: '/tournament_lobby', params: { roomId: result?.roomId || joinRoomId } });
+      // Если provisional lobby уже передал игрока в раунд/таблицу этой же
+      // комнаты, поздний ответ входа не имеет права вернуть верх стека назад.
+      const resolvedRoomId = result?.roomId || joinRoomId;
+      if (transitionState !== 'advanced' || resolvedRoomId !== joinRoomId) {
+        router.replace({ pathname: '/tournament_lobby', params: { roomId: resolvedRoomId } });
+      }
     } catch (error) {
+      const ownsEntry = activeEntryKeyRef.current === entryKey;
+      const transitionState = settleTournamentEntryTransition(entryKey);
+      if (!ownsEntry || transitionState === 'cancelled' || transitionState === 'missing') return;
+      activeEntryKeyRef.current = null;
       setCoins(balanceBefore);
+      reconcileDeferredBalance();
       const callableError = error as { message?: string; code?: string; details?: unknown };
       if (__DEV__) console.warn('[tournaments] entry callable failed', callableError);
       const code = [callableError.message, callableError.code, callableError.details]
@@ -540,12 +647,18 @@ export default function TournamentsScreen() {
                   : code.includes('not-found') || code.includes('NOT_FOUND')
                     ? 'Турниры временно недоступны. Мы уже чиним'
                     : 'Не удалось войти. Попробуйте ещё раз');
+      setConfirmVisible(true);
+      closeTournamentFlow(router);
     } finally {
-      setJoining(false);
+      if (activeEntryKeyRef.current === entryKey) {
+        activeEntryKeyRef.current = null;
+        reconcileDeferredBalance();
+      }
     }
   }, [
-    joinRoomId, joining, router, coins, effectiveEntryGems,
+    joinRoomId, router, coins, effectiveEntryGems,
     windowState.activeWindowStartMs, nextSlot, instantEntry,
+    reconcileDeferredBalance, recoverCancelledTournamentEntry,
   ]);
 
   const contentPadding = useMemo(
@@ -607,16 +720,8 @@ export default function TournamentsScreen() {
         scrollEventThrottle={16}
         onScroll={topFadeScroll?.onScroll}
       >
-        {/* Шапка: назад · название · звёзды сезона · жемчужины */}
+        {/* Шапка главного таба: название · звёзды сезона · жемчужины. */}
         <View style={styles.header}>
-          <TapScale
-            onPress={goBack}
-            accessibilityRole="button"
-            accessibilityLabel="Назад"
-            style={styles.backButton}
-          >
-            <Ionicons name="chevron-back" size={24} color={P.text} />
-          </TapScale>
           <Text style={styles.title} allowFontScaling={false}>Турниры</Text>
           <View style={styles.headerRight}>
             <V2Counter value={myStars} tone="stars" />
@@ -686,7 +791,6 @@ export default function TournamentsScreen() {
                 // отыгранного турнира — вне окна вход идёт в комнату, которую
                 // сервер соберёт по требованию. Мёртвых состояний не осталось.
                 onPress={notEnoughGems ? goToShop : openConfirm}
-                disabled={joining}
                 right={!notEnoughGems ? (
                   <View style={styles.ctaPrice}>
                     <Image
@@ -960,9 +1064,7 @@ export default function TournamentsScreen() {
         </View>
         {joinError ? <Text style={styles.sheetError}>{joinError}</Text> : null}
         <View style={styles.sheetActions}>
-          <V2Cta onPress={enterLobby} disabled={joining}>
-            {joining ? 'Заходим…' : 'Войти'}
-          </V2Cta>
+          <V2Cta onPress={enterLobby}>Войти</V2Cta>
           <V2Cta tone="ghost" onPress={closeConfirm}>Отмена</V2Cta>
         </View>
       </Sheet>
@@ -1063,7 +1165,6 @@ const makeStyles = (P: TournamentV2) => StyleSheet.create({
   content: { paddingHorizontal: 16, gap: 14 },
 
   header: { flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 2 },
-  backButton: { width: 36, height: 36, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
   title: { fontSize: 24, fontWeight: '900', letterSpacing: -0.3, color: P.text },
   headerRight: { marginLeft: 'auto', flexDirection: 'row', gap: 8, alignItems: 'center' },
   coinIcon: { width: 15, height: 15 },

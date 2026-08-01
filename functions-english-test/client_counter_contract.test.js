@@ -309,7 +309,8 @@ test("landing copy describes completed tests and the unified asset revision is 2
     counterBlock,
     /\u0441\u0435\u0440\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u043e\u0432 \u0443\u0436\u0435 \u0432\u044b\u0434\u0430\u043d\u043e/i,
   );
-  assert.match(source, /questions\.en\.json\?v=20260801-2/);
+  assert.match(source, /fetch\(EnglishTestI18n\.TESTS\[language\]\.bankUrl\)/);
+  assert.doesNotMatch(source, /const BANK_URL/);
   const scripts = [...html.matchAll(/<script src="([^"]+)"><\/script>/g)].map((match) => match[1]);
   const expectedScripts = [
     "./engine.js?v=20260801-2",

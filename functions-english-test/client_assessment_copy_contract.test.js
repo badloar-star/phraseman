@@ -127,7 +127,8 @@ test('all client assets and the bank use one new revision', () => {
     [`./styles.css?v=${expectedRevision}`],
   );
   assert.equal(stylesheets[1], '/assets/site-background.css?v=20260729-1');
-  assert.match(app, new RegExp(`questions\\.en\\.json\\?v=${expectedRevision}`));
+  assert.match(app, /fetch\(EnglishTestI18n\.TESTS\[language\]\.bankUrl\)/);
+  assert.doesNotMatch(app, /const BANK_URL/);
   assert.doesNotMatch(`${html}\n${app}`, /20260722-3/);
 });
 
@@ -151,7 +152,7 @@ test('question screen selects service instructions by UI locale and keeps assess
 test('client sends the root bank version and bounded calibration evidence', () => {
   const app = read('app.js');
 
-  assert.match(app, /bankVersion\s*=\s*data\.bankVersion/);
+  assert.match(app, /bankVersion\s*=\s*bank\.bankVersion/);
   assert.match(app, /api\('start',\s*\{\s*bankVersion\s*\}\)/);
   assert.match(app, /questionLevel:\s*question\.level/);
   assert.match(app, /correct:/);

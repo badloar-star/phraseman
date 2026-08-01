@@ -9,7 +9,6 @@
   'use strict';
 
   const API_BASE = '/api/english-test';
-  const BANK_URL = './data/questions.en.json?v=20260801-2';
 
   const STORE_URL_IOS = 'https://apps.apple.com/app/id6764800879';
   const STORE_URL_ANDROID = 'https://play.google.com/store/apps/details?id=app.phraseman';
@@ -22,6 +21,7 @@
   const ANALYTICS_BROWSER_ID_KEY = 'english_test_analytics_browser_id_v1';
   const ANALYTICS_BROWSER_ID_PATTERN = /^[a-f0-9]{48}$/;
   const COUNTER_REFRESH_MS = 30000;
+  const MAX_BANK_VERSION_LENGTH = 128;
 
   const hasI18n = typeof EnglishTestI18n !== 'undefined';
   const readStoredLocale = hasI18n ? EnglishTestI18n.readStoredLocale : () => null;
@@ -32,6 +32,8 @@
     selectedTestLanguage = EnglishTestI18n.resolveTestLanguage(location.search);
   }
   let attemptTestLanguage = null;
+  const bankCache = new Map();
+  let startPromise = null;
 
   const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const FINE_POINTER = window.matchMedia('(pointer: fine)').matches;
@@ -704,35 +706,79 @@
 
   // ---------- Test ----------
 
-  async function startTest() {
+  function isAllowedTestLanguage(language) {
+    return hasI18n && EnglishTestI18n.TEST_LANGUAGES.includes(language);
+  }
+
+  function validateBank(language, bank) {
+    if (!bank || typeof bank !== 'object' || Array.isArray(bank)
+      || bank.language !== language
+      || !Array.isArray(bank.questions)
+      || bank.questions.length !== 240
+      || typeof bank.bankVersion !== 'string'
+      || bank.bankVersion.trim().length === 0
+      || bank.bankVersion.length > MAX_BANK_VERSION_LENGTH) {
+      throw new Error('bank_contract_mismatch');
+    }
+    return bank;
+  }
+
+  function loadBank(language) {
+    if (!isAllowedTestLanguage(language)) return Promise.reject(new Error('bank_contract_mismatch'));
+    const cached = bankCache.get(language);
+    if (cached) return cached;
+
+    const request = (async () => {
+      const res = await fetch(EnglishTestI18n.TESTS[language].bankUrl);
+      if (!res.ok) throw new Error('bank_contract_mismatch');
+      let bank;
+      try {
+        bank = await res.json();
+      } catch (_) {
+        throw new Error('bank_contract_mismatch');
+      }
+      return validateBank(language, bank);
+    })();
+    bankCache.set(language, request);
+    request.catch(() => {
+      if (bankCache.get(language) === request) bankCache.delete(language);
+    });
+    return request;
+  }
+
+  function startTest() {
+    if (startPromise) return startPromise;
     if (attemptTestLanguage === null) attemptTestLanguage = selectedTestLanguage;
-    if (questions.length === 0) {
+    const language = attemptTestLanguage;
+    const request = (async () => {
       renderLoading();
       try {
-        const res = await fetch(EnglishTestI18n.TESTS[attemptTestLanguage].bankUrl);
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        const data = await res.json();
-        bankVersion = data.bankVersion;
-        questions = data.questions;
-        if (!questions || questions.length === 0) throw new Error('Empty bank');
+        const bank = await loadBank(language);
+        bankVersion = bank.bankVersion;
+        questions = bank.questions;
       } catch (e) {
         renderError();
         console.error('Bank load failed:', e);
         return;
       }
-    }
 
-    attemptToken = generateToken();
-    engine = new EnglishTestEngine.Engine(questions, Date.now());
-    lastProgress = 0;
-    lastCertName = null; // новая попытка — старый сертификат не предлагаем
+      attemptToken = generateToken();
+      engine = new EnglishTestEngine.Engine(questions, Date.now());
+      lastProgress = 0;
+      lastCertName = null; // новая попытка — старый сертификат не предлагаем
 
-    if (consent) {
-      api('landing', {});
-      api('start', { bankVersion });
-    }
+      if (consent) {
+        api('landing', {});
+        api('start', { bankVersion });
+      }
 
-    showNextQuestion();
+      showNextQuestion();
+    })();
+    startPromise = request;
+    request.finally(() => {
+      if (startPromise === request) startPromise = null;
+    });
+    return request;
   }
 
   function renderLoading() {

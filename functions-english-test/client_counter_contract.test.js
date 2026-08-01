@@ -4,21 +4,9 @@ const fs = require("node:fs");
 const path = require("node:path");
 const vm = require("node:vm");
 
-const appPath = path.join(
-  __dirname,
-  "..",
-  "knowly-www",
-  "english-level-test",
-  "app.js",
-);
+const appPath = require.resolve("../knowly-www/english-level-test/app.js");
 const i18nPath = path.join(path.dirname(appPath), "i18n.js");
-const htmlPath = path.join(
-  __dirname,
-  "..",
-  "knowly-www",
-  "english-level-test",
-  "index.html",
-);
+const htmlPath = path.join(path.dirname(appPath), "index.html");
 
 function memoryStorage(initial = {}) {
   const values = new Map(Object.entries(initial));
@@ -98,7 +86,7 @@ test("completion POST is sent even when analytics consent is false and contains 
 });
 
 test("outbox keeps a pending completion after network failure", async () => {
-  const { hooks, storage } = loadHooks({
+  const { hooks } = loadHooks({
     fetchImpl: async () => {
       throw new Error("offline");
     },

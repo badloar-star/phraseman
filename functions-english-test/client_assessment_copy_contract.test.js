@@ -4,7 +4,9 @@ const path = require('node:path');
 const test = require('node:test');
 const vm = require('node:vm');
 
-const CLIENT_DIR = path.join(__dirname, '..', 'knowly-www', 'english-level-test');
+const CLIENT_DIR = path.dirname(
+  require.resolve('../knowly-www/english-level-test/app.js'),
+);
 const read = (file) => fs.readFileSync(path.join(CLIENT_DIR, file), 'utf8');
 const APP_SOURCE = read('app.js');
 

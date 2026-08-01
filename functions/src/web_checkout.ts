@@ -18,12 +18,13 @@
 //   currency, paypalLive } — с дефолтами ниже. Клиентские цены (site-config.js
 //   webPrices) — только отображение; списывается ВСЕГДА серверная цена.
 // ============================================================================
-import { createHmac, randomBytes, timingSafeEqual } from 'crypto';
-import { getFirestore, FieldValue } from 'firebase-admin/firestore';
+import { createHash, createHmac, randomBytes, timingSafeEqual } from 'crypto';
+import { getFirestore, FieldPath, FieldValue } from 'firebase-admin/firestore';
 import * as logger from 'firebase-functions/logger';
 import { defineSecret, defineString } from 'firebase-functions/params';
-import { onRequest } from 'firebase-functions/v2/https';
+import { HttpsError, onCall, onRequest } from 'firebase-functions/v2/https';
 
+import { hasClaimedPermission } from './admin/permissions';
 import { upsertEmailContact } from './email_contacts';
 import { RESEND_API_KEY } from './resend_secret';
 import { buildPromoVipPatch } from './promo_codes';
@@ -32,6 +33,7 @@ import { resolveGiftPhrase } from './gift_certificate_phrases';
 const REGION = 'us-central1';
 const ORDERS_COLLECTION = 'web_premium_orders';
 const DEAD_LETTER_COLLECTION = 'web_checkout_dead_letter';
+const GIFT_CERTIFICATE_DELIVERIES_COLLECTION = 'gift_certificate_deliveries';
 const CONFIG_DOC = 'web_checkout/config';
 const TELEGRAM_ADMIN_CONFIG_DOC = 'telegram_premium_bot/config';
 const SITE_ORIGIN = 'https://knowlyapps.com';
@@ -76,6 +78,21 @@ export function giftPlanTitle(plan: WebPlan): string {
 // зачем: владелец 2026-07-26 — подарочный код действует 12 месяцев (стандарт
 // сертификатов); обычные коды покупки «себе» остаются бессрочными, как раньше.
 export const GIFT_CODE_TTL_DAYS = 365;
+export const GIFT_CERTIFICATE_REPLACEMENT_AUTHORIZATION = 'REPLACE_VERIFIED_SYNTHETIC_NO_PAYMENT_GIFT_CERTIFICATE';
+export const GIFT_CERTIFICATE_SEND_AUTHORIZATION = 'SEND_PREPARED_GIFT_CERTIFICATE';
+export const GIFT_CERTIFICATE_BATCH_AUTHORIZATION = 'CREATE_GIFT_CERTIFICATES';
+export const GIFT_CERTIFICATE_RECIPIENT_UPDATE_AUTHORIZATION = 'UPDATE_GIFT_CERTIFICATE_RECIPIENT';
+export const GIFT_CERTIFICATE_REPAIR_OLD_CODE = 'GIFT-TEST-FRNRYV23VS';
+export const GIFT_CERTIFICATE_REPAIR_OLD_NOTE = 'Simulated gift purchase; no payment; requested 2026-07-29; recipient badloar@gmail.com';
+export const GIFT_CERTIFICATE_MUTATION_OPTIONS = { region: REGION, enforceAppCheck: true } as const;
+export const GIFT_CERTIFICATE_READ_OPTIONS = { region: REGION, enforceAppCheck: true } as const;
+const GIFT_CERTIFICATE_BATCH_OPERATIONS_COLLECTION = 'admin_gift_certificate_batch_operations';
+const GIFT_CERTIFICATE_SEND_CLAIM_STALE_MS = 60 * 1000;
+const GIFT_CERTIFICATE_ASSET_MAX_BYTES = 512 * 1024;
+const GIFT_CERTIFICATE_ASSET_CACHE_TTL_MS = 60 * 60 * 1000;
+const giftCertificateAssetCache = new Map<WebPlan, { base64: string; fetchedAtMs: number }>();
+// Resend retains idempotency keys for 24h. Keep a one-hour safety margin.
+const GIFT_CERTIFICATE_IDEMPOTENT_RETRY_WINDOW_MS = 23 * 60 * 60 * 1000;
 
 export function giftCodeExpiryMs(nowMs: number, gift: boolean): number {
   return gift ? nowMs + GIFT_CODE_TTL_DAYS * 24 * 60 * 60 * 1000 : 0;
@@ -108,6 +125,10 @@ export function generateActivationCode(): string {
     body += CODE_ALPHABET[bytes[i] % CODE_ALPHABET.length];
   }
   return `WEB-${body}`;
+}
+
+export function generateGiftCertificateCode(): string {
+  return generateActivationCode().replace(/^WEB-/, 'GIFT-');
 }
 
 interface CheckoutConfig {
@@ -225,6 +246,583 @@ function htmlEscape(value: unknown): string {
     .replace(/'/g, '&#39;');
 }
 
+type GiftCertificateAdminAuth = {
+  uid?: string;
+  token?: Record<string, unknown>;
+} | undefined;
+
+export function assertGiftCertificateAdminAccess(auth: GiftCertificateAdminAuth): void {
+  if (!String(auth?.uid ?? '').trim() || auth?.token?.admin !== true) {
+    throw new HttpsError('permission-denied', 'Admin only');
+  }
+  if (!hasClaimedPermission(auth.token, 'money.manual_access.write')) {
+    throw new HttpsError('permission-denied', 'Role cannot replace gift certificates');
+  }
+}
+
+export function assertGiftCertificateAdminReadAccess(auth: GiftCertificateAdminAuth): void {
+  if (!String(auth?.uid ?? '').trim() || auth?.token?.admin !== true) {
+    throw new HttpsError('permission-denied', 'Admin only');
+  }
+  if (!hasClaimedPermission(auth.token, 'money.read')) {
+    throw new HttpsError('permission-denied', 'Role cannot read gift certificates');
+  }
+}
+
+export function assertGiftCertificateSendAuthorization(value: unknown): void {
+  if (value !== GIFT_CERTIFICATE_SEND_AUTHORIZATION) {
+    throw new HttpsError('failed-precondition', 'delivery_not_authorized');
+  }
+}
+
+type GiftCertificateBatchInput = {
+  product?: unknown;
+  count?: unknown;
+  recipientNames?: unknown;
+  recipientEmails?: unknown;
+  source?: unknown;
+  authorization?: unknown;
+};
+
+type GiftCertificateBatchItem = {
+  certificateId: string;
+  activationCode: string;
+  product: WebPlan;
+  recipientName: string;
+  recipientEmail: string;
+  createdAtMs: number;
+  expiresAtMs: number;
+  status: 'generated';
+  assetUrl: string;
+  promoDoc: Record<string, unknown>;
+  certificateDoc: Record<string, unknown>;
+};
+
+export type GiftCertificateBatchResponse = {
+  ok: true;
+  operationId: string;
+  batchId: string;
+  certificates: Record<string, unknown>[];
+};
+
+export function normalizeGiftCertificateBatchOperationId(value: unknown): string {
+  if (typeof value !== 'string'
+    || !/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/.test(value)) {
+    throw new HttpsError('invalid-argument', 'invalid_gift_certificate_operation_id');
+  }
+  return value;
+}
+
+export function buildGiftCertificateBatchRequestKey(
+  items: readonly Pick<GiftCertificateBatchItem, 'product' | 'recipientName' | 'recipientEmail'>[],
+): string {
+  if (items.length < 1 || items.length > 200) {
+    throw new HttpsError('internal', 'gift_certificate_batch_request_key_invalid');
+  }
+  const canonicalRequest = JSON.stringify({
+    product: items[0].product,
+    recipients: items.map((item) => ({ name: item.recipientName, email: item.recipientEmail })),
+  });
+  return createHash('sha256').update(canonicalRequest, 'utf8').digest('hex');
+}
+
+export function readGiftCertificateBatchReplay(
+  persisted: FirebaseFirestore.DocumentData | undefined,
+  expected: { operationId: string; actorUid: string; requestKey: string },
+): GiftCertificateBatchResponse | null {
+  if (!persisted) return null;
+  if (persisted.schemaVersion !== 'gift-certificate-batch-operation.v1'
+    || persisted.operationId !== expected.operationId
+    || persisted.actorUid !== expected.actorUid
+    || persisted.requestKey !== expected.requestKey) {
+    throw new HttpsError('already-exists', 'gift_certificate_operation_conflict');
+  }
+  const response = persisted.response as Partial<GiftCertificateBatchResponse> | null | undefined;
+  if (response?.ok !== true
+    || response.operationId !== expected.operationId
+    || typeof response.batchId !== 'string'
+    || !response.batchId
+    || !Array.isArray(response.certificates)
+    || response.certificates.length < 1
+    || response.certificates.length > 200) {
+    throw new HttpsError('internal', 'gift_certificate_operation_corrupt');
+  }
+  return response as GiftCertificateBatchResponse;
+}
+
+/** Pure validation/planning boundary shared by the callable and focused tests. */
+export function createGiftCertificateBatchPlan(params: {
+  input: GiftCertificateBatchInput;
+  codes: readonly string[];
+  batchId: string;
+  nowMs: number;
+  actorUid: string;
+  actorEmail: string;
+}): { batchId: string; items: GiftCertificateBatchItem[]; auditDoc: Record<string, unknown> } {
+  const { input } = params;
+  if (input.authorization !== GIFT_CERTIFICATE_BATCH_AUTHORIZATION) {
+    throw new HttpsError('failed-precondition', 'gift_certificate_batch_not_authorized');
+  }
+  if (input.source !== 'admin_gift_certificates') {
+    throw new HttpsError('invalid-argument', 'invalid_gift_certificate_source');
+  }
+  if (!isWebPlan(input.product)) throw new HttpsError('invalid-argument', 'invalid_gift_certificate_product');
+  const count = Number(input.count);
+  if (!Number.isInteger(count) || count < 1 || count > 200) {
+    throw new HttpsError('invalid-argument', 'invalid_gift_certificate_count');
+  }
+  if (!Array.isArray(input.recipientNames) || input.recipientNames.length !== count) {
+    throw new HttpsError('invalid-argument', 'recipient_names_count_mismatch');
+  }
+  const recipientNames = input.recipientNames.map((value) => cleanShortText(value, 60));
+  if (recipientNames.some((value) => !value)) {
+    throw new HttpsError('invalid-argument', 'recipient_name_missing');
+  }
+  const normalizedNames = recipientNames.map((value) => value.toLocaleLowerCase('ru-RU'));
+  if (new Set(normalizedNames).size !== normalizedNames.length) {
+    throw new HttpsError('invalid-argument', 'duplicate_recipient_name');
+  }
+  const rawEmails = input.recipientEmails == null ? [] : input.recipientEmails;
+  if (!Array.isArray(rawEmails) || rawEmails.length > count) {
+    throw new HttpsError('invalid-argument', 'recipient_emails_count_mismatch');
+  }
+  const recipientEmails = Array.from({ length: count }, (_unused, index) => {
+    const raw = cleanShortText(rawEmails[index], 200);
+    if (!raw) return '';
+    const email = cleanEmail(raw);
+    if (!email) throw new HttpsError('invalid-argument', 'invalid_recipient_email');
+    return email;
+  });
+  if (!Array.isArray(params.codes) || params.codes.length !== count) {
+    throw new HttpsError('internal', 'gift_certificate_codes_count_mismatch');
+  }
+  const codes = params.codes.map((value) => cleanShortText(value, 32).toUpperCase());
+  if (codes.some((value) => !/^GIFT-[A-HJ-NP-Z2-9]{10}$/.test(value))) {
+    throw new HttpsError('internal', 'invalid_generated_gift_certificate_code');
+  }
+  if (new Set(codes).size !== codes.length) {
+    throw new HttpsError('already-exists', 'gift_certificate_code_collision');
+  }
+  const batchId = cleanShortText(params.batchId, 120);
+  if (!batchId) throw new HttpsError('internal', 'gift_certificate_batch_id_missing');
+  if (!Number.isSafeInteger(params.nowMs) || params.nowMs <= 0) {
+    throw new HttpsError('internal', 'gift_certificate_issue_time_invalid');
+  }
+  const reward = activationRewardForPlan(input.product);
+  const expiresAtMs = giftCodeExpiryMs(params.nowMs, true);
+  const items = codes.map((activationCode, index): GiftCertificateBatchItem => {
+    const common = {
+      certificateId: activationCode,
+      batchId,
+      activationCode,
+      product: input.product as WebPlan,
+      recipientName: recipientNames[index],
+      recipientEmail: recipientEmails[index],
+      createdAtMs: params.nowMs,
+      expiresAtMs,
+      assetUrl: GIFT_CERTIFICATE_ART[input.product as WebPlan],
+      source: 'admin_gift_certificates',
+      createdBy: cleanShortText(params.actorEmail, 200),
+      createdByUid: cleanShortText(params.actorUid, 128),
+    };
+    const promoDoc = {
+      rewardDays: reward.rewardDays,
+      rewardKind: reward.rewardKind,
+      enabled: true,
+      maxRedemptions: 1,
+      usedCount: 0,
+      expiresAtMs,
+      certificateId: activationCode,
+      certificateBatchId: batchId,
+      certificateProduct: input.product,
+      note: cleanShortText(`Gift certificate for ${recipientNames[index]}`, 200),
+      createdAtMs: params.nowMs,
+      updatedAtMs: params.nowMs,
+      createdBy: common.createdBy,
+      createdByUid: common.createdByUid,
+      updatedBy: common.createdBy,
+      updatedByUid: common.createdByUid,
+    };
+    const certificateDoc = {
+      ...common,
+      plan: input.product,
+      status: 'generated',
+      rewardDays: reward.rewardDays,
+      rewardKind: reward.rewardKind,
+      gift: true,
+      giftTo: recipientNames[index],
+      giftFrom: 'Phraseman',
+      giftPhraseId: `${input.product}-01`,
+      codeExpiresAtMs: expiresAtMs,
+      testIssue: false,
+    };
+    return { ...common, status: 'generated', promoDoc, certificateDoc };
+  });
+  return {
+    batchId,
+    items,
+    auditDoc: {
+      action: 'gift_certificate_batch_create',
+      targetUid: batchId,
+      details: { batchId, product: input.product, count, certificateIds: codes },
+      adminEmail: cleanShortText(params.actorEmail, 200),
+      adminUid: cleanShortText(params.actorUid, 128),
+      ts: new Date(params.nowMs).toISOString(),
+    },
+  };
+}
+
+export function assertGiftCertificateRefsAvailable(exists: readonly boolean[]): void {
+  if (exists.some(Boolean)) throw new HttpsError('already-exists', 'gift_certificate_code_collision');
+}
+
+export function assertGiftCertificateAssetResponse(input: {
+  ok: boolean;
+  contentType: string;
+  byteLength: number;
+}): void {
+  if (!input.ok) throw new HttpsError('unavailable', 'gift_certificate_asset_fetch_failed');
+  if (input.contentType.split(';', 1)[0].trim().toLowerCase() !== 'image/webp') {
+    throw new HttpsError('failed-precondition', 'gift_certificate_asset_type_invalid');
+  }
+  if (!Number.isSafeInteger(input.byteLength) || input.byteLength < 1 || input.byteLength > GIFT_CERTIFICATE_ASSET_MAX_BYTES) {
+    throw new HttpsError('failed-precondition', 'gift_certificate_asset_size_invalid');
+  }
+}
+
+export async function readBoundedGiftCertificateAssetBody(
+  body: ReadableStream<Uint8Array> | null,
+): Promise<Buffer> {
+  if (!body) throw new HttpsError('unavailable', 'gift_certificate_asset_fetch_failed');
+  const reader = body.getReader();
+  const chunks: Buffer[] = [];
+  let byteLength = 0;
+  try {
+    while (true) {
+      const chunk = await reader.read();
+      if (chunk.done) break;
+      byteLength += chunk.value.byteLength;
+      if (byteLength > GIFT_CERTIFICATE_ASSET_MAX_BYTES) {
+        await reader.cancel('gift_certificate_asset_size_invalid').catch(() => undefined);
+        throw new HttpsError('failed-precondition', 'gift_certificate_asset_size_invalid');
+      }
+      chunks.push(Buffer.from(chunk.value));
+    }
+  } finally {
+    reader.releaseLock();
+  }
+  return Buffer.concat(chunks, byteLength);
+}
+
+async function readGiftCertificateAssetBase64(product: WebPlan, nowMs: number): Promise<string> {
+  for (const [key, cached] of giftCertificateAssetCache.entries()) {
+    if (nowMs - cached.fetchedAtMs > GIFT_CERTIFICATE_ASSET_CACHE_TTL_MS) giftCertificateAssetCache.delete(key);
+  }
+  const cached = giftCertificateAssetCache.get(product);
+  if (cached) return cached.base64;
+  const response = await fetch(GIFT_CERTIFICATE_ART[product], {
+    method: 'GET',
+    redirect: 'error',
+    signal: AbortSignal.timeout(15_000),
+  });
+  const contentType = response.headers.get('content-type') ?? '';
+  const declaredLength = Number(response.headers.get('content-length') ?? 0);
+  assertGiftCertificateAssetResponse({
+    ok: response.ok,
+    contentType,
+    byteLength: declaredLength > 0 ? declaredLength : 1,
+  });
+  const bytes = await readBoundedGiftCertificateAssetBody(response.body);
+  assertGiftCertificateAssetResponse({ ok: response.ok, contentType, byteLength: bytes.byteLength });
+  if (giftCertificateAssetCache.size >= 3) {
+    const oldest = [...giftCertificateAssetCache.entries()].sort((a, b) => a[1].fetchedAtMs - b[1].fetchedAtMs)[0]?.[0];
+    if (oldest) giftCertificateAssetCache.delete(oldest);
+  }
+  const base64 = bytes.toString('base64');
+  giftCertificateAssetCache.set(product, { base64, fetchedAtMs: nowMs });
+  return base64;
+}
+
+type GiftCertificateRecipientUpdateInput = {
+  authorization?: unknown;
+  certificateId?: unknown;
+  recipientName?: unknown;
+  recipientEmail?: unknown;
+  expectedUpdatedAtMs?: unknown;
+};
+
+export function buildGiftCertificateRecipientUpdate(params: {
+  input: GiftCertificateRecipientUpdateInput;
+  current: FirebaseFirestore.DocumentData;
+  promo: FirebaseFirestore.DocumentData;
+  nowMs: number;
+  actorUid: string;
+  actorEmail: string;
+}): { patch: Record<string, unknown>; record: Record<string, unknown> } {
+  const { input, current, promo } = params;
+  if (input.authorization !== GIFT_CERTIFICATE_RECIPIENT_UPDATE_AUTHORIZATION) {
+    throw new HttpsError('failed-precondition', 'gift_certificate_recipient_update_not_authorized');
+  }
+  const certificateId = cleanShortText(input.certificateId, 32).toUpperCase();
+  if (!/^GIFT-[A-HJ-NP-Z2-9]{10}$/.test(certificateId)
+    || certificateId !== String(current.certificateId ?? '')
+    || certificateId !== String(current.activationCode ?? '')) {
+    throw new HttpsError('failed-precondition', 'gift_certificate_identity_mismatch');
+  }
+  if (current.gift !== true || current.testIssue === true || !isWebPlan(current.product)) {
+    throw new HttpsError('failed-precondition', 'gift_certificate_record_invalid');
+  }
+  if (current.assetUrl !== GIFT_CERTIFICATE_ART[current.product]) {
+    throw new HttpsError('failed-precondition', 'gift_certificate_asset_mismatch');
+  }
+  if (current.status === 'sent'
+    || current.status === 'sending'
+    || current.status === 'delivery_unknown'
+    || current.status === 'reconciliation_required') {
+    throw new HttpsError('failed-precondition', 'gift_certificate_recipient_locked');
+  }
+  const currentUpdatedAtMs = Number(current.updatedAtMs ?? current.createdAtMs ?? 0);
+  if (!Number.isSafeInteger(currentUpdatedAtMs)
+    || Number(input.expectedUpdatedAtMs) !== currentUpdatedAtMs) {
+    throw new HttpsError('aborted', 'gift_certificate_edit_conflict');
+  }
+  const expiresAtMs = Number(current.expiresAtMs);
+  const codeIsEditable = promo.enabled === true
+    && Number(promo.maxRedemptions) === 1
+    && Number(promo.usedCount ?? 0) === 0
+    && Number(promo.expiresAtMs) === expiresAtMs
+    && expiresAtMs > params.nowMs;
+  if (!codeIsEditable) {
+    const reason = Number(promo.usedCount ?? 0) > 0
+      ? 'gift_certificate_already_redeemed'
+      : 'gift_certificate_not_editable';
+    throw new HttpsError('failed-precondition', reason);
+  }
+  const recipientName = cleanShortText(input.recipientName, 60);
+  if (!recipientName) throw new HttpsError('invalid-argument', 'recipient_name_missing');
+  const rawEmail = cleanShortText(input.recipientEmail, 200);
+  const recipientEmail = rawEmail ? cleanEmail(rawEmail) : '';
+  if (rawEmail && !recipientEmail) throw new HttpsError('invalid-argument', 'invalid_recipient_email');
+  const patch = {
+    recipientName,
+    recipientEmail,
+    giftTo: recipientName,
+    updatedAtMs: params.nowMs,
+    updatedBy: cleanShortText(params.actorEmail, 200),
+    updatedByUid: cleanShortText(params.actorUid, 128),
+  };
+  return { patch, record: { ...current, ...patch } };
+}
+
+function giftCertificateDisplayRecord(
+  certificateId: string,
+  record: FirebaseFirestore.DocumentData,
+  promo: FirebaseFirestore.DocumentData = {},
+): Record<string, unknown> {
+  const product = isWebPlan(record.product) ? record.product : null;
+  const usedCount = Math.max(0, Math.trunc(Number(promo.usedCount ?? 0)) || 0);
+  return {
+    certificateId,
+    batchId: cleanShortText(record.batchId, 120),
+    activationCode: cleanShortText(record.activationCode, 32),
+    product: product ?? '',
+    recipientName: cleanShortText(record.recipientName ?? record.giftTo, 60),
+    recipientEmail: cleanEmail(record.recipientEmail) ?? '',
+    createdAtMs: Math.max(0, Math.trunc(Number(record.createdAtMs ?? record.preparedAtMs ?? 0)) || 0),
+    updatedAtMs: Math.max(0, Math.trunc(Number(record.updatedAtMs ?? record.createdAtMs ?? record.preparedAtMs ?? 0)) || 0),
+    expiresAtMs: Math.max(0, Math.trunc(Number(record.expiresAtMs ?? record.codeExpiresAtMs ?? 0)) || 0),
+    status: cleanShortText(record.status, 40) || 'generated',
+    assetUrl: product && record.assetUrl === GIFT_CERTIFICATE_ART[product] ? record.assetUrl : '',
+    rewardDays: Math.max(0, Math.trunc(Number(record.rewardDays ?? promo.rewardDays ?? 0)) || 0),
+    rewardKind: record.rewardKind === 'lifetime' || promo.rewardKind === 'lifetime' ? 'lifetime' : 'days',
+    enabled: promo.enabled === true,
+    usedCount,
+    maxRedemptions: Math.max(0, Math.trunc(Number(promo.maxRedemptions ?? 0)) || 0),
+    lastRedeemedAtMs: Math.max(0, Math.trunc(Number(promo.lastRedeemedAtMs ?? 0)) || 0),
+    redemptionStatus: usedCount > 0 ? 'redeemed' : (promo.enabled === true ? 'available' : 'disabled'),
+    replacementOf: cleanShortText(record.replacementOf, 32),
+  };
+}
+
+export interface SyntheticGiftCertificateReplacementInput {
+  authorization: unknown;
+  recipientEmail: unknown;
+  giftTo: unknown;
+  giftFrom: unknown;
+  giftPhraseId: unknown;
+  reason: unknown;
+}
+
+export function buildSyntheticGiftCertificateReplacement(params: {
+  oldCode: string;
+  newCode: string;
+  nowMs: number;
+  actorUid: string;
+  actorEmail: string;
+  input: SyntheticGiftCertificateReplacementInput;
+  oldDoc: FirebaseFirestore.DocumentData;
+}): {
+  oldCodePatch: Record<string, unknown>;
+  newCodeDoc: Record<string, unknown>;
+  deliveryDoc: Record<string, unknown>;
+  auditDoc: Record<string, unknown>;
+} {
+  const { input, oldDoc } = params;
+  if (input.authorization !== GIFT_CERTIFICATE_REPLACEMENT_AUTHORIZATION) {
+    throw new HttpsError('failed-precondition', 'replacement_not_authorized');
+  }
+  const oldCode = cleanShortText(params.oldCode, 32).toUpperCase();
+  const newCode = cleanShortText(params.newCode, 32).toUpperCase();
+  if (!/^[A-Z0-9_-]{3,32}$/.test(oldCode) || !/^[A-Z0-9_-]{3,32}$/.test(newCode) || oldCode === newCode) {
+    throw new HttpsError('invalid-argument', 'invalid_replacement_code');
+  }
+  if (oldCode !== GIFT_CERTIFICATE_REPAIR_OLD_CODE) {
+    throw new HttpsError('failed-precondition', 'old_certificate_target_mismatch');
+  }
+
+  const storedNote = typeof oldDoc.note === 'string' ? oldDoc.note : '';
+  if (storedNote !== GIFT_CERTIFICATE_REPAIR_OLD_NOTE) {
+    throw new HttpsError('failed-precondition', 'old_certificate_note_mismatch');
+  }
+  const oldUnused = oldDoc.enabled === true
+    && Number(oldDoc.maxRedemptions) === 1
+    && Number(oldDoc.usedCount ?? 0) === 0
+    && Number(oldDoc.rewardDays) === 365
+    && String(oldDoc.rewardKind ?? 'days') === 'days'
+    && !String(oldDoc.lastRedeemedBy ?? '').trim()
+    && !(Number(oldDoc.lastRedeemedAtMs) > 0)
+    && !String(oldDoc.supersededBy ?? '').trim();
+  if (!oldUnused) throw new HttpsError('failed-precondition', 'old_certificate_not_replaceable');
+
+  const recipientEmail = cleanEmail(input.recipientEmail);
+  if (!recipientEmail) throw new HttpsError('invalid-argument', 'invalid_recipient_email');
+  const giftTo = cleanShortText(input.giftTo, 60);
+  const giftFrom = cleanShortText(input.giftFrom, 60);
+  if (!giftTo) throw new HttpsError('invalid-argument', 'delivery_recipient_name_missing');
+  if (!giftFrom) throw new HttpsError('invalid-argument', 'delivery_sender_name_missing');
+  const giftPhraseId = cleanShortText(input.giftPhraseId, 40);
+  if (!/^yearly-\d{2}$/.test(giftPhraseId)) throw new HttpsError('invalid-argument', 'invalid_gift_phrase');
+  const reason = cleanShortText(input.reason, 500);
+  if (reason.length < 10) throw new HttpsError('invalid-argument', 'replacement_reason_required');
+
+  const expiresAtMs = giftCodeExpiryMs(params.nowMs, true);
+  const commonActor = {
+    updatedAtMs: params.nowMs,
+    updatedBy: params.actorEmail,
+    updatedByUid: params.actorUid,
+  };
+  return {
+    oldCodePatch: {
+      enabled: false,
+      supersededBy: newCode,
+      supersededAtMs: params.nowMs,
+      supersededReason: reason,
+      ...commonActor,
+    },
+    newCodeDoc: {
+      rewardDays: 366,
+      rewardKind: 'days',
+      enabled: true,
+      maxRedemptions: 1,
+      usedCount: 0,
+      expiresAtMs,
+      certificateId: newCode,
+      certificateBatchId: `repair-${oldCode}`,
+      certificateProduct: 'yearly',
+      note: cleanShortText(`Personalized gift certificate for ${giftTo}; authorized replacement of ${oldCode}`, 200),
+      replacementOf: oldCode,
+      createdAtMs: params.nowMs,
+      createdBy: params.actorEmail,
+      createdByUid: params.actorUid,
+      ...commonActor,
+    },
+    deliveryDoc: {
+      status: 'prepared',
+      certificateId: newCode,
+      batchId: `repair-${oldCode}`,
+      activationCode: newCode,
+      replacementOf: oldCode,
+      recipientEmail,
+      plan: 'yearly',
+      product: 'yearly',
+      recipientName: giftTo,
+      assetUrl: GIFT_CERTIFICATE_ART.yearly,
+      rewardDays: 366,
+      rewardKind: 'days',
+      gift: true,
+      giftTo,
+      giftFrom,
+      giftPhraseId,
+      codeExpiresAtMs: expiresAtMs,
+      expiresAtMs,
+      testIssue: false,
+      createdAtMs: params.nowMs,
+      updatedAtMs: params.nowMs,
+      preparedAtMs: params.nowMs,
+      preparedBy: params.actorEmail,
+      preparedByUid: params.actorUid,
+    },
+    auditDoc: {
+      action: 'gift_certificate_replace_synthetic',
+      targetUid: oldCode,
+      reason,
+      details: { oldCode, newCode, recipientEmail, giftTo, giftFrom, expiresAtMs },
+      adminEmail: params.actorEmail,
+      adminUid: params.actorUid,
+      ts: new Date(params.nowMs).toISOString(),
+    },
+  };
+}
+
+export type GiftCertificateDeliveryDecision =
+  | { action: 'send'; email: string }
+  | { action: 'already_sent' }
+  | { action: 'reconciliation_required' };
+
+export function decideGiftCertificateDeliveryClaim(
+  delivery: FirebaseFirestore.DocumentData,
+  context: { deliveryId: string; expectedRecipientEmail: unknown; nowMs: number },
+): GiftCertificateDeliveryDecision {
+  if (delivery.gift !== true || delivery.testIssue === true) {
+    throw new HttpsError('failed-precondition', 'test_delivery_forbidden');
+  }
+  if (!isWebPlan(delivery.plan)) throw new HttpsError('failed-precondition', 'delivery_plan_invalid');
+  if (!cleanShortText(delivery.giftTo, 60)) throw new HttpsError('failed-precondition', 'delivery_recipient_name_missing');
+  if (!cleanShortText(delivery.giftFrom, 60)) throw new HttpsError('failed-precondition', 'delivery_sender_name_missing');
+  const activationCode = typeof delivery.activationCode === 'string' ? delivery.activationCode : '';
+  if (!activationCode) throw new HttpsError('failed-precondition', 'delivery_code_missing');
+  if (activationCode !== context.deliveryId) throw new HttpsError('failed-precondition', 'delivery_code_mismatch');
+  if (!(Number(delivery.codeExpiresAtMs) > 0)) throw new HttpsError('failed-precondition', 'delivery_expiry_missing');
+  const email = cleanEmail(delivery.recipientEmail);
+  if (!email) throw new HttpsError('failed-precondition', 'delivery_email_invalid');
+  const expectedRecipientEmail = cleanEmail(context.expectedRecipientEmail);
+  if (!expectedRecipientEmail) throw new HttpsError('invalid-argument', 'expected_recipient_email_required');
+  if (expectedRecipientEmail !== email) throw new HttpsError('failed-precondition', 'expected_recipient_email_mismatch');
+
+  if (delivery.status === 'sent') return { action: 'already_sent' };
+  if (delivery.status === 'generated' || delivery.status === 'prepared' || delivery.status === 'failed') {
+    return { action: 'send', email };
+  }
+  if (delivery.status === 'reconciliation_required') return { action: 'reconciliation_required' };
+  if (delivery.status !== 'sending' && delivery.status !== 'delivery_unknown') {
+    throw new HttpsError('failed-precondition', 'delivery_not_prepared');
+  }
+
+  const firstProviderAttemptAtMs = Number(delivery.firstProviderAttemptAtMs);
+  const withinIdempotencyWindow = Number.isFinite(firstProviderAttemptAtMs)
+    && firstProviderAttemptAtMs > 0
+    && context.nowMs >= firstProviderAttemptAtMs
+    && context.nowMs - firstProviderAttemptAtMs <= GIFT_CERTIFICATE_IDEMPOTENT_RETRY_WINDOW_MS;
+  if (!withinIdempotencyWindow) return { action: 'reconciliation_required' };
+  if (delivery.status === 'sending') {
+    const sendClaimedAtMs = Number(delivery.sendClaimedAtMs);
+    if (Number.isFinite(sendClaimedAtMs) && context.nowMs - sendClaimedAtMs < GIFT_CERTIFICATE_SEND_CLAIM_STALE_MS) {
+      throw new HttpsError('aborted', 'delivery_in_progress');
+    }
+  }
+  return { action: 'send', email };
+}
+
 /** utm/answers от клиента: маленький безопасный JSON-слепок для атрибуции. */
 function cleanAttribution(value: unknown): Record<string, unknown> | null {
   if (typeof value !== 'object' || value === null) return null;
@@ -330,15 +928,59 @@ async function markActivationEmailStatus(
 ): Promise<void> {
   const id = cleanShortText(orderId, 120);
   if (!id) return;
+  await markActivationEmailStatusAt(getFirestore().collection(ORDERS_COLLECTION).doc(id), patch);
+}
+
+async function markActivationEmailStatusAt(
+  ref: FirebaseFirestore.DocumentReference,
+  patch: Record<string, unknown>,
+  propagateFailure: boolean = false,
+): Promise<void> {
   try {
-    await getFirestore().collection(ORDERS_COLLECTION).doc(id).set({
+    await ref.set({
       ...patch,
       customerEmailUpdatedAt: FieldValue.serverTimestamp(),
       customerEmailUpdatedAtIso: new Date().toISOString(),
     }, { merge: true });
   } catch (e) {
     logger.warn('web_checkout activation email status update failed', e);
+    if (propagateFailure) throw e;
   }
+}
+
+export function deliveryStatusForEmailOutcome(customerEmailStatus: unknown): 'sent' | 'failed' | 'delivery_unknown' {
+  if (customerEmailStatus === 'sent') return 'sent';
+  if (customerEmailStatus === 'skipped_no_resend_key'
+    || customerEmailStatus === 'skipped_no_resend_from'
+    || customerEmailStatus === 'provider_rejected') return 'failed';
+  return 'delivery_unknown';
+}
+
+export function resendFailureOutcomeForHttpStatus(status: number): 'provider_rejected' | 'transport_unknown' {
+  return status >= 400 && status < 500 && status !== 408 && status !== 409
+    ? 'provider_rejected'
+    : 'transport_unknown';
+}
+
+export function buildResendRequestHeaders(apiKey: string, idempotencyKey?: string): Record<string, string> {
+  return {
+    Authorization: `Bearer ${apiKey}`,
+    'Content-Type': 'application/json',
+    ...(idempotencyKey ? { 'Idempotency-Key': idempotencyKey } : {}),
+  };
+}
+
+async function markActivationEmailOutcome(
+  orderId: unknown,
+  statusRef: FirebaseFirestore.DocumentReference | undefined,
+  patch: Record<string, unknown>,
+): Promise<void> {
+  if (statusRef) {
+    const deliveryStatus = deliveryStatusForEmailOutcome(patch.customerEmailStatus);
+    await markActivationEmailStatusAt(statusRef, { ...patch, status: deliveryStatus }, true);
+    return;
+  }
+  await markActivationEmailStatus(orderId, patch);
 }
 
 /** ДД.ММ.ГГГГ по UTC — детерминированно для тестов и одинаково для всех получателей. */
@@ -450,7 +1092,11 @@ export function buildActivationEmail(
   return { subject, text, html };
 }
 
-async function sendActivationEmail(order: FirebaseFirestore.DocumentData): Promise<boolean> {
+async function sendActivationEmail(
+  order: FirebaseFirestore.DocumentData,
+  statusRef?: FirebaseFirestore.DocumentReference,
+  idempotencyKey?: string,
+): Promise<boolean> {
   const orderId = cleanShortText(order.orderId, 120);
   const activationCode = cleanShortText(order.activationCode, 48);
   const to = cleanEmail(order.email) ?? cleanEmail(order.customerEmail) ?? cleanEmail(order.payerEmail);
@@ -458,18 +1104,20 @@ async function sendActivationEmail(order: FirebaseFirestore.DocumentData): Promi
 
   const key = RESEND_API_KEY.value();
   if (!key) {
-    await markActivationEmailStatus(orderId, {
+    const patch = {
       customerEmailStatus: 'skipped_no_resend_key',
       customerEmailSentTo: to,
-    });
+    };
+    await markActivationEmailOutcome(orderId, statusRef, patch);
     return false;
   }
   const from = webCheckoutEmailFrom.value().trim();
   if (!from) {
-    await markActivationEmailStatus(orderId, {
+    const patch = {
       customerEmailStatus: 'skipped_no_resend_from',
       customerEmailSentTo: to,
-    });
+    };
+    await markActivationEmailOutcome(orderId, statusRef, patch);
     return false;
   }
 
@@ -479,7 +1127,7 @@ async function sendActivationEmail(order: FirebaseFirestore.DocumentData): Promi
   try {
     const response = await fetch('https://api.resend.com/emails', {
       method: 'POST',
-      headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
+      headers: buildResendRequestHeaders(key, idempotencyKey),
       body: JSON.stringify({
         from,
         to: [to],
@@ -491,11 +1139,13 @@ async function sendActivationEmail(order: FirebaseFirestore.DocumentData): Promi
     const bodyText = await response.text();
     if (!response.ok) {
       logger.warn('web_checkout activation email failed', bodyText.slice(0, 500));
-      await markActivationEmailStatus(orderId, {
-        customerEmailStatus: 'failed',
+      const patch = {
+        customerEmailStatus: resendFailureOutcomeForHttpStatus(response.status),
+        customerEmailProviderStatus: response.status,
         customerEmailSentTo: to,
         customerEmailError: bodyText.slice(0, 500),
-      });
+      };
+      await markActivationEmailOutcome(orderId, statusRef, patch);
       return false;
     }
     let providerId = '';
@@ -505,21 +1155,23 @@ async function sendActivationEmail(order: FirebaseFirestore.DocumentData): Promi
     } catch {
       providerId = '';
     }
-    await markActivationEmailStatus(orderId, {
+    const patch = {
       customerEmailStatus: 'sent',
       customerEmailSentAt: FieldValue.serverTimestamp(),
       customerEmailSentAtIso: new Date().toISOString(),
       customerEmailSentTo: to,
       customerEmailProviderId: providerId || null,
       customerEmailError: FieldValue.delete(),
-    });
+    };
+    await markActivationEmailOutcome(orderId, statusRef, patch);
     return true;
   } catch (e) {
-    await markActivationEmailStatus(orderId, {
-      customerEmailStatus: 'failed',
+    const patch = {
+      customerEmailStatus: 'transport_unknown',
       customerEmailSentTo: to,
       customerEmailError: String(e).slice(0, 500),
-    });
+    };
+    await markActivationEmailOutcome(orderId, statusRef, patch);
     logger.warn('web_checkout activation email error', e);
     return false;
   }
@@ -545,6 +1197,326 @@ async function handlePaidOrderSideEffects(
     sendActivationEmail(order).catch((e) => logger.error('web order activation email failed', e)),
   ]);
 }
+
+/** Creates only server-generated, persisted, single-use certificates. */
+export const adminCreateGiftCertificateBatch = onCall(
+  GIFT_CERTIFICATE_MUTATION_OPTIONS,
+  async (request) => {
+    assertGiftCertificateAdminAccess(request.auth as GiftCertificateAdminAuth);
+    const operationId = normalizeGiftCertificateBatchOperationId(request.data?.operationId);
+    const count = Number(request.data?.count);
+    if (!Number.isInteger(count) || count < 1 || count > 200) {
+      throw new HttpsError('invalid-argument', 'invalid_gift_certificate_count');
+    }
+    const nowMs = Date.now();
+    const actorUid = String(request.auth?.uid ?? '');
+    const actorEmail = cleanShortText(request.auth?.token?.email, 200);
+    const batchId = `gift-batch-${operationId}`;
+    const plan = createGiftCertificateBatchPlan({
+      input: request.data ?? {},
+      codes: Array.from({ length: count }, () => generateGiftCertificateCode()),
+      batchId,
+      nowMs,
+      actorUid,
+      actorEmail,
+    });
+    const requestKey = buildGiftCertificateBatchRequestKey(plan.items);
+    const db = getFirestore();
+    const promoRefs = plan.items.map((item) => db.collection('promo_codes').doc(item.activationCode));
+    const certificateRefs = plan.items.map((item) => db.collection(GIFT_CERTIFICATE_DELIVERIES_COLLECTION).doc(item.certificateId));
+    const operationRef = db.collection(GIFT_CERTIFICATE_BATCH_OPERATIONS_COLLECTION).doc(operationId);
+    const auditRef = db.collection('admin_log').doc();
+    return db.runTransaction(async (tx) => {
+      const [operationSnapshot, ...snapshots] = await Promise.all([
+        tx.get(operationRef),
+        ...promoRefs.map((ref) => tx.get(ref)),
+        ...certificateRefs.map((ref) => tx.get(ref)),
+      ]);
+      const replay = readGiftCertificateBatchReplay(operationSnapshot.data(), { operationId, actorUid, requestKey });
+      if (replay) return replay;
+      assertGiftCertificateRefsAvailable(snapshots.map((snapshot) => snapshot.exists));
+      const response: GiftCertificateBatchResponse = {
+        ok: true,
+        operationId,
+        batchId: plan.batchId,
+        certificates: plan.items.map((item) => giftCertificateDisplayRecord(
+          item.certificateId,
+          item.certificateDoc,
+          item.promoDoc,
+        )),
+      };
+      plan.items.forEach((item, index) => {
+        tx.create(promoRefs[index], item.promoDoc);
+        tx.create(certificateRefs[index], item.certificateDoc);
+      });
+      tx.create(auditRef, plan.auditDoc);
+      tx.create(operationRef, {
+        schemaVersion: 'gift-certificate-batch-operation.v1',
+        operationId,
+        actorUid,
+        actorEmail,
+        requestKey,
+        response,
+        createdAtMs: nowMs,
+      });
+      return response;
+    });
+  },
+);
+
+/** Read-only paginated history; the browser follows every cursor to show all records. */
+export const adminListGiftCertificates = onCall(
+  GIFT_CERTIFICATE_READ_OPTIONS,
+  async (request) => {
+    assertGiftCertificateAdminReadAccess(request.auth as GiftCertificateAdminAuth);
+    const db = getFirestore();
+    const pageSize = 100;
+    const cursorCreatedAtMs = Number(request.data?.cursor?.createdAtMs ?? 0);
+    const cursorCertificateId = cleanShortText(request.data?.cursor?.certificateId, 32);
+    let queryRef = db.collection(GIFT_CERTIFICATE_DELIVERIES_COLLECTION)
+      .orderBy('createdAtMs', 'desc')
+      .orderBy(FieldPath.documentId(), 'desc')
+      .limit(pageSize);
+    if (cursorCreatedAtMs > 0 && cursorCertificateId) {
+      queryRef = queryRef.startAfter(cursorCreatedAtMs, cursorCertificateId);
+    }
+    const snapshot = await queryRef.get();
+    const validCertificates = snapshot.docs.filter((certificate) => /^GIFT-[A-HJ-NP-Z2-9]{10}$/.test(certificate.id));
+    const promoRefs = validCertificates.map((certificate) => db.collection('promo_codes').doc(certificate.id));
+    const promoSnapshots = promoRefs.length ? await db.getAll(...promoRefs) : [];
+    const certificates = validCertificates.map((certificate, index) => giftCertificateDisplayRecord(
+      certificate.id,
+      certificate.data() ?? {},
+      promoSnapshots[index]?.data() ?? {},
+    ));
+    const last = snapshot.docs[snapshot.docs.length - 1];
+    return {
+      ok: true,
+      certificates,
+      nextCursor: snapshot.size === pageSize && last
+        ? { createdAtMs: Number(last.data()?.createdAtMs ?? 0), certificateId: last.id }
+        : null,
+    };
+  },
+);
+
+/** Same-origin-safe download payload for allowlisted certificate art and persisted metadata. */
+export const adminGetGiftCertificateDownload = onCall(
+  GIFT_CERTIFICATE_READ_OPTIONS,
+  async (request) => {
+    assertGiftCertificateAdminReadAccess(request.auth as GiftCertificateAdminAuth);
+    const certificateId = cleanShortText(request.data?.certificateId, 32).toUpperCase();
+    if (!/^GIFT-[A-HJ-NP-Z2-9]{10}$/.test(certificateId)) {
+      throw new HttpsError('invalid-argument', 'invalid_gift_certificate_id');
+    }
+    const db = getFirestore();
+    const [certificateSnapshot, promoSnapshot] = await Promise.all([
+      db.collection(GIFT_CERTIFICATE_DELIVERIES_COLLECTION).doc(certificateId).get(),
+      db.collection('promo_codes').doc(certificateId).get(),
+    ]);
+    if (!certificateSnapshot.exists || !promoSnapshot.exists) {
+      throw new HttpsError('not-found', 'gift_certificate_not_found');
+    }
+    const record = certificateSnapshot.data() ?? {};
+    const product = isWebPlan(record.product) ? record.product : null;
+    const validRecord = product !== null
+      && record.gift === true
+      && record.testIssue !== true
+      && String(record.certificateId ?? '') === certificateId
+      && String(record.activationCode ?? '') === certificateId
+      && record.assetUrl === GIFT_CERTIFICATE_ART[product];
+    if (!validRecord || !product) throw new HttpsError('failed-precondition', 'gift_certificate_record_invalid');
+    const updatedAtMs = Number(record.updatedAtMs ?? record.createdAtMs ?? 0);
+    if (!Number.isSafeInteger(updatedAtMs) || Number(request.data?.expectedUpdatedAtMs) !== updatedAtMs) {
+      throw new HttpsError('aborted', 'gift_certificate_download_conflict');
+    }
+    const assetBase64 = await readGiftCertificateAssetBase64(product, Date.now());
+    return {
+      ok: true,
+      certificate: giftCertificateDisplayRecord(certificateId, record, promoSnapshot.data() ?? {}),
+      mimeType: 'image/webp',
+      assetBase64,
+    };
+  },
+);
+
+/** Saves recipient identity before download or email; delivery states lock it fail-closed. */
+export const adminUpdateGiftCertificateRecipient = onCall(
+  GIFT_CERTIFICATE_MUTATION_OPTIONS,
+  async (request) => {
+    assertGiftCertificateAdminAccess(request.auth as GiftCertificateAdminAuth);
+    const certificateId = cleanShortText(request.data?.certificateId, 32).toUpperCase();
+    if (!/^GIFT-[A-HJ-NP-Z2-9]{10}$/.test(certificateId)) {
+      throw new HttpsError('invalid-argument', 'invalid_gift_certificate_id');
+    }
+    const db = getFirestore();
+    const certificateRef = db.collection(GIFT_CERTIFICATE_DELIVERIES_COLLECTION).doc(certificateId);
+    const promoRef = db.collection('promo_codes').doc(certificateId);
+    const auditRef = db.collection('admin_log').doc();
+    const nowMs = Date.now();
+    const actorUid = String(request.auth?.uid ?? '');
+    const actorEmail = cleanShortText(request.auth?.token?.email, 200);
+    const record = await db.runTransaction(async (tx) => {
+      const [certificateSnapshot, promoSnapshot] = await Promise.all([tx.get(certificateRef), tx.get(promoRef)]);
+      if (!certificateSnapshot.exists || !promoSnapshot.exists) {
+        throw new HttpsError('not-found', 'gift_certificate_not_found');
+      }
+      const result = buildGiftCertificateRecipientUpdate({
+        input: request.data ?? {},
+        current: certificateSnapshot.data() ?? {},
+        promo: promoSnapshot.data() ?? {},
+        nowMs,
+        actorUid,
+        actorEmail,
+      });
+      tx.update(certificateRef, result.patch);
+      tx.create(auditRef, {
+        action: 'gift_certificate_recipient_update',
+        targetUid: certificateId,
+        details: { certificateId, recipientEmailSet: Boolean(result.record.recipientEmail) },
+        adminEmail: actorEmail,
+        adminUid: actorUid,
+        ts: new Date(nowMs).toISOString(),
+      });
+      return giftCertificateDisplayRecord(certificateId, result.record, promoSnapshot.data() ?? {});
+    });
+    return { ok: true, certificate: record };
+  },
+);
+
+/** Atomically replaces one explicitly verified, unused no-payment test certificate. */
+export const adminReplaceSyntheticGiftCertificate = onCall(
+  GIFT_CERTIFICATE_MUTATION_OPTIONS,
+  async (request) => {
+    assertGiftCertificateAdminAccess(request.auth as GiftCertificateAdminAuth);
+    const oldCode = GIFT_CERTIFICATE_REPAIR_OLD_CODE;
+
+    // Resolve once outside the transaction so a fallback stays stable across Firestore retries.
+    const giftPhraseId = resolveGiftPhrase('yearly', request.data?.giftPhraseId).id;
+    const input: SyntheticGiftCertificateReplacementInput = {
+      authorization: request.data?.authorization,
+      recipientEmail: request.data?.recipientEmail,
+      giftTo: request.data?.giftTo,
+      giftFrom: request.data?.giftFrom,
+      giftPhraseId,
+      reason: request.data?.reason,
+    };
+    const newCode = generateGiftCertificateCode();
+    const db = getFirestore();
+    const oldRef = db.collection('promo_codes').doc(oldCode);
+    const newRef = db.collection('promo_codes').doc(newCode);
+    const deliveryRef = db.collection(GIFT_CERTIFICATE_DELIVERIES_COLLECTION).doc(newCode);
+    const auditRef = db.collection('admin_log').doc();
+    const nowMs = Date.now();
+    const actorUid = String(request.auth?.uid ?? '');
+    const actorEmail = cleanShortText(request.auth?.token?.email, 200);
+
+    const result = await db.runTransaction(async (tx) => {
+      const [oldSnap, newSnap, deliverySnap] = await Promise.all([
+        tx.get(oldRef), tx.get(newRef), tx.get(deliveryRef),
+      ]);
+      if (!oldSnap.exists) throw new HttpsError('not-found', 'old_certificate_not_found');
+      if (newSnap.exists || deliverySnap.exists) throw new HttpsError('already-exists', 'replacement_code_collision');
+      const writes = buildSyntheticGiftCertificateReplacement({
+        oldCode, newCode, nowMs, actorUid, actorEmail, input, oldDoc: oldSnap.data() ?? {},
+      });
+      tx.update(oldRef, writes.oldCodePatch);
+      tx.create(newRef, writes.newCodeDoc);
+      tx.create(deliveryRef, writes.deliveryDoc);
+      tx.create(auditRef, writes.auditDoc);
+      return writes;
+    });
+    return {
+      ok: true,
+      oldCode,
+      newCode,
+      deliveryId: deliveryRef.id,
+      expiresAtMs: result.deliveryDoc.codeExpiresAtMs,
+      emailStatus: 'prepared',
+    };
+  },
+);
+
+/** Explicit second step: claims a prepared delivery before using the established email transport. */
+export const adminSendPreparedGiftCertificate = onCall(
+  { ...GIFT_CERTIFICATE_MUTATION_OPTIONS, secrets: [RESEND_API_KEY] },
+  async (request) => {
+    assertGiftCertificateAdminAccess(request.auth as GiftCertificateAdminAuth);
+    assertGiftCertificateSendAuthorization(request.data?.authorization);
+    const deliveryId = cleanShortText(request.data?.deliveryId, 32).toUpperCase();
+    if (!/^[A-Z0-9_-]{3,32}$/.test(deliveryId)) throw new HttpsError('invalid-argument', 'invalid_delivery_id');
+    const expectedRecipientEmail = request.data?.expectedRecipientEmail;
+
+    const db = getFirestore();
+    const deliveryRef = db.collection(GIFT_CERTIFICATE_DELIVERIES_COLLECTION).doc(deliveryId);
+    const codeRef = db.collection('promo_codes').doc(deliveryId);
+    const nowMs = Date.now();
+    const actorUid = String(request.auth?.uid ?? '');
+    const actorEmail = cleanShortText(request.auth?.token?.email, 200);
+    const claim = await db.runTransaction(async (tx) => {
+      const [deliverySnap, codeSnap] = await Promise.all([tx.get(deliveryRef), tx.get(codeRef)]);
+      if (!deliverySnap.exists) throw new HttpsError('not-found', 'prepared_delivery_not_found');
+      const delivery = deliverySnap.data() ?? {};
+      const decision = decideGiftCertificateDeliveryClaim(delivery, { deliveryId, expectedRecipientEmail, nowMs });
+      if (decision.action === 'already_sent') return { decision, delivery };
+      if (decision.action === 'reconciliation_required') {
+        tx.update(deliveryRef, {
+          status: 'reconciliation_required',
+          reconciliationRequiredAtMs: nowMs,
+          reconciliationReason: 'resend_idempotency_window_expired',
+        });
+        return { decision, delivery };
+      }
+
+      const code = codeSnap.exists ? (codeSnap.data() ?? {}) : {};
+      const deliveryPlan = isWebPlan(delivery.plan) ? delivery.plan : null;
+      const expectedReward = deliveryPlan ? activationRewardForPlan(deliveryPlan) : null;
+      const codeIsSendable = codeSnap.exists
+        && deliveryPlan !== null
+        && expectedReward !== null
+        && code.enabled === true
+        && Number(code.maxRedemptions) === 1
+        && Number(code.usedCount ?? 0) === 0
+        && String(delivery.certificateId ?? '') === deliveryId
+        && String(delivery.activationCode ?? '') === deliveryId
+        && String(code.certificateId ?? '') === deliveryId
+        && String(code.certificateProduct ?? '') === deliveryPlan
+        && Number(code.rewardDays) === expectedReward.rewardDays
+        && String(code.rewardKind) === expectedReward.rewardKind
+        && String(code.replacementOf ?? '') === String(delivery.replacementOf ?? '')
+        && Number(code.expiresAtMs) === Number(delivery.codeExpiresAtMs)
+        && Number(delivery.expiresAtMs) === Number(delivery.codeExpiresAtMs)
+        && delivery.assetUrl === GIFT_CERTIFICATE_ART[deliveryPlan]
+        && Number(code.expiresAtMs) > nowMs;
+      if (!codeIsSendable) throw new HttpsError('failed-precondition', 'gift_certificate_not_sendable');
+      tx.update(deliveryRef, {
+        status: 'sending',
+        updatedAtMs: nowMs,
+        sendClaimedAtMs: nowMs,
+        sendClaimedBy: actorEmail,
+        sendClaimedByUid: actorUid,
+        sendAttemptCount: FieldValue.increment(1),
+        firstProviderAttemptAtMs: Number(delivery.firstProviderAttemptAtMs) > 0
+          ? Number(delivery.firstProviderAttemptAtMs)
+          : nowMs,
+      });
+      return { decision, delivery };
+    });
+
+    if (claim.decision.action === 'already_sent') return { ok: true, deliveryId, alreadySent: true };
+    if (claim.decision.action === 'reconciliation_required') {
+      throw new HttpsError('failed-precondition', 'delivery_reconciliation_required');
+    }
+    const sent = await sendActivationEmail({
+      ...claim.delivery,
+      orderId: deliveryId,
+      email: claim.decision.email,
+      testIssue: false,
+    }, deliveryRef, deliveryId);
+    if (!sent) throw new HttpsError('failed-precondition', 'gift_certificate_email_not_sent');
+    return { ok: true, deliveryId, alreadySent: false };
+  },
+);
 
 const PAID_STATUSES = new Set(['paid_pending_activation', 'paid_pending_manual_activation', 'activated']);
 

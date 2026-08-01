@@ -670,7 +670,8 @@ test('audit CLI rejects traversal, writes only confined reports, and --allow-dra
   assert.throws(() => execFileSync(process.execPath, [auditScript, '--language', '..'], { encoding: 'utf8', stdio: 'pipe' }), /unknown argument|unsupported language/);
   const run = require('node:child_process').spawnSync(process.execPath, [auditScript, '--all', '--allow-draft'], { cwd: ROOT, encoding: 'utf8' });
   assert.equal(run.status, 1, 'missing sources remain an error in draft mode');
-  assert.match(run.stdout, /de: failed/);
+  assert.match(run.stdout, /de: passed/);
+  for (const language of ['fr', 'it', 'es']) assert.match(run.stdout, new RegExp(`${language}: failed`));
   assert.doesNotMatch(run.stdout, /\.\.\\|\.\.\//);
 });
 

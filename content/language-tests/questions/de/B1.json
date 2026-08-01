@@ -1,0 +1,1948 @@
+{
+  "schemaVersion": 3,
+  "bankVersion": "20260801-2",
+  "language": "de",
+  "level": "B1",
+  "questions": [
+    {
+      "id": "de-b1-001",
+      "level": "B1",
+      "difficulty": 2.32,
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "constructId": "de-b1-grammar-preterite-common-narration",
+      "descriptorRefs": [
+        "CEFR-2020-B1-reception",
+        "CEFR-2020-B1-language-competence"
+      ],
+      "selectionRefs": [
+        "de-selection-B1-grammar"
+      ],
+      "scenario": "explaining what happened during a service interruption",
+      "prompt": "four-option contextual form-and-meaning discrimination",
+      "scenarioRu": "Рабочая ситуация",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Der Bericht zu Vorgang081 beschreibt gestern einen kurzen Ausfall. Welche Präteritumform passt?",
+      "options": [
+        "Vorgang081 begann verspätet und endete um elf Uhr.",
+        "Vorgang081 beginnt verspätet und endet um elf Uhr.",
+        "Vorgang081 hat verspätet beginnen und enden um elf Uhr.",
+        "Vorgang081 beginnte verspätet und geendet um elf Uhr."
+      ],
+      "correctIndex": 0,
+      "explanation": "The keyed option is the only one that realizes Präteritum of common verbs in a brief factual narrative in the supplied context.",
+      "targetConstruct": "Präteritum of common verbs in a brief factual narrative",
+      "cefrRationale": "Can relate a past workplace or travel event coherently.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Vorgang081 begann verspätet und endete um elf Uhr.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-form",
+      "knowledgeTarget": "target-language-form"
+    },
+    {
+      "id": "de-b1-002",
+      "level": "B1",
+      "difficulty": 2.339,
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "constructId": "de-b1-grammar-pluperfect-event-order",
+      "descriptorRefs": [
+        "CEFR-2020-B1-reception",
+        "CEFR-2020-B1-language-competence"
+      ],
+      "selectionRefs": [
+        "de-selection-B1-grammar"
+      ],
+      "scenario": "describing why a delivery attempt failed",
+      "prompt": "four-option contextual form-and-meaning discrimination",
+      "scenarioRu": "Рабочая ситуация",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Zuerst prüfte Nora Vorgang082, danach schickte sie den Bericht. Welcher Satz markiert die Reihenfolge korrekt?",
+      "options": [
+        "Nachdem Nora Vorgang082 hatte prüfen, schickt sie den Bericht.",
+        "Nachdem Nora Vorgang082 geprüft hatte, schickte sie den Bericht.",
+        "Nachdem Nora Vorgang082 prüfte, hatte sie den Bericht geschickt.",
+        "Nachdem Nora Vorgang082 geprüft hat, schickte sie vorher den Bericht."
+      ],
+      "correctIndex": 1,
+      "explanation": "The keyed option is the only one that realizes Plusquamperfekt marking an event completed before another past event in the supplied context.",
+      "targetConstruct": "Plusquamperfekt marking an event completed before another past event",
+      "cefrRationale": "Can distinguish the earlier of two past actions.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Nachdem Nora Vorgang082 geprüft hatte, schickte sie den Bericht.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-form",
+      "knowledgeTarget": "target-language-form"
+    },
+    {
+      "id": "de-b1-003",
+      "level": "B1",
+      "difficulty": 2.359,
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "constructId": "de-b1-grammar-future-plan-versus-assumption",
+      "descriptorRefs": [
+        "CEFR-2020-B1-reception",
+        "CEFR-2020-B1-language-competence"
+      ],
+      "selectionRefs": [
+        "de-selection-B1-grammar"
+      ],
+      "scenario": "discussing likely completion of a project task",
+      "prompt": "four-option contextual form-and-meaning discrimination",
+      "scenarioRu": "Рабочая ситуация",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Das Team nennt einen festen Plan für Vorgang083 in der nächsten Woche. Welche Form passt?",
+      "options": [
+        "Das Team war Vorgang083 nächste Woche abgeschlossen.",
+        "Das Team werde Vorgang083 letzte Woche abschließt.",
+        "Das Team wird Vorgang083 nächste Woche abschließen.",
+        "Das Team würde Vorgang083 gestern abschließen."
+      ],
+      "correctIndex": 2,
+      "explanation": "The keyed option is the only one that realizes werden construction for a stated plan or present assumption in the supplied context.",
+      "targetConstruct": "werden construction for a stated plan or present assumption",
+      "cefrRationale": "Can interpret whether a speaker predicts or plans an action.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Das Team wird Vorgang083 nächste Woche abschließen.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-form",
+      "knowledgeTarget": "target-language-form"
+    },
+    {
+      "id": "de-b1-004",
+      "level": "B1",
+      "difficulty": 2.378,
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "constructId": "de-b1-grammar-relative-clause-subject",
+      "descriptorRefs": [
+        "CEFR-2020-B1-reception",
+        "CEFR-2020-B1-language-competence"
+      ],
+      "selectionRefs": [
+        "de-selection-B1-grammar"
+      ],
+      "scenario": "describing the colleague responsible for a request",
+      "prompt": "four-option contextual form-and-meaning discrimination",
+      "scenarioRu": "Рабочая ситуация",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Eine Kollegin leitet Vorgang084 und beantwortet alle Fragen. Welche Verbindung ist korrekt?",
+      "options": [
+        "Die Kollegin, den Vorgang084 leiten, beantwortet alle Fragen.",
+        "Die Kollegin, der Vorgang084 leitest, beantwortet alle Fragen.",
+        "Die Kollegin, deren Vorgang084 leitet sie, beantwortet alle Fragen.",
+        "Die Kollegin, die Vorgang084 leitet, beantwortet alle Fragen."
+      ],
+      "correctIndex": 3,
+      "explanation": "The keyed option is the only one that realizes nominative relative pronoun linking a person or thing in the supplied context.",
+      "targetConstruct": "nominative relative pronoun linking a person or thing",
+      "cefrRationale": "Can add identifying information to a noun without starting a new sentence.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Die Kollegin, die Vorgang084 leitet, beantwortet alle Fragen.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-form",
+      "knowledgeTarget": "target-language-form"
+    },
+    {
+      "id": "de-b1-005",
+      "level": "B1",
+      "difficulty": 2.398,
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "constructId": "de-b1-grammar-relative-clause-object",
+      "descriptorRefs": [
+        "CEFR-2020-B1-reception",
+        "CEFR-2020-B1-language-competence"
+      ],
+      "selectionRefs": [
+        "de-selection-B1-grammar"
+      ],
+      "scenario": "clarifying a form mentioned in an email",
+      "prompt": "four-option contextual form-and-meaning discrimination",
+      "scenarioRu": "Рабочая ситуация",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Das Team prüft einen Entwurf zu Vorgang085; Mara hat ihn gestern geschickt. Welche Verbindung passt?",
+      "options": [
+        "Der Entwurf zu Vorgang085, den Mara gestern geschickt hat, wird geprüft.",
+        "Der Entwurf zu Vorgang085, der Mara gestern geschickt haben, wird geprüft.",
+        "Der Entwurf zu Vorgang085, dem Mara schickte sie ihn, wird geprüft.",
+        "Der Entwurf zu Vorgang085, dessen Mara geschickt hat sie, wird geprüft."
+      ],
+      "correctIndex": 0,
+      "explanation": "The keyed option is the only one that realizes accusative relative pronoun referring to a known noun in the supplied context.",
+      "targetConstruct": "accusative relative pronoun referring to a known noun",
+      "cefrRationale": "Can specify which document or service they mean.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Der Entwurf zu Vorgang085, den Mara gestern geschickt hat, wird geprüft.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-form",
+      "knowledgeTarget": "target-language-form"
+    },
+    {
+      "id": "de-b1-006",
+      "level": "B1",
+      "difficulty": 2.417,
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "constructId": "de-b1-grammar-relative-clause-dative",
+      "descriptorRefs": [
+        "CEFR-2020-B1-reception",
+        "CEFR-2020-B1-language-competence"
+      ],
+      "selectionRefs": [
+        "de-selection-B1-grammar"
+      ],
+      "scenario": "tracing a workplace handover",
+      "prompt": "four-option contextual form-and-meaning discrimination",
+      "scenarioRu": "Рабочая ситуация",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Ein Kollege erhielt Hilfe bei Vorgang086; das Team dankt ihm. Welche Verbindung ist korrekt?",
+      "options": [
+        "Der Kollege, dessen das Team bei Vorgang086 hilft ihm, erhält den Dank.",
+        "Der Kollege, dem das Team bei Vorgang086 geholfen hat, erhält den Dank.",
+        "Der Kollege, den das Team bei Vorgang086 helfen hat, erhält den Dank.",
+        "Der Kollege, der das Team bei Vorgang086 geholfen haben, erhält den Dank."
+      ],
+      "correctIndex": 1,
+      "explanation": "The keyed option is the only one that realizes dative relative pronoun with a recipient relation in the supplied context.",
+      "targetConstruct": "dative relative pronoun with a recipient relation",
+      "cefrRationale": "Can identify the person to whom something was sent.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Der Kollege, dem das Team bei Vorgang086 geholfen hat, erhält den Dank.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-form",
+      "knowledgeTarget": "target-language-form"
+    },
+    {
+      "id": "de-b1-007",
+      "level": "B1",
+      "difficulty": 2.437,
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "constructId": "de-b1-grammar-infinitive-zu-purpose",
+      "descriptorRefs": [
+        "CEFR-2020-B1-reception",
+        "CEFR-2020-B1-language-competence"
+      ],
+      "selectionRefs": [
+        "de-selection-B1-grammar"
+      ],
+      "scenario": "planning to submit an application online",
+      "prompt": "four-option contextual form-and-meaning discrimination",
+      "scenarioRu": "Рабочая ситуация",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Mara versucht, Vorgang087 vor Freitag zu beenden. Welcher Satz ist korrekt?",
+      "options": [
+        "Mara versucht, zu Vorgang087 vor Freitag abschließen.",
+        "Mara versucht, Vorgang087 vor Freitag abgeschlossen zu.",
+        "Mara versucht, Vorgang087 vor Freitag abzuschließen.",
+        "Mara versucht, Vorgang087 vor Freitag zu abschließt."
+      ],
+      "correctIndex": 2,
+      "explanation": "The keyed option is the only one that realizes zu-infinitive complement after a frequent verb or expression in the supplied context.",
+      "targetConstruct": "zu-infinitive complement after a frequent verb or expression",
+      "cefrRationale": "Can state an intended practical action compactly.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Mara versucht, Vorgang087 vor Freitag abzuschließen.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-form",
+      "knowledgeTarget": "target-language-form"
+    },
+    {
+      "id": "de-b1-008",
+      "level": "B1",
+      "difficulty": 2.456,
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "constructId": "de-b1-grammar-present-passive-process",
+      "descriptorRefs": [
+        "CEFR-2020-B1-reception",
+        "CEFR-2020-B1-language-competence"
+      ],
+      "selectionRefs": [
+        "de-selection-B1-grammar"
+      ],
+      "scenario": "reading how requests are processed",
+      "prompt": "four-option contextual form-and-meaning discrimination",
+      "scenarioRu": "Рабочая ситуация",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Bei Vorgang088 ist der handelnde Mitarbeiter unwichtig; der Prüfprozess steht im Mittelpunkt. Welche Form passt?",
+      "options": [
+        "Vorgang088 prüft heute worden.",
+        "Vorgang088 ist heute prüfen.",
+        "Vorgang088 wurde heute wird geprüft.",
+        "Vorgang088 wird heute geprüft."
+      ],
+      "correctIndex": 3,
+      "explanation": "The keyed option is the only one that realizes present passive for a process when the actor is unimportant in the supplied context.",
+      "targetConstruct": "present passive for a process when the actor is unimportant",
+      "cefrRationale": "Can understand or describe how a routine procedure is carried out.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Vorgang088 wird heute geprüft.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-form",
+      "knowledgeTarget": "target-language-form"
+    },
+    {
+      "id": "de-b1-009",
+      "level": "B1",
+      "difficulty": 2.476,
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "constructId": "de-b1-grammar-adjective-declension-description",
+      "descriptorRefs": [
+        "CEFR-2020-B1-reception",
+        "CEFR-2020-B1-language-competence"
+      ],
+      "selectionRefs": [
+        "de-selection-B1-grammar"
+      ],
+      "scenario": "comparing available furnished rooms",
+      "prompt": "four-option contextual form-and-meaning discrimination",
+      "scenarioRu": "Рабочая ситуация",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Für Vorgang089 wird ein bereits bekanntes neues Verfahren beschrieben. Welche Form ist korrekt?",
+      "options": [
+        "Das neue Verfahren zu Vorgang089 spart Zeit.",
+        "Das neuer Verfahren zu Vorgang089 spart Zeit.",
+        "Das neuen Verfahrens zu Vorgang089 spart Zeit.",
+        "Dem neues Verfahren zu Vorgang089 spart Zeit."
+      ],
+      "correctIndex": 0,
+      "explanation": "The keyed option is the only one that realizes adjective ending after article in an everyday noun phrase in the supplied context.",
+      "targetConstruct": "adjective ending after article in an everyday noun phrase",
+      "cefrRationale": "Can distinguish a described option precisely.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Das neue Verfahren zu Vorgang089 spart Zeit.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-form",
+      "knowledgeTarget": "target-language-form"
+    },
+    {
+      "id": "de-b1-010",
+      "level": "B1",
+      "difficulty": 2.495,
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "constructId": "de-b1-grammar-indirect-question-order",
+      "descriptorRefs": [
+        "CEFR-2020-B1-reception",
+        "CEFR-2020-B1-language-competence"
+      ],
+      "selectionRefs": [
+        "de-selection-B1-grammar"
+      ],
+      "scenario": "asking whether a meeting room is available",
+      "prompt": "four-option contextual form-and-meaning discrimination",
+      "scenarioRu": "Рабочая ситуация",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Nora fragt nach dem Beginn von Vorgang090. Welche eingebettete Frage ist korrekt?",
+      "options": [
+        "Nora möchte wissen, wann Vorgang090 beginnen.",
+        "Nora möchte wissen, wann Vorgang090 beginnt.",
+        "Nora möchte wissen, wann beginnt Vorgang090.",
+        "Nora möchte wissen, beginnt wann Vorgang090."
+      ],
+      "correctIndex": 1,
+      "explanation": "The keyed option is the only one that realizes embedded question with clause-final verb in the supplied context.",
+      "targetConstruct": "embedded question with clause-final verb",
+      "cefrRationale": "Can relay a practical question politely.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Nora möchte wissen, wann Vorgang090 beginnt.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-form",
+      "knowledgeTarget": "target-language-form"
+    },
+    {
+      "id": "de-b1-011",
+      "level": "B1",
+      "difficulty": 2.515,
+      "skill": "vocabulary",
+      "format": "gap-fill",
+      "constructId": "de-b1-vocabulary-education-and-training",
+      "descriptorRefs": [
+        "CEFR-2020-B1-reception",
+        "CEFR-2020-B1-language-competence"
+      ],
+      "selectionRefs": [
+        "de-selection-B1-vocabulary"
+      ],
+      "scenario": "comparing evening courses",
+      "prompt": "four-option contextual lexical-choice discrimination",
+      "scenarioRu": "Практическая лексика",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Für Vorgang091 besucht Aylin einen Kurs und legt am Ende eine Prüfung ab. Welcher Begriff bezeichnet den bestätigten Abschluss?",
+      "options": [
+        "Aylin erwirbt für Vorgang091 eine Umleitung.",
+        "Aylin erwirbt für Vorgang091 eine Mahnung.",
+        "Aylin erwirbt für Vorgang091 eine Qualifikation.",
+        "Aylin erwirbt für Vorgang091 eine Kündigung."
+      ],
+      "correctIndex": 2,
+      "explanation": "The keyed option is the only one that realizes vocabulary for courses, qualifications and training steps in the supplied context.",
+      "targetConstruct": "vocabulary for courses, qualifications and training steps",
+      "cefrRationale": "Can understand a straightforward adult-learning opportunity.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Aylin erwirbt für Vorgang091 eine Qualifikation.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-lexis",
+      "knowledgeTarget": "target-language-lexis"
+    },
+    {
+      "id": "de-b1-012",
+      "level": "B1",
+      "difficulty": 2.534,
+      "skill": "vocabulary",
+      "format": "gap-fill",
+      "constructId": "de-b1-vocabulary-employment-conditions",
+      "descriptorRefs": [
+        "CEFR-2020-B1-reception",
+        "CEFR-2020-B1-language-competence"
+      ],
+      "selectionRefs": [
+        "de-selection-B1-vocabulary"
+      ],
+      "scenario": "reviewing an employment offer",
+      "prompt": "four-option contextual lexical-choice discrimination",
+      "scenarioRu": "Практическая лексика",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Im Vertrag zu Vorgang092 stehen 30 Wochenstunden, Aufgaben und Urlaubsanspruch. Was wird beschrieben?",
+      "options": [
+        "Vorgang092 regelt die Wetterbedingungen.",
+        "Vorgang092 regelt die Fahrtrichtung.",
+        "Vorgang092 regelt die Speisekarte.",
+        "Vorgang092 regelt die Arbeitsbedingungen."
+      ],
+      "correctIndex": 3,
+      "explanation": "The keyed option is the only one that realizes terms for duties, contract hours and workplace conditions in the supplied context.",
+      "targetConstruct": "terms for duties, contract hours and workplace conditions",
+      "cefrRationale": "Can discuss the main features of an ordinary job.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Vorgang092 regelt die Arbeitsbedingungen.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-lexis",
+      "knowledgeTarget": "target-language-lexis"
+    },
+    {
+      "id": "de-b1-013",
+      "level": "B1",
+      "difficulty": 2.554,
+      "skill": "vocabulary",
+      "format": "gap-fill",
+      "constructId": "de-b1-vocabulary-environmental-practices",
+      "descriptorRefs": [
+        "CEFR-2020-B1-reception",
+        "CEFR-2020-B1-language-competence"
+      ],
+      "selectionRefs": [
+        "de-selection-B1-vocabulary"
+      ],
+      "scenario": "reading a building recycling plan",
+      "prompt": "four-option contextual lexical-choice discrimination",
+      "scenarioRu": "Практическая лексика",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Bei Vorgang093 werden Papier, Glas und Biomüll getrennt gesammelt. Welcher Ausdruck passt?",
+      "options": [
+        "Vorgang093 fördert die Mülltrennung.",
+        "Vorgang093 fördert die Lohnabrechnung.",
+        "Vorgang093 fördert die Sitzordnung.",
+        "Vorgang093 fördert die Zimmerbuchung."
+      ],
+      "correctIndex": 0,
+      "explanation": "The keyed option is the only one that realizes common lexis for waste, energy and local environmental action in the supplied context.",
+      "targetConstruct": "common lexis for waste, energy and local environmental action",
+      "cefrRationale": "Can understand practical sustainability measures.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Vorgang093 fördert die Mülltrennung.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-lexis",
+      "knowledgeTarget": "target-language-lexis"
+    },
+    {
+      "id": "de-b1-014",
+      "level": "B1",
+      "difficulty": 2.573,
+      "skill": "vocabulary",
+      "format": "gap-fill",
+      "constructId": "de-b1-vocabulary-media-and-information",
+      "descriptorRefs": [
+        "CEFR-2020-B1-reception",
+        "CEFR-2020-B1-language-competence"
+      ],
+      "selectionRefs": [
+        "de-selection-B1-vocabulary"
+      ],
+      "scenario": "choosing a local news service",
+      "prompt": "four-option contextual lexical-choice discrimination",
+      "scenarioRu": "Практическая лексика",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Die Redaktion nennt bei Vorgang094 Autor, Datum und Herkunft der Angaben. Welcher Begriff passt?",
+      "options": [
+        "Bei Vorgang094 wird der Bahnsteig angegeben.",
+        "Bei Vorgang094 wird die Quelle angegeben.",
+        "Bei Vorgang094 wird die Gebühr angegeben.",
+        "Bei Vorgang094 wird die Schuhgröße angegeben."
+      ],
+      "correctIndex": 1,
+      "explanation": "The keyed option is the only one that realizes words for reports, sources, updates and subscriptions in the supplied context.",
+      "targetConstruct": "words for reports, sources, updates and subscriptions",
+      "cefrRationale": "Can discuss how they receive routine information.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Bei Vorgang094 wird die Quelle angegeben.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-lexis",
+      "knowledgeTarget": "target-language-lexis"
+    },
+    {
+      "id": "de-b1-015",
+      "level": "B1",
+      "difficulty": 2.593,
+      "skill": "vocabulary",
+      "format": "gap-fill",
+      "constructId": "de-b1-vocabulary-personal-budgeting",
+      "descriptorRefs": [
+        "CEFR-2020-B1-reception",
+        "CEFR-2020-B1-language-competence"
+      ],
+      "selectionRefs": [
+        "de-selection-B1-vocabulary"
+      ],
+      "scenario": "reviewing monthly costs",
+      "prompt": "four-option contextual lexical-choice discrimination",
+      "scenarioRu": "Практическая лексика",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Für Vorgang095 stellt Jonas monatliches Einkommen und alle festen Kosten gegenüber. Was erstellt er?",
+      "options": [
+        "Jonas erstellt für Vorgang095 ein Rezept.",
+        "Jonas erstellt für Vorgang095 eine Wetterkarte.",
+        "Jonas erstellt für Vorgang095 ein Budget.",
+        "Jonas erstellt für Vorgang095 einen Fahrplan."
+      ],
+      "correctIndex": 2,
+      "explanation": "The keyed option is the only one that realizes everyday lexis for income, expenses, fees and savings in the supplied context.",
+      "targetConstruct": "everyday lexis for income, expenses, fees and savings",
+      "cefrRationale": "Can explain a simple household budget decision.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Jonas erstellt für Vorgang095 ein Budget.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-lexis",
+      "knowledgeTarget": "target-language-lexis"
+    },
+    {
+      "id": "de-b1-016",
+      "level": "B1",
+      "difficulty": 2.612,
+      "skill": "vocabulary",
+      "format": "gap-fill",
+      "constructId": "de-b1-vocabulary-customer-service-resolution",
+      "descriptorRefs": [
+        "CEFR-2020-B1-reception",
+        "CEFR-2020-B1-language-competence"
+      ],
+      "selectionRefs": [
+        "de-selection-B1-vocabulary"
+      ],
+      "scenario": "following up a delayed refund",
+      "prompt": "four-option contextual lexical-choice discrimination",
+      "scenarioRu": "Практическая лексика",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Das Gerät zu Vorgang096 ist defekt; der Händler bietet Austausch oder Reparatur an. Was ist das Ziel?",
+      "options": [
+        "Für Vorgang096 wird eine Verspätung angeboten.",
+        "Für Vorgang096 wird eine Beförderung angeboten.",
+        "Für Vorgang096 wird eine Einladung angeboten.",
+        "Für Vorgang096 wird eine Lösung angeboten."
+      ],
+      "correctIndex": 3,
+      "explanation": "The keyed option is the only one that realizes verbs and nouns for reporting and resolving service problems in the supplied context.",
+      "targetConstruct": "verbs and nouns for reporting and resolving service problems",
+      "cefrRationale": "Can describe the progress of a customer-service case.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Für Vorgang096 wird eine Lösung angeboten.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-lexis",
+      "knowledgeTarget": "target-language-lexis"
+    },
+    {
+      "id": "de-b1-017",
+      "level": "B1",
+      "difficulty": 2.632,
+      "skill": "vocabulary",
+      "format": "gap-fill",
+      "constructId": "de-b1-vocabulary-adult-relationships",
+      "descriptorRefs": [
+        "CEFR-2020-B1-reception",
+        "CEFR-2020-B1-language-competence"
+      ],
+      "selectionRefs": [
+        "de-selection-B1-vocabulary"
+      ],
+      "scenario": "discussing teamwork with a supervisor",
+      "prompt": "four-option contextual lexical-choice discrimination",
+      "scenarioRu": "Практическая лексика",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Zwei Kolleginnen teilen bei Vorgang097 Aufgaben, hören einander zu und helfen sich. Welches Wort passt?",
+      "options": [
+        "Vorgang097 zeigt gute Zusammenarbeit.",
+        "Vorgang097 zeigt eine Kündigungsfrist.",
+        "Vorgang097 zeigt einen Preisanstieg.",
+        "Vorgang097 zeigt eine Wegbeschreibung."
+      ],
+      "correctIndex": 0,
+      "explanation": "The keyed option is the only one that realizes neutral lexis for cooperation, support and disagreement in the supplied context.",
+      "targetConstruct": "neutral lexis for cooperation, support and disagreement",
+      "cefrRationale": "Can describe an interpersonal situation without slang.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Vorgang097 zeigt gute Zusammenarbeit.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-lexis",
+      "knowledgeTarget": "target-language-lexis"
+    },
+    {
+      "id": "de-b1-018",
+      "level": "B1",
+      "difficulty": 2.651,
+      "skill": "vocabulary",
+      "format": "gap-fill",
+      "constructId": "de-b1-vocabulary-health-guidance",
+      "descriptorRefs": [
+        "CEFR-2020-B1-reception",
+        "CEFR-2020-B1-language-competence"
+      ],
+      "selectionRefs": [
+        "de-selection-B1-vocabulary"
+      ],
+      "scenario": "reading an employer wellbeing leaflet",
+      "prompt": "four-option contextual lexical-choice discrimination",
+      "scenarioRu": "Практическая лексика",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Nach einer leichten Erkrankung soll Nora bei Vorgang098 langsam wieder aktiv werden. Welcher Begriff passt?",
+      "options": [
+        "Vorgang098 betrifft die Reservierung.",
+        "Vorgang098 betrifft die Erholung.",
+        "Vorgang098 betrifft die Bewerbung.",
+        "Vorgang098 betrifft die Lieferung."
+      ],
+      "correctIndex": 1,
+      "explanation": "The keyed option is the only one that realizes non-specialist lexis for prevention, recovery and advice in the supplied context.",
+      "targetConstruct": "non-specialist lexis for prevention, recovery and advice",
+      "cefrRationale": "Can understand general health guidance.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Vorgang098 betrifft die Erholung.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-lexis",
+      "knowledgeTarget": "target-language-lexis"
+    },
+    {
+      "id": "de-b1-019",
+      "level": "B1",
+      "difficulty": 2.671,
+      "skill": "vocabulary",
+      "format": "gap-fill",
+      "constructId": "de-b1-vocabulary-event-organization",
+      "descriptorRefs": [
+        "CEFR-2020-B1-reception",
+        "CEFR-2020-B1-language-competence"
+      ],
+      "selectionRefs": [
+        "de-selection-B1-vocabulary"
+      ],
+      "scenario": "helping organize a community meeting",
+      "prompt": "four-option contextual lexical-choice discrimination",
+      "scenarioRu": "Практическая лексика",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Für Vorgang099 werden Raum, Beginn, Pausen und Teilnehmende festgelegt. Was entsteht?",
+      "options": [
+        "Für Vorgang099 entsteht ein Mietvertrag.",
+        "Für Vorgang099 entsteht eine Diagnose.",
+        "Für Vorgang099 entsteht ein Ablaufplan.",
+        "Für Vorgang099 entsteht ein Kontoauszug."
+      ],
+      "correctIndex": 2,
+      "explanation": "The keyed option is the only one that realizes vocabulary for venue, participants, schedule and arrangements in the supplied context.",
+      "targetConstruct": "vocabulary for venue, participants, schedule and arrangements",
+      "cefrRationale": "Can coordinate the practical elements of a small event.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Für Vorgang099 entsteht ein Ablaufplan.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-lexis",
+      "knowledgeTarget": "target-language-lexis"
+    },
+    {
+      "id": "de-b1-020",
+      "level": "B1",
+      "difficulty": 2.69,
+      "skill": "vocabulary",
+      "format": "gap-fill",
+      "constructId": "de-b1-vocabulary-verb-noun-collocations",
+      "descriptorRefs": [
+        "CEFR-2020-B1-reception",
+        "CEFR-2020-B1-language-competence"
+      ],
+      "selectionRefs": [
+        "de-selection-B1-vocabulary"
+      ],
+      "scenario": "writing a routine administrative email",
+      "prompt": "four-option contextual lexical-choice discrimination",
+      "scenarioRu": "Практическая лексика",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Das Team muss bei Vorgang100 eine verbindliche Wahl treffen. Welche Verbindung ist üblich?",
+      "options": [
+        "Das Team macht bei Vorgang100 eine Entscheidung hin.",
+        "Das Team stellt bei Vorgang100 eine Entscheidung auf.",
+        "Das Team fährt bei Vorgang100 eine Entscheidung.",
+        "Das Team trifft bei Vorgang100 eine Entscheidung."
+      ],
+      "correctIndex": 3,
+      "explanation": "The keyed option is the only one that realizes frequent German verb-noun combinations in adult daily life in the supplied context.",
+      "targetConstruct": "frequent German verb-noun combinations in adult daily life",
+      "cefrRationale": "Can choose the conventional verb for a familiar action.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Das Team trifft bei Vorgang100 eine Entscheidung.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-lexis",
+      "knowledgeTarget": "target-language-lexis"
+    },
+    {
+      "id": "de-b1-021",
+      "level": "B1",
+      "difficulty": 2.71,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "de-b1-reading-news-summary-main-point",
+      "descriptorRefs": [
+        "CEFR-2020-B1-reception"
+      ],
+      "selectionRefs": [
+        "de-selection-B1-reading"
+      ],
+      "scenario": "reading a commuter news update",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Die Meldung sagt: „Nach einem Wasserrohrbruch bleibt die Bibliothek bei Vorgang101 heute zu. Ausgeliehene Medien werden automatisch verlängert.“ Was ist die wichtigste Folge?",
+      "options": [
+        "Bei Vorgang101 bleibt die Bibliothek geschlossen und Fristen werden verlängert.",
+        "Bei Vorgang101 öffnet die Bibliothek länger und verlangt Gebühren.",
+        "Bei Vorgang101 müssen alle Medien heute persönlich zurückgebracht werden.",
+        "Bei Vorgang101 betrifft der Schaden nur den Parkplatz."
+      ],
+      "correctIndex": 0,
+      "explanation": "The keyed option is the only one that realizes main event and consequence in a short news summary in the supplied context.",
+      "targetConstruct": "main event and consequence in a short news summary",
+      "cefrRationale": "Can identify what happened and why it matters locally.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Bei Vorgang101 bleibt die Bibliothek geschlossen und Fristen werden verlängert.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "Vorgang101 heute zu. Ausgeliehene Medien werden automatisch verlängert",
+          "correctIndex": 0,
+          "correctAnswer": "Bei Vorgang101 bleibt die Bibliothek geschlossen und Fristen werden verlängert.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "Vorgang101",
+              "answerToken": "Vorgang101"
+            }
+          ],
+          "linkingExplanation": "The source token Vorgang101 links directly to the answer token Vorgang101."
+        }
+      ]
+    },
+    {
+      "id": "de-b1-022",
+      "level": "B1",
+      "difficulty": 2.729,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "de-b1-reading-forum-post-experience",
+      "descriptorRefs": [
+        "CEFR-2020-B1-reception"
+      ],
+      "selectionRefs": [
+        "de-selection-B1-reading"
+      ],
+      "scenario": "reading a housing discussion forum",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Im Forum steht: „Bei Vorgang102 kam meine Lieferung zweimal zu spät. Nach einem Anruf erhielt ich eine feste Zustellzeit. Ich empfehle, früh nachzufragen.“ Welche Empfehlung steht im Beitrag?",
+      "options": [
+        "Bei Vorgang102 soll man grundsätzlich doppelt bezahlen.",
+        "Bei Vorgang102 soll man bei wiederholter Verspätung früh nachfragen.",
+        "Bei Vorgang102 soll man jede Lieferung sofort stornieren.",
+        "Bei Vorgang102 soll man ohne Kontakt unbegrenzt warten."
+      ],
+      "correctIndex": 1,
+      "explanation": "The keyed option is the only one that realizes writer's problem, response and recommendation in a forum post in the supplied context.",
+      "targetConstruct": "writer's problem, response and recommendation in a forum post",
+      "cefrRationale": "Can separate personal experience from advice.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Bei Vorgang102 soll man bei wiederholter Verspätung früh nachfragen.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "Vorgang102 kam meine Lieferung zweimal zu spät. Nach einem Anruf erhielt ich eine feste Zustellzeit",
+          "correctIndex": 1,
+          "correctAnswer": "Bei Vorgang102 soll man bei wiederholter Verspätung früh nachfragen.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "Vorgang102",
+              "answerToken": "Vorgang102"
+            }
+          ],
+          "linkingExplanation": "The source token Vorgang102 links directly to the answer token Vorgang102."
+        }
+      ]
+    },
+    {
+      "id": "de-b1-023",
+      "level": "B1",
+      "difficulty": 2.749,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "de-b1-reading-work-email-actions",
+      "descriptorRefs": [
+        "CEFR-2020-B1-reception"
+      ],
+      "selectionRefs": [
+        "de-selection-B1-reading"
+      ],
+      "scenario": "planning tasks after a team message",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Die E-Mail lautet: „Für Vorgang103 prüft Leo bis Dienstag die Zahlen. Mira ergänzt bis Mittwoch die Quellen. Am Donnerstag verschickt Nora die Endfassung.“ Wer ergänzt die Quellen?",
+      "options": [
+        "Nora prüft bei Vorgang103 bis Dienstag die Quellen.",
+        "Mira verschickt bei Vorgang103 am Montag die Endfassung.",
+        "Mira ergänzt bei Vorgang103 bis Mittwoch die Quellen.",
+        "Leo ergänzt bei Vorgang103 am Donnerstag die Quellen."
+      ],
+      "correctIndex": 2,
+      "explanation": "The keyed option is the only one that realizes responsibilities and deadlines distributed across a work email in the supplied context.",
+      "targetConstruct": "responsibilities and deadlines distributed across a work email",
+      "cefrRationale": "Can identify who must do what by when.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Mira ergänzt bei Vorgang103 bis Mittwoch die Quellen.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "Vorgang103 prüft Leo bis Dienstag die Zahlen. Mira ergänzt bis Mittwoch die Quellen",
+          "correctIndex": 2,
+          "correctAnswer": "Mira ergänzt bei Vorgang103 bis Mittwoch die Quellen.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "Vorgang103",
+              "answerToken": "Vorgang103"
+            }
+          ],
+          "linkingExplanation": "The source token Vorgang103 links directly to the answer token Vorgang103."
+        }
+      ]
+    },
+    {
+      "id": "de-b1-024",
+      "level": "B1",
+      "difficulty": 2.768,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "de-b1-reading-public-brochure-options",
+      "descriptorRefs": [
+        "CEFR-2020-B1-reception"
+      ],
+      "selectionRefs": [
+        "de-selection-B1-reading"
+      ],
+      "scenario": "choosing an adult training programme",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Der Prospekt erklärt: „Vorgang104 Standard umfasst Beratung per E-Mail. Plus umfasst zusätzlich zwei Videotermine, kostet aber 20 Euro mehr.“ Was bietet nur Plus?",
+      "options": [
+        "Vorgang104 Standard enthält zwei Videotermine ohne Aufpreis.",
+        "Vorgang104 Plus verzichtet vollständig auf Beratung.",
+        "Vorgang104 Standard kostet zwanzig Euro mehr als Plus.",
+        "Vorgang104 Plus enthält zwei zusätzliche Videotermine."
+      ],
+      "correctIndex": 3,
+      "explanation": "The keyed option is the only one that realizes conditions and benefits across sections of a service brochure in the supplied context.",
+      "targetConstruct": "conditions and benefits across sections of a service brochure",
+      "cefrRationale": "Can compare two practical service options.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Vorgang104 Plus enthält zwei zusätzliche Videotermine.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "Vorgang104 Standard umfasst Beratung per E-Mail. Plus umfasst zusätzlich zwei Videotermine",
+          "correctIndex": 3,
+          "correctAnswer": "Vorgang104 Plus enthält zwei zusätzliche Videotermine.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "Vorgang104",
+              "answerToken": "Vorgang104"
+            }
+          ],
+          "linkingExplanation": "The source token Vorgang104 links directly to the answer token Vorgang104."
+        }
+      ]
+    },
+    {
+      "id": "de-b1-025",
+      "level": "B1",
+      "difficulty": 2.788,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "de-b1-reading-opinion-reason-link",
+      "descriptorRefs": [
+        "CEFR-2020-B1-reception"
+      ],
+      "selectionRefs": [
+        "de-selection-B1-reading"
+      ],
+      "scenario": "reading a local mobility column",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Im Kommentar steht: „Ich unterstütze Vorgang105, weil dadurch weniger Autos ins Zentrum fahren und die Busse häufiger kommen.“ Welcher Grund wird genannt?",
+      "options": [
+        "Vorgang105 soll Verkehr verringern und Busverbindungen verbessern.",
+        "Vorgang105 soll Parkplätze vergrößern und Busse seltener machen.",
+        "Vorgang105 wird ohne jeden Grund unterstützt.",
+        "Vorgang105 soll nur die Preise für Autos erhöhen."
+      ],
+      "correctIndex": 0,
+      "explanation": "The keyed option is the only one that realizes stated opinion and supporting reason in a short commentary in the supplied context.",
+      "targetConstruct": "stated opinion and supporting reason in a short commentary",
+      "cefrRationale": "Can identify which reason supports the writer's view.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Vorgang105 soll Verkehr verringern und Busverbindungen verbessern.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "Vorgang105, weil dadurch weniger Autos ins Zentrum fahren und die Busse häufiger kommen",
+          "correctIndex": 0,
+          "correctAnswer": "Vorgang105 soll Verkehr verringern und Busverbindungen verbessern.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "Vorgang105",
+              "answerToken": "Vorgang105"
+            }
+          ],
+          "linkingExplanation": "The source token Vorgang105 links directly to the answer token Vorgang105."
+        }
+      ]
+    },
+    {
+      "id": "de-b1-026",
+      "level": "B1",
+      "difficulty": 2.807,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "de-b1-reading-multi-step-instructions",
+      "descriptorRefs": [
+        "CEFR-2020-B1-reception"
+      ],
+      "selectionRefs": [
+        "de-selection-B1-reading"
+      ],
+      "scenario": "submitting an online expense claim",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Die Anleitung sagt: „Bei Vorgang106 zuerst das Formular speichern. Danach die Belege hochladen. Erst wenn die Bestätigung erscheint, darf das Fenster geschlossen werden.“ Wann darf man schließen?",
+      "options": [
+        "Bei Vorgang106 darf das Fenster nie geschlossen werden.",
+        "Bei Vorgang106 darf man nach der Bestätigung schließen.",
+        "Bei Vorgang106 darf man vor dem Speichern schließen.",
+        "Bei Vorgang106 muss man während des Hochladens schließen."
+      ],
+      "correctIndex": 1,
+      "explanation": "The keyed option is the only one that realizes dependencies in a short set of practical instructions in the supplied context.",
+      "targetConstruct": "dependencies in a short set of practical instructions",
+      "cefrRationale": "Can follow steps whose order affects the result.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Bei Vorgang106 darf man nach der Bestätigung schließen.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "Vorgang106 zuerst das Formular speichern. Danach die Belege hochladen. Erst wenn die Bestätigung erscheint",
+          "correctIndex": 1,
+          "correctAnswer": "Bei Vorgang106 darf man nach der Bestätigung schließen.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "Vorgang106",
+              "answerToken": "Vorgang106"
+            }
+          ],
+          "linkingExplanation": "The source token Vorgang106 links directly to the answer token Vorgang106."
+        }
+      ]
+    },
+    {
+      "id": "de-b1-027",
+      "level": "B1",
+      "difficulty": 2.827,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "de-b1-reading-consumer-review-balance",
+      "descriptorRefs": [
+        "CEFR-2020-B1-reception"
+      ],
+      "selectionRefs": [
+        "de-selection-B1-reading"
+      ],
+      "scenario": "comparing repair services",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Die Bewertung lautet: „Vorgang107 arbeitet leise und schnell, die Einrichtung ist jedoch kompliziert und die Anleitung knapp.“ Welche Zusammenfassung ist ausgewogen?",
+      "options": [
+        "Vorgang107 arbeitet laut und langsam, lässt sich aber leicht einrichten.",
+        "Vorgang107 wird nur wegen seines niedrigen Preises kritisiert.",
+        "Vorgang107 überzeugt im Betrieb, ist aber schwer einzurichten.",
+        "Vorgang107 ist in jeder Hinsicht problemlos."
+      ],
+      "correctIndex": 2,
+      "explanation": "The keyed option is the only one that realizes positive and negative points in a detailed consumer review in the supplied context.",
+      "targetConstruct": "positive and negative points in a detailed consumer review",
+      "cefrRationale": "Can determine the reviewer's overall assessment.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Vorgang107 überzeugt im Betrieb, ist aber schwer einzurichten.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "Vorgang107 arbeitet leise und schnell, die Einrichtung ist jedoch kompliziert",
+          "correctIndex": 2,
+          "correctAnswer": "Vorgang107 überzeugt im Betrieb, ist aber schwer einzurichten.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "Vorgang107",
+              "answerToken": "Vorgang107"
+            }
+          ],
+          "linkingExplanation": "The source token Vorgang107 links directly to the answer token Vorgang107."
+        }
+      ]
+    },
+    {
+      "id": "de-b1-028",
+      "level": "B1",
+      "difficulty": 2.846,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "de-b1-reading-incident-report-sequence",
+      "descriptorRefs": [
+        "CEFR-2020-B1-reception"
+      ],
+      "selectionRefs": [
+        "de-selection-B1-reading"
+      ],
+      "scenario": "reading a building maintenance report",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Der Bericht sagt: „Bei Vorgang108 fiel um 9 Uhr das Netz aus. Das Team wechselte auf eine Ersatzverbindung. Um 9:20 lief der Dienst wieder.“ Was geschah nach dem Ausfall?",
+      "options": [
+        "Bei Vorgang108 beendete das Team den Dienst dauerhaft.",
+        "Bei Vorgang108 trat der Ausfall erst um 9:20 Uhr ein.",
+        "Bei Vorgang108 wurde vor dem Ausfall nichts unternommen.",
+        "Bei Vorgang108 nutzte das Team eine Ersatzverbindung."
+      ],
+      "correctIndex": 3,
+      "explanation": "The keyed option is the only one that realizes event, response and outcome in a factual incident report in the supplied context.",
+      "targetConstruct": "event, response and outcome in a factual incident report",
+      "cefrRationale": "Can reconstruct the reported sequence without outside knowledge.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Bei Vorgang108 nutzte das Team eine Ersatzverbindung.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "Vorgang108 fiel um 9 Uhr das Netz aus. Das Team wechselte auf eine Ersatzverbindung",
+          "correctIndex": 3,
+          "correctAnswer": "Bei Vorgang108 nutzte das Team eine Ersatzverbindung.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "Vorgang108",
+              "answerToken": "Vorgang108"
+            }
+          ],
+          "linkingExplanation": "The source token Vorgang108 links directly to the answer token Vorgang108."
+        }
+      ]
+    },
+    {
+      "id": "de-b1-029",
+      "level": "B1",
+      "difficulty": 2.866,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "de-b1-reading-formal-letter-purpose",
+      "descriptorRefs": [
+        "CEFR-2020-B1-reception"
+      ],
+      "selectionRefs": [
+        "de-selection-B1-reading"
+      ],
+      "scenario": "reading a tenant's letter to a property manager",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Im Brief steht: „Zu Vorgang109 wurden mir zwei Gebühren berechnet, obwohl ich nur einen Antrag gestellt habe. Bitte prüfen Sie die Rechnung und korrigieren Sie sie.“ Was ist der Zweck?",
+      "options": [
+        "Mit Vorgang109 wird eine Prüfung und Korrektur der Rechnung verlangt.",
+        "Mit Vorgang109 wird ein zweiter Antrag ohne Prüfung bestellt.",
+        "Mit Vorgang109 wird die doppelte Gebühr ausdrücklich akzeptiert.",
+        "Mit Vorgang109 wird nur nach den Öffnungszeiten gefragt."
+      ],
+      "correctIndex": 0,
+      "explanation": "The keyed option is the only one that realizes request, justification and expected response in a formal letter in the supplied context.",
+      "targetConstruct": "request, justification and expected response in a formal letter",
+      "cefrRationale": "Can identify the sender's main purpose.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Mit Vorgang109 wird eine Prüfung und Korrektur der Rechnung verlangt.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "Vorgang109 wurden mir zwei Gebühren berechnet, obwohl ich nur einen Antrag gestellt habe",
+          "correctIndex": 0,
+          "correctAnswer": "Mit Vorgang109 wird eine Prüfung und Korrektur der Rechnung verlangt.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "Vorgang109",
+              "answerToken": "Vorgang109"
+            }
+          ],
+          "linkingExplanation": "The source token Vorgang109 links directly to the answer token Vorgang109."
+        }
+      ]
+    },
+    {
+      "id": "de-b1-030",
+      "level": "B1",
+      "difficulty": 2.885,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "de-b1-reading-short-argument-structure",
+      "descriptorRefs": [
+        "CEFR-2020-B1-reception"
+      ],
+      "selectionRefs": [
+        "de-selection-B1-reading"
+      ],
+      "scenario": "reading an internal proposal about flexible hours",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Der Text sagt: „Vorgang110 sollte verlängert werden, weil die Pilotphase zu kurz für verlässliche Daten war. Beispielsweise nahmen in der letzten Woche doppelt so viele Personen teil.“ Was stützt die Forderung?",
+      "options": [
+        "Bei Vorgang110 spricht die höhere Teilnahme gegen jede weitere Beobachtung.",
+        "Bei Vorgang110 zeigt die späte höhere Teilnahme, dass mehr Beobachtungszeit sinnvoll ist.",
+        "Bei Vorgang110 beweist eine kurze Pilotphase bereits jede langfristige Wirkung.",
+        "Bei Vorgang110 wird die Verlängerung ohne Grund verlangt."
+      ],
+      "correctIndex": 1,
+      "explanation": "The keyed option is the only one that realizes claim, reason and example in a short argumentative text in the supplied context.",
+      "targetConstruct": "claim, reason and example in a short argumentative text",
+      "cefrRationale": "Can distinguish the conclusion from its support.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Bei Vorgang110 zeigt die späte höhere Teilnahme, dass mehr Beobachtungszeit sinnvoll ist.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "Vorgang110 sollte verlängert werden, weil die Pilotphase zu kurz für verlässliche Daten war",
+          "correctIndex": 1,
+          "correctAnswer": "Bei Vorgang110 zeigt die späte höhere Teilnahme, dass mehr Beobachtungszeit sinnvoll ist.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "Vorgang110",
+              "answerToken": "Vorgang110"
+            }
+          ],
+          "linkingExplanation": "The source token Vorgang110 links directly to the answer token Vorgang110."
+        }
+      ]
+    },
+    {
+      "id": "de-b1-031",
+      "level": "B1",
+      "difficulty": 2.905,
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "constructId": "de-b1-pragmatics-explain-reason-with-context",
+      "descriptorRefs": [
+        "CEFR-2020-B1-pragmatics"
+      ],
+      "selectionRefs": [
+        "de-selection-B1-pragmatics"
+      ],
+      "scenario": "telling a colleague why a deadline must move",
+      "prompt": "four-option context-sensitive intent or response choice",
+      "scenarioRu": "Намерение собеседника",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Mara lehnt den Dienstag für Vorgang111 ab, weil dann die einzige Fachkraft fehlt. Welche Erklärung ist ausreichend?",
+      "options": [
+        "Vorgang111 ist schlecht, mehr sage ich nicht.",
+        "Bei Vorgang111 entscheide ich ohne Rücksicht auf den Termin.",
+        "Dienstag geht bei Vorgang111 nicht, weil unsere einzige Fachkraft an diesem Tag fehlt.",
+        "Dienstag geht bei Vorgang111 einfach nicht."
+      ],
+      "correctIndex": 2,
+      "explanation": "The keyed option is the only one that realizes explanation that gives enough background for a practical decision in the supplied context.",
+      "targetConstruct": "explanation that gives enough background for a practical decision",
+      "cefrRationale": "Can justify a change of plan clearly.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Dienstag geht bei Vorgang111 nicht, weil unsere einzige Fachkraft an diesem Tag fehlt.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "pragmatic-intent",
+      "knowledgeTarget": "pragmatic-intent",
+      "answerEvidence": [
+        {
+          "quote": "Vorgang111 ab, weil dann die einzige Fachkraft fehlt",
+          "correctIndex": 2,
+          "correctAnswer": "Dienstag geht bei Vorgang111 nicht, weil unsere einzige Fachkraft an diesem Tag fehlt.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "Vorgang111",
+              "answerToken": "Vorgang111"
+            }
+          ],
+          "linkingExplanation": "The source token Vorgang111 links directly to the answer token Vorgang111."
+        }
+      ]
+    },
+    {
+      "id": "de-b1-032",
+      "level": "B1",
+      "difficulty": 2.924,
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "constructId": "de-b1-pragmatics-negotiate-shared-plan",
+      "descriptorRefs": [
+        "CEFR-2020-B1-pragmatics"
+      ],
+      "selectionRefs": [
+        "de-selection-B1-pragmatics"
+      ],
+      "scenario": "coordinating coverage for a work shift",
+      "prompt": "four-option context-sensitive intent or response choice",
+      "scenarioRu": "Намерение собеседника",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Jonas kann Vorgang112 erst ab 15 Uhr bearbeiten; Nora muss um 17 Uhr gehen. Welcher Vorschlag berücksichtigt beides?",
+      "options": [
+        "Jonas bearbeitet Vorgang112 um 12 Uhr, obwohl er nicht kann.",
+        "Nora beginnt Vorgang112 um 18 Uhr, nachdem sie gegangen ist.",
+        "Wir ignorieren bei Vorgang112 beide Zeitgrenzen.",
+        "Wir bearbeiten Vorgang112 gemeinsam von 15 bis 17 Uhr und teilen den Rest vorher auf."
+      ],
+      "correctIndex": 3,
+      "explanation": "The keyed option is the only one that realizes proposal that incorporates another person's constraint in the supplied context.",
+      "targetConstruct": "proposal that incorporates another person's constraint",
+      "cefrRationale": "Can negotiate a workable arrangement.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Wir bearbeiten Vorgang112 gemeinsam von 15 bis 17 Uhr und teilen den Rest vorher auf.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "pragmatic-intent",
+      "knowledgeTarget": "pragmatic-intent",
+      "answerEvidence": [
+        {
+          "quote": "Vorgang112 erst ab 15 Uhr bearbeiten; Nora muss um 17 Uhr gehen",
+          "correctIndex": 3,
+          "correctAnswer": "Wir bearbeiten Vorgang112 gemeinsam von 15 bis 17 Uhr und teilen den Rest vorher auf.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "Vorgang112",
+              "answerToken": "Vorgang112"
+            }
+          ],
+          "linkingExplanation": "The source token Vorgang112 links directly to the answer token Vorgang112."
+        }
+      ]
+    },
+    {
+      "id": "de-b1-033",
+      "level": "B1",
+      "difficulty": 2.944,
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "constructId": "de-b1-pragmatics-polite-disagreement",
+      "descriptorRefs": [
+        "CEFR-2020-B1-pragmatics"
+      ],
+      "selectionRefs": [
+        "de-selection-B1-pragmatics"
+      ],
+      "scenario": "discussing a team process",
+      "prompt": "four-option context-sensitive intent or response choice",
+      "scenarioRu": "Намерение собеседника",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Eine Kollegin will Vorgang113 sofort veröffentlichen; David hält eine Quellenprüfung für nötig. Wie widerspricht er höflich?",
+      "options": [
+        "Ich verstehe den Zeitdruck bei Vorgang113, würde aber vorher noch die Quellen prüfen.",
+        "Deine Idee zu Vorgang113 ist offensichtlich unsinnig.",
+        "Bei Vorgang113 hast du grundsätzlich nie recht.",
+        "Ich stimme Vorgang113 vollständig zu und lehne jede Prüfung ab."
+      ],
+      "correctIndex": 0,
+      "explanation": "The keyed option is the only one that realizes disagreement that acknowledges the other view before giving a reason in the supplied context.",
+      "targetConstruct": "disagreement that acknowledges the other view before giving a reason",
+      "cefrRationale": "Can challenge a proposal without escalating the exchange.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Ich verstehe den Zeitdruck bei Vorgang113, würde aber vorher noch die Quellen prüfen.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "pragmatic-intent",
+      "knowledgeTarget": "pragmatic-intent",
+      "answerEvidence": [
+        {
+          "quote": "Vorgang113 sofort veröffentlichen; David hält eine Quellenprüfung für nötig",
+          "correctIndex": 0,
+          "correctAnswer": "Ich verstehe den Zeitdruck bei Vorgang113, würde aber vorher noch die Quellen prüfen.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "Vorgang113",
+              "answerToken": "Vorgang113"
+            }
+          ],
+          "linkingExplanation": "The source token Vorgang113 links directly to the answer token Vorgang113."
+        }
+      ]
+    },
+    {
+      "id": "de-b1-034",
+      "level": "B1",
+      "difficulty": 2.963,
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "constructId": "de-b1-pragmatics-make-actionable-suggestion",
+      "descriptorRefs": [
+        "CEFR-2020-B1-pragmatics"
+      ],
+      "selectionRefs": [
+        "de-selection-B1-pragmatics"
+      ],
+      "scenario": "planning a community event",
+      "prompt": "four-option context-sensitive intent or response choice",
+      "scenarioRu": "Намерение собеседника",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Bei Vorgang114 fehlen noch Rückmeldungen von drei Personen. Welcher Vorschlag ist konkret umsetzbar?",
+      "options": [
+        "Wir löschen bei Vorgang114 die fehlenden Personen aus der Liste.",
+        "Schicken wir zu Vorgang114 heute eine kurze Erinnerung mit Frist bis morgen.",
+        "Bei Vorgang114 sollte irgendwann irgendetwas geschehen.",
+        "Wir warten bei Vorgang114 ohne Frist und ohne Nachfrage."
+      ],
+      "correctIndex": 1,
+      "explanation": "The keyed option is the only one that realizes suggestion framed as a feasible next step in the supplied context.",
+      "targetConstruct": "suggestion framed as a feasible next step",
+      "cefrRationale": "Can contribute a practical alternative to a discussion.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Schicken wir zu Vorgang114 heute eine kurze Erinnerung mit Frist bis morgen.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "pragmatic-intent",
+      "knowledgeTarget": "pragmatic-intent",
+      "answerEvidence": [
+        {
+          "quote": "Vorgang114 fehlen noch Rückmeldungen von drei Personen",
+          "correctIndex": 1,
+          "correctAnswer": "Schicken wir zu Vorgang114 heute eine kurze Erinnerung mit Frist bis morgen.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "Vorgang114",
+              "answerToken": "Vorgang114"
+            }
+          ],
+          "linkingExplanation": "The source token Vorgang114 links directly to the answer token Vorgang114."
+        }
+      ]
+    },
+    {
+      "id": "de-b1-035",
+      "level": "B1",
+      "difficulty": 2.983,
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "constructId": "de-b1-pragmatics-clarify-ambiguous-request",
+      "descriptorRefs": [
+        "CEFR-2020-B1-pragmatics"
+      ],
+      "selectionRefs": [
+        "de-selection-B1-pragmatics"
+      ],
+      "scenario": "responding to an incomplete work request",
+      "prompt": "four-option context-sensitive intent or response choice",
+      "scenarioRu": "Намерение собеседника",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Die Anweisung zu Vorgang115 lautet nur „Bitte bald schicken“. Welche Frage klärt das fehlende Detail?",
+      "options": [
+        "Soll ich Vorgang115 vielleicht irgendwann ignorieren?",
+        "Wer hat Vorgang115 erfunden, ohne dass ich den Auftrag kläre?",
+        "Bis zu welchem Datum soll ich Vorgang115 an welche Adresse schicken?",
+        "Warum ist Vorgang115 überhaupt wichtig?"
+      ],
+      "correctIndex": 2,
+      "explanation": "The keyed option is the only one that realizes targeted clarification question that resolves a missing detail in the supplied context.",
+      "targetConstruct": "targeted clarification question that resolves a missing detail",
+      "cefrRationale": "Can prevent misunderstanding before acting.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Bis zu welchem Datum soll ich Vorgang115 an welche Adresse schicken?” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "pragmatic-intent",
+      "knowledgeTarget": "pragmatic-intent",
+      "answerEvidence": [
+        {
+          "quote": "Vorgang115 lautet nur „Bitte bald schicken“",
+          "correctIndex": 2,
+          "correctAnswer": "Bis zu welchem Datum soll ich Vorgang115 an welche Adresse schicken?",
+          "lexicalLinks": [
+            {
+              "sourceToken": "Vorgang115",
+              "answerToken": "Vorgang115"
+            }
+          ],
+          "linkingExplanation": "The source token Vorgang115 links directly to the answer token Vorgang115."
+        }
+      ]
+    },
+    {
+      "id": "de-b1-036",
+      "level": "B1",
+      "difficulty": 3.002,
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "constructId": "de-b1-pragmatics-detailed-service-complaint",
+      "descriptorRefs": [
+        "CEFR-2020-B1-pragmatics"
+      ],
+      "selectionRefs": [
+        "de-selection-B1-pragmatics"
+      ],
+      "scenario": "contacting an internet provider",
+      "prompt": "four-option context-sensitive intent or response choice",
+      "scenarioRu": "Намерение собеседника",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Bei Vorgang116 wurde trotz bestätigter Kündigung erneut abgebucht. Welche Beschwerde trennt Fakten und Abhilfe?",
+      "options": [
+        "Bei Vorgang116 seid ihr alle unehrlich und unfähig.",
+        "Vorgang116 gefällt mir nicht, aber ich nenne weder Buchung noch Wunsch.",
+        "Ich akzeptiere die Abbuchung bei Vorgang116 und verlange zugleich keine Lösung.",
+        "Vorgang116 wurde am 3. Mai bestätigt beendet; dennoch erfolgte eine Abbuchung. Bitte erstatten Sie den Betrag."
+      ],
+      "correctIndex": 3,
+      "explanation": "The keyed option is the only one that realizes complaint that separates facts, impact and requested remedy in the supplied context.",
+      "targetConstruct": "complaint that separates facts, impact and requested remedy",
+      "cefrRationale": "Can report a recurring service problem constructively.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Vorgang116 wurde am 3. Mai bestätigt beendet; dennoch erfolgte eine Abbuchung. Bitte erstatten Sie den Betrag.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "pragmatic-intent",
+      "knowledgeTarget": "pragmatic-intent",
+      "answerEvidence": [
+        {
+          "quote": "Vorgang116 wurde trotz bestätigter Kündigung erneut abgebucht",
+          "correctIndex": 3,
+          "correctAnswer": "Vorgang116 wurde am 3. Mai bestätigt beendet; dennoch erfolgte eine Abbuchung. Bitte erstatten Sie den Betrag.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "Vorgang116",
+              "answerToken": "Vorgang116"
+            }
+          ],
+          "linkingExplanation": "The source token Vorgang116 links directly to the answer token Vorgang116."
+        }
+      ]
+    },
+    {
+      "id": "de-b1-037",
+      "level": "B1",
+      "difficulty": 3.022,
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "constructId": "de-b1-pragmatics-apology-with-repair",
+      "descriptorRefs": [
+        "CEFR-2020-B1-pragmatics"
+      ],
+      "selectionRefs": [
+        "de-selection-B1-pragmatics"
+      ],
+      "scenario": "missing a promised callback",
+      "prompt": "four-option context-sensitive intent or response choice",
+      "scenarioRu": "Намерение собеседника",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Nora hat bei Vorgang117 die falsche Datei versandt. Welche Reaktion übernimmt Verantwortung und repariert den Fehler?",
+      "options": [
+        "Entschuldigung, ich habe bei Vorgang117 die falsche Datei geschickt; die richtige sende ich sofort nach.",
+        "Bei Vorgang117 war bestimmt jemand anderes schuld.",
+        "Die falsche Datei zu Vorgang117 ist kein Problem, deshalb tue ich nichts.",
+        "Ich entschuldige mich bei Vorgang117, schicke aber absichtlich dieselbe Datei erneut."
+      ],
+      "correctIndex": 0,
+      "explanation": "The keyed option is the only one that realizes apology that accepts responsibility and proposes corrective action in the supplied context.",
+      "targetConstruct": "apology that accepts responsibility and proposes corrective action",
+      "cefrRationale": "Can repair a minor professional inconvenience.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Entschuldigung, ich habe bei Vorgang117 die falsche Datei geschickt; die richtige sende ich sofort nach.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "pragmatic-intent",
+      "knowledgeTarget": "pragmatic-intent",
+      "answerEvidence": [
+        {
+          "quote": "Vorgang117 die falsche Datei versandt",
+          "correctIndex": 0,
+          "correctAnswer": "Entschuldigung, ich habe bei Vorgang117 die falsche Datei geschickt; die richtige sende ich sofort nach.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "Vorgang117",
+              "answerToken": "Vorgang117"
+            }
+          ],
+          "linkingExplanation": "The source token Vorgang117 links directly to the answer token Vorgang117."
+        }
+      ]
+    },
+    {
+      "id": "de-b1-038",
+      "level": "B1",
+      "difficulty": 3.041,
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "constructId": "de-b1-pragmatics-supported-opinion",
+      "descriptorRefs": [
+        "CEFR-2020-B1-pragmatics"
+      ],
+      "selectionRefs": [
+        "de-selection-B1-pragmatics"
+      ],
+      "scenario": "discussing remote-work preferences",
+      "prompt": "four-option context-sensitive intent or response choice",
+      "scenarioRu": "Намерение собеседника",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Felix bevorzugt bei Vorgang118 kleinere Gruppen, weil dann mehr Personen zu Wort kommen. Welche Aussage ist gestützt?",
+      "options": [
+        "Bei Vorgang118 sollten nur laute Personen sprechen.",
+        "Für Vorgang118 finde ich kleinere Gruppen besser, weil dort mehr Teilnehmende sprechen können.",
+        "Kleine Gruppen sind bei Vorgang118 immer ohne Ausnahme überlegen.",
+        "Bei Vorgang118 bevorzuge ich kleinere Gruppen, habe aber ausdrücklich keinen Grund."
+      ],
+      "correctIndex": 1,
+      "explanation": "The keyed option is the only one that realizes personal view with a relevant example or reason in the supplied context.",
+      "targetConstruct": "personal view with a relevant example or reason",
+      "cefrRationale": "Can express and support an opinion on a familiar issue.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Für Vorgang118 finde ich kleinere Gruppen besser, weil dort mehr Teilnehmende sprechen können.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "pragmatic-intent",
+      "knowledgeTarget": "pragmatic-intent",
+      "answerEvidence": [
+        {
+          "quote": "Vorgang118 kleinere Gruppen, weil dann mehr Personen zu Wort kommen",
+          "correctIndex": 1,
+          "correctAnswer": "Für Vorgang118 finde ich kleinere Gruppen besser, weil dort mehr Teilnehmende sprechen können.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "Vorgang118",
+              "answerToken": "Vorgang118"
+            }
+          ],
+          "linkingExplanation": "The source token Vorgang118 links directly to the answer token Vorgang118."
+        }
+      ]
+    },
+    {
+      "id": "de-b1-039",
+      "level": "B1",
+      "difficulty": 3.061,
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "constructId": "de-b1-pragmatics-formal-information-request",
+      "descriptorRefs": [
+        "CEFR-2020-B1-pragmatics"
+      ],
+      "selectionRefs": [
+        "de-selection-B1-pragmatics"
+      ],
+      "scenario": "enquiring about an evening course",
+      "prompt": "four-option context-sensitive intent or response choice",
+      "scenarioRu": "Намерение собеседника",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Aylin braucht für Vorgang119 schriftlich Frist, Gebühren und erforderliche Unterlagen. Welche Anfrage passt?",
+      "options": [
+        "Für Vorgang119 verlange ich sofort alles, ohne nähere Angaben.",
+        "Ich schreibe zu Vorgang119, benötige aber keine Antwort.",
+        "Sehr geehrte Damen und Herren, bitte teilen Sie mir für Vorgang119 Frist, Gebühren und benötigte Unterlagen mit.",
+        "Hallo Leute, sagt mal irgendwas zu Vorgang119."
+      ],
+      "correctIndex": 2,
+      "explanation": "The keyed option is the only one that realizes appropriately formal request specifying needed information in the supplied context.",
+      "targetConstruct": "appropriately formal request specifying needed information",
+      "cefrRationale": "Can ask an organization for details in writing.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Sehr geehrte Damen und Herren, bitte teilen Sie mir für Vorgang119 Frist, Gebühren und benötigte Unterlagen mit.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "pragmatic-intent",
+      "knowledgeTarget": "pragmatic-intent",
+      "answerEvidence": [
+        {
+          "quote": "Vorgang119 schriftlich Frist, Gebühren und erforderliche Unterlagen",
+          "correctIndex": 2,
+          "correctAnswer": "Sehr geehrte Damen und Herren, bitte teilen Sie mir für Vorgang119 Frist, Gebühren und benötigte Unterlagen mit.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "Vorgang119",
+              "answerToken": "Vorgang119"
+            }
+          ],
+          "linkingExplanation": "The source token Vorgang119 links directly to the answer token Vorgang119."
+        }
+      ]
+    },
+    {
+      "id": "de-b1-040",
+      "level": "B1",
+      "difficulty": 3.08,
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "constructId": "de-b1-pragmatics-mediate-basic-misunderstanding",
+      "descriptorRefs": [
+        "CEFR-2020-B1-pragmatics"
+      ],
+      "selectionRefs": [
+        "de-selection-B1-pragmatics"
+      ],
+      "scenario": "resolving a scheduling mix-up between colleagues",
+      "prompt": "four-option context-sensitive intent or response choice",
+      "scenarioRu": "Намерение собеседника",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Bei Vorgang120 meint Leo, die Frist gelte für den Entwurf; Mira meint, sie gelte für die Endfassung. Wie vermittelt man neutral?",
+      "options": [
+        "Leo liegt bei Vorgang120 sicher falsch und Mira sicher richtig.",
+        "Bei Vorgang120 sagen beide genau dasselbe, daher gibt es nichts zu klären.",
+        "Wir beenden Vorgang120, ohne die zwei Deutungen zu nennen.",
+        "Bei Vorgang120 versteht Leo die Frist als Entwurfsfrist, Mira als Frist für die Endfassung; klären wir den Bezug."
+      ],
+      "correctIndex": 3,
+      "explanation": "The keyed option is the only one that realizes neutral restatement of two positions to restore shared understanding in the supplied context.",
+      "targetConstruct": "neutral restatement of two positions to restore shared understanding",
+      "cefrRationale": "Can help two adults clarify a simple misunderstanding.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Bei Vorgang120 versteht Leo die Frist als Entwurfsfrist, Mira als Frist für die Endfassung; klären wir den Bezug.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "pragmatic-intent",
+      "knowledgeTarget": "pragmatic-intent",
+      "answerEvidence": [
+        {
+          "quote": "Vorgang120 meint Leo, die Frist gelte für den Entwurf; Mira meint, sie gelte für die Endfassung",
+          "correctIndex": 3,
+          "correctAnswer": "Bei Vorgang120 versteht Leo die Frist als Entwurfsfrist, Mira als Frist für die Endfassung; klären wir den Bezug.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "Vorgang120",
+              "answerToken": "Vorgang120"
+            }
+          ],
+          "linkingExplanation": "The source token Vorgang120 links directly to the answer token Vorgang120."
+        }
+      ]
+    }
+  ]
+}

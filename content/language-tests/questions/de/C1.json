@@ -1,0 +1,2000 @@
+{
+  "schemaVersion": 3,
+  "bankVersion": "20260801-2",
+  "language": "de",
+  "level": "C1",
+  "questions": [
+    {
+      "id": "de-c1-001",
+      "level": "C1",
+      "difficulty": 4.017,
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "constructId": "de-c1-grammar-nominalisation-agency",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception",
+        "CEFR-2020-C1-language-competence"
+      ],
+      "selectionRefs": [
+        "de-selection-C1-grammar"
+      ],
+      "scenario": "analysing a public-service performance report",
+      "prompt": "four-option contextual form-and-meaning discrimination",
+      "scenarioRu": "Рабочая ситуация",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Die erste Fassung zu Vorgang161 verschweigt, wer die Daten änderte; verantwortlich war die Leitung. Welche Überarbeitung stellt die Agency präzise wieder her?",
+      "options": [
+        "Die Änderung der Daten zu Vorgang161 durch die Leitung verzögerte die Freigabe.",
+        "Die Änderung der Daten zu Vorgang161 verzögerte sich ohne handelnde Stelle selbst.",
+        "Wegen Vorgang161 änderten die Daten die Leitung.",
+        "Die Leitung der Verzögerung wurde durch Vorgang161 datenlos geändert."
+      ],
+      "correctIndex": 0,
+      "explanation": "The keyed option is the only one that realizes nominal style that backgrounds or restores the responsible actor in the supplied context.",
+      "targetConstruct": "nominal style that backgrounds or restores the responsible actor",
+      "cefrRationale": "Can determine how nominalisation changes emphasis and accountability.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Die Änderung der Daten zu Vorgang161 durch die Leitung verzögerte die Freigabe.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-form",
+      "knowledgeTarget": "target-language-form"
+    },
+    {
+      "id": "de-c1-002",
+      "level": "C1",
+      "difficulty": 4.034,
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "constructId": "de-c1-grammar-extended-participial-noun-phrase",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception",
+        "CEFR-2020-C1-language-competence"
+      ],
+      "selectionRefs": [
+        "de-selection-C1-grammar"
+      ],
+      "scenario": "reading an academic project abstract",
+      "prompt": "four-option contextual form-and-meaning discrimination",
+      "scenarioRu": "Рабочая ситуация",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Mehrere Einwände zu Vorgang162 wurden während der Anhörung geäußert und später schriftlich präzisiert. Welche Verdichtung ist eindeutig?",
+      "options": [
+        "Die bei Vorgang162 geäußert worden und später Präzision Einwände wurden geprüft.",
+        "Die während der Anhörung geäußerten und später schriftlich präzisierten Einwände zu Vorgang162 wurden geprüft.",
+        "Die während der Anhörung äußernden und später präzisierte Einwände zu Vorgang162 wurden geprüft.",
+        "Die schriftlich während später geäußert präzisierenden Einwände zu Vorgang162 wurden geprüft."
+      ],
+      "correctIndex": 1,
+      "explanation": "The keyed option is the only one that realizes multi-part participial attribute with unambiguous attachment in the supplied context.",
+      "targetConstruct": "multi-part participial attribute with unambiguous attachment",
+      "cefrRationale": "Can unpack dense pre-nominal information accurately.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Die während der Anhörung geäußerten und später schriftlich präzisierten Einwände zu Vorgang162 wurden geprüft.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-form",
+      "knowledgeTarget": "target-language-form"
+    },
+    {
+      "id": "de-c1-003",
+      "level": "C1",
+      "difficulty": 4.051,
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "constructId": "de-c1-grammar-prefield-information-structure",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception",
+        "CEFR-2020-C1-language-competence"
+      ],
+      "selectionRefs": [
+        "de-selection-C1-grammar"
+      ],
+      "scenario": "reviewing a strategic briefing",
+      "prompt": "four-option contextual form-and-meaning discrimination",
+      "scenarioRu": "Рабочая ситуация",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Der vorherige Absatz behandelt die Finanzierung; nun soll bei Vorgang163 genau dieser bereits bekannte Punkt als Ausgang dienen. Welche Stellung passt?",
+      "options": [
+        "Bewertet die Finanzierung hingegen Vorgang163 erst im nächsten Abschnitt.",
+        "Erst im nächsten Abschnitt Vorgang163 bewertet die Finanzierung hingegen es.",
+        "Die Finanzierung hingegen bewertet Vorgang163 erst im nächsten Abschnitt.",
+        "Vorgang163 die Finanzierung hingegen bewertet erst im nächsten Abschnitt."
+      ],
+      "correctIndex": 2,
+      "explanation": "The keyed option is the only one that realizes marked prefield choice used to organize given and new information in the supplied context.",
+      "targetConstruct": "marked prefield choice used to organize given and new information",
+      "cefrRationale": "Can interpret which element a writer foregrounds.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Die Finanzierung hingegen bewertet Vorgang163 erst im nächsten Abschnitt.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-form",
+      "knowledgeTarget": "target-language-form"
+    },
+    {
+      "id": "de-c1-004",
+      "level": "C1",
+      "difficulty": 4.068,
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "constructId": "de-c1-grammar-reported-stance-konjunktiv",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception",
+        "CEFR-2020-C1-language-competence"
+      ],
+      "selectionRefs": [
+        "de-selection-C1-grammar"
+      ],
+      "scenario": "reading a committee minutes summary",
+      "prompt": "four-option contextual form-and-meaning discrimination",
+      "scenarioRu": "Рабочая ситуация",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Ein Verband behauptet, Vorgang164 verursache keine Zusatzkosten; die Redaktion will Distanz markieren. Welche Fassung passt?",
+      "options": [
+        "Der Verband erklärt, Vorgang164 verursacht nachweislich keine Zusatzkosten.",
+        "Der Verband erklärt, Vorgang164 würde verursacht keine Zusatzkosten.",
+        "Der Verband erklärt, verursache Vorgang164 keine Zusatzkosten ist.",
+        "Der Verband erklärt, Vorgang164 verursache keine Zusatzkosten."
+      ],
+      "correctIndex": 3,
+      "explanation": "The keyed option is the only one that realizes subjunctive reporting that distances the writer from a source's claim in the supplied context.",
+      "targetConstruct": "subjunctive reporting that distances the writer from a source's claim",
+      "cefrRationale": "Can distinguish attribution from endorsement in formal prose.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Der Verband erklärt, Vorgang164 verursache keine Zusatzkosten.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-form",
+      "knowledgeTarget": "target-language-form"
+    },
+    {
+      "id": "de-c1-005",
+      "level": "C1",
+      "difficulty": 4.085,
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "constructId": "de-c1-grammar-discourse-ellipsis-recovery",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception",
+        "CEFR-2020-C1-language-competence"
+      ],
+      "selectionRefs": [
+        "de-selection-C1-grammar"
+      ],
+      "scenario": "interpreting a concise policy commentary",
+      "prompt": "four-option contextual form-and-meaning discrimination",
+      "scenarioRu": "Рабочая ситуация",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Mara prüft bei Vorgang165 die rechtlichen Folgen, Jonas die finanziellen. Welche Ergänzung wird im zweiten Teilsatz korrekt ausgelassen?",
+      "options": [
+        "Jonas prüft bei Vorgang165 die finanziellen Folgen.",
+        "Jonas ist bei Vorgang165 die finanziellen Folgen.",
+        "Jonas wird bei Vorgang165 von den finanziellen Folgen geprüft.",
+        "Jonas hat bei Vorgang165 finanziell gefolgt."
+      ],
+      "correctIndex": 0,
+      "explanation": "The keyed option is the only one that realizes ellipsis whose omitted material is recoverable across clauses in the supplied context.",
+      "targetConstruct": "ellipsis whose omitted material is recoverable across clauses",
+      "cefrRationale": "Can reconstruct the intended comparison without adding content.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Jonas prüft bei Vorgang165 die finanziellen Folgen.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-form",
+      "knowledgeTarget": "target-language-form"
+    },
+    {
+      "id": "de-c1-006",
+      "level": "C1",
+      "difficulty": 4.102,
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "constructId": "de-c1-grammar-long-distance-reference",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception",
+        "CEFR-2020-C1-language-competence"
+      ],
+      "selectionRefs": [
+        "de-selection-C1-grammar"
+      ],
+      "scenario": "reading an institutional review",
+      "prompt": "four-option contextual form-and-meaning discrimination",
+      "scenarioRu": "Рабочая ситуация",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Im Bericht zu Vorgang166 wird erst die Pilotphase beschrieben, dann ihre Auswertung; anschließend heißt es: „Diese fiel vorsichtiger aus als erwartet.“ Worauf bezieht sich „Diese“?",
+      "options": [
+        "„Diese“ bezeichnet bei Vorgang166 alle Pilotphasen weltweit.",
+        "„Diese“ bezeichnet bei Vorgang166 die Auswertung der Pilotphase.",
+        "„Diese“ bezeichnet bei Vorgang166 ausschließlich den Bericht als Gegenstand.",
+        "„Diese“ bezeichnet bei Vorgang166 eine nicht erwähnte Behörde."
+      ],
+      "correctIndex": 1,
+      "explanation": "The keyed option is the only one that realizes pronoun or demonstrative reference across a dense sentence sequence in the supplied context.",
+      "targetConstruct": "pronoun or demonstrative reference across a dense sentence sequence",
+      "cefrRationale": "Can resolve a reference chain with competing nouns.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “„Diese“ bezeichnet bei Vorgang166 die Auswertung der Pilotphase.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-form",
+      "knowledgeTarget": "target-language-form"
+    },
+    {
+      "id": "de-c1-007",
+      "level": "C1",
+      "difficulty": 4.12,
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "constructId": "de-c1-grammar-complex-preposition-relation",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception",
+        "CEFR-2020-C1-language-competence"
+      ],
+      "selectionRefs": [
+        "de-selection-C1-grammar"
+      ],
+      "scenario": "editing a funding decision note",
+      "prompt": "four-option contextual form-and-meaning discrimination",
+      "scenarioRu": "Рабочая ситуация",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Die Entscheidung zu Vorgang167 stützt sich ausdrücklich auf die vorgelegten Daten. Welche Präposition drückt die Grundlage präzise aus?",
+      "options": [
+        "Anlässlich gegen die Daten wurde Vorgang167 angepasst.",
+        "Zwecks trotz der Daten wurde Vorgang167 begründet.",
+        "Auf Grundlage der vorgelegten Daten wurde Vorgang167 angepasst.",
+        "Ungeachtet der vorgelegten Daten wurde Vorgang167 deshalb begründet."
+      ],
+      "correctIndex": 2,
+      "explanation": "The keyed option is the only one that realizes complex preposition expressing cause, contrast or basis precisely in the supplied context.",
+      "targetConstruct": "complex preposition expressing cause, contrast or basis precisely",
+      "cefrRationale": "Can select the relation intended in formal written German.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Auf Grundlage der vorgelegten Daten wurde Vorgang167 angepasst.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-form",
+      "knowledgeTarget": "target-language-form"
+    },
+    {
+      "id": "de-c1-008",
+      "level": "C1",
+      "difficulty": 4.137,
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "constructId": "de-c1-grammar-negation-quantifier-scope",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception",
+        "CEFR-2020-C1-language-competence"
+      ],
+      "selectionRefs": [
+        "de-selection-C1-grammar"
+      ],
+      "scenario": "analysing a research conclusion",
+      "prompt": "four-option contextual form-and-meaning discrimination",
+      "scenarioRu": "Рабочая ситуация",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Der Satz soll bedeuten: Einige, aber nicht alle Einwände zu Vorgang168 wurden berücksichtigt. Welche Form ist eindeutig?",
+      "options": [
+        "Alle Einwände zu Vorgang168 wurden nicht berücksichtigt.",
+        "Kein Einwand zu Vorgang168 wurde teilweise berücksichtigt.",
+        "Nicht ein Einwand zu Vorgang168 blieb jemals unberücksichtigt.",
+        "Nicht alle Einwände zu Vorgang168 blieben unberücksichtigt."
+      ],
+      "correctIndex": 3,
+      "explanation": "The keyed option is the only one that realizes scope of negation with quantifiers and embedded propositions in the supplied context.",
+      "targetConstruct": "scope of negation with quantifiers and embedded propositions",
+      "cefrRationale": "Can distinguish partial from total rejection of a claim.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Nicht alle Einwände zu Vorgang168 blieben unberücksichtigt.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-form",
+      "knowledgeTarget": "target-language-form"
+    },
+    {
+      "id": "de-c1-009",
+      "level": "C1",
+      "difficulty": 4.154,
+      "skill": "vocabulary",
+      "format": "gap-fill",
+      "constructId": "de-c1-vocabulary-stance-verb-calibration",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception",
+        "CEFR-2020-C1-language-competence"
+      ],
+      "selectionRefs": [
+        "de-selection-C1-vocabulary"
+      ],
+      "scenario": "reading an expert consultation response",
+      "prompt": "four-option contextual lexical-choice discrimination",
+      "scenarioRu": "Практическая лексика",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Die Autorin hält die Erklärung zu Vorgang169 für möglich, aber keineswegs bewiesen. Welches Verb kalibriert diese Haltung?",
+      "options": [
+        "Die Autorin vermutet bei Vorgang169 einen Zusammenhang.",
+        "Die Autorin beweist bei Vorgang169 den Zusammenhang endgültig.",
+        "Die Autorin garantiert bei Vorgang169 die Erklärung.",
+        "Die Autorin befiehlt bei Vorgang169 einen Zusammenhang."
+      ],
+      "correctIndex": 0,
+      "explanation": "The keyed option is the only one that realizes stance verbs that encode differing degrees of commitment in the supplied context.",
+      "targetConstruct": "stance verbs that encode differing degrees of commitment",
+      "cefrRationale": "Can identify how strongly an author endorses a proposition.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Die Autorin vermutet bei Vorgang169 einen Zusammenhang.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-lexis",
+      "knowledgeTarget": "target-language-lexis"
+    },
+    {
+      "id": "de-c1-010",
+      "level": "C1",
+      "difficulty": 4.171,
+      "skill": "vocabulary",
+      "format": "gap-fill",
+      "constructId": "de-c1-vocabulary-evaluative-language-criteria",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception",
+        "CEFR-2020-C1-language-competence"
+      ],
+      "selectionRefs": [
+        "de-selection-C1-vocabulary"
+      ],
+      "scenario": "comparing two programme evaluations",
+      "prompt": "four-option contextual lexical-choice discrimination",
+      "scenarioRu": "Практическая лексика",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Vorgang170 wird anhand transparenter Kosten, Zugänglichkeit und Fehlerquote bewertet. Welche Formulierung bindet das Urteil an Kriterien?",
+      "options": [
+        "Vorgang170 wirkt irgendwie nett und damit objektiv perfekt.",
+        "Gemessen an Kosten, Zugänglichkeit und Fehlerquote ist Vorgang170 tragfähig.",
+        "Vorgang170 ist einfach großartig, weil es mir gefällt.",
+        "Vorgang170 ist offensichtlich schlecht, ohne dass Kriterien nötig wären."
+      ],
+      "correctIndex": 1,
+      "explanation": "The keyed option is the only one that realizes evaluative lexis tied to explicit rather than assumed criteria in the supplied context.",
+      "targetConstruct": "evaluative lexis tied to explicit rather than assumed criteria",
+      "cefrRationale": "Can distinguish descriptive wording from value judgement.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Gemessen an Kosten, Zugänglichkeit und Fehlerquote ist Vorgang170 tragfähig.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-lexis",
+      "knowledgeTarget": "target-language-lexis"
+    },
+    {
+      "id": "de-c1-011",
+      "level": "C1",
+      "difficulty": 4.188,
+      "skill": "vocabulary",
+      "format": "gap-fill",
+      "constructId": "de-c1-vocabulary-precision-collocation-abstract",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception",
+        "CEFR-2020-C1-language-competence"
+      ],
+      "selectionRefs": [
+        "de-selection-C1-vocabulary"
+      ],
+      "scenario": "revising a policy impact summary",
+      "prompt": "four-option contextual lexical-choice discrimination",
+      "scenarioRu": "Практическая лексика",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Eine Institution soll bei Vorgang171 für ihre Entscheidung öffentlich verantwortlich sein. Welche feste Verbindung passt?",
+      "options": [
+        "Die Institution fährt zu Vorgang171 Verantwortung aus.",
+        "Die Institution macht zu Vorgang171 Haftung herum.",
+        "Die Institution legt zu Vorgang171 Rechenschaft ab.",
+        "Die Institution stellt zu Vorgang171 Rechenschaft hin."
+      ],
+      "correctIndex": 2,
+      "explanation": "The keyed option is the only one that realizes conventional collocation for abstract institutional concepts in the supplied context.",
+      "targetConstruct": "conventional collocation for abstract institutional concepts",
+      "cefrRationale": "Can choose idiomatic wording in formal analytical prose.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Die Institution legt zu Vorgang171 Rechenschaft ab.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-lexis",
+      "knowledgeTarget": "target-language-lexis"
+    },
+    {
+      "id": "de-c1-012",
+      "level": "C1",
+      "difficulty": 4.205,
+      "skill": "vocabulary",
+      "format": "gap-fill",
+      "constructId": "de-c1-vocabulary-formal-register-equivalence",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception",
+        "CEFR-2020-C1-language-competence"
+      ],
+      "selectionRefs": [
+        "de-selection-C1-vocabulary"
+      ],
+      "scenario": "editing a public report",
+      "prompt": "four-option contextual lexical-choice discrimination",
+      "scenarioRu": "Практическая лексика",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "In einem formellen Bericht zu Vorgang172 soll „rausfinden“ ersetzt werden, ohne den Sinn zu überhöhen. Welche Variante passt?",
+      "options": [
+        "Die Untersuchung soll bei Vorgang172 sensationell enthüllen, was niemand ahnte.",
+        "Die Untersuchung soll bei Vorgang172 mal gucken, was los ist.",
+        "Die Untersuchung soll bei Vorgang172 zweifelsfrei beweisen, obwohl sie nur prüft.",
+        "Die Untersuchung soll bei Vorgang172 feststellen, ob die Frist eingehalten wurde."
+      ],
+      "correctIndex": 3,
+      "explanation": "The keyed option is the only one that realizes formal lexical alternative that preserves meaning without inflation in the supplied context.",
+      "targetConstruct": "formal lexical alternative that preserves meaning without inflation",
+      "cefrRationale": "Can adapt wording to an institutional audience.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Die Untersuchung soll bei Vorgang172 feststellen, ob die Frist eingehalten wurde.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-lexis",
+      "knowledgeTarget": "target-language-lexis"
+    },
+    {
+      "id": "de-c1-013",
+      "level": "C1",
+      "difficulty": 4.222,
+      "skill": "vocabulary",
+      "format": "gap-fill",
+      "constructId": "de-c1-vocabulary-transparent-metaphor-function",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception",
+        "CEFR-2020-C1-language-competence"
+      ],
+      "selectionRefs": [
+        "de-selection-C1-vocabulary"
+      ],
+      "scenario": "reading an opinion essay about workplace change",
+      "prompt": "four-option contextual lexical-choice discrimination",
+      "scenarioRu": "Практическая лексика",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Der Text nennt fehlende Zuständigkeiten den „Flaschenhals“ von Vorgang173 und erklärt anschließend die Verzögerung. Welche Funktion hat das Bild?",
+      "options": [
+        "„Flaschenhals“ bündelt bei Vorgang173 das Argument über eine begrenzende Stelle.",
+        "„Flaschenhals“ liefert bei Vorgang173 eine neue Messzahl.",
+        "„Flaschenhals“ benennt bei Vorgang173 ein tatsächlich verkauftes Getränk.",
+        "„Flaschenhals“ ersetzt bei Vorgang173 jede kausale Begründung."
+      ],
+      "correctIndex": 0,
+      "explanation": "The keyed option is the only one that realizes conventional metaphor used to frame an argument rather than add facts in the supplied context.",
+      "targetConstruct": "conventional metaphor used to frame an argument rather than add facts",
+      "cefrRationale": "Can infer what aspect of an issue the metaphor highlights.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “„Flaschenhals“ bündelt bei Vorgang173 das Argument über eine begrenzende Stelle.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-lexis",
+      "knowledgeTarget": "target-language-lexis"
+    },
+    {
+      "id": "de-c1-014",
+      "level": "C1",
+      "difficulty": 4.239,
+      "skill": "vocabulary",
+      "format": "gap-fill",
+      "constructId": "de-c1-vocabulary-discourse-marker-nuance",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception",
+        "CEFR-2020-C1-language-competence"
+      ],
+      "selectionRefs": [
+        "de-selection-C1-vocabulary"
+      ],
+      "scenario": "structuring an academic presentation summary",
+      "prompt": "four-option contextual lexical-choice discrimination",
+      "scenarioRu": "Практическая лексика",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Ein Einwand zu Vorgang174 widerlegt die Hauptthese nicht, schränkt aber ihre Reichweite ein. Welcher Marker passt?",
+      "options": [
+        "Gleichzeitig beweist Vorgang174 ohne Bezug das Gegenteil.",
+        "Allerdings gilt die Aussage zu Vorgang174 nur für kleine Teams.",
+        "Folglich gilt die Aussage zu Vorgang174 ausnahmslos überall.",
+        "Beispielsweise ist Vorgang174 deshalb vollständig widerlegt."
+      ],
+      "correctIndex": 1,
+      "explanation": "The keyed option is the only one that realizes near-synonymous discourse markers with different argumentative force in the supplied context.",
+      "targetConstruct": "near-synonymous discourse markers with different argumentative force",
+      "cefrRationale": "Can select a connector that accurately signals stance and sequence.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Allerdings gilt die Aussage zu Vorgang174 nur für kleine Teams.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-lexis",
+      "knowledgeTarget": "target-language-lexis"
+    },
+    {
+      "id": "de-c1-015",
+      "level": "C1",
+      "difficulty": 4.256,
+      "skill": "vocabulary",
+      "format": "gap-fill",
+      "constructId": "de-c1-vocabulary-polysemy-by-domain-context",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception",
+        "CEFR-2020-C1-language-competence"
+      ],
+      "selectionRefs": [
+        "de-selection-C1-vocabulary"
+      ],
+      "scenario": "reading a cross-departmental strategy document",
+      "prompt": "four-option contextual lexical-choice discrimination",
+      "scenarioRu": "Практическая лексика",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Im Haushaltsbericht zu Vorgang175 bezeichnet „Spielraum“ keine Fläche, sondern die Möglichkeit, Mittel anders zu verteilen. Welche Bedeutung passt?",
+      "options": [
+        "Bei Vorgang175 meint Spielraum eine Sporthalle.",
+        "Bei Vorgang175 meint Spielraum eine geometrische Fläche.",
+        "Bei Vorgang175 meint Spielraum finanziellen Handlungsspielraum.",
+        "Bei Vorgang175 meint Spielraum ein Kinderzimmer."
+      ],
+      "correctIndex": 2,
+      "explanation": "The keyed option is the only one that realizes abstract word sense disambiguated by surrounding propositions in the supplied context.",
+      "targetConstruct": "abstract word sense disambiguated by surrounding propositions",
+      "cefrRationale": "Can infer the intended sense without specialist knowledge.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Bei Vorgang175 meint Spielraum finanziellen Handlungsspielraum.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-lexis",
+      "knowledgeTarget": "target-language-lexis"
+    },
+    {
+      "id": "de-c1-016",
+      "level": "C1",
+      "difficulty": 4.273,
+      "skill": "vocabulary",
+      "format": "gap-fill",
+      "constructId": "de-c1-vocabulary-productive-word-formation",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception",
+        "CEFR-2020-C1-language-competence"
+      ],
+      "selectionRefs": [
+        "de-selection-C1-vocabulary"
+      ],
+      "scenario": "drafting a professional evaluation",
+      "prompt": "four-option contextual lexical-choice discrimination",
+      "scenarioRu": "Практическая лексика",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Der Text zu Vorgang176 unterscheidet den laufenden Prozess von seinem abgeschlossenen Resultat. Welche Wortwahl bezeichnet das Resultat?",
+      "options": [
+        "Das Umsetzen von Vorgang176 bezeichnet nur die handelnde Person.",
+        "Der Umsetzer von Vorgang176 bezeichnet den abstrakten Prozess.",
+        "Die Umsetzbarkeit von Vorgang176 bezeichnet das bereits fertige Resultat.",
+        "Die Umsetzung von Vorgang176 ist das erreichte Ergebnis des Umsetzens."
+      ],
+      "correctIndex": 3,
+      "explanation": "The keyed option is the only one that realizes derivational choice that changes participant, process or result meaning in the supplied context.",
+      "targetConstruct": "derivational choice that changes participant, process or result meaning",
+      "cefrRationale": "Can select a complex word whose morphology matches the intended concept.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Die Umsetzung von Vorgang176 ist das erreichte Ergebnis des Umsetzens.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-lexis",
+      "knowledgeTarget": "target-language-lexis"
+    },
+    {
+      "id": "de-c1-017",
+      "level": "C1",
+      "difficulty": 4.29,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "de-c1-reading-author-stance-distribution",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception"
+      ],
+      "selectionRefs": [
+        "de-selection-C1-reading"
+      ],
+      "scenario": "reading a public consultation essay",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Der Kommentar zu Vorgang177 nennt den Ansatz „vielversprechend“, warnt jedoch vor einer kleinen Datengrundlage. Im Schluss fordert er deshalb nur einen begrenzten Test. Welche Haltung ergibt sich?",
+      "options": [
+        "Vorgang177 wird vorsichtig positiv bewertet und nur für einen begrenzten Test empfohlen.",
+        "Vorgang177 wird ohne Vorbehalt zur sofortigen Vollumsetzung empfohlen.",
+        "Vorgang177 wird als völlig wertlos abgelehnt.",
+        "Vorgang177 wird beschrieben, ohne dass der Autor irgendeine Haltung erkennen lässt."
+      ],
+      "correctIndex": 0,
+      "explanation": "The keyed option is the only one that realizes stance distributed across claims, hedges and concessions in the supplied context.",
+      "targetConstruct": "stance distributed across claims, hedges and concessions",
+      "cefrRationale": "Can synthesize an author's overall position in a demanding text.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Vorgang177 wird vorsichtig positiv bewertet und nur für einen begrenzten Test empfohlen.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "Vorgang177 nennt den Ansatz „vielversprechend“, warnt jedoch vor einer kleinen Datengrundlage",
+          "correctIndex": 0,
+          "correctAnswer": "Vorgang177 wird vorsichtig positiv bewertet und nur für einen begrenzten Test empfohlen.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "Vorgang177",
+              "answerToken": "Vorgang177"
+            }
+          ],
+          "linkingExplanation": "The source token Vorgang177 links directly to the answer token Vorgang177."
+        }
+      ]
+    },
+    {
+      "id": "de-c1-018",
+      "level": "C1",
+      "difficulty": 4.307,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "de-c1-reading-implicit-assumption",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception"
+      ],
+      "selectionRefs": [
+        "de-selection-C1-reading"
+      ],
+      "scenario": "analysing a workplace reform proposal",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Der Text argumentiert: „Vorgang178 verkürzt interne Wege. Deshalb wird automatisch auch die Bearbeitungszeit für Kunden sinken.“ Er nennt keine weiteren Prozessschritte. Welche Annahme ist erforderlich?",
+      "options": [
+        "Bei Vorgang178 muss die Bearbeitungszeit bereits vor der Änderung null sein.",
+        "Bei Vorgang178 müssen interne Wege ein wesentlicher Engpass der gesamten Bearbeitungszeit sein.",
+        "Bei Vorgang178 müssen alle Kunden denselben Namen tragen.",
+        "Bei Vorgang178 darf es keinerlei interne Kommunikation geben."
+      ],
+      "correctIndex": 1,
+      "explanation": "The keyed option is the only one that realizes unstated assumption required by an otherwise explicit argument in the supplied context.",
+      "targetConstruct": "unstated assumption required by an otherwise explicit argument",
+      "cefrRationale": "Can identify a premise supported by the text rather than outside knowledge.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Bei Vorgang178 müssen interne Wege ein wesentlicher Engpass der gesamten Bearbeitungszeit sein.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "Vorgang178 verkürzt interne Wege. Deshalb wird automatisch auch die Bearbeitungszeit für Kunden sinken",
+          "correctIndex": 1,
+          "correctAnswer": "Bei Vorgang178 müssen interne Wege ein wesentlicher Engpass der gesamten Bearbeitungszeit sein.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "Vorgang178",
+              "answerToken": "Vorgang178"
+            }
+          ],
+          "linkingExplanation": "The source token Vorgang178 links directly to the answer token Vorgang178."
+        }
+      ]
+    },
+    {
+      "id": "de-c1-019",
+      "level": "C1",
+      "difficulty": 4.324,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "de-c1-reading-argument-hierarchy",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception"
+      ],
+      "selectionRefs": [
+        "de-selection-C1-reading"
+      ],
+      "scenario": "reviewing an academic outreach article",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Der Bericht zu Vorgang179 fordert als Hauptpunkt eine verlängerte Pilotphase. Eine Nebenbegründung betrifft saisonale Schwankungen; ein Beispiel nennt die geringe Teilnahme im Ferienmonat. Was ist die Hauptaussage?",
+      "options": [
+        "Bei Vorgang179 genügt das einzelne Teilnahmebeispiel als vollständige Schlussfolgerung.",
+        "Bei Vorgang179 soll jede Datenerhebung sofort beendet werden.",
+        "Bei Vorgang179 soll die Pilotphase verlängert werden.",
+        "Bei Vorgang179 sind Ferienmonate immer bedeutungslos."
+      ],
+      "correctIndex": 2,
+      "explanation": "The keyed option is the only one that realizes main claim, subsidiary claim and illustrative example across paragraphs in the supplied context.",
+      "targetConstruct": "main claim, subsidiary claim and illustrative example across paragraphs",
+      "cefrRationale": "Can map the hierarchy of a complex argument.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Bei Vorgang179 soll die Pilotphase verlängert werden.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "Vorgang179 fordert als Hauptpunkt eine verlängerte Pilotphase",
+          "correctIndex": 2,
+          "correctAnswer": "Bei Vorgang179 soll die Pilotphase verlängert werden.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "Vorgang179",
+              "answerToken": "Vorgang179"
+            }
+          ],
+          "linkingExplanation": "The source token Vorgang179 links directly to the answer token Vorgang179."
+        }
+      ]
+    },
+    {
+      "id": "de-c1-020",
+      "level": "C1",
+      "difficulty": 4.341,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "de-c1-reading-evidence-limit",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception"
+      ],
+      "selectionRefs": [
+        "de-selection-C1-reading"
+      ],
+      "scenario": "reading a non-specialist research digest",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Die Studie zu Vorgang180 beobachtet zwölf freiwillige Teams über vier Wochen. Sie zeigt dort weniger Fehler, erlaubt aber keine Aussage über unfreiwillige Nutzung oder Langzeitwirkung. Welche Schlussfolgerung bleibt gedeckt?",
+      "options": [
+        "Vorgang180 senkt nachweislich dauerhaft in allen Organisationen die Fehlerzahl.",
+        "Vorgang180 wirkt bei unfreiwilliger Nutzung garantiert genauso.",
+        "Vorgang180 beweist eine Ursache unabhängig vom Studiendesign.",
+        "Bei Vorgang180 wurden kurzfristig in den zwölf freiwilligen Teams weniger Fehler beobachtet."
+      ],
+      "correctIndex": 3,
+      "explanation": "The keyed option is the only one that realizes boundary between what cited evidence supports and what remains speculative in the supplied context.",
+      "targetConstruct": "boundary between what cited evidence supports and what remains speculative",
+      "cefrRationale": "Can identify where a writer exceeds or respects the evidence.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Bei Vorgang180 wurden kurzfristig in den zwölf freiwilligen Teams weniger Fehler beobachtet.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "Vorgang180 beobachtet zwölf freiwillige Teams über vier Wochen",
+          "correctIndex": 3,
+          "correctAnswer": "Bei Vorgang180 wurden kurzfristig in den zwölf freiwilligen Teams weniger Fehler beobachtet.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "Vorgang180",
+              "answerToken": "Vorgang180"
+            }
+          ],
+          "linkingExplanation": "The source token Vorgang180 links directly to the answer token Vorgang180."
+        }
+      ]
+    },
+    {
+      "id": "de-c1-021",
+      "level": "C1",
+      "difficulty": 4.359,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "de-c1-reading-reference-chain-resolution",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception"
+      ],
+      "selectionRefs": [
+        "de-selection-C1-reading"
+      ],
+      "scenario": "reading a long-form policy analysis",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Im Text zu Vorgang181 wird zunächst eine spätere Frist vorgeschlagen. Das Team lehnt diese ab und bietet stattdessen mehr Personal an. „Dies“ soll die angebotene Alternative bezeichnen. Welche Lesart passt?",
+      "options": [
+        "„Dies“ verweist bei Vorgang181 auf das Angebot von mehr Personal.",
+        "„Dies“ verweist bei Vorgang181 ausschließlich auf die abgelehnte spätere Frist.",
+        "„Dies“ verweist bei Vorgang181 auf ein nicht erwähntes Budget.",
+        "„Dies“ verweist bei Vorgang181 auf den gesamten Kalender des Jahres."
+      ],
+      "correctIndex": 0,
+      "explanation": "The keyed option is the only one that realizes several cohesive references pointing to propositions rather than nouns in the supplied context.",
+      "targetConstruct": "several cohesive references pointing to propositions rather than nouns",
+      "cefrRationale": "Can track what each reference summarizes.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “„Dies“ verweist bei Vorgang181 auf das Angebot von mehr Personal.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "Vorgang181 wird zunächst eine spätere Frist vorgeschlagen. Das Team lehnt diese ab und bietet stattdessen mehr Personal an",
+          "correctIndex": 0,
+          "correctAnswer": "„Dies“ verweist bei Vorgang181 auf das Angebot von mehr Personal.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "Vorgang181",
+              "answerToken": "Vorgang181"
+            }
+          ],
+          "linkingExplanation": "The source token Vorgang181 links directly to the answer token Vorgang181."
+        }
+      ]
+    },
+    {
+      "id": "de-c1-022",
+      "level": "C1",
+      "difficulty": 4.376,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "de-c1-reading-contrastive-inference",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception"
+      ],
+      "selectionRefs": [
+        "de-selection-C1-reading"
+      ],
+      "scenario": "comparing service-delivery models",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Fall A von Vorgang182 erhielt zusätzliche Schulung und senkte die Fehlerquote. Fall B nutzte dieselbe Software ohne Schulung; dort blieb die Quote gleich. Welche vorsichtige Folgerung legt der Kontrast nahe?",
+      "options": [
+        "Bei Vorgang182 ist ausschließlich das Wetter als Ursache belegt.",
+        "Bei Vorgang182 könnte die Schulung zum Unterschied zwischen den Fällen beigetragen haben.",
+        "Bei Vorgang182 beweist der Kontrast, dass Software niemals wirkt.",
+        "Bei Vorgang182 waren beide Fälle in jeder Hinsicht identisch und erzielten dasselbe Ergebnis."
+      ],
+      "correctIndex": 1,
+      "explanation": "The keyed option is the only one that realizes conclusion implied by a contrast between two described cases in the supplied context.",
+      "targetConstruct": "conclusion implied by a contrast between two described cases",
+      "cefrRationale": "Can infer the intended comparison from textual cues.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Bei Vorgang182 könnte die Schulung zum Unterschied zwischen den Fällen beigetragen haben.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "Vorgang182 erhielt zusätzliche Schulung und senkte die Fehlerquote",
+          "correctIndex": 1,
+          "correctAnswer": "Bei Vorgang182 könnte die Schulung zum Unterschied zwischen den Fällen beigetragen haben.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "Vorgang182",
+              "answerToken": "Vorgang182"
+            }
+          ],
+          "linkingExplanation": "The source token Vorgang182 links directly to the answer token Vorgang182."
+        }
+      ]
+    },
+    {
+      "id": "de-c1-023",
+      "level": "C1",
+      "difficulty": 4.393,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "de-c1-reading-genre-purpose",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception"
+      ],
+      "selectionRefs": [
+        "de-selection-C1-reading"
+      ],
+      "scenario": "reading an institutional publication",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Der Text zu Vorgang183 beginnt mit einer Problembeschreibung, vergleicht zwei Optionen und endet mit einer begründeten Empfehlung an die Leitung. Ton und Aufbau bleiben sachlich. Welchem Zweck dient er?",
+      "options": [
+        "Vorgang183 ist eine ungeordnete persönliche Erinnerung ohne Adressaten.",
+        "Vorgang183 soll nur ein Ereignis chronologisch erzählen.",
+        "Vorgang183 dient vor allem dazu, eine Entscheidung vorzubereiten und zu empfehlen.",
+        "Vorgang183 dient ausschließlich der privaten Unterhaltung."
+      ],
+      "correctIndex": 2,
+      "explanation": "The keyed option is the only one that realizes communicative purpose signalled indirectly by organization and register in the supplied context.",
+      "targetConstruct": "communicative purpose signalled indirectly by organization and register",
+      "cefrRationale": "Can distinguish analysis, advocacy and procedural guidance.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Vorgang183 dient vor allem dazu, eine Entscheidung vorzubereiten und zu empfehlen.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "Vorgang183 beginnt mit einer Problembeschreibung, vergleicht zwei Optionen",
+          "correctIndex": 2,
+          "correctAnswer": "Vorgang183 dient vor allem dazu, eine Entscheidung vorzubereiten und zu empfehlen.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "Vorgang183",
+              "answerToken": "Vorgang183"
+            }
+          ],
+          "linkingExplanation": "The source token Vorgang183 links directly to the answer token Vorgang183."
+        }
+      ]
+    },
+    {
+      "id": "de-c1-024",
+      "level": "C1",
+      "difficulty": 4.41,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "de-c1-reading-qualification-scope",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception"
+      ],
+      "selectionRefs": [
+        "de-selection-C1-reading"
+      ],
+      "scenario": "reading a nuanced management report",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Der Bericht sagt: „Vorgang184 verringerte die Wartezeit in kleinen Filialen deutlich; für große Standorte sind die Daten noch uneinheitlich.“ Worauf beschränkt sich „deutlich“?",
+      "options": [
+        "Bei Vorgang184 gilt der deutliche Rückgang sicher für alle Standorte.",
+        "Bei Vorgang184 sind auch für kleine Filialen keinerlei Daten vorhanden.",
+        "Bei Vorgang184 bedeutet „deutlich“, dass große Standorte geschlossen wurden.",
+        "Bei Vorgang184 gilt der deutliche Rückgang nur für kleine Filialen."
+      ],
+      "correctIndex": 3,
+      "explanation": "The keyed option is the only one that realizes local qualifier that limits only part of a broader claim in the supplied context.",
+      "targetConstruct": "local qualifier that limits only part of a broader claim",
+      "cefrRationale": "Can state precisely which proposition is restricted.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Bei Vorgang184 gilt der deutliche Rückgang nur für kleine Filialen.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "Vorgang184 verringerte die Wartezeit in kleinen Filialen deutlich",
+          "correctIndex": 3,
+          "correctAnswer": "Bei Vorgang184 gilt der deutliche Rückgang nur für kleine Filialen.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "Vorgang184",
+              "answerToken": "Vorgang184"
+            }
+          ],
+          "linkingExplanation": "The source token Vorgang184 links directly to the answer token Vorgang184."
+        }
+      ]
+    },
+    {
+      "id": "de-c1-025",
+      "level": "C1",
+      "difficulty": 4.427,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "de-c1-reading-summary-fidelity",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception"
+      ],
+      "selectionRefs": [
+        "de-selection-C1-reading"
+      ],
+      "scenario": "preparing notes from a professional article",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Der Bericht zu Vorgang185 findet eine moderate Zeitersparnis, warnt vor höheren Startkosten und empfiehlt einen begrenzten Pilotversuch. Welche Zusammenfassung ist treu?",
+      "options": [
+        "Vorgang185 verspricht etwas Zeitgewinn, verlangt aber Anfangsinvestitionen und soll zunächst begrenzt getestet werden.",
+        "Vorgang185 spart sicher unbegrenzt Zeit und verursacht keine Kosten.",
+        "Vorgang185 ist wegen der Startkosten vollständig gescheitert.",
+        "Vorgang185 wurde bereits flächendeckend eingeführt und abschließend bewertet."
+      ],
+      "correctIndex": 0,
+      "explanation": "The keyed option is the only one that realizes candidate summary that preserves priority, qualification and causal direction in the supplied context.",
+      "targetConstruct": "candidate summary that preserves priority, qualification and causal direction",
+      "cefrRationale": "Can select an accurate compressed account of a complex text.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Vorgang185 verspricht etwas Zeitgewinn, verlangt aber Anfangsinvestitionen und soll zunächst begrenzt getestet werden.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "Vorgang185 findet eine moderate Zeitersparnis, warnt vor höheren Startkosten",
+          "correctIndex": 0,
+          "correctAnswer": "Vorgang185 verspricht etwas Zeitgewinn, verlangt aber Anfangsinvestitionen und soll zunächst begrenzt getestet werden.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "Vorgang185",
+              "answerToken": "Vorgang185"
+            }
+          ],
+          "linkingExplanation": "The source token Vorgang185 links directly to the answer token Vorgang185."
+        }
+      ]
+    },
+    {
+      "id": "de-c1-026",
+      "level": "C1",
+      "difficulty": 4.444,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "de-c1-reading-claim-evidence-alignment",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception"
+      ],
+      "selectionRefs": [
+        "de-selection-C1-reading"
+      ],
+      "scenario": "reviewing a programme assessment",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Im Text zu Vorgang186 stützen Nutzungsdaten die Aussage über häufigere Zugriffe. Interviews stützen dagegen die Aussage über bessere Verständlichkeit. Welche Zuordnung ist korrekt?",
+      "options": [
+        "Bei Vorgang186 stützen beide Evidenzarten ausschließlich eine Preisprognose.",
+        "Bei Vorgang186 belegen Nutzungsdaten die Zugriffshäufigkeit, Interviews die wahrgenommene Verständlichkeit.",
+        "Bei Vorgang186 belegen Interviews allein die technische Zugriffszahl.",
+        "Bei Vorgang186 belegen Nutzungsdaten direkt alle subjektiven Motive."
+      ],
+      "correctIndex": 1,
+      "explanation": "The keyed option is the only one that realizes multiple evidence statements supporting different claims in the supplied context.",
+      "targetConstruct": "multiple evidence statements supporting different claims",
+      "cefrRationale": "Can match each claim to the evidence actually provided.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Bei Vorgang186 belegen Nutzungsdaten die Zugriffshäufigkeit, Interviews die wahrgenommene Verständlichkeit.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "Vorgang186 stützen Nutzungsdaten die Aussage über häufigere Zugriffe",
+          "correctIndex": 1,
+          "correctAnswer": "Bei Vorgang186 belegen Nutzungsdaten die Zugriffshäufigkeit, Interviews die wahrgenommene Verständlichkeit.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "Vorgang186",
+              "answerToken": "Vorgang186"
+            }
+          ],
+          "linkingExplanation": "The source token Vorgang186 links directly to the answer token Vorgang186."
+        }
+      ]
+    },
+    {
+      "id": "de-c1-027",
+      "level": "C1",
+      "difficulty": 4.461,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "de-c1-reading-tone-through-lexis",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception"
+      ],
+      "selectionRefs": [
+        "de-selection-C1-reading"
+      ],
+      "scenario": "reading a board update",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Der Autor nennt Vorgang187 „solide vorbereitet“ und „nachvollziehbar begründet“, spricht aber von einem „noch beträchtlichen Umsetzungsrisiko“. Wie ist der Ton?",
+      "options": [
+        "Vorgang187 wird spöttisch als vollkommen wertlos abgetan.",
+        "Vorgang187 wird rein neutral ohne evaluative Wörter beschrieben.",
+        "Vorgang187 wird zurückhaltend anerkannt, zugleich bleibt deutliche Sorge.",
+        "Vorgang187 wird begeistert und ohne jede Sorge gefeiert."
+      ],
+      "correctIndex": 2,
+      "explanation": "The keyed option is the only one that realizes restrained approval or concern conveyed cumulatively through lexical choices in the supplied context.",
+      "targetConstruct": "restrained approval or concern conveyed cumulatively through lexical choices",
+      "cefrRationale": "Can infer tone without relying on punctuation alone.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Vorgang187 wird zurückhaltend anerkannt, zugleich bleibt deutliche Sorge.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "Vorgang187 „solide vorbereitet“ und „nachvollziehbar begründet“",
+          "correctIndex": 2,
+          "correctAnswer": "Vorgang187 wird zurückhaltend anerkannt, zugleich bleibt deutliche Sorge.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "Vorgang187",
+              "answerToken": "Vorgang187"
+            }
+          ],
+          "linkingExplanation": "The source token Vorgang187 links directly to the answer token Vorgang187."
+        }
+      ]
+    },
+    {
+      "id": "de-c1-028",
+      "level": "C1",
+      "difficulty": 4.478,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "de-c1-reading-paragraph-rhetorical-function",
+      "descriptorRefs": [
+        "CEFR-2020-C1-reception"
+      ],
+      "selectionRefs": [
+        "de-selection-C1-reading"
+      ],
+      "scenario": "analysing an extended editorial",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Der erste Absatz verteidigt Vorgang188. Der zweite beginnt: „Diese Vorteile gelten jedoch nur bei stabiler Finanzierung“ und erläutert anschließend Risiken. Welche Funktion hat der zweite Absatz?",
+      "options": [
+        "Bei Vorgang188 wiederholt der zweite Absatz nur dieselben Vorteile ohne Einschränkung.",
+        "Bei Vorgang188 führt der zweite Absatz ein unverbundenes Beispiel ein.",
+        "Bei Vorgang188 widerruft der zweite Absatz jede zuvor genannte Tatsache.",
+        "Bei Vorgang188 begrenzt der zweite Absatz die vorherige positive Aussage."
+      ],
+      "correctIndex": 3,
+      "explanation": "The keyed option is the only one that realizes paragraph functioning as concession, bridge or limitation in the supplied context.",
+      "targetConstruct": "paragraph functioning as concession, bridge or limitation",
+      "cefrRationale": "Can explain how one paragraph advances the whole argument.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Bei Vorgang188 begrenzt der zweite Absatz die vorherige positive Aussage.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "Vorgang188. Der zweite beginnt: „Diese Vorteile gelten jedoch nur bei stabiler Finanzierung“",
+          "correctIndex": 3,
+          "correctAnswer": "Bei Vorgang188 begrenzt der zweite Absatz die vorherige positive Aussage.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "Vorgang188",
+              "answerToken": "Vorgang188"
+            }
+          ],
+          "linkingExplanation": "The source token Vorgang188 links directly to the answer token Vorgang188."
+        }
+      ]
+    },
+    {
+      "id": "de-c1-029",
+      "level": "C1",
+      "difficulty": 4.495,
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "constructId": "de-c1-pragmatics-diplomatic-disagreement",
+      "descriptorRefs": [
+        "CEFR-2020-C1-pragmatics"
+      ],
+      "selectionRefs": [
+        "de-selection-C1-pragmatics"
+      ],
+      "scenario": "discussing a project governance decision",
+      "prompt": "four-option context-sensitive intent or response choice",
+      "scenarioRu": "Намерение собеседника",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Ein Partner erklärt Vorgang189 für vollständig risikofrei; die Daten zeigen offene Fragen. Welche Antwort widerspricht klar und kooperativ?",
+      "options": [
+        "Ich sehe die Fortschritte bei Vorgang189, kann die Einstufung als risikofrei angesichts der offenen Daten aber nicht teilen.",
+        "Ihre Aussage zu Vorgang189 ist lächerlich und verdient keine Antwort.",
+        "Ich stimme bei Vorgang189 vollständig zu, obwohl ich das Gegenteil meine.",
+        "Wir sprechen über Vorgang189 nie wieder, damit die Differenz unsichtbar bleibt."
+      ],
+      "correctIndex": 0,
+      "explanation": "The keyed option is the only one that realizes disagreement that preserves cooperation while clearly rejecting a premise in the supplied context.",
+      "targetConstruct": "disagreement that preserves cooperation while clearly rejecting a premise",
+      "cefrRationale": "Can challenge a senior colleague's assumption tactfully.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Ich sehe die Fortschritte bei Vorgang189, kann die Einstufung als risikofrei angesichts der offenen Daten aber nicht teilen.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "pragmatic-intent",
+      "knowledgeTarget": "pragmatic-intent",
+      "answerEvidence": [
+        {
+          "quote": "Vorgang189 für vollständig risikofrei; die Daten zeigen offene Fragen",
+          "correctIndex": 0,
+          "correctAnswer": "Ich sehe die Fortschritte bei Vorgang189, kann die Einstufung als risikofrei angesichts der offenen Daten aber nicht teilen.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "Vorgang189",
+              "answerToken": "Vorgang189"
+            }
+          ],
+          "linkingExplanation": "The source token Vorgang189 links directly to the answer token Vorgang189."
+        }
+      ]
+    },
+    {
+      "id": "de-c1-030",
+      "level": "C1",
+      "difficulty": 4.512,
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "constructId": "de-c1-pragmatics-qualified-critique",
+      "descriptorRefs": [
+        "CEFR-2020-C1-pragmatics"
+      ],
+      "selectionRefs": [
+        "de-selection-C1-pragmatics"
+      ],
+      "scenario": "peer-reviewing a professional report",
+      "prompt": "four-option context-sensitive intent or response choice",
+      "scenarioRu": "Намерение собеседника",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Vorgang190 ist methodisch transparent, berücksichtigt aber nur eine kurze Laufzeit. Welche Kritik ist angemessen begrenzt?",
+      "options": [
+        "Die kurze Laufzeit von Vorgang190 betrifft überhaupt keine Schlussfolgerung.",
+        "Die Methode von Vorgang190 ist nachvollziehbar; Aussagen zur Langzeitwirkung bleiben wegen der kurzen Laufzeit jedoch offen.",
+        "Vorgang190 ist insgesamt wertlos, weil ein Zeitraum begrenzt ist.",
+        "Vorgang190 beweist jede Langzeitwirkung vollständig."
+      ],
+      "correctIndex": 1,
+      "explanation": "The keyed option is the only one that realizes critique bounded by explicit strengths, limits and evidence in the supplied context.",
+      "targetConstruct": "critique bounded by explicit strengths, limits and evidence",
+      "cefrRationale": "Can evaluate work without overstating defects.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Die Methode von Vorgang190 ist nachvollziehbar; Aussagen zur Langzeitwirkung bleiben wegen der kurzen Laufzeit jedoch offen.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "pragmatic-intent",
+      "knowledgeTarget": "pragmatic-intent",
+      "answerEvidence": [
+        {
+          "quote": "Vorgang190 ist methodisch transparent, berücksichtigt aber nur eine kurze Laufzeit",
+          "correctIndex": 1,
+          "correctAnswer": "Die Methode von Vorgang190 ist nachvollziehbar; Aussagen zur Langzeitwirkung bleiben wegen der kurzen Laufzeit jedoch offen.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "Vorgang190",
+              "answerToken": "Vorgang190"
+            }
+          ],
+          "linkingExplanation": "The source token Vorgang190 links directly to the answer token Vorgang190."
+        }
+      ]
+    },
+    {
+      "id": "de-c1-031",
+      "level": "C1",
+      "difficulty": 4.529,
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "constructId": "de-c1-pragmatics-layered-indirect-request",
+      "descriptorRefs": [
+        "CEFR-2020-C1-pragmatics"
+      ],
+      "selectionRefs": [
+        "de-selection-C1-pragmatics"
+      ],
+      "scenario": "asking another team for unplanned support",
+      "prompt": "four-option context-sensitive intent or response choice",
+      "scenarioRu": "Намерение собеседника",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Die Leitung schreibt zu Vorgang191: „Für die Sitzung morgen wäre eine aktualisierte Risikotabelle sehr hilfreich; ohne sie können wir Punkt drei kaum entscheiden.“ Was wird indirekt verlangt?",
+      "options": [
+        "Punkt drei zu Vorgang191 ist bereits endgültig entschieden.",
+        "Die Leitung möchte zu Vorgang191 nur eine allgemeine Diskussion ohne Tabelle.",
+        "Die Risikotabelle zu Vorgang191 soll vor der morgigen Sitzung aktualisiert werden.",
+        "Die Sitzung zu Vorgang191 soll ohne Unterlagen abgesagt werden."
+      ],
+      "correctIndex": 2,
+      "explanation": "The keyed option is the only one that realizes indirect request whose urgency and desired action remain recoverable in the supplied context.",
+      "targetConstruct": "indirect request whose urgency and desired action remain recoverable",
+      "cefrRationale": "Can interpret and formulate a tactful high-burden request.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Die Risikotabelle zu Vorgang191 soll vor der morgigen Sitzung aktualisiert werden.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "pragmatic-intent",
+      "knowledgeTarget": "pragmatic-intent",
+      "answerEvidence": [
+        {
+          "quote": "Vorgang191: „Für die Sitzung morgen wäre eine aktualisierte Risikotabelle sehr hilfreich",
+          "correctIndex": 2,
+          "correctAnswer": "Die Risikotabelle zu Vorgang191 soll vor der morgigen Sitzung aktualisiert werden.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "Vorgang191",
+              "answerToken": "Vorgang191"
+            }
+          ],
+          "linkingExplanation": "The source token Vorgang191 links directly to the answer token Vorgang191."
+        }
+      ]
+    },
+    {
+      "id": "de-c1-032",
+      "level": "C1",
+      "difficulty": 4.546,
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "constructId": "de-c1-pragmatics-institutional-register",
+      "descriptorRefs": [
+        "CEFR-2020-C1-pragmatics"
+      ],
+      "selectionRefs": [
+        "de-selection-C1-pragmatics"
+      ],
+      "scenario": "writing to applicants about a delayed process",
+      "prompt": "four-option context-sensitive intent or response choice",
+      "scenarioRu": "Намерение собеседника",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Eine Behörde antwortet zu Vorgang192 im Namen der Organisation und kann noch keinen Termin zusagen. Welche Formulierung passt?",
+      "options": [
+        "Ich persönlich habe bei Vorgang192 einfach keine Lust auf einen Termin.",
+        "Wir versprechen für Vorgang192 sicher morgen, obwohl keine Prüfung vorliegt.",
+        "Zu Vorgang192 sagt irgendwer bei uns vielleicht irgendwann etwas.",
+        "Nach derzeitiger Prüfung kann unsere Stelle für Vorgang192 noch keinen verbindlichen Termin bestätigen."
+      ],
+      "correctIndex": 3,
+      "explanation": "The keyed option is the only one that realizes phrasing that represents an organization without sounding personal or evasive in the supplied context.",
+      "targetConstruct": "phrasing that represents an organization without sounding personal or evasive",
+      "cefrRationale": "Can communicate an institutional decision appropriately.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Nach derzeitiger Prüfung kann unsere Stelle für Vorgang192 noch keinen verbindlichen Termin bestätigen.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "pragmatic-intent",
+      "knowledgeTarget": "pragmatic-intent",
+      "answerEvidence": [
+        {
+          "quote": "Vorgang192 im Namen der Organisation und kann noch keinen Termin zusagen",
+          "correctIndex": 3,
+          "correctAnswer": "Nach derzeitiger Prüfung kann unsere Stelle für Vorgang192 noch keinen verbindlichen Termin bestätigen.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "Vorgang192",
+              "answerToken": "Vorgang192"
+            }
+          ],
+          "linkingExplanation": "The source token Vorgang192 links directly to the answer token Vorgang192."
+        }
+      ]
+    },
+    {
+      "id": "de-c1-033",
+      "level": "C1",
+      "difficulty": 4.563,
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "constructId": "de-c1-pragmatics-contextual-implicature",
+      "descriptorRefs": [
+        "CEFR-2020-C1-pragmatics"
+      ],
+      "selectionRefs": [
+        "de-selection-C1-pragmatics"
+      ],
+      "scenario": "reading an understated follow-up from a manager",
+      "prompt": "four-option context-sensitive intent or response choice",
+      "scenarioRu": "Намерение собеседника",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Im Protokoll zu Vorgang193 steht: „Die Freigabe wäre heute möglich, sobald die fehlende Unterschrift vorliegt.“ Am Abend fehlt sie noch. Was ist gemeint?",
+      "options": [
+        "Vorgang193 kann heute ohne die Unterschrift nicht freigegeben werden.",
+        "Vorgang193 wurde bereits am Morgen ohne Bedingung freigegeben.",
+        "Die Unterschrift ist bei Vorgang193 ausdrücklich unwichtig.",
+        "Vorgang193 muss unabhängig von jeder Freigabe gelöscht werden."
+      ],
+      "correctIndex": 0,
+      "explanation": "The keyed option is the only one that realizes intended message derived from shared textual context and relevance in the supplied context.",
+      "targetConstruct": "intended message derived from shared textual context and relevance",
+      "cefrRationale": "Can infer what action a speaker expects without guessing cultural trivia.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Vorgang193 kann heute ohne die Unterschrift nicht freigegeben werden.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "pragmatic-intent",
+      "knowledgeTarget": "pragmatic-intent",
+      "answerEvidence": [
+        {
+          "quote": "Protokoll zu Vorgang193 steht",
+          "correctIndex": 0,
+          "correctAnswer": "Vorgang193 kann heute ohne die Unterschrift nicht freigegeben werden.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "Vorgang193",
+              "answerToken": "Vorgang193"
+            }
+          ],
+          "linkingExplanation": "The source token Vorgang193 links directly to the answer token Vorgang193."
+        }
+      ]
+    },
+    {
+      "id": "de-c1-034",
+      "level": "C1",
+      "difficulty": 4.58,
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "constructId": "de-c1-pragmatics-face-saving-correction",
+      "descriptorRefs": [
+        "CEFR-2020-C1-pragmatics"
+      ],
+      "selectionRefs": [
+        "de-selection-C1-pragmatics"
+      ],
+      "scenario": "clarifying figures during a meeting",
+      "prompt": "four-option context-sensitive intent or response choice",
+      "scenarioRu": "Намерение собеседника",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Ein Kollege nennt bei Vorgang194 versehentlich 15 statt 50 Fälle. Wie korrigiert man respektvoll und eindeutig?",
+      "options": [
+        "Die Zahlen zu Vorgang194 sind alle gleich, obwohl die Tabelle widerspricht.",
+        "Nur zur Präzisierung bei Vorgang194: In der Tabelle stehen 50 Fälle, nicht 15.",
+        "Sie können bei Vorgang194 offenbar keine Zahlen lesen.",
+        "Bei Vorgang194 lasse ich den Fehler stehen, um niemanden zu irritieren."
+      ],
+      "correctIndex": 1,
+      "explanation": "The keyed option is the only one that realizes correction that protects the interlocutor while repairing a consequential error in the supplied context.",
+      "targetConstruct": "correction that protects the interlocutor while repairing a consequential error",
+      "cefrRationale": "Can correct inaccurate information without public embarrassment.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Nur zur Präzisierung bei Vorgang194: In der Tabelle stehen 50 Fälle, nicht 15.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "pragmatic-intent",
+      "knowledgeTarget": "pragmatic-intent",
+      "answerEvidence": [
+        {
+          "quote": "Vorgang194 versehentlich 15 statt 50 Fälle",
+          "correctIndex": 1,
+          "correctAnswer": "Nur zur Präzisierung bei Vorgang194: In der Tabelle stehen 50 Fälle, nicht 15.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "Vorgang194",
+              "answerToken": "Vorgang194"
+            }
+          ],
+          "linkingExplanation": "The source token Vorgang194 links directly to the answer token Vorgang194."
+        }
+      ]
+    },
+    {
+      "id": "de-c1-035",
+      "level": "C1",
+      "difficulty": 4.598,
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "constructId": "de-c1-pragmatics-strategic-hedge-boundary",
+      "descriptorRefs": [
+        "CEFR-2020-C1-pragmatics"
+      ],
+      "selectionRefs": [
+        "de-selection-C1-pragmatics"
+      ],
+      "scenario": "presenting interim evaluation results",
+      "prompt": "four-option context-sensitive intent or response choice",
+      "scenarioRu": "Намерение собеседника",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Die Daten zu Vorgang195 gelten nur für städtische Standorte. Welche Absicherung begrenzt genau die Reichweite?",
+      "options": [
+        "Vielleicht ist bei Vorgang195 irgendwie alles anders.",
+        "Zu Vorgang195 sagen die Daten gar nichts, auch nicht über Städte.",
+        "Für städtische Standorte sprechen die Daten zu Vorgang195 für einen Rückgang; auf ländliche Standorte lässt sich das nicht übertragen.",
+        "Vorgang195 senkt überall sicher die Werte."
+      ],
+      "correctIndex": 2,
+      "explanation": "The keyed option is the only one that realizes hedge that limits a claim's reach rather than merely weakening it in the supplied context.",
+      "targetConstruct": "hedge that limits a claim's reach rather than merely weakening it",
+      "cefrRationale": "Can calibrate a recommendation to incomplete evidence.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Für städtische Standorte sprechen die Daten zu Vorgang195 für einen Rückgang; auf ländliche Standorte lässt sich das nicht übertragen.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "pragmatic-intent",
+      "knowledgeTarget": "pragmatic-intent",
+      "answerEvidence": [
+        {
+          "quote": "Vorgang195 gelten nur für städtische Standorte",
+          "correctIndex": 2,
+          "correctAnswer": "Für städtische Standorte sprechen die Daten zu Vorgang195 für einen Rückgang; auf ländliche Standorte lässt sich das nicht übertragen.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "Vorgang195",
+              "answerToken": "Vorgang195"
+            }
+          ],
+          "linkingExplanation": "The source token Vorgang195 links directly to the answer token Vorgang195."
+        }
+      ]
+    },
+    {
+      "id": "de-c1-036",
+      "level": "C1",
+      "difficulty": 4.615,
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "constructId": "de-c1-pragmatics-repair-complex-misunderstanding",
+      "descriptorRefs": [
+        "CEFR-2020-C1-pragmatics"
+      ],
+      "selectionRefs": [
+        "de-selection-C1-pragmatics"
+      ],
+      "scenario": "reconciling conflicting project instructions",
+      "prompt": "four-option context-sensitive intent or response choice",
+      "scenarioRu": "Намерение собеседника",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Bei Vorgang196 versteht Mara „Freigabe“ als inhaltliche Zustimmung; Jonas meint nur die technische Veröffentlichung. Welche Reparatur klärt beide Lesarten?",
+      "options": [
+        "Bei Vorgang196 bedeutet Freigabe alles zugleich, eine Klärung ist unnötig.",
+        "Mara ist bei Vorgang196 schuld, daher ignorieren wir Jonas' Lesart.",
+        "Wir ersetzen bei Vorgang196 das Wort, ohne die zwei Bedeutungen zu erklären.",
+        "Mit Freigabe meinen wir bei Vorgang196 hier die technische Veröffentlichung; die inhaltliche Zustimmung wird separat erteilt."
+      ],
+      "correctIndex": 3,
+      "explanation": "The keyed option is the only one that realizes repair sequence that identifies and resolves two interpretations in the supplied context.",
+      "targetConstruct": "repair sequence that identifies and resolves two interpretations",
+      "cefrRationale": "Can restore shared meaning in a nuanced discussion.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Mit Freigabe meinen wir bei Vorgang196 hier die technische Veröffentlichung; die inhaltliche Zustimmung wird separat erteilt.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "pragmatic-intent",
+      "knowledgeTarget": "pragmatic-intent",
+      "answerEvidence": [
+        {
+          "quote": "Vorgang196 versteht Mara „Freigabe“ als inhaltliche Zustimmung; Jonas meint nur die technische Veröffentlichung",
+          "correctIndex": 3,
+          "correctAnswer": "Mit Freigabe meinen wir bei Vorgang196 hier die technische Veröffentlichung; die inhaltliche Zustimmung wird separat erteilt.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "Vorgang196",
+              "answerToken": "Vorgang196"
+            }
+          ],
+          "linkingExplanation": "The source token Vorgang196 links directly to the answer token Vorgang196."
+        }
+      ]
+    },
+    {
+      "id": "de-c1-037",
+      "level": "C1",
+      "difficulty": 4.632,
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "constructId": "de-c1-pragmatics-mediate-nuanced-positions",
+      "descriptorRefs": [
+        "CEFR-2020-C1-pragmatics"
+      ],
+      "selectionRefs": [
+        "de-selection-C1-pragmatics"
+      ],
+      "scenario": "summarizing a stakeholder consultation",
+      "prompt": "four-option context-sensitive intent or response choice",
+      "scenarioRu": "Намерение собеседника",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Aylin unterstützt Vorgang197 nur als freiwilligen Test; Felix unterstützt eine Pflicht nach erfolgreichem Test. Welche Synthese bewahrt den Unterschied?",
+      "options": [
+        "Beide unterstützen bei Vorgang197 zunächst einen Test; Aylin will dauerhaft Freiwilligkeit, Felix danach möglicherweise eine Pflicht.",
+        "Beide verlangen bei Vorgang197 sofort dieselbe dauerhafte Pflicht.",
+        "Aylin und Felix lehnen bei Vorgang197 jeden Test ab.",
+        "Ihre Positionen zu Vorgang197 unterscheiden sich überhaupt nicht."
+      ],
+      "correctIndex": 0,
+      "explanation": "The keyed option is the only one that realizes neutral synthesis preserving important differences between positions in the supplied context.",
+      "targetConstruct": "neutral synthesis preserving important differences between positions",
+      "cefrRationale": "Can mediate without falsely claiming consensus.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Beide unterstützen bei Vorgang197 zunächst einen Test; Aylin will dauerhaft Freiwilligkeit, Felix danach möglicherweise eine Pflicht.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "pragmatic-intent",
+      "knowledgeTarget": "pragmatic-intent",
+      "answerEvidence": [
+        {
+          "quote": "Vorgang197 nur als freiwilligen Test; Felix unterstützt eine Pflicht nach erfolgreichem Test",
+          "correctIndex": 0,
+          "correctAnswer": "Beide unterstützen bei Vorgang197 zunächst einen Test; Aylin will dauerhaft Freiwilligkeit, Felix danach möglicherweise eine Pflicht.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "Vorgang197",
+              "answerToken": "Vorgang197"
+            }
+          ],
+          "linkingExplanation": "The source token Vorgang197 links directly to the answer token Vorgang197."
+        }
+      ]
+    },
+    {
+      "id": "de-c1-038",
+      "level": "C1",
+      "difficulty": 4.649,
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "constructId": "de-c1-pragmatics-concession-with-pivot",
+      "descriptorRefs": [
+        "CEFR-2020-C1-pragmatics"
+      ],
+      "selectionRefs": [
+        "de-selection-C1-pragmatics"
+      ],
+      "scenario": "negotiating a procurement decision",
+      "prompt": "four-option context-sensitive intent or response choice",
+      "scenarioRu": "Намерение собеседника",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Ein Anbieter zeigt, dass Vorgang198 schneller ist; entscheidend bleibt jedoch die nachgewiesene Sicherheit. Welche Antwort setzt den Pivot klar?",
+      "options": [
+        "Wir stimmen Vorgang198 zu und verzichten ausdrücklich auf jedes Kriterium.",
+        "Vorgang198 ist tatsächlich schneller; ausschlaggebend ist für uns dennoch der belastbare Sicherheitsnachweis.",
+        "Weil Vorgang198 schneller ist, spielt Sicherheit keine Rolle.",
+        "Vorgang198 ist nicht schneller, obwohl die Messung das zeigt."
+      ],
+      "correctIndex": 1,
+      "explanation": "The keyed option is the only one that realizes concession whose pivot redirects attention to the decisive criterion in the supplied context.",
+      "targetConstruct": "concession whose pivot redirects attention to the decisive criterion",
+      "cefrRationale": "Can acknowledge a point and explain why another factor prevails.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Vorgang198 ist tatsächlich schneller; ausschlaggebend ist für uns dennoch der belastbare Sicherheitsnachweis.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "pragmatic-intent",
+      "knowledgeTarget": "pragmatic-intent",
+      "answerEvidence": [
+        {
+          "quote": "Vorgang198 schneller ist; entscheidend bleibt jedoch die nachgewiesene Sicherheit",
+          "correctIndex": 1,
+          "correctAnswer": "Vorgang198 ist tatsächlich schneller; ausschlaggebend ist für uns dennoch der belastbare Sicherheitsnachweis.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "Vorgang198",
+              "answerToken": "Vorgang198"
+            }
+          ],
+          "linkingExplanation": "The source token Vorgang198 links directly to the answer token Vorgang198."
+        }
+      ]
+    },
+    {
+      "id": "de-c1-039",
+      "level": "C1",
+      "difficulty": 4.666,
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "constructId": "de-c1-pragmatics-professional-boundary",
+      "descriptorRefs": [
+        "CEFR-2020-C1-pragmatics"
+      ],
+      "selectionRefs": [
+        "de-selection-C1-pragmatics"
+      ],
+      "scenario": "responding to scope expansion",
+      "prompt": "four-option context-sensitive intent or response choice",
+      "scenarioRu": "Намерение собеседника",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Ein Kunde bittet bei Vorgang199 zusätzlich um eine Rechtsberatung, die nicht zum vereinbarten Auftrag gehört. Wie lehnt man höflich ab?",
+      "options": [
+        "Die Bitte zu Vorgang199 ist unverschämt; suchen Sie selbst Hilfe.",
+        "Ich ignoriere bei Vorgang199 sowohl meinen Auftrag als auch Ihre Frage.",
+        "Die technische Prüfung von Vorgang199 übernehme ich gern; eine Rechtsberatung liegt außerhalb meines Auftrags, ich kann Ihnen aber eine zuständige Stelle nennen.",
+        "Bei Vorgang199 erledige ich jede fremde Fachaufgabe ohne Qualifikation."
+      ],
+      "correctIndex": 2,
+      "explanation": "The keyed option is the only one that realizes courteous language that declines work outside an agreed remit in the supplied context.",
+      "targetConstruct": "courteous language that declines work outside an agreed remit",
+      "cefrRationale": "Can maintain a professional boundary while offering a feasible alternative.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Die technische Prüfung von Vorgang199 übernehme ich gern; eine Rechtsberatung liegt außerhalb meines Auftrags, ich kann Ihnen aber eine zuständige Stelle nennen.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "pragmatic-intent",
+      "knowledgeTarget": "pragmatic-intent",
+      "answerEvidence": [
+        {
+          "quote": "Vorgang199 zusätzlich um eine Rechtsberatung, die nicht zum vereinbarten Auftrag gehört",
+          "correctIndex": 2,
+          "correctAnswer": "Die technische Prüfung von Vorgang199 übernehme ich gern; eine Rechtsberatung liegt außerhalb meines Auftrags, ich kann Ihnen aber eine zuständige Stelle nennen.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "Vorgang199",
+              "answerToken": "Vorgang199"
+            }
+          ],
+          "linkingExplanation": "The source token Vorgang199 links directly to the answer token Vorgang199."
+        }
+      ]
+    },
+    {
+      "id": "de-c1-040",
+      "level": "C1",
+      "difficulty": 4.683,
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "constructId": "de-c1-pragmatics-supported-irony",
+      "descriptorRefs": [
+        "CEFR-2020-C1-pragmatics"
+      ],
+      "selectionRefs": [
+        "de-selection-C1-pragmatics"
+      ],
+      "scenario": "reading a reflective workplace column",
+      "prompt": "four-option context-sensitive intent or response choice",
+      "scenarioRu": "Намерение собеседника",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Nach drei „endgültigen“ Terminverschiebungen heißt es zu Vorgang200: „Wie beruhigend, dass dieser Termin offenbar wieder ganz endgültig ist.“ Was signalisiert die Ironie?",
+      "options": [
+        "Bei Vorgang200 vertraut die Sprecherin dem Termin vollkommen und wörtlich.",
+        "Bei Vorgang200 lobt sie ausschließlich die Kalenderfarbe.",
+        "Bei Vorgang200 kennt sie keine früheren Verschiebungen.",
+        "Bei Vorgang200 bezweifelt die Sprecherin wegen der wiederholten Änderungen die Endgültigkeit."
+      ],
+      "correctIndex": 3,
+      "explanation": "The keyed option is the only one that realizes mild irony recoverable from explicit mismatch and context in the supplied context.",
+      "targetConstruct": "mild irony recoverable from explicit mismatch and context",
+      "cefrRationale": "Can recognize ironic distance without treating it as literal hostility.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Bei Vorgang200 bezweifelt die Sprecherin wegen der wiederholten Änderungen die Endgültigkeit.” satisfies the complete context.",
+      "routingEligible": true,
+      "upperBandEvidence": true,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "pragmatic-intent",
+      "knowledgeTarget": "pragmatic-intent",
+      "answerEvidence": [
+        {
+          "quote": "heißt es zu Vorgang200",
+          "correctIndex": 3,
+          "correctAnswer": "Bei Vorgang200 bezweifelt die Sprecherin wegen der wiederholten Änderungen die Endgültigkeit.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "Vorgang200",
+              "answerToken": "Vorgang200"
+            }
+          ],
+          "linkingExplanation": "The source token Vorgang200 links directly to the answer token Vorgang200."
+        }
+      ]
+    }
+  ]
+}

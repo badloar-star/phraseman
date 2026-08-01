@@ -1,4 +1,5 @@
 import { createHash } from 'node:crypto';
+import { Buffer } from 'node:buffer';
 import { existsSync, readFileSync, statSync, writeFileSync, mkdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 
@@ -11,6 +12,9 @@ export const DIALECTS = Object.freeze({
   it: Object.freeze(['standard']),
   es: Object.freeze(['standard']),
 });
+
+// Canonical generated bank bytes use CRLF to match the checked-in English artifacts.
+const CANONICAL_EOL = '\r\n';
 
 const DIFFICULTY_RANGES = Object.freeze({
   A1: [0.5, 1.2],
@@ -39,10 +43,6 @@ export function outputPathsFor(root, language) {
     join(root, 'knowly-www', 'english-level-test', 'data', filename),
     join(root, 'functions-english-test', 'data', filename),
   ];
-}
-
-function normalizeLineEndings(text) {
-  return text.replace(/\r\n/g, '\n');
 }
 
 function requireNonEmptyString(question, key) {
@@ -127,7 +127,7 @@ export function buildLanguageBank({ root, language }) {
     for (let index = 0; index < questions.length; index += 1) {
       const question = questions[index];
       validateQuestion(question, { language, level, seenIds });
-      if (index > 0 && question.difficulty < questions[index - 1].difficulty) {
+      if (index > 0 && question.difficulty <= questions[index - 1].difficulty) {
         throw new Error(`Level ${level} difficulty is not ascending at ${question.id}`);
       }
     }
@@ -144,7 +144,8 @@ export function buildLanguageBank({ root, language }) {
     allQuestions.push(...questions);
   }
   if (allQuestions.length !== 240) throw new Error(`Total questions: ${allQuestions.length}, expected 240`);
-  return JSON.stringify({ schemaVersion, bankVersion, language, levels: LEVELS, questions: allQuestions }, null, 2) + '\n';
+  return JSON.stringify({ schemaVersion, bankVersion, language, levels: LEVELS, questions: allQuestions }, null, 2)
+    .replace(/\n/g, CANONICAL_EOL) + CANONICAL_EOL;
 }
 
 export function sha256(text) {
@@ -161,12 +162,12 @@ export function writeGeneratedOutputs({ root, language, jsonText = buildLanguage
 
 export function checkGeneratedOutputs({ root, languages }) {
   for (const language of languages) {
-    const generated = buildLanguageBank({ root, language });
+    const generated = Buffer.from(buildLanguageBank({ root, language }), 'utf-8');
     for (const outputPath of outputPathsFor(root, language)) {
       if (!existsSync(outputPath)) throw new Error(`Check failed: output does not exist: ${outputPath}`);
       const beforeMtimeNs = statSync(outputPath, { bigint: true }).mtimeNs;
-      const existing = readFileSync(outputPath, 'utf-8');
-      if (normalizeLineEndings(existing) !== normalizeLineEndings(generated)) {
+      const existing = readFileSync(outputPath);
+      if (!existing.equals(generated)) {
         throw new Error(`Check failed: generated output differs from ${outputPath}`);
       }
       const afterMtimeNs = statSync(outputPath, { bigint: true }).mtimeNs;

@@ -1,5 +1,6 @@
 /* global __dirname */
 const assert = require('node:assert/strict');
+const { Buffer } = require('node:buffer');
 const { execFileSync } = require('node:child_process');
 const fs = require('node:fs');
 const path = require('node:path');
@@ -343,25 +344,24 @@ test('generic language bank builder preserves the frozen registry and English co
     path.join(ROOT, 'functions-english-test', 'data', 'questions.fr.json'),
   ]);
 
-  const generated = bank.buildLanguageBank({ root: ROOT, language: 'en' });
+  const generated = Buffer.from(bank.buildLanguageBank({ root: ROOT, language: 'en' }), 'utf8');
   const expected = fs.readFileSync(
     path.join(ROOT, 'knowly-www', 'english-level-test', 'data', 'questions.en.json'),
-    'utf8',
   );
-  assert.equal(generated.replace(/\r\n/g, '\n'), expected.replace(/\r\n/g, '\n'));
+  assert.deepEqual(generated, expected, 'builder output must match the canonical raw English bytes');
 });
 
-test('generic check detects output drift without changing output bytes or mtimes', async () => {
+test('generic check rejects a one-byte line-ending drift without changing output bytes or mtimes', async () => {
   const bank = await import(pathToFileURL(path.join(ROOT, 'scripts', 'lib', 'language_test_bank.mjs')).href);
   const outputs = bank.outputPathsFor(ROOT, 'en');
   const before = outputs.map((output) => ({
-    text: fs.readFileSync(output, 'utf8'),
+    bytes: fs.readFileSync(output),
     mtimeNs: fs.statSync(output, { bigint: true }).mtimeNs,
   }));
 
   assert.doesNotThrow(() => bank.checkGeneratedOutputs({ root: ROOT, languages: ['en'] }));
   outputs.forEach((output, index) => {
-    assert.equal(fs.readFileSync(output, 'utf8'), before[index].text);
+    assert.deepEqual(fs.readFileSync(output), before[index].bytes);
     assert.equal(fs.statSync(output, { bigint: true }).mtimeNs, before[index].mtimeNs);
   });
 
@@ -374,10 +374,103 @@ test('generic check detects output drift without changing output bytes or mtimes
     fs.mkdirSync(path.dirname(tempOutput), { recursive: true });
     fs.copyFileSync(output, tempOutput);
   }
-  fs.appendFileSync(bank.outputPathsFor(tempRoot, 'en')[0], 'drift');
+  const tempOutputs = bank.outputPathsFor(tempRoot, 'en');
+  fs.writeFileSync(tempOutputs[1], fs.readFileSync(tempOutputs[1]).toString('utf8').replace(/\r\n/g, '\n'), 'utf8');
+  const driftBefore = tempOutputs.map((output) => ({
+    bytes: fs.readFileSync(output),
+    mtimeNs: fs.statSync(output, { bigint: true }).mtimeNs,
+  }));
   assert.throws(
     () => bank.checkGeneratedOutputs({ root: tempRoot, languages: ['en'] }),
     /generated output differs/,
   );
+  tempOutputs.forEach((output, index) => {
+    assert.deepEqual(fs.readFileSync(output), driftBefore[index].bytes);
+    assert.equal(fs.statSync(output, { bigint: true }).mtimeNs, driftBefore[index].mtimeNs);
+  });
   fs.rmSync(tempRoot, { recursive: true, force: true });
+});
+
+test('generic builder rejects malformed language fixtures without writing outputs', async () => {
+  const bank = await import(pathToFileURL(path.join(ROOT, 'scripts', 'lib', 'language_test_bank.mjs')).href);
+  const tempRoot = path.join(ROOT, '.codex-tmp', 'language-test-bank-negative-fixtures');
+  const copyEnglish = (language = 'en') => {
+    const source = bank.sourceDirFor(tempRoot, language);
+    fs.mkdirSync(path.dirname(source), { recursive: true });
+    fs.cpSync(bank.sourceDirFor(ROOT, 'en'), source, { recursive: true });
+    for (const level of LEVELS) {
+      const file = path.join(source, `${level}.json`);
+      const data = JSON.parse(fs.readFileSync(file, 'utf8'));
+      data.language = language;
+      data.questions.forEach((question) => {
+        question.id = question.id.replace(/^en-/, `${language}-`);
+        if (language !== 'en') question.dialect = 'standard';
+      });
+      fs.writeFileSync(file, JSON.stringify(data, null, 2) + '\n', 'utf8');
+    }
+    return source;
+  };
+  const expectRejected = (mutate, expected) => {
+    fs.rmSync(tempRoot, { recursive: true, force: true });
+    const source = copyEnglish('en');
+    mutate(source);
+    assert.throws(() => bank.buildLanguageBank({ root: tempRoot, language: 'en' }), expected);
+    assert.equal(fs.existsSync(bank.outputPathsFor(tempRoot, 'en')[0]), false, 'builder must not write web output');
+    assert.equal(fs.existsSync(bank.outputPathsFor(tempRoot, 'en')[1]), false, 'builder must not write server output');
+  };
+
+  try {
+    expectRejected((source) => {
+      const file = path.join(source, 'A1.json');
+      const data = JSON.parse(fs.readFileSync(file, 'utf8'));
+      data.questions[0].id = 'de-a1-001';
+      fs.writeFileSync(file, JSON.stringify(data), 'utf8');
+    }, /must use the en- ID prefix/);
+    expectRejected((source) => {
+      const file = path.join(source, 'A1.json');
+      const data = JSON.parse(fs.readFileSync(file, 'utf8'));
+      data.questions[1].difficulty = data.questions[0].difficulty;
+      fs.writeFileSync(file, JSON.stringify(data), 'utf8');
+    }, /difficulty is not ascending/);
+    expectRejected((source) => {
+      const file = path.join(source, 'A2.json');
+      const data = JSON.parse(fs.readFileSync(file, 'utf8'));
+      data.questions[0].level = 'A1';
+      fs.writeFileSync(file, JSON.stringify(data), 'utf8');
+    }, /has level A1, expected A2/);
+    expectRejected((source) => {
+      const file = path.join(source, 'A1.json');
+      const data = JSON.parse(fs.readFileSync(file, 'utf8'));
+      data.questions[0].correctIndex = 1;
+      fs.writeFileSync(file, JSON.stringify(data), 'utf8');
+    }, /correctIndex distribution/);
+
+    fs.rmSync(tempRoot, { recursive: true, force: true });
+    const germanSource = copyEnglish('de');
+    let german = JSON.parse(fs.readFileSync(path.join(germanSource, 'A1.json'), 'utf8'));
+    german.questions[0].dialect = 'british';
+    fs.writeFileSync(path.join(germanSource, 'A1.json'), JSON.stringify(german), 'utf8');
+    assert.throws(() => bank.buildLanguageBank({ root: tempRoot, language: 'de' }), /invalid de dialect/);
+
+    german = JSON.parse(fs.readFileSync(path.join(germanSource, 'A1.json'), 'utf8'));
+    german.questions[0].dialect = 'standard';
+    delete german.questions[0].targetConstruct;
+    fs.writeFileSync(path.join(germanSource, 'A1.json'), JSON.stringify(german), 'utf8');
+    assert.throws(() => bank.buildLanguageBank({ root: tempRoot, language: 'de' }), /missing field: targetConstruct/);
+
+    fs.rmSync(tempRoot, { recursive: true, force: true });
+    const validSource = copyEnglish('en');
+    const generated = bank.buildLanguageBank({ root: tempRoot, language: 'en' });
+    const [webOutput, serverOutput] = bank.outputPathsFor(tempRoot, 'en');
+    fs.mkdirSync(path.dirname(webOutput), { recursive: true });
+    fs.writeFileSync(webOutput, generated, 'utf8');
+    const before = { bytes: fs.readFileSync(webOutput), mtimeNs: fs.statSync(webOutput, { bigint: true }).mtimeNs };
+    assert.throws(() => bank.checkGeneratedOutputs({ root: tempRoot, languages: ['en'] }), /output does not exist/);
+    assert.deepEqual(fs.readFileSync(webOutput), before.bytes);
+    assert.equal(fs.statSync(webOutput, { bigint: true }).mtimeNs, before.mtimeNs);
+    assert.equal(fs.existsSync(serverOutput), false);
+    assert.ok(validSource);
+  } finally {
+    fs.rmSync(tempRoot, { recursive: true, force: true });
+  }
 });

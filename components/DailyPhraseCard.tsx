@@ -533,7 +533,7 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
               )}
             </View>
           )}
-          <View style={styles.plaqueCopy}>
+          <View style={[styles.plaqueCopy, homeAdditional && styles.homeAdditionalCopy]}>
             {homeAdditional ? (
               <>
                 <Text style={[styles.homeAdditionalKicker, { color: chrome.title, fontSize: homeKickerFontSize, lineHeight: Math.round(homeKickerFontSize * 1.3) }]}>
@@ -897,9 +897,13 @@ const styles = StyleSheet.create({
   },
   homeAdditionalContent: {
     flex: 1,
+    alignItems: 'center',
     justifyContent: 'center',
-    paddingRight: 72,
+    paddingHorizontal: 72,
     zIndex: 2,
+  },
+  homeAdditionalCopy: {
+    alignItems: 'center',
   },
   plaqueGlow: {
     position: 'absolute',
@@ -947,15 +951,17 @@ const styles = StyleSheet.create({
     fontWeight: '900',
     letterSpacing: 0.7,
     marginBottom: 4,
+    textAlign: 'center',
     textTransform: 'uppercase',
   },
   homeAdditionalPhrase: {
     fontWeight: '900',
     flexShrink: 1,
+    textAlign: 'center',
   },
   homeAdditionalAction: {
     minHeight: 32,
-    alignSelf: 'flex-start',
+    alignSelf: 'center',
     flexDirection: 'row',
     alignItems: 'center',
     gap: 6,

@@ -75,6 +75,17 @@ describe('DailyPhraseCard quest contract', () => {
     expect(source).not.toContain('homeAdditionalMeaning');
   });
 
+  it('centers the home phrase and action independently of the decorative asset', () => {
+    expect(source).toContain('homeAdditional && styles.homeAdditionalCopy');
+    expect(source).toMatch(/homeAdditionalContent:\s*\{[\s\S]*?alignItems:\s*'center'/);
+    expect(source).toMatch(/homeAdditionalContent:\s*\{[\s\S]*?paddingHorizontal:\s*72/);
+    expect(source).toMatch(/homeAdditionalCopy:\s*\{[\s\S]*?alignItems:\s*'center'/);
+    expect(source).toMatch(/homeAdditionalKicker:\s*\{[\s\S]*?textAlign:\s*'center'/);
+    expect(source).toMatch(/homeAdditionalPhrase:\s*\{[\s\S]*?textAlign:\s*'center'/);
+    expect(source).toMatch(/homeAdditionalAction:\s*\{[\s\S]*?alignSelf:\s*'center'/);
+    expect(source).not.toMatch(/homeAdditionalContent:\s*\{[\s\S]*?paddingRight:/);
+  });
+
   it('lets live home additional text expand without raw truncation', () => {
     const liveHomeBranchStart = source.indexOf('{homeAdditional ? (');
     const liveHomeBranch = source.slice(

@@ -1021,11 +1021,13 @@ test('uses every Russian genitive test-language form after the landing level lab
   }
 });
 
-test('keeps post-start chrome on its existing Russian surface until all states localize together', () => {
-  const source = fs.readFileSync(appPath, 'utf8').replace(
-    '  updatePageLocale();\n  renderLanding();',
+test('keeps post-start chrome localized in English without restoring the landing selector', () => {
+  const original = fs.readFileSync(appPath, 'utf8');
+  const source = original.replace(
+    /  updatePageLocale\(\);\r?\n  renderLanding\(\);/u,
     "  updatePageLocale();\n  attemptTestLanguage = selectedTestLanguage;\n  renderCTA({ estimatedLevel: 'A1' });",
   );
+  assert.notEqual(source, original, 'startup mutation must enter the post-start CTA surface');
   const fixture = loadLandingApp({ href: 'https://example.test/level?ui=en&test=de', source });
   assert.equal(fixture.view().querySelectorAll('[data-test-language]').length, 0);
   assert.ok(fixture.view().querySelector('.elt-ui-locale-toggle'));
@@ -1036,9 +1038,10 @@ test('keeps post-start chrome on its existing Russian surface until all states l
 test('behavioral landing checks reject missing control wiring, rerendering, and metadata updates', () => {
   const source = fs.readFileSync(appPath, 'utf8');
   const noTestWire = source.replace("button.addEventListener('click', () => selectTestLanguage(button.dataset.testLanguage));", '');
-  const noRerender = source.replace('    renderLanding();\n  }\n\n  function toggleUiLocale', '  }\n\n  function toggleUiLocale');
-  const noMetadata = source.replace('    updatePageLocale();\n    updateUrlSelection();', '    updateUrlSelection();');
-  for (const broken of [noTestWire, noRerender, noMetadata]) {
+  const noRerender = source.replace(/    renderLanding\(\);\r?\n  \}\r?\n\r?\n  function toggleUiLocale/u, '  }\n\n  function toggleUiLocale');
+  const noMetadata = source.replace(/    updatePageLocale\(\);\r?\n    updateUrlSelection\(\);/u, '    updateUrlSelection();');
+  for (const [name, broken] of [['control wiring', noTestWire], ['landing rerender', noRerender], ['metadata update', noMetadata]]) {
+    assert.notEqual(broken, source, `${name} mutation must alter production source`);
     assert.throws(() => {
       const fixture = loadLandingApp({ source: broken });
       fixture.view().querySelectorAll('[data-test-language]').find((button) => button.dataset.testLanguage === 'de').click();
@@ -1228,19 +1231,27 @@ test('behavioral harness rejects timer reset, result header removal, and focus r
     toggle.focus(); toggle.click();
     return fixture;
   };
-  assert.throws(() => assert.notEqual(enterQuestion(source.replace('Math.max(0, questionDeadline - Date.now())', 'QUESTION_SECONDS * 1000')).view().innerHTML.match(/id="qTimerNum">(\d+)/)[1], '45'));
+  const resetTimer = source.replace('Math.max(0, questionDeadline - Date.now())', 'QUESTION_SECONDS * 1000');
+  assert.notEqual(resetTimer, source, 'timer reset mutation must alter production source');
+  assert.throws(() => assert.notEqual(enterQuestion(resetTimer).view().innerHTML.match(/id="qTimerNum">(\d+)/)[1], '45'));
+  const resetRing = source.replace('const timerOffset = (TIMER_CIRCUMFERENCE * (1 - timerLeftMs / (QUESTION_SECONDS * 1000))).toFixed(1);', "const timerOffset = '0.0';");
+  assert.notEqual(resetRing, source, 'timer ring mutation must alter production source');
   assert.throws(() => {
-    const html = enterQuestion(source.replace('const timerOffset = (TIMER_CIRCUMFERENCE * (1 - timerLeftMs / (QUESTION_SECONDS * 1000))).toFixed(1);', "const timerOffset = '0.0';")).view().innerHTML;
+    const html = enterQuestion(resetRing).view().innerHTML;
     const offset = Number(html.match(/stroke-dashoffset:([\d.]+)/)[1]);
     const expected = (2 * Math.PI * 15.5) * (1 - 32000 / 45000);
     assert.ok(Math.abs(offset - expected) < 0.5);
   });
+  const withoutFocusRestore = source.replace("if (restoreLocaleToggleFocus) node.querySelector('.elt-ui-locale-toggle')?.focus?.();", '');
+  assert.notEqual(withoutFocusRestore, source, 'focus restoration mutation must alter production source');
   assert.throws(() => {
-    const fixture = enterQuestion(source.replace("if (restoreLocaleToggleFocus) node.querySelector('.elt-ui-locale-toggle')?.focus?.();", ''));
+    const fixture = enterQuestion(withoutFocusRestore);
     assert.notEqual(fixture.context.document.activeElement, fixture.view().parentNode.children.at(-2).querySelector('.elt-ui-locale-toggle'));
   });
+  const withoutResultHeader = source.replace(/        \$\{brandHeader\(\)\}\r?\n        <div class="elt-result-card">/u, '        <div class="elt-result-card">');
+  assert.notEqual(withoutResultHeader, source, 'result header mutation must alter production source');
   assert.throws(() => {
-    const fixture = loadLocaleStateApp({ source: source.replace('        ${brandHeader()}\n        <div class="elt-result-card">', '        <div class="elt-result-card">') });
+    const fixture = loadLocaleStateApp({ source: withoutResultHeader });
     fixture.context.window.__localeStateTest.enterResult({ estimatedLevel: 'A1', correct: 1, answered: 1, totalQuestions: 1, skipped: 0 });
     assert.ok(fixture.view().querySelector('.elt-ui-locale-toggle'));
   });

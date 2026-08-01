@@ -33983,6 +33983,264 @@
     }
   };
 
+  // Final live referrals dashboard. The earlier loader is retained only as
+  // legacy context; these assignments are the effective runtime surface.
+  let _fnAdminGetReferralDashboard = null;
+  function getAdminGetReferralDashboardCallable() {
+    if (!_fnAdminGetReferralDashboard) {
+      _fnAdminGetReferralDashboard = httpsCallable(functionsUs, 'adminGetReferralDashboard');
+    }
+    return _fnAdminGetReferralDashboard;
+  }
+
+  function ensureReferralDashboardChrome() {
+    const tab = document.getElementById('tab-referrals');
+    if (!tab || tab.dataset.refDashboardV2 === 'true') return;
+    tab.dataset.refDashboardV2 = 'true';
+    tab.innerHTML = `
+      <div class="ref-dashboard-shell">
+        <div class="ref-dashboard-header">
+          <div>
+            <h2 class="ref-dashboard-title">Рефералы</h2>
+            <p class="ref-dashboard-description">Покупка настоящего Plus приглашённым открывает прокрутку рулетки пригласившему.</p>
+          </div>
+          <div class="ref-dashboard-actions">
+            <button type="button" id="ref-export" title="Скачивает текущий список приглашений в CSV. Ничего не изменяет.">Экспорт CSV</button>
+          </div>
+        </div>
+        <section id="ref-summary-stats" class="ref-summary-grid" aria-label="Основные показатели рефералов"></section>
+        <div class="ref-dashboard-controls">
+          <label class="ref-field" for="ref-search">Поиск по имени или коду
+            <input type="search" id="ref-search" placeholder="Имя или код приглашения" autocomplete="off" />
+          </label>
+          <label class="ref-field" for="ref-filter">Фильтр
+            <select id="ref-filter">
+              <option value="all">Все приглашения</option>
+              <option value="plus">Купили Plus</option>
+              <option value="awaiting">Ожидают покупки</option>
+              <option value="spun">Крутили рулетку</option>
+              <option value="not-spun">Не крутили рулетку</option>
+            </select>
+          </label>
+          <span id="ref-status" class="reports-count" aria-live="polite"></span>
+        </div>
+        <section class="ref-panel" aria-label="Кто кого пригласил">
+          <div id="ref-loading" class="ref-state" aria-live="polite">
+            <strong>Загружаем приглашения…</strong>
+            <div class="ref-skeleton-line"></div><div class="ref-skeleton-line"></div><div class="ref-skeleton-line"></div>
+          </div>
+          <div id="ref-error" class="ref-state" role="alert" hidden></div>
+          <div id="ref-empty" class="ref-state" hidden>Приглашений по выбранным условиям пока нет.</div>
+          <div id="ref-table" role="table" aria-label="Связи приглашений" hidden>
+            <div class="ref-grid-row ref-grid-head" role="row">
+              <div role="columnheader">Пригласивший</div><div aria-hidden="true"></div><div role="columnheader">Приглашённый</div>
+              <div role="columnheader">Plus</div><div role="columnheader">Рулетка</div><div role="columnheader">Действия</div>
+            </div>
+            <div id="ref-tbody" role="rowgroup"></div>
+          </div>
+          <div style="padding:0 14px 14px"><button type="button" id="ref-load-more" title="Загружает следующую страницу приглашений." hidden>Показать ещё</button></div>
+        </section>
+        <section id="ref-aggregates" class="ref-panel" aria-label="Аналитика рулетки"></section>
+      </div>`;
+    document.getElementById('ref-export')?.addEventListener('click', () => window.exportReferralsCSV());
+    document.getElementById('ref-search')?.addEventListener('input', () => window.renderReferralsTable());
+    document.getElementById('ref-filter')?.addEventListener('change', () => window.renderReferralsTable());
+    document.getElementById('ref-load-more')?.addEventListener('click', () => void window.loadReferralsData(false, true));
+  }
+
+  function referralInitials(name) {
+    return String(name || '')
+      .trim()
+      .split(/\s+/)
+      .slice(0, 2)
+      .map((part) => part.slice(0, 1).toUpperCase())
+      .join('') || '—';
+  }
+
+  function referralDate(ms) {
+    const value = Number(ms) || 0;
+    return value > 0 ? new Date(value).toLocaleDateString('ru-RU') : '';
+  }
+
+  function referralPrizeLabel(roulette) {
+    if (!roulette || roulette.state !== 'spun') return 'Ещё не крутил';
+    if (roulette.prizeKind === 'pearls') return `Выпало: ${toSafeNumber(roulette.prizePearls, 0)} жемчужин`;
+    return `Выпало: ${toSafeNumber(roulette.prizeDays, 0)} дн. Plus`;
+  }
+
+  function referralAggregateLabel(key) {
+    const [kind, raw] = String(key || '').split(':');
+    const amount = toSafeNumber(raw, 0);
+    return kind === 'pearls' ? `${amount} жемчужин` : `${amount} дн. Plus`;
+  }
+
+  function renderReferralDashboardSummary(summary) {
+    const box = document.getElementById('ref-summary-stats');
+    if (!box) return;
+    const total = Math.max(0, toSafeNumber(summary?.totalInvited, 0));
+    const purchased = Math.max(0, toSafeNumber(summary?.plusPurchased, 0));
+    const spun = Math.max(0, toSafeNumber(summary?.rouletteSpun, 0));
+    const conversion = total > 0 ? `${Math.round((purchased / total) * 1000) / 10}%` : '—';
+    box.innerHTML = [
+      ['Всего приглашено', total],
+      ['Купили Plus', purchased],
+      ['Конверсия в Plus', conversion],
+      ['Прокрутили рулетку', spun],
+    ].map(([label, value]) => `<div class="ref-metric"><div class="ref-metric-label">${escapeHtml(label)}</div><div class="ref-metric-value">${escapeHtml(value)}</div></div>`).join('');
+  }
+
+  function renderReferralRouletteAnalytics(roulette) {
+    const box = document.getElementById('ref-aggregates');
+    if (!box) return;
+    const total = Math.max(0, toSafeNumber(roulette?.totalSpins, 0));
+    const entries = Object.entries(roulette?.byPrize || {})
+      .map(([key, count]) => ({ key, count: Math.max(0, toSafeNumber(count, 0)) }))
+      .filter((item) => item.count > 0)
+      .sort((a, b) => b.count - a.count || a.key.localeCompare(b.key));
+    if (total === 0 || entries.length === 0) {
+      box.innerHTML = '<div class="ref-state"><strong>Рулетка</strong><br>Прокрутов пока нет.</div>';
+      return;
+    }
+    const most = entries[0];
+    const share = (count) => Math.round((count / total) * 1000) / 10;
+    box.innerHTML = `
+      <div class="ref-analytics-grid">
+        <div>
+          <div class="ref-top-title">Рулетка</div>
+          <div class="ref-metric-value">${total}</div>
+          <div style="margin-top:5px;color:var(--admin-muted)">Всего прокрутов</div>
+          <div style="margin-top:18px;color:var(--admin-text);font-weight:750">Чаще всего выпадает</div>
+          <div style="margin-top:5px;color:var(--admin-muted)">${escapeHtml(referralAggregateLabel(most.key))} · ${most.count} (${share(most.count)}%)</div>
+        </div>
+        <div>
+          <div class="ref-bars" role="img" aria-label="Распределение призов рулетки">
+            ${entries.map((item) => `<div class="ref-bar-row"><span>${escapeHtml(referralAggregateLabel(item.key))}</span><span class="ref-bar-track"><span class="ref-bar-fill" style="display:block;width:${Math.min(100, share(item.count))}%"></span></span><strong>${item.count}</strong></div>`).join('')}
+          </div>
+          <table class="ref-prize-table"><caption style="text-align:left;padding:16px 9px 8px;color:var(--admin-text);font-weight:750">Точная расшифровка</caption><thead><tr><th>Приз</th><th>Количество</th><th>Доля</th></tr></thead><tbody>
+            ${entries.map((item) => `<tr><td>${escapeHtml(referralAggregateLabel(item.key))}</td><td>${item.count}</td><td>${share(item.count)}%</td></tr>`).join('')}
+          </tbody></table>
+        </div>
+      </div>`;
+  }
+
+  async function prepareReferralRevoke(refereeId) {
+    const row = (window._referralsRows || []).find((item) => item.refereeId === refereeId);
+    if (!row) { showToast('Запись не найдена', 'err'); return; }
+    try {
+      const snapshot = await getDoc(doc(db, 'referral_attributions', refereeId));
+      if (!snapshot.exists()) { showToast('Связь приглашения не найдена', 'err'); return; }
+      const data = snapshot.data() || {};
+      const status = String(data.status || '');
+      if (status !== 'pending' && status !== 'rewarded') {
+        showToast('Эту связь нельзя отозвать в текущем состоянии', 'warn');
+        return;
+      }
+      Object.assign(row, {
+        status,
+        refCode: data.refCode || '',
+        refereeShardBonus: data.refereeShardBonus,
+        referrerShardBonus: data.referrerShardBonus,
+      });
+      await window.revokeReferralAttribution(refereeId);
+    } catch (error) {
+      showToast('Не удалось проверить связь: ' + error.message, 'err');
+    }
+  }
+
+  window.renderReferralsTable = function renderReferralsTable() {
+    ensureReferralDashboardChrome();
+    const tbody = document.getElementById('ref-tbody');
+    const table = document.getElementById('ref-table');
+    const empty = document.getElementById('ref-empty');
+    const status = document.getElementById('ref-status');
+    if (!tbody || !table || !empty) return;
+    const queryText = String(document.getElementById('ref-search')?.value || '').trim().toLowerCase();
+    const filter = String(document.getElementById('ref-filter')?.value || 'all');
+    const list = [...(window._referralsRows || [])].filter((row) => {
+      const matchesText = !queryText || `${row.referrerName || ''} ${row.refereeName || ''} ${row.refCode || ''}`.toLowerCase().includes(queryText);
+      const spun = row.roulette?.state === 'spun';
+      const matchesFilter = filter === 'all'
+        || (filter === 'plus' && row.plusPurchased)
+        || (filter === 'awaiting' && !row.plusPurchased)
+        || (filter === 'spun' && spun)
+        || (filter === 'not-spun' && !spun);
+      return matchesText && matchesFilter;
+    });
+    if (status) status.textContent = `${list.length} из ${(window._referralsRows || []).length}`;
+    table.hidden = list.length === 0;
+    empty.hidden = list.length !== 0;
+    tbody.innerHTML = list.map((row) => {
+      const spun = row.roulette?.state === 'spun';
+      const plusLabel = row.plusPurchased ? 'Plus куплен' : 'Ожидает покупки';
+      const plusDate = row.plusPurchased && row.purchasedAtMs ? `<div class="ref-date">${escapeHtml(referralDate(row.purchasedAtMs))}</div>` : '';
+      const spinDate = spun && row.roulette.createdAtMs ? `<div class="ref-date">${escapeHtml(referralDate(row.roulette.createdAtMs))}</div>` : '';
+      const canAttemptRevoke = row.status !== 'revoked' && (!row.plusPurchased || spun);
+      return `<div class="ref-grid-row" role="row" data-referee="${escapeHtml(row.refereeId)}">
+        <div role="cell" data-label="Пригласивший"><div class="ref-person"><span class="ref-avatar" aria-hidden="true">${escapeHtml(referralInitials(row.referrerName))}</span><span class="ref-person-name">${escapeHtml(row.referrerName || 'Без имени')}</span></div></div>
+        <div class="ref-arrow" aria-label="пригласил">→</div>
+        <div role="cell" data-label="Приглашённый"><div class="ref-person"><span class="ref-avatar" aria-hidden="true">${escapeHtml(referralInitials(row.refereeName))}</span><span class="ref-person-name">${escapeHtml(row.refereeName || 'Без имени')}</span></div></div>
+        <div role="cell" data-label="Plus"><span class="ref-status-pill ${row.plusPurchased ? 'is-plus' : 'is-waiting'}">${plusLabel}</span>${plusDate}</div>
+        <div role="cell" data-label="Рулетка"><span class="ref-status-pill ${spun ? 'is-plus' : 'is-waiting'}">${escapeHtml(referralPrizeLabel(row.roulette))}</span>${spinDate}</div>
+        <div role="cell" data-label="Действия" class="ref-row-actions">
+          <button type="button" class="ref-open-btn" data-open="${escapeHtml(row.referrerId)}" title="Открывает профиль пригласившего. Ничего не изменяет.">Открыть пригласившего</button>
+          <button type="button" class="ref-open-btn" data-open="${escapeHtml(row.refereeId)}" title="Открывает профиль приглашённого. Ничего не изменяет.">Открыть приглашённого</button>
+          ${canAttemptRevoke ? `<span class="ref-danger-zone"><button type="button" class="ref-revoke-btn" data-referee="${escapeHtml(row.refereeId)}" title="Проверяет текущий статус и открывает подтверждение отзыва связи.">Отозвать связь</button></span>` : ''}
+        </div>
+      </div>`;
+    }).join('');
+    tbody.querySelectorAll('button.ref-open-btn').forEach((button) => button.addEventListener('click', () => {
+      const id = button.getAttribute('data-open');
+      if (id) void loadUserToCacheAndOpen(id);
+    }));
+    tbody.querySelectorAll('button.ref-revoke-btn').forEach((button) => button.addEventListener('click', () => {
+      const id = button.getAttribute('data-referee');
+      if (id) void prepareReferralRevoke(id);
+    }));
+  };
+
+  window.loadReferralsData = async function loadReferralsData(force, append) {
+    ensureReferralDashboardChrome();
+    if (!force && !append && window._referralsDashboardLoaded) return;
+    const loading = document.getElementById('ref-loading');
+    const errorBox = document.getElementById('ref-error');
+    const table = document.getElementById('ref-table');
+    const empty = document.getElementById('ref-empty');
+    const moreButton = document.getElementById('ref-load-more');
+    if (errorBox) { errorBox.hidden = true; errorBox.innerHTML = ''; }
+    if (!append && loading) loading.hidden = false;
+    if (!append && table) table.hidden = true;
+    if (!append && empty) empty.hidden = true;
+    try {
+      const cursor = append ? window._referralsCursor : null;
+      const response = await getAdminGetReferralDashboardCallable()({ limit: 100, cursor });
+      const data = response?.data || {};
+      const incoming = Array.isArray(data.rows) ? data.rows.map((row) => ({
+        ...row,
+        refereeId: String(row.refereeStableId || ''),
+        referrerId: String(row.referrerStableId || ''),
+      })) : [];
+      window._referralsRows = append ? [...(window._referralsRows || []), ...incoming] : incoming;
+      window._referralsCursor = data.nextCursor || null;
+      window._referralsSummary = data.summary || {};
+      window._referralsRoulette = data.roulette || {};
+      window._referralsDashboardLoaded = true;
+      renderReferralDashboardSummary(window._referralsSummary);
+      renderReferralRouletteAnalytics(window._referralsRoulette);
+      window.renderReferralsTable();
+      if (moreButton) moreButton.hidden = !window._referralsCursor;
+      if (loading) loading.hidden = true;
+      showToast('Данные рефералов обновлены');
+    } catch (error) {
+      if (loading) loading.hidden = true;
+      if (errorBox) {
+        errorBox.hidden = false;
+        errorBox.innerHTML = `<strong>Не удалось загрузить рефералы.</strong><br>${escapeHtml(error?.message || 'Неизвестная ошибка')}<br><button type="button" id="ref-retry" title="Повторяет безопасную загрузку данных.">Повторить</button>`;
+        document.getElementById('ref-retry')?.addEventListener('click', () => void window.loadReferralsData(true, false));
+      }
+      showToast('Ошибка загрузки рефералов', 'err');
+    }
+  };
+
   window.mergeUserPrompt = async function mergeUserPrompt(sourceUid, sourceName) {
     const targetInput = await showInputModal({
       title: '🔗 Merge UID',

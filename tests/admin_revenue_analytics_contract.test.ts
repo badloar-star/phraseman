@@ -618,6 +618,34 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).toContain('id="ref-retry"');
   });
 
+  it('renders referrals from the server-owned Plus and roulette dashboard projection', () => {
+    expect(adminHtml).toContain('adminGetReferralDashboard');
+    expect(adminHtml).toContain('Всего приглашено');
+    expect(adminHtml).toContain('Купили Plus');
+    expect(adminHtml).toContain('Конверсия в Plus');
+    expect(adminHtml).toContain('Прокрутили рулетку');
+    expect(adminHtml).toContain('Ожидает покупки');
+    expect(adminHtml).toContain('ref-filter');
+    expect(adminHtml).toContain("row.refCode || ''");
+    expect(adminHtml).toContain('@media (max-width: 1360px)');
+    expect(firestoreIndexes.fieldOverrides).toContainEqual({
+      collectionGroup: 'referral_spins',
+      fieldPath: 'creditId',
+      indexes: [{ order: 'ASCENDING', queryScope: 'COLLECTION_GROUP' }],
+    });
+    expect(adminHtml).not.toContain('ждём урок');
+  });
+
+  it('auto-loads the referral dashboard without a persistent refresh control', () => {
+    expect(adminHtml).toContain("if (tab === 'referrals' && typeof window.loadReferralsData === 'function')");
+    expect(adminHtml).toContain('void window.loadReferralsData(false, false)');
+    expect(adminHtml).not.toContain("tab === 'referrals' && !window._referralsLoaded");
+    expect(adminHtml).not.toContain('id="ref-refresh"');
+    expect(adminHtml).not.toContain('<header class="ref-dashboard-header">');
+    expect(adminHtml).toContain('<div class="ref-dashboard-header">');
+    expect(adminHtml).toContain('id="ref-retry"');
+  });
+
   it('turns Push into a workflow composer with mode tabs and preview panel', () => {
     expect(adminHtml).toContain('class="push-workspace"');
     expect(adminHtml).toContain('class="push-modebar"');

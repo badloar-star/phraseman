@@ -832,12 +832,8 @@
     const optionButtons = node.querySelectorAll('.elt-option');
     optionButtons.forEach((btn) => {
       btn.addEventListener('click', () => {
-        if (answerLocked) return;
         const idx = parseInt(btn.dataset.index, 10);
-        selectedAnswerIndex = idx;
-        answerLocked = true;
-        btn.classList.add('elt-option--picked');
-        setTimeout(() => answerQuestion(q, idx, false), 200);
+        selectAnswer(q, idx, btn);
       });
     });
 
@@ -913,9 +909,20 @@
     keydownBound = false;
   }
 
+  function selectAnswer(question, index, button) {
+    if (answerLocked) return false;
+    selectedAnswerIndex = index;
+    answerLocked = true;
+    button.classList.add('elt-option--picked');
+    button.setAttribute('aria-checked', 'true');
+    setTimeout(() => answerQuestion(question, index, false), 200);
+    return true;
+  }
+
   function handleQuestionKeydown(e) {
     const view = currentView && currentView.classList.contains('elt-test') ? currentView : null;
     if (!view) return;
+    if (answerLocked) return;
     const buttons = view.querySelectorAll('.elt-option');
     if (!buttons.length) return;
     const focused = document.activeElement;
@@ -927,8 +934,7 @@
       if (buttons[i]) {
         e.preventDefault();
         buttons[i].focus();
-        buttons[i].classList.add('elt-option--picked');
-        setTimeout(() => answerQuestion(q, i, false), 200);
+        selectAnswer(q, i, buttons[i]);
       }
       return;
     }
@@ -945,8 +951,7 @@
       if (focused.classList && focused.classList.contains('elt-option')) {
         e.preventDefault();
         const i = parseInt(focused.dataset.index, 10);
-        focused.classList.add('elt-option--picked');
-        setTimeout(() => answerQuestion(q, i, false), 200);
+        selectAnswer(q, i, focused);
       }
     }
   }

@@ -14,7 +14,17 @@ class FakeNode {
     this.dataset = {};
     this.listeners = new Map();
     this.style = {};
-    this.classList = { add() {}, contains: () => false };
+    const classes = new Set((html.match(/\bclass="([^"]*)"/)?.[1] || '').split(/\s+/).filter(Boolean));
+    this.classList = {
+      add: (...names) => names.forEach((name) => classes.add(name)),
+      remove: (...names) => names.forEach((name) => classes.delete(name)),
+      contains: (name) => classes.has(name),
+      toggle: (name, force) => {
+        const present = force === undefined ? !classes.has(name) : Boolean(force);
+        if (present) classes.add(name); else classes.delete(name);
+        return present;
+      },
+    };
     this.isConnected = true;
     this.checked = false;
   }
@@ -25,7 +35,10 @@ class FakeNode {
   appendChild(child) { this.children.push(child); child.parentNode = this; child.ownerDocument = this.ownerDocument; return child; }
   remove() { this.isConnected = false; }
   focus() { if (this.ownerDocument) this.ownerDocument.activeElement = this; }
-  matches(selector) { return selector === '.elt-ui-locale-toggle' && /elt-ui-locale-toggle/.test(this.innerHTML); }
+  matches(selector) {
+    return (selector.startsWith('.') && this.classList.contains(selector.slice(1)))
+      || (selector === '.elt-ui-locale-toggle' && /elt-ui-locale-toggle/.test(this.innerHTML));
+  }
   setAttribute(name, value) { this[name] = String(value); }
   getAttribute(name) {
     const match = this.innerHTML.match(new RegExp(`${name}="([^"]*)"`));
@@ -35,6 +48,22 @@ class FakeNode {
   querySelector(selector) { return this.querySelectorAll(selector)[0] || null; }
   querySelectorAll(selector) {
     if (selector === '[data-magnet]' || selector === '.elt-brand-icon') return [];
+    if (selector === '.elt-option') {
+      return [...this.innerHTML.matchAll(/<button\b(?=[^>]*\bclass="[^"]*\belt-option\b[^"]*")[^>]*>.*?<\/button>/gs)]
+        .map((match, index) => {
+          const key = `elt-option-${index}`;
+          if (!this.nodes.has(key)) {
+            const node = new FakeNode(match[0]);
+            node.dataset.index = match[0].match(/data-index="(\d+)"/)?.[1];
+            node.ownerDocument = this.ownerDocument;
+            this.nodes.set(key, node);
+          }
+          return this.nodes.get(key);
+        });
+    }
+    if (selector === '.elt-option--picked') {
+      return [...this.nodes.values()].filter((node) => node.classList.contains('elt-option--picked'));
+    }
     if (selector === '[data-test-language]') {
       return [...this.innerHTML.matchAll(/<button[^>]*data-test-language="([^"]+)"[^>]*>.*?<\/button>/gs)]
         .map((match) => {
@@ -54,6 +83,9 @@ class FakeNode {
 function loadLandingApp({ href = 'https://example.test/level?ui=en', source = fs.readFileSync(appPath, 'utf8') } = {}) {
   const app = new FakeNode();
   const storageValues = new Map();
+  const timers = [];
+  const intervals = [];
+  let nextTimerId = 1;
   const location = { href, get search() { return new URL(this.href).search; } };
   const description = new FakeNode();
   const document = {
@@ -89,6 +121,7 @@ function loadLandingApp({ href = 'https://example.test/level?ui=en', source = fs
     Promise,
     Set,
     WeakMap,
+    EnglishTestEngine: { LEVELS: ['A1', 'A2', 'B1'] },
     console,
     location,
     history,
@@ -100,14 +133,33 @@ function loadLandingApp({ href = 'https://example.test/level?ui=en', source = fs
     performance: { now: () => 0 },
     requestAnimationFrame: (callback) => { callback(0); return 0; },
     cancelAnimationFrame() {},
-    setTimeout: () => 0,
-    clearTimeout() {},
+    setTimeout: (callback, delay) => {
+      const timer = { id: nextTimerId++, callback, delay, cleared: false };
+      timers.push(timer);
+      return timer.id;
+    },
+    clearTimeout(id) { const timer = timers.find((candidate) => candidate.id === id); if (timer) timer.cleared = true; },
+    setInterval: (callback, delay) => {
+      const interval = { id: nextTimerId++, callback, delay, cleared: false };
+      intervals.push(interval);
+      return interval.id;
+    },
+    clearInterval(id) { const interval = intervals.find((candidate) => candidate.id === id); if (interval) interval.cleared = true; },
     window: { matchMedia: () => ({ matches: true }), addEventListener() {}, scrollTo() {} },
   };
   context.globalThis = context;
   vm.runInNewContext(fs.readFileSync(modulePath, 'utf8'), context, { filename: modulePath });
   vm.runInNewContext(source, context, { filename: appPath });
-  return { app, context, description, location, storageValues, view: () => app.children.at(-1) };
+  return {
+    app, context, description, location, storageValues,
+    view: () => app.children.at(-1),
+    pendingTimeouts: (delay) => timers.filter((timer) => !timer.cleared && timer.delay === delay),
+    flushTimeouts: (delay) => timers.filter((timer) => !timer.cleared && timer.delay === delay).forEach((timer) => {
+      timer.cleared = true;
+      timer.callback();
+    }),
+    intervals,
+  };
 }
 
 function loadI18n(globals = {}) {
@@ -147,6 +199,74 @@ function loadLocaleStateApp({ source = fs.readFileSync(appPath, 'utf8') } = {}) 
   assert.notEqual(instrumented, source, 'test injection must replace only the production initialization tail');
   const fixture = loadLandingApp({ source: instrumented });
   return fixture;
+}
+
+function loadKeyboardStateApp({ source = fs.readFileSync(appPath, 'utf8') } = {}) {
+  const tail = `
+  const __keyboardEffects = { api: [], answers: [] };
+  api = (action, payload) => { __keyboardEffects.api.push({ action, payload }); return null; };
+  reportTestCompletion = () => {};
+  window.__keyboardStateTest = {
+    enterQuestion(question) {
+      attemptTestLanguage = 'de';
+      consent = true;
+      engine = {
+        history: [],
+        targetLevelIndex: 1,
+        shouldFinish() { return this.history.length > 0; },
+        pickNextQuestion() { return null; },
+        recordAnswer(answeredQuestion, selectedIndex, skipped) {
+          this.history.push({ questionId: answeredQuestion.id, selectedIndex, skipped });
+          __keyboardEffects.answers.push({ questionId: answeredQuestion.id, selectedIndex, skipped });
+        },
+        computeResult() { return { estimatedLevel: 'A1', correct: 1, answered: 1, totalQuestions: 1, skipped: 0, assessmentScope: 'test', stopReason: 'test' }; },
+      };
+      currentQuestion = question;
+      selectedAnswerIndex = null;
+      answerLocked = false;
+      questionDeadline = Date.now() + 32000;
+      questionStartTime = Date.now() - 13000;
+      lastProgress = 0;
+      renderQuestion(question, { preserveAttempt: true });
+      startQuestionTimer();
+    },
+    expireDeadline() { questionDeadline = Date.now() - 1; activeTimerTick(); },
+    state() { return { selectedAnswerIndex, answerLocked, history: engine?.history || null }; },
+    effects() { return JSON.parse(JSON.stringify(__keyboardEffects)); },
+  };
+})();`;
+  const instrumented = source.replace(/  updatePageLocale\(\);\r?\n  renderLanding\(\);\r?\n\}\)\(\);\s*$/, `  updatePageLocale();${tail}`);
+  assert.notEqual(instrumented, source, 'keyboard test injection must replace only the production initialization tail');
+  return loadLandingApp({ source: instrumented });
+}
+
+function keydown(fixture, key) {
+  let prevented = false;
+  fixture.app.listeners.get('keydown')?.({ key, preventDefault() { prevented = true; } });
+  return prevented;
+}
+
+function assertKeyboardAnswerRaceIsLocked(fixture) {
+  const question = { id: 'keyboard-race', scenarioRu: 'ru', instructionRu: 'instruction', scenario: 'scenario', prompt: 'prompt', options: ['first', 'second'], correctIndex: 0, level: 'A1' };
+  fixture.context.window.__keyboardStateTest.enterQuestion(question);
+  const options = fixture.view().querySelectorAll('.elt-option');
+
+  assert.equal(keydown(fixture, '1'), true);
+  assert.equal(fixture.context.window.__keyboardStateTest.state().selectedAnswerIndex, 0);
+  assert.equal(fixture.context.window.__keyboardStateTest.state().answerLocked, true);
+  assert.equal(options[0].classList.contains('elt-option--picked'), true);
+  assert.equal(fixture.pendingTimeouts(200).length, 1);
+
+  assert.equal(keydown(fixture, '1'), false);
+  options[1].click();
+  fixture.context.window.__keyboardStateTest.expireDeadline();
+  assert.equal(fixture.context.window.__keyboardStateTest.state().selectedAnswerIndex, 0);
+  assert.equal(fixture.pendingTimeouts(200).length, 1);
+
+  fixture.flushTimeouts(200);
+  const effects = fixture.context.window.__keyboardStateTest.effects();
+  assert.deepEqual(effects.answers, [{ questionId: 'keyboard-race', selectedIndex: 0, skipped: false }]);
+  assert.equal(effects.api.filter(({ action }) => action === 'progress').length, 1);
 }
 
 function leafPaths(value, prefix = '') {
@@ -563,6 +683,46 @@ test('live locale rerender restores toggle focus only when it owned focus', () =
   const other = new FakeNode('<button id="other">other</button>'); other.ownerDocument = unfocused.context.document; other.focus();
   unfocused.view().querySelector('.elt-ui-locale-toggle').click();
   assert.equal(unfocused.context.document.activeElement, other);
+});
+
+test('keyboard number selection locks immediately against repeated keys, click, and deadline races', () => {
+  assertKeyboardAnswerRaceIsLocked(loadKeyboardStateApp());
+});
+
+test('focused Enter and Space selection share the click lock before delayed answer processing', () => {
+  const question = { id: 'focused-key', scenarioRu: 'ru', instructionRu: 'instruction', scenario: 'scenario', prompt: 'prompt', options: ['first', 'second'], correctIndex: 1, level: 'A1' };
+
+  const enterFixture = loadKeyboardStateApp();
+  enterFixture.context.window.__keyboardStateTest.enterQuestion(question);
+  const enterOptions = enterFixture.view().querySelectorAll('.elt-option');
+  enterOptions[1].focus();
+  assert.equal(keydown(enterFixture, 'Enter'), true);
+  assert.equal(keydown(enterFixture, ' '), false);
+  assert.equal(enterFixture.context.window.__keyboardStateTest.state().selectedAnswerIndex, 1);
+  assert.equal(enterFixture.pendingTimeouts(200).length, 1);
+  enterFixture.flushTimeouts(200);
+  assert.deepEqual(enterFixture.context.window.__keyboardStateTest.effects().answers, [{ questionId: 'focused-key', selectedIndex: 1, skipped: false }]);
+
+  const clickFixture = loadKeyboardStateApp();
+  clickFixture.context.window.__keyboardStateTest.enterQuestion(question);
+  const clickOptions = clickFixture.view().querySelectorAll('.elt-option');
+  clickOptions[0].click();
+  clickOptions[1].focus();
+  assert.equal(keydown(clickFixture, 'Enter'), false);
+  assert.equal(clickFixture.context.window.__keyboardStateTest.state().selectedAnswerIndex, 0);
+  assert.equal(clickFixture.pendingTimeouts(200).length, 1);
+  clickFixture.flushTimeouts(200);
+  assert.deepEqual(clickFixture.context.window.__keyboardStateTest.effects().answers, [{ questionId: 'focused-key', selectedIndex: 0, skipped: false }]);
+});
+
+test('keyboard race behavioral contract rejects removal of the immediate selection gate', () => {
+  const source = fs.readFileSync(appPath, 'utf8');
+  const withoutGate = source.replace(
+    '    if (answerLocked) return false;\n    selectedAnswerIndex = index;\n    answerLocked = true;',
+    '',
+  );
+  assert.notEqual(withoutGate, source, 'mutation must remove the shared immediate selection gate');
+  assert.throws(() => assertKeyboardAnswerRaceIsLocked(loadKeyboardStateApp({ source: withoutGate })));
 });
 
 test('behavioral harness rejects timer reset, result header removal, and focus restoration mutations', () => {

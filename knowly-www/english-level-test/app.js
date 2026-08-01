@@ -1160,6 +1160,8 @@
     const certData = {
       name,
       result,
+      uiLocale,
+      testLanguage: attemptTestLanguage || selectedTestLanguage,
       onClose: () => renderCTA(result),
       cta: {
         text: EnglishTestI18n.t(uiLocale, 'certificate.ctaText'),
@@ -1183,6 +1185,7 @@
         <div class="cert">
           <h1>${copy('certificate.bodyTitle')}</h1>
           <p><strong>${escapeHtml(name)}</strong></p>
+          <p>${copy('certificate.completed', { language: EnglishTestI18n.TESTS[certData.testLanguage].certificateNames[uiLocale] })}</p>
           <p>${copy('result.level', { level: escapeHtml(result.estimatedLevel) })}</p>
           <p>${copy('certificate.summary', { correct: result.correct, answered: result.answered })}</p>
           <p><small>${copy('certificate.informal')}</small></p>

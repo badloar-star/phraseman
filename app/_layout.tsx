@@ -44,6 +44,7 @@ import {
   isLevelUpAccountTokenCurrent,
 } from './level_up_account_guard';
 import { isCurrentAccountGeneration } from './account_generation';
+import { getStableId } from './stable_id';
 import type { GiftDef } from './level_gift_system';
 import Onboarding from '../components/onboarding';
 import { paywallScreenStackOptions } from '../components/paywall/paywallShared';
@@ -2444,7 +2445,8 @@ function AppContent() {
       ]).catch(() => {});
       void startupLocalHydration.catch(() => {});
       // Сразу читаем осколки в фоне — к моменту «Главной» peekLastKnownShardsBalance уже с кэшем.
-      void getShardsBalance()
+      void getStableId()
+        .then(() => getShardsBalance())
         .then(balance => getShardAchievementEligibleBalance(balance))
         .then(balance => checkAchievements({ type: 'shards', balance }).catch(() => {}))
         .catch(() => {});

@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { addShardsLocalOnlyForPendingServerClaim, addShardsRaw, awardOneTime, getShardAchievementEligibleBalance, getShardsBalance, keepShardsBalanceLocalAtLeast, replaceShardsBalanceForAccountGeneration, replaceShardsBalanceLocal, SHARD_REWARDS, spendShards } from '../app/shards_system';
+import { addShardsLocalOnlyForPendingServerClaim, addShardsRaw, awardOneTime, getShardAchievementEligibleBalance, getShardsBalance, keepShardsBalanceLocalAtLeast, peekLastKnownShardsBalance, replaceShardsBalanceForAccountGeneration, replaceShardsBalanceLocal, SHARD_REWARDS, spendShards } from '../app/shards_system';
 import { __resetAccountGenerationForTests, beginAccountGeneration, captureAccountGeneration, invalidateAccountGeneration, withAccountTransitionLock } from '../app/account_generation';
 import { emitAppEvent } from '../app/events';
 
@@ -7,6 +7,10 @@ jest.mock('@react-native-async-storage/async-storage');
 jest.mock('../app/config', () => ({ IS_EXPO_GO: true, CLOUD_SYNC_ENABLED: false }));
 jest.mock('../app/debug-logger', () => ({ DebugLogger: { error: jest.fn() } }));
 jest.mock('../app/events', () => ({ emitAppEvent: jest.fn() }));
+jest.mock('../app/lifetime_profile_stats', () => ({
+  bumpLifetimeShardsEarned: jest.fn(async () => {}),
+  bumpLifetimeShardsSpent: jest.fn(async () => {}),
+}));
 
 const mockStorage: Record<string, string> = {};
 
@@ -37,6 +41,55 @@ afterEach(() => {
 });
 
 describe('shards_system guards and one-time awards', () => {
+  it('does not expose account A memory as account B first-frame balance', async () => {
+    beginAccountGeneration('account-a');
+    mockStorage.shards_balance = '17';
+
+    await expect(getShardsBalance()).resolves.toBe(17);
+    expect(peekLastKnownShardsBalance()).toBe(17);
+
+    invalidateAccountGeneration();
+    beginAccountGeneration('account-b');
+
+    expect(peekLastKnownShardsBalance()).toBeNull();
+  });
+
+  it('returns safe zero from a late account A read without exposing account B memory', async () => {
+    beginAccountGeneration('account-a');
+    let resolveRead!: (value: string | null) => void;
+    (AsyncStorage.getItem as jest.Mock).mockImplementationOnce(
+      () => new Promise<string | null>((resolve) => { resolveRead = resolve; }),
+    );
+
+    const pendingBalance = getShardsBalance();
+    invalidateAccountGeneration();
+    beginAccountGeneration('account-b');
+    mockStorage.shards_balance = '23';
+    await expect(getShardsBalance()).resolves.toBe(23);
+    resolveRead('17');
+
+    await expect(pendingBalance).resolves.toBe(0);
+    expect(peekLastKnownShardsBalance()).toBe(23);
+  });
+
+  it('returns safe zero when an account A read rejects after account B is cached', async () => {
+    beginAccountGeneration('account-a');
+    let rejectRead!: (reason: Error) => void;
+    (AsyncStorage.getItem as jest.Mock).mockImplementationOnce(
+      () => new Promise<string | null>((_resolve, reject) => { rejectRead = reject; }),
+    );
+
+    const pendingBalance = getShardsBalance();
+    invalidateAccountGeneration();
+    beginAccountGeneration('account-b');
+    mockStorage.shards_balance = '23';
+    await expect(getShardsBalance()).resolves.toBe(23);
+    rejectRead(new Error('account-a read failed late'));
+
+    await expect(pendingBalance).resolves.toBe(0);
+    expect(peekLastKnownShardsBalance()).toBe(23);
+  });
+
   it('serializes stale A commit, account wipe, and B hydration without restoring A over B', async () => {
     mockStorage.shards_balance = '7';
     mockStorage.shards_balance_meta_v1 = JSON.stringify({ updatedAtMs: 1, op: 'earn', reason: 'old' });

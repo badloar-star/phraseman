@@ -119,6 +119,7 @@ import {
 import { trackActivity } from '../app_activity';
 import {
   getShardsBalance,
+  peekLastKnownShardsBalance,
   replaceShardsBalanceForAccountGeneration,
 } from '../shards_system';
 import { oskolokImageForPackShards } from '../oskolok';
@@ -2249,7 +2250,10 @@ export default function FriendsTabScreen() {
   const [selectedPlayer, setSelectedPlayer] = useState<PlayerInfo | null>(null);
   const [deleteTarget, setDeleteTarget] = useState<{ uid: string; name: string } | null>(null);
   const [giftTarget, setGiftTarget] = useState<FriendProfile | null>(null);
-  const [giftBalance, setGiftBalance] = useState(0);
+  const giftTargetRef = useRef<FriendProfile | null>(giftTarget);
+  giftTargetRef.current = giftTarget;
+  const giftRequestInFlightRef = useRef(false);
+  const [giftBalance, setGiftBalance] = useState(() => peekLastKnownShardsBalance() ?? 0);
   const [giftBusyId, setGiftBusyId] = useState<FriendGiftId | null>(null);
   const [sentGiftReceipt, setSentGiftReceipt] = useState<{
     targetName: string;
@@ -2264,6 +2268,7 @@ export default function FriendsTabScreen() {
   const [friendQuestStarted, setFriendQuestStarted] = useState<FriendQuest | null>(null);
   const [pendingFriendQuestStarted, setPendingFriendQuestStarted] = useState<FriendQuest | null>(null);
   const [friendQuestCompleted, setFriendQuestCompleted] = useState<FriendQuest | null>(null);
+
   /** Анти-клин iOS: одновременный present двух <Modal> глушит тачи всего экрана («мёртвый экран»
    *  при серии быстрых тапов по карточке). Пока открыта/открывается одна модалка — вторую не пускаем. */
   const modalWedgeGuardRef = useRef(false);
@@ -2856,8 +2861,14 @@ export default function FriendsTabScreen() {
   const openGiftPicker = useCallback((profile: FriendProfile) => {
     if (modalWedgeGuardRef.current) return;
     hapticTap();
+    giftTargetRef.current = profile;
     setGiftTarget(profile);
-    void getShardsBalance().then(setGiftBalance).catch(() => setGiftBalance(0));
+    const requestAccountToken = captureAccountGeneration();
+    void getShardsBalance().then((balance) => {
+      if (!isCurrentAccountGeneration(requestAccountToken, requestAccountToken.stableId)) return;
+      if (giftTargetRef.current?.uid !== profile.uid) return;
+      setGiftBalance((prev) => (prev === balance ? prev : balance));
+    }).catch(() => {});
   }, []);
 
   const giftLabel = (gift: (typeof FRIEND_GIFT_CATALOG)[number]) =>
@@ -3094,30 +3105,47 @@ export default function FriendsTabScreen() {
     }
   };
 
-  const requestSendGift = (giftId: FriendGiftId) => {
-    if (!giftTarget || giftBusyId) return;
+  const requestSendGift = async (giftId: FriendGiftId) => {
+    if (!giftTarget || giftBusyId || giftRequestInFlightRef.current) return;
     const gift = FRIEND_GIFT_CATALOG.find(x => x.id === giftId);
     if (!gift) return;
-    if (giftBalance < gift.costShards) {
-      const missing = gift.costShards - giftBalance;
-      setGiftTarget(null);
-      showFeedback(L('Не хватает жемчуга', 'Не вистачає перлин', 'No tienes suficientes perlas', 'Pérolas insuficientes', 'Không đủ ngọc trai', 'Mutiara tidak cukup', 'İnci yetersiz', 'Za mało pereł'));
-      emitAppEvent('action_toast', {
-        type: 'info',
-        messageRu: `Нужно ещё жемчуга: ${missing}`,
-        messageUk: `Потрібно ще перлин: ${missing}`,
-        messageEs: `Necesitas más perlas: ${missing}`,
-        messagePtBr: `Você precisa de mais pérolas: ${missing}`,
-        messageVi: `Cần thêm ngọc trai: ${missing}`,
-        messageId: `Butuh mutiara lagi: ${missing}`,
-        messageTr: `Daha fazla inci gerekiyor: ${missing}`,
-        messagePl: `Potrzeba więcej monet: ${missing}`,
-      });
-      router.push({ pathname: '/shards_shop', params: { need: String(missing), source: 'friend_gift' } } as any);
-      return;
-    }
     const target = giftTarget;
-    void handleSendGift(giftId, target, giftBalance);
+    const requestAccountToken = captureAccountGeneration();
+    if (
+      !accountScopeKey(requestAccountToken)
+      || !requestAccountToken.stableId
+      || !isCurrentAccountGeneration(requestAccountToken, requestAccountToken.stableId)
+    ) return;
+    giftRequestInFlightRef.current = true;
+    try {
+      const freshBalance = await getShardsBalance();
+      if (!isCurrentAccountGeneration(requestAccountToken, requestAccountToken.stableId)) return;
+      if (giftTargetRef.current?.uid !== target.uid) return;
+      setGiftBalance((prev) => (prev === freshBalance ? prev : freshBalance));
+      if (freshBalance < gift.costShards) {
+        const missing = gift.costShards - freshBalance;
+        setGiftTarget(null);
+        showFeedback(L('Не хватает жемчуга', 'Не вистачає перлин', 'No tienes suficientes perlas', 'Pérolas insuficientes', 'Không đủ ngọc trai', 'Mutiara tidak cukup', 'İnci yetersiz', 'Za mało pereł'));
+        emitAppEvent('action_toast', {
+          type: 'info',
+          messageRu: `Нужно ещё жемчуга: ${missing}`,
+          messageUk: `Потрібно ще перлин: ${missing}`,
+          messageEs: `Necesitas más perlas: ${missing}`,
+          messagePtBr: `Você precisa de mais pérolas: ${missing}`,
+          messageVi: `Cần thêm ngọc trai: ${missing}`,
+          messageId: `Butuh mutiara lagi: ${missing}`,
+          messageTr: `Daha fazla inci gerekiyor: ${missing}`,
+          messagePl: `Potrzeba więcej monet: ${missing}`,
+        });
+        router.push({ pathname: '/shards_shop', params: { need: String(missing), source: 'friend_gift' } } as any);
+        return;
+      }
+      await handleSendGift(giftId, target, freshBalance);
+    } catch {
+      return;
+    } finally {
+      giftRequestInFlightRef.current = false;
+    }
   };
 
   const incomingReplyTarget = useCallback((gift: IncomingFriendGift): FriendProfile => {

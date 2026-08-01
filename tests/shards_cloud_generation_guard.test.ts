@@ -38,8 +38,11 @@ jest.mock('../app/shards_delta_queue', () => ({
 }));
 
 import { loadShardsFromCloud, peekLastKnownShardsBalance } from '../app/shards_system';
+import { __resetAccountGenerationForTests, beginAccountGeneration } from '../app/account_generation';
 
 test('stale cloud shard load does not populate process memory after deferred multiSet completes', async () => {
+  __resetAccountGenerationForTests();
+  beginAccountGeneration('stable-a');
   let release!: () => void;
   let current = true;
   (AsyncStorage.getItem as jest.Mock).mockResolvedValue(null);

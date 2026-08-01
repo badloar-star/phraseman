@@ -30,12 +30,12 @@ describe('friends tab gift interaction contract', () => {
 
   it('sends gifts from the sheet without opening a second confirm modal', () => {
     const source = read('app/(tabs)/friends.tsx');
-    const requestSendGift = extract(source, 'const requestSendGift = (giftId: FriendGiftId) => {', 'const incomingReplyTarget');
+    const requestSendGift = extract(source, 'const requestSendGift = async (giftId: FriendGiftId) => {', 'const incomingReplyTarget');
 
     expect(source).not.toContain('giftConfirm');
     expect(source).not.toContain('friends-gift-confirm');
     expect(requestSendGift).toContain('const target = giftTarget;');
-    expect(requestSendGift).toContain('void handleSendGift(giftId, target, giftBalance);');
+    expect(requestSendGift).toContain('await handleSendGift(giftId, target, freshBalance);');
   });
 
   it('closes the gift sheet and shows optimistic receipt before the callable resolves', () => {

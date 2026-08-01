@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import CardPackShardPaywallModal from './CardPackShardPaywallModal';
 import type { FlashcardMarketPack } from './marketplace';
 import type { Lang } from '../../constants/i18n';
@@ -50,6 +50,7 @@ export function useCardPackShardPaywall(args: {
   } = args;
   const [paywall, setPaywall] = useState<{ pack: FlashcardMarketPack; mode: 'confirm' | 'insufficient' | 'voucher' } | null>(null);
   const [purchasing, setPurchasing] = useState(false);
+  const purchasingRef = useRef(false);
   const paywallRef = useRef(paywall);
   paywallRef.current = paywall;
 
@@ -69,15 +70,32 @@ export function useCardPackShardPaywall(args: {
     [balance, hasCommunityVoucher, hasVoucher, purchasing],
   );
 
+  useEffect(() => {
+    if (purchasingRef.current) return;
+    setPaywall((prev) => {
+      if (!prev) return prev;
+      const voucherEligible = hasVoucher && (!prev.pack.isCommunityUgc || hasCommunityVoucher);
+      const desiredMode = voucherEligible
+        ? 'voucher'
+        : balance < prev.pack.priceShards
+          ? 'insufficient'
+          : 'confirm';
+      if (prev.mode === desiredMode) return prev;
+      return { ...prev, mode: desiredMode };
+    });
+  }, [balance, hasCommunityVoucher, hasVoucher]);
+
   const closePaywall = useCallback(() => {
     if (purchasing) return;
     setPaywall(null);
   }, [purchasing]);
 
   const onConfirmPurchase = useCallback(async () => {
+    if (purchasingRef.current) return;
     const pw = paywallRef.current;
     if (!pw) return;
     if (pw.mode !== 'confirm' && pw.mode !== 'voucher') return;
+    purchasingRef.current = true;
     setPurchasing(true);
     onPurchaseStart?.(pw.pack.id);
     try {
@@ -113,6 +131,7 @@ export function useCardPackShardPaywall(args: {
         setPaywall(null);
       }
     } finally {
+      purchasingRef.current = false;
       setPurchasing(false);
       onPurchaseEnd?.();
     }

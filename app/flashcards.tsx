@@ -31,7 +31,7 @@ import {
   sortCommunityMarketPacksByRating,
 } from './community_packs/communityFirestore';
 import { getCanonicalUserId } from './user_id_policy';
-import { getShardsBalance } from './shards_system';
+import { getShardsBalance, peekLastKnownShardsBalance } from './shards_system';
 import {
   flashcardsCommunityPacksAvailableForTarget,
   flashcardsOfficialPacksAvailableForTarget,
@@ -68,7 +68,7 @@ export default function FlashcardsHubScreen() {
   const [ownedPackIds, setOwnedPackIds] = useState<string[]>([]);
   const [ownedCommunityPackIds, setOwnedCommunityPackIds] = useState<string[]>([]);
   const [hubAuthorStableId, setHubAuthorStableId] = useState<string | null>(null);
-  const [shardBalance, setShardBalance] = useState(0);
+  const [shardBalance, setShardBalance] = useState(() => peekLastKnownShardsBalance() ?? 0);
 
   const cloudCommunityEnabled = CLOUD_SYNC_ENABLED && !IS_EXPO_GO;
   const leaveFlashcardsHub = useCallback(() => {

@@ -21,7 +21,8 @@
   const ANALYTICS_BROWSER_ID_KEY = 'english_test_analytics_browser_id_v1';
   const ANALYTICS_BROWSER_ID_PATTERN = /^[a-f0-9]{48}$/;
   const COUNTER_REFRESH_MS = 30000;
-  const MAX_BANK_VERSION_LENGTH = 128;
+  const MAX_BANK_VERSION_LENGTH = 32;
+  const BANK_VERSION_PATTERN = /^\d{4}-\d{2}-\d{2}\.\d+$/;
 
   const hasI18n = typeof EnglishTestI18n !== 'undefined';
   const readStoredLocale = hasI18n ? EnglishTestI18n.readStoredLocale : () => null;
@@ -715,12 +716,16 @@
       || bank.language !== language
       || !Array.isArray(bank.questions)
       || bank.questions.length !== 240
-      || typeof bank.bankVersion !== 'string'
-      || bank.bankVersion.trim().length === 0
-      || bank.bankVersion.length > MAX_BANK_VERSION_LENGTH) {
+      || !isValidBankVersion(bank.bankVersion)) {
       throw new Error('bank_contract_mismatch');
     }
     return bank;
+  }
+
+  function isValidBankVersion(bankVersion) {
+    return typeof bankVersion === 'string'
+      && bankVersion.length <= MAX_BANK_VERSION_LENGTH
+      && BANK_VERSION_PATTERN.test(bankVersion);
   }
 
   function loadBank(language) {

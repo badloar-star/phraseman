@@ -201,22 +201,38 @@ function loadLocaleStateApp({ source = fs.readFileSync(appPath, 'utf8') } = {}) 
   return fixture;
 }
 
-function loadBankLoaderApp({ href = 'https://example.test/level?ui=en&test=en', source = fs.readFileSync(appPath, 'utf8') } = {}) {
+function loadBankLoaderApp({ href = 'https://example.test/level?ui=en&test=en', source = fs.readFileSync(appPath, 'utf8'), realStartFlow = false } = {}) {
   const tail = `
-  const __bankLoaderEffects = { requests: [], engines: 0, starts: [], questions: 0 };
+  const __bankLoaderEffects = { requests: [], analytics: [], engines: 0, starts: [], questions: 0, tokens: 0 };
   let __bankLoaderResponse = null;
-  fetch = (url) => {
+  fetch = (url, options) => {
+    if (url === API_BASE) {
+      __bankLoaderEffects.analytics.push(JSON.parse(options.body));
+      return Promise.resolve({ ok: true, json: async () => ({ ok: true }) });
+    }
     __bankLoaderEffects.requests.push(String(url));
     return __bankLoaderResponse(url);
   };
-  api = (action) => { __bankLoaderEffects.starts.push(action); return null; };
-  EnglishTestEngine.Engine = function(questionSet) { __bankLoaderEffects.engines += 1; this.questions = questionSet; };
-  showNextQuestion = () => { __bankLoaderEffects.questions += 1; };
+  if (!${realStartFlow}) {
+    api = (action) => { __bankLoaderEffects.starts.push(action); return null; };
+    showNextQuestion = () => { __bankLoaderEffects.questions += 1; };
+  }
+  const __originalGenerateToken = generateToken;
+  generateToken = () => { __bankLoaderEffects.tokens += 1; return __originalGenerateToken(); };
+  EnglishTestEngine.Engine = function(questionSet) {
+    __bankLoaderEffects.engines += 1;
+    this.questions = questionSet;
+    this.history = [];
+    this.shouldFinish = () => false;
+    this.pickNextQuestion = () => ({ id: 'first', scenarioRu: 'ru', instructionRu: 'instruction', scenario: 'scenario', prompt: 'prompt', options: ['a', 'b'], correctIndex: 0, level: 'A1' });
+  };
   window.__bankLoaderTest = {
     select: (language) => selectTestLanguage(language),
     start: () => startTest(),
     setResponse: (response) => { __bankLoaderResponse = response; },
+    setConsent: (value) => { consent = value; if (value) localStorage.setItem(ANALYTICS_BROWSER_ID_KEY, 'a'.repeat(48)); },
     load: (language) => typeof loadBank === 'function' ? loadBank(language) : Promise.reject(new Error('loadBank missing')),
+    pendingStart: () => startPromise,
     state: () => ({ attemptTestLanguage, selectedTestLanguage, activeView, cacheSize: typeof bankCache === 'undefined' ? null : bankCache.size, effects: JSON.parse(JSON.stringify(__bankLoaderEffects)) }),
   };
 })();`;
@@ -225,7 +241,7 @@ function loadBankLoaderApp({ href = 'https://example.test/level?ui=en&test=en', 
   return loadLandingApp({ href, source: instrumented });
 }
 
-function validBank(language, version = '20260801-1') {
+function validBank(language, version = '2026-08-01.1') {
   return {
     language,
     bankVersion: version,
@@ -716,6 +732,13 @@ test('enforces the bounded bank contract and never caches an unknown or rejected
     { language: 'de', bankVersion: 'v1' },
     { language: 'de', bankVersion: 'v1', questions: validBank('de').questions.slice(0, 239) },
     { language: 'de', bankVersion: 'v1', questions: [...validBank('de').questions, {}] },
+    { language: 'de', bankVersion: 'v1', questions: validBank('de').questions },
+    { language: 'de', bankVersion: '20260801-1', questions: validBank('de').questions },
+    { language: 'de', bankVersion: ' 2026-08-01.1', questions: validBank('de').questions },
+    { language: 'de', bankVersion: '2026-08-01.1 ', questions: validBank('de').questions },
+    { language: 'de', bankVersion: '2026-08-01.1x', questions: validBank('de').questions },
+    { language: 'de', bankVersion: '2026-08-01.', questions: validBank('de').questions },
+    { language: 'de', bankVersion: `2026-08-01.${'1'.repeat(22)}`, questions: validBank('de').questions },
     { language: 'de', bankVersion: ' ', questions: validBank('de').questions },
     { language: 'de', bankVersion: 'v'.repeat(129), questions: validBank('de').questions },
   ];
@@ -735,6 +758,178 @@ test('enforces the bounded bank contract and never caches an unknown or rejected
   assert.deepEqual(fixture.context.window.__bankLoaderTest.state().effects.requests, []);
   for (const language of i18n.TEST_LANGUAGES) await fixture.context.window.__bankLoaderTest.load(language);
   assert.equal(fixture.context.window.__bankLoaderTest.state().cacheSize, i18n.TEST_LANGUAGES.length);
+});
+
+test('client bank-version validation exactly mirrors the server grammar and 32-character bound', async () => {
+  const server = fs.readFileSync(require.resolve('./index.js'), 'utf8');
+  const client = fs.readFileSync(appPath, 'utf8');
+  assert.match(server, /value\.length > 32/);
+  assert.match(server, /\^\\d\{4\}-\\d\{2\}-\\d\{2\}\\\.\\d\+\$/);
+  assert.match(client, /MAX_BANK_VERSION_LENGTH = 32/);
+  assert.match(client, /BANK_VERSION_PATTERN = \/\^\\d\{4\}-\\d\{2\}-\\d\{2\}\\\.\\d\+\$\//);
+
+  for (const version of ['2026-07-22.4', '2026-08-01.1', `2026-08-01.${'1'.repeat(21)}`]) {
+    const fixture = loadBankLoaderApp({ href: 'https://example.test/level?ui=en&test=de' });
+    fixture.context.window.__bankLoaderTest.setResponse(async () => ({ ok: true, json: async () => validBank('de', version) }));
+    await fixture.context.window.__bankLoaderTest.load('de');
+  }
+});
+
+test('concurrent consented starts share one request, attempt token, engine, analytics sequence, and first view', async () => {
+  const fixture = loadBankLoaderApp({ href: 'https://example.test/level?ui=en&test=de', realStartFlow: true });
+  let resolve;
+  fixture.context.window.__bankLoaderTest.setConsent(true);
+  fixture.context.window.__bankLoaderTest.setResponse(() => new Promise((done) => { resolve = done; }));
+  const first = fixture.context.window.__bankLoaderTest.start();
+  const second = fixture.context.window.__bankLoaderTest.start();
+  assert.strictEqual(first, second);
+  assert.equal(fixture.context.window.__bankLoaderTest.state().effects.requests.length, 1);
+  resolve({ ok: true, json: async () => validBank('de') });
+  const outcomes = await Promise.allSettled([first, second]);
+  assert.deepEqual(outcomes.map((outcome) => outcome.status), ['fulfilled', 'fulfilled']);
+  await Promise.resolve();
+  const effects = fixture.context.window.__bankLoaderTest.state().effects;
+  assert.equal(effects.tokens, 1);
+  assert.equal(effects.engines, 1);
+  assert.deepEqual(effects.analytics.map((entry) => entry.action), ['landing', 'start', 'view']);
+  assert.equal(new Set(effects.analytics.map((entry) => entry.attemptToken)).size, 1);
+});
+
+test('successful banks retain identity for reuse while the allowlisted cache stays bounded', async () => {
+  const i18n = loadI18n();
+  const fixture = loadBankLoaderApp();
+  fixture.context.window.__bankLoaderTest.setResponse(async (url) => {
+    const language = /questions\.([a-z]{2})\.json/.exec(url)[1];
+    return { ok: true, json: async () => validBank(language) };
+  });
+  const first = await fixture.context.window.__bankLoaderTest.load('de');
+  const second = await fixture.context.window.__bankLoaderTest.load('de');
+  assert.strictEqual(second, first);
+  assert.equal(fixture.context.window.__bankLoaderTest.state().effects.requests.length, 1);
+  for (const language of i18n.TEST_LANGUAGES) await fixture.context.window.__bankLoaderTest.load(language);
+  assert.equal(fixture.context.window.__bankLoaderTest.state().cacheSize, 5);
+  await assert.rejects(fixture.context.window.__bankLoaderTest.load('xx'), /bank_contract_mismatch/);
+  assert.equal(fixture.context.window.__bankLoaderTest.state().cacheSize, 5);
+});
+
+test('all invalid response forms render a localized error with no engine or analytics', async () => {
+  const cases = [
+    async () => ({ ok: false, json: async () => ({}) }),
+    async () => ({ ok: true, json: async () => { throw new Error('not json'); } }),
+    async () => ({ ok: true, json: async () => validBank('en') }),
+    async () => ({ ok: true, json: async () => ({ ...validBank('de'), questions: validBank('de').questions.slice(0, 239) }) }),
+    async () => ({ ok: true, json: async () => ({ ...validBank('de'), questions: [...validBank('de').questions, {}] }) }),
+    async () => ({ ok: true, json: async () => validBank('de', 'v1') }),
+  ];
+  for (const response of cases) {
+    const fixture = loadBankLoaderApp({ href: 'https://example.test/level?ui=en&test=de', realStartFlow: true });
+    fixture.context.window.__bankLoaderTest.setConsent(true);
+    fixture.context.window.__bankLoaderTest.setResponse(response);
+    await fixture.context.window.__bankLoaderTest.start();
+    const state = fixture.context.window.__bankLoaderTest.state();
+    assert.equal(state.activeView.kind, 'error');
+    assert.equal(state.effects.engines, 0);
+    assert.deepEqual(state.effects.analytics, []);
+  }
+});
+
+test('German error rerenders locally and retries German only after a failed request is evicted', async () => {
+  const i18n = loadI18n();
+  const fixture = loadBankLoaderApp({ href: 'https://example.test/level?ui=en&test=de' });
+  let calls = 0;
+  fixture.context.window.__bankLoaderTest.setResponse(async () => {
+    calls += 1;
+    return calls === 1 ? { ok: false, json: async () => ({}) } : { ok: true, json: async () => validBank('de') };
+  });
+  await fixture.context.window.__bankLoaderTest.start();
+  const englishError = fixture.view().innerHTML;
+  fixture.view().querySelector('.elt-ui-locale-toggle').click();
+  assert.equal(fixture.context.window.__bankLoaderTest.state().attemptTestLanguage, 'de');
+  assert.notEqual(fixture.view().innerHTML, englishError);
+  assert.deepEqual(fixture.context.window.__bankLoaderTest.state().effects.requests, [i18n.TESTS.de.bankUrl]);
+  fixture.view().querySelector('#retryBtn').click();
+  await fixture.context.window.__bankLoaderTest.pendingStart();
+  assert.deepEqual(fixture.context.window.__bankLoaderTest.state().effects.requests, [i18n.TESTS.de.bankUrl, i18n.TESTS.de.bankUrl]);
+  assert.equal(fixture.context.window.__bankLoaderTest.state().effects.engines, 1);
+});
+
+test('concurrent rejected starts share one failed request and a later retry creates one new request', async () => {
+  const fixture = loadBankLoaderApp({ href: 'https://example.test/level?ui=en&test=de' });
+  let resolve;
+  let calls = 0;
+  fixture.context.window.__bankLoaderTest.setResponse(() => {
+    calls += 1;
+    if (calls === 1) return new Promise((done) => { resolve = done; });
+    return Promise.resolve({ ok: true, json: async () => validBank('de') });
+  });
+  const first = fixture.context.window.__bankLoaderTest.start();
+  const second = fixture.context.window.__bankLoaderTest.start();
+  assert.strictEqual(first, second);
+  resolve({ ok: false, json: async () => ({}) });
+  const outcomes = await Promise.allSettled([first, second]);
+  assert.deepEqual(outcomes.map((outcome) => outcome.status), ['fulfilled', 'fulfilled']);
+  assert.equal(calls, 1);
+  assert.equal(fixture.context.window.__bankLoaderTest.state().cacheSize, 0);
+  await fixture.context.window.__bankLoaderTest.start();
+  assert.equal(calls, 2);
+  assert.equal(fixture.context.window.__bankLoaderTest.state().effects.engines, 1);
+});
+
+test('executed bank-loader mutation packets each break the production behavioral harness', async () => {
+  const source = fs.readFileSync(appPath, 'utf8');
+  const deUrl = loadI18n().TESTS.de.bankUrl;
+  const expectMutationFailure = async (name, mutate, exercise) => {
+    const mutated = mutate(source);
+    assert.notEqual(mutated, source, `${name} mutation must alter production source`);
+    await assert.rejects(() => exercise(mutated), assert.AssertionError, name);
+  };
+
+  await expectMutationFailure('hardcoded English URL',
+    (value) => value.replace('fetch(EnglishTestI18n.TESTS[language].bankUrl)', 'fetch(EnglishTestI18n.TESTS.en.bankUrl)'),
+    async (mutated) => {
+      const fixture = loadBankLoaderApp({ href: 'https://example.test/level?ui=en&test=de', source: mutated });
+      fixture.context.window.__bankLoaderTest.setResponse(async () => ({ ok: true, json: async () => validBank('de') }));
+      await fixture.context.window.__bankLoaderTest.start();
+      assert.deepEqual(fixture.context.window.__bankLoaderTest.state().effects.requests, [deUrl]);
+    });
+  await expectMutationFailure('English fallback after German failure',
+    (value) => value.replace("if (!res.ok) throw new Error('bank_contract_mismatch');", "if (!res.ok) { const fallback = await fetch(EnglishTestI18n.TESTS.en.bankUrl); return validateBank('en', await fallback.json()); }"),
+    async (mutated) => {
+      const fixture = loadBankLoaderApp({ href: 'https://example.test/level?ui=en&test=de', source: mutated });
+      fixture.context.window.__bankLoaderTest.setResponse(async (url) => ({ ok: url === deUrl ? false : true, json: async () => validBank('en') }));
+      await assert.rejects(fixture.context.window.__bankLoaderTest.load('de'), /bank_contract_mismatch/);
+    });
+  for (const [name, packet, bank] of [
+    ['language validation', 'bank.language !== language', validBank('en')],
+    ['exact-240 validation', 'bank.questions.length !== 240', { ...validBank('de'), questions: validBank('de').questions.slice(0, 239) }],
+    ['version validation', '!isValidBankVersion(bank.bankVersion)', validBank('de', 'v1')],
+  ]) {
+    await expectMutationFailure(`removed ${name}`,
+      (value) => value.replace(packet, 'false'),
+      async (mutated) => {
+        const fixture = loadBankLoaderApp({ href: 'https://example.test/level?ui=en&test=de', source: mutated });
+        fixture.context.window.__bankLoaderTest.setResponse(async () => ({ ok: true, json: async () => bank }));
+        await assert.rejects(fixture.context.window.__bankLoaderTest.load('de'), /bank_contract_mismatch/);
+      });
+  }
+  await expectMutationFailure('retained rejected cache entry',
+    (value) => value.replace('if (bankCache.get(language) === request) bankCache.delete(language);', 'void language;'),
+    async (mutated) => {
+      const fixture = loadBankLoaderApp({ href: 'https://example.test/level?ui=en&test=de', source: mutated });
+      fixture.context.window.__bankLoaderTest.setResponse(async () => ({ ok: false, json: async () => ({}) }));
+      await assert.rejects(fixture.context.window.__bankLoaderTest.load('de'));
+      await assert.rejects(fixture.context.window.__bankLoaderTest.load('de'));
+      assert.equal(fixture.context.window.__bankLoaderTest.state().effects.requests.length, 2);
+    });
+  await expectMutationFailure('late in-flight cache insertion',
+    (value) => value.replace('bankCache.set(language, request);', 'request.then(() => bankCache.set(language, request));'),
+    async (mutated) => {
+      const fixture = loadBankLoaderApp({ href: 'https://example.test/level?ui=en&test=de', source: mutated });
+      fixture.context.window.__bankLoaderTest.setResponse(() => new Promise(() => {}));
+      void fixture.context.window.__bankLoaderTest.load('de');
+      void fixture.context.window.__bankLoaderTest.load('de');
+      assert.equal(fixture.context.window.__bankLoaderTest.state().effects.requests.length, 1);
+    });
 });
 
 test('locale toggles during a selected-bank load keep the frozen attempt and do not refetch', async () => {

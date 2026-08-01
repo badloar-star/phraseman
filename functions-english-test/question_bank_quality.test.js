@@ -394,8 +394,11 @@ test('multilingual quality auditor rejects each deliberate survivor mutation wit
         correctIndex: 0,
         instructionRu: 'Выберите естественный вариант.',
         instructionEn: 'Choose the natural option.',
-        upperBandEvidence: ['C1', 'C2'].includes(level) && ['reading', 'pragmatics'].includes(skill) ? { route: 'reading_pragmatics', evidence: 'multi-sentence adult discourse' } : undefined,
-        logicalInference: level === 'C2' && ['reading', 'pragmatics'].includes(skill) && index < 6 ? { evidence: 'The conclusion follows only by combining the two statements.', domain: 'reading_pragmatics' } : undefined,
+        routingEligible: !['C1', 'C2'].includes(level) || ['reading', 'pragmatics'].includes(skill),
+        upperBandEvidence: ['C1', 'C2'].includes(level) && ['reading', 'pragmatics'].includes(skill),
+        externalKnowledgeRequired: false,
+        answerableFromStimulus: true,
+        logicalInference: level === 'C2' && ['reading', 'pragmatics'].includes(skill) && index < 6 ? { domain: 'reading_pragmatics', premises: ['First statement', 'Second statement'], unstatedConclusion: 'A conclusion follows.', whyNotExplicit: 'Neither sentence states it directly.' } : undefined,
         review: Object.fromEntries(audit.REVIEW_FIELDS.map((field) => [field, 'pass'])),
       })));
     }),
@@ -417,6 +420,7 @@ test('multilingual quality auditor rejects each deliberate survivor mutation wit
     ['duplicate ID', (items) => { items[1].id = items[0].id; }, /duplicate question ID/],
     ['cross-level construct reuse', (items) => { items[40].constructId = items[0].constructId; }, /duplicate constructId/],
     ['English instruction leakage', (items) => { items[0].instructionEn = `Choose ${items[0].options[0]}.`; }, /instructionEn leaks/],
+    ['meaningful accented answer leakage', (items) => { items[0].options[0] = 'sí'; items[0].instructionEn = 'Choose sí.'; }, /instructionEn leaks/],
     ['ordinary article duplicate', (items) => { items[1].options[1] = `der ${items[0].options[1]}`; }, /duplicate material/],
     ['five structural fingerprints', (items) => { for (let i = 0; i < 5; i += 1) items[i].stimulus = `Item ${i + 1}: ____.`; }, /repeated structural fingerprint/],
     ['reconstructed sentence duplicate', (items) => { items[0].stimulus = 'Repeat ____ now.'; items[1].stimulus = `Repeat ${items[0].options[0]} now.`; }, /reconstructed sentence duplicate/],
@@ -425,7 +429,7 @@ test('multilingual quality auditor rejects each deliberate survivor mutation wit
     ['obscure trivia', (items) => { const item = items.find((question) => question.level === 'C2'); item.stimulus = 'In 1837, which obscure local decree changed the archive?'; }, /external-knowledge/],
     ['bank language mismatch', (items) => { items[0].id = 'fr-a1-grammar-1'; }, /ID prefix/],
     ['meaningless descriptor refs', (items) => { items[0].descriptorRefs = ['x']; }, /descriptorRefs/],
-    ['stale review hash', (items) => { items[0].review.sha256 = '0'.repeat(64); }, /unbound review/],
+    ['upper routing evidence gap', (items) => { const item = items.find((question) => question.level === 'C1' && question.routingEligible); item.upperBandEvidence = false; }, /upperBandEvidence/],
   ];
   for (const [name, mutate, expected] of survivors) {
     const copy = JSON.parse(JSON.stringify(fixture));
@@ -437,6 +441,36 @@ test('multilingual quality auditor rejects each deliberate survivor mutation wit
   shortArticle.questions[0].instructionEn = 'Choose the natural option.';
   shortArticle.questions[0].review.sha256 = audit.questionSha256(shortArticle.questions[0]);
   assert.doesNotMatch(audit.auditQuestionBank(shortArticle).errors.join('\n'), /instructionEn leaks/, 'short valid article la');
+  for (const article of ['den', 'dem', 'des', 'einem']) {
+    const copy = JSON.parse(JSON.stringify(fixture));
+    copy.questions[1].options[1] = `${article} ${copy.questions[0].options[1]}`;
+    assert.match(audit.auditQuestionBank(copy).errors.join('\n'), /duplicate material/, `${article} normalization`);
+  }
+});
+
+test('multilingual audit binds reviews from a separate, complete review file', async () => {
+  const audit = await import(pathToFileURL(path.join(ROOT, 'scripts', 'audit_language_test_bank.mjs')).href);
+  const sourceRaw = Buffer.from('{"language":"de","questions":[{"id":"de-a1-001","level":"A1","correctIndex":0}]}\n');
+  const review = {
+    language: 'de', level: 'A1', sourceSha256: audit.sha256Raw(sourceRaw), reviews: [{
+      id: 'de-a1-001', language: 'de', level: 'A1', reviewStatus: 'reviewed',
+      accuracy: 'pass', levelFit: 'pass', singleAnswer: 'pass', distractorExclusivity: 'pass', naturalness: 'pass', originality: 'pass', ruInstructionAccuracy: 'pass', enInstructionAccuracy: 'pass',
+      authoringPass: 'pass', adversarialPass: 'pass', deterministicPass: 'pass', levelCoveragePass: 'pass',
+      rationales: { 1: 'wrong agreement', 2: 'wrong register', 3: 'wrong meaning' },
+    }],
+  };
+  assert.deepEqual(audit.auditSeparateReview({ sourceRaw, questions: JSON.parse(sourceRaw).questions, review, language: 'de', level: 'A1' }).errors, []);
+  review.reviews[0].accuracy = 'fail';
+  assert.match(audit.auditSeparateReview({ sourceRaw, questions: JSON.parse(sourceRaw).questions, review, language: 'de', level: 'A1' }).errors.join('\n'), /accuracy/);
+  review.reviews[0].accuracy = 'pass';
+  review.sourceSha256 = '0'.repeat(64);
+  assert.match(audit.auditSeparateReview({ sourceRaw, questions: JSON.parse(sourceRaw).questions, review, language: 'de', level: 'A1' }).errors.join('\n'), /stale review hash/);
+  review.sourceSha256 = audit.sha256Raw(sourceRaw);
+  review.reviews.push({ ...review.reviews[0] });
+  assert.match(audit.auditSeparateReview({ sourceRaw, questions: JSON.parse(sourceRaw).questions, review, language: 'de', level: 'A1' }).errors.join('\n'), /exactly one/);
+  review.reviews.length = 1;
+  review.reviews[0].rationales = { 0: 'wrong key', 1: 'wrong agreement', 2: 'wrong register' };
+  assert.match(audit.auditSeparateReview({ sourceRaw, questions: JSON.parse(sourceRaw).questions, review, language: 'de', level: 'A1' }).errors.join('\n'), /incomplete review/);
 });
 
 test('all four current project blueprints are intentionally RED until Phase B supplies individual authoring objects', async () => {

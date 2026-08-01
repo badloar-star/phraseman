@@ -1,7 +1,7 @@
 {
   "language": "de",
   "level": "C1",
-  "sourceSha256": "2f0897af9384f03146337e7f6137c011aa954c62e21d3742e2c067163169201e",
+  "sourceSha256": "ca0ed2800e9e9638f71fb87ab3cb4a2ed681cb7f7f8d879a97b50fabfb4370d0",
   "reviews": [
     {
       "id": "de-c1-001",
@@ -389,9 +389,9 @@
       "deterministicPass": "pass",
       "levelCoveragePass": "pass",
       "rationales": {
-        "1": "“Vorgang177 wird ohne Vorbehalt zur sofortigen Vollumsetzung empfohlen.” contradicts or exceeds the supplied textual evidence “Vorgang177 nennt den Ansatz „vielversprechend“, warnt jedoch vor einer kleinen Datengrundlage”; “Vorgang177 wird vorsichtig positiv bewertet und nur für einen begrenzten Test empfohlen.” preserves the stated detail and qualification.",
-        "2": "“Vorgang177 wird als völlig wertlos abgelehnt.” contradicts or exceeds the supplied textual evidence “Vorgang177 nennt den Ansatz „vielversprechend“, warnt jedoch vor einer kleinen Datengrundlage”; “Vorgang177 wird vorsichtig positiv bewertet und nur für einen begrenzten Test empfohlen.” preserves the stated detail and qualification.",
-        "3": "“Vorgang177 wird beschrieben, ohne dass der Autor irgendeine Haltung erkennen lässt.” contradicts or exceeds the supplied textual evidence “Vorgang177 nennt den Ansatz „vielversprechend“, warnt jedoch vor einer kleinen Datengrundlage”; “Vorgang177 wird vorsichtig positiv bewertet und nur für einen begrenzten Test empfohlen.” preserves the stated detail and qualification."
+        "1": "“Vorgang177 wird ohne Vorbehalt zur sofortigen Vollumsetzung empfohlen.” contradicts or exceeds the supplied textual evidence “Der Kommentar zu Vorgang177 nennt den Ansatz „vielversprechend“, warnt jedoch vor einer kleinen Datengrundlage. Im Schluss fordert er deshalb nur einen begrenzten Test. Welche Haltung ergibt sich?”; “Vorgang177 wird vorsichtig positiv bewertet und nur für einen begrenzten Test empfohlen.” preserves the stated detail and qualification.",
+        "2": "“Vorgang177 wird als völlig wertlos abgelehnt.” contradicts or exceeds the supplied textual evidence “Der Kommentar zu Vorgang177 nennt den Ansatz „vielversprechend“, warnt jedoch vor einer kleinen Datengrundlage. Im Schluss fordert er deshalb nur einen begrenzten Test. Welche Haltung ergibt sich?”; “Vorgang177 wird vorsichtig positiv bewertet und nur für einen begrenzten Test empfohlen.” preserves the stated detail and qualification.",
+        "3": "“Vorgang177 wird beschrieben, ohne dass der Autor irgendeine Haltung erkennen lässt.” contradicts or exceeds the supplied textual evidence “Der Kommentar zu Vorgang177 nennt den Ansatz „vielversprechend“, warnt jedoch vor einer kleinen Datengrundlage. Im Schluss fordert er deshalb nur einen begrenzten Test. Welche Haltung ergibt sich?”; “Vorgang177 wird vorsichtig positiv bewertet und nur für einen begrenzten Test empfohlen.” preserves the stated detail and qualification."
       }
     },
     {
@@ -412,9 +412,9 @@
       "deterministicPass": "pass",
       "levelCoveragePass": "pass",
       "rationales": {
-        "0": "“Bei Vorgang178 muss die Bearbeitungszeit bereits vor der Änderung null sein.” contradicts or exceeds the supplied textual evidence “Vorgang178 verkürzt interne Wege. Deshalb wird automatisch auch die Bearbeitungszeit für Kunden sinken”; “Bei Vorgang178 müssen interne Wege ein wesentlicher Engpass der gesamten Bearbeitungszeit sein.” preserves the stated detail and qualification.",
-        "2": "“Bei Vorgang178 müssen alle Kunden denselben Namen tragen.” contradicts or exceeds the supplied textual evidence “Vorgang178 verkürzt interne Wege. Deshalb wird automatisch auch die Bearbeitungszeit für Kunden sinken”; “Bei Vorgang178 müssen interne Wege ein wesentlicher Engpass der gesamten Bearbeitungszeit sein.” preserves the stated detail and qualification.",
-        "3": "“Bei Vorgang178 darf es keinerlei interne Kommunikation geben.” contradicts or exceeds the supplied textual evidence “Vorgang178 verkürzt interne Wege. Deshalb wird automatisch auch die Bearbeitungszeit für Kunden sinken”; “Bei Vorgang178 müssen interne Wege ein wesentlicher Engpass der gesamten Bearbeitungszeit sein.” preserves the stated detail and qualification."
+        "0": "“Bei Vorgang178 muss die Bearbeitungszeit bereits vor der Änderung null sein.” contradicts or exceeds the supplied textual evidence “Der Text argumentiert: „Vorgang178 verkürzt interne Wege. Deshalb wird automatisch auch die Bearbeitungszeit für Kunden sinken.“ Er nennt keine weiteren Prozessschritte. Welche Annahme ist erforderlich?”; “Bei Vorgang178 müssen interne Wege ein wesentlicher Engpass der gesamten Bearbeitungszeit sein.” preserves the stated detail and qualification.",
+        "2": "“Bei Vorgang178 müssen alle Kunden denselben Namen tragen.” contradicts or exceeds the supplied textual evidence “Der Text argumentiert: „Vorgang178 verkürzt interne Wege. Deshalb wird automatisch auch die Bearbeitungszeit für Kunden sinken.“ Er nennt keine weiteren Prozessschritte. Welche Annahme ist erforderlich?”; “Bei Vorgang178 müssen interne Wege ein wesentlicher Engpass der gesamten Bearbeitungszeit sein.” preserves the stated detail and qualification.",
+        "3": "“Bei Vorgang178 darf es keinerlei interne Kommunikation geben.” contradicts or exceeds the supplied textual evidence “Der Text argumentiert: „Vorgang178 verkürzt interne Wege. Deshalb wird automatisch auch die Bearbeitungszeit für Kunden sinken.“ Er nennt keine weiteren Prozessschritte. Welche Annahme ist erforderlich?”; “Bei Vorgang178 müssen interne Wege ein wesentlicher Engpass der gesamten Bearbeitungszeit sein.” preserves the stated detail and qualification."
       }
     },
     {
@@ -435,9 +435,9 @@
       "deterministicPass": "pass",
       "levelCoveragePass": "pass",
       "rationales": {
-        "0": "“Bei Vorgang179 genügt das einzelne Teilnahmebeispiel als vollständige Schlussfolgerung.” contradicts or exceeds the supplied textual evidence “Vorgang179 fordert als Hauptpunkt eine verlängerte Pilotphase”; “Bei Vorgang179 soll die Pilotphase verlängert werden.” preserves the stated detail and qualification.",
-        "1": "“Bei Vorgang179 soll jede Datenerhebung sofort beendet werden.” contradicts or exceeds the supplied textual evidence “Vorgang179 fordert als Hauptpunkt eine verlängerte Pilotphase”; “Bei Vorgang179 soll die Pilotphase verlängert werden.” preserves the stated detail and qualification.",
-        "3": "“Bei Vorgang179 sind Ferienmonate immer bedeutungslos.” contradicts or exceeds the supplied textual evidence “Vorgang179 fordert als Hauptpunkt eine verlängerte Pilotphase”; “Bei Vorgang179 soll die Pilotphase verlängert werden.” preserves the stated detail and qualification."
+        "0": "“Bei Vorgang179 genügt das einzelne Teilnahmebeispiel als vollständige Schlussfolgerung.” contradicts or exceeds the supplied textual evidence “Der Bericht zu Vorgang179 fordert als Hauptpunkt eine verlängerte Pilotphase. Eine Nebenbegründung betrifft saisonale Schwankungen; ein Beispiel nennt die geringe Teilnahme im Ferienmonat. Was ist die Hauptaussage?”; “Bei Vorgang179 soll die Pilotphase verlängert werden.” preserves the stated detail and qualification.",
+        "1": "“Bei Vorgang179 soll jede Datenerhebung sofort beendet werden.” contradicts or exceeds the supplied textual evidence “Der Bericht zu Vorgang179 fordert als Hauptpunkt eine verlängerte Pilotphase. Eine Nebenbegründung betrifft saisonale Schwankungen; ein Beispiel nennt die geringe Teilnahme im Ferienmonat. Was ist die Hauptaussage?”; “Bei Vorgang179 soll die Pilotphase verlängert werden.” preserves the stated detail and qualification.",
+        "3": "“Bei Vorgang179 sind Ferienmonate immer bedeutungslos.” contradicts or exceeds the supplied textual evidence “Der Bericht zu Vorgang179 fordert als Hauptpunkt eine verlängerte Pilotphase. Eine Nebenbegründung betrifft saisonale Schwankungen; ein Beispiel nennt die geringe Teilnahme im Ferienmonat. Was ist die Hauptaussage?”; “Bei Vorgang179 soll die Pilotphase verlängert werden.” preserves the stated detail and qualification."
       }
     },
     {
@@ -458,9 +458,9 @@
       "deterministicPass": "pass",
       "levelCoveragePass": "pass",
       "rationales": {
-        "0": "“Vorgang180 senkt nachweislich dauerhaft in allen Organisationen die Fehlerzahl.” contradicts or exceeds the supplied textual evidence “Vorgang180 beobachtet zwölf freiwillige Teams über vier Wochen”; “Bei Vorgang180 wurden kurzfristig in den zwölf freiwilligen Teams weniger Fehler beobachtet.” preserves the stated detail and qualification.",
-        "1": "“Vorgang180 wirkt bei unfreiwilliger Nutzung garantiert genauso.” contradicts or exceeds the supplied textual evidence “Vorgang180 beobachtet zwölf freiwillige Teams über vier Wochen”; “Bei Vorgang180 wurden kurzfristig in den zwölf freiwilligen Teams weniger Fehler beobachtet.” preserves the stated detail and qualification.",
-        "2": "“Vorgang180 beweist eine Ursache unabhängig vom Studiendesign.” contradicts or exceeds the supplied textual evidence “Vorgang180 beobachtet zwölf freiwillige Teams über vier Wochen”; “Bei Vorgang180 wurden kurzfristig in den zwölf freiwilligen Teams weniger Fehler beobachtet.” preserves the stated detail and qualification."
+        "0": "“Vorgang180 senkt nachweislich dauerhaft in allen Organisationen die Fehlerzahl.” contradicts or exceeds the supplied textual evidence “Die Studie zu Vorgang180 beobachtet zwölf freiwillige Teams über vier Wochen. Sie zeigt dort weniger Fehler, erlaubt aber keine Aussage über unfreiwillige Nutzung oder Langzeitwirkung. Welche Schlussfolgerung bleibt gedeckt?”; “Bei Vorgang180 wurden kurzfristig in den zwölf freiwilligen Teams weniger Fehler beobachtet.” preserves the stated detail and qualification.",
+        "1": "“Vorgang180 wirkt bei unfreiwilliger Nutzung garantiert genauso.” contradicts or exceeds the supplied textual evidence “Die Studie zu Vorgang180 beobachtet zwölf freiwillige Teams über vier Wochen. Sie zeigt dort weniger Fehler, erlaubt aber keine Aussage über unfreiwillige Nutzung oder Langzeitwirkung. Welche Schlussfolgerung bleibt gedeckt?”; “Bei Vorgang180 wurden kurzfristig in den zwölf freiwilligen Teams weniger Fehler beobachtet.” preserves the stated detail and qualification.",
+        "2": "“Vorgang180 beweist eine Ursache unabhängig vom Studiendesign.” contradicts or exceeds the supplied textual evidence “Die Studie zu Vorgang180 beobachtet zwölf freiwillige Teams über vier Wochen. Sie zeigt dort weniger Fehler, erlaubt aber keine Aussage über unfreiwillige Nutzung oder Langzeitwirkung. Welche Schlussfolgerung bleibt gedeckt?”; “Bei Vorgang180 wurden kurzfristig in den zwölf freiwilligen Teams weniger Fehler beobachtet.” preserves the stated detail and qualification."
       }
     },
     {
@@ -481,9 +481,9 @@
       "deterministicPass": "pass",
       "levelCoveragePass": "pass",
       "rationales": {
-        "1": "“„Dies“ verweist bei Vorgang181 ausschließlich auf die abgelehnte spätere Frist.” contradicts or exceeds the supplied textual evidence “Vorgang181 wird zunächst eine spätere Frist vorgeschlagen. Das Team lehnt diese ab und bietet stattdessen mehr Personal an”; “„Dies“ verweist bei Vorgang181 auf das Angebot von mehr Personal.” preserves the stated detail and qualification.",
-        "2": "“„Dies“ verweist bei Vorgang181 auf ein nicht erwähntes Budget.” contradicts or exceeds the supplied textual evidence “Vorgang181 wird zunächst eine spätere Frist vorgeschlagen. Das Team lehnt diese ab und bietet stattdessen mehr Personal an”; “„Dies“ verweist bei Vorgang181 auf das Angebot von mehr Personal.” preserves the stated detail and qualification.",
-        "3": "“„Dies“ verweist bei Vorgang181 auf den gesamten Kalender des Jahres.” contradicts or exceeds the supplied textual evidence “Vorgang181 wird zunächst eine spätere Frist vorgeschlagen. Das Team lehnt diese ab und bietet stattdessen mehr Personal an”; “„Dies“ verweist bei Vorgang181 auf das Angebot von mehr Personal.” preserves the stated detail and qualification."
+        "1": "“„Dies“ verweist bei Vorgang181 ausschließlich auf die abgelehnte spätere Frist.” contradicts or exceeds the supplied textual evidence “Im Text zu Vorgang181 wird zunächst eine spätere Frist vorgeschlagen. Das Team lehnt diese ab und bietet stattdessen mehr Personal an. „Dies“ soll die angebotene Alternative bezeichnen. Welche Lesart passt?”; “„Dies“ verweist bei Vorgang181 auf das Angebot von mehr Personal.” preserves the stated detail and qualification.",
+        "2": "“„Dies“ verweist bei Vorgang181 auf ein nicht erwähntes Budget.” contradicts or exceeds the supplied textual evidence “Im Text zu Vorgang181 wird zunächst eine spätere Frist vorgeschlagen. Das Team lehnt diese ab und bietet stattdessen mehr Personal an. „Dies“ soll die angebotene Alternative bezeichnen. Welche Lesart passt?”; “„Dies“ verweist bei Vorgang181 auf das Angebot von mehr Personal.” preserves the stated detail and qualification.",
+        "3": "“„Dies“ verweist bei Vorgang181 auf den gesamten Kalender des Jahres.” contradicts or exceeds the supplied textual evidence “Im Text zu Vorgang181 wird zunächst eine spätere Frist vorgeschlagen. Das Team lehnt diese ab und bietet stattdessen mehr Personal an. „Dies“ soll die angebotene Alternative bezeichnen. Welche Lesart passt?”; “„Dies“ verweist bei Vorgang181 auf das Angebot von mehr Personal.” preserves the stated detail and qualification."
       }
     },
     {
@@ -504,9 +504,9 @@
       "deterministicPass": "pass",
       "levelCoveragePass": "pass",
       "rationales": {
-        "0": "“Bei Vorgang182 ist ausschließlich das Wetter als Ursache belegt.” contradicts or exceeds the supplied textual evidence “Vorgang182 erhielt zusätzliche Schulung und senkte die Fehlerquote”; “Bei Vorgang182 könnte die Schulung zum Unterschied zwischen den Fällen beigetragen haben.” preserves the stated detail and qualification.",
-        "2": "“Bei Vorgang182 beweist der Kontrast, dass Software niemals wirkt.” contradicts or exceeds the supplied textual evidence “Vorgang182 erhielt zusätzliche Schulung und senkte die Fehlerquote”; “Bei Vorgang182 könnte die Schulung zum Unterschied zwischen den Fällen beigetragen haben.” preserves the stated detail and qualification.",
-        "3": "“Bei Vorgang182 waren beide Fälle in jeder Hinsicht identisch und erzielten dasselbe Ergebnis.” contradicts or exceeds the supplied textual evidence “Vorgang182 erhielt zusätzliche Schulung und senkte die Fehlerquote”; “Bei Vorgang182 könnte die Schulung zum Unterschied zwischen den Fällen beigetragen haben.” preserves the stated detail and qualification."
+        "0": "“Bei Vorgang182 ist ausschließlich das Wetter als Ursache belegt.” contradicts or exceeds the supplied textual evidence “Fall A von Vorgang182 erhielt zusätzliche Schulung und senkte die Fehlerquote. Fall B nutzte dieselbe Software ohne Schulung; dort blieb die Quote gleich. Welche vorsichtige Folgerung legt der Kontrast nahe?”; “Bei Vorgang182 könnte die Schulung zum Unterschied zwischen den Fällen beigetragen haben.” preserves the stated detail and qualification.",
+        "2": "“Bei Vorgang182 beweist der Kontrast, dass Software niemals wirkt.” contradicts or exceeds the supplied textual evidence “Fall A von Vorgang182 erhielt zusätzliche Schulung und senkte die Fehlerquote. Fall B nutzte dieselbe Software ohne Schulung; dort blieb die Quote gleich. Welche vorsichtige Folgerung legt der Kontrast nahe?”; “Bei Vorgang182 könnte die Schulung zum Unterschied zwischen den Fällen beigetragen haben.” preserves the stated detail and qualification.",
+        "3": "“Bei Vorgang182 waren beide Fälle in jeder Hinsicht identisch und erzielten dasselbe Ergebnis.” contradicts or exceeds the supplied textual evidence “Fall A von Vorgang182 erhielt zusätzliche Schulung und senkte die Fehlerquote. Fall B nutzte dieselbe Software ohne Schulung; dort blieb die Quote gleich. Welche vorsichtige Folgerung legt der Kontrast nahe?”; “Bei Vorgang182 könnte die Schulung zum Unterschied zwischen den Fällen beigetragen haben.” preserves the stated detail and qualification."
       }
     },
     {
@@ -527,9 +527,9 @@
       "deterministicPass": "pass",
       "levelCoveragePass": "pass",
       "rationales": {
-        "0": "“Vorgang183 ist eine ungeordnete persönliche Erinnerung ohne Adressaten.” contradicts or exceeds the supplied textual evidence “Vorgang183 beginnt mit einer Problembeschreibung, vergleicht zwei Optionen”; “Vorgang183 dient vor allem dazu, eine Entscheidung vorzubereiten und zu empfehlen.” preserves the stated detail and qualification.",
-        "1": "“Vorgang183 soll nur ein Ereignis chronologisch erzählen.” contradicts or exceeds the supplied textual evidence “Vorgang183 beginnt mit einer Problembeschreibung, vergleicht zwei Optionen”; “Vorgang183 dient vor allem dazu, eine Entscheidung vorzubereiten und zu empfehlen.” preserves the stated detail and qualification.",
-        "3": "“Vorgang183 dient ausschließlich der privaten Unterhaltung.” contradicts or exceeds the supplied textual evidence “Vorgang183 beginnt mit einer Problembeschreibung, vergleicht zwei Optionen”; “Vorgang183 dient vor allem dazu, eine Entscheidung vorzubereiten und zu empfehlen.” preserves the stated detail and qualification."
+        "0": "“Vorgang183 ist eine ungeordnete persönliche Erinnerung ohne Adressaten.” contradicts or exceeds the supplied textual evidence “Der Text zu Vorgang183 beginnt mit einer Problembeschreibung, vergleicht zwei Optionen und endet mit einer begründeten Empfehlung an die Leitung. Ton und Aufbau bleiben sachlich. Welchem Zweck dient er?”; “Vorgang183 dient vor allem dazu, eine Entscheidung vorzubereiten und zu empfehlen.” preserves the stated detail and qualification.",
+        "1": "“Vorgang183 soll nur ein Ereignis chronologisch erzählen.” contradicts or exceeds the supplied textual evidence “Der Text zu Vorgang183 beginnt mit einer Problembeschreibung, vergleicht zwei Optionen und endet mit einer begründeten Empfehlung an die Leitung. Ton und Aufbau bleiben sachlich. Welchem Zweck dient er?”; “Vorgang183 dient vor allem dazu, eine Entscheidung vorzubereiten und zu empfehlen.” preserves the stated detail and qualification.",
+        "3": "“Vorgang183 dient ausschließlich der privaten Unterhaltung.” contradicts or exceeds the supplied textual evidence “Der Text zu Vorgang183 beginnt mit einer Problembeschreibung, vergleicht zwei Optionen und endet mit einer begründeten Empfehlung an die Leitung. Ton und Aufbau bleiben sachlich. Welchem Zweck dient er?”; “Vorgang183 dient vor allem dazu, eine Entscheidung vorzubereiten und zu empfehlen.” preserves the stated detail and qualification."
       }
     },
     {
@@ -550,9 +550,9 @@
       "deterministicPass": "pass",
       "levelCoveragePass": "pass",
       "rationales": {
-        "0": "“Bei Vorgang184 gilt der deutliche Rückgang sicher für alle Standorte.” contradicts or exceeds the supplied textual evidence “Vorgang184 verringerte die Wartezeit in kleinen Filialen deutlich”; “Bei Vorgang184 gilt der deutliche Rückgang nur für kleine Filialen.” preserves the stated detail and qualification.",
-        "1": "“Bei Vorgang184 sind auch für kleine Filialen keinerlei Daten vorhanden.” contradicts or exceeds the supplied textual evidence “Vorgang184 verringerte die Wartezeit in kleinen Filialen deutlich”; “Bei Vorgang184 gilt der deutliche Rückgang nur für kleine Filialen.” preserves the stated detail and qualification.",
-        "2": "“Bei Vorgang184 bedeutet „deutlich“, dass große Standorte geschlossen wurden.” contradicts or exceeds the supplied textual evidence “Vorgang184 verringerte die Wartezeit in kleinen Filialen deutlich”; “Bei Vorgang184 gilt der deutliche Rückgang nur für kleine Filialen.” preserves the stated detail and qualification."
+        "0": "“Bei Vorgang184 gilt der deutliche Rückgang sicher für alle Standorte.” contradicts or exceeds the supplied textual evidence “Der Bericht sagt: „Vorgang184 verringerte die Wartezeit in kleinen Filialen deutlich; für große Standorte sind die Daten noch uneinheitlich.“ Worauf beschränkt sich „deutlich“?”; “Bei Vorgang184 gilt der deutliche Rückgang nur für kleine Filialen.” preserves the stated detail and qualification.",
+        "1": "“Bei Vorgang184 sind auch für kleine Filialen keinerlei Daten vorhanden.” contradicts or exceeds the supplied textual evidence “Der Bericht sagt: „Vorgang184 verringerte die Wartezeit in kleinen Filialen deutlich; für große Standorte sind die Daten noch uneinheitlich.“ Worauf beschränkt sich „deutlich“?”; “Bei Vorgang184 gilt der deutliche Rückgang nur für kleine Filialen.” preserves the stated detail and qualification.",
+        "2": "“Bei Vorgang184 bedeutet „deutlich“, dass große Standorte geschlossen wurden.” contradicts or exceeds the supplied textual evidence “Der Bericht sagt: „Vorgang184 verringerte die Wartezeit in kleinen Filialen deutlich; für große Standorte sind die Daten noch uneinheitlich.“ Worauf beschränkt sich „deutlich“?”; “Bei Vorgang184 gilt der deutliche Rückgang nur für kleine Filialen.” preserves the stated detail and qualification."
       }
     },
     {
@@ -573,9 +573,9 @@
       "deterministicPass": "pass",
       "levelCoveragePass": "pass",
       "rationales": {
-        "1": "“Vorgang185 spart sicher unbegrenzt Zeit und verursacht keine Kosten.” contradicts or exceeds the supplied textual evidence “Vorgang185 findet eine moderate Zeitersparnis, warnt vor höheren Startkosten”; “Vorgang185 verspricht etwas Zeitgewinn, verlangt aber Anfangsinvestitionen und soll zunächst begrenzt getestet werden.” preserves the stated detail and qualification.",
-        "2": "“Vorgang185 ist wegen der Startkosten vollständig gescheitert.” contradicts or exceeds the supplied textual evidence “Vorgang185 findet eine moderate Zeitersparnis, warnt vor höheren Startkosten”; “Vorgang185 verspricht etwas Zeitgewinn, verlangt aber Anfangsinvestitionen und soll zunächst begrenzt getestet werden.” preserves the stated detail and qualification.",
-        "3": "“Vorgang185 wurde bereits flächendeckend eingeführt und abschließend bewertet.” contradicts or exceeds the supplied textual evidence “Vorgang185 findet eine moderate Zeitersparnis, warnt vor höheren Startkosten”; “Vorgang185 verspricht etwas Zeitgewinn, verlangt aber Anfangsinvestitionen und soll zunächst begrenzt getestet werden.” preserves the stated detail and qualification."
+        "1": "“Vorgang185 spart sicher unbegrenzt Zeit und verursacht keine Kosten.” contradicts or exceeds the supplied textual evidence “Der Bericht zu Vorgang185 findet eine moderate Zeitersparnis, warnt vor höheren Startkosten und empfiehlt einen begrenzten Pilotversuch. Welche Zusammenfassung ist treu?”; “Vorgang185 verspricht etwas Zeitgewinn, verlangt aber Anfangsinvestitionen und soll zunächst begrenzt getestet werden.” preserves the stated detail and qualification.",
+        "2": "“Vorgang185 ist wegen der Startkosten vollständig gescheitert.” contradicts or exceeds the supplied textual evidence “Der Bericht zu Vorgang185 findet eine moderate Zeitersparnis, warnt vor höheren Startkosten und empfiehlt einen begrenzten Pilotversuch. Welche Zusammenfassung ist treu?”; “Vorgang185 verspricht etwas Zeitgewinn, verlangt aber Anfangsinvestitionen und soll zunächst begrenzt getestet werden.” preserves the stated detail and qualification.",
+        "3": "“Vorgang185 wurde bereits flächendeckend eingeführt und abschließend bewertet.” contradicts or exceeds the supplied textual evidence “Der Bericht zu Vorgang185 findet eine moderate Zeitersparnis, warnt vor höheren Startkosten und empfiehlt einen begrenzten Pilotversuch. Welche Zusammenfassung ist treu?”; “Vorgang185 verspricht etwas Zeitgewinn, verlangt aber Anfangsinvestitionen und soll zunächst begrenzt getestet werden.” preserves the stated detail and qualification."
       }
     },
     {
@@ -596,9 +596,9 @@
       "deterministicPass": "pass",
       "levelCoveragePass": "pass",
       "rationales": {
-        "0": "“Bei Vorgang186 stützen beide Evidenzarten ausschließlich eine Preisprognose.” contradicts or exceeds the supplied textual evidence “Vorgang186 stützen Nutzungsdaten die Aussage über häufigere Zugriffe”; “Bei Vorgang186 belegen Nutzungsdaten die Zugriffshäufigkeit, Interviews die wahrgenommene Verständlichkeit.” preserves the stated detail and qualification.",
-        "2": "“Bei Vorgang186 belegen Interviews allein die technische Zugriffszahl.” contradicts or exceeds the supplied textual evidence “Vorgang186 stützen Nutzungsdaten die Aussage über häufigere Zugriffe”; “Bei Vorgang186 belegen Nutzungsdaten die Zugriffshäufigkeit, Interviews die wahrgenommene Verständlichkeit.” preserves the stated detail and qualification.",
-        "3": "“Bei Vorgang186 belegen Nutzungsdaten direkt alle subjektiven Motive.” contradicts or exceeds the supplied textual evidence “Vorgang186 stützen Nutzungsdaten die Aussage über häufigere Zugriffe”; “Bei Vorgang186 belegen Nutzungsdaten die Zugriffshäufigkeit, Interviews die wahrgenommene Verständlichkeit.” preserves the stated detail and qualification."
+        "0": "“Bei Vorgang186 stützen beide Evidenzarten ausschließlich eine Preisprognose.” contradicts or exceeds the supplied textual evidence “Im Text zu Vorgang186 stützen Nutzungsdaten die Aussage über häufigere Zugriffe. Interviews stützen dagegen die Aussage über bessere Verständlichkeit. Welche Zuordnung ist korrekt?”; “Bei Vorgang186 belegen Nutzungsdaten die Zugriffshäufigkeit, Interviews die wahrgenommene Verständlichkeit.” preserves the stated detail and qualification.",
+        "2": "“Bei Vorgang186 belegen Interviews allein die technische Zugriffszahl.” contradicts or exceeds the supplied textual evidence “Im Text zu Vorgang186 stützen Nutzungsdaten die Aussage über häufigere Zugriffe. Interviews stützen dagegen die Aussage über bessere Verständlichkeit. Welche Zuordnung ist korrekt?”; “Bei Vorgang186 belegen Nutzungsdaten die Zugriffshäufigkeit, Interviews die wahrgenommene Verständlichkeit.” preserves the stated detail and qualification.",
+        "3": "“Bei Vorgang186 belegen Nutzungsdaten direkt alle subjektiven Motive.” contradicts or exceeds the supplied textual evidence “Im Text zu Vorgang186 stützen Nutzungsdaten die Aussage über häufigere Zugriffe. Interviews stützen dagegen die Aussage über bessere Verständlichkeit. Welche Zuordnung ist korrekt?”; “Bei Vorgang186 belegen Nutzungsdaten die Zugriffshäufigkeit, Interviews die wahrgenommene Verständlichkeit.” preserves the stated detail and qualification."
       }
     },
     {
@@ -619,9 +619,9 @@
       "deterministicPass": "pass",
       "levelCoveragePass": "pass",
       "rationales": {
-        "0": "“Vorgang187 wird spöttisch als vollkommen wertlos abgetan.” contradicts or exceeds the supplied textual evidence “Vorgang187 „solide vorbereitet“ und „nachvollziehbar begründet“”; “Vorgang187 wird zurückhaltend anerkannt, zugleich bleibt deutliche Sorge.” preserves the stated detail and qualification.",
-        "1": "“Vorgang187 wird rein neutral ohne evaluative Wörter beschrieben.” contradicts or exceeds the supplied textual evidence “Vorgang187 „solide vorbereitet“ und „nachvollziehbar begründet“”; “Vorgang187 wird zurückhaltend anerkannt, zugleich bleibt deutliche Sorge.” preserves the stated detail and qualification.",
-        "3": "“Vorgang187 wird begeistert und ohne jede Sorge gefeiert.” contradicts or exceeds the supplied textual evidence “Vorgang187 „solide vorbereitet“ und „nachvollziehbar begründet“”; “Vorgang187 wird zurückhaltend anerkannt, zugleich bleibt deutliche Sorge.” preserves the stated detail and qualification."
+        "0": "“Vorgang187 wird spöttisch als vollkommen wertlos abgetan.” contradicts or exceeds the supplied textual evidence “Der Autor nennt Vorgang187 „solide vorbereitet“ und „nachvollziehbar begründet“, spricht aber von einem „noch beträchtlichen Umsetzungsrisiko“. Wie ist der Ton?”; “Vorgang187 wird zurückhaltend anerkannt, zugleich bleibt deutliche Sorge.” preserves the stated detail and qualification.",
+        "1": "“Vorgang187 wird rein neutral ohne evaluative Wörter beschrieben.” contradicts or exceeds the supplied textual evidence “Der Autor nennt Vorgang187 „solide vorbereitet“ und „nachvollziehbar begründet“, spricht aber von einem „noch beträchtlichen Umsetzungsrisiko“. Wie ist der Ton?”; “Vorgang187 wird zurückhaltend anerkannt, zugleich bleibt deutliche Sorge.” preserves the stated detail and qualification.",
+        "3": "“Vorgang187 wird begeistert und ohne jede Sorge gefeiert.” contradicts or exceeds the supplied textual evidence “Der Autor nennt Vorgang187 „solide vorbereitet“ und „nachvollziehbar begründet“, spricht aber von einem „noch beträchtlichen Umsetzungsrisiko“. Wie ist der Ton?”; “Vorgang187 wird zurückhaltend anerkannt, zugleich bleibt deutliche Sorge.” preserves the stated detail and qualification."
       }
     },
     {
@@ -642,9 +642,9 @@
       "deterministicPass": "pass",
       "levelCoveragePass": "pass",
       "rationales": {
-        "0": "“Bei Vorgang188 wiederholt der zweite Absatz nur dieselben Vorteile ohne Einschränkung.” contradicts or exceeds the supplied textual evidence “Vorgang188. Der zweite beginnt: „Diese Vorteile gelten jedoch nur bei stabiler Finanzierung“”; “Bei Vorgang188 begrenzt der zweite Absatz die vorherige positive Aussage.” preserves the stated detail and qualification.",
-        "1": "“Bei Vorgang188 führt der zweite Absatz ein unverbundenes Beispiel ein.” contradicts or exceeds the supplied textual evidence “Vorgang188. Der zweite beginnt: „Diese Vorteile gelten jedoch nur bei stabiler Finanzierung“”; “Bei Vorgang188 begrenzt der zweite Absatz die vorherige positive Aussage.” preserves the stated detail and qualification.",
-        "2": "“Bei Vorgang188 widerruft der zweite Absatz jede zuvor genannte Tatsache.” contradicts or exceeds the supplied textual evidence “Vorgang188. Der zweite beginnt: „Diese Vorteile gelten jedoch nur bei stabiler Finanzierung“”; “Bei Vorgang188 begrenzt der zweite Absatz die vorherige positive Aussage.” preserves the stated detail and qualification."
+        "0": "“Bei Vorgang188 wiederholt der zweite Absatz nur dieselben Vorteile ohne Einschränkung.” contradicts or exceeds the supplied textual evidence “Der erste Absatz verteidigt Vorgang188. Der zweite beginnt: „Diese Vorteile gelten jedoch nur bei stabiler Finanzierung“ und erläutert anschließend Risiken. Welche Funktion hat der zweite Absatz?”; “Bei Vorgang188 begrenzt der zweite Absatz die vorherige positive Aussage.” preserves the stated detail and qualification.",
+        "1": "“Bei Vorgang188 führt der zweite Absatz ein unverbundenes Beispiel ein.” contradicts or exceeds the supplied textual evidence “Der erste Absatz verteidigt Vorgang188. Der zweite beginnt: „Diese Vorteile gelten jedoch nur bei stabiler Finanzierung“ und erläutert anschließend Risiken. Welche Funktion hat der zweite Absatz?”; “Bei Vorgang188 begrenzt der zweite Absatz die vorherige positive Aussage.” preserves the stated detail and qualification.",
+        "2": "“Bei Vorgang188 widerruft der zweite Absatz jede zuvor genannte Tatsache.” contradicts or exceeds the supplied textual evidence “Der erste Absatz verteidigt Vorgang188. Der zweite beginnt: „Diese Vorteile gelten jedoch nur bei stabiler Finanzierung“ und erläutert anschließend Risiken. Welche Funktion hat der zweite Absatz?”; “Bei Vorgang188 begrenzt der zweite Absatz die vorherige positive Aussage.” preserves the stated detail and qualification."
       }
     },
     {

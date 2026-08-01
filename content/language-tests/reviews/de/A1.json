@@ -1,7 +1,7 @@
 {
   "language": "de",
   "level": "A1",
-  "sourceSha256": "998d1e19e036e0afaba3f0469935fce46cdb24e5f9c85d3468084f0d41674183",
+  "sourceSha256": "971ea7bb6e05e711fd9d6298f82733abae5de5c852fe0c8d9bb704a9531e890a",
   "reviews": [
     {
       "id": "de-a1-001",
@@ -527,9 +527,9 @@
       "deterministicPass": "pass",
       "levelCoveragePass": "pass",
       "rationales": {
-        "0": "“Vorgang023 ist montags um zwanzig Uhr geöffnet.” contradicts or exceeds the supplied textual evidence “Vorgang023: Montag bis Freitag 9–18 Uhr, Samstag 9–13 Uhr”; “Vorgang023 ist samstags um elf Uhr geöffnet.” preserves the stated detail and qualification.",
-        "1": "“Vorgang023 ist freitags um acht Uhr geöffnet.” contradicts or exceeds the supplied textual evidence “Vorgang023: Montag bis Freitag 9–18 Uhr, Samstag 9–13 Uhr”; “Vorgang023 ist samstags um elf Uhr geöffnet.” preserves the stated detail and qualification.",
-        "3": "“Vorgang023 ist sonntags um elf Uhr geöffnet.” contradicts or exceeds the supplied textual evidence “Vorgang023: Montag bis Freitag 9–18 Uhr, Samstag 9–13 Uhr”; “Vorgang023 ist samstags um elf Uhr geöffnet.” preserves the stated detail and qualification."
+        "0": "“Vorgang023 ist montags um zwanzig Uhr geöffnet.” contradicts or exceeds the supplied textual evidence “Am Laden steht: „Vorgang023: Montag bis Freitag 9–18 Uhr, Samstag 9–13 Uhr, Sonntag geschlossen.“ Wann ist geöffnet?”; “Vorgang023 ist samstags um elf Uhr geöffnet.” preserves the stated detail and qualification.",
+        "1": "“Vorgang023 ist freitags um acht Uhr geöffnet.” contradicts or exceeds the supplied textual evidence “Am Laden steht: „Vorgang023: Montag bis Freitag 9–18 Uhr, Samstag 9–13 Uhr, Sonntag geschlossen.“ Wann ist geöffnet?”; “Vorgang023 ist samstags um elf Uhr geöffnet.” preserves the stated detail and qualification.",
+        "3": "“Vorgang023 ist sonntags um elf Uhr geöffnet.” contradicts or exceeds the supplied textual evidence “Am Laden steht: „Vorgang023: Montag bis Freitag 9–18 Uhr, Samstag 9–13 Uhr, Sonntag geschlossen.“ Wann ist geöffnet?”; “Vorgang023 ist samstags um elf Uhr geöffnet.” preserves the stated detail and qualification."
       }
     },
     {
@@ -550,9 +550,9 @@
       "deterministicPass": "pass",
       "levelCoveragePass": "pass",
       "rationales": {
-        "0": "“Frau Lenz hat Vorgang024 am 10. Mai um 14:20 Uhr.” contradicts or exceeds the supplied textual evidence “Vorgang024 – Frau Lenz – 14. Mai – 10:20 Uhr”; “Frau Lenz hat Vorgang024 am 14. Mai um 10:20 Uhr.” preserves the stated detail and qualification.",
-        "1": "“Herr Lenz hat Vorgang024 am 14. März um 10:20 Uhr.” contradicts or exceeds the supplied textual evidence “Vorgang024 – Frau Lenz – 14. Mai – 10:20 Uhr”; “Frau Lenz hat Vorgang024 am 14. Mai um 10:20 Uhr.” preserves the stated detail and qualification.",
-        "2": "“Frau Lenz hat Vorgang024 am 15. Mai um 12:20 Uhr.” contradicts or exceeds the supplied textual evidence “Vorgang024 – Frau Lenz – 14. Mai – 10:20 Uhr”; “Frau Lenz hat Vorgang024 am 14. Mai um 10:20 Uhr.” preserves the stated detail and qualification."
+        "0": "“Frau Lenz hat Vorgang024 am 10. Mai um 14:20 Uhr.” contradicts or exceeds the supplied textual evidence “Auf der Karte steht: „Vorgang024 – Frau Lenz – 14. Mai – 10:20 Uhr.“ Welche Aussage stimmt?”; “Frau Lenz hat Vorgang024 am 14. Mai um 10:20 Uhr.” preserves the stated detail and qualification.",
+        "1": "“Herr Lenz hat Vorgang024 am 14. März um 10:20 Uhr.” contradicts or exceeds the supplied textual evidence “Auf der Karte steht: „Vorgang024 – Frau Lenz – 14. Mai – 10:20 Uhr.“ Welche Aussage stimmt?”; “Frau Lenz hat Vorgang024 am 14. Mai um 10:20 Uhr.” preserves the stated detail and qualification.",
+        "2": "“Frau Lenz hat Vorgang024 am 15. Mai um 12:20 Uhr.” contradicts or exceeds the supplied textual evidence “Auf der Karte steht: „Vorgang024 – Frau Lenz – 14. Mai – 10:20 Uhr.“ Welche Aussage stimmt?”; “Frau Lenz hat Vorgang024 am 14. Mai um 10:20 Uhr.” preserves the stated detail and qualification."
       }
     },
     {
@@ -573,9 +573,9 @@
       "deterministicPass": "pass",
       "levelCoveragePass": "pass",
       "rationales": {
-        "1": "“Vorgang025 fährt um 15:04 Uhr von Gleis 6 nach Bonn.” contradicts or exceeds the supplied textual evidence “Vorgang025 nach Bonn, Abfahrt 16:05 Uhr, Gleis 4”; “Vorgang025 fährt um 16:05 Uhr von Gleis 4 nach Bonn.” preserves the stated detail and qualification.",
-        "2": "“Vorgang025 fährt um 16:05 Uhr von Gleis 4 nach Berlin.” contradicts or exceeds the supplied textual evidence “Vorgang025 nach Bonn, Abfahrt 16:05 Uhr, Gleis 4”; “Vorgang025 fährt um 16:05 Uhr von Gleis 4 nach Bonn.” preserves the stated detail and qualification.",
-        "3": "“Vorgang025 kommt um 16:50 Uhr auf Gleis 5 an.” contradicts or exceeds the supplied textual evidence “Vorgang025 nach Bonn, Abfahrt 16:05 Uhr, Gleis 4”; “Vorgang025 fährt um 16:05 Uhr von Gleis 4 nach Bonn.” preserves the stated detail and qualification."
+        "1": "“Vorgang025 fährt um 15:04 Uhr von Gleis 6 nach Bonn.” contradicts or exceeds the supplied textual evidence “Im Fahrplan steht: „Vorgang025 nach Bonn, Abfahrt 16:05 Uhr, Gleis 4.“ Was ist richtig?”; “Vorgang025 fährt um 16:05 Uhr von Gleis 4 nach Bonn.” preserves the stated detail and qualification.",
+        "2": "“Vorgang025 fährt um 16:05 Uhr von Gleis 4 nach Berlin.” contradicts or exceeds the supplied textual evidence “Im Fahrplan steht: „Vorgang025 nach Bonn, Abfahrt 16:05 Uhr, Gleis 4.“ Was ist richtig?”; “Vorgang025 fährt um 16:05 Uhr von Gleis 4 nach Bonn.” preserves the stated detail and qualification.",
+        "3": "“Vorgang025 kommt um 16:50 Uhr auf Gleis 5 an.” contradicts or exceeds the supplied textual evidence “Im Fahrplan steht: „Vorgang025 nach Bonn, Abfahrt 16:05 Uhr, Gleis 4.“ Was ist richtig?”; “Vorgang025 fährt um 16:05 Uhr von Gleis 4 nach Bonn.” preserves the stated detail and qualification."
       }
     },
     {
@@ -596,9 +596,9 @@
       "deterministicPass": "pass",
       "levelCoveragePass": "pass",
       "rationales": {
-        "0": "“Vorgang026 soll heute um 17 Uhr ins Büro 2 gebracht werden.” contradicts or exceeds the supplied textual evidence “Vorgang026 heute um 15 Uhr ins Büro 3”; “Vorgang026 soll heute um 15 Uhr ins Büro 3 gebracht werden.” preserves the stated detail and qualification.",
-        "2": "“Vorgang026 soll morgen um 13 Uhr ins Büro 5 gebracht werden.” contradicts or exceeds the supplied textual evidence “Vorgang026 heute um 15 Uhr ins Büro 3”; “Vorgang026 soll heute um 15 Uhr ins Büro 3 gebracht werden.” preserves the stated detail and qualification.",
-        "3": "“Vorgang026 soll heute um 15 Uhr zu Hause bleiben.” contradicts or exceeds the supplied textual evidence “Vorgang026 heute um 15 Uhr ins Büro 3”; “Vorgang026 soll heute um 15 Uhr ins Büro 3 gebracht werden.” preserves the stated detail and qualification."
+        "0": "“Vorgang026 soll heute um 17 Uhr ins Büro 2 gebracht werden.” contradicts or exceeds the supplied textual evidence “Die Nachricht lautet: „Bitte bring Vorgang026 heute um 15 Uhr ins Büro 3.“ Was soll geschehen?”; “Vorgang026 soll heute um 15 Uhr ins Büro 3 gebracht werden.” preserves the stated detail and qualification.",
+        "2": "“Vorgang026 soll morgen um 13 Uhr ins Büro 5 gebracht werden.” contradicts or exceeds the supplied textual evidence “Die Nachricht lautet: „Bitte bring Vorgang026 heute um 15 Uhr ins Büro 3.“ Was soll geschehen?”; “Vorgang026 soll heute um 15 Uhr ins Büro 3 gebracht werden.” preserves the stated detail and qualification.",
+        "3": "“Vorgang026 soll heute um 15 Uhr zu Hause bleiben.” contradicts or exceeds the supplied textual evidence “Die Nachricht lautet: „Bitte bring Vorgang026 heute um 15 Uhr ins Büro 3.“ Was soll geschehen?”; “Vorgang026 soll heute um 15 Uhr ins Büro 3 gebracht werden.” preserves the stated detail and qualification."
       }
     },
     {
@@ -619,9 +619,9 @@
       "deterministicPass": "pass",
       "levelCoveragePass": "pass",
       "rationales": {
-        "0": "“Vorgang027 kostet pro Liter 3,20 Euro.” contradicts or exceeds the supplied textual evidence “Vorgang027, 500 g, 3,20 €”; “Vorgang027 kostet für 500 Gramm 3,20 Euro.” preserves the stated detail and qualification.",
-        "1": "“Vorgang027 kostet für 500 Gramm 2,30 Euro.” contradicts or exceeds the supplied textual evidence “Vorgang027, 500 g, 3,20 €”; “Vorgang027 kostet für 500 Gramm 3,20 Euro.” preserves the stated detail and qualification.",
-        "3": "“Vorgang027 kostet für 300 Gramm 5,20 Euro.” contradicts or exceeds the supplied textual evidence “Vorgang027, 500 g, 3,20 €”; “Vorgang027 kostet für 500 Gramm 3,20 Euro.” preserves the stated detail and qualification."
+        "0": "“Vorgang027 kostet pro Liter 3,20 Euro.” contradicts or exceeds the supplied textual evidence “Auf dem Schild steht: „Vorgang027, 500 g, 3,20 €.“ Welche Aussage stimmt?”; “Vorgang027 kostet für 500 Gramm 3,20 Euro.” preserves the stated detail and qualification.",
+        "1": "“Vorgang027 kostet für 500 Gramm 2,30 Euro.” contradicts or exceeds the supplied textual evidence “Auf dem Schild steht: „Vorgang027, 500 g, 3,20 €.“ Welche Aussage stimmt?”; “Vorgang027 kostet für 500 Gramm 3,20 Euro.” preserves the stated detail and qualification.",
+        "3": "“Vorgang027 kostet für 300 Gramm 5,20 Euro.” contradicts or exceeds the supplied textual evidence “Auf dem Schild steht: „Vorgang027, 500 g, 3,20 €.“ Welche Aussage stimmt?”; “Vorgang027 kostet für 500 Gramm 3,20 Euro.” preserves the stated detail and qualification."
       }
     },
     {
@@ -642,9 +642,9 @@
       "deterministicPass": "pass",
       "levelCoveragePass": "pass",
       "rationales": {
-        "0": "“Für Vorgang028 werden Kontostand und Gehalt verlangt.” contradicts or exceeds the supplied textual evidence “Vorgang028 – Nachname: ___ – Vorname: ___ – Telefon: ___”; “Für Vorgang028 werden Name und Telefonnummer verlangt.” preserves the stated detail and qualification.",
-        "1": "“Für Vorgang028 werden Schuhgröße und Gewicht verlangt.” contradicts or exceeds the supplied textual evidence “Vorgang028 – Nachname: ___ – Vorname: ___ – Telefon: ___”; “Für Vorgang028 werden Name und Telefonnummer verlangt.” preserves the stated detail and qualification.",
-        "2": "“Für Vorgang028 werden Reiseziel und Hotel verlangt.” contradicts or exceeds the supplied textual evidence “Vorgang028 – Nachname: ___ – Vorname: ___ – Telefon: ___”; “Für Vorgang028 werden Name und Telefonnummer verlangt.” preserves the stated detail and qualification."
+        "0": "“Für Vorgang028 werden Kontostand und Gehalt verlangt.” contradicts or exceeds the supplied textual evidence “Im Formular steht: „Vorgang028 – Nachname: ___ – Vorname: ___ – Telefon: ___.“ Welche Information wird verlangt?”; “Für Vorgang028 werden Name und Telefonnummer verlangt.” preserves the stated detail and qualification.",
+        "1": "“Für Vorgang028 werden Schuhgröße und Gewicht verlangt.” contradicts or exceeds the supplied textual evidence “Im Formular steht: „Vorgang028 – Nachname: ___ – Vorname: ___ – Telefon: ___.“ Welche Information wird verlangt?”; “Für Vorgang028 werden Name und Telefonnummer verlangt.” preserves the stated detail and qualification.",
+        "2": "“Für Vorgang028 werden Reiseziel und Hotel verlangt.” contradicts or exceeds the supplied textual evidence “Im Formular steht: „Vorgang028 – Nachname: ___ – Vorname: ___ – Telefon: ___.“ Welche Information wird verlangt?”; “Für Vorgang028 werden Name und Telefonnummer verlangt.” preserves the stated detail and qualification."
       }
     },
     {
@@ -665,9 +665,9 @@
       "deterministicPass": "pass",
       "levelCoveragePass": "pass",
       "rationales": {
-        "1": "“Für Vorgang029 ist der Aufzug heute kostenlos.” contradicts or exceeds the supplied textual evidence “Vorgang029: Bitte den Aufzug heute nicht benutzen”; “Für Vorgang029 soll heute niemand den Aufzug benutzen.” preserves the stated detail and qualification.",
-        "2": "“Für Vorgang029 fährt der Aufzug nur nach oben.” contradicts or exceeds the supplied textual evidence “Vorgang029: Bitte den Aufzug heute nicht benutzen”; “Für Vorgang029 soll heute niemand den Aufzug benutzen.” preserves the stated detail and qualification.",
-        "3": "“Für Vorgang029 darf man heute nur den Aufzug benutzen.” contradicts or exceeds the supplied textual evidence “Vorgang029: Bitte den Aufzug heute nicht benutzen”; “Für Vorgang029 soll heute niemand den Aufzug benutzen.” preserves the stated detail and qualification."
+        "1": "“Für Vorgang029 ist der Aufzug heute kostenlos.” contradicts or exceeds the supplied textual evidence “An der Tür steht: „Vorgang029: Bitte den Aufzug heute nicht benutzen.“ Was bedeutet das?”; “Für Vorgang029 soll heute niemand den Aufzug benutzen.” preserves the stated detail and qualification.",
+        "2": "“Für Vorgang029 fährt der Aufzug nur nach oben.” contradicts or exceeds the supplied textual evidence “An der Tür steht: „Vorgang029: Bitte den Aufzug heute nicht benutzen.“ Was bedeutet das?”; “Für Vorgang029 soll heute niemand den Aufzug benutzen.” preserves the stated detail and qualification.",
+        "3": "“Für Vorgang029 darf man heute nur den Aufzug benutzen.” contradicts or exceeds the supplied textual evidence “An der Tür steht: „Vorgang029: Bitte den Aufzug heute nicht benutzen.“ Was bedeutet das?”; “Für Vorgang029 soll heute niemand den Aufzug benutzen.” preserves the stated detail and qualification."
       }
     },
     {
@@ -688,9 +688,9 @@
       "deterministicPass": "pass",
       "levelCoveragePass": "pass",
       "rationales": {
-        "0": "“Bei Vorgang030 kosten Kaffee und Kuchen sieben Euro.” contradicts or exceeds the supplied textual evidence “Vorgang030: Gemüsesuppe 5 €, Tee 2 €”; “Bei Vorgang030 kosten Gemüsesuppe und Tee zusammen sieben Euro.” preserves the stated detail and qualification.",
-        "2": "“Bei Vorgang030 kosten zwei Tees zusammen sieben Euro.” contradicts or exceeds the supplied textual evidence “Vorgang030: Gemüsesuppe 5 €, Tee 2 €”; “Bei Vorgang030 kosten Gemüsesuppe und Tee zusammen sieben Euro.” preserves the stated detail and qualification.",
-        "3": "“Bei Vorgang030 kostet nur die Suppe sieben Euro.” contradicts or exceeds the supplied textual evidence “Vorgang030: Gemüsesuppe 5 €, Tee 2 €”; “Bei Vorgang030 kosten Gemüsesuppe und Tee zusammen sieben Euro.” preserves the stated detail and qualification."
+        "0": "“Bei Vorgang030 kosten Kaffee und Kuchen sieben Euro.” contradicts or exceeds the supplied textual evidence “Auf der Karte steht: „Vorgang030: Gemüsesuppe 5 €, Tee 2 €.“ Was kostet zusammen sieben Euro?”; “Bei Vorgang030 kosten Gemüsesuppe und Tee zusammen sieben Euro.” preserves the stated detail and qualification.",
+        "2": "“Bei Vorgang030 kosten zwei Tees zusammen sieben Euro.” contradicts or exceeds the supplied textual evidence “Auf der Karte steht: „Vorgang030: Gemüsesuppe 5 €, Tee 2 €.“ Was kostet zusammen sieben Euro?”; “Bei Vorgang030 kosten Gemüsesuppe und Tee zusammen sieben Euro.” preserves the stated detail and qualification.",
+        "3": "“Bei Vorgang030 kostet nur die Suppe sieben Euro.” contradicts or exceeds the supplied textual evidence “Auf der Karte steht: „Vorgang030: Gemüsesuppe 5 €, Tee 2 €.“ Was kostet zusammen sieben Euro?”; “Bei Vorgang030 kosten Gemüsesuppe und Tee zusammen sieben Euro.” preserves the stated detail and qualification."
       }
     },
     {
@@ -711,9 +711,9 @@
       "deterministicPass": "pass",
       "levelCoveragePass": "pass",
       "rationales": {
-        "0": "“Für Vorgang031 geht man am Lindenplatz 18 in den dritten Stock.” contradicts or exceeds the supplied textual evidence “Vorgang031: Lindenstraße 18, zweiter Stock, links”; “Für Vorgang031 geht man in der Lindenstraße 18 in den zweiten Stock links.” preserves the stated detail and qualification.",
-        "1": "“Für Vorgang031 geht man in der Lindenstraße 8 in den ersten Stock rechts.” contradicts or exceeds the supplied textual evidence “Vorgang031: Lindenstraße 18, zweiter Stock, links”; “Für Vorgang031 geht man in der Lindenstraße 18 in den zweiten Stock links.” preserves the stated detail and qualification.",
-        "3": "“Für Vorgang031 geht man in der Lindenstraße 81 ins Erdgeschoss rechts.” contradicts or exceeds the supplied textual evidence “Vorgang031: Lindenstraße 18, zweiter Stock, links”; “Für Vorgang031 geht man in der Lindenstraße 18 in den zweiten Stock links.” preserves the stated detail and qualification."
+        "0": "“Für Vorgang031 geht man am Lindenplatz 18 in den dritten Stock.” contradicts or exceeds the supplied textual evidence “Die Notiz lautet: „Vorgang031: Lindenstraße 18, zweiter Stock, links.“ Wohin soll man gehen?”; “Für Vorgang031 geht man in der Lindenstraße 18 in den zweiten Stock links.” preserves the stated detail and qualification.",
+        "1": "“Für Vorgang031 geht man in der Lindenstraße 8 in den ersten Stock rechts.” contradicts or exceeds the supplied textual evidence “Die Notiz lautet: „Vorgang031: Lindenstraße 18, zweiter Stock, links.“ Wohin soll man gehen?”; “Für Vorgang031 geht man in der Lindenstraße 18 in den zweiten Stock links.” preserves the stated detail and qualification.",
+        "3": "“Für Vorgang031 geht man in der Lindenstraße 81 ins Erdgeschoss rechts.” contradicts or exceeds the supplied textual evidence “Die Notiz lautet: „Vorgang031: Lindenstraße 18, zweiter Stock, links.“ Wohin soll man gehen?”; “Für Vorgang031 geht man in der Lindenstraße 18 in den zweiten Stock links.” preserves the stated detail and qualification."
       }
     },
     {
@@ -734,9 +734,9 @@
       "deterministicPass": "pass",
       "levelCoveragePass": "pass",
       "rationales": {
-        "0": "“Vorgang032 wird am Freitag automatisch nach Hause gebracht.” contradicts or exceeds the supplied textual evidence “Vorgang032 liegt bis Freitag in der Postfiliale am Markt”; “Vorgang032 kann bis Freitag in der Postfiliale am Markt abgeholt werden.” preserves the stated detail and qualification.",
-        "1": "“Vorgang032 liegt bis Montag im Büro am Bahnhof.” contradicts or exceeds the supplied textual evidence “Vorgang032 liegt bis Freitag in der Postfiliale am Markt”; “Vorgang032 kann bis Freitag in der Postfiliale am Markt abgeholt werden.” preserves the stated detail and qualification.",
-        "2": "“Vorgang032 muss heute im Geschäft bezahlt werden.” contradicts or exceeds the supplied textual evidence “Vorgang032 liegt bis Freitag in der Postfiliale am Markt”; “Vorgang032 kann bis Freitag in der Postfiliale am Markt abgeholt werden.” preserves the stated detail and qualification."
+        "0": "“Vorgang032 wird am Freitag automatisch nach Hause gebracht.” contradicts or exceeds the supplied textual evidence “Auf dem Zettel steht: „Vorgang032 liegt bis Freitag in der Postfiliale am Markt.“ Was ist richtig?”; “Vorgang032 kann bis Freitag in der Postfiliale am Markt abgeholt werden.” preserves the stated detail and qualification.",
+        "1": "“Vorgang032 liegt bis Montag im Büro am Bahnhof.” contradicts or exceeds the supplied textual evidence “Auf dem Zettel steht: „Vorgang032 liegt bis Freitag in der Postfiliale am Markt.“ Was ist richtig?”; “Vorgang032 kann bis Freitag in der Postfiliale am Markt abgeholt werden.” preserves the stated detail and qualification.",
+        "2": "“Vorgang032 muss heute im Geschäft bezahlt werden.” contradicts or exceeds the supplied textual evidence “Auf dem Zettel steht: „Vorgang032 liegt bis Freitag in der Postfiliale am Markt.“ Was ist richtig?”; “Vorgang032 kann bis Freitag in der Postfiliale am Markt abgeholt werden.” preserves the stated detail and qualification."
       }
     },
     {

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 3,
-  "bankVersion": "20260801-2",
+  "bankVersion": "2026-08-01.2",
   "language": "de",
   "level": "A1",
   "questions": [
@@ -970,7 +970,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang023: Montag bis Freitag 9–18 Uhr, Samstag 9–13 Uhr",
+          "quote": "Am Laden steht: „Vorgang023: Montag bis Freitag 9–18 Uhr, Samstag 9–13 Uhr, Sonntag geschlossen.“ Wann ist geöffnet?",
           "correctIndex": 2,
           "correctAnswer": "Vorgang023 ist samstags um elf Uhr geöffnet.",
           "lexicalLinks": [
@@ -1025,7 +1025,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang024 – Frau Lenz – 14. Mai – 10:20 Uhr",
+          "quote": "Auf der Karte steht: „Vorgang024 – Frau Lenz – 14. Mai – 10:20 Uhr.“ Welche Aussage stimmt?",
           "correctIndex": 3,
           "correctAnswer": "Frau Lenz hat Vorgang024 am 14. Mai um 10:20 Uhr.",
           "lexicalLinks": [
@@ -1080,7 +1080,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang025 nach Bonn, Abfahrt 16:05 Uhr, Gleis 4",
+          "quote": "Im Fahrplan steht: „Vorgang025 nach Bonn, Abfahrt 16:05 Uhr, Gleis 4.“ Was ist richtig?",
           "correctIndex": 0,
           "correctAnswer": "Vorgang025 fährt um 16:05 Uhr von Gleis 4 nach Bonn.",
           "lexicalLinks": [
@@ -1135,7 +1135,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang026 heute um 15 Uhr ins Büro 3",
+          "quote": "Die Nachricht lautet: „Bitte bring Vorgang026 heute um 15 Uhr ins Büro 3.“ Was soll geschehen?",
           "correctIndex": 1,
           "correctAnswer": "Vorgang026 soll heute um 15 Uhr ins Büro 3 gebracht werden.",
           "lexicalLinks": [
@@ -1190,7 +1190,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang027, 500 g, 3,20 €",
+          "quote": "Auf dem Schild steht: „Vorgang027, 500 g, 3,20 €.“ Welche Aussage stimmt?",
           "correctIndex": 2,
           "correctAnswer": "Vorgang027 kostet für 500 Gramm 3,20 Euro.",
           "lexicalLinks": [
@@ -1245,7 +1245,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang028 – Nachname: ___ – Vorname: ___ – Telefon: ___",
+          "quote": "Im Formular steht: „Vorgang028 – Nachname: ___ – Vorname: ___ – Telefon: ___.“ Welche Information wird verlangt?",
           "correctIndex": 3,
           "correctAnswer": "Für Vorgang028 werden Name und Telefonnummer verlangt.",
           "lexicalLinks": [
@@ -1300,7 +1300,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang029: Bitte den Aufzug heute nicht benutzen",
+          "quote": "An der Tür steht: „Vorgang029: Bitte den Aufzug heute nicht benutzen.“ Was bedeutet das?",
           "correctIndex": 0,
           "correctAnswer": "Für Vorgang029 soll heute niemand den Aufzug benutzen.",
           "lexicalLinks": [
@@ -1355,7 +1355,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang030: Gemüsesuppe 5 €, Tee 2 €",
+          "quote": "Auf der Karte steht: „Vorgang030: Gemüsesuppe 5 €, Tee 2 €.“ Was kostet zusammen sieben Euro?",
           "correctIndex": 1,
           "correctAnswer": "Bei Vorgang030 kosten Gemüsesuppe und Tee zusammen sieben Euro.",
           "lexicalLinks": [
@@ -1410,7 +1410,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang031: Lindenstraße 18, zweiter Stock, links",
+          "quote": "Die Notiz lautet: „Vorgang031: Lindenstraße 18, zweiter Stock, links.“ Wohin soll man gehen?",
           "correctIndex": 2,
           "correctAnswer": "Für Vorgang031 geht man in der Lindenstraße 18 in den zweiten Stock links.",
           "lexicalLinks": [
@@ -1465,7 +1465,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang032 liegt bis Freitag in der Postfiliale am Markt",
+          "quote": "Auf dem Zettel steht: „Vorgang032 liegt bis Freitag in der Postfiliale am Markt.“ Was ist richtig?",
           "correctIndex": 3,
           "correctAnswer": "Vorgang032 kann bis Freitag in der Postfiliale am Markt abgeholt werden.",
           "lexicalLinks": [
@@ -1520,7 +1520,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "unbekannte Kundin kommt wegen Vorgang033 an den Empfang",
+          "quote": "Eine unbekannte Kundin kommt wegen Vorgang033 an den Empfang. Welche Begrüßung ist angemessen?",
           "correctIndex": 0,
           "correctAnswer": "Guten Tag, Frau Neumann. Ich helfe Ihnen bei Vorgang033.",
           "lexicalLinks": [
@@ -1575,7 +1575,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "David ruft erstmals wegen Vorgang034",
+          "quote": "David ruft erstmals wegen Vorgang034 bei einer Beratungsstelle an. Wie stellt er sich klar vor?",
           "correctIndex": 1,
           "correctAnswer": "Guten Tag, ich heiße David Kern und rufe wegen Vorgang034 an.",
           "lexicalLinks": [
@@ -1630,7 +1630,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Mara braucht am Schalter ein Formular für Vorgang035",
+          "quote": "Mara braucht am Schalter ein Formular für Vorgang035. Welche Bitte ist direkt und höflich?",
           "correctIndex": 2,
           "correctAnswer": "Geben Sie mir bitte das Formular für Vorgang035.",
           "lexicalLinks": [
@@ -1685,7 +1685,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Hilfe bei Vorgang036: „Vielen Dank!“",
+          "quote": "Ein Kollege sagt nach der Hilfe bei Vorgang036: „Vielen Dank!“ Welche Antwort passt?",
           "correctIndex": 3,
           "correctAnswer": "Gern geschehen; Vorgang036 ist erledigt.",
           "lexicalLinks": [
@@ -1740,7 +1740,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Nora kommt wegen Vorgang037 fünf Minuten zu spät",
+          "quote": "Nora kommt wegen Vorgang037 fünf Minuten zu spät. Was sagt sie angemessen?",
           "correctIndex": 0,
           "correctAnswer": "Entschuldigung für die kleine Verspätung bei Vorgang037.",
           "lexicalLinks": [
@@ -1795,7 +1795,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Tasche zu Vorgang038 ohne Preisschild",
+          "quote": "Aylin sieht eine Tasche zu Vorgang038 ohne Preisschild. Wie fragt sie höflich?",
           "correctIndex": 1,
           "correctAnswer": "Entschuldigung, wie viel kostet die Tasche zu Vorgang038?",
           "lexicalLinks": [
@@ -1850,7 +1850,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Felix sucht für Vorgang039 das Bürgerbüro",
+          "quote": "Felix sucht für Vorgang039 das Bürgerbüro. Welche Frage ist angemessen?",
           "correctIndex": 2,
           "correctAnswer": "Entschuldigung, wo ist das Bürgerbüro für Vorgang039?",
           "lexicalLinks": [
@@ -1905,7 +1905,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Gespräch zu Vorgang040 ist beendet",
+          "quote": "Das kurze Gespräch zu Vorgang040 ist beendet. Welche Verabschiedung passt neutral?",
           "correctIndex": 3,
           "correctAnswer": "Vielen Dank. Auf Wiedersehen wegen Vorgang040.",
           "lexicalLinks": [

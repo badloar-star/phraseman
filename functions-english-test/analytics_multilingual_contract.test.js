@@ -365,7 +365,7 @@ test('client analytics appends selected or frozen test language and UI locale wi
 
 test('client mutation check detects certificate-name and raw-question leakage', async () => {
   const mutant = appSource.replace(
-    '        uiLocale,\n      };',
+    /        uiLocale,\r?\n      \};/u,
     '        uiLocale,\n        lastCertName,\n        rawQuestionText: currentQuestion?.prompt,\n      };',
   );
   assert.notEqual(mutant, appSource, 'PII-leak mutation must apply');

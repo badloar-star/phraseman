@@ -1,7 +1,7 @@
 {
   "language": "de",
   "level": "B2",
-  "sourceSha256": "b50d3111ed05d224f75eae562a18d58b3de7b53a038540ef6425e2b4592822fd",
+  "sourceSha256": "865869a86d7f86aa04c868df56aae1519b1479a8930b8bb628a720d39a48e89a",
   "reviews": [
     {
       "id": "de-b2-001",
@@ -481,9 +481,9 @@
       "deterministicPass": "pass",
       "levelCoveragePass": "pass",
       "rationales": {
-        "1": "“Vorgang141 wird ohne jede Einschränkung als vollständig gelöst dargestellt.” contradicts or exceeds the supplied textual evidence “Vorgang141 kann Wege verkürzen, sofern die Anschlüsse zuverlässig bleiben”; “Vorgang141 wird bedingt unterstützt, aber zusätzliche Kapazität gilt als nötig.” preserves the stated detail and qualification.",
-        "2": "“Vorgang141 wird allein wegen kultureller Gründe abgelehnt.” contradicts or exceeds the supplied textual evidence “Vorgang141 kann Wege verkürzen, sofern die Anschlüsse zuverlässig bleiben”; “Vorgang141 wird bedingt unterstützt, aber zusätzliche Kapazität gilt als nötig.” preserves the stated detail and qualification.",
-        "3": "“Vorgang141 soll unabhängig von Anschlüssen und Fahrzeugen sofort beendet werden.” contradicts or exceeds the supplied textual evidence “Vorgang141 kann Wege verkürzen, sofern die Anschlüsse zuverlässig bleiben”; “Vorgang141 wird bedingt unterstützt, aber zusätzliche Kapazität gilt als nötig.” preserves the stated detail and qualification."
+        "1": "“Vorgang141 wird ohne jede Einschränkung als vollständig gelöst dargestellt.” contradicts or exceeds the supplied textual evidence “Der Kommentar sagt: „Vorgang141 kann Wege verkürzen, sofern die Anschlüsse zuverlässig bleiben. Ohne zusätzliche Fahrzeuge drohen jedoch neue Engpässe.“ Welche Position vertritt der Text?”; “Vorgang141 wird bedingt unterstützt, aber zusätzliche Kapazität gilt als nötig.” preserves the stated detail and qualification.",
+        "2": "“Vorgang141 wird allein wegen kultureller Gründe abgelehnt.” contradicts or exceeds the supplied textual evidence “Der Kommentar sagt: „Vorgang141 kann Wege verkürzen, sofern die Anschlüsse zuverlässig bleiben. Ohne zusätzliche Fahrzeuge drohen jedoch neue Engpässe.“ Welche Position vertritt der Text?”; “Vorgang141 wird bedingt unterstützt, aber zusätzliche Kapazität gilt als nötig.” preserves the stated detail and qualification.",
+        "3": "“Vorgang141 soll unabhängig von Anschlüssen und Fahrzeugen sofort beendet werden.” contradicts or exceeds the supplied textual evidence “Der Kommentar sagt: „Vorgang141 kann Wege verkürzen, sofern die Anschlüsse zuverlässig bleiben. Ohne zusätzliche Fahrzeuge drohen jedoch neue Engpässe.“ Welche Position vertritt der Text?”; “Vorgang141 wird bedingt unterstützt, aber zusätzliche Kapazität gilt als nötig.” preserves the stated detail and qualification."
       }
     },
     {
@@ -504,9 +504,9 @@
       "deterministicPass": "pass",
       "levelCoveragePass": "pass",
       "rationales": {
-        "0": "“Vorgang142 hängt ausschließlich vom Wochentag ab.” contradicts or exceeds the supplied textual evidence “Vorgang142 soll im Oktober starten. Zwei Fachkräfte sind verfügbar; benötigt werden drei”; “Vorgang142 ist machbar, wenn Budget für die fehlende Fachkraft freigegeben wird.” preserves the stated detail and qualification.",
-        "2": "“Vorgang142 ist bereits ohne Personal und Budget vollständig gesichert.” contradicts or exceeds the supplied textual evidence “Vorgang142 soll im Oktober starten. Zwei Fachkräfte sind verfügbar; benötigt werden drei”; “Vorgang142 ist machbar, wenn Budget für die fehlende Fachkraft freigegeben wird.” preserves the stated detail and qualification.",
-        "3": "“Vorgang142 scheitert zwingend, obwohl eine externe Lösung genannt wird.” contradicts or exceeds the supplied textual evidence “Vorgang142 soll im Oktober starten. Zwei Fachkräfte sind verfügbar; benötigt werden drei”; “Vorgang142 ist machbar, wenn Budget für die fehlende Fachkraft freigegeben wird.” preserves the stated detail and qualification."
+        "0": "“Vorgang142 hängt ausschließlich vom Wochentag ab.” contradicts or exceeds the supplied textual evidence “Im Vorschlag steht: „Vorgang142 soll im Oktober starten. Zwei Fachkräfte sind verfügbar; benötigt werden drei. Eine externe Kraft könnte die Lücke schließen, wenn das Budget freigegeben wird.“ Wovon hängt der Start ab?”; “Vorgang142 ist machbar, wenn Budget für die fehlende Fachkraft freigegeben wird.” preserves the stated detail and qualification.",
+        "2": "“Vorgang142 ist bereits ohne Personal und Budget vollständig gesichert.” contradicts or exceeds the supplied textual evidence “Im Vorschlag steht: „Vorgang142 soll im Oktober starten. Zwei Fachkräfte sind verfügbar; benötigt werden drei. Eine externe Kraft könnte die Lücke schließen, wenn das Budget freigegeben wird.“ Wovon hängt der Start ab?”; “Vorgang142 ist machbar, wenn Budget für die fehlende Fachkraft freigegeben wird.” preserves the stated detail and qualification.",
+        "3": "“Vorgang142 scheitert zwingend, obwohl eine externe Lösung genannt wird.” contradicts or exceeds the supplied textual evidence “Im Vorschlag steht: „Vorgang142 soll im Oktober starten. Zwei Fachkräfte sind verfügbar; benötigt werden drei. Eine externe Kraft könnte die Lücke schließen, wenn das Budget freigegeben wird.“ Wovon hängt der Start ab?”; “Vorgang142 ist machbar, wenn Budget für die fehlende Fachkraft freigegeben wird.” preserves the stated detail and qualification."
       }
     },
     {
@@ -527,9 +527,9 @@
       "deterministicPass": "pass",
       "levelCoveragePass": "pass",
       "rationales": {
-        "0": "“Vorgang143 hatte sicher keinerlei Einfluss auf die Wartezeiten.” contradicts or exceeds the supplied textual evidence “Vorgang143 eingeführt wurde, sanken die Wartezeiten. Gleichzeitig wurde zusätzliches Personal eingestellt”; “Vorgang143 fällt mit kürzeren Wartezeiten zusammen, sein eigener Effekt bleibt aber unklar.” preserves the stated detail and qualification.",
-        "1": "“Vorgang143 beweist, dass zusätzliches Personal wirkungslos ist.” contradicts or exceeds the supplied textual evidence “Vorgang143 eingeführt wurde, sanken die Wartezeiten. Gleichzeitig wurde zusätzliches Personal eingestellt”; “Vorgang143 fällt mit kürzeren Wartezeiten zusammen, sein eigener Effekt bleibt aber unklar.” preserves the stated detail and qualification.",
-        "3": "“Vorgang143 ist zweifelsfrei die einzige Ursache der kürzeren Wartezeiten.” contradicts or exceeds the supplied textual evidence “Vorgang143 eingeführt wurde, sanken die Wartezeiten. Gleichzeitig wurde zusätzliches Personal eingestellt”; “Vorgang143 fällt mit kürzeren Wartezeiten zusammen, sein eigener Effekt bleibt aber unklar.” preserves the stated detail and qualification."
+        "0": "“Vorgang143 hatte sicher keinerlei Einfluss auf die Wartezeiten.” contradicts or exceeds the supplied textual evidence “Die Analyse sagt: „Seit Vorgang143 eingeführt wurde, sanken die Wartezeiten. Gleichzeitig wurde zusätzliches Personal eingestellt; deshalb lässt sich der Anteil von Vorgang143 nicht isolieren.“ Welche Schlussfolgerung ist zulässig?”; “Vorgang143 fällt mit kürzeren Wartezeiten zusammen, sein eigener Effekt bleibt aber unklar.” preserves the stated detail and qualification.",
+        "1": "“Vorgang143 beweist, dass zusätzliches Personal wirkungslos ist.” contradicts or exceeds the supplied textual evidence “Die Analyse sagt: „Seit Vorgang143 eingeführt wurde, sanken die Wartezeiten. Gleichzeitig wurde zusätzliches Personal eingestellt; deshalb lässt sich der Anteil von Vorgang143 nicht isolieren.“ Welche Schlussfolgerung ist zulässig?”; “Vorgang143 fällt mit kürzeren Wartezeiten zusammen, sein eigener Effekt bleibt aber unklar.” preserves the stated detail and qualification.",
+        "3": "“Vorgang143 ist zweifelsfrei die einzige Ursache der kürzeren Wartezeiten.” contradicts or exceeds the supplied textual evidence “Die Analyse sagt: „Seit Vorgang143 eingeführt wurde, sanken die Wartezeiten. Gleichzeitig wurde zusätzliches Personal eingestellt; deshalb lässt sich der Anteil von Vorgang143 nicht isolieren.“ Welche Schlussfolgerung ist zulässig?”; “Vorgang143 fällt mit kürzeren Wartezeiten zusammen, sein eigener Effekt bleibt aber unklar.” preserves the stated detail and qualification."
       }
     },
     {
@@ -550,9 +550,9 @@
       "deterministicPass": "pass",
       "levelCoveragePass": "pass",
       "rationales": {
-        "0": "“Vorgang144 erfüllt ausnahmslos alle angekündigten Kriterien.” contradicts or exceeds the supplied textual evidence “Vorgang144 erfüllt die Sicherheitsanforderungen und ist leicht zu bedienen”; “Vorgang144 überzeugt bei Sicherheit und Bedienung, verfehlt aber ein zugesagtes Funktionskriterium.” preserves the stated detail and qualification.",
-        "1": "“Vorgang144 wird nur wegen seiner Farbe kritisiert.” contradicts or exceeds the supplied textual evidence “Vorgang144 erfüllt die Sicherheitsanforderungen und ist leicht zu bedienen”; “Vorgang144 überzeugt bei Sicherheit und Bedienung, verfehlt aber ein zugesagtes Funktionskriterium.” preserves the stated detail and qualification.",
-        "2": "“Vorgang144 ist unsicher und unbedienbar, besitzt aber jede Exportfunktion.” contradicts or exceeds the supplied textual evidence “Vorgang144 erfüllt die Sicherheitsanforderungen und ist leicht zu bedienen”; “Vorgang144 überzeugt bei Sicherheit und Bedienung, verfehlt aber ein zugesagtes Funktionskriterium.” preserves the stated detail and qualification."
+        "0": "“Vorgang144 erfüllt ausnahmslos alle angekündigten Kriterien.” contradicts or exceeds the supplied textual evidence “Die Rezension erklärt: „Vorgang144 erfüllt die Sicherheitsanforderungen und ist leicht zu bedienen. Die Exportfunktion fehlt jedoch, obwohl sie im Angebot zugesagt war.“ Wie fällt die Bewertung aus?”; “Vorgang144 überzeugt bei Sicherheit und Bedienung, verfehlt aber ein zugesagtes Funktionskriterium.” preserves the stated detail and qualification.",
+        "1": "“Vorgang144 wird nur wegen seiner Farbe kritisiert.” contradicts or exceeds the supplied textual evidence “Die Rezension erklärt: „Vorgang144 erfüllt die Sicherheitsanforderungen und ist leicht zu bedienen. Die Exportfunktion fehlt jedoch, obwohl sie im Angebot zugesagt war.“ Wie fällt die Bewertung aus?”; “Vorgang144 überzeugt bei Sicherheit und Bedienung, verfehlt aber ein zugesagtes Funktionskriterium.” preserves the stated detail and qualification.",
+        "2": "“Vorgang144 ist unsicher und unbedienbar, besitzt aber jede Exportfunktion.” contradicts or exceeds the supplied textual evidence “Die Rezension erklärt: „Vorgang144 erfüllt die Sicherheitsanforderungen und ist leicht zu bedienen. Die Exportfunktion fehlt jedoch, obwohl sie im Angebot zugesagt war.“ Wie fällt die Bewertung aus?”; “Vorgang144 überzeugt bei Sicherheit und Bedienung, verfehlt aber ein zugesagtes Funktionskriterium.” preserves the stated detail and qualification."
       }
     },
     {
@@ -573,9 +573,9 @@
       "deterministicPass": "pass",
       "levelCoveragePass": "pass",
       "rationales": {
-        "1": "“Bei Vorgang145 dürfen alle Teams unbegrenzt warten.” contradicts or exceeds the supplied textual evidence “Vorgang145 ist für alle Abteilungen verpflichtend. Teams mit laufender Sicherheitsprüfung dürfen die Einführung bis zu vier Wochen verschieben”; “Bei Vorgang145 dürfen Teams mit laufender Sicherheitsprüfung höchstens vier Wochen warten.” preserves the stated detail and qualification.",
-        "2": "“Bei Vorgang145 gibt es keinerlei Ausnahme.” contradicts or exceeds the supplied textual evidence “Vorgang145 ist für alle Abteilungen verpflichtend. Teams mit laufender Sicherheitsprüfung dürfen die Einführung bis zu vier Wochen verschieben”; “Bei Vorgang145 dürfen Teams mit laufender Sicherheitsprüfung höchstens vier Wochen warten.” preserves the stated detail and qualification.",
-        "3": "“Bei Vorgang145 dürfen nur Teams ohne Prüfung vier Monate warten.” contradicts or exceeds the supplied textual evidence “Vorgang145 ist für alle Abteilungen verpflichtend. Teams mit laufender Sicherheitsprüfung dürfen die Einführung bis zu vier Wochen verschieben”; “Bei Vorgang145 dürfen Teams mit laufender Sicherheitsprüfung höchstens vier Wochen warten.” preserves the stated detail and qualification."
+        "1": "“Bei Vorgang145 dürfen alle Teams unbegrenzt warten.” contradicts or exceeds the supplied textual evidence “Die Regel lautet: „Vorgang145 ist für alle Abteilungen verpflichtend. Teams mit laufender Sicherheitsprüfung dürfen die Einführung bis zu vier Wochen verschieben.“ Wer darf warten?”; “Bei Vorgang145 dürfen Teams mit laufender Sicherheitsprüfung höchstens vier Wochen warten.” preserves the stated detail and qualification.",
+        "2": "“Bei Vorgang145 gibt es keinerlei Ausnahme.” contradicts or exceeds the supplied textual evidence “Die Regel lautet: „Vorgang145 ist für alle Abteilungen verpflichtend. Teams mit laufender Sicherheitsprüfung dürfen die Einführung bis zu vier Wochen verschieben.“ Wer darf warten?”; “Bei Vorgang145 dürfen Teams mit laufender Sicherheitsprüfung höchstens vier Wochen warten.” preserves the stated detail and qualification.",
+        "3": "“Bei Vorgang145 dürfen nur Teams ohne Prüfung vier Monate warten.” contradicts or exceeds the supplied textual evidence “Die Regel lautet: „Vorgang145 ist für alle Abteilungen verpflichtend. Teams mit laufender Sicherheitsprüfung dürfen die Einführung bis zu vier Wochen verschieben.“ Wer darf warten?”; “Bei Vorgang145 dürfen Teams mit laufender Sicherheitsprüfung höchstens vier Wochen warten.” preserves the stated detail and qualification."
       }
     },
     {
@@ -596,9 +596,9 @@
       "deterministicPass": "pass",
       "levelCoveragePass": "pass",
       "rationales": {
-        "0": "“Das Team soll die Freigabe zu Vorgang146 selbst erfinden.” contradicts or exceeds the supplied textual evidence “Vorgang146 erst nach unserer Freigabe”; “Das Team soll mit Vorgang146 bis zur Freigabe warten.” preserves the stated detail and qualification.",
-        "2": "“Das Team soll Vorgang146 sofort vor der Rückmeldung versenden.” contradicts or exceeds the supplied textual evidence “Vorgang146 erst nach unserer Freigabe”; “Das Team soll mit Vorgang146 bis zur Freigabe warten.” preserves the stated detail and qualification.",
-        "3": "“Das Team soll Vorgang146 am Mittwoch ungeprüft löschen.” contradicts or exceeds the supplied textual evidence “Vorgang146 erst nach unserer Freigabe”; “Das Team soll mit Vorgang146 bis zur Freigabe warten.” preserves the stated detail and qualification."
+        "0": "“Das Team soll die Freigabe zu Vorgang146 selbst erfinden.” contradicts or exceeds the supplied textual evidence “Die E-Mail sagt: „Bitte senden Sie die Endfassung zu Vorgang146 erst nach unserer Freigabe. Die Rückmeldung erhalten Sie spätestens Mittwochmittag.“ Was soll das Team tun?”; “Das Team soll mit Vorgang146 bis zur Freigabe warten.” preserves the stated detail and qualification.",
+        "2": "“Das Team soll Vorgang146 sofort vor der Rückmeldung versenden.” contradicts or exceeds the supplied textual evidence “Die E-Mail sagt: „Bitte senden Sie die Endfassung zu Vorgang146 erst nach unserer Freigabe. Die Rückmeldung erhalten Sie spätestens Mittwochmittag.“ Was soll das Team tun?”; “Das Team soll mit Vorgang146 bis zur Freigabe warten.” preserves the stated detail and qualification.",
+        "3": "“Das Team soll Vorgang146 am Mittwoch ungeprüft löschen.” contradicts or exceeds the supplied textual evidence “Die E-Mail sagt: „Bitte senden Sie die Endfassung zu Vorgang146 erst nach unserer Freigabe. Die Rückmeldung erhalten Sie spätestens Mittwochmittag.“ Was soll das Team tun?”; “Das Team soll mit Vorgang146 bis zur Freigabe warten.” preserves the stated detail and qualification."
       }
     },
     {
@@ -619,9 +619,9 @@
       "deterministicPass": "pass",
       "levelCoveragePass": "pass",
       "rationales": {
-        "0": "“Bei Vorgang147 gab es mehr negative als positive Antworten.” contradicts or exceeds the supplied textual evidence “Vorgang147 antworteten 62 von 100 Befragten positiv, 18 negativ und 20 unentschieden”; “Bei Vorgang147 äußerte sich eine Mehrheit positiv, aber nicht die gesamte Gruppe.” preserves the stated detail and qualification.",
-        "1": "“Bei Vorgang147 blieb niemand unentschieden.” contradicts or exceeds the supplied textual evidence “Vorgang147 antworteten 62 von 100 Befragten positiv, 18 negativ und 20 unentschieden”; “Bei Vorgang147 äußerte sich eine Mehrheit positiv, aber nicht die gesamte Gruppe.” preserves the stated detail and qualification.",
-        "3": "“Bei Vorgang147 äußerten sich alle Befragten positiv.” contradicts or exceeds the supplied textual evidence “Vorgang147 antworteten 62 von 100 Befragten positiv, 18 negativ und 20 unentschieden”; “Bei Vorgang147 äußerte sich eine Mehrheit positiv, aber nicht die gesamte Gruppe.” preserves the stated detail and qualification."
+        "0": "“Bei Vorgang147 gab es mehr negative als positive Antworten.” contradicts or exceeds the supplied textual evidence “Die Zusammenfassung meldet: „Bei Vorgang147 antworteten 62 von 100 Befragten positiv, 18 negativ und 20 unentschieden.“ Welche Aussage passt zu den Daten?”; “Bei Vorgang147 äußerte sich eine Mehrheit positiv, aber nicht die gesamte Gruppe.” preserves the stated detail and qualification.",
+        "1": "“Bei Vorgang147 blieb niemand unentschieden.” contradicts or exceeds the supplied textual evidence “Die Zusammenfassung meldet: „Bei Vorgang147 antworteten 62 von 100 Befragten positiv, 18 negativ und 20 unentschieden.“ Welche Aussage passt zu den Daten?”; “Bei Vorgang147 äußerte sich eine Mehrheit positiv, aber nicht die gesamte Gruppe.” preserves the stated detail and qualification.",
+        "3": "“Bei Vorgang147 äußerten sich alle Befragten positiv.” contradicts or exceeds the supplied textual evidence “Die Zusammenfassung meldet: „Bei Vorgang147 antworteten 62 von 100 Befragten positiv, 18 negativ und 20 unentschieden.“ Welche Aussage passt zu den Daten?”; “Bei Vorgang147 äußerte sich eine Mehrheit positiv, aber nicht die gesamte Gruppe.” preserves the stated detail and qualification."
       }
     },
     {
@@ -642,9 +642,9 @@
       "deterministicPass": "pass",
       "levelCoveragePass": "pass",
       "rationales": {
-        "0": "“Bei Vorgang148 darf eine 25-MB-Datei vor der Identitätsprüfung hochgeladen werden.” contradicts or exceeds the supplied textual evidence “Vorgang148 wird zuerst die Identität bestätigt. Dann kann die Datei hochgeladen werden”; “Bei Vorgang148 muss eine 25-MB-Datei vor dem Hochladen geteilt werden.” preserves the stated detail and qualification.",
-        "1": "“Bei Vorgang148 muss jede Datei unabhängig von der Größe gelöscht werden.” contradicts or exceeds the supplied textual evidence “Vorgang148 wird zuerst die Identität bestätigt. Dann kann die Datei hochgeladen werden”; “Bei Vorgang148 muss eine 25-MB-Datei vor dem Hochladen geteilt werden.” preserves the stated detail and qualification.",
-        "2": "“Bei Vorgang148 entfällt die Identitätsprüfung nur wegen der Dateigröße.” contradicts or exceeds the supplied textual evidence “Vorgang148 wird zuerst die Identität bestätigt. Dann kann die Datei hochgeladen werden”; “Bei Vorgang148 muss eine 25-MB-Datei vor dem Hochladen geteilt werden.” preserves the stated detail and qualification."
+        "0": "“Bei Vorgang148 darf eine 25-MB-Datei vor der Identitätsprüfung hochgeladen werden.” contradicts or exceeds the supplied textual evidence “Die Anleitung sagt: „Für Vorgang148 wird zuerst die Identität bestätigt. Dann kann die Datei hochgeladen werden. Ist sie größer als 20 MB, muss sie vorher geteilt werden.“ Was gilt für 25 MB?”; “Bei Vorgang148 muss eine 25-MB-Datei vor dem Hochladen geteilt werden.” preserves the stated detail and qualification.",
+        "1": "“Bei Vorgang148 muss jede Datei unabhängig von der Größe gelöscht werden.” contradicts or exceeds the supplied textual evidence “Die Anleitung sagt: „Für Vorgang148 wird zuerst die Identität bestätigt. Dann kann die Datei hochgeladen werden. Ist sie größer als 20 MB, muss sie vorher geteilt werden.“ Was gilt für 25 MB?”; “Bei Vorgang148 muss eine 25-MB-Datei vor dem Hochladen geteilt werden.” preserves the stated detail and qualification.",
+        "2": "“Bei Vorgang148 entfällt die Identitätsprüfung nur wegen der Dateigröße.” contradicts or exceeds the supplied textual evidence “Die Anleitung sagt: „Für Vorgang148 wird zuerst die Identität bestätigt. Dann kann die Datei hochgeladen werden. Ist sie größer als 20 MB, muss sie vorher geteilt werden.“ Was gilt für 25 MB?”; “Bei Vorgang148 muss eine 25-MB-Datei vor dem Hochladen geteilt werden.” preserves the stated detail and qualification."
       }
     },
     {
@@ -665,9 +665,9 @@
       "deterministicPass": "pass",
       "levelCoveragePass": "pass",
       "rationales": {
-        "1": "“Bei Vorgang149 ignoriert die Antwort die Wartungskosten vollständig.” contradicts or exceeds the supplied textual evidence “Vorgang149 spart kurzfristig Geld”; “Bei Vorgang149 nimmt die Antwort den Einwand auf und erweitert den Vergleichszeitraum.” preserves the stated detail and qualification.",
-        "2": "“Bei Vorgang149 beweist die Antwort ohne Daten eine dauerhafte Ersparnis.” contradicts or exceeds the supplied textual evidence “Vorgang149 spart kurzfristig Geld”; “Bei Vorgang149 nimmt die Antwort den Einwand auf und erweitert den Vergleichszeitraum.” preserves the stated detail and qualification.",
-        "3": "“Bei Vorgang149 beendet die Antwort jede Möglichkeit eines Vergleichs.” contradicts or exceeds the supplied textual evidence “Vorgang149 spart kurzfristig Geld”; “Bei Vorgang149 nimmt die Antwort den Einwand auf und erweitert den Vergleichszeitraum.” preserves the stated detail and qualification."
+        "1": "“Bei Vorgang149 ignoriert die Antwort die Wartungskosten vollständig.” contradicts or exceeds the supplied textual evidence “Im Streitgespräch heißt es: „Vorgang149 spart kurzfristig Geld.“ – „Aber die Wartungskosten steigen nach dem ersten Jahr.“ – „Dann sollten wir die Gesamtkosten über drei Jahre vergleichen.“ Was bewirkt die Antwort?”; “Bei Vorgang149 nimmt die Antwort den Einwand auf und erweitert den Vergleichszeitraum.” preserves the stated detail and qualification.",
+        "2": "“Bei Vorgang149 beweist die Antwort ohne Daten eine dauerhafte Ersparnis.” contradicts or exceeds the supplied textual evidence “Im Streitgespräch heißt es: „Vorgang149 spart kurzfristig Geld.“ – „Aber die Wartungskosten steigen nach dem ersten Jahr.“ – „Dann sollten wir die Gesamtkosten über drei Jahre vergleichen.“ Was bewirkt die Antwort?”; “Bei Vorgang149 nimmt die Antwort den Einwand auf und erweitert den Vergleichszeitraum.” preserves the stated detail and qualification.",
+        "3": "“Bei Vorgang149 beendet die Antwort jede Möglichkeit eines Vergleichs.” contradicts or exceeds the supplied textual evidence “Im Streitgespräch heißt es: „Vorgang149 spart kurzfristig Geld.“ – „Aber die Wartungskosten steigen nach dem ersten Jahr.“ – „Dann sollten wir die Gesamtkosten über drei Jahre vergleichen.“ Was bewirkt die Antwort?”; “Bei Vorgang149 nimmt die Antwort den Einwand auf und erweitert den Vergleichszeitraum.” preserves the stated detail and qualification."
       }
     },
     {
@@ -688,9 +688,9 @@
       "deterministicPass": "pass",
       "levelCoveragePass": "pass",
       "rationales": {
-        "0": "“Bei Vorgang150 gilt die bereits gesunkene Fehlerquote als einziges ungelöstes Problem.” contradicts or exceeds the supplied textual evidence “Vorgang150 ist die Fehlerquote deutlich gesunken. Die Bearbeitungszeit blieb gleich”; “Bei Vorgang150 hat die gezielte Schulung der zwei auffälligen Teams Vorrang.” preserves the stated detail and qualification.",
-        "2": "“Bei Vorgang150 soll die Bearbeitungszeit verdoppelt werden.” contradicts or exceeds the supplied textual evidence “Vorgang150 ist die Fehlerquote deutlich gesunken. Die Bearbeitungszeit blieb gleich”; “Bei Vorgang150 hat die gezielte Schulung der zwei auffälligen Teams Vorrang.” preserves the stated detail and qualification.",
-        "3": "“Bei Vorgang150 werden alle Teams trotz gleicher Werte geschlossen.” contradicts or exceeds the supplied textual evidence “Vorgang150 ist die Fehlerquote deutlich gesunken. Die Bearbeitungszeit blieb gleich”; “Bei Vorgang150 hat die gezielte Schulung der zwei auffälligen Teams Vorrang.” preserves the stated detail and qualification."
+        "0": "“Bei Vorgang150 gilt die bereits gesunkene Fehlerquote als einziges ungelöstes Problem.” contradicts or exceeds the supplied textual evidence “Die Zusammenfassung sagt: „Für Vorgang150 ist die Fehlerquote deutlich gesunken. Die Bearbeitungszeit blieb gleich. Priorität hat nun die Schulung der zwei Teams mit weiterhin hohen Fehlerwerten.“ Was steht als Nächstes im Vordergrund?”; “Bei Vorgang150 hat die gezielte Schulung der zwei auffälligen Teams Vorrang.” preserves the stated detail and qualification.",
+        "2": "“Bei Vorgang150 soll die Bearbeitungszeit verdoppelt werden.” contradicts or exceeds the supplied textual evidence “Die Zusammenfassung sagt: „Für Vorgang150 ist die Fehlerquote deutlich gesunken. Die Bearbeitungszeit blieb gleich. Priorität hat nun die Schulung der zwei Teams mit weiterhin hohen Fehlerwerten.“ Was steht als Nächstes im Vordergrund?”; “Bei Vorgang150 hat die gezielte Schulung der zwei auffälligen Teams Vorrang.” preserves the stated detail and qualification.",
+        "3": "“Bei Vorgang150 werden alle Teams trotz gleicher Werte geschlossen.” contradicts or exceeds the supplied textual evidence “Die Zusammenfassung sagt: „Für Vorgang150 ist die Fehlerquote deutlich gesunken. Die Bearbeitungszeit blieb gleich. Priorität hat nun die Schulung der zwei Teams mit weiterhin hohen Fehlerwerten.“ Was steht als Nächstes im Vordergrund?”; “Bei Vorgang150 hat die gezielte Schulung der zwei auffälligen Teams Vorrang.” preserves the stated detail and qualification."
       }
     },
     {

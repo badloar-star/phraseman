@@ -1,6 +1,6 @@
 {
   "schemaVersion": 3,
-  "bankVersion": "20260801-2",
+  "bankVersion": "2026-08-01.2",
   "language": "de",
   "level": "C2",
   "questions": [
@@ -718,7 +718,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang217 beginnt nur, wenn Bericht und Freigabe vorliegen",
+          "quote": "Vorgang217 beginnt nur, wenn Bericht und Freigabe vorliegen. Für Vorgang217 liegt der Bericht vor, die Freigabe fehlt. Welche Folgerung ist zwingend?",
           "correctIndex": 0,
           "correctAnswer": "Vorgang217 kann noch nicht beginnen.",
           "lexicalLinks": [
@@ -797,7 +797,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang218 lautet: Jede kürzere Bearbeitungszeit senkt die Kosten",
+          "quote": "Der Hauptfall für Vorgang218 lautet: Jede kürzere Bearbeitungszeit senkt die Kosten. Der Einwand zeigt, dass zusätzliche Kontrollen zwar Zeit sparen, aber mehr Fachpersonal binden. Was trifft der Einwand?",
           "correctIndex": 1,
           "correctAnswer": "Bei Vorgang218 bestreitet der Einwand die Gleichsetzung von Zeitersparnis und Gesamtkostensenkung.",
           "lexicalLinks": [
@@ -852,7 +852,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang219 verbessert den Zugang für registrierte Nutzer, sofern sie mobile Geräte verwenden",
+          "quote": "Der Bericht sagt: „Vorgang219 verbessert den Zugang für registrierte Nutzer, sofern sie mobile Geräte verwenden; für Gäste gilt der Befund nur an betreuten Standorten.“ Welche Reichweite ist korrekt?",
           "correctIndex": 2,
           "correctAnswer": "Bei Vorgang219 gilt der mobile Vorteil registrierten Nutzern, während Gäste nur an betreuten Standorten erfasst sind.",
           "lexicalLinks": [
@@ -907,7 +907,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang220 liegen ein großes kontrolliertes Experiment mit klarem Effekt",
+          "quote": "Zu Vorgang220 liegen ein großes kontrolliertes Experiment mit klarem Effekt, zwei kleine Beobachtungen mit gemischten Ergebnissen und mehrere Erfahrungsberichte vor. Der Text gewichtet das Experiment am stärksten. Welche Aussage entspricht der Kalibrierung?",
           "correctIndex": 3,
           "correctAnswer": "Bei Vorgang220 ist der experimentelle Befund am belastbarsten, während die übrigen Hinweise unsicherer bleiben.",
           "lexicalLinks": [
@@ -962,7 +962,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang221 reduziert doppelte Eingaben. Weniger doppelte Eingaben verkürzen die Nachbearbeitung",
+          "quote": "Der Text argumentiert: „Vorgang221 reduziert doppelte Eingaben. Weniger doppelte Eingaben verkürzen die Nachbearbeitung.“ Welche Brücke führt zur Schlussfolgerung über Zeit?",
           "correctIndex": 0,
           "correctAnswer": "Bei Vorgang221 setzt kürzere Nachbearbeitung insgesamt weniger Bearbeitungszeit voraus.",
           "lexicalLinks": [
@@ -1017,7 +1017,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang222 nennt den Plan laut Verband „alternativlos“",
+          "quote": "Der Essay zu Vorgang222 nennt den Plan laut Verband „alternativlos“, setzt das Wort aber in Anführungszeichen und verweist danach auf zwei praktikable Alternativen. Welche Haltung zeigt der Autor?",
           "correctIndex": 1,
           "correctAnswer": "Bei Vorgang222 distanziert sich der Autor von der behaupteten Alternativlosigkeit.",
           "lexicalLinks": [
@@ -1072,7 +1072,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang223 als „Meisterstück der Pünktlichkeit“",
+          "quote": "Der Kommentar lobt Vorgang223 als „Meisterstück der Pünktlichkeit“. Danach zählt er vier verpasste Fristen und zwei ungeklärte Verzögerungen auf. Welche Lesart ist begründet?",
           "correctIndex": 2,
           "correctAnswer": "Bei Vorgang223 kritisiert das scheinbare Lob ironisch die wiederholte Unpünktlichkeit.",
           "lexicalLinks": [
@@ -1127,7 +1127,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang224 nennt zuerst mehrere technische Details, kehrt aber in jedem Absatz zur fehlenden Zuständigkeit zurück",
+          "quote": "Der Text zu Vorgang224 nennt zuerst mehrere technische Details, kehrt aber in jedem Absatz zur fehlenden Zuständigkeit zurück und setzt sie in den Schlusssatz. Welcher Punkt organisiert das Argument?",
           "correctIndex": 3,
           "correctAnswer": "Bei Vorgang224 ist die ungeklärte Zuständigkeit das argumentative Zentrum.",
           "lexicalLinks": [
@@ -1182,7 +1182,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang225 nach ihrem Bericht gefragt",
+          "quote": "Zunächst heißt es, Mara habe Nora bei Vorgang225 nach ihrem Bericht gefragt; „ihrem“ könnte beiden gehören. Der nächste Satz sagt, Nora habe den Bericht am Vorabend fertiggestellt. Welche Referenz wird dadurch gestützt?",
           "correctIndex": 0,
           "correctAnswer": "Bei Vorgang225 gehört der Bericht im Kontext Nora.",
           "lexicalLinks": [
@@ -1237,7 +1237,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang226 fordert eine schnelle Pilotphase, aber keine Pflicht",
+          "quote": "Text A zu Vorgang226 fordert eine schnelle Pilotphase, aber keine Pflicht. Text B akzeptiert einen Pilotversuch nur mit unabhängiger Evaluation und lehnt ebenfalls eine sofortige Pflicht ab. Wo stimmen beide überein?",
           "correctIndex": 1,
           "correctAnswer": "Bei Vorgang226 akzeptieren beide einen begrenzten Test und keine sofortige Verpflichtung.",
           "lexicalLinks": [
@@ -1292,7 +1292,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang227 erklärt zunächst das Verfahren, nennt anschließend Grenzen der Daten",
+          "quote": "Der Beitrag zu Vorgang227 erklärt zunächst das Verfahren, nennt anschließend Grenzen der Daten und endet mit einem Aufruf zu einem kontrollierten Versuch. Welche Schichtung beschreibt ihn?",
           "correctIndex": 2,
           "correctAnswer": "Vorgang227 informiert, qualifiziert die Evidenz und wirbt dann für einen begrenzten Test.",
           "lexicalLinks": [
@@ -1347,7 +1347,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang228 ist empfehlenswert, wenn die Finanzierung zwei Jahre gesichert ist",
+          "quote": "Der Bericht sagt: „Vorgang228 ist empfehlenswert, wenn die Finanzierung zwei Jahre gesichert ist und die Fehlerquote im Pilot unter fünf Prozent bleibt; für Notfallstandorte gilt diese Empfehlung nicht.“ Die Finanzierung steht, die Quote liegt bei vier Prozent, der Standort ist regulär. Was folgt?",
           "correctIndex": 3,
           "correctAnswer": "Unter den genannten Bedingungen ist Vorgang228 für diesen regulären Standort empfehlenswert.",
           "lexicalLinks": [
@@ -1402,7 +1402,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Vorgang229 bis morgen. Das Team kann erst Freitag prüfen",
+          "quote": "Ein Partner bittet um eine Freigabe von Vorgang229 bis morgen. Das Team kann erst Freitag prüfen, bietet aber eine vorläufige Datenübersicht für morgen an. Welche Antwort ist tactvoll und eindeutig?",
           "correctIndex": 0,
           "correctAnswer": "Eine Freigabe von Vorgang229 bis morgen können wir nicht zusagen; gern senden wir morgen die Übersicht und prüfen bis Freitag.",
           "lexicalLinks": [
@@ -1457,7 +1457,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "heißt es zu Vorgang230",
+          "quote": "Nach Verhandlungen heißt es zu Vorgang230: „Beide Seiten sehen eine Grundlage für weitere Gespräche.“ Konkrete Zusagen oder Fristen fehlen. Was bleibt bewusst offen?",
           "correctIndex": 1,
           "correctAnswer": "Bei Vorgang230 bleiben Verpflichtung, Inhalt und Zeitplan weiterer Schritte unbestimmt.",
           "lexicalLinks": [
@@ -1512,7 +1512,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Vorgang231 antwortet die Leitung",
+          "quote": "Auf den Vorschlag zu Vorgang231 antwortet die Leitung: „Das ist ein interessanter Ansatz; lassen Sie uns nach Abschluss der Budgetrunde darauf zurückkommen.“ Was signalisiert die Antwort?",
           "correctIndex": 2,
           "correctAnswer": "Vorgang231 wird nicht abgelehnt, aber eine aktuelle Zusage wird aufgeschoben.",
           "lexicalLinks": [
@@ -1567,7 +1567,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Vorgang232 deuten Tests auf Stabilität, decken aber Extrembelastungen nicht ab",
+          "quote": "Bei Vorgang232 deuten Tests auf Stabilität, decken aber Extrembelastungen nicht ab. Welche Formulierung vermeidet Garantie und verschweigt das Risiko nicht?",
           "correctIndex": 3,
           "correctAnswer": "Vorgang232 war unter den getesteten Bedingungen stabil; für Extrembelastungen liegt noch kein Nachweis vor.",
           "lexicalLinks": [
@@ -1622,7 +1622,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Vorgang233; der veröffentlichte Beschluss der Behörde bleibt neutral",
+          "quote": "Eine Mitarbeiterin sagt privat, sie bevorzuge Vorgang233; der veröffentlichte Beschluss der Behörde bleibt neutral. Welche Zusammenfassung trennt die Stimmen?",
           "correctIndex": 0,
           "correctAnswer": "Die persönliche Präferenz der Mitarbeiterin zu Vorgang233 ist keine institutionelle Position der Behörde.",
           "lexicalLinks": [
@@ -1677,7 +1677,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Vorgang234 korrigiert eine Expertin eine Zahl",
+          "quote": "In einer Sitzung zu Vorgang234 korrigiert eine Expertin eine Zahl; zugleich sollen Autor, Team und Öffentlichkeit nicht bloßgestellt werden. Welche Reaktion balanciert die Rollen?",
           "correctIndex": 1,
           "correctAnswer": "Zur Präzisierung bei Vorgang234: Die aktuelle Tabelle nennt 42 statt 24; lassen Sie uns die Schlussfolgerung gemeinsam daran anpassen.",
           "lexicalLinks": [
@@ -1732,7 +1732,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Fehler bei Vorgang235",
+          "quote": "Unter vertrauten Kollegen heißt es nach einem kleinen, sofort behobenen Fehler bei Vorgang235: „Ein wahrhaft historischer Zwischenfall.“ Alle lachen, danach wird sachlich weitergearbeitet. Welche Funktion hat die Ironie?",
           "correctIndex": 2,
           "correctAnswer": "Bei Vorgang235 relativiert die Übertreibung den kleinen Fehler und stärkt die gemeinsame Gelassenheit.",
           "lexicalLinks": [
@@ -1787,7 +1787,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Vorgang236 meint „fertig“ für Mara technisch lauffähig",
+          "quote": "Zu Beginn von Vorgang236 meint „fertig“ für Mara technisch lauffähig, für Jonas vollständig dokumentiert. Nach zwei Rückfragen einigen sie sich auf „lauffähig, getestet und dokumentiert“. Was gilt am Ende?",
           "correctIndex": 3,
           "correctAnswer": "Bei Vorgang236 bezeichnet „fertig“ nun den gemeinsam vereinbarten Dreiklang aus Lauf, Test und Dokumentation.",
           "lexicalLinks": [
@@ -1842,7 +1842,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Vorgang237 wurde eine freiwillige Erinnerung zweimal ignoriert",
+          "quote": "Bei Vorgang237 wurde eine freiwillige Erinnerung zweimal ignoriert; nun droht ein Sicherheitsrisiko in zwei Stunden. Welche Eskalation ist direkt, aber nicht aggressiv?",
           "correctIndex": 0,
           "correctAnswer": "Bitte stoppen Sie Vorgang237 jetzt und bestätigen Sie dies binnen 15 Minuten; ohne Bestätigung eskalieren wir an die Einsatzleitung.",
           "lexicalLinks": [
@@ -1897,7 +1897,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Streit um Vorgang238 sagt Nora",
+          "quote": "Im Streit um Vorgang238 sagt Nora: „Ich akzeptiere, dass die Messung korrekt durchgeführt wurde; daraus folgt aber nicht, dass die Stichprobe repräsentativ ist.“ Was gesteht sie zu?",
           "correctIndex": 1,
           "correctAnswer": "Bei Vorgang238 akzeptiert Nora die Durchführung, nicht die Repräsentativität der Stichprobe.",
           "lexicalLinks": [
@@ -1952,7 +1952,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Vorgang239 stellt nur „schnell oder sicher“ zur Wahl",
+          "quote": "Die Debatte zu Vorgang239 stellt nur „schnell oder sicher“ zur Wahl; die Daten zeigen jedoch, dass gestufte Prüfungen beides teilweise verbinden. Welche Reframing-Antwort bewahrt die Fakten?",
           "correctIndex": 2,
           "correctAnswer": "Bei Vorgang239 geht es nicht um ein absolutes Entweder-oder, sondern um eine abgestufte Kombination von Tempo und Sicherheit.",
           "lexicalLinks": [
@@ -2007,7 +2007,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Vorgang240 zeigt einen plausiblen Nutzen, basiert aber auf kurzer Beobachtung",
+          "quote": "Ein Gutachten zu Vorgang240 zeigt einen plausiblen Nutzen, basiert aber auf kurzer Beobachtung und unterschätzt den Supportaufwand. Welche Antwort integriert Zustimmung, Grenze und Beziehung?",
           "correctIndex": 3,
           "correctAnswer": "Der mögliche Nutzen von Vorgang240 ist überzeugend begründet; vor einer breiten Einführung sollten wir jedoch Laufzeit und Supportaufwand gemeinsam genauer prüfen.",
           "lexicalLinks": [

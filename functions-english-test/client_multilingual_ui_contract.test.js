@@ -457,12 +457,12 @@ test('resolves UI locale by valid query, saved choice, then browser language', (
 
 test('resolves only supported assessed languages and has complete immutable registry', () => {
   const i18n = loadI18n();
+  const bankVersions = { en: '2026-07-22.4', de: '2026-08-01.2', fr: '2026-08-01.2', it: '2026-08-01.2', es: '2026-08-01.2' };
   for (const code of i18n.TEST_LANGUAGES) {
     assert.equal(i18n.resolveTestLanguage(`?test=${code}`), code);
     const entry = i18n.TESTS[code];
     assert.match(entry.bcp47, /^[a-z]{2}(?:-[A-Z]{2})?$/);
-    assert.equal(entry.bankUrl, `./data/questions.${code}.json?v=20260801-2`);
-    assert.notEqual(entry.bankUrl, `./data/questions.${code}.json?v=20260801-1`);
+    assert.equal(entry.bankUrl, `./data/questions.${code}.json?v=${bankVersions[code]}`);
     assert.equal(typeof entry.names.ru.nominative, 'string');
     assert.equal(typeof entry.names.ru.genitive, 'string');
     assert.equal(typeof entry.names.en.nominative, 'string');
@@ -492,12 +492,14 @@ test('resolves only supported assessed languages and has complete immutable regi
 
 test('any single downgraded registry bank revision violates the allowlisted runtime registry contract', () => {
   const source = fs.readFileSync(modulePath, 'utf8');
+  const bankVersions = { en: '2026-07-22.4', de: '2026-08-01.2', fr: '2026-08-01.2', it: '2026-08-01.2', es: '2026-08-01.2' };
   for (const code of ['en', 'de', 'fr', 'it', 'es']) {
-    const mutated = source.replace(`questions.${code}.json?v=20260801-2`, `questions.${code}.json?v=20260801-1`);
+    const expected = bankVersions[code];
+    const mutated = source.replace(`questions.${code}.json?v=${expected}`, `questions.${code}.json?v=2000-01-01.1`);
     assert.notEqual(mutated, source, `${code} revision mutation must alter i18n source`);
     const context = vm.createContext({ URL, URLSearchParams });
     vm.runInContext(mutated, context, { filename: modulePath });
-    assert.throws(() => assert.equal(context.EnglishTestI18n.TESTS[code].bankUrl, `./data/questions.${code}.json?v=20260801-2`), assert.AssertionError);
+    assert.throws(() => assert.equal(context.EnglishTestI18n.TESTS[code].bankUrl, `./data/questions.${code}.json?v=${expected}`), assert.AssertionError);
   }
 });
 
@@ -643,9 +645,9 @@ test('composes certificate completion copy with the assessed language for all fi
 
 test('loads the versioned i18n core before the certificate and application scripts', () => {
   const html = fs.readFileSync(require.resolve('../knowly-www/english-level-test/index.html'), 'utf8');
-  const i18nScript = html.indexOf('./i18n.js?v=20260801-2');
-  const certificateScript = html.indexOf('./certificate.js?v=20260801-2');
-  const appScript = html.indexOf('./app.js?v=20260801-2');
+  const i18nScript = html.indexOf('./i18n.js?v=20260801-3');
+  const certificateScript = html.indexOf('./certificate.js?v=20260801-3');
+  const appScript = html.indexOf('./app.js?v=20260801-3');
   assert.ok(i18nScript >= 0, 'the i18n script is versioned');
   assert.ok(i18nScript < certificateScript, 'i18n loads before certificate.js');
   assert.ok(certificateScript < appScript, 'certificate.js loads before app.js');

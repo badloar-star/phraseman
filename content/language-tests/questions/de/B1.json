@@ -1,6 +1,6 @@
 {
   "schemaVersion": 3,
-  "bankVersion": "20260801-2",
+  "bankVersion": "2026-08-01.2",
   "language": "de",
   "level": "B1",
   "questions": [
@@ -886,7 +886,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang101 heute zu. Ausgeliehene Medien werden automatisch verlängert",
+          "quote": "Die Meldung sagt: „Nach einem Wasserrohrbruch bleibt die Bibliothek bei Vorgang101 heute zu. Ausgeliehene Medien werden automatisch verlängert.“ Was ist die wichtigste Folge?",
           "correctIndex": 0,
           "correctAnswer": "Bei Vorgang101 bleibt die Bibliothek geschlossen und Fristen werden verlängert.",
           "lexicalLinks": [
@@ -941,7 +941,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang102 kam meine Lieferung zweimal zu spät. Nach einem Anruf erhielt ich eine feste Zustellzeit",
+          "quote": "Im Forum steht: „Bei Vorgang102 kam meine Lieferung zweimal zu spät. Nach einem Anruf erhielt ich eine feste Zustellzeit. Ich empfehle, früh nachzufragen.“ Welche Empfehlung steht im Beitrag?",
           "correctIndex": 1,
           "correctAnswer": "Bei Vorgang102 soll man bei wiederholter Verspätung früh nachfragen.",
           "lexicalLinks": [
@@ -996,7 +996,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang103 prüft Leo bis Dienstag die Zahlen. Mira ergänzt bis Mittwoch die Quellen",
+          "quote": "Die E-Mail lautet: „Für Vorgang103 prüft Leo bis Dienstag die Zahlen. Mira ergänzt bis Mittwoch die Quellen. Am Donnerstag verschickt Nora die Endfassung.“ Wer ergänzt die Quellen?",
           "correctIndex": 2,
           "correctAnswer": "Mira ergänzt bei Vorgang103 bis Mittwoch die Quellen.",
           "lexicalLinks": [
@@ -1051,7 +1051,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang104 Standard umfasst Beratung per E-Mail. Plus umfasst zusätzlich zwei Videotermine",
+          "quote": "Der Prospekt erklärt: „Vorgang104 Standard umfasst Beratung per E-Mail. Plus umfasst zusätzlich zwei Videotermine, kostet aber 20 Euro mehr.“ Was bietet nur Plus?",
           "correctIndex": 3,
           "correctAnswer": "Vorgang104 Plus enthält zwei zusätzliche Videotermine.",
           "lexicalLinks": [
@@ -1106,7 +1106,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang105, weil dadurch weniger Autos ins Zentrum fahren und die Busse häufiger kommen",
+          "quote": "Im Kommentar steht: „Ich unterstütze Vorgang105, weil dadurch weniger Autos ins Zentrum fahren und die Busse häufiger kommen.“ Welcher Grund wird genannt?",
           "correctIndex": 0,
           "correctAnswer": "Vorgang105 soll Verkehr verringern und Busverbindungen verbessern.",
           "lexicalLinks": [
@@ -1161,7 +1161,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang106 zuerst das Formular speichern. Danach die Belege hochladen. Erst wenn die Bestätigung erscheint",
+          "quote": "Die Anleitung sagt: „Bei Vorgang106 zuerst das Formular speichern. Danach die Belege hochladen. Erst wenn die Bestätigung erscheint, darf das Fenster geschlossen werden.“ Wann darf man schließen?",
           "correctIndex": 1,
           "correctAnswer": "Bei Vorgang106 darf man nach der Bestätigung schließen.",
           "lexicalLinks": [
@@ -1216,7 +1216,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang107 arbeitet leise und schnell, die Einrichtung ist jedoch kompliziert",
+          "quote": "Die Bewertung lautet: „Vorgang107 arbeitet leise und schnell, die Einrichtung ist jedoch kompliziert und die Anleitung knapp.“ Welche Zusammenfassung ist ausgewogen?",
           "correctIndex": 2,
           "correctAnswer": "Vorgang107 überzeugt im Betrieb, ist aber schwer einzurichten.",
           "lexicalLinks": [
@@ -1271,7 +1271,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang108 fiel um 9 Uhr das Netz aus. Das Team wechselte auf eine Ersatzverbindung",
+          "quote": "Der Bericht sagt: „Bei Vorgang108 fiel um 9 Uhr das Netz aus. Das Team wechselte auf eine Ersatzverbindung. Um 9:20 lief der Dienst wieder.“ Was geschah nach dem Ausfall?",
           "correctIndex": 3,
           "correctAnswer": "Bei Vorgang108 nutzte das Team eine Ersatzverbindung.",
           "lexicalLinks": [
@@ -1326,7 +1326,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang109 wurden mir zwei Gebühren berechnet, obwohl ich nur einen Antrag gestellt habe",
+          "quote": "Im Brief steht: „Zu Vorgang109 wurden mir zwei Gebühren berechnet, obwohl ich nur einen Antrag gestellt habe. Bitte prüfen Sie die Rechnung und korrigieren Sie sie.“ Was ist der Zweck?",
           "correctIndex": 0,
           "correctAnswer": "Mit Vorgang109 wird eine Prüfung und Korrektur der Rechnung verlangt.",
           "lexicalLinks": [
@@ -1381,7 +1381,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang110 sollte verlängert werden, weil die Pilotphase zu kurz für verlässliche Daten war",
+          "quote": "Der Text sagt: „Vorgang110 sollte verlängert werden, weil die Pilotphase zu kurz für verlässliche Daten war. Beispielsweise nahmen in der letzten Woche doppelt so viele Personen teil.“ Was stützt die Forderung?",
           "correctIndex": 1,
           "correctAnswer": "Bei Vorgang110 zeigt die späte höhere Teilnahme, dass mehr Beobachtungszeit sinnvoll ist.",
           "lexicalLinks": [
@@ -1436,7 +1436,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Vorgang111 ab, weil dann die einzige Fachkraft fehlt",
+          "quote": "Mara lehnt den Dienstag für Vorgang111 ab, weil dann die einzige Fachkraft fehlt. Welche Erklärung ist ausreichend?",
           "correctIndex": 2,
           "correctAnswer": "Dienstag geht bei Vorgang111 nicht, weil unsere einzige Fachkraft an diesem Tag fehlt.",
           "lexicalLinks": [
@@ -1491,7 +1491,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Vorgang112 erst ab 15 Uhr bearbeiten; Nora muss um 17 Uhr gehen",
+          "quote": "Jonas kann Vorgang112 erst ab 15 Uhr bearbeiten; Nora muss um 17 Uhr gehen. Welcher Vorschlag berücksichtigt beides?",
           "correctIndex": 3,
           "correctAnswer": "Wir bearbeiten Vorgang112 gemeinsam von 15 bis 17 Uhr und teilen den Rest vorher auf.",
           "lexicalLinks": [
@@ -1546,7 +1546,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Vorgang113 sofort veröffentlichen; David hält eine Quellenprüfung für nötig",
+          "quote": "Eine Kollegin will Vorgang113 sofort veröffentlichen; David hält eine Quellenprüfung für nötig. Wie widerspricht er höflich?",
           "correctIndex": 0,
           "correctAnswer": "Ich verstehe den Zeitdruck bei Vorgang113, würde aber vorher noch die Quellen prüfen.",
           "lexicalLinks": [
@@ -1601,7 +1601,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Vorgang114 fehlen noch Rückmeldungen von drei Personen",
+          "quote": "Bei Vorgang114 fehlen noch Rückmeldungen von drei Personen. Welcher Vorschlag ist konkret umsetzbar?",
           "correctIndex": 1,
           "correctAnswer": "Schicken wir zu Vorgang114 heute eine kurze Erinnerung mit Frist bis morgen.",
           "lexicalLinks": [
@@ -1656,7 +1656,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Vorgang115 lautet nur „Bitte bald schicken“",
+          "quote": "Die Anweisung zu Vorgang115 lautet nur „Bitte bald schicken“. Welche Frage klärt das fehlende Detail?",
           "correctIndex": 2,
           "correctAnswer": "Bis zu welchem Datum soll ich Vorgang115 an welche Adresse schicken?",
           "lexicalLinks": [
@@ -1711,7 +1711,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Vorgang116 wurde trotz bestätigter Kündigung erneut abgebucht",
+          "quote": "Bei Vorgang116 wurde trotz bestätigter Kündigung erneut abgebucht. Welche Beschwerde trennt Fakten und Abhilfe?",
           "correctIndex": 3,
           "correctAnswer": "Vorgang116 wurde am 3. Mai bestätigt beendet; dennoch erfolgte eine Abbuchung. Bitte erstatten Sie den Betrag.",
           "lexicalLinks": [
@@ -1766,7 +1766,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Vorgang117 die falsche Datei versandt",
+          "quote": "Nora hat bei Vorgang117 die falsche Datei versandt. Welche Reaktion übernimmt Verantwortung und repariert den Fehler?",
           "correctIndex": 0,
           "correctAnswer": "Entschuldigung, ich habe bei Vorgang117 die falsche Datei geschickt; die richtige sende ich sofort nach.",
           "lexicalLinks": [
@@ -1821,7 +1821,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Vorgang118 kleinere Gruppen, weil dann mehr Personen zu Wort kommen",
+          "quote": "Felix bevorzugt bei Vorgang118 kleinere Gruppen, weil dann mehr Personen zu Wort kommen. Welche Aussage ist gestützt?",
           "correctIndex": 1,
           "correctAnswer": "Für Vorgang118 finde ich kleinere Gruppen besser, weil dort mehr Teilnehmende sprechen können.",
           "lexicalLinks": [
@@ -1876,7 +1876,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Vorgang119 schriftlich Frist, Gebühren und erforderliche Unterlagen",
+          "quote": "Aylin braucht für Vorgang119 schriftlich Frist, Gebühren und erforderliche Unterlagen. Welche Anfrage passt?",
           "correctIndex": 2,
           "correctAnswer": "Sehr geehrte Damen und Herren, bitte teilen Sie mir für Vorgang119 Frist, Gebühren und benötigte Unterlagen mit.",
           "lexicalLinks": [
@@ -1931,7 +1931,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Vorgang120 meint Leo, die Frist gelte für den Entwurf; Mira meint, sie gelte für die Endfassung",
+          "quote": "Bei Vorgang120 meint Leo, die Frist gelte für den Entwurf; Mira meint, sie gelte für die Endfassung. Wie vermittelt man neutral?",
           "correctIndex": 3,
           "correctAnswer": "Bei Vorgang120 versteht Leo die Frist als Entwurfsfrist, Mira als Frist für die Endfassung; klären wir den Bezug.",
           "lexicalLinks": [

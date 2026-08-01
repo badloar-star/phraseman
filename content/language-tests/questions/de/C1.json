@@ -1,6 +1,6 @@
 {
   "schemaVersion": 3,
-  "bankVersion": "20260801-2",
+  "bankVersion": "2026-08-01.2",
   "language": "de",
   "level": "C1",
   "questions": [
@@ -718,7 +718,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang177 nennt den Ansatz „vielversprechend“, warnt jedoch vor einer kleinen Datengrundlage",
+          "quote": "Der Kommentar zu Vorgang177 nennt den Ansatz „vielversprechend“, warnt jedoch vor einer kleinen Datengrundlage. Im Schluss fordert er deshalb nur einen begrenzten Test. Welche Haltung ergibt sich?",
           "correctIndex": 0,
           "correctAnswer": "Vorgang177 wird vorsichtig positiv bewertet und nur für einen begrenzten Test empfohlen.",
           "lexicalLinks": [
@@ -773,7 +773,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang178 verkürzt interne Wege. Deshalb wird automatisch auch die Bearbeitungszeit für Kunden sinken",
+          "quote": "Der Text argumentiert: „Vorgang178 verkürzt interne Wege. Deshalb wird automatisch auch die Bearbeitungszeit für Kunden sinken.“ Er nennt keine weiteren Prozessschritte. Welche Annahme ist erforderlich?",
           "correctIndex": 1,
           "correctAnswer": "Bei Vorgang178 müssen interne Wege ein wesentlicher Engpass der gesamten Bearbeitungszeit sein.",
           "lexicalLinks": [
@@ -828,7 +828,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang179 fordert als Hauptpunkt eine verlängerte Pilotphase",
+          "quote": "Der Bericht zu Vorgang179 fordert als Hauptpunkt eine verlängerte Pilotphase. Eine Nebenbegründung betrifft saisonale Schwankungen; ein Beispiel nennt die geringe Teilnahme im Ferienmonat. Was ist die Hauptaussage?",
           "correctIndex": 2,
           "correctAnswer": "Bei Vorgang179 soll die Pilotphase verlängert werden.",
           "lexicalLinks": [
@@ -883,7 +883,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang180 beobachtet zwölf freiwillige Teams über vier Wochen",
+          "quote": "Die Studie zu Vorgang180 beobachtet zwölf freiwillige Teams über vier Wochen. Sie zeigt dort weniger Fehler, erlaubt aber keine Aussage über unfreiwillige Nutzung oder Langzeitwirkung. Welche Schlussfolgerung bleibt gedeckt?",
           "correctIndex": 3,
           "correctAnswer": "Bei Vorgang180 wurden kurzfristig in den zwölf freiwilligen Teams weniger Fehler beobachtet.",
           "lexicalLinks": [
@@ -938,7 +938,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang181 wird zunächst eine spätere Frist vorgeschlagen. Das Team lehnt diese ab und bietet stattdessen mehr Personal an",
+          "quote": "Im Text zu Vorgang181 wird zunächst eine spätere Frist vorgeschlagen. Das Team lehnt diese ab und bietet stattdessen mehr Personal an. „Dies“ soll die angebotene Alternative bezeichnen. Welche Lesart passt?",
           "correctIndex": 0,
           "correctAnswer": "„Dies“ verweist bei Vorgang181 auf das Angebot von mehr Personal.",
           "lexicalLinks": [
@@ -993,7 +993,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang182 erhielt zusätzliche Schulung und senkte die Fehlerquote",
+          "quote": "Fall A von Vorgang182 erhielt zusätzliche Schulung und senkte die Fehlerquote. Fall B nutzte dieselbe Software ohne Schulung; dort blieb die Quote gleich. Welche vorsichtige Folgerung legt der Kontrast nahe?",
           "correctIndex": 1,
           "correctAnswer": "Bei Vorgang182 könnte die Schulung zum Unterschied zwischen den Fällen beigetragen haben.",
           "lexicalLinks": [
@@ -1048,7 +1048,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang183 beginnt mit einer Problembeschreibung, vergleicht zwei Optionen",
+          "quote": "Der Text zu Vorgang183 beginnt mit einer Problembeschreibung, vergleicht zwei Optionen und endet mit einer begründeten Empfehlung an die Leitung. Ton und Aufbau bleiben sachlich. Welchem Zweck dient er?",
           "correctIndex": 2,
           "correctAnswer": "Vorgang183 dient vor allem dazu, eine Entscheidung vorzubereiten und zu empfehlen.",
           "lexicalLinks": [
@@ -1103,7 +1103,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang184 verringerte die Wartezeit in kleinen Filialen deutlich",
+          "quote": "Der Bericht sagt: „Vorgang184 verringerte die Wartezeit in kleinen Filialen deutlich; für große Standorte sind die Daten noch uneinheitlich.“ Worauf beschränkt sich „deutlich“?",
           "correctIndex": 3,
           "correctAnswer": "Bei Vorgang184 gilt der deutliche Rückgang nur für kleine Filialen.",
           "lexicalLinks": [
@@ -1158,7 +1158,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang185 findet eine moderate Zeitersparnis, warnt vor höheren Startkosten",
+          "quote": "Der Bericht zu Vorgang185 findet eine moderate Zeitersparnis, warnt vor höheren Startkosten und empfiehlt einen begrenzten Pilotversuch. Welche Zusammenfassung ist treu?",
           "correctIndex": 0,
           "correctAnswer": "Vorgang185 verspricht etwas Zeitgewinn, verlangt aber Anfangsinvestitionen und soll zunächst begrenzt getestet werden.",
           "lexicalLinks": [
@@ -1213,7 +1213,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang186 stützen Nutzungsdaten die Aussage über häufigere Zugriffe",
+          "quote": "Im Text zu Vorgang186 stützen Nutzungsdaten die Aussage über häufigere Zugriffe. Interviews stützen dagegen die Aussage über bessere Verständlichkeit. Welche Zuordnung ist korrekt?",
           "correctIndex": 1,
           "correctAnswer": "Bei Vorgang186 belegen Nutzungsdaten die Zugriffshäufigkeit, Interviews die wahrgenommene Verständlichkeit.",
           "lexicalLinks": [
@@ -1268,7 +1268,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang187 „solide vorbereitet“ und „nachvollziehbar begründet“",
+          "quote": "Der Autor nennt Vorgang187 „solide vorbereitet“ und „nachvollziehbar begründet“, spricht aber von einem „noch beträchtlichen Umsetzungsrisiko“. Wie ist der Ton?",
           "correctIndex": 2,
           "correctAnswer": "Vorgang187 wird zurückhaltend anerkannt, zugleich bleibt deutliche Sorge.",
           "lexicalLinks": [
@@ -1323,7 +1323,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang188. Der zweite beginnt: „Diese Vorteile gelten jedoch nur bei stabiler Finanzierung“",
+          "quote": "Der erste Absatz verteidigt Vorgang188. Der zweite beginnt: „Diese Vorteile gelten jedoch nur bei stabiler Finanzierung“ und erläutert anschließend Risiken. Welche Funktion hat der zweite Absatz?",
           "correctIndex": 3,
           "correctAnswer": "Bei Vorgang188 begrenzt der zweite Absatz die vorherige positive Aussage.",
           "lexicalLinks": [
@@ -1378,7 +1378,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Vorgang189 für vollständig risikofrei; die Daten zeigen offene Fragen",
+          "quote": "Ein Partner erklärt Vorgang189 für vollständig risikofrei; die Daten zeigen offene Fragen. Welche Antwort widerspricht klar und kooperativ?",
           "correctIndex": 0,
           "correctAnswer": "Ich sehe die Fortschritte bei Vorgang189, kann die Einstufung als risikofrei angesichts der offenen Daten aber nicht teilen.",
           "lexicalLinks": [
@@ -1433,7 +1433,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Vorgang190 ist methodisch transparent, berücksichtigt aber nur eine kurze Laufzeit",
+          "quote": "Vorgang190 ist methodisch transparent, berücksichtigt aber nur eine kurze Laufzeit. Welche Kritik ist angemessen begrenzt?",
           "correctIndex": 1,
           "correctAnswer": "Die Methode von Vorgang190 ist nachvollziehbar; Aussagen zur Langzeitwirkung bleiben wegen der kurzen Laufzeit jedoch offen.",
           "lexicalLinks": [
@@ -1488,7 +1488,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Vorgang191: „Für die Sitzung morgen wäre eine aktualisierte Risikotabelle sehr hilfreich",
+          "quote": "Die Leitung schreibt zu Vorgang191: „Für die Sitzung morgen wäre eine aktualisierte Risikotabelle sehr hilfreich; ohne sie können wir Punkt drei kaum entscheiden.“ Was wird indirekt verlangt?",
           "correctIndex": 2,
           "correctAnswer": "Die Risikotabelle zu Vorgang191 soll vor der morgigen Sitzung aktualisiert werden.",
           "lexicalLinks": [
@@ -1543,7 +1543,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Vorgang192 im Namen der Organisation und kann noch keinen Termin zusagen",
+          "quote": "Eine Behörde antwortet zu Vorgang192 im Namen der Organisation und kann noch keinen Termin zusagen. Welche Formulierung passt?",
           "correctIndex": 3,
           "correctAnswer": "Nach derzeitiger Prüfung kann unsere Stelle für Vorgang192 noch keinen verbindlichen Termin bestätigen.",
           "lexicalLinks": [
@@ -1598,7 +1598,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Protokoll zu Vorgang193 steht",
+          "quote": "Im Protokoll zu Vorgang193 steht: „Die Freigabe wäre heute möglich, sobald die fehlende Unterschrift vorliegt.“ Am Abend fehlt sie noch. Was ist gemeint?",
           "correctIndex": 0,
           "correctAnswer": "Vorgang193 kann heute ohne die Unterschrift nicht freigegeben werden.",
           "lexicalLinks": [
@@ -1653,7 +1653,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Vorgang194 versehentlich 15 statt 50 Fälle",
+          "quote": "Ein Kollege nennt bei Vorgang194 versehentlich 15 statt 50 Fälle. Wie korrigiert man respektvoll und eindeutig?",
           "correctIndex": 1,
           "correctAnswer": "Nur zur Präzisierung bei Vorgang194: In der Tabelle stehen 50 Fälle, nicht 15.",
           "lexicalLinks": [
@@ -1708,7 +1708,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Vorgang195 gelten nur für städtische Standorte",
+          "quote": "Die Daten zu Vorgang195 gelten nur für städtische Standorte. Welche Absicherung begrenzt genau die Reichweite?",
           "correctIndex": 2,
           "correctAnswer": "Für städtische Standorte sprechen die Daten zu Vorgang195 für einen Rückgang; auf ländliche Standorte lässt sich das nicht übertragen.",
           "lexicalLinks": [
@@ -1763,7 +1763,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Vorgang196 versteht Mara „Freigabe“ als inhaltliche Zustimmung; Jonas meint nur die technische Veröffentlichung",
+          "quote": "Bei Vorgang196 versteht Mara „Freigabe“ als inhaltliche Zustimmung; Jonas meint nur die technische Veröffentlichung. Welche Reparatur klärt beide Lesarten?",
           "correctIndex": 3,
           "correctAnswer": "Mit Freigabe meinen wir bei Vorgang196 hier die technische Veröffentlichung; die inhaltliche Zustimmung wird separat erteilt.",
           "lexicalLinks": [
@@ -1818,7 +1818,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Vorgang197 nur als freiwilligen Test; Felix unterstützt eine Pflicht nach erfolgreichem Test",
+          "quote": "Aylin unterstützt Vorgang197 nur als freiwilligen Test; Felix unterstützt eine Pflicht nach erfolgreichem Test. Welche Synthese bewahrt den Unterschied?",
           "correctIndex": 0,
           "correctAnswer": "Beide unterstützen bei Vorgang197 zunächst einen Test; Aylin will dauerhaft Freiwilligkeit, Felix danach möglicherweise eine Pflicht.",
           "lexicalLinks": [
@@ -1873,7 +1873,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Vorgang198 schneller ist; entscheidend bleibt jedoch die nachgewiesene Sicherheit",
+          "quote": "Ein Anbieter zeigt, dass Vorgang198 schneller ist; entscheidend bleibt jedoch die nachgewiesene Sicherheit. Welche Antwort setzt den Pivot klar?",
           "correctIndex": 1,
           "correctAnswer": "Vorgang198 ist tatsächlich schneller; ausschlaggebend ist für uns dennoch der belastbare Sicherheitsnachweis.",
           "lexicalLinks": [
@@ -1928,7 +1928,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Vorgang199 zusätzlich um eine Rechtsberatung, die nicht zum vereinbarten Auftrag gehört",
+          "quote": "Ein Kunde bittet bei Vorgang199 zusätzlich um eine Rechtsberatung, die nicht zum vereinbarten Auftrag gehört. Wie lehnt man höflich ab?",
           "correctIndex": 2,
           "correctAnswer": "Die technische Prüfung von Vorgang199 übernehme ich gern; eine Rechtsberatung liegt außerhalb meines Auftrags, ich kann Ihnen aber eine zuständige Stelle nennen.",
           "lexicalLinks": [
@@ -1983,7 +1983,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "heißt es zu Vorgang200",
+          "quote": "Nach drei „endgültigen“ Terminverschiebungen heißt es zu Vorgang200: „Wie beruhigend, dass dieser Termin offenbar wieder ganz endgültig ist.“ Was signalisiert die Ironie?",
           "correctIndex": 3,
           "correctAnswer": "Bei Vorgang200 bezweifelt die Sprecherin wegen der wiederholten Änderungen die Endgültigkeit.",
           "lexicalLinks": [

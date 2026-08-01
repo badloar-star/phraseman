@@ -1,6 +1,6 @@
 {
   "schemaVersion": 3,
-  "bankVersion": "20260801-2",
+  "bankVersion": "2026-08-01.2",
   "language": "de",
   "level": "B2",
   "questions": [
@@ -886,7 +886,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang141 kann Wege verkürzen, sofern die Anschlüsse zuverlässig bleiben",
+          "quote": "Der Kommentar sagt: „Vorgang141 kann Wege verkürzen, sofern die Anschlüsse zuverlässig bleiben. Ohne zusätzliche Fahrzeuge drohen jedoch neue Engpässe.“ Welche Position vertritt der Text?",
           "correctIndex": 0,
           "correctAnswer": "Vorgang141 wird bedingt unterstützt, aber zusätzliche Kapazität gilt als nötig.",
           "lexicalLinks": [
@@ -941,7 +941,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang142 soll im Oktober starten. Zwei Fachkräfte sind verfügbar; benötigt werden drei",
+          "quote": "Im Vorschlag steht: „Vorgang142 soll im Oktober starten. Zwei Fachkräfte sind verfügbar; benötigt werden drei. Eine externe Kraft könnte die Lücke schließen, wenn das Budget freigegeben wird.“ Wovon hängt der Start ab?",
           "correctIndex": 1,
           "correctAnswer": "Vorgang142 ist machbar, wenn Budget für die fehlende Fachkraft freigegeben wird.",
           "lexicalLinks": [
@@ -996,7 +996,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang143 eingeführt wurde, sanken die Wartezeiten. Gleichzeitig wurde zusätzliches Personal eingestellt",
+          "quote": "Die Analyse sagt: „Seit Vorgang143 eingeführt wurde, sanken die Wartezeiten. Gleichzeitig wurde zusätzliches Personal eingestellt; deshalb lässt sich der Anteil von Vorgang143 nicht isolieren.“ Welche Schlussfolgerung ist zulässig?",
           "correctIndex": 2,
           "correctAnswer": "Vorgang143 fällt mit kürzeren Wartezeiten zusammen, sein eigener Effekt bleibt aber unklar.",
           "lexicalLinks": [
@@ -1051,7 +1051,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang144 erfüllt die Sicherheitsanforderungen und ist leicht zu bedienen",
+          "quote": "Die Rezension erklärt: „Vorgang144 erfüllt die Sicherheitsanforderungen und ist leicht zu bedienen. Die Exportfunktion fehlt jedoch, obwohl sie im Angebot zugesagt war.“ Wie fällt die Bewertung aus?",
           "correctIndex": 3,
           "correctAnswer": "Vorgang144 überzeugt bei Sicherheit und Bedienung, verfehlt aber ein zugesagtes Funktionskriterium.",
           "lexicalLinks": [
@@ -1106,7 +1106,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang145 ist für alle Abteilungen verpflichtend. Teams mit laufender Sicherheitsprüfung dürfen die Einführung bis zu vier Wochen verschieben",
+          "quote": "Die Regel lautet: „Vorgang145 ist für alle Abteilungen verpflichtend. Teams mit laufender Sicherheitsprüfung dürfen die Einführung bis zu vier Wochen verschieben.“ Wer darf warten?",
           "correctIndex": 0,
           "correctAnswer": "Bei Vorgang145 dürfen Teams mit laufender Sicherheitsprüfung höchstens vier Wochen warten.",
           "lexicalLinks": [
@@ -1161,7 +1161,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang146 erst nach unserer Freigabe",
+          "quote": "Die E-Mail sagt: „Bitte senden Sie die Endfassung zu Vorgang146 erst nach unserer Freigabe. Die Rückmeldung erhalten Sie spätestens Mittwochmittag.“ Was soll das Team tun?",
           "correctIndex": 1,
           "correctAnswer": "Das Team soll mit Vorgang146 bis zur Freigabe warten.",
           "lexicalLinks": [
@@ -1216,7 +1216,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang147 antworteten 62 von 100 Befragten positiv, 18 negativ und 20 unentschieden",
+          "quote": "Die Zusammenfassung meldet: „Bei Vorgang147 antworteten 62 von 100 Befragten positiv, 18 negativ und 20 unentschieden.“ Welche Aussage passt zu den Daten?",
           "correctIndex": 2,
           "correctAnswer": "Bei Vorgang147 äußerte sich eine Mehrheit positiv, aber nicht die gesamte Gruppe.",
           "lexicalLinks": [
@@ -1271,7 +1271,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang148 wird zuerst die Identität bestätigt. Dann kann die Datei hochgeladen werden",
+          "quote": "Die Anleitung sagt: „Für Vorgang148 wird zuerst die Identität bestätigt. Dann kann die Datei hochgeladen werden. Ist sie größer als 20 MB, muss sie vorher geteilt werden.“ Was gilt für 25 MB?",
           "correctIndex": 3,
           "correctAnswer": "Bei Vorgang148 muss eine 25-MB-Datei vor dem Hochladen geteilt werden.",
           "lexicalLinks": [
@@ -1326,7 +1326,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang149 spart kurzfristig Geld",
+          "quote": "Im Streitgespräch heißt es: „Vorgang149 spart kurzfristig Geld.“ – „Aber die Wartungskosten steigen nach dem ersten Jahr.“ – „Dann sollten wir die Gesamtkosten über drei Jahre vergleichen.“ Was bewirkt die Antwort?",
           "correctIndex": 0,
           "correctAnswer": "Bei Vorgang149 nimmt die Antwort den Einwand auf und erweitert den Vergleichszeitraum.",
           "lexicalLinks": [
@@ -1381,7 +1381,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang150 ist die Fehlerquote deutlich gesunken. Die Bearbeitungszeit blieb gleich",
+          "quote": "Die Zusammenfassung sagt: „Für Vorgang150 ist die Fehlerquote deutlich gesunken. Die Bearbeitungszeit blieb gleich. Priorität hat nun die Schulung der zwei Teams mit weiterhin hohen Fehlerwerten.“ Was steht als Nächstes im Vordergrund?",
           "correctIndex": 1,
           "correctAnswer": "Bei Vorgang150 hat die gezielte Schulung der zwei auffälligen Teams Vorrang.",
           "lexicalLinks": [
@@ -1436,7 +1436,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Vorgang151 sind noch begrenzt, aber ein Risiko soll klar benannt werden",
+          "quote": "Die Daten zu Vorgang151 sind noch begrenzt, aber ein Risiko soll klar benannt werden. Welche Formulierung ist angemessen?",
           "correctIndex": 2,
           "correctAnswer": "Die bisherigen Daten zu Vorgang151 deuten auf ein Risiko hin; eine abschließende Bewertung ist noch nicht möglich.",
           "lexicalLinks": [
@@ -1491,7 +1491,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Vorgang152 kurzfristig günstiger ist; David hält die langfristigen Kosten dennoch für entscheidend",
+          "quote": "Eine Kollegin zeigt, dass Vorgang152 kurzfristig günstiger ist; David hält die langfristigen Kosten dennoch für entscheidend. Wie antwortet er?",
           "correctIndex": 3,
           "correctAnswer": "Kurzfristig ist Vorgang152 tatsächlich günstiger; für die Entscheidung sollten wir dennoch die Gesamtkosten betrachten.",
           "lexicalLinks": [
@@ -1546,7 +1546,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Vorgang153. Welche Aussage lenkt auf ein lösbares gemeinsames Problem",
+          "quote": "Zwei Teams beschuldigen einander wegen Verzögerungen bei Vorgang153. Welche Aussage lenkt auf ein lösbares gemeinsames Problem?",
           "correctIndex": 0,
           "correctAnswer": "Statt Schuld zu verteilen, sollten wir bei Vorgang153 die Übergaben und Fristen gemeinsam klären.",
           "lexicalLinks": [
@@ -1601,7 +1601,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Vorgang154 an, braucht dafür aber eine längere Frist",
+          "quote": "Ein Partner bietet zusätzliche Arbeit für Vorgang154 an, braucht dafür aber eine längere Frist. Welche Antwort macht Leistung und Grenze klar?",
           "correctIndex": 1,
           "correctAnswer": "Wir übernehmen bei Vorgang154 die zusätzliche Prüfung, sofern die Frist bis Freitag verlängert wird.",
           "lexicalLinks": [
@@ -1656,7 +1656,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Vorgang155 fehlen sicherheitsrelevante Nachweise; die Freigabe ist für Freitag geplant",
+          "quote": "Bei Vorgang155 fehlen sicherheitsrelevante Nachweise; die Freigabe ist für Freitag geplant. Welche Anfrage ist angemessen?",
           "correctIndex": 2,
           "correctAnswer": "Bitte übermitteln Sie die Nachweise zu Vorgang155 bis Donnerstag 12 Uhr, damit wir die Freigabe sicher prüfen können.",
           "lexicalLinks": [
@@ -1711,7 +1711,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Vorgang156 zieht eine allgemeine Schlussfolgerung aus fünf Fällen",
+          "quote": "Ein Bericht zu Vorgang156 zieht eine allgemeine Schlussfolgerung aus fünf Fällen. Welche Kritik richtet sich gegen die Evidenz statt auf persönliche Abwertung?",
           "correctIndex": 3,
           "correctAnswer": "Bei Vorgang156 ist die Stichprobe zu klein, um die allgemeine Schlussfolgerung ausreichend zu stützen.",
           "lexicalLinks": [
@@ -1766,7 +1766,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Vorgang157 lautet: Die Umstellung spart Zeit, belastet aber das Supportteam",
+          "quote": "Der Einwand zu Vorgang157 lautet: Die Umstellung spart Zeit, belastet aber das Supportteam. Welche Antwort trifft den stärksten Punkt?",
           "correctIndex": 0,
           "correctAnswer": "Für Vorgang157 sollten wir den Zeitgewinn gegen den zusätzlichen Supportaufwand messen und Ressourcen dafür einplanen.",
           "lexicalLinks": [
@@ -1821,7 +1821,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Vorgang158: „Ich unterstütze einen Test",
+          "quote": "Mira sagt zu Vorgang158: „Ich unterstütze einen Test, aber nur mit klarer Abbruchregel und freiwilliger Teilnahme.“ Welche Zusammenfassung ist korrekt?",
           "correctIndex": 1,
           "correctAnswer": "Mira befürwortet bei Vorgang158 einen begrenzten freiwilligen Test mit Abbruchregel.",
           "lexicalLinks": [
@@ -1876,7 +1876,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Vorgang159 möchte Nora einen bisher fehlenden Aspekt ergänzen",
+          "quote": "In einer lebhaften Diskussion zu Vorgang159 möchte Nora einen bisher fehlenden Aspekt ergänzen. Welche Formulierung wahrt das Rederecht der anderen?",
           "correctIndex": 2,
           "correctAnswer": "Darf ich zu Vorgang159 kurz ergänzen, wie sich das auf die Umsetzung auswirkt?",
           "lexicalLinks": [
@@ -1931,7 +1931,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Vorgang160: „Kannst du mir die Zahlen heute noch schicken?“",
+          "quote": "Im Teamchat steht zu Vorgang160: „Kannst du mir die Zahlen heute noch schicken?“ Welche formelle E-Mail-Fassung bewahrt die Absicht?",
           "correctIndex": 3,
           "correctAnswer": "Könnten Sie mir die Zahlen zu Vorgang160 bitte noch heute übermitteln?",
           "lexicalLinks": [

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 3,
-  "bankVersion": "20260801-2",
+  "bankVersion": "2026-08-01.2",
   "language": "de",
   "level": "A2",
   "questions": [
@@ -970,7 +970,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang063: 48 m², 820 € warm, frei ab 1. September, ohne Aufzug",
+          "quote": "In der Anzeige steht: „Vorgang063: 48 m², 820 € warm, frei ab 1. September, ohne Aufzug.“ Welche Aussage stimmt?",
           "correctIndex": 2,
           "correctAnswer": "Vorgang063 ist ab 1. September für 820 Euro warm verfügbar.",
           "lexicalLinks": [
@@ -1025,7 +1025,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang064 war für Mittwoch 10 Uhr geplant. Bitte kommen Sie stattdessen Donnerstag um 14 Uhr",
+          "quote": "Die E-Mail lautet: „Vorgang064 war für Mittwoch 10 Uhr geplant. Bitte kommen Sie stattdessen Donnerstag um 14 Uhr.“ Was gilt jetzt?",
           "correctIndex": 3,
           "correctAnswer": "Vorgang064 findet am Donnerstag um 14 Uhr statt.",
           "lexicalLinks": [
@@ -1080,7 +1080,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang065 zuerst den grünen Knopf drücken, dann die Karte einführen",
+          "quote": "Die Anleitung sagt: „Für Vorgang065 zuerst den grünen Knopf drücken, dann die Karte einführen und zuletzt den Beleg nehmen.“ Was kommt als Zweites?",
           "correctIndex": 0,
           "correctAnswer": "Bei Vorgang065 wird als Zweites die Karte eingeführt.",
           "lexicalLinks": [
@@ -1135,7 +1135,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang066 heute geschlossen. Nutzen Sie den Weg an der Hauptstraße",
+          "quote": "Die Warnung lautet: „Wegen starkem Wind bleibt der Park bei Vorgang066 heute geschlossen. Nutzen Sie den Weg an der Hauptstraße.“ Was wird empfohlen?",
           "correctIndex": 1,
           "correctAnswer": "Bei Vorgang066 soll man den Weg an der Hauptstraße nutzen.",
           "lexicalLinks": [
@@ -1190,7 +1190,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang067: Abfahrt Köln 8:10, Ankunft Mainz 9:45, Anschluss nach Worms 10:05 auf Gleis 6",
+          "quote": "Der Reiseplan zeigt: „Vorgang067: Abfahrt Köln 8:10, Ankunft Mainz 9:45, Anschluss nach Worms 10:05 auf Gleis 6.“ Was ist richtig?",
           "correctIndex": 2,
           "correctAnswer": "Bei Vorgang067 fährt der Anschluss um 10:05 Uhr von Gleis 6.",
           "lexicalLinks": [
@@ -1245,7 +1245,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang068: Empfangskraft, 20 Stunden pro Woche, Bewerbungen per E-Mail bis Freitag",
+          "quote": "In der Anzeige steht: „Vorgang068: Empfangskraft, 20 Stunden pro Woche, Bewerbungen per E-Mail bis Freitag.“ Welche Aussage stimmt?",
           "correctIndex": 3,
           "correctAnswer": "Für Vorgang068 bewirbt man sich bis Freitag per E-Mail.",
           "lexicalLinks": [
@@ -1300,7 +1300,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang069 benötigen wir Ihren Ausweis und das unterschriebene Formular",
+          "quote": "Die Notiz lautet: „Für Vorgang069 benötigen wir Ihren Ausweis und das unterschriebene Formular. Danach erhalten Sie einen Abholtermin.“ Was ist zuerst nötig?",
           "correctIndex": 0,
           "correctAnswer": "Für Vorgang069 sind Ausweis und unterschriebenes Formular nötig.",
           "lexicalLinks": [
@@ -1355,7 +1355,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang070: Workshop am 6. Oktober, Stadtbibliothek, 12 €, Anmeldung erforderlich",
+          "quote": "Auf dem Plakat steht: „Vorgang070: Workshop am 6. Oktober, Stadtbibliothek, 12 €, Anmeldung erforderlich.“ Wer teilnehmen will, muss was tun?",
           "correctIndex": 1,
           "correctAnswer": "Für Vorgang070 muss man sich anmelden und zwölf Euro zahlen.",
           "lexicalLinks": [
@@ -1410,7 +1410,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Vorgang071 kam beschädigt an. Bitte schicken Sie einen Ersatz und senden Sie ein Rücksendeetikett",
+          "quote": "Die Nachricht lautet: „Vorgang071 kam beschädigt an. Bitte schicken Sie einen Ersatz und senden Sie ein Rücksendeetikett.“ Was wird verlangt?",
           "correctIndex": 2,
           "correctAnswer": "Für Vorgang071 werden Ersatz und Rücksendeetikett verlangt.",
           "lexicalLinks": [
@@ -1465,7 +1465,7 @@
       "knowledgeTarget": "textual-information",
       "answerEvidence": [
         {
-          "quote": "Bei Vorgang072 verpasste Leo morgens den Bus. Er nahm ein Taxi",
+          "quote": "Im Bericht steht: „Bei Vorgang072 verpasste Leo morgens den Bus. Er nahm ein Taxi und kam noch vor neun Uhr an.“ Was geschah nach dem Bus?",
           "correctIndex": 3,
           "correctAnswer": "Nach dem verpassten Bus nahm Leo für Vorgang072 ein Taxi.",
           "lexicalLinks": [
@@ -1520,7 +1520,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Kollegen zu Vorgang073 am Samstag um 18 Uhr",
+          "quote": "Mara lädt einen vertrauten Kollegen zu Vorgang073 am Samstag um 18 Uhr ein. Welche Nachricht passt?",
           "correctIndex": 0,
           "correctAnswer": "Hast du am Samstag um 18 Uhr Zeit für Vorgang073? Komm gern mit!",
           "lexicalLinks": [
@@ -1575,7 +1575,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "wegen einer Schicht nicht zu Vorgang074 kommen",
+          "quote": "Jonas kann wegen einer Schicht nicht zu Vorgang074 kommen. Welche Antwort ist passend?",
           "correctIndex": 1,
           "correctAnswer": "Danke für die Einladung zu Vorgang074, aber ich muss leider arbeiten.",
           "lexicalLinks": [
@@ -1630,7 +1630,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Praxis wegen Vorgang075 an",
+          "quote": "Nora ruft erstmals eine Praxis wegen Vorgang075 an. Welche Eröffnung ist klar?",
           "correctIndex": 2,
           "correctAnswer": "Guten Tag, hier ist Nora Klein; ich rufe wegen Vorgang075 an.",
           "lexicalLinks": [
@@ -1685,7 +1685,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Schritt zwei des Formulars zu Vorgang076 nicht",
+          "quote": "Felix versteht Schritt zwei des Formulars zu Vorgang076 nicht. Wie bittet er angemessen um Hilfe?",
           "correctIndex": 3,
           "correctAnswer": "Könnten Sie mir bitte Schritt zwei bei Vorgang076 erklären?",
           "lexicalLinks": [
@@ -1740,7 +1740,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Vorgang077 am Dienstag nicht wahrnehmen und ist Donnerstag frei",
+          "quote": "Aylin kann den Termin zu Vorgang077 am Dienstag nicht wahrnehmen und ist Donnerstag frei. Was schreibt sie?",
           "correctIndex": 0,
           "correctAnswer": "Könnten wir Vorgang077 bitte auf Donnerstag verschieben?",
           "lexicalLinks": [
@@ -1795,7 +1795,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "für Vorgang078 den frühen Zug, weil er pünktlicher ist",
+          "quote": "David wählt für Vorgang078 den frühen Zug, weil er pünktlicher ist. Welche Aussage passt?",
           "correctIndex": 1,
           "correctAnswer": "Ich nehme für Vorgang078 lieber den frühen Zug, weil er zuverlässiger ist.",
           "lexicalLinks": [
@@ -1850,7 +1850,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "Vorgang079 wurde der falsche Betrag berechnet",
+          "quote": "Bei Vorgang079 wurde der falsche Betrag berechnet. Welche Beschwerde ist sachlich und lösungsorientiert?",
           "correctIndex": 2,
           "correctAnswer": "Auf der Rechnung zu Vorgang079 steht ein falscher Betrag; könnten Sie ihn bitte prüfen?",
           "lexicalLinks": [
@@ -1905,7 +1905,7 @@
       "knowledgeTarget": "pragmatic-intent",
       "answerEvidence": [
         {
-          "quote": "wegen Vorgang080 müde und muss morgen früh beginnen",
+          "quote": "Ein Kollege ist wegen Vorgang080 müde und muss morgen früh beginnen. Welcher Rat passt?",
           "correctIndex": 3,
           "correctAnswer": "Du solltest heute wegen Vorgang080 früh schlafen gehen.",
           "lexicalLinks": [

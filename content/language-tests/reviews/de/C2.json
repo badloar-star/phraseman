@@ -1,7 +1,7 @@
 {
   "language": "de",
   "level": "C2",
-  "sourceSha256": "9fe7167ba237bb74bc1f9737ab5b1f8f55a79981b0131f74096b56090232cd2e",
+  "sourceSha256": "dbfe14ea22755bb7c0ee5f76dff2e946a49648fb0fbaba88271b2c53295ae526",
   "reviews": [
     {
       "id": "de-c2-001",
@@ -389,9 +389,9 @@
       "deterministicPass": "pass",
       "levelCoveragePass": "pass",
       "rationales": {
-        "1": "“Vorgang217 hat bereits ohne Freigabe begonnen.” contradicts or exceeds the supplied textual evidence “Vorgang217 beginnt nur, wenn Bericht und Freigabe vorliegen”; “Vorgang217 kann noch nicht beginnen.” preserves the stated detail and qualification.",
-        "2": "“Vorgang217 benötigt keinen Bericht mehr und ist abgeschlossen.” contradicts or exceeds the supplied textual evidence “Vorgang217 beginnt nur, wenn Bericht und Freigabe vorliegen”; “Vorgang217 kann noch nicht beginnen.” preserves the stated detail and qualification.",
-        "3": "“Vorgang217 beginnt zwingend heute Nachmittag.” contradicts or exceeds the supplied textual evidence “Vorgang217 beginnt nur, wenn Bericht und Freigabe vorliegen”; “Vorgang217 kann noch nicht beginnen.” preserves the stated detail and qualification."
+        "1": "“Vorgang217 hat bereits ohne Freigabe begonnen.” contradicts or exceeds the supplied textual evidence “Vorgang217 beginnt nur, wenn Bericht und Freigabe vorliegen. Für Vorgang217 liegt der Bericht vor, die Freigabe fehlt. Welche Folgerung ist zwingend?”; “Vorgang217 kann noch nicht beginnen.” preserves the stated detail and qualification.",
+        "2": "“Vorgang217 benötigt keinen Bericht mehr und ist abgeschlossen.” contradicts or exceeds the supplied textual evidence “Vorgang217 beginnt nur, wenn Bericht und Freigabe vorliegen. Für Vorgang217 liegt der Bericht vor, die Freigabe fehlt. Welche Folgerung ist zwingend?”; “Vorgang217 kann noch nicht beginnen.” preserves the stated detail and qualification.",
+        "3": "“Vorgang217 beginnt zwingend heute Nachmittag.” contradicts or exceeds the supplied textual evidence “Vorgang217 beginnt nur, wenn Bericht und Freigabe vorliegen. Für Vorgang217 liegt der Bericht vor, die Freigabe fehlt. Welche Folgerung ist zwingend?”; “Vorgang217 kann noch nicht beginnen.” preserves the stated detail and qualification."
       }
     },
     {
@@ -412,9 +412,9 @@
       "deterministicPass": "pass",
       "levelCoveragePass": "pass",
       "rationales": {
-        "0": "“Bei Vorgang218 betrifft der Einwand nur die Schreibweise des Vorschlags.” contradicts or exceeds the supplied textual evidence “Vorgang218 lautet: Jede kürzere Bearbeitungszeit senkt die Kosten”; “Bei Vorgang218 bestreitet der Einwand die Gleichsetzung von Zeitersparnis und Gesamtkostensenkung.” preserves the stated detail and qualification.",
-        "2": "“Bei Vorgang218 widerlegt der Einwand jede denkbare Zeitersparnis.” contradicts or exceeds the supplied textual evidence “Vorgang218 lautet: Jede kürzere Bearbeitungszeit senkt die Kosten”; “Bei Vorgang218 bestreitet der Einwand die Gleichsetzung von Zeitersparnis und Gesamtkostensenkung.” preserves the stated detail and qualification.",
-        "3": "“Bei Vorgang218 bestätigt der Einwand, dass Personal niemals Kosten verursacht.” contradicts or exceeds the supplied textual evidence “Vorgang218 lautet: Jede kürzere Bearbeitungszeit senkt die Kosten”; “Bei Vorgang218 bestreitet der Einwand die Gleichsetzung von Zeitersparnis und Gesamtkostensenkung.” preserves the stated detail and qualification."
+        "0": "“Bei Vorgang218 betrifft der Einwand nur die Schreibweise des Vorschlags.” contradicts or exceeds the supplied textual evidence “Der Hauptfall für Vorgang218 lautet: Jede kürzere Bearbeitungszeit senkt die Kosten. Der Einwand zeigt, dass zusätzliche Kontrollen zwar Zeit sparen, aber mehr Fachpersonal binden. Was trifft der Einwand?”; “Bei Vorgang218 bestreitet der Einwand die Gleichsetzung von Zeitersparnis und Gesamtkostensenkung.” preserves the stated detail and qualification.",
+        "2": "“Bei Vorgang218 widerlegt der Einwand jede denkbare Zeitersparnis.” contradicts or exceeds the supplied textual evidence “Der Hauptfall für Vorgang218 lautet: Jede kürzere Bearbeitungszeit senkt die Kosten. Der Einwand zeigt, dass zusätzliche Kontrollen zwar Zeit sparen, aber mehr Fachpersonal binden. Was trifft der Einwand?”; “Bei Vorgang218 bestreitet der Einwand die Gleichsetzung von Zeitersparnis und Gesamtkostensenkung.” preserves the stated detail and qualification.",
+        "3": "“Bei Vorgang218 bestätigt der Einwand, dass Personal niemals Kosten verursacht.” contradicts or exceeds the supplied textual evidence “Der Hauptfall für Vorgang218 lautet: Jede kürzere Bearbeitungszeit senkt die Kosten. Der Einwand zeigt, dass zusätzliche Kontrollen zwar Zeit sparen, aber mehr Fachpersonal binden. Was trifft der Einwand?”; “Bei Vorgang218 bestreitet der Einwand die Gleichsetzung von Zeitersparnis und Gesamtkostensenkung.” preserves the stated detail and qualification."
       }
     },
     {
@@ -435,9 +435,9 @@
       "deterministicPass": "pass",
       "levelCoveragePass": "pass",
       "rationales": {
-        "0": "“Bei Vorgang219 sind registrierte Nutzer ausdrücklich ausgeschlossen.” contradicts or exceeds the supplied textual evidence “Vorgang219 verbessert den Zugang für registrierte Nutzer, sofern sie mobile Geräte verwenden”; “Bei Vorgang219 gilt der mobile Vorteil registrierten Nutzern, während Gäste nur an betreuten Standorten erfasst sind.” preserves the stated detail and qualification.",
-        "1": "“Bei Vorgang219 bezieht sich die Standortbedingung ausschließlich auf mobile Geräte ohne Nutzer.” contradicts or exceeds the supplied textual evidence “Vorgang219 verbessert den Zugang für registrierte Nutzer, sofern sie mobile Geräte verwenden”; “Bei Vorgang219 gilt der mobile Vorteil registrierten Nutzern, während Gäste nur an betreuten Standorten erfasst sind.” preserves the stated detail and qualification.",
-        "3": "“Bei Vorgang219 gilt derselbe uneingeschränkte Vorteil für alle Gruppen überall.” contradicts or exceeds the supplied textual evidence “Vorgang219 verbessert den Zugang für registrierte Nutzer, sofern sie mobile Geräte verwenden”; “Bei Vorgang219 gilt der mobile Vorteil registrierten Nutzern, während Gäste nur an betreuten Standorten erfasst sind.” preserves the stated detail and qualification."
+        "0": "“Bei Vorgang219 sind registrierte Nutzer ausdrücklich ausgeschlossen.” contradicts or exceeds the supplied textual evidence “Der Bericht sagt: „Vorgang219 verbessert den Zugang für registrierte Nutzer, sofern sie mobile Geräte verwenden; für Gäste gilt der Befund nur an betreuten Standorten.“ Welche Reichweite ist korrekt?”; “Bei Vorgang219 gilt der mobile Vorteil registrierten Nutzern, während Gäste nur an betreuten Standorten erfasst sind.” preserves the stated detail and qualification.",
+        "1": "“Bei Vorgang219 bezieht sich die Standortbedingung ausschließlich auf mobile Geräte ohne Nutzer.” contradicts or exceeds the supplied textual evidence “Der Bericht sagt: „Vorgang219 verbessert den Zugang für registrierte Nutzer, sofern sie mobile Geräte verwenden; für Gäste gilt der Befund nur an betreuten Standorten.“ Welche Reichweite ist korrekt?”; “Bei Vorgang219 gilt der mobile Vorteil registrierten Nutzern, während Gäste nur an betreuten Standorten erfasst sind.” preserves the stated detail and qualification.",
+        "3": "“Bei Vorgang219 gilt derselbe uneingeschränkte Vorteil für alle Gruppen überall.” contradicts or exceeds the supplied textual evidence “Der Bericht sagt: „Vorgang219 verbessert den Zugang für registrierte Nutzer, sofern sie mobile Geräte verwenden; für Gäste gilt der Befund nur an betreuten Standorten.“ Welche Reichweite ist korrekt?”; “Bei Vorgang219 gilt der mobile Vorteil registrierten Nutzern, während Gäste nur an betreuten Standorten erfasst sind.” preserves the stated detail and qualification."
       }
     },
     {
@@ -458,9 +458,9 @@
       "deterministicPass": "pass",
       "levelCoveragePass": "pass",
       "rationales": {
-        "0": "“Bei Vorgang220 sind einzelne Erfahrungsberichte stärker als das große Experiment.” contradicts or exceeds the supplied textual evidence “Vorgang220 liegen ein großes kontrolliertes Experiment mit klarem Effekt”; “Bei Vorgang220 ist der experimentelle Befund am belastbarsten, während die übrigen Hinweise unsicherer bleiben.” preserves the stated detail and qualification.",
-        "1": "“Bei Vorgang220 beweisen alle Quellen exakt denselben Effekt.” contradicts or exceeds the supplied textual evidence “Vorgang220 liegen ein großes kontrolliertes Experiment mit klarem Effekt”; “Bei Vorgang220 ist der experimentelle Befund am belastbarsten, während die übrigen Hinweise unsicherer bleiben.” preserves the stated detail and qualification.",
-        "2": "“Bei Vorgang220 darf wegen gemischter Beobachtungen kein Befund erwähnt werden.” contradicts or exceeds the supplied textual evidence “Vorgang220 liegen ein großes kontrolliertes Experiment mit klarem Effekt”; “Bei Vorgang220 ist der experimentelle Befund am belastbarsten, während die übrigen Hinweise unsicherer bleiben.” preserves the stated detail and qualification."
+        "0": "“Bei Vorgang220 sind einzelne Erfahrungsberichte stärker als das große Experiment.” contradicts or exceeds the supplied textual evidence “Zu Vorgang220 liegen ein großes kontrolliertes Experiment mit klarem Effekt, zwei kleine Beobachtungen mit gemischten Ergebnissen und mehrere Erfahrungsberichte vor. Der Text gewichtet das Experiment am stärksten. Welche Aussage entspricht der Kalibrierung?”; “Bei Vorgang220 ist der experimentelle Befund am belastbarsten, während die übrigen Hinweise unsicherer bleiben.” preserves the stated detail and qualification.",
+        "1": "“Bei Vorgang220 beweisen alle Quellen exakt denselben Effekt.” contradicts or exceeds the supplied textual evidence “Zu Vorgang220 liegen ein großes kontrolliertes Experiment mit klarem Effekt, zwei kleine Beobachtungen mit gemischten Ergebnissen und mehrere Erfahrungsberichte vor. Der Text gewichtet das Experiment am stärksten. Welche Aussage entspricht der Kalibrierung?”; “Bei Vorgang220 ist der experimentelle Befund am belastbarsten, während die übrigen Hinweise unsicherer bleiben.” preserves the stated detail and qualification.",
+        "2": "“Bei Vorgang220 darf wegen gemischter Beobachtungen kein Befund erwähnt werden.” contradicts or exceeds the supplied textual evidence “Zu Vorgang220 liegen ein großes kontrolliertes Experiment mit klarem Effekt, zwei kleine Beobachtungen mit gemischten Ergebnissen und mehrere Erfahrungsberichte vor. Der Text gewichtet das Experiment am stärksten. Welche Aussage entspricht der Kalibrierung?”; “Bei Vorgang220 ist der experimentelle Befund am belastbarsten, während die übrigen Hinweise unsicherer bleiben.” preserves the stated detail and qualification."
       }
     },
     {
@@ -481,9 +481,9 @@
       "deterministicPass": "pass",
       "levelCoveragePass": "pass",
       "rationales": {
-        "1": "“Bei Vorgang221 müssen doppelte Eingaben grundsätzlich schneller sein.” contradicts or exceeds the supplied textual evidence “Vorgang221 reduziert doppelte Eingaben. Weniger doppelte Eingaben verkürzen die Nachbearbeitung”; “Bei Vorgang221 setzt kürzere Nachbearbeitung insgesamt weniger Bearbeitungszeit voraus.” preserves the stated detail and qualification.",
-        "2": "“Bei Vorgang221 darf Nachbearbeitung keine Zeit beanspruchen.” contradicts or exceeds the supplied textual evidence “Vorgang221 reduziert doppelte Eingaben. Weniger doppelte Eingaben verkürzen die Nachbearbeitung”; “Bei Vorgang221 setzt kürzere Nachbearbeitung insgesamt weniger Bearbeitungszeit voraus.” preserves the stated detail and qualification.",
-        "3": "“Bei Vorgang221 folgt aus weniger Eingaben automatisch eine höhere Gebühr.” contradicts or exceeds the supplied textual evidence “Vorgang221 reduziert doppelte Eingaben. Weniger doppelte Eingaben verkürzen die Nachbearbeitung”; “Bei Vorgang221 setzt kürzere Nachbearbeitung insgesamt weniger Bearbeitungszeit voraus.” preserves the stated detail and qualification."
+        "1": "“Bei Vorgang221 müssen doppelte Eingaben grundsätzlich schneller sein.” contradicts or exceeds the supplied textual evidence “Der Text argumentiert: „Vorgang221 reduziert doppelte Eingaben. Weniger doppelte Eingaben verkürzen die Nachbearbeitung.“ Welche Brücke führt zur Schlussfolgerung über Zeit?”; “Bei Vorgang221 setzt kürzere Nachbearbeitung insgesamt weniger Bearbeitungszeit voraus.” preserves the stated detail and qualification.",
+        "2": "“Bei Vorgang221 darf Nachbearbeitung keine Zeit beanspruchen.” contradicts or exceeds the supplied textual evidence “Der Text argumentiert: „Vorgang221 reduziert doppelte Eingaben. Weniger doppelte Eingaben verkürzen die Nachbearbeitung.“ Welche Brücke führt zur Schlussfolgerung über Zeit?”; “Bei Vorgang221 setzt kürzere Nachbearbeitung insgesamt weniger Bearbeitungszeit voraus.” preserves the stated detail and qualification.",
+        "3": "“Bei Vorgang221 folgt aus weniger Eingaben automatisch eine höhere Gebühr.” contradicts or exceeds the supplied textual evidence “Der Text argumentiert: „Vorgang221 reduziert doppelte Eingaben. Weniger doppelte Eingaben verkürzen die Nachbearbeitung.“ Welche Brücke führt zur Schlussfolgerung über Zeit?”; “Bei Vorgang221 setzt kürzere Nachbearbeitung insgesamt weniger Bearbeitungszeit voraus.” preserves the stated detail and qualification."
       }
     },
     {
@@ -504,9 +504,9 @@
       "deterministicPass": "pass",
       "levelCoveragePass": "pass",
       "rationales": {
-        "0": "“Bei Vorgang222 verzichtet der Autor auf jede Bewertung der Behauptung.” contradicts or exceeds the supplied textual evidence “Vorgang222 nennt den Plan laut Verband „alternativlos“”; “Bei Vorgang222 distanziert sich der Autor von der behaupteten Alternativlosigkeit.” preserves the stated detail and qualification.",
-        "2": "“Bei Vorgang222 übernimmt der Autor die Verbandsaussage vorbehaltlos.” contradicts or exceeds the supplied textual evidence “Vorgang222 nennt den Plan laut Verband „alternativlos“”; “Bei Vorgang222 distanziert sich der Autor von der behaupteten Alternativlosigkeit.” preserves the stated detail and qualification.",
-        "3": "“Bei Vorgang222 hält der Autor die zwei Alternativen für sprachlich unmöglich.” contradicts or exceeds the supplied textual evidence “Vorgang222 nennt den Plan laut Verband „alternativlos“”; “Bei Vorgang222 distanziert sich der Autor von der behaupteten Alternativlosigkeit.” preserves the stated detail and qualification."
+        "0": "“Bei Vorgang222 verzichtet der Autor auf jede Bewertung der Behauptung.” contradicts or exceeds the supplied textual evidence “Der Essay zu Vorgang222 nennt den Plan laut Verband „alternativlos“, setzt das Wort aber in Anführungszeichen und verweist danach auf zwei praktikable Alternativen. Welche Haltung zeigt der Autor?”; “Bei Vorgang222 distanziert sich der Autor von der behaupteten Alternativlosigkeit.” preserves the stated detail and qualification.",
+        "2": "“Bei Vorgang222 übernimmt der Autor die Verbandsaussage vorbehaltlos.” contradicts or exceeds the supplied textual evidence “Der Essay zu Vorgang222 nennt den Plan laut Verband „alternativlos“, setzt das Wort aber in Anführungszeichen und verweist danach auf zwei praktikable Alternativen. Welche Haltung zeigt der Autor?”; “Bei Vorgang222 distanziert sich der Autor von der behaupteten Alternativlosigkeit.” preserves the stated detail and qualification.",
+        "3": "“Bei Vorgang222 hält der Autor die zwei Alternativen für sprachlich unmöglich.” contradicts or exceeds the supplied textual evidence “Der Essay zu Vorgang222 nennt den Plan laut Verband „alternativlos“, setzt das Wort aber in Anführungszeichen und verweist danach auf zwei praktikable Alternativen. Welche Haltung zeigt der Autor?”; “Bei Vorgang222 distanziert sich der Autor von der behaupteten Alternativlosigkeit.” preserves the stated detail and qualification."
       }
     },
     {
@@ -527,9 +527,9 @@
       "deterministicPass": "pass",
       "levelCoveragePass": "pass",
       "rationales": {
-        "0": "“Bei Vorgang223 beziehen sich die Fristen auf ein anderes, nicht genanntes Thema.” contradicts or exceeds the supplied textual evidence “Vorgang223 als „Meisterstück der Pünktlichkeit“”; “Bei Vorgang223 kritisiert das scheinbare Lob ironisch die wiederholte Unpünktlichkeit.” preserves the stated detail and qualification.",
-        "1": "“Bei Vorgang223 drückt der Autor nur Freude über die Zahl vier aus.” contradicts or exceeds the supplied textual evidence “Vorgang223 als „Meisterstück der Pünktlichkeit“”; “Bei Vorgang223 kritisiert das scheinbare Lob ironisch die wiederholte Unpünktlichkeit.” preserves the stated detail and qualification.",
-        "3": "“Bei Vorgang223 ist das Lob wörtlich und durch perfekte Termine belegt.” contradicts or exceeds the supplied textual evidence “Vorgang223 als „Meisterstück der Pünktlichkeit“”; “Bei Vorgang223 kritisiert das scheinbare Lob ironisch die wiederholte Unpünktlichkeit.” preserves the stated detail and qualification."
+        "0": "“Bei Vorgang223 beziehen sich die Fristen auf ein anderes, nicht genanntes Thema.” contradicts or exceeds the supplied textual evidence “Der Kommentar lobt Vorgang223 als „Meisterstück der Pünktlichkeit“. Danach zählt er vier verpasste Fristen und zwei ungeklärte Verzögerungen auf. Welche Lesart ist begründet?”; “Bei Vorgang223 kritisiert das scheinbare Lob ironisch die wiederholte Unpünktlichkeit.” preserves the stated detail and qualification.",
+        "1": "“Bei Vorgang223 drückt der Autor nur Freude über die Zahl vier aus.” contradicts or exceeds the supplied textual evidence “Der Kommentar lobt Vorgang223 als „Meisterstück der Pünktlichkeit“. Danach zählt er vier verpasste Fristen und zwei ungeklärte Verzögerungen auf. Welche Lesart ist begründet?”; “Bei Vorgang223 kritisiert das scheinbare Lob ironisch die wiederholte Unpünktlichkeit.” preserves the stated detail and qualification.",
+        "3": "“Bei Vorgang223 ist das Lob wörtlich und durch perfekte Termine belegt.” contradicts or exceeds the supplied textual evidence “Der Kommentar lobt Vorgang223 als „Meisterstück der Pünktlichkeit“. Danach zählt er vier verpasste Fristen und zwei ungeklärte Verzögerungen auf. Welche Lesart ist begründet?”; “Bei Vorgang223 kritisiert das scheinbare Lob ironisch die wiederholte Unpünktlichkeit.” preserves the stated detail and qualification."
       }
     },
     {
@@ -550,9 +550,9 @@
       "deterministicPass": "pass",
       "levelCoveragePass": "pass",
       "rationales": {
-        "0": "“Bei Vorgang224 ist jedes technische Detail gleichrangig zentral.” contradicts or exceeds the supplied textual evidence “Vorgang224 nennt zuerst mehrere technische Details, kehrt aber in jedem Absatz zur fehlenden Zuständigkeit zurück”; “Bei Vorgang224 ist die ungeklärte Zuständigkeit das argumentative Zentrum.” preserves the stated detail and qualification.",
-        "1": "“Bei Vorgang224 spielt Zuständigkeit nur in einer Fußnote eine Rolle.” contradicts or exceeds the supplied textual evidence “Vorgang224 nennt zuerst mehrere technische Details, kehrt aber in jedem Absatz zur fehlenden Zuständigkeit zurück”; “Bei Vorgang224 ist die ungeklärte Zuständigkeit das argumentative Zentrum.” preserves the stated detail and qualification.",
-        "2": "“Bei Vorgang224 ordnet allein die Absatzlänge das Argument.” contradicts or exceeds the supplied textual evidence “Vorgang224 nennt zuerst mehrere technische Details, kehrt aber in jedem Absatz zur fehlenden Zuständigkeit zurück”; “Bei Vorgang224 ist die ungeklärte Zuständigkeit das argumentative Zentrum.” preserves the stated detail and qualification."
+        "0": "“Bei Vorgang224 ist jedes technische Detail gleichrangig zentral.” contradicts or exceeds the supplied textual evidence “Der Text zu Vorgang224 nennt zuerst mehrere technische Details, kehrt aber in jedem Absatz zur fehlenden Zuständigkeit zurück und setzt sie in den Schlusssatz. Welcher Punkt organisiert das Argument?”; “Bei Vorgang224 ist die ungeklärte Zuständigkeit das argumentative Zentrum.” preserves the stated detail and qualification.",
+        "1": "“Bei Vorgang224 spielt Zuständigkeit nur in einer Fußnote eine Rolle.” contradicts or exceeds the supplied textual evidence “Der Text zu Vorgang224 nennt zuerst mehrere technische Details, kehrt aber in jedem Absatz zur fehlenden Zuständigkeit zurück und setzt sie in den Schlusssatz. Welcher Punkt organisiert das Argument?”; “Bei Vorgang224 ist die ungeklärte Zuständigkeit das argumentative Zentrum.” preserves the stated detail and qualification.",
+        "2": "“Bei Vorgang224 ordnet allein die Absatzlänge das Argument.” contradicts or exceeds the supplied textual evidence “Der Text zu Vorgang224 nennt zuerst mehrere technische Details, kehrt aber in jedem Absatz zur fehlenden Zuständigkeit zurück und setzt sie in den Schlusssatz. Welcher Punkt organisiert das Argument?”; “Bei Vorgang224 ist die ungeklärte Zuständigkeit das argumentative Zentrum.” preserves the stated detail and qualification."
       }
     },
     {
@@ -573,9 +573,9 @@
       "deterministicPass": "pass",
       "levelCoveragePass": "pass",
       "rationales": {
-        "1": "“Bei Vorgang225 gehört der Bericht zwingend Mara.” contradicts or exceeds the supplied textual evidence “Vorgang225 nach ihrem Bericht gefragt”; “Bei Vorgang225 gehört der Bericht im Kontext Nora.” preserves the stated detail and qualification.",
-        "2": "“Bei Vorgang225 gehört der Bericht beiden zugleich.” contradicts or exceeds the supplied textual evidence “Vorgang225 nach ihrem Bericht gefragt”; “Bei Vorgang225 gehört der Bericht im Kontext Nora.” preserves the stated detail and qualification.",
-        "3": "“Bei Vorgang225 bleibt die Referenz trotz des Folgesatzes völlig unentscheidbar.” contradicts or exceeds the supplied textual evidence “Vorgang225 nach ihrem Bericht gefragt”; “Bei Vorgang225 gehört der Bericht im Kontext Nora.” preserves the stated detail and qualification."
+        "1": "“Bei Vorgang225 gehört der Bericht zwingend Mara.” contradicts or exceeds the supplied textual evidence “Zunächst heißt es, Mara habe Nora bei Vorgang225 nach ihrem Bericht gefragt; „ihrem“ könnte beiden gehören. Der nächste Satz sagt, Nora habe den Bericht am Vorabend fertiggestellt. Welche Referenz wird dadurch gestützt?”; “Bei Vorgang225 gehört der Bericht im Kontext Nora.” preserves the stated detail and qualification.",
+        "2": "“Bei Vorgang225 gehört der Bericht beiden zugleich.” contradicts or exceeds the supplied textual evidence “Zunächst heißt es, Mara habe Nora bei Vorgang225 nach ihrem Bericht gefragt; „ihrem“ könnte beiden gehören. Der nächste Satz sagt, Nora habe den Bericht am Vorabend fertiggestellt. Welche Referenz wird dadurch gestützt?”; “Bei Vorgang225 gehört der Bericht im Kontext Nora.” preserves the stated detail and qualification.",
+        "3": "“Bei Vorgang225 bleibt die Referenz trotz des Folgesatzes völlig unentscheidbar.” contradicts or exceeds the supplied textual evidence “Zunächst heißt es, Mara habe Nora bei Vorgang225 nach ihrem Bericht gefragt; „ihrem“ könnte beiden gehören. Der nächste Satz sagt, Nora habe den Bericht am Vorabend fertiggestellt. Welche Referenz wird dadurch gestützt?”; “Bei Vorgang225 gehört der Bericht im Kontext Nora.” preserves the stated detail and qualification."
       }
     },
     {
@@ -596,9 +596,9 @@
       "deterministicPass": "pass",
       "levelCoveragePass": "pass",
       "rationales": {
-        "0": "“Bei Vorgang226 stimmen beide nur über die Farbe der Unterlagen überein.” contradicts or exceeds the supplied textual evidence “Vorgang226 fordert eine schnelle Pilotphase, aber keine Pflicht”; “Bei Vorgang226 akzeptieren beide einen begrenzten Test und keine sofortige Verpflichtung.” preserves the stated detail and qualification.",
-        "2": "“Bei Vorgang226 verlangen beide sofort eine dauerhafte Pflicht.” contradicts or exceeds the supplied textual evidence “Vorgang226 fordert eine schnelle Pilotphase, aber keine Pflicht”; “Bei Vorgang226 akzeptieren beide einen begrenzten Test und keine sofortige Verpflichtung.” preserves the stated detail and qualification.",
-        "3": "“Bei Vorgang226 lehnt Text A jeden Test ab, Text B jede Evaluation.” contradicts or exceeds the supplied textual evidence “Vorgang226 fordert eine schnelle Pilotphase, aber keine Pflicht”; “Bei Vorgang226 akzeptieren beide einen begrenzten Test und keine sofortige Verpflichtung.” preserves the stated detail and qualification."
+        "0": "“Bei Vorgang226 stimmen beide nur über die Farbe der Unterlagen überein.” contradicts or exceeds the supplied textual evidence “Text A zu Vorgang226 fordert eine schnelle Pilotphase, aber keine Pflicht. Text B akzeptiert einen Pilotversuch nur mit unabhängiger Evaluation und lehnt ebenfalls eine sofortige Pflicht ab. Wo stimmen beide überein?”; “Bei Vorgang226 akzeptieren beide einen begrenzten Test und keine sofortige Verpflichtung.” preserves the stated detail and qualification.",
+        "2": "“Bei Vorgang226 verlangen beide sofort eine dauerhafte Pflicht.” contradicts or exceeds the supplied textual evidence “Text A zu Vorgang226 fordert eine schnelle Pilotphase, aber keine Pflicht. Text B akzeptiert einen Pilotversuch nur mit unabhängiger Evaluation und lehnt ebenfalls eine sofortige Pflicht ab. Wo stimmen beide überein?”; “Bei Vorgang226 akzeptieren beide einen begrenzten Test und keine sofortige Verpflichtung.” preserves the stated detail and qualification.",
+        "3": "“Bei Vorgang226 lehnt Text A jeden Test ab, Text B jede Evaluation.” contradicts or exceeds the supplied textual evidence “Text A zu Vorgang226 fordert eine schnelle Pilotphase, aber keine Pflicht. Text B akzeptiert einen Pilotversuch nur mit unabhängiger Evaluation und lehnt ebenfalls eine sofortige Pflicht ab. Wo stimmen beide überein?”; “Bei Vorgang226 akzeptieren beide einen begrenzten Test und keine sofortige Verpflichtung.” preserves the stated detail and qualification."
       }
     },
     {
@@ -619,9 +619,9 @@
       "deterministicPass": "pass",
       "levelCoveragePass": "pass",
       "rationales": {
-        "0": "“Vorgang227 garantiert erst Erfolg und verschweigt anschließend jede Grenze.” contradicts or exceeds the supplied textual evidence “Vorgang227 erklärt zunächst das Verfahren, nennt anschließend Grenzen der Daten”; “Vorgang227 informiert, qualifiziert die Evidenz und wirbt dann für einen begrenzten Test.” preserves the stated detail and qualification.",
-        "1": "“Vorgang227 listet ausschließlich Definitionen ohne Handlungsabsicht.” contradicts or exceeds the supplied textual evidence “Vorgang227 erklärt zunächst das Verfahren, nennt anschließend Grenzen der Daten”; “Vorgang227 informiert, qualifiziert die Evidenz und wirbt dann für einen begrenzten Test.” preserves the stated detail and qualification.",
-        "3": "“Vorgang227 erzählt nur eine private Anekdote ohne Argument.” contradicts or exceeds the supplied textual evidence “Vorgang227 erklärt zunächst das Verfahren, nennt anschließend Grenzen der Daten”; “Vorgang227 informiert, qualifiziert die Evidenz und wirbt dann für einen begrenzten Test.” preserves the stated detail and qualification."
+        "0": "“Vorgang227 garantiert erst Erfolg und verschweigt anschließend jede Grenze.” contradicts or exceeds the supplied textual evidence “Der Beitrag zu Vorgang227 erklärt zunächst das Verfahren, nennt anschließend Grenzen der Daten und endet mit einem Aufruf zu einem kontrollierten Versuch. Welche Schichtung beschreibt ihn?”; “Vorgang227 informiert, qualifiziert die Evidenz und wirbt dann für einen begrenzten Test.” preserves the stated detail and qualification.",
+        "1": "“Vorgang227 listet ausschließlich Definitionen ohne Handlungsabsicht.” contradicts or exceeds the supplied textual evidence “Der Beitrag zu Vorgang227 erklärt zunächst das Verfahren, nennt anschließend Grenzen der Daten und endet mit einem Aufruf zu einem kontrollierten Versuch. Welche Schichtung beschreibt ihn?”; “Vorgang227 informiert, qualifiziert die Evidenz und wirbt dann für einen begrenzten Test.” preserves the stated detail and qualification.",
+        "3": "“Vorgang227 erzählt nur eine private Anekdote ohne Argument.” contradicts or exceeds the supplied textual evidence “Der Beitrag zu Vorgang227 erklärt zunächst das Verfahren, nennt anschließend Grenzen der Daten und endet mit einem Aufruf zu einem kontrollierten Versuch. Welche Schichtung beschreibt ihn?”; “Vorgang227 informiert, qualifiziert die Evidenz und wirbt dann für einen begrenzten Test.” preserves the stated detail and qualification."
       }
     },
     {
@@ -642,9 +642,9 @@
       "deterministicPass": "pass",
       "levelCoveragePass": "pass",
       "rationales": {
-        "0": "“Vorgang228 ist unabhängig von Finanzierung und Fehlerquote überall empfehlenswert.” contradicts or exceeds the supplied textual evidence “Vorgang228 ist empfehlenswert, wenn die Finanzierung zwei Jahre gesichert ist”; “Unter den genannten Bedingungen ist Vorgang228 für diesen regulären Standort empfehlenswert.” preserves the stated detail and qualification.",
-        "1": "“Vorgang228 ist wegen der Ausnahme für Notfallstandorte auch am regulären Standort ausgeschlossen.” contradicts or exceeds the supplied textual evidence “Vorgang228 ist empfehlenswert, wenn die Finanzierung zwei Jahre gesichert ist”; “Unter den genannten Bedingungen ist Vorgang228 für diesen regulären Standort empfehlenswert.” preserves the stated detail and qualification.",
-        "2": "“Vorgang228 kann trotz erfüllter Bedingungen logisch nur abgelehnt werden.” contradicts or exceeds the supplied textual evidence “Vorgang228 ist empfehlenswert, wenn die Finanzierung zwei Jahre gesichert ist”; “Unter den genannten Bedingungen ist Vorgang228 für diesen regulären Standort empfehlenswert.” preserves the stated detail and qualification."
+        "0": "“Vorgang228 ist unabhängig von Finanzierung und Fehlerquote überall empfehlenswert.” contradicts or exceeds the supplied textual evidence “Der Bericht sagt: „Vorgang228 ist empfehlenswert, wenn die Finanzierung zwei Jahre gesichert ist und die Fehlerquote im Pilot unter fünf Prozent bleibt; für Notfallstandorte gilt diese Empfehlung nicht.“ Die Finanzierung steht, die Quote liegt bei vier Prozent, der Standort ist regulär. Was folgt?”; “Unter den genannten Bedingungen ist Vorgang228 für diesen regulären Standort empfehlenswert.” preserves the stated detail and qualification.",
+        "1": "“Vorgang228 ist wegen der Ausnahme für Notfallstandorte auch am regulären Standort ausgeschlossen.” contradicts or exceeds the supplied textual evidence “Der Bericht sagt: „Vorgang228 ist empfehlenswert, wenn die Finanzierung zwei Jahre gesichert ist und die Fehlerquote im Pilot unter fünf Prozent bleibt; für Notfallstandorte gilt diese Empfehlung nicht.“ Die Finanzierung steht, die Quote liegt bei vier Prozent, der Standort ist regulär. Was folgt?”; “Unter den genannten Bedingungen ist Vorgang228 für diesen regulären Standort empfehlenswert.” preserves the stated detail and qualification.",
+        "2": "“Vorgang228 kann trotz erfüllter Bedingungen logisch nur abgelehnt werden.” contradicts or exceeds the supplied textual evidence “Der Bericht sagt: „Vorgang228 ist empfehlenswert, wenn die Finanzierung zwei Jahre gesichert ist und die Fehlerquote im Pilot unter fünf Prozent bleibt; für Notfallstandorte gilt diese Empfehlung nicht.“ Die Finanzierung steht, die Quote liegt bei vier Prozent, der Standort ist regulär. Was folgt?”; “Unter den genannten Bedingungen ist Vorgang228 für diesen regulären Standort empfehlenswert.” preserves the stated detail and qualification."
       }
     },
     {

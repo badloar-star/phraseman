@@ -16,7 +16,7 @@ function loadI18n() {
 
 class Element {
   constructor(tag = 'div') { this.tagName = tag; this.children = []; this.parentNode = null; this.dataset = {}; this.style = {}; this.attributes = {}; this.listeners = {}; this.className = ''; this.classList = { add: (name) => { if (!this.className.split(/\s+/).includes(name)) this.className += ` ${name}`; }, remove: (name) => { this.className = this.className.split(/\s+/).filter((item) => item && item !== name).join(' '); } }; this.textContent = ''; this.offsetParent = this; this.isConnected = true; }
-  set innerHTML(markup) { this._html = markup; this.children = []; const add = (tag, attrs, content = '') => { const el = new Element(tag); el.className = (attrs.match(/class="([^"]*)"/) || [, ''])[1]; const id = (attrs.match(/id="([^"]*)"/) || [, ''])[1]; if (id) el.attributes.id = id; for (const [, key, value] of attrs.matchAll(/data-([\w-]+)="([^"]*)"/g)) el.dataset[key.replace(/-([a-z])/g, (_, c) => c.toUpperCase())] = value; for (const [, key, value] of attrs.matchAll(/(aria-[\w-]+)="([^"]*)"/g)) el.attributes[key] = value; el.textContent = content.replace(/<[^>]+>/g, '').trim(); this.appendChild(el); return el; }; for (const match of markup.matchAll(/<div([^>]*)>/g)) add('div', match[1]); for (const match of markup.matchAll(/<p([^>]*)>([\s\S]*?)<\/p>/g)) add('p', match[1], match[2]); for (const match of markup.matchAll(/<span([^>]*)>/g)) add('span', match[1]); for (const match of markup.matchAll(/<input([^>]*)>/g)) { const input = add('input', match[1]); input.value = (match[1].match(/value="([^"]*)"/) || [, ''])[1]; } for (const match of markup.matchAll(/<button([^>]*)>([\s\S]*?)<\/button>/g)) { const button = add('button', match[1], match[2]); if (match[2].includes('elt-cert-theme-name')) { const label = new Element('span'); label.className = 'elt-cert-theme-name'; button.appendChild(label); } } const area = new Element('div'); area.attributes.id = 'certRenderArea'; area._html = markup.match(/<div class="elt-cert-wrap" id="certRenderArea">([\s\S]*?)<\/div>/)?.[1] || ''; this.appendChild(area); }
+  set innerHTML(markup) { this._html = markup; this.children = []; const add = (tag, attrs, content = '') => { const el = new Element(tag); el.className = (attrs.match(/class="([^"]*)"/) || [, ''])[1]; const id = (attrs.match(/id="([^"]*)"/) || [, ''])[1]; const title = (attrs.match(/title="([^"]*)"/) || [, ''])[1]; if (id) el.attributes.id = id; if (title) el.attributes.title = title; for (const [, key, value] of attrs.matchAll(/data-([\w-]+)="([^"]*)"/g)) el.dataset[key.replace(/-([a-z])/g, (_, c) => c.toUpperCase())] = value; for (const [, key, value] of attrs.matchAll(/(aria-[\w-]+)="([^"]*)"/g)) el.attributes[key] = value; el.textContent = content.replace(/<[^>]+>/g, '').trim(); this.appendChild(el); return el; }; for (const match of markup.matchAll(/<div([^>]*)>/g)) add('div', match[1]); for (const match of markup.matchAll(/<p([^>]*)>([\s\S]*?)<\/p>/g)) add('p', match[1], match[2]); for (const match of markup.matchAll(/<span([^>]*)>/g)) add('span', match[1]); for (const match of markup.matchAll(/<input([^>]*)>/g)) { const input = add('input', match[1]); input.value = (match[1].match(/value="([^"]*)"/) || [, ''])[1]; } for (const match of markup.matchAll(/<button([^>]*)>([\s\S]*?)<\/button>/g)) { const button = add('button', match[1], match[2]); if (match[2].includes('elt-cert-theme-name')) { const label = new Element('span'); label.className = 'elt-cert-theme-name'; button.appendChild(label); } } const area = new Element('div'); area.attributes.id = 'certRenderArea'; area._html = markup.match(/<div class="elt-cert-wrap" id="certRenderArea">([\s\S]*?)<\/div>/)?.[1] || ''; this.appendChild(area); }
   get innerHTML() { return this._html || ''; }
   appendChild(el) { el.parentNode = this; el.ownerDocument = this.ownerDocument; this.children.push(el); return el; }
   remove() { this.parentNode?.children.splice(this.parentNode.children.indexOf(this), 1); this.isConnected = false; }
@@ -44,14 +44,19 @@ function modal(h) { return h.body.children.at(-1); }
 function svg(h) { return modal(h).querySelectorAll('#certRenderArea').find((area) => area.innerHTML.includes('<svg')).innerHTML; }
 function show(h, data = {}) { h.certificate.show({ name: 'Alex', result, uiLocale: 'en', testLanguage: 'de', ...data }); return modal(h); }
 function click(h, selector) { modal(h).querySelector(selector).click(); }
+function assertCertificateSurface(h, uiLocale, testLanguage, data = {}) {
+  const expectedResult = data.result || result; const expectedName = data.name || 'Alex'; const copy = (key, vars) => h.i18n.t(uiLocale, key, vars); const certificate = svg(h); const language = h.i18n.TESTS[testLanguage].certificateNames[uiLocale];
+  for (const text of [copy('certificate.bodyTitle'), copy('certificate.certifies'), expectedName, copy('certificate.completed', { language }), copy('certificate.received'), expectedResult.estimatedLevel, copy('certificate.summary', { correct: expectedResult.correct, answered: expectedResult.answered }), copy('certificate.informal')]) assert.ok(certificate.includes(text), `certificate body must include ${text}`);
+  for (const [selector, text] of [['#certDownloadPng', copy('certificate.downloadPng')], ['#certPrint', copy('certificate.printPdf')], ['#certClose', copy('certificate.close')], ['.elt-cert-cta-text', copy('certificate.ctaText')], ['#certCtaBtn', copy('certificate.ctaButton')]]) assert.equal(modal(h).querySelector(selector).textContent, text);
+  for (const [selector, text] of [['.elt-cert-container', copy('certificate.dialogLabel')], ['.elt-cert-close', copy('certificate.closeLabel')], ['.elt-cert-langs', copy('certificate.languageGroup')], ['.elt-cert-themes', copy('certificate.themeGroup')]]) assert.equal(modal(h).querySelector(selector).getAttribute('aria-label'), text);
+  for (const theme of ['gold', 'dark', 'emerald', 'rose', 'royal']) { const button = modal(h).querySelector(`[data-theme="${theme}"]`); const label = copy(`certificate.themes.${theme}`); assert.equal(button.querySelector('.elt-cert-theme-name').textContent, label); assert.equal(button.title, label); }
+  assert.equal(modal(h).querySelector(`[data-lang="${uiLocale}"]`).getAttribute('aria-pressed'), 'true');
+}
 
-test('public show renders every assessed language in both UI locales', () => {
+test('public show renders the complete localized certificate surface for every assessed language', () => {
   const h = harness();
   for (const uiLocale of ['en', 'ru']) for (const testLanguage of h.i18n.TEST_LANGUAGES) {
-    show(h, { uiLocale, testLanguage });
-    const expected = h.i18n.t(uiLocale, 'certificate.completed', { language: h.i18n.TESTS[testLanguage].certificateNames[uiLocale] });
-    assert.match(svg(h), new RegExp(expected));
-    assert.equal(modal(h).querySelector(`[data-lang="${uiLocale}"]`)?.getAttribute('aria-pressed'), 'true');
+    show(h, { uiLocale, testLanguage, cta: { url: 'https://example.test' } }); assertCertificateSurface(h, uiLocale, testLanguage);
   }
 });
 
@@ -60,11 +65,10 @@ test('public show resets locale and subject across sequential opens', () => {
   assert.match(svg(h), /Phraseman Spanish Level Check/); assert.match(svg(h), /Second/); assert.doesNotMatch(svg(h), /Первый/);
 });
 
-test('manual locale switch rerenders subject, controls, aria and English-learning CTA without changing test data', () => {
-  const h = harness(); show(h, { uiLocale: 'en', testLanguage: 'de', cta: { url: 'https://example.test' } }); click(h, '[data-lang="ru"]');
-  assert.match(svg(h), /немецкого языка/); assert.equal(modal(h).querySelector('.elt-cert-container').getAttribute('aria-label'), h.i18n.t('ru', 'certificate.dialogLabel'));
-  assert.equal(modal(h).querySelector('#certDownloadPng').textContent, h.i18n.t('ru', 'certificate.downloadPng'));
-  assert.match(modal(h).querySelector('.elt-cert-cta-text').textContent, /английск/i); assert.equal(modal(h).querySelector('[data-lang="ru"]').getAttribute('aria-pressed'), 'true');
+test('manual RU and EN locale switches update every localized surface without changing certificate data', () => {
+  const h = harness(); h.document.documentElement = { lang: 'en', setAttribute(_, value) { this.lang = value; } }; const data = { name: 'Ada', result: { ...result, estimatedLevel: 'C1' }, uiLocale: 'en', testLanguage: 'es', cta: { url: 'https://example.test' } };
+  show(h, data); click(h, '[data-theme="rose"]'); assertCertificateSurface(h, 'en', 'es', data); click(h, '[data-lang="ru"]'); assertCertificateSurface(h, 'ru', 'es', data); assert.ok(svg(h).includes('Ada')); assert.ok(svg(h).includes('C1')); assert.ok(svg(h).includes(h.i18n.t('ru', 'certificate.completed', { language: h.i18n.TESTS.es.certificateNames.ru }))); assert.ok(modal(h).querySelector('[data-theme="rose"]').className.includes('active')); assert.equal(h.document.documentElement.lang, 'en');
+  click(h, '[data-lang="en"]'); assertCertificateSurface(h, 'en', 'es', data); assert.ok(svg(h).includes('Ada')); assert.ok(svg(h).includes('C1')); assert.ok(svg(h).includes(h.i18n.t('en', 'certificate.completed', { language: h.i18n.TESTS.es.certificateNames.en }))); assert.ok(modal(h).querySelector('[data-theme="rose"]').className.includes('active')); assert.equal(h.document.documentElement.lang, 'en');
 });
 
 test('all five themes remain available and selected after a locale switch', () => {
@@ -84,8 +88,10 @@ test('normal PNG download uses active locale slug, Unicode learner name, level a
   assert.match(h.downloads.at(-1), /^phraseman-[\p{L}\p{N}-]+-level-(?:pre-a1|a1|a2|b1|b2|c1|c2|unknown)-[\p{L}\p{N}\p{M}-]+-(?:gold|dark|emerald|rose|royal)\.png$/u);
 });
 
-test('normal PNG rejects traversal controls and English switch updates German slug', async () => {
-  const h = harness(); show(h, { testLanguage: 'de', name: '../\\\u0000"..' }); click(h, '#certDownloadPng'); await new Promise((resolve) => setImmediate(resolve)); assert.equal(h.downloads.at(-1), 'phraseman-german-level-b2-learner-gold.png');
+test('public download rejects hostile name, level, and theme components while preserving normal Unicode names', async () => {
+  const hostileThemeSource = read('certificate.js').replace('currentTheme = btn.dataset.theme;', "currentTheme = '../evil';"); const hostile = harnessWithSource(hostileThemeSource); show(hostile, { testLanguage: 'de', name: '../\\\u0000"<>', result: { ...result, estimatedLevel: '../<script>' } }); click(hostile, '[data-theme="rose"]'); click(hostile, '#certDownloadPng'); await new Promise((resolve) => setImmediate(resolve));
+  assert.equal(hostile.downloads.at(-1), 'phraseman-german-level-unknown-learner-gold.png'); assert.doesNotMatch(hostile.downloads.at(-1), /[\\/<>"\u0000]|evil|script|\.\./);
+  const unicode = harness(); show(unicode, { testLanguage: 'de', name: 'Алексей 张伟 Élodie' }); click(unicode, '[data-theme="royal"]'); click(unicode, '[data-lang="ru"]'); click(unicode, '#certDownloadPng'); await new Promise((resolve) => setImmediate(resolve)); assert.equal(unicode.downloads.at(-1), 'phraseman-nemetskiy-yazyk-level-b2-алексей-张伟-élodie-royal.png');
 });
 
 test('actual PNG failure alerts in the currently selected locale', async () => {

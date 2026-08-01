@@ -59,6 +59,7 @@ import {
   type PublicTask, type RoomTaskTiming } from './tournament_client';
 import { useLocalSearchParams } from 'expo-router';
 import { getStableId, peekStableId } from './stable_id';
+import { answerFingerprint } from './tournament_answer_fingerprint';
 
 // зачем 2026-07-27 (владелец: «4 вопроса в раунде»): здесь лежала третья
 // версия одного и того же числа — сервер собирал 6 заданий, а клиент считал 5.
@@ -134,14 +135,26 @@ type Question = {
    * Отсутствует у старого формата с 4 вариантами на строку.
    */
   matchOptions?: string[];
+  answerFingerprints?: string[];
 };
+
+function localAnswerVerdict(
+  roomId: string | null,
+  task: Question,
+  answer: unknown,
+  itemIndex = task.itemIndex,
+): boolean | null {
+  const expected = task.answerFingerprints?.[itemIndex];
+  if (!roomId || typeof expected !== 'string') return null;
+  return answerFingerprint(roomId, task.taskId, answer) === expected;
+}
 
 /**
  * Публичное задание сервера → один или несколько вопросов экрана.
  *
- * зачем: сервер НЕ присылает правильный ответ (его вырезает publicPayload),
- * поэтому подсветку верного варианта показывать нечем. Мгновенный отклик даём
- * по факту нажатия, а очки считает сервер — так накрутить нельзя.
+ * зачем: publicPayload не раскрывает сырой ключ ответа, но содержит room-scoped
+ * отпечатки для мгновенной локальной окраски. Сетевой ответ не блокирует UI;
+ * очки и награды по-прежнему подтверждает сервер.
  *
  * Исторические режимы могут оставаться в старых документах для аудита, но
  * активный игровой экран их не интерпретирует и не показывает.
@@ -156,6 +169,7 @@ function taskToQuestions(task: PublicTask): Question[] {
     return [{
       taskId: task.taskId, mode: task.mode, kind: 'choice', prompt: 'Что это значит?', phrase, options,
       wordBank: [], requiredTokenCount: 0, itemIndex: 0, itemCount: 1,
+      answerFingerprints: task.answerFingerprints,
     }];
   }
   if (task.kind === 'match' && task.mode === 'speed_match') {
@@ -182,6 +196,7 @@ function taskToQuestions(task: PublicTask): Question[] {
       matchOptions: Array.isArray(payload.rightOptions)
         ? (payload.rightOptions as string[])
         : undefined,
+      answerFingerprints: task.answerFingerprints,
     }];
   }
   if (task.kind === 'translate' && task.mode === 'translate_build') {
@@ -196,6 +211,7 @@ function taskToQuestions(task: PublicTask): Question[] {
     return [{
       taskId: task.taskId, mode: task.mode, kind: 'translate', prompt: 'Собери фразу', phrase,
       options: [], wordBank, requiredTokenCount, itemIndex: 0, itemCount: 1,
+      answerFingerprints: task.answerFingerprints,
     }];
   }
   return [];
@@ -264,6 +280,9 @@ export default function TournamentRoundScreen() {
   // while the row itself remains available so the player can correct it.
   const [matchStars, setMatchStars] = useState(3);
   const [matchStatus, setMatchStatus] = useState<Record<number, MatchStatus>>({});
+  const [confirmedMatchPairs, setConfirmedMatchPairs] = useState<ReadonlySet<number>>(() => new Set());
+  const pendingMatchPairsRef = useRef(new Set<string>());
+  const activeMatchSelectionsRef = useRef(new Map<number, number>());
   const fxRef = useRef<TournamentFxApi>(null);
   const starCounterRef = useRef<View>(null);
   const streakPillRef = useRef<View>(null);
@@ -455,6 +474,9 @@ export default function TournamentRoundScreen() {
     setFeedbackCorrectIndex(null);
     setMatchStars(3);
     setMatchStatus({});
+    setConfirmedMatchPairs(new Set());
+    pendingMatchPairsRef.current.clear();
+    activeMatchSelectionsRef.current.clear();
   }, [questionKey]);
 
   // Таймер задания читает только абсолютное серверное окно. Локальные часы
@@ -497,6 +519,9 @@ export default function TournamentRoundScreen() {
     setPicked(null);
     setFeedbackCorrect(null);
     setMatchStatus({});
+    setConfirmedMatchPairs(new Set());
+    pendingMatchPairsRef.current.clear();
+    activeMatchSelectionsRef.current.clear();
     setPhase(nextQuestionTiming && tournamentNow() < nextQuestionTiming.startsAtMs ? 'reading' : 'question');
   }, [index, nextQuestionTiming, total, roomId, roundKey, roundNo, router]);
 
@@ -552,7 +577,11 @@ export default function TournamentRoundScreen() {
     }
   }, [forfeiting, roomId, router, runtimeActive]);
 
-  const submitCurrentTaskAnswer = useCallback(async (task: Question, optimisticAnswer: unknown) => {
+  const submitCurrentTaskAnswer = useCallback(async (
+    task: Question,
+    optimisticAnswer: unknown,
+    optimisticCorrect: boolean | null = null,
+  ) => {
     if (!roomId || pendingTaskSubmissionsRef.current.has(task.taskId)) return;
     const answer = taskAnswersRef.current.get(task.taskId) ?? optimisticAnswer;
     taskAnswersRef.current.set(task.taskId, answer);
@@ -565,12 +594,12 @@ export default function TournamentRoundScreen() {
     const submissionToken = `${roundKey}:${task.taskId}:${idempotencyKey}`;
     activeTaskSubmissionRef.current = submissionToken;
     pendingTaskSubmissionsRef.current.set(task.taskId, submissionToken);
-    // The tap completes this task in the local flow immediately. Correctness,
-    // stars, and standings still come exclusively from the server response.
+    // The tap completes and paints this task locally before any await. Scores,
+    // rewards, and standings still come exclusively from the server response.
     markTaskResolved(task.taskId);
     setNavigation({ roundKey, index });
     setPhase('feedback');
-    setFeedbackCorrect(null);
+    setFeedbackCorrect(optimisticCorrect);
     setFeedbackEarnedStars(null);
     setFeedbackZeroScoreReason(null);
     setFeedbackExplanation(null);
@@ -643,8 +672,9 @@ export default function TournamentRoundScreen() {
     const cached = taskAnswersRef.current.get(question.taskId) as { selectedIndex?: unknown } | undefined;
     const selectedIndex = typeof cached?.selectedIndex === 'number' ? cached.selectedIndex : optionIndex;
     setPicked(selectedIndex);
-    void submitCurrentTaskAnswer(question, { selectedIndex });
-  }, [phase, question, questionTiming, submitCurrentTaskAnswer]);
+    const localCorrect = localAnswerVerdict(roomId, question, selectedIndex);
+    void submitCurrentTaskAnswer(question, { selectedIndex }, localCorrect);
+  }, [phase, question, questionTiming, roomId, submitCurrentTaskAnswer]);
 
   /**
    * Подтверждение сборки фразы (translate) — вызывается, когда игрок собрал
@@ -655,51 +685,110 @@ export default function TournamentRoundScreen() {
   const answerTranslate = useCallback((tokens: string[]) => {
     if (phase !== 'question' || !question
       || !isTournamentAnswerWindowOpen(questionTiming, tournamentNow())) return;
-    void submitCurrentTaskAnswer(question, { tokens });
-  }, [phase, question, questionTiming, submitCurrentTaskAnswer]);
+    const localCorrect = localAnswerVerdict(roomId, question, tokens);
+    void submitCurrentTaskAnswer(question, { tokens }, localCorrect);
+  }, [phase, question, questionTiming, roomId, submitCurrentTaskAnswer]);
 
-  const pendingMatchPairsRef = useRef(new Set<string>());
-  const answerMatch = useCallback(async (pairIndex: number, selectedIndex: number): Promise<'correct' | 'wrong' | 'rejected'> => {
+  const answerMatch = useCallback((pairIndex: number, selectedIndex: number): Promise<'correct' | 'wrong' | 'rejected'> => {
     if (phase !== 'question' || question?.kind !== 'match' || !roomId
-      || !isTournamentAnswerWindowOpen(questionTiming, tournamentNow())) return 'rejected';
+      || !isTournamentAnswerWindowOpen(questionTiming, tournamentNow())) return Promise.resolve('rejected');
     const attemptQuestionKey = questionKey;
-    if (!attemptQuestionKey) return 'rejected';
-    const attemptKey = `${question.taskId}:${pairIndex}`;
-    if (matchStatus[pairIndex]?.verdict === 'correct') return 'rejected';
-    if (pendingMatchPairsRef.current.has(attemptKey)) return 'rejected';
+    if (!attemptQuestionKey) return Promise.resolve('rejected');
+    const attemptKey = `${question.taskId}:${pairIndex}:${selectedIndex}`;
+    if (matchStatus[pairIndex]?.verdict === 'correct') return Promise.resolve('rejected');
+    if (pendingMatchPairsRef.current.has(attemptKey)) return Promise.resolve('rejected');
     pendingMatchPairsRef.current.add(attemptKey);
+    activeMatchSelectionsRef.current.set(pairIndex, selectedIndex);
+    const localCorrect = localAnswerVerdict(roomId, question, selectedIndex, pairIndex);
     setMatchStatus((current) => {
       if (current[pairIndex]?.verdict !== 'wrong') return current;
       const next = { ...current };
       delete next[pairIndex];
       return next;
     });
-    try {
-      const result = await submitSpeedMatchAttempt(roomId, roundNo, question.taskId, pairIndex, selectedIndex);
-      if (!screenMountedRef.current || activeQuestionKeyRef.current !== attemptQuestionKey) return 'rejected';
-      const isCorrect = result.correct === true;
-      setMatchStatus((current) => ({
-        ...current,
-        [pairIndex]: { verdict: isCorrect ? 'correct' : 'wrong', selectedIndex },
-      }));
-      if (isCorrect) {
-        fk.correct();
-      } else {
-        fk.wrong();
-        setMatchStars((value) => Math.max(0, value - 1));
-      }
-      return isCorrect ? 'correct' : 'wrong';
-    } catch {
-      // No verdict is invented on network failure; both cards remain retryable.
-      if (!screenMountedRef.current || activeQuestionKeyRef.current !== attemptQuestionKey) return 'rejected';
-      return 'rejected';
-    } finally {
-      pendingMatchPairsRef.current.delete(attemptKey);
+    if (localCorrect === null) {
+      return (async () => {
+        try {
+          const result = await submitSpeedMatchAttempt(roomId, roundNo, question.taskId, pairIndex, selectedIndex);
+          if (!screenMountedRef.current || activeQuestionKeyRef.current !== attemptQuestionKey
+            || activeMatchSelectionsRef.current.get(pairIndex) !== selectedIndex) return 'rejected';
+          const isCorrect = result.correct === true;
+          setMatchStatus((current) => ({
+            ...current,
+            [pairIndex]: { verdict: isCorrect ? 'correct' : 'wrong', selectedIndex },
+          }));
+          if (isCorrect) {
+            setConfirmedMatchPairs((current) => new Set(current).add(pairIndex));
+            fk.correct();
+          } else {
+            fk.wrong();
+            setMatchStars((value) => Math.max(0, value - 1));
+          }
+          return isCorrect ? 'correct' : 'wrong';
+        } catch {
+          if (!screenMountedRef.current || activeQuestionKeyRef.current !== attemptQuestionKey) return 'rejected';
+          return 'rejected';
+        } finally {
+          pendingMatchPairsRef.current.delete(attemptKey);
+        }
+      })();
     }
+
+    const localVerdict = localCorrect ? 'correct' : 'wrong';
+    setMatchStatus((current) => ({
+      ...current,
+      [pairIndex]: { verdict: localVerdict, selectedIndex },
+    }));
+    if (localCorrect) {
+      fk.correct();
+    } else {
+      fk.wrong();
+      setMatchStars((value) => Math.max(0, value - 1));
+    }
+
+    void submitSpeedMatchAttempt(roomId, roundNo, question.taskId, pairIndex, selectedIndex)
+      .then((result) => {
+        if (!screenMountedRef.current || activeQuestionKeyRef.current !== attemptQuestionKey
+          || activeMatchSelectionsRef.current.get(pairIndex) !== selectedIndex) return;
+        const isCorrect = result.correct === true;
+        setConfirmedMatchPairs((current) => {
+          const next = new Set(current);
+          if (isCorrect) next.add(pairIndex);
+          else next.delete(pairIndex);
+          return next;
+        });
+        // Fingerprints are immediate UX hints, not an authority boundary.
+        // Reconcile silently so local haptics and star penalties do not repeat.
+        setMatchStatus((current) => ({
+          ...current,
+          [pairIndex]: { verdict: isCorrect ? 'correct' : 'wrong', selectedIndex },
+        }));
+      })
+      .catch(() => {
+        if (!screenMountedRef.current || activeQuestionKeyRef.current !== attemptQuestionKey
+          || activeMatchSelectionsRef.current.get(pairIndex) !== selectedIndex) return;
+        // A locally-correct pair cannot complete until the server confirms it.
+        if (localCorrect) {
+          setMatchStatus((current) => {
+            const existing = current[pairIndex];
+            if (existing?.selectedIndex !== selectedIndex || existing.verdict !== 'correct') return current;
+            const next = { ...current };
+            delete next[pairIndex];
+            return next;
+          });
+        }
+      })
+      .finally(() => {
+        pendingMatchPairsRef.current.delete(attemptKey);
+      });
+
+    return Promise.resolve(localVerdict);
   }, [phase, question, questionKey, questionTiming, roomId, roundNo, matchStatus]);
 
   const matchComplete = question?.kind === 'match'
-    && question.matchPairs?.every((_, pairIndex) => matchStatus[pairIndex]?.verdict === 'correct');
+    && question.matchPairs?.every((_, pairIndex) => (
+      matchStatus[pairIndex]?.verdict === 'correct' && confirmedMatchPairs.has(pairIndex)
+    ));
 
   useEffect(() => {
     if (!matchComplete || phase !== 'question' || !question) return;
@@ -707,7 +796,7 @@ export default function TournamentRoundScreen() {
       matchStatus[pairIndex]?.selectedIndex ?? -1
     )) ?? [];
     void submitCurrentTaskAnswer(question, { selectedIndexes });
-  }, [matchComplete, matchStatus, phase, question, submitCurrentTaskAnswer]);
+  }, [confirmedMatchPairs, matchComplete, matchStatus, phase, question, submitCurrentTaskAnswer]);
 
   // Время вышло — пропуск, серия обнуляется.
   useEffect(() => {
@@ -890,7 +979,7 @@ export default function TournamentRoundScreen() {
                 picked={picked}
                 revealed={feedbackVisible}
                 disabled={phase !== 'question' || !isTournamentAnswerWindowOpen(questionTiming, tournamentNow())}
-                authoritativeCorrect={feedbackCorrect}
+                displayedCorrect={feedbackCorrect}
                 authoritativeCorrectIndex={feedbackCorrectIndex}
                 onPress={answer}
               />
@@ -994,7 +1083,7 @@ export default function TournamentRoundScreen() {
 // ── Вариант ответа ──────────────────────────────────────────────────────────
 
 const OptionRow = memo(function OptionRow({
-  letter, text, index, picked, revealed, disabled, authoritativeCorrect, authoritativeCorrectIndex, onPress,
+  letter, text, index, picked, revealed, disabled, displayedCorrect, authoritativeCorrectIndex, onPress,
 }: {
   letter: string;
   text: string;
@@ -1002,7 +1091,7 @@ const OptionRow = memo(function OptionRow({
   picked: number | null;
   revealed: boolean;
   disabled: boolean;
-  authoritativeCorrect: boolean | null;
+  displayedCorrect: boolean | null;
   authoritativeCorrectIndex: number | null;
   onPress: (index: number) => void;
 }) {
@@ -1010,18 +1099,21 @@ const OptionRow = memo(function OptionRow({
   const styles = React.useMemo(() => makeStyles(P), [P]);
   // зачем 2026-07-27: плита варианта переведена на язык Learning V2 —
   // градиент, нижняя 3D-кромка, просадка на неё при нажатии. Выбранный
-  // вариант не становится зелёным только потому, что был выбран. Во время
-  // игры сервер раскрывает лишь итог correct:boolean, но не ключ ответа;
-  // конкретный правильный вариант придёт позже в разборе турнира.
+  // вариант становится зелёным только при совпадении локального отпечатка;
+  // серверный итог затем тихо подтверждает результат и начисляет очки.
   const isPicked = picked === index;
-  const isCorrectOption = revealed && authoritativeCorrectIndex === index;
+  const isLocallyCorrectSelection = revealed && isPicked && displayedCorrect === true;
+  const isCorrectOption = revealed && (
+    authoritativeCorrectIndex === index
+    || (authoritativeCorrectIndex === null && isLocallyCorrectSelection)
+  );
   const verdict = isCorrectOption
     ? 'ok'
-    : revealed && isPicked && authoritativeCorrect !== null
-    ? authoritativeCorrect ? 'ok' : 'bad'
+    : revealed && isPicked && displayedCorrect !== null
+    ? displayedCorrect ? 'ok' : 'bad'
     : revealed && !isPicked ? 'dim' : 'idle';
-  const answerState = revealed && isPicked && authoritativeCorrect !== null
-    ? authoritativeCorrect ? ', ответ верный' : ', ответ не подошёл'
+  const answerState = revealed && isPicked && displayedCorrect !== null
+    ? displayedCorrect ? ', ответ верный' : ', ответ не подошёл'
     : '';
 
   return (
@@ -1036,7 +1128,7 @@ const OptionRow = memo(function OptionRow({
         <View style={[
             styles.optionLetter,
             isCorrectOption && styles.optionLetterCorrect,
-            revealed && isPicked && authoritativeCorrect === false && styles.optionLetterWrong,
+            revealed && isPicked && displayedCorrect === false && styles.optionLetterWrong,
           ]}>
           <Text style={[
             styles.optionLetterText,
@@ -1046,14 +1138,14 @@ const OptionRow = memo(function OptionRow({
       )}
       right={isCorrectOption ? (
         <Text style={[styles.optionMark, { color: P.accentText }]}>✓</Text>
-      ) : revealed && isPicked && authoritativeCorrect === false ? (
+      ) : revealed && isPicked && displayedCorrect === false ? (
         <Text style={[styles.optionMark, { color: P.danger }]}>×</Text>
       ) : null}
     >
       <TournamentTwoLineText style={[
         styles.optionText,
         isCorrectOption && styles.optionTextCorrect,
-        revealed && isPicked && authoritativeCorrect === false && styles.optionTextWrong,
+        revealed && isPicked && displayedCorrect === false && styles.optionTextWrong,
       ]}>{text}</TournamentTwoLineText>
     </V2Chip>
   );

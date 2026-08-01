@@ -625,11 +625,13 @@ test('C2 inference evidence must quote the stimulus and external-fact screens re
   assert.match(result.errors.join('\n'), /external-knowledge/);
 });
 
-test('German blueprint is GREEN while the remaining Phase B blueprints stay intentionally RED', async () => {
+test('German and French blueprints are GREEN while the remaining Phase B blueprints stay intentionally RED', async () => {
   const audit = await import(pathToFileURL(path.join(ROOT, 'scripts', 'audit_language_test_bank.mjs')).href);
-  const german = JSON.parse(fs.readFileSync(path.join(ROOT, 'content', 'language-tests', 'blueprints', 'de.json'), 'utf8'));
-  assert.deepEqual(audit.auditBlueprint(german).errors, [], 'de');
-  for (const language of ['fr', 'it', 'es']) {
+  for (const language of ['de', 'fr']) {
+    const blueprint = JSON.parse(fs.readFileSync(path.join(ROOT, 'content', 'language-tests', 'blueprints', `${language}.json`), 'utf8'));
+    assert.deepEqual(audit.auditBlueprint(blueprint).errors, [], language);
+  }
+  for (const language of ['it', 'es']) {
     const blueprint = JSON.parse(fs.readFileSync(path.join(ROOT, 'content', 'language-tests', 'blueprints', `${language}.json`), 'utf8'));
     assert.match(audit.auditBlueprint(blueprint).errors.join('\n'), /40 individual construct objects/, language);
   }

@@ -67,6 +67,7 @@
       ribbon: '#6366f1',
     },
   };
+  const CERTIFICATE_LEVELS = new Set(['Pre-A1', 'A1', 'A2', 'B1', 'B2', 'C1', 'C2']);
 
   // зачем: владелец потребовал выбор языка сертификата — либо ВСЁ на английском
   // (включая дату), либо ВСЁ на русском; раньше дата была ru-RU на англ. тексте.
@@ -126,13 +127,19 @@
       .replace(/"/g, '&quot;');
   }
 
-  function sanitizeFilename(name) {
-    return String(name ?? '').replace(/[^a-zA-Z0-9\u0400-\u04FF\-]/g, '_').slice(0, 40);
+  function sanitizeFilenameComponent(value, fallback, maxLength = 40) {
+    const safe = String(value ?? '').toLowerCase().replace(/[^a-z0-9-]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+    return (safe || fallback).slice(0, maxLength);
   }
 
-  function certificateFilename(data, themeKey) {
+  function certificateFilename(data, themeKey, locale) {
     const language = EnglishTestI18n.TESTS[certificateTestLanguage(data.testLanguage)];
-    return `phraseman-${language.filenameSlug}-level-${String(data.result.estimatedLevel).toLowerCase()}-${sanitizeFilename(data.name).toLowerCase()}-${themeKey}.png`;
+    const currentLocale = certificateLocale(locale);
+    const languageSlug = sanitizeFilenameComponent(language.filenameSlugs[currentLocale] || language.filenameSlug, 'english');
+    const level = CERTIFICATE_LEVELS.has(data.result?.estimatedLevel) ? data.result.estimatedLevel.toLowerCase() : 'unknown';
+    const name = sanitizeFilenameComponent(data.name, 'learner');
+    const theme = Object.prototype.hasOwnProperty.call(THEMES, themeKey) ? themeKey : 'gold';
+    return `phraseman-${languageSlug}-level-${level}-${name}-${theme}.png`;
   }
 
   function buildSvg(data, themeKey, langKey) {
@@ -486,7 +493,7 @@
         }, 'image/png');
       });
       if (isCancelled()) return null;
-      const filename = certificateFilename(data, themeKey);
+      const filename = certificateFilename(data, themeKey, locale);
       if (isAppleMobile()) {
         return showIosSavePreview(container, pngBlob, filename, locale);
       }

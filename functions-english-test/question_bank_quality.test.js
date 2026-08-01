@@ -366,7 +366,7 @@ test('generated language test artifacts are protected from checkout line-ending 
   assert.match(attributes, /^functions-english-test\/data\/questions\.\*\.json text eol=lf$/m);
 });
 
-test('multilingual quality auditor validates a conforming fixture without mutating it', async () => {
+test('multilingual quality auditor rejects each deliberate survivor mutation without mutating its fixture', async () => {
   const audit = await import(pathToFileURL(path.join(ROOT, 'scripts', 'audit_language_test_bank.mjs')).href);
   const fixture = {
     language: 'de',
@@ -380,31 +380,81 @@ test('multilingual quality auditor validates a conforming fixture without mutati
         id: `de-${level.toLowerCase()}-${skill}-${index + 1}`,
         level,
         skill,
-        constructId: `${level.toLowerCase()}-${skill}-${index + 1}`,
-        descriptorRefs: [`CEFR-2020-${level}`],
-        stimulus: `${level} ${skill} alpha${index + 1} beta${index + 1} gamma${index + 1}${['C1', 'C2'].includes(level) && index < 6 ? '. Second sentence gives context.' : ''}`,
+        constructId: `de-${level.toLowerCase()}-${skill}-${index + 1}`,
+        descriptorRefs: [`CEFR-2020-${level}-reception-anchor`],
+        targetConstruct: `${skill} construct ${index + 1}`,
+        canDo: `Can complete adult ${skill} task ${index + 1}.`,
+        itemFormat: 'four-option contextual choice',
+        adultContext: 'adult public-service context',
+        fairnessRisk: 'avoid specialist knowledge',
+        constructIrrelevantRisk: 'avoid typography clues',
+        evidenceLabel: 'CEFR_2020_RECEPTION',
+        stimulus: `${level} ${skill} unique${level}${skill}${index + 1} bespoke${level}${skill}${index + 1} marker${level}${skill}${index + 1}${['C1', 'C2'].includes(level) && index < 6 ? '. Second adult message gives essential context today.' : ''}`,
         options: ['eins', 'zwei', 'drei', 'vier'].map((option) => `${option}-${level}-${skill}-${index}`),
         correctIndex: 0,
         instructionRu: 'Выберите естественный вариант.',
         instructionEn: 'Choose the natural option.',
-        upperBandEvidence: ['C1', 'C2'].includes(level),
-        logicalInference: level === 'C2' && index < 6,
+        upperBandEvidence: ['C1', 'C2'].includes(level) && ['reading', 'pragmatics'].includes(skill) ? { route: 'reading_pragmatics', evidence: 'multi-sentence adult discourse' } : undefined,
+        logicalInference: level === 'C2' && ['reading', 'pragmatics'].includes(skill) && index < 6 ? { evidence: 'The conclusion follows only by combining the two statements.', domain: 'reading_pragmatics' } : undefined,
         review: Object.fromEntries(audit.REVIEW_FIELDS.map((field) => [field, 'pass'])),
       })));
     }),
   };
-  fixture.questions.forEach((question) => { question.review.sha256 = audit.questionSha256(question); });
+  fixture.questions.forEach((question) => {
+    question.review.rationales = { 1: 'wrong agreement', 2: 'wrong register', 3: 'wrong meaning' };
+    question.review.authoringPass = 'pass';
+    question.review.adversarialPass = 'pass';
+    question.review.deterministicPass = 'pass';
+    question.review.levelCoveragePass = 'pass';
+    question.review.reviewStatus = 'reviewed';
+    question.review.sha256 = audit.questionSha256(question);
+  });
   const before = JSON.stringify(fixture);
   assert.deepEqual(audit.auditQuestionBank(fixture).errors, []);
   assert.equal(JSON.stringify(fixture), before);
+
+  const survivors = [
+    ['duplicate ID', (items) => { items[1].id = items[0].id; }, /duplicate question ID/],
+    ['cross-level construct reuse', (items) => { items[40].constructId = items[0].constructId; }, /duplicate constructId/],
+    ['English instruction leakage', (items) => { items[0].instructionEn = `Choose ${items[0].options[0]}.`; }, /instructionEn leaks/],
+    ['ordinary article duplicate', (items) => { items[1].options[1] = `der ${items[0].options[1]}`; }, /duplicate material/],
+    ['five structural fingerprints', (items) => { for (let i = 0; i < 5; i += 1) items[i].stimulus = `Item ${i + 1}: ____.`; }, /repeated structural fingerprint/],
+    ['reconstructed sentence duplicate', (items) => { items[0].stimulus = 'Repeat ____ now.'; items[1].stimulus = `Repeat ${items[0].options[0]} now.`; }, /reconstructed sentence duplicate/],
+    ['C2 grammar-only inference', (items) => { const item = items.find((question) => question.level === 'C2'); item.skill = 'grammar'; item.logicalInference = { evidence: 'Choose the grammatical form.', domain: 'grammar' }; }, /logical inference/],
+    ['punctuation fake depth', (items) => { items.filter((question) => question.level === 'C1' && ['reading', 'pragmatics'].includes(question.skill)).forEach((item) => { item.stimulus = 'One. Two.'; }); }, /meaningful multi-sentence/],
+    ['obscure trivia', (items) => { const item = items.find((question) => question.level === 'C2'); item.stimulus = 'In 1837, which obscure local decree changed the archive?'; }, /external-knowledge/],
+    ['bank language mismatch', (items) => { items[0].id = 'fr-a1-grammar-1'; }, /ID prefix/],
+    ['meaningless descriptor refs', (items) => { items[0].descriptorRefs = ['x']; }, /descriptorRefs/],
+    ['stale review hash', (items) => { items[0].review.sha256 = '0'.repeat(64); }, /unbound review/],
+  ];
+  for (const [name, mutate, expected] of survivors) {
+    const copy = JSON.parse(JSON.stringify(fixture));
+    mutate(copy.questions);
+    assert.match(audit.auditQuestionBank(copy).errors.join('\n'), expected, name);
+  }
+  const shortArticle = JSON.parse(JSON.stringify(fixture));
+  shortArticle.questions[0].options[0] = 'la';
+  shortArticle.questions[0].instructionEn = 'Choose the natural option.';
+  shortArticle.questions[0].review.sha256 = audit.questionSha256(shortArticle.questions[0]);
+  assert.doesNotMatch(audit.auditQuestionBank(shortArticle).errors.join('\n'), /instructionEn leaks/, 'short valid article la');
 });
 
-test('multilingual blueprints carry explicit product-hypothesis quotas and 40 distinct CEFR-traced constructs', async () => {
+test('all four current project blueprints are intentionally RED until Phase B supplies individual authoring objects', async () => {
   const audit = await import(pathToFileURL(path.join(ROOT, 'scripts', 'audit_language_test_bank.mjs')).href);
   for (const language of ['de', 'fr', 'it', 'es']) {
     const blueprint = JSON.parse(fs.readFileSync(path.join(ROOT, 'content', 'language-tests', 'blueprints', `${language}.json`), 'utf8'));
-    assert.deepEqual(audit.auditBlueprint(blueprint).errors, [], language);
+    assert.match(audit.auditBlueprint(blueprint).errors.join('\n'), /40 individual construct objects/, language);
   }
+});
+
+test('audit CLI rejects traversal, writes only confined reports, and --allow-draft changes only final-evidence failures', () => {
+  const auditScript = path.join(ROOT, 'scripts', 'audit_language_test_bank.mjs');
+  assert.match(execFileSync(process.execPath, [auditScript, '--help'], { encoding: 'utf8' }), /--allow-draft/);
+  assert.throws(() => execFileSync(process.execPath, [auditScript, '--language', '..'], { encoding: 'utf8', stdio: 'pipe' }), /unknown argument|unsupported language/);
+  const run = require('node:child_process').spawnSync(process.execPath, [auditScript, '--all', '--allow-draft'], { cwd: ROOT, encoding: 'utf8' });
+  assert.equal(run.status, 1, 'missing sources remain an error in draft mode');
+  assert.match(run.stdout, /de: failed/);
+  assert.doesNotMatch(run.stdout, /\.\.\\|\.\.\//);
 });
 
 test('generic check rejects a one-byte line-ending drift without changing output bytes or mtimes', async () => {

@@ -37,6 +37,8 @@ test('resolves UI locale by valid query, saved choice, then browser language', (
   assert.equal(i18n.resolveUiLocale({ search: '', stored: 'ru', navigatorLanguage: 'en-US' }), 'ru');
   assert.equal(i18n.resolveUiLocale({ search: '?ui=en', stored: 'ru', navigatorLanguage: 'ru-RU' }), 'en');
   assert.equal(i18n.resolveUiLocale({ search: '?ui=xx', stored: null, navigatorLanguage: 'ru-RU' }), 'ru');
+  assert.equal(i18n.resolveUiLocale({ search: '', stored: null, navigatorLanguage: 'RU' }), 'ru');
+  assert.equal(i18n.resolveUiLocale({ search: '', stored: null, navigatorLanguage: 'Ru-ru' }), 'ru');
 });
 
 test('resolves only supported assessed languages and has complete immutable registry', () => {
@@ -51,6 +53,12 @@ test('resolves only supported assessed languages and has complete immutable regi
     assert.equal(typeof entry.names.en.nominative, 'string');
     assert.equal(typeof entry.names.en.genitive, 'string');
     assert.equal(typeof entry.filenameSlug, 'string');
+    assert.equal(typeof entry.certificateNames.ru, 'string');
+    assert.equal(typeof entry.certificateNames.en, 'string');
+    assert.equal(typeof entry.resultNames.ru, 'string');
+    assert.equal(typeof entry.resultNames.en, 'string');
+    assert.equal(typeof entry.filenameSlugs.ru, 'string');
+    assert.equal(typeof entry.filenameSlugs.en, 'string');
     assert.equal(Object.isFrozen(entry), true);
   }
   assert.deepEqual(Object.values(i18n.TESTS).map((entry) => entry.nativeLabel),
@@ -58,6 +66,9 @@ test('resolves only supported assessed languages and has complete immutable regi
   assert.equal(i18n.resolveTestLanguage(''), 'en');
   assert.equal(i18n.resolveTestLanguage('?test=xx'), 'en');
   assert.equal(Object.isFrozen(i18n.TESTS), true);
+  assert.equal(i18n.TESTS.de.certificateNames.en, 'German');
+  assert.equal(i18n.TESTS.fr.certificateNames.ru, 'французского языка');
+  assert.equal(i18n.TESTS.fr.resultNames.ru, 'французскому языку');
 });
 
 test('handles unavailable storage without accepting untrusted saved values', () => {
@@ -87,6 +98,10 @@ test('updates only allowlisted selection query values without navigation', () =>
     locationObject: { href: 'https://example.test/level?ui=ru#top' },
     historyObject: { replaceState() {} }, testLanguage: 'xx', uiLocale: 'xx',
   }), 'https://example.test/level?test=en#top');
+  assert.equal(i18n.updateUrlSelection({
+    locationObject: { href: 'https://example.test/level?utm=%ZZ&raw=%E0%A4%A&ui=en#frag' },
+    historyObject: { replaceState() {} }, testLanguage: 'fr', uiLocale: 'ru',
+  }), 'https://example.test/level?utm=%ZZ&raw=%E0%A4%A&ui=ru&test=fr#frag');
 });
 
 test('keeps matching complete dictionaries and safely interpolates own variables', () => {
@@ -97,6 +112,23 @@ test('keeps matching complete dictionaries and safely interpolates own variables
   assert.throws(() => i18n.t('en', 'missing.key'), /key/i);
   assert.throws(() => i18n.t('en', 'result.score', { correct: 7 }), /answered/i);
   assert.throws(() => i18n.t('en', 'header.constructor'), /key/i);
-  assert.equal(i18n.t('en', 'result.score', { correct: '<b>7</b>', answered: 10, ignored: 'x' }), '<b>7</b> correct out of 10 answered');
+  assert.equal(i18n.t('en', 'result.score', { correct: '<b>7</b>', answered: 10, ignored: 'x' }), '&lt;b&gt;7&lt;/b&gt; correct out of 10 answered');
+  assert.equal(i18n.t('en', 'result.score', { correct: '<img src=x onerror="x">&\' ', answered: 10 }), '&lt;img src=x onerror=&quot;x&quot;&gt;&amp;&#39;  correct out of 10 answered');
   assert.equal(Object.isFrozen(i18n.DICTIONARY), true);
+});
+
+test('provides explicit accessible text-only assessment copy for every planned screen', () => {
+  const i18n = loadI18n();
+  const requiredKeys = [
+    'landing.howItWorks', 'landing.certificatePreview', 'landing.trust', 'landing.finalCta',
+    'aria.answerRadiogroup', 'aria.answerOptions', 'aria.certificateDialog', 'aria.certificateLanguage',
+    'aria.certificateTheme', 'aria.iosSavePreview', 'aria.storeLinks', 'aria.timer',
+    'aria.testSelector', 'aria.localeToggle',
+  ];
+  for (const locale of i18n.UI_LOCALES) {
+    for (const key of requiredKeys) assert.equal(typeof i18n.t(locale, key), 'string', `${locale}.${key}`);
+    assert.match(i18n.t(locale, 'result.scope'), locale === 'ru' ? /аудирование.*говорение.*письмо/i : /listening.*speaking.*writing/i);
+    assert.doesNotMatch(i18n.t(locale, 'levels.B2'), locale === 'ru' ? /речь/i : /speech/i);
+    assert.match(i18n.t(locale, 'resultCta.text'), /English/i);
+  }
 });

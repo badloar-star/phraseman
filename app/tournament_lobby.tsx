@@ -40,6 +40,7 @@ import {
   type RoomPlayer, type Room } from './tournament_client';
 import { getStableId } from './stable_id';
 import { useLocalSearchParams } from 'expo-router';
+import { orderVisibleLobbyPlayers } from './tournament_lobby_seats';
 
 const SEATS = 16;
 const REACTIONS = ['👍', '🔥', '😎', '⚔️', '🍀'] as const;
@@ -49,6 +50,7 @@ type Seat = {
   name: string;
   /** Значение для AvatarView: индекс или custom:... — НЕ эмодзи. */
   avatar: string;
+  aura?: string;
   color: string;
   streak: number;
   rank: string;
@@ -84,10 +86,6 @@ function rankForPlayed(played: number): string {
  * Игроки без joinAtMs (старые комнаты, созданные до этой правки) считаются
  * присутствующими всегда — иначе лобби таких комнат осталось бы пустым.
  */
-function visiblePlayersAt(players: readonly RoomPlayer[], nowMs: number): RoomPlayer[] {
-  return players.filter((player) => !player.joinAtMs || player.joinAtMs <= nowMs);
-}
-
 function mapPlayersToSeats(players: readonly RoomPlayer[], myId: string | null): Seat[] {
   return players.slice(0, SEATS).map((player, index) => {
     const played = Number((player as { played?: number }).played ?? 0);
@@ -97,6 +95,7 @@ function mapPlayersToSeats(players: readonly RoomPlayer[], myId: string | null):
       // зачем 2026-07-27: было эмодзи-«лицо» — правило владельца требует
       // НАСТОЯЩИЕ аватары приложения (те же, что в лигах и друзьях).
       avatar: tournamentAvatarValue({ id: player.id, isBot: player.isBot, avatar: player.avatar }),
+      aura: player.aura,
       color: player.color || '#8AB49A',
       streak: Number(player.streak ?? 0),
       rank: rankForPlayed(played),
@@ -241,7 +240,7 @@ export default function TournamentLobbyScreen() {
   const seats = useMemo(
     // tournamentNow(): часы сервера — иначе при сбитых часах устройства лобби
     // показало бы всех сразу или не показало никого.
-    () => mapPlayersToSeats(visiblePlayersAt(roomPlayers ?? [], tournamentNow()), myId),
+    () => mapPlayersToSeats(orderVisibleLobbyPlayers(roomPlayers ?? [], tournamentNow()), myId),
     [roomPlayers, myId, lobbyTick],
   );
   // Имя для реакции: как игрок подписан в этой комнате.
@@ -438,7 +437,7 @@ export default function TournamentLobbyScreen() {
         {selected ? (
           <>
             <View style={styles.profileAvatar}>
-              <AvatarView avatar={selected.avatar} size={72} animateAura={false} />
+              <AvatarView avatar={selected.avatar} auraId={selected.aura} size={72} animateAura={false} />
             </View>
             <Text style={styles.profileName}>{selected.name}</Text>
             <Text style={styles.profileRank}>{selected.rank}</Text>
@@ -477,7 +476,7 @@ const SeatCard = memo(function SeatCard({ seat, onPress }: { seat: Seat; onPress
         accessibilityRole="button"
         accessibilityLabel={`Профиль ${seat.name}`}
       >
-        <AvatarView avatar={seat.avatar} size={44} animateAura={false} />
+        <AvatarView avatar={seat.avatar} auraId={seat.aura} size={44} animateAura={false} />
         {seat.streak > 0 ? <Text style={styles.seatStreak}>🔥</Text> : null}
         <Text
           style={[styles.seatName, seat.isYou && { color: P.accent }]}

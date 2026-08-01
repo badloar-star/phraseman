@@ -10,7 +10,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import TapScale from '../components/TapScale';
 import Animated, {
@@ -54,13 +54,13 @@ function barTint(hex: string, alpha: number): string {
 const ROW_HEIGHT = 56;
 const ROW_GAP = 8;
 const TOTAL_ROUNDS = 4;
-const TABLE_TOP_ROWS = 5;
 
 type Row = {
   id: string;
   name: string;
   /** Значение для AvatarView: индекс или custom:... — НЕ эмодзи. */
   avatar: string;
+  aura?: string;
   isBot: boolean;
   color: string;
   score: number;
@@ -93,6 +93,7 @@ function mapPlayersToRows(
     // зачем 2026-07-27: было эмодзи-«лицо» — правило владельца требует
     // НАСТОЯЩИЕ аватары приложения. Ботам они выдаются детерминированно.
     avatar: tournamentAvatarValue({ id: player.id, isBot: player.isBot, avatar: player.avatar }),
+    aura: player.aura,
     isBot: player.isBot === true,
     color: player.color || '#8AB49A',
     score: Number(player.score ?? 0),
@@ -146,14 +147,6 @@ export default function TournamentTableScreen() {
     [room?.players, myId],
   );
 
-  const visibleRows = useMemo(() => {
-    const top = rows.slice(0, TABLE_TOP_ROWS);
-    const currentPlayer = rows.find((row) => row.isYou);
-    return currentPlayer && !top.some((row) => row.id === currentPlayer.id)
-      ? [...top, currentPlayer]
-      : top;
-  }, [rows]);
-
   // Запоминаем позиции ПОСЛЕ отрисовки — для следующего показа таблицы.
   useEffect(() => {
     if (rows.length === 0) return;
@@ -163,11 +156,11 @@ export default function TournamentTableScreen() {
   }, [rows]);
 
   useEffect(() => {
-    if (visibleRows.length === 0) return;
+    if (rows.length === 0) return;
     const next = new Map<string, number>();
-    visibleRows.forEach((row, index) => next.set(row.id, index));
+    rows.forEach((row, index) => next.set(row.id, index));
     previousVisibleIndexesRef.current = next;
-  }, [visibleRows]);
+  }, [rows]);
 
   // Переход дальше по СЕРВЕРНОМУ состоянию: локальный таймер только рисует
   // обратный отсчёт, решение о смене этапа принимает сервер.
@@ -190,7 +183,7 @@ export default function TournamentTableScreen() {
 
   const myScore = useMemo(() => rows.find((row) => row.isYou)?.score ?? 0, [rows]);
   const scoresSettled = hasTournamentTableSettledScores(room?.state, completedRound);
-  const listHeight = Math.max(1, visibleRows.length) * (ROW_HEIGHT + ROW_GAP);
+  const listHeight = Math.max(1, rows.length) * (ROW_HEIGHT + ROW_GAP);
   const maxScore = rows[0]?.score || 1;
   const isFinal = roundNo >= TOTAL_ROUNDS;
   // Зрителю показываем, что происходит прямо сейчас: идёт раунд или пауза.
@@ -236,11 +229,17 @@ export default function TournamentTableScreen() {
         ) : null}
       </View>
 
-      {/* Шесть секунд не превращаем в задачу на прокрутку: видны верхние пять
-          мест и строка игрока, если он ниже. Полные 16 остаются в итогах. */}
-      <View style={[styles.listContent, { height: listHeight }]}>
+      {/* Все 16 участников доступны всегда; фиксированная высота контента
+          сохраняет FLIP-перестановку строк без layout shift. */}
+      <ScrollView
+        style={styles.tableScroll}
+        contentContainerStyle={[styles.listContent, { height: listHeight }]}
+        showsVerticalScrollIndicator
+        nestedScrollEnabled
+        accessibilityLabel="Все участники турнира"
+      >
         {scoresSettled
-          ? visibleRows.map((row, index) => (
+          ? rows.map((row, index) => (
             <TableRow
               key={row.id}
               row={row}
@@ -251,7 +250,7 @@ export default function TournamentTableScreen() {
               revealDelayMs={160 + index * 85}
             />
           ))
-          : Array.from({ length: Math.max(1, visibleRows.length) }, (_, index) => (
+          : Array.from({ length: Math.max(1, rows.length) }, (_, index) => (
             <SkeletonBlock
               key={`pending-score-${index}`}
               width="100%"
@@ -260,7 +259,7 @@ export default function TournamentTableScreen() {
               style={{ position: 'absolute', top: index * (ROW_HEIGHT + ROW_GAP) }}
             />
           ))}
-      </View>
+      </ScrollView>
 
       <Text style={[styles.hint, { paddingBottom: insets.bottom + 12 }]}>
         {!scoresSettled
@@ -351,7 +350,7 @@ const TableRow = memo(function TableRow({
         </Text>
       )}
 
-      <AvatarView avatar={row.avatar} size={34} animateAura={false} />
+      <AvatarView avatar={row.avatar} auraId={row.aura} size={36} animateAura={false} />
 
       <Text
         style={[styles.name, row.isYou && { color: P.accent }]}
@@ -402,7 +401,7 @@ const makeStyles = (P: TournamentV2) => StyleSheet.create({
     fontVariant: ['tabular-nums'],
   },
 
-  list: { position: 'relative' },
+  tableScroll: { flex: 1 },
   // height приходит из listHeight: плашки позиционированы абсолютно.
   listContent: { position: 'relative' },
   closeButton: {

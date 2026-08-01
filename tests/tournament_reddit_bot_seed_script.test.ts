@@ -12,6 +12,8 @@ const SCRIPT_PATH = path.resolve(
 
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const seedScript = require(SCRIPT_PATH);
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const { generateBotProfiles } = require('../functions/src/tournament_core.ts');
 
 describe('tournament Reddit bot production seed script', () => {
   test('is dry-run by default and requires all independent apply guards', () => {
@@ -28,15 +30,40 @@ describe('tournament Reddit bot production seed script', () => {
 
   test('pins the exact reviewed 200-name corpus and production project', () => {
     const names = seedScript.buildExpectedProfiles().map((profile: { name: string }) => profile.name);
-    const digest = crypto.createHash('sha256').update(`${names.join('\n')}\n`).digest('hex');
+    const digest = crypto.createHash('sha256')
+      .update(Buffer.from(`${names.join('\n')}\n`, 'utf8'))
+      .digest('hex');
 
     expect(names).toHaveLength(200);
     expect(new Set(names.map((name: string) => name.toLowerCase())).size).toBe(200);
     expect(seedScript.EXPECTED_NAMES_SHA256)
-      .toBe('d0a8649781245a1dcb18e7791a9615bb76cfdd159f8ed03bbdb5ae28e156edb9');
+      .toBe('b0b148c7b5122b92b74a84be08117f5e5d6188701edb500167323d65dbeca7af');
     expect(digest).toBe(seedScript.EXPECTED_NAMES_SHA256);
     expect(seedScript.EXPECTED_PROJECT_ID).toBe('phraseman-ea0b3');
-    expect(seedScript.SEED_VERSION).toBe('tournament-bots-v2-reddit-20260801');
+    expect(seedScript.SEED_VERSION).toBe('tournament-bots-v3-multilingual-20260801');
+  });
+
+  test('changes names without re-rolling persistent bot personas or difficulty', () => {
+    const legacy = generateBotProfiles(200, 'tournament-bots-v2-reddit-20260801');
+    const migrated = seedScript.buildExpectedProfiles();
+
+    expect(migrated.map((profile: Record<string, unknown>) => ({
+      botId: profile.botId,
+      avatarEmoji: profile.avatarEmoji,
+      avatarAura: profile.avatarAura,
+      rank: profile.rank,
+      titles: profile.titles,
+      winRate: profile.winRate,
+      color: profile.color,
+    }))).toEqual(legacy.map((profile: Record<string, unknown>) => ({
+      botId: profile.botId,
+      avatarEmoji: profile.avatarEmoji,
+      avatarAura: profile.avatarAura,
+      rank: profile.rank,
+      titles: profile.titles,
+      winRate: profile.winRate,
+      color: profile.color,
+    })));
   });
 
   test('requires the caller to repeat the exact corpus SHA on every run', () => {

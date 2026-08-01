@@ -184,13 +184,24 @@ describe('экраны режима «Турниры»', () => {
     expect(table).toContain('ZoomIn.delay(revealDelayMs + 160)');
   });
 
-  it('межраундовая таблица показывает верх и свою строку без списка из 16 строк', () => {
+  it('межраундовая таблица показывает все 16 строк в доступном скролле', () => {
     const table = read('app/tournament_table.tsx');
-    expect(table).toContain('TABLE_TOP_ROWS = 5');
-    expect(table).toContain('visibleRows');
-    expect(table).toContain('row.isYou');
-    expect(table).not.toContain('<ScrollView');
-    expect(table).not.toContain('rows.map((row, index)');
+    expect(table).not.toContain('TABLE_TOP_ROWS');
+    expect(table).not.toContain('visibleRows');
+    expect(table).toContain('<ScrollView');
+    expect(table).toContain('rows.map((row, index)');
+    expect(table).toContain('accessibilityLabel="Все участники турнира"');
+  });
+
+  it('турнирные экраны отображают серверные ауры вокруг аватаров', () => {
+    const lobby = read('app/tournament_lobby.tsx');
+    const table = read('app/tournament_table.tsx');
+    const results = read('app/tournament_results.tsx');
+    expect(lobby).toContain('auraId={seat.aura}');
+    expect(table).toContain('auraId={row.aura}');
+    expect(table).toContain('auraId={row.aura} size={36}');
+    expect(read('components/AvatarAura.tsx')).toContain('size < 36');
+    expect(results).toContain('auraId={winner.aura}');
   });
 
   it('таблица и результаты используют серверные места и не пересортировывают финал по счёту', () => {

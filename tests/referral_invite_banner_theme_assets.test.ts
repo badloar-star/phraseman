@@ -1,8 +1,13 @@
 import fs from 'fs';
 import path from 'path';
+import crypto from 'crypto';
+import sharp from 'sharp';
 
 const BANNER_DIR = path.join(process.cwd(), 'assets', 'images', 'settings', 'referral_theme');
 const COMPONENT_PATH = path.join(process.cwd(), 'components', 'ReferralInviteBannerArt.tsx');
+const SAGE_THEME = 'sagePorcelain';
+const SAGE_FILE = `invite-${SAGE_THEME}-v2.webp`;
+const SAGE_ASSET_PATH = path.join(BANNER_DIR, SAGE_FILE);
 
 /**
  * Темы читаем из типа ThemeMode — единственного источника правды.
@@ -40,6 +45,29 @@ describe('referral invite banner themed art', () => {
       const duplicate = seen.get(digest);
       expect(duplicate === undefined || `${duplicate} === ${file}`).toBe(true);
       seen.set(digest, file);
+    }
+  });
+
+  it('ships unique 3:1 WebP art for Sage Porcelain', async () => {
+    expect(fs.existsSync(SAGE_ASSET_PATH)).toBe(true);
+    expect(path.extname(SAGE_ASSET_PATH)).toBe('.webp');
+
+    const metadata = await sharp(SAGE_ASSET_PATH).metadata();
+    expect(metadata.format).toBe('webp');
+    expect(metadata.width).toBe(900);
+    expect(metadata.height).toBe(300);
+
+    const source = fs.readFileSync(COMPONENT_PATH, 'utf8');
+    expect(source).toContain(
+      "sagePorcelain: require('../assets/images/settings/referral_theme/invite-sagePorcelain-v2.webp')",
+    );
+
+    const sageDigest = crypto.createHash('sha256').update(fs.readFileSync(SAGE_ASSET_PATH)).digest('hex');
+    for (const theme of readThemeModes().filter((theme) => theme !== SAGE_THEME)) {
+      const otherAsset = path.join(BANNER_DIR, `invite-${theme}-v2.webp`);
+      expect(fs.existsSync(otherAsset)).toBe(true);
+      const otherDigest = crypto.createHash('sha256').update(fs.readFileSync(otherAsset)).digest('hex');
+      expect(sageDigest).not.toBe(otherDigest);
     }
   });
 

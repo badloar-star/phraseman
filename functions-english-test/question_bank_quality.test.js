@@ -1,8 +1,10 @@
+/* global __dirname */
 const assert = require('node:assert/strict');
 const { execFileSync } = require('node:child_process');
 const fs = require('node:fs');
 const path = require('node:path');
 const test = require('node:test');
+const { pathToFileURL } = require('node:url');
 
 const ROOT = path.join(__dirname, '..');
 const LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
@@ -285,6 +287,11 @@ test('generated web and functions banks exactly match the six sources', () => {
 
   assert.deepEqual(web.questions, sourceQuestions);
   assert.deepEqual(functions, web);
+  assert.equal(
+    fs.readFileSync(path.join(ROOT, 'functions-english-test', 'data', 'questions.en.json'), 'utf8'),
+    fs.readFileSync(path.join(ROOT, 'knowly-www', 'english-level-test', 'data', 'questions.en.json'), 'utf8'),
+    'web and functions outputs must be byte-equivalent',
+  );
   const apiSource = fs.readFileSync(path.join(ROOT, 'functions-english-test', 'index.js'), 'utf8');
   assert.match(apiSource, new RegExp(`BANK_VERSION = '${web.bankVersion.replaceAll('.', '\\.')}'`));
 });
@@ -308,4 +315,69 @@ test('--check is a read-only validation command', () => {
     assert.equal(fs.readFileSync(output, 'utf8'), before[index].text);
     assert.equal(fs.statSync(output, { bigint: true }).mtimeNs, before[index].mtimeNs);
   });
+});
+
+test('generic language bank builder preserves the frozen registry and English compatibility contract', async () => {
+  const bank = await import(pathToFileURL(path.join(ROOT, 'scripts', 'lib', 'language_test_bank.mjs')).href);
+
+  assert.deepEqual(bank.LEVELS, ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']);
+  assert.deepEqual(bank.LANGUAGES, ['en', 'de', 'fr', 'it', 'es']);
+  assert.deepEqual(bank.DIALECTS, {
+    en: ['neutral', 'british', 'american'],
+    de: ['standard'],
+    fr: ['standard'],
+    it: ['standard'],
+    es: ['standard'],
+  });
+  assert.throws(() => bank.assertLanguage('pt'), /Unsupported language: pt/);
+  assert.equal(
+    bank.sourceDirFor(ROOT, 'en'),
+    path.join(ROOT, 'content', 'english-test', 'questions'),
+  );
+  assert.equal(
+    bank.sourceDirFor(ROOT, 'de'),
+    path.join(ROOT, 'content', 'language-tests', 'questions', 'de'),
+  );
+  assert.deepEqual(bank.outputPathsFor(ROOT, 'fr'), [
+    path.join(ROOT, 'knowly-www', 'english-level-test', 'data', 'questions.fr.json'),
+    path.join(ROOT, 'functions-english-test', 'data', 'questions.fr.json'),
+  ]);
+
+  const generated = bank.buildLanguageBank({ root: ROOT, language: 'en' });
+  const expected = fs.readFileSync(
+    path.join(ROOT, 'knowly-www', 'english-level-test', 'data', 'questions.en.json'),
+    'utf8',
+  );
+  assert.equal(generated.replace(/\r\n/g, '\n'), expected.replace(/\r\n/g, '\n'));
+});
+
+test('generic check detects output drift without changing output bytes or mtimes', async () => {
+  const bank = await import(pathToFileURL(path.join(ROOT, 'scripts', 'lib', 'language_test_bank.mjs')).href);
+  const outputs = bank.outputPathsFor(ROOT, 'en');
+  const before = outputs.map((output) => ({
+    text: fs.readFileSync(output, 'utf8'),
+    mtimeNs: fs.statSync(output, { bigint: true }).mtimeNs,
+  }));
+
+  assert.doesNotThrow(() => bank.checkGeneratedOutputs({ root: ROOT, languages: ['en'] }));
+  outputs.forEach((output, index) => {
+    assert.equal(fs.readFileSync(output, 'utf8'), before[index].text);
+    assert.equal(fs.statSync(output, { bigint: true }).mtimeNs, before[index].mtimeNs);
+  });
+
+  const tempRoot = path.join(ROOT, '.codex-tmp', 'language-test-bank-quality');
+  fs.rmSync(tempRoot, { recursive: true, force: true });
+  fs.mkdirSync(path.dirname(bank.sourceDirFor(tempRoot, 'en')), { recursive: true });
+  fs.cpSync(bank.sourceDirFor(ROOT, 'en'), bank.sourceDirFor(tempRoot, 'en'), { recursive: true });
+  for (const [index, output] of bank.outputPathsFor(ROOT, 'en').entries()) {
+    const tempOutput = bank.outputPathsFor(tempRoot, 'en')[index];
+    fs.mkdirSync(path.dirname(tempOutput), { recursive: true });
+    fs.copyFileSync(output, tempOutput);
+  }
+  fs.appendFileSync(bank.outputPathsFor(tempRoot, 'en')[0], 'drift');
+  assert.throws(
+    () => bank.checkGeneratedOutputs({ root: tempRoot, languages: ['en'] }),
+    /generated output differs/,
+  );
+  fs.rmSync(tempRoot, { recursive: true, force: true });
 });

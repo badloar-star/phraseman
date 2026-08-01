@@ -101,7 +101,9 @@ html, body {
 /* ========== Brand header ========== */
 .elt-brand {
   display: flex;
+  align-items: center;
   justify-content: center;
+  gap: 12px;
   padding: 22px 20px 4px;
 }
 .elt-brand-link {
@@ -132,6 +134,25 @@ html, body {
   text-transform: uppercase;
   line-height: 1.2;
 }
+.elt-ui-locale-toggle {
+  align-items: center;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text);
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 0.76rem;
+  font-weight: 800;
+  gap: 5px;
+  justify-content: center;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 6px 9px;
+}
+.elt-ui-locale-toggle svg { height: 18px; width: 18px; }
+.elt-ui-locale-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.elt-ui-locale-toggle:hover { border-color: var(--accent); }
 
 /* ========== Landing (selling page) ========== */
 .elt-landing {
@@ -195,6 +216,13 @@ html, body {
   animation: fadeInUp 0.55s 0.22s both var(--ease-out-expo);
 }
 .elt-lead b { color: var(--text); }
+
+.elt-language-selector { margin: 24px auto 0; max-width: 600px; }
+.elt-language-selector-title { color: var(--text-secondary); font-size: 0.9rem; font-weight: 700; margin: 0 0 10px; }
+.elt-language-options { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.elt-language-option { align-items: center; background: var(--card); border: 1px solid var(--border); border-radius: 10px; color: var(--text); cursor: pointer; display: inline-flex; font: inherit; font-size: 0.9rem; gap: 6px; min-height: 44px; padding: 10px 12px; }
+.elt-language-option--active { background: rgba(232,161,60,0.16); border-color: var(--accent); color: var(--text); font-weight: 800; }
+.elt-language-option:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
 .elt-counter {
   margin: 26px auto 24px;

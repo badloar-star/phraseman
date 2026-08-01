@@ -1,3 +1,5 @@
+/* global EnglishTestEngine, EnglishTestI18n */
+
 /**
  * English Level Test — App v3
  * Selling Landing → Test → Result → Certificate → CTA (store install)
@@ -20,6 +22,16 @@
   const ANALYTICS_BROWSER_ID_KEY = 'english_test_analytics_browser_id_v1';
   const ANALYTICS_BROWSER_ID_PATTERN = /^[a-f0-9]{48}$/;
   const COUNTER_REFRESH_MS = 30000;
+
+  const hasI18n = typeof EnglishTestI18n !== 'undefined';
+  const readStoredLocale = hasI18n ? EnglishTestI18n.readStoredLocale : () => null;
+  let uiLocale = 'en';
+  let selectedTestLanguage = 'en';
+  if (hasI18n) {
+    uiLocale = EnglishTestI18n.resolveUiLocale({ search: location.search, stored: readStoredLocale(), navigatorLanguage: navigator.language });
+    selectedTestLanguage = EnglishTestI18n.resolveTestLanguage(location.search);
+  }
+  let attemptTestLanguage = null;
 
   const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const FINE_POINTER = window.matchMedia('(pointer: fine)').matches;
@@ -52,6 +64,45 @@
   const countAnimations = new WeakMap();
   const completionMemoryOutbox = new Set();
   const acceptedCompletionIds = new Set();
+
+  function copy(key, vars) {
+    return hasI18n ? EnglishTestI18n.t(uiLocale, key, vars) : '';
+  }
+
+  function updatePageLocale() {
+    const root = document.documentElement;
+    if (root && typeof root.setAttribute === 'function') root.setAttribute('lang', uiLocale);
+    if (typeof document.querySelector === 'function') {
+      const description = document.querySelector('meta[name="description"]');
+      if (description && typeof description.setAttribute === 'function') description.setAttribute('content', copy('document.description'));
+    }
+    document.title = copy('document.title');
+  }
+
+  function updateUrlSelection() {
+    if (typeof location === 'undefined') return;
+    EnglishTestI18n.updateUrlSelection({
+      locationObject: location,
+      historyObject: typeof history !== 'undefined' && typeof history.replaceState === 'function' ? history : null,
+      testLanguage: selectedTestLanguage,
+      uiLocale,
+    });
+  }
+
+  function selectTestLanguage(code) {
+    if (attemptTestLanguage !== null || !EnglishTestI18n.TEST_LANGUAGES.includes(code)) return;
+    selectedTestLanguage = code;
+    updateUrlSelection();
+    renderLanding();
+  }
+
+  function toggleUiLocale() {
+    uiLocale = uiLocale === 'ru' ? 'en' : 'ru';
+    EnglishTestI18n.persistLocale(uiLocale);
+    updatePageLocale();
+    updateUrlSelection();
+    if (attemptTestLanguage === null) renderLanding();
+  }
 
   function generateToken() {
     const arr = new Uint8Array(24);
@@ -445,6 +496,9 @@
           <img class="elt-brand-icon" src="/assets/phraseman-icon-128.png" alt="" width="34" height="34" />
           <span class="elt-brand-text"><b>Phraseman</b><small>Живой английский</small></span>
         </a>
+        ${attemptTestLanguage === null ? `<button class="elt-ui-locale-toggle" type="button" aria-label="${copy('aria.localeToggle')}" title="${copy('aria.localeToggle')}">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 12h18M12 3c3 3.4 3 14.6 0 18M12 3c-3 3.4-3 14.6 0 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span>${uiLocale.toUpperCase()}</span>
+        </button>` : ''}
       </header>
     `;
   }
@@ -521,6 +575,13 @@
           <h1 id="elt-hero-title">Узнай свой уровень английского <span class="elt-accent-text">за 5 минут</span></h1>
           <p class="elt-lead">Адаптивный тест даст <b>предварительную текстовую оценку</b> по шкале CEFR и именной сертификат с результатом</p>
 
+          <section class="elt-language-selector" aria-label="${copy('aria.testSelector')}">
+            <p class="elt-language-selector-title">${copy('languageSelector.testLanguage')}</p>
+            <div class="elt-language-options" role="group" aria-label="${copy('aria.testSelector')}">
+              ${EnglishTestI18n.TEST_LANGUAGES.map((code) => `<button class="elt-language-option${code === selectedTestLanguage ? ' elt-language-option--active' : ''}" type="button" data-test-language="${code}" aria-pressed="${code === selectedTestLanguage}"><span aria-hidden="true">${code === selectedTestLanguage ? '✓' : '○'}</span>${EnglishTestI18n.TESTS[code].nativeLabel}</button>`).join('')}
+            </div>
+          </section>
+
           <div class="elt-counter" role="status" aria-label="Более 124 тысяч тестов уже пройдено">
             <span class="elt-counter-value"><span id="proofCounter">0</span>+</span>
             <span class="elt-counter-label">тестов уже пройдено</span>
@@ -586,6 +647,10 @@
 
     mountView(node);
     hideBrokenBrandIcons(node);
+    node.querySelector('.elt-ui-locale-toggle')?.addEventListener('click', toggleUiLocale);
+    node.querySelectorAll('[data-test-language]').forEach((button) => {
+      button.addEventListener('click', () => selectTestLanguage(button.dataset.testLanguage));
+    });
 
     applyCompletedCount(node, bestCompleted);
     startLandingCounterRefresh(node);
@@ -607,6 +672,7 @@
   // ---------- Test ----------
 
   async function startTest() {
+    if (attemptTestLanguage === null) attemptTestLanguage = selectedTestLanguage;
     if (questions.length === 0) {
       mountView(el(`<div class="elt-loading">Загрузка…</div>`));
       try {
@@ -1123,5 +1189,6 @@
     void flushCompletionOutbox();
   });
   hydrateCompletedCache();
+  updatePageLocale();
   renderLanding();
 })();

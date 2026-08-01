@@ -215,3 +215,42 @@ test('composes certificate completion copy with the assessed language for all fi
     assert.equal(i18n.t(locale, 'certificate.completed', { language: i18n.TESTS[code].certificateNames[locale] }), expected[locale][code]);
   }
 });
+
+test('loads the versioned i18n core before the certificate and application scripts', () => {
+  const html = fs.readFileSync(require.resolve('../knowly-www/english-level-test/index.html'), 'utf8');
+  const i18nScript = html.indexOf('./i18n.js?v=20260801-1');
+  const certificateScript = html.indexOf('./certificate.js?v=20260801-1');
+  const appScript = html.indexOf('./app.js?v=20260801-1');
+  assert.ok(i18nScript >= 0, 'the i18n script is versioned');
+  assert.ok(i18nScript < certificateScript, 'i18n loads before certificate.js');
+  assert.ok(certificateScript < appScript, 'certificate.js loads before app.js');
+});
+
+test('declares a real accessible locale toggle and five native-language landing choices', () => {
+  const source = fs.readFileSync(require.resolve('../knowly-www/english-level-test/app.js'), 'utf8');
+  assert.match(source, /class="elt-ui-locale-toggle"/);
+  assert.match(source, /<svg[^>]*viewBox="0 0 24 24"[\s\S]*?<circle/);
+  assert.match(source, /aria-label="\$\{copy\('aria\.localeToggle'\)\}"/);
+  assert.match(source, /title="\$\{copy\('aria\.localeToggle'\)\}"/);
+  assert.match(source, /data-test-language="\$\{code\}"/);
+  assert.match(source, /aria-pressed="\$\{code === selectedTestLanguage\}"/);
+  assert.match(source, /EnglishTestI18n\.TESTS\[code\]\.nativeLabel/);
+  assert.doesNotMatch(source, /[\u{1F1E6}-\u{1F1FF}]{2}/u, 'language controls do not use flag emoji');
+});
+
+test('keeps selection mutable only on landing and safely updates the URL without a reload', () => {
+  const source = fs.readFileSync(require.resolve('../knowly-www/english-level-test/app.js'), 'utf8');
+  const styles = fs.readFileSync(require.resolve('../knowly-www/english-level-test/styles.css'), 'utf8');
+  assert.match(source, /uiLocale = EnglishTestI18n\.resolveUiLocale\(\{ search: location\.search, stored: readStoredLocale\(\), navigatorLanguage: navigator\.language \}\);/);
+  assert.match(source, /selectedTestLanguage = EnglishTestI18n\.resolveTestLanguage\(location\.search\);/);
+  assert.match(source, /let attemptTestLanguage = null;/);
+  assert.match(source, /EnglishTestI18n\.updateUrlSelection\(\{[\s\S]*historyObject:[\s\S]*replaceState/);
+  assert.match(source, /attemptTestLanguage = selectedTestLanguage/);
+  assert.match(source, /if \(attemptTestLanguage !== null \|\| !EnglishTestI18n\.TEST_LANGUAGES\.includes\(code\)\) return;/);
+  assert.match(source, /typeof document\.querySelector === 'function'/);
+  assert.match(styles, /\.elt-ui-locale-toggle[\s\S]*min-width:\s*44px[\s\S]*min-height:\s*44px/);
+  assert.match(styles, /\.elt-ui-locale-toggle:focus-visible/);
+  assert.match(styles, /\.elt-language-options[\s\S]*flex-wrap:\s*wrap/);
+  assert.match(styles, /\.elt-language-option--active[\s\S]*border[^}]*[\s\S]*color:/);
+  assert.doesNotMatch(styles, /elt-language-(?:carousel|scroll)/);
+});

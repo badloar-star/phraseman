@@ -4,21 +4,15 @@ const fs = require("node:fs");
 const path = require("node:path");
 const vm = require("node:vm");
 
-const appPath = path.join(
-  __dirname,
-  "..",
-  "knowly-www",
-  "english-level-test",
-  "app.js",
-);
+const appPath = require.resolve("../knowly-www/english-level-test/app.js");
 const i18nPath = path.join(path.dirname(appPath), "i18n.js");
-const htmlPath = path.join(
-  __dirname,
-  "..",
-  "knowly-www",
-  "english-level-test",
-  "index.html",
-);
+const htmlPath = path.join(path.dirname(appPath), "index.html");
+
+function loadI18nRegistry() {
+  const context = vm.createContext({ URL, URLSearchParams });
+  vm.runInContext(fs.readFileSync(i18nPath, "utf8"), context, { filename: i18nPath });
+  return context.EnglishTestI18n;
+}
 
 function memoryStorage(initial = {}) {
   const values = new Map(Object.entries(initial));
@@ -98,7 +92,7 @@ test("completion POST is sent even when analytics consent is false and contains 
 });
 
 test("outbox keeps a pending completion after network failure", async () => {
-  const { hooks, storage } = loadHooks({
+  const { hooks } = loadHooks({
     fetchImpl: async () => {
       throw new Error("offline");
     },
@@ -321,7 +315,11 @@ test("landing copy describes completed tests and the unified asset revision is 2
     counterBlock,
     /\u0441\u0435\u0440\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u043e\u0432 \u0443\u0436\u0435 \u0432\u044b\u0434\u0430\u043d\u043e/i,
   );
-  assert.match(source, /questions\.en\.json\?v=20260801-2/);
+  assert.match(source, /fetch\(EnglishTestI18n\.TESTS\[language\]\.bankUrl\)/);
+  assert.doesNotMatch(source, /const BANK_URL/);
+  const i18n = loadI18nRegistry();
+  assert.deepEqual([...i18n.TEST_LANGUAGES], ["en", "de", "fr", "it", "es"]);
+  for (const code of i18n.TEST_LANGUAGES) assert.equal(i18n.TESTS[code].bankUrl, `./data/questions.${code}.json?v=20260801-2`);
   const scripts = [...html.matchAll(/<script src="([^"]+)"><\/script>/g)].map((match) => match[1]);
   const expectedScripts = [
     "./engine.js?v=20260801-2",
@@ -332,8 +330,17 @@ test("landing copy describes completed tests and the unified asset revision is 2
   assert.deepEqual(scripts, expectedScripts);
   assert.equal(new Set(scripts).size, expectedScripts.length);
   const stylesheets = [...html.matchAll(/<link rel="stylesheet" href="([^"]+)"/g)].map((match) => match[1]);
-  assert.deepEqual(stylesheets, ["./styles.css?v=20260801-2"]);
-  assert.equal(new Set(stylesheets).size, 1);
+  const expectedStylesheets = [
+    "./styles.css?v=20260801-2",
+    "/assets/site-background.css?v=20260729-1",
+  ];
+  assert.deepEqual(stylesheets, expectedStylesheets);
+  assert.equal(new Set(stylesheets).size, expectedStylesheets.length);
+  assert.deepEqual(
+    stylesheets.filter((asset) => asset.endsWith("?v=20260801-2")),
+    ["./styles.css?v=20260801-2"],
+  );
+  assert.equal(stylesheets[1], "/assets/site-background.css?v=20260729-1");
   assert.equal(html.includes("?v=20260801-1"), false);
   assert.equal((html.match(/v=20260722-1/g) || []).length, 0);
 });

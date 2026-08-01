@@ -9,7 +9,6 @@
   'use strict';
 
   const API_BASE = '/api/english-test';
-  const BANK_URL = './data/questions.en.json?v=20260801-2';
 
   const STORE_URL_IOS = 'https://apps.apple.com/app/id6764800879';
   const STORE_URL_ANDROID = 'https://play.google.com/store/apps/details?id=app.phraseman';
@@ -22,6 +21,8 @@
   const ANALYTICS_BROWSER_ID_KEY = 'english_test_analytics_browser_id_v1';
   const ANALYTICS_BROWSER_ID_PATTERN = /^[a-f0-9]{48}$/;
   const COUNTER_REFRESH_MS = 30000;
+  const MAX_BANK_VERSION_LENGTH = 32;
+  const BANK_VERSION_PATTERN = /^\d{4}-\d{2}-\d{2}\.\d+$/;
 
   const hasI18n = typeof EnglishTestI18n !== 'undefined';
   const readStoredLocale = hasI18n ? EnglishTestI18n.readStoredLocale : () => null;
@@ -32,6 +33,8 @@
     selectedTestLanguage = EnglishTestI18n.resolveTestLanguage(location.search);
   }
   let attemptTestLanguage = null;
+  const bankCache = new Map();
+  let startPromise = null;
 
   const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const FINE_POINTER = window.matchMedia('(pointer: fine)').matches;
@@ -162,6 +165,8 @@
         clientHash: await getClientHash(),
         timestamp: Date.now(),
         ...payload,
+        testLanguage: attemptTestLanguage || selectedTestLanguage,
+        uiLocale,
       };
       const res = await fetch(API_BASE, {
         method: 'POST',
@@ -447,6 +452,11 @@
   function mountView(node) {
     stopLandingCounterRefresh();
     const old = currentView;
+    const restoreLocaleToggleFocus = Boolean(
+      document.activeElement
+      && typeof document.activeElement.matches === 'function'
+      && document.activeElement.matches('.elt-ui-locale-toggle'),
+    );
     node.classList.add('elt-view');
     app.appendChild(node);
     currentView = node;
@@ -458,6 +468,7 @@
       old.setAttribute('aria-hidden', 'true');
       setTimeout(() => old.remove(), 420);
     }
+    if (restoreLocaleToggleFocus) node.querySelector('.elt-ui-locale-toggle')?.focus?.();
     return node;
   }
 
@@ -698,35 +709,83 @@
 
   // ---------- Test ----------
 
-  async function startTest() {
+  function isAllowedTestLanguage(language) {
+    return hasI18n && EnglishTestI18n.TEST_LANGUAGES.includes(language);
+  }
+
+  function validateBank(language, bank) {
+    if (!bank || typeof bank !== 'object' || Array.isArray(bank)
+      || bank.language !== language
+      || !Array.isArray(bank.questions)
+      || bank.questions.length !== 240
+      || !isValidBankVersion(bank.bankVersion)) {
+      throw new Error('bank_contract_mismatch');
+    }
+    return bank;
+  }
+
+  function isValidBankVersion(bankVersion) {
+    return typeof bankVersion === 'string'
+      && bankVersion.length <= MAX_BANK_VERSION_LENGTH
+      && BANK_VERSION_PATTERN.test(bankVersion);
+  }
+
+  function loadBank(language) {
+    if (!isAllowedTestLanguage(language)) return Promise.reject(new Error('bank_contract_mismatch'));
+    const cached = bankCache.get(language);
+    if (cached) return cached;
+
+    const request = (async () => {
+      const res = await fetch(EnglishTestI18n.TESTS[language].bankUrl);
+      if (!res.ok) throw new Error('bank_contract_mismatch');
+      let bank;
+      try {
+        bank = await res.json();
+      } catch (_) {
+        throw new Error('bank_contract_mismatch');
+      }
+      return validateBank(language, bank);
+    })();
+    bankCache.set(language, request);
+    request.catch(() => {
+      if (bankCache.get(language) === request) bankCache.delete(language);
+    });
+    return request;
+  }
+
+  function startTest() {
+    if (startPromise) return startPromise;
     if (attemptTestLanguage === null) attemptTestLanguage = selectedTestLanguage;
-    if (questions.length === 0) {
+    const language = attemptTestLanguage;
+    const request = (async () => {
       renderLoading();
       try {
-        const res = await fetch(EnglishTestI18n.TESTS[attemptTestLanguage].bankUrl);
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        const data = await res.json();
-        bankVersion = data.bankVersion;
-        questions = data.questions;
-        if (!questions || questions.length === 0) throw new Error('Empty bank');
+        const bank = await loadBank(language);
+        bankVersion = bank.bankVersion;
+        questions = bank.questions;
       } catch (e) {
         renderError();
         console.error('Bank load failed:', e);
         return;
       }
-    }
 
-    attemptToken = generateToken();
-    engine = new EnglishTestEngine.Engine(questions, Date.now());
-    lastProgress = 0;
-    lastCertName = null; // новая попытка — старый сертификат не предлагаем
+      attemptToken = generateToken();
+      engine = new EnglishTestEngine.Engine(questions, Date.now());
+      lastProgress = 0;
+      lastCertName = null; // новая попытка — старый сертификат не предлагаем
 
-    if (consent) {
-      api('landing', {});
-      api('start', { bankVersion });
-    }
+      if (consent) {
+        api('landing', {});
+        api('start', { bankVersion });
+      }
 
-    showNextQuestion();
+      showNextQuestion();
+    })();
+    startPromise = request;
+    request.finally(() => {
+      if (startPromise === request) startPromise = null;
+    });
+    return request;
   }
 
   function renderLoading() {
@@ -768,6 +827,10 @@
     const position = engine.history.length + 1;
     const progress = Math.min((position / 20) * 100, 100);
     const questionLanguage = EnglishTestI18n.TESTS[attemptTestLanguage || selectedTestLanguage].bcp47;
+    const serviceQuestion = uiLocale === 'ru' ? { scenario: q.scenarioRu, instruction: q.instructionRu, language: 'ru' } : { scenario: q.scenario, instruction: q.prompt, language: 'en' };
+    const timerLeftMs = options.preserveAttempt ? Math.max(0, questionDeadline - Date.now()) : QUESTION_SECONDS * 1000;
+    const timerSeconds = Math.ceil(timerLeftMs / 1000);
+    const timerOffset = (TIMER_CIRCUMFERENCE * (1 - timerLeftMs / (QUESTION_SECONDS * 1000))).toFixed(1);
 
     const node = el(`
       <div class="elt-test">
@@ -778,13 +841,13 @@
           <span class="elt-timer" id="qTimer" role="timer" aria-label="${copy('question.timerRemaining')}">
             <svg viewBox="0 0 36 36" aria-hidden="true">
               <circle class="elt-timer-track" cx="18" cy="18" r="15.5"></circle>
-              <circle class="elt-timer-ring" id="qTimerRing" cx="18" cy="18" r="15.5"></circle>
+              <circle class="elt-timer-ring" id="qTimerRing" cx="18" cy="18" r="15.5" style="stroke-dashoffset:${timerOffset}"></circle>
             </svg>
-            <b id="qTimerNum">${QUESTION_SECONDS}</b>
+            <b id="qTimerNum">${timerSeconds}</b>
           </span>
         </div>
-        <div class="elt-scenario" lang="${questionLanguage}">${escapeHtml(q.scenarioRu)}</div>
-        <div class="elt-instruction" lang="${questionLanguage}">${escapeHtml(q.instructionRu)}</div>
+        <div class="elt-scenario" lang="${serviceQuestion.language}">${escapeHtml(serviceQuestion.scenario)}</div>
+        <div class="elt-instruction" lang="${serviceQuestion.language}">${escapeHtml(serviceQuestion.instruction)}</div>
         ${q.stimulus
           ? `<div class="elt-stimulus" lang="${questionLanguage}">${escapeHtml(q.stimulus)}</div>`
           : ''}
@@ -822,12 +885,7 @@
     const optionButtons = node.querySelectorAll('.elt-option');
     optionButtons.forEach((btn) => {
       btn.addEventListener('click', () => {
-        if (answerLocked) return;
-        const idx = parseInt(btn.dataset.index, 10);
-        selectedAnswerIndex = idx;
-        answerLocked = true;
-        btn.classList.add('elt-option--picked');
-        setTimeout(() => answerQuestion(q, idx, false), 200);
+        selectAnswer(q, btn);
       });
     });
 
@@ -903,6 +961,18 @@
     keydownBound = false;
   }
 
+  function selectAnswer(question, button) {
+    const currentButtons = currentView ? Array.from(currentView.querySelectorAll('.elt-option')) : [];
+    const currentIndex = currentButtons.indexOf(button);
+    if (answerLocked || question !== currentQuestion || currentIndex < 0) return false;
+    selectedAnswerIndex = currentIndex;
+    answerLocked = true;
+    button.classList.add('elt-option--picked');
+    button.setAttribute('aria-checked', 'true');
+    setTimeout(() => answerQuestion(question, currentIndex, false), 200);
+    return true;
+  }
+
   function handleQuestionKeydown(e) {
     const view = currentView && currentView.classList.contains('elt-test') ? currentView : null;
     if (!view) return;
@@ -912,13 +982,20 @@
     let idx = Array.from(buttons).indexOf(focused);
     const q = currentQuestion;
 
+    if ((e.key === 'Enter' || e.key === ' ') && focused?.classList?.contains('elt-option')) {
+      e.preventDefault();
+      if (!answerLocked && idx >= 0) selectAnswer(q, buttons[idx]);
+      return;
+    }
+
+    if (answerLocked) return;
+
     if (e.key >= '1' && e.key <= '4') {
       const i = parseInt(e.key, 10) - 1;
       if (buttons[i]) {
         e.preventDefault();
         buttons[i].focus();
-        buttons[i].classList.add('elt-option--picked');
-        setTimeout(() => answerQuestion(q, i, false), 200);
+        selectAnswer(q, buttons[i]);
       }
       return;
     }
@@ -931,13 +1008,6 @@
       e.preventDefault();
       const prev = buttons[Math.max(idx - 1, 0)] || buttons[buttons.length - 1];
       prev.focus();
-    } else if (e.key === 'Enter' || e.key === ' ') {
-      if (focused.classList && focused.classList.contains('elt-option')) {
-        e.preventDefault();
-        const i = parseInt(focused.dataset.index, 10);
-        focused.classList.add('elt-option--picked');
-        setTimeout(() => answerQuestion(q, i, false), 200);
-      }
     }
   }
 
@@ -1015,6 +1085,7 @@
     const cta = ctaContentFor(result.estimatedLevel);
     const node = el(`
       <div class="elt-result">
+        ${brandHeader()}
         <div class="elt-result-card">
           <div class="elt-level-badge">${escapeHtml(result.estimatedLevel)}</div>
           <h2>${copy('result.level', { level: escapeHtml(result.estimatedLevel) })}</h2>
@@ -1091,10 +1162,12 @@
     const certData = {
       name,
       result,
+      uiLocale,
+      testLanguage: attemptTestLanguage || selectedTestLanguage,
       onClose: () => renderCTA(result),
       cta: {
-        text: EnglishTestI18n.t(attemptTestLanguage && attemptTestLanguage !== 'en' ? 'en' : uiLocale, 'certificate.ctaText'),
-        label: EnglishTestI18n.t(attemptTestLanguage && attemptTestLanguage !== 'en' ? 'en' : uiLocale, 'certificate.ctaButton'),
+        text: EnglishTestI18n.t(uiLocale, 'certificate.ctaText'),
+        label: EnglishTestI18n.t(uiLocale, 'certificate.ctaButton'),
         url: primaryStoreUrl(),
         onClick: () => {
           // зачем: source разделяет в отчёте «скачал после теста» и «скачал после
@@ -1114,6 +1187,7 @@
         <div class="cert">
           <h1>${copy('certificate.bodyTitle')}</h1>
           <p><strong>${escapeHtml(name)}</strong></p>
+          <p>${copy('certificate.completed', { language: EnglishTestI18n.TESTS[certData.testLanguage].certificateNames[uiLocale] })}</p>
           <p>${copy('result.level', { level: escapeHtml(result.estimatedLevel) })}</p>
           <p>${copy('certificate.summary', { correct: result.correct, answered: result.answered })}</p>
           <p><small>${copy('certificate.informal')}</small></p>
@@ -1149,7 +1223,7 @@
   // ---------- CTA (install Phraseman) ----------
 
   function ctaContentFor(level) {
-    const locale = attemptTestLanguage && attemptTestLanguage !== 'en' ? 'en' : uiLocale;
+    const locale = uiLocale;
     const band = String(level || '').slice(0, 2).toUpperCase();
     const key = band === 'PR' || band === 'A1' || band === 'A2' ? 'low' : (band === 'B1' || band === 'B2' ? 'mid' : 'high');
     return {

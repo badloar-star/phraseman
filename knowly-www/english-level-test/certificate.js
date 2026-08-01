@@ -1,3 +1,5 @@
+/* global EnglishTestI18n */
+
 /**
  * English Level Test — Certificate Generator v2
  * Multiple themes, animations, full-screen certificate page.
@@ -65,6 +67,7 @@
       ribbon: '#6366f1',
     },
   };
+  const CERTIFICATE_LEVELS = new Set(['Pre-A1', 'A1', 'A2', 'B1', 'B2', 'C1', 'C2']);
 
   // зачем: владелец потребовал выбор языка сертификата — либо ВСЁ на английском
   // (включая дату), либо ВСЁ на русском; раньше дата была ru-RU на англ. тексте.
@@ -92,7 +95,25 @@
   };
 
   let currentTheme = 'gold';
-  let currentLang = 'en';
+  let activeCertificateClose = null;
+  let activeCertificateReturnFocus = null;
+
+  function certificateLocale(locale) {
+    return locale === 'ru' ? 'ru' : 'en';
+  }
+
+  function certificateTestLanguage(testLanguage) {
+    return typeof EnglishTestI18n !== 'undefined'
+      && EnglishTestI18n.TEST_LANGUAGES.includes(testLanguage) ? testLanguage : 'en';
+  }
+
+  function certificateCopy(locale, key, vars) {
+    return typeof EnglishTestI18n !== 'undefined' ? EnglishTestI18n.t(certificateLocale(locale), key, vars) : '';
+  }
+
+  function certificateLanguage(data, locale) {
+    return EnglishTestI18n.TESTS[certificateTestLanguage(data.testLanguage)].certificateNames[certificateLocale(locale)];
+  }
 
   function isAppleMobile() {
     const ua = navigator.userAgent || '';
@@ -101,21 +122,36 @@
   }
 
   function escapeXml(str) {
-    return str
+    return String(str ?? '')
       .replace(/&/g, '&amp;')
       .replace(/</g, '&lt;')
       .replace(/>/g, '&gt;')
       .replace(/"/g, '&quot;');
   }
 
-  function sanitizeFilename(name) {
-    return name.replace(/[^a-zA-Z0-9\u0400-\u04FF\-]/g, '_').slice(0, 40);
+  function sanitizeFilenameComponent(value, fallback, maxLength = 40, unicode = false) {
+    const allowed = unicode ? /[^\p{L}\p{N}\p{M}]+/gu : /[^a-z0-9-]+/g;
+    const safe = String(value ?? '').normalize('NFKC').toLocaleLowerCase()
+      .replace(allowed, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+    return Array.from(safe || fallback).slice(0, maxLength).join('');
+  }
+
+  function certificateFilename(data, themeKey, locale) {
+    const language = EnglishTestI18n.TESTS[certificateTestLanguage(data.testLanguage)];
+    const currentLocale = certificateLocale(locale);
+    const languageSlug = sanitizeFilenameComponent(language.filenameSlugs[currentLocale] || language.filenameSlug, 'english');
+    const level = CERTIFICATE_LEVELS.has(data.result?.estimatedLevel) ? data.result.estimatedLevel.toLowerCase() : 'unknown';
+    const name = sanitizeFilenameComponent(data.name, 'learner', 40, true);
+    const theme = Object.prototype.hasOwnProperty.call(THEMES, themeKey) ? themeKey : 'gold';
+    return `phraseman-${languageSlug}-level-${level}-${name}-${theme}.png`;
   }
 
   function buildSvg(data, themeKey, langKey) {
     const { name, result } = data;
     const t = THEMES[themeKey] || THEMES.gold;
-    const L = LANGS[langKey] || LANGS.en;
+    const locale = certificateLocale(langKey);
+    const L = LANGS[locale];
+    const language = certificateLanguage(data, locale);
     const dateStr = new Date().toLocaleDateString(L.dateLocale, { day: 'numeric', month: 'long', year: 'numeric' });
     const cx = CERT_WIDTH / 2;
 
@@ -132,20 +168,20 @@
 
       <rect x="${cx - 120}" y="58" width="240" height="5" fill="${t.ribbon}" rx="2.5"/>
 
-      <text x="${cx}" y="155" text-anchor="middle" font-family="Georgia,serif" font-size="40" fill="${t.title}" font-weight="bold">${escapeXml(L.title)}</text>
-      <text x="${cx}" y="210" text-anchor="middle" font-family="Georgia,serif" font-size="19" fill="${t.text}">${escapeXml(L.certifies)}</text>
+      <text x="${cx}" y="155" text-anchor="middle" font-family="Georgia,serif" font-size="40" fill="${t.title}" font-weight="bold">${escapeXml(certificateCopy(locale, 'certificate.bodyTitle'))}</text>
+      <text x="${cx}" y="210" text-anchor="middle" font-family="Georgia,serif" font-size="19" fill="${t.text}">${escapeXml(certificateCopy(locale, 'certificate.certifies'))}</text>
       <text x="${cx}" y="295" text-anchor="middle" font-family="Georgia,serif" font-size="50" fill="${t.title}" font-weight="bold">${escapeXml(name)}</text>
       <line x1="300" y1="320" x2="${CERT_WIDTH - 300}" y2="320" stroke="${t.border}" stroke-width="2"/>
-      <text x="${cx}" y="370" text-anchor="middle" font-family="Georgia,serif" font-size="19" fill="${t.text}">${escapeXml(L.completed)}</text>
-      <text x="${cx}" y="410" text-anchor="middle" font-family="Georgia,serif" font-size="19" fill="${t.text}">${escapeXml(L.received)}</text>
+      <text x="${cx}" y="370" text-anchor="middle" font-family="Georgia,serif" font-size="19" fill="${t.text}">${escapeXml(certificateCopy(locale, 'certificate.completed', { language }))}</text>
+      <text x="${cx}" y="410" text-anchor="middle" font-family="Georgia,serif" font-size="19" fill="${t.text}">${escapeXml(certificateCopy(locale, 'certificate.received'))}</text>
       <text x="${cx}" y="500" text-anchor="middle" font-family="Georgia,serif" font-size="72" fill="${t.level}" font-weight="bold">${escapeXml(result.estimatedLevel)}</text>
-      <text x="${cx}" y="550" text-anchor="middle" font-family="Georgia,serif" font-size="17" fill="${t.text}">${escapeXml(L.summary(result.correct, result.answered))}</text>
+      <text x="${cx}" y="550" text-anchor="middle" font-family="Georgia,serif" font-size="17" fill="${t.text}">${escapeXml(certificateCopy(locale, 'certificate.summary', { correct: result.correct, answered: result.answered }))}</text>
 
       <rect x="${cx - 120}" y="590" width="240" height="5" fill="${t.ribbon}" rx="2.5"/>
 
       <text x="${cx}" y="650" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" fill="${t.text}" font-weight="600">${escapeXml(dateStr)}</text>
       <text x="${cx}" y="690" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="${t.text}">
-        ${escapeXml(L.informal)}
+        ${escapeXml(certificateCopy(locale, 'certificate.informal'))}
       </text>
       <text x="${cx}" y="715" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="${t.text}">
         knowlyapps.com/english-level-test/
@@ -180,8 +216,11 @@
   }
 
   function renderCertificate(data) {
+    const inheritedReturnFocus = activeCertificateReturnFocus;
+    if (typeof activeCertificateClose === 'function') activeCertificateClose({ supersede: true });
+    let currentLang = certificateLocale(data.uiLocale);
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const previouslyFocused = document.activeElement;
+    const previouslyFocused = inheritedReturnFocus || document.activeElement;
     const container = document.createElement('div');
     container.className = 'elt-cert-modal';
     container.innerHTML = `
@@ -223,6 +262,29 @@
     `;
 
     document.body.appendChild(container);
+    function renderLocaleUi() {
+      const text = (key) => certificateCopy(currentLang, key);
+      container.querySelector('.elt-cert-container').setAttribute('aria-label', text('certificate.dialogLabel'));
+      container.querySelector('.elt-cert-close').setAttribute('aria-label', text('certificate.closeLabel'));
+      container.querySelector('.elt-cert-langs').setAttribute('aria-label', text('certificate.languageGroup'));
+      container.querySelector('.elt-cert-themes').setAttribute('aria-label', text('certificate.themeGroup'));
+      container.querySelector('#certDownloadPng').textContent = text('certificate.downloadPng');
+      container.querySelector('#certPrint').textContent = text('certificate.printPdf');
+      container.querySelector('#certClose').textContent = text('certificate.close');
+      container.querySelectorAll('.elt-cert-lang-btn').forEach((button) => {
+        button.setAttribute('aria-pressed', String(button.dataset.lang === currentLang));
+      });
+      container.querySelectorAll('.elt-cert-theme-btn').forEach((button) => {
+        const themeName = text(`certificate.themes.${button.dataset.theme}`);
+        button.title = themeName;
+        button.querySelector('.elt-cert-theme-name').textContent = themeName;
+      });
+      if (data.cta) {
+        container.querySelector('.elt-cert-cta-text').textContent = text('certificate.ctaText');
+        container.querySelector('#certCtaBtn').textContent = text('certificate.ctaButton');
+      }
+    }
+    renderLocaleUi();
     let savePreviewUrl = null;
     let saveGeneration = 0;
     let saveInProgress = false;
@@ -308,6 +370,7 @@
         currentLang = btn.dataset.lang;
         container.querySelectorAll('.elt-cert-lang-btn').forEach((b) => b.classList.remove('active'));
         btn.classList.add('active');
+        renderLocaleUi();
         rebuildCertArea();
       });
     });
@@ -326,10 +389,10 @@
       downloadButton.setAttribute('aria-busy', 'true');
       try {
         savePreviewUrl = await downloadPng(
-          data.name,
-          data.result,
+          data,
           container,
           themeKey,
+          currentLang,
           () => closed || generation !== saveGeneration,
         );
       } finally {
@@ -342,7 +405,7 @@
     });
     // Печатаем свежесобранный SVG, а не innerHTML области: после iOS-сохранения
     // там лежит PNG-подмена с подсказкой, которые в печать попадать не должны.
-    container.querySelector('#certPrint').addEventListener('click', () => printCert(buildSvg(data, currentTheme, currentLang)));
+    container.querySelector('#certPrint').addEventListener('click', () => printCert(buildSvg(data, currentTheme, currentLang), currentLang));
 
     const ctaBtn = container.querySelector('#certCtaBtn');
     if (data.cta && ctaBtn) {
@@ -357,20 +420,30 @@
       });
     }
 
-    function close() {
-      if (closed) return;
+    function close({ supersede = false } = {}) {
+      if (closed && !supersede) return;
       closed = true;
       document.removeEventListener('keydown', handleModalKeydown);
       clearSavePreview();
+      if (supersede) {
+        if (activeCertificateClose === close) activeCertificateClose = null;
+        container.remove();
+        return;
+      }
       inner.animate([
         { transform: 'scale(1)', opacity: 1 },
         { transform: 'scale(0.92)', opacity: 0 }
       ], { duration: reducedMotion ? 60 : 250, easing: 'ease-in', fill: 'forwards' }).onfinish = () => {
+        if (activeCertificateClose !== close) return;
+        activeCertificateClose = null;
+        activeCertificateReturnFocus = null;
         container.remove();
         if (previouslyFocused?.isConnected) previouslyFocused.focus();
         if (typeof data.onClose === 'function') data.onClose();
       };
     }
+    activeCertificateClose = close;
+    activeCertificateReturnFocus = previouslyFocused;
   }
 
   async function svgToPng(svgEl) {
@@ -399,7 +472,7 @@
     });
   }
 
-  function showIosSavePreview(container, pngBlob, filename) {
+  function showIosSavePreview(container, pngBlob, filename, locale) {
     // зачем: владелец спросил «почему отдельно» — вторая копия сертификата ниже
     // сбивала с толку. Теперь PNG подменяет SVG НА МЕСТЕ: удерживать нужно ту же
     // картинку, которую пользователь уже видит, а подсказка появляется под ней.
@@ -412,19 +485,19 @@
     link.download = filename;
     link.href = objectUrl;
     const img = document.createElement('img');
-    img.alt = 'Готовый сертификат — нажмите и удерживайте, чтобы сохранить';
+    img.alt = certificateCopy(locale, 'certificate.iosReadyImageAlt');
     img.src = objectUrl;
     link.appendChild(img);
     wrap.appendChild(link);
     const hint = document.createElement('p');
+    hint.textContent = certificateCopy(locale, 'certificate.iosLongPressHint');
     hint.className = 'elt-cert-save-hint';
-    hint.textContent = 'Нажмите и удерживайте сертификат, затем «Сохранить в Фото»';
     wrap.appendChild(hint);
     hint.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     return objectUrl;
   }
 
-  async function downloadPng(name, result, container, themeKey, isCancelled) {
+  async function downloadPng(data, container, themeKey, locale, isCancelled) {
     const svgEl = container.querySelector('#certRenderArea svg');
     if (!svgEl) return null;
     try {
@@ -436,9 +509,9 @@
         }, 'image/png');
       });
       if (isCancelled()) return null;
-      const filename = `phraseman-english-level-${result.estimatedLevel}-${sanitizeFilename(name)}-${themeKey}.png`;
+      const filename = certificateFilename(data, themeKey, locale);
       if (isAppleMobile()) {
-        return showIosSavePreview(container, pngBlob, filename);
+        return showIosSavePreview(container, pngBlob, filename, locale);
       }
 
       const link = document.createElement('a');
@@ -450,19 +523,20 @@
       link.remove();
       setTimeout(() => URL.revokeObjectURL(link.href), 60000);
       return null;
-    } catch (e) {
-      if (!isCancelled()) alert('Не удалось создать PNG. Попробуйте функцию печати.');
+    } catch (_e) {
+      if (!isCancelled()) alert(certificateCopy(locale, 'certificate.pngFailure'));
       return null;
     }
   }
 
-  function printCert(svgMarkup) {
+  function printCert(svgMarkup, locale) {
     if (!svgMarkup) return;
     const printWindow = window.open('', '_blank');
+    const printTitle = escapeXml(certificateCopy(locale, 'certificate.printTitle'));
     printWindow.document.write(`
       <html>
         <head>
-          <title>Сертификат</title>
+          <title>${printTitle}</title>
           <style>
             @media print {
               body { margin: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }

@@ -4,9 +4,17 @@ const path = require('node:path');
 const test = require('node:test');
 const vm = require('node:vm');
 
-const CLIENT_DIR = path.join(__dirname, '..', 'knowly-www', 'english-level-test');
+const CLIENT_DIR = path.dirname(
+  require.resolve('../knowly-www/english-level-test/app.js'),
+);
 const read = (file) => fs.readFileSync(path.join(CLIENT_DIR, file), 'utf8');
 const APP_SOURCE = read('app.js');
+
+function loadI18nRegistry() {
+  const context = vm.createContext({ URL, URLSearchParams });
+  vm.runInContext(read('i18n.js'), context, { filename: path.join(CLIENT_DIR, 'i18n.js') });
+  return context.EnglishTestI18n;
+}
 
 function loadAppFunction(name, context = {}) {
   const declaration = `${name === 'api' || name === 'getClientHash' ? 'async ' : ''}function ${name}`;
@@ -114,24 +122,38 @@ test('all client assets and the bank use one new revision', () => {
   assert.ok(scripts.every((asset) => asset.endsWith(`?v=${expectedRevision}`)));
   assert.equal(html.includes(`?v=${baseRevision}`), false);
   const stylesheets = [...html.matchAll(/<link rel="stylesheet" href="([^"]+)"/g)].map((match) => match[1]);
-  assert.deepEqual(stylesheets, [`./styles.css?v=${expectedRevision}`]);
-  assert.equal(new Set(stylesheets).size, 1);
-  assert.match(app, new RegExp(`questions\\.en\\.json\\?v=${expectedRevision}`));
+  const expectedStylesheets = [
+    `./styles.css?v=${expectedRevision}`,
+    '/assets/site-background.css?v=20260729-1',
+  ];
+  assert.deepEqual(stylesheets, expectedStylesheets);
+  assert.equal(new Set(stylesheets).size, expectedStylesheets.length);
+  assert.deepEqual(
+    stylesheets.filter((asset) => asset.endsWith(`?v=${expectedRevision}`)),
+    [`./styles.css?v=${expectedRevision}`],
+  );
+  assert.equal(stylesheets[1], '/assets/site-background.css?v=20260729-1');
+  const i18n = loadI18nRegistry();
+  assert.deepEqual([...i18n.TEST_LANGUAGES], ['en', 'de', 'fr', 'it', 'es']);
+  for (const code of i18n.TEST_LANGUAGES) assert.equal(i18n.TESTS[code].bankUrl, `./data/questions.${code}.json?v=${expectedRevision}`);
+  assert.match(app, /fetch\(EnglishTestI18n\.TESTS\[language\]\.bankUrl\)/);
+  assert.doesNotMatch(app, /const BANK_URL/);
   assert.doesNotMatch(`${html}\n${app}`, /20260722-3/);
 });
 
-test('question screen separates Russian instructions from English assessment material', () => {
+test('question screen selects service instructions by UI locale and keeps assessed material in the test language', () => {
   const app = read('app.js');
   const styles = read('styles.css');
 
   assert.match(app, /const questionLanguage = EnglishTestI18n\.TESTS\[attemptTestLanguage \|\| selectedTestLanguage\]\.bcp47/);
-  assert.match(app, /class="elt-scenario" lang="\$\{questionLanguage\}"[^>]*>\$\{escapeHtml\(q\.scenarioRu\)\}/);
-  assert.match(app, /class="elt-instruction" lang="\$\{questionLanguage\}"[^>]*>\$\{escapeHtml\(q\.instructionRu\)\}/);
+  assert.match(app, /const serviceQuestion = uiLocale === 'ru' \? \{ scenario: q\.scenarioRu, instruction: q\.instructionRu, language: 'ru' \} : \{ scenario: q\.scenario, instruction: q\.prompt, language: 'en' \};/);
+  assert.match(app, /class="elt-scenario" lang="\$\{serviceQuestion\.language\}"[^>]*>\$\{escapeHtml\(serviceQuestion\.scenario\)\}/);
+  assert.match(app, /class="elt-instruction" lang="\$\{serviceQuestion\.language\}"[^>]*>\$\{escapeHtml\(serviceQuestion\.instruction\)\}/);
   assert.match(app, /class="elt-stimulus" lang="\$\{questionLanguage\}"/);
   assert.match(app, /escapeHtml\(q\.stimulus\)/);
   assert.match(app, /class="elt-option-text" lang="\$\{questionLanguage\}"/);
-  assert.doesNotMatch(app, /escapeHtml\(q\.scenario\)/);
-  assert.doesNotMatch(app, /escapeHtml\(q\.prompt\)/);
+  assert.match(app, /escapeHtml\(serviceQuestion\.scenario\)/);
+  assert.match(app, /escapeHtml\(serviceQuestion\.instruction\)/);
   assert.match(styles, /\.elt-instruction\s*\{/);
   assert.match(styles, /\.elt-stimulus\s*\{/);
 });
@@ -139,7 +161,7 @@ test('question screen separates Russian instructions from English assessment mat
 test('client sends the root bank version and bounded calibration evidence', () => {
   const app = read('app.js');
 
-  assert.match(app, /bankVersion\s*=\s*data\.bankVersion/);
+  assert.match(app, /bankVersion\s*=\s*bank\.bankVersion/);
   assert.match(app, /api\('start',\s*\{\s*bankVersion\s*\}\)/);
   assert.match(app, /questionLevel:\s*question\.level/);
   assert.match(app, /correct:/);

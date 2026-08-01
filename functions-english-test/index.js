@@ -232,11 +232,15 @@ function normalizeAnalyticsAction(action, body) {
       };
     case 'view': {
       const payload = normalizeQuestionIdentity(body);
-      return payload ? { action, payload: { ...payload, ...dimensions } } : null;
+      return payload && payload.questionId.startsWith(`${dimensions.testLanguage}-`)
+        ? { action, payload: { ...payload, ...dimensions } }
+        : null;
     }
     case 'progress': {
       const payload = normalizeProgressResponse(body);
-      return payload ? { action, payload: { ...payload, ...dimensions } } : null;
+      return payload && payload.questionId.startsWith(`${dimensions.testLanguage}-`)
+        ? { action, payload: { ...payload, ...dimensions } }
+        : null;
     }
     case 'complete': {
       const payload = normalizeCompletedResult(body.result);
@@ -401,7 +405,7 @@ async function checkAnalyticsRateLimits({ clientHash, ipAddress, hmacKey }) {
 
 // ---------- Attempt Management ----------
 
-async function getOrCreateAttempt(token, clientHash, hmacKey, payload) {
+async function getOrCreateAttempt(token, clientHash, hmacKey, payload, action = null) {
   const tokenHash = sha256(token + hmacKey);
   const docRef = db.collection('english_test_attempts').doc(tokenHash);
   const doc = await docRef.get();
@@ -417,6 +421,7 @@ async function getOrCreateAttempt(token, clientHash, hmacKey, payload) {
     expiresAt: getExpiresAt(ATTEMPT_TTL_DAYS),
     status: 'active',
     bankVersion: normalizeBankVersion(payload.bankVersion),
+    startEventRecorded: action === 'start',
     testLanguage: normalizeTestLanguage(payload.testLanguage),
     uiLocale: normalizeUiLocale(payload.uiLocale),
     clientHash: hmac(hmacKey, clientHash),
@@ -437,8 +442,51 @@ async function getOrCreateAttempt(token, clientHash, hmacKey, payload) {
     shareChannels: [],
   };
 
-  await docRef.set(attemptData);
-  return { docRef, data: attemptData, isNew: true };
+  return db.runTransaction(async (transaction) => {
+    const currentDoc = await transaction.get(docRef);
+    if (currentDoc.exists) {
+      return { docRef, data: currentDoc.data(), isNew: false };
+    }
+    transaction.set(docRef, attemptData);
+    return { docRef, data: attemptData, isNew: true };
+  });
+}
+
+async function reconcileAttemptContext(docRef, normalizedAction) {
+  return db.runTransaction(async (transaction) => {
+    const currentDoc = await transaction.get(docRef);
+    if (!currentDoc.exists) return { allowed: false, data: null };
+
+    const currentData = currentDoc.data();
+    const frozenTestLanguage = normalizeTestLanguage(currentData.testLanguage);
+    if (normalizedAction.payload.testLanguage !== frozenTestLanguage) {
+      return { allowed: false, data: currentData };
+    }
+
+    if (normalizedAction.action !== 'start') {
+      return { allowed: true, data: currentData };
+    }
+
+    const submittedBankVersion = normalizeBankVersion(normalizedAction.payload.bankVersion);
+    const frozenBankVersion = normalizeBankVersion(currentData.bankVersion);
+    if (currentData.startEventRecorded === false) {
+      const reconciledData = {
+        ...currentData,
+        bankVersion: submittedBankVersion,
+        startEventRecorded: true,
+      };
+      transaction.update(docRef, {
+        bankVersion: submittedBankVersion,
+        startEventRecorded: true,
+      });
+      return { allowed: true, data: reconciledData };
+    }
+
+    return {
+      allowed: frozenBankVersion === submittedBankVersion,
+      data: currentData,
+    };
+  });
 }
 
 async function getAttemptNumber(clientHash, hmacKey) {
@@ -569,10 +617,17 @@ exports.englishTestApi = onRequest({
   }
 
   try {
-    const { docRef, data: attemptData } = await getOrCreateAttempt(token, clientHash, hmacKey, {
+    const { docRef } = await getOrCreateAttempt(token, clientHash, hmacKey, {
       ...body,
       userAgent: ua,
-    });
+    }, normalizedAction.action);
+
+    const attemptContext = await reconcileAttemptContext(docRef, normalizedAction);
+    if (!attemptContext.allowed) {
+      res.status(400).json({ error: 'Invalid request' });
+      return;
+    }
+    const frozenAttemptData = attemptContext.data;
 
     const now = Date.now();
     const update = { updatedAtMs: now };
@@ -584,21 +639,21 @@ exports.englishTestApi = onRequest({
         update.status = 'active';
         break;
       case 'view':
-        const viewUpdate = buildViewUpdate(attemptData, normalizedAction.payload);
+        const viewUpdate = buildViewUpdate(frozenAttemptData, normalizedAction.payload);
         if (viewUpdate) Object.assign(update, viewUpdate);
         break;
       case 'progress':
         const progressResponse = normalizedAction.payload;
-        const responses = mergeProgressResponses(attemptData.responses, progressResponse);
+        const responses = mergeProgressResponses(frozenAttemptData.responses, progressResponse);
         update.responses = responses;
-        const previousPosition = Number.isInteger(attemptData.lastPosition)
-          ? attemptData.lastPosition
+        const previousPosition = Number.isInteger(frozenAttemptData.lastPosition)
+          ? frozenAttemptData.lastPosition
           : 0;
         update.lastPosition = Math.min(20, Math.max(previousPosition, progressResponse.position));
         break;
       case 'complete':
         update.status = 'completed';
-        update.result = normalizedAction.payload;
+        update.result = normalizeCompletedResult(normalizedAction.payload);
         break;
       case 'abandon':
         update.status = 'abandoned';
@@ -608,7 +663,7 @@ exports.englishTestApi = onRequest({
         update.certificateEvent = true;
         break;
       case 'share':
-        const channels = [...(attemptData.shareChannels || [])];
+        const channels = [...(frozenAttemptData.shareChannels || [])];
         const ch = normalizedAction.payload.channel;
         if (ch && !channels.includes(ch)) channels.push(ch);
         update.shareChannels = channels;

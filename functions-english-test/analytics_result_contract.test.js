@@ -161,7 +161,10 @@ test('complete action writes a result only after contract normalization', () => 
     handlerSource.indexOf("case 'abandon':"),
   );
 
-  assert.match(completeCase, /update\.result\s*=\s*normalizedAction\.payload/);
+  assert.match(
+    completeCase,
+    /update\.result\s*=\s*normalizeCompletedResult\(normalizedAction\.payload\)/,
+  );
   assert.doesNotMatch(completeCase, /body\.result\.(?:index|confidence)/);
 });
 
@@ -383,7 +386,7 @@ test('view action uses only the bounded normalized update', () => {
     handlerSource.indexOf("case 'progress':"),
   );
 
-  assert.match(viewCase, /buildViewUpdate\(attemptData, normalizedAction\.payload\)/);
+  assert.match(viewCase, /buildViewUpdate\(frozenAttemptData, normalizedAction\.payload\)/);
   assert.doesNotMatch(viewCase, /body\.(?:questionId|position)|\.push\(/);
 });
 

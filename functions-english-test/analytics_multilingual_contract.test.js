@@ -212,6 +212,12 @@ test('new attempts persist normalized dimensions and submitted normalized bank v
       assert.equal(name, 'english_test_attempts');
       return { doc() { return docRef; } };
     },
+    async runTransaction(callback) {
+      return callback({
+        get: (ref) => ref.get(),
+        set: (_ref, value) => { storedAttempt = plain(value); },
+      });
+    },
   };
   const getOrCreateAttempt = loadFunction('getOrCreateAttempt', {
     ATTEMPT_TTL_DAYS: 180,
@@ -379,4 +385,259 @@ test('client mutation check detects certificate-name and raw-question leakage', 
     assert.equal(Object.hasOwn(body, 'lastCertName'), false);
     assert.equal(Object.hasOwn(body, 'rawQuestionText'), false);
   });
+});
+
+function createFirestoreHarness() {
+  const documents = new Map();
+  const writes = [];
+  const transactionWrites = [];
+
+  const clone = (value) => value === undefined ? undefined : JSON.parse(JSON.stringify(value));
+  const snapshot = (path) => ({
+    exists: documents.has(path),
+    data: () => clone(documents.get(path)),
+  });
+  const assignPath = (target, dottedPath, value) => {
+    const parts = dottedPath.split('.');
+    let cursor = target;
+    for (const part of parts.slice(0, -1)) {
+      if (!cursor[part] || typeof cursor[part] !== 'object') cursor[part] = {};
+      cursor = cursor[part];
+    }
+    const key = parts.at(-1);
+    cursor[key] = value?.__increment === true
+      ? (Number(cursor[key]) || 0) + value.amount
+      : clone(value);
+  };
+  const applySet = (path, value, options) => {
+    const next = options?.merge ? { ...(documents.get(path) || {}) } : {};
+    for (const [key, fieldValue] of Object.entries(value)) assignPath(next, key, fieldValue);
+    documents.set(path, next);
+  };
+  const applyUpdate = (path, value) => {
+    assert.equal(documents.has(path), true, `cannot update missing ${path}`);
+    const next = { ...documents.get(path) };
+    for (const [key, fieldValue] of Object.entries(value)) assignPath(next, key, fieldValue);
+    documents.set(path, next);
+  };
+  const doc = (collectionName, id) => {
+    const path = `${collectionName}/${id}`;
+    return {
+      path,
+      async get() { return snapshot(path); },
+      async set(value, options) {
+        writes.push({ kind: 'set', path, value: clone(value) });
+        applySet(path, value, options);
+      },
+      async update(value) {
+        writes.push({ kind: 'update', path, value: clone(value) });
+        applyUpdate(path, value);
+      },
+    };
+  };
+  const db = {
+    collection(name) {
+      return { doc: (id) => doc(name, id) };
+    },
+    async runTransaction(callback) {
+      const pending = [];
+      const transaction = {
+        get: (ref) => Promise.resolve(snapshot(ref.path)),
+        set: (ref, value, options) => pending.push({ kind: 'set', ref, value, options }),
+        update: (ref, value) => pending.push({ kind: 'update', ref, value }),
+      };
+      const result = await callback(transaction);
+      for (const operation of pending) {
+        transactionWrites.push({
+          kind: operation.kind,
+          path: operation.ref.path,
+          value: clone(operation.value),
+        });
+        if (operation.kind === 'set') {
+          applySet(operation.ref.path, operation.value, operation.options);
+        } else {
+          applyUpdate(operation.ref.path, operation.value);
+        }
+      }
+      return result;
+    },
+  };
+  return { db, documents, transactionWrites, writes };
+}
+
+function loadApiHandlerHarness() {
+  const firestore = createFirestoreHarness();
+  class CompletionRateLimitError extends Error {}
+  const exportsObject = {};
+  const context = vm.createContext({
+    Buffer,
+    Date,
+    Promise,
+    console: { error() {}, log() {}, warn() {} },
+    exports: exportsObject,
+    require(moduleName) {
+      if (moduleName === 'crypto') return require('node:crypto');
+      if (moduleName === 'firebase-functions/v2/https') {
+        return {
+          onRequest: (_options, handler) => handler,
+          onCall: (_options, handler) => handler,
+        };
+      }
+      if (moduleName === 'firebase-functions/v2/scheduler') {
+        return { onSchedule: (_options, handler) => handler };
+      }
+      if (moduleName === 'firebase-functions/params') {
+        return { defineSecret: () => ({ value: () => 'test-secret' }) };
+      }
+      if (moduleName === 'firebase-admin/app') return { initializeApp() {} };
+      if (moduleName === 'firebase-admin/firestore') {
+        return {
+          FieldValue: { increment: (amount) => ({ __increment: true, amount }) },
+          getFirestore: () => firestore.db,
+        };
+      }
+      if (moduleName === './completion_counter') {
+        return {
+          CompletionRateLimitError,
+          countCompletion: async () => ({ completed: 1, duplicate: false }),
+          isValidCompletionPayload: () => true,
+          readCompletedCount: async () => 0,
+        };
+      }
+      if (moduleName === './request_security') {
+        return {
+          getTrustedExternalClientIp: () => '203.0.113.10',
+          requestBodyByteLength: () => 0,
+        };
+      }
+      throw new Error(`Unexpected module: ${moduleName}`);
+    },
+  });
+  vm.runInContext(source, context, { filename: path.join(__dirname, 'index.js') });
+
+  const attemptPath = (token) => {
+    const tokenHash = require('node:crypto')
+      .createHash('sha256')
+      .update(token + 'test-secret')
+      .digest('hex');
+    return `english_test_attempts/${tokenHash}`;
+  };
+  const request = async (action, token, fields = {}) => {
+    const req = {
+      method: 'POST',
+      headers: { 'user-agent': 'contract-test-browser' },
+      body: {
+        action,
+        attemptToken: token,
+        clientHash: `client-${token}`,
+        ...fields,
+      },
+    };
+    const response = { statusCode: 200, body: null, headers: {} };
+    const res = {
+      set(name, value) { response.headers[name] = value; return this; },
+      status(code) { response.statusCode = code; return this; },
+      json(value) { response.body = plain(value); return this; },
+      send(value) { response.body = value; return this; },
+    };
+    await exportsObject.englishTestApi(req, res);
+    return response;
+  };
+  const readAttempt = (token) => plain(firestore.documents.get(attemptPath(token)));
+  const replaceAttempt = (token, next) => firestore.documents.set(attemptPath(token), plain(next));
+  return { ...firestore, attemptPath, readAttempt, replaceAttempt, request };
+}
+
+test('landing or view creation reconciles the first legitimate start bank version exactly once', async () => {
+  const harness = loadApiHandlerHarness();
+  for (const [initialAction, initialFields] of [
+    ['landing', { testLanguage: 'de', uiLocale: 'ru' }],
+    ['view', { questionId: 'de-a1-001', position: 1, testLanguage: 'de', uiLocale: 'ru' }],
+  ]) {
+    const token = `race-${initialAction}`;
+    assert.equal((await harness.request(initialAction, token, initialFields)).statusCode, 200);
+    assert.equal((await harness.request('start', token, {
+      bankVersion: '2026-08-01.7',
+      testLanguage: 'de',
+      uiLocale: 'ru',
+    })).statusCode, 200);
+    assert.equal(harness.readAttempt(token).bankVersion, '2026-08-01.7');
+
+    const attemptWrites = harness.transactionWrites.filter(({ path: writePath }) => (
+      writePath === harness.attemptPath(token)
+    ));
+    assert.equal(attemptWrites.some(({ value }) => value.bankVersion === '2026-08-01.7'), true);
+
+    assert.equal((await harness.request('start', token, {
+      bankVersion: '2026-08-01.99',
+      testLanguage: 'de',
+      uiLocale: 'ru',
+    })).statusCode, 400);
+    assert.equal(harness.readAttempt(token).bankVersion, '2026-08-01.7');
+  }
+});
+
+test('handler binds every event and question ID to the frozen attempt language', async () => {
+  const harness = loadApiHandlerHarness();
+  const token = 'frozen-de';
+  assert.equal((await harness.request('start', token, {
+    bankVersion: '2026-08-01.7', testLanguage: 'de', uiLocale: 'ru',
+  })).statusCode, 200);
+  assert.equal((await harness.request('view', token, {
+    questionId: 'de-a1-001', position: 1, testLanguage: 'de', uiLocale: 'ru',
+  })).statusCode, 200);
+  assert.deepEqual(harness.readAttempt(token).questionSequence, ['de-a1-001']);
+
+  for (const fields of [
+    { questionId: 'fr-a1-002', position: 2, testLanguage: 'de', uiLocale: 'ru' },
+    { questionId: 'en-a1-002', position: 2, testLanguage: 'de', uiLocale: 'ru' },
+  ]) {
+    const before = harness.readAttempt(token);
+    assert.equal((await harness.request('view', token, fields)).statusCode, 400);
+    assert.deepEqual(harness.readAttempt(token), before);
+  }
+
+  const beforeMismatchedEvent = harness.readAttempt(token);
+  assert.equal((await harness.request('certificate', token, {
+    testLanguage: 'fr', uiLocale: 'ru', name: 'Must not persist',
+  })).statusCode, 400);
+  assert.deepEqual(harness.readAttempt(token), beforeMismatchedEvent);
+});
+
+test('legacy attempts without a stored language freeze to English', async () => {
+  const harness = loadApiHandlerHarness();
+  const token = 'legacy-language';
+  assert.equal((await harness.request('landing', token, {})).statusCode, 200);
+  const legacyAttempt = harness.readAttempt(token);
+  delete legacyAttempt.testLanguage;
+  harness.replaceAttempt(token, legacyAttempt);
+
+  assert.equal((await harness.request('view', token, {
+    questionId: 'en-a1-001', position: 1,
+  })).statusCode, 200);
+  const beforeGerman = harness.readAttempt(token);
+  assert.equal((await harness.request('view', token, {
+    questionId: 'de-a1-002', position: 2, testLanguage: 'de', uiLocale: 'en',
+  })).statusCode, 400);
+  assert.deepEqual(harness.readAttempt(token), beforeGerman);
+});
+
+test('complete persists only the six-field result while dimensions remain at attempt level', async () => {
+  const harness = loadApiHandlerHarness();
+  const token = 'result-shape';
+  assert.equal((await harness.request('start', token, {
+    bankVersion: '2026-08-01.7', testLanguage: 'de', uiLocale: 'ru',
+  })).statusCode, 200);
+  assert.equal((await harness.request('complete', token, {
+    testLanguage: 'de',
+    uiLocale: 'en',
+    result: validResult(),
+  })).statusCode, 200);
+
+  const attempt = harness.readAttempt(token);
+  assert.deepEqual(attempt.result, validResult());
+  assert.equal(attempt.testLanguage, 'de');
+  assert.equal(attempt.uiLocale, 'ru');
+  assert.equal(Object.hasOwn(attempt.result, 'testLanguage'), false);
+  assert.equal(Object.hasOwn(attempt.result, 'uiLocale'), false);
 });

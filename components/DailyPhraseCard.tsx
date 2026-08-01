@@ -73,10 +73,6 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
   const [questPreviouslyAnswered, setQuestPreviouslyAnswered] = useState(false);
   const [selectedQuestOptionId, setSelectedQuestOptionId] = useState<string | null>(null);
   const [questXpDelta, setQuestXpDelta] = useState<number | null>(null);
-  // Whether today's quest has been answered — gates revealing the meaning on the
-  // home card itself (the homeAdditional plaque). Before answering we show a
-  // teaser CTA instead of the translation so the quiz keeps its "guess" point.
-  const [cardQuestAnswered, setCardQuestAnswered] = useState(false);
   const shakeAnim = useRef(new Animated.Value(0)).current;
   const explanationAnim = useRef(new Animated.Value(0)).current;
   const successAnim = useRef(new Animated.Value(0)).current;
@@ -145,24 +141,6 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
     explanationAnim.setValue(0);
     successAnim.setValue(0);
   }, [phrase?.id, shakeAnim, explanationAnim, successAnim]);
-
-  // Mirror today's answered-state onto the card so the homeAdditional plaque can
-  // hide the meaning until the quest is solved. Re-checks whenever the phrase
-  // changes (new day / new phrase => fresh quiz, meaning hidden again).
-  useEffect(() => {
-    if (!dailyPhraseGateOpen || !phrase) {
-      setCardQuestAnswered(false);
-      return;
-    }
-    let cancelled = false;
-    setCardQuestAnswered(false);
-    const phraseId = phrase.id || phrase.date;
-    const date = phrase.date || phrase.scheduledDate || new Date().toISOString().split('T')[0]!;
-    hasDailyPhraseQuestAnswered({ phraseId, date })
-      .then((answered) => { if (!cancelled && answered) setCardQuestAnswered(true); })
-      .catch(() => {});
-    return () => { cancelled = true; };
-  }, [dailyPhraseGateOpen, phrase?.id, phrase?.date, phrase?.scheduledDate, phrase, studyTarget]);
 
   useEffect(() => {
     if (!dailyPhraseGateOpen || !detailsVisible || !phrase || questAnswered || showQuestExplanation) return;
@@ -278,15 +256,15 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
     tr: 'Günün ifadesi',
     pl: 'Fraza dnia',
   });
-  const questTeaser = triLang(lang, {
-    uk: 'Натисни й вгадай значення → +XP',
-    ru: 'Нажми и угадай значение → +XP',
-    es: 'Toca y adivina el significado → +XP',
-    'pt-BR': 'Toque e adivinhe o significado → +XP',
-    vi: 'Chạm để đoán nghĩa → +XP',
-    id: 'Ketuk dan tebak artinya → +XP',
-    tr: 'Dokun ve anlamını tahmin et → +XP',
-    pl: 'Dotknij i odgadnij znaczenie → +XP',
+  const homeActionLabel = triLang(lang, {
+    uk: 'Перевірити себе',
+    ru: 'Проверить себя',
+    es: 'Ponte a prueba',
+    'pt-BR': 'Teste-se',
+    vi: 'Tự kiểm tra',
+    id: 'Uji diri',
+    tr: 'Kendini dene',
+    pl: 'Sprawdź się',
   });
   const phraseLang: DailyPhraseInterfaceLang = lang;
   const phraseCopy = dailyPhraseCopyForLang(phrase, phraseLang);
@@ -298,7 +276,6 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
     pl: phrase.sourceLocales?.pl?.meaning,
   };
   const dailyPhraseImage = trainerThemeIconSource(themeMode, 'phrases');
-  const homeAdditionalMeaning = phraseCopy.meaning || phrase.meaning;
   const questOptions = buildDailyPhraseQuestOptions(phrase, IDIOMS, phraseLang);
   const selectedQuestCorrect = selectedQuestOptionId
     ? isDailyPhraseQuestAnswerCorrect(questOptions, selectedQuestOptionId)
@@ -390,7 +367,6 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
 
     if (alreadyAnswered) {
       setQuestAnswered(true);
-      setCardQuestAnswered(true);
       setShowQuestExplanation(true);
       setQuestPreviouslyAnswered(true);
       setSelectedQuestOptionId(null);
@@ -417,7 +393,6 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
     answeredQuestKeysRef.add(questKey);
     setSelectedQuestOptionId(optionId);
     setQuestAnswered(true);
-    setCardQuestAnswered(true);
     setQuestPreviouslyAnswered(false);
     revealQuestExplanation();
     markDailyPhraseQuestAnswered({ phraseId, date }).catch(() => {});
@@ -445,7 +420,7 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
       <Pressable
         onPress={openDetails}
         accessibilityRole="button"
-        accessibilityLabel={title}
+        accessibilityLabel={homeAdditional ? `${title}. ${phrase.english}. ${homeActionLabel}` : title}
         style={({ pressed }) => [
           homeAdditional ? styles.homeAdditionalPlaque : styles.plaque,
           {
@@ -485,24 +460,32 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
             </View>
           )}
           <View style={styles.plaqueCopy}>
-            <View style={styles.titleRow}>
-              <Text style={[homeAdditional ? styles.homeAdditionalTitle : styles.plaqueTitle, { color: chrome.title, fontSize: homeAdditional ? Math.max(20, f.bodyLg) : f.caption }]} numberOfLines={1}>
-                {title}
-              </Text>
-            </View>
-            <Text style={[homeAdditional ? styles.homeAdditionalPhrase : styles.plaquePhrase, { color: chrome.phrase, fontSize: homeAdditional ? Math.max(25, f.h2) : f.body, lineHeight: homeAdditional ? Math.round(Math.max(25, f.h2) * 1.3) : undefined }]} numberOfLines={2}>
-              {phrase.english}
-            </Text>
-            {homeAdditional && (
-              cardQuestAnswered ? (
-                <Text style={[styles.homeAdditionalSub, { color: chrome.sub, fontSize: Math.max(14, f.label) }]} numberOfLines={2}>
-                  {homeAdditionalMeaning}
+            {homeAdditional ? (
+              <>
+                <Text style={[styles.homeAdditionalKicker, { color: chrome.title, fontSize: Math.max(12, f.caption) }]} numberOfLines={1}>
+                  {title}
                 </Text>
-              ) : (
-                <Text style={[styles.homeAdditionalTeaser, { color: chrome.title, fontSize: Math.max(13, f.label) }]} numberOfLines={2}>
-                  {questTeaser}
+                <Text style={[styles.homeAdditionalPhrase, { color: chrome.phrase, fontSize: Math.max(22, f.bodyLg), lineHeight: Math.round(Math.max(22, f.bodyLg) * 1.3) }]} numberOfLines={2}>
+                  {phrase.english}
                 </Text>
-              )
+                <View style={[styles.homeAdditionalAction, { backgroundColor: chrome.actionBg }]}>
+                  <Text style={[styles.homeAdditionalActionText, { fontSize: Math.max(13, f.label) }]} color={chrome.actionText}>
+                    {homeActionLabel}
+                  </Text>
+                  <Ionicons name="arrow-forward" size={16} color={chrome.actionText} />
+                </View>
+              </>
+            ) : (
+              <>
+                <View style={styles.titleRow}>
+                  <Text style={[styles.plaqueTitle, { color: chrome.title, fontSize: f.caption }]} numberOfLines={1}>
+                    {title}
+                  </Text>
+                </View>
+                <Text style={[styles.plaquePhrase, { color: chrome.phrase, fontSize: f.body }]} numberOfLines={2}>
+                  {phrase.english}
+                </Text>
+              </>
             )}
           </View>
         </View>
@@ -771,15 +754,15 @@ const styles = StyleSheet.create({
     ...noAndroidOutline,
   },
   homeAdditionalPlaque: {
-    minHeight: 134,
+    minHeight: 124,
     marginHorizontal: 8,
     marginTop: 10,
     marginBottom: 16,
-    borderRadius: 24,
-    paddingHorizontal: 20,
-    paddingVertical: 17,
+    borderRadius: 20,
+    paddingHorizontal: 16,
+    paddingVertical: 16,
     overflow: 'hidden',
-    // зачем: та же плашка на главном — квадрат вокруг скругления 24.
+    // зачем: та же плашка на главном — квадрат вокруг скругления.
     // Радиус 16 — потолок DESIGN.md (perf-guard).
     shadowOpacity: 0.14,
     shadowRadius: 16,
@@ -814,7 +797,7 @@ const styles = StyleSheet.create({
   homeAdditionalContent: {
     flex: 1,
     justifyContent: 'center',
-    paddingRight: 78,
+    paddingRight: 72,
     zIndex: 2,
   },
   plaqueGlow: {
@@ -828,15 +811,15 @@ const styles = StyleSheet.create({
   },
   homeAdditionalGhostWrap: {
     position: 'absolute',
-    right: 16,
-    top: 24,
-    width: 82,
-    height: 82,
+    right: 12,
+    top: 20,
+    width: 72,
+    height: 72,
     opacity: 0.34,
   },
   homeAdditionalGhostImage: {
-    width: 82,
-    height: 82,
+    width: 72,
+    height: 72,
   },
   titleRow: {
     minHeight: 28,
@@ -859,9 +842,31 @@ const styles = StyleSheet.create({
     lineHeight: 26,
     flexShrink: 1,
   },
+  homeAdditionalKicker: {
+    fontWeight: '900',
+    letterSpacing: 0.7,
+    lineHeight: 16,
+    marginBottom: 4,
+    textTransform: 'uppercase',
+  },
   homeAdditionalPhrase: {
     fontWeight: '900',
-    lineHeight: 34,
+    flexShrink: 1,
+  },
+  homeAdditionalAction: {
+    minHeight: 32,
+    alignSelf: 'flex-start',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    borderRadius: 16,
+    marginTop: 9,
+    paddingHorizontal: 11,
+    paddingVertical: 6,
+  },
+  homeAdditionalActionText: {
+    fontWeight: '900',
+    lineHeight: 18,
   },
   homeAdditionalSub: {
     fontWeight: '800',

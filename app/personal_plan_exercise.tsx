@@ -102,7 +102,7 @@ import { planExerciseRendererContractForType, type PlanExerciseVisualShell } fro
 import { evaluateRecallAnswer } from './review_evaluator';
 import BouncyScrollView from '../components/BouncyScrollView';
 import TopFadeMask from '../components/TopFadeMask';
-
+import { beginPersonalPlanChoiceAttempt, type PersonalPlanChoiceAttemptState } from './personal_plan_choice_attempt';
 import { noAndroidOutline } from '../constants/androidGlow';
 function firstParam(value: string | string[] | undefined): string {
   return Array.isArray(value) ? value[0] ?? '' : value ?? '';
@@ -1914,6 +1914,7 @@ export default function PersonalPlanExerciseScreen() {
   const [selected, setSelected] = useState<string | null>(null);
   const [lastResult, setLastResult] = useState<'correct' | 'wrong' | null>(null);
   const [saving, setSaving] = useState(false);
+  const choiceAttemptStateRef = useRef<PersonalPlanChoiceAttemptState | null>(null);
   const [completed, setCompleted] = useState(false);
   // Идёт авто-переход на следующее задание (replace) — подавляем финал-модал дня,
   // чтобы он не мелькнул между завершением и навигацией.
@@ -2234,13 +2235,17 @@ export default function PersonalPlanExerciseScreen() {
   ) : null;
 
   const submit = async (answer: string) => {
-    if (!item || !session || saving || done) return;
+    if (!item || !session || done) return;
     if (!('correctAnswer' in item)) return;
     const isCorrect = answer === item.correctAnswer;
-    // Первая попытка на этом item уже записана как 'wrong' — доклик в правильный
-    // вариант правит только экран (звук/переход), но не пишет вторую попытку.
-    const alreadyRecorded = lastResult === 'wrong';
-    setSaving(true);
+    const attempt = beginPersonalPlanChoiceAttempt(choiceAttemptStateRef.current, {
+      itemKey: `${routeTaskKey}::${item.id}`,
+      isCorrect,
+    });
+    choiceAttemptStateRef.current = attempt.state;
+    if (!attempt.accepted) return;
+
+    if (attempt.shouldPersist) setSaving(true);
     setSelected(answer);
     setLastResult(isCorrect ? 'correct' : 'wrong');
     // Хаптик ошибки даёт сама плитка (warning-хаптик + shake на каждый неверный
@@ -2251,7 +2256,7 @@ export default function PersonalPlanExerciseScreen() {
       speakCurrentPhrase();
     }
 
-    if (!alreadyRecorded) {
+    if (attempt.shouldPersist) {
       await submitAndStorePlanExerciseAnswer(session, {
         result: isCorrect ? 'correct' : 'wrong',
         contentUnitId: item.id,
@@ -2268,7 +2273,7 @@ export default function PersonalPlanExerciseScreen() {
     if (isCorrect) {
       setCorrectIds((current) => current.includes(item.id) ? current : [...current, item.id]);
     }
-    setSaving(false);
+    if (attempt.shouldPersist) setSaving(false);
   };
 
   const submitListenBuild = async () => {
@@ -2857,7 +2862,7 @@ export default function PersonalPlanExerciseScreen() {
                       // Блокируем всё только когда ответ уже закрыт верно. До этого
                       // все плитки кликабельны — неверную можно тапнуть (тряхнётся),
                       // и тут же выбрать правильную на месте.
-                      disabled={lastResult === 'correct' || saving}
+                      disabled={lastResult === 'correct'}
                       showPressed={on}
                       accent={accent}
                       bgColor={bgColor}

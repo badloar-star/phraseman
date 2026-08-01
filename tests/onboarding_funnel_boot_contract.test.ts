@@ -23,7 +23,19 @@ describe('onboarding funnel durable boot delivery contract', () => {
   });
 
   test('client payload remains opaque and excludes stable, device, and user identifiers', () => {
-    expect(client).toContain("type FunnelPayload = { event: FunnelEvent; platform: FunnelPlatform; attemptId: string };");
-    expect(client).not.toMatch(/FunnelPayload[^;]*(?:stableId|deviceId|userId|uid)/s);
+    // зачем: раньше контракт сверял ОДНУ строку типа и ломался от любого нового
+    // поля. Проверяем суть — точный allowlist полей payload, — чтобы добавление
+    // счётчика согласий было возможно, а протечка идентификатора всё так же падала.
+    const payloadType = client.match(/type FunnelPayload = \{([^}]*)\}/s)?.[1] ?? '';
+    expect(payloadType).not.toBe('');
+    const fields = payloadType
+      .split('\n')
+      .map((line) => line.trim().match(/^([A-Za-z0-9_]+)\??\s*:/)?.[1])
+      .filter((name): name is string => Boolean(name));
+
+    expect(fields.sort()).toEqual(['analyticsConsent', 'attemptId', 'event', 'platform']);
+    expect(payloadType).not.toMatch(/stableId|deviceId|userId|uid|email|name/i);
+    // Согласие едет только как строгое решение, а не как произвольная строка.
+    expect(client).toContain("type FunnelConsentDecision = 'granted' | 'denied';");
   });
 });

@@ -11,7 +11,14 @@ import {
 
 type Receipt = { createdAtMs: number; expiresAtMs: number };
 type Rate = { started: number; completed: number; expiresAtMs: number };
-type Daily = { date: string; platform: 'ios' | 'android' | 'web'; started: number; completed: number };
+type Daily = {
+  date: string;
+  platform: 'ios' | 'android' | 'web';
+  started: number;
+  completed: number;
+  consentGranted: number;
+  consentDenied: number;
+};
 
 class MemoryRepository implements OnboardingFunnelRepository {
   readonly receipts = new Map<string, Receipt>();
@@ -27,9 +34,12 @@ class MemoryRepository implements OnboardingFunnelRepository {
         this.receipts.set(key, value);
       },
       setRate: (key, value) => this.rates.set(key, value),
-      incrementDaily: (docId, date, platform, event) => {
-        const current = this.daily.get(docId) ?? { date, platform, started: 0, completed: 0 };
+      incrementDaily: (docId, date, platform, event, analyticsConsent) => {
+        const current = this.daily.get(docId)
+          ?? { date, platform, started: 0, completed: 0, consentGranted: 0, consentDenied: 0 };
         current[event] += 1;
+        if (analyticsConsent === 'granted') current.consentGranted += 1;
+        if (analyticsConsent === 'denied') current.consentDenied += 1;
         this.daily.set(docId, current);
       },
     });
@@ -70,7 +80,7 @@ describe('privacy-safe onboarding funnel writes', () => {
 
     expect(first).toEqual({ ok: true, duplicate: false });
     expect(replay).toEqual({ ok: true, duplicate: true });
-    expect([...repository.daily.values()]).toEqual([
+    expect([...repository.daily.values()]).toMatchObject([
       { date: '2026-07-28', platform: 'ios', started: 1, completed: 0 },
     ]);
   });
@@ -85,7 +95,7 @@ describe('privacy-safe onboarding funnel writes', () => {
     await applyOnboardingFunnelEvent(repository, UID, START, NOW);
     await applyOnboardingFunnelEvent(repository, UID, completion, NOW);
 
-    expect([...repository.daily.values()][0]).toEqual({
+    expect([...repository.daily.values()][0]).toMatchObject({
       date: '2026-07-28',
       platform: 'ios',
       started: 1,
@@ -144,14 +154,90 @@ describe('onboarding funnel admin summary', () => {
       { date: '2026-07-28', platform: 'ios', started: 2, completed: 2 },
     ], 'ios');
 
-    expect(result).toEqual({ started: 10, completed: 8, conversionPercent: 80 });
+    expect(result).toMatchObject({ started: 10, completed: 8, conversionPercent: 80 });
   });
 
   it('does not invent a conversion when there are no starts', () => {
-    expect(summarizeOnboardingFunnelRows([], 'all')).toEqual({
+    expect(summarizeOnboardingFunnelRows([], 'all')).toMatchObject({
       started: 0,
       completed: 0,
       conversionPercent: null,
     });
+  });
+});
+
+// зачем: владелец хочет объявлять победителя A/B-теста пейвола по данным, но вся
+// продуктовая аналитика гейтится согласием, а ОТКАЗ не оставлял следа нигде —
+// знаменателя «сколько всего спросили» не существовало, и долю согласий нельзя
+// было узнать в принципе. Считаем её здесь: это счётчик без PII на легитимном
+// интересе (как started/completed), а не продуктовая аналитика.
+describe('analytics consent rate measurement', () => {
+  const COMPLETED = { ...START, event: 'completed' as const };
+
+  async function completeWith(
+    repository: MemoryRepository,
+    consent?: 'granted' | 'denied',
+  ): Promise<void> {
+    await applyOnboardingFunnelEvent(repository, UID, START, NOW);
+    await applyOnboardingFunnelEvent(
+      repository,
+      UID,
+      consent ? { ...COMPLETED, analyticsConsent: consent } : COMPLETED,
+      NOW,
+    );
+  }
+
+  it('accepts only granted/denied as the consent decision', () => {
+    expect(parseOnboardingFunnelEventInput({ ...COMPLETED, analyticsConsent: 'granted' }))
+      .toMatchObject({ analyticsConsent: 'granted' });
+    expect(parseOnboardingFunnelEventInput({ ...COMPLETED, analyticsConsent: 'denied' }))
+      .toMatchObject({ analyticsConsent: 'denied' });
+
+    for (const invalid of ['unset', 'yes', '', true, 1, null]) {
+      expect(() => parseOnboardingFunnelEventInput({ ...COMPLETED, analyticsConsent: invalid }))
+        .toThrow(HttpsError);
+    }
+  });
+
+  it('counts a denial even though analytics itself never sees that user', async () => {
+    const repository = new MemoryRepository();
+    await completeWith(repository, 'denied');
+
+    expect([...repository.daily.values()][0]).toMatchObject({
+      completed: 1,
+      consentGranted: 0,
+      consentDenied: 1,
+    });
+  });
+
+  it('reports the consent rate that gates every downstream experiment', () => {
+    const summary = summarizeOnboardingFunnelRows([
+      { date: '2026-07-27', platform: 'ios', started: 100, completed: 80, consentGranted: 20, consentDenied: 60 },
+      { date: '2026-07-28', platform: 'ios', started: 100, completed: 20, consentGranted: 5, consentDenied: 15 },
+    ], 'ios');
+
+    // 25 согласий из 100 решений = 25%: столько реальной выборки доходит до A/B.
+    expect(summary).toMatchObject({
+      consentGranted: 25,
+      consentDecisions: 100,
+      consentRatePercent: 25,
+    });
+  });
+
+  it('stays backward compatible with rows written before the counter shipped', () => {
+    // Старые документы без consent-полей не должны выдумывать 0% или падать.
+    expect(summarizeOnboardingFunnelRows([
+      { date: '2026-07-01', platform: 'ios', started: 10, completed: 8 },
+    ], 'all')).toMatchObject({ consentDecisions: 0, consentRatePercent: null });
+  });
+
+  it('never lets the consent decision reach storage as anything but a counter', async () => {
+    const repository = new MemoryRepository();
+    await completeWith(repository, 'granted');
+
+    const persisted = JSON.stringify([...repository.daily.values()]);
+    expect(persisted).not.toContain(UID);
+    expect(persisted).not.toContain(START.attemptId);
+    expect(persisted).not.toMatch(/granted|denied/);
   });
 });

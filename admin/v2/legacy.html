@@ -13053,6 +13053,7 @@
       <div class="stat-card"><div class="label">Начали</div><div class="value">—</div></div>
       <div class="stat-card"><div class="label">Завершили</div><div class="value">—</div></div>
       <div class="stat-card"><div class="label">Конверсия</div><div class="value">—</div></div>
+      <div class="stat-card"><div class="label">Согласие на аналитику</div><div class="value">—</div></div>
     </div>
   </section>
 
@@ -31904,6 +31905,7 @@
       ['Начали', '—'],
       ['Завершили', '—'],
       ['Конверсия', '—'],
+      ['Согласие на аналитику', '—'],
     ]);
     if (refresh) { refresh.disabled = true; refresh.textContent = 'Загружаем…'; }
 
@@ -31915,15 +31917,29 @@
       const conversion = Number.isFinite(Number(data.conversionPercent))
         ? `${Number(data.conversionPercent).toFixed(1).replace('.0', '')}%`
         : '—';
+      // зачем: доля согласий — знаменатель ВСЕЙ продуктовой аналитики. Пока она
+      // неизвестна, нельзя понять, какая часть аудитории вообще попадает в выборку
+      // A/B-теста пейвола и хватит ли её на вердикт. null (нет решений) показываем
+      // прочерком, а не «0%», чтобы отсутствие данных не читалось как «никто не согласен».
+      const consentDecisions = Math.max(0, Math.trunc(Number(data.consentDecisions) || 0));
+      const consentRate = Number.isFinite(Number(data.consentRatePercent)) && consentDecisions > 0
+        ? `${Number(data.consentRatePercent).toFixed(1).replace('.0', '')}%`
+        : '—';
       summary.innerHTML = revenueSummaryCards([
         ['Начали', started.toLocaleString('ru-RU')],
         ['Завершили', completed.toLocaleString('ru-RU')],
         ['Конверсия', conversion],
+        ['Согласие на аналитику', consentRate],
         ['Платформа', platform],
         ['Период', `${rangeDays} дн.`],
       ]);
+      // Статус объясняет ПОСЛЕДСТВИЕ цифры, а не только сам факт загрузки:
+      // владельцу нужно решение «хватит ли выборки», а не абстрактный процент.
+      const consentNote = consentDecisions > 0
+        ? ` Аналитику разрешили ${Number(data.consentGranted || 0).toLocaleString('ru-RU')} из ${consentDecisions.toLocaleString('ru-RU')} — примерно столько данных доходит до A/B-теста пейвола.`
+        : ' Решений по аналитике пока нет: счётчик согласий считает только завершённые онбординги в версиях с ним.';
       status.textContent = started > 0
-        ? `Учтены серверные агрегаты за ${rangeDays} дн. Данные доступны только с версии, где включён этот счётчик.`
+        ? `Учтены серверные агрегаты за ${rangeDays} дн. Данные доступны только с версии, где включён этот счётчик.${consentNote}`
         : `За ${rangeDays} дн. агрегатов пока нет. История до запуска счётчика не восстанавливается.`;
     } catch (error) {
       _onboardingFunnelLoaded = false;

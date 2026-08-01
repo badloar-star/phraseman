@@ -16,13 +16,24 @@ describe('privacy-safe aggregate onboarding funnel contract', () => {
   it('records completion only inside the successful finish path after local completion is persisted', () => {
     const finishStart = onboarding.indexOf('const finish = useCallback(async () => {');
     const doneWrite = onboarding.indexOf("[DONE_KEY, '1']", finishStart);
-    const completion = onboarding.indexOf('recordOnboardingFunnelCompletion()', finishStart);
+    const completion = onboarding.indexOf('recordOnboardingFunnelCompletion(', finishStart);
     const onDone = onboarding.indexOf('onDone();', finishStart);
 
     expect(finishStart).toBeGreaterThanOrEqual(0);
     expect(doneWrite).toBeGreaterThan(finishStart);
     expect(completion).toBeGreaterThan(doneWrite);
     expect(onDone).toBeGreaterThan(completion);
+  });
+
+  // зачем: аналитика гейтится согласием и отказавшихся не видит, поэтому доля
+  // согласий измерима ТОЛЬКО если отказ тоже доезжает до серверного счётчика.
+  // Без этого знаменателя нельзя понять, хватит ли выборки на вердикт A/B пейвола.
+  it('counts the analytics decision for refusals too, not only for grants', () => {
+    expect(onboarding).toContain("recordOnboardingFunnelCompletion(analyticsAllowed ? 'granted' : 'denied')");
+    // Счётчик обязан жить снаружи ветки согласия — иначе отказы снова исчезнут.
+    expect(onboarding).not.toMatch(
+      /if \(analyticsAllowed\) \{[\s\S]{0,400}recordOnboardingFunnelCompletion/,
+    );
   });
 
   it('exports both callables from the deployed functions entry point', () => {
@@ -38,6 +49,8 @@ describe('privacy-safe aggregate onboarding funnel contract', () => {
     expect(admin).toContain('Начали');
     expect(admin).toContain('Завершили');
     expect(admin).toContain('Конверсия');
+    // Доля согласий — знаменатель выборки для A/B пейвола, она обязана быть видна.
+    expect(admin).toContain('Согласие на аналитику');
     expect(admin).toContain("httpsCallable(functionsUs, 'adminGetOnboardingFunnel')");
   });
 

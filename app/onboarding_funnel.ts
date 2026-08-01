@@ -11,11 +11,25 @@ const START_ACK_KEY = 'onboarding_funnel_started_ack_v1';
 const COMPLETE_ACK_KEY = 'onboarding_funnel_completed_ack_v1';
 const START_PENDING_KEY = 'onboarding_funnel_started_pending_v1';
 const COMPLETE_PENDING_KEY = 'onboarding_funnel_completed_pending_v1';
+/** Решение о согласии переживает перезапуск: resumePending() шлёт событие уже без памяти. */
+const CONSENT_PENDING_KEY = 'onboarding_funnel_consent_pending_v1';
 const ATTEMPT_ID_RE = /^[A-Za-z0-9_-]{16,80}$/;
 
 type FunnelEvent = 'started' | 'completed';
 type FunnelPlatform = 'ios' | 'android' | 'web';
-type FunnelPayload = { event: FunnelEvent; platform: FunnelPlatform; attemptId: string };
+/**
+ * зачем: доля согласий на аналитику — единственный способ узнать, какая часть
+ * аудитории вообще доходит до A/B-теста пейвола. Продуктовая аналитика гейтится
+ * согласием и отказавшихся не видит, поэтому решение едет здесь — в счётчике без
+ * PII на легитимном интересе (сервер хранит только +1, само значение не пишется).
+ */
+type FunnelConsentDecision = 'granted' | 'denied';
+type FunnelPayload = {
+  event: FunnelEvent;
+  platform: FunnelPlatform;
+  attemptId: string;
+  analyticsConsent?: FunnelConsentDecision;
+};
 type FunnelResponse = { ok: boolean; duplicate: boolean };
 
 type RecorderStorage = {
@@ -79,6 +93,11 @@ export function createOnboardingFunnelRecorder(dependencies: RecorderDependencie
     return attemptInFlight;
   }
 
+  async function readStoredConsent(): Promise<FunnelConsentDecision | undefined> {
+    const raw = (await dependencies.storage.getItem(CONSENT_PENDING_KEY).catch(() => null))?.trim();
+    return raw === 'granted' || raw === 'denied' ? raw : undefined;
+  }
+
   async function sendEvent(event: FunnelEvent): Promise<boolean> {
     const existing = eventInFlight.get(event);
     if (existing) return existing;
@@ -94,10 +113,20 @@ export function createOnboardingFunnelRecorder(dependencies: RecorderDependencie
         }
         await dependencies.storage.setItem(pendingKey(event), attemptId);
         if ((await dependencies.prepareDelivery()) !== true) return false;
-        const response = await dependencies.send({ event, platform: dependencies.platform, attemptId });
+        // Согласие относится только к 'completed' — момент, когда выбор сделан.
+        // Читаем из хранилища, а не из памяти: после перезапуска resumePending()
+        // досылает событие, и решение обязано пережить рестарт.
+        const consent = event === 'completed' ? await readStoredConsent() : undefined;
+        const response = await dependencies.send({
+          event,
+          platform: dependencies.platform,
+          attemptId,
+          ...(consent ? { analyticsConsent: consent } : {}),
+        });
         if (response?.ok !== true) return false;
         await dependencies.storage.setItem(key, attemptId);
         await dependencies.storage.setItem(pendingKey(event), '');
+        if (event === 'completed') await dependencies.storage.setItem(CONSENT_PENDING_KEY, '');
         return true;
       } catch {
         return false;
@@ -130,10 +159,13 @@ export function createOnboardingFunnelRecorder(dependencies: RecorderDependencie
     return { attempted: 1, pending: await readPendingCount() };
   }
 
-  async function recordCompletion(): Promise<boolean> {
+  async function recordCompletion(analyticsConsent?: FunnelConsentDecision): Promise<boolean> {
     try {
       const attemptId = await getAttemptId();
       await dependencies.storage.setItem(COMPLETE_PENDING_KEY, attemptId);
+      // Пишем ДО отправки: если сеть отвалится, resumePending() досошлёт решение
+      // после перезапуска и знаменатель доли согласий не потеряет отказы.
+      if (analyticsConsent) await dependencies.storage.setItem(CONSENT_PENDING_KEY, analyticsConsent);
     } catch {
       return false;
     }
@@ -192,8 +224,10 @@ export function recordOnboardingFunnelStart(): Promise<boolean> {
   return defaultRecorder.recordStart();
 }
 
-export function recordOnboardingFunnelCompletion(): Promise<boolean> {
-  return defaultRecorder.recordCompletion();
+export function recordOnboardingFunnelCompletion(
+  analyticsConsent?: FunnelConsentDecision,
+): Promise<boolean> {
+  return defaultRecorder.recordCompletion(analyticsConsent);
 }
 
 export function resumePendingOnboardingFunnel(): Promise<{ attempted: number; pending: number }> {

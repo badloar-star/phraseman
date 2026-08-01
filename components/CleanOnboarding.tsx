@@ -1564,7 +1564,11 @@ function CleanOnboarding({
       }
       // Completion is emitted only after the validated finish path persisted
       // DONE_KEY. It is intentionally non-blocking: telemetry cannot hold the UI.
-      void recordOnboardingFunnelCompletion();
+      // зачем: решение о согласии едет счётчиком на сервер, потому что отказ раньше
+      // не оставлял следа НИГДЕ (аналитика гейтится согласием и отказавшихся не
+      // видит) — без знаменателя долю согласий нельзя измерить, а значит нельзя
+      // понять, хватит ли выборки на вердикт A/B-теста пейвола.
+      void recordOnboardingFunnelCompletion(analyticsAllowed ? 'granted' : 'denied');
       // зачем: владелец (2026-07-27) — приветственную шторку показываем НЕ поверх
       // последнего экрана анкеты, а когда уже открылась главная. Поэтому здесь
       // только ставим одноразовый флаг и сразу отдаём управление; шторку поднимет

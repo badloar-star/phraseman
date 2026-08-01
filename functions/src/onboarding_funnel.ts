@@ -18,10 +18,25 @@ export type OnboardingFunnelEvent = 'started' | 'completed';
 export type OnboardingFunnelPlatform = 'ios' | 'android' | 'web';
 export type OnboardingFunnelPlatformFilter = OnboardingFunnelPlatform | 'all';
 
+/**
+ * Решение пользователя по НЕОБЯЗАТЕЛЬНОЙ аналитике, снятое в момент завершения
+ * онбординга. Хранится ТОЛЬКО как суточный счётчик (см. incrementDaily) — само
+ * значение никогда не пишется в документ.
+ *
+ * зачем: продуктовая аналитика гейтится согласием, поэтому отказавшихся она не
+ * видит по определению — знаменателя «сколько всего спросили» не существовало, и
+ * долю согласий нельзя было измерить ничем. Без неё нельзя понять, какая часть
+ * аудитории вообще доходит до A/B-теста пейвола и хватит ли выборки на вердикт.
+ * Это счётчик на легитимном интересе (как started/completed), без PII.
+ */
+export type OnboardingFunnelConsentDecision = 'granted' | 'denied';
+
 export type OnboardingFunnelEventInput = {
   event: OnboardingFunnelEvent;
   platform: OnboardingFunnelPlatform;
   attemptId: string;
+  /** Только у `completed`; отсутствует у клиентов старее этого счётчика. */
+  analyticsConsent?: OnboardingFunnelConsentDecision;
 };
 
 export type OnboardingFunnelDailyRow = {
@@ -29,6 +44,9 @@ export type OnboardingFunnelDailyRow = {
   platform: OnboardingFunnelPlatform;
   started: number;
   completed: number;
+  /** Необязательны: документы, записанные до релиза счётчика, их не имеют. */
+  consentGranted?: number;
+  consentDenied?: number;
 };
 
 type ReceiptValue = { createdAtMs: number; expiresAtMs: number };
@@ -44,6 +62,7 @@ export interface OnboardingFunnelTransaction {
     date: string,
     platform: OnboardingFunnelPlatform,
     event: OnboardingFunnelEvent,
+    analyticsConsent?: OnboardingFunnelConsentDecision,
   ): void;
 }
 
@@ -65,7 +84,7 @@ function requireExactKeys(value: Record<string, unknown>, allowed: readonly stri
 
 export function parseOnboardingFunnelEventInput(value: unknown): OnboardingFunnelEventInput {
   if (!isPlainObject(value)) throw new HttpsError('invalid-argument', 'Object payload required');
-  requireExactKeys(value, ['event', 'platform', 'attemptId']);
+  requireExactKeys(value, ['event', 'platform', 'attemptId', 'analyticsConsent']);
 
   const event = value.event;
   if (event !== 'started' && event !== 'completed') {
@@ -82,7 +101,14 @@ export function parseOnboardingFunnelEventInput(value: unknown): OnboardingFunne
     throw new HttpsError('invalid-argument', 'Invalid attempt id');
   }
 
-  return { event, platform, attemptId };
+  // Строгий allowlist: 'unset' сюда не попадает — решение снимается только когда
+  // пользователь его фактически принял, иначе счётчик врал бы знаменателем.
+  if (value.analyticsConsent === undefined) return { event, platform, attemptId };
+  if (value.analyticsConsent !== 'granted' && value.analyticsConsent !== 'denied') {
+    throw new HttpsError('invalid-argument', 'Unsupported analytics consent decision');
+  }
+
+  return { event, platform, attemptId, analyticsConsent: value.analyticsConsent };
 }
 
 function privacyHash(value: string): string {
@@ -152,7 +178,7 @@ export async function applyOnboardingFunnelEvent(
       completed: rate.completed + (input.event === 'completed' ? 1 : 0),
       expiresAtMs: nowMs + RATE_TTL_DAYS * DAY_MS,
     });
-    tx.incrementDaily(`${day}_${input.platform}`, day, input.platform, input.event);
+    tx.incrementDaily(`${day}_${input.platform}`, day, input.platform, input.event, input.analyticsConsent);
     return { ok: true, duplicate: false };
   });
 }
@@ -160,14 +186,33 @@ export async function applyOnboardingFunnelEvent(
 export function summarizeOnboardingFunnelRows(
   rows: readonly OnboardingFunnelDailyRow[],
   platform: OnboardingFunnelPlatformFilter,
-): { started: number; completed: number; conversionPercent: number | null } {
+): {
+  started: number;
+  completed: number;
+  conversionPercent: number | null;
+  consentGranted: number;
+  consentDenied: number;
+  consentDecisions: number;
+  consentRatePercent: number | null;
+} {
   const selected = platform === 'all' ? rows : rows.filter((row) => row.platform === platform);
   const started = selected.reduce((sum, row) => sum + safeCount(row.started), 0);
   const completed = selected.reduce((sum, row) => sum + safeCount(row.completed), 0);
+  const consentGranted = selected.reduce((sum, row) => sum + safeCount(row.consentGranted), 0);
+  const consentDenied = selected.reduce((sum, row) => sum + safeCount(row.consentDenied), 0);
+  const consentDecisions = consentGranted + consentDenied;
   return {
     started,
     completed,
     conversionPercent: started > 0 ? Math.round((completed / started) * 1000) / 10 : null,
+    consentGranted,
+    consentDenied,
+    consentDecisions,
+    // null, а не 0 — пока решений нет (или документы старые), доля неизвестна, и
+    // показывать «0%» значило бы соврать в вердикте A/B.
+    consentRatePercent: consentDecisions > 0
+      ? Math.round((consentGranted / consentDecisions) * 1000) / 10
+      : null,
   };
 }
 
@@ -198,11 +243,16 @@ function firestoreRepository(db: FirebaseFirestore.Firestore): OnboardingFunnelR
           expiresAt: admin.firestore.Timestamp.fromMillis(value.expiresAtMs),
         });
       },
-      incrementDaily: (docId, date, platform, event) => {
+      incrementDaily: (docId, date, platform, event, analyticsConsent) => {
+        // Решение превращается в счётчик прямо здесь: в документ попадает только
+        // consentGranted/consentDenied +1, само значение 'granted'/'denied' не хранится.
+        const consentField = analyticsConsent === 'granted' ? 'consentGranted'
+          : analyticsConsent === 'denied' ? 'consentDenied' : null;
         firestoreTx.set(db.collection(DAILY_COLLECTION).doc(docId), {
           date,
           platform,
           [event]: admin.firestore.FieldValue.increment(1),
+          ...(consentField ? { [consentField]: admin.firestore.FieldValue.increment(1) } : {}),
           updatedAt: admin.firestore.FieldValue.serverTimestamp(),
         }, { merge: true });
       },
@@ -224,6 +274,8 @@ function firestoreRepository(db: FirebaseFirestore.Firestore): OnboardingFunnelR
           platform: value.platform,
           started: safeCount(value.started),
           completed: safeCount(value.completed),
+          consentGranted: safeCount(value.consentGranted),
+          consentDenied: safeCount(value.consentDenied),
         }];
       });
     },

@@ -274,6 +274,7 @@ function buildPromoCodeWritePatch(params: {
 /** Fail-closed deletion plan; gift-backed codes must use the certificate callable. */
 export function buildPromoCodeDeletePlan(params: {
   code: string;
+  expectedUpdatedAtMs: unknown;
   promo: FirebaseFirestore.DocumentData;
   giftCertificateExists: boolean;
   nowMs: number;
@@ -283,12 +284,22 @@ export function buildPromoCodeDeletePlan(params: {
 }): { code: string; auditDoc: Record<string, unknown> } {
   const code = normalizePromoCode(params.code);
   if (!CODE_RE.test(code)) throw new HttpsError('invalid-argument', 'bad_code');
+  const currentUpdatedAtMs = Number(params.promo.updatedAtMs ?? params.promo.createdAtMs ?? 0);
+  if (!Number.isSafeInteger(currentUpdatedAtMs)
+    || Number(params.expectedUpdatedAtMs) !== currentUpdatedAtMs) {
+    throw new HttpsError('aborted', 'promo_code_delete_conflict');
+  }
   const giftBacked = params.giftCertificateExists
     || Boolean(String(params.promo.certificateId ?? '').trim())
     || Boolean(String(params.promo.certificateBatchId ?? '').trim())
     || Boolean(String(params.promo.certificateProduct ?? '').trim());
   if (giftBacked) {
     throw new HttpsError('failed-precondition', 'gift_backed_promo_delete_forbidden');
+  }
+  const checkoutBacked = String(params.promo.createdBy ?? '').trim() === 'web_checkout'
+    || /^web_checkout\s+/.test(String(params.promo.note ?? '').trim());
+  if (checkoutBacked) {
+    throw new HttpsError('failed-precondition', 'paid_checkout_promo_delete_forbidden');
   }
   return {
     code,
@@ -478,6 +489,7 @@ export const promoCodeDelete = onCall({ region: REGION, enforceAppCheck: true },
     if (!codeSnapshot.exists) throw new HttpsError('not-found', 'promo_code_not_found');
     const plan = buildPromoCodeDeletePlan({
       code,
+      expectedUpdatedAtMs: request.data?.expectedUpdatedAtMs,
       promo: codeSnapshot.data() ?? {},
       giftCertificateExists: certificateSnapshot.exists,
       nowMs,

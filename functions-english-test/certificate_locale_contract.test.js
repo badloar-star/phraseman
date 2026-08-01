@@ -32,11 +32,12 @@ class Element {
   scrollIntoView() {}
 }
 
-function harness({ ios = false, reduced = true, pngFailure = false } = {}) {
+function harness({ ios = false, reduced = true, pngFailure = false, fixedDate } = {}) {
   const i18n = loadI18n(); const body = new Element('body'); const document = { body, activeElement: new Element('button'), downloads: [], listeners: {}, createElement: (tag) => { const el = new Element(tag); el.ownerDocument = document; if (tag === 'canvas') { el.getContext = () => ({ scale() {}, drawImage() {} }); el.toBlob = (fn) => fn(pngFailure ? null : {}); } return el; }, addEventListener(type, fn) { (this.listeners[type] ||= []).push(fn); }, removeEventListener(type, fn) { this.listeners[type] = (this.listeners[type] || []).filter((listener) => listener !== fn); }, dispatch(type, event) { for (const fn of this.listeners[type] || []) fn(event); } }; body.ownerDocument = document; document.activeElement.ownerDocument = document;
   const downloads = document.downloads; const alerts = []; const prints = []; let objectId = 0;
   const win = { document, matchMedia: () => ({ matches: reduced }), open: () => { const printed = { document: { write: (value) => { printed.markup = value; }, close() {} } }; prints.push(printed); return printed; }, location: {}, navigator: ios ? { userAgent: 'iPhone' } : {}, URL: { createObjectURL: () => `blob:${++objectId}`, revokeObjectURL() {} } };
-  const context = vm.createContext({ EnglishTestI18n: i18n, window: win, navigator: win.navigator, document, URL: win.URL, Blob, XMLSerializer: class { serializeToString() { return '<svg />'; } }, Image: class { set src(_) { this.onload(); } }, alert: (message) => alerts.push(message), setTimeout: () => 0, globalThis: win });
+  const DateForCertificate = fixedDate ? class extends Date { constructor(...args) { super(...(args.length ? args : [fixedDate])); } static now() { return new Date(fixedDate).valueOf(); } } : Date;
+  const context = vm.createContext({ EnglishTestI18n: i18n, window: win, navigator: win.navigator, document, URL: win.URL, Blob, Date: DateForCertificate, XMLSerializer: class { serializeToString() { return '<svg />'; } }, Image: class { set src(_) { this.onload(); } }, alert: (message) => alerts.push(message), setTimeout: () => 0, globalThis: win });
   vm.runInContext(read('certificate.js'), context); return { i18n, certificate: win.EnglishTestCertificate, document, body, downloads, alerts, prints, win };
 }
 
@@ -52,11 +53,12 @@ function assertCertificateSurface(h, uiLocale, testLanguage, data = {}) {
   for (const theme of ['gold', 'dark', 'emerald', 'rose', 'royal']) { const button = modal(h).querySelector(`[data-theme="${theme}"]`); const label = copy(`certificate.themes.${theme}`); assert.equal(button.querySelector('.elt-cert-theme-name').textContent, label); assert.equal(button.title, label); }
   assert.equal(modal(h).querySelector(`[data-lang="${uiLocale}"]`).getAttribute('aria-pressed'), 'true');
 }
+const THEME_PALETTES = { gold: { bg: '#faf8f3', ribbon: '#c9a96e' }, dark: { bg: '#0a0f1c', ribbon: '#38bdf8' }, emerald: { bg: '#ecfdf5', ribbon: '#22c55e' }, rose: { bg: '#fff1f2', ribbon: '#f43f5e' }, royal: { bg: '#1e1b4b', ribbon: '#6366f1' } };
 
 test('public show renders the complete localized certificate surface for every assessed language', () => {
-  const h = harness();
+  const fixedDate = '2025-01-02T12:00:00.000Z'; const h = harness({ fixedDate });
   for (const uiLocale of ['en', 'ru']) for (const testLanguage of h.i18n.TEST_LANGUAGES) {
-    show(h, { uiLocale, testLanguage, cta: { url: 'https://example.test' } }); assertCertificateSurface(h, uiLocale, testLanguage);
+    show(h, { uiLocale, testLanguage, cta: { url: 'https://example.test' } }); assertCertificateSurface(h, uiLocale, testLanguage); assert.ok(svg(h).includes(new Date(fixedDate).toLocaleDateString(uiLocale === 'en' ? 'en-GB' : 'ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })));
   }
 });
 
@@ -73,6 +75,10 @@ test('manual RU and EN locale switches update every localized surface without ch
 
 test('all five themes remain available and selected after a locale switch', () => {
   const h = harness(); show(h); for (const theme of ['gold', 'dark', 'emerald', 'rose', 'royal']) assert.ok(modal(h).querySelector(`[data-theme="${theme}"]`)); click(h, '[data-theme="royal"]'); click(h, '[data-lang="ru"]'); assert.ok(modal(h).querySelector('[data-theme="royal"]').className.includes('active'));
+});
+
+test('each public theme selection renders and downloads its distinct palette', async () => {
+  const h = harness(); show(h, { name: 'Alex' }); for (const [theme, palette] of Object.entries(THEME_PALETTES)) { click(h, `[data-theme="${theme}"]`); assert.ok(svg(h).includes(`stop-color:${palette.bg};stop-opacity:1`)); assert.ok(svg(h).includes(`fill="${palette.ribbon}"`)); click(h, '#certDownloadPng'); await new Promise((resolve) => setImmediate(resolve)); assert.equal(h.downloads.at(-1), `phraseman-german-level-b2-alex-${theme}.png`); }
 });
 
 test('normal PNG download has exact locale filename in English and Russian', async () => {
@@ -103,10 +109,10 @@ test('unknown show inputs fall back to English and Escape removes the modal and 
 });
 
 test('iOS preview uses the active certificate locale for alt and hint', async () => {
-  const h = harness({ ios: true }); show(h); click(h, '[data-lang="ru"]'); click(h, '#certDownloadPng'); await new Promise((resolve) => setImmediate(resolve)); const image = modal(h).querySelector('.elt-cert-save-link')?.querySelector('img'); assert.equal(image?.alt, h.i18n.t('ru', 'certificate.iosReadyImageAlt')); assert.equal(modal(h).querySelector('.elt-cert-save-hint')?.textContent, h.i18n.t('ru', 'certificate.iosLongPressHint'));
+  const h = harness({ ios: true }); show(h); click(h, '[data-lang="ru"]'); click(h, '#certDownloadPng'); await new Promise((resolve) => setImmediate(resolve)); const link = modal(h).querySelector('.elt-cert-save-link'); const image = link?.querySelector('img'); assert.equal(image?.alt, h.i18n.t('ru', 'certificate.iosReadyImageAlt')); assert.equal(modal(h).querySelector('.elt-cert-save-hint')?.textContent, h.i18n.t('ru', 'certificate.iosLongPressHint')); assert.equal(link?.download, 'phraseman-nemetskiy-yazyk-level-b2-alex-gold.png');
 });
 
-test('print output uses current locale and assessed subject', () => { const h = harness(); show(h, { testLanguage: 'fr' }); click(h, '[data-lang="ru"]'); click(h, '#certPrint'); assert.match(h.prints[0].markup, /<title>Сертификат<\/title>/); assert.match(h.prints[0].markup, /французского языка/); });
+test('print output uses current locale, assessed subject, and selected theme palette', () => { const h = harness(); show(h, { testLanguage: 'fr' }); click(h, '[data-lang="ru"]'); click(h, '[data-theme="royal"]'); click(h, '#certPrint'); assert.match(h.prints[0].markup, /<title>Сертификат<\/title>/); assert.match(h.prints[0].markup, /французского языка/); assert.ok(h.prints[0].markup.includes('stop-color:#1e1b4b;stop-opacity:1')); assert.ok(h.prints[0].markup.includes('fill="#6366f1"')); });
 
 test('certificate escapes hostile name and result in rendered SVG', () => { const h = harness(); show(h, { name: '<img src=x>', result: { ...result, estimatedLevel: '<script>x</script>' } }); assert.doesNotMatch(svg(h), /<script>|<img src=x>/); assert.match(svg(h), /&lt;script&gt;/); });
 

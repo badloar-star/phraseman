@@ -91,6 +91,33 @@ describe('normalizePersonalAppMessageInput', () => {
     expect(() => normalizePersonalAppMessageInput({ ...personal, deliveryMode: 'push' }, 'admin@example.com')).toThrow(HttpsError);
   });
 
+  test('normalizes settings polls as fixed campaigns with 2-4 options', () => {
+    const result = normalizeAppMessageCreateInput({
+      ...base,
+      kind: 'poll',
+      deliverySurface: 'settings',
+      settingsSlot: 'top',
+      controlPercent: 10,
+      translations: {
+        ru: {
+          title: 'Важное от Phraseman', body: 'Помогите выбрать направление.',
+          pollQuestion: 'Что улучшить первым?', pollOptions: ['Уроки', 'Квизы', 'Диалоги', 'Повторение'],
+        },
+      },
+    }, 'admin@example.com', 1_800_000_000_000);
+    expect(result.document).toMatchObject({
+      deliverySurface: 'settings', settingsSlot: 'top', voteMode: 'fixed', controlPercent: 10,
+    });
+
+    expect(() => normalizeAppMessageCreateInput({
+      ...base,
+      kind: 'poll', deliverySurface: 'settings', settingsSlot: 'bottom',
+      translations: {
+        ru: { title: 'Опрос', body: 'Ответьте.', pollQuestion: 'Выберите', pollOptions: ['1', '2', '3', '4', '5'] },
+      },
+    }, 'admin@example.com')).toThrow('Poll requires a RU question and 2-4 options');
+  });
+
   test('rejects foreign recipient aliases and keeps retry fingerprint stable', () => {
     expect(() => normalizePersonalAppMessageInput({ ...personal, recipientUid: 'other-user' }, 'admin@example.com')).toThrow(HttpsError);
     const first = normalizePersonalAppMessageInput(personal, 'admin@example.com', 1_800_000_000_000);

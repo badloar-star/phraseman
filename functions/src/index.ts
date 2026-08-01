@@ -499,6 +499,7 @@ export { adminActivateCourseRelease, adminRollbackCourseRelease } from './langua
 export { openAiDialogModelConfig, openAiDialogQuotaConfig } from './openai_dialog_model_config';
 export { openAiJobsConfig } from './openai_jobs_config';
 export { adminTranslateMessage } from './admin_translate';
+export { submitSettingsPollVote } from './settings_poll_vote';
 export { adminEmailBroadcast, adminEmailContactsBackfill } from './admin_email';
 export { emailUnsubscribe } from './email_unsubscribe';
 

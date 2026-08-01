@@ -17,11 +17,12 @@ export type SettingsPollVoteResponse = {
 };
 
 export type SettingsPollVoteTransport = (
-  input: { messageId: string; optionId: string; requestId: string },
+  input: { messageId: string; optionId: string; requestId: string; stableId: string },
 ) => Promise<SettingsPollVoteResponse>;
 
 const PREFIX = 'settings_poll_votes_v1';
 const CAP = 100;
+const voteSubmissionQueue = new Map<string, Promise<SettingsPollVoteState>>();
 
 const storageKey = (owner: string) => `${PREFIX}:${encodeURIComponent(owner)}`;
 
@@ -45,7 +46,7 @@ export async function readSettingsPollVote(owner: string, messageId: string): Pr
   return (await readVotes(owner)).find((vote) => vote.messageId === messageId) ?? null;
 }
 
-async function defaultTransport(input: { messageId: string; optionId: string; requestId: string }): Promise<SettingsPollVoteResponse> {
+async function defaultTransport(input: { messageId: string; optionId: string; requestId: string; stableId: string }): Promise<SettingsPollVoteResponse> {
   if (Platform.OS === 'web' || IS_EXPO_GO || !CLOUD_SYNC_ENABLED) throw new Error('settings_poll_vote_unavailable');
   const functions = (await import('@react-native-firebase/functions')).default;
   const result = await functions().httpsCallable('submitSettingsPollVote')(input);
@@ -58,35 +59,46 @@ export async function submitSettingsPollVoteOptimistically(
   optionId: string,
   transport: SettingsPollVoteTransport = defaultTransport,
 ): Promise<SettingsPollVoteState> {
-  const votes = await readVotes(owner);
-  const existing = votes.find((vote) => vote.messageId === messageId);
-  if (existing) return existing;
-  const now = Date.now();
-  const pending: SettingsPollVoteState = {
-    messageId,
-    optionId,
-    requestId: `${now.toString(36)}-${Math.random().toString(36).slice(2, 12)}`,
-    status: 'pending',
-    updatedAtMs: now,
-  };
-  await writeVotes(owner, [...votes, pending]);
-  void transport({ messageId, optionId, requestId: pending.requestId }).then(async (response) => {
-    const current = await readVotes(owner);
-    await writeVotes(owner, current.map((vote) => vote.messageId === messageId ? {
-      ...vote,
-      optionId: response.optionId,
-      status: 'synced',
-      updatedAtMs: Date.now(),
-    } : vote));
-  }).catch(() => {});
-  return pending;
+  const queueKey = `${encodeURIComponent(owner)}:${encodeURIComponent(messageId)}`;
+  const inFlight = voteSubmissionQueue.get(queueKey);
+  if (inFlight) return inFlight;
+  const operation = (async () => {
+    const votes = await readVotes(owner);
+    const existing = votes.find((vote) => vote.messageId === messageId);
+    if (existing) return existing;
+    const now = Date.now();
+    const pending: SettingsPollVoteState = {
+      messageId,
+      optionId,
+      requestId: `${now.toString(36)}-${Math.random().toString(36).slice(2, 12)}`,
+      status: 'pending',
+      updatedAtMs: now,
+    };
+    await writeVotes(owner, [...votes, pending]);
+    void transport({ messageId, optionId, requestId: pending.requestId, stableId: owner }).then(async (response) => {
+      const current = await readVotes(owner);
+      await writeVotes(owner, current.map((vote) => vote.messageId === messageId ? {
+        ...vote,
+        optionId: response.optionId,
+        status: 'synced',
+        updatedAtMs: Date.now(),
+      } : vote));
+    }).catch(() => {});
+    return pending;
+  })();
+  voteSubmissionQueue.set(queueKey, operation);
+  try {
+    return await operation;
+  } finally {
+    if (voteSubmissionQueue.get(queueKey) === operation) voteSubmissionQueue.delete(queueKey);
+  }
 }
 
 export async function flushSettingsPollVotes(owner: string, transport: SettingsPollVoteTransport = defaultTransport): Promise<void> {
   const votes = await readVotes(owner);
   for (const vote of votes.filter((item) => item.status === 'pending')) {
     try {
-      const response = await transport(vote);
+      const response = await transport({ ...vote, stableId: owner });
       const current = await readVotes(owner);
       await writeVotes(owner, current.map((item) => item.messageId === vote.messageId ? {
         ...item, optionId: response.optionId, status: 'synced', updatedAtMs: Date.now(),

@@ -2,8 +2,9 @@ import fs from 'fs';
 import path from 'path';
 
 describe('Sage Porcelain picker contract', () => {
-  const pickerSource = fs.readFileSync(path.join(__dirname, '..', 'app', 'settings_themes.tsx'), 'utf8');
-  const settingsSource = fs.readFileSync(path.join(__dirname, '..', 'app', '(tabs)', 'settings.tsx'), 'utf8');
+  const readSource = (...segments: string[]) => fs.readFileSync(path.join(__dirname, '..', ...segments), 'utf8').replace(/\r\n/g, '\n');
+  const pickerSource = readSource('app', 'settings_themes.tsx');
+  const settingsSource = readSource('app', '(tabs)', 'settings.tsx');
 
   it('places the free Sage Porcelain choice directly after Indigo with every localized label', () => {
     expect(pickerSource).toMatch(/mode: 'indigo'[\s\S]*?mode: 'sagePorcelain'[\s\S]*?mode: 'midnight'/);

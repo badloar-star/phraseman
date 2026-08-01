@@ -135,6 +135,8 @@ export const DAILY_PHRASE_CHROME: Record<ThemeMode, DailyPhraseChrome> = {
     iconBg: '#D9E9E1',
     iconBorder: '#BDC8BD',
     ornament: '#315F50',
+    actionBg: '#315F50',
+    actionText: '#FFFFFF',
     shadow: 'rgba(35,50,43,0.14)',
   },
   midnight: {

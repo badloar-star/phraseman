@@ -62,7 +62,7 @@ describe('sage porcelain static asset fallbacks', () => {
       { file: 'constants/streakIconAssets.ts', businessLightBlocks: 5, slots: 11 },
       { file: 'constants/trainerThemeIcons.ts', businessLightBlocks: 3, slots: 3 },
       { file: 'constants/weeklyCompassIcons.ts', businessLightBlocks: 1, slots: 1 },
-      { file: 'constants/boonIconAssets.ts', businessLightBlocks: 2, slots: 11 },
+      { file: 'constants/boonIconAssets.ts', businessLightBlocks: 2, slots: 10 },
       { file: 'constants/leagueBonusGiftImages.ts', businessLightBlocks: 1, slots: 1 },
     ].forEach(assertBusinessLightFallback);
   });

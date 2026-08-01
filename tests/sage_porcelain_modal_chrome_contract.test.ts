@@ -27,7 +27,7 @@ import {
 } from '../components/RewardModalBackdrop';
 
 const ROOT = path.resolve(__dirname, '..');
-const read = (relativePath: string) => fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
+const read = (relativePath: string) => fs.readFileSync(path.join(ROOT, relativePath), 'utf8').replace(/\r\n/g, '\n');
 
 describe('sage porcelain modal, reward, and paywall chrome', () => {
   it('uses porcelain modal and reward chrome without decorative glow', () => {

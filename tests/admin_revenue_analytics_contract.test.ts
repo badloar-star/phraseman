@@ -74,7 +74,11 @@ describe('admin revenue analytics contract', () => {
       "loadOnboardingSources(true)",
       "window.loadOnboardingSources",
       "collection(db, 'app_activity')",
-      "row.action === 'onboarding_source_select'",
+      "where('action', '==', 'onboarding_source_select')",
+      "orderBy('createdAtMs', 'asc')",
+      "limit(ONBOARDING_SOURCE_QUERY_PAGE_SIZE)",
+      "startAfter(cursor)",
+      "const latestByUser = new Map()",
       "Latest answers",
       "onboarding_source_mix",
       "'onboarding-sources'",
@@ -279,7 +283,7 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).toContain('const ADMIN_CLEAN_TAB_LABELS');
     expect(adminHtml).toContain("users: 'Users'");
     expect(adminHtml).toContain("analytics: 'Analytics'");
-    expect(adminHtml).toContain("'app-messages': 'Messages'");
+    expect(adminHtml).toContain("'app-messages': 'Плашки и сообщения'");
     expect(adminHtml).toContain("'push-notify': 'Push'");
     expect(adminHtml).toContain('function applyCleanAdminTabLabels');
     expect(adminHtml).toContain('function decodeAdminMojibake');
@@ -292,7 +296,7 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).not.toContain("'arena-live'");
     expect(adminHtml).toContain(`onclick="switchTab('users')" data-i18n-es="Usuarios">Users</div>`);
     expect(adminHtml).toContain(`onclick="switchTab('analytics')" data-i18n-es="Analítica">Analytics</div>`);
-    expect(adminHtml).toContain(`onclick="switchTab('app-messages')" data-i18n-es="Mensajes">Messages</div>`);
+    expect(adminHtml).toContain(`onclick="switchTab('app-messages')" data-i18n-es="Placas y mensajes">Плашки и сообщения</div>`);
     expect(adminHtml).toContain(`onclick="switchTab('push-notify')" data-i18n-es="Push">Push</div>`);
     expect(adminHtml).toContain('placeholder="UID or name"');
     expect(adminHtml).toContain('>Sign out</button>');

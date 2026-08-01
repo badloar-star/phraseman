@@ -450,6 +450,7 @@ export function getCardPackPaywallTheme(
   opts: { themeMode: ThemeMode; isLight?: boolean },
 ): CardPackPaywallTheme {
   const shell = SHELL[opts.themeMode] ?? SHELL.dark;
+  if (opts.themeMode === 'sagePorcelain') return shell;
   let t = categoryTweak(shell, pack.category);
   t = packOverride(t, pack.id, opts.themeMode);
   if (opts.isLight) return forLightShell(t, opts.themeMode);
@@ -519,6 +520,7 @@ export function getCommunityUgcPackPaywallTheme(
   opts: { themeMode: ThemeMode; isLight?: boolean },
 ): CardPackPaywallTheme {
   const shell = SHELL[opts.themeMode] ?? SHELL.dark;
+  if (opts.themeMode === 'sagePorcelain') return shell;
   const ids = UGC_CARD_THEME_IDS as readonly string[];
   const k = themeKey && ids.includes(String(themeKey)) ? String(themeKey) : UGC_CARD_THEME_DEFAULT_ID;
   const patch = UGC_SHELL_PATCH[k] ?? UGC_SHELL_PATCH[UGC_CARD_THEME_DEFAULT_ID];

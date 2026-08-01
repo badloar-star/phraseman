@@ -9,7 +9,7 @@ jest.mock('react-native', () => ({
 jest.mock('expo-linear-gradient', () => ({ LinearGradient: 'LinearGradient' }));
 
 import { PAYWALL_THEME_CONFIG } from '../components/paywallThemeConfig';
-import { getCardPackPaywallTheme } from '../app/flashcards/cardPackPaywallTheme';
+import { getCardPackPaywallTheme, getCommunityUgcPackPaywallTheme } from '../app/flashcards/cardPackPaywallTheme';
 import { getLeagueBonusPalette } from '../constants/leagueBonusPalette';
 import { SAGE_PORCELAIN } from '../constants/theme';
 import {
@@ -23,6 +23,7 @@ import {
   rewardModalPrimaryButtonText,
   rewardModalScrimColors,
   rewardModalSoftSurface,
+  RewardModalLiquidGlass,
 } from '../components/RewardModalBackdrop';
 
 const ROOT = path.resolve(__dirname, '..');
@@ -78,5 +79,29 @@ describe('sage porcelain modal, reward, and paywall chrome', () => {
       card: ['#FCFDF9', '#F5F7F2', '#E7EAE3'], border: '#BDC8BD', accent: '#315F50', readyAccent: '#2F6F4F',
       textMuted: '#52605A', modal: { overlay: 'rgba(23,32,29,0.38)', card: ['#FCFDF9', '#F5F7F2', '#E7EAE3'], primary: ['#315F50', '#315F50', '#315F50'], primaryText: '#FFFFFF', rewardBg: '#EEE5D1' },
     });
+  });
+
+  it.each([
+    { id: 'sage-business', category: 'business' },
+    { id: 'sage-exam', category: 'exam' },
+    { id: 'sage-slang', category: 'slang' },
+    { id: 'sage-verbs', category: 'verbs' },
+    { id: 'official_peaky_blinders_en', category: 'business' },
+  ])('preserves the calm Sage card-pack shell for $id', (pack) => {
+    expect(getCardPackPaywallTheme(pack as any, { themeMode: 'sagePorcelain', isLight: true })).toMatchObject({
+      outerGlow: ['rgba(49,95,80,0)', 'rgba(49,95,80,0)', 'rgba(49,95,80,0)'],
+      borderAccent: '#BDC8BD', priceBorder: '#BDC8BD', ctaColors: ['#315F50', '#315F50'], ctaGlowTop: 'rgba(49,95,80,0)',
+    });
+  });
+
+  it('preserves the calm Sage card-pack shell for community UGC', () => {
+    expect(getCommunityUgcPackPaywallTheme('magenta_pop', { themeMode: 'sagePorcelain', isLight: true })).toMatchObject({
+      outerGlow: ['rgba(49,95,80,0)', 'rgba(49,95,80,0)', 'rgba(49,95,80,0)'],
+      borderAccent: '#BDC8BD', priceBorder: '#BDC8BD', ctaColors: ['#315F50', '#315F50'], ctaGlowTop: 'rgba(49,95,80,0)',
+    });
+  });
+
+  it('renders no liquid-glass decoration for Sage', () => {
+    expect(RewardModalLiquidGlass({ themeMode: 'sagePorcelain', accent: '#315F50' })).toBeNull();
   });
 });

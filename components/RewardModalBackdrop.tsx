@@ -72,18 +72,14 @@ export function RewardModalLiquidGlass({
   accent,
   intensity = 'regular',
 }: RewardModalLiquidGlassProps) {
+  if (themeMode === 'sagePorcelain') return null;
   const strong = intensity === 'strong';
-  const sagePorcelain = themeMode === 'sagePorcelain';
   const accentVeil = withAccentAlpha(accent, strong ? '42' : '30');
   const accentSoft = withAccentAlpha(accent, strong ? '24' : '18');
-  const topLight = sagePorcelain
-    ? 'rgba(49,95,80,0)'
-    : themeMode === 'gold'
+  const topLight = themeMode === 'gold'
     ? 'rgba(255,232,172,0.20)'
     : 'rgba(255,255,255,0.18)';
-  const sideLight = sagePorcelain
-    ? 'rgba(49,95,80,0)'
-    : themeMode === 'gold'
+  const sideLight = themeMode === 'gold'
     ? 'rgba(255,213,128,0.16)'
     : 'rgba(255,255,255,0.12)';
 

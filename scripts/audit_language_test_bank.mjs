@@ -35,8 +35,8 @@ const inferential = (item, language) => {
 };
 const EXTERNAL_FACT = /\b(?:atomic\s+number|chemical\s+element|bohrium|who|name|person|architect|painted|designed|born|capital|population|historical\s+fact|invented)\b(?:[\s\S]{0,100}\b(?:18\d{2}|19\d{2}|20\d{2}|is|was|of|the)\b)?|\b(?:18\d{2}|19\d{2}|20\d{2})\b[\s\S]{0,100}\b(?:who|name|person|architect|painted|designed|born|capital|population|historical\s+fact|invented)\b/iu;
 const ASSESSMENT = { grammar: ['target-language-form'], vocabulary: ['target-language-lexis'], reading: ['textual-information', 'discourse-inference'], pragmatics: ['pragmatic-intent', 'discourse-inference'] };
-const DESCRIPTOR_REF = /^CEFR-2020-(?:A1|A2|B1|B2|C1|C2)-(?:reception|pragmatics|language-competence)$/u;
-const ASSESSED_DESCRIPTOR_REF = /^CEFR-2020-(?:A1|A2|B1|B2|C1|C2)-(?:reception|pragmatics)$/u;
+const descriptorForLevel = (ref, level) => new RegExp(`^CEFR-2020-${level}-(?:reception|pragmatics|language-competence)$`, 'u').test(ref);
+const assessedDescriptorForLevel = (ref, level) => new RegExp(`^CEFR-2020-${level}-(?:reception|pragmatics)$`, 'u').test(ref);
 const requiredReview = (review, incorrectIndexes) => REVIEW_FIELDS.every((field) => review?.[field] === 'pass') && review?.reviewStatus === 'reviewed' && ['authoringPass', 'adversarialPass', 'deterministicPass', 'levelCoveragePass'].every((field) => review?.[field] === 'pass') && incorrectIndexes.length === 3 && Object.keys(review?.rationales || {}).length === 3 && incorrectIndexes.every((index) => typeof review?.rationales?.[index] === 'string' && review.rationales[index].trim());
 
 export function auditSeparateReview({ sourceRaw, questions, review, language, level }) {
@@ -64,7 +64,7 @@ export function auditBlueprint(blueprint) {
       if (!quotas[item?.skill]) errors.push(`${level}: invalid skill`);
       for (const field of ['construct', 'canDo', 'itemFormat', 'adultContext', 'fairnessRisk', 'constructIrrelevantRisk', 'evidenceLabel', 'selectionEvidenceLabel', 'descriptorEvidenceLabel']) if (typeof item?.[field] !== 'string' || !item[field].trim()) errors.push(`${level}: missing ${field}`);
       if (item?.selectionEvidenceLabel !== 'SYNTHESIS' || item?.descriptorEvidenceLabel !== 'OFFICIAL_STANDARD') errors.push(`${level}: anchor evidence labels`);
-      if (!Array.isArray(item?.descriptorRefs) || !item.descriptorRefs.some((ref) => ASSESSED_DESCRIPTOR_REF.test(ref)) || !item.descriptorRefs.every((ref) => DESCRIPTOR_REF.test(ref))) errors.push(`${level}: descriptorRefs must map to CEFR anchor`);
+      if (!Array.isArray(item?.descriptorRefs) || !item.descriptorRefs.some((ref) => assessedDescriptorForLevel(ref, level)) || !item.descriptorRefs.every((ref) => descriptorForLevel(ref, level))) errors.push(`${level}: descriptorRefs must map to CEFR anchor`);
     }
     for (const [skill, count] of Object.entries(quotas)) if (plan.items.filter((item) => item.skill === skill).length !== count) errors.push(`${level}: ${skill} quota`);
   }
@@ -94,7 +94,7 @@ export function auditQuestionBank(bank, { allowDraft = false } = {}) {
       if (['C1', 'C2'].includes(level) && item.routingEligible !== false && item.upperBandEvidence !== true) errors.push(`${item.id}: routing-eligible upper-band item needs upperBandEvidence`);
       if (['C1', 'C2'].includes(level) && (item.externalKnowledgeRequired !== false || item.answerableFromStimulus !== true)) errors.push(`${item.id}: upper-band item must be answerable from stimulus without external knowledge`);
       if (item.culturalKnowledgeRequired !== false || item.externalKnowledgeRequired !== false || item.triviaRisk !== 'none') errors.push(`${item.id}: cultural/external knowledge and trivia metadata required`);
-      if (!Array.isArray(item.descriptorRefs) || !item.descriptorRefs.some((ref) => ASSESSED_DESCRIPTOR_REF.test(ref)) || !item.descriptorRefs.every((ref) => DESCRIPTOR_REF.test(ref))) errors.push(`${item.id}: meaningless descriptorRefs`);
+      if (!Array.isArray(item.descriptorRefs) || !item.descriptorRefs.some((ref) => assessedDescriptorForLevel(ref, level)) || !item.descriptorRefs.every((ref) => descriptorForLevel(ref, level))) errors.push(`${item.id}: meaningless descriptorRefs`);
       if (CYRILLIC.test((item.options || []).join(' '))) errors.push(`${item.id}: Russian leakage in target options`);
       const answer = item.options?.[item.correctIndex];
       for (const field of ['instructionRu', 'instructionEn']) if (hasLeak(item[field], answer, language)) errors.push(`${item.id}: ${field} leaks target answer`);
@@ -133,10 +133,12 @@ export function parseAnchors(raw, source = 'references') {
   return anchors;
 }
 export const readAnchors = (file) => parseAnchors(readFileSync(file, 'utf8'), file);
-export const validateAnchors = (items, anchors, kind) => {
+export const validateAnchors = (items, anchors, kind, expectedLevel) => {
   const errors = [];
   for (const item of items || []) {
     for (const ref of item.descriptorRefs || []) if (anchors.get(ref)?.label !== 'OFFICIAL_STANDARD') errors.push(`${item.id || item.constructId}: invented or non-standard descriptor anchor ${ref}`);
+    const level = expectedLevel || item.level;
+    for (const ref of item.descriptorRefs || []) if (level && !descriptorForLevel(ref, level)) errors.push(`${item.id || item.constructId}: level-mismatched descriptor anchor ${ref}`);
     for (const ref of item.selectionRefs || []) if (anchors.get(ref)?.label !== 'SYNTHESIS') errors.push(`${item.id || item.constructId}: selection anchor must be SYNTHESIS ${ref}`);
   }
   return errors;
@@ -146,14 +148,14 @@ export function auditLanguage(root, language, allowDraft = false) {
   const blueprintFile = join(base, 'blueprints', `${language}.json`);
   const referenceFile = join(base, 'references', `${language}.md`); const anchors = existsSync(referenceFile) ? readAnchors(referenceFile) : new Map();
   if (!existsSync(referenceFile) || !anchors.size) errors.push('missing machine-readable references'); else files.push(evidence(referenceFile));
-  if (!existsSync(blueprintFile)) errors.push('missing blueprint'); else { const blueprint = readJson(blueprintFile); files.push(evidence(blueprintFile)); errors.push(...auditBlueprint(blueprint).errors); errors.push(...validateAnchors(LEVELS.flatMap((level) => blueprint.levels?.[level]?.items || []), anchors, 'blueprint')); }
+  if (!existsSync(blueprintFile)) errors.push('missing blueprint'); else { const blueprint = readJson(blueprintFile); files.push(evidence(blueprintFile)); errors.push(...auditBlueprint(blueprint).errors); for (const level of LEVELS) errors.push(...validateAnchors(blueprint.levels?.[level]?.items || [], anchors, 'blueprint', level)); }
   const levels = [];
   for (const level of LEVELS) {
     const source = join(base, 'questions', language, `${level}.json`); const review = join(base, 'reviews', language, `${level}.json`);
     if (!existsSync(source)) { errors.push(`missing source ${level}`); continue; }
     const raw = readFileSync(source); const data = JSON.parse(raw); const sourceSha256 = sha256Raw(raw); files.push(evidence(source));
     if (data.language !== language || !Array.isArray(data.questions)) errors.push(`${level}: source language/questions schema`);
-    errors.push(...validateAnchors(data.questions, anchors, 'question'));
+    errors.push(...validateAnchors(data.questions, anchors, 'question', level));
     if (!existsSync(review)) { (allowDraft ? warnings : errors).push(`${level}: missing review`); } else { const reviews = readJson(review); files.push(evidence(review)); const result = auditSeparateReview({ sourceRaw: raw, questions: data.questions, review: reviews, language, level }); (allowDraft ? warnings : errors).push(...result.errors); }
     levels.push(...data.questions);
   }

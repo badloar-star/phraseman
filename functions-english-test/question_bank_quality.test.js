@@ -426,6 +426,14 @@ test('production descriptor anchors agree across blueprint, bank, and reference 
   assert.deepEqual(audit.auditBlueprint(blueprint).errors, []);
   assert.doesNotMatch(audit.auditQuestionBank({ language: 'de', questions }).errors.join('\n'), /meaningless descriptorRefs/);
   assert.deepEqual(audit.validateAnchors(questions, anchors), []);
+  const validA1Refs = ['CEFR-2020-A1-reception', 'CEFR-2020-A1-pragmatics', 'CEFR-2020-A1-language-competence'];
+  const validA1Blueprint = structuredClone(blueprint); validA1Blueprint.levels.A1.items[0].descriptorRefs = validA1Refs;
+  assert.deepEqual(audit.auditBlueprint(validA1Blueprint).errors, []);
+  const wrongBoundBlueprint = structuredClone(blueprint); wrongBoundBlueprint.levels.A1.items[0].descriptorRefs = ['CEFR-2020-C2-reception'];
+  assert.match(audit.auditBlueprint(wrongBoundBlueprint).errors.join('\n'), /descriptorRefs/);
+  const wrongBoundQuestion = structuredClone(questions.find((item) => item.level === 'A1')); wrongBoundQuestion.descriptorRefs = ['CEFR-2020-C2-reception'];
+  assert.match(audit.auditQuestionBank({ language: 'de', questions: [wrongBoundQuestion] }).errors.join('\n'), /meaningless descriptorRefs/);
+  assert.match(audit.validateAnchors([wrongBoundQuestion], anchors, 'question', 'A1').join('\n'), /level-mismatched descriptor anchor/);
   const invented = structuredClone(questions[0]); invented.descriptorRefs = ['CEFR-2020-A1-reception-invented'];
   assert.match(audit.validateAnchors([invented], anchors).join('\n'), /non-standard descriptor anchor/);
   const wrongLevel = structuredClone(blueprint); wrongLevel.levels.A1.items[0].descriptorRefs = ['CEFR-2020-C3-reception'];

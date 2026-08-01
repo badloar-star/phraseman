@@ -52,6 +52,7 @@ export function auditSeparateReview({ sourceRaw, questions, review, language, le
 
 export function auditBlueprint(blueprint) {
   const errors = [];
+  const constructSubstance = new Set(); const canDoSubstance = new Set();
   if (!blueprint || !LANGUAGES.includes(blueprint.language) || blueprint.language === 'en') errors.push('unsupported blueprint language');
   for (const level of LEVELS) {
     const plan = blueprint?.levels?.[level];
@@ -65,6 +66,10 @@ export function auditBlueprint(blueprint) {
       for (const field of ['construct', 'canDo', 'itemFormat', 'adultContext', 'fairnessRisk', 'constructIrrelevantRisk', 'evidenceLabel', 'selectionEvidenceLabel', 'descriptorEvidenceLabel']) if (typeof item?.[field] !== 'string' || !item[field].trim()) errors.push(`${level}: missing ${field}`);
       if (item?.selectionEvidenceLabel !== 'SYNTHESIS' || item?.descriptorEvidenceLabel !== 'OFFICIAL_STANDARD') errors.push(`${level}: anchor evidence labels`);
       if (!Array.isArray(item?.descriptorRefs) || !item.descriptorRefs.some((ref) => assessedDescriptorForLevel(ref, level)) || !item.descriptorRefs.every((ref) => descriptorForLevel(ref, level))) errors.push(`${level}: descriptorRefs must map to CEFR anchor`);
+      const expectedSelection = `${blueprint.language}-selection-${level}-${item?.skill}`;
+      if (!Array.isArray(item?.selectionRefs) || item.selectionRefs.length !== 1 || item.selectionRefs[0] !== expectedSelection) errors.push(`${level}: selectionRefs must be exactly ${expectedSelection}`);
+      const constructKey = plain(item?.construct); if (constructKey && constructSubstance.has(constructKey)) errors.push(`${level}: duplicate construct substance`); else if (constructKey) constructSubstance.add(constructKey);
+      const canDoKey = plain(item?.canDo); if (canDoKey && canDoSubstance.has(canDoKey)) errors.push(`${level}: duplicate canDo substance`); else if (canDoKey) canDoSubstance.add(canDoKey);
     }
     for (const [skill, count] of Object.entries(quotas)) if (plan.items.filter((item) => item.skill === skill).length !== count) errors.push(`${level}: ${skill} quota`);
   }

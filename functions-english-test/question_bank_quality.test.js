@@ -420,7 +420,7 @@ test('production descriptor anchors agree across blueprint, bank, and reference 
   const quotas = (level) => ['A1', 'A2'].includes(level) ? { grammar: 12, vocabulary: 10, reading: 10, pragmatics: 8 } : ['B1', 'B2'].includes(level) ? { grammar: 10, vocabulary: 10, reading: 10, pragmatics: 10 } : { grammar: 8, vocabulary: 8, reading: 12, pragmatics: 12 };
   const blueprint = { language: 'de', levels: {} }; const questions = [];
   for (const level of LEVELS) {
-    blueprint.levels[level] = { items: Object.entries(quotas(level)).flatMap(([skill, count]) => Array.from({ length: count }, (_, index) => ({ constructId: `de-${level.toLowerCase()}-${skill}-${index}`, skill, construct: 'construct', canDo: 'Can do an adult task.', itemFormat: 'four-option choice', adultContext: 'adult context', fairnessRisk: 'none', constructIrrelevantRisk: 'none', evidenceLabel: 'SYNTHESIS', selectionEvidenceLabel: 'SYNTHESIS', descriptorEvidenceLabel: 'OFFICIAL_STANDARD', descriptorRefs: [`CEFR-2020-${level}-${skill === 'pragmatics' ? 'pragmatics' : 'reception'}`], selectionRefs: [`de-selection-${level}-${skill}`] }))) };
+    blueprint.levels[level] = { items: Object.entries(quotas(level)).flatMap(([skill, count]) => Array.from({ length: count }, (_, index) => ({ constructId: `de-${level.toLowerCase()}-${skill}-${index}`, skill, construct: `${level} ${skill} construct ${index}`, canDo: `Can complete ${level} adult ${skill} task ${index}.`, itemFormat: 'four-option choice', adultContext: 'adult context', fairnessRisk: 'none', constructIrrelevantRisk: 'none', evidenceLabel: 'SYNTHESIS', selectionEvidenceLabel: 'SYNTHESIS', descriptorEvidenceLabel: 'OFFICIAL_STANDARD', descriptorRefs: [`CEFR-2020-${level}-${skill === 'pragmatics' ? 'pragmatics' : 'reception'}`], selectionRefs: [`de-selection-${level}-${skill}`] }))) };
     questions.push(...blueprint.levels[level].items.map((item, index) => ({ id: `${item.constructId}-question`, level, skill: item.skill, constructId: item.constructId, descriptorRefs: item.descriptorRefs, selectionRefs: item.selectionRefs, stimulus: `Unique ${level} ${item.skill} prompt ${index}.`, options: ['one', 'two', 'three', 'four'], correctIndex: 0, instructionRu: 'Выберите вариант.', instructionEn: 'Choose.', culturalKnowledgeRequired: false, externalKnowledgeRequired: false, triviaRisk: 'none', assessmentBasis: item.skill === 'grammar' ? 'target-language-form' : item.skill === 'vocabulary' ? 'target-language-lexis' : item.skill === 'reading' ? 'textual-information' : 'pragmatic-intent', knowledgeTarget: item.skill === 'grammar' ? 'target-language-form' : item.skill === 'vocabulary' ? 'target-language-lexis' : item.skill === 'reading' ? 'textual-information' : 'pragmatic-intent', answerableFromStimulus: !['reading', 'pragmatics'].includes(item.skill) })));
   }
   assert.deepEqual(audit.auditBlueprint(blueprint).errors, []);
@@ -486,7 +486,7 @@ test('multilingual quality auditor rejects each deliberate survivor mutation wit
         skill,
         constructId: `de-${level.toLowerCase()}-${skill}-${index + 1}`,
         descriptorRefs: [`CEFR-2020-${level}-reception`],
-        targetConstruct: `${skill} construct ${index + 1}`,
+        targetConstruct: `${level} ${skill} construct ${index + 1}`,
         canDo: `Can complete adult ${skill} task ${index + 1}.`,
         itemFormat: 'four-option contextual choice',
         adultContext: 'adult public-service context',
@@ -625,12 +625,35 @@ test('C2 inference evidence must quote the stimulus and external-fact screens re
   assert.match(result.errors.join('\n'), /external-knowledge/);
 });
 
-test('all four current project blueprints are intentionally RED until Phase B supplies individual authoring objects', async () => {
+test('German blueprint is GREEN while the remaining Phase B blueprints stay intentionally RED', async () => {
   const audit = await import(pathToFileURL(path.join(ROOT, 'scripts', 'audit_language_test_bank.mjs')).href);
-  for (const language of ['de', 'fr', 'it', 'es']) {
+  const german = JSON.parse(fs.readFileSync(path.join(ROOT, 'content', 'language-tests', 'blueprints', 'de.json'), 'utf8'));
+  assert.deepEqual(audit.auditBlueprint(german).errors, [], 'de');
+  for (const language of ['fr', 'it', 'es']) {
     const blueprint = JSON.parse(fs.readFileSync(path.join(ROOT, 'content', 'language-tests', 'blueprints', `${language}.json`), 'utf8'));
     assert.match(audit.auditBlueprint(blueprint).errors.join('\n'), /40 individual construct objects/, language);
   }
+});
+
+test('blueprint audit binds selection evidence and rejects duplicated authoring substance', async () => {
+  const audit = await import(pathToFileURL(path.join(ROOT, 'scripts', 'audit_language_test_bank.mjs')).href);
+  const source = JSON.parse(fs.readFileSync(path.join(ROOT, 'content', 'language-tests', 'blueprints', 'de.json'), 'utf8'));
+
+  const missingSelection = structuredClone(source);
+  delete missingSelection.levels.A1.items[0].selectionRefs;
+  assert.match(audit.auditBlueprint(missingSelection).errors.join('\n'), /selectionRefs must be exactly de-selection-A1-grammar/u);
+
+  const crossSkillSelection = structuredClone(source);
+  crossSkillSelection.levels.A1.items[0].selectionRefs = ['de-selection-A1-reading'];
+  assert.match(audit.auditBlueprint(crossSkillSelection).errors.join('\n'), /selectionRefs must be exactly de-selection-A1-grammar/u);
+
+  const copiedConstruct = structuredClone(source);
+  copiedConstruct.levels.A1.items[1].construct = copiedConstruct.levels.A1.items[0].construct;
+  assert.match(audit.auditBlueprint(copiedConstruct).errors.join('\n'), /duplicate construct substance/u);
+
+  const copiedCanDo = structuredClone(source);
+  copiedCanDo.levels.A1.items[1].canDo = copiedCanDo.levels.A1.items[0].canDo;
+  assert.match(audit.auditBlueprint(copiedCanDo).errors.join('\n'), /duplicate canDo substance/u);
 });
 
 test('audit CLI rejects traversal, writes only confined reports, and --allow-draft changes only final-evidence failures', () => {
@@ -678,7 +701,7 @@ test('language audit CLI validates a complete 240-item reviewed fixture without 
     write(path.join(tempRoot, 'content', 'language-tests', 'reviews', 'de', `${level}.json`), `${JSON.stringify(reviews, null, 2)}\n`);
     return source;
   });
-  const blueprint = { language: 'de', levels: Object.fromEntries(LEVELS.map((level) => [level, { items: levels[LEVELS.indexOf(level)].questions.map((item) => ({ constructId: item.constructId, skill: item.skill, construct: item.targetConstruct, canDo: 'Can complete an adult task.', itemFormat: 'four-option contextual choice', adultContext: 'adult service context', fairnessRisk: 'avoid specialist knowledge', constructIrrelevantRisk: 'avoid typography clues', evidenceLabel: 'SYNTHESIS', selectionEvidenceLabel: 'SYNTHESIS', descriptorEvidenceLabel: 'OFFICIAL_STANDARD', descriptorRefs: item.descriptorRefs, selectionRefs: item.selectionRefs })) }])) };
+  const blueprint = { language: 'de', levels: Object.fromEntries(LEVELS.map((level) => [level, { items: levels[LEVELS.indexOf(level)].questions.map((item) => ({ constructId: item.constructId, skill: item.skill, construct: `${level} ${item.targetConstruct}`, canDo: `Can complete adult task ${item.constructId}.`, itemFormat: 'four-option contextual choice', adultContext: 'adult service context', fairnessRisk: 'avoid specialist knowledge', constructIrrelevantRisk: 'avoid typography clues', evidenceLabel: 'SYNTHESIS', selectionEvidenceLabel: 'SYNTHESIS', descriptorEvidenceLabel: 'OFFICIAL_STANDARD', descriptorRefs: item.descriptorRefs, selectionRefs: item.selectionRefs })) }])) };
   write(path.join(tempRoot, 'content', 'language-tests', 'blueprints', 'de.json'), `${JSON.stringify(blueprint, null, 2)}\n`);
   const bankText = `${JSON.stringify({ schemaVersion: 1, bankVersion: 'e2e', language: 'de', levels: LEVELS, questions: levels.flatMap((entry) => entry.questions) }, null, 2)}\n`;
   const generated = [path.join(tempRoot, 'knowly-www', 'english-level-test', 'data', 'questions.de.json'), path.join(tempRoot, 'functions-english-test', 'data', 'questions.de.json')]; generated.forEach((file) => write(file, bankText));

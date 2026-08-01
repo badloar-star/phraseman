@@ -948,10 +948,9 @@
       const prev = buttons[Math.max(idx - 1, 0)] || buttons[buttons.length - 1];
       prev.focus();
     } else if (e.key === 'Enter' || e.key === ' ') {
-      if (focused.classList && focused.classList.contains('elt-option')) {
+      if (idx >= 0) {
         e.preventDefault();
-        const i = parseInt(focused.dataset.index, 10);
-        selectAnswer(q, i, focused);
+        selectAnswer(q, idx, buttons[idx]);
       }
     }
   }

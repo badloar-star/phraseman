@@ -230,6 +230,29 @@ function loadKeyboardStateApp({ source = fs.readFileSync(appPath, 'utf8') } = {}
       renderQuestion(question, { preserveAttempt: true });
       startQuestionTimer();
     },
+    enterCrossfadeQuestions(firstQuestion, secondQuestion) {
+      attemptTestLanguage = 'de';
+      consent = true;
+      engine = {
+        history: [],
+        targetLevelIndex: 1,
+        shouldFinish() { return this.history.length >= 2; },
+        pickNextQuestion() { return this.history.length === 1 ? secondQuestion : null; },
+        recordAnswer(answeredQuestion, selectedIndex, skipped) {
+          this.history.push({ questionId: answeredQuestion.id, selectedIndex, skipped });
+          __keyboardEffects.answers.push({ questionId: answeredQuestion.id, selectedIndex, skipped });
+        },
+        computeResult() { return { estimatedLevel: 'A1', correct: 1, answered: 2, totalQuestions: 2, skipped: 0, assessmentScope: 'test', stopReason: 'test' }; },
+      };
+      currentQuestion = firstQuestion;
+      selectedAnswerIndex = null;
+      answerLocked = false;
+      questionDeadline = Date.now() + 32000;
+      questionStartTime = Date.now() - 13000;
+      lastProgress = 0;
+      renderQuestion(firstQuestion, { preserveAttempt: true });
+      startQuestionTimer();
+    },
     expireDeadline() { questionDeadline = Date.now() - 1; activeTimerTick(); },
     state() { return { selectedAnswerIndex, answerLocked, history: engine?.history || null }; },
     effects() { return JSON.parse(JSON.stringify(__keyboardEffects)); },
@@ -287,6 +310,41 @@ function assertSpaceFirstAnswerIsLocked(fixture) {
 
   fixture.flushTimeouts(200);
   assert.deepEqual(fixture.context.window.__keyboardStateTest.effects().answers, [{ questionId: 'space-first', selectedIndex: 1, skipped: false }]);
+}
+
+function assertStaleCrossfadeFocusIsIgnored(fixture) {
+  const firstQuestion = { id: 'crossfade-first', scenarioRu: 'ru', instructionRu: 'instruction', scenario: 'scenario', prompt: 'prompt', options: ['first', 'second'], correctIndex: 0, level: 'A1' };
+  const secondQuestion = { id: 'crossfade-second', scenarioRu: 'ru', instructionRu: 'instruction', scenario: 'scenario', prompt: 'prompt', options: ['third', 'fourth'], correctIndex: 1, level: 'A1' };
+  fixture.context.window.__keyboardStateTest.enterCrossfadeQuestions(firstQuestion, secondQuestion);
+  const outgoingView = fixture.view();
+  const outgoingOption = outgoingView.querySelectorAll('.elt-option')[0];
+
+  outgoingOption.focus();
+  assert.equal(keydown(fixture, 'Enter'), true);
+  fixture.flushTimeouts(200);
+  assert.equal(fixture.context.window.__keyboardStateTest.effects().answers.length, 1);
+  assert.equal(outgoingView.getAttribute('aria-hidden'), 'true');
+  assert.equal(outgoingView.isConnected, true);
+  assert.equal(fixture.context.document.activeElement, outgoingOption);
+
+  assert.equal(keydown(fixture, ' '), false);
+  assert.equal(keydown(fixture, 'Enter'), false);
+  assert.equal(fixture.context.window.__keyboardStateTest.state().selectedAnswerIndex, null);
+  assert.equal(fixture.context.window.__keyboardStateTest.state().answerLocked, false);
+  assert.equal(fixture.pendingTimeouts(200).length, 0);
+  assert.equal(fixture.context.window.__keyboardStateTest.effects().answers.length, 1);
+
+  const currentOption = fixture.view().querySelectorAll('.elt-option')[1];
+  currentOption.focus();
+  assert.equal(keydown(fixture, ' '), true);
+  assert.equal(fixture.context.window.__keyboardStateTest.state().selectedAnswerIndex, 1);
+  assert.equal(fixture.context.window.__keyboardStateTest.state().answerLocked, true);
+  assert.equal(fixture.pendingTimeouts(200).length, 1);
+  fixture.flushTimeouts(200);
+  assert.deepEqual(fixture.context.window.__keyboardStateTest.effects().answers, [
+    { questionId: 'crossfade-first', selectedIndex: 0, skipped: false },
+    { questionId: 'crossfade-second', selectedIndex: 1, skipped: false },
+  ]);
 }
 
 function leafPaths(value, prefix = '') {
@@ -739,6 +797,10 @@ test('focused Space locks its first answer before later keyboard or click input'
   assertSpaceFirstAnswerIsLocked(loadKeyboardStateApp());
 });
 
+test('stale outgoing option focus cannot answer the next question during cross-fade', () => {
+  assertStaleCrossfadeFocusIsIgnored(loadKeyboardStateApp());
+});
+
 test('keyboard race behavioral contract rejects removal of the immediate selection gate', () => {
   const source = fs.readFileSync(appPath, 'utf8');
   const withoutGate = source.replace(
@@ -754,6 +816,16 @@ test('Space-first behavioral contract rejects removing Space key handling', () =
   const withoutSpace = source.replace("e.key === 'Enter' || e.key === ' '", "e.key === 'Enter'");
   assert.notEqual(withoutSpace, source, 'mutation must remove Space key handling');
   assert.throws(() => assertSpaceFirstAnswerIsLocked(loadKeyboardStateApp({ source: withoutSpace })));
+});
+
+test('cross-fade keyboard contract rejects removing current-option membership check', () => {
+  const source = fs.readFileSync(appPath, 'utf8');
+  const withoutMembershipCheck = source.replace(
+    '      if (idx >= 0) {\n        e.preventDefault();\n        selectAnswer(q, idx, buttons[idx]);\n      }',
+    '      if (focused.classList && focused.classList.contains(\'elt-option\')) {\n        e.preventDefault();\n        const i = parseInt(focused.dataset.index, 10);\n        selectAnswer(q, i, focused);\n      }',
+  );
+  assert.notEqual(withoutMembershipCheck, source, 'mutation must remove current-option membership check');
+  assert.throws(() => assertStaleCrossfadeFocusIsIgnored(loadKeyboardStateApp({ source: withoutMembershipCheck })));
 });
 
 test('behavioral harness rejects timer reset, result header removal, and focus restoration mutations', () => {

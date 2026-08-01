@@ -14,15 +14,18 @@ class FakeNode {
     this.dataset = {};
     this.listeners = new Map();
     this.style = {};
-    this.classList = { add() {} };
+    this.classList = { add() {}, contains: () => false };
     this.isConnected = true;
     this.checked = false;
   }
 
   addEventListener(type, listener) { this.listeners.set(type, listener); }
+  removeEventListener(type) { this.listeners.delete(type); }
   click() { this.listeners.get('click')?.({}); }
-  appendChild(child) { this.children.push(child); child.parentNode = this; return child; }
+  appendChild(child) { this.children.push(child); child.parentNode = this; child.ownerDocument = this.ownerDocument; return child; }
   remove() { this.isConnected = false; }
+  focus() { if (this.ownerDocument) this.ownerDocument.activeElement = this; }
+  matches(selector) { return selector === '.elt-ui-locale-toggle' && /elt-ui-locale-toggle/.test(this.innerHTML); }
   setAttribute(name, value) { this[name] = String(value); }
   getAttribute(name) {
     const match = this.innerHTML.match(new RegExp(`${name}="([^"]*)"`));
@@ -35,7 +38,7 @@ class FakeNode {
     if (selector === '[data-test-language]') {
       return [...this.innerHTML.matchAll(/<button[^>]*data-test-language="([^"]+)"[^>]*>.*?<\/button>/gs)]
         .map((match) => {
-          if (!this.nodes.has(match[1])) this.nodes.set(match[1], Object.assign(new FakeNode(match[0]), { dataset: { testLanguage: match[1] } }));
+          if (!this.nodes.has(match[1])) this.nodes.set(match[1], Object.assign(new FakeNode(match[0]), { dataset: { testLanguage: match[1] }, ownerDocument: this.ownerDocument }));
           return this.nodes.get(match[1]);
         });
     }
@@ -43,7 +46,7 @@ class FakeNode {
       : selector.startsWith('.') ? `class="[^"]*${selector.slice(1)}[^"]*"`
         : selector;
     if (!new RegExp(token).test(this.innerHTML)) return [];
-    if (!this.nodes.has(selector)) this.nodes.set(selector, new FakeNode(this.innerHTML));
+    if (!this.nodes.has(selector)) this.nodes.set(selector, Object.assign(new FakeNode(this.innerHTML), { ownerDocument: this.ownerDocument }));
     return [this.nodes.get(selector)];
   }
 }
@@ -55,17 +58,25 @@ function loadLandingApp({ href = 'https://example.test/level?ui=en', source = fs
   const description = new FakeNode();
   const document = {
     documentElement: new FakeNode(),
+    activeElement: null,
     title: '',
     visibilityState: 'visible',
     getElementById: () => app,
-    createElement: () => {
+    createElement: (tag) => {
+      if (tag === 'div') {
+        const div = new FakeNode();
+        Object.defineProperty(div, 'textContent', { set(value) { div.innerHTML = String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;'); } });
+        return div;
+      }
       const template = { content: {} };
       Object.defineProperty(template, 'innerHTML', { set(value) { template.content.firstElementChild = new FakeNode(value); } });
       return template;
     },
     querySelector: (selector) => selector === 'meta[name="description"]' ? description : null,
-    addEventListener() {},
+    addEventListener() {}, removeEventListener() {},
   };
+  app.ownerDocument = document;
+  document.documentElement.ownerDocument = document;
   const history = { replaceState(_state, _title, nextHref) { location.href = new URL(nextHref, location.href).href; } };
   const context = {
     URL,
@@ -106,6 +117,30 @@ function loadI18n(globals = {}) {
   if (localStorageGetter) Object.defineProperty(context, 'localStorage', { configurable: true, get: localStorageGetter });
   vm.runInContext(source, context, { filename: modulePath });
   return context.EnglishTestI18n;
+}
+
+function loadLocaleStateApp({ source = fs.readFileSync(appPath, 'utf8') } = {}) {
+  const tail = `
+  window.__localeStateTest = {
+    enterQuestion(question, locked) {
+      attemptTestLanguage = 'de';
+      engine = { history: [{ questionId: 'earlier' }], targetLevelIndex: 1 };
+      currentQuestion = question;
+      selectedAnswerIndex = locked ? 1 : null;
+      answerLocked = Boolean(locked);
+      questionDeadline = Date.now() + 32000;
+      questionStartTime = Date.now() - 13000;
+      lastProgress = 5;
+      renderQuestion(question, { preserveAttempt: true });
+    },
+    enterResult(result) { attemptTestLanguage = 'de'; renderResult(result); },
+    state() { return { currentQuestion, questionDeadline, questionStartTime, history: engine?.history || null, selectedAnswerIndex, answerLocked, activeView }; },
+  };
+})();`;
+  const instrumented = source.replace(/  updatePageLocale\(\);\r?\n  renderLanding\(\);\r?\n\}\)\(\);\s*$/, `  updatePageLocale();${tail}`);
+  assert.notEqual(instrumented, source, 'test injection must replace only the production initialization tail');
+  const fixture = loadLandingApp({ source: instrumented });
+  return fixture;
 }
 
 function leafPaths(value, prefix = '') {
@@ -446,4 +481,82 @@ test('uses dictionary copy for service chrome and keeps assessed question conten
   assert.match(source, /<div class="elt-result">\s*\$\{brandHeader\(\)\}/);
   assert.match(source, /const timerLeftMs = options\.preserveAttempt \? Math\.max\(0, questionDeadline - Date\.now\(\)\) : QUESTION_SECONDS \* 1000/);
   assert.match(source, /restoreLocaleToggleFocus/);
+});
+
+test('live question toggle preserves attempt state and changes only service instruction locale', () => {
+  const fixture = loadLocaleStateApp();
+  const question = { id: 'de-q1', scenarioRu: 'RU scenario', instructionRu: 'RU instruction', scenario: 'EN scenario', prompt: 'EN prompt', stimulus: 'DE stimulus', options: ['eins', 'zwei'], correctIndex: 0 };
+  fixture.context.window.__localeStateTest.enterQuestion(question, true);
+  const before = fixture.context.window.__localeStateTest.state();
+  const beforeHtml = fixture.view().innerHTML;
+  const beforeTimer = beforeHtml.match(/id="qTimerNum">(\d+)/)[1];
+  const beforeRing = beforeHtml.match(/stroke-dashoffset:([\d.]+)/)[1];
+  fixture.view().querySelector('.elt-ui-locale-toggle').click();
+  const after = fixture.context.window.__localeStateTest.state();
+  const html = fixture.view().innerHTML;
+  assert.match(beforeHtml, /EN scenario/);
+  assert.match(html, /RU scenario/);
+  assert.match(html, /lang="ru">RU instruction/);
+  assert.match(html, /lang="de-DE">DE stimulus/);
+  assert.match(html, /lang="de-DE">eins/);
+  assert.equal(after.currentQuestion, before.currentQuestion);
+  assert.equal(after.questionDeadline, before.questionDeadline);
+  assert.equal(after.questionStartTime, before.questionStartTime);
+  assert.deepEqual(after.history, before.history);
+  assert.equal(after.selectedAnswerIndex, 1);
+  assert.equal(after.answerLocked, true);
+  assert.ok(Number(html.match(/id="qTimerNum">(\d+)/)[1]) <= Number(beforeTimer));
+  assert.notEqual(html.match(/stroke-dashoffset:([\d.]+)/)[1], undefined);
+  assert.equal(beforeRing, html.match(/stroke-dashoffset:([\d.]+)/)[1]);
+});
+
+test('live result toggle preserves sanitized partial name and does not invoke certificate flow', () => {
+  const fixture = loadLocaleStateApp();
+  const result = { estimatedLevel: 'B1', correct: 7, answered: 9, totalQuestions: 10, skipped: 1 };
+  fixture.context.window.__localeStateTest.enterResult(result);
+  const input = fixture.view().querySelector('#certName');
+  input.value = '  <Sam>   Lee  ';
+  fixture.view().querySelector('.elt-ui-locale-toggle').click();
+  const html = fixture.view().innerHTML;
+  assert.match(html, /elt-ui-locale-toggle/);
+  assert.equal(fixture.context.window.__localeStateTest.state().activeView.data, result);
+  assert.match(html, /value="&lt;Sam&gt; Lee"/);
+  assert.equal(fixture.context.document.title, 'Тест уровня языка — Phraseman');
+});
+
+test('live locale rerender restores toggle focus only when it owned focus', () => {
+  const focused = loadLocaleStateApp();
+  focused.context.window.__localeStateTest.enterQuestion({ id: 'focus', scenarioRu: 'ru', instructionRu: 'ri', scenario: 'en', prompt: 'ep', stimulus: 'de', options: ['a'], correctIndex: 0 });
+  const toggle = focused.view().querySelector('.elt-ui-locale-toggle');
+  toggle.focus();
+  toggle.click();
+  assert.ok(focused.context.document.activeElement.matches('.elt-ui-locale-toggle'));
+  assert.notEqual(focused.context.document.activeElement, toggle);
+
+  const unfocused = loadLocaleStateApp();
+  unfocused.context.window.__localeStateTest.enterQuestion({ id: 'blur', scenarioRu: 'ru', instructionRu: 'ri', scenario: 'en', prompt: 'ep', stimulus: 'de', options: ['a'], correctIndex: 0 });
+  const other = new FakeNode('<button id="other">other</button>'); other.ownerDocument = unfocused.context.document; other.focus();
+  unfocused.view().querySelector('.elt-ui-locale-toggle').click();
+  assert.equal(unfocused.context.document.activeElement, other);
+});
+
+test('behavioral harness rejects timer reset, result header removal, and focus restoration mutations', () => {
+  const source = fs.readFileSync(appPath, 'utf8');
+  const enterQuestion = (mutated) => {
+    const fixture = loadLocaleStateApp({ source: mutated });
+    fixture.context.window.__localeStateTest.enterQuestion({ id: 'm', scenarioRu: 'ru', instructionRu: 'ri', scenario: 'en', prompt: 'ep', stimulus: 'de', options: ['a'], correctIndex: 0 });
+    const toggle = fixture.view().querySelector('.elt-ui-locale-toggle');
+    toggle.focus(); toggle.click();
+    return fixture;
+  };
+  assert.throws(() => assert.notEqual(enterQuestion(source.replace('Math.max(0, questionDeadline - Date.now())', 'QUESTION_SECONDS * 1000')).view().innerHTML.match(/id="qTimerNum">(\d+)/)[1], '45'));
+  assert.throws(() => {
+    const fixture = enterQuestion(source.replace("if (restoreLocaleToggleFocus) node.querySelector('.elt-ui-locale-toggle')?.focus?.();", ''));
+    assert.notEqual(fixture.context.document.activeElement, fixture.view().parentNode.children.at(-2).querySelector('.elt-ui-locale-toggle'));
+  });
+  assert.throws(() => {
+    const fixture = loadLocaleStateApp({ source: source.replace('        ${brandHeader()}\n        <div class="elt-result-card">', '        <div class="elt-result-card">') });
+    fixture.context.window.__localeStateTest.enterResult({ estimatedLevel: 'A1', correct: 1, answered: 1, totalQuestions: 1, skipped: 0 });
+    assert.ok(fixture.view().querySelector('.elt-ui-locale-toggle'));
+  });
 });

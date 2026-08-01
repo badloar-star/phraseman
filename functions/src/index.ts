@@ -502,6 +502,8 @@ export { submitWebsiteContact } from './website_contact';
 
 export { siteStatsTrack } from './site_stats';
 
+export { recordOnboardingFunnelEvent, adminGetOnboardingFunnel } from './onboarding_funnel';
+
 export { revenueCatShardsWebhook } from './revenuecat_shards';
 
 export { adminPushJobCreated, adminPushJobsCron } from './admin_push_jobs';

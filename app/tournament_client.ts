@@ -871,6 +871,20 @@ async function callFunction<T>(
   const networkStartedAtMs = Date.now();
   const result = await call(payload);
   lastCallNetworkWindow = { startedAtMs: networkStartedAtMs, endedAtMs: Date.now() };
+  // зачем 2026-08-02 (владелец: «часы не синхронизируются вовсе, если банк
+  // недели ни разу не грузился — сделай»): раньше единственным сэмплом часов
+  // был ответ weekly-bank. Игрок, вошедший в турнир мимо этого экрана, играл
+  // с нулевой поправкой — при сбитых часах устройства всё расписание врало.
+  // Теперь ЛЮБОЙ callable-ответ с числовым serverNowMs (вход, startNow,
+  // weekly-bank) синхронизирует часы автоматически. Ноль новых запросов.
+  const maybeServerNowMs = (result.data as { serverNowMs?: unknown } | null)?.serverNowMs;
+  if (typeof maybeServerNowMs === 'number' && Number.isFinite(maybeServerNowMs)) {
+    rememberServerClock(
+      maybeServerNowMs,
+      lastCallNetworkWindow.startedAtMs,
+      lastCallNetworkWindow.endedAtMs,
+    );
+  }
   return result.data as T;
 }
 
@@ -1318,14 +1332,9 @@ export async function loadWeeklyBankInfo(force = false): Promise<WeeklyBankInfo 
   }
   try {
     const result = await callFunction<WeeklyBankInfo>('tournamentWeeklyBankInfo', {});
-    // Тот же ответ несёт часы сервера — синхронизируем расписание бесплатно.
-    // зачем 2026-08-02: раньше стартовой точкой был `now`, снятый ДО
-    // callFunction — RTT включал бутстрап (auth, app-check, импорты), и на
-    // холодном старте tournamentNow() спешил до ~2.5с: окна ответов в раунде
-    // субъективно закрывались раньше срока. Берём окно чистого сетевого
-    // вызова, которое callFunction замеряет вокруг самого запроса.
-    const window = lastCallNetworkWindow ?? { startedAtMs: now, endedAtMs: Date.now() };
-    rememberServerClock(result?.serverNowMs, window.startedAtMs, window.endedAtMs);
+    // Часы сервера из этого ответа подхватывает сам callFunction (единая
+    // точка для всех callable с serverNowMs) — по окну чистого сетевого
+    // вызова, без секунд бутстрапа в RTT.
     weeklyBankCache = { at: now, value: result ?? null };
     return weeklyBankCache.value;
   } catch {

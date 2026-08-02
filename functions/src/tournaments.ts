@@ -1514,7 +1514,8 @@ export async function tournamentJoinTransaction(
           updatedAt: nowMs,
         }, { merge: true });
       }
-      return { ok: true, joined: true, alreadyJoined: true, roomId };
+      // serverNowMs — сэмпл серверных часов для клиента (см. tournamentStartNow).
+      return { ok: true, joined: true, alreadyJoined: true, roomId, serverNowMs: Date.now() };
     }
     // зачем 2026-07-27 (владелец: «убирай дев полностью»): поблажки для
     // тестовой комнаты удалены. Вход открыт только в лобби и только до старта — ровно
@@ -1703,6 +1704,8 @@ export async function tournamentJoinTransaction(
       entryGems,
       gemsLeft: gemsBefore - entryGems,
       startImmediately: fillsLastSeat,
+      // serverNowMs — сэмпл серверных часов для клиента (см. tournamentStartNow).
+      serverNowMs: Date.now(),
     };
   });
 }
@@ -4381,7 +4384,12 @@ export const tournamentStartNow = onCall(
       return joinedPlan.joinResult;
     });
 
-    return { ok: true, roomId, startsAt, ...joined };
+    // зачем 2026-08-02 (владелец: «часы не синхронизируются вовсе, если банк
+    // недели ни разу не грузился — сделай»): serverNowMs в ответе входа даёт
+    // клиенту сэмпл серверных часов ровно перед раундом — там, где точность
+    // расписания важнее всего. Клиент подхватывает поле универсально в
+    // callFunction; нового запроса это не стоит.
+    return { ok: true, roomId, startsAt, serverNowMs: Date.now(), ...joined };
     } catch (error) {
       if (!(error instanceof HttpsError)) {
         console.error(

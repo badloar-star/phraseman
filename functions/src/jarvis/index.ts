@@ -80,6 +80,12 @@ export { buildContentSnapshot } from './content_snapshot';
 export { fetchContentSource, MAX_LESSON_STATS_DOCS, MIN_SAMPLES_FOR_VERDICT } from './content_firestore_fetcher';
 export type { ContentLessonRow, FetchContentSourceResult } from './content_firestore_fetcher';
 
+// ── Департамент «Платежи» (пятый): ловит сломанное в оплате ────────────────
+export { runPaymentsDepartment, DENIAL_SPIKE_THRESHOLD } from './payments_department';
+export { buildPaymentsSnapshot } from './payments_snapshot';
+export { fetchPaymentsSource, PAYMENT_FAILURE_COLLECTIONS, PAYMENTS_LOOKBACK_MS } from './payments_firestore_fetcher';
+export type { PaymentFailureRow, FetchPaymentsSourceResult } from './payments_firestore_fetcher';
+
 // ── Суточные планировщики ──────────────────────────────────────────────────
 export { jarvisDailyDepartmentsCron, jarvisDailyBusinessHistoryCron } from './jarvis_crons';
 export { buildDailyHistoryPoint } from './business_tier_daily_point';

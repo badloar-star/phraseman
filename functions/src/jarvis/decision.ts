@@ -17,7 +17,11 @@ export const JARVIS_DECISION_SCHEMA_VERSION = 1 as const;
 /** Максимальный возраст наблюдения. Старше — данные несвежие, утверждать по ним нельзя. */
 export const MAX_EVIDENCE_AGE_MS = 36 * 60 * 60 * 1_000;
 
-export type Department = 'quality' | 'money' | 'growth' | 'content';
+/**
+ * Департаменты Джарвиса. 'money' считает УСПЕШНУЮ выручку, 'payments' —
+ * наоборот, поломки оплаты (человек заплатил, доступ не выдался).
+ */
+export type Department = 'quality' | 'money' | 'growth' | 'content' | 'payments';
 export type DecisionMode = 'off' | 'observe' | 'advise' | 'prepare' | 'execute';
 export type DecisionTrigger = 'scheduled' | 'owner_request';
 export type EvidenceState = 'ready' | 'empty' | 'partial' | 'error' | 'stale' | 'truncated';

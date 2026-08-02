@@ -10354,6 +10354,23 @@
     <div id="jarvis-quality-decisions" style="margin-top:14px;display:flex;flex-direction:column;gap:10px"></div>
   </div>
 
+  <!-- 🧠 Джарвис — департамент «Деньги»: второй департамент (2026-08-02) -->
+  <div class="cp-card">
+    <div class="cp-card-title" style="color:#fbbf24">🧠 Джарвис — Деньги</div>
+    <div class="cp-card-sub">
+      Читает новые покупки и возвраты за последние сутки и честно показывает, откуда пришли данные и хватает ли их для вывода — без ложных нулей.
+    </div>
+    <div style="margin-top:8px"><span id="jarvis-money-status" class="cp-status-chip">Загрузка…</span></div>
+
+    <div id="jarvis-money-flow" class="jf-lane" role="log" aria-label="Журнал работы Джарвиса: источники → департамент → решение"></div>
+
+    <div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:14px;align-items:center">
+      <button type="button" class="cp-btn" onclick="loadJarvisMoneySnapshot(true)" style="background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px">🔄 Проверить сейчас</button>
+    </div>
+
+    <div id="jarvis-money-decisions" style="margin-top:14px;display:flex;flex-direction:column;gap:10px"></div>
+  </div>
+
   <!-- 🚨 Режим обслуживания: глобальный баннер (мягкий) + жёсткий блок-экран -->
   <div class="cp-card cp-card-danger">
     <div class="cp-card-title" style="color:#f87171">🚨 Режим обслуживания</div>
@@ -14029,6 +14046,13 @@
       _fnJarvisGetQualitySnapshot = httpsCallable(functionsUs, 'jarvisGetQualitySnapshot');
     }
     return _fnJarvisGetQualitySnapshot;
+  }
+  let _fnJarvisGetMoneySnapshot = null;
+  function getJarvisGetMoneySnapshotCallable() {
+    if (!_fnJarvisGetMoneySnapshot) {
+      _fnJarvisGetMoneySnapshot = httpsCallable(functionsUs, 'jarvisGetMoneySnapshot');
+    }
+    return _fnJarvisGetMoneySnapshot;
   }
   let _fnAdminGetRemoteConfigWorkspace = null;
   function getAdminGetRemoteConfigWorkspaceCallable() {
@@ -26796,20 +26820,22 @@
   // зачем: панель — источник по требованию (owner_request), не подменяет
   // суточный планировщик; каждый вызов честно показывает состояние источников,
   // отсутствие данных никогда не рисуется как ноль.
-  const JARVIS_QUALITY_STATE_LABELS = {
+  const JF_EVIDENCE_STATE_LABELS = {
     ready: 'данные получены', empty: 'пусто (честный ноль)', partial: 'частично',
     error: 'источник недоступен', stale: 'устарели', truncated: 'обрезано лимитом',
   };
 
-  function jarvisQualitySetStatus(type, text) {
-    const el = document.getElementById('jarvis-quality-status');
+  function jfSetStatusChip(elId, type, text) {
+    const el = document.getElementById(elId);
     if (!el) return;
     el.textContent = text || '';
     el.setAttribute('data-type', type || '');
   }
 
-  function jarvisQualityEvidenceLine(evidence) {
-    const label = JARVIS_QUALITY_STATE_LABELS[evidence.state] || evidence.state;
+  function jarvisQualitySetStatus(type, text) { jfSetStatusChip('jarvis-quality-status', type, text); }
+
+  function jfEvidenceLine(evidence) {
+    const label = JF_EVIDENCE_STATE_LABELS[evidence.state] || evidence.state;
     const count = evidence.count === null ? '—' : String(evidence.count);
     return evidence.sourceId + ': ' + label + ' (' + count + ')';
   }
@@ -26824,6 +26850,8 @@
     error_reports: { icon: '🐞', title: 'error_reports' },
     user_reports:  { icon: '💬', title: 'user_reports' },
     app_errors:    { icon: '⚠️', title: 'app_errors' },
+    revenuecat_premium_events: { icon: '💳', title: 'revenuecat' },
+    paywall_funnel: { icon: '📈', title: 'paywall_funnel' },
   };
   const JF_STATE_LABEL = { working: 'работает…', success: 'готово', error: 'ошибка' };
   let _jfTileSeq = 0;
@@ -26864,18 +26892,18 @@
   }
 
   function jfEvidenceDetailText(evidence) {
-    const label = JARVIS_QUALITY_STATE_LABELS[evidence.state] || evidence.state;
+    const label = JF_EVIDENCE_STATE_LABELS[evidence.state] || evidence.state;
     const count = evidence.count === null ? 'неизвестно (источник не даёт права на число)' : String(evidence.count);
     return 'Состояние: ' + label + '\nЗаписей: ' + count + (evidence.droppedCount ? '\nОтброшено сверх лимита: ' + evidence.droppedCount : '');
   }
 
   /** Один полный прогон: плашка на источник (появляется сразу, честный результат приходит вместе с ответом сервера — поэтому все источники и департамент финишируют одновременно, реальных промежуточных таймингов на сервере нет). */
-  function jfRunChain(lane, evidence, departmentOutcome, departmentDetail, decisionOutcome, decisionDetail) {
+  function jfRunChain(lane, evidence, departmentOutcome, departmentDetail, decisionOutcome, decisionDetail, departmentTitle) {
     const sourceTiles = (evidence || []).map((item) => {
       const meta = JF_SOURCE_META[item.sourceId] || { icon: '📄', title: item.sourceId };
       return { tile: jfCreateTile(lane, meta.icon, meta.title), evidence: item };
     });
-    const departmentTile = jfCreateTile(lane, '🧠', 'Качество');
+    const departmentTile = jfCreateTile(lane, '🧠', departmentTitle || 'Департамент');
     const decisionTile = jfCreateTile(lane, '📋', 'Решение');
 
     const settle = () => {
@@ -26891,9 +26919,10 @@
     else setTimeout(settle, 260);
   }
 
-  function jarvisQualityRenderDecision(decision) {
+  /** Общий рендер карточки решения для любого департамента — accentRgb задаёт лёгкий фоновый тон. */
+  function jfRenderDecisionCard(decision, accentRgb) {
     const box = document.createElement('div');
-    box.style.cssText = 'background:rgba(125,211,252,0.06);border-radius:10px;padding:12px 14px;';
+    box.style.cssText = 'background:rgba(' + (accentRgb || '125,211,252') + ',0.06);border-radius:10px;padding:12px 14px;';
     const confidencePct = Math.round((decision.confidence || 0) * 100);
     const statusLabel = decision.status === 'insufficient_evidence' ? '⚠ недостаточно доказательств' : '✓ готово к решению';
     box.innerHTML =
@@ -26902,7 +26931,7 @@
       (decision.status === 'insufficient_evidence' ? '' :
         '<div style="margin-top:8px;color:#93c5fd;font-size:12px"><b>Рекомендация:</b> ' + escapeHtml(decision.recommendation) + '</div>') +
       '<div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:8px;font-size:11px;color:#9ca3af">' +
-        decision.evidence.map((e) => '<span class="cp-status-chip" data-type="' + (e.trustworthy ? 'success' : 'error') + '">' + escapeHtml(jarvisQualityEvidenceLine(e)) + '</span>').join('') +
+        decision.evidence.map((e) => '<span class="cp-status-chip" data-type="' + (e.trustworthy ? 'success' : 'error') + '">' + escapeHtml(jfEvidenceLine(e)) + '</span>').join('') +
       '</div>' +
       '<div style="margin-top:8px;font-size:11px;color:#6b7280">' + statusLabel + ' · уверенность ' + confidencePct + '%</div>';
     return box;
@@ -26928,10 +26957,11 @@
           ['error_reports', 'user_reports', 'app_errors'].map((sourceId) => ({ sourceId, state: 'empty', count: 0, droppedCount: 0, trustworthy: true })),
           'success', 'Скачков не найдено ни по одной категории или экрану.',
           'success', 'Решение не требуется — данные в норме.',
+          'Качество',
         );
         return;
       }
-      data.decisions.forEach((decision) => container.appendChild(jarvisQualityRenderDecision(decision)));
+      data.decisions.forEach((decision) => container.appendChild(jfRenderDecisionCard(decision, '125,211,252')));
       const hasInsufficient = data.decisions.some((d) => d.status === 'insufficient_evidence');
       jarvisQualitySetStatus(hasInsufficient ? 'error' : 'info', hasInsufficient
         ? 'Источники недоступны — решение показано, но доказательств не хватает.'
@@ -26943,12 +26973,64 @@
         hasInsufficient ? 'Недостаточно доверенных источников для вывода.' : first.finding,
         hasInsufficient ? 'error' : 'success',
         hasInsufficient ? 'Решение не построено — не хватает доказательств.' : first.recommendation,
+        'Качество',
       );
     } catch (e) {
       // зачем: сеть/права могли отказать уже после того, как кнопка сказала «проверяем» —
       // старое содержимое не стирается, чтобы не превратить ошибку в фальшивый пустой экран.
       const message = e && e.message ? e.message : 'ошибка сети';
       jarvisQualitySetStatus('error', 'Не удалось загрузить: ' + message);
+      if (lane) {
+        const tile = jfCreateTile(lane, '🔌', 'Запрос к серверу');
+        setTimeout(() => jfFinishTile(tile, 'error', message), jfPrefersReducedMotion() ? 0 : 260);
+      }
+    }
+  };
+
+  // ── Джарвис: департамент «Деньги» (второй департамент, 2026-08-02) ──────────
+  // зачем: тот же паттерн, что у «Качества» — панель по требованию владельца
+  // (owner_request), никогда не подменяет суточный планировщик. money.read —
+  // отдельная более узкая роль (владелец 2026-08-02), деньги чувствительнее.
+  window.loadJarvisMoneySnapshot = async function(manualRefresh) {
+    const container = document.getElementById('jarvis-money-decisions');
+    const lane = document.getElementById('jarvis-money-flow');
+    if (!container) return;
+    jfSetStatusChip('jarvis-money-status', 'loading', manualRefresh ? 'Проверяем сейчас…' : 'Загрузка…');
+    try {
+      const result = await getJarvisGetMoneySnapshotCallable()({});
+      const data = result && result.data;
+      if (!data || data.ok !== true || !Array.isArray(data.decisions)) {
+        throw new Error('Сервер вернул некорректный снапшот денег.');
+      }
+      container.innerHTML = '';
+      if (data.decisions.length === 0) {
+        jfSetStatusChip('jarvis-money-status', 'success', 'Аномалий не найдено — за сутки без явного скачка возвратов.');
+        if (lane) jfRunChain(
+          lane,
+          ['revenuecat_premium_events', 'paywall_funnel'].map((sourceId) => ({ sourceId, state: 'empty', count: 0, droppedCount: 0, trustworthy: true })),
+          'success', 'Скачков возвратов не найдено.',
+          'success', 'Решение не требуется — данные в норме.',
+          'Деньги',
+        );
+        return;
+      }
+      data.decisions.forEach((decision) => container.appendChild(jfRenderDecisionCard(decision, '251,191,36')));
+      const hasInsufficient = data.decisions.some((d) => d.status === 'insufficient_evidence');
+      jfSetStatusChip('jarvis-money-status', hasInsufficient ? 'error' : 'info', hasInsufficient
+        ? 'Источники недоступны — решение показано, но доказательств не хватает.'
+        : (data.decisions.length + ' реш.') + ' требует внимания.');
+      const first = data.decisions[0];
+      if (lane && first) jfRunChain(
+        lane, first.evidence,
+        hasInsufficient ? 'error' : 'success',
+        hasInsufficient ? 'Недостаточно доверенных источников для вывода.' : first.finding,
+        hasInsufficient ? 'error' : 'success',
+        hasInsufficient ? 'Решение не построено — не хватает доказательств.' : first.recommendation,
+        'Деньги',
+      );
+    } catch (e) {
+      const message = e && e.message ? e.message : 'ошибка сети';
+      jfSetStatusChip('jarvis-money-status', 'error', 'Не удалось загрузить: ' + message);
       if (lane) {
         const tile = jfCreateTile(lane, '🔌', 'Запрос к серверу');
         setTimeout(() => jfFinishTile(tile, 'error', message), jfPrefersReducedMotion() ? 0 : 260);
@@ -27172,6 +27254,7 @@
     if (typeof window.loadPromoCodes === 'function') void window.loadPromoCodes();
     if (typeof window.loadControlPanelPromoBanner === 'function') void window.loadControlPanelPromoBanner();
     if (typeof window.loadJarvisQualitySnapshot === 'function') void window.loadJarvisQualitySnapshot(false);
+    if (typeof window.loadJarvisMoneySnapshot === 'function') void window.loadJarvisMoneySnapshot(false);
   };
 
   // Обобщённая запись ОДНОГО булевого флага в remote_config/app.bools, сохраняя

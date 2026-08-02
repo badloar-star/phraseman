@@ -32,3 +32,17 @@ export { buildQualitySnapshot } from './quality_snapshot';
 export type { BuildQualitySnapshotInput, QualityFetcher, QualityFetcherMap, QualitySnapshot } from './quality_snapshot';
 
 export { jarvisGetQualitySnapshot } from './callables';
+
+export { aggregateMoneyRows, buildMoneyEvidence, MONEY_REPORT_COLLECTIONS } from './money_source_reader';
+export type { MoneyAggregate, MoneyRawRow, MoneyReportCollection, MoneySourceFetchResult } from './money_source_reader';
+
+export { fetchMoneySource, MAX_MONEY_ROWS_PER_SOURCE, MONEY_LOOKBACK_MS } from './money_firestore_fetcher';
+export type { FetchMoneySourceInput, FetchMoneySourceResult } from './money_firestore_fetcher';
+
+export { runMoneyDepartment } from './money_department';
+export type { RunMoneyDepartmentInput, RunMoneyDepartmentResult } from './money_department';
+
+export { buildMoneySnapshot } from './money_snapshot';
+export type { BuildMoneySnapshotInput, MoneyFetcher, MoneyFetcherMap, MoneySnapshot } from './money_snapshot';
+
+export { jarvisGetMoneySnapshot } from './money_callables';

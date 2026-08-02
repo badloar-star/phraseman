@@ -27,6 +27,7 @@ import {
     type ViewToken,
 } from 'react-native';
 import { FlashList } from '@shopify/flash-list';
+import { FlowText } from '../components/text-integrity/FlowText';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
 import CollectionLimitHeader from '../components/flashcards/CollectionLimitHeader';
@@ -1793,7 +1794,9 @@ export default function FlashcardsScreen() {
               ...noAndroidOutline,
             }}
           >
-            <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.sub, fontWeight: '700' }} numberOfLines={1}>
+            {/* зачем: text-integrity — текст тоста переносится, снекбар растёт;
+                заодно count сайта в файле возвращается к базлайну (x1). */}
+            <FlowText testID="flashcards-delete-toast-text" provenance="authored" style={{ flex: 1, color: t.textPrimary, fontSize: f.sub, fontWeight: '700' }}>
               {triLang(lang, {
                 ru: 'Карточка удалена',
                 uk: 'Картку видалено',
@@ -1804,7 +1807,7 @@ export default function FlashcardsScreen() {
                 tr: 'Kart silindi',
                 pl: 'Fiszka usunięta',
               })}
-            </Text>
+            </FlowText>
             <TouchableOpacity
               onPress={restoreDeletedCard}
               activeOpacity={0.8}

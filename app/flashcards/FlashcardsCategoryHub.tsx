@@ -1190,7 +1190,8 @@ export default function FlashcardsCategoryHub({
             {!hasFlashcardsPlus && <PlusCornerBadge themeMode={themeMode} />}
           </View>
         </HubTileShell>
-        <Text style={labelStyle(true)} numberOfLines={2}>
+        {/* зачем: text-integrity — без усечения, как у соседних плиток хаба. */}
+        <Text style={labelStyle(true)}>
           {label}
         </Text>
       </Reanimated.View>

@@ -2420,7 +2420,8 @@ export default function FlashcardsSwipeScreen() {
           ].map(([label, value]) => (
             <View key={String(label)} style={[styles.heroStat, { backgroundColor: glassFill(t.bgCard, 0.32) }]}>
               <Text style={[styles.heroStatValue, { color: t.textPrimary, fontSize: f.body }]}>{value}</Text>
-              <Text style={[styles.heroStatLabel, { color: t.textMuted, fontSize: f.caption }]} numberOfLines={1}>{label}</Text>
+              {/* зачем: text-integrity — подпись стата переносится, плитка растёт. */}
+              <FlowText testID={`flashcards-hero-stat-${String(label)}`} provenance="authored" style={[styles.heroStatLabel, { color: t.textMuted, fontSize: f.caption }]}>{label}</FlowText>
             </View>
           ))}
         </View>
@@ -2520,12 +2521,13 @@ export default function FlashcardsSwipeScreen() {
                   <Ionicons name={source.icon as any} size={21} color={selected ? selectedAccent : source.accent} />
                 </View>
                 <View style={styles.sourceTextBox}>
-                  <Text style={[styles.sourceTitle, { color: t.textPrimary, fontSize: f.body }]} numberOfLines={1}>
+                  {/* зачем: text-integrity — название и подпись набора переносятся, ряд растёт. */}
+                  <FlowText testID={`flashcards-source-title-${source.id}`} provenance="authored" style={[styles.sourceTitle, { color: t.textPrimary, fontSize: f.body }]}>
                     {source.title}
-                  </Text>
-                  <Text style={[styles.sourceSubtitle, { color: t.textMuted, fontSize: f.caption }]} numberOfLines={1}>
+                  </FlowText>
+                  <FlowText testID={`flashcards-source-subtitle-${source.id}`} provenance="authored" style={[styles.sourceSubtitle, { color: t.textMuted, fontSize: f.caption }]}>
                     {source.subtitle} · {cardCountLabel(lang, source.count)}
-                  </Text>
+                  </FlowText>
                 </View>
                 <View
                   style={[
@@ -2823,6 +2825,7 @@ export default function FlashcardsSwipeScreen() {
 
             <View style={[styles.enBox, isPlanFlashcardsTask && styles.planEnBox]}>
               <Text style={[styles.enLabel, { color: t.textMuted, fontSize: f.caption }]}>{text.phraseLabel}</Text>
+              {/* eslint-disable-next-line text-integrity/no-unsafe-text-truncation -- лимит строк вместо запрещённого сжатия: фраза в карточке фикс-геометрии свайпа, аномально длинная не должна выдавить кнопки */}
               <Text
                 style={[styles.englishText, isPlanFlashcardsTask && styles.planEnglishText, { color: t.textPrimary, fontSize: isPlanFlashcardsTask ? Math.min(20, f.h2) : Math.min(24, f.h1 + 1) }]}
                 // зачем: adjustsFontSizeToFit запрещён (Performance Bible/владелец) — сжатие

@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ActivityIndicator, Animated, Easing, ScrollView, StatusBar, Text, TouchableOpacity, View } from 'react-native';
+import { FlowText } from '../components/text-integrity/FlowText';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -388,9 +389,10 @@ export default function FlashcardsArenaScreen() {
       <TapScale onPress={leave} style={{ width: 40 }} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }} accessibilityLabel={s.title}>
         <Ionicons name="chevron-back" size={24} color={t.textPrimary} />
       </TapScale>
-      <Text style={{ flex: 1, color: t.textPrimary, fontSize: 17, fontWeight: '800', textAlign: 'center' }} numberOfLines={1}>
+      {/* зачем: text-integrity — заголовок переносится, шапка-ряд растёт; не усекаем. */}
+      <FlowText testID="arena-header-title" provenance="authored" style={{ flex: 1, color: t.textPrimary, fontSize: 17, fontWeight: '800', textAlign: 'center' }}>
         {phase === 'playing' ? `${s.title} · ${index + 1}/${questions.length}` : s.title}
-      </Text>
+      </FlowText>
       {phase === 'playing' ? (
         // Кольцо-таймер (макет: 52px, r=22, дуга #F5C842).
         <View style={{ width: 52, height: 52, alignItems: 'center', justifyContent: 'center' }}>
@@ -540,12 +542,13 @@ export default function FlashcardsArenaScreen() {
                 backgroundColor: `${t.wrong}14`,
               }}
             >
-              <Text style={{ color: t.textPrimary, fontSize: 14, fontWeight: '700', flexShrink: 1 }} numberOfLines={1}>
+              {/* зачем: text-integrity — слово и перевод переносятся, ряд растёт. */}
+              <FlowText testID="arena-weak-word" provenance="authored" style={{ color: t.textPrimary, fontSize: 14, fontWeight: '700', flexShrink: 1 }}>
                 {q.options[q.correctIndex]}
-              </Text>
-              <Text style={{ color: t.textSecond, fontSize: 12.5, marginLeft: 'auto', flexShrink: 1, textAlign: 'right' }} numberOfLines={1}>
+              </FlowText>
+              <FlowText testID="arena-weak-prompt" provenance="authored" style={{ color: t.textSecond, fontSize: 12.5, marginLeft: 'auto', flexShrink: 1, textAlign: 'right' }}>
                 {q.prompt}
-              </Text>
+              </FlowText>
             </View>
           ))}
         </>

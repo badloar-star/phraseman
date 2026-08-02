@@ -21,6 +21,7 @@ import { CustomizationPurchaseConfirmModal } from '../../customization/Customiza
 import CardPackShardPaywallModal, {
   type CardPackPaywallMode,
 } from '../../../app/flashcards/CardPackShardPaywallModal';
+import RewardCardV2 from '../../reward_v2/RewardCardV2';
 import type { FlashcardMarketPack } from '../../../app/flashcards/marketplace';
 import { ReferralAccessEndedModal } from '../../../app/referral_access_ended_modal';
 import { enqueueThemedBlockingInfoAlert } from '../../../app/themed_blocking_alert_queue';
@@ -107,6 +108,10 @@ const MOCK_ELI5_TEXT =
 
 type ActionToastType = 'success' | 'error' | 'info' | 'reward';
 
+// зачем: аудит 2026-08-02 — бейдж секции был литералом и рассинхронизировался.
+// Число статичных <ButtonRow> ниже; ПЕРЕСЧИТАЙ при добавлении/удалении превью.
+const STATIC_PREVIEW_ROWS = 17;
+
 const ACTION_TOAST_PREVIEWS: { type: ActionToastType; icon: string; label: string; sub: string }[] = [
   { type: 'success', icon: 'checkmark-circle-outline', label: 'ActionToast — success', sub: 'Зелёный тон «Готово»' },
   { type: 'error', icon: 'alert-circle-outline', label: 'ActionToast — error', sub: 'Красный тон «Что-то пошло не так»' },
@@ -135,6 +140,7 @@ export default function UxOverhaulModalsSection({ open, onToggle }: Props) {
   const [customPurchaseOpen, setCustomPurchaseOpen] = useState(false);
   const [packPaywall, setPackPaywall] = useState<{ mode: CardPackPaywallMode; balance: number } | null>(null);
   const [refEndedOpen, setRefEndedOpen] = useState(false);
+  const [entitlementExpiredOpen, setEntitlementExpiredOpen] = useState(false);
 
   const L = (
     ru: string, uk: string, es: string, ptBr: string,
@@ -159,7 +165,7 @@ export default function UxOverhaulModalsSection({ open, onToggle }: Props) {
       id="ux_overhaul_modals"
       icon="sparkles-outline"
       title="🆕 UX-обновление — модалы и тосты"
-      badge={20}
+      badge={ACTION_TOAST_PREVIEWS.length + STATIC_PREVIEW_ROWS}
       open={open}
       onToggle={onToggle}
     >
@@ -326,6 +332,13 @@ export default function UxOverhaulModalsSection({ open, onToggle }: Props) {
         sub="«Доступ можно открыть снова»: CTA на инвайт/пейвол в превью отключены"
         onPress={() => setRefEndedOpen(true)}
       />
+      <ButtonRow
+        testID="admin-ux-entitlement-expired"
+        icon="hourglass-outline"
+        label="EntitlementExpired — вариант А"
+        sub="Карточка «Plus закончился»: CTA «Продлить Plus» + tonal «Пригласить друга». Переходы в превью отключены."
+        onPress={() => setEntitlementExpiredOpen(true)}
+      />
 
       {/* ── Хосты превью ── */}
       <CollectibleDropModal
@@ -450,6 +463,31 @@ export default function UxOverhaulModalsSection({ open, onToggle }: Props) {
         onClose={() => setRefEndedOpen(false)}
         L={L}
         t={t}
+      />
+      {/* зачем: аудит 2026-08-02 — новую tonal-кнопку «Пригласить друга» (вариант А,
+          EntitlementExpiredHost) негде было потыкать руками. Превью-only: мок-тексты
+          RU как в проде, переходы заменены на qaToast, ничего не пишется. */}
+      <RewardCardV2
+        visible={entitlementExpiredOpen}
+        semantic="gold"
+        kicker="Plus-доступ завершился"
+        allowKickerWrap
+        icon={'👑'}
+        title="Plus закончился"
+        value="Прогресс цел. Верни безлимит уроков и все темы."
+        ctaLabel="Продлить Plus"
+        onCta={() => {
+          setEntitlementExpiredOpen(false);
+          qaToast('info', 'QA: переход на пейвол отключён в превью');
+        }}
+        secondaryLabel="Пригласить друга"
+        onSecondary={() => {
+          setEntitlementExpiredOpen(false);
+          qaToast('info', 'QA: переход на /referrals отключён в превью');
+        }}
+        ghostLabel="Позже"
+        onGhost={() => setEntitlementExpiredOpen(false)}
+        backdropAction="ghost"
       />
     </AccordionSection>
   );

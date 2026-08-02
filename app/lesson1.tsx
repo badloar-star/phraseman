@@ -21,6 +21,7 @@ import {
   View
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { FlowText } from '../components/text-integrity/FlowText';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
@@ -1502,7 +1503,7 @@ const LessonContent = React.memo(function LessonContent({
                           уроков есть слова до 15-16 знаков. Шрифт НЕ ужимаем (правило
                           владельца) — разрешаем вторую строку: фиксированной высоты у плитки
                           нет (DuoPressable: только minHeight), поэтому обрезки не будет. */}
-                      <Text style={{ color: isFlashing ? (t.correctText ?? '#fff') : t.textPrimary, fontSize: f.numMd, fontWeight: isFlashing ? '700' : '500' }} numberOfLines={2}>{displayText}</Text>
+                      <FlowText testID="lesson-word-tile" provenance="authored" style={{ color: isFlashing ? (t.correctText ?? '#fff') : t.textPrimary, fontSize: f.numMd, fontWeight: isFlashing ? '700' : '500' }}>{displayText}</FlowText>
                     </DuoPressable>
                       );
                     })()}

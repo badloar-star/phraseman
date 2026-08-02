@@ -5,6 +5,7 @@ import { ADMIN_ALERT_BOT_TOKEN, sendTelegramAlert } from '../admin_alerts';
 import { buildTelegramDigest } from './telegram_digest';
 import { JARVIS_APPROVAL_COLLECTION } from './approval_store';
 import { canNotify, canRun, JARVIS_CONTROL_DOC, parseControl } from './control';
+import { shouldNotifyNow } from './notify_policy';
 import { parseOwnerConfig } from './approval_webhook_core';
 import { JARVIS_TELEGRAM_CONFIG } from './approval_webhook';
 import { issueDecisionButtons } from './issue_decision_buttons';
@@ -230,8 +231,21 @@ export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTION
   // когда есть что сказать — либо находка, либо недоступный департамент.
   // зачем canNotify отдельно от canRun: режим «тихо» означает «следи, но не
   // пиши мне» — надзор продолжается, сообщения нет.
-  const worthSending = canNotify(control)
-    && (snapshot.decisions.length > 0 || snapshot.departmentErrors.length > 0);
+  //
+  // Поверх режима — политика тишины: ночью будят только платежи и
+  // безопасность, за ними стоит конкретный человек. Остальное ждёт утра.
+  const speakingDepartments = [
+    ...snapshot.decisions.map((d) => d.department),
+    ...snapshot.departmentErrors,
+  ];
+  const notifyVerdict = shouldNotifyNow({
+    departments: speakingDepartments,
+    nowMs,
+    // Крон ходит раз в сутки, поэтому за последний час он ничего не слал.
+    // Лимит здесь страхует от ручных прогонов, а не от самого крона.
+    sentInLastHour: 0,
+  });
+  const worthSending = canNotify(control) && notifyVerdict.send;
   let telegramSent = false;
   if (worthSending) {
     const text = buildTelegramDigest({
@@ -262,6 +276,10 @@ export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTION
     decisions: snapshot.decisions.length,
     departmentErrors: snapshot.departmentErrors,
     telegramSent,
+    // зачем логировать причину: «сообщение не пришло» без объяснения — это
+    // час разбирательства. Здесь сразу видно: тихие часы, режим или пусто.
+    mode: control.mode,
+    silenceReason: notifyVerdict.send ? null : notifyVerdict.reason,
   });
 
   // зачем чистить здесь, а не отдельным планировщиком: токены живут 10 минут,

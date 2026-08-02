@@ -1,6 +1,9 @@
 import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { normalizeSafeAreaBottomInset } from '../../hooks/use-screen';
 import { tabSwipeLock } from '../tabSwipeLock';
+// зачем: allowFontScaling={false} отключал системный размер шрифта — заголовки
+// обрезались при крупном шрифте и на длинных языках. FlowText переносит.
+import { FlowText } from '../../components/text-integrity';
 import { getStreakFreezeCostShards } from '../remote_flags';
 import { View, Text, StyleSheet, Pressable, ScrollView, Animated, Dimensions, Modal, AppState, DeviceEventEmitter, InteractionManager, Easing, Platform, type GestureResponderEvent, type PressableProps, type PressableStateCallbackType, type StyleProp, type ViewStyle, } from 'react-native';
 import { Image } from 'expo-image';
@@ -679,9 +682,12 @@ export default function HomeScreen() {
         return stableId ? peekSurveyDailyTask({ stableId, dayKey: getTodayKey(), lang }) : null;
     })();
     /** Сколько сегментов на плитке «Задания» — как на экране заданий (тот же getTodayTasksSafe). */
-    // Three ordinary quests are always present. A fourth segment appears only after
-    // the survey is confirmed for this user and this day.
-    const [dailyTaskBarCount, setDailyTaskBarCount] = useState(initialSurveyDailyTask ? 4 : 3);
+    // зачем: полоска ЗАФИКСИРОВАНА на время видимой сессии Главной. Поздний ответ
+    // про опрос кэшируется до следующего входа и не имеет права добавлять или
+    // убирать точки под рукой у пользователя (правило «первый кадр = финальная
+    // геометрия»). Фикс был снесён коммитом-снимком 95eec1717 и восстановлен.
+    // Числа 5/4, а не 4/3: обычных заданий четыре (baseTotal ниже), опрос — пятое.
+    const [dailyTaskBarCount] = useState(initialSurveyDailyTask ? 5 : 4);
     const [engineLeague, setEngineLeague] = useState<typeof LEAGUES[0] | null>(null);
     const { isPremium, isVip, isPro, hasPremiumAccess } = usePremium();
     // Доступ именно к «Личному плану» с учётом «Пульта»: true = премиум ИЛИ фича
@@ -908,8 +914,12 @@ export default function HomeScreen() {
                     }
                     if (!mountedRef.current || lostOwnership() || !isCurrentAccountGeneration(accountToken, stableId)) return;
                     const counts = computeSurveyDailyCounts({ baseTotal, baseDone: nextTasksCompleted, survey });
+                    // зачем: обновляем ТОЛЬКО число выполненных — оно обязано быть
+                    // честным. Общее число сегментов намеренно НЕ трогаем: полоска
+                    // зафиксирована на видимую сессию, иначе точки прыгают под рукой
+                    // (см. dailyTaskBarCount выше). Новое значение приедет со
+                    // следующим входом на Главную.
                     setTasksCompleted(counts.done);
-                    setDailyTaskBarCount((previous) => previous === counts.total ? previous : counts.total);
                     patchHomeScreenHydration({ tasksCompleted: counts.done }, studyTarget);
                 } catch {
                     /* Keep the already-rendered ordinary task summary. */
@@ -2960,12 +2970,12 @@ export default function HomeScreen() {
             {/* Заголовок секции — тот же кегль/вес, что у «Сегодня» ниже: одна
                 типографическая ступень для всех разделов главного экрана. */}
             <View style={{ marginHorizontal: 8, marginBottom: 10 }}>
-              <Text allowFontScaling={false} style={{ color: t.textPrimary, fontSize: Math.max(13, f.label), fontWeight: '900', letterSpacing: 0, textTransform: 'uppercase' }} numberOfLines={1}>
+              <FlowText testID="home-quickstart-title" provenance="authored" style={{ color: t.textPrimary, fontSize: Math.max(13, f.label), fontWeight: '900', letterSpacing: 0, textTransform: 'uppercase' }}>
                 {triLang(lang, {
                   ru: 'Быстрый старт', uk: 'Швидкий старт', es: 'Inicio rápido', 'pt-BR': 'Início rápido',
                   vi: 'Bắt đầu nhanh', id: 'Mulai cepat', tr: 'Hızlı başlangıç', pl: 'Szybki start',
                 })}
-              </Text>
+              </FlowText>
             </View>
             <View style={{ marginBottom: 12, paddingHorizontal: 8, gap: 14, flexDirection: 'row' }}>
               {visibleQuickItems.map((item, index) => {
@@ -3004,6 +3014,7 @@ export default function HomeScreen() {
                         }}>
                           <LightSketchMenuImage source={item.img} width={homeQuickIconImageSize} height={homeQuickIconImageSize} lighten={false} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>
                         </View>
+                        {/* eslint-disable-next-line text-integrity/no-unsafe-text-truncation -- подпись под иконкой плитки быстрого старта: узкая колонка в ряду, перенос сдвинул бы высоту всей сетки */}
                         <Text allowFontScaling={false} style={{ color: isPaperHomeTheme ? homeThemePanelText : t.textPrimary, fontSize: Math.max(12, f.label - 1), fontWeight: '800', textAlign: 'center' }} numberOfLines={1}>{item.label}</Text>
                       </View>
                     </TouchableOpacity>

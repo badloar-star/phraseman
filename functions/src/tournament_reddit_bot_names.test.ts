@@ -3,7 +3,6 @@ import { resolve } from 'node:path';
 import { generateBotProfiles } from './tournament_core';
 import {
   REDDIT_BOT_NAMES,
-  REDDIT_BOT_SOURCE_PAGES,
   TOURNAMENT_REDDIT_BOT_PROFILE_COUNT,
   TOURNAMENT_REDDIT_BOT_PROFILE_IDS,
   TOURNAMENT_REDDIT_BOT_SEED_VERSION,
@@ -29,7 +28,9 @@ describe('tournament Reddit bot names', () => {
     expect(REDDIT_BOT_NAMES).not.toContain('huesoso');
 
     for (const name of REDDIT_BOT_NAMES) {
-      expect(name).toMatch(/^[\p{L}\p{N}_-]{3,20}$/u);
+      // Точка допущена наравне с _ и - : ники вида nova.k и rain.exe входят в
+      // ту самую разнородность, ради которой корпус переписан вручную.
+      expect(name).toMatch(/^[\p{L}\p{N}._-]{3,20}$/u);
       expect(name).not.toMatch(/^(?:\[deleted\]|AutoModerator)$/i);
       expect(name).not.toMatch(/bot|admin|mod(?:erator)?|fuck|shit|cunt|nazi|porn|sex|nipple|racist|hitler|asshole|penis|fart|dick|cock|boob|tits|whore|slut|rape|huesos|khuesos|хуесос|хуй|пизд|бляд|ебан|ёбан/i);
     }
@@ -49,10 +50,68 @@ describe('tournament Reddit bot names', () => {
     expect(isAcceptedTournamentBotSeedVersion('tournament-bots-v1')).toBe(false);
   });
 
-  test('records the public Reddit pages used as provenance', () => {
-    expect(REDDIT_BOT_SOURCE_PAGES.length).toBeGreaterThanOrEqual(4);
-    for (const page of REDDIT_BOT_SOURCE_PAGES) {
-      expect(page).toMatch(/^https:\/\/(?:www\.|old\.|en\.)?reddit\.com\/r\//);
+  test('reads as a real lobby: no single naming template dominates the corpus', () => {
+    // зачем 2026-08-02 (владелец: «ники все очень однотипные, нет ни одного
+    // игрового»): прошлый корпус был машинным. Сотня имён строилась решёткой
+    // 10 префиксов × 10 существительных (тихий_лис, сонный_кот, рыжий_сова…),
+    // а вторая сотня — покрученными реальными никами (BeaotyAndGlamaur). В
+    // лобби это читалось как список, а не как живые игроки. Тест сторожит
+    // именно РАЗНОРОДНОСТЬ, а не конкретные имена: любой будущий корпус,
+    // собранный по одному шаблону, здесь упадёт.
+    const withUnderscore = REDDIT_BOT_NAMES.filter((name) => name.includes('_'));
+    const withDot = REDDIT_BOT_NAMES.filter((name) => name.includes('.'));
+    const withDigits = REDDIT_BOT_NAMES.filter((name) => /\d/u.test(name));
+    const camelCase = REDDIT_BOT_NAMES.filter((name) => /^[A-Z][a-z]+[A-Z]/u.test(name));
+    const allLowerLatin = REDDIT_BOT_NAMES.filter((name) => /^[a-z]+$/u.test(name));
+    const cyrillic = REDDIT_BOT_NAMES.filter((name) => /[А-Яа-яЁё]/u.test(name));
+
+    // Каждый стиль реально представлен — корпус не свалился в один приём.
+    expect(withUnderscore.length).toBeGreaterThanOrEqual(20);
+    expect(withDot.length).toBeGreaterThanOrEqual(5);
+    expect(withDigits.length).toBeGreaterThanOrEqual(10);
+    expect(camelCase.length).toBeGreaterThanOrEqual(20);
+    expect(allLowerLatin.length).toBeGreaterThanOrEqual(30);
+    expect(cyrillic.length).toBeGreaterThanOrEqual(40);
+
+    // Ни один приём не занимает больше половины корпуса.
+    for (const group of [withUnderscore, withDot, withDigits, camelCase, allLowerLatin, cyrillic]) {
+      expect(group.length).toBeLessThan(REDDIT_BOT_NAMES.length / 2);
+    }
+
+    // Длины разные — у живых людей ники и короткие, и длинные.
+    const lengths = REDDIT_BOT_NAMES.map((name) => name.length);
+    expect(Math.min(...lengths)).toBeLessThanOrEqual(4);
+    expect(Math.max(...lengths)).toBeGreaterThanOrEqual(14);
+    expect(new Set(lengths).size).toBeGreaterThanOrEqual(10);
+
+    // Главная ловушка прошлого корпуса: решётка «префикс_существительное».
+    // Если один и тот же префикс до подчёркивания повторяется у многих имён —
+    // это снова машинная генерация, а не живые ники.
+    const prefixCounts = new Map<string, number>();
+    for (const name of withUnderscore) {
+      const prefix = name.slice(0, name.indexOf('_')).toLowerCase();
+      prefixCounts.set(prefix, (prefixCounts.get(prefix) ?? 0) + 1);
+    }
+    expect(Math.max(0, ...prefixCounts.values())).toBeLessThanOrEqual(3);
+  });
+
+  test('no name survives from the retired real-person corpus', () => {
+    // Ники живых людей с Reddit больше не должны встречаться ни в каком виде —
+    // ни целиком, ни как «покрученный» вариант с переставленными буквами.
+    const retired = [
+      'gulbasaur', 'beckylibei', 'creolepolyglot', 'mrggy', 'steveisamonster',
+      'beautyandglamour', 'linguobuxo', 'artgor', 'vercertorix', 'xefjord',
+    ];
+    const compact = (value: string) => value.toLowerCase().replace(/[^a-zа-яё0-9]/gu, '');
+    for (const name of REDDIT_BOT_NAMES) {
+      const flat = compact(name);
+      for (const old of retired) {
+        expect(flat).not.toBe(old);
+        // Покрученный вариант: та же длина и >70% общих букв на тех же местах.
+        if (flat.length !== old.length) continue;
+        const same = [...flat].filter((char, index) => char === old[index]).length;
+        expect(same / old.length).toBeLessThan(0.7);
+      }
     }
   });
 
@@ -126,7 +185,7 @@ describe('tournament Reddit bot names', () => {
 
   test('keeps the connected admin callable pinned to the exact safe corpus', () => {
     const source = readFileSync(resolve(__dirname, 'tournament_bots.ts'), 'utf8');
-    expect(TOURNAMENT_REDDIT_BOT_SEED_VERSION).toBe('tournament-bots-v3-multilingual-20260801');
+    expect(TOURNAMENT_REDDIT_BOT_SEED_VERSION).toBe('tournament-bots-v5-handcrafted-20260802');
     expect(source).toContain('const count = TOURNAMENT_REDDIT_BOT_PROFILE_COUNT;');
     expect(source).toContain('generateBotProfiles(count, TOURNAMENT_REDDIT_BOT_PERSONA_SEED)');
     expect(source).toContain("throw new HttpsError('invalid-argument', 'bot_count_must_equal_200')");

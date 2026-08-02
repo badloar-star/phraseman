@@ -41,11 +41,17 @@ describe('tournament Reddit bot production seed script', () => {
     // согласия в игре на реальные жемчужины. Хеш и версия seed подняты, чтобы
     // засев переписал имена ботов в базе; персоны при этом не трогаются
     // (см. следующий тест).
+    // зачем 2026-08-02 (владелец: «ники все очень однотипные, нет ни одного
+    // игрового»): корпус переписан ВРУЧНУЮ во второй раз. Версия v4 брала
+    // реальные ники и крутила в них буквы (Gulbasaur → Gullpasaur), а вторую
+    // сотню строила решёткой 10×10 (тихий_лис, сонный_кот…) — в лобби это
+    // читалось как машинный список. v5 собран из разных стилей: слитные,
+    // CamelCase, с точкой, с цифрами, кириллица, короткие «ленивые».
     expect(seedScript.EXPECTED_NAMES_SHA256)
-      .toBe('b80d68161525e9c8df49cfa5fc8f820f63e771ec7649c5e64ee5aea08d1c73d4');
+      .toBe('1c924a54c39262a7ddafb5f290e9254f987e7226b1a5148384e16c7614011603');
     expect(digest).toBe(seedScript.EXPECTED_NAMES_SHA256);
     expect(seedScript.EXPECTED_PROJECT_ID).toBe('phraseman-ea0b3');
-    expect(seedScript.SEED_VERSION).toBe('tournament-bots-v4-invented-20260801');
+    expect(seedScript.SEED_VERSION).toBe('tournament-bots-v5-handcrafted-20260802');
   });
 
   test('contains no real Reddit handle the corpus was originally sampled from', () => {

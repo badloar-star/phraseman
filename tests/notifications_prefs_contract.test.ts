@@ -20,6 +20,7 @@ describe('гейты категорий в app/notifications.ts', () => {
     'weekly_recap',
     'monthly_recap',
     'league',
+    'gifts',
   ])('категория %s проверяется перед планированием', (category) => {
     expect(src).toContain(`isNotifCategoryEnabled('${category}')`);
   });

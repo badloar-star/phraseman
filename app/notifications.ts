@@ -360,7 +360,8 @@ type LocalNotificationType =
   | 'upsell_d4'
   | 'upsell_d7'
   | 'upsell_d14'
-  | 'paywall_abandoned';
+  | 'paywall_abandoned'
+  | 'gift_expiring';
 
 const IMMEDIATE_NOTIFICATION_MIN_GAP_MS = 45 * 60 * 1000;
 const IMMEDIATE_NOTIFICATION_TYPE_COOLDOWN_MS: Partial<Record<LocalNotificationType, number>> = {
@@ -521,6 +522,8 @@ export const scheduleDailyReminder = async (
 };
 
 const INTRO_EXPIRING_NOTIF_ID_KEY = 'notification_intro_expiring_id';
+/** Один пуш «подарок сгорит через 6 часов» на ближайший сгорающий подарок. */
+const GIFT_EXPIRING_NOTIF_ID_KEY = 'gift_expiring_notif_id_v1';
 
 /** Ключи метаданных планирования (не самих payload). Сохранённые в sync с cancelAllScheduledNotificationsAsync. */
 const NOTIFICATION_SCHEDULE_STORAGE_KEYS = [
@@ -544,6 +547,7 @@ const NOTIFICATION_SCHEDULE_STORAGE_KEYS = [
   'notification_upsell_d4_scheduled_at',
   'notification_upsell_d7_scheduled_at',
   'notification_upsell_d14_scheduled_at',
+  GIFT_EXPIRING_NOTIF_ID_KEY,
 ] as const;
 
 async function cancelAllScheduledLocalNotifications(N: Awaited<ReturnType<typeof getNotifications>>): Promise<void> {
@@ -919,6 +923,90 @@ export const cancelIntroExpiringNotification = async (): Promise<void> => {
   }
 };
 
+// ── Пуш «подарок сгорит через 6 часов» ───────────────────────────────────────
+// зачем (2026-08-02, владелец): подарок с тикающим 72ч-таймером — двигатель
+// возвратов; пуш не бесит, потому что он про потерю СВОЕГО добра. Живёт максимум
+// один такой пуш — на ближайший к сгоранию подарок; каждая смена инвентаря
+// (получение/клейм/сгорание) пересинхронизирует его.
+
+/** Сериализация пересинков: параллельные вызовы не гоняются cancel/schedule. */
+let giftExpiringSyncChain: Promise<void> = Promise.resolve();
+
+const runGiftExpiringSync = async (earliestExpiresAtMs: number | null): Promise<void> => {
+  try {
+    const N = await getNotifications();
+    if (!N) return;
+
+    const cancelPrev = async () => {
+      const prev = await AsyncStorage.getItem(GIFT_EXPIRING_NOTIF_ID_KEY).catch(() => null);
+      if (prev) {
+        await N.cancelScheduledNotificationAsync(prev).catch(() => {});
+        await AsyncStorage.removeItem(GIFT_EXPIRING_NOTIF_ID_KEY).catch(() => {});
+      }
+    };
+
+    if (!earliestExpiresAtMs) {
+      await cancelPrev();
+      return;
+    }
+    // НЕ поднимаем системный диалог в момент получения подарка — только если
+    // разрешение уже есть (паттерн sendStreakWarning).
+    const hasPermission = await canUseNotifications(false);
+    if (!hasPermission) return;
+    if (!(await isNotifCategoryEnabled('gifts'))) {
+      await cancelPrev();
+      return;
+    }
+
+    const fireAtMs = earliestExpiresAtMs - 6 * 60 * 60 * 1000;
+    const secondsUntil = Math.floor((fireAtMs - Date.now()) / 1000);
+    await cancelPrev();
+    // Осталось меньше 6 часов — юзер уже видел тёплый таймер в разделе,
+    // мгновенный пуш поверх открытого приложения только бесил бы.
+    if (secondsUntil <= 60) return;
+
+    const lang = normalizeNotificationLang(await AsyncStorage.getItem('app_lang').catch(() => null));
+    const title = pickNotif(lang, notificationCopy({
+      ru: '🎁 Подарок сгорит через 6 часов',
+      uk: '🎁 Подарунок згорить через 6 годин',
+      es: '🎁 Tu regalo caduca en 6 horas',
+      'pt-BR': '🎁 Seu presente expira em 6 horas',
+      vi: '🎁 Quà của bạn sẽ hết hạn sau 6 giờ',
+      id: '🎁 Hadiahmu hangus dalam 6 jam',
+      tr: '🎁 Hediyen 6 saat sonra yanacak',
+      pl: '🎁 Twój prezent wygaśnie za 6 godzin',
+    }));
+    const body = pickNotif(lang, notificationCopy({
+      ru: 'Он уже твой — забери в разделе подарков, пока не исчез.',
+      uk: 'Він уже твій — забери в розділі подарунків, поки не зник.',
+      es: 'Ya es tuyo: recógelo en la sección de regalos antes de que desaparezca.',
+      'pt-BR': 'Ele já é seu: pegue na seção de presentes antes que suma.',
+      vi: 'Nó đã là của bạn — nhận trong mục quà trước khi biến mất.',
+      id: 'Itu sudah milikmu — ambil di bagian hadiah sebelum hilang.',
+      tr: 'O zaten senin — kaybolmadan hediyeler bölümünden al.',
+      pl: 'Jest już twój — odbierz go w prezentach, zanim zniknie.',
+    }));
+
+    const id = await N.scheduleNotificationAsync({
+      content: { title, body, sound: false, data: { type: 'gift_expiring' } },
+      trigger: triggerInterval(secondsUntil),
+    });
+    await AsyncStorage.setItem(GIFT_EXPIRING_NOTIF_ID_KEY, id).catch(() => {});
+  } catch (e) {
+    if (__DEV__) console.warn('[notifications] gift_expiring', e);
+  }
+};
+
+/**
+ * Пересинхронизировать пуш сгорания подарков под ближайший срок.
+ * `earliestExpiresAtMs = null` — подарков нет, пуш снимается.
+ */
+export const syncGiftExpiringNotification = (earliestExpiresAtMs: number | null): Promise<void> => {
+  const run = () => runGiftExpiringSync(earliestExpiresAtMs);
+  giftExpiringSyncChain = giftExpiringSyncChain.then(run, run);
+  return giftExpiringSyncChain;
+};
+
 // ── Upsell уведомления для не-Premium пользователей (D+4, D+7, D+14) ─────────
 const UPSELL_NOTIF_KEYS = {
   d4: 'notification_upsell_d4_scheduled_at',
@@ -1174,7 +1262,8 @@ export type NotifCategory =
   | 'weekly_recap'
   | 'monthly_recap'
   | 'league'
-  | 'offers';
+  | 'offers'
+  | 'gifts';
 
 export type NotifPrefs = { master: boolean; categories: Record<NotifCategory, boolean> };
 
@@ -1188,6 +1277,9 @@ export const DEFAULT_NOTIF_PREFS: NotifPrefs = {
     monthly_recap: true,
     league: true,
     offers: true,
+    // зачем (2026-08-02, владелец): пуш «подарок сгорит» — про потерю своего
+    // добра, отдельный тумблер, по умолчанию включён (не «предложения»).
+    gifts: true,
   },
 };
 
@@ -1202,6 +1294,7 @@ const CATEGORY_LOCAL_TYPES: Record<NotifCategory, LocalNotificationType[]> = {
   monthly_recap: ['monthly_recap'],
   league: ['league_overtake'],
   offers: ['intro_expiring', 'upsell_d4', 'upsell_d7', 'upsell_d14', 'paywall_abandoned', 'premium'],
+  gifts: ['gift_expiring'],
 };
 
 function normalizeNotifPrefs(raw: unknown): NotifPrefs {
@@ -1326,6 +1419,7 @@ export const applyNotifPrefsSideEffects = async (
       'notification_upsell_d14_scheduled_at',
     );
   }
+  if (prefs.categories.gifts === false) staleKeys.push(GIFT_EXPIRING_NOTIF_ID_KEY);
   if (staleKeys.length) await AsyncStorage.multiRemove(staleKeys).catch(() => {});
 
   // Включённые категории: перепланируем стандартный набор (как bootstrap в _layout).
@@ -1334,6 +1428,12 @@ export const applyNotifPrefsSideEffects = async (
   if (prefs.categories.phrase_of_day) schedulePhraseOfDayNotification(lang, scheduleOpts).catch(() => {});
   if (prefs.categories.weekly_recap) scheduleWeeklyRecapNotification(lang, scheduleOpts).catch(() => {});
   if (prefs.categories.monthly_recap) scheduleMonthlyRecapNotification(lang, scheduleOpts).catch(() => {});
+  // Тумблер «Подарки» включили обратно — пересинхронизируем пуш от инвентаря.
+  if (prefs.categories.gifts) {
+    void import('./level_gift_inventory')
+      .then(({ resyncGiftExpiryPush }) => resyncGiftExpiryPush())
+      .catch(() => {});
+  }
 
   // Мастер включён — вернём push-токен в облако (мог быть удалён при выключении).
   void import('./push_token_registration')
@@ -2473,6 +2573,12 @@ export const setupNotificationTapHandler = (
         case 'upsell_d14':
           scheduleNav(() => {
             router.push({ pathname: '/premium_modal', params: { context: 'notification_upsell' } } as any);
+          });
+          break;
+        case 'gift_expiring':
+          // Тап по «подарок сгорит» ведёт прямо к сгорающему — в раздел подарков.
+          scheduleNav(() => {
+            router.push('/level_gifts_inventory' as any);
           });
           break;
         default:

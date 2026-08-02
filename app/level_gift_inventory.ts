@@ -159,6 +159,41 @@ const clearGiftReceivedAt = async (
   }
 };
 
+/**
+ * Пересинхронизировать пуш «подарок сгорит через 6 часов» под ближайший срок.
+ * зачем (2026-08-02, владелец): пуш про потерю своего добра — двигатель
+ * возвратов. Вызывается при каждой смене состава (получение/клейм/сгорание);
+ * lazy-import, чтобы тяжёлый notifications.ts не грузился на холодном старте.
+ */
+export const resyncGiftExpiryPush = async (): Promise<void> => {
+  try {
+    const [singleRaw, dualRaw, receivedRaw] = await AsyncStorage.multiGet([
+      UNCLAIMED_GIFTS_KEY,
+      UNCLAIMED_DUAL_GIFTS_KEY,
+      UNCLAIMED_GIFT_RECEIVED_AT_KEY,
+    ]);
+    const single = parseJsonRecord<GiftDef>(singleRaw[1]);
+    const dual = parseJsonRecord<PremPair>(dualRaw[1]);
+    const stamps = parseReceivedAtMap(receivedRaw[1]);
+    const pendingLevels = [...new Set(
+      [...Object.keys(single), ...Object.keys(dual)].map(Number).filter(Number.isFinite),
+    )];
+    const expiries = pendingLevels
+      .map((level) => stamps[level])
+      .filter((ms): ms is number => Number.isFinite(ms) && ms > 0)
+      .map((ms) => ms + GIFT_TTL_MS);
+    const earliest = expiries.length > 0 ? Math.min(...expiries) : null;
+    const { syncGiftExpiringNotification } = await import('./notifications');
+    await syncGiftExpiringNotification(earliest);
+  } catch {
+    // Пуш — best effort; инвентарь важнее.
+  }
+};
+
+const resyncGiftExpiryPushBestEffort = (): void => {
+  void resyncGiftExpiryPush();
+};
+
 const withInventoryMutationGuard = async (
   accountToken: AccountGenerationToken | undefined,
   mutation: () => Promise<void>,
@@ -253,6 +288,7 @@ export const saveUnclaimedGift = async (
       ]);
       await stampGiftReceivedAt(level, accountToken);
       await refreshPendingGiftCountCache(accountToken);
+      resyncGiftExpiryPushBestEffort();
     });
   } catch {
     // A missed cache write should not block the level-up flow.
@@ -273,6 +309,7 @@ export const markGiftClaimed = async (
       await AsyncStorage.setItem(UNCLAIMED_GIFTS_KEY, JSON.stringify(map));
       await clearGiftReceivedAt(level, accountToken);
       await refreshPendingGiftCountCache(accountToken);
+      resyncGiftExpiryPushBestEffort();
     });
   } catch {
     // Best effort cleanup.
@@ -308,6 +345,7 @@ export const saveUnclaimedDualGift = async (
       ]);
       await stampGiftReceivedAt(level, accountToken);
       await refreshPendingGiftCountCache(accountToken);
+      resyncGiftExpiryPushBestEffort();
     });
   } catch {
     // Best effort cache write.
@@ -336,6 +374,7 @@ export const markDualGiftClaimed = async (
       await AsyncStorage.setItem(UNCLAIMED_DUAL_GIFTS_KEY, JSON.stringify(map));
       await clearGiftReceivedAt(level, accountToken);
       await refreshPendingGiftCountCache(accountToken);
+      resyncGiftExpiryPushBestEffort();
     });
   } catch {
     // Best effort cleanup.
@@ -545,6 +584,10 @@ export const loadPendingLevelGiftInventory = async (
   if (expiredLevels.length > 0) {
     // Бейдж «подарков: N» не должен считать сгоревшие.
     await writePendingGiftCountCache(items.reduce((sum, item) => sum + item.giftCount, 0));
+  }
+  if (expiredLevels.length > 0 || receivedAtChanged) {
+    // Состав/сроки поменялись — пуш «сгорит через 6 часов» целится в новый ближайший.
+    resyncGiftExpiryPushBestEffort();
   }
   return items;
 };

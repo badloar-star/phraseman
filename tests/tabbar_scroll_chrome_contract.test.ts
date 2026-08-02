@@ -5,13 +5,17 @@ const tab = (name: string) => path.join(__dirname, '..', 'app', '(tabs)', name);
 const layoutPath = tab('_layout.tsx');
 
 describe('tabbar scroll chrome contract', () => {
-  it('uses the same scroll transport as Home and Lessons on every tab', () => {
+  it('uses the shared scroll transport on every tab (tournaments: mask-only)', () => {
     const tournament = fs.readFileSync(tab('tournaments.tsx'), 'utf8');
     const friends = fs.readFileSync(tab('friends.tsx'), 'utf8');
     const settings = fs.readFileSync(tab('settings.tsx'), 'utf8');
 
     expect(tournament).toContain('<BouncyScrollView');
-    expect(tournament).toContain('onScroll={topFadeScroll?.onScroll}');
+    // Владелец (2026-08-02): на «Турнирах» таббар НЕ сворачивается от скролла —
+    // таб кормит только верхнюю маску, не tabBarScrollY. Машина состояний в
+    // _layout при этом остаётся одна на всех (см. тест ниже).
+    expect(tournament).toContain('onScroll={topFadeScroll?.onScrollMaskOnly}');
+    expect(tournament).not.toContain('onScroll={topFadeScroll?.onScroll}');
     expect(friends).toContain('const handleFriendsScroll = useCallback((e: any) => {');
     expect(friends).toContain('topFadeScroll?.onScroll?.(e);');
     expect(friends).toContain('onScroll: handleFriendsScroll,');

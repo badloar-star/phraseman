@@ -718,7 +718,9 @@ export default function TournamentsScreen() {
         bounces
         alwaysBounceVertical
         scrollEventThrottle={16}
-        onScroll={topFadeScroll?.onScroll}
+        // зачем: владелец убрал сворачивание таббара на «Турнирах» — скролл кормит
+        // только верхнюю маску (onScrollMaskOnly), таббар остаётся развёрнутым.
+        onScroll={topFadeScroll?.onScrollMaskOnly}
       >
         {/* Шапка главного таба: название · звёзды сезона · жемчужины. */}
         <View style={styles.header}>

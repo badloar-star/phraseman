@@ -23,6 +23,14 @@ interface TopFadeScrollCtx {
    * Маска не ре-рендерится покадрово: scrollY слушается порогом, opacity — native-timing.
    */
   onScroll: (e: { nativeEvent: { contentOffset: { y: number } } }) => void;
+  /**
+   * Как onScroll, но кормит ТОЛЬКО верхнюю маску, не таббар: на табе с этим
+   * транспортом капсула не схлопывается от скролла. Машина состояний таббара
+   * в (tabs)/_layout при этом одна на всех — исключение живёт в самом табе.
+   * зачем: владелец убрал сворачивание таббара на «Турнирах» (2026-08-02),
+   * остальные разделы сворачиваются как раньше.
+   */
+  onScrollMaskOnly: (e: { nativeEvent: { contentOffset: { y: number } } }) => void;
   reportTabBarOffset: (y: number) => void;
   setTabBarManualLift: (manual: boolean) => void;
   isTabBarManualLift: () => boolean;
@@ -43,6 +51,10 @@ export function TopFadeScrollProvider({ children }: { children: React.ReactNode 
           scrollY.setValue(y);
           tabBarScrollY.setValue(y);
         }
+      },
+      onScrollMaskOnly: (e) => {
+        const y = e?.nativeEvent?.contentOffset?.y;
+        if (typeof y === 'number') scrollY.setValue(y);
       },
       reportTabBarOffset: (y) => {
         if (typeof y === 'number') tabBarScrollY.setValue(y);

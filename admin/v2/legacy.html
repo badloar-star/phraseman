@@ -4900,6 +4900,44 @@
     #tab-control-panel .cp-status-chip[data-type="error"]   { color:#fca5a5 !important; border-color:rgba(248,113,113,.35); background:rgba(248,113,113,.08); }
     #tab-control-panel .cp-status-chip[data-type="loading"] { color:#93c5fd !important; border-color:rgba(96,165,250,.3);  background:rgba(96,165,250,.08); }
 
+    /* — Джарвис: живая схема потока источник → департамент → решение —
+       Постоянная фоновая пульсация узлов (низкая амплитуда, не отвлекает).
+       Активный проход (частицы по путям + яркая пульсация) включается
+       программно только на время реального запроса к серверу. */
+    #jarvis-flow { width: 100%; height: auto; overflow: visible; }
+    #jarvis-flow .jf-node-bg {
+      fill: rgba(148,163,184,.06); stroke: rgba(148,163,184,.22); stroke-width: 1.5;
+      transition: fill .4s ease, stroke .4s ease;
+    }
+    #jarvis-flow .jf-node-glow {
+      fill: none; stroke-width: 2; opacity: 0;
+      transition: opacity .5s ease, stroke .4s ease;
+    }
+    #jarvis-flow .jf-node[data-state="ready"] .jf-node-bg,
+    #jarvis-flow .jf-node[data-state="empty"] .jf-node-bg   { fill: rgba(34,197,94,.10); stroke: rgba(34,197,94,.45); }
+    #jarvis-flow .jf-node[data-state="ready"] .jf-node-glow,
+    #jarvis-flow .jf-node[data-state="empty"] .jf-node-glow { stroke: #4ade80; opacity: .55; }
+    #jarvis-flow .jf-node[data-state="error"] .jf-node-bg   { fill: rgba(248,113,113,.10); stroke: rgba(248,113,113,.5); }
+    #jarvis-flow .jf-node[data-state="error"] .jf-node-glow { stroke: #f87171; opacity: .55; }
+    #jarvis-flow .jf-node[data-state="busy"] .jf-node-bg    { fill: rgba(96,165,250,.10); stroke: rgba(96,165,250,.5); }
+    #jarvis-flow .jf-node[data-state="busy"] .jf-node-glow  { stroke: #60a5fa; opacity: .7; animation: jfPulse 1.1s ease-in-out infinite; }
+    #jarvis-flow .jf-label { font-size: 11px; font-weight: 700; fill: #cbd5e1; }
+    #jarvis-flow .jf-sublabel { font-size: 9.5px; fill: #6b7280; }
+    #jarvis-flow .jf-path {
+      fill: none; stroke: rgba(148,163,184,.25); stroke-width: 1.5;
+    }
+    #jarvis-flow .jf-particle { fill: #60a5fa; filter: drop-shadow(0 0 3px rgba(96,165,250,.8)); opacity: 0; }
+    #jarvis-flow[data-running="1"] .jf-particle { opacity: 1; }
+    #jarvis-flow .jf-icon { font-size: 15px; }
+    @keyframes jfPulse {
+      0%, 100% { opacity: .45; stroke-width: 2; }
+      50%      { opacity: .85; stroke-width: 3; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #jarvis-flow .jf-particle { animation: none !important; opacity: .9; }
+      #jarvis-flow .jf-node[data-state="busy"] .jf-node-glow { animation: none; opacity: .6; }
+    }
+
     /* — Секционные разделители-группы (R13) — */
     #tab-control-panel .cp-group-label {
       display: flex; align-items: center; gap: 10px;
@@ -10273,6 +10311,73 @@
     </div>
   </div>
 
+  <!-- 🧠 Джарвис — департамент «Качество»: живая схема потока данных (2026-08-01) -->
+  <div class="cp-card">
+    <div class="cp-card-title" style="color:#7dd3fc">🧠 Джарвис — Качество</div>
+    <div class="cp-card-sub">
+      Читает жалобы и краши за последние сутки и честно показывает, откуда пришли данные и хватает ли их для вывода — без ложных нулей.
+    </div>
+    <div style="margin-top:8px"><span id="jarvis-quality-status" class="cp-status-chip">Загрузка…</span></div>
+
+    <!-- зачем: живая схема источник → департамент → решение — владелец
+         попросил визуально понятный поток вместо голых текстовых чипов.
+         SVG + vanilla JS: legacy.html без сборки, React Bits сюда не встанет,
+         поэтому идея (плавные пути, частицы, пульсация узлов) перенесена
+         на чистый SVG/CSS. Схема статична до первого запроса, дальше
+         анимируется на каждый вызов loadJarvisQualitySnapshot. -->
+    <svg id="jarvis-flow" viewBox="0 0 720 210" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Поток данных: источники → департамент «Качество» → решение">
+      <path id="jf-path-error" class="jf-path" d="M 96 40 C 220 40, 220 105, 330 105" />
+      <path id="jf-path-user"  class="jf-path" d="M 96 105 C 220 105, 220 105, 330 105" />
+      <path id="jf-path-app"   class="jf-path" d="M 96 170 C 220 170, 220 105, 330 105" />
+      <path id="jf-path-out"   class="jf-path" d="M 420 105 C 500 105, 500 105, 600 105" />
+
+      <circle class="jf-particle" data-track="jf-path-error" r="3.5"/>
+      <circle class="jf-particle" data-track="jf-path-user"  r="3.5"/>
+      <circle class="jf-particle" data-track="jf-path-app"   r="3.5"/>
+      <circle class="jf-particle" data-track="jf-path-out"   r="3.5"/>
+
+      <g class="jf-node" id="jf-node-error_reports" data-state="idle">
+        <rect class="jf-node-bg" x="6" y="18" width="90" height="44" rx="10"/>
+        <rect class="jf-node-glow" x="6" y="18" width="90" height="44" rx="10"/>
+        <text class="jf-icon" x="16" y="36">🐞</text>
+        <text class="jf-label" x="16" y="52">error_reports</text>
+      </g>
+      <g class="jf-node" id="jf-node-user_reports" data-state="idle">
+        <rect class="jf-node-bg" x="6" y="83" width="90" height="44" rx="10"/>
+        <rect class="jf-node-glow" x="6" y="83" width="90" height="44" rx="10"/>
+        <text class="jf-icon" x="16" y="101">💬</text>
+        <text class="jf-label" x="16" y="117">user_reports</text>
+      </g>
+      <g class="jf-node" id="jf-node-app_errors" data-state="idle">
+        <rect class="jf-node-bg" x="6" y="148" width="90" height="44" rx="10"/>
+        <rect class="jf-node-glow" x="6" y="148" width="90" height="44" rx="10"/>
+        <text class="jf-icon" x="16" y="166">⚠️</text>
+        <text class="jf-label" x="16" y="182">app_errors</text>
+      </g>
+
+      <g class="jf-node" id="jf-node-department" data-state="idle">
+        <rect class="jf-node-bg" x="330" y="75" width="90" height="60" rx="12"/>
+        <rect class="jf-node-glow" x="330" y="75" width="90" height="60" rx="12"/>
+        <text class="jf-icon" x="342" y="100">🧠</text>
+        <text class="jf-label" x="342" y="118">Качество</text>
+        <text class="jf-sublabel" x="342" y="130">департамент</text>
+      </g>
+
+      <g class="jf-node" id="jf-node-decision" data-state="idle">
+        <rect class="jf-node-bg" x="600" y="80" width="110" height="50" rx="10"/>
+        <rect class="jf-node-glow" x="600" y="80" width="110" height="50" rx="10"/>
+        <text class="jf-icon" x="610" y="102">📋</text>
+        <text class="jf-label" x="610" y="118">Решение</text>
+      </g>
+    </svg>
+
+    <div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:14px;align-items:center">
+      <button type="button" class="cp-btn" onclick="loadJarvisQualitySnapshot(true)" style="background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px">🔄 Проверить сейчас</button>
+    </div>
+
+    <div id="jarvis-quality-decisions" style="margin-top:14px;display:flex;flex-direction:column;gap:10px"></div>
+  </div>
+
   <!-- 🚨 Режим обслуживания: глобальный баннер (мягкий) + жёсткий блок-экран -->
   <div class="cp-card cp-card-danger">
     <div class="cp-card-title" style="color:#f87171">🚨 Режим обслуживания</div>
@@ -13941,6 +14046,13 @@
   function getAdminMarkSafetyFlagsHandledCallable() {
     if (!_fnAdminMarkSafetyFlagsHandled) _fnAdminMarkSafetyFlagsHandled = httpsCallable(functionsUs, 'adminMarkSafetyFlagsHandled');
     return _fnAdminMarkSafetyFlagsHandled;
+  }
+  let _fnJarvisGetQualitySnapshot = null;
+  function getJarvisGetQualitySnapshotCallable() {
+    if (!_fnJarvisGetQualitySnapshot) {
+      _fnJarvisGetQualitySnapshot = httpsCallable(functionsUs, 'jarvisGetQualitySnapshot');
+    }
+    return _fnJarvisGetQualitySnapshot;
   }
   let _fnAdminGetRemoteConfigWorkspace = null;
   function getAdminGetRemoteConfigWorkspaceCallable() {
@@ -26704,6 +26816,160 @@
     }
   }
 
+  // ── Джарвис: департамент «Качество» (первый рубеж, 2026-08-01) ──────────────
+  // зачем: панель — источник по требованию (owner_request), не подменяет
+  // суточный планировщик; каждый вызов честно показывает состояние источников,
+  // отсутствие данных никогда не рисуется как ноль.
+  const JARVIS_QUALITY_STATE_LABELS = {
+    ready: 'данные получены', empty: 'пусто (честный ноль)', partial: 'частично',
+    error: 'источник недоступен', stale: 'устарели', truncated: 'обрезано лимитом',
+  };
+
+  function jarvisQualitySetStatus(type, text) {
+    const el = document.getElementById('jarvis-quality-status');
+    if (!el) return;
+    el.textContent = text || '';
+    el.setAttribute('data-type', type || '');
+  }
+
+  function jarvisQualityEvidenceLine(evidence) {
+    const label = JARVIS_QUALITY_STATE_LABELS[evidence.state] || evidence.state;
+    const count = evidence.count === null ? '—' : String(evidence.count);
+    return evidence.sourceId + ': ' + label + ' (' + count + ')';
+  }
+
+  // ── Джарвис: анимация схемы источник → департамент → решение ────────────────
+  // зачем: владелец попросил живой понятный поток вместо голых текстовых чипов
+  // (2026-08-01). Чистый SVG/CSS/rAF — legacy.html без сборки, React Bits сюда
+  // не встанет. Схема статична до первого запроса, затем анимируется на каждый
+  // вызов loadJarvisQualitySnapshot: узлы источников подсвечиваются busy →
+  // честным цветом состояния (успех/пусто/ошибка), частицы бегут по путям
+  // ровно во время реального сетевого запроса — движение = что-то происходит,
+  // а не украшение.
+  const JF_SOURCE_TO_NODE = { error_reports: 'jf-node-error_reports', user_reports: 'jf-node-user_reports', app_errors: 'jf-node-app_errors' };
+  const JF_SOURCE_TO_PATH = { error_reports: 'jf-path-error', user_reports: 'jf-path-user', app_errors: 'jf-path-app' };
+  let _jfParticleFrame = null;
+  const _jfParticleStart = new Map();
+
+  function jfSetNodeState(nodeId, state) {
+    const node = document.getElementById(nodeId);
+    if (node) node.setAttribute('data-state', state);
+  }
+
+  function jfPrefersReducedMotion() {
+    return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
+
+  function jfAnimateParticles(durationMs) {
+    const svg = document.getElementById('jarvis-flow');
+    if (!svg) return;
+    svg.setAttribute('data-running', '1');
+    if (jfPrefersReducedMotion()) return; // честная статичная подсветка узлов уже произошла — этого достаточно
+    const particles = Array.from(svg.querySelectorAll('.jf-particle'));
+    const paths = new Map(Array.from(svg.querySelectorAll('path')).map((p) => [p.id, p]));
+    const startedAt = performance.now();
+    _jfParticleStart.set(svg, startedAt);
+
+    function tick(now) {
+      // зачем: если следующий запуск стартовал раньше, чем этот кадр отрисовался,
+      // предыдущий цикл прекращает себя сам — не копим параллельные rAF-петли.
+      if (_jfParticleStart.get(svg) !== startedAt) return;
+      const elapsed = now - startedAt;
+      const t = (elapsed % durationMs) / durationMs;
+      particles.forEach((particle) => {
+        const path = paths.get(particle.getAttribute('data-track'));
+        if (!path) return;
+        const point = path.getPointAtLength(t * path.getTotalLength());
+        particle.setAttribute('cx', String(point.x));
+        particle.setAttribute('cy', String(point.y));
+      });
+      if (elapsed < durationMs) {
+        _jfParticleFrame = requestAnimationFrame(tick);
+      } else {
+        svg.setAttribute('data-running', '0');
+      }
+    }
+    if (_jfParticleFrame) cancelAnimationFrame(_jfParticleFrame);
+    _jfParticleFrame = requestAnimationFrame(tick);
+  }
+
+  function jfBeginRequest() {
+    Object.values(JF_SOURCE_TO_NODE).forEach((nodeId) => jfSetNodeState(nodeId, 'busy'));
+    jfSetNodeState('jf-node-department', 'busy');
+    jfAnimateParticles(1400);
+  }
+
+  function jfApplyEvidence(evidence) {
+    (evidence || []).forEach((item) => {
+      const nodeId = JF_SOURCE_TO_NODE[item.sourceId];
+      if (!nodeId) return;
+      jfSetNodeState(nodeId, item.trustworthy ? (item.state === 'empty' ? 'empty' : 'ready') : 'error');
+    });
+  }
+
+  function jfFinishRequest(outcome) {
+    // outcome: 'decision' | 'no_anomaly' | 'error'
+    jfSetNodeState('jf-node-department', outcome === 'error' ? 'error' : 'ready');
+    jfSetNodeState('jf-node-decision', outcome === 'decision' ? 'ready' : (outcome === 'error' ? 'error' : 'empty'));
+    if (outcome === 'decision') jfAnimateParticles(900);
+  }
+
+  function jarvisQualityRenderDecision(decision) {
+    const box = document.createElement('div');
+    box.style.cssText = 'background:rgba(125,211,252,0.06);border-radius:10px;padding:12px 14px;';
+    const confidencePct = Math.round((decision.confidence || 0) * 100);
+    const statusLabel = decision.status === 'insufficient_evidence' ? '⚠ недостаточно доказательств' : '✓ готово к решению';
+    box.innerHTML =
+      '<div style="font-weight:800;color:#e2e8f0;font-size:13.5px">' + escapeHtml(decision.question) + '</div>' +
+      '<div style="margin-top:6px;color:#cbd5e1;font-size:12.5px;line-height:1.5">' + escapeHtml(decision.finding) + '</div>' +
+      (decision.status === 'insufficient_evidence' ? '' :
+        '<div style="margin-top:8px;color:#93c5fd;font-size:12px"><b>Рекомендация:</b> ' + escapeHtml(decision.recommendation) + '</div>') +
+      '<div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:8px;font-size:11px;color:#9ca3af">' +
+        decision.evidence.map((e) => '<span class="cp-status-chip" data-type="' + (e.trustworthy ? 'success' : 'error') + '">' + escapeHtml(jarvisQualityEvidenceLine(e)) + '</span>').join('') +
+      '</div>' +
+      '<div style="margin-top:8px;font-size:11px;color:#6b7280">' + statusLabel + ' · уверенность ' + confidencePct + '%</div>';
+    return box;
+  }
+
+  window.loadJarvisQualitySnapshot = async function(manualRefresh) {
+    const container = document.getElementById('jarvis-quality-decisions');
+    if (!container) return;
+    // Optimistic: кнопка выглядит занятой мгновенно, старое содержимое остаётся видимым до ответа.
+    jarvisQualitySetStatus('loading', manualRefresh ? 'Проверяем сейчас…' : 'Загрузка…');
+    jfBeginRequest();
+    try {
+      const result = await getJarvisGetQualitySnapshotCallable()({});
+      const data = result && result.data;
+      if (!data || data.ok !== true || !Array.isArray(data.decisions)) {
+        throw new Error('Сервер вернул некорректный снапшот качества.');
+      }
+      container.innerHTML = '';
+      if (data.decisions.length === 0) {
+        jarvisQualitySetStatus('success', 'Аномалий не найдено — за сутки без явного скачка жалоб.');
+        jfApplyEvidence([
+          { sourceId: 'error_reports', state: 'empty', trustworthy: true },
+          { sourceId: 'user_reports', state: 'empty', trustworthy: true },
+          { sourceId: 'app_errors', state: 'empty', trustworthy: true },
+        ]);
+        jfFinishRequest('no_anomaly');
+        return;
+      }
+      data.decisions.forEach((decision) => container.appendChild(jarvisQualityRenderDecision(decision)));
+      const hasInsufficient = data.decisions.some((d) => d.status === 'insufficient_evidence');
+      jarvisQualitySetStatus(hasInsufficient ? 'error' : 'info', hasInsufficient
+        ? 'Источники недоступны — решение показано, но доказательств не хватает.'
+        : (data.decisions.length + ' реш.') + ' требует внимания.');
+      jfApplyEvidence(data.decisions[0] && data.decisions[0].evidence);
+      jfFinishRequest(hasInsufficient ? 'error' : 'decision');
+    } catch (e) {
+      // зачем: сеть/права могли отказать уже после того, как кнопка сказала «проверяем» —
+      // старое содержимое не стирается, чтобы не превратить ошибку в фальшивый пустой экран.
+      jarvisQualitySetStatus('error', 'Не удалось загрузить: ' + (e && e.message ? e.message : 'ошибка сети'));
+      Object.values(JF_SOURCE_TO_NODE).forEach((nodeId) => jfSetNodeState(nodeId, 'error'));
+      jfFinishRequest('error');
+    }
+  };
+
   function rcSetStatus(msg, color) {
     const el = document.getElementById('rc-status');
     if (el) { el.textContent = msg || ''; el.style.color = color || '#9ca3af'; }
@@ -26919,6 +27185,7 @@
     if (typeof window.loadYoutubeChannel === 'function') void window.loadYoutubeChannel();
     if (typeof window.loadPromoCodes === 'function') void window.loadPromoCodes();
     if (typeof window.loadControlPanelPromoBanner === 'function') void window.loadControlPanelPromoBanner();
+    if (typeof window.loadJarvisQualitySnapshot === 'function') void window.loadJarvisQualitySnapshot(false);
   };
 
   // Обобщённая запись ОДНОГО булевого флага в remote_config/app.bools, сохраняя

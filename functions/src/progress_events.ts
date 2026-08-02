@@ -3,6 +3,8 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { getLevelFromXP } from './xp_levels';
+import { applyLessonScoreSample, type LessonScoreStats } from './jarvis/content_lesson_stats';
+import { extractLessonScoreSample, lessonStatsDocId, shouldRecordLessonScore } from './jarvis/content_lesson_stats_write';
 
 export type ProgressMap = Record<string, unknown>;
 
@@ -872,12 +874,22 @@ export const progressSubmitEvent = onCall(HOT_CALLABLE_OPTIONS, async (request) 
   const now = new Date();
   const todayKey = isoDateUtc(now);
   const dailyCounterRef = userRef.collection('progress_daily_counters').doc(todayKey);
+  // зачем: департамент «Контент» Джарвиса (владелец 2026-08-02) — дешёвый
+  // агрегат среднего балла по уроку. Пишется в той же транзакции, что уже
+  // начисляет XP — одна дополнительная запись документа на событие, без
+  // отдельного чтения всей истории и без нового collectionGroup-скана.
+  const recordLessonScore = shouldRecordLessonScore(event);
+  const lessonScoreSample = recordLessonScore ? extractLessonScoreSample(event) : null;
+  const lessonStatsRef = lessonScoreSample
+    ? db.collection('lesson_stats').doc(lessonStatsDocId(lessonScoreSample.lessonId, lessonScoreSample.target))
+    : null;
 
   const result = await db.runTransaction(async (tx) => {
-    const [userSnap, ledgerSnap, counterSnap] = await Promise.all([
+    const [userSnap, ledgerSnap, counterSnap, lessonStatsSnap] = await Promise.all([
       tx.get(userRef),
       tx.get(ledgerRef),
       tx.get(dailyCounterRef),
+      lessonStatsRef ? tx.get(lessonStatsRef) : Promise.resolve(null),
     ]);
     if (ledgerSnap.exists) {
       const result = ledgerSnap.data()?.result as ProgressEventResult | undefined;
@@ -927,6 +939,16 @@ export const progressSubmitEvent = onCall(HOT_CALLABLE_OPTIONS, async (request) 
       }
     }
     tx.set(dailyCounterRef, counterPatch, { merge: true });
+    if (lessonStatsRef && lessonScoreSample) {
+      const previousStats = (lessonStatsSnap?.exists ? lessonStatsSnap.data()?.stats : null) as LessonScoreStats | null;
+      const nextStats = applyLessonScoreSample(previousStats, lessonScoreSample.score);
+      tx.set(lessonStatsRef, {
+        lessonId: lessonScoreSample.lessonId,
+        target: lessonScoreSample.target,
+        stats: nextStats,
+        updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+      });
+    }
     const result: ProgressEventResult = {
       ok: true,
       stableUid,

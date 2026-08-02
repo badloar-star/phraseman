@@ -137,10 +137,29 @@ export default function TournamentResultsScreen() {
    * (Performance Bible: первый кадр сразу в финальном виде).
    */
   const [myId, setMyId] = useState<string | null>(() => peekStableId());
+  /**
+   * Второй возможный ключ — Firebase Auth UID.
+   *
+   * зачем 2026-08-02 (владелец: «турнир завершён, но написано „результаты
+   * считаются“»): сервер сажает игрока в комнату под СВОИМ stableUid, который
+   * он вычисляет из auth-uid. Пока auth_link ещё не создан (свежая установка,
+   * анонимный вход), этот stableUid равен самому auth-uid — и в комнате лежит
+   * он. Клиент же искал себя только по локальному stableId, они не совпадали,
+   * место не находилось, и вместо подиума висела заглушка «Результаты
+   * считаются…», хотя сервер давно всё посчитал (resultPlace проставлен всем).
+   * Проверено на живой комнате: игрок записан как auth-uid, а не как UUID.
+   */
+  const [myAuthUid, setMyAuthUid] = useState<string | null>(null);
 
   useEffect(() => {
     let cancelled = false;
     void getStableId().then((id) => { if (!cancelled) setMyId(id); });
+    void (async () => {
+      try {
+        const auth = (await import('@react-native-firebase/auth')).default;
+        if (!cancelled) setMyAuthUid(auth().currentUser?.uid ?? null);
+      } catch { /* без авторизации остаётся поиск по stableId */ }
+    })();
     return () => { cancelled = true; };
   }, []);
 
@@ -178,9 +197,18 @@ export default function TournamentResultsScreen() {
     player,
     place: sharedPlace(standings, index),
   })), [standings]);
-  const myStanding = myId
-    ? standingsWithPlaces.find(({ player }) => player.id === myId) ?? null
-    : null;
+  // Ищем себя по ОБОИМ ключам: локальный stableId и auth-uid. Сервер мог
+  // записать любой из них (см. комментарий у myAuthUid выше).
+  const myStanding = useMemo(() => {
+    if (myId) {
+      const byStableId = standingsWithPlaces.find(({ player }) => player.id === myId);
+      if (byStableId) return byStableId;
+    }
+    if (myAuthUid) {
+      return standingsWithPlaces.find(({ player }) => player.id === myAuthUid) ?? null;
+    }
+    return null;
+  }, [myAuthUid, myId, standingsWithPlaces]);
   const myPlace = myStanding?.place ?? 0;
   const me = myStanding?.player ?? null;
   const hasFinalResults = hasAuthoritativeTournamentResults(players);

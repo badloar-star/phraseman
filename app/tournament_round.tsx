@@ -409,7 +409,15 @@ export default function TournamentRoundScreen() {
   );
   const question = questions[index] ?? null;
   const questionKey = question ? `${question.taskId}:${question.itemIndex}` : null;
-  const showRoundFinish = question?.kind !== 'translate';
+  // зачем 2026-08-02 (владелец: «убери кнопку „Готово“ там, где она не нужна»):
+  // кнопка осмысленна только в «парах на скорость». Там игрок сам решает, что
+  // закончил доску из шести пар, и ранний финиш реально прибавляет очки.
+  //
+  // В choice ответ засчитывается самим тапом по варианту, а переход к
+  // следующему заданию идёт по серверной границе фидбэка — кнопке нечего
+  // делать: она либо неактивна, либо дублирует уже случившееся действие.
+  // В translate своя кнопка подтверждения живёт внутри WordBank.
+  const showRoundFinish = question?.kind === 'match';
   const questionTiming = useMemo(() => {
     if (!question) return null;
     return activeRound?.taskSchedule?.find((timing) => (
@@ -578,7 +586,17 @@ export default function TournamentRoundScreen() {
       router.replace(roomId ? { pathname: '/tournament_table', params: { roomId, completedRound: String(roundNo) } } : '/tournament_table');
       return;
     }
-    setNavigation({ roundKey, index: index + 1 });
+    // зачем 2026-08-02 (владелец: «первое задание каждого раунда я могу
+    // выбрать, все остальные блокируются»): goNext вызывается ИЗ ТАЙМЕРА
+    // (scheduleFeedbackAdvance), поэтому его замыкание держит index на момент
+    // постановки таймера. Считать index + 1 от замкнутого значения нельзя:
+    // после первого ответа экран прибивал navigation на первое задание, а
+    // видимый index = max(серверный, navigation.index) уже не мог вырасти —
+    // раунд залипал на вопросе 1 навсегда. Сдвигаем от АКТУАЛЬНОГО значения.
+    setNavigation((current) => {
+      const base = current?.roundKey === roundKey ? current.index : index;
+      return { roundKey, index: base + 1 };
+    });
     setPicked(null);
     setFeedbackCorrect(null);
     setMatchStatus({});
@@ -671,7 +689,13 @@ export default function TournamentRoundScreen() {
     // The tap completes and paints this task locally before any await. Scores,
     // rewards, and standings still come exclusively from the server response.
     markTaskResolved(task.taskId);
-    setNavigation({ roundKey, index });
+    // зачем 2026-08-02: здесь стояло setNavigation({ roundKey, index }) —
+    // отправка ответа ПРИБИВАЛА видимый индекс к текущему заданию. Видимый
+    // индекс считается как max(серверный, navigation.index), поэтому после
+    // первого же ответа он переставал расти вместе с расписанием, и раунд
+    // залипал на вопросе 1: варианты второго задания приходили в состоянии
+    // «окно закрыто» и не нажимались. Двигать индекс — работа goNext по
+    // абсолютной границе фидбэка; отправка ответа его больше не трогает.
     setPhase('feedback');
     setFeedbackCorrect(optimisticCorrect);
     setFeedbackEarnedStars(null);
@@ -1117,12 +1141,13 @@ export default function TournamentRoundScreen() {
                     {feedbackEarnedStars > 0 ? `+${feedbackEarnedStars} звёзд` : '0 звёзд'}
                   </Text>
                 ) : null}
-                {feedbackZeroScoreReason && feedbackExplanation ? (
-                  <View style={styles.feedbackExplanation}>
-                    <Text style={styles.feedbackExplanationText}>{feedbackExplanation.ruleNote}</Text>
-                    <Text style={styles.feedbackExplanationExample}>{feedbackExplanation.example}</Text>
-                  </View>
-                ) : null}
+                {/* зачем 2026-08-02 (владелец: «убери блок с объяснением ошибки
+                    на экране во время турнира»): здесь показывался разбор
+                    правила и пример прямо под вердиктом. Турнир — соревнование
+                    на скорость, а не урок: длинный текст отнимал внимание в
+                    момент, когда идёт отсчёт до следующего задания, и ломал
+                    ритм. Разбор ошибок остаётся в конце турнира отдельным
+                    экраном (tournament_review), где его можно читать спокойно. */}
               </Animated.View>
             ) : null}
           </View>

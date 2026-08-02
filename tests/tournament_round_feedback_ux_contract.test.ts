@@ -30,7 +30,14 @@ describe('tournament question feedback UX', () => {
   test('phrase building has one Ready action and fast reduced-motion-aware word transitions', () => {
     const wordBank = section(round, 'const WordBank', 'const makeStyles');
 
-    expect(round).toContain("const showRoundFinish = question?.kind !== 'translate'");
+    // зачем 2026-08-02 (владелец: «убери кнопку „Готово“ там, где она не
+    // нужна»): было `kind !== 'translate'` — то есть кнопка висела и в choice,
+    // где ответ засчитывается самим тапом, а переход идёт по серверной границе
+    // фидбэка. Там она либо неактивна, либо дублирует уже случившееся.
+    // Осталась только в «парах на скорость», где игрок сам решает, что закончил
+    // доску, и ранний финиш реально прибавляет очки. Суть контракта прежняя: у
+    // translate своя кнопка внутри WordBank, второй сверху быть не должно.
+    expect(round).toContain("const showRoundFinish = question?.kind === 'match'");
     expect(round).toContain('{showRoundFinish ? (');
     expect(wordBank).toContain('const reduceMotion = useReduceMotion()');
     expect(wordBank).toContain('entering={reduceMotion ? undefined : FadeInDown.duration(140)}');

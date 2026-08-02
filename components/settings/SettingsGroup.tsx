@@ -17,6 +17,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../ThemeContext';
 import TonalSurface from '../TonalSurface';
+import { FlowText } from '../text-integrity/FlowText';
 import { compassShadow } from '../../constants/compassTheme';
 
 /**
@@ -293,25 +294,33 @@ export function SettingsRow({
     >
       <SettingsIconTile icon={icon} color={danger ? DANGER_TILE_COLOR : color} />
       <View style={{ flex: 1, marginLeft: ROW_GAP, marginRight: 8 }}>
-        <Text
+        {/* зачем: text-integrity — вместо усечения numberOfLines текст переносится
+            (FlowText), ряд растёт по minHeight; длинные локали не режутся. */}
+        <FlowText
+          testID={testID ? `${testID}-label` : 'settings-row-label'}
+          provenance="authored"
           style={{ color: danger ? t.wrong : t.textPrimary, fontSize: f.bodyLg, fontWeight: '600' }}
-          numberOfLines={2}
         >
           {label}
-        </Text>
+        </FlowText>
         {sub ? (
-          <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2 }} numberOfLines={2}>
+          <FlowText
+            testID={testID ? `${testID}-sub` : 'settings-row-sub'}
+            provenance="authored"
+            style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2 }}
+          >
             {sub}
-          </Text>
+          </FlowText>
         ) : null}
       </View>
       {value ? (
-        <Text
+        <FlowText
+          testID={testID ? `${testID}-value` : 'settings-row-value'}
+          provenance="authored"
           style={{ color: t.textMuted, fontSize: f.body, maxWidth: '42%', marginRight: 6 }}
-          numberOfLines={1}
         >
           {value}
-        </Text>
+        </FlowText>
       ) : null}
       {right !== undefined
         ? right

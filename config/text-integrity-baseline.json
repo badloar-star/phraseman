@@ -4643,35 +4643,6 @@
       }
     },
     {
-      "file": "components/settings/SettingsGroup.tsx",
-      "ownerName": "SettingsRow",
-      "ownerPath": "SettingsRow",
-      "ancestorPath": [
-        "Container",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "2",
-      "testID": null,
-      "fingerprint": "737c5c8cd6d1b4a7aecf107fb4d616fb13cdef8b16859592ecf84d4c593f9ed6",
-      "count": 2,
-      "lineHints": [
-        300,
-        307
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "components/ReportUserModal.tsx",
       "ownerName": "ReportUserModal",
       "ownerPath": "ReportUserModal",

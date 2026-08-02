@@ -21,7 +21,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { AccessibilityInfo, StyleSheet, Text, View } from 'react-native';
+import { AccessibilityInfo, StyleSheet, View } from 'react-native';
 import Animated, {
   Easing,
   cancelAnimation,
@@ -33,6 +33,7 @@ import Animated, {
   interpolate,
 } from 'react-native-reanimated';
 import Svg, { Path } from 'react-native-svg';
+import { FlowText } from '../text-integrity/FlowText';
 import { v2motion } from './tournament_theme';
 
 // Глифы V2 (SVG-символы эталона; эмодзи запрещены правилом владельца в
@@ -232,7 +233,9 @@ const ReactionFlight = memo(function ReactionFlight({
 
   return (
     <Animated.View style={[styles.abs, style]} pointerEvents="none">
-      <Text style={styles.reaction} allowFontScaling={false}>{fx.emoji}</Text>
+      {/* зачем: text-integrity — масштабирование шрифта не отключаем; летящая
+          эмодзи-реакция абсолютна и без контейнера, клипаться нечему. */}
+      <FlowText testID={`tournament-fx-reaction-${fx.id}`} provenance="authored" style={styles.reaction}>{fx.emoji}</FlowText>
     </Animated.View>
   );
 });
@@ -377,7 +380,7 @@ const FloatLabel = memo(function FloatLabel({
 
   return (
     <Animated.View style={[styles.abs, style]}>
-      <Text style={[styles.label, { color: fx.color }]} allowFontScaling={false}>{fx.text}</Text>
+      <FlowText testID={`tournament-fx-label-${fx.id}`} provenance="authored" style={[styles.label, { color: fx.color }]}>{fx.text}</FlowText>
     </Animated.View>
   );
 });

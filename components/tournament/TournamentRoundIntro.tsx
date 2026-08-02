@@ -29,6 +29,7 @@ import * as Haptics from 'expo-haptics';
 
 import { useRuntimeActive } from '../../hooks/use_runtime_active';
 import { resolveTournamentIntroCountdownValue, tournamentNow } from '../../app/tournament_client';
+import { FlowText } from '../text-integrity/FlowText';
 import { useTournamentPalette, v2motion } from './tournament_theme';
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
@@ -192,9 +193,12 @@ const CountDigit = memo(function CountDigit({
 
   return (
     <Animated.View style={[styles.digitBox, style]}>
-      <Text style={styles.digit} allowFontScaling={false}>
+      {/* зачем: text-integrity — не отключаем масштабирование шрифта; digitBox
+          без фикс-размеров, крупная цифра при большом системном шрифте просто
+          растёт поверх декоративного кольца, ничего не клипается. */}
+      <FlowText testID="tournament-intro-digit" provenance="authored" style={styles.digit}>
         {value > 0 ? value : 'Старт'}
-      </Text>
+      </FlowText>
     </Animated.View>
   );
 });

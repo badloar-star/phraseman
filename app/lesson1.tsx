@@ -58,6 +58,7 @@ import { useScreen } from '../hooks/use-screen';
 import { useAudio } from '../hooks/use-audio';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
+import { useHintRevealCue } from '../hooks/use-hint-reveal-cue';
 import fk from './feedback/feedback_kit';
 import { comboLevelFor } from './feedback/combo_engine';
 import ComboRing from '../components/feedback/ComboRing';
@@ -697,6 +698,7 @@ const LessonContent = React.memo(function LessonContent({
   // release if the on-device recognizer misbehaves in production.
   // «Устно»: учитываем «Пульт» — если фича переведена в «Фри», замок снят у всех.
   const speakingIsPremium = useFeatureAccess('speaking');
+  const { playHintReveal } = useHintRevealCue();
   const speakingFeatureEnabled = isSpeakingEnabled();
   const phraseEnterKey = phrase ? `${String(phrase.id ?? '')}:${String(phrase.english ?? phrase.spanish ?? '')}` : '';
   const speakingPhraseKey = `${displayCell}:${realPhraseIdx}:${phraseEnterKey}`;
@@ -1578,6 +1580,10 @@ const LessonContent = React.memo(function LessonContent({
                     // чтобы никогда не спрятать верный вариант. Кредит при этом не тратим.
                     const hasCorrectTile = wordOptionItems.some(o => o.isCorrectOption);
                     if (!hasCorrectTile) return;
+                    // зачем: звук подсказки — ПОСЛЕ страховки выше. Если 50/50 не
+                    // применилось (рассинхрон плиток) и кредит не потрачен, звучать
+                    // нечему: пользователь подсказку так и не получил.
+                    playHintReveal();
                     const totalTiles = wordOptionItems.length;
                     const keepCount = Math.max(2, Math.ceil(totalTiles / 2));
                     const dimCount = Math.min(wrongIdx.length, Math.max(0, totalTiles - keepCount));
@@ -2796,10 +2802,13 @@ export default function LessonScreen() {
         }
         errorQueueRef.current = restoredErrQueue;
         questionsSinceErrorRef.current = restoredSince;
-        if (restoredOverride !== null) {
-          const stCell = restoredProgress[restoredOverride];
-          const inQ = restoredErrQueue.includes(restoredOverride);
-          if (!inQ && stCell !== 'wrong') restoredOverride = null;
+        // зачем: второй рубеж против «залипшего повтора» (репорт «не можу закінчити раунд»).
+        // Раньше условие пропускало пару override=N + пустая очередь, если ячейка помечена
+        // 'wrong': после ПРОВАЛЕННОГО повтора ячейка остаётся красной навсегда, а из очереди
+        // уже удалена — и экран открывался на фразе N после каждого remount. Единственный
+        // честный признак незавершённого повтора — ячейка всё ещё в очереди.
+        if (restoredOverride !== null && !restoredErrQueue.includes(restoredOverride)) {
+          restoredOverride = null;
         }
         restoredOverrideForUi = restoredOverride;
         setOverridePhraseCell(restoredOverride);
@@ -3040,7 +3049,6 @@ export default function LessonScreen() {
     // сбрасывает correctStreakRef ниже). Нужно, чтобы отличить обрыв серии
     // (comboBreak) от обычной ошибки (wrong). Только для ОЩУЩЕНИЙ — XP-формула
     // ниже читает correctStreakRef.current как и раньше.
-    const streakBeforeAnswer = correctStreakRef.current;
     // Определяем реальную ячейку прогресса: при replay ошибки обновляем ячейку из очереди, не текущую
     const progressCell = overridePhraseCell ?? cellIndex;
     if (isRight) {
@@ -3249,23 +3257,26 @@ export default function LessonScreen() {
         return next;
       });
     }
-    persistErrorReplayToStorage();
+    // зачем: репорт «не можу закінчити раунд» — экран возвращал юзера на одну и ту же
+    // фразу после каждого remount (модалка энергии, сворачивание). Причина: вызов без
+    // аргумента брал overridePhraseCellRef, который синхронизируется с состоянием через
+    // useEffect (строка ~2280), т.е. ЗДЕСЬ, внутри синхронного checkAnswer, он ещё хранит
+    // «мы на повторе ячейки N». В сторадж уходило override=N при уже пустой очереди, а
+    // сторож восстановления (inQ/'wrong') такую пару не чистит — ячейка после провала
+    // replay остаётся 'wrong'. Ответ на replay ЗАВЕРШАЕТ повтор, поэтому override здесь
+    // всегда null; какой будет следующая позиция — решает goNext и пишет сам.
+    persistErrorReplayToStorage(null);
 
     // [FeedbackKit] Ощущения исхода (звук+вибра). Экономика/серия уже посчитаны
     // выше — здесь только «мягкость». fk сам уважает тумблеры звука/вибры.
     if (isRight) {
       // correctStreakRef уже инкрементирован в блоке XP выше.
-      fk.correct();
-      fk.combo(correctStreakRef.current, { surface: 'lesson' });
+      fk.verdict({ correct: true, combo: correctStreakRef.current, surface: 'lesson' });
       // Молния через экран на порогах 5 (одиночная) и 10 (двойной удар).
       if (correctStreakRef.current === 5) lightningRef.current?.strike(false);
       else if (correctStreakRef.current === 10) lightningRef.current?.strike(true);
-    } else if (streakBeforeAnswer >= 3) {
-      // Обрыв заметной серии — «шипение остывания».
-      fk.comboBreak(streakBeforeAnswer);
     } else {
-      // Обычная ошибка — мягкий низкий «туп» + error haptic.
-      fk.wrong();
+      fk.verdict({ correct: false });
     }
 
     // Сразу показываем результат — НЕ ждать AsyncStorage (await раньше давал 1–3 с задержки UI).

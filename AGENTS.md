@@ -18,6 +18,28 @@
 - Existing historical branches and worktrees are frozen evidence only. Do not write to, run from, or delete them unless the owner explicitly requests that exact action.
 - If the canonical checkout or branch is unavailable, stop and report the mismatch. Never create a replacement workspace automatically.
 
+## 🤖 Джарвис обязан оставаться актуальным (владелец, 2026-08-02)
+
+Джарвис (`functions/src/jarvis/`) читает чужие коллекции и поля, но не участвует
+в их изменении. Переименовали поле — департамент **не упадёт**, он вернёт нули и
+будет бодро врать, что всё хорошо. Молчаливая ложь опаснее явной поломки: её
+никто не заметит, пока не потеряются деньги или жалоба ребёнка не останется без
+разбора.
+
+Поэтому при ЛЮБОМ изменении контента, схемы данных, коллекций или полей —
+**в том же ходу**, не дожидаясь напоминания владельца:
+
+1. Проверь, читает ли это Джарвис: `functions/src/jarvis/*_firestore_fetcher.ts`.
+2. Читает — обнови читатель под новую схему.
+3. Обнови таблицу контракта в `functions/src/jarvis/jarvis_data_contract_guard.test.ts`.
+4. Новый департамент → подключи в `all_departments_snapshot.ts` (поле обязательное,
+   забыть нельзя) **и** добавь в `JF_DEPARTMENT_META` в `admin/v2/legacy.html`.
+5. Новая коллекция → закрой правилом в `firestore.rules`.
+
+Страж `jarvis_data_contract_guard.test.ts` ломает сборку при расхождении.
+Обычные тесты департаментов это НЕ ловят — они на моках и остаются зелёными.
+Сломался страж — чини контракт, не удаляй проверку.
+
 ## ⛔ ЕДИНСТВЕННАЯ РАБОЧАЯ АДМИНКА — `admin/v2/legacy.html` (КРИТИЧНО, читать первым)
 
 Владелец пользуется ОДНОЙ админкой:

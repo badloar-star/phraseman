@@ -1,3 +1,6 @@
+// зачем: isLightThemeMode использовался ниже (строка 232) без импорта — правка
+// осталась недописанной и валила сборку, блокируя push всей ветки.
+import { isLightThemeMode } from '../../constants/theme';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { hapticLightImpact, hapticMediumImpact } from '../../hooks/use-haptics';
@@ -227,7 +230,9 @@ export default function CardPackShardPaywallModal({
   onCommunityPackHiddenOnDevice,
 }: Props) {
   const { theme: t, f, themeMode } = useTheme();
-  const isLightTheme = false;
+  // зачем: стаб false отдавал sagePorcelain тёмную ручку шторки (#3C5A50)
+  // вместо светлой #D1D9D1 на фарфоровой панели.
+  const isLightTheme = isLightThemeMode(themeMode);
   const sheetCardBg = t.bgCard;
   const sheetSurfaceBg = t.bgSurface;
   const sheetPrimaryBg = t.bgPrimary;

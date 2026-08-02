@@ -41,6 +41,13 @@ status=$?
 if [ "$status" -ne 0 ]; then
   exit "$status"
 fi
+# Blocks snapshot-style commits that write an OLD tree over fresh work
+# (see scripts/guard_mass_deletion.mjs — commit 95eec1717 lost a Home fix).
+node scripts/guard_mass_deletion.mjs
+status=$?
+if [ "$status" -ne 0 ]; then
+  exit "$status"
+fi
 exit 0
 `;
 

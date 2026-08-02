@@ -45,14 +45,18 @@ export function isMainTabSurfacePath(pathname: string | null | undefined): boole
  */
 export function useGlobalBottomOverlayOffset(): number {
   const pathname = usePathname();
-  const segments = useSegments();
+  // зачем: useSegments() в expo-router 6 типизирован union'ом ВСЕХ маршрутов
+  // проекта — в массиве зависимостей TS падает с TS2590 («union слишком
+  // сложный»). Нужен только первый сегмент, поэтому сразу сужаем до string:
+  // union исчезает, а сравнение с '(tabs)' работает как раньше.
+  const rootSegment: string = useSegments()[0] ?? '';
   const { tabBarHeight, bottomInset } = useScreen();
 
   return useMemo(() => {
     const nav = Math.max(bottomInset, MIN_BOTTOM_INSET);
-    const inTabsGroup = segments[0] === '(tabs)';
+    const inTabsGroup = rootSegment === '(tabs)';
     const onTabSurface = isMainTabSurfacePath(pathname) || inTabsGroup;
     const tab = onTabSurface ? tabBarHeight : 0;
     return nav + tab + OVERLAY_GAP;
-  }, [pathname, segments, tabBarHeight, bottomInset]);
+  }, [pathname, rootSegment, tabBarHeight, bottomInset]);
 }

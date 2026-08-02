@@ -946,7 +946,10 @@ export default function TabLayout() {
   const insets = useStableSafeAreaInsets();
   const { theme: t } = useTheme();
   const pathname = usePathname();
-  const segments = useSegments();
+  // зачем: useSegments() в expo-router 6 типизирован union'ом ВСЕХ маршрутов —
+  // в массивах зависимостей TS падает с TS2590 («union слишком сложный»).
+  // Помощники ниже и так принимают readonly string[], поэтому сужаем тип здесь.
+  const segments: readonly string[] = useSegments();
   const [activeIdx, setActiveIdx] = useState(() => tabIdxFromRouter(pathname, segments) ?? 0);
   const [visualIdx, setVisualIdx] = useState(() => tabIdxFromRouter(pathname, segments) ?? 0);
   const [physicalPageIdx, setPhysicalPageIdx] = useState<PhysicalPageIndex>(() => logicalTabToPhysicalPage(tabIdxFromRouter(pathname, segments) ?? 0));

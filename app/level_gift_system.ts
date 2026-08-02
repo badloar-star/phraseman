@@ -1,8 +1,8 @@
 /**
  * Level-Up Gift System — подарок при повышении уровня.
  *
- * F2P — расширенный пул: осколки, энергия до полуночи, арена, бесплатный буст лиги, пари-скидка, …
- * Premium — отдельный пул: крупные осколки + редко проба набора 48ч + с низким шансом
+ * F2P — расширенный пул: мгновенный XP, энергия до полуночи, буст лиги, пари-скидка, …
+ * Premium — отдельный пул: крупный мгновенный XP + редко проба набора 48ч + с низким шансом
  *   постоянное открытие одного из пяти фирменных наборов (Negotiator, Dark Logic, Wild West,
  *   Royal Tea, Peaky Blinders), без повторов того же набора из этой дорожки.
  *
@@ -126,8 +126,8 @@ const LEVEL_GIFT_PLANNED_LOCALE: Partial<Record<GiftId, { title: PlannedGiftCopy
     desc: { 'pt-BR': 'Uma dica extra nas lições de hoje', vi: 'Một gợi ý thêm trong các bài học hôm nay', id: 'Satu petunjuk ekstra di pelajaran hari ini', tr: 'Bugünkü derslerde ekstra bir ipucu', pl: 'Dodatkowa podpowiedź w dzisiejszych lekcjach' },
   },
   shards_3: {
-    title: { 'pt-BR': '+3 pérolas', vi: '+3 xu', id: '+3 koin', tr: '+3 jeton', pl: '+3 monety' },
-    desc: { 'pt-BR': 'Três pérolas de conhecimento', vi: 'Ba xu tri thức', id: 'Tiga koin pengetahuan', tr: 'Üç bilgi jetonu', pl: 'Trzy monety wiedzy' },
+    title: { 'pt-BR': '+150 XP', vi: '+150 XP', id: '+150 XP', tr: '+150 XP', pl: '+150 XP' },
+    desc: { 'pt-BR': '+150 XP instantâneos', vi: '+150 XP ngay lập tức', id: '+150 XP instan', tr: 'Anında +150 XP', pl: 'Natychmiastowe +150 XP' },
   },
   xp_bank_150: {
     title: { 'pt-BR': 'Bônus ×2 para 150 XP', vi: 'Thưởng ×2 cho 150 XP', id: 'Bonus ×2 untuk 150 XP', tr: '150 XP için ×2 bonus', pl: 'Bonus ×2 na 150 XP' },
@@ -158,8 +158,8 @@ const LEVEL_GIFT_PLANNED_LOCALE: Partial<Record<GiftId, { title: PlannedGiftCopy
     desc: { 'pt-BR': 'Três dicas extras nas lições de hoje', vi: 'Ba gợi ý thêm trong các bài học hôm nay', id: 'Tiga petunjuk ekstra di pelajaran hari ini', tr: 'Bugünkü derslerde üç ekstra ipucu', pl: 'Trzy dodatkowe podpowiedzi w dzisiejszych lekcjach' },
   },
   shards_6: {
-    title: { 'pt-BR': '+6 pérolas', vi: '+6 xu', id: '+6 koin', tr: '+6 jeton', pl: '+6 monet' },
-    desc: { 'pt-BR': 'Seis pérolas: recompensa rara', vi: 'Sáu xu: phần thưởng hiếm', id: 'Enam koin: hadiah langka', tr: 'Altı jeton: nadir ödül', pl: 'Sześć monet: rzadka nagroda' },
+    title: { 'pt-BR': '+350 XP', vi: '+350 XP', id: '+350 XP', tr: '+350 XP', pl: '+350 XP' },
+    desc: { 'pt-BR': '+350 XP instantâneos: recompensa rara', vi: '+350 XP ngay lập tức: phần thưởng hiếm', id: '+350 XP instan: hadiah langka', tr: 'Anında +350 XP: nadir ödül', pl: 'Natychmiastowe +350 XP: rzadka nagroda' },
   },
   xp_bank_300: {
     title: { 'pt-BR': 'Bônus ×2 para 300 XP', vi: 'Thưởng ×2 cho 300 XP', id: 'Bonus ×2 untuk 300 XP', tr: '300 XP için ×2 bonus', pl: 'Bonus ×2 na 300 XP' },
@@ -198,8 +198,8 @@ const LEVEL_GIFT_PLANNED_LOCALE: Partial<Record<GiftId, { title: PlannedGiftCopy
     desc: { 'pt-BR': 'A próxima aposta custa 25% menos (uma vez; usado ao apostar)', vi: 'Lần cược tiếp theo rẻ hơn 25% (một lần; dùng khi đặt cược)', id: 'Taruhan berikutnya 25% lebih murah (sekali; dipakai saat bertaruh)', tr: 'Sonraki bahis %25 daha ucuz (tek seferlik; bahis yapınca kullanılır)', pl: 'Następny zakład kosztuje 25% mniej (jednorazowo, używa się przy zakładzie)' },
   },
   shards_10: {
-    title: { 'pt-BR': '+10 pérolas', vi: '+10 xu', id: '+10 koin', tr: '+10 jeton', pl: '+10 monet' },
-    desc: { 'pt-BR': 'Dez pérolas', vi: 'Mười xu', id: 'Sepuluh koin', tr: 'On jeton', pl: 'Dziesięć monet' },
+    title: { 'pt-BR': '+700 XP', vi: '+700 XP', id: '+700 XP', tr: '+700 XP', pl: '+700 XP' },
+    desc: { 'pt-BR': '+700 XP instantâneos', vi: '+700 XP ngay lập tức', id: '+700 XP instan', tr: 'Anında +700 XP', pl: 'Natychmiastowe +700 XP' },
   },
   xp_bank_600: {
     title: { 'pt-BR': 'Bônus ×2 para 600 XP', vi: 'Thưởng ×2 cho 600 XP', id: 'Bonus ×2 untuk 600 XP', tr: '600 XP için ×2 bonus', pl: 'Bonus ×2 na 600 XP' },
@@ -214,16 +214,16 @@ const LEVEL_GIFT_PLANNED_LOCALE: Partial<Record<GiftId, { title: PlannedGiftCopy
     desc: { 'pt-BR': 'Abra e escolha uma de três recompensas', vi: 'Mở và chọn một trong ba phần thưởng', id: 'Buka dan pilih satu dari tiga hadiah', tr: 'Aç ve üç ödülden birini seç', pl: 'Otwórz i wybierz jedną z trzech nagród' },
   },
   prem_shards_10: {
-    title: { 'pt-BR': '+10 pérolas (Plus)', vi: '+10 xu (Plus)', id: '+10 koin (Plus)', tr: '+10 jeton (Plus)', pl: '+10 monet (Plus)' },
-    desc: { 'pt-BR': 'Recompensa generosa para Plus', vi: 'Phần thưởng hào phóng cho Plus', id: 'Hadiah besar untuk Plus', tr: 'Plus için cömert ödül', pl: 'Hojna nagroda dla Plus' },
+    title: { 'pt-BR': '+400 XP (Plus)', vi: '+400 XP (Plus)', id: '+400 XP (Plus)', tr: '+400 XP (Plus)', pl: '+400 XP (Plus)' },
+    desc: { 'pt-BR': '+400 XP instantâneos', vi: '+400 XP ngay lập tức', id: '+400 XP instan', tr: 'Anında +400 XP', pl: 'Natychmiastowe +400 XP' },
   },
   prem_shards_15: {
-    title: { 'pt-BR': '+15 pérolas (Plus)', vi: '+15 xu (Plus)', id: '+15 koin (Plus)', tr: '+15 jeton (Plus)', pl: '+15 monet (Plus)' },
-    desc: { 'pt-BR': 'Recompensa generosa', vi: 'Phần thưởng hào phóng', id: 'Hadiah besar', tr: 'Cömert ödül', pl: 'Hojna nagroda' },
+    title: { 'pt-BR': '+800 XP (Plus)', vi: '+800 XP (Plus)', id: '+800 XP (Plus)', tr: '+800 XP (Plus)', pl: '+800 XP (Plus)' },
+    desc: { 'pt-BR': '+800 XP instantâneos', vi: '+800 XP ngay lập tức', id: '+800 XP instan', tr: 'Anında +800 XP', pl: 'Natychmiastowe +800 XP' },
   },
   prem_shards_20: {
-    title: { 'pt-BR': '+20 pérolas (Plus)', vi: '+20 xu (Plus)', id: '+20 koin (Plus)', tr: '+20 jeton (Plus)', pl: '+20 monet (Plus)' },
-    desc: { 'pt-BR': 'Muitos pérolas por subir de nível', vi: 'Nhiều xu khi lên cấp', id: 'Banyak koin karena naik level', tr: 'Seviye atladığın için bol jeton', pl: 'Dużo monet za poziom' },
+    title: { 'pt-BR': '+1200 XP (Plus)', vi: '+1200 XP (Plus)', id: '+1200 XP (Plus)', tr: '+1200 XP (Plus)', pl: '+1200 XP (Plus)' },
+    desc: { 'pt-BR': '+1200 XP instantâneos por subir de nível', vi: '+1200 XP ngay lập tức khi lên cấp', id: '+1200 XP instan karena naik level', tr: 'Seviye atladığın için anında +1200 XP', pl: 'Natychmiastowe +1200 XP za poziom' },
   },
   premium_xp_bank_1000: {
     title: { 'pt-BR': 'Bônus ×2 para 1000 XP (Plus)', vi: 'Thưởng ×2 cho 1000 XP (Plus)', id: 'Bonus ×2 untuk 1000 XP (Plus)', tr: '1000 XP için ×2 bonus (Plus)', pl: 'Bonus ×2 na 1000 XP (Plus)' },
@@ -426,9 +426,12 @@ const GIFT_F2P: GiftDef[] = [
     descES: 'Pista extra en las lecciones de hoy',
   },
   {
-    id: 'shards_3', rarity: 'common', icon: '💎', weight: 7,
-    titleRU: '+3 жемчужины', titleUK: '+3 жемчужини', titleES: '+3 perlas',
-    descRU: 'Три жемчужины', descUK: 'Три жемчужини', descES: 'Tres perlas',
+    // зачем (2026-08-02, владелец): жемчужные подарки платили 0 (§7 экономики) и обманывали
+    // игрока. Те же id переделаны в честный мгновенный XP — id сохранены, потому что за них
+    // держатся серверный каталог роллов (functions/src/community_packs.ts) и старые инвентари.
+    id: 'shards_3', rarity: 'common', icon: '✨', weight: 7,
+    titleRU: '+150 XP', titleUK: '+150 XP', titleES: '+150 XP',
+    descRU: 'Мгновенные 150 опыта', descUK: 'Миттєвих 150 досвіду', descES: 'Al instante +150 XP',
   },
   {
     id: 'xp_bank_150', rarity: 'common', icon: '⚡', weight: 6,
@@ -478,10 +481,10 @@ const GIFT_F2P: GiftDef[] = [
     descES: 'Tres pistas extra en las lecciones de hoy',
   },
   {
-    id: 'shards_6', rarity: 'rare', icon: '💎', weight: 6,
-    titleRU: '+6 жемчужин', titleUK: '+6 жемчужин', titleES: '+6 perlas',
-    descRU: 'Шесть жемчужин — редкая награда', descUK: 'Шість жемчужин — рідкісна нагорода',
-    descES: 'Seis perlas — premio poco habitual',
+    id: 'shards_6', rarity: 'rare', icon: '✨', weight: 6,
+    titleRU: '+350 XP', titleUK: '+350 XP', titleES: '+350 XP',
+    descRU: 'Мгновенные 350 опыта — редкая награда', descUK: 'Миттєвих 350 досвіду — рідкісна нагорода',
+    descES: 'Al instante +350 XP: premio poco habitual',
   },
   {
     id: 'xp_bank_300', rarity: 'rare', icon: '⚡', weight: 6,
@@ -543,9 +546,9 @@ const GIFT_F2P: GiftDef[] = [
     descES: 'La siguiente apuesta cuesta un 25 % menos (una sola vez; se usa al apostar)',
   },
   {
-    id: 'shards_10', rarity: 'epic', icon: '💎', weight: 2,
-    titleRU: '+10 жемчужин', titleUK: '+10 жемчужин', titleES: '+10 perlas',
-    descRU: 'Десять жемчужин', descUK: 'Десять жемчужин', descES: 'Diez perlas',
+    id: 'shards_10', rarity: 'epic', icon: '✨', weight: 2,
+    titleRU: '+700 XP', titleUK: '+700 XP', titleES: '+700 XP',
+    descRU: 'Мгновенные 700 опыта', descUK: 'Миттєвих 700 досвіду', descES: 'Al instante +700 XP',
   },
   {
     id: 'xp_bank_600', rarity: 'epic', icon: '⚡', weight: 2,
@@ -593,25 +596,25 @@ const GIFT_F2P: GiftDef[] = [
   },
 ];
 
-/** Тільки осколки + рідкісна проба набору — без дод. енергії для преміум (безкоштовна денна арена в нього і так є). */
+/** Крупный мгновенный XP + редкая проба набора — без доп. энергии для премиум (бесплатная дневная арена у него и так есть). */
 const GIFT_PREMIUM: GiftDef[] = [
   {
-    id: 'prem_shards_10', rarity: 'common', icon: '💎', weight: 5,
-    titleRU: '+10 жемчужин (плюс)', titleUK: '+10 жемчужин (плюс)', titleES: '+10 perlas (Plus)',
-    descRU: 'Щедрая награда для плюс',
-    descUK: 'Щедра нагорода для плюс',
-    descES: 'Recompensa generosa para usuarios Plus',
+    id: 'prem_shards_10', rarity: 'common', icon: '✨', weight: 5,
+    titleRU: '+400 XP (плюс)', titleUK: '+400 XP (плюс)', titleES: '+400 XP (Plus)',
+    descRU: 'Мгновенные 400 опыта',
+    descUK: 'Миттєвих 400 досвіду',
+    descES: 'Al instante +400 XP',
   },
   {
-    id: 'prem_shards_15', rarity: 'rare', icon: '💎', weight: 4,
-    titleRU: '+15 жемчужин (плюс)', titleUK: '+15 жемчужин (плюс)', titleES: '+15 perlas (Plus)',
-    descRU: 'Щедрая награда', descUK: 'Щедра нагорода', descES: 'Recompensa generosa',
+    id: 'prem_shards_15', rarity: 'rare', icon: '✨', weight: 4,
+    titleRU: '+800 XP (плюс)', titleUK: '+800 XP (плюс)', titleES: '+800 XP (Plus)',
+    descRU: 'Мгновенные 800 опыта', descUK: 'Миттєвих 800 досвіду', descES: 'Al instante +800 XP',
   },
   {
-    id: 'prem_shards_20', rarity: 'epic', icon: '💎', weight: 4,
-    titleRU: '+20 жемчужин (плюс)', titleUK: '+20 жемчужин (плюс)', titleES: '+20 perlas (Plus)',
-    descRU: 'Много жемчужин за уровень', descUK: 'Багато жемчужин за рівень',
-    descES: 'Muchos perlas por subir de nivel',
+    id: 'prem_shards_20', rarity: 'epic', icon: '✨', weight: 4,
+    titleRU: '+1200 XP (плюс)', titleUK: '+1200 XP (плюс)', titleES: '+1200 XP (Plus)',
+    descRU: 'Мгновенные 1200 опыта за уровень', descUK: 'Миттєвих 1200 досвіду за рівень',
+    descES: 'Al instante +1200 XP por subir de nivel',
   },
   {
     id: 'premium_xp_bank_1000', rarity: 'epic', icon: '⚡', weight: 2,
@@ -1071,11 +1074,13 @@ const encodeOwnedStyle = (gradientId: string, logoColor: CustomAvatarLogoColor) 
 
 /**
  * Экономика «Монеты и Звёзды» (docs/plans/2026-07-20-coins-stars-economy-plan.ru.md §7):
- * подарки за уровень больше НЕ выдают монеты — выдача обнулена. Структура подарков,
- * пул, модалки и инвентарь сохранены; вызывающие не меняются (safe<=0 → no-op).
- * ОТКРЫТЫЙ ВОПРОС к владельцу: чем заменить монетные подарки в пуле (звёзды/косметика).
+ * подарки за уровень больше НЕ выдают монеты — выдача обнулена.
+ * Решение владельца 2026-08-02: жемчужные подарки в пулах заменены на мгновенный XP
+ * (см. grantInstantGiftXp в applyGiftUnlocked), поэтому активных вызовов у функции нет.
+ * Сохранена как задокументированный §7-рубильник на случай возврата монетных подарков
+ * и ради контракта owner_direction_runtime_contract (формат reason у локального фолбэка).
  */
-const grantLevelGiftShards = async (
+export const grantLevelGiftShards = async (
   amount: number,
   accountToken?: AccountGenerationToken,
 ): Promise<void> => {
@@ -1269,6 +1274,16 @@ const applyGiftUnlocked = async (
       id = sourceGatedFallbackGiftId(id);
     }
 
+    // зачем (2026-08-02, владелец): «подарок обещает награду, а платит 0» — обман игрока.
+    // Все мгновенные XP-подарки (включая бывшие жемчужные) идут одним каналом с дневной
+    // идемпотентностью — как это всегда делали xp_50/100/250.
+    const grantInstantGiftXp = async (amount: number): Promise<void> => {
+      await registerXP(amount, 'achievement_reward', userName, 'ru', undefined, {
+        eventId: ['achievement', 'level_gift', safeLevelGiftEventPart(opts?.studyTarget), safeLevelGiftEventPart(id), safeLevelGiftEventPart(today, 20)].join(':'),
+        payload: { giftId: id, surface: 'level_gift', studyTarget: opts?.studyTarget ?? null },
+      });
+    };
+
     switch (id) {
       case 'energy_full': {
         setEnergy(maxEnergy);
@@ -1278,22 +1293,13 @@ const applyGiftUnlocked = async (
         break;
       }
       case 'xp_50':
-        await registerXP(50, 'achievement_reward', userName, 'ru', undefined, {
-          eventId: ['achievement', 'level_gift', safeLevelGiftEventPart(opts?.studyTarget), safeLevelGiftEventPart(id), safeLevelGiftEventPart(today, 20)].join(':'),
-          payload: { giftId: id, surface: 'level_gift', studyTarget: opts?.studyTarget ?? null },
-        });
+        await grantInstantGiftXp(50);
         break;
       case 'xp_100':
-        await registerXP(100, 'achievement_reward', userName, 'ru', undefined, {
-          eventId: ['achievement', 'level_gift', safeLevelGiftEventPart(opts?.studyTarget), safeLevelGiftEventPart(id), safeLevelGiftEventPart(today, 20)].join(':'),
-          payload: { giftId: id, surface: 'level_gift', studyTarget: opts?.studyTarget ?? null },
-        });
+        await grantInstantGiftXp(100);
         break;
       case 'xp_250':
-        await registerXP(250, 'achievement_reward', userName, 'ru', undefined, {
-          eventId: ['achievement', 'level_gift', safeLevelGiftEventPart(opts?.studyTarget), safeLevelGiftEventPart(id), safeLevelGiftEventPart(today, 20)].join(':'),
-          payload: { giftId: id, surface: 'level_gift', studyTarget: opts?.studyTarget ?? null },
-        });
+        await grantInstantGiftXp(250);
         break;
       case 'hint_1':
       case 'hint_3': {
@@ -1351,7 +1357,8 @@ const applyGiftUnlocked = async (
         if (cosmeticUnlocked) return { success: true, cosmeticUnlocked };
         const fallbackAura = await unlockRandomAvatarAuraGift();
         if (fallbackAura) return { success: true, cosmeticUnlocked: fallbackAura };
-        await grantLevelGiftShards(6, opts?.accountToken);
+        // Вся косметика уже открыта — честная XP-компенсация вместо прежнего нулевого жемчуга.
+        await grantInstantGiftXp(350);
         return { success: true };
       }
       case 'cosmetic_avatar_aura':
@@ -1359,21 +1366,24 @@ const applyGiftUnlocked = async (
         const cosmeticUnlocked = await unlockRandomAvatarAuraGift();
         return { success: true, cosmeticUnlocked: cosmeticUnlocked ?? undefined };
       }
+      // зачем (2026-08-02, владелец): бывшие жемчужные подарки — теперь честный мгновенный XP
+      // (карточки в пулах переименованы; выплата жемчуга была занулена §7 и обманывала игрока).
       case 'shards_3': {
-        await grantLevelGiftShards(3, opts?.accountToken);
+        await grantInstantGiftXp(150);
         break;
       }
       case 'shards_6': {
-        await grantLevelGiftShards(6, opts?.accountToken);
+        await grantInstantGiftXp(350);
         break;
       }
       case 'shards_10': {
-        await grantLevelGiftShards(10, opts?.accountToken);
+        await grantInstantGiftXp(700);
         break;
       }
       case 'arena_extra_5': {
-        // Old inventories remain claimable after the retired mode disappeared.
-        await grantLevelGiftShards(5, opts?.accountToken);
+        // Режим арены удалён; старые инвентари догоняем честной XP-компенсацией
+        // вместо прежнего нулевого начисления жемчуга.
+        await grantInstantGiftXp(150);
         break;
       }
       case 'club_boost_free': {
@@ -1385,18 +1395,15 @@ const applyGiftUnlocked = async (
         break;
       }
       case 'prem_shards_10': {
-        // §7: премиум-гифт монет обнулён (см. grantLevelGiftShards).
-        await addShardsRaw(0, 'level_premium_gift', { skipServerAwait: true });
+        await grantInstantGiftXp(400);
         break;
       }
       case 'prem_shards_15': {
-        // §7: премиум-гифт монет обнулён (см. grantLevelGiftShards).
-        await addShardsRaw(0, 'level_premium_gift', { skipServerAwait: true });
+        await grantInstantGiftXp(800);
         break;
       }
       case 'prem_shards_20': {
-        // §7: премиум-гифт монет обнулён (см. grantLevelGiftShards).
-        await addShardsRaw(0, 'level_premium_gift', { skipServerAwait: true });
+        await grantInstantGiftXp(1200);
         break;
       }
       case 'prem_pack_48h': {
@@ -1476,21 +1483,13 @@ export function isEnergyBonusGiftId(gid: string | undefined): boolean {
 }
 
 /**
- * Сколько осколков выдаёт подарок (0 = не осколочный).
- * Единый источник правды для UI: чтобы не рисовать 💎-эмодзи там, где должна быть
- * кучка осколков из `assets/images/shards/*.webp`.
+ * Сколько осколков выдаёт подарок. Всегда 0: жемчужные подарки переделаны в мгновенный XP
+ * (решение владельца 2026-08-02 — «подарок обещает жемчуг, а платит 0» было обманом).
+ * Функция сохранена, чтобы не менять UI-ветки (инвентарь рисует жемчужный арт только при >0).
  */
 export function giftShardAmount(gid: string | undefined): number {
-  if (!gid) return 0;
-  switch (gid) {
-    case 'shards_3': return 3;
-    case 'shards_6': return 6;
-    case 'shards_10': return 10;
-    case 'prem_shards_10': return 10;
-    case 'prem_shards_15': return 15;
-    case 'prem_shards_20': return 20;
-    default: return 0;
-  }
+  void gid;
+  return 0;
 }
 
 export const ALL_LEVEL_GIFT_DEFS: GiftDef[] = [...GIFT_F2P, ...GIFT_PREMIUM, ...PREMIUM_LEVEL_GIFT_PACK_UNLOCK_DEFS];

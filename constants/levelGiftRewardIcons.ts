@@ -52,14 +52,10 @@ export type LevelGiftRewardIconId = typeof LEVEL_GIFT_REWARD_ICON_KEYS[number];
 const FALLBACK_LEVEL_GIFT_REWARD_ICON_ID: LevelGiftRewardIconId = 'choice_3_level';
 const DEFAULT_SHARD_ICON_THEME: ThemeMode = 'minimalDark';
 
-const SHARD_GIFT_AMOUNTS: Partial<Record<LevelGiftRewardIconId, number>> = {
-  shards_3: 3,
-  shards_6: 6,
-  shards_10: 10,
-  prem_shards_10: 10,
-  prem_shards_15: 15,
-  prem_shards_20: 20,
-};
+// зачем (2026-08-02, владелец): жемчужные подарки платили 0 и переделаны в мгновенный XP —
+// жемчужный орб больше не подменяет арт наград. Карта пуста, но остаётся точкой подмены,
+// если валютные подарки когда-нибудь вернут.
+const SHARD_GIFT_AMOUNTS: Partial<Record<LevelGiftRewardIconId, number>> = {};
 
 // зачем (2026-07-26, владелец): валюта — жемчуг, а награды-орбы рисовали синие
 // кристаллы-осколки старой валюты. Переиспользуем единый набор жемчужных иконок
@@ -91,15 +87,17 @@ const LEVEL_GIFT_REWARD_ICONS: Record<LevelGiftRewardIconId, ImageSourcePropType
   prem_level_unlock_royal_tea: require('../assets/images/level_gift_reward_icons/prem_level_unlock_royal_tea.webp'),
   prem_level_unlock_wild_west: require('../assets/images/level_gift_reward_icons/prem_level_unlock_wild_west.webp'),
   prem_pack_48h: require('../assets/images/level_gift_reward_icons/prem_pack_48h.webp'),
-  prem_shards_10: require('../assets/images/level_gift_reward_icons/prem_shards_10.webp'),
-  prem_shards_15: require('../assets/images/level_gift_reward_icons/prem_shards_15.webp'),
-  prem_shards_20: require('../assets/images/level_gift_reward_icons/prem_shards_20.webp'),
+  // зачем (2026-08-02): бывшие жемчужные подарки стали XP-подарками — арт тоже XP,
+  // старые *.webp с жемчугом остаются на диске ради контракта reward-icons (файл на каждый id).
+  prem_shards_10: require('../assets/images/level_gift_reward_icons/xp_250.webp'),
+  prem_shards_15: require('../assets/images/level_gift_reward_icons/xp_250.webp'),
+  prem_shards_20: require('../assets/images/level_gift_reward_icons/xp_250.webp'),
   premium_cosmetic_aura: require('../assets/images/level_gift_reward_icons/premium_cosmetic_aura.webp'),
   premium_cosmetic_avatar: require('../assets/images/level_gift_reward_icons/premium_cosmetic_avatar.webp'),
   premium_xp_bank_1000: require('../assets/images/level_gift_reward_icons/premium_xp_bank_1000.webp'),
-  shards_10: require('../assets/images/level_gift_reward_icons/shards_10.webp'),
-  shards_3: require('../assets/images/level_gift_reward_icons/shards_3.webp'),
-  shards_6: require('../assets/images/level_gift_reward_icons/shards_6.webp'),
+  shards_10: require('../assets/images/level_gift_reward_icons/xp_250.webp'),
+  shards_3: require('../assets/images/level_gift_reward_icons/xp_100.webp'),
+  shards_6: require('../assets/images/level_gift_reward_icons/xp_250.webp'),
   wager_discount_25: require('../assets/images/level_gift_reward_icons/wager_discount_25.webp'),
   xp_100: require('../assets/images/level_gift_reward_icons/xp_100.webp'),
   xp_250: require('../assets/images/level_gift_reward_icons/xp_250.webp'),

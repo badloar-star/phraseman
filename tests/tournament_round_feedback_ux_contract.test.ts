@@ -30,15 +30,23 @@ describe('tournament question feedback UX', () => {
   test('phrase building has one Ready action and fast reduced-motion-aware word transitions', () => {
     const wordBank = section(round, 'const WordBank', 'const makeStyles');
 
-    // зачем 2026-08-02 (владелец: «убери кнопку „Готово“ там, где она не
-    // нужна»): было `kind !== 'translate'` — то есть кнопка висела и в choice,
-    // где ответ засчитывается самим тапом, а переход идёт по серверной границе
-    // фидбэка. Там она либо неактивна, либо дублирует уже случившееся.
-    // Осталась только в «парах на скорость», где игрок сам решает, что закончил
-    // доску, и ранний финиш реально прибавляет очки. Суть контракта прежняя: у
-    // translate своя кнопка внутри WordBank, второй сверху быть не должно.
-    expect(round).toContain("const showRoundFinish = question?.kind === 'match'");
-    expect(round).toContain('{showRoundFinish ? (');
+    // зачем 2026-08-02 (владелец: «внизу есть всегда недоступная кнопка
+    // „Готово“, она никогда не нажимается, потому что при нажатии на вариант
+    // ответа он сразу засчитывается»): нижняя кнопка удалена ЦЕЛИКОМ.
+    //
+    // Она была неактивна во всех режимах: disabled требовал решённого ВСЕГО
+    // раунда, а каждое задание закрывается само — choice тапом, translate
+    // своей кнопкой внутри WordBank, speed_match автоматически по последней
+    // паре. К моменту выполнения условия раунд уже заканчивался.
+    //
+    // Контракт: у translate остаётся РОВНО ОДНА кнопка подтверждения (внутри
+    // WordBank), и никакой второй снизу быть не должно.
+    expect(round).toContain('const showRoundFinish = false');
+    expect(round).not.toContain('{showRoundFinish ? (');
+    // Именно ВЫЗОВ и объявление обработчика, а не упоминание имени: в
+    // комментарии выше finishEarly назван как раз чтобы объяснить удаление.
+    expect(round).not.toContain('onPress={finishEarly}');
+    expect(round).not.toContain('const finishEarly =');
     expect(wordBank).toContain('const reduceMotion = useReduceMotion()');
     expect(wordBank).toContain('entering={reduceMotion ? undefined : FadeInDown.duration(140)}');
     expect(wordBank).not.toContain('.springify()');
@@ -47,14 +55,16 @@ describe('tournament question feedback UX', () => {
   });
 
   test('round completion is optimistic after a local answer and never exposes transport state', () => {
-    const submit = section(round, 'const submitCurrentTaskAnswer', '  const [finishing');
+    const submit = section(round, 'const submitCurrentTaskAnswer', '  const answer = useCallback');
 
-    expect(round).toContain('allQuestionsResolved');
+    // зачем 2026-08-02: allQuestionsResolved и подпись кнопки «Готово» ушли
+    // вместе с самой кнопкой (см. тест выше). Суть контракта не изменилась:
+    // задание отмечается решённым ДО сети, а транспортных состояний
+    // («Отправляем…», счётчиков ожидающих запросов) на экране быть не должно.
     expect(round).toMatch(/secondsLeft !== 0[\s\S]*markTaskResolved\(question\.taskId\)/);
     expect(submit).toMatch(/markTaskResolved\(task\.taskId\);[\s\S]*await submitTaskAnswer/);
     expect(round).not.toContain('pendingSubmissionCount');
     expect(round).not.toContain('Отправляем…');
-    expect(round).toContain("{finishing ? 'Переходим…' : 'Готово'}");
     expect(round).not.toContain('allQuestionsAnswered');
   });
 
@@ -102,7 +112,7 @@ describe('tournament question feedback UX', () => {
   });
 
   test('feedback advances from its absolute end before a slow answer result can resolve', () => {
-    const submit = section(round, 'const submitCurrentTaskAnswer', '  const [finishing');
+    const submit = section(round, 'const submitCurrentTaskAnswer', '  const answer = useCallback');
 
     expect(submit).toMatch(/setPhase\('feedback'\);[\s\S]*scheduleFeedbackAdvance\(\);[\s\S]*await submitTaskAnswer/);
     expect(submit.match(/await submitTaskAnswer/g)).toHaveLength(2);
@@ -119,7 +129,7 @@ describe('tournament question feedback UX', () => {
   });
 
   test('choice and phrase verdicts paint from room fingerprints before any network await', () => {
-    const submit = section(round, 'const submitCurrentTaskAnswer', '  const [finishing');
+    const submit = section(round, 'const submitCurrentTaskAnswer', '  const answer = useCallback');
     const choice = section(round, 'const answer = useCallback', '  const answerTranslate');
     const translate = section(round, 'const answerTranslate', 'const answerMatch');
 
@@ -171,7 +181,7 @@ describe('tournament question feedback UX', () => {
   });
 
   test('async answer completions stop at unmount and network errors never sound wrong', () => {
-    const submit = section(round, 'const submitCurrentTaskAnswer', '  const [finishing');
+    const submit = section(round, 'const submitCurrentTaskAnswer', '  const answer = useCallback');
     const speedMatch = section(round, 'const answerMatch', 'const matchComplete');
     const strictBoard = section(round, 'const StrictMatchBoard', 'const WordBank');
     const speedMatchCatch = section(speedMatch, '    } catch {', '    } finally {');

@@ -51,7 +51,7 @@ import { TournamentRoundIntro } from '../components/tournament/TournamentRoundIn
 import {
       canRetryTournamentTaskAnswer, forfeitTournament, getOrCreateTournamentTaskIdempotencyKey,
       isTournamentAnswerSelectionWindowOpen,
-  isRetryableTournamentTaskAnswerError, isTableState, isTournamentTaskWindowResolved,
+  isRetryableTournamentTaskAnswerError, isTableState,
       resolveTournamentRoomIdParam, resolveTournamentScheduledTaskIndex,
       resolveTournamentExitStatus,
       resolveTournamentVisibleTaskIndex,
@@ -358,28 +358,11 @@ export default function TournamentRoundScreen() {
 
   const total = questions.length || QUESTIONS_PER_ROUND;
   const scheduleNowMs = tournamentNow();
-  // зачем 2026-08-01 (аудит турнира): elapsedTaskIds пересоздавал Set через
-  // filter+map на КАЖДОМ рендере, а экран перерисовывается минимум раз в
-  // секунду по таймеру задания. Мемоизируем по секундной сетке: окна заданий
-  // заданы в секундах, поэтому внутри одной секунды результат заведомо тот же,
-  // а привязка к самому scheduleNowMs (миллисекунды) сделала бы useMemo
-  // бесполезным — он пересчитывался бы каждый раз.
-  const scheduleNowSec = Math.floor(scheduleNowMs / 1000);
-  const elapsedTaskIds = useMemo(
-    () => new Set(
-      (activeRound?.taskSchedule ?? [])
-        .filter((timing) => isTournamentTaskWindowResolved(timing, scheduleNowSec * 1000))
-        .map((timing) => timing.taskId),
-    ),
-    [activeRound?.taskSchedule, scheduleNowSec],
-  );
-  const allQuestionsResolved = useMemo(
-    () => questions.length > 0
-      && questions.every((candidate) => (
-        resolvedTaskIds.has(candidate.taskId) || elapsedTaskIds.has(candidate.taskId)
-      )),
-    [questions, resolvedTaskIds, elapsedTaskIds],
-  );
+  // зачем 2026-08-02: здесь считались elapsedTaskIds и allQuestionsResolved —
+  // единственным их потребителем была кнопка «Готово», которую владелец
+  // попросил убрать. Вместе с ней ушёл и расчёт: он строил Set через
+  // filter+map и пересчитывался по секундной сетке, то есть каждую секунду
+  // работы раунда — теперь эта работа не делается вовсе.
   const markTaskResolved = useCallback((taskId: string) => {
     setResolvedTaskIds((previous) => {
       if (previous.has(taskId)) return previous;
@@ -409,15 +392,23 @@ export default function TournamentRoundScreen() {
   );
   const question = questions[index] ?? null;
   const questionKey = question ? `${question.taskId}:${question.itemIndex}` : null;
-  // зачем 2026-08-02 (владелец: «убери кнопку „Готово“ там, где она не нужна»):
-  // кнопка осмысленна только в «парах на скорость». Там игрок сам решает, что
-  // закончил доску из шести пар, и ранний финиш реально прибавляет очки.
+  // зачем 2026-08-02 (владелец: «внизу есть всегда недоступная кнопка „Готово“,
+  // она никогда не нажимается, потому что при нажатии на вариант ответа он
+  // сразу засчитывается»): кнопка убрана целиком — ни в одном режиме она не
+  // нужна, и в каждом висела серой.
   //
-  // В choice ответ засчитывается самим тапом по варианту, а переход к
-  // следующему заданию идёт по серверной границе фидбэка — кнопке нечего
-  // делать: она либо неактивна, либо дублирует уже случившееся действие.
-  // В translate своя кнопка подтверждения живёт внутри WordBank.
-  const showRoundFinish = question?.kind === 'match';
+  // Почему нажать её было нельзя: disabled требовал allQuestionsResolved, то
+  // есть решённого ВСЕГО раунда. Но каждое задание закрывается само:
+  //   • choice — тапом по варианту;
+  //   • translate — своей кнопкой подтверждения внутри WordBank;
+  //   • speed_match — автоматически, как только сходится последняя пара
+  //     (см. эффект по matchComplete ниже).
+  // К моменту, когда условие выполнялось, раунд уже был закончен и экран уходил
+  // на таблицу по серверной границе — нажать физически не успеть.
+  //
+  // Ранний финиш при этом не потерян: сервер считает бонус скорости от времени
+  // ПРИХОДА каждого ответа, а ответы уходят сразу по мере решения заданий.
+  const showRoundFinish = false;
   const questionTiming = useMemo(() => {
     if (!question) return null;
     return activeRound?.taskSchedule?.find((timing) => (
@@ -742,29 +733,17 @@ export default function TournamentRoundScreen() {
   }, [index, markTaskResolved, questionTiming, retry, roomId, roundKey, roundNo, scheduleFeedbackAdvance]);
 
   /**
-   * «Готово» — игрок закончил раунд раньше дедлайна.
+   * зачем 2026-08-02: здесь жили finishEarly и флаг finishing — обработчик
+   * кнопки «Готово», которую владелец попросил убрать («она никогда не
+   * нажимается»). Вместе с кнопкой удалён и обработчик: держать мёртвый код
+   * с состоянием, которое никто не выставляет, — прямой путь к путанице.
    *
-   * зачем 2026-07-27 (владелец: «можно внизу нажать на кнопку готово… и это
-   * учитывается в скорость выполнения; если юзер ответил раньше всех, он идёт
-   * на турнирную таблицу, где видит таймер, пока все не доделают»): сервер
-   * считает бонус скорости от времени ПРИХОДА пачки, поэтому ранняя отправка
-   * реально прибавляет очки. Ждать общего дедлайна, сидя на отвеченном
-   * вопросе, было бы прямой потерей.
-   *
-   * Every completed task has already been accepted independently. This button
-   * only leaves the round; it does not create a second scoring path.
+   * Уход на таблицу при этом не потерян. Его делают два живых пути:
+   *   • goNext — когда закончилось последнее задание раунда;
+   *   • эффект по room.state — когда сервер сам перевёл комнату дальше.
+   * Ранний финиш тоже цел: сервер считает бонус скорости от времени прихода
+   * КАЖДОГО ответа, а они уходят сразу при решении задания.
    */
-  const [finishing, setFinishing] = useState(false);
-
-  const finishEarly = useCallback(() => {
-    if (finishing || !allQuestionsResolved) return;
-    setFinishing(true);
-    activeTaskSubmissionRef.current = null;
-    activeQuestionKeyRef.current = null;
-    router.replace(roomId
-      ? { pathname: '/tournament_table', params: { roomId, completedRound: String(roundNo) } }
-      : '/tournament_table');
-  }, [allQuestionsResolved, finishing, roomId, roundNo, router]);
 
   const answer = useCallback((optionIndex: number) => {
     if (!answerSelectionActive || !question) return;
@@ -1158,33 +1137,12 @@ export default function TournamentRoundScreen() {
             во время игры не раскрывается и выбранная плита не красится зелёным. */}
       </ScrollView>
 
-      {/* Низ экрана: «Готово».
-          зачем 2026-07-27 (владелец: «можно внизу нажать на кнопку готово…
-          и это учитывается в скорость выполнения; если юзер ответил раньше
-          всех, он идёт на турнирную таблицу, где видит таймер, пока все не
-          доделают»): кнопка отмечает, что игрок закончил, и отправляет пачку
-          РАНЬШЕ дедлайна. Сервер считает бонус скорости от времени прихода
-          пачки (serverBoundedElapsedMs), поэтому ранний финиш действительно
-          даёт больше очков — это не декорация.
-          Заодно кнопка занимает низ, который раньше пустовал.
-
-          зачем 2026-07-27 (владелец: «на кнопке текст просто ГОТОВО, и он
-          только отмечает что юзер ответил, а не пропускает что-то»): подпись
-          и тон больше не зависят от числа отвеченных вопросов. Прежнее
-          «Готово · пропустить остальные» и приглушённый ghost-тон читались как
-          штраф за досрочный финиш, хотя действие ровно одно — отметить, что
-          игрок закончил, и отправить ответы. */}
-      {showRoundFinish ? (
-      <View style={[styles.bottomBar, { paddingBottom: insets.bottom + 12 }]}>
-        <V2Cta
-          onPress={finishEarly}
-          disabled={finishing || !allQuestionsResolved}
-          tone="accent"
-        >
-          {finishing ? 'Переходим…' : 'Готово'}
-        </V2Cta>
-      </View>
-      ) : null}
+      {/* зачем 2026-08-02 (владелец: «внизу есть всегда недоступная кнопка
+          „Готово“, она никогда не нажимается»): нижняя панель с кнопкой
+          удалена. Раньше здесь стоял ранний финиш раунда, но задания давно
+          отправляются по одному сразу при решении, поэтому кнопке нечего было
+          подтверждать — она висела серой во всех режимах. Подробности и
+          обоснование — у showRoundFinish выше. */}
 
       {/* Слой полётов поверх экрана: звёзды, конфетти, золотая волна.
           pointerEvents=none внутри — тапы проходят сквозь него к вариантам. */}
@@ -1690,7 +1648,8 @@ const makeStyles = (P: TournamentPalette) => StyleSheet.create({
   // visually connected to its prompt instead of being pushed down by flex.
   questionZoneCompact: { flex: 0, minHeight: 0 },
   /** Полоса управления у нижнего края. Разделяем тоном, без обводки. */
-  bottomBar: { paddingHorizontal: 16, paddingTop: 10, backgroundColor: P.bg },
+  // зачем 2026-08-02: стиль bottomBar удалён вместе с кнопкой «Готово» —
+  // нижней панели на экране раунда больше нет.
 
   introRoot: { alignItems: 'center', justifyContent: 'center' },
   introRound: { fontSize: 44, fontWeight: '900', color: P.text, letterSpacing: -1 },

@@ -86,8 +86,17 @@ describe('tournament per-task client contract', () => {
       answerDeadlineAtMs: 8_000,
     }, 8_000)).toBe(true);
 
+    // зачем 2026-08-02: экран раунда больше не вызывает эту функцию. Её
+    // единственным потребителем был расчёт allQuestionsResolved, нужный для
+    // кнопки «Готово», — кнопку владелец попросил убрать («она никогда не
+    // нажимается»), и расчёт ушёл вместе с ней.
+    //
+    // Само правило осталось и проверяется выше по фактическому поведению
+    // функции: истёкшее окно задания считается закрытым (11_000 → true), а
+    // ещё идущее — нет (10_999 → false). Возврат в раунд опирается на то же
+    // серверное расписание через resolveTournamentVisibleTaskIndex.
     const round = readFileSync(resolve(__dirname, '../app/tournament_round.tsx'), 'utf8');
-    expect(round).toContain('isTournamentTaskWindowResolved');
+    expect(round).toContain('resolveTournamentVisibleTaskIndex');
   });
 
   test('ambiguous tournament mutations retry once with the same idempotent operation', async () => {

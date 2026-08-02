@@ -183,12 +183,23 @@ describe('perf freeze contract', () => {
   it('coalesces Home refresh events while another tab owns the runtime', () => {
     const home = read('app/(tabs)/home.tsx');
     expect(home).toContain('const homeRuntimeActiveRef = useRef(homeRuntimeActive);');
-    expect(home).toContain('const homeDataDirtyRef = useRef(false);');
+    // зачем: стартовое значение намеренно true, а не false. Home может
+    // смонтироваться, пока рантаймом владеет другой удержанный таб — тогда
+    // сводка дневных заданий застревала на плейсхолдере «0 выполнено».
+    // Экономия при этом сохраняется: обновление всё равно НЕ произойдёт, пока
+    // таб не получит рантайм (проверки requestHomeDataRefresh/homeRuntimeActive
+    // ниже), отличается только первая передача владения после запуска.
+    expect(home).toContain('const homeDataDirtyRef = useRef(true);');
     expect(home).toContain('const requestHomeDataRefresh = () => {');
     expect(home).toContain('if (!homeRuntimeActiveRef.current) {');
     expect(home).toContain('homeDataDirtyRef.current = true;');
     expect(home).toContain("DeviceEventEmitter.addListener('xp_changed', requestHomeDataRefresh)");
-    expect(home).toContain('if (!homeRuntimeActive || !homeDataDirtyRef.current) return;');
+    // Гейт «пока таб не владеет рантаймом — не грузим» остался, но раскрылся в
+    // блок: сначала ранний выход, затем дешёвая ветка «обновить только сводку
+    // заданий» вместо полной перезагрузки. Проверяем обе части, а не одну строку.
+    expect(home).toContain('if (!homeRuntimeActive) return;');
+    expect(home).toContain('if (homeDataDirtyRef.current) {');
+    expect(home).toContain('if (!homeDailySummaryDirtyRef.current) return;');
   });
 
   it('gates firestore subscriptions in tab screens by real tab visibility', () => {

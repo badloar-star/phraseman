@@ -391,6 +391,15 @@ export default function TournamentRoundScreen() {
   const roundKey = `${roomId ?? 'room'}:${roundNo}`;
   useEffect(() => {
     setResolvedTaskIds(new Set());
+    // зачем 2026-08-02: раньше очищался только resolvedTaskIds, а карты
+    // отправленных ответов и ключей идемпотентности жили весь экран. Они
+    // ключуются по taskId, но ключ идемпотентности считается ещё и от roundNo —
+    // на новом раунде старая запись становится мусором, который уже нельзя
+    // переиспользовать. Чистим весь набор разом, чтобы данные прошлого раунда
+    // не могли повлиять на текущий.
+    taskAnswersRef.current.clear();
+    taskIdempotencyKeysRef.current.clear();
+    pendingTaskSubmissionsRef.current.clear();
   }, [roundKey]);
   const scheduledIndex = resolveTournamentScheduledTaskIndex(activeRound?.taskSchedule, scheduleNowMs);
   const index = resolveTournamentVisibleTaskIndex(
@@ -735,11 +744,23 @@ export default function TournamentRoundScreen() {
 
   const answer = useCallback((optionIndex: number) => {
     if (!answerSelectionActive || !question) return;
-    const cached = taskAnswersRef.current.get(question.taskId) as { selectedIndex?: unknown } | undefined;
-    const selectedIndex = typeof cached?.selectedIndex === 'number' ? cached.selectedIndex : optionIndex;
-    setPicked(selectedIndex);
-    const localCorrect = localAnswerVerdict(roomId, question, selectedIndex);
-    void submitCurrentTaskAnswer(question, { selectedIndex }, localCorrect);
+    // зачем 2026-08-02 (владелец: «в турнире ни одна кнопка не нажимается», и
+    // при этом выбранный ПРАВИЛЬНЫЙ вариант засчитывался как неверный, 0 звёзд):
+    // здесь стояла подмена — если в taskAnswersRef уже лежал ответ по этому
+    // taskId, брался ОН, а свежий тап игрока молча отбрасывался. Кэш при этом
+    // не очищался никогда: ни между заданиями, ни между раундами. В итоге со
+    // второго задания экран выглядел «мёртвым» (тап проходил, но уходил чужой
+    // индекс), а сервер получал ответ от предыдущего вопроса — отсюда «ноль
+    // звёзд» на верном варианте. Один раз «получалось» ровно там, где кэш ещё
+    // был пуст.
+    //
+    // Кэш нужен для ДРУГОГО: submitCurrentTaskAnswer держит в нём уже
+    // отправленное тело запроса, чтобы ретрай ушёл с тем же payload под тем же
+    // ключом идемпотентности. К выбору игрока он отношения не имеет — тап
+    // всегда отправляет именно то, что нажали.
+    setPicked(optionIndex);
+    const localCorrect = localAnswerVerdict(roomId, question, optionIndex);
+    void submitCurrentTaskAnswer(question, { selectedIndex: optionIndex }, localCorrect);
   }, [answerSelectionActive, question, roomId, submitCurrentTaskAnswer]);
 
   /**

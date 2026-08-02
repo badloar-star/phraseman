@@ -625,7 +625,11 @@ describe('экраны режима «Турниры»', () => {
     const round = read('app/tournament_round.tsx');
     expect(round).toContain('selectedIndex');
     expect(round).toContain('selectedIndexes');
-    expect(round).toContain('submitCurrentTaskAnswer(question, { selectedIndex }, localCorrect)');
+    // зачем 2026-08-02: было сокращение `{ selectedIndex }` от локальной
+    // переменной, которая подставляла ответ из кэша вместо нажатого варианта —
+    // правильный вариант засчитывался как неверный. Отправляем нажатый индекс
+    // явно. Суть контракта прежняя: answer уходит ОБЪЕКТОМ, а не числом.
+    expect(round).toContain('submitCurrentTaskAnswer(question, { selectedIndex: optionIndex }, localCorrect)');
     expect(round).toContain('submitCurrentTaskAnswer(question, { selectedIndexes })');
 
     const server = read('functions/src/tournament_core.ts');

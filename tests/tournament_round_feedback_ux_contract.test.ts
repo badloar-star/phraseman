@@ -123,7 +123,11 @@ describe('tournament question feedback UX', () => {
     expect(fingerprint).toContain('export function answerFingerprint(');
     expect(round).toContain('function localAnswerVerdict(');
     expect(choice).toContain('const localCorrect = localAnswerVerdict(');
-    expect(choice).toContain('submitCurrentTaskAnswer(question, { selectedIndex }, localCorrect)');
+    // зачем 2026-08-02: было `{ selectedIndex }` — сокращение от локальной
+    // переменной, которая подставляла ответ из кэша вместо нажатого варианта
+    // (см. тест «a tap always submits the tapped option»). Теперь отправляется
+    // ровно нажатый индекс. Суть контракта — вердикт красится ДО сети — та же.
+    expect(choice).toContain('submitCurrentTaskAnswer(question, { selectedIndex: optionIndex }, localCorrect)');
     expect(translate).toContain('const localCorrect = localAnswerVerdict(');
     expect(translate).toContain('submitCurrentTaskAnswer(question, { tokens }, localCorrect)');
     expect(submit).toMatch(/setFeedbackCorrect\(optimisticCorrect\);[\s\S]*await submitTaskAnswer/);
@@ -198,7 +202,9 @@ describe('tournament question feedback UX', () => {
     expect(round).toContain("feedbackCorrect === true ? 'Правильно!' : 'Почти!'");
     expect(round).toContain('setFeedbackEarnedStars(result.earnedStars);');
     expect(round).toContain('setFeedbackCorrectIndex(typeof result.correctIndex');
-    expect(round).toMatch(/setPicked\(selectedIndex\);[\s\S]*void submitCurrentTaskAnswer/);
+    // зачем 2026-08-02: переменная переименована в optionIndex вместе с фиксом
+    // подмены ответа из кэша. Контракт прежний: плитка красится СРАЗУ, до сети.
+    expect(round).toMatch(/setPicked\(optionIndex\);[\s\S]*void submitCurrentTaskAnswer/);
     expect(optionRow).toContain('selected={isPicked}');
     expect(optionRow).toContain('displayedCorrect');
     expect(optionRow).toContain('authoritativeCorrectIndex');
@@ -228,6 +234,35 @@ describe('tournament question feedback UX', () => {
     expect(round).not.toMatch(/<TournamentTwoLineText[^>]*style=\{styles\.questionPhrase/);
     expect(round.match(/numberOfLines=\{2\}/g)).toHaveLength(1);
     expect(round).not.toContain('adjustsFontSizeToFit');
+  });
+
+  test('a tap always submits the tapped option, never a cached one', () => {
+    // зачем 2026-08-02 (владелец: «в турнире ни одна кнопка не нажимается», и
+    // при этом ВЫБРАННЫЙ ПРАВИЛЬНЫЙ вариант давал 0 звёзд): обработчик тапа
+    // подменял выбор игрока значением из taskAnswersRef, если там уже что-то
+    // лежало по этому taskId. Кэш не очищался ни между заданиями, ни между
+    // раундами, поэтому со второго вопроса экран выглядел мёртвым: тап
+    // проходил, но на сервер уходил индекс от прошлого вопроса.
+    const handler = section(round, 'const answer = useCallback((optionIndex: number)', 'const answerTranslate');
+
+    // Отправляется ровно нажатый индекс.
+    expect(handler).toContain('setPicked(optionIndex)');
+    expect(handler).toContain('{ selectedIndex: optionIndex }');
+    expect(handler).toContain('localAnswerVerdict(roomId, question, optionIndex)');
+    // И никакого ЧТЕНИЯ кэша ответов в обработчике тапа. Проверяем именно
+    // обращение к карте, а не упоминание её имени: в комментарии выше она
+    // названа как раз для объяснения, почему так делать нельзя.
+    expect(handler).not.toContain('taskAnswersRef.current.get');
+  });
+
+  test('per-round caches are cleared so a new round cannot inherit stale answers', () => {
+    // Кэш отправленных тел запросов нужен только для ретрая в пределах одного
+    // задания. Ключ идемпотентности считается ещё и от roundNo, поэтому на
+    // новом раунде прежние записи — мусор. Сторожим очистку по roundKey.
+    const resetEffect = section(round, 'const roundKey = `${roomId', 'const scheduledIndex');
+    expect(resetEffect).toContain('taskAnswersRef.current.clear()');
+    expect(resetEffect).toContain('taskIdempotencyKeysRef.current.clear()');
+    expect(resetEffect).toContain('pendingTaskSubmissionsRef.current.clear()');
   });
 
   test('the reading phase keeps the per-second tick so the answer window can open', () => {

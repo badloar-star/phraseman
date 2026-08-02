@@ -23,6 +23,7 @@ export interface BuildAllDepartmentsSnapshotInput {
   readonly runGrowth: (appTier: AppTier) => Promise<DepartmentSnapshotLike>;
   readonly runContent: (appTier: AppTier) => Promise<DepartmentSnapshotLike>;
   readonly runPayments: (appTier: AppTier) => Promise<DepartmentSnapshotLike>;
+  readonly runSafety: (appTier: AppTier) => Promise<DepartmentSnapshotLike>;
   readonly nowMs: number;
 }
 
@@ -34,12 +35,13 @@ export interface AllDepartmentsSnapshot {
   readonly departmentErrors: readonly Department[];
 }
 
-const DEPARTMENT_RUNNERS: readonly [Department, keyof Pick<BuildAllDepartmentsSnapshotInput, 'runQuality' | 'runMoney' | 'runGrowth' | 'runContent' | 'runPayments'>][] = [
+const DEPARTMENT_RUNNERS: readonly [Department, keyof Pick<BuildAllDepartmentsSnapshotInput, 'runQuality' | 'runMoney' | 'runGrowth' | 'runContent' | 'runPayments' | 'runSafety'>][] = [
   ['quality', 'runQuality'],
   ['money', 'runMoney'],
   ['growth', 'runGrowth'],
   ['content', 'runContent'],
   ['payments', 'runPayments'],
+  ['safety', 'runSafety'],
 ];
 
 export async function buildAllDepartmentsSnapshot(input: BuildAllDepartmentsSnapshotInput): Promise<AllDepartmentsSnapshot> {

@@ -16,6 +16,8 @@ import { fetchMoneySource } from './money_firestore_fetcher';
 import { buildMoneySnapshot } from './money_snapshot';
 import { fetchQualitySource } from './quality_firestore_fetcher';
 import { buildQualitySnapshot } from './quality_snapshot';
+import { fetchSafetySource } from './safety_firestore_fetcher';
+import { buildSafetySnapshot } from './safety_snapshot';
 
 /**
  * Одна кнопка «Проверить сейчас», один вызов, все три департамента разом.
@@ -107,6 +109,13 @@ export const jarvisGetAllDecisions = onCall(OPTIONS, async (request: CallableReq
         telegram_premium_dead_letter: () => fetchPaymentsSource({ sourceId: 'telegram_premium_dead_letter', collection: db.collection('telegram_premium_dead_letter'), nowMs }),
         revenuecat_premium_denials: () => fetchPaymentsSource({ sourceId: 'revenuecat_premium_denials', collection: db.collection('revenuecat_premium_denials'), nowMs }),
       },
+      trigger: 'owner_request',
+      question,
+      nowMs,
+      appTier,
+    }),
+    runSafety: (appTier) => buildSafetySnapshot({
+      fetchSafety: () => fetchSafetySource({ db, nowMs }),
       trigger: 'owner_request',
       question,
       nowMs,

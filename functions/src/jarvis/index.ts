@@ -86,6 +86,12 @@ export { buildPaymentsSnapshot } from './payments_snapshot';
 export { fetchPaymentsSource, PAYMENT_FAILURE_COLLECTIONS, PAYMENTS_LOOKBACK_MS } from './payments_firestore_fetcher';
 export type { PaymentFailureRow, FetchPaymentsSourceResult } from './payments_firestore_fetcher';
 
+// ── Департамент «Безопасность» (шестой): модерация и детские аккаунты ──────
+export { runSafetyDepartment, SAFETY_BACKLOG_THRESHOLD, SAFETY_SPIKE_THRESHOLD } from './safety_department';
+export { buildSafetySnapshot } from './safety_snapshot';
+export { fetchSafetySource, SAFETY_LOOKBACK_MS } from './safety_firestore_fetcher';
+export type { FetchSafetySourceResult } from './safety_firestore_fetcher';
+
 // ── Суточные планировщики ──────────────────────────────────────────────────
 export { jarvisDailyDepartmentsCron, jarvisDailyBusinessHistoryCron } from './jarvis_crons';
 export { buildDailyHistoryPoint } from './business_tier_daily_point';

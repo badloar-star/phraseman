@@ -27012,6 +27012,10 @@
     // зачем красный: «Платежи» — единственный департамент про потерянные
     // деньги конкретного человека. Он не должен выглядеть как остальные.
     payments: { title: 'Платежи', accentRgb: '248,113,113' },
+    // зачем розовый, а не красный: «Безопасность» тоже про людей, а не про
+    // проценты, но красный уже занят потерянными деньгами — два одинаково
+    // тревожных цвета в одной ленте перестают различаться с одного взгляда.
+    safety: { title: 'Безопасность', accentRgb: '236,72,153' },
   };
   const JF_TIER_LABEL = { seed: 'Seed', growth: 'Growth', scale: 'Scale', mature: 'Mature' };
 
@@ -27045,7 +27049,11 @@
           : 'Аномалий не найдено ни в одном департаменте.');
         if (lane) jfRunChain(
           lane,
-          ['error_reports', 'user_reports', 'app_errors', 'revenuecat_premium_events', 'paywall_funnel', 'users']
+          // зачем полный список: в ленте это «что именно я проверил». Неполный
+          // перечень читается как «остальное не смотрели» — то есть врёт о
+          // покрытии ровно в тот момент, когда сообщает, что всё чисто.
+          ['error_reports', 'user_reports', 'app_errors', 'revenuecat_premium_events', 'paywall_funnel', 'users',
+            'lesson_stats', 'telegram_premium_dead_letter', 'revenuecat_premium_denials', 'safety_flags']
             .map((sourceId) => ({ sourceId, state: 'empty', count: 0, droppedCount: 0, trustworthy: true })),
           'success', 'Скачков не найдено ни в одном департаменте.',
           'success', 'Решение не требуется — данные в норме.',

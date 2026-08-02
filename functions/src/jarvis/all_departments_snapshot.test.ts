@@ -8,15 +8,16 @@ function decisionOf(department: string): Decision {
 }
 
 describe('Jarvis all-departments snapshot — one button, one combined result', () => {
-  test('resolves the tier once and runs all five departments together', async () => {
+  test('resolves the tier once and runs all six departments together', async () => {
     const resolveAppTier = jest.fn(async () => 'scale' as const);
     const runQuality = jest.fn(async (_tier: string) => ({ generatedAtMs: 1, decisions: [decisionOf('quality')] }));
     const runMoney = jest.fn(async (_tier: string) => ({ generatedAtMs: 1, decisions: [decisionOf('money')] }));
     const runGrowth = jest.fn(async (_tier: string) => ({ generatedAtMs: 1, decisions: [] }));
     const runContent = jest.fn(async (_tier: string) => ({ generatedAtMs: 1, decisions: [decisionOf('content')] }));
     const runPayments = jest.fn(async (_tier: string) => ({ generatedAtMs: 1, decisions: [decisionOf('payments')] }));
+    const runSafety = jest.fn(async (_tier: string) => ({ generatedAtMs: 1, decisions: [decisionOf('safety')] }));
 
-    const result = await buildAllDepartmentsSnapshot({ resolveAppTier, runQuality, runMoney, runGrowth, runContent, runPayments, nowMs: 5_000 });
+    const result = await buildAllDepartmentsSnapshot({ resolveAppTier, runQuality, runMoney, runGrowth, runContent, runPayments, runSafety, nowMs: 5_000 });
 
     expect(resolveAppTier).toHaveBeenCalledTimes(1);
     expect(runQuality).toHaveBeenCalledWith('scale');
@@ -24,9 +25,10 @@ describe('Jarvis all-departments snapshot — one button, one combined result', 
     expect(runGrowth).toHaveBeenCalledWith('scale');
     expect(runContent).toHaveBeenCalledWith('scale');
     expect(runPayments).toHaveBeenCalledWith('scale');
+    expect(runSafety).toHaveBeenCalledWith('scale');
     expect(result.appTier).toBe('scale');
     expect(result.generatedAtMs).toBe(5_000);
-    expect(result.decisions.map((d) => d.department)).toEqual(['quality', 'money', 'content', 'payments']);
+    expect(result.decisions.map((d) => d.department)).toEqual(['quality', 'money', 'content', 'payments', 'safety']);
   });
 
   test('one department throwing does not abort the others', async () => {
@@ -36,10 +38,11 @@ describe('Jarvis all-departments snapshot — one button, one combined result', 
     const runGrowth = jest.fn(async () => ({ generatedAtMs: 1, decisions: [decisionOf('growth')] }));
     const runContent = jest.fn(async () => ({ generatedAtMs: 1, decisions: [decisionOf('content')] }));
     const runPayments = jest.fn(async () => ({ generatedAtMs: 1, decisions: [decisionOf('payments')] }));
+    const runSafety = jest.fn(async () => ({ generatedAtMs: 1, decisions: [decisionOf('safety')] }));
 
-    const result = await buildAllDepartmentsSnapshot({ resolveAppTier, runQuality, runMoney, runGrowth, runContent, runPayments, nowMs: 5_000 });
+    const result = await buildAllDepartmentsSnapshot({ resolveAppTier, runQuality, runMoney, runGrowth, runContent, runPayments, runSafety, nowMs: 5_000 });
 
-    expect(result.decisions.map((d) => d.department)).toEqual(['money', 'growth', 'content', 'payments']);
+    expect(result.decisions.map((d) => d.department)).toEqual(['money', 'growth', 'content', 'payments', 'safety']);
     expect(result.departmentErrors).toEqual(['quality']);
   });
 
@@ -48,7 +51,7 @@ describe('Jarvis all-departments snapshot — one button, one combined result', 
     const ok = jest.fn(async () => ({ generatedAtMs: 1, decisions: [] }));
     const runContent = jest.fn(async () => { throw new Error('lesson_stats down'); });
     const result = await buildAllDepartmentsSnapshot({
-      resolveAppTier, runQuality: ok, runMoney: ok, runGrowth: ok, runContent, runPayments: ok, nowMs: 5_000,
+      resolveAppTier, runQuality: ok, runMoney: ok, runGrowth: ok, runContent, runPayments: ok, runSafety: ok, nowMs: 5_000,
     });
     expect(result.departmentErrors).toEqual(['content']);
   });
@@ -58,16 +61,26 @@ describe('Jarvis all-departments snapshot — one button, one combined result', 
     const ok = jest.fn(async () => ({ generatedAtMs: 1, decisions: [] }));
     const runPayments = jest.fn(async () => { throw new Error('dead letter unreachable'); });
     const result = await buildAllDepartmentsSnapshot({
-      resolveAppTier, runQuality: ok, runMoney: ok, runGrowth: ok, runContent: ok, runPayments, nowMs: 5_000,
+      resolveAppTier, runQuality: ok, runMoney: ok, runGrowth: ok, runContent: ok, runPayments, runSafety: ok, nowMs: 5_000,
     });
     expect(result.departmentErrors).toEqual(['payments']);
+  });
+
+  test('a failing safety department is reported too — silence must never read as safe', async () => {
+    const resolveAppTier = jest.fn(async () => 'seed' as const);
+    const ok = jest.fn(async () => ({ generatedAtMs: 1, decisions: [] }));
+    const runSafety = jest.fn(async () => { throw new Error('safety_flags unreachable'); });
+    const result = await buildAllDepartmentsSnapshot({
+      resolveAppTier, runQuality: ok, runMoney: ok, runGrowth: ok, runContent: ok, runPayments: ok, runSafety, nowMs: 5_000,
+    });
+    expect(result.departmentErrors).toEqual(['safety']);
   });
 
   test('all departments empty yields an empty decisions array, not an error', async () => {
     const resolveAppTier = jest.fn(async () => 'growth' as const);
     const empty = jest.fn(async () => ({ generatedAtMs: 1, decisions: [] }));
     const result = await buildAllDepartmentsSnapshot({
-      resolveAppTier, runQuality: empty, runMoney: empty, runGrowth: empty, runContent: empty, runPayments: empty, nowMs: 5_000,
+      resolveAppTier, runQuality: empty, runMoney: empty, runGrowth: empty, runContent: empty, runPayments: empty, runSafety: empty, nowMs: 5_000,
     });
     expect(result.decisions).toEqual([]);
     expect(result.departmentErrors).toEqual([]);

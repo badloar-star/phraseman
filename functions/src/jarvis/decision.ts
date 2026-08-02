@@ -21,7 +21,7 @@ export const MAX_EVIDENCE_AGE_MS = 36 * 60 * 60 * 1_000;
  * Департаменты Джарвиса. 'money' считает УСПЕШНУЮ выручку, 'payments' —
  * наоборот, поломки оплаты (человек заплатил, доступ не выдался).
  */
-export type Department = 'quality' | 'money' | 'growth' | 'content' | 'payments';
+export type Department = 'quality' | 'money' | 'growth' | 'content' | 'payments' | 'safety';
 export type DecisionMode = 'off' | 'observe' | 'advise' | 'prepare' | 'execute';
 export type DecisionTrigger = 'scheduled' | 'owner_request';
 export type EvidenceState = 'ready' | 'empty' | 'partial' | 'error' | 'stale' | 'truncated';

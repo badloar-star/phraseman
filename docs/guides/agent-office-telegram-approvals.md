@@ -1,5 +1,12 @@
 # Agent Office: безопасное подключение Telegram approvals
 
+> ⛔ **УСТАРЕЛО. НЕ ВЫПОЛНЯТЬ.** Слой `agent_office` снесён в Р4 (2026-08-02):
+> функции `agentOfficeTelegramWebhook` больше нет, формат `ao1` не принимается.
+> Действующее руководство — **`jarvis-telegram-approvals.md`**.
+>
+> Файл сохранён ради истории решений по безопасности: модель угроз оттуда
+> перенесена в новое руководство целиком.
+
 Этот runbook относится только к входящему webhook `agentOfficeTelegramWebhook`.
 Он переиспользует существующий бот и secret `ADMIN_ALERT_BOT_TOKEN`, но **не**
 доверяет редактируемому из браузера `admin_config/alerts.chatId`. Полномочия

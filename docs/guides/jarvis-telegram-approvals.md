@@ -17,10 +17,16 @@
 | `functions/src/jarvis/approval_webhook.ts` | HTTP-точка входа. Намеренно тонкая |
 | `functions/src/jarvis/approval_audit.ts` | Журнал подтверждений |
 | `functions/src/jarvis/telegram_buttons.ts` | Раскладка клавиатуры |
-| `functions/src/jarvis/issue_decision_buttons.ts` | Связка «решение → пара кнопок» |
+| `functions/src/jarvis/issue_decision_buttons.ts` | Связка «решение → пара кнопок», `hashDecision` |
+| `functions/src/jarvis/commands.ts` | Разбор `/status`, `/stop`, `/start` + текст ответа |
+| `functions/src/jarvis/control.ts` | Свой kill switch Джарвиса (`jarvis_control`) |
+| `functions/src/jarvis/severity.ts` | P0-P3 + склейка повторов находок |
+| `functions/src/jarvis/notify_policy.ts` | Тихие часы, лимит уведомлений в час |
+| `functions/src/jarvis/recent_rejections.ts` | Память: не повторять отклонённый совет 3 суток |
 
 Коллекции: `jarvis_approval_tokens` (закрыта полностью),
-`jarvis_approval_audit` (admin читает, пишет только сервер).
+`jarvis_approval_audit` (admin читает, пишет только сервер),
+`jarvis_control` (admin читает, пишет только сервер).
 
 ## Модель безопасности
 
@@ -105,11 +111,29 @@ firebase deploy --only functions:jarvisTelegramApprovalWebhook --project phrasem
 > изменения в `lib/functions/src/...`, а не по успешному тайпчеку. На этом уже
 > обожглись: функция отвечала `200` из старой ветки, а сообщение не уходило.
 
+## Команды из Telegram (2026-08-02)
+
+Вебхук принимает и обычные текстовые сообщения (`allowed_updates` включает
+`message`), поэтому три команды работают без отдельной настройки:
+
+| Команда | Что делает |
+|---|---|
+| `/status` | Одно чтение `jarvis_control`: режим, причина (если выключен), когда был последний суточный прогон и сколько находок в нём было |
+| `/stop` | `jarvis_control.mode = 'off'`, причина `«остановлен командой /stop из Telegram»` |
+| `/start` | Возвращает `mode = 'observe'` |
+
+Проверка личности та же строгость, что у кнопок: и telegram user id, и chat id
+должны совпасть с владельцем — иначе команда молча игнорируется, это не
+безобидное чтение, `/stop` меняет состояние системы.
+
 ## Аварийная остановка
 
-1. Быстро: выключить алерты в `admin_config/alerts` — это гасит и сводки
-   Джарвиса (рубильник общий, осознанно).
-2. Полностью: удалить вебхук через Bot API из защищённой среды.
+1. **Быстро и своим рубильником:** отправьте `/stop` в Telegram, или
+   вручную установите `jarvis_control/global.mode = 'off'` в консоли
+   Firestore. Гасит ТОЛЬКО Джарвиса — отчёты об ошибках из `admin_alerts.ts`
+   продолжают идти как обычно (рубильники раздельные, см. `control.ts`).
+2. Полностью: удалить вебхук через Bot API из защищённой среды — тогда и
+   `/stop` перестанет доходить.
 3. Ротация bot token затрагивает **и** admin alerts. Ротация
    `JARVIS_TELEGRAM_CONFIG` — только approvals.
 
@@ -119,3 +143,12 @@ firebase deploy --only functions:jarvisTelegramApprovalWebhook --project phrasem
 попытка нажать чужую кнопку это свидетельство, а не повод для тишины.
 Действий за нажатием пока нет: департаменты только наблюдают. Кнопки готовы
 к моменту, когда действия появятся.
+
+Отклонённый совет (нажали «✕») не появляется в сводке повторно 3 суток
+(`REJECTION_MEMORY_MS` в `recent_rejections.ts`) — если проблема не решилась,
+Джарвис напомнит снова после этого окна, а не молчит навсегда.
+
+Находки сортируются по важности (`severity.ts`) перед обрезкой до пяти в
+сообщении: платежи и безопасность — P0, поддержка — P1, качество/деньги — P2,
+рост/контент/фабрика/удержание — P3. Повторы с одинаковым (department,
+finding) в рамках одного прогона склеиваются в одну находку.

@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 import { Text, View } from 'react-native';
 import { Image } from 'expo-image';
+import { FlowText } from '../text-integrity/FlowText';
 import type { Theme, ThemeMode } from '../../constants/theme';
 import { pearlIconForTheme } from '../../app/coin_icons';
 
@@ -36,8 +37,10 @@ function FlashcardsHubHeaderBase({ title, balance, t, themeMode }: FlashcardsHub
         marginBottom: 10,
       }}
     >
-      <Text
-        numberOfLines={1}
+      {/* зачем: text-integrity — заголовок переносится, шапка растёт; усечение запрещено. */}
+      <FlowText
+        testID="flashcards-hub-title"
+        provenance="authored"
         style={{
           flex: 1,
           minWidth: 0,
@@ -48,7 +51,7 @@ function FlashcardsHubHeaderBase({ title, balance, t, themeMode }: FlashcardsHub
         }}
       >
         {title}
-      </Text>
+      </FlowText>
       <View
         accessible
         accessibilityLabel={`Баланс: ${balance}`}

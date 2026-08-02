@@ -1452,7 +1452,8 @@ function PlayerProfileModalBody({
                     до нечитаемого кегля рядом с длинными). Значения тут
                     короткие — «12.3K», «Lv.42», «365», — поэтому фиксированный
                     кегль с tabular-nums: цифры одной ширины, три колонки не
-                    пляшут. Длинное значение обрежется хвостом, а не сожмётся. */}
+                    пляшут. text-integrity: clip запрещён (усечение без следа) —
+                    аномально длинное значение получит честное многоточие. */}
                 <Text
                   style={{
                     color: metric.color,
@@ -1463,7 +1464,6 @@ function PlayerProfileModalBody({
                     fontVariant: ['tabular-nums'],
                   }}
                   numberOfLines={1}
-                  ellipsizeMode="clip"
                   maxFontSizeMultiplier={1.1}
                 >
                   {metric.value}

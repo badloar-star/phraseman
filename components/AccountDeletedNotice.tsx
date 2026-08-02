@@ -12,7 +12,8 @@
 // насквозь к кнопкам онбординга под ней.
 // ════════════════════════════════════════════════════════════════════════════
 import React, { memo, useEffect, useRef, useState } from 'react';
-import { Animated, Easing, StyleSheet, Text, View } from 'react-native';
+import { Animated, Easing, StyleSheet, View } from 'react-native';
+import { FlowText } from './text-integrity/FlowText';
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { ACCOUNT_DELETED_NOTICE_DURATION_MS } from '../app/account_deleted_notice';
@@ -100,9 +101,11 @@ function AccountDeletedNotice({ message, onDone, light = false }: Props) {
       ]}
     >
       <View style={[styles.pill, light && styles.pillLight]}>
-        <Text style={[styles.text, light && styles.textLight]} numberOfLines={2}>
+        {/* зачем: text-integrity — длинная локаль переносится, пилюля растёт
+            по паддингам; усечение numberOfLines запрещено. */}
+        <FlowText testID="account-deleted-notice-text" provenance="authored" style={[styles.text, light && styles.textLight]}>
           {message}
-        </Text>
+        </FlowText>
       </View>
     </Animated.View>
   );

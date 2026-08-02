@@ -10,8 +10,9 @@
 // Разделение — тоном и hairline-линией снизу, без обводок контейнеров.
 // ════════════════════════════════════════════════════════════════════════════
 import React from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { FlowText } from './text-integrity/FlowText';
 import TapScale from './TapScale';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
@@ -76,9 +77,15 @@ export default function SectionSheetHeader({
           justifyContent: 'center',
         }}
       >
-        <Text style={{ color: t.textPrimary, fontSize: 17, fontWeight: '600' }} numberOfLines={1}>
+        {/* зачем: text-integrity — длинный заголовок переносится по центру
+            (2 строки по 17px помещаются в фикс-высоту 56), не усекается. */}
+        <FlowText
+          testID="section-sheet-title"
+          provenance="authored"
+          style={{ color: t.textPrimary, fontSize: 17, fontWeight: '600', textAlign: 'center' }}
+        >
           {title}
-        </Text>
+        </FlowText>
       </View>
       <View
         style={{

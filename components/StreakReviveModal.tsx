@@ -296,12 +296,12 @@ function StreakReviveModal({ visible, offer, onClose, onRevived, shopReturnTo = 
               <Ionicons name="close" size={27} color={accentDarkText} />
             </Pressable>
             {/* зачем: убран шрифто-сжимающий проп (запрещён на iOS) — streak-число
-                реалистично 1-3 цифры, tabular-nums держит фикс. ширину цифр,
-                clip как крайний случай вместо сжатия при аномально большом значении */}
+                реалистично 1-3 цифры, tabular-nums держит фикс. ширину цифр.
+                text-integrity: clip тоже запрещён (усечение без следа) — при
+                аномальном числе честнее системное многоточие. */}
             <Text
               style={[styles.streakNumber, compactHeight && styles.streakNumberCompact, { color: accentDarkText, fontVariant: ['tabular-nums'] }]}
               numberOfLines={1}
-              ellipsizeMode="clip"
             >
               {lostStreak}
             </Text>

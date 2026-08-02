@@ -1,6 +1,7 @@
 import React, { useMemo, useRef } from 'react';
-import { View, Text, Animated, Pressable, StyleSheet } from 'react-native';
+import { View, Animated, Pressable, StyleSheet } from 'react-native';
 import Svg, { Circle, Defs, LinearGradient as SvgLinearGradient, Stop } from 'react-native-svg';
+import { FlowText } from '../text-integrity/FlowText';
 import { useTheme } from '../ThemeContext';
 import { useLang } from '../LangContext';
 import { triLang } from '../../constants/i18n';
@@ -129,14 +130,17 @@ function SingleRing({ state, color, gradientId, caption, trackColor, announceTra
         </Svg>
         {state.valueLabel !== '' && (
           <View pointerEvents="none" style={s.valueWrap}>
-            <Text allowFontScaling={false} style={[s.valueText, { color }]} numberOfLines={1}>
+            {/* зачем: text-integrity — масштабирование шрифта не отключаем и не
+                усечём: цифра короткая («64%», «4/10»), центр кольца без клипа. */}
+            <FlowText testID={`day-ring-value-${gradientId}`} provenance="authored" style={[s.valueText, { color }]}>
               {state.valueLabel}
-            </Text>
+            </FlowText>
           </View>
         )}
-        <Text allowFontScaling={false} style={[s.caption, { color: textColor }]} numberOfLines={1}>
+        {/* Длинная подпись при крупном шрифте переносится под кольцом, колонка растёт. */}
+        <FlowText testID={`day-ring-caption-${gradientId}`} provenance="authored" style={[s.caption, { color: textColor }]}>
           {caption}
-        </Text>
+        </FlowText>
       </Pressable>
     </Animated.View>
   );

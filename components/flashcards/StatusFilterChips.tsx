@@ -1,5 +1,6 @@
 import React, { memo, useMemo } from 'react';
-import { ScrollView, Text, TouchableOpacity } from 'react-native';
+import { ScrollView, TouchableOpacity } from 'react-native';
+import { FlowText } from '../text-integrity/FlowText';
 import type { Theme } from '../../constants/theme';
 import {
   FLASHCARD_STATUS_COLOR,
@@ -77,8 +78,11 @@ function StatusFilterChipsBase({
           backgroundColor: active ? (color ? `${color}33` : `${t.accent}33`) : t.bgSurface,
         }}
       >
-        <Text
-          numberOfLines={1}
+        {/* зачем: text-integrity — чип в горизонтальном скролле, ширина не
+            ограничена: длинный лейбл делает чип шире, усечение не нужно. */}
+        <FlowText
+          testID={`flashcards-status-chip-${key}`}
+          provenance="authored"
           style={{
             color: active ? (color ?? t.accent) : t.textSecond,
             fontSize: 12.5,
@@ -86,7 +90,7 @@ function StatusFilterChipsBase({
           }}
         >
           {label}
-        </Text>
+        </FlowText>
       </TouchableOpacity>
     );
   };

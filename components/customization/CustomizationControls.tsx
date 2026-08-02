@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Animated, Easing, Pressable, StyleSheet, Text, View } from 'react-native';
 import { Image } from 'expo-image';
+import { FlowText } from '../text-integrity/FlowText';
 import TapScale from '../TapScale';
 import { useTheme } from '../ThemeContext';
 import { pearlIconForTheme } from '../../app/coin_icons';
@@ -79,7 +80,8 @@ export function CustomizationActionBar({ action, label, cost, busy, bottomOffset
           busy && { opacity: 0.72 },
         ]}
       >
-        <Text style={[styles.actionText, { color: t.correctText }]} numberOfLines={1}>{label}</Text>
+        {/* зачем: text-integrity — лейбл CTA переносится, кнопка растёт по minHeight. */}
+        <FlowText testID="customization-action-label" provenance="authored" style={[styles.actionText, { color: t.correctText }]}>{label}</FlowText>
         {cost !== null ? (
           <View style={styles.priceBox}>
             <Image source={pearlIconForTheme(themeMode)} style={styles.priceCoin} contentFit="contain" accessible={false} />

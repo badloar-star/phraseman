@@ -29,6 +29,7 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { FlowText } from '../text-integrity/FlowText';
 import { useTheme } from '../ThemeContext';
 import { useLang } from '../LangContext';
 import { triLang } from '../../constants/i18n';
@@ -392,9 +393,10 @@ export default function NicknameEditModal({
                 }}
                 onPress={() => { if (saving) return; doHaptic(); close(); }}
               >
-                <Text style={{ color: t.textMuted, fontSize: f.body }} numberOfLines={1}>
+                {/* зачем: text-integrity — лейбл переносится, кнопка растёт по паддингам. */}
+                <FlowText testID="nickname-cancel-label" provenance="authored" style={{ color: t.textMuted, fontSize: f.body }}>
                   {L('Отмена', 'Скасувати', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj')}
-                </Text>
+                </FlowText>
               </TouchableOpacity>
               <TouchableOpacity
                 testID="nickname-save"
@@ -419,15 +421,18 @@ export default function NicknameEditModal({
                   ) : null}
                   {/* Статично уменьшенный кегль вместо динамического сжатия шрифта
                       (запрещённый паттерн): длинные переводы («Kaydediliyor»,
-                      «Zapisywanie») влезают рядом с индикатором, guard-ok */}
-                  <Text
+                      «Zapisywanie») влезают рядом с индикатором, guard-ok.
+                      text-integrity: без усечения — крайний случай переносится,
+                      кнопка растёт по minHeight. */}
+                  <FlowText
+                    testID="nickname-save-label"
+                    provenance="authored"
                     style={{ color: t.correctText, fontSize: Math.min(f.body, 13), fontWeight: '700', flexShrink: 1 }}
-                    numberOfLines={1}
                   >
                     {saving
                       ? L('Сохраняем', 'Зберігаємо', 'Guardando', 'Salvando', 'Đang lưu', 'Menyimpan', 'Kaydediliyor', 'Zapisywanie')
                       : L('Сохранить', 'Зберегти', 'Guardar', 'Salvar', 'Lưu', 'Simpan', 'Kaydet', 'Zapisz')}
-                  </Text>
+                  </FlowText>
                 </View>
               </TouchableOpacity>
             </View>

@@ -23,6 +23,7 @@ import {
 } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from './SafeLinearGradient';
+import { FlowText } from './text-integrity/FlowText';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
 import { hapticTap } from '../hooks/use-haptics';
@@ -294,12 +295,14 @@ function ReleaseNotesModal({ visible, onClose }: Props) {
           <View style={styles.chipsWrap}>
             {chips.map((chip) => (
               <View key={chip} style={styles.chip}>
-                <Text
+                {/* зачем: text-integrity — чип переносится/растёт, не усекается. */}
+                <FlowText
+                  testID="release-notes-chip"
+                  provenance="authored"
                   style={[styles.chipText, { fontSize: captionSize, color: monoIcon(themeMode, '#DCE8FF') }]}
-                  numberOfLines={1}
                 >
                   {chip}
-                </Text>
+                </FlowText>
               </View>
             ))}
           </View>

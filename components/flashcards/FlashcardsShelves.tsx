@@ -1,6 +1,7 @@
 import React, { memo, useMemo } from 'react';
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { LinearGradient } from '../SafeLinearGradient';
+import { FlowText } from '../text-integrity/FlowText';
 import type { Theme } from '../../constants/theme';
 
 /**
@@ -119,10 +120,11 @@ function FlashcardsShelvesBase({
                 <View style={{ paddingHorizontal: 11, paddingTop: 9, paddingBottom: 11 }}>
                   {/* зачем: процент освоения убран решением владельца — поля
                       прогресса по набору в модели нет, а выдуманное число хуже
-                      его отсутствия. Обложка и название самодостаточны. */}
-                  <Text numberOfLines={1} style={{ color: t.textPrimary, fontSize: 12.5, fontWeight: '800' }}>
+                      его отсутствия. Обложка и название самодостаточны.
+                      text-integrity: название переносится, карточка растёт. */}
+                  <FlowText testID={`flashcards-shelf-continue-${p.id}`} provenance="authored" style={{ color: t.textPrimary, fontSize: 12.5, fontWeight: '800' }}>
                     {p.title}
-                  </Text>
+                  </FlowText>
                 </View>
               </TouchableOpacity>
             ))}
@@ -154,9 +156,9 @@ function FlashcardsShelvesBase({
                 >
                   <Text style={{ fontSize: 16, fontWeight: '900', color: 'rgba(255,255,255,0.9)' }}>{p.mono}</Text>
                 </LinearGradient>
-                <Text numberOfLines={2} style={{ color: t.textPrimary, fontSize: 10.5, fontWeight: '700', marginTop: 5 }}>
+                <FlowText testID={`flashcards-shelf-cinema-${p.id}`} provenance="authored" style={{ color: t.textPrimary, fontSize: 10.5, fontWeight: '700', marginTop: 5 }}>
                   {p.title}
-                </Text>
+                </FlowText>
                 {p.owned ? (
                   <Text style={{ color: t.correct, fontSize: 10, fontWeight: '800', marginTop: 2 }}>
                     ✓ {labels.opened}
@@ -196,9 +198,9 @@ function FlashcardsShelvesBase({
                 }}
               >
                 <Text style={{ fontSize: 18 }}>{th.emoji}</Text>
-                <Text numberOfLines={1} style={{ color: t.textPrimary, fontSize: 11.5, fontWeight: '800', marginTop: 3 }}>
+                <FlowText testID={`flashcards-shelf-theme-${th.id}`} provenance="authored" style={{ color: t.textPrimary, fontSize: 11.5, fontWeight: '800', marginTop: 3, textAlign: 'center' }}>
                   {th.label}
-                </Text>
+                </FlowText>
               </TouchableOpacity>
             ))}
           </View>

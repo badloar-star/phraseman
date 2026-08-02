@@ -1,7 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Svg, { Defs, RadialGradient as SvgRadialGradient, Stop, Rect } from 'react-native-svg';
+import { FlowText } from '../text-integrity/FlowText';
 import AvatarView from '../AvatarView';
 import TapScale from '../TapScale';
 import { useTheme } from '../ThemeContext';
@@ -66,11 +67,13 @@ export const CustomizationHero = React.memo(function CustomizationHero(props: Cu
           animateAura={props.motionEnabled && !reduceMotion}
         />
       </View>
-      <Text style={[styles.name, { color: t.heroTextPrimary }]} numberOfLines={1}>{props.avatarLabel}</Text>
+      {/* зачем: text-integrity — имя и чипы переносятся (FlowText), сцена-колонка
+          растёт; усечение numberOfLines запрещено. */}
+      <FlowText testID="customization-hero-name" provenance="authored" style={[styles.name, { color: t.heroTextPrimary }]}>{props.avatarLabel}</FlowText>
       <View style={styles.chips}>
         <View style={[styles.chip, { backgroundColor: chipBg }]}>
           <View style={[styles.auraDot, { backgroundColor: auraColor, shadowColor: auraColor }]} />
-          <Text style={[styles.chipText, { color: t.heroTextMuted }]} numberOfLines={1}>{props.auraLabel}</Text>
+          <FlowText testID="customization-hero-aura-chip" provenance="authored" style={[styles.chipText, { color: t.heroTextMuted }]}>{props.auraLabel}</FlowText>
         </View>
         {props.onEdit ? (
           <TapScale
@@ -81,7 +84,7 @@ export const CustomizationHero = React.memo(function CustomizationHero(props: Cu
             style={[styles.chip, { backgroundColor: chipBg }]}
           >
             <Ionicons name="color-palette-outline" size={14} color={t.heroTextPrimary} />
-            <Text style={[styles.chipText, { color: t.heroTextPrimary }]} numberOfLines={1}>{props.editLabel}</Text>
+            <FlowText testID="customization-hero-edit-chip" provenance="authored" style={[styles.chipText, { color: t.heroTextPrimary }]}>{props.editLabel}</FlowText>
           </TapScale>
         ) : null}
       </View>

@@ -1,5 +1,6 @@
 import React, { memo, useEffect, useRef, useState } from 'react';
 import { Keyboard, KeyboardAvoidingView, Modal, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { FlowText } from './text-integrity/FlowText';
 import { useTheme } from './ThemeContext';
 import { submitUserReport } from '../app/user_report';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
@@ -178,8 +179,11 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
               </Text>
             ) : (
               <>
-                <Text
-                  numberOfLines={2}
+                {/* зачем: text-integrity — заголовок и ник переносятся, карточка
+                    растёт; ник — пользовательский контент (provenance user). */}
+                <FlowText
+                  testID="report-user-title"
+                  provenance="authored"
                   style={{
                     color: t.textPrimary,
                     fontSize: f.h3,
@@ -190,10 +194,10 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
                   }}
                 >
                   {tx.title}
-                </Text>
-                <Text style={{ color: t.textSecond, fontSize: f.body, marginBottom: 20, textAlign: 'center' }} numberOfLines={1}>
+                </FlowText>
+                <FlowText testID="report-user-name" provenance="user" style={{ color: t.textSecond, fontSize: f.body, marginBottom: 20, textAlign: 'center' }}>
                   {reportedName}
-                </Text>
+                </FlowText>
                 <View style={{ flexDirection: 'row', gap: 10, width: '100%' }}>
                   <TouchableOpacity
                     onPress={() => {

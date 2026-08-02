@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 
 import { COMPASS_RICH, compassShadow } from '../../constants/compassTheme';
+import { FlowText } from '../text-integrity/FlowText';
 
 export type CompassStackPreviewCard = {
   id: string;
@@ -387,7 +388,8 @@ function PreviewCard({
           <Ionicons name={card.icon as any} size={24} color={card.accent} />
         </View>
         <View style={styles.sourcePill}>
-          <Text numberOfLines={1} style={styles.sourceText}>{card.source}</Text>
+          {/* зачем: text-integrity — источник переносится в пилюле, не усекается. */}
+          <FlowText testID="compass-preview-source" provenance="authored" style={styles.sourceText}>{card.source}</FlowText>
         </View>
       </View>
 

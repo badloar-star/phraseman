@@ -82,7 +82,7 @@ export default function AdminReferralLab() {
           }}
           activeOpacity={0.8}
           testID="referral-lab-ended"
-          style={[styles.row, { backgroundColor: t.bgCard, borderColor: t.border }]}
+          style={[styles.row, { backgroundColor: t.bgCard }]}
         >
           <Ionicons name="time-outline" size={22} color="#E5484D" style={{ marginRight: 12 }} />
           <View style={{ flex: 1 }}>
@@ -127,8 +127,9 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
+    // зачем: запрет владельца «никаких обводок контейнеров» — ряд отделяется
+    // тоном bgCard на bgPrimary, рамка (унаследованная) убрана при аудите.
     borderRadius: 12,
-    borderWidth: 1,
     padding: 14,
     marginBottom: 10,
   },

@@ -947,6 +947,19 @@ export function validateTournamentTask(task: TournamentTask): TaskValidation {
   return { ok: true, kind };
 }
 
+/**
+ * зачем 2026-08-02 (владелец: «для пары максимум 3 слова в плашке»): раньше
+ * контракт требовал в плитке МИНИМУМ два слова, из-за чего в режим шли целые
+ * реплики вроде «I need something for a sore throat», а плитка с фиксированной
+ * геометрией резала их многоточием. Требование развёрнуто: теперь это верхний
+ * потолок, а пары собираются из словаря дня.
+ */
+const SPEED_MATCH_MAX_TILE_WORDS = 3;
+
+function speedMatchTileWordCount(value: string): number {
+  return value.trim().split(/\s+/u).filter((token) => token.length > 0).length;
+}
+
 function hasStrictSpeedMatchFieldContract(task: TournamentTask): boolean {
   if (!isRecord(task.payload) || !Array.isArray(task.payload.rightOptions)
     || !Array.isArray(task.payload.items)) return false;
@@ -956,7 +969,11 @@ function hasStrictSpeedMatchFieldContract(task: TournamentTask): boolean {
     || !boundedStringArray(rightOptions, {
       maxItems: TOURNAMENT_TASK_LIMITS.maxTimeattackItems,
       maxItemBytes: TOURNAMENT_TASK_LIMITS.optionBytes,
-    }) || !rightOptions.every((value) => value.trim().split(/\s+/u).length >= 2)) return false;
+    })
+    || !rightOptions.every((value) => {
+      const words = speedMatchTileWordCount(value);
+      return words >= 1 && words <= SPEED_MATCH_MAX_TILE_WORDS;
+    })) return false;
   const normalized = rightOptions.map((value) => value.trim().toLocaleLowerCase('ru'));
   if (new Set(normalized).size !== normalized.length) return false;
   const correctIndexes = new Set<number>();
@@ -966,7 +983,8 @@ function hasStrictSpeedMatchFieldContract(task: TournamentTask): boolean {
       || item.options.length !== rightOptions.length
       || !item.options.every((option, index) => option === rightOptions[index])
       || typeof item.prompt !== 'string'
-      || item.prompt.trim().split(/\s+/u).length < 2
+      || speedMatchTileWordCount(item.prompt) < 1
+      || speedMatchTileWordCount(item.prompt) > SPEED_MATCH_MAX_TILE_WORDS
       || !Number.isInteger(item.correctIndex)) return false;
     prompts.add(item.prompt.trim().toLocaleLowerCase('en'));
     const correctIndex = Number(item.correctIndex);

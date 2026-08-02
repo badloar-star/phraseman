@@ -115,9 +115,9 @@ describe('new deterministic tournament pool v2', () => {
     expect(new Set(result.tasks.map(normalizedTaskSemanticSignature)).size).toBe(4000);
     expect(new Set(result.tasks.map(punctuationInsensitiveTaskSignature)).size).toBe(4000);
     expect(result.manifest.counts).toEqual({
-      'guess_phrase:1': 400,
-      'guess_phrase:2': 400,
-      'guess_phrase:3': 400,
+      'guess_phrase:1': 470,
+      'guess_phrase:2': 469,
+      'guess_phrase:3': 469,
       'fill_gap:1': 160,
       'fill_gap:2': 180,
       'fill_gap:3': 160,
@@ -126,12 +126,14 @@ describe('new deterministic tournament pool v2', () => {
       'translate_build:1': 400,
       'translate_build:2': 700,
       'translate_build:3': 400,
-      'speed_match:1': 98,
-      'speed_match:2': 202,
-      'speed_match:3': 100,
+      // Пары собираются из словаря дня (плитка ≤3 слов), а словарь беднее фраз:
+      // ёмкость режима ниже прежней, разница добрана guess_phrase.
+      'speed_match:1': 60,
+      'speed_match:2': 70,
+      'speed_match:3': 62,
     });
-    expect(result.manifest.diversity.uniqueSpeedPairs).toBe(2400);
-    expect(result.manifest.diversity.uniqueSpeedEnglishPrompts).toBe(2400);
+    expect(result.manifest.diversity.uniqueSpeedPairs).toBe(1152);
+    expect(result.manifest.diversity.uniqueSpeedEnglishPrompts).toBe(1152);
     expect(Object.values(result.manifest.diversity.fillGapPositions).reduce((a, b) => a + b, 0)).toBe(500);
     expect(Object.keys(result.manifest.diversity.fillGapGrammarRoles).length).toBeGreaterThanOrEqual(6);
     expect(result.manifest.diversity.fillGapCorrectTokens.i ?? 0).toBeLessThanOrEqual(50);
@@ -371,29 +373,36 @@ describe('new deterministic tournament pool v2', () => {
     }
   });
 
-  test('speed-match uses contextual phrase pairs instead of incompatible isolated forms', () => {
+  /**
+   * зачем 2026-08-02 (владелец: «для пары максимум 3 слова в плашке»): раньше
+   * этот тест требовал ОБРАТНОГО — минимум два слова в плитке, чтобы уйти от
+   * изолированных словоформ к контекстным фразам. На практике плитка имеет
+   * фиксированную геометрию и режет текст на двух строках, поэтому целые
+   * реплики приходили к игроку как «Мне нужно что-нибудь от больно…».
+   * Источником пар стал авторский словарь дня, а требование к длине
+   * развёрнуто в верхний потолок.
+   */
+  test('speed-match tiles never exceed three words on either side', () => {
     const tasks = buildProductionSizedPool().tasks.filter((task) => task.mode === 'speed_match');
-    const forbiddenIsolatedPairs = new Set([
-      'sent\u0000отправить',
-      'developing\u0000разрабатывать',
-      'waiting\u0000ждать',
-      'finished\u0000закончить',
-      'similar\u0000похожую',
-      'discussed\u0000обсуждалась',
-      'grouped\u0000сгруппировать',
-    ]);
-
+    expect(tasks.length).toBeGreaterThan(0);
     for (const task of tasks) {
-      expect(task.payload.prompt).toBe('Соедините английские фразы с точными русскими переводами.');
+      expect(task.payload.prompt).toBe('Соедините английские слова с точными русскими переводами.');
       const rightOptions = task.payload.rightOptions as string[];
+      // Одно английское слово не должно встречаться в задании дважды: словарь
+      // разных дней даёт «saw» и как «увидел», и как «увидели».
+      const prompts = (task.payload.items as Array<Record<string, unknown>>)
+        .map((item) => String(item.prompt).trim().toLocaleLowerCase('en'));
+      expect(new Set(prompts).size).toBe(prompts.length);
       for (const item of task.payload.items as Array<Record<string, unknown>>) {
         const prompt = String(item.prompt);
         const translation = rightOptions[Number(item.correctIndex)];
-        expect(phraseTokens(prompt).length).toBeGreaterThanOrEqual(2);
-        expect(phraseTokens(translation).length).toBeGreaterThanOrEqual(2);
-        expect(forbiddenIsolatedPairs).not.toContain(
-          `${prompt.toLocaleLowerCase('en')}\u0000${translation.toLocaleLowerCase('ru')}`,
-        );
+        expect(phraseTokens(prompt).length).toBeLessThanOrEqual(3);
+        expect(phraseTokens(translation).length).toBeLessThanOrEqual(3);
+        expect(phraseTokens(prompt).length).toBeGreaterThanOrEqual(1);
+        expect(phraseTokens(translation).length).toBeGreaterThanOrEqual(1);
+        // Пояснительные варианты словаря («без звука, выключенный микрофон»)
+        // обрезаются до первого — запятая в плитку попадать не должна.
+        expect(translation).not.toContain(',');
         expect(String((item.explanation as { ruleNote: string }).ruleNote))
           .not.toContain('точная пара из авторского словаря');
       }
@@ -412,7 +421,7 @@ describe('new deterministic tournament pool v2', () => {
   test('all non-speed tasks resolve to authored phrases and phrase-builder never clones a primary phrase', () => {
     const phrases = sourcePhraseMap();
     const tasks = buildProductionSizedPool().tasks.filter((task) => task.mode !== 'speed_match');
-    expect(tasks).toHaveLength(3600);
+    expect(tasks).toHaveLength(3808);
 
     for (const task of tasks) {
       const source = phrases.get(primaryPhraseKey(task));
@@ -635,18 +644,23 @@ describe('new deterministic tournament pool v2', () => {
 
   test('every speed_match is a strict shared 6x6 field with a full explanation for every pair', () => {
     const speedTasks = buildProductionSizedPool().tasks.filter((task) => task.mode === 'speed_match');
-    expect(speedTasks).toHaveLength(400);
+    expect(speedTasks).toHaveLength(192);
 
     for (const task of speedTasks) {
       const rightOptions = task.payload.rightOptions as string[];
       const items = task.payload.items as Array<Record<string, unknown>>;
       expect(rightOptions).toHaveLength(6);
-      expect(rightOptions.every((value) => phraseTokens(value).length >= 2)).toBe(true);
+      // Плитка режет текст на двух строках, поэтому перевод обязан быть коротким.
+      expect(rightOptions.every((value) => {
+        const count = phraseTokens(value).length;
+        return count >= 1 && count <= 3;
+      })).toBe(true);
       expect(new Set(rightOptions.map((value) => value.toLocaleLowerCase('ru'))).size).toBe(6);
       expect(items).toHaveLength(6);
       expect(items.map((item) => item.correctIndex).sort()).toEqual([0, 1, 2, 3, 4, 5]);
       for (const item of items) {
-        expect(phraseTokens(String(item.prompt)).length).toBeGreaterThanOrEqual(2);
+        expect(phraseTokens(String(item.prompt)).length).toBeGreaterThanOrEqual(1);
+        expect(phraseTokens(String(item.prompt)).length).toBeLessThanOrEqual(3);
         expect(item.options).toEqual(rightOptions);
         const reasons = (item.explanation as { wrongOptionReasons: string[] }).wrongOptionReasons;
         expect(reasons).toHaveLength(6);
@@ -658,7 +672,7 @@ describe('new deterministic tournament pool v2', () => {
     }
   });
 
-  test('speed_match uses 2400 non-reused contextual pairs with one stable translation per English prompt', () => {
+  test('speed_match uses 1152 non-reused vocabulary pairs with one stable translation per English prompt', () => {
     const speedTasks = buildProductionSizedPool().tasks.filter((task) => task.mode === 'speed_match');
     const pairs: Array<[string, string]> = [];
     for (const task of speedTasks) {
@@ -671,8 +685,8 @@ describe('new deterministic tournament pool v2', () => {
       }
     }
 
-    expect(pairs).toHaveLength(2400);
-    expect(new Set(pairs.map(([en, ru]) => `${en}\u0000${ru}`)).size).toBe(2400);
+    expect(pairs).toHaveLength(1152);
+    expect(new Set(pairs.map(([en, ru]) => `${en}\u0000${ru}`)).size).toBe(1152);
     const punctuationInsensitivePairs = pairs.map(([en, ru]) => [en, ru]
       .map((value) => value.normalize('NFKC')
         .replace(/[’‘`]/gu, "'")
@@ -680,7 +694,7 @@ describe('new deterministic tournament pool v2', () => {
         .replace(/\s+/gu, ' ')
         .trim())
       .join('\u0000'));
-    expect(new Set(punctuationInsensitivePairs).size).toBe(2400);
+    expect(new Set(punctuationInsensitivePairs).size).toBe(1152);
     const translationsByEnglish = new Map<string, Set<string>>();
     for (const [en, ru] of pairs) {
       const translations = translationsByEnglish.get(en) ?? new Set<string>();

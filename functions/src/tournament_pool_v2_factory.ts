@@ -14,9 +14,16 @@ import { requiredCells } from './tournament_pool_plan';
 
 export const NEW_TOURNAMENT_POOL_VERSION = 'tpool_20260801_v8' as const;
 export const NEW_TOURNAMENT_POOL_CELL_QUOTAS: Readonly<Record<string, number>> = Object.freeze({
-  'guess_phrase:1': 400,
-  'guess_phrase:2': 400,
-  'guess_phrase:3': 400,
+  // зачем 2026-08-02: «Пары на скорость» перешли на словарь дня (плитка ≤3
+  // слов), а словарь беднее фраз — режим даёт 192 задания вместо 400.
+  // Недостающие 208 отданы guess_phrase: у него самый большой запас
+  // кандидатов, а корзины раздачи остаются неполными. Размеры прочих режимов
+  // трогать нельзя — задания раздаются корзинами по 40 со сменой раз в N дней,
+  // и ПЛОТНО набитая корзина не успевает прокрутиться целиком: часть заданий
+  // не попадёт к игрокам вообще (translate_build при 1560 терял 35 штук).
+  'guess_phrase:1': 470,
+  'guess_phrase:2': 469,
+  'guess_phrase:3': 469,
   'fill_gap:1': 160,
   'fill_gap:2': 180,
   'fill_gap:3': 160,
@@ -25,9 +32,9 @@ export const NEW_TOURNAMENT_POOL_CELL_QUOTAS: Readonly<Record<string, number>> =
   'translate_build:1': 400,
   'translate_build:2': 700,
   'translate_build:3': 400,
-  'speed_match:1': 98,
-  'speed_match:2': 202,
-  'speed_match:3': 100,
+  'speed_match:1': 60,
+  'speed_match:2': 70,
+  'speed_match:3': 62,
 });
 export const NEW_TOURNAMENT_POOL_TASK_COUNT = 4000;
 export const NEW_TOURNAMENT_POOL_EXPOSURE_BUCKET_SIZE = 40;
@@ -318,22 +325,59 @@ function usablePairs(day: SourceDay): AuthoredPair[] {
     .filter((pair): pair is AuthoredPair => !!pair);
 }
 
+/**
+ * Плитка «Пар на скорость» имеет фиксированную геометрию и режет текст на двух
+ * строках, поэтому длина здесь — не косметика, а контракт содержимого.
+ *
+ * зачем 2026-08-02 (владелец: «для пары максимум 3 слова в плашке»): пары
+ * собирались из ФРАЗ дня, где верхней границы по словам не было вовсе — только
+ * байтовый потолок в 512/128 байт. В плитки попадало «I need something for a
+ * sore throat» и «Мне нужно что-нибудь от больно…» с многоточием. Замер по
+ * реальному контенту показал, что среди фраз коротких почти нет: при потолке в
+ * 3 слова набиралось 15 пар на A1 и ноль на A2/B1, то есть режим исчезал.
+ * Источником стал авторский словарь дня (vocabulary[]) — там английская
+ * сторона почти всегда одно слово, а русская укладывается в три.
+ */
+const SPEED_MATCH_MAX_WORDS = 3;
+
+function speedWordCount(value: string): number {
+  return value.trim().split(/\s+/u).filter((token) => token.length > 0).length;
+}
+
+/**
+ * зачем: словарь пишется для чтения человеком, поэтому перевод часто несёт
+ * пояснительные варианты через запятую («mute — без звука, выключенный
+ * микрофон»). В плитку идёт только первый вариант — он и есть основной перевод.
+ */
+function primaryTranslation(value: string): string {
+  return withoutTerminalPunctuation(value.split(',')[0] ?? '').trim();
+}
+
 function authoredSpeedPairs(day: SourceDay): AuthoredSpeedPair[] {
   const pairs: AuthoredSpeedPair[] = [];
   const seenEnglish = new Set<string>();
   const seenRussian = new Set<string>();
-  for (const pair of usablePairs(day)) {
-    if (phraseTokens(pair.en).length < 2 || phraseTokens(pair.ru).length < 2
-      || !within(pair.en, TOURNAMENT_TASK_LIMITS.promptBytes)
-      || !within(pair.ru, TOURNAMENT_TASK_LIMITS.optionBytes)) continue;
-    const englishKey = normalize(pair.en);
-    const russianKey = normalize(pair.ru);
+  for (const entry of day.vocabulary ?? []) {
+    const en = withoutTerminalPunctuation(String(entry.word ?? '').trim());
+    const ru = primaryTranslation(String(entry.translation?.ru ?? ''));
+    if (!en || !ru || !passesAuditedContentGate(en, ru)) continue;
+    if (speedWordCount(en) > SPEED_MATCH_MAX_WORDS
+      || speedWordCount(ru) > SPEED_MATCH_MAX_WORDS
+      || !within(en, TOURNAMENT_TASK_LIMITS.promptBytes)
+      || !within(ru, TOURNAMENT_TASK_LIMITS.optionBytes)) continue;
+    const englishKey = semanticNormalize(en);
+    const russianKey = semanticNormalize(ru);
     if (seenEnglish.has(englishKey) || seenRussian.has(russianKey)) continue;
     seenEnglish.add(englishKey);
     seenRussian.add(russianKey);
+    // Словарная пара не привязана к конкретной фразе, но происхождение обязано
+    // остаться прослеживаемым — ключом служит само слово внутри дня.
+    const wordId = `vocab:${day.planId}:${day.dayIndex}:${semanticNormalize(en)}`;
     pairs.push({
-      ...pair,
-      phraseId: pair.id,
+      id: wordId,
+      en,
+      ru,
+      phraseId: wordId,
       sourcePlanId: String(day.planId),
       sourceDayIndex: Number(day.dayIndex),
     });
@@ -923,10 +967,14 @@ function buildSpeedMatchTask(
   if (pairs.length !== 6
     || pairs.some((pair) => !within(pair.en, TOURNAMENT_TASK_LIMITS.promptBytes)
       || !within(pair.ru, TOURNAMENT_TASK_LIMITS.optionBytes)
-      || phraseTokens(pair.en).length < 2
-      || phraseTokens(pair.ru).length < 2)) return null;
-  if (new Set(pairs.map((pair) => normalize(pair.ru))).size !== 6
-    || new Set(pairs.map((pair) => normalize(pair.en))).size !== 6) return null;
+      || speedWordCount(pair.en) > SPEED_MATCH_MAX_WORDS
+      || speedWordCount(pair.ru) > SPEED_MATCH_MAX_WORDS)) return null;
+  // зачем: сборщик групп резервирует слова по semanticNormalize, поэтому
+  // уникальность внутри задания обязана считаться тем же правилом. При
+  // проверке через normalize «выходные дни» и «выходные (дни)» выглядели
+  // разными, попадали в одну группу — и задание отбраковывалось целиком.
+  if (new Set(pairs.map((pair) => semanticNormalize(pair.ru))).size !== 6
+    || new Set(pairs.map((pair) => semanticNormalize(pair.en))).size !== 6) return null;
 
   const itemPairs = stableShuffle(pairs, `pairs-left:${day.planId}:${day.dayIndex}`);
   const rightPairs = stableShuffle(pairs, `pairs-right:${day.planId}:${day.dayIndex}`);
@@ -938,11 +986,11 @@ function buildSpeedMatchTask(
       options: [...rightOptions],
       correctIndex,
       explanation: {
-        ruleNote: truncateToBytes(`«${withoutTerminalPunctuation(pair.en)}» означает «${withoutTerminalPunctuation(pair.ru)}» в контексте авторского примера.`, TOURNAMENT_TASK_LIMITS.explanationBytes),
+        ruleNote: truncateToBytes(`«${withoutTerminalPunctuation(pair.en)}» означает «${withoutTerminalPunctuation(pair.ru)}» в авторском словаре дня.`, TOURNAMENT_TASK_LIMITS.explanationBytes),
         example: truncateToBytes(`${pair.en} — ${pair.ru}`, TOURNAMENT_TASK_LIMITS.explanationBytes),
         wrongOptionReasons: rightPairs.map((right) => right.id === pair.id
           ? ''
-          : truncateToBytes(`«${right.ru}» — перевод фразы «${withoutTerminalPunctuation(right.en)}», а не «${withoutTerminalPunctuation(pair.en)}».`, TOURNAMENT_TASK_LIMITS.explanationBytes)),
+          : truncateToBytes(`«${right.ru}» — перевод слова «${withoutTerminalPunctuation(right.en)}», а не «${withoutTerminalPunctuation(pair.en)}».`, TOURNAMENT_TASK_LIMITS.explanationBytes)),
       },
     };
   });
@@ -950,11 +998,11 @@ function buildSpeedMatchTask(
   const identity = pairs.map((pair) => `${normalize(pair.en)}=${normalize(pair.ru)}`).sort().join('|');
   const task = baseTask(day, 'speed_match', `pairs:${day.planId}:${day.dayIndex}:${identity}`,
     pairs.map((pair) => pair.phraseId), {
-      prompt: 'Соедините английские фразы с точными русскими переводами.',
+      prompt: 'Соедините английские слова с точными русскими переводами.',
       rightOptions,
       items,
     }, {
-      ruleNote: 'Каждая фраза слева соединяется с её переводом справа. Шесть контекстных пар — никаких лишних карточек.',
+      ruleNote: 'Каждое слово слева соединяется с его переводом справа. Шесть словарных пар — никаких лишних карточек.',
       example: `${first.en} — ${first.ru}`,
       wrongOptionReasons: [],
     });
@@ -1016,16 +1064,23 @@ function buildGlobalDisjointSpeedCandidates(days: readonly SourceDay[]): PoolCan
     for (let groupIndex = 0; groupIndex < target; groupIndex += 1) {
       const group: AuthoredSpeedPair[] = [];
       const groupRussian = new Set<string>();
+      const groupEnglish = new Set<string>();
       for (let index = 0; index < remaining.length && group.length < 6;) {
         const pair = remaining[index];
         const pairKey = `${semanticNormalize(pair.en)}\u0000${semanticNormalize(pair.ru)}`;
         const englishKey = semanticNormalize(pair.en);
         const russianKey = semanticNormalize(pair.ru);
-        if (reservedPairs.has(pairKey) || reservedEnglish.has(englishKey) || groupRussian.has(russianKey)) {
+        // зачем 2026-08-02: словарь разных дней даёт одно английское слово с
+        // разными переводами («saw» → «увидел» и «увидели»). reservedEnglish
+        // защищает только между заданиями, поэтому оба варианта попадали в одну
+        // группу — задание с дублем слева отбраковывалось и генерация падала.
+        if (reservedPairs.has(pairKey) || reservedEnglish.has(englishKey)
+          || groupEnglish.has(englishKey) || groupRussian.has(russianKey)) {
           index += 1;
           continue;
         }
         group.push(pair);
+        groupEnglish.add(englishKey);
         groupRussian.add(russianKey);
         remaining.splice(index, 1);
       }

@@ -20,6 +20,10 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Image } from 'expo-image'; // guard-ok: декоративная жемчужина, число рядом — реальный индикатор
 import { StyleSheet, Text, View } from 'react-native';
+// зачем: allowFontScaling={false} отключает системный размер шрифта — на длинных
+// языках и при крупном шрифте текст обрезался. FlowText это делает безопасно
+// (переносит вместо обрезки) и учитывается гейтом text-integrity.
+import { FlowText } from '../../components/text-integrity';
 import Animated, {
   cancelAnimation,
   Easing,
@@ -724,7 +728,7 @@ export default function TournamentsScreen() {
       >
         {/* Шапка главного таба: название · звёзды сезона · жемчужины. */}
         <View style={styles.header}>
-          <Text style={styles.title} allowFontScaling={false}>Турниры</Text>
+          <FlowText testID="tournaments-title" provenance="authored" style={styles.title}>Турниры</FlowText>
           <View style={styles.headerRight}>
             <V2Counter value={myStars} tone="stars" />
             <V2Counter
@@ -750,12 +754,13 @@ export default function TournamentsScreen() {
             {/* Пульсирующая точка «в эфире» — статус читается боковым зрением. */}
             <View style={styles.kickerRow}>
               {hero.pulsing ? <LiveDot color={P.accent} /> : null}
-              <Text
+              <FlowText
+                testID="tournaments-hero-kicker"
+                provenance="authored"
                 style={[styles.kicker, hero.tone === 'live' && { color: P.accent }]}
-                allowFontScaling={false}
               >
                 {hero.kicker}
-              </Text>
+              </FlowText>
             </View>
 
             {/* Цифры отсчёта — градиентом по тексту (hero-grad эталона). */}
@@ -765,9 +770,9 @@ export default function TournamentsScreen() {
               P={P}
               styles={styles}
             />
-            <Text style={styles.heroSub} allowFontScaling={false}>
+            <FlowText testID="tournaments-hero-sub" provenance="authored" style={styles.heroSub}>
               {hero.sub}
-            </Text>
+            </FlowText>
 
             {live ? (
               <V2Cta
@@ -803,9 +808,9 @@ export default function TournamentsScreen() {
                       accessibilityElementsHidden
                       importantForAccessibility="no"
                     />
-                    <Text style={[styles.ctaPriceText, { color: P.okInk }]} allowFontScaling={false}>
+                    <FlowText testID="tournaments-cta-price" provenance="authored" style={[styles.ctaPriceText, { color: P.okInk }]}>
                       {effectiveEntryGems}
-                    </Text>
+                    </FlowText>
                   </View>
                 ) : undefined}
               >
@@ -848,15 +853,16 @@ export default function TournamentsScreen() {
                       isPast ? { backgroundColor: P.accent } : null,
                       isNext ? styles.tlDotNext : null,
                     ]} />
-                    <Text
+                    <FlowText
+                      testID="tournaments-timeline-label"
+                      provenance="authored"
                       style={[
                         styles.tlLabel,
                         isNext ? { color: P.accent } : isPast ? { color: P.muted } : null,
                       ]}
-                      allowFontScaling={false}
                     >
                       {slot.displayTime}
-                    </Text>
+                    </FlowText>
                   </View>
                 </React.Fragment>
               );
@@ -882,9 +888,9 @@ export default function TournamentsScreen() {
                 <Ionicons name="trophy" size={20} color={METAL.ink} />
               </LinearGradient>
               <View style={styles.bankBody}>
-                <Text style={styles.kicker} allowFontScaling={false}>Банк недели</Text>
+                <FlowText testID="tournaments-bank-kicker" provenance="authored" style={styles.kicker}>Банк недели</FlowText>
                 <View style={styles.bankValueRow}>
-                  <Text style={styles.bankValue} allowFontScaling={false}>{bank}</Text>
+                  <FlowText testID="tournaments-bank-value" provenance="authored" style={styles.bankValue}>{bank}</FlowText>
                   <Image
                     source={coinIconForBalance(bank, themeMode)}
                     style={styles.bankCoin}
@@ -895,7 +901,7 @@ export default function TournamentsScreen() {
                   />
                 </View>
               </View>
-              <Text style={styles.bankWhen} allowFontScaling={false}>топ-3{'\n'}в понедельник</Text>
+              <FlowText testID="tournaments-bank-when" provenance="authored" style={styles.bankWhen}>топ-3{'\n'}в понедельник</FlowText>
               {/* Шеврон — единственный намёк, что карточку можно открыть. */}
               <Ionicons name="chevron-forward" size={18} color={P.ghost} />
             </View>
@@ -904,9 +910,9 @@ export default function TournamentsScreen() {
         </Animated.View>
 
         {/* Сезон: полосы-рейтинги — длина по звёздам, оттенок активной темы */}
-        <Text style={[styles.kicker, styles.sectionKicker]} allowFontScaling={false}>
+        <FlowText testID="tournaments-season-kicker" provenance="authored" style={[styles.kicker, styles.sectionKicker]}>
           Сезон · мои звёзды {myStars}
-        </Text>
+        </FlowText>
         {seasonTop.length > 0 ? (
           <View style={styles.seasonList}>
             {seasonTop.map((leader, index) => {
@@ -918,16 +924,17 @@ export default function TournamentsScreen() {
                   mix={0.46 - index * 0.07}
                   highlighted={isMe}
                 >
-                  <Text style={[styles.place, isMe && { color: P.accent }]} allowFontScaling={false}>
+                  <FlowText testID="tournaments-row-place" provenance="authored" style={[styles.place, isMe && { color: P.accent }]}>
                     {index + 1}
-                  </Text>
+                  </FlowText>
                   <AvatarView avatar={hubAvatar(leader)} size={36} animateAura={false} />
+                  {/* eslint-disable-next-line text-integrity/no-unsafe-text-truncation -- ник в одну строку рейтинга: перенос сломал бы фиксированную высоту ряда */}
                   <Text style={[styles.rowName, isMe && { color: P.accent }]} numberOfLines={1}>
                     {isMe ? 'Вы' : leader.name}
                   </Text>
                   <View style={styles.rowStars}>
                     <StarGlyph size={13} color={P.gold} />
-                    <Text style={styles.rowStarsText} allowFontScaling={false}>{leader.points}</Text>
+                    <FlowText testID="tournaments-row-stars" provenance="authored" style={styles.rowStarsText}>{leader.points}</FlowText>
                   </View>
                 </V2RatingRow>
               );
@@ -935,16 +942,17 @@ export default function TournamentsScreen() {
             {/* Своя строка ниже тройки — игрок видит себя без перехода в таблицу. */}
             {myRowSeparate ? (
               <V2RatingRow ratio={myRowSeparate.points / topStars} mix={0.2} highlighted>
-                <Text style={[styles.place, { color: P.accent }]} allowFontScaling={false}>
+                <FlowText testID="tournaments-my-place" provenance="authored" style={[styles.place, { color: P.accent }]}>
                   {myPlace > 0 ? myPlace : '—'}
-                </Text>
+                </FlowText>
                 <AvatarView avatar={hubAvatar(myRowSeparate)} size={36} animateAura={false} />
+                {/* eslint-disable-next-line text-integrity/no-unsafe-text-truncation -- своя строка рейтинга: та же фиксированная высота ряда */}
                 <Text style={[styles.rowName, { color: P.accent }]} numberOfLines={1}>Вы</Text>
                 <View style={styles.rowStars}>
                   <StarGlyph size={13} color={P.gold} />
-                  <Text style={styles.rowStarsText} allowFontScaling={false}>
+                  <FlowText testID="tournaments-my-stars" provenance="authored" style={styles.rowStarsText}>
                     {myRowSeparate.points}
-                  </Text>
+                  </FlowText>
                 </View>
               </V2RatingRow>
             ) : null}
@@ -957,7 +965,7 @@ export default function TournamentsScreen() {
         )}
         {/* зачем 2026-07-27 (владелец): без стрелки — просто кнопка «Таблица сезона». */}
         <TapScale onPress={() => router.push('/tournament_season')} style={styles.seasonMore}>
-          <Text style={styles.seasonMoreText} allowFontScaling={false}>Таблица сезона</Text>
+          <FlowText testID="tournaments-season-more" provenance="authored" style={styles.seasonMoreText}>Таблица сезона</FlowText>
         </TapScale>
       </BouncyScrollView>
 
@@ -973,9 +981,9 @@ export default function TournamentsScreen() {
             <Ionicons name="trophy" size={20} color={METAL.ink} />
           </LinearGradient>
           <View style={styles.bankBody}>
-            <Text style={styles.sheetTitle} allowFontScaling={false}>Банк недели</Text>
+            <FlowText testID="tournaments-bank-sheet-title" provenance="authored" style={styles.sheetTitle}>Банк недели</FlowText>
             <View style={styles.bankValueRow}>
-              <Text style={styles.bankSheetValue} allowFontScaling={false}>{bank}</Text>
+              <FlowText testID="tournaments-bank-sheet-value" provenance="authored" style={styles.bankSheetValue}>{bank}</FlowText>
               <Image
                 source={coinIconForBalance(bank, themeMode)}
                 style={styles.bankSheetCoin}
@@ -993,16 +1001,18 @@ export default function TournamentsScreen() {
         <View style={styles.seasonList}>
           {bankShares.map((share) => (
             <View key={share.place} style={styles.bankShareRow}>
-              <Text
+              <FlowText
+                testID="tournaments-bank-share-place"
+                provenance="authored"
                 style={[styles.bankSharePlace, { color: placeColor(share.place, P) }]}
-                allowFontScaling={false}
               >
                 {share.place}
-              </Text>
+              </FlowText>
+              {/* eslint-disable-next-line text-integrity/no-unsafe-text-truncation -- ник в строке доли банка: перенос сломал бы фиксированную высоту ряда */}
               <Text style={styles.bankShareName} numberOfLines={1}>
                 {share.name}
               </Text>
-              <Text style={styles.bankShareGems} allowFontScaling={false}>{share.gems}</Text>
+              <FlowText testID="tournaments-bank-share-gems" provenance="authored" style={styles.bankShareGems}>{share.gems}</FlowText>
             </View>
           ))}
         </View>
@@ -1019,11 +1029,11 @@ export default function TournamentsScreen() {
 
       {/* Недельный банк пришёл ночью — показываем один раз на неделю */}
       <Sheet visible={!!weeklyPrize} onClose={() => setWeeklyPrize(null)}>
-        <Text style={styles.sheetTitle} allowFontScaling={false}>
+        <FlowText testID="tournaments-weekly-prize-title" provenance="authored" style={styles.sheetTitle}>
           {weeklyPrize?.place === 1 ? 'Первое место недели'
             : weeklyPrize?.place === 2 ? 'Второе место недели'
               : 'Третье место недели'}
-        </Text>
+        </FlowText>
         <Text style={styles.sheetSub}>
           Доля банка: {weeklyPrize?.gems ?? 0} — уже на счету
         </Text>
@@ -1034,7 +1044,7 @@ export default function TournamentsScreen() {
 
       {/* Подтверждение входа */}
       <Sheet visible={confirmVisible} onClose={closeConfirm}>
-        <Text style={styles.sheetTitle} allowFontScaling={false}>Вход в турнир</Text>
+        <FlowText testID="tournaments-join-title" provenance="authored" style={styles.sheetTitle}>Вход в турнир</FlowText>
         {/* зачем 2026-07-27: при входе вне окна время слота показывать нельзя —
             турнир начнётся сейчас, а не в 15:20, и подпись бы врала. */}
         <Text style={styles.sheetSub}>
@@ -1055,14 +1065,14 @@ export default function TournamentsScreen() {
             accessibilityElementsHidden
             importantForAccessibility="no"
           />
-          <Text style={styles.sheetPriceLabel} allowFontScaling={false}>Участие</Text>
-          <Text style={styles.sheetPriceValue} allowFontScaling={false}>{effectiveEntryGems}</Text>
+          <FlowText testID="tournaments-sheet-price-label" provenance="authored" style={styles.sheetPriceLabel}>Участие</FlowText>
+          <FlowText testID="tournaments-sheet-price-value" provenance="authored" style={styles.sheetPriceValue}>{effectiveEntryGems}</FlowText>
         </View>
         <View style={styles.sheetBalance}>
-          <Text style={styles.sheetBalanceText} allowFontScaling={false}>У тебя {coins}</Text>
-          <Text style={styles.sheetBalanceText} allowFontScaling={false}>
+          <FlowText testID="tournaments-sheet-balance-have" provenance="authored" style={styles.sheetBalanceText}>У тебя {coins}</FlowText>
+          <FlowText testID="tournaments-sheet-balance-left" provenance="authored" style={styles.sheetBalanceText}>
             останется {Math.max(0, coins - effectiveEntryGems)}{/* guard-ok: preview reflects the server-owned entry price */}
-          </Text>
+          </FlowText>
         </View>
         {joinError ? <Text style={styles.sheetError}>{joinError}</Text> : null}
         <View style={styles.sheetActions}>
@@ -1147,6 +1157,7 @@ const HeroValue = memo(function HeroValue({
       style={big ? styles.heroMaskBig : styles.heroMaskMid}
       maskElement={(
         <View style={styles.heroMaskInner}>
+          {/* eslint-disable-next-line text-integrity/no-unsafe-text-truncation -- это не читаемый текст, а маска формы для градиента: масштабирование сдвинуло бы заливку относительно контура */}
           <Text style={textStyle} allowFontScaling={false}>{text}</Text>
         </View>
       )}

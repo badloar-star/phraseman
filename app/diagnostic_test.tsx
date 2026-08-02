@@ -25,6 +25,7 @@ import { useEnergy } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useCorrectSound } from '../hooks/use-correct-sound';
+import { useTimerTickCue } from '../hooks/use-timer-tick-cue';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useVisibleWallClock } from '../hooks/use_visible_wall_clock';
@@ -980,6 +981,7 @@ export default function DiagnosticTest() {
   const [hapticsOn,   setHapticsOn]= useState(true);
   const [autoAdvance, setAutoAdvance]= useState(false);
   const { playCorrect } = useCorrectSound();
+  const { playTimerTick, playTimerExpired } = useTimerTickCue();
   // зачем: убрать «прыжок с нулей» — на первом кадре до AsyncStorage-подгрузки
   // examLessonsDone/examReadiness.percent брали дефолт 0 и рендерили «0/32
   // уроков»/«0%», а через мгновение число прыгало на реальное. Сессионный
@@ -1230,6 +1232,16 @@ export default function DiagnosticTest() {
     }
   }, [diagnosticNow, diagnosticRuntimeActive, phase]);
 
+  // зачем: последние 5 секунд слышно — тот же порог, что в турнирном раунде,
+  // чтобы «время заканчивается» звучало одинаково во всех заданиях с таймером.
+  // Вопрос уже отвеченный не торопим: там таймер не идёт.
+  useEffect(() => {
+    if (!diagnosticRuntimeActive || phase !== 'quiz') return;
+    if (locked.current || timeUpFired.current) return;
+    if (timeLeft > 5 || timeLeft <= 0) return;
+    playTimerTick();
+  }, [diagnosticRuntimeActive, phase, timeLeft, playTimerTick]);
+
   const advance = (newScore: number) => {
     clearAutoAdvanceTimer();
     if (idx + 1 >= questions.length) {
@@ -1289,6 +1301,10 @@ export default function DiagnosticTest() {
     const qq = questions[idx];
     if (qq) void recordMistakeFromDiagnostic(qq, studyTarget);
     if (hapticsOn) void hapticError();
+    // зачем: тактильный отклик на истечение уже был, звука не было — вопрос
+    // засчитывался неверным беззвучно. Ставим рядом с хаптикой, чтобы оба
+    // канала обратной связи жили в одной точке.
+    playTimerExpired();
     advance(score);
   };
 

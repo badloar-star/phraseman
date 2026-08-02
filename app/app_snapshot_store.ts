@@ -68,6 +68,7 @@ export interface AppSnapshotFriends extends AppSnapshotMeta {
 export interface AppSnapshotSettings extends AppSnapshotMeta {
   autoCheck: boolean;
   voiceOut: boolean;
+  uiSounds: boolean;
   speechRate: number;
   speechVoiceId: string;
   hardMode: boolean;

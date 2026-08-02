@@ -13,12 +13,17 @@ const {
   CompletionRateLimitError,
   countCompletion,
   isValidCompletionPayload,
-  readCompletedCount,
+  readCompletedCountByLanguage,
 } = require('./completion_counter');
 const {
   getTrustedExternalClientIp,
   requestBodyByteLength,
 } = require('./request_security');
+const {
+  buildSiteReportDocument,
+  checkSiteReportRateLimit,
+  normalizeSiteReportPayload,
+} = require('./site_report');
 
 initializeApp();
 const db = getFirestore();
@@ -77,7 +82,7 @@ function normalizeTestLanguage(value) {
 }
 
 function normalizeUiLocale(value) {
-  return ['en', 'ru'].includes(value) ? value : 'en';
+  return ['ru', 'en', 'de', 'es', 'it', 'fr'].includes(value) ? value : 'en';
 }
 
 function normalizeAnalyticsDimensions(body) {
@@ -529,8 +534,10 @@ exports.englishTestApi = onRequest({
   if (req.method === 'GET') {
     res.set('Cache-Control', 'no-store');
     try {
-      const completed = await readCompletedCount(db);
-      res.json({ ok: true, completed });
+      // зачем: отдаём счётчики по всем языкам одним чтением — клиент сам
+      // выбирает нужный язык на месте, без query-параметра и второго запроса.
+      const completedByLanguage = await readCompletedCountByLanguage(db);
+      res.json({ ok: true, completedByLanguage });
     } catch (e) {
       console.error('englishTestApi counter read error:', e.message);
       res.status(500).json({ error: 'Internal error' });
@@ -562,6 +569,7 @@ exports.englishTestApi = onRequest({
       const result = await countCompletion({
         db,
         completionId: body.completionId,
+        testLanguage: body.testLanguage,
         ipAddress: getTrustedExternalClientIp(req),
         hmacKey,
       });
@@ -574,6 +582,44 @@ exports.englishTestApi = onRequest({
         console.error('englishTestApi completion counter error:', e.message);
         res.status(500).json({ error: 'Internal error' });
       }
+    }
+    return;
+  }
+
+  if (action === 'report_error') {
+    const reportUserAgent = req.headers['user-agent'] || '';
+    if (isBotUA(reportUserAgent)) {
+      res.status(403).json({ error: 'Forbidden' });
+      return;
+    }
+    const payload = normalizeSiteReportPayload(body);
+    if (!payload) {
+      res.status(400).json({ error: 'Invalid request' });
+      return;
+    }
+    const ipAddress = getTrustedExternalClientIp(req);
+    try {
+      const rate = await checkSiteReportRateLimit({
+        db,
+        ipAddress,
+        clientHash: payload.clientHash,
+        hmacKey,
+      });
+      if (!rate.allowed) {
+        res.set('Retry-After', String(rate.retryAfter));
+        res.status(429).json({ error: 'Rate limited', retryAfter: rate.retryAfter });
+        return;
+      }
+      const doc = {
+        ...buildSiteReportDocument(payload),
+        serverCreatedAt: FieldValue.serverTimestamp(),
+      };
+      const reportRef = await db.collection('error_reports').add(doc);
+      res.set('Cache-Control', 'no-store');
+      res.json({ ok: true, id: reportRef.id });
+    } catch (e) {
+      console.error('englishTestApi report error:', e.message);
+      res.status(500).json({ error: 'Internal error' });
     }
     return;
   }
@@ -879,6 +925,7 @@ exports.cleanupEnglishTestAnalytics = onSchedule({
     { name: 'english_test_daily', field: 'expiresAt' },
     { name: 'english_test_rate_limits', field: 'expiresAt' },
     { name: 'english_test_completion_rate_limits', field: 'expiresAt' },
+    { name: 'english_test_report_rate_limits', field: 'expiresAt' },
   ];
 
   for (const { name, field } of collections) {

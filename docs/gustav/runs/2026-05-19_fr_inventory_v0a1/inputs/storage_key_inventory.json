@@ -1,7 +1,7 @@
 {
   "schemaVersion": "gustav-storage-key-inventory-v1",
   "runId": "2026-05-19_fr_inventory_v0a1",
-  "generatedAt": "2026-08-01T08:45:05.715Z",
+  "generatedAt": "2026-08-02T06:40:52.523Z",
   "status": "HOLD",
   "inventoryKind": "automated_heuristic",
   "command": {
@@ -15,19 +15,109 @@
     "nodeVersion": "v24.14.0"
   },
   "summary": {
-    "filesScanned": 3841,
-    "records": 3435,
-    "uniqueKeys": 557,
+    "filesScanned": 3953,
+    "records": 3481,
+    "uniqueKeys": 567,
     "keyPatterns": 55,
-    "unknownExpressions": 934,
+    "unknownExpressions": 947,
     "cloudSyncKeys": 143,
-    "learningStateRecords": 508,
-    "targetNamespaceRequired": 57,
+    "learningStateRecords": 510,
+    "targetNamespaceRequired": 59,
     "blockers": 0,
-    "highRisks": 56,
-    "unknownScopeRecords": 166
+    "highRisks": 58,
+    "unknownScopeRecords": 171
   },
   "records": [
+    {
+      "key": "compass_briefing_seen_",
+      "sourcePath": "app/_admin_compass_lab.tsx",
+      "line": 48,
+      "operation": "constant",
+      "cloudSyncKey": false,
+      "scope": "admin_or_qa",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "medium",
+      "notes": [
+        "Test/admin/QA storage signal."
+      ]
+    },
+    {
+      "key": "admin_compass_day_closing_seed_v1",
+      "sourcePath": "app/_admin_compass_lab.tsx",
+      "line": 49,
+      "operation": "constant",
+      "cloudSyncKey": false,
+      "scope": "admin_or_qa",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "medium",
+      "notes": [
+        "Test/admin/QA storage signal."
+      ]
+    },
+    {
+      "key": "admin_compass_day_closing_seed_v1",
+      "sourcePath": "app/_admin_compass_lab.tsx",
+      "line": 536,
+      "operation": "get",
+      "cloudSyncKey": false,
+      "scope": "admin_or_qa",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "medium",
+      "notes": [
+        "Test/admin/QA storage signal."
+      ]
+    },
+    {
+      "key": "admin_compass_day_closing_seed_v1",
+      "sourcePath": "app/_admin_compass_lab.tsx",
+      "line": 574,
+      "operation": "set",
+      "cloudSyncKey": false,
+      "scope": "admin_or_qa",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "medium",
+      "notes": [
+        "Test/admin/QA storage signal."
+      ]
+    },
+    {
+      "key": "admin_compass_day_closing_seed_v1",
+      "sourcePath": "app/_admin_compass_lab.tsx",
+      "line": 584,
+      "operation": "remove",
+      "cloudSyncKey": false,
+      "scope": "admin_or_qa",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "medium",
+      "notes": [
+        "Test/admin/QA storage signal."
+      ]
+    },
+    {
+      "keyExpression": "seenKeys",
+      "sourcePath": "app/_admin_compass_lab.tsx",
+      "line": 608,
+      "operation": "multiRemove",
+      "cloudSyncKey": false,
+      "scope": "admin_or_qa",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "medium",
+      "notes": [
+        "Test/admin/QA storage signal."
+      ]
+    },
     {
       "key": "admin_vip_e2e_email",
       "sourcePath": "app/_admin_premium_delivery_test.tsx",
@@ -1516,7 +1606,7 @@
     {
       "keyExpression": "masteryFinishedOnceKey(...)",
       "sourcePath": "app/_admin_settings_testers.tsx",
-      "line": 2831,
+      "line": 2842,
       "operation": "multiSet",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -1531,7 +1621,7 @@
     {
       "keyExpression": "AUTH_PROMPT_SHOWN_KEY",
       "sourcePath": "app/_admin_settings_testers.tsx",
-      "line": 2859,
+      "line": 2887,
       "operation": "remove",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -1546,7 +1636,7 @@
     {
       "keyExpression": "[",
       "sourcePath": "app/_admin_settings_testers.tsx",
-      "line": 3201,
+      "line": 3229,
       "operation": "multiRemove",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -1561,7 +1651,7 @@
     {
       "keyExpression": "DAILY_FREE_SESSION_KEY",
       "sourcePath": "app/_admin_settings_testers.tsx",
-      "line": 3408,
+      "line": 3436,
       "operation": "remove",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -1576,7 +1666,7 @@
     {
       "key": "from_welcome_first_lesson",
       "sourcePath": "app/_admin_settings_testers.tsx",
-      "line": 3563,
+      "line": 3591,
       "operation": "multiRemove",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -1591,7 +1681,7 @@
     {
       "key": "onboarding_analytics_help_v1",
       "sourcePath": "app/_admin_settings_testers.tsx",
-      "line": 3563,
+      "line": 3591,
       "operation": "multiRemove",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -1606,7 +1696,7 @@
     {
       "key": "onboarding_discovery_source",
       "sourcePath": "app/_admin_settings_testers.tsx",
-      "line": 3563,
+      "line": 3591,
       "operation": "multiRemove",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -1621,7 +1711,7 @@
     {
       "key": "onboarding_done",
       "sourcePath": "app/_admin_settings_testers.tsx",
-      "line": 3563,
+      "line": 3591,
       "operation": "multiRemove",
       "cloudSyncKey": true,
       "scope": "admin_or_qa",
@@ -1636,7 +1726,7 @@
     {
       "key": "onboarding_plan_billing",
       "sourcePath": "app/_admin_settings_testers.tsx",
-      "line": 3563,
+      "line": 3591,
       "operation": "multiRemove",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -1651,7 +1741,7 @@
     {
       "key": "onboarding_plan_goal",
       "sourcePath": "app/_admin_settings_testers.tsx",
-      "line": 3563,
+      "line": 3591,
       "operation": "multiRemove",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -1666,7 +1756,7 @@
     {
       "key": "onboarding_plan_level",
       "sourcePath": "app/_admin_settings_testers.tsx",
-      "line": 3563,
+      "line": 3591,
       "operation": "multiRemove",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -1681,7 +1771,7 @@
     {
       "key": "onboarding_plan_minutes",
       "sourcePath": "app/_admin_settings_testers.tsx",
-      "line": 3563,
+      "line": 3591,
       "operation": "multiRemove",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -1696,7 +1786,7 @@
     {
       "key": "onboarding_terms_privacy_accepted_v1",
       "sourcePath": "app/_admin_settings_testers.tsx",
-      "line": 3563,
+      "line": 3591,
       "operation": "multiRemove",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -1711,7 +1801,7 @@
     {
       "key": "energy_onboarding_shown",
       "sourcePath": "app/_admin_settings_testers.tsx",
-      "line": 3580,
+      "line": 3608,
       "operation": "multiSet",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -1726,7 +1816,7 @@
     {
       "key": "onboarding_step",
       "sourcePath": "app/_admin_settings_testers.tsx",
-      "line": 3580,
+      "line": 3608,
       "operation": "multiSet",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -1741,7 +1831,7 @@
     {
       "keyExpression": "remove",
       "sourcePath": "app/_layout.tsx",
-      "line": 386,
+      "line": 388,
       "operation": "multiRemove",
       "cloudSyncKey": false,
       "scope": "global",
@@ -1756,7 +1846,7 @@
     {
       "keyExpression": "remove",
       "sourcePath": "app/_layout.tsx",
-      "line": 398,
+      "line": 400,
       "operation": "multiRemove",
       "cloudSyncKey": false,
       "scope": "global",
@@ -1771,7 +1861,7 @@
     {
       "key": "login_bonus_v1",
       "sourcePath": "app/_layout.tsx",
-      "line": 636,
+      "line": 638,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -1786,7 +1876,7 @@
     {
       "key": "user_name",
       "sourcePath": "app/_layout.tsx",
-      "line": 659,
+      "line": 661,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -1801,7 +1891,7 @@
     {
       "key": "login_bonus_pending",
       "sourcePath": "app/_layout.tsx",
-      "line": 675,
+      "line": 677,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -1816,7 +1906,7 @@
     {
       "key": "login_bonus_v1",
       "sourcePath": "app/_layout.tsx",
-      "line": 676,
+      "line": 678,
       "operation": "set",
       "cloudSyncKey": true,
       "scope": "global",
@@ -1831,7 +1921,7 @@
     {
       "key": "last_active_date",
       "sourcePath": "app/_layout.tsx",
-      "line": 685,
+      "line": 687,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -1846,7 +1936,7 @@
     {
       "key": "notifications_enabled",
       "sourcePath": "app/_layout.tsx",
-      "line": 686,
+      "line": 688,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -1861,7 +1951,7 @@
     {
       "key": "install_date",
       "sourcePath": "app/_layout.tsx",
-      "line": 697,
+      "line": 699,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -1876,7 +1966,7 @@
     {
       "key": "comeback_active",
       "sourcePath": "app/_layout.tsx",
-      "line": 713,
+      "line": 715,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -1891,7 +1981,7 @@
     {
       "key": "comeback_pending",
       "sourcePath": "app/_layout.tsx",
-      "line": 714,
+      "line": 716,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -1906,7 +1996,7 @@
     {
       "key": "app_lang",
       "sourcePath": "app/_layout.tsx",
-      "line": 719,
+      "line": 721,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "source_locale",
@@ -1921,7 +2011,7 @@
     {
       "key": "notification_hour",
       "sourcePath": "app/_layout.tsx",
-      "line": 730,
+      "line": 732,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -1936,7 +2026,7 @@
     {
       "key": "notification_minute",
       "sourcePath": "app/_layout.tsx",
-      "line": 731,
+      "line": 733,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -1951,7 +2041,7 @@
     {
       "key": "global_lb_cache",
       "sourcePath": "app/_layout.tsx",
-      "line": 755,
+      "line": 757,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -1966,7 +2056,7 @@
     {
       "key": "user_name",
       "sourcePath": "app/_layout.tsx",
-      "line": 756,
+      "line": 758,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -1981,7 +2071,7 @@
     {
       "key": "pending_level_up_queue",
       "sourcePath": "app/_layout.tsx",
-      "line": 907,
+      "line": 909,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -1996,7 +2086,7 @@
     {
       "key": "user_name",
       "sourcePath": "app/_layout.tsx",
-      "line": 915,
+      "line": 917,
       "operation": "multiGet",
       "cloudSyncKey": true,
       "scope": "global",
@@ -2011,7 +2101,7 @@
     {
       "key": "user_total_xp",
       "sourcePath": "app/_layout.tsx",
-      "line": 915,
+      "line": 917,
       "operation": "multiGet",
       "cloudSyncKey": true,
       "scope": "global",
@@ -2026,7 +2116,7 @@
     {
       "key": "user_name",
       "sourcePath": "app/_layout.tsx",
-      "line": 1066,
+      "line": 1068,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -2041,7 +2131,7 @@
     {
       "key": "ban_status_cached_v1",
       "sourcePath": "app/_layout.tsx",
-      "line": 1408,
+      "line": 1416,
       "operation": "constant",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2056,7 +2146,7 @@
     {
       "key": "ban_status_cached_at_v1",
       "sourcePath": "app/_layout.tsx",
-      "line": 1409,
+      "line": 1417,
       "operation": "constant",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2071,7 +2161,7 @@
     {
       "key": "ban_status_cached_at_v1",
       "sourcePath": "app/_layout.tsx",
-      "line": 1734,
+      "line": 1742,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2086,7 +2176,7 @@
     {
       "key": "ban_status_cached_v1",
       "sourcePath": "app/_layout.tsx",
-      "line": 1734,
+      "line": 1742,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2101,7 +2191,7 @@
     {
       "key": "ban_status_cached_at_v1",
       "sourcePath": "app/_layout.tsx",
-      "line": 1755,
+      "line": 1763,
       "operation": "multiSet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2116,7 +2206,7 @@
     {
       "key": "ban_status_cached_v1",
       "sourcePath": "app/_layout.tsx",
-      "line": 1755,
+      "line": 1763,
       "operation": "multiSet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2131,7 +2221,7 @@
     {
       "keyPattern": "league_bonus_available_seen_${buildLeagueBonusSeenKey(availability.userUid, availability.weekId)}",
       "sourcePath": "app/_layout.tsx",
-      "line": 1786,
+      "line": 1794,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2146,7 +2236,7 @@
     {
       "keyPattern": "league_bonus_available_seen_${buildLeagueBonusSeenKey(availability.userUid, availability.weekId)}",
       "sourcePath": "app/_layout.tsx",
-      "line": 1788,
+      "line": 1796,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2161,7 +2251,7 @@
     {
       "keyExpression": "lastOpenedLessonKey(studyTarget",
       "sourcePath": "app/_layout.tsx",
-      "line": 1983,
+      "line": 1991,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -2176,7 +2266,7 @@
     {
       "key": "app_version",
       "sourcePath": "app/_layout.tsx",
-      "line": 2166,
+      "line": 2174,
       "operation": "multiSet",
       "cloudSyncKey": true,
       "scope": "global",
@@ -2191,7 +2281,7 @@
     {
       "key": "device_platform",
       "sourcePath": "app/_layout.tsx",
-      "line": 2166,
+      "line": 2174,
       "operation": "multiSet",
       "cloudSyncKey": true,
       "scope": "global",
@@ -2206,7 +2296,7 @@
     {
       "key": "onboarding_done",
       "sourcePath": "app/_layout.tsx",
-      "line": 2192,
+      "line": 2200,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -2221,7 +2311,7 @@
     {
       "key": "shards_balance",
       "sourcePath": "app/_layout.tsx",
-      "line": 2217,
+      "line": 2225,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2236,7 +2326,7 @@
     {
       "key": "install_date",
       "sourcePath": "app/_layout.tsx",
-      "line": 2301,
+      "line": 2309,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2251,7 +2341,7 @@
     {
       "key": "install_date",
       "sourcePath": "app/_layout.tsx",
-      "line": 2302,
+      "line": 2310,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2266,7 +2356,7 @@
     {
       "keyExpression": "startupIdentityKeys",
       "sourcePath": "app/_layout.tsx",
-      "line": 2457,
+      "line": 2466,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2281,7 +2371,7 @@
     {
       "key": "user_prev_xp",
       "sourcePath": "app/_layout.tsx",
-      "line": 2463,
+      "line": 2472,
       "operation": "set",
       "cloudSyncKey": true,
       "scope": "global",
@@ -2296,7 +2386,7 @@
     {
       "key": "notifications_enabled",
       "sourcePath": "app/_layout.tsx",
-      "line": 2601,
+      "line": 2610,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2311,7 +2401,7 @@
     {
       "key": "notif_permission_nudge_last_day",
       "sourcePath": "app/_layout.tsx",
-      "line": 2602,
+      "line": 2611,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2326,7 +2416,7 @@
     {
       "key": "notif_permission_nudge_last_day",
       "sourcePath": "app/_layout.tsx",
-      "line": 2609,
+      "line": 2618,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2341,7 +2431,7 @@
     {
       "key": "streak_count",
       "sourcePath": "app/_layout.tsx",
-      "line": 2645,
+      "line": 2654,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -2356,7 +2446,7 @@
     {
       "key": "xp_migration_v2",
       "sourcePath": "app/_layout.tsx",
-      "line": 2750,
+      "line": 2759,
       "operation": "set",
       "cloudSyncKey": true,
       "scope": "global",
@@ -2371,7 +2461,7 @@
     {
       "keyExpression": "PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY",
       "sourcePath": "app/_layout.tsx",
-      "line": 2784,
+      "line": 2793,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2386,7 +2476,7 @@
     {
       "key": "onboarding_step",
       "sourcePath": "app/_layout.tsx",
-      "line": 2785,
+      "line": 2794,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2401,7 +2491,7 @@
     {
       "key": "onboarding_done",
       "sourcePath": "app/_layout.tsx",
-      "line": 2786,
+      "line": 2795,
       "operation": "remove",
       "cloudSyncKey": true,
       "scope": "global",
@@ -2416,7 +2506,7 @@
     {
       "key": "xp_migration_v2",
       "sourcePath": "app/_layout.tsx",
-      "line": 2787,
+      "line": 2796,
       "operation": "set",
       "cloudSyncKey": true,
       "scope": "global",
@@ -2431,7 +2521,7 @@
     {
       "key": "onboarding_plan_billing",
       "sourcePath": "app/_layout.tsx",
-      "line": 2794,
+      "line": 2803,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2446,7 +2536,7 @@
     {
       "key": "onboarding_step",
       "sourcePath": "app/_layout.tsx",
-      "line": 2872,
+      "line": 2881,
       "operation": "multiSet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2461,7 +2551,7 @@
     {
       "key": "onboarding_done",
       "sourcePath": "app/_layout.tsx",
-      "line": 2876,
+      "line": 2885,
       "operation": "remove",
       "cloudSyncKey": true,
       "scope": "global",
@@ -2476,7 +2566,7 @@
     {
       "keyPattern": "daily_tasks_first_visit_modal_seen_v1:${studyTarget ?? 'default'}:${getTodayKey()}",
       "sourcePath": "app/_layout.tsx",
-      "line": 2903,
+      "line": 2912,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2491,7 +2581,7 @@
     {
       "keyPattern": "daily_tasks_first_visit_modal_seen_v1:${studyTarget ?? 'default'}:${getTodayKey()}",
       "sourcePath": "app/_layout.tsx",
-      "line": 2917,
+      "line": 2926,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2506,7 +2596,7 @@
     {
       "key": "notification_hour",
       "sourcePath": "app/_layout.tsx",
-      "line": 3218,
+      "line": 3227,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2521,7 +2611,7 @@
     {
       "key": "notification_minute",
       "sourcePath": "app/_layout.tsx",
-      "line": 3219,
+      "line": 3228,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2536,7 +2626,7 @@
     {
       "keyExpression": "FRIEND_PROFILES_CACHE_KEY",
       "sourcePath": "app/(tabs)/friends.tsx",
-      "line": 281,
+      "line": 282,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2551,7 +2641,7 @@
     {
       "keyExpression": "FRIENDS_TAB_SWR_CACHE_KEY",
       "sourcePath": "app/(tabs)/friends.tsx",
-      "line": 2575,
+      "line": 2580,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2566,7 +2656,7 @@
     {
       "key": "home_selected_title_key_v1",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 130,
+      "line": 133,
       "operation": "constant",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2581,7 +2671,7 @@
     {
       "key": "home_daily_greeting_v1",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 248,
+      "line": 251,
       "operation": "constant",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2596,7 +2686,7 @@
     {
       "key": "phraseman_home_stats_pulse_hint_done_v1",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 249,
+      "line": 252,
       "operation": "constant",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2611,7 +2701,7 @@
     {
       "key": "onboarding_done",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 252,
+      "line": 255,
       "operation": "constant",
       "cloudSyncKey": true,
       "scope": "global",
@@ -2626,7 +2716,7 @@
     {
       "key": "home_daily_greeting_v1",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 304,
+      "line": 307,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2641,7 +2731,7 @@
     {
       "key": "home_daily_greeting_v1",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 316,
+      "line": 319,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2656,7 +2746,7 @@
     {
       "key": "onboarding_done",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 1237,
+      "line": 1244,
       "operation": "multiGet",
       "cloudSyncKey": true,
       "scope": "global",
@@ -2671,7 +2761,7 @@
     {
       "keyExpression": "HOME_FEATURE_TIPS_INDEX_KEY",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 1259,
+      "line": 1266,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2686,7 +2776,7 @@
     {
       "keyExpression": "[",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 1265,
+      "line": 1272,
       "operation": "multiSet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2701,7 +2791,7 @@
     {
       "key": "onboarding_done",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 1344,
+      "line": 1351,
       "operation": "multiSet",
       "cloudSyncKey": true,
       "scope": "global",
@@ -2716,7 +2806,7 @@
     {
       "key": "phraseman_home_stats_pulse_hint_done_v1",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 1581,
+      "line": 1588,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2731,7 +2821,7 @@
     {
       "key": "phraseman_home_stats_pulse_hint_done_v1",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 1590,
+      "line": 1597,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2746,7 +2836,7 @@
     {
       "key": "streak_count",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 1667,
+      "line": 1674,
       "operation": "multiGet",
       "cloudSyncKey": true,
       "scope": "global",
@@ -2761,7 +2851,7 @@
     {
       "key": "streak_last_shown",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 1667,
+      "line": 1674,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2776,7 +2866,7 @@
     {
       "key": "user_name",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 1667,
+      "line": 1674,
       "operation": "multiGet",
       "cloudSyncKey": true,
       "scope": "global",
@@ -2791,7 +2881,7 @@
     {
       "key": "user_total_xp",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 1667,
+      "line": 1674,
       "operation": "multiGet",
       "cloudSyncKey": true,
       "scope": "global",
@@ -2806,7 +2896,7 @@
     {
       "key": "week_days_done",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 1667,
+      "line": 1674,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2821,7 +2911,7 @@
     {
       "key": "had_premium_ever",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 1685,
+      "line": 1692,
       "operation": "multiGet",
       "cloudSyncKey": true,
       "scope": "global",
@@ -2836,7 +2926,7 @@
     {
       "key": "onboarding_plan_billing",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 1685,
+      "line": 1692,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2851,7 +2941,7 @@
     {
       "key": "premium_active",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 1685,
+      "line": 1692,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2866,7 +2956,7 @@
     {
       "key": "streak_last_shown",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 1720,
+      "line": 1727,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2881,7 +2971,7 @@
     {
       "key": "user_avatar",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 1747,
+      "line": 1754,
       "operation": "multiGet",
       "cloudSyncKey": true,
       "scope": "global",
@@ -2896,7 +2986,7 @@
     {
       "key": "user_frame",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 1747,
+      "line": 1754,
       "operation": "multiGet",
       "cloudSyncKey": true,
       "scope": "global",
@@ -2911,7 +3001,7 @@
     {
       "keyExpression": "dailyTasksAchievementAllDoneStreakKey(...)",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 1785,
+      "line": 1792,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -2926,7 +3016,7 @@
     {
       "keyExpression": "lessonProgressKey(...)",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 1807,
+      "line": 1814,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -2941,7 +3031,7 @@
     {
       "key": "premium_free_freeze_used",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 1883,
+      "line": 1890,
       "operation": "multiGet",
       "cloudSyncKey": true,
       "scope": "global",
@@ -2956,7 +3046,7 @@
     {
       "key": "streak_freeze",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 1883,
+      "line": 1890,
       "operation": "multiGet",
       "cloudSyncKey": true,
       "scope": "global",
@@ -2971,7 +3061,7 @@
     {
       "key": "comeback_pending",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 1976,
+      "line": 1983,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2986,7 +3076,7 @@
     {
       "key": "login_bonus_pending",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 1976,
+      "line": 1983,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -3001,7 +3091,7 @@
     {
       "key": "weekly_pb_v1",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 1976,
+      "line": 1983,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -3016,7 +3106,7 @@
     {
       "key": "login_bonus_pending",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 2070,
+      "line": 2077,
       "operation": "remove",
       "cloudSyncKey": false,
       "scope": "global",
@@ -3031,7 +3121,7 @@
     {
       "key": "comeback_pending",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 2074,
+      "line": 2081,
       "operation": "remove",
       "cloudSyncKey": false,
       "scope": "global",
@@ -3046,7 +3136,7 @@
     {
       "key": "weekly_pb_v1",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 2079,
+      "line": 2086,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -3061,7 +3151,7 @@
     {
       "key": "streak_freeze",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 2094,
+      "line": 2101,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -3076,7 +3166,7 @@
     {
       "key": "streak_paywall_shown",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 2102,
+      "line": 2109,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -3091,7 +3181,7 @@
     {
       "key": "streak_paywall_shown",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 2104,
+      "line": 2111,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -3106,7 +3196,7 @@
     {
       "key": "premium_free_freeze_used",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 2255,
+      "line": 2262,
       "operation": "set",
       "cloudSyncKey": true,
       "scope": "global",
@@ -3121,7 +3211,7 @@
     {
       "key": "streak_freeze",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 2286,
+      "line": 2293,
       "operation": "set",
       "cloudSyncKey": true,
       "scope": "global",
@@ -3136,7 +3226,7 @@
     {
       "key": "last_active_date",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 2287,
+      "line": 2294,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -3151,7 +3241,7 @@
     {
       "key": "home_selected_title_key_v1",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 3281,
+      "line": 3330,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -3166,7 +3256,7 @@
     {
       "keyExpression": "HOME_FEATURE_TIPS_REPLAY_COUNT_KEY",
       "sourcePath": "app/(tabs)/settings.tsx",
-      "line": 409,
+      "line": 431,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -3181,7 +3271,7 @@
     {
       "keyExpression": "[",
       "sourcePath": "app/(tabs)/settings.tsx",
-      "line": 424,
+      "line": 446,
       "operation": "multiSet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -3196,7 +3286,7 @@
     {
       "key": "haptics_tap",
       "sourcePath": "app/(tabs)/settings.tsx",
-      "line": 622,
+      "line": 709,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -3211,7 +3301,7 @@
     {
       "key": "premium_plan",
       "sourcePath": "app/(tabs)/settings.tsx",
-      "line": 622,
+      "line": 709,
       "operation": "multiGet",
       "cloudSyncKey": true,
       "scope": "global",
@@ -3226,7 +3316,7 @@
     {
       "key": "user_name",
       "sourcePath": "app/(tabs)/settings.tsx",
-      "line": 622,
+      "line": 709,
       "operation": "multiGet",
       "cloudSyncKey": true,
       "scope": "global",
@@ -3241,7 +3331,7 @@
     {
       "key": "user_total_xp",
       "sourcePath": "app/(tabs)/settings.tsx",
-      "line": 622,
+      "line": 709,
       "operation": "multiGet",
       "cloudSyncKey": true,
       "scope": "global",
@@ -3256,7 +3346,7 @@
     {
       "key": "leaderboard",
       "sourcePath": "app/(tabs)/settings.tsx",
-      "line": 740,
+      "line": 827,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -3271,7 +3361,7 @@
     {
       "key": "leaderboard",
       "sourcePath": "app/(tabs)/settings.tsx",
-      "line": 744,
+      "line": 831,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -3286,7 +3376,7 @@
     {
       "key": "week_leaderboard",
       "sourcePath": "app/(tabs)/settings.tsx",
-      "line": 751,
+      "line": 838,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -3301,7 +3391,7 @@
     {
       "key": "week_leaderboard",
       "sourcePath": "app/(tabs)/settings.tsx",
-      "line": 755,
+      "line": 842,
       "operation": "set",
       "cloudSyncKey": true,
       "scope": "global",
@@ -3316,7 +3406,7 @@
     {
       "key": "league_state_v3",
       "sourcePath": "app/(tabs)/settings.tsx",
-      "line": 762,
+      "line": 849,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -3331,7 +3421,7 @@
     {
       "key": "league_state_v3",
       "sourcePath": "app/(tabs)/settings.tsx",
-      "line": 767,
+      "line": 854,
       "operation": "set",
       "cloudSyncKey": true,
       "scope": "global",
@@ -3346,7 +3436,7 @@
     {
       "key": "league_result_pending",
       "sourcePath": "app/(tabs)/settings.tsx",
-      "line": 775,
+      "line": 862,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -3361,7 +3451,7 @@
     {
       "key": "league_result_pending",
       "sourcePath": "app/(tabs)/settings.tsx",
-      "line": 780,
+      "line": 867,
       "operation": "set",
       "cloudSyncKey": true,
       "scope": "global",
@@ -3376,7 +3466,7 @@
     {
       "key": "user_name",
       "sourcePath": "app/(tabs)/settings.tsx",
-      "line": 848,
+      "line": 935,
       "operation": "set",
       "cloudSyncKey": true,
       "scope": "global",
@@ -3391,7 +3481,7 @@
     {
       "key": "user_name",
       "sourcePath": "app/(tabs)/settings.tsx",
-      "line": 866,
+      "line": 953,
       "operation": "set",
       "cloudSyncKey": true,
       "scope": "global",
@@ -3406,7 +3496,7 @@
     {
       "key": "haptics_tap",
       "sourcePath": "app/(tabs)/settings.tsx",
-      "line": 1446,
+      "line": 1546,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -3421,7 +3511,7 @@
     {
       "keyPattern": "tournament_weekly_prize_seen:${last.weekId}",
       "sourcePath": "app/(tabs)/tournaments.tsx",
-      "line": 286,
+      "line": 304,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "unknown",
@@ -3436,7 +3526,7 @@
     {
       "keyPattern": "tournament_weekly_prize_seen:${last.weekId}",
       "sourcePath": "app/(tabs)/tournaments.tsx",
-      "line": 287,
+      "line": 305,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "unknown",
@@ -5251,7 +5341,7 @@
     {
       "keyPattern": "dialog_xp_awarded_${scenario.id}",
       "sourcePath": "app/ai_dialog_session.tsx",
-      "line": 706,
+      "line": 708,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -5266,7 +5356,7 @@
     {
       "key": "user_name",
       "sourcePath": "app/ai_dialog_session.tsx",
-      "line": 707,
+      "line": 709,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -5281,7 +5371,7 @@
     {
       "keyPattern": "dialog_xp_awarded_${scenario.id}",
       "sourcePath": "app/ai_dialog_session.tsx",
-      "line": 712,
+      "line": 714,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -5447,7 +5537,7 @@
     {
       "key": "analytics_queue",
       "sourcePath": "app/analytics.ts",
-      "line": 182,
+      "line": 184,
       "operation": "constant",
       "cloudSyncKey": false,
       "scope": "global",
@@ -5462,7 +5552,7 @@
     {
       "key": "analytics_queue",
       "sourcePath": "app/analytics.ts",
-      "line": 223,
+      "line": 225,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -5477,7 +5567,7 @@
     {
       "key": "analytics_queue",
       "sourcePath": "app/analytics.ts",
-      "line": 288,
+      "line": 290,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -5492,7 +5582,7 @@
     {
       "key": "analytics_queue",
       "sourcePath": "app/analytics.ts",
-      "line": 390,
+      "line": 392,
       "operation": "remove",
       "cloudSyncKey": false,
       "scope": "global",
@@ -5642,7 +5732,7 @@
     {
       "key": "app_messages_cache_v2",
       "sourcePath": "app/app_messages.ts",
-      "line": 32,
+      "line": 35,
       "operation": "constant",
       "cloudSyncKey": false,
       "scope": "unknown",
@@ -5657,7 +5747,7 @@
     {
       "key": "app_messages_last_background_refresh_ms_v2",
       "sourcePath": "app/app_messages.ts",
-      "line": 33,
+      "line": 36,
       "operation": "constant",
       "cloudSyncKey": false,
       "scope": "unknown",
@@ -5672,7 +5762,7 @@
     {
       "key": "app_messages_cache_v1",
       "sourcePath": "app/app_messages.ts",
-      "line": 34,
+      "line": 37,
       "operation": "constant",
       "cloudSyncKey": false,
       "scope": "global",
@@ -5686,51 +5776,6 @@
     },
     {
       "key": "app_messages_last_background_refresh_ms_v1",
-      "sourcePath": "app/app_messages.ts",
-      "line": 35,
-      "operation": "constant",
-      "cloudSyncKey": false,
-      "scope": "global",
-      "learningState": false,
-      "targetNamespaceRequired": false,
-      "risk": "low",
-      "confidence": "high",
-      "notes": [
-        "Reviewed account/UI/cache storage key; not a study-target learning bucket."
-      ]
-    },
-    {
-      "key": "app_messages_local_preview_v2",
-      "sourcePath": "app/app_messages.ts",
-      "line": 36,
-      "operation": "constant",
-      "cloudSyncKey": false,
-      "scope": "unknown",
-      "learningState": false,
-      "targetNamespaceRequired": false,
-      "risk": "medium",
-      "confidence": "low",
-      "notes": [
-        "Unclassified key; LLM official-source review or stronger AST-based validation required."
-      ]
-    },
-    {
-      "key": "app_message_local_preview_states_v2",
-      "sourcePath": "app/app_messages.ts",
-      "line": 37,
-      "operation": "constant",
-      "cloudSyncKey": false,
-      "scope": "unknown",
-      "learningState": false,
-      "targetNamespaceRequired": false,
-      "risk": "medium",
-      "confidence": "low",
-      "notes": [
-        "Unclassified key; LLM official-source review or stronger AST-based validation required."
-      ]
-    },
-    {
-      "key": "app_messages_local_preview_v1",
       "sourcePath": "app/app_messages.ts",
       "line": 38,
       "operation": "constant",
@@ -5745,9 +5790,54 @@
       ]
     },
     {
-      "key": "app_message_local_preview_states_v1",
+      "key": "app_messages_local_preview_v2",
       "sourcePath": "app/app_messages.ts",
       "line": 39,
+      "operation": "constant",
+      "cloudSyncKey": false,
+      "scope": "unknown",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "medium",
+      "confidence": "low",
+      "notes": [
+        "Unclassified key; LLM official-source review or stronger AST-based validation required."
+      ]
+    },
+    {
+      "key": "app_message_local_preview_states_v2",
+      "sourcePath": "app/app_messages.ts",
+      "line": 40,
+      "operation": "constant",
+      "cloudSyncKey": false,
+      "scope": "unknown",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "medium",
+      "confidence": "low",
+      "notes": [
+        "Unclassified key; LLM official-source review or stronger AST-based validation required."
+      ]
+    },
+    {
+      "key": "app_messages_local_preview_v1",
+      "sourcePath": "app/app_messages.ts",
+      "line": 41,
+      "operation": "constant",
+      "cloudSyncKey": false,
+      "scope": "global",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "high",
+      "notes": [
+        "Reviewed account/UI/cache storage key; not a study-target learning bucket."
+      ]
+    },
+    {
+      "key": "app_message_local_preview_states_v1",
+      "sourcePath": "app/app_messages.ts",
+      "line": 42,
       "operation": "constant",
       "cloudSyncKey": false,
       "scope": "global",
@@ -5762,7 +5852,7 @@
     {
       "key": "app_messages_report_reply_pending_claims_v2",
       "sourcePath": "app/app_messages.ts",
-      "line": 41,
+      "line": 44,
       "operation": "constant",
       "cloudSyncKey": false,
       "scope": "unknown",
@@ -5777,7 +5867,7 @@
     {
       "key": "app_messages_report_reply_pending_claims_v1",
       "sourcePath": "app/app_messages.ts",
-      "line": 43,
+      "line": 46,
       "operation": "constant",
       "cloudSyncKey": false,
       "scope": "unknown",
@@ -5792,7 +5882,7 @@
     {
       "key": "app_message_visibility_outbox_v1",
       "sourcePath": "app/app_messages.ts",
-      "line": 45,
+      "line": 48,
       "operation": "constant",
       "cloudSyncKey": false,
       "scope": "unknown",
@@ -5807,7 +5897,7 @@
     {
       "key": "app_message_personal_modal_ack_outbox_v1",
       "sourcePath": "app/app_messages.ts",
-      "line": 47,
+      "line": 50,
       "operation": "constant",
       "cloudSyncKey": false,
       "scope": "unknown",
@@ -5822,7 +5912,7 @@
     {
       "key": "app_message_received_anim_ids_v1",
       "sourcePath": "app/app_messages.ts",
-      "line": 49,
+      "line": 52,
       "operation": "constant",
       "cloudSyncKey": false,
       "scope": "global",
@@ -5837,7 +5927,7 @@
     {
       "key": "app_message_received_anim_ids_v2",
       "sourcePath": "app/app_messages.ts",
-      "line": 50,
+      "line": 53,
       "operation": "constant",
       "cloudSyncKey": false,
       "scope": "unknown",
@@ -5852,7 +5942,7 @@
     {
       "key": "app_message_local_preview_states_v1",
       "sourcePath": "app/app_messages.ts",
-      "line": 91,
+      "line": 94,
       "operation": "multiRemove",
       "cloudSyncKey": false,
       "scope": "global",
@@ -5867,7 +5957,7 @@
     {
       "key": "app_message_received_anim_ids_v1",
       "sourcePath": "app/app_messages.ts",
-      "line": 91,
+      "line": 94,
       "operation": "multiRemove",
       "cloudSyncKey": false,
       "scope": "global",
@@ -5882,7 +5972,7 @@
     {
       "key": "app_messages_cache_v1",
       "sourcePath": "app/app_messages.ts",
-      "line": 91,
+      "line": 94,
       "operation": "multiRemove",
       "cloudSyncKey": false,
       "scope": "global",
@@ -5897,7 +5987,7 @@
     {
       "key": "app_messages_last_background_refresh_ms_v1",
       "sourcePath": "app/app_messages.ts",
-      "line": 91,
+      "line": 94,
       "operation": "multiRemove",
       "cloudSyncKey": false,
       "scope": "global",
@@ -5912,7 +6002,7 @@
     {
       "key": "app_messages_local_preview_v1",
       "sourcePath": "app/app_messages.ts",
-      "line": 91,
+      "line": 94,
       "operation": "multiRemove",
       "cloudSyncKey": false,
       "scope": "global",
@@ -5927,7 +6017,7 @@
     {
       "keyExpression": "appMessagesOwnerStorageKey(APP_MESSAGE_VISIBILITY_OUTBOX_KEY_PREFIX",
       "sourcePath": "app/app_messages.ts",
-      "line": 103,
+      "line": 106,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -5942,7 +6032,7 @@
     {
       "keyExpression": "appMessagesOwnerStorageKey(APP_MESSAGE_VISIBILITY_OUTBOX_KEY_PREFIX",
       "sourcePath": "app/app_messages.ts",
-      "line": 120,
+      "line": 123,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -5957,23 +6047,8 @@
     {
       "keyExpression": "appMessagesOwnerStorageKey(PERSONAL_MODAL_ACK_OUTBOX_KEY_PREFIX",
       "sourcePath": "app/app_messages.ts",
-      "line": 241,
+      "line": 244,
       "operation": "get",
-      "cloudSyncKey": false,
-      "scope": "global",
-      "learningState": false,
-      "targetNamespaceRequired": false,
-      "risk": "low",
-      "confidence": "medium",
-      "notes": [
-        "Reviewed dynamic account/global storage expression; not a study-target learning bucket."
-      ]
-    },
-    {
-      "keyExpression": "storageKey",
-      "sourcePath": "app/app_messages.ts",
-      "line": 264,
-      "operation": "remove",
       "cloudSyncKey": false,
       "scope": "global",
       "learningState": false,
@@ -5988,36 +6063,6 @@
       "keyExpression": "storageKey",
       "sourcePath": "app/app_messages.ts",
       "line": 267,
-      "operation": "set",
-      "cloudSyncKey": false,
-      "scope": "global",
-      "learningState": false,
-      "targetNamespaceRequired": false,
-      "risk": "low",
-      "confidence": "medium",
-      "notes": [
-        "Reviewed dynamic account/global storage expression; not a study-target learning bucket."
-      ]
-    },
-    {
-      "keyExpression": "storageKey",
-      "sourcePath": "app/app_messages.ts",
-      "line": 563,
-      "operation": "get",
-      "cloudSyncKey": false,
-      "scope": "global",
-      "learningState": false,
-      "targetNamespaceRequired": false,
-      "risk": "low",
-      "confidence": "medium",
-      "notes": [
-        "Reviewed dynamic account/global storage expression; not a study-target learning bucket."
-      ]
-    },
-    {
-      "keyExpression": "storageKey",
-      "sourcePath": "app/app_messages.ts",
-      "line": 593,
       "operation": "remove",
       "cloudSyncKey": false,
       "scope": "global",
@@ -6032,7 +6077,52 @@
     {
       "keyExpression": "storageKey",
       "sourcePath": "app/app_messages.ts",
-      "line": 596,
+      "line": 270,
+      "operation": "set",
+      "cloudSyncKey": false,
+      "scope": "global",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "medium",
+      "notes": [
+        "Reviewed dynamic account/global storage expression; not a study-target learning bucket."
+      ]
+    },
+    {
+      "keyExpression": "storageKey",
+      "sourcePath": "app/app_messages.ts",
+      "line": 576,
+      "operation": "get",
+      "cloudSyncKey": false,
+      "scope": "global",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "medium",
+      "notes": [
+        "Reviewed dynamic account/global storage expression; not a study-target learning bucket."
+      ]
+    },
+    {
+      "keyExpression": "storageKey",
+      "sourcePath": "app/app_messages.ts",
+      "line": 606,
+      "operation": "remove",
+      "cloudSyncKey": false,
+      "scope": "global",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "medium",
+      "notes": [
+        "Reviewed dynamic account/global storage expression; not a study-target learning bucket."
+      ]
+    },
+    {
+      "keyExpression": "storageKey",
+      "sourcePath": "app/app_messages.ts",
+      "line": 609,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -6047,7 +6137,7 @@
     {
       "key": "app_messages_report_reply_pending_claims_v1",
       "sourcePath": "app/app_messages.ts",
-      "line": 618,
+      "line": 631,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "unknown",
@@ -6062,7 +6152,7 @@
     {
       "key": "app_messages_report_reply_pending_claims_v1",
       "sourcePath": "app/app_messages.ts",
-      "line": 620,
+      "line": 633,
       "operation": "remove",
       "cloudSyncKey": false,
       "scope": "unknown",
@@ -6077,7 +6167,7 @@
     {
       "keyExpression": "key",
       "sourcePath": "app/app_messages.ts",
-      "line": 1055,
+      "line": 1082,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -6092,7 +6182,7 @@
     {
       "keyExpression": "appMessagesOwnerStorageKey(LOCAL_APP_MESSAGES_KEY_PREFIX",
       "sourcePath": "app/app_messages.ts",
-      "line": 1096,
+      "line": 1123,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -6107,7 +6197,7 @@
     {
       "keyExpression": "appMessagesOwnerStorageKey(LOCAL_APP_MESSAGE_STATES_KEY_PREFIX",
       "sourcePath": "app/app_messages.ts",
-      "line": 1106,
+      "line": 1133,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -6122,7 +6212,7 @@
     {
       "keyExpression": "appMessagesOwnerStorageKey(APP_MESSAGES_CACHE_KEY_PREFIX",
       "sourcePath": "app/app_messages.ts",
-      "line": 1217,
+      "line": 1244,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -6136,36 +6226,6 @@
     },
     {
       "keyExpression": "appMessagesOwnerStorageKey(APP_MESSAGES_CACHE_KEY_PREFIX",
-      "sourcePath": "app/app_messages.ts",
-      "line": 1254,
-      "operation": "set",
-      "cloudSyncKey": false,
-      "scope": "global",
-      "learningState": false,
-      "targetNamespaceRequired": false,
-      "risk": "low",
-      "confidence": "medium",
-      "notes": [
-        "Reviewed dynamic account/global storage expression; not a study-target learning bucket."
-      ]
-    },
-    {
-      "keyExpression": "appMessagesOwnerStorageKey(APP_MESSAGES_LAST_BACKGROUND_REFRESH_KEY_PREFIX",
-      "sourcePath": "app/app_messages.ts",
-      "line": 1268,
-      "operation": "get",
-      "cloudSyncKey": false,
-      "scope": "global",
-      "learningState": false,
-      "targetNamespaceRequired": false,
-      "risk": "low",
-      "confidence": "medium",
-      "notes": [
-        "Reviewed dynamic account/global storage expression; not a study-target learning bucket."
-      ]
-    },
-    {
-      "keyExpression": "appMessagesOwnerStorageKey(APP_MESSAGES_LAST_BACKGROUND_REFRESH_KEY_PREFIX",
       "sourcePath": "app/app_messages.ts",
       "line": 1281,
       "operation": "set",
@@ -6180,9 +6240,39 @@
       ]
     },
     {
+      "keyExpression": "appMessagesOwnerStorageKey(APP_MESSAGES_LAST_BACKGROUND_REFRESH_KEY_PREFIX",
+      "sourcePath": "app/app_messages.ts",
+      "line": 1295,
+      "operation": "get",
+      "cloudSyncKey": false,
+      "scope": "global",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "medium",
+      "notes": [
+        "Reviewed dynamic account/global storage expression; not a study-target learning bucket."
+      ]
+    },
+    {
+      "keyExpression": "appMessagesOwnerStorageKey(APP_MESSAGES_LAST_BACKGROUND_REFRESH_KEY_PREFIX",
+      "sourcePath": "app/app_messages.ts",
+      "line": 1308,
+      "operation": "set",
+      "cloudSyncKey": false,
+      "scope": "global",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "medium",
+      "notes": [
+        "Reviewed dynamic account/global storage expression; not a study-target learning bucket."
+      ]
+    },
+    {
       "keyExpression": "appMessagesOwnerStorageKey(ANIMATED_MESSAGE_IDS_KEY_PREFIX",
       "sourcePath": "app/app_messages.ts",
-      "line": 1653,
+      "line": 1680,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -6197,7 +6287,7 @@
     {
       "keyExpression": "appMessagesOwnerStorageKey(ANIMATED_MESSAGE_IDS_KEY_PREFIX",
       "sourcePath": "app/app_messages.ts",
-      "line": 1676,
+      "line": 1703,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -10274,7 +10364,7 @@
     {
       "keyExpression": "[...restorableKeys]",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 1498,
+      "line": 1502,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -10289,7 +10379,7 @@
     {
       "keyExpression": "dailyTasksProgressKey(todayKey",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 1578,
+      "line": 1582,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -10304,7 +10394,7 @@
     {
       "keyExpression": "dailyTasksProgressKey(todayKey",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 1579,
+      "line": 1583,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -10319,7 +10409,7 @@
     {
       "keyExpression": "dailyLessonHelperKeys",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 1590,
+      "line": 1594,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -10334,7 +10424,7 @@
     {
       "key": "stable_auth_link_cache_v1",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 2001,
+      "line": 2005,
       "operation": "remove",
       "cloudSyncKey": false,
       "scope": "global",
@@ -10349,7 +10439,7 @@
     {
       "key": "avatar_aura_owned_v1",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 2120,
+      "line": 2124,
       "operation": "constant",
       "cloudSyncKey": true,
       "scope": "global",
@@ -10364,7 +10454,7 @@
     {
       "key": "user_avatar_aura",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 2121,
+      "line": 2125,
       "operation": "constant",
       "cloudSyncKey": true,
       "scope": "global",
@@ -10379,7 +10469,7 @@
     {
       "key": "avatar_aura_gift_owned_v1",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 2122,
+      "line": 2126,
       "operation": "constant",
       "cloudSyncKey": true,
       "scope": "global",
@@ -10394,7 +10484,7 @@
     {
       "key": "admin_energy_command",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 2123,
+      "line": 2127,
       "operation": "constant",
       "cloudSyncKey": true,
       "scope": "global",
@@ -10409,7 +10499,7 @@
     {
       "key": "chain_shield",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 2153,
+      "line": 2157,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -10424,7 +10514,7 @@
     {
       "key": "gift_xp_multiplier",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 2165,
+      "line": 2169,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -10439,7 +10529,7 @@
     {
       "keyExpression": "getRuntimeSyncKeys(",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 2199,
+      "line": 2203,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -10454,7 +10544,7 @@
     {
       "key": "achievements_v1",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 2210,
+      "line": 2214,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -10469,7 +10559,7 @@
     {
       "key": "cloud_last_sync_snapshot_v1",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 2224,
+      "line": 2228,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -10484,7 +10574,7 @@
     {
       "key": "cloud_created_at_synced_v1",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 2250,
+      "line": 2254,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -10499,7 +10589,7 @@
     {
       "key": "cloud_last_sync_snapshot_v1",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 2285,
+      "line": 2289,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -10514,7 +10604,7 @@
     {
       "key": "cloud_created_at_synced_v1",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 2288,
+      "line": 2292,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -10529,7 +10619,7 @@
     {
       "key": "cloud_created_at_synced_v1",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 2319,
+      "line": 2323,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -10544,7 +10634,7 @@
     {
       "key": "tester_no_premium",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 2375,
+      "line": 2379,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -10559,7 +10649,7 @@
     {
       "key": "user_total_xp",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 2386,
+      "line": 2390,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -10574,7 +10664,7 @@
     {
       "key": "streak_count",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 2387,
+      "line": 2391,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -10589,7 +10679,7 @@
     {
       "key": "last_active_date",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 2388,
+      "line": 2392,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -10604,7 +10694,7 @@
     {
       "key": "streak_last_date",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 2389,
+      "line": 2393,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -10619,7 +10709,7 @@
     {
       "key": "user_name",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 2458,
+      "line": 2462,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -10634,7 +10724,7 @@
     {
       "keyExpression": "[",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 2468,
+      "line": 2472,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -10649,7 +10739,7 @@
     {
       "key": "week_points",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 2494,
+      "line": 2498,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -10664,7 +10754,7 @@
     {
       "key": "week_points_v2",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 2494,
+      "line": 2498,
       "operation": "multiGet",
       "cloudSyncKey": true,
       "scope": "global",
@@ -10679,7 +10769,7 @@
     {
       "key": "weekly_xp",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 2494,
+      "line": 2498,
       "operation": "multiGet",
       "cloudSyncKey": true,
       "scope": "global",
@@ -10694,7 +10784,7 @@
     {
       "key": "weekly_xp_period_start",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 2494,
+      "line": 2498,
       "operation": "multiGet",
       "cloudSyncKey": true,
       "scope": "global",
@@ -10709,7 +10799,7 @@
     {
       "key": "login_bonus_v1",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 2500,
+      "line": 2504,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -10724,7 +10814,7 @@
     {
       "key": "avatar_aura_owned_v1",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 2514,
+      "line": 2518,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -10739,7 +10829,7 @@
     {
       "keyExpression": "stickyOwnedKeys",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 2526,
+      "line": 2530,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "unknown",
@@ -10754,7 +10844,7 @@
     {
       "keyExpression": "stickyLessonKeys",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 2548,
+      "line": 2552,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "unknown",
@@ -10769,7 +10859,7 @@
     {
       "keyExpression": "dailyTasksProgressKey(...)",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 2577,
+      "line": 2581,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -10784,7 +10874,7 @@
     {
       "keyExpression": "dailyTasksProgressKey(...)",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 2590,
+      "line": 2594,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -10799,7 +10889,7 @@
     {
       "keyPattern": "${...}:${...}",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 2599,
+      "line": 2603,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -10814,7 +10904,7 @@
     {
       "key": "league_result_consumed_sig",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 2604,
+      "line": 2608,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -10829,7 +10919,7 @@
     {
       "keyExpression": "sanitizeStoragePairs(stickyPairs",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 2623,
+      "line": 2627,
       "operation": "multiSet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -10844,7 +10934,7 @@
     {
       "key": "cloud_last_sync_snapshot_v1",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 2644,
+      "line": 2648,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -10859,7 +10949,7 @@
     {
       "keyExpression": "[",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 2656,
+      "line": 2660,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -10874,7 +10964,7 @@
     {
       "key": "league_result_consumed_sig",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 2667,
+      "line": 2671,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -10889,7 +10979,7 @@
     {
       "keyExpression": "dailyTasksProgressKey(...)",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 2730,
+      "line": 2734,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -10904,7 +10994,7 @@
     {
       "keyExpression": "dailyTasksProgressKey(...)",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 2741,
+      "line": 2745,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -10919,7 +11009,7 @@
     {
       "keyExpression": "sanitizeStoragePairs(pairs",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 2753,
+      "line": 2757,
       "operation": "multiSet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -10934,7 +11024,7 @@
     {
       "key": "cloud_last_sync_snapshot_v1",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 2777,
+      "line": 2781,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -10949,7 +11039,7 @@
     {
       "key": "cloud_migration_v1",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 2876,
+      "line": 2880,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -10964,7 +11054,7 @@
     {
       "key": "cloud_migration_v1",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 2882,
+      "line": 2886,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -10979,7 +11069,7 @@
     {
       "key": "cloud_migration_v1",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 2887,
+      "line": 2891,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -10994,7 +11084,7 @@
     {
       "keyExpression": "getRuntimeSyncKeys(",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 3043,
+      "line": 3047,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -11009,7 +11099,7 @@
     {
       "key": "achievements_v1",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 3047,
+      "line": 3051,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -11024,7 +11114,7 @@
     {
       "key": "cloud_created_at_synced_v1",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 3064,
+      "line": 3068,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -11039,7 +11129,7 @@
     {
       "key": "cloud_last_sync_snapshot_v1",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 3086,
+      "line": 3090,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -11054,7 +11144,7 @@
     {
       "key": "cloud_created_at_synced_v1",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 3088,
+      "line": 3092,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -11069,7 +11159,7 @@
     {
       "keyExpression": "keys",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 3118,
+      "line": 3122,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -11084,7 +11174,7 @@
     {
       "key": "account_switch_emergency_backup_latest_v1",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 3128,
+      "line": 3132,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -11099,7 +11189,7 @@
     {
       "key": "account_switch_emergency_backup_latest_v1",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 3130,
+      "line": 3134,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -11114,7 +11204,7 @@
     {
       "key": "account_switch_emergency_backup_latest_v1",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 3131,
+      "line": 3135,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -11129,7 +11219,7 @@
     {
       "key": "account_switch_emergency_backup_latest_v1",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 3141,
+      "line": 3145,
       "operation": "remove",
       "cloudSyncKey": false,
       "scope": "global",
@@ -11144,7 +11234,7 @@
     {
       "key": "account_switch_emergency_backup_latest_v1",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 3143,
+      "line": 3147,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -11159,7 +11249,7 @@
     {
       "keyExpression": "toRemove",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 3160,
+      "line": 3164,
       "operation": "multiRemove",
       "cloudSyncKey": false,
       "scope": "global",
@@ -11174,7 +11264,7 @@
     {
       "keyExpression": "lateLearningV2Keys",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 3165,
+      "line": 3169,
       "operation": "multiRemove",
       "cloudSyncKey": false,
       "scope": "unknown",
@@ -11189,7 +11279,7 @@
     {
       "key": "auth_clean_install_recovery_adoption_v1",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 3213,
+      "line": 3217,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -11204,7 +11294,7 @@
     {
       "key": "auth_clean_install_recovery_v1",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 3213,
+      "line": 3217,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -11219,7 +11309,7 @@
     {
       "keyExpression": "sourceAccountKeys",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 3219,
+      "line": 3223,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "unknown",
@@ -11234,7 +11324,7 @@
     {
       "keyPattern": "${...}:${...}",
       "sourcePath": "app/cloud_sync.ts",
-      "line": 3224,
+      "line": 3228,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -12087,6 +12177,186 @@
       ]
     },
     {
+      "key": "compass_briefing_seen_",
+      "sourcePath": "app/compass/compass_briefing_host.tsx",
+      "line": 55,
+      "operation": "constant",
+      "cloudSyncKey": false,
+      "scope": "unknown",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "medium",
+      "confidence": "low",
+      "notes": [
+        "Unclassified key; LLM official-source review or stronger AST-based validation required."
+      ]
+    },
+    {
+      "key": "compass_account_link_reminder_seen_v1",
+      "sourcePath": "app/compass/compass_briefing_host.tsx",
+      "line": 56,
+      "operation": "constant",
+      "cloudSyncKey": false,
+      "scope": "global",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "high",
+      "notes": [
+        "Reviewed account/UI/cache storage key; not a study-target learning bucket."
+      ]
+    },
+    {
+      "key": "compass_welcome_met_v1",
+      "sourcePath": "app/compass/compass_briefing_host.tsx",
+      "line": 76,
+      "operation": "constant",
+      "cloudSyncKey": false,
+      "scope": "global",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "high",
+      "notes": [
+        "Reviewed account/UI/cache storage key; not a study-target learning bucket."
+      ]
+    },
+    {
+      "keyExpression": "todayKey(now",
+      "sourcePath": "app/compass/compass_briefing_host.tsx",
+      "line": 220,
+      "operation": "get",
+      "cloudSyncKey": false,
+      "scope": "global",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "medium",
+      "notes": [
+        "Reviewed dynamic account/global storage expression; not a study-target learning bucket."
+      ]
+    },
+    {
+      "key": "onboarding_done",
+      "sourcePath": "app/compass/compass_briefing_host.tsx",
+      "line": 234,
+      "operation": "get",
+      "cloudSyncKey": true,
+      "scope": "global",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "medium",
+      "confidence": "medium",
+      "notes": [
+        "Product/global state by heuristic; verify if task content depends on study target."
+      ]
+    },
+    {
+      "key": "compass_welcome_met_v1",
+      "sourcePath": "app/compass/compass_briefing_host.tsx",
+      "line": 248,
+      "operation": "get",
+      "cloudSyncKey": false,
+      "scope": "global",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "high",
+      "notes": [
+        "Reviewed account/UI/cache storage key; not a study-target learning bucket."
+      ]
+    },
+    {
+      "key": "compass_account_link_reminder_seen_v1",
+      "sourcePath": "app/compass/compass_briefing_host.tsx",
+      "line": 344,
+      "operation": "get",
+      "cloudSyncKey": false,
+      "scope": "global",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "high",
+      "notes": [
+        "Reviewed account/UI/cache storage key; not a study-target learning bucket."
+      ]
+    },
+    {
+      "keyExpression": "AUTH_PROMPT_SHOWN_KEY",
+      "sourcePath": "app/compass/compass_briefing_host.tsx",
+      "line": 349,
+      "operation": "get",
+      "cloudSyncKey": false,
+      "scope": "global",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "medium",
+      "notes": [
+        "Product/global state by heuristic; verify if task content depends on study target."
+      ]
+    },
+    {
+      "key": "compass_account_link_reminder_seen_v1",
+      "sourcePath": "app/compass/compass_briefing_host.tsx",
+      "line": 365,
+      "operation": "set",
+      "cloudSyncKey": false,
+      "scope": "global",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "high",
+      "notes": [
+        "Reviewed account/UI/cache storage key; not a study-target learning bucket."
+      ]
+    },
+    {
+      "keyExpression": "dayKey",
+      "sourcePath": "app/compass/compass_briefing_host.tsx",
+      "line": 374,
+      "operation": "set",
+      "cloudSyncKey": false,
+      "scope": "global",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "medium",
+      "notes": [
+        "Reviewed dynamic account/global storage expression; not a study-target learning bucket."
+      ]
+    },
+    {
+      "keyExpression": "dayKey",
+      "sourcePath": "app/compass/compass_briefing_host.tsx",
+      "line": 390,
+      "operation": "set",
+      "cloudSyncKey": false,
+      "scope": "global",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "medium",
+      "notes": [
+        "Reviewed dynamic account/global storage expression; not a study-target learning bucket."
+      ]
+    },
+    {
+      "key": "compass_welcome_met_v1",
+      "sourcePath": "app/compass/compass_briefing_host.tsx",
+      "line": 396,
+      "operation": "set",
+      "cloudSyncKey": false,
+      "scope": "global",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "high",
+      "notes": [
+        "Reviewed account/UI/cache storage key; not a study-target learning bucket."
+      ]
+    },
+    {
       "key": "user_name",
       "sourcePath": "app/compass/compass_onboarding_profile.ts",
       "line": 126,
@@ -12149,7 +12419,7 @@
     {
       "key": "compass_social_seen_signatures_v1",
       "sourcePath": "app/compass/compass_social_news.ts",
-      "line": 35,
+      "line": 37,
       "operation": "constant",
       "cloudSyncKey": false,
       "scope": "global",
@@ -12164,7 +12434,7 @@
     {
       "key": "compass_social_seen_signatures_v1",
       "sourcePath": "app/compass/compass_social_news.ts",
-      "line": 117,
+      "line": 119,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -12179,7 +12449,7 @@
     {
       "key": "compass_social_seen_signatures_v1",
       "sourcePath": "app/compass/compass_social_news.ts",
-      "line": 137,
+      "line": 139,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -12189,6 +12459,216 @@
       "confidence": "high",
       "notes": [
         "Reviewed account/UI/cache storage key; not a study-target learning bucket."
+      ]
+    },
+    {
+      "key": "compass_user_prefs_v1",
+      "sourcePath": "app/compass/compass_user_prefs.ts",
+      "line": 14,
+      "operation": "constant",
+      "cloudSyncKey": false,
+      "scope": "global",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "medium",
+      "notes": [
+        "Product/global state by heuristic; verify if task content depends on study target."
+      ]
+    },
+    {
+      "key": "compass_user_prefs_v1",
+      "sourcePath": "app/compass/compass_user_prefs.ts",
+      "line": 53,
+      "operation": "get",
+      "cloudSyncKey": false,
+      "scope": "global",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "medium",
+      "notes": [
+        "Product/global state by heuristic; verify if task content depends on study target."
+      ]
+    },
+    {
+      "key": "compass_user_prefs_v1",
+      "sourcePath": "app/compass/compass_user_prefs.ts",
+      "line": 61,
+      "operation": "set",
+      "cloudSyncKey": false,
+      "scope": "global",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "medium",
+      "notes": [
+        "Product/global state by heuristic; verify if task content depends on study target."
+      ]
+    },
+    {
+      "key": "compass_day_closing_streak_v1",
+      "sourcePath": "app/compass/day_closing_reward.ts",
+      "line": 28,
+      "operation": "constant",
+      "cloudSyncKey": false,
+      "scope": "global",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "medium",
+      "notes": [
+        "Product/global state by heuristic; verify if task content depends on study target."
+      ]
+    },
+    {
+      "key": "compass_day_closing_streak_v1",
+      "sourcePath": "app/compass/day_closing_reward.ts",
+      "line": 37,
+      "operation": "get",
+      "cloudSyncKey": false,
+      "scope": "global",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "medium",
+      "notes": [
+        "Product/global state by heuristic; verify if task content depends on study target."
+      ]
+    },
+    {
+      "key": "compass_day_closing_streak_v1",
+      "sourcePath": "app/compass/day_closing_reward.ts",
+      "line": 65,
+      "operation": "set",
+      "cloudSyncKey": false,
+      "scope": "global",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "medium",
+      "notes": [
+        "Product/global state by heuristic; verify if task content depends on study target."
+      ]
+    },
+    {
+      "keyExpression": "guard",
+      "sourcePath": "app/compass/day_closing_reward.ts",
+      "line": 69,
+      "operation": "get",
+      "cloudSyncKey": false,
+      "scope": "global",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "medium",
+      "notes": [
+        "Reviewed dynamic account/global storage expression; not a study-target learning bucket."
+      ]
+    },
+    {
+      "key": "user_name",
+      "sourcePath": "app/compass/day_closing_reward.ts",
+      "line": 72,
+      "operation": "get",
+      "cloudSyncKey": true,
+      "scope": "global",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "medium",
+      "confidence": "medium",
+      "notes": [
+        "Product/global state by heuristic; verify if task content depends on study target."
+      ]
+    },
+    {
+      "keyExpression": "guard",
+      "sourcePath": "app/compass/day_closing_reward.ts",
+      "line": 79,
+      "operation": "set",
+      "cloudSyncKey": false,
+      "scope": "global",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "medium",
+      "notes": [
+        "Reviewed dynamic account/global storage expression; not a study-target learning bucket."
+      ]
+    },
+    {
+      "key": "compass_day_closing_free_used_v1",
+      "sourcePath": "app/compass/day_closing_ritual.ts",
+      "line": 12,
+      "operation": "constant",
+      "cloudSyncKey": false,
+      "scope": "unknown",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "medium",
+      "confidence": "low",
+      "notes": [
+        "Unclassified key; LLM official-source review or stronger AST-based validation required."
+      ]
+    },
+    {
+      "key": "compass_day_closing_locked_last_v1",
+      "sourcePath": "app/compass/day_closing_ritual.ts",
+      "line": 15,
+      "operation": "constant",
+      "cloudSyncKey": false,
+      "scope": "unknown",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "medium",
+      "confidence": "low",
+      "notes": [
+        "Unclassified key; LLM official-source review or stronger AST-based validation required."
+      ]
+    },
+    {
+      "key": "install_date",
+      "sourcePath": "app/compass/day_closing_ritual.ts",
+      "line": 23,
+      "operation": "constant",
+      "cloudSyncKey": false,
+      "scope": "global",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "high",
+      "notes": [
+        "Reviewed account/UI/cache storage key; not a study-target learning bucket."
+      ]
+    },
+    {
+      "key": "1",
+      "sourcePath": "app/compass/day_closing_ritual.ts",
+      "line": 369,
+      "operation": "multiSet",
+      "cloudSyncKey": false,
+      "scope": "global",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "medium",
+      "notes": [
+        "Reviewed scanner-noise token; not a real AsyncStorage key."
+      ]
+    },
+    {
+      "keyExpression": "[",
+      "sourcePath": "app/compass/day_closing_ritual.ts",
+      "line": 386,
+      "operation": "multiGet",
+      "cloudSyncKey": false,
+      "scope": "global",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "medium",
+      "notes": [
+        "Reviewed scanner-noise token; not a real AsyncStorage key."
       ]
     },
     {
@@ -13484,7 +13964,7 @@
     {
       "keyExpression": "diagnosticLastKey(studyTarget",
       "sourcePath": "app/diagnostic_test.tsx",
-      "line": 1096,
+      "line": 1098,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -13499,7 +13979,7 @@
     {
       "key": "user_name",
       "sourcePath": "app/diagnostic_test.tsx",
-      "line": 1144,
+      "line": 1146,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -13514,7 +13994,7 @@
     {
       "keyExpression": "lessonProgressKey(...)",
       "sourcePath": "app/diagnostic_test.tsx",
-      "line": 1154,
+      "line": 1156,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -13529,7 +14009,7 @@
     {
       "keyExpression": "diagnosticLastKey(studyTarget",
       "sourcePath": "app/diagnostic_test.tsx",
-      "line": 1242,
+      "line": 1254,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -13544,7 +14024,7 @@
     {
       "keyExpression": "diagnosticOpenFlagKey(studyTarget",
       "sourcePath": "app/diagnostic_test.tsx",
-      "line": 1700,
+      "line": 1716,
       "operation": "remove",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -14251,7 +14731,7 @@
     {
       "keyExpression": "lessonProgressKey(...)",
       "sourcePath": "app/exam.tsx",
-      "line": 575,
+      "line": 577,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -14266,7 +14746,7 @@
     {
       "key": "user_name",
       "sourcePath": "app/exam.tsx",
-      "line": 751,
+      "line": 759,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -14281,7 +14761,7 @@
     {
       "key": "user_name",
       "sourcePath": "app/exam.tsx",
-      "line": 815,
+      "line": 823,
       "operation": "set",
       "cloudSyncKey": true,
       "scope": "global",
@@ -15271,7 +15751,7 @@
     {
       "keyExpression": "flashcardsSwipeMemoryKey(studyTarget",
       "sourcePath": "app/flashcards_swipe.tsx",
-      "line": 204,
+      "line": 206,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -15286,7 +15766,7 @@
     {
       "keyExpression": "flashcardsSwipeMemoryKey(studyTarget",
       "sourcePath": "app/flashcards_swipe.tsx",
-      "line": 218,
+      "line": 220,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -15301,7 +15781,7 @@
     {
       "keyExpression": "flashcardsSwipeHintSeenKey(studyTarget",
       "sourcePath": "app/flashcards_swipe.tsx",
-      "line": 2009,
+      "line": 2012,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "unknown",
@@ -15316,7 +15796,7 @@
     {
       "keyExpression": "flashcardsSwipeHintSeenKey(studyTarget",
       "sourcePath": "app/flashcards_swipe.tsx",
-      "line": 2022,
+      "line": 2025,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "unknown",
@@ -16261,7 +16741,7 @@
     {
       "key": "leaderboard",
       "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 59,
+      "line": 61,
       "operation": "constant",
       "cloudSyncKey": false,
       "scope": "global",
@@ -16276,7 +16756,7 @@
     {
       "key": "leaderboard",
       "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 63,
+      "line": 65,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -16291,7 +16771,7 @@
     {
       "key": "leaderboard",
       "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 89,
+      "line": 91,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -16306,7 +16786,7 @@
     {
       "key": "week_leaderboard",
       "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 94,
+      "line": 96,
       "operation": "constant",
       "cloudSyncKey": true,
       "scope": "global",
@@ -16321,7 +16801,7 @@
     {
       "key": "week_leaderboard",
       "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 98,
+      "line": 100,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -16336,7 +16816,7 @@
     {
       "key": "week_points_v2",
       "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 124,
+      "line": 126,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -16351,7 +16831,7 @@
     {
       "key": "week_points_last_final",
       "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 128,
+      "line": 130,
       "operation": "multiSet",
       "cloudSyncKey": false,
       "scope": "unknown",
@@ -16366,7 +16846,7 @@
     {
       "key": "week_points_last_final",
       "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 145,
+      "line": 147,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "unknown",
@@ -16381,7 +16861,7 @@
     {
       "key": "week_leaderboard",
       "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 158,
+      "line": 160,
       "operation": "set",
       "cloudSyncKey": true,
       "scope": "global",
@@ -16396,7 +16876,7 @@
     {
       "key": "week_points_v2",
       "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 175,
+      "line": 177,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -16411,7 +16891,7 @@
     {
       "key": "week_points",
       "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 183,
+      "line": 185,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -16426,7 +16906,7 @@
     {
       "key": "weekly_xp",
       "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 183,
+      "line": 185,
       "operation": "multiGet",
       "cloudSyncKey": true,
       "scope": "global",
@@ -16441,7 +16921,7 @@
     {
       "key": "weekly_xp_period_start",
       "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 183,
+      "line": 185,
       "operation": "multiGet",
       "cloudSyncKey": true,
       "scope": "global",
@@ -16456,7 +16936,7 @@
     {
       "key": "week_points_migrated_v1",
       "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 206,
+      "line": 208,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -16471,7 +16951,7 @@
     {
       "key": "week_points_v2",
       "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 209,
+      "line": 211,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -16486,7 +16966,7 @@
     {
       "key": "week_points_v2",
       "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 219,
+      "line": 221,
       "operation": "set",
       "cloudSyncKey": true,
       "scope": "global",
@@ -16501,7 +16981,7 @@
     {
       "key": "week_points_migrated_v1",
       "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 222,
+      "line": 224,
       "operation": "set",
       "cloudSyncKey": true,
       "scope": "global",
@@ -16516,7 +16996,7 @@
     {
       "key": "last_active_date",
       "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 244,
+      "line": 246,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -16531,7 +17011,7 @@
     {
       "key": "streak_count",
       "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 246,
+      "line": 248,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -16546,7 +17026,7 @@
     {
       "key": "streak_freeze",
       "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 259,
+      "line": 261,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -16561,7 +17041,7 @@
     {
       "key": "streak_freeze",
       "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 264,
+      "line": 266,
       "operation": "set",
       "cloudSyncKey": true,
       "scope": "global",
@@ -16576,23 +17056,8 @@
     {
       "key": "chain_shield",
       "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 298,
+      "line": 300,
       "operation": "get",
-      "cloudSyncKey": true,
-      "scope": "global",
-      "learningState": false,
-      "targetNamespaceRequired": false,
-      "risk": "medium",
-      "confidence": "high",
-      "notes": [
-        "Reviewed account/UI/cache storage key; not a study-target learning bucket."
-      ]
-    },
-    {
-      "key": "chain_shield",
-      "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 306,
-      "operation": "remove",
       "cloudSyncKey": true,
       "scope": "global",
       "learningState": false,
@@ -16607,6 +17072,21 @@
       "key": "chain_shield",
       "sourcePath": "app/hall_of_fame_utils.ts",
       "line": 308,
+      "operation": "remove",
+      "cloudSyncKey": true,
+      "scope": "global",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "medium",
+      "confidence": "high",
+      "notes": [
+        "Reviewed account/UI/cache storage key; not a study-target learning bucket."
+      ]
+    },
+    {
+      "key": "chain_shield",
+      "sourcePath": "app/hall_of_fame_utils.ts",
+      "line": 310,
       "operation": "set",
       "cloudSyncKey": true,
       "scope": "global",
@@ -16621,7 +17101,7 @@
     {
       "key": "chain_shield",
       "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 326,
+      "line": 328,
       "operation": "remove",
       "cloudSyncKey": true,
       "scope": "global",
@@ -16636,7 +17116,7 @@
     {
       "key": "app_lang",
       "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 329,
+      "line": 331,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "source_locale",
@@ -16651,7 +17131,7 @@
     {
       "key": "app_lang",
       "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 337,
+      "line": 339,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "source_locale",
@@ -16666,7 +17146,7 @@
     {
       "key": "app_lang",
       "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 347,
+      "line": 349,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "source_locale",
@@ -16681,7 +17161,7 @@
     {
       "key": "streak_count",
       "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 355,
+      "line": 357,
       "operation": "set",
       "cloudSyncKey": true,
       "scope": "global",
@@ -16696,7 +17176,7 @@
     {
       "key": "last_active_date",
       "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 356,
+      "line": 358,
       "operation": "set",
       "cloudSyncKey": true,
       "scope": "global",
@@ -16711,7 +17191,7 @@
     {
       "key": "week_days_done",
       "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 366,
+      "line": 368,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -16726,7 +17206,7 @@
     {
       "key": "week_days_week_key",
       "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 371,
+      "line": 373,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -16741,7 +17221,7 @@
     {
       "key": "week_days_done",
       "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 375,
+      "line": 377,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -16756,7 +17236,7 @@
     {
       "key": "week_days_week_key",
       "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 376,
+      "line": 378,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -16771,7 +17251,7 @@
     {
       "key": "week_days_done",
       "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 379,
+      "line": 381,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -16786,7 +17266,7 @@
     {
       "key": "user_total_xp",
       "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 430,
+      "line": 432,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -16801,7 +17281,7 @@
     {
       "key": "user_avatar",
       "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 434,
+      "line": 436,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -16816,7 +17296,7 @@
     {
       "key": "week_points_v2",
       "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 460,
+      "line": 462,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -16831,7 +17311,7 @@
     {
       "key": "week_xp_peak_best_v1",
       "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 463,
+      "line": 465,
       "operation": "constant",
       "cloudSyncKey": false,
       "scope": "global",
@@ -16846,7 +17326,7 @@
     {
       "key": "week_xp_peak_best_v1",
       "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 469,
+      "line": 471,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -16861,7 +17341,7 @@
     {
       "key": "week_xp_peak_best_v1",
       "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 471,
+      "line": 473,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -16876,7 +17356,7 @@
     {
       "key": "week_points_v2",
       "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 484,
+      "line": 486,
       "operation": "set",
       "cloudSyncKey": true,
       "scope": "global",
@@ -16891,23 +17371,8 @@
     {
       "key": "week_points",
       "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 485,
-      "operation": "set",
-      "cloudSyncKey": false,
-      "scope": "global",
-      "learningState": false,
-      "targetNamespaceRequired": false,
-      "risk": "low",
-      "confidence": "high",
-      "notes": [
-        "Reviewed account/UI/cache storage key; not a study-target learning bucket."
-      ]
-    },
-    {
-      "key": "week_xp_peak_best_v1",
-      "sourcePath": "app/hall_of_fame_utils.ts",
       "line": 487,
-      "operation": "get",
+      "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
       "learningState": false,
@@ -16922,6 +17387,21 @@
       "key": "week_xp_peak_best_v1",
       "sourcePath": "app/hall_of_fame_utils.ts",
       "line": 489,
+      "operation": "get",
+      "cloudSyncKey": false,
+      "scope": "global",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "high",
+      "notes": [
+        "Reviewed account/UI/cache storage key; not a study-target learning bucket."
+      ]
+    },
+    {
+      "key": "week_xp_peak_best_v1",
+      "sourcePath": "app/hall_of_fame_utils.ts",
+      "line": 491,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -16936,7 +17416,7 @@
     {
       "key": "week_board_meta",
       "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 501,
+      "line": 503,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -16951,7 +17431,7 @@
     {
       "key": "week_board_meta",
       "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 507,
+      "line": 509,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -16966,7 +17446,7 @@
     {
       "key": "daily_stats",
       "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 526,
+      "line": 528,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -16981,7 +17461,7 @@
     {
       "key": "streak_count",
       "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 534,
+      "line": 536,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -16996,7 +17476,7 @@
     {
       "key": "daily_stats",
       "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 536,
+      "line": 538,
       "operation": "set",
       "cloudSyncKey": true,
       "scope": "global",
@@ -17011,7 +17491,7 @@
     {
       "key": "last_active_date",
       "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 654,
+      "line": 656,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -17026,7 +17506,7 @@
     {
       "key": "streak_count",
       "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 664,
+      "line": 666,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -17041,7 +17521,7 @@
     {
       "key": "streak_freeze",
       "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 667,
+      "line": 669,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -17056,7 +17536,7 @@
     {
       "keyExpression": "key",
       "sourcePath": "app/hall_of_fame_utils.ts",
-      "line": 694,
+      "line": 696,
       "operation": "remove",
       "cloudSyncKey": false,
       "scope": "global",
@@ -17281,7 +17761,7 @@
     {
       "keyExpression": "INTRO_FULL_ACCESS_STARTED_AT_KEY",
       "sourcePath": "app/intro_full_access.ts",
-      "line": 59,
+      "line": 51,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -17296,7 +17776,7 @@
     {
       "keyExpression": "[",
       "sourcePath": "app/intro_full_access.ts",
-      "line": 70,
+      "line": 63,
       "operation": "multiSet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -17311,7 +17791,7 @@
     {
       "keyExpression": "INTRO_FULL_ACCESS_STARTED_AT_KEY",
       "sourcePath": "app/intro_full_access.ts",
-      "line": 80,
+      "line": 73,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -17339,9 +17819,24 @@
       ]
     },
     {
+      "keyExpression": "[",
+      "sourcePath": "app/intro_full_access.ts",
+      "line": 96,
+      "operation": "multiSet",
+      "cloudSyncKey": false,
+      "scope": "global",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "medium",
+      "notes": [
+        "Reviewed scanner-noise token; not a real AsyncStorage key."
+      ]
+    },
+    {
       "keyExpression": "[...INTRO_FULL_ACCESS_STORAGE_KEYS]",
       "sourcePath": "app/intro_full_access.ts",
-      "line": 107,
+      "line": 115,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -17356,7 +17851,7 @@
     {
       "keyExpression": "INTRO_FULL_ACCESS_WELCOME_SEEN_KEY",
       "sourcePath": "app/intro_full_access.ts",
-      "line": 146,
+      "line": 154,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -17371,7 +17866,7 @@
     {
       "keyExpression": "INTRO_FULL_ACCESS_ENDED_SEEN_KEY",
       "sourcePath": "app/intro_full_access.ts",
-      "line": 150,
+      "line": 158,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -17386,7 +17881,7 @@
     {
       "keyExpression": "[",
       "sourcePath": "app/intro_full_access.ts",
-      "line": 154,
+      "line": 162,
       "operation": "multiSet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -17401,7 +17896,7 @@
     {
       "keyExpression": "[",
       "sourcePath": "app/intro_full_access.ts",
-      "line": 164,
+      "line": 172,
       "operation": "multiSet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -17416,7 +17911,7 @@
     {
       "keyExpression": "[...INTRO_FULL_ACCESS_STORAGE_KEYS]",
       "sourcePath": "app/intro_full_access.ts",
-      "line": 173,
+      "line": 181,
       "operation": "multiRemove",
       "cloudSyncKey": false,
       "scope": "global",
@@ -18436,7 +18931,7 @@
     {
       "keyExpression": "irregularVerbsGlobalKey(...)",
       "sourcePath": "app/lesson_irregular_verbs.tsx",
-      "line": 508,
+      "line": 505,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -18451,7 +18946,7 @@
     {
       "keyExpression": "irregularVerbsGlobalKey(...)",
       "sourcePath": "app/lesson_irregular_verbs.tsx",
-      "line": 511,
+      "line": 508,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -18466,7 +18961,7 @@
     {
       "keyExpression": "irregularVerbsGlobalKey(...)",
       "sourcePath": "app/lesson_irregular_verbs.tsx",
-      "line": 1144,
+      "line": 1141,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -19351,7 +19846,7 @@
     {
       "keyExpression": "lessonWordsKey(...)",
       "sourcePath": "app/lesson_words.tsx",
-      "line": 2979,
+      "line": 2977,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -19366,7 +19861,7 @@
     {
       "keyExpression": "lessonWordsShardsGrantedKey(...)",
       "sourcePath": "app/lesson_words.tsx",
-      "line": 3020,
+      "line": 3018,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -19381,7 +19876,7 @@
     {
       "keyExpression": "lessonWordsShardsGrantedKey(...)",
       "sourcePath": "app/lesson_words.tsx",
-      "line": 3025,
+      "line": 3023,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -19396,7 +19891,7 @@
     {
       "key": "user_name",
       "sourcePath": "app/lesson_words.tsx",
-      "line": 3660,
+      "line": 3658,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -19411,7 +19906,7 @@
     {
       "keyExpression": "lessonWordsKey(...)",
       "sourcePath": "app/lesson_words.tsx",
-      "line": 3672,
+      "line": 3670,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -19426,7 +19921,7 @@
     {
       "keyExpression": "lessonWordsKey(...)",
       "sourcePath": "app/lesson_words.tsx",
-      "line": 3678,
+      "line": 3676,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -19441,7 +19936,7 @@
     {
       "key": "user_settings",
       "sourcePath": "app/lesson1.tsx",
-      "line": 280,
+      "line": 282,
       "operation": "constant",
       "cloudSyncKey": true,
       "scope": "study_target",
@@ -19456,7 +19951,7 @@
     {
       "key": "lesson_cycle_end_intro_shown",
       "sourcePath": "app/lesson1.tsx",
-      "line": 387,
+      "line": 389,
       "operation": "constant",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -19471,7 +19966,7 @@
     {
       "keyExpression": "grammarHintSeenKey(...)",
       "sourcePath": "app/lesson1.tsx",
-      "line": 903,
+      "line": 906,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -19486,7 +19981,7 @@
     {
       "keyExpression": "grammarHintSeenKey(...)",
       "sourcePath": "app/lesson1.tsx",
-      "line": 905,
+      "line": 908,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -19501,7 +19996,7 @@
     {
       "key": "last_active_date",
       "sourcePath": "app/lesson1.tsx",
-      "line": 2236,
+      "line": 2255,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "study_target",
@@ -19516,7 +20011,7 @@
     {
       "keyExpression": "lessonSessionKey(...)",
       "sourcePath": "app/lesson1.tsx",
-      "line": 2267,
+      "line": 2286,
       "operation": "multiSet",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -19531,7 +20026,7 @@
     {
       "key": "user_name",
       "sourcePath": "app/lesson1.tsx",
-      "line": 2339,
+      "line": 2358,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "study_target",
@@ -19546,7 +20041,7 @@
     {
       "keyExpression": "lessonIntroShownKey(...)",
       "sourcePath": "app/lesson1.tsx",
-      "line": 2375,
+      "line": 2394,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -19561,7 +20056,7 @@
     {
       "keyExpression": "lessonIntroShownKey(...)",
       "sourcePath": "app/lesson1.tsx",
-      "line": 2380,
+      "line": 2399,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -19576,7 +20071,7 @@
     {
       "key": "user_settings",
       "sourcePath": "app/lesson1.tsx",
-      "line": 2409,
+      "line": 2428,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "study_target",
@@ -19591,7 +20086,7 @@
     {
       "keyExpression": "lessonIntroShownKey(lessonId",
       "sourcePath": "app/lesson1.tsx",
-      "line": 2626,
+      "line": 2645,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -19605,96 +20100,6 @@
     },
     {
       "keyExpression": "lessonIntroShownKey(...)",
-      "sourcePath": "app/lesson1.tsx",
-      "line": 2713,
-      "operation": "get",
-      "cloudSyncKey": false,
-      "scope": "study_target",
-      "learningState": true,
-      "targetNamespaceRequired": false,
-      "risk": "low",
-      "confidence": "high",
-      "notes": [
-        "Reviewed target-sensitive learning source; dynamic keys resolve to per-target learning buckets via target-aware helpers."
-      ]
-    },
-    {
-      "keyExpression": "lessonIntroShownKey(...)",
-      "sourcePath": "app/lesson1.tsx",
-      "line": 2715,
-      "operation": "set",
-      "cloudSyncKey": false,
-      "scope": "study_target",
-      "learningState": true,
-      "targetNamespaceRequired": false,
-      "risk": "low",
-      "confidence": "high",
-      "notes": [
-        "Reviewed target-sensitive learning source; dynamic keys resolve to per-target learning buckets via target-aware helpers."
-      ]
-    },
-    {
-      "keyExpression": "lessonProgressKey(...)",
-      "sourcePath": "app/lesson1.tsx",
-      "line": 2728,
-      "operation": "get",
-      "cloudSyncKey": false,
-      "scope": "study_target",
-      "learningState": true,
-      "targetNamespaceRequired": false,
-      "risk": "low",
-      "confidence": "high",
-      "notes": [
-        "Reviewed target-sensitive learning source; dynamic keys resolve to per-target learning buckets via target-aware helpers."
-      ]
-    },
-    {
-      "key": "user_settings",
-      "sourcePath": "app/lesson1.tsx",
-      "line": 2729,
-      "operation": "get",
-      "cloudSyncKey": true,
-      "scope": "study_target",
-      "learningState": true,
-      "targetNamespaceRequired": false,
-      "risk": "low",
-      "confidence": "high",
-      "notes": [
-        "Reviewed target-sensitive learning source; dynamic keys resolve to per-target learning buckets via target-aware helpers."
-      ]
-    },
-    {
-      "keyExpression": "lessonSessionKey(...)",
-      "sourcePath": "app/lesson1.tsx",
-      "line": 2730,
-      "operation": "get",
-      "cloudSyncKey": false,
-      "scope": "study_target",
-      "learningState": true,
-      "targetNamespaceRequired": false,
-      "risk": "low",
-      "confidence": "high",
-      "notes": [
-        "Reviewed target-sensitive learning source; dynamic keys resolve to per-target learning buckets via target-aware helpers."
-      ]
-    },
-    {
-      "keyExpression": "lessonSessionKey(...)",
-      "sourcePath": "app/lesson1.tsx",
-      "line": 2731,
-      "operation": "get",
-      "cloudSyncKey": false,
-      "scope": "study_target",
-      "learningState": true,
-      "targetNamespaceRequired": false,
-      "risk": "low",
-      "confidence": "high",
-      "notes": [
-        "Reviewed target-sensitive learning source; dynamic keys resolve to per-target learning buckets via target-aware helpers."
-      ]
-    },
-    {
-      "keyExpression": "lessonSessionKey(...)",
       "sourcePath": "app/lesson1.tsx",
       "line": 2732,
       "operation": "get",
@@ -19709,204 +20114,9 @@
       ]
     },
     {
-      "keyExpression": "lessonSessionKey(...)",
-      "sourcePath": "app/lesson1.tsx",
-      "line": 2733,
-      "operation": "get",
-      "cloudSyncKey": false,
-      "scope": "study_target",
-      "learningState": true,
-      "targetNamespaceRequired": false,
-      "risk": "low",
-      "confidence": "high",
-      "notes": [
-        "Reviewed target-sensitive learning source; dynamic keys resolve to per-target learning buckets via target-aware helpers."
-      ]
-    },
-    {
-      "keyExpression": "lessonSessionKey(...)",
+      "keyExpression": "lessonIntroShownKey(...)",
       "sourcePath": "app/lesson1.tsx",
       "line": 2734,
-      "operation": "get",
-      "cloudSyncKey": false,
-      "scope": "study_target",
-      "learningState": true,
-      "targetNamespaceRequired": false,
-      "risk": "low",
-      "confidence": "high",
-      "notes": [
-        "Reviewed target-sensitive learning source; dynamic keys resolve to per-target learning buckets via target-aware helpers."
-      ]
-    },
-    {
-      "keyExpression": "lessonSessionKey(...)",
-      "sourcePath": "app/lesson1.tsx",
-      "line": 2735,
-      "operation": "get",
-      "cloudSyncKey": false,
-      "scope": "study_target",
-      "learningState": true,
-      "targetNamespaceRequired": false,
-      "risk": "low",
-      "confidence": "high",
-      "notes": [
-        "Reviewed target-sensitive learning source; dynamic keys resolve to per-target learning buckets via target-aware helpers."
-      ]
-    },
-    {
-      "keyExpression": "lessonSessionKey(...)",
-      "sourcePath": "app/lesson1.tsx",
-      "line": 2740,
-      "operation": "set",
-      "cloudSyncKey": false,
-      "scope": "study_target",
-      "learningState": true,
-      "targetNamespaceRequired": false,
-      "risk": "low",
-      "confidence": "high",
-      "notes": [
-        "Reviewed target-sensitive learning source; dynamic keys resolve to per-target learning buckets via target-aware helpers."
-      ]
-    },
-    {
-      "keyExpression": "lessonSessionKey(...)",
-      "sourcePath": "app/lesson1.tsx",
-      "line": 2756,
-      "operation": "multiRemove",
-      "cloudSyncKey": false,
-      "scope": "study_target",
-      "learningState": true,
-      "targetNamespaceRequired": false,
-      "risk": "low",
-      "confidence": "high",
-      "notes": [
-        "Reviewed target-sensitive learning source; dynamic keys resolve to per-target learning buckets via target-aware helpers."
-      ]
-    },
-    {
-      "keyExpression": "lessonSessionKey(...)",
-      "sourcePath": "app/lesson1.tsx",
-      "line": 2838,
-      "operation": "remove",
-      "cloudSyncKey": false,
-      "scope": "study_target",
-      "learningState": true,
-      "targetNamespaceRequired": false,
-      "risk": "low",
-      "confidence": "high",
-      "notes": [
-        "Reviewed target-sensitive learning source; dynamic keys resolve to per-target learning buckets via target-aware helpers."
-      ]
-    },
-    {
-      "keyExpression": "lessonSessionKey(...)",
-      "sourcePath": "app/lesson1.tsx",
-      "line": 2841,
-      "operation": "remove",
-      "cloudSyncKey": false,
-      "scope": "study_target",
-      "learningState": true,
-      "targetNamespaceRequired": false,
-      "risk": "low",
-      "confidence": "high",
-      "notes": [
-        "Reviewed target-sensitive learning source; dynamic keys resolve to per-target learning buckets via target-aware helpers."
-      ]
-    },
-    {
-      "keyExpression": "lessonSessionKey(...)",
-      "sourcePath": "app/lesson1.tsx",
-      "line": 2849,
-      "operation": "set",
-      "cloudSyncKey": false,
-      "scope": "study_target",
-      "learningState": true,
-      "targetNamespaceRequired": false,
-      "risk": "low",
-      "confidence": "high",
-      "notes": [
-        "Reviewed target-sensitive learning source; dynamic keys resolve to per-target learning buckets via target-aware helpers."
-      ]
-    },
-    {
-      "keyExpression": "lessonSessionKey(...)",
-      "sourcePath": "app/lesson1.tsx",
-      "line": 2853,
-      "operation": "set",
-      "cloudSyncKey": false,
-      "scope": "study_target",
-      "learningState": true,
-      "targetNamespaceRequired": false,
-      "risk": "low",
-      "confidence": "high",
-      "notes": [
-        "Reviewed target-sensitive learning source; dynamic keys resolve to per-target learning buckets via target-aware helpers."
-      ]
-    },
-    {
-      "keyExpression": "fiftyFiftyUsageKey(...)",
-      "sourcePath": "app/lesson1.tsx",
-      "line": 2907,
-      "operation": "get",
-      "cloudSyncKey": false,
-      "scope": "study_target",
-      "learningState": true,
-      "targetNamespaceRequired": false,
-      "risk": "low",
-      "confidence": "high",
-      "notes": [
-        "Reviewed target-sensitive learning source; dynamic keys resolve to per-target learning buckets via target-aware helpers."
-      ]
-    },
-    {
-      "keyExpression": "teachingNoteMemoryKey",
-      "sourcePath": "app/lesson1.tsx",
-      "line": 2952,
-      "operation": "get",
-      "cloudSyncKey": false,
-      "scope": "study_target",
-      "learningState": true,
-      "targetNamespaceRequired": false,
-      "risk": "low",
-      "confidence": "high",
-      "notes": [
-        "Reviewed target-sensitive learning source; dynamic keys resolve to per-target learning buckets via target-aware helpers."
-      ]
-    },
-    {
-      "keyExpression": "teachingNoteMemoryKey",
-      "sourcePath": "app/lesson1.tsx",
-      "line": 2966,
-      "operation": "set",
-      "cloudSyncKey": false,
-      "scope": "study_target",
-      "learningState": true,
-      "targetNamespaceRequired": false,
-      "risk": "low",
-      "confidence": "high",
-      "notes": [
-        "Reviewed target-sensitive learning source; dynamic keys resolve to per-target learning buckets via target-aware helpers."
-      ]
-    },
-    {
-      "keyExpression": "dailyTaskLessonVisitedKey(...)",
-      "sourcePath": "app/lesson1.tsx",
-      "line": 2984,
-      "operation": "get",
-      "cloudSyncKey": false,
-      "scope": "study_target",
-      "learningState": true,
-      "targetNamespaceRequired": false,
-      "risk": "low",
-      "confidence": "high",
-      "notes": [
-        "Reviewed target-sensitive learning source; dynamic keys resolve to per-target learning buckets via target-aware helpers."
-      ]
-    },
-    {
-      "keyExpression": "dailyTaskLessonVisitedKey(...)",
-      "sourcePath": "app/lesson1.tsx",
-      "line": 2990,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -19921,7 +20131,127 @@
     {
       "keyExpression": "lessonProgressKey(...)",
       "sourcePath": "app/lesson1.tsx",
-      "line": 3285,
+      "line": 2747,
+      "operation": "get",
+      "cloudSyncKey": false,
+      "scope": "study_target",
+      "learningState": true,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "high",
+      "notes": [
+        "Reviewed target-sensitive learning source; dynamic keys resolve to per-target learning buckets via target-aware helpers."
+      ]
+    },
+    {
+      "key": "user_settings",
+      "sourcePath": "app/lesson1.tsx",
+      "line": 2748,
+      "operation": "get",
+      "cloudSyncKey": true,
+      "scope": "study_target",
+      "learningState": true,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "high",
+      "notes": [
+        "Reviewed target-sensitive learning source; dynamic keys resolve to per-target learning buckets via target-aware helpers."
+      ]
+    },
+    {
+      "keyExpression": "lessonSessionKey(...)",
+      "sourcePath": "app/lesson1.tsx",
+      "line": 2749,
+      "operation": "get",
+      "cloudSyncKey": false,
+      "scope": "study_target",
+      "learningState": true,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "high",
+      "notes": [
+        "Reviewed target-sensitive learning source; dynamic keys resolve to per-target learning buckets via target-aware helpers."
+      ]
+    },
+    {
+      "keyExpression": "lessonSessionKey(...)",
+      "sourcePath": "app/lesson1.tsx",
+      "line": 2750,
+      "operation": "get",
+      "cloudSyncKey": false,
+      "scope": "study_target",
+      "learningState": true,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "high",
+      "notes": [
+        "Reviewed target-sensitive learning source; dynamic keys resolve to per-target learning buckets via target-aware helpers."
+      ]
+    },
+    {
+      "keyExpression": "lessonSessionKey(...)",
+      "sourcePath": "app/lesson1.tsx",
+      "line": 2751,
+      "operation": "get",
+      "cloudSyncKey": false,
+      "scope": "study_target",
+      "learningState": true,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "high",
+      "notes": [
+        "Reviewed target-sensitive learning source; dynamic keys resolve to per-target learning buckets via target-aware helpers."
+      ]
+    },
+    {
+      "keyExpression": "lessonSessionKey(...)",
+      "sourcePath": "app/lesson1.tsx",
+      "line": 2752,
+      "operation": "get",
+      "cloudSyncKey": false,
+      "scope": "study_target",
+      "learningState": true,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "high",
+      "notes": [
+        "Reviewed target-sensitive learning source; dynamic keys resolve to per-target learning buckets via target-aware helpers."
+      ]
+    },
+    {
+      "keyExpression": "lessonSessionKey(...)",
+      "sourcePath": "app/lesson1.tsx",
+      "line": 2753,
+      "operation": "get",
+      "cloudSyncKey": false,
+      "scope": "study_target",
+      "learningState": true,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "high",
+      "notes": [
+        "Reviewed target-sensitive learning source; dynamic keys resolve to per-target learning buckets via target-aware helpers."
+      ]
+    },
+    {
+      "keyExpression": "lessonSessionKey(...)",
+      "sourcePath": "app/lesson1.tsx",
+      "line": 2754,
+      "operation": "get",
+      "cloudSyncKey": false,
+      "scope": "study_target",
+      "learningState": true,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "high",
+      "notes": [
+        "Reviewed target-sensitive learning source; dynamic keys resolve to per-target learning buckets via target-aware helpers."
+      ]
+    },
+    {
+      "keyExpression": "lessonSessionKey(...)",
+      "sourcePath": "app/lesson1.tsx",
+      "line": 2759,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -19936,8 +20266,8 @@
     {
       "keyExpression": "lessonSessionKey(...)",
       "sourcePath": "app/lesson1.tsx",
-      "line": 3286,
-      "operation": "set",
+      "line": 2775,
+      "operation": "multiRemove",
       "cloudSyncKey": false,
       "scope": "study_target",
       "learningState": true,
@@ -19951,22 +20281,7 @@
     {
       "keyExpression": "lessonSessionKey(...)",
       "sourcePath": "app/lesson1.tsx",
-      "line": 3304,
-      "operation": "set",
-      "cloudSyncKey": false,
-      "scope": "study_target",
-      "learningState": true,
-      "targetNamespaceRequired": false,
-      "risk": "low",
-      "confidence": "high",
-      "notes": [
-        "Reviewed target-sensitive learning source; dynamic keys resolve to per-target learning buckets via target-aware helpers."
-      ]
-    },
-    {
-      "keyExpression": "lessonSessionKey(...)",
-      "sourcePath": "app/lesson1.tsx",
-      "line": 3315,
+      "line": 2857,
       "operation": "remove",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -19981,8 +20296,8 @@
     {
       "keyExpression": "lessonSessionKey(...)",
       "sourcePath": "app/lesson1.tsx",
-      "line": 3319,
-      "operation": "multiRemove",
+      "line": 2860,
+      "operation": "remove",
       "cloudSyncKey": false,
       "scope": "study_target",
       "learningState": true,
@@ -19994,39 +20309,9 @@
       ]
     },
     {
-      "keyExpression": "finishedAtKey",
+      "keyExpression": "lessonSessionKey(...)",
       "sourcePath": "app/lesson1.tsx",
-      "line": 3385,
-      "operation": "get",
-      "cloudSyncKey": false,
-      "scope": "study_target",
-      "learningState": true,
-      "targetNamespaceRequired": false,
-      "risk": "low",
-      "confidence": "high",
-      "notes": [
-        "Reviewed target-sensitive learning source; dynamic keys resolve to per-target learning buckets via target-aware helpers."
-      ]
-    },
-    {
-      "keyExpression": "lessonPassCountKey(lessonId",
-      "sourcePath": "app/lesson1.tsx",
-      "line": 3386,
-      "operation": "get",
-      "cloudSyncKey": false,
-      "scope": "study_target",
-      "learningState": true,
-      "targetNamespaceRequired": false,
-      "risk": "low",
-      "confidence": "high",
-      "notes": [
-        "Reviewed target-sensitive learning source; dynamic keys resolve to per-target learning buckets via target-aware helpers."
-      ]
-    },
-    {
-      "keyExpression": "finishedAtKey",
-      "sourcePath": "app/lesson1.tsx",
-      "line": 3397,
+      "line": 2868,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -20041,7 +20326,7 @@
     {
       "keyExpression": "lessonSessionKey(...)",
       "sourcePath": "app/lesson1.tsx",
-      "line": 3509,
+      "line": 2872,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -20056,7 +20341,217 @@
     {
       "keyExpression": "fiftyFiftyUsageKey(...)",
       "sourcePath": "app/lesson1.tsx",
-      "line": 3779,
+      "line": 2926,
+      "operation": "get",
+      "cloudSyncKey": false,
+      "scope": "study_target",
+      "learningState": true,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "high",
+      "notes": [
+        "Reviewed target-sensitive learning source; dynamic keys resolve to per-target learning buckets via target-aware helpers."
+      ]
+    },
+    {
+      "keyExpression": "teachingNoteMemoryKey",
+      "sourcePath": "app/lesson1.tsx",
+      "line": 2971,
+      "operation": "get",
+      "cloudSyncKey": false,
+      "scope": "study_target",
+      "learningState": true,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "high",
+      "notes": [
+        "Reviewed target-sensitive learning source; dynamic keys resolve to per-target learning buckets via target-aware helpers."
+      ]
+    },
+    {
+      "keyExpression": "teachingNoteMemoryKey",
+      "sourcePath": "app/lesson1.tsx",
+      "line": 2985,
+      "operation": "set",
+      "cloudSyncKey": false,
+      "scope": "study_target",
+      "learningState": true,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "high",
+      "notes": [
+        "Reviewed target-sensitive learning source; dynamic keys resolve to per-target learning buckets via target-aware helpers."
+      ]
+    },
+    {
+      "keyExpression": "dailyTaskLessonVisitedKey(...)",
+      "sourcePath": "app/lesson1.tsx",
+      "line": 3003,
+      "operation": "get",
+      "cloudSyncKey": false,
+      "scope": "study_target",
+      "learningState": true,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "high",
+      "notes": [
+        "Reviewed target-sensitive learning source; dynamic keys resolve to per-target learning buckets via target-aware helpers."
+      ]
+    },
+    {
+      "keyExpression": "dailyTaskLessonVisitedKey(...)",
+      "sourcePath": "app/lesson1.tsx",
+      "line": 3009,
+      "operation": "set",
+      "cloudSyncKey": false,
+      "scope": "study_target",
+      "learningState": true,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "high",
+      "notes": [
+        "Reviewed target-sensitive learning source; dynamic keys resolve to per-target learning buckets via target-aware helpers."
+      ]
+    },
+    {
+      "keyExpression": "lessonProgressKey(...)",
+      "sourcePath": "app/lesson1.tsx",
+      "line": 3298,
+      "operation": "set",
+      "cloudSyncKey": false,
+      "scope": "study_target",
+      "learningState": true,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "high",
+      "notes": [
+        "Reviewed target-sensitive learning source; dynamic keys resolve to per-target learning buckets via target-aware helpers."
+      ]
+    },
+    {
+      "keyExpression": "lessonSessionKey(...)",
+      "sourcePath": "app/lesson1.tsx",
+      "line": 3299,
+      "operation": "set",
+      "cloudSyncKey": false,
+      "scope": "study_target",
+      "learningState": true,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "high",
+      "notes": [
+        "Reviewed target-sensitive learning source; dynamic keys resolve to per-target learning buckets via target-aware helpers."
+      ]
+    },
+    {
+      "keyExpression": "lessonSessionKey(...)",
+      "sourcePath": "app/lesson1.tsx",
+      "line": 3317,
+      "operation": "set",
+      "cloudSyncKey": false,
+      "scope": "study_target",
+      "learningState": true,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "high",
+      "notes": [
+        "Reviewed target-sensitive learning source; dynamic keys resolve to per-target learning buckets via target-aware helpers."
+      ]
+    },
+    {
+      "keyExpression": "lessonSessionKey(...)",
+      "sourcePath": "app/lesson1.tsx",
+      "line": 3328,
+      "operation": "remove",
+      "cloudSyncKey": false,
+      "scope": "study_target",
+      "learningState": true,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "high",
+      "notes": [
+        "Reviewed target-sensitive learning source; dynamic keys resolve to per-target learning buckets via target-aware helpers."
+      ]
+    },
+    {
+      "keyExpression": "lessonSessionKey(...)",
+      "sourcePath": "app/lesson1.tsx",
+      "line": 3332,
+      "operation": "multiRemove",
+      "cloudSyncKey": false,
+      "scope": "study_target",
+      "learningState": true,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "high",
+      "notes": [
+        "Reviewed target-sensitive learning source; dynamic keys resolve to per-target learning buckets via target-aware helpers."
+      ]
+    },
+    {
+      "keyExpression": "finishedAtKey",
+      "sourcePath": "app/lesson1.tsx",
+      "line": 3398,
+      "operation": "get",
+      "cloudSyncKey": false,
+      "scope": "study_target",
+      "learningState": true,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "high",
+      "notes": [
+        "Reviewed target-sensitive learning source; dynamic keys resolve to per-target learning buckets via target-aware helpers."
+      ]
+    },
+    {
+      "keyExpression": "lessonPassCountKey(lessonId",
+      "sourcePath": "app/lesson1.tsx",
+      "line": 3399,
+      "operation": "get",
+      "cloudSyncKey": false,
+      "scope": "study_target",
+      "learningState": true,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "high",
+      "notes": [
+        "Reviewed target-sensitive learning source; dynamic keys resolve to per-target learning buckets via target-aware helpers."
+      ]
+    },
+    {
+      "keyExpression": "finishedAtKey",
+      "sourcePath": "app/lesson1.tsx",
+      "line": 3410,
+      "operation": "set",
+      "cloudSyncKey": false,
+      "scope": "study_target",
+      "learningState": true,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "high",
+      "notes": [
+        "Reviewed target-sensitive learning source; dynamic keys resolve to per-target learning buckets via target-aware helpers."
+      ]
+    },
+    {
+      "keyExpression": "lessonSessionKey(...)",
+      "sourcePath": "app/lesson1.tsx",
+      "line": 3522,
+      "operation": "set",
+      "cloudSyncKey": false,
+      "scope": "study_target",
+      "learningState": true,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "high",
+      "notes": [
+        "Reviewed target-sensitive learning source; dynamic keys resolve to per-target learning buckets via target-aware helpers."
+      ]
+    },
+    {
+      "keyExpression": "fiftyFiftyUsageKey(...)",
+      "sourcePath": "app/lesson1.tsx",
+      "line": 3792,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -20176,7 +20671,7 @@
     {
       "keyExpression": "levelExamKey(lvl",
       "sourcePath": "app/level_exam.tsx",
-      "line": 832,
+      "line": 833,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -20191,7 +20686,7 @@
     {
       "keyExpression": "levelExamKey(lvl",
       "sourcePath": "app/level_exam.tsx",
-      "line": 833,
+      "line": 834,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -20206,7 +20701,7 @@
     {
       "keyPattern": "level_exam_quiz_shard_${...}_${...}",
       "sourcePath": "app/level_exam.tsx",
-      "line": 843,
+      "line": 844,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -20221,7 +20716,7 @@
     {
       "keyPattern": "level_exam_quiz_shard_${...}_${...}",
       "sourcePath": "app/level_exam.tsx",
-      "line": 846,
+      "line": 847,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -20236,7 +20731,7 @@
     {
       "key": "user_name",
       "sourcePath": "app/level_exam.tsx",
-      "line": 857,
+      "line": 858,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -24554,6 +25049,21 @@
       ]
     },
     {
+      "key": "onboarding_funnel_consent_pending_v1",
+      "sourcePath": "app/onboarding_funnel.ts",
+      "line": 15,
+      "operation": "constant",
+      "cloudSyncKey": false,
+      "scope": "global",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "medium",
+      "notes": [
+        "Product/global state by heuristic; verify if task content depends on study target."
+      ]
+    },
+    {
       "key": "onboarding_welcome_pending_v1",
       "sourcePath": "app/onboarding_welcome_state.ts",
       "line": 17,
@@ -26521,7 +27031,7 @@
     {
       "key": "premium_rc_last_seen_at",
       "sourcePath": "app/premium_guard.ts",
-      "line": 22,
+      "line": 25,
       "operation": "constant",
       "cloudSyncKey": false,
       "scope": "global",
@@ -26536,7 +27046,7 @@
     {
       "key": "tester_no_premium",
       "sourcePath": "app/premium_guard.ts",
-      "line": 187,
+      "line": 190,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -26551,7 +27061,7 @@
     {
       "key": "tester_no_limits",
       "sourcePath": "app/premium_guard.ts",
-      "line": 197,
+      "line": 200,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -26566,7 +27076,7 @@
     {
       "key": "tester_no_premium",
       "sourcePath": "app/premium_guard.ts",
-      "line": 197,
+      "line": 200,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -26581,7 +27091,7 @@
     {
       "key": "premium_plan",
       "sourcePath": "app/premium_guard.ts",
-      "line": 214,
+      "line": 217,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -26596,7 +27106,7 @@
     {
       "key": "premium_rc_last_seen_at",
       "sourcePath": "app/premium_guard.ts",
-      "line": 229,
+      "line": 232,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -26611,7 +27121,7 @@
     {
       "key": "premium_rc_last_seen_at",
       "sourcePath": "app/premium_guard.ts",
-      "line": 237,
+      "line": 240,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -26626,7 +27136,7 @@
     {
       "key": "admin_premium_override",
       "sourcePath": "app/premium_guard.ts",
-      "line": 267,
+      "line": 270,
       "operation": "multiGet",
       "cloudSyncKey": true,
       "scope": "global",
@@ -26641,7 +27151,7 @@
     {
       "key": "premium_active",
       "sourcePath": "app/premium_guard.ts",
-      "line": 267,
+      "line": 270,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -26656,7 +27166,7 @@
     {
       "key": "premium_expiry",
       "sourcePath": "app/premium_guard.ts",
-      "line": 267,
+      "line": 270,
       "operation": "multiGet",
       "cloudSyncKey": true,
       "scope": "global",
@@ -26671,7 +27181,7 @@
     {
       "key": "premium_plan",
       "sourcePath": "app/premium_guard.ts",
-      "line": 267,
+      "line": 270,
       "operation": "multiGet",
       "cloudSyncKey": true,
       "scope": "global",
@@ -26686,7 +27196,7 @@
     {
       "key": "premium_rc_expiry_ms",
       "sourcePath": "app/premium_guard.ts",
-      "line": 267,
+      "line": 270,
       "operation": "multiGet",
       "cloudSyncKey": true,
       "scope": "global",
@@ -26701,7 +27211,7 @@
     {
       "key": "tester_no_premium",
       "sourcePath": "app/premium_guard.ts",
-      "line": 267,
+      "line": 270,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -26716,7 +27226,7 @@
     {
       "key": "premium_active",
       "sourcePath": "app/premium_guard.ts",
-      "line": 316,
+      "line": 319,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -26731,7 +27241,7 @@
     {
       "key": "premium_active",
       "sourcePath": "app/premium_guard.ts",
-      "line": 339,
+      "line": 356,
       "operation": "multiSet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -26746,7 +27256,7 @@
     {
       "key": "premium_rc_last_seen_at",
       "sourcePath": "app/premium_guard.ts",
-      "line": 363,
+      "line": 380,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -26761,7 +27271,7 @@
     {
       "key": "premium_active",
       "sourcePath": "app/premium_guard.ts",
-      "line": 374,
+      "line": 391,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -26776,7 +27286,7 @@
     {
       "key": "premium_active",
       "sourcePath": "app/premium_guard.ts",
-      "line": 387,
+      "line": 404,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -26791,7 +27301,7 @@
     {
       "key": "premium_active",
       "sourcePath": "app/premium_guard.ts",
-      "line": 398,
+      "line": 415,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -26806,7 +27316,7 @@
     {
       "key": "premium_rc_last_seen_at",
       "sourcePath": "app/premium_guard.ts",
-      "line": 414,
+      "line": 431,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -26821,7 +27331,7 @@
     {
       "key": "premium_active",
       "sourcePath": "app/premium_guard.ts",
-      "line": 422,
+      "line": 439,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -26836,7 +27346,7 @@
     {
       "key": "tester_no_premium",
       "sourcePath": "app/premium_guard.ts",
-      "line": 441,
+      "line": 458,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -26851,7 +27361,7 @@
     {
       "key": "tester_no_premium",
       "sourcePath": "app/premium_guard.ts",
-      "line": 484,
+      "line": 501,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -30016,7 +30526,7 @@
     {
       "key": "trainer_sessions_ab_group_v1",
       "sourcePath": "app/remote_flags.ts",
-      "line": 1099,
+      "line": 1107,
       "operation": "constant",
       "cloudSyncKey": false,
       "scope": "global",
@@ -30031,7 +30541,7 @@
     {
       "key": "trainer_sessions_ab_group_v1",
       "sourcePath": "app/remote_flags.ts",
-      "line": 1127,
+      "line": 1135,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -30046,7 +30556,7 @@
     {
       "key": "trainer_sessions_ab_group_v1",
       "sourcePath": "app/remote_flags.ts",
-      "line": 1136,
+      "line": 1144,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -31304,6 +31814,36 @@
       ]
     },
     {
+      "keyExpression": "storageKey(owner",
+      "sourcePath": "app/settings_poll_vote.ts",
+      "line": 33,
+      "operation": "get",
+      "cloudSyncKey": false,
+      "scope": "unknown",
+      "learningState": true,
+      "targetNamespaceRequired": true,
+      "risk": "high",
+      "confidence": "low",
+      "notes": [
+        "Dynamic or unresolved key expression."
+      ]
+    },
+    {
+      "keyExpression": "storageKey(owner",
+      "sourcePath": "app/settings_poll_vote.ts",
+      "line": 48,
+      "operation": "set",
+      "cloudSyncKey": false,
+      "scope": "unknown",
+      "learningState": true,
+      "targetNamespaceRequired": true,
+      "risk": "high",
+      "confidence": "low",
+      "notes": [
+        "Dynamic or unresolved key expression."
+      ]
+    },
+    {
       "key": "leaderboard",
       "sourcePath": "app/settings/profile_name_service.ts",
       "line": 33,
@@ -32221,7 +32761,7 @@
     {
       "key": "shards_store_purchased_total_v1",
       "sourcePath": "app/shards_system.ts",
-      "line": 158,
+      "line": 169,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -32236,7 +32776,7 @@
     {
       "key": "shards_store_purchased_total_v1",
       "sourcePath": "app/shards_system.ts",
-      "line": 171,
+      "line": 182,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -32251,7 +32791,7 @@
     {
       "key": "shards_store_purchased_total_v1",
       "sourcePath": "app/shards_system.ts",
-      "line": 184,
+      "line": 195,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -32266,7 +32806,7 @@
     {
       "key": "profile_card_level",
       "sourcePath": "app/shards_system.ts",
-      "line": 201,
+      "line": 212,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -32281,7 +32821,7 @@
     {
       "key": "shards_balance_meta_v1",
       "sourcePath": "app/shards_system.ts",
-      "line": 251,
+      "line": 262,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -32296,7 +32836,7 @@
     {
       "key": "shards_balance",
       "sourcePath": "app/shards_system.ts",
-      "line": 300,
+      "line": 321,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -32311,7 +32851,7 @@
     {
       "key": "shards_balance",
       "sourcePath": "app/shards_system.ts",
-      "line": 709,
+      "line": 794,
       "operation": "multiSet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -32326,7 +32866,7 @@
     {
       "key": "shards_earn_op_ledger_v1",
       "sourcePath": "app/shards_system.ts",
-      "line": 716,
+      "line": 801,
       "operation": "constant",
       "cloudSyncKey": false,
       "scope": "global",
@@ -32341,7 +32881,7 @@
     {
       "keyExpression": "SHARD_SPEND_OP_LEDGER_KEY",
       "sourcePath": "app/shards_system.ts",
-      "line": 721,
+      "line": 806,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -32356,7 +32896,7 @@
     {
       "key": "shards_earn_op_ledger_v1",
       "sourcePath": "app/shards_system.ts",
-      "line": 736,
+      "line": 821,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -32371,7 +32911,7 @@
     {
       "keyExpression": "update.walletPairs",
       "sourcePath": "app/shards_system.ts",
-      "line": 883,
+      "line": 968,
       "operation": "multiSet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -32386,7 +32926,7 @@
     {
       "keyExpression": "pendingKey",
       "sourcePath": "app/shards_system.ts",
-      "line": 941,
+      "line": 1032,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -32401,7 +32941,7 @@
     {
       "keyExpression": "pendingKey",
       "sourcePath": "app/shards_system.ts",
-      "line": 943,
+      "line": 1038,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -32416,7 +32956,7 @@
     {
       "keyExpression": "rewardKey",
       "sourcePath": "app/shards_system.ts",
-      "line": 948,
+      "line": 1050,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -32431,7 +32971,7 @@
     {
       "keyExpression": "pendingKey",
       "sourcePath": "app/shards_system.ts",
-      "line": 956,
+      "line": 1063,
       "operation": "remove",
       "cloudSyncKey": false,
       "scope": "global",
@@ -32446,7 +32986,7 @@
     {
       "keyExpression": "key",
       "sourcePath": "app/shards_system.ts",
-      "line": 977,
+      "line": 1100,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -32461,7 +33001,7 @@
     {
       "key": "shards_balance",
       "sourcePath": "app/shards_system.ts",
-      "line": 1007,
+      "line": 1140,
       "operation": "multiSet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -32476,7 +33016,7 @@
     {
       "keyExpression": "dailyTasksAllShardsRewardStorageKey(dayKey",
       "sourcePath": "app/shards_system.ts",
-      "line": 1027,
+      "line": 1164,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -32491,7 +33031,7 @@
     {
       "keyExpression": "rewardKey",
       "sourcePath": "app/shards_system.ts",
-      "line": 1063,
+      "line": 1204,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -32506,7 +33046,7 @@
     {
       "keyExpression": "rewardKey",
       "sourcePath": "app/shards_system.ts",
-      "line": 1074,
+      "line": 1222,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -32521,7 +33061,7 @@
     {
       "keyExpression": "rewardKey",
       "sourcePath": "app/shards_system.ts",
-      "line": 1082,
+      "line": 1236,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -32536,7 +33076,7 @@
     {
       "keyExpression": "SHARD_SPEND_OP_LEDGER_KEY",
       "sourcePath": "app/shards_system.ts",
-      "line": 1402,
+      "line": 1560,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -32551,7 +33091,7 @@
     {
       "key": "shards_one_time_events",
       "sourcePath": "app/shards_system.ts",
-      "line": 1544,
+      "line": 1702,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -32566,7 +33106,7 @@
     {
       "key": "shards_one_time_events",
       "sourcePath": "app/shards_system.ts",
-      "line": 1649,
+      "line": 1807,
       "operation": "set",
       "cloudSyncKey": true,
       "scope": "global",
@@ -32581,7 +33121,7 @@
     {
       "key": "shards_one_time_events",
       "sourcePath": "app/shards_system.ts",
-      "line": 1662,
+      "line": 1820,
       "operation": "set",
       "cloudSyncKey": true,
       "scope": "global",
@@ -32596,7 +33136,7 @@
     {
       "key": "shards_balance",
       "sourcePath": "app/shards_system.ts",
-      "line": 1685,
+      "line": 1843,
       "operation": "multiSet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -32611,7 +33151,7 @@
     {
       "key": "shards_arena_wins_total",
       "sourcePath": "app/shards_system.ts",
-      "line": 1800,
+      "line": 1958,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -32626,7 +33166,7 @@
     {
       "key": "shards_arena_wins_total",
       "sourcePath": "app/shards_system.ts",
-      "line": 1802,
+      "line": 1960,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -32641,7 +33181,7 @@
     {
       "key": "shards_admin_override_applied_at",
       "sourcePath": "app/shards_system.ts",
-      "line": 2186,
+      "line": 2345,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -32656,7 +33196,7 @@
     {
       "key": "shards_balance",
       "sourcePath": "app/shards_system.ts",
-      "line": 2194,
+      "line": 2353,
       "operation": "multiSet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -32671,7 +33211,7 @@
     {
       "key": "shards_balance",
       "sourcePath": "app/shards_system.ts",
-      "line": 2213,
+      "line": 2372,
       "operation": "multiSet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -32686,7 +33226,7 @@
     {
       "key": "shards_balance",
       "sourcePath": "app/shards_system.ts",
-      "line": 2245,
+      "line": 2404,
       "operation": "multiSet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -32701,7 +33241,7 @@
     {
       "key": "shards_balance",
       "sourcePath": "app/shards_system.ts",
-      "line": 2267,
+      "line": 2426,
       "operation": "multiSet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -34514,6 +35054,51 @@
       ]
     },
     {
+      "key": "user_avatar",
+      "sourcePath": "app/tournament_client.ts",
+      "line": 897,
+      "operation": "multiGet",
+      "cloudSyncKey": true,
+      "scope": "global",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "medium",
+      "confidence": "medium",
+      "notes": [
+        "Product/global state by heuristic; verify if task content depends on study target."
+      ]
+    },
+    {
+      "key": "user_avatar_aura",
+      "sourcePath": "app/tournament_client.ts",
+      "line": 897,
+      "operation": "multiGet",
+      "cloudSyncKey": true,
+      "scope": "global",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "medium",
+      "confidence": "medium",
+      "notes": [
+        "Product/global state by heuristic; verify if task content depends on study target."
+      ]
+    },
+    {
+      "key": "user_name",
+      "sourcePath": "app/tournament_client.ts",
+      "line": 897,
+      "operation": "multiGet",
+      "cloudSyncKey": true,
+      "scope": "global",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "medium",
+      "confidence": "medium",
+      "notes": [
+        "Product/global state by heuristic; verify if task content depends on study target."
+      ]
+    },
+    {
       "key": "tournament_played_window_start_ms",
       "sourcePath": "app/tournament_played_window.ts",
       "line": 22,
@@ -34831,7 +35416,7 @@
     {
       "keyExpression": "trainerStoreKey(...)",
       "sourcePath": "app/trainer_store.ts",
-      "line": 198,
+      "line": 197,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -34846,7 +35431,7 @@
     {
       "keyExpression": "trainerStoreKey(...)",
       "sourcePath": "app/trainer_store.ts",
-      "line": 239,
+      "line": 225,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -34861,7 +35446,7 @@
     {
       "keyExpression": "trainerStoreKey(studyTarget",
       "sourcePath": "app/trainer_store.ts",
-      "line": 800,
+      "line": 786,
       "operation": "remove",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -35161,7 +35746,7 @@
     {
       "key": "user_settings",
       "sourcePath": "app/user_settings_store.ts",
-      "line": 68,
+      "line": 69,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -35176,7 +35761,7 @@
     {
       "key": "user_settings",
       "sourcePath": "app/user_settings_store.ts",
-      "line": 85,
+      "line": 86,
       "operation": "set",
       "cloudSyncKey": true,
       "scope": "global",
@@ -35191,7 +35776,7 @@
     {
       "key": "user_settings",
       "sourcePath": "app/user_settings_store.ts",
-      "line": 92,
+      "line": 93,
       "operation": "set",
       "cloudSyncKey": true,
       "scope": "global",
@@ -36691,7 +37276,7 @@
     {
       "key": "onboarding_step",
       "sourcePath": "components/CleanOnboarding.tsx",
-      "line": 1579,
+      "line": 1583,
       "operation": "multiRemove",
       "cloudSyncKey": false,
       "scope": "global",
@@ -37231,7 +37816,7 @@
     {
       "key": "global_compass_social_last_poll",
       "sourcePath": "components/GlobalCompassSocialHost.tsx",
-      "line": 17,
+      "line": 32,
       "operation": "constant",
       "cloudSyncKey": false,
       "scope": "global",
@@ -37246,7 +37831,7 @@
     {
       "key": "global_compass_social_last_poll",
       "sourcePath": "components/GlobalCompassSocialHost.tsx",
-      "line": 29,
+      "line": 51,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -37261,7 +37846,7 @@
     {
       "key": "global_compass_social_last_poll",
       "sourcePath": "components/GlobalCompassSocialHost.tsx",
-      "line": 33,
+      "line": 55,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -37396,7 +37981,7 @@
     {
       "key": "energy_onboarding_shown",
       "sourcePath": "components/NoEnergyModal.tsx",
-      "line": 342,
+      "line": 355,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -37411,7 +37996,7 @@
     {
       "key": "tester_no_limits",
       "sourcePath": "components/PremiumContext.tsx",
-      "line": 254,
+      "line": 256,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -37426,7 +38011,7 @@
     {
       "key": "tester_no_premium",
       "sourcePath": "components/PremiumContext.tsx",
-      "line": 254,
+      "line": 256,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -37441,7 +38026,7 @@
     {
       "key": "premium_active",
       "sourcePath": "components/PremiumContext.tsx",
-      "line": 344,
+      "line": 347,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -37456,7 +38041,7 @@
     {
       "key": "premium_active",
       "sourcePath": "components/PremiumContext.tsx",
-      "line": 448,
+      "line": 451,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -37471,7 +38056,7 @@
     {
       "key": "premium_plan",
       "sourcePath": "components/PremiumContext.tsx",
-      "line": 449,
+      "line": 452,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -37696,7 +38281,7 @@
     {
       "key": "app_theme_midnight_grandfather",
       "sourcePath": "components/ThemeContext.tsx",
-      "line": 221,
+      "line": 224,
       "operation": "constant",
       "cloudSyncKey": false,
       "scope": "unknown",
@@ -37711,7 +38296,7 @@
     {
       "key": "app_font_size",
       "sourcePath": "components/ThemeContext.tsx",
-      "line": 250,
+      "line": 253,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -37726,7 +38311,7 @@
     {
       "key": "app_theme",
       "sourcePath": "components/ThemeContext.tsx",
-      "line": 250,
+      "line": 253,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -37741,7 +38326,7 @@
     {
       "key": "app_theme_midnight_grandfather",
       "sourcePath": "components/ThemeContext.tsx",
-      "line": 257,
+      "line": 260,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "unknown",
@@ -37756,7 +38341,7 @@
     {
       "key": "app_theme",
       "sourcePath": "components/ThemeContext.tsx",
-      "line": 272,
+      "line": 275,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -37771,7 +38356,7 @@
     {
       "key": "app_theme",
       "sourcePath": "components/ThemeContext.tsx",
-      "line": 276,
+      "line": 279,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -37786,7 +38371,7 @@
     {
       "key": "app_theme",
       "sourcePath": "components/ThemeContext.tsx",
-      "line": 280,
+      "line": 283,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -37801,7 +38386,7 @@
     {
       "key": "app_theme",
       "sourcePath": "components/ThemeContext.tsx",
-      "line": 293,
+      "line": 296,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -37816,7 +38401,7 @@
     {
       "key": "app_theme",
       "sourcePath": "components/ThemeContext.tsx",
-      "line": 299,
+      "line": 302,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -37831,7 +38416,7 @@
     {
       "key": "app_theme",
       "sourcePath": "components/ThemeContext.tsx",
-      "line": 326,
+      "line": 329,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -37846,7 +38431,7 @@
     {
       "key": "app_theme",
       "sourcePath": "components/ThemeContext.tsx",
-      "line": 335,
+      "line": 338,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -37861,7 +38446,7 @@
     {
       "key": "app_theme",
       "sourcePath": "components/ThemeContext.tsx",
-      "line": 339,
+      "line": 342,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -37876,7 +38461,7 @@
     {
       "key": "app_theme",
       "sourcePath": "components/ThemeContext.tsx",
-      "line": 344,
+      "line": 347,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -37891,7 +38476,7 @@
     {
       "key": "app_theme",
       "sourcePath": "components/ThemeContext.tsx",
-      "line": 356,
+      "line": 359,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -37906,7 +38491,7 @@
     {
       "key": "app_font_size",
       "sourcePath": "components/ThemeContext.tsx",
-      "line": 363,
+      "line": 366,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -38148,7 +38733,7 @@
     {
       "keyExpression": "flashcardsSavedKey(target",
       "sourcePath": "hooks/use-flashcards.ts",
-      "line": 194,
+      "line": 195,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -38163,7 +38748,7 @@
     {
       "keyExpression": "flashcardsSavedKey(target",
       "sourcePath": "hooks/use-flashcards.ts",
-      "line": 208,
+      "line": 209,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -38178,7 +38763,7 @@
     {
       "keyExpression": "flashcardsSavedKey(target",
       "sourcePath": "hooks/use-flashcards.ts",
-      "line": 260,
+      "line": 261,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -38193,7 +38778,7 @@
     {
       "keyExpression": "flashcardsSavedKey(target",
       "sourcePath": "hooks/use-flashcards.ts",
-      "line": 382,
+      "line": 383,
       "operation": "remove",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -39378,7 +39963,7 @@
     {
       "keyExpression": "appMessagesOwnerStorageKey(LOCAL_APP_MESSAGES_KEY_PREFIX'",
       "sourcePath": "tests/admin_vip_survey_preview_contract.test.ts",
-      "line": 28,
+      "line": 31,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -42751,6 +43336,21 @@
       ]
     },
     {
+      "key": "compass_account_link_reminder_seen_v1",
+      "sourcePath": "tests/compass_account_link_reminder_contract.test.ts",
+      "line": 11,
+      "operation": "constant",
+      "cloudSyncKey": false,
+      "scope": "admin_or_qa",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "medium",
+      "notes": [
+        "Test/admin/QA storage signal."
+      ]
+    },
+    {
       "keyExpression": "lessonSessionKey(...)",
       "sourcePath": "tests/content_delivery_migration.test.ts",
       "line": 19,
@@ -43158,7 +43758,7 @@
     {
       "key": "daily_tasks_all_shards_2026-06-21",
       "sourcePath": "tests/daily_tasks_shards_claim_outcome.test.ts",
-      "line": 44,
+      "line": 48,
       "operation": "constant",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -43173,7 +43773,7 @@
     {
       "key": "daily_tasks_all_shards_pending_2026-06-21",
       "sourcePath": "tests/daily_tasks_shards_claim_outcome.test.ts",
-      "line": 45,
+      "line": 49,
       "operation": "constant",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -43187,66 +43787,6 @@
     },
     {
       "key": "daily_tasks_all_shards_2026-06-21",
-      "sourcePath": "tests/daily_tasks_shards_claim_outcome.test.ts",
-      "line": 73,
-      "operation": "get",
-      "cloudSyncKey": false,
-      "scope": "admin_or_qa",
-      "learningState": false,
-      "targetNamespaceRequired": false,
-      "risk": "low",
-      "confidence": "medium",
-      "notes": [
-        "Test/admin/QA storage signal."
-      ]
-    },
-    {
-      "key": "daily_tasks_all_shards_pending_2026-06-21",
-      "sourcePath": "tests/daily_tasks_shards_claim_outcome.test.ts",
-      "line": 74,
-      "operation": "get",
-      "cloudSyncKey": false,
-      "scope": "admin_or_qa",
-      "learningState": false,
-      "targetNamespaceRequired": false,
-      "risk": "low",
-      "confidence": "medium",
-      "notes": [
-        "Test/admin/QA storage signal."
-      ]
-    },
-    {
-      "key": "shards_balance",
-      "sourcePath": "tests/daily_tasks_shards_claim_outcome.test.ts",
-      "line": 75,
-      "operation": "get",
-      "cloudSyncKey": false,
-      "scope": "admin_or_qa",
-      "learningState": false,
-      "targetNamespaceRequired": false,
-      "risk": "low",
-      "confidence": "medium",
-      "notes": [
-        "Test/admin/QA storage signal."
-      ]
-    },
-    {
-      "key": "shards_balance",
-      "sourcePath": "tests/daily_tasks_shards_claim_outcome.test.ts",
-      "line": 78,
-      "operation": "get",
-      "cloudSyncKey": false,
-      "scope": "admin_or_qa",
-      "learningState": false,
-      "targetNamespaceRequired": false,
-      "risk": "low",
-      "confidence": "medium",
-      "notes": [
-        "Test/admin/QA storage signal."
-      ]
-    },
-    {
-      "key": "daily_tasks_all_shards_pending_2026-06-21",
       "sourcePath": "tests/daily_tasks_shards_claim_outcome.test.ts",
       "line": 79,
       "operation": "get",
@@ -43261,9 +43801,9 @@
       ]
     },
     {
-      "key": "daily_tasks_all_shards_2026-06-21",
+      "key": "daily_tasks_all_shards_pending_2026-06-21",
       "sourcePath": "tests/daily_tasks_shards_claim_outcome.test.ts",
-      "line": 88,
+      "line": 80,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -43278,7 +43818,7 @@
     {
       "key": "shards_balance",
       "sourcePath": "tests/daily_tasks_shards_claim_outcome.test.ts",
-      "line": 89,
+      "line": 81,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -43293,7 +43833,7 @@
     {
       "key": "shards_balance",
       "sourcePath": "tests/daily_tasks_shards_claim_outcome.test.ts",
-      "line": 92,
+      "line": 84,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -43308,7 +43848,7 @@
     {
       "key": "daily_tasks_all_shards_pending_2026-06-21",
       "sourcePath": "tests/daily_tasks_shards_claim_outcome.test.ts",
-      "line": 93,
+      "line": 85,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -43323,22 +43863,7 @@
     {
       "key": "daily_tasks_all_shards_2026-06-21",
       "sourcePath": "tests/daily_tasks_shards_claim_outcome.test.ts",
-      "line": 113,
-      "operation": "get",
-      "cloudSyncKey": false,
-      "scope": "admin_or_qa",
-      "learningState": false,
-      "targetNamespaceRequired": false,
-      "risk": "low",
-      "confidence": "medium",
-      "notes": [
-        "Test/admin/QA storage signal."
-      ]
-    },
-    {
-      "key": "daily_tasks_all_shards_pending_2026-06-21",
-      "sourcePath": "tests/daily_tasks_shards_claim_outcome.test.ts",
-      "line": 114,
+      "line": 94,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -43353,7 +43878,7 @@
     {
       "key": "shards_balance",
       "sourcePath": "tests/daily_tasks_shards_claim_outcome.test.ts",
-      "line": 115,
+      "line": 95,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -43366,9 +43891,9 @@
       ]
     },
     {
-      "key": "daily_tasks_all_shards_2026-06-21",
+      "key": "shards_balance",
       "sourcePath": "tests/daily_tasks_shards_claim_outcome.test.ts",
-      "line": 118,
+      "line": 98,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -43382,6 +43907,21 @@
     },
     {
       "key": "daily_tasks_all_shards_pending_2026-06-21",
+      "sourcePath": "tests/daily_tasks_shards_claim_outcome.test.ts",
+      "line": 99,
+      "operation": "get",
+      "cloudSyncKey": false,
+      "scope": "admin_or_qa",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "medium",
+      "notes": [
+        "Test/admin/QA storage signal."
+      ]
+    },
+    {
+      "key": "daily_tasks_all_shards_2026-06-21",
       "sourcePath": "tests/daily_tasks_shards_claim_outcome.test.ts",
       "line": 119,
       "operation": "get",
@@ -43398,22 +43938,7 @@
     {
       "key": "daily_tasks_all_shards_pending_2026-06-21",
       "sourcePath": "tests/daily_tasks_shards_claim_outcome.test.ts",
-      "line": 139,
-      "operation": "get",
-      "cloudSyncKey": false,
-      "scope": "admin_or_qa",
-      "learningState": false,
-      "targetNamespaceRequired": false,
-      "risk": "low",
-      "confidence": "medium",
-      "notes": [
-        "Test/admin/QA storage signal."
-      ]
-    },
-    {
-      "key": "daily_tasks_all_shards_pending_2026-06-21",
-      "sourcePath": "tests/daily_tasks_shards_claim_outcome.test.ts",
-      "line": 148,
+      "line": 120,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -43428,7 +43953,82 @@
     {
       "key": "shards_balance",
       "sourcePath": "tests/daily_tasks_shards_claim_outcome.test.ts",
-      "line": 149,
+      "line": 121,
+      "operation": "get",
+      "cloudSyncKey": false,
+      "scope": "admin_or_qa",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "medium",
+      "notes": [
+        "Test/admin/QA storage signal."
+      ]
+    },
+    {
+      "key": "daily_tasks_all_shards_2026-06-21",
+      "sourcePath": "tests/daily_tasks_shards_claim_outcome.test.ts",
+      "line": 124,
+      "operation": "get",
+      "cloudSyncKey": false,
+      "scope": "admin_or_qa",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "medium",
+      "notes": [
+        "Test/admin/QA storage signal."
+      ]
+    },
+    {
+      "key": "daily_tasks_all_shards_pending_2026-06-21",
+      "sourcePath": "tests/daily_tasks_shards_claim_outcome.test.ts",
+      "line": 125,
+      "operation": "get",
+      "cloudSyncKey": false,
+      "scope": "admin_or_qa",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "medium",
+      "notes": [
+        "Test/admin/QA storage signal."
+      ]
+    },
+    {
+      "key": "daily_tasks_all_shards_pending_2026-06-21",
+      "sourcePath": "tests/daily_tasks_shards_claim_outcome.test.ts",
+      "line": 145,
+      "operation": "get",
+      "cloudSyncKey": false,
+      "scope": "admin_or_qa",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "medium",
+      "notes": [
+        "Test/admin/QA storage signal."
+      ]
+    },
+    {
+      "key": "daily_tasks_all_shards_pending_2026-06-21",
+      "sourcePath": "tests/daily_tasks_shards_claim_outcome.test.ts",
+      "line": 154,
+      "operation": "get",
+      "cloudSyncKey": false,
+      "scope": "admin_or_qa",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "medium",
+      "notes": [
+        "Test/admin/QA storage signal."
+      ]
+    },
+    {
+      "key": "shards_balance",
+      "sourcePath": "tests/daily_tasks_shards_claim_outcome.test.ts",
+      "line": 155,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -43443,7 +44043,7 @@
     {
       "key": "user_total_xp",
       "sourcePath": "tests/daily_tasks_trainer_availability.test.ts",
-      "line": 54,
+      "line": 47,
       "operation": "set",
       "cloudSyncKey": true,
       "scope": "admin_or_qa",
@@ -43458,7 +44058,7 @@
     {
       "keyExpression": "trainerStoreKey('en'",
       "sourcePath": "tests/daily_tasks_trainer_availability.test.ts",
-      "line": 64,
+      "line": 57,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -43473,7 +44073,7 @@
     {
       "keyExpression": "trainerStoreKey(...)",
       "sourcePath": "tests/daily_tasks_trainer_availability.test.ts",
-      "line": 79,
+      "line": 72,
       "operation": "multiSet",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -43488,7 +44088,22 @@
     {
       "keyExpression": "trainerStoreKey('fr'",
       "sourcePath": "tests/daily_tasks_trainer_availability.test.ts",
-      "line": 102,
+      "line": 86,
+      "operation": "set",
+      "cloudSyncKey": false,
+      "scope": "admin_or_qa",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "medium",
+      "notes": [
+        "Test/admin/QA storage signal."
+      ]
+    },
+    {
+      "keyExpression": "trainerStoreKey('fr'",
+      "sourcePath": "tests/daily_tasks_trainer_availability.test.ts",
+      "line": 98,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -47988,7 +48603,7 @@
     {
       "key": "tester_no_limits",
       "sourcePath": "tests/premium_context_vip_events_contract.test.ts",
-      "line": 42,
+      "line": 44,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -48003,7 +48618,7 @@
     {
       "key": "tester_no_premium",
       "sourcePath": "tests/premium_context_vip_events_contract.test.ts",
-      "line": 42,
+      "line": 44,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -48018,7 +48633,7 @@
     {
       "key": "tester_no_limits",
       "sourcePath": "tests/premium_context_vip_events_contract.test.ts",
-      "line": 54,
+      "line": 56,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -48033,7 +48648,7 @@
     {
       "key": "tester_no_premium",
       "sourcePath": "tests/premium_context_vip_events_contract.test.ts",
-      "line": 54,
+      "line": 56,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -49831,6 +50446,21 @@
       ]
     },
     {
+      "key": "settings_poll_votes_v1:owner-a",
+      "sourcePath": "tests/settings_poll_vote.test.ts",
+      "line": 28,
+      "operation": "set",
+      "cloudSyncKey": false,
+      "scope": "admin_or_qa",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "medium",
+      "notes": [
+        "Test/admin/QA storage signal."
+      ]
+    },
+    {
       "key": "shards_balance",
       "sourcePath": "tests/shards_delta_queue_reconcile.test.ts",
       "line": 95,
@@ -50911,6 +51541,51 @@
       ]
     },
     {
+      "key": "user_avatar",
+      "sourcePath": "tests/tournament_automatic_identity_client_contract.test.ts",
+      "line": 20,
+      "operation": "multiGet",
+      "cloudSyncKey": true,
+      "scope": "admin_or_qa",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "medium",
+      "notes": [
+        "Test/admin/QA storage signal."
+      ]
+    },
+    {
+      "key": "user_avatar_aura",
+      "sourcePath": "tests/tournament_automatic_identity_client_contract.test.ts",
+      "line": 20,
+      "operation": "multiGet",
+      "cloudSyncKey": true,
+      "scope": "admin_or_qa",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "medium",
+      "notes": [
+        "Test/admin/QA storage signal."
+      ]
+    },
+    {
+      "key": "user_name",
+      "sourcePath": "tests/tournament_automatic_identity_client_contract.test.ts",
+      "line": 20,
+      "operation": "multiGet",
+      "cloudSyncKey": true,
+      "scope": "admin_or_qa",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "medium",
+      "notes": [
+        "Test/admin/QA storage signal."
+      ]
+    },
+    {
       "key": "en::ru",
       "sourcePath": "tests/trainer_practice_persist.test.ts",
       "line": 11,
@@ -50929,6 +51604,21 @@
       "key": "trainer_practice_snapshot_v1",
       "sourcePath": "tests/trainer_practice_persist.test.ts",
       "line": 103,
+      "operation": "set",
+      "cloudSyncKey": false,
+      "scope": "admin_or_qa",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "medium",
+      "notes": [
+        "Test/admin/QA storage signal."
+      ]
+    },
+    {
+      "keyExpression": "trainerStoreKey('en'",
+      "sourcePath": "tests/trainer_words_session_warm_start_contract.test.ts",
+      "line": 59,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -51632,40 +52322,43 @@
     }
   ],
   "unknowns": [
-    "tournament_weekly_prize_seen:${last.weekId} at app/(tabs)/tournaments.tsx:286",
-    "tournament_weekly_prize_seen:${last.weekId} at app/(tabs)/tournaments.tsx:287",
+    "tournament_weekly_prize_seen:${last.weekId} at app/(tabs)/tournaments.tsx:304",
+    "tournament_weekly_prize_seen:${last.weekId} at app/(tabs)/tournaments.tsx:305",
     "candidates.map(([key] at app/account_switch_backup_restore.ts:105",
     "missing at app/account_switch_backup_restore.ts:112",
     "missing.map(([key] at app/account_switch_backup_restore.ts:114",
     "achievementPayoutPendingKey(stableId at app/achievements.ts:3230",
     "age_consent_cloud_pending_v1 at app/age_consent_cloud.ts:25",
-    "app_messages_cache_v2 at app/app_messages.ts:32",
-    "app_messages_last_background_refresh_ms_v2 at app/app_messages.ts:33",
-    "app_messages_local_preview_v2 at app/app_messages.ts:36",
-    "app_message_local_preview_states_v2 at app/app_messages.ts:37",
-    "app_messages_report_reply_pending_claims_v2 at app/app_messages.ts:41",
-    "app_messages_report_reply_pending_claims_v1 at app/app_messages.ts:43",
-    "app_message_visibility_outbox_v1 at app/app_messages.ts:45",
-    "app_message_personal_modal_ack_outbox_v1 at app/app_messages.ts:47",
-    "app_message_received_anim_ids_v2 at app/app_messages.ts:50",
-    "app_messages_report_reply_pending_claims_v1 at app/app_messages.ts:618",
-    "app_messages_report_reply_pending_claims_v1 at app/app_messages.ts:620",
+    "app_messages_cache_v2 at app/app_messages.ts:35",
+    "app_messages_last_background_refresh_ms_v2 at app/app_messages.ts:36",
+    "app_messages_local_preview_v2 at app/app_messages.ts:39",
+    "app_message_local_preview_states_v2 at app/app_messages.ts:40",
+    "app_messages_report_reply_pending_claims_v2 at app/app_messages.ts:44",
+    "app_messages_report_reply_pending_claims_v1 at app/app_messages.ts:46",
+    "app_message_visibility_outbox_v1 at app/app_messages.ts:48",
+    "app_message_personal_modal_ack_outbox_v1 at app/app_messages.ts:50",
+    "app_message_received_anim_ids_v2 at app/app_messages.ts:53",
+    "app_messages_report_reply_pending_claims_v1 at app/app_messages.ts:631",
+    "app_messages_report_reply_pending_claims_v1 at app/app_messages.ts:633",
     "remote_account_deleted_notice_v1 at app/auth_provider.ts:418",
     "remote_account_deleted_notice_v1 at app/auth_provider.ts:2510",
     "remote_account_deleted_notice_v1 at app/auth_provider.ts:2518",
     "remote_account_deleted_notice_v1 at app/auth_provider.ts:2520",
     "doomed at app/cache_reset.ts:35",
     "shard_survey_last_at_ms at app/cloud_sync.ts:1",
-    "stickyOwnedKeys at app/cloud_sync.ts:2526",
-    "stickyLessonKeys at app/cloud_sync.ts:2548",
-    "lateLearningV2Keys at app/cloud_sync.ts:3165",
-    "sourceAccountKeys at app/cloud_sync.ts:3219",
+    "stickyOwnedKeys at app/cloud_sync.ts:2530",
+    "stickyLessonKeys at app/cloud_sync.ts:2552",
+    "lateLearningV2Keys at app/cloud_sync.ts:3169",
+    "sourceAccountKeys at app/cloud_sync.ts:3223",
     "coin_exchange_quote_cache_v1 at app/coin_exchange_client.ts:24",
     "coin_exchange_history_cache_v1 at app/coin_exchange_client.ts:25",
     "coin_exchange_quote_cache_v1 at app/coin_exchange_client.ts:77",
     "coin_exchange_history_cache_v1 at app/coin_exchange_client.ts:87",
     "coin_exchange_quote_cache_v1 at app/coin_exchange_client.ts:102",
     "coin_exchange_history_cache_v1 at app/coin_exchange_client.ts:115",
+    "compass_briefing_seen_ at app/compass/compass_briefing_host.tsx:55",
+    "compass_day_closing_free_used_v1 at app/compass/day_closing_ritual.ts:12",
+    "compass_day_closing_locked_last_v1 at app/compass/day_closing_ritual.ts:15",
     "lessonIds.map((id at app/daily_tasks.ts:2272",
     "ids.map((id at app/daily_tasks.ts:2593",
     "ids.map((id at app/daily_tasks.ts:2594",
@@ -51681,10 +52374,10 @@
     "top_helpers_snapshot_v2 at app/firestore_top_helpers.ts:163",
     "top_helpers_remote_at_v2 at app/firestore_top_helpers.ts:172",
     "top_helpers_remote_at_v2 at app/firestore_top_helpers.ts:189",
-    "flashcardsSwipeHintSeenKey(studyTarget at app/flashcards_swipe.tsx:2009",
-    "flashcardsSwipeHintSeenKey(studyTarget at app/flashcards_swipe.tsx:2022",
-    "week_points_last_final at app/hall_of_fame_utils.ts:128",
-    "week_points_last_final at app/hall_of_fame_utils.ts:145",
+    "flashcardsSwipeHintSeenKey(studyTarget at app/flashcards_swipe.tsx:2012",
+    "flashcardsSwipeHintSeenKey(studyTarget at app/flashcards_swipe.tsx:2025",
+    "week_points_last_final at app/hall_of_fame_utils.ts:130",
+    "week_points_last_final at app/hall_of_fame_utils.ts:147",
     "legacyFreeLessonCapKey(studyTarget at app/legacy_free_lesson_access.ts:120",
     "[capKey, migrationKey] at app/legacy_free_lesson_access.ts:130",
     "lesson_bonus_pending_v1 at app/lesson_bonus_grant.ts:28",
@@ -51708,10 +52401,7 @@
     "pending_level_up_reward_fallback_quarantine_v1 at app/level_up_storage_keys.ts:21",
     "name_index_synced_for_v1 at app/nickname_guard.ts:13",
     "generated_name_confirmed_v1 at app/nickname_guard.ts:14",
-    "generated_nickname_pending_v1 at app/nickname_guard.ts:15",
-    "name_index_synced_for_v1 at app/nickname_guard.ts:51",
-    "name_index_synced_for_v1 at app/nickname_guard.ts:63",
-    "name_index_synced_for_v1 at app/nickname_guard.ts:80"
+    "generated_nickname_pending_v1 at app/nickname_guard.ts:15"
   ],
   "notes": [
     "This is an automated heuristic inventory, not a final migration plan.",

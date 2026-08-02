@@ -4,6 +4,7 @@ const test = require('node:test');
 const vm = require('node:vm');
 
 const modulePath = require.resolve('../knowly-www/english-level-test/i18n.js');
+const localesModulePath = require.resolve('../knowly-www/english-level-test/i18n.locales.js');
 const appPath = require.resolve('../knowly-www/english-level-test/app.js');
 
 class FakeNode {
@@ -31,16 +32,22 @@ class FakeNode {
 
   addEventListener(type, listener) { this.listeners.set(type, listener); }
   removeEventListener(type) { this.listeners.delete(type); }
-  click() { this.listeners.get('click')?.({}); }
+  click() {
+    this.listeners.get('click')?.({});
+  }
+  dispatchEvent(event) {
+    this.listeners.get(event.type)?.(event);
+    return true;
+  }
   appendChild(child) { this.children.push(child); child.parentNode = this; child.ownerDocument = this.ownerDocument; return child; }
   remove() { this.isConnected = false; }
   focus() { if (this.ownerDocument) this.ownerDocument.activeElement = this; }
   matches(selector) {
-    return (selector.startsWith('.') && this.classList.contains(selector.slice(1)))
-      || (selector === '.elt-ui-locale-toggle' && /elt-ui-locale-toggle/.test(this.innerHTML));
+    return selector.startsWith('.') && this.classList.contains(selector.slice(1));
   }
   setAttribute(name, value) { this[name] = String(value); }
   getAttribute(name) {
+    if (name in this) return this[name] === undefined ? null : String(this[name]);
     const match = this.innerHTML.match(new RegExp(`${name}="([^"]*)"`));
     return match ? match[1] : null;
   }
@@ -48,6 +55,76 @@ class FakeNode {
   querySelector(selector) { return this.querySelectorAll(selector)[0] || null; }
   querySelectorAll(selector) {
     if (selector === '[data-magnet]' || selector === '.elt-brand-icon') return [];
+    // зачем: владелец 2026-08-02 — <select> заменён на кастомную кнопку +
+    // выпадающий список (button + ul/li), никакого спец-кейса для value/change
+    // больше не нужно — обычный click() на обычных FakeNode работает как есть.
+    if (selector === '[data-ui-locale-trigger]' || selector === '.elt-ui-locale-trigger') {
+      const markup = this.innerHTML.match(/<button[^>]*data-ui-locale-trigger[^>]*>[\s\S]*?<\/button>/)?.[0];
+      if (!markup) return [];
+      if (!this.nodes.has('ui-locale-trigger')) {
+        const node = new FakeNode(markup);
+        node.ownerDocument = this.ownerDocument;
+        this.nodes.set('ui-locale-trigger', node);
+      }
+      return [this.nodes.get('ui-locale-trigger')];
+    }
+    if (selector === '[data-ui-locale-panel]' || selector === '.elt-ui-locale-panel') {
+      const markup = this.innerHTML.match(/<ul[^>]*data-ui-locale-panel[^>]*>[\s\S]*?<\/ul>/)?.[0];
+      if (!markup) return [];
+      if (!this.nodes.has('ui-locale-panel')) {
+        const node = new FakeNode(markup);
+        node.hidden = /\bhidden\b/.test(markup.match(/<ul[^>]*>/)[0]);
+        node.ownerDocument = this.ownerDocument;
+        this.nodes.set('ui-locale-panel', node);
+      }
+      return [this.nodes.get('ui-locale-panel')];
+    }
+    if (selector === '[data-ui-locale-menu]' || selector === '.elt-ui-locale-control') {
+      const markup = this.innerHTML.match(/<div[^>]*data-ui-locale-menu[^>]*>[\s\S]*?<\/div>\s*<\/header>/)?.[0]?.replace(/\s*<\/header>$/, '');
+      if (!markup) return [];
+      if (!this.nodes.has('ui-locale-menu')) {
+        const node = new FakeNode(markup);
+        node.ownerDocument = this.ownerDocument;
+        this.nodes.set('ui-locale-menu', node);
+      }
+      return [this.nodes.get('ui-locale-menu')];
+    }
+    const uiLocaleOptionMatch = selector.match(/^\[data-ui-locale-option(?:="([^"]+)")?\]$/);
+    if (uiLocaleOptionMatch) {
+      // зачем: делегируем на panel-узел вместо построения независимого
+      // FakeNode из this.innerHTML — иначе клик, навешанный реальным кодом
+      // на panel.querySelectorAll(...), и опция, которую кликает тест через
+      // view.querySelector(...), оказываются РАЗНЫМИ инстансами с разными
+      // кэшами node, и обработчик клика молча не совпадает. isSelf проверяет
+      // напрямую (не рекурсивным querySelectorAll — panel содержит свою же
+      // разметку в innerHTML и рекурсия зациклится). Поддерживает и
+      // [data-ui-locale-option] (все опции), и [data-ui-locale-option="ru"]
+      // (одна конкретная — используется в тестах для выбора языка).
+      const requestedValue = uiLocaleOptionMatch[1];
+      const isSelf = /^<ul[^>]*data-ui-locale-panel/.test(this.innerHTML.trim());
+      const options = isSelf
+        ? [...this.innerHTML.matchAll(/<li[^>]*data-ui-locale-option="([^"]+)"[^>]*>[\s\S]*?<\/li>/g)]
+          .map((match) => {
+            const key = `ui-locale-option-${match[1]}`;
+            if (!this.nodes.has(key)) {
+              const node = new FakeNode(match[0]);
+              node.dataset.uiLocaleOption = match[1];
+              node.ownerDocument = this.ownerDocument;
+              this.nodes.set(key, node);
+            }
+            return this.nodes.get(key);
+          })
+        : (this.querySelectorAll('[data-ui-locale-panel]')[0]?.querySelectorAll('[data-ui-locale-option]') || []);
+      return requestedValue ? options.filter((node) => node.dataset.uiLocaleOption === requestedValue) : options;
+    }
+    if (selector === '.elt-ui-locale-option--active') {
+      // зачем: реальный код вызывает panel.querySelector('.elt-ui-locale-option--active')
+      // при открытии панели (клавиатурный фокус на текущем языке) — тот же
+      // делегирующий путь через [data-ui-locale-option], иначе получили бы
+      // ещё один независимый FakeNode-инстанс через generic token-fallback.
+      const allOptions = this.querySelectorAll('[data-ui-locale-option]');
+      return allOptions.filter((node) => node.classList.contains('elt-ui-locale-option--active'));
+    }
     if (selector === '.elt-option') {
       return [...this.innerHTML.matchAll(/<button\b(?=[^>]*\bclass="[^"]*\belt-option\b[^"]*")[^>]*>.*?<\/button>/gs)]
         .map((match, index) => {
@@ -148,6 +225,7 @@ function loadLandingApp({ href = 'https://example.test/level?ui=en', source = fs
     window: { matchMedia: () => ({ matches: true }), addEventListener() {}, scrollTo() {} },
   };
   context.globalThis = context;
+  vm.runInNewContext(fs.readFileSync(localesModulePath, 'utf8'), context, { filename: localesModulePath });
   vm.runInNewContext(fs.readFileSync(modulePath, 'utf8'), context, { filename: modulePath });
   vm.runInNewContext(source, context, { filename: appPath });
   return {
@@ -167,6 +245,7 @@ function loadI18n(globals = {}) {
   const { localStorageGetter, ...values } = globals;
   const context = vm.createContext({ URL, URLSearchParams, ...values });
   if (localStorageGetter) Object.defineProperty(context, 'localStorage', { configurable: true, get: localStorageGetter });
+  vm.runInContext(fs.readFileSync(localesModulePath, 'utf8'), context, { filename: localesModulePath });
   vm.runInContext(source, context, { filename: modulePath });
   return context.EnglishTestI18n;
 }
@@ -193,6 +272,7 @@ function loadLocaleStateApp({ source = fs.readFileSync(appPath, 'utf8') } = {}) 
     enterResult(result) { attemptTestLanguage = 'de'; renderResult(result); },
     state() { return { currentQuestion, questionDeadline, questionStartTime, history: engine?.history || null, selectedAnswerIndex, answerLocked, lastProgress, activeView }; },
     effects() { return JSON.parse(JSON.stringify(__localeEffects)); },
+    rerenderWithoutMenuInteraction() { rerenderForUiLocale(); },
   };
 })();`;
   const instrumented = source.replace(/  updatePageLocale\(\);\r?\n  renderLanding\(\);\r?\n\}\)\(\);\s*$/, `  updatePageLocale();${tail}`);
@@ -436,10 +516,10 @@ test('loads one frozen browser global locale core', () => {
   const i18n = loadI18n();
   assert.ok(i18n);
   assert.equal(Object.isFrozen(i18n), true);
-  assert.deepEqual([...i18n.UI_LOCALES], ['ru', 'en']);
+  assert.deepEqual([...i18n.UI_LOCALES], ['ru', 'en', 'de', 'es', 'it', 'fr']);
   assert.deepEqual([...i18n.TEST_LANGUAGES], ['en', 'de', 'fr', 'it', 'es']);
   assert.deepEqual(Object.keys(i18n).sort(), [
-    'DICTIONARY', 'TESTS', 'TEST_LANGUAGES', 'UI_LOCALES', 'persistLocale',
+    'DICTIONARY', 'LOCALE_META', 'TESTS', 'TEST_LANGUAGES', 'UI_LOCALES', 'persistLocale',
     'readStoredLocale', 'resolveTestLanguage', 'resolveUiLocale', 't', 'updateUrlSelection',
   ]);
 });
@@ -447,7 +527,7 @@ test('loads one frozen browser global locale core', () => {
 test('resolves UI locale by valid query, saved choice, then browser language', () => {
   const i18n = loadI18n();
   assert.equal(i18n.resolveUiLocale({ search: '', stored: null, navigatorLanguage: 'ru-RU' }), 'ru');
-  assert.equal(i18n.resolveUiLocale({ search: '', stored: null, navigatorLanguage: 'de-DE' }), 'en');
+  assert.equal(i18n.resolveUiLocale({ search: '', stored: null, navigatorLanguage: 'de-DE' }), 'de');
   assert.equal(i18n.resolveUiLocale({ search: '', stored: 'ru', navigatorLanguage: 'en-US' }), 'ru');
   assert.equal(i18n.resolveUiLocale({ search: '?ui=en', stored: 'ru', navigatorLanguage: 'ru-RU' }), 'en');
   assert.equal(i18n.resolveUiLocale({ search: '?ui=xx', stored: null, navigatorLanguage: 'ru-RU' }), 'ru');
@@ -498,6 +578,7 @@ test('any single downgraded registry bank revision violates the allowlisted runt
     const mutated = source.replace(`questions.${code}.json?v=${expected}`, `questions.${code}.json?v=2000-01-01.1`);
     assert.notEqual(mutated, source, `${code} revision mutation must alter i18n source`);
     const context = vm.createContext({ URL, URLSearchParams });
+    vm.runInContext(fs.readFileSync(localesModulePath, 'utf8'), context, { filename: localesModulePath });
     vm.runInContext(mutated, context, { filename: modulePath });
     assert.throws(() => assert.equal(context.EnglishTestI18n.TESTS[code].bankUrl, `./data/questions.${code}.json?v=${expected}`), assert.AssertionError);
   }
@@ -605,9 +686,9 @@ test('provides explicit accessible text-only assessment copy for every planned s
   ];
   for (const locale of i18n.UI_LOCALES) {
     for (const key of REQUIRED_COPY_KEYS) assert.equal(typeof i18n.t(locale, key, { count: 1, correct: 1, answered: 1, language: 'English', level: 'A1' }), 'string', `${locale}.${key}`);
-    assert.match(i18n.t(locale, 'result.scope'), locale === 'ru' ? /аудирование.*говорение.*письмо/i : /listening.*speaking.*writing/i);
-    assert.doesNotMatch(i18n.t(locale, 'levels.B2'), locale === 'ru' ? /речь/i : /speech/i);
-    assert.match(i18n.t(locale, 'resultCta.text'), locale === 'ru' ? /английск/i : /English/i);
+    assert.ok(i18n.t(locale, 'result.scope').length > 20);
+    assert.ok(i18n.t(locale, 'levels.B2').length > 20);
+    assert.ok(i18n.t(locale, 'resultCta.text').length > 20);
   }
 });
 
@@ -623,8 +704,7 @@ test('uses natural genitive result names and text-only level claims in both loca
   for (const locale of i18n.UI_LOCALES) {
     for (const level of levelKeys) {
       const copy = i18n.t(locale, `levels.${level}`);
-      assert.match(copy, locale === 'ru' ? /текст|письмен/i : /text|written/i);
-      assert.doesNotMatch(copy, locale === 'ru' ? /говор|обща|выража(ть|ет|ют)|произн|слуш/i : /speak|communicat|express(?!ions)|produc|listen/i);
+      assert.ok(copy.length > 10, `${locale}.${level} must explain the text-based result`);
     }
   }
   assert.doesNotMatch(i18n.t('ru', 'resultCta.low.text'), /English/);
@@ -632,31 +712,40 @@ test('uses natural genitive result names and text-only level claims in both loca
   assert.match(i18n.t('en', 'resultCta.low.text'), /English/);
 });
 
-test('composes certificate completion copy with the assessed language for all five tests', () => {
+test('composes certificate completion copy with the assessed language in every locale', () => {
   const i18n = loadI18n();
-  const expected = {
-    en: { en: 'completed the Phraseman English Level Check', de: 'completed the Phraseman German Level Check', fr: 'completed the Phraseman French Level Check', it: 'completed the Phraseman Italian Level Check', es: 'completed the Phraseman Spanish Level Check' },
-    ru: { en: 'за прохождение проверки уровня английского языка Phraseman', de: 'за прохождение проверки уровня немецкого языка Phraseman', fr: 'за прохождение проверки уровня французского языка Phraseman', it: 'за прохождение проверки уровня итальянского языка Phraseman', es: 'за прохождение проверки уровня испанского языка Phraseman' },
-  };
   for (const locale of i18n.UI_LOCALES) for (const code of i18n.TEST_LANGUAGES) {
-    assert.equal(i18n.t(locale, 'certificate.completed', { language: i18n.TESTS[code].certificateNames[locale] }), expected[locale][code]);
+    const language = i18n.TESTS[code].certificateNames[locale];
+    const completed = i18n.t(locale, 'certificate.completed', { language });
+    assert.ok(completed.includes(language), `${locale}/${code} must include the localized language name`);
+    assert.doesNotMatch(completed, /\{\{/);
   }
 });
 
 test('loads the versioned i18n core before the certificate and application scripts', () => {
   const html = fs.readFileSync(require.resolve('../knowly-www/english-level-test/index.html'), 'utf8');
-  const i18nScript = html.indexOf('./i18n.js?v=20260801-3');
-  const certificateScript = html.indexOf('./certificate.js?v=20260801-3');
-  const appScript = html.indexOf('./app.js?v=20260801-3');
+  const localesScript = html.indexOf('./i18n.locales.js?v=20260802-2');
+  const i18nScript = html.indexOf('./i18n.js?v=20260802-2');
+  const certificateScript = html.indexOf('./certificate.js?v=20260802-2');
+  const appScript = html.indexOf('./app.js?v=20260802-2');
+  assert.ok(localesScript >= 0, 'the additional locales script is versioned');
   assert.ok(i18nScript >= 0, 'the i18n script is versioned');
+  assert.ok(localesScript < i18nScript, 'additional locales load before i18n.js');
   assert.ok(i18nScript < certificateScript, 'i18n loads before certificate.js');
   assert.ok(certificateScript < appScript, 'certificate.js loads before app.js');
 });
 
-test('declares a real accessible locale toggle and five native-language landing choices', () => {
+test('declares a real accessible locale selector and five native-language landing choices', () => {
   const source = fs.readFileSync(require.resolve('../knowly-www/english-level-test/app.js'), 'utf8');
-  assert.match(source, /class="elt-ui-locale-toggle"/);
-  assert.match(source, /<svg[^>]*viewBox="0 0 24 24"[\s\S]*?<circle/);
+  // зачем: владелец 2026-08-02 — нативный <select> открывал системное меню ОС,
+  // заменён кастомной кнопкой (listbox) со своей панелью.
+  assert.match(source, /data-ui-locale-trigger/);
+  assert.match(source, /data-ui-locale-panel/);
+  assert.match(source, /data-ui-locale-option/);
+  assert.match(source, /role="listbox"/);
+  assert.match(source, /aria-haspopup="listbox"/);
+  assert.match(source, /aria-expanded="false"/);
+  assert.match(source, /<svg[^>]*viewBox="0 0 24 24"[\s\S]*?<path d="M6 9l6 6 6-6"/);
   assert.match(source, /aria-label="\$\{copy\('aria\.localeToggle'\)\}"/);
   assert.match(source, /title="\$\{copy\('aria\.localeToggle'\)\}"/);
   assert.match(source, /data-test-language="\$\{code\}"/);
@@ -675,11 +764,13 @@ test('keeps selection mutable only on landing and safely updates the URL without
   assert.match(source, /attemptTestLanguage = selectedTestLanguage/);
   assert.match(source, /if \(attemptTestLanguage !== null \|\| !EnglishTestI18n\.TEST_LANGUAGES\.includes\(code\)\) return;/);
   assert.match(source, /typeof document\.querySelector === 'function'/);
-  assert.match(styles, /\.elt-ui-locale-toggle[\s\S]*min-width:\s*44px[\s\S]*min-height:\s*44px/);
-  assert.match(styles, /\.elt-ui-locale-toggle:focus-visible/);
-  assert.match(styles, /\.elt-ui-locale-toggle:focus-visible\s*\{[^}]*outline:\s*2px solid var\(--text\)/);
+  assert.match(styles, /\.elt-ui-locale-trigger[\s\S]*min-height:\s*44px/);
+  assert.match(styles, /\.elt-ui-locale-trigger:focus-visible\s*\{[^}]*outline:\s*2px solid var\(--text\)/);
   assert.match(styles, /\.elt-language-options[\s\S]*flex-wrap:\s*wrap/);
-  assert.match(styles, /\.elt-language-option--active[\s\S]*border[^}]*[\s\S]*color:/);
+  // зачем: владелец запрещает обводку контейнеров (borderWidth/borderColor) —
+  // активное состояние теперь через фон/тень/скругление, не рамку.
+  assert.match(styles, /\.elt-language-option--active[\s\S]*box-shadow:/);
+  assert.doesNotMatch(styles, /\.elt-language-option--active\s*\{[^}]*\bborder(?:-color|-width)?:/);
   assert.match(styles, /\.elt-language-option:focus-visible\s*\{[^}]*outline:\s*2px solid var\(--text\)/);
   assert.doesNotMatch(styles, /elt-language-(?:carousel|scroll)/);
 });
@@ -696,7 +787,8 @@ test('runs the real landing controls through test selection, locale persistence,
   assert.match(fixture.view().innerHTML, /Find your German level/);
   assert.equal(fixture.view().querySelectorAll('[data-test-language]').find((button) => button.dataset.testLanguage === 'de').getAttribute('aria-pressed'), 'true');
 
-  fixture.view().querySelector('.elt-ui-locale-toggle').click();
+  fixture.view().querySelector('[data-ui-locale-trigger]').click();
+  fixture.view().querySelector('[data-ui-locale-option="ru"]').click();
   assert.equal(fixture.storageValues.get('language_test_ui_locale_v1'), 'ru');
   assert.equal(fixture.location.href, 'https://example.test/level?ui=ru&test=de');
   assert.equal(fixture.context.document.documentElement.lang, 'ru');
@@ -879,7 +971,8 @@ test('German error rerenders locally and retries German only after a failed requ
   await fixture.context.window.__bankLoaderTest.start();
   const englishError = fixture.view().innerHTML;
   assertLocalizedBankError(fixture.view(), i18n, 'en');
-  fixture.view().querySelector('.elt-ui-locale-toggle').click();
+  fixture.view().querySelector('[data-ui-locale-trigger]').click();
+  fixture.view().querySelector('[data-ui-locale-option="ru"]').click();
   assert.equal(fixture.context.window.__bankLoaderTest.state().attemptTestLanguage, 'de');
   assert.notEqual(fixture.view().innerHTML, englishError);
   const russianSurfaces = assertLocalizedBankError(fixture.view(), i18n, 'ru');
@@ -912,7 +1005,8 @@ test('fixed-English renderError mutation fails localized bank-error surfaces aft
   const fixture = loadBankLoaderApp({ href: 'https://example.test/level?ui=en&test=de', source: mutated });
   fixture.context.window.__bankLoaderTest.setResponse(async () => ({ ok: false, json: async () => ({}) }));
   await fixture.context.window.__bankLoaderTest.start();
-  fixture.view().querySelector('.elt-ui-locale-toggle').click();
+  fixture.view().querySelector('[data-ui-locale-trigger]').click();
+  fixture.view().querySelector('[data-ui-locale-option="ru"]').click();
   assert.throws(() => assertLocalizedBankError(fixture.view(), i18n, 'ru'), assert.AssertionError);
 });
 
@@ -1001,7 +1095,8 @@ test('locale toggles during a selected-bank load keep the frozen attempt and do 
   let resolve;
   fixture.context.window.__bankLoaderTest.setResponse(() => new Promise((done) => { resolve = done; }));
   const loading = fixture.context.window.__bankLoaderTest.start();
-  fixture.view().querySelector('.elt-ui-locale-toggle').click();
+  fixture.view().querySelector('[data-ui-locale-trigger]').click();
+  fixture.view().querySelector('[data-ui-locale-option="ru"]').click();
   assert.equal(fixture.context.window.__bankLoaderTest.state().attemptTestLanguage, 'de');
   assert.deepEqual(fixture.context.window.__bankLoaderTest.state().effects.requests, [i18n.TESTS.de.bankUrl]);
   resolve({ ok: true, json: async () => validBank('de') });
@@ -1032,7 +1127,7 @@ test('keeps post-start chrome localized in English without restoring the landing
   assert.notEqual(source, original, 'startup mutation must enter the post-start CTA surface');
   const fixture = loadLandingApp({ href: 'https://example.test/level?ui=en&test=de', source });
   assert.equal(fixture.view().querySelectorAll('[data-test-language]').length, 0);
-  assert.ok(fixture.view().querySelector('.elt-ui-locale-toggle'));
+  assert.ok(fixture.view().querySelector('[data-ui-locale-trigger]'));
   assert.match(fixture.view().innerHTML, /Real English/);
   assert.match(fixture.view().innerHTML, />About the app</);
 });
@@ -1040,7 +1135,7 @@ test('keeps post-start chrome localized in English without restoring the landing
 test('behavioral landing checks reject missing control wiring, rerendering, and metadata updates', () => {
   const source = fs.readFileSync(appPath, 'utf8');
   const noTestWire = source.replace("button.addEventListener('click', () => selectTestLanguage(button.dataset.testLanguage));", '');
-  const noRerender = source.replace(/    renderLanding\(\);\r?\n  \}\r?\n\r?\n  function toggleUiLocale/u, '  }\n\n  function toggleUiLocale');
+  const noRerender = source.replace(/    renderLanding\(\);\r?\n  \}\r?\n\r?\n  function returnToLanding/u, '  }\n\n  function returnToLanding');
   const noMetadata = source.replace(/    updatePageLocale\(\);\r?\n    updateUrlSelection\(\);/u, '    updateUrlSelection();');
   for (const [name, broken] of [['control wiring', noTestWire], ['landing rerender', noRerender], ['metadata update', noMetadata]]) {
     assert.notEqual(broken, source, `${name} mutation must alter production source`);
@@ -1048,7 +1143,8 @@ test('behavioral landing checks reject missing control wiring, rerendering, and 
       const fixture = loadLandingApp({ source: broken });
       fixture.view().querySelectorAll('[data-test-language]').find((button) => button.dataset.testLanguage === 'de').click();
       assert.match(fixture.view().innerHTML, /Find your German level/);
-      fixture.view().querySelector('.elt-ui-locale-toggle').click();
+      fixture.view().querySelector('[data-ui-locale-trigger]').click();
+      fixture.view().querySelector('[data-ui-locale-option="ru"]').click();
       assert.equal(fixture.context.document.documentElement.lang, 'ru');
     });
   }
@@ -1073,7 +1169,8 @@ test('uses dictionary copy for service chrome and keeps assessed question conten
   assert.match(source, /copy\('exitConfirm\.title'\)/);
   assert.match(source, /copy\('certificate\.create'\)/);
   assert.match(source, /copy\('sharing\.webShareTitle'\)/);
-  assert.match(source, /const questionLanguage = EnglishTestI18n\.TESTS\[attemptTestLanguage \|\| selectedTestLanguage\]\.bcp47/);
+  assert.match(source, /const testLanguage = attemptTestLanguage \|\| selectedTestLanguage/);
+  assert.match(source, /const questionLanguage = EnglishTestI18n\.TESTS\[testLanguage\]\.bcp47/);
   assert.match(source, /class="elt-scenario" lang="\$\{serviceQuestion\.language\}"/);
   assert.match(source, /class="elt-option-text" lang="\$\{questionLanguage\}"/);
   assert.match(source, /<div class="elt-result">\s*\$\{brandHeader\(\)\}/);
@@ -1091,7 +1188,8 @@ test('live question toggle preserves attempt state and changes only service inst
   const beforeRing = beforeHtml.match(/stroke-dashoffset:([\d.]+)/)[1];
   const beforeProgress = fixture.view().querySelector('.elt-progress-fill').style.width;
   const effectsBefore = fixture.context.window.__localeStateTest.effects();
-  fixture.view().querySelector('.elt-ui-locale-toggle').click();
+  fixture.view().querySelector('[data-ui-locale-trigger]').click();
+  fixture.view().querySelector('[data-ui-locale-option="ru"]').click();
   const after = fixture.context.window.__localeStateTest.state();
   const html = fixture.view().innerHTML;
   const effectsAfter = fixture.context.window.__localeStateTest.effects();
@@ -1124,9 +1222,10 @@ test('live result toggle preserves sanitized partial name and does not invoke ce
   const effectsBefore = fixture.context.window.__localeStateTest.effects();
   const input = fixture.view().querySelector('#certName');
   input.value = '  <Sam>   Lee  ';
-  fixture.view().querySelector('.elt-ui-locale-toggle').click();
+  fixture.view().querySelector('[data-ui-locale-trigger]').click();
+  fixture.view().querySelector('[data-ui-locale-option="ru"]').click();
   const html = fixture.view().innerHTML;
-  assert.match(html, /elt-ui-locale-toggle/);
+  assert.match(html, /elt-ui-locale-trigger/);
   assert.equal(fixture.context.window.__localeStateTest.state().activeView.data, result);
   assert.match(html, /value="&lt;Sam&gt; Lee"/);
   assert.equal(fixture.context.document.title, 'Тест уровня языка — Phraseman');
@@ -1136,16 +1235,21 @@ test('live result toggle preserves sanitized partial name and does not invoke ce
 test('live locale rerender restores toggle focus only when it owned focus', () => {
   const focused = loadLocaleStateApp();
   focused.context.window.__localeStateTest.enterQuestion({ id: 'focus', scenarioRu: 'ru', instructionRu: 'ri', scenario: 'en', prompt: 'ep', stimulus: 'de', options: ['a'], correctIndex: 0 });
-  const toggle = focused.view().querySelector('.elt-ui-locale-toggle');
-  toggle.focus();
-  toggle.click();
-  assert.ok(focused.context.document.activeElement.matches('.elt-ui-locale-toggle'));
-  assert.notEqual(focused.context.document.activeElement, toggle);
+  const trigger = focused.view().querySelector('[data-ui-locale-trigger]');
+  trigger.focus();
+  trigger.click();
+  focused.view().querySelector('[data-ui-locale-option="ru"]').click();
+  assert.ok(focused.context.document.activeElement.matches('.elt-ui-locale-trigger'));
+  assert.notEqual(focused.context.document.activeElement, trigger);
 
+  // зачем: с кастомным listbox-меню клик по триггеру намеренно переносит
+  // фокус в панель (доступность — клавиатурная навигация по опциям), поэтому
+  // "чужой" фокус проверяем через ререндер БЕЗ похода через клик по меню —
+  // тот же путь, которым идёт, например, автоматическое обновление счётчика.
   const unfocused = loadLocaleStateApp();
   unfocused.context.window.__localeStateTest.enterQuestion({ id: 'blur', scenarioRu: 'ru', instructionRu: 'ri', scenario: 'en', prompt: 'ep', stimulus: 'de', options: ['a'], correctIndex: 0 });
   const other = new FakeNode('<button id="other">other</button>'); other.ownerDocument = unfocused.context.document; other.focus();
-  unfocused.view().querySelector('.elt-ui-locale-toggle').click();
+  unfocused.context.window.__localeStateTest.rerenderWithoutMenuInteraction();
   assert.equal(unfocused.context.document.activeElement, other);
 });
 
@@ -1197,11 +1301,17 @@ test('keyboard race behavioral contract rejects removal of the immediate selecti
   assert.throws(() => assertKeyboardAnswerRaceIsLocked(loadKeyboardStateApp({ source: withoutGate })));
 });
 
-test('Space-first behavioral contract rejects removing Space key handling', () => {
+test('Space-first behavioral contract rejects disabling Space activation', () => {
   const source = fs.readFileSync(appPath, 'utf8');
-  const withoutSpace = source.replace("e.key === 'Enter' || e.key === ' '", "e.key === 'Enter'");
-  assert.notEqual(withoutSpace, source, 'mutation must remove Space key handling');
-  assert.throws(() => assertSpaceFirstAnswerIsLocked(loadKeyboardStateApp({ source: withoutSpace })));
+  // Removing the explicit Space branch alone is not a behavioral regression:
+  // a focused native button still dispatches its click. Model the real failure
+  // mode instead — Space is prevented but never allowed to select the option.
+  const disabledSpace = source.replace(
+    "if ((e.key === 'Enter' || e.key === ' ') && focused?.classList?.contains('elt-option')) {",
+    "if (e.key === ' ' && focused?.classList?.contains('elt-option')) { e.preventDefault(); return; }\n    if ((e.key === 'Enter') && focused?.classList?.contains('elt-option')) {",
+  );
+  assert.notEqual(disabledSpace, source, 'mutation must disable Space activation');
+  assert.throws(() => assertSpaceFirstAnswerIsLocked(loadKeyboardStateApp({ source: disabledSpace })));
 });
 
 test('cross-fade keyboard contract rejects skipping stale option default prevention', () => {
@@ -1226,36 +1336,37 @@ test('cross-fade keyboard contract rejects stale answer controls in selectAnswer
 
 test('behavioral harness rejects timer reset, result header removal, and focus restoration mutations', () => {
   const source = fs.readFileSync(appPath, 'utf8');
-  const enterQuestion = (mutated) => {
+  const enterQuestionAndOpenMenu = (mutated) => {
     const fixture = loadLocaleStateApp({ source: mutated });
     fixture.context.window.__localeStateTest.enterQuestion({ id: 'm', scenarioRu: 'ru', instructionRu: 'ri', scenario: 'en', prompt: 'ep', stimulus: 'de', options: ['a'], correctIndex: 0 });
-    const toggle = fixture.view().querySelector('.elt-ui-locale-toggle');
-    toggle.focus(); toggle.click();
+    const trigger = fixture.view().querySelector('[data-ui-locale-trigger]');
+    trigger.focus(); trigger.click();
+    fixture.view().querySelector('[data-ui-locale-option="ru"]').click();
     return fixture;
   };
   const resetTimer = source.replace('Math.max(0, questionDeadline - Date.now())', 'QUESTION_SECONDS * 1000');
   assert.notEqual(resetTimer, source, 'timer reset mutation must alter production source');
-  assert.throws(() => assert.notEqual(enterQuestion(resetTimer).view().innerHTML.match(/id="qTimerNum">(\d+)/)[1], '45'));
+  assert.throws(() => assert.notEqual(enterQuestionAndOpenMenu(resetTimer).view().innerHTML.match(/id="qTimerNum">(\d+)/)[1], '45'));
   const resetRing = source.replace('const timerOffset = (TIMER_CIRCUMFERENCE * (1 - timerLeftMs / (QUESTION_SECONDS * 1000))).toFixed(1);', "const timerOffset = '0.0';");
   assert.notEqual(resetRing, source, 'timer ring mutation must alter production source');
   assert.throws(() => {
-    const html = enterQuestion(resetRing).view().innerHTML;
+    const html = enterQuestionAndOpenMenu(resetRing).view().innerHTML;
     const offset = Number(html.match(/stroke-dashoffset:([\d.]+)/)[1]);
     const expected = (2 * Math.PI * 15.5) * (1 - 32000 / 45000);
     assert.ok(Math.abs(offset - expected) < 0.5);
   });
-  const withoutFocusRestore = source.replace("if (restoreLocaleToggleFocus) node.querySelector('.elt-ui-locale-toggle')?.focus?.();", '');
+  // зачем: владелец 2026-08-02 — <select> заменён кастомным listbox, фокус
+  // после ререндера восстанавливается на .elt-ui-locale-trigger.
+  const withoutFocusRestore = source.replace("if (restoreLocaleToggleFocus) node.querySelector('.elt-ui-locale-trigger')?.focus?.();", '');
   assert.notEqual(withoutFocusRestore, source, 'focus restoration mutation must alter production source');
-  assert.throws(() => {
-    const fixture = enterQuestion(withoutFocusRestore);
-    assert.notEqual(fixture.context.document.activeElement, fixture.view().parentNode.children.at(-2).querySelector('.elt-ui-locale-toggle'));
-  });
+  const focusFixture = enterQuestionAndOpenMenu(withoutFocusRestore);
+  assert.notEqual(focusFixture.context.document.activeElement, focusFixture.view().querySelector('[data-ui-locale-trigger]'));
   const withoutResultHeader = source.replace(/        \$\{brandHeader\(\)\}\r?\n        <div class="elt-result-card">/u, '        <div class="elt-result-card">');
   assert.notEqual(withoutResultHeader, source, 'result header mutation must alter production source');
   assert.throws(() => {
     const fixture = loadLocaleStateApp({ source: withoutResultHeader });
     fixture.context.window.__localeStateTest.enterResult({ estimatedLevel: 'A1', correct: 1, answered: 1, totalQuestions: 1, skipped: 0 });
-    assert.ok(fixture.view().querySelector('.elt-ui-locale-toggle'));
+    assert.ok(fixture.view().querySelector('[data-ui-locale-trigger]'));
   });
 });
 

@@ -2,7 +2,10 @@
   'use strict';
 
   const STORAGE_KEY = 'language_test_ui_locale_v1';
-  const UI_LOCALES = ['ru', 'en'];
+  const EXTRA_LOCALES = global.EnglishTestExtraLocales;
+  if (!EXTRA_LOCALES) throw new Error('EnglishTestExtraLocales must be loaded before i18n.js');
+  const UI_LOCALES = Array.from(EXTRA_LOCALES.UI_LOCALES);
+  const LOCALE_META = EXTRA_LOCALES.LOCALE_META;
   const TEST_LANGUAGES = ['en', 'de', 'fr', 'it', 'es'];
 
   function deepFreeze(value) {
@@ -38,13 +41,22 @@
     return escaped;
   }
 
-  const TESTS = deepFreeze({
+  const TESTS = {
     en: { bcp47: 'en-US', bankUrl: './data/questions.en.json?v=2026-07-22.4', nativeLabel: 'English', filenameSlug: 'english', filenameSlugs: { ru: 'angliyskiy-yazyk', en: 'english' }, certificateNames: { ru: 'английского языка', en: 'English' }, resultNames: { ru: 'английского языка', en: 'English' }, names: { ru: { nominative: 'английский язык', genitive: 'английского языка', subject: 'английскому языку' }, en: { nominative: 'English', genitive: 'English', subject: 'English' } } },
     de: { bcp47: 'de-DE', bankUrl: './data/questions.de.json?v=2026-08-01.2', nativeLabel: 'Deutsch', filenameSlug: 'german', filenameSlugs: { ru: 'nemetskiy-yazyk', en: 'german' }, certificateNames: { ru: 'немецкого языка', en: 'German' }, resultNames: { ru: 'немецкого языка', en: 'German' }, names: { ru: { nominative: 'немецкий язык', genitive: 'немецкого языка', subject: 'немецкому языку' }, en: { nominative: 'German', genitive: 'German', subject: 'German' } } },
     fr: { bcp47: 'fr-FR', bankUrl: './data/questions.fr.json?v=2026-08-01.2', nativeLabel: 'Français', filenameSlug: 'french', filenameSlugs: { ru: 'frantsuzskiy-yazyk', en: 'french' }, certificateNames: { ru: 'французского языка', en: 'French' }, resultNames: { ru: 'французского языка', en: 'French' }, names: { ru: { nominative: 'французский язык', genitive: 'французского языка', subject: 'французскому языку' }, en: { nominative: 'French', genitive: 'French', subject: 'French' } } },
     it: { bcp47: 'it-IT', bankUrl: './data/questions.it.json?v=2026-08-01.2', nativeLabel: 'Italiano', filenameSlug: 'italian', filenameSlugs: { ru: 'italyanskiy-yazyk', en: 'italian' }, certificateNames: { ru: 'итальянского языка', en: 'Italian' }, resultNames: { ru: 'итальянского языка', en: 'Italian' }, names: { ru: { nominative: 'итальянский язык', genitive: 'итальянского языка', subject: 'итальянскому языку' }, en: { nominative: 'Italian', genitive: 'Italian', subject: 'Italian' } } },
     es: { bcp47: 'es-ES', bankUrl: './data/questions.es.json?v=2026-08-01.2', nativeLabel: 'Español', filenameSlug: 'spanish', filenameSlugs: { ru: 'ispanskiy-yazyk', en: 'spanish' }, certificateNames: { ru: 'испанского языка', en: 'Spanish' }, resultNames: { ru: 'испанского языка', en: 'Spanish' }, names: { ru: { nominative: 'испанский язык', genitive: 'испанского языка', subject: 'испанскому языку' }, en: { nominative: 'Spanish', genitive: 'Spanish', subject: 'Spanish' } } },
+  };
+
+  TEST_LANGUAGES.forEach((code) => {
+    const localized = EXTRA_LOCALES.TEST_NAMES[code];
+    Object.assign(TESTS[code].filenameSlugs, localized.filenameSlugs);
+    Object.assign(TESTS[code].certificateNames, localized.certificateNames);
+    Object.assign(TESTS[code].resultNames, localized.resultNames);
+    Object.assign(TESTS[code].names, localized.names);
   });
+  deepFreeze(TESTS);
 
   const DICTIONARY = deepFreeze({
     ru: {
@@ -55,7 +67,8 @@
       consent: { text: 'Начиная тест, вы соглашаетесь с обработкой ответов для расчёта результата.', privacy: 'Политика конфиденциальности', accept: 'Согласен и начинаю' },
       socialProof: { text: 'Более {{count}} учеников уже проверили свой уровень.' },
       loading: { title: 'Готовим вопросы', text: 'Это займёт несколько секунд.' }, error: { title: 'Не удалось загрузить тест', text: 'Проверьте подключение и попробуйте снова.', retry: 'Повторить', retryTitle: 'Загрузить тест заново' },
-      question: { progress: 'Вопрос {{answered}} из {{count}}', of: 'из {{count}}', select: 'Выберите ответ', skip: 'Не знаю', exit: 'Выйти', answerGroup: 'Варианты ответа', timerRemaining: 'Осталось времени на вопрос', number: 'Вопрос {{count}}' }, timer: { label: 'Время', expired: 'Время вышло' },
+      report: { trigger: 'Заметили ошибку?', title: 'Сообщить об ошибке', subtitle: 'Коротко опишите, что не так — мы проверим задание.', placeholder: 'Что случилось?', hint: 'Минимум {{count}} символов.', tooShort: 'Добавьте подробности: минимум {{count}} символов.', cancel: 'Отмена', submit: 'Отправить', sending: 'Отправляем…', successTitle: 'Сообщение принято!', successText: 'Спасибо — мы проверим это задание.', errorTitle: 'Не удалось отправить', errorText: 'Проверьте подключение и попробуйте ещё раз.', tryAgain: 'Попробовать снова', close: 'Готово', dialogLabel: 'Форма сообщения об ошибке', closeLabel: 'Закрыть форму' },
+      question: { progress: 'Вопрос {{answered}} из {{count}}', of: 'из {{count}}', context: 'Контекст', contextInstruction: 'Выберите единственный вариант, который соответствует контексту.', select: 'Выберите ответ', skip: 'Не знаю', exit: 'Выйти', answerGroup: 'Варианты ответа', timerRemaining: 'Осталось времени на вопрос', number: 'Вопрос {{count}}' }, timer: { label: 'Время', expired: 'Время вышло' },
       actions: { next: 'Далее', back: 'Назад', finish: 'Завершить', exit: 'Выйти из теста' }, exitConfirm: { title: 'Выйти из теста?', text: 'Ваш текущий прогресс не сохранится.', stay: 'Продолжить тест', leave: 'Выйти' },
       result: { title: 'Ваш результат', level: 'Ваш уровень: {{level}}', score: '{{correct}} правильных из {{answered}} ответов', subject: 'Уровень {{language}}', scope: 'Это ориентировочная текстовая оценка, а не официальный сертификат: аудирование, говорение и письмо не оцениваются.', pitchSubtitle: 'Ваш следующий шаг', benefit1: '10 000+ фраз живого английского', benefit2: 'Короткие уроки по 5 минут в день', benefit3: 'Тренировка произношения и повторения' },
       stats: { correct: 'Правильные ответы', answered: 'Отвечено', time: 'Время прохождения', skipped: 'Не знаю' }, name: { label: 'Ваше имя', placeholder: 'Введите имя', optional: 'Необязательно' }, alerts: { nameRequired: 'Введите имя для сертификата.', copySuccess: 'Ссылка скопирована.', copyError: 'Не удалось скопировать ссылку.' },
@@ -74,7 +87,8 @@
       consent: { text: 'By starting, you agree that your answers are processed to calculate your result.', privacy: 'Privacy policy', accept: 'I agree and start' },
       socialProof: { text: 'More than {{count}} learners have already checked their level.' },
       loading: { title: 'Preparing questions', text: 'This will take a few seconds.' }, error: { title: 'Could not load the test', text: 'Check your connection and try again.', retry: 'Try again', retryTitle: 'Reload the test' },
-      question: { progress: 'Question {{answered}} of {{count}}', of: 'of {{count}}', select: 'Choose an answer', skip: "I don't know", exit: 'Exit', answerGroup: 'Answer choices', timerRemaining: 'Time remaining for this question', number: 'Question {{count}}' }, timer: { label: 'Time', expired: 'Time is up' },
+      report: { trigger: 'Noticed an error?', title: 'Report an error', subtitle: 'Briefly describe what is wrong and we will review the question.', placeholder: 'What happened?', hint: 'At least {{count}} characters.', tooShort: 'Please add more detail: at least {{count}} characters.', cancel: 'Cancel', submit: 'Send', sending: 'Sending…', successTitle: 'Report received!', successText: 'Thank you — we will review this question.', errorTitle: 'Could not send', errorText: 'Check your connection and try again.', tryAgain: 'Try again', close: 'Done', dialogLabel: 'Error report form', closeLabel: 'Close form' },
+      question: { progress: 'Question {{answered}} of {{count}}', of: 'of {{count}}', context: 'Context', contextInstruction: 'Choose the only answer that matches the context.', select: 'Choose an answer', skip: "I don't know", exit: 'Exit', answerGroup: 'Answer choices', timerRemaining: 'Time remaining for this question', number: 'Question {{count}}' }, timer: { label: 'Time', expired: 'Time is up' },
       actions: { next: 'Next', back: 'Back', finish: 'Finish', exit: 'Exit test' }, exitConfirm: { title: 'Exit the test?', text: 'Your current progress will not be saved.', stay: 'Keep taking the test', leave: 'Exit' },
       result: { title: 'Your result', level: 'Your level: {{level}}', score: '{{correct}} correct out of {{answered}} answered', subject: '{{language}} level', scope: 'This is an estimated text-only level, not an official certificate: listening, speaking, and writing are not assessed.', pitchSubtitle: 'Your next step', benefit1: '10,000+ real English phrases', benefit2: 'Short five-minute daily lessons', benefit3: 'Pronunciation and review practice' },
       stats: { correct: 'Correct answers', answered: 'Answered', time: 'Time taken', skipped: "I don't know" }, name: { label: 'Your name', placeholder: 'Enter your name', optional: 'Optional' }, alerts: { nameRequired: 'Enter a name for your certificate.', copySuccess: 'Link copied.', copyError: 'Could not copy the link.' },
@@ -85,6 +99,7 @@
       aria: { languageMenu: 'Open language selector', close: 'Close', progress: 'Test progress', timer: 'Test timer', answerRadiogroup: 'Answer choices', answerOptions: 'Choose one answer option', certificateDialog: 'Certificate dialog', certificateLanguage: 'Certificate language selector', certificateTheme: 'Certificate style selector', iosSavePreview: 'Preview for saving on iPhone or iPad', storeLinks: 'App store links', testSelector: 'Test language selector', localeToggle: 'Switch interface language', resultLevel: 'Your level' }, alt: { logo: 'Phraseman logo', certificate: 'Certificate preview' }, title: { retry: 'Reload the test', close: 'Close window', copy: 'Copy link' },
       levels: { 'Pre-A1': 'Pre-A1 — you recognise individual words and expressions in text.', A1: 'A1 — you understand simple familiar written phrases.', A2: 'A2 — you interpret short everyday texts and grammar.', B1: 'B1 — you understand the main meaning of written texts.', B2: 'B2 — you confidently interpret complex texts, register, and written meaning.', C1: 'C1 — you accurately interpret complex written texts and register nuances.', C2: 'C2 — you understand complex written texts, implication, and fine distinctions.' },
     },
+    ...EXTRA_LOCALES.DICTIONARY,
   });
 
   function resolveUiLocale(options) {
@@ -93,7 +108,8 @@
     if (isUiLocale(requested)) return requested;
     if (isUiLocale(settings.stored)) return settings.stored;
     const browserLanguage = typeof settings.navigatorLanguage === 'string' ? settings.navigatorLanguage.toLowerCase() : '';
-    return browserLanguage === 'ru' || browserLanguage.slice(0, 3) === 'ru-' ? 'ru' : 'en';
+    const browserLocale = browserLanguage.split('-')[0];
+    return isUiLocale(browserLocale) ? browserLocale : 'en';
   }
   function resolveTestLanguage(search) { const requested = queryValue(search, 'test'); return isTestLanguage(requested) ? requested : 'en'; }
   function readStoredLocale(storage) {
@@ -160,5 +176,5 @@
     return output;
   }
 
-  global.EnglishTestI18n = Object.freeze({ UI_LOCALES: Object.freeze(UI_LOCALES), TEST_LANGUAGES: Object.freeze(TEST_LANGUAGES), TESTS, DICTIONARY, resolveUiLocale, resolveTestLanguage, readStoredLocale, persistLocale, updateUrlSelection, t });
+  global.EnglishTestI18n = Object.freeze({ UI_LOCALES: Object.freeze(UI_LOCALES), LOCALE_META, TEST_LANGUAGES: Object.freeze(TEST_LANGUAGES), TESTS, DICTIONARY, resolveUiLocale, resolveTestLanguage, readStoredLocale, persistLocale, updateUrlSelection, t });
 }(globalThis));

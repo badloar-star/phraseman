@@ -5,11 +5,14 @@ const path = require("node:path");
 const vm = require("node:vm");
 
 const appPath = require.resolve("../knowly-www/english-level-test/app.js");
+const i18nLocalesPath = path.join(path.dirname(appPath), "i18n.locales.js");
 const i18nPath = path.join(path.dirname(appPath), "i18n.js");
 const htmlPath = path.join(path.dirname(appPath), "index.html");
+const i18nLocalesSource = fs.readFileSync(i18nLocalesPath, "utf8");
 
 function loadI18nRegistry() {
   const context = vm.createContext({ URL, URLSearchParams });
+  vm.runInContext(i18nLocalesSource, context, { filename: i18nLocalesPath });
   vm.runInContext(fs.readFileSync(i18nPath, "utf8"), context, { filename: i18nPath });
   return context.EnglishTestI18n;
 }
@@ -29,11 +32,11 @@ function memoryStorage(initial = {}) {
   };
 }
 
-function loadHooks({ fetchImpl, storage = memoryStorage(), uiLocale = "ru" } = {}) {
+function loadHooks({ fetchImpl, storage = memoryStorage(), uiLocale = "ru", testLanguage = "en" } = {}) {
   let source = fs.readFileSync(appPath, "utf8");
   source = source.replace(
     /\s+renderLanding\(\);\s*\}\)\(\);\s*$/,
-    `\n  globalThis.__counterHooks = {\n      queueCompletion, flushCompletionOutbox, reportTestCompletion, applyCompletedCount, refreshLandingCounter,\n      getPendingIdsForTest() { return typeof pendingCompletionIds === 'function' ? pendingCompletionIds() : readCompletionOutbox(); },\n      setState(value) { consent = value.consent; attemptToken = value.attemptToken; },\n      activateLandingForTest(node) { currentView = node; landingCounterNode = node; }\n    };\n  })();`,
+    `\n  globalThis.__counterHooks = {\n      queueCompletion, flushCompletionOutbox, reportTestCompletion, applyCompletedCount, refreshLandingCounter,\n      getPendingIdsForTest() { return typeof pendingCompletionIds === 'function' ? pendingCompletionIds() : readCompletionOutbox(); },\n      setState(value) { consent = value.consent; attemptToken = value.attemptToken; if (value.attemptTestLanguage !== undefined) attemptTestLanguage = value.attemptTestLanguage; },\n      activateLandingForTest(node) { currentView = node; landingCounterNode = node; },\n      readBestCompletedByLanguage() { return bestCompletedByLanguage; }\n    };\n    selectedTestLanguage = ${JSON.stringify(testLanguage)};\n  })();`,
   );
   const context = {
     console,
@@ -63,23 +66,24 @@ function loadHooks({ fetchImpl, storage = memoryStorage(), uiLocale = "ru" } = {
     },
   };
   context.globalThis = context;
+  vm.runInNewContext(i18nLocalesSource, context, { filename: i18nLocalesPath });
   vm.runInNewContext(fs.readFileSync(i18nPath, "utf8"), context, { filename: i18nPath });
   vm.runInNewContext(source, context, { filename: appPath });
   return { hooks: context.__counterHooks, storage };
 }
 
-test("completion POST is sent even when analytics consent is false and contains no analytics fields", async () => {
+test("completion POST is sent even when analytics consent is false and carries the frozen test language, no analytics fields", async () => {
   const requests = [];
   const { hooks } = loadHooks({
     fetchImpl: async (url, options) => {
       requests.push({ url, options });
       return {
         ok: true,
-        json: async () => ({ ok: true, completed: 124001, duplicate: false }),
+        json: async () => ({ ok: true, completed: 1, duplicate: false }),
       };
     },
   });
-  hooks.setState({ consent: false, attemptToken: "a".repeat(48) });
+  hooks.setState({ consent: false, attemptToken: "a".repeat(48), attemptTestLanguage: "de" });
   hooks.reportTestCompletion();
   await hooks.flushCompletionOutbox();
   assert.equal(requests.length, 1);
@@ -88,6 +92,7 @@ test("completion POST is sent even when analytics consent is false and contains 
   assert.deepEqual(body, {
     action: "count_complete",
     completionId: "a".repeat(48),
+    testLanguage: "de",
   });
 });
 
@@ -97,7 +102,7 @@ test("outbox keeps a pending completion after network failure", async () => {
       throw new Error("offline");
     },
   });
-  hooks.queueCompletion("b".repeat(48));
+  hooks.queueCompletion("b".repeat(48), "fr");
   await hooks.flushCompletionOutbox();
   assert.deepEqual(Array.from(hooks.getPendingIdsForTest()), ["b".repeat(48)]);
 });
@@ -108,10 +113,10 @@ test("outbox removes a pending completion only after an accepted or duplicate 2x
     storage,
     fetchImpl: async () => ({
       ok: true,
-      json: async () => ({ ok: true, completed: 124001, duplicate: true }),
+      json: async () => ({ ok: true, completed: 1, duplicate: true }),
     }),
   });
-  hooks.queueCompletion("c".repeat(48));
+  hooks.queueCompletion("c".repeat(48), "es");
   await hooks.flushCompletionOutbox();
   assert.equal(
     storage.keys().some((key) => key.includes("c".repeat(48))),
@@ -147,7 +152,7 @@ test("storage SecurityError still keeps completion in memory and POSTs immediate
       };
     },
   });
-  hooks.setState({ consent: false, attemptToken: "d".repeat(48) });
+  hooks.setState({ consent: false, attemptToken: "d".repeat(48), attemptTestLanguage: "en" });
   hooks.reportTestCompletion();
   await hooks.flushCompletionOutbox();
   assert.equal(requests.length, 1);
@@ -156,7 +161,7 @@ test("storage SecurityError still keeps completion in memory and POSTs immediate
 test("outbox retains more than twenty offline completions without eviction", () => {
   const { hooks } = loadHooks();
   for (let index = 0; index < 25; index += 1) {
-    hooks.queueCompletion(index.toString(16).padStart(48, "0"));
+    hooks.queueCompletion(index.toString(16).padStart(48, "0"), "en");
   }
   assert.equal(hooks.getPendingIdsForTest().length, 25);
 });
@@ -165,8 +170,8 @@ test("two tabs use distinct per-completion keys instead of overwriting an outbox
   const storage = memoryStorage();
   const firstTab = loadHooks({ storage }).hooks;
   const secondTab = loadHooks({ storage }).hooks;
-  firstTab.queueCompletion("e".repeat(48));
-  secondTab.queueCompletion("f".repeat(48));
+  firstTab.queueCompletion("e".repeat(48), "en");
+  secondTab.queueCompletion("f".repeat(48), "en");
   const pendingKeys = storage
     .keys()
     .filter((key) => key.startsWith("english_test_completion_pending_v1:"));
@@ -231,9 +236,9 @@ test("accepted legacy completion is not requeued when legacy persistence and rem
   assert.deepEqual(Array.from(hooks.getPendingIdsForTest()), []);
 });
 
-test("landing applies the server completion total to visible text and truthful ARIA copy", () => {
+test("landing applies the server per-language completion total to visible text and truthful ARIA copy", () => {
   const { hooks } = loadHooks();
-  const counter = { textContent: "124 000" };
+  const counter = { textContent: "0" };
   const wrapper = {
     attributes: {},
     setAttribute(name, value) {
@@ -247,20 +252,27 @@ test("landing applies the server completion total to visible text and truthful A
       return null;
     },
   };
-  hooks.applyCompletedCount(landing, 124321);
+  hooks.applyCompletedCount(landing, "en", 124321);
   assert.equal(Number(counter.textContent.replace(/\D/g, "")), 124321);
   assert.match(wrapper.attributes["aria-label"], /124[\s\u00a0]?321/);
   assert.match(wrapper.attributes["aria-label"], /\u0443\u0447\u0435\u043d\u0438\u043a\u043e\u0432.*\u0443\u0440\u043e\u0432\u0435\u043d\u044c/i);
+
+  // A language with no honest history yet (e.g. Spanish) must not inherit the English baseline.
+  hooks.applyCompletedCount(landing, "es", 7);
+  assert.equal(Number(counter.textContent.replace(/\D/g, "")), 7);
+  hooks.applyCompletedCount(landing, "es", -5);
+  assert.equal(Number(counter.textContent.replace(/\D/g, "")), 0);
 });
 
-test("late counter updates retain the active UI locale in visible and ARIA text", async () => {
+test("late counter updates fetch completedByLanguage and retain the active UI locale and selected test language", async () => {
   for (const [uiLocale, expectedNumber, expectedCopy] of [
     ["ru", /124[\s\u00a0]321/, /учеников уже проверили свой уровень/i],
     ["en", /124,321/, /learners have already checked their level/i],
   ]) {
     const { hooks } = loadHooks({
       uiLocale,
-      fetchImpl: async () => ({ ok: true, json: async () => ({ ok: true, completed: 124321 }) }),
+      testLanguage: "en",
+      fetchImpl: async () => ({ ok: true, json: async () => ({ ok: true, completedByLanguage: { en: 124321, de: 3, fr: 0, it: 0, es: 0 } }) }),
     });
     const counter = { textContent: "0" };
     const wrapper = { attributes: {}, setAttribute(name, value) { this.attributes[name] = value; } };
@@ -271,6 +283,21 @@ test("late counter updates retain the active UI locale in visible and ARIA text"
     assert.match(wrapper.attributes["aria-label"], expectedNumber);
     assert.match(wrapper.attributes["aria-label"], expectedCopy);
   }
+});
+
+test("a non-English selected language shows its own honest count from the same GET response, not the English number", async () => {
+  const { hooks } = loadHooks({
+    testLanguage: "de",
+    fetchImpl: async () => ({ ok: true, json: async () => ({ ok: true, completedByLanguage: { en: 124500, de: 12, fr: 0, it: 0, es: 0 } }) }),
+  });
+  const counter = { textContent: "0" };
+  const wrapper = { attributes: {}, setAttribute(name, value) { this.attributes[name] = value; } };
+  const landing = { isConnected: true, querySelector(selector) { return selector === "#proofCounter" ? counter : wrapper; } };
+  hooks.activateLandingForTest(landing);
+  await hooks.refreshLandingCounter(landing);
+  assert.equal(Number(counter.textContent.replace(/\D/g, "")), 12);
+  // JSON round-trip strips the vm cross-realm prototype so deepEqual compares plain data.
+  assert.deepEqual(JSON.parse(JSON.stringify(hooks.readBestCompletedByLanguage())), { en: 124500, de: 12, fr: 0, it: 0, es: 0 });
 });
 
 test("parallel refresh requests for the same visible landing share one GET", async () => {
@@ -300,12 +327,12 @@ test("parallel refresh requests for the same visible landing share one GET", asy
   assert.equal(requestCount, 1);
   resolveResponse({
     ok: true,
-    json: async () => ({ ok: true, completed: 124002 }),
+    json: async () => ({ ok: true, completedByLanguage: { en: 124002, de: 0, fr: 0, it: 0, es: 0 } }),
   });
   await Promise.all([first, second]);
 });
 
-test("landing copy describes completed tests and the unified asset revision is 20260801-2", () => {
+test("landing copy describes completed tests and uses one unified asset revision", () => {
   const source = fs.readFileSync(appPath, "utf8");
   const html = fs.readFileSync(htmlPath, "utf8");
   const counterBlock =
@@ -319,26 +346,31 @@ test("landing copy describes completed tests and the unified asset revision is 2
   assert.doesNotMatch(source, /const BANK_URL/);
   const i18n = loadI18nRegistry();
   assert.deepEqual([...i18n.TEST_LANGUAGES], ["en", "de", "fr", "it", "es"]);
-  for (const code of i18n.TEST_LANGUAGES) assert.equal(i18n.TESTS[code].bankUrl, `./data/questions.${code}.json?v=20260801-2`);
+  for (const code of i18n.TEST_LANGUAGES) {
+    const bank = JSON.parse(fs.readFileSync(path.join(path.dirname(appPath), "data", `questions.${code}.json`), "utf8"));
+    assert.equal(i18n.TESTS[code].bankUrl, `./data/questions.${code}.json?v=${bank.bankVersion}`);
+  }
+  const releaseStamp = "20260802-2";
   const scripts = [...html.matchAll(/<script src="([^"]+)"><\/script>/g)].map((match) => match[1]);
   const expectedScripts = [
-    "./engine.js?v=20260801-2",
-    "./i18n.js?v=20260801-2",
-    "./certificate.js?v=20260801-2",
-    "./app.js?v=20260801-2",
+    `./engine.js?v=${releaseStamp}`,
+    `./i18n.locales.js?v=${releaseStamp}`,
+    `./i18n.js?v=${releaseStamp}`,
+    `./certificate.js?v=${releaseStamp}`,
+    `./app.js?v=${releaseStamp}`,
   ];
   assert.deepEqual(scripts, expectedScripts);
   assert.equal(new Set(scripts).size, expectedScripts.length);
   const stylesheets = [...html.matchAll(/<link rel="stylesheet" href="([^"]+)"/g)].map((match) => match[1]);
   const expectedStylesheets = [
-    "./styles.css?v=20260801-2",
+    `./styles.css?v=${releaseStamp}`,
     "/assets/site-background.css?v=20260729-1",
   ];
   assert.deepEqual(stylesheets, expectedStylesheets);
   assert.equal(new Set(stylesheets).size, expectedStylesheets.length);
   assert.deepEqual(
-    stylesheets.filter((asset) => asset.endsWith("?v=20260801-2")),
-    ["./styles.css?v=20260801-2"],
+    stylesheets.filter((asset) => asset.endsWith(`?v=${releaseStamp}`)),
+    [`./styles.css?v=${releaseStamp}`],
   );
   assert.equal(stylesheets[1], "/assets/site-background.css?v=20260729-1");
   assert.equal(html.includes("?v=20260801-1"), false);

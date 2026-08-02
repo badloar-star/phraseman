@@ -35,6 +35,7 @@ import {
   rewardModalPanelColors,
   rewardModalSoftSurface,
 } from './RewardModalBackdrop';
+import { soundDirector } from '../modules/audio/sound_director';
 
 const AUTO_DISMISS_MS = 3800;
 const { width: SW } = Dimensions.get('window');
@@ -166,6 +167,11 @@ function AchievementToast() {
 
       // Вибрация
       hapticSuccess();
+      soundDirector.request('pm.reward.achievement', {
+        scope: 'achievement-toast',
+        dedupeKey: currentToast.id,
+        deferAfterVoice: true,
+      });
 
       // Пометить как notified. У сводки гасим ВСЮ свёрнутую пачку разом — иначе
       // следующий flushPending поднял бы те же достижения снова и лента вернулась бы.

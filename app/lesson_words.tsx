@@ -2935,12 +2935,10 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
     if (voiceOut) speakAudio(wordEn, speechRate, { language: 'en-US' });
     if (isRight) {
       fkComboRef.current = fkStreakBefore + 1;
-      fk.correct();
-      fk.combo(fkComboRef.current);
+      fk.verdict({ correct: true, combo: fkComboRef.current });
     } else {
       fkComboRef.current = 0;
-      if (fkStreakBefore >= 3) fk.comboBreak(fkStreakBefore);
-      else fk.wrong();
+      fk.verdict({ correct: false });
     }
     if (isRight) {
       // Тост опыта — СРАЗУ после ответа, синхронно: не ждём ни задержку

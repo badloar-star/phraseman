@@ -12,6 +12,7 @@ const APP_SOURCE = read('app.js');
 
 function loadI18nRegistry() {
   const context = vm.createContext({ URL, URLSearchParams });
+  vm.runInContext(read('i18n.locales.js'), context, { filename: path.join(CLIENT_DIR, 'i18n.locales.js') });
   vm.runInContext(read('i18n.js'), context, { filename: path.join(CLIENT_DIR, 'i18n.js') });
   return context.EnglishTestI18n;
 }
@@ -82,13 +83,13 @@ test('result and certificate remove unsupported index and confidence claims', ()
   assert.match(app, /result\.correct/);
   assert.match(app, /result\.answered/);
   assert.match(app, /result\.totalQuestions/);
-  assert.match(certificate, /Preliminary text-based assessment/);
+  assert.match(certificate, /certificate\.informal/);
 });
 
 test('landing honestly describes a 12–20 question preliminary text assessment', () => {
   const app = read('app.js');
   const html = read('index.html');
-  const combined = `${app}\n${html}`;
+  const combined = `${app}\n${html}\n${read('i18n.js')}\n${read('i18n.locales.js')}`;
 
   assert.match(combined, /12–20/);
   assert.match(combined, /предварительную текстовую оценку|предварительная текстовая оценка/i);
@@ -107,12 +108,13 @@ test('Pre-A1 and insufficient-data result wording stays neutral', () => {
 test('all client assets and the bank use one new revision', () => {
   const html = read('index.html');
   const app = read('app.js');
-  const baseRevision = '20260801-1';
-  const expectedRevision = '20260801-2';
+  const baseRevision = '20260801-3';
+  const expectedRevision = '20260802-2';
 
   const scripts = [...html.matchAll(/<script src="([^"]+)"><\/script>/g)].map((match) => match[1]);
   const expectedScripts = [
     `./engine.js?v=${expectedRevision}`,
+    `./i18n.locales.js?v=${expectedRevision}`,
     `./i18n.js?v=${expectedRevision}`,
     `./certificate.js?v=${expectedRevision}`,
     `./app.js?v=${expectedRevision}`,
@@ -135,7 +137,10 @@ test('all client assets and the bank use one new revision', () => {
   assert.equal(stylesheets[1], '/assets/site-background.css?v=20260729-1');
   const i18n = loadI18nRegistry();
   assert.deepEqual([...i18n.TEST_LANGUAGES], ['en', 'de', 'fr', 'it', 'es']);
-  for (const code of i18n.TEST_LANGUAGES) assert.equal(i18n.TESTS[code].bankUrl, `./data/questions.${code}.json?v=${expectedRevision}`);
+  for (const code of i18n.TEST_LANGUAGES) {
+    const bank = JSON.parse(read(`data/questions.${code}.json`));
+    assert.equal(i18n.TESTS[code].bankUrl, `./data/questions.${code}.json?v=${bank.bankVersion}`);
+  }
   assert.match(app, /fetch\(EnglishTestI18n\.TESTS\[language\]\.bankUrl\)/);
   assert.doesNotMatch(app, /const BANK_URL/);
   assert.doesNotMatch(`${html}\n${app}`, /20260722-3/);
@@ -145,8 +150,10 @@ test('question screen selects service instructions by UI locale and keeps assess
   const app = read('app.js');
   const styles = read('styles.css');
 
-  assert.match(app, /const questionLanguage = EnglishTestI18n\.TESTS\[attemptTestLanguage \|\| selectedTestLanguage\]\.bcp47/);
-  assert.match(app, /const serviceQuestion = uiLocale === 'ru' \? \{ scenario: q\.scenarioRu, instruction: q\.instructionRu, language: 'ru' \} : \{ scenario: q\.scenario, instruction: q\.prompt, language: 'en' \};/);
+  assert.match(app, /const testLanguage = attemptTestLanguage \|\| selectedTestLanguage/);
+  assert.match(app, /const questionLanguage = EnglishTestI18n\.TESTS\[testLanguage\]\.bcp47/);
+  assert.match(app, /testLanguage === 'en'[\s\S]*?scenario: q\.scenario, instruction: q\.prompt, language: 'en'/);
+  assert.match(app, /scenario: copy\('question\.context'\), instruction: copy\('question\.contextInstruction'\), language: uiLocale/);
   assert.match(app, /class="elt-scenario" lang="\$\{serviceQuestion\.language\}"[^>]*>\$\{escapeHtml\(serviceQuestion\.scenario\)\}/);
   assert.match(app, /class="elt-instruction" lang="\$\{serviceQuestion\.language\}"[^>]*>\$\{escapeHtml\(serviceQuestion\.instruction\)\}/);
   assert.match(app, /class="elt-stimulus" lang="\$\{questionLanguage\}"/);

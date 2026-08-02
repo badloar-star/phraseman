@@ -3,6 +3,7 @@ import type { PlannedTriLangCopy } from '../constants/i18n';
 import type { ThemeMode } from '../constants/theme';
 import type { PersonalPlanHomeSnapshot } from './personal_plan_state';
 import type { RuntimeStudyTarget } from './target_storage_keys';
+import type { SoundEventId } from '../modules/audio/sound_events';
 
 /** Анти-бурст для `action_toast` внутри ~400 мс (мульти-тап); дальше фильтрует ActionToast. */
 let _lastActionToastKey = '';
@@ -91,7 +92,10 @@ export type AppEventMap = {
   /** Юзер запустил перепрохождение урока (mastery). lesson1.tsx должен перезагрузить прогресс. */
   lesson_replay_started: { lessonId: number; spent: number; studyTarget?: string };
   action_toast: {
-    type: 'success' | 'error' | 'info' | 'reward';
+    /** 'warning' — есть срок и цена бездействия, но ничего не сломалось. */
+    type: 'success' | 'error' | 'info' | 'warning' | 'reward';
+    /** Optional exact semantic cue; the visible ActionToast remains the playback trigger. */
+    soundEventId?: SoundEventId;
     messageRu: string;
     messageUk?: string;
     /** Испанский UX (например dev); если нет — ActionToast использует базовую строку */
@@ -167,7 +171,13 @@ export function emitAppEvent<K extends keyof AppEventMap>(
             ? (() => {
                 const t = (payload as AppEventMap['action_toast']).type;
                 // 'reward' нет в словаре result у trackActivity — для аналитики это успех.
-                return t === 'reward' ? 'success' : t;
+                if (t === 'reward') return 'success';
+                // зачем: 'warning' в словаре result тоже нет. Предупреждение —
+                // это НЕ сбой (ничего не сломалось), поэтому в аналитике оно
+                // проходит как info, а не как error: иначе счётчик ошибок
+                // раздуют штатные плашки про оплату и сгорающую цепочку.
+                if (t === 'warning') return 'info';
+                return t;
               })()
             : 'info',
           tags: {

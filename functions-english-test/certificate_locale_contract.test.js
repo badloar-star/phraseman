@@ -10,6 +10,7 @@ const result = { estimatedLevel: 'B2', correct: 8, answered: 10 };
 
 function loadI18n() {
   const context = vm.createContext({ URL, URLSearchParams });
+  vm.runInContext(read('i18n.locales.js'), context);
   vm.runInContext(read('i18n.js'), context);
   return context.EnglishTestI18n;
 }

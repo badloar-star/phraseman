@@ -14,6 +14,7 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
+import { useTimerTickCue } from '../hooks/use-timer-tick-cue';
 import { triLang, type Lang } from '../constants/i18n';
 import { hapticTap, hapticSuccess } from '../hooks/use-haptics';
 import { safeRouterBack } from './navigation_back';
@@ -63,6 +64,7 @@ export default function FlashcardsArenaScreen() {
   const insets = useStableSafeAreaInsets();
   const reduceMotion = useReduceMotion();
   const runtimeActive = useRuntimeActive();
+  const { playTimerTick, playTimerExpired } = useTimerTickCue();
 
   const [phase, setPhase] = useState<Phase>('loading');
   const [questions, setQuestions] = useState<ArenaQuestion[]>([]);
@@ -263,11 +265,19 @@ export default function FlashcardsArenaScreen() {
     const tick = () => {
       const remainingMs = Math.max(0, questionDeadlineRef.current - Date.now());
       questionRemainingMsRef.current = remainingMs;
-      setSecondsLeft(Math.ceil(remainingMs / 1000));
+      const nextSeconds = Math.ceil(remainingMs / 1000);
+      setSecondsLeft(nextSeconds);
       if (remainingMs <= 0) {
           // Время вышло — засчитываем как неверный, чтобы слово попало в слабые.
+        // зачем: звук ставим ДО answer(-1) — тот уводит на следующий вопрос,
+        // и «время вышло» иначе слилось бы с вердиктом нового задания.
+        playTimerExpired();
         answer(-1);
+        return;
       }
+      // зачем: порог тот же, что у кольца (<= 3 c красит в t.wrong) — звук
+      // не должен предупреждать раньше или позже, чем это делает картинка.
+      if (nextSeconds <= 3) playTimerTick();
     };
     tickTimer.current = setInterval(tick, 1000);
     return () => {
@@ -275,7 +285,7 @@ export default function FlashcardsArenaScreen() {
       if (tickTimer.current) { clearInterval(tickTimer.current); tickTimer.current = null; }
       ringAnim.stopAnimation();
     };
-  }, [phase, index, current, picked, reduceMotion, ringAnim, answer, runtimeActive]);
+  }, [phase, index, current, picked, reduceMotion, ringAnim, answer, runtimeActive, playTimerTick, playTimerExpired]);
 
   useEffect(() => () => clearTimers(), [clearTimers]);
 

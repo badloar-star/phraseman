@@ -7,6 +7,9 @@
 
 import React, { memo, useCallback, useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
+// зачем: allowFontScaling={false} отключал системный размер шрифта — текст
+// обрезался при крупном шрифте. FlowText переносит вместо обрезки.
+import { FlowText } from '../components/text-integrity';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -202,7 +205,7 @@ export default function TournamentSeasonScreen() {
           // computePlacements), поэтому в начале недели таблица ЧЕСТНО пуста.
           // Пустое состояние обязано учить интерфейсу, а не говорить «пусто».
           <Card tone="elev" pad={22}>
-            <Text style={styles.emptyTitle} allowFontScaling={false}>Неделя только началась</Text>
+            <FlowText testID="season-empty-title" provenance="authored" style={styles.emptyTitle}>Неделя только началась</FlowText>
             <Text style={styles.emptyText}>
               Таблица пока пустая — и это ваш шанс. Сыграйте турнир, и ваше имя
               окажется здесь первым.
@@ -213,7 +216,7 @@ export default function TournamentSeasonScreen() {
               accessibilityLabel="К турнирам"
               style={styles.emptyCta}
             >
-              <Text style={styles.emptyCtaText} allowFontScaling={false}>К турнирам</Text>
+              <FlowText testID="season-empty-cta" provenance="authored" style={styles.emptyCtaText}>К турнирам</FlowText>
               <Ionicons name="chevron-forward" size={16} color={P.accent} />
             </TapScale>
           </Card>
@@ -269,16 +272,17 @@ const SeasonRowItem = memo(function SeasonRowItem({
   const body = (
     <View style={[styles.row, isYou && styles.rowYou]}>
       {/* Место вне показанного верха неизвестно точно — ставим тире, не выдумываем номер. */}
-      <Text style={[styles.place, { color: placeColor(place, P) }]} allowFontScaling={false}>
+      <FlowText testID="season-row-place" provenance="authored" style={[styles.place, { color: placeColor(place, P) }]}>
         {place > 0 ? place : '—'}
-      </Text>
+      </FlowText>
       <View style={styles.avatar}>
         <AvatarView avatar={avatarFor(row)} size={28} animateAura={false} />
       </View>
+      {/* eslint-disable-next-line text-integrity/no-unsafe-text-truncation -- ник в строке рейтинга: перенос сломал бы фиксированную высоту ряда (карточка 56) */}
       <Text style={[styles.name, isYou && { color: P.accent }]} numberOfLines={1}>
         {isYou ? 'Вы' : row.name}
       </Text>
-      <Text style={styles.points} allowFontScaling={false}>{row.points}</Text>
+      <FlowText testID="season-row-points" provenance="authored" style={styles.points}>{row.points}</FlowText>
     </View>
   );
 

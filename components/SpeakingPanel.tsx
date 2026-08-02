@@ -16,6 +16,7 @@ import * as Speech from 'expo-speech';
 
 import { LOUD_PLAYBACK_AUDIO_MODE, SPEAKING_RECORDING_AUDIO_MODE } from '../app/audio_playback_mode';
 import { setManagedAudioMode } from '../app/audio_session_coordinator';
+import { voicePlaybackPolicy } from '../modules/audio/voice_playback_policy';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { VoiceEqualizer, type VoiceEqualizerRef } from '../app/voice_equalizer';
 import {
@@ -87,6 +88,7 @@ import { useSpeakingInlineMetrics } from './SpeakingInlineSlot';
 import { WordDrillCard } from './WordDrillCard';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useRecordStartCue } from '../hooks/use-record-start-cue';
+import { useNoSpeechCue } from '../hooks/use-no-speech-cue';
 import {
   isSpeechRecognitionAvailable,
   requestSpeechPermissionForHold,
@@ -315,6 +317,7 @@ export function SpeakingPanel({
   const runtimeActiveRef = useRef(runtimeActive);
   runtimeActiveRef.current = runtimeActive;
   const { playRecordStart } = useRecordStartCue();
+  const { playNoSpeech } = useNoSpeechCue();
   const [status, setStatus] = useState<SpeakingPanelStatus>(previewStatus ?? 'idle');
   const statusRef = useRef<SpeakingPanelStatus>(previewStatus ?? 'idle');
   statusRef.current = status;
@@ -376,6 +379,10 @@ export function SpeakingPanel({
   // тихо отваливаются. Без этого параллельные тапы перетасовывали stop/speak и
   // обрывали друг друга («ломали» озвучку).
   const playbackTokenRef = useRef(0);
+  useEffect(() => voicePlaybackPolicy.registerStop(() => {
+    playbackTokenRef.current += 1;
+    try { Speech.stop(); } catch {}
+  }), []);
   // Гард от двойного финиша: end и error могут прийти оба, а финиш теперь
   // асинхронный (контрольный прогон) — второй вызов запустил бы его дважды.
   const finishingRef = useRef(false);
@@ -645,6 +652,8 @@ export function SpeakingPanel({
   const speakWord = useCallback(
     (word: string) => {
       hapticTap();
+      const voicePolicyToken = voicePlaybackPolicy.captureStart();
+      if (voicePolicyToken === null) return;
       // Токен + синхронный stop: быстрые повторные тапы по словам не перетасовывают
       // stop/speak и не обрывают друг друга — озвучивается только последнее слово.
       const token = ++playbackTokenRef.current;
@@ -661,7 +670,10 @@ export function SpeakingPanel({
       void setManagedAudioMode(LOUD_PLAYBACK_AUDIO_MODE)
         .catch(() => undefined)
         .finally(() => {
-          if (playbackTokenRef.current !== token) return;
+          if (
+            playbackTokenRef.current !== token
+            || !voicePlaybackPolicy.canStart(voicePolicyToken)
+          ) return;
           try {
             Speech.stop();
             Speech.speak(word, { language: recognitionLocale });
@@ -681,7 +693,7 @@ export function SpeakingPanel({
       const target = tokens[index] ?? '';
       const heard = heardTranscript.trim();
       if (!heard) {
-        setWordPhase('no_speech');
+        setWordPhase('no_speech'); playNoSpeech();
         setWordVerdict(null);
         hapticError();
         restoreLoudPlaybackMode();
@@ -709,7 +721,7 @@ export function SpeakingPanel({
   const recordWordSystem = useCallback(
     async (index: number) => {
       if (!speech) {
-        setWordPhase('no_speech');
+        setWordPhase('no_speech'); playNoSpeech();
         return;
       }
       const captureGeneration = ++captureGenerationRef.current;
@@ -786,7 +798,7 @@ export function SpeakingPanel({
           clearWordWatchdog();
           cleanupWordListeners();
           restoreLoudPlaybackMode();
-          setWordPhase('no_speech');
+          setWordPhase('no_speech'); playNoSpeech();
           setWordVerdict(null);
           hapticError();
         }
@@ -798,7 +810,7 @@ export function SpeakingPanel({
       if (!mountedRef.current || !runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return;
       if (permission === 'denied') {
         cleanupWordListeners();
-        setWordPhase('no_speech');
+        setWordPhase('no_speech'); playNoSpeech();
         return;
       }
       if (permission === 'granted_after_prompt') {
@@ -855,7 +867,7 @@ export function SpeakingPanel({
       } catch {
         clearWordWatchdog();
         cleanupWordListeners();
-        if (mountedRef.current) setWordPhase('no_speech');
+        if (mountedRef.current) { setWordPhase('no_speech'); playNoSpeech(); }
       }
     },
     [speech, tokens, recognitionLocale, cleanupWordListeners, clearWordWatchdog, applyWordResult, playRecordStart],
@@ -880,7 +892,7 @@ export function SpeakingPanel({
       setStatus('scoring');
       if (!text) {
         // Nothing recognized -> "didn't catch that", not a 0% failure.
-        setStatus('no_speech');
+        setStatus('no_speech'); playNoSpeech();
         hapticError();
         restoreLoudPlaybackMode();
         return;
@@ -1087,7 +1099,7 @@ export function SpeakingPanel({
         if (final) void finishAttempt(final, bestSegments, captureGeneration);
         else {
           restoreLoudPlaybackMode();
-          setStatus('no_speech');
+          setStatus('no_speech'); playNoSpeech();
         }
       }
     });
@@ -1095,7 +1107,7 @@ export function SpeakingPanel({
       if (!isCurrentSession()) return;
       clearWatchdog();
       restoreLoudPlaybackMode();
-      if (mountedRef.current) setStatus('no_speech');
+      if (mountedRef.current) { setStatus('no_speech'); playNoSpeech(); }
     });
     // uri сохранённой записи попытки: питает «Мою запись» и контрольный прогон.
     audioEndSubRef.current = speech.addListener('audioend', (event: any) => {
@@ -1325,7 +1337,7 @@ export function SpeakingPanel({
     }
     if (!wavUri) {
       // Ничего не записалось (слишком коротко / сбой записи) — не 0%, а «не расслышал».
-      setStatus('no_speech');
+      setStatus('no_speech'); playNoSpeech();
       hapticError();
       return;
     }
@@ -1340,7 +1352,7 @@ export function SpeakingPanel({
     setRecordingUri(wavUri);
     const text = (verdict?.transcript ?? '').trim();
     if (!text) {
-      setStatus('no_speech');
+      setStatus('no_speech'); playNoSpeech();
       hapticError();
       return;
     }
@@ -1429,7 +1441,7 @@ export function SpeakingPanel({
         const permission = await ensureHoldMicPermission();
         if (!mountedRef.current || !runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return;
         if (permission === 'denied') {
-          setWordPhase('no_speech'); // как системный word-путь при отказе
+          setWordPhase('no_speech'); playNoSpeech(); // как системный word-путь при отказе
           setWordVerdict(null);
           return;
         }
@@ -1473,7 +1485,7 @@ export function SpeakingPanel({
         return;
       }
       if (!wavUri) {
-        setWordPhase('no_speech');
+        setWordPhase('no_speech'); playNoSpeech();
         setWordVerdict(null);
         hapticError();
         return;

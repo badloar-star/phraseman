@@ -1,12 +1,28 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { LOUD_PLAYBACK_AUDIO_MODE, SPEAKING_RECORDING_AUDIO_MODE } from '../app/audio_playback_mode';
+import {
+  LOUD_PLAYBACK_AUDIO_MODE,
+  SPEAKING_RECORDING_AUDIO_MODE,
+  SPOKEN_AUDIO_MODE,
+  UI_SFX_AUDIO_MODE,
+} from '../app/audio_playback_mode';
 
 const ROOT = path.join(__dirname, '..');
 
-describe('loud playback audio mode', () => {
-  it('fully resets recording and route flags before voice playback', () => {
-    expect(LOUD_PLAYBACK_AUDIO_MODE).toEqual({
+describe('purpose-specific playback audio modes', () => {
+  it('lets short UI effects mix with other apps and respect silent mode', () => {
+    expect(UI_SFX_AUDIO_MODE).toEqual({
+      playsInSilentMode: false,
+      shouldPlayInBackground: false,
+      allowsRecording: false,
+      allowsBackgroundRecording: false,
+      shouldRouteThroughEarpiece: false,
+      interruptionMode: 'mixWithOthers',
+    });
+  });
+
+  it('ducks other audio only for educational speech', () => {
+    expect(SPOKEN_AUDIO_MODE).toEqual({
       playsInSilentMode: true,
       shouldPlayInBackground: false,
       allowsRecording: false,
@@ -14,16 +30,18 @@ describe('loud playback audio mode', () => {
       shouldRouteThroughEarpiece: false,
       interruptionMode: 'duckOthers',
     });
+    expect(LOUD_PLAYBACK_AUDIO_MODE).toBe(SPOKEN_AUDIO_MODE);
   });
 
-  it('uses the same full playback mode at app startup and phrase playback sites', () => {
+  it('starts in the quiet UI mode while phrase playback requests spoken mode', () => {
     const layoutSource = fs.readFileSync(path.join(ROOT, 'app', '_layout.tsx'), 'utf8');
     const planExerciseSource = fs.readFileSync(path.join(ROOT, 'app', 'personal_plan_exercise.tsx'), 'utf8');
     const phraseAudioSource = fs.readFileSync(path.join(ROOT, 'hooks', 'phrase_audio_player.ts'), 'utf8');
 
-    expect(layoutSource).toContain('setAudioModeAsync(LOUD_PLAYBACK_AUDIO_MODE)');
+    expect(layoutSource).toContain('setManagedAudioMode(UI_SFX_AUDIO_MODE)');
+    expect(layoutSource).not.toContain('setAudioModeAsync(');
     expect(planExerciseSource).toContain('setManagedAudioMode(LOUD_PLAYBACK_AUDIO_MODE)');
-    expect(phraseAudioSource).toContain('setManagedAudioMode(LOUD_PLAYBACK_AUDIO_MODE)');
+    expect(phraseAudioSource).toContain("acquireAudioActivity('spoken')");
   });
 
   it('restores loud playback after every speech-recognition surface settles', () => {
@@ -61,7 +79,7 @@ describe('loud playback audio mode', () => {
     // Громкий режим ставится ПЕРЕД воспроизведением «Моей записи» и эталона.
     const playMyRecording = speakingPanel.slice(speakingPanel.indexOf('const playMyRecording'));
     expect(playMyRecording.slice(0, playMyRecording.indexOf('player.play()'))).toContain('LOUD_PLAYBACK_AUDIO_MODE');
-    const playReference = speakingPanel.slice(speakingPanel.indexOf('const playReference'));
+    const playReference = speakingPanel.slice(speakingPanel.indexOf('const speakWord'));
     expect(playReference.slice(0, playReference.indexOf('Speech.speak('))).toContain('LOUD_PLAYBACK_AUDIO_MODE');
 
     // «Сказать ещё раз» (startListening) глушит эталон и «Мою запись», чтобы

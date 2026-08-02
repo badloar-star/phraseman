@@ -421,8 +421,7 @@ export default function PrepositionDrillScreen() {
     // fk.combo — лесенку серии. Экономика/прогресс ниже считаются как раньше.
     if (ok) {
       fkComboRef.current += 1;
-      fk.correct();
-      fk.combo(fkComboRef.current);
+      fk.verdict({ correct: true, combo: fkComboRef.current });
       showXpToast(POINTS_PER_CORRECT);
       setCorrectCount(v => v + 1);
       const nextAnswered = answeredIds.includes(item.id) ? answeredIds : [...answeredIds, item.id];
@@ -449,10 +448,8 @@ export default function PrepositionDrillScreen() {
         .catch(() => {});
     } else {
       // [FeedbackKit] Обрыв заметной серии → «шипение остывания», иначе мягкий «туп».
-      const brokeFrom = fkComboRef.current;
       fkComboRef.current = 0;
-      if (brokeFrom >= 3) fk.comboBreak(brokeFrom);
-      else fk.wrong();
+      fk.verdict({ correct: false });
       const nextAnswered = answeredIds.includes(item.id) ? answeredIds : [...answeredIds, item.id];
       const nextWrong = wrongIds.includes(item.id) ? wrongIds : [...wrongIds, item.id];
       setAnsweredIds(nextAnswered);

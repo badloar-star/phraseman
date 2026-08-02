@@ -21,6 +21,7 @@ import {
   findCollectibleSet,
 } from '../app/collectibles/catalog';
 import type { CollectibleDropOutcome } from '../app/collectibles/storage';
+import { soundDirector } from '../modules/audio/sound_director';
 
 function dropAnimTier(rarity: string): GiftAnimTier {
   if (rarity === 'legendary') return 'premium';
@@ -51,7 +52,12 @@ export default function CollectibleDropModal({ outcome, onClose, onOpenCollectio
   const secret = outcome?.secretCardId ? findCollectibleCard(outcome.secretCardId) : null;
 
   useEffect(() => {
-    if (outcome) void hapticSuccess();
+    if (!outcome) return;
+    void hapticSuccess();
+    soundDirector.request('pm.reward.collectible', {
+      scope: 'collectible-drop',
+      dedupeKey: `${outcome.setId}:${outcome.cardId}`,
+    });
   }, [outcome]);
 
   const rarityColor = outcome ? COLLECTIBLE_RARITY_COLORS[outcome.rarity] ?? '#9AA6C0' : '#9AA6C0';

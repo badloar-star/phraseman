@@ -54,6 +54,7 @@ function normalizeSettings(raw: Partial<UserSettings> | null | undefined): UserS
   return {
     ...merged,
     voiceOut: !!merged.voiceOut,
+    uiSounds: !!merged.uiSounds,
     speechRate: normalizeSpeechRate(merged.speechRate),
     speechVoiceId: typeof merged.speechVoiceId === 'string' ? merged.speechVoiceId : '',
   };

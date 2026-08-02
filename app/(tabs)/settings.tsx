@@ -93,6 +93,13 @@ import { selectSettingsMessageSlots, type SettingsMessageSlotSelection } from '.
 import { flushSettingsPollVotes } from '../settings_poll_vote';
 import { animateNextLayoutTransition } from '../smooth_layout';
 import { trackEvent } from '../analytics';
+import { applyUserSettingsNow, getUserSettingsSnapshot } from '../user_settings_store';
+import {
+  uiSoundsLabel,
+  uiSoundsSub,
+  voiceOutLabel,
+  voiceOutSub,
+} from '../feedback/feedback_i18n';
 
 /** Картинка инвайт-баннера настроек (wire first, generate second — правило asset-хайджины). */
 
@@ -459,6 +466,21 @@ export default function SettingsMain() {
     profile: snapshot.profile,
     settings: snapshot.settings,
   }), (a, b) => a.profile === b.profile && a.settings === b.settings);
+  const [soundSettings, setSoundSettings] = useState(() => {
+    const settings = getUserSettingsSnapshot();
+    return { uiSounds: settings.uiSounds, voiceOut: settings.voiceOut };
+  });
+  useEffect(() => {
+    if (!appSnapshot.settings) return;
+    setSoundSettings({
+      uiSounds: appSnapshot.settings.uiSounds ?? getUserSettingsSnapshot().uiSounds,
+      voiceOut: appSnapshot.settings.voiceOut,
+    });
+  }, [appSnapshot.settings]);
+  const updateSoundSetting = useCallback((key: 'uiSounds' | 'voiceOut', value: boolean) => {
+    setSoundSettings((current) => ({ ...current, [key]: value }));
+    applyUserSettingsNow({ ...getUserSettingsSnapshot(), [key]: value });
+  }, []);
   const [userName, setUserName] = useState(() => appSnapshot.profile?.name ?? '');
   /** Пока false — ник ещё не прочитан из AsyncStorage (избегаем кадра «Не задано»). */
   const [nameModal, setNameModal] = useState(false);
@@ -1563,6 +1585,42 @@ export default function SettingsMain() {
         {/* зачем (Optimistic UI): модалка смены ника теперь закрывается сразу
             (см. saveName) — если сервер потом откажет (кулдаун/занято/сеть),
             откат виден здесь некритичной инлайн-плашкой, а не блокирующим Alert. */}
+        {/* sound-settings-start */}
+        <SettingsSectionTitle title={L('Звук', 'Звук', 'Sonido', 'Som', 'Âm thanh', 'Suara', 'Ses', 'Dźwięk')} />
+        <SettingsGroup surfaceColor={settingsPanelBg} borderColor={settingsBorder} dividerColor={settingsDivider}>
+          <SettingsRow
+            icon="volume-high"
+            color="teal"
+            label={uiSoundsLabel(lang)}
+            sub={uiSoundsSub(lang)}
+            hideChevron
+            right={
+              <CustomSwitch
+                testID="settings-ui-sounds-switch"
+                accessibilityLabel={uiSoundsLabel(lang)}
+                value={soundSettings.uiSounds}
+                onValueChange={(value) => updateSoundSetting('uiSounds', value)}
+              />
+            }
+          />
+          <SettingsRow
+            icon="megaphone-outline"
+            color="purple"
+            label={voiceOutLabel(lang)}
+            sub={voiceOutSub(lang)}
+            hideChevron
+            right={
+              <CustomSwitch
+                testID="settings-voice-out-switch"
+                accessibilityLabel={voiceOutLabel(lang)}
+                value={soundSettings.voiceOut}
+                onValueChange={(value) => updateSoundSetting('voiceOut', value)}
+              />
+            }
+          />
+        </SettingsGroup>
+        {/* sound-settings-end */}
+
         <SettingsSectionTitle title={L('Обучение', 'Навчання', 'Aprendizaje', 'Aprendizado', 'Học tập', 'Pembelajaran', 'Öğrenme', 'Nauka')} />
         <SettingsGroup surfaceColor={settingsPanelBg} borderColor={settingsBorder} dividerColor={settingsDivider}>
           <SettingsRow

@@ -56,7 +56,7 @@ function loadActionNormalizer() {
   );
   const normalizeUiLocale = loadOptionalFunction(
     'normalizeUiLocale',
-    (value) => ['en', 'ru'].includes(value) ? value : 'en',
+    (value) => ['ru', 'en', 'de', 'es', 'it', 'fr'].includes(value) ? value : 'en',
   );
   const normalizeAnalyticsDimensions = (body) => ({
     testLanguage: normalizeTestLanguage(body?.testLanguage),

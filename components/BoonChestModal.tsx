@@ -20,6 +20,7 @@ import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { GiftBox3D, paletteForRarity } from './level_gift_box';
 import { GiftOpenBurst, animTierF2p } from './GiftOpenEffects';
 import { RewardModalLiquidGlass } from './RewardModalBackdrop';
+import { soundDirector } from '../modules/audio/sound_director';
 
 import { noAndroidOutline } from '../constants/androidGlow';
 const STAGE_SIZE = 150;
@@ -129,6 +130,10 @@ export default function BoonChestModal({
   const handleTap = () => {
     if (phase !== 'box') return;
     hapticTap();
+    soundDirector.request('pm.reward.chest_open', {
+      scope: 'boon-chest',
+      dedupeKey: title,
+    });
     setPhase('opening');
     idleLoop.current?.stop();
     floatAnim.setValue(0);

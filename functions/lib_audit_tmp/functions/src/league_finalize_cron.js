@@ -1,0 +1,210 @@
+"use strict";
+// ═══════════════════════════════════════════════════════════════════════════
+// league_finalize_cron.ts — серверная финализация лиги в конце недели.
+//
+// Проблема: клиент сохранял результат (повышение/понижение) только на основе
+// локального/закэшированного снапшота группы. Если снапшот устарел — итоги
+// неверные: пользователи получают не тот результат.
+//
+// Решение: каждый понедельник в 00:05 UTC кроны считают итоги по ВСЕМ группам
+// прошедшей недели и записывают каждому участнику:
+//   users/{uid}/league_week_results/{weekId} = { rank, total, promoted, demoted,
+//                                               newLeagueId, prevLeagueId }
+//
+// Клиент checkLeagueOnAppOpen затем проверяет этот документ вместо пересчёта
+// локально. Если документа нет (кроны ещё не сработали или новый юзер) —
+// fallback на старое поведение.
+//
+// Порядок: одна страница league_groups (500 doc), батч-запись,
+//          пагинация по lastDoc. Ожидаемое время: <30сек для 50к групп.
+// ═══════════════════════════════════════════════════════════════════════════
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.leagueFinalizeCron = void 0;
+exports.computeGroupResults = computeGroupResults;
+const admin = __importStar(require("firebase-admin"));
+const scheduler_1 = require("firebase-functions/v2/scheduler");
+const CLUBS_MAX_ID = 11;
+const LEAGUE_RESULT_ZONE_RATIO = 0.15;
+const PAGE_SIZE = 200;
+const BATCH_LIMIT = 400;
+// XP-режим повышения (remote_config/app). Должен совпадать с клиентом
+// (app/league_engine.ts computeLeagueResult, app/remote_flags.ts defaults),
+// иначе сервер понизит юзера, которому клиент уже показал бейдж «Переход».
+const DEFAULT_XP_PROMOTION_ENABLED = false;
+const DEFAULT_XP_PROMOTION_THRESHOLD = 1000;
+const XP_PROMOTION_THRESHOLD_MIN = 1;
+const XP_PROMOTION_THRESHOLD_MAX = 1000000;
+// Читаем флаги XP-режима один раз за запуск крона. Отсутствие/битый док → дефолты
+// (rank-режим), т.е. поведение как раньше.
+async function loadXpPromotionConfig(db) {
+    try {
+        const snap = await db.collection('remote_config').doc('app').get();
+        const raw = snap.exists ? snap.data() : null;
+        const bools = raw && typeof raw.bools === 'object' && raw.bools ? raw.bools : {};
+        const numbers = raw && typeof raw.numbers === 'object' && raw.numbers ? raw.numbers : {};
+        const enabledRaw = bools.league_xp_promotion_enabled;
+        const thresholdRaw = Number(numbers.league_xp_promotion_threshold);
+        const enabled = typeof enabledRaw === 'boolean' ? enabledRaw : DEFAULT_XP_PROMOTION_ENABLED;
+        const threshold = Number.isFinite(thresholdRaw)
+            ? Math.max(XP_PROMOTION_THRESHOLD_MIN, Math.min(XP_PROMOTION_THRESHOLD_MAX, Math.trunc(thresholdRaw)))
+            : DEFAULT_XP_PROMOTION_THRESHOLD;
+        return { enabled, threshold };
+    }
+    catch (err) {
+        console.error('leagueFinalizeCron: failed to load remote_config/app, using defaults', err);
+        return { enabled: DEFAULT_XP_PROMOTION_ENABLED, threshold: DEFAULT_XP_PROMOTION_THRESHOLD };
+    }
+}
+function getLeagueResultZoneSize(total) {
+    return total >= 2 ? Math.max(1, Math.round(total * LEAGUE_RESULT_ZONE_RATIO)) : 0;
+}
+function getPreviousWeekId(now = new Date()) {
+    // ISO week: понедельник = начало недели
+    const utcDay = now.getUTCDay(); // 0=Sun
+    const daysSinceMonday = (utcDay + 6) % 7;
+    // Прошлый понедельник = этот понедельник - 7 дней
+    const prevMon = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() - daysSinceMonday - 7));
+    const d = new Date(prevMon.getTime());
+    const day = d.getUTCDay() || 7;
+    d.setUTCDate(d.getUTCDate() + 4 - day);
+    const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+    const weekNum = Math.ceil(((d.getTime() - yearStart.getTime()) / 86400000 + 1) / 7);
+    return `${d.getUTCFullYear()}-W${String(weekNum).padStart(2, '0')}`;
+}
+function computeGroupResults(members, leagueId, xpPromotion) {
+    const entries = Object.entries(members)
+        .filter(([, m]) => m?.identityHidden !== true)
+        .map(([uid, m]) => ({
+        uid,
+        points: Math.max(0, Math.trunc(Number(m.points ?? 0)) || 0),
+    }))
+        .sort((a, b) => b.points - a.points || a.uid.localeCompare(b.uid));
+    const total = entries.length;
+    const zoneSize = getLeagueResultZoneSize(total);
+    const results = {};
+    entries.forEach((e) => {
+        const rank = 1 + entries.filter((candidate) => candidate.points > e.points).length;
+        const bottomRank = 1 + entries.filter((candidate) => candidate.points < e.points).length;
+        // XP-режим (зеркало app/league_engine.ts:710-717): повышение по набранным
+        // очкам, БЕЗ понижения — чтобы сервер совпал с клиентским бейджем «Переход».
+        // Иначе — обычный rank-режим (топ-15% ↑, низ-15% ↓).
+        const promoted = xpPromotion.enabled
+            ? e.points >= xpPromotion.threshold && leagueId < CLUBS_MAX_ID
+            : total >= 2 && rank <= zoneSize && leagueId < CLUBS_MAX_ID;
+        const demoted = xpPromotion.enabled
+            ? false
+            : total >= 2 && bottomRank <= zoneSize && leagueId > 0 && !promoted;
+        results[e.uid] = {
+            rank,
+            total,
+            promoted,
+            demoted,
+            prevLeagueId: leagueId,
+            newLeagueId: promoted ? leagueId + 1 : demoted ? leagueId - 1 : leagueId,
+            points: e.points,
+        };
+    });
+    return results;
+}
+exports.leagueFinalizeCron = (0, scheduler_1.onSchedule)({
+    schedule: 'every monday 00:05',
+    timeZone: 'UTC',
+    timeoutSeconds: 540,
+    memory: '512MiB',
+    region: 'us-central1',
+}, async () => {
+    const db = admin.firestore();
+    const weekId = getPreviousWeekId();
+    const xpPromotion = await loadXpPromotionConfig(db);
+    console.log(`leagueFinalizeCron: weekId=${weekId} xpPromotion=${xpPromotion.enabled} threshold=${xpPromotion.threshold}`);
+    let processed = 0;
+    let written = 0;
+    let lastDoc = null;
+    let batch = db.batch();
+    let batchCount = 0;
+    const flushBatch = async () => {
+        if (batchCount > 0) {
+            await batch.commit();
+            batch = db.batch();
+            batchCount = 0;
+        }
+    };
+    // eslint-disable-next-line no-constant-condition
+    while (true) {
+        let query = db
+            .collection('league_groups')
+            .where('weekId', '==', weekId)
+            .orderBy('__name__')
+            .limit(PAGE_SIZE);
+        if (lastDoc)
+            query = query.startAfter(lastDoc);
+        const snap = await query.get();
+        if (snap.empty)
+            break;
+        lastDoc = snap.docs[snap.docs.length - 1];
+        for (const doc of snap.docs) {
+            const data = doc.data();
+            const leagueId = Math.max(0, Math.trunc(Number(data.leagueId ?? 0)));
+            const members = data.members && typeof data.members === 'object' && !Array.isArray(data.members)
+                ? data.members
+                : {};
+            const results = computeGroupResults(members, leagueId, xpPromotion);
+            for (const [uid, result] of Object.entries(results)) {
+                const resultRef = db
+                    .collection('users')
+                    .doc(uid)
+                    .collection('league_week_results')
+                    .doc(weekId);
+                batch.set(resultRef, {
+                    ...result,
+                    weekId,
+                    groupId: doc.id,
+                    finalizedAt: admin.firestore.FieldValue.serverTimestamp(),
+                }, { merge: false });
+                batchCount++;
+                written++;
+                if (batchCount >= BATCH_LIMIT) {
+                    await flushBatch();
+                }
+            }
+            processed++;
+        }
+    }
+    await flushBatch();
+    console.log(`leagueFinalizeCron: processed=${processed} groups, written=${written} user results`);
+    return;
+});
+//# sourceMappingURL=league_finalize_cron.js.map

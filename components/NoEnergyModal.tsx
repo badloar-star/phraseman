@@ -31,6 +31,7 @@ import { triLang, type Lang } from '../constants/i18n';
 import type { ThemeMode } from '../constants/theme';
 import CompassDepthSurface from './CompassDepthSurface';
 import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
+import { soundDirector } from '../modules/audio/sound_director';
 
 import { noAndroidOutline } from '../constants/androidGlow';
 type NoEnergyModalChrome = {
@@ -303,6 +304,10 @@ function NoEnergyModal({
     }
     // Пайволл-персонализация: модалка стала видимой = энергия закончилась.
     incrementEnergyZeroCount();
+    soundDirector.request('pm.energy.empty', {
+      scope: 'no-energy-modal',
+      dedupeKey: 'visible',
+    });
 
     // Все запущенные анимации сохраняем в список и останавливаем в cleanup
     // (Fabric: иначе анимация продолжает driver-update view, который уже

@@ -11,6 +11,9 @@
 
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
+// зачем: allowFontScaling={false} отключал системный размер шрифта — текст
+// обрезался при крупном шрифте. FlowText переносит вместо обрезки.
+import { FlowText } from '../components/text-integrity';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import TapScale from '../components/TapScale';
 import Animated, {
@@ -323,16 +326,18 @@ const TableRow = memo(function TableRow({
           end={{ x: 0.85, y: 1 }}
           style={styles.medal}
         >
+          {/* eslint-disable-next-line text-integrity/no-unsafe-text-truncation -- цифра внутри медали-круга 26×26: масштабирование разорвало бы кружок */}
           <Text style={styles.medalText} allowFontScaling={false}>{place}</Text>
         </LinearGradient>
       ) : (
-        <Text style={[styles.place, { color: placeColor(place, P) }]} allowFontScaling={false}>
+        <FlowText testID="table-row-place" provenance="authored" style={[styles.place, { color: placeColor(place, P) }]}>
           {place}
-        </Text>
+        </FlowText>
       )}
 
       <AvatarView avatar={row.avatar} level={tournamentAvatarLevel(row.avatar)} auraId={row.aura} size={36} animateAura={false} />
 
+      {/* eslint-disable-next-line text-integrity/no-unsafe-text-truncation -- ник в строке таблицы: перенос сломал бы фиксированную высоту ряда */}
       <Text
         style={[styles.name, row.isYou && { color: P.accent }]}
         numberOfLines={1}
@@ -351,6 +356,7 @@ const TableRow = memo(function TableRow({
 
       <View style={styles.scoreRow}>
         <StarGlyph size={13} color={P.gold} />
+        {/* eslint-disable-next-line text-integrity/no-unsafe-text-truncation -- Animated.Text: счёт анимируется при обгоне, FlowText не оборачивает анимируемый текст */}
         <Animated.Text
           style={styles.score}
           allowFontScaling={false}

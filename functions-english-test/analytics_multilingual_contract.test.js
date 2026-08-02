@@ -45,7 +45,7 @@ function referenceTestLanguage(value) {
 }
 
 function referenceUiLocale(value) {
-  return ['en', 'ru'].includes(value) ? value : 'en';
+  return ['ru', 'en', 'de', 'es', 'it', 'fr'].includes(value) ? value : 'en';
 }
 
 function loadServerContract() {
@@ -119,7 +119,8 @@ test('server language and locale normalizers allowlist supported dimensions with
   assert.equal(normalizeTestLanguage('de'), 'de');
   assert.equal(normalizeTestLanguage('xx'), 'en');
   assert.equal(normalizeUiLocale('ru'), 'ru');
-  assert.equal(normalizeUiLocale('fr'), 'en');
+  assert.equal(normalizeUiLocale('fr'), 'fr');
+  assert.equal(normalizeUiLocale('pt'), 'en');
 });
 
 test('normalizer mutation checks reject unsupported language and locale values', () => {
@@ -128,8 +129,8 @@ test('normalizer mutation checks reject unsupported language and locale values',
     "return value === 'xx' ? 'xx' : 'en';",
   );
   const uiLocaleMutant = source.replace(
-    "return ['en', 'ru'].includes(value) ? value : 'en';",
-    "return value === 'fr' ? 'fr' : 'en';",
+    "return ['ru', 'en', 'de', 'es', 'it', 'fr'].includes(value) ? value : 'en';",
+    "return value === 'pt' ? 'pt' : 'en';",
   );
   assert.notEqual(testLanguageMutant, source, 'test-language mutation must apply');
   assert.notEqual(uiLocaleMutant, source, 'UI-locale mutation must apply');
@@ -140,7 +141,7 @@ test('normalizer mutation checks reject unsupported language and locale values',
   });
   assert.throws(() => {
     const normalizeUiLocale = loadFunction('normalizeUiLocale', {}, uiLocaleMutant);
-    assert.equal(normalizeUiLocale('fr'), 'en');
+    assert.equal(normalizeUiLocale('pt'), 'en');
   });
 });
 
@@ -191,7 +192,7 @@ test('normalized multilingual events carry only allowlisted analytics dimensions
   const unsupported = normalizeAnalyticsAction('start', {
     bankVersion: '2026-08-01.7',
     testLanguage: 'xx',
-    uiLocale: 'fr',
+    uiLocale: 'pt',
   });
   assert.deepEqual(plain(unsupported.payload), {
     bankVersion: '2026-08-01.7',
@@ -502,12 +503,20 @@ function loadApiHandlerHarness() {
           countCompletion: async () => ({ completed: 1, duplicate: false }),
           isValidCompletionPayload: () => true,
           readCompletedCount: async () => 0,
+          readCompletedCountByLanguage: async () => ({ en: 0, de: 0, fr: 0, it: 0, es: 0 }),
         };
       }
       if (moduleName === './request_security') {
         return {
           getTrustedExternalClientIp: () => '203.0.113.10',
           requestBodyByteLength: () => 0,
+        };
+      }
+      if (moduleName === './site_report') {
+        return {
+          buildSiteReportDocument: () => ({}),
+          checkSiteReportRateLimit: async () => ({ allowed: true, retryAfter: 0 }),
+          normalizeSiteReportPayload: () => null,
         };
       }
       throw new Error(`Unexpected module: ${moduleName}`);

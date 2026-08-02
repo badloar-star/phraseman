@@ -2,6 +2,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 const lessonSource = fs.readFileSync(path.join(__dirname, '..', 'app', 'lesson1.tsx'), 'utf8');
+const audioSource = fs.readFileSync(path.join(__dirname, '..', 'hooks', 'use-audio.ts'), 'utf8');
 
 describe('lesson result phrase audio replay', () => {
   it('keeps a visible replay audio control on the result screen', () => {
@@ -11,7 +12,7 @@ describe('lesson result phrase audio replay', () => {
     expect(lessonSource).toContain('volume-high');
   });
 
-  it('manual replay restarts TTS for the checked phrase even when auto voice-out is disabled', () => {
+  it('manual replay uses the central voice path that is blocked when voice-out is disabled', () => {
     const start = lessonSource.indexOf('const replayResultPhraseAudio = useCallback');
     const end = lessonSource.indexOf('// Pulsing animation for to-be hint');
     const replayBlock = lessonSource.slice(start, end);
@@ -22,6 +23,7 @@ describe('lesson result phrase audio replay', () => {
     expect(replayBlock).toContain('phraseAnswerDisplayLine(phrase, studyTarget, lang)');
     expect(replayBlock).toContain('stopAudio();');
     expect(replayBlock).toContain('speakAudio(line, settings.speechRate');
-    expect(replayBlock).not.toContain('settings.voiceOut');
+    expect(audioSource).toContain('voicePlaybackPolicy.captureStart()');
+    expect(audioSource).toContain('voicePlaybackPolicy.canStart(voicePolicyToken)');
   });
 });

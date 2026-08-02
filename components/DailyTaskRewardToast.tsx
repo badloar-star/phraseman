@@ -25,6 +25,7 @@ import {
 import { localizedDailyTaskStrings } from '../app/daily_tasks_es_locale';
 import { storageStudyTarget, type RuntimeStudyTarget } from '../app/target_storage_keys';
 import type { ThemeMode } from '../constants/theme';
+import { soundDirector } from '../modules/audio/sound_director';
 
 const AUTO_DISMISS_MS = 12_000;
 const MAX_QUEUE = 3;
@@ -607,6 +608,11 @@ function DailyTaskRewardToast() {
     });
 
     hapticSuccess();
+    soundDirector.request('pm.social.quest_complete', {
+      scope: 'daily-task-reward',
+      dedupeKey: `${toast.studyTarget ?? 'default'}:${toast.taskId}`,
+      deferAfterVoice: true,
+    });
     timerRef.current = setTimeout(() => dismissCurrent(), AUTO_DISMISS_MS);
 
     return () => {

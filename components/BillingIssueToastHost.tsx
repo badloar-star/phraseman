@@ -68,7 +68,9 @@ export default function BillingIssueToastHost() {
         [LAST_ISSUE_AT_KEY, String(issueAt)],
       ]).catch(() => {});
 
-      emitAppEvent('action_toast', actionToastTri('error', {
+      // зачем: это предупреждение, а не ошибка — доступ ещё работает (грейс-период),
+      // сломаться может позже. Тип 'error' звучал как «уже всё пропало».
+      emitAppEvent('action_toast', actionToastTri('warning', {
         ru: '💳 Проблема с оплатой подписки — обнови способ оплаты, чтобы не потерять Plus',
         uk: '💳 Проблема з оплатою підписки — онови спосіб оплати, щоб не втратити Plus',
         es: '💳 Problema con el pago de tu suscripción — actualiza el método para no perder Plus',

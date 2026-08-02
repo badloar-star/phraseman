@@ -5,11 +5,11 @@ const path = require("node:path");
 
 const source = fs.readFileSync(path.join(__dirname, "index.js"), "utf8");
 
-test("GET public counter returns only ok/completed and disables caching", () => {
+test("GET public counter returns per-language totals and disables caching", () => {
   assert.match(source, /req\.method === 'GET'/);
   assert.match(source, /Cache-Control['"],\s*['"]no-store/);
-  assert.match(source, /readCompletedCount\(db\)/);
-  assert.match(source, /json\(\{\s*ok:\s*true,\s*completed\s*\}\)/);
+  assert.match(source, /readCompletedCountByLanguage\(db\)/);
+  assert.match(source, /json\(\{\s*ok:\s*true,\s*completedByLanguage\s*\}\)/);
 });
 
 test("count_complete is handled independently before analytics token and clientHash validation", () => {
@@ -26,6 +26,7 @@ test("count_complete is handled independently before analytics token and clientH
     "count_complete must not depend on clientHash",
   );
   assert.match(source, /ipAddress:\s*getTrustedExternalClientIp\(req\)/);
+  assert.match(source, /testLanguage:\s*body\.testLanguage/);
 });
 
 test("POST body limit is enforced from rawBody bytes rather than trusting Content-Length", () => {

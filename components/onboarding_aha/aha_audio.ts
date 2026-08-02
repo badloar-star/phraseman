@@ -5,10 +5,18 @@
 
 import { useCallback, useEffect, useRef } from 'react';
 import { useAudioPlayer, type AudioPlayer, type AudioStatus } from 'expo-audio';
-import { LOUD_PLAYBACK_AUDIO_MODE } from '../../app/audio_playback_mode';
-import { setManagedAudioMode } from '../../app/audio_session_coordinator';
 import { AHA_VOICE_HEAR, AHA_VOICE_SAY, AHA_AMBIENT } from './aha_assets';
 import type { AhaScenarioId } from './aha_types';
+import {
+  acquireAudioActivity,
+  type AudioActivityLease,
+  whenAudioActivitySettled,
+} from '../../modules/audio/audio_activity';
+import { voicePlaybackPolicy } from '../../modules/audio/voice_playback_policy';
+import {
+  getSoundSettingsSnapshot,
+  subscribeSoundSettings,
+} from '../../modules/audio/sound_settings';
 
 const AMBIENT_VOLUME = 0.5;
 const AMBIENT_DUCKED_VOLUME = 0.25;
@@ -30,14 +38,11 @@ function safe(fn: () => void): void {
   }
 }
 
-/** Проиграть плеер сначала: восстановить громкий режим → перемотать → play. */
 function playFromStart(player: AudioPlayer): void {
-  void setManagedAudioMode(LOUD_PLAYBACK_AUDIO_MODE)
-    .catch(() => undefined)
-    .finally(() => safe(() => {
-      void player.seekTo(0);
-      player.play();
-    }));
+  safe(() => {
+    void player.seekTo(0);
+    player.play();
+  });
 }
 
 /** Хук аудио-движка одного сценария: 3 преloaded плеера + дакинг ambient. */
@@ -50,6 +55,7 @@ export function useAhaSceneAudio(scenarioId: AhaScenarioId): UseAhaSceneAudio {
   // прогон за раз — второй play() того же или другого voice-плеера просто
   // переустанавливает ref, старый onEnd больше не сработает).
   const activeEndRef = useRef<{ player: AudioPlayer; onEnd?: () => void } | null>(null);
+  const voiceLeaseRef = useRef<AudioActivityLease | null>(null);
 
   useEffect(() => {
     safe(() => {
@@ -66,14 +72,43 @@ export function useAhaSceneAudio(scenarioId: AhaScenarioId): UseAhaSceneAudio {
     safe(() => { ambientPlayer.volume = AMBIENT_VOLUME; });
   }, [ambientPlayer]);
 
+  const stopVoicePlayers = useCallback((completeCurrent: boolean) => {
+    const active = activeEndRef.current;
+    activeEndRef.current = null;
+    safe(() => hearPlayer.pause());
+    safe(() => sayPlayer.pause());
+    voiceLeaseRef.current?.release();
+    voiceLeaseRef.current = null;
+    unduckAmbient();
+    if (completeCurrent) active?.onEnd?.();
+  }, [hearPlayer, sayPlayer, unduckAmbient]);
+
   const playVoice = useCallback(
     (player: AudioPlayer, onEnd?: () => void) => {
+      const voicePolicyToken = voicePlaybackPolicy.captureStart();
+      if (voicePolicyToken === null) {
+        onEnd?.();
+        return;
+      }
+      stopVoicePlayers(false);
       safe(() => { player.volume = 1; });
       activeEndRef.current = { player, onEnd };
       duckAmbient();
-      playFromStart(player);
+      const lease = acquireAudioActivity('spoken');
+      voiceLeaseRef.current = lease;
+      void whenAudioActivitySettled().finally(() => {
+        if (
+          activeEndRef.current?.player !== player
+          || !voicePlaybackPolicy.canStart(voicePolicyToken)
+        ) {
+          lease.release();
+          if (voiceLeaseRef.current === lease) voiceLeaseRef.current = null;
+          return;
+        }
+        playFromStart(player);
+      });
     },
-    [duckAmbient],
+    [duckAmbient, stopVoicePlayers],
   );
 
   const playHear = useCallback(
@@ -87,6 +122,7 @@ export function useAhaSceneAudio(scenarioId: AhaScenarioId): UseAhaSceneAudio {
   );
 
   const startAmbient = useCallback(() => {
+    if (!getSoundSettingsSnapshot().effectsEnabled) return;
     safe(() => playFromStart(ambientPlayer));
   }, [ambientPlayer]);
 
@@ -95,11 +131,17 @@ export function useAhaSceneAudio(scenarioId: AhaScenarioId): UseAhaSceneAudio {
   }, [ambientPlayer]);
 
   const stopAll = useCallback(() => {
-    activeEndRef.current = null;
-    for (const player of [hearPlayer, sayPlayer, ambientPlayer]) {
-      safe(() => player.pause());
-    }
-  }, [hearPlayer, sayPlayer, ambientPlayer]);
+    stopVoicePlayers(false);
+    safe(() => ambientPlayer.pause());
+  }, [ambientPlayer, stopVoicePlayers]);
+
+  useEffect(() => voicePlaybackPolicy.registerStop(() => {
+    stopVoicePlayers(true);
+  }), [stopVoicePlayers]);
+
+  useEffect(() => subscribeSoundSettings(() => {
+    if (!getSoundSettingsSnapshot().effectsEnabled) safe(() => ambientPlayer.pause());
+  }), [ambientPlayer]);
 
   // Один слушатель на плеер: реагируем на didJustFinish только для активного
   // прогона (сравниваем player по ссылке), возвращаем ambient на полную громкость.
@@ -110,6 +152,8 @@ export function useAhaSceneAudio(scenarioId: AhaScenarioId): UseAhaSceneAudio {
       unduckAmbient();
       if (active && active.player === player) {
         activeEndRef.current = null;
+        voiceLeaseRef.current?.release();
+        voiceLeaseRef.current = null;
         active.onEnd?.();
       }
     };
@@ -127,6 +171,8 @@ export function useAhaSceneAudio(scenarioId: AhaScenarioId): UseAhaSceneAudio {
   useEffect(() => {
     return () => {
       activeEndRef.current = null;
+      voiceLeaseRef.current?.release();
+      voiceLeaseRef.current = null;
       safe(() => hearPlayer.pause());
       safe(() => sayPlayer.pause());
       safe(() => ambientPlayer.pause());

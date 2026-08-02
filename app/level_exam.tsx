@@ -50,6 +50,7 @@ import { registerXP } from './xp_manager';
 import { canShowReview } from './review_utils';
 import ReviewPromptModal from '../components/ReviewPromptModal';
 import { monoIcon } from '../constants/monoIcon';
+import { soundDirector } from '../modules/audio/sound_director';
 
 const safeLevelExamEventPart = (value: unknown, max = 60): string =>
   String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
@@ -886,6 +887,10 @@ export default function LevelExam() {
     } catch (e) {
       void trackFeatureError('level_exam', 'complete', e, { level: lvl, correct, total, pct, passed }, 'level_exam');
     }
+    soundDirector.request(passed ? 'pm.complete.exam_pass' : 'pm.complete.exam_retry', {
+      scope: 'level-exam-result',
+      dedupeKey: `${studyTarget}:${lvl}:${pct}`,
+    });
     setPhase('result');
   };
 

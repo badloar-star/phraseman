@@ -8,6 +8,9 @@
 
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ScrollView, Share, StyleSheet, Text, View } from 'react-native';
+// зачем: allowFontScaling={false} отключал системный размер шрифта — текст
+// обрезался при крупном шрифте. FlowText переносит вместо обрезки.
+import { FlowText } from '../components/text-integrity';
 import Animated, {
   FadeIn,
   FadeInDown,
@@ -380,9 +383,9 @@ export default function TournamentResultsScreen() {
               </Text>
             </View>
             <View style={styles.rewardValueBox}>
-              <Text style={styles.rewardValue} allowFontScaling={false}>
+              <FlowText testID="results-reward-value" provenance="authored" style={styles.rewardValue}>
                 {me ? me.score : 0}
-              </Text>
+              </FlowText>
               <Text style={styles.rewardValueLabel}>очков</Text>
             </View>
           </View>
@@ -498,7 +501,7 @@ const PodiumColumn = memo(function PodiumColumn({
       {/* Награда призёра: настоящая сумма с сервера, а не выдуманная. */}
       {gems > 0 ? (
         <Animated.View style={[styles.podiumGems, gemsStyle]}>
-          <Text style={styles.podiumGemsText} allowFontScaling={false}>{shownGems}</Text>
+          <FlowText testID="results-podium-gems" provenance="authored" style={styles.podiumGemsText}>{shownGems}</FlowText>
           <Image
             source={pearlIconForTheme(themeMode)}
             style={styles.podiumGemsPearl}
@@ -528,10 +531,11 @@ const PodiumColumn = memo(function PodiumColumn({
         </View>
       </Animated.View>
 
+      {/* eslint-disable-next-line text-integrity/no-unsafe-text-truncation -- ник под фигурой пьедестала: перенос сдвинул бы высоту ступени */}
       <Text style={styles.podiumName} numberOfLines={1}>{winner.name}</Text>
       <View style={styles.podiumScoreRow}>
         <StarGlyph size={13} color={P.gold} />
-        <Text style={styles.podiumScore} allowFontScaling={false}>{winner.score}</Text>
+        <FlowText testID="results-podium-score" provenance="authored" style={styles.podiumScore}>{winner.score}</FlowText>
       </View>
 
       {/* зачем: пьедестал — металл с тёплым бликом (три стопа), а не плоская
@@ -546,6 +550,7 @@ const PodiumColumn = memo(function PodiumColumn({
           end={{ x: 0.8, y: 1 }}
           style={StyleSheet.absoluteFill}
         />
+        {/* eslint-disable-next-line text-integrity/no-unsafe-text-truncation -- цифра внутри ступени пьедестала фиксированной высоты */}
         <Text style={styles.podiumPlace} allowFontScaling={false}>{winner.place}</Text>
       </Animated.View>
     </View>

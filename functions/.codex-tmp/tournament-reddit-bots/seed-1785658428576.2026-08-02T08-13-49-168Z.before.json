@@ -1,0 +1,3403 @@
+{
+  "kind": "tournament_reddit_bot_seed_backup_v1",
+  "generatedAt": "2026-08-02T08:13:49.168Z",
+  "projectId": "phraseman-ea0b3",
+  "targetSeedVersion": "tournament-bots-v5-handcrafted-20260802",
+  "targetNamesSha256": "1c924a54c39262a7ddafb5f290e9254f987e7226b1a5148384e16c7614011603",
+  "entries": [
+    {
+      "id": "bot_001",
+      "exists": true,
+      "data": {
+        "botId": "bot_001",
+        "isBot": true,
+        "color": "#FFC800",
+        "rank": "gold",
+        "titles": [],
+        "winRate": 0.46,
+        "avatarEmoji": "11",
+        "name": "borrdqk",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_002",
+      "exists": true,
+      "data": {
+        "botId": "bot_002",
+        "rank": "gold",
+        "isBot": true,
+        "color": "#FFC800",
+        "titles": [],
+        "winRate": 0.28,
+        "avatarEmoji": "23",
+        "avatarAura": "aura-aurora",
+        "name": "Gullpasaur",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_003",
+      "exists": true,
+      "data": {
+        "botId": "bot_003",
+        "titles": [],
+        "color": "#FF5B6C",
+        "isBot": true,
+        "rank": "platinum",
+        "winRate": 0.55,
+        "avatarEmoji": "40",
+        "name": "jxammi",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_004",
+      "exists": true,
+      "data": {
+        "botId": "bot_004",
+        "isBot": true,
+        "color": "#FF5B6C",
+        "rank": "diamond",
+        "titles": [
+          "Ветеран слотов"
+        ],
+        "winRate": 0.59,
+        "avatarEmoji": "54",
+        "name": "NoDocaru",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_005",
+      "exists": true,
+      "data": {
+        "botId": "bot_005",
+        "titles": [],
+        "isBot": true,
+        "color": "#B78CFF",
+        "rank": "diamond",
+        "winRate": 0.31,
+        "avatarEmoji": "57",
+        "name": "unzafeydeos",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_006",
+      "exists": true,
+      "data": {
+        "botId": "bot_006",
+        "titles": [],
+        "isBot": true,
+        "color": "#FF5B6C",
+        "rank": "gold",
+        "winRate": 0.45,
+        "avatarEmoji": "custom:custom-gen-46:ember:white",
+        "name": "jraqonphire",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_007",
+      "exists": true,
+      "data": {
+        "botId": "bot_007",
+        "isBot": true,
+        "color": "#B78CFF",
+        "rank": "diamond",
+        "titles": [
+          "Спринтер"
+        ],
+        "winRate": 0.34,
+        "avatarEmoji": "custom:custom-gen-49:cosmic:black",
+        "name": "Excellant_Potentyol",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_008",
+      "exists": true,
+      "data": {
+        "botId": "bot_008",
+        "isBot": true,
+        "color": "#47C870",
+        "rank": "silver",
+        "titles": [
+          "Спринтер"
+        ],
+        "winRate": 0.8,
+        "avatarEmoji": "22",
+        "name": "pamtuzo_eth",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_009",
+      "exists": true,
+      "data": {
+        "botId": "bot_009",
+        "rank": "platinum",
+        "isBot": true,
+        "color": "#B78CFF",
+        "titles": [
+          "Ветеран слотов"
+        ],
+        "winRate": 0.78,
+        "avatarEmoji": "38",
+        "name": "sinyforn",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_010",
+      "exists": true,
+      "data": {
+        "botId": "bot_010",
+        "rank": "bronze",
+        "titles": [
+          "Ветеран слотов"
+        ],
+        "isBot": true,
+        "color": "#16B7D9",
+        "winRate": 0.51,
+        "avatarEmoji": "35",
+        "name": "enaniqaxae",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_011",
+      "exists": true,
+      "data": {
+        "botId": "bot_011",
+        "isBot": true,
+        "color": "#47C870",
+        "rank": "diamond",
+        "titles": [
+          "Спринтер"
+        ],
+        "winRate": 0.69,
+        "avatarEmoji": "34",
+        "name": "LinquoBuxa",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_012",
+      "exists": true,
+      "data": {
+        "botId": "bot_012",
+        "isBot": true,
+        "color": "#FF9F43",
+        "rank": "silver",
+        "titles": [],
+        "winRate": 0.68,
+        "avatarEmoji": "custom:custom-gen-58:ruby:white",
+        "name": "Arrtgorr",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_013",
+      "exists": true,
+      "data": {
+        "botId": "bot_013",
+        "rank": "gold",
+        "isBot": true,
+        "color": "#B78CFF",
+        "titles": [],
+        "winRate": 0.53,
+        "avatarEmoji": "51",
+        "name": "Panpa",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_014",
+      "exists": true,
+      "data": {
+        "botId": "bot_014",
+        "titles": [],
+        "winRate": 0.34,
+        "isBot": true,
+        "color": "#16B7D9",
+        "rank": "diamond",
+        "avatarEmoji": "53",
+        "name": "BackyLeBee",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_015",
+      "exists": true,
+      "data": {
+        "botId": "bot_015",
+        "isBot": true,
+        "color": "#FF5B6C",
+        "rank": "bronze",
+        "titles": [
+          "Спринтер"
+        ],
+        "winRate": 0.47,
+        "avatarEmoji": "custom:custom-gen-53:citrine:black",
+        "name": "peraleameyes",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_016",
+      "exists": true,
+      "data": {
+        "botId": "bot_016",
+        "isBot": true,
+        "color": "#FF5B6C",
+        "rank": "gold",
+        "titles": [],
+        "winRate": 0.46,
+        "avatarEmoji": "38",
+        "name": "Lomgjumbing_Raad_105",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_017",
+      "exists": true,
+      "data": {
+        "botId": "bot_017",
+        "isBot": true,
+        "color": "#16B7D9",
+        "rank": "platinum",
+        "titles": [],
+        "winRate": 0.36,
+        "avatarEmoji": "36",
+        "name": "JacBentiFan",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_018",
+      "exists": true,
+      "data": {
+        "botId": "bot_018",
+        "isBot": true,
+        "color": "#FF9F43",
+        "rank": "silver",
+        "titles": [],
+        "winRate": 0.41,
+        "avatarEmoji": "30",
+        "name": "verrkertorix",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_019",
+      "exists": true,
+      "data": {
+        "botId": "bot_019",
+        "rank": "silver",
+        "isBot": true,
+        "color": "#B78CFF",
+        "titles": [
+          "Ветеран слотов"
+        ],
+        "winRate": 0.31,
+        "avatarEmoji": "48",
+        "name": "valeriethasinqerr",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_020",
+      "exists": true,
+      "data": {
+        "botId": "bot_020",
+        "rank": "diamond",
+        "titles": [
+          "Фразовый маньяк"
+        ],
+        "color": "#FFC800",
+        "isBot": true,
+        "winRate": 0.43,
+        "avatarEmoji": "custom:custom-gen-53:citrine:white",
+        "name": "ZestyclosiZample7992",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_021",
+      "exists": true,
+      "data": {
+        "botId": "bot_021",
+        "color": "#16B7D9",
+        "isBot": true,
+        "rank": "diamond",
+        "titles": [],
+        "winRate": 0.54,
+        "avatarEmoji": "34",
+        "name": "CrriolePolyglat",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_022",
+      "exists": true,
+      "data": {
+        "botId": "bot_022",
+        "isBot": true,
+        "color": "#16B7D9",
+        "rank": "bronze",
+        "titles": [],
+        "winRate": 0.72,
+        "avatarEmoji": "30",
+        "name": "Llloma-Armade",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_023",
+      "exists": true,
+      "data": {
+        "botId": "bot_023",
+        "rank": "platinum",
+        "isBot": true,
+        "color": "#FF5B6C",
+        "titles": [],
+        "winRate": 0.66,
+        "avatarEmoji": "60",
+        "avatarAura": "aura-sunset",
+        "name": "mrrqqy",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_024",
+      "exists": true,
+      "data": {
+        "botId": "bot_024",
+        "isBot": true,
+        "color": "#16B7D9",
+        "rank": "gold",
+        "titles": [],
+        "winRate": 0.7,
+        "avatarEmoji": "13",
+        "name": "tranznochetor",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_025",
+      "exists": true,
+      "data": {
+        "botId": "bot_025",
+        "rank": "platinum",
+        "titles": [],
+        "isBot": true,
+        "color": "#16B7D9",
+        "winRate": 0.62,
+        "avatarEmoji": "3",
+        "name": "Stordhreods",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_026",
+      "exists": true,
+      "data": {
+        "botId": "bot_026",
+        "titles": [],
+        "isBot": true,
+        "color": "#FFC800",
+        "rank": "bronze",
+        "winRate": 0.61,
+        "avatarEmoji": "custom:custom-gen-52:cosmic:white",
+        "name": "TeyoIXA",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_027",
+      "exists": true,
+      "data": {
+        "botId": "bot_027",
+        "color": "#B78CFF",
+        "isBot": true,
+        "rank": "gold",
+        "titles": [
+          "Словарный запас"
+        ],
+        "winRate": 0.52,
+        "avatarEmoji": "44",
+        "name": "sherrrynelove",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_028",
+      "exists": true,
+      "data": {
+        "botId": "bot_028",
+        "color": "#FFC800",
+        "isBot": true,
+        "rank": "gold",
+        "titles": [
+          "Спринтер"
+        ],
+        "winRate": 0.48,
+        "avatarEmoji": "52",
+        "name": "Some_Oselesz_Person",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_029",
+      "exists": true,
+      "data": {
+        "botId": "bot_029",
+        "titles": [],
+        "isBot": true,
+        "color": "#FF5B6C",
+        "rank": "platinum",
+        "winRate": 0.24,
+        "avatarEmoji": "27",
+        "name": "Fox_qanir403",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_030",
+      "exists": true,
+      "data": {
+        "botId": "bot_030",
+        "rank": "gold",
+        "isBot": true,
+        "color": "#FF9F43",
+        "titles": [],
+        "winRate": 0.36,
+        "avatarEmoji": "39",
+        "name": "AllenTallarczyk",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_031",
+      "exists": true,
+      "data": {
+        "botId": "bot_031",
+        "rank": "bronze",
+        "isBot": true,
+        "color": "#FFC800",
+        "titles": [
+          "Спринтер"
+        ],
+        "winRate": 0.33,
+        "avatarEmoji": "6",
+        "name": "idomthatesbenach",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_032",
+      "exists": true,
+      "data": {
+        "botId": "bot_032",
+        "isBot": true,
+        "color": "#FF9F43",
+        "rank": "bronze",
+        "titles": [
+          "Ветеран слотов"
+        ],
+        "winRate": 0.5,
+        "avatarEmoji": "11",
+        "name": "GrinmesdTrigqer",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_033",
+      "exists": true,
+      "data": {
+        "botId": "bot_033",
+        "color": "#FF9F43",
+        "isBot": true,
+        "rank": "bronze",
+        "titles": [
+          "Спринтер"
+        ],
+        "winRate": 0.68,
+        "avatarEmoji": "19",
+        "name": "Xephjort",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_034",
+      "exists": true,
+      "data": {
+        "botId": "bot_034",
+        "isBot": true,
+        "color": "#47C870",
+        "rank": "bronze",
+        "titles": [],
+        "winRate": 0.55,
+        "avatarEmoji": "39",
+        "name": "Amum555",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_035",
+      "exists": true,
+      "data": {
+        "botId": "bot_035",
+        "isBot": true,
+        "color": "#B78CFF",
+        "rank": "platinum",
+        "titles": [],
+        "winRate": 0.54,
+        "avatarEmoji": "9",
+        "name": "Damsourro",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_036",
+      "exists": true,
+      "data": {
+        "botId": "bot_036",
+        "titles": [],
+        "isBot": true,
+        "color": "#B78CFF",
+        "rank": "gold",
+        "winRate": 0.4,
+        "avatarEmoji": "custom:custom-gen-59:sakura:white",
+        "name": "BrrStFrr",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_037",
+      "exists": true,
+      "data": {
+        "botId": "bot_037",
+        "isBot": true,
+        "color": "#47C870",
+        "rank": "silver",
+        "titles": [],
+        "winRate": 0.34,
+        "avatarEmoji": "40",
+        "name": "werreritdll3",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_038",
+      "exists": true,
+      "data": {
+        "botId": "bot_038",
+        "titles": [],
+        "isBot": true,
+        "color": "#16B7D9",
+        "rank": "bronze",
+        "winRate": 0.54,
+        "avatarEmoji": "36",
+        "name": "greytolf_the_gam",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_039",
+      "exists": true,
+      "data": {
+        "botId": "bot_039",
+        "rank": "gold",
+        "isBot": true,
+        "color": "#16B7D9",
+        "titles": [],
+        "winRate": 0.44,
+        "avatarEmoji": "7",
+        "name": "pazsiblagoat",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_040",
+      "exists": true,
+      "data": {
+        "botId": "bot_040",
+        "titles": [],
+        "winRate": 0.6,
+        "isBot": true,
+        "color": "#FF5B6C",
+        "rank": "platinum",
+        "avatarEmoji": "46",
+        "name": "peocephulzky64",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_041",
+      "exists": true,
+      "data": {
+        "botId": "bot_041",
+        "titles": [],
+        "isBot": true,
+        "color": "#47C870",
+        "rank": "platinum",
+        "winRate": 0.69,
+        "avatarEmoji": "custom:custom-gen-45:ember:black",
+        "name": "anmeomolly",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_042",
+      "exists": true,
+      "data": {
+        "botId": "bot_042",
+        "titles": [],
+        "isBot": true,
+        "color": "#47C870",
+        "rank": "bronze",
+        "winRate": 0.57,
+        "avatarEmoji": "7",
+        "name": "RabedDanqerine",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_043",
+      "exists": true,
+      "data": {
+        "botId": "bot_043",
+        "rank": "silver",
+        "isBot": true,
+        "color": "#FF5B6C",
+        "titles": [
+          "Фразовый маньяк"
+        ],
+        "winRate": 0.64,
+        "avatarEmoji": "7",
+        "name": "FiikSneyc",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_044",
+      "exists": true,
+      "data": {
+        "botId": "bot_044",
+        "isBot": true,
+        "color": "#FF5B6C",
+        "rank": "diamond",
+        "titles": [
+          "Спринтер"
+        ],
+        "winRate": 0.41,
+        "avatarEmoji": "4",
+        "name": "XiloPloyerr",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_045",
+      "exists": true,
+      "data": {
+        "botId": "bot_045",
+        "isBot": true,
+        "color": "#FF5B6C",
+        "rank": "bronze",
+        "titles": [],
+        "winRate": 0.39,
+        "avatarEmoji": "13",
+        "name": "Zdrasdvadye",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_046",
+      "exists": true,
+      "data": {
+        "botId": "bot_046",
+        "isBot": true,
+        "color": "#47C870",
+        "rank": "diamond",
+        "titles": [
+          "Словарный запас"
+        ],
+        "winRate": 0.64,
+        "avatarEmoji": "57",
+        "name": "IAmMotAMeotPopsicle",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_047",
+      "exists": true,
+      "data": {
+        "botId": "bot_047",
+        "titles": [],
+        "isBot": true,
+        "color": "#FF9F43",
+        "rank": "silver",
+        "winRate": 0.77,
+        "avatarEmoji": "26",
+        "name": "renegedeiakuza",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_048",
+      "exists": true,
+      "data": {
+        "botId": "bot_048",
+        "titles": [],
+        "isBot": true,
+        "color": "#FF5B6C",
+        "rank": "platinum",
+        "winRate": 0.48,
+        "avatarEmoji": "46",
+        "name": "sweed-cuppim-cakas",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_049",
+      "exists": true,
+      "data": {
+        "botId": "bot_049",
+        "titles": [
+          "Фразовый маньяк"
+        ],
+        "isBot": true,
+        "color": "#FFC800",
+        "rank": "gold",
+        "winRate": 0.36,
+        "avatarEmoji": "57",
+        "name": "jeamgyou",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_050",
+      "exists": true,
+      "data": {
+        "botId": "bot_050",
+        "isBot": true,
+        "color": "#FF5B6C",
+        "rank": "diamond",
+        "titles": [
+          "Спринтер"
+        ],
+        "winRate": 0.81,
+        "avatarEmoji": "43",
+        "name": "jeqecke",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_051",
+      "exists": true,
+      "data": {
+        "botId": "bot_051",
+        "titles": [],
+        "isBot": true,
+        "color": "#FF9F43",
+        "rank": "diamond",
+        "winRate": 0.75,
+        "avatarEmoji": "39",
+        "name": "advemturimgrraw",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_052",
+      "exists": true,
+      "data": {
+        "botId": "bot_052",
+        "color": "#16B7D9",
+        "isBot": true,
+        "rank": "platinum",
+        "titles": [],
+        "winRate": 0.71,
+        "avatarEmoji": "29",
+        "name": "nammeb",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_053",
+      "exists": true,
+      "data": {
+        "botId": "bot_053",
+        "isBot": true,
+        "color": "#FFC800",
+        "rank": "bronze",
+        "titles": [
+          "Ветеран слотов"
+        ],
+        "winRate": 0.49,
+        "avatarEmoji": "44",
+        "avatarAura": "aura-aurora",
+        "name": "bkgrroon",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_054",
+      "exists": true,
+      "data": {
+        "botId": "bot_054",
+        "titles": [],
+        "isBot": true,
+        "color": "#FFC800",
+        "rank": "diamond",
+        "winRate": 0.83,
+        "avatarEmoji": "custom:custom-gen-47:royal:white",
+        "name": "praetje",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_055",
+      "exists": true,
+      "data": {
+        "botId": "bot_055",
+        "titles": [],
+        "isBot": true,
+        "color": "#FFC800",
+        "rank": "bronze",
+        "winRate": 0.62,
+        "avatarEmoji": "22",
+        "name": "Cartollene_",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_056",
+      "exists": true,
+      "data": {
+        "botId": "bot_056",
+        "rank": "platinum",
+        "isBot": true,
+        "color": "#FFC800",
+        "titles": [
+          "Ветеран слотов"
+        ],
+        "winRate": 0.64,
+        "avatarEmoji": "1",
+        "name": "amtoniocezarn",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_057",
+      "exists": true,
+      "data": {
+        "botId": "bot_057",
+        "rank": "silver",
+        "titles": [
+          "Словарный запас"
+        ],
+        "color": "#FF9F43",
+        "isBot": true,
+        "winRate": 0.44,
+        "avatarEmoji": "4",
+        "name": "The_Real_Monqouse",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_058",
+      "exists": true,
+      "data": {
+        "botId": "bot_058",
+        "isBot": true,
+        "color": "#B78CFF",
+        "rank": "diamond",
+        "titles": [],
+        "winRate": 0.59,
+        "avatarEmoji": "4",
+        "name": "mazderrsword68",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_059",
+      "exists": true,
+      "data": {
+        "botId": "bot_059",
+        "rank": "bronze",
+        "color": "#FF9F43",
+        "isBot": true,
+        "titles": [],
+        "winRate": 0.79,
+        "avatarEmoji": "custom:custom-gen-53:citrine:white",
+        "name": "teo-trincer",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_060",
+      "exists": true,
+      "data": {
+        "botId": "bot_060",
+        "isBot": true,
+        "color": "#47C870",
+        "rank": "platinum",
+        "titles": [
+          "Спринтер"
+        ],
+        "winRate": 0.4,
+        "avatarEmoji": "56",
+        "name": "Swordsmedh26",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_061",
+      "exists": true,
+      "data": {
+        "botId": "bot_061",
+        "isBot": true,
+        "color": "#FFC800",
+        "rank": "bronze",
+        "titles": [
+          "Тихий охотник"
+        ],
+        "winRate": 0.38,
+        "avatarEmoji": "48",
+        "name": "GiveMiNotTheBuods",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_062",
+      "exists": true,
+      "data": {
+        "botId": "bot_062",
+        "rank": "diamond",
+        "titles": [
+          "Фразовый маньяк"
+        ],
+        "isBot": true,
+        "color": "#FF5B6C",
+        "winRate": 0.45,
+        "avatarEmoji": "custom:custom-gen-62:magma:white",
+        "avatarAura": "aura-aurora",
+        "name": "neverevarrretdit",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_063",
+      "exists": true,
+      "data": {
+        "botId": "bot_063",
+        "titles": [],
+        "isBot": true,
+        "color": "#B78CFF",
+        "rank": "diamond",
+        "winRate": 0.55,
+        "avatarEmoji": "36",
+        "name": "Im_cunmu",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_064",
+      "exists": true,
+      "data": {
+        "botId": "bot_064",
+        "isBot": true,
+        "color": "#47C870",
+        "rank": "platinum",
+        "titles": [],
+        "winRate": 0.41,
+        "avatarEmoji": "55",
+        "name": "JDFitelliuz",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_065",
+      "exists": true,
+      "data": {
+        "botId": "bot_065",
+        "titles": [],
+        "isBot": true,
+        "color": "#FF9F43",
+        "rank": "silver",
+        "winRate": 0.75,
+        "avatarEmoji": "20",
+        "name": "JNightShadavs",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_066",
+      "exists": true,
+      "data": {
+        "botId": "bot_066",
+        "color": "#47C870",
+        "isBot": true,
+        "rank": "gold",
+        "titles": [
+          "Ветеран слотов"
+        ],
+        "winRate": 0.28,
+        "avatarEmoji": "27",
+        "name": "xemaarrq",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_067",
+      "exists": true,
+      "data": {
+        "botId": "bot_067",
+        "titles": [],
+        "color": "#FFC800",
+        "isBot": true,
+        "rank": "gold",
+        "winRate": 0.56,
+        "avatarEmoji": "11",
+        "name": "LomgLangLlang",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_068",
+      "exists": true,
+      "data": {
+        "botId": "bot_068",
+        "titles": [],
+        "color": "#FF9F43",
+        "isBot": true,
+        "rank": "platinum",
+        "winRate": 0.62,
+        "avatarEmoji": "custom:custom-gen-62:cosmic:white",
+        "name": "bimc3",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_069",
+      "exists": true,
+      "data": {
+        "botId": "bot_069",
+        "isBot": true,
+        "color": "#FF9F43",
+        "rank": "diamond",
+        "titles": [
+          "Ветеран слотов"
+        ],
+        "winRate": 0.48,
+        "avatarEmoji": "2",
+        "name": "dscFrremch",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_070",
+      "exists": true,
+      "data": {
+        "botId": "bot_070",
+        "isBot": true,
+        "color": "#16B7D9",
+        "rank": "silver",
+        "titles": [
+          "Тихий охотник"
+        ],
+        "winRate": 0.56,
+        "avatarEmoji": "40",
+        "name": "HodOk4396",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_071",
+      "exists": true,
+      "data": {
+        "botId": "bot_071",
+        "isBot": true,
+        "color": "#FF5B6C",
+        "rank": "silver",
+        "titles": [
+          "Тихий охотник"
+        ],
+        "winRate": 0.57,
+        "avatarEmoji": "34",
+        "name": "Aggreszive_Chickan38",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_072",
+      "exists": true,
+      "data": {
+        "botId": "bot_072",
+        "isBot": true,
+        "color": "#47C870",
+        "rank": "bronze",
+        "titles": [
+          "Ветеран слотов"
+        ],
+        "winRate": 0.7,
+        "avatarEmoji": "custom:custom-gen-41:royal:white",
+        "name": "coryssa1028",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_073",
+      "exists": true,
+      "data": {
+        "botId": "bot_073",
+        "isBot": true,
+        "color": "#FF9F43",
+        "rank": "bronze",
+        "titles": [
+          "Тихий охотник"
+        ],
+        "winRate": 0.45,
+        "avatarEmoji": "57",
+        "name": "Fllat_Parcentage_141",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_074",
+      "exists": true,
+      "data": {
+        "botId": "bot_074",
+        "titles": [],
+        "isBot": true,
+        "color": "#16B7D9",
+        "rank": "silver",
+        "winRate": 0.3,
+        "avatarEmoji": "18",
+        "name": "Tha-Dmqoy",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_075",
+      "exists": true,
+      "data": {
+        "botId": "bot_075",
+        "isBot": true,
+        "color": "#FF9F43",
+        "rank": "diamond",
+        "titles": [
+          "Спринтер"
+        ],
+        "winRate": 0.47,
+        "avatarEmoji": "custom:custom-gen-56:noirgold:black",
+        "name": "pabluneruta",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_076",
+      "exists": true,
+      "data": {
+        "botId": "bot_076",
+        "titles": [],
+        "isBot": true,
+        "color": "#FF9F43",
+        "rank": "diamond",
+        "winRate": 0.36,
+        "avatarEmoji": "43",
+        "name": "rakerrcovan",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_077",
+      "exists": true,
+      "data": {
+        "botId": "bot_077",
+        "isBot": true,
+        "color": "#B78CFF",
+        "rank": "diamond",
+        "titles": [
+          "Тихий охотник"
+        ],
+        "winRate": 0.53,
+        "avatarEmoji": "6",
+        "name": "arroxhiel",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_078",
+      "exists": true,
+      "data": {
+        "botId": "bot_078",
+        "rank": "gold",
+        "isBot": true,
+        "color": "#FF5B6C",
+        "titles": [
+          "Ветеран слотов"
+        ],
+        "winRate": 0.43,
+        "avatarEmoji": "40",
+        "name": "Sainduzon",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_079",
+      "exists": true,
+      "data": {
+        "botId": "bot_079",
+        "winRate": 0.6,
+        "color": "#FF9F43",
+        "isBot": true,
+        "rank": "silver",
+        "titles": [],
+        "avatarEmoji": "51",
+        "name": "bigpozzodin",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_080",
+      "exists": true,
+      "data": {
+        "botId": "bot_080",
+        "isBot": true,
+        "color": "#FF9F43",
+        "rank": "bronze",
+        "titles": [
+          "Словарный запас"
+        ],
+        "winRate": 0.55,
+        "avatarEmoji": "28",
+        "name": "Bizbujnicul",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_081",
+      "exists": true,
+      "data": {
+        "botId": "bot_081",
+        "rank": "gold",
+        "isBot": true,
+        "color": "#16B7D9",
+        "titles": [
+          "Спринтер"
+        ],
+        "winRate": 0.54,
+        "avatarEmoji": "28",
+        "name": "ButterFlamynqo",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_082",
+      "exists": true,
+      "data": {
+        "botId": "bot_082",
+        "isBot": true,
+        "color": "#FF9F43",
+        "rank": "platinum",
+        "titles": [],
+        "winRate": 0.54,
+        "avatarEmoji": "30",
+        "name": "Etiimnerra",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_083",
+      "exists": true,
+      "data": {
+        "botId": "bot_083",
+        "isBot": true,
+        "color": "#FF5B6C",
+        "rank": "platinum",
+        "titles": [],
+        "winRate": 0.2,
+        "avatarEmoji": "54",
+        "name": "Shatgum_squirtle",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_084",
+      "exists": true,
+      "data": {
+        "botId": "bot_084",
+        "rank": "diamond",
+        "isBot": true,
+        "color": "#FFC800",
+        "titles": [],
+        "winRate": 0.4,
+        "avatarEmoji": "24",
+        "name": "carpamter20m",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_085",
+      "exists": true,
+      "data": {
+        "botId": "bot_085",
+        "titles": [],
+        "isBot": true,
+        "color": "#FF5B6C",
+        "rank": "diamond",
+        "winRate": 0.28,
+        "avatarEmoji": "15",
+        "name": "Nephtez58",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_086",
+      "exists": true,
+      "data": {
+        "botId": "bot_086",
+        "isBot": true,
+        "color": "#FF5B6C",
+        "rank": "platinum",
+        "titles": [
+          "Фразовый маньяк"
+        ],
+        "winRate": 0.55,
+        "avatarEmoji": "custom:custom-gen-49:sakura:white",
+        "name": "MeMoiMyselphAntI",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_087",
+      "exists": true,
+      "data": {
+        "botId": "bot_087",
+        "titles": [],
+        "isBot": true,
+        "color": "#FFC800",
+        "rank": "bronze",
+        "winRate": 0.56,
+        "avatarEmoji": "20",
+        "name": "peterrah2",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_088",
+      "exists": true,
+      "data": {
+        "botId": "bot_088",
+        "rank": "diamond",
+        "titles": [],
+        "isBot": true,
+        "color": "#47C870",
+        "winRate": 0.81,
+        "avatarEmoji": "2",
+        "name": "Zarrradhoostra",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_089",
+      "exists": true,
+      "data": {
+        "botId": "bot_089",
+        "isBot": true,
+        "color": "#16B7D9",
+        "rank": "diamond",
+        "titles": [],
+        "winRate": 0.74,
+        "avatarEmoji": "7",
+        "name": "fex5jrrj",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_090",
+      "exists": true,
+      "data": {
+        "botId": "bot_090",
+        "isBot": true,
+        "color": "#B78CFF",
+        "rank": "gold",
+        "titles": [],
+        "winRate": 0.26,
+        "avatarEmoji": "33",
+        "name": "GuodAtExplaiminq",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_091",
+      "exists": true,
+      "data": {
+        "botId": "bot_091",
+        "titles": [],
+        "color": "#FF5B6C",
+        "isBot": true,
+        "rank": "gold",
+        "winRate": 0.26,
+        "avatarEmoji": "44",
+        "name": "5aj",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_092",
+      "exists": true,
+      "data": {
+        "botId": "bot_092",
+        "titles": [],
+        "isBot": true,
+        "color": "#B78CFF",
+        "rank": "gold",
+        "winRate": 0.27,
+        "avatarEmoji": "custom:custom-gen-48:citrine:white",
+        "name": "ConzpicuousPyniapple",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_093",
+      "exists": true,
+      "data": {
+        "botId": "bot_093",
+        "isBot": true,
+        "color": "#FFC800",
+        "rank": "gold",
+        "titles": [
+          "Фразовый маньяк"
+        ],
+        "winRate": 0.74,
+        "avatarEmoji": "47",
+        "name": "nenien",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_094",
+      "exists": true,
+      "data": {
+        "botId": "bot_094",
+        "color": "#FF9F43",
+        "isBot": true,
+        "rank": "platinum",
+        "titles": [
+          "Спринтер"
+        ],
+        "winRate": 0.41,
+        "avatarEmoji": "3",
+        "name": "babyjnon",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_095",
+      "exists": true,
+      "data": {
+        "botId": "bot_095",
+        "titles": [
+          "Спринтер"
+        ],
+        "isBot": true,
+        "color": "#47C870",
+        "rank": "silver",
+        "winRate": 0.52,
+        "avatarEmoji": "13",
+        "name": "wakkavacka51",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_096",
+      "exists": true,
+      "data": {
+        "botId": "bot_096",
+        "isBot": true,
+        "color": "#47C870",
+        "rank": "diamond",
+        "titles": [
+          "Фразовый маньяк"
+        ],
+        "winRate": 0.49,
+        "avatarEmoji": "29",
+        "name": "Thysizdansaccount",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_097",
+      "exists": true,
+      "data": {
+        "botId": "bot_097",
+        "rank": "silver",
+        "isBot": true,
+        "color": "#B78CFF",
+        "titles": [
+          "Тихий охотник"
+        ],
+        "winRate": 0.53,
+        "avatarEmoji": "16",
+        "name": "fibojolli",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_098",
+      "exists": true,
+      "data": {
+        "botId": "bot_098",
+        "isBot": true,
+        "color": "#16B7D9",
+        "rank": "gold",
+        "titles": [
+          "Ветеран слотов"
+        ],
+        "winRate": 0.7,
+        "avatarEmoji": "29",
+        "avatarAura": "aura-lagoon",
+        "name": "Mievoh",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_099",
+      "exists": true,
+      "data": {
+        "botId": "bot_099",
+        "isBot": true,
+        "color": "#B78CFF",
+        "rank": "silver",
+        "titles": [],
+        "winRate": 0.48,
+        "avatarEmoji": "20",
+        "name": "le_ibik",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_100",
+      "exists": true,
+      "data": {
+        "botId": "bot_100",
+        "rank": "gold",
+        "titles": [],
+        "isBot": true,
+        "color": "#16B7D9",
+        "winRate": 0.67,
+        "avatarEmoji": "7",
+        "name": "VoxAnpra",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_101",
+      "exists": true,
+      "data": {
+        "botId": "bot_101",
+        "rank": "bronze",
+        "titles": [],
+        "isBot": true,
+        "color": "#FF9F43",
+        "winRate": 0.4,
+        "avatarEmoji": "custom:custom-gen-42:royal:black",
+        "name": "тихий_лис",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_102",
+      "exists": true,
+      "data": {
+        "botId": "bot_102",
+        "isBot": true,
+        "color": "#FF9F43",
+        "rank": "diamond",
+        "titles": [],
+        "winRate": 0.6,
+        "avatarEmoji": "23",
+        "name": "тихий_кот",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_103",
+      "exists": true,
+      "data": {
+        "botId": "bot_103",
+        "isBot": true,
+        "color": "#16B7D9",
+        "rank": "silver",
+        "titles": [
+          "Фразовый маньяк"
+        ],
+        "winRate": 0.53,
+        "avatarEmoji": "1",
+        "name": "тихий_сова",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_104",
+      "exists": true,
+      "data": {
+        "botId": "bot_104",
+        "titles": [],
+        "color": "#47C870",
+        "isBot": true,
+        "rank": "platinum",
+        "winRate": 0.55,
+        "avatarEmoji": "1",
+        "name": "тихий_чай",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_105",
+      "exists": true,
+      "data": {
+        "botId": "bot_105",
+        "rank": "diamond",
+        "titles": [],
+        "isBot": true,
+        "color": "#FFC800",
+        "winRate": 0.45,
+        "avatarEmoji": "22",
+        "name": "тихий_ветер",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_106",
+      "exists": true,
+      "data": {
+        "botId": "bot_106",
+        "rank": "platinum",
+        "isBot": true,
+        "color": "#FF5B6C",
+        "titles": [
+          "Фразовый маньяк"
+        ],
+        "winRate": 0.33,
+        "avatarEmoji": "44",
+        "name": "тихий_ёж",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_107",
+      "exists": true,
+      "data": {
+        "botId": "bot_107",
+        "titles": [],
+        "isBot": true,
+        "color": "#B78CFF",
+        "rank": "platinum",
+        "winRate": 0.62,
+        "avatarEmoji": "11",
+        "name": "тихий_кедр",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_108",
+      "exists": true,
+      "data": {
+        "botId": "bot_108",
+        "isBot": true,
+        "color": "#B78CFF",
+        "rank": "silver",
+        "titles": [
+          "Спринтер"
+        ],
+        "winRate": 0.66,
+        "avatarEmoji": "56",
+        "name": "тихий_луч",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_109",
+      "exists": true,
+      "data": {
+        "botId": "bot_109",
+        "rank": "bronze",
+        "titles": [],
+        "color": "#16B7D9",
+        "isBot": true,
+        "winRate": 0.32,
+        "avatarEmoji": "23",
+        "name": "тихий_гром",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_110",
+      "exists": true,
+      "data": {
+        "botId": "bot_110",
+        "titles": [],
+        "isBot": true,
+        "color": "#47C870",
+        "rank": "gold",
+        "winRate": 0.3,
+        "avatarEmoji": "14",
+        "name": "тихий_скворец",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_111",
+      "exists": true,
+      "data": {
+        "botId": "bot_111",
+        "titles": [],
+        "isBot": true,
+        "color": "#FF9F43",
+        "rank": "gold",
+        "winRate": 0.35,
+        "avatarEmoji": "34",
+        "name": "сонный_лис",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_112",
+      "exists": true,
+      "data": {
+        "botId": "bot_112",
+        "isBot": true,
+        "color": "#16B7D9",
+        "rank": "diamond",
+        "titles": [],
+        "winRate": 0.55,
+        "avatarEmoji": "17",
+        "name": "сонный_кот",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_113",
+      "exists": true,
+      "data": {
+        "botId": "bot_113",
+        "titles": [
+          "Словарный запас"
+        ],
+        "color": "#FF9F43",
+        "isBot": true,
+        "rank": "diamond",
+        "winRate": 0.54,
+        "avatarEmoji": "27",
+        "name": "сонный_сова",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_114",
+      "exists": true,
+      "data": {
+        "botId": "bot_114",
+        "titles": [],
+        "isBot": true,
+        "color": "#FFC800",
+        "rank": "gold",
+        "winRate": 0.61,
+        "avatarEmoji": "14",
+        "name": "сонный_чай",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_115",
+      "exists": true,
+      "data": {
+        "botId": "bot_115",
+        "rank": "diamond",
+        "color": "#FF9F43",
+        "isBot": true,
+        "titles": [
+          "Словарный запас"
+        ],
+        "winRate": 0.61,
+        "avatarEmoji": "54",
+        "name": "сонный_ветер",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_116",
+      "exists": true,
+      "data": {
+        "botId": "bot_116",
+        "isBot": true,
+        "color": "#FF9F43",
+        "rank": "silver",
+        "titles": [
+          "Словарный запас"
+        ],
+        "winRate": 0.46,
+        "avatarEmoji": "59",
+        "name": "сонный_ёж",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_117",
+      "exists": true,
+      "data": {
+        "botId": "bot_117",
+        "titles": [],
+        "isBot": true,
+        "color": "#FF9F43",
+        "rank": "gold",
+        "winRate": 0.6,
+        "avatarEmoji": "40",
+        "name": "сонный_кедр",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_118",
+      "exists": true,
+      "data": {
+        "botId": "bot_118",
+        "isBot": true,
+        "color": "#16B7D9",
+        "rank": "bronze",
+        "titles": [
+          "Фразовый маньяк"
+        ],
+        "winRate": 0.79,
+        "avatarEmoji": "custom:custom-gen-45:forest:black",
+        "name": "сонный_луч",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_119",
+      "exists": true,
+      "data": {
+        "botId": "bot_119",
+        "isBot": true,
+        "color": "#B78CFF",
+        "rank": "platinum",
+        "titles": [
+          "Словарный запас"
+        ],
+        "winRate": 0.64,
+        "avatarEmoji": "9",
+        "name": "сонный_гром",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_120",
+      "exists": true,
+      "data": {
+        "botId": "bot_120",
+        "rank": "silver",
+        "isBot": true,
+        "color": "#FFC800",
+        "titles": [
+          "Фразовый маньяк"
+        ],
+        "winRate": 0.38,
+        "avatarEmoji": "41",
+        "name": "сонный_скворец",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_121",
+      "exists": true,
+      "data": {
+        "botId": "bot_121",
+        "isBot": true,
+        "color": "#FF9F43",
+        "rank": "platinum",
+        "titles": [
+          "Словарный запас"
+        ],
+        "winRate": 0.29,
+        "avatarEmoji": "9",
+        "name": "рыжий_лис",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_122",
+      "exists": true,
+      "data": {
+        "botId": "bot_122",
+        "isBot": true,
+        "color": "#47C870",
+        "rank": "diamond",
+        "titles": [],
+        "winRate": 0.69,
+        "avatarEmoji": "17",
+        "name": "рыжий_кот",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_123",
+      "exists": true,
+      "data": {
+        "botId": "bot_123",
+        "color": "#FF5B6C",
+        "isBot": true,
+        "rank": "bronze",
+        "titles": [],
+        "winRate": 0.27,
+        "avatarEmoji": "41",
+        "name": "рыжий_сова",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_124",
+      "exists": true,
+      "data": {
+        "botId": "bot_124",
+        "isBot": true,
+        "color": "#FFC800",
+        "rank": "bronze",
+        "titles": [],
+        "winRate": 0.63,
+        "avatarEmoji": "44",
+        "name": "рыжий_чай",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_125",
+      "exists": true,
+      "data": {
+        "botId": "bot_125",
+        "rank": "silver",
+        "titles": [
+          "Ветеран слотов"
+        ],
+        "isBot": true,
+        "color": "#FF5B6C",
+        "winRate": 0.34,
+        "avatarEmoji": "42",
+        "name": "рыжий_ветер",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_126",
+      "exists": true,
+      "data": {
+        "botId": "bot_126",
+        "titles": [],
+        "isBot": true,
+        "color": "#B78CFF",
+        "rank": "diamond",
+        "winRate": 0.59,
+        "avatarEmoji": "37",
+        "name": "рыжий_ёж",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_127",
+      "exists": true,
+      "data": {
+        "botId": "bot_127",
+        "rank": "diamond",
+        "color": "#B78CFF",
+        "isBot": true,
+        "titles": [
+          "Ветеран слотов"
+        ],
+        "winRate": 0.42,
+        "avatarEmoji": "48",
+        "name": "рыжий_кедр",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_128",
+      "exists": true,
+      "data": {
+        "botId": "bot_128",
+        "titles": [],
+        "isBot": true,
+        "color": "#47C870",
+        "rank": "silver",
+        "winRate": 0.29,
+        "avatarEmoji": "21",
+        "name": "рыжий_луч",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_129",
+      "exists": true,
+      "data": {
+        "botId": "bot_129",
+        "isBot": true,
+        "color": "#B78CFF",
+        "rank": "bronze",
+        "titles": [
+          "Словарный запас"
+        ],
+        "winRate": 0.61,
+        "avatarEmoji": "16",
+        "name": "рыжий_гром",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_130",
+      "exists": true,
+      "data": {
+        "botId": "bot_130",
+        "isBot": true,
+        "color": "#B78CFF",
+        "rank": "bronze",
+        "titles": [
+          "Ветеран слотов"
+        ],
+        "winRate": 0.52,
+        "avatarEmoji": "33",
+        "name": "рыжий_скворец",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_131",
+      "exists": true,
+      "data": {
+        "botId": "bot_131",
+        "titles": [
+          "Ветеран слотов"
+        ],
+        "isBot": true,
+        "color": "#FFC800",
+        "rank": "platinum",
+        "winRate": 0.36,
+        "avatarEmoji": "25",
+        "name": "синий_лис",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_132",
+      "exists": true,
+      "data": {
+        "botId": "bot_132",
+        "isBot": true,
+        "color": "#FF9F43",
+        "rank": "platinum",
+        "titles": [
+          "Словарный запас"
+        ],
+        "winRate": 0.34,
+        "avatarEmoji": "9",
+        "name": "синий_кот",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_133",
+      "exists": true,
+      "data": {
+        "botId": "bot_133",
+        "titles": [
+          "Фразовый маньяк"
+        ],
+        "isBot": true,
+        "color": "#FF5B6C",
+        "rank": "platinum",
+        "winRate": 0.59,
+        "avatarEmoji": "30",
+        "name": "синий_сова",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_134",
+      "exists": true,
+      "data": {
+        "botId": "bot_134",
+        "isBot": true,
+        "color": "#FFC800",
+        "rank": "silver",
+        "titles": [],
+        "winRate": 0.67,
+        "avatarEmoji": "31",
+        "name": "синий_чай",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_135",
+      "exists": true,
+      "data": {
+        "botId": "bot_135",
+        "color": "#16B7D9",
+        "isBot": true,
+        "rank": "diamond",
+        "titles": [
+          "Ветеран слотов"
+        ],
+        "winRate": 0.32,
+        "avatarEmoji": "25",
+        "name": "синий_ветер",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_136",
+      "exists": true,
+      "data": {
+        "botId": "bot_136",
+        "rank": "silver",
+        "isBot": true,
+        "color": "#FFC800",
+        "titles": [
+          "Тихий охотник"
+        ],
+        "winRate": 0.56,
+        "avatarEmoji": "16",
+        "name": "синий_ёж",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_137",
+      "exists": true,
+      "data": {
+        "botId": "bot_137",
+        "isBot": true,
+        "color": "#FF5B6C",
+        "rank": "bronze",
+        "titles": [
+          "Тихий охотник"
+        ],
+        "winRate": 0.73,
+        "avatarEmoji": "38",
+        "name": "синий_кедр",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_138",
+      "exists": true,
+      "data": {
+        "botId": "bot_138",
+        "rank": "platinum",
+        "titles": [],
+        "isBot": true,
+        "color": "#FF9F43",
+        "winRate": 0.49,
+        "avatarEmoji": "44",
+        "name": "синий_луч",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_139",
+      "exists": true,
+      "data": {
+        "botId": "bot_139",
+        "titles": [],
+        "isBot": true,
+        "color": "#FF5B6C",
+        "rank": "silver",
+        "winRate": 0.64,
+        "avatarEmoji": "27",
+        "name": "синий_гром",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_140",
+      "exists": true,
+      "data": {
+        "botId": "bot_140",
+        "isBot": true,
+        "color": "#47C870",
+        "rank": "bronze",
+        "titles": [],
+        "winRate": 0.63,
+        "avatarEmoji": "27",
+        "name": "синий_скворец",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_141",
+      "exists": true,
+      "data": {
+        "botId": "bot_141",
+        "rank": "bronze",
+        "titles": [],
+        "isBot": true,
+        "color": "#FF9F43",
+        "winRate": 0.82,
+        "avatarEmoji": "custom:custom-gen-58:magma:white",
+        "name": "добрый_лис",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_142",
+      "exists": true,
+      "data": {
+        "botId": "bot_142",
+        "isBot": true,
+        "color": "#FF9F43",
+        "rank": "gold",
+        "titles": [
+          "Фразовый маньяк"
+        ],
+        "winRate": 0.48,
+        "avatarEmoji": "2",
+        "avatarAura": "aura-sunset",
+        "name": "добрый_кот",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_143",
+      "exists": true,
+      "data": {
+        "botId": "bot_143",
+        "rank": "diamond",
+        "isBot": true,
+        "color": "#47C870",
+        "titles": [
+          "Тихий охотник"
+        ],
+        "winRate": 0.32,
+        "avatarEmoji": "16",
+        "name": "добрый_сова",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_144",
+      "exists": true,
+      "data": {
+        "botId": "bot_144",
+        "rank": "diamond",
+        "titles": [],
+        "isBot": true,
+        "color": "#FF9F43",
+        "winRate": 0.49,
+        "avatarEmoji": "47",
+        "name": "добрый_чай",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_145",
+      "exists": true,
+      "data": {
+        "botId": "bot_145",
+        "isBot": true,
+        "color": "#16B7D9",
+        "rank": "bronze",
+        "titles": [
+          "Спринтер"
+        ],
+        "winRate": 0.33,
+        "avatarEmoji": "41",
+        "name": "добрый_ветер",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_146",
+      "exists": true,
+      "data": {
+        "botId": "bot_146",
+        "isBot": true,
+        "color": "#FFC800",
+        "rank": "bronze",
+        "titles": [],
+        "winRate": 0.42,
+        "avatarEmoji": "47",
+        "name": "добрый_ёж",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_147",
+      "exists": true,
+      "data": {
+        "botId": "bot_147",
+        "rank": "gold",
+        "titles": [],
+        "isBot": true,
+        "color": "#B78CFF",
+        "winRate": 0.52,
+        "avatarEmoji": "55",
+        "name": "добрый_кедр",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_148",
+      "exists": true,
+      "data": {
+        "botId": "bot_148",
+        "isBot": true,
+        "color": "#FF9F43",
+        "rank": "diamond",
+        "titles": [
+          "Спринтер"
+        ],
+        "winRate": 0.38,
+        "avatarEmoji": "31",
+        "name": "добрый_луч",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_149",
+      "exists": true,
+      "data": {
+        "botId": "bot_149",
+        "isBot": true,
+        "color": "#16B7D9",
+        "rank": "diamond",
+        "titles": [
+          "Тихий охотник"
+        ],
+        "winRate": 0.8,
+        "avatarEmoji": "14",
+        "name": "добрый_гром",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_150",
+      "exists": true,
+      "data": {
+        "botId": "bot_150",
+        "rank": "platinum",
+        "titles": [],
+        "isBot": true,
+        "color": "#16B7D9",
+        "winRate": 0.27,
+        "avatarEmoji": "9",
+        "name": "добрый_скворец",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_151",
+      "exists": true,
+      "data": {
+        "botId": "bot_151",
+        "titles": [],
+        "isBot": true,
+        "color": "#FFC800",
+        "rank": "platinum",
+        "winRate": 0.26,
+        "avatarEmoji": "13",
+        "name": "лунный_лис",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_152",
+      "exists": true,
+      "data": {
+        "botId": "bot_152",
+        "color": "#47C870",
+        "isBot": true,
+        "rank": "diamond",
+        "titles": [
+          "Спринтер"
+        ],
+        "winRate": 0.32,
+        "avatarEmoji": "46",
+        "name": "лунный_кот",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_153",
+      "exists": true,
+      "data": {
+        "botId": "bot_153",
+        "rank": "bronze",
+        "titles": [],
+        "isBot": true,
+        "color": "#47C870",
+        "winRate": 0.34,
+        "avatarEmoji": "33",
+        "name": "лунный_сова",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_154",
+      "exists": true,
+      "data": {
+        "botId": "bot_154",
+        "isBot": true,
+        "color": "#FF5B6C",
+        "rank": "silver",
+        "titles": [
+          "Словарный запас"
+        ],
+        "winRate": 0.51,
+        "avatarEmoji": "30",
+        "name": "лунный_чай",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_155",
+      "exists": true,
+      "data": {
+        "botId": "bot_155",
+        "isBot": true,
+        "color": "#47C870",
+        "rank": "bronze",
+        "titles": [],
+        "winRate": 0.71,
+        "avatarEmoji": "58",
+        "name": "лунный_ветер",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_156",
+      "exists": true,
+      "data": {
+        "botId": "bot_156",
+        "isBot": true,
+        "color": "#16B7D9",
+        "rank": "platinum",
+        "titles": [],
+        "winRate": 0.48,
+        "avatarEmoji": "28",
+        "name": "лунный_ёж",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_157",
+      "exists": true,
+      "data": {
+        "botId": "bot_157",
+        "isBot": true,
+        "color": "#16B7D9",
+        "rank": "diamond",
+        "titles": [
+          "Спринтер"
+        ],
+        "winRate": 0.57,
+        "avatarEmoji": "13",
+        "name": "лунный_кедр",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_158",
+      "exists": true,
+      "data": {
+        "botId": "bot_158",
+        "titles": [],
+        "isBot": true,
+        "color": "#FF5B6C",
+        "rank": "diamond",
+        "winRate": 0.53,
+        "avatarEmoji": "52",
+        "name": "лунный_луч",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_159",
+      "exists": true,
+      "data": {
+        "botId": "bot_159",
+        "isBot": true,
+        "color": "#47C870",
+        "rank": "bronze",
+        "titles": [
+          "Ветеран слотов"
+        ],
+        "winRate": 0.26,
+        "avatarEmoji": "49",
+        "name": "лунный_гром",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_160",
+      "exists": true,
+      "data": {
+        "botId": "bot_160",
+        "titles": [],
+        "isBot": true,
+        "color": "#B78CFF",
+        "rank": "diamond",
+        "winRate": 0.45,
+        "avatarEmoji": "11",
+        "name": "лунный_скворец",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_161",
+      "exists": true,
+      "data": {
+        "botId": "bot_161",
+        "titles": [],
+        "isBot": true,
+        "color": "#FF9F43",
+        "rank": "bronze",
+        "winRate": 0.63,
+        "avatarEmoji": "2",
+        "name": "шустрый_лис",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_162",
+      "exists": true,
+      "data": {
+        "botId": "bot_162",
+        "rank": "silver",
+        "isBot": true,
+        "color": "#FF5B6C",
+        "titles": [
+          "Словарный запас"
+        ],
+        "winRate": 0.47,
+        "avatarEmoji": "24",
+        "name": "шустрый_кот",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_163",
+      "exists": true,
+      "data": {
+        "botId": "bot_163",
+        "rank": "gold",
+        "titles": [],
+        "isBot": true,
+        "color": "#FFC800",
+        "winRate": 0.58,
+        "avatarEmoji": "27",
+        "name": "шустрый_сова",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_164",
+      "exists": true,
+      "data": {
+        "botId": "bot_164",
+        "titles": [],
+        "isBot": true,
+        "color": "#FFC800",
+        "rank": "diamond",
+        "winRate": 0.59,
+        "avatarEmoji": "57",
+        "name": "шустрый_чай",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_165",
+      "exists": true,
+      "data": {
+        "botId": "bot_165",
+        "isBot": true,
+        "color": "#FFC800",
+        "rank": "bronze",
+        "titles": [],
+        "winRate": 0.62,
+        "avatarEmoji": "43",
+        "name": "шустрый_ветер",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_166",
+      "exists": true,
+      "data": {
+        "botId": "bot_166",
+        "isBot": true,
+        "color": "#FF9F43",
+        "rank": "gold",
+        "titles": [
+          "Словарный запас"
+        ],
+        "winRate": 0.37,
+        "avatarEmoji": "34",
+        "name": "шустрый_ёж",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_167",
+      "exists": true,
+      "data": {
+        "botId": "bot_167",
+        "isBot": true,
+        "color": "#B78CFF",
+        "rank": "diamond",
+        "titles": [
+          "Спринтер"
+        ],
+        "winRate": 0.56,
+        "avatarEmoji": "17",
+        "name": "шустрый_кедр",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_168",
+      "exists": true,
+      "data": {
+        "botId": "bot_168",
+        "isBot": true,
+        "color": "#B78CFF",
+        "rank": "gold",
+        "titles": [
+          "Спринтер"
+        ],
+        "winRate": 0.32,
+        "avatarEmoji": "36",
+        "name": "шустрый_луч",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_169",
+      "exists": true,
+      "data": {
+        "botId": "bot_169",
+        "rank": "diamond",
+        "color": "#47C870",
+        "isBot": true,
+        "titles": [
+          "Фразовый маньяк"
+        ],
+        "winRate": 0.71,
+        "avatarEmoji": "20",
+        "name": "шустрый_гром",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_170",
+      "exists": true,
+      "data": {
+        "botId": "bot_170",
+        "titles": [],
+        "isBot": true,
+        "color": "#FF5B6C",
+        "rank": "gold",
+        "winRate": 0.61,
+        "avatarEmoji": "custom:custom-gen-54:citrine:white",
+        "avatarAura": "aura-ember",
+        "name": "шустрый_скворец",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_171",
+      "exists": true,
+      "data": {
+        "botId": "bot_171",
+        "color": "#FF9F43",
+        "isBot": true,
+        "rank": "gold",
+        "titles": [
+          "Ветеран слотов"
+        ],
+        "winRate": 0.49,
+        "avatarEmoji": "15",
+        "name": "мятный_лис",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_172",
+      "exists": true,
+      "data": {
+        "botId": "bot_172",
+        "isBot": true,
+        "color": "#FF9F43",
+        "rank": "diamond",
+        "titles": [
+          "Ветеран слотов"
+        ],
+        "winRate": 0.5,
+        "avatarEmoji": "17",
+        "name": "мятный_кот",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_173",
+      "exists": true,
+      "data": {
+        "botId": "bot_173",
+        "titles": [
+          "Тихий охотник"
+        ],
+        "isBot": true,
+        "color": "#47C870",
+        "rank": "gold",
+        "winRate": 0.37,
+        "avatarEmoji": "56",
+        "name": "мятный_сова",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_174",
+      "exists": true,
+      "data": {
+        "botId": "bot_174",
+        "isBot": true,
+        "color": "#FF9F43",
+        "rank": "gold",
+        "titles": [],
+        "winRate": 0.38,
+        "avatarEmoji": "41",
+        "name": "мятный_чай",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_175",
+      "exists": true,
+      "data": {
+        "botId": "bot_175",
+        "titles": [],
+        "isBot": true,
+        "color": "#B78CFF",
+        "rank": "platinum",
+        "winRate": 0.44,
+        "avatarEmoji": "34",
+        "name": "мятный_ветер",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_176",
+      "exists": true,
+      "data": {
+        "botId": "bot_176",
+        "isBot": true,
+        "color": "#16B7D9",
+        "rank": "silver",
+        "titles": [],
+        "winRate": 0.35,
+        "avatarEmoji": "16",
+        "name": "мятный_ёж",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_177",
+      "exists": true,
+      "data": {
+        "botId": "bot_177",
+        "isBot": true,
+        "color": "#B78CFF",
+        "rank": "platinum",
+        "titles": [],
+        "winRate": 0.57,
+        "avatarEmoji": "custom:custom-gen-41:royal:black",
+        "name": "мятный_кедр",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_178",
+      "exists": true,
+      "data": {
+        "botId": "bot_178",
+        "color": "#B78CFF",
+        "isBot": true,
+        "rank": "silver",
+        "titles": [
+          "Ветеран слотов"
+        ],
+        "winRate": 0.31,
+        "avatarEmoji": "43",
+        "name": "мятный_луч",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_179",
+      "exists": true,
+      "data": {
+        "botId": "bot_179",
+        "isBot": true,
+        "color": "#47C870",
+        "rank": "bronze",
+        "titles": [
+          "Словарный запас"
+        ],
+        "winRate": 0.45,
+        "avatarEmoji": "25",
+        "name": "мятный_гром",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_180",
+      "exists": true,
+      "data": {
+        "botId": "bot_180",
+        "isBot": true,
+        "color": "#FF9F43",
+        "rank": "diamond",
+        "titles": [
+          "Фразовый маньяк"
+        ],
+        "winRate": 0.53,
+        "avatarEmoji": "42",
+        "name": "мятный_скворец",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_181",
+      "exists": true,
+      "data": {
+        "botId": "bot_181",
+        "isBot": true,
+        "color": "#B78CFF",
+        "rank": "platinum",
+        "titles": [],
+        "winRate": 0.83,
+        "avatarEmoji": "13",
+        "name": "тёплый_лис",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_182",
+      "exists": true,
+      "data": {
+        "botId": "bot_182",
+        "isBot": true,
+        "color": "#16B7D9",
+        "rank": "gold",
+        "titles": [
+          "Спринтер"
+        ],
+        "winRate": 0.51,
+        "avatarEmoji": "50",
+        "name": "тёплый_кот",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_183",
+      "exists": true,
+      "data": {
+        "botId": "bot_183",
+        "isBot": true,
+        "color": "#16B7D9",
+        "rank": "silver",
+        "titles": [
+          "Словарный запас"
+        ],
+        "winRate": 0.33,
+        "avatarEmoji": "3",
+        "name": "тёплый_сова",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_184",
+      "exists": true,
+      "data": {
+        "botId": "bot_184",
+        "isBot": true,
+        "color": "#16B7D9",
+        "rank": "silver",
+        "titles": [],
+        "winRate": 0.6,
+        "avatarEmoji": "15",
+        "name": "тёплый_чай",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_185",
+      "exists": true,
+      "data": {
+        "botId": "bot_185",
+        "color": "#47C870",
+        "isBot": true,
+        "rank": "gold",
+        "titles": [],
+        "winRate": 0.79,
+        "avatarEmoji": "32",
+        "name": "тёплый_ветер",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_186",
+      "exists": true,
+      "data": {
+        "botId": "bot_186",
+        "isBot": true,
+        "color": "#16B7D9",
+        "rank": "silver",
+        "titles": [],
+        "winRate": 0.59,
+        "avatarEmoji": "15",
+        "name": "тёплый_ёж",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_187",
+      "exists": true,
+      "data": {
+        "botId": "bot_187",
+        "titles": [],
+        "isBot": true,
+        "color": "#47C870",
+        "rank": "silver",
+        "winRate": 0.63,
+        "avatarEmoji": "20",
+        "name": "тёплый_кедр",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_188",
+      "exists": true,
+      "data": {
+        "botId": "bot_188",
+        "winRate": 0.75,
+        "color": "#FF5B6C",
+        "isBot": true,
+        "rank": "platinum",
+        "titles": [
+          "Словарный запас"
+        ],
+        "avatarEmoji": "17",
+        "name": "тёплый_луч",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_189",
+      "exists": true,
+      "data": {
+        "botId": "bot_189",
+        "isBot": true,
+        "color": "#16B7D9",
+        "rank": "platinum",
+        "titles": [
+          "Ветеран слотов"
+        ],
+        "winRate": 0.38,
+        "avatarEmoji": "13",
+        "name": "тёплый_гром",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_190",
+      "exists": true,
+      "data": {
+        "botId": "bot_190",
+        "rank": "gold",
+        "isBot": true,
+        "color": "#FFC800",
+        "titles": [],
+        "winRate": 0.57,
+        "avatarEmoji": "33",
+        "name": "тёплый_скворец",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_191",
+      "exists": true,
+      "data": {
+        "botId": "bot_191",
+        "rank": "gold",
+        "isBot": true,
+        "color": "#FF5B6C",
+        "titles": [
+          "Фразовый маньяк"
+        ],
+        "winRate": 0.58,
+        "avatarEmoji": "26",
+        "name": "дикий_лис",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_192",
+      "exists": true,
+      "data": {
+        "botId": "bot_192",
+        "isBot": true,
+        "color": "#B78CFF",
+        "rank": "silver",
+        "titles": [],
+        "winRate": 0.21,
+        "avatarEmoji": "33",
+        "name": "дикий_кот",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_193",
+      "exists": true,
+      "data": {
+        "botId": "bot_193",
+        "rank": "silver",
+        "titles": [],
+        "isBot": true,
+        "color": "#FFC800",
+        "winRate": 0.28,
+        "avatarEmoji": "32",
+        "name": "дикий_сова",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_194",
+      "exists": true,
+      "data": {
+        "botId": "bot_194",
+        "isBot": true,
+        "color": "#FFC800",
+        "rank": "bronze",
+        "titles": [
+          "Словарный запас"
+        ],
+        "winRate": 0.66,
+        "avatarEmoji": "4",
+        "name": "дикий_чай",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_195",
+      "exists": true,
+      "data": {
+        "botId": "bot_195",
+        "color": "#FF5B6C",
+        "isBot": true,
+        "rank": "gold",
+        "titles": [
+          "Ветеран слотов"
+        ],
+        "winRate": 0.34,
+        "avatarEmoji": "19",
+        "name": "дикий_ветер",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_196",
+      "exists": true,
+      "data": {
+        "botId": "bot_196",
+        "isBot": true,
+        "color": "#B78CFF",
+        "rank": "diamond",
+        "titles": [
+          "Тихий охотник"
+        ],
+        "winRate": 0.64,
+        "avatarEmoji": "18",
+        "name": "дикий_ёж",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_197",
+      "exists": true,
+      "data": {
+        "botId": "bot_197",
+        "rank": "platinum",
+        "isBot": true,
+        "color": "#47C870",
+        "titles": [
+          "Словарный запас"
+        ],
+        "winRate": 0.7,
+        "avatarEmoji": "27",
+        "name": "дикий_кедр",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_198",
+      "exists": true,
+      "data": {
+        "botId": "bot_198",
+        "titles": [],
+        "isBot": true,
+        "color": "#16B7D9",
+        "rank": "gold",
+        "winRate": 0.32,
+        "avatarEmoji": "51",
+        "name": "дикий_луч",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_199",
+      "exists": true,
+      "data": {
+        "botId": "bot_199",
+        "isBot": true,
+        "color": "#FF5B6C",
+        "rank": "diamond",
+        "titles": [
+          "Словарный запас"
+        ],
+        "winRate": 0.66,
+        "avatarEmoji": "33",
+        "avatarAura": "aura-lagoon",
+        "name": "дикий_гром",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    },
+    {
+      "id": "bot_200",
+      "exists": true,
+      "data": {
+        "botId": "bot_200",
+        "rank": "gold",
+        "color": "#FF9F43",
+        "isBot": true,
+        "titles": [],
+        "winRate": 0.57,
+        "avatarEmoji": "19",
+        "name": "дикий_скворец",
+        "seedVersion": "tournament-bots-v4-invented-20260801",
+        "updatedAt": 1785655003490
+      }
+    }
+  ]
+}

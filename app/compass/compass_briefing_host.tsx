@@ -25,6 +25,7 @@ import { triLang } from '../../constants/i18n';
 import { diagnosticContentAvailableForTarget, frenchDiagnosticGateCopy } from '../diagnostic_target_gate';
 import { aiDialogContentAvailableForTarget, frenchAiDialogGateCopy } from '../ai_dialog_target_gate';
 import { emitAppEvent } from '../events';
+import { soundDirector } from '../../modules/audio/sound_director';
 import { AUTH_PROMPT_SHOWN_KEY, getLinkedAuthInfo } from '../auth_provider';
 import { flashcardsSourceGatedContentAvailableForTarget, frenchFlashcardsGateCopy } from '../flashcards_target_gate';
 import { frenchTrainerGateCopy, trainerSessionContentAvailableForTarget } from '../trainer_target_gate';
@@ -617,6 +618,19 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
       _compassBriefingOnScreen = false;
     };
   }, [arbitratedVisible]);
+
+  // зачем: входящая заявка в друзья требует ответа, поэтому её слышно — но
+  // ровно в тот момент, когда брифинг РЕАЛЬНО на экране (арбитр мог держать
+  // его в очереди за другой модалкой), а не когда сводка загрузилась в фоне.
+  // Дедуп в каталоге не даст прозвучать дважды, если тост-фолбэк успел раньше.
+  useEffect(() => {
+    if (!arbitratedVisible) return;
+    if (!socialEvents.some((e) => e.kind === 'friend_request')) return;
+    soundDirector.request('pm.social.friend_request', {
+      scope: 'compass-briefing',
+      dedupeKey: 'friend-request',
+    });
+  }, [arbitratedVisible, socialEvents]);
 
   // Рендерим, если Компас включён И (есть премиум ИЛИ это приветственный день).
   // Приветствие первого дня/возврата — знакомство с Компасом, доступно бесплатным;

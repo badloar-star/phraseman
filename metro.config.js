@@ -127,6 +127,7 @@ const storeReleaseDevModules = new Set([
   './_admin_celebration_lab',
   './_admin_speaking_lab',
   './_admin_referral_lab',
+  './_admin_sound_lab',
   './_pos_analytics_audit',
   './flashcards_market_dev',
 ]);

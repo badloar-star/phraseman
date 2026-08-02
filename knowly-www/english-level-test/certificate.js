@@ -9,6 +9,7 @@
 
   const CERT_WIDTH = 1100;
   const CERT_HEIGHT = 780;
+  const CERTIFICATE_NAME_MAX_WIDTH = 760;
 
   const THEMES = {
     gold: {
@@ -69,37 +70,20 @@
   };
   const CERTIFICATE_LEVELS = new Set(['Pre-A1', 'A1', 'A2', 'B1', 'B2', 'C1', 'C2']);
 
-  // зачем: владелец потребовал выбор языка сертификата — либо ВСЁ на английском
-  // (включая дату), либо ВСЁ на русском; раньше дата была ru-RU на англ. тексте.
-  const LANGS = {
-    en: {
-      label: 'English',
-      dateLocale: 'en-GB',
-      title: 'Certificate of Completion',
-      certifies: 'This certifies that',
-      completed: 'completed the Phraseman English Level Check',
-      received: 'and received an estimated CEFR level of',
-      summary: (correct, answered) => `Preliminary text-based assessment · ${correct}/${answered} correct`,
-      informal: 'This is an informal assessment. It is not an accredited language qualification.',
+  const LANGS = Object.fromEntries(EnglishTestI18n.UI_LOCALES.map((locale) => [
+    locale,
+    {
+      label: EnglishTestI18n.LOCALE_META[locale].label,
+      dateLocale: EnglishTestI18n.LOCALE_META[locale].dateLocale,
     },
-    ru: {
-      label: 'Русский',
-      dateLocale: 'ru-RU',
-      title: 'Сертификат',
-      certifies: 'Настоящий сертификат выдан',
-      completed: 'за прохождение проверки уровня английского Phraseman',
-      received: 'с предварительной оценкой по шкале CEFR',
-      summary: (correct, answered) => `Предварительная текстовая оценка · ${correct}/${answered} верно`,
-      informal: 'Это неофициальная оценка, а не аккредитованная языковая квалификация.',
-    },
-  };
+  ]));
 
   let currentTheme = 'gold';
   let activeCertificateClose = null;
   let activeCertificateReturnFocus = null;
 
   function certificateLocale(locale) {
-    return locale === 'ru' ? 'ru' : 'en';
+    return typeof EnglishTestI18n !== 'undefined' && EnglishTestI18n.UI_LOCALES.includes(locale) ? locale : 'en';
   }
 
   function certificateTestLanguage(testLanguage) {
@@ -136,6 +120,25 @@
     return Array.from(safe || fallback).slice(0, maxLength).join('');
   }
 
+  let certificateNameMeasureContext = null;
+  function certificateNameFontSize(name) {
+    try {
+      if (!certificateNameMeasureContext) {
+        certificateNameMeasureContext = document.createElement('canvas').getContext('2d');
+      }
+      if (certificateNameMeasureContext) {
+        certificateNameMeasureContext.font = 'bold 50px Georgia';
+        const measuredWidth = certificateNameMeasureContext.measureText(String(name || '')).width;
+        if (Number.isFinite(measuredWidth) && measuredWidth > 0) {
+          return Math.max(10, Math.min(50, (50 * CERTIFICATE_NAME_MAX_WIDTH) / measuredWidth)).toFixed(1);
+        }
+      }
+    } catch (_) {
+      // Canvas can be unavailable in restricted browsers; the conservative fallback still fits 60 characters.
+    }
+    return Math.max(10, Math.min(50, CERTIFICATE_NAME_MAX_WIDTH / Math.max(1, Array.from(String(name || '')).length))).toFixed(1);
+  }
+
   function certificateFilename(data, themeKey, locale) {
     const language = EnglishTestI18n.TESTS[certificateTestLanguage(data.testLanguage)];
     const currentLocale = certificateLocale(locale);
@@ -170,7 +173,7 @@
 
       <text x="${cx}" y="155" text-anchor="middle" font-family="Georgia,serif" font-size="40" fill="${t.title}" font-weight="bold">${escapeXml(certificateCopy(locale, 'certificate.bodyTitle'))}</text>
       <text x="${cx}" y="210" text-anchor="middle" font-family="Georgia,serif" font-size="19" fill="${t.text}">${escapeXml(certificateCopy(locale, 'certificate.certifies'))}</text>
-      <text x="${cx}" y="295" text-anchor="middle" font-family="Georgia,serif" font-size="50" fill="${t.title}" font-weight="bold">${escapeXml(name)}</text>
+      <text x="${cx}" y="295" text-anchor="middle" font-family="Georgia,serif" font-size="${certificateNameFontSize(name)}" fill="${t.title}" font-weight="bold">${escapeXml(name)}</text>
       <line x1="300" y1="320" x2="${CERT_WIDTH - 300}" y2="320" stroke="${t.border}" stroke-width="2"/>
       <text x="${cx}" y="370" text-anchor="middle" font-family="Georgia,serif" font-size="19" fill="${t.text}">${escapeXml(certificateCopy(locale, 'certificate.completed', { language }))}</text>
       <text x="${cx}" y="410" text-anchor="middle" font-family="Georgia,serif" font-size="19" fill="${t.text}">${escapeXml(certificateCopy(locale, 'certificate.received'))}</text>
@@ -225,18 +228,18 @@
     container.className = 'elt-cert-modal';
     container.innerHTML = `
       <div class="elt-cert-backdrop"></div>
-      <div class="elt-cert-container" role="dialog" aria-modal="true" aria-label="Сертификат результата">
-        <button class="elt-cert-close" type="button" aria-label="Закрыть">&times;</button>
+      <div class="elt-cert-container" role="dialog" aria-modal="true" aria-label="${certificateCopy(currentLang, 'certificate.dialogLabel')}">
+        <button class="elt-cert-close" type="button" aria-label="${certificateCopy(currentLang, 'certificate.closeLabel')}">&times;</button>
 
-        <div class="elt-cert-langs" role="group" aria-label="Язык сертификата">
+        <div class="elt-cert-langs" role="group" aria-label="${certificateCopy(currentLang, 'certificate.languageGroup')}">
           ${Object.entries(LANGS).map(([key, lang]) => `
             <button class="elt-cert-lang-btn${key === currentLang ? ' active' : ''}" data-lang="${key}" type="button">${lang.label}</button>
           `).join('')}
         </div>
 
-        <div class="elt-cert-themes">
+        <div class="elt-cert-themes" role="group">
           ${Object.entries(THEMES).map(([key, t]) => `
-            <button class="elt-cert-theme-btn${key === currentTheme ? ' active' : ''}" data-theme="${key}" style="--theme-color:${t.ribbon}" title="${t.name}">
+            <button class="elt-cert-theme-btn${key === currentTheme ? ' active' : ''}" data-theme="${key}" type="button" aria-pressed="${String(key === currentTheme)}" style="--theme-color:${t.ribbon}" title="${t.name}">
               <span class="elt-cert-theme-swatch" style="background:${t.ribbon}"></span>
               <span class="elt-cert-theme-name">${t.name}</span>
             </button>
@@ -254,9 +257,9 @@
         </div>` : ''}
 
         <div class="elt-cert-actions">
-          <button class="elt-btn elt-btn-primary" id="certDownloadPng">Скачать PNG</button>
-          <button class="elt-btn elt-btn-secondary" id="certPrint">Печать / PDF</button>
-          <button class="elt-btn elt-btn-ghost" id="certClose">Закрыть</button>
+          <button class="elt-btn elt-btn-primary" id="certDownloadPng">${certificateCopy(currentLang, 'certificate.downloadPng')}</button>
+          <button class="elt-btn elt-btn-secondary" id="certPrint">${certificateCopy(currentLang, 'certificate.printPdf')}</button>
+          <button class="elt-btn elt-btn-ghost" id="certClose">${certificateCopy(currentLang, 'certificate.close')}</button>
         </div>
       </div>
     `;
@@ -276,6 +279,7 @@
       });
       container.querySelectorAll('.elt-cert-theme-btn').forEach((button) => {
         const themeName = text(`certificate.themes.${button.dataset.theme}`);
+        button.setAttribute('aria-pressed', String(button.dataset.theme === currentTheme));
         button.title = themeName;
         button.querySelector('.elt-cert-theme-name').textContent = themeName;
       });
@@ -357,8 +361,12 @@
         if (btn.dataset.theme === currentTheme) return;
         clearSavePreview();
         currentTheme = btn.dataset.theme;
-        container.querySelectorAll('.elt-cert-theme-btn').forEach((b) => b.classList.remove('active'));
+        container.querySelectorAll('.elt-cert-theme-btn').forEach((b) => {
+          b.classList.remove('active');
+          b.setAttribute('aria-pressed', 'false');
+        });
         btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
         rebuildCertArea();
       });
     });
@@ -532,6 +540,7 @@
   function printCert(svgMarkup, locale) {
     if (!svgMarkup) return;
     const printWindow = window.open('', '_blank');
+    if (!printWindow) return;
     const printTitle = escapeXml(certificateCopy(locale, 'certificate.printTitle'));
     printWindow.document.write(`
       <html>

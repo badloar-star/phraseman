@@ -60,6 +60,7 @@ export async function refillEnergyWithShards(params: {
 export function toastEnergyRefilledWithShards(): void {
   emitAppEvent('action_toast', {
     type: 'success',
+    soundEventId: 'pm.energy.refilled',
     messageRu: 'Энергия восстановлена.',
     messageUk: 'Енергію відновлено.',
     messageEs: 'Energía recuperada.',

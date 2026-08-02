@@ -443,14 +443,11 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, initSrs, onUpdate, onRese
       // [FeedbackKit] Ранее: hapticSuccess + correct-звук. fk.correct даёт тот же
       // haptic + тёплый «дин-дон»; fk.combo — лесенку нот/стингеры серии.
       fkComboRef.current += 1;
-      fk.correct();
-      fk.combo(fkComboRef.current);
+      fk.verdict({ correct: true, combo: fkComboRef.current });
     } else {
       // [FeedbackKit] Обрыв заметной серии → «шипение остывания», иначе мягкий «туп».
-      const brokeFrom = fkComboRef.current;
       fkComboRef.current = 0;
-      if (brokeFrom >= 3) fk.comboBreak(brokeFrom);
-      else fk.wrong();
+      fk.verdict({ correct: false });
       hadErrorThisVerb.current = true;
       shakyThisVerb.current = true;
 

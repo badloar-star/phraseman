@@ -14,7 +14,17 @@
   const STORE_URL_ANDROID = 'https://play.google.com/store/apps/details?id=app.phraseman';
   const STORE_URL_DESKTOP = '/download/';
 
-  const SOCIAL_PROOF_COUNT = 124000;
+  // зачем: владелец 2026-08-01/02 — общий счётчик "X учеников" был одним
+  // числом на все 5 языков и включал легаси-базу 124000 для английского
+  // (историческая точка ДО введения счётчика) — обе вещи нечестные. Все
+  // языки честно с 0, реальные завершения хранит сервер. Держим базу в паре
+  // с сервером (functions-english-test/completion_counter.js BASELINE_COMPLETED_BY_LANGUAGE).
+  const SOCIAL_PROOF_BASELINE_BY_LANGUAGE = { en: 0, de: 0, fr: 0, it: 0, es: 0 };
+  function socialProofBaseline(language) {
+    return Object.prototype.hasOwnProperty.call(SOCIAL_PROOF_BASELINE_BY_LANGUAGE, language)
+      ? SOCIAL_PROOF_BASELINE_BY_LANGUAGE[language]
+      : SOCIAL_PROOF_BASELINE_BY_LANGUAGE.en;
+  }
   const COMPLETION_LEGACY_OUTBOX_KEY = 'english_test_completion_outbox_v1';
   const COMPLETION_PENDING_PREFIX = 'english_test_completion_pending_v1:';
   const COMPLETION_ID_PATTERN = /^[a-f0-9]{48}$/;
@@ -23,6 +33,7 @@
   const COUNTER_REFRESH_MS = 30000;
   const MAX_BANK_VERSION_LENGTH = 32;
   const BANK_VERSION_PATTERN = /^\d{4}-\d{2}-\d{2}\.\d+$/;
+  const REPORT_COMMENT_MIN_LENGTH = 10;
 
   const hasI18n = typeof EnglishTestI18n !== 'undefined';
   const readStoredLocale = hasI18n ? EnglishTestI18n.readStoredLocale : () => null;
@@ -54,11 +65,15 @@
   let questionTimerId = 0;
   let attemptToken = null;
   let clientHash = null;
+  let siteReportClientHash = null;
   let consent = false;
   let questionStartTime = 0;
   let lastProgress = 0;
   let keydownBound = false;
   let currentView = null;
+  // Tracks whether the very first screen has mounted — the entrance cascade
+  // (viewEnter + staggered fadeInUp) plays only once, on that first paint.
+  let hasMountedFirstView = false;
   // The rendered node is disposable; attempt state lives in this explicit view model.
   let activeView = { kind: 'landing', data: null };
   let lastCertName = null; // имя последнего созданного сертификата (для повторного скачивания)
@@ -66,10 +81,11 @@
   let landingCounterNode = null;
   let landingCounterTimer = null;
   let landingCounterRequest = null;
+  let activeReportDialog = null;
 
   const app = document.getElementById('app');
   const countAnimations = new WeakMap();
-  const completionMemoryOutbox = new Set();
+  const completionMemoryOutbox = new Map(); // completionId → testLanguage
   const acceptedCompletionIds = new Set();
 
   function copy(key, vars) {
@@ -109,12 +125,86 @@
     renderLanding();
   }
 
-  function toggleUiLocale() {
-    uiLocale = uiLocale === 'ru' ? 'en' : 'ru';
+  function returnToLanding() {
+    attemptTestLanguage = null;
+    renderLanding();
+  }
+
+  function setUiLocale(locale) {
+    if (!EnglishTestI18n.UI_LOCALES.includes(locale) || locale === uiLocale) return;
+    uiLocale = locale;
     EnglishTestI18n.persistLocale(uiLocale);
     updatePageLocale();
     updateUrlSelection();
     rerenderForUiLocale();
+  }
+
+  // зачем: панель закрывается кликом снаружи/Escape независимо от того, на
+  // каком экране она открыта — один глобальный слушатель вместо дублирования
+  // на каждый из 6 мест, где рендерится brandHeader().
+  let openUiLocaleMenu = null;
+
+  function closeUiLocaleMenu() {
+    if (!openUiLocaleMenu) return;
+    const { trigger, panel } = openUiLocaleMenu;
+    panel.hidden = true;
+    trigger.setAttribute('aria-expanded', 'false');
+    openUiLocaleMenu = null;
+  }
+
+  document.addEventListener('click', (e) => {
+    if (!openUiLocaleMenu) return;
+    if (openUiLocaleMenu.root.contains(e.target)) return;
+    closeUiLocaleMenu();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && openUiLocaleMenu) {
+      const { trigger } = openUiLocaleMenu;
+      closeUiLocaleMenu();
+      trigger.focus();
+    }
+  });
+
+  function bindUiLocaleSelector(node) {
+    const root = node.querySelector('[data-ui-locale-menu]');
+    const trigger = node.querySelector('[data-ui-locale-trigger]');
+    const panel = node.querySelector('[data-ui-locale-panel]');
+    if (!root || !trigger || !panel) return;
+
+    trigger.addEventListener('click', () => {
+      if (openUiLocaleMenu) {
+        closeUiLocaleMenu();
+        return;
+      }
+      panel.hidden = false;
+      trigger.setAttribute('aria-expanded', 'true');
+      openUiLocaleMenu = { root, trigger, panel };
+      panel.querySelector('.elt-ui-locale-option--active')?.focus?.();
+    });
+
+    panel.querySelectorAll('[data-ui-locale-option]').forEach((option) => {
+      option.setAttribute('tabindex', '-1');
+      option.addEventListener('click', () => {
+        const locale = option.dataset.uiLocaleOption;
+        closeUiLocaleMenu();
+        setUiLocale(locale);
+      });
+    });
+
+    panel.addEventListener('keydown', (e) => {
+      const options = Array.from(panel.querySelectorAll('[data-ui-locale-option]'));
+      const currentIndex = options.indexOf(document.activeElement);
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        options[Math.min(currentIndex + 1, options.length - 1)]?.focus();
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        options[Math.max(currentIndex - 1, 0)]?.focus();
+      } else if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        document.activeElement?.dispatchEvent?.(new MouseEvent('click'));
+      }
+    });
   }
 
   function setActiveView(kind, data) {
@@ -156,6 +246,11 @@
     return clientHash;
   }
 
+  function getSiteReportClientHash() {
+    if (!siteReportClientHash) siteReportClientHash = generateToken();
+    return siteReportClientHash;
+  }
+
   async function api(action, payload) {
     if (!consent) return null;
     try {
@@ -180,8 +275,178 @@
     }
   }
 
+  function buildReportQuestionText(q, displayedQuestion) {
+    const lines = [
+      `Displayed scenario: ${displayedQuestion.scenario || ''}`,
+      `Displayed instruction: ${displayedQuestion.instruction || ''}`,
+      `Canonical scenario: ${q.scenario || ''}`,
+      `Canonical instruction: ${q.prompt || ''}`,
+    ];
+    if (q.stimulus) lines.push(`Stimulus: ${q.stimulus}`);
+    q.options.forEach((option, index) => {
+      lines.push(`${String.fromCharCode(65 + index)}. ${option}`);
+    });
+    return lines.join('\n').slice(0, 2500);
+  }
+
+  async function submitSiteReport(snapshot, comment) {
+    const response = await fetch(API_BASE, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        action: 'report_error',
+        source: 'site',
+        questionId: snapshot.questionId,
+        position: snapshot.position,
+        testLanguage: snapshot.testLanguage,
+        uiLocale: snapshot.uiLocale,
+        bankVersion: snapshot.bankVersion,
+        comment,
+        dataText: snapshot.dataText,
+        userAnswer: snapshot.userAnswer,
+        clientHash: getSiteReportClientHash(),
+        attemptToken: snapshot.attemptToken,
+      }),
+    });
+    if (!response.ok) throw new Error(response.status === 429 ? 'rate_limited' : 'report_failed');
+    return response.json();
+  }
+
+  function openReportDialog(q, displayedQuestion, position, trigger) {
+    if (activeReportDialog) activeReportDialog.close(false);
+    const testLanguage = attemptTestLanguage || selectedTestLanguage;
+    const snapshot = Object.freeze({
+      questionId: q.id,
+      position,
+      testLanguage,
+      uiLocale,
+      bankVersion,
+      attemptToken,
+      dataText: buildReportQuestionText(q, displayedQuestion),
+      userAnswer: selectedAnswerIndex >= 0 ? q.options[selectedAnswerIndex] : '',
+    });
+    const modal = el(`
+      <div class="elt-report-modal" role="dialog" aria-modal="true" aria-labelledby="reportTitle" aria-describedby="reportSubtitle">
+        <button type="button" class="elt-report-backdrop" tabindex="-1" aria-hidden="true"></button>
+        <section class="elt-report-panel">
+          <button type="button" class="elt-report-close" aria-label="${escapeHtml(copy('report.closeLabel'))}">×</button>
+          <div class="elt-report-form-view">
+            <h2 id="reportTitle">${escapeHtml(copy('report.title'))}</h2>
+            <p id="reportSubtitle">${escapeHtml(copy('report.subtitle'))}</p>
+            <form class="elt-report-form" novalidate>
+              <label class="elt-report-label" for="reportComment">${escapeHtml(copy('report.placeholder'))}</label>
+              <textarea id="reportComment" class="elt-report-input" rows="5" placeholder="${escapeHtml(copy('report.placeholder'))}" aria-describedby="reportHint reportError"></textarea>
+              <p class="elt-report-hint" id="reportHint">${escapeHtml(copy('report.hint', { count: REPORT_COMMENT_MIN_LENGTH }))}</p>
+              <p class="elt-report-error" id="reportError" role="alert" hidden></p>
+              <div class="elt-report-actions">
+                <button type="button" class="elt-report-cancel">${escapeHtml(copy('report.cancel'))}</button>
+                <button type="submit" class="elt-report-submit">${escapeHtml(copy('report.submit'))}</button>
+              </div>
+            </form>
+          </div>
+          <div class="elt-report-status" role="status" aria-live="polite" hidden>
+            <h2 class="elt-report-status-title"></h2>
+            <p class="elt-report-status-text"></p>
+            <button type="button" class="elt-report-status-close">${escapeHtml(copy('report.close'))}</button>
+          </div>
+        </section>
+      </div>
+    `);
+    const textarea = modal.querySelector('#reportComment');
+    const form = modal.querySelector('.elt-report-form');
+    const submit = modal.querySelector('.elt-report-submit');
+    const error = modal.querySelector('#reportError');
+    const formView = modal.querySelector('.elt-report-form-view');
+    const status = modal.querySelector('.elt-report-status');
+    const statusTitle = modal.querySelector('.elt-report-status-title');
+    const statusText = modal.querySelector('.elt-report-status-text');
+    const previousOverflow = document.body.style.overflow;
+    textarea.maxLength = 500;
+
+    const close = (restoreFocus = true) => {
+      modal.remove();
+      document.body.style.overflow = previousOverflow;
+      if (activeReportDialog && activeReportDialog.modal === modal) activeReportDialog = null;
+      if (restoreFocus && trigger?.isConnected) trigger.focus();
+    };
+    activeReportDialog = { modal, close };
+
+    const showFailure = () => {
+      error.textContent = copy('report.errorText');
+      error.hidden = false;
+      submit.disabled = false;
+      submit.removeAttribute('aria-busy');
+      submit.textContent = copy('report.submit');
+    };
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const comment = textarea.value.trim();
+      if (comment.length < REPORT_COMMENT_MIN_LENGTH) {
+        error.textContent = copy('report.tooShort', { count: REPORT_COMMENT_MIN_LENGTH });
+        error.hidden = false;
+        textarea.setAttribute('aria-invalid', 'true');
+        textarea.focus();
+        return;
+      }
+      error.hidden = true;
+      textarea.removeAttribute('aria-invalid');
+      submit.disabled = true;
+      submit.setAttribute('aria-busy', 'true');
+      submit.textContent = copy('report.sending');
+      try {
+        await submitSiteReport(snapshot, comment);
+        formView.hidden = true;
+        statusTitle.textContent = copy('report.successTitle');
+        statusText.textContent = copy('report.successText');
+        status.hidden = false;
+        modal.querySelector('.elt-report-status-close').focus();
+      } catch (_) {
+        showFailure();
+      }
+    });
+
+    modal.querySelector('.elt-report-backdrop').addEventListener('click', () => close());
+    modal.querySelector('.elt-report-close').addEventListener('click', () => close());
+    modal.querySelector('.elt-report-cancel').addEventListener('click', () => close());
+    modal.querySelector('.elt-report-status-close').addEventListener('click', () => close());
+    modal.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        close();
+        return;
+      }
+      if (event.key !== 'Tab') return;
+      const focusable = [...modal.querySelectorAll('button:not([disabled]):not([tabindex="-1"]), textarea:not([disabled])')]
+        .filter((node) => !node.closest('[hidden]'));
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    });
+
+    document.body.style.overflow = 'hidden';
+    document.body.appendChild(modal);
+    textarea.focus();
+  }
+
   function pendingCompletionKey(completionId) {
     return COMPLETION_PENDING_PREFIX + completionId;
+  }
+
+  // зачем: очередь хранит язык вместе с completionId, чтобы count_complete,
+  // отправленный ПОЗЖЕ (после релоада/восстановления сети), считал завершение
+  // в счётчик ТОГО языка, на котором тест реально проходили, а не текущего
+  // selectedTestLanguage на лендинге в момент флаша. Легаси-значение '1'
+  // (записанное до этой правки) — единственный язык, который тогда существовал.
+  function normalizeCompletionLanguage(value) {
+    return isAllowedTestLanguage(value) ? value : 'en';
   }
 
   function migrateLegacyCompletionOutbox() {
@@ -202,9 +467,9 @@
     ))];
     let allPersisted = true;
     for (const completionId of validIds) {
-      completionMemoryOutbox.add(completionId);
+      completionMemoryOutbox.set(completionId, 'en');
       try {
-        localStorage.setItem(pendingCompletionKey(completionId), '1');
+        localStorage.setItem(pendingCompletionKey(completionId), 'en');
       } catch (e) {
         allPersisted = false;
       }
@@ -217,10 +482,10 @@
     }
   }
 
-  function pendingCompletionIds() {
+  function pendingCompletions() {
     migrateLegacyCompletionOutbox();
-    const pending = new Set(
-      [...completionMemoryOutbox].filter((completionId) => !acceptedCompletionIds.has(completionId)),
+    const pending = new Map(
+      [...completionMemoryOutbox].filter(([completionId]) => !acceptedCompletionIds.has(completionId)),
     );
     try {
       for (let index = 0; index < localStorage.length; index += 1) {
@@ -228,7 +493,7 @@
         if (typeof key !== 'string' || !key.startsWith(COMPLETION_PENDING_PREFIX)) continue;
         const completionId = key.slice(COMPLETION_PENDING_PREFIX.length);
         if (COMPLETION_ID_PATTERN.test(completionId) && !acceptedCompletionIds.has(completionId)) {
-          pending.add(completionId);
+          pending.set(completionId, normalizeCompletionLanguage(localStorage.getItem(key)));
         }
       }
     } catch (e) {
@@ -237,13 +502,18 @@
     return [...pending];
   }
 
-  function queueCompletion(completionId) {
+  function pendingCompletionIds() {
+    return pendingCompletions().map(([completionId]) => completionId);
+  }
+
+  function queueCompletion(completionId, testLanguage) {
     if (typeof completionId !== 'string' || !COMPLETION_ID_PATTERN.test(completionId)) return false;
     if (acceptedCompletionIds.has(completionId)) return false;
+    const language = normalizeCompletionLanguage(testLanguage);
     migrateLegacyCompletionOutbox();
-    completionMemoryOutbox.add(completionId);
+    completionMemoryOutbox.set(completionId, language);
     try {
-      localStorage.setItem(pendingCompletionKey(completionId), '1');
+      localStorage.setItem(pendingCompletionKey(completionId), language);
     } catch (e) {
       // Memory is the fallback when storage is blocked or full.
     }
@@ -283,14 +553,15 @@
     if (completionFlushPromise) return completionFlushPromise;
     completionFlushPromise = (async () => {
       while (true) {
-        const pending = pendingCompletionIds();
-        const completionId = pending[0];
-        if (!completionId) return;
+        const pending = pendingCompletions();
+        const entry = pending[0];
+        if (!entry) return;
+        const [completionId, testLanguage] = entry;
         try {
           const response = await fetch(API_BASE, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ action: 'count_complete', completionId }),
+            body: JSON.stringify({ action: 'count_complete', completionId, testLanguage }),
           });
           const data = await response.json().catch(() => null);
           const accepted = response.ok
@@ -310,35 +581,49 @@
   }
 
   function reportTestCompletion() {
-    if (!queueCompletion(attemptToken)) return;
+    if (!queueCompletion(attemptToken, attemptTestLanguage)) return;
     void flushCompletionOutbox();
   }
 
-  function normalizePublicCompleted(value) {
-    return Number.isSafeInteger(value) && value >= SOCIAL_PROOF_COUNT ? value : SOCIAL_PROOF_COUNT;
+  function normalizePublicCompleted(language, value) {
+    const baseline = socialProofBaseline(language);
+    return Number.isSafeInteger(value) && value >= baseline ? value : baseline;
   }
 
   // зачем: владельцу мешала двухфазная анимация счётчика — сначала докрутка до
-  // заглушки 124 000, пауза, потом второй прогон до серверного числа. Храним
-  // последнее реальное значение и целимся сразу в него: один плавный заход.
-  const COMPLETED_CACHE_KEY = 'english_test_completed_cache_v1';
-  let bestCompleted = SOCIAL_PROOF_COUNT;
+  // заглушки, пауза, потом второй прогон до серверного числа. Храним последнее
+  // реальное значение ПО КАЖДОМУ ЯЗЫКУ и целимся сразу в него: один плавный
+  // заход, без «прыжка» на число другого языка при переключении на лендинге.
+  const COMPLETED_CACHE_KEY = 'english_test_completed_cache_by_language_v1';
+  let bestCompletedByLanguage = { ...SOCIAL_PROOF_BASELINE_BY_LANGUAGE };
   let completedFetchedAt = 0;
 
   function hydrateCompletedCache() {
     try {
       const parsed = JSON.parse(localStorage.getItem(COMPLETED_CACHE_KEY));
-      if (Number.isSafeInteger(parsed?.value)) bestCompleted = normalizePublicCompleted(parsed.value);
+      if (!parsed || typeof parsed !== 'object') return;
+      const values = parsed.values && typeof parsed.values === 'object' ? parsed.values : {};
+      const next = { ...SOCIAL_PROOF_BASELINE_BY_LANGUAGE };
+      for (const language of Object.keys(SOCIAL_PROOF_BASELINE_BY_LANGUAGE)) {
+        if (Number.isSafeInteger(values[language])) next[language] = normalizePublicCompleted(language, values[language]);
+      }
+      bestCompletedByLanguage = next;
     } catch (e) {
-      // Заглушка SOCIAL_PROOF_COUNT остаётся отправной точкой.
+      // Базовые значения по языку остаются отправной точкой.
     }
   }
 
-  function rememberCompleted(value) {
-    bestCompleted = normalizePublicCompleted(value);
+  function rememberCompleted(completedByLanguage) {
+    const next = { ...bestCompletedByLanguage };
+    for (const language of Object.keys(SOCIAL_PROOF_BASELINE_BY_LANGUAGE)) {
+      if (Number.isSafeInteger(completedByLanguage?.[language])) {
+        next[language] = normalizePublicCompleted(language, completedByLanguage[language]);
+      }
+    }
+    bestCompletedByLanguage = next;
     completedFetchedAt = Date.now();
     try {
-      localStorage.setItem(COMPLETED_CACHE_KEY, JSON.stringify({ value: bestCompleted, at: completedFetchedAt }));
+      localStorage.setItem(COMPLETED_CACHE_KEY, JSON.stringify({ values: bestCompletedByLanguage, at: completedFetchedAt }));
     } catch (e) {
       // Значение в памяти страницы — достаточно для этой сессии.
     }
@@ -353,19 +638,19 @@
       });
       if (!response.ok) return null;
       const data = await response.json();
-      return data?.ok === true && Number.isSafeInteger(data.completed)
-        ? normalizePublicCompleted(data.completed)
+      return data?.ok === true && data.completedByLanguage && typeof data.completedByLanguage === 'object'
+        ? data.completedByLanguage
         : null;
     } catch (e) {
       return null;
     }
   }
 
-  function applyCompletedCount(landing, value) {
-    const completed = normalizePublicCompleted(value);
+  function applyCompletedCount(landing, language, value) {
+    const completed = normalizePublicCompleted(language, value);
     const counter = landing?.querySelector('#proofCounter');
     const wrapper = landing?.querySelector('.elt-counter');
-    const localeTag = uiLocale === 'ru' ? 'ru-RU' : 'en-US';
+    const localeTag = EnglishTestI18n.LOCALE_META[uiLocale].bcp47;
     const formattedCompleted = completed.toLocaleString(localeTag);
     countUp(counter, completed, {
       duration: 900,
@@ -394,8 +679,11 @@
     if (landingCounterTimer !== null) clearTimeout(landingCounterTimer);
     landingCounterTimer = setTimeout(async () => {
       landingCounterTimer = null;
-      const completed = await fetchPublicCompleted();
-      if (completed !== null && isLandingCounterActive(node)) applyCompletedCount(node, completed);
+      const completedByLanguage = await fetchPublicCompleted();
+      if (completedByLanguage !== null && isLandingCounterActive(node)) {
+        rememberCompleted(completedByLanguage);
+        applyCompletedCount(node, selectedTestLanguage, bestCompletedByLanguage[selectedTestLanguage]);
+      }
       scheduleLandingCounterRefresh(node);
     }, COUNTER_REFRESH_MS);
   }
@@ -404,16 +692,16 @@
     // Свежее значение (моложе 30с) не перезапрашиваем — и дешевле по функциям,
     // и счётчик не дёргается вторым прогоном при возврате на лендинг.
     if (Date.now() - completedFetchedAt < COUNTER_REFRESH_MS) {
-      if (isLandingCounterActive(node)) applyCompletedCount(node, bestCompleted);
+      if (isLandingCounterActive(node)) applyCompletedCount(node, selectedTestLanguage, bestCompletedByLanguage[selectedTestLanguage]);
       return Promise.resolve();
     }
     if (landingCounterRequest?.node === node) return landingCounterRequest.promise;
     const request = { node, promise: null };
     request.promise = (async () => {
-      const completed = await fetchPublicCompleted();
-      if (completed === null) return;
-      rememberCompleted(completed);
-      if (isLandingCounterActive(node)) applyCompletedCount(node, bestCompleted);
+      const completedByLanguage = await fetchPublicCompleted();
+      if (completedByLanguage === null) return;
+      rememberCompleted(completedByLanguage);
+      if (isLandingCounterActive(node)) applyCompletedCount(node, selectedTestLanguage, bestCompletedByLanguage[selectedTestLanguage]);
     })().finally(() => {
       if (landingCounterRequest === request) landingCounterRequest = null;
     });
@@ -449,26 +737,46 @@
     return t.content.firstElementChild;
   }
 
-  function mountView(node) {
+  // зачем: владелец 2026-08-02 — переключение языка теста/интерфейса на ТОМ
+  // ЖЕ экране (например лендинг→лендинг из-за клика по флагу) заново
+  // проигрывало весь секундный каскад появления (заголовок, флаги, шаги,
+  // превью сертификата — 12+ элементов с накопленными задержками), выглядело
+  // как повторная загрузка/мигание. Каскад уместен только при первой загрузке
+  // страницы или реальной смене типа экрана (landing→question и т.п.) —
+  // вызывающая функция явно передаёт sameScreen:true для "тихого" перерендера
+  // (например renderQuestion с options.preserveAttempt, renderLanding вне
+  // самой первой загрузки) — hasMountedFirstView гарантирует, что первая
+  // загрузка страницы всегда получает полный каскад независимо от sameScreen.
+  function mountView(node, { sameScreen = false } = {}) {
     stopLandingCounterRefresh();
     const old = currentView;
+    const instant = sameScreen && hasMountedFirstView;
+    // зачем: фокус мог быть не только на самой кнопке-триггере, но и на
+    // опции внутри открытой панели (клавиатурная навигация стрелками перед
+    // выбором) — оба случая "владели" фокусом меню локали и после ререндера
+    // должны вернуть фокус на новый триггер, а не потерять его в пустоту.
     const restoreLocaleToggleFocus = Boolean(
       document.activeElement
       && typeof document.activeElement.matches === 'function'
-      && document.activeElement.matches('.elt-ui-locale-toggle'),
+      && (document.activeElement.matches('.elt-ui-locale-trigger') || document.activeElement.matches('.elt-ui-locale-option')),
     );
-    node.classList.add('elt-view');
+    node.classList.add(instant ? 'elt-view--instant' : 'elt-view');
     app.appendChild(node);
     currentView = node;
+    hasMountedFirstView = true;
     initMagnets(node);
-    window.scrollTo(0, 0);
+    if (!instant) window.scrollTo(0, 0);
     if (old) {
       unbindQuestionKeys();
-      old.classList.add('elt-view--exit');
-      old.setAttribute('aria-hidden', 'true');
-      setTimeout(() => old.remove(), 420);
+      if (instant) {
+        old.remove();
+      } else {
+        old.classList.add('elt-view--exit');
+        old.setAttribute('aria-hidden', 'true');
+        setTimeout(() => old.remove(), 420);
+      }
     }
-    if (restoreLocaleToggleFocus) node.querySelector('.elt-ui-locale-toggle')?.focus?.();
+    if (restoreLocaleToggleFocus) node.querySelector('.elt-ui-locale-trigger')?.focus?.();
     return node;
   }
 
@@ -525,6 +833,35 @@
 
   // ---------- Shared fragments ----------
 
+  // зачем: владелец 2026-08-02 — нативный <select> для языка интерфейса
+  // открывал системное меню ОС (некрасиво, не в стиле сайта). Кастомная
+  // кнопка + выпадающая панель с флагом и названием каждого языка, в стиле
+  // остальных элементов сайта (без обводки, золотой акцент на выборе).
+  function uiLocaleMenuHtml() {
+    const currentMeta = EnglishTestI18n.LOCALE_META[uiLocale];
+    return `
+      <div class="elt-ui-locale-control" data-ui-locale-menu>
+        <button type="button" class="elt-ui-locale-trigger" data-ui-locale-trigger aria-haspopup="listbox" aria-expanded="false" aria-label="${copy('aria.localeToggle')}" title="${copy('aria.localeToggle')}">
+          <span class="elt-ui-locale-flag"><img src="./assets/flags/${uiLocale}.webp" alt="" width="22" height="22" /></span>
+          <span class="elt-ui-locale-code">${currentMeta.shortLabel}</span>
+          <svg class="elt-ui-locale-chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <ul class="elt-ui-locale-panel" data-ui-locale-panel role="listbox" aria-label="${copy('aria.localeToggle')}" hidden>
+          ${EnglishTestI18n.UI_LOCALES.map((locale) => {
+            const meta = EnglishTestI18n.LOCALE_META[locale];
+            const active = locale === uiLocale;
+            return `
+              <li class="elt-ui-locale-option${active ? ' elt-ui-locale-option--active' : ''}" data-ui-locale-option="${locale}" role="option" aria-selected="${active}">
+                <span class="elt-ui-locale-flag"><img src="./assets/flags/${locale}.webp" alt="" width="22" height="22" /></span>
+                <span>${meta.label}</span>
+              </li>
+            `;
+          }).join('')}
+        </ul>
+      </div>
+    `;
+  }
+
   function brandHeader() {
     return `
       <header class="elt-brand">
@@ -532,9 +869,7 @@
           <img class="elt-brand-icon" src="/assets/phraseman-icon-128.png" alt="" width="34" height="34" />
           <span class="elt-brand-text"><b>Phraseman</b><small>${attemptTestLanguage === null ? selectedLandingLanguageName() : copy('header.brandSubtitle')}</small></span>
         </a>
-        <button class="elt-ui-locale-toggle" type="button" aria-label="${copy('aria.localeToggle')}" title="${copy('aria.localeToggle')}">
-          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 12h18M12 3c3 3.4 3 14.6 0 18M12 3c-3 3.4-3 14.6 0 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span>${uiLocale.toUpperCase()}</span>
-        </button>
+        ${uiLocaleMenuHtml()}
       </header>
     `;
   }
@@ -616,20 +951,25 @@
           <section class="elt-language-selector" aria-label="${copy('aria.testSelector')}">
             <p class="elt-language-selector-title">${copy('languageSelector.testLanguage')}</p>
             <div class="elt-language-options" role="group" aria-label="${copy('aria.testSelector')}">
-              ${EnglishTestI18n.TEST_LANGUAGES.map((code) => `<button class="elt-language-option${code === selectedTestLanguage ? ' elt-language-option--active' : ''}" type="button" data-test-language="${code}" aria-pressed="${code === selectedTestLanguage}"><span aria-hidden="true">${code === selectedTestLanguage ? '✓' : '○'}</span>${EnglishTestI18n.TESTS[code].nativeLabel}</button>`).join('')}
+              ${EnglishTestI18n.TEST_LANGUAGES.map((code) => `
+                <button class="elt-language-option${code === selectedTestLanguage ? ' elt-language-option--active' : ''}" type="button" data-test-language="${code}" aria-pressed="${code === selectedTestLanguage}">
+                  <span class="elt-language-flag"><img src="./assets/flags/${code}.webp" alt="" width="56" height="56" /></span>
+                  <span class="elt-language-name">${EnglishTestI18n.TESTS[code].nativeLabel}</span>
+                </button>
+              `).join('')}
             </div>
           </section>
 
-          <div class="elt-counter" role="status" aria-label="${copy('socialProof.text', { count: SOCIAL_PROOF_COUNT.toLocaleString(uiLocale === 'ru' ? 'ru-RU' : 'en-US') })}">
-            <span class="elt-counter-value"><span id="proofCounter">0</span>+</span>
-            <span class="elt-counter-label">${copy('socialProof.text', { count: SOCIAL_PROOF_COUNT.toLocaleString(uiLocale === 'ru' ? 'ru-RU' : 'en-US') })}</span>
+          <div class="elt-counter" role="status" aria-atomic="true" aria-label="${copy('socialProof.text', { count: bestCompletedByLanguage[selectedTestLanguage].toLocaleString(EnglishTestI18n.LOCALE_META[uiLocale].bcp47) })}">
+            <span class="elt-counter-value" aria-hidden="true"><span id="proofCounter">0</span>+</span>
+            <span class="elt-counter-label">${copy('socialProof.text', { count: bestCompletedByLanguage[selectedTestLanguage].toLocaleString(EnglishTestI18n.LOCALE_META[uiLocale].bcp47) })}</span>
           </div>
 
           <button class="elt-btn elt-btn-primary elt-btn-hero" data-magnet id="startBtn">${copy('landing.start')}</button>
           <p class="elt-timer-note">${copy('landing.timerNote')}</p>
 
           <label class="elt-consent">
-            <input type="checkbox" id="consentCheckbox" />
+            <input type="checkbox" id="consentCheckbox"${consent ? ' checked' : ''} />
             <span>${copy('consent.text')}</span>
           </label>
         </section>
@@ -683,20 +1023,21 @@
       </div>
     `);
 
-    mountView(node);
+    mountView(node, { sameScreen: true });
     hideBrokenBrandIcons(node);
-    node.querySelector('.elt-ui-locale-toggle')?.addEventListener('click', toggleUiLocale);
+    bindUiLocaleSelector(node);
     node.querySelectorAll('[data-test-language]').forEach((button) => {
       button.addEventListener('click', () => selectTestLanguage(button.dataset.testLanguage));
     });
 
-    applyCompletedCount(node, bestCompleted);
+    applyCompletedCount(node, selectedTestLanguage, bestCompletedByLanguage[selectedTestLanguage]);
     startLandingCounterRefresh(node);
     void flushCompletionOutbox();
 
     const readConsent = () => {
       consent = node.querySelector('#consentCheckbox').checked;
     };
+    node.querySelector('#consentCheckbox').addEventListener('change', readConsent);
     node.querySelector('#startBtn').addEventListener('click', async () => {
       readConsent();
       await startTest();
@@ -792,14 +1133,14 @@
     setActiveView('loading', null);
     const node = el(`<div class="elt-loading" role="status">${brandHeader()}<h1>${copy('loading.title')}</h1><p>${copy('loading.text')}</p></div>`);
     mountView(node);
-    node.querySelector('.elt-ui-locale-toggle')?.addEventListener('click', toggleUiLocale);
+    bindUiLocaleSelector(node);
   }
 
   function renderError() {
     setActiveView('error', null);
     const node = el(`<div class="elt-error" role="alert">${brandHeader()}<h1>${copy('error.title')}</h1><p>${copy('error.text')}</p><button type="button" class="elt-btn elt-btn-primary" id="retryBtn" title="${copy('error.retryTitle')}">${copy('error.retry')}</button></div>`);
     mountView(node);
-    node.querySelector('.elt-ui-locale-toggle')?.addEventListener('click', toggleUiLocale);
+    bindUiLocaleSelector(node);
     node.querySelector('#retryBtn').addEventListener('click', startTest);
   }
 
@@ -826,8 +1167,15 @@
     setActiveView('question', q);
     const position = engine.history.length + 1;
     const progress = Math.min((position / 20) * 100, 100);
-    const questionLanguage = EnglishTestI18n.TESTS[attemptTestLanguage || selectedTestLanguage].bcp47;
-    const serviceQuestion = uiLocale === 'ru' ? { scenario: q.scenarioRu, instruction: q.instructionRu, language: 'ru' } : { scenario: q.scenario, instruction: q.prompt, language: 'en' };
+    const testLanguage = attemptTestLanguage || selectedTestLanguage;
+    const questionLanguage = EnglishTestI18n.TESTS[testLanguage].bcp47;
+    const serviceQuestion = uiLocale === 'ru'
+      ? { scenario: q.scenarioRu, instruction: q.instructionRu, language: 'ru' }
+      : uiLocale === 'en'
+        ? { scenario: q.scenario, instruction: q.prompt, language: 'en' }
+        : testLanguage === 'en'
+          ? { scenario: q.scenario, instruction: q.prompt, language: 'en' }
+          : { scenario: copy('question.context'), instruction: copy('question.contextInstruction'), language: uiLocale };
     const timerLeftMs = options.preserveAttempt ? Math.max(0, questionDeadline - Date.now()) : QUESTION_SECONDS * 1000;
     const timerSeconds = Math.ceil(timerLeftMs / 1000);
     const timerOffset = (TIMER_CIRCUMFERENCE * (1 - timerLeftMs / (QUESTION_SECONDS * 1000))).toFixed(1);
@@ -838,7 +1186,7 @@
         <div class="elt-progress-bar"><div class="elt-progress-fill"></div></div>
         <div class="elt-question-meta">
           <span>${copy('question.number', { count: position })}</span>
-          <span class="elt-timer" id="qTimer" role="timer" aria-label="${copy('question.timerRemaining')}">
+          <span class="elt-timer" id="qTimer" role="timer" aria-live="off" aria-label="${copy('question.timerRemaining')}">
             <svg viewBox="0 0 36 36" aria-hidden="true">
               <circle class="elt-timer-track" cx="18" cy="18" r="15.5"></circle>
               <circle class="elt-timer-ring" id="qTimerRing" cx="18" cy="18" r="15.5" style="stroke-dashoffset:${timerOffset}"></circle>
@@ -855,7 +1203,7 @@
           ${q.options
             .map(
               (opt, i) => `
-            <button class="elt-option${selectedAnswerIndex === i ? ' elt-option--picked' : ''}" data-index="${i}" role="radio" aria-checked="${selectedAnswerIndex === i}" tabindex="0"${answerLocked ? ' disabled' : ''}>
+            <button class="elt-option${selectedAnswerIndex === i ? ' elt-option--picked' : ''}" data-index="${i}" role="radio" aria-checked="${selectedAnswerIndex === i}" tabindex="${i === 0 ? '0' : '-1'}"${answerLocked ? ' disabled' : ''}>
               <span class="elt-option-letter">${String.fromCharCode(65 + i)}</span>
               <span class="elt-option-text" lang="${questionLanguage}">${escapeHtml(opt)}</span>
             </button>
@@ -867,10 +1215,13 @@
           <button class="elt-btn elt-btn-secondary" id="skipBtn">${copy('question.skip')}</button>
           <button class="elt-btn elt-btn-ghost" id="exitBtn">${copy('question.exit')}</button>
         </div>
+        <div class="elt-report-trigger-wrap">
+          <button type="button" class="elt-report-trigger" id="reportErrorBtn">${copy('report.trigger')}</button>
+        </div>
       </div>
     `);
 
-    mountView(node);
+    mountView(node, { sameScreen: options.preserveAttempt });
 
     // Elastic progress: animate from previous width to the new one.
     const fill = node.querySelector('.elt-progress-fill');
@@ -889,7 +1240,7 @@
       });
     });
 
-    node.querySelector('.elt-ui-locale-toggle')?.addEventListener('click', toggleUiLocale);
+    bindUiLocaleSelector(node);
     bindQuestionKeys();
     node.querySelector('#skipBtn').addEventListener('click', () => {
       if (answerLocked) return;
@@ -898,6 +1249,9 @@
       answerQuestion(q, -1, true);
     });
     node.querySelector('#exitBtn').addEventListener('click', confirmExit);
+    node.querySelector('#reportErrorBtn').addEventListener('click', (event) => {
+      openReportDialog(q, serviceQuestion, position, event.currentTarget);
+    });
     if (!options.preserveAttempt) startQuestionTimer();
   }
 
@@ -973,6 +1327,13 @@
     return true;
   }
 
+  function setRovingOptionFocus(buttons, targetIndex) {
+    buttons.forEach((button, index) => {
+      button.tabIndex = index === targetIndex ? 0 : -1;
+    });
+    buttons[targetIndex]?.focus();
+  }
+
   function handleQuestionKeydown(e) {
     const view = currentView && currentView.classList.contains('elt-test') ? currentView : null;
     if (!view) return;
@@ -994,7 +1355,7 @@
       const i = parseInt(e.key, 10) - 1;
       if (buttons[i]) {
         e.preventDefault();
-        buttons[i].focus();
+        setRovingOptionFocus(buttons, i);
         selectAnswer(q, buttons[i]);
       }
       return;
@@ -1002,12 +1363,12 @@
 
     if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
       e.preventDefault();
-      const next = buttons[Math.min(idx + 1, buttons.length - 1)] || buttons[0];
-      next.focus();
+      const nextIndex = idx < 0 ? 0 : Math.min(idx + 1, buttons.length - 1);
+      setRovingOptionFocus(buttons, nextIndex);
     } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
       e.preventDefault();
-      const prev = buttons[Math.max(idx - 1, 0)] || buttons[buttons.length - 1];
-      prev.focus();
+      const previousIndex = idx < 0 ? buttons.length - 1 : Math.max(idx - 1, 0);
+      setRovingOptionFocus(buttons, previousIndex);
     }
   }
 
@@ -1055,7 +1416,7 @@
     if (consent && engine) {
       api('abandon', { lastPosition: engine.history.length });
     }
-    renderLanding();
+    returnToLanding();
   }
 
   // ---------- Result ----------
@@ -1089,7 +1450,7 @@
         <div class="elt-result-card">
           <div class="elt-level-badge">${escapeHtml(result.estimatedLevel)}</div>
           <h2>${copy('result.level', { level: escapeHtml(result.estimatedLevel) })}</h2>
-          <div class="elt-result-details">
+          <div class="elt-result-details" aria-live="off">
             <div class="elt-stat"><span class="elt-stat-value"><span id="statCorrect">0</span>/${result.answered}</span><span class="elt-stat-label">${copy('stats.correct')}</span></div>
             <div class="elt-stat"><span class="elt-stat-value"><span id="statAnswered">0</span>/${result.totalQuestions}</span><span class="elt-stat-label">${copy('stats.answered')}</span></div>
             <div class="elt-stat"><span class="elt-stat-value" id="statSkipped">0</span><span class="elt-stat-label">${copy('stats.skipped')}</span></div>
@@ -1117,9 +1478,9 @@
       </div>
     `);
 
-    mountView(node);
+    mountView(node, { sameScreen: options.preserveAttempt });
     hideBrokenBrandIcons(node);
-    node.querySelector('.elt-ui-locale-toggle')?.addEventListener('click', toggleUiLocale);
+    bindUiLocaleSelector(node);
 
     if (!options.preserveAttempt) {
       countUp(node.querySelector('#statCorrect'), result.correct, { delay: 250 });
@@ -1155,7 +1516,7 @@
       });
     });
     node.querySelector('#shareBtn').addEventListener('click', () => shareResult(result));
-    node.querySelector('#restartBtn').addEventListener('click', () => renderLanding());
+    node.querySelector('#restartBtn').addEventListener('click', returnToLanding);
   }
 
   function generateCertificate(name, result) {
@@ -1180,6 +1541,9 @@
       window.EnglishTestCertificate.show(certData);
     } else {
       const win = window.open('', '_blank');
+      if (!win) {
+        return;
+      }
       win.document.write(`
         <html><head><title>${copy('certificate.printTitle')}</title>
         <style>body{font-family:Georgia,serif;text-align:center;padding:40px;background:#0c0c0e;color:#e6e6e6} .cert{border:2px solid #2a9d5c;padding:60px;max-width:600px;margin:0 auto;border-radius:16px}</style>
@@ -1202,21 +1566,24 @@
   async function shareResult(result) {
     const language = EnglishTestI18n.TESTS[attemptTestLanguage || selectedTestLanguage].resultNames[uiLocale];
     const text = copy('sharing.resultPayload', { language, level: result.estimatedLevel });
-    const url = 'https://knowlyapps.com/english-level-test/';
+    const url = new URL('https://knowlyapps.com/english-level-test/');
+    url.searchParams.set('test', attemptTestLanguage || selectedTestLanguage);
+    url.searchParams.set('ui', uiLocale);
+    const shareUrl = url.toString();
     if (consent) api('share', { channel: 'web_share_api_attempted' });
     if (navigator.share) {
       try {
-        await navigator.share({ title: copy('sharing.webShareTitle'), text, url });
+        await navigator.share({ title: copy('sharing.webShareTitle'), text, url: shareUrl });
         if (consent) api('share', { channel: 'web_share_api_success' });
         return;
       } catch (e) { /* fall through */ }
     }
     try {
-      await navigator.clipboard.writeText(text + ' ' + url);
+      await navigator.clipboard.writeText(text + ' ' + shareUrl);
       alert(copy('alerts.copySuccess'));
       if (consent) api('share', { channel: 'clipboard_copy' });
     } catch (e) {
-      prompt(copy('sharing.clipboardPrompt'), text + ' ' + url);
+      prompt(copy('sharing.clipboardPrompt'), text + ' ' + shareUrl);
     }
   }
 
@@ -1268,9 +1635,9 @@
       </div>
     `);
 
-    mountView(node);
+    mountView(node, { sameScreen: options.preserveAttempt });
     hideBrokenBrandIcons(node);
-    node.querySelector('.elt-ui-locale-toggle')?.addEventListener('click', toggleUiLocale);
+    bindUiLocaleSelector(node);
 
     node.querySelector('#ctaPrimary').addEventListener('click', () => {
       // зачем: source:'result' — клик с экрана результата теста (не из сертификата).

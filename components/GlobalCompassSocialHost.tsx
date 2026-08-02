@@ -85,8 +85,14 @@ export default function GlobalCompassSocialHost() {
       // и в поле текущего языка, чтобы для не-RU не показать русский фолбэк.
       const text = news.lines.join('\n');
       const l = langRef.current;
+      // зачем: у входящей заявки в друзья свой звук — она требует ответа, в
+      // отличие от «лайка» или «приняли твою заявку», которые просто сообщают.
+      // Сводка бывает смешанной, поэтому спрашиваем события, а не текст; если
+      // заявки нет — тост звучит обычным системным info.
+      const hasFriendRequest = news.events.some((e) => e.kind === 'friend_request');
       emitAppEvent('action_toast', {
         type: 'info',
+        ...(hasFriendRequest ? { soundEventId: 'pm.social.friend_request' as const } : null),
         messageRu: text,
         messageUk: l === 'uk' ? text : undefined,
         messageEs: l === 'es' ? text : undefined,

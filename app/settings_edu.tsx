@@ -21,6 +21,7 @@ import {
   type UserSettings,
 } from './user_settings_store';
 import { safeRouterBack } from './navigation_back';
+import { voicePlaybackPolicy } from '../modules/audio/voice_playback_policy';
 
 export {
   DEFAULT_SETTINGS,
@@ -81,29 +82,6 @@ export default function SettingsEdu() {
         id: 'Periksa saat mengetik kata terakhir',
         tr: 'Son kelimeyi yazınca kontrol et',
         pl: 'Sprawdzaj po wpisaniu ostatniego słowa',
-      }),
-    },
-    {
-      key: 'voiceOut',
-      label: L({
-        ru: 'Озвучить ответ',
-        uk: 'Озвучити відповідь',
-        es: 'Leer la respuesta',
-        'pt-BR': 'Ler a resposta em voz alta',
-        vi: 'Đọc to câu trả lời',
-        id: 'Bacakan jawaban',
-        tr: 'Cevabı seslendir',
-        pl: 'Przeczytaj odpowiedź na głos',
-      }),
-      sub: L({
-        ru: 'Произносить фразу после ответа',
-        uk: 'Вимовляти фразу після відповіді',
-        es: 'Leer la frase después de responder',
-        'pt-BR': 'Falar a frase depois de responder',
-        vi: 'Phát âm câu sau khi trả lời',
-        id: 'Ucapkan frasa setelah menjawab',
-        tr: 'Cevaptan sonra cümleyi seslendir',
-        pl: 'Wymawiaj frazę po odpowiedzi',
       }),
     },
     {
@@ -229,7 +207,7 @@ export default function SettingsEdu() {
               );
             })}
 
-            {s.voiceOut ? (
+            {
               <View
                 style={[
                   {
@@ -277,14 +255,16 @@ export default function SettingsEdu() {
                     // one in PHRASE_AUDIO_URL_MAP) so the user hears the actual
                     // app voice and its true loudness, not the robotic expo-speech
                     // voice. Reverts to TTS automatically if the clip is missing.
-                    speakAudio('a dark horse', rate, { language: 'en-US' });
+                        if (voicePlaybackPolicy.isEnabled()) {
+                          speakAudio('a dark horse', rate, { language: 'en-US' });
+                        }
                   }}
                   minimumTrackTintColor={t.textSecond}
                   maximumTrackTintColor={t.border}
                   thumbTintColor={t.textSecond}
                 />
               </View>
-            ) : null}
+            }
           </BouncyScrollView>
         </ContentWrap>
       </SafeAreaView>

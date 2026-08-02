@@ -20,6 +20,7 @@ import { enqueueThemedBlockingInfoAlert } from '../app/themed_blocking_alert_que
 import { router } from 'expo-router';
 import { emitAppEvent } from '../app/events';
 import { markAccountDeletedNoticePending } from '../app/account_deleted_notice';
+import { soundDirector } from '../modules/audio/sound_director';
 import CompassDepthSurface from './CompassDepthSurface';
 import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 
@@ -194,6 +195,15 @@ function DeleteAccountConfirmModal({ visible, onRequestClose }: Props) {
       // закрывается этот, на iOS ломает стек презентаций (экран настроек остаётся
       // на месте, тапы мертвы). Плашка живёт внутри уже смонтированного
       // онбординга — никакого present/dismiss.
+      // зачем: точка невозврата пройдена (локальный замок записан) — именно это
+      // подтверждаем звуком, а не тап по кнопке. Ставим ДО onRequestClose():
+      // дальше экран размонтируется и уезжает онбординг, там звучать уже некому.
+      // Сеть при этом ещё доезжает фоном — звук привязан к необратимости, а не
+      // к ответу сервера.
+      soundDirector.request('pm.system.destructive_done', {
+        scope: 'account-delete',
+        dedupeKey: 'account-deleted',
+      });
       markAccountDeletedNoticePending();
       onRequestClose();
       // зачем: удаление вызывают и с ВЛОЖЕННЫХ экранов-маршрутов («Приватность и

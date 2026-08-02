@@ -86,6 +86,7 @@ import { isSpeakingEnabled } from './remote_flags';
 import { buildSpeakingStartOptions } from './speaking_recognition_options';
 import { TranscriptAccumulator } from './speaking_transcript_accumulator';
 import { useRecordStartCue } from '../hooks/use-record-start-cue';
+import { useTurnReadyCue } from '../hooks/use-turn-ready-cue';
 
 import { noAndroidOutline } from '../constants/androidGlow';
 const RECOMMENDED_EXCHANGES = 8;
@@ -203,6 +204,7 @@ export default function AiDialogSession() {
   const runtimeActiveRef = useRef(runtimeActive);
   runtimeActiveRef.current = runtimeActive;
   const { playRecordStart } = useRecordStartCue();
+  const { playTurnReady } = useTurnReadyCue();
   const params = useLocalSearchParams<{ scenarioId?: string; lessonId?: string }>();
   const aiDialogGateOpen = aiDialogContentAvailableForTarget(studyTarget);
   const frenchGateCopy = frenchAiDialogGateCopy(lang);
@@ -776,15 +778,22 @@ export default function AiDialogSession() {
       const done = () => {
         if (voiceInputMountedRef.current) setAiSpeaking(false);
       };
+      // зачем: «твой ход» звучит ТОЛЬКО когда собеседник договорил сам (onDone).
+      // onStopped/onError — это обрыв: уход с экрана, выключенная озвучка,
+      // сбой синтеза. Там ход к пользователю не переходит, и звук был бы враньём.
+      const doneSpeaking = () => {
+        done();
+        if (voiceInputMountedRef.current && conversationModeRef.current) playTurnReady();
+      };
       speak(clean, undefined, {
         language: 'en-US',
         voice: '',
-        onDone: done,
+        onDone: doneSpeaking,
         onStopped: done,
         onError: done,
       });
     },
-    [speak],
+    [speak, playTurnReady],
   );
 
   const send = useCallback(

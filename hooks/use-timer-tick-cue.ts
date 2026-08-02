@@ -1,41 +1,34 @@
-import { useAudioPlayer } from 'expo-audio';
-import { useCallback, useEffect } from 'react';
+import { useCallback } from 'react';
 
-// Canonical "phase timer running out" cue: reuses the same clean tick asset
-// used across the app's UI sound pack (assets/audio/ui/tick.wav) — a crisp,
-// non-cheap tick rather than a synthesized beep. Mirrors the
-// use-message-received-cue pattern (expo-audio's useAudioPlayer).
-const TIMER_TICK_SOUND = require('../assets/audio/ui/tick.wav');
-
-const TIMER_TICK_VOLUME = 0.55;
+import { soundDirector } from '../modules/audio/sound_director';
 
 /**
- * Returns `playTimerTick()` — call it once per second while a phase deadline
- * has ≤3s left, so the player hears the countdown instead of only seeing it.
- * Best-effort: a missing asset or disabled audio must never throw.
+ * Compatibility hook for the final countdown. Repeated calls are intentionally
+ * collapsed by the catalog cooldown instead of producing one tick per second.
+ *
+ * зачем: владелец попросил, чтобы у таймера звучали ОБА края — предупреждение
+ * на последних секундах и момент «время вышло». Держим их в одном хуке, потому
+ * что это один и тот же таймер: экран не должен знать про два разных id и про
+ * то, какой scope/dedupeKey у каждого.
  */
 export function useTimerTickCue() {
-  const player = useAudioPlayer(TIMER_TICK_SOUND);
-
-  useEffect(() => {
-    return () => {
-      try {
-        player.remove();
-      } catch {
-        // player may already be torn down on unmount — safe to ignore
-      }
-    };
-  }, [player]);
-
   const playTimerTick = useCallback(() => {
-    try {
-      player.volume = TIMER_TICK_VOLUME;
-      player.seekTo(0);
-      player.play();
-    } catch {
-      // no audio output / asset issue — silent is fine, timer is still visible
-    }
-  }, [player]);
+    soundDirector.request('pm.learn.timer_warning', {
+      scope: 'phase-timer',
+      dedupeKey: 'warning',
+    });
+  }, []);
 
-  return { playTimerTick };
+  /**
+   * зачем: dedupeKey отличается от предупреждения — иначе арбитр схлопнул бы
+   * истечение как повтор тика, и самый важный край таймера остался бы немым.
+   */
+  const playTimerExpired = useCallback(() => {
+    soundDirector.request('pm.learn.timer_expired', {
+      scope: 'phase-timer',
+      dedupeKey: 'expired',
+    });
+  }, []);
+
+  return { playTimerTick, playTimerExpired };
 }

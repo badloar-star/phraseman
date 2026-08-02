@@ -8,7 +8,7 @@
  *
  * Условия показа: вечер (≥17:00), цепочка под угрозой (checkStreakLossPending),
  * заморозка не активна, и сегодня тост ещё не показывали. Один раз в день.
- * Тип info — не блокирует, идёт через общий ActionToast (он сам выберет язык).
+ * Тип warning — не блокирует, идёт через общий ActionToast (он сам выберет язык).
  */
 import { useEffect, useRef } from 'react';
 import { AppState } from 'react-native';
@@ -40,7 +40,9 @@ export default function StreakRiskToastHost() {
 
       await AsyncStorage.setItem(SHOWN_KEY, today).catch(() => {});
 
-      emitAppEvent('action_toast', actionToastTri('info', {
+      // зачем: у цепочки есть срок (полночь) и цена бездействия — это
+      // предупреждение, а не нейтральное инфо, которым его раньше маскировали.
+      emitAppEvent('action_toast', actionToastTri('warning', {
         ru: `🔥 Цепочка ${streakBefore} дн. сгорит в полночь — позанимайся, чтобы сохранить`,
         uk: `🔥 Серія ${streakBefore} дн. згорить опівночі — позаймайся, щоб зберегти`,
         es: `🔥 Tu racha de ${streakBefore} días se pierde a medianoche — practica para mantenerla`,

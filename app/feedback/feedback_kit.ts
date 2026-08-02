@@ -17,27 +17,23 @@
  * участвует в формуле XP, спек §2). n — текущее значение серии; fk сам выбирает
  * ноту лесенки и пороговый стингер по уровню.
  */
-import { getUserSettingsSnapshot } from '../user_settings_store';
 import * as haptics from './haptics';
-import { play, type SoundName } from './sound_bank';
 import { comboLevelFor } from './combo_engine';
-
-/** Разрешены ли UI-звуки прямо сейчас (синхронно из снапшота настроек). */
-function soundsOn(): boolean {
-  return getUserSettingsSnapshot().uiSounds !== false;
-}
-
-/** Проиграть звук с учётом тумблера uiSounds. */
-function sfx(name: SoundName, volume?: number): void {
-  if (!soundsOn()) return;
-  play(name, volume != null ? { volume } : undefined);
-}
+import { soundDirector } from '../../modules/audio/sound_director';
 
 export type MilestoneKind = 'star1' | 'star2' | 'star3' | 'medal' | 'chord';
 export type FeedbackSurface = 'lesson' | 'practice';
 
 export interface ComboOptions {
   surface?: FeedbackSurface;
+}
+
+export interface VerdictOptions extends ComboOptions {
+  correct: boolean;
+  combo?: number;
+  completesUnit?: boolean;
+  completionEvent?: 'pm.complete.micro' | 'pm.complete.session' | 'pm.complete.perfect';
+  dedupeKey?: string;
 }
 
 export const fk = {
@@ -57,7 +53,7 @@ export const fk = {
 
   /** Верный ответ: тёплый «дин-дон» + success haptic. */
   correct(): void {
-    sfx('correct');
+    soundDirector.request('pm.learn.correct');
     haptics.correct();
   },
 
@@ -66,7 +62,29 @@ export const fk = {
    * остаётся только error-хаптика (мягкая вибрация, НЕ «бззз»).
    */
   wrong(): void {
+    soundDirector.request('pm.learn.needs_work');
     haptics.wrong();
+  },
+
+  /** Atomic verdict: one decision replaces correct+combo/completion stacking. */
+  verdict({ correct, combo: n, completesUnit, completionEvent, dedupeKey }: VerdictOptions): void {
+    soundDirector.requestLearningVerdict({
+      correct,
+      combo: n,
+      completesUnit,
+      completionEvent,
+      dedupeKey,
+      scope: 'learning-verdict',
+    });
+    if (!correct) {
+      haptics.wrong();
+      return;
+    }
+    haptics.correct();
+    const level = comboLevelFor(n ?? 0);
+    if (level >= 3) haptics.peak();
+    else if (level >= 2) haptics.medium();
+    else if (level >= 1) haptics.light();
   },
 
   /**
@@ -86,14 +104,6 @@ export const fk = {
     //  - crack на n===5 (1-я молния), thunder на n===10 (2-я молния).
     // Лесенка нот (ladder), spark (n===3) и fizzle убраны из звука; вибрация
     // на каждый верный ответ остаётся.
-    if (options.surface === 'lesson') {
-      if (n === 5) {
-        sfx('crack');
-      } else if (n === 10) {
-        sfx('thunder');
-      }
-    }
-
     // Хаптика по уровню серии.
     if (level >= 3) haptics.peak();
     else if (level >= 2) haptics.medium();
@@ -126,17 +136,19 @@ export const fk = {
   milestone(kind: MilestoneKind): void {
     switch (kind) {
       case 'star1':
-        sfx('star_1');
+        soundDirector.request('pm.complete.star_1');
         break;
       case 'star2':
-        sfx('star_2');
+        soundDirector.request('pm.complete.star_2');
         break;
       case 'star3':
-        sfx('star_3');
+        soundDirector.request('pm.complete.star_3');
         break;
       case 'medal':
+        soundDirector.request('pm.complete.micro');
+        break;
       case 'chord':
-        // Звук убран — только хаптика ниже.
+        soundDirector.request('pm.complete.session');
         break;
     }
     haptics.success();

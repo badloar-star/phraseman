@@ -1,0 +1,3395 @@
+{
+  "kind": "tournament_reddit_bot_seed_backup_v1",
+  "generatedAt": "2026-08-02T07:16:43.489Z",
+  "projectId": "phraseman-ea0b3",
+  "targetSeedVersion": "tournament-bots-v4-invented-20260801",
+  "targetNamesSha256": "b80d68161525e9c8df49cfa5fc8f820f63e771ec7649c5e64ee5aea08d1c73d4",
+  "entries": [
+    {
+      "id": "bot_001",
+      "exists": true,
+      "data": {
+        "botId": "bot_001",
+        "isBot": true,
+        "avatarEmoji": "🐸",
+        "color": "#FFC800",
+        "name": "bartqk",
+        "rank": "gold",
+        "titles": [],
+        "winRate": 0.46,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_002",
+      "exists": true,
+      "data": {
+        "botId": "bot_002",
+        "rank": "gold",
+        "isBot": true,
+        "avatarEmoji": "🐨",
+        "color": "#FFC800",
+        "name": "Gulbasaur",
+        "titles": [],
+        "winRate": 0.28,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_003",
+      "exists": true,
+      "data": {
+        "botId": "bot_003",
+        "titles": [],
+        "color": "#FF5B6C",
+        "isBot": true,
+        "avatarEmoji": "🦉",
+        "name": "jxanne",
+        "rank": "platinum",
+        "winRate": 0.55,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_004",
+      "exists": true,
+      "data": {
+        "botId": "bot_004",
+        "isBot": true,
+        "avatarEmoji": "🐼",
+        "color": "#FF5B6C",
+        "name": "NoTakaru",
+        "rank": "diamond",
+        "titles": [
+          "Ветеран слотов"
+        ],
+        "winRate": 0.59,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_005",
+      "exists": true,
+      "data": {
+        "botId": "bot_005",
+        "titles": [],
+        "isBot": true,
+        "avatarEmoji": "🦖",
+        "color": "#B78CFF",
+        "name": "unsafeideas",
+        "rank": "diamond",
+        "winRate": 0.31,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_006",
+      "exists": true,
+      "data": {
+        "botId": "bot_006",
+        "titles": [],
+        "isBot": true,
+        "avatarEmoji": "🦄",
+        "color": "#FF5B6C",
+        "name": "jragonfyre",
+        "rank": "gold",
+        "winRate": 0.45,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_007",
+      "exists": true,
+      "data": {
+        "botId": "bot_007",
+        "isBot": true,
+        "avatarEmoji": "🐼",
+        "color": "#B78CFF",
+        "name": "Excellent_Potential",
+        "rank": "diamond",
+        "titles": [
+          "Спринтер"
+        ],
+        "winRate": 0.34,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_008",
+      "exists": true,
+      "data": {
+        "botId": "bot_008",
+        "isBot": true,
+        "avatarEmoji": "🐯",
+        "color": "#47C870",
+        "name": "pantuso_eth",
+        "rank": "silver",
+        "titles": [
+          "Спринтер"
+        ],
+        "winRate": 0.8,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_009",
+      "exists": true,
+      "data": {
+        "botId": "bot_009",
+        "rank": "platinum",
+        "isBot": true,
+        "avatarEmoji": "🐨",
+        "color": "#B78CFF",
+        "name": "simiform",
+        "titles": [
+          "Ветеран слотов"
+        ],
+        "winRate": 0.78,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_010",
+      "exists": true,
+      "data": {
+        "botId": "bot_010",
+        "rank": "bronze",
+        "titles": [
+          "Ветеран слотов"
+        ],
+        "isBot": true,
+        "avatarEmoji": "🦁",
+        "color": "#16B7D9",
+        "name": "enanigaxei",
+        "winRate": 0.51,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_011",
+      "exists": true,
+      "data": {
+        "botId": "bot_011",
+        "avatarEmoji": "🐼",
+        "isBot": true,
+        "color": "#47C870",
+        "name": "LinguoBuxo",
+        "rank": "diamond",
+        "titles": [
+          "Спринтер"
+        ],
+        "winRate": 0.69,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_012",
+      "exists": true,
+      "data": {
+        "botId": "bot_012",
+        "isBot": true,
+        "avatarEmoji": "🦖",
+        "color": "#FF9F43",
+        "name": "Artgor",
+        "rank": "silver",
+        "titles": [],
+        "winRate": 0.68,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_013",
+      "exists": true,
+      "data": {
+        "botId": "bot_013",
+        "rank": "gold",
+        "isBot": true,
+        "avatarEmoji": "🐳",
+        "color": "#B78CFF",
+        "name": "Ponbe",
+        "titles": [],
+        "winRate": 0.53,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_014",
+      "exists": true,
+      "data": {
+        "botId": "bot_014",
+        "titles": [],
+        "winRate": 0.34,
+        "isBot": true,
+        "avatarEmoji": "🦉",
+        "color": "#16B7D9",
+        "name": "BeckyLiBei",
+        "rank": "diamond",
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_015",
+      "exists": true,
+      "data": {
+        "botId": "bot_015",
+        "isBot": true,
+        "avatarEmoji": "🐯",
+        "color": "#FF5B6C",
+        "name": "paralianeyes",
+        "rank": "bronze",
+        "titles": [
+          "Спринтер"
+        ],
+        "winRate": 0.47,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_016",
+      "exists": true,
+      "data": {
+        "botId": "bot_016",
+        "isBot": true,
+        "avatarEmoji": "🦊",
+        "color": "#FF5B6C",
+        "name": "Longjumping_Read_684",
+        "rank": "gold",
+        "titles": [],
+        "winRate": 0.46,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_017",
+      "exists": true,
+      "data": {
+        "botId": "bot_017",
+        "isBot": true,
+        "avatarEmoji": "🦜",
+        "color": "#16B7D9",
+        "name": "JakBandiFan",
+        "rank": "platinum",
+        "titles": [],
+        "winRate": 0.36,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_018",
+      "exists": true,
+      "data": {
+        "botId": "bot_018",
+        "isBot": true,
+        "avatarEmoji": "🦄",
+        "color": "#FF9F43",
+        "name": "vercertorix",
+        "rank": "silver",
+        "titles": [],
+        "winRate": 0.41,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_019",
+      "exists": true,
+      "data": {
+        "botId": "bot_019",
+        "rank": "silver",
+        "isBot": true,
+        "avatarEmoji": "🐯",
+        "color": "#B78CFF",
+        "name": "valeriethesinger",
+        "titles": [
+          "Ветеран слотов"
+        ],
+        "winRate": 0.31,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_020",
+      "exists": true,
+      "data": {
+        "botId": "bot_020",
+        "rank": "diamond",
+        "titles": [
+          "Фразовый маньяк"
+        ],
+        "color": "#FFC800",
+        "isBot": true,
+        "avatarEmoji": "🦖",
+        "name": "ZestycloseSample7403",
+        "winRate": 0.43,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_021",
+      "exists": true,
+      "data": {
+        "botId": "bot_021",
+        "color": "#16B7D9",
+        "isBot": true,
+        "avatarEmoji": "🦜",
+        "name": "CreolePolyglot",
+        "rank": "diamond",
+        "titles": [],
+        "winRate": 0.54,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_022",
+      "exists": true,
+      "data": {
+        "botId": "bot_022",
+        "isBot": true,
+        "avatarEmoji": "🐯",
+        "color": "#16B7D9",
+        "name": "Llama-Armada",
+        "rank": "bronze",
+        "titles": [],
+        "winRate": 0.72,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_023",
+      "exists": true,
+      "data": {
+        "botId": "bot_023",
+        "rank": "platinum",
+        "isBot": true,
+        "avatarEmoji": "🐸",
+        "color": "#FF5B6C",
+        "name": "mrggy",
+        "titles": [],
+        "winRate": 0.66,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_024",
+      "exists": true,
+      "data": {
+        "botId": "bot_024",
+        "isBot": true,
+        "avatarEmoji": "🦄",
+        "color": "#16B7D9",
+        "name": "transnochator",
+        "rank": "gold",
+        "titles": [],
+        "winRate": 0.7,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_025",
+      "exists": true,
+      "data": {
+        "botId": "bot_025",
+        "rank": "platinum",
+        "titles": [],
+        "isBot": true,
+        "avatarEmoji": "🦁",
+        "color": "#16B7D9",
+        "name": "Starthreads",
+        "winRate": 0.62,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_026",
+      "exists": true,
+      "data": {
+        "botId": "bot_026",
+        "titles": [],
+        "isBot": true,
+        "avatarEmoji": "🐯",
+        "color": "#FFC800",
+        "name": "TayoEXE",
+        "rank": "bronze",
+        "winRate": 0.61,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_027",
+      "exists": true,
+      "data": {
+        "botId": "bot_027",
+        "avatarEmoji": "🐼",
+        "color": "#B78CFF",
+        "isBot": true,
+        "name": "sherrymelove",
+        "rank": "gold",
+        "titles": [
+          "Словарный запас"
+        ],
+        "winRate": 0.52,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_028",
+      "exists": true,
+      "data": {
+        "botId": "bot_028",
+        "color": "#FFC800",
+        "isBot": true,
+        "avatarEmoji": "🦖",
+        "name": "Some_Useless_Person",
+        "rank": "gold",
+        "titles": [
+          "Спринтер"
+        ],
+        "winRate": 0.48,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_029",
+      "exists": true,
+      "data": {
+        "botId": "bot_029",
+        "titles": [],
+        "isBot": true,
+        "avatarEmoji": "🐝",
+        "color": "#FF5B6C",
+        "name": "Fox_gamer001",
+        "rank": "platinum",
+        "winRate": 0.24,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_030",
+      "exists": true,
+      "data": {
+        "botId": "bot_030",
+        "rank": "gold",
+        "isBot": true,
+        "avatarEmoji": "🐸",
+        "color": "#FF9F43",
+        "name": "AlanTalarczyk",
+        "titles": [],
+        "winRate": 0.36,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_031",
+      "exists": true,
+      "data": {
+        "botId": "bot_031",
+        "rank": "bronze",
+        "isBot": true,
+        "avatarEmoji": "🦉",
+        "color": "#FFC800",
+        "name": "idonthatespinach",
+        "titles": [
+          "Спринтер"
+        ],
+        "winRate": 0.33,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_032",
+      "exists": true,
+      "data": {
+        "botId": "bot_032",
+        "isBot": true,
+        "avatarEmoji": "🐳",
+        "color": "#FF9F43",
+        "name": "GrimmestTrigger",
+        "rank": "bronze",
+        "titles": [
+          "Ветеран слотов"
+        ],
+        "winRate": 0.5,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_033",
+      "exists": true,
+      "data": {
+        "botId": "bot_033",
+        "color": "#FF9F43",
+        "isBot": true,
+        "avatarEmoji": "🐨",
+        "name": "Xefjord",
+        "rank": "bronze",
+        "titles": [
+          "Спринтер"
+        ],
+        "winRate": 0.68,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_034",
+      "exists": true,
+      "data": {
+        "botId": "bot_034",
+        "isBot": true,
+        "avatarEmoji": "🦁",
+        "color": "#47C870",
+        "name": "Anon125",
+        "rank": "bronze",
+        "titles": [],
+        "winRate": 0.55,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_035",
+      "exists": true,
+      "data": {
+        "botId": "bot_035",
+        "isBot": true,
+        "avatarEmoji": "🐯",
+        "color": "#B78CFF",
+        "name": "Damsauro",
+        "rank": "platinum",
+        "titles": [],
+        "winRate": 0.54,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_036",
+      "exists": true,
+      "data": {
+        "botId": "bot_036",
+        "titles": [],
+        "isBot": true,
+        "avatarEmoji": "🦁",
+        "color": "#B78CFF",
+        "name": "BrStFr",
+        "rank": "gold",
+        "winRate": 0.4,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_037",
+      "exists": true,
+      "data": {
+        "botId": "bot_037",
+        "isBot": true,
+        "avatarEmoji": "🐯",
+        "color": "#47C870",
+        "name": "wereriddl3",
+        "rank": "silver",
+        "titles": [],
+        "winRate": 0.34,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_038",
+      "exists": true,
+      "data": {
+        "botId": "bot_038",
+        "titles": [],
+        "isBot": true,
+        "avatarEmoji": "🦜",
+        "color": "#16B7D9",
+        "name": "greydalf_the_gan",
+        "rank": "bronze",
+        "winRate": 0.54,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_039",
+      "exists": true,
+      "data": {
+        "botId": "bot_039",
+        "rank": "gold",
+        "isBot": true,
+        "avatarEmoji": "🐼",
+        "color": "#16B7D9",
+        "name": "possiblegoat",
+        "titles": [],
+        "winRate": 0.44,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_040",
+      "exists": true,
+      "data": {
+        "botId": "bot_040",
+        "titles": [],
+        "winRate": 0.6,
+        "isBot": true,
+        "avatarEmoji": "🦁",
+        "color": "#FF5B6C",
+        "name": "peacefulsky11",
+        "rank": "platinum",
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_041",
+      "exists": true,
+      "data": {
+        "botId": "bot_041",
+        "titles": [],
+        "isBot": true,
+        "avatarEmoji": "🦄",
+        "color": "#47C870",
+        "name": "anneomoly",
+        "rank": "platinum",
+        "winRate": 0.69,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_042",
+      "exists": true,
+      "data": {
+        "botId": "bot_042",
+        "titles": [],
+        "isBot": true,
+        "avatarEmoji": "🦁",
+        "color": "#47C870",
+        "name": "RabidTangerine",
+        "rank": "bronze",
+        "winRate": 0.57,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_043",
+      "exists": true,
+      "data": {
+        "botId": "bot_043",
+        "rank": "silver",
+        "isBot": true,
+        "avatarEmoji": "🐼",
+        "color": "#FF5B6C",
+        "name": "FeikSneik",
+        "titles": [
+          "Фразовый маньяк"
+        ],
+        "winRate": 0.64,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_044",
+      "exists": true,
+      "data": {
+        "botId": "bot_044",
+        "isBot": true,
+        "avatarEmoji": "🦄",
+        "color": "#FF5B6C",
+        "name": "XyloPlayer",
+        "rank": "diamond",
+        "titles": [
+          "Спринтер"
+        ],
+        "winRate": 0.41,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_045",
+      "exists": true,
+      "data": {
+        "botId": "bot_045",
+        "isBot": true,
+        "avatarEmoji": "🦉",
+        "color": "#FF5B6C",
+        "name": "Zdrastvutye",
+        "rank": "bronze",
+        "titles": [],
+        "winRate": 0.39,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_046",
+      "exists": true,
+      "data": {
+        "botId": "bot_046",
+        "isBot": true,
+        "avatarEmoji": "🐼",
+        "color": "#47C870",
+        "name": "IAmNotAMeatPopsicle",
+        "rank": "diamond",
+        "titles": [
+          "Словарный запас"
+        ],
+        "winRate": 0.64,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_047",
+      "exists": true,
+      "data": {
+        "botId": "bot_047",
+        "avatarEmoji": "🐯",
+        "titles": [],
+        "isBot": true,
+        "color": "#FF9F43",
+        "name": "renegadeyakuza",
+        "rank": "silver",
+        "winRate": 0.77,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_048",
+      "exists": true,
+      "data": {
+        "botId": "bot_048",
+        "titles": [],
+        "isBot": true,
+        "avatarEmoji": "🦜",
+        "color": "#FF5B6C",
+        "name": "sweet-cuppin-cakes",
+        "rank": "platinum",
+        "winRate": 0.48,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_049",
+      "exists": true,
+      "data": {
+        "botId": "bot_049",
+        "titles": [
+          "Фразовый маньяк"
+        ],
+        "isBot": true,
+        "avatarEmoji": "🐝",
+        "color": "#FFC800",
+        "name": "jiangyou",
+        "rank": "gold",
+        "winRate": 0.36,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_050",
+      "exists": true,
+      "data": {
+        "botId": "bot_050",
+        "isBot": true,
+        "avatarEmoji": "🐸",
+        "color": "#FF5B6C",
+        "name": "jegikke",
+        "rank": "diamond",
+        "titles": [
+          "Спринтер"
+        ],
+        "winRate": 0.81,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_051",
+      "exists": true,
+      "data": {
+        "botId": "bot_051",
+        "titles": [],
+        "isBot": true,
+        "avatarEmoji": "🐯",
+        "color": "#FF9F43",
+        "name": "adventuringraw",
+        "rank": "diamond",
+        "winRate": 0.75,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_052",
+      "exists": true,
+      "data": {
+        "botId": "bot_052",
+        "color": "#16B7D9",
+        "isBot": true,
+        "avatarEmoji": "🐼",
+        "name": "nonneb",
+        "rank": "platinum",
+        "titles": [],
+        "winRate": 0.71,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_053",
+      "exists": true,
+      "data": {
+        "botId": "bot_053",
+        "isBot": true,
+        "avatarEmoji": "🐯",
+        "color": "#FFC800",
+        "name": "bcgroom",
+        "rank": "bronze",
+        "titles": [
+          "Ветеран слотов"
+        ],
+        "winRate": 0.49,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_054",
+      "exists": true,
+      "data": {
+        "botId": "bot_054",
+        "titles": [],
+        "isBot": true,
+        "avatarEmoji": "🦉",
+        "color": "#FFC800",
+        "name": "preitje",
+        "rank": "diamond",
+        "winRate": 0.83,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_055",
+      "exists": true,
+      "data": {
+        "botId": "bot_055",
+        "titles": [],
+        "isBot": true,
+        "avatarEmoji": "🦄",
+        "color": "#FFC800",
+        "name": "Cartolina_",
+        "rank": "bronze",
+        "winRate": 0.62,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_056",
+      "exists": true,
+      "data": {
+        "botId": "bot_056",
+        "rank": "platinum",
+        "isBot": true,
+        "avatarEmoji": "🐼",
+        "color": "#FFC800",
+        "name": "antoniocesarm",
+        "titles": [
+          "Ветеран слотов"
+        ],
+        "winRate": 0.64,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_057",
+      "exists": true,
+      "data": {
+        "botId": "bot_057",
+        "rank": "silver",
+        "titles": [
+          "Словарный запас"
+        ],
+        "color": "#FF9F43",
+        "isBot": true,
+        "avatarEmoji": "🦁",
+        "name": "The_Real_Mongoose",
+        "winRate": 0.44,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_058",
+      "exists": true,
+      "data": {
+        "botId": "bot_058",
+        "isBot": true,
+        "avatarEmoji": "🐼",
+        "color": "#B78CFF",
+        "name": "mastersword83",
+        "rank": "diamond",
+        "titles": [],
+        "winRate": 0.59,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_059",
+      "exists": true,
+      "data": {
+        "botId": "bot_059",
+        "rank": "bronze",
+        "color": "#FF9F43",
+        "isBot": true,
+        "avatarEmoji": "🦖",
+        "name": "tea-drinker",
+        "titles": [],
+        "winRate": 0.79,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_060",
+      "exists": true,
+      "data": {
+        "botId": "bot_060",
+        "isBot": true,
+        "avatarEmoji": "🐳",
+        "color": "#47C870",
+        "name": "Swordsmith53",
+        "rank": "platinum",
+        "titles": [
+          "Спринтер"
+        ],
+        "winRate": 0.4,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_061",
+      "exists": true,
+      "data": {
+        "botId": "bot_061",
+        "isBot": true,
+        "avatarEmoji": "🐼",
+        "color": "#FFC800",
+        "name": "GiveMeNotTheBoots",
+        "rank": "bronze",
+        "titles": [
+          "Тихий охотник"
+        ],
+        "winRate": 0.38,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_062",
+      "exists": true,
+      "data": {
+        "botId": "bot_062",
+        "rank": "diamond",
+        "titles": [
+          "Фразовый маньяк"
+        ],
+        "isBot": true,
+        "avatarEmoji": "🦉",
+        "color": "#FF5B6C",
+        "name": "nevereverreddit",
+        "winRate": 0.45,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_063",
+      "exists": true,
+      "data": {
+        "botId": "bot_063",
+        "titles": [],
+        "isBot": true,
+        "avatarEmoji": "🐼",
+        "color": "#B78CFF",
+        "name": "In_connu",
+        "rank": "diamond",
+        "winRate": 0.55,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_064",
+      "exists": true,
+      "data": {
+        "botId": "bot_064",
+        "isBot": true,
+        "avatarEmoji": "🐼",
+        "color": "#47C870",
+        "name": "JDFidelius",
+        "rank": "platinum",
+        "titles": [],
+        "winRate": 0.41,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_065",
+      "exists": true,
+      "data": {
+        "botId": "bot_065",
+        "titles": [],
+        "isBot": true,
+        "avatarEmoji": "🐝",
+        "color": "#FF9F43",
+        "name": "JNightShadows",
+        "rank": "silver",
+        "winRate": 0.75,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_066",
+      "exists": true,
+      "data": {
+        "botId": "bot_066",
+        "avatarEmoji": "🦄",
+        "color": "#47C870",
+        "isBot": true,
+        "name": "xemearg",
+        "rank": "gold",
+        "titles": [
+          "Ветеран слотов"
+        ],
+        "winRate": 0.28,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_067",
+      "exists": true,
+      "data": {
+        "botId": "bot_067",
+        "titles": [],
+        "color": "#FFC800",
+        "isBot": true,
+        "avatarEmoji": "🐼",
+        "name": "LangLangLang",
+        "rank": "gold",
+        "winRate": 0.56,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_068",
+      "exists": true,
+      "data": {
+        "botId": "bot_068",
+        "avatarEmoji": "🦄",
+        "titles": [],
+        "color": "#FF9F43",
+        "isBot": true,
+        "name": "benk4",
+        "rank": "platinum",
+        "winRate": 0.62,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_069",
+      "exists": true,
+      "data": {
+        "botId": "bot_069",
+        "isBot": true,
+        "avatarEmoji": "🦜",
+        "color": "#FF9F43",
+        "name": "dzcFrench",
+        "rank": "diamond",
+        "titles": [
+          "Ветеран слотов"
+        ],
+        "winRate": 0.48,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_070",
+      "exists": true,
+      "data": {
+        "botId": "bot_070",
+        "isBot": true,
+        "avatarEmoji": "🦉",
+        "color": "#16B7D9",
+        "name": "HatOk4084",
+        "rank": "silver",
+        "titles": [
+          "Тихий охотник"
+        ],
+        "winRate": 0.56,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_071",
+      "exists": true,
+      "data": {
+        "botId": "bot_071",
+        "avatarEmoji": "🐼",
+        "isBot": true,
+        "color": "#FF5B6C",
+        "name": "Aggressive_Chicken63",
+        "rank": "silver",
+        "titles": [
+          "Тихий охотник"
+        ],
+        "winRate": 0.57,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_072",
+      "exists": true,
+      "data": {
+        "botId": "bot_072",
+        "isBot": true,
+        "avatarEmoji": "🐝",
+        "color": "#47C870",
+        "name": "carissa0816",
+        "rank": "bronze",
+        "titles": [
+          "Ветеран слотов"
+        ],
+        "winRate": 0.7,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_073",
+      "exists": true,
+      "data": {
+        "botId": "bot_073",
+        "isBot": true,
+        "avatarEmoji": "🦁",
+        "color": "#FF9F43",
+        "name": "Flat_Percentage_998",
+        "rank": "bronze",
+        "titles": [
+          "Тихий охотник"
+        ],
+        "winRate": 0.45,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_074",
+      "exists": true,
+      "data": {
+        "botId": "bot_074",
+        "avatarEmoji": "🐨",
+        "titles": [],
+        "isBot": true,
+        "color": "#16B7D9",
+        "name": "The-Dmguy",
+        "rank": "silver",
+        "winRate": 0.3,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_075",
+      "exists": true,
+      "data": {
+        "botId": "bot_075",
+        "isBot": true,
+        "avatarEmoji": "🐝",
+        "color": "#FF9F43",
+        "name": "pabloneruda",
+        "rank": "diamond",
+        "titles": [
+          "Спринтер"
+        ],
+        "winRate": 0.47,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_076",
+      "exists": true,
+      "data": {
+        "botId": "bot_076",
+        "titles": [],
+        "isBot": true,
+        "avatarEmoji": "🦊",
+        "color": "#FF9F43",
+        "name": "racercowan",
+        "rank": "diamond",
+        "winRate": 0.36,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_077",
+      "exists": true,
+      "data": {
+        "botId": "bot_077",
+        "isBot": true,
+        "avatarEmoji": "🐝",
+        "color": "#B78CFF",
+        "name": "araxhiel",
+        "rank": "diamond",
+        "titles": [
+          "Тихий охотник"
+        ],
+        "winRate": 0.53,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_078",
+      "exists": true,
+      "data": {
+        "botId": "bot_078",
+        "rank": "gold",
+        "isBot": true,
+        "avatarEmoji": "🐨",
+        "color": "#FF5B6C",
+        "name": "Saimdusan",
+        "titles": [
+          "Ветеран слотов"
+        ],
+        "winRate": 0.43,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_079",
+      "exists": true,
+      "data": {
+        "botId": "bot_079",
+        "winRate": 0.6,
+        "color": "#FF9F43",
+        "isBot": true,
+        "avatarEmoji": "🦉",
+        "name": "bigbossodin",
+        "rank": "silver",
+        "titles": [],
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_080",
+      "exists": true,
+      "data": {
+        "botId": "bot_080",
+        "isBot": true,
+        "avatarEmoji": "🦊",
+        "color": "#FF9F43",
+        "name": "Bezbojnicul",
+        "rank": "bronze",
+        "titles": [
+          "Словарный запас"
+        ],
+        "winRate": 0.55,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_081",
+      "exists": true,
+      "data": {
+        "botId": "bot_081",
+        "rank": "gold",
+        "isBot": true,
+        "avatarEmoji": "🦜",
+        "color": "#16B7D9",
+        "name": "ButterFlamingo",
+        "titles": [
+          "Спринтер"
+        ],
+        "winRate": 0.54,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_082",
+      "exists": true,
+      "data": {
+        "botId": "bot_082",
+        "isBot": true,
+        "avatarEmoji": "🦁",
+        "color": "#FF9F43",
+        "name": "Etiennera",
+        "rank": "platinum",
+        "titles": [],
+        "winRate": 0.54,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_083",
+      "exists": true,
+      "data": {
+        "botId": "bot_083",
+        "isBot": true,
+        "avatarEmoji": "🦊",
+        "color": "#FF5B6C",
+        "name": "Shotgun_squirtle",
+        "rank": "platinum",
+        "titles": [],
+        "winRate": 0.2,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_084",
+      "exists": true,
+      "data": {
+        "botId": "bot_084",
+        "rank": "diamond",
+        "isBot": true,
+        "avatarEmoji": "🐯",
+        "color": "#FFC800",
+        "name": "carpenter20m",
+        "titles": [],
+        "winRate": 0.4,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_085",
+      "exists": true,
+      "data": {
+        "botId": "bot_085",
+        "titles": [],
+        "isBot": true,
+        "avatarEmoji": "🦜",
+        "color": "#FF5B6C",
+        "name": "Nephtis25",
+        "rank": "diamond",
+        "winRate": 0.28,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_086",
+      "exists": true,
+      "data": {
+        "botId": "bot_086",
+        "isBot": true,
+        "avatarEmoji": "🐯",
+        "color": "#FF5B6C",
+        "name": "MeMoiMyselfAndI",
+        "rank": "platinum",
+        "titles": [
+          "Фразовый маньяк"
+        ],
+        "winRate": 0.55,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_087",
+      "exists": true,
+      "data": {
+        "botId": "bot_087",
+        "titles": [],
+        "isBot": true,
+        "avatarEmoji": "🦄",
+        "color": "#FFC800",
+        "name": "peteroh9",
+        "rank": "bronze",
+        "winRate": 0.56,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_088",
+      "exists": true,
+      "data": {
+        "botId": "bot_088",
+        "rank": "diamond",
+        "titles": [],
+        "isBot": true,
+        "avatarEmoji": "🐸",
+        "color": "#47C870",
+        "name": "Zarradhoustra",
+        "winRate": 0.81,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_089",
+      "exists": true,
+      "data": {
+        "botId": "bot_089",
+        "isBot": true,
+        "avatarEmoji": "🦊",
+        "color": "#16B7D9",
+        "name": "fax5jrj",
+        "rank": "diamond",
+        "titles": [],
+        "winRate": 0.74,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_090",
+      "exists": true,
+      "data": {
+        "botId": "bot_090",
+        "isBot": true,
+        "avatarEmoji": "🐯",
+        "color": "#B78CFF",
+        "name": "GoodAtExplaining",
+        "rank": "gold",
+        "titles": [],
+        "winRate": 0.26,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_091",
+      "exists": true,
+      "data": {
+        "botId": "bot_091",
+        "titles": [],
+        "color": "#FF5B6C",
+        "isBot": true,
+        "avatarEmoji": "🦄",
+        "name": "5oj",
+        "rank": "gold",
+        "winRate": 0.26,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_092",
+      "exists": true,
+      "data": {
+        "botId": "bot_092",
+        "titles": [],
+        "isBot": true,
+        "avatarEmoji": "🐸",
+        "color": "#B78CFF",
+        "name": "ConspicuousPineapple",
+        "rank": "gold",
+        "winRate": 0.27,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_093",
+      "exists": true,
+      "data": {
+        "botId": "bot_093",
+        "isBot": true,
+        "avatarEmoji": "🦁",
+        "color": "#FFC800",
+        "name": "nenyim",
+        "rank": "gold",
+        "titles": [
+          "Фразовый маньяк"
+        ],
+        "winRate": 0.74,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_094",
+      "exists": true,
+      "data": {
+        "botId": "bot_094",
+        "avatarEmoji": "🦜",
+        "color": "#FF9F43",
+        "isBot": true,
+        "name": "babyjman",
+        "rank": "platinum",
+        "titles": [
+          "Спринтер"
+        ],
+        "winRate": 0.41,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_095",
+      "exists": true,
+      "data": {
+        "botId": "bot_095",
+        "titles": [
+          "Спринтер"
+        ],
+        "isBot": true,
+        "avatarEmoji": "🐨",
+        "color": "#47C870",
+        "name": "wakkawakka18",
+        "rank": "silver",
+        "winRate": 0.52,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_096",
+      "exists": true,
+      "data": {
+        "botId": "bot_096",
+        "isBot": true,
+        "avatarEmoji": "🐯",
+        "color": "#47C870",
+        "name": "Thisisdansaccount",
+        "rank": "diamond",
+        "titles": [
+          "Фразовый маньяк"
+        ],
+        "winRate": 0.49,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_097",
+      "exists": true,
+      "data": {
+        "botId": "bot_097",
+        "rank": "silver",
+        "isBot": true,
+        "avatarEmoji": "🐝",
+        "color": "#B78CFF",
+        "name": "fibojoly",
+        "titles": [
+          "Тихий охотник"
+        ],
+        "winRate": 0.53,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_098",
+      "exists": true,
+      "data": {
+        "botId": "bot_098",
+        "isBot": true,
+        "avatarEmoji": "🐯",
+        "color": "#16B7D9",
+        "name": "Meewah",
+        "rank": "gold",
+        "titles": [
+          "Ветеран слотов"
+        ],
+        "winRate": 0.7,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_099",
+      "exists": true,
+      "data": {
+        "botId": "bot_099",
+        "isBot": true,
+        "avatarEmoji": "🦖",
+        "color": "#B78CFF",
+        "name": "le_epic",
+        "rank": "silver",
+        "titles": [],
+        "winRate": 0.48,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_100",
+      "exists": true,
+      "data": {
+        "botId": "bot_100",
+        "rank": "gold",
+        "titles": [],
+        "isBot": true,
+        "avatarEmoji": "🐝",
+        "color": "#16B7D9",
+        "name": "VoxUmbra",
+        "winRate": 0.67,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_101",
+      "exists": true,
+      "data": {
+        "botId": "bot_101",
+        "rank": "bronze",
+        "titles": [],
+        "isBot": true,
+        "avatarEmoji": "🦖",
+        "color": "#FF9F43",
+        "name": "taytay9955",
+        "winRate": 0.4,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_102",
+      "exists": true,
+      "data": {
+        "botId": "bot_102",
+        "isBot": true,
+        "avatarEmoji": "🐸",
+        "color": "#FF9F43",
+        "name": "Lextube",
+        "rank": "diamond",
+        "titles": [],
+        "winRate": 0.6,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_103",
+      "exists": true,
+      "data": {
+        "botId": "bot_103",
+        "isBot": true,
+        "avatarEmoji": "🦁",
+        "color": "#16B7D9",
+        "name": "Bastette54",
+        "rank": "silver",
+        "titles": [
+          "Фразовый маньяк"
+        ],
+        "winRate": 0.53,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_104",
+      "exists": true,
+      "data": {
+        "botId": "bot_104",
+        "titles": [],
+        "color": "#47C870",
+        "isBot": true,
+        "avatarEmoji": "🐼",
+        "name": "Bright-Garden-4347",
+        "rank": "platinum",
+        "winRate": 0.55,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_105",
+      "exists": true,
+      "data": {
+        "botId": "bot_105",
+        "rank": "diamond",
+        "titles": [],
+        "isBot": true,
+        "avatarEmoji": "🦄",
+        "color": "#FFC800",
+        "name": "purplemoonlite",
+        "winRate": 0.45,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_106",
+      "exists": true,
+      "data": {
+        "botId": "bot_106",
+        "rank": "platinum",
+        "isBot": true,
+        "avatarEmoji": "🐼",
+        "color": "#FF5B6C",
+        "name": "zachar3",
+        "titles": [
+          "Фразовый маньяк"
+        ],
+        "winRate": 0.33,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_107",
+      "exists": true,
+      "data": {
+        "botId": "bot_107",
+        "titles": [],
+        "isBot": true,
+        "avatarEmoji": "🐸",
+        "color": "#B78CFF",
+        "name": "huesoso",
+        "rank": "platinum",
+        "winRate": 0.62,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_108",
+      "exists": true,
+      "data": {
+        "botId": "bot_108",
+        "isBot": true,
+        "avatarEmoji": "🐨",
+        "color": "#B78CFF",
+        "name": "apokako",
+        "rank": "silver",
+        "titles": [
+          "Спринтер"
+        ],
+        "winRate": 0.66,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_109",
+      "exists": true,
+      "data": {
+        "botId": "bot_109",
+        "rank": "bronze",
+        "titles": [],
+        "color": "#16B7D9",
+        "isBot": true,
+        "avatarEmoji": "🐨",
+        "name": "Teb-Tenggeri",
+        "winRate": 0.32,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_110",
+      "exists": true,
+      "data": {
+        "botId": "bot_110",
+        "titles": [],
+        "isBot": true,
+        "avatarEmoji": "🦁",
+        "color": "#47C870",
+        "name": "Toc_a_Somaten",
+        "rank": "gold",
+        "winRate": 0.3,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_111",
+      "exists": true,
+      "data": {
+        "botId": "bot_111",
+        "titles": [],
+        "isBot": true,
+        "avatarEmoji": "🦊",
+        "color": "#FF9F43",
+        "name": "Eiram42",
+        "rank": "gold",
+        "winRate": 0.35,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_112",
+      "exists": true,
+      "data": {
+        "botId": "bot_112",
+        "isBot": true,
+        "avatarEmoji": "🐯",
+        "color": "#16B7D9",
+        "name": "starlinguk",
+        "rank": "diamond",
+        "titles": [],
+        "winRate": 0.55,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_113",
+      "exists": true,
+      "data": {
+        "botId": "bot_113",
+        "avatarEmoji": "🦁",
+        "titles": [
+          "Словарный запас"
+        ],
+        "color": "#FF9F43",
+        "isBot": true,
+        "name": "supreme232",
+        "rank": "diamond",
+        "winRate": 0.54,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_114",
+      "exists": true,
+      "data": {
+        "botId": "bot_114",
+        "titles": [],
+        "isBot": true,
+        "avatarEmoji": "🦜",
+        "color": "#FFC800",
+        "name": "PronunciationIsKey",
+        "rank": "gold",
+        "winRate": 0.61,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_115",
+      "exists": true,
+      "data": {
+        "botId": "bot_115",
+        "rank": "diamond",
+        "color": "#FF9F43",
+        "isBot": true,
+        "avatarEmoji": "🦊",
+        "name": "onlosmakelijk",
+        "titles": [
+          "Словарный запас"
+        ],
+        "winRate": 0.61,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_116",
+      "exists": true,
+      "data": {
+        "botId": "bot_116",
+        "isBot": true,
+        "avatarEmoji": "🐳",
+        "color": "#FF9F43",
+        "name": "TheFreeloader",
+        "rank": "silver",
+        "titles": [
+          "Словарный запас"
+        ],
+        "winRate": 0.46,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_117",
+      "exists": true,
+      "data": {
+        "botId": "bot_117",
+        "titles": [],
+        "isBot": true,
+        "avatarEmoji": "🦖",
+        "color": "#FF9F43",
+        "name": "TheLinesInTheSand",
+        "rank": "gold",
+        "winRate": 0.6,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_118",
+      "exists": true,
+      "data": {
+        "botId": "bot_118",
+        "isBot": true,
+        "avatarEmoji": "🦁",
+        "color": "#16B7D9",
+        "name": "Rosbj",
+        "rank": "bronze",
+        "titles": [
+          "Фразовый маньяк"
+        ],
+        "winRate": 0.79,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_119",
+      "exists": true,
+      "data": {
+        "botId": "bot_119",
+        "isBot": true,
+        "avatarEmoji": "🐼",
+        "color": "#B78CFF",
+        "name": "firedrake242",
+        "rank": "platinum",
+        "titles": [
+          "Словарный запас"
+        ],
+        "winRate": 0.64,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_120",
+      "exists": true,
+      "data": {
+        "botId": "bot_120",
+        "rank": "silver",
+        "isBot": true,
+        "avatarEmoji": "🐸",
+        "color": "#FFC800",
+        "name": "Agentzap",
+        "titles": [
+          "Фразовый маньяк"
+        ],
+        "winRate": 0.38,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_121",
+      "exists": true,
+      "data": {
+        "botId": "bot_121",
+        "isBot": true,
+        "avatarEmoji": "🦁",
+        "color": "#FF9F43",
+        "name": "chennyalan",
+        "rank": "platinum",
+        "titles": [
+          "Словарный запас"
+        ],
+        "winRate": 0.29,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_122",
+      "exists": true,
+      "data": {
+        "botId": "bot_122",
+        "isBot": true,
+        "avatarEmoji": "🦜",
+        "color": "#47C870",
+        "name": "Systral",
+        "rank": "diamond",
+        "titles": [],
+        "winRate": 0.69,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_123",
+      "exists": true,
+      "data": {
+        "botId": "bot_123",
+        "color": "#FF5B6C",
+        "isBot": true,
+        "avatarEmoji": "🦁",
+        "name": "ComradeNik",
+        "rank": "bronze",
+        "titles": [],
+        "winRate": 0.27,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_124",
+      "exists": true,
+      "data": {
+        "botId": "bot_124",
+        "isBot": true,
+        "avatarEmoji": "🦉",
+        "color": "#FFC800",
+        "name": "Yuana_",
+        "rank": "bronze",
+        "titles": [],
+        "winRate": 0.63,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_125",
+      "exists": true,
+      "data": {
+        "botId": "bot_125",
+        "rank": "silver",
+        "titles": [
+          "Ветеран слотов"
+        ],
+        "isBot": true,
+        "avatarEmoji": "🦉",
+        "color": "#FF5B6C",
+        "name": "Rift3N",
+        "winRate": 0.34,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_126",
+      "exists": true,
+      "data": {
+        "botId": "bot_126",
+        "titles": [],
+        "isBot": true,
+        "avatarEmoji": "🐨",
+        "color": "#B78CFF",
+        "name": "Plasma_eel",
+        "rank": "diamond",
+        "winRate": 0.59,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_127",
+      "exists": true,
+      "data": {
+        "botId": "bot_127",
+        "rank": "diamond",
+        "color": "#B78CFF",
+        "isBot": true,
+        "avatarEmoji": "🦉",
+        "name": "JakePops",
+        "titles": [
+          "Ветеран слотов"
+        ],
+        "winRate": 0.42,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_128",
+      "exists": true,
+      "data": {
+        "botId": "bot_128",
+        "avatarEmoji": "🐨",
+        "titles": [],
+        "isBot": true,
+        "color": "#47C870",
+        "name": "Nardalang",
+        "rank": "silver",
+        "winRate": 0.29,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_129",
+      "exists": true,
+      "data": {
+        "botId": "bot_129",
+        "isBot": true,
+        "avatarEmoji": "🐯",
+        "color": "#B78CFF",
+        "name": "AltCrow",
+        "rank": "bronze",
+        "titles": [
+          "Словарный запас"
+        ],
+        "winRate": 0.61,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_130",
+      "exists": true,
+      "data": {
+        "botId": "bot_130",
+        "isBot": true,
+        "avatarEmoji": "🦊",
+        "color": "#B78CFF",
+        "name": "viktorbir",
+        "rank": "bronze",
+        "titles": [
+          "Ветеран слотов"
+        ],
+        "winRate": 0.52,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_131",
+      "exists": true,
+      "data": {
+        "botId": "bot_131",
+        "titles": [
+          "Ветеран слотов"
+        ],
+        "isBot": true,
+        "avatarEmoji": "🐨",
+        "color": "#FFC800",
+        "name": "NorthernSpectre",
+        "rank": "platinum",
+        "winRate": 0.36,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_132",
+      "exists": true,
+      "data": {
+        "botId": "bot_132",
+        "isBot": true,
+        "avatarEmoji": "🐝",
+        "color": "#FF9F43",
+        "name": "Kraigius",
+        "rank": "platinum",
+        "titles": [
+          "Словарный запас"
+        ],
+        "winRate": 0.34,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_133",
+      "exists": true,
+      "data": {
+        "botId": "bot_133",
+        "titles": [
+          "Фразовый маньяк"
+        ],
+        "isBot": true,
+        "avatarEmoji": "🐸",
+        "color": "#FF5B6C",
+        "name": "player-piano",
+        "rank": "platinum",
+        "winRate": 0.59,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_134",
+      "exists": true,
+      "data": {
+        "botId": "bot_134",
+        "isBot": true,
+        "avatarEmoji": "🐼",
+        "color": "#FFC800",
+        "name": "Ochd12",
+        "rank": "silver",
+        "titles": [],
+        "winRate": 0.67,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_135",
+      "exists": true,
+      "data": {
+        "botId": "bot_135",
+        "color": "#16B7D9",
+        "isBot": true,
+        "avatarEmoji": "🐝",
+        "name": "cygnenoire",
+        "rank": "diamond",
+        "titles": [
+          "Ветеран слотов"
+        ],
+        "winRate": 0.32,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_136",
+      "exists": true,
+      "data": {
+        "botId": "bot_136",
+        "avatarEmoji": "🦄",
+        "rank": "silver",
+        "isBot": true,
+        "color": "#FFC800",
+        "name": "aczkasow",
+        "titles": [
+          "Тихий охотник"
+        ],
+        "winRate": 0.56,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_137",
+      "exists": true,
+      "data": {
+        "botId": "bot_137",
+        "isBot": true,
+        "avatarEmoji": "🐝",
+        "color": "#FF5B6C",
+        "name": "taubnetzdornig",
+        "rank": "bronze",
+        "titles": [
+          "Тихий охотник"
+        ],
+        "winRate": 0.73,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_138",
+      "exists": true,
+      "data": {
+        "botId": "bot_138",
+        "rank": "platinum",
+        "titles": [],
+        "isBot": true,
+        "avatarEmoji": "🐼",
+        "color": "#FF9F43",
+        "name": "Romanos_The_Blind",
+        "winRate": 0.49,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_139",
+      "exists": true,
+      "data": {
+        "botId": "bot_139",
+        "titles": [],
+        "isBot": true,
+        "avatarEmoji": "🦁",
+        "color": "#FF5B6C",
+        "name": "El_Dumfuco",
+        "rank": "silver",
+        "winRate": 0.64,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_140",
+      "exists": true,
+      "data": {
+        "botId": "bot_140",
+        "isBot": true,
+        "avatarEmoji": "🐼",
+        "color": "#47C870",
+        "name": "ThatsJustUn-American",
+        "rank": "bronze",
+        "titles": [],
+        "winRate": 0.63,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_141",
+      "exists": true,
+      "data": {
+        "botId": "bot_141",
+        "rank": "bronze",
+        "titles": [],
+        "isBot": true,
+        "avatarEmoji": "🦖",
+        "color": "#FF9F43",
+        "name": "Degeyter",
+        "winRate": 0.82,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_142",
+      "exists": true,
+      "data": {
+        "botId": "bot_142",
+        "isBot": true,
+        "avatarEmoji": "🐳",
+        "color": "#FF9F43",
+        "name": "IronedSandwich",
+        "rank": "gold",
+        "titles": [
+          "Фразовый маньяк"
+        ],
+        "winRate": 0.48,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_143",
+      "exists": true,
+      "data": {
+        "botId": "bot_143",
+        "rank": "diamond",
+        "isBot": true,
+        "avatarEmoji": "🐼",
+        "color": "#47C870",
+        "name": "KorianHUN",
+        "titles": [
+          "Тихий охотник"
+        ],
+        "winRate": 0.32,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_144",
+      "exists": true,
+      "data": {
+        "botId": "bot_144",
+        "rank": "diamond",
+        "titles": [],
+        "isBot": true,
+        "avatarEmoji": "🦖",
+        "color": "#FF9F43",
+        "name": "clowergen",
+        "winRate": 0.49,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_145",
+      "exists": true,
+      "data": {
+        "botId": "bot_145",
+        "isBot": true,
+        "avatarEmoji": "🦜",
+        "color": "#16B7D9",
+        "name": "360Logic",
+        "rank": "bronze",
+        "titles": [
+          "Спринтер"
+        ],
+        "winRate": 0.33,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_146",
+      "exists": true,
+      "data": {
+        "botId": "bot_146",
+        "isBot": true,
+        "avatarEmoji": "🐸",
+        "color": "#FFC800",
+        "name": "jl2352",
+        "rank": "bronze",
+        "titles": [],
+        "winRate": 0.42,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_147",
+      "exists": true,
+      "data": {
+        "botId": "bot_147",
+        "rank": "gold",
+        "titles": [],
+        "isBot": true,
+        "avatarEmoji": "🦄",
+        "color": "#B78CFF",
+        "name": "LordDestrus",
+        "winRate": 0.52,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_148",
+      "exists": true,
+      "data": {
+        "botId": "bot_148",
+        "isBot": true,
+        "avatarEmoji": "🦄",
+        "color": "#FF9F43",
+        "name": "Allittle1970",
+        "rank": "diamond",
+        "titles": [
+          "Спринтер"
+        ],
+        "winRate": 0.38,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_149",
+      "exists": true,
+      "data": {
+        "botId": "bot_149",
+        "avatarEmoji": "🐼",
+        "isBot": true,
+        "color": "#16B7D9",
+        "name": "Daahkness",
+        "rank": "diamond",
+        "titles": [
+          "Тихий охотник"
+        ],
+        "winRate": 0.8,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_150",
+      "exists": true,
+      "data": {
+        "botId": "bot_150",
+        "rank": "platinum",
+        "titles": [],
+        "isBot": true,
+        "avatarEmoji": "🐸",
+        "color": "#16B7D9",
+        "name": "The_Cult_Of_Skaro",
+        "winRate": 0.27,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_151",
+      "exists": true,
+      "data": {
+        "botId": "bot_151",
+        "titles": [],
+        "isBot": true,
+        "avatarEmoji": "🐝",
+        "color": "#FFC800",
+        "name": "trytrietree",
+        "rank": "platinum",
+        "winRate": 0.26,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_152",
+      "exists": true,
+      "data": {
+        "botId": "bot_152",
+        "color": "#47C870",
+        "isBot": true,
+        "avatarEmoji": "🐯",
+        "name": "Megneous",
+        "rank": "diamond",
+        "titles": [
+          "Спринтер"
+        ],
+        "winRate": 0.32,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_153",
+      "exists": true,
+      "data": {
+        "botId": "bot_153",
+        "rank": "bronze",
+        "titles": [],
+        "isBot": true,
+        "avatarEmoji": "🦄",
+        "color": "#47C870",
+        "name": "Rumicon",
+        "winRate": 0.34,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_154",
+      "exists": true,
+      "data": {
+        "botId": "bot_154",
+        "isBot": true,
+        "avatarEmoji": "🐳",
+        "color": "#FF5B6C",
+        "name": "Zopieux",
+        "rank": "silver",
+        "titles": [
+          "Словарный запас"
+        ],
+        "winRate": 0.51,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_155",
+      "exists": true,
+      "data": {
+        "botId": "bot_155",
+        "isBot": true,
+        "avatarEmoji": "🐝",
+        "color": "#47C870",
+        "name": "ACardAttack",
+        "rank": "bronze",
+        "titles": [],
+        "winRate": 0.71,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_156",
+      "exists": true,
+      "data": {
+        "botId": "bot_156",
+        "isBot": true,
+        "avatarEmoji": "🦉",
+        "color": "#16B7D9",
+        "name": "GalerionTheMystic",
+        "rank": "platinum",
+        "titles": [],
+        "winRate": 0.48,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_157",
+      "exists": true,
+      "data": {
+        "botId": "bot_157",
+        "isBot": true,
+        "avatarEmoji": "🐳",
+        "color": "#16B7D9",
+        "name": "GJokaero",
+        "rank": "diamond",
+        "titles": [
+          "Спринтер"
+        ],
+        "winRate": 0.57,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_158",
+      "exists": true,
+      "data": {
+        "botId": "bot_158",
+        "avatarEmoji": "🦖",
+        "titles": [],
+        "isBot": true,
+        "color": "#FF5B6C",
+        "name": "Trewdub",
+        "rank": "diamond",
+        "winRate": 0.53,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_159",
+      "exists": true,
+      "data": {
+        "botId": "bot_159",
+        "isBot": true,
+        "avatarEmoji": "🐼",
+        "color": "#47C870",
+        "name": "whuebel",
+        "rank": "bronze",
+        "titles": [
+          "Ветеран слотов"
+        ],
+        "winRate": 0.26,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_160",
+      "exists": true,
+      "data": {
+        "botId": "bot_160",
+        "titles": [],
+        "isBot": true,
+        "avatarEmoji": "🦜",
+        "color": "#B78CFF",
+        "name": "Cagnaccioo",
+        "rank": "diamond",
+        "winRate": 0.45,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_161",
+      "exists": true,
+      "data": {
+        "botId": "bot_161",
+        "titles": [],
+        "isBot": true,
+        "avatarEmoji": "🦊",
+        "color": "#FF9F43",
+        "name": "ScreamingFreakShow",
+        "rank": "bronze",
+        "winRate": 0.63,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_162",
+      "exists": true,
+      "data": {
+        "botId": "bot_162",
+        "rank": "silver",
+        "isBot": true,
+        "avatarEmoji": "🐨",
+        "color": "#FF5B6C",
+        "name": "dghughes",
+        "titles": [
+          "Словарный запас"
+        ],
+        "winRate": 0.47,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_163",
+      "exists": true,
+      "data": {
+        "botId": "bot_163",
+        "rank": "gold",
+        "titles": [],
+        "isBot": true,
+        "avatarEmoji": "🐝",
+        "color": "#FFC800",
+        "name": "SpeedLinkDJ",
+        "winRate": 0.58,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_164",
+      "exists": true,
+      "data": {
+        "botId": "bot_164",
+        "titles": [],
+        "isBot": true,
+        "avatarEmoji": "🐳",
+        "color": "#FFC800",
+        "name": "Karoya",
+        "rank": "diamond",
+        "winRate": 0.59,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_165",
+      "exists": true,
+      "data": {
+        "botId": "bot_165",
+        "isBot": true,
+        "avatarEmoji": "🐳",
+        "color": "#FFC800",
+        "name": "King--of--the--Juice",
+        "rank": "bronze",
+        "titles": [],
+        "winRate": 0.62,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_166",
+      "exists": true,
+      "data": {
+        "botId": "bot_166",
+        "avatarEmoji": "🦜",
+        "isBot": true,
+        "color": "#FF9F43",
+        "name": "QueenOfTonga",
+        "rank": "gold",
+        "titles": [
+          "Словарный запас"
+        ],
+        "winRate": 0.37,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_167",
+      "exists": true,
+      "data": {
+        "botId": "bot_167",
+        "isBot": true,
+        "avatarEmoji": "🐝",
+        "color": "#B78CFF",
+        "name": "AmorphousGamer",
+        "rank": "diamond",
+        "titles": [
+          "Спринтер"
+        ],
+        "winRate": 0.56,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_168",
+      "exists": true,
+      "data": {
+        "botId": "bot_168",
+        "isBot": true,
+        "avatarEmoji": "🦊",
+        "color": "#B78CFF",
+        "name": "DenkouNova",
+        "rank": "gold",
+        "titles": [
+          "Спринтер"
+        ],
+        "winRate": 0.32,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_169",
+      "exists": true,
+      "data": {
+        "botId": "bot_169",
+        "rank": "diamond",
+        "color": "#47C870",
+        "isBot": true,
+        "avatarEmoji": "🐼",
+        "name": "melocoton_helado",
+        "titles": [
+          "Фразовый маньяк"
+        ],
+        "winRate": 0.71,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_170",
+      "exists": true,
+      "data": {
+        "botId": "bot_170",
+        "titles": [],
+        "isBot": true,
+        "avatarEmoji": "🐳",
+        "color": "#FF5B6C",
+        "name": "elchulow",
+        "rank": "gold",
+        "winRate": 0.61,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_171",
+      "exists": true,
+      "data": {
+        "botId": "bot_171",
+        "color": "#FF9F43",
+        "isBot": true,
+        "avatarEmoji": "🦖",
+        "name": "Pinuzzo",
+        "rank": "gold",
+        "titles": [
+          "Ветеран слотов"
+        ],
+        "winRate": 0.49,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_172",
+      "exists": true,
+      "data": {
+        "botId": "bot_172",
+        "isBot": true,
+        "avatarEmoji": "🦁",
+        "color": "#FF9F43",
+        "name": "SharqZadegi",
+        "rank": "diamond",
+        "titles": [
+          "Ветеран слотов"
+        ],
+        "winRate": 0.5,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_173",
+      "exists": true,
+      "data": {
+        "botId": "bot_173",
+        "titles": [
+          "Тихий охотник"
+        ],
+        "isBot": true,
+        "avatarEmoji": "🐼",
+        "color": "#47C870",
+        "name": "onceuponatimeinza",
+        "rank": "gold",
+        "winRate": 0.37,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_174",
+      "exists": true,
+      "data": {
+        "botId": "bot_174",
+        "isBot": true,
+        "avatarEmoji": "🐳",
+        "color": "#FF9F43",
+        "name": "Whisper-O-G",
+        "rank": "gold",
+        "titles": [],
+        "winRate": 0.38,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_175",
+      "exists": true,
+      "data": {
+        "botId": "bot_175",
+        "titles": [],
+        "isBot": true,
+        "avatarEmoji": "🐳",
+        "color": "#B78CFF",
+        "name": "yankee-white",
+        "rank": "platinum",
+        "winRate": 0.44,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_176",
+      "exists": true,
+      "data": {
+        "botId": "bot_176",
+        "isBot": true,
+        "avatarEmoji": "🦁",
+        "color": "#16B7D9",
+        "name": "Quinlov",
+        "rank": "silver",
+        "titles": [],
+        "winRate": 0.35,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_177",
+      "exists": true,
+      "data": {
+        "botId": "bot_177",
+        "isBot": true,
+        "avatarEmoji": "🦜",
+        "color": "#B78CFF",
+        "name": "ETerribleT",
+        "rank": "platinum",
+        "titles": [],
+        "winRate": 0.57,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_178",
+      "exists": true,
+      "data": {
+        "botId": "bot_178",
+        "color": "#B78CFF",
+        "isBot": true,
+        "avatarEmoji": "🦉",
+        "name": "folbec",
+        "rank": "silver",
+        "titles": [
+          "Ветеран слотов"
+        ],
+        "winRate": 0.31,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_179",
+      "exists": true,
+      "data": {
+        "botId": "bot_179",
+        "isBot": true,
+        "avatarEmoji": "🐨",
+        "color": "#47C870",
+        "name": "haolime",
+        "rank": "bronze",
+        "titles": [
+          "Словарный запас"
+        ],
+        "winRate": 0.45,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_180",
+      "exists": true,
+      "data": {
+        "botId": "bot_180",
+        "isBot": true,
+        "avatarEmoji": "🐳",
+        "color": "#FF9F43",
+        "name": "Proda",
+        "rank": "diamond",
+        "titles": [
+          "Фразовый маньяк"
+        ],
+        "winRate": 0.53,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_181",
+      "exists": true,
+      "data": {
+        "botId": "bot_181",
+        "isBot": true,
+        "avatarEmoji": "🐳",
+        "color": "#B78CFF",
+        "name": "elmutanto",
+        "rank": "platinum",
+        "titles": [],
+        "winRate": 0.83,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_182",
+      "exists": true,
+      "data": {
+        "botId": "bot_182",
+        "isBot": true,
+        "avatarEmoji": "🐼",
+        "color": "#16B7D9",
+        "name": "itskylemeyer",
+        "rank": "gold",
+        "titles": [
+          "Спринтер"
+        ],
+        "winRate": 0.51,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_183",
+      "exists": true,
+      "data": {
+        "botId": "bot_183",
+        "isBot": true,
+        "avatarEmoji": "🐼",
+        "color": "#16B7D9",
+        "name": "wolfstiel",
+        "rank": "silver",
+        "titles": [
+          "Словарный запас"
+        ],
+        "winRate": 0.33,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_184",
+      "exists": true,
+      "data": {
+        "botId": "bot_184",
+        "isBot": true,
+        "avatarEmoji": "🐨",
+        "color": "#16B7D9",
+        "name": "NomDeCompte",
+        "rank": "silver",
+        "titles": [],
+        "winRate": 0.6,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_185",
+      "exists": true,
+      "data": {
+        "botId": "bot_185",
+        "color": "#47C870",
+        "isBot": true,
+        "avatarEmoji": "🦖",
+        "name": "FlashGuy12",
+        "rank": "gold",
+        "titles": [],
+        "winRate": 0.79,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_186",
+      "exists": true,
+      "data": {
+        "botId": "bot_186",
+        "isBot": true,
+        "avatarEmoji": "🐯",
+        "color": "#16B7D9",
+        "name": "SteveIsAMonster",
+        "rank": "silver",
+        "titles": [],
+        "winRate": 0.59,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_187",
+      "exists": true,
+      "data": {
+        "botId": "bot_187",
+        "avatarEmoji": "🐸",
+        "titles": [],
+        "isBot": true,
+        "color": "#47C870",
+        "name": "defpepi",
+        "rank": "silver",
+        "winRate": 0.63,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_188",
+      "exists": true,
+      "data": {
+        "botId": "bot_188",
+        "winRate": 0.75,
+        "color": "#FF5B6C",
+        "isBot": true,
+        "avatarEmoji": "🦖",
+        "name": "continous",
+        "rank": "platinum",
+        "titles": [
+          "Словарный запас"
+        ],
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_189",
+      "exists": true,
+      "data": {
+        "botId": "bot_189",
+        "isBot": true,
+        "avatarEmoji": "🐳",
+        "color": "#16B7D9",
+        "name": "NoInkling",
+        "rank": "platinum",
+        "titles": [
+          "Ветеран слотов"
+        ],
+        "winRate": 0.38,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_190",
+      "exists": true,
+      "data": {
+        "botId": "bot_190",
+        "rank": "gold",
+        "isBot": true,
+        "avatarEmoji": "🦜",
+        "color": "#FFC800",
+        "name": "hj17",
+        "titles": [],
+        "winRate": 0.57,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_191",
+      "exists": true,
+      "data": {
+        "botId": "bot_191",
+        "rank": "gold",
+        "isBot": true,
+        "avatarEmoji": "🦁",
+        "color": "#FF5B6C",
+        "name": "r_m_8_8",
+        "titles": [
+          "Фразовый маньяк"
+        ],
+        "winRate": 0.58,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_192",
+      "exists": true,
+      "data": {
+        "botId": "bot_192",
+        "isBot": true,
+        "avatarEmoji": "🐸",
+        "color": "#B78CFF",
+        "name": "itsalrightt",
+        "rank": "silver",
+        "titles": [],
+        "winRate": 0.21,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_193",
+      "exists": true,
+      "data": {
+        "botId": "bot_193",
+        "avatarEmoji": "🦜",
+        "rank": "silver",
+        "titles": [],
+        "isBot": true,
+        "color": "#FFC800",
+        "name": "Umarill",
+        "winRate": 0.28,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_194",
+      "exists": true,
+      "data": {
+        "botId": "bot_194",
+        "isBot": true,
+        "avatarEmoji": "🐸",
+        "color": "#FFC800",
+        "name": "_zepar",
+        "rank": "bronze",
+        "titles": [
+          "Словарный запас"
+        ],
+        "winRate": 0.66,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_195",
+      "exists": true,
+      "data": {
+        "botId": "bot_195",
+        "color": "#FF5B6C",
+        "isBot": true,
+        "avatarEmoji": "🐼",
+        "name": "Mariomariamario",
+        "rank": "gold",
+        "titles": [
+          "Ветеран слотов"
+        ],
+        "winRate": 0.34,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_196",
+      "exists": true,
+      "data": {
+        "botId": "bot_196",
+        "isBot": true,
+        "avatarEmoji": "🐯",
+        "color": "#B78CFF",
+        "name": "niqomi",
+        "rank": "diamond",
+        "titles": [
+          "Тихий охотник"
+        ],
+        "winRate": 0.64,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_197",
+      "exists": true,
+      "data": {
+        "botId": "bot_197",
+        "rank": "platinum",
+        "isBot": true,
+        "avatarEmoji": "🦄",
+        "color": "#47C870",
+        "name": "CoffeeAndKarma",
+        "titles": [
+          "Словарный запас"
+        ],
+        "winRate": 0.7,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_198",
+      "exists": true,
+      "data": {
+        "botId": "bot_198",
+        "titles": [],
+        "isBot": true,
+        "avatarEmoji": "🦉",
+        "color": "#16B7D9",
+        "name": "Zephs",
+        "rank": "gold",
+        "winRate": 0.32,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_199",
+      "exists": true,
+      "data": {
+        "botId": "bot_199",
+        "isBot": true,
+        "avatarEmoji": "🐯",
+        "color": "#FF5B6C",
+        "name": "Chinglaner",
+        "rank": "diamond",
+        "titles": [
+          "Словарный запас"
+        ],
+        "winRate": 0.66,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    },
+    {
+      "id": "bot_200",
+      "exists": true,
+      "data": {
+        "botId": "bot_200",
+        "rank": "gold",
+        "color": "#FF9F43",
+        "isBot": true,
+        "avatarEmoji": "🦊",
+        "name": "BeautyAndGlamour",
+        "titles": [],
+        "winRate": 0.57,
+        "seedVersion": "tournament-bots-v2-reddit-20260801",
+        "updatedAt": 1785569814839
+      }
+    }
+  ]
+}

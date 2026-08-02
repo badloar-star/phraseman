@@ -3,7 +3,8 @@ import path from 'path';
 
 const ROOT = path.join(__dirname, '..');
 
-const playMock = jest.fn();
+const requestMock = jest.fn();
+const verdictMock = jest.fn();
 const tapMock = jest.fn();
 const lightMock = jest.fn();
 const mediumMock = jest.fn();
@@ -12,12 +13,11 @@ const successMock = jest.fn();
 const correctMock = jest.fn();
 const wrongMock = jest.fn();
 
-jest.mock('../app/user_settings_store', () => ({
-  getUserSettingsSnapshot: () => ({ uiSounds: true }),
-}));
-
-jest.mock('../app/feedback/sound_bank', () => ({
-  play: (...args: unknown[]) => playMock(...args),
+jest.mock('../modules/audio/sound_director', () => ({
+  soundDirector: {
+    request: (...args: unknown[]) => requestMock(...args),
+    requestLearningVerdict: (...args: unknown[]) => verdictMock(...args),
+  },
 }));
 
 jest.mock('../app/feedback/haptics', () => ({
@@ -48,9 +48,8 @@ describe('lesson lightning feedback scope', () => {
     const feedbackKit = read('app/feedback/feedback_kit.ts');
 
     expect(feedbackKit).toContain("surface?: FeedbackSurface");
-    expect(feedbackKit).toContain("if (options.surface === 'lesson')");
-    expect(feedbackKit).toContain("sfx('crack')");
-    expect(feedbackKit).toContain("sfx('thunder')");
+    expect(feedbackKit).toContain('requestLearningVerdict');
+    expect(feedbackKit).toContain('combo: n');
   });
 
   it('enables lightning combo effects only on the main lesson screen', () => {
@@ -59,7 +58,7 @@ describe('lesson lightning feedback scope', () => {
     const irregular = read('app/lesson_irregular_verbs.tsx');
     const prepositions = read('app/preposition_drill.tsx');
 
-    expect(lesson).toContain("fk.combo(correctStreakRef.current, { surface: 'lesson' })");
+    expect(lesson).toContain("fk.verdict({ correct: true, combo: correctStreakRef.current, surface: 'lesson' })");
     expect(words).not.toContain("surface: 'lesson'");
     expect(irregular).not.toContain("surface: 'lesson'");
     expect(prepositions).not.toContain("surface: 'lesson'");
@@ -81,33 +80,33 @@ describe('lesson lightning feedback scope', () => {
   it('keeps practice combo haptics but suppresses practice lightning sounds', async () => {
     const { fk } = await import('../app/feedback/feedback_kit');
 
-    playMock.mockClear();
+    requestMock.mockClear();
     mediumMock.mockClear();
     peakMock.mockClear();
 
     fk.combo(5);
-    expect(playMock).not.toHaveBeenCalled();
+    expect(requestMock).not.toHaveBeenCalled();
     expect(mediumMock).toHaveBeenCalledTimes(1);
 
     fk.combo(10);
-    expect(playMock).not.toHaveBeenCalled();
+    expect(requestMock).not.toHaveBeenCalled();
     expect(peakMock).toHaveBeenCalledTimes(1);
   });
 
   it('plays lightning sounds on lesson combo thresholds', async () => {
     const { fk } = await import('../app/feedback/feedback_kit');
 
-    playMock.mockClear();
+    verdictMock.mockClear();
     mediumMock.mockClear();
     peakMock.mockClear();
 
-    fk.combo(5, { surface: 'lesson' });
-    expect(playMock).toHaveBeenCalledWith('crack', undefined);
+    fk.verdict({ correct: true, combo: 5, surface: 'lesson' });
+    expect(verdictMock).toHaveBeenCalledWith(expect.objectContaining({ correct: true, combo: 5 }));
     expect(mediumMock).toHaveBeenCalledTimes(1);
 
-    playMock.mockClear();
-    fk.combo(10, { surface: 'lesson' });
-    expect(playMock).toHaveBeenCalledWith('thunder', undefined);
+    verdictMock.mockClear();
+    fk.verdict({ correct: true, combo: 10, surface: 'lesson' });
+    expect(verdictMock).toHaveBeenCalledWith(expect.objectContaining({ correct: true, combo: 10 }));
     expect(peakMock).toHaveBeenCalledTimes(1);
   });
 });

@@ -32,6 +32,7 @@ import { monoIcon } from '../constants/monoIcon';
 import { triLang, type Lang, type PlannedInterfaceLang } from '../constants/i18n';
 import { hapticSuccess, hapticWarning, hapticTap, hapticSoftImpact } from '../hooks/use-haptics';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
+import { soundDirector } from '../modules/audio/sound_director';
 
 import { noAndroidOutline } from '../constants/androidGlow';
 const { width: W, height: H } = Dimensions.get('window');
@@ -247,6 +248,12 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
     if (isPromo) hapticSuccess();
     else if (isDemo) hapticWarning();
     else hapticSoftImpact();
+    if (isPromo || isDemo) {
+      soundDirector.request(isPromo ? 'pm.league.promoted' : 'pm.league.demoted', {
+        scope: 'league-result',
+        dedupeKey: `${result.prevLeagueId}:${result.newLeagueId}`,
+      });
+    }
 
     Animated.sequence([
       // 1. Карточка появляется

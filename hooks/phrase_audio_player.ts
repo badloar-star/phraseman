@@ -8,10 +8,14 @@
 // Kept separate from use-audio.ts so the speak() hook stays small.
 
 import { createAudioPlayer, type AudioPlayer } from 'expo-audio';
-import { setManagedAudioMode } from '../app/audio_session_coordinator';
 import { Directory, File, Paths } from 'expo-file-system';
-import { LOUD_PLAYBACK_AUDIO_MODE } from '../app/audio_playback_mode';
 import { getPhraseAudioUrl, normalizePhraseAudioKey } from '../app/phrase_audio_url_map.generated';
+import { voicePlaybackPolicy } from '../modules/audio/voice_playback_policy';
+import {
+  acquireAudioActivity,
+  whenAudioActivitySettled,
+  type AudioActivityLease,
+} from '../modules/audio/audio_activity';
 
 const CACHE_DIR_NAME = 'phrase-audio';
 
@@ -55,6 +59,7 @@ let currentSub: { remove: () => void } | null = null;
 // Watchdog текущего плеера: если клип не заиграл вовремя (исчерпан нативный лимит
 // плееров / клип не декодировался), снимаем плеер и уходим в фолбэк.
 let currentWatchdog: ReturnType<typeof setTimeout> | null = null;
+let currentVoiceLease: AudioActivityLease | null = null;
 
 // Каждый createAudioPlayer — сырой нативный AudioPlayer БЕЗ авто-release
 // (в отличие от useAudioPlayer). Если хоть один путь пропустит remove(), нативный
@@ -188,9 +193,7 @@ function downloadFileWithTimeout(nativeDownload: Promise<string | null>): Promis
 
 async function ensureAudioMode(): Promise<void> {
   try {
-    // Other screens can change the shared native audio session after phrase
-    // audio has played once, so restore the phrase mode on every clip.
-    await setManagedAudioMode(LOUD_PLAYBACK_AUDIO_MODE);
+    await whenAudioActivitySettled();
   } catch {
     // Non-fatal; playback may still work with default mode.
   }
@@ -259,6 +262,8 @@ export function stopPhraseAudio(): void {
   if (livePlayers.size > 0) {
     for (const player of Array.from(livePlayers)) disposePlayer(player);
   }
+  currentVoiceLease?.release();
+  currentVoiceLease = null;
 }
 
 /**
@@ -273,6 +278,8 @@ export async function playPhraseByText(
 ): Promise<boolean> {
   const url = getPhraseAudioUrl(text);
   if (!url) return false;
+  const voicePolicyToken = voicePlaybackPolicy.captureStart();
+  if (voicePolicyToken === null) return false;
 
   const key = normalizePhraseAudioKey(text);
   // Claim this playback: stop whatever was playing and capture the new token.
@@ -280,13 +287,22 @@ export async function playPhraseByText(
   const myGeneration = playGeneration;
   const superseded = () => playGeneration !== myGeneration;
 
-  await ensureAudioMode();
-  if (superseded()) return true; // stop()/another play() happened during await
-
   // Prefer the on-disk cached file; if caching failed, stream from the URL once.
   const cachedUri = await getCachedOrDownload(key, url);
-  if (superseded()) return true; // user moved on while downloading — do not play
+  if (superseded() || !voicePlaybackPolicy.canStart(voicePolicyToken)) return true;
   const source: string = cachedUri ?? url;
+
+  const voiceLease = acquireAudioActivity('spoken');
+  currentVoiceLease = voiceLease;
+  const releaseVoiceLease = () => {
+    voiceLease.release();
+    if (currentVoiceLease === voiceLease) currentVoiceLease = null;
+  };
+  await ensureAudioMode();
+  if (superseded() || !voicePlaybackPolicy.canStart(voicePolicyToken)) {
+    releaseVoiceLease();
+    return true;
+  }
 
   try {
     const player = createAudioPlayer(source);
@@ -321,6 +337,7 @@ export async function playPhraseByText(
       if (currentSub === sub) currentSub = null;
       disposePlayer(player);
       if (currentPlayer === player) currentPlayer = null;
+      releaseVoiceLease();
       // Провал старта на актуальном клипе → сообщаем ошибку, чтобы вызывающая
       // сторона ушла в системный TTS (иначе фраза молча пропадает).
       if (fromWatchdog && !superseded()) {
@@ -364,6 +381,7 @@ export async function playPhraseByText(
         if (currentSub === sub) currentSub = null;
         disposePlayer(player);
         if (currentPlayer === player) currentPlayer = null;
+        releaseVoiceLease();
         if (!wasSuperseded) cb?.onDone?.();
       }
     });
@@ -381,6 +399,7 @@ export async function playPhraseByText(
     player.play();
     return true;
   } catch (e) {
+    releaseVoiceLease();
     cb?.onError?.(e instanceof Error ? e : new Error(String(e)));
     return false;
   }

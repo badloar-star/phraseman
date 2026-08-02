@@ -35,6 +35,7 @@ import { useAudio } from '../hooks/use-audio';
 import { loadFlashcards, peekFlashcardsCache, type Flashcard } from '../hooks/use-flashcards';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useCorrectSound } from '../hooks/use-correct-sound';
+import { useHintRevealCue } from '../hooks/use-hint-reveal-cue';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import {
@@ -814,6 +815,7 @@ export default function FlashcardsSwipeScreen() {
   const flashcardsAccess = useFeatureAccess('flashcards');
   const audio = useAudio();
   const { playCorrect } = useCorrectSound();
+  const { playHintReveal } = useHintRevealCue();
 
   const cardContentLang = useMemo(() => flashcardContentLang(lang, studyTarget), [lang, studyTarget]);
   const officialPacksEnabled = flashcardsOfficialPacksAvailableForTarget(studyTarget, lang);
@@ -2189,6 +2191,10 @@ export default function FlashcardsSwipeScreen() {
   const revealCurrent = useCallback(() => {
     if (!currentPrompt || feedback || settling || settlingRef.current) return;
     void hapticTap();
+    // зачем: раскрытие подсказки — осознанное действие ученика (счётчик hints,
+    // сброс серии), поэтому у него свой звук, а не общий «тап». Ставим после
+    // ранних return'ов: на заблокированной карточке звука быть не должно.
+    playHintReveal();
     const key = currentPrompt.card.trainingKey;
     const cardProgress = progressRef.current[key] ?? emptyProgress();
     cardProgress.hints += 1;
@@ -2201,7 +2207,7 @@ export default function FlashcardsSwipeScreen() {
       streak: 0,
     }));
     setFeedback({ kind: 'hint', prompt: currentPrompt });
-  }, [currentPrompt, feedback, settling, updateCardMemory]);
+  }, [currentPrompt, feedback, settling, updateCardMemory, playHintReveal]);
 
   const continueAfterFeedback = useCallback(() => {
     if (!feedback) return;

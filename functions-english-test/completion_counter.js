@@ -2,7 +2,17 @@
 
 const crypto = require("crypto");
 
-const BASELINE_COMPLETED = 124000;
+// зачем: владелец 2026-08-01 — счётчик "X учеников прошли тест" был ОДНИМ
+// числом на все 5 языков, хотя честно накоплен только для английского —
+// нечестно, остальные языки ещё никто не проходил. Разделили по языку.
+// 2026-08-02 — владелец решил, что и старая база 124000 для английского
+// (легаси-точка ДО введения счётчика) тоже нечестная. Сама база 124000
+// вычтена из документа english_test_public/totals ОДНОРАЗОВОЙ миграцией
+// (scripts/migrate_remove_english_baseline.js), реальные завершения
+// сохранены. Здесь база всех языков — честный 0, без исключений.
+const TEST_LANGUAGES = ["en", "de", "fr", "it", "es"];
+const BASELINE_COMPLETED = 0;
+const BASELINE_COMPLETED_BY_LANGUAGE = { en: 0, de: 0, fr: 0, it: 0, es: 0 };
 const COMPLETION_RATE_LIMIT = 20;
 const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000;
 const COMPLETION_ID_PATTERN = /^[a-f0-9]{48}$/;
@@ -23,10 +33,34 @@ function sha256(value) {
   return crypto.createHash("sha256").update(value).digest("hex");
 }
 
+function normalizeTestLanguage(value) {
+  return TEST_LANGUAGES.includes(value) ? value : "en";
+}
+
+function normalizeCompletedForLanguage(language, value) {
+  const baseline = BASELINE_COMPLETED_BY_LANGUAGE[normalizeTestLanguage(language)];
+  return Number.isSafeInteger(value) && value >= baseline ? value : baseline;
+}
+
+// зачем: остаётся для старых клиентов (кэш в localStorage), которые ещё
+// читают общее число вместо completedByLanguage; нормализует к en-базе (0).
 function normalizeCompleted(value) {
-  return Number.isSafeInteger(value) && value >= BASELINE_COMPLETED
-    ? value
-    : BASELINE_COMPLETED;
+  return normalizeCompletedForLanguage("en", value);
+}
+
+function normalizeCompletedByLanguage(data, legacyCompleted) {
+  const result = {};
+  for (const language of TEST_LANGUAGES) {
+    result[language] = normalizeCompletedForLanguage(language, data?.[language]);
+  }
+  // Existing production documents may predate the per-language map. Preserve
+  // their aggregate as English until the separate one-time migration is run;
+  // otherwise the public counter drops to zero and the next completion erases
+  // the legacy total. Once a map exists, it remains the only source of truth.
+  if (!data || typeof data !== "object" || Array.isArray(data)) {
+    result.en = normalizeCompleted(legacyCompleted);
+  }
+  return result;
 }
 
 function isValidCompletionId(value) {
@@ -38,11 +72,13 @@ function isValidCompletionPayload(payload) {
     return false;
   const keys = Object.keys(payload).sort();
   return (
-    keys.length === 2 &&
+    keys.length === 3 &&
     keys[0] === "action" &&
     keys[1] === "completionId" &&
+    keys[2] === "testLanguage" &&
     payload.action === "count_complete" &&
-    isValidCompletionId(payload.completionId)
+    isValidCompletionId(payload.completionId) &&
+    TEST_LANGUAGES.includes(payload.testLanguage)
   );
 }
 
@@ -70,9 +106,19 @@ async function readCompletedCount(db) {
   );
 }
 
+async function readCompletedCountByLanguage(db) {
+  const snapshot = await db
+    .collection("english_test_public")
+    .doc("totals")
+    .get();
+  const data = snapshot.exists ? snapshot.data() : undefined;
+  return normalizeCompletedByLanguage(data?.completedByLanguage, data?.completed);
+}
+
 async function countCompletion({
   db,
   completionId,
+  testLanguage,
   ipAddress,
   hmacKey,
   nowMs = Date.now(),
@@ -82,6 +128,7 @@ async function countCompletion({
     throw new TypeError("Invalid Firestore dependency");
   if (!Number.isSafeInteger(nowMs) || nowMs < 0)
     throw new TypeError("Invalid timestamp");
+  const language = normalizeTestLanguage(testLanguage);
 
   const receiptId = sha256(completionId);
   const rateLimitId = hmac(hmacKey, `completion-ip:${ipAddress}`);
@@ -97,9 +144,12 @@ async function countCompletion({
     const receiptSnapshot = await transaction.get(receiptRef);
     const counterSnapshot = await transaction.get(counterRef);
     const rateLimitSnapshot = await transaction.get(rateLimitRef);
-    const completed = normalizeCompleted(
-      counterSnapshot.exists ? counterSnapshot.data()?.completed : undefined,
+    const counterData = counterSnapshot.exists ? counterSnapshot.data() : undefined;
+    const completedByLanguage = normalizeCompletedByLanguage(
+      counterData?.completedByLanguage,
+      counterData?.completed,
     );
+    const completed = completedByLanguage[language];
 
     if (receiptSnapshot.exists) return { completed, duplicate: true };
 
@@ -126,8 +176,19 @@ async function countCompletion({
     }
 
     const nextCompleted = completed + 1;
+    const nextCompletedByLanguage = { ...completedByLanguage, [language]: nextCompleted };
+    // зачем: старое поле completed держим равным сумме всех языков — клиенты,
+    // ещё не обновившиеся на per-language чтение, не увидят число ниже прежнего.
+    const nextCompletedTotal = TEST_LANGUAGES.reduce(
+      (sum, code) => sum + nextCompletedByLanguage[code],
+      0,
+    );
     transaction.set(receiptRef, { createdAtMs: nowMs });
-    transaction.set(counterRef, { completed: nextCompleted }, { merge: true });
+    transaction.set(
+      counterRef,
+      { completed: nextCompletedTotal, completedByLanguage: nextCompletedByLanguage },
+      { merge: true },
+    );
     transaction.set(rateLimitRef, {
       count: currentRateCount + 1,
       windowStartMs,
@@ -139,10 +200,15 @@ async function countCompletion({
 
 module.exports = {
   BASELINE_COMPLETED,
+  BASELINE_COMPLETED_BY_LANGUAGE,
+  TEST_LANGUAGES,
   CompletionRateLimitError,
   countCompletion,
   isValidCompletionId,
   isValidCompletionPayload,
   normalizeCompleted,
+  normalizeCompletedByLanguage,
+  normalizeTestLanguage,
   readCompletedCount,
+  readCompletedCountByLanguage,
 };

@@ -6,6 +6,7 @@ import DuoPressable from '../components/DuoPressable';
 import { useWordFlash } from '../hooks/use-word-flash';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
+import { useTimerTickCue } from '../hooks/use-timer-tick-cue';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter } from 'expo-router';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
@@ -427,6 +428,7 @@ function FrenchLingmanExamUnavailable({
 export default function ExamScreen() {
   const router = useRouter();
   const runtimeActive = useRuntimeActive();
+  const { playTimerExpired } = useTimerTickCue();
   const {theme:t, f, themeMode } = useTheme();
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const {lang} = useLang();
@@ -606,12 +608,18 @@ export default function ExamScreen() {
       if (!examDeadlineRef.current) return;
       const next = Math.max(0, Math.ceil((examDeadlineRef.current - Date.now()) / 1000));
       setTotalTimeLeft(next);
-      if (next === 0 && phase === 'quiz') setPhase('review');
+      if (next === 0 && phase === 'quiz') {
+        // зачем: экзамен сам уходит в разбор — без звука это выглядело как
+        // самопроизвольный переход. Предупреждающий тик здесь НЕ ставим:
+        // тут таймер на весь экзамен (минуты), а не на задание.
+        playTimerExpired();
+        setPhase('review');
+      }
     };
     update();
     timerRef.current = setInterval(update,1000);
     return ()=>{ if(timerRef.current) clearInterval(timerRef.current); };
-  },[phase, runtimeActive]);
+  },[phase, runtimeActive, playTimerExpired]);
 
   useEffect(() => {
     if (phase !== 'countdown') {

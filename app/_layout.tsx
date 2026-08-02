@@ -7,8 +7,9 @@ import { Stack, useGlobalSearchParams, usePathname, useRouter, router as globalR
 import Ionicons from '@expo/vector-icons/Ionicons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import * as SplashScreen from 'expo-splash-screen';
-import { setAudioModeAsync } from 'expo-audio';
-import { LOUD_PLAYBACK_AUDIO_MODE } from './audio_playback_mode';
+import { UI_SFX_AUDIO_MODE } from './audio_playback_mode';
+import { setManagedAudioMode } from './audio_session_coordinator';
+import { soundDirector } from '../modules/audio/sound_director';
 import Constants from 'expo-constants';
 import { useFonts } from 'expo-font';
 import * as Linking from 'expo-linking';
@@ -1215,7 +1216,13 @@ function GlobalLevelUpHandler() {
         visible={levelUpOverlayVisible && showLevelUp}
         animationType="none"
         statusBarTranslucent
-        onShow={acknowledgeNativeLevelUpShown}
+        onShow={() => {
+          acknowledgeNativeLevelUpShown();
+          soundDirector.request('pm.reward.level_up', {
+            scope: 'level-up-modal',
+            dedupeKey: String(currentLevel),
+          });
+        }}
         onRequestClose={() => {}}
       >
         <View style={{ flex: 1, backgroundColor: levelUpScreenDim, justifyContent: 'center', alignItems: 'center', padding: 24, overflow: 'hidden' }}>
@@ -1603,7 +1610,7 @@ function AppContent() {
   // выставлялся лениво и только в клип-пути, а expo-speech на iOS работает в
   // отдельной сессии — поэтому при беззвучном режиме звука не было совсем.
   useEffect(() => {
-    void setAudioModeAsync(LOUD_PLAYBACK_AUDIO_MODE)
+    void setManagedAudioMode(UI_SFX_AUDIO_MODE)
       .catch(() => { /* не критично: воспроизведение возможно и с дефолтным режимом */ });
   }, []);
 

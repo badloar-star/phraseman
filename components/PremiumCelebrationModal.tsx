@@ -49,6 +49,7 @@ import {
   type CelebrationFeature,
   type CelebrationVariant,
 } from './premium_celebration/celebrationContent';
+import { soundDirector } from '../modules/audio/sound_director';
 
 interface PremiumCelebrationModalProps {
   visible: boolean;
@@ -205,6 +206,10 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium' }: Prem
 
     // вступление
     hapticSuccess();
+    soundDirector.request(variant === 'vip' ? 'pm.reward.vip_open' : 'pm.reward.premium_open', {
+      scope: 'premium-celebration',
+      dedupeKey: `${variant}:open`,
+    });
     heroIn.value = withTiming(1, { duration: 520, easing: REasing.out(REasing.back(1.4)) });
     ringSpin.value = withRepeat(withTiming(1, { duration: 6000, easing: REasing.linear }), -1, false);
     ringPulse.value = withRepeat(
@@ -233,6 +238,10 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium' }: Prem
         scrollRef.current?.scrollTo({ y: maxScroll, animated: true });
         setFinaleLit(true);
         finaleScale.value = withDelay(150, withSpring(1, { mass: 0.6, damping: 10, stiffness: 120 }));
+        soundDirector.request(variant === 'vip' ? 'pm.reward.vip_finale' : 'pm.reward.premium_finale', {
+          scope: 'premium-celebration',
+          dedupeKey: `${variant}:finale`,
+        });
         setTimeout(() => { hapticSuccess(); }, 420);
         return;
       }

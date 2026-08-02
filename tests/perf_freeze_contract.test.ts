@@ -36,9 +36,11 @@ describe('perf freeze contract', () => {
 
   it('allows freezeOnBlur:false only for the realtime allowlist', () => {
     const source = read('app/_layout.tsx');
-    // Экраны, которым разрешено НЕ замораживаться (живой матч/комната/лобби-поиск, экзамен).
+    // Экраны, которым разрешено НЕ замораживаться. Сейчас — только экзамен (живой таймер).
+    // зачем 2026-08-02: PvP-Арена декомиссирована (tests/quiz_arena_decommission_contract.test.ts),
+    // её экранов в _layout больше нет — храповик сужен, чтобы возврат arena_* не пролез молча.
     // Добавление нового исключения = осознанное решение хозяина: расширь список и объясни зачем.
-    const allowed = ['arena_game', 'arena_lobby', 'arena_join', 'arena_room', 'exam'];
+    const allowed = ['exam'];
     const offenders = source
       .split(/\r?\n/)
       .filter((line) => line.includes('freezeOnBlur: false'))

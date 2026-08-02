@@ -99,17 +99,6 @@ export const ENABLE_DEV_TOOLS =
   ((typeof __DEV__ !== 'undefined' && __DEV__) || DEV_MODE || TESTFLIGHT_DEV_TOOLS) && !IS_STORE_RELEASE;
 
 /**
- * Ставка осколками на следующий рейтинг-матч арены (очередь «Найти матч»).
- * Включено во всех сборках, включая стор.
- */
-export const ENABLE_ARENA_RANKED_WAGER = true;
-
-/**
- * One-shot Arena matchmaking control deadlines with foreground reconciliation.
- */
-export const ENABLE_ARENA_MATCHMAKING_CONTROL_CLOCK = true;
-
-/**
  * Карточка профиля — лестница из 5 уровней за осколки (публичный статус: бейдж уровня
  * у имени в списках, прокачанная карточка в профиле, новые блоки статистики по уровням).
  *
@@ -232,29 +221,6 @@ export const UPDATE_CHECK_URL = 'https://raw.githubusercontent.com/badloar-star/
 // или не покажется. Сначала верни хост, потом поднимай версию (аудит #11).
 export const RELEASE_WAVE_BONUS_VERSION = 0;
 export const RELEASE_WAVE_BONUS_SHARDS = 0;
-
-/** Окно принятия матча в лобби / тосте «соперник найден» (мс). Должно совпадать с Cloud Function `acceptDeadlineAt`. */
-export const ARENA_LOBBY_ACCEPT_MS = 15_000;
-// ── Арена: бот-фолбэк при пустой очереди (ранний этап, мало DAU) ─────────────
-// Если за окно [BOT_FALLBACK_MIN_MS, BOT_FALLBACK_MAX_MS] не нашёлся реальный
-// соперник — клиент создаёт локальную бот-сессию (sessionId="bot_..."). Бот
-// идёт в рейтинг как обычный матч (см. arena_results.tsx isMockSession ветка).
-// Серверные коллекции (arena_sessions, match_history) для бот-матчей не
-// создаются — только клиентский write в arena_profiles.
-// Живой соперник из CF всегда перебивает по подписке; пока в очереди есть другие
-// игроки — клиент может отложить бота (см. MatchmakingContext).
-// Чтобы выключить: BOT_FALLBACK_ENABLED = false (ребилд не нужен в дев-сборке,
-// но в production — релиз).
-export const BOT_FALLBACK_ENABLED = true;
-/** Случайная задержка до бота при «Найти матч» (не «Ещё раз»): в первые ~40 с; живой соперник и отложка при других в очереди — как раньше. */
-export const BOT_FALLBACK_MIN_MS = 8_000;
-export const BOT_FALLBACK_MAX_MS = 40_000;
-/**
- * «Ещё раз»: случайная задержка до бота от min до max (мс, включительно),
- * внутри этого окна живой соперник всё ещё может перебить. Не «ровно через 10 с».
- */
-export const ARENA_PLAY_AGAIN_BOT_MIN_MS = 1;
-export const ARENA_PLAY_AGAIN_BOT_MAX_MS = 10_000;
 
 // Минимальный балл для разблокировки следующего урока
 export const MIN_LESSON_SCORE = 4.5;

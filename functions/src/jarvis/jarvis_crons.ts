@@ -1,6 +1,8 @@
 import * as admin from 'firebase-admin';
 import { onSchedule } from 'firebase-functions/v2/scheduler';
 import { logger } from 'firebase-functions';
+import { ADMIN_ALERT_BOT_TOKEN, sendTelegramAlert } from '../admin_alerts';
+import { buildTelegramDigest } from './telegram_digest';
 import { fetchActiveUserCount } from './app_tier_reader';
 import { resolveAppTier } from './app_tier_resolver';
 import { buildAllDepartmentsSnapshot } from './all_departments_snapshot';
@@ -45,7 +47,10 @@ const DEPARTMENTS_SCHEDULE_OPTIONS = {
   retryCount: 1,
   timeoutSeconds: 300,
   memory: '256MiB' as const,
-} as const;
+  // зачем секрет здесь: утреннюю сводку крон отправляет владельцу тем же
+  // ботом, что и остальные алерты — своей инфраструктуры Джарвис не заводит.
+  secrets: [ADMIN_ALERT_BOT_TOKEN],
+};
 
 /**
  * зачем на час позже департаментов: точка истории должна лечь после того,
@@ -204,10 +209,26 @@ export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTION
     nowMs,
   });
 
+  // зачем молчать, когда всё чисто: ежедневное «всё хорошо» приучает не
+  // читать сообщения, и настоящая находка потеряется среди них. Пишем только
+  // когда есть что сказать — либо находка, либо недоступный департамент.
+  const worthSending = snapshot.decisions.length > 0 || snapshot.departmentErrors.length > 0;
+  let telegramSent = false;
+  if (worthSending) {
+    const text = buildTelegramDigest({
+      decisions: snapshot.decisions,
+      appTier: snapshot.appTier,
+      departmentErrors: snapshot.departmentErrors,
+    });
+    // sendTelegramAlert не бросает и сам уважает выключатель в admin_config/alerts.
+    telegramSent = await sendTelegramAlert(ADMIN_ALERT_BOT_TOKEN.value(), text);
+  }
+
   logger.info('jarvis_daily_departments', {
     appTier: snapshot.appTier,
     decisions: snapshot.decisions.length,
     departmentErrors: snapshot.departmentErrors,
+    telegramSent,
   });
 });
 

@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useRef, useState } from 'react';
-import { Keyboard, KeyboardAvoidingView, Modal, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Keyboard, KeyboardAvoidingView, Modal, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useTheme } from './ThemeContext';
 import { submitUserReport } from '../app/user_report';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
@@ -130,13 +130,23 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={{ flex: 1 }}
       >
+        {/* зачем 2026-08-02 (владелец: «на маленьких экранах кнопки нет»):
+            форма жалобы центрировалась во весь рост без прокрутки. С поднятой
+            клавиатурой на низком экране кнопка «Отправить» уходила за границу и
+            жалобу нельзя было отправить. keyboardShouldPersistTaps сохраняет
+            закрытие по тапу мимо формы. */}
+        <ScrollView
+          style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.53)' }}
+          contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 18, paddingVertical: 18 }}
+          showsVerticalScrollIndicator={false}
+          keyboardShouldPersistTaps="handled"
+        >
         <TouchableOpacity
           style={{
-            flex: 1,
-            backgroundColor: 'rgba(0,0,0,0.53)',
+            flexGrow: 1,
+            width: '100%',
             justifyContent: 'center',
             alignItems: 'center',
-            paddingHorizontal: 18,
           }}
           activeOpacity={1}
           onPress={() => {
@@ -222,6 +232,7 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
           </View>
         </TouchableOpacity>
       </TouchableOpacity>
+        </ScrollView>
       </KeyboardAvoidingView>
     </Modal>
   );

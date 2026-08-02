@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from './ThemeContext';
 import type { Lang } from '../constants/i18n';
@@ -72,7 +72,14 @@ function NotificationPermissionModal({
 
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onCancel}>
-      <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.72)', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20 }}>
+      {/* зачем 2026-08-02 (владелец: «на маленьких экранах кнопки нет»):
+          карточка центрировалась во весь рост без прокрутки — на низком экране
+          обрезалась вместе с кнопками «Разрешить»/«Не сейчас». */}
+      <ScrollView
+        style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.72)' }}
+        contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 20 }}
+        showsVerticalScrollIndicator={false}
+      >
         <View style={{ width: '100%', maxWidth: 390, backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderRadius: isCompassTheme ? 14 : 18, borderWidth: 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border, padding: 20, overflow: 'hidden', ...(isCompassTheme ? compassShadow(3) : null) }}>
           {isCompassTheme && <CompassDepthSurface radius={14} selected />}
           <View style={{ alignItems: 'center', marginBottom: 10 }}>
@@ -133,7 +140,7 @@ function NotificationPermissionModal({
             </TouchableOpacity>
           </View>
         </View>
-      </View>
+      </ScrollView>
     </Modal>
   );
 }

@@ -1,6 +1,10 @@
 import { runMoneyDepartment } from './money_department';
 import type { FetchMoneySourceResult } from './money_firestore_fetcher';
 
+// зачем именно 7 из 20 (35%): выше базового порога 30% (mature: 30%×1),
+// но ниже порога seed (30%×2=60%) — ровно граница, которую тир должен развести.
+const BORDERLINE_REFUND_ROWS = Array.from({ length: 7 }, () => ({ eventType: 'REFUND', periodType: null }));
+
 function fetchResult(overrides: Partial<FetchMoneySourceResult> = {}): FetchMoneySourceResult {
   return {
     sourceId: 'revenuecat_premium_events',
@@ -94,5 +98,49 @@ describe('Jarvis money department — a decision only when the signal is real', 
       nowMs: 10_000,
     });
     expect(result.decisions[0].evidence).toHaveLength(2);
+  });
+});
+
+describe('Jarvis money department — app tier scales the spike threshold', () => {
+  // зачем: владелец 2026-08-02 — тот же % возвратов не должен звучать
+  // одинаково тревожно на маленькой и на зрелой базе. 20 новых платящих +
+  // 7 возвратов (35%) выше базового порога (30%), но на seed-тире порог
+  // поднимается до 60% — сигнал остаётся шумом маленькой выборки.
+  test('a rate that trips the base threshold stays silent on the seed tier (small-base noise)', () => {
+    const result = runMoneyDepartment({
+      fetches: [
+        fetchResult({ rows: [...NEW_PAYING_ROWS.slice(0, 20), ...BORDERLINE_REFUND_ROWS] }),
+        fetchResult({ sourceId: 'paywall_funnel', rows: [] }),
+      ],
+      trigger: 'scheduled',
+      nowMs: 10_000,
+      appTier: 'seed',
+    });
+    expect(result.decisions).toEqual([]);
+  });
+
+  test('the same rate raises a decision on the mature tier — same signal, larger base, real', () => {
+    const result = runMoneyDepartment({
+      fetches: [
+        fetchResult({ rows: [...NEW_PAYING_ROWS.slice(0, 20), ...BORDERLINE_REFUND_ROWS] }),
+        fetchResult({ sourceId: 'paywall_funnel', rows: [] }),
+      ],
+      trigger: 'scheduled',
+      nowMs: 10_000,
+      appTier: 'mature',
+    });
+    expect(result.decisions).toHaveLength(1);
+  });
+
+  test('no appTier argument defaults to the most cautious tier (seed) — never silently loosens', () => {
+    const result = runMoneyDepartment({
+      fetches: [
+        fetchResult({ rows: [...NEW_PAYING_ROWS.slice(0, 20), ...BORDERLINE_REFUND_ROWS] }),
+        fetchResult({ sourceId: 'paywall_funnel', rows: [] }),
+      ],
+      trigger: 'scheduled',
+      nowMs: 10_000,
+    });
+    expect(result.decisions).toEqual([]);
   });
 });

@@ -1,3 +1,4 @@
+import type { AppTier } from './app_tier';
 import type { Decision, DecisionTrigger } from './decision';
 import type { FetchQualitySourceResult } from './quality_firestore_fetcher';
 import { runQualityDepartment } from './quality_department';
@@ -25,6 +26,7 @@ export interface BuildQualitySnapshotInput {
   readonly trigger: DecisionTrigger;
   readonly question?: string;
   readonly nowMs: number;
+  readonly appTier?: AppTier;
 }
 
 export interface QualitySnapshot {
@@ -61,6 +63,7 @@ export async function buildQualitySnapshot(input: BuildQualitySnapshotInput): Pr
     trigger: input.trigger,
     question: input.question,
     nowMs: input.nowMs,
+    appTier: input.appTier,
   });
 
   return Object.freeze({ generatedAtMs: input.nowMs, decisions });

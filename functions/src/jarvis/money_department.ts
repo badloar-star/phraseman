@@ -1,3 +1,5 @@
+import type { AppTier } from './app_tier';
+import { tierThresholdMultiplier } from './app_tier';
 import { buildDecision, type Decision, type DecisionTrigger } from './decision';
 import type { FetchMoneySourceResult } from './money_firestore_fetcher';
 import { aggregateMoneyRows, buildMoneyEvidence } from './money_source_reader';
@@ -7,12 +9,18 @@ import { aggregateMoneyRows, buildMoneyEvidence } from './money_source_reader';
  * 2026-08-02). Читает revenuecat_premium_events/paywall_funnel, решает,
  * есть ли скачок возвратов, и если да — строит Decision.
  * Департаменты не общаются между собой: только пишут Decision в журнал.
+ *
+ * зачем appTier: владелец 2026-08-02 — тот же % возвратов не должен звучать
+ * одинаково тревожно на маленькой и на зрелой базе. Без явного тира считаем
+ * его 'seed' (самый строгий порог) — отсутствие данных о масштабе не должно
+ * само по себе делать департамент более шумным.
  */
 
 /** Минимум новых платящих в знаменателе — иначе один возврат на двух
  * покупателей даёт 50% и это не сигнал, а шум маленькой выборки. */
 const MIN_NEW_PAYING_FOR_SIGNAL = 5;
-/** Порог доли возвратов относительно новых платящих за сутки. */
+/** Базовый порог доли возвратов относительно новых платящих за сутки —
+ * масштабируется tierThresholdMultiplier(appTier). */
 const REFUND_RATE_SPIKE_THRESHOLD = 0.3;
 
 export interface RunMoneyDepartmentInput {
@@ -20,6 +28,7 @@ export interface RunMoneyDepartmentInput {
   readonly trigger: DecisionTrigger;
   readonly question?: string;
   readonly nowMs: number;
+  readonly appTier?: AppTier;
 }
 
 export interface RunMoneyDepartmentResult {
@@ -32,13 +41,14 @@ interface RefundSpike {
   readonly rate: number;
 }
 
-function findRefundSpike(fetches: readonly FetchMoneySourceResult[]): RefundSpike | null {
+function findRefundSpike(fetches: readonly FetchMoneySourceResult[], appTier: AppTier): RefundSpike | null {
   const revenuecat = fetches.find((fetch) => fetch.sourceId === 'revenuecat_premium_events');
   if (!revenuecat) return null;
   const aggregate = aggregateMoneyRows(revenuecat.rows);
   if (aggregate.newPaying < MIN_NEW_PAYING_FOR_SIGNAL) return null;
   const rate = aggregate.refunds / aggregate.newPaying;
-  if (rate < REFUND_RATE_SPIKE_THRESHOLD) return null;
+  const threshold = REFUND_RATE_SPIKE_THRESHOLD * tierThresholdMultiplier(appTier);
+  if (rate < threshold) return null;
   return { refunds: aggregate.refunds, newPaying: aggregate.newPaying, rate };
 }
 
@@ -64,7 +74,8 @@ export function runMoneyDepartment(input: RunMoneyDepartmentInput): RunMoneyDepa
     observedAtMs: fetch.observedAtMs,
   }));
 
-  const spike = findRefundSpike(input.fetches);
+  const appTier: AppTier = input.appTier ?? 'seed';
+  const spike = findRefundSpike(input.fetches, appTier);
   const anyTrustworthy = evidence.some((item) => item.trustworthy);
 
   const shouldDecide = input.trigger === 'owner_request' || Boolean(spike) || !anyTrustworthy;

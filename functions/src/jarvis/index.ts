@@ -60,3 +60,16 @@ export { buildGrowthSnapshot } from './growth_snapshot';
 export type { BuildGrowthSnapshotInput, GrowthFetcher, GrowthFetcherMap, GrowthSnapshot } from './growth_snapshot';
 
 export { jarvisGetGrowthSnapshot } from './growth_callables';
+
+export { classifyAppTier, APP_TIER_THRESHOLDS, tierThresholdMultiplier, tierAbsoluteThresholdMultiplier } from './app_tier';
+export type { AppTier } from './app_tier';
+
+export { fetchActiveUserCount, ACTIVE_USER_WINDOW_MS } from './app_tier_reader';
+export type { FetchActiveUserCountInput, FetchActiveUserCountResult, ActiveUserCountState } from './app_tier_reader';
+
+export { resolveAppTier } from './app_tier_resolver';
+
+export { buildAllDepartmentsSnapshot } from './all_departments_snapshot';
+export type { AllDepartmentsSnapshot, BuildAllDepartmentsSnapshotInput, DepartmentSnapshotLike } from './all_departments_snapshot';
+
+export { jarvisGetAllDecisions } from './all_departments_callables';

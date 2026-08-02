@@ -1,3 +1,4 @@
+import type { AppTier } from './app_tier';
 import type { Decision, DecisionTrigger } from './decision';
 import type { FetchMoneySourceResult } from './money_firestore_fetcher';
 import { runMoneyDepartment } from './money_department';
@@ -21,6 +22,7 @@ export interface BuildMoneySnapshotInput {
   readonly trigger: DecisionTrigger;
   readonly question?: string;
   readonly nowMs: number;
+  readonly appTier?: AppTier;
 }
 
 export interface MoneySnapshot {
@@ -48,6 +50,7 @@ export async function buildMoneySnapshot(input: BuildMoneySnapshotInput): Promis
     trigger: input.trigger,
     question: input.question,
     nowMs: input.nowMs,
+    appTier: input.appTier,
   });
 
   return Object.freeze({ generatedAtMs: input.nowMs, decisions });

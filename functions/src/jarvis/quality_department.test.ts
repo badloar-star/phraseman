@@ -111,3 +111,50 @@ describe('Jarvis quality department — a decision per fetch round', () => {
 test('aggregateQualityRows stays the single source of truth for counting', () => {
   expect(aggregateQualityRows(CRASH_ROWS).totalCount).toBe(20);
 });
+
+describe('Jarvis quality department — app tier scales the absolute spike threshold', () => {
+  // зачем: владелец 2026-08-02 — «Качество» использует АБСОЛЮТНЫЙ порог
+  // (число репортов), не долю. На большой базе то же абсолютное число —
+  // капля в море, поэтому порог должен РАСТИ с тиром (обратно тому, как
+  // масштабируется процентный порог у «Денег»).
+  test('20 crash reports trip the base threshold on the seed tier', () => {
+    const result = runQualityDepartment({
+      fetches: [
+        fetchResult({ sourceId: 'error_reports', rows: CRASH_ROWS }),
+        fetchResult({ sourceId: 'user_reports', state: 'empty' }),
+        fetchResult({ sourceId: 'app_errors', state: 'empty' }),
+      ],
+      trigger: 'scheduled',
+      nowMs: 10_000,
+      appTier: 'seed',
+    });
+    expect(result.decisions).toHaveLength(1);
+  });
+
+  test('the same 20 crash reports stay silent on the mature tier — same count, bigger base, noise', () => {
+    const result = runQualityDepartment({
+      fetches: [
+        fetchResult({ sourceId: 'error_reports', rows: CRASH_ROWS }),
+        fetchResult({ sourceId: 'user_reports', state: 'empty' }),
+        fetchResult({ sourceId: 'app_errors', state: 'empty' }),
+      ],
+      trigger: 'scheduled',
+      nowMs: 10_000,
+      appTier: 'mature',
+    });
+    expect(result.decisions).toEqual([]);
+  });
+
+  test('no appTier argument defaults to the most cautious tier (seed) — never silently loosens', () => {
+    const result = runQualityDepartment({
+      fetches: [
+        fetchResult({ sourceId: 'error_reports', rows: CRASH_ROWS }),
+        fetchResult({ sourceId: 'user_reports', state: 'empty' }),
+        fetchResult({ sourceId: 'app_errors', state: 'empty' }),
+      ],
+      trigger: 'scheduled',
+      nowMs: 10_000,
+    });
+    expect(result.decisions).toHaveLength(1);
+  });
+});

@@ -1,3 +1,5 @@
+import type { AppTier } from './app_tier';
+import { tierAbsoluteThresholdMultiplier } from './app_tier';
 import { buildDecision, type Decision, type DecisionTrigger } from './decision';
 import type { FetchQualitySourceResult } from './quality_firestore_fetcher';
 import { aggregateQualityRows, buildQualityEvidence } from './quality_source_reader';
@@ -7,10 +9,16 @@ import { aggregateQualityRows, buildQualityEvidence } from './quality_source_rea
  * 2026-08-01). Читает error_reports/user_reports/app_errors, решает, есть ли
  * скачок жалоб/крашей, и если да — строит Decision. Департаменты не общаются
  * между собой: департамент только пишет решения, ничего никому не шлёт.
+ *
+ * зачем appTier: владелец 2026-08-02 — «Качество» использует АБСОЛЮТНЫЙ порог
+ * (число репортов), поэтому он растёт с тиром (tierAbsoluteThresholdMultiplier),
+ * в отличие от процентного порога «Денег». Без явного тира считаем 'seed' —
+ * самый строгий порог, отсутствие данных о масштабе не делает департамент
+ * более шумным по умолчанию.
  */
 
-/** Порог скачка: сколько репортов одной категории на одном экране за сутки
- * уже не укладывается в фоновый шум и заслуживает решения владельца. */
+/** Базовый порог скачка: сколько репортов одной категории на одном экране за
+ * сутки уже не укладывается в фоновый шум — масштабируется по тиру. */
 const CATEGORY_SCREEN_SPIKE_THRESHOLD = 15;
 
 export interface RunQualityDepartmentInput {
@@ -18,6 +26,7 @@ export interface RunQualityDepartmentInput {
   readonly trigger: DecisionTrigger;
   readonly question?: string;
   readonly nowMs: number;
+  readonly appTier?: AppTier;
 }
 
 export interface RunQualityDepartmentResult {
@@ -35,7 +44,8 @@ interface Spike {
  * пересекает порог фонового шума. Без порога любое единичное «typo» на
  * «home» рождало бы решение — а это шум, а не сигнал.
  */
-function findTopSpike(fetches: readonly FetchQualitySourceResult[]): Spike | null {
+function findTopSpike(fetches: readonly FetchQualitySourceResult[], appTier: AppTier): Spike | null {
+  const threshold = CATEGORY_SCREEN_SPIKE_THRESHOLD * tierAbsoluteThresholdMultiplier(appTier);
   let best: Spike | null = null;
   for (const fetch of fetches) {
     const counts = new Map<string, number>();
@@ -46,7 +56,7 @@ function findTopSpike(fetches: readonly FetchQualitySourceResult[]): Spike | nul
       counts.set(key, (counts.get(key) ?? 0) + 1);
     }
     for (const [key, count] of counts) {
-      if (count < CATEGORY_SCREEN_SPIKE_THRESHOLD) continue;
+      if (count < threshold) continue;
       if (best && count <= best.count) continue;
       const [category, screen] = key.split('::');
       best = { category, screen, count };
@@ -75,7 +85,8 @@ export function runQualityDepartment(input: RunQualityDepartmentInput): RunQuali
     observedAtMs: fetch.observedAtMs,
   }));
 
-  const spike = findTopSpike(input.fetches);
+  const appTier: AppTier = input.appTier ?? 'seed';
+  const spike = findTopSpike(input.fetches, appTier);
   const anyTrustworthy = evidence.some((item) => item.trustworthy);
 
   // зачем: по расписанию департамент молчит, если нет ни скачка, ни владельческого

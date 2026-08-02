@@ -81,6 +81,37 @@ function makeFakeDb() {
   return { db: db as unknown as FirebaseFirestore.Firestore, stored, batches };
 }
 
+describe('peak tier persistence — the ratchet must survive between calls', () => {
+  test('reads null when no peak has ever been stored', async () => {
+    const { db } = makeFakeDb();
+    const { readPeakTier } = require('./business_tier_history_store');
+    expect(await readPeakTier(db)).toBeNull();
+  });
+
+  test('a written peak is read back', async () => {
+    const { db } = makeFakeDb();
+    const { readPeakTier, writePeakTier } = require('./business_tier_history_store');
+    await writePeakTier(db, 'growth', 123);
+    expect(await readPeakTier(db)).toBe('growth');
+  });
+
+  test('an unknown stored value is ignored rather than trusted', async () => {
+    // зачем: битая запись не должна навсегда завысить показанный владельцу тир.
+    const { db, stored } = makeFakeDb();
+    const { readPeakTier, BUSINESS_TIER_PEAK_DOC } = require('./business_tier_history_store');
+    stored.set(BUSINESS_TIER_PEAK_DOC, { peakTier: 'unicorn' });
+    expect(await readPeakTier(db)).toBeNull();
+  });
+
+  test('writing a lower tier never lowers the stored peak — that is the whole point of a ratchet', async () => {
+    const { db } = makeFakeDb();
+    const { readPeakTier, writePeakTier } = require('./business_tier_history_store');
+    await writePeakTier(db, 'growth', 1);
+    await writePeakTier(db, 'seed', 2);
+    expect(await readPeakTier(db)).toBe('growth');
+  });
+});
+
 describe('writeHistoryPoints — idempotent merge writes, chunked at 400 per batch', () => {
   test('writes each point as a merged doc keyed by dayKey', async () => {
     const { db, stored } = makeFakeDb();

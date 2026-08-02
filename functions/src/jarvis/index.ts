@@ -73,3 +73,16 @@ export { buildAllDepartmentsSnapshot } from './all_departments_snapshot';
 export type { AllDepartmentsSnapshot, BuildAllDepartmentsSnapshotInput, DepartmentSnapshotLike } from './all_departments_snapshot';
 
 export { jarvisGetAllDecisions } from './all_departments_callables';
+
+// ── Owner-facing раздел «Стадия роста бизнеса» ─────────────────────────────
+export { jarvisGetBusinessTier, jarvisRunBusinessTierBackfill } from './business_tier_callables';
+export {
+  BUSINESS_TIER_LABELS,
+  BUSINESS_TIER_ORDER,
+  classifyBusinessTierByHealth,
+  computeBusinessHealth,
+} from './business_tier';
+export type { BusinessTier } from './business_tier';
+export { buildBusinessTierSnapshot, MRR_WINDOW_DAYS } from './business_tier_snapshot';
+export type { BusinessTierSnapshot } from './business_tier_snapshot';
+export { downsampleBusinessHistory, RECENT_DAILY_DAYS } from './business_tier_downsampling';

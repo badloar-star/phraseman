@@ -1,3 +1,4 @@
+import type { BusinessTier } from './business_tier';
 import type { BusinessTierFinancialCoverage, BusinessTierHistoryPoint } from './business_tier_history';
 
 /**
@@ -161,4 +162,43 @@ export async function writeBackfillCursor(
     },
     { merge: true },
   );
+}
+
+// ── Достигнутый пик тира (храповик) ────────────────────────────────────────
+// зачем отдельный singleton-документ: владелец 2026-08-02 решил, что
+// показанный тир не понижается от одной плохой недели. Без персистентности
+// пик забывался бы между вызовами панели, и храповик не работал бы вовсе —
+// тир падал бы ровно так, как владелец просил не делать.
+
+export const BUSINESS_TIER_PEAK_DOC = 'business_tier_peak/singleton';
+
+const KNOWN_TIERS: readonly BusinessTier[] = [
+  'pre_seed', 'seed', 'early_growth', 'growth', 'scale_up', 'mature',
+];
+
+function isKnownTier(value: unknown): value is BusinessTier {
+  return typeof value === 'string' && (KNOWN_TIERS as readonly string[]).includes(value);
+}
+
+/** null, если пика ещё нет или в базе лежит незнакомое значение (битую запись не принимаем на веру). */
+export async function readPeakTier(db: FirebaseFirestore.Firestore): Promise<BusinessTier | null> {
+  const snap = await db.doc(BUSINESS_TIER_PEAK_DOC).get();
+  if (!snap.exists) return null;
+  const stored = (snap.data() as { peakTier?: unknown } | undefined)?.peakTier;
+  return isKnownTier(stored) ? stored : null;
+}
+
+/**
+ * Поднимает пик только вверх. Запись более низкого тира намеренно
+ * игнорируется — иначе храповик превратился бы в обычное текущее значение.
+ */
+export async function writePeakTier(
+  db: FirebaseFirestore.Firestore,
+  tier: BusinessTier,
+  nowMs: number,
+): Promise<void> {
+  if (!isKnownTier(tier)) return;
+  const existing = await readPeakTier(db);
+  if (existing && KNOWN_TIERS.indexOf(existing) >= KNOWN_TIERS.indexOf(tier)) return;
+  await db.doc(BUSINESS_TIER_PEAK_DOC).set({ peakTier: tier, updatedAtMs: nowMs }, { merge: true });
 }

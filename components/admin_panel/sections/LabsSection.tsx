@@ -19,7 +19,7 @@ export default function LabsSection({ open, onToggle, onOpenReviewBench }: Props
         id="labs_hub"
         icon="flask-outline"
         title="Лаборатории (все)"
-        badge={5}
+        badge={6}
         open={open}
         onToggle={onToggle}
       >
@@ -51,6 +51,13 @@ export default function LabsSection({ open, onToggle, onOpenReviewBench }: Props
           label="Celebration Lab"
           sub="«Дорогой» экран завершения урока: трофей, конфетти, XP-каунтер"
           onPress={() => router.push('/admin_celebration_lab' as any)}
+        />
+        <ButtonRow
+          testID="admin-lab-sound"
+          icon="volume-high-outline"
+          label="Sound Lab"
+          sub="Все события каталога: проиграть любое, видно кто без файла"
+          onPress={() => router.push('/admin_sound_lab' as any)}
         />
         <ButtonRow
           testID="admin-lab-anim-demo"

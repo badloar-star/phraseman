@@ -265,6 +265,14 @@ const SETTINGS_SURFACES: Record<ThemeMode, SettingsSurfacePalette> = {
 };
 // Ключи карточек-подсказок главной — общие с home.tsx, см. app/home_feature_tips.ts.
 
+/**
+ * зачем: владелец попросил убрать раздел «Звук» из настроек, «пока он не нужен».
+ * Скрываем флагом, а не удалением: разметка и переключатели целы, вернуть раздел —
+ * поменять false на true. Состояние (soundSettings/updateSoundSetting) осталось
+ * живым и дешёвым (локальный снапшот, без сети), чтобы возврат был мгновенным.
+ */
+const SHOW_SOUND_SETTINGS = false;
+
 export default function SettingsMain() {
   const tabContentBottomPad = useTabContentBottomPad();
   const router = useRouter();
@@ -1586,6 +1594,7 @@ export default function SettingsMain() {
             (см. saveName) — если сервер потом откажет (кулдаун/занято/сеть),
             откат виден здесь некритичной инлайн-плашкой, а не блокирующим Alert. */}
         {/* sound-settings-start */}
+        {SHOW_SOUND_SETTINGS && (<>
         <SettingsSectionTitle title={L('Звук', 'Звук', 'Sonido', 'Som', 'Âm thanh', 'Suara', 'Ses', 'Dźwięk')} />
         <SettingsGroup surfaceColor={settingsPanelBg} borderColor={settingsBorder} dividerColor={settingsDivider}>
           <SettingsRow
@@ -1619,6 +1628,7 @@ export default function SettingsMain() {
             }
           />
         </SettingsGroup>
+        </>)}
         {/* sound-settings-end */}
 
         <SettingsSectionTitle title={L('Обучение', 'Навчання', 'Aprendizaje', 'Aprendizado', 'Học tập', 'Pembelajaran', 'Öğrenme', 'Nauka')} />

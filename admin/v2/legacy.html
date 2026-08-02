@@ -10371,6 +10371,23 @@
     <div id="jarvis-money-decisions" style="margin-top:14px;display:flex;flex-direction:column;gap:10px"></div>
   </div>
 
+  <!-- 🧠 Джарвис — департамент «Рост»: третий департамент (2026-08-02) -->
+  <div class="cp-card">
+    <div class="cp-card-title" style="color:#4ade80">🧠 Джарвис — Рост</div>
+    <div class="cp-card-sub">
+      Считает новых пользователей за последние сутки — только дёшево доступный сигнал, без полного скана базы.
+    </div>
+    <div style="margin-top:8px"><span id="jarvis-growth-status" class="cp-status-chip">Загрузка…</span></div>
+
+    <div id="jarvis-growth-flow" class="jf-lane" role="log" aria-label="Журнал работы Джарвиса: источники → департамент → решение"></div>
+
+    <div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:14px;align-items:center">
+      <button type="button" class="cp-btn" onclick="loadJarvisGrowthSnapshot(true)" style="background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px">🔄 Проверить сейчас</button>
+    </div>
+
+    <div id="jarvis-growth-decisions" style="margin-top:14px;display:flex;flex-direction:column;gap:10px"></div>
+  </div>
+
   <!-- 🚨 Режим обслуживания: глобальный баннер (мягкий) + жёсткий блок-экран -->
   <div class="cp-card cp-card-danger">
     <div class="cp-card-title" style="color:#f87171">🚨 Режим обслуживания</div>
@@ -14053,6 +14070,13 @@
       _fnJarvisGetMoneySnapshot = httpsCallable(functionsUs, 'jarvisGetMoneySnapshot');
     }
     return _fnJarvisGetMoneySnapshot;
+  }
+  let _fnJarvisGetGrowthSnapshot = null;
+  function getJarvisGetGrowthSnapshotCallable() {
+    if (!_fnJarvisGetGrowthSnapshot) {
+      _fnJarvisGetGrowthSnapshot = httpsCallable(functionsUs, 'jarvisGetGrowthSnapshot');
+    }
+    return _fnJarvisGetGrowthSnapshot;
   }
   let _fnAdminGetRemoteConfigWorkspace = null;
   function getAdminGetRemoteConfigWorkspaceCallable() {
@@ -26852,6 +26876,7 @@
     app_errors:    { icon: '⚠️', title: 'app_errors' },
     revenuecat_premium_events: { icon: '💳', title: 'revenuecat' },
     paywall_funnel: { icon: '📈', title: 'paywall_funnel' },
+    users: { icon: '🌱', title: 'users' },
   };
   const JF_STATE_LABEL = { working: 'работает…', success: 'готово', error: 'ошибка' };
   let _jfTileSeq = 0;
@@ -27031,6 +27056,54 @@
     } catch (e) {
       const message = e && e.message ? e.message : 'ошибка сети';
       jfSetStatusChip('jarvis-money-status', 'error', 'Не удалось загрузить: ' + message);
+      if (lane) {
+        const tile = jfCreateTile(lane, '🔌', 'Запрос к серверу');
+        setTimeout(() => jfFinishTile(tile, 'error', message), jfPrefersReducedMotion() ? 0 : 260);
+      }
+    }
+  };
+
+  // ── Джарвис: департамент «Рост» (третий департамент, 2026-08-02) ────────────
+  window.loadJarvisGrowthSnapshot = async function(manualRefresh) {
+    const container = document.getElementById('jarvis-growth-decisions');
+    const lane = document.getElementById('jarvis-growth-flow');
+    if (!container) return;
+    jfSetStatusChip('jarvis-growth-status', 'loading', manualRefresh ? 'Проверяем сейчас…' : 'Загрузка…');
+    try {
+      const result = await getJarvisGetGrowthSnapshotCallable()({});
+      const data = result && result.data;
+      if (!data || data.ok !== true || !Array.isArray(data.decisions)) {
+        throw new Error('Сервер вернул некорректный снапшот роста.');
+      }
+      container.innerHTML = '';
+      if (data.decisions.length === 0) {
+        jfSetStatusChip('jarvis-growth-status', 'success', 'Новые пользователи приходят как обычно.');
+        if (lane) jfRunChain(
+          lane,
+          [{ sourceId: 'users', state: 'ready', count: 0, droppedCount: 0, trustworthy: true }],
+          'success', 'Приток новых пользователей в норме.',
+          'success', 'Решение не требуется.',
+          'Рост',
+        );
+        return;
+      }
+      data.decisions.forEach((decision) => container.appendChild(jfRenderDecisionCard(decision, '74,222,128')));
+      const hasInsufficient = data.decisions.some((d) => d.status === 'insufficient_evidence');
+      jfSetStatusChip('jarvis-growth-status', hasInsufficient ? 'error' : 'info', hasInsufficient
+        ? 'Источник недоступен — решение показано, но доказательств не хватает.'
+        : (data.decisions.length + ' реш.') + ' требует внимания.');
+      const first = data.decisions[0];
+      if (lane && first) jfRunChain(
+        lane, first.evidence,
+        hasInsufficient ? 'error' : 'success',
+        hasInsufficient ? 'Источник недоступен.' : first.finding,
+        hasInsufficient ? 'error' : 'success',
+        hasInsufficient ? 'Решение не построено — не хватает доказательств.' : first.recommendation,
+        'Рост',
+      );
+    } catch (e) {
+      const message = e && e.message ? e.message : 'ошибка сети';
+      jfSetStatusChip('jarvis-growth-status', 'error', 'Не удалось загрузить: ' + message);
       if (lane) {
         const tile = jfCreateTile(lane, '🔌', 'Запрос к серверу');
         setTimeout(() => jfFinishTile(tile, 'error', message), jfPrefersReducedMotion() ? 0 : 260);
@@ -27255,6 +27328,7 @@
     if (typeof window.loadControlPanelPromoBanner === 'function') void window.loadControlPanelPromoBanner();
     if (typeof window.loadJarvisQualitySnapshot === 'function') void window.loadJarvisQualitySnapshot(false);
     if (typeof window.loadJarvisMoneySnapshot === 'function') void window.loadJarvisMoneySnapshot(false);
+    if (typeof window.loadJarvisGrowthSnapshot === 'function') void window.loadJarvisGrowthSnapshot(false);
   };
 
   // Обобщённая запись ОДНОГО булевого флага в remote_config/app.bools, сохраняя

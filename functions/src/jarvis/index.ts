@@ -46,3 +46,17 @@ export { buildMoneySnapshot } from './money_snapshot';
 export type { BuildMoneySnapshotInput, MoneyFetcher, MoneyFetcherMap, MoneySnapshot } from './money_snapshot';
 
 export { jarvisGetMoneySnapshot } from './money_callables';
+
+export { aggregateGrowthRows, buildGrowthEvidence, GROWTH_REPORT_COLLECTIONS } from './growth_source_reader';
+export type { GrowthAggregate, GrowthRawRow, GrowthReportCollection, GrowthSourceFetchResult } from './growth_source_reader';
+
+export { fetchGrowthSource, MAX_GROWTH_ROWS_PER_SOURCE, GROWTH_LOOKBACK_MS } from './growth_firestore_fetcher';
+export type { FetchGrowthSourceInput, FetchGrowthSourceResult } from './growth_firestore_fetcher';
+
+export { runGrowthDepartment } from './growth_department';
+export type { RunGrowthDepartmentInput, RunGrowthDepartmentResult } from './growth_department';
+
+export { buildGrowthSnapshot } from './growth_snapshot';
+export type { BuildGrowthSnapshotInput, GrowthFetcher, GrowthFetcherMap, GrowthSnapshot } from './growth_snapshot';
+
+export { jarvisGetGrowthSnapshot } from './growth_callables';

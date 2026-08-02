@@ -21,7 +21,7 @@ import { PaywallContextIcon } from './PaywallContextIcons';
 import type { PremiumContext } from '../../app/premium_context';
 import { triLang, type Lang } from '../../constants/i18n';
 import { BG_GRADIENTS as SCREEN_BG_GRADIENTS } from '../../constants/screenBackground';
-import type { ThemeMode } from '../../constants/theme';
+import { isLightThemeMode, SAGE_PORCELAIN, type ThemeMode } from '../../constants/theme';
 import { compassIconSource } from '../../constants/weeklyCompassIcons';
 import { PaywallIdleFloat } from './PaywallMotion';
 import { noAndroidOutline } from '../../constants/androidGlow';
@@ -51,17 +51,22 @@ export function usePaywallChrome(overrideThemeMode?: ThemeMode): PaywallChrome {
   return useMemo(() => {
     const mode = overrideThemeMode ?? themeMode;
     const tc = getPaywallThemeConfig(mode);
+    // зачем: хром-текст был захардкожен белым «для всех тем», а sagePorcelain —
+    // светлая: заголовок/цены/пункты исчезали на фарфоровом фоне (скрин владельца
+    // 2026-08-02). Светлая ветка берёт утверждённые токены SAGE_PORCELAIN
+    // (план 2026-08-01), тёмные темы не меняются ни на бит.
+    const light = isLightThemeMode(mode);
     return {
       tc,
       themeMode: mode,
       bgColors: screenBgTuple(mode),
-      textPrimary: '#FFFFFF',
-      textMuted: 'rgba(255,255,255,0.62)',
-      divider: 'rgba(255,255,255,0.06)',
+      textPrimary: light ? SAGE_PORCELAIN.textPrimary : '#FFFFFF',
+      textMuted: light ? SAGE_PORCELAIN.textMuted : 'rgba(255,255,255,0.62)',
+      divider: light ? 'rgba(23,32,29,0.08)' : 'rgba(255,255,255,0.06)',
       cardBg: tc.panelBg,
       cardBgStrong: tc.panelBgStrong,
-      cardBorder: 'rgba(255,255,255,0.08)',
-      uncheckedBorder: 'rgba(255,255,255,0.22)',
+      cardBorder: light ? SAGE_PORCELAIN.border : 'rgba(255,255,255,0.08)', // guard-ok: не новая рамка — перекраска давно живущего chrome-токена (кнопка закрытия, радио-строки)
+      uncheckedBorder: light ? SAGE_PORCELAIN.textGhost : 'rgba(255,255,255,0.22)',
     };
   }, [overrideThemeMode, themeMode]);
 }

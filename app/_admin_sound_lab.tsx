@@ -38,6 +38,11 @@ import { hapticTap } from '../hooks/use-haptics';
 import { SOUND_EVENTS, type SoundEventId, type SoundFamily } from '../modules/audio/sound_events';
 import { soundDirector } from '../modules/audio/sound_director';
 import { getSoundSettingsSnapshot } from '../modules/audio/sound_settings';
+import {
+  SoundEventPreview,
+  previewLabelFor,
+  useSoundEventPreview,
+} from '../components/admin_panel/sound_event_preview';
 import { SOUND_MOTION, type SoundMotionProfile } from '../modules/audio/sound_motion';
 
 /** Порядок групп — как в каталоге, чтобы лаборатория читалась вместе с ним. */
@@ -151,11 +156,19 @@ const SoundEventRow = memo(function SoundEventRow({
     const audible = motion.audibleMs;
     const attack = Math.max(16, motion.attackMs || Math.round(audible * 0.25));
 
+    // зачем: половина звуков очень короткая (hint_reveal 47 мс, no_speech 109 мс).
+    // Если гасить движение строго на длине звука, глаз не успевает его поймать —
+    // владелец так и сказал: «только играет звук, анимации не вижу». Поэтому
+    // подъём остаётся привязан к атаке звука (совпадение слышно и видно), а
+    // спад получает минимум 260 мс «выдоха» — движение читается, но не живёт
+    // своей жизнью: оно всё ещё начинается вместе со звуком.
+    const release = Math.max(260, audible - attack);
+
     cancelAnimation(pulse);
     pulse.value = 0;
     pulse.value = withSequence(
       withTiming(1, { duration: attack, easing: REasing.out(REasing.cubic) }),
-      withTiming(0, { duration: Math.max(90, audible - attack), easing: REasing.out(REasing.quad) }),
+      withTiming(0, { duration: release, easing: REasing.out(REasing.quad) }),
     );
 
     cancelAnimation(glow);
@@ -165,8 +178,8 @@ const SoundEventRow = memo(function SoundEventRow({
       glow.value = withDelay(
         at,
         withSequence(
-          withTiming(1, { duration: 55, easing: REasing.out(REasing.cubic) }),
-          withTiming(0, { duration: 190, easing: REasing.out(REasing.quad) }),
+          withTiming(1, { duration: 60, easing: REasing.out(REasing.cubic) }),
+          withTiming(0, { duration: 300, easing: REasing.out(REasing.quad) }),
         ),
       );
     }
@@ -176,17 +189,22 @@ const SoundEventRow = memo(function SoundEventRow({
     progress.value = withTiming(1, { duration: audible, easing: REasing.linear });
   }, [onPlay, row, motion, pulse, glow, progress]);
 
+  // зачем: амплитуды подняты после проверки на устройстве — прежние 3% масштаба
+  // и 22% свечения были не видны, особенно на светлой теме. Здесь лаборатория,
+  // а не боевой экран: движение должно ЧИТАТЬСЯ, иначе проверять нечего.
   const cardStyle = useAnimatedStyle(() => ({
-    transform: [{ scale: 1 + pulse.value * 0.03 }],
+    transform: [{ scale: 1 + pulse.value * 0.045 }],
   }));
   const glowStyle = useAnimatedStyle(() => ({
-    opacity: glow.value * 0.22,
+    opacity: glow.value * 0.5,
     backgroundColor: tone,
   }));
+  // Иконка — главный индикатор: она заметно раздувается и наливается цветом.
   const iconStyle = useAnimatedStyle(() => ({
-    transform: [{ scale: 1 + pulse.value * 0.35 }],
-    opacity: 0.65 + pulse.value * 0.35,
+    transform: [{ scale: 1 + pulse.value * 0.75 }],
+    opacity: 0.55 + pulse.value * 0.45,
   }));
+  const previewLabel = previewLabelFor(row.id);
 
   return (
     <Animated.View style={cardStyle}>
@@ -213,6 +231,11 @@ const SoundEventRow = memo(function SoundEventRow({
               ? `громкость ${row.volume} · приоритет ${row.priority} · пауза ${row.cooldownMs} мс${row.iosOnly ? ' · только iOS' : ''}${row.deferAfterVoice ? ' · ждёт конца речи' : ''}`
               : 'нет файла — событие молчит'}
           </Text>
+          {/* зачем: заранее видно, что даст тап — настоящий тост/модалку или
+              только звук. Без этого «просто плашка» выглядела как поломка. */}
+          {row.hasAsset && previewLabel ? (
+            <Text style={[styles.rowDesc, { color: t.accent }]}>{previewLabel}</Text>
+          ) : null}
 
           {motion ? (
             <>
@@ -273,9 +296,22 @@ const WaveBar = memo(function WaveBar({
     return 3 + Math.max(0.12, Math.min(1, punch * 0.85 + tail * 0.28)) * 15;
   }, [index, motion]);
 
-  const style = useAnimatedStyle(() => ({
-    backgroundColor: progress.value > 0 && progress.value >= index / WAVE_BARS ? tone : idle,
-  }));
+  // зачем: раньше столбик только менял цвет — на глаз это читалось как статичная
+  // полоска, владелец так и написал: «эквалайзер не запускается». Теперь столбик
+  // ещё и подпрыгивает в момент, когда указатель проходит через него: масштаб
+  // по вертикали растёт у самой головы бегунка и спадает следом. Движение
+  // остаётся строго во времени звука — бегунок идёт ровно `audibleMs`.
+  const style = useAnimatedStyle(() => {
+    const at = index / WAVE_BARS;
+    const passed = progress.value > 0 && progress.value >= at;
+    // Насколько близко голова бегунка к этому столбику (1 — прямо на нём).
+    const closeness = progress.value > 0 ? Math.max(0, 1 - Math.abs(progress.value - at) * 9) : 0;
+    return {
+      backgroundColor: passed ? tone : idle,
+      transform: [{ scaleY: 1 + closeness * 1.5 }],
+      opacity: passed ? 1 : 0.55,
+    };
+  });
 
   return <Animated.View style={[styles.waveBar, { height }, style]} />;
 });
@@ -289,6 +325,7 @@ export default function AdminSoundLab() {
   /** Последнее сыгранное + вердикт арбитра — видно, почему звук не прозвучал. */
   const [lastPlayed, setLastPlayed] = useState<{ id: SoundEventId; verdict: string } | null>(null);
   const [effectsEnabled, setEffectsEnabled] = useState(() => getSoundSettingsSnapshot().effectsEnabled);
+  const { previewEvent, openPreview, dismissPreview } = useSoundEventPreview();
 
   const grouped = useMemo(() => {
     return FAMILY_ORDER.map((family) => ({
@@ -308,7 +345,7 @@ export default function AdminSoundLab() {
     // модалку. Раньше лаборатория только проигрывала звук, и на экране висела
     // статичная плашка: не было видно главного, как звук ложится на реальную
     // анимацию. Тост/модалка сами зовут директора в нужный момент, поэтому при
-    // успехе свой request НЕ делаем — иначе两 запроса на одно событие и дедуп.
+    // успехе свой request НЕ делаем — иначе два запроса на одно событие и дедуп.
     if (openPreview(row.id)) {
       setLastPlayed({ id: row.id, verdict: 'запущен настоящий интерфейс события' });
       return;
@@ -419,6 +456,10 @@ export default function AdminSoundLab() {
           </View>
         ))}
       </ScrollView>
+
+      {/* Настоящая модалка события — поверх списка, со своей анимацией и звуком.
+          Тосты сюда не попадают: их рисует глобальный ActionToast из _layout. */}
+      <SoundEventPreview eventId={previewEvent} onDismiss={dismissPreview} />
     </View>
   );
 }
@@ -464,9 +505,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-end',
     gap: 2,
-    height: 18,
+    height: 30,
     marginTop: 8,
     marginBottom: 6,
+    overflow: 'hidden',
   },
-  waveBar: { flex: 1, borderRadius: 1 },
+  // зачем: столбик растёт снизу вверх, как в эквалайзере. Без transformOrigin
+  // снизу scaleY раздувал бы его в обе стороны и дорожка «дышала» бы серединой.
+  waveBar: { flex: 1, borderRadius: 1, transformOrigin: 'bottom' },
 });

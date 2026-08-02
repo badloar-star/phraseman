@@ -36,11 +36,35 @@ describe('tournament Reddit bot production seed script', () => {
 
     expect(names).toHaveLength(200);
     expect(new Set(names.map((name: string) => name.toLowerCase())).size).toBe(200);
+    // зачем 2026-08-01 (аудит турнира): корпус пересобран — прежние 100 имён
+    // были настоящими никами живых пользователей Reddit, использованными без
+    // согласия в игре на реальные жемчужины. Хеш и версия seed подняты, чтобы
+    // засев переписал имена ботов в базе; персоны при этом не трогаются
+    // (см. следующий тест).
     expect(seedScript.EXPECTED_NAMES_SHA256)
-      .toBe('b0b148c7b5122b92b74a84be08117f5e5d6188701edb500167323d65dbeca7af');
+      .toBe('b80d68161525e9c8df49cfa5fc8f820f63e771ec7649c5e64ee5aea08d1c73d4');
     expect(digest).toBe(seedScript.EXPECTED_NAMES_SHA256);
     expect(seedScript.EXPECTED_PROJECT_ID).toBe('phraseman-ea0b3');
-    expect(seedScript.SEED_VERSION).toBe('tournament-bots-v3-multilingual-20260801');
+    expect(seedScript.SEED_VERSION).toBe('tournament-bots-v4-invented-20260801');
+  });
+
+  test('contains no real Reddit handle the corpus was originally sampled from', () => {
+    // зачем 2026-08-01 (аудит турнира): это главный смысл правки. Прежний
+    // корпус состоял из НАСТОЯЩИХ ников реальных людей с Reddit, взятых без их
+    // согласия, а игра идёт на реальные жемчужины. Тест держит границу: если
+    // кто-то однажды вернёт исходный список, сборка упадёт здесь.
+    const RETIRED_REAL_HANDLES = [
+      'Gulbasaur', 'BeckyLiBei', 'CreolePolyglot', 'LinguoBuxo', 'mrggy',
+      'Artgor', 'valeriethesinger', 'NoTakaru', 'unsafeideas', 'Xefjord',
+      'Starthreads', 'vercertorix', 'transnochator', 'jragonfyre', 'simiform',
+      'Longjumping_Read_684', 'Excellent_Potential', 'ZestycloseSample7403',
+    ];
+    const names = seedScript.buildExpectedProfiles()
+      .map((profile: { name: string }) => profile.name.toLowerCase());
+
+    for (const handle of RETIRED_REAL_HANDLES) {
+      expect(names).not.toContain(handle.toLowerCase());
+    }
   });
 
   test('changes names without re-rolling persistent bot personas or difficulty', () => {

@@ -1,6 +1,6 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { memo, useEffect } from 'react';
-import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Modal, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from './SafeLinearGradient';
 import { useLang } from './LangContext';
@@ -157,7 +157,15 @@ function IntroFullAccessModal({ visible, variant, onPrimaryPress, onSecondaryPre
     >
       <View style={styles.overlay}>
         <RewardModalBackdrop themeMode={themeMode} intensity="strong" />
-        <SafeAreaView style={styles.safe}>
+        {/* зачем 2026-08-02 (владелец: «на маленьких экранах кнопки нет»):
+            панель центрировалась во весь рост без прокрутки — на низком экране
+            обрезалась вместе с кнопкой активации подарка. */}
+        <SafeAreaView style={styles.safeScroll}>
+        <ScrollView
+          style={styles.safeScroll}
+          contentContainerStyle={styles.safe}
+          showsVerticalScrollIndicator={false}
+        >
           <View style={[styles.panel, { borderColor: border }]}>
             <RewardModalPanelBackdrop themeMode={themeMode} intensity="strong" opacity={0.72} />
             <LinearGradient
@@ -213,6 +221,7 @@ function IntroFullAccessModal({ visible, variant, onPrimaryPress, onSecondaryPre
               )}
             </View>
           </View>
+        </ScrollView>
         </SafeAreaView>
       </View>
     </Modal>
@@ -226,8 +235,14 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'rgba(0,0,0,0.72)',
   },
-  safe: {
+  safeScroll: {
     flex: 1,
+  },
+  safe: {
+    // flexGrow (а не flex) — в contentContainerStyle это единственный способ
+    // сказать «растянись на всю высоту, если контента мало, но дай прокрутку,
+    // если много». Центрирование сохранено для больших экранов.
+    flexGrow: 1,
     justifyContent: 'center',
     paddingHorizontal: 22,
     paddingVertical: 18,

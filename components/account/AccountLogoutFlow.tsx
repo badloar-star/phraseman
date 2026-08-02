@@ -10,7 +10,7 @@
 // (аварийная копия пишется внутри signOutAndWipeForAccountSwitch).
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useCallback } from 'react';
-import { Alert, Modal, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, Modal, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../ThemeContext';
 import { useLang } from '../LangContext';
@@ -212,7 +212,14 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
             </View>
           </View>
         ) : (
-        <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.7)', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20 }}>
+        /* зачем 2026-08-02 (владелец: «на маленьких экранах кнопки нет»):
+           карточка подтверждения выхода центрировалась без прокрутки — на
+           низком экране кнопки «Выйти»/«Отмена» уходили за границу. */
+        <ScrollView
+          style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.7)' }}
+          contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 20 }}
+          showsVerticalScrollIndicator={false}
+        >
           <View
             style={{
               width: '100%',
@@ -275,7 +282,7 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
               </TouchableOpacity>
             </View>
           </View>
-        </View>
+        </ScrollView>
         )}
       </Modal>
     </>

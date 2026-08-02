@@ -13209,46 +13209,10 @@
     </table>
   </div>
   <div id="ref-aggregates" style="padding:0 24px 32px;max-width:1200px"></div>
-  <!-- 08.06 NEW -->
-  <div style="padding:0 24px 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px;max-width:1040px;border-top:1px solid rgba(251,191,36,0.2);margin-top:4px">
-    <div class="report-card" style="border-color:rgba(251,191,36,0.4)">
-      <div class="rc-left">
-        <div class="pr-title" style="color:#fde68a">08.06 — Referral Plus flow</div>
-        <div class="report-context" style="margin-top:8px;line-height:1.7">
-          <strong style="color:#e2e8f0">ReferralAccessActivatedModal</strong><br>
-          &nbsp;• Появляется у реферера когда приглашённый прошёл онбординг и Plus активирован<br>
-          &nbsp;• Маркер: <code>referral_access_activated_seen_{referralCode}</code> в AsyncStorage<br>
-          &nbsp;• Показывается один раз, не повторяется<br>
-          <br>
-          <strong style="color:#e2e8f0">ReferralAccessEndedModal</strong><br>
-          &nbsp;• Появляется когда реферальный Plus истёк (30 дней)<br>
-          &nbsp;• Маркер: <code>referral_access_ended_tracker</code> в AsyncStorage<br>
-          &nbsp;• CTA «Продолжить Plus» → контекст <code>referral_ended</code> в пейволе<br>
-          &nbsp;• Не показывается если у пользователя уже активен Plus<br>
-          <br>
-          <strong style="color:#e2e8f0">Как тестировать</strong><br>
-          &nbsp;• Открыть этого реферера в таблице выше → «Открыть профиль» → Admin → Referral → «Preview modals»
-        </div>
-      </div>
-    </div>
-    <div class="report-card" style="border-color:rgba(251,191,36,0.4)">
-      <div class="rc-left">
-        <div class="pr-title" style="color:#fde68a">08.06 — FriendRow бейджи</div>
-        <div class="report-context" style="margin-top:8px;line-height:1.7">
-          В экране «Друзья» (Referral list) у каждого приглашённого:<br>
-          &nbsp;• Бейдж <strong style="color:#86efac">Plus</strong> (зелёный) — пока реферальный Plus активен<br>
-          &nbsp;• Бейдж <strong style="color:#fbbf24">Streak</strong> — если страйк &gt; 0<br>
-          &nbsp;• Бейдж <strong style="color:#a78bfa">Plus</strong> (фиолетовый) — если купил Plus<br>
-          &nbsp;• Бейджи не дублируются (админский Plus + купленный Plus одновременно = только зелёный)<br>
-          <br>
-          <strong style="color:#e2e8f0">Inline feedback после реферала</strong><br>
-          &nbsp;• После успешного клейма кода: тост <em>«Доступ активирован! +30 дней»</em><br>
-          &nbsp;• Если реферал уже использован: тост с ошибкой (не краш)<br>
-          &nbsp;• Если referral_enabled = false (RC): кнопка «Пригласить» скрыта полностью
-        </div>
-      </div>
-    </div>
-  </div>
+  <!-- зачем: датированные QA-блоки «08.06» описывали отменённое правило рефералки
+       (клейм дней, дни обоим, урок как условие) и удалённую ReferralAccessActivatedModal;
+       с 2026-07-25 квалификация — покупка Plus/Pro, награда только пригласившему
+       через «Награду за друга». Блоки вырезаны, чтобы админка не врала при QA. -->
 </div>
 
 <script>
@@ -13417,13 +13381,6 @@
         <div class="cl-modal-row" style="padding:7px 10px">
           <span class="cl-modal-tag" style="background:#14532d;color:#4ade80">MODAL</span>
           <div class="cl-modal-info">
-            <b style="color:#e5e7eb">ReferralAccessActivatedModal</b> — «N дней доступа открыто»
-            <div class="cl-modal-trigger">Триггер: claimReferralVipDays() → granted &gt; 0. Spring-анимация 💎, показывает кол-во дней и друзей.</div>
-          </div>
-        </div>
-        <div class="cl-modal-row" style="padding:7px 10px">
-          <span class="cl-modal-tag" style="background:#14532d;color:#4ade80">MODAL</span>
-          <div class="cl-modal-info">
             <b style="color:#e5e7eb">ReferralAccessEndedModal</b> — «Доступ можно открыть снова»
             <div class="cl-modal-trigger">Триггер: vip_plan='referral' + vip_until &lt; now. Показывается ОДИН РАЗ через sticky-маркер в AsyncStorage. Кнопки: Пригласить / Открыть полный доступ → пейвол context='generic' source='referral_ended'.</div>
           </div>
@@ -13452,8 +13409,6 @@
       </div>
       <div class="cl-checks" style="background:#0a1f14;border:1px solid #1a3a24;color:#86efac">
         <b>Проверить руками:</b>
-        ✓ /friends → карточка видна, кнопка появляется только при claimable days &gt; 0<br>
-        ✓ claim → ReferralAccessActivatedModal с правильным числом дней<br>
         ✓ Ждать истечения Plus (или expire в Testers) → ReferralAccessEndedModal 1 раз<br>
         ✓ Закрыть и переоткрыть → модалка НЕ показывается снова<br>
         ✓ referral_enabled=false в RC → карточка полностью скрыта

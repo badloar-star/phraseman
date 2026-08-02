@@ -9,6 +9,7 @@ import { Platform, Text, TouchableOpacity, View } from 'react-native';
 import { Image } from 'expo-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
+import GiftExpiryCountdown from '../components/GiftExpiryCountdown';
 import LevelGiftDualModal from '../components/LevelGiftDualModal';
 import LevelGiftModal from '../components/LevelGiftModal';
 import TodaysBoonStrip from '../components/TodaysBoonStrip';
@@ -29,6 +30,7 @@ import {
 } from './level_gift_system';
 import { oskolokImageForPackShards } from './oskolok';
 import { safeRouterBack } from './navigation_back';
+import { animateNextLayoutTransition } from './smooth_layout';
 import {
   getPendingLevelGiftInventoryCache,
   loadPendingLevelGiftInventory,
@@ -133,6 +135,13 @@ export default function LevelGiftsInventoryScreen() {
     void loadData();
     return undefined;
   }, [loadData]));
+
+  // зачем: таймер дошёл до нуля — подарок сгорел; ряд уходит плавным
+  // layout-переходом, а перезагрузка данных заодно вычищает его из хранилища.
+  const handleGiftExpired = useCallback(() => {
+    animateNextLayoutTransition();
+    void loadData();
+  }, [loadData]);
 
   const closeGiftModal = (claimed = false) => {
     if (claimed && selected) {
@@ -269,6 +278,14 @@ export default function LevelGiftsInventoryScreen() {
                             })}
                           </Text>
                         </View>
+                        {typeof gift.expiresAtMs === 'number' && (
+                          <GiftExpiryCountdown
+                            expiresAtMs={gift.expiresAtMs}
+                            accent={gift.accent}
+                            onExpired={handleGiftExpired}
+                            testID={`gift-expiry-${gift.key}`}
+                          />
+                        )}
                         {!!gift.actionRoute && (
                           <Ionicons name="chevron-forward" size={16} color={gift.accent} />
                         )}
@@ -398,28 +415,36 @@ export default function LevelGiftsInventoryScreen() {
                               })
                             : giftDisplayTitleForLang(item.gift, lang)}
                         </Text>
-                        <TouchableOpacity
-                          testID={`gift-inventory-apply-${rowKey}`}
-                          activeOpacity={0.86}
-                          onPress={() => {
-                            hapticTap();
-                            setSelected(item);
-                          }}
-                          style={{ borderRadius: 16, paddingHorizontal: 16, paddingVertical: 11, minHeight: 44, backgroundColor: accent, minWidth: 118, alignSelf: 'flex-start', alignItems: 'center', justifyContent: 'center', marginTop: 10 }}
-                        >
-                          <Text style={{ color: strongestRarity === 'epic' ? '#1A1200' : '#FFFFFF', fontSize: f.sub, fontWeight: '900' }}>
-                            {triLang(lang, {
-                              ru: 'Посмотреть',
-                              uk: 'Переглянути',
-                              es: 'Ver',
-                              'pt-BR': 'Ver',
-                              vi: 'Xem',
-                              id: 'Lihat',
-                              tr: 'Görüntüle',
-                              pl: 'Zobacz',
-                            })}
-                          </Text>
-                        </TouchableOpacity>
+                        <View style={{ flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', gap: 10, marginTop: 10 }}>
+                          <TouchableOpacity
+                            testID={`gift-inventory-apply-${rowKey}`}
+                            activeOpacity={0.86}
+                            onPress={() => {
+                              hapticTap();
+                              setSelected(item);
+                            }}
+                            style={{ borderRadius: 16, paddingHorizontal: 16, paddingVertical: 11, minHeight: 44, backgroundColor: accent, minWidth: 118, alignItems: 'center', justifyContent: 'center' }}
+                          >
+                            <Text style={{ color: strongestRarity === 'epic' ? '#1A1200' : '#FFFFFF', fontSize: f.sub, fontWeight: '900' }}>
+                              {triLang(lang, {
+                                ru: 'Посмотреть',
+                                uk: 'Переглянути',
+                                es: 'Ver',
+                                'pt-BR': 'Ver',
+                                vi: 'Xem',
+                                id: 'Lihat',
+                                tr: 'Görüntüle',
+                                pl: 'Zobacz',
+                              })}
+                            </Text>
+                          </TouchableOpacity>
+                          <GiftExpiryCountdown
+                            expiresAtMs={item.expiresAtMs}
+                            accent={accent}
+                            onExpired={handleGiftExpired}
+                            testID={`gift-expiry-pending-${rowKey}`}
+                          />
+                        </View>
                       </View>
                     </View>
 

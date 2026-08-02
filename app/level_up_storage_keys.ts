@@ -9,6 +9,8 @@ export const UNCLAIMED_DUAL_GIFTS_KEY = 'unclaimed_level_gifts_dual_v1';
 export const CLAIMED_DUAL_LEVELS_KEY = 'claimed_level_gift_dual_flag_v1';
 export const PARTIAL_DUAL_CLAIMED_LEVELS_KEY = 'partial_dual_claimed_levels_v1';
 export const PENDING_LEVEL_GIFT_COUNT_CACHE_KEY = 'pending_level_gift_count_cache_v1';
+/** уровень → мс получения подарка; отсюда считается 72-часовой таймер сгорания. */
+export const UNCLAIMED_GIFT_RECEIVED_AT_KEY = 'unclaimed_level_gift_received_at_v1';
 
 export const PENDING_LEVEL_UP_QUEUE_KEY = 'pending_level_up_queue';
 export const LEVEL_UP_REWARD_RETRY_KEY = 'pending_level_up_reward_retry_v1';
@@ -27,6 +29,7 @@ export const LEVEL_GIFT_INVENTORY_ACCOUNT_LOCAL_KEYS = [
   CLAIMED_DUAL_LEVELS_KEY,
   PARTIAL_DUAL_CLAIMED_LEVELS_KEY,
   PENDING_LEVEL_GIFT_COUNT_CACHE_KEY,
+  UNCLAIMED_GIFT_RECEIVED_AT_KEY,
 ] as const;
 
 export const LEVEL_UP_REWARD_RECOVERY_ACCOUNT_LOCAL_KEYS = [

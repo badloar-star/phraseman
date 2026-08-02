@@ -3,7 +3,20 @@ import { triLang, type Lang } from '../constants/i18n';
 import type { LevelGiftRewardIconId } from '../constants/levelGiftRewardIcons';
 import { flashcardsPackTrialGiftKey, lessonBonusHintsKey, type RuntimeStudyTarget } from './target_storage_keys';
 import { flashcardsOfficialPacksAvailableForTarget } from './flashcards_target_gate';
-import { loadStoredFriendGiftInventory, type StoredFriendGiftInventoryItem } from './friend_gift_inventory';
+import {
+  friendGiftExpiresAtMs,
+  loadStoredFriendGiftInventory,
+  type StoredFriendGiftInventoryItem,
+} from './friend_gift_inventory';
+import {
+  GIFT_TTL_MS,
+  loadGiftFirstSeenMap,
+  localMidnightAfterDaysMs,
+  nextLocalMidnightMs,
+  persistGiftFirstSeenMap,
+  type GiftFirstSeenKind,
+  type GiftFirstSeenMap,
+} from './gift_expiry';
 
 export interface ActiveLevelGiftInventoryItem {
   key: string;
@@ -21,6 +34,11 @@ export interface ActiveLevelGiftInventoryItem {
    * ваучер набора → витрина карточек, буст лиги → лига). Пассивные бонусы route не имеют.
    */
   actionRoute?: string;
+  /**
+   * Мс сгорания подарка: у бонусов со своим сроком — их срок, у остальных —
+   * 72ч (см. gift_expiry.ts). UI показывает индивидуальный тикающий таймер.
+   */
+  expiresAtMs?: number;
 }
 
 interface GiftXpBankStorage {
@@ -161,6 +179,7 @@ export const loadActiveLevelGiftInventory = async (
     wagerDiscountRaw,
     clubGiftBoost,
     friendGifts,
+    firstSeenLoaded,
   ] = await Promise.all([
     AsyncStorage.getItem(GIFT_XP_BANK_KEY),
     AsyncStorage.getItem(GIFT_MULTIPLIER_KEY),
@@ -171,15 +190,53 @@ export const loadActiveLevelGiftInventory = async (
     AsyncStorage.getItem(CHAIN_SHIELD_KEY),
     AsyncStorage.getItem(WAGER_DISCOUNT_KEY),
     AsyncStorage.getItem(CLUB_GIFT_BOOST_KEY),
-    loadStoredFriendGiftInventory(),
+    loadStoredFriendGiftInventory(nowMs),
+    loadGiftFirstSeenMap(),
   ]);
+
+  // зачем (2026-08-02, владелец): у банка XP, пари-скидки и буста лиги нет
+  // собственного срока — им отсчитывается 72ч от первого показа здесь; по
+  // истечении бонус сгорает по-настоящему (ключ удаляется), не только из списка.
+  const firstSeen: GiftFirstSeenMap = { ...firstSeenLoaded };
+  let firstSeenChanged = false;
+  const burnKeys: string[] = [];
+  const resolveFirstSeenLifetime = (
+    kind: GiftFirstSeenKind,
+    present: boolean,
+    storageKey: string,
+  ): { expiresAtMs: number; expired: boolean } | null => {
+    if (!present) {
+      if (firstSeen[kind] != null) {
+        // Бонус потрачен/исчез — штамп снимаем, чтобы новая выдача стартовала заново.
+        delete firstSeen[kind];
+        firstSeenChanged = true;
+      }
+      return null;
+    }
+    let seenAt = firstSeen[kind];
+    if (!seenAt) {
+      seenAt = nowMs;
+      firstSeen[kind] = nowMs;
+      firstSeenChanged = true;
+    }
+    const expiresAtMs = seenAt + GIFT_TTL_MS;
+    const expired = nowMs >= expiresAtMs;
+    if (expired) {
+      burnKeys.push(storageKey);
+      delete firstSeen[kind];
+      firstSeenChanged = true;
+    }
+    return { expiresAtMs, expired };
+  };
 
   const active: ActiveLevelGiftInventoryItem[] = [];
   const xpBank = parseJson<GiftXpBankStorage>(xpBankRaw);
   const xpRemaining = parsePositiveInt(xpBank?.remaining);
-  if (xpRemaining > 0) {
+  const xpBankLifetime = resolveFirstSeenLifetime('xp_bank', xpRemaining > 0, GIFT_XP_BANK_KEY);
+  if (xpRemaining > 0 && xpBankLifetime && !xpBankLifetime.expired) {
     active.push({
       key: 'xp_bank',
+      expiresAtMs: xpBankLifetime.expiresAtMs,
       iconGiftId: xpBankRewardIconForTotal(parsePositiveInt(xpBank?.grantedTotal) || xpRemaining),
       title: triLang(lang, { ru: 'Бонус ×2', uk: 'Бонус ×2', es: 'Bono ×2',
     'pt-BR': 'Bônus ×2',
@@ -218,6 +275,7 @@ export const loadActiveLevelGiftInventory = async (
   if (multiplierMs > 0 && multiplier > 1) {
     active.push({
       key: 'gift_focus',
+      expiresAtMs: Number(giftMultiplier?.expiresAt || 0),
       iconGiftId: focusRewardIconForMultiplier(multiplier),
       title: triLang(lang, { ru: 'Фокус', uk: 'Фокус', es: 'Foco',
     'pt-BR': 'Foco',
@@ -237,6 +295,7 @@ export const loadActiveLevelGiftInventory = async (
   if (bonusEnergyAmount > 0 && Number(bonusEnergy?.expiresAt || 0) > nowMs) {
     active.push({
       key: 'bonus_energy',
+      expiresAtMs: Number(bonusEnergy?.expiresAt || 0),
       iconGiftId: energyRewardIconForAmount(bonusEnergyAmount),
       title: triLang(lang, { ru: 'Энергия', uk: 'Енергія', es: 'Energía',
     'pt-BR': 'Energia',
@@ -273,6 +332,7 @@ export const loadActiveLevelGiftInventory = async (
   if (flashcardsOfficialPacksAvailableForTarget(studyTarget) && packTrial?.packId && Number(packTrial.expiresAt || 0) > nowMs) {
     active.push({
       key: 'pack_trial',
+      expiresAtMs: Number(packTrial.expiresAt || 0),
       iconGiftId: 'pack_voucher_48h',
       title: triLang(lang, { ru: 'Ваучер набора', uk: 'Ваучер набору', es: 'Vale de pack',
     'pt-BR': 'Vale de pacote',
@@ -302,6 +362,7 @@ export const loadActiveLevelGiftInventory = async (
   if (arenaExtra > 0) {
     active.push({
       key: 'arena_extra',
+      expiresAtMs: nextLocalMidnightMs(nowMs),
       iconGiftId: 'arena_extra_5',
       title: triLang(lang, { ru: 'Арена', uk: 'Арена', es: 'Arena',
     'pt-BR': 'Arena',
@@ -338,6 +399,7 @@ export const loadActiveLevelGiftInventory = async (
   if (hintsToday > 0) {
     active.push({
       key: 'hints',
+      expiresAtMs: nextLocalMidnightMs(nowMs),
       iconGiftId: hintsToday >= 3 ? 'hint_3' : 'hint_1',
       title: triLang(lang, { ru: 'Подсказки', uk: 'Підказки', es: 'Pistas',
     'pt-BR': 'Dicas',
@@ -385,6 +447,8 @@ export const loadActiveLevelGiftInventory = async (
   if (remainingShieldDays > 0) {
     active.push({
       key: 'chain_shield',
+      // Щит кончается в полночь последнего покрытого дня (локальные сутки).
+      expiresAtMs: localMidnightAfterDaysMs(nowMs, remainingShieldDays),
       iconGiftId: remainingShieldDays >= 3 ? 'chain_shield_3' : 'chain_shield_1',
       title: triLang(lang, { ru: 'Защита цепочки', uk: 'Захист ланцюжка', es: 'Protección de racha',
     'pt-BR': 'Proteção de sequência',
@@ -418,9 +482,11 @@ export const loadActiveLevelGiftInventory = async (
   }
 
   const wagerDiscount = Math.max(0, Number(wagerDiscountRaw) || 0);
-  if (wagerDiscount > 0) {
+  const wagerLifetime = resolveFirstSeenLifetime('wager_discount', wagerDiscount > 0, WAGER_DISCOUNT_KEY);
+  if (wagerDiscount > 0 && wagerLifetime && !wagerLifetime.expired) {
     active.push({
       key: 'wager_discount',
+      expiresAtMs: wagerLifetime.expiresAtMs,
       iconGiftId: 'wager_discount_25',
       title: triLang(lang, { ru: 'Скидка на пари', uk: 'Знижка на парі', es: 'Descuento apuesta',
     'pt-BR': 'Desconto na aposta',
@@ -444,9 +510,11 @@ export const loadActiveLevelGiftInventory = async (
     });
   }
 
-  if (clubGiftBoost === '1') {
+  const clubBoostLifetime = resolveFirstSeenLifetime('club_boost', clubGiftBoost === '1', CLUB_GIFT_BOOST_KEY);
+  if (clubGiftBoost === '1' && clubBoostLifetime && !clubBoostLifetime.expired) {
     active.push({
       key: 'club_boost',
+      expiresAtMs: clubBoostLifetime.expiresAtMs,
       iconGiftId: 'club_boost_free',
       title: triLang(lang, {
         ru: 'Буст лиги',
@@ -496,6 +564,7 @@ export const loadActiveLevelGiftInventory = async (
     });
     active.push({
       key: `friend_gift_${gift.id}`,
+      expiresAtMs: friendGiftExpiresAtMs(gift),
       iconGiftId: friendGiftIconForGiftId(gift.giftId),
       title: triLang(lang, {
         ru: `Подарок от ${fromName}`,
@@ -512,6 +581,17 @@ export const loadActiveLevelGiftInventory = async (
       hint: hintAutoWorks(lang),
     });
   }
+
+  // Сгорание по-настоящему: просроченные бонусы удаляются из хранилища, чтобы
+  // xp_manager/пари/лига не продолжали применять то, чего в разделе уже нет.
+  for (const storageKey of burnKeys) {
+    try {
+      await AsyncStorage.removeItem(storageKey);
+    } catch {
+      // Повторная чистка при следующей загрузке раздела.
+    }
+  }
+  if (firstSeenChanged) await persistGiftFirstSeenMap(firstSeen);
 
   return active;
 };

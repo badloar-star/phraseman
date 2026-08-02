@@ -11,6 +11,7 @@ import {
   type GiftDef,
 } from './level_gift_system';
 import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
+import { GIFT_TTL_MS } from './gift_expiry';
 import {
   CLAIMED_DUAL_LEVELS_KEY,
   CLAIMED_GIFTS_KEY,
@@ -18,6 +19,7 @@ import {
   PENDING_LEVEL_GIFT_COUNT_CACHE_KEY,
   UNCLAIMED_DUAL_GIFTS_KEY,
   UNCLAIMED_GIFTS_KEY,
+  UNCLAIMED_GIFT_RECEIVED_AT_KEY,
 } from './level_up_storage_keys';
 
 export {
@@ -27,6 +29,7 @@ export {
   PENDING_LEVEL_GIFT_COUNT_CACHE_KEY,
   UNCLAIMED_DUAL_GIFTS_KEY,
   UNCLAIMED_GIFTS_KEY,
+  UNCLAIMED_GIFT_RECEIVED_AT_KEY,
 } from './level_up_storage_keys';
 
 export interface PremPair {
@@ -57,12 +60,18 @@ export type PendingLevelGiftInventoryItem =
       gift: GiftDef;
       giftCount: 1;
       dualPart?: DualGiftPart;
+      /** Мс получения подарка (уровень взят). */
+      receivedAtMs: number;
+      /** Мс сгорания: receivedAtMs + 72ч; после — подарок исчезает из раздела. */
+      expiresAtMs: number;
     }
   | {
       kind: 'dual';
       level: number;
       pair: PremPair;
       giftCount: 2;
+      receivedAtMs: number;
+      expiresAtMs: number;
     };
 
 let pendingInventoryCache: {
@@ -97,6 +106,58 @@ const parseJsonRecord = <T>(raw: string | null): Record<number, T> => {
 
 const isAccountTokenCurrent = (accountToken?: AccountGenerationToken): boolean =>
   !accountToken || isCurrentAccountGeneration(accountToken);
+
+// зачем (2026-08-02, владелец): у каждого полученного подарка — индивидуальный
+// таймер 72ч с момента получения; просроченный сгорает и исчезает из раздела.
+const parseReceivedAtMap = (raw: string | null): Record<number, number> => {
+  if (!raw) return {};
+  try {
+    const parsed = JSON.parse(raw);
+    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) return {};
+    const map: Record<number, number> = {};
+    for (const [level, ts] of Object.entries(parsed as Record<string, unknown>)) {
+      const lv = Number(level);
+      const ms = Number(ts);
+      if (Number.isFinite(lv) && Number.isFinite(ms) && ms > 0) map[lv] = ms;
+    }
+    return map;
+  } catch {
+    return {};
+  }
+};
+
+/** Штампует момент получения подарка уровня (не перезаписывает существующий). */
+const stampGiftReceivedAt = async (
+  level: number,
+  accountToken?: AccountGenerationToken,
+): Promise<void> => {
+  try {
+    const raw = await AsyncStorage.getItem(UNCLAIMED_GIFT_RECEIVED_AT_KEY);
+    if (!isAccountTokenCurrent(accountToken)) return;
+    const map = parseReceivedAtMap(raw);
+    if (map[level]) return;
+    map[level] = Date.now();
+    await AsyncStorage.setItem(UNCLAIMED_GIFT_RECEIVED_AT_KEY, JSON.stringify(map));
+  } catch {
+    // Таймер — best effort; выдачу подарка не блокируем (гранфазер догонит).
+  }
+};
+
+const clearGiftReceivedAt = async (
+  level: number,
+  accountToken?: AccountGenerationToken,
+): Promise<void> => {
+  try {
+    const raw = await AsyncStorage.getItem(UNCLAIMED_GIFT_RECEIVED_AT_KEY);
+    if (!raw || !isAccountTokenCurrent(accountToken)) return;
+    const map = parseReceivedAtMap(raw);
+    if (map[level] == null) return;
+    delete map[level];
+    await AsyncStorage.setItem(UNCLAIMED_GIFT_RECEIVED_AT_KEY, JSON.stringify(map));
+  } catch {
+    // Осиротевший штамп вычистит загрузка инвентаря.
+  }
+};
 
 const withInventoryMutationGuard = async (
   accountToken: AccountGenerationToken | undefined,
@@ -138,7 +199,8 @@ export const getPendingLevelGiftInventoryCache = (studyTarget?: RuntimeStudyTarg
   const account = captureAccountGeneration();
   return pendingInventoryCache?.target === target
     && isSameAccountGeneration(pendingInventoryCache.account, account)
-    ? [...pendingInventoryCache.items]
+    // Сгоревший подарок не должен мигать даже один кадр из тёплого кэша.
+    ? pendingInventoryCache.items.filter((item) => item.expiresAtMs > Date.now())
     : [];
 };
 
@@ -189,6 +251,7 @@ export const saveUnclaimedGift = async (
         [UNCLAIMED_GIFTS_KEY, JSON.stringify(map)],
         [UNCLAIMED_DUAL_GIFTS_KEY, JSON.stringify(dualMap)],
       ]);
+      await stampGiftReceivedAt(level, accountToken);
       await refreshPendingGiftCountCache(accountToken);
     });
   } catch {
@@ -208,6 +271,7 @@ export const markGiftClaimed = async (
       const map = parseJsonRecord<GiftDef>(raw);
       delete map[level];
       await AsyncStorage.setItem(UNCLAIMED_GIFTS_KEY, JSON.stringify(map));
+      await clearGiftReceivedAt(level, accountToken);
       await refreshPendingGiftCountCache(accountToken);
     });
   } catch {
@@ -242,6 +306,7 @@ export const saveUnclaimedDualGift = async (
         [UNCLAIMED_DUAL_GIFTS_KEY, JSON.stringify(dualMap)],
         [UNCLAIMED_GIFTS_KEY, JSON.stringify(singleMap)],
       ]);
+      await stampGiftReceivedAt(level, accountToken);
       await refreshPendingGiftCountCache(accountToken);
     });
   } catch {
@@ -269,6 +334,7 @@ export const markDualGiftClaimed = async (
       const map = parseJsonRecord<PremPair>(raw);
       delete map[level];
       await AsyncStorage.setItem(UNCLAIMED_DUAL_GIFTS_KEY, JSON.stringify(map));
+      await clearGiftReceivedAt(level, accountToken);
       await refreshPendingGiftCountCache(accountToken);
     });
   } catch {
@@ -371,13 +437,65 @@ export const loadPendingLevelGiftInventory = async (
   studyTarget?: RuntimeStudyTarget,
 ): Promise<PendingLevelGiftInventoryItem[]> => {
   const account = captureAccountGeneration();
-  const [single, dual] = await Promise.all([
+  const [single, dual, receivedAtRaw] = await Promise.all([
     loadUnclaimedGifts(),
     loadUnclaimedDualGifts(),
+    AsyncStorage.getItem(UNCLAIMED_GIFT_RECEIVED_AT_KEY).catch(() => null),
   ]);
   if (!isSameAccountGeneration(account, captureAccountGeneration())) return [];
   const target = storageStudyTarget(studyTarget);
   const sanitizeGift = (gift: GiftDef): GiftDef => sanitizeLevelGiftForStudyTarget(gift, target);
+
+  // зачем (2026-08-02, владелец): подарки живут 72ч с получения. Просроченные
+  // сгорают прямо здесь (единственная точка чтения инвентаря), штампы без
+  // подарка вычищаются, а подаркам без штампа (выданы до таймеров) отсчёт
+  // стартует сейчас — никто не теряет подарок в момент обновления приложения.
+  const nowMs = Date.now();
+  const receivedAt = parseReceivedAtMap(receivedAtRaw);
+  const pendingLevels = [...new Set(
+    [...Object.keys(single), ...Object.keys(dual)].map(Number).filter(Number.isFinite),
+  )];
+  let receivedAtChanged = false;
+  const expiredLevels: number[] = [];
+  for (const level of pendingLevels) {
+    if (!receivedAt[level]) {
+      receivedAt[level] = nowMs;
+      receivedAtChanged = true;
+    }
+    if (nowMs >= receivedAt[level] + GIFT_TTL_MS) expiredLevels.push(level);
+  }
+  for (const stampedLevel of Object.keys(receivedAt).map(Number)) {
+    if (!pendingLevels.includes(stampedLevel)) {
+      delete receivedAt[stampedLevel];
+      receivedAtChanged = true;
+    }
+  }
+  for (const level of expiredLevels) {
+    delete single[level];
+    delete dual[level];
+    delete receivedAt[level];
+    receivedAtChanged = true;
+  }
+  if (isSameAccountGeneration(account, captureAccountGeneration())) {
+    try {
+      if (expiredLevels.length > 0) {
+        await AsyncStorage.multiSet([
+          [UNCLAIMED_GIFTS_KEY, JSON.stringify(single)],
+          [UNCLAIMED_DUAL_GIFTS_KEY, JSON.stringify(dual)],
+          [UNCLAIMED_GIFT_RECEIVED_AT_KEY, JSON.stringify(receivedAt)],
+        ]);
+      } else if (receivedAtChanged) {
+        await AsyncStorage.setItem(UNCLAIMED_GIFT_RECEIVED_AT_KEY, JSON.stringify(receivedAt));
+      }
+    } catch {
+      // Сгоревшее вычистим при следующем чтении.
+    }
+  }
+
+  const giftLifetime = (level: number): { receivedAtMs: number; expiresAtMs: number } => {
+    const receivedAtMs = receivedAt[level] ?? nowMs;
+    return { receivedAtMs, expiresAtMs: receivedAtMs + GIFT_TTL_MS };
+  };
 
   const singleItems: PendingLevelGiftInventoryItem[] = Object.entries(single)
     .map(([level, gift]) => ({
@@ -385,6 +503,7 @@ export const loadPendingLevelGiftInventory = async (
       level: Number(level),
       gift: sanitizeGift(gift),
       giftCount: 1 as const,
+      ...giftLifetime(Number(level)),
     }));
   const dualItems: PendingLevelGiftInventoryItem[] = Object.entries(dual)
     .flatMap(([level, pair]) => {
@@ -398,6 +517,7 @@ export const loadPendingLevelGiftInventory = async (
           gift: f2p,
           giftCount: 1 as const,
           dualPart: 'f2p' as const,
+          ...giftLifetime(Number(level)),
         });
       }
       if (prem) {
@@ -407,6 +527,7 @@ export const loadPendingLevelGiftInventory = async (
           gift: prem,
           giftCount: 1 as const,
           dualPart: 'prem' as const,
+          ...giftLifetime(Number(level)),
         });
       }
       return items;
@@ -421,6 +542,10 @@ export const loadPendingLevelGiftInventory = async (
       return partOrder(a) - partOrder(b);
     });
   pendingInventoryCache = { target, account, items };
+  if (expiredLevels.length > 0) {
+    // Бейдж «подарков: N» не должен считать сгоревшие.
+    await writePendingGiftCountCache(items.reduce((sum, item) => sum + item.giftCount, 0));
+  }
   return items;
 };
 

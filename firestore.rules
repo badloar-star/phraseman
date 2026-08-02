@@ -2115,6 +2115,22 @@ service cloud.firestore {
       allow read, write: if false;
     }
 
+    // Джарвис (новый слой): история стадии бизнеса, достигнутый пик и агрегат
+    // по урокам. Читаются ТОЛЬКО через callable с проверкой ролей — прямой
+    // браузерный доступ закрыт, как и у всего остального агентного слоя.
+    match /business_tier_history/{document=**} {
+      allow read, write: if false;
+    }
+    match /business_tier_peak/{document=**} {
+      allow read, write: if false;
+    }
+    match /business_tier_backfill_state/{document=**} {
+      allow read, write: if false;
+    }
+    match /lesson_stats/{document=**} {
+      allow read, write: if false;
+    }
+
     // Биржа «монеты → звёзды»: курс, история и журнал сделок — строго серверные.
     match /economy/{document=**} {
       allow read, write: if false;
@@ -2169,6 +2185,10 @@ service cloud.firestore {
         && collection != 'agent_manager_local_runner_capabilities'
         && collection != 'agent_manager_local_runner_leases'
         && collection != 'agent_manager_support_draft_operations'
+        && collection != 'business_tier_history'
+        && collection != 'business_tier_peak'
+        && collection != 'business_tier_backfill_state'
+        && collection != 'lesson_stats'
         && collection != 'economy'
         && collection != 'economy_exchange_history'
         && collection != 'coin_exchange_trades'

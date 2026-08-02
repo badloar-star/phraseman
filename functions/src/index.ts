@@ -447,37 +447,11 @@ export { adminExportReportDocuments, adminExportUnresolvedReports, adminListRepo
 export { adminListAuditLog } from './admin_audit_log';
 export { adminListOpsLog } from './admin_ops_log';
 export { adminCreatePlan, adminGetPlan, adminListPlans } from './admin_plans';
-export {
-  agentOfficeDecideRecommendation,
-  agentOfficeGetAggregateHealth,
-  agentOfficeGetCase,
-  agentOfficeGetControl,
-  agentOfficeListAuditEvents,
-  agentOfficeListCases,
-  agentOfficeListRecommendations,
-  agentOfficeListTasks,
-  agentOfficeSetKillSwitch,
-  agentOfficeTelegramWebhook,
-} from './agent_office';
-export {
-  agentManagerCreateInboxTask,
-  agentManagerCreateTask,
-  agentManagerInitializeRoster,
-  agentManagerIssueExecutionJob,
-  agentManagerListAgents,
-  agentManagerListRunbooks,
-  agentManagerListTasks,
-  agentManagerLocalRunnerClaim,
-  agentManagerLocalRunnerCreatePairing,
-  agentManagerLocalRunnerExchangePairing,
-  agentManagerLocalRunnerRevokeCapability,
-  agentManagerLocalRunnerSubmit,
-  agentManagerRunAnalyticsWorker,
-  agentManagerRunBoundedExecutionWorker,
-  agentManagerRunReportTriageWorker,
-  agentManagerTelegramPublishApproval,
-  agentManagerTransitionTask,
-} from './agent_manager';
+// зачем здесь пусто (Р4, снос 2026-08-02): старые слои agent_office и
+// agent_manager удалены целиком — их заменил functions/src/jarvis.
+// Firestore Rules их коллекций СОХРАНЕНЫ намеренно: данные могли остаться,
+// и прямой браузерный доступ к ним должен быть закрыт навсегда
+// (сторожит jarvis/legacy_agent_rules_guard.test.ts).
 // зачем: первый видимый рубеж нового Джарвиса (2026-08-01) — департамент
 // «Качество» по требованию владельца через панель admin/v2/legacy.html.
 // Старые agent_office/agent_manager выше не тронуты и сносятся отдельным

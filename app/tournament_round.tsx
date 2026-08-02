@@ -454,6 +454,44 @@ export default function TournamentRoundScreen() {
   const feedbackVisible = phase === 'feedback' && feedbackCorrect !== null;
   const answerSelectionActive = (phase === 'reading' || phase === 'question')
     && isTournamentAnswerSelectionWindowOpen(questionTiming, tournamentNow());
+
+  /**
+   * Экран обязан следовать серверному расписанию сам.
+   *
+   * зачем 2026-08-02 (владелец: «не нажимается ни один вариант», проверено на
+   * живой комнате): видимый index и answerSelectionActive считаются В ТЕЛЕ
+   * РЕНДЕРА от tournamentNow(). Значит «сервер перешёл к следующему заданию»
+   * замечается только на перерисовке. Единственным источником перерисовок был
+   * секундный таймер, который пишет secondsLeft — но когда он доходит до 0,
+   * значение перестаёт МЕНЯТЬСЯ, React не рендерит, и экран замирает.
+   *
+   * Факт из прода: сервер уже на задании #2 (окно открыто), а экран показывал
+   * «Вопрос 1 из 4» с таймером 0 — все варианты мертвы, потому что окно
+   * первого задания давно закрылось.
+   *
+   * Здесь держим отдельный тик, привязанный к границам расписания: он не
+   * рисует цифры, а просто будит рендер, когда наступает следующее окно.
+   * Дешевле, чем таймер раз в секунду: просыпаемся ровно на переходах.
+   */
+  const [scheduleTick, setScheduleTick] = useState(0);
+  useEffect(() => {
+    if (!runtimeActive || !activeRound?.taskSchedule?.length) return;
+    const nowMs = tournamentNow();
+    // Ближайшая будущая граница: старт или конец приёма ответа любого задания.
+    const boundaries = activeRound.taskSchedule
+      .flatMap((timing) => [
+        timing.startsAtMs,
+        timing.answerDeadlineAtMs ?? timing.deadlineAtMs,
+        timing.deadlineAtMs,
+      ])
+      .filter((atMs) => atMs > nowMs)
+      .sort((left, right) => left - right);
+    if (boundaries.length === 0) return;
+    // +60 мс, чтобы проснуться ГАРАНТИРОВАННО после границы, а не ровно на ней.
+    const delayMs = Math.max(16, boundaries[0] - nowMs + 60);
+    const id = setTimeout(() => setScheduleTick((value) => value + 1), delayMs);
+    return () => clearTimeout(id);
+  }, [activeRound?.taskSchedule, runtimeActive, scheduleTick, phase]);
   const serverScheduleHasStarted = Boolean(activeRound?.taskSchedule?.some(
     (timing) => tournamentNow() >= timing.startsAtMs,
   ));
@@ -566,6 +604,32 @@ export default function TournamentRoundScreen() {
     const id = setInterval(tick, 1000);
     return () => clearInterval(id);
   }, [answerWindowSeconds, questionTiming, runtimeActive, stateSecondsLeft, taskTimerActive]);
+
+  /**
+   * Выравнивание фазы по серверу — страховка от «мёртвого» экрана.
+   *
+   * зачем 2026-08-02 (владелец: «не нажимается ни один вариант»): фазу двигали
+   * только локальные таймеры (goNext по границе фидбэка, переход reading →
+   * question). Любой их сбой — пропущенный таймер при уходе в фон, поздний
+   * снапшот, гонка при смене задания — оставлял экран в 'feedback' навсегда,
+   * а в этой фазе ввод заблокирован. Игрок видел живой вопрос с мёртвыми
+   * кнопками.
+   *
+   * Здесь сверяемся с абсолютным расписанием: если сервер уже открыл окно
+   * ответа текущего задания, а мы всё ещё показываем фидбэк по нему — молча
+   * возвращаем игрока в игру. Это не дублирует goNext (тот двигает НОМЕР
+   * задания), а только чинит рассинхрон фазы.
+   */
+  useEffect(() => {
+    if (!runtimeActive || phase !== 'feedback' || !questionTiming) return;
+    // Ответ по этому заданию уже принят — фидбэк показан по делу, не трогаем.
+    if (resolvedTaskIds.has(questionTiming.taskId)) return;
+    const nowMs = tournamentNow();
+    const answerEndsAtMs = questionTiming.answerDeadlineAtMs ?? questionTiming.deadlineAtMs;
+    if (nowMs >= questionTiming.startsAtMs && nowMs < answerEndsAtMs) {
+      setPhase('question');
+    }
+  }, [phase, questionTiming, resolvedTaskIds, runtimeActive, scheduleTick]);
 
   const goNext = useCallback(() => {
     if (forfeitingRef.current) return;

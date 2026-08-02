@@ -377,7 +377,7 @@ export default function DayClosingPanel({ dayClosing, onClose, onUpgrade, onLate
             {locked ? (
               <View style={[styles.metricMask, { backgroundColor: t.textMuted + '33' }]} />
             ) : (
-              <Text style={[styles.metricValue, { color: accent }]} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.7}>
+              <Text style={[styles.metricValue, { color: accent }]} numberOfLines={1}>
                 {item.value}
               </Text>
             )}
@@ -418,8 +418,11 @@ export default function DayClosingPanel({ dayClosing, onClose, onUpgrade, onLate
           <Text style={[styles.lockedTitle, { color: t.textPrimary }]}>
             {triLang(lang, COMPASS_DAY_CLOSING_PREMIUM_TITLE)}
           </Text>
+          {/* зачем: active гасит анимацию блеска, когда кнопки не видно. Панель
+              монтируется только на время показа, поэтому пока она в дереве —
+              кнопка видима (тот же приём, что в NoEnergyModal). */}
           {onUpgrade && (
-            <PremiumGoldButton f={{ body: 14.5 }} customLabel={triLang(lang, COMPASS_OPEN_ACCESS)} onPress={onUpgrade} />
+            <PremiumGoldButton active f={{ body: 14.5 }} customLabel={triLang(lang, COMPASS_OPEN_ACCESS)} onPress={onUpgrade} />
           )}
           <CompassLaterLink t={t} label={triLang(lang, COMPASS_LATER)} onPress={onLater} />
         </View>
@@ -487,7 +490,11 @@ const styles = StyleSheet.create({
   wrap: {},
   metrics: { flexDirection: 'row', marginTop: 24, borderRadius: 16, paddingVertical: 14, paddingHorizontal: 4 },
   metric: { flex: 1, minHeight: 58, paddingHorizontal: 8, justifyContent: 'center' },
-  metricValue: { fontSize: 33, lineHeight: 36, fontWeight: '900', letterSpacing: -0.5 },
+  // зачем: было adjustsFontSizeToFit (запрещён — ужимает на iOS). Значение уже
+  // сжато formatCompactNumber, максимум ~5 знаков («12.3M»). Лечим вёрсткой:
+  // кегль 28 + плотный трекинг влезают в треть ширины на узких экранах, поэтому
+  // первый кадр сразу финальный и цифра не «прыгает» в размере.
+  metricValue: { fontSize: 28, lineHeight: 32, fontWeight: '900', letterSpacing: -0.8 },
   metricMask: { width: 34, height: 20, borderRadius: 6, opacity: 0.9 },
   metricLabel: { marginTop: 8, fontSize: 12.5, lineHeight: 15, fontWeight: '600' },
   focus: { marginTop: 16, padding: 16, borderRadius: 16, flexDirection: 'row', alignItems: 'flex-start', gap: 13 },

@@ -4026,7 +4026,11 @@ export default function SettingsTestersFunctions() {
             open={openSection === 'soft_upsell_previews'}
             onToggle={toggleSection}
           />
-          <VipSurveyExtraSection open={openSection === 'vip_survey_extra'} onToggle={toggleSection} />
+          <VipSurveyExtraSection
+            open={openSection === 'vip_survey_extra'}
+            onToggle={toggleSection}
+            onSeedInboxPreview={showVipSurveyNotificationPreview}
+          />
           <ReviewPromptPreviewSection open={openSection === 'review_prompt_previews'} onToggle={toggleSection} />
           <LabsSection
             open={openSection === 'labs_hub'}

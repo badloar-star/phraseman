@@ -135,7 +135,10 @@ interface Props {
   visible: boolean;
   /** Контекст показа — для аналитики. 'home_banner' — открыт из persistent
    *  баннера на Home для незалогиненных юзеров с XP ≥ 1000. */
-  context: 'lesson1' | 'settings' | 'onboarding' | 'dev' | 'home_banner' | 'startup_recovery';
+  // зачем: 'compass' добавлен для экрана брифинга компаса — он не требует своих
+  // текстов и осознанно попадает в ветку по умолчанию («Быстрый вход. Прогресс
+  // синхронизируется между устройствами»), как settings/home_banner.
+  context: 'lesson1' | 'settings' | 'onboarding' | 'dev' | 'home_banner' | 'startup_recovery' | 'compass';
   /** Кастомный заголовок (опц., иначе используется дефолт под контекст). */
   title?: string;
   /** Кастомный подзаголовок (опц.). */

@@ -95,8 +95,10 @@ export default function GlassSurface({
   };
   // Верхний хайлайт-кант вместо обводки: тонкая акцентная линия сверху даёт
   // объём «стекла», не рисуя замкнутую рамку (владелец не любит рамки).
+  // зачем: тут была несуществующая alpha() — ReferenceError на тёмных темах при
+  // highlight. glassFill для hex-акцента даёт ту же полупрозрачную rgba.
   const highlightStyle: ViewStyle | null = highlight
-    ? { borderTopWidth: 1, borderTopColor: alpha(t.accent, 0.14) }
+    ? { borderTopWidth: 1, borderTopColor: glassFill(t.accent, 0.14) }
     : null;
 
   return (

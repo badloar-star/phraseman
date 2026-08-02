@@ -14,7 +14,7 @@ import { useRouter } from 'expo-router';
 import { LinearGradient } from './SafeLinearGradient';
 import React, { memo, useEffect, useRef, useState } from 'react';
 import {
-  Animated, Easing, Modal, StyleSheet, Text, TouchableOpacity, View,
+  Animated, Easing, Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View,
 } from 'react-native';
 import { Image } from 'expo-image';
 import {
@@ -510,7 +510,17 @@ function LevelGiftModal({
 
   return (
     <Modal transparent visible animationType="fade" onRequestClose={handleSkip}>
-      <View style={{ flex: 1, backgroundColor: screenDim, justifyContent: 'center', alignItems: 'center', overflow: 'hidden' }}>
+      {/* зачем 2026-08-02 (владелец: «на маленьких экранах кнопки нет»):
+          карточка подарка центрировалась во весь рост без прокрутки. Пока она
+          помещалась — вид верный, но на низком экране обрезалась сверху и
+          снизу вместе с кнопкой, и доскроллить было нечем. ScrollView с
+          flexGrow:1 сохраняет центрирование на больших экранах и даёт
+          прокрутку на маленьких. */}
+      <ScrollView
+        style={{ flex: 1, backgroundColor: screenDim }}
+        contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center' }}
+        showsVerticalScrollIndicator={false}
+      >
         <Animated.View testID="level-gift-modal" style={{
           backgroundColor: solidPanel,
           borderRadius: 30,
@@ -959,7 +969,7 @@ function LevelGiftModal({
             </Animated.View>
           )}
         </Animated.View>
-      </View>
+      </ScrollView>
     </Modal>
   );
 }

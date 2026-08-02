@@ -1,11 +1,10 @@
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ActivityIndicator } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, ActivityIndicator, ScrollView } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 import ScreenGradient from '../components/ScreenGradient';
 import SkeletonBlock from '../components/SkeletonShimmer';
-import BounceView from '../components/BounceView';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { triLang } from '../constants/i18n';
@@ -124,8 +123,19 @@ export default function PersonalPlanCompleteScreen() {
 
   return (
     <ScreenGradient>
-      <View style={[styles.safe, { paddingTop: insets.top }]}>
-        <BounceView style={styles.safe}>
+      {/* зачем 2026-08-02 (владелец: «на маленьких экранах кнопки нет»):
+          BounceView даёт «резинку», но НЕ прокрутку — он рассчитан на экраны,
+          где контент влезает целиком. На низком экране карточка поздравления с
+          кнопками не влезала и обрезалась, а доскроллить было нечем. Скролл с
+          flexGrow:1 сохраняет центрирование на больших экранах, bounces
+          оставляет то же ощущение резинки. */}
+      <ScrollView
+        style={styles.safeScroll}
+        contentContainerStyle={[styles.safeContent, { paddingTop: insets.top }]}
+        showsVerticalScrollIndicator={false}
+        bounces
+      >
+        <View style={styles.safeContent}>
           <View style={[styles.card, { backgroundColor: glassFill(t.bgSurface, 0.46) }]}>
             <View style={[styles.iconWrap, { backgroundColor: t.correctBg, borderColor: t.border }]}>
               <Ionicons name="trophy" size={34} color={t.correctText} />
@@ -219,8 +229,8 @@ export default function PersonalPlanCompleteScreen() {
               </Text>
             </TouchableOpacity>
           </View>
-        </BounceView>
-      </View>
+        </View>
+      </ScrollView>
     </ScreenGradient>
   );
 }
@@ -228,6 +238,18 @@ export default function PersonalPlanCompleteScreen() {
 const styles = StyleSheet.create({
   safe: {
     flex: 1,
+    justifyContent: 'center',
+    paddingHorizontal: 22,
+    paddingVertical: 24,
+  },
+  safeScroll: {
+    flex: 1,
+  },
+  safeContent: {
+    // flexGrow (а не flex) — в contentContainerStyle это единственный способ
+    // сказать «растянись на всю высоту, если контента мало, но дай прокрутку,
+    // если много». Центрирование сохранено для больших экранов.
+    flexGrow: 1,
     justifyContent: 'center',
     paddingHorizontal: 22,
     paddingVertical: 24,

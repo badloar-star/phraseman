@@ -8,6 +8,7 @@ import {
   Easing,
   Modal,
   Pressable,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -496,7 +497,16 @@ export default function DailyTasksFirstVisitModal({
 
   return (
     <Modal visible={visible} transparent animationType="none" statusBarTranslucent onRequestClose={onClose}>
-      <View style={styles.root}>
+      {/* зачем 2026-08-02 (владелец: «на маленьких экранах кнопки нет»):
+          панель центрировалась во весь рост без прокрутки — на низком экране
+          обрезалась сверху и снизу вместе с кнопкой. ScrollView с flexGrow:1
+          сохраняет вид на больших экранах и даёт прокрутку на маленьких.
+          Подложка-Pressable для закрытия по тапу остаётся под панелью. */}
+      <ScrollView
+        style={styles.rootScroll}
+        contentContainerStyle={styles.root}
+        showsVerticalScrollIndicator={false}
+      >
         <Pressable style={StyleSheet.absoluteFillObject} onPress={onClose} accessibilityLabel={copy.closeA11y} />
         <Animated.View
           style={[
@@ -621,14 +631,21 @@ export default function DailyTasksFirstVisitModal({
             </TouchableOpacity>
           </View>
         </Animated.View>
-      </View>
+      </ScrollView>
     </Modal>
   );
 }
 
 const styles = StyleSheet.create({
-  root: {
+  rootScroll: {
     flex: 1,
+    backgroundColor: 'transparent',
+  },
+  root: {
+    // flexGrow (а не flex) — в contentContainerStyle это единственный способ
+    // сказать «растянись на всю высоту, если контента мало, но дай прокрутку,
+    // если много». Центрирование сохранено для больших экранов.
+    flexGrow: 1,
     justifyContent: 'center',
     backgroundColor: 'transparent',
   },

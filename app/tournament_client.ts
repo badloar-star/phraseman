@@ -838,6 +838,13 @@ export function roundNoFromState(state?: string | null): number {
 
 const FUNCTIONS_REGION = 'us-central1';
 
+/**
+ * Окно последнего СЕТЕВОГО вызова callFunction — чистый RTT без бутстрапа
+ * (анонимный вход, app-check, динамические импорты в него не входят).
+ * Потребитель один: rememberServerClock в loadWeeklyBankInfo.
+ */
+let lastCallNetworkWindow: { startedAtMs: number; endedAtMs: number } | null = null;
+
 async function callFunction<T>(
   name: string,
   payload: Record<string, unknown> = {},
@@ -854,7 +861,16 @@ async function callFunction<T>(
   const { getApp } = await import('@react-native-firebase/app');
   const { getFunctions, httpsCallable } = await import('@react-native-firebase/functions');
   const call = httpsCallable(getFunctions(getApp(), region), name);
+  // зачем 2026-08-02 (аудит машины состояний раунда): замер серверных часов
+  // раньше стартовал ДО этой функции — то есть RTT включал ожидание анонимного
+  // входа, app-check и два динамических импорта. На холодном старте это секунды
+  // АСИММЕТРИЧНОЙ задержки: формула середины интервала сдвигала tournamentNow()
+  // вперёд до ~2.5с, окна ответов субъективно закрывались раньше, и таймер
+  // заданий досчитывал до нуля до настоящего дедлайна. Точки для замера
+  // отдаются отсюда — строго вокруг самого сетевого вызова.
+  const networkStartedAtMs = Date.now();
   const result = await call(payload);
+  lastCallNetworkWindow = { startedAtMs: networkStartedAtMs, endedAtMs: Date.now() };
   return result.data as T;
 }
 
@@ -1303,7 +1319,13 @@ export async function loadWeeklyBankInfo(force = false): Promise<WeeklyBankInfo 
   try {
     const result = await callFunction<WeeklyBankInfo>('tournamentWeeklyBankInfo', {});
     // Тот же ответ несёт часы сервера — синхронизируем расписание бесплатно.
-    rememberServerClock(result?.serverNowMs, now, Date.now());
+    // зачем 2026-08-02: раньше стартовой точкой был `now`, снятый ДО
+    // callFunction — RTT включал бутстрап (auth, app-check, импорты), и на
+    // холодном старте tournamentNow() спешил до ~2.5с: окна ответов в раунде
+    // субъективно закрывались раньше срока. Берём окно чистого сетевого
+    // вызова, которое callFunction замеряет вокруг самого запроса.
+    const window = lastCallNetworkWindow ?? { startedAtMs: now, endedAtMs: Date.now() };
+    rememberServerClock(result?.serverNowMs, window.startedAtMs, window.endedAtMs);
     weeklyBankCache = { at: now, value: result ?? null };
     return weeklyBankCache.value;
   } catch {

@@ -673,6 +673,21 @@ export default function TournamentRoundScreen() {
       const base = current?.roundKey === roundKey ? current.index : index;
       return { roundKey, index: base + 1 };
     });
+    // зачем 2026-08-02 (КОРЕНЬ «отвечаю только на первый вопрос, остальные
+    // заблокированы»): secondsLeft здесь НЕ сбрасывался. К концу предыдущего
+    // задания таймер честно дотикивал до 0 — и это значение ПЕРЕЖИВАЛО переход
+    // на следующий вопрос. Первый же рендер нового вопроса имел
+    // phase='question' + secondsLeft=0 (от старого!) + question=новый — ровно
+    // условие таймаут-эффекта «время вышло». Тот срабатывал ДО того, как
+    // секундный таймер успевал записать настоящий остаток, мгновенно помечал
+    // новый вопрос пропущенным (markTaskResolved) и уводил в 'feedback', где
+    // ввод заблокирован. Так умирал каждый вопрос после первого, а прогресс
+    // «ехал сам». Первый вопрос раунда жил только потому, что после интро
+    // secondsLeft был null, а null !== 0.
+    // Сброс обязан быть ИМЕННО ЗДЕСЬ, в одном батче со сменой вопроса:
+    // сброс из отдельного эффекта применился бы только к следующему рендеру,
+    // а таймаут-эффект текущего прохода всё равно увидел бы старый 0.
+    setSecondsLeft(null);
     setPicked(null);
     setFeedbackCorrect(null);
     setMatchStatus({});
@@ -985,6 +1000,15 @@ export default function TournamentRoundScreen() {
   // Время вышло — пропуск, серия обнуляется.
   useEffect(() => {
     if (phase !== 'question' || secondsLeft !== 0 || !question) return;
+    // зачем 2026-08-02 (страховка к корню бага «мёртвые вопросы после
+    // первого»): secondsLeft — производное состояние, и ноль в нём может быть
+    // УСТАРЕВШИМ (от предыдущего задания, пережившим переход). Пропуск по
+    // таймауту — необратимый исход, поэтому сверяемся с первоисточником:
+    // абсолютным серверным дедлайном ВИДИМОГО задания. Окно реально открыто —
+    // значит ноль ложный, выходим и даём секундному таймеру записать настоящий
+    // остаток.
+    const answerEndsAtMs = questionTiming?.answerDeadlineAtMs ?? questionTiming?.deadlineAtMs;
+    if (answerEndsAtMs !== undefined && tournamentNow() < answerEndsAtMs) return;
     // зачем: истечение времени — это исход задания, а не просто смена фазы;
     // без звука пропуск по таймауту ощущался как «экран сам перещёлкнулся».
     playTimerExpired();
@@ -993,7 +1017,7 @@ export default function TournamentRoundScreen() {
     setPhase('feedback');
     setFeedbackCorrect(null);
     scheduleFeedbackAdvance();
-  }, [markTaskResolved, phase, secondsLeft, question, scheduleFeedbackAdvance, playTimerExpired]);
+  }, [markTaskResolved, phase, secondsLeft, question, questionTiming, scheduleFeedbackAdvance, playTimerExpired]);
 
   // Сервер перевёл комнату дальше — уходим, даже если локально не досчитали.
   useEffect(() => {

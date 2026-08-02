@@ -282,6 +282,30 @@ describe('tournament question feedback UX', () => {
     expect(resetEffect).toContain('pendingTaskSubmissionsRef.current.clear()');
   });
 
+  test('a stale zero on the task timer can never kill the next question', () => {
+    // зачем 2026-08-02 (КОРЕНЬ «отвечаю только на первый вопрос, остальные
+    // заблокированы» — подтверждён независимым аудитом с посекундной
+    // симуляцией): secondsLeft честно дотикивал до 0 к концу окна предыдущего
+    // задания и ПЕРЕЖИВАЛ переход. Первый рендер нового вопроса имел
+    // phase='question' + secondsLeft=0 (протухший) + question=новый — ровно
+    // условие таймаут-эффекта. Тот мгновенно помечал вопрос пропущенным и
+    // уводил в 'feedback' с заблокированным вводом. Прогресс «ехал сам», а
+    // первый вопрос раунда жил лишь потому, что после интро secondsLeft=null.
+    // Контракт держит ОБА слоя защиты.
+
+    // Слой 1: goNext сбрасывает таймер В ОДНОМ БАТЧЕ со сменой вопроса —
+    // сброс из эффекта не помог бы, эффекты коммита видят старый снимок state.
+    const advance = section(round, 'const goNext = useCallback', 'If the server exposes an upcoming task');
+    expect(advance).toContain('setSecondsLeft(null)');
+
+    // Слой 2: пропуск по таймауту сверяется с ПЕРВОИСТОЧНИКОМ — абсолютным
+    // серверным дедлайном видимого задания, а не только с производным нулём.
+    const timeout = section(round, '// Время вышло — пропуск', 'Сервер перевёл комнату дальше');
+    expect(timeout).toContain("secondsLeft !== 0");
+    expect(timeout).toMatch(/tournamentNow\(\) < answerEndsAtMs\) return/);
+    expect(timeout).toContain('markTaskResolved(question.taskId)');
+  });
+
   test('the reading phase keeps the per-second tick so the answer window can open', () => {
     // зачем 2026-08-02 (владелец: «первый вопрос ответил, дальше кнопки не
     // реагируют вообще»): это был блокер геймплея. answerSelectionActive

@@ -2086,6 +2086,13 @@ service cloud.firestore {
       allow read: if isAdmin();
       allow write: if false;
     }
+    // Выключатель Джарвиса: admin видит режим в панели, меняет только сервер
+    // (через callable с проверкой прав) — иначе режим правился бы из консоли
+    // браузера в обход журнала.
+    match /jarvis_control/{document=**} {
+      allow read: if isAdmin();
+      allow write: if false;
+    }
     match /agent_observation_receipts/{document=**} {
       allow read, write: if false;
     }

@@ -4,6 +4,7 @@ import { logger } from 'firebase-functions';
 import { ADMIN_ALERT_BOT_TOKEN, sendTelegramAlert } from '../admin_alerts';
 import { buildTelegramDigest } from './telegram_digest';
 import { JARVIS_APPROVAL_COLLECTION } from './approval_store';
+import { canNotify, canRun, JARVIS_CONTROL_DOC, parseControl } from './control';
 import { parseOwnerConfig } from './approval_webhook_core';
 import { JARVIS_TELEGRAM_CONFIG } from './approval_webhook';
 import { issueDecisionButtons } from './issue_decision_buttons';
@@ -140,6 +141,14 @@ export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTION
   const db = admin.firestore();
   const nowMs = Date.now();
 
+  // зачем проверять режим ДО работы: если владелец выключил Джарвиса, прогон
+  // не должен стоить ни одного чтения. Одно чтение конфига вместо десятков.
+  const control = parseControl((await db.doc(JARVIS_CONTROL_DOC).get().catch(() => null))?.data());
+  if (!canRun(control)) {
+    logger.info('jarvis_daily_departments: выключен владельцем', { reason: control.reason });
+    return;
+  }
+
   // зачем общий читатель: «Контент» и «Фабрика» смотрят одну коллекцию
   // lesson_stats с разными вопросами — без кэша это два одинаковых запроса.
   let lessonStatsOnce: ReturnType<typeof fetchContentSource> | null = null;
@@ -219,7 +228,10 @@ export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTION
   // зачем молчать, когда всё чисто: ежедневное «всё хорошо» приучает не
   // читать сообщения, и настоящая находка потеряется среди них. Пишем только
   // когда есть что сказать — либо находка, либо недоступный департамент.
-  const worthSending = snapshot.decisions.length > 0 || snapshot.departmentErrors.length > 0;
+  // зачем canNotify отдельно от canRun: режим «тихо» означает «следи, но не
+  // пиши мне» — надзор продолжается, сообщения нет.
+  const worthSending = canNotify(control)
+    && (snapshot.decisions.length > 0 || snapshot.departmentErrors.length > 0);
   let telegramSent = false;
   if (worthSending) {
     const text = buildTelegramDigest({

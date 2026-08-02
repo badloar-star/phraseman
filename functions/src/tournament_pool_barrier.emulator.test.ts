@@ -68,6 +68,67 @@ describe('tournament task-pool migration barrier', () => {
     expect((await roomRef.get()).exists).toBe(false);
   });
 
+  test('accepts a bucketed v8 barrier token so rooms can actually be created', async () => {
+    // зачем 2026-08-02 (владелец: «турниры не работают»): это был ПРОДОВЫЙ
+    // блокер. Пул хранил из токена только generation+revision, и все пять
+    // вызовов assertTournamentPoolCommitAllowed собирали из них НЕПОЛНЫЙ токен.
+    // Внутри сравнение идёт через sameTournamentPoolBarrierToken, которое
+    // проверяет ещё exposureBucketCounts и exposureLayoutHash. У токена из базы
+    // они есть, у собранного вручную — нет, поэтому сравнение всегда давало
+    // false: крон createRooms падал каждые 5 минут с
+    // tournament_pool_generation_changed, комнат не появлялось, а игрок видел
+    // «Не удалось войти». Тест держит именно этот случай — bucketed-поколение.
+    const barrierRef = db.collection(core.TOURNAMENT_PRIVATE_STATE_COLLECTION)
+      .doc(core.TOURNAMENT_POOL_BARRIER_DOC);
+    const roomRef = db.collection(core.TOURNAMENT_ROOMS_COLLECTION)
+      .doc(`bucketed-pool-room-${process.pid}`);
+    const exposureBucketCounts = {
+      guess_phrase: 30,
+      fill_gap: 13,
+      find_oddity: 10,
+      translate_build: 38,
+      speed_match: 10,
+    };
+    const exposureLayoutHash = 'a'.repeat(64);
+    await barrierRef.set({
+      kind: core.TOURNAMENT_POOL_BARRIER_KIND,
+      state: 'ready',
+      generation: 'tpool_20260801_v8',
+      revision: 10,
+      exposureBucketCounts,
+      exposureLayoutHash,
+    });
+
+    // Токен ровно в том виде, в каком его теперь несёт пул: целиком, а не
+    // пересобранный из двух полей.
+    const fullToken = {
+      generation: 'tpool_20260801_v8',
+      revision: 10,
+      exposureBucketCounts,
+      exposureLayoutHash,
+    };
+
+    await db.runTransaction(async (tx) => {
+      const generation = await runtime.assertTournamentPoolCommitAllowed(tx, db, fullToken);
+      expect(generation).toBe('tpool_20260801_v8');
+      tx.create(roomRef, { roomId: roomRef.id, state: 'scheduled', taskPoolGeneration: generation });
+    });
+    expect((await roomRef.get()).exists).toBe(true);
+
+    // Обратная граница: огрызок токена (то, что передавалось до правки) обязан
+    // быть отвергнут — иначе защита от миграции перестала бы работать вовсе.
+    const strippedRoomRef = db.collection(core.TOURNAMENT_ROOMS_COLLECTION)
+      .doc(`bucketed-pool-room-stripped-${process.pid}`);
+    await expect(db.runTransaction(async (tx) => {
+      await runtime.assertTournamentPoolCommitAllowed(tx, db, {
+        generation: 'tpool_20260801_v8',
+        revision: 10,
+      });
+      tx.create(strippedRoomRef, { roomId: strippedRoomRef.id });
+    })).rejects.toThrow('tournament_pool_generation_changed');
+    expect((await strippedRoomRef.get()).exists).toBe(false);
+  });
+
   test('shard creation and scheduled-room fill create task secrets inside their barrier transaction', () => {
     const source = readFileSync(`${__dirname}/tournaments.ts`, 'utf8');
     const shardStart = source.indexOf('async function createTournamentShardRoom');

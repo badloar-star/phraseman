@@ -582,6 +582,21 @@ type TournamentResourcePool = {
   tasks: TournamentTask[];
   taskPoolGeneration: string;
   taskPoolRevision: number;
+  /**
+   * Полный токен барьера, под которым пул был загружен.
+   *
+   * зачем 2026-08-02 (владелец: «при входе в турнир сразу — не удалось войти»,
+   * комнаты не создавались вовсе): пул хранил из токена только generation и
+   * revision, и все пять вызовов assertTournamentPoolCommitAllowed собирали
+   * из них НЕПОЛНЫЙ токен. Внутри сравнение идёт через
+   * sameTournamentPoolBarrierToken, которое проверяет ЧЕТЫРЕ поля, включая
+   * exposureBucketCounts и exposureLayoutHash. У токена из базы они есть, у
+   * собранного вручную — нет, поэтому сравнение возвращало false ВСЕГДА и
+   * каждая попытка создать комнату падала с tournament_pool_generation_changed.
+   * Крон createRooms падал каждые 5 минут, комнат не появлялось, входить было
+   * некуда. Держим токен целиком, чтобы собирать его заново было незачем.
+   */
+  barrierToken: TournamentPoolBarrierToken;
 };
 
 export type TournamentPoolBarrierToken = {
@@ -883,6 +898,7 @@ async function loadResourcePoolFromFirestore(
     tasks,
     taskPoolGeneration: token.generation,
     taskPoolRevision: token.revision,
+    barrierToken: token,
   };
 }
 
@@ -1397,10 +1413,7 @@ export const tournamentCreateRooms = onSchedule(
         const existing = await tx.get(roomRef);
         if (existing.exists) return;
         const taskPoolGeneration = await assertTournamentPoolCommitAllowed(
-          tx, db, {
-            generation: resources.taskPoolGeneration,
-            revision: resources.taskPoolRevision,
-          },
+          tx, db, resources.barrierToken,
         );
           const room: TournamentRoomDoc = {
             economySnapshot,
@@ -1997,10 +2010,7 @@ async function createTournamentShardRoom(
     const [existing, recentSnap] = await tx.getAll(roomRef, recentRef);
     if (existing.exists) return null;
     const taskPoolGeneration = await assertTournamentPoolCommitAllowed(
-      tx, db, {
-        generation: resources.taskPoolGeneration,
-        revision: resources.taskPoolRevision,
-      },
+      tx, db, resources.barrierToken,
     );
     const botPlan = buildBotReservationPlan({
       profiles: resources.bots,
@@ -2115,10 +2125,7 @@ async function ensureRoomPlayable(db: FirebaseFirestore.Firestore, roomId: strin
       throw new HttpsError('failed-precondition', 'not_enough_bots');
     }
     const taskPoolGeneration = await assertTournamentPoolCommitAllowed(
-      tx, db, {
-        generation: resources.taskPoolGeneration,
-        revision: resources.taskPoolRevision,
-      },
+      tx, db, resources.barrierToken,
     );
     tx.set(roomRef, {
       state: 'lobby',
@@ -2564,10 +2571,7 @@ export async function tournamentFillRoomTransaction(
       return cancelled ? 'cancelled_resources' : 'skip';
     }
     const taskPoolGeneration = await assertTournamentPoolCommitAllowed(
-      tx, db, {
-        generation: resources.taskPoolGeneration,
-        revision: resources.taskPoolRevision,
-      },
+      tx, db, resources.barrierToken,
     );
     dependencies.beforeWrites?.();
     tx.set(roomRef, {
@@ -4270,10 +4274,7 @@ export const tournamentStartNow = onCall(
         authUid, stableUid, authLinkSnap, userSnap, bannedSnap,
       );
       const taskPoolGeneration = await assertTournamentPoolCommitAllowed(
-        tx, db, {
-          generation: resources.taskPoolGeneration,
-          revision: resources.taskPoolRevision,
-        },
+        tx, db, resources.barrierToken,
       );
       const botPlan = buildBotReservationPlan({
         profiles: resources.bots,

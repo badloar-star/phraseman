@@ -35,10 +35,21 @@ describe('validateShardsApplyDeltaInput', () => {
       reason: 'global_broadcast_modal',
       delta: 30,
     }).ok).toBe(false);
+  });
+
+  // зачем (2026-08-02): владелец 2026-07-26 вернул «+1 жемчужина за достижение»,
+  // сервер должен пропускать ровно 1 (иначе клиентский +1 испарялся при сверке).
+  it('accepts achievement earn of exactly +1 and nothing else', () => {
     expect(validateShardsApplyDeltaInput({
       ...base,
       type: 'earn',
       reason: 'achievement:streak_7',
+    }).ok).toBe(true);
+    expect(validateShardsApplyDeltaInput({
+      ...base,
+      type: 'earn',
+      reason: 'achievement:streak_7',
+      delta: 2,
     }).ok).toBe(false);
   });
 

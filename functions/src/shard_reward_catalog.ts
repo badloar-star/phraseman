@@ -16,6 +16,9 @@ export const SHARD_EARN_DAILY_COUNTERS_COLLECTION = 'shard_earn_daily_counters';
 // ключи и суточные капы намеренно сохранены (мёртвый, но безвредный код) —
 // так проще вернуть конкретный источник отдельным решением, а клиентские
 // reason-строки остаются задокументированными.
+//
+// ИСКЛЮЧЕНИЕ (решение владельца 2026-07-26): «+1 жемчужина за достижение» —
+// см. ветку ACHIEVEMENT_REASON_RE в resolveShardEarnPolicy ниже.
 // ═══════════════════════════════════════════════════════════════════════════
 
 /**
@@ -86,15 +89,32 @@ const FIXED_REASON_CATALOG: Readonly<Record<string, CatalogEntry>> = Object.free
 
 const ACHIEVEMENT_REASON_RE = /^achievement:[A-Za-z0-9_-]{1,48}$/;
 
+// зачем (2026-08-02): владелец 2026-07-26 вернул «+1 жемчужина за достижение»
+// (app/achievements.ts → claimAchievementShardReward, коммит 17482fdfc), а каталог
+// остался с полным запретом от 2026-07-21 (f6cc0859d). Из-за рассинхрона клиент
+// начислял +1 локально, сервер отклонял синк — и жемчужина «испарялась» при
+// следующей сверке баланса. Разрешаем РОВНО 1. Счётчик ведём под общим
+// ключом-бакетом 'achievement': двоеточие в bySource-ключах отфильтровывает
+// normalizeShardEarnDailyCounter, а разовость конкретного достижения и так
+// гарантируют серверные receipts по стабильному opId клиента.
+const ACHIEVEMENT_SHARD_AMOUNT = 1;
+const ACHIEVEMENT_BUDGET_KEY = 'achievement';
+// 200 покрывает полный бэклог из 194 достижений, забранных за один день.
+const ACHIEVEMENT_DAILY_MAX = 200;
+
 export function resolveShardEarnPolicy(
   reason: string,
   requestedAmount: number,
 ): ShardEarnPolicy | null {
   if (!Number.isSafeInteger(requestedAmount) || requestedAmount <= 0) return null;
-  // Новая экономика: achievement-награды тоже обнулены (план §7) — ветка
-  // оставлена как реестр формата reason, но больше ничего не разрешает.
+  // Единственное живое исключение из обнулённого каталога — «+1 за достижение».
   if (ACHIEVEMENT_REASON_RE.test(reason)) {
-    return null;
+    if (requestedAmount !== ACHIEVEMENT_SHARD_AMOUNT) return null;
+    return {
+      reasonKey: ACHIEVEMENT_BUDGET_KEY,
+      amount: ACHIEVEMENT_SHARD_AMOUNT,
+      perSourceDailyMax: ACHIEVEMENT_DAILY_MAX,
+    };
   }
   // hasOwnProperty: 'toString'/'constructor'/'__proto__' — унаследованные ключи
   // Object.prototype, а не записи каталога; без гварда lookup возвращал

@@ -31,8 +31,6 @@ describe('generic shard earn compatibility catalog (zeroed by 2026-07-20 economy
     ['preposition_drill_perfect', 1],
     ['plan_day_complete', 2],
     ['trainer_perfect_session', 1],
-    ['achievement:streak_7', 1],
-    ['achievement:anything', 1],
     ['boon_comeback', 5],
     ['boon_perfect_week', 20],
     ['level_gift', 3],
@@ -60,6 +58,40 @@ describe('generic shard earn compatibility catalog (zeroed by 2026-07-20 economy
     expect(resolveShardEarnPolicy('lesson_first', 0)).toBeNull();
     expect(resolveShardEarnPolicy('lesson_first', -5)).toBeNull();
     expect(resolveShardEarnPolicy('lesson_first', 1.5)).toBeNull();
+  });
+});
+
+// зачем (2026-08-02): владелец 2026-07-26 вернул «+1 жемчужина за достижение»
+// (клиент платил, сервер отклонял — жемчужина испарялась при сверке).
+// Каталог обязан разрешать РОВНО 1 по achievement:* и ничего больше.
+describe('achievement +1 exception (owner decision 2026-07-26)', () => {
+  it('allows exactly +1 for a well-formed achievement reason', () => {
+    expect(resolveShardEarnPolicy('achievement:streak_7', 1)).toEqual({
+      reasonKey: 'achievement',
+      amount: 1,
+      perSourceDailyMax: 200,
+    });
+  });
+
+  it('rejects any other amount and malformed achievement reasons', () => {
+    expect(resolveShardEarnPolicy('achievement:streak_7', 2)).toBeNull();
+    expect(resolveShardEarnPolicy('achievement:streak_7', 0)).toBeNull();
+    expect(resolveShardEarnPolicy('achievement:', 1)).toBeNull();
+    expect(resolveShardEarnPolicy('achievement:bad id', 1)).toBeNull();
+    expect(resolveShardEarnPolicy(`achievement:${'x'.repeat(49)}`, 1)).toBeNull();
+  });
+
+  it('budgets achievement claims under the shared colon-free bucket key', () => {
+    const policy = resolveShardEarnPolicy('achievement:first_lesson', 1);
+    expect(policy).not.toBeNull();
+    const outcome = applyShardEarnBudget(
+      emptyShardEarnDailyCounter('2026-08-02'),
+      policy as ShardEarnPolicy,
+      false,
+    );
+    expect(outcome.allowed).toBe(true);
+    // Ключ без двоеточия — переживает фильтр normalizeShardEarnDailyCounter.
+    expect(outcome.counter.bySource).toEqual({ achievement: 1 });
   });
 });
 

@@ -7,6 +7,7 @@ import {
   type RawRevenueRow,
   type RawUserRow,
 } from './business_tier_backfill';
+import { dayKeyFromMs, dayKeyToStartMs, nextDayKey } from './business_tier_history';
 import { readBackfillCursor, writeBackfillCursor, writeHistoryPoints } from './business_tier_history_store';
 
 /**
@@ -92,14 +93,30 @@ async function fetchRevenueRowsForRange(
     .collection('revenuecat_premium_events')
     .where('createdAt', '>=', admin.firestore.Timestamp.fromMillis(fromMs))
     .where('createdAt', '<', admin.firestore.Timestamp.fromMillis(toMsExclusive))
-    .select('createdAt', 'eventType', 'periodType')
+    // зачем денежные поля в проекции: без них Firestore вернёт undefined,
+    // parseRevenueEventRow схлопнет всё в null, и КАЖДЫЙ день истории станет
+    // 'unavailable' — честные суммы, ради которых всё это делалось, просто
+    // не доедут до графика. Проекция всё ещё узкая: это 7 полей события,
+    // а не весь документ.
+    .select(
+      'createdAt', 'eventType', 'periodType',
+      'grossUsdMicros', 'estimatedProceedsUsdMicros', 'financialCoverage', 'billingCadence',
+    )
     .limit(BACKFILL_PAGE_SIZE * 4)
     .get();
   // guard-ok: тот же случай — один .get() выше, .map() ниже раскладывает уже
   // полученные docs в памяти, нет чтения Firestore внутри цикла.
   return snap.docs.map((doc) => {
     const data = doc.data() as Record<string, unknown>;
-    return parseRevenueEventRow({ createdAt: data.createdAt, eventType: data.eventType, periodType: data.periodType });
+    return parseRevenueEventRow({
+      createdAt: data.createdAt,
+      eventType: data.eventType,
+      periodType: data.periodType,
+      grossUsdMicros: data.grossUsdMicros,
+      estimatedProceedsUsdMicros: data.estimatedProceedsUsdMicros,
+      financialCoverage: data.financialCoverage,
+      billingCadence: data.billingCadence,
+    });
   });
 }
 
@@ -146,7 +163,14 @@ export async function runBackfillStep(deps: BackfillRunnerDeps): Promise<Backfil
   const validMs = page.rows.map((r) => r.createdAtMs).filter((ms): ms is number => ms !== null);
   const minMs = validMs.length > 0 ? Math.min(...validMs) : deps.nowMs;
   const maxMs = validMs.length > 0 ? Math.max(...validMs) : deps.nowMs;
-  const revenueRows = await fetchRevenueRowsForRange(deps.db, minMs, maxMs + 1);
+  // зачем границы СУТОК, а не точные метки пользователей: точка истории —
+  // это день целиком, а платежи почти никогда не совпадают по времени с
+  // регистрацией (человек зарегистрировался утром, оплатил вечером или через
+  // неделю). Диапазон [minUser, maxUser] терял бы такие события молча —
+  // на графике честные суммы просто не появлялись бы.
+  const rangeFromMs = dayKeyToStartMs(dayKeyFromMs(minMs));
+  const rangeToExclusiveMs = dayKeyToStartMs(nextDayKey(dayKeyFromMs(maxMs)));
+  const revenueRows = await fetchRevenueRowsForRange(deps.db, rangeFromMs, rangeToExclusiveMs);
 
   const built = buildHistoryPointsFromPage({
     userRows: page.rows,

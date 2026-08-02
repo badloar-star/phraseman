@@ -2,7 +2,16 @@ import { runBackfillStep } from './business_tier_backfill_runner';
 import { BUSINESS_TIER_BACKFILL_STATE_DOC, BUSINESS_TIER_HISTORY_COLLECTION } from './business_tier_history_store';
 
 interface FakeUser { id: string; created_at: number; }
-interface FakeRevenueEvent { id: string; createdAtMs: number; eventType: string; periodType: string | null; }
+interface FakeRevenueEvent {
+  id: string;
+  createdAtMs: number;
+  eventType: string;
+  periodType: string | null;
+  grossUsdMicros?: number | null;
+  estimatedProceedsUsdMicros?: number | null;
+  financialCoverage?: 'complete' | 'partial' | 'unavailable' | null;
+  billingCadence?: 'monthly' | 'yearly' | 'lifetime' | 'unknown' | null;
+}
 
 /**
  * Fake Firestore double wide enough for the backfill runner: users collection
@@ -13,6 +22,8 @@ interface FakeRevenueEvent { id: string; createdAtMs: number; eventType: string;
 function makeFakeDb(users: FakeUser[], revenueEvents: FakeRevenueEvent[]) {
   const stored = new Map<string, Record<string, unknown>>();
   const sortedUsers = [...users].sort((a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0));
+  /** Поля, реально запрошенные в select() у revenuecat_premium_events. */
+  const selectedRevenueFields: string[] = [];
 
   function usersQuery(startAfterId: string | null, limitN: number | null) {
     let list = sortedUsers;
@@ -51,7 +62,13 @@ function makeFakeDb(users: FakeUser[], revenueEvents: FakeRevenueEvent[]) {
         if (op === '<') return makeRevenueQueryObj(fromMs, ms, limitN);
         return makeRevenueQueryObj(fromMs, toMsExclusive, limitN);
       },
-      select: () => makeRevenueQueryObj(fromMs, toMsExclusive, limitN),
+      // зачем запоминать поля: раньше двойник игнорировал аргументы select(),
+      // поэтому пропуск денежных полей в проекции не всплывал в тестах —
+      // бэкфилл молча писал бы 'unavailable' на каждый день.
+      select: (...fields: string[]) => {
+        selectedRevenueFields.splice(0, selectedRevenueFields.length, ...fields);
+        return makeRevenueQueryObj(fromMs, toMsExclusive, limitN);
+      },
       limit: (n: number) => makeRevenueQueryObj(fromMs, toMsExclusive, n),
       get: async () => {
         const filtered = revenueEvents.filter((e) => {
@@ -63,11 +80,23 @@ function makeFakeDb(users: FakeUser[], revenueEvents: FakeRevenueEvent[]) {
         return {
           docs: limited.map((e) => ({
             id: e.id,
-            data: () => ({
-              createdAt: { toMillis: () => e.createdAtMs },
-              eventType: e.eventType,
-              periodType: e.periodType,
-            }),
+            // Отдаём только те поля, которые реально попросили в select() —
+            // как это делает настоящий Firestore.
+            data: () => {
+              const full: Record<string, unknown> = {
+                createdAt: { toMillis: () => e.createdAtMs },
+                eventType: e.eventType,
+                periodType: e.periodType,
+                grossUsdMicros: e.grossUsdMicros ?? null,
+                estimatedProceedsUsdMicros: e.estimatedProceedsUsdMicros ?? null,
+                financialCoverage: e.financialCoverage ?? null,
+                billingCadence: e.billingCadence ?? null,
+              };
+              if (selectedRevenueFields.length === 0) return full;
+              const projected: Record<string, unknown> = {};
+              for (const field of selectedRevenueFields) projected[field] = full[field];
+              return projected;
+            },
           })),
         };
       },
@@ -108,7 +137,7 @@ function makeFakeDb(users: FakeUser[], revenueEvents: FakeRevenueEvent[]) {
   // users.count() aggregation stub (used only if the runner reads it — kept for API completeness)
   (db.collection('users') as any).count = () => ({ get: async () => ({ data: () => ({ count: sortedUsers.length }) }) });
 
-  return { db: db as unknown as FirebaseFirestore.Firestore, stored };
+  return { db: db as unknown as FirebaseFirestore.Firestore, stored, selectedRevenueFields };
 }
 
 describe('runBackfillStep — one continuable page of the once-only owner history backfill', () => {
@@ -188,5 +217,72 @@ describe('runBackfillStep — one continuable page of the once-only owner histor
     const result = await runBackfillStep({ db, nowMs: 2 });
     expect(result).toEqual({ pagesProcessed: 0, usersScanned: 0, pointsWritten: 0, done: true, lastCompletedDayKey: '2026-01-01', cumulativeUsers: 42 });
     void stored;
+  });
+});
+
+describe('runBackfillStep — the money projection must actually request the money fields', () => {
+  const day1 = Date.parse('2026-08-01T00:00:00.000Z');
+
+  test('selects the pre-normalized financial fields, not just eventType/periodType', async () => {
+    // зачем этот тест: без денежных полей в .select() Firestore вернёт их
+    // undefined, parseRevenueEventRow схлопнет всё в null, и КАЖДЫЙ день
+    // истории окажется 'unavailable' — честные суммы просто не доедут.
+    const { db, selectedRevenueFields } = makeFakeDb(
+      [{ id: 'u000', created_at: day1 }],
+      [{ id: 'r1', createdAtMs: day1 + 500, eventType: 'RENEWAL', periodType: null }],
+    );
+    await runBackfillStep({ db, nowMs: 1, pageSize: 500 });
+    expect(selectedRevenueFields).toEqual(expect.arrayContaining([
+      'createdAt', 'eventType', 'periodType',
+      'grossUsdMicros', 'estimatedProceedsUsdMicros', 'financialCoverage', 'billingCadence',
+    ]));
+  });
+
+  test('real money on an event reaches the written history point', async () => {
+    const { db, stored } = makeFakeDb(
+      [{ id: 'u000', created_at: day1 }],
+      [{
+        id: 'r1', createdAtMs: day1 + 500, eventType: 'RENEWAL', periodType: null,
+        grossUsdMicros: 4_990_000, estimatedProceedsUsdMicros: 3_493_000,
+        financialCoverage: 'complete', billingCadence: 'monthly',
+      }],
+    );
+    await runBackfillStep({ db, nowMs: 1, pageSize: 500 });
+    expect(stored.get(`${BUSINESS_TIER_HISTORY_COLLECTION}/2026-08-01`)).toMatchObject({
+      grossUsdMicros: 4_990_000,
+      mrrEquivalentProceedsUsdMicros: 3_493_000,
+      dayMoneyCoverage: 'complete',
+    });
+  });
+
+  test('a payment hours after the only signup on the page is still captured', async () => {
+    // зачем: диапазон брался как [minUserCreatedAt, maxUserCreatedAt] — платёж
+    // вечером от утреннего регистранта выпадал из окна и терялся молча.
+    // Теперь окно — сутки целиком, платёж в любое время дня попадает в точку.
+    const { db, stored } = makeFakeDb(
+      [{ id: 'u000', created_at: day1 + 60 * 60 * 1000 }], // регистрация в 01:00
+      [{
+        id: 'r1', createdAtMs: day1 + 20 * 60 * 60 * 1000, // оплата в 20:00 того же дня
+        eventType: 'RENEWAL', periodType: null,
+        grossUsdMicros: 4_990_000, estimatedProceedsUsdMicros: 3_493_000,
+        financialCoverage: 'complete', billingCadence: 'monthly',
+      }],
+    );
+    await runBackfillStep({ db, nowMs: 1, pageSize: 500 });
+    expect(stored.get(`${BUSINESS_TIER_HISTORY_COLLECTION}/2026-08-01`)).toMatchObject({
+      renewals: 1,
+      grossUsdMicros: 4_990_000,
+    });
+  });
+
+  test('a legacy event without money fields yields an unavailable day, not a fake zero-money day', async () => {
+    const { db, stored } = makeFakeDb(
+      [{ id: 'u000', created_at: day1 }],
+      [{ id: 'r1', createdAtMs: day1 + 500, eventType: 'RENEWAL', periodType: null }],
+    );
+    await runBackfillStep({ db, nowMs: 1, pageSize: 500 });
+    expect(stored.get(`${BUSINESS_TIER_HISTORY_COLLECTION}/2026-08-01`)).toMatchObject({
+      dayMoneyCoverage: 'unavailable',
+    });
   });
 });

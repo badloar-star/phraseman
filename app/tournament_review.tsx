@@ -31,6 +31,7 @@ import { StarGlyph } from '../components/tournament/TournamentFx';
 import { TournamentAudioButton } from '../components/tournament/TournamentAudioButton';
 import {
   loadRoundReview,
+  peekRoundReview,
   resolveTournamentRoomIdParam,
   type AggregateReviewItem,
   type ReviewItem,
@@ -54,13 +55,23 @@ export default function TournamentReviewScreen() {
   const params = useLocalSearchParams<{ roomId?: string | string[] }>();
   const roomId = resolveTournamentRoomIdParam(params.roomId);
 
-  const [items, setItems] = useState<ReviewItem[] | null>(null);
+  /**
+   * зачем 2026-08-02 (владелец: «раздел разбор ошибок в конце турнира грузится
+   * долго вместо мгновенного открытия»): экран стартовал с null и держал
+   * скелетон до ответа сети — даже при повторном заходе в ту же комнату.
+   * Разбор завершённого турнира неизменен, поэтому уже полученный показываем
+   * СИНХРОННО с первого кадра (тот же приём, что peekStableId и
+   * peekSeasonStandings в остальном приложении).
+   */
+  const [items, setItems] = useState<ReviewItem[] | null>(() => peekRoundReview(roomId));
   const [failed, setFailed] = useState(false);
 
   const goBack = useCallback(() => safeRouterBack(router, '/(tabs)/tournaments' as any), [router]);
 
   useEffect(() => {
     if (!roomId) { setFailed(true); return; }
+    // Кэш уже отдал данные — сети здесь делать нечего.
+    if (peekRoundReview(roomId)) return;
     let alive = true;
     void loadRoundReview(roomId)
       .then((response) => { if (alive) setItems(response?.items ?? []); })

@@ -78,10 +78,32 @@ const PAYWALL_BASE_PATHS: ReadonlySet<string> = new Set([
   '/paywall_g',
 ]);
 
-/** true для пейволов и транзитных диспетчеров — на них «назад» вести нельзя. */
+// Экраны СЫГРАННОГО турнира — тоже конечные точки, а не место возврата.
+//
+// зачем 2026-08-02 (владелец: «если турнир закончен, то при выходе потом
+// кнопка назад из общего раздела возвращает в окно „турнир завершён“»):
+// турнир — одноразовое событие. Его лобби, раунд, межраундовая таблица и
+// экран итогов существуют, пока идёт игра; после выхода возвращаться туда
+// некуда — комната закрыта, играть в ней больше нельзя. Оставаясь в стеке,
+// они делали «назад» из хаба турниров ловушкой: игрок снова видел «Турнир
+// завершён» вместо возврата на предыдущий экран.
+//
+// Тот же класс проблемы, что с пейволом выше, и лечится тем же приёмом:
+// при выборе цели возврата такие записи пропускаются, и «назад» уходит на
+// первый реальный экран под ними.
+const FINISHED_TOURNAMENT_BASE_PATHS: ReadonlySet<string> = new Set([
+  '/tournament_lobby',
+  '/tournament_round',
+  '/tournament_table',
+  '/tournament_results',
+]);
+
+/** true для пейволов, транзитных диспетчеров и отыгранных экранов турнира. */
 function isNonBackTargetPath(path: string): boolean {
   const base = basePath(path);
-  return PAYWALL_BASE_PATHS.has(base) || isTransientRedirectPath(base);
+  return PAYWALL_BASE_PATHS.has(base)
+    || FINISHED_TOURNAMENT_BASE_PATHS.has(base)
+    || isTransientRedirectPath(base);
 }
 
 /**

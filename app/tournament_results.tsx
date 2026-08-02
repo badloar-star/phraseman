@@ -48,6 +48,8 @@ import { tournamentAvatarLevel } from '../components/tournament/tournament_avata
 import {
   invalidateSeasonStandingsCache,
   hasAuthoritativeTournamentResults,
+  loadRoundReview,
+  peekRoundReview,
   orderTournamentPlayersForDisplay,
   resolveTournamentRoomIdParam,
   useTournamentRoom,
@@ -167,6 +169,27 @@ export default function TournamentResultsScreen() {
   // вернулся бы в хаб и увидел СТАРУЮ таблицу ещё 15 минут — выглядит как
   // «очки не засчитались». Сброс бесплатный: следующее чтение и так плановое.
   useEffect(() => { invalidateSeasonStandingsCache(); }, []);
+
+  /**
+   * Предзагрузка разбора, пока игрок смотрит подиум.
+   *
+   * зачем 2026-08-02 (владелец: «разбор ошибок в конце турнира грузится долго
+   * вместо мгновенного открытия»): кнопка «Разбор» ведёт на экран, который
+   * ходил в сеть только в момент открытия. Здесь у игрока есть несколько
+   * секунд «мёртвого» времени на празднование — тратим их на тот же запрос,
+   * и разбор открывается уже готовым.
+   *
+   * Firebase-экономия: это НЕ лишний вызов. Тот же самый запрос всё равно
+   * ушёл бы при открытии разбора, а его результат кэшируется по roomId, так
+   * что повторного обращения не будет. Игрок, не открывший разбор, стоит нам
+   * одного вызова — приемлемая цена за мгновенный экран у тех, кто открывает.
+   */
+  useEffect(() => {
+    if (!roomId || !runtimeActive || peekRoundReview(roomId)) return;
+    void loadRoundReview(roomId).catch(() => {
+      // Молча: это подогрев. Реальную ошибку покажет сам экран разбора.
+    });
+  }, [roomId, runtimeActive]);
 
   const { themeMode } = useTheme();
   const players = room?.players ?? [];
@@ -358,32 +381,48 @@ export default function TournamentResultsScreen() {
           </View>
 
           {/* Деньги показаны как один проверяемый путь, а не как несколько
-              несвязанных чисел. Источник всех значений — финальная room. */}
+              несвязанных чисел. Источник всех значений — финальная room.
+
+              зачем 2026-08-02 (владелец: «на экране результатов сначала
+              показывает у всех 0, а потом обновляется»): экран открывается на
+              состоянии results, а суммы сервер проставляет в rewards. До этого
+              момента здесь честно стояли нули — и игрок видел «0 жемчужин»,
+              которые через секунду прыгали на реальные. Пока цифр нет,
+              показываем прочерк: место под них уже занято (геометрия та же),
+              но ложного значения нет. */}
           <View style={styles.bankBreakdown}>
             <View style={styles.bankRow}>
               <Text style={styles.bankLabel}>Общий банк</Text>
-              <Text style={styles.bankAmount}>{totalPot} жемч.</Text>
+              <Text style={styles.bankAmount}>
+                {hasFinalResults ? `${totalPot} жемч.` : '—'}
+              </Text>
             </View>
             <View style={styles.bankRow}>
               <Text style={styles.bankLabel}>В недельный банк</Text>
-              <Text style={styles.bankAmountSecondary}>− {weeklyBankGems} жемч.</Text>
+              <Text style={styles.bankAmountSecondary}>
+                {hasFinalResults ? `− ${weeklyBankGems} жемч.` : '—'}
+              </Text>
             </View>
             <View style={styles.bankRow}>
               <View style={styles.bankLabelGroup}>
                 <Text style={styles.bankLabelStrong}>Призовой фонд дня</Text>
                 <Text style={styles.bankHint}>Доли мест: 60 / 25 / 15</Text>
               </View>
-              <Text style={styles.bankAmount}>{prizePool} жемч.</Text>
+              <Text style={styles.bankAmount}>
+                {hasFinalResults ? `${prizePool} жемч.` : '—'}
+              </Text>
             </View>
             <View style={styles.playerShareRow}>
               <View style={styles.bankLabelGroup}>
                 <Text style={styles.playerShareLabel}>Ваша доля</Text>
                 <Text style={styles.bankHint}>
-                  Серверная выплата: {myPrizeGems}
+                  {hasFinalResults ? `Серверная выплата: ${myPrizeGems}` : 'Считаем выплату'}
                 </Text>
               </View>
               <View style={styles.bankValue}>
-                <Text style={styles.playerShareAmount}>{myPrizeGems}</Text>
+                <Text style={styles.playerShareAmount}>
+                  {hasFinalResults ? myPrizeGems : '—'}
+                </Text>
                 <Image
                   source={pearlIconForTheme(themeMode)}
                   style={styles.bankPearl}

@@ -1032,8 +1032,44 @@ export type ReviewItem = {
  * правильные варианты». Сервер отдаёт их только когда турнир окончен и
  * только свои: во время игры это была бы подсказка.
  */
-export function loadRoundReview(roomId: string) {
-  return callFunction<{ ok: boolean; items: ReviewItem[] }>('tournamentRoundReview', { roomId });
+/**
+ * Кэш разбора по комнате.
+ *
+ * зачем 2026-08-02 (владелец: «раздел разбор ошибок в конце турнира грузится
+ * долго вместо мгновенного открытия»): экран каждый раз ходил в callable и до
+ * ответа держал скелетон — даже при повторном заходе в ТУ ЖЕ комнату. Разбор
+ * завершённого турнира неизменен по определению: сервер отдаёт его только
+ * после окончания и только свой. Значит достаточно один раз получить и
+ * показывать мгновенно.
+ *
+ * TTL не нужен, но размер ограничиваем: за сессию игрок может открыть разбор
+ * нескольких турниров, а держать их все незачем.
+ */
+const REVIEW_CACHE_LIMIT = 8;
+const roundReviewCache = new Map<string, ReviewItem[]>();
+
+/** Готовый разбор для синхронной гидрации первого кадра. */
+export function peekRoundReview(roomId: string | null): ReviewItem[] | null {
+  if (!roomId) return null;
+  return roundReviewCache.get(roomId) ?? null;
+}
+
+export async function loadRoundReview(roomId: string) {
+  const cached = roundReviewCache.get(roomId);
+  if (cached) return { ok: true, items: cached };
+  const response = await callFunction<{ ok: boolean; items: ReviewItem[] }>(
+    'tournamentRoundReview',
+    { roomId },
+  );
+  if (Array.isArray(response?.items)) {
+    // Свежий ключ всегда в конец: удаляем самый старый, когда упёрлись в лимит.
+    if (roundReviewCache.size >= REVIEW_CACHE_LIMIT) {
+      const oldest = roundReviewCache.keys().next().value as string | undefined;
+      if (oldest) roundReviewCache.delete(oldest);
+    }
+    roundReviewCache.set(roomId, response.items);
+  }
+  return response;
 }
 
 /**

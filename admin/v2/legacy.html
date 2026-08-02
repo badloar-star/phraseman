@@ -4958,6 +4958,36 @@
       .jf-arrow { animation: none; opacity: 1; }
     }
 
+    /* — Стадия роста бизнеса: полоска прогресса и графики (2026-08-02) —
+       Разделение тоном и фоном, без обводок контейнеров. */
+    .bt-stage-row { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+    .bt-stage-name { font-size: 22px; font-weight: 800; color: #e2e8f0; letter-spacing: .01em; }
+    .bt-stage-next { font-size: 12px; color: #6b7280; }
+    .bt-bar {
+      margin-top: 10px; height: 10px; border-radius: 999px;
+      background: rgba(148,163,184,.12); overflow: hidden;
+    }
+    .bt-bar-fill {
+      height: 100%; border-radius: 999px;
+      background: linear-gradient(90deg, #4ade80, #22d3ee);
+      width: 0%; transition: width .6s cubic-bezier(.2,.8,.3,1);
+    }
+    .bt-bar[data-below-peak="1"] .bt-bar-fill { background: linear-gradient(90deg, #fbbf24, #f87171); }
+    .bt-metrics { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 10px; }
+    .bt-metric {
+      flex: 1 1 150px; min-width: 140px;
+      background: rgba(148,163,184,.06); border-radius: 12px; padding: 11px 13px;
+    }
+    .bt-metric-value { font-size: 19px; font-weight: 800; color: #e2e8f0; line-height: 1.15; }
+    .bt-metric-name { margin-top: 3px; font-size: 12px; color: #9ca3af; }
+    .bt-metric[data-binding="1"] { background: rgba(96,165,250,.10); }
+    .bt-charts { margin-top: 16px; display: flex; flex-direction: column; gap: 14px; }
+    .bt-chart-title { font-size: 12.5px; font-weight: 700; color: #cbd5e1; margin-bottom: 6px; }
+    .bt-chart svg { width: 100%; height: 90px; display: block; overflow: visible; }
+    .bt-chart-line { fill: none; stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+    .bt-chart-area { stroke: none; opacity: .16; }
+    .bt-empty { font-size: 12.5px; color: #9ca3af; line-height: 1.5; }
+
     /* — Секционные разделители-группы (R13) — */
     #tab-control-panel .cp-group-label {
       display: flex; align-items: center; gap: 10px;
@@ -10357,6 +10387,51 @@
     <div id="jarvis-decisions" style="margin-top:14px;display:flex;flex-direction:column;gap:10px"></div>
   </div>
 
+  <!-- 📈 Стадия роста бизнеса: где приложение сейчас и куда движется (2026-08-02) -->
+  <div class="cp-card">
+    <div class="cp-card-title" style="color:#4ade80">📈 Стадия роста</div>
+    <div class="cp-card-sub">
+      На какой стадии приложение по деньгам и живой аудитории сразу, сколько осталось до следующей, и как менялись показатели за всю историю.
+    </div>
+    <div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:8px;align-items:center">
+      <span id="bt-status" class="cp-status-chip">Загрузка…</span>
+      <span id="bt-coverage-chip" class="cp-status-chip" data-type="info" style="display:none"></span>
+    </div>
+
+    <div id="bt-body" style="margin-top:14px;display:none">
+      <div class="bt-stage-row">
+        <span id="bt-stage-name" class="bt-stage-name">—</span>
+        <span id="bt-stage-next" class="bt-stage-next"></span>
+      </div>
+      <div id="bt-bar" class="bt-bar"><div id="bt-bar-fill" class="bt-bar-fill"></div></div>
+
+      <div class="bt-metrics">
+        <div id="bt-metric-mrr" class="bt-metric">
+          <div id="bt-mrr-value" class="bt-metric-value">—</div>
+          <div class="bt-metric-name">Доход в месяц</div>
+        </div>
+        <div id="bt-metric-active" class="bt-metric">
+          <div id="bt-active-value" class="bt-metric-value">—</div>
+          <div class="bt-metric-name">Активные за 30 дней</div>
+        </div>
+        <div class="bt-metric">
+          <div id="bt-total-value" class="bt-metric-value">—</div>
+          <div class="bt-metric-name">Всего зарегистрировано</div>
+        </div>
+      </div>
+
+      <div id="bt-charts" class="bt-charts"></div>
+    </div>
+
+    <div id="bt-empty" class="bt-empty" style="margin-top:14px;display:none"></div>
+
+    <div style="margin-top:14px;display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+      <button type="button" class="cp-btn" onclick="loadBusinessTier(true)" style="background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px">🔄 Обновить</button>
+      <button type="button" id="bt-backfill-btn" class="cp-btn" onclick="runBusinessTierBackfill()" style="background:#1f2937;border:1px solid #374151;color:#fbbf24;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px">⏳ Досчитать историю</button>
+      <span id="bt-backfill-status" class="cp-status-chip"></span>
+    </div>
+  </div>
+
   <!-- 🚨 Режим обслуживания: глобальный баннер (мягкий) + жёсткий блок-экран -->
   <div class="cp-card cp-card-danger">
     <div class="cp-card-title" style="color:#f87171">🚨 Режим обслуживания</div>
@@ -14032,6 +14107,20 @@
       _fnJarvisGetAllDecisions = httpsCallable(functionsUs, 'jarvisGetAllDecisions');
     }
     return _fnJarvisGetAllDecisions;
+  }
+  let _fnJarvisGetBusinessTier = null;
+  function getJarvisGetBusinessTierCallable() {
+    if (!_fnJarvisGetBusinessTier) {
+      _fnJarvisGetBusinessTier = httpsCallable(functionsUs, 'jarvisGetBusinessTier');
+    }
+    return _fnJarvisGetBusinessTier;
+  }
+  let _fnJarvisRunBusinessTierBackfill = null;
+  function getJarvisRunBusinessTierBackfillCallable() {
+    if (!_fnJarvisRunBusinessTierBackfill) {
+      _fnJarvisRunBusinessTierBackfill = httpsCallable(functionsUs, 'jarvisRunBusinessTierBackfill');
+    }
+    return _fnJarvisRunBusinessTierBackfill;
   }
   let _fnAdminGetRemoteConfigWorkspace = null;
   function getAdminGetRemoteConfigWorkspaceCallable() {
@@ -26992,6 +27081,188 @@
     }
   };
 
+  // ── Стадия роста бизнеса (2026-08-02) ───────────────────────────────────────
+  // зачем отдельно от Джарвиса: разные вопросы. Джарвис — «где сейчас болит»,
+  // этот раздел — «на какой стадии бизнес и куда движется». Данные читаются
+  // одним callable (история + текущий срез), кэш до ручного обновления.
+  const BT_STAGE_LABELS = {
+    pre_seed: 'Pre-seed', seed: 'Seed', early_growth: 'Early Growth',
+    growth: 'Growth', scale_up: 'Scale-up', mature: 'Mature',
+  };
+  const BT_COVERAGE_LABELS = {
+    complete: 'суммы известны полностью',
+    partial: 'часть сумм неизвестна',
+    unavailable: 'суммы неизвестны',
+  };
+  let _btCache = null;
+  /** Токен последнего запроса — поздний ответ не затирает свежий (защита от гонок). */
+  let _btRequestToken = 0;
+  let _btBackfillBusy = false;
+
+  function btFormatMoney(usd) {
+    if (usd === null || usd === undefined) return '—';
+    return '$' + Math.round(usd).toLocaleString('ru-RU');
+  }
+
+  function btFormatCount(value) {
+    return value === null || value === undefined ? '—' : Number(value).toLocaleString('ru-RU');
+  }
+
+  /** Мини-график: одна метрика, чистый SVG, без библиотек (у legacy.html нет сборки). */
+  function btRenderChart(title, points, color, pickValue) {
+    const values = points.map(pickValue).filter((v) => v !== null && v !== undefined && Number.isFinite(v));
+    if (values.length < 2) return null;
+    const max = Math.max(...values);
+    const min = Math.min(...values);
+    const span = max - min || 1;
+    const stepX = 100 / (values.length - 1);
+    const coords = values.map((v, i) => [i * stepX, 100 - ((v - min) / span) * 100]);
+    const line = coords.map(([x, y], i) => (i === 0 ? 'M' : 'L') + x.toFixed(2) + ' ' + y.toFixed(2)).join(' ');
+    const area = line + ' L100 100 L0 100 Z';
+
+    const wrap = document.createElement('div');
+    wrap.className = 'bt-chart';
+    wrap.innerHTML =
+      '<div class="bt-chart-title">' + escapeHtml(title) + ' · ' + btFormatCount(Math.round(values[values.length - 1])) + '</div>' +
+      '<svg viewBox="0 0 100 100" preserveAspectRatio="none" role="img" aria-label="' + escapeHtml(title) + '">' +
+        '<path class="bt-chart-area" d="' + area + '" fill="' + color + '"/>' +
+        '<path class="bt-chart-line" d="' + line + '" stroke="' + color + '"/>' +
+      '</svg>';
+    return wrap;
+  }
+
+  function btRenderCharts(history) {
+    const container = document.getElementById('bt-charts');
+    if (!container) return;
+    container.innerHTML = '';
+    // Недельные точки идут перед дневными — так график читается слева направо по времени.
+    const series = [...(history.weekly || []), ...(history.daily || [])];
+    const charts = [
+      btRenderChart('Всего зарегистрировано', series, '#4ade80', (p) => p.cumulativeUsers),
+      btRenderChart('Активные пользователи', series, '#60a5fa', (p) => p.activeUsers),
+      btRenderChart('Доход, $ (эквивалент за месяц)', series, '#fbbf24', (p) => (p.mrrEquivalentProceedsUsdMicros || 0) / 1e6),
+    ].filter(Boolean);
+    if (charts.length === 0) {
+      container.innerHTML = '<div class="bt-empty">Точек истории пока мало для графика — он появится, когда наберётся хотя бы два дня.</div>';
+      return;
+    }
+    charts.forEach((chart) => container.appendChild(chart));
+  }
+
+  function btRender(data) {
+    const snapshot = data.snapshot;
+    const body = document.getElementById('bt-body');
+    const empty = document.getElementById('bt-empty');
+    const coverageChip = document.getElementById('bt-coverage-chip');
+
+    if (!snapshot.hasData) {
+      if (body) body.style.display = 'none';
+      if (empty) {
+        empty.style.display = '';
+        empty.textContent = 'Истории ещё нет. Нажмите «Досчитать историю» — она соберётся по уже накопленным данным с самого запуска приложения.';
+      }
+      jfSetStatusChip('bt-status', 'info', 'История не собрана');
+      if (coverageChip) coverageChip.style.display = 'none';
+      return;
+    }
+
+    if (empty) empty.style.display = 'none';
+    if (body) body.style.display = '';
+
+    const stageName = BT_STAGE_LABELS[snapshot.tier] || snapshot.tier;
+    const nameEl = document.getElementById('bt-stage-name');
+    if (nameEl) nameEl.textContent = stageName;
+
+    const nextEl = document.getElementById('bt-stage-next');
+    if (nextEl) {
+      nextEl.textContent = snapshot.belowPeak
+        ? 'достигнутый максимум · сейчас показатели ниже (' + (BT_STAGE_LABELS[snapshot.currentTier] || snapshot.currentTier) + ')'
+        : 'текущая стадия';
+    }
+
+    const bar = document.getElementById('bt-bar');
+    const fill = document.getElementById('bt-bar-fill');
+    if (bar) bar.setAttribute('data-below-peak', snapshot.belowPeak ? '1' : '0');
+    // Прогресс считаем по узкому месту: до следующей стадии тянет та метрика,
+    // что отстаёт. Точный процент даёт сервер только для тира по регистрациям,
+    // поэтому здесь честная грубая шкала по позиции стадии.
+    const order = ['pre_seed', 'seed', 'early_growth', 'growth', 'scale_up', 'mature'];
+    const idx = Math.max(0, order.indexOf(snapshot.currentTier));
+    if (fill) fill.style.width = Math.round(((idx + 1) / order.length) * 100) + '%';
+
+    const mrrEl = document.getElementById('bt-mrr-value');
+    if (mrrEl) mrrEl.textContent = btFormatMoney(snapshot.mrrUsd);
+    const activeEl = document.getElementById('bt-active-value');
+    if (activeEl) activeEl.textContent = btFormatCount(snapshot.activeUsers);
+    const totalEl = document.getElementById('bt-total-value');
+    if (totalEl) totalEl.textContent = btFormatCount(snapshot.totalUsers);
+
+    // Подсветка узкого места — какая метрика держит стадию.
+    const mrrCard = document.getElementById('bt-metric-mrr');
+    const activeCard = document.getElementById('bt-metric-active');
+    if (mrrCard) mrrCard.setAttribute('data-binding', snapshot.bindingMetric === 'mrrUsd' ? '1' : '0');
+    if (activeCard) activeCard.setAttribute('data-binding', snapshot.bindingMetric === 'activeUsers' ? '1' : '0');
+
+    if (coverageChip) {
+      const honest = snapshot.moneyCoverage !== 'complete';
+      coverageChip.style.display = honest ? '' : 'none';
+      coverageChip.setAttribute('data-type', snapshot.moneyCoverage === 'unavailable' ? 'error' : 'info');
+      coverageChip.textContent = 'Деньги: ' + (BT_COVERAGE_LABELS[snapshot.moneyCoverage] || snapshot.moneyCoverage);
+    }
+
+    btRenderCharts(data.history || {});
+    jfSetStatusChip('bt-status', 'success', 'История за ' + btFormatCount(snapshot.historyDays) + ' дн.');
+  }
+
+  window.loadBusinessTier = async function(manualRefresh) {
+    // Optimistic: кэш показываем мгновенно, сеть догоняет фоном — без спиннера
+    // на весь раздел и без «прыжка» в пустоту при повторном открытии вкладки.
+    if (_btCache && !manualRefresh) {
+      btRender(_btCache);
+      return;
+    }
+    if (_btCache) btRender(_btCache);
+    jfSetStatusChip('bt-status', 'loading', manualRefresh ? 'Обновляем…' : 'Загрузка…');
+    const token = ++_btRequestToken;
+    try {
+      const result = await getJarvisGetBusinessTierCallable()({});
+      if (token !== _btRequestToken) return; // поздний ответ не затирает свежий
+      const data = result && result.data;
+      if (!data || data.ok !== true || !data.snapshot) throw new Error('Сервер вернул некорректный ответ.');
+      _btCache = data;
+      btRender(data);
+    } catch (e) {
+      if (token !== _btRequestToken) return;
+      const message = e && e.message ? e.message : 'ошибка сети';
+      jfSetStatusChip('bt-status', 'error', 'Не удалось загрузить: ' + message);
+      // Кэш намеренно НЕ стираем — старые данные честнее пустого экрана.
+    }
+  };
+
+  window.runBusinessTierBackfill = async function() {
+    // Защита от двойного нажатия: тяжёлый пересчёт не должен стартовать дважды.
+    if (_btBackfillBusy) return;
+    _btBackfillBusy = true;
+    const btn = document.getElementById('bt-backfill-btn');
+    if (btn) { btn.disabled = true; btn.style.opacity = '0.6'; btn.style.cursor = 'wait'; }
+    jfSetStatusChip('bt-backfill-status', 'loading', 'Считаем историю…');
+    try {
+      const result = await getJarvisRunBusinessTierBackfillCallable()({});
+      const data = result && result.data;
+      if (!data || data.ok !== true) throw new Error('Сервер не подтвердил пересчёт.');
+      jfSetStatusChip('bt-backfill-status', data.done ? 'success' : 'info', data.done
+        ? 'История собрана полностью (' + btFormatCount(data.cumulativeUsers) + ' польз.)'
+        : 'Обработано ' + btFormatCount(data.usersScanned) + ' польз., нажмите ещё раз для продолжения');
+      _btCache = null; // данные изменились — следующий показ должен быть свежим
+      await window.loadBusinessTier(true);
+    } catch (e) {
+      jfSetStatusChip('bt-backfill-status', 'error', 'Не удалось: ' + (e && e.message ? e.message : 'ошибка сети'));
+    } finally {
+      _btBackfillBusy = false;
+      if (btn) { btn.disabled = false; btn.style.opacity = ''; btn.style.cursor = 'pointer'; }
+    }
+  };
+
   function rcSetStatus(msg, color) {
     const el = document.getElementById('rc-status');
     if (el) { el.textContent = msg || ''; el.style.color = color || '#9ca3af'; }
@@ -27208,6 +27479,7 @@
     if (typeof window.loadPromoCodes === 'function') void window.loadPromoCodes();
     if (typeof window.loadControlPanelPromoBanner === 'function') void window.loadControlPanelPromoBanner();
     if (typeof window.loadJarvisAllDecisions === 'function') void window.loadJarvisAllDecisions(false);
+    if (typeof window.loadBusinessTier === 'function') void window.loadBusinessTier(false);
   };
 
   // Обобщённая запись ОДНОГО булевого флага в remote_config/app.bools, сохраняя

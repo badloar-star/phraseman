@@ -94,6 +94,13 @@ const FIELD_CONTRACTS: readonly FieldContract[] = [
     field: 'averageScore',
     breaks: 'сломанные уроки перестали бы находиться',
   },
+  {
+    department: 'retention + app tier',
+    writtenIn: 'revenuecat_shards.ts',
+    readIn: 'jarvis/retention_firestore_fetcher.ts',
+    field: 'last_active_at',
+    breaks: 'удержание показало бы нули, а тир приложения занизился бы до seed',
+  },
 ];
 
 describe('Jarvis data contract — silence must never replace a broken source', () => {

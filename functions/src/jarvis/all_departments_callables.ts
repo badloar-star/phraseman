@@ -17,6 +17,8 @@ import { fetchMoneySource } from './money_firestore_fetcher';
 import { buildMoneySnapshot } from './money_snapshot';
 import { fetchQualitySource } from './quality_firestore_fetcher';
 import { buildQualitySnapshot } from './quality_snapshot';
+import { fetchRetentionSource } from './retention_firestore_fetcher';
+import { buildRetentionSnapshot } from './retention_snapshot';
 import { fetchSafetySource } from './safety_firestore_fetcher';
 import { buildSafetySnapshot } from './safety_snapshot';
 import { fetchSupportSource } from './support_firestore_fetcher';
@@ -118,6 +120,13 @@ export const jarvisGetAllDecisions = onCall(OPTIONS, async (request: CallableReq
     }),
     runFactory: (appTier) => buildFactorySnapshot({
       fetchFactory: readLessonStats,
+      trigger: 'owner_request',
+      question,
+      nowMs,
+      appTier,
+    }),
+    runRetention: (appTier) => buildRetentionSnapshot({
+      fetchRetention: () => fetchRetentionSource({ collection: db.collection('users'), nowMs }),
       trigger: 'owner_request',
       question,
       nowMs,

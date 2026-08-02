@@ -15,6 +15,8 @@ import { buildContentSnapshot } from './content_snapshot';
 import { buildFactorySnapshot } from './factory_snapshot';
 import { fetchPaymentsSource } from './payments_firestore_fetcher';
 import { buildPaymentsSnapshot } from './payments_snapshot';
+import { fetchRetentionSource } from './retention_firestore_fetcher';
+import { buildRetentionSnapshot } from './retention_snapshot';
 import { fetchSafetySource } from './safety_firestore_fetcher';
 import { buildSafetySnapshot } from './safety_snapshot';
 import { fetchSupportSource } from './support_firestore_fetcher';
@@ -168,6 +170,12 @@ export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTION
     }),
     runFactory: (appTier) => buildFactorySnapshot({
       fetchFactory: readLessonStats,
+      trigger: 'scheduled',
+      nowMs,
+      appTier,
+    }),
+    runRetention: (appTier) => buildRetentionSnapshot({
+      fetchRetention: () => fetchRetentionSource({ collection: db.collection('users'), nowMs }),
       trigger: 'scheduled',
       nowMs,
       appTier,

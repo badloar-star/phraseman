@@ -102,6 +102,12 @@ export type { FetchSupportSourceResult } from './support_firestore_fetcher';
 export { runFactoryDepartment, FACTORY_DROPOFF_RATIO, FACTORY_MIN_SAMPLES } from './factory_department';
 export { buildFactorySnapshot } from './factory_snapshot';
 
+// ── Департамент «Удержание» (девятый): возвращаются ли люди ────────────────
+export { runRetentionDepartment, RETENTION_WEAK_RATIO, RETENTION_MIN_BASE } from './retention_department';
+export { buildRetentionSnapshot } from './retention_snapshot';
+export { fetchRetentionSource, RETENTION_WEEK_MS, RETENTION_MONTH_MS } from './retention_firestore_fetcher';
+export type { FetchRetentionSourceResult } from './retention_firestore_fetcher';
+
 // ── Суточные планировщики ──────────────────────────────────────────────────
 export { jarvisDailyDepartmentsCron, jarvisDailyBusinessHistoryCron } from './jarvis_crons';
 export { buildDailyHistoryPoint } from './business_tier_daily_point';

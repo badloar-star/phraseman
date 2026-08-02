@@ -1,6 +1,24 @@
 {
   "indexes": [
     {
+      "collectionGroup": "jarvis_approval_audit",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "action",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "outcome",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "atMs",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
       "collectionGroup": "app_activity",
       "queryScope": "COLLECTION",
       "fields": [

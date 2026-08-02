@@ -4,6 +4,9 @@ import { logger } from 'firebase-functions';
 import { ADMIN_ALERT_BOT_TOKEN, sendTelegramAlert } from '../admin_alerts';
 import { buildTelegramDigest } from './telegram_digest';
 import { JARVIS_APPROVAL_COLLECTION } from './approval_store';
+import { JARVIS_APPROVAL_AUDIT_COLLECTION } from './approval_audit';
+import { hashDecision } from './issue_decision_buttons';
+import { filterOutRecentlyRejected, REJECTION_MEMORY_MS } from './recent_rejections';
 import { canNotify, canRun, JARVIS_CONTROL_DOC, parseControl } from './control';
 import { shouldNotifyNow } from './notify_policy';
 import { parseOwnerConfig } from './approval_webhook_core';
@@ -226,6 +229,18 @@ export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTION
     nowMs,
   });
 
+  // зачем фильтровать здесь, а не только перед отправкой текста: отклонённая
+  // находка не должна ни попадать в сводку, ни считаться поводом нарушить
+  // тихие часы — иначе повторное появление того же совета разбудит ночью
+  // ровно тем, от чего владелец уже отказался.
+  const recentRejections = await readRecentRejections(db, nowMs);
+  const decisions = filterOutRecentlyRejected({
+    decisions: snapshot.decisions,
+    hashOf: hashDecision,
+    rejectedHashes: recentRejections,
+    nowMs,
+  });
+
   // зачем молчать, когда всё чисто: ежедневное «всё хорошо» приучает не
   // читать сообщения, и настоящая находка потеряется среди них. Пишем только
   // когда есть что сказать — либо находка, либо недоступный департамент.
@@ -235,7 +250,7 @@ export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTION
   // Поверх режима — политика тишины: ночью будят только платежи и
   // безопасность, за ними стоит конкретный человек. Остальное ждёт утра.
   const speakingDepartments = [
-    ...snapshot.decisions.map((d) => d.department),
+    ...decisions.map((d) => d.department),
     ...snapshot.departmentErrors,
   ];
   const notifyVerdict = shouldNotifyNow({
@@ -249,7 +264,7 @@ export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTION
   let telegramSent = false;
   if (worthSending) {
     const text = buildTelegramDigest({
-      decisions: snapshot.decisions,
+      decisions,
       appTier: snapshot.appTier,
       departmentErrors: snapshot.departmentErrors,
     });
@@ -257,7 +272,7 @@ export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTION
     // не задан, сводка обязана приходить всё равно — просто без кнопок.
     const ownerConfig = parseOwnerConfig(JARVIS_TELEGRAM_CONFIG.value());
     const keyboard = ownerConfig ? await issueDecisionButtons({
-      db, decisions: snapshot.decisions, config: ownerConfig, nowMs,
+      db, decisions, config: ownerConfig, nowMs,
     }) : null;
 
     telegramSent = keyboard && ownerConfig
@@ -273,9 +288,10 @@ export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTION
 
   logger.info('jarvis_daily_departments', {
     appTier: snapshot.appTier,
-    decisions: snapshot.decisions.length,
+    decisions: decisions.length,
     departmentErrors: snapshot.departmentErrors,
     telegramSent,
+    rejectedSuppressed: snapshot.decisions.length - decisions.length,
     // зачем логировать причину: «сообщение не пришло» без объяснения — это
     // час разбирательства. Здесь сразу видно: тихие часы, режим или пусто.
     mode: control.mode,
@@ -285,7 +301,7 @@ export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTION
   // зачем писать сюда же: /status в Telegram должен ответить за одно чтение
   // документа jarvis_control, а не искать «последний прогон» по логам.
   await db.doc(JARVIS_CONTROL_DOC).set(
-    { lastRunAtMs: nowMs, lastRunOpenDecisions: snapshot.decisions.length },
+    { lastRunAtMs: nowMs, lastRunOpenDecisions: decisions.length },
     { merge: true },
   ).catch((error) => {
     logger.warn('jarvis_daily_departments: last-run write failed', error);
@@ -297,6 +313,48 @@ export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTION
     logger.warn('jarvis_daily_departments: token purge failed', error);
   });
 });
+
+/**
+ * Читает недавние отклонения из журнала подтверждений (бриф в181-190:
+ * не повторять только что отклонённый совет).
+ *
+ * зачем where по времени + limit: журнал растёт вечно, а нужно только окно
+ * REJECTION_MEMORY_MS — сканировать всю коллекцию было бы дорого и не нужно.
+ */
+async function readRecentRejections(
+  db: FirebaseFirestore.Firestore,
+  nowMs: number,
+): Promise<Map<string, number>> {
+  const result = new Map<string, number>();
+  try {
+    // зачем именно такой порядок where: Firestore требует, чтобы поля
+    // диапазона (atMs) шли после полей равенства в определении составного
+    // индекса — см. firestore.indexes.json.
+    const snap = await db
+      .collection(JARVIS_APPROVAL_AUDIT_COLLECTION)
+      .where('action', '==', 'reject')
+      .where('outcome', '==', 'accepted')
+      .where('atMs', '>=', nowMs - REJECTION_MEMORY_MS)
+      .limit(200)
+      .get();
+    // guard-ok: один .get() выше вернул страницу разом; цикл — работа с уже
+    // полученными документами в памяти, без чтений Firestore внутри.
+    for (const doc of snap.docs) {
+      const data = doc.data() as Record<string, unknown>;
+      const hash = typeof data.decisionHash === 'string' ? data.decisionHash : null;
+      const atMs = typeof data.atMs === 'number' ? data.atMs : null;
+      if (!hash || atMs === null) continue;
+      // зачем max, а не последний встреченный: несколько отклонений одного
+      // решения должны продлевать память, а не сокращать её случайным порядком.
+      const existing = result.get(hash);
+      if (existing === undefined || atMs > existing) result.set(hash, atMs);
+    }
+  } catch (error) {
+    // Недоступный журнал — не повод молчать: просто без памяти в этом проходе.
+    logger.warn('jarvis_daily_departments: recent-rejections read failed', error);
+  }
+  return result;
+}
 
 /**
  * Удаляет просроченные approval-токены.

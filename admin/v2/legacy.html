@@ -27047,6 +27047,9 @@
     // проценты, но красный уже занят потерянными деньгами — два одинаково
     // тревожных цвета в одной ленте перестают различаться с одного взгляда.
     safety: { title: 'Безопасность', accentRgb: '236,72,153' },
+    // зачем бирюзовый: «Поддержка» — про ожидание, а не про аварию. Тревожные
+    // цвета уже разобраны платежами и безопасностью.
+    support: { title: 'Поддержка', accentRgb: '45,212,191' },
   };
   const JF_TIER_LABEL = { seed: 'Seed', growth: 'Growth', scale: 'Scale', mature: 'Mature' };
 
@@ -27084,7 +27087,8 @@
           // перечень читается как «остальное не смотрели» — то есть врёт о
           // покрытии ровно в тот момент, когда сообщает, что всё чисто.
           ['error_reports', 'user_reports', 'app_errors', 'revenuecat_premium_events', 'paywall_funnel', 'users',
-            'lesson_stats', 'telegram_premium_dead_letter', 'revenuecat_premium_denials', 'safety_flags']
+            'lesson_stats', 'telegram_premium_dead_letter', 'revenuecat_premium_denials', 'safety_flags',
+            'support_inbox']
             .map((sourceId) => ({ sourceId, state: 'empty', count: 0, droppedCount: 0, trustworthy: true })),
           'success', 'Скачков не найдено ни в одном департаменте.',
           'success', 'Решение не требуется — данные в норме.',

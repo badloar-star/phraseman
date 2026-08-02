@@ -16,6 +16,8 @@ import { fetchPaymentsSource } from './payments_firestore_fetcher';
 import { buildPaymentsSnapshot } from './payments_snapshot';
 import { fetchSafetySource } from './safety_firestore_fetcher';
 import { buildSafetySnapshot } from './safety_snapshot';
+import { fetchSupportSource } from './support_firestore_fetcher';
+import { buildSupportSnapshot } from './support_snapshot';
 import { buildDailyHistoryPoint } from './business_tier_daily_point';
 import { dayKeyFromMs, dayKeyToStartMs, nextDayKey, type RawRevenueEventForBucketing } from './business_tier_history';
 import { readRecentHistory, writeHistoryPoints, writePeakTier } from './business_tier_history_store';
@@ -166,6 +168,12 @@ export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTION
     }),
     runSafety: (appTier) => buildSafetySnapshot({
       fetchSafety: () => fetchSafetySource({ db, nowMs }),
+      trigger: 'scheduled',
+      nowMs,
+      appTier,
+    }),
+    runSupport: (appTier) => buildSupportSnapshot({
+      fetchSupport: () => fetchSupportSource({ collection: db.collection('support_inbox'), nowMs }),
       trigger: 'scheduled',
       nowMs,
       appTier,

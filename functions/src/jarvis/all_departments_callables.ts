@@ -18,6 +18,8 @@ import { fetchQualitySource } from './quality_firestore_fetcher';
 import { buildQualitySnapshot } from './quality_snapshot';
 import { fetchSafetySource } from './safety_firestore_fetcher';
 import { buildSafetySnapshot } from './safety_snapshot';
+import { fetchSupportSource } from './support_firestore_fetcher';
+import { buildSupportSnapshot } from './support_snapshot';
 
 /**
  * Одна кнопка «Проверить сейчас», один вызов, все три департамента разом.
@@ -116,6 +118,13 @@ export const jarvisGetAllDecisions = onCall(OPTIONS, async (request: CallableReq
     }),
     runSafety: (appTier) => buildSafetySnapshot({
       fetchSafety: () => fetchSafetySource({ db, nowMs }),
+      trigger: 'owner_request',
+      question,
+      nowMs,
+      appTier,
+    }),
+    runSupport: (appTier) => buildSupportSnapshot({
+      fetchSupport: () => fetchSupportSource({ collection: db.collection('support_inbox'), nowMs }),
       trigger: 'owner_request',
       question,
       nowMs,

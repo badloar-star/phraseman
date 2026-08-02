@@ -92,6 +92,12 @@ export { buildSafetySnapshot } from './safety_snapshot';
 export { fetchSafetySource, SAFETY_LOOKBACK_MS } from './safety_firestore_fetcher';
 export type { FetchSafetySourceResult } from './safety_firestore_fetcher';
 
+// ── Департамент «Скорость поддержки» (седьмой): сколько люди ждут ответа ───
+export { runSupportDepartment, SUPPORT_STALE_MS, SUPPORT_QUEUE_THRESHOLD } from './support_department';
+export { buildSupportSnapshot } from './support_snapshot';
+export { fetchSupportSource, SUPPORT_LOOKBACK_MS, MAX_SUPPORT_DOCS } from './support_firestore_fetcher';
+export type { FetchSupportSourceResult } from './support_firestore_fetcher';
+
 // ── Суточные планировщики ──────────────────────────────────────────────────
 export { jarvisDailyDepartmentsCron, jarvisDailyBusinessHistoryCron } from './jarvis_crons';
 export { buildDailyHistoryPoint } from './business_tier_daily_point';

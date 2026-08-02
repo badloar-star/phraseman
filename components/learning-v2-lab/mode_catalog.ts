@@ -46,7 +46,6 @@ export const LAB_MODE_CATALOG: readonly LabModeEntry[] = Object.freeze([
   { family: 'speed_match', title: 'Скоростное совпадение', group: 'build', interaction: 'choice', icon: 'flash-outline' },
   { family: 'quick_spoken_response', title: 'Быстрый ответ вслух', group: 'transfer', interaction: 'speak', icon: 'chatbubble-ellipses-outline' },
   { family: 'scripted_dialogue', title: 'Диалог по сценарию', group: 'transfer', interaction: 'speak', icon: 'people-outline' },
-  { family: 'speaking_club_mission', title: 'Миссия разговорного клуба', group: 'transfer', interaction: 'speak', icon: 'rocket-outline' },
   { family: 'personalized_review', title: 'Личное повторение', group: 'transfer', interaction: 'choice', icon: 'refresh-circle-outline' },
   { family: 'describe_scene', title: 'Опиши сцену', group: 'transfer', interaction: 'speak', icon: 'image-outline', removedByOwner: true },
 ]);

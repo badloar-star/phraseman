@@ -14,7 +14,7 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View, type ImageSourcePropType, type StyleProp, type ViewStyle } from 'react-native';
 import { Image } from 'expo-image';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { hapticTap } from '../../hooks/use-haptics';
 import type { Theme } from '../../constants/theme';
 

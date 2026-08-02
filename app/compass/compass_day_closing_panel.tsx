@@ -18,7 +18,7 @@
  */
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Animated, Easing, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import Svg, { Circle } from 'react-native-svg';
 import PremiumGoldButton from '../../components/PremiumGoldButton';
 import { useTheme } from '../../components/ThemeContext';

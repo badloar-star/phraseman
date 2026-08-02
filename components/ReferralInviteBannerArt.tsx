@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Image } from 'expo-image';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from './ThemeContext';
 import type { ThemeMode } from '../constants/theme';
 

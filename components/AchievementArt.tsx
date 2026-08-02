@@ -17,7 +17,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Image as RNImage, type DimensionValue } from 'react-native';
 import { Image as ExpoImage } from 'expo-image';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { achievementImageSource } from '../constants/achievementImageAssets';
 
 const SHIELD = require('../assets/images/levels/achivement.webp');

@@ -2,7 +2,7 @@
 // Каталог — единственный источник правды лаборатории: все 17 семей из контракта
 // V2_ACTIVITY_FAMILIES, русские самодостаточные названия (без подписей-расшифровок),
 // группа для тона и примитив взаимодействия для плеера. Полнота закреплена тестом.
-import type { Ionicons } from '@expo/vector-icons';
+import type Ionicons from '@expo/vector-icons/Ionicons';
 import { V2_ACTIVITY_FAMILIES, type V2ActivityFamily } from '../../modules/learning-v2/contracts/activity';
 
 export type LabInteraction = 'choice' | 'assemble' | 'speak' | 'listen';

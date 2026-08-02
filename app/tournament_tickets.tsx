@@ -8,6 +8,7 @@
 
 import React, { memo, useCallback, useMemo, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { FlowText } from '../components/text-integrity/FlowText';
 import Animated, { FadeInDown, ZoomIn } from 'react-native-reanimated';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { Card, Cta, Sheet } from '../components/tournament/tournament_ui';
@@ -72,9 +73,11 @@ export default function TournamentTicketsScreen() {
             {tickets === 0 ? <Text style={styles.emptyTickets}>Пока пусто</Text> : null}
           </View>
 
-          <Text style={styles.count} allowFontScaling={false}>
+          {/* зачем: text-integrity — масштабирование шрифта не отключаем; строка
+              в карточке-колонке, при крупном шрифте просто переносится. */}
+          <FlowText testID="tickets-count" provenance="authored" style={styles.count}>
             У вас {tickets} <Text style={styles.countIcon}>🎟</Text>
-          </Text>
+          </FlowText>
           <Text style={styles.countHint}>
             {tickets > 0 ? `хватит на ${tickets} ${plural(tickets)}` : 'нужен хотя бы один'}
           </Text>

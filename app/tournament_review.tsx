@@ -15,6 +15,7 @@
 
 import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { FlowText } from '../components/text-integrity/FlowText';
 import Animated, { FadeIn } from 'react-native-reanimated';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -104,7 +105,8 @@ export default function TournamentReviewScreen() {
           >
             <Ionicons name="chevron-back" size={24} color={P.text} />
           </TapScale>
-          <Text style={styles.title} allowFontScaling={false}>Разбор</Text>
+          {/* зачем: text-integrity — масштабирование шрифта не отключаем, шапка гибкая. */}
+          <FlowText testID="review-title" provenance="authored" style={styles.title}>Разбор</FlowText>
           <View style={styles.headerRight}>
             <V2Counter value={`${correctCount}/${total || '—'}`} tone="stars" />
           </View>
@@ -180,9 +182,9 @@ const ReviewCard = memo(function ReviewCard({ item }: { item: ReviewItem }) {
   return (
     <V2Card pad={18} style={styles.card}>
       <View style={styles.cardTop}>
-        <Text style={styles.mode} allowFontScaling={false}>
+        <FlowText testID="review-mode-label" provenance="authored" style={styles.mode}>
           {MODE_LABEL[item.mode] || item.mode}
-        </Text>
+        </FlowText>
         <View style={[styles.verdict, { backgroundColor: item.correct ? P.accentSoft : P.dangerSoft }]}>
           <Ionicons
             name={item.correct ? 'checkmark' : 'close'}
@@ -404,7 +406,7 @@ const AnswerRow = memo(function AnswerRow({
         {value}
       </Text>
       {label ? (
-        <Text style={[styles.answerLabel, { color }]} allowFontScaling={false}>{label}</Text>
+        <FlowText testID="review-answer-label" provenance="authored" style={[styles.answerLabel, { color }]}>{label}</FlowText>
       ) : null}
     </View>
   );

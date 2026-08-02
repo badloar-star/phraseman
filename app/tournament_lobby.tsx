@@ -9,6 +9,8 @@
 
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { BackHandler, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { FlowText } from '../components/text-integrity/FlowText';
+import { FlowText } from '../components/text-integrity/FlowText';
 import Animated, {
   FadeIn,
   ZoomIn,
@@ -420,9 +422,11 @@ export default function TournamentLobbyScreen() {
               {full ? 'Все на месте' : 'Собираем игроков'}
             </Text>
             {!full ? (
-              <Text style={styles.statusTimer} allowFontScaling={false}>
+              /* зачем: text-integrity — масштабирование шрифта не отключаем;
+                 таймер в гибком ряду, при крупном шрифте ряд растёт. */
+              <FlowText testID="lobby-status-timer" provenance="authored" style={styles.statusTimer}>
                 {formatTimeLeft(secondsToStart)}
-              </Text>
+              </FlowText>
             ) : null}
           </View>
           <View style={styles.bankRow}>
@@ -513,7 +517,8 @@ const ProfileStat = memo(function ProfileStat({ label, value }: { label: string;
   const styles = React.useMemo(() => makeStyles(P), [P]);
   return (
     <View style={styles.profileStat}>
-      <Text style={styles.profileStatValue} allowFontScaling={false}>{value}</Text>
+      {/* зачем: text-integrity — стат в колонке-карточке, масштабирование не режем. */}
+      <FlowText testID="lobby-profile-stat-value" provenance="authored" style={styles.profileStatValue}>{value}</FlowText>
       <Text style={styles.profileStatLabel}>{label}</Text>
     </View>
   );
@@ -532,6 +537,7 @@ const SeatCard = memo(function SeatCard({ seat, onPress }: { seat: Seat; onPress
       >
         <AvatarView avatar={seat.avatar} level={tournamentAvatarLevel(seat.avatar)} auraId={seat.aura} size={44} animateAura={false} />
         {seat.streak > 0 ? <Text style={styles.seatStreak}>🔥</Text> : null}
+        {/* eslint-disable-next-line text-integrity/no-unsafe-text-truncation -- ник в ячейке сетки мест: перенос сломал бы одинаковую высоту сидений 4×4 */}
         <Text
           style={[styles.seatName, seat.isYou && { color: P.accent }]}
           numberOfLines={1}

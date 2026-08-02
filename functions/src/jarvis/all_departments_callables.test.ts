@@ -12,7 +12,13 @@ jest.mock('firebase-functions/v2/https', () => ({
     typeof optsOrHandler === 'function' ? optsOrHandler : maybeHandler,
 }));
 
-jest.mock('firebase-admin', () => ({ firestore: jest.fn() }));
+// зачем doc().get(): callable читает jarvis_control параллельно со снапшотом
+// (чтобы показать текущий режим на панели) — без этого мок db.doc падает.
+jest.mock('firebase-admin', () => ({
+  firestore: jest.fn(() => ({
+    doc: () => ({ get: async () => ({ data: () => undefined }) }),
+  })),
+}));
 
 const buildAllMock = jest.fn((_input: unknown) => Promise.resolve({
   generatedAtMs: 999, appTier: 'seed', decisions: [], departmentErrors: [],
@@ -41,7 +47,9 @@ describe('jarvisGetAllDecisions — needs quality + money + growth access all at
   test('allows owner, who has all three permissions', async () => {
     const { jarvisGetAllDecisions } = require('./all_departments_callables');
     const result = await jarvisGetAllDecisions(request({ admin: true, adminRole: 'owner' }));
-    expect(result).toEqual({ ok: true, generatedAtMs: 999, appTier: 'seed', decisions: [], departmentErrors: [] });
+    expect(result).toEqual({
+      ok: true, generatedAtMs: 999, appTier: 'seed', mode: 'observe', decisions: [], departmentErrors: [],
+    });
     expect(buildAllMock).toHaveBeenCalledTimes(1);
   });
 

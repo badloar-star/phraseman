@@ -23,6 +23,8 @@ import { fetchSafetySource } from './safety_firestore_fetcher';
 import { buildSafetySnapshot } from './safety_snapshot';
 import { fetchSupportSource } from './support_firestore_fetcher';
 import { buildSupportSnapshot } from './support_snapshot';
+import { JARVIS_CONTROL_DOC, parseControl } from './control';
+import { classifySeverity } from './severity';
 
 /**
  * Одна кнопка «Проверить сейчас», один вызов, все три департамента разом.
@@ -81,6 +83,10 @@ export const jarvisGetAllDecisions = onCall(OPTIONS, async (request: CallableReq
     if (!lessonStatsOnce) lessonStatsOnce = fetchContentSource({ collection: db.collection('lesson_stats'), nowMs });
     return lessonStatsOnce;
   };
+
+  // зачем параллельно, а не после снапшота: чтение режима не зависит от
+  // департаментов, ждать его последовательно — терять время впустую.
+  const controlPromise = db.doc(JARVIS_CONTROL_DOC).get().catch(() => null);
 
   const snapshot = await buildAllDepartmentsSnapshot({
     resolveAppTier: () => resolveAppTier(() => fetchActiveUserCount({ collection: db.collection('users'), nowMs })),
@@ -159,11 +165,17 @@ export const jarvisGetAllDecisions = onCall(OPTIONS, async (request: CallableReq
     nowMs,
   });
 
+  const control = parseControl((await controlPromise)?.data());
+
   return {
     ok: true,
     generatedAtMs: snapshot.generatedAtMs,
     appTier: snapshot.appTier,
-    decisions: snapshot.decisions,
+    mode: control.mode,
+    // зачем добавлять severity здесь, а не заставлять панель считать её
+    // заново: правило классификации живёт в одном месте (severity.ts),
+    // и панель не должна знать департаменты наизусть.
+    decisions: snapshot.decisions.map((decision) => ({ ...decision, severity: classifySeverity(decision) })),
     departmentErrors: snapshot.departmentErrors,
   };
 });

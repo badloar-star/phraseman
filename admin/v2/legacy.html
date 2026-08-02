@@ -10379,6 +10379,10 @@
     <div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:8px;align-items:center">
       <span id="jarvis-status" class="cp-status-chip">Загрузка…</span>
       <span id="jarvis-tier-chip" class="cp-status-chip" data-type="info" style="display:none"></span>
+      <!-- зачем всегда видимый: бриф в12 — kill switch должен быть виден
+           всегда, не спрятан в настройках. Пишите /stop и /start в Telegram
+           боту, режим здесь только отображается, не меняется отсюда. -->
+      <span id="jarvis-mode-chip" class="cp-status-chip" data-type="info" style="display:none"></span>
     </div>
 
     <!-- зачем: живая лента плашек-этапов, растущая слева направо. Одна
@@ -26982,13 +26986,32 @@
   }
 
   /** Общий рендер карточки решения для любого департамента — accentRgb задаёт лёгкий фоновый тон. */
+  // зачем цвет, а не только буква: сводку читают бегло, а на бегу глаз
+  // цепляется за тон раньше, чем за текст. Тон повторяет светофор — от
+  // «человек ждёт прямо сейчас» до «может подождать».
+  const JF_SEVERITY_META = {
+    P0: { label: 'P0 · критично', color: '248,113,113' },
+    P1: { label: 'P1 · важно', color: '251,191,36' },
+    P2: { label: 'P2 · разобрать', color: '96,165,250' },
+    P3: { label: 'P3 · подождёт', color: '148,163,184' },
+  };
+
   function jfRenderDecisionCard(decision, accentRgb) {
     const box = document.createElement('div');
     box.style.cssText = 'background:rgba(' + (accentRgb || '125,211,252') + ',0.06);border-radius:10px;padding:12px 14px;';
     const confidencePct = Math.round((decision.confidence || 0) * 100);
     const statusLabel = decision.status === 'insufficient_evidence' ? '⚠ недостаточно доказательств' : '✓ готово к решению';
+    const severityMeta = JF_SEVERITY_META[decision.severity];
+    const severityBadge = severityMeta
+      ? '<span style="background:rgba(' + severityMeta.color + ',0.16);color:rgb(' + severityMeta.color + ');' +
+        'border-radius:6px;padding:2px 8px;font-size:10.5px;font-weight:700;letter-spacing:.02em">' +
+        escapeHtml(severityMeta.label) + '</span>'
+      : '';
     box.innerHTML =
-      '<div style="font-weight:800;color:#e2e8f0;font-size:13.5px">' + escapeHtml(decision.question) + '</div>' +
+      '<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">' +
+        (severityBadge ? severityBadge : '') +
+        '<div style="font-weight:800;color:#e2e8f0;font-size:13.5px;flex:1;min-width:0">' + escapeHtml(decision.question) + '</div>' +
+      '</div>' +
       '<div style="margin-top:6px;color:#cbd5e1;font-size:12.5px;line-height:1.5">' + escapeHtml(decision.finding) + '</div>' +
       (decision.status === 'insufficient_evidence' ? '' :
         '<div style="margin-top:8px;color:#93c5fd;font-size:12px"><b>Рекомендация:</b> ' + escapeHtml(decision.recommendation) + '</div>') +
@@ -27033,6 +27056,7 @@
     const container = document.getElementById('jarvis-decisions');
     const lane = document.getElementById('jarvis-flow');
     const tierChip = document.getElementById('jarvis-tier-chip');
+    const modeChip = document.getElementById('jarvis-mode-chip');
     if (!container) return;
     jfSetStatusChip('jarvis-status', 'loading', manualRefresh ? 'Проверяем сейчас…' : 'Загрузка…');
     try {
@@ -27044,6 +27068,12 @@
       if (tierChip) {
         tierChip.style.display = '';
         tierChip.textContent = 'Тир: ' + (JF_TIER_LABEL[data.appTier] || data.appTier);
+      }
+      if (modeChip) {
+        const modeLabel = { observe: '👁 Наблюдаю', quiet: '🔇 Тихо', off: '⏸ Выключен' }[data.mode];
+        modeChip.style.display = '';
+        modeChip.setAttribute('data-type', data.mode === 'off' ? 'error' : data.mode === 'quiet' ? 'info' : 'success');
+        modeChip.textContent = modeLabel || ('Режим: ' + data.mode);
       }
       container.innerHTML = '';
       const hasDepartmentErrors = Array.isArray(data.departmentErrors) && data.departmentErrors.length > 0;

@@ -77,12 +77,24 @@ test('runtime entry points invoke the canonical workspace guard', () => {
   ];
 
   for (const name of guardedScripts) {
+    // зачем: выбор ветки идёт первым (владелец выбирает кнопками), гард — сразу за ним,
+    // до любой команды запуска. Оба обязаны стоять раньше expo/powershell.
     assert.match(
       pkg.scripts[name],
-      /^node scripts\/canonical_workspace_guard\.mjs && /,
-      `${name} must run the canonical workspace guard first`,
+      /^node scripts\/select_branch\.mjs && node scripts\/canonical_workspace_guard\.mjs && /,
+      `${name} must run the branch selector then the canonical workspace guard first`,
     );
   }
+});
+
+test('branch selector never merges and refuses to switch with a dirty tree', () => {
+  const selector = readFileSync(path.join(ROOT, 'scripts', 'select_branch.mjs'), 'utf8');
+
+  // зачем: работа Codex из learning-ветки не должна попасть в приложение без прямой
+  // команды владельца — селектор обязан уметь только checkout, никаких merge/rebase/pull.
+  assert.doesNotMatch(selector, /'merge'|'rebase'|'pull'|'cherry-pick'/);
+  assert.match(selector, /dirtyFiles > 0/);
+  assert.match(selector, /'checkout'/);
 });
 
 test('guard allows the canonical checkout and rejects another directory', () => {

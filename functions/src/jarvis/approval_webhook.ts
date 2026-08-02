@@ -92,11 +92,20 @@ export const jarvisTelegramApprovalWebhook = onRequest(
     const db = admin.firestore();
 
     // зачем самопроверка: без неё «работают ли кнопки» проверить нечем —
-    // токен рождается только внутри суточного крона. Путь защищён тем же
-    // секретом вебхука, что и нажатия, поэтому снаружи недоступен.
+    // токен рождается только внутри суточного крона. Пригодится после каждого
+    // рефакторинга approvals, поэтому не удалена, а закрыта выключателем.
+    //
+    // зачем ДВА условия: секрета мало. Он живёт в конфиге годами, а лишняя
+    // дверь в боевой функции — это дверь. Чтобы открыть проверку, нужно
+    // осознанно добавить selftestEnabled в секрет.
     if ((req.body as Record<string, unknown> | undefined)?.selftest === true) {
       if (!providedSecret || providedSecret !== config.webhookSecret) {
         res.status(401).send('');
+        return;
+      }
+      if (!config.selftestEnabled) {
+        // Выключена — ведём себя так, будто ветки нет вовсе.
+        res.status(404).send('Not Found');
         return;
       }
       const keyboard = await issueDecisionButtons({

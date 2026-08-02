@@ -21,6 +21,8 @@ export interface OwnerConfig {
   readonly webhookSecret: string;
   readonly ownerTelegramUserId: string;
   readonly ownerTelegramChatId: string;
+  /** Проверочная ветка выдачи кнопки. По умолчанию ВЫКЛЮЧЕНА. */
+  readonly selftestEnabled: boolean;
 }
 
 /**
@@ -40,7 +42,11 @@ export function parseOwnerConfig(raw: unknown): OwnerConfig | null {
     const ownerTelegramChatId = String(parsed.ownerTelegramChatId ?? '');
     if (webhookSecret.length < MIN_SECRET_LEN) return null;
     if (!ownerTelegramUserId || !ownerTelegramChatId) return null;
-    return Object.freeze({ webhookSecret, ownerTelegramUserId, ownerTelegramChatId });
+    // зачем строгое === true: любое другое значение (строка "false", 1,
+    // отсутствие поля) обязано читаться как «выключено». Проверочная ветка
+    // в боевой функции открывается только явным намерением.
+    const selftestEnabled = parsed.selftestEnabled === true;
+    return Object.freeze({ webhookSecret, ownerTelegramUserId, ownerTelegramChatId, selftestEnabled });
   } catch {
     return null;
   }

@@ -5,6 +5,8 @@ const OWNER_CONFIG = {
   webhookSecret: 'S'.repeat(32),
   ownerTelegramUserId: '374480287',
   ownerTelegramChatId: '374480287',
+  // Выключена по умолчанию — как и в бою.
+  selftestEnabled: false,
 };
 
 function update(over: Record<string, unknown> = {}) {
@@ -133,6 +135,15 @@ describe('Jarvis approval webhook core — refuse anything that is not provably 
     expect(parseOwnerConfig('not json')).toBeNull();
     expect(parseOwnerConfig(JSON.stringify({ webhookSecret: 'short' }))).toBeNull();
     expect(parseOwnerConfig('')).toBeNull();
+  });
+
+  test('selftest is OFF unless the config says exactly true', () => {
+    // зачем: проверочная ветка в боевой функции — это дверь. Строка "true",
+    // единица и отсутствие поля обязаны читаться как «выключено».
+    expect(parseOwnerConfig(JSON.stringify(OWNER_CONFIG))?.selftestEnabled).toBe(false);
+    expect(parseOwnerConfig(JSON.stringify({ ...OWNER_CONFIG, selftestEnabled: 'true' }))?.selftestEnabled).toBe(false);
+    expect(parseOwnerConfig(JSON.stringify({ ...OWNER_CONFIG, selftestEnabled: 1 }))?.selftestEnabled).toBe(false);
+    expect(parseOwnerConfig(JSON.stringify({ ...OWNER_CONFIG, selftestEnabled: true }))?.selftestEnabled).toBe(true);
   });
 
   test('refuses a config whose secret is too short to be safe', () => {

@@ -535,7 +535,9 @@ const LessonCard = React.memo(function LessonCard({
           {showLessonProgressFill && (<View style={{
                   position: 'absolute', left: 0, top: 0,
                   width: `${progPct}%`, height: 1.5,
-                  backgroundColor: isGoldTheme ? GOLD_RICH.hairlineStrong : isCoralTheme ? 'rgba(255,230,222,0.52)' : useSketchLessonVisual ? 'rgba(255,255,255,0.45)' : 'rgba(255,255,255,0.3)',
+                  // зачем: на светлой sagePorcelain белая кромка прогресса невидима —
+                  // тонируем акцентом урока, как границу карточки выше.
+                  backgroundColor: isGoldTheme ? GOLD_RICH.hairlineStrong : isSagePorcelainCard ? rgbaHexCached(lessonAccent, 0.38) : isCoralTheme ? 'rgba(255,230,222,0.52)' : useSketchLessonVisual ? 'rgba(255,255,255,0.45)' : 'rgba(255,255,255,0.3)',
                   opacity: levelLockedByExam ? 0.24 : 1,
                   borderTopLeftRadius: cardRadius,
                   borderTopRightRadius: cardRadius,

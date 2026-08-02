@@ -387,7 +387,9 @@ function SaveProgressBanner({ ownerActive = true }: SaveProgressBannerProps) {
             marginTop: 14,
             paddingTop: 13,
             borderTopWidth: 1,
-            borderTopColor: 'rgba(255,255,255,0.08)',
+            // зачем: белый 8% divider невидим на фарфоровой карточке sagePorcelain —
+            // семантический t.border работает в обеих полярностях.
+            borderTopColor: t.border,
           }}
         >
           <Text

@@ -18,7 +18,11 @@ interface Props {
   data: IntroChoiceInteraction;
   lang: Lang;
   accent: string;
-  theme: { textPrimary: string; textMuted: string; correct: string; wrong: string };
+  theme: {
+    textPrimary: string; textMuted: string; correct: string; wrong: string;
+    /** Тональный чип-фон и текст на заливке — считает родитель (drillTheme). */
+    chipBg: string; onAccentText: string;
+  };
   themeMode?: ThemeMode;
   onSolved?: () => void;
   initialProgress?: TheoryDrillProgressState;
@@ -100,7 +104,7 @@ export default function ThreeTileChoice({
           style={[
             styles.gap,
             isCorrect
-              ? { color: onBrightText('#0F1115'), backgroundColor: theme.correct }
+              ? { color: onBrightText(theme.onAccentText), backgroundColor: theme.correct }
               : picked
                 ? { color: theme.wrong, borderColor: theme.wrong, borderWidth: 1 }
                 : { color: theme.textMuted, borderColor: accent, borderWidth: 0},
@@ -129,11 +133,11 @@ export default function ThreeTileChoice({
                     ? theme.correct
                     : thisErr
                       ? `${theme.wrong}33`
-                      : 'rgba(255,255,255,0.06)',
+                      : theme.chipBg,
                 },
               ]}
             >
-              <Text style={[styles.tileText, { color: thisOk ? onBrightText('#0F1115') : theme.textPrimary }]}>
+              <Text style={[styles.tileText, { color: thisOk ? onBrightText(theme.onAccentText) : theme.textPrimary }]}>
                 {opt}
               </Text>
             </TapScale>

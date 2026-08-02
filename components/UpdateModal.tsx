@@ -29,7 +29,7 @@ import { LinearGradient } from './SafeLinearGradient';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { hapticTap } from '../hooks/use-haptics';
-import type { ThemeMode } from '../constants/theme';
+import { isLightThemeMode, type ThemeMode } from '../constants/theme';
 import { COMPASS_RICH } from '../constants/compassTheme';
 
 import { noAndroidOutline } from '../constants/androidGlow';
@@ -162,8 +162,32 @@ const COMPASS_PALETTE: UpdateModalPalette = {
   secondaryText: COMPASS_RICH.textMuted,
 };
 
+// зачем: DEFAULT — тёмная «космическая» панель; на светлой sagePorcelain модалка
+// обновления выглядела инородной тёмной вспышкой. Фарфоровая панель + шалфейный
+// CTA с бронзовым стопом — язык светлой темы (план 2026-08-01).
+const SAGE_PALETTE: UpdateModalPalette = {
+  ...DEFAULT_PALETTE,
+  frame: ['rgba(49,95,80,0.30)', 'rgba(189,200,189,0.55)', 'rgba(139,99,32,0.25)'],
+  panel: ['#FCFDF9', '#F5F7F2', '#E7EAE3'],
+  wash: ['rgba(49,95,80,0.10)', 'rgba(217,233,225,0.10)', 'rgba(0,0,0,0)'],
+  topSheen: ['rgba(255,255,255,0.65)', 'rgba(255,255,255,0)'],
+  stroke: '#BDC8BD',
+  texture: 'rgba(49,95,80,0.05)',
+  orbit: 'rgba(49,95,80,0.18)',
+  star: 'rgba(49,95,80,0.55)',
+  title: '#17201D',
+  body: 'rgba(23,32,29,0.72)',
+  primary: ['#315F50', '#294E43', '#8B6320'],
+  primaryPressed: ['#294E43', '#223F37', '#7A5519'],
+  primaryText: '#FFFFFF',
+  primaryShadow: 'rgba(49,95,80,0.35)',
+  secondaryBg: '#E1E5DC',
+  secondaryBorder: '#CFD6CE',
+  secondaryText: 'rgba(23,32,29,0.72)',
+};
+
 const getUpdateModalPalette = (themeMode: ThemeMode): UpdateModalPalette =>
-  themeMode === 'gold' ? GOLD_PALETTE : false ? COMPASS_PALETTE : DEFAULT_PALETTE;
+  themeMode === 'gold' ? GOLD_PALETTE : isLightThemeMode(themeMode) ? SAGE_PALETTE : false ? COMPASS_PALETTE : DEFAULT_PALETTE;
 
 function UpdateModalBackground({ palette }: { palette: UpdateModalPalette }) {
   return (

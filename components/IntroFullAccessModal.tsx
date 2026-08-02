@@ -5,6 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from './SafeLinearGradient';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
+import { isLightThemeMode } from '../constants/theme';
 import {
   RewardModalBackdrop,
   RewardModalPanelBackdrop,
@@ -140,8 +141,11 @@ function IntroFullAccessModal({ visible, variant, onPrimaryPress, onSecondaryPre
   const accent = rewardModalAccentColor(themeMode, theme);
   const border = rewardModalPanelBorder(themeMode, theme);
   const softSurface = rewardModalSoftSurface(themeMode, theme);
-  const textPrimary = false ? '#171615' : '#FFFFFF';
-  const textSecondary = false ? 'rgba(23,22,21,0.72)' : 'rgba(255,255,255,0.78)';
+  // зачем: ветка светлой темы была заглушена литералом false — на sagePorcelain
+  // белый текст ложился на фарфоровую панель rewardModalPanelColors (белое-на-белом).
+  const lightPanel = isLightThemeMode(themeMode);
+  const textPrimary = lightPanel ? theme.textPrimary : '#FFFFFF';
+  const textSecondary = lightPanel ? 'rgba(23,32,29,0.72)' : 'rgba(255,255,255,0.78)';
 
   return (
     <Modal

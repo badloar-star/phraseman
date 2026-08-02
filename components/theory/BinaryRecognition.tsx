@@ -15,7 +15,11 @@ import type { TheoryDrillProgressState } from '../../app/theory_progress';
 interface Props {
   data: IntroBinaryInteraction;
   lang: Lang;
-  theme: { textPrimary: string; textMuted: string; correct: string; wrong: string };
+  theme: {
+    textPrimary: string; textMuted: string; correct: string; wrong: string;
+    /** Тональные чип-фоны и текст на заливке — считает родитель (drillTheme). */
+    chipBg: string; chipBgFaint: string; onAccentText: string;
+  };
   onSolved?: () => void;
   initialProgress?: TheoryDrillProgressState;
   onProgressChange?: (state: TheoryDrillProgressState) => void;
@@ -53,15 +57,15 @@ export default function BinaryRecognition({ data, lang, theme, onSolved, initial
   );
 
   const renderBtn = (key: 'A' | 'B', label: string) => {
-    let bg = 'rgba(255,255,255,0.06)';
+    let bg = theme.chipBg;
     let color = theme.textPrimary;
     let strike = false;
     if (answered) {
       if (key === correctKey) {
         bg = theme.correct;
-        color = '#0F1115';
+        color = theme.onAccentText;
       } else if (key === answered) {
-        bg = 'rgba(255,255,255,0.04)';
+        bg = theme.chipBgFaint;
         color = theme.textMuted;
         strike = true;
       } else {

@@ -524,7 +524,10 @@ export const PAYWALL_THEME_CONFIG: Record<ThemeMode, ThemePaywallConfig> = {
     selectedCardBorder: '#315F50',
     selectedCardBg: '#D9E9E1',
     unselectedCardBg: '#FCFDF9',
-    panelBg: '#F0F1EC',
+    // зачем: panelBg был #F0F1EC — цвет страницы, карточки пейвола сливались с
+    // фоном (аудит владельца 2026-08-02). Фарфоровая карточка #FCFDF9 — язык
+    // контейнеров sage во всём приложении (bgCard, тосты, reward-модалки).
+    panelBg: '#FCFDF9',
     panelBgStrong: '#E1E5DC',
     selectedCardShadow: 'rgba(49,95,80,0)',
     savingsBadgeBg: '#8B6320',
@@ -540,7 +543,9 @@ export const PAYWALL_THEME_CONFIG: Record<ThemeMode, ThemePaywallConfig> = {
     urgencyBg: 'rgba(139,99,32,0.12)',
     urgencyTimerText: '#8B6320',
     urgencyLabelText: '#52605A',
-    urgencyStrikethroughColor: '#D1D9D1',
+    // зачем: #D1D9D1 на фарфоровой карточке ~1.1:1 — зачёркнутая якорная цена
+    // была невидима; ghost-тон читается (≥4:1), но остаётся тише текущей цены.
+    urgencyStrikethroughColor: '#61706A',
     urgencyCurrentPriceText: '#315F50',
     expandBtnText: '#315F50',
     expandBtnBorder: '#BDC8BD',

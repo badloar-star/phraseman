@@ -65,7 +65,8 @@ describe('PAYWALL_THEME_CONFIG — Sage Porcelain', () => {
   it('uses porcelain panels, dark sage CTA, and bronze rewards', () => {
     expect(PAYWALL_THEME_CONFIG.sagePorcelain).toMatchObject({
       heroAccent: '#315F50', selectedCardBg: '#D9E9E1', unselectedCardBg: '#FCFDF9',
-      panelBg: '#F0F1EC', panelBgStrong: '#E1E5DC', ctaBg: '#315F50', ctaText: '#FFFFFF',
+      // panelBg = #FCFDF9: цвет страницы (#F0F1EC) сливал панели с фоном — аудит 2026-08-02.
+      panelBg: '#FCFDF9', panelBgStrong: '#E1E5DC', ctaBg: '#315F50', ctaText: '#FFFFFF',
       savingsBadgeBg: '#8B6320', savingsBadgeText: '#FFFFFF', urgencyBg: 'rgba(139,99,32,0.12)',
     });
   });

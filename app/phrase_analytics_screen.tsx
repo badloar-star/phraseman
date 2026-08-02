@@ -10,6 +10,7 @@ import {
   View,
 } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { isLightThemeMode } from '../constants/theme';
 import TapScale from '../components/TapScale';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import BouncyScrollView from '../components/BouncyScrollView';
@@ -143,7 +144,13 @@ const CATEGORY_LABELS: Record<string, AnalyticsLocaleCopy> = {
 // ── ProgressBar ───────────────────────────────────────────────────────────────
 
 function ProgressBar({ pct }: { pct: number }) {
-  const barColor = pct >= 30 ? SIGNAL.bar.high : pct >= 15 ? SIGNAL.bar.mid : SIGNAL.bar.low;
+  const { themeMode } = useTheme();
+  // зачем: белые альфы бара — «тихий» язык тёмных тем; на sagePorcelain бар
+  // сильного сигнала пропадал. Светлая тема — те же ступени тёмным ink-тоном.
+  const bar = isLightThemeMode(themeMode)
+    ? { high: 'rgba(23,32,29,0.7)', mid: 'rgba(23,32,29,0.45)', low: 'rgba(23,32,29,0.2)' }
+    : SIGNAL.bar;
+  const barColor = pct >= 30 ? bar.high : pct >= 15 ? bar.mid : bar.low;
 
   return (
     <View style={styles.progressBg}>
@@ -177,7 +184,7 @@ function InsightRow({ insight }: { insight: PersonalInsight }) {
       <Ionicons
         name={iconName}
         size={16}
-        color={isPositive ? 'rgba(255,255,255,0.35)' : t.accent}
+        color={isPositive ? (isLightThemeMode(themeMode) ? 'rgba(23,32,29,0.35)' : 'rgba(255,255,255,0.35)') : t.accent}
         style={{ marginTop: 1, flexShrink: 0 }}
       />
       <Text style={[styles.insightText, { color: isPositive ? t.textMuted : t.textSecond, fontSize: f.body }]}>

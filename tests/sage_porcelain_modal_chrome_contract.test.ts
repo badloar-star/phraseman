@@ -66,7 +66,8 @@ describe('sage porcelain modal, reward, and paywall chrome', () => {
   it('uses porcelain paywall, card-pack, and league reward roles', () => {
     expect(PAYWALL_THEME_CONFIG.sagePorcelain).toMatchObject({
       heroAccent: '#315F50', selectedCardBorder: '#315F50', selectedCardBg: '#D9E9E1',
-      unselectedCardBg: '#FCFDF9', panelBg: '#F0F1EC', panelBgStrong: '#E1E5DC',
+      // panelBg = #FCFDF9 (не #F0F1EC): цвет страницы сливал карточки с фоном — аудит 2026-08-02.
+      unselectedCardBg: '#FCFDF9', panelBg: '#FCFDF9', panelBgStrong: '#E1E5DC',
       ctaBg: '#315F50', ctaText: '#FFFFFF', savingsBadgeBg: '#8B6320', savingsBadgeText: '#FFFFFF',
       urgencyBg: 'rgba(139,99,32,0.12)', urgencyTimerText: '#8B6320', socialProofText: '#52605A',
     });

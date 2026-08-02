@@ -45,7 +45,7 @@ import { softShadow } from '../../constants/androidGlow';
 import { getLevelGiftRewardIcon } from '../../constants/levelGiftRewardIcons';
 import { getSocialFriendsIcon } from '../../constants/socialIconAssets';
 import { PREMIUM_AVATAR_AURA_ID, USER_AVATAR_AURA_KEY, getEffectiveAvatarAuraId, normalizeAvatarAuraId } from '../../constants/avatar_auras';
-import { getLevelFromXP, getXPProgress, type ThemeMode } from '../../constants/theme';
+import { getLevelFromXP, getXPProgress, isLightThemeMode, type ThemeMode } from '../../constants/theme';
 import { monoIcon, MONO_ICON } from '../../constants/monoIcon';
 import { triLang, type Lang } from '../../constants/i18n';
 import { hapticTap } from '../../hooks/use-haptics';
@@ -1941,13 +1941,16 @@ export default function FriendsTabScreen() {
   }, [onBouncyScroll, topFadeScroll]);
   const bouncyStyle = useBouncyStyle(bouncyStretch);
   const chrome = useMemo(() => makeFriendsChrome(themeMode, t), [themeMode, t]);
+  // зачем: мягкие альфы стекла рассчитаны на светлый фон; проверка была только на
+  // удалённую businessLight — sagePorcelain получала «тёмную» густоту акцента.
+  const lightGlass = themeMode === 'businessLight' || isLightThemeMode(themeMode);
   const friendGiftSheetColors = [
-    glassFill(t.accent, themeMode === 'businessLight' ? 0.10 : 0.18),
+    glassFill(t.accent, lightGlass ? 0.10 : 0.18),
     chrome.card,
     chrome.cardSoft,
   ] as [string, string, string];
   const friendGiftPillColors = [
-    glassFill(t.accent, themeMode === 'businessLight' ? 0.12 : 0.20),
+    glassFill(t.accent, lightGlass ? 0.12 : 0.20),
     chrome.surface,
     chrome.card,
   ] as [string, string, string];
@@ -3651,7 +3654,7 @@ export default function FriendsTabScreen() {
                 left: 22,
                 right: 22,
                 height: 1,
-                backgroundColor: glassFill(t.accent, themeMode === 'businessLight' ? 0.28 : 0.42),
+                backgroundColor: glassFill(t.accent, lightGlass ? 0.28 : 0.42),
                 opacity: 0.75,
               }}
             />
@@ -3745,7 +3748,7 @@ export default function FriendsTabScreen() {
               const displayCostText = cannotAfford ? `+${displayCost}` : `${displayCost}`;
               const giftAccentColor = friendGiftAccent(gift.id, t);
               const optionColors = [
-                glassFill(giftAccentColor, themeMode === 'businessLight' ? 0.13 : 0.22),
+                glassFill(giftAccentColor, lightGlass ? 0.13 : 0.22),
                 chrome.surface,
                 chrome.card,
               ] as [string, string, string];
@@ -3783,7 +3786,7 @@ export default function FriendsTabScreen() {
                       left: 16,
                       right: 16,
                       height: 1,
-                      backgroundColor: glassFill(giftAccentColor, themeMode === 'businessLight' ? 0.30 : 0.52),
+                      backgroundColor: glassFill(giftAccentColor, lightGlass ? 0.30 : 0.52),
                       opacity: 0.62,
                     }}
                   />
@@ -3793,7 +3796,7 @@ export default function FriendsTabScreen() {
                     borderRadius: 12,
                     alignItems: 'center',
                     justifyContent: 'center',
-                    backgroundColor: glassFill(giftAccentColor, themeMode === 'businessLight' ? 0.16 : 0.22),
+                    backgroundColor: glassFill(giftAccentColor, lightGlass ? 0.16 : 0.22),
                   }}>
                     <Ionicons name={gift.icon as any} size={21} color={giftAccentColor} />
                   </View>

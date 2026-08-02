@@ -2,6 +2,7 @@ import React, { memo, useMemo, useState } from 'react';
 import { View, Text, StyleSheet, type LayoutChangeEvent } from 'react-native';
 import Svg, { Defs, LinearGradient, Stop, Text as SvgText } from 'react-native-svg';
 import { useTheme } from './ThemeContext';
+import { isLightThemeMode } from '../constants/theme';
 
 type Props = {
   text: string;
@@ -53,7 +54,9 @@ function PremiumGoldUserName({ text, fontSize, onGradient = false }: Props) {
     return `premiumGold_${hash}`;
   }, [display, fontSize]);
 
-  const isSketch = false;
+  // зачем: пик GOLD_STOPS (#FFF4C8) — блик под тёмный фон, на фарфоре ник
+  // «проваливался» в середине. SKETCH-набор — тёмное золото для светлых фонов.
+  const isSketch = isLightThemeMode(themeMode);
   const gradientStops = themeMode === 'business'
     ? MONO_STOPS
     : (isSketch ? GOLD_STOPS_SKETCH : GOLD_STOPS);

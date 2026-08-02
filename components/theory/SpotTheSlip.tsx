@@ -15,7 +15,11 @@ import type { TheoryDrillProgressState } from '../../app/theory_progress';
 interface Props {
   data: IntroSpotInteraction;
   lang: Lang;
-  theme: { textPrimary: string; textMuted: string; correct: string; wrong: string };
+  theme: {
+    textPrimary: string; textMuted: string; correct: string; wrong: string;
+    /** Тональный чип-фон — считает родитель (drillTheme). */
+    chipBg: string;
+  };
   onSolved?: () => void;
   initialProgress?: TheoryDrillProgressState;
   onProgressChange?: (state: TheoryDrillProgressState) => void;
@@ -69,7 +73,7 @@ export default function SpotTheSlip({ data, lang, theme, onSolved, initialProgre
                     ? `${theme.wrong}1A`
                     : isWrongTap
                       ? `${theme.wrong}1A`
-                      : 'rgba(255,255,255,0.06)',
+                      : theme.chipBg,
                 },
               ]}
             >

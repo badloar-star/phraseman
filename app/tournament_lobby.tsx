@@ -31,7 +31,7 @@ import {
   V2Segments,
 } from '../components/tournament/tournament_v2_ui';
 import { tournamentAvatarLevel, tournamentAvatarValue } from '../components/tournament/tournament_avatars';
-import { T, formatTimeLeft, radius, type, useTournamentPalette, type TournamentPalette} from '../components/tournament/tournament_theme';
+import { T, formatTimeLeft, hexToRgba, radius, type, useTournamentPalette, type TournamentPalette} from '../components/tournament/tournament_theme';
 import { TournamentEdgeState } from '../components/tournament/TournamentEdgeState';
 import { TournamentFxHost, type TournamentFxApi } from '../components/tournament/TournamentFx';
 import {
@@ -635,7 +635,9 @@ const makeStyles = (P: TournamentPalette) => StyleSheet.create({
     gap: 6,
   },
   seatYou: { backgroundColor: P.accentSoft },
-  seatEmpty: { flex: 1, borderRadius: radius.md, backgroundColor: 'rgba(255,255,255,0.03)' },
+  // зачем: белый 3% невидим на светлой sagePorcelain; альфа от текста темы даёт
+  // тот же «пустой» тон на тёмных и еле заметный тёмный слот на светлой.
+  seatEmpty: { flex: 1, borderRadius: radius.md, backgroundColor: hexToRgba(P.text, 0.04) },
   seatAvatar: { width: 44, height: 44, borderRadius: 999, alignItems: 'center', justifyContent: 'center' },
   seatEmoji: { fontSize: 22 },
   seatStreak: { position: 'absolute', top: 6, right: 8, fontSize: 13 },

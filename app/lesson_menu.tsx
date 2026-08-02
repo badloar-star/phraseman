@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react';
 import Reanimated from 'react-native-reanimated';
 import TapScale from '../components/TapScale';
+import { isLightThemeMode } from '../constants/theme';
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import { View, Text, TouchableOpacity, Modal, Pressable, ScrollView, StyleSheet, InteractionManager, Animated } from 'react-native';
 import { Image } from 'expo-image';
@@ -285,7 +286,9 @@ export default function LessonMenu() {
   const { theme:t, f, themeMode } = useTheme();
   const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
   const bouncyStyle = useBouncyStyle(bouncyStretch);
-  const isLightTheme = false;
+  // зачем: стаб isLightTheme=false оставлял sagePorcelain средне-насыщенные
+  // CEFR-тона (~2:1 на фарфоре); светлая ветка теперь живая, тона — тёмные sage.
+  const isLightTheme = isLightThemeMode(themeMode);
   const isGoldTheme = themeMode === 'gold';
   const isCompassTheme = false;
   const { s, lang } = useLang();
@@ -1304,10 +1307,10 @@ export default function LessonMenu() {
   tr: 'DERS',
   pl: 'LEKCJA',
 })} {lessonId}{'  '}<Text style={{fontSize: f.label,fontWeight:'700',color:
-            lessonId<=8  ? (isLightTheme?'#86EFAC':'#4CAF72') :
-            lessonId<=18 ? (isLightTheme?'#93C5FD':'#40B4E8') :
-            lessonId<=28 ? (isLightTheme?'#FDE047':'#D4A017') :
-                           (isLightTheme?'#FCA5A5':'#DC6428')
+            lessonId<=8  ? (isLightTheme?'#2F6F4F':'#4CAF72') :
+            lessonId<=18 ? (isLightTheme?'#2E5366':'#40B4E8') :
+            lessonId<=28 ? (isLightTheme?'#8B6320':'#D4A017') :
+                           (isLightTheme?'#A8464D':'#DC6428')
           }}>{lessonCefrLabel}</Text>
         </Text>
         <EnergyBar size={30} />

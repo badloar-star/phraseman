@@ -45,7 +45,7 @@ export default function PaywallPlanCards({
   savingsPct, perDayLabel, trialDays, loading, disabled,
   lifetimePrice, lifetimeAvailable, decoyPriceString,
 }: Props) {
-  const { tc, textPrimary, textMuted, cardBg, cardBorder, uncheckedBorder } = chrome;
+  const { tc, textPrimary, textMuted, cardBg, uncheckedBorder } = chrome;
   const [showLifetimeOffer, setShowLifetimeOffer] = React.useState(false);
   const lifetimeOfferExpanded = showLifetimeOffer || selected === 'lifetime';
   const perMonthLabel = triLang(lang, {
@@ -115,7 +115,6 @@ export default function PaywallPlanCards({
         disabled={disabled}
         onPress={() => onSelect(plan)}
         style={[S.card, {
-          borderColor: sel ? tc.selectedCardBorder : cardBorder,
           backgroundColor: sel ? chrome.cardBgStrong : cardBg,
           shadowColor: sel ? tc.selectedCardShadow : 'transparent',
         }]}
@@ -180,7 +179,6 @@ export default function PaywallPlanCards({
         accessibilityRole="text"
         accessibilityLabel={`${name} ${price}`.trim()}
         style={[S.card, {
-          borderColor: cardBorder,
           backgroundColor: cardBg,
           shadowColor: 'transparent',
         }]}
@@ -336,7 +334,9 @@ export default function PaywallPlanCards({
 const S = StyleSheet.create({
   wrap: { gap: 11, marginTop: 16 },
   card: {
-    borderRadius: 18, paddingHorizontal: 17, paddingVertical: 15,
+    // зачем: карточки тарифов безрамочные (тон вместо обводки — контракт
+    // paywall_tonal_surfaces); мёртвые borderColor-пропсы убраны, borderWidth: 0 явно.
+    borderRadius: 18, borderWidth: 0, paddingHorizontal: 17, paddingVertical: 15,
     // зачем: фон карточки тарифа приходит из темы (может быть полупрозрачным) —
     // Android рисовал квадрат вокруг скругления 18.
     shadowOffset: { width: 0, height: 5 }, shadowOpacity: 0.3, shadowRadius: 12,

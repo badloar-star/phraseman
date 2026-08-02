@@ -55,7 +55,7 @@ import SkeletonBlock from '../components/SkeletonShimmer';
 import AchievementArt from '../components/AchievementArt';
 import { REPORT_SCREENS_RUSSIAN_ONLY } from '../constants/report_ui_ru';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
-import { getLevelFromXP, TOTAL_XP_FOR_LEVEL, type ThemeMode } from '../constants/theme';
+import { getLevelFromXP, isLightThemeMode, TOTAL_XP_FOR_LEVEL, type ThemeMode } from '../constants/theme';
 import { statsAccent, statsBorder, statsGlowStyle, statsHairline, statsPageField, statsSoftBg, statsThemeAccent, statsThemeSoftBg } from '../constants/statsThemeChrome';
 import { getStreakFireIconVariant, getStreakFreezeIconVariant } from '../constants/streakIconAssets';
 import GoldBevel from '../components/GoldBevel';
@@ -4286,7 +4286,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                       })()}
                     </Text>
                   </View>
-                  <Ionicons name="chevron-down" size={20} color="rgba(255,255,255,0.45)"/>
+                  <Ionicons name="chevron-down" size={20} color={isLightThemeMode(themeMode) ? 'rgba(23,32,29,0.45)' : 'rgba(255,255,255,0.45)'}/>
                 </StatsCardArtSurface>
               </TouchableOpacity>);
             }
@@ -4458,7 +4458,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
         })}
               </Text>
             </View>
-            <Ionicons name={detailsOpen ? 'chevron-up' : 'chevron-down'} size={20} color="rgba(255,255,255,0.45)"/>
+            <Ionicons name={detailsOpen ? 'chevron-up' : 'chevron-down'} size={20} color={isLightThemeMode(themeMode) ? 'rgba(23,32,29,0.45)' : 'rgba(255,255,255,0.45)'}/>
           </StatsCardArtSurface>
         </TouchableOpacity>
 

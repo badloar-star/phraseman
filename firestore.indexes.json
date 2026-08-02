@@ -477,6 +477,16 @@
   ],
   "fieldOverrides": [
     {
+      "collectionGroup": "app_message_states",
+      "fieldPath": "messageId",
+      "indexes": [
+        {
+          "order": "ASCENDING",
+          "queryScope": "COLLECTION_GROUP"
+        }
+      ]
+    },
+    {
       "collectionGroup": "notifications",
       "fieldPath": "createdAt",
       "indexes": [

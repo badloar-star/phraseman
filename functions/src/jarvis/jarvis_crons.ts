@@ -3,6 +3,7 @@ import { onSchedule } from 'firebase-functions/v2/scheduler';
 import { logger } from 'firebase-functions';
 import { ADMIN_ALERT_BOT_TOKEN, sendTelegramAlert } from '../admin_alerts';
 import { buildTelegramDigest } from './telegram_digest';
+import { JARVIS_APPROVAL_COLLECTION } from './approval_store';
 import { fetchActiveUserCount } from './app_tier_reader';
 import { resolveAppTier } from './app_tier_resolver';
 import { buildAllDepartmentsSnapshot } from './all_departments_snapshot';
@@ -230,7 +231,33 @@ export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTION
     departmentErrors: snapshot.departmentErrors,
     telegramSent,
   });
+
+  // зачем чистить здесь, а не отдельным планировщиком: токены живут 10 минут,
+  // их немного, и отдельный крон был бы лишним холодным стартом каждый день.
+  await purgeExpiredApprovalTokens(db, nowMs).catch((error) => {
+    logger.warn('jarvis_daily_departments: token purge failed', error);
+  });
 });
+
+/**
+ * Удаляет просроченные approval-токены.
+ *
+ * зачем limit: чистка не должна превращаться в дорогой скан. Остаток уйдёт
+ * на следующем прогоне — токены и так мертвы, спешить некуда.
+ */
+async function purgeExpiredApprovalTokens(db: FirebaseFirestore.Firestore, nowMs: number): Promise<void> {
+  const snap = await db
+    .collection(JARVIS_APPROVAL_COLLECTION)
+    .where('expiresAtMs', '<', nowMs)
+    .limit(200)
+    .get();
+  if (snap.empty) return;
+  // guard-ok: один .get() выше вернул страницу разом; batch удаляет её одной
+  // операцией, без чтений Firestore в цикле.
+  const batch = db.batch();
+  snap.docs.forEach((doc) => batch.delete(doc.ref));
+  await batch.commit();
+}
 
 /**
  * Суточная точка истории бизнес-тиров + подъём храповика. В отличие от

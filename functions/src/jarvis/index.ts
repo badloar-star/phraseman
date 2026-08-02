@@ -108,6 +108,12 @@ export { buildRetentionSnapshot } from './retention_snapshot';
 export { fetchRetentionSource, RETENTION_WEEK_MS, RETENTION_MONTH_MS } from './retention_firestore_fetcher';
 export type { FetchRetentionSourceResult } from './retention_firestore_fetcher';
 
+// ── Approvals: кнопки подтверждения в Telegram ─────────────────────────────
+export { jarvisTelegramApprovalWebhook, JARVIS_TELEGRAM_CONFIG } from './approval_webhook';
+export { issueApprovalToken, consumeApprovalToken, JARVIS_APPROVAL_COLLECTION } from './approval_store';
+export { APPROVAL_TTL_MS, buildApprovalToken, verifyApprovalToken, parseCallbackData } from './approval_token';
+export { JARVIS_APPROVAL_AUDIT_COLLECTION } from './approval_audit';
+
 // ── Суточные планировщики ──────────────────────────────────────────────────
 export { jarvisDailyDepartmentsCron, jarvisDailyBusinessHistoryCron } from './jarvis_crons';
 export { buildDailyHistoryPoint } from './business_tier_daily_point';

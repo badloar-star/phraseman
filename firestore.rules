@@ -2080,6 +2080,12 @@ service cloud.firestore {
     match /jarvis_approval_tokens/{document=**} {
       allow read, write: if false;
     }
+    // Журнал подтверждений: admin читает (в этом его смысл), пишет только
+    // сервер — иначе запись можно было бы подделать из браузера.
+    match /jarvis_approval_audit/{document=**} {
+      allow read: if isAdmin();
+      allow write: if false;
+    }
     match /agent_observation_receipts/{document=**} {
       allow read, write: if false;
     }

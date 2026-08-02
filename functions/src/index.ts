@@ -463,6 +463,10 @@ export { jarvisGetBusinessTier, jarvisRunBusinessTierBackfill } from './jarvis';
 // зачем два крона: суточный проход департаментов (06:00 UTC) и точка истории
 // бизнес-тиров (07:00 UTC, после устаканивания суточных счётчиков).
 export { jarvisDailyDepartmentsCron, jarvisDailyBusinessHistoryCron } from './jarvis';
+
+// Кнопки подтверждения в Telegram. Функция выключена (404), пока не задан
+// секрет JARVIS_TELEGRAM_CONFIG; вебхук ставится вручную по runbook.
+export { jarvisTelegramApprovalWebhook } from './jarvis';
 export { adminGetRemoteConfigWorkspace, adminPublishRemoteConfig } from './admin_remote_config';
 export { adminGetPaywallAbWorkspace, adminPublishPaywallAb } from './admin_paywall_ab';
 export { adminGetPaywallVariantStats } from './admin_paywall_variant_stats';

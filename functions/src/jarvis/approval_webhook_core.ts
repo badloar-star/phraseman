@@ -1,5 +1,5 @@
 import { timingSafeEqual } from 'node:crypto';
-import { parseCallbackData, type ApprovalRejectReason } from './approval_token';
+import { parseCallbackData, type ApprovalAction, type ApprovalRejectReason } from './approval_token';
 
 /**
  * Чистая логика обработки нажатия кнопки в Telegram.
@@ -64,7 +64,16 @@ export type ConsumeFn = (input: {
   readonly fromTelegramChatId: string;
   readonly nowMs: number;
 }) => Promise<
-  | { readonly ok: true; readonly doc: { readonly department?: string; readonly action?: string } }
+  // зачем поля обязательные: журнал подтверждений берёт их отсюда. С
+  // необязательными он молча писал бы пустоту при рефакторинге хранилища.
+  | {
+    readonly ok: true;
+    readonly doc: {
+      readonly department: string;
+      readonly action: ApprovalAction;
+      readonly decisionHash: string;
+    };
+  }
   | { readonly ok: false; readonly reason: ApprovalRejectReason | 'storage_error' }
 >;
 

@@ -59,7 +59,11 @@ describe('Legacy agent collections stay closed to clients even after the code wa
 describe('New Jarvis collections are equally closed to direct client access', () => {
   // зачем: новый слой обязан наследовать то же правило — данные решений,
   // истории бизнеса и агрегата уроков читаются ТОЛЬКО через callable.
-  const JARVIS_COLLECTIONS = ['business_tier_history', 'business_tier_peak', 'lesson_stats'] as const;
+  const JARVIS_COLLECTIONS = [
+    'business_tier_history', 'business_tier_peak', 'lesson_stats',
+    // Журнал подтверждений: admin читает, пишет только сервер.
+    'jarvis_approval_audit',
+  ] as const;
 
   test.each(JARVIS_COLLECTIONS)('%s is not readable straight from the browser', (collection) => {
     const hasExplicitDeny = new RegExp(

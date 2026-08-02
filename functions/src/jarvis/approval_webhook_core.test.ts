@@ -35,7 +35,10 @@ describe('Jarvis approval webhook core — refuse anything that is not provably 
   });
 
   test('accepts a genuine owner press and reports the outcome', async () => {
-    const consume = jest.fn(async () => ({ ok: true as const, doc: { department: 'payments', action: 'approve' } }));
+    const consume = jest.fn(async () => ({
+      ok: true as const,
+      doc: { department: 'payments', action: 'approve' as const, decisionHash: 'abc' },
+    }));
     const result = await handleApprovalCallback({
       body: update(),
       providedSecret: OWNER_CONFIG.webhookSecret,

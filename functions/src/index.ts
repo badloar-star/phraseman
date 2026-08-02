@@ -486,6 +486,9 @@ export { jarvisGetQualitySnapshot, jarvisGetMoneySnapshot, jarvisGetGrowthSnapsh
 // зачем отдельно: owner-facing раздел «Стадия роста бизнеса» — своя пара
 // callable (чтение панели + продолжаемый бэкфилл истории под строгим гейтом).
 export { jarvisGetBusinessTier, jarvisRunBusinessTierBackfill } from './jarvis';
+// зачем два крона: суточный проход департаментов (06:00 UTC) и точка истории
+// бизнес-тиров (07:00 UTC, после устаканивания суточных счётчиков).
+export { jarvisDailyDepartmentsCron, jarvisDailyBusinessHistoryCron } from './jarvis';
 export { adminGetRemoteConfigWorkspace, adminPublishRemoteConfig } from './admin_remote_config';
 export { adminGetPaywallAbWorkspace, adminPublishPaywallAb } from './admin_paywall_ab';
 export { adminGetPaywallVariantStats } from './admin_paywall_variant_stats';

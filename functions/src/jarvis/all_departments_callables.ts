@@ -4,6 +4,8 @@ import { hasPermission, type AdminPermission } from '../admin/permissions';
 import { hasAdminRole, type AdminRole } from '../admin/roles';
 import { ENFORCE_APP_CHECK } from '../callable_options';
 import { buildAllDepartmentsSnapshot } from './all_departments_snapshot';
+import { fetchContentSource } from './content_firestore_fetcher';
+import { buildContentSnapshot } from './content_snapshot';
 import { resolveAppTier } from './app_tier_resolver';
 import { fetchActiveUserCount } from './app_tier_reader';
 import { fetchGrowthSource } from './growth_firestore_fetcher';
@@ -90,6 +92,13 @@ export const jarvisGetAllDecisions = onCall(OPTIONS, async (request: CallableReq
       trigger: 'owner_request',
       question,
       nowMs,
+    }),
+    runContent: (appTier) => buildContentSnapshot({
+      fetchers: { lesson_stats: () => fetchContentSource({ collection: db.collection('lesson_stats'), nowMs }) },
+      trigger: 'owner_request',
+      question,
+      nowMs,
+      appTier,
     }),
     nowMs,
   });

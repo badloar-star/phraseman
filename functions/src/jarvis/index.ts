@@ -74,6 +74,16 @@ export type { AllDepartmentsSnapshot, BuildAllDepartmentsSnapshotInput, Departme
 
 export { jarvisGetAllDecisions } from './all_departments_callables';
 
+// ── Департамент «Контент» (четвёртый, завершает Р5) ────────────────────────
+export { runContentDepartment, LOW_SCORE_THRESHOLD } from './content_department';
+export { buildContentSnapshot } from './content_snapshot';
+export { fetchContentSource, MAX_LESSON_STATS_DOCS, MIN_SAMPLES_FOR_VERDICT } from './content_firestore_fetcher';
+export type { ContentLessonRow, FetchContentSourceResult } from './content_firestore_fetcher';
+
+// ── Суточные планировщики ──────────────────────────────────────────────────
+export { jarvisDailyDepartmentsCron, jarvisDailyBusinessHistoryCron } from './jarvis_crons';
+export { buildDailyHistoryPoint } from './business_tier_daily_point';
+
 // ── Owner-facing раздел «Стадия роста бизнеса» ─────────────────────────────
 export { jarvisGetBusinessTier, jarvisRunBusinessTierBackfill } from './business_tier_callables';
 export {

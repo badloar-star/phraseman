@@ -1,21 +1,15 @@
 {
-  "_comment": "Разрешённые рабочие папки и ветки. Читают: scripts/canonical_workspace_guard.mjs, scripts/select_branch.mjs, tests/single_workspace_runtime_contract.test.mjs. Правило одной папки НЕ отменено — список закрытый, новые папки сюда не дописываются агентами, только владельцем.",
+  "_comment": "Разрешённые рабочие папки и ветки. Читают: scripts/canonical_workspace_guard.mjs, scripts/select_branch.mjs, tests/single_workspace_runtime_contract.test.mjs. Список закрытый — агенты сюда ничего не дописывают, только владелец.",
   "root": "C:\\appsprojects\\phraseman",
   "primaryBranch": "feature/referral-roulette",
   "workspaces": [
     {
       "path": "C:\\appsprojects\\phraseman",
-      "role": "Основная папка. Здесь работает Codex над learning-v2.",
+      "role": "Единственная рабочая папка. Владелец и все агенты работают здесь, на релизной ветке.",
       "allowedBranches": ["*"]
-    },
-    {
-      "path": "C:\\appsprojects\\phraseman-integration-20260801",
-      "role": "Папка владельца для тестирования релизной ветки, пока Codex занят в основной.",
-      "allowedBranches": ["feature/referral-roulette", "master"]
     }
   ],
   "allowedBranches": [
-    "feature/referral-roulette",
-    "codex/learning-v2-rebuild"
+    "feature/referral-roulette"
   ]
 }

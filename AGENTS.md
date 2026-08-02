@@ -2,17 +2,15 @@
 
 ## Single Workspace And Branch Invariant
 
-- The canonical checkout for all agent work is `C:\appsprojects\phraseman`.
-- Exactly ONE additional folder exists, for the owner only:
-  `C:\appsprojects\phraseman-integration-20260801` runs the release branch so the owner can test
-  the app while an agent occupies the canonical folder with uncommitted work. Agents must never
-  work in it, and must never add a third folder — the list in `config/canonical-workspace.json`
-  → `workspaces` is closed and guarded by `tests/single_workspace_runtime_contract.test.mjs`.
-- The primary working branch is `feature/referral-roulette`. Additional branches the owner is
-  actively working in are listed in `config/canonical-workspace.json` → `allowedBranches`, which is
-  the single source of truth read by `scripts/canonical_workspace_guard.mjs`. Adding a branch there
-  (or a one-off `PHRASEMAN_ALLOW_BRANCH=<branch>`) is how the owner permits running from it — it is
-  still not permission to create branches.
+- The only canonical checkout is `C:\appsprojects\phraseman`. The folder list in
+  `config/canonical-workspace.json` → `workspaces` is closed and guarded by
+  `tests/single_workspace_runtime_contract.test.mjs` — agents never add a folder to it.
+- The only canonical working branch is `feature/referral-roulette` — the release branch. ALL work,
+  including the learning-v2 rebuild, continues directly on it. `codex/learning-v2-rebuild` was
+  merged into it on 2026-08-02 at the owner's explicit request and must not be used again.
+  The branch list lives in `config/canonical-workspace.json` → `allowedBranches`, read by
+  `scripts/canonical_workspace_guard.mjs`; changing it is the owner's call, and it is still not
+  permission to create branches.
 - Never create a branch, Git worktree, separate checkout, forked coding task, or delegated coding session without an explicit owner request to create that exact branch/worktree/task.
 - An explicit owner request is required for every exception. A general request to implement, fix, review, test, deploy, continue, parallelize, or use agents is not permission to create a branch or worktree.
 - All Codex sessions, agents, LAN Metro servers, Android/iOS emulators, builds, tests, scripts, and local web servers must run from the canonical checkout and canonical branch.

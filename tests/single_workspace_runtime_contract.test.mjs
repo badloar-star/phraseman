@@ -23,22 +23,15 @@ test('project instructions prohibit branches and worktrees without an explicit o
   assert.match(agents, /explicit owner request/);
 });
 
-test('workspace list stays closed: exactly the two owner-approved folders', () => {
+test('workspace list stays closed: exactly one owner-approved folder', () => {
   assert.equal(CONFIG.root, 'C:\\appsprojects\\phraseman');
   assert.ok(Array.isArray(CONFIG.workspaces));
 
   // зачем: правило «не плодить копии дерева» держится ровно этим — список закрытый.
-  // Если папок стало больше двух, кто-то (агент) их дописал: тест должен упасть.
-  assert.equal(CONFIG.workspaces.length, 2, 'разрешено ровно две папки');
-
-  const paths = CONFIG.workspaces.map((entry) => entry.path);
-  assert.ok(paths.includes('C:\\appsprojects\\phraseman'));
-
-  const release = CONFIG.workspaces.find((entry) => entry.path !== 'C:\\appsprojects\\phraseman');
-  assert.ok(release.allowedBranches.includes(CANONICAL_BRANCH));
-  // Релизная папка не должна пускать learning-ветку Codex — иначе смысл разделения теряется.
-  assert.ok(!release.allowedBranches.includes('*'));
-  assert.ok(!release.allowedBranches.some((name) => name.startsWith('codex/')));
+  // Если папок стало больше, кто-то (агент) их дописал: тест должен упасть.
+  assert.equal(CONFIG.workspaces.length, 1, 'разрешена ровно одна папка');
+  assert.equal(CONFIG.workspaces[0].path, 'C:\\appsprojects\\phraseman');
+  assert.ok(CONFIG.allowedBranches.includes(CANONICAL_BRANCH));
 });
 
 test('guard rejects a branch that is not in the allowed list', () => {

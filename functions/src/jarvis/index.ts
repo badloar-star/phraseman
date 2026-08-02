@@ -72,7 +72,7 @@ export { resolveAppTier } from './app_tier_resolver';
 export { buildAllDepartmentsSnapshot } from './all_departments_snapshot';
 export type { AllDepartmentsSnapshot, BuildAllDepartmentsSnapshotInput, DepartmentSnapshotLike } from './all_departments_snapshot';
 
-export { jarvisGetAllDecisions } from './all_departments_callables';
+export { jarvisGetAllDecisions, jarvisGetApprovalAudit } from './all_departments_callables';
 
 // ── Департамент «Контент» (четвёртый, завершает Р5) ────────────────────────
 export { runContentDepartment, LOW_SCORE_THRESHOLD } from './content_department';

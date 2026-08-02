@@ -25,6 +25,7 @@ import { fetchSupportSource } from './support_firestore_fetcher';
 import { buildSupportSnapshot } from './support_snapshot';
 import { JARVIS_CONTROL_DOC, parseControl } from './control';
 import { classifySeverity } from './severity';
+import { fetchRecentApprovalAudit } from './approval_audit_reader';
 
 /**
  * Одна кнопка «Проверить сейчас», один вызов, все три департамента разом.
@@ -178,4 +179,18 @@ export const jarvisGetAllDecisions = onCall(OPTIONS, async (request: CallableReq
     decisions: snapshot.decisions.map((decision) => ({ ...decision, severity: classifySeverity(decision) })),
     departmentErrors: snapshot.departmentErrors,
   };
+});
+
+/**
+ * Читает последние подтверждения/отклонения для панели (бриф в187: ссылки
+ * из решения на аудит; в174: страница Audit).
+ *
+ * зачем те же права, что у jarvisGetAllDecisions: журнал подтверждений — это
+ * тоже часть свода Джарвиса, доступ не должен быть шире основной панели.
+ */
+export const jarvisGetApprovalAudit = onCall(OPTIONS, async (request: CallableRequest) => {
+  requireAllDepartmentsAccess(request);
+  const db = admin.firestore();
+  const entries = await fetchRecentApprovalAudit(db);
+  return { ok: true, entries };
 });

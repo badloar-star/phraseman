@@ -456,7 +456,7 @@ export { adminCreatePlan, adminGetPlan, adminListPlans } from './admin_plans';
 // «Качество» по требованию владельца через панель admin/v2/legacy.html.
 // Старые agent_office/agent_manager выше не тронуты и сносятся отдельным
 // шагом позже, когда у нового Джарвиса будет диалог и approvals.
-export { jarvisGetQualitySnapshot, jarvisGetMoneySnapshot, jarvisGetGrowthSnapshot, jarvisGetAllDecisions } from './jarvis';
+export { jarvisGetQualitySnapshot, jarvisGetMoneySnapshot, jarvisGetGrowthSnapshot, jarvisGetAllDecisions, jarvisGetApprovalAudit } from './jarvis';
 // зачем отдельно: owner-facing раздел «Стадия роста бизнеса» — своя пара
 // callable (чтение панели + продолжаемый бэкфилл истории под строгим гейтом).
 export { jarvisGetBusinessTier, jarvisRunBusinessTierBackfill } from './jarvis';

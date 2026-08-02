@@ -10392,9 +10392,14 @@
 
     <div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:14px;align-items:center">
       <button type="button" class="cp-btn" onclick="loadJarvisAllDecisions(true)" style="background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px">🔄 Проверить сейчас</button>
+      <!-- зачем отдельная кнопка, не автозагрузка: журнал подтверждений
+           читается редко, показывать его при каждом открытии панели —
+           лишнее чтение, которое почти никогда не нужно. -->
+      <button type="button" class="cp-btn" onclick="loadJarvisApprovalAudit()" style="background:#1f2937;border:1px solid #374151;color:#a1a1aa;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px">📜 История подтверждений</button>
     </div>
 
     <div id="jarvis-decisions" style="margin-top:14px;display:flex;flex-direction:column;gap:10px"></div>
+    <div id="jarvis-audit-log" style="margin-top:10px;display:none;flex-direction:column;gap:6px"></div>
   </div>
 
   <!-- 📈 Стадия роста бизнеса: где приложение сейчас и куда движется (2026-08-02) -->
@@ -14081,6 +14086,13 @@
       _fnJarvisGetAllDecisions = httpsCallable(functionsUs, 'jarvisGetAllDecisions');
     }
     return _fnJarvisGetAllDecisions;
+  }
+  let _fnJarvisGetApprovalAudit = null;
+  function getJarvisGetApprovalAuditCallable() {
+    if (!_fnJarvisGetApprovalAudit) {
+      _fnJarvisGetApprovalAudit = httpsCallable(functionsUs, 'jarvisGetApprovalAudit');
+    }
+    return _fnJarvisGetApprovalAudit;
   }
   let _fnJarvisGetBusinessTier = null;
   function getJarvisGetBusinessTierCallable() {
@@ -27125,6 +27137,44 @@
         const tile = jfCreateTile(lane, '🔌', 'Запрос к серверу');
         setTimeout(() => jfFinishTile(tile, 'error', message), jfPrefersReducedMotion() ? 0 : 260);
       }
+    }
+  };
+
+  // ── Журнал подтверждений (бриф в187: ссылки решения на аудит) ──────────────
+  // зачем читать по кнопке, а не сразу: журнал — справочная информация,
+  // нужная редко. Загружать его при каждом открытии панели значило бы читать
+  // Firestore ради данных, которые почти никогда не смотрят.
+  const JF_OUTCOME_LABEL = {
+    accepted: 'принято', expired: 'истекла', already_used: 'уже использована',
+    unknown_nonce: 'недействительна', wrong_user: 'не тот пользователь',
+    wrong_chat: 'не тот чат', storage_error: 'ошибка сохранения',
+  };
+  window.loadJarvisApprovalAudit = async function() {
+    const box = document.getElementById('jarvis-audit-log');
+    if (!box) return;
+    box.style.display = 'flex';
+    box.innerHTML = '<div style="color:#6b7280;font-size:12px">Загрузка…</div>';
+    try {
+      const result = await getJarvisGetApprovalAuditCallable()({});
+      const data = result && result.data;
+      const entries = (data && Array.isArray(data.entries)) ? data.entries : [];
+      if (entries.length === 0) {
+        box.innerHTML = '<div style="color:#6b7280;font-size:12px">Подтверждений пока не было.</div>';
+        return;
+      }
+      box.innerHTML = entries.map((entry) => {
+        const meta = JF_DEPARTMENT_META[entry.department] || { title: entry.department, accentRgb: '148,163,184' };
+        const when = new Date(entry.atMs).toLocaleString('ru-RU', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
+        const actionLabel = entry.action === 'approve' ? '✅ принять' : '✕ отклонить';
+        const outcomeLabel = JF_OUTCOME_LABEL[entry.outcome] || entry.outcome;
+        return '<div style="background:rgba(' + meta.accentRgb + ',0.06);border-radius:8px;padding:8px 10px;font-size:12px;color:#cbd5e1;display:flex;justify-content:space-between;gap:10px">' +
+          '<span><b>' + escapeHtml(meta.title) + '</b> · ' + actionLabel + ' · ' + escapeHtml(outcomeLabel) + '</span>' +
+          '<span style="color:#6b7280;white-space:nowrap">' + escapeHtml(when) + '</span>' +
+        '</div>';
+      }).join('');
+    } catch (e) {
+      const message = e && e.message ? e.message : 'ошибка сети';
+      box.innerHTML = '<div style="color:#f87171;font-size:12px">Не удалось загрузить: ' + escapeHtml(message) + '</div>';
     }
   };
 

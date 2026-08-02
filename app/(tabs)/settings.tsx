@@ -602,6 +602,34 @@ export default function SettingsMain() {
   const linkedAuthGenerationRef = useRef(0);
   const linkedAuthInFlightRef = useRef<Promise<void> | null>(null);
   const [authPromptVisible, setAuthPromptVisible] = useState(false);
+  /**
+   * зачем: статус чистки кеша показываем прямо в ряду (правая подпись), а не вторым
+   * блокирующим Alert — чистка диска идёт секунды, и раньше интерфейс всё это время
+   * молчал. ref дублирует состояние, чтобы защита от двойного тапа не зависела от
+   * ре-рендера.
+   */
+  const [clearCacheState, setClearCacheStateRaw] = useState<'idle' | 'running' | 'done' | 'failed'>('idle');
+  const clearCacheStateRef = useRef<'idle' | 'running' | 'done' | 'failed'>('idle');
+  const clearCacheResetTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const setClearCacheState = useCallback((next: 'idle' | 'running' | 'done' | 'failed') => {
+    clearCacheStateRef.current = next;
+    setClearCacheStateRaw(next);
+    if (clearCacheResetTimerRef.current) {
+      clearTimeout(clearCacheResetTimerRef.current);
+      clearCacheResetTimerRef.current = null;
+    }
+    // Итог гаснет сам — подпись «Готово» не должна висеть в настройках вечно.
+    if (next === 'done' || next === 'failed') {
+      clearCacheResetTimerRef.current = setTimeout(() => {
+        clearCacheResetTimerRef.current = null;
+        clearCacheStateRef.current = 'idle';
+        setClearCacheStateRaw('idle');
+      }, next === 'done' ? 2200 : 3200);
+    }
+  }, []);
+  useEffect(() => () => {
+    if (clearCacheResetTimerRef.current) clearTimeout(clearCacheResetTimerRef.current);
+  }, []);
   const [accountModalVisible, setAccountModalVisible] = useState(false);
   const [deleteAccountModalVisible, setDeleteAccountModalVisible] = useState(false);
   /**
@@ -1111,21 +1139,29 @@ export default function SettingsMain() {
     }
   };
 
-  /** «Очистить кеш»: только косметические кеши (картинки, SWR друзей/рефералки). Прогресс/аккаунт не трогаем. */
+  /** «Очистить кеш»: только пересоздаваемые копии (см. app/cache_reset.ts). Прогресс/аккаунт не трогаем. */
   const confirmClearCache = () => {
+    if (clearCacheStateRef.current === 'running') return; // зачем: защита от двойного тапа — чистка диска идёт секунды
     doHaptic();
     Alert.alert(
-      L('Очистить кеш?', 'Очистити кеш?', '¿Borrar caché?', 'Limpar cache?', 'Xóa bộ nhớ đệm?', 'Hapus cache?', 'Önbellek temizlensin mi?', 'Wyczyścić pamięć podręczną?'),
-      L('Удалим кеш картинок и временные данные. Прогресс, аккаунт и покупки останутся на месте.', 'Видалимо кеш зображень і тимчасові дані. Прогрес, акаунт і покупки залишаться.', 'Borraremos la caché de imágenes y datos temporales. El progreso, la cuenta y las compras se mantienen.', 'Vamos apagar o cache de imagens e dados temporários. Progresso, conta e compras permanecem.', 'Xóa cache hình ảnh và dữ liệu tạm. Tiến trình, tài khoản và gói mua vẫn giữ nguyên.', 'Cache gambar dan data sementara akan dihapus. Progres, akun, dan pembelian tetap aman.', 'Görsel önbelleği ve geçici veriler silinir. İlerleme, hesap ve satın alımlar korunur.', 'Usuniemy pamięć podręczną obrazów i dane tymczasowe. Postęp, konto i zakupy zostają.'),
+      L('Вы уверены?', 'Ви впевнені?', '¿Estás seguro?', 'Tem certeza?', 'Bạn có chắc không?', 'Anda yakin?', 'Emin misiniz?', 'Na pewno?'),
+      // зачем: перечисление («рейтинги, сообщения, друзья») пугало — читалось как
+      // удаление данных, хотя это лишь локальные копии. Оставлен голый вопрос:
+      // слово «кеш» самодостаточно, кому надо — тот понимает.
+      undefined,
       [
-        { text: L('Отмена', 'Скасувати', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj'), style: 'cancel' as const },
+        { text: L('Нет', 'Ні', 'No', 'Não', 'Không', 'Tidak', 'Hayır', 'Nie'), style: 'cancel' as const },
         {
-          text: L('Очистить', 'Очистити', 'Borrar', 'Limpar', 'Xóa', 'Hapus', 'Temizle', 'Wyczyść'),
+          text: L('Да', 'Так', 'Sí', 'Sim', 'Có', 'Ya', 'Evet', 'Tak'),
           style: 'destructive' as const,
           onPress: () => {
-            void clearAppCaches().then(() => {
-              Alert.alert(L('Готово', 'Готово', 'Listo', 'Pronto', 'Xong', 'Selesai', 'Tamam', 'Gotowe'), L('Кеш очищен.', 'Кеш очищено.', 'Caché borrada.', 'Cache limpo.', 'Đã xóa bộ nhớ đệm.', 'Cache dihapus.', 'Önbellek temizlendi.', 'Pamięć podręczna wyczyszczona.'));
-            }).catch(() => {});
+            // зачем: раньше между тапом и алертом «Готово» экран молчал секунды, а
+            // ошибка проглатывалась и всё равно показывалось «Готово». Теперь статус
+            // живёт прямо в ряду (без спиннера на весь экран) и врать не может.
+            setClearCacheState('running');
+            void clearAppCaches()
+              .then(() => { setClearCacheState('done'); })
+              .catch(() => { setClearCacheState('failed'); });
           },
         },
       ],
@@ -1739,11 +1775,22 @@ export default function SettingsMain() {
             label={L('Приватность и данные', 'Приватність і дані', 'Privacidad y datos', 'Privacidade e dados', 'Quyền riêng tư và dữ liệu', 'Privasi dan data', 'Gizlilik ve veriler', 'Prywatność i dane')}
             onPress={() => router.push('/privacy_settings' as never)}
           />
+          {/* зачем: название было «Очистить кеш картинок», хотя чистятся ещё снапшоты
+              рейтингов, сообщений и друзей — владелец поймал расхождение. Текст в
+              диалоге подтверждения объясняет объём, поэтому подпись под названием
+              не нужна (запрет владельца). */}
           <SettingsRow
             testID="settings-clear-cache-row"
             icon="trash-bin"
             color="gray"
-            label={L('Очистить кеш картинок', 'Очистити кеш зображень', 'Borrar caché de imágenes', 'Limpar cache de imagens', 'Xóa bộ nhớ đệm hình ảnh', 'Hapus cache gambar', 'Görsel önbelleğini temizle', 'Wyczyść pamięć obrazów')}
+            label={L('Очистить кеш', 'Очистити кеш', 'Borrar caché', 'Limpar cache', 'Xóa bộ nhớ đệm', 'Hapus cache', 'Önbelleği temizle', 'Wyczyść pamięć podręczną')}
+            value={clearCacheState === 'running'
+              ? L('Чистим…', 'Чистимо…', 'Borrando…', 'Limpando…', 'Đang xóa…', 'Menghapus…', 'Temizleniyor…', 'Czyszczenie…')
+              : clearCacheState === 'done'
+                ? L('Готово', 'Готово', 'Listo', 'Pronto', 'Xong', 'Selesai', 'Tamam', 'Gotowe')
+                : clearCacheState === 'failed'
+                  ? L('Не удалось', 'Не вдалося', 'No se pudo', 'Não deu certo', 'Không thành công', 'Gagal', 'Başarısız', 'Nie udało się')
+                  : undefined}
             onPress={confirmClearCache}
           />
         </SettingsGroup>

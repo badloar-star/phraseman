@@ -1,0 +1,9 @@
+{
+  "_comment": "Единственный список веток, с которых разрешено запускать Metro/сборки. Гард (scripts/canonical_workspace_guard.mjs), тест (tests/single_workspace_runtime_contract.test.mjs) и AGENTS.md читают ЭТОТ файл. Чтобы разрешить новую ветку — допиши её сюда, ничего больше менять не нужно.",
+  "root": "C:\\appsprojects\\phraseman",
+  "primaryBranch": "feature/referral-roulette",
+  "allowedBranches": [
+    "feature/referral-roulette",
+    "codex/learning-v2-rebuild"
+  ]
+}

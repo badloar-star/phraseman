@@ -8,7 +8,10 @@ import test from 'node:test';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const GUARD = path.join(ROOT, 'scripts', 'canonical_workspace_guard.mjs');
-const CANONICAL_BRANCH = 'feature/referral-roulette';
+const CONFIG = JSON.parse(
+  readFileSync(path.join(ROOT, 'config', 'canonical-workspace.json'), 'utf8'),
+);
+const CANONICAL_BRANCH = CONFIG.primaryBranch;
 
 test('project instructions prohibit branches and worktrees without an explicit owner request', () => {
   const agents = readFileSync(path.join(ROOT, 'AGENTS.md'), 'utf8');
@@ -16,7 +19,36 @@ test('project instructions prohibit branches and worktrees without an explicit o
   assert.match(agents, /## Single Workspace And Branch Invariant/);
   assert.match(agents, /C:\\appsprojects\\phraseman/);
   assert.match(agents, new RegExp(CANONICAL_BRANCH.replace('/', '\\/')));
+  assert.match(agents, /config\/canonical-workspace\.json/);
   assert.match(agents, /explicit owner request/);
+});
+
+test('allowed branches config stays a non-empty list containing the primary branch', () => {
+  assert.equal(CONFIG.root, 'C:\\appsprojects\\phraseman');
+  assert.ok(Array.isArray(CONFIG.allowedBranches));
+  assert.ok(CONFIG.allowedBranches.length > 0);
+  assert.ok(CONFIG.allowedBranches.includes(CANONICAL_BRANCH));
+});
+
+test('guard rejects a branch that is not in the allowed list', () => {
+  const blocked = spawnSync(process.execPath, [GUARD], {
+    cwd: ROOT,
+    encoding: 'utf8',
+    env: { ...process.env, PHRASEMAN_ALLOW_BRANCH: 'definitely-not-a-real-branch' },
+  });
+
+  const currentBranch = spawnSync('git', ['branch', '--show-current'], {
+    cwd: ROOT,
+    encoding: 'utf8',
+  }).stdout.trim();
+
+  // зачем: override не должен обходить проверку папки и не должен «разрешать» чужое имя ветки —
+  // он совпадает только с реально выбранной веткой.
+  if (CONFIG.allowedBranches.includes(currentBranch)) {
+    assert.equal(blocked.status, 0, 'ветка уже в списке — override ничего не ломает');
+  } else {
+    assert.notEqual(blocked.status, 0);
+  }
 });
 
 test('runtime entry points invoke the canonical workspace guard', () => {

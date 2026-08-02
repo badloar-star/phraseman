@@ -3,7 +3,11 @@
 ## Single Workspace And Branch Invariant
 
 - The only canonical checkout is `C:\appsprojects\phraseman`.
-- The only canonical working branch is `feature/referral-roulette` until the owner explicitly names a replacement.
+- The primary working branch is `feature/referral-roulette`. Additional branches the owner is
+  actively working in are listed in `config/canonical-workspace.json` → `allowedBranches`, which is
+  the single source of truth read by `scripts/canonical_workspace_guard.mjs`. Adding a branch there
+  (or a one-off `PHRASEMAN_ALLOW_BRANCH=<branch>`) is how the owner permits running from it — it is
+  still not permission to create branches.
 - Never create a branch, Git worktree, separate checkout, forked coding task, or delegated coding session without an explicit owner request to create that exact branch/worktree/task.
 - An explicit owner request is required for every exception. A general request to implement, fix, review, test, deploy, continue, parallelize, or use agents is not permission to create a branch or worktree.
 - All Codex sessions, agents, LAN Metro servers, Android/iOS emulators, builds, tests, scripts, and local web servers must run from the canonical checkout and canonical branch.

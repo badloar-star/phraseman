@@ -239,6 +239,70 @@ describe('tournament submit atomicity at the scheduler deadline', () => {
     })).resolves.toEqual({ ...first, replay: true });
   });
 
+  test('awards per-task places from the private rank counter, not from rereading every rival receipt', async () => {
+    // зачем 2026-08-01 (аудит стоимости): место в задании (1-й = 3⭐, 2-й = 2⭐,
+    // остальные = 1⭐) раньше требовало прочитать квитанции ВСЕХ игроков по
+    // ВСЕМ заданиям раунда — 64 документа на каждый ответ. Теперь место берётся
+    // из счётчика в закрытой taskSecrets. Тест сторожит ровно то, что при этом
+    // не должно измениться: сами места, и то, что неверный ответ места не
+    // занимает и не сдвигает очередь для тех, кто ответил после него.
+    const roomId = `rank-counter-${process.pid}`;
+    const taskId = 'rank-counter-q1';
+    const roomRef = db.collection('tournamentRooms').doc(roomId);
+    const uids = ['rank-u1', 'rank-u2', 'rank-u3', 'rank-u4'];
+    await Promise.all([
+      roomRef.set({
+        slotId: 'daily', seed: roomId, state: 'round1', startsAt: 1_000,
+        stateStartedAtMs: 1_000, stateDeadlineAtMs: 16_000,
+        players: uids.map((uid) => player(uid)),
+        rounds: [{
+          roundNo: 1, mode: 'mix', taskIds: [taskId], results: {},
+          taskSchedule: [{
+            taskId, taskIndex: 0, durationMs: 15_000, startsAtMs: 1_000, deadlineAtMs: 16_000,
+          }],
+        }],
+        version: 0, createdAtMs: 1,
+      }),
+      roomRef.collection('taskSecrets').doc(taskId).set({
+        mode: 'guess_phrase', isVoice: false, difficulty: 1,
+        payload: { phrase: 'Choose yes', options: ['yes', 'no', 'later', 'maybe'], correctIndex: 0 },
+        tags: [], verified: true,
+      }),
+    ]);
+
+    const submit = (stableUid: string, selectedIndex: number, receivedAtMs: number) => (
+      runtime.tournamentSubmitTaskAnswerTransaction(db, {
+        stableUid, roomId, roundNo: 1, taskId,
+        idempotencyKey: `rank-counter-${stableUid}-v1`,
+        answer: { selectedIndex }, receivedAtMs,
+      })
+    );
+
+    // Порядок приёма: u1 верно, u2 НЕВЕРНО, u3 верно, u4 верно.
+    const first = await submit(uids[0], 0, 2_000);
+    const wrong = await submit(uids[1], 1, 3_000);
+    const second = await submit(uids[2], 0, 4_000);
+    const third = await submit(uids[3], 0, 5_000);
+
+    expect(first).toMatchObject({ correct: true, earnedStars: 3 });
+    // Неверный ответ не занимает место в очереди правильных.
+    expect(wrong).toMatchObject({ correct: false, earnedStars: 0 });
+    expect(second).toMatchObject({ correct: true, earnedStars: 2 });
+    expect(third).toMatchObject({ correct: true, earnedStars: 1 });
+
+    // Счётчик виден только серверу и считает ровно верные ответы.
+    const counterId = runtime.tournamentTaskRankCounterDocId(1, taskId) as unknown as string;
+    const counter = (await roomRef.collection('taskSecrets').doc(counterId).get()).data();
+    expect(counter).toMatchObject({ correctCount: 3 });
+
+    // Реплей не сдвигает счётчик и не меняет уже выданную награду.
+    await expect(submit(uids[0], 0, 9_000)).resolves.toMatchObject({
+      replay: true, earnedStars: 3,
+    });
+    const counterAfterReplay = (await roomRef.collection('taskSecrets').doc(counterId).get()).data();
+    expect(counterAfterReplay).toMatchObject({ correctCount: 3 });
+  });
+
   test('enforces persisted reading, answer, receive-grace, and feedback phases end to end', async () => {
     const roomId = `task-phase-e2e-${process.pid}`;
     const taskId = 'task-phase-e2e-q1';

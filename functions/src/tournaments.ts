@@ -109,6 +109,8 @@ const BOT_SIMULATION_METADATA_DOC = '__bot_simulation_v1';
 const RECENT_BOT_ROSTER_DOC = 'recent_bot_roster_v1';
 const SPEED_MATCH_ATTEMPT_PREFIX = '__speed_match_attempt_v1';
 const TASK_ANSWER_RECEIPT_PREFIX = '__task_answer_receipt_v1';
+const TASK_RANK_COUNTER_PREFIX = '__task_rank_counter_v1';
+const TASK_RANK_COUNTER_KIND = 'tournament_task_rank_counter_v1';
 const LIFECYCLE_RECOVERY_BACKOFF_MS = 60 * 1000;
 const LEGACY_RECOVERY_CURSOR_DOC = '_legacy_recovery_cursor_v1';
 const DEFAULT_TASKS_PER_ROUND = 4; // зеркало TASKS_PER_ROUND (tournament_pool_plan.ts)
@@ -160,6 +162,38 @@ export function tournamentTaskAnswerReceiptDocId(
   return `${TASK_ANSWER_RECEIPT_PREFIX}:${roundNo}:${taskId}:${stableUid}`;
 }
 
+/**
+ * Счётчик верных ответов по ОДНОМУ заданию.
+ *
+ * зачем 2026-08-01 (аудит стоимости): место игрока в задании (1-й = 3⭐, 2-й =
+ * 2⭐, остальные = 1⭐) раньше вычислялось так: прочитать квитанции ВСЕХ 16
+ * игроков по ВСЕМ 4 заданиям раунда (64 документа) и отсортировать их по
+ * времени. Но формуле нужно ровно одно число — сколько человек уже ответило
+ * верно ДО меня. Держим это число здесь и инкрементим в той же транзакции,
+ * что и создание квитанции: место = счётчик на момент моей записи + 1.
+ *
+ * Живёт в taskSecrets, потому что подколлекция закрыта правилами наглухо
+ * (`allow read, write: if false`). В документе комнаты счётчику не место:
+ * publicTournamentRounds делает `...round`, то есть ЛЮБОЕ новое поле раунда
+ * автоматически уехало бы клиенту — а «сколько человек уже ответило верно»
+ * это подсказка, которой в игре быть не должно.
+ */
+export function tournamentTaskRankCounterDocId(roundNo: number, taskId: string): string {
+  return `${TASK_RANK_COUNTER_PREFIX}:${roundNo}:${taskId}`;
+}
+
+type TournamentTaskRankCounter = {
+  /** Сколько игроков уже получили место в этом задании (только верные ответы). */
+  correctCount: number;
+};
+
+function readTournamentTaskRankCounter(
+  data: FirebaseFirestore.DocumentData | undefined,
+): TournamentTaskRankCounter | undefined {
+  if (!data || data.kind !== TASK_RANK_COUNTER_KIND) return undefined;
+  return { correctCount: Math.max(0, readInt(data.correctCount, 0)) };
+}
+
 type TournamentTaskAnswerReceipt = {
   roundNo: number;
   taskId: string;
@@ -168,6 +202,17 @@ type TournamentTaskAnswerReceipt = {
   idempotencyKeyHash: string;
   answer: unknown;
   correct: boolean;
+  /**
+   * Место среди верно ответивших, зафиксированное в момент ПРИЁМА ответа.
+   *
+   * зачем 2026-08-01: без него реплей того же запроса пересчитывал бы место от
+   * текущего значения счётчика — то есть игрок, ответивший первым, при повторе
+   * запроса получил бы место позади всех, кто ответил после него, и его награда
+   * упала бы с 3⭐ до 1⭐. Место обязано быть свойством принятого ответа, а не
+   * состояния мира на момент повтора. Отсутствует у комнат, созданных до
+   * появления счётчика — там место по-прежнему считается по квитанциям.
+   */
+  answerRank?: number;
 };
 
 type TournamentTaskAnswerReceiptRef = {
@@ -191,6 +236,9 @@ function readTournamentTaskAnswerReceipt(
     || !Object.prototype.hasOwnProperty.call(data, 'answer')) {
     throw new HttpsError('failed-precondition', 'task_answer_receipt_invalid');
   }
+  // Место читаем только если оно осмысленно (>=1). Ноль/мусор трактуем как
+  // «поля нет» — тогда сработает прежний расчёт по квитанциям.
+  const storedRank = Math.trunc(Number(data.answerRank));
   return {
     roundNo: expected.roundNo,
     taskId: expected.taskId,
@@ -199,6 +247,7 @@ function readTournamentTaskAnswerReceipt(
     idempotencyKeyHash: data.idempotencyKeyHash,
     answer: data.answer,
     correct: data.correct,
+    ...(Number.isFinite(storedRank) && storedRank >= 1 ? { answerRank: storedRank } : {}),
   };
 }
 
@@ -2737,24 +2786,39 @@ export async function tournamentSubmitTaskAnswerTransaction(
     if (!round || !round.taskIds.includes(input.taskId)) {
       throw new HttpsError('failed-precondition', 'round_not_active');
     }
-    const realPlayerIds = room.players.filter((player) => !player.isBot).map((player) => player.id);
     const secretRefs = round.taskIds.map((taskId) => roomRef
       .collection(TOURNAMENT_TASK_SECRETS_SUBCOLLECTION).doc(taskId));
     const attemptRefs = round.taskIds.map((taskId) => roomRef
       .collection(TOURNAMENT_TASK_SECRETS_SUBCOLLECTION)
       .doc(speedMatchAttemptDocId(input.roundNo, taskId, input.stableUid)));
-    const receiptDescriptors = tournamentReceiptRefsForRound(roomRef, round, realPlayerIds);
+    // зачем 2026-08-01 (аудит стоимости): читаем квитанции ТОЛЬКО своего
+    // игрока — 4 документа вместо 64 (16 игроков × 4 задания) на каждый ответ.
+    //
+    // Чужие квитанции читались ради одного: пересортировать всех и понять, кому
+    // какое место в задании. Место теперь фиксируется счётчиком в момент приёма
+    // и лежит прямо в квитанции (answerRank), поэтому пересортировка не нужна.
+    // Заодно исчезает причина, по которой applyTournamentSubmission примирял
+    // чужие результаты: порядок финализации больше не может «отчеканить»
+    // звёзды, потому что место вообще не зависит от момента финализации.
+    const receiptDescriptors = tournamentReceiptRefsForRound(roomRef, round, [input.stableUid]);
+    // Счётчик мест по ЭТОМУ заданию. Читается в том же getAll, поэтому лишнего
+    // round-trip не добавляет.
+    const rankCounterRef = roomRef
+      .collection(TOURNAMENT_TASK_SECRETS_SUBCOLLECTION)
+      .doc(tournamentTaskRankCounterDocId(input.roundNo, input.taskId));
     const accessRefs = input.authUid ? [
       db.collection('auth_links').doc(input.authUid),
       db.collection('users').doc(input.stableUid),
       db.collection('banned_users').doc(input.stableUid),
     ] : [];
     const snapshots = await tx.getAll(
-      ...secretRefs, ...attemptRefs, ...receiptDescriptors.map((entry) => entry.ref), ...accessRefs,
+      ...secretRefs, ...attemptRefs, ...receiptDescriptors.map((entry) => entry.ref),
+      rankCounterRef, ...accessRefs,
     );
     const attemptOffset = secretRefs.length;
     const receiptOffset = attemptOffset + attemptRefs.length;
-    const accessOffset = receiptOffset + receiptDescriptors.length;
+    const rankCounterOffset = receiptOffset + receiptDescriptors.length;
+    const accessOffset = rankCounterOffset + 1;
     if (input.authUid) {
       assertTransactionalTournamentAccess(
         input.authUid, input.stableUid,
@@ -2824,6 +2888,33 @@ export async function tournamentSubmitTaskAnswerTransaction(
     ));
     const receiptByTask = new Map(timelyPlayerReceipts.map((receipt) => [receipt.taskId, receipt]));
     const hasCompleteReceiptSet = round.taskIds.every((taskId) => receiptByTask.has(taskId));
+    // Место в ЭТОМ задании — из счётчика, а не из сортировки чужих квитанций.
+    // Счётчик считает только верные ответы, ровно как candidatesByTask в
+    // прежнем canonicalTournamentReceiptRanks: неверный ответ места не занимает.
+    const storedRankCounter = readTournamentTaskRankCounter(
+      snapshots[rankCounterOffset].data(),
+    );
+    // Реплей обязан вернуть место, зафиксированное при ПЕРВОМ приёме. Иначе
+    // повтор того же запроса пересчитал бы место от текущего счётчика, и
+    // ответивший первым при повторе получил бы 1⭐ вместо 3⭐.
+    const counterRank = existing
+      ? existing.answerRank
+      : (correct ? (storedRankCounter?.correctCount ?? 0) + 1 : undefined);
+
+    // Места для финализации раунда — из СВОИХ квитанций, каждая из которых
+    // хранит место, зафиксированное при её приёме. Пересортировка всех игроков
+    // больше не нужна, поэтому и читать их квитанции незачем.
+    //
+    // Комнаты, созданные до появления счётчика, поля answerRank не имеют. Там
+    // ранг остаётся undefined, и tournament_core падает на прежний
+    // nextCorrectAnswerRank — старые турниры доигрываются по старым правилам.
+    const myAnswerRanks: Record<string, number> = {};
+    for (const receipt of allReceipts) {
+      if (receipt.playerId !== input.stableUid || !receipt.correct) continue;
+      const rank = receipt.taskId === input.taskId ? counterRank : receipt.answerRank;
+      if (rank !== undefined) myAnswerRanks[receipt.taskId] = rank;
+    }
+    const answerRanksByPlayer = { [input.stableUid]: myAnswerRanks };
 
     if (!existing) {
       tx.create(receiptDescriptors.find((entry) => (
@@ -2837,7 +2928,20 @@ export async function tournamentSubmitTaskAnswerTransaction(
         idempotencyKeyHash,
         answer,
         correct,
+        // Место фиксируется в момент приёма — финализация раунда потом читает
+        // его отсюда и не обязана пересортировывать всех заново.
+        ...(counterRank === undefined ? {} : { answerRank: counterRank }),
       });
+      if (correct) {
+        // Транзакция уже прочитала счётчик, поэтому конкурирующая запись
+        // приведёт к ретраю всей транзакции — два игрока не получат одно место.
+        tx.set(rankCounterRef, {
+          kind: TASK_RANK_COUNTER_KIND,
+          roundNo: input.roundNo,
+          taskId: input.taskId,
+          correctCount: (storedRankCounter?.correctCount ?? 0) + 1,
+        }, { merge: true });
+      }
     }
     if (hasCompleteReceiptSet) {
       const speedMatchProgress: Record<string, SpeedMatchAttemptProgress> = {};
@@ -2849,9 +2953,6 @@ export async function tournamentSubmitTaskAnswerTransaction(
         round.taskIds.map((taskId) => [taskId, receiptByTask.get(taskId)!.receivedAtMs]),
       );
       const finalizedAtMs = Math.max(...Object.values(taskReceivedAtMs));
-      const answerRanksByPlayer = canonicalTournamentReceiptRanks(
-        round, tasks as TournamentTask[], realPlayerIds, allReceipts, room.stateDeadlineAtMs,
-      );
       let applied;
       try {
         applied = applyTournamentSubmission(room, {
@@ -2891,10 +2992,12 @@ export async function tournamentSubmitTaskAnswerTransaction(
         }, { merge: true });
       }
     }
-    const answerRanksByPlayer = canonicalTournamentReceiptRanks(
-      round, tasks as TournamentTask[], realPlayerIds, allReceipts, room.stateDeadlineAtMs,
-    );
-    const answerRank = answerRanksByPlayer[input.stableUid]?.[input.taskId];
+    // Приоритет у счётчика: он фиксирует место в момент приёма ответа и не
+    // зависит от того, сколько чужих квитанций удалось прочитать. Реплей и
+    // комнаты, созданные до появления счётчика, падают на прежний расчёт по
+    // квитанциям — старые турниры обязаны доигрываться без изменения правил.
+    const answerRank = counterRank
+      ?? answerRanksByPlayer[input.stableUid]?.[input.taskId];
     const penaltyStars = task.mode === 'speed_match' ? progress?.wrongAttempts ?? 0 : 0;
     const timing = round.taskSchedule?.find((entry) => entry.taskId === input.taskId);
     const earnedStars = scoreAnswer({
@@ -3109,7 +3212,11 @@ export const tournamentSubmitSpeedMatchAttempt = onCall(HOT_CALLABLE_OPTIONS, as
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   const db = admin.firestore();
   const stableUid = await resolveStableUid(db, request.auth.uid);
-  await assertNotBanned(db, stableUid);
+  // зачем 2026-08-01 (аудит стоимости): тот же дубль, что в
+  // tournamentSubmitTaskAnswer — транзакция speed-match уже читает
+  // auth_links/users/banned_users своим tx.getAll и проверяет бан там же.
+  // Здесь путь ещё горячее: функция вызывается на КАЖДЫЙ тап по паре,
+  // до шести раз за одно задание.
   const roomId = sanitizeString(request.data?.roomId, 160);
   const taskId = sanitizeString(request.data?.taskId, 160);
   const roundNo = readInt(request.data?.roundNo, 0);
@@ -3135,7 +3242,13 @@ export const tournamentSubmitTaskAnswer = onCall(HOT_CALLABLE_OPTIONS, async (re
   }
   const db = admin.firestore();
   const stableUid = await resolveStableUid(db, request.auth.uid);
-  await assertNotBanned(db, stableUid);
+  // зачем 2026-08-01 (аудит стоимости): здесь стоял assertNotBanned, который
+  // читает users/{uid} и banned_users/{uid} ВНЕ транзакции. Ровно те же два
+  // документа транзакция читает у себя внутри (accessRefs →
+  // assertTransactionalTournamentAccess), и тамошняя проверка бана дословно та
+  // же, но строже: она видит состояние на момент коммита, а не до него.
+  // Предварительное чтение было чистым дублем — два лишних чтения на КАЖДЫЙ
+  // ответ каждого игрока. Это самый горячий путь всей игры.
   return tournamentSubmitTaskAnswerTransaction(db, {
     authUid: request.auth.uid,
     stableUid,

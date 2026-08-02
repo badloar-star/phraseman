@@ -10,7 +10,6 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { BackHandler, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { FlowText } from '../components/text-integrity/FlowText';
-import { FlowText } from '../components/text-integrity/FlowText';
 import Animated, {
   FadeIn,
   ZoomIn,

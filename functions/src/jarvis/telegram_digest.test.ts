@@ -56,6 +56,21 @@ describe('Jarvis telegram digest — short, honest, safe to render as HTML', () 
     expect(text).not.toContain('abc123');
   });
 
+  test('P0 findings sort ahead of lower severities, even if reported later', () => {
+    // зачем: при обрезке до пяти находок важное не должно потеряться из-за
+    // порядка, в котором департаменты просто вернули решения.
+    const list = [
+      decision({ department: 'retention', finding: 'Отток снижается' } as Partial<Decision>),
+      decision({ department: 'content', finding: 'Обрыв на уроке 5' } as Partial<Decision>),
+      decision({ department: 'payments', finding: 'Заплатил, доступа нет' } as Partial<Decision>),
+    ];
+    const text = buildTelegramDigest({ decisions: list, appTier: 'growth', departmentErrors: [] });
+    const paymentsPos = text.indexOf('Заплатил');
+    const retentionPos = text.indexOf('Отток');
+    expect(paymentsPos).toBeGreaterThanOrEqual(0);
+    expect(paymentsPos).toBeLessThan(retentionPos);
+  });
+
   test('stays well under the Telegram message limit', () => {
     const many = Array.from({ length: 50 }, (_, i) =>
       decision({ finding: `Очень длинная находка номер ${i} `.repeat(20) } as Partial<Decision>));

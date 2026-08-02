@@ -1,5 +1,6 @@
 import type { AppTier } from './app_tier';
 import type { Decision, Department } from './decision';
+import { dedupeDecisions } from './severity';
 
 /**
  * Один вызов, все департаменты, один тир на всех.
@@ -62,10 +63,16 @@ export async function buildAllDepartmentsSnapshot(input: BuildAllDepartmentsSnap
     }
   }));
 
+  // зачем dedupe здесь: один и тот же факт иногда возвращается дважды —
+  // например источник посчитан и в "по кнопке", и повторным суточным
+  // прогоном в рамках одного вызова. Склейка не должна прятать РАЗНЫЕ
+  // находки одного департамента — только буквальные повторы текста.
+  const decisions = dedupeDecisions(results.flatMap((r) => r.decisions));
+
   return Object.freeze({
     generatedAtMs: input.nowMs,
     appTier,
-    decisions: Object.freeze(results.flatMap((r) => r.decisions)),
+    decisions: Object.freeze(decisions),
     departmentErrors: Object.freeze(results.filter((r) => r.failed).map((r) => r.department)),
   });
 }

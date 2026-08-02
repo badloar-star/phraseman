@@ -1,5 +1,6 @@
 import type { AppTier } from './app_tier';
 import type { Decision, Department } from './decision';
+import { classifySeverity, SEVERITY_ORDER } from './severity';
 
 /**
  * Сборка сводки Джарвиса для Telegram.
@@ -78,8 +79,13 @@ export function buildTelegramDigest(input: BuildTelegramDigestInput): string {
     return lines.join('\n');
   }
 
-  const shown = input.decisions.slice(0, JARVIS_MAX_DECISIONS_IN_DIGEST);
-  const hidden = input.decisions.length - shown.length;
+  // зачем сортировать перед обрезкой: при пяти показанных находках важная
+  // P0 не должна потеряться из-за того, что департамент её вернул позже.
+  const sorted = [...input.decisions].sort(
+    (a, b) => SEVERITY_ORDER.indexOf(classifySeverity(a)) - SEVERITY_ORDER.indexOf(classifySeverity(b)),
+  );
+  const shown = sorted.slice(0, JARVIS_MAX_DECISIONS_IN_DIGEST);
+  const hidden = sorted.length - shown.length;
 
   for (const decision of shown) {
     const label = DEPARTMENT_LABEL[decision.department] ?? decision.department;

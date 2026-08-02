@@ -8,6 +8,7 @@ import Animated, {
   Easing,
   FadeInDown,
   ReduceMotion,
+  SlideInDown,
   useAnimatedStyle,
   useReducedMotion,
   useSharedValue,
@@ -90,9 +91,9 @@ export default function LearningV2LessonMap() {
       {model.zones.map(zone => <View key={zone.id}><Text style={styles.zone}>{zone.title}</Text>{zone.nodes.map(node => <Node key={node.id} node={node} onPress={selectNode} />)}</View>)}
       <View style={styles.checkpoint}><Ionicons name="flag" size={28} color="#F5C84C" /><View><Text style={styles.checkpointTitle}>Контрольная точка</Text><Text style={styles.checkpointText}>Откроется после двенадцатой сессии</Text></View></View>
     </ScrollView>
-    {selected && <View accessibilityViewIsModal style={[styles.sheet, { paddingBottom: insets.bottom + 18 }]}><View style={styles.grabber} />
+    {selected && <Animated.View entering={reducedMotion ? SlideInDown.duration(1) : SlideInDown.duration(320).easing(Easing.bezier(.38, .70, .125, 1))} accessibilityViewIsModal style={[styles.sheet, { paddingBottom: insets.bottom + 18 }]}><View style={styles.grabber} />
       {selected === 'dictionary' ? <><Text style={styles.sheetTitle}>Словарь урока</Text><Text style={styles.sheetText}>{payload.vocabulary.slice(0, 8).map(word => word.surface).join(' · ')}</Text></> : selected === 'theory' ? <><Text style={styles.sheetTitle}>Теория урока</Text><Text style={styles.sheetText}>Короткое объяснение и примеры урока сохранены из существующего Lesson 1.</Text></> : <><Text style={styles.sheetTitle}>Сессия {selected.order}</Text><Text style={styles.sheetText}>{selected.state === 'locked' || selected.state === 'next' ? 'Сначала спокойно заверши предыдущую сессию.' : selected.state === 'completed' ? 'Сессия пройдена. Можно улучшить результат.' : '12 заданий · около 6 минут'}</Text></>}
-      <Pressable accessibilityRole="button" onPress={() => setSelected(null)} style={styles.sheetCta}><Text style={styles.sheetCtaText}>{typeof selected === 'object' && selected.state === 'current' ? 'Начать' : 'Понятно'}</Text></Pressable></View>}
+      <Pressable accessibilityRole="button" onPress={() => setSelected(null)} style={styles.sheetCta}><Text style={styles.sheetCtaText}>{typeof selected === 'object' && selected.state === 'current' ? 'Начать' : 'Понятно'}</Text></Pressable></Animated.View>}
   </View>;
 }
 

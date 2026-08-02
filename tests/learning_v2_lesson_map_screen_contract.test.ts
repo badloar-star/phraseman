@@ -21,6 +21,7 @@ describe('Learning V2 Lesson 1 map screen contract', () => {
     expect(source).toContain('AppState.addEventListener');
     expect(source).toContain('FadeInDown.delay((node.order - 1) * 40).duration(320)');
     expect(source).toContain('Easing.bezier(.38, .70, .125, 1)');
+    expect(source).toContain('SlideInDown.duration(320)');
     expect(source).toContain('Открыть словарь урока');
     expect(source).toContain('Открыть теорию урока');
   });

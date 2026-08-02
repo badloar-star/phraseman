@@ -95,6 +95,7 @@ import { logFeatureOpened } from '../firebase';
 import { trackFeatureOpened } from '../user_stats';
 import { perfMark, perfScreenMount, perfNavStart } from '../perf-monitor';
 import { emitAppEvent, onAppEvent } from '../events';
+import { soundDirector } from '../../modules/audio/sound_director';
 import { ensureAnonUser } from '../cloud_sync';
 import { FOREGROUND_CLOUD_REFRESH_DELAY_MS, FOREGROUND_LIGHT_REFRESH_DELAY_MS, getForegroundRefreshKind } from '../app_resume_policy';
 import { fetchActiveLeagueCrowns, fetchLeagueBonusProgressSnapshot, getLeagueChestGoal } from '../services/league_chest_rewards';
@@ -1196,6 +1197,10 @@ export default function HomeScreen() {
         };
         const freezeUpdatedSub = onAppEvent('streak_freeze_updated', refreshWeekMarkers);
         const revivedSub = onAppEvent('streak_revived', () => {
+            soundDirector.request('pm.streak.saved', {
+                scope: 'streak-revive',
+                dedupeKey: 'restored',
+            });
             refreshWeekMarkers();
             requestHomeDataRefresh();
         });
@@ -3019,10 +3024,12 @@ export default function HomeScreen() {
           {/* ПРОДОЛЖИТЬ УРОК + ЗАМОРОЗКА (карточка урока — только после первого захода в любой урок / last_opened_lesson) */}
           {(<Animated.View style={sectionStyle(2)}>
 
+          {/* зачем: флаг HOME_STATUS_DENSE_PROGRESS_EXPERIMENT удалён (dense — единственный
+              режим), а он всегда был true; дефолт compactMargin у карточки тоже true,
+              поэтому проп просто не передаём. */}
           {personalPlanSnapshot ? (
             <PersonalPlanHomeRouteCard
               snapshot={personalPlanSnapshot}
-              compactMargin={HOME_STATUS_DENSE_PROGRESS_EXPERIMENT}
               onPress={openPersonalPlan}
             />
           ) : hasActivePersonalPlanState ? (
@@ -3035,17 +3042,7 @@ export default function HomeScreen() {
               <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900' }}>Личный план</Text>
               <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 4 }}>Открыть задания на сегодня</Text>
             </TouchableOpacity>
-          ) : hasPremiumAccess || lastLesson == null ? (
-            <TouchableOpacity
-              testID="home-choose-personal-plan"
-              activeOpacity={0.88}
-              onPress={() => { hapticTap(); router.push('/personal_plan_setup' as any); }}
-              style={{ marginHorizontal: 16, marginBottom: 12, borderRadius: 20, padding: 18, backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.border }}
-            >
-              <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900' }}>Выбрать свой план обучения</Text>
-              <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 4 }}>3 вопроса — и план готов</Text>
-            </TouchableOpacity>
-          ) : (
+          ) : lastLesson == null ? null : (
             <TouchableOpacity
               testID="home-continue-lesson"
               activeOpacity={0.88}

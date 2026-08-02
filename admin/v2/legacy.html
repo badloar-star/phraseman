@@ -10398,6 +10398,18 @@
       <button type="button" class="cp-btn" onclick="loadJarvisApprovalAudit()" style="background:#1f2937;border:1px solid #374151;color:#a1a1aa;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px">📜 История подтверждений</button>
     </div>
 
+    <!-- зачем видны всегда, а не только когда решений много: переключение
+         фильтра ничего не стоит (данные уже на экране), а владелец должен
+         увидеть их сразу, не искать глазами среди прочих кнопок. -->
+    <div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:11px">
+      <span style="color:#6b7280">Показать:</span>
+      <button type="button" class="jf-severity-filter-btn" data-severity="" onclick="jfRenderFilteredDecisions(null)" style="background:none;border:none;color:#e2e8f0;cursor:pointer;padding:3px 6px">Все</button>
+      <button type="button" class="jf-severity-filter-btn" data-severity="P0" onclick="jfRenderFilteredDecisions('P0')" style="background:none;border:none;color:#f87171;cursor:pointer;padding:3px 6px">P0</button>
+      <button type="button" class="jf-severity-filter-btn" data-severity="P1" onclick="jfRenderFilteredDecisions('P1')" style="background:none;border:none;color:#fbbf24;cursor:pointer;padding:3px 6px">P1</button>
+      <button type="button" class="jf-severity-filter-btn" data-severity="P2" onclick="jfRenderFilteredDecisions('P2')" style="background:none;border:none;color:#60a5fa;cursor:pointer;padding:3px 6px">P2</button>
+      <button type="button" class="jf-severity-filter-btn" data-severity="P3" onclick="jfRenderFilteredDecisions('P3')" style="background:none;border:none;color:#94a3b8;cursor:pointer;padding:3px 6px">P3</button>
+    </div>
+
     <div id="jarvis-decisions" style="margin-top:14px;display:flex;flex-direction:column;gap:10px"></div>
     <div id="jarvis-audit-log" style="margin-top:10px;display:none;flex-direction:column;gap:6px"></div>
   </div>
@@ -26933,6 +26945,11 @@
   };
   const JF_STATE_LABEL = { working: 'работает…', success: 'готово', error: 'ошибка' };
   let _jfTileSeq = 0;
+  // зачем хранить последний свод отдельно: фильтр по severity перерисовывает
+  // карточки БЕЗ нового запроса к серверу — данные уже есть, дёргать сеть
+  // ради переключения фильтра было бы лишним чтением на каждый клик.
+  let _jfLastDecisions = [];
+  let _jfSeverityFilter = null;
 
   function jfPrefersReducedMotion() {
     return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -27034,6 +27051,33 @@
     return box;
   }
 
+  /**
+   * Фильтр по severity (бриф в176). Перерисовывает уже полученные решения
+   * БЕЗ нового запроса к серверу — переключение фильтра не должно стоить
+   * лишнего чтения Firestore.
+   */
+  window.jfRenderFilteredDecisions = function(nextFilter) {
+    if (nextFilter !== undefined) _jfSeverityFilter = nextFilter;
+    const container = document.getElementById('jarvis-decisions');
+    if (!container) return;
+    container.innerHTML = '';
+    const shown = _jfSeverityFilter
+      ? _jfLastDecisions.filter((d) => d.severity === _jfSeverityFilter)
+      : _jfLastDecisions;
+    shown.forEach((decision) => {
+      const meta = JF_DEPARTMENT_META[decision.department] || { title: decision.department, accentRgb: '148,163,184' };
+      container.appendChild(jfRenderDecisionCard(decision, meta.accentRgb));
+    });
+    if (_jfSeverityFilter && shown.length === 0 && _jfLastDecisions.length > 0) {
+      container.innerHTML = '<div style="color:#6b7280;font-size:12px;padding:6px 2px">Нет находок уровня ' + escapeHtml(_jfSeverityFilter) + ' — остальные скрыты фильтром.</div>';
+    }
+    document.querySelectorAll('.jf-severity-filter-btn').forEach((btn) => {
+      const isActive = (btn.dataset.severity || null) === _jfSeverityFilter;
+      btn.style.opacity = isActive ? '1' : '.55';
+      btn.style.fontWeight = isActive ? '800' : '600';
+    });
+  };
+
   const JF_DEPARTMENT_META = {
     quality: { title: 'Качество', accentRgb: '125,211,252' },
     money: { title: 'Деньги', accentRgb: '251,191,36' },
@@ -27112,10 +27156,8 @@
         );
         return;
       }
-      data.decisions.forEach((decision) => {
-        const meta = JF_DEPARTMENT_META[decision.department] || { title: decision.department, accentRgb: '148,163,184' };
-        container.appendChild(jfRenderDecisionCard(decision, meta.accentRgb));
-      });
+      _jfLastDecisions = data.decisions;
+      jfRenderFilteredDecisions();
       const hasInsufficient = data.decisions.some((d) => d.status === 'insufficient_evidence');
       jfSetStatusChip('jarvis-status', hasDepartmentErrors || hasInsufficient ? 'error' : 'info',
         (hasDepartmentErrors ? 'Часть департаментов недоступна. ' : '') +

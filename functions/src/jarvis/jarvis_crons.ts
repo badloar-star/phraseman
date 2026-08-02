@@ -4,6 +4,10 @@ import { logger } from 'firebase-functions';
 import { ADMIN_ALERT_BOT_TOKEN, sendTelegramAlert } from '../admin_alerts';
 import { buildTelegramDigest } from './telegram_digest';
 import { JARVIS_APPROVAL_COLLECTION } from './approval_store';
+import { parseOwnerConfig } from './approval_webhook_core';
+import { JARVIS_TELEGRAM_CONFIG } from './approval_webhook';
+import { issueDecisionButtons } from './issue_decision_buttons';
+import { sendJarvisDigest } from './telegram_send';
 import { fetchActiveUserCount } from './app_tier_reader';
 import { resolveAppTier } from './app_tier_resolver';
 import { buildAllDepartmentsSnapshot } from './all_departments_snapshot';
@@ -50,7 +54,9 @@ const DEPARTMENTS_SCHEDULE_OPTIONS = {
   memory: '256MiB' as const,
   // зачем секрет здесь: утреннюю сводку крон отправляет владельцу тем же
   // ботом, что и остальные алерты — своей инфраструктуры Джарвис не заводит.
-  secrets: [ADMIN_ALERT_BOT_TOKEN],
+  // зачем второй секрет: без него не собрать кнопки — там Telegram id
+  // владельца, к которому привязывается каждый токен подтверждения.
+  secrets: [ADMIN_ALERT_BOT_TOKEN, JARVIS_TELEGRAM_CONFIG],
 };
 
 /**
@@ -221,8 +227,22 @@ export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTION
       appTier: snapshot.appTier,
       departmentErrors: snapshot.departmentErrors,
     });
-    // sendTelegramAlert не бросает и сам уважает выключатель в admin_config/alerts.
-    telegramSent = await sendTelegramAlert(ADMIN_ALERT_BOT_TOKEN.value(), text);
+    // зачем два пути: кнопки требуют секрета с Telegram id владельца. Пока он
+    // не задан, сводка обязана приходить всё равно — просто без кнопок.
+    const ownerConfig = parseOwnerConfig(JARVIS_TELEGRAM_CONFIG.value());
+    const keyboard = ownerConfig ? await issueDecisionButtons({
+      db, decisions: snapshot.decisions, config: ownerConfig, nowMs,
+    }) : null;
+
+    telegramSent = keyboard && ownerConfig
+      ? await sendJarvisDigest({
+        botToken: ADMIN_ALERT_BOT_TOKEN.value(),
+        chatId: ownerConfig.ownerTelegramChatId,
+        text,
+        keyboard,
+      })
+      // sendTelegramAlert не бросает и сам уважает выключатель в admin_config/alerts.
+      : await sendTelegramAlert(ADMIN_ALERT_BOT_TOKEN.value(), text);
   }
 
   logger.info('jarvis_daily_departments', {

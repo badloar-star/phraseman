@@ -2421,6 +2421,7 @@ const TOURNAMENT_EXPOSURE_TAGS = [
   'pool:tpool_20260801_v5',
   'pool:tpool_20260801_v6',
   'pool:tpool_20260801_v7',
+  'pool:tpool_20260801_v8',
 ] as const;
 
 type TournamentRoomDeckPosition = {

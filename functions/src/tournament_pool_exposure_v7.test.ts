@@ -5,7 +5,7 @@ import {
   type TournamentPoolBarrierToken,
 } from './tournaments';
 
-const V7_COUNTS = Object.freeze({
+const BUCKETED_COUNTS = Object.freeze({
   guess_phrase: 30,
   fill_gap: 13,
   find_oddity: 10,
@@ -13,17 +13,17 @@ const V7_COUNTS = Object.freeze({
   speed_match: 10,
 });
 
-function v7Token(): TournamentPoolBarrierToken {
+function bucketedToken(generation = 'tpool_20260801_v8'): TournamentPoolBarrierToken {
   return {
-    generation: 'tpool_20260801_v7',
-    revision: 7,
-    exposureBucketCounts: V7_COUNTS,
+    generation,
+    revision: 8,
+    exposureBucketCounts: BUCKETED_COUNTS,
     exposureLayoutHash: 'a'.repeat(64),
   };
 }
 
-describe('tournament pool v7 bounded exposure', () => {
-  test('keeps v6 compatible and requires the exact v7 bucket layout', () => {
+describe('tournament pool bounded exposure', () => {
+  test('keeps v6 compatible and requires the exact v7/v8 bucket layout', () => {
     expect(parseReadyTournamentPoolToken({
       kind: 'tournament_task_pool_barrier_v1',
       state: 'ready',
@@ -34,20 +34,26 @@ describe('tournament pool v7 bounded exposure', () => {
     expect(parseReadyTournamentPoolToken({
       kind: 'tournament_task_pool_barrier_v1',
       state: 'ready',
-      ...v7Token(),
-    })).toEqual(v7Token());
+      ...bucketedToken(),
+    })).toEqual(bucketedToken());
+
+    expect(parseReadyTournamentPoolToken({
+      kind: 'tournament_task_pool_barrier_v1',
+      state: 'ready',
+      ...bucketedToken('tpool_20260801_v7'),
+    })).toEqual(bucketedToken('tpool_20260801_v7'));
 
     for (const exposureBucketCounts of [
       undefined,
-      { ...V7_COUNTS, fill_gap: 0 },
-      { ...V7_COUNTS, speed_match: 11 },
+      { ...BUCKETED_COUNTS, fill_gap: 0 },
+      { ...BUCKETED_COUNTS, speed_match: 11 },
       { guess_phrase: 30 },
     ]) {
       expect(() => parseReadyTournamentPoolToken({
         kind: 'tournament_task_pool_barrier_v1',
         state: 'ready',
-        generation: 'tpool_20260801_v7',
-        revision: 7,
+        generation: 'tpool_20260801_v8',
+        revision: 8,
         exposureBucketCounts,
         exposureLayoutHash: 'a'.repeat(64),
       })).toThrow('tournament_pool_barrier_invalid');
@@ -55,12 +61,12 @@ describe('tournament pool v7 bounded exposure', () => {
   });
 
   test('chooses one deterministic generation-scoped bucket per mode', () => {
-    const token = v7Token();
+    const token = bucketedToken();
     const epochDay = Math.floor(Date.parse('2026-08-01T00:00:00.000Z') / 86_400_000);
     expect(tournamentExposureBucketId(token, 'fill_gap', epochDay + 98))
-      .toBe('tpool_20260801_v7:fill_gap:007');
+      .toBe('tpool_20260801_v8:fill_gap:007');
     expect(tournamentExposureBucketId(token, 'translate_build', epochDay + 722))
-      .toBe('tpool_20260801_v7:translate_build:000');
+      .toBe('tpool_20260801_v8:translate_build:000');
     expect(() => tournamentExposureBucketId(
       { generation: 'tpool_20260731_v6', revision: 6 },
       'fill_gap',
@@ -68,8 +74,8 @@ describe('tournament pool v7 bounded exposure', () => {
     )).toThrow('tournament_pool_exposure_layout_required');
   });
 
-  test('v7 performs five bounded bucket reads and validates generation/bucket parity', async () => {
-    const token = v7Token();
+  test('v8 performs five bounded bucket reads and validates generation/bucket parity', async () => {
+    const token = bucketedToken();
     const calls: string[] = [];
     const tasks = await loadTournamentTaskSlicesForToken({
       token,
@@ -121,7 +127,7 @@ describe('tournament pool v7 bounded exposure', () => {
         expect(limit).toBe(40);
         return [{ taskId: `${mode}-legacy`, mode }];
       },
-      readExposureBucket: async () => { throw new Error('v7 read forbidden'); },
+      readExposureBucket: async () => { throw new Error('bucketed read forbidden'); },
     });
     expect(legacyReads).toBe(5);
     expect(tasks).toHaveLength(5);

@@ -28,35 +28,54 @@ describe('tournament pool migration scripts', () => {
   const apply = loadScript('apply-tournament-pool-v2.cjs');
   const rollback = loadScript('rollback-tournament-pool-v2.cjs');
 
-  test('pins both directions to the v7 pool and defaults to preflight-only', () => {
-    expect(apply.EXPECTED_VERSION).toBe('tpool_20260801_v7');
-    expect(apply.EXPECTED_SOURCE_VERSION).toBe('tpool_20260801_v6');
+  test('pins both directions to the v8 pool and defaults to preflight-only', () => {
+    expect(apply.EXPECTED_VERSION).toBe('tpool_20260801_v8');
+    expect(apply.EXPECTED_SOURCE_VERSION).toBe('tpool_20260801_v7');
     expect(apply.EXPECTED_NEW_COUNT).toBe(4000);
-    expect(rollback.EXPECTED_VERSION).toBe('tpool_20260801_v7');
+    expect(rollback.EXPECTED_VERSION).toBe('tpool_20260801_v8');
     expect(apply.resolveApplyIntent([], {})).toBe(false);
-    expect(apply.resolveApplyIntent([], { PHRASEMAN_TOURNAMENT_POOL_V7_APPLY: '1' })).toBe(false);
+    expect(apply.resolveApplyIntent([], { PHRASEMAN_TOURNAMENT_POOL_V8_APPLY: '1' })).toBe(false);
     expect(() => apply.resolveApplyIntent(['--apply'], {})).toThrow('apply_guard_missing');
-    expect(apply.resolveApplyIntent(['--apply'], { PHRASEMAN_TOURNAMENT_POOL_V7_APPLY: '1' })).toBe(true);
+    expect(apply.resolveApplyIntent(['--apply'], { PHRASEMAN_TOURNAMENT_POOL_V8_APPLY: '1' })).toBe(true);
     expect(rollback.resolveRollbackIntent([], {})).toBe(false);
     expect(() => rollback.resolveRollbackIntent(['--apply'], {})).toThrow('rollback_guard_missing');
-    expect(rollback.resolveRollbackIntent(['--apply'], { PHRASEMAN_TOURNAMENT_POOL_V7_ROLLBACK: '1' })).toBe(true);
+    expect(rollback.resolveRollbackIntent(['--apply'], { PHRASEMAN_TOURNAMENT_POOL_V8_ROLLBACK: '1' })).toBe(true);
   });
 
-  test('pins the source barrier to a uniform v6 backup and fails closed on drift', () => {
+  test('pins the source barrier to a uniform v7 backup and fails closed on drift', () => {
     const row = (poolVersion?: string) => ({
       id: `old-${poolVersion ?? 'missing'}`,
       data: { taskId: 'old-task', ...(poolVersion ? { poolVersion } : {}) },
     });
 
     expect(apply.resolveSourceGeneration([
-      row('tpool_20260801_v6'),
-      { ...row('tpool_20260801_v6'), id: 'old-v6-second' },
-    ])).toBe('tpool_20260801_v6');
+      row('tpool_20260801_v7'),
+      { ...row('tpool_20260801_v7'), id: 'old-v7-second' },
+    ])).toBe('tpool_20260801_v7');
     expect(() => apply.resolveSourceGeneration([
-      row('tpool_20260801_v6'), row('tpool_20260801_v7'),
+      row('tpool_20260801_v7'), row('tpool_20260801_v8'),
     ])).toThrow('backup_source_generation_mismatch');
     expect(() => apply.resolveSourceGeneration([row()]))
       .toThrow('backup_source_generation_mismatch');
+  });
+
+  test('pins the ready source barrier revision and exposure layout from the frozen manifest', () => {
+    const frozen = {
+      kind: apply.POOL_BARRIER_KIND,
+      state: 'ready',
+      generation: apply.EXPECTED_SOURCE_VERSION,
+      revision: 8,
+      exposureBucketCounts: {
+        guess_phrase: 30, fill_gap: 13, find_oddity: 10, translate_build: 38, speed_match: 10,
+      },
+      exposureLayoutHash: 'a'.repeat(64),
+    };
+    expect(() => apply.assertPinnedSourceBarrier({ ...frozen }, frozen)).not.toThrow();
+    expect(() => apply.assertPinnedSourceBarrier({ ...frozen, revision: 9 }, frozen))
+      .toThrow('source_pool_barrier_drift');
+    expect(() => apply.assertPinnedSourceBarrier({
+      ...frozen, exposureLayoutHash: 'b'.repeat(64),
+    }, frozen)).toThrow('source_pool_barrier_drift');
   });
 
   test('plans Firestore-safe chunks for all 4000 documents', () => {
@@ -67,16 +86,16 @@ describe('tournament pool migration scripts', () => {
       .toEqual([...Array.from({ length: 13 }, () => 300), 100]);
   });
 
-  test('emits v7 migration report contracts without stale v6 guards', () => {
+  test('emits v8 migration report contracts without stale v7 guards', () => {
     const applySource = fs.readFileSync(path.resolve(__dirname, '..', 'scripts', 'apply-tournament-pool-v2.cjs'), 'utf8');
     const rollbackSource = fs.readFileSync(path.resolve(__dirname, '..', 'scripts', 'rollback-tournament-pool-v2.cjs'), 'utf8');
 
-    expect(applySource).toContain("kind: 'tournament_pool_v7_preflight_v1'");
-    expect(applySource).toContain("kind: 'tournament_pool_v7_apply_report_v1'");
-    expect(rollbackSource).toContain("kind: 'tournament_pool_v7_rollback_preflight_v1'");
-    expect(rollbackSource).toContain("kind: 'tournament_pool_v7_rollback_report_v1'");
-    expect(applySource).not.toContain('PHRASEMAN_TOURNAMENT_POOL_V6_APPLY');
-    expect(rollbackSource).not.toContain('PHRASEMAN_TOURNAMENT_POOL_V6_ROLLBACK');
+    expect(applySource).toContain("kind: 'tournament_pool_v8_preflight_v1'");
+    expect(applySource).toContain("kind: 'tournament_pool_v8_apply_report_v1'");
+    expect(rollbackSource).toContain("kind: 'tournament_pool_v8_rollback_preflight_v1'");
+    expect(rollbackSource).toContain("kind: 'tournament_pool_v8_rollback_report_v1'");
+    expect(applySource).not.toContain('PHRASEMAN_TOURNAMENT_POOL_V7_APPLY');
+    expect(rollbackSource).not.toContain('PHRASEMAN_TOURNAMENT_POOL_V7_ROLLBACK');
   });
 
   test('requires translate_build correctTokenCount parity and exactly one trap', () => {
@@ -85,7 +104,7 @@ describe('tournament pool migration scripts', () => {
       data: {
         taskId: 'task-1',
         mode: 'translate_build',
-        poolVersion: 'tpool_20260801_v7',
+        poolVersion: 'tpool_20260801_v8',
         payload: { correctTokens, correctTokenCount, wordBank },
       },
     });
@@ -276,7 +295,7 @@ describe('tournament pool migration scripts', () => {
       kind: 'tournament_pool_v2_replacement_dry_run_v1',
       projectId: 'phraseman-ea0b3',
       generated: {
-        poolVersion: 'tpool_20260801_v7',
+        poolVersion: 'tpool_20260801_v8',
         taskCount: 4000,
         exposure: {
           bucketMaxTasks: 40,
@@ -369,6 +388,50 @@ describe('tournament pool migration scripts', () => {
     });
     expect(barrier).not.toHaveProperty('migrationId');
     expect(barrier).not.toHaveProperty('targetGeneration');
+  });
+
+  test('restores the pinned v7 exposure layout when rollback releases the barrier', async () => {
+    let barrier = {
+      kind: apply.POOL_BARRIER_KIND,
+      state: 'migrating',
+      generation: apply.EXPECTED_VERSION,
+      targetGeneration: apply.EXPECTED_SOURCE_VERSION,
+      migrationId: 'rollback:manifest-sha',
+      revision: 9,
+    };
+    const ref = { path: `${apply.POOL_BARRIER_COLLECTION}/${apply.POOL_BARRIER_DOC}` };
+    const db = {
+      collection: jest.fn(() => ({ doc: jest.fn(() => ref) })),
+      runTransaction: jest.fn(async (callback: (tx: any) => Promise<any>) => callback({
+        get: jest.fn(async () => ({ exists: true, data: () => ({ ...barrier }) })),
+        set: jest.fn((_ref, data) => { barrier = { ...data }; }),
+      })),
+    };
+    const sourceReadyBarrier = {
+      kind: apply.POOL_BARRIER_KIND,
+      state: 'ready',
+      generation: apply.EXPECTED_SOURCE_VERSION,
+      revision: 8,
+      exposureBucketCounts: {
+        guess_phrase: 30, fill_gap: 13, find_oddity: 10, translate_build: 38, speed_match: 10,
+      },
+      exposureLayoutHash: 'b'.repeat(64),
+    };
+
+    await apply.releasePoolMigrationBarrier(db, {
+      expectedGeneration: apply.EXPECTED_VERSION,
+      targetGeneration: apply.EXPECTED_SOURCE_VERSION,
+      migrationId: 'rollback:manifest-sha',
+      sourceReadyBarrier,
+    });
+
+    expect(barrier).toMatchObject({
+      state: 'ready',
+      generation: apply.EXPECTED_SOURCE_VERSION,
+      revision: 10,
+      exposureBucketCounts: sourceReadyBarrier.exposureBucketCounts,
+      exposureLayoutHash: sourceReadyBarrier.exposureLayoutHash,
+    });
   });
 
   test('resumes the pinned apply owner from an exact staged old-plus-new pool', () => {

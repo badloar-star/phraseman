@@ -23,6 +23,9 @@ import {
 } from './tournaments';
 
 const TOURNAMENT_TASKS_COLLECTION = 'tournamentTasks';
+const TOURNAMENT_POOL_BARRIER_COLLECTION = 'tournamentPrivateState';
+const TOURNAMENT_POOL_BARRIER_DOC = 'task_pool_generation_v1';
+const TOURNAMENT_POOL_BARRIER_KIND = 'tournament_task_pool_barrier_v1';
 const PREFLIGHT_ROOM_SEEDS = 150;
 
 type EncodedFirestoreValue = unknown;
@@ -108,8 +111,18 @@ function payloadShape(task: NewTournamentTask): Record<string, unknown> {
   return shape;
 }
 
+function semanticNormalize(value: unknown): string {
+  return String(value ?? '')
+    .normalize('NFKC')
+    .replace(/[’‘`]/gu, "'")
+    .replace(/[^\p{L}\p{N}']+/gu, ' ')
+    .replace(/\s+/gu, ' ')
+    .trim()
+    .toLocaleLowerCase('ru');
+}
+
 function normalizedSemanticSignature(task: NewTournamentTask): string {
-  const normalized = (value: unknown): string => String(value ?? '').trim().toLocaleLowerCase('ru');
+  const normalized = semanticNormalize;
   if (task.mode === 'speed_match') {
     const rightOptions = task.payload.rightOptions as string[];
     const pairs = (task.payload.items as Array<Record<string, unknown>>).map((item) => (
@@ -210,8 +223,7 @@ async function main(): Promise<void> {
   const speedPairs = generated.tasks.filter((task) => task.mode === 'speed_match').flatMap((task) => {
     const rightOptions = task.payload.rightOptions as string[];
     return (task.payload.items as Array<Record<string, unknown>>).map((item) => (
-      `${String(item.prompt).trim().toLocaleLowerCase('en')}\u0000${String(rightOptions[Number(item.correctIndex)])
-        .trim().toLocaleLowerCase('ru')}`
+      `${semanticNormalize(item.prompt)}\u0000${semanticNormalize(rightOptions[Number(item.correctIndex)])}`
     ));
   });
   const exposureAudit = auditExposure(generated.tasks, generated.manifest.exposure.modeBucketCounts);
@@ -227,7 +239,17 @@ async function main(): Promise<void> {
 
   await initializeAdmin(serviceAccountPath);
   const db = admin.firestore();
-  const snapshot = await db.collection(TOURNAMENT_TASKS_COLLECTION).get();
+  const [snapshot, barrierSnapshot] = await Promise.all([
+    db.collection(TOURNAMENT_TASKS_COLLECTION).get(),
+    db.collection(TOURNAMENT_POOL_BARRIER_COLLECTION).doc(TOURNAMENT_POOL_BARRIER_DOC).get(),
+  ]);
+  const sourcePoolBarrier = barrierSnapshot.exists
+    ? encodeFirestoreValue(barrierSnapshot.data()) as Record<string, unknown>
+    : undefined;
+  if (!sourcePoolBarrier || sourcePoolBarrier.kind !== TOURNAMENT_POOL_BARRIER_KIND
+    || sourcePoolBarrier.state !== 'ready') {
+    throw new Error('source_pool_barrier_not_ready');
+  }
   const existing = snapshot.docs
     .map((doc) => ({
       id: doc.id,
@@ -272,6 +294,7 @@ async function main(): Promise<void> {
       existingDocuments: existing.length,
       existingCounts,
       newIdCollisions: collisions.length,
+      poolBarrier: sourcePoolBarrier,
     },
     exactProposedMutations: {
       stageNewCreates: generated.tasks.length,
@@ -302,7 +325,7 @@ async function main(): Promise<void> {
       'create only the 4000 new versioned documents in Firestore-safe chunks',
       'read back all 4000 documents and rerun strict validator plus room preflight',
       'delete only the backed-up old document ids using update-time preconditions',
-      'verify tournamentTasks contains exactly the 4000 new ids and the ready v7 exposure layout',
+      'verify tournamentTasks contains exactly the 4000 new ids and the ready v8 exposure layout',
     ],
     rollback: [
       'restore old documents from old-pool-backup.ndjson preserving Firestore value types',

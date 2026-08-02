@@ -591,22 +591,22 @@ export type TournamentPoolBarrierToken = {
   exposureLayoutHash?: string;
 };
 
-const TOURNAMENT_V7_POOL_GENERATION = 'tpool_20260801_v7';
-const TOURNAMENT_V7_EXPOSURE_BUCKET_COUNTS: Readonly<Record<string, number>> = Object.freeze({
+const TOURNAMENT_BUCKETED_POOL_GENERATIONS = new Set(['tpool_20260801_v7', 'tpool_20260801_v8']);
+const TOURNAMENT_BUCKETED_EXPOSURE_BUCKET_COUNTS: Readonly<Record<string, number>> = Object.freeze({
   guess_phrase: 30,
   fill_gap: 13,
   find_oddity: 10,
   translate_build: 38,
   speed_match: 10,
 });
-const TOURNAMENT_V7_EXPOSURE_BUCKET_DWELL_DAYS: Readonly<Record<string, number>> = Object.freeze({
+const TOURNAMENT_BUCKETED_EXPOSURE_BUCKET_DWELL_DAYS: Readonly<Record<string, number>> = Object.freeze({
   guess_phrase: 14,
   fill_gap: 14,
   find_oddity: 20,
   translate_build: 19,
   speed_match: 42,
 });
-const TOURNAMENT_V7_EXPOSURE_EPOCH_DAY = Math.floor(Date.parse('2026-08-01T00:00:00.000Z') / 86_400_000);
+const TOURNAMENT_BUCKETED_EXPOSURE_EPOCH_DAY = Math.floor(Date.parse('2026-08-01T00:00:00.000Z') / 86_400_000);
 
 export function sameTournamentPoolBarrierToken(
   left: TournamentPoolBarrierToken,
@@ -720,7 +720,7 @@ export function parseReadyTournamentPoolToken(
     || !Number.isSafeInteger(revision) || revision < 0) {
     throw new HttpsError('failed-precondition', 'tournament_pool_barrier_invalid');
   }
-  if (generation !== TOURNAMENT_V7_POOL_GENERATION) return { generation, revision };
+  if (!TOURNAMENT_BUCKETED_POOL_GENERATIONS.has(generation)) return { generation, revision };
   const rawCounts = data.exposureBucketCounts;
   const exposureLayoutHash = typeof data.exposureLayoutHash === 'string'
     ? data.exposureLayoutHash.trim()
@@ -728,7 +728,7 @@ export function parseReadyTournamentPoolToken(
   const validCounts = rawCounts && typeof rawCounts === 'object' && !Array.isArray(rawCounts)
     && TOURNAMENT_MODES.every((mode) => (
       Number.isSafeInteger(rawCounts[mode])
-      && rawCounts[mode] === TOURNAMENT_V7_EXPOSURE_BUCKET_COUNTS[mode]
+      && rawCounts[mode] === TOURNAMENT_BUCKETED_EXPOSURE_BUCKET_COUNTS[mode]
     ))
     && Object.keys(rawCounts).length === TOURNAMENT_MODES.length;
   if (!validCounts || !/^[a-f0-9]{64}$/u.test(exposureLayoutHash)) {
@@ -755,8 +755,8 @@ export function tournamentExposureBucketId(
   if (!Number.isSafeInteger(count) || !count || count < 1) {
     throw new HttpsError('failed-precondition', 'tournament_pool_exposure_layout_required');
   }
-  const dwellDays = TOURNAMENT_V7_EXPOSURE_BUCKET_DWELL_DAYS[mode] ?? 1;
-  const bucketOrdinal = Math.floor((Math.trunc(dayOrdinal) - TOURNAMENT_V7_EXPOSURE_EPOCH_DAY) / dwellDays);
+  const dwellDays = TOURNAMENT_BUCKETED_EXPOSURE_BUCKET_DWELL_DAYS[mode] ?? 1;
+  const bucketOrdinal = Math.floor((Math.trunc(dayOrdinal) - TOURNAMENT_BUCKETED_EXPOSURE_EPOCH_DAY) / dwellDays);
   const normalizedBucket = ((bucketOrdinal % count) + count) % count;
   return `${token.generation}:${mode}:${String(normalizedBucket).padStart(3, '0')}`;
 }
@@ -996,7 +996,8 @@ export function buildTournamentRounds(
     for (const plannedMode of plannedModes) {
       const modePool = pool.filter((task) => task.mode === plannedMode);
       const usesDeterministicExposureDeck = modePool.length > 0
-        && modePool.every((task) => task.tags?.includes('pool:tpool_20260801_v7')
+        && modePool.every((task) => task.tags?.includes('pool:tpool_20260801_v8')
+          || task.tags?.includes('pool:tpool_20260801_v7')
           || task.tags?.includes('pool:tpool_20260801_v6')
           || task.tags?.includes('pool:tpool_20260801_v5'));
       const picked = selectRoundTasks({

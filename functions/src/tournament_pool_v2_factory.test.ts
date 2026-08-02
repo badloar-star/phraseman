@@ -59,6 +59,29 @@ function normalizedTaskSemanticSignature(
   return `${task.mode}|${normalize(task.payload.phrase)}|${normalize(task.payload.correctAnswer)}`;
 }
 
+function punctuationInsensitiveTaskSignature(
+  task: ReturnType<typeof buildProductionSizedPool>['tasks'][number],
+): string {
+  const normalizeMeaning = (value: unknown) => String(value ?? '')
+    .normalize('NFKC')
+    .replace(/[’‘`]/gu, "'")
+    .replace(/[^\p{L}\p{N}']+/gu, ' ')
+    .replace(/\s+/gu, ' ')
+    .trim()
+    .toLocaleLowerCase('en');
+  if (task.mode === 'speed_match') {
+    const rightOptions = task.payload.rightOptions as string[];
+    const pairs = (task.payload.items as Array<Record<string, unknown>>).map((item) => (
+      `${normalizeMeaning(item.prompt)}=${normalizeMeaning(rightOptions[Number(item.correctIndex)])}`
+    )).sort();
+    return `${task.mode}|${pairs.join('|')}`;
+  }
+  if (task.mode === 'find_oddity') {
+    return `${task.mode}|${normalizeMeaning(task.payload.correctAnswer)}|${normalizeMeaning(task.explanation?.example)}`;
+  }
+  return `${task.mode}|${normalizeMeaning(task.payload.phrase)}|${normalizeMeaning(task.payload.correctAnswer)}`;
+}
+
 function selectCompleteTournamentTaskIds(
   roomId: string,
   tasks: ReturnType<typeof buildProductionSizedPool>['tasks'],
@@ -82,14 +105,15 @@ function selectCompleteTournamentTaskIds(
 }
 
 describe('new deterministic tournament pool v2', () => {
-  test('builds the approved reachable 4000-task v7 pool with exact quality-first cell quotas', () => {
+  test('builds the approved reachable 4000-task v8 pool with exact quality-first cell quotas', () => {
     const result = buildProductionSizedPool();
 
-    expect(NEW_TOURNAMENT_POOL_VERSION).toBe('tpool_20260801_v7');
+    expect(NEW_TOURNAMENT_POOL_VERSION).toBe('tpool_20260801_v8');
     expect(result.manifest.poolVersion).toBe(NEW_TOURNAMENT_POOL_VERSION);
     expect(result.tasks).toHaveLength(4000);
     expect(new Set(result.tasks.map((task) => task.taskId)).size).toBe(4000);
     expect(new Set(result.tasks.map(normalizedTaskSemanticSignature)).size).toBe(4000);
+    expect(new Set(result.tasks.map(punctuationInsensitiveTaskSignature)).size).toBe(4000);
     expect(result.manifest.counts).toEqual({
       'guess_phrase:1': 400,
       'guess_phrase:2': 400,
@@ -124,7 +148,7 @@ describe('new deterministic tournament pool v2', () => {
     const { tasks } = buildProductionSizedPool();
 
     for (const task of tasks) {
-      expect(task.taskId).toMatch(/^tp2_20260801_v7_/);
+      expect(task.taskId).toMatch(/^tp2_20260801_v8_/);
       expect(APPROVED_MODES).toContain(task.mode as typeof APPROVED_MODES[number]);
       expect(task.isVoice).toBe(false);
       expect(task.verified).toBe(true);
@@ -649,6 +673,14 @@ describe('new deterministic tournament pool v2', () => {
 
     expect(pairs).toHaveLength(2400);
     expect(new Set(pairs.map(([en, ru]) => `${en}\u0000${ru}`)).size).toBe(2400);
+    const punctuationInsensitivePairs = pairs.map(([en, ru]) => [en, ru]
+      .map((value) => value.normalize('NFKC')
+        .replace(/[’‘`]/gu, "'")
+        .replace(/[^\p{L}\p{N}']+/gu, ' ')
+        .replace(/\s+/gu, ' ')
+        .trim())
+      .join('\u0000'));
+    expect(new Set(punctuationInsensitivePairs).size).toBe(2400);
     const translationsByEnglish = new Map<string, Set<string>>();
     for (const [en, ru] of pairs) {
       const translations = translationsByEnglish.get(en) ?? new Set<string>();
@@ -707,7 +739,7 @@ describe('new deterministic tournament pool v2', () => {
     }
   });
 
-  test('v7 exposure deck makes complete adjacent scheduled tournaments disjoint and exposes every task', () => {
+  test('v8 exposure deck makes complete adjacent scheduled tournaments disjoint and exposes every task', () => {
     const { tasks, manifest } = buildProductionSizedPool();
     const token: TournamentPoolBarrierToken = {
       generation: NEW_TOURNAMENT_POOL_VERSION,
@@ -750,12 +782,14 @@ describe('new deterministic tournament pool v2', () => {
     expect(Math.min(...tasks.map((task) => exposure.get(task.taskId) ?? 0))).toBeGreaterThan(0);
   });
 
-  test('runtime passes consumed v7 ids separately instead of shrinking the calendar deck', () => {
+  test('runtime passes consumed v8 ids separately instead of shrinking the calendar deck', () => {
     const source = require('node:fs').readFileSync(`${__dirname}/tournaments.ts`, 'utf8');
+    const core = require('node:fs').readFileSync(`${__dirname}/tournament_core.ts`, 'utf8');
     const start = source.indexOf('export function buildTournamentRounds');
     const end = source.indexOf('\nexport ', start + 1);
     const implementation = source.slice(start, end < 0 ? undefined : end);
-    expect(implementation).toContain("task.tags?.includes('pool:tpool_20260801_v7')");
+    expect(implementation).toContain("task.tags?.includes('pool:tpool_20260801_v8')");
+    expect(core).toContain("'pool:tpool_20260801_v8'");
     expect(implementation).toContain('pool: usesDeterministicExposureDeck');
     expect(implementation).toContain('excludedTaskIds: usesDeterministicExposureDeck ? usedTaskIds : undefined');
   });

@@ -7,8 +7,8 @@ const path = require('node:path');
 const admin = require('../functions/node_modules/firebase-admin');
 
 const EXPECTED_PROJECT_ID = 'phraseman-ea0b3';
-const EXPECTED_VERSION = 'tpool_20260801_v7';
-const EXPECTED_SOURCE_VERSION = 'tpool_20260801_v6';
+const EXPECTED_VERSION = 'tpool_20260801_v8';
+const EXPECTED_SOURCE_VERSION = 'tpool_20260801_v7';
 const EXPECTED_NEW_COUNT = 4000;
 const COLLECTION = 'tournamentTasks';
 const ROOMS_COLLECTION = 'tournamentRooms';
@@ -46,6 +46,35 @@ function tournamentExposureRelease(exposure) {
   };
 }
 
+function sourceBarrierExposureRelease(barrier, targetGeneration) {
+  const counts = barrier && barrier.exposureBucketCounts;
+  const layoutHash = barrier && barrier.exposureLayoutHash;
+  if (!barrier || barrier.kind !== POOL_BARRIER_KIND || barrier.state !== 'ready'
+    || barrier.generation !== targetGeneration
+    || !counts || Object.keys(counts).length !== MODES.length
+    || MODES.some((mode) => counts[mode] !== EXPECTED_EXPOSURE_BUCKET_COUNTS[mode])
+    || typeof layoutHash !== 'string' || !/^[a-f0-9]{64}$/.test(layoutHash)) {
+    throw new Error('source_exposure_barrier_invalid');
+  }
+  return {
+    exposureBucketCounts: Object.fromEntries(MODES.map((mode) => [mode, counts[mode]])),
+    exposureLayoutHash: layoutHash,
+  };
+}
+
+function assertPinnedSourceBarrier(current, frozen) {
+  const targetGeneration = frozen && frozen.generation;
+  const currentExposure = sourceBarrierExposureRelease(current, targetGeneration);
+  const frozenExposure = sourceBarrierExposureRelease(frozen, targetGeneration);
+  if (current.revision !== frozen.revision
+    || currentExposure.exposureLayoutHash !== frozenExposure.exposureLayoutHash
+    || MODES.some((mode) => (
+      currentExposure.exposureBucketCounts[mode] !== frozenExposure.exposureBucketCounts[mode]
+    ))) {
+    throw new Error('source_pool_barrier_drift');
+  }
+}
+
 function assertExposureLayoutRows(rows, exposure) {
   tournamentExposureRelease(exposure);
   const expectedSizes = exposure && exposure.bucketSizes;
@@ -58,7 +87,7 @@ function assertExposureLayoutRows(rows, exposure) {
     const bucket = task && task.exposureBucket;
     const expectedPrefix = `${EXPECTED_VERSION}:${task && task.mode}:`;
     if (typeof bucket !== 'string' || !bucket.startsWith(expectedPrefix)
-      || !/^tpool_20260801_v7:[a-z_]+:\d{3}$/.test(bucket)) {
+      || !new RegExp(`^${EXPECTED_VERSION}:[a-z_]+:\\d{3}$`).test(bucket)) {
       throw new Error(`exposure_bucket_task_invalid:${row && row.id}`);
     }
     actualSizes[bucket] = (actualSizes[bucket] || 0) + 1;
@@ -236,7 +265,7 @@ async function releasePoolMigrationBarrier(db, options) {
   const releasedAt = options.releasedAt || new Date().toISOString();
   const exposureRelease = targetGeneration === EXPECTED_VERSION
     ? tournamentExposureRelease(options.exposure)
-    : {};
+    : sourceBarrierExposureRelease(options.sourceReadyBarrier, targetGeneration);
   const ref = poolBarrierRef(db);
   return db.runTransaction(async (tx) => {
     const current = parsePoolBarrier(await tx.get(ref));
@@ -274,7 +303,7 @@ function pinnedSha(name, argv) {
 
 function resolveApplyIntent(argv = process.argv.slice(2), env = process.env) {
   if (!argv.includes('--apply')) return false;
-  if (env.PHRASEMAN_TOURNAMENT_POOL_V7_APPLY !== '1') throw new Error('apply_guard_missing');
+  if (env.PHRASEMAN_TOURNAMENT_POOL_V8_APPLY !== '1') throw new Error('apply_guard_missing');
   return true;
 }
 
@@ -641,6 +670,11 @@ async function main() {
   };
   const before = await collection.get();
   const barrierBefore = await getPoolMigrationBarrier(db);
+  const frozenSourceBarrier = manifest.productionRead && manifest.productionRead.poolBarrier;
+  sourceBarrierExposureRelease(frozenSourceBarrier, sourceGeneration);
+  if (barrierBefore && barrierBefore.state === 'ready') {
+    assertPinnedSourceBarrier(barrierBefore, frozenSourceBarrier);
+  }
   const recoveryPlan = planApplyPoolRecovery({
     ...recoveryContract,
     currentRows: before.docs.map(snapshotBackupRow),
@@ -653,7 +687,7 @@ async function main() {
 
   const preflightReport = {
     ok: true,
-    kind: 'tournament_pool_v7_preflight_v1',
+    kind: 'tournament_pool_v8_preflight_v1',
     mode: apply ? 'apply' : 'dry-run',
     projectId: EXPECTED_PROJECT_ID,
     poolVersion: EXPECTED_VERSION,
@@ -749,7 +783,7 @@ async function main() {
 
   const report = {
     ...preflightReport,
-    kind: 'tournament_pool_v7_apply_report_v1',
+    kind: 'tournament_pool_v8_apply_report_v1',
     completedAt: new Date().toISOString(),
     actualMutations: {
       created,
@@ -789,6 +823,7 @@ module.exports = {
   POOL_BARRIER_KIND,
   acquirePoolMigrationBarrier,
   assertNoProtectedRoomReferences,
+  assertPinnedSourceBarrier,
   assertPinnedBundle,
   assertTranslateBuildSemantics,
   assertExposureLayoutRows,
@@ -799,6 +834,7 @@ module.exports = {
   parsePoolBarrier,
   planApplyPoolRecovery,
   releasePoolMigrationBarrier,
+  sourceBarrierExposureRelease,
   tournamentExposureRelease,
   resolveApplyIntent,
   resolveSourceGeneration,

@@ -12,7 +12,7 @@ import {
 } from './tournament_task_factory';
 import { requiredCells } from './tournament_pool_plan';
 
-export const NEW_TOURNAMENT_POOL_VERSION = 'tpool_20260801_v7' as const;
+export const NEW_TOURNAMENT_POOL_VERSION = 'tpool_20260801_v8' as const;
 export const NEW_TOURNAMENT_POOL_CELL_QUOTAS: Readonly<Record<string, number>> = Object.freeze({
   'guess_phrase:1': 400,
   'guess_phrase:2': 400,
@@ -198,6 +198,19 @@ function normalize(value: string): string {
   return value.trim().toLocaleLowerCase('ru');
 }
 
+// Uniqueness is about the phrase meaning, not editorial punctuation. Keep the
+// authored surface text untouched, but collapse commas, terminal punctuation,
+// spacing and typographic apostrophe variants when reserving semantic content.
+function semanticNormalize(value: string): string {
+  return value
+    .normalize('NFKC')
+    .replace(/[’‘`]/gu, "'")
+    .replace(/[^\p{L}\p{N}']+/gu, ' ')
+    .replace(/\s+/gu, ' ')
+    .trim()
+    .toLocaleLowerCase('ru');
+}
+
 // This is intentionally a narrow deterministic quarantine, not a language
 // model or a generic grammar checker. Every pattern corresponds to a phrase
 // rejected during the human review of the exact production-sized pool. Bad
@@ -336,7 +349,7 @@ function taskId(mode: NewPoolMode, difficulty: number, identity: string): string
     translate_build: 'build',
     speed_match: 'pairs',
   };
-  return `tp2_20260801_v7_${shortMode[mode]}_d${difficulty}_${sha256(`${NEW_TOURNAMENT_POOL_VERSION}:${identity}`).slice(0, 20)}`;
+  return `tp2_20260801_v8_${shortMode[mode]}_d${difficulty}_${sha256(`${NEW_TOURNAMENT_POOL_VERSION}:${identity}`).slice(0, 20)}`;
 }
 
 function tags(day: SourceDay): string[] {
@@ -969,7 +982,7 @@ function buildSpeedMatchCandidates(day: SourceDay): PoolCandidate[] {
     const ordered = stableShuffle(source, `pairs-source:${day.planId}:${day.dayIndex}:${variant}`);
     for (let offset = 0; offset + 6 <= ordered.length; offset += 6) {
       const pairs = ordered.slice(offset, offset + 6);
-      const pairKeys = pairs.map((pair) => `${normalize(pair.en)}\u0000${normalize(pair.ru)}`);
+      const pairKeys = pairs.map((pair) => `${semanticNormalize(pair.en)}\u0000${semanticNormalize(pair.ru)}`);
       const setKey = [...pairKeys].sort().join('|');
       if (seenSets.has(setKey)) continue;
       seenSets.add(setKey);
@@ -980,7 +993,7 @@ function buildSpeedMatchCandidates(day: SourceDay): PoolCandidate[] {
         dayKey: dayKey(day),
         topicKey: topicKey(day),
         speedPairKeys: pairKeys,
-        speedEnglishKeys: pairs.map((pair) => normalize(pair.en)),
+        speedEnglishKeys: pairs.map((pair) => semanticNormalize(pair.en)),
       });
     }
   }
@@ -997,17 +1010,17 @@ function buildGlobalDisjointSpeedCandidates(days: readonly SourceDay[]): PoolCan
     const remaining = stableShuffle(days.filter((day) => poolDifficulty(day) === difficulty)
       .flatMap(authoredSpeedPairs)
       .filter((pair) => {
-        const pairKey = `${normalize(pair.en)}\u0000${normalize(pair.ru)}`;
-        return !reservedPairs.has(pairKey) && !reservedEnglish.has(normalize(pair.en));
+        const pairKey = `${semanticNormalize(pair.en)}\u0000${semanticNormalize(pair.ru)}`;
+        return !reservedPairs.has(pairKey) && !reservedEnglish.has(semanticNormalize(pair.en));
       }), `global-speed-pairs:d${difficulty}`);
     for (let groupIndex = 0; groupIndex < target; groupIndex += 1) {
       const group: AuthoredSpeedPair[] = [];
       const groupRussian = new Set<string>();
       for (let index = 0; index < remaining.length && group.length < 6;) {
         const pair = remaining[index];
-        const pairKey = `${normalize(pair.en)}\u0000${normalize(pair.ru)}`;
-        const englishKey = normalize(pair.en);
-        const russianKey = normalize(pair.ru);
+        const pairKey = `${semanticNormalize(pair.en)}\u0000${semanticNormalize(pair.ru)}`;
+        const englishKey = semanticNormalize(pair.en);
+        const russianKey = semanticNormalize(pair.ru);
         if (reservedPairs.has(pairKey) || reservedEnglish.has(englishKey) || groupRussian.has(russianKey)) {
           index += 1;
           continue;
@@ -1018,8 +1031,8 @@ function buildGlobalDisjointSpeedCandidates(days: readonly SourceDay[]): PoolCan
       }
       if (group.length !== 6) break;
       for (const pair of group) {
-        reservedPairs.add(`${normalize(pair.en)}\u0000${normalize(pair.ru)}`);
-        reservedEnglish.add(normalize(pair.en));
+        reservedPairs.add(`${semanticNormalize(pair.en)}\u0000${semanticNormalize(pair.ru)}`);
+        reservedEnglish.add(semanticNormalize(pair.en));
       }
       const anchor = dayByKey.get(`${group[0].sourcePlanId}:${group[0].sourceDayIndex}`);
       if (!anchor) throw new Error(`new_tournament_pool_speed_anchor_missing:d${difficulty}:${groupIndex}`);
@@ -1029,8 +1042,8 @@ function buildGlobalDisjointSpeedCandidates(days: readonly SourceDay[]): PoolCan
         task,
         dayKey: dayKey(anchor),
         topicKey: `cross-day:d${difficulty}`,
-        speedPairKeys: group.map((pair) => `${normalize(pair.en)}\u0000${normalize(pair.ru)}`),
-        speedEnglishKeys: group.map((pair) => normalize(pair.en)),
+        speedPairKeys: group.map((pair) => `${semanticNormalize(pair.en)}\u0000${semanticNormalize(pair.ru)}`),
+        speedEnglishKeys: group.map((pair) => semanticNormalize(pair.en)),
         speedPackingLane: 'global-disjoint',
       });
     }
@@ -1039,7 +1052,7 @@ function buildGlobalDisjointSpeedCandidates(days: readonly SourceDay[]): PoolCan
 }
 
 function taskSemanticSignature(task: NewTournamentTask): string {
-  const normalized = (value: unknown): string => normalize(String(value ?? ''));
+  const normalized = (value: unknown): string => semanticNormalize(String(value ?? ''));
   if (task.mode === 'speed_match') {
     const rightOptions = Array.isArray(task.payload.rightOptions)
       ? task.payload.rightOptions.map((value) => String(value))

@@ -35,7 +35,7 @@ function pinnedSha(name, argv) {
 
 function resolveRollbackIntent(argv = process.argv.slice(2), env = process.env) {
   if (!argv.includes('--apply')) return false;
-  if (env.PHRASEMAN_TOURNAMENT_POOL_V7_ROLLBACK !== '1') throw new Error('rollback_guard_missing');
+  if (env.PHRASEMAN_TOURNAMENT_POOL_V8_ROLLBACK !== '1') throw new Error('rollback_guard_missing');
   return true;
 }
 
@@ -232,9 +232,12 @@ async function main() {
   const oldRows = parseNdjson(rawBackup, 'backup');
   const newRows = parseNdjson(rawNew, 'new_pool');
   const targetGeneration = resolveSourceGeneration(oldRows);
+  const sourceReadyBarrier = manifest.productionRead && manifest.productionRead.poolBarrier;
+  assert.equal(sourceReadyBarrier && sourceReadyBarrier.generation, targetGeneration,
+    'rollback_source_barrier_generation_mismatch');
   assert.equal(oldRows.length, manifest.productionRead.existingDocuments, 'backup_count_mismatch');
   assert.equal(newRows.length, manifest.generated.taskCount, 'new_pool_count_mismatch');
-  assert.equal(manifest.generated.taskCount, 180, 'new_pool_count_pin_mismatch');
+  assert.equal(manifest.generated.taskCount, 4000, 'new_pool_count_pin_mismatch');
   assert.equal(new Set(oldRows.map((row) => row.id)).size, oldRows.length, 'backup_duplicate_ids');
   assert.equal(new Set(newRows.map((row) => row.id)).size, newRows.length, 'new_pool_duplicate_ids');
   assert.equal(newRows.every((row) => row.id === row.data.taskId
@@ -268,7 +271,7 @@ async function main() {
   const stagedNewDocs = current.docs.filter((doc) => newIds.has(doc.id));
   const preflightReport = {
     ok: true,
-    kind: 'tournament_pool_v7_rollback_preflight_v1',
+    kind: 'tournament_pool_v8_rollback_preflight_v1',
     mode: apply ? 'apply' : 'dry-run',
     projectId: EXPECTED_PROJECT_ID,
     poolVersion: EXPECTED_VERSION,
@@ -344,10 +347,11 @@ async function main() {
     expectedGeneration: EXPECTED_VERSION,
     targetGeneration,
     migrationId,
+    sourceReadyBarrier,
   });
   const report = {
     ...preflightReport,
-    kind: 'tournament_pool_v7_rollback_report_v1',
+    kind: 'tournament_pool_v8_rollback_report_v1',
     completedAt: new Date().toISOString(),
     restored: missingOld.length,
     removedNew: verifiedNewDocs.length,

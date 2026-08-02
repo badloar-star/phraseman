@@ -4,6 +4,7 @@ import {
   KeyboardAvoidingView,
   Modal,
   Platform,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -53,7 +54,16 @@ function CertificateNameModal({ visible, initialName = '', onSave, onSkip }: Pro
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={handleSkip}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={styles.backdrop}>
+        {/* зачем 2026-08-02 (владелец: «на маленьких экранах кнопки нет»):
+            карточка с полем имени центрировалась без прокрутки. С поднятой
+            клавиатурой на низком экране кнопка сохранения уходила за границу —
+            сертификат нельзя было создать. */}
+        <ScrollView
+          style={styles.backdropScroll}
+          contentContainerStyle={styles.backdrop}
+          showsVerticalScrollIndicator={false}
+          keyboardShouldPersistTaps="handled"
+        >
           <KeyboardAvoidingView
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
             style={styles.center}
@@ -165,7 +175,7 @@ function CertificateNameModal({ visible, initialName = '', onSave, onSkip }: Pro
               </TouchableOpacity>
             </View>
           </KeyboardAvoidingView>
-        </View>
+        </ScrollView>
       </TouchableWithoutFeedback>
     </Modal>
   );
@@ -174,11 +184,18 @@ function CertificateNameModal({ visible, initialName = '', onSave, onSkip }: Pro
 export default memo(CertificateNameModal);
 
 const styles = StyleSheet.create({
-  backdrop: {
+  backdropScroll: {
     flex: 1,
     backgroundColor: 'rgba(0,0,0,0.6)',
+  },
+  backdrop: {
+    // flexGrow (а не flex) — в contentContainerStyle это единственный способ
+    // сказать «растянись на всю высоту, если контента мало, но дай прокрутку,
+    // если много». Центрирование сохранено для больших экранов.
+    flexGrow: 1,
     justifyContent: 'center',
     paddingHorizontal: 22,
+    paddingVertical: 22,
   },
   center: { width: '100%' },
   card: {

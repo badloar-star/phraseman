@@ -36,7 +36,6 @@ const KNOWN_DEBT: readonly string[] = [
   'app/personal_plan_exercise_transition.tsx',
   'app/trainer_words_session.tsx',
   'components/DialogVictoryCelebration.tsx',
-  'components/EnergyRefillShardModal.tsx',
   'components/ExplainReportButton.tsx',
   'components/IntroFullAccessModal.tsx',
   'components/ReportErrorButton.tsx',
@@ -50,7 +49,6 @@ const KNOWN_DEBT: readonly string[] = [
   'components/paywall/PaywallCtaBlock.tsx',
   'components/roulette_win_modal.tsx',
   'components/BoonChestModal.tsx',
-  'components/CertificateNameModal.tsx',
 ];
 
 function walk(dir: string, out: string[] = []): string[] {

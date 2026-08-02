@@ -3,6 +3,7 @@ import React, { memo, useCallback, useState } from 'react';
 import {
   Modal,
   Pressable,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -171,7 +172,14 @@ function EnergyRefillShardModal({ visible, onClose }: Props) {
 
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onClose}>
-      <View style={styles.overlayRoot}>
+      {/* зачем 2026-08-02 (владелец: «на маленьких экранах кнопки нет»):
+          карточка пополнения энергии центрировалась во весь рост без прокрутки
+          — на низком экране обрезалась вместе с кнопкой покупки. */}
+      <ScrollView
+        style={styles.overlayScroll}
+        contentContainerStyle={styles.overlayRoot}
+        showsVerticalScrollIndicator={false}
+      >
         <Pressable
           style={[styles.backdrop, { backgroundColor: isLight ? 'rgba(0,0,0,0.48)' : 'rgba(0,0,0,0.72)' }]}
           onPress={() => {
@@ -252,7 +260,7 @@ function EnergyRefillShardModal({ visible, onClose }: Props) {
             </View>
           </LinearGradient>
         </View>
-      </View>
+      </ScrollView>
     </Modal>
   );
 }
@@ -260,8 +268,14 @@ function EnergyRefillShardModal({ visible, onClose }: Props) {
 export default memo(EnergyRefillShardModal);
 
 const styles = StyleSheet.create({
-  overlayRoot: {
+  overlayScroll: {
     flex: 1,
+  },
+  overlayRoot: {
+    // flexGrow (а не flex) — в contentContainerStyle это единственный способ
+    // сказать «растянись на всю высоту, если контента мало, но дай прокрутку,
+    // если много». Центрирование сохранено для больших экранов.
+    flexGrow: 1,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 28,

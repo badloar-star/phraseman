@@ -28,8 +28,12 @@ try {
 }
 
 const CANONICAL_ROOT = config.root;
-const ALLOWED_BRANCHES = Array.isArray(config.allowedBranches) ? config.allowedBranches : [];
-const CANONICAL_BRANCH = config.primaryBranch ?? ALLOWED_BRANCHES[0];
+const CANONICAL_BRANCH = config.primaryBranch;
+
+// зачем: владелец должен тестировать релизную ветку, пока Codex занимает основную папку
+// своей незакоммиченной работой. Разрешено РОВНО две папки из закрытого списка в конфиге —
+// правило «не плодить копии дерева» остаётся: агенты сюда ничего не дописывают.
+const WORKSPACES = Array.isArray(config.workspaces) ? config.workspaces : [];
 
 // зачем: разовый запуск с временной ветки без правки конфига —
 // PHRASEMAN_ALLOW_BRANCH=имя-ветки npm run metro:dev
@@ -44,42 +48,50 @@ function fail(message) {
   console.error('');
   console.error('STOP: запуск заблокирован правилом единого рабочего места.');
   console.error(message);
-  console.error(`Каноническая папка: ${CANONICAL_ROOT}`);
-  console.error(`Разрешённые ветки: ${ALLOWED_BRANCHES.join(', ') || '(список пуст)'}`);
-  console.error('Как разрешить ветку:');
-  console.error('  - навсегда: добавить её в config/canonical-workspace.json → allowedBranches');
-  console.error('  - разово:   PHRASEMAN_ALLOW_BRANCH=<ветка> npm run <команда>');
+  console.error('Разрешённые папки:');
+  for (const workspace of WORKSPACES) {
+    console.error(`  - ${workspace.path} — ${workspace.role}`);
+  }
+  console.error('  Разово другую ветку: PHRASEMAN_ALLOW_BRANCH=<ветка> npm run <команда>');
   console.error('');
   process.exit(1);
 }
 
-if (ALLOWED_BRANCHES.length === 0) {
-  fail('В config/canonical-workspace.json пустой список allowedBranches.');
+if (WORKSPACES.length === 0) {
+  fail('В config/canonical-workspace.json пустой список workspaces.');
 }
 
-let expectedRoot;
 let actualRoot;
 try {
-  expectedRoot = normalizedRealPath(CANONICAL_ROOT);
   actualRoot = normalizedRealPath(process.cwd());
 } catch (error) {
   fail(`Не удалось проверить рабочую папку: ${error instanceof Error ? error.message : String(error)}`);
 }
 
-if (actualRoot !== expectedRoot) {
+const workspace = WORKSPACES.find((entry) => {
+  try {
+    return normalizedRealPath(entry.path) === actualRoot;
+  } catch {
+    return false;
+  }
+});
+
+if (!workspace) {
   fail(`Текущая папка запрещена: ${process.cwd()}`);
 }
+
+const ALLOWED_BRANCHES = Array.isArray(workspace.allowedBranches) ? workspace.allowedBranches : [];
 
 let gitRoot;
 let branch;
 try {
   gitRoot = execFileSync('git', ['rev-parse', '--show-toplevel'], {
-    cwd: CANONICAL_ROOT,
+    cwd: process.cwd(),
     encoding: 'utf8',
     stdio: ['ignore', 'pipe', 'pipe'],
   }).trim();
   branch = execFileSync('git', ['branch', '--show-current'], {
-    cwd: CANONICAL_ROOT,
+    cwd: process.cwd(),
     encoding: 'utf8',
     stdio: ['ignore', 'pipe', 'pipe'],
   }).trim();
@@ -87,17 +99,22 @@ try {
   fail(`Не удалось проверить Git: ${error instanceof Error ? error.message : String(error)}`);
 }
 
-if (normalizedRealPath(gitRoot) !== expectedRoot) {
+if (normalizedRealPath(gitRoot) !== actualRoot) {
   fail(`Git указывает на другой checkout: ${gitRoot}`);
 }
 
 const branchAllowed =
-  ALLOWED_BRANCHES.includes(branch) || (BRANCH_OVERRIDE !== '' && BRANCH_OVERRIDE === branch);
+  ALLOWED_BRANCHES.includes('*') ||
+  ALLOWED_BRANCHES.includes(branch) ||
+  (BRANCH_OVERRIDE !== '' && BRANCH_OVERRIDE === branch);
 
 if (!branchAllowed) {
-  fail(`Текущая ветка запрещена: ${branch || '(detached HEAD)'}`);
+  fail(
+    `В папке ${workspace.path} ветка ${branch || '(detached HEAD)'} запрещена. ` +
+      `Разрешены: ${ALLOWED_BRANCHES.join(', ')}`,
+  );
 }
 
 if (branch !== CANONICAL_BRANCH) {
-  console.log(`[workspace] запуск с ветки ${branch} (основная: ${CANONICAL_BRANCH})`);
+  console.log(`[workspace] запуск с ветки ${branch} (релизная: ${CANONICAL_BRANCH})`);
 }

@@ -2,7 +2,12 @@
 
 ## Single Workspace And Branch Invariant
 
-- The only canonical checkout is `C:\appsprojects\phraseman`.
+- The canonical checkout for all agent work is `C:\appsprojects\phraseman`.
+- Exactly ONE additional folder exists, for the owner only:
+  `C:\appsprojects\phraseman-integration-20260801` runs the release branch so the owner can test
+  the app while an agent occupies the canonical folder with uncommitted work. Agents must never
+  work in it, and must never add a third folder — the list in `config/canonical-workspace.json`
+  → `workspaces` is closed and guarded by `tests/single_workspace_runtime_contract.test.mjs`.
 - The primary working branch is `feature/referral-roulette`. Additional branches the owner is
   actively working in are listed in `config/canonical-workspace.json` → `allowedBranches`, which is
   the single source of truth read by `scripts/canonical_workspace_guard.mjs`. Adding a branch there

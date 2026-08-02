@@ -11,6 +11,13 @@ import { execFileSync } from 'node:child_process';
 const ROOT = process.cwd();
 const MAX_BRANCHES = 12;
 
+// зачем: в релизной папке владельца ветка всегда одна и та же — меню там только мешает,
+// запуск должен идти сразу. Меню показывается лишь в основной папке, где ветки меняются.
+const MENU_ROOT = 'c:\\appsprojects\\phraseman';
+if (ROOT.toLowerCase() !== MENU_ROOT) {
+  process.exit(0);
+}
+
 function git(args) {
   return execFileSync('git', args, {
     cwd: ROOT,

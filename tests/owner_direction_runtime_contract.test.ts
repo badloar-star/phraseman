@@ -24,7 +24,13 @@ function listSourceFiles(relativeDirs: string[]): string[] {
       out.push(relativePath);
     }
   };
-  relativeDirs.forEach((dir) => visit(path.join(ROOT, dir)));
+  relativeDirs.forEach((dir) => {
+    const absoluteDir = path.join(ROOT, dir);
+    // зачем: клинап-хук может удалить пустую на диске директорию (contexts/ пуста в git,
+    // 2026-08) — её отсутствие не должно ронять контракт; вернётся с файлами — снова сканируем.
+    if (!fs.existsSync(absoluteDir)) return;
+    visit(absoluteDir);
+  });
   return out.sort();
 }
 

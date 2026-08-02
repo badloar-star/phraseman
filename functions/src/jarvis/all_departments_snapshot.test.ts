@@ -8,7 +8,7 @@ function decisionOf(department: string): Decision {
 }
 
 describe('Jarvis all-departments snapshot — one button, one combined result', () => {
-  test('resolves the tier once and runs all seven departments together', async () => {
+  test('resolves the tier once and runs all eight departments together', async () => {
     const resolveAppTier = jest.fn(async () => 'scale' as const);
     const runQuality = jest.fn(async (_tier: string) => ({ generatedAtMs: 1, decisions: [decisionOf('quality')] }));
     const runMoney = jest.fn(async (_tier: string) => ({ generatedAtMs: 1, decisions: [decisionOf('money')] }));
@@ -17,8 +17,9 @@ describe('Jarvis all-departments snapshot — one button, one combined result', 
     const runPayments = jest.fn(async (_tier: string) => ({ generatedAtMs: 1, decisions: [decisionOf('payments')] }));
     const runSafety = jest.fn(async (_tier: string) => ({ generatedAtMs: 1, decisions: [decisionOf('safety')] }));
     const runSupport = jest.fn(async (_tier: string) => ({ generatedAtMs: 1, decisions: [decisionOf('support')] }));
+    const runFactory = jest.fn(async (_tier: string) => ({ generatedAtMs: 1, decisions: [decisionOf('factory')] }));
 
-    const result = await buildAllDepartmentsSnapshot({ resolveAppTier, runQuality, runMoney, runGrowth, runContent, runPayments, runSafety, runSupport, nowMs: 5_000 });
+    const result = await buildAllDepartmentsSnapshot({ resolveAppTier, runQuality, runMoney, runGrowth, runContent, runPayments, runSafety, runSupport, runFactory, nowMs: 5_000 });
 
     expect(resolveAppTier).toHaveBeenCalledTimes(1);
     expect(runQuality).toHaveBeenCalledWith('scale');
@@ -28,9 +29,10 @@ describe('Jarvis all-departments snapshot — one button, one combined result', 
     expect(runPayments).toHaveBeenCalledWith('scale');
     expect(runSafety).toHaveBeenCalledWith('scale');
     expect(runSupport).toHaveBeenCalledWith('scale');
+    expect(runFactory).toHaveBeenCalledWith('scale');
     expect(result.appTier).toBe('scale');
     expect(result.generatedAtMs).toBe(5_000);
-    expect(result.decisions.map((d) => d.department)).toEqual(['quality', 'money', 'content', 'payments', 'safety', 'support']);
+    expect(result.decisions.map((d) => d.department)).toEqual(['quality', 'money', 'content', 'payments', 'safety', 'support', 'factory']);
   });
 
   test('one department throwing does not abort the others', async () => {
@@ -42,10 +44,11 @@ describe('Jarvis all-departments snapshot — one button, one combined result', 
     const runPayments = jest.fn(async () => ({ generatedAtMs: 1, decisions: [decisionOf('payments')] }));
     const runSafety = jest.fn(async () => ({ generatedAtMs: 1, decisions: [decisionOf('safety')] }));
     const runSupport = jest.fn(async () => ({ generatedAtMs: 1, decisions: [decisionOf('support')] }));
+    const runFactory = jest.fn(async () => ({ generatedAtMs: 1, decisions: [decisionOf('factory')] }));
 
-    const result = await buildAllDepartmentsSnapshot({ resolveAppTier, runQuality, runMoney, runGrowth, runContent, runPayments, runSafety, runSupport, nowMs: 5_000 });
+    const result = await buildAllDepartmentsSnapshot({ resolveAppTier, runQuality, runMoney, runGrowth, runContent, runPayments, runSafety, runSupport, runFactory, nowMs: 5_000 });
 
-    expect(result.decisions.map((d) => d.department)).toEqual(['money', 'growth', 'content', 'payments', 'safety', 'support']);
+    expect(result.decisions.map((d) => d.department)).toEqual(['money', 'growth', 'content', 'payments', 'safety', 'support', 'factory']);
     expect(result.departmentErrors).toEqual(['quality']);
   });
 
@@ -54,7 +57,7 @@ describe('Jarvis all-departments snapshot — one button, one combined result', 
     const ok = jest.fn(async () => ({ generatedAtMs: 1, decisions: [] }));
     const runContent = jest.fn(async () => { throw new Error('lesson_stats down'); });
     const result = await buildAllDepartmentsSnapshot({
-      resolveAppTier, runQuality: ok, runMoney: ok, runGrowth: ok, runContent, runPayments: ok, runSafety: ok, runSupport: ok, nowMs: 5_000,
+      resolveAppTier, runQuality: ok, runMoney: ok, runGrowth: ok, runContent, runPayments: ok, runSafety: ok, runSupport: ok, runFactory: ok, nowMs: 5_000,
     });
     expect(result.departmentErrors).toEqual(['content']);
   });
@@ -64,7 +67,7 @@ describe('Jarvis all-departments snapshot — one button, one combined result', 
     const ok = jest.fn(async () => ({ generatedAtMs: 1, decisions: [] }));
     const runPayments = jest.fn(async () => { throw new Error('dead letter unreachable'); });
     const result = await buildAllDepartmentsSnapshot({
-      resolveAppTier, runQuality: ok, runMoney: ok, runGrowth: ok, runContent: ok, runPayments, runSafety: ok, runSupport: ok, nowMs: 5_000,
+      resolveAppTier, runQuality: ok, runMoney: ok, runGrowth: ok, runContent: ok, runPayments, runSafety: ok, runSupport: ok, runFactory: ok, nowMs: 5_000,
     });
     expect(result.departmentErrors).toEqual(['payments']);
   });
@@ -74,7 +77,7 @@ describe('Jarvis all-departments snapshot — one button, one combined result', 
     const ok = jest.fn(async () => ({ generatedAtMs: 1, decisions: [] }));
     const runSafety = jest.fn(async () => { throw new Error('safety_flags unreachable'); });
     const result = await buildAllDepartmentsSnapshot({
-      resolveAppTier, runQuality: ok, runMoney: ok, runGrowth: ok, runContent: ok, runPayments: ok, runSafety, runSupport: ok, nowMs: 5_000,
+      resolveAppTier, runQuality: ok, runMoney: ok, runGrowth: ok, runContent: ok, runPayments: ok, runSafety, runSupport: ok, runFactory: ok, nowMs: 5_000,
     });
     expect(result.departmentErrors).toEqual(['safety']);
   });
@@ -84,7 +87,7 @@ describe('Jarvis all-departments snapshot — one button, one combined result', 
     const ok = jest.fn(async () => ({ generatedAtMs: 1, decisions: [] }));
     const runSupport = jest.fn(async () => { throw new Error('support_inbox unreachable'); });
     const result = await buildAllDepartmentsSnapshot({
-      resolveAppTier, runQuality: ok, runMoney: ok, runGrowth: ok, runContent: ok, runPayments: ok, runSafety: ok, runSupport, nowMs: 5_000,
+      resolveAppTier, runQuality: ok, runMoney: ok, runGrowth: ok, runContent: ok, runPayments: ok, runSafety: ok, runSupport, runFactory: ok, nowMs: 5_000,
     });
     expect(result.departmentErrors).toEqual(['support']);
   });
@@ -93,7 +96,7 @@ describe('Jarvis all-departments snapshot — one button, one combined result', 
     const resolveAppTier = jest.fn(async () => 'growth' as const);
     const empty = jest.fn(async () => ({ generatedAtMs: 1, decisions: [] }));
     const result = await buildAllDepartmentsSnapshot({
-      resolveAppTier, runQuality: empty, runMoney: empty, runGrowth: empty, runContent: empty, runPayments: empty, runSafety: empty, runSupport: empty, nowMs: 5_000,
+      resolveAppTier, runQuality: empty, runMoney: empty, runGrowth: empty, runContent: empty, runPayments: empty, runSafety: empty, runSupport: empty, runFactory: empty, nowMs: 5_000,
     });
     expect(result.decisions).toEqual([]);
     expect(result.departmentErrors).toEqual([]);

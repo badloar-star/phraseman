@@ -6,6 +6,7 @@ import { ENFORCE_APP_CHECK } from '../callable_options';
 import { buildAllDepartmentsSnapshot } from './all_departments_snapshot';
 import { fetchContentSource } from './content_firestore_fetcher';
 import { buildContentSnapshot } from './content_snapshot';
+import { buildFactorySnapshot } from './factory_snapshot';
 import { fetchPaymentsSource } from './payments_firestore_fetcher';
 import { buildPaymentsSnapshot } from './payments_snapshot';
 import { resolveAppTier } from './app_tier_resolver';
@@ -70,6 +71,15 @@ export const jarvisGetAllDecisions = onCall(OPTIONS, async (request: CallableReq
   const db = admin.firestore();
   const nowMs = Date.now();
 
+  // зачем общий читатель: «Контент» и «Фабрика» смотрят одну коллекцию
+  // lesson_stats, но спрашивают разное. Без кэша один прогон стоил бы два
+  // одинаковых запроса вместо одного.
+  let lessonStatsOnce: ReturnType<typeof fetchContentSource> | null = null;
+  const readLessonStats = () => {
+    if (!lessonStatsOnce) lessonStatsOnce = fetchContentSource({ collection: db.collection('lesson_stats'), nowMs });
+    return lessonStatsOnce;
+  };
+
   const snapshot = await buildAllDepartmentsSnapshot({
     resolveAppTier: () => resolveAppTier(() => fetchActiveUserCount({ collection: db.collection('users'), nowMs })),
     runQuality: (appTier) => buildQualitySnapshot({
@@ -100,7 +110,14 @@ export const jarvisGetAllDecisions = onCall(OPTIONS, async (request: CallableReq
       nowMs,
     }),
     runContent: (appTier) => buildContentSnapshot({
-      fetchers: { lesson_stats: () => fetchContentSource({ collection: db.collection('lesson_stats'), nowMs }) },
+      fetchers: { lesson_stats: readLessonStats },
+      trigger: 'owner_request',
+      question,
+      nowMs,
+      appTier,
+    }),
+    runFactory: (appTier) => buildFactorySnapshot({
+      fetchFactory: readLessonStats,
       trigger: 'owner_request',
       question,
       nowMs,

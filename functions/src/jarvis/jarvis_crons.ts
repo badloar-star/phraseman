@@ -12,6 +12,7 @@ import { fetchGrowthSource } from './growth_firestore_fetcher';
 import { buildGrowthSnapshot } from './growth_snapshot';
 import { fetchContentSource } from './content_firestore_fetcher';
 import { buildContentSnapshot } from './content_snapshot';
+import { buildFactorySnapshot } from './factory_snapshot';
 import { fetchPaymentsSource } from './payments_firestore_fetcher';
 import { buildPaymentsSnapshot } from './payments_snapshot';
 import { fetchSafetySource } from './safety_firestore_fetcher';
@@ -125,6 +126,14 @@ export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTION
   const db = admin.firestore();
   const nowMs = Date.now();
 
+  // зачем общий читатель: «Контент» и «Фабрика» смотрят одну коллекцию
+  // lesson_stats с разными вопросами — без кэша это два одинаковых запроса.
+  let lessonStatsOnce: ReturnType<typeof fetchContentSource> | null = null;
+  const readLessonStats = () => {
+    if (!lessonStatsOnce) lessonStatsOnce = fetchContentSource({ collection: db.collection('lesson_stats'), nowMs });
+    return lessonStatsOnce;
+  };
+
   const snapshot = await buildAllDepartmentsSnapshot({
     resolveAppTier: () => resolveAppTier(() => fetchActiveUserCount({ collection: db.collection('users'), nowMs })),
     runQuality: (appTier) => buildQualitySnapshot({
@@ -152,7 +161,13 @@ export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTION
       nowMs,
     }),
     runContent: (appTier) => buildContentSnapshot({
-      fetchers: { lesson_stats: () => fetchContentSource({ collection: db.collection('lesson_stats'), nowMs }) },
+      fetchers: { lesson_stats: readLessonStats },
+      trigger: 'scheduled',
+      nowMs,
+      appTier,
+    }),
+    runFactory: (appTier) => buildFactorySnapshot({
+      fetchFactory: readLessonStats,
       trigger: 'scheduled',
       nowMs,
       appTier,

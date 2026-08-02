@@ -98,6 +98,10 @@ export { buildSupportSnapshot } from './support_snapshot';
 export { fetchSupportSource, SUPPORT_LOOKBACK_MS, MAX_SUPPORT_DOCS } from './support_firestore_fetcher';
 export type { FetchSupportSourceResult } from './support_firestore_fetcher';
 
+// ── Департамент «Фабрика контента» (восьмой): чего НЕ ХВАТАЕТ в курсе ──────
+export { runFactoryDepartment, FACTORY_DROPOFF_RATIO, FACTORY_MIN_SAMPLES } from './factory_department';
+export { buildFactorySnapshot } from './factory_snapshot';
+
 // ── Суточные планировщики ──────────────────────────────────────────────────
 export { jarvisDailyDepartmentsCron, jarvisDailyBusinessHistoryCron } from './jarvis_crons';
 export { buildDailyHistoryPoint } from './business_tier_daily_point';

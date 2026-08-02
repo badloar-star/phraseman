@@ -638,7 +638,16 @@ export function useTournamentRoom(roomId: string | null, active = true): RoomHoo
           setNudgeRetryNonce((value) => value + 1);
         }, retryDelayMs);
       });
-    }, Math.floor(Math.random() * 400));
+    // зачем 2026-08-02 (аудит стоимости): разброс был 400 мс, и при 16 игроках
+    // в комнате почти все успевали ударить в функцию до того, как первый из них
+    // успевал перевести комнату — то есть за одну фазу мы платили за ~16 вызовов
+    // advanceRoomAtDeadline (каждый ~130 чтений) вместо одного полезного.
+    //
+    // 1800 мс: первый вызов почти всегда успевает изменить stateDeadlineAtMs, и
+    // остальные экраны получают новый снапшот раньше своей очереди — их эффект
+    // просто не срабатывает (ключ nudge уже другой). Задержка не видна игроку:
+    // переход рисует сам сервер через снапшот, а не этот вызов.
+    }, Math.floor(Math.random() * 1800));
     return () => clearTimeout(id);
   }, [roomId, roomForRequestedId?.state, roomForRequestedId?.stateDeadlineAtMs, secondsLeftForRequestedRoom, active, freshForRequestedRoom, nudgeRetryNonce]);
 

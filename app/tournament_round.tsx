@@ -420,7 +420,15 @@ export default function TournamentRoundScreen() {
     : questionTiming?.durationMs
       ? Math.max(1, Math.ceil(questionTiming.durationMs / 1000))
       : Math.max(1, stateSecondsLeft);
-  const taskTimerActive = phase === 'question' || phase === 'feedback';
+  // зачем 2026-08-02 (владелец: «турнир, первый вопрос ответил, дальше кнопки
+  // не реагируют вообще»): фаза 'reading' была ИСКЛЮЧЕНА из таймера, поэтому на
+  // ней экран не перерисовывался. А answerSelectionActive вычисляется в теле
+  // рендера через tournamentNow() — без ре-рендера оно застревало в значении
+  // «окно ещё закрыто», снятом в момент входа в reading, и варианты оставались
+  // мёртвыми даже после того, как серверное окно фактически открылось.
+  // Единственным, кто будил экран, был снапшот комнаты — то есть кнопки
+  // «оживали» случайно и не всегда.
+  const taskTimerActive = phase === 'reading' || phase === 'question' || phase === 'feedback';
   const displayedSecondsLeft = secondsLeft ?? deriveDisplayedSecondsLeft(
     phase,
     questionTiming,
@@ -450,6 +458,7 @@ export default function TournamentRoundScreen() {
   useEffect(() => {
     activeQuestionKeyRef.current = questionKey;
   }, [questionKey]);
+
 
   useEffect(() => {
     const resumed = runtimeActive && !previousRuntimeActiveRef.current;

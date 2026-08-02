@@ -52,7 +52,15 @@ describe('tournament question feedback UX', () => {
   });
 
   test('answer countdown keeps following the absolute deadline during feedback', () => {
-    expect(round).toContain("const taskTimerActive = phase === 'question' || phase === 'feedback';");
+    // зачем 2026-08-02: сюда добавлена фаза 'reading'. Раньше тест прибивал
+    // строку целиком и тем самым закреплял поломку: без тика на reading экран
+    // не перерисовывался, а answerSelectionActive считается в теле рендера —
+    // варианты оставались мёртвыми после открытия серверного окна ответа.
+    // Контракт здесь про то, что таймер следует абсолютному дедлайну, а не про
+    // конкретный набор фаз; сам набор сторожит отдельный тест ниже.
+    expect(round).toContain('const taskTimerActive = phase === ');
+    expect(round).toContain("phase === 'question'");
+    expect(round).toContain("phase === 'feedback'");
     expect(round).toContain('if (!taskTimerActive)');
     expect(round).toContain('const displayedSecondsLeft = secondsLeft ?? deriveDisplayedSecondsLeft(');
     expect(round).toContain('<TimerRing seconds={displayedSecondsLeft} total={answerWindowSeconds} />');
@@ -220,5 +228,22 @@ describe('tournament question feedback UX', () => {
     expect(round).not.toMatch(/<TournamentTwoLineText[^>]*style=\{styles\.questionPhrase/);
     expect(round.match(/numberOfLines=\{2\}/g)).toHaveLength(1);
     expect(round).not.toContain('adjustsFontSizeToFit');
+  });
+
+  test('the reading phase keeps the per-second tick so the answer window can open', () => {
+    // зачем 2026-08-02 (владелец: «первый вопрос ответил, дальше кнопки не
+    // реагируют вообще»): это был блокер геймплея. answerSelectionActive
+    // вычисляется в теле рендера через tournamentNow(), поэтому «окно ответа
+    // открылось» замечается ТОЛЬКО на перерисовке. Фаза reading была исключена
+    // из taskTimerActive — секундного тика не было, экран не перерисовывался, и
+    // варианты оставались мёртвыми уже после фактического открытия окна.
+    // Разбудить экран мог только снапшот комнаты, то есть кнопки оживали
+    // случайно. Контракт держит связку: reading обязана тикать.
+    expect(round).toContain(
+      "const taskTimerActive = phase === 'reading' || phase === 'question' || phase === 'feedback'",
+    );
+    // Ровно этот флаг и запирает ввод — если его перестанут считать от текущего
+    // времени, тик снова окажется бесполезен.
+    expect(round).toContain('isTournamentAnswerSelectionWindowOpen(questionTiming, tournamentNow())');
   });
 });

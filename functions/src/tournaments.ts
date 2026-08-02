@@ -2756,6 +2756,12 @@ export async function tournamentSpeedMatchAttemptTransaction(
     tx.set(progressRef, {
       kind: 'speed_match_attempt_v1', taskId: input.taskId, playerId: input.stableUid,
       roundNo: input.roundNo, ...outcome.progress, updatedAtMs: receivedAtMs,
+      // зачем 2026-08-02 (аудит стоимости): TTL сразу при создании — см.
+      // submissionEvidenceExpireAt в tournamentSubmitTaskAnswerTransaction.
+      // Закрытие комнаты больше не переписывает эти документы пачкой.
+      expireAt: admin.firestore.Timestamp.fromMillis(
+        (room.startsAt ?? receivedAtMs) + TOURNAMENT_PRIVATE_EVIDENCE_RETENTION_MS,
+      ),
     });
     return {
       ok: true, correct: outcome.correct, completed: outcome.completed,
@@ -2921,6 +2927,19 @@ export async function tournamentSubmitTaskAnswerTransaction(
     }
     const answerRanksByPlayer = { [input.stableUid]: myAnswerRanks };
 
+    // зачем 2026-08-02 (аудит стоимости): TTL проставляется СРАЗУ при создании
+    // документа, а не переписывается пачкой при закрытии комнаты. Раньше
+    // закрытие делало tx.set(..., {expireAt}) для КАЖДОГО документа подколлекции
+    // — до 100+ записей одной транзакцией только ради одного поля.
+    //
+    // Срок считаем от старта комнаты, а не от «сейчас»: он одинаков для всех
+    // документов турнира независимо от того, когда игрок ответил, и совпадает с
+    // тем, что проставляло закрытие (finalizedAtMs + retention). Небольшой запас
+    // в большую сторону безопаснее нехватки: удалить рано — потерять разбор.
+    const submissionEvidenceExpireAt = admin.firestore.Timestamp.fromMillis(
+      (room.startsAt ?? receivedAtMs) + TOURNAMENT_PRIVATE_EVIDENCE_RETENTION_MS,
+    );
+
     if (!existing) {
       tx.create(receiptDescriptors.find((entry) => (
         entry.playerId === input.stableUid && entry.taskId === input.taskId
@@ -2936,6 +2955,7 @@ export async function tournamentSubmitTaskAnswerTransaction(
         // Место фиксируется в момент приёма — финализация раунда потом читает
         // его отсюда и не обязана пересортировывать всех заново.
         ...(counterRank === undefined ? {} : { answerRank: counterRank }),
+        expireAt: submissionEvidenceExpireAt,
       });
       if (correct) {
         // Транзакция уже прочитала счётчик, поэтому конкурирующая запись
@@ -2945,6 +2965,7 @@ export async function tournamentSubmitTaskAnswerTransaction(
           roundNo: input.roundNo,
           taskId: input.taskId,
           correctCount: (storedRankCounter?.correctCount ?? 0) + 1,
+          expireAt: submissionEvidenceExpireAt,
         }, { merge: true });
       }
     }
@@ -3736,8 +3757,23 @@ export async function advanceRoomAtDeadline(
       const evidenceExpireAt = admin.firestore.Timestamp.fromMillis(
         privateEvidenceRetentionUntilMs,
       );
-      for (const secretRef of retainedSecretRefs) {
-        tx.set(secretRef, { expireAt: evidenceExpireAt }, { merge: true });
+      // зачем 2026-08-02 (аудит стоимости): раньше здесь БЕЗУСЛОВНО
+      // переписывались ВСЕ документы подколлекции — до 100+ записей одной
+      // транзакцией только ради поля expireAt. Теперь квитанции, счётчики мест
+      // и speed-match попытки получают TTL прямо при создании, поэтому
+      // дописывать нечего.
+      //
+      // Проход оставлен только для комнат, созданных ДО этой правки: у их
+      // документов поля нет, и без него TTL-уборка их никогда не удалит.
+      // Читаем ОДНИМ getAll, а не по одному в цикле — иначе мы бы просто
+      // обменяли 100 записей на 100 чтений. Пишем только тем, у кого поля нет,
+      // поэтому у новых комнат записей здесь ровно ноль.
+      if (retainedSecretRefs.length > 0) {
+        const secretSnaps = await tx.getAll(...retainedSecretRefs);
+        secretSnaps.forEach((secretSnap, index) => {
+          if (!secretSnap.exists || secretSnap.get('expireAt') !== undefined) return;
+          tx.set(retainedSecretRefs[index], { expireAt: evidenceExpireAt }, { merge: true });
+        });
       }
       tx.set(roomRef, {
         state: 'closed',
@@ -3971,7 +4007,17 @@ export const tournamentAdvanceRooms = onSchedule(
         console.error('[tournaments] legacy lifecycle recovery failed', { roomId: doc.id, error });
       }
     }
-    await cleanupExpiredTournamentReviewEvidence(db, { nowMs });
+    // зачем 2026-08-02 (аудит стоимости): уборка просроченных улик висела на
+    // ЕЖЕМИНУТНОМ кроне — 1440 collection-group запросов в сутки ради данных,
+    // которые живут 7 дней. Достаточно раза в час: это 24 запроса вместо 1440,
+    // а самый «поздний» документ удалится максимум на час позже срока, что для
+    // недельного retention не значит ничего.
+    //
+    // Привязка к минуте, а не к счётчику в памяти: инстансы функции живут
+    // недолго и перезапускаются, счётчик обнулялся бы и уборка шла бы чаще.
+    if (new Date(nowMs).getUTCMinutes() === 0) {
+      await cleanupExpiredTournamentReviewEvidence(db, { nowMs });
+    }
   },
 );
 

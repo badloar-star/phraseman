@@ -638,6 +638,12 @@
     .ame-uid-item { display:flex; align-items:center; justify-content:space-between; gap:10px; font-size:12px; background:#12141f; border:1px solid #21232f; border-radius:8px; padding:5px 10px; }
     .ame-uid-item code { color:#93c5fd; word-break:break-all; }
     .ame-uid-item .rx { flex-shrink:0; }
+
+    /* Ссылка на пользователя: имя ведёт, идентификатор поясняет.
+       Разделение тоном и весом, без обводок. */
+    .uref-name { color:#e2e8f0; font-weight:600; margin-right:6px; }
+    .uref-uid  { color:#7c8598; font-size:.92em; word-break:break-all; }
+    .uref-empty { color:#6b7280; }
     .ame-empty { color:#666; font-size:13px; text-align:center; padding:20px; }
     .ame-loading { color:#888; font-size:13px; text-align:center; padding:30px; }
 
@@ -14952,6 +14958,28 @@
   }
   window.resolveUserNames = resolveUserNames;
 
+  // ── Правило владельца (2026-08-02): uid НИКОГДА не показывается один ────────
+  // зачем: голый идентификатор ничего не говорит о том, кто это, и владельцу
+  // приходилось копировать его в поиск, чтобы понять, о ком речь. Рядом с uid
+  // всегда идёт имя. Имени нет — показываем uid как есть и ничего не выдумываем
+  // («Без имени» спутали бы с реальным именем).
+  //
+  // Действует ТОЛЬКО в админке. В Telegram по решению владельца не уходят ни
+  // имена, ни uid — там только количества.
+  //
+  // names — карта из resolveUserNames(); если её нет, рендерится один uid,
+  // то есть функция безопасна на синхронном пути и ничего не ломает.
+  function renderUserRef(uid, names, opts) {
+    const id = String(uid == null ? '' : uid);
+    if (!id) return '<span class="uref-empty">—</span>';
+    const name = names && names[id] ? String(names[id]) : '';
+    const short = opts && opts.shortUid ? id.slice(0, 10) + (id.length > 10 ? '…' : '') : id;
+    const code = '<code class="uref-uid" title="' + escapeHtml(id) + '">' + escapeHtml(short) + '</code>';
+    if (!name || name === id) return code;
+    return '<span class="uref-name">' + escapeHtml(name) + '</span>' + code;
+  }
+  window.renderUserRef = renderUserRef;
+
   // ── Toast ─────────────────────────────────────────────────────────────────────
   // ── Audit log ─────────────────────────────────────────────────────────────────
   async function logAction(action, targetUid, details={}) {
@@ -26766,9 +26794,12 @@
       if (!reactors.length) {
         html += '<div class="ame-empty">Реакций пока нет.</div>';
       } else {
+        // зачем один батч: имена всех реагировавших тянутся одним запросом по
+        // 30 uid с общим кэшем — не getDoc на каждого.
+        const reactorNames = await resolveUserNames(reactors.map((x) => x.uid));
         html += '<div class="ame-uid-list">' + reactors
           .sort((a, b) => (a.r === b.r ? 0 : a.r === 'like' ? -1 : 1))
-          .map((x) => `<div class="ame-uid-item"><code>${escapeHtml(x.uid)}</code><span class="rx">${x.r === 'like' ? '👍' : '👎'}</span></div>`)
+          .map((x) => `<div class="ame-uid-item">${renderUserRef(x.uid, reactorNames)}<span class="rx">${x.r === 'like' ? '👍' : '👎'}</span></div>`)
           .join('') + '</div>';
       }
       bodyEl.innerHTML = html;
@@ -31099,7 +31130,6 @@
     list.innerHTML = rows.slice(0, 80).map(r => {
       const color = r.result === 'error' ? '#f87171' : (r.result === 'blocked' ? '#fbbf24' : (r.result === 'success' ? '#4ade80' : '#60a5fa'));
       const ts = (r.createdAt || '').replace('T', ' ').slice(0, 19);
-      const uid = r.uid ? String(r.uid).slice(0, 10) + '...' : '-';
       const tags = r.tags ? Object.entries(r.tags).slice(0, 8).map(([k, v]) => `<span style="color:#666">${escapeHtml(k)}:</span> ${escapeHtml(String(v))}`).join(' &nbsp; ') : '';
       return `<div class="report-card" style="padding:12px 14px;min-height:auto;background:#12121a">
         <div class="rc-left">
@@ -31109,7 +31139,7 @@
             <span style="margin-left:auto;color:#555;font-size:11px">${escapeHtml(ts)}</span>
           </div>
           <div style="font-size:12px;color:#aaa;margin-bottom:4px">
-            ${escapeHtml(r.feature || 'app')} - ${escapeHtml(r.screen || '-')} - ${escapeHtml(r.platform || '?')} - uid <span style="font-family:monospace">${escapeHtml(uid)}</span>
+            ${escapeHtml(r.feature || 'app')} - ${escapeHtml(r.screen || '-')} - ${escapeHtml(r.platform || '?')} - ${renderUserRef(r.uid, r.userName ? { [r.uid]: r.userName } : null, { shortUid: true })}
           </div>
           ${tags ? `<div style="font-size:12px;color:#888">${tags}</div>` : ''}
         </div>
@@ -31218,7 +31248,6 @@
     list.innerHTML = rows.slice(0, 250).map(r => {
       const color = r.severity === 'critical' ? '#f87171' : (r.severity === 'warning' ? '#fbbf24' : '#60a5fa');
       const ts = (r.createdAt || '').replace('T', ' ').slice(0, 19);
-      const uid = r.uid ? String(r.uid).slice(0, 10) + '...' : '-';
       const tags = r.tags ? Object.entries(r.tags).slice(0, 6).map(([k, v]) => `<span style="color:#666">${escapeHtml(k)}:</span> ${escapeHtml(String(v))}`).join(' &nbsp; ') : '';
       return `<div class="report-card">
         <div class="rc-left">
@@ -31228,7 +31257,7 @@
             <span style="margin-left:auto;color:#555;font-size:11px">${escapeHtml(ts)}</span>
           </div>
           <div style="font-size:12px;color:#aaa;margin-bottom:5px">
-            ${escapeHtml(r.feature || 'app')} - ${escapeHtml(r.platform || '?')} - v${escapeHtml(r.appVersion || '?')} - uid <span style="font-family:monospace">${escapeHtml(uid)}</span>
+            ${escapeHtml(r.feature || 'app')} - ${escapeHtml(r.platform || '?')} - v${escapeHtml(r.appVersion || '?')} - ${renderUserRef(r.uid, r.userName ? { [r.uid]: r.userName } : null, { shortUid: true })}
           </div>
           <div style="font-size:13px;color:#ddd;margin-bottom:5px">${escapeHtml(r.message || '')}</div>
           ${tags ? `<div style="font-size:12px;color:#888">${tags}</div>` : ''}

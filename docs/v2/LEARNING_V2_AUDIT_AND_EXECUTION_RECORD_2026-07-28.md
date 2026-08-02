@@ -371,15 +371,17 @@ V2 пока **не подключён к пользователю**. Во вкл
 - Полностью прочитан исходный handover и проведён аудит 32 уроков, фраз, интро, теории, словарей, неправильных глаголов, личных планов, V2-контрактов, админ-генератора, макетов и шести конкурентов.
 - Создан этот самостоятельный документ; он является журналом принятых решений и должен обновляться после каждого ответа владельца.
 - Заданы и зафиксированы решения до вопроса 270 включительно.
-- В код приложения намеренно не внесено изменений: перед реализацией ещё требуется закрыть продуктовые решения, сформировать детальный план и назначить безопасные границы работ.
-- P0 начат: `session_compiler`, канонический session validator и episode QA синхронизированы с 12 заданиями в сессии; компилятор больше не планирует старые неутверждённые режимы. Узкий тест `learning_v2_session_compiler` зелёный (7 tests).
+- Созданы самостоятельный полный хендовер `LEARNING_V2_FULL_OWNER_HANDOVER_2026-08-02.md`, фактический статус готовности и индекс документов проекта.
+- P0 начат: `session_compiler`, канонический session validator и episode QA синхронизированы с 12 заданиями в сессии. Компилятор и canonical payload fail-closed отвергают неутверждённые mode family в обязательной V2-сессии. Focused root-tests: 18/18; focused server QA: 7/7.
+- P1 завершён без demo-подмен: `legacy_lesson_adapter` адаптирует все 50 настоящих фраз Lesson 1, сохраняя английский оригинал, русский перевод и word-level distractors. Новый `legacy_lesson_payload` — versioned source envelope с этими 50 фразами, существующими intro screens, существующей теорией и словарём из текущих phrase-words. Root regression подтверждает `payload → 50 phrases + intro + theory + vocabulary → 12 sessions / 144 cards → QA` (3/3).
+- Для P3 извлечена точная RN-спецификация карты из mock 08: `LEARNING_V2_LESSON_MAP_RN_SPEC_2026-08-02.md`. Она фиксирует геометрию, state machine, Reanimated motion, reduced motion и оговорку: старые 7–9 карточек в demo-JS макета не могут вернуться в продукт.
 
 ### Остаётся
 
-1. Продолжать вопросы: **300 — минимум, а не потолок**. Остановиться можно только когда не осталось решений, влияющих на учебную логику, контент, личные планы, экономику, анимации, доступность, приватность, офлайн и выпуск.
-2. Составить окончательный пофайловый план с тестами и критериями визуальной приёмки.
-3. До начала кода провести отдельный запуск: один вертикальный срез на реальном уроке, затем масштабирование на 32 урока.
-4. Только после этого приступать к безопасному удалению энергии и к миграции старого прогресса.
+1. Закрыть P0 отдельными критическими контрактами для звёзд, повторов, Hard Mode и миграционных статусов.
+2. До начала UI собрать один вертикальный срез: один реальный урок из существующих 50 фраз, интро, теории и словаря.
+3. Только после этого переходить к карте и экрану `phrase_builder` с покадровой приёмкой.
+4. Удалять энергию только после инвентаризации потребителей и готовой миграции старого прогресса.
 
 ## 15. Протокол работы несколькими ИИ и компьютерами
 
@@ -397,11 +399,13 @@ V2 пока **не подключён к пользователю**. Во вкл
 
 ### Активные пакеты
 
-Сейчас активных пакетов реализации нет: идёт сбор решений владельца.
+Сейчас активен только ограниченный P0; деньги, доступ, миграции и UI в него не входят.
 
 | Пакет | Владелец | Файлы | Статус | Проверки | Следующий шаг |
 |---|---|---|---|---|---|
-| Product decisions / Learning V2 | Текущая сессия | Этот документ | in progress | Ручная сверка решений с сообщениями владельца | Продолжить вопросы после №270 |
+| P0/P1 — contracts + real Lesson 1 source | Текущая сессия | `session_compiler.ts`, `contracts/session.ts`, `legacy_lesson_adapter.ts`, `legacy_lesson_payload.ts`, focused tests и статусные документы | complete | Root Jest 21/21; functions QA 7/7 | P2/P3: V2-progress, затем карта Lesson 1 и Phrase Builder по макету |
+| P2 — Lesson 1 local-first progress/migration contract | `/root/v2_progress` | `modules/learning-v2/progress/lesson1_local_progress.ts`, `tests/learning_v2_progress_lesson1_local_first.test.ts` | complete (bounded local contract; без UI, network/economy writes, stars/prices) | RED: missing module; RED: corrupt migration accepted; GREEN: focused progress Jest 32/32 | Fresh critical review; затем отдельная интеграция с runtime/map без изменения legacy XP/shards |
+| P3 — Lesson 1 RN map shell | `/root` | `app/learning-v2/lesson/[id].tsx`, `modules/learning-v2/map/*`, `tests/learning_v2_lesson*_map*.test.ts` | in progress | TypeScript route check; Jest map/progress/screen contracts green; `expo export --platform web` green | Нужны: запуск с реального списка уроков, маршрут сессии, V2-wallet, bottom-sheet/entrance motion и покадровые device screenshots против mock 08. Не считать P3 завершённым до этих evidence. |
 
 ### Шаблон записи для следующего исполнителя
 

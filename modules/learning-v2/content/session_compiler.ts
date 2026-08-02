@@ -59,6 +59,19 @@ export const REQUIRED_SESSION_POLICY_V1: readonly SessionPolicyEntry[] = Object.
   { zone: 'master', support: 'none', families: ['phrase_builder', 'listen_choose', 'listen_build_dictation'] },
 ] as const);
 
+// зачем: profile может поддерживать исторические или экспериментальные режимы,
+// но обязательная V2-сессия не имеет права молча подставить их как fallback.
+// Список синхронизирован с решением владельца о семи режимах.
+const REQUIRED_SESSION_ALLOWED_FAMILIES = new Set<V2ActivityFamily>([
+  'phrase_builder',
+  'listen_choose',
+  'sound_contrast',
+  'listen_build_dictation',
+  'context_gap_grammar',
+  'speed_match',
+  'scripted_repeat_compare',
+]);
+
 // зачем: языково-безопасный фолбэк может подменить семью ТОЛЬКО на семью той же
 // учебной функции — иначе сессия теряет смысл (нельзя менять диктант на «повтори вслух»).
 const FAMILY_LEARNING_FUNCTION: Readonly<Record<V2ActivityFamily, V2SessionLearningFunction>> = Object.freeze({
@@ -129,6 +142,7 @@ function resolveSessionFamilies(
     // Фолбэк: та же учебная функция, поддерживается профилем, есть контент, ещё не взята.
     const wanted = FAMILY_LEARNING_FUNCTION[family];
     const fallback = [...supported]
+      .filter((candidate) => REQUIRED_SESSION_ALLOWED_FAMILIES.has(candidate))
       .filter((candidate) => FAMILY_LEARNING_FUNCTION[candidate] === wanted)
       .filter((candidate) => !resolved.includes(candidate))
       .filter((candidate) => eligibleItemsForFamily(items, candidate).length > 0)

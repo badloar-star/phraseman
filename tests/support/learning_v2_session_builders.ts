@@ -53,10 +53,10 @@ export const buildValidSessionSet = (): Readonly<V2SessionSetBody> => {
     "master",
   ] as const;
   const families = [
-    "visual_discovery",
     "listen_choose",
     "phrase_builder",
     "context_gap_grammar",
+    "sound_contrast",
   ] as const;
 
   return deepFreeze({
@@ -68,7 +68,7 @@ export const buildValidSessionSet = (): Readonly<V2SessionSetBody> => {
       ordinal: index + 1,
       zone,
       targetSeconds: 180,
-      cards: Array.from({ length: 8 }, (_unused, cardIndex) => ({
+      cards: Array.from({ length: 12 }, (_unused, cardIndex) => ({
         cardId: `episode-01.session-${String(index + 1).padStart(2, "0")}.card-${cardIndex + 1}`,
         contentItemId: `content-item-${(cardIndex % 4) + 1}`,
         objectiveId: "objective.introduce-self",

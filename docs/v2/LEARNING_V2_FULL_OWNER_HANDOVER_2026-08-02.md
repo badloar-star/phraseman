@@ -146,7 +146,7 @@
 - Единственная живая админ-поверхность — `admin/v2/legacy.html`. Замороженные альтернативные admin-файлы не менять.
 - Ветка и рабочая директория уже содержат чужую незавершённую работу. Не делать reset, checkout, stash, массовые форматирования или широкие переписывания.
 
-## Что уже реально изменено в P0
+## Что уже реально изменено в P0/P1
 
 Это единственная начатая реализация Learning V2 на момент документа:
 
@@ -154,15 +154,18 @@
 - `modules/learning-v2/contracts/session.ts`: канонический валидатор принимает только 12 карточек; верхняя длительность сессии стала 360 секунд.
 - `functions/src/content_factory/v2_episode_content_qa.ts`: content QA требует ровно 12 карточек.
 - `tests/learning_v2_session_compiler.test.ts`: тест фиксирует 12 карточек и разрешённые семейства.
+- `modules/learning-v2/content/legacy_lesson_adapter.ts`: Lesson 1 больше не опирается на 10-строчный demo-bank. Адаптер читает все 50 существующих фраз из `app/lesson_data_1_8_phrases_source.ts`, не переписывает английский текст/перевод и строит V2 content item из существующих word-level distractors.
+- `modules/learning-v2/content/legacy_lesson_payload.ts`: versioned Lesson 1 source payload связывает настоящие V2 items с существующими intro screens, теорией и словарём, полученным из тех же phrase-words.
+- `tests/learning_v2_lesson1_legacy_slice.test.ts`: проверяет реальный путь `versioned payload → 50 фраз + intro + theory + vocabulary → 12 сессий / 144 карточки → content QA`.
 
 Проверка выполнена 2 августа 2026:
 
 ```text
 npx jest tests/learning_v2_session_compiler.test.ts --runInBand
-PASS: 1 suite, 7 tests
+PASS: root contracts/compiler — 2 suites, 18 tests; real Lesson 1 slice — 1 suite, 3 tests; functions QA — 1 suite, 7 tests
 ```
 
-Это **не означает готовность V2**. Не выполнены реальная сессия на 50 фразах, прогресс/идемпотентность, карта, семь экранов, миграция энергии, личный план на карте, админ-preview и выпуск.
+Это **не означает готовность V2**. Первый настоящий versioned payload уже есть, но ещё не выполнены прогресс/идемпотентность, карта, семь экранов, миграция энергии, личный план на карте, админ-preview и выпуск.
 
 ## Очередность, которую нельзя переворачивать
 

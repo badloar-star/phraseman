@@ -34,7 +34,7 @@ const LAST_SHOWN_KEY: Record<Kind, string> = {
 /** Одна и та же деактивация не должна долбить карточкой каждый старт. */
 const SHOW_COOLDOWN_MS = 7 * 24 * 60 * 60 * 1000;
 
-type Copy = { kicker: string; title: string; value: string; cta: string; ghost: string };
+type Copy = { kicker: string; title: string; value: string; cta: string; invite: string; ghost: string };
 
 const TEXTS: Record<string, Copy> = {
   ru: {
@@ -42,6 +42,7 @@ const TEXTS: Record<string, Copy> = {
     title: 'Plus закончился',
     value: 'Прогресс цел. Верни безлимит уроков и все темы.',
     cta: 'Продлить Plus',
+    invite: 'Пригласить друга',
     ghost: 'Позже',
   },
   uk: {
@@ -49,6 +50,7 @@ const TEXTS: Record<string, Copy> = {
     title: 'Plus закінчився',
     value: 'Прогрес цілий. Поверни безліміт уроків і всі теми.',
     cta: 'Продовжити Plus',
+    invite: 'Запросити друга',
     ghost: 'Пізніше',
   },
   es: {
@@ -56,6 +58,7 @@ const TEXTS: Record<string, Copy> = {
     title: 'Plus terminó',
     value: 'Tu progreso está a salvo. Recupera lecciones ilimitadas y todos los temas.',
     cta: 'Renovar Plus',
+    invite: 'Invitar a un amigo',
     ghost: 'Más tarde',
   },
   'pt-BR': {
@@ -63,6 +66,7 @@ const TEXTS: Record<string, Copy> = {
     title: 'O Plus acabou',
     value: 'Seu progresso está salvo. Recupere aulas ilimitadas e todos os temas.',
     cta: 'Renovar Plus',
+    invite: 'Convidar um amigo',
     ghost: 'Depois',
   },
   vi: {
@@ -70,6 +74,7 @@ const TEXTS: Record<string, Copy> = {
     title: 'Plus đã hết hạn',
     value: 'Tiến độ vẫn an toàn. Lấy lại bài học không giới hạn và mọi chủ đề.',
     cta: 'Gia hạn Plus',
+    invite: 'Mời bạn bè',
     ghost: 'Để sau',
   },
   id: {
@@ -77,6 +82,7 @@ const TEXTS: Record<string, Copy> = {
     title: 'Plus berakhir',
     value: 'Progresmu aman. Dapatkan kembali pelajaran tanpa batas dan semua tema.',
     cta: 'Perpanjang Plus',
+    invite: 'Undang teman',
     ghost: 'Nanti',
   },
   tr: {
@@ -84,6 +90,7 @@ const TEXTS: Record<string, Copy> = {
     title: 'Plus bitti',
     value: 'İlerlemen güvende. Sınırsız ders ve tüm temaları geri al.',
     cta: 'Plus’ı yenile',
+    invite: 'Arkadaşını davet et',
     ghost: 'Sonra',
   },
   pl: {
@@ -91,6 +98,7 @@ const TEXTS: Record<string, Copy> = {
     title: 'Plus się skończył',
     value: 'Twój postęp jest bezpieczny. Odzyskaj nielimitowane lekcje i wszystkie motywy.',
     cta: 'Przedłuż Plus',
+    invite: 'Zaproś znajomego',
     ghost: 'Później',
   },
 };
@@ -242,6 +250,17 @@ function EntitlementExpiredHost() {
             pathname: '/premium_modal',
             params: { context },
           } as never);
+        });
+      }}
+      /** зачем: владелец (2026-08-02, вариант А) — второй путь с карточки: позвать
+          друга (/referrals). Друг оформит Plus/Pro → пригласившему придёт «Награда
+          за друга». Продление остаётся главным CTA, реферал — tonal-кнопкой ниже. */
+      secondaryLabel={tx.invite}
+      onSecondary={() => {
+        if (isTournamentInterruptionProtectedPath(pathnameRef.current)) return;
+        navigateAfterModalClose(markShownAndClose, () => {
+          if (isTournamentInterruptionProtectedPath(pathnameRef.current)) return;
+          router.push({ pathname: '/referrals' } as never);
         });
       }}
       ghostLabel={tx.ghost}

@@ -297,7 +297,11 @@ describe('referral roulette screen contract', () => {
 
     expect(share).toContain('Установи приложение, введи мой код и оформи Plus или Pro');
     expect(share).toContain('Plus от 1 дня до 365 дней');
-    expect(expired).toContain('получишь ключ');
+    // зачем: владелец (2026-08-02, вариант А) — карточка истёкшего доступа продаёт
+    // продление главным CTA, а в рефералку зовёт второй tonal-кнопкой на /referrals;
+    // старый текст-крючок «получишь ключ» с карточки снят сознательно.
+    expect(expired).toContain("invite: 'Пригласить друга'");
+    expect(expired).toContain("pathname: '/referrals'");
     expect(expired).not.toContain('по 7 дней за каждого');
   });
 

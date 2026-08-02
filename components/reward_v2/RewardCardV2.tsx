@@ -2,6 +2,7 @@ import React, { memo, useEffect, useRef } from 'react';
 import { Animated, Modal, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { LinearGradient } from '../SafeLinearGradient';
 import { useTheme } from '../ThemeContext';
+import PressableScale from '../PressableScale';
 import PrimaryButton from '../ui/PrimaryButton';
 import { MOTION_DURATION, MOTION_SPRING_LEGACY } from '../../constants/motion';
 import { useRuntimeActive } from '../../hooks/use_runtime_active';
@@ -38,6 +39,11 @@ export type RewardCardBodyProps = {
   reasonText?: string;
   ctaLabel: string;
   onCta: () => void;
+  /** зачем: владелец (2026-08-02) — карточке нужен второй, менее громкий путь
+      (пример: «Продлить Plus» + «Пригласить друга»). Tonal-кнопка между CTA и
+      ghost: мягкая поверхность без обводки, текст акцентом, форма как у CTA. */
+  secondaryLabel?: string;
+  onSecondary?: () => void;
   ghostLabel?: string;
   onGhost?: () => void;
   semantic?: RewardCardSemantic;
@@ -91,6 +97,8 @@ export function RewardCardBody({
   reasonText,
   ctaLabel,
   onCta,
+  secondaryLabel,
+  onSecondary,
   ghostLabel,
   onGhost,
   semantic = 'neutral',
@@ -283,6 +291,19 @@ export function RewardCardBody({
       ) : null}
       {children}
       <PrimaryButton label={ctaLabel} onPress={onCta} style={styles.cta} />
+      {secondaryLabel && onSecondary ? (
+        <PressableScale
+          onPress={onSecondary}
+          variant="primary"
+          style={styles.secondary}
+          contentStyle={[
+            styles.secondaryInner,
+            { minHeight: ds.buttonHeight, borderRadius: ds.radius.lg, backgroundColor: soft },
+          ]}
+        >
+          <Text style={{ color: accent, fontSize: f.bodyLg, fontWeight: '700' }}>{secondaryLabel}</Text>
+        </PressableScale>
+      ) : null}
       {ghostLabel && onGhost ? (
         <TouchableOpacity onPress={onGhost} activeOpacity={0.7} style={styles.ghost}>
           <Text style={[styles.ghostText, { color: t.textMuted, fontSize: f.sub }]}>{ghostLabel}</Text>
@@ -467,6 +488,16 @@ const styles = StyleSheet.create({
   cta: {
     alignSelf: 'stretch',
     marginTop: 18,
+  },
+  secondary: {
+    alignSelf: 'stretch',
+    marginTop: 10,
+  },
+  secondaryInner: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 16,
+    overflow: 'hidden',
   },
   ghost: {
     paddingVertical: 10,

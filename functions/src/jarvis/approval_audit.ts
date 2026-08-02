@@ -16,16 +16,25 @@ export const JARVIS_APPROVAL_AUDIT_COLLECTION = 'jarvis_approval_audit';
 
 export type ApprovalOutcome = 'accepted' | ApprovalRejectReason | 'storage_error';
 
+/**
+ * Помимо approve/reject кнопки, журнал фиксирует и команды /stop, /start
+ * (бриф в235: аудит входов — «кто и когда останавливал Джарвиса» не должен
+ * жить только в перезаписываемом jarvis_control.changedBy).
+ */
+export type AuditAction = ApprovalAction | 'stop' | 'start';
+
 export interface ApprovalAuditEntry {
-  readonly action: ApprovalAction;
+  readonly action: AuditAction;
+  /** 'jarvis' для команд /stop, /start — они не относятся к департаменту. */
   readonly department: string;
+  /** '' для команд — решения департамента здесь нет. */
   readonly decisionHash: string;
   readonly outcome: ApprovalOutcome;
   readonly atMs: number;
 }
 
 export interface BuildApprovalAuditEntryInput {
-  readonly action: ApprovalAction;
+  readonly action: AuditAction;
   readonly department: string;
   readonly decisionHash: string;
   readonly outcome: ApprovalOutcome;

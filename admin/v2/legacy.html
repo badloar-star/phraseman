@@ -27055,6 +27055,10 @@
     // зачем сине-фиолетовый: «Удержание» — про долгую картину, а не про
     // срочность. Спокойный тон отличает его от тревожных департаментов.
     retention: { title: 'Удержание', accentRgb: '129,140,248' },
+    // зачем: команды /stop и /start в журнале записаны как department 'jarvis'
+    // (не относятся ни к одному конкретному отделу) — без этой записи в
+    // журнале они показывались бы с сырым словом "jarvis" вместо заголовка.
+    jarvis: { title: 'Джарвис', accentRgb: '148,163,184' },
   };
   const JF_TIER_LABEL = { seed: 'Seed', growth: 'Growth', scale: 'Scale', mature: 'Mature' };
 
@@ -27165,7 +27169,7 @@
       box.innerHTML = entries.map((entry) => {
         const meta = JF_DEPARTMENT_META[entry.department] || { title: entry.department, accentRgb: '148,163,184' };
         const when = new Date(entry.atMs).toLocaleString('ru-RU', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
-        const actionLabel = entry.action === 'approve' ? '✅ принять' : '✕ отклонить';
+        const actionLabel = { approve: '✅ принять', reject: '✕ отклонить', stop: '⏸ /stop', start: '▶️ /start' }[entry.action] || entry.action;
         const outcomeLabel = JF_OUTCOME_LABEL[entry.outcome] || entry.outcome;
         return '<div style="background:rgba(' + meta.accentRgb + ',0.06);border-radius:8px;padding:8px 10px;font-size:12px;color:#cbd5e1;display:flex;justify-content:space-between;gap:10px">' +
           '<span><b>' + escapeHtml(meta.title) + '</b> · ' + actionLabel + ' · ' + escapeHtml(outcomeLabel) + '</span>' +

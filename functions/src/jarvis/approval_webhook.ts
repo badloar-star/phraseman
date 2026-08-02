@@ -123,6 +123,15 @@ async function handleCommand(input: HandleCommandInput): Promise<void> {
     },
     { merge: true },
   );
+  // зачем отдельно от jarvis_control: то поле перезаписывается следующей
+  // командой, а «кто и когда останавливал» обязано остаться в неизменяемой
+  // истории (бриф в186, в235), не только в последнем известном значении.
+  await input.db.collection(JARVIS_APPROVAL_AUDIT_COLLECTION).add(
+    buildApprovalAuditEntry({
+      action: input.command, department: 'jarvis', decisionHash: '',
+      outcome: 'accepted', nowMs: input.nowMs,
+    }),
+  ).catch((error) => logger.warn('jarvis_approval: command audit write failed', error));
   await sendPlainMessage(
     input.botToken,
     input.chatId,

@@ -41,6 +41,24 @@ describe('Jarvis approval audit — every press leaves a trace, no press leaks a
     expect(entry.outcome).toBe('expired');
   });
 
+  test('records a /stop command, not just approve/reject on decisions', () => {
+    // зачем: "кто останавливал Джарвиса и когда" не должно жить только
+    // в перезаписываемом jarvis_control.changedBy — это тоже действие,
+    // достойное неизменяемого журнала (бриф в235).
+    const entry = buildApprovalAuditEntry({
+      action: 'stop', department: 'jarvis', decisionHash: '', outcome: 'accepted', nowMs: NOW,
+    });
+    expect(entry.action).toBe('stop');
+    expect(entry.department).toBe('jarvis');
+  });
+
+  test('records a /start command the same way', () => {
+    const entry = buildApprovalAuditEntry({
+      action: 'start', department: 'jarvis', decisionHash: '', outcome: 'accepted', nowMs: NOW,
+    });
+    expect(entry.action).toBe('start');
+  });
+
   test('the audit collection is named explicitly, not derived at runtime', () => {
     expect(JARVIS_APPROVAL_AUDIT_COLLECTION).toBe('jarvis_approval_audit');
   });

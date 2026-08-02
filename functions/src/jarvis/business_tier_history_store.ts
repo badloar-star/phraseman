@@ -1,0 +1,148 @@
+import type { BusinessTierHistoryPoint } from './business_tier_history';
+
+/**
+ * Тонкая Firestore-обвязка над историей тира бизнеса.
+ *
+ * зачем: один документ на день в business_tier_history/{day} — новая
+ * коллекция, не трогает существующие agg-таблицы. Разовый бэкфилл пишет
+ * задним числом, ежедневный крон ДОПИСЫВАЕТ ровно одну новую точку —
+ * никогда не пересчитывает всё заново (Firebase-экономия).
+ */
+
+export const BUSINESS_TIER_HISTORY_COLLECTION = 'business_tier_history';
+export const BUSINESS_TIER_BACKFILL_STATE_DOC = 'business_tier_backfill_state/singleton';
+export const MAX_HISTORY_POINTS_PER_READ = 3_650; // ~10 лет ежедневных точек — щедрый, но конечный потолок чтения
+
+export interface HistoryPointDoc {
+  readonly cumulativeUsers: number;
+  readonly newUsers: number;
+  readonly newPaying: number;
+  readonly renewals: number;
+  readonly refunds: number;
+  readonly revenueProxy: number;
+  readonly writtenAtMs: number;
+}
+
+function toDoc(point: BusinessTierHistoryPoint, nowMs: number): HistoryPointDoc {
+  return Object.freeze({
+    cumulativeUsers: point.cumulativeUsers,
+    newUsers: point.newUsers,
+    newPaying: point.newPaying,
+    renewals: point.renewals,
+    refunds: point.refunds,
+    revenueProxy: point.revenueProxy,
+    writtenAtMs: nowMs,
+  });
+}
+
+export interface WriteHistoryPointsInput {
+  readonly db: FirebaseFirestore.Firestore;
+  readonly points: readonly BusinessTierHistoryPoint[];
+  readonly nowMs: number;
+}
+
+/**
+ * Пишет точки истории идемпотентно (merge по dayKey-документу) батчами
+ * по 400 (запас от лимита Firestore в 500 операций на батч). Повторный
+ * вызов с теми же днями перезаписывает те же документы — безопасно
+ * продолжать бэкфилл после обрыва без дублей.
+ */
+export async function writeHistoryPoints(input: WriteHistoryPointsInput): Promise<{ written: number }> {
+  const { db, points, nowMs } = input;
+  if (points.length === 0) return { written: 0 };
+  const collection = db.collection(BUSINESS_TIER_HISTORY_COLLECTION);
+  const CHUNK = 400;
+  let written = 0;
+  for (let i = 0; i < points.length; i += CHUNK) {
+    const chunk = points.slice(i, i + CHUNK);
+    const batch = db.batch();
+    for (const point of chunk) {
+      batch.set(collection.doc(point.dayKey), toDoc(point, nowMs), { merge: true });
+    }
+    await batch.commit();
+    written += chunk.length;
+  }
+  return { written };
+}
+
+export interface ReadRecentHistoryInput {
+  readonly db: FirebaseFirestore.Firestore;
+  readonly limit: number;
+}
+
+export interface RecentHistoryPoint extends HistoryPointDoc {
+  readonly dayKey: string;
+}
+
+/** Читает последние N точек истории по возрастанию дня — для графика и панели. */
+export async function readRecentHistory(input: ReadRecentHistoryInput): Promise<readonly RecentHistoryPoint[]> {
+  const limit = Math.max(1, Math.min(MAX_HISTORY_POINTS_PER_READ, Math.trunc(input.limit) || 1));
+  const snapshot = await input.db
+    .collection(BUSINESS_TIER_HISTORY_COLLECTION)
+    .orderBy('__name__', 'desc')
+    .limit(limit)
+    .get();
+  const docs = snapshot.docs
+    .map((doc) => ({ dayKey: doc.id, ...(doc.data() as HistoryPointDoc) }))
+    .reverse(); // снова по возрастанию дня для графика
+  return Object.freeze(docs);
+}
+
+export interface BackfillCursorState {
+  /** id последнего прочитанного документа users (для startAfter — точная постраничная пагинация по __name__). */
+  readonly lastUserDocId: string | null;
+  /** Самый свежий день, для которого уже посчитана и записана точка истории — для честного отчёта прогресса. */
+  readonly lastCompletedDayKey: string | null;
+  /** Бегущий тотал зарегистрированных пользователей, перенесённый со страницы на страницу. */
+  readonly cumulativeUsers: number;
+  readonly done: boolean;
+  readonly updatedAtMs: number;
+}
+
+const EMPTY_CURSOR: BackfillCursorState = Object.freeze({
+  lastUserDocId: null,
+  lastCompletedDayKey: null,
+  cumulativeUsers: 0,
+  done: false,
+  updatedAtMs: 0,
+});
+
+/**
+ * Курсор продолжаемого бэкфилла. Хранится в отдельном документе-синглтоне,
+ * не в самой истории — таймаут функции (~9 мин) может оборвать один вызов
+ * посередине; следующий вызов того же callable продолжает с курсора.
+ */
+export async function readBackfillCursor(db: FirebaseFirestore.Firestore): Promise<BackfillCursorState> {
+  const snap = await db.doc(BUSINESS_TIER_BACKFILL_STATE_DOC).get();
+  if (!snap.exists) return EMPTY_CURSOR;
+  const data = snap.data() as Partial<BackfillCursorState> | undefined;
+  return Object.freeze({
+    lastUserDocId: typeof data?.lastUserDocId === 'string' ? data.lastUserDocId : null,
+    lastCompletedDayKey: typeof data?.lastCompletedDayKey === 'string' ? data.lastCompletedDayKey : null,
+    cumulativeUsers: typeof data?.cumulativeUsers === 'number' && Number.isFinite(data.cumulativeUsers) ? data.cumulativeUsers : 0,
+    done: data?.done === true,
+    updatedAtMs: typeof data?.updatedAtMs === 'number' ? data.updatedAtMs : 0,
+  });
+}
+
+export async function writeBackfillCursor(
+  db: FirebaseFirestore.Firestore,
+  state: {
+    readonly lastUserDocId: string | null;
+    readonly lastCompletedDayKey: string | null;
+    readonly cumulativeUsers: number;
+    readonly done: boolean;
+    readonly nowMs: number;
+  },
+): Promise<void> {
+  await db.doc(BUSINESS_TIER_BACKFILL_STATE_DOC).set(
+    {
+      lastUserDocId: state.lastUserDocId,
+      lastCompletedDayKey: state.lastCompletedDayKey,
+      cumulativeUsers: state.cumulativeUsers,
+      done: state.done,
+      updatedAtMs: state.nowMs,
+    },
+    { merge: true },
+  );
+}

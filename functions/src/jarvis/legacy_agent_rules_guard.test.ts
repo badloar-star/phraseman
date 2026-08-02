@@ -17,6 +17,8 @@ const root = path.resolve(__dirname, '../../..');
 const rules = fs.readFileSync(path.join(root, 'firestore.rules'), 'utf8');
 
 const SERVER_ONLY_COLLECTIONS = [
+  // Токены approval Джарвиса: даже чтение помогло бы подбору nonce.
+  'jarvis_approval_tokens',
   'agent_cases',
   'agent_recommendations',
   'agent_approvals',

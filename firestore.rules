@@ -2075,6 +2075,11 @@ service cloud.firestore {
     match /agent_telegram_tokens/{document=**} {
       allow read, write: if false;
     }
+    // Одноразовые approval-токены Джарвиса. Полностью закрыты браузеру:
+    // документ содержит хеш nonce, и даже чтение помогло бы подбору.
+    match /jarvis_approval_tokens/{document=**} {
+      allow read, write: if false;
+    }
     match /agent_observation_receipts/{document=**} {
       allow read, write: if false;
     }
@@ -2172,6 +2177,7 @@ service cloud.firestore {
         && collection != 'agent_audit_events'
         && collection != 'agent_office_control'
         && collection != 'agent_telegram_tokens'
+        && collection != 'jarvis_approval_tokens'
         && collection != 'agent_observation_receipts'
         && collection != 'agent_manager_agents'
         && collection != 'agent_manager_tasks'

@@ -29,7 +29,6 @@ import Animated, {
   withDelay,
   withSequence,
   withTiming,
-  type SharedValue,
 } from 'react-native-reanimated';
 
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
@@ -40,6 +39,8 @@ import { soundDirector } from '../modules/audio/sound_director';
 import { getSoundSettingsSnapshot } from '../modules/audio/sound_settings';
 import {
   SoundEventPreview,
+  actionToastListenerCount,
+  previewKindFor,
   previewLabelFor,
   useSoundEventPreview,
 } from '../components/admin_panel/sound_event_preview';
@@ -114,8 +115,66 @@ function buildRows(): readonly EventRow[] {
   });
 }
 
-/** Сколько столбиков в дорожке волны. Достаточно, чтобы удары читались. */
-const WAVE_BARS = 26;
+/** Высота полосы прогресса звука. */
+const WAVE_TRACK_HEIGHT = 4;
+
+/**
+ * Человеческие названия событий.
+ *
+ * зачем: в списке владелец ищет «что происходит в игре», а не идентификатор из
+ * каталога. `pm.complete.exam_pass` требует расшифровки, «Экзамен сдан» — нет.
+ * Сам идентификатор остаётся в вердикте под кнопкой, где он реально нужен.
+ */
+const EVENT_TITLE: Partial<Record<SoundEventId, string>> = {
+  'pm.learn.correct': 'Верный ответ',
+  'pm.learn.needs_work': 'Ответ неверный',
+  'pm.learn.hint_reveal': 'Открыта подсказка',
+  'pm.learn.timer_warning': 'Время на исходе',
+  'pm.learn.timer_expired': 'Время вышло',
+  'pm.learn.combo_5': 'Серия из 5',
+  'pm.learn.combo_10': 'Серия из 10',
+  'pm.voice.record_ready': 'Запись началась',
+  'pm.voice.turn_ready': 'Твоя очередь говорить',
+  'pm.voice.no_speech': 'Речь не распознана',
+  'pm.complete.micro': 'Блок пройден',
+  'pm.complete.session': 'Урок завершён',
+  'pm.complete.perfect': 'Идеальный результат',
+  'pm.complete.exam_pass': 'Экзамен сдан',
+  'pm.complete.exam_retry': 'Экзамен не сдан',
+  'pm.complete.star_1': 'Первая звезда',
+  'pm.complete.star_2': 'Вторая звезда',
+  'pm.complete.star_3': 'Третья звезда',
+  'pm.system.success': 'Успешно',
+  'pm.system.info': 'Уведомление',
+  'pm.system.warning': 'Предупреждение',
+  'pm.system.error_recoverable': 'Ошибка',
+  'pm.system.destructive_done': 'Удаление выполнено',
+  'pm.energy.empty': 'Энергия кончилась',
+  'pm.energy.refilled': 'Энергия восполнена',
+  'pm.streak.saved': 'Цепочка сохранена',
+  'pm.reward.small': 'Небольшая награда',
+  'pm.reward.collectible': 'Коллекционный предмет',
+  'pm.reward.achievement': 'Достижение получено',
+  'pm.reward.level_up': 'Новый уровень',
+  'pm.reward.chest_open': 'Сундук открыт',
+  'pm.reward.premium_open': 'Премиум: открытие',
+  'pm.reward.premium_finale': 'Премиум: финал',
+  'pm.reward.vip_open': 'VIP: открытие',
+  'pm.reward.vip_finale': 'VIP: финал',
+  'pm.arena.match_found': 'Соперник найден',
+  'pm.arena.countdown_3': 'Отсчёт: три',
+  'pm.arena.countdown_2': 'Отсчёт: два',
+  'pm.arena.countdown_1': 'Отсчёт: один',
+  'pm.arena.round_start': 'Раунд начался',
+  'pm.arena.victory': 'Победа',
+  'pm.arena.defeat': 'Поражение',
+  'pm.arena.draw': 'Ничья',
+  'pm.league.promoted': 'Повышение в лиге',
+  'pm.league.demoted': 'Понижение в лиге',
+  'pm.social.gift_received': 'Подарок от друга',
+  'pm.social.friend_request': 'Заявка в друзья',
+  'pm.social.quest_complete': 'Задание выполнено',
+};
 
 /**
  * Строка события: играет звук и одновременно двигается по его волне.
@@ -127,11 +186,12 @@ const WAVE_BARS = 26;
  * длинный хвост тишины). Поэтому движение совпадает со звуком, а не «примерно».
  */
 const SoundEventRow = memo(function SoundEventRow({
-  row, t, onPlay,
+  row, t, onPlay, onShowUi,
 }: {
   row: EventRow;
   t: ReturnType<typeof useTheme>['theme'];
   onPlay: (row: EventRow) => void;
+  onShowUi: (row: EventRow) => void;
 }) {
   const motion: SoundMotionProfile | undefined = SOUND_MOTION[row.id];
 
@@ -205,6 +265,8 @@ const SoundEventRow = memo(function SoundEventRow({
     opacity: 0.55 + pulse.value * 0.45,
   }));
   const previewLabel = previewLabelFor(row.id);
+  /** Полоса «сколько звук ещё звучит» — один узел вместо 26 столбиков. */
+  const fillStyle = useAnimatedStyle(() => ({ width: `${progress.value * 100}%` }));
 
   return (
     <Animated.View style={cardStyle}>
@@ -223,14 +285,17 @@ const SoundEventRow = memo(function SoundEventRow({
         <Animated.View style={[StyleSheet.absoluteFill, styles.rowGlow, glowStyle]} pointerEvents="none" />
 
         <View style={{ flex: 1 }}>
+          {/* зачем: человеческое название вместо идентификатора. Владелец
+              проверяет «что происходит в игре», а не читает каталог: строка
+              «Верный ответ» отвечает на это сразу, pm.learn.correct — нет. */}
           <Text style={[styles.rowTitle, { color: t.textPrimary }]} numberOfLines={1}>
-            {row.id}
+            {EVENT_TITLE[row.id] ?? row.id}
           </Text>
-          <Text style={[styles.rowDesc, { color: t.textMuted }]}>
-            {row.hasAsset
-              ? `громкость ${row.volume} · приоритет ${row.priority} · пауза ${row.cooldownMs} мс${row.iosOnly ? ' · только iOS' : ''}${row.deferAfterVoice ? ' · ждёт конца речи' : ''}`
-              : 'нет файла — событие молчит'}
-          </Text>
+          {!row.hasAsset ? (
+            <Text style={[styles.rowDesc, { color: t.textMuted }]}>
+              звука пока нет — событие молчит
+            </Text>
+          ) : null}
           {/* зачем: заранее видно, что даст тап — настоящий тост/модалку или
               только звук. Без этого «просто плашка» выглядела как поломка. */}
           {row.hasAsset && previewLabel ? (
@@ -239,24 +304,36 @@ const SoundEventRow = memo(function SoundEventRow({
 
           {motion ? (
             <>
-              <View style={styles.waveTrack}>
-                {Array.from({ length: WAVE_BARS }, (_, i) => (
-                  <WaveBar
-                    key={i}
-                    index={i}
-                    motion={motion}
-                    progress={progress}
-                    tone={tone}
-                    idle={t.textGhost}
-                  />
-                ))}
+              {/* зачем: раньше здесь было 26 отдельных анимируемых столбиков на
+                  КАЖДУЮ из 39 строк — больше тысячи узлов Reanimated на экране,
+                  из-за чего тормозила и анимация, и сам звук. Одна полоса
+                  прогресса даёт то же понимание («звук идёт вот столько»)
+                  ценой одного анимируемого узла. */}
+              {/* зачем: полоса показывает, что звук ещё идёт. Технические цифры
+                  (мс, число ударов, форма огибающей) отсюда убраны — владелец
+                  проверяет события приложения, а не разбирает звуковые файлы. */}
+              <View style={[styles.waveTrack, { backgroundColor: t.textGhost }]}>
+                <Animated.View style={[styles.waveFill, { backgroundColor: tone }, fillStyle]} />
               </View>
-              <Text style={[styles.rowDesc, { color: t.textMuted }]}>
-                {`звучит ${motion.audibleMs} мс · ударов ${motion.hits.length || 1} · ${motion.shape}`}
-              </Text>
             </>
           ) : null}
         </View>
+
+        {/* зачем: отдельная кнопка, а не тап по строке. Владелец жаловался, что
+            «окна и тосты не запускаются»: тап по строке играл звук, и было
+            неочевидно, чем вызвать сам интерфейс. Теперь это явное действие. */}
+        {previewLabel ? (
+          <TouchableOpacity
+            onPress={() => onShowUi(row)}
+            hitSlop={10}
+            accessibilityRole="button"
+            accessibilityLabel={`Показать интерфейс события ${row.id}`}
+            testID={`sound-lab-ui-${row.id}`}
+            style={styles.uiBtn}
+          >
+            <Ionicons name="albums-outline" size={20} color={t.accent} />
+          </TouchableOpacity>
+        ) : null}
 
         <Animated.View style={iconStyle}>
           <Ionicons
@@ -268,52 +345,6 @@ const SoundEventRow = memo(function SoundEventRow({
       </TouchableOpacity>
     </Animated.View>
   );
-});
-
-/**
- * Один столбик дорожки волны. Высота — из огибающей звука (рядом с ударом
- * выше), подсветка — по бегущему указателю. Вынесен отдельно, чтобы
- * подсвечиваться в UI-потоке без ре-рендера строки.
- */
-const WaveBar = memo(function WaveBar({
-  index, motion, progress, tone, idle,
-}: {
-  index: number;
-  motion: SoundMotionProfile;
-  progress: SharedValue<number>;
-  tone: string;
-  idle: string;
-}) {
-  const height = useMemo(() => {
-    const at = (index / WAVE_BARS) * motion.audibleMs;
-    // Ближе к удару — выше столбик; между ударами огибающая спадает.
-    const nearest = motion.hits.reduce(
-      (best, h) => Math.min(best, Math.abs(h - at)),
-      Number.POSITIVE_INFINITY,
-    );
-    const punch = Number.isFinite(nearest) ? Math.max(0, 1 - nearest / 110) : 0;
-    const tail = 1 - index / WAVE_BARS;
-    return 3 + Math.max(0.12, Math.min(1, punch * 0.85 + tail * 0.28)) * 15;
-  }, [index, motion]);
-
-  // зачем: раньше столбик только менял цвет — на глаз это читалось как статичная
-  // полоска, владелец так и написал: «эквалайзер не запускается». Теперь столбик
-  // ещё и подпрыгивает в момент, когда указатель проходит через него: масштаб
-  // по вертикали растёт у самой головы бегунка и спадает следом. Движение
-  // остаётся строго во времени звука — бегунок идёт ровно `audibleMs`.
-  const style = useAnimatedStyle(() => {
-    const at = index / WAVE_BARS;
-    const passed = progress.value > 0 && progress.value >= at;
-    // Насколько близко голова бегунка к этому столбику (1 — прямо на нём).
-    const closeness = progress.value > 0 ? Math.max(0, 1 - Math.abs(progress.value - at) * 9) : 0;
-    return {
-      backgroundColor: passed ? tone : idle,
-      transform: [{ scaleY: 1 + closeness * 1.5 }],
-      opacity: passed ? 1 : 0.55,
-    };
-  });
-
-  return <Animated.View style={[styles.waveBar, { height }, style]} />;
 });
 
 export default function AdminSoundLab() {
@@ -339,19 +370,9 @@ export default function AdminSoundLab() {
     return { all: rows.length, withAsset, silent: rows.length - withAsset };
   }, [rows]);
 
+  /** Тап по строке — только звук, тем же путём, что и приложение. */
   const play = useCallback((row: EventRow) => {
     hapticTap();
-    // зачем: сначала пробуем поднять НАСТОЯЩИЙ интерфейс события — тост или
-    // модалку. Раньше лаборатория только проигрывала звук, и на экране висела
-    // статичная плашка: не было видно главного, как звук ложится на реальную
-    // анимацию. Тост/модалка сами зовут директора в нужный момент, поэтому при
-    // успехе свой request НЕ делаем — иначе два запроса на одно событие и дедуп.
-    if (openPreview(row.id)) {
-      setLastPlayed({ id: row.id, verdict: 'запущен настоящий интерфейс события' });
-      return;
-    }
-    // Интерфейса у события нет (запись голоса, тики таймера) — играем звук как
-    // раньше, тем же путём, что и приложение: через арбитра, с его кулдаунами.
     const decision = soundDirector.request(row.id, { scope: 'sound-lab' });
     const verdict =
       decision.kind === 'play'
@@ -360,6 +381,36 @@ export default function AdminSoundLab() {
           ? 'отложен до конца речи'
           : `пропущен: ${decision.reason}`;
     setLastPlayed({ id: row.id, verdict });
+  }, []);
+
+  /**
+   * Кнопка справа — поднять НАСТОЯЩИЙ интерфейс события.
+   * зачем: тост и модалка сами зовут директора в момент показа, поэтому свой
+   * request здесь НЕ делаем — иначе два запроса на одно событие и дедуп по
+   * кулдауну съел бы звук у настоящей плашки.
+   */
+  const showUi = useCallback((row: EventRow) => {
+    hapticTap();
+    const kind = previewKindFor(row.id);
+    const launched = openPreview(row.id);
+    if (!launched) {
+      setLastPlayed({ id: row.id, verdict: 'у события нет своего интерфейса' });
+      return;
+    }
+    // зачем: у тоста показ делает ГЛОБАЛЬНЫЙ ActionToast — если он не смонтирован,
+    // эмит уходит в пустоту молча, и снаружи это выглядит как «кнопка работает,
+    // интерфейс не запускается». Показываем число слушателей: 0 — виноват не
+    // эмит, а отсутствующий хост, и искать надо там.
+    const listeners = kind === 'toast' ? actionToastListenerCount() : -1;
+    setLastPlayed({
+      id: row.id,
+      verdict:
+        kind === 'modal'
+          ? 'открыта настоящая модалка'
+          : listeners > 0
+            ? `тост отправлен (слушателей: ${listeners})`
+            : `тост отправлен, но слушателей НЕТ (${listeners}) — ActionToast не смонтирован`,
+    });
   }, [openPreview]);
 
   const toggleEffects = useCallback(() => {
@@ -451,7 +502,7 @@ export default function AdminSoundLab() {
             </View>
 
             {group.items.map((row) => (
-              <SoundEventRow key={row.id} row={row} t={t} onPlay={play} />
+              <SoundEventRow key={row.id} row={row} t={t} onPlay={play} onShowUi={showUi} />
             ))}
           </View>
         ))}
@@ -502,15 +553,13 @@ const styles = StyleSheet.create({
   /** Вспышка на ударах волны — заливка тоном, а не рамка. */
   rowGlow: { borderRadius: 12 },
   waveTrack: {
-    flexDirection: 'row',
-    alignItems: 'flex-end',
-    gap: 2,
-    height: 30,
+    height: WAVE_TRACK_HEIGHT,
+    borderRadius: WAVE_TRACK_HEIGHT / 2,
     marginTop: 8,
     marginBottom: 6,
     overflow: 'hidden',
+    opacity: 0.5,
   },
-  // зачем: столбик растёт снизу вверх, как в эквалайзере. Без transformOrigin
-  // снизу scaleY раздувал бы его в обе стороны и дорожка «дышала» бы серединой.
-  waveBar: { flex: 1, borderRadius: 1, transformOrigin: 'bottom' },
+  waveFill: { height: '100%', borderRadius: WAVE_TRACK_HEIGHT / 2 },
+  uiBtn: { paddingHorizontal: 10, paddingVertical: 8, marginLeft: 4 },
 });

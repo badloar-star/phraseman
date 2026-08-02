@@ -146,6 +146,15 @@ interface ThemeCtx {
   /** Светлые иконки в status bar: тёмные темы + «глубокий» океан/сакура */
   statusBarLight: boolean;
   themeMode:    ThemeMode;
+  /**
+   * «Примерочная» (экран «Темы»): применённая тема без учёта примерки.
+   * `themeMode` выше — эффективная (примеряемая ?? применённая): её читают все
+   * потребители, поэтому тап по теме мгновенно перекрашивает весь экран.
+   */
+  appliedThemeMode: ThemeMode;
+  /** Примеряемая тема; null — примерка выключена. НЕ персистится и не проходит премиум-замок применения. */
+  previewThemeMode: ThemeMode | null;
+  setPreviewThemeMode: (m: ThemeMode | null) => void;
   isGoldThemeUnlocked: boolean;
   /** «Дедушка»: юзер жил на бесплатной «Полночи» до её ухода в премиум — тема остаётся ему доступной. */
   isMidnightGrandfathered: boolean;
@@ -180,6 +189,9 @@ const ThemeContext = createContext<ThemeCtx>({
   isDark:       true,
   statusBarLight: true,
   themeMode:    'dark',
+  appliedThemeMode: 'dark',
+  previewThemeMode: null,
+  setPreviewThemeMode: () => {},
   isGoldThemeUnlocked: false,
   isMidnightGrandfathered: false,
   toggle:       () => {},
@@ -235,8 +247,13 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const windowUiScale = useMemo(() => computeUiScale(layoutW, layoutH), [layoutW, layoutH]);
 
   const [themeMode, setThemeModeState] = useState<ThemeMode>(DEFAULT_THEME_MODE);
+  // зачем: «Примерочная» на экране «Тем» — фри-юзер по тапу видит ЛЮБУЮ тему вживую,
+  // применение остаётся под замком setThemeMode. Не персистится, сбрасывается при
+  // выходе с экрана тем (cleanup на unmount экрана).
+  const [previewThemeMode, setPreviewThemeMode] = useState<ThemeMode | null>(null);
+  const effectiveThemeMode = previewThemeMode ?? themeMode;
   // Плоский IG-режим: масштаб интерфейса не применяется, типографика фиксирована.
-  const isFlat = themeMode === 'business' || themeMode === 'businessLight';
+  const isFlat = effectiveThemeMode === 'business' || effectiveThemeMode === 'businessLight';
   const uiScale = isFlat ? 1 : windowUiScale;
   const [fontSize,  setFontSizeState]  = useState<FontSize>('medium');
   const [goldThemeUnlocked, setGoldThemeUnlocked] = useState(false);
@@ -244,8 +261,10 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const [midnightGrandfathered, setMidnightGrandfathered] = useState(false);
 
   useEffect(() => {
-    setOskolokThemeMode(themeMode);
-  }, [themeMode]);
+    // зачем: осколки-виджет красится эффективной темой — примерка честная везде,
+    // при сбросе превью эффект вернёт применённую тему.
+    setOskolokThemeMode(effectiveThemeMode);
+  }, [effectiveThemeMode]);
 
   useEffect(() => {
     let cancelled = false;
@@ -370,12 +389,12 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     () => createFonts(FONT_SCALE[isFlat ? 'medium' : fontSize] * uiScale),
     [fontSize, uiScale, isFlat],
   );
-  const theme = useMemo(() => THEME_MAP[themeMode], [themeMode]);
-  const isDark = !isLightThemeMode(themeMode);
+  const theme = useMemo(() => THEME_MAP[effectiveThemeMode], [effectiveThemeMode]);
+  const isDark = !isLightThemeMode(effectiveThemeMode);
   const statusBarLight = isDark;
   const ds = useMemo(() => {
     const px = (n: number) => Math.max(2, Math.round(n * uiScale));
-    const isLuxuryTheme = themeMode === 'gold';
+    const isLuxuryTheme = effectiveThemeMode === 'gold';
     const isCompassTheme = false;
     const radiusBase = isFlat
       // IG-плоскость: меньше скругления, плашки компактнее.
@@ -425,7 +444,12 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       theme,
       isDark,
       statusBarLight,
-      themeMode,
+      // зачем: наружу уходит эффективная тема (примерка ?? применённая) — так весь
+      // экран перекрашивается мгновенно; применённая доступна как appliedThemeMode.
+      themeMode: effectiveThemeMode,
+      appliedThemeMode: themeMode,
+      previewThemeMode,
+      setPreviewThemeMode,
       isGoldThemeUnlocked: goldThemeUnlocked,
       isMidnightGrandfathered: midnightGrandfathered,
       toggle,
@@ -437,7 +461,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       f,
       ds,
     }),
-    [theme, isDark, statusBarLight, themeMode, goldThemeUnlocked, toggle, setThemeMode, fontSize, setFontSize, uiScale, isFlat, f, ds],
+    [theme, isDark, statusBarLight, effectiveThemeMode, themeMode, previewThemeMode, goldThemeUnlocked, midnightGrandfathered, toggle, setThemeMode, fontSize, setFontSize, uiScale, isFlat, f, ds],
   );
 
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;

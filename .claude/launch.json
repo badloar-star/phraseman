@@ -35,6 +35,12 @@
       "name": "studio-mockups",
       "url": "http://localhost:4173",
       "port": 4173
+    },
+    {
+      "name": "theme-mockup",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8844", "--directory", "C:/Temp/claude/C--appsprojects-phraseman/f8eb5882-888d-4e29-9814-f79cf23ad9ad/scratchpad"],
+      "port": 8844
     }
   ]
 }

@@ -10,6 +10,9 @@ import {
 } from './approval_audit';
 import { consumeApprovalToken } from './approval_store';
 import { handleApprovalCallback, parseOwnerConfig } from './approval_webhook_core';
+import { issueDecisionButtons } from './issue_decision_buttons';
+import { sendJarvisDigest } from './telegram_send';
+import type { Decision } from './decision';
 
 /**
  * HTTP-точка входа для кнопок Джарвиса в Telegram.
@@ -37,6 +40,17 @@ const REGION = 'us-central1';
 
 /** Заголовок, которым Telegram передаёт секрет вебхука. */
 const SECRET_HEADER = 'x-telegram-bot-api-secret-token';
+
+/**
+ * Фиктивное решение для самопроверки кнопок.
+ * зачем department 'quality': реальный департамент, чтобы путь выдачи токена
+ * был ровно тот же, что в суточном кроне, без особых веток.
+ */
+const SELFTEST_DECISION = {
+  department: 'quality',
+  finding: 'Проверка кнопок подтверждения.',
+  recommendation: 'Проверка',
+} as unknown as Decision;
 
 async function answerCallbackQuery(token: string, callbackQueryId: string, text: string): Promise<void> {
   try {
@@ -76,6 +90,30 @@ export const jarvisTelegramApprovalWebhook = onRequest(
 
     const providedSecret = req.get(SECRET_HEADER) ?? undefined;
     const db = admin.firestore();
+
+    // зачем самопроверка: без неё «работают ли кнопки» проверить нечем —
+    // токен рождается только внутри суточного крона. Путь защищён тем же
+    // секретом вебхука, что и нажатия, поэтому снаружи недоступен.
+    if ((req.body as Record<string, unknown> | undefined)?.selftest === true) {
+      if (!providedSecret || providedSecret !== config.webhookSecret) {
+        res.status(401).send('');
+        return;
+      }
+      const keyboard = await issueDecisionButtons({
+        db,
+        decisions: [SELFTEST_DECISION],
+        config,
+        nowMs: Date.now(),
+      });
+      const sent = await sendJarvisDigest({
+        botToken: ADMIN_ALERT_BOT_TOKEN.value(),
+        chatId: config.ownerTelegramChatId,
+        text: '🤖 <b>Джарвис</b> · проверка кнопок\n\nНажмите «Проверка» — рабочая кнопка должна ответить «Принято, подтверждено».',
+        keyboard,
+      });
+      res.status(200).json({ ok: sent, hadKeyboard: keyboard !== null });
+      return;
+    }
 
     const nowMs = Date.now();
     let audit: ApprovalAuditEntry | null = null;

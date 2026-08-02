@@ -94,6 +94,25 @@ describe('writeHistoryPoints — idempotent merge writes, chunked at 400 per bat
     expect(stored.get(`${BUSINESS_TIER_HISTORY_COLLECTION}/2026-08-02`)).toMatchObject({ cumulativeUsers: 103 });
   });
 
+  test('persists the honest money fields — computing them but dropping them would be silent data loss', async () => {
+    const { db, stored } = makeFakeDb();
+    await writeHistoryPoints({ db, points: [makePoint('2026-08-01', 100)], nowMs: 555 });
+    expect(stored.get(`${BUSINESS_TIER_HISTORY_COLLECTION}/2026-08-01`)).toMatchObject({
+      grossUsdMicros: 9_980_000,
+      mrrEquivalentProceedsUsdMicros: 6_986_000,
+      dayMoneyCoverage: 'complete',
+    });
+  });
+
+  test('persists activeUsers as an explicit null for backfilled days, not as a missing field', async () => {
+    const { db, stored } = makeFakeDb();
+    await writeHistoryPoints({ db, points: [makePoint('2026-08-01', 100)], nowMs: 555 });
+    const doc = stored.get(`${BUSINESS_TIER_HISTORY_COLLECTION}/2026-08-01`);
+    // зачем именно null, а не отсутствие поля: отсутствие читалось бы как
+    // undefined и молча превращалось в 0 на графике — сфабрикованный ноль.
+    expect(doc).toHaveProperty('activeUsers', null);
+  });
+
   test('an empty points array writes nothing and never touches the batch', async () => {
     const { db, batches } = makeFakeDb();
     const result = await writeHistoryPoints({ db, points: [], nowMs: 1 });

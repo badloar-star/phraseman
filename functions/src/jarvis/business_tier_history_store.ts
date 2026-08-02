@@ -1,4 +1,4 @@
-import type { BusinessTierHistoryPoint } from './business_tier_history';
+import type { BusinessTierFinancialCoverage, BusinessTierHistoryPoint } from './business_tier_history';
 
 /**
  * Тонкая Firestore-обвязка над историей тира бизнеса.
@@ -20,9 +20,21 @@ export interface HistoryPointDoc {
   readonly renewals: number;
   readonly refunds: number;
   readonly revenueProxy: number;
+  /** Честные деньги дня — см. business_tier_history.ts. */
+  readonly grossUsdMicros: number;
+  readonly mrrEquivalentProceedsUsdMicros: number;
+  readonly dayMoneyCoverage: BusinessTierFinancialCoverage;
+  /** null у дней бэкфилла — ретроактивно активных не посчитать. */
+  readonly activeUsers: number | null;
   readonly writtenAtMs: number;
 }
 
+/**
+ * зачем перечислять поля явно, а не спредить точку: документ — это контракт
+ * хранилища, и он должен ломаться на тайпчеке, когда в точку добавляют поле,
+ * а сюда забыли. Ровно так и потерялись деньги при первом слиянии: точка их
+ * уже считала, а toDoc молча выбрасывал.
+ */
 function toDoc(point: BusinessTierHistoryPoint, nowMs: number): HistoryPointDoc {
   return Object.freeze({
     cumulativeUsers: point.cumulativeUsers,
@@ -31,6 +43,10 @@ function toDoc(point: BusinessTierHistoryPoint, nowMs: number): HistoryPointDoc 
     renewals: point.renewals,
     refunds: point.refunds,
     revenueProxy: point.revenueProxy,
+    grossUsdMicros: point.grossUsdMicros,
+    mrrEquivalentProceedsUsdMicros: point.mrrEquivalentProceedsUsdMicros,
+    dayMoneyCoverage: point.dayMoneyCoverage,
+    activeUsers: point.activeUsers,
     writtenAtMs: nowMs,
   });
 }

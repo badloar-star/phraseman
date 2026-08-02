@@ -1,5 +1,7 @@
 import { HttpsError } from 'firebase-functions/v2/https';
 import {
+  appMessageLockActive,
+  appMessageLockOwner,
   appMessagePollStructureChanged,
   normalizeAppMessageCreateInput,
   normalizeAppMessageCleanupInput,
@@ -231,5 +233,36 @@ describe('app message edit and delete commands', () => {
       requestId: 'req-cleanup-1',
     }).messageIds).toEqual(['message_123', 'message_456']);
     expect(() => normalizeAppMessageCleanupInput({ messageIds: [], reason: 'x', idempotencyKey: 'cleanup-2', requestId: 'req-cleanup-2' })).toThrow(HttpsError);
+  });
+});
+
+describe('appMessageLockActive', () => {
+  const now = 1_800_000_000_000;
+
+  test('holds the document while a fresh claim is in flight', () => {
+    expect(appMessageLockActive({ operationId: 'delete-1', claimedAtMs: now - 5_000 }, now)).toBe(true);
+  });
+
+  test('releases a claim abandoned by a crashed or timed-out invocation', () => {
+    // зачем: без протухания сорвавшееся удаление блокировало сообщение навсегда
+    expect(appMessageLockActive({ operationId: 'delete-1', claimedAtMs: now - 300_000 }, now)).toBe(false);
+  });
+
+  test('treats legacy string locks as released so stuck messages recover', () => {
+    expect(appMessageLockActive('delete-legacy', now)).toBe(false);
+  });
+
+  test('treats a missing or malformed claim as released', () => {
+    expect(appMessageLockActive(undefined, now)).toBe(false);
+    expect(appMessageLockActive({ operationId: 'delete-1' }, now)).toBe(false);
+    expect(appMessageLockActive({ operationId: 'delete-1', claimedAtMs: 0 }, now)).toBe(false);
+  });
+});
+
+describe('appMessageLockOwner', () => {
+  test('reads the owning operation from both the object and the legacy string shape', () => {
+    expect(appMessageLockOwner({ operationId: 'update-7', claimedAtMs: 1 })).toBe('update-7');
+    expect(appMessageLockOwner('update-7')).toBe('update-7');
+    expect(appMessageLockOwner(undefined)).toBe('');
   });
 });

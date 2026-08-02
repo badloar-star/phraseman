@@ -568,7 +568,7 @@ export const adminSetAppMessageActive = onCall(
       if (!message.exists) throw new HttpsError('not-found', 'app_message_not_found');
       const before = message.data() ?? {};
       assertGenericAppMessage(before);
-      if (before.adminOperationLock) throw new HttpsError('aborted', 'app_message_operation_in_progress');
+      if (appMessageLockActive(before.adminOperationLock, Date.now())) throw new HttpsError('aborted', 'app_message_operation_in_progress');
       const settingsSlot = before.deliverySurface === 'settings' && (before.settingsSlot === 'top' || before.settingsSlot === 'bottom')
         ? before.settingsSlot
         : null;
@@ -598,7 +598,7 @@ export const adminSetAppMessageActive = onCall(
             updatedBy: actorEmail,
           }, { merge: true }));
       }
-      const after = {
+      const after: RecordValue = {
         ...before,
         active: input.active,
         status: input.active ? 'live' : 'inactive',
@@ -607,6 +607,9 @@ export const adminSetAppMessageActive = onCall(
         updatedAtMs: Date.now(),
         updatedBy: actorEmail,
       };
+      // зачем: тумблер — завершённая операция, поэтому протухший замок предыдущего
+      // сорвавшегося удаления/правки не должен переехать в новый документ.
+      delete after.adminOperationLock;
       if (settingsSlotRef) {
         const currentActiveMessageId = String(settingsSlotSnapshot?.data()?.activeMessageId ?? '');
         if (input.active) {
@@ -653,6 +656,39 @@ function assertGenericAppMessage(data: RecordValue): void {
   if (kind !== 'message' && kind !== 'poll') throw new HttpsError('failed-precondition', `app_message_managed_by_special_workflow:${kind}`);
 }
 
+/**
+ * зачем: удаление/правка сообщения идут в три шага (захват замка → долгая чистка
+ * подколлекций вне транзакции → аудит). Если средний шаг падал по таймауту или
+ * транзиентной ошибке Firestore, поле adminOperationLock оставалось на документе
+ * навсегда, и сообщение становилось неудаляемым и неredaктируемым: клиент на каждую
+ * попытку шлёт новый idempotencyKey, поэтому реплей не срабатывал и вызов вечно
+ * падал с app_message_operation_in_progress. Замок теперь несёт отметку времени и
+ * протухает — брошенный захват перехватывается следующей попыткой владельца.
+ */
+const APP_MESSAGE_LOCK_TTL_MS = 120_000;
+
+export function appMessageLockOwner(value: unknown): string {
+  if (typeof value === 'string') return value;
+  return isRecord(value) ? text(value.operationId, 200) : '';
+}
+
+/**
+ * Возвращает true, если замок ещё удерживает документ. Legacy-замки в виде строки
+ * (записанные до этой правки) не имеют отметки времени и считаются протухшими —
+ * иначе уже зависшие сообщения остались бы заблокированными навсегда.
+ */
+export function appMessageLockActive(value: unknown, nowMs: number): boolean {
+  if (!value) return false;
+  if (!isRecord(value)) return false;
+  const claimedAtMs = Number(value.claimedAtMs || 0);
+  if (!Number.isFinite(claimedAtMs) || claimedAtMs <= 0) return false;
+  return nowMs - claimedAtMs < APP_MESSAGE_LOCK_TTL_MS;
+}
+
+function appMessageLock(idempotencyKey: string, nowMs: number): RecordValue {
+  return { operationId: idempotencyKey, claimedAtMs: nowMs };
+}
+
 function plainPoll(value: unknown): RecordValue | null {
   return isRecord(value) ? { ...value } : null;
 }
@@ -679,7 +715,7 @@ export const adminUpdateAppMessage = onCall(
       if (!message.exists) throw new HttpsError('not-found', 'app_message_not_found');
       const before = message.data() ?? {};
       assertGenericAppMessage(before);
-      if (before.adminOperationLock) throw new HttpsError('aborted', 'app_message_operation_in_progress');
+      if (appMessageLockActive(before.adminOperationLock, Date.now())) throw new HttpsError('aborted', 'app_message_operation_in_progress');
       if (input.expectedUpdatedAtMs > 0 && Number(before.updatedAtMs || 0) !== input.expectedUpdatedAtMs) {
         throw new HttpsError('aborted', 'app_message_changed_after_preview');
       }
@@ -688,7 +724,7 @@ export const adminUpdateAppMessage = onCall(
         throw new HttpsError('failed-precondition', 'settings_poll_requires_new_campaign');
       }
       if (structureChanged && !input.resetPollEngagement) throw new HttpsError('failed-precondition', 'poll_structure_change_requires_reset');
-      tx.set(messageRef, { active: false, adminOperationLock: input.idempotencyKey }, { merge: true });
+      tx.set(messageRef, { active: false, adminOperationLock: appMessageLock(input.idempotencyKey, Date.now()) }, { merge: true });
       const pending = { operationId: input.idempotencyKey, requestFingerprint: input.requestFingerprint, actorUid, entityId: input.messageId, status: 'pending', before, structureChanged, createdAt: admin.firestore.FieldValue.serverTimestamp() };
       tx.create(operationRef, pending);
       return pending;
@@ -708,7 +744,7 @@ export const adminUpdateAppMessage = onCall(
       if (!message.exists) throw new HttpsError('not-found', 'app_message_not_found');
       const before = message.data() ?? {};
       if (before.active !== false) throw new HttpsError('failed-precondition', 'app_message_must_be_inactive_before_edit');
-      if (before.adminOperationLock !== input.idempotencyKey) throw new HttpsError('aborted', 'app_message_operation_lock_lost');
+      if (appMessageLockOwner(before.adminOperationLock) !== input.idempotencyKey) throw new HttpsError('aborted', 'app_message_operation_lock_lost');
       if (input.expectedUpdatedAtMs > 0 && Number(before.updatedAtMs || 0) !== input.expectedUpdatedAtMs) {
         throw new HttpsError('aborted', 'app_message_changed_after_preview');
       }
@@ -779,8 +815,9 @@ export const adminDeleteAppMessage = onCall(
       if (!message.exists) throw new HttpsError('not-found', 'app_message_not_found');
       const before = message.data() ?? {};
       assertGenericAppMessage(before);
-      if (before.adminOperationLock) throw new HttpsError('aborted', 'app_message_operation_in_progress');
-      tx.set(messageRef, { active: false, adminOperationLock: input.idempotencyKey, updatedAtMs: Date.now() }, { merge: true });
+      const claimedAtMs = Date.now();
+      if (appMessageLockActive(before.adminOperationLock, claimedAtMs)) throw new HttpsError('aborted', 'app_message_operation_in_progress');
+      tx.set(messageRef, { active: false, adminOperationLock: appMessageLock(input.idempotencyKey, claimedAtMs), updatedAtMs: claimedAtMs }, { merge: true });
       const pending = { operationId: input.idempotencyKey, requestFingerprint: input.requestFingerprint, actorUid, entityId: input.messageId, status: 'pending', before, createdAt: admin.firestore.FieldValue.serverTimestamp() };
       tx.create(operationRef, pending);
       return pending;
@@ -831,8 +868,8 @@ export const adminCleanupExpiredAppMessages = onCall(
         if (!message.exists) throw new HttpsError('not-found', `app_message_not_found:${input.messageIds[index]}`);
         const data = message.data() ?? {};
         if (Number(data.expiresAtMs || 0) > nowMs) throw new HttpsError('failed-precondition', `app_message_not_expired:${input.messageIds[index]}`);
-        if (data.adminOperationLock) throw new HttpsError('aborted', `app_message_operation_in_progress:${input.messageIds[index]}`);
-        tx.set(refs[index], { active: false, adminOperationLock: input.idempotencyKey, updatedAtMs: nowMs }, { merge: true });
+        if (appMessageLockActive(data.adminOperationLock, nowMs)) throw new HttpsError('aborted', `app_message_operation_in_progress:${input.messageIds[index]}`);
+        tx.set(refs[index], { active: false, adminOperationLock: appMessageLock(input.idempotencyKey, nowMs), updatedAtMs: nowMs }, { merge: true });
         return { id: input.messageIds[index], titleRu: text(data.titleRu, 160), expiresAtMs: Number(data.expiresAtMs || 0), kind: text(data.kind, 40) };
       });
       const pending = { operationId: input.idempotencyKey, requestFingerprint: input.requestFingerprint, actorUid, entityId: 'expired_app_messages', status: 'pending', beforeItems, createdAt: admin.firestore.FieldValue.serverTimestamp() };

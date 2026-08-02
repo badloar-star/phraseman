@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useEffect } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import { Image } from 'expo-image';
 import BouncyScrollView from '../components/BouncyScrollView';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -10,6 +10,7 @@ import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
 import SectionSheetHeader from '../components/SectionSheetHeader';
 import { useTheme, getVolumetricShadow } from '../components/ThemeContext';
+import { FlowText } from '../components/text-integrity/FlowText';
 import { useLang } from '../components/LangContext';
 import { useFeatureAccess } from '../components/PremiumContext';
 import { hapticTap } from '../hooks/use-haptics';
@@ -157,7 +158,7 @@ const ThemeRow = memo(function ThemeRow({ option, label, chipText, applied, cand
       >
         <Image source={THEME_ICONS[option.mode]} style={styles.icon} contentFit="contain" accessible={false} />
         <View style={styles.rowMid}>
-          <Text numberOfLines={1} style={[styles.name, { color: palette.textPrimary }]}>{label}</Text>
+          <FlowText testID={`theme-row-name-${option.mode}`} provenance="authored" style={[styles.name, { color: palette.textPrimary }]}>{label}</FlowText>
           <View style={styles.miniRow}>
             <View
               style={[
@@ -168,7 +169,7 @@ const ThemeRow = memo(function ThemeRow({ option, label, chipText, applied, cand
               <View style={[styles.fill, { width: `${PREVIEW_PROGRESS[option.mode]}%`, backgroundColor: palette.accent }]} />
             </View>
             <View style={[styles.chip, { backgroundColor: palette.accent }]}>
-              <Text numberOfLines={1} style={[styles.chipText, { color: palette.correctText }]}>{chipText}</Text>
+              <FlowText testID={`theme-row-chip-${option.mode}`} provenance="authored" style={[styles.chipText, { color: palette.correctText }]}>{chipText}</FlowText>
             </View>
           </View>
         </View>
@@ -318,15 +319,16 @@ export default function SettingsThemes() {
                   color={candidateApplied ? candidatePalette.accent : candidatePalette.correctText}
                 />
               )}
-              <Text
-                numberOfLines={1}
+              <FlowText
+                testID="theme-cta-label"
+                provenance="authored"
                 style={[
                   styles.ctaText,
                   { color: candidateLocked ? GOLD_RICH.bronzeDark : candidateApplied ? candidatePalette.accent : candidatePalette.correctText },
                 ]}
               >
                 {ctaLabel}
-              </Text>
+              </FlowText>
             </TouchableOpacity>
           </View>
         </ContentWrap>
@@ -406,7 +408,10 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
   },
   cta: {
-    height: 54,
+    // зачем: minHeight вместо height — длинная локаль переносится на 2 строки,
+    // кнопка растёт, а не режет текст (правило text-integrity: без ужатий).
+    minHeight: 54,
+    paddingVertical: 8,
     borderRadius: 16,
     overflow: 'hidden',
     flexDirection: 'row',

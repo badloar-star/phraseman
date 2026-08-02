@@ -2726,38 +2726,6 @@
       }
     },
     {
-      "file": "app/settings_themes.tsx",
-      "ownerName": "SettingsThemes",
-      "ownerPath": "SettingsThemes",
-      "ancestorPath": [
-        "ScreenGradient",
-        "SafeAreaView",
-        "ContentWrap",
-        "BouncyScrollView",
-        "TouchableOpacity",
-        "LinearGradient",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "3d9e38b398faa5e9f1fd8ca8cdb3b343eb46c116a29941e925a05027cf1bb910",
-      "count": 1,
-      "lineHints": [
-        255
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "app/diagnostic_test.tsx",
       "ownerName": "DiagnosticTest",
       "ownerPath": "DiagnosticTest",

@@ -437,7 +437,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
           },
         },
     };
-  }, [uiScale, isDark, themeMode, isFlat]);
+  }, [uiScale, isDark, effectiveThemeMode, isFlat]);
 
   const value = useMemo<ThemeCtx>(
     () => ({

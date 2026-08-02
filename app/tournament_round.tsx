@@ -492,14 +492,25 @@ export default function TournamentRoundScreen() {
     const id = setTimeout(() => setScheduleTick((value) => value + 1), delayMs);
     return () => clearTimeout(id);
   }, [activeRound?.taskSchedule, runtimeActive, scheduleTick, phase]);
-  const serverScheduleHasStarted = Boolean(activeRound?.taskSchedule?.some(
-    (timing) => tournamentNow() >= timing.startsAtMs,
-  ));
-  const showLocalIntro = !serverScheduleHasStarted && shouldShowTournamentLocalIntro(
-    questionTiming,
-    tournamentNow(),
-    room?.introEndsAtMs,
-  );
+  /**
+   * зачем 2026-08-02 (владелец: «пропал отсчёт 3 2 1 (обязательный)»):
+   * условие сверялось с ПЕРВЫМ заданием раунда через questionTiming. Но у
+   * интро всего 3 секунды: сервер ставит state='round1' и
+   * introEndsAtMs = now + 3с одновременно, а расписание заданий строится ровно
+   * от introEndsAtMs. Пока лобби получало снапшот, роутер монтировал экран
+   * раунда и приходил первый рендер — эти секунды успевали истечь, и отсчёт
+   * не показывался вовсе.
+   *
+   * Сверяемся напрямую с границей интро самой комнаты (room.introEndsAtMs).
+   * Она не зависит от того, какое задание сейчас видимое, поэтому отсчёт
+   * показывается всегда, когда сервер его действительно отвёл.
+   */
+  const roundIntroEndsAtMs = room?.introEndsAtMs
+    ?? activeRound?.taskSchedule?.[0]?.introEndsAtMs
+    ?? null;
+  const showLocalIntro = roundIntroEndsAtMs !== null
+    ? tournamentNow() < roundIntroEndsAtMs
+    : shouldShowTournamentLocalIntro(questionTiming, tournamentNow(), room?.introEndsAtMs);
 
   useEffect(() => {
     activeQuestionKeyRef.current = questionKey;
@@ -553,9 +564,19 @@ export default function TournamentRoundScreen() {
   // отсчётом. Момент старта задаёт сам отсчёт (onDone), поэтому таймера здесь
   // больше нет — иначе два независимых таймера разошлись бы между собой.
   const startQuestions = useCallback(() => {
+    // зачем 2026-08-02 (владелец: «ответил на первый, второй ответить
+    // невозможно»): здесь стоял questionTiming — тайминг ТЕКУЩЕГО видимого
+    // задания. Но индекс в той же строке переводится на scheduledIndex, то
+    // есть на задание СЕРВЕРА. Фаза считалась от старого задания, а показывался
+    // новый: экран стартовал рассинхронизированным, и если окно предыдущего
+    // задания уже закрылось — фаза выходила 'feedback', в которой ввод
+    // заблокирован. Берём тайминг того задания, которое реально показываем.
+    const scheduledTiming = activeRound?.taskSchedule?.find(
+      (timing) => timing.taskIndex === scheduledIndex,
+    ) ?? questionTiming;
     setNavigation({ roundKey, index: scheduledIndex });
-    setPhase(derivePhaseFromTiming(questionTiming, tournamentNow()));
-  }, [questionTiming, roundKey, scheduledIndex]);
+    setPhase(derivePhaseFromTiming(scheduledTiming, tournamentNow()));
+  }, [activeRound?.taskSchedule, questionTiming, roundKey, scheduledIndex]);
 
   useEffect(() => {
     if (phase === 'intro' && !showLocalIntro) startQuestions();
@@ -1021,7 +1042,10 @@ export default function TournamentRoundScreen() {
       <TournamentRoundIntro
         roundNo={roundNo}
         modeLabel={modeLabel}
-        introEndsAtMs={questionTiming?.introEndsAtMs ?? room?.introEndsAtMs ?? questionTiming?.startsAtMs ?? tournamentNow()}
+        // Та же граница, по которой решается ПОКАЗЫВАТЬ ли интро (см.
+        // roundIntroEndsAtMs выше). Раньше здесь был отдельный набор фолбэков,
+        // и отсчёт мог целиться в момент, отличный от условия показа.
+        introEndsAtMs={roundIntroEndsAtMs ?? tournamentNow()}
         onDone={startQuestions}
       />
     );

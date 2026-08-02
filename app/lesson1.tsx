@@ -2579,7 +2579,7 @@ export default function LessonScreen() {
     setShowNoEnergyModal(true);
   }, [setShouldShake, setShowNoEnergyModal]);
   /**
-   * Выход с урока. Не используем replace('/(tabs)/lessons'): при canGoBack() === false
+   * Выход с урока. Не используем replace('/lessons_list'): при canGoBack() === false
    * replace подменяет только верхний экран, и под ним снова оказывается тот же lesson_menu —
    * визуально «то же окно» и лишний шаг в стеке.
    * НЕ используем router.dismiss(1): это нативный imperative dismiss, который на
@@ -2592,11 +2592,11 @@ export default function LessonScreen() {
     if (from === 'lesson_menu') {
       const popToMenu = () => {
         if (router.canGoBack()) {
-          safeRouterBack(router, { pathname: '/(tabs)/lessons', params: { id: String(lessonId) } } as any);
+          safeRouterBack(router, { pathname: '/lessons_list', params: { id: String(lessonId) } } as any);
           return;
         }
         if (NATIVE_LESSON_DISMISS_ENABLED) {
-          router.dismissTo({ pathname: '/(tabs)/lessons', params: { id: String(lessonId) } });
+          router.dismissTo({ pathname: '/lessons_list', params: { id: String(lessonId) } });
           return;
         }
         void trackActivity('navigation:native_lesson_dismiss_skipped', {
@@ -2605,7 +2605,7 @@ export default function LessonScreen() {
           result: 'info',
           tags: { lessonId, from },
         });
-        safeRouterBack(router, { pathname: '/(tabs)/lessons', params: { id: String(lessonId) } } as any);
+        safeRouterBack(router, { pathname: '/lessons_list', params: { id: String(lessonId) } } as any);
       };
       void import('./lesson_menu')
         .then((m) => m.prefetchLessonMenuCache(lessonId, studyTargetRef.current))
@@ -3892,7 +3892,7 @@ export default function LessonScreen() {
             </Text>
             <TapScale
               accessibilityRole="button"
-              onPress={() => router.replace('/(tabs)/lessons' as any)}
+              onPress={() => router.replace('/lessons_list' as any)}
               scaleTo={0.96}
               style={{ backgroundColor: t.accent, borderRadius: 16, paddingHorizontal: 18, paddingVertical: 12 }}
             >

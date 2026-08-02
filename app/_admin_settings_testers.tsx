@@ -1241,7 +1241,7 @@ export default function SettingsTestersFunctions() {
         tr: 'French AI-dialog QA kısayolu source-gated prompt gelene kadar engellendi.',
         pl: 'Skrót QA AI-dialog French jest zablokowany do czasu promptów source-gated.',
       }));
-      router.push('/(tabs)/lessons' as any);
+      router.push('/lessons_list' as any);
       return;
     }
     router.push('/ai_dialog_home' as any);

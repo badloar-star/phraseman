@@ -31,7 +31,7 @@ type Step = 'goal' | 'level' | 'minutes' | 'result' | 'all';
 
 const PLAN_IDS: PersonalPlanId[] = ['voyazh', 'mitap', 'gavan', 'impuls', 'echo'];
 const TOTAL_STEPS = 4;
-const PERSONAL_PLAN_SETUP_EXIT_FALLBACK = '/(tabs)/lessons';
+const PERSONAL_PLAN_SETUP_EXIT_FALLBACK = '/lessons_list';
 
 function stepIndex(step: Step): number {
   if (step === 'goal') return 1;

@@ -2,16 +2,18 @@
  * зачем: порядок ОБЯЗАН совпадать с TABS в app/(tabs)/_layout.tsx.
  * Забыть про этот файл легко: сборка не падает, но таббар начинает открывать
  * соседние экраны, а последний просто вылетает (индекс выходит за границы
- * LogicalTabIndex). «Турниры» временно возвращены третьей вкладкой для
- * тестирования, поэтому их индекс должен оставаться одинаковым во всех картах.
+ * LogicalTabIndex).
+ * 2026-08-02, владелец: таб «Уроки» убран из таббара — список уроков теперь
+ * полноэкранный push-маршрут /lessons_list (вход: плитка «Уроки» на главной).
+ * Все карты индексов сдвинулись: tournaments 1, friends 2, settings 3.
  */
-export const LOGICAL_TAB_IDS = ['home', 'lessons', 'tournaments', 'friends', 'settings'] as const;
+export const LOGICAL_TAB_IDS = ['home', 'tournaments', 'friends', 'settings'] as const;
 export const PHYSICAL_PAGE_IDS = ['today', ...LOGICAL_TAB_IDS] as const;
 
 export type LogicalTabId = (typeof LOGICAL_TAB_IDS)[number];
 export type PhysicalPageId = (typeof PHYSICAL_PAGE_IDS)[number];
-export type LogicalTabIndex = 0 | 1 | 2 | 3 | 4;
-export type PhysicalPageIndex = 0 | 1 | 2 | 3 | 4 | 5;
+export type LogicalTabIndex = 0 | 1 | 2 | 3;
+export type PhysicalPageIndex = 0 | 1 | 2 | 3 | 4;
 export type TabRuntimeOwnerId = PhysicalPageId;
 
 function assertIntegerInRange(value: number, max: number, label: string): void {

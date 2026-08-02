@@ -15,12 +15,13 @@ import Reanimated, {
 import { Image } from 'expo-image';
 import Svg, { Circle, Defs, LinearGradient as SvgLinearGradient, Path, Stop } from 'react-native-svg';
 import TapScale from '../../components/TapScale';
-import { useRouter } from 'expo-router';
+import { useFocusEffect, useRouter } from 'expo-router';
 import { useFeatureAccess, usePremium } from '../../components/PremiumContext';
 import { FREE_LESSON_LIMIT, buildSequentialFreeLessonUnlocks, lessonPaywallContext, requiresPremiumForLesson, resolveLessonAccess } from '../monetization_policy';
 import { openPremiumPaywall } from '../paywall_navigation';
 import { lessonPurchaseContinuationParams } from '../paywall_lesson_continuation';
-import { useTabNav } from '../TabContext';
+import { HOME_BACK_FALLBACK, safeRouterBack } from '../navigation_back';
+import { captureAccountGeneration } from '../account_generation';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../../components/ThemeContext';
 import { useLang } from '../../components/LangContext';
@@ -36,7 +37,6 @@ import type { ThemeMode } from '../../constants/theme';
 import GoldBevel from '../../components/GoldBevel';
 import { DEV_CONTENT_UNLOCK, ENABLE_DEV_TOOLS } from '../config';
 import { hapticTap } from '../../hooks/use-haptics';
-import { useTabContentBottomPad } from '../../hooks/use-tab-content-bottom-pad';
 import { useRuntimeActive } from '../../hooks/use_runtime_active';
 import { getExamMedalTier, getEarnedDots } from '../medal_utils';
 import { prefetchLessonMenuCache } from '../lesson_menu';
@@ -65,8 +65,26 @@ import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import LearningV2ModesLab from '../../components/learning-v2-lab/LearningV2ModesLab';
 import { peekCurrentExamBestPct } from '../exam_best_pct_overlay';
 import { noAndroidOutline } from '../../constants/androidGlow';
-/** Снимок UI списку уроків: survives remount між сесіями таба (див. `_layout.tsx` lazy tabs). */
+/** Снимок UI списка уроков: переживает ремоунт push-экрана в рамках ОДНОГО аккаунта.
+ *  зачем: privacy-крышку убранной панели (LessonsPaneBoundary в старом таббаре)
+ *  заменяет штамп поколения аккаунта — кэш прежнего аккаунта не должен мигнуть
+ *  на первом кадре после смены (инцидент exam best pct). */
 let lessonsUiSessionCacheByTarget: Partial<Record<string, LessonsTabSnapshot>> = {};
+let lessonsUiSessionCacheGeneration = -1;
+
+function readLessonsUiSessionCache(target: string): LessonsTabSnapshot | undefined {
+  const generation = captureAccountGeneration().generation;
+  if (generation !== lessonsUiSessionCacheGeneration) {
+    lessonsUiSessionCacheByTarget = {};
+    lessonsUiSessionCacheGeneration = generation;
+  }
+  return lessonsUiSessionCacheByTarget[target];
+}
+
+function writeLessonsUiSessionCache(target: string, snapshot: LessonsTabSnapshot): void {
+  lessonsUiSessionCacheGeneration = captureAccountGeneration().generation;
+  lessonsUiSessionCacheByTarget[target] = snapshot;
+}
 /**
  * Единый стиль карточек списка уроков (как «Туман» / «Графит»).
  * Объявлено на уровне модуля (не внутри компонента): имя начинается с `use` — внутри функции
@@ -789,12 +807,14 @@ const ChapterCard = React.memo(function ChapterCard({ title, statusLine, pct, lo
 
 export default function LessonsTab({ overlayIdentityEpoch: _overlayIdentityEpoch = 0 }: LessonsTabProps = {}) {
     void _overlayIdentityEpoch;
-    const tabContentBottomPad = useTabContentBottomPad();
     const router = useRouter();
     const topFadeScroll = useTopFadeScroll();
-    const { goHome } = useTabNav();
     const { theme: t, f, themeMode } = useTheme();
     const insets = useStableSafeAreaInsets();
+    // зачем: владелец (2026-08-02) убрал таб «Уроки» — экран стал push-маршрутом
+    // /lessons_list. Плавающей капсулы таббара под ним больше нет, поэтому паддинг
+    // низа списка считаем от системного отступа, а не от высоты таббара.
+    const listBottomPad = Math.max(insets.bottom, 12) + 20;
     const isGoldTheme = themeMode === 'gold';
     const isCoralTheme = themeMode === 'coral';
     const isSagePorcelainTheme = themeMode === 'sagePorcelain';
@@ -809,7 +829,7 @@ export default function LessonsTab({ overlayIdentityEpoch: _overlayIdentityEpoch
     const lessonCacheTarget = storageStudyTarget(studyTarget);
     const lessonCacheTargetRef = useRef(lessonCacheTarget);
     lessonCacheTargetRef.current = lessonCacheTarget;
-    const boot = lessonsUiSessionCacheByTarget[lessonCacheTarget] ?? getLessonsTabInitialState(studyTarget);
+    const boot = readLessonsUiSessionCache(lessonCacheTarget) ?? getLessonsTabInitialState(studyTarget);
     const [noLimits, setNoLimits] = useState(() => boot?.noLimits ?? false);
     const [legacyFreeLessonCap, setLegacyFreeLessonCap] = useState(
         () => boot?.legacyFreeLessonCap ?? FREE_LESSON_LIMIT,
@@ -835,10 +855,10 @@ export default function LessonsTab({ overlayIdentityEpoch: _overlayIdentityEpoch
     const scrollRef = useRef<any>(null);
     const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
     const bouncyStyle = useBouncyStyle(bouncyStretch);
-    const { activeIdx, focusTick, runtimeOwnerId } = useTabNav();
-    const lessonsTabVisible = activeIdx === 1;
-    const lessonsOwnerActive = runtimeOwnerId === 'lessons';
-    const lessonsRuntimeActive = useRuntimeActive(lessonsOwnerActive);
+    // зачем: экран больше не живёт внутри общего роутного экрана `(tabs)`, где
+    // useIsFocused() истинен для всех табов сразу. Push-маршрут гейтится честным
+    // фокусом — useRuntimeActive() сам берёт useIsScreenFocused + AppState.
+    const lessonsRuntimeActive = useRuntimeActive();
     // Две страницы вкладки: список уроков и перенесённые ИИ-диалоги (если фича включена).
     const dialogsEnabled = isAiDialogEnabled();
     const [page, setPage] = useState<'lessons' | 'dialogs' | 'v2'>('lessons');
@@ -847,8 +867,10 @@ export default function LessonsTab({ overlayIdentityEpoch: _overlayIdentityEpoch
             setPage('lessons');
             return;
         }
-        goHome();
-    }, [goHome, page]);
+        // Push-экран: «назад» честно возвращает туда, откуда пришли (обычно главная);
+        // при пустом стеке (диплинк) — фолбэк на главную.
+        safeRouterBack(router, HOME_BACK_FALLBACK as any);
+    }, [page, router]);
     const openLearningRoute = useCallback(() => {
         hapticTap();
         void readPersonalPlanState()
@@ -877,7 +899,6 @@ export default function LessonsTab({ overlayIdentityEpoch: _overlayIdentityEpoch
         lessonNum: number;
     }>(null);
     const mountedRef = useRef(true);
-    const lessonsStorageHydratedRef = useRef(false);
     const scoresLoadRef = useRef<{
         target: string;
         promise: Promise<LessonsTabSnapshot>;
@@ -886,11 +907,9 @@ export default function LessonsTab({ overlayIdentityEpoch: _overlayIdentityEpoch
         mountedRef.current = true;
         return () => { mountedRef.current = false; };
     }, []);
-    useEffect(() => {
-        if (lessonsTabVisible && scrollRef.current) {
-            scrollRef.current.scrollToOffset({ offset: 0, animated: false });
-        }
-    }, [lessonsTabVisible]);
+    // Сброс скролла при показе таба удалён вместе с самим табом: каждый push
+    // маунтит список заново (offset 0), а при возврате из урока позицию,
+    // наоборот, нужно сохранять.
     const loadScores = useCallback(async () => {
         try {
             let entry = scoresLoadRef.current;
@@ -924,22 +943,18 @@ export default function LessonsTab({ overlayIdentityEpoch: _overlayIdentityEpoch
             setExamResults(snapshot.examResults);
             setExamBestPcts(snapshot.examBestPcts);
             setExamPassCounts(snapshot.examPassCounts);
-            lessonsUiSessionCacheByTarget[lessonCacheTarget] = snapshot;
+            writeLessonsUiSessionCache(lessonCacheTarget, snapshot);
         }
         catch {
             /* ignore */
         }
     }, [lessonCacheTarget, studyTarget]);
-    useEffect(() => {
-        if (lessonsStorageHydratedRef.current) return;
-        lessonsStorageHydratedRef.current = true;
+    /** Push-экран: перечитываем прогресс на каждом фокусе — маунт, возврат из
+     *  урока/экзамена, смена studyTarget (loadScores меняет identity). Дубли
+     *  гасит scoresLoadRef: параллельные вызовы делят один in-flight promise. */
+    useFocusEffect(useCallback(() => {
         void loadScores();
-    }, [loadScores]);
-    /** Свайп/тап на вкладку «Уроки» — те же кейсы, где layout focus не збільшує focusTick */
-    useEffect(() => {
-        if (!lessonsTabVisible) return;
-        void loadScores();
-    }, [focusTick, lessonsTabVisible, loadScores]);
+    }, [loadScores]));
     const lessons = useMemo(() => lessonNamesForStudyTarget(lang, studyTarget), [lang, studyTarget]);
     const premiumReachableLevelIndex = useMemo(() => {
         let idx = getCourseLevelIndex('A1');
@@ -1312,7 +1327,7 @@ return (<LessonCard key={`l-${num}`}
     return (<>
     <ScreenGradient forceFullBleed>
       {/* Фиксированная шапка (вне скролла): назад + заголовок + энергия.
-          Верхний safe-area отступ даёт TabScaffold в (tabs)/_layout.tsx — здесь не дублируем. */}
+          Push-экран сам держит верхний safe-area отступ (insets.top ниже). */}
       <View>
         <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingTop: insets.top + 12, paddingBottom: 8 }}>
           <TapScale
@@ -1389,7 +1404,7 @@ return (<LessonCard key={`l-${num}`}
       {dialogsEnabled && page === 'dialogs' ? (
         <View style={{ flex: 1 }}>
           <DialogsTabContent
-            bottomPadding={tabContentBottomPad}
+            bottomPadding={listBottomPad}
             onScroll={(e) => { topFadeScroll?.onScroll?.(e); }}
             active={lessonsRuntimeActive && page === 'dialogs'}
           />
@@ -1398,7 +1413,7 @@ return (<LessonCard key={`l-${num}`}
 
       {ENABLE_DEV_TOOLS && page === 'v2' ? (
         <View style={{ flex: 1 }}>
-          <LearningV2ModesLab bottomPadding={tabContentBottomPad} />
+          <LearningV2ModesLab bottomPadding={listBottomPad} />
         </View>
       ) : null}
 
@@ -1408,7 +1423,7 @@ return (<LessonCard key={`l-${num}`}
       <Animated.FlatList ref={scrollRef} showsVerticalScrollIndicator={false} scrollEventThrottle={16} onScroll={handleLessonsScroll}
         onScrollEndDrag={handleLessonsScrollEnd}
         onMomentumScrollEnd={handleLessonsScrollEnd}
-        contentContainerStyle={{ paddingBottom: tabContentBottomPad }}
+        contentContainerStyle={{ paddingBottom: listBottomPad }}
         decelerationRate="normal"
         bounces
         alwaysBounceVertical

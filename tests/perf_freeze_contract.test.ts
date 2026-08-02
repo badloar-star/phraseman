@@ -113,10 +113,10 @@ describe('perf freeze contract', () => {
   // Только НАСТОЯЩИЕ табы: экраны, которые живут внутри общего роутного экрана
   // `(tabs)` и потому не различимы через useIsFocused(). Хаб турниров сюда НЕ
   // входит — с 27.07 он push-экран (релиз без турниров) и гейтится честным
-  // фокусом; список синхронизирован с LOGICAL_TAB_IDS.
+  // фокусом; уроки ушли следом 2026-08-02 (push-маршрут /lessons_list, таб убран).
+  // Список синхронизирован с LOGICAL_TAB_IDS.
   const TAB_SCREENS = [
     'app/(tabs)/home.tsx',
-    'app/(tabs)/lessons.tsx',
     'app/(tabs)/friends.tsx',
     'app/(tabs)/settings.tsx',
   ];

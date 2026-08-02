@@ -982,7 +982,7 @@ export default function LessonComplete() {
     void (async () => {
       const canApply = await canApplyCompletionRewards();
       if (!canApply) {
-        if (!cancelled && frenchStudyActive(studyTarget)) router.replace('/(tabs)/lessons' as any);
+        if (!cancelled && frenchStudyActive(studyTarget)) router.replace('/lessons_list' as any);
         return;
       }
       grantBonus();
@@ -1138,7 +1138,7 @@ export default function LessonComplete() {
           return;
         }
         await prefetchLessonMenuCache(next, studyTarget);
-        router.replace({ pathname: '/(tabs)/lessons', params: { id: next } });
+        router.replace({ pathname: '/lessons_list', params: { id: next } });
       })();
     } else {
       router.replace('/(tabs)/home' as any);
@@ -1147,7 +1147,7 @@ export default function LessonComplete() {
 
   const goBackFromComplete = useCallback(() => {
     hapticTap();
-    router.replace({ pathname: '/(tabs)/lessons', params: { id: lessonId } });
+    router.replace({ pathname: '/lessons_list', params: { id: lessonId } });
   }, [router, lessonId]);
 
   const handleRepeatLesson = useCallback(() => {

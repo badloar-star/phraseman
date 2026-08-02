@@ -3046,6 +3046,8 @@ function AppContent() {
       <Stack.Screen name="index" options={{ animation: 'none' }} />
       <Stack.Screen name="(tabs)" options={{ animation: 'none' }} />
       <Stack.Screen name="lesson1" />
+      {/* зачем: список всех уроков — push-экран вместо убранного таба «Уроки» (2026-08-02). */}
+      <Stack.Screen name="lessons_list" />
       <Stack.Screen name="lesson_menu" />
       <Stack.Screen name="lesson_words" />
       <Stack.Screen name="lesson_irregular_verbs" />

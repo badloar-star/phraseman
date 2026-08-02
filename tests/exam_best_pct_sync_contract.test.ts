@@ -31,10 +31,18 @@ describe('zero-cost exam best-pct sync wiring', () => {
   });
 
   test('tab layout closes the gate before activation and protects stale owner pixels', () => {
+    // зачем 2026-08-02: таб «Уроки» убран — LessonsPaneBoundary (privacy-крышка
+    // удерживаемой панели) ушла вместе с ним. Push-маршрут /lessons_list гейтится
+    // честным фокусом, а против чужих пикселей после смены аккаунта сессионный
+    // кэш списка уроков штампуется поколением аккаунта и сбрасывается при смене.
     const source = read('app/(tabs)/_layout.tsx');
     expect(source).toContain("setExamBestPctTabActivity(idx === 0 ? 'safe_home' : 'unsafe')");
-    expect(source).toContain('<LessonsPaneBoundary');
-    expect(source).toContain('importantForAccessibility={coverLessons ? \'no-hide-descendants\' : \'auto\'}');
-    expect(source).toContain('pointerEvents={coverLessons ? \'none\' : \'auto\'}');
+    expect(source).not.toContain('<LessonsPaneBoundary');
+
+    const lessons = read('app/(tabs)/lessons.tsx');
+    expect(lessons).toContain('let lessonsUiSessionCacheGeneration = -1;');
+    expect(lessons).toContain('if (generation !== lessonsUiSessionCacheGeneration) {');
+    expect(lessons).toContain('lessonsUiSessionCacheByTarget = {};');
+    expect(lessons).toContain('writeLessonsUiSessionCache(lessonCacheTarget, snapshot);');
   });
 });

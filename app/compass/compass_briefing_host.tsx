@@ -486,7 +486,7 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
         messageUk: copy.title,
         messageEs: 'French trainer is still behind source gate.',
       });
-      return { pathname: '/(tabs)/lessons' };
+      return { pathname: '/lessons_list' };
     }
     if (route.pathname === '/diagnostic_test' && !diagnosticContentAvailableForTarget(studyTarget)) {
       const copy = frenchDiagnosticGateCopy(lang);
@@ -496,7 +496,7 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
         messageUk: copy.title,
         messageEs: 'French diagnostic is still behind source gate.',
       });
-      return { pathname: '/(tabs)/lessons' };
+      return { pathname: '/lessons_list' };
     }
     if (route.pathname === '/ai_dialog_home' && !aiDialogContentAvailableForTarget(studyTarget)) {
       const copy = frenchAiDialogGateCopy(lang);
@@ -506,7 +506,7 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
         messageUk: copy.title,
         messageEs: 'French AI dialogs are still behind source gate.',
       });
-      return { pathname: '/(tabs)/lessons' };
+      return { pathname: '/lessons_list' };
     }
     return route;
   }, [lang, studyTarget]);
@@ -537,7 +537,7 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
     // в индакшн-фичу дня — осмысленный первый шаг; план остаётся премиум-путём.
     if (isWelcomeStart && !hasPremiumAccess) {
       const feature = day?.inductionFeature;
-      pushRoute(resolveSourceGatedRoute(feature ? compassInductionRoute(feature) : { pathname: '/(tabs)/lessons' }));
+      pushRoute(resolveSourceGatedRoute(feature ? compassInductionRoute(feature) : { pathname: '/lessons_list' }));
       return;
     }
     onStartDay?.();

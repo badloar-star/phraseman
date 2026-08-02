@@ -5,11 +5,14 @@ import { tabIconOpacity } from '../app/tab_icon_visibility';
 const source = (relativePath: string) => fs.readFileSync(path.join(__dirname, '..', relativePath), 'utf8');
 
 describe('dialogs back and tab chrome navigation contract', () => {
-  it('returns internal Lessons pages to the lessons list before navigating home', () => {
+  it('returns internal Lessons pages to the lessons list before leaving the screen', () => {
+    // зачем 2026-08-02: таб «Уроки» стал push-маршрутом — «назад» ведёт через
+    // safeRouterBack (честная история), но внутренние страницы (Диалоги/V2)
+    // по-прежнему сначала возвращаются на список, а не выкидывают с экрана.
     const lessons = source(path.join('app', '(tabs)', 'lessons.tsx'));
 
     expect(lessons).toMatch(
-      /const handleLessonsBack = useCallback\(\(\) => \{\s*if \(page !== 'lessons'\) \{\s*setPage\('lessons'\);\s*return;\s*\}\s*goHome\(\);\s*\}, \[goHome, page\]\);/,
+      /const handleLessonsBack = useCallback\(\(\) => \{\s*if \(page !== 'lessons'\) \{\s*setPage\('lessons'\);\s*return;\s*\}[\s\S]*?safeRouterBack\(router, HOME_BACK_FALLBACK as any\);\s*\}, \[page, router\]\);/,
     );
     expect(lessons).toContain('onPress={handleLessonsBack}');
     expect(lessons).not.toContain('onPress={() => goHome()}');

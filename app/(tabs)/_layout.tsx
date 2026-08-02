@@ -32,7 +32,6 @@ import TodayScreen from '../../components/today/TodayScreen';
 import {
   captureAccountGeneration,
   subscribeAccountGeneration,
-  type AccountGenerationToken,
 } from '../account_generation';
 import {
   setExamBestPctTabActivity,
@@ -69,18 +68,12 @@ type TabScreenComponent = React.ComponentType<TabScreenProps>;
 type DeferredTabModule = { default: TabScreenComponent };
 type CancelableTask = { cancel?: () => void };
 
-let deferredLessonsScreen: TabScreenComponent | null = null;
+// зачем: владелец (2026-08-02) убрал таб «Уроки» — список уроков стал
+// push-маршрутом /lessons_list (вход: плитка «Уроки» на главной). Лоадер и
+// privacy-boundary панели уроков удалены вместе с самой панелью.
 let deferredTournamentsScreen: TabScreenComponent | null = null;
 let deferredFriendsScreen: TabScreenComponent | null = null;
 let deferredSettingsScreen: TabScreenComponent | null = null;
-
-function loadLessonsScreen(): TabScreenComponent {
-  // зачем: таб 1 = «Журнал» (раздел статистики) по решению владельца; уроки
-  // дня — на главной, полный список — /lesson_menu. Имя лоадера сохранено,
-  // чтобы не трогать privacy-boundary вокруг таба.
-  deferredLessonsScreen ??= (require('./journal') as DeferredTabModule).default;
-  return deferredLessonsScreen;
-}
 
 function loadFriendsScreen(): TabScreenComponent {
   deferredFriendsScreen ??= (require('./friends') as DeferredTabModule).default;
@@ -99,10 +92,9 @@ function loadSettingsScreen(): TabScreenComponent {
 
 function loadDeferredTabScreenByIndex(idx: number): TabScreenComponent | null {
   switch (idx) {
-    case 1: return loadLessonsScreen();
-    case 2: return loadTournamentsScreen();
-    case 3: return loadFriendsScreen();
-    case 4: return loadSettingsScreen();
+    case 1: return loadTournamentsScreen();
+    case 2: return loadFriendsScreen();
+    case 3: return loadSettingsScreen();
     default: return null;
   }
 }
@@ -193,107 +185,6 @@ function TodayPaneBoundary({ freezeWanted }: { freezeWanted: boolean }) {
   return <TabPane key={scopeSafetyKey} freezeWanted={freezeWanted}><TodayScreen /></TabPane>;
 }
 
-type LessonsPrivacyState = Readonly<{
-  epoch: number;
-  phase: AccountGenerationToken['phase'];
-  failClosed: boolean;
-}>;
-
-function LessonsPaneBoundary({
-  freezeWanted,
-  shouldLoad,
-  isActive,
-  topInset,
-}: {
-  freezeWanted: boolean;
-  shouldLoad: boolean;
-  isActive: boolean;
-  topInset: number;
-}) {
-  const { theme: t } = useTheme();
-  const renderToken = useRef(captureAccountGeneration()).current;
-  const previousTokenRef = useRef(renderToken);
-  const activatedEpochRef = useRef(0);
-  const [privacy, setPrivacy] = useState<LessonsPrivacyState>({
-    epoch: 0,
-    phase: renderToken.phase,
-    failClosed: false,
-  });
-
-  useLayoutEffect(() => {
-    const failClosed = () => setPrivacy((previous) => ({
-      epoch: previous.epoch + 1,
-      phase: 'transitioning',
-      failClosed: true,
-    }));
-    const reconcile = (next: AccountGenerationToken) => {
-      try {
-        const previous = previousTokenRef.current;
-        previousTokenRef.current = next;
-        const initialAdoption = previous.phase === 'uninitialized' && next.phase === 'active';
-        const sameActiveOwner = previous.phase === 'active'
-          && next.phase === 'active'
-          && previous.stableId === next.stableId;
-        if (initialAdoption || sameActiveOwner) return;
-        if (
-          previous.generation === next.generation
-          && previous.phase === next.phase
-          && previous.stableId === next.stableId
-        ) return;
-        setPrivacy((current) => ({
-          epoch: current.epoch + 1,
-          phase: next.phase,
-          failClosed: current.failClosed,
-        }));
-      } catch {
-        failClosed();
-      }
-    };
-
-    try {
-      const subscription = subscribeAccountGeneration(reconcile);
-      reconcile(captureAccountGeneration());
-      return () => subscription.remove();
-    } catch {
-      failClosed();
-      return undefined;
-    }
-  }, [renderToken]);
-
-  if (isActive && privacy.phase === 'active' && !privacy.failClosed) {
-    activatedEpochRef.current = privacy.epoch;
-  }
-  const coverLessons = privacy.failClosed
-    || privacy.phase === 'transitioning'
-    || activatedEpochRef.current < privacy.epoch;
-
-  return (
-    <View style={[s.lessonsPaneBoundary, { backgroundColor: t.bgPrimary, marginTop: -topInset }]} collapsable={false}>
-      <View
-        style={s.lessonsPaneContent}
-        accessibilityElementsHidden={coverLessons}
-        importantForAccessibility={coverLessons ? 'no-hide-descendants' : 'auto'}
-        pointerEvents={coverLessons ? 'none' : 'auto'}
-      >
-        <TabPane freezeWanted={freezeWanted}>
-          <DeferredTabScreen
-            shouldLoad={shouldLoad}
-            loadScreen={loadLessonsScreen}
-            screenProps={{ overlayIdentityEpoch: privacy.epoch }}
-          />
-        </TabPane>
-      </View>
-      {coverLessons ? (
-        <View
-          style={[StyleSheet.absoluteFillObject, { backgroundColor: t.bgPrimary }]}
-          pointerEvents="auto"
-          accessible={false}
-        />
-      ) : null}
-    </View>
-  );
-}
-
 function markExamBestPctTabActivity(idx: number): void {
   setExamBestPctTabActivity(idx === 0 ? 'safe_home' : 'unsafe');
 }
@@ -304,24 +195,24 @@ type TabDef = {
   active: IconName;
 };
 
-/** Суффиксы путей пяти основных табов. Таб 1 — «Журнал» (статистика);
- *  legacy-суффикс `/lessons` оставлен в маппинге, чтобы старые диплинки не терялись. */
+/** Суффиксы путей четырёх основных табов. Legacy-суффиксы `/journal` и `/lessons`
+ *  оставлены в маппинге и ведут на главную: сам таб «Уроки» убран (2026-08-02),
+ *  список уроков — push-маршрут /lessons_list, а старый диплинк не должен падать. */
 const TAB_PATH_SUFFIXES = ['/home', '/journal', '/lessons', '/tournaments', '/friends', '/settings'] as const;
 
 const PATHNAME_TO_IDX: Record<(typeof TAB_PATH_SUFFIXES)[number], number> = {
   '/home': 0,
-  '/journal': 1,
-  '/lessons': 1,
-  '/tournaments': 2,
-  '/friends': 3,
-  '/settings': 4,
+  '/journal': 0,
+  '/lessons': 0,
+  '/tournaments': 1,
+  '/friends': 2,
+  '/settings': 3,
 };
 const IDX_TO_TAB_ROUTE: Record<number, string> = {
   0: '/(tabs)/home',
-  1: '/(tabs)/journal',
-  2: '/(tabs)/tournaments',
-  3: '/(tabs)/friends',
-  4: '/(tabs)/settings',
+  1: '/(tabs)/tournaments',
+  2: '/(tabs)/friends',
+  3: '/(tabs)/settings',
 };
 
 function addVisitedTab(prev: Set<number>, idx: number): Set<number> {
@@ -351,7 +242,7 @@ const BACKGROUND_TAB_PREMOUNT_FIRST_DELAY_MS = 160;
 const BACKGROUND_TAB_PREMOUNT_STEP_MS = 180;
 const BACKGROUND_TAB_PREMOUNT_IDLE_TIMEOUT_MS = 1200;
 /** Фоново прогреваем все отложенные вкладки в их логическом порядке. */
-const BACKGROUND_TAB_PREMOUNT_ORDER = [1, 2, 3, 4] as const;
+const BACKGROUND_TAB_PREMOUNT_ORDER = [1, 2, 3] as const;
 // Guarded by tests/tabbar_scroll_chrome_contract.test.ts.
 //
 // зачем: владелец попросил таббар РОВНО как у Bevel — прогресс схлопывания привязан
@@ -398,23 +289,24 @@ const TAB_UNDERLAY_DIM_ALPHA = 0.95;
 const TAB_UNDERLAY_DIM_BG = `rgba(0,0,0,${TAB_UNDERLAY_DIM_ALPHA})`;
 const TAB_DARK_ICON_MUTED_ALPHA = 0.74;
 
-/** Имена сегментов expo-router под `app/(tabs)/*.tsx` (без ведущих скобочных групп). */
+/** Имена сегментов expo-router под `app/(tabs)/*.tsx` (без ведущих скобочных групп).
+ *  journal/lessons — legacy-якоря убранного таба «Уроки», ведут на главную. */
 const SEGMENT_TO_TAB_IDX: Record<string, number> = {
   home: 0,
-  journal: 1,
-  lessons: 1,
-  tournaments: 2,
-  friends: 3,
-  settings: 4,
+  journal: 0,
+  lessons: 0,
+  tournaments: 1,
+  friends: 2,
+  settings: 3,
 };
 
 /**
  * При смене таба pathname иногда один кадр отстаёт от реального экрана; сегменты стабильнее.
  * Схлопнутый `/(tabs)` без дочернего сегмента = редирект из `app/(tabs)/index.tsx` на главную (0).
  *
- * Если URL — полноэкранный экран поверх группы табов (`/lesson_menu`, `/review`, …),
- * здесь возвращаем `null`: не переопределяем activeIdx таб-слайдера (иначе маппинг падал бы в «Главная»
- * и пользователь видел миганье вкладки «Главная» при переходе с «Уроки» в урок).
+ * Если URL — полноэкранный экран поверх группы табов (`/lessons_list`, `/lesson_menu`,
+ * `/review`, …), здесь возвращаем `null`: не переопределяем activeIdx таб-слайдера
+ * (иначе маппинг падал бы в «Главная» и активная вкладка мигала бы под push-экраном).
  */
 function tabIdxFromRouter(pathnameRaw: string, segments: readonly string[]): number | null {
   const inTabsGroup = segments.some(s => s === '(tabs)');
@@ -453,11 +345,10 @@ function routerShowsTab(pathnameRaw: string, segments: readonly string[], tabIdx
 }
 
 // Иконки-капсулы (как в Instagram, без подписей). Порядок = индексам табов.
+// зачем: владелец (2026-08-02) убрал вкладку-книжку «Уроки» — список уроков
+// открывается плиткой «Уроки» на главной (/lessons_list), пятая иконка лишняя.
 const TABS: TabDef[] = [
   { key: 'home',        icon: 'home-outline',        active: 'home' },
-  // зачем: вкладка ведёт на список уроков (`journal.tsx` ре-экспортирует `lessons`),
-  // а иконка осталась от прежнего «Журнала» — столбики статистики вводили в заблуждение.
-  { key: 'index',       icon: 'book-outline',        active: 'book' },
   { key: 'tournaments', icon: 'trophy-outline',      active: 'trophy' },
   { key: 'friends',     icon: 'people-outline',      active: 'people' },
   { key: 'settings',    icon: 'settings-outline',    active: 'settings' },
@@ -943,7 +834,6 @@ function scheduleIdleTask(run: () => void, timeoutMs: number): CancelableTask {
 
 export default function TabLayout() {
   const { width: tabPaneWidth } = useScreen();
-  const insets = useStableSafeAreaInsets();
   const { theme: t } = useTheme();
   const pathname = usePathname();
   // зачем: useSegments() в expo-router 6 типизирован union'ом ВСЕХ маршрутов —
@@ -1183,20 +1073,11 @@ export default function TabLayout() {
     return [
       <TodayPaneBoundary key="today" freezeWanted={Math.abs(physicalPageIdx) >= TAB_FREEZE_MIN_DISTANCE} />,
       show(0) ? <TabPane key="home" freezeWanted={freezeWanted(0)}><HomeScreen /></TabPane> : placeholder('ph-home'),
-      show(1) ? (
-        <LessonsPaneBoundary
-          key="index"
-          freezeWanted={freezeWanted(1)}
-          shouldLoad={shouldLoad(1)}
-          isActive={activeIdx === 1 && physicalPageIdx === logicalTabToPhysicalPage(1)}
-          topInset={insets.top}
-        />
-      ) : placeholder('ph-index'),
-      show(2) ? <TabPane key="tournaments" freezeWanted={freezeWanted(2)}><DeferredTabScreen shouldLoad={shouldLoad(2)} loadScreen={loadTournamentsScreen} /></TabPane> : placeholder('ph-tournaments'),
-      show(3) ? <TabPane key="friends" freezeWanted={freezeWanted(3)}><DeferredTabScreen shouldLoad={shouldLoad(3)} loadScreen={loadFriendsScreen} /></TabPane> : placeholder('ph-friends'),
-      show(4) ? <TabPane key="settings" freezeWanted={freezeWanted(4)}><DeferredTabScreen shouldLoad={shouldLoad(4)} loadScreen={loadSettingsScreen} /></TabPane> : placeholder('ph-settings'),
+      show(1) ? <TabPane key="tournaments" freezeWanted={freezeWanted(1)}><DeferredTabScreen shouldLoad={shouldLoad(1)} loadScreen={loadTournamentsScreen} /></TabPane> : placeholder('ph-tournaments'),
+      show(2) ? <TabPane key="friends" freezeWanted={freezeWanted(2)}><DeferredTabScreen shouldLoad={shouldLoad(2)} loadScreen={loadFriendsScreen} /></TabPane> : placeholder('ph-friends'),
+      show(3) ? <TabPane key="settings" freezeWanted={freezeWanted(3)}><DeferredTabScreen shouldLoad={shouldLoad(3)} loadScreen={loadSettingsScreen} /></TabPane> : placeholder('ph-settings'),
     ];
-  }, [activeIdx, insets.top, mountedTabs, physicalPageIdx, t.bgPrimary, tabPaneWidth, visitedTabs]);
+  }, [activeIdx, mountedTabs, physicalPageIdx, t.bgPrimary, tabPaneWidth, visitedTabs]);
 
   const runtimeOwnerId = physicalPageToRuntimeOwner(physicalPageIdx);
 
@@ -1214,14 +1095,6 @@ const s = StyleSheet.create({
   deferredTabPlaceholder: {
     flex: 1,
     backgroundColor: 'transparent',
-  },
-  lessonsPaneBoundary: {
-    flex: 1,
-    minHeight: 0,
-  },
-  lessonsPaneContent: {
-    flex: 1,
-    minHeight: 0,
   },
   /** Область свайпа табов; minHeight:0 — иначе flex не даёт скроллу сжиматься (RN). Фон прозрачный — градиент с TabScaffold, без белого «просвета». */
   tabContent: { flex: 1, minHeight: 0, width: '100%', backgroundColor: 'transparent' },

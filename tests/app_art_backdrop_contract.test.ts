@@ -82,6 +82,7 @@ describe('app art backdrop registry', () => {
     const cases = [
       ['/(tabs)/home', 'home'],
       ['/(tabs)/lessons', 'lessons'],
+      ['/lessons_list', 'lessons'],
       ['/(tabs)/arena', 'arena'],
       ['/(tabs)/friends', 'friends'],
       ['/(tabs)/settings', 'settings'],

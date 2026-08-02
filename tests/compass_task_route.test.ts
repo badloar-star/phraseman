@@ -14,10 +14,10 @@ describe('compassTaskRoute', () => {
     expect(r.params).toEqual({ id: '5' });
   });
 
-  // 2026-07-25: владелец вернул таб «Уроки» — общий выход без фокуса снова в таб.
-  it('routes lesson_dive without focus to lessons tab', () => {
+  // 2026-08-02: таб «Уроки» убран — общий выход без фокуса ведёт на push-список.
+  it('routes lesson_dive without focus to the lessons list', () => {
     const r = compassTaskRoute(task({ kind: 'lesson_dive' }), day);
-    expect(r.pathname).toBe('/(tabs)/lessons');
+    expect(r.pathname).toBe('/lessons_list');
     expect(r.params).toBeUndefined();
   });
 

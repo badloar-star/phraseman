@@ -35,6 +35,7 @@ export const APP_ART_ROUTE_BACKDROPS: Record<string, AppArtBackdropName> = {
   index: 'home',
   home: 'home',
   lessons: 'lessons',
+  lessons_list: 'lessons',
   arena: 'arena',
   friends: 'friends',
   settings: 'settings',

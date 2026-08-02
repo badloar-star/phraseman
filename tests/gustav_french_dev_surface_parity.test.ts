@@ -79,7 +79,7 @@ describe('Gustav French dev surface parity', () => {
 
     expect(trainerPlanSession).toContain('trainerSessionContentAvailableForTarget(studyTarget)');
     expect(trainerPlanSession).toContain('frenchTrainerGateCopy(lang)');
-    expect(trainerPlanSession).toContain("router.replace('/(tabs)/lessons' as any)");
+    expect(trainerPlanSession).toContain("router.replace('/lessons_list' as any)");
     expect(trainerPlanSession.indexOf('trainerSessionContentAvailableForTarget(studyTarget)')).toBeLessThan(
       trainerPlanSession.indexOf('readTrainerPlanTaskContext({'),
     );

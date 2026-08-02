@@ -75,7 +75,6 @@ import { prefetchTrainerPracticeSnapshot } from '../trainer_practice_prefetch';
 import { getCurrentMultiplier } from '../xp_manager';
 import DailyPhraseCard from '../../components/DailyPhraseCard';
 import { readPersonalPlanSnapshot, readPersonalPlanState, type PersonalPlanHomeSnapshot } from '../personal_plan_state';
-import PersonalPlanHomeRouteCard from '../../components/PersonalPlanHomeRouteCard';
 import { activatePendingPersonalPlanAfterPremium, readPendingPersonalPlanActivation } from '../personal_plan_activation';
 import { getVerifiedRealPremiumStatus } from '../premium_guard';
 import ReportErrorButton from '../../components/ReportErrorButton';
@@ -860,8 +859,12 @@ export default function HomeScreen() {
     const energyTooltipTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
     const energyIconRef = useRef<View>(null);
     const mountedRef = useRef(true);
+    // зачем: с 2026-08-02 плановая карточка на главной заменена карточкой последнего
+    // урока, значения ниже в рендере не читаются. Машинерия (state + события +
+    // запись в снапшот) сохранена: она держит кэш плана тёплым для CompassBriefingHost
+    // и других экранов, её сторожит tests/home_learning_cta_contract.test.ts.
     const [personalPlanSnapshot, setPersonalPlanSnapshot] = useState<PersonalPlanHomeSnapshot | null>(() => hh?.personalPlanSnapshot ?? null);
-    const [hasActivePersonalPlanState, setHasActivePersonalPlanState] = useState(() => !!hh?.personalPlanSnapshot);
+    const [, setHasActivePersonalPlanState] = useState(() => !!hh?.personalPlanSnapshot);
     const refreshDailyTaskSummary = useCallback(async () => {
         const lostOwnership = () => {
             if (homeRuntimeActiveRef.current) return false;
@@ -2312,22 +2315,19 @@ export default function HomeScreen() {
     };
     const weekDays = HOME_WEEK_DAYS[lang] ?? HOME_WEEK_DAYS.ru;
     const todayIdx = (new Date().getDay() + 6) % 7;
-    /** Индексы табов: 0 home, 1 journal, 2 friends, 3 settings —
-     *  см. app/(tabs)/_layout.tsx. Уроки больше не таб: список — полноэкранный
-     *  /lesson_menu.
+    /** Индексы табов: 0 home, 1 tournaments, 2 friends, 3 settings —
+     *  см. app/(tabs)/_layout.tsx. Таб «Уроки» убран (2026-08-02): полный список —
+     *  push-маршрут /lessons_list, открывается плиткой «Уроки» ниже.
      *  зачем: карта дублирует _layout.tsx, поэтому при любом изменении набора
      *  вкладок её обязательно править вместе с ним — иначе переходы отсюда
-     *  уводят не на тот экран.
-     *  Индексы синхронизированы с нижним таббаром, включая вкладку турниров. */
+     *  уводят не на тот экран. */
     const TAB_IDX: Record<string, number> = {
-        '/(tabs)/lessons': 1,
-        lessons: 1,
-        '/(tabs)/tournaments': 2,
-        tournaments: 2,
-        '/(tabs)/friends': 3,
-        friends: 3,
-        '/(tabs)/settings': 4,
-        settings: 4,
+        '/(tabs)/tournaments': 1,
+        tournaments: 1,
+        '/(tabs)/friends': 2,
+        friends: 2,
+        '/(tabs)/settings': 3,
+        settings: 3,
     };
     const go = (path: string) => {
         hapticTap();
@@ -2516,9 +2516,10 @@ export default function HomeScreen() {
         const homeTodayCardPadX = 16;
         const homeTodayCardPadY = 12;
         const homeTodayCardGap = 14;
-        // зачем: владелец вернул «Быстрый старт» вместо трёх колец — три плитки
-        // только с иконками. «Урок» ведёт не в список уроков, а сразу в последний
-        // открытый (lastLesson), чтобы продолжение занимало один тап, а не два.
+        // зачем: владелец (2026-08-02) — плитка «Уроки» открывает раздел всех
+        // уроков (/lessons_list, бывший таб «Уроки»), а продолжение последнего
+        // урока переехало на плашку ниже (бывшая плашка плана). Таб с книжкой
+        // из таббара убран — этот вход теперь единственный в полный список.
         const quickItems = [
             {
                 key: 'lesson',
@@ -2526,20 +2527,10 @@ export default function HomeScreen() {
                 testID: 'home-quick-lesson',
                 img: menuImages.lesson,
                 label: triLang(lang, {
-                    ru: 'Урок', uk: 'Урок', es: 'Lección', 'pt-BR': 'Lição',
-                    vi: 'Bài học', id: 'Pelajaran', tr: 'Ders', pl: 'Lekcja',
+                    ru: 'Уроки', uk: 'Уроки', es: 'Lecciones', 'pt-BR': 'Lições',
+                    vi: 'Bài học', id: 'Pelajaran', tr: 'Dersler', pl: 'Lekcje',
                 }),
-                onPress: () => {
-                    if (lastLesson) {
-                        hapticTap();
-                        logFeatureOpened('lesson_menu');
-                        trackFeatureOpened('lesson_menu').catch(() => { });
-                        perfNavStart('lesson_menu');
-                        router.push({ pathname: '/lesson_menu', params: { id: String(lastLesson.id) } } as any);
-                        return;
-                    }
-                    go('/lesson_menu');
-                },
+                onPress: () => { go('/lessons_list'); },
             },
             {
                 key: 'practice',
@@ -2962,7 +2953,7 @@ export default function HomeScreen() {
             </LinearGradient>
           </TouchableOpacity>
 
-          {/* БЫСТРЫЙ СТАРТ: Урок (последний открытый) / Практика / Карточки.
+          {/* БЫСТРЫЙ СТАРТ: Уроки (полный список) / Практика / Карточки.
               зачем: владелец вернул ряд плиток вместо трёх колец — иконка сама
               называет действие, подпись под ней короткая (запрет на подписи-
               расшифровки соблюдён: это label плитки, а не описание). */}
@@ -3032,36 +3023,52 @@ export default function HomeScreen() {
           {bannersJSX}
           </Animated.View>
 
-          {/* ПРОДОЛЖИТЬ УРОК + ЗАМОРОЗКА (карточка урока — только после первого захода в любой урок / last_opened_lesson) */}
+          {/* ПРОДОЛЖИТЬ УРОК (карточка — только после первого захода в любой урок / last_opened_lesson) */}
           {(<Animated.View style={sectionStyle(2)}>
 
-          {/* зачем: флаг HOME_STATUS_DENSE_PROGRESS_EXPERIMENT удалён (dense — единственный
-              режим), а он всегда был true; дефолт compactMargin у карточки тоже true,
-              поэтому проп просто не передаём. */}
-          {personalPlanSnapshot ? (
-            <PersonalPlanHomeRouteCard
-              snapshot={personalPlanSnapshot}
-              onPress={openPersonalPlan}
-            />
-          ) : hasActivePersonalPlanState ? (
-            <TouchableOpacity
-              testID="home-personal-plan-card"
-              activeOpacity={0.88}
-              onPress={openPersonalPlan}
-              style={{ marginHorizontal: 16, marginBottom: 12, borderRadius: 20, padding: 18, backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.border }}
-            >
-              <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900' }}>Личный план</Text>
-              <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 4 }}>Открыть задания на сегодня</Text>
-            </TouchableOpacity>
-          ) : lastLesson == null ? null : (
+          {/* зачем: владелец (2026-08-02) — плашка плана заменена плашкой последнего
+              открытого урока: один тап продолжает учёбу ровно там, где остановился.
+              Форма — как у рядов «Сегодня» (вызовы дня): иконка 64, название,
+              тонкий прогресс, счётчик справа. Вход в план остался: «Уроки» → «Маршрут». */}
+          {lastLesson == null ? null : (
             <TouchableOpacity
               testID="home-continue-lesson"
-              activeOpacity={0.88}
-              onPress={() => { hapticTap(); router.push({ pathname: '/lesson_menu', params: { id: lastLesson.id } } as any); }}
-              style={{ marginHorizontal: 16, marginBottom: 12, borderRadius: 20, padding: 18, backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.border }}
+              accessible={true}
+              accessibilityRole="button"
+              accessibilityLabel={`${s.home.continueBtn}: ${lastLesson.name}`}
+              activeOpacity={0.82}
+              onPress={() => {
+                hapticTap();
+                logFeatureOpened('lesson_menu');
+                trackFeatureOpened('lesson_menu').catch(() => { });
+                perfNavStart('lesson_menu');
+                router.push({ pathname: '/lesson_menu', params: { id: lastLesson.id } } as any);
+              }}
+              style={[{ marginHorizontal: 8, marginBottom: 12, borderRadius: 20, overflow: 'hidden' }, isGoldTheme ? goldShadow(1) : null]}
             >
-              <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900' }}>{s.home.continueBtn}</Text>
-              <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 4 }}>{lastLesson.name}</Text>
+              <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ borderRadius: 20, paddingHorizontal: 16, overflow: 'hidden' }}>
+                {isGoldTheme && <GoldBevel radius={20} intensity="quiet"/>}
+                {isCompassTheme && <CompassBevel radius={compassHomeRadius} intensity="quiet"/>}
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 12, minHeight: 72 }}>
+                  <View style={{ width: 64, height: 64, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                    <LightSketchMenuImage source={menuImages.lesson} width={64} height={64} lighten={false} align={getHomeMenuIconAlignment(themeMode, 'lesson')} contentFit="contain" cachePolicy="memory-disk"/>
+                  </View>
+                  <View style={{ flex: 1, minWidth: 0, gap: 7 }}>
+                    {/* eslint-disable-next-line text-integrity/no-unsafe-text-truncation -- однострочный титул ряда (как у «Вызовов дня»): перенос ломал бы фиксированную высоту 72 и геометрию первого кадра */}
+                    <Text style={{ color: homeThemePanelText, fontSize: Math.max(15, f.body), fontWeight: '700' }} numberOfLines={1}>
+                      {lastLesson.name}
+                    </Text>
+                    <View style={{ height: 5, borderRadius: 3, overflow: 'hidden', backgroundColor: isLightTheme ? 'rgba(0,0,0,0.10)' : 'rgba(255,255,255,0.10)' }}>
+                      <View style={{ height: '100%', width: `${Math.min(100, Math.max(0, Math.round((lastLesson.progress / 50) * 100)))}%` as any, backgroundColor: t.correct, borderRadius: 3 }}/>
+                    </View>
+                  </View>
+                  <View style={{ minWidth: 30, alignItems: 'flex-end', flexShrink: 0 }}>
+                    <Text style={{ color: homeThemePanelMuted, fontSize: 13, fontWeight: '700', fontVariant: ['tabular-nums'] /* guard-ok: правый счётчик прогресса, тот же паттерн что «0/4» у «Вызовов дня» */ }}>
+                      {Math.max(0, Math.min(50, lastLesson.progress))}/50
+                    </Text>
+                  </View>
+                </View>
+              </LinearGradient>
             </TouchableOpacity>
           )}
 

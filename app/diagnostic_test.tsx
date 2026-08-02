@@ -1409,7 +1409,7 @@ export default function DiagnosticTest() {
       <FrenchDiagnosticUnavailable
         lang={lang}
         onBack={() => safeRouterBack(router)}
-        onLessons={() => router.replace('/(tabs)/lessons' as any)}
+        onLessons={() => router.replace('/lessons_list' as any)}
         sx={sx}
         t={t}
         f={f}

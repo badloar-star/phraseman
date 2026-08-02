@@ -22,7 +22,8 @@ describe('tab background pre-mount contract', () => {
     const source = readLayout();
 
     expect(source).toContain('const ENABLE_BACKGROUND_TAB_PREMOUNT = true');
-    expect(source).toContain('const BACKGROUND_TAB_PREMOUNT_ORDER = [1, 2, 3, 4] as const');
+    // зачем 2026-08-02: таб «Уроки» убран — отложенных вкладок три (турниры, друзья, настройки).
+    expect(source).toContain('const BACKGROUND_TAB_PREMOUNT_ORDER = [1, 2, 3] as const');
     expect(source).toContain('scheduleIdleTask');
     expect(source).toContain('requestIdleCallback');
     expect(source).toContain("onAppEvent('app_first_content_ready', startPremount)");
@@ -48,23 +49,29 @@ describe('tab background pre-mount contract', () => {
   });
 
   it('keeps Settings warm without rehydrating storage on every tab switch', () => {
+    // зачем 2026-08-02: параллельная сессия усилила гвард гидрации настроек —
+    // settingsRuntimeActive (владелец таба + фокус + AppState) вместо голого
+    // settingsTabVisible; контракт приведён к закоммиченному коду.
     const source = fs.readFileSync(settingsPath, 'utf8');
 
     expect(source).toContain("const settingsTabVisible = runtimeOwnerId === 'settings';");
     expect(source).toContain('const settingsStorageHydratedRef = useRef(false);');
-    expect(source).toContain('if (!settingsTabVisible && settingsStorageHydratedRef.current) return;');
-    expect(source).toContain('[settingsTabVisible, refreshSupplementalAccessState]');
+    expect(source).toContain('if (!settingsRuntimeActive && settingsStorageHydratedRef.current) return;');
+    expect(source).toContain('[settingsRuntimeActive, refreshSupplementalAccessState]');
     expect(source).not.toContain('[activeIdx, refreshSupplementalAccessState]');
   });
 
-  it('keeps Lessons warm without reloading scores while another tab is visible', () => {
+  it('reloads Lessons scores by honest screen focus now that lessons is a push route', () => {
+    // зачем 2026-08-02: таб «Уроки» убран — экран стал push-маршрутом /lessons_list.
+    // Прежний гвард «не перечитывать сторидж, пока виден другой таб» больше не нужен:
+    // push-экран получает честный фокус, перечитывание висит на useFocusEffect,
+    // а дубли схлопывает in-flight promise (scoresLoadRef).
     const source = fs.readFileSync(lessonsPath, 'utf8');
 
-    expect(source).toContain('const lessonsTabVisible = activeIdx === 1;');
-    expect(source).toContain('const lessonsStorageHydratedRef = useRef(false);');
-    expect(source).toContain('if (lessonsStorageHydratedRef.current) return;');
-    expect(source).toContain('if (!lessonsTabVisible) return;');
-    expect(source).toContain('[focusTick, lessonsTabVisible, loadScores]');
-    expect(source).not.toContain('[focusTick, loadScores]');
+    expect(source).toContain('useFocusEffect(useCallback(() => {');
+    expect(source).toContain('void loadScores();');
+    expect(source).toContain('const scoresLoadRef = useRef<{');
+    expect(source).not.toContain('lessonsTabVisible');
+    expect(source).not.toContain('useTabNav');
   });
 });

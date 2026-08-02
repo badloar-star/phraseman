@@ -29,7 +29,7 @@ describe('personal plan setup unanswered-choice contract', () => {
   });
 
   it('exits normal setup to lessons while plan-change mode returns to the active plan', () => {
-    expect(source).toContain("const PERSONAL_PLAN_SETUP_EXIT_FALLBACK = '/(tabs)/lessons'");
+    expect(source).toContain("const PERSONAL_PLAN_SETUP_EXIT_FALLBACK = '/lessons_list'");
     expect(source).toContain("const exitFallback = directToPlans ? '/personal_plan' : PERSONAL_PLAN_SETUP_EXIT_FALLBACK");
     expect(source).toContain('safeRouterBack(router, exitFallback)');
 

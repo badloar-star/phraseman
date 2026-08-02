@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import DuoPressable from '../components/DuoPressable';
-import { StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import Svg, { Circle, Defs, LinearGradient, Stop } from 'react-native-svg';
 import Reanimated, {
   FadeInDown,
@@ -228,7 +228,18 @@ export default function TrainerSessionReport({
   }
 
   return (
-    <View style={styles.root}>
+    // зачем 2026-08-02 (владелец: «на маленьких экранах кнопки Готово нет»):
+    // корень был View c flex:1 + justifyContent:'center'. Пока отчёт помещался,
+    // всё выглядело верно, но на низком экране центрированный контент
+    // обрезается СВЕРХУ И СНИЗУ — «Готово» уходило за границу, и доскроллить до
+    // него было нечем. ScrollView с flexGrow:1 + justifyContent:'center'
+    // сохраняет прежний вид на больших экранах и даёт прокрутку на маленьких.
+    <ScrollView
+      style={styles.scroll}
+      contentContainerStyle={styles.root}
+      showsVerticalScrollIndicator={false}
+      bounces={false}
+    >
       <View style={styles.center}>
         <ReportRing
           attempted={attempted}
@@ -319,13 +330,17 @@ export default function TrainerSessionReport({
           </DuoPressable>
         ) : null}
       </Reanimated.View>
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  scroll: { flex: 1 },
   root: {
-    flex: 1,
+    // зачем: flexGrow (а не flex) — в contentContainerStyle это единственный
+    // способ сказать «растянись на всю высоту, если контента мало, но дай
+    // прокрутку, если много». Центрирование сохранено для больших экранов.
+    flexGrow: 1,
     justifyContent: 'center',
     padding: 20,
     gap: 18,

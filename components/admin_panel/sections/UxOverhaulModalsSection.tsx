@@ -22,7 +22,6 @@ import CardPackShardPaywallModal, {
   type CardPackPaywallMode,
 } from '../../../app/flashcards/CardPackShardPaywallModal';
 import type { FlashcardMarketPack } from '../../../app/flashcards/marketplace';
-import { ReferralAccessActivatedModal } from '../../../app/referral_access_activated_modal';
 import { ReferralAccessEndedModal } from '../../../app/referral_access_ended_modal';
 import { enqueueThemedBlockingInfoAlert } from '../../../app/themed_blocking_alert_queue';
 import { actionToastTri, emitAppEvent } from '../../../app/events';
@@ -135,7 +134,6 @@ export default function UxOverhaulModalsSection({ open, onToggle }: Props) {
   const [avatarLogoColor, setAvatarLogoColor] = useState<CustomAvatarLogoColor>('black');
   const [customPurchaseOpen, setCustomPurchaseOpen] = useState(false);
   const [packPaywall, setPackPaywall] = useState<{ mode: CardPackPaywallMode; balance: number } | null>(null);
-  const [refActivated, setRefActivated] = useState<{ grantedDays: number; friendsCount: number; untilLabel: string } | null>(null);
   const [refEndedOpen, setRefEndedOpen] = useState(false);
 
   const L = (
@@ -161,7 +159,7 @@ export default function UxOverhaulModalsSection({ open, onToggle }: Props) {
       id="ux_overhaul_modals"
       icon="sparkles-outline"
       title="🆕 UX-обновление — модалы и тосты"
-      badge={22}
+      badge={20}
       open={open}
       onToggle={onToggle}
     >
@@ -317,21 +315,10 @@ export default function UxOverhaulModalsSection({ open, onToggle }: Props) {
         onPress={() => setPackPaywall({ mode: 'voucher', balance: 500 })}
       />
 
-      {/* ── Реферальные модалы (не роуты — именованные компоненты с route-shim) ── */}
-      <ButtonRow
-        testID="admin-ux-referral-activated-14"
-        icon="gift-outline"
-        label="ReferralAccessActivated — 14 дней / 2 друга"
-        sub="Праздничный модал активации реферального доступа"
-        onPress={() => setRefActivated({ grantedDays: 14, friendsCount: 2, untilLabel: 'до 24 июня' })}
-      />
-      <ButtonRow
-        testID="admin-ux-referral-activated-30"
-        icon="gift"
-        label="ReferralAccessActivated — 30 дней / 5 друзей"
-        sub="Вариант с большим числом друзей (проверка плюрализации)"
-        onPress={() => setRefActivated({ grantedDays: 30, friendsCount: 5, untilLabel: 'до 10 июля' })}
-      />
+      {/* ── Реферальный модал (не роут — именованный компонент с route-shim) ──
+          зачем убрано превью ReferralAccessActivated: модалка описывала отменённое
+          правило рефералки и удалена; награда пригласившему теперь показывается
+          потоком «Награда за друга» со своими экранами. */}
       <ButtonRow
         testID="admin-ux-referral-ended"
         icon="time-outline"
@@ -450,15 +437,6 @@ export default function UxOverhaulModalsSection({ open, onToggle }: Props) {
           }}
         />
       )}
-      <ReferralAccessActivatedModal
-        visible={refActivated !== null}
-        grantedDays={refActivated?.grantedDays ?? 0}
-        friendsCount={refActivated?.friendsCount ?? 0}
-        untilLabel={refActivated?.untilLabel}
-        onClose={() => setRefActivated(null)}
-        L={L}
-        t={t}
-      />
       <ReferralAccessEndedModal
         visible={refEndedOpen}
         onInviteFriend={() => {

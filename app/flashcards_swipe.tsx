@@ -155,6 +155,11 @@ type SessionBuild = {
 
 const HOUR_MS = 60 * 60 * 1000;
 const DAY_MS = 24 * HOUR_MS;
+/** Высота закреплённой панели с кнопкой запуска на экране выбора наборов:
+ *  кнопка (heroStart, minHeight 54) + верхний отступ панели (10). Ровно на
+ *  столько увеличен отступ снизу у списка, иначе последний набор прячется
+ *  под панелью и его нельзя отметить. */
+const SELECT_START_BAR_HEIGHT = 64;
 
 const SOURCE_ACCENTS: Record<SourceKind, string> = {
   saved: '#7CDAFF',
@@ -2319,7 +2324,47 @@ export default function FlashcardsSwipeScreen() {
     });
   }, []);
 
+  // зачем 2026-08-02 (владелец: «в разделе карточки при отмечании наборов»
+  // не добраться до кнопки): кнопка запуска стояла НАД списком наборов. Наборов
+  // бывает два десятка — человек прокручивал вниз, отмечал нужные, а кнопка
+  // оставалась далеко вверху за экраном. На маленьких экранах это читалось как
+  // «кнопки нет». Теперь кнопка закреплена внизу и всегда под большим пальцем,
+  // а список прокручивается под ней.
+  const renderSelectStartButton = () => {
+    const startBlockReason = loadingSources
+      ? { label: text.startLoading, icon: 'albums-outline' as const }
+      : starting
+        ? { label: text.startStarting, icon: 'sparkles-outline' as const }
+        : selectedSources.length === 0
+          ? { label: text.startNoSelection, icon: 'albums-outline' as const }
+          : null;
+    return (
+      <DuoPressable
+        onPress={startSession}
+        disabled={startBlockReason != null}
+        edgeColor={t.accent}
+        wrapStyle={{ width: '100%' }}
+        style={[
+          styles.heroStart,
+          {
+            // marginTop из heroStart нужен, когда кнопка стоит в потоке под
+            // блоком выше. В закреплённой панели он даёт лишний зазор.
+            marginTop: 0,
+            backgroundColor: startBlockReason ? t.bgSurface2 : t.accent,
+            opacity: startBlockReason ? 0.72 : 1,
+          },
+        ]}
+      >
+        <Ionicons name={startBlockReason?.icon ?? 'play'} size={20} color={t.correctText} />
+        <Text style={[styles.heroStartText, { color: t.correctText, fontSize: f.body }]}>
+          {startBlockReason?.label ?? text.start}
+        </Text>
+      </DuoPressable>
+    );
+  };
+
   const renderSelect = () => (
+    <View style={styles.selectRoot}>
     <Animated.ScrollView
       decelerationRate="normal"
       scrollEventThrottle={16}
@@ -2327,7 +2372,9 @@ export default function FlashcardsSwipeScreen() {
       contentContainerStyle={[
         styles.selectContent,
         {
-          paddingBottom: Math.max(28, bottomInset + 28),
+          // Отступ снизу = высота закреплённой панели с кнопкой, иначе последний
+          // набор в списке оказывался под ней и его нельзя было отметить.
+          paddingBottom: Math.max(28, bottomInset + 28) + SELECT_START_BAR_HEIGHT,
           paddingHorizontal: ds.spacing.lg,
         },
       ]}
@@ -2434,35 +2481,6 @@ export default function FlashcardsSwipeScreen() {
             </TouchableOpacity>
           </View>
         )}
-        {(() => {
-          const startBlockReason = loadingSources
-            ? { label: text.startLoading, icon: 'albums-outline' as const }
-            : starting
-              ? { label: text.startStarting, icon: 'sparkles-outline' as const }
-              : selectedSources.length === 0
-                ? { label: text.startNoSelection, icon: 'albums-outline' as const }
-                : null;
-          return (
-            <DuoPressable
-              onPress={startSession}
-              disabled={startBlockReason != null}
-              edgeColor={t.accent}
-              wrapStyle={{ marginTop: 14 }}
-              style={[
-                styles.heroStart,
-                {
-                  backgroundColor: startBlockReason ? t.bgSurface2 : t.accent,
-                  opacity: startBlockReason ? 0.72 : 1,
-                },
-              ]}
-            >
-              <Ionicons name={startBlockReason?.icon ?? 'play'} size={20} color={t.correctText} />
-              <Text style={[styles.heroStartText, { color: t.correctText, fontSize: f.body }]}>
-                {startBlockReason?.label ?? text.start}
-              </Text>
-            </DuoPressable>
-          );
-        })()}
       </View>
 
       <Text style={[styles.segmentLabel, { color: t.textMuted, fontSize: f.caption }]}>{text.sourcesTitle}</Text>
@@ -2526,6 +2544,24 @@ export default function FlashcardsSwipeScreen() {
         </View>
       )}
     </Animated.ScrollView>
+      {/* Закреплённая панель: кнопка запуска всегда под большим пальцем, сколько
+          бы наборов ни было в списке. */}
+      <View
+        style={[
+          styles.selectStartBar,
+          {
+            paddingHorizontal: ds.spacing.lg,
+            paddingBottom: Math.max(12, bottomInset + 12),
+            // зачем: подложка в тон фона — иначе строки списка просвечивают
+            // сквозь панель и «наезжают» на кнопку при прокрутке. Обводки нет,
+            // отделяем тоном (правило владельца: без рамок).
+            backgroundColor: glassFill(t.bgSurface, 0.94),
+          },
+        ]}
+      >
+        {renderSelectStartButton()}
+      </View>
+    </View>
   );
 
   const renderDone = () => {
@@ -3036,6 +3072,18 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     textAlign: 'center',
     fontWeight: '700',
+  },
+  selectRoot: {
+    flex: 1,
+  },
+  selectStartBar: {
+    // Панель поверх списка, а не в потоке: список прокручивается под ней, а
+    // кнопка не уезжает за экран вместе с двумя десятками наборов.
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    paddingTop: 10,
   },
   selectContent: {
     paddingTop: 10,

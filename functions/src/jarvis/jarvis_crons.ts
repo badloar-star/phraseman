@@ -282,6 +282,15 @@ export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTION
     silenceReason: notifyVerdict.send ? null : notifyVerdict.reason,
   });
 
+  // зачем писать сюда же: /status в Telegram должен ответить за одно чтение
+  // документа jarvis_control, а не искать «последний прогон» по логам.
+  await db.doc(JARVIS_CONTROL_DOC).set(
+    { lastRunAtMs: nowMs, lastRunOpenDecisions: snapshot.decisions.length },
+    { merge: true },
+  ).catch((error) => {
+    logger.warn('jarvis_daily_departments: last-run write failed', error);
+  });
+
   // зачем чистить здесь, а не отдельным планировщиком: токены живут 10 минут,
   // их немного, и отдельный крон был бы лишним холодным стартом каждый день.
   await purgeExpiredApprovalTokens(db, nowMs).catch((error) => {

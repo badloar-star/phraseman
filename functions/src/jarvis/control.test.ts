@@ -60,4 +60,14 @@ describe('Jarvis control — one visible switch, safe defaults', () => {
     expect(DEFAULT_CONTROL.mode).toBe('observe');
     expect(DEFAULT_CONTROL.reason).toBeNull();
   });
+
+  test('remembers when the daily run last happened and how many findings it had', () => {
+    const control = parseControl({ mode: 'observe', lastRunAtMs: 123, lastRunOpenDecisions: 4 });
+    expect(control.lastRunAtMs).toBe(123);
+    expect(control.lastRunOpenDecisions).toBe(4);
+  });
+
+  test('a never-run Jarvis reports null, not a fake zero timestamp', () => {
+    expect(parseControl({ mode: 'observe' }).lastRunAtMs).toBeNull();
+  });
 });

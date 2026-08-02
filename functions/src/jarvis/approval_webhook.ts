@@ -13,6 +13,8 @@ import { handleApprovalCallback, parseOwnerConfig } from './approval_webhook_cor
 import { issueDecisionButtons } from './issue_decision_buttons';
 import { sendJarvisDigest } from './telegram_send';
 import type { Decision } from './decision';
+import { buildStatusText, type JarvisCommand } from './commands';
+import { JARVIS_CONTROL_DOC, parseControl } from './control';
 
 /**
  * HTTP-точка входа для кнопок Джарвиса в Telegram.
@@ -64,6 +66,70 @@ async function answerCallbackQuery(token: string, callbackQueryId: string, text:
     // Не ответить на callback — некритично: действие уже выполнено.
     logger.warn('jarvis_approval: answerCallbackQuery failed', error);
   }
+}
+
+async function sendPlainMessage(botToken: string, chatId: string, text: string): Promise<void> {
+  try {
+    await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chat_id: chatId, text, parse_mode: 'HTML' }),
+    });
+  } catch (error) {
+    logger.warn('jarvis_approval: command reply failed', error);
+  }
+}
+
+interface HandleCommandInput {
+  readonly db: FirebaseFirestore.Firestore;
+  readonly command: JarvisCommand;
+  readonly chatId: string;
+  readonly botToken: string;
+  readonly nowMs: number;
+}
+
+/**
+ * Реакция на /status, /stop, /start (бриф в99, в267).
+ *
+ * зачем отдельно от consume: это не подтверждение решения по токену, а прямой
+ * запрос состояния или изменение режима — команда не тратит approval-токен.
+ */
+async function handleCommand(input: HandleCommandInput): Promise<void> {
+  const ref = input.db.doc(JARVIS_CONTROL_DOC);
+
+  if (input.command === 'status') {
+    const snap = await ref.get().catch(() => null);
+    const control = parseControl(snap?.data());
+    const text = buildStatusText({
+      mode: control.mode,
+      reason: control.reason,
+      lastRunAtMs: control.lastRunAtMs,
+      openDecisions: control.lastRunOpenDecisions ?? 0,
+      nowMs: input.nowMs,
+    });
+    await sendPlainMessage(input.botToken, input.chatId, text);
+    return;
+  }
+
+  // /stop и /start меняют режим. merge:true — не затираем lastRunAtMs и
+  // прочие поля, которых нет в этом патче.
+  const nextMode = input.command === 'stop' ? 'off' : 'observe';
+  await ref.set(
+    {
+      mode: nextMode,
+      reason: input.command === 'stop' ? 'остановлен командой /stop из Telegram' : null,
+      changedBy: 'owner_telegram',
+      changedAtMs: input.nowMs,
+    },
+    { merge: true },
+  );
+  await sendPlainMessage(
+    input.botToken,
+    input.chatId,
+    input.command === 'stop'
+      ? '⏸ Джарвис остановлен. Пришлите /start, чтобы возобновить.'
+      : '▶️ Джарвис снова наблюдает.',
+  );
 }
 
 export const jarvisTelegramApprovalWebhook = onRequest(
@@ -158,6 +224,20 @@ export const jarvisTelegramApprovalWebhook = onRequest(
     if (result.status !== 200) {
       // Молча: подробности отказа наружу не уходят.
       res.status(result.status).send('');
+      return;
+    }
+
+    // зачем отдельная ветка: /status и /stop не проходят через consume —
+    // это не подтверждение решения, а прямой запрос состояния/управления.
+    if (result.command) {
+      await handleCommand({
+        db,
+        command: result.command,
+        chatId: config.ownerTelegramChatId,
+        botToken: ADMIN_ALERT_BOT_TOKEN.value(),
+        nowMs,
+      });
+      res.status(200).send('');
       return;
     }
 

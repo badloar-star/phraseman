@@ -1,5 +1,6 @@
 import { timingSafeEqual } from 'node:crypto';
 import { parseCallbackData, type ApprovalAction, type ApprovalRejectReason } from './approval_token';
+import { parseCommand, type JarvisCommand } from './commands';
 
 /**
  * Чистая логика обработки нажатия кнопки в Telegram.
@@ -93,6 +94,8 @@ export interface HandleApprovalCallbackInput {
 
 export interface HandleApprovalCallbackResult {
   readonly status: number;
+  /** Команда владельца (/status, /stop). Реакция на неё — в транспорте. */
+  readonly command?: JarvisCommand;
   /** Текст всплывающего ответа в Telegram. Пусто — отвечать нечего. */
   readonly answerText?: string;
   readonly callbackQueryId?: string;
@@ -120,8 +123,20 @@ export async function handleApprovalCallback(
 
   const body = (input.body ?? {}) as Record<string, unknown>;
   const callback = body.callback_query as Record<string, unknown> | undefined;
-  // Обычные сообщения нас не касаются: 200, чтобы Telegram не повторял доставку.
-  if (!callback) return { status: 200 };
+
+  // Текстовое сообщение: возможно, команда /status или /stop.
+  if (!callback) {
+    const message = (body.message ?? {}) as Record<string, unknown>;
+    const msgFrom = (message.from ?? {}) as Record<string, unknown>;
+    const msgChat = (message.chat ?? {}) as Record<string, unknown>;
+    const command = parseCommand(message.text);
+    // зачем та же строгость, что для кнопок: /stop меняет состояние системы,
+    // это не безобидное чтение. Постороннему — молчание, а не подсказка.
+    const isOwner = String(msgFrom.id ?? '') === input.config.ownerTelegramUserId
+      && String(msgChat.id ?? '') === input.config.ownerTelegramChatId;
+    if (!command || !isOwner) return { status: 200 };
+    return { status: 200, command };
+  }
 
   const callbackQueryId = typeof callback.id === 'string' ? callback.id : undefined;
 

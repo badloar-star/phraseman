@@ -26,6 +26,10 @@ export interface JarvisControl {
   readonly reason: string | null;
   readonly changedBy: string | null;
   readonly changedAtMs: number | null;
+  /** Когда суточный крон отработал в последний раз. null — ещё ни разу. */
+  readonly lastRunAtMs: number | null;
+  /** Сколько находок было в последнем прогоне. */
+  readonly lastRunOpenDecisions: number | null;
 }
 
 /**
@@ -38,6 +42,8 @@ export const DEFAULT_CONTROL: JarvisControl = Object.freeze({
   reason: null,
   changedBy: null,
   changedAtMs: null,
+  lastRunAtMs: null,
+  lastRunOpenDecisions: null,
 });
 
 function text(value: unknown): string | null {
@@ -61,6 +67,8 @@ export function parseControl(raw: unknown): JarvisControl {
     reason: text(data.reason),
     changedBy: text(data.changedBy),
     changedAtMs: num(data.changedAtMs),
+    lastRunAtMs: num(data.lastRunAtMs),
+    lastRunOpenDecisions: num(data.lastRunOpenDecisions),
   });
 }
 

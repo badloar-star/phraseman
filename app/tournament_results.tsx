@@ -458,6 +458,12 @@ export default function TournamentResultsScreen() {
           </View>
         </V2Card>
 
+        {/* зачем 2026-08-03 (владелец: «есть поделиться и разобрать ответы, но
+            нет кнопки готово»): выход с итогов был только крестиком в углу —
+            маленькая цель, не читается как завершение. Явная кнопка внизу
+            закрывает поток и возвращает во вкладку турниров, тем же
+            closeTournamentFlow, что и крестик. Тон ghost: главное действие
+            здесь — поделиться победой, выход не должен перетягивать взгляд. */}
         <View style={styles.actions}>
           <V2Cta onPress={share}>Поделиться 📤</V2Cta>
           {roomId ? (
@@ -468,6 +474,7 @@ export default function TournamentResultsScreen() {
               Разобрать ответы
             </V2Cta>
           ) : null}
+          <V2Cta tone="ghost" onPress={closeResults}>Готово</V2Cta>
         </View>
       </ScrollView>
 

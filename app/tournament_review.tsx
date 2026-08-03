@@ -6,11 +6,18 @@
 // но в дизайне Learning V2.
 //
 // Устройство: сервер отдаёт разбор только когда турнир окончен и только СВОЙ
-// (во время игры это была бы подсказка). Ошибки идут первыми — ради них экран
-// и открывают; верные ответы ниже, чтобы можно было перечитать удачные.
+// (во время игры это была бы подсказка). Порядок — игровой: задание 3 в разборе
+// это задание 3 в турнире, иначе номера врут.
 //
-// Layout stability: карточки фиксированной геометрии, счётчик сверху не
-// прыгает — до ответа сервера показываем скелетон нужного размера.
+// зачем 2026-08-03 (владелец: «показывай каждое задание как свёрнутую плашку, а
+// при разворачивании увидим инфу»): раньше весь разбор вываливался списком —
+// 10-15 карточек с вариантами и пояснениями, экран на несколько экранов
+// прокрутки, и найти нужное задание было нельзя. Теперь список — оглавление:
+// номер, фраза, значок верно/мимо. Открыта одна плашка за раз (решение
+// владельца), деталь приходит по тапу.
+//
+// Layout stability: скелетон нужного размера до ответа сервера; раскрытие
+// плашки идёт через animateNextLayoutTransition — контент не телепортируется.
 // ═══════════════════════════════════════════════════════════════════════════
 
 import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
@@ -20,6 +27,7 @@ import Animated, { FadeIn } from 'react-native-reanimated';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
+import { animateNextLayoutTransition } from './smooth_layout';
 import { safeRouterBack } from './navigation_back';
 import TapScale from '../components/TapScale';
 import {
@@ -66,6 +74,20 @@ export default function TournamentReviewScreen() {
    */
   const [items, setItems] = useState<ReviewItem[] | null>(() => peekRoundReview(roomId));
   const [failed, setFailed] = useState(false);
+
+  /**
+   * Открытая плашка — ровно одна (решение владельца 2026-08-03).
+   *
+   * Состояние живёт на экране, а не в карточке: только так вторая плашка может
+   * закрыть первую. Ключ — индекс задания: taskId в теории может повториться,
+   * индекс уникален всегда.
+   */
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const toggleCard = useCallback((index: number) => {
+    // Вставка/схлопывание в потоке — только мягким переходом (Layout Stability).
+    animateNextLayoutTransition();
+    setOpenIndex((prev) => (prev === index ? null : index));
+  }, []);
 
   const goBack = useCallback(() => safeRouterBack(router, '/(tabs)/tournaments' as any), [router]);
 
@@ -137,11 +159,14 @@ export default function TournamentReviewScreen() {
           </V2Card>
         ) : (
           <>
+            {/* зачем 2026-08-03: подпись раньше обещала «ошибки первыми в
+                списке», хотя порядок игровой и ошибки идут вперемешку — она
+                прямо врала. Теперь говорит только то, что правда. */}
             <View style={styles.summary}>
               <Text style={styles.summaryText}>
                 {mistakes === 0
                   ? 'Все ответы верные'
-                  : `Ошибок: ${mistakes} — они первыми в списке`}
+                  : `Ошибок: ${mistakes} — нажмите задание, чтобы разобрать`}
               </Text>
             </View>
             {ordered.map((item, index) => (
@@ -149,7 +174,12 @@ export default function TournamentReviewScreen() {
                 key={`${item.taskId}-${index}`}
                 entering={FadeIn.duration(200).delay(Math.min(index, 6) * 40)}
               >
-                <ReviewCard item={item} />
+                <ReviewCard
+                  item={item}
+                  number={index + 1}
+                  expanded={openIndex === index}
+                  onToggle={() => toggleCard(index)}
+                />
               </Animated.View>
             ))}
           </>
@@ -161,10 +191,27 @@ export default function TournamentReviewScreen() {
 
 // ── Карточка одного вопроса ─────────────────────────────────────────────────
 
-const ReviewCard = memo(function ReviewCard({ item }: { item: ReviewItem }) {
+const ReviewCard = memo(function ReviewCard({
+  item, number, expanded, onToggle,
+}: {
+  item: ReviewItem;
+  /** Номер задания в турнире — тот же, что был в игре. */
+  number: number;
+  expanded: boolean;
+  onToggle: () => void;
+}) {
   const P = useTournamentPalette();
   const styles = useMemo(() => makeStyles(P), [P]);
-  const [expanded, setExpanded] = useState(!item.correct);
+
+  /**
+   * Заголовок свёрнутой плашки. У аудио- и текстовых заданий это сама фраза; у
+   * серии/пар фразы нет — там общий prompt, а если и его нет (старые комнаты),
+   * честно показываем название режима вместо пустой строки.
+   */
+  const headline = item.phrase?.trim()
+    || item.aggregatePrompt?.trim()
+    || MODE_LABEL[item.mode]
+    || item.mode;
 
   const isAudio = item.mode === 'listen_choose'
     || item.mode === 'sound_contrast'
@@ -181,9 +228,19 @@ const ReviewCard = memo(function ReviewCard({ item }: { item: ReviewItem }) {
 
   return (
     <V2Card pad={18} style={styles.card}>
-      <View style={styles.cardTop}>
-        <FlowText testID="review-mode-label" provenance="authored" style={styles.mode}>
-          {MODE_LABEL[item.mode] || item.mode}
+      {/* Свёрнутая плашка: номер задания, фраза и итог. Вся строка — цель
+          нажатия, а не маленькая стрелка: попасть пальцем должно быть легко. */}
+      <TapScale
+        onPress={onToggle}
+        accessibilityRole="button"
+        accessibilityState={{ expanded }}
+        accessibilityLabel={`Задание ${number}. ${headline}. ${item.correct ? 'Верно' : 'Ошибка'}`}
+        accessibilityHint={expanded ? 'Свернуть задание' : 'Развернуть задание'}
+        style={styles.cardTop}
+      >
+        <Text style={styles.cardNumber}>{number}</Text>
+        <FlowText testID="review-card-headline" provenance="external" style={styles.cardHeadline}>
+          {headline}
         </FlowText>
         <View style={[styles.verdict, { backgroundColor: item.correct ? P.accentSoft : P.dangerSoft }]}>
           <Ionicons
@@ -195,7 +252,20 @@ const ReviewCard = memo(function ReviewCard({ item }: { item: ReviewItem }) {
             {item.correct ? 'верно' : item.timedOut ? 'Не успел' : 'мимо'}
           </Text>
         </View>
-      </View>
+        <Ionicons
+          name={expanded ? 'chevron-up' : 'chevron-down'}
+          size={18}
+          color={P.ghost}
+        />
+      </TapScale>
+
+      {!expanded ? null : (
+        <>
+      {/* Режим виден только внутри: в свёрнутом виде его место занимает фраза,
+          ради которой плашку и открывают. */}
+      <FlowText testID="review-mode-label" provenance="authored" style={styles.mode}>
+        {MODE_LABEL[item.mode] || item.mode}
+      </FlowText>
 
       {item.speedMatchPairs ? (
         <SpeedMatchReviewPairs pairs={item.speedMatchPairs} styles={styles} P={P} />
@@ -269,42 +339,22 @@ const ReviewCard = memo(function ReviewCard({ item }: { item: ReviewItem }) {
         </>
       )}
 
+      {/* зачем 2026-08-03: раньше пояснение пряталось за вторым «Почему это
+          верно» — аккордеон внутри аккордеона. Плашку уже открыли осознанно,
+          прятать от неё разбор второй раз бессмысленно: показываем сразу. */}
       {item.explanation ? (
         <View style={styles.explanation}>
-          {!expanded ? (
-            <TapScale
-              onPress={() => setExpanded(true)}
-              accessibilityRole="button"
-              accessibilityLabel="Показать разбор ответа"
-              style={styles.explanationToggle}
-            >
-              <Text style={styles.explanationToggleText}>Почему это верно</Text>
-              <Ionicons name="chevron-down" size={16} color={P.accent} />
-            </TapScale>
-          ) : (
-            <>
-              <Text style={styles.explanationTitle}>Разбор</Text>
-              <Text style={styles.explanationText}>{item.explanation.ruleNote}</Text>
-              <Text style={styles.exampleText}>{item.explanation.example}</Text>
-              {!item.correct && typeof givenIndex === 'number'
-                && item.explanation.wrongOptionReasons?.[givenIndex] ? (
-                  <Text style={styles.trapText}>{item.explanation.wrongOptionReasons[givenIndex]}</Text>
-                ) : null}
-              {item.correct ? (
-                <TapScale
-                  onPress={() => setExpanded(false)}
-                  accessibilityRole="button"
-                  accessibilityLabel="Свернуть разбор ответа"
-                  style={styles.explanationToggle}
-                >
-                  <Text style={styles.explanationToggleText}>Свернуть</Text>
-                  <Ionicons name="chevron-up" size={16} color={P.accent} />
-                </TapScale>
-              ) : null}
-            </>
-          )}
+          <Text style={styles.explanationTitle}>Разбор</Text>
+          <Text style={styles.explanationText}>{item.explanation.ruleNote}</Text>
+          <Text style={styles.exampleText}>{item.explanation.example}</Text>
+          {!item.correct && typeof givenIndex === 'number'
+            && item.explanation.wrongOptionReasons?.[givenIndex] ? (
+              <Text style={styles.trapText}>{item.explanation.wrongOptionReasons[givenIndex]}</Text>
+            ) : null}
         </View>
       ) : null}
+        </>
+      )}
     </V2Card>
   );
 });
@@ -425,9 +475,17 @@ const makeStyles = (P: TournamentV2) => StyleSheet.create({
   summaryText: { fontSize: 14, fontWeight: '700', color: P.muted },
 
   card: { gap: 12 },
-  cardTop: { flexDirection: 'row', alignItems: 'center', gap: 10 },
+  // Свёрнутая плашка: минимум 48 — комфортная цель нажатия по всей ширине.
+  cardTop: { flexDirection: 'row', alignItems: 'center', gap: 10, minHeight: 48 },
+  cardNumber: {
+    minWidth: 20,
+    fontSize: 14,
+    fontWeight: '900',
+    color: P.ghost,
+    fontVariant: ['tabular-nums'],
+  },
+  cardHeadline: { flex: 1, fontSize: 16, fontWeight: '800', color: P.text, lineHeight: 21 },
   mode: {
-    flex: 1,
     fontSize: 12.5,
     fontWeight: '800',
     letterSpacing: 1.2,
@@ -457,8 +515,6 @@ const makeStyles = (P: TournamentV2) => StyleSheet.create({
   explanationText: { color: P.text, fontSize: 14, lineHeight: 20 },
   exampleText: { color: P.muted, fontSize: 13, lineHeight: 19, fontStyle: 'italic' },
   trapText: { color: P.danger, fontSize: 13, lineHeight: 19, fontWeight: '700' },
-  explanationToggle: { minHeight: 36, flexDirection: 'row', alignItems: 'center', gap: 6 },
-  explanationToggleText: { color: P.accent, fontSize: 13, fontWeight: '800' },
   answerRow: {
     flexDirection: 'row',
     alignItems: 'center',

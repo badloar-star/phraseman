@@ -13,9 +13,14 @@ describe('gift inventory apply presentation', () => {
     expect(source.match(/presentationMode="apply"/g)).toHaveLength(2);
   });
 
-  it('labels the inventory action as a preview before the modal confirmation', () => {
+  // зачем: владелец переделал инвентарь в сетку немых плиток (как в «Темах
+  // интерфейса») — кнопки «Посмотреть» на карточке больше нет, и старая
+  // проверка её подписи стала ложной. Инвариант же остался прежним и здесь
+  // сторожится по сути: нажатие на плитку ТОЛЬКО открывает модалку
+  // (setSelected), применить подарок можно лишь явным подтверждением внутри.
+  it('opens the gift modal on tile press instead of applying the gift directly', () => {
     const source = readSource('app/level_gifts_inventory.tsx');
-    expect(source).toContain("ru: 'Посмотреть'");
+    expect(source).toContain('onPress={setSelected}');
     expect(source).not.toContain("ru: 'Применить'");
   });
 

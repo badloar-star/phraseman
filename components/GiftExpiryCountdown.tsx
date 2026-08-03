@@ -16,10 +16,15 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Text, View } from 'react-native';
 import { GIFT_EXPIRY_WARN_MS, giftCountdownLabel } from '../app/gift_expiry';
 import { useLang } from './LangContext';
+import { useTheme } from './ThemeContext';
 import { triLang } from '../constants/i18n';
+import { isLightThemeMode } from '../constants/theme';
 
 /** Тёплая подсветка последних часов; в тон существующим акцентам наград. */
 const WARN_COLOR = '#FB7185';
+/** Тёмные аналоги для светлой темы: золото и красный на белом нечитаемы. */
+const WARN_COLOR_LIGHT = '#B03A44';
+const CALM_COLOR_LIGHT = '#5B5548';
 
 const tone = (hex: string, alpha: string): string =>
   /^#[0-9a-f]{6}$/i.test(hex) ? `${hex}${alpha}` : hex;
@@ -31,6 +36,11 @@ interface GiftExpiryCountdownProps {
   accent: string;
   /** Однократный колбэк при достижении нуля (родитель перезагружает список). */
   onExpired?: () => void;
+  /**
+   * Компактный угловой бейдж для плитки подарка: только часы («6ч»), без
+   * иконки и без секунд. Полная строка чч:мм:сс на квадрате 118px не влезает.
+   */
+  compact?: boolean;
   testID?: string;
 }
 
@@ -38,9 +48,11 @@ export default function GiftExpiryCountdown({
   expiresAtMs,
   accent,
   onExpired,
+  compact = false,
   testID,
 }: GiftExpiryCountdownProps) {
   const { lang } = useLang();
+  const { themeMode } = useTheme();
   const [msLeft, setMsLeft] = useState(() => Math.max(0, expiresAtMs - Date.now()));
   const expiredFiredRef = useRef(false);
   const onExpiredRef = useRef(onExpired);
@@ -67,7 +79,14 @@ export default function GiftExpiryCountdown({
   }, [expiresAtMs]));
 
   const warn = msLeft <= GIFT_EXPIRY_WARN_MS;
-  const color = warn ? WARN_COLOR : accent;
+  // зачем: владелец не смог прочитать таймер — цвет наследовался от акцента
+  // подарка (эпик = золото #FFD700), и жёлтые цифры 10px на светло-жёлтой
+  // плашке давали контраст ~1.3:1. На светлой теме акцент подарка для текста
+  // не годится в принципе: берём тёмный спокойный тон, а «горит» — тёмно-красный.
+  const isLight = isLightThemeMode(themeMode);
+  const color = warn
+    ? (isLight ? WARN_COLOR_LIGHT : WARN_COLOR)
+    : (isLight ? CALM_COLOR_LIGHT : accent);
   const hoursLeft = Math.floor(msLeft / 3600000);
   const minutesLeft = Math.floor((msLeft % 3600000) / 60000);
   // VoiceOver/TalkBack: цифры «71:59:59» не читаются — озвучиваем смысл.
@@ -82,6 +101,13 @@ export default function GiftExpiryCountdown({
     pl: `Prezent wygaśnie za ${hoursLeft} godz. ${minutesLeft} min`,
   });
 
+  // Компактный бейдж плитки: «6ч» вместо «06:30:30» — на квадрате нет места,
+  // а точность до секунды там и не нужна (полный отсчёт живёт в модалке).
+  const compactText = hoursLeft > 0 ? `${hoursLeft} ч` : `${minutesLeft} м`;
+  // Подложка бейджа непрозрачная: плитка под ним — картинка подарка,
+  // на пёстрой иконке 12-процентная заливка не отделяет цифры от фона.
+  const compactFill = isLight ? 'rgba(252,253,249,0.92)' : 'rgba(12,16,14,0.72)';
+
   return (
     <View
       testID={testID}
@@ -91,15 +117,15 @@ export default function GiftExpiryCountdown({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        gap: 4,
+        gap: compact ? 0 : 4,
         borderRadius: 999,
-        paddingHorizontal: 9,
-        paddingVertical: 5,
-        minWidth: 84,
-        backgroundColor: tone(color, '1F'),
+        paddingHorizontal: compact ? 7 : 9,
+        paddingVertical: compact ? 3 : 5,
+        minWidth: compact ? 0 : 84,
+        backgroundColor: compact ? compactFill : tone(color, '1F'),
       }}
     >
-      <Ionicons name="time-outline" size={11} color={color} />
+      {compact ? null : <Ionicons name="time-outline" size={11} color={color} />}
       <Text
         style={{
           color,
@@ -109,7 +135,7 @@ export default function GiftExpiryCountdown({
           fontVariant: ['tabular-nums'],
         }}
       >
-        {giftCountdownLabel(msLeft)}
+        {compact ? compactText : giftCountdownLabel(msLeft)}
       </Text>
     </View>
   );

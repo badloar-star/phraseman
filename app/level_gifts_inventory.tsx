@@ -4,8 +4,8 @@ import TapScale from '../components/TapScale';
 import BouncyScrollView from '../components/BouncyScrollView';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { useFocusEffect, useRouter } from 'expo-router';
-import React, { useCallback, useState } from 'react';
-import { Platform, Text, TouchableOpacity, View } from 'react-native';
+import React, { memo, useCallback, useMemo, useState } from 'react';
+import { Dimensions, Platform, Text, View } from 'react-native';
 import { Image } from 'expo-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
@@ -20,13 +20,12 @@ import { useTheme } from '../components/ThemeContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { triLang } from '../constants/i18n';
 import { getLevelGiftRewardIcon } from '../constants/levelGiftRewardIcons';
+import { isLightThemeMode } from '../constants/theme';
 import {
-  giftDisplayDescForLang,
   giftDisplayTitleForLang,
   giftRarityUiLabel,
   giftShardAmount,
   giftTitleForLang,
-  type GiftDef,
 } from './level_gift_system';
 import { oskolokImageForPackShards } from './oskolok';
 import { safeRouterBack } from './navigation_back';
@@ -46,55 +45,25 @@ import { getCurrentMultiplierBreakdown, type MultiplierBreakdown } from './xp_ma
 const giftAccent = (rarity: string): string =>
   rarity === 'epic' ? '#FFD700' : rarity === 'rare' ? '#60A5FA' : '#D6B85C';
 
+// зачем: акценты редкости придуманы под тёмный фон — золото #FFD700 и
+// песочный #D6B85C на белом дают ~1.4:1 и не читаются (владелец не смог
+// разобрать надписи на скриншоте светлой темы). Тёмные аналоги тех же
+// металлов держат ту же смысловую разницу редкостей, но с контрастом.
+const giftAccentLight = (rarity: string): string =>
+  rarity === 'epic' ? '#8A6410' : rarity === 'rare' ? '#2C5EA8' : '#6B5A2E';
+
+// зачем: владелец попросил сетку как в «Темах интерфейса» — те же зазор,
+// паддинг и 3 плитки в ряд, чтобы ритм сеток по приложению был единым
+// (settings_themes.tsx TILE_GRID_GAP/GRID_SCREEN_PAD).
+const TILE_GRID_GAP = 10;
+const GRID_SCREEN_PAD = 16;
+const TILES_PER_ROW = 3;
+
 const giftTone = (accent: string, alpha: string): string =>
   /^#[0-9a-f]{6}$/i.test(accent) ? `${accent}${alpha}` : accent;
 
 const giftBonusLabel = (lang: Parameters<typeof giftTitleForLang>[1]): string =>
   triLang(lang, { ru: 'Бонус', uk: 'Бонус', es: 'Bono', 'pt-BR': 'Bônus', vi: 'Thưởng', id: 'Bonus', tr: 'Bonus', pl: 'Bonus' });
-
-function GiftIcon({ gift, themeMode }: { gift: GiftDef; themeMode: Parameters<typeof oskolokImageForPackShards>[1] }) {
-  return (
-    <Image
-      source={getLevelGiftRewardIcon(gift.id, themeMode)}
-      style={{ width: 38, height: 38 }}
-      contentFit="contain"
-    />
-  );
-}
-
-function GiftLine({ gift, label, lang, muted, primary, themeMode }: {
-  gift: GiftDef;
-  label?: string;
-  lang: Parameters<typeof giftTitleForLang>[1];
-  muted: string;
-  primary: string;
-  themeMode: Parameters<typeof oskolokImageForPackShards>[1];
-}) {
-  const desc = giftDisplayDescForLang(gift, lang);
-
-  return (
-    <View style={{ flexDirection: 'row', gap: 10, alignItems: 'flex-start', minWidth: 0 }}>
-      <View style={{ width: 42, height: 42, borderRadius: 14, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(255,255,255,0.06)' }}>
-        <GiftIcon gift={gift} themeMode={themeMode} />
-      </View>
-      <View style={{ flex: 1, minWidth: 0 }}>
-        {!!label && (
-          <Text style={{ color: muted, fontSize: 10, fontWeight: '800', textTransform: 'uppercase', letterSpacing: 0.6 }}>
-            {label}
-          </Text>
-        )}
-        <Text style={{ color: primary, fontSize: 15, lineHeight: 19, fontWeight: '900' }}>
-          {giftDisplayTitleForLang(gift, lang)}
-        </Text>
-        {!!desc && (
-          <Text style={{ color: muted, fontSize: 12, lineHeight: 16, marginTop: 2 }}>
-            {desc}
-          </Text>
-        )}
-      </View>
-    </View>
-  );
-}
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const dualPartLabel = (
@@ -105,6 +74,103 @@ const dualPartLabel = (
     ? triLang(lang, { ru: 'Подарок за уровень', uk: 'Подарунок за рівень', es: 'Regalo por nivel', 'pt-BR': 'Presente de n\u00edvel', vi: 'Qu\u00e0 c\u1ea5p \u0111\u1ed9', id: 'Hadiah level', tr: 'Seviye hediyesi', pl: 'Prezent za poziom' })
     : giftBonusLabel(lang)
 );
+
+/**
+ * Плитка подарка — квадрат с крупной иконкой и названием ПОД ним.
+ *
+ * зачем (владелец, 2026-08-03): прежние широкие карточки с кнопкой
+ * «Посмотреть», таймером и абзацем описания выглядели шумно и в светлой теме
+ * были нечитаемы (жёлтый на жёлтом). Владелец попросил ровно тот же язык,
+ * что в разделе «Темы интерфейса»: немой квадрат с иконкой, имя снаружи,
+ * состояние — угловым бейджем, вся информация — в модалке по нажатию.
+ * Никаких подписей-расшифровок внутри плитки (запрет владельца).
+ */
+const GiftTile = memo(function GiftTile({ item, size, lang, themeMode, nameColor, isLight, surface, onPress, onExpired }: {
+  item: PendingLevelGiftInventoryItem;
+  size: number;
+  lang: Parameters<typeof giftTitleForLang>[1];
+  themeMode: Parameters<typeof oskolokImageForPackShards>[1];
+  nameColor: string;
+  isLight: boolean;
+  /** Две нижние ступени градиента плитки — из токенов активной темы. */
+  surface: [string, string];
+  onPress: (item: PendingLevelGiftInventoryItem) => void;
+  onExpired: () => void;
+}) {
+  const primaryGift = item.kind === 'single' ? item.gift : item.pair.f2p;
+  const strongestRarity = item.kind === 'dual'
+    ? primaryGift.rarity === 'epic' || item.pair.prem.rarity === 'epic'
+      ? 'epic'
+      : primaryGift.rarity === 'rare' || item.pair.prem.rarity === 'rare'
+        ? 'rare'
+        : 'common'
+    : primaryGift.rarity;
+  const accent = isLight ? giftAccentLight(strongestRarity) : giftAccent(strongestRarity);
+  const shardAmount = item.kind === 'single' ? giftShardAmount(item.gift.id) : 0;
+  const rowKey = item.kind === 'single' && item.dualPart
+    ? `${item.kind}-${item.level}-${item.dualPart}`
+    : `${item.kind}-${item.level}`;
+  const title = item.kind === 'dual'
+    ? triLang(lang, { ru: 'Два подарка', uk: 'Два подарунки', es: 'Dos regalos', 'pt-BR': 'Dois presentes', vi: 'Hai món quà', id: 'Dua hadiah', tr: 'İki hediye', pl: 'Dwa prezenty' })
+    : giftDisplayTitleForLang(item.gift, lang);
+  const a11yLabel = `${title}. ${triLang(lang, {
+    ru: `Уровень ${item.level}, ${giftRarityUiLabel(strongestRarity, lang)}`,
+    uk: `Рівень ${item.level}, ${giftRarityUiLabel(strongestRarity, lang)}`,
+    es: `Nivel ${item.level}, ${giftRarityUiLabel(strongestRarity, lang)}`,
+    'pt-BR': `Nível ${item.level}, ${giftRarityUiLabel(strongestRarity, lang)}`,
+    vi: `Cấp ${item.level}, ${giftRarityUiLabel(strongestRarity, lang)}`,
+    id: `Level ${item.level}, ${giftRarityUiLabel(strongestRarity, lang)}`,
+    tr: `Seviye ${item.level}, ${giftRarityUiLabel(strongestRarity, lang)}`,
+    pl: `Poziom ${item.level}, ${giftRarityUiLabel(strongestRarity, lang)}`,
+  })}`;
+
+  return (
+    <View style={{ width: size }}>
+      <TapScale
+        testID={`gift-inventory-apply-${rowKey}`}
+        accessibilityRole="button"
+        accessibilityLabel={a11yLabel}
+        onPress={() => {
+          hapticTap();
+          onPress(item);
+        }}
+        scaleTo={0.95}
+        style={{ borderRadius: 22 }}
+      >
+        <LinearGradient
+          colors={[giftTone(accent, isLight ? '1F' : '2E'), surface[0], surface[1]] as [string, string, string]}
+          start={{ x: 0.15, y: 0 }}
+          end={{ x: 0.85, y: 1 }}
+          style={{ width: size, height: size, borderRadius: 22, overflow: 'hidden', alignItems: 'center', justifyContent: 'center' }}
+        >
+          <Image
+            source={shardAmount > 0 ? oskolokImageForPackShards(shardAmount, themeMode) : getLevelGiftRewardIcon(primaryGift.id, themeMode)}
+            style={{ width: size * 0.62, height: size * 0.62 }}
+            contentFit="contain"
+            accessible={false}
+          />
+          {item.kind === 'dual' ? (
+            <View style={{ position: 'absolute', top: 8, left: 8, minWidth: 22, height: 22, borderRadius: 11, paddingHorizontal: 6, alignItems: 'center', justifyContent: 'center', backgroundColor: accent }}>
+              <Text style={{ color: isLight ? '#FFFFFF' : '#1A1200', fontSize: 12, fontWeight: '900' }}>2</Text>
+            </View>
+          ) : null}
+          <View style={{ position: 'absolute', top: 8, right: 8 }}>
+            <GiftExpiryCountdown
+              expiresAtMs={item.expiresAtMs}
+              accent={accent}
+              onExpired={onExpired}
+              compact
+              testID={`gift-expiry-pending-${rowKey}`}
+            />
+          </View>
+        </LinearGradient>
+      </TapScale>
+      <Text style={{ marginTop: 8, fontSize: 13, lineHeight: 17, minHeight: 34, fontWeight: '800', letterSpacing: -0.1, textAlign: 'center', color: nameColor }}>
+        {title}
+      </Text>
+    </View>
+  );
+});
 
 export default function LevelGiftsInventoryScreen() {
   const router = useRouter();
@@ -117,6 +183,14 @@ export default function LevelGiftsInventoryScreen() {
   const [userName, setUserName] = useState('');
   const [selected, setSelected] = useState<PendingLevelGiftInventoryItem | null>(null);
   const emptyGiftSurface = [giftTone(t.accent, '26'), t.bgCard, t.bgPrimary] as [string, string, string];
+  const isLight = isLightThemeMode(themeMode);
+  // зачем: точный пиксельный размер плитки вместо %/flexGrow — гарантирует
+  // РОВНО 3 в ряд на любой ширине (тот же приём и та же причина, что в
+  // settings_themes.tsx: при процентной базе Yoga ставит все плитки в один ряд).
+  const tileSize = useMemo(() => {
+    const usableWidth = Dimensions.get('window').width - GRID_SCREEN_PAD * 2;
+    return Math.floor((usableWidth - TILE_GRID_GAP * (TILES_PER_ROW - 1)) / TILES_PER_ROW);
+  }, []);
 
   const loadData = useCallback(async () => {
     const [nextItems, nextActiveItems, nextMultiplierBreakdown, nameRaw] = await Promise.all([
@@ -348,141 +422,24 @@ export default function LevelGiftsInventoryScreen() {
               </LinearGradient>
               )
             ) : (
-              items.map((item) => {
-                const primaryGift = item.kind === 'single' ? item.gift : item.pair.f2p;
-                const strongestRarity = item.kind === 'dual'
-                  ? primaryGift.rarity === 'epic' || item.pair.prem.rarity === 'epic'
-                    ? 'epic'
-                    : primaryGift.rarity === 'rare' || item.pair.prem.rarity === 'rare'
-                      ? 'rare'
-                      : 'common'
-                  : primaryGift.rarity;
-                const accent = giftAccent(strongestRarity);
-                const giftCardSurface = [giftTone(accent, '2E'), t.bgCard, t.bgSurface] as [string, string, string];
-                const singleShardAmount = item.kind === 'single' ? giftShardAmount(item.gift.id) : 0;
-                const rowArtSize = singleShardAmount > 0 ? 74 : 68;
-                const rowKey = item.kind === 'single' && item.dualPart
-                  ? `${item.kind}-${item.level}-${item.dualPart}`
-                  : `${item.kind}-${item.level}`;
-                const singleDescription = item.kind === 'single'
-                  ? giftDisplayDescForLang(item.gift, lang)
-                  : '';
-                return (
-                  <LinearGradient
-                    key={rowKey}
-                    colors={giftCardSurface}
-                    start={{ x: 0, y: 0 }}
-                    end={{ x: 1, y: 1 }}
-                    style={{ borderRadius: 22, padding: 14, borderWidth: 0, borderColor: `${accent}88`, overflow: 'hidden' }}
-                  >
-                    <View pointerEvents="none" style={{ position: 'absolute', top: 0, left: 18, right: 18, height: 1, backgroundColor: giftTone(accent, '70'), opacity: 0.82 }} />
-                    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-                      <View style={{ width: 78, minHeight: 96, alignItems: 'center', justifyContent: 'center', padding: 2, flexShrink: 0 }}>
-                        <Image
-                          source={
-                            singleShardAmount > 0
-                              ? oskolokImageForPackShards(singleShardAmount, themeMode)
-                              : getLevelGiftRewardIcon(primaryGift.id, themeMode)
-                          }
-                          style={{ width: rowArtSize, height: rowArtSize }}
-                          contentFit="contain"
-                        />
-                      </View>
-                      <View style={{ flex: 1, minWidth: 0 }}>
-                        <Text style={{ color: accent, fontSize: 11, lineHeight: 15, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 0.8 }}>
-                          {triLang(lang, {
-                            ru: `Уровень ${item.level} · ${giftRarityUiLabel(strongestRarity, lang)}`,
-                            uk: `Рівень ${item.level} · ${giftRarityUiLabel(strongestRarity, lang)}`,
-                            es: `Nivel ${item.level} · ${giftRarityUiLabel(strongestRarity, lang)}`,
-                            'pt-BR': `Nível ${item.level} · ${giftRarityUiLabel(strongestRarity, lang)}`,
-                            vi: `Cấp ${item.level} · ${giftRarityUiLabel(strongestRarity, lang)}`,
-                            id: `Level ${item.level} · ${giftRarityUiLabel(strongestRarity, lang)}`,
-                            tr: `Seviye ${item.level} · ${giftRarityUiLabel(strongestRarity, lang)}`,
-                            pl: `Poziom ${item.level} · ${giftRarityUiLabel(strongestRarity, lang)}`,
-                          })}
-                        </Text>
-                        <Text style={{ color: t.textPrimary, fontSize: f.h2 + 1, lineHeight: f.h2 + 6, fontWeight: '900', marginTop: 3 }}>
-                          {item.kind === 'dual'
-                            ? triLang(lang, {
-                                ru: 'Два подарка',
-                                uk: 'Два подарунки',
-                                es: 'Dos regalos',
-                                'pt-BR': 'Dois presentes',
-                                vi: 'Hai món quà',
-                                id: 'Dua hadiah',
-                                tr: 'İki hediye',
-                                pl: 'Dwa prezenty',
-                              })
-                            : giftDisplayTitleForLang(item.gift, lang)}
-                        </Text>
-                        <View style={{ flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', gap: 10, marginTop: 10 }}>
-                          <TouchableOpacity
-                            testID={`gift-inventory-apply-${rowKey}`}
-                            activeOpacity={0.86}
-                            onPress={() => {
-                              hapticTap();
-                              setSelected(item);
-                            }}
-                            style={{ borderRadius: 16, paddingHorizontal: 16, paddingVertical: 11, minHeight: 44, backgroundColor: accent, minWidth: 118, alignItems: 'center', justifyContent: 'center' }}
-                          >
-                            <Text style={{ color: strongestRarity === 'epic' ? '#1A1200' : '#FFFFFF', fontSize: f.sub, fontWeight: '900' }}>
-                              {triLang(lang, {
-                                ru: 'Посмотреть',
-                                uk: 'Переглянути',
-                                es: 'Ver',
-                                'pt-BR': 'Ver',
-                                vi: 'Xem',
-                                id: 'Lihat',
-                                tr: 'Görüntüle',
-                                pl: 'Zobacz',
-                              })}
-                            </Text>
-                          </TouchableOpacity>
-                          <GiftExpiryCountdown
-                            expiresAtMs={item.expiresAtMs}
-                            accent={accent}
-                            onExpired={handleGiftExpired}
-                            testID={`gift-expiry-pending-${rowKey}`}
-                          />
-                        </View>
-                      </View>
-                    </View>
-
-                    {item.kind === 'dual' ? (
-                      <>
-                      <View style={{ height: 12 }} />
-                      <View style={{ gap: 9 }}>
-                        <GiftLine
-                          gift={item.pair.f2p}
-                          label={triLang(lang, { ru: 'Подарок за уровень', uk: 'Подарунок за рівень', es: 'Regalo por nivel', 'pt-BR': 'Presente de nível', vi: 'Quà cấp độ', id: 'Hadiah level', tr: 'Seviye hediyesi', pl: 'Prezent za poziom' })}
-                          lang={lang}
-                          muted={t.textMuted}
-                          primary={t.textPrimary}
-                          themeMode={themeMode}
-                        />
-                        <GiftLine
-                          gift={item.pair.prem}
-                          label={giftBonusLabel(lang)}
-                          lang={lang}
-                          muted={t.textMuted}
-                          primary={t.textPrimary}
-                          themeMode={themeMode}
-                        />
-                      </View>
-                      </>
-                    ) : singleDescription ? (
-                      <>
-                      <View style={{ height: 12 }} />
-                      <Text style={{ color: t.textMuted, fontSize: f.sub, lineHeight: f.sub + 5 }}>
-                        {singleDescription}
-                      </Text>
-                      </>
-                    ) : (
-                      null
-                    )}
-                  </LinearGradient>
-                );
-              })
+              <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: TILE_GRID_GAP }}>
+                {items.map((item) => (
+                  <GiftTile
+                    key={item.kind === 'single' && item.dualPart
+                      ? `${item.kind}-${item.level}-${item.dualPart}`
+                      : `${item.kind}-${item.level}`}
+                    item={item}
+                    size={tileSize}
+                    lang={lang}
+                    themeMode={themeMode}
+                    nameColor={t.textPrimary}
+                    isLight={isLight}
+                    surface={[t.bgCard, t.bgSurface]}
+                    onPress={setSelected}
+                    onExpired={handleGiftExpired}
+                  />
+                ))}
+              </View>
             )}
             </View>
             <View style={{ height: 8 }} />

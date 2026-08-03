@@ -34,6 +34,11 @@ import {
   type SeasonPassProgress,
 } from './season_pass_model';
 import {
+  spineBottomHalfPath,
+  spineTopHalfPath,
+  spineWaveOffsetForKind,
+} from './season_pass_spine';
+import {
   SEASON_TRACK,
   getSeasonAuraStageAsset,
   getSeasonRewardIcon,
@@ -59,13 +64,9 @@ const SPINE_WIDTH = 4;
 // заменяет оба прямоугольника: разрыв исчезает физически, а изгиб детерминирован
 // по kind награды — один и тот же подарок всегда даёт одну и ту же волну, не
 // случайный дребезг между перерендерами.
-const SPINE_WAVE_AMPLITUDE = 16;
-function spineWaveOffsetForKind(kind: string | undefined): number {
-  if (!kind) return 0;
-  let hash = 0;
-  for (let i = 0; i < kind.length; i++) hash = (hash * 31 + kind.charCodeAt(i)) | 0;
-  return ((hash % 100) / 100) * SPINE_WAVE_AMPLITUDE * 2 - SPINE_WAVE_AMPLITUDE;
-}
+// Геометрия хребта живёт в season_pass_spine.ts — чистом модуле без импортов
+// React Native, чтобы её можно было проверить тестом (экран тянет
+// react-native-svg и в jest не поднимается).
 // зачем: владелец, 2026-08-03 — финальное решение: 250 жемчужин ДЛЯ ВСЕХ (не
 // 350). Разница между фри и премиум не в цене, а в том, что премиум получает
 // платную линию БЕСПЛАТНО льготой подписки — покупка ему просто не показывается.
@@ -347,18 +348,18 @@ export default function SeasonPassScreen() {
               рисуется поверх её середины — линия физически цела под ним. */}
           <Svg width={NODE_COLUMN_WIDTH} height={ROW_HEIGHT} viewBox={`0 0 ${NODE_COLUMN_WIDTH} ${ROW_HEIGHT}`} style={{ position: 'absolute', top: 0, left: 0 }}>
             <Path
-              d={`M ${cx + prevOffset} 0 C ${cx + prevOffset} ${halfH * 0.5}, ${cx + curOffset} ${halfH * 0.5}, ${cx + curOffset} ${halfH} S ${cx + nextOffset} ${halfH * 1.5}, ${cx + nextOffset} ${ROW_HEIGHT}`}
+              d={spineTopHalfPath(cx, halfH, prevOffset, curOffset) + ' ' + spineBottomHalfPath(cx, halfH, ROW_HEIGHT, curOffset, nextOffset)}
               stroke={t.bgSurface}
               strokeWidth={SPINE_WIDTH}
               strokeLinecap="round"
               fill="none"
             />
-            {/* Пройденный участок поверх серой подложки, тем же путём — золото
-                просто перекрашивает часть кривой, а не рисует другую геометрию,
-                поэтому цветной и серый куски НИКОГДА не расходятся по форме. */}
+            {/* Пройденный участок поверх серой подложки, ТЕМИ ЖЕ формулами —
+                золото перекрашивает часть кривой, а не рисует другую геометрию,
+                поэтому цветной и серый куски никогда не расходятся по форме. */}
             {index > 0 && topReached && (
               <Path
-                d={`M ${cx + prevOffset} 0 C ${cx + prevOffset} ${halfH * 0.5}, ${cx + curOffset} ${halfH * 0.5}, ${cx + curOffset} ${halfH}`}
+                d={spineTopHalfPath(cx, halfH, prevOffset, curOffset)}
                 stroke={t.gold}
                 strokeWidth={SPINE_WIDTH}
                 strokeLinecap="round"
@@ -367,7 +368,7 @@ export default function SeasonPassScreen() {
             )}
             {!isLast && bottomReached && (
               <Path
-                d={`M ${cx + curOffset} ${halfH} S ${cx + nextOffset} ${halfH * 1.5}, ${cx + nextOffset} ${ROW_HEIGHT}`}
+                d={spineBottomHalfPath(cx, halfH, ROW_HEIGHT, curOffset, nextOffset)}
                 stroke={t.gold}
                 strokeWidth={SPINE_WIDTH}
                 strokeLinecap="round"

@@ -92,6 +92,33 @@ describe('speed-match security contract', () => {
     }
   });
 
+  // зачем 2026-08-03 (прод-инцидент «пары восстановились и не засчитались»):
+  // applySpeedMatchAttempt проверял доску СТРОГИМ контрактом отбора в новые
+  // комнаты. После ужесточения контракта (плитка ≤3 слов) каждый тап по уже
+  // собранной доске старого формата кидал speed_match_attempt_invalid — клиент
+  // откатывал все пары, задание уходило в timed_out с нулём. В момент игры
+  // доска обязана проверяться мягким validateTournamentTask: уже идущая
+  // комната должна доиграться при ЛЮБОМ будущем ужесточении отбора.
+  it('доска, собранная под старый контракт, продолжает принимать тапы', () => {
+    const legacyBoard = speedTask();
+    legacyBoard.payload.items = (legacyBoard.payload.items as Array<Record<string, unknown>>)
+      .map((item, index) => ({
+        ...item,
+        // Плитки-фразы из комнат до 2026-08-02: больше трёх слов.
+        prompt: `I need something for a sore throat ${index}`,
+      }));
+    expect(validateTournamentTask(legacyBoard).ok).toBe(true);
+    expect(validateTournamentTaskForNewRoom(legacyBoard).ok).toBe(false);
+
+    const first = applySpeedMatchAttempt(legacyBoard, undefined, 0, 0);
+    expect(first).toMatchObject({ correct: true, completed: false });
+    let progress = first.progress;
+    for (let pairIndex = 1; pairIndex < 6; pairIndex += 1) {
+      progress = applySpeedMatchAttempt(legacyBoard, progress, pairIndex, pairIndex).progress;
+    }
+    expect(progress.matchedIndexes).toEqual([0, 1, 2, 3, 4, 5]);
+  });
+
   it('requires exactly six speed-match pairs and rejects retired audio modes in new rooms', () => {
     expect(validateTournamentTaskForNewRoom(speedTask())).toEqual({ ok: true, kind: 'match' });
     expect(validateTournamentTaskForNewRoom(speedTask(5))).toEqual({

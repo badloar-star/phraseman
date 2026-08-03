@@ -1313,7 +1313,18 @@ export function applySpeedMatchAttempt(
   pairIndex: number,
   selectedIndex: number,
 ): { correct: boolean; completed: boolean; progress: SpeedMatchAttemptProgress } {
-  const validation = validateTournamentTaskForNewRoom(task);
+  // зачем 2026-08-03 (владелец: «ответил на все пары, а они восстановились
+  // назад и не засчитались»): здесь стоял validateTournamentTaskForNewRoom —
+  // СТРОГИЙ контракт отбора в НОВЫЕ комнаты. Любое его ужесточение (2026-08-02
+  // плитка стала «максимум 3 слова» вместо «минимум 2») мгновенно окаменяло
+  // уже собранные комнаты: каждый тап по парам кидал speed_match_attempt_invalid,
+  // клиент откатывал все совпавшие пары, задание уходило в timed_out с нулём.
+  // Проверено на проде: доска комнаты 2026-08-02 (плитки-фразы) не проходит
+  // строгий контракт, а к тапам он отношения не имеет. В момент ИГРЫ комната
+  // обязана проверяться мягким validateTournamentTask — как уже делают
+  // verifyTournamentAnswer и финализация (см. комментарий у
+  // validateTournamentTaskForNewRoom: «already-running room can still settle»).
+  const validation = validateTournamentTask(task);
   const items = Array.isArray(task.payload.items) ? task.payload.items as Record<string, unknown>[] : [];
   if (!validation.ok || validation.kind !== 'match'
     || !Number.isInteger(pairIndex) || pairIndex < 0 || pairIndex >= items.length

@@ -9883,6 +9883,10 @@
   <div class="admin-nav-hint">Тащи мышкой или возьми раздел клавишей Space/Enter и двигай стрелками. ⭐ — наверх, 👁 — скрыть.</div>
   <div class="admin-nav-zone-label admin-nav-zone-pinned">⭐ Избранное</div>
   <div class="tab active" onclick="switchTab('control-panel')" style="background:rgba(251,191,36,0.12);border:1px solid rgba(251,191,36,0.4);color:#fbbf24;font-weight:700">🎛 Пульт управления</div>
+  <!-- зачем отдельная вкладка, а не карточка внутри «Пульта»: владелец
+       2026-08-03 — Джарвис теряется среди других переключателей, это
+       центральная система мониторинга и заслуживает своё место в навигации. -->
+  <div class="tab" onclick="switchTab('jarvis')" style="background:rgba(167,139,250,0.14);border:1px solid rgba(167,139,250,0.4);color:#a78bfa;font-weight:700">🧠 Джарвис</div>
   <div class="tab" onclick="switchTab('overview')" data-i18n-es="Overview">Overview</div>
   <div class="tab" onclick="switchTab('daily-digest')" title="Сводка от прошлого открытия: сравнения, продуктовые выводы, риски и действия" style="background:rgba(139,124,255,0.14);border:1px solid rgba(139,124,255,0.4);color:#c4b5fd;font-weight:700">🌅 Дайджест</div>
   <div class="tab" onclick="switchTab('mod-queue')" style="background:rgba(108,71,255,0.12);border:1px solid rgba(108,71,255,0.35);color:#c4b5fd;font-weight:700">🛡 Очередь</div>
@@ -10367,53 +10371,6 @@
     </div>
   </div>
 
-  <!-- 🧠 Джарвис — все департаменты одной кнопкой, один объединённый свод
-       (владелец 2026-08-02: одна кнопка «Проверить сейчас», не три отдельные,
-       результат в одном окне, а не в тысяче карточек). -->
-  <div class="cp-card">
-    <div class="cp-card-title" style="color:#a78bfa">🧠 Джарвис</div>
-    <div class="cp-card-sub">
-      Проверяет качество (жалобы/краши), деньги (покупки/возвраты) и рост (новые пользователи) за последние сутки разом.
-      Пороги срабатывания подстроены под масштаб приложения — маленькая база не поднимает тревогу на статистическом шуме.
-    </div>
-    <div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:8px;align-items:center">
-      <span id="jarvis-status" class="cp-status-chip">Загрузка…</span>
-      <span id="jarvis-tier-chip" class="cp-status-chip" data-type="info" style="display:none"></span>
-      <!-- зачем всегда видимый: бриф в12 — kill switch должен быть виден
-           всегда, не спрятан в настройках. Пишите /stop и /start в Telegram
-           боту, режим здесь только отображается, не меняется отсюда. -->
-      <span id="jarvis-mode-chip" class="cp-status-chip" data-type="info" style="display:none"></span>
-    </div>
-
-    <!-- зачем: живая лента плашек-этапов, растущая слева направо. Одна
-         цепочка на прогон, но внутри неё видно, какой источник относится
-         к какому департаменту (иконка+подпись на каждой плашке). -->
-    <div id="jarvis-flow" class="jf-lane" role="log" aria-label="Журнал работы Джарвиса по всем департаментам"></div>
-
-    <div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:14px;align-items:center">
-      <button type="button" class="cp-btn" onclick="loadJarvisAllDecisions(true)" style="background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px">🔄 Проверить сейчас</button>
-      <!-- зачем отдельная кнопка, не автозагрузка: журнал подтверждений
-           читается редко, показывать его при каждом открытии панели —
-           лишнее чтение, которое почти никогда не нужно. -->
-      <button type="button" class="cp-btn" onclick="loadJarvisApprovalAudit()" style="background:#1f2937;border:1px solid #374151;color:#a1a1aa;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px">📜 История подтверждений</button>
-    </div>
-
-    <!-- зачем видны всегда, а не только когда решений много: переключение
-         фильтра ничего не стоит (данные уже на экране), а владелец должен
-         увидеть их сразу, не искать глазами среди прочих кнопок. -->
-    <div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:11px">
-      <span style="color:#6b7280">Показать:</span>
-      <button type="button" class="jf-severity-filter-btn" data-severity="" onclick="jfRenderFilteredDecisions(null)" style="background:none;border:none;color:#e2e8f0;cursor:pointer;padding:3px 6px">Все</button>
-      <button type="button" class="jf-severity-filter-btn" data-severity="P0" onclick="jfRenderFilteredDecisions('P0')" style="background:none;border:none;color:#f87171;cursor:pointer;padding:3px 6px">P0</button>
-      <button type="button" class="jf-severity-filter-btn" data-severity="P1" onclick="jfRenderFilteredDecisions('P1')" style="background:none;border:none;color:#fbbf24;cursor:pointer;padding:3px 6px">P1</button>
-      <button type="button" class="jf-severity-filter-btn" data-severity="P2" onclick="jfRenderFilteredDecisions('P2')" style="background:none;border:none;color:#60a5fa;cursor:pointer;padding:3px 6px">P2</button>
-      <button type="button" class="jf-severity-filter-btn" data-severity="P3" onclick="jfRenderFilteredDecisions('P3')" style="background:none;border:none;color:#94a3b8;cursor:pointer;padding:3px 6px">P3</button>
-    </div>
-
-    <div id="jarvis-decisions" style="margin-top:14px;display:flex;flex-direction:column;gap:10px"></div>
-    <div id="jarvis-audit-log" style="margin-top:10px;display:none;flex-direction:column;gap:6px"></div>
-  </div>
-
   <!-- 📈 Стадия роста бизнеса: где приложение сейчас и куда движется (2026-08-02) -->
   <div class="cp-card">
     <div class="cp-card-title" style="color:#4ade80">📈 Стадия роста</div>
@@ -10525,6 +10482,68 @@
       <div style="font-size:12px;color:#9ca3af;margin-top:6px;line-height:1.45">Массовая отправка push-уведомлений пользователям.</div>
       <button type="button" class="cp-btn" onclick="switchTab('push-notify')" style="margin-top:10px;background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:7px 14px;border-radius:8px;cursor:pointer;font-weight:600">Открыть →</button>
     </div>
+  </div>
+</div>
+
+<!-- JARVIS TAB — зачем отдельная вкладка, а не карточка внутри «Пульта»:
+     владелец 2026-08-03, Джарвис теряется среди переключателей, это
+     центральная система мониторинга и заслуживает своё место в навигации. -->
+<div id="tab-jarvis" class="reports-tab">
+  <section class="admin-overview-hero" style="margin-bottom:18px">
+    <div>
+      <div class="admin-overview-title">🧠 Джарвис</div>
+      <div class="admin-overview-sub" style="color:#9ca3af;font-size:13px;margin-top:4px">
+        Проверяет все департаменты приложения за последние сутки разом и присылает находки сюда и в Telegram.
+        Пороги срабатывания подстроены под масштаб приложения — маленькая база не поднимает тревогу на статистическом шуме.
+      </div>
+    </div>
+  </section>
+
+  <!-- 🧠 Джарвис — все департаменты одной кнопкой, один объединённый свод
+       (владелец 2026-08-02: одна кнопка «Проверить сейчас», не три отдельные,
+       результат в одном окне, а не в тысяче карточек). -->
+  <div class="cp-card">
+    <div class="cp-card-title" style="color:#a78bfa">🧠 Джарвис</div>
+    <div class="cp-card-sub">
+      Проверяет качество (жалобы/краши), деньги (покупки/возвраты) и рост (новые пользователи) за последние сутки разом.
+      Пороги срабатывания подстроены под масштаб приложения — маленькая база не поднимает тревогу на статистическом шуме.
+    </div>
+    <div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:8px;align-items:center">
+      <span id="jarvis-status" class="cp-status-chip">Загрузка…</span>
+      <span id="jarvis-tier-chip" class="cp-status-chip" data-type="info" style="display:none"></span>
+      <!-- зачем всегда видимый: бриф в12 — kill switch должен быть виден
+           всегда, не спрятан в настройках. Пишите /stop и /start в Telegram
+           боту, режим здесь только отображается, не меняется отсюда. -->
+      <span id="jarvis-mode-chip" class="cp-status-chip" data-type="info" style="display:none"></span>
+    </div>
+
+    <!-- зачем: живая лента плашек-этапов, растущая слева направо. Одна
+         цепочка на прогон, но внутри неё видно, какой источник относится
+         к какому департаменту (иконка+подпись на каждой плашке). -->
+    <div id="jarvis-flow" class="jf-lane" role="log" aria-label="Журнал работы Джарвиса по всем департаментам"></div>
+
+    <div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:14px;align-items:center">
+      <button type="button" class="cp-btn" onclick="loadJarvisAllDecisions(true)" style="background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px">🔄 Проверить сейчас</button>
+      <!-- зачем отдельная кнопка, не автозагрузка: журнал подтверждений
+           читается редко, показывать его при каждом открытии панели —
+           лишнее чтение, которое почти никогда не нужно. -->
+      <button type="button" class="cp-btn" onclick="loadJarvisApprovalAudit()" style="background:#1f2937;border:1px solid #374151;color:#a1a1aa;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px">📜 История подтверждений</button>
+    </div>
+
+    <!-- зачем видны всегда, а не только когда решений много: переключение
+         фильтра ничего не стоит (данные уже на экране), а владелец должен
+         увидеть их сразу, не искать глазами среди прочих кнопок. -->
+    <div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:11px">
+      <span style="color:#6b7280">Показать:</span>
+      <button type="button" class="jf-severity-filter-btn" data-severity="" onclick="jfRenderFilteredDecisions(null)" style="background:none;border:none;color:#e2e8f0;cursor:pointer;padding:3px 6px">Все</button>
+      <button type="button" class="jf-severity-filter-btn" data-severity="P0" onclick="jfRenderFilteredDecisions('P0')" style="background:none;border:none;color:#f87171;cursor:pointer;padding:3px 6px">P0</button>
+      <button type="button" class="jf-severity-filter-btn" data-severity="P1" onclick="jfRenderFilteredDecisions('P1')" style="background:none;border:none;color:#fbbf24;cursor:pointer;padding:3px 6px">P1</button>
+      <button type="button" class="jf-severity-filter-btn" data-severity="P2" onclick="jfRenderFilteredDecisions('P2')" style="background:none;border:none;color:#60a5fa;cursor:pointer;padding:3px 6px">P2</button>
+      <button type="button" class="jf-severity-filter-btn" data-severity="P3" onclick="jfRenderFilteredDecisions('P3')" style="background:none;border:none;color:#94a3b8;cursor:pointer;padding:3px 6px">P3</button>
+    </div>
+
+    <div id="jarvis-decisions" style="margin-top:14px;display:flex;flex-direction:column;gap:10px"></div>
+    <div id="jarvis-audit-log" style="margin-top:10px;display:none;flex-direction:column;gap:6px"></div>
   </div>
 </div>
 
@@ -14207,7 +14226,7 @@
   }
 
   const ADMIN_DEFAULT_TAB = 'control-panel';
-  const ADMIN_TAB_KEYS = ['control-panel','onboarding-screens','onboarding-sources','safety-flags','age-consent','compliance-radar','daily-digest','gmail-support','overview','mod-queue','ideas','analytics','openai-budget','app-health','users','testers','reports','emails','website-inbox','user-reports','explain-reports','explain-cache','compass','ban-list','premium','vip','plus-radar','promo-codes','gift-certificates','cancel-surveys','surveys','review-promo','referrals','app-messages','helpers-board','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','push-notify','clubs','tournaments','archive','audit','ops-log','remote-config','paywall-ab','v2-generator','alerts'];
+  const ADMIN_TAB_KEYS = ['control-panel','jarvis','onboarding-screens','onboarding-sources','safety-flags','age-consent','compliance-radar','daily-digest','gmail-support','overview','mod-queue','ideas','analytics','openai-budget','app-health','users','testers','reports','emails','website-inbox','user-reports','explain-reports','explain-cache','compass','ban-list','premium','vip','plus-radar','promo-codes','gift-certificates','cancel-surveys','surveys','review-promo','referrals','app-messages','helpers-board','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','push-notify','clubs','tournaments','archive','audit','ops-log','remote-config','paywall-ab','v2-generator','alerts'];
 
   function isAdminSwitchableTab(tab) {
     return ADMIN_TAB_KEYS.includes(tab) && tab !== 'testers';
@@ -18358,6 +18377,13 @@
     }
     if (tab === 'refunds' && !window._refundsLoaded && typeof window.loadRefunds === 'function') {
       void window.loadRefunds(false);
+    }
+    // зачем свой флаг, не через loadControlPanel: Джарвис теперь отдельная
+    // вкладка (владелец 2026-08-03), грузим её данные только при открытии,
+    // не при каждом визите в «Пульт управления».
+    if (tab === 'jarvis' && !window._jarvisLoaded && typeof window.loadJarvisAllDecisions === 'function') {
+      window._jarvisLoaded = true;
+      void window.loadJarvisAllDecisions(false);
     }
     // зачем: при открытии вкладки сразу показываем готовность режима и очередь
     // проверки — владельцу не нужно жать «Обновить», чтобы увидеть состояние.
@@ -27621,7 +27647,6 @@
     if (typeof window.loadYoutubeChannel === 'function') void window.loadYoutubeChannel();
     if (typeof window.loadPromoCodes === 'function') void window.loadPromoCodes();
     if (typeof window.loadControlPanelPromoBanner === 'function') void window.loadControlPanelPromoBanner();
-    if (typeof window.loadJarvisAllDecisions === 'function') void window.loadJarvisAllDecisions(false);
     if (typeof window.loadBusinessTier === 'function') void window.loadBusinessTier(false);
   };
 

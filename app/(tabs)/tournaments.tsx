@@ -66,6 +66,10 @@ import {
   peekSeasonPassProgress,
   type SeasonPassProgress,
 } from '../season_pass_model';
+// зачем 2026-08-03 (владелец: «верни иконку, там был ассет иконка для наград
+// сезона»): у карточки на вкладке турниров медаль берёт тот же арт, что плитка
+// набора наград на самой дорожке — узнаваемая связь «эта плашка ведёт туда».
+import { getSeasonRewardIcon } from '../season_pass_track_config';
 import { resolveTournamentWindowState } from '../tournament_window_state';
 import { resolveTournamentHeroCopy } from '../tournament_hero_copy';
 import {
@@ -438,6 +442,10 @@ export default function TournamentsScreen() {
   const seasonPassPct = seasonPass.levelCostStars > 0
     ? Math.min(100, Math.round((seasonPass.intoLevelStars / seasonPass.levelCostStars) * 100))
     : 100;
+  // зачем: require-источник арта постоянен, но getSeasonRewardIcon дёргает
+  // словарь на каждый рендер — мемо держит одну ссылку и не гоняет expo-image
+  // на перерисовках тикающего отсчёта (он ре-рендерит экран раз в секунду).
+  const seasonPassMedalIcon = useMemo(() => getSeasonRewardIcon('card_pack', themeMode), [themeMode]);
 
   const daySlotList = useMemo(() => enabledSlots(schedule?.slots ?? []), [schedule]);
 
@@ -978,6 +986,59 @@ export default function TournamentsScreen() {
           </TapScale>
         </Animated.View>
 
+        {/* Награды сезона — сразу под банком недели.
+            зачем 2026-08-03 (владелец: «плашку награды сезона подними вверх
+            рядом с банком недели»): карточка стояла последней, под таблицей
+            сезона, и до неё доскроливали единицы — вход в витрину наград
+            терялся. Теперь две «призовые» карточки идут парой: банк недели
+            (что разыгрывается сейчас) и награды сезона (что копится вдолгую).
+            Оболочка та же V2Card с той же медалью 42px, поэтому пара читается
+            как один блок, а не как два разных элемента. */}
+        <Animated.View entering={FadeIn.duration(220).delay(90)}>
+          <TapScale
+            testID="tournaments-season-pass-open"
+            onPress={() => router.push('/season_pass')}
+            accessibilityRole="button"
+            accessibilityLabel="Награды сезона"
+          >
+            <V2Card pad={18}>
+              <View style={styles.bankRow}>
+                <LinearGradient
+                  colors={METAL.gold}
+                  start={{ x: 0.15, y: 0 }}
+                  end={{ x: 0.85, y: 1 }}
+                  style={styles.bankMedal}
+                >
+                  {/* Арт наград сезона внутри той же золотой медали, что у банка. */}
+                  <Image
+                    source={seasonPassMedalIcon}
+                    style={styles.seasonPassMedalArt}
+                    contentFit="contain"
+                    accessible={false}
+                    accessibilityElementsHidden
+                    importantForAccessibility="no"
+                  />
+                </LinearGradient>
+                <View style={styles.bankBody}>
+                  {/* зачем 2026-08-03 (владелец: «убери вообще 1/60 цифры и
+                      переименуй в награды сезона»): счётчик уровня дублировал
+                      полосу под ним и читался как почти пустой прогресс, хотя
+                      карточка ведёт к витрине наград. Осталось название и
+                      полоса; уровень и пороги живут на самой дорожке. */}
+                  <FlowText testID="tournaments-season-pass-title" provenance="authored" style={styles.seasonPassTitle}>
+                    Награды сезона
+                  </FlowText>
+                  <View style={styles.seasonPassTrack}>
+                    <View style={[styles.seasonPassFill, { width: `${seasonPassPct}%` }]} />
+                  </View>
+                </View>
+                {/* Шеврон — тот же намёк на переход, что и у карточки банка. */}
+                <Ionicons name="chevron-forward" size={18} color={P.ghost} />
+              </View>
+            </V2Card>
+          </TapScale>
+        </Animated.View>
+
         {/* Сезон: полосы-рейтинги — длина по звёздам, оттенок активной темы.
             зачем 2026-08-03 (владелец): заголовок «Сезон · мои звёзды N» убран —
             своя строка рейтинга и так подсвечена, а число дублировало её. */}
@@ -1036,37 +1097,6 @@ export default function TournamentsScreen() {
           <FlowText testID="tournaments-season-more" provenance="authored" style={styles.seasonMoreText}>Таблица сезона</FlowText>
         </TapScale>
 
-        {/* зачем 2026-08-03 (владелец: «сезон с главной надо перенести в турнир»):
-            вход в квартальную дорожку переехал сюда с главной. Здесь ему и место:
-            дорожка качается только турнирными звёздами, поэтому открывать её из
-            учебного экрана значило бы обещать прогресс за уроки, которого нет.
-            Прогресс показан числом уровня и полосой — игрок видит, далеко ли до
-            следующей награды, ещё до перехода. */}
-        <TapScale
-          testID="tournaments-season-pass-open"
-          onPress={() => router.push('/season_pass')}
-          style={styles.seasonPassCard}
-          accessibilityRole="button"
-          accessibilityLabel="Награды сезона"
-        >
-          {/* зачем 2026-08-03 (владелец: «убери вообще 1/60 цифры и переименуй
-              в награды сезона»): счётчик уровня в шапке дублировал полосу под
-              ним и читался как «1 из 60» — то есть как почти пустой прогресс,
-              хотя карточка ведёт к витрине наград. Осталось название и полоса;
-              конкретный уровень и пороги живут на самой дорожке. */}
-          <View style={styles.seasonPassHeader}>
-            <FlowText testID="tournaments-season-pass-title" provenance="authored" style={styles.seasonPassTitle}>
-              Награды сезона
-            </FlowText>
-          </View>
-          <View style={styles.seasonPassTrack}>
-            <View style={[styles.seasonPassFill, { width: `${seasonPassPct}%` }]} />
-          </View>
-          {/* зачем 2026-08-03 (владелец): строка «N из N звёзд до уровня N»
-              убрана — прогресс читается по полосе и счётчику уровня в шапке
-              карточки. Финальное «Сезон пройден полностью» тоже уходит: это
-              была та же строка, показывать одну без другой нельзя. */}
-        </TapScale>
       </BouncyScrollView>
 
       {/* Шторка банка недели: доли, претенденты и моя позиция. */}
@@ -1387,18 +1417,18 @@ const makeStyles = (P: TournamentV2) => StyleSheet.create({
   },
   seasonMoreText: { fontSize: 15, fontWeight: '800', color: P.muted, flexShrink: 1 },
 
-  // Карточка квартального пропуска. Разделение тоном и скруглением, без обводок.
-  seasonPassCard: {
-    backgroundColor: P.card,
-    borderRadius: radius.md,
-    paddingHorizontal: 14,
-    paddingVertical: 14,
-    gap: 10,
-  },
-  seasonPassHeader: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 10 },
-  seasonPassTitle: { fontSize: 16, fontWeight: '900', color: P.text, flexShrink: 1 },
-  seasonPassTrack: { height: 8, borderRadius: 4, overflow: 'hidden', backgroundColor: P.bg },
+  // Карточка наград сезона живёт в общей оболочке V2Card рядом с банком недели,
+  // поэтому своей подложки у неё больше нет — только внутренняя типографика.
+  // зачем 18 кегль: у банка под тем же кикером стоит число в 24, здесь название
+  // несёт вес само, а 16 рядом с 24 читалось бы как подпись второго сорта.
+  seasonPassTitle: { fontSize: 18, fontWeight: '900', color: P.text, flexShrink: 1 },
+  // Полоса на месте bankValueRow — тот же отступ 2 от строки выше, чтобы обе
+  // карточки имели одинаковую внутреннюю вертикаль.
+  seasonPassTrack: { height: 8, borderRadius: 4, overflow: 'hidden', backgroundColor: P.bg, marginTop: 8 },
   seasonPassFill: { height: '100%', borderRadius: 4, backgroundColor: P.gold },
+  // Арт внутри золотой медали 42px: 26 оставляет золотое кольцо по краю, как у
+  // trophy-глифа банка (20 при том же круге) — пара медалей смотрится ровной.
+  seasonPassMedalArt: { width: 26, height: 26 },
   // зачем: пустая таблица в начале недели — нормальное состояние (боты в
   // рейтинг не идут), текст объясняет это вместо заглушки с выдуманными людьми.
   seasonEmpty: {

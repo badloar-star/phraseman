@@ -69,8 +69,6 @@ import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import InGameToast from './InGameToast';
 import ThemedConfirmModal from './ThemedConfirmModal';
 import ProfileCardMotionFx from './ProfileCardMotionFx';
-import CompassDepthSurface from './CompassDepthSurface';
-import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 import { fetchActiveLeagueCrowns } from '../app/services/league_chest_rewards';
 import { PREMIUM_AVATAR_AURA_ID, getEffectiveAvatarAuraId } from '../constants/avatar_auras';
 import {
@@ -291,7 +289,6 @@ function PlayerProfileModalBody({
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
   const router = useRouter();
-  const isCompassTheme = false;
   const { isPremium: myIsPremium, isVip: myIsVip } = usePremium();
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
@@ -413,7 +410,6 @@ function PlayerProfileModalBody({
   // Анимацию карточки рисует теперь ProfileCardMotionFx (единый движок) — старые
   // prestigeGlow/Glint/Particle интерполяции удалены как мёртвый код.
   const prestigeActive = displayCardLevel > 0;
-  const compassProfileSurface = isCompassTheme && !prestigeActive;
   // AURORA-стекло: на тёмной престижной карточке — всегда; на светлой базовой
   // карточке стекло нечитаемо, поэтому используем непрозрачные токены темы.
   const auroraGlass = prestigeActive || !isLightThemeMode(themeMode);
@@ -1049,9 +1045,9 @@ function PlayerProfileModalBody({
     >
       <Pressable style={{ flex: 1 }} onPress={onBackdropPress} />
       <Animated.View testID="player-profile-modal-sheet" style={{
-        backgroundColor: compassProfileSurface ? COMPASS_RICH.charcoalRaised : t.bgCard,
-        borderTopLeftRadius: compassProfileSurface ? 14 : 30,
-        borderTopRightRadius: compassProfileSurface ? 14 : 30,
+        backgroundColor: t.bgCard,
+        borderTopLeftRadius: 30,
+        borderTopRightRadius: 30,
         maxHeight: '90%',
         overflow: 'hidden',
         transform: [
@@ -1060,13 +1056,12 @@ function PlayerProfileModalBody({
         ],
         // Без обводок (правило владельца): модал держат скругление, градиент и тень.
         borderTopWidth: prestigeActive ? 0 : 0.5,
-        borderColor: compassProfileSurface ? COMPASS_RICH.hairlineStrong : t.border,
+        borderColor: t.border,
         shadowColor: prestigeActive ? cardVisual.shadowColor : '#000',
-        shadowOpacity: prestigeActive ? 0.34 : compassProfileSurface ? 0.58 : 0.18,
-        shadowRadius: prestigeActive ? 22 : compassProfileSurface ? 24 : 12,
-        elevation: prestigeActive ? 12 : compassProfileSurface ? 14 : 6,
+        shadowOpacity: prestigeActive ? 0.34 : 0.18,
+        shadowRadius: prestigeActive ? 22 : 12,
+        elevation: prestigeActive ? 12 : 6,
       }}>
-        {compassProfileSurface && <CompassDepthSurface radius={14} selected />}
         <TouchableOpacity
           testID="player-profile-close"
           accessibilityRole="button"
@@ -1092,24 +1087,21 @@ function PlayerProfileModalBody({
             zIndex: 30,
             width: PROFILE_HEADER_ACTION_SIZE,
             height: PROFILE_HEADER_ACTION_SIZE,
-            borderRadius: compassProfileSurface ? 9 : PROFILE_HEADER_ACTION_SIZE / 2,
+            borderRadius: PROFILE_HEADER_ACTION_SIZE / 2,
             alignItems: 'center',
             justifyContent: 'center',
             // зачем: §0.D — та же логика, что у кнопки друга: тон + мягкая
             // тень вместо кромки; кнопка лежит поверх артворка карточки.
-            backgroundColor: compassProfileSurface ? COMPASS_RICH.charcoalRaised : glassChromeBg,
-            overflow: compassProfileSurface ? 'hidden' : 'visible',
-            ...(compassProfileSurface ? compassShadow(1) : {
-              shadowColor: '#000',
-              shadowOpacity: 0.32,
-              shadowRadius: 8,
-              shadowOffset: { width: 0, height: 3 },
-              elevation: 5,
-            }),
+            backgroundColor: glassChromeBg,
+            overflow: 'visible',
+            shadowColor: '#000',
+            shadowOpacity: 0.32,
+            shadowRadius: 8,
+            shadowOffset: { width: 0, height: 3 },
+            elevation: 5,
           }}
         >
-          {compassProfileSurface && <CompassDepthSurface radius={9} quiet />}
-          <Ionicons name="close" size={22} color={prestigeActive ? 'rgba(255,255,255,0.82)' : compassProfileSurface ? COMPASS_RICH.champagne : t.textPrimary} />
+          <Ionicons name="close" size={22} color={prestigeActive ? 'rgba(255,255,255,0.82)' : t.textPrimary} />
         </TouchableOpacity>
         {showAddFriend ? (
           <Pressable
@@ -1123,23 +1115,19 @@ function PlayerProfileModalBody({
               zIndex: 30,
               width: PROFILE_HEADER_ACTION_SIZE,
               height: PROFILE_HEADER_ACTION_SIZE,
-              borderRadius: compassProfileSurface ? 9 : PROFILE_HEADER_ACTION_SIZE / 2,
+              borderRadius: PROFILE_HEADER_ACTION_SIZE / 2,
               // зачем: §0.D — кнопка лежит поверх артворка карточки, поэтому
               // кромку заменяем более плотной заливкой + мягкой тенью ниже:
               // отделение то же, «нарисованной» линии нет.
-              backgroundColor: isAlreadyFriend
-                ? (compassProfileSurface ? COMPASS_RICH.charcoalRaised : 'rgba(240,84,84,0.30)')
-                : (compassProfileSurface ? COMPASS_RICH.charcoalRaised : glassChromeBg),
+              backgroundColor: isAlreadyFriend ? 'rgba(240,84,84,0.30)' : glassChromeBg,
               alignItems: 'center',
               justifyContent: 'center',
-              overflow: compassProfileSurface ? 'hidden' : 'visible',
-              ...(compassProfileSurface ? compassShadow(1) : {
-                shadowColor: '#000',
-                shadowOpacity: 0.32,
-                shadowRadius: 8,
-                shadowOffset: { width: 0, height: 3 },
-                elevation: 5,
-              }),
+              overflow: 'visible',
+              shadowColor: '#000',
+              shadowOpacity: 0.32,
+              shadowRadius: 8,
+              shadowOffset: { width: 0, height: 3 },
+              elevation: 5,
               opacity: friendRequestBusy ? 0.55 : isFriendRequestSent ? 0.75 : 1,
             }}
             accessibilityRole="button"
@@ -1154,11 +1142,10 @@ function PlayerProfileModalBody({
               pl: "Dodaj znajomego",
             })}
           >
-            {compassProfileSurface && <CompassDepthSurface radius={9} quiet />}
             <Ionicons
               name={isAlreadyFriend ? 'person-remove-outline' : isFriendRequestSent ? 'checkmark-circle-outline' : 'person-add-outline'}
               size={22}
-              color={isAlreadyFriend ? (compassProfileSurface ? COMPASS_RICH.peach : (t.wrong ?? t.accent)) : compassProfileSurface ? COMPASS_RICH.champagne : t.accent}
+              color={isAlreadyFriend ? (t.wrong ?? t.accent) : t.accent}
             />
           </Pressable>
         ) : null}

@@ -18,7 +18,6 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../ThemeContext';
 import TonalSurface from '../TonalSurface';
 import { FlowText } from '../text-integrity/FlowText';
-import { compassShadow } from '../../constants/compassTheme';
 
 /**
  * Палитра плиток-иконок.
@@ -201,7 +200,6 @@ export function SettingsGroup({
   style,
 }: SettingsGroupProps) {
   const { theme: t } = useTheme();
-  const isCompass = false;
   const items = React.Children.toArray(children).filter(Boolean);
   const groupSurface = surfaceColor ?? t.bgCard;
   const groupBorder = borderColor ?? t.border;
@@ -219,7 +217,6 @@ export function SettingsGroup({
           borderRadius: SETTINGS_GROUP_RADIUS,
           overflow: 'hidden',
         },
-        isCompass ? compassShadow(1) : null,
         style,
       ]}
     >

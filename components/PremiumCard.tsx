@@ -22,8 +22,6 @@ import { hapticTap } from '../hooks/use-haptics';
 import { useTheme, getVolumetricShadow } from './ThemeContext';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS } from '../constants/goldTheme';
 import GoldBevel from './GoldBevel';
-import CompassDepthSurface from './CompassDepthSurface';
-import { COMPASS_GRADIENTS, COMPASS_RICH, COMPASS_SURFACE_LOCATIONS } from '../constants/compassTheme';
 
 interface PremiumCardProps {
   children:     React.ReactNode;
@@ -61,12 +59,9 @@ function PremiumCard({
   const { theme: t, themeMode } = useTheme();
   const longPressFiredRef = React.useRef(false);
   const isGoldTheme = themeMode === 'gold';
-  const isCompassTheme = false;
   const effectiveBorderRadius = isGoldTheme && borderRadius === 16
     ? 14
-    : isCompassTheme && borderRadius === 16
-      ? 10
-      : borderRadius;
+    : borderRadius;
 
   const shadow = getVolumetricShadow(themeMode, t, level);
 
@@ -85,11 +80,10 @@ function PremiumCard({
     borderLeftWidth:   0,
     borderRightWidth:  0,
     borderBottomWidth: 0,
-    borderTopColor:    isGoldTheme ? (active ? GOLD_RICH.champagne : GOLD_RICH.hairlineStrong) : isCompassTheme ? (active ? COMPASS_RICH.hairlineStrong : COMPASS_RICH.edgeLight) : active ? t.correct : t.borderHighlight,
-    borderLeftColor:   isGoldTheme ? (active ? GOLD_RICH.paleGold : GOLD_RICH.hairline) : isCompassTheme ? (active ? COMPASS_RICH.hairlineStrong : COMPASS_RICH.hairline) : active ? t.correct : t.borderHighlight,
-    borderRightColor:  isGoldTheme ? (active ? GOLD_RICH.antiqueGold : GOLD_RICH.hairlineQuiet) : isCompassTheme ? (active ? COMPASS_RICH.edgeSoft : COMPASS_RICH.hairlineQuiet) : active ? t.correct : t.border,
-    borderBottomColor: isGoldTheme ? (active ? GOLD_RICH.bronze : GOLD_RICH.hairlineDark) : isCompassTheme ? COMPASS_RICH.edgeShade : active ? t.correct : t.border,
-    ...(isCompassTheme ? { overflow: 'hidden' as const } : null),
+    borderTopColor:    isGoldTheme ? (active ? GOLD_RICH.champagne : GOLD_RICH.hairlineStrong) : active ? t.correct : t.borderHighlight,
+    borderLeftColor:   isGoldTheme ? (active ? GOLD_RICH.paleGold : GOLD_RICH.hairline) : active ? t.correct : t.borderHighlight,
+    borderRightColor:  isGoldTheme ? (active ? GOLD_RICH.antiqueGold : GOLD_RICH.hairlineQuiet) : active ? t.correct : t.border,
+    borderBottomColor: isGoldTheme ? (active ? GOLD_RICH.bronze : GOLD_RICH.hairlineDark) : active ? t.correct : t.border,
     ...(innerStyle || {}),
   };
 
@@ -97,23 +91,13 @@ function PremiumCard({
     <LinearGradient
       colors={isGoldTheme
         ? (active ? GOLD_GRADIENTS.selectedTile : GOLD_GRADIENTS.premiumPanel)
-        : isCompassTheme
-          ? (active ? COMPASS_GRADIENTS.selectedTile : COMPASS_GRADIENTS.raisedTile)
-          : t.cardGradient}
-      locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined}
+        : t.cardGradient}
+      locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 1 }}
       style={gradientStyle}
     >
       {isGoldTheme && <GoldBevel radius={effectiveBorderRadius} intensity={active ? 'strong' : level >= 2 ? 'normal' : 'quiet'} />}
-      {isCompassTheme && (
-        <CompassDepthSurface
-          radius={effectiveBorderRadius}
-          selected={active}
-          quiet={level <= 1}
-          cream={active}
-        />
-      )}
       {children}
     </LinearGradient>
   );

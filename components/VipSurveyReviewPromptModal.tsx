@@ -11,8 +11,6 @@ import { monoIcon } from '../constants/monoIcon';
 import { openStoreReviewPage } from '../app/store_review';
 import { hasUserRated, markReviewPrompted, markReviewRated } from '../app/review_utils';
 import { recordVipSurveyReviewClickFromApp } from '../app/vip_survey';
-import CompassDepthSurface from './CompassDepthSurface';
-import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 
 type Props = {
   visible: boolean;
@@ -24,7 +22,6 @@ function VipSurveyReviewPromptModal({ visible, onClose }: Props) {
   const { theme: t, f, isDark, themeMode } = useTheme();
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
-  const isCompassTheme = false;
 
   // Это окно показывается в обход общего гейта canShowReview (особый момент — оплата VIP),
   // но согласуется с ним по общему состоянию: уже оценившему не докучаем, а сам показ
@@ -63,23 +60,20 @@ function VipSurveyReviewPromptModal({ visible, onClose }: Props) {
     <Modal visible={visible} transparent animationType="fade" statusBarTranslucent onRequestClose={close}>
       <View style={styles.root}>
         <Pressable style={StyleSheet.absoluteFill} onPress={close} />
-        <View testID="vip-survey-review-prompt" style={[styles.card, isCompassTheme && compassShadow(3), { paddingBottom: Math.max(22, bottomInset + 14), backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border, borderRadius: isCompassTheme ? 14 : 22, overflow: 'hidden' }]}>
-          {isCompassTheme && <CompassDepthSurface radius={14} selected />}
+        <View testID="vip-survey-review-prompt" style={[styles.card, { paddingBottom: Math.max(22, bottomInset + 14), backgroundColor: t.bgCard, borderColor: t.border, borderRadius: 22, overflow: 'hidden' }]}>
           <TouchableOpacity
             testID="vip-survey-review-close"
             activeOpacity={0.76}
             accessibilityRole="button"
             accessibilityLabel={triLang(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}
             onPress={close}
-            style={[styles.closeButton, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : isDark ? '#17202A' : '#EEF2F7', borderColor: isCompassTheme ? COMPASS_RICH.hairline : t.border, borderRadius: isCompassTheme ? 8 : 17, overflow: 'hidden' }]}
+            style={[styles.closeButton, { backgroundColor: isDark ? '#17202A' : '#EEF2F7', borderColor: t.border, borderRadius: 17, overflow: 'hidden' }]}
           >
-            {isCompassTheme && <CompassDepthSurface radius={8} quiet />}
             <Ionicons name="close" size={20} color={t.textPrimary} />
           </TouchableOpacity>
 
-          <View style={[styles.iconWrap, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalWarm : 'rgba(34,197,94,0.14)', borderRadius: isCompassTheme ? 10 : 29, borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent', overflow: 'hidden' }]}>
-            {isCompassTheme && <CompassDepthSurface radius={10} selected />}
-            <Ionicons name="star" size={28} color={isCompassTheme ? COMPASS_RICH.champagne : monoIcon(themeMode, '#22C55E')} />
+          <View style={[styles.iconWrap, { backgroundColor: 'rgba(34,197,94,0.14)', borderRadius: 29, borderWidth: 0, borderColor: 'transparent', overflow: 'hidden' }]}>
+            <Ionicons name="star" size={28} color={monoIcon(themeMode, '#22C55E')} />
           </View>
           <Text style={[styles.title, { color: t.textPrimary, fontSize: Math.max(22, f.h2) }]}>
             {triLang(lang, {
@@ -110,11 +104,10 @@ function VipSurveyReviewPromptModal({ visible, onClose }: Props) {
             activeOpacity={0.88}
             accessibilityRole="button"
             onPress={openReview}
-            style={[styles.primaryButton, isCompassTheme && compassShadow(2), { backgroundColor: isCompassTheme ? COMPASS_RICH.champagne : '#16A34A', borderRadius: isCompassTheme ? 9 : 16, borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent', overflow: 'hidden' }]}
+            style={[styles.primaryButton, { backgroundColor: '#16A34A', borderRadius: 16, borderWidth: 0, borderColor: 'transparent', overflow: 'hidden' }]}
           >
-            {isCompassTheme && <CompassDepthSurface radius={9} cream />}
-            <Ionicons name="create-outline" size={19} color={isCompassTheme ? COMPASS_RICH.textDark : t.correctText} />
-            <Text style={[styles.primaryText, { fontSize: f.body, color: isCompassTheme ? COMPASS_RICH.textDark : t.correctText }]}>
+            <Ionicons name="create-outline" size={19} color={t.correctText} />
+            <Text style={[styles.primaryText, { fontSize: f.body, color: t.correctText }]}>
               {triLang(lang, { ru: 'Написать отзыв', uk: 'Написати відгук', es: 'Escribir reseña', 'pt-BR': 'Escrever avaliação', vi: 'Viết đánh giá', id: 'Tulis ulasan', tr: 'Değerlendirme yaz', pl: 'Napisz recenzję' })}
             </Text>
           </TouchableOpacity>

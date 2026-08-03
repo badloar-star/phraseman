@@ -4,8 +4,6 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from './ThemeContext';
 import type { Lang } from '../constants/i18n';
 import { triLang } from '../constants/i18n';
-import CompassDepthSurface from './CompassDepthSurface';
-import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 
 type Props = {
   visible: boolean;
@@ -31,7 +29,6 @@ function NotificationPermissionModal({
   cancelLabel,
 }: Props) {
   const { theme: t, f, themeMode } = useTheme();
-  const isCompassTheme = false;
 
   const resolvedTitle =
     title ??
@@ -80,12 +77,10 @@ function NotificationPermissionModal({
         contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 20 }}
         showsVerticalScrollIndicator={false}
       >
-        <View style={{ width: '100%', maxWidth: 390, backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderRadius: isCompassTheme ? 14 : 18, borderWidth: 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border, padding: 20, overflow: 'hidden', ...(isCompassTheme ? compassShadow(3) : null) }}>
-          {isCompassTheme && <CompassDepthSurface radius={14} selected />}
+        <View style={{ width: '100%', maxWidth: 390, backgroundColor: t.bgCard, borderRadius: 18, borderWidth: 0, borderColor: t.border, padding: 20, overflow: 'hidden' }}>
           <View style={{ alignItems: 'center', marginBottom: 10 }}>
-            <View style={{ width: 54, height: 54, borderRadius: isCompassTheme ? 10 : 27, backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalWarm : t.accentBg, alignItems: 'center', justifyContent: 'center', borderWidth: 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : `${t.accent}55`, overflow: 'hidden', ...(isCompassTheme ? compassShadow(1) : null) }}>
-              {isCompassTheme && <CompassDepthSurface radius={10} selected />}
-              <Ionicons name="notifications-outline" size={26} color={isCompassTheme ? COMPASS_RICH.champagne : t.accent} />
+            <View style={{ width: 54, height: 54, borderRadius: 27, backgroundColor: t.accentBg, alignItems: 'center', justifyContent: 'center', borderWidth: 0, borderColor: `${t.accent}55`, overflow: 'hidden' }}>
+              <Ionicons name="notifications-outline" size={26} color={t.accent} />
             </View>
           </View>
 
@@ -99,7 +94,7 @@ function NotificationPermissionModal({
           <View style={{ marginTop: 14, gap: 8 }}>
             {resolvedPoints.map((p) => (
               <View key={p} style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-                <Ionicons name="checkmark-circle" size={16} color={isCompassTheme ? COMPASS_RICH.champagne : t.correct} />
+                <Ionicons name="checkmark-circle" size={16} color={t.correct} />
                 <Text style={{ color: t.textMuted, fontSize: f.sub, flex: 1 }}>{p}</Text>
               </View>
             ))}
@@ -107,9 +102,8 @@ function NotificationPermissionModal({
 
           {/* Единый стандарт: primary на всю ширину, под ней — центрированная текстовая «Позже». */}
           <View style={{ marginTop: 20 }}>
-            <TouchableOpacity onPress={onConfirm} activeOpacity={0.85} style={{ width: '100%', backgroundColor: isCompassTheme ? COMPASS_RICH.champagne : t.accent, borderRadius: isCompassTheme ? 9 : 12, paddingVertical: 12, alignItems: 'center', borderWidth: 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent', overflow: 'hidden', ...(isCompassTheme ? compassShadow(1) : null) }}>
-              {isCompassTheme && <CompassDepthSurface radius={9} cream />}
-              <Text style={{ color: isCompassTheme ? COMPASS_RICH.textDark : t.correctText, fontWeight: '800', fontSize: f.body }}>
+            <TouchableOpacity onPress={onConfirm} activeOpacity={0.85} style={{ width: '100%', backgroundColor: t.accent, borderRadius: 12, paddingVertical: 12, alignItems: 'center', borderWidth: 0, borderColor: 'transparent', overflow: 'hidden' }}>
+              <Text style={{ color: t.correctText, fontWeight: '800', fontSize: f.body }}>
                 {confirmLabel ??
                   triLang(lang, {
                     ru: 'Включить',

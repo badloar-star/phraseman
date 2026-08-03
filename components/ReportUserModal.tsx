@@ -5,8 +5,6 @@ import { useTheme } from './ThemeContext';
 import { submitUserReport } from '../app/user_report';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { triLang, type Lang } from '../constants/i18n';
-import CompassDepthSurface from './CompassDepthSurface';
-import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 import { emitAppEvent } from '../app/events';
 
 interface Props {
@@ -21,7 +19,6 @@ interface Props {
 
 function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onClose, previewOnly = false }: Props) {
   const { theme: t, themeMode, f } = useTheme();
-  const isCompassTheme = false;
   const [loading, setLoading] = useState(false);
   const [done, setDone] = useState(false);
   const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -157,18 +154,16 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
       >
         <TouchableOpacity activeOpacity={1} onPress={() => {}} style={{ width: '100%', maxWidth: 320, alignItems: 'stretch' }}>
           <View style={{
-            backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
-            borderRadius: isCompassTheme ? 14 : 16,
+            backgroundColor: t.bgCard,
+            borderRadius: 16,
             padding: 24,
             width: '100%',
             maxWidth: 320,
             borderWidth: 0,
-            borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border,
+            borderColor: t.border,
             alignItems: 'center',
             overflow: 'hidden',
-            ...(isCompassTheme ? compassShadow(3) : null),
           }}>
-            {isCompassTheme && <CompassDepthSurface radius={14} selected />}
             <Text style={{ fontSize: 32, marginBottom: 12 }}>🚩</Text>
 
             {done ? (
@@ -206,14 +201,12 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
                     }}
                     style={{
                       flex: 1, paddingVertical: 11, borderRadius: 10,
-                      backgroundColor: isCompassTheme ? COMPASS_RICH.charcoal : t.bgPrimary,
+                      backgroundColor: t.bgPrimary,
                       borderWidth: 0,
-                      borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
+                      borderColor: t.border,
                       overflow: 'hidden',
-                      ...(isCompassTheme ? compassShadow(1) : null),
                     }}
                   >
-                    {isCompassTheme && <CompassDepthSurface radius={10} quiet />}
                     <Text style={{ color: t.textSecond, textAlign: 'center', fontSize: f.body }}>
                       {tx.cancel}
                     </Text>
@@ -221,11 +214,10 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
                   <TouchableOpacity
                     onPress={handleSend}
                     disabled={loading}
-                    style={{ flex: 1, paddingVertical: 11, borderRadius: isCompassTheme ? 9 : 10, backgroundColor: isCompassTheme ? COMPASS_RICH.champagne : t.accent, borderWidth: 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent', overflow: 'hidden', ...(isCompassTheme ? compassShadow(1) : null) }}
+                    style={{ flex: 1, paddingVertical: 11, borderRadius: 10, backgroundColor: t.accent, borderWidth: 0, borderColor: 'transparent', overflow: 'hidden' }}
                   >
-                    {isCompassTheme && <CompassDepthSurface radius={9} cream />}
                     {false && loading ? <View />
-                      : <Text style={{ color: isCompassTheme ? COMPASS_RICH.textDark : t.correctText, textAlign: 'center', fontWeight: '700', fontSize: f.body }}>
+                      : <Text style={{ color: t.correctText, textAlign: 'center', fontWeight: '700', fontSize: f.body }}>
                           {tx.send}
                         </Text>
                     }

@@ -2750,9 +2750,9 @@ export default function HomeScreen() {
                   {/* Ряд «Уровень N» + серия справа: серия больше не занимает
                       отдельную колонку, поэтому полоса XP тянется во всю ширину. */}
                   <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
-                    <Text maxFontSizeMultiplier={1} numberOfLines={1} style={{ flexShrink: 1, color: homeThemePanelText, fontSize: eliteStatsCompact ? 20 : 24, fontWeight: '800', lineHeight: eliteStatsCompact ? 24 : 29 }}>
+                    <FlowText testID="home-level-title" provenance="authored" maxFontSizeMultiplier={1} style={{ flexShrink: 1, color: homeThemePanelText, fontSize: eliteStatsCompact ? 20 : 24, fontWeight: '800', lineHeight: eliteStatsCompact ? 24 : 29 }}>
                       {experimentalStatusLevelLabel} {level}
-                    </Text>
+                    </FlowText>
 
                     <TouchableOpacity
                       testID="home-streak-status-panel"
@@ -3005,8 +3005,10 @@ export default function HomeScreen() {
                         }}>
                           <LightSketchMenuImage source={item.img} width={homeQuickIconImageSize} height={homeQuickIconImageSize} lighten={false} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>
                         </View>
-                        {/* eslint-disable-next-line text-integrity/no-unsafe-text-truncation -- подпись под иконкой плитки быстрого старта: узкая колонка в ряду, перенос сдвинул бы высоту всей сетки */}
-                        <Text allowFontScaling={false} style={{ color: isPaperHomeTheme ? homeThemePanelText : t.textPrimary, fontSize: Math.max(12, f.label - 1), fontWeight: '800', textAlign: 'center' }} numberOfLines={1}>{item.label}</Text>
+                        {/* зачем: подпись плитки быстрого старта — короткие лейблы («Уроки»,
+                            «Практика», «Карточки») в реальных локалях умещаются в одну строку;
+                            FlowText переносит целиком вместо обрезания на случай длинных переводов. */}
+                        <FlowText testID="home-quick-tile-label" provenance="authored" style={{ color: isPaperHomeTheme ? homeThemePanelText : t.textPrimary, fontSize: Math.max(12, f.label - 1), fontWeight: '800', textAlign: 'center' }}>{item.label}</FlowText>
                       </View>
                     </TouchableOpacity>
                   </Animated.View>
@@ -3054,10 +3056,9 @@ export default function HomeScreen() {
                     <LightSketchMenuImage source={menuImages.lesson} width={64} height={64} lighten={false} align={getHomeMenuIconAlignment(themeMode, 'lesson')} contentFit="contain" cachePolicy="memory-disk"/>
                   </View>
                   <View style={{ flex: 1, minWidth: 0, gap: 7 }}>
-                    {/* eslint-disable-next-line text-integrity/no-unsafe-text-truncation -- однострочный титул ряда (как у «Вызовов дня»): перенос ломал бы фиксированную высоту 72 и геометрию первого кадра */}
-                    <Text style={{ color: homeThemePanelText, fontSize: Math.max(15, f.body), fontWeight: '700' }} numberOfLines={1}>
+                    <FlowText testID="home-continue-lesson-title" provenance="authored" style={{ color: homeThemePanelText, fontSize: Math.max(15, f.body), fontWeight: '700' }}>
                       {lastLesson.name}
-                    </Text>
+                    </FlowText>
                     <View style={{ height: 5, borderRadius: 3, overflow: 'hidden', backgroundColor: isLightTheme ? 'rgba(0,0,0,0.10)' : 'rgba(255,255,255,0.10)' }}>
                       <View style={{ height: '100%', width: `${Math.min(100, Math.max(0, Math.round((lastLesson.progress / 50) * 100)))}%` as any, backgroundColor: t.correct, borderRadius: 3 }}/>
                     </View>
@@ -3127,26 +3128,25 @@ export default function HomeScreen() {
                   opacity: homeFeatureTipContentOpacity,
                   transform: [{ translateX: homeFeatureTipContentTranslate }],
                 }}>
-                  <Text style={{ color: homeThemePanelText, fontSize: Math.max(22, f.bodyLg + 4), fontWeight: '900', lineHeight: Math.max(27, f.bodyLg + 9) }} numberOfLines={2}>
+                  <FlowText testID="home-feature-tip-title" provenance="authored" style={{ color: homeThemePanelText, fontSize: Math.max(22, f.bodyLg + 4), fontWeight: '900', lineHeight: Math.max(27, f.bodyLg + 9) }}>
                     {currentHomeFeatureTip.title}
-                  </Text>
-                  <Text style={{ color: homeThemePanelMuted, fontSize: Math.max(14, f.body), fontWeight: '800', lineHeight: Math.max(20, f.body + 6) }} numberOfLines={5}>
+                  </FlowText>
+                  <FlowText testID="home-feature-tip-body" provenance="authored" style={{ color: homeThemePanelMuted, fontSize: Math.max(14, f.body), fontWeight: '800', lineHeight: Math.max(20, f.body + 6) }}>
                     {currentHomeFeatureTip.body}
-                  </Text>
+                  </FlowText>
                   {(showHomeFeatureTipTapHint || currentHomeFeatureTip.icon) ? (
                     <View style={{ minHeight: 18, justifyContent: 'center' }}>
                       {showHomeFeatureTipTapHint ? (
                         <Animated.Text
                           style={{
                             color: homeThemePanelMuted,
-                            fontSize: 10,
+                            fontSize: 10, // guard-ok: подсказка-хинт «тапни», не подпись-расшифровка под заголовком
                             fontWeight: '800',
                             lineHeight: 12,
                             opacity: homeFeatureTipHintOpacity,
                             textAlign: 'center',
                             transform: [{ scale: homeFeatureTipHintScale }],
                           }}
-                          numberOfLines={1}
                         >
                           тапни по подсказке
                         </Animated.Text>
@@ -3212,7 +3212,7 @@ export default function HomeScreen() {
                 <View style={{ width: 64, height: 64, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                   <LightSketchMenuImage source={menuImages.dayTasks} width={64} height={64} lighten={false} align={getHomeMenuIconAlignment(themeMode, 'dayTasks')} contentFit="contain" cachePolicy="memory-disk"/>
                 </View>
-                <Text style={{ flex: 1, color: homeThemePanelText, fontSize: Math.max(15, f.body), fontWeight: '700' }} numberOfLines={1}>
+                <FlowText testID="home-daily-tasks-title" provenance="authored" style={{ flex: 1, color: homeThemePanelText, fontSize: Math.max(15, f.body), fontWeight: '700' }}>
                   {triLang(lang, {
                     ru: 'Вызовы дня',
                     uk: 'Виклики дня',
@@ -3223,7 +3223,7 @@ export default function HomeScreen() {
                     tr: 'Günün görevleri',
                     pl: 'Zadania dnia',
                   })}
-                </Text>
+                </FlowText>
                 <View style={{ flexDirection: 'row', gap: 4, marginRight: 6 }}>
                   {Array.from({ length: dailyTaskBarCount }, (_, ti) => (
                     <View key={ti} style={{ width: 15, height: 5, borderRadius: 3, overflow: 'hidden', backgroundColor: isLightTheme ? 'rgba(0,0,0,0.10)' : 'rgba(255,255,255,0.10)' }}>
@@ -3245,7 +3245,7 @@ export default function HomeScreen() {
                   </View>
                   <View style={{ flex: 1, minWidth: 0, gap: 7 }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-                      <Text style={{ flex: 1, color: homeThemePanelText, fontSize: Math.max(15, f.body), fontWeight: '700' }} numberOfLines={1}>
+                      <FlowText testID="home-league-goal-title" provenance="authored" style={{ flex: 1, color: homeThemePanelText, fontSize: Math.max(15, f.body), fontWeight: '700' }}>
                         {triLang(lang, {
                           ru: 'Цель лиги',
                           uk: 'Ціль ліги',
@@ -3256,8 +3256,8 @@ export default function HomeScreen() {
                           tr: 'Lig hedefi',
                           pl: 'Cel ligi',
                         })} · {homeLeagueChest.leagueName}
-                      </Text>
-                      <Text style={{ color: homeLeagueChestAccent, fontSize: 15, fontWeight: '900', fontVariant: ['tabular-nums'] }} numberOfLines={1}>
+                      </FlowText>
+                      <Text style={{ color: homeLeagueChestAccent, fontSize: 15, fontWeight: '900', fontVariant: ['tabular-nums'] }}>
                         {homeLeagueChestPct}%
                       </Text>
                     </View>

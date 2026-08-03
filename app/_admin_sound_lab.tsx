@@ -19,6 +19,7 @@
  */
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { FlowText } from '../components/text-integrity/FlowText';
 import { useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Animated, {
@@ -288,9 +289,9 @@ const SoundEventRow = memo(function SoundEventRow({
           {/* зачем: человеческое название вместо идентификатора. Владелец
               проверяет «что происходит в игре», а не читает каталог: строка
               «Верный ответ» отвечает на это сразу, pm.learn.correct — нет. */}
-          <Text style={[styles.rowTitle, { color: t.textPrimary }]} numberOfLines={1}>
+          <FlowText testID="sound-lab-row-title" provenance="authored" style={[styles.rowTitle, { color: t.textPrimary }]}>
             {EVENT_TITLE[row.id] ?? row.id}
-          </Text>
+          </FlowText>
           {!row.hasAsset ? (
             <Text style={[styles.rowDesc, { color: t.textMuted }]}>
               звука пока нет — событие молчит
@@ -480,9 +481,9 @@ export default function AdminSoundLab() {
 
         {lastPlayed && (
           <View style={[styles.verdict, { backgroundColor: t.bgCard }]}>
-            <Text style={[styles.verdictId, { color: t.textPrimary }]} numberOfLines={1}>
+            <FlowText testID="sound-lab-verdict-id" provenance="authored" style={[styles.verdictId, { color: t.textPrimary }]}>
               {lastPlayed.id}
-            </Text>
+            </FlowText>
             <Text style={[styles.verdictText, { color: t.textMuted }]}>{lastPlayed.verdict}</Text>
           </View>
         )}

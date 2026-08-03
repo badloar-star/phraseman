@@ -526,7 +526,7 @@ const MarketPackCard = React.memo(function MarketPackCard({
         </View>
         <View style={{ flex: 1, minWidth: 0 }}>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', gap: 10 }}>
-            <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.h3, fontWeight: '700' }} numberOfLines={2}>
+            <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.h3, fontWeight: '700' }}>
               {title}
             </Text>
             <View
@@ -562,7 +562,7 @@ const MarketPackCard = React.memo(function MarketPackCard({
               </Text>
             </View>
           </View>
-          <Text style={{ color: t.textSecond, fontSize: f.caption, marginTop: 4 }} numberOfLines={3}>
+          <Text style={{ color: t.textSecond, fontSize: f.caption, marginTop: 4 }}>
             {desc}
           </Text>
           <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 6 }}>

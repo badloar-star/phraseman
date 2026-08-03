@@ -58,8 +58,12 @@ interface PremiumCelebrationModalProps {
 }
 
 const ROW_HEIGHT = 70;            // высота строки + gap (для расчёта скролла)
-const ROW_STEP_MS = 360;          // время на одну строку авто-прокрутки
-const REEL_START_DELAY = 900;     // пауза перед стартом проезда (на hero-вступление)
+// зачем: окно поздравления шло ~7с (900мс пауза + 16×360мс + финал) — юзер
+// жаловался «очень долго». Проезд ужат до ~3с: шаг строки 360→170мс, стартовая
+// пауза 900→450мс. Строки по-прежнему загораются по одной (эффект раскрытия
+// сохранён), но празднование не превращается в ожидание.
+const ROW_STEP_MS = 170;          // время на одну строку авто-прокрутки
+const REEL_START_DELAY = 450;     // пауза перед стартом проезда (на hero-вступление)
 const HERO_OFFSET = 248;          // высота hero-зоны сверху
 
 function localeText(map: CelebrationFeature['title'], lang: ReturnType<typeof useLang>['lang']): string {

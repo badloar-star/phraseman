@@ -75,9 +75,15 @@ describe('admin settings VIP profile control', () => {
     expect(celebrationContent).toContain('Все уроки открыты');
     expect(celebrationContent).toContain('AI-диалоги');
     expect(celebrationContent).toContain('Голос с оценкой фразы');
-    expect(celebrationContent).toContain('Недельный обзор');
-    expect(celebrationContent).toContain('Компас дня');
     expect(celebrationContent).toContain('Plus-темы и аура');
+
+    // зачем: «Недельный обзор» и «Компас дня» рекламировали Компас — фичу,
+    // удалённую вместе с app/compass/ (day_closing нет, WeeklyReviewCard не
+    // подключён ни к одному экрану). Окно поздравления обещало покупателю то,
+    // чего в приложении нет. Тест теперь сторожит их ОТСУТСТВИЕ, чтобы строки
+    // не вернулись копипастом.
+    expect(celebrationContent).not.toContain('Недельный обзор');
+    expect(celebrationContent).not.toContain('Компас дня');
 
     expect(celebrationContent).not.toContain('Тема Neon');
     expect(celebrationContent).not.toContain('Золотое имя');

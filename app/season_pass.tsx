@@ -30,7 +30,7 @@ import {
   peekSeasonPassProgress,
   getSeasonPassSeasonId,
   SEASON_PASS_LEVELS,
-  seasonPassDaysLeft,
+  seasonPassStarsToUnlockLevel,
   type SeasonPassProgress,
 } from './season_pass_model';
 import {
@@ -48,14 +48,41 @@ import {
 } from './season_pass_track_config';
 import SeasonAuraRing from '../components/SeasonAuraRing';
 import SeasonGiftModal from '../components/SeasonGiftModal';
+import SeasonRewardInfoModal, { type SeasonRewardCardStatus } from '../components/SeasonRewardInfoModal';
 import { addSeasonPassGift, loadPendingSeasonPassGiftCount } from './season_pass_gift_inventory';
 import { seasonBuyPassOnServer, seasonClaimRewardOnServer } from './season_pass_server';
 import { getShardsBalance, loadShardsFromCloud } from './shards_system';
 import { getVerifiedPremiumAccessStatus } from './premium_guard';
 
 const ROW_HEIGHT = 108;
+// зачем 2026-08-03 (владелец: «контейнеры с подарками слишком близко друг к
+// другу, раздели их слегка чтобы не сливались»): вертикальный воздух между
+// карточками. Живёт ВНУТРИ ROW_HEIGHT (padding строки), а не добавляется к
+// нему: шаг узлов хребта считается из ROW_HEIGHT, и любое изменение высоты
+// строки увело бы линию от карточек.
+const ROW_GAP = 14;
 export const SEASON_REWARD_ART_SIZE = 58;
+/**
+ * Реальный размер картинки внутри слота награды — с полями по краям.
+ *
+ * зачем 2026-08-03 (владелец: «все лого обязательно должны быть не обрезаны, а
+ * фулл размер и стоять ровно и красиво»): арт нарисован ВПРИТЫК к краям файла
+ * (проверено на battery.webp и club_totem.webp — предмет начинается от верхней
+ * границы 256×256 и кончается у нижней). resizeMode «contain» тут бессилен:
+ * резать нечего, полей просто нет в исходнике. Слот остаётся прежним, чтобы не
+ * поехала геометрия строки, а картинка внутри ужимается на ~14% и центрируется —
+ * появляется воздух по краям, и соседние иконки визуально встают на одну линию.
+ *
+ * Когда арт перерисуют с собственными полями, это значение можно вернуть к
+ * SEASON_REWARD_ART_SIZE.
+ */
+export const SEASON_REWARD_ART_INNER = Math.round(SEASON_REWARD_ART_SIZE * 0.86);
 export const SEASON_AURA_ART_SIZE = 64;
+// зачем 2026-08-03 (владелец: «иконка жемчужа слишком маленькая»): монета
+// жемчужин стоит В СТРОКЕ с числом, а не одна на всю плитку, поэтому её размер
+// чуть меньше сплошного арта — так пара «иконка + количество» целиком влезает
+// в ширину карточки и не жмёт число.
+export const SEASON_PEARL_ART_SIZE = 44;
 const NODE_COLUMN_WIDTH = 56;
 const SPINE_WIDTH = 4;
 // зачем 2026-08-03 (владелец — «искривление на разных типах подарков» вместо
@@ -111,6 +138,14 @@ export default function SeasonPassScreen() {
   const [progress, setProgress] = useState<SeasonPassProgress>(peekSeasonPassProgress);
   const [pendingGiftCount, setPendingGiftCount] = useState(0);
   const [openReward, setOpenReward] = useState<{ reward: SeasonReward; giftId: string } | null>(null);
+  // зачем 2026-08-03 (владелец: «модальные окна для каждого подарка на сезоне
+  // чтобы можно было открыть и посмотреть что это такое»): openReward выше —
+  // модалка КЛЕЙМА (реально выдаёт награду, применяет эффект). openInfoReward —
+  // отдельная просмотровая модалка: тап по ЛЮБОЙ карточке (любого статуса)
+  // открывает описание; «Забрать»/«Нужен пропуск» — кнопки УЖЕ ВНУТРИ неё.
+  const [openInfoReward, setOpenInfoReward] = useState<{
+    reward: SeasonReward; level: number; side: 'free' | 'pass'; status: SeasonRewardCardStatus;
+  } | null>(null);
   const [claimed, setClaimed] = useState<ClaimedMap>({});
   const [passOwned, setPassOwned] = useState(false);
   // зачем: владелец, 2026-08-03 — «пропуск 250 для всех, но премиум хапает
@@ -161,11 +196,10 @@ export default function SeasonPassScreen() {
     return () => { alive = false; subStars.remove(); subGifts.remove(); subPremium.remove(); };
   }, [refreshPendingGiftCount]);
 
-  const daysLeft = seasonPassDaysLeft();
+  // зачем 2026-08-03: daysLeft и pct удалены вместе со счётчиком дней и
+  // прогресс-полоской (владелец: «убери полоску уровня», «убери 59 дней»).
+  // Держать вычисления без потребителя — тихий мусор в каждом рендере.
   const pearlIcon = pearlIconForTheme(themeMode);
-  const pct = progress.levelCostStars > 0
-    ? Math.min(100, Math.round((progress.intoLevelStars / progress.levelCostStars) * 100))
-    : 100;
   // Pro/Plus владеет обеими линиями наград БЕЗ покупки (владелец: «премиум
   // хапает обе стороны, фри только фри») — покупка за 250 актуальна лишь фри.
   const laneUnlockedForPass = isPremium || passOwned;
@@ -282,6 +316,10 @@ export default function SeasonPassScreen() {
       + (reward.kind === 'plus_days' || reward.kind === 'xp_bank' ? ` ${reward.amount ?? ''}` : '');
     const isPassLane = side === 'pass';
     const isClaimed = !!claimed[`${seasonId}:${level}:${side}`];
+    // Порог открытия подарка в звёздах — накопительный счёт за сезон, тот же,
+    // что показан в шапке. Считается чистой функцией шкалы, а не «на глаз»:
+    // расхождение с реальной ценой уровня было бы ложью в интерфейсе.
+    const starsToUnlock = seasonPassStarsToUnlockLevel(level);
     /**
      * зачем 2026-08-03 (владелец: «пропуск я же говорил надо купить, он не даётся
      * просто так, ты не можешь получать подарки просто так… юзер видит свой
@@ -320,18 +358,28 @@ export default function SeasonPassScreen() {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        gap: 2,
+        // зачем 2026-08-03: строка порога звёзд добавила карточке третий ярус
+        // (арт → название → цена), а высота плитки уменьшилась на ROW_GAP.
+        // Вертикальные отступы ужаты, чтобы содержимое влезало без обрезки —
+        // ужимать ШРИФТ (adjustsFontSizeToFit) на коротких подписях нельзя.
+        gap: 1,
         borderRadius: 16,
         paddingHorizontal: 8,
-        paddingVertical: 6,
+        paddingVertical: 4,
         position: 'relative',
         backgroundColor: isPassLane ? t.goldBg : t.bgCard,
         opacity: reached ? (isClaimed ? 0.55 : 1) : 0.72,
       }}>
+        {/* зачем 2026-08-03 (владелец: «иконка жемчужа слишком маленькая»):
+            иконка была 20×20 при артах соседних подарков 58–64 — жемчужины
+            читались как мелочь на фоне остальных наград. Теперь монета того же
+            масштаба, что и прочие арты (SEASON_PEARL_ART_SIZE), число рядом
+            подросло до 18. Высота плитки не меняется: у жемчужин пустая
+            подпись, её место и забирает выросшая иконка. */}
         {reward.kind === 'pearls'
-          ? (<View style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}>
-              <Image source={pearlIcon} style={{ width: 20, height: 20 }} resizeMode="contain" accessible={false} />
-              <Text style={{ color: t.textOnCard, fontSize: 14, fontWeight: '800', fontVariant: ['tabular-nums'] }}>{reward.amount}</Text>
+          ? (<View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+              <Image source={pearlIcon} style={{ width: SEASON_PEARL_ART_SIZE, height: SEASON_PEARL_ART_SIZE }} resizeMode="contain" accessible={false} />
+              <Text style={{ color: t.textOnCard, fontSize: 18, fontWeight: '800', fontVariant: ['tabular-nums'] }}>{reward.amount}</Text>
             </View>)
           : reward.kind === 'aura_stage' || reward.kind === 'season_finale' || reward.kind === 'aura_secret'
             ? (() => {
@@ -351,7 +399,30 @@ export default function SeasonPassScreen() {
                 );
               })()
             : icon
-              ? <Image source={icon} style={{ width: SEASON_REWARD_ART_SIZE, height: SEASON_REWARD_ART_SIZE }} resizeMode="contain" accessible={false} />
+              /* зачем 2026-08-03 (владелец: «все лого обязательно должны быть не
+                 обрезаны, а фулл размер и стоять ровно и красиво»): resizeMode
+                 «contain» ничего не резал — предмет упирается в края САМОГО
+                 файла (проверено: батарея и тотем нарисованы без полей сверху и
+                 снизу в квадрате 256×256). Из-за этого арт выглядел обрезанным
+                 и соседние иконки стояли на разной высоте. Слот сохраняет
+                 прежний размер (геометрия строки не едет), а картинка внутри
+                 него уменьшена и отцентрована — предмет больше не касается
+                 краёв, и все логотипы встают ровно. */
+              ? (
+                <View style={{
+                  width: SEASON_REWARD_ART_SIZE,
+                  height: SEASON_REWARD_ART_SIZE,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}>
+                  <Image
+                    source={icon}
+                    style={{ width: SEASON_REWARD_ART_INNER, height: SEASON_REWARD_ART_INNER }}
+                    resizeMode="contain"
+                    accessible={false}
+                  />
+                </View>
+              )
               : null}
         <FlowText
           testID={`season-pass-reward-label-${level}-${side}`}
@@ -360,6 +431,23 @@ export default function SeasonPassScreen() {
         >
           {reward.kind === 'pearls' ? '' : label}
         </FlowText>
+        {/* зачем 2026-08-03 (владелец: «просто возле каждого подарка показывай
+            сколько звёзд надо набрать чтобы он открылся»): порог заменил
+            прогресс-полоску уровня. Число накопительное — сравнивается напрямую
+            с общим счётом звёзд в шапке. У уже открытого подарка порог гаснет
+            до галочки: цена выполнена, повторять её незачем. */}
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 3, marginTop: 1 }}>
+          {reached ? (
+            <Ionicons name="checkmark" size={12} color={t.textMuted} />
+          ) : (
+            <Text
+              testID={`season-pass-reward-threshold-${level}-${side}`}
+              style={{ color: t.textMuted, fontSize: 11, fontWeight: '800', fontVariant: ['tabular-nums'] }} /* guard-ok: ЦЕНА подарка в звёздах (число + ⭐), а не подпись-расшифровка названия — владелец запросил её явно */
+            >
+              {starsToUnlock} ⭐
+            </Text>
+          )}
+        </View>
         {claimable && (
           <Ionicons name="checkmark-circle-outline" size={18} color={t.textOnCard} style={{ position: 'absolute', top: 7, right: 7 }} />
         )}
@@ -373,44 +461,24 @@ export default function SeasonPassScreen() {
 
   const renderItem = useCallback(({ item }: ListRenderItemInfo<SeasonTrackNode>) => {
     const reached = progress.level >= item.level;
-    const isCurrent = progress.level + 1 === item.level;
-    // Изгиб узла — по kind его ГЛАВНОЙ (pass, иначе free) награды. Общая
-    // амплитуда ограничена padding'ом узла (NODE_COLUMN_WIDTH=56, узел до 36px),
-    // так что кривая никогда не наезжает на боковые карточки. Сама линия
-    // хребта здесь больше НЕ рисуется — она единым SVG-полотном лежит под
-    // FlatList (см. trackSpine ниже); строка рисует только кружок с номером,
-    // позиционированный ровно на эту же кривую тем же curOffset.
-    const curOffset = spineWaveOffsetForKind(item.pass?.kind ?? item.free?.kind);
     return (
-      <View style={{ height: ROW_HEIGHT, flexDirection: 'row', alignItems: 'stretch', gap: 8, paddingHorizontal: 14 }}>
+      // зачем 2026-08-03 (владелец: «контейнеры с подарками слишком близко друг
+      // к другу, раздели их слегка чтобы не сливались»): карточки стояли
+      // вплотную по вертикали и читались одним сплошным полотном. Высота строки
+      // (ROW_HEIGHT) осталась прежней — её держит геометрия хребта, — а воздух
+      // добавлен paddingVertical внутри строки: карточка стала ниже, зазор
+      // между соседними появился, узлы линии никуда не поехали.
+      <View style={{ height: ROW_HEIGHT, flexDirection: 'row', alignItems: 'stretch', gap: 10, paddingHorizontal: 14, paddingVertical: ROW_GAP / 2 }}>
         {renderReward(item.free, 'free', reached, item.level)}
-        <View style={{ width: NODE_COLUMN_WIDTH, alignItems: 'center', justifyContent: 'center' }}>
-          {/* зачем 2026-08-03 (владелец: «уберите с полоски цифры они не
-              нужны») — номер уровня убран из маркера: кружок остаётся чистой
-              точкой на линии прогресса, сам номер и так виден в карточке
-              заголовка выше («Уровень N из 60»), дублировать не нужно. */}
-          <View
-            accessibilityLabel={triLang(lang, {
-              ru: `Уровень ${item.level}`, uk: `Рівень ${item.level}`, es: `Nivel ${item.level}`,
-              'pt-BR': `Nível ${item.level}`, vi: `Cấp ${item.level}`, id: `Level ${item.level}`,
-              tr: `Seviye ${item.level}`, pl: `Poziom ${item.level}`,
-            })}
-            style={{
-              width: isCurrent ? 36 : 30,
-              height: isCurrent ? 36 : 30,
-              borderRadius: 18,
-              alignItems: 'center',
-              justifyContent: 'center',
-              backgroundColor: reached ? t.gold : isCurrent ? t.accentBg : t.bgSurface,
-              zIndex: 2,
-              transform: [{ translateX: curOffset }],
-            }}
-          />
-        </View>
+        {/* зачем 2026-08-03 (владелец: «убери кружочки с цифрами»): маркеры
+            уровней убраны целиком. Прогресс читается по самой линии — золотая
+            часть до достигнутого уровня, тусклая дальше, — а «какой это
+            уровень» теперь говорит порог звёзд на самой карточке подарка. */}
+        <View style={{ width: NODE_COLUMN_WIDTH }} pointerEvents="none" />
         {renderReward(item.pass, 'pass', reached, item.level)}
       </View>
     );
-  }, [progress.level, renderReward, t]);
+  }, [progress.level, renderReward]);
 
   const getItemLayout = useCallback((_: unknown, index: number) => (
     { length: ROW_HEIGHT, offset: ROW_HEIGHT * index, index }
@@ -500,52 +568,53 @@ export default function SeasonPassScreen() {
           )}
         </TouchableOpacity>
       </View>
-      <View style={{ flexDirection: 'row', alignItems: 'baseline', justifyContent: 'space-between' }}>
-        <Text style={{ color: t.textPrimary, fontSize: Math.max(24, f.h1), fontWeight: '900', letterSpacing: -0.3 }}>
+      {/* зачем 2026-08-03 (владелец: «убери 59 дней там написано вверху»):
+          счётчик оставшихся дней давил срочностью на каждом заходе, а решения
+          игрока не менял — сезон и так виден по дорожке. Заголовок теперь
+          занимает строку целиком и читается как титул экрана. */}
+      <Text style={{ color: t.textPrimary, fontSize: Math.max(24, f.h1), fontWeight: '900', letterSpacing: -0.3 }}>
+        {triLang(lang, {
+          ru: 'Сезон 1', uk: 'Сезон 1', es: 'Temporada 1', 'pt-BR': 'Temporada 1',
+          vi: 'Mùa 1', id: 'Musim 1', tr: 'Sezon 1', pl: 'Sezon 1',
+        })}
+      </Text>
+      {/* зачем 2026-08-03 (владелец: «убери полоску уровня, просто возле каждого
+          подарка показывай сколько звёзд надо набрать»): полоска показывала
+          прогресс ТОЛЬКО текущего уровня и дублировала то, что теперь честнее
+          читается по золотой части хребта. Осталась строка-факт: где я и сколько
+          всего звёзд набрал — именно это число сравнивается с порогом у каждого
+          подарка ниже. */}
+      <View style={{ marginTop: 10, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+        <Text style={{ color: t.textSecond, fontSize: 14, fontWeight: '800' }}>
           {triLang(lang, {
-            ru: 'Сезон 1', uk: 'Сезон 1', es: 'Temporada 1', 'pt-BR': 'Temporada 1',
-            vi: 'Mùa 1', id: 'Musim 1', tr: 'Sezon 1', pl: 'Sezon 1',
+            ru: `Уровень ${progress.level} из ${SEASON_PASS_LEVELS}`,
+            uk: `Рівень ${progress.level} із ${SEASON_PASS_LEVELS}`,
+            es: `Nivel ${progress.level} de ${SEASON_PASS_LEVELS}`,
+            'pt-BR': `Nível ${progress.level} de ${SEASON_PASS_LEVELS}`,
+            vi: `Cấp ${progress.level}/${SEASON_PASS_LEVELS}`,
+            id: `Level ${progress.level}/${SEASON_PASS_LEVELS}`,
+            tr: `Seviye ${progress.level}/${SEASON_PASS_LEVELS}`,
+            pl: `Poziom ${progress.level} z ${SEASON_PASS_LEVELS}`,
           })}
         </Text>
-        <Text style={{ color: t.textSecond, fontSize: 13, fontWeight: '700', fontVariant: ['tabular-nums'] }}>
-          {triLang(lang, {
-            ru: `${daysLeft} дн.`, uk: `${daysLeft} дн.`, es: `${daysLeft} d`, 'pt-BR': `${daysLeft} d`,
-            vi: `${daysLeft} ngày`, id: `${daysLeft} hr`, tr: `${daysLeft} g`, pl: `${daysLeft} dni`,
-          })}
+        <Text style={{ color: t.textPrimary, fontSize: 15, fontWeight: '900', fontVariant: ['tabular-nums'] }}>
+          {progress.totalStars} ⭐
         </Text>
       </View>
-      <View style={{ marginTop: 12, borderRadius: 18, backgroundColor: t.bgCard, padding: 14 }}>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 8 }}>
-          <Text style={{ color: t.textSecond, fontSize: 13, fontWeight: '700' }}>
-            {triLang(lang, {
-              ru: `Уровень ${progress.level} из ${SEASON_PASS_LEVELS}`,
-              uk: `Рівень ${progress.level} із ${SEASON_PASS_LEVELS}`,
-              es: `Nivel ${progress.level} de ${SEASON_PASS_LEVELS}`,
-              'pt-BR': `Nível ${progress.level} de ${SEASON_PASS_LEVELS}`,
-              vi: `Cấp ${progress.level}/${SEASON_PASS_LEVELS}`,
-              id: `Level ${progress.level}/${SEASON_PASS_LEVELS}`,
-              tr: `Seviye ${progress.level}/${SEASON_PASS_LEVELS}`,
-              pl: `Poziom ${progress.level} z ${SEASON_PASS_LEVELS}`,
-            })}
-          </Text>
-          <Text style={{ color: t.textPrimary, fontSize: 13, fontWeight: '800', fontVariant: ['tabular-nums'] }}>
-            {progress.intoLevelStars}/{progress.levelCostStars} ⭐
-          </Text>
-        </View>
-        <View style={{ height: 10, borderRadius: 6, overflow: 'hidden', backgroundColor: t.bgSurface }}>
-          <View style={{ height: '100%', width: `${pct}%`, borderRadius: 6, backgroundColor: t.gold }} />
-        </View>
-      </View>
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 6, marginTop: 16, marginBottom: 2 }}>
+      {/* зачем 2026-08-03 (владелец: «смени текст "бесплатно и пропуск" на
+          "пропуск и плюс пропуск"»): «БЕСПЛАТНО» врало — с гейтом покупки эта
+          линия бесплатной больше не является, её тоже открывает пропуск.
+          Названия теперь описывают два тира одной покупки. */}
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 6, marginTop: 18, marginBottom: 4 }}>
         <Text /* guard-ok: заголовок КОЛОНКИ дорожки (шапка таблицы над рядами наград), не подпись под названием экрана */ style={{ color: t.textMuted, fontSize: 12, fontWeight: '800', letterSpacing: 0.4 }}>
-          {triLang(lang, { ru: 'БЕСПЛАТНО', uk: 'БЕЗКОШТОВНО', es: 'GRATIS', 'pt-BR': 'GRÁTIS', vi: 'MIỄN PHÍ', id: 'GRATIS', tr: 'ÜCRETSİZ', pl: 'DARMOWE' })}
+          {triLang(lang, { ru: 'ПРОПУСК', uk: 'ПЕРЕПУСТКА', es: 'PASE', 'pt-BR': 'PASSE', vi: 'VÉ MÙA', id: 'PASS', tr: 'BİLET', pl: 'PRZEPUSTKA' })}
         </Text>
         <Text style={{ color: t.gold, fontSize: 12, fontWeight: '800', letterSpacing: 0.4 }}>
-          {triLang(lang, { ru: 'ПРОПУСК', uk: 'ПЕРЕПУСТКА', es: 'PASE', 'pt-BR': 'PASSE', vi: 'VÉ MÙA', id: 'PASS', tr: 'BİLET', pl: 'PRZEPUSTKA' })}
+          {triLang(lang, { ru: 'ПЛЮС ПРОПУСК', uk: 'ПЛЮС ПЕРЕПУСТКА', es: 'PASE PLUS', 'pt-BR': 'PASSE PLUS', vi: 'VÉ MÙA PLUS', id: 'PASS PLUS', tr: 'PLUS BİLET', pl: 'PLUS PRZEPUSTKA' })}
         </Text>
       </View>
     </View>
-  ), [daysLeft, f.h1, lang, pct, pendingGiftCount, progress.intoLevelStars, progress.level, progress.levelCostStars, router, t]);
+  ), [f.h1, lang, pendingGiftCount, progress.level, progress.totalStars, router, t]);
 
   return (
     <View style={{ flex: 1, backgroundColor: t.bgPrimary }}>

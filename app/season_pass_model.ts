@@ -61,6 +61,24 @@ export const SEASON_PASS_TOTAL_STARS =
   EARLY_LEVELS * EARLY_LEVEL_COST_STARS
   + (SEASON_PASS_LEVELS - EARLY_LEVELS) * LATE_LEVEL_COST_STARS;
 
+/**
+ * Сколько ВСЕГО звёзд за сезон нужно накопить, чтобы открылся данный уровень.
+ *
+ * зачем 2026-08-03 (владелец: «убери полоску уровня, просто возле каждого
+ * подарка показывай сколько звёзд надо набрать чтобы он открылся»): полоска
+ * показывала прогресс ТОЛЬКО текущего уровня, и дальние подарки оставались без
+ * цены — игрок не понимал, далеко ли до конкретной награды. Порог накопительный
+ * (а не «осталось набрать»), потому что он обязан быть постоянной меткой
+ * подарка: сравнивается напрямую с общим счётом звёзд в шапке и не исчезает,
+ * когда уровень уже пройден.
+ */
+export function seasonPassStarsToUnlockLevel(level: number): number {
+  const target = Math.min(SEASON_PASS_LEVELS, Math.max(0, Math.floor(level)));
+  const earlyLevels = Math.min(EARLY_LEVELS, target);
+  const lateLevels = Math.max(0, target - EARLY_LEVELS);
+  return earlyLevels * EARLY_LEVEL_COST_STARS + lateLevels * LATE_LEVEL_COST_STARS;
+}
+
 /** 'YYYY-Qn' — сезон равен календарному кварталу, кронов не требует. */
 export function getSeasonPassSeasonId(now: Date = new Date()): string {
   const q = Math.floor(now.getUTCMonth() / 3) + 1;

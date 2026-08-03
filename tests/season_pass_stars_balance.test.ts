@@ -16,6 +16,7 @@ import {
   SEASON_PASS_LEVELS,
   SEASON_PASS_TOTAL_STARS,
   seasonPassLevelCostStars,
+  seasonPassStarsToUnlockLevel,
 } from '../app/season_pass_model';
 
 /**
@@ -82,5 +83,37 @@ describe('калибровка сезонной дорожки в звёздах
     expect(progress.level).toBe(SEASON_PASS_LEVELS);
     expect(progress.intoLevelStars).toBe(0);
     expect(progress.levelCostStars).toBe(0);
+  });
+});
+
+/**
+ * зачем 2026-08-03 (владелец: «возле каждого подарка показывай сколько звёзд
+ * надо набрать чтобы он открылся»): порог у карточки — обещание игроку. Если он
+ * разойдётся с реальной шкалой открытия уровней, экран будет показывать «350⭐»
+ * там, где подарок открывается на 415⭐ — прямая ложь в интерфейсе. Поэтому
+ * порог проверяется не на равенство хардкоду, а на СОГЛАСОВАННОСТЬ с
+ * computeSeasonPassProgress: ровно на пороге уровень обязан открыться, на
+ * звезду меньше — нет.
+ */
+describe('порог звёзд у карточки подарка', () => {
+  test('ровно на пороге уровень открыт, на звезду меньше — ещё нет', () => {
+    for (let level = 1; level <= SEASON_PASS_LEVELS; level += 1) {
+      const threshold = seasonPassStarsToUnlockLevel(level);
+      expect(computeSeasonPassProgress('2026-Q3', threshold).level).toBeGreaterThanOrEqual(level);
+      expect(computeSeasonPassProgress('2026-Q3', threshold - 1).level).toBeLessThan(level);
+    }
+  });
+
+  test('порог растёт вместе с уровнем и не даёт «бесплатных» ступеней', () => {
+    for (let level = 2; level <= SEASON_PASS_LEVELS; level += 1) {
+      expect(seasonPassStarsToUnlockLevel(level)).toBeGreaterThan(seasonPassStarsToUnlockLevel(level - 1));
+    }
+  });
+
+  test('последний уровень стоит ровно полную цену сезона', () => {
+    expect(seasonPassStarsToUnlockLevel(SEASON_PASS_LEVELS)).toBe(SEASON_PASS_TOTAL_STARS);
+    // Нулевой/отрицательный уровень не должен давать мусорное число на экране.
+    expect(seasonPassStarsToUnlockLevel(0)).toBe(0);
+    expect(seasonPassStarsToUnlockLevel(-5)).toBe(0);
   });
 });

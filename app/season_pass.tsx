@@ -294,12 +294,8 @@ export default function SeasonPassScreen() {
                   );
                 return (
                   <SeasonAuraRing
-                    source={asset.source}
+                    asset={asset}
                     size={SEASON_AURA_ART_SIZE}
-                    pulse={asset.pulse}
-                    spin={asset.spin}
-                    pulseDurationMs={asset.pulseMs}
-                    spinDurationMs={asset.spinMs}
                   />
                 );
               })()

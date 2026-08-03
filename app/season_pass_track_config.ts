@@ -5,6 +5,7 @@
 // Этап 1: конфиг read-only для отображения. Этап 2: серверная копия для клеймов.
 // ════════════════════════════════════════════════════════════════════════════
 import type { ImageSourcePropType } from 'react-native';
+import { isLightThemeMode, type ThemeMode } from '../constants/theme';
 
 export type SeasonRewardKind =
   | 'pearls'            // жемчужины, amount
@@ -31,54 +32,183 @@ export type SeasonRewardKind =
 export interface SeasonReward { kind: SeasonRewardKind; amount?: number }
 export interface SeasonTrackNode { level: number; free?: SeasonReward; pass?: SeasonReward }
 
-// Иконки — утверждённые ассеты (assets/images/season). Жемчуг рисуется
-// компонентом (тематическая жемчужина из coin_icons), у него иконки-файла нет.
-export const SEASON_REWARD_ICONS: Partial<Record<SeasonRewardKind, ImageSourcePropType>> = {
-  battery: require('../assets/images/season/reward_battery.webp'),
-  league_boost: require('../assets/images/season/reward_league_boost.webp'),
-  club_totem: require('../assets/images/season/reward_totem.webp'),
-  golden_lesson: require('../assets/images/season/reward_golden_lesson.webp'),
-  collection_magnet: require('../assets/images/season/reward_chest.webp'),
-  turbo_regen: require('../assets/images/season/reward_battery.webp'),
-  tournament_ticket: require('../assets/images/season/reward_crown.webp'),
-  time_machine: require('../assets/images/season/reward_golden_lesson.webp'),
-  friend_shield: require('../assets/images/season/reward_battery.webp'),
-  choice_3: require('../assets/images/season/reward_chest.webp'),
-  xp_bank: require('../assets/images/season/reward_golden_lesson.webp'),
-  plus_days: require('../assets/images/season/reward_league_boost.webp'),
-  frame: require('../assets/images/season/reward_crown.webp'),
-  aura_stage: require('../assets/images/season/reward_aura.webp'),
-  nick_color: require('../assets/images/season/reward_crown.webp'),
-  custom_avatar: require('../assets/images/season/reward_aura.webp'),
-  card_pack: require('../assets/images/season/reward_chest.webp'),
-  season_finale: require('../assets/images/season/reward_crown.webp'),
+// Жемчуг остаётся системной тематической иконкой из coin_icons. Все остальные
+// предметные награды получают собственный DALL·E-ассет в двух семействах:
+// sagePorcelain → light, все остальные ThemeMode → dark.
+export const SEASON_REWARD_ART_KINDS = [
+  'battery',
+  'league_boost',
+  'club_totem',
+  'golden_lesson',
+  'collection_magnet',
+  'turbo_regen',
+  'tournament_ticket',
+  'time_machine',
+  'friend_shield',
+  'choice_3',
+  'xp_bank',
+  'plus_days',
+  'frame',
+  'nick_color',
+  'custom_avatar',
+  'card_pack',
+] as const;
+
+export type SeasonRewardArtKind = typeof SEASON_REWARD_ART_KINDS[number];
+type SeasonArtTheme = 'light' | 'dark';
+
+const SEASON_REWARD_ICON_SOURCES: Readonly<Record<SeasonArtTheme, Readonly<Record<SeasonRewardArtKind, ImageSourcePropType>>>> = {
+  light: {
+    battery: require('../assets/images/season/rewards/light/battery.webp'),
+    league_boost: require('../assets/images/season/rewards/light/league_boost.webp'),
+    club_totem: require('../assets/images/season/rewards/light/club_totem.webp'),
+    golden_lesson: require('../assets/images/season/rewards/light/golden_lesson.webp'),
+    collection_magnet: require('../assets/images/season/rewards/light/collection_magnet.webp'),
+    turbo_regen: require('../assets/images/season/rewards/light/turbo_regen.webp'),
+    tournament_ticket: require('../assets/images/season/rewards/light/tournament_ticket.webp'),
+    time_machine: require('../assets/images/season/rewards/light/time_machine.webp'),
+    friend_shield: require('../assets/images/season/rewards/light/friend_shield.webp'),
+    choice_3: require('../assets/images/season/rewards/light/choice_3.webp'),
+    xp_bank: require('../assets/images/season/rewards/light/xp_bank.webp'),
+    plus_days: require('../assets/images/season/rewards/light/plus_days.webp'),
+    frame: require('../assets/images/season/rewards/light/frame.webp'),
+    nick_color: require('../assets/images/season/rewards/light/nick_color.webp'),
+    custom_avatar: require('../assets/images/season/rewards/light/custom_avatar.webp'),
+    card_pack: require('../assets/images/season/rewards/light/card_pack.webp'),
+  },
+  dark: {
+    battery: require('../assets/images/season/rewards/dark/battery.webp'),
+    league_boost: require('../assets/images/season/rewards/dark/league_boost.webp'),
+    club_totem: require('../assets/images/season/rewards/dark/club_totem.webp'),
+    golden_lesson: require('../assets/images/season/rewards/dark/golden_lesson.webp'),
+    collection_magnet: require('../assets/images/season/rewards/dark/collection_magnet.webp'),
+    turbo_regen: require('../assets/images/season/rewards/dark/turbo_regen.webp'),
+    tournament_ticket: require('../assets/images/season/rewards/dark/tournament_ticket.webp'),
+    time_machine: require('../assets/images/season/rewards/dark/time_machine.webp'),
+    friend_shield: require('../assets/images/season/rewards/dark/friend_shield.webp'),
+    choice_3: require('../assets/images/season/rewards/dark/choice_3.webp'),
+    xp_bank: require('../assets/images/season/rewards/dark/xp_bank.webp'),
+    plus_days: require('../assets/images/season/rewards/dark/plus_days.webp'),
+    frame: require('../assets/images/season/rewards/dark/frame.webp'),
+    nick_color: require('../assets/images/season/rewards/dark/nick_color.webp'),
+    custom_avatar: require('../assets/images/season/rewards/dark/custom_avatar.webp'),
+    card_pack: require('../assets/images/season/rewards/dark/card_pack.webp'),
+  },
 };
-// TODO(владелец): часть иконок временно переиспользована (магнит/билет/машина
-// времени и др.) — уникальные генерятся Кодексом отдельным заходом.
+
+function seasonArtTheme(themeMode: ThemeMode): SeasonArtTheme {
+  return isLightThemeMode(themeMode) ? 'light' : 'dark';
+}
+
+function isSeasonRewardArtKind(kind: SeasonRewardKind): kind is SeasonRewardArtKind {
+  return (SEASON_REWARD_ART_KINDS as readonly SeasonRewardKind[]).includes(kind);
+}
+
+export function getSeasonRewardIcon(
+  kind: SeasonRewardKind,
+  themeMode: ThemeMode,
+): ImageSourcePropType | undefined {
+  return isSeasonRewardArtKind(kind)
+    ? SEASON_REWARD_ICON_SOURCES[seasonArtTheme(themeMode)][kind]
+    : undefined;
+}
 
 /**
- * Ауры сезона — утверждённые кольца (владелец, 2026-08-03: «окей оставляем»).
- * Индекс = стадия-1 (stage 1 → [0], ..., stage 4/финал → [3]).
- * pulse/spin — параметры из season_status_rewards.template.html (--pd/--sd).
+ * Каждая сезонная аура состоит из трёх независимых растровых слоёв. Base дышит,
+ * flow вращается отдельно, particles мерцают и идут с третьей скоростью — так
+ * аура ощущается живой, а не одним вращающимся PNG-монолитом.
  */
-export const SEASON_AURA_STAGE_ASSETS: readonly {
-  source: ImageSourcePropType;
-  pulse: boolean;
-  spin: boolean;
+export type SeasonAuraAsset = Readonly<{
+  baseSource: ImageSourcePropType;
+  flowSource: ImageSourcePropType;
+  particlesSource: ImageSourcePropType;
   pulseMs: number;
-  spinMs: number;
-}[] = [
-  { source: require('../assets/images/season/aura_stage1.webp'), pulse: true,  spin: false, pulseMs: 8600, spinMs: 0 },
-  { source: require('../assets/images/season/aura_stage2.webp'), pulse: true,  spin: false, pulseMs: 9200, spinMs: 0 },
-  { source: require('../assets/images/season/aura_stage3.webp'), pulse: true,  spin: true,  pulseMs: 8800, spinMs: 30000 },
-  { source: require('../assets/images/season/aura_final.webp'),  pulse: true,  spin: true,  pulseMs: 8400, spinMs: 26000 },
-];
+  baseSpinMs: number;
+  flowSpinMs: number;
+  particlesSpinMs: number;
+  flowReverse: boolean;
+  particlesReverse: boolean;
+}>;
+
+const SEASON_AURA_STAGE_ASSETS: Readonly<Record<SeasonArtTheme, readonly SeasonAuraAsset[]>> = {
+  light: [
+    {
+      baseSource: require('../assets/images/season/auras/light/stage-1-base.webp'),
+      flowSource: require('../assets/images/season/auras/light/stage-1-flow.webp'),
+      particlesSource: require('../assets/images/season/auras/light/stage-1-particles.webp'),
+      pulseMs: 7200, baseSpinMs: 0, flowSpinMs: 28000, particlesSpinMs: 19000, flowReverse: false, particlesReverse: true,
+    },
+    {
+      baseSource: require('../assets/images/season/auras/light/stage-2-base.webp'),
+      flowSource: require('../assets/images/season/auras/light/stage-2-flow.webp'),
+      particlesSource: require('../assets/images/season/auras/light/stage-2-particles.webp'),
+      pulseMs: 6600, baseSpinMs: 46000, flowSpinMs: 24000, particlesSpinMs: 17000, flowReverse: true, particlesReverse: false,
+    },
+    {
+      baseSource: require('../assets/images/season/auras/light/stage-3-base.webp'),
+      flowSource: require('../assets/images/season/auras/light/stage-3-flow.webp'),
+      particlesSource: require('../assets/images/season/auras/light/stage-3-particles.webp'),
+      pulseMs: 5800, baseSpinMs: 38000, flowSpinMs: 20000, particlesSpinMs: 14500, flowReverse: false, particlesReverse: true,
+    },
+    {
+      baseSource: require('../assets/images/season/auras/light/stage-4-base.webp'),
+      flowSource: require('../assets/images/season/auras/light/stage-4-flow.webp'),
+      particlesSource: require('../assets/images/season/auras/light/stage-4-particles.webp'),
+      pulseMs: 4800, baseSpinMs: 32000, flowSpinMs: 16000, particlesSpinMs: 11500, flowReverse: true, particlesReverse: false,
+    },
+  ],
+  dark: [
+    {
+      baseSource: require('../assets/images/season/auras/dark/stage-1-base.webp'),
+      flowSource: require('../assets/images/season/auras/dark/stage-1-flow.webp'),
+      particlesSource: require('../assets/images/season/auras/dark/stage-1-particles.webp'),
+      pulseMs: 7200, baseSpinMs: 0, flowSpinMs: 28000, particlesSpinMs: 19000, flowReverse: false, particlesReverse: true,
+    },
+    {
+      baseSource: require('../assets/images/season/auras/dark/stage-2-base.webp'),
+      flowSource: require('../assets/images/season/auras/dark/stage-2-flow.webp'),
+      particlesSource: require('../assets/images/season/auras/dark/stage-2-particles.webp'),
+      pulseMs: 6600, baseSpinMs: 46000, flowSpinMs: 24000, particlesSpinMs: 17000, flowReverse: true, particlesReverse: false,
+    },
+    {
+      baseSource: require('../assets/images/season/auras/dark/stage-3-base.webp'),
+      flowSource: require('../assets/images/season/auras/dark/stage-3-flow.webp'),
+      particlesSource: require('../assets/images/season/auras/dark/stage-3-particles.webp'),
+      pulseMs: 5800, baseSpinMs: 38000, flowSpinMs: 20000, particlesSpinMs: 14500, flowReverse: false, particlesReverse: true,
+    },
+    {
+      baseSource: require('../assets/images/season/auras/dark/stage-4-base.webp'),
+      flowSource: require('../assets/images/season/auras/dark/stage-4-flow.webp'),
+      particlesSource: require('../assets/images/season/auras/dark/stage-4-particles.webp'),
+      pulseMs: 4800, baseSpinMs: 32000, flowSpinMs: 16000, particlesSpinMs: 11500, flowReverse: true, particlesReverse: false,
+    },
+  ],
+};
+
+export function getSeasonAuraStageAsset(stage: number, themeMode: ThemeMode): SeasonAuraAsset {
+  const index = Math.max(0, Math.min(3, Math.round(stage) - 1));
+  return SEASON_AURA_STAGE_ASSETS[seasonArtTheme(themeMode)][index];
+}
 
 /** Секретная пурпурная аура — эксклюзив 50 уровня (владелец, 2026-08-03). */
-export const SEASON_SECRET_AURA_ASSET = {
-  source: require('../assets/images/season/aura_secret.webp'),
-  pulse: true, spin: true, pulseMs: 8800, spinMs: 24000,
-} as const;
+const SEASON_SECRET_AURA_ASSETS: Readonly<Record<SeasonArtTheme, SeasonAuraAsset>> = {
+  light: {
+    baseSource: require('../assets/images/season/auras/light/secret-base.webp'),
+    flowSource: require('../assets/images/season/auras/light/secret-flow.webp'),
+    particlesSource: require('../assets/images/season/auras/light/secret-particles.webp'),
+    pulseMs: 5200, baseSpinMs: 36000, flowSpinMs: 18000, particlesSpinMs: 10000, flowReverse: false, particlesReverse: true,
+  },
+  dark: {
+    baseSource: require('../assets/images/season/auras/dark/secret-base.webp'),
+    flowSource: require('../assets/images/season/auras/dark/secret-flow.webp'),
+    particlesSource: require('../assets/images/season/auras/dark/secret-particles.webp'),
+    pulseMs: 5200, baseSpinMs: 36000, flowSpinMs: 18000, particlesSpinMs: 10000, flowReverse: false, particlesReverse: true,
+  },
+};
+
+export function getSeasonSecretAuraAsset(themeMode: ThemeMode): SeasonAuraAsset {
+  return SEASON_SECRET_AURA_ASSETS[seasonArtTheme(themeMode)];
+}
 
 const N = (level: number, free?: SeasonReward, pass?: SeasonReward): SeasonTrackNode => ({ level, free, pass });
 const P = (amount: number): SeasonReward => ({ kind: 'pearls', amount });

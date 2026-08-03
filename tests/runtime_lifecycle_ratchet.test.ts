@@ -108,6 +108,8 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
   'components/LevelGiftDualModal.tsx': owned('Dual gift loops are guarded by visible phase and stopped on cleanup.', ['if (!visible', 'idleAll.current?.stop()']),
   'components/LevelGiftModal.tsx': owned('Gift loops are guarded by visibility and stopped whenever hidden.', ['if (!visible || !gift)', 'idleLoop.current?.stop()']),
   'components/LingmanVideosButton.tsx': owned('Unread pulse follows the explicit retained-tab runtime owner.', ['ownerActive?: boolean', '!ownerActive', 'stop()']),
+  'components/SeasonAuraRing.tsx': guarded('Season aura layers run only on the focused foreground screen and respect Reduced Motion.'),
+  'components/SeasonGiftModal.tsx': owned('Finale nickname shimmer is mounted only while the gift modal is visible and stops on cleanup.', ["visible && reward.kind === 'season_finale'", 'return () => loop.stop()']),
   // зачем 2026-08-02: интеграционные мержи (targeted graft + preserve-worktree)
   // привезли анимационные файлы мимо реестра, и ратчет честно упал. Гарды в самих
   // файлах уже настоящие (useRuntimeActive + cancel/stop) — здесь фиксируем их

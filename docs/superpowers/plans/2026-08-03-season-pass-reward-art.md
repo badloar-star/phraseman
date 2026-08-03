@@ -4,7 +4,7 @@
 
 **Goal:** Replace reused Season Pass reward art with large theme-aware unique icons and new animated aura stages while preserving reward behavior.
 
-**Architecture:** `app/season_pass_track_config.ts` owns static light/dark asset maps and typed resolver functions. `app/season_pass.tsx` and `components/SeasonGiftModal.tsx` consume those resolvers using the current `ThemeMode`. Final WebP assets are cropped from four built-in DALL·E atlases and checked by a focused contract test.
+**Architecture:** `app/season_pass_track_config.ts` owns static light/dark asset maps and typed resolver functions. `app/season_pass.tsx` and `components/SeasonGiftModal.tsx` consume those resolvers using the current `ThemeMode`. Every aura is composed from independent base, flow, and particle WebPs. Final assets are cropped from eight built-in DALL·E atlases and checked by a focused contract test.
 
 **Tech Stack:** React Native, Expo Image assets, TypeScript, React Native Animated, Jest contract tests, Sharp for mechanical atlas processing.
 
@@ -19,15 +19,15 @@
 - Read: `components/SeasonGiftModal.tsx`
 - Read: `components/SeasonAuraRing.tsx`
 
-- [ ] **Step 1: Write the failing asset-map test**
+- [x] **Step 1: Write the failing asset-map test**
 
-Create a source contract that requires exactly sixteen light and sixteen dark reward asset paths, five light and five dark aura paths, `isLightThemeMode`-based resolution, and static `require()` calls under `assets/images/season/rewards` and `assets/images/season/auras`.
+Create a source contract that requires exactly sixteen light and sixteen dark reward asset paths, three independent layer paths for each of five light and five dark auras, `isLightThemeMode`-based resolution, and static `require()` calls under `assets/images/season/rewards` and `assets/images/season/auras`.
 
-- [ ] **Step 2: Write the failing UI visibility and lifecycle test**
+- [x] **Step 2: Write the failing UI visibility and lifecycle test**
 
 Require `SEASON_REWARD_ART_SIZE >= 56`, `SEASON_AURA_ART_SIZE >= 60`, a row height of at least 104, theme-aware resolvers in both consumers, and `AppState`, focus, Reduced Motion, and loop cleanup markers in `SeasonAuraRing`.
 
-- [ ] **Step 3: Run the focused test and confirm RED**
+- [x] **Step 3: Run the focused test and confirm RED**
 
 Run:
 
@@ -45,19 +45,19 @@ Expected: FAIL because theme-aware maps, dimensions, and generated assets do not
 - Modify: `components/SeasonGiftModal.tsx`
 - Test: `tests/season_pass_reward_art.test.ts`
 
-- [ ] **Step 1: Replace the shared reward constant with typed maps**
+- [x] **Step 1: Replace the shared reward constant with typed maps**
 
 Add `SEASON_REWARD_ART_KINDS`, `SEASON_REWARD_ICON_SOURCES`, and `getSeasonRewardIcon(kind, themeMode)`. Use one static `require()` for each light and dark reward file and return `undefined` for system rewards such as pearls and aura kinds.
 
-- [ ] **Step 2: Add typed aura variants**
+- [x] **Step 2: Add typed aura variants**
 
-Add light/dark arrays for stages I–IV plus a light/dark secret aura map. Export `getSeasonAuraStageAsset(stage, themeMode)` and `getSeasonSecretAuraAsset(themeMode)`.
+Add light/dark arrays for stages I–IV plus a light/dark secret aura map. Every entry exposes `baseSource`, `flowSource`, and `particlesSource` plus independent motion timings/directions. Export `getSeasonAuraStageAsset(stage, themeMode)` and `getSeasonSecretAuraAsset(themeMode)`.
 
-- [ ] **Step 3: Update both UI consumers**
+- [x] **Step 3: Update both UI consumers**
 
 Resolve art with `themeMode` in the track, modal hero, and choice rows. Keep pearl handling on `pearlIconForTheme`.
 
-- [ ] **Step 4: Run the focused test**
+- [x] **Step 4: Run the focused test**
 
 Run the Task 1 Jest command. Expected: asset-path assertions pass once files exist; layout assertions may still fail until Task 4.
 
@@ -66,31 +66,31 @@ Run the Task 1 Jest command. Expected: asset-path assertions pass once files exi
 **Files:**
 - Create: `.codex-tmp/season-pass-art/reward-light-atlas.png`
 - Create: `.codex-tmp/season-pass-art/reward-dark-atlas.png`
-- Create: `.codex-tmp/season-pass-art/aura-light-atlas.png`
-- Create: `.codex-tmp/season-pass-art/aura-dark-atlas.png`
+- Create: `.codex-tmp/season-pass-art/aura-light-{base,flow,particles}-atlas.png`
+- Create: `.codex-tmp/season-pass-art/aura-dark-{base,flow,particles}-atlas.png`
 - Create: `assets/images/season/rewards/light/*.webp`
 - Create: `assets/images/season/rewards/dark/*.webp`
 - Create: `assets/images/season/auras/light/*.webp`
 - Create: `assets/images/season/auras/dark/*.webp`
 - Delete after zero-reference check: old `assets/images/season/reward_*.webp` and old flat `assets/images/season/aura_*.webp`
 
-- [ ] **Step 1: Generate the two 4 × 4 reward atlases**
+- [x] **Step 1: Generate the two 4 × 4 reward atlases**
 
 Use built-in image generation with the fixed row-major order from `SEASON_REWARD_ART_KINDS`, a uniform `#00FF00` background, one centered object per cell, no labels, no shadows on the background, and no object crossing a cell boundary. Generate a high-contrast porcelain version and a luminous dark-theme version.
 
-- [ ] **Step 2: Generate the two aura atlases**
+- [x] **Step 2: Generate the six layered aura atlases**
 
-Use five isolated cells in order: stage I, stage II, stage III, stage IV, secret. Keep the central avatar opening transparent after key removal and make each stage structurally different.
+Use five isolated cells in order: stage I, stage II, stage III, stage IV, secret. Generate base, flow, and particles separately for both theme families. Keep the central avatar opening transparent after key removal, make each stage structurally different, and keep Stage II to a clean circular base plus one separate C-shaped flow ribbon.
 
-- [ ] **Step 3: Crop, remove the key, and compress**
+- [x] **Step 3: Crop, remove the key, and compress**
 
 Use the bundled Sharp runtime to crop deterministic grid cells, remove chroma-key pixels with a soft edge, trim only safe outer padding, resize reward outputs to 256 × 256 and aura outputs to 320 × 320, and write alpha WebP at quality 72.
 
-- [ ] **Step 4: Validate generated files**
+- [x] **Step 4: Validate generated files**
 
 For every final asset assert WebP format, four channels, alpha present, non-empty subject coverage, expected dimensions, and a reasonable compressed byte size. Build local contact sheets for inspection under `.codex-tmp/season-pass-art/`.
 
-- [ ] **Step 5: Remove replaced flat assets safely**
+- [x] **Step 5: Remove replaced flat assets safely**
 
 Copy old files to `.codex-tmp/season-pass-art/old-assets-backup/`, confirm no source references remain with literal `rg`, then delete only the explicitly replaced old Season Pass reward and aura files.
 
@@ -101,19 +101,19 @@ Copy old files to `.codex-tmp/season-pass-art/old-assets-backup/`, confirm no so
 - Modify: `components/SeasonAuraRing.tsx`
 - Test: `tests/season_pass_reward_art.test.ts`
 
-- [ ] **Step 1: Enlarge the track art**
+- [x] **Step 1: Enlarge the track art**
 
 Set exported constants `SEASON_REWARD_ART_SIZE` and `SEASON_AURA_ART_SIZE` to at least 56 and 60. Increase `ROW_HEIGHT` to at least 104 and switch reward cards to an art-first vertical layout with labels below the art.
 
-- [ ] **Step 2: Move status indicators out of the content row**
+- [x] **Step 2: Move status indicators out of the content row**
 
 Position lock and claim indicators in the card corner so they no longer reduce label width. Preserve the existing claim handler, disabled state, opacity, test IDs, and 44 × 44 minimum touch target.
 
-- [ ] **Step 3: Add foreground lifecycle gating**
+- [x] **Step 3: Add foreground lifecycle gating**
 
-In `SeasonAuraRing`, start loops only when focused, active, and motion is allowed. Stop loops on background/inactive transitions and during cleanup. Animate only scale, rotation, and opacity; return a static frame for Reduced Motion.
+In `SeasonAuraRing`, stack the base, flow, and particle images. Give each layer its own rotation duration/direction and pulse/twinkle transform. Start loops only when focused, active, and motion is allowed. Stop loops on background/inactive transitions and during cleanup. Animate only scale, rotation, and opacity; return a static frame for Reduced Motion.
 
-- [ ] **Step 4: Run focused tests**
+- [x] **Step 4: Run focused tests**
 
 Run the Task 1 Jest command. Expected: PASS.
 
@@ -128,20 +128,22 @@ Run the Task 1 Jest command. Expected: PASS.
 
 - [ ] **Step 1: Run narrow contracts**
 
+The Season Pass and performance contracts pass. The full lifecycle ratchet still detects the unrelated untracked `components/tournament/TournamentBackdrop.tsx`; its reviewed-owner assertion passes for both Season Pass animation files.
+
 ```powershell
 npx jest --runTestsByPath tests/season_pass_reward_art.test.ts tests/runtime_lifecycle_ratchet.test.ts tests/perf_freeze_contract.test.ts --no-cache --runInBand
 ```
 
 Expected: all tests pass.
 
-- [ ] **Step 2: Run targeted TypeScript diagnostics**
+- [x] **Step 2: Run targeted TypeScript diagnostics**
 
 Run the repository TypeScript command only if it can be scoped; otherwise run the existing compiler and filter decisive diagnostics to the modified files without dumping the complete log into the conversation.
 
-- [ ] **Step 3: Verify asset references and repository hygiene**
+- [x] **Step 3: Verify asset references and repository hygiene**
 
 Confirm every new bundled file appears in a static `require()`, no removed filename remains referenced, `git diff --check` passes, and unrelated pre-existing worktree changes remain untouched.
 
-- [ ] **Step 4: Inspect final contact sheets**
+- [x] **Step 4: Inspect final contact sheets**
 
 Open both reward and aura contact sheets and verify silhouettes, theme contrast, cell identity, alpha edges, and absence of text/watermarks before reporting completion.

@@ -26,9 +26,9 @@ import {
   seasonSendFriendShieldOnServer,
 } from '../app/season_pass_server';
 import {
-  SEASON_AURA_STAGE_ASSETS,
-  SEASON_REWARD_ICONS,
-  SEASON_SECRET_AURA_ASSET,
+  getSeasonAuraStageAsset,
+  getSeasonRewardIcon,
+  getSeasonSecretAuraAsset,
   type SeasonReward,
 } from '../app/season_pass_track_config';
 import { subscribeToFriends, type FriendEntry } from '../app/firestore_friend_requests';
@@ -255,16 +255,16 @@ export default function SeasonGiftModal({ visible, reward, giftId, userName, onC
   const art = useMemo(() => {
     if (!reward) return null;
     if (reward.kind === 'aura_stage') {
-      const a = SEASON_AURA_STAGE_ASSETS[Math.max(0, Math.min(3, (reward.amount ?? 1) - 1))];
-      return <SeasonAuraRing source={a.source} size={104} pulse={a.pulse} spin={a.spin} pulseDurationMs={a.pulseMs} spinDurationMs={a.spinMs} />;
+      const a = getSeasonAuraStageAsset(reward.amount ?? 1, themeMode);
+      return <SeasonAuraRing asset={a} size={104} />;
     }
     if (reward.kind === 'aura_secret') {
-      const a = SEASON_SECRET_AURA_ASSET;
-      return <SeasonAuraRing source={a.source} size={112} pulse spin pulseDurationMs={a.pulseMs} spinDurationMs={a.spinMs} />;
+      const a = getSeasonSecretAuraAsset(themeMode);
+      return <SeasonAuraRing asset={a} size={112} />;
     }
     if (reward.kind === 'season_finale') {
-      const a = SEASON_AURA_STAGE_ASSETS[3];
-      return <SeasonAuraRing source={a.source} size={104} pulse spin pulseDurationMs={a.pulseMs} spinDurationMs={a.spinMs} />;
+      const a = getSeasonAuraStageAsset(4, themeMode);
+      return <SeasonAuraRing asset={a} size={104} />;
     }
     if (reward.kind === 'pearls') {
       return (
@@ -283,9 +283,9 @@ export default function SeasonGiftModal({ visible, reward, giftId, userName, onC
         </View>
       );
     }
-    const icon = SEASON_REWARD_ICONS[reward.kind];
+    const icon = getSeasonRewardIcon(reward.kind, themeMode);
     return icon ? <Image source={icon} style={{ width: 92, height: 92 }} resizeMode="contain" accessible={false} /> : null;
-  }, [pearlIcon, reward, t]);
+  }, [pearlIcon, reward, t, themeMode]);
 
   if (!reward) return null;
   const copy = MODAL_COPY[reward.kind];
@@ -299,7 +299,7 @@ export default function SeasonGiftModal({ visible, reward, giftId, userName, onC
             {phase === 'applying' ? <ActivityIndicator size="large" color={t.gold} /> : art}
           </View>
 
-          {reward.kind === 'season_finale' && phase !== 'applying' && (
+          {visible && reward.kind === 'season_finale' && phase !== 'applying' && (
             <ShimmerNick name={leaguePublicName(userName, 'you') || 'Nick'} />
           )}
 
@@ -364,7 +364,7 @@ export default function SeasonGiftModal({ visible, reward, giftId, userName, onC
                 >
                   {opt.reward.kind === 'pearls'
                     ? <Image source={pearlIcon} style={{ width: 28, height: 28 }} resizeMode="contain" accessible={false} />
-                    : <Image source={SEASON_REWARD_ICONS[opt.reward.kind]!} style={{ width: 28, height: 28 }} resizeMode="contain" accessible={false} />}
+                    : <Image source={getSeasonRewardIcon(opt.reward.kind, themeMode)!} style={{ width: 28, height: 28 }} resizeMode="contain" accessible={false} />}
                   <Text style={{ flex: 1, color: t.textPrimary, fontSize: 14, fontWeight: '800' }}>
                     {triLang(lang, MODAL_COPY[opt.labelKey].title)}{opt.reward.kind === 'pearls' ? ` +${opt.reward.amount}` : ''}
                   </Text>

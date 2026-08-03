@@ -47,7 +47,7 @@ Only two generated art families are required:
 - **Light:** used by `sagePorcelain`, the canonical light theme returned by `isLightThemeMode`.
 - **Dark:** used by every other `ThemeMode`.
 
-Each reward and each aura has one light and one dark file. Theme selection is centralized in `app/season_pass_track_config.ts`; screens and modals request an asset through typed resolver functions instead of reading a shared constant directly.
+Each reward has one light and one dark file. Each aura has three independently animated files per theme: a structural base, an energy-flow ribbon, and particles/highlights. Theme selection is centralized in `app/season_pass_track_config.ts`; screens and modals request an asset through typed resolver functions instead of reading a shared constant directly.
 
 ## Art Direction
 
@@ -65,12 +65,16 @@ The light set uses saturated materials, darker edge definition, and restrained h
 
 ## Generation Strategy
 
-Use Codex built-in image generation, not a project API key. To avoid storing dozens of independent base64 generations in the session, generate four source atlases:
+Use Codex built-in image generation, not a project API key. To avoid storing dozens of independent base64 generations in the session, generate eight source atlases:
 
 1. light reward atlas: 4 × 4 cells;
 2. dark reward atlas: 4 × 4 cells;
-3. light aura atlas: five isolated aura cells;
-4. dark aura atlas: five isolated aura cells.
+3. light aura base atlas: five isolated aura cells;
+4. light aura flow atlas: five isolated aura cells;
+5. light aura particles atlas: five isolated aura cells;
+6. dark aura base atlas: five isolated aura cells;
+7. dark aura flow atlas: five isolated aura cells;
+8. dark aura particles atlas: five isolated aura cells.
 
 Every atlas uses a flat removable chroma-key background, fixed cell ordering, no labels, and no object crossing a cell boundary. Local tooling crops the cells, removes the key color, validates alpha coverage, resizes, and writes compressed WebP files. Raw atlases and intermediate PNGs stay in `.codex-tmp/season-pass-art/`; only final wired WebP files enter `assets/images/season/`.
 
@@ -90,15 +94,19 @@ Labels remain authored text and may wrap to two balanced lines. The art must rem
 
 ## Aura Progression And Motion
 
-The aura family communicates progression rather than recoloring one ring:
+The aura family communicates progression rather than recoloring one ring. Every aura is assembled from three transparent layers so its movement reads as internal energy rather than a single rotating sticker:
+
+- **Base:** the stable silhouette and soft breathing glow.
+- **Flow:** one incomplete ribbon/arc that rotates independently from the base.
+- **Particles:** sparse highlights that rotate at a third speed and twinkle through opacity.
 
 - **Stage I:** restrained luminous seed ring; slow breathing pulse.
-- **Stage II:** layered orbit with a second energy ribbon; pulse and very slow rotation.
+- **Stage II:** clean circular base with one separate C-shaped energy ribbon; no drooping double-loop silhouette.
 - **Stage III:** asymmetric prismatic spiral; pulse, rotation, and brighter halo.
 - **Stage IV / finale:** dense crowned vortex with the strongest motion and glow.
 - **Secret:** unmistakable purple eclipse/vortex, visually separate from the four-stage path.
 
-Animation uses transform and opacity only. Infinite loops run only while the screen is focused and the app is active, stop during background/inactive states, clean up on unmount, and render a static frame when Reduced Motion is enabled.
+Animation uses transform and opacity only. The base, flow, and particles use different durations and may rotate in opposite directions; their pulse/twinkle phases are also independent. Infinite loops run only while the screen is focused and the app is active, stop during background/inactive states, clean up on unmount, and render a static frame when Reduced Motion is enabled.
 
 ## Integration
 
@@ -115,7 +123,7 @@ Static `require()` calls wire every generated asset 1:1 before generation. No un
 Focused tests must prove:
 
 - all sixteen non-system reward kinds have distinct light and dark asset paths;
-- all five aura variants have distinct light and dark asset paths;
+- all five aura variants have distinct base, flow, and particle paths for both light and dark themes;
 - `sagePorcelain` resolves the light family and every other theme resolves the dark family;
 - pearls still use the existing system icon path;
 - track reward and aura dimensions meet the new visibility floor;

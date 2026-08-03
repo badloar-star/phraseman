@@ -92,28 +92,16 @@ type MemberResult = {
 };
 
 export function computeGroupResults(
-  members: Record<string, { points?: unknown; uid?: unknown; leagueId?: unknown }>,
+  members: Record<string, { points?: unknown; uid?: unknown }>,
   leagueId: number,
   xpPromotion: XpPromotionConfig,
 ): Record<string, MemberResult> {
-  // зачем (сводный пул, 2026-08-03): комната может быть общей на все лиги —
-  // личная лига берётся из записи участника (members.{uid}.leagueId), для
-  // легаси-комнат (один уровень на комнату) — из leagueId документа. Каждый
-  // повышается/понижается ОТ СВОЕЙ личной лиги, а не от лиги комнаты — это и
-  // есть «умное слияние» без ботов-заполнителей.
   const entries = Object.entries(members)
     .filter(([, m]) => (m as Record<string, unknown>)?.identityHidden !== true)
-    .map(([uid, m]) => {
-      const raw = m as Record<string, unknown>;
-      const memberLeagueRaw = Math.trunc(Number(raw.leagueId));
-      return {
-        uid,
-        leagueId: Number.isFinite(memberLeagueRaw) && memberLeagueRaw >= 0 && memberLeagueRaw <= CLUBS_MAX_ID
-          ? memberLeagueRaw
-          : Math.max(0, Math.min(CLUBS_MAX_ID, leagueId)),
-        points: Math.max(0, Math.trunc(Number(raw.points ?? 0)) || 0),
-      };
-    })
+    .map(([uid, m]) => ({
+      uid,
+      points: Math.max(0, Math.trunc(Number((m as Record<string, unknown>).points ?? 0)) || 0),
+    }))
     .sort((a, b) => b.points - a.points || a.uid.localeCompare(b.uid));
 
   const total = entries.length;
@@ -127,18 +115,18 @@ export function computeGroupResults(
     // очкам, БЕЗ понижения — чтобы сервер совпал с клиентским бейджем «Переход».
     // Иначе — обычный rank-режим (топ-15% ↑, низ-15% ↓).
     const promoted = xpPromotion.enabled
-      ? e.points >= xpPromotion.threshold && e.leagueId < CLUBS_MAX_ID
-      : total >= 2 && rank <= zoneSize && e.leagueId < CLUBS_MAX_ID;
+      ? e.points >= xpPromotion.threshold && leagueId < CLUBS_MAX_ID
+      : total >= 2 && rank <= zoneSize && leagueId < CLUBS_MAX_ID;
     const demoted = xpPromotion.enabled
       ? false
-      : total >= 2 && bottomRank <= zoneSize && e.leagueId > 0 && !promoted;
+      : total >= 2 && bottomRank <= zoneSize && leagueId > 0 && !promoted;
     results[e.uid] = {
       rank,
       total,
       promoted,
       demoted,
-      prevLeagueId: e.leagueId,
-      newLeagueId: promoted ? e.leagueId + 1 : demoted ? e.leagueId - 1 : e.leagueId,
+      prevLeagueId: leagueId,
+      newLeagueId: promoted ? leagueId + 1 : demoted ? leagueId - 1 : leagueId,
       points: e.points,
     };
   });

@@ -12,6 +12,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ActivityIndicator, FlatList, Image, Modal, Text, TouchableOpacity, View, type ListRenderItemInfo } from 'react-native';
+import Svg, { Path } from 'react-native-svg';
 import { FlowText } from '../components/text-integrity/FlowText';
 import { Stack, useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -49,6 +50,19 @@ import { getShardsBalance, loadShardsFromCloud } from './shards_system';
 const ROW_HEIGHT = 96;
 const NODE_COLUMN_WIDTH = 56;
 const SPINE_WIDTH = 4;
+// зачем: владелец — «искривление на разных типах подарков» вместо прямой линии,
+// которая к тому же рвалась на стыках строк (два отдельных прямоугольных сегмента
+// в соседних View, шов между ними). Один SVG-путь на строку от края до края
+// заменяет оба прямоугольника: разрыв исчезает физически, а изгиб детерминирован
+// по kind награды — один и тот же подарок всегда даёт одну и ту же волну, не
+// случайный дребезг между перерендерами.
+const SPINE_WAVE_AMPLITUDE = 16;
+function spineWaveOffsetForKind(kind: string | undefined): number {
+  if (!kind) return 0;
+  let hash = 0;
+  for (let i = 0; i < kind.length; i++) hash = (hash * 31 + kind.charCodeAt(i)) | 0;
+  return ((hash % 100) / 100) * SPINE_WAVE_AMPLITUDE * 2 - SPINE_WAVE_AMPLITUDE;
+}
 // зачем: владелец, 2026-08-03 — цена поднята с 250 до 350 (его прямое решение).
 const SEASON_PASS_PRICE_PEARLS = 350;
 
@@ -292,27 +306,47 @@ export default function SeasonPassScreen() {
     const reached = progress.level >= item.level;
     const isCurrent = progress.level + 1 === item.level;
     const isLast = index === SEASON_TRACK.length - 1;
+    const prevNode = index > 0 ? SEASON_TRACK[index - 1] : undefined;
+    const nextNode = !isLast ? SEASON_TRACK[index + 1] : undefined;
+    // Изгиб каждой точки — по kind её ГЛАВНОЙ (pass, иначе free) награды. Общая
+    // амплитуда ограничена padding'ом узла (NODE_COLUMN_WIDTH=56, узел до 36px),
+    // так что кривая никогда не наезжает на боковые карточки.
+    const curOffset = spineWaveOffsetForKind(item.pass?.kind ?? item.free?.kind);
+    const prevOffset = prevNode ? spineWaveOffsetForKind(prevNode.pass?.kind ?? prevNode.free?.kind) : curOffset;
+    const nextOffset = nextNode ? spineWaveOffsetForKind(nextNode.pass?.kind ?? nextNode.free?.kind) : curOffset;
+    const cx = NODE_COLUMN_WIDTH / 2;
+    const halfH = ROW_HEIGHT / 2;
+    const topReached = progress.level >= item.level - 1;
+    const bottomReached = reached;
     return (
       <View style={{ height: ROW_HEIGHT, flexDirection: 'row', alignItems: 'stretch', gap: 8, paddingHorizontal: 14 }}>
         {renderReward(item.free, 'free', reached, item.level)}
         <View style={{ width: NODE_COLUMN_WIDTH, alignItems: 'center', justifyContent: 'center' }}>
-          {/* Хребет: сегмент СВЕРХУ узла (кроме первой строки) и СНИЗУ (кроме
-              последней), пройденный участок закрашен акцентом — та же идея,
-              что .a-spine i в макете, но реализована по сегментам под FlatList. */}
-          {index > 0 && (
-            <View style={{
-              position: 'absolute', top: 0, left: '50%', marginLeft: -SPINE_WIDTH / 2,
-              width: SPINE_WIDTH, height: ROW_HEIGHT / 2, borderRadius: SPINE_WIDTH / 2,
-              backgroundColor: progress.level >= item.level - 1 ? t.gold : t.bgSurface,
-            }} />
-          )}
-          {!isLast && (
-            <View style={{
-              position: 'absolute', bottom: 0, left: '50%', marginLeft: -SPINE_WIDTH / 2,
-              width: SPINE_WIDTH, height: ROW_HEIGHT / 2, borderRadius: SPINE_WIDTH / 2,
-              backgroundColor: reached ? t.gold : t.bgSurface,
-            }} />
-          )}
+          {/* Хребет: ОДНА непрерывная SVG-кривая на строку (не два прямоугольника
+              со швом на стыке — прежняя причина видимого разрыва линии). Верхняя
+              половина идёт от X-изгиба предыдущего узла к текущему, нижняя — от
+              текущего к следующему; оба конца совпадают с соседними строками
+              математически (тот же spineWaveOffsetForKind), не только визуально. */}
+          <Svg width={NODE_COLUMN_WIDTH} height={ROW_HEIGHT} style={{ position: 'absolute', top: 0, left: 0 }}>
+            {index > 0 && (
+              <Path
+                d={`M ${cx + prevOffset} 0 Q ${cx + curOffset} ${halfH * 0.6} ${cx + curOffset} ${halfH}`}
+                stroke={topReached ? t.gold : t.bgSurface}
+                strokeWidth={SPINE_WIDTH}
+                strokeLinecap="round"
+                fill="none"
+              />
+            )}
+            {!isLast && (
+              <Path
+                d={`M ${cx + curOffset} ${halfH} Q ${cx + curOffset} ${halfH * 1.4} ${cx + nextOffset} ${ROW_HEIGHT}`}
+                stroke={bottomReached ? t.gold : t.bgSurface}
+                strokeWidth={SPINE_WIDTH}
+                strokeLinecap="round"
+                fill="none"
+              />
+            )}
+          </Svg>
           <View style={{
             width: isCurrent ? 36 : 30,
             height: isCurrent ? 36 : 30,
@@ -321,6 +355,7 @@ export default function SeasonPassScreen() {
             justifyContent: 'center',
             backgroundColor: reached ? t.gold : isCurrent ? t.accentBg : t.bgSurface,
             zIndex: 2,
+            transform: [{ translateX: curOffset }],
           }}>
             <Text style={{
               color: reached ? t.textOnGold : isCurrent ? t.accent : t.textMuted,

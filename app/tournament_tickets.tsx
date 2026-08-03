@@ -1,43 +1,50 @@
 // ═══════════════════════════════════════════════════════════════════════════
 // tournament_tickets.tsx — билеты турниров (макеты 36-38).
 //
-// зачем: билет — валюта входа. Экран отвечает на два вопроса: сколько у меня
-// и как получить ещё. Карточки-билеты с надрезами по бокам (как настоящие),
-// прогресс до VIP-входа, источники пополнения.
+// зачем: билет — не отдельный баланс, а витрина входа (владелец 2026-08-03:
+// «билет стоит 3 жемчужины, 1 билет в неделю можно получить бесплатно»).
+// Число билетов = жемчужины ÷ цена входа + бесплатный недельный вход,
+// оба числа приходят с сервера вместе с банком недели (0 доп. чтений).
 // ═══════════════════════════════════════════════════════════════════════════
 
-import React, { memo, useCallback, useMemo, useState } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { FlowText } from '../components/text-integrity/FlowText';
 import Animated, { FadeInDown, ZoomIn } from 'react-native-reanimated';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { Card, Cta, Sheet } from '../components/tournament/tournament_ui';
 import { T, radius, type } from '../components/tournament/tournament_theme';
+import { loadWeeklyBankInfo, type WeeklyBankInfo } from './tournament_client';
 
-const VIP_COST = 5;
-const TICKET_GEM_PRICE = 20;
+const DEFAULT_ENTRY_GEMS = 3;
 
 type Source = { icon: string; title: string; hint: string; ready?: boolean };
 
-/** Источники билетов — совпадают со спекой §4 (все способы получения). */
+/** Источники жемчужин, из которых складываются билеты — спека §4. */
 const SOURCES: Source[] = [
   { icon: '🎁', title: 'Подарок за уровень', hint: 'каждый новый уровень', ready: true },
   { icon: '🔥', title: 'Серия 7 дней', hint: 'осталось 3 дня' },
   { icon: '🎡', title: 'Награда за друга', hint: 'пригласи — получите оба', ready: true },
-  { icon: '🆓', title: 'Бесплатный вход недели', hint: 'обновится в понедельник', ready: true },
 ];
 
 export default function TournamentTicketsScreen() {
   const insets = useStableSafeAreaInsets();
 
-  // TODO(server): баланс придёт из профиля одним снимком вместе с главной.
-  // Типы широкие намеренно: с литералами TS считает сравнения с нулём
-  // «недостижимыми» и краевое состояние «билетов нет» выпало бы из проверок.
-  const [tickets] = useState<number>(3);
-  const [gems] = useState<number>(124);
+  // зачем: peek — синхронный первый кадр из кэша loadWeeklyBankInfo (тот же
+  // источник, что и лобби), без «сначала пусто, потом появилось».
+  const [bank, setBank] = useState<WeeklyBankInfo | null>(() => null);
+  useEffect(() => {
+    let cancelled = false;
+    loadWeeklyBankInfo().then((result) => {
+      if (!cancelled) setBank(result);
+    }).catch(() => {});
+    return () => { cancelled = true; };
+  }, []);
 
-  const toVip = Math.max(0, VIP_COST - tickets);
-  const canBuy = gems >= TICKET_GEM_PRICE;
+  const entryGems = Math.max(1, bank?.entryGems ?? DEFAULT_ENTRY_GEMS);
+  const gems = Math.max(0, bank?.gemBalance ?? 0);
+  const freeEntryAvailable = bank?.freeEntryAvailable ?? false;
+  const tickets = Math.floor(gems / entryGems) + (freeEntryAvailable ? 1 : 0);
 
   const [howToVisible, setHowToVisible] = useState(false);
   const openHowTo = useCallback(() => setHowToVisible(true), []);
@@ -83,29 +90,20 @@ export default function TournamentTicketsScreen() {
           </Text>
         </Card>
 
-        {/* VIP-прогресс */}
+        {/* Бесплатный вход недели — реальная механика вместо витринного VIP. */}
         <Card tone="gold" pad={18}>
           <View style={styles.vipRow}>
-            <Text style={styles.vipIcon}>👑</Text>
+            <Text style={styles.vipIcon}>{freeEntryAvailable ? '🆓' : '✅'}</Text>
             <View style={styles.vipBody}>
-              <Text style={styles.vipTitle}>VIP нужно {VIP_COST} 🎟</Text>
+              <Text style={styles.vipTitle}>Бесплатный вход недели</Text>
               <Text style={styles.vipHint}>
-                {toVip > 0 ? `не хватает ${toVip} до воскресенья` : 'вход открыт'}
+                {freeEntryAvailable ? 'ещё не использован — доступен сейчас' : 'уже использован на этой неделе'}
               </Text>
             </View>
           </View>
         </Card>
 
         <Cta onPress={openHowTo}>Как получить ещё</Cta>
-
-        {/* зачем: 💎 — запрещённая эмодзи-валюта (правило владельца, тот же
-            запрет уже применён в tournament_results.tsx). Cta заворачивает
-            children в один <Text>, поэтому картинку-жемчужину сюда не вставить
-            без переделки компонента — текстом ссылаемся на «жемчужин», как в
-            призовом тексте результатов. */}
-        <Cta ghost disabled={!canBuy}>
-          Купить 1 🎟 за {TICKET_GEM_PRICE} жемчужин
-        </Cta>
 
         {/* Источники */}
         <View style={styles.sources}>

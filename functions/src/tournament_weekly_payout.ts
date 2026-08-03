@@ -291,15 +291,23 @@ export const tournamentWeeklyBankInfo = onCall(
     // (60/25/15 и 5 минут). Поменяй владелец экономику в админке — экран стал
     // бы врать про деньги. Отдаём настройки вместе с банком: источник истины
     // один, лишнего чтения нет (документ economy читается тем же getAll).
-    const [currentSnap, lastSnap, economySnap] = await db.getAll(
+    // зачем 2026-08-03: билеты турниров — не отдельный баланс, а витрина
+    // (жемчужины ÷ цена входа + бесплатный недельный вход). Дочитываем
+    // профиль ТЕМ ЖЕ getAll — ноль дополнительных round-trip'ов, кэш на
+    // клиенте (loadWeeklyBankInfo, TTL 30 мин) держит расход низким.
+    const uid = String(request.auth.uid);
+    const [currentSnap, lastSnap, economySnap, userSnap] = await db.getAll(
       db.collection(TOURNAMENT_BANK_COLLECTION).doc(currentWeek),
       db.collection(TOURNAMENT_BANK_COLLECTION).doc(lastWeek),
       db.collection(TOURNAMENT_SCHEDULE_COLLECTION).doc('economy'),
+      db.collection('users').doc(uid),
     );
     const economy = normalizeTournamentEconomy(economySnap.data());
+    const userData = userSnap.data() || {};
+    const gemBalance = Math.max(0, readInt(userData.shards, 0));
+    const freeEntryAvailable = String(userData.tournament_free_entry_week_id ?? '') !== currentWeek;
 
     // Моя доля прошлой недели — если раздача уже прошла.
-    const uid = String(request.auth.uid);
     const winners = Array.isArray(lastSnap.data()?.winners) ? lastSnap.data()!.winners : [];
     const mine = winners.find((entry: unknown) => {
       const row = entry as { uid?: unknown } | null;
@@ -320,6 +328,10 @@ export const tournamentWeeklyBankInfo = onCall(
       entryWindowMs: TOURNAMENT_ENTRY_WINDOW_MS,
       /** Серверные часы: клиент сверяет свои и не врёт при сбитом времени. */
       serverNowMs: nowMs,
+      /** Цена входа (владелец: «билет стоит 3 жемчужины») — экран билетов считает от неё. */
+      entryGems: economy.entryGems,
+      gemBalance,
+      freeEntryAvailable,
       lastWeek: {
         weekId: lastWeek,
         paidOut: Boolean(lastSnap.data()?.paidOutAtMs),

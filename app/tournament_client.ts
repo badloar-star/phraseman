@@ -1278,6 +1278,12 @@ export type WeeklyBankInfo = {
   entryWindowMs?: number;
   /** Часы сервера в момент ответа — база для честного отсчёта. */
   serverNowMs?: number;
+  /** Цена входа в жемчужинах (владелец: «билет стоит 3 жемчужины»). */
+  entryGems?: number;
+  /** Баланс жемчужин игрока — источник для витрины билетов. */
+  gemBalance?: number;
+  /** Бесплатный вход этой недели ещё не использован. */
+  freeEntryAvailable?: boolean;
   lastWeek: { weekId: string; paidOut: boolean; myPlace: number; myGems: number };
 };
 

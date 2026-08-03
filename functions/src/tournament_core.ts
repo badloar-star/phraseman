@@ -1704,16 +1704,27 @@ export function scoreAnswer(input: ScoreInput): number {
   const full = tournamentStarsForDifficulty(input.difficulty);
   const penalty = Math.max(0, Math.trunc(input.penaltyStars ?? 0));
 
-  // Пары: частичный зачёт. Одна верная пара — минимум одна звезда, полностью
-  // собранное поле — полная награда за сложность.
+  /**
+   * Пары: «сколько правильно — столько звёзд» (владелец 2026-08-03, дословно
+   * «1 правильно — 1 звезда»). Каждая верная пара стоит ровно одну звезду.
+   *
+   * зачем 2026-08-03 (поймано тестом монотонности): здесь стояла попытка ужать
+   * пары в награду за сложность —
+   *   matched === totalPairs ? full : Math.max(matched, round(full*matched/total))
+   * При сложности 2 (full=4) и шести парах пять верных пар давали 5⭐, а ВСЕ
+   * шесть — только 4⭐. То есть доигрывать поле до конца было НЕВЫГОДНО. Это
+   * прямо противоречит и правилу владельца, и здравому смыслу.
+   *
+   * Сложность добавляется надбавкой за полностью собранное поле, а не делением:
+   * тогда награда строго растёт с каждой парой и совпадает с обещанием «одна
+   * пара — одна звезда».
+   */
   const totalPairs = Math.max(0, Math.trunc(input.totalPairs ?? 0));
   if (totalPairs > 0) {
     const matched = Math.min(totalPairs, Math.max(0, Math.trunc(input.matchedPairs ?? 0)));
     if (matched === 0) return 0;
-    const stars = matched === totalPairs
-      ? full
-      : Math.max(matched, Math.round((full * matched) / totalPairs));
-    return Math.max(0, stars - penalty);
+    const completionBonus = matched === totalPairs ? Math.max(0, full - TOURNAMENT_STAR_BASE) : 0;
+    return Math.max(0, matched + completionBonus - penalty);
   }
 
   if (!input.correct) return 0;

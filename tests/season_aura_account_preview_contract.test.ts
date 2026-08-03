@@ -29,8 +29,9 @@ describe('season aura account preview', () => {
     const aura = read('components/AvatarAura.tsx');
 
     expect(aura).toContain('getSeasonAuraAssetForAvatarId');
-    expect(aura).toContain('const SEASON_AURA_RING_SCALE = 1.42;');
+    expect(aura).toContain('const SEASON_AURA_RING_SCALE = 1.40;');
     expect(aura).toContain('Math.round(size * SEASON_AURA_RING_SCALE)');
+    expect(aura).toContain('const SEASON_AURA_LAYOUT_GUTTER = 12;');
     expect(aura).toContain('<SeasonAuraRing');
     expect(aura).not.toMatch(/\b(?:220|240|280)\b/);
   });

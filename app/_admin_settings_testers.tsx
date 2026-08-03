@@ -69,7 +69,6 @@ import {
   PROFILE_CARD_THEME_KEY,
   type ProfileCardLevel,
 } from './profile_card_system';
-import { devSetSeasonFrameEnabled } from './season_cosmetics';
 import { actionToastTri, emitAppEvent } from './events';
 import { getFreeDialogsLifetime, isAiDialogEnabled } from './ai_dialog_flags';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
@@ -612,6 +611,11 @@ function AdminCosmeticsPreview({
               accessibilityRole="button"
               accessibilityLabel={`Применить ауру ${aura.nameRu}`}
               accessibilityHint="Сохранит ауру на текущем аккаунте и откроет настоящую карточку профиля. Отменить можно кнопкой «Без ауры»."
+              accessibilityState={{
+                disabled: applyingAuraId !== null,
+                selected: activeAuraId === aura.id,
+                busy: applyingAuraId === aura.id,
+              }}
               disabled={applyingAuraId !== null}
               activeOpacity={0.72}
               onPress={() => onApplyAura(aura.id)}
@@ -636,10 +640,10 @@ function AdminCosmeticsPreview({
                 size={52}
                 animateAura={activeAuraId === aura.id}
               />
-              <Text style={{ color: ADMIN_TEXT, fontSize: 10, fontWeight: '900', marginTop: 7 }} numberOfLines={1}>
+              <Text style={{ color: ADMIN_TEXT, fontSize: 10, fontWeight: '900', marginTop: 7, textAlign: 'center' }}>
                 {aura.nameRu}
               </Text>
-              <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: f.caption, fontWeight: '800', marginTop: 2 }} numberOfLines={1}>
+              <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: f.caption, fontWeight: '800', marginTop: 2, textAlign: 'center' }}>
                 {applyingAuraId === aura.id ? 'Применяю…' : activeAuraId === aura.id ? 'Активна' : unlockLabel}
               </Text>
             </TouchableOpacity>
@@ -651,6 +655,11 @@ function AdminCosmeticsPreview({
           testID="admin-clear-account-aura"
           accessibilityRole="button"
           accessibilityHint="Отключит выбранную ауру на текущем аккаунте и покажет результат на карточке профиля."
+          accessibilityState={{
+            disabled: applyingAuraId !== null,
+            busy: applyingAuraId === NO_AVATAR_AURA_ID,
+            selected: activeAuraId === NO_AVATAR_AURA_ID,
+          }}
           disabled={applyingAuraId !== null}
           onPress={onClearAura}
           style={{ minHeight: 44, flex: 1, borderRadius: 10, borderWidth: 1, borderColor: ACCENT_BORDER_SOFT, alignItems: 'center', justifyContent: 'center' }}
@@ -682,6 +691,10 @@ function AdminCosmeticsPreview({
             accessibilityRole="button"
             accessibilityLabel={`Проверить рамку Визитки на уровне ${level}`}
             accessibilityHint="Временно включает сезонную рамку и открывает настоящую карточку профиля на выбранном визуальном уровне."
+            accessibilityState={{
+              disabled: seasonFramePreviewBusy !== null,
+              busy: seasonFramePreviewBusy === level,
+            }}
             disabled={seasonFramePreviewBusy !== null}
             activeOpacity={0.76}
             onPress={() => onPreviewSeasonFrame(level)}
@@ -708,6 +721,10 @@ function AdminCosmeticsPreview({
         accessibilityRole="button"
         accessibilityLabel="Открыть Визитку без сезонной рамки"
         accessibilityHint="Снимает тестовую сезонную рамку с аккаунта и открывает карточку для сравнения."
+        accessibilityState={{
+          disabled: seasonFramePreviewBusy !== null,
+          busy: seasonFramePreviewBusy === 'disabled',
+        }}
         disabled={seasonFramePreviewBusy !== null}
         onPress={onDisableSeasonFrame}
         style={{
@@ -1086,6 +1103,7 @@ export default function SettingsTestersFunctions() {
   const openCurrentAccountProfilePreview = useCallback(async (
     withLeagueCrown: boolean,
     profileCardLevelOverride?: ProfileCardLevel,
+    seasonProfileFrameOverride?: boolean,
   ) => {
     const rows = await AsyncStorage.multiGet([
       'user_name',
@@ -1131,10 +1149,12 @@ export default function SettingsTestersFunctions() {
         leagueCrownExpiresAt: Date.now() + 7 * 24 * 60 * 60 * 1000,
         leagueCrownCount: 3,
       } : {}),
-      profileCardLevel: profileCardLevelOverride ?? (parseInt(map.get(PROFILE_CARD_LEVEL_KEY) || '0', 10) || 0),
+      profileCardLevel: parseInt(map.get(PROFILE_CARD_LEVEL_KEY) || '0', 10) || 0,
       profileCardTheme: map.get(PROFILE_CARD_THEME_KEY) || 'classic',
       profileCardMotion: map.get(PROFILE_CARD_MOTION_KEY) || 'none',
       profileCardPublicFocus: map.get(PROFILE_CARD_PUBLIC_FOCUS_KEY) || 'balanced',
+      devProfileCardLevelOverride: profileCardLevelOverride,
+      devSeasonProfileFrameEnabled: seasonProfileFrameOverride,
     });
   }, []);
 
@@ -1183,8 +1203,7 @@ export default function SettingsTestersFunctions() {
     if (seasonFramePreviewBusy !== null) return;
     setSeasonFramePreviewBusy(level);
     try {
-      await devSetSeasonFrameEnabled(true);
-      await openCurrentAccountProfilePreview(false, level);
+      await openCurrentAccountProfilePreview(false, level, true);
     } catch {
       emitAppEvent('action_toast', actionToastTri('error', {
         ru: 'Не удалось открыть рамку Визитки',
@@ -1205,8 +1224,7 @@ export default function SettingsTestersFunctions() {
     if (seasonFramePreviewBusy !== null) return;
     setSeasonFramePreviewBusy('disabled');
     try {
-      await devSetSeasonFrameEnabled(false);
-      await openCurrentAccountProfilePreview(false);
+      await openCurrentAccountProfilePreview(false, undefined, false);
     } catch {
       emitAppEvent('action_toast', actionToastTri('error', {
         ru: 'Не удалось снять рамку Визитки',
@@ -2784,7 +2802,7 @@ export default function SettingsTestersFunctions() {
           <AccordionSection
             id="cosmetics_preview"
             icon="color-palette-outline"
-            title="Косметика аккаунта — аватары и ауры"
+            title="Косметика аккаунта — ауры и Визитка"
             badge={AVATAR_AURAS.length}
             open={openSection === 'cosmetics_preview'}
             onToggle={toggleSection}

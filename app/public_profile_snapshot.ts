@@ -25,6 +25,10 @@ import {
   type AccountGenerationToken,
 } from './account_generation';
 import { accountScopeKey } from './account_scope_key';
+import {
+  loadSeasonCosmetics,
+  SEASON1_FRAME_ID,
+} from './season_cosmetics';
 
 export const PUBLIC_PROFILE_SNAPSHOT_CACHE_KEY = 'public_profile_snapshot_v1';
 export const PUBLIC_PROFILE_XP_TTL_MS = 24 * 60 * 60 * 1000;
@@ -229,6 +233,10 @@ async function syncPublicProfileSnapshotUnsafe(
   const profileCardPublicFocus = normalizeProfileCardPublicFocus(rawFocus);
   const legendNoParsed = Math.floor(Number(rawLegendNo));
   const profileCardLegendNo = Number.isFinite(legendNoParsed) && legendNoParsed > 0 ? legendNoParsed : null;
+  const seasonProfileFrameId = (await loadSeasonCosmetics().catch(() => null))?.frames.includes(SEASON1_FRAME_ID)
+    ? SEASON1_FRAME_ID
+    : null;
+  if (!isCurrent()) return;
 
   // Блоки статистики уровней II+ («Выучено»/«Путь») — денормализуем в публичный
   // профиль из локального lifetime-кэша, чтобы ЧУЖИЕ карточки могли их показать.
@@ -278,6 +286,7 @@ async function syncPublicProfileSnapshotUnsafe(
     profileCardMotion,
     profileCardPublicFocus,
     profileCardLegendNo,
+    seasonProfileFrameId,
     ...(cardStatsPayload ?? {}),
   });
 
@@ -322,6 +331,7 @@ async function syncPublicProfileSnapshotUnsafe(
     profileCardTheme,
     profileCardMotion,
     profileCardPublicFocus,
+    seasonProfileFrameId,
     ...(profileCardLegendNo !== null ? { profileCardLegendNo } : {}),
     ...(cardStatsPayload ?? {}),
     displayHash,

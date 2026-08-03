@@ -27,10 +27,11 @@ import {
   grantSeasonNickColor,
   grantSeasonSecretAura,
   grantSeasonTitle,
-  bumpSeasonCustomAvatarGrant,
+  SEASON_COSMETICS_KEY,
   SEASON1_TITLE,
 } from './season_cosmetics';
 import type { SeasonReward } from './season_pass_track_config';
+import { syncPublicProfileSnapshot } from './public_profile_snapshot';
 
 /** Пак сезона 1 — фирменный набор, открывается навсегда (каталог §6, ур. 45). */
 export const SEASON1_CARD_PACK_ID = 'official_peaky_blinders_en';
@@ -39,6 +40,14 @@ export const SEASON_GOLDEN_LESSON_KEY = 'season_golden_lesson_v1';
 export interface SeasonGoldenLessonState { multiplier: number; remaining: number; grantedAtMs: number }
 
 const GIFT_XP_BANK_KEY = 'gift_xp_bank_v1';
+
+const syncSeasonCosmeticsBestEffort = (publicDisplayChanged = false): void => {
+  if (publicDisplayChanged) void syncPublicProfileSnapshot({ reason: 'display_change' }).catch(() => {});
+  // Lazy import avoids cloud_sync -> xp_manager -> season_reward_apply -> cloud_sync.
+  void import('./cloud_sync')
+    .then(({ syncToCloud }) => syncToCloud({ forceNow: true }))
+    .catch(() => {});
+};
 
 export interface ApplySeasonRewardResult {
   ok: boolean;
@@ -102,7 +111,10 @@ export async function peekSeasonGoldenLessonCharges(): Promise<number> {
  * СЕРВЕРНЫЕ (plus_days/magnet/ticket) отмечаются pendingServer — их довершает
  * season_pass_server.ts (callable), модалка ждёт с индикатором.
  */
-export async function applySeasonRewardLocal(reward: SeasonReward): Promise<ApplySeasonRewardResult> {
+export async function applySeasonRewardLocal(
+  reward: SeasonReward,
+  idempotencyKey?: string,
+): Promise<ApplySeasonRewardResult> {
   switch (reward.kind) {
     case 'pearls': {
       // Optimistic-начисление жемчуга тем же путём, что рулетка: локально сразу,
@@ -146,25 +158,36 @@ export async function applySeasonRewardLocal(reward: SeasonReward): Promise<Appl
       return { ok: true };
     case 'custom_avatar': {
       const token = captureAccountGeneration();
-      const unlock = await unlockRandomCustomAvatarGift(token);
-      await bumpSeasonCustomAvatarGrant();
+      const unlock = await unlockRandomCustomAvatarGift(
+        token,
+        idempotencyKey ? {
+          idempotencyKey: `season:${idempotencyKey}`,
+          counterStorageKey: SEASON_COSMETICS_KEY,
+        } : undefined,
+      );
+      syncSeasonCosmeticsBestEffort();
       return { ok: true, avatarUnlock: unlock };
     }
     case 'frame':
       await grantSeasonFrame();
+      syncSeasonCosmeticsBestEffort(true);
       return { ok: true };
     case 'nick_color':
       await grantSeasonNickColor();
       await grantSeasonTitle(SEASON1_TITLE);
+      syncSeasonCosmeticsBestEffort();
       return { ok: true };
     case 'aura_stage':
       await grantSeasonAuraStage(Math.max(1, Math.min(4, reward.amount ?? 1)));
+      syncSeasonCosmeticsBestEffort(true);
       return { ok: true };
     case 'aura_secret':
       await grantSeasonSecretAura('purple_vortex');
+      syncSeasonCosmeticsBestEffort(true);
       return { ok: true };
     case 'season_finale':
       await grantSeasonFinale();
+      syncSeasonCosmeticsBestEffort(true);
       return { ok: true };
     // Серверные: довершает callable (см. season_pass_server.ts) — здесь только маркер.
     case 'plus_days':

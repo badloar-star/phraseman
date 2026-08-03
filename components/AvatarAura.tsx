@@ -18,9 +18,9 @@ type Props = {
   ownerActive?: boolean;
 };
 
-// The raster ring's transparent centre is ~70% of its canvas. At 1.42× the
-// avatar diameter, that opening matches the avatar instead of swallowing it.
-const SEASON_AURA_RING_SCALE = 1.42;
+// Exported layers keep a rotation-safe transparent margin. At 1.40x the
+// canvas stays compact while the visible art sits just outside the avatar.
+const SEASON_AURA_RING_SCALE = 1.40;
 const SEASON_AURA_LAYOUT_GUTTER = 12;
 
 function AvatarAura({ auraId, size, children, style, animate = true, ownerActive }: Props) {

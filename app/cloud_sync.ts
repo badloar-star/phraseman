@@ -354,6 +354,7 @@ export function mergeDailyTasksProgressForRestore(localRaw: string | null | unde
 
 // ── Ключи AsyncStorage которые синхронизируются с облаком ────────────────────
 // Экспорт: тот же набор должен учитываться при сбросе локали после merge аккаунта (auth_provider).
+const SEASON_COSMETICS_SYNC_KEY = 'season_cosmetics_v1';
 export const SYNC_KEYS = [
   // ── Идентичность и базовый прогресс ────────────────────────────────────────
   'user_total_xp',
@@ -371,6 +372,7 @@ export const SYNC_KEYS = [
   'custom_avatar_gift_owned_v1',
   'avatar_aura_owned_v1',
   'avatar_aura_gift_owned_v1',
+  SEASON_COSMETICS_SYNC_KEY,
   // Команда админки на разовое изменение энергии (обнулить/налить). Клиент применяет
   // её один раз по метке at (см. energy_system.applyAdminEnergyCommand) — energy_state
   // остаётся client-owned, команда лишь одноразовый триггер из облака на устройство.
@@ -1174,6 +1176,7 @@ const LEVEL_EXAM_RESTORE_MERGE_KEYS = LEVEL_EXAM_RESTORE_LEVELS.flatMap((level) 
 const RESTORE_MERGE_KEY_SET = new Set<string>([
   ...LESSON_RESTORE_MERGE_KEYS,
   ...LEVEL_EXAM_RESTORE_MERGE_KEYS,
+  SEASON_COSMETICS_SYNC_KEY,
 ]);
 const LEGACY_FREE_LESSON_CAP_RESTORE_KEYS = new Set<string>([
   legacyFreeLessonCapKey('en'),
@@ -1360,6 +1363,71 @@ function mergeOwnedRestoreValue(cloudValue: string, localValue: string | null | 
   return JSON.stringify(merged);
 }
 
+type SeasonCosmeticsRestoreState = {
+  frames: string[];
+  nickColors: string[];
+  activeNickColor: string | null;
+  nickShimmer: boolean;
+  titles: string[];
+  auraStages: number[];
+  secretAuras: string[];
+  customAvatarGrants: number;
+};
+
+function parseSeasonCosmeticsRestoreState(raw: string | null | undefined): SeasonCosmeticsRestoreState | null {
+  if (typeof raw !== 'string' || raw.trim() === '') return null;
+  try {
+    const value = JSON.parse(raw) as Record<string, unknown> | null;
+    if (!value || typeof value !== 'object' || Array.isArray(value)) return null;
+    const strings = (field: string): string[] => Array.isArray(value[field])
+      ? [...new Set((value[field] as unknown[]).filter((item): item is string => typeof item === 'string' && item.trim().length > 0))]
+      : [];
+    const stages = Array.isArray(value.auraStages)
+      ? [...new Set(value.auraStages
+        .map((item) => Math.floor(Number(item)))
+        .filter((item) => Number.isInteger(item) && item >= 1 && item <= 4))].sort((a, b) => a - b)
+      : [];
+    return {
+      frames: strings('frames'),
+      nickColors: strings('nickColors'),
+      activeNickColor: typeof value.activeNickColor === 'string' && value.activeNickColor.trim()
+        ? value.activeNickColor
+        : null,
+      nickShimmer: value.nickShimmer === true,
+      titles: strings('titles'),
+      auraStages: stages,
+      secretAuras: strings('secretAuras'),
+      customAvatarGrants: Math.max(0, Math.floor(Number(value.customAvatarGrants) || 0)),
+    };
+  } catch {
+    return null;
+  }
+}
+
+/** Permanent Season Pass cosmetics are additive and can never regress on restore. */
+function mergeSeasonCosmeticsRestoreValue(
+  cloudValue: string,
+  localValue: string | null | undefined,
+): string {
+  const cloud = parseSeasonCosmeticsRestoreState(cloudValue);
+  const local = parseSeasonCosmeticsRestoreState(localValue);
+  if (!local) return cloud ? JSON.stringify(cloud) : cloudValue;
+  if (!cloud) return JSON.stringify(local);
+  const union = <T,>(cloudValues: readonly T[], localValues: readonly T[]): T[] => (
+    [...new Set([...cloudValues, ...localValues])]
+  );
+  return JSON.stringify({
+    frames: union(cloud.frames, local.frames),
+    nickColors: union(cloud.nickColors, local.nickColors),
+    activeNickColor: local.activeNickColor ?? cloud.activeNickColor,
+    nickShimmer: cloud.nickShimmer || local.nickShimmer,
+    titles: union(cloud.titles, local.titles),
+    auraStages: union(cloud.auraStages, local.auraStages).sort((a, b) => a - b),
+    secretAuras: union(cloud.secretAuras, local.secretAuras),
+    customAvatarGrants: Math.max(cloud.customAvatarGrants, local.customAvatarGrants),
+  } satisfies SeasonCosmeticsRestoreState);
+}
+
 /**
  * #11 multi-device: уроковый прогресс, чей merge в mergeLessonRestoreValue
  * строго МОНОТОНЕН (union множеств / max / OR / лучшее качество ответов) —
@@ -1390,6 +1458,9 @@ function mergeLessonRestoreValue(
   cloudValue: string,
   localValue: string | null | undefined,
 ): string {
+  if (key === SEASON_COSMETICS_SYNC_KEY) {
+    return mergeSeasonCosmeticsRestoreValue(cloudValue, localValue);
+  }
   if (LEGACY_FREE_LESSON_CAP_RESTORE_KEYS.has(key)) {
     const cloudCap = normalizeLegacyFreeLessonCap(cloudValue);
     const localCap = normalizeLegacyFreeLessonCap(localValue);
@@ -2512,6 +2583,21 @@ async function applyRestoreFromUserDoc(
       stickyPairs.push(['login_bonus_v1', mergedLoginBonus]);
     }
 
+    // Season Pass status rewards are permanent ownership. Pull their union even
+    // when local XP wins, otherwise a reward earned on another device vanishes.
+    const cloudSeasonCosmetics = cloudData[SEASON_COSMETICS_SYNC_KEY];
+    if (cloudSeasonCosmetics !== null && cloudSeasonCosmetics !== undefined && String(cloudSeasonCosmetics).trim()) {
+      const localSeasonCosmetics = await AsyncStorage.getItem(SEASON_COSMETICS_SYNC_KEY);
+      assertCurrent();
+      const mergedSeasonCosmetics = mergeSeasonCosmeticsRestoreValue(
+        cloudProgressStorageValue(SEASON_COSMETICS_SYNC_KEY, cloudSeasonCosmetics),
+        localSeasonCosmetics,
+      );
+      if (mergedSeasonCosmetics !== localSeasonCosmetics) {
+        stickyPairs.push([SEASON_COSMETICS_SYNC_KEY, mergedSeasonCosmetics]);
+      }
+    }
+
     // Косметика, выданная из админки/облака (аура «Нимб» бета-тестерам, арена-ауры и т.п.),
     // должна догонять устройство ДАЖЕ когда локальный XP ≥ облачного (обычный случай у
     // активного юзера). Иначе owned-ключи не в sticky → админская выдача не появляется, а
@@ -2948,6 +3034,7 @@ export const __cloudSyncTestHooks = {
   isMonotonicLessonRestoreKey,
   mergeOwnedFlagMap,
   mergeOwnedRestoreValue,
+  mergeSeasonCosmeticsRestoreValue,
   isOwnedUnionRestoreKey,
   buildRestoreSnapshot,
   isSuspiciousLocalXpGap,

@@ -81,26 +81,26 @@ describe('avatar aura catalog rework', () => {
 describe('AvatarAura compact renderer contract', () => {
   const source = fs.readFileSync(path.join(__dirname, '../components/AvatarAura.tsx'), 'utf8');
 
-  it('uses one compact Nimbus-like breathing and rotating halo for every retained aura', () => {
+  it('uses compact independently animated soft-edge and rotating halo layers', () => {
     expect(source).toContain('const outer = size + 8;');
     expect(source).toContain("outputRange: ['0deg', '360deg']");
     expect(source).toContain('outputRange: [0.98, 1.04, 0.98]');
     expect(source).toContain('duration: 7200');
-    expect(source.match(/<Animated\.View/g)).toHaveLength(1);
+    expect(source.match(/<Animated\.View/g)).toHaveLength(3);
   });
 
-  it('renders Pro satin texture inside that same single halo layer', () => {
+  it('renders Pro satin texture inside the same compact layered halo', () => {
     expect(source).toContain("aura.material === 'satin'");
     expect(source).toContain('satinColors');
     expect(source).toContain('satinLocations');
-    expect(source.match(/<Animated\.View/g)).toHaveLength(1);
+    expect(source.match(/<Animated\.View/g)).toHaveLength(3);
   });
 
   it('contains no decorative SVG, symbols, particles, or extra aura rings', () => {
     expect(source).not.toContain('react-native-svg');
     expect(source).not.toMatch(/<(Svg|Circle|Polygon|Polyline)\b/);
     expect(source).not.toMatch(/spark|orb|orbit|bolt|glint/i);
-    expect(source.match(/borderWidth:/g)).toHaveLength(1);
+    expect(source).not.toContain('borderWidth:');
   });
 
   it('keeps infinite animation gated by focus, AppState, and the animate prop', () => {

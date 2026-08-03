@@ -7,11 +7,12 @@
 // Кнопки «Позже»/«Применить» — слова 1:1 с components/LevelGiftModal.tsx.
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { ActivityIndicator, Animated, Easing, FlatList, Image, Modal, Text, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, Animated, Easing, FlatList, Image, ImageSourcePropType, Modal, Text, TouchableOpacity, View } from 'react-native';
 import MaskedView from '@react-native-masked-view/masked-view';
 import { LinearGradient } from './SafeLinearGradient';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
+import type { Theme, ThemeMode } from '../constants/theme';
 import { triLang, type Lang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
 import { emitAppEvent, actionToastTri } from '../app/events';
@@ -59,7 +60,7 @@ const T = (ru: string, uk: string, es: string, ptBR: string, vi: string, id: str
  * и на сколько. `applied` — отдельная строка на каждый подарок: что включилось
  * и на какой срок.
  */
-const MODAL_COPY: Record<SeasonReward['kind'], { title: Tri; desc: Tri; applied: Tri }> = {
+export const SEASON_MODAL_COPY: Record<SeasonReward['kind'], { title: Tri; desc: Tri; applied: Tri }> = {
   pearls: {
     title: T('Жемчужины!', 'Перлини!', '¡Perlas!', 'Pérolas!', 'Ngọc trai!', 'Mutiara!', 'İnciler!', 'Perły!'),
     desc: T('Уже на твоём балансе — трать в магазине и на бусты.', 'Вже на твоєму балансі — витрачай у магазині та на бусти.', 'Ya están en tu saldo: gástalas en la tienda y en impulsos.', 'Já estão no seu saldo — gaste na loja e em impulsos.', 'Đã có trong số dư — dùng ở cửa hàng và tăng tốc.', 'Sudah masuk saldo — pakai di toko dan boost.', 'Bakiyene eklendi — mağazada ve desteklerde harca.', 'Już na Twoim koncie — wydawaj w sklepie i na boosty.'),
@@ -162,11 +163,56 @@ const MODAL_COPY: Record<SeasonReward['kind'], { title: Tri; desc: Tri; applied:
   },
 };
 
-const CHOICE_OPTIONS: readonly { reward: SeasonReward; labelKey: keyof typeof MODAL_COPY }[] = [
+const CHOICE_OPTIONS: readonly { reward: SeasonReward; labelKey: keyof typeof SEASON_MODAL_COPY }[] = [
   { reward: { kind: 'battery' }, labelKey: 'battery' },
   { reward: { kind: 'league_boost' }, labelKey: 'league_boost' },
   { reward: { kind: 'pearls', amount: 15 }, labelKey: 'pearls' },
 ];
+
+/**
+ * Арт награды — вынесено из SeasonGiftModal, чтобы SeasonRewardInfoModal
+ * (просмотровая модалка «что это такое», открывается тапом по ЛЮБОЙ карточке
+ * дорожки) показывала ТОТ ЖЕ рисунок, а не копию логики с риском разойтись.
+ */
+export function renderSeasonRewardArt(
+  reward: SeasonReward | null,
+  themeMode: ThemeMode,
+  t: Theme,
+  pearlIcon: ImageSourcePropType,
+): React.ReactNode {
+  if (!reward) return null;
+  if (reward.kind === 'aura_stage') {
+    const a = getSeasonAuraStageAsset(reward.amount ?? 1, themeMode);
+    return <SeasonAuraRing asset={a} size={104} />;
+  }
+  if (reward.kind === 'aura_secret') {
+    const a = getSeasonSecretAuraAsset(themeMode);
+    return <SeasonAuraRing asset={a} size={112} />;
+  }
+  if (reward.kind === 'season_finale') {
+    const a = getSeasonAuraStageAsset(4, themeMode);
+    return <SeasonAuraRing asset={a} size={104} />;
+  }
+  if (reward.kind === 'pearls') {
+    return (
+      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+        <Image source={pearlIcon} style={{ width: 52, height: 52 }} resizeMode="contain" accessible={false} />
+        <Text style={{ color: t.textPrimary, fontSize: 34, fontWeight: '900', fontVariant: ['tabular-nums'] }}>+{reward.amount ?? 0}</Text>
+      </View>
+    );
+  }
+  if (reward.kind === 'plus_days') {
+    return (
+      <View style={{ alignItems: 'center', gap: 6 }}>
+        <View style={{ paddingHorizontal: 22, paddingVertical: 12, borderRadius: 20, backgroundColor: t.goldBg }}>
+          <Text style={{ color: t.gold, fontSize: 34, fontWeight: '900' }}>+{reward.amount ?? 0}</Text>
+        </View>
+      </View>
+    );
+  }
+  const icon = getSeasonRewardIcon(reward.kind, themeMode);
+  return icon ? <Image source={icon} style={{ width: 92, height: 92 }} resizeMode="contain" accessible={false} /> : null;
+}
 
 /** Живой перелив ника (MaskedView + бегущий градиент) — превью финала. */
 function ShimmerNick({ name }: { name: string }) {
@@ -215,16 +261,27 @@ export default function SeasonGiftModal({ visible, reward, giftId, userName, onC
   // открытии (постоянная награда — «Позже» для неё бессмысленно).
   useEffect(() => {
     if (!visible || !reward) return;
+    let cancelled = false;
     setSentToName(null);
     setAvatarLabel(null);
     if (STATUS_KINDS.has(reward.kind)) {
       setPhase('applying');
-      applySeasonRewardLocal(reward).then((res) => {
-        if (res.avatarUnlock) setAvatarLabel(res.avatarUnlock.labelRu ?? null);
-        setPhase('done');
-      });
-      if (giftId) void markSeasonPassGiftUsed(giftId);
-      return;
+      void (async () => {
+        try {
+          const res = await applySeasonRewardLocal(reward, giftId ?? undefined);
+          if (!res.ok) {
+            if (!cancelled) setPhase('serverError');
+            return;
+          }
+          if (giftId) await markSeasonPassGiftUsed(giftId);
+          if (cancelled) return;
+          if (res.avatarUnlock) setAvatarLabel(res.avatarUnlock.labelRu ?? null);
+          setPhase('done');
+        } catch {
+          if (!cancelled) setPhase('serverError');
+        }
+      })();
+      return () => { cancelled = true; };
     }
     if (reward.kind === 'plus_days') {
       // Дни Plus выдаёт сервер при клейме уровня (season_pass.ts) — модалка
@@ -233,6 +290,7 @@ export default function SeasonGiftModal({ visible, reward, giftId, userName, onC
       return;
     }
     setPhase(reward.kind === 'choice_3' ? 'choice' : 'offer');
+    return () => { cancelled = true; };
   }, [visible, reward, giftId]);
 
   // Друзья для щита — живой снапшот, пока открыт пикер.
@@ -257,68 +315,46 @@ export default function SeasonGiftModal({ visible, reward, giftId, userName, onC
     hapticTap();
     if (target.kind === 'friend_shield') { setPhase('friendPick'); return; }
     setPhase('applying');
-    if (SERVER_CONSUMABLE_KINDS.has(target.kind)) {
-      const res = await seasonRedeemConsumableOnServer({ giftId, kind: target.kind });
-      if (!res?.ok) { setPhase('serverError'); return; }
+    try {
+      if (SERVER_CONSUMABLE_KINDS.has(target.kind)) {
+        const res = await seasonRedeemConsumableOnServer({ giftId, kind: target.kind });
+        if (!res?.ok) { setPhase('serverError'); return; }
+        await markSeasonPassGiftUsed(giftId);
+        setPhase('done'); finishApplied(); return;
+      }
+      const res: ApplySeasonRewardResult = await applySeasonRewardLocal(target, giftId);
+      if (!res.ok && res.failReason === 'no_streak_gap') { setPhase('noGap'); return; }
+      if (!res.ok) { setPhase('serverError'); return; }
       await markSeasonPassGiftUsed(giftId);
-      setPhase('done'); finishApplied(); return;
+      if (res.avatarUnlock) setAvatarLabel(res.avatarUnlock.labelRu ?? null);
+      setPhase('done'); finishApplied();
+    } catch {
+      setPhase('serverError');
     }
-    const res: ApplySeasonRewardResult = await applySeasonRewardLocal(target);
-    if (!res.ok && res.failReason === 'no_streak_gap') { setPhase('noGap'); return; }
-    if (!res.ok) { setPhase('serverError'); return; }
-    await markSeasonPassGiftUsed(giftId);
-    if (res.avatarUnlock) setAvatarLabel(res.avatarUnlock.labelRu ?? null);
-    setPhase('done'); finishApplied();
   }, [reward, giftId, phase, finishApplied]);
 
   const onPickFriend = useCallback(async (friend: FriendEntry) => {
     if (!giftId || phase === 'applying') return;
     hapticTap();
     setPhase('applying');
-    const res = await seasonSendFriendShieldOnServer({ giftId, friendStableId: friend.uid });
-    if (!res?.ok) { setPhase('serverError'); return; }
-    await markSeasonPassGiftUsed(giftId);
-    setSentToName(leaguePublicName(friend.displayName, friend.uid));
-    setPhase('done');
+    try {
+      const res = await seasonSendFriendShieldOnServer({ giftId, friendStableId: friend.uid });
+      if (!res?.ok) { setPhase('serverError'); return; }
+      await markSeasonPassGiftUsed(giftId);
+      setSentToName(leaguePublicName(friend.displayName, friend.uid));
+      setPhase('done');
+    } catch {
+      setPhase('serverError');
+    }
   }, [giftId, phase]);
 
-  const art = useMemo(() => {
-    if (!reward) return null;
-    if (reward.kind === 'aura_stage') {
-      const a = getSeasonAuraStageAsset(reward.amount ?? 1, themeMode);
-      return <SeasonAuraRing asset={a} size={104} />;
-    }
-    if (reward.kind === 'aura_secret') {
-      const a = getSeasonSecretAuraAsset(themeMode);
-      return <SeasonAuraRing asset={a} size={112} />;
-    }
-    if (reward.kind === 'season_finale') {
-      const a = getSeasonAuraStageAsset(4, themeMode);
-      return <SeasonAuraRing asset={a} size={104} />;
-    }
-    if (reward.kind === 'pearls') {
-      return (
-        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-          <Image source={pearlIcon} style={{ width: 52, height: 52 }} resizeMode="contain" accessible={false} />
-          <Text style={{ color: t.textPrimary, fontSize: 34, fontWeight: '900', fontVariant: ['tabular-nums'] }}>+{reward.amount ?? 0}</Text>
-        </View>
-      );
-    }
-    if (reward.kind === 'plus_days') {
-      return (
-        <View style={{ alignItems: 'center', gap: 6 }}>
-          <View style={{ paddingHorizontal: 22, paddingVertical: 12, borderRadius: 20, backgroundColor: t.goldBg }}>
-            <Text style={{ color: t.gold, fontSize: 34, fontWeight: '900' }}>+{reward.amount ?? 0}</Text>
-          </View>
-        </View>
-      );
-    }
-    const icon = getSeasonRewardIcon(reward.kind, themeMode);
-    return icon ? <Image source={icon} style={{ width: 92, height: 92 }} resizeMode="contain" accessible={false} /> : null;
-  }, [pearlIcon, reward, t, themeMode]);
+  const art = useMemo(
+    () => renderSeasonRewardArt(reward, themeMode, t, pearlIcon),
+    [pearlIcon, reward, t, themeMode],
+  );
 
   if (!reward) return null;
-  const copy = MODAL_COPY[reward.kind];
+  const copy = SEASON_MODAL_COPY[reward.kind];
 
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onLater}>
@@ -410,7 +446,7 @@ export default function SeasonGiftModal({ visible, reward, giftId, userName, onC
                     ? <Image source={pearlIcon} style={{ width: 28, height: 28 }} resizeMode="contain" accessible={false} />
                     : <Image source={getSeasonRewardIcon(opt.reward.kind, themeMode)!} style={{ width: 28, height: 28 }} resizeMode="contain" accessible={false} />}
                   <Text style={{ flex: 1, color: t.textPrimary, fontSize: 14, fontWeight: '800' }}>
-                    {triLang(lang, MODAL_COPY[opt.labelKey].title)}{opt.reward.kind === 'pearls' ? ` +${opt.reward.amount}` : ''}
+                    {triLang(lang, SEASON_MODAL_COPY[opt.labelKey].title)}{opt.reward.kind === 'pearls' ? ` +${opt.reward.amount}` : ''}
                   </Text>
                 </TouchableOpacity>
               ))}

@@ -5,6 +5,7 @@ export const AVATAR_AURA_OWNED_KEY = 'avatar_aura_owned_v1';
 export const AVATAR_AURA_GIFT_OWNED_KEY = 'avatar_aura_gift_owned_v1';
 export const CUSTOMIZATION_PURCHASE_INTENT_KEY = 'customization_purchase_intent_v1';
 export const SHARD_SPEND_OP_LEDGER_KEY = 'shard_spend_op_ledger_v1';
+export const CUSTOM_AVATAR_GIFT_REPLAY_KEY = 'custom_avatar_gift_replay_v1';
 
 export const CUSTOMIZATION_STORAGE_KEYS = [
   USER_AVATAR_AURA_KEY,
@@ -17,4 +18,5 @@ export const CUSTOMIZATION_STORAGE_KEYS = [
 export const CUSTOMIZATION_ACCOUNT_LOCAL_KEYS = [
   CUSTOMIZATION_PURCHASE_INTENT_KEY,
   SHARD_SPEND_OP_LEDGER_KEY,
+  CUSTOM_AVATAR_GIFT_REPLAY_KEY,
 ] as const;

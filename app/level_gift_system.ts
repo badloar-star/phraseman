@@ -16,7 +16,10 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { InteractionManager } from 'react-native';
 import { triLang, type Lang, type PlannedInterfaceLang } from '../constants/i18n';
-import { CUSTOM_AVATAR_GIFT_OWNED_KEY } from '../constants/customization_storage_keys';
+import {
+  CUSTOM_AVATAR_GIFT_OWNED_KEY,
+  CUSTOM_AVATAR_GIFT_REPLAY_KEY,
+} from '../constants/customization_storage_keys';
 import { addEnergy } from './energy_system';
 import { grantClubGiftFreeBoostFromLevel } from './club_boosts';
 import {
@@ -63,6 +66,7 @@ import {
   withAccountTransitionLock,
   type AccountGenerationToken,
 } from './account_generation';
+import { withStorageLock } from './storage_mutex';
 
 export type GiftRarity = 'common' | 'rare' | 'epic';
 
@@ -1109,13 +1113,63 @@ export type GiftCosmeticUnlock = {
   labelRu: string;
   labelUk: string;
   labelEs: string;
+  /** True when an idempotent gift retry returned the already-granted avatar. */
+  replayed?: boolean;
+};
+
+const CUSTOM_AVATAR_GIFT_REPLAY_LIMIT = 64;
+
+type CustomAvatarGiftIdempotencyOptions = Readonly<{
+  idempotencyKey: string;
+  /** Optional additive counter object persisted in the same multiSet as ownership. */
+  counterStorageKey?: string;
+}>;
+
+const parseCustomAvatarGiftReplays = (raw: string | null): Record<string, GiftCosmeticUnlock> => {
+  try {
+    const parsed: unknown = raw ? JSON.parse(raw) : {};
+    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) return {};
+    return Object.fromEntries(Object.entries(parsed).filter(([key, value]) => (
+      key.trim().length > 0
+      && value !== null
+      && typeof value === 'object'
+      && (value as Partial<GiftCosmeticUnlock>).kind === 'avatar'
+      && typeof (value as Partial<GiftCosmeticUnlock>).id === 'string'
+    ))) as Record<string, GiftCosmeticUnlock>;
+  } catch {
+    return {};
+  }
 };
 
 export const unlockRandomCustomAvatarGift = async (
   accountToken?: AccountGenerationToken,
+  idempotency?: CustomAvatarGiftIdempotencyOptions,
 ): Promise<GiftCosmeticUnlock | null> => {
-  try {
-    const raw = await AsyncStorage.getItem(CUSTOM_AVATAR_OWNED_KEY);
+  const normalizedIdempotencyKey = idempotency?.idempotencyKey.trim() || null;
+  const scopedIdempotencyKey = normalizedIdempotencyKey
+    ? `${accountToken?.stableId?.trim() || ''}:${normalizedIdempotencyKey}`
+    : null;
+  const apply = async (): Promise<GiftCosmeticUnlock | null> => {
+    if (normalizedIdempotencyKey && !accountToken?.stableId) {
+      throw new Error('custom_avatar_gift_missing_account');
+    }
+    if (accountToken && !isCurrentAccountGeneration(accountToken)) {
+      throw new Error('custom_avatar_gift_account_changed');
+    }
+    const readKeys = [
+      CUSTOM_AVATAR_OWNED_KEY,
+      CUSTOM_AVATAR_GIFT_REPLAY_KEY,
+      ...(idempotency?.counterStorageKey ? [idempotency.counterStorageKey] : []),
+    ];
+    const rows = await AsyncStorage.multiGet(readKeys);
+    if (accountToken && !isCurrentAccountGeneration(accountToken)) {
+      throw new Error('custom_avatar_gift_account_changed');
+    }
+    const raw = rows[0]?.[1] ?? null;
+    const replayMap = parseCustomAvatarGiftReplays(rows[1]?.[1] ?? null);
+    if (scopedIdempotencyKey && replayMap[scopedIdempotencyKey]) {
+      return { ...replayMap[scopedIdempotencyKey], replayed: true };
+    }
     const owned: Record<string, string> = raw ? JSON.parse(raw) : {};
     const candidates = CUSTOM_AVATAR_GIFT_POOL.filter(a => !owned[a.id]);
     if (candidates.length === 0) return null;
@@ -1128,11 +1182,7 @@ export const unlockRandomCustomAvatarGift = async (
     const gradient = CUSTOM_AVATAR_GRADIENTS[Math.floor(Math.random() * CUSTOM_AVATAR_GRADIENTS.length)]!;
     const logoColor: CustomAvatarLogoColor = Math.random() < 0.5 ? 'black' : 'white';
     const next = { ...owned, [avatar.id]: encodeOwnedStyle(gradient.id, logoColor) };
-    await AsyncStorage.multiSet([
-      [CUSTOM_AVATAR_OWNED_KEY, JSON.stringify(next)],
-      [COSMETIC_GIFT_OWNED_AVATAR_KEY, avatar.id],
-    ]);
-    return {
+    const result: GiftCosmeticUnlock = {
       kind: 'avatar',
       id: avatar.id,
       gradientId: gradient.id,
@@ -1140,10 +1190,50 @@ export const unlockRandomCustomAvatarGift = async (
       labelRu: customAvatarGiftLabelForLang(avatar, gradient, 'ru'),
       labelUk: customAvatarGiftLabelForLang(avatar, gradient, 'uk'),
       labelEs: customAvatarGiftLabelForLang(avatar, gradient, 'es'),
+      replayed: false,
     };
-  } catch {
-    return null;
+    const pairs: [string, string][] = [
+      [CUSTOM_AVATAR_OWNED_KEY, JSON.stringify(next)],
+      [COSMETIC_GIFT_OWNED_AVATAR_KEY, avatar.id],
+    ];
+    if (scopedIdempotencyKey) {
+      const boundedEntries = Object.entries(replayMap).slice(-(CUSTOM_AVATAR_GIFT_REPLAY_LIMIT - 1));
+      pairs.push([CUSTOM_AVATAR_GIFT_REPLAY_KEY, JSON.stringify({
+        ...Object.fromEntries(boundedEntries),
+        [scopedIdempotencyKey]: result,
+      })]);
+    }
+    if (idempotency?.counterStorageKey) {
+      let counterState: Record<string, unknown> = {};
+      const counterRaw = rows[2]?.[1] ?? null;
+      try {
+        const parsed: unknown = counterRaw ? JSON.parse(counterRaw) : {};
+        if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) {
+          counterState = parsed as Record<string, unknown>;
+        }
+      } catch {
+        counterState = {};
+      }
+      const currentCount = Math.max(0, Math.floor(Number(counterState.customAvatarGrants) || 0));
+      pairs.push([idempotency.counterStorageKey, JSON.stringify({
+        ...counterState,
+        customAvatarGrants: currentCount + 1,
+      })]);
+    }
+    if (accountToken && !isCurrentAccountGeneration(accountToken)) {
+      throw new Error('custom_avatar_gift_account_changed');
+    }
+    await AsyncStorage.multiSet(pairs);
+    if (accountToken && !isCurrentAccountGeneration(accountToken)) {
+      throw new Error('custom_avatar_gift_account_changed');
+    }
+    return result;
+  };
+
+  if (normalizedIdempotencyKey) {
+    return withAccountTransitionLock(() => withStorageLock(apply));
   }
+  try { return await apply(); } catch { return null; }
 };
 
 export const unlockRandomAvatarAuraGift = async (): Promise<GiftCosmeticUnlock | null> => {

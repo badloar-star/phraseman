@@ -9,6 +9,7 @@
 import React, { memo, useEffect, useMemo, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Animated, {
+  FadeIn,
   useAnimatedProps,
   useDerivedValue,
   useSharedValue,
@@ -86,8 +87,9 @@ type RingProps = {
 };
 
 /**
- * Кольцо прогресса (макет 09-13). Красное на последних 5 секундах —
- * предупреждение без числового отсчёта, чтобы не отвлекать от вопроса.
+ * Кольцо прогресса (макет 09-13). Почти весь вопрос — чистое кольцо без цифр
+ * и декора; красным предупреждает с последних 5 секунд, а отсчёт 3-2-1
+ * проявляется только в самом конце окна ответа.
  */
 export const TimerRing = memo(function TimerRing({ seconds, total, size = 44 }: RingProps) {
   const P = useTournamentPalette();
@@ -97,6 +99,10 @@ export const TimerRing = memo(function TimerRing({ seconds, total, size = 44 }: 
   const circumference = 2 * Math.PI * r;
   const progress = useSharedValue(1);
   const low = seconds <= 5;
+  // зачем 2026-08-03 (вечернее указание владельца, отменяет утреннее «цифра
+  // видна всегда»): постоянная цифра и точки внутри кольца отвлекали от
+  // вопроса. Кольцо молчит, цифры появляются только на последних трёх секундах.
+  const showDigit = seconds > 0 && seconds <= 3;
 
   useEffect(() => {
     const next = total > 0 ? Math.max(0, Math.min(1, seconds / total)) : 0;
@@ -111,7 +117,7 @@ export const TimerRing = memo(function TimerRing({ seconds, total, size = 44 }: 
       style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}
       accessible
       accessibilityRole="timer"
-          accessibilityLabel={`Время вопроса: ${Math.ceil(seconds)} секунд`}
+      accessibilityLabel={`Время вопроса: ${Math.ceil(seconds)} секунд`}
     >
       <Svg width={size} height={size} style={StyleSheet.absoluteFill}>
         <Circle
@@ -128,20 +134,12 @@ export const TimerRing = memo(function TimerRing({ seconds, total, size = 44 }: 
           animatedProps={animatedProps}
           transform={`rotate(-90 ${size / 2} ${size / 2})`}
         />
-        <Circle
-          cx={size / 2} cy={size / 2} r={Math.max(2, r - 7)}
-          stroke={low ? P.danger : P.accent}
-          strokeOpacity={0.42}
-          strokeWidth={1.5}
-          strokeDasharray="1.5 4"
-          fill="none"
-        />
-        <Circle
-          cx={size / 2} cy={size / 2} r={2.25}
-          fill={low ? P.danger : P.accent}
-        />
       </Svg>
-      <Text style={[styles.ringText, low && styles.ringTextLow]}>{Math.ceil(seconds)}</Text>
+      {showDigit && (
+        <Animated.Text entering={FadeIn.duration(150)} style={styles.ringText}>
+          {Math.ceil(seconds)}
+        </Animated.Text>
+      )}
     </View>
   );
 });
@@ -152,11 +150,11 @@ const makeStyles = (P: TournamentPalette) => StyleSheet.create({
     textAlign: 'center',
     fontVariant: ['tabular-nums'],
   },
+  // Цифра существует только в красной зоне (≤3 c), поэтому сразу в тоне danger.
   ringText: {
-    color: P.text,
+    color: P.danger,
     fontSize: 16,
     fontWeight: '900',
     fontVariant: ['tabular-nums'],
   },
-  ringTextLow: { color: P.danger },
 });

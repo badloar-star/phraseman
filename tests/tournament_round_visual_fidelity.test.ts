@@ -45,15 +45,18 @@ describe('tournament round visual fidelity', () => {
     expect(round).toContain('done={index + 1}');
   });
 
-  test('timer keeps its visual ring and renders the remaining seconds at every point', () => {
+  // зачем 2026-08-03, вечер (новое указание владельца — отменяет утреннее
+  // «цифра видна всегда»): кольцо чистое, без пунктирного декора и центральной
+  // точки; отсчёт 3-2-1 появляется только на последних трёх секундах.
+  test('timer is a clean ring: no inner dots, digits only in the final three seconds', () => {
     const timer = readFileSync(
       path.join(root, 'components/tournament/TournamentCountdown.tsx'),
       'utf8',
     );
-    expect(timer).toContain('strokeDasharray="1.5 4"');
-    expect(timer).toContain('r={2.25}');
-    expect(timer).toContain('<Text style={[styles.ringText, low && styles.ringTextLow]}>');
-    expect(timer).not.toContain('{low ? <Text');
+    expect(timer).not.toContain('strokeDasharray="1.5 4"');
+    expect(timer).not.toContain('r={2.25}');
+    expect(timer).toContain('const showDigit = seconds > 0 && seconds <= 3');
+    expect(timer).toContain('{showDigit && (');
     expect(round).toContain("question.kind !== 'choice' && styles.questionZoneCompact");
   });
 

@@ -84,21 +84,23 @@ describe('tournament question feedback UX', () => {
     expect(round).not.toContain('seconds={secondsLeft ?? answerWindowSeconds}');
   });
 
-  // зачем 2026-08-03 (требование владельца): цифра на таймере видна ВСЕГДА,
-  // а красным становится только на последних пяти секундах. Требование
-  // «цифры только 5 секунд» завела соседняя сессия 2026-08-01 внутри коммита
-  // 61a58ad14 — она изменила код и подогнала контракт под себя, оставив
-  // встречный (и утверждённый по макетам) tournament_round_visual_fidelity
-  // падать: тот прямо запрещает `{low ? <Text`. Держим одну правду.
-  test('question TimerRing always shows the countdown, red only in the final five seconds', () => {
+  // зачем 2026-08-03, вечер (новое указание владельца — ОТМЕНЯЕТ утреннее
+  // «цифра видна всегда» из этого же дня, историю конфликта сессий см. в
+  // git blame этого блока): кольцо молчит почти весь вопрос, отсчёт 3-2-1
+  // появляется только на последних трёх секундах, декоративные точки внутри
+  // кольца (пунктирный кружок и центральная точка) убраны. Красное
+  // предупреждение дуги остаётся с пяти секунд.
+  test('question TimerRing stays silent until the final three seconds', () => {
     const timerRing = section(countdown, 'export const TimerRing', 'const makeStyles');
 
     expect(timerRing).toContain('const low = seconds <= 5');
-    expect(timerRing).toContain('<Text style={[styles.ringText, low && styles.ringTextLow]}>');
-    expect(timerRing).not.toContain('{low ? <Text');
+    expect(timerRing).toContain('const showDigit = seconds > 0 && seconds <= 3');
+    expect(timerRing).toContain('{showDigit && (');
     expect(timerRing).toContain('Math.ceil(seconds)');
     expect(timerRing).toContain('styles.ringText');
     expect(timerRing).toContain('accessibilityRole="timer"');
+    expect(timerRing).not.toContain('strokeDasharray="1.5 4"');
+    expect(timerRing).not.toContain('r={2.25}');
   });
 
   test('reading, answer, and feedback windows come only from the absolute server task schedule', () => {
@@ -129,13 +131,13 @@ describe('tournament question feedback UX', () => {
     expect(round).toMatch(/const goNext[\s\S]*activeTaskSubmissionRef\.current = null/);
   });
 
-  // зачем 2026-08-03 (требование владельца): см. соседний тест выше — цифра
-  // видна всегда, красной становится только на последних пяти секундах.
-  test('question timer is a stable ring and always shows the digits', () => {
+  // зачем 2026-08-03, вечер: цифры показываются только на последних трёх
+  // секундах (контракт TimerRing выше), а само кольцо и его место в шапке
+  // остаются стабильными — геометрия не прыгает при появлении цифры.
+  test('question timer is a stable ring with digits only at the very end', () => {
     expect(round).toContain('const answerWindowSeconds =');
     expect(round).toContain('<TimerRing seconds={displayedSecondsLeft} total={answerWindowSeconds} />');
-    expect(countdown).toContain('<Text style={[styles.ringText, low && styles.ringTextLow]}>');
-    expect(countdown).not.toContain("{low ? <Text");
+    expect(countdown).toContain('const showDigit = seconds > 0 && seconds <= 3');
   });
 
   test('choice and phrase verdicts paint from room fingerprints before any network await', () => {

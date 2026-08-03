@@ -64,13 +64,18 @@ const resultsRoom = (overrides: Partial<TournamentRoomDoc> = {}): TournamentRoom
 });
 
 describe('paid scheduled and legacy test-room economy boundary', () => {
-  it.each([0, 1, 10])('pins scheduled room entry to 3 instead of remote entryGems=%i', (entryGems) => {
+  // зачем 2026-08-03 (владелец: «теперь вход 5 жемчугов стоит»): цена поднята
+  // с 3 до 5. Сам контракт не изменился — платная комната по-прежнему прибита
+  // к КОНСТАНТЕ КОДА и игнорирует присланный извне entryGems, иначе
+  // подделанный нулевой snapshot открыл бы фарм наград бесплатно.
+  it.each([0, 1, 10])('pins scheduled room entry to the code constant instead of remote entryGems=%i', (entryGems) => {
     const snapshot = tournamentEconomySnapshotForMode({
       ...DEFAULT_TOURNAMENT_ECONOMY,
       entryGems,
     }, false);
 
-    expect(snapshot.entryGems).toBe(3);
+    expect(snapshot.entryGems).toBe(DEFAULT_TOURNAMENT_ECONOMY.entryGems);
+    expect(snapshot.entryGems).toBe(5);
   });
 
   it('permits zero economy only for an explicit test-mode snapshot', () => {
@@ -149,7 +154,10 @@ describe('paid scheduled and legacy test-room economy boundary', () => {
     const plan = planTournamentFinalization(scheduled, 101);
 
     expect(plan.playerEffects).toHaveLength(1);
-    expect(plan.room.potGems).toBe(3);
+    // Один живой игрок × 5 жемчужин: нулевой удалённый конфиг не обнуляет банк.
+    expect(plan.room.potGems).toBe(5);
+    // Приз меньше банка не по ошибке: 20% (одна жемчужина) уходит в недельный
+    // банк, призёрам остаётся 4, первому месту 60% = 2 плюс остаток 1.
     expect(plan.room.prizeGems?.[0]).toBe(3);
   });
 
@@ -166,7 +174,7 @@ describe('paid scheduled and legacy test-room economy boundary', () => {
         entry: player.isBot ? undefined : {
           kind: 'ticket',
           ticketsSpent: 0,
-          bankContributionGems: 3,
+          bankContributionGems: 5,
           weekId: '2026-W31',
         },
       })),
@@ -182,7 +190,7 @@ describe('paid scheduled and legacy test-room economy boundary', () => {
     const invalidRefund = planTournamentCancellation(invalidFreeScheduled, 'cancelled', 200).refunds[0];
     const testRefund = planTournamentCancellation(legacyTest, 'cancelled', 200).refunds[0];
 
-    expect(paidRefund.bankContributionGems).toBe(3);
+    expect(paidRefund.bankContributionGems).toBe(5);
     expect(invalidRefund.bankContributionGems).toBe(0);
     expect(invalidRefund.compensationGems).toBe(0);
     expect(testRefund.bankContributionGems).toBe(0);

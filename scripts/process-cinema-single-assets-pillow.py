@@ -9,7 +9,8 @@ from PIL import Image
 
 
 ROOT = Path.cwd()
-SOURCE_ROOT = ROOT / "assets/images/cinema_dalle_sources/singles/v1"
+# зачем: черновики генерации вынесены из assets/ в asset_sources/.
+SOURCE_ROOT = ROOT / "asset_sources/cinema_dalle_sources/singles/v1"
 AUDIT_PATH = ROOT / ".codex-tmp/cinema-single-assets-pillow-audit.json"
 
 THEMES = ["midnight", "ember", "aurora", "volt"]

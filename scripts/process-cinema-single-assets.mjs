@@ -3,7 +3,8 @@ import path from 'node:path';
 import sharp from 'sharp';
 
 const ROOT = process.cwd();
-const SOURCE_ROOT = path.join(ROOT, 'assets/images/cinema_dalle_sources/singles/v1');
+// зачем: черновики генерации вынесены из assets/ в asset_sources/.
+const SOURCE_ROOT = path.join(ROOT, 'asset_sources/cinema_dalle_sources/singles/v1');
 const AUDIT_PATH = path.join(ROOT, '.codex-tmp/cinema-single-assets-audit.json');
 const PREVIEW_PATH = path.join(ROOT, '.codex-tmp/cinema-single-assets-preview.png');
 

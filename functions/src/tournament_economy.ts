@@ -31,9 +31,24 @@ export type TournamentEconomyConfig = {
   readonly weeklyShares: readonly [number, number, number];
 };
 
+/**
+ * зачем 2026-08-03 (владелец: «теперь вход 5 жемчугов стоит»): цена билета
+ * поднята с 3 до 5.
+ *
+ * botEntryGems поднят ВМЕСТЕ с ним и намеренно равен ему: банк турнира — это
+ * сумма взносов ВСЕХ шестнадцати мест (tournamentPot = живые × entryGems +
+ * боты × botEntryGems). Оставить ботам старые 3 значило бы, что игрок платит
+ * больше, а призовой фонд растёт медленнее цены билета — выплаты просели бы
+ * относительно вложенного. Равные взносы держат прежнюю пропорцию
+ * «сколько заплатил ↔ сколько разыгрывается».
+ *
+ * Числа — только УМОЛЧАНИЕ: админка может переопределить их через Firestore
+ * (normalizeTournamentEconomy ниже), поэтому боевое значение проверяется в
+ * конфиге, а не здесь.
+ */
 export const DEFAULT_TOURNAMENT_ECONOMY: TournamentEconomyConfig = Object.freeze({
-  entryGems: 3,
-  botEntryGems: 3,
+  entryGems: 5,
+  botEntryGems: 5,
   weeklyBankRate: 0.2,
   prizeShares: Object.freeze([0.6, 0.25, 0.15]) as readonly [number, number, number],
   weeklyShares: Object.freeze([0.6, 0.25, 0.15]) as readonly [number, number, number],

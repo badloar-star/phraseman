@@ -17,12 +17,15 @@ import {
 } from './tournament_economy';
 
 describe('банк турнира', () => {
-  it('полная комната по умолчанию: 16 участников × 3 = 48', () => {
+  // зачем 2026-08-03 (владелец: «теперь вход 5 жемчугов стоит»): числа
+  // пересчитаны с цены 3 на 5. Взнос ботов поднят вместе со входом, поэтому
+  // пропорция «заплатил ↔ разыгрывается» осталась прежней.
+  it('полная комната по умолчанию: 16 участников × 5 = 80', () => {
     const pot = tournamentPot(8, 8);
-    expect(pot.total).toBe(48);
+    expect(pot.total).toBe(80);
     // 20% в недельный банк, остальное призёрам.
-    expect(pot.toWeeklyBank).toBe(9);
-    expect(pot.toPrizes).toBe(39);
+    expect(pot.toWeeklyBank).toBe(16);
+    expect(pot.toPrizes).toBe(64);
     // Ничего не потеряно и не создано.
     expect(pot.toWeeklyBank + pot.toPrizes).toBe(pot.total);
   });
@@ -36,7 +39,7 @@ describe('банк турнира', () => {
 
   it('отрицательные и дробные числа игроков не ломают банк', () => {
     expect(tournamentPot(-5, -5).total).toBe(0);
-    expect(tournamentPot(2.9, 0).total).toBe(6);
+    expect(tournamentPot(2.9, 0).total).toBe(10);
   });
 });
 
@@ -61,12 +64,12 @@ describe('дележ по долям', () => {
 });
 
 describe('выплаты призёрам турнира', () => {
-  it('полная комната: 25 / 9 / 5 при призовом фонде 39', () => {
-    // 16 участников × 3 = 48; 20% (9) в недельный банк; 39 делятся 60/25/15
-    // → 23/9/5, остаток округления (2) достаётся победителю.
+  it('полная комната: 39 / 16 / 9 при призовом фонде 64', () => {
+    // 16 участников × 5 = 80; 20% (16) в недельный банк; 64 делятся 60/25/15
+    // → 38/16/9, остаток округления достаётся победителю.
     const pot = tournamentPot(8, 8);
     const { payouts, unclaimedToWeekly } = tournamentPayouts(pot, 3);
-    expect(payouts.map((payout) => payout.gems)).toEqual([25, 9, 5]);
+    expect(payouts.map((payout) => payout.gems)).toEqual([39, 16, 9]);
     expect(unclaimedToWeekly).toBe(0);
     // Победа окупает вход многократно — иначе играть незачем.
     expect(payouts[0].gems).toBeGreaterThan(DEFAULT_TOURNAMENT_ECONOMY.entryGems * 5);
@@ -180,6 +183,7 @@ describe('настройки экономики из админки', () => {
   it('взнос бота можно обнулить — игра перестаёт печатать жемчужины', () => {
     const config = normalizeTournamentEconomy({ botEntryGems: 0 });
     expect(config.botEntryGems).toBe(0);
-    expect(tournamentPot(8, 8, config).total).toBe(24);
+    // Только живые: 8 × 5 = 40. Боты жемчужины больше не «печатают».
+    expect(tournamentPot(8, 8, config).total).toBe(40);
   });
 });

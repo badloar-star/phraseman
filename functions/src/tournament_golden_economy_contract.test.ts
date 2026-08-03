@@ -75,8 +75,11 @@ describe('Golden Plan tournament economy contracts', () => {
       'resources_unavailable',
       10,
     );
-    expect(paidPlan.refunds[0]).toMatchObject({ bankContributionGems: 3, compensationGems: 3 });
-    expect(cancellationCreditGems(paidPlan.refunds[0])).toBe(6);
+    // зачем 2026-08-03 (владелец поднял вход до 5): взнос в банк возвращается
+    // по АКТУАЛЬНОЙ цене входа, а не по числу из фикстуры комнаты —
+    // компенсация «за ожидание» остаётся отдельной величиной (3).
+    expect(paidPlan.refunds[0]).toMatchObject({ bankContributionGems: 5, compensationGems: 3 });
+    expect(cancellationCreditGems(paidPlan.refunds[0])).toBe(8);
   });
 
   it('combines weekly shares for tied podium places without losing bank gems', () => {
@@ -117,15 +120,22 @@ describe('Golden Plan tournament economy contracts', () => {
       changedAdminEconomy,
     );
 
-    expect(plan.room.potGems).toBe(12);
-    expect(plan.room.prizeGems).toEqual([7, 2, 1]);
+    // зачем 2026-08-03 (владелец поднял вход до 5): 3 живых × 5 + бот × 3 = 18.
+    // Бот считается по СНАПШОТУ комнаты (в нём осталась старая цена 3) — именно
+    // это и проверяет тест: снапшот авторитетнее текущего конфига админки.
+    expect(plan.room.potGems).toBe(18);
+    // Призовой фонд вырос вместе с банком: 18 − 20% = 15, доли 60/25/15.
+    expect(plan.room.prizeGems).toEqual([10, 3, 2]);
     expect(plan.playerEffects.map(({ playerId, place, reward }) => [playerId, place, reward.gems]))
       .toEqual([
-        ['human-second', 2, 2],
-        ['human-third', 3, 1],
+        // Живые призёры получают больше вместе с ростом банка; бот на первом
+        // месте своей доли не забирает — она уходит в недельный банк.
+        ['human-second', 2, 3],
+        ['human-third', 3, 2],
         ['human-fourth', 4, 0],
       ]);
-    expect(plan.weeklyBankGems).toBe(9);
+    // 20% банка (3) + невостребованная доля бота-победителя (10) = 13.
+    expect(plan.weeklyBankGems).toBe(13);
 
     const replay = planTournamentFinalization(plan.room, 3_000, changedAdminEconomy);
     expect(replay.alreadyFinalized).toBe(true);

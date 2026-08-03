@@ -53,6 +53,68 @@ describe('Jarvis approval webhook core — refuse anything that is not provably 
     expect(result.answerText).toMatch(/принято|подтвержд/i);
   });
 
+  test('a successful approve carries messageEdit with department/action/outcome for the transport to render', async () => {
+    const consume = jest.fn(async () => ({
+      ok: true as const,
+      doc: { department: 'payments', action: 'approve' as const, decisionHash: 'abc' },
+    }));
+    const result = await handleApprovalCallback({
+      body: update(),
+      providedSecret: OWNER_CONFIG.webhookSecret,
+      config: OWNER_CONFIG,
+      consume,
+      nowMs: NOW,
+    });
+    expect(result.messageEdit).toEqual({
+      chatId: '374480287',
+      messageId: 55,
+      action: 'approve',
+    });
+  });
+
+  test('a successful reject also carries messageEdit', async () => {
+    const consume = jest.fn(async () => ({
+      ok: true as const,
+      doc: { department: 'quality', action: 'reject' as const, decisionHash: 'xyz' },
+    }));
+    const result = await handleApprovalCallback({
+      body: update({ data: 'jv1:r:' + 'n'.repeat(32) }),
+      providedSecret: OWNER_CONFIG.webhookSecret,
+      config: OWNER_CONFIG,
+      consume,
+      nowMs: NOW,
+    });
+    expect(result.messageEdit).toEqual({
+      chatId: '374480287',
+      messageId: 55,
+      action: 'reject',
+    });
+  });
+
+  test('a rejected outcome (expired/already used/stranger) carries NO messageEdit — nothing to render', async () => {
+    const consume = jest.fn(async () => ({ ok: false as const, reason: 'expired' as const }));
+    const result = await handleApprovalCallback({
+      body: update(),
+      providedSecret: OWNER_CONFIG.webhookSecret,
+      config: OWNER_CONFIG,
+      consume,
+      nowMs: NOW,
+    });
+    expect(result.messageEdit).toBeUndefined();
+  });
+
+  test('a stranger press carries NO messageEdit', async () => {
+    const consume = jest.fn();
+    const result = await handleApprovalCallback({
+      body: update({ from: { id: 999999 } }),
+      providedSecret: OWNER_CONFIG.webhookSecret,
+      config: OWNER_CONFIG,
+      consume,
+      nowMs: NOW,
+    });
+    expect(result.messageEdit).toBeUndefined();
+  });
+
   test('rejects a press from a different Telegram user without touching storage', async () => {
     const consume = jest.fn();
     const result = await handleApprovalCallback({

@@ -92,12 +92,29 @@ export interface HandleApprovalCallbackInput {
   readonly nowMs: number;
 }
 
+/**
+ * Куда и что дописать в сам текст сообщения после успешного нажатия.
+ *
+ * зачем помимо answerText: всплывающее уведомление Telegram исчезает за
+ * секунду и легко пропустить — владелец не мог понять, нажата кнопка или
+ * нет, не видя этого мимолётного тоста. messageEdit даёт транспорту
+ * (approval_webhook.ts) всё нужное, чтобы вызвать editMessageText и
+ * дописать в само сообщение постоянную строку вида «✅ Одобрено — 07:14».
+ */
+export interface ApprovalMessageEdit {
+  readonly chatId: string;
+  readonly messageId: number;
+  readonly action: ApprovalAction;
+}
+
 export interface HandleApprovalCallbackResult {
   readonly status: number;
   /** Команда владельца (/status, /stop). Реакция на неё — в транспорте. */
   readonly command?: JarvisCommand;
   /** Текст всплывающего ответа в Telegram. Пусто — отвечать нечего. */
   readonly answerText?: string;
+  /** Только при УСПЕШНОМ подтверждении — есть что дорисовать в сообщении. */
+  readonly messageEdit?: ApprovalMessageEdit;
   readonly callbackQueryId?: string;
 }
 
@@ -168,5 +185,14 @@ export async function handleApprovalCallback(
   }
 
   const answerText = parsed.action === 'approve' ? 'Принято, подтверждено.' : 'Принято, отклонено.';
-  return { status: 200, callbackQueryId, answerText };
+  const messageId = typeof message.message_id === 'number' ? message.message_id : null;
+  // зачем messageId может отсутствовать: старые/нестандартные апдейты Telegram
+  // технически могут не нести message_id — тогда просто нечего редактировать,
+  // всплывающий ответ уже отправлен и это не повод отказывать в подтверждении.
+  return {
+    status: 200,
+    callbackQueryId,
+    answerText,
+    ...(messageId !== null ? { messageEdit: { chatId: fromChatId, messageId, action: parsed.action } } : {}),
+  };
 }

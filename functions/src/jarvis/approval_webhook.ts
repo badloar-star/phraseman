@@ -10,7 +10,9 @@ import {
 } from './approval_audit';
 import { consumeApprovalToken } from './approval_store';
 import { handleApprovalCallback, parseOwnerConfig } from './approval_webhook_core';
+import { markRowDecided } from './approval_message_edit';
 import { issueDecisionButtons } from './issue_decision_buttons';
+import type { InlineKeyboard } from './telegram_buttons';
 import { sendJarvisDigest } from './telegram_send';
 import type { Decision } from './decision';
 import { buildStatusText, type JarvisCommand } from './commands';
@@ -77,6 +79,30 @@ async function sendPlainMessage(botToken: string, chatId: string, text: string):
     });
   } catch (error) {
     logger.warn('jarvis_approval: command reply failed', error);
+  }
+}
+
+/**
+ * зачем: без этого владелец не видит, что нажатие вообще случилось — только
+ * секундный тост от answerCallbackQuery, который легко пропустить. Меняет
+ * ТОЛЬКО клавиатуру (не текст) — это единственный правкой, который Telegram
+ * позволяет без риска испортить исходное сообщение.
+ */
+async function editMessageReplyMarkup(
+  botToken: string,
+  chatId: string,
+  messageId: number,
+  keyboard: InlineKeyboard,
+): Promise<void> {
+  try {
+    await fetch(`https://api.telegram.org/bot${botToken}/editMessageReplyMarkup`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chat_id: chatId, message_id: messageId, reply_markup: keyboard }),
+    });
+  } catch (error) {
+    // Некритично: решение уже зафиксировано в Firestore, это только видимость.
+    logger.warn('jarvis_approval: editMessageReplyMarkup failed', error);
   }
 }
 
@@ -252,6 +278,26 @@ export const jarvisTelegramApprovalWebhook = onRequest(
 
     if (result.callbackQueryId && result.answerText) {
       await answerCallbackQuery(ADMIN_ALERT_BOT_TOKEN.value(), result.callbackQueryId, result.answerText);
+    }
+
+    // зачем отдельно от answerCallbackQuery: тост исчезает за секунду и легко
+    // пропустить — владелец жаловался, что не видно, нажата кнопка или нет.
+    // Правим ТОЛЬКО клавиатуру одной строки, текст сводки не трогаем.
+    if (result.messageEdit) {
+      const callback = (req.body as Record<string, unknown> | undefined)?.callback_query as
+        Record<string, unknown> | undefined;
+      const message = (callback?.message ?? {}) as Record<string, unknown>;
+      const pressedCallbackData = typeof callback?.data === 'string' ? callback.data : '';
+      const currentKeyboard = (message.reply_markup ?? null) as InlineKeyboard | null;
+      const nextKeyboard = markRowDecided(currentKeyboard, pressedCallbackData, result.messageEdit.action);
+      if (nextKeyboard) {
+        await editMessageReplyMarkup(
+          ADMIN_ALERT_BOT_TOKEN.value(),
+          result.messageEdit.chatId,
+          result.messageEdit.messageId,
+          nextKeyboard,
+        );
+      }
     }
 
     // 200 обязателен, иначе Telegram будет повторять доставку.

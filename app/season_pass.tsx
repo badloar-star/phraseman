@@ -200,9 +200,21 @@ export default function SeasonPassScreen() {
   // прогресс-полоской (владелец: «убери полоску уровня», «убери 59 дней»).
   // Держать вычисления без потребителя — тихий мусор в каждом рендере.
   const pearlIcon = pearlIconForTheme(themeMode);
-  // Pro/Plus владеет обеими линиями наград БЕЗ покупки (владелец: «премиум
-  // хапает обе стороны, фри только фри») — покупка за 250 актуальна лишь фри.
-  const laneUnlockedForPass = isPremium || passOwned;
+  /**
+   * зачем 2026-08-03 (владелец, дословно: «250 СТОИТ ВХОД ДЛЯ ВСЕХ И ДЛЯ ФРИ И
+   * ДЛЯ ПРЕМИУМ! просто фри таер будет получать только подарки слева, а плюс
+   * таер будет получать и слева и справа»): здесь стояло
+   * `isPremium || passOwned` — премиум получал дорожку БЕСПЛАТНО, и кнопка
+   * покупки у него пропадала совсем (ровно тот симптом «плашка 250 исчезла»).
+   *
+   * Правильная модель в двух независимых осях:
+   *  • ВХОД в дорожку — только покупка пропуска, цена 250 одна для всех.
+   *    Подписка вход не заменяет, поэтому здесь больше нет isPremium.
+   *  • ШИРИНА выдачи — тир: фри забирает левую линию, Plus обе (passLaneAllowed).
+   */
+  const passBought = passOwned;
+  // Правая (платная) линия — привилегия тира, но работает только после входа.
+  const passLaneAllowed = isPremium;
 
   const persistClaims = useCallback((next: ClaimedMap) => {
     AsyncStorage.setItem(CLAIMED_LEVELS_KEY, JSON.stringify(next)).catch(() => {});
@@ -328,8 +340,13 @@ export default function SeasonPassScreen() {
      * линия выдавалась любому без покупки, замок висел только на платной.
      * Теперь пропуск — вход в обе линии: без него дорожка видна целиком
      * (прогресс, уровни, что именно ждёт впереди), но забрать нельзя ничего.
+     *
+     * зачем 2026-08-03 (владелец: «фри таер будет получать только подарки
+     * слева, а плюс таер и слева и справа»): вход и ширина выдачи — РАЗНЫЕ
+     * условия. Пропуск открывает дорожку всем одинаково, но правая линия
+     * остаётся за Plus: без подписки она видна и заперта даже после покупки.
      */
-    const laneUnlocked = laneUnlockedForPass;
+    const laneUnlocked = passBought && (!isPassLane || passLaneAllowed);
     const claimable = laneUnlocked && reached && !isClaimed;
     /**
      * зачем 2026-08-03 (владелец: «при нажатии на любой подарок написано, что
@@ -451,13 +468,14 @@ export default function SeasonPassScreen() {
         {claimable && (
           <Ionicons name="checkmark-circle-outline" size={18} color={t.textOnCard} style={{ position: 'absolute', top: 7, right: 7 }} />
         )}
-        {/* Замок теперь на ОБЕИХ линиях: без пропуска не выдаётся ничего. */}
-        {!laneUnlockedForPass && (
+        {/* Замок висит на КАЖДОЙ линии, которая этому игроку недоступна: без
+            пропуска — на обеих, у фри с пропуском — только на правой. */}
+        {!laneUnlocked && (
           <Ionicons name="lock-closed" size={14} color={t.textMuted} style={{ position: 'absolute', top: 8, right: 8 }} />
         )}
       </Wrapper>
     );
-  }, [claimed, laneUnlockedForPass, lang, onClaimReward, onLockedRewardPress, pearlIcon, seasonId, t, themeMode]);
+  }, [claimed, lang, onClaimReward, onLockedRewardPress, passBought, passLaneAllowed, pearlIcon, seasonId, t, themeMode]);
 
   const renderItem = useCallback(({ item }: ListRenderItemInfo<SeasonTrackNode>) => {
     const reached = progress.level >= item.level;
@@ -642,9 +660,11 @@ export default function SeasonPassScreen() {
         contentContainerStyle={{ paddingTop: insets.top + 12, paddingBottom: 120 }}
         showsVerticalScrollIndicator={false}
       />
-      {/* Кнопка покупки скрыта у Premium — платная линия уже открыта льготой
-          подписки, показывать «купить» за то, что и так бесплатно, — плохой UX. */}
-      {!laneUnlockedForPass && (
+      {/* зачем 2026-08-03 (владелец: «250 стоит вход для всех и для фри и для
+          премиум», плашка у него пропала): кнопка пряталась по
+          `!laneUnlockedForPass`, где premium давал доступ бесплатно — подписчик
+          вообще не видел, что вход платный. Скрываем ТОЛЬКО у уже купивших. */}
+      {!passBought && (
         <View style={{ position: 'absolute', left: 0, right: 0, bottom: 0, paddingHorizontal: 16, paddingBottom: insets.bottom + 14, paddingTop: 10 }}>
           <TouchableOpacity /* guard-ok: видимый текст «Открыть пропуск 250» внутри — реальный лейбл, не декоративная кнопка */
             testID="season-pass-buy"

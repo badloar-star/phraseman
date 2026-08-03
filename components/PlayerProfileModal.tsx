@@ -283,6 +283,8 @@ type BodyProps = {
   player: PlayerInfo;
   myInfo: MyInfo;
   resolvedTotalXp: number | null;
+  /** true = сеть отработала и опыт так и не нашёлся: показываем 0, а не вечный skeleton. */
+  xpResolutionSettled: boolean;
   slideAnim: Animated.Value;
   fadeAnim: Animated.Value;
   shimmerAnim: Animated.Value;
@@ -296,6 +298,7 @@ function PlayerProfileModalBody({
   player,
   myInfo,
   resolvedTotalXp,
+  xpResolutionSettled,
   slideAnim,
   fadeAnim,
   shimmerAnim,

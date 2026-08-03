@@ -120,6 +120,12 @@ export type AppEventMap = {
   notif_permission_nudge: { missedDays: number };
   /** Диалог завершён (или прогресс сброшен) — список диалогов обновляет состояния «Пройдено» и hero «Продолжить». */
   dialogs_progress_changed: undefined;
+  /**
+   * Юзер зашёл в урок (любым путём: меню, задания дня, личный план, повтор) — карточка
+   * «Продолжить урок X» на Главной обязана смениться СРАЗУ, не дожидаясь возврата на таб
+   * или полного loadData(). lesson1.tsx эмитит сразу при входе, home.tsx патчит lastLesson точечно.
+   */
+  last_opened_lesson_changed: { lessonId: number; progress: number; score: string; studyTarget?: RuntimeStudyTarget };
 };
 
 /** RU + UK + ES для `action_toast` без дублирования полей. */

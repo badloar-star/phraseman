@@ -132,10 +132,12 @@ import MedalToast from '../components/MedalToast';
 import NoEnergyModal from '../components/NoEnergyModal';
 import { openLessonGateByRuntime, shouldBlockLessonAccess } from './lesson_premium_gate';
 import { MOTION_DURATION } from '../constants/motion';
-import { dailyTaskLessonVisitedKey, fiftyFiftyUsageKey, grammarHintSeenKey, lessonIntroShownKey, lessonLastCompletedAtKey, lessonPassCountKey, lessonProgressKey, lessonSessionKey } from './target_storage_keys';
+import { dailyTaskLessonVisitedKey, fiftyFiftyUsageKey, grammarHintSeenKey, lastOpenedLessonKey, lessonIntroShownKey, lessonLastCompletedAtKey, lessonPassCountKey, lessonProgressKey, lessonSessionKey } from './target_storage_keys';
 import { lessonSupportContentAvailableForTarget } from './lesson_support_target_gate';
 import { loadFrenchRemoteLessonRows } from './french_lesson_remote_runtime';
 import { safeRouterBack } from './navigation_back';
+import { emitAppEvent } from './events';
+import { patchHomeScreenHydration } from './home_screen_hydration';
 import { useMistakeExplain } from './use_mistake_explain';
 import { isExplainEnabled } from './explain_phrase_flags';
 import { resolveLessonAnswerFontSize } from '../lib/lesson_answer_layout';
@@ -3727,6 +3729,39 @@ export default function LessonScreen() {
   const wrongCount   = useMemo(() => progress.filter(p => p === 'wrong').length, [progress]);
   const score = useMemo(() => Number((correctCount / effectiveTotal * 5).toFixed(1)), [correctCount, effectiveTotal]);
   const planLessonRemaining = isPlanLessonTask ? Math.max(0, planRequiredPhrases - planLessonAnswered) : 0;
+
+  // зачем: владелец — «зашёл в урок, а плашка "Продолжить урок" на Главной ещё старая,
+  // пока не перезайду в приложение». Раньше last-opened писался только в AsyncStorage —
+  // это переживает перезапуск, но НЕ обновляет уже смонтированный home.tsx (он лежит на
+  // соседнем табе и просто не знает, что что-то изменилось, пока сам не перечитает данные).
+  // Патчим снапшот в памяти (на случай что home.tsx перемонтируется) И эмитим событие
+  // (на случай что home.tsx уже жив на табе) — так плашка меняется в кадре входа в урок,
+  // а не на следующем полном заходе в приложение. correctCount/50 (не /effectiveTotal) —
+  // та же формула, что home.tsx использует при собственном loadData(), чтобы цифра не
+  // «прыгнула» при следующем полном перечитывании.
+  const lastOpenedSyncedRef = useRef(false);
+  useEffect(() => {
+    if (isPlanPhraseLessonTask || lessonId < 1 || lessonId > 32) return;
+    lastOpenedSyncedRef.current = false;
+  }, [lessonId, isPlanPhraseLessonTask]);
+  useEffect(() => {
+    if (isPlanPhraseLessonTask || lessonId < 1 || lessonId > 32) return;
+    if (lastOpenedSyncedRef.current) return;
+    lastOpenedSyncedRef.current = true;
+    const homeScore = (correctCount / 50 * 5).toFixed(1);
+    void AsyncStorage.setItem(lastOpenedLessonKey(studyTarget), String(lessonId)).catch(() => {});
+    patchHomeScreenHydration({
+      lastLessonId: lessonId,
+      lastLessonProgress: correctCount,
+      lastLessonScore: homeScore,
+    }, studyTarget);
+    emitAppEvent('last_opened_lesson_changed', {
+      lessonId,
+      progress: correctCount,
+      score: homeScore,
+      studyTarget,
+    });
+  }, [lessonId, studyTarget, isPlanPhraseLessonTask, correctCount]);
 
   // ── Medal tier change toast ──────────────────────────────────────────────────
   const prevMedalTierRef = useRef<MedalTier>('none');

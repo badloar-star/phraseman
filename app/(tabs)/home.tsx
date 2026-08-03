@@ -859,6 +859,13 @@ export default function HomeScreen() {
     const energyTooltipTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
     const energyIconRef = useRef<View>(null);
     const mountedRef = useRef(true);
+    // зачем: last_opened_lesson_changed летит из onAppEvent-подписки внутри useEffect с
+    // deps=[] (регистрируется один раз при маунте) — без рефов замыкание держало бы
+    // studyTarget/lang ПЕРВОГО рендера и путало бы уроки/язык названия при смене на лету.
+    const studyTargetRef = useRef(studyTarget);
+    useEffect(() => { studyTargetRef.current = studyTarget; }, [studyTarget]);
+    const langRef = useRef(lang);
+    useEffect(() => { langRef.current = lang; }, [lang]);
     // зачем: с 2026-08-02 плановая карточка на главной заменена карточкой последнего
     // урока, значения ниже в рендере не читаются. Машинерия (state + события +
     // запись в снапшот) сохранена: она держит кэш плана тёплым для CompassBriefingHost
@@ -1218,6 +1225,20 @@ export default function HomeScreen() {
             requestHomeDataRefresh();
         });
         const streakSeededSub = onAppEvent('streak_seeded', requestHomeDataRefresh);
+        // зачем: владелец — «зашёл в урок, а карточка "Продолжить урок" на Главной ещё
+        // старая, пока не перезайду в приложение». lesson1.tsx эмитит это СРАЗУ при входе
+        // в урок (см. lesson1.tsx рядом с correctCount/score). Патчим state напрямую —
+        // не requestHomeDataRefresh: полный loadData() дороже (XP/streak/лига/etc.) и не
+        // нужен ради одной карточки, к тому же дешёвый путь работает и когда home сейчас
+        // не активна (homeRuntimeActiveRef), в отличие от dirty-флагов выше.
+        const lastOpenedLessonSub = onAppEvent('last_opened_lesson_changed', (payload) => {
+            if (!payload || !mountedRef.current) return;
+            if ((payload.studyTarget ?? undefined) !== studyTargetRef.current) return;
+            const lessonNames = lessonNamesForStudyTarget(langRef.current, studyTargetRef.current);
+            const name = lessonNames[payload.lessonId - 1];
+            if (!name) return;
+            setLastLesson({ id: payload.lessonId, name, progress: payload.progress, score: payload.score });
+        });
         return () => {
             mountedRef.current = false;
             sub.remove();
@@ -1237,6 +1258,7 @@ export default function HomeScreen() {
             freezeUpdatedSub.remove();
             revivedSub.remove();
             streakSeededSub.remove();
+            lastOpenedLessonSub.remove();
             deferredReadyTaskRef.current?.cancel?.();
             deferredReadyTaskRef.current = null;
             deferredReloadTaskRef.current?.cancel?.();

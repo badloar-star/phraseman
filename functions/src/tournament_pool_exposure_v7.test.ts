@@ -10,7 +10,11 @@ const BUCKETED_COUNTS = Object.freeze({
   fill_gap: 13,
   find_oddity: 10,
   translate_build: 38,
-  speed_match: 10,
+  // зачем 2026-08-03: speed_match пересобран из словарных слов (фикс
+  // «максимум 3 слова», коммит 347f8eb29) — 192 задания вместо 400, 5
+  // бакетов вместо 10. Значение обязано совпадать с production-хардкодом
+  // TOURNAMENT_BUCKETED_EXPOSURE_BUCKET_COUNTS в tournaments.ts.
+  speed_match: 5,
 });
 
 function bucketedToken(generation = 'tpool_20260801_v8'): TournamentPoolBarrierToken {

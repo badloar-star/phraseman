@@ -180,6 +180,30 @@ export default function SeasonPassScreen() {
     setBuyConfirmVisible(true);
   }, [buying, passOwned]);
 
+  /**
+   * Тап по закрытому подарку.
+   *
+   * зачем 2026-08-03 (владелец: «при нажатии на любой подарок написано, что
+   * нужен пропуск чтобы получить подарок»): молчаливая плитка читалась как
+   * поломка. Объясняем причину и сразу открываем окно покупки — путь от
+   * «хочу этот подарок» до покупки в один тап, без поиска кнопки внизу.
+   */
+  const onLockedRewardPress = useCallback(() => {
+    hapticTap();
+    emitAppEvent('action_toast', actionToastTri('info', {
+      ru: 'Нужен пропуск сезона, чтобы забирать подарки',
+      uk: 'Потрібна перепустка сезону, щоб забирати подарунки',
+      es: 'Necesitas el pase de temporada para reclamar regalos',
+      'pt-BR': 'Você precisa do passe da temporada para resgatar presentes',
+      vi: 'Cần vé mùa để nhận quà',
+      id: 'Butuh season pass untuk mengambil hadiah',
+      tr: 'Hediyeleri almak için sezon bileti gerekli',
+      pl: 'Aby odbierać prezenty, potrzebna jest przepustka sezonu',
+    }));
+    if (buying) return;
+    setBuyConfirmVisible(true);
+  }, [buying]);
+
   const onBuyConfirm = useCallback(async () => {
     if (buying) return;
     hapticTap();
@@ -254,15 +278,38 @@ export default function SeasonPassScreen() {
       + (reward.kind === 'aura_stage' ? ` ${['I', 'II', 'III', 'IV'][Math.max(0, (reward.amount ?? 1) - 1)]}` : '')
       + (reward.kind === 'plus_days' || reward.kind === 'xp_bank' ? ` ${reward.amount ?? ''}` : '');
     const isPassLane = side === 'pass';
-    // Платная линия клеймится после покупки ИЛИ автоматом для Premium (владелец:
-    // «премиум хапает обе стороны, фри только фри») — до этого на плитке замочек.
     const isClaimed = !!claimed[`${seasonId}:${level}:${side}`];
-    const laneUnlocked = !isPassLane || laneUnlockedForPass;
+    /**
+     * зачем 2026-08-03 (владелец: «пропуск я же говорил надо купить, он не даётся
+     * просто так, ты не можешь получать подарки просто так… юзер видит свой
+     * потенциальный уже тир и прогресс, но без пропуска ничего не может
+     * получить»): здесь стояло `!isPassLane || laneUnlockedForPass` — БЕСПЛАТНАЯ
+     * линия выдавалась любому без покупки, замок висел только на платной.
+     * Теперь пропуск — вход в обе линии: без него дорожка видна целиком
+     * (прогресс, уровни, что именно ждёт впереди), но забрать нельзя ничего.
+     */
+    const laneUnlocked = laneUnlockedForPass;
     const claimable = laneUnlocked && reached && !isClaimed;
-    const Wrapper = claimable ? TouchableOpacity : View;
+    /**
+     * зачем 2026-08-03 (владелец: «при нажатии на любой подарок написано, что
+     * нужен пропуск чтобы получить подарок»): закрытая плитка была немым View —
+     * тап по ней просто не давал НИЧЕГО, и игрок не понимал, сломано это или
+     * заблокировано. Теперь она нажимается и честно объясняет, что нужен
+     * пропуск, а достижимость уровня подсказывает, стоит ли покупать сейчас.
+     */
+    const locked = !laneUnlocked && reached && !isClaimed;
+    const Wrapper = claimable || locked ? TouchableOpacity : View;
     const wrapperProps = claimable
       ? { activeOpacity: 0.85, onPress: () => onClaimReward(reward, level, side), accessibilityRole: 'button' as const, testID: `season-pass-claim-${side}-${level}` }
-      : {};
+      : locked
+        ? {
+          activeOpacity: 0.85,
+          onPress: onLockedRewardPress,
+          accessibilityRole: 'button' as const,
+          accessibilityLabel: 'Нужен пропуск сезона, чтобы забрать подарок',
+          testID: `season-pass-locked-${side}-${level}`,
+        }
+        : {};
     return (
       <Wrapper {...wrapperProps} style={{
         flex: 1,
@@ -313,12 +360,13 @@ export default function SeasonPassScreen() {
         {claimable && (
           <Ionicons name="checkmark-circle-outline" size={18} color={t.textOnCard} style={{ position: 'absolute', top: 7, right: 7 }} />
         )}
-        {isPassLane && !laneUnlockedForPass && (
+        {/* Замок теперь на ОБЕИХ линиях: без пропуска не выдаётся ничего. */}
+        {!laneUnlockedForPass && (
           <Ionicons name="lock-closed" size={14} color={t.textMuted} style={{ position: 'absolute', top: 8, right: 8 }} />
         )}
       </Wrapper>
     );
-  }, [claimed, laneUnlockedForPass, lang, onClaimReward, pearlIcon, seasonId, t, themeMode]);
+  }, [claimed, laneUnlockedForPass, lang, onClaimReward, onLockedRewardPress, pearlIcon, seasonId, t, themeMode]);
 
   const renderItem = useCallback(({ item, index }: ListRenderItemInfo<SeasonTrackNode>) => {
     const reached = progress.level >= item.level;

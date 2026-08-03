@@ -52,6 +52,26 @@ describe('league ghosts', () => {
     }
   });
 
+  it('correlates weekly pace with experience: veterans faster than newbies on average', () => {
+    const weeks = ['2026-W33', '2026-W34', '2026-W35', '2026-W36'];
+    let vetSum = 0;
+    let vetN = 0;
+    let newbSum = 0;
+    let newbN = 0;
+    for (const week of weeks) {
+      const end = isoWeekStartMs(week) + 7 * DAY;
+      for (let i = 0; i < SHARED_POOL_TARGET_VISIBLE; i++) {
+        const xp = Number(buildGhostMember(week, i, end).totalXp);
+        const final = ghostPointsAt(week, i, end);
+        if (xp > 40_000) { vetSum += final; vetN += 1; }
+        else if (xp < 5_000) { newbSum += final; newbN += 1; }
+      }
+    }
+    expect(vetN).toBeGreaterThan(0);
+    expect(newbN).toBeGreaterThan(0);
+    expect(vetSum / vetN).toBeGreaterThan(newbSum / newbN);
+  });
+
   it('keeps a healthy share of beatable ghosts in every weekly roster', () => {
     const endOfWeek = WEEK_START + 7 * DAY;
     const finals = Array.from({ length: SHARED_POOL_TARGET_VISIBLE }, (_, i) => ghostPointsAt(WEEK, i, endOfWeek));

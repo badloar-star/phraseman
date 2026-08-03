@@ -74,6 +74,12 @@ function ghostName(weekId: string, index: number): string {
   return REDDIT_BOT_NAMES[(offset + index * 7) % REDDIT_BOT_NAMES.length];
 }
 
+/** Общий XP жителя — свой seed-поток, чтобы цель недели могла от него зависеть. */
+export function ghostTotalXp(weekId: string, index: number): number {
+  const rng = mulberry32(fnv1a(`${weekId}:${index}:xp`));
+  return Math.round(350 + 88000 * Math.pow(rng(), 1.8));
+}
+
 /**
  * Недельная цель жителя: перекошенное распределение — много скромных
  * (легко обгоняемых), немного гриндеров до ~2600. Реальный игрок всегда
@@ -81,7 +87,15 @@ function ghostName(weekId: string, index: number): string {
  */
 function ghostWeeklyTarget(weekId: string, index: number): number {
   const rng = mulberry32(fnv1a(`${weekId}:${index}:target`));
-  return Math.round(60 + 2540 * Math.pow(rng(), 2.2));
+  const draw = Math.pow(rng(), 2.2);
+  // зачем (владелец, 2026-08-03): цель недели коррелирует с опытом — ветераны
+  // в среднем быстрее, новички скромнее (потолок ~25% диапазона). ~8%
+  // исключений оставлено нарочно (новичок-спринтер, ленивый ветеран) — как в
+  // живом лобби; ленивые ветераны и так возможны через низкий draw.
+  const xpNorm = Math.sqrt(Math.min(1, ghostTotalXp(weekId, index) / 88_350));
+  const outlier = rng() < 0.08;
+  const ceiling = outlier ? 1 : 0.25 + 0.75 * xpNorm;
+  return Math.round(60 + 2540 * draw * ceiling);
 }
 
 /** Очки жителя в момент nowMs: монотонная детерминированная кривая недели. */
@@ -104,7 +118,7 @@ export function ghostPointsAt(weekId: string, index: number, nowMs: number): num
  */
 export function buildGhostMember(weekId: string, index: number, nowMs: number): GhostMember {
   const rng = mulberry32(fnv1a(`${weekId}:${index}:profile`));
-  const totalXp = Math.round(350 + 88000 * Math.pow(rng(), 1.8));
+  const totalXp = ghostTotalXp(weekId, index);
   const streak = Math.round(45 * Math.pow(rng(), 2.5));
   return {
     uid: ghostUid(weekId, index),

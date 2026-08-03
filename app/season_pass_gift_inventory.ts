@@ -21,7 +21,7 @@ const STORAGE_KEY = 'season_pass_gift_inventory_v1';
 /** Расходники, которые физически попадают в инвентарь (не статус, не сразу применяемое). */
 export const SEASON_CONSUMABLE_KINDS: readonly SeasonRewardKind[] = [
   'battery', 'league_boost', 'club_totem', 'golden_lesson', 'collection_magnet',
-  'turbo_regen', 'tournament_ticket', 'time_machine', 'friend_battery', 'xp_bank',
+  'turbo_regen', 'tournament_ticket', 'time_machine', 'friend_shield', 'xp_bank', 'choice_3',
 ];
 
 export interface SeasonPassGiftItem {

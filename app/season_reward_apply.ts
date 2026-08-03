@@ -108,8 +108,12 @@ export async function applySeasonRewardLocal(reward: SeasonReward): Promise<Appl
       // Optimistic-начисление жемчуга тем же путём, что рулетка: локально сразу,
       // серверная транзакция seasonClaimReward доначисляет authoritative-баланс.
       const token = captureAccountGeneration();
-      const stableId = await getCanonicalUserId();
-      await addShardsLocalOnlyForPendingServerClaim(reward.amount ?? 0, 'season_pass_pearls', token, stableId ?? token.stableId);
+      const stableId = (await getCanonicalUserId()) ?? token.stableId;
+      // Без stableId optimistic пропускаем — серверный seasonClaimReward всё равно
+      // доначислит authoritative-баланс, цифра догонит при синке.
+      if (stableId) {
+        await addShardsLocalOnlyForPendingServerClaim(reward.amount ?? 0, 'season_pass_pearls', token, stableId);
+      }
       return { ok: true };
     }
     case 'battery':

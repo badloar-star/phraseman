@@ -72,7 +72,11 @@ import { COMPLETED_PLAN_TASKS_KEY } from './personal_plan_progress';
 import { PERSONAL_PLAN_STATE_KEY } from './personal_plan_state';
 import { LEVEL_UP_ACCOUNT_LOCAL_KEYS } from './level_up_storage_keys';
 import { CUSTOMIZATION_ACCOUNT_LOCAL_KEYS } from '../constants/customization_storage_keys';
-import { TODAY_ACCOUNT_STORAGE_KEYS } from '../lib/today/storage_keys';
+// зачем: экран «Сегодня» удалён (2026-08-03) вместе с lib/today, но ключ его
+// истории остаётся на устройствах прежних версий. Держим его в списке очистки
+// при смене аккаунта — иначе чужие данные переживут выход из аккаунта (тот же
+// класс бага, что «чужие пиксели после смены аккаунта»).
+const LEGACY_TODAY_ACCOUNT_STORAGE_KEYS = ['today_recommendation_history_v1'] as const;
 import {
   activeRecallItemsKey,
   achievementStateKey,
@@ -713,7 +717,7 @@ export function accountLocalDataKeysForToday(todayKey: string = getTodayKey()): 
     PERSONAL_PLAN_PENDING_ACTIVATION_KEY,
     ...CUSTOMIZATION_ACCOUNT_LOCAL_KEYS,
     ...LEVEL_UP_ACCOUNT_LOCAL_KEYS,
-    ...TODAY_ACCOUNT_STORAGE_KEYS,
+    ...LEGACY_TODAY_ACCOUNT_STORAGE_KEYS,
     ...localOnlyTargetKeys,
   ]));
 }

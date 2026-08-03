@@ -40,7 +40,6 @@ const KNOWN_DEBT: readonly string[] = [
   'components/ReportErrorButton.tsx',
   'components/SpeakingPanel.tsx',
   'components/VerbLetterBank.tsx',
-  'components/admin_panel/CompassStackPreviewModal.tsx',
   'components/customization/AvatarEditorSheet.tsx',
   'components/onboarding_aha/AhaScene.tsx',
   'components/onboarding_aha/SpeechBeat.tsx',

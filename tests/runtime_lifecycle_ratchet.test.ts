@@ -154,7 +154,8 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
   // (status?.playing && isFocused), а reduce-motion дополнительно глушит пульс.
   // Токены перепломбированы на новый гард, без ослабления.
   'components/tournament/TournamentAudioButton.tsx': runtime('Audio pulse runs only while the clip plays on a focused foreground screen with reduced motion off.', ['status?.playing === true && isFocused', 'if (!isPlaying || reducedMotion)', 'pulse.value = 1']),
-  'components/today/TodayAmbientCompass.tsx': runtime('Compass breath/drift loops require focused foreground runtime and respect reduced motion.', ['if (active && !reduceMotion)', 'cancelAnimation(breath)']),
+  // зачем 2026-08-03: components/today/TodayAmbientCompass.tsx снят с учёта —
+  // экран «Сегодня» удалён целиком вместе с его фоновой анимацией.
 };
 
 describe('runtime lifecycle ratchet', () => {

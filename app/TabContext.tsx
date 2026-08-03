@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useCallback, useMemo } from 'react';
-import type { TabRuntimeOwnerId } from '../lib/today/tab_page_model';
+import type { TabRuntimeOwnerId } from './tab_page_model';
 
 interface TabCtx {
   activeIdx: number;
@@ -7,7 +7,6 @@ interface TabCtx {
   goHome: () => void;
   focusTick: number;
   runtimeOwnerId: TabRuntimeOwnerId;
-  todaySessionEpoch: number;
   onSwipeStart: (idx: number) => void;
   onSwipeComplete: (idx: number) => void;
 }
@@ -18,7 +17,6 @@ const TabContext = createContext<TabCtx>({
   goHome: () => {},
   focusTick: 0,
   runtimeOwnerId: 'home',
-  todaySessionEpoch: 0,
   onSwipeStart: () => {},
   onSwipeComplete: () => {},
 });
@@ -26,7 +24,7 @@ const TabContext = createContext<TabCtx>({
 export const useTabNav = () => useContext(TabContext);
 
 // зачем: владелец (2026-08-02) убрал таб «Уроки» — порядок синхронизирован
-// с LOGICAL_TAB_IDS в lib/today/tab_page_model.ts.
+// с LOGICAL_TAB_IDS в app/tab_page_model.ts.
 export const TAB_KEYS = ['home', 'tournaments', 'friends', 'settings'] as const;
 
 export function TabProvider({
@@ -37,7 +35,6 @@ export function TabProvider({
   onSwipeComplete,
   focusTick,
   runtimeOwnerId: runtimeOwnerIdProp,
-  todaySessionEpoch: todaySessionEpochProp,
 }: {
   children: React.ReactNode;
   activeIdx: number;
@@ -46,15 +43,13 @@ export function TabProvider({
   onSwipeComplete: (idx: number) => void;
   focusTick: number;
   runtimeOwnerId?: TabRuntimeOwnerId;
-  todaySessionEpoch?: number;
 }) {
   const goToTab = useCallback((idx: number) => onTabChange(idx), [onTabChange]);
   const goHome  = useCallback(() => onTabChange(0), [onTabChange]);
   const runtimeOwnerId = runtimeOwnerIdProp ?? TAB_KEYS[activeIdx] ?? 'home';
-  const todaySessionEpoch = todaySessionEpochProp ?? 0;
   const value = useMemo(
-    () => ({ activeIdx, goToTab, goHome, focusTick, runtimeOwnerId, todaySessionEpoch, onSwipeStart, onSwipeComplete }),
-    [activeIdx, goToTab, goHome, focusTick, runtimeOwnerId, todaySessionEpoch, onSwipeStart, onSwipeComplete],
+    () => ({ activeIdx, goToTab, goHome, focusTick, runtimeOwnerId, onSwipeStart, onSwipeComplete }),
+    [activeIdx, goToTab, goHome, focusTick, runtimeOwnerId, onSwipeStart, onSwipeComplete],
   );
   return <TabContext.Provider value={value}>{children}</TabContext.Provider>;
 }

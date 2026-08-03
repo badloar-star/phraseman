@@ -1,7 +1,7 @@
 ﻿import React, { useState, useCallback, useEffect, useLayoutEffect, useMemo, useRef } from 'react';
 import { Freeze } from 'react-freeze';
 import { useFocusEffect, usePathname, useRouter, useSegments } from 'expo-router';
-import { View, TouchableOpacity, StyleSheet, StatusBar, Animated, AppState, BackHandler } from 'react-native';
+import { View, TouchableOpacity, StyleSheet, StatusBar, Animated, AppState } from 'react-native';
 import Reanimated, {
   useSharedValue,
   useAnimatedStyle,
@@ -14,8 +14,6 @@ import Reanimated, {
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../../components/ThemeContext';
-import { useLang } from '../../components/LangContext';
-import { useStudyTarget } from '../../components/StudyTargetContext';
 import { useScreen } from '../../hooks/use-screen';
 import ScreenGradient from '../../components/ScreenGradient';
 import TopFadeMask from '../../components/TopFadeMask';
@@ -28,21 +26,15 @@ import { emitAppEvent, onAppEvent } from '../events';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import { tabIconOpacity } from '../tab_icon_visibility';
 import HomeScreen       from './home';
-import TodayScreen from '../../components/today/TodayScreen';
-import {
-  captureAccountGeneration,
-  subscribeAccountGeneration,
-} from '../account_generation';
 import {
   setExamBestPctTabActivity,
 } from '../exam_best_pct_overlay';
-import { resetTodayRuntimeMemory } from '../../lib/today/runtime_reset';
 import {
   logicalTabToPhysicalPage,
   physicalPageToLogicalTab,
   physicalPageToRuntimeOwner,
   type PhysicalPageIndex,
-} from '../../lib/today/tab_page_model';
+} from '../tab_page_model';
 
 type IconName = React.ComponentProps<typeof Ionicons>['name'];
 
@@ -139,50 +131,6 @@ function TabPane({ freezeWanted, children }: { freezeWanted: boolean; children: 
   useEffect(() => { setFreezeCommitted(freezeWanted); }, [freezeWanted]);
   const freezeActive = ENABLE_TAB_FREEZE && freezeWanted && freezeCommitted;
   return <Freeze freeze={freezeActive}>{children}</Freeze>;
-}
-
-function todayClockScopeKey(): string {
-  const now = new Date();
-  let timeZone = 'UTC';
-  try { timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC'; } catch { /* UTC fallback */ }
-  return `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}|${timeZone}`;
-}
-
-/**
- * This shell intentionally stays above react-freeze. A scope change replaces the
- * frozen subtree before an edge drag can expose copy from the previous account,
- * target, locale, calendar day, or timezone.
- */
-function TodayPaneBoundary({ freezeWanted }: { freezeWanted: boolean }) {
-  const { lang } = useLang();
-  const { studyTarget } = useStudyTarget();
-  const [accountSafetyKey, setAccountSafetyKey] = useState(() => {
-    const token = captureAccountGeneration();
-    return `${token.generation}|${token.stableId ?? ''}|${token.phase}`;
-  });
-  const [clockSafetyKey, setClockSafetyKey] = useState(todayClockScopeKey);
-
-  useEffect(() => subscribeAccountGeneration((token) => {
-    resetTodayRuntimeMemory();
-    setAccountSafetyKey(`${token.generation}|${token.stableId ?? ''}|${token.phase}`);
-  }).remove, []);
-
-  useEffect(() => {
-    const refreshClockScope = () => setClockSafetyKey(todayClockScopeKey());
-    const now = new Date();
-    const nextMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 1).getTime();
-    const timer = setTimeout(refreshClockScope, Math.max(1_000, nextMidnight - now.getTime()));
-    const appStateSub = AppState.addEventListener('change', (state) => {
-      if (state === 'active') refreshClockScope();
-    });
-    return () => {
-      clearTimeout(timer);
-      appStateSub.remove();
-    };
-  }, [clockSafetyKey]);
-
-  const scopeSafetyKey = `${accountSafetyKey}|${studyTarget}|${lang}|${clockSafetyKey}`;
-  return <TabPane key={scopeSafetyKey} freezeWanted={freezeWanted}><TodayScreen /></TabPane>;
 }
 
 function markExamBestPctTabActivity(idx: number): void {
@@ -845,7 +793,6 @@ export default function TabLayout() {
   const [physicalPageIdx, setPhysicalPageIdx] = useState<PhysicalPageIndex>(() => logicalTabToPhysicalPage(tabIdxFromRouter(pathname, segments) ?? 0));
   const physicalPageIdxRef = useRef(physicalPageIdx);
   physicalPageIdxRef.current = physicalPageIdx;
-  const [todaySessionEpoch, setTodaySessionEpoch] = useState(0);
   const activeIdxRef = useRef(activeIdx);
   activeIdxRef.current = activeIdx;
   const visualIdxRef = useRef(visualIdx);
@@ -1028,17 +975,14 @@ export default function TabLayout() {
   /** Свайп завершён — теперь обновляем реальный активный таб и затем URL. */
   const handleSwipeComplete = useCallback((physicalIdx: number) => {
     const physical = physicalIdx as PhysicalPageIndex;
-    const wasToday = physicalPageIdxRef.current === 0;
     physicalPageIdxRef.current = physical;
     const idx = physicalPageToLogicalTab(physical);
     markExamBestPctTabActivity(idx);
     setPhysicalPageIdx(physical);
     setVisualIdx(idx);
-    if (physical === 0) {
-      setActiveIdx(0);
-      if (!wasToday) setTodaySessionEpoch((epoch) => epoch + 1);
-      return;
-    }
+    // зачем: страница 0 раньше была «Сегодня» и намеренно не трогала URL; после
+    // удаления экрана нулевая страница — обычная главная, и свайп на неё обязан
+    // обновлять маршрут наравне с остальными табами.
     if (idx !== activeIdxRef.current) {
       setActiveIdx(idx);
       rememberVisitedTab(idx);
@@ -1047,14 +991,9 @@ export default function TabLayout() {
     navigateTo(idx);
   }, [navigateTo, rememberVisitedTab, scheduleMount]);
 
-  useEffect(() => {
-    if (physicalPageIdx !== 0) return;
-    const subscription = BackHandler.addEventListener('hardwareBackPress', () => {
-      handleTabChange(0);
-      return true;
-    });
-    return () => subscription.remove();
-  }, [handleTabChange, physicalPageIdx]);
+  // зачем: перехват «Назад» существовал только ради страницы «Сегодня» (увести
+  // на главную вместо выхода). Экран удалён, страница 0 — сама главная, и
+  // держать перехват дальше значило бы ломать штатный выход из приложения.
 
   const currentRouteIsTab = tabIdxFromRouter(pathname, segments) !== null;
 
@@ -1071,7 +1010,6 @@ export default function TabLayout() {
     // (свайп-драг показывает соседнюю панель — она не должна быть пустой).
     const freezeWanted = (logicalIdx: number) => Math.abs(logicalTabToPhysicalPage(logicalIdx) - physicalPageIdx) >= TAB_FREEZE_MIN_DISTANCE;
     return [
-      <TodayPaneBoundary key="today" freezeWanted={Math.abs(physicalPageIdx) >= TAB_FREEZE_MIN_DISTANCE} />,
       show(0) ? <TabPane key="home" freezeWanted={freezeWanted(0)}><HomeScreen /></TabPane> : placeholder('ph-home'),
       show(1) ? <TabPane key="tournaments" freezeWanted={freezeWanted(1)}><DeferredTabScreen shouldLoad={shouldLoad(1)} loadScreen={loadTournamentsScreen} /></TabPane> : placeholder('ph-tournaments'),
       show(2) ? <TabPane key="friends" freezeWanted={freezeWanted(2)}><DeferredTabScreen shouldLoad={shouldLoad(2)} loadScreen={loadFriendsScreen} /></TabPane> : placeholder('ph-friends'),
@@ -1082,7 +1020,7 @@ export default function TabLayout() {
   const runtimeOwnerId = physicalPageToRuntimeOwner(physicalPageIdx);
 
   return (
-    <TabProvider activeIdx={activeIdx} runtimeOwnerId={runtimeOwnerId} todaySessionEpoch={todaySessionEpoch} onTabChange={handleTabChange} onSwipeStart={handleSwipeStart} onSwipeComplete={handleSwipeComplete} focusTick={focusTick}>
+    <TabProvider activeIdx={activeIdx} runtimeOwnerId={runtimeOwnerId} onTabChange={handleTabChange} onSwipeStart={handleSwipeStart} onSwipeComplete={handleSwipeComplete} focusTick={focusTick}>
       <TopFadeScrollProvider>
         <TabScaffold tabScreens={tabScreens} currentRouteIsTab={currentRouteIsTab} visualIdx={visualIdx} physicalPageIdx={physicalPageIdx} />
       </TopFadeScrollProvider>

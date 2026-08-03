@@ -109,7 +109,6 @@ jest.mock('../components/SafeLinearGradient', () => {
     ),
   };
 });
-jest.mock('../components/CompassDepthSurface', () => () => null);
 jest.mock('../components/StreakChainIcon', () => ({ StreakChainIcon: () => null }));
 jest.mock('@expo/vector-icons/Ionicons', () => () => null);
 jest.mock('react-native-gesture-handler', () => {

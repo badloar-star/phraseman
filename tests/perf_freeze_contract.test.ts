@@ -127,7 +127,7 @@ describe('perf freeze contract', () => {
     // невидимые. Единственный честный сигнал «этот таб на экране» —
     // runtimeOwnerId. Если этот механизм исчезнет, гварды ниже станут
     // декоративными, а телефон снова начнёт греться.
-    const model = read('lib/today/tab_page_model.ts');
+    const model = read('app/tab_page_model.ts');
     expect(model).toContain('physicalPageToRuntimeOwner');
     const layout = read('app/(tabs)/_layout.tsx');
     expect(layout).toContain('physicalPageToRuntimeOwner');

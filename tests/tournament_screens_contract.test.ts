@@ -323,7 +323,7 @@ describe('экраны режима «Турниры»', () => {
     // Возврат режима = осознанно переписать этот тест обратно.
     const layout = read('app/(tabs)/_layout.tsx');
     const home = read('app/(tabs)/home.tsx');
-    const model = read('lib/today/tab_page_model.ts');
+    const model = read('app/tab_page_model.ts');
 
     // зачем 2026-08-02: таб «Уроки» убран — индексы сдвинулись на единицу
     // (tournaments 1, friends 2, settings 3) во всех трёх картах сразу.
@@ -353,14 +353,15 @@ describe('экраны режима «Турниры»', () => {
     // вылетал. Причина: список страниц слайдера и LOGICAL_TAB_IDS разошлись с
     // числом кнопок. Сборка при этом не падает — баг виден только на устройстве.
     const layout = read('app/(tabs)/_layout.tsx');
-    const model = read('lib/today/tab_page_model.ts');
+    const model = read('app/tab_page_model.ts');
 
-    // зачем 2026-08-02: таб «Уроки» убран — четыре логических таба, пять
-    // физических страниц (today + 4). Legacy-суффиксы /journal и /lessons
-    // остаются в TAB_PATH_SUFFIXES и ведут на главную (старые диплинки).
+    // зачем 2026-08-03: экран «Сегодня» убран — нулевой физической страницы
+    // слева от главной больше нет, страниц ровно столько же, сколько табов
+    // (четыре). Legacy-суффиксы /journal и /lessons остаются в
+    // TAB_PATH_SUFFIXES и ведут на главную (старые диплинки).
     expect(model).toMatch(/LOGICAL_TAB_IDS\s*=\s*\['home', 'tournaments', 'friends', 'settings'\]/);
     expect(model).toContain('export type LogicalTabIndex = 0 | 1 | 2 | 3;');
-    expect(model).toContain('export type PhysicalPageIndex = 0 | 1 | 2 | 3 | 4;');
+    expect(model).toContain('export type PhysicalPageIndex = 0 | 1 | 2 | 3;');
     expect(layout).toContain('loadTournamentsScreen');
     expect(layout).toMatch(/TAB_PATH_SUFFIXES\s*=\s*\['\/home', '\/journal', '\/lessons', '\/tournaments', '\/friends', '\/settings'\]/);
     expect(layout).toMatch(/const TABS:[\s\S]*?=\s*\[[\s\S]*?\];/);

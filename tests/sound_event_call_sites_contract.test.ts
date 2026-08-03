@@ -42,7 +42,11 @@ const SILENT_WITHOUT_ASSET: readonly SoundEventId[] = [
  * ДОБАВЛЯТЬ СЮДА — значит признать, что звук куплен и лежит без дела.
  * Пустой список — это цель, а не случайность.
  */
-const KNOWN_UNWIRED: readonly SoundEventId[] = [];
+const KNOWN_UNWIRED: readonly SoundEventId[] = [
+  // Единственный вызывающий был GlobalCompassSocialHost.tsx — удалён вместе со
+  // всей фичей «Компас» (владелец: удалить и заблокировать навсегда, 2026-08-03).
+  'pm.social.friend_request',
+];
 
 function collectSourceFiles(dir: string): string[] {
   const absolute = path.join(root, dir);
@@ -93,7 +97,7 @@ describe('semantic sound event call sites', () => {
     expect(orphans).toEqual([]);
   });
 
-  test('the seven previously orphaned events are wired to real surfaces', () => {
+  test('the six previously orphaned events are wired to real surfaces', () => {
     // зачем: закрепляем именно ТЕ события, ради которых заводился этот тест, и
     // место их вызова. Если экран переименуют или вызов потеряют при рефакторе,
     // упадёт этот тест, а не «где-то стало тихо» на устройстве владельца.
@@ -104,7 +108,6 @@ describe('semantic sound event call sites', () => {
       'pm.system.destructive_done': path.join('components', 'DeleteAccountConfirmModal.tsx'),
       'pm.voice.turn_ready': path.join('hooks', 'use-turn-ready-cue.ts'),
       'pm.voice.no_speech': path.join('hooks', 'use-no-speech-cue.ts'),
-      'pm.social.friend_request': path.join('components', 'GlobalCompassSocialHost.tsx'),
     };
 
     for (const [eventId, file] of Object.entries(expected)) {

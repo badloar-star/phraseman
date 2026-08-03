@@ -6,14 +6,21 @@
  * 2026-08-02, владелец: таб «Уроки» убран из таббара — список уроков теперь
  * полноэкранный push-маршрут /lessons_list (вход: плитка «Уроки» на главной).
  * Все карты индексов сдвинулись: tournaments 1, friends 2, settings 3.
+ * 2026-08-03, владелец: экран «Сегодня» убран полностью. Он был нулевой
+ * ФИЗИЧЕСКОЙ страницей слева от главной и жил на удалённой фиче «Компас»
+ * (collectCompassSnapshot/buildCompassDay), без которой показывал бы пустую
+ * заглушку. Вместе с ним исчезло расхождение логических и физических
+ * индексов: теперь страница = таб, и оба перевода тождественны. Функции
+ * оставлены (а не вырезаны по всему layout), чтобы не переписывать свайп-
+ * логику и сохранить единую точку правды, если слева снова появится страница.
  */
 export const LOGICAL_TAB_IDS = ['home', 'tournaments', 'friends', 'settings'] as const;
-export const PHYSICAL_PAGE_IDS = ['today', ...LOGICAL_TAB_IDS] as const;
+export const PHYSICAL_PAGE_IDS = [...LOGICAL_TAB_IDS] as const;
 
 export type LogicalTabId = (typeof LOGICAL_TAB_IDS)[number];
 export type PhysicalPageId = (typeof PHYSICAL_PAGE_IDS)[number];
 export type LogicalTabIndex = 0 | 1 | 2 | 3;
-export type PhysicalPageIndex = 0 | 1 | 2 | 3 | 4;
+export type PhysicalPageIndex = 0 | 1 | 2 | 3;
 export type TabRuntimeOwnerId = PhysicalPageId;
 
 function assertIntegerInRange(value: number, max: number, label: string): void {
@@ -24,12 +31,12 @@ function assertIntegerInRange(value: number, max: number, label: string): void {
 
 export function logicalTabToPhysicalPage(index: number): PhysicalPageIndex {
   assertIntegerInRange(index, LOGICAL_TAB_IDS.length - 1, 'logical tab index');
-  return (index + 1) as PhysicalPageIndex;
+  return index as PhysicalPageIndex;
 }
 
 export function physicalPageToLogicalTab(index: number): LogicalTabIndex {
   assertIntegerInRange(index, PHYSICAL_PAGE_IDS.length - 1, 'physical page index');
-  return (index === 0 ? 0 : index - 1) as LogicalTabIndex;
+  return index as LogicalTabIndex;
 }
 
 export function physicalPageToRuntimeOwner(index: number): TabRuntimeOwnerId {

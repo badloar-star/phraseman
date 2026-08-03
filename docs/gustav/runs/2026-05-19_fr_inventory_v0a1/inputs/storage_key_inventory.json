@@ -1,7 +1,7 @@
 {
   "schemaVersion": "gustav-storage-key-inventory-v1",
   "runId": "2026-05-19_fr_inventory_v0a1",
-  "generatedAt": "2026-08-02T06:40:52.523Z",
+  "generatedAt": "2026-08-02T12:08:07.683Z",
   "status": "HOLD",
   "inventoryKind": "automated_heuristic",
   "command": {
@@ -15,7 +15,7 @@
     "nodeVersion": "v24.14.0"
   },
   "summary": {
-    "filesScanned": 3953,
+    "filesScanned": 3943,
     "records": 3481,
     "uniqueKeys": 567,
     "keyPatterns": 55,
@@ -2641,7 +2641,7 @@
     {
       "keyExpression": "FRIENDS_TAB_SWR_CACHE_KEY",
       "sourcePath": "app/(tabs)/friends.tsx",
-      "line": 2580,
+      "line": 2583,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2656,7 +2656,7 @@
     {
       "key": "home_selected_title_key_v1",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 133,
+      "line": 136,
       "operation": "constant",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2671,7 +2671,7 @@
     {
       "key": "home_daily_greeting_v1",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 251,
+      "line": 254,
       "operation": "constant",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2686,7 +2686,7 @@
     {
       "key": "phraseman_home_stats_pulse_hint_done_v1",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 252,
+      "line": 255,
       "operation": "constant",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2701,7 +2701,7 @@
     {
       "key": "onboarding_done",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 255,
+      "line": 258,
       "operation": "constant",
       "cloudSyncKey": true,
       "scope": "global",
@@ -2716,7 +2716,7 @@
     {
       "key": "home_daily_greeting_v1",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 307,
+      "line": 310,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2731,7 +2731,7 @@
     {
       "key": "home_daily_greeting_v1",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 319,
+      "line": 322,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2746,7 +2746,7 @@
     {
       "key": "onboarding_done",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 1244,
+      "line": 1247,
       "operation": "multiGet",
       "cloudSyncKey": true,
       "scope": "global",
@@ -2761,7 +2761,7 @@
     {
       "keyExpression": "HOME_FEATURE_TIPS_INDEX_KEY",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 1266,
+      "line": 1269,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2776,7 +2776,7 @@
     {
       "keyExpression": "[",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 1272,
+      "line": 1275,
       "operation": "multiSet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2791,7 +2791,7 @@
     {
       "key": "onboarding_done",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 1351,
+      "line": 1354,
       "operation": "multiSet",
       "cloudSyncKey": true,
       "scope": "global",
@@ -2806,7 +2806,7 @@
     {
       "key": "phraseman_home_stats_pulse_hint_done_v1",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 1588,
+      "line": 1591,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2821,7 +2821,7 @@
     {
       "key": "phraseman_home_stats_pulse_hint_done_v1",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 1597,
+      "line": 1600,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2836,7 +2836,7 @@
     {
       "key": "streak_count",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 1674,
+      "line": 1677,
       "operation": "multiGet",
       "cloudSyncKey": true,
       "scope": "global",
@@ -2851,7 +2851,7 @@
     {
       "key": "streak_last_shown",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 1674,
+      "line": 1677,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2866,7 +2866,7 @@
     {
       "key": "user_name",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 1674,
+      "line": 1677,
       "operation": "multiGet",
       "cloudSyncKey": true,
       "scope": "global",
@@ -2881,7 +2881,7 @@
     {
       "key": "user_total_xp",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 1674,
+      "line": 1677,
       "operation": "multiGet",
       "cloudSyncKey": true,
       "scope": "global",
@@ -2896,7 +2896,7 @@
     {
       "key": "week_days_done",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 1674,
+      "line": 1677,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2911,7 +2911,7 @@
     {
       "key": "had_premium_ever",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 1692,
+      "line": 1695,
       "operation": "multiGet",
       "cloudSyncKey": true,
       "scope": "global",
@@ -2926,7 +2926,7 @@
     {
       "key": "onboarding_plan_billing",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 1692,
+      "line": 1695,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2941,7 +2941,7 @@
     {
       "key": "premium_active",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 1692,
+      "line": 1695,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2956,7 +2956,7 @@
     {
       "key": "streak_last_shown",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 1727,
+      "line": 1730,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -2971,7 +2971,7 @@
     {
       "key": "user_avatar",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 1754,
+      "line": 1757,
       "operation": "multiGet",
       "cloudSyncKey": true,
       "scope": "global",
@@ -2986,7 +2986,7 @@
     {
       "key": "user_frame",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 1754,
+      "line": 1757,
       "operation": "multiGet",
       "cloudSyncKey": true,
       "scope": "global",
@@ -3001,7 +3001,7 @@
     {
       "keyExpression": "dailyTasksAchievementAllDoneStreakKey(...)",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 1792,
+      "line": 1795,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -3016,7 +3016,7 @@
     {
       "keyExpression": "lessonProgressKey(...)",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 1814,
+      "line": 1817,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -3031,7 +3031,7 @@
     {
       "key": "premium_free_freeze_used",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 1890,
+      "line": 1893,
       "operation": "multiGet",
       "cloudSyncKey": true,
       "scope": "global",
@@ -3046,7 +3046,7 @@
     {
       "key": "streak_freeze",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 1890,
+      "line": 1893,
       "operation": "multiGet",
       "cloudSyncKey": true,
       "scope": "global",
@@ -3061,7 +3061,7 @@
     {
       "key": "comeback_pending",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 1983,
+      "line": 1986,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -3076,7 +3076,7 @@
     {
       "key": "login_bonus_pending",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 1983,
+      "line": 1986,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -3091,7 +3091,7 @@
     {
       "key": "weekly_pb_v1",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 1983,
+      "line": 1986,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -3106,7 +3106,7 @@
     {
       "key": "login_bonus_pending",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 2077,
+      "line": 2080,
       "operation": "remove",
       "cloudSyncKey": false,
       "scope": "global",
@@ -3121,7 +3121,7 @@
     {
       "key": "comeback_pending",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 2081,
+      "line": 2084,
       "operation": "remove",
       "cloudSyncKey": false,
       "scope": "global",
@@ -3136,7 +3136,7 @@
     {
       "key": "weekly_pb_v1",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 2086,
+      "line": 2089,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -3151,7 +3151,7 @@
     {
       "key": "streak_freeze",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 2101,
+      "line": 2104,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -3166,7 +3166,7 @@
     {
       "key": "streak_paywall_shown",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 2109,
+      "line": 2112,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -3181,7 +3181,7 @@
     {
       "key": "streak_paywall_shown",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 2111,
+      "line": 2114,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -3196,7 +3196,7 @@
     {
       "key": "premium_free_freeze_used",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 2262,
+      "line": 2265,
       "operation": "set",
       "cloudSyncKey": true,
       "scope": "global",
@@ -3211,7 +3211,7 @@
     {
       "key": "streak_freeze",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 2293,
+      "line": 2296,
       "operation": "set",
       "cloudSyncKey": true,
       "scope": "global",
@@ -3226,7 +3226,7 @@
     {
       "key": "last_active_date",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 2294,
+      "line": 2297,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -3241,7 +3241,7 @@
     {
       "key": "home_selected_title_key_v1",
       "sourcePath": "app/(tabs)/home.tsx",
-      "line": 3330,
+      "line": 3324,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -3511,7 +3511,7 @@
     {
       "keyPattern": "tournament_weekly_prize_seen:${last.weekId}",
       "sourcePath": "app/(tabs)/tournaments.tsx",
-      "line": 304,
+      "line": 308,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "unknown",
@@ -3526,7 +3526,7 @@
     {
       "keyPattern": "tournament_weekly_prize_seen:${last.weekId}",
       "sourcePath": "app/(tabs)/tournaments.tsx",
-      "line": 305,
+      "line": 309,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "unknown",
@@ -19411,7 +19411,7 @@
     {
       "key": "lesson_menu_prep_hint_seen_v1",
       "sourcePath": "app/lesson_menu.tsx",
-      "line": 100,
+      "line": 101,
       "operation": "constant",
       "cloudSyncKey": false,
       "scope": "global",
@@ -19426,7 +19426,7 @@
     {
       "keyExpression": "irregularVerbsGlobalKey(...)",
       "sourcePath": "app/lesson_menu.tsx",
-      "line": 257,
+      "line": 258,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -19441,7 +19441,7 @@
     {
       "keyExpression": "lessonBestScoreKey(...)",
       "sourcePath": "app/lesson_menu.tsx",
-      "line": 257,
+      "line": 258,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -19456,7 +19456,7 @@
     {
       "keyExpression": "lessonPrepositionProgressKey(...)",
       "sourcePath": "app/lesson_menu.tsx",
-      "line": 257,
+      "line": 258,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -19471,7 +19471,7 @@
     {
       "keyExpression": "lessonProgressKey(...)",
       "sourcePath": "app/lesson_menu.tsx",
-      "line": 257,
+      "line": 258,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -19486,7 +19486,7 @@
     {
       "keyExpression": "lessonTheoryXpClaimedKey(...)",
       "sourcePath": "app/lesson_menu.tsx",
-      "line": 257,
+      "line": 258,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -19501,7 +19501,7 @@
     {
       "keyExpression": "lessonWordsKey(...)",
       "sourcePath": "app/lesson_menu.tsx",
-      "line": 257,
+      "line": 258,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -19516,7 +19516,7 @@
     {
       "key": "lesson_menu_prep_hint_seen_v1",
       "sourcePath": "app/lesson_menu.tsx",
-      "line": 441,
+      "line": 444,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "global",
@@ -19531,7 +19531,7 @@
     {
       "key": "lesson_menu_prep_hint_seen_v1",
       "sourcePath": "app/lesson_menu.tsx",
-      "line": 459,
+      "line": 462,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -19546,7 +19546,7 @@
     {
       "keyExpression": "lessonBestScoreKey(prevId",
       "sourcePath": "app/lesson_menu.tsx",
-      "line": 523,
+      "line": 526,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -19561,7 +19561,7 @@
     {
       "keyExpression": "lessonProgressKey(prevId",
       "sourcePath": "app/lesson_menu.tsx",
-      "line": 528,
+      "line": 531,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -19576,7 +19576,7 @@
     {
       "keyExpression": "lessonBestScoreKey(...)",
       "sourcePath": "app/lesson_menu.tsx",
-      "line": 561,
+      "line": 564,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -19591,7 +19591,7 @@
     {
       "keyExpression": "lessonProgressKey(...)",
       "sourcePath": "app/lesson_menu.tsx",
-      "line": 561,
+      "line": 564,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -19606,7 +19606,7 @@
     {
       "keyExpression": "lessonWordsKey(...)",
       "sourcePath": "app/lesson_menu.tsx",
-      "line": 589,
+      "line": 592,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -19621,7 +19621,7 @@
     {
       "keyExpression": "lessonWordsKey(...)",
       "sourcePath": "app/lesson_menu.tsx",
-      "line": 600,
+      "line": 603,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -19636,7 +19636,7 @@
     {
       "keyExpression": "irregularVerbsGlobalKey(...)",
       "sourcePath": "app/lesson_menu.tsx",
-      "line": 610,
+      "line": 613,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -19651,7 +19651,7 @@
     {
       "keyExpression": "lessonPrepositionProgressKey(...)",
       "sourcePath": "app/lesson_menu.tsx",
-      "line": 618,
+      "line": 621,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -19666,7 +19666,7 @@
     {
       "keyExpression": "lessonTheoryXpClaimedKey(...)",
       "sourcePath": "app/lesson_menu.tsx",
-      "line": 627,
+      "line": 630,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -19681,7 +19681,7 @@
     {
       "keyExpression": "lastOpenedLessonKey(studyTarget",
       "sourcePath": "app/lesson_menu.tsx",
-      "line": 668,
+      "line": 671,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -20281,21 +20281,6 @@
     {
       "keyExpression": "lessonSessionKey(...)",
       "sourcePath": "app/lesson1.tsx",
-      "line": 2857,
-      "operation": "remove",
-      "cloudSyncKey": false,
-      "scope": "study_target",
-      "learningState": true,
-      "targetNamespaceRequired": false,
-      "risk": "low",
-      "confidence": "high",
-      "notes": [
-        "Reviewed target-sensitive learning source; dynamic keys resolve to per-target learning buckets via target-aware helpers."
-      ]
-    },
-    {
-      "keyExpression": "lessonSessionKey(...)",
-      "sourcePath": "app/lesson1.tsx",
       "line": 2860,
       "operation": "remove",
       "cloudSyncKey": false,
@@ -20311,7 +20296,22 @@
     {
       "keyExpression": "lessonSessionKey(...)",
       "sourcePath": "app/lesson1.tsx",
-      "line": 2868,
+      "line": 2863,
+      "operation": "remove",
+      "cloudSyncKey": false,
+      "scope": "study_target",
+      "learningState": true,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "high",
+      "notes": [
+        "Reviewed target-sensitive learning source; dynamic keys resolve to per-target learning buckets via target-aware helpers."
+      ]
+    },
+    {
+      "keyExpression": "lessonSessionKey(...)",
+      "sourcePath": "app/lesson1.tsx",
+      "line": 2871,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -20326,7 +20326,7 @@
     {
       "keyExpression": "lessonSessionKey(...)",
       "sourcePath": "app/lesson1.tsx",
-      "line": 2872,
+      "line": 2875,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -20341,7 +20341,7 @@
     {
       "keyExpression": "fiftyFiftyUsageKey(...)",
       "sourcePath": "app/lesson1.tsx",
-      "line": 2926,
+      "line": 2929,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -20356,7 +20356,7 @@
     {
       "keyExpression": "teachingNoteMemoryKey",
       "sourcePath": "app/lesson1.tsx",
-      "line": 2971,
+      "line": 2974,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -20371,7 +20371,7 @@
     {
       "keyExpression": "teachingNoteMemoryKey",
       "sourcePath": "app/lesson1.tsx",
-      "line": 2985,
+      "line": 2988,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -20386,7 +20386,7 @@
     {
       "keyExpression": "dailyTaskLessonVisitedKey(...)",
       "sourcePath": "app/lesson1.tsx",
-      "line": 3003,
+      "line": 3006,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -20401,7 +20401,7 @@
     {
       "keyExpression": "dailyTaskLessonVisitedKey(...)",
       "sourcePath": "app/lesson1.tsx",
-      "line": 3009,
+      "line": 3012,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -20416,7 +20416,7 @@
     {
       "keyExpression": "lessonProgressKey(...)",
       "sourcePath": "app/lesson1.tsx",
-      "line": 3298,
+      "line": 3309,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -20431,22 +20431,7 @@
     {
       "keyExpression": "lessonSessionKey(...)",
       "sourcePath": "app/lesson1.tsx",
-      "line": 3299,
-      "operation": "set",
-      "cloudSyncKey": false,
-      "scope": "study_target",
-      "learningState": true,
-      "targetNamespaceRequired": false,
-      "risk": "low",
-      "confidence": "high",
-      "notes": [
-        "Reviewed target-sensitive learning source; dynamic keys resolve to per-target learning buckets via target-aware helpers."
-      ]
-    },
-    {
-      "keyExpression": "lessonSessionKey(...)",
-      "sourcePath": "app/lesson1.tsx",
-      "line": 3317,
+      "line": 3310,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -20462,6 +20447,21 @@
       "keyExpression": "lessonSessionKey(...)",
       "sourcePath": "app/lesson1.tsx",
       "line": 3328,
+      "operation": "set",
+      "cloudSyncKey": false,
+      "scope": "study_target",
+      "learningState": true,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "high",
+      "notes": [
+        "Reviewed target-sensitive learning source; dynamic keys resolve to per-target learning buckets via target-aware helpers."
+      ]
+    },
+    {
+      "keyExpression": "lessonSessionKey(...)",
+      "sourcePath": "app/lesson1.tsx",
+      "line": 3339,
       "operation": "remove",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -20476,7 +20476,7 @@
     {
       "keyExpression": "lessonSessionKey(...)",
       "sourcePath": "app/lesson1.tsx",
-      "line": 3332,
+      "line": 3343,
       "operation": "multiRemove",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -20491,7 +20491,7 @@
     {
       "keyExpression": "finishedAtKey",
       "sourcePath": "app/lesson1.tsx",
-      "line": 3398,
+      "line": 3409,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -20506,7 +20506,7 @@
     {
       "keyExpression": "lessonPassCountKey(lessonId",
       "sourcePath": "app/lesson1.tsx",
-      "line": 3399,
+      "line": 3410,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -20521,7 +20521,7 @@
     {
       "keyExpression": "finishedAtKey",
       "sourcePath": "app/lesson1.tsx",
-      "line": 3410,
+      "line": 3421,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -20536,7 +20536,7 @@
     {
       "keyExpression": "lessonSessionKey(...)",
       "sourcePath": "app/lesson1.tsx",
-      "line": 3522,
+      "line": 3533,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -20551,7 +20551,7 @@
     {
       "keyExpression": "fiftyFiftyUsageKey(...)",
       "sourcePath": "app/lesson1.tsx",
-      "line": 3792,
+      "line": 3803,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -35056,7 +35056,7 @@
     {
       "key": "user_avatar",
       "sourcePath": "app/tournament_client.ts",
-      "line": 897,
+      "line": 906,
       "operation": "multiGet",
       "cloudSyncKey": true,
       "scope": "global",
@@ -35071,7 +35071,7 @@
     {
       "key": "user_avatar_aura",
       "sourcePath": "app/tournament_client.ts",
-      "line": 897,
+      "line": 906,
       "operation": "multiGet",
       "cloudSyncKey": true,
       "scope": "global",
@@ -35086,7 +35086,7 @@
     {
       "key": "user_name",
       "sourcePath": "app/tournament_client.ts",
-      "line": 897,
+      "line": 906,
       "operation": "multiGet",
       "cloudSyncKey": true,
       "scope": "global",
@@ -35146,7 +35146,7 @@
     {
       "key": "user_avatar",
       "sourcePath": "app/tournament_season.tsx",
-      "line": 104,
+      "line": 107,
       "operation": "multiGet",
       "cloudSyncKey": true,
       "scope": "global",
@@ -35161,7 +35161,7 @@
     {
       "key": "user_frame",
       "sourcePath": "app/tournament_season.tsx",
-      "line": 104,
+      "line": 107,
       "operation": "multiGet",
       "cloudSyncKey": true,
       "scope": "global",
@@ -35176,7 +35176,7 @@
     {
       "key": "user_name",
       "sourcePath": "app/tournament_season.tsx",
-      "line": 104,
+      "line": 107,
       "operation": "multiGet",
       "cloudSyncKey": true,
       "scope": "global",
@@ -35191,7 +35191,7 @@
     {
       "key": "user_total_xp",
       "sourcePath": "app/tournament_season.tsx",
-      "line": 104,
+      "line": 107,
       "operation": "multiGet",
       "cloudSyncKey": true,
       "scope": "global",
@@ -38086,7 +38086,7 @@
     {
       "key": "streak_count",
       "sourcePath": "components/RegistrationPromptModal.tsx",
-      "line": 317,
+      "line": 320,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -38101,7 +38101,7 @@
     {
       "keyExpression": "AUTH_PROMPT_SHOWN_KEY",
       "sourcePath": "components/RegistrationPromptModal.tsx",
-      "line": 1095,
+      "line": 1098,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -38116,7 +38116,7 @@
     {
       "keyExpression": "AUTH_PROMPT_SHOWN_KEY",
       "sourcePath": "components/RegistrationPromptModal.tsx",
-      "line": 1184,
+      "line": 1187,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -38506,7 +38506,7 @@
     {
       "keyExpression": "progressStorageKey",
       "sourcePath": "components/theory/TheoryLessonView.tsx",
-      "line": 298,
+      "line": 299,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -38521,7 +38521,7 @@
     {
       "keyExpression": "progressStorageKey",
       "sourcePath": "components/theory/TheoryLessonView.tsx",
-      "line": 330,
+      "line": 331,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -47403,7 +47403,7 @@
     {
       "keyExpression": "startupIdentityKeys",
       "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 63,
+      "line": 69,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -47418,7 +47418,7 @@
     {
       "key": "user_prev_xp",
       "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 67,
+      "line": 73,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "admin_or_qa",
@@ -47433,7 +47433,7 @@
     {
       "key": "user_total_xp",
       "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 68,
+      "line": 74,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "admin_or_qa",
@@ -47448,7 +47448,7 @@
     {
       "key": "onboarding_done",
       "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 69,
+      "line": 75,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "admin_or_qa",
@@ -47463,7 +47463,7 @@
     {
       "key": "user_avatar",
       "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 241,
+      "line": 247,
       "operation": "multiGet",
       "cloudSyncKey": true,
       "scope": "admin_or_qa",
@@ -47478,7 +47478,7 @@
     {
       "key": "user_frame",
       "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 241,
+      "line": 247,
       "operation": "multiGet",
       "cloudSyncKey": true,
       "scope": "admin_or_qa",
@@ -47493,7 +47493,7 @@
     {
       "key": "user_avatar",
       "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 247,
+      "line": 253,
       "operation": "multiGet",
       "cloudSyncKey": true,
       "scope": "admin_or_qa",
@@ -47508,7 +47508,7 @@
     {
       "key": "user_frame",
       "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 247,
+      "line": 253,
       "operation": "multiGet",
       "cloudSyncKey": true,
       "scope": "admin_or_qa",
@@ -47523,7 +47523,7 @@
     {
       "key": "user_name",
       "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 257,
+      "line": 263,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "admin_or_qa",
@@ -47538,7 +47538,7 @@
     {
       "key": "streak_count",
       "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 258,
+      "line": 264,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "admin_or_qa",
@@ -47553,7 +47553,7 @@
     {
       "key": "week_days_done",
       "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 259,
+      "line": 265,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -47568,7 +47568,7 @@
     {
       "key": "user_total_xp",
       "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 260,
+      "line": 266,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "admin_or_qa",
@@ -47583,7 +47583,7 @@
     {
       "keyExpression": "HOME_SELECTED_TITLE_KEY",
       "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 261,
+      "line": 267,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -47598,7 +47598,7 @@
     {
       "key": "streak_last_shown",
       "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 262,
+      "line": 268,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -47613,7 +47613,7 @@
     {
       "keyExpression": "[HELPFUL_REPORTS_CONFIRMED_KEY, dailyAllDoneKey]",
       "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 265,
+      "line": 271,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -47628,7 +47628,7 @@
     {
       "keyExpression": "HELPFUL_REPORTS_CONFIRMED_KEY",
       "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 266,
+      "line": 272,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -47643,7 +47643,7 @@
     {
       "keyExpression": "dailyTasksAchievementAllDoneStreakKey(studyTarget",
       "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 267,
+      "line": 273,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -47658,7 +47658,7 @@
     {
       "keyExpression": "[...lessonKeys, lastOpenedKey]",
       "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 269,
+      "line": 275,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -47673,7 +47673,7 @@
     {
       "keyExpression": "lastOpenedLessonKey(studyTarget",
       "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 271,
+      "line": 277,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -47688,7 +47688,7 @@
     {
       "keyExpression": "lessonProgressKey(lastId",
       "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 272,
+      "line": 278,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -47703,7 +47703,7 @@
     {
       "key": "premium_free_freeze_used",
       "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 274,
+      "line": 280,
       "operation": "multiGet",
       "cloudSyncKey": true,
       "scope": "admin_or_qa",
@@ -47718,7 +47718,7 @@
     {
       "key": "streak_freeze",
       "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 274,
+      "line": 280,
       "operation": "multiGet",
       "cloudSyncKey": true,
       "scope": "admin_or_qa",
@@ -47733,7 +47733,7 @@
     {
       "key": "comeback_pending",
       "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 275,
+      "line": 281,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -47748,7 +47748,7 @@
     {
       "key": "login_bonus_pending",
       "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 275,
+      "line": 281,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -47763,7 +47763,7 @@
     {
       "key": "weekly_pb_v1",
       "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 275,
+      "line": 281,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -47778,7 +47778,7 @@
     {
       "key": "login_bonus_pending",
       "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 276,
+      "line": 282,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -47793,7 +47793,7 @@
     {
       "key": "comeback_pending",
       "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 277,
+      "line": 283,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -47808,7 +47808,7 @@
     {
       "key": "weekly_pb_v1",
       "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 278,
+      "line": 284,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -47823,7 +47823,7 @@
     {
       "key": "app_activity_queue_v1",
       "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 398,
+      "line": 404,
       "operation": "constant",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -47838,7 +47838,7 @@
     {
       "key": "progress_server_event_queue_v1",
       "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 398,
+      "line": 404,
       "operation": "constant",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -47853,7 +47853,7 @@
     {
       "key": "progress_server_snapshot_baseline_v1",
       "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 407,
+      "line": 413,
       "operation": "constant",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -47868,7 +47868,7 @@
     {
       "key": "analytics_queue",
       "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 429,
+      "line": 435,
       "operation": "constant",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -47883,7 +47883,7 @@
     {
       "key": "analytics_queue",
       "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 441,
+      "line": 447,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -47898,7 +47898,7 @@
     {
       "key": "app_activity_queue_v1",
       "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 455,
+      "line": 461,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -47913,7 +47913,7 @@
     {
       "keyExpression": "key",
       "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 474,
+      "line": 480,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -47928,7 +47928,7 @@
     {
       "keyExpression": "THROTTLE_KEY",
       "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 504,
+      "line": 510,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -47943,7 +47943,7 @@
     {
       "keyExpression": "THROTTLE_KEY",
       "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 507,
+      "line": 513,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -47958,38 +47958,8 @@
     {
       "keyExpression": "THROTTLE_KEY",
       "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 519,
+      "line": 525,
       "operation": "get",
-      "cloudSyncKey": false,
-      "scope": "admin_or_qa",
-      "learningState": false,
-      "targetNamespaceRequired": false,
-      "risk": "low",
-      "confidence": "medium",
-      "notes": [
-        "Test/admin/QA storage signal."
-      ]
-    },
-    {
-      "keyExpression": "THROTTLE_KEY",
-      "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 522,
-      "operation": "set",
-      "cloudSyncKey": false,
-      "scope": "admin_or_qa",
-      "learningState": false,
-      "targetNamespaceRequired": false,
-      "risk": "low",
-      "confidence": "medium",
-      "notes": [
-        "Test/admin/QA storage signal."
-      ]
-    },
-    {
-      "keyExpression": "THROTTLE_KEY",
-      "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 526,
-      "operation": "set",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
       "learningState": false,
@@ -48016,54 +47986,39 @@
       ]
     },
     {
+      "keyExpression": "THROTTLE_KEY",
+      "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
+      "line": 532,
+      "operation": "set",
+      "cloudSyncKey": false,
+      "scope": "admin_or_qa",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "medium",
+      "notes": [
+        "Test/admin/QA storage signal."
+      ]
+    },
+    {
+      "keyExpression": "THROTTLE_KEY",
+      "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
+      "line": 534,
+      "operation": "set",
+      "cloudSyncKey": false,
+      "scope": "admin_or_qa",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "medium",
+      "notes": [
+        "Test/admin/QA storage signal."
+      ]
+    },
+    {
       "keyExpression": "WARN_FETCH_AT_KEY",
       "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 539,
-      "operation": "get",
-      "cloudSyncKey": false,
-      "scope": "admin_or_qa",
-      "learningState": false,
-      "targetNamespaceRequired": false,
-      "risk": "low",
-      "confidence": "medium",
-      "notes": [
-        "Test/admin/QA storage signal."
-      ]
-    },
-    {
-      "keyExpression": "['",
-      "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 554,
-      "operation": "multiGet",
-      "cloudSyncKey": false,
-      "scope": "admin_or_qa",
-      "learningState": false,
-      "targetNamespaceRequired": false,
-      "risk": "low",
-      "confidence": "medium",
-      "notes": [
-        "Test/admin/QA storage signal."
-      ]
-    },
-    {
-      "keyExpression": "LAST_SHOWN_KEY",
-      "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 557,
-      "operation": "get",
-      "cloudSyncKey": false,
-      "scope": "admin_or_qa",
-      "learningState": false,
-      "targetNamespaceRequired": false,
-      "risk": "low",
-      "confidence": "medium",
-      "notes": [
-        "Test/admin/QA storage signal."
-      ]
-    },
-    {
-      "key": "streak_paywall_shown",
-      "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 558,
+      "line": 545,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -48091,7 +48046,7 @@
       ]
     },
     {
-      "keyExpression": "LAST_ACTIVE_KEY",
+      "keyExpression": "LAST_SHOWN_KEY",
       "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
       "line": 563,
       "operation": "get",
@@ -48106,7 +48061,7 @@
       ]
     },
     {
-      "keyExpression": "WINBACK_SHOWN_AT_KEY",
+      "key": "streak_paywall_shown",
       "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
       "line": 564,
       "operation": "get",
@@ -48136,9 +48091,54 @@
       ]
     },
     {
+      "keyExpression": "LAST_ACTIVE_KEY",
+      "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
+      "line": 569,
+      "operation": "get",
+      "cloudSyncKey": false,
+      "scope": "admin_or_qa",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "medium",
+      "notes": [
+        "Test/admin/QA storage signal."
+      ]
+    },
+    {
+      "keyExpression": "WINBACK_SHOWN_AT_KEY",
+      "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
+      "line": 570,
+      "operation": "get",
+      "cloudSyncKey": false,
+      "scope": "admin_or_qa",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "medium",
+      "notes": [
+        "Test/admin/QA storage signal."
+      ]
+    },
+    {
+      "keyExpression": "['",
+      "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
+      "line": 572,
+      "operation": "multiGet",
+      "cloudSyncKey": false,
+      "scope": "admin_or_qa",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "medium",
+      "notes": [
+        "Test/admin/QA storage signal."
+      ]
+    },
+    {
       "key": "user_total_xp",
       "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 681,
+      "line": 687,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "admin_or_qa",
@@ -48153,7 +48153,7 @@
     {
       "key": "user_total_xp",
       "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 683,
+      "line": 689,
       "operation": "set",
       "cloudSyncKey": true,
       "scope": "admin_or_qa",
@@ -48168,7 +48168,7 @@
     {
       "key": "user_total_xp",
       "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 685,
+      "line": 691,
       "operation": "set",
       "cloudSyncKey": true,
       "scope": "admin_or_qa",
@@ -48183,7 +48183,7 @@
     {
       "keyExpression": "pendingClaimKey",
       "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 891,
+      "line": 897,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -48198,7 +48198,7 @@
     {
       "keyExpression": "claimKey(wave",
       "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 906,
+      "line": 912,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -48213,7 +48213,7 @@
     {
       "keyExpression": "'shards_balance'\"",
       "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 929,
+      "line": 935,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -48228,7 +48228,7 @@
     {
       "keyExpression": "\"shards_balance\"'",
       "sourcePath": "tests/owner_direction_runtime_contract.test.ts",
-      "line": 930,
+      "line": 936,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "admin_or_qa",
@@ -52322,8 +52322,8 @@
     }
   ],
   "unknowns": [
-    "tournament_weekly_prize_seen:${last.weekId} at app/(tabs)/tournaments.tsx:304",
-    "tournament_weekly_prize_seen:${last.weekId} at app/(tabs)/tournaments.tsx:305",
+    "tournament_weekly_prize_seen:${last.weekId} at app/(tabs)/tournaments.tsx:308",
+    "tournament_weekly_prize_seen:${last.weekId} at app/(tabs)/tournaments.tsx:309",
     "candidates.map(([key] at app/account_switch_backup_restore.ts:105",
     "missing at app/account_switch_backup_restore.ts:112",
     "missing.map(([key] at app/account_switch_backup_restore.ts:114",

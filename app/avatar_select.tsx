@@ -815,11 +815,13 @@ export default function AvatarSelect() {
             <Ionicons name="chevron-back" size={23} color={t.textPrimary} />
           </Pressable>
           <View style={styles.topCenter} pointerEvents="none">
+            {/* eslint-disable-next-line text-integrity/no-unsafe-text-truncation -- Reanimated.Text коллапс-заголовка: FlowText не оборачивает анимируемый текст, перенос дёргал бы анимацию шапки */}
             <Reanimated.Text style={[styles.title, { color: t.textPrimary }, largeTitleStyle]} numberOfLines={1}>
               {copy.title}
             </Reanimated.Text>
             <Reanimated.View style={[styles.miniPreview, miniPreviewStyle]}>
               <AvatarView avatar={previewAvatarValue} level={confirmed.level} auraId={effectivePreviewAuraId} size={34} animateAura={false} />
+              {/* eslint-disable-next-line text-integrity/no-unsafe-text-truncation -- имя в анимированном мини-превью фикс-высоты: перенос дёргал бы коллапс шапки */}
               <Text style={[styles.miniName, { color: t.textPrimary }]} numberOfLines={1}>{previewAvatarLabel}</Text>
             </Reanimated.View>
           </View>

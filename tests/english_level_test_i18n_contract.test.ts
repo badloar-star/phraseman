@@ -1,33 +1,25 @@
-import fs from 'fs';
-import path from 'path';
-import vm from 'vm';
+import fs from 'node:fs';
+import path from 'node:path';
+import vm from 'node:vm';
 
 type TranslationTree = string | { [key: string]: TranslationTree };
-
-type EnglishTestI18nApi = {
+type I18nApi = {
   UI_LOCALES: readonly string[];
   TEST_LANGUAGES: readonly string[];
   DICTIONARY: Record<string, TranslationTree>;
-  TESTS: Record<string, {
-    filenameSlugs: Record<string, string>;
-    certificateNames: Record<string, string>;
-    resultNames: Record<string, string>;
-    names: Record<string, { nominative: string; genitive: string; subject: string }>;
-  }>;
+  TESTS: Record<string, { filenameSlugs: Record<string, string>; certificateNames: Record<string, string>; resultNames: Record<string, string>; names: Record<string, { nominative: string; genitive: string; subject: string }> }>;
   resolveUiLocale(options: { search: string; stored: string | null; navigatorLanguage: string }): string;
+  resolveTestLanguage(search: string): string;
   t(locale: string, key: string, vars?: Record<string, string | number>): string;
 };
 
 const root = path.resolve(__dirname, '..');
-const extraLocalesPath = path.join(root, 'knowly-www', 'english-level-test', 'i18n.locales.js');
-const i18nPath = path.join(root, 'knowly-www', 'english-level-test', 'i18n.js');
-const appPath = path.join(root, 'knowly-www', 'english-level-test', 'app.js');
-const certificatePath = path.join(root, 'knowly-www', 'english-level-test', 'certificate.js');
+const surface = path.join(root, 'knowly-www', 'english-level-test');
 
-function loadI18n(): EnglishTestI18nApi {
-  const sandbox: { EnglishTestI18n?: EnglishTestI18nApi } = {};
-  vm.runInNewContext(fs.readFileSync(extraLocalesPath, 'utf8'), sandbox, { filename: extraLocalesPath });
-  vm.runInNewContext(fs.readFileSync(i18nPath, 'utf8'), sandbox, { filename: i18nPath });
+function loadI18n(): I18nApi {
+  const sandbox: { EnglishTestI18n?: I18nApi } = {};
+  const file = path.join(surface, 'i18n.js');
+  vm.runInNewContext(fs.readFileSync(file, 'utf8'), sandbox, { filename: file });
   if (!sandbox.EnglishTestI18n) throw new Error('EnglishTestI18n was not exported');
   return sandbox.EnglishTestI18n;
 }
@@ -37,60 +29,38 @@ function leafKeys(tree: TranslationTree, prefix = ''): string[] {
   return Object.entries(tree).flatMap(([key, value]) => leafKeys(value, prefix ? `${prefix}.${key}` : key));
 }
 
-describe('English level test UI localization contract', () => {
+describe('English assessment localization contract', () => {
   const i18n = loadI18n();
-  const expectedLocales = ['ru', 'en', 'de', 'es', 'it', 'fr'];
 
-  test('ships complete Russian, English, German, Spanish, Italian, and French dictionaries', () => {
-    expect(Array.from(i18n.UI_LOCALES)).toEqual(expectedLocales);
+  test('ships complete Russian and English interface dictionaries only', () => {
+    expect(Array.from(i18n.UI_LOCALES)).toEqual(['ru', 'en']);
     const englishKeys = leafKeys(i18n.DICTIONARY.en).sort();
     expect(englishKeys.length).toBeGreaterThan(150);
+    expect(leafKeys(i18n.DICTIONARY.ru).sort()).toEqual(englishKeys);
+    expect(Object.keys(i18n.DICTIONARY).sort()).toEqual(['en', 'ru']);
+  });
 
-    for (const locale of expectedLocales) {
-      expect(i18n.DICTIONARY[locale]).toBeDefined();
-      expect(leafKeys(i18n.DICTIONARY[locale]).sort()).toEqual(englishKeys);
+  test('publishes only the English assessment and rejects stale language links', () => {
+    expect(Array.from(i18n.TEST_LANGUAGES)).toEqual(['en']);
+    expect(Object.keys(i18n.TESTS)).toEqual(['en']);
+    expect(i18n.resolveTestLanguage('?test=fr')).toBe('en');
+    expect(i18n.resolveTestLanguage('?test=en')).toBe('en');
+  });
+
+  test('uses RU/EN browser locale resolution with an English fallback', () => {
+    expect(i18n.resolveUiLocale({ search: '', stored: null, navigatorLanguage: 'ru-RU' })).toBe('ru');
+    expect(i18n.resolveUiLocale({ search: '', stored: null, navigatorLanguage: 'en-GB' })).toBe('en');
+    expect(i18n.resolveUiLocale({ search: '', stored: null, navigatorLanguage: 'de-DE' })).toBe('en');
+  });
+
+  test('keeps natural RU/EN copy and certificate grammar for English', () => {
+    expect(i18n.t('ru', 'question.skip')).toBe('Не знаю');
+    expect(i18n.t('en', 'result.title')).toBe('Your result');
+    for (const locale of i18n.UI_LOCALES) {
+      expect(i18n.TESTS.en.filenameSlugs[locale]).toEqual(expect.any(String));
+      expect(i18n.TESTS.en.certificateNames[locale]).toEqual(expect.any(String));
+      expect(i18n.TESTS.en.resultNames[locale]).toEqual(expect.any(String));
+      expect(i18n.TESTS.en.names[locale]).toEqual({ nominative: expect.any(String), genitive: expect.any(String), subject: expect.any(String) });
     }
-  });
-
-  test.each([
-    ['de-DE', 'de'],
-    ['es-MX', 'es'],
-    ['it-CH', 'it'],
-    ['fr-CA', 'fr'],
-  ])('selects %s browser language as the %s interface', (navigatorLanguage, expected) => {
-    expect(i18n.resolveUiLocale({ search: '', stored: null, navigatorLanguage })).toBe(expected);
-  });
-
-  test('provides localized language grammar and certificate filenames for every test language', () => {
-    for (const testLanguage of i18n.TEST_LANGUAGES) {
-      const config = i18n.TESTS[testLanguage];
-      for (const locale of expectedLocales) {
-        expect(config.filenameSlugs[locale]).toEqual(expect.any(String));
-        expect(config.certificateNames[locale]).toEqual(expect.any(String));
-        expect(config.resultNames[locale]).toEqual(expect.any(String));
-        expect(config.names[locale]).toEqual({
-          nominative: expect.any(String),
-          genitive: expect.any(String),
-          subject: expect.any(String),
-        });
-      }
-    }
-  });
-
-  test('contains natural localized core copy rather than English placeholders', () => {
-    expect(i18n.t('de', 'landing.title', { language: 'Spanisch' })).toBe('Finde dein Niveau in Spanisch');
-    expect(i18n.t('es', 'question.skip')).toBe('No lo sé');
-    expect(i18n.t('it', 'result.title')).toBe('Il tuo risultato');
-    expect(i18n.t('fr', 'certificate.bodyTitle')).toBe('Certificat de réussite');
-  });
-
-  test('renders a direct six-language interface selector and six certificate languages', () => {
-    const appSource = fs.readFileSync(appPath, 'utf8');
-    const certificateSource = fs.readFileSync(certificatePath, 'utf8');
-
-    expect(appSource).toContain('data-ui-locale');
-    expect(appSource).toContain("addEventListener('change'");
-    expect(certificateSource).toContain('EnglishTestI18n.UI_LOCALES');
-    expect(certificateSource).not.toContain("return locale === 'ru' ? 'ru' : 'en'");
   });
 });

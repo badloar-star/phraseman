@@ -217,7 +217,6 @@ export default function TournamentSeasonScreen() {
               style={styles.emptyCta}
             >
               <FlowText testID="season-empty-cta" provenance="authored" style={styles.emptyCtaText}>К турнирам</FlowText>
-              <Ionicons name="chevron-forward" size={16} color={P.accent} />
             </TapScale>
           </Card>
         ) : (
@@ -335,12 +334,14 @@ const makeStyles = (P: TournamentPalette) => StyleSheet.create({
   emptyTitle: { ...type.section, color: P.text, textAlign: 'center' },
   emptyText: { ...type.body, color: P.muted, textAlign: 'center', marginTop: 8, lineHeight: 20 },
   emptyCta: {
-    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 4,
+    alignSelf: 'center',
     marginTop: 16,
     minHeight: 44,
+    paddingHorizontal: 20,
+    borderRadius: radius.sm,
+    backgroundColor: P.accentSoft,
   },
   emptyCtaText: { ...type.body, fontWeight: '700', color: P.accent },
   // Отбивка закреплённой строки — тоном и отступом, без разделительной линии.

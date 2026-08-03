@@ -4,11 +4,11 @@ Run: `2026-05-19_fr_inventory_v0a1`
 
 Status: `HOLD`
 
-Generated at: 2026-08-02T06:40:52.523Z
+Generated at: 2026-08-02T12:08:07.683Z
 
 ## Summary
 
-- Files scanned: 3953
+- Files scanned: 3943
 - Records: 3481
 - Unique literal keys: 567
 - Key patterns: 55
@@ -65,8 +65,8 @@ Generated at: 2026-08-02T06:40:52.523Z
 
 ## Unknowns
 
-- tournament_weekly_prize_seen:${last.weekId} at app/(tabs)/tournaments.tsx:304
-- tournament_weekly_prize_seen:${last.weekId} at app/(tabs)/tournaments.tsx:305
+- tournament_weekly_prize_seen:${last.weekId} at app/(tabs)/tournaments.tsx:308
+- tournament_weekly_prize_seen:${last.weekId} at app/(tabs)/tournaments.tsx:309
 - candidates.map(([key] at app/account_switch_backup_restore.ts:105
 - missing at app/account_switch_backup_restore.ts:112
 - missing.map(([key] at app/account_switch_backup_restore.ts:114

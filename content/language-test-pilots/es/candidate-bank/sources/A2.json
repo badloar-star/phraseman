@@ -1,0 +1,809 @@
+{
+  "schemaVersion": 1,
+  "language": "es",
+  "level": "A2",
+  "status": "authoring",
+  "publishable": false,
+  "items": [
+    {
+      "skill": "grammar",
+      "format": "gap-fill",
+      "scenario": "Recounting one completed action yesterday",
+      "scenarioRu": "Рассказ об одном завершённом действии вчера",
+      "prompt": "Choose the form for the completed past action.",
+      "instructionRu": "Выберите форму для завершённого действия в прошлом.",
+      "stimulus": "Ayer por la tarde, Clara ______ una carta a su abuela.",
+      "answer": "escribió",
+      "distractors": [
+        { "text": "escribe", "reasonRu": "Escribe стоит в настоящем времени и не согласуется с ayer." },
+        { "text": "escribía", "reasonRu": "Escribía описывало бы фон или процесс, а здесь названо одно завершённое действие." },
+        { "text": "escribirá", "reasonRu": "Escribirá относится к будущему и противоречит указанию ayer." }
+      ],
+      "explanation": "Ayer and the single completed event require the preterite form escribió.",
+      "explanationRu": "Ayer и одно завершённое событие требуют формы pretérito indefinido escribió.",
+      "targetConstruct": "preterite of a regular -ir verb for a completed event",
+      "targetConstructRu": "форма прошедшего завершённого действия с правильным глаголом на -ir",
+      "canDoRu": "Может сообщить об одном завершённом вчера действии."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "Accepting an invitation and confirming the time",
+      "scenarioRu": "Принятие приглашения и уточнение времени",
+      "prompt": "Choose the reply that accepts and confirms a practical detail.",
+      "instructionRu": "Выберите ответ, который принимает приглашение и уточняет деталь.",
+      "stimulus": "—¿Te apetece cenar conmigo el sábado? —______",
+      "answer": "Sí, encantada. ¿A qué hora quedamos?",
+      "distractors": [
+        { "text": "No puedo el sábado; ya tengo planes.", "reasonRu": "Ответ вежливо отказывает, а не принимает приглашение." },
+        { "text": "Todavía no sé si estaré libre; te confirmo mañana.", "reasonRu": "Говорящий откладывает решение и не подтверждает участие." },
+        { "text": "El sábado no, pero podemos cenar juntos el domingo.", "reasonRu": "Ответ отклоняет предложенную субботу и предлагает другую дату." }
+      ],
+      "explanation": "The reply explicitly accepts and then asks for the meeting time.",
+      "explanationRu": "Ответ прямо принимает приглашение, а затем уточняет время встречи.",
+      "targetConstruct": "accepting an invitation and requesting a scheduling detail",
+      "targetConstructRu": "принятие приглашения с уточнением времени",
+      "canDoRu": "Может принять приглашение и уточнить время встречи."
+    },
+    {
+      "skill": "vocabulary",
+      "format": "multiple-choice",
+      "scenario": "Choosing the right clothing size",
+      "scenarioRu": "Выбор подходящего размера одежды",
+      "prompt": "Choose the phrase that describes the fit.",
+      "instructionRu": "Выберите фразу, которая правильно описывает размер.",
+      "stimulus": "Esta chaqueta es la talla S, pero necesito una talla L. La chaqueta me queda ______.",
+      "answer": "pequeña",
+      "distractors": [
+        { "text": "demasiado grande", "reasonRu": "Размер S меньше нужного L, поэтому куртка не может быть слишком большой." },
+        { "text": "perfecta", "reasonRu": "Perfecta означало бы, что размер подходит, но говорящей нужна куртка на два размера больше." },
+        { "text": "holgada", "reasonRu": "Holgada означает свободную посадку, что противоречит необходимости заменить S на L." }
+      ],
+      "explanation": "A size S is smaller than the required L, so the jacket is pequeña.",
+      "explanationRu": "Размер S меньше необходимого L, поэтому куртка мала: pequeña.",
+      "targetConstruct": "basic clothing fit vocabulary",
+      "targetConstructRu": "базовая лексика подходящего и неподходящего размера одежды",
+      "canDoRu": "Может понять, велика или мала простая вещь."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Choosing a train after arriving late",
+      "scenarioRu": "Выбор поезда после опоздания на первый рейс",
+      "prompt": "Compare the times and choose the available train.",
+      "instructionRu": "Сравните время и выберите доступный поезд.",
+      "stimulus": "El tren de las 14:10 ya ha salido. El siguiente sale a las 15:05. Pablo llega a la estación a las 14:25. ¿Qué tren puede tomar?",
+      "answer": "El de las 15:05.",
+      "distractors": [
+        { "text": "El de las 14:10.", "reasonRu": "Этот поезд ушёл за пятнадцать минут до прибытия Пабло." },
+        { "text": "Los dos trenes.", "reasonRu": "Первый поезд уже недоступен, поэтому выбрать оба нельзя." },
+        { "text": "Ningún tren.", "reasonRu": "Поезд в 15:05 отправится после прибытия Пабло и остаётся доступным." }
+      ],
+      "explanation": "Pablo misses the 14:10 departure but arrives before the 15:05 train.",
+      "explanationRu": "Пабло пропускает поезд в 14:10, но успевает на отправление в 15:05.",
+      "targetConstruct": "comparing arrival and departure times",
+      "targetConstructRu": "сопоставление времени прибытия и отправления",
+      "canDoRu": "Может выбрать доступный рейс по простому расписанию."
+    },
+    {
+      "skill": "grammar",
+      "format": "gap-fill",
+      "scenario": "Describing a weekday routine",
+      "scenarioRu": "Описание ежедневного распорядка",
+      "prompt": "Choose the reflexive present-tense form.",
+      "instructionRu": "Выберите возвратную форму настоящего времени.",
+      "stimulus": "De lunes a viernes, nosotros ______ a las siete para ir a trabajar.",
+      "answer": "nos levantamos",
+      "distractors": [
+        { "text": "se levantan", "reasonRu": "Se levantan согласуется с ellos или ustedes, а не с nosotros." },
+        { "text": "nos levantar", "reasonRu": "После подлежащего нужна личная форма, а не сочетание местоимения с инфинитивом." },
+        { "text": "me levanto", "reasonRu": "Me levanto согласуется с yo и не подходит к nosotros." }
+      ],
+      "explanation": "Nos levantamos is the reflexive present form agreeing with nosotros.",
+      "explanationRu": "Nos levantamos — возвратная форма настоящего времени, согласованная с nosotros.",
+      "targetConstruct": "first-person plural reflexive present tense",
+      "targetConstructRu": "возвратная форма настоящего времени для nosotros",
+      "canDoRu": "Может описать регулярное действие группы в течение недели."
+    },
+    {
+      "skill": "vocabulary",
+      "format": "multiple-choice",
+      "scenario": "Finding the right place in town",
+      "scenarioRu": "Выбор нужного места в городе",
+      "prompt": "Choose the place that provides the needed service.",
+      "instructionRu": "Выберите место, где можно получить нужную услугу.",
+      "stimulus": "Necesito enviar un paquete a otra ciudad. ¿Adónde voy?",
+      "answer": "A la oficina de correos.",
+      "distractors": [
+        { "text": "A la farmacia.", "reasonRu": "В аптеке покупают лекарства, но обычно не отправляют посылки." },
+        { "text": "A la panadería.", "reasonRu": "Пекарня продаёт хлеб и не оказывает почтовые услуги." },
+        { "text": "A la oficina de turismo.", "reasonRu": "Туристический офис предоставляет информацию, но не отправляет посылки." }
+      ],
+      "explanation": "La oficina de correos is the place used to send a parcel to another city.",
+      "explanationRu": "La oficina de correos — место, где отправляют посылку в другой город.",
+      "targetConstruct": "matching an everyday need to a town service",
+      "targetConstructRu": "соотнесение бытовой потребности с городской службой",
+      "canDoRu": "Может выбрать нужное учреждение для простой бытовой задачи."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Understanding a changed meeting plan",
+      "scenarioRu": "Понимание изменения плана встречи",
+      "prompt": "Read the message and identify the new plan.",
+      "instructionRu": "Прочитайте сообщение и определите новый план.",
+      "stimulus": "Mensaje de Nuria: «La cafetería está cerrada. Nos vemos a las seis delante del cine, no en la plaza». ¿Dónde quedan ahora?",
+      "answer": "Delante del cine.",
+      "distractors": [
+        { "text": "En la plaza.", "reasonRu": "Сообщение прямо отменяет встречу на площади." },
+        { "text": "Dentro de la cafetería.", "reasonRu": "Кафетерий закрыт, поэтому встреча там невозможна." },
+        { "text": "En casa de Nuria.", "reasonRu": "Дом Нурии в сообщении не назван как место встречи." }
+      ],
+      "explanation": "The updated message moves the meeting to the front of the cinema.",
+      "explanationRu": "Обновлённое сообщение переносит встречу ко входу в кинотеатр.",
+      "targetConstruct": "tracking a changed location in a short message",
+      "targetConstructRu": "понимание изменившегося места встречи в сообщении",
+      "canDoRu": "Может понять изменение места в коротком сообщении."
+    },
+    {
+      "skill": "grammar",
+      "format": "gap-fill",
+      "scenario": "Comparing two apartments",
+      "scenarioRu": "Сравнение двух квартир",
+      "prompt": "Choose the comparison that matches the facts.",
+      "instructionRu": "Выберите сравнение, соответствующее фактам.",
+      "stimulus": "El piso de Ana tiene 80 m² y el de Luis tiene 55 m². El piso de Ana es ______ el de Luis.",
+      "answer": "más grande que",
+      "distractors": [
+        { "text": "menos grande que", "reasonRu": "По указанной площади квартира Аны больше, а не меньше." },
+        { "text": "tan grande como", "reasonRu": "Площади различаются, поэтому равенство размера неверно." },
+        { "text": "más grande de", "reasonRu": "В сравнении двух объектов после прилагательного требуется que, а не de." }
+      ],
+      "explanation": "Eighty square metres is greater than fifty-five, so más grande que is required.",
+      "explanationRu": "Восемьдесят квадратных метров больше пятидесяти пяти, поэтому нужно más grande que.",
+      "targetConstruct": "comparative más + adjective + que",
+      "targetConstructRu": "сравнительная конструкция más с прилагательным и que",
+      "canDoRu": "Может сравнить два знакомых объекта по явному признаку."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "Asking a passer-by for directions",
+      "scenarioRu": "Просьба прохожему подсказать дорогу",
+      "prompt": "Choose the polite request for directions.",
+      "instructionRu": "Выберите вежливую просьбу подсказать дорогу.",
+      "stimulus": "Buscas la estación y no sabes cómo llegar. ¿Qué dices a una persona en la calle?",
+      "answer": "Perdone, ¿me puede decir cómo llegar a la estación?",
+      "distractors": [
+        { "text": "Perdone, ¿sabe si la estación está abierta hoy por la tarde?", "reasonRu": "Вопрос касается режима работы, а не пути к станции." },
+        { "text": "Perdone, ¿puedo comprar aquí un billete para la estación?", "reasonRu": "Реплика спрашивает о покупке билета, а не о направлении." },
+        { "text": "Perdone, ¿a qué hora sale el próximo tren de la estación?", "reasonRu": "Вопрос уточняет расписание поезда и не помогает найти станцию." }
+      ],
+      "explanation": "The response politely addresses a passer-by and asks how to reach the station.",
+      "explanationRu": "Реплика вежливо обращается к прохожему и спрашивает, как дойти до станции.",
+      "targetConstruct": "polite request for directions",
+      "targetConstructRu": "вежливая просьба объяснить дорогу",
+      "canDoRu": "Может вежливо попросить подсказать дорогу."
+    },
+    {
+      "skill": "vocabulary",
+      "format": "multiple-choice",
+      "scenario": "Describing a common minor symptom",
+      "scenarioRu": "Описание распространённого лёгкого симптома",
+      "prompt": "Choose the symptom described by the situation.",
+      "instructionRu": "Выберите симптом, который соответствует ситуации.",
+      "stimulus": "A Marta le duele la garganta y le cuesta hablar. Tiene ______.",
+      "answer": "dolor de garganta",
+      "distractors": [
+        { "text": "dolor intenso de espalda", "reasonRu": "Сильная боль в спине не объясняет указанную боль в горле." },
+        { "text": "dolor de muelas", "reasonRu": "Зубная боль относится к зубам, которые в ситуации не упоминаются." },
+        { "text": "dolor de rodilla", "reasonRu": "Боль в колене не связана с трудностью говорить из-за горла." }
+      ],
+      "explanation": "Pain in the throat and difficulty speaking indicate dolor de garganta.",
+      "explanationRu": "Боль в горле и трудность говорить соответствуют выражению dolor de garganta.",
+      "targetConstruct": "basic vocabulary for a throat symptom",
+      "targetConstructRu": "базовая лексика для описания боли в горле",
+      "canDoRu": "Может понять описание распространённого лёгкого симптома."
+    },
+    {
+      "skill": "grammar",
+      "format": "gap-fill",
+      "scenario": "Replacing a known direct object",
+      "scenarioRu": "Замена известного прямого дополнения местоимением",
+      "prompt": "Choose the direct-object pronoun that replaces la revista.",
+      "instructionRu": "Выберите местоимение, которое заменяет la revista.",
+      "stimulus": "—¿Dónde está la revista? —No sé; ayer ______ dejé en la cocina.",
+      "answer": "la",
+      "distractors": [
+        { "text": "lo", "reasonRu": "Lo относится к существительному мужского рода, а revista — женского." },
+        { "text": "le", "reasonRu": "Le является косвенным дополнением и не заменяет прямое la revista." },
+        { "text": "las", "reasonRu": "Las стоит во множественном числе, а названа одна revista." }
+      ],
+      "explanation": "La replaces the feminine singular direct object la revista.",
+      "explanationRu": "La заменяет прямое дополнение la revista женского рода в единственном числе.",
+      "targetConstruct": "feminine singular direct-object pronoun la",
+      "targetConstructRu": "местоимение la для прямого дополнения женского рода",
+      "canDoRu": "Может заменить известный предмет простым прямым местоимением."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Checking an allergen note on a menu",
+      "scenarioRu": "Проверка аллергена в примечании к меню",
+      "prompt": "Read the menu note and identify the unsuitable dish.",
+      "instructionRu": "Прочитайте примечание и выберите неподходящее блюдо.",
+      "stimulus": "Menú: sopa de verduras; arroz con pollo; tarta de almendras. Aviso: la tarta contiene frutos secos. Elena es alérgica a los frutos secos. ¿Qué no debe pedir?",
+      "answer": "La tarta de almendras.",
+      "distractors": [
+        { "text": "La sopa de verduras.", "reasonRu": "В примечании не указаны орехи в овощном супе." },
+        { "text": "El arroz con pollo.", "reasonRu": "Для риса с курицей аллерген frutos secos не указан." },
+        { "text": "Todo el menú.", "reasonRu": "Предупреждение относится только к торту, а не ко всем блюдам." }
+      ],
+      "explanation": "The note explicitly states that the almond cake contains nuts.",
+      "explanationRu": "Примечание прямо сообщает, что миндальный торт содержит орехи.",
+      "targetConstruct": "reading an explicit food-allergen warning",
+      "targetConstructRu": "понимание явного предупреждения об аллергене",
+      "canDoRu": "Может найти явно указанный аллерген в простом меню."
+    },
+    {
+      "skill": "vocabulary",
+      "format": "multiple-choice",
+      "scenario": "Choosing hand luggage for a flight",
+      "scenarioRu": "Выбор ручной клади для перелёта",
+      "prompt": "Choose the item that matches the travel instruction.",
+      "instructionRu": "Выберите предмет, соответствующий инструкции для поездки.",
+      "stimulus": "La compañía permite una bolsa pequeña dentro del avión. Esa bolsa es el ______.",
+      "answer": "equipaje de mano",
+      "distractors": [
+        { "text": "billete de ida", "reasonRu": "Billete de ida — это билет в одну сторону, а не сумка." },
+        { "text": "control de pasaportes", "reasonRu": "Control de pasaportes обозначает процедуру проверки документов." },
+        { "text": "andén de salida", "reasonRu": "Andén — платформа для наземного транспорта, а не багаж." }
+      ],
+      "explanation": "A small bag taken into the aircraft is equipaje de mano.",
+      "explanationRu": "Небольшая сумка, которую берут в салон самолёта, — equipaje de mano.",
+      "targetConstruct": "basic air-travel luggage vocabulary",
+      "targetConstructRu": "базовая лексика ручной клади при перелёте",
+      "canDoRu": "Может понять распространённое обозначение ручной клади."
+    },
+    {
+      "skill": "grammar",
+      "format": "gap-fill",
+      "scenario": "Reporting a very recent arrival",
+      "scenarioRu": "Сообщение о совсем недавнем прибытии",
+      "prompt": "Choose the infinitive after acaba de.",
+      "instructionRu": "Выберите инфинитив после acaba de.",
+      "stimulus": "No llames a Sara ahora; acaba de ______ a casa y está descansando.",
+      "answer": "llegar",
+      "distractors": [
+        { "text": "llega", "reasonRu": "После acaba de требуется инфинитив, а llega — личная форма." },
+        { "text": "llegó", "reasonRu": "Llegó — форма прошедшего времени и не завершает конструкцию acabar de." },
+        { "text": "llegando", "reasonRu": "Герундий llegando не употребляется после acaba de в значении недавнего действия." }
+      ],
+      "explanation": "Acabar de is followed by the infinitive llegar to express a very recent event.",
+      "explanationRu": "После acabar de используется инфинитив llegar для совсем недавнего действия.",
+      "targetConstruct": "acabar de plus infinitive",
+      "targetConstructRu": "конструкция acabar de с инфинитивом",
+      "canDoRu": "Может сообщить о действии, которое только что произошло."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "Requesting help with a heavy suitcase",
+      "scenarioRu": "Просьба помочь с тяжёлым чемоданом",
+      "prompt": "Choose the polite request for help.",
+      "instructionRu": "Выберите вежливую просьбу о помощи.",
+      "stimulus": "Tu maleta pesa mucho y necesitas subirla al tren. ¿Qué dices a un empleado?",
+      "answer": "¿Podría ayudarme con esta maleta, por favor?",
+      "distractors": [
+        { "text": "¿Podría decirme en qué coche debo subir, por favor?", "reasonRu": "Реплика уточняет вагон, но не просит помочь поднять чемодан." },
+        { "text": "¿Puede guardar mi maleta, por favor?", "reasonRu": "Просьба касается хранения, а не помощи при посадке." },
+        { "text": "¿Podría pesar esta maleta antes de subir al tren?", "reasonRu": "Реплика просит взвесить багаж, а не помочь поднять его." }
+      ],
+      "explanation": "Podría, ayudarme, por favor form a clear and polite request.",
+      "explanationRu": "Podría, ayudarme и por favor образуют ясную и вежливую просьбу.",
+      "targetConstruct": "polite request with podría and por favor",
+      "targetConstructRu": "вежливая просьба с podría и por favor",
+      "canDoRu": "Может вежливо попросить о простой физической помощи."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Reading a room-rental advert",
+      "scenarioRu": "Чтение объявления об аренде комнаты",
+      "prompt": "Read the advert and identify the stated condition.",
+      "instructionRu": "Прочитайте объявление и найдите указанное условие.",
+      "stimulus": "Se alquila habitación cerca de la universidad: 450 € al mes, gastos incluidos. No se permiten mascotas. ¿Qué afirma el anuncio?",
+      "answer": "El precio incluye los gastos.",
+      "distractors": [
+        { "text": "La habitación cuesta 450 € por semana.", "reasonRu": "В объявлении указана цена в месяц, а не за неделю." },
+        { "text": "La vivienda está lejos de la universidad.", "reasonRu": "Текст говорит cerca de la universidad, то есть рядом." },
+        { "text": "Se puede vivir allí con un perro.", "reasonRu": "Объявление прямо запрещает домашних животных." }
+      ],
+      "explanation": "Gastos incluidos states that the monthly price includes expenses.",
+      "explanationRu": "Фраза gastos incluidos означает, что расходы включены в месячную цену.",
+      "targetConstruct": "extracting price and conditions from a rental advert",
+      "targetConstructRu": "понимание цены и условия в объявлении об аренде",
+      "canDoRu": "Может понять цену и простое условие аренды."
+    },
+    {
+      "skill": "grammar",
+      "format": "gap-fill",
+      "scenario": "Buying a gift for a birthday",
+      "scenarioRu": "Покупка подарка ко дню рождения",
+      "prompt": "Choose the preposition expressing purpose or recipient.",
+      "instructionRu": "Выберите предлог со значением цели или получателя.",
+      "stimulus": "He comprado estas flores ______ el cumpleaños de mi madre.",
+      "answer": "para",
+      "distractors": [
+        { "text": "por", "reasonRu": "Здесь называется назначение цветов, а не причина или способ обмена." },
+        { "text": "desde", "reasonRu": "Desde указывает начальную точку времени или места и не выражает назначение." },
+        { "text": "entre", "reasonRu": "Entre означает между и не связывает подарок с событием." }
+      ],
+      "explanation": "Para introduces the intended occasion for which the flowers were bought.",
+      "explanationRu": "Para вводит назначение цветов — день рождения матери.",
+      "targetConstruct": "para for intended purpose",
+      "targetConstructRu": "предлог para для обозначения назначения",
+      "canDoRu": "Может обозначить простую цель покупки."
+    },
+    {
+      "skill": "vocabulary",
+      "format": "multiple-choice",
+      "scenario": "Naming a household chore",
+      "scenarioRu": "Название домашней обязанности",
+      "prompt": "Choose the chore described by the sentence.",
+      "instructionRu": "Выберите домашнее дело по описанию.",
+      "stimulus": "Después de cenar, ponemos los platos y los vasos sucios en el lavavajillas. Vamos a ______.",
+      "answer": "lavar los platos",
+      "distractors": [
+        { "text": "hacer la cama", "reasonRu": "Hacer la cama относится к спальне, а не к грязной посуде." },
+        { "text": "sacar la basura", "reasonRu": "В ситуации посуду кладут в посудомоечную машину, а не выносят мусор." },
+        { "text": "planchar la ropa", "reasonRu": "Planchar la ropa означает гладить одежду и не связано с тарелками." }
+      ],
+      "explanation": "Putting dirty dishes in the dishwasher is part of lavar los platos.",
+      "explanationRu": "Помещение грязной посуды в посудомоечную машину относится к lavar los platos.",
+      "targetConstruct": "common household-chore vocabulary",
+      "targetConstructRu": "лексика распространённых домашних обязанностей",
+      "canDoRu": "Может назвать распространённое домашнее дело."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Reading seat information on a train ticket",
+      "scenarioRu": "Чтение места в железнодорожном билете",
+      "prompt": "Read the ticket and choose the assigned seat.",
+      "instructionRu": "Прочитайте билет и выберите указанное место.",
+      "stimulus": "Billete: Sevilla–Córdoba, 18 de mayo, salida 09:40, coche 4, asiento 12B. ¿Qué asiento tiene el pasajero?",
+      "answer": "El 12B.",
+      "distractors": [
+        { "text": "El 4B.", "reasonRu": "Число 4 обозначает вагон, а не место пассажира." },
+        { "text": "El 18B.", "reasonRu": "Число 18 относится к дате поездки." },
+        { "text": "El 40B.", "reasonRu": "Число 40 является минутами времени отправления." }
+      ],
+      "explanation": "The ticket explicitly lists asiento 12B.",
+      "explanationRu": "В билете прямо указано asiento 12B.",
+      "targetConstruct": "locating carriage and seat information on a ticket",
+      "targetConstructRu": "поиск номера вагона и места в билете",
+      "canDoRu": "Может найти своё место в простом билете."
+    },
+    {
+      "skill": "grammar",
+      "format": "gap-fill",
+      "scenario": "Giving a familiar affirmative instruction",
+      "scenarioRu": "Простая утвердительная инструкция знакомому",
+      "prompt": "Choose the affirmative tú command.",
+      "instructionRu": "Выберите утвердительную форму приказа для tú.",
+      "stimulus": "La sopa está lista. Marta, ______ la mesa, por favor.",
+      "answer": "pon",
+      "distractors": [
+        { "text": "pones", "reasonRu": "Pones — настоящее время, а в реплике нужна инструкция." },
+        { "text": "poner", "reasonRu": "Инфинитив не является утвердительной формой приказа для tú." },
+        { "text": "ponga", "reasonRu": "Ponga относится к usted, тогда как обращение к Marta здесь задано как знакомое tú." }
+      ],
+      "explanation": "Pon is the affirmative tú command of poner.",
+      "explanationRu": "Pon — утвердительная форма повелительного наклонения poner для tú.",
+      "targetConstruct": "affirmative tú imperative of poner",
+      "targetConstructRu": "утвердительная повелительная форма poner для tú",
+      "canDoRu": "Может дать знакомому простую бытовую инструкцию."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "Declining an invitation with a reason",
+      "scenarioRu": "Вежливый отказ от приглашения с причиной",
+      "prompt": "Choose the polite refusal that gives a clear reason.",
+      "instructionRu": "Выберите вежливый отказ с понятной причиной.",
+      "stimulus": "—¿Quieres venir a mi fiesta el viernes? —______",
+      "answer": "Lo siento, no puedo; tengo que trabajar esa noche.",
+      "distractors": [
+        { "text": "Sí, claro. ¿A qué hora empieza la fiesta del viernes?", "reasonRu": "Ответ принимает приглашение и уточняет время." },
+        { "text": "Todavía no conozco mi horario; ¿puedo responderte mañana?", "reasonRu": "Говорящий откладывает решение, а не даёт окончательный отказ." },
+        { "text": "El viernes no puedo; ¿y el sábado?", "reasonRu": "Ответ отклоняет пятницу и предлагает другую дату, которой в приглашении нет." }
+      ],
+      "explanation": "The speaker apologises, declines, and gives a concrete work-related reason.",
+      "explanationRu": "Говорящий извиняется, отказывает и называет конкретную причину, связанную с работой.",
+      "targetConstruct": "polite refusal with a simple reason",
+      "targetConstructRu": "вежливый отказ с простой причиной",
+      "canDoRu": "Может вежливо отказаться от приглашения и объяснить причину."
+    },
+    {
+      "skill": "vocabulary",
+      "format": "multiple-choice",
+      "scenario": "Understanding a windy forecast",
+      "scenarioRu": "Понимание прогноза с сильным ветром",
+      "prompt": "Choose the statement that matches the forecast.",
+      "instructionRu": "Выберите утверждение, соответствующее прогнозу.",
+      "stimulus": "Pronóstico: cielo despejado, pero viento fuerte durante toda la tarde. ¿Qué tiempo hará?",
+      "answer": "Hará sol y mucho viento.",
+      "distractors": [
+        { "text": "Nevará toda la tarde.", "reasonRu": "Снег в прогнозе не указан, а небо будет ясным." },
+        { "text": "Habrá niebla y calma.", "reasonRu": "Туман не упоминается, а calma противоречит сильному ветру." },
+        { "text": "Lloverá sin parar toda la tarde.", "reasonRu": "Непрерывный дождь не соответствует указанному cielo despejado." }
+      ],
+      "explanation": "Cielo despejado indicates sun, while viento fuerte indicates strong wind.",
+      "explanationRu": "Cielo despejado указывает на солнце, а viento fuerte — на сильный ветер.",
+      "targetConstruct": "basic forecast vocabulary for clear skies and wind",
+      "targetConstructRu": "базовая лексика ясной и ветреной погоды",
+      "canDoRu": "Может понять простой прогноз с ветром и ясным небом."
+    },
+    {
+      "skill": "grammar",
+      "format": "gap-fill",
+      "scenario": "Describing a repeated childhood routine",
+      "scenarioRu": "Описание повторявшегося действия в детстве",
+      "prompt": "Choose the imperfect form for the past routine.",
+      "instructionRu": "Выберите форму imperfecto для регулярного прошлого действия.",
+      "stimulus": "Cuando era niño, todos los veranos ______ con mis abuelos en el campo.",
+      "answer": "vivía",
+      "distractors": [
+        { "text": "viví", "reasonRu": "Viví обычно представляет завершённый период, а todos los veranos задаёт повторявшуюся привычку." },
+        { "text": "vivo", "reasonRu": "Vivo стоит в настоящем времени и не согласуется с cuando era niño." },
+        { "text": "viviré", "reasonRu": "Viviré относится к будущему, а речь идёт о детстве." }
+      ],
+      "explanation": "Todos los veranos describes a repeated past routine, so vivía is required.",
+      "explanationRu": "Todos los veranos обозначает повторявшуюся привычку в прошлом, поэтому нужно vivía.",
+      "targetConstruct": "imperfect for a repeated past routine",
+      "targetConstructRu": "imperfecto для повторявшейся привычки в прошлом",
+      "canDoRu": "Может описать регулярное действие из прошлого."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Reading a booking-change email",
+      "scenarioRu": "Чтение письма об изменении бронирования",
+      "prompt": "Read the email and identify what the customer must do.",
+      "instructionRu": "Прочитайте письмо и определите необходимое действие клиента.",
+      "stimulus": "Correo del hotel: «Hemos cambiado su reserva al 22 de junio. Si la nueva fecha no le conviene, puede cancelar gratis antes del día 15». ¿Qué puede hacer el cliente sin pagar?",
+      "answer": "Cancelar antes del día 15.",
+      "distractors": [
+        { "text": "Cancelar el día 22.", "reasonRu": "Бесплатная отмена разрешена только до 15-го числа." },
+        { "text": "Cambiar la reserva a cualquier hotel.", "reasonRu": "Письмо не предлагает перенос брони в другой отель." },
+        { "text": "Alojarse gratis en junio.", "reasonRu": "Бесплатной названа отмена, а не проживание." }
+      ],
+      "explanation": "The email permits free cancellation only before the fifteenth.",
+      "explanationRu": "Письмо разрешает бесплатную отмену только до пятнадцатого числа.",
+      "targetConstruct": "reading a deadline and cancellation condition",
+      "targetConstructRu": "понимание срока и условия отмены бронирования",
+      "canDoRu": "Может понять срок бесплатной отмены в коротком письме."
+    },
+    {
+      "skill": "vocabulary",
+      "format": "multiple-choice",
+      "scenario": "Choosing a service at a bank",
+      "scenarioRu": "Выбор услуги в банке",
+      "prompt": "Choose the service that matches the need.",
+      "instructionRu": "Выберите услугу, соответствующую потребности.",
+      "stimulus": "Quiero poner dinero en mi cuenta bancaria. Necesito hacer un ______.",
+      "answer": "depósito",
+      "distractors": [
+        { "text": "retiro de efectivo", "reasonRu": "Retiro de efectivo означает снятие денег, то есть действие, противоположное пополнению счёта." },
+        { "text": "pago automático", "reasonRu": "Pago automático — регулярная банковская оплата, а не внесение денег на собственный счёт." },
+        { "text": "préstamo personal", "reasonRu": "Préstamo personal — банковский кредит, а не операция пополнения счёта." }
+      ],
+      "explanation": "Putting money into a bank account is hacer un depósito.",
+      "explanationRu": "Внесение денег на банковский счёт называется hacer un depósito.",
+      "targetConstruct": "neutral vocabulary for a bank deposit",
+      "targetConstructRu": "нейтральная лексика внесения денег на банковский счёт",
+      "canDoRu": "Может назвать простую банковскую операцию."
+    },
+    {
+      "skill": "grammar",
+      "format": "gap-fill",
+      "scenario": "Identifying a colleague with a relative clause",
+      "scenarioRu": "Описание коллеги с помощью относительного придаточного",
+      "prompt": "Choose the relative word linking the person and description.",
+      "instructionRu": "Выберите относительное слово, связывающее человека и описание.",
+      "stimulus": "Laura es la compañera ______ trabaja conmigo los lunes.",
+      "answer": "que",
+      "distractors": [
+        { "text": "donde", "reasonRu": "Donde относится к месту, а antecedente la compañera обозначает человека." },
+        { "text": "cuando", "reasonRu": "Cuando вводит время, а не описание названного человека." },
+        { "text": "cuánto", "reasonRu": "Cuánto спрашивает о количестве и не связывает относительное придаточное." }
+      ],
+      "explanation": "Que introduces the relative clause describing la compañera.",
+      "explanationRu": "Que вводит относительное придаточное, которое описывает la compañera.",
+      "targetConstruct": "simple relative clause with que",
+      "targetConstructRu": "простое относительное придаточное с que",
+      "canDoRu": "Может кратко описать знакомого человека через его действие."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "Opening a short phone call",
+      "scenarioRu": "Начало короткого телефонного разговора",
+      "prompt": "Choose the natural way to identify yourself and ask for someone.",
+      "instructionRu": "Выберите естественное представление и просьбу позвать человека.",
+      "stimulus": "Llamas a la oficina de Pedro. ¿Cómo empiezas la conversación?",
+      "answer": "Buenos días, soy Elena. ¿Puedo hablar con Pedro?",
+      "distractors": [
+        { "text": "Buenos días, ¿a qué hora cierra hoy la oficina?", "reasonRu": "Реплика спрашивает о режиме работы и не просит позвать Педро." },
+        { "text": "Buenos días, soy Elena. ¿Ha llamado Pedro esta mañana?", "reasonRu": "Звонящая спрашивает о прошлом звонке Педро, а не просит соединить с ним." },
+        { "text": "Buenos días, ¿puedo dejar un mensaje para Pedro?", "reasonRu": "Реплика просит оставить сообщение, но не поговорить с Педро сейчас." }
+      ],
+      "explanation": "The caller greets, identifies herself, and politely asks to speak with Pedro.",
+      "explanationRu": "Звонящая здоровается, представляется и вежливо просит позвать Педро.",
+      "targetConstruct": "opening a phone call and requesting a person",
+      "targetConstructRu": "начало телефонного разговора с просьбой позвать человека",
+      "canDoRu": "Может начать короткий телефонный разговор и представиться."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Understanding a prohibition sign",
+      "scenarioRu": "Понимание запрещающей таблички",
+      "prompt": "Read the sign and choose the permitted action.",
+      "instructionRu": "Прочитайте табличку и выберите разрешённое действие.",
+      "stimulus": "Cartel del museo: «Se pueden hacer fotos sin flash. Prohibido grabar vídeos». ¿Qué está permitido?",
+      "answer": "Hacer fotos sin flash.",
+      "distractors": [
+        { "text": "Grabar un vídeo corto.", "reasonRu": "Табличка запрещает любые видеозаписи без исключения по длине." },
+        { "text": "Hacer fotos con flash.", "reasonRu": "Разрешены фотографии только без вспышки." },
+        { "text": "Grabar y usar flash.", "reasonRu": "Этот вариант одновременно нарушает оба указанных ограничения." }
+      ],
+      "explanation": "The sign permits photography only when the flash is not used.",
+      "explanationRu": "Табличка разрешает фотографировать только без вспышки.",
+      "targetConstruct": "reading permission and prohibition on a public sign",
+      "targetConstructRu": "понимание разрешения и запрета на публичной табличке",
+      "canDoRu": "Может понять простое разрешение и запрет."
+    },
+    {
+      "skill": "grammar",
+      "format": "gap-fill",
+      "scenario": "Inviting someone to the speaker's location",
+      "scenarioRu": "Приглашение собеседника к месту говорящего",
+      "prompt": "Choose ir or venir from the speaker's stated location.",
+      "instructionRu": "Выберите ir или venir с учётом места говорящего.",
+      "stimulus": "Estoy en casa y preparo la cena. ¿Quieres ______ aquí a las ocho?",
+      "answer": "venir",
+      "distractors": [
+        { "text": "ir", "reasonRu": "Говорящий приглашает двигаться к месту, где сам находится, поэтому нужно venir." },
+        { "text": "salir", "reasonRu": "Salir означает выходить и не передаёт движение к дому говорящего." },
+        { "text": "volver", "reasonRu": "Volver означало бы возвращение, но прежнее пребывание собеседника здесь не указано." }
+      ],
+      "explanation": "The movement is toward the speaker's current location, so venir is required.",
+      "explanationRu": "Движение направлено к текущему месту говорящего, поэтому требуется venir.",
+      "targetConstruct": "deictic contrast between ir and venir",
+      "targetConstructRu": "различение ir и venir по направлению к говорящему",
+      "canDoRu": "Может выбрать глагол движения с учётом места говорящего."
+    },
+    {
+      "skill": "vocabulary",
+      "format": "multiple-choice",
+      "scenario": "Distinguishing an emotional state from tiredness",
+      "scenarioRu": "Различение эмоционального состояния и усталости",
+      "prompt": "Choose the feeling described by the situation.",
+      "instructionRu": "Выберите чувство, соответствующее ситуации.",
+      "stimulus": "Mañana Julia tiene un examen importante y piensa que no está preparada. Está ______.",
+      "answer": "nerviosa",
+      "distractors": [
+        { "text": "orgullosa", "reasonRu": "Orgullosa означает гордая и не соответствует страху перед неподготовленным экзаменом." },
+        { "text": "aburrida", "reasonRu": "Aburrida означает, что человеку скучно, чего ситуация не описывает." },
+        { "text": "satisfecha", "reasonRu": "Satisfecha выражает удовлетворение, а Юлия переживает из-за неподготовленности." }
+      ],
+      "explanation": "Worry about an important exam and feeling unprepared indicate nerviosa.",
+      "explanationRu": "Переживание из-за важного экзамена и неподготовленности соответствует состоянию nerviosa.",
+      "targetConstruct": "basic vocabulary for nervousness",
+      "targetConstructRu": "базовая лексика нервозности перед событием",
+      "canDoRu": "Может понять распространённое эмоциональное состояние по контексту."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Following a three-step recipe",
+      "scenarioRu": "Понимание порядка трёх шагов рецепта",
+      "prompt": "Read the instructions and choose the second step.",
+      "instructionRu": "Прочитайте инструкцию и выберите второй шаг.",
+      "stimulus": "Para preparar la ensalada: primero lava los tomates; después córtalos; al final añade aceite. ¿Qué haces después de lavar los tomates?",
+      "answer": "Cortarlos.",
+      "distractors": [
+        { "text": "Añadir aceite.", "reasonRu": "Масло добавляют al final, после нарезания." },
+        { "text": "Lavarlos otra vez.", "reasonRu": "Повторное мытьё в инструкции не указано." },
+        { "text": "Cocinar los tomates.", "reasonRu": "Рецепт не требует готовить помидоры на огне." }
+      ],
+      "explanation": "Después córtalos makes cutting the tomatoes the second step.",
+      "explanationRu": "Фраза después córtalos указывает, что вторым шагом нужно нарезать помидоры.",
+      "targetConstruct": "following explicit sequence markers in instructions",
+      "targetConstructRu": "понимание явных маркеров порядка в инструкции",
+      "canDoRu": "Может выполнить следующий шаг короткой инструкции."
+    },
+    {
+      "skill": "grammar",
+      "format": "gap-fill",
+      "scenario": "Ordering food in a completed past event",
+      "scenarioRu": "Заказ еды в завершённой прошлой ситуации",
+      "prompt": "Choose the preterite stem-changing form of pedir.",
+      "instructionRu": "Выберите форму pretérito indefinido глагола pedir.",
+      "stimulus": "Anoche, Carlos ______ pescado y yo pedí una ensalada.",
+      "answer": "pidió",
+      "distractors": [
+        { "text": "pedió", "reasonRu": "В третьем лице pretérito indefinido глагол pedir меняет e на i: pidió." },
+        { "text": "pide", "reasonRu": "Pide стоит в настоящем времени и не согласуется с anoche." },
+        { "text": "pedía", "reasonRu": "Pedía описывало бы процесс или привычку, а здесь назван один завершённый заказ." }
+      ],
+      "explanation": "Pedir changes e to i in the third-person preterite form pidió.",
+      "explanationRu": "В третьем лице pretérito indefinido pedir меняет e на i и образует pidió.",
+      "targetConstruct": "third-person preterite stem change in pedir",
+      "targetConstructRu": "чередование корня pedir в третьем лице прошедшего времени",
+      "canDoRu": "Может описать частотное завершённое действие в прошлом."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "Clarifying an unclear meeting detail",
+      "scenarioRu": "Уточнение непонятной детали встречи",
+      "prompt": "Choose the request that clarifies the missing detail.",
+      "instructionRu": "Выберите просьбу, которая уточняет недостающую деталь.",
+      "stimulus": "Tu compañero dice: «Nos vemos por la tarde», pero necesitas una hora exacta. ¿Qué respondes?",
+      "answer": "De acuerdo, pero ¿a qué hora exactamente?",
+      "distractors": [
+        { "text": "¿La reunión es mañana o el jueves?", "reasonRu": "Реплика уточняет день, хотя недостающей деталью является точное время." },
+        { "text": "Perfecto, ¿nos vemos en la cafetería de siempre?", "reasonRu": "Реплика уточняет место, но оставляет время неопределённым." },
+        { "text": "Bien, ¿quieres que invite también a Marta a la reunión?", "reasonRu": "Реплика уточняет участника, а не точный час встречи." }
+      ],
+      "explanation": "The response accepts the plan and asks for the exact missing time.",
+      "explanationRu": "Ответ принимает план и запрашивает недостающее точное время.",
+      "targetConstruct": "requesting clarification of one practical detail",
+      "targetConstructRu": "просьба уточнить одну практическую деталь",
+      "canDoRu": "Может попросить уточнить непонятную деталь договорённости."
+    },
+    {
+      "skill": "vocabulary",
+      "format": "multiple-choice",
+      "scenario": "Understanding a workplace schedule term",
+      "scenarioRu": "Понимание термина рабочего расписания",
+      "prompt": "Choose the term described by the sentence.",
+      "instructionRu": "Выберите термин по описанию.",
+      "stimulus": "Marcos trabaja de ocho a cuatro, de lunes a viernes. Ese es su ______.",
+      "answer": "horario",
+      "distractors": [
+        { "text": "sueldo", "reasonRu": "Sueldo означает заработную плату, а не часы работы." },
+        { "text": "despacho", "reasonRu": "Despacho означает кабинет или офисное помещение." },
+        { "text": "título", "reasonRu": "Título обозначает название или документ об образовании, а не расписание." }
+      ],
+      "explanation": "The stated working hours form Marcos's horario.",
+      "explanationRu": "Указанные часы работы составляют horario Маркоса.",
+      "targetConstruct": "basic workplace schedule vocabulary",
+      "targetConstructRu": "базовая лексика рабочего расписания",
+      "canDoRu": "Может понять распространённый термин рабочего расписания."
+    },
+    {
+      "skill": "grammar",
+      "format": "gap-fill",
+      "scenario": "Stating how long an activity has continued",
+      "scenarioRu": "Сообщение о длительности продолжающегося действия",
+      "prompt": "Choose the expression for an activity continuing until now.",
+      "instructionRu": "Выберите выражение для действия, продолжающегося до настоящего момента.",
+      "stimulus": "Vivo en Granada ______ tres años y todavía trabajo aquí.",
+      "answer": "desde hace",
+      "distractors": [
+        { "text": "dentro de", "reasonRu": "Dentro de указывает момент в будущем, а действие уже продолжается три года." },
+        { "text": "hasta", "reasonRu": "Hasta обозначает конечную границу и не выражает прошедшую длительность до настоящего." },
+        { "text": "hace que", "reasonRu": "В данной позиции после Vivo нормативно используется desde hace; hace que потребовало бы иной структуры." }
+      ],
+      "explanation": "Desde hace plus a duration expresses an activity that began in the past and continues now.",
+      "explanationRu": "Desde hace с длительностью обозначает действие, начавшееся в прошлом и продолжающееся сейчас.",
+      "targetConstruct": "desde hace plus duration with present tense",
+      "targetConstructRu": "desde hace с длительностью и настоящим временем",
+      "canDoRu": "Может сообщить, как долго продолжается текущее состояние."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Reading a short local-news report",
+      "scenarioRu": "Чтение короткой местной новости",
+      "prompt": "Read the report and identify the main event.",
+      "instructionRu": "Прочитайте заметку и определите главное событие.",
+      "stimulus": "Noticias del barrio: ayer abrió una nueva biblioteca en la calle Mayor. La alcaldesa visitó el edificio y habló con los primeros lectores. ¿Qué ocurrió?",
+      "answer": "Abrió una biblioteca nueva.",
+      "distractors": [
+        { "text": "Cerró la biblioteca de la calle Mayor.", "reasonRu": "В новости сказано abrió, то есть библиотека открылась, а не закрылась." },
+        { "text": "La alcaldesa escribió un libro.", "reasonRu": "Мэр посетила здание и разговаривала с читателями, но книгу не писала." },
+        { "text": "Los lectores cambiaron de barrio.", "reasonRu": "Переезд читателей в заметке не упоминается." }
+      ],
+      "explanation": "The report's main event is the opening of a new neighbourhood library.",
+      "explanationRu": "Главное событие заметки — открытие новой районной библиотеки.",
+      "targetConstruct": "identifying the main event in a short news item",
+      "targetConstructRu": "определение главного события короткой новости",
+      "canDoRu": "Может понять главное событие короткой местной новости."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "Expressing a preference politely",
+      "scenarioRu": "Вежливое выражение предпочтения",
+      "prompt": "Choose the softened but clear preference.",
+      "instructionRu": "Выберите смягчённое, но ясное предпочтение.",
+      "stimulus": "Un compañero propone reunirse a las ocho, pero prefieres una hora más tarde. ¿Qué dices?",
+      "answer": "¿Te parece si quedamos a las nueve?",
+      "distractors": [
+        { "text": "A las ocho está bien para mí.", "reasonRu": "Ответ принимает исходное время и не выражает предпочтение встретиться позже." },
+        { "text": "¿Te parece si quedamos a las siete en vez de a las ocho?", "reasonRu": "Реплика предлагает более раннее, а не более позднее время." },
+        { "text": "Todavía no estoy segura; te confirmo la hora esta tarde.", "reasonRu": "Говорящая откладывает решение и не предлагает девять часов." }
+      ],
+      "explanation": "¿Te parece si...? proposes the preferred time while inviting agreement.",
+      "explanationRu": "¿Te parece si...? предлагает предпочтительное время и одновременно запрашивает согласие.",
+      "targetConstruct": "softened proposal with ¿te parece si...?",
+      "targetConstructRu": "смягчённое предложение с ¿te parece si...?",
+      "canDoRu": "Может вежливо предложить более удобное время."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "Complaining about a wrong restaurant order",
+      "scenarioRu": "Жалоба на неверный заказ в ресторане",
+      "prompt": "Choose the clear, polite complaint and remedy request.",
+      "instructionRu": "Выберите ясную вежливую жалобу с просьбой исправить ошибку.",
+      "stimulus": "Has pedido una sopa, pero el camarero trae una ensalada. ¿Qué dices?",
+      "answer": "Perdone, he pedido una sopa. ¿Puede cambiar el plato, por favor?",
+      "distractors": [
+        { "text": "Perdone, la ensalada no está muy fresca. ¿Puede cambiarla?", "reasonRu": "Реплика жалуется на качество салата, а не на то, что принесли другое блюдо." },
+        { "text": "Perdone, ¿podría traerme también una sopa, por favor?", "reasonRu": "Реплика добавляет второе блюдо и не просит заменить ошибочный заказ." },
+        { "text": "He pedido una sopa, pero puedo quedarme con la ensalada.", "reasonRu": "Ответ признаёт ошибку, но прямо отказывается от исправления." }
+      ],
+      "explanation": "The response identifies the error and politely asks for the correct dish.",
+      "explanationRu": "Ответ называет ошибку и вежливо просит принести правильное блюдо.",
+      "targetConstruct": "simple service complaint with a concrete remedy",
+      "targetConstructRu": "простая жалоба на услугу с конкретной просьбой",
+      "canDoRu": "Может вежливо сообщить об ошибке в заказе и попросить исправление."
+    },
+    {
+      "skill": "vocabulary",
+      "format": "multiple-choice",
+      "scenario": "Understanding sequence connectors",
+      "scenarioRu": "Понимание связок последовательности",
+      "prompt": "Choose the connector for the final step.",
+      "instructionRu": "Выберите связку для последнего шага.",
+      "stimulus": "Primero desayunamos, luego preparamos las mochilas y, ______, salimos de casa.",
+      "answer": "al final",
+      "distractors": [
+        { "text": "por ejemplo", "reasonRu": "Por ejemplo вводит пример, а не заключительный шаг последовательности." },
+        { "text": "sin embargo", "reasonRu": "Sin embargo выражает контраст, которого между действиями нет." },
+        { "text": "además", "reasonRu": "Además добавляет информацию, но не обозначает финальный этап." }
+      ],
+      "explanation": "Al final marks the last action after primero and luego.",
+      "explanationRu": "Al final обозначает последнее действие после primero и luego.",
+      "targetConstruct": "basic sequence connector al final",
+      "targetConstructRu": "связка al final для последнего этапа",
+      "canDoRu": "Может понять основные связки последовательности действий."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Planning a journey with one transfer",
+      "scenarioRu": "Планирование поездки с одной пересадкой",
+      "prompt": "Read the notice and choose the correct journey plan.",
+      "instructionRu": "Прочитайте объявление и выберите правильный план поездки.",
+      "stimulus": "Para ir de León a Salamanca: autobús a Zamora a las 08:30; llegada 10:00. Conexión a Salamanca a las 10:25, andén 6. ¿Qué debe hacer el viajero?",
+      "answer": "Cambiar de autobús en Zamora.",
+      "distractors": [
+        { "text": "Viajar directamente sin cambiar.", "reasonRu": "Объявление указывает отдельную conexión в Заморе, значит нужна пересадка." },
+        { "text": "Salir de León a las 10:25.", "reasonRu": "Из Леона автобус отправляется в 08:30; 10:25 — время пересадки." },
+        { "text": "Buscar el andén 6 en León.", "reasonRu": "Платформа 6 относится к соединению после прибытия в Замору." }
+      ],
+      "explanation": "The first bus ends in Zamora and a separate connection continues to Salamanca.",
+      "explanationRu": "Первый автобус прибывает в Замору, а отдельный рейс продолжает путь до Саламанки.",
+      "targetConstruct": "integrating destination, transfer, time, and platform",
+      "targetConstructRu": "сопоставление пункта пересадки, времени и платформы",
+      "canDoRu": "Может понять простой маршрут с одной пересадкой."
+    }
+  ]
+}

@@ -7,6 +7,7 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
 import TapScale from '../components/TapScale';
 import { View, Text, Modal } from 'react-native';
+import { FlowText } from '../components/text-integrity/FlowText';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useFocusEffect } from 'expo-router';
 import CustomSwitch from '../components/CustomSwitch';
@@ -130,9 +131,10 @@ function ToggleRow({ label, value, onChange, last }: {
       paddingHorizontal:16, paddingVertical:13,
       borderBottomWidth: last ? 0 : 0.5, borderBottomColor: t.border,
     }}>
-      <Text style={{ color:t.textPrimary, fontSize:15, fontWeight:'500', flex:1, marginRight:12 }} numberOfLines={2}>
+      {/* зачем: text-integrity — название тумблера переносится целиком, ряд растёт. */}
+      <FlowText testID="notif-toggle-label" provenance="authored" style={{ color:t.textPrimary, fontSize:15, fontWeight:'500', flex:1, marginRight:12 }}>
         {label}
-      </Text>
+      </FlowText>
       <CustomSwitch value={value} onValueChange={(v: boolean) => { hapticTap(); onChange(v); }} />
     </View>
   );

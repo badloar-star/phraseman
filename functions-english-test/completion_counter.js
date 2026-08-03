@@ -2,14 +2,11 @@
 
 const crypto = require("crypto");
 
-// зачем: владелец 2026-08-01 — счётчик "X учеников прошли тест" был ОДНИМ
-// числом на все 5 языков, хотя честно накоплен только для английского —
-// нечестно, остальные языки ещё никто не проходил. Разделили по языку.
-// 2026-08-02 — владелец решил, что и старая база 124000 для английского
+// 2026-08-02 — владелец решил, что старая база 124000 для английского
 // (легаси-точка ДО введения счётчика) тоже нечестная. Сама база 124000
 // вычтена из документа english_test_public/totals ОДНОРАЗОВОЙ миграцией
 // (scripts/migrate_remove_english_baseline.js), реальные завершения
-// сохранены. Здесь база всех языков — честный 0, без исключений.
+// сохранены. Здесь английская база — честный 0.
 const TEST_LANGUAGES = ["en", "de", "fr", "it", "es"];
 const BASELINE_COMPLETED = 0;
 const BASELINE_COMPLETED_BY_LANGUAGE = { en: 0, de: 0, fr: 0, it: 0, es: 0 };
@@ -34,7 +31,7 @@ function sha256(value) {
 }
 
 function normalizeTestLanguage(value) {
-  return TEST_LANGUAGES.includes(value) ? value : "en";
+  return TEST_LANGUAGES.includes(value) ? value : null;
 }
 
 function normalizeCompletedForLanguage(language, value) {
@@ -128,7 +125,9 @@ async function countCompletion({
     throw new TypeError("Invalid Firestore dependency");
   if (!Number.isSafeInteger(nowMs) || nowMs < 0)
     throw new TypeError("Invalid timestamp");
-  const language = normalizeTestLanguage(testLanguage);
+  if (!TEST_LANGUAGES.includes(testLanguage))
+    throw new TypeError("Invalid testLanguage");
+  const language = testLanguage;
 
   const receiptId = sha256(completionId);
   const rateLimitId = hmac(hmacKey, `completion-ip:${ipAddress}`);

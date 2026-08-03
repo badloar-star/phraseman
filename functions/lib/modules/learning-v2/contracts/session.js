@@ -55,6 +55,15 @@ const SUPPORT_LEVELS = new Set([
     "visual_only",
     "none",
 ]);
+const REQUIRED_SESSION_ALLOWED_FAMILIES = new Set([
+    "phrase_builder",
+    "listen_choose",
+    "sound_contrast",
+    "listen_build_dictation",
+    "context_gap_grammar",
+    "speed_match",
+    "scripted_repeat_compare",
+]);
 /**
  * Copies canonical JSON data without invoking accessors. Non-enumerable or
  * symbol keys, accessors, cycles, sparse arrays, exotic prototypes and Proxy
@@ -245,6 +254,10 @@ const validateV2SessionSet = (input) => {
                 !SUPPORT_LEVELS.has(card.support) ||
                 !["trained", "varied", "novel"].includes(String(card.promptNovelty)))
                 issues.push("session_card_invalid");
+            if (typeof card.family !== "string" ||
+                !REQUIRED_SESSION_ALLOWED_FAMILIES.has(card.family)) {
+                issues.push("session_card_family_unapproved");
+            }
             if (typeof card.family === "string")
                 families.add(card.family);
         }

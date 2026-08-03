@@ -22,6 +22,7 @@ import {
   View,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { FlowText } from '../components/text-integrity/FlowText';
 import { useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import * as Clipboard from 'expo-clipboard';
@@ -221,13 +222,16 @@ export default function AccountDetailsScreen() {
               <Ionicons name="person" size={34} color={surface.accent} />
             )}
           </View>
-          {/* Высота имени зарезервирована и при пустом нике — геометрия не прыгает. */}
-          <Text
-            style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', marginTop: 14, maxWidth: '86%' }}
-            numberOfLines={1}
+          {/* Высота имени зарезервирована и при пустом нике — геометрия не прыгает.
+              зачем: text-integrity — длинный ник переносится (контент юзера),
+              шапка-колонка растёт; усечение запрещено. */}
+          <FlowText
+            testID="account-name"
+            provenance="user"
+            style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', marginTop: 14, maxWidth: '86%', textAlign: 'center' }}
           >
             {userName || namePlaceholder}
-          </Text>
+          </FlowText>
           <Text style={{ color: surface.accent, fontSize: f.caption, fontWeight: '700', marginTop: 5 }}>
             {L('Изменить имя', 'Змінити ім\'я', 'Cambiar nombre', 'Alterar nome', 'Đổi tên', 'Ubah nama', 'Adı değiştir', 'Zmień nazwę')}
           </Text>

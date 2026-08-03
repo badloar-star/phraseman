@@ -89,7 +89,7 @@ test('result and certificate remove unsupported index and confidence claims', ()
 test('landing honestly describes a 12–20 question preliminary text assessment', () => {
   const app = read('app.js');
   const html = read('index.html');
-  const combined = `${app}\n${html}\n${read('i18n.js')}\n${read('i18n.locales.js')}`;
+  const combined = `${app}\n${html}\n${read('i18n.js')}`;
 
   assert.match(combined, /12–20/);
   assert.match(combined, /предварительную текстовую оценку|предварительная текстовая оценка/i);
@@ -109,7 +109,7 @@ test('all client assets and the bank use one new revision', () => {
   const html = read('index.html');
   const app = read('app.js');
   const baseRevision = '20260801-3';
-  const expectedRevision = '20260802-2';
+  const expectedRevision = '20260803-1';
 
   const scripts = [...html.matchAll(/<script src="([^"]+)"><\/script>/g)].map((match) => match[1]);
   const expectedScripts = [

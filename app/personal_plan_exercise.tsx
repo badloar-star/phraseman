@@ -25,6 +25,7 @@ import { useTheme } from '../components/ThemeContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useLang } from '../components/LangContext';
 import { triLang, type Lang } from '../constants/i18n';
+import { isCorrectAnswer } from '../constants/contractions';
 import { personalPlanPromptForLang } from './personal_plan_prompt_locale';
 import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 import { awardPlanTaskCompletion } from './personal_plan_xp';
@@ -133,9 +134,6 @@ function isPersonalPlanListenBuildItem(item: unknown): item is PersonalPlanListe
   );
 }
 
-function normalizePlanAnswer(value: string): string {
-  return value.trim().toLowerCase().replace(/[.!?]+$/g, '').replace(/\s+/g, ' ');
-}
 
 // Одна строка во всех активных языках интерфейса (RU / UK / ES).
 // Старый авто-разбор «Почему так» (planExerciseExplanation + типы LocalizedText/
@@ -2279,7 +2277,11 @@ export default function PersonalPlanExerciseScreen() {
   const submitListenBuild = async () => {
     if (!item || !session || saving || done || !isListenBuildMode || !isPersonalPlanListenBuildItem(item)) return;
     const answer = buildWords.join(' ');
-    const isCorrect = normalizePlanAnswer(answer) === normalizePlanAnswer(item.correctAnswer);
+    // зачем: raw normalizePlanAnswer (lowercase+trim only) не раскрывала сокращения —
+    // "I am Anna" засчитывался неверным против цели "I'm Anna." (репорт юзера 2026-07-20,
+    // impuls_d3_p1). isCorrectAnswer — общий пайплайн (сокращения, BrE/AmE, пунктуация),
+    // тот же что и в lesson1/review_evaluator.
+    const isCorrect = isCorrectAnswer(answer, item.correctAnswer);
     setSaving(true);
     setSelected(answer);
     setLastResult(isCorrect ? 'correct' : 'wrong');

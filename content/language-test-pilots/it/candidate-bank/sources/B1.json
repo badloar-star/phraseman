@@ -1,0 +1,1169 @@
+{
+  "schemaVersion": 1,
+  "language": "it",
+  "level": "B1",
+  "status": "authoring",
+  "publishable": false,
+  "items": [
+    {
+      "skill": "grammar",
+      "format": "gap-fill",
+      "scenario": "Expressing doubt about a plan",
+      "scenarioRu": "Выражение сомнения в плане",
+      "prompt": "Choose the correct mood and form.",
+      "instructionRu": "Выберите правильное наклонение и форму.",
+      "stimulus": "Non penso che questo piano ______ abbastanza realistico.",
+      "answer": "sia",
+      "distractors": [
+        {
+          "text": "è",
+          "reasonRu": "После отрицательного non penso che, выражающего сомнение, в нормативной нейтральной речи ожидается congiuntivo."
+        },
+        {
+          "text": "sono",
+          "reasonRu": "Sono не согласуется с единственным числом questo piano и также не даёт требуемого congiuntivo."
+        },
+        {
+          "text": "sarà stato",
+          "reasonRu": "Форма future perfect меняет время и представляет завершённую будущую оценку, которой нет в условии."
+        }
+      ],
+      "explanation": "Negated opinion expressing uncertainty normally takes present subjunctive: non penso che… sia.",
+      "explanationRu": "Отрицательное мнение с оттенком сомнения обычно требует настоящего congiuntivo: non penso che… sia.",
+      "targetConstruct": "present subjunctive after negated uncertain opinion",
+      "targetConstructRu": "настоящее congiuntivo после отрицательного мнения с сомнением",
+      "canDoRu": "Может грамматически выразить сомнение в оценке."
+    },
+    {
+      "skill": "vocabulary",
+      "format": "multiple-choice",
+      "scenario": "Naming a project objective",
+      "scenarioRu": "Название цели проекта",
+      "prompt": "Which term names the intended result the project is designed to achieve?",
+      "instructionRu": "Какой термин обозначает намеченный результат, ради которого создан проект?",
+      "stimulus": "Il progetto mira a ridurre del 20% i tempi di risposta entro dicembre. Il personale e il budget servono per raggiungere questo risultato.",
+      "answer": "l'obiettivo",
+      "distractors": [
+        {
+          "text": "la risorsa",
+          "reasonRu": "Персонал и бюджет — ресурсы для достижения результата, а не сам намеченный результат."
+        },
+        {
+          "text": "l'ostacolo",
+          "reasonRu": "Ostacolo мешает продвижению, тогда как сокращение времени является желаемой целью."
+        },
+        {
+          "text": "l'esito già ottenuto",
+          "reasonRu": "Срок стоит в будущем; результат намечен, но ещё не достигнут."
+        }
+      ],
+      "explanation": "Obiettivo is the defined target; resources support it and obstacles hinder it.",
+      "explanationRu": "Obiettivo — определённая цель; ресурсы помогают её достичь, а препятствия мешают.",
+      "targetConstruct": "project distinction among objective, outcome, resource, and obstacle",
+      "targetConstructRu": "различение цели, результата, ресурса и препятствия проекта",
+      "canDoRu": "Может точно назвать основные элементы простого проекта."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Reading a qualified opinion",
+      "scenarioRu": "Чтение мнения с оговоркой",
+      "prompt": "Choose the summary that captures both the writer's position and limitation.",
+      "instructionRu": "Выберите резюме, передающее и позицию автора, и её ограничение.",
+      "stimulus": "Lavorare da casa due giorni alla settimana ha migliorato la concentrazione del nostro gruppo e ha ridotto il tempo perso negli spostamenti. Non credo però che sia adatto a tutte le attività: le riunioni creative funzionano meglio quando siamo nella stessa stanza. Per questo manterrei un modello misto, non il lavoro a distanza totale.",
+      "answer": "Modello misto: vantaggi da casa, attività creative in presenza.",
+      "distractors": [
+        {
+          "text": "L'autore vuole eliminare completamente il lavoro da casa perché riduce la concentrazione.",
+          "reasonRu": "Автор сообщает об улучшении концентрации и предлагает сохранить два удалённых дня."
+        },
+        {
+          "text": "L'autore considera il lavoro a distanza ideale per ogni attività e propone di chiudere l'ufficio.",
+          "reasonRu": "Творческие встречи названы исключением, а полностью удалённая модель прямо отвергается."
+        },
+        {
+          "text": "L'autore non esprime alcuna preferenza tra presenza e distanza.",
+          "reasonRu": "В финале прямо предложена смешанная модель."
+        }
+      ],
+      "explanation": "The main position is support for a hybrid model; the limitation is that creative meetings work better in person.",
+      "explanationRu": "Основная позиция — поддержка гибридной модели; ограничение — творческие встречи лучше проходят очно.",
+      "targetConstruct": "main-position and explicit-limitation integration in an opinion text",
+      "targetConstructRu": "объединение основной позиции и явной оговорки в тексте-мнении",
+      "canDoRu": "Может понять позицию автора, не потеряв важное ограничение."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "Partially disagreeing with a proposal",
+      "scenarioRu": "Частичное несогласие с предложением",
+      "prompt": "Choose the response that preserves the useful part while explaining the disagreement.",
+      "instructionRu": "Выберите ответ, который сохраняет полезную часть и объясняет несогласие.",
+      "stimulus": "Un collega propone: «Per risparmiare tempo, eliminiamo tutte le riunioni settimanali.» Tu ritieni inutili molte riunioni, ma una breve riunione di coordinamento è necessaria.",
+      "answer": "Riduciamo le riunioni, ma teniamo un breve coordinamento con agenda.",
+      "distractors": [
+        {
+          "text": "La tua idea è completamente sbagliata e non contiene nulla di utile.",
+          "reasonRu": "Ответ игнорирует реальную полезную часть — сокращение ненужных встреч — и обостряет разногласие."
+        },
+        {
+          "text": "Va bene, eliminiamo tutto, anche se so che il coordinamento diventerà più difficile.",
+          "reasonRu": "Реплика не выражает существенное возражение и принимает предвидимый недостаток без решения."
+        },
+        {
+          "text": "Parliamo invece del pranzo; non voglio discutere la proposta.",
+          "reasonRu": "Ответ избегает обсуждения и не сохраняет полезную часть идеи."
+        }
+      ],
+      "explanation": "The response acknowledges the efficiency goal, identifies the coordination risk, and offers a narrower alternative.",
+      "explanationRu": "Ответ признаёт цель экономии времени, называет риск для координации и предлагает более узкую альтернативу.",
+      "targetConstruct": "partial disagreement with retained benefit, stated risk, and modified proposal",
+      "targetConstructRu": "частичное несогласие с сохранением пользы, указанием риска и изменённым предложением",
+      "canDoRu": "Может не согласиться с частью идеи, сохранив её полезное ядро."
+    },
+    {
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "scenario": "Ordering two past events",
+      "scenarioRu": "Упорядочивание двух прошлых событий",
+      "prompt": "Choose the sentence that marks the earlier departure.",
+      "instructionRu": "Выберите предложение, которое показывает более ранний отъезд.",
+      "stimulus": "Sono arrivato alla stazione alle nove. Il treno è partito alle otto e cinquanta.",
+      "answer": "Quando sono arrivato alla stazione, il treno era già partito.",
+      "distractors": [
+        {
+          "text": "Quando ero arrivato, il treno partiva domani.",
+          "reasonRu": "Временные формы смешивают предшествующее прошлое с будущим domani и не передают последовательность."
+        },
+        {
+          "text": "Quando sono arrivato, il treno ha già partire.",
+          "reasonRu": "После ha требуется причастие partito; инфинитив partire невозможен."
+        },
+        {
+          "text": "Quando arriverò, il treno era già partito ieri.",
+          "reasonRu": "Будущее прибытие не согласуется с уже заданными двумя событиями прошлого."
+        }
+      ],
+      "explanation": "Trapassato prossimo era partito marks the departure as completed before sono arrivato.",
+      "explanationRu": "Trapassato prossimo era partito показывает, что поезд ушёл до события sono arrivato.",
+      "targetConstruct": "trapassato prossimo for anteriority to another completed past event",
+      "targetConstructRu": "trapassato prossimo для события, предшествующего другому завершённому прошлому событию",
+      "canDoRu": "Может ясно расположить два завершённых события в прошлом."
+    },
+    {
+      "skill": "vocabulary",
+      "format": "multiple-choice",
+      "scenario": "Identifying a trigger within broader causes",
+      "scenarioRu": "Определение пускового события среди более широких причин",
+      "prompt": "Which element is the immediate trigger?",
+      "instructionRu": "Какой элемент является непосредственным пусковым событием?",
+      "stimulus": "Il sistema era fragile da mesi per mancanza di manutenzione e personale. Il guasto è iniziato esattamente quando un aggiornamento automatico ha riavviato tutti i server insieme. La fragilità ha favorito il problema; il riavvio simultaneo lo ha fatto partire.",
+      "answer": "Il riavvio simultaneo è stato l'innesco.",
+      "distractors": [
+        {
+          "text": "La mancanza di manutenzione è stata l'unico effetto del guasto.",
+          "reasonRu": "Недостаток обслуживания предшествовал сбою и был фактором уязвимости, а не его последствием."
+        },
+        {
+          "text": "Il personale è stato la conseguenza finale del riavvio.",
+          "reasonRu": "Персонал описан как недостаточный ресурс, а не как последствие события."
+        },
+        {
+          "text": "La fragilità e l'innesco sono esattamente la stessa relazione causale.",
+          "reasonRu": "Текст специально различает длительный способствующий фактор и непосредственный запуск."
+        }
+      ],
+      "explanation": "The simultaneous restart is the immediate trigger; poor maintenance and staffing are contributing background causes.",
+      "explanationRu": "Одновременный перезапуск — непосредственный триггер; недостаток обслуживания и персонала — фоновые способствующие причины.",
+      "targetConstruct": "distinction among background cause, immediate trigger, consequence, and contributing factor",
+      "targetConstructRu": "различение фоновой причины, непосредственного триггера, последствия и способствующего фактора",
+      "canDoRu": "Может различать разные роли факторов в простой причинной цепочке."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Reconstructing a workplace delay",
+      "scenarioRu": "Восстановление причины рабочей задержки",
+      "prompt": "Choose the accurate cause-and-consequence summary.",
+      "instructionRu": "Выберите точное резюме причины и последствия.",
+      "stimulus": "Il fornitore ha inviato i dati con due giorni di ritardo. Senza quei dati, Marta non poteva completare il controllo. Di conseguenza, il rapporto è stato consegnato venerdì invece di mercoledì; il cliente ha comunque mantenuto la riunione di lunedì.",
+      "answer": "Dati in ritardo: rapporto venerdì; riunione invariata.",
+      "distractors": [
+        {
+          "text": "Marta ha inviato i dati tardi, quindi il cliente ha cancellato la riunione.",
+          "reasonRu": "Данные задержал поставщик, а встреча клиента была сохранена."
+        },
+        {
+          "text": "Il rapporto è stato consegnato mercoledì perché i dati sono arrivati in anticipo.",
+          "reasonRu": "Отчёт передан в пятницу именно из-за двухдневной задержки данных."
+        },
+        {
+          "text": "La riunione di lunedì ha causato il ritardo iniziale del fornitore.",
+          "reasonRu": "Встреча стоит после описанных событий и не названа причиной задержки."
+        }
+      ],
+      "explanation": "The supplier delay prevented the check, moving report delivery; the Monday meeting remained unchanged.",
+      "explanationRu": "Задержка поставщика помешала проверке и сдвинула отчёт, но встреча в понедельник не изменилась.",
+      "targetConstruct": "cause, intermediate blockage, consequence, and unaffected event tracking",
+      "targetConstructRu": "отслеживание причины, промежуточной блокировки, последствия и незатронутого события",
+      "canDoRu": "Может восстановить причинную цепочку и не приписать ей лишнее последствие."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "Reporting a delay responsibly",
+      "scenarioRu": "Ответственное сообщение о задержке",
+      "prompt": "Choose the update that states cause, impact, and a realistic new deadline.",
+      "instructionRu": "Выберите сообщение, которое называет причину, влияние и реалистичный новый срок.",
+      "stimulus": "Il file principale è arrivato oggi invece di lunedì. Ti servono ancora due giorni per controllarlo; la consegna prevista era domani.",
+      "answer": "Il file è arrivato oggi, due giorni tardi. Non posso consegnare domani: invierò la versione verificata venerdì alle 12.",
+      "distractors": [
+        {
+          "text": "Siamo in ritardo. Vi farò sapere prima o poi.",
+          "reasonRu": "Сообщение не называет причину, влияние или проверяемый новый срок."
+        },
+        {
+          "text": "Il file è arrivato oggi, ma consegnerò domani senza controllarlo e senza segnalare che la qualità potrebbe essere compromessa.",
+          "reasonRu": "Ответ скрывает влияние задержки и жертвует надёжностью вместо реалистичного обновления."
+        },
+        {
+          "text": "Il ritardo è colpa di tutti; cancello definitivamente la consegna senza controllare il file, proporre una nuova data o informare dei rischi.",
+          "reasonRu": "Обобщённое обвинение и бессрочная отмена не соответствуют возможности закончить проверку за два дня."
+        }
+      ],
+      "explanation": "The update gives the factual cause, explains why tomorrow is unsafe, and commits to a specific feasible deadline.",
+      "explanationRu": "Сообщение называет фактическую причину, объясняет невозможность надёжной сдачи завтра и даёт конкретный выполнимый срок.",
+      "targetConstruct": "delay update with factual cause, quality impact, and feasible commitment",
+      "targetConstructRu": "сообщение о задержке с фактической причиной, влиянием на качество и выполнимым обязательством",
+      "canDoRu": "Может ответственно сообщить о задержке и дать реалистичный новый срок."
+    },
+    {
+      "skill": "grammar",
+      "format": "gap-fill",
+      "scenario": "Giving a document to Marco",
+      "scenarioRu": "Передача документа Марко",
+      "prompt": "Choose the combined clitic.",
+      "instructionRu": "Выберите сочетание местоимений.",
+      "stimulus": "Marco aspetta il contratto. Domani ______ porto in ufficio.",
+      "answer": "glielo",
+      "distractors": [
+        {
+          "text": "gli lo",
+          "reasonRu": "При сочетании gli + lo используется слитная нормативная форма glielo."
+        },
+        {
+          "text": "lo gli",
+          "reasonRu": "Порядок и форма сочетания косвенного и прямого местоимений неверны."
+        },
+        {
+          "text": "gliela",
+          "reasonRu": "Gliela заменяет существительное женского рода, а contratto — мужской род."
+        }
+      ],
+      "explanation": "Gli plus lo combines as glielo: I bring it to him.",
+      "explanationRu": "Gli + lo объединяются в glielo: «я принесу его ему».",
+      "targetConstruct": "combined indirect and direct object clitic glielo",
+      "targetConstructRu": "сочетание косвенного и прямого объектных местоимений glielo",
+      "canDoRu": "Может одновременно заменить получателя и предмет двумя местоимениями."
+    },
+    {
+      "skill": "vocabulary",
+      "format": "multiple-choice",
+      "scenario": "Identifying outdated information",
+      "scenarioRu": "Определение устаревшей информации",
+      "prompt": "Which adjective describes the problem?",
+      "instructionRu": "Какое прилагательное описывает проблему?",
+      "stimulus": "I dati erano corretti quando sono stati raccolti, ma risalgono a cinque anni fa e non descrivono più la situazione attuale.",
+      "answer": "I dati erano accurati, ma oggi non sono più aggiornati.",
+      "distractors": [
+        {
+          "text": "Non sono accurati perché contenevano errori di calcolo.",
+          "reasonRu": "Текст прямо говорит, что при сборе данные были корректны; проблема в возрасте, а не вычислительной точности."
+        },
+        {
+          "text": "Non sono completi perché manca metà delle righe.",
+          "reasonRu": "Пропущенные строки не упоминаются; недостаток — несоответствие текущей ситуации."
+        },
+        {
+          "text": "Non sono affidabili perché la fonte era sconosciuta.",
+          "reasonRu": "Источник не назван сомнительным; устаревание само по себе не доказывает неизвестность источника."
+        }
+      ],
+      "explanation": "The information may have been accurate then but is not current now, so it is not aggiornata.",
+      "explanationRu": "Информация могла быть точной тогда, но не отражает настоящее, поэтому она не aggiornata — неактуальна.",
+      "targetConstruct": "information-quality distinction among current, accurate, complete, and reliable",
+      "targetConstructRu": "различение актуальности, точности, полноты и надёжности информации",
+      "canDoRu": "Может точно назвать конкретный недостаток качества информации."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Summarising a qualified return policy",
+      "scenarioRu": "Резюме политики возврата с условиями",
+      "prompt": "Choose the summary that preserves every stated qualification.",
+      "instructionRu": "Выберите резюме, сохраняющее все указанные условия.",
+      "stimulus": "I prodotti non usati possono essere restituiti entro 30 giorni con ricevuta. Per gli articoli personalizzati non è previsto il rimborso, salvo difetti di produzione. Le spese di spedizione iniziali vengono restituite solo se l'errore è del venditore.",
+      "answer": "I prodotti non usati sono restituibili entro 30 giorni con ricevuta; i personalizzati solo se difettosi, e la spedizione iniziale è rimborsata soltanto per errore del venditore.",
+      "distractors": [
+        {
+          "text": "Tutti i prodotti, anche personalizzati e usati, sono sempre rimborsabili senza ricevuta.",
+          "reasonRu": "Вариант удаляет условия неиспользования, срока, чека и исключение для персонализированных товаров."
+        },
+        {
+          "text": "Nessun prodotto personalizzato può mai essere rimborsato, neppure se difettoso.",
+          "reasonRu": "Для производственного дефекта прямо установлено исключение."
+        },
+        {
+          "text": "Le spese di spedizione iniziali vengono restituite in ogni reso entro 30 giorni.",
+          "reasonRu": "Их возвращают только при ошибке продавца, а не при любом возврате."
+        }
+      ],
+      "explanation": "The correct summary retains the general conditions, personalised-item exception, defect exception-to-exception, and shipping limitation.",
+      "explanationRu": "Верное резюме сохраняет общие условия, исключение для персонализации, возвратное исключение для дефекта и ограничение доставки.",
+      "targetConstruct": "policy summary preserving general rule, exception, exception-to-exception, and cost condition",
+      "targetConstructRu": "резюме политики с сохранением общего правила, исключения, возвратного исключения и условия расходов",
+      "canDoRu": "Может кратко пересказать правило, не потеряв важные условия и исключения."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "Refusing an unfair exception",
+      "scenarioRu": "Отказ в несправедливом исключении",
+      "prompt": "Choose the refusal that explains the fairness issue and offers the standard alternative.",
+      "instructionRu": "Выберите отказ, который объясняет проблему справедливости и предлагает стандартную альтернативу.",
+      "stimulus": "Un conoscente ti chiede di saltare la lista d'attesa perché vi conoscete. Tutti gli altri aspettano in ordine di richiesta; esiste però una procedura urgente uguale per tutti.",
+      "answer": "Non posso farti saltare la lista: i criteri valgono per tutti. Usa la lista normale o, se ne hai i requisiti, la procedura urgente.",
+      "distractors": [
+        {
+          "text": "Va bene, ma non dirlo agli altri.",
+          "reasonRu": "Ответ принимает непрозрачную привилегию и усиливает несправедливость."
+        },
+        {
+          "text": "Non posso farti saltare la lista e non verificherò nemmeno se hai i requisiti per la procedura urgente, perché preferisco non spiegarti le alternative.",
+          "reasonRu": "Отказ от личной привилегии не требует закрывать доступ к общей законной процедуре."
+        },
+        {
+          "text": "Puoi saltare la lista se prometti di restituirmi il favore.",
+          "reasonRu": "Личный обмен услугами сохраняет ту же несправедливую основу исключения."
+        }
+      ],
+      "explanation": "The response rejects relationship-based priority, states its fairness impact, and offers both normal and rule-based urgent paths.",
+      "explanationRu": "Ответ отвергает приоритет по знакомству, объясняет вред справедливости и предлагает обычный либо общий срочный путь.",
+      "targetConstruct": "fair exception refusal with transparent reason and standard alternatives",
+      "targetConstructRu": "отказ в несправедливом исключении с прозрачной причиной и стандартными альтернативами",
+      "canDoRu": "Может отказать в личной привилегии, сохранив доступ к справедливым вариантам."
+    },
+    {
+      "skill": "grammar",
+      "format": "gap-fill",
+      "scenario": "Advertising several bicycles",
+      "scenarioRu": "Объявление о продаже нескольких велосипедов",
+      "prompt": "Choose the impersonal/passive si form with correct agreement.",
+      "instructionRu": "Выберите конструкцию с si и правильным согласованием.",
+      "stimulus": "In questo negozio ______ biciclette usate.",
+      "answer": "si vendono",
+      "distractors": [
+        {
+          "text": "si vende",
+          "reasonRu": "При si passivante глагол согласуется с множественным biciclette: vendono."
+        },
+        {
+          "text": "si vendete",
+          "reasonRu": "Vendete — форма voi и не входит в безлично-пассивную конструкцию."
+        },
+        {
+          "text": "sono vendere",
+          "reasonRu": "Сочетание essere и инфинитива не образует нормативный пассив."
+        }
+      ],
+      "explanation": "With plural biciclette, si passivante requires plural vendono.",
+      "explanationRu": "При множественном biciclette конструкция si passivante требует формы vendono.",
+      "targetConstruct": "si passivante with plural verb agreement",
+      "targetConstructRu": "пассивная конструкция с si и согласованием глагола во множественном числе",
+      "canDoRu": "Может описать обычную продажу нескольких товаров без называния продавца."
+    },
+    {
+      "skill": "vocabulary",
+      "format": "multiple-choice",
+      "scenario": "Identifying an unsupported assumption",
+      "scenarioRu": "Определение неподтверждённой предпосылки",
+      "prompt": "Which term best describes the sentence in italics?",
+      "instructionRu": "Какой термин лучше всего описывает выделенное предложение?",
+      "stimulus": "Il rapporto cita i dati ufficiali sulle vendite. Poi aggiunge, senza fornire prove: «I clienti hanno comprato meno perché non apprezzano il nuovo colore». Questa spiegazione non è verificata.",
+      "answer": "È un'ipotesi non verificata.",
+      "distractors": [
+        {
+          "text": "È la fonte ufficiale.",
+          "reasonRu": "Официальные данные — источник чисел, но объяснение мотива клиентов не содержится в них."
+        },
+        {
+          "text": "È un fatto già dimostrato.",
+          "reasonRu": "Текст прямо говорит, что объяснение не подтверждено доказательствами."
+        },
+        {
+          "text": "È il dato sulle vendite.",
+          "reasonRu": "Снижение продаж — наблюдение, а причина через цвет — отдельная гипотеза."
+        }
+      ],
+      "explanation": "The causal explanation is proposed without evidence, so it is an ipotesi rather than an established fact or source.",
+      "explanationRu": "Причинное объяснение предложено без доказательств, поэтому это ipotesi, а не установленный факт или источник.",
+      "targetConstruct": "distinction among evidence, source, claim, and unsupported assumption",
+      "targetConstructRu": "различение доказательства, источника, утверждения и неподтверждённой предпосылки",
+      "canDoRu": "Может отличить наблюдаемый факт от неподтверждённого объяснения."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Separating fact, quotation, and conclusion",
+      "scenarioRu": "Разделение факта, цитаты и вывода",
+      "prompt": "Choose the statement that attributes all three parts correctly.",
+      "instructionRu": "Выберите утверждение, правильно распределяющее все три части.",
+      "stimulus": "Il comune ha registrato 1.200 nuovi abbonamenti in sei mesi. L'assessora ha dichiarato: «La campagna è stata un successo completo». Tuttavia, poiché mancano dati sull'uso effettivo, è ancora presto per concludere che il traffico sia diminuito.",
+      "answer": "I 1.200 abbonamenti sono il dato riportato; il successo completo è l'opinione citata; l'autore conclude che l'effetto sul traffico non è ancora dimostrato.",
+      "distractors": [
+        {
+          "text": "L'autore afferma come fatto che il traffico è diminuito grazie alla campagna.",
+          "reasonRu": "Автор как раз считает такой вывод преждевременным из-за отсутствия данных об использовании."
+        },
+        {
+          "text": "L'assessora nega che ci siano nuovi abbonamenti e l'autore la cita a sostegno.",
+          "reasonRu": "Она называет кампанию полным успехом и не отрицает число абонементов."
+        },
+        {
+          "text": "Tutte e tre le frasi sono dati misurati direttamente dal comune.",
+          "reasonRu": "Вторая — оценочная цитата, третья — вывод автора об ограничении доказательств."
+        }
+      ],
+      "explanation": "The passage distinguishes a recorded count, an attributed evaluative statement, and the writer's cautious inference.",
+      "explanationRu": "Текст различает зарегистрированное число, приписанную оценочную цитату и осторожный вывод автора.",
+      "targetConstruct": "voice attribution across reported fact, quoted opinion, and writer conclusion",
+      "targetConstructRu": "атрибуция голосов между сообщённым фактом, цитированным мнением и выводом автора",
+      "canDoRu": "Может не смешивать данные, чужую оценку и позицию автора."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "Requesting evidence without accusation",
+      "scenarioRu": "Запрос доказательств без обвинения",
+      "prompt": "Choose the response that asks for the basis of the claim neutrally and specifically.",
+      "instructionRu": "Выберите ответ, который нейтрально и конкретно спрашивает основание утверждения.",
+      "stimulus": "In riunione un collega dice: «La maggior parte dei clienti preferisce sicuramente il nuovo sistema», ma non mostra dati.",
+      "answer": "Quali dati, campione e periodo sostengono questa conclusione?",
+      "distractors": [
+        {
+          "text": "Te lo sei inventato, come sempre.",
+          "reasonRu": "Реплика приписывает ложь и повторяющееся поведение без проверки, переводя разговор на личность."
+        },
+        {
+          "text": "Hai sicuramente ragione; non serve sapere da dove viene l'informazione.",
+          "reasonRu": "Ответ принимает сильное утверждение без основания, хотя данные нужны для решения."
+        },
+        {
+          "text": "Non mi interessa alcuna prova perché ho già deciso il contrario.",
+          "reasonRu": "Реплика симметрично отвергает доказательства и не поддерживает обоснованное решение."
+        }
+      ],
+      "explanation": "The question targets source, sample, and period and explains why they matter, without alleging dishonesty.",
+      "explanationRu": "Вопрос уточняет источник, выборку и период и объясняет их значимость, не обвиняя собеседника во лжи.",
+      "targetConstruct": "neutral evidence request specifying source, sample, period, and decision relevance",
+      "targetConstructRu": "нейтральный запрос доказательств с уточнением источника, выборки, периода и значимости для решения",
+      "canDoRu": "Может попросить обосновать сильное утверждение без личного обвинения."
+    },
+    {
+      "skill": "grammar",
+      "format": "gap-fill",
+      "scenario": "Referring to a discussed problem",
+      "scenarioRu": "Отсылка к обсуждаемой проблеме",
+      "prompt": "Choose the required preposition plus cui.",
+      "instructionRu": "Выберите нужный предлог с cui.",
+      "stimulus": "Questo è il problema ______ abbiamo parlato ieri.",
+      "answer": "di cui",
+      "distractors": [
+        {
+          "text": "che",
+          "reasonRu": "Parlare в значении «говорить о чём-либо» требует предлога di, который нельзя опустить перед cui."
+        },
+        {
+          "text": "a cui",
+          "reasonRu": "A cui употреблялось бы с глаголом, требующим a; parlare di требует di cui."
+        },
+        {
+          "text": "con cui",
+          "reasonRu": "Con cui означало бы «с которым», будто разговаривали с проблемой, а не о ней."
+        }
+      ],
+      "explanation": "Parlare di qualcosa maps to the relative form di cui.",
+      "explanationRu": "Управление parlare di qualcosa сохраняется в относительной конструкции di cui.",
+      "targetConstruct": "preposition-governed relative pronoun di cui",
+      "targetConstructRu": "относительное местоимение cui с требуемым предлогом di",
+      "canDoRu": "Может связать предложения, сохраняя управление глагола с предлогом."
+    },
+    {
+      "skill": "vocabulary",
+      "format": "multiple-choice",
+      "scenario": "Describing an unstable monthly trend",
+      "scenarioRu": "Описание нестабильной месячной динамики",
+      "prompt": "Which term precisely describes the pattern?",
+      "instructionRu": "Какой термин точно описывает динамику?",
+      "stimulus": "Il valore passa da 40 a 55, poi scende a 43, sale a 60 e torna a 45. Non c'è una direzione continua.",
+      "answer": "C'è una forte oscillazione.",
+      "distractors": [
+        {
+          "text": "C'è una crescita graduale e continua.",
+          "reasonRu": "Показатель несколько раз меняет направление, поэтому рост не непрерывный и не постепенный."
+        },
+        {
+          "text": "C'è una stabilità completa.",
+          "reasonRu": "Значения заметно меняются между 40 и 60."
+        },
+        {
+          "text": "C'è un unico calo improvviso senza recupero.",
+          "reasonRu": "Снижений и подъёмов несколько; после падений показатель восстанавливается."
+        }
+      ],
+      "explanation": "Repeated rises and falls without a sustained direction constitute oscillation or fluctuation.",
+      "explanationRu": "Повторяющиеся подъёмы и падения без устойчивого направления образуют колебание.",
+      "targetConstruct": "trend distinction among gradual improvement, sudden drop, stability, and fluctuation",
+      "targetConstructRu": "различение постепенного улучшения, резкого падения, стабильности и колебания",
+      "canDoRu": "Может точно назвать простую динамику показателя."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Interpreting a changed baseline",
+      "scenarioRu": "Интерпретация изменившейся базы сравнения",
+      "prompt": "Choose the justified comparison.",
+      "instructionRu": "Выберите обоснованное сравнение.",
+      "stimulus": "Nel primo mese 30 reclami su 100 ordini sono stati risolti in un giorno. Nel secondo, 45 reclami su 200 ordini. Il numero di soluzioni rapide è aumentato, ma anche il totale degli ordini è cambiato.",
+      "answer": "Il numero è salito da 30 a 45, ma la quota è scesa dal 30% al 22,5%.",
+      "distractors": [
+        {
+          "text": "La quota è salita di 15 punti percentuali perché ci sono 15 casi in più.",
+          "reasonRu": "Абсолютная разница 15 не равна процентным пунктам при изменившемся знаменателе."
+        },
+        {
+          "text": "Numero e quota sono entrambi raddoppiati.",
+          "reasonRu": "Число выросло в 1,5 раза, а доля снизилась; удвоился только общий объём заказов."
+        },
+        {
+          "text": "La quota è rimasta al 30% perché 45 è maggiore di 30.",
+          "reasonRu": "45 из 200 составляет 22,5%, а не 30%."
+        }
+      ],
+      "explanation": "Absolute success count rises, but the larger denominator lowers the rate from 30/100 to 45/200.",
+      "explanationRu": "Абсолютное число выросло, но больший знаменатель снизил долю с 30/100 до 45/200.",
+      "targetConstruct": "absolute-count versus rate comparison under changed baseline",
+      "targetConstructRu": "сравнение абсолютного числа и доли при изменившейся базе",
+      "canDoRu": "Может отличить рост числа случаев от изменения их доли."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "Correcting the scope of a misunderstood proposal",
+      "scenarioRu": "Уточнение области неверно понятого предложения",
+      "prompt": "Choose the clarification that identifies the misunderstanding and restates the intended scope.",
+      "instructionRu": "Выберите уточнение, которое называет недопонимание и заново задаёт intended область.",
+      "stimulus": "Hai proposto di chiudere il servizio telefonico dopo le 20 nei giorni feriali. Un collega risponde: «Quindi vuoi eliminare completamente l'assistenza telefonica». Non era questa la tua intenzione.",
+      "answer": "Non propongo di eliminare l’assistenza telefonica: propongo soltanto di chiuderla dopo le 20 nei giorni feriali.",
+      "distractors": [
+        {
+          "text": "Sì, voglio eliminare ogni forma di assistenza telefonica da subito, anche di giorno e nei fine settimana, sebbene la proposta non lo dica.",
+          "reasonRu": "Ответ принимает чужую расширенную трактовку и меняет исходное намерение."
+        },
+        {
+          "text": "Non hai capito niente, quindi non spiegherò la proposta.",
+          "reasonRu": "Реплика обвиняет собеседника и не восстанавливает точную область предложения."
+        },
+        {
+          "text": "Parlavo solo del colore dei telefoni.",
+          "reasonRu": "Уточнение не соответствует исходной теме часов работы линии."
+        }
+      ],
+      "explanation": "The clarification rejects total elimination and restates the exact time and day scope while preserving unchanged periods.",
+      "explanationRu": "Уточнение отвергает полное закрытие и точно повторяет часы и дни, отдельно сохраняя неизменные периоды.",
+      "targetConstruct": "misunderstanding repair through explicit negation and exact scope restatement",
+      "targetConstructRu": "исправление недопонимания через явное отрицание и точное повторение области",
+      "canDoRu": "Может спокойно уточнить предложение, которое собеседник понял слишком широко."
+    },
+    {
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "scenario": "Imagining a different present situation",
+      "scenarioRu": "Воображение иной ситуации в настоящем",
+      "prompt": "Choose the correct unreal present conditional.",
+      "instructionRu": "Выберите правильную нереальную условную конструкцию в настоящем.",
+      "stimulus": "In realtà non ho abbastanza tempo, quindi non frequento il corso.",
+      "answer": "Se avessi più tempo, frequenterei il corso.",
+      "distractors": [
+        {
+          "text": "Se avrò più tempo, frequentavo il corso.",
+          "reasonRu": "Будущее условие смешано с imperfetto и не выражает нереальную нынешнюю ситуацию."
+        },
+        {
+          "text": "Se avrei più tempo, frequentassi il corso.",
+          "reasonRu": "В условной части требуется imperfetto congiuntivo avessi, а в результате — condizionale frequenterei."
+        },
+        {
+          "text": "Se ho più tempo, ho frequentato il corso ieri.",
+          "reasonRu": "Реальное настоящее условие и завершённое прошлое не передают заданную контрфактическую ситуацию."
+        }
+      ],
+      "explanation": "Unreal present conditions use imperfect subjunctive in the if-clause and present conditional in the result.",
+      "explanationRu": "Нереальное условие в настоящем использует imperfetto congiuntivo в условии и condizionale presente в результате.",
+      "targetConstruct": "unreal present condition with imperfect subjunctive and present conditional",
+      "targetConstructRu": "нереальное условие в настоящем с imperfetto congiuntivo и condizionale presente",
+      "canDoRu": "Может представить нереальную альтернативу нынешней ситуации."
+    },
+    {
+      "skill": "vocabulary",
+      "format": "multiple-choice",
+      "scenario": "Interpreting a mandatory safety rule",
+      "scenarioRu": "Интерпретация обязательного правила безопасности",
+      "prompt": "Which modal category matches the notice?",
+      "instructionRu": "Какая модальная категория соответствует объявлению?",
+      "stimulus": "Per entrare nel laboratorio è necessario indossare gli occhiali protettivi; senza occhiali l'accesso non è consentito.",
+      "answer": "È un obbligo di sicurezza per poter entrare.",
+      "distractors": [
+        {
+          "text": "È una semplice raccomandazione facoltativa.",
+          "reasonRu": "Доступ без очков прямо запрещён, поэтому действие не факультативно."
+        },
+        {
+          "text": "È un permesso di entrare senza protezione.",
+          "reasonRu": "Текст устанавливает противоположное: без защиты вход не разрешён."
+        },
+        {
+          "text": "È il divieto di indossare gli occhiali.",
+          "reasonRu": "Запрещён вход без очков, а не использование очков."
+        }
+      ],
+      "explanation": "È necessario and non è consentito without compliance jointly encode an obligation.",
+      "explanationRu": "È necessario и запрет доступа при невыполнении вместе выражают обязательность.",
+      "targetConstruct": "modality distinction among obligation, recommendation, permission, and prohibition",
+      "targetConstructRu": "различение обязательства, рекомендации, разрешения и запрета",
+      "canDoRu": "Может определить степень обязательности практического правила."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Applying a deadline rule and exception",
+      "scenarioRu": "Применение правила срока и исключения",
+      "prompt": "Which application is accepted under the rule?",
+      "instructionRu": "Какая заявка принимается по этому правилу?",
+      "stimulus": "Le domande devono arrivare entro il 30 giugno. Eccezione: chi dimostra un ricovero ospedaliero tra il 25 e il 30 giugno può inviare la domanda entro il 5 luglio. Un semplice viaggio non dà diritto alla proroga.",
+      "answer": "Invio il 3 luglio con ricovero certificato dal 27 al 29 giugno.",
+      "distractors": [
+        {
+          "text": "Una domanda inviata il 4 luglio dopo una vacanza dal 25 al 30 giugno.",
+          "reasonRu": "Обычная поездка прямо исключена как основание продления."
+        },
+        {
+          "text": "Una domanda inviata il 7 luglio con certificato di ricovero del 28 giugno.",
+          "reasonRu": "Основание подходит, но исключительный срок истёк 5 июля."
+        },
+        {
+          "text": "Una domanda inviata il 2 luglio senza alcuna prova di ricovero.",
+          "reasonRu": "После 30 июня требуется доказательство госпитализации в заданный период."
+        }
+      ],
+      "explanation": "The qualifying hospital stay is documented and the application arrives before the exceptional 5 July deadline.",
+      "explanationRu": "Подходящая госпитализация подтверждена, а заявление подано до исключительного срока 5 июля.",
+      "targetConstruct": "rule-and-exception application with qualifying condition, evidence, and extended deadline",
+      "targetConstructRu": "применение правила и исключения с условием, доказательством и продлённым сроком",
+      "canDoRu": "Может применить простое правило и его исключение к конкретному случаю."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "Giving balanced feedback",
+      "scenarioRu": "Сбалансированная обратная связь",
+      "prompt": "Choose the feedback with a specific strength, issue, and next step.",
+      "instructionRu": "Выберите обратную связь с конкретной сильной стороной, проблемой и следующим шагом.",
+      "stimulus": "La presentazione di un collega è chiara e ben organizzata, ma le ultime due conclusioni non mostrano da quali dati derivano.",
+      "answer": "La struttura è chiara e rende facile seguire il ragionamento. Nelle ultime due conclusioni, però, non vedo il collegamento con i dati: aggiungerei per ciascuna il grafico o la fonte che la sostiene.",
+      "distractors": [
+        {
+          "text": "È perfetta, non cambiare nulla.",
+          "reasonRu": "Ответ игнорирует конкретный пробел между выводами и данными."
+        },
+        {
+          "text": "È tutta sbagliata e devi rifarla da zero.",
+          "reasonRu": "Реплика стирает реальную сильную структуру и преувеличивает локальную проблему."
+        },
+        {
+          "text": "Mi piace il colore. Non ho altre osservazioni.",
+          "reasonRu": "Комментарий не касается названной сильной стороны, проблемы или следующего действия."
+        }
+      ],
+      "explanation": "The feedback names an observable strength, locates the exact evidence gap, and proposes a concrete repair.",
+      "explanationRu": "Обратная связь называет наблюдаемую сильную сторону, точно локализует пробел в доказательствах и предлагает конкретное исправление.",
+      "targetConstruct": "balanced feedback with observable strength, bounded issue, and actionable next step",
+      "targetConstructRu": "сбалансированная обратная связь с наблюдаемой сильной стороной, ограниченной проблемой и действием",
+      "canDoRu": "Может дать конкретную полезную обратную связь без чрезмерной похвалы или критики."
+    },
+    {
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "scenario": "Describing an interrupted activity",
+      "scenarioRu": "Описание прерванного действия",
+      "prompt": "Choose the sentence that frames the ongoing past action and interruption.",
+      "instructionRu": "Выберите предложение, где показаны продолжавшееся действие и его прерывание.",
+      "stimulus": "Alle 15 ero nel mezzo della preparazione del rapporto. In quel momento è saltata la corrente.",
+      "answer": "Stavo preparando il rapporto quando è saltata la corrente.",
+      "distractors": [
+        {
+          "text": "Sto preparando il rapporto quando saltava domani la corrente.",
+          "reasonRu": "Настоящее, imperfetto и domani создают несовместимые временные планы."
+        },
+        {
+          "text": "Ho stavo preparato il rapporto quando la corrente salta.",
+          "reasonRu": "Форма ho stavo preparato ненормативна, а событие-прерывание должно быть в прошлом."
+        },
+        {
+          "text": "Stavo preparare il rapporto mentre è saltando la corrente.",
+          "reasonRu": "После stare нужен gerundio preparando, а è saltando не образует корректной формы."
+        }
+      ],
+      "explanation": "Stavo preparando marks the ongoing background; è saltata marks the completed interruption.",
+      "explanationRu": "Stavo preparando обозначает продолжающееся фоновое действие, а è saltata — завершившее его событие.",
+      "targetConstruct": "past progressive stare plus gerund interrupted by passato prossimo",
+      "targetConstructRu": "прошедшая прогрессивная конструкция stare + gerundio, прерванная passato prossimo",
+      "canDoRu": "Может описать действие, которое продолжалось в момент другого события."
+    },
+    {
+      "skill": "vocabulary",
+      "format": "multiple-choice",
+      "scenario": "Classifying an overdue-payment message",
+      "scenarioRu": "Классификация сообщения о просроченной оплате",
+      "prompt": "Which communication type best matches the message?",
+      "instructionRu": "Какой тип сообщения лучше всего соответствует тексту?",
+      "stimulus": "Gentile cliente, la fattura del 10 aprile risulta ancora non pagata. La invitiamo a verificare e a effettuare il pagamento entro sette giorni, se non ha già provveduto.",
+      "answer": "È un sollecito.",
+      "distractors": [
+        {
+          "text": "È un reclamo del cliente.",
+          "reasonRu": "Пишет организация клиенту о просроченном платеже, а не клиент жалуется на услугу."
+        },
+        {
+          "text": "È un'autorizzazione a non pagare.",
+          "reasonRu": "Сообщение просит оплатить в течение семи дней, а не разрешает не платить."
+        },
+        {
+          "text": "È un invito a una festa.",
+          "reasonRu": "Вежливая формула la invitiamo здесь вводит просьбу совершить платёж, а не социальное приглашение."
+        }
+      ],
+      "explanation": "A sollecito reminds the recipient to complete an overdue action, here payment.",
+      "explanationRu": "Sollecito — напоминание или требование выполнить просроченное действие, здесь оплату.",
+      "targetConstruct": "formal communication distinction among reminder, complaint, request, and warning",
+      "targetConstructRu": "различение официального напоминания, жалобы, просьбы и предупреждения",
+      "canDoRu": "Может определить практическую функцию формального сообщения."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Inferring the intended audience",
+      "scenarioRu": "Определение целевой аудитории",
+      "prompt": "Who is the text primarily written for?",
+      "instructionRu": "Для кого прежде всего написан текст?",
+      "stimulus": "Prima della prima lezione, accedete alla piattaforma con le credenziali ricevute, completate il test iniziale e scaricate il programma. Se non avete mai usato la piattaforma, trovate una guida illustrata nella sezione Aiuto.",
+      "answer": "Nuovi corsisti che preparano la prima lezione.",
+      "distractors": [
+        {
+          "text": "Per tecnici che devono programmare una nuova piattaforma da zero.",
+          "reasonRu": "Текст предполагает готовую платформу и даёт пользовательские шаги, а не техническое задание."
+        },
+        {
+          "text": "Per studenti che hanno già terminato il corso e chiedono il diploma.",
+          "reasonRu": "Действия нужно выполнить до первой лекции, а не после окончания курса."
+        },
+        {
+          "text": "Per persone che vogliono comprare un computer.",
+          "reasonRu": "Покупка устройства не упоминается; цель — подготовиться к занятию на платформе."
+        }
+      ],
+      "explanation": "References to first lesson, received credentials, initial test, and beginner guidance identify new course participants.",
+      "explanationRu": "Упоминания первой лекции, полученных данных входа, начального теста и инструкции указывают на новых участников курса.",
+      "targetConstruct": "audience inference from assumed access, timing, knowledge, and requested actions",
+      "targetConstructRu": "вывод об аудитории по предполагаемому доступу, времени, знаниям и требуемым действиям",
+      "canDoRu": "Может определить адресата практического текста по тону и действиям."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "Escalating a recurring service failure",
+      "scenarioRu": "Эскалация повторяющегося сбоя услуги",
+      "prompt": "Choose the escalation that records prior attempts, current impact, and requested next action without exaggeration.",
+      "instructionRu": "Выберите эскалацию, которая фиксирует прошлые обращения, нынешнее влияние и желаемое действие без преувеличения.",
+      "stimulus": "La connessione si interrompe ogni pomeriggio da una settimana. Hai già aperto due segnalazioni e seguito le istruzioni ricevute, ma lavori da casa e perdi le videoriunioni.",
+      "answer": "La linea continua a interrompersi ogni pomeriggio nonostante le segnalazioni di martedì e giovedì e i riavvii indicati. Il problema mi impedisce di partecipare alle videoriunioni di lavoro. Chiedo una verifica tecnica della linea e un appuntamento con il tecnico, con conferma dei tempi.",
+      "distractors": [
+        {
+          "text": "Internet non ha mai funzionato in tutta la città e ha distrutto ogni mio lavoro.",
+          "reasonRu": "Ответ преувеличивает период, охват и последствия по сравнению с заданными фактами."
+        },
+        {
+          "text": "Ho un problema. Fate qualcosa quando potete.",
+          "reasonRu": "Нет истории обращений, конкретного влияния, требуемой проверки или срока."
+        },
+        {
+          "text": "Non serve più assistenza: continuerò soltanto a riavviare il modem ogni giorno.",
+          "reasonRu": "Повторение уже неэффективного действия не эскалирует устойчивую проблему."
+        }
+      ],
+      "explanation": "The message documents frequency and prior tickets, explains work impact, and requests a concrete technical investigation and scheduled visit.",
+      "explanationRu": "Сообщение фиксирует частоту и прошлые заявки, объясняет влияние на работу и просит конкретную проверку и визит специалиста.",
+      "targetConstruct": "evidence-based escalation of recurring service issue with prior attempts, impact, and requested action",
+      "targetConstructRu": "доказательная эскалация повторяющейся проблемы с прошлыми попытками, влиянием и требуемым действием",
+      "canDoRu": "Может обоснованно эскалировать повторяющуюся проблему после неудачных попыток решения."
+    },
+    {
+      "skill": "grammar",
+      "format": "gap-fill",
+      "scenario": "Promising completion before a deadline",
+      "scenarioRu": "Обещание завершения до срока",
+      "prompt": "Choose the future perfect form.",
+      "instructionRu": "Выберите форму futuro anteriore.",
+      "stimulus": "Entro venerdì noi ______ tutti i controlli.",
+      "answer": "avremo completato",
+      "distractors": [
+        {
+          "text": "abbiamo completando",
+          "reasonRu": "Сочетание вспомогательного глагола и gerundio не образует будущее завершение."
+        },
+        {
+          "text": "completavamo",
+          "reasonRu": "Imperfetto относится к прошлому и не выражает завершённость к будущему сроку."
+        },
+        {
+          "text": "avrete completato",
+          "reasonRu": "Avrete относится к voi, а подлежащее — noi."
+        }
+      ],
+      "explanation": "Future perfect avremo completato marks completion before entro venerdì.",
+      "explanationRu": "Futuro anteriore avremo completato показывает завершение к сроку entro venerdì.",
+      "targetConstruct": "future perfect for completion before a future deadline",
+      "targetConstructRu": "futuro anteriore для завершения до будущего срока",
+      "canDoRu": "Может выразить завершение работы к будущему сроку."
+    },
+    {
+      "skill": "vocabulary",
+      "format": "multiple-choice",
+      "scenario": "Naming a trade-off",
+      "scenarioRu": "Название компромисса между преимуществами",
+      "prompt": "Which term describes the relationship?",
+      "instructionRu": "Какой термин описывает это отношение?",
+      "stimulus": "Il percorso più veloce costa di più; quello economico richiede un'ora aggiuntiva. Non possiamo ottenere insieme il prezzo minimo e il tempo minimo.",
+      "answer": "È un compromesso tra costo e tempo.",
+      "distractors": [
+        {
+          "text": "È un vantaggio senza alcuno svantaggio.",
+          "reasonRu": "Каждый вариант выигрывает по одному параметру и проигрывает по другому."
+        },
+        {
+          "text": "È un prerequisito obbligatorio per viaggiare.",
+          "reasonRu": "Ни высокая цена, ни дополнительный час не названы обязательным условием самой поездки."
+        },
+        {
+          "text": "È la prova che i due percorsi sono identici.",
+          "reasonRu": "Маршруты явно различаются по цене и времени."
+        }
+      ],
+      "explanation": "A trade-off means improving one valued dimension requires giving up some of another.",
+      "explanationRu": "Компромисс означает, что улучшение одного важного параметра требует уступки по другому.",
+      "targetConstruct": "distinction among advantage, drawback, trade-off, and prerequisite",
+      "targetConstructRu": "различение преимущества, недостатка, компромисса и предварительного условия",
+      "canDoRu": "Может точно назвать ситуацию выбора между двумя важными параметрами."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Comparing delivery options",
+      "scenarioRu": "Сравнение вариантов доставки",
+      "prompt": "Which option meets all three constraints?",
+      "instructionRu": "Какой вариант соответствует всем трём ограничениям?",
+      "stimulus": "Serve una consegna entro tre giorni, con tracciamento, spendendo al massimo 25 euro. Opzione A: 2 giorni, 28 euro, tracciata. B: 3 giorni, 24 euro, tracciata. C: 2 giorni, 20 euro, non tracciata. D: 5 giorni, 18 euro, tracciata.",
+      "answer": "L'opzione B.",
+      "distractors": [
+        {
+          "text": "L'opzione A.",
+          "reasonRu": "Срок и отслеживание подходят, но цена превышает максимум 25 евро."
+        },
+        {
+          "text": "L'opzione C.",
+          "reasonRu": "Цена и срок подходят, но отсутствует обязательное отслеживание."
+        },
+        {
+          "text": "L'opzione D.",
+          "reasonRu": "Цена и отслеживание подходят, но пять дней превышают срок в три дня."
+        }
+      ],
+      "explanation": "Only B is within three days, tracked, and no more than 25 euros.",
+      "explanationRu": "Только B доставляет не позднее трёх дней, отслеживается и стоит не более 25 евро.",
+      "targetConstruct": "three-constraint option comparison across cost, time, and tracking risk",
+      "targetConstructRu": "сравнение вариантов по трём ограничениям цены, времени и контроля риска",
+      "canDoRu": "Может выбрать вариант, одновременно удовлетворяющий нескольким практическим условиям."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "Closing a meeting with accountable actions",
+      "scenarioRu": "Завершение встречи с закреплением действий",
+      "prompt": "Choose the summary that records decision, owner, action, and deadline.",
+      "instructionRu": "Выберите резюме, фиксирующее решение, исполнителя, действие и срок.",
+      "stimulus": "Il gruppo decide di testare il nuovo modulo per due settimane. Luca raccoglierà i commenti e presenterà i risultati venerdì 22.",
+      "answer": "Mettiamo a verbale: testeremo il nuovo modulo per due settimane; Luca raccoglierà i commenti e presenterà i risultati venerdì 22.",
+      "distractors": [
+        {
+          "text": "Abbiamo parlato di varie cose; qualcuno farà qualcosa più avanti.",
+          "reasonRu": "Отсутствуют решение, исполнитель, конкретное действие и срок."
+        },
+        {
+          "text": "Il modulo sarà introdotto definitivamente oggi senza test; Luca non raccoglierà commenti e non presenterà alcun risultato venerdì 22.",
+          "reasonRu": "Вариант меняет пилот на постоянное внедрение и удаляет порученную обратную связь."
+        },
+        {
+          "text": "Luca decide da solo se e quando raccontare i risultati.",
+          "reasonRu": "Срок и обязанность уже установлены группой, а не оставлены на произвольное решение."
+        }
+      ],
+      "explanation": "The summary preserves the bounded test decision and names Luca's deliverable and exact deadline.",
+      "explanationRu": "Резюме сохраняет решение об ограниченном тесте и называет результат Луки и точный срок.",
+      "targetConstruct": "meeting close with decision, owner, deliverable, deadline, and record",
+      "targetConstructRu": "завершение встречи с решением, исполнителем, результатом, сроком и записью",
+      "canDoRu": "Может завершить обсуждение ясной фиксацией договорённостей."
+    },
+    {
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "scenario": "Reporting approval of several requests",
+      "scenarioRu": "Сообщение об одобрении нескольких заявок",
+      "prompt": "Choose the correct passive sentence.",
+      "instructionRu": "Выберите правильное пассивное предложение.",
+      "stimulus": "La commissione ha approvato le richieste ieri.",
+      "answer": "Le richieste sono state approvate ieri dalla commissione.",
+      "distractors": [
+        {
+          "text": "Le richieste è stato approvato ieri dalla commissione.",
+          "reasonRu": "Вспомогательный глагол и причастие должны согласоваться с femminile plurale richieste."
+        },
+        {
+          "text": "Le richieste hanno approvare ieri la commissione.",
+          "reasonRu": "Форма не образует пассив и меняет роли: заявки не совершают действие над комиссией."
+        },
+        {
+          "text": "La commissione è stata approvate dalle richieste.",
+          "reasonRu": "Участники поменяны местами, а согласование причастия нарушено."
+        }
+      ],
+      "explanation": "The feminine plural subject takes sono state approvate; dalla commissione marks the agent.",
+      "explanationRu": "Подлежащее женского рода множественного числа требует sono state approvate; dalla commissione обозначает деятеля.",
+      "targetConstruct": "past passive with essere, tense, feminine plural agreement, and agent",
+      "targetConstructRu": "прошедший пассив с essere, временем, согласованием женского множественного числа и деятелем",
+      "canDoRu": "Может преобразовать простое активное предложение в согласованный пассив."
+    },
+    {
+      "skill": "vocabulary",
+      "format": "gap-fill",
+      "scenario": "Linking cause and result",
+      "scenarioRu": "Связь причины и результата",
+      "prompt": "Choose the connector that introduces the result.",
+      "instructionRu": "Выберите связку, вводящую результат.",
+      "stimulus": "Il server era fuori servizio; ______, non abbiamo potuto inviare i documenti.",
+      "answer": "di conseguenza",
+      "distractors": [
+        {
+          "text": "tuttavia",
+          "reasonRu": "Tuttavia вводит контраст, тогда как невозможность отправки является прямым результатом сбоя."
+        },
+        {
+          "text": "poiché",
+          "reasonRu": "Poiché вводит причину и требует другой синтаксической структуры, а причина уже дана до точки с запятой."
+        },
+        {
+          "text": "invece",
+          "reasonRu": "Invece противопоставляет альтернативу, которой здесь нет."
+        }
+      ],
+      "explanation": "Di conseguenza explicitly introduces the result of the server outage.",
+      "explanationRu": "Di conseguenza прямо вводит следствие сбоя сервера.",
+      "targetConstruct": "register-appropriate result connector di conseguenza versus contrast and cause connectors",
+      "targetConstructRu": "уместная связка результата di conseguenza в отличие от контраста и причины",
+      "canDoRu": "Может связать причину и следствие подходящей нейтральной связкой."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Inferring a supported reason",
+      "scenarioRu": "Вывод обоснованной причины",
+      "prompt": "Why did Karim most likely choose the morning appointment?",
+      "instructionRu": "Почему Карим, вероятнее всего, выбрал утреннее время?",
+      "stimulus": "Karim poteva scegliere tra le 9 e le 16. Alle 15 deve prendere sua figlia a scuola, e il viaggio dall'ambulatorio alla scuola dura quasi un'ora. Ha prenotato alle 9.",
+      "answer": "Per avere tempo di prendere la figlia a scuola.",
+      "distractors": [
+        {
+          "text": "Perché la scuola apre solo alle 9 di sera.",
+          "reasonRu": "В тексте указано, что ребёнка нужно забрать в 15:00; вечернее открытие не упоминается."
+        },
+        {
+          "text": "Perché l'appuntamento delle 16 era più economico.",
+          "reasonRu": "Разница в цене не дана; время 16:00 конфликтует с обязанностью в 15:00."
+        },
+        {
+          "text": "Per evitare completamente il viaggio verso la scuola.",
+          "reasonRu": "Поездка всё равно нужна; утреннее время лишь оставляет достаточный запас."
+        }
+      ],
+      "explanation": "The 9:00 slot avoids the conflict created by a 15:00 school pickup and one-hour travel time.",
+      "explanationRu": "Время 9:00 исключает конфликт с забором ребёнка в 15:00 и часовой дорогой.",
+      "targetConstruct": "supported motive inference from schedule constraint and travel time",
+      "targetConstructRu": "вывод о мотиве по ограничению расписания и времени пути",
+      "canDoRu": "Может вывести не названную прямо, но ясно поддержанную причину выбора."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "Responding constructively to bad news",
+      "scenarioRu": "Конструктивный ответ на плохую новость",
+      "prompt": "Choose the response with acknowledgement, a practical question, and a next step.",
+      "instructionRu": "Выберите ответ с признанием новости, практическим вопросом и следующим шагом.",
+      "stimulus": "Il fornitore comunica: «Non riusciremo a consegnare lunedì; la prima data possibile è giovedì.» La consegna influenza il tuo piano.",
+      "answer": "Grazie dell’avviso. Giovedì è confermato o stimato? Appena rispondete aggiorniamo il piano.",
+      "distractors": [
+        {
+          "text": "È inaccettabile: interrompiamo ogni contatto con voi e rinunciamo alla consegna, senza chiedere se giovedì sia una data confermata.",
+          "reasonRu": "Реакция не уточняет надёжность новой даты и закрывает возможность практического перепланирования."
+        },
+        {
+          "text": "Nessun problema, la consegna non influenza nulla.",
+          "reasonRu": "Условие прямо говорит, что задержка влияет на план; ответ отрицает реальность."
+        },
+        {
+          "text": "Giovedì è una parola interessante. Parliamo d'altro.",
+          "reasonRu": "Реплика не признаёт последствия, не задаёт практический вопрос и не определяет действие."
+        }
+      ],
+      "explanation": "The response acknowledges the update, tests the certainty of Thursday, and links that answer to replanning.",
+      "explanationRu": "Ответ принимает информацию, уточняет степень подтверждения четверга и связывает ответ с перепланированием.",
+      "targetConstruct": "bad-news response with acknowledgement, uncertainty question, and contingent next step",
+      "targetConstructRu": "ответ на плохую новость с признанием, вопросом о неопределённости и условным следующим шагом",
+      "canDoRu": "Может конструктивно отреагировать на плохую новость и перейти к плану действий."
+    },
+    {
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "scenario": "Expressing an unrealised past intention",
+      "scenarioRu": "Выражение нереализованного намерения в прошлом",
+      "prompt": "Choose the correct conditional past form.",
+      "instructionRu": "Выберите правильную форму condizionale passato.",
+      "stimulus": "Avevo intenzione di chiamarti, ma ho perso il telefono.",
+      "answer": "Avrei voluto chiamarti, ma ho perso il telefono.",
+      "distractors": [
+        {
+          "text": "Vorrei chiamarti ieri, ma perderò il telefono.",
+          "reasonRu": "Настоящее условное и будущее не согласуются с нереализованным намерением в прошлом."
+        },
+        {
+          "text": "Avrei voler chiamarti, ma perdevo domani il telefono.",
+          "reasonRu": "После avrei требуется причастие voluto, а domani несовместимо с imperfetto."
+        },
+        {
+          "text": "Ho volere chiamarti, ma il telefono è perso me.",
+          "reasonRu": "Обе глагольные конструкции грамматически ненормативны."
+        }
+      ],
+      "explanation": "Avrei voluto expresses a past intention that was not realised.",
+      "explanationRu": "Avrei voluto выражает прошлое намерение, которое не удалось реализовать.",
+      "targetConstruct": "conditional past for unrealised past intention",
+      "targetConstructRu": "condizionale passato для нереализованного намерения в прошлом",
+      "canDoRu": "Может сказать о намерении в прошлом, которое не осуществилось."
+    },
+    {
+      "skill": "vocabulary",
+      "format": "multiple-choice",
+      "scenario": "Identifying decision authority",
+      "scenarioRu": "Определение полномочия принимать решение",
+      "prompt": "Which concept is missing?",
+      "instructionRu": "Какого элемента не хватает?",
+      "stimulus": "Mina conosce molto bene il settore ed è libera oggi. Può preparare un'analisi, ma il regolamento stabilisce che solo il direttore può approvare la spesa.",
+      "answer": "Mina non ha l'autorità di approvare la spesa.",
+      "distractors": [
+        {
+          "text": "Mina non ha la competenza tecnica per analizzare il settore.",
+          "reasonRu": "Текст прямо говорит, что она хорошо знает отрасль."
+        },
+        {
+          "text": "Mina non ha la disponibilità oggi.",
+          "reasonRu": "По условию она свободна сегодня."
+        },
+        {
+          "text": "Mina non può avere alcuna responsabilità nell'analisi.",
+          "reasonRu": "Она может подготовить анализ; ограничение касается утверждения расходов."
+        }
+      ],
+      "explanation": "She has competence and availability, but formal approval power belongs to the director.",
+      "explanationRu": "У неё есть компетентность и доступность, но формальное полномочие утверждать принадлежит директору.",
+      "targetConstruct": "distinction among competence, responsibility, authority, and availability",
+      "targetConstructRu": "различение компетентности, ответственности, полномочия и доступности",
+      "canDoRu": "Может понять, чего именно не хватает человеку для принятия решения."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Tracking a proposal across paragraphs",
+      "scenarioRu": "Отслеживание предложения между абзацами",
+      "prompt": "What does questa soluzione refer to?",
+      "instructionRu": "К чему относится questa soluzione?",
+      "stimulus": "Paola propone di aprire lo sportello un'ora prima. Enrico preferisce aggiungere un appuntamento online nel pomeriggio.\n\nIl direttore osserva che questa soluzione aiuterebbe chi lavora al mattino, ma richiederebbe una nuova piattaforma. Decide quindi di valutarne il costo prima della prossima riunione.",
+      "answer": "Alla proposta di Enrico di aggiungere un appuntamento online nel pomeriggio.",
+      "distractors": [
+        {
+          "text": "Alla proposta di Paola di aprire prima lo sportello.",
+          "reasonRu": "Помощь работающим утром и необходимость новой платформы относятся к онлайн-встрече после обеда."
+        },
+        {
+          "text": "Alla decisione già presa di comprare la piattaforma.",
+          "reasonRu": "Покупка не решена; директор только хочет оценить стоимость."
+        },
+        {
+          "text": "A una proposta fatta dal direttore nel primo paragrafo.",
+          "reasonRu": "В первом абзаце предложения делают Paola и Enrico, директор появляется во втором."
+        }
+      ],
+      "explanation": "Helping morning workers and requiring a platform uniquely identify Enrico's afternoon online appointment.",
+      "explanationRu": "Помощь работающим утром и необходимость платформы однозначно указывают на дневную онлайн-встречу Энрико.",
+      "targetConstruct": "cross-paragraph proposal reference resolution through semantic constraints",
+      "targetConstructRu": "разрешение отсылки к предложению между абзацами по смысловым ограничениям",
+      "canDoRu": "Может отследить, к какому из нескольких предложений относится сокращённая отсылка."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "Proposing a transparent compromise",
+      "scenarioRu": "Предложение прозрачного компромисса",
+      "prompt": "Choose the compromise that states what each side gains and gives up.",
+      "instructionRu": "Выберите компромисс, который называет выгоду и уступку каждой стороны.",
+      "stimulus": "Il gruppo A vuole pubblicare il rapporto venerdì; il gruppo B chiede una settimana in più per controllare tutti gli allegati. La sintesi principale è già verificata, due allegati secondari no.",
+      "answer": "Venerdì pubblichiamo la sintesi verificata e indichiamo chiaramente che due allegati arriveranno la settimana prossima. A ottiene una comunicazione puntuale, rinunciando alla completezza immediata; B mantiene il tempo per il controllo, accettando una pubblicazione in due fasi.",
+      "distractors": [
+        {
+          "text": "Pubblicate tutto venerdì, compresi gli allegati non controllati, e ignoriamo il gruppo B.",
+          "reasonRu": "Вариант даёт всё группе A и не сохраняет требование проверки группы B."
+        },
+        {
+          "text": "Aspettiamo una settimana senza comunicare nulla e ignoriamo l'obiettivo di venerdì.",
+          "reasonRu": "Вариант полностью выбирает позицию B и не даёт группе A своевременной коммуникации."
+        },
+        {
+          "text": "Diciamo che entrambe le parti hanno ragione, ma non decidiamo che cosa pubblicare.",
+          "reasonRu": "Признание позиций без операционного решения не является компромиссом."
+        }
+      ],
+      "explanation": "The phased publication preserves verified timeliness and verification quality while naming the concession made by each side.",
+      "explanationRu": "Поэтапная публикация сохраняет своевременность проверенной части и качество проверки, явно называя уступку каждой стороны.",
+      "targetConstruct": "operational compromise with reciprocal gains, concessions, and phased action",
+      "targetConstructRu": "операционный компромисс со взаимными выгодами, уступками и поэтапным действием",
+      "canDoRu": "Может предложить реалистичный компромисс, показывающий обмен уступками."
+    }
+  ]
+}

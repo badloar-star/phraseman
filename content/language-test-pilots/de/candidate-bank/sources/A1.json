@@ -1,0 +1,649 @@
+{
+  "schemaVersion": 1,
+  "language": "de",
+  "level": "A1",
+  "status": "authoring",
+  "publishable": false,
+  "items": [
+    {
+      "skill": "pragmatics", "format": "multiple-choice",
+      "scenario": "Ordering a drink in a café", "scenarioRu": "Заказ напитка в кафе",
+      "prompt": "Choose the natural polite reply to the waiter.", "instructionRu": "Выберите естественный вежливый ответ официанту.",
+      "stimulus": "— Guten Tag. Was möchten Sie? — ______",
+      "answer": "Einen Tee, bitte.",
+      "distractors": [
+        {"text": "Es ist drei Uhr.", "reasonRu": "Фраза сообщает время и не отвечает на вопрос о заказе."},
+        {"text": "Ich wohne in Bonn.", "reasonRu": "Фраза сообщает место жительства и не называет желаемый напиток."},
+        {"text": "Meine Schwester heißt Mia.", "reasonRu": "Фраза представляет сестру и не относится к ситуации заказа."}
+      ],
+      "explanation": "Einen Tee, bitte names the requested drink and uses a basic polite marker.",
+      "explanationRu": "Einen Tee, bitte называет нужный напиток и содержит базовую вежливую формулу.",
+      "targetConstruct": "polite ordering with a concrete item and bitte", "targetConstructRu": "вежливый заказ конкретного предмета с bitte",
+      "canDoRu": "Может вежливо заказать простой напиток в кафе."
+    },
+    {
+      "skill": "grammar", "format": "gap-fill",
+      "scenario": "Introducing yourself by name", "scenarioRu": "Представление по имени",
+      "prompt": "Choose the present-tense form of sein used with ich.", "instructionRu": "Выберите форму sein в настоящем времени с ich.",
+      "stimulus": "Guten Tag. Ich ______ Anna.",
+      "answer": "bin",
+      "distractors": [
+        {"text": "bist", "reasonRu": "Bist употребляется с du, а подлежащее здесь ich."},
+        {"text": "ist", "reasonRu": "Ist употребляется с er, sie или es, а не с ich."},
+        {"text": "sind", "reasonRu": "Sind употребляется с wir, sie или вежливым Sie, а здесь подлежащее ich."}
+      ],
+      "explanation": "The first-person singular present form of sein is bin: Ich bin Anna.",
+      "explanationRu": "Форма sein в первом лице единственного числа — bin: Ich bin Anna.",
+      "targetConstruct": "present indicative of sein with ich", "targetConstructRu": "Präsens глагола sein с ich",
+      "canDoRu": "Может назвать себя с правильной формой глагола sein."
+    },
+    {
+      "skill": "vocabulary", "format": "multiple-choice",
+      "scenario": "Naming a close family relationship", "scenarioRu": "Обозначение близкого родства",
+      "prompt": "Choose the family word that completes the definition.", "instructionRu": "Выберите слово о семье, завершающее определение.",
+      "stimulus": "Ich heiße Mia. Der Sohn meiner Eltern ist mein ______.",
+      "answer": "Bruder",
+      "distractors": [
+        {"text": "Onkel", "reasonRu": "Onkel — это брат одного из родителей или муж тёти, а не сын родителей говорящего."},
+        {"text": "Vater", "reasonRu": "Vater означает отца, то есть родителя говорящего, а не сына его родителей."},
+        {"text": "Cousin", "reasonRu": "Cousin — сын тёти или дяди, а не сын родителей говорящего."}
+      ],
+      "explanation": "A male child of the speaker’s parents is the speaker’s Bruder.",
+      "explanationRu": "Сын родителей говорящего является его братом — Bruder.",
+      "targetConstruct": "basic family vocabulary: Bruder", "targetConstructRu": "базовая семейная лексика: Bruder",
+      "canDoRu": "Может назвать близкого родственника."
+    },
+    {
+      "skill": "reading", "format": "multiple-choice",
+      "scenario": "Reading shop opening hours", "scenarioRu": "Чтение часов работы магазина",
+      "prompt": "Choose a time when the shop is open.", "instructionRu": "Выберите время, когда магазин открыт.",
+      "stimulus": "Öffnungszeiten: Mo–Fr 9:00–18:00 · Sa 10:00–14:00 · So geschlossen",
+      "answer": "Samstag um 12 Uhr",
+      "distractors": [
+        {"text": "Sonntag um 12 Uhr", "reasonRu": "В воскресенье магазин закрыт: So geschlossen."},
+        {"text": "Samstag um 16 Uhr", "reasonRu": "В субботу магазин закрывается в 14:00."},
+        {"text": "Montag um 8 Uhr", "reasonRu": "С понедельника по пятницу магазин открывается в 9:00."}
+      ],
+      "explanation": "Saturday noon falls within the stated Saturday hours of 10:00–14:00.",
+      "explanationRu": "Полдень субботы входит в указанный интервал работы с 10:00 до 14:00.",
+      "targetConstruct": "extracting day and time from basic opening hours", "targetConstructRu": "извлечение дня и времени из простого расписания работы",
+      "canDoRu": "Может понять простые часы работы заведения."
+    },
+    {
+      "skill": "pragmatics", "format": "multiple-choice",
+      "scenario": "Meeting someone for the first time", "scenarioRu": "Первая встреча и знакомство",
+      "prompt": "Choose the reply that greets the speaker and introduces the respondent.", "instructionRu": "Выберите ответ, который содержит приветствие и представление отвечающего.",
+      "stimulus": "— Guten Tag, ich heiße Lea. Und Sie? — ______",
+      "answer": "Guten Tag, ich bin Amir.",
+      "distractors": [
+        {"text": "Guten Tag, ich suche Amir.", "reasonRu": "Говорящий здоровается, но сообщает, что ищет Амира, а не представляет себя."},
+        {"text": "Guten Tag, Amir kommt morgen.", "reasonRu": "Фраза приветствует и говорит о приходе Амира завтра, но не называет имя отвечающего."},
+        {"text": "Guten Tag, kennen Sie Amir?", "reasonRu": "Вопрос касается знакомства собеседника с Амиром и не является представлением отвечающего."}
+      ],
+      "explanation": "The response returns the greeting and gives the speaker’s own name in the formal Sie setting.",
+      "explanationRu": "Ответ возвращает приветствие и называет имя отвечающего в ситуации с вежливым Sie.",
+      "targetConstruct": "greeting plus self-introduction in a formal first meeting", "targetConstructRu": "приветствие и представление при формальном знакомстве",
+      "canDoRu": "Может поздороваться и представиться при первой встрече."
+    },
+    {
+      "skill": "grammar", "format": "gap-fill",
+      "scenario": "Saying that you have a brother", "scenarioRu": "Сообщение о наличии брата",
+      "prompt": "Choose the accusative form after haben.", "instructionRu": "Выберите форму Akkusativ после haben.",
+      "stimulus": "Ich habe ______ Bruder.",
+      "answer": "einen",
+      "distractors": [
+        {"text": "ein", "reasonRu": "Ein — форма Nominativ среднего или мужского рода, но Bruder является прямым дополнением мужского рода в Akkusativ."},
+        {"text": "eine", "reasonRu": "Eine употребляется с существительными женского рода, а Bruder — мужского рода."},
+        {"text": "einem", "reasonRu": "Einem — форма Dativ, тогда как haben требует здесь прямое дополнение в Akkusativ."}
+      ],
+      "explanation": "Bruder is masculine and functions as the direct object of habe, so the indefinite article is einen.",
+      "explanationRu": "Bruder — существительное мужского рода и прямое дополнение после habe, поэтому требуется einen.",
+      "targetConstruct": "masculine accusative indefinite article after haben", "targetConstructRu": "неопределённый артикль мужского рода в Akkusativ после haben",
+      "canDoRu": "Может сказать о наличии человека или предмета мужского рода."
+    },
+    {
+      "skill": "vocabulary", "format": "multiple-choice",
+      "scenario": "Naming a room in the home", "scenarioRu": "Название комнаты в доме",
+      "prompt": "Choose the room described by the activity.", "instructionRu": "Выберите комнату по описанному действию.",
+      "stimulus": "Dort kochen wir und dort stehen der Herd und der Kühlschrank. Das ist die ______.",
+      "answer": "Küche",
+      "distractors": [
+        {"text": "Schlafzimmer", "reasonRu": "Schlafzimmer предназначена прежде всего для сна, а плита и холодильник находятся не там."},
+        {"text": "Badezimmer", "reasonRu": "Badezimmer — ванная комната, а не место для плиты и приготовления еды."},
+        {"text": "Flur", "reasonRu": "Flur служит проходом между комнатами, а не местом для плиты и приготовления пищи."}
+      ],
+      "explanation": "The room used for cooking and containing a stove and refrigerator is the Küche.",
+      "explanationRu": "Комната для приготовления еды с плитой и холодильником называется Küche.",
+      "targetConstruct": "basic home vocabulary: Küche", "targetConstructRu": "базовая лексика дома: Küche",
+      "canDoRu": "Может назвать основную комнату в доме по её назначению."
+    },
+    {
+      "skill": "reading", "format": "multiple-choice",
+      "scenario": "Reading a meeting message", "scenarioRu": "Чтение сообщения о встрече",
+      "prompt": "Choose the meeting time stated in the message.", "instructionRu": "Выберите указанное в сообщении время встречи.",
+      "stimulus": "Hallo Eva, treffen wir uns heute um 17:30 vor dem Kino? Bis später! Tom",
+      "answer": "heute um 17:30",
+      "distractors": [
+        {"text": "morgen um 17:30", "reasonRu": "В сообщении указано heute — сегодня, а не morgen."},
+        {"text": "heute um 15:30", "reasonRu": "Сообщение называет 17:30, а не 15:30."},
+        {"text": "heute um 19:30", "reasonRu": "В тексте нет времени 19:30; встреча назначена на 17:30."}
+      ],
+      "explanation": "The message explicitly proposes meeting heute um 17:30.",
+      "explanationRu": "В сообщении прямо предложено встретиться сегодня в 17:30.",
+      "targetConstruct": "extracting a stated day reference and time from a short message", "targetConstructRu": "извлечение указания дня и времени из короткого сообщения",
+      "canDoRu": "Может понять время простой встречи из сообщения."
+    },
+    {
+      "skill": "pragmatics", "format": "multiple-choice",
+      "scenario": "Asking the price in a shop", "scenarioRu": "Вопрос о цене в магазине",
+      "prompt": "Choose the polite question that asks for the jacket’s price.", "instructionRu": "Выберите вежливый вопрос о цене куртки.",
+      "stimulus": "Sie möchten den Preis dieser Jacke wissen. Was sagen Sie?",
+      "answer": "Entschuldigung, wie viel kostet diese Jacke?",
+      "distractors": [
+        {"text": "Entschuldigung, kann ich diese Jacke anprobieren?", "reasonRu": "Это уместная просьба примерить куртку, но она не спрашивает её цену."},
+        {"text": "Entschuldigung, haben Sie diese Jacke in Blau?", "reasonRu": "Вопрос уточняет наличие куртки другого цвета, а не её стоимость."},
+        {"text": "Entschuldigung, wo finde ich eine andere Jacke?", "reasonRu": "Вопрос просит указать другую куртку и не выясняет цену этой."}
+      ],
+      "explanation": "Wie viel kostet… is the standard basic question for an item’s price, softened here by Entschuldigung.",
+      "explanationRu": "Wie viel kostet… — стандартный простой вопрос о цене, дополнительно смягчённый словом Entschuldigung.",
+      "targetConstruct": "polite price enquiry with wie viel kostet", "targetConstructRu": "вежливый вопрос о цене с wie viel kostet",
+      "canDoRu": "Может вежливо узнать цену товара."
+    },
+    {
+      "skill": "grammar", "format": "gap-fill",
+      "scenario": "Saying where another person lives", "scenarioRu": "Сообщение о месте жительства собеседника",
+      "prompt": "Choose the present-tense form of wohnen used with du.", "instructionRu": "Выберите форму wohnen в настоящем времени с du.",
+      "stimulus": "Du ______ jetzt in Berlin.",
+      "answer": "wohnst",
+      "distractors": [
+        {"text": "wohne", "reasonRu": "Wohne употребляется с ich, а подлежащее здесь du."},
+        {"text": "wohnt", "reasonRu": "Wohnt употребляется с er, sie, es или ihr, а не с du."},
+        {"text": "wohnen", "reasonRu": "Wohnen употребляется с wir, sie или вежливым Sie; с du требуется окончание -st."}
+      ],
+      "explanation": "The second-person singular present form is du wohnst.",
+      "explanationRu": "Форма второго лица единственного числа — du wohnst.",
+      "targetConstruct": "regular present-tense -st ending with du", "targetConstructRu": "окончание -st правильного глагола в Präsens с du",
+      "canDoRu": "Может правильно употребить простой глагол в настоящем времени с du."
+    },
+    {
+      "skill": "vocabulary", "format": "multiple-choice",
+      "scenario": "Choosing a breakfast food", "scenarioRu": "Выбор продукта для завтрака",
+      "prompt": "Choose the food word that fits the sentence.", "instructionRu": "Выберите слово о еде, подходящее к предложению.",
+      "stimulus": "Zum Frühstück esse ich ______ mit Käse und trinke Kaffee.",
+      "answer": "Brot",
+      "distractors": [
+        {"text": "Wasser", "reasonRu": "Wasser пьют, а в предложении после esse требуется продукт, который едят с сыром."},
+        {"text": "Küche", "reasonRu": "Küche означает кухню, то есть помещение, а не еду."},
+        {"text": "Zeit", "reasonRu": "Zeit означает время и не может быть продуктом для завтрака."}
+      ],
+      "explanation": "Brot is a common breakfast food and naturally combines with mit Käse.",
+      "explanationRu": "Brot — обычный продукт для завтрака, естественно сочетающийся с mit Käse.",
+      "targetConstruct": "basic food vocabulary: Brot", "targetConstructRu": "базовая лексика еды: Brot",
+      "canDoRu": "Может назвать распространённый продукт питания в простом контексте."
+    },
+    {
+      "skill": "reading", "format": "multiple-choice",
+      "scenario": "Reading a departure-board entry", "scenarioRu": "Чтение строки табло отправления",
+      "prompt": "Choose the departure time and platform shown for the train to Cologne.", "instructionRu": "Выберите время отправления и путь поезда в Кёльн.",
+      "stimulus": "RE 7 · Köln Hbf · 14:12 · Gleis 3",
+      "answer": "um 14:12 von Gleis 3",
+      "distractors": [
+        {"text": "um 14:12 von Gleis 7", "reasonRu": "7 — номер маршрута RE, а путь указан как Gleis 3."},
+        {"text": "um 14:03 von Gleis 12", "reasonRu": "В строке указано время 14:12 и путь 3, а не 14:03 и 12."},
+        {"text": "um 15:12 von Gleis 3", "reasonRu": "Путь совпадает, но время отправления в табло — 14:12."}
+      ],
+      "explanation": "The entry states 14:12 as the time and Gleis 3 as the platform.",
+      "explanationRu": "В строке указаны время 14:12 и путь Gleis 3.",
+      "targetConstruct": "extracting destination, time, and platform from a simple transport display", "targetConstructRu": "извлечение направления, времени и пути из простого транспортного табло",
+      "canDoRu": "Может понять базовую информацию об отправлении поезда."
+    },
+    {
+      "skill": "pragmatics", "format": "multiple-choice",
+      "scenario": "Asking someone to repeat information", "scenarioRu": "Просьба повторить информацию",
+      "prompt": "Choose the polite request when you did not hear the information.", "instructionRu": "Выберите вежливую просьбу, если вы не расслышали информацию.",
+      "stimulus": "Sie haben die Adresse nicht verstanden. Was sagen Sie?",
+      "answer": "Entschuldigung, können Sie das bitte wiederholen?",
+      "distractors": [
+        {"text": "Entschuldigung, ich wiederhole Ihre Adresse nicht.", "reasonRu": "Фраза сообщает об отказе повторять адрес собеседника, а не просит повторить услышанное."},
+        {"text": "Ihre Adresse schmeckt sehr gut.", "reasonRu": "Schmecken описывает вкус еды и не подходит к просьбе об информации."},
+        {"text": "Wie spät war das Brot?", "reasonRu": "Вопрос бессмысленно соединяет время и хлеб и не просит повторить адрес."}
+      ],
+      "explanation": "Können Sie das bitte wiederholen? is a standard polite request for repetition.",
+      "explanationRu": "Können Sie das bitte wiederholen? — стандартная вежливая просьба повторить сказанное.",
+      "targetConstruct": "formal polite repetition request with können and bitte", "targetConstructRu": "формальная вежливая просьба повторить с können и bitte",
+      "canDoRu": "Может вежливо попросить повторить непонятую информацию."
+    },
+    {
+      "skill": "grammar", "format": "gap-fill",
+      "scenario": "Buying a masculine noun", "scenarioRu": "Покупка существительного мужского рода",
+      "prompt": "Choose the definite article in the accusative case.", "instructionRu": "Выберите определённый артикль в Akkusativ.",
+      "stimulus": "Ich kaufe ______ Apfel.",
+      "answer": "den",
+      "distractors": [
+        {"text": "der", "reasonRu": "Der — форма Nominativ мужского рода, но Apfel здесь является прямым дополнением."},
+        {"text": "dem", "reasonRu": "Dem — форма Dativ, а после kaufen для прямого дополнения нужен Akkusativ."},
+        {"text": "die", "reasonRu": "Die употребляется в Akkusativ с женским родом или множественным числом, а Apfel — мужского рода."}
+      ],
+      "explanation": "Apfel is masculine and is the direct object of kaufe, so the article is den.",
+      "explanationRu": "Apfel — мужского рода и является прямым дополнением после kaufe, поэтому требуется den.",
+      "targetConstruct": "masculine accusative definite article", "targetConstructRu": "определённый артикль мужского рода в Akkusativ",
+      "canDoRu": "Может употребить определённый артикль мужского рода с простым прямым дополнением."
+    },
+    {
+      "skill": "vocabulary", "format": "multiple-choice",
+      "scenario": "Finding a place to send a parcel", "scenarioRu": "Поиск места для отправки посылки",
+      "prompt": "Choose the place where the action normally happens.", "instructionRu": "Выберите место, где обычно выполняют это действие.",
+      "stimulus": "Ich möchte einen Brief und ein Paket senden. Ich gehe zur ______.",
+      "answer": "Post",
+      "distractors": [
+        {"text": "Bäckerei", "reasonRu": "В Bäckerei покупают хлеб и выпечку, а не отправляют письма и посылки."},
+        {"text": "Apotheke", "reasonRu": "В Apotheke получают лекарства, а не пользуются почтовыми услугами."},
+        {"text": "Bank", "reasonRu": "В Bank выполняют финансовые операции, а не отправляют письма и посылки."}
+      ],
+      "explanation": "Letters and parcels are sent at the Post.",
+      "explanationRu": "Письма и посылки отправляют на почте — Post.",
+      "targetConstruct": "basic town vocabulary: Post", "targetConstructRu": "базовая городская лексика: Post",
+      "canDoRu": "Может назвать распространённое место в городе по его функции."
+    },
+    {
+      "skill": "reading", "format": "multiple-choice",
+      "scenario": "Reading a temporary closure notice", "scenarioRu": "Чтение объявления о временном закрытии",
+      "prompt": "Choose the statement supported by the notice.", "instructionRu": "Выберите утверждение, соответствующее объявлению.",
+      "stimulus": "Die Bibliothek ist am Montag und Dienstag geschlossen. Ab Mittwoch gelten wieder die normalen Öffnungszeiten.",
+      "answer": "Am Dienstag ist die Bibliothek geschlossen und ab Mittwoch wieder normal geöffnet.",
+      "distractors": [
+        {"text": "Die Bibliothek ist nur am Mittwoch geschlossen.", "reasonRu": "Объявление называет закрытыми понедельник и вторник, а с среды возвращается обычный режим."},
+        {"text": "Am Montag ist sie geöffnet, aber am Freitag geschlossen.", "reasonRu": "Понедельник прямо указан как закрытый, а о закрытии в пятницу не говорится."},
+        {"text": "Die Bibliothek bleibt die ganze Woche geschlossen.", "reasonRu": "С среды снова действуют обычные часы, поэтому закрытие не продолжается всю неделю."}
+      ],
+      "explanation": "The notice closes Monday and Tuesday, then restores normal hours from Wednesday.",
+      "explanationRu": "Объявление закрывает библиотеку в понедельник и вторник и возвращает обычный режим со среды.",
+      "targetConstruct": "understanding closure days and a restart point", "targetConstructRu": "понимание дней закрытия и момента возобновления работы",
+      "canDoRu": "Может понять простое объявление о временном закрытии."
+    },
+    {
+      "skill": "pragmatics", "format": "multiple-choice",
+      "scenario": "Requesting a towel at a hotel", "scenarioRu": "Просьба принести полотенце в отеле",
+      "prompt": "Choose the simple polite formal request.", "instructionRu": "Выберите простую вежливую просьбу в формальной ситуации.",
+      "stimulus": "Im Hotel fehlt ein Handtuch. Was sagen Sie an der Rezeption?",
+      "answer": "Können Sie mir bitte ein Handtuch bringen?",
+      "distractors": [
+        {"text": "Können Sie mir bitte den Frühstücksraum zeigen?", "reasonRu": "Это вежливая просьба в отеле, но она касается расположения зала для завтрака, а не полотенца."},
+        {"text": "Können Sie mir bitte ein Zimmer reservieren?", "reasonRu": "Фраза просит забронировать номер и не сообщает об отсутствующем полотенце."},
+        {"text": "Können Sie mir bitte ein Taxi bestellen?", "reasonRu": "Фраза просит заказать такси, а не принести недостающий предмет в номер."}
+      ],
+      "explanation": "The sentence uses formal Sie, können, and bitte to make a clear request for the missing item.",
+      "explanationRu": "Фраза использует формальное Sie, können и bitte и ясно просит принести отсутствующий предмет.",
+      "targetConstruct": "formal service request with können, mir, and bitte", "targetConstructRu": "формальная просьба в сервисной ситуации с können, mir и bitte",
+      "canDoRu": "Может вежливо попросить нужный предмет в гостинице."
+    },
+    {
+      "skill": "grammar", "format": "gap-fill",
+      "scenario": "Saying that you do not own a car", "scenarioRu": "Сообщение об отсутствии автомобиля",
+      "prompt": "Choose the negative article used with the neuter noun Auto.", "instructionRu": "Выберите отрицательный артикль с существительным среднего рода Auto.",
+      "stimulus": "Ich habe ______ Auto.",
+      "answer": "kein",
+      "distractors": [
+        {"text": "nicht", "reasonRu": "С неопределённым исчисляемым существительным в значении отсутствия обычно употребляется kein, а не nicht."},
+        {"text": "keine", "reasonRu": "Keine требуется для женского рода или множественного числа, а Auto — среднего рода в Akkusativ."},
+        {"text": "keinen", "reasonRu": "Keinen — форма мужского рода в Akkusativ, а Auto — среднего рода."}
+      ],
+      "explanation": "Auto is neuter, and kein negates the indefinite noun phrase in the accusative.",
+      "explanationRu": "Auto — среднего рода, а kein отрицает неопределённую именную группу в Akkusativ.",
+      "targetConstruct": "negative article kein with a neuter accusative noun", "targetConstructRu": "отрицательный артикль kein с существительным среднего рода в Akkusativ",
+      "canDoRu": "Может сказать об отсутствии простого предмета с kein."
+    },
+    {
+      "skill": "vocabulary", "format": "multiple-choice",
+      "scenario": "Describing sunny weather", "scenarioRu": "Описание солнечной погоды",
+      "prompt": "Choose the weather word that matches the description.", "instructionRu": "Выберите слово о погоде, соответствующее описанию.",
+      "stimulus": "Die Sonne scheint und der Himmel ist blau. Es ist ______.",
+      "answer": "sonnig",
+      "distractors": [
+        {"text": "regnerisch", "reasonRu": "Regnerisch означает дождливую погоду, но в описании светит солнце."},
+        {"text": "neblig", "reasonRu": "Neblig означает туманную погоду, а голубое небо и солнце этому не соответствуют."},
+        {"text": "windig", "reasonRu": "Windig означает ветреную погоду, но ветер в описании не упомянут."}
+      ],
+      "explanation": "Sunshine and a blue sky describe sonnig weather.",
+      "explanationRu": "Светящее солнце и голубое небо описываются словом sonnig.",
+      "targetConstruct": "basic weather vocabulary: sonnig", "targetConstructRu": "базовая лексика погоды: sonnig",
+      "canDoRu": "Может понять простое описание погоды."
+    },
+    {
+      "skill": "reading", "format": "multiple-choice",
+      "scenario": "Following a two-step plan", "scenarioRu": "Понимание плана из двух действий",
+      "prompt": "Choose the order of actions stated in the message.", "instructionRu": "Выберите порядок действий, указанный в сообщении.",
+      "stimulus": "Zuerst kaufen wir im Supermarkt ein. Danach trinken wir bei Nina einen Kaffee.",
+      "answer": "Erst einkaufen, dann Kaffee trinken.",
+      "distractors": [
+        {"text": "Erst Kaffee trinken, dann einkaufen.", "reasonRu": "Вариант меняет местами действия, хотя zuerst обозначает покупки первым шагом."},
+        {"text": "Nur Kaffee trinken und nicht einkaufen.", "reasonRu": "Сообщение явно включает оба действия."},
+        {"text": "Einkaufen und danach sofort nach Hause fahren.", "reasonRu": "После магазина запланирован кофе у Нины, а не поездка домой."}
+      ],
+      "explanation": "Zuerst marks shopping as the first action and danach marks coffee as the second.",
+      "explanationRu": "Zuerst обозначает покупки первым действием, а danach — кофе вторым.",
+      "targetConstruct": "sequencing two explicit actions with zuerst and danach", "targetConstructRu": "последовательность двух явных действий с zuerst и danach",
+      "canDoRu": "Может понять порядок двух простых действий в сообщении."
+    },
+    {
+      "skill": "pragmatics", "format": "multiple-choice",
+      "scenario": "Apologising for arriving late", "scenarioRu": "Извинение за опоздание",
+      "prompt": "Choose the reply that apologises and gives a brief relevant reason.", "instructionRu": "Выберите ответ, который содержит извинение и краткую уместную причину.",
+      "stimulus": "Sie kommen zu spät zu einem Treffen. Was sagen Sie?",
+      "answer": "Entschuldigung, dass ich zu spät bin. Der Bus hatte Verspätung.",
+      "distractors": [
+        {"text": "Entschuldigung, aber du bist zu spät zu unserem Treffen.", "reasonRu": "Фраза обвиняет собеседника и не извиняется за собственное опоздание."},
+        {"text": "Tut mir leid, ich bin pünktlich. Der Bus kam genau zur Zeit.", "reasonRu": "Ответ содержит извинение, но отрицает опоздание и не объясняет его."},
+        {"text": "Der Bus hatte Verspätung, deshalb bist du zu spät gekommen.", "reasonRu": "Причина связана с опозданием, но фраза говорит о собеседнике и не содержит извинения говорящего."}
+      ],
+      "explanation": "The response apologises directly and gives the delayed bus as a concise reason.",
+      "explanationRu": "Ответ прямо извиняется и кратко называет задержку автобуса причиной.",
+      "targetConstruct": "brief apology plus relevant reason for lateness", "targetConstructRu": "краткое извинение и уместная причина опоздания",
+      "canDoRu": "Может извиниться за опоздание и коротко объяснить его."
+    },
+    {
+      "skill": "grammar", "format": "gap-fill",
+      "scenario": "Expressing a polite personal wish", "scenarioRu": "Выражение вежливого личного желания",
+      "prompt": "Choose the form of möchten used with ich.", "instructionRu": "Выберите форму möchten с ich.",
+      "stimulus": "Ich ______ gern einen Kaffee.",
+      "answer": "möchte",
+      "distractors": [
+        {"text": "möchtest", "reasonRu": "Möchtest употребляется с du, а подлежащее здесь ich."},
+        {"text": "möchten", "reasonRu": "Möchten употребляется с wir, sie или вежливым Sie, а не с ich."},
+        {"text": "möchtet", "reasonRu": "Möchtet употребляется с ihr, а здесь нужно первое лицо единственного числа."}
+      ],
+      "explanation": "The first-person singular form is ich möchte.",
+      "explanationRu": "Форма первого лица единственного числа — ich möchte.",
+      "targetConstruct": "first-person singular möchte for a polite wish", "targetConstructRu": "форма möchte первого лица для вежливого желания",
+      "canDoRu": "Может вежливо выразить простое желание."
+    },
+    {
+      "skill": "vocabulary", "format": "multiple-choice",
+      "scenario": "Naming the next weekday", "scenarioRu": "Название следующего дня недели",
+      "prompt": "Choose the day that follows Monday.", "instructionRu": "Выберите день, следующий за понедельником.",
+      "stimulus": "Heute ist Montag. Morgen ist ______.",
+      "answer": "Dienstag",
+      "distractors": [
+        {"text": "Sonntag", "reasonRu": "Sonntag — воскресенье и не следует непосредственно за понедельником."},
+        {"text": "Freitag", "reasonRu": "Freitag — пятница, между понедельником и пятницей есть другие дни."},
+        {"text": "Januar", "reasonRu": "Januar — месяц, а не день недели."}
+      ],
+      "explanation": "Dienstag is Tuesday, the day after Montag.",
+      "explanationRu": "Dienstag — вторник, день после Montag.",
+      "targetConstruct": "basic weekday vocabulary: Dienstag", "targetConstructRu": "базовая лексика дней недели: Dienstag",
+      "canDoRu": "Может назвать ближайший день недели."
+    },
+    {
+      "skill": "reading", "format": "multiple-choice",
+      "scenario": "Reading a birthday invitation", "scenarioRu": "Чтение приглашения на день рождения",
+      "prompt": "Choose when and where the celebration takes place.", "instructionRu": "Выберите, когда и где проходит праздник.",
+      "stimulus": "Hallo Mia, ich feiere am Samstag um 18 Uhr meinen Geburtstag bei mir zu Hause, Gartenstraße 5. Kommst du? Liebe Grüße, Ben",
+      "answer": "am Samstag um 18 Uhr bei Ben zu Hause",
+      "distractors": [
+        {"text": "am Sonntag um 18 Uhr im Café", "reasonRu": "В приглашении указаны суббота и дом Бена, а не воскресенье и кафе."},
+        {"text": "am Samstag um 8 Uhr in der Schule", "reasonRu": "Время — 18:00, а место — дом Бена, не школа."},
+        {"text": "am Freitag um 17 Uhr bei Mia", "reasonRu": "Сообщение адресовано Мии, но праздник проводит Бен в субботу в 18:00."}
+      ],
+      "explanation": "The invitation states Saturday at 18:00 and bei mir zu Hause, referring to Ben’s home.",
+      "explanationRu": "В приглашении указаны суббота, 18:00 и bei mir zu Hause, то есть дом Бена.",
+      "targetConstruct": "extracting host, day, time, and place from a short invitation", "targetConstructRu": "извлечение хозяина, дня, времени и места из короткого приглашения",
+      "canDoRu": "Может понять основную информацию простого приглашения."
+    },
+    {
+      "skill": "pragmatics", "format": "multiple-choice",
+      "scenario": "Asking for the way to the station", "scenarioRu": "Вопрос о дороге к вокзалу",
+      "prompt": "Choose the natural request and acknowledgement.", "instructionRu": "Выберите естественный вопрос и благодарность за ответ.",
+      "stimulus": "Sie suchen den Bahnhof. Eine Person kann Ihnen helfen. Was sagen Sie?",
+      "answer": "Entschuldigung, wo ist der Bahnhof? — Geradeaus und dann links. — Vielen Dank!",
+      "distractors": [
+        {"text": "Entschuldigung, wann fährt der Zug? — Um neun Uhr. — Vielen Dank!", "reasonRu": "Диалог естественный, но спрашивает время отправления поезда, а не дорогу к вокзалу."},
+        {"text": "Entschuldigung, wo ist das Hotel? — Neben dem Park. — Vielen Dank!", "reasonRu": "Диалог запрашивает направление, но ведёт к гостинице, а не к нужному вокзалу."},
+        {"text": "Entschuldigung, ist der Bahnhof geöffnet? — Ja, bis zehn Uhr. — Vielen Dank!", "reasonRu": "Вопрос касается часов работы вокзала и не просит объяснить, как туда пройти."}
+      ],
+      "explanation": "The exchange politely asks where the station is, provides a direction, and closes with thanks.",
+      "explanationRu": "Диалог вежливо спрашивает, где вокзал, даёт направление и завершается благодарностью.",
+      "targetConstruct": "direction request followed by acknowledgement", "targetConstructRu": "просьба указать направление с последующей благодарностью",
+      "canDoRu": "Может спросить дорогу и поблагодарить за простой ответ."
+    },
+    {
+      "skill": "grammar", "format": "gap-fill",
+      "scenario": "Identifying your own bag", "scenarioRu": "Обозначение своей сумки",
+      "prompt": "Choose the possessive determiner for ich with the feminine noun Tasche.", "instructionRu": "Выберите притяжательный определитель для ich с существительным женского рода Tasche.",
+      "stimulus": "Ich heiße Lara. Das ist ______ Tasche.",
+      "answer": "meine",
+      "distractors": [
+        {"text": "deine", "reasonRu": "Deine относится к владельцу du, а говорящая обозначает собственную сумку."},
+        {"text": "sein", "reasonRu": "Sein обозначает принадлежность лицу er или es и не согласовано с Tasche в этой форме."},
+        {"text": "mein", "reasonRu": "Mein выражает нужного владельца, но с женским существительным Tasche в Nominativ требуется окончание -e."}
+      ],
+      "explanation": "The owner is ich, giving mein-, and feminine nominative Tasche requires meine.",
+      "explanationRu": "Владелец выражен ich, поэтому основа mein-, а женский Nominativ Tasche требует формы meine.",
+      "targetConstruct": "first-person possessive determiner with feminine nominative noun", "targetConstructRu": "притяжательный определитель первого лица с существительным женского рода в Nominativ",
+      "canDoRu": "Может обозначить принадлежность простого предмета."
+    },
+    {
+      "skill": "vocabulary", "format": "multiple-choice",
+      "scenario": "Naming an item of clothing", "scenarioRu": "Название предмета одежды",
+      "prompt": "Choose the clothing word that fits the description.", "instructionRu": "Выберите предмет одежды по описанию.",
+      "stimulus": "Ich trage sie an den Beinen. Sie ist blau und hat zwei Taschen. Das ist eine ______.",
+      "answer": "Hose",
+      "distractors": [
+        {"text": "Mütze", "reasonRu": "Mütze носят на голове, а не на ногах."},
+        {"text": "Jacke", "reasonRu": "Jacke носят на верхней части тела, а не на ногах."},
+        {"text": "Rock", "reasonRu": "Rock носят ниже талии, но у него нет двух отдельных штанин, указанных в описании."}
+      ],
+      "explanation": "A garment worn on the legs and commonly having pockets is a Hose.",
+      "explanationRu": "Предмет одежды для ног, часто с карманами, называется Hose.",
+      "targetConstruct": "basic clothing vocabulary: Hose", "targetConstructRu": "базовая лексика одежды: Hose",
+      "canDoRu": "Может назвать распространённый предмет одежды по простому описанию."
+    },
+    {
+      "skill": "reading", "format": "multiple-choice",
+      "scenario": "Reading a simple menu", "scenarioRu": "Чтение простого меню",
+      "prompt": "Choose the item that includes bread.", "instructionRu": "Выберите блюдо, в которое входит хлеб.",
+      "stimulus": "Tageskarte: Tomatensuppe mit Brot — 6 € · Salat mit Käse — 8 € · Apfelkuchen — 4 €",
+      "answer": "Tomatensuppe",
+      "distractors": [
+        {"text": "Salat", "reasonRu": "В меню салат подаётся с сыром, а хлеб для него не указан."},
+        {"text": "Apfelkuchen", "reasonRu": "Для яблочного пирога хлеб не указан."},
+        {"text": "Käse", "reasonRu": "Käse — компонент салата, а не отдельное блюдо с хлебом в этом меню."}
+      ],
+      "explanation": "The menu explicitly lists Tomatensuppe mit Brot.",
+      "explanationRu": "В меню прямо указано Tomatensuppe mit Brot.",
+      "targetConstruct": "matching a menu item to an explicitly included component", "targetConstructRu": "сопоставление блюда с явно указанным компонентом",
+      "canDoRu": "Может найти простую информацию о составе блюда в меню."
+    },
+    {
+      "skill": "pragmatics", "format": "multiple-choice",
+      "scenario": "Declining an invitation politely", "scenarioRu": "Вежливый отказ от приглашения",
+      "prompt": "Choose the brief reply that thanks the host and declines clearly.", "instructionRu": "Выберите краткий ответ, который благодарит и ясно отказывается.",
+      "stimulus": "— Kommst du am Samstag zu meiner Party? — ______",
+      "answer": "Danke für die Einladung. Leider kann ich am Samstag nicht.",
+      "distractors": [
+        {"text": "Danke für die Einladung. Ich antworte vielleicht im Sommer.", "reasonRu": "Ответ благодарит, но не даёт хозяину ясного решения по субботней вечеринке."},
+        {"text": "Am Samstag habe ich Zeit, aber ich sage weder ja noch nein.", "reasonRu": "Говорящий намеренно не принимает решения и поэтому не выполняет задачу ясного отказа."},
+        {"text": "Leider kann ich am Samstag nicht. Eine Einladung habe ich nicht bekommen.", "reasonRu": "Фраза отказывает, но противоречит самому факту только что полученного приглашения и не благодарит за него."}
+      ],
+      "explanation": "The response acknowledges the invitation and gives an unambiguous, polite inability to attend.",
+      "explanationRu": "Ответ благодарит за приглашение и вежливо, но однозначно сообщает о невозможности прийти.",
+      "targetConstruct": "polite invitation decline with thanks and clear unavailability", "targetConstructRu": "вежливый отказ от приглашения с благодарностью и ясным сообщением о невозможности прийти",
+      "canDoRu": "Может вежливо принять решение по простому приглашению."
+    },
+    {
+      "skill": "grammar", "format": "multiple-choice",
+      "scenario": "Placing the finite verb in second position", "scenarioRu": "Постановка личной формы глагола на вторую позицию",
+      "prompt": "Choose the sentence with standard verb-second word order.", "instructionRu": "Выберите предложение с нормативным порядком слов: глагол на второй позиции.",
+      "stimulus": "Der Satz beginnt mit der Zeitangabe „Heute“.",
+      "answer": "Heute fahre ich mit dem Bus zur Arbeit.",
+      "distractors": [
+        {"text": "Heute ich fahre mit dem Bus zur Arbeit.", "reasonRu": "После обстоятельства Heute личная форма fahre должна занимать вторую позицию перед подлежащим ich."},
+        {"text": "Heute mit dem Bus ich fahre zur Arbeit.", "reasonRu": "Личная форма отодвинута после нескольких компонентов и не находится на второй позиции."},
+        {"text": "Heute ich mit dem Bus zur Arbeit fahre.", "reasonRu": "Порядок с глаголом в конце не подходит для самостоятельного повествовательного предложения."}
+      ],
+      "explanation": "With Heute in first position, the finite verb fahre occupies the second position and ich follows it.",
+      "explanationRu": "Если Heute занимает первую позицию, личная форма fahre стоит второй, а подлежащее ich следует за ней.",
+      "targetConstruct": "verb-second order after a fronted time adverbial", "targetConstructRu": "порядок V2 после вынесенного обстоятельства времени",
+      "canDoRu": "Может построить простое повествовательное предложение с правильной второй позицией глагола."
+    },
+    {
+      "skill": "vocabulary", "format": "multiple-choice",
+      "scenario": "Naming rail transport", "scenarioRu": "Название железнодорожного транспорта",
+      "prompt": "Choose the means of transport described.", "instructionRu": "Выберите описанный вид транспорта.",
+      "stimulus": "Er fährt auf Schienen und hält am Bahnhof. Das ist ein ______.",
+      "answer": "Zug",
+      "distractors": [
+        {"text": "Fahrrad", "reasonRu": "Fahrrad едет по дороге или велосипедной дорожке и не останавливается на вокзале по расписанию."},
+        {"text": "Bus", "reasonRu": "Bus обычно едет по дороге и останавливается на остановке, а не движется по рельсам к вокзалу."},
+        {"text": "Flugzeug", "reasonRu": "Flugzeug летает и прибывает в аэропорт, а не движется по рельсам к вокзалу."}
+      ],
+      "explanation": "A vehicle that runs on rails and stops at a station is a Zug.",
+      "explanationRu": "Транспорт, который движется по рельсам и останавливается на вокзале, — Zug.",
+      "targetConstruct": "basic transport vocabulary: Zug", "targetConstructRu": "базовая транспортная лексика: Zug",
+      "canDoRu": "Может назвать распространённый вид транспорта по простому описанию."
+    },
+    {
+      "skill": "reading", "format": "multiple-choice",
+      "scenario": "Reading a simple ticket condition", "scenarioRu": "Чтение простого условия билета",
+      "prompt": "Choose the journey allowed by the ticket.", "instructionRu": "Выберите поездку, разрешённую этим билетом.",
+      "stimulus": "Tageskarte: heute bis 18 Uhr gültig · nur Regionalzüge · nicht im ICE",
+      "answer": "heute um 17 Uhr mit einem Regionalzug",
+      "distractors": [
+        {"text": "heute um 19 Uhr mit einem Regionalzug", "reasonRu": "Билет действует только до 18:00, поэтому поездка в 19:00 не разрешена."},
+        {"text": "heute um 17 Uhr mit dem ICE", "reasonRu": "Время подходит, но на билете прямо указано nicht im ICE."},
+        {"text": "morgen um 10 Uhr mit einem Regionalzug", "reasonRu": "Билет является Tageskarte на сегодня и не действует завтра."}
+      ],
+      "explanation": "A regional train at 17:00 satisfies both the time limit and the train-type restriction.",
+      "explanationRu": "Региональный поезд в 17:00 соответствует и временному ограничению, и допустимому типу поезда.",
+      "targetConstruct": "combining a day, time limit, and transport restriction", "targetConstructRu": "совмещение дня, ограничения времени и типа транспорта",
+      "canDoRu": "Может понять простое условие использования билета."
+    },
+    {
+      "skill": "pragmatics", "format": "multiple-choice",
+      "scenario": "Responding to thanks", "scenarioRu": "Ответ на благодарность",
+      "prompt": "Choose the natural brief response to thanks.", "instructionRu": "Выберите естественный краткий ответ на благодарность.",
+      "stimulus": "— Vielen Dank für Ihre Hilfe! — ______",
+      "answer": "Gern geschehen!",
+      "distractors": [
+        {"text": "Guten Appetit!", "reasonRu": "Guten Appetit желают перед едой, а не отвечают так на благодарность за помощь."},
+        {"text": "Wie viel kostet das?", "reasonRu": "Вопрос о цене не является ответом на благодарность."},
+        {"text": "Ich bin am Bahnhof.", "reasonRu": "Сообщение о местонахождении не завершает обмен благодарностью."}
+      ],
+      "explanation": "Gern geschehen is a standard friendly response to Vielen Dank.",
+      "explanationRu": "Gern geschehen — стандартный дружелюбный ответ на Vielen Dank.",
+      "targetConstruct": "conventional response to thanks", "targetConstructRu": "нормативный ответ на благодарность",
+      "canDoRu": "Может естественно ответить на простую благодарность."
+    },
+    {
+      "skill": "grammar", "format": "gap-fill",
+      "scenario": "Using a common plural noun", "scenarioRu": "Употребление распространённого существительного во множественном числе",
+      "prompt": "Choose the plural form required after zwei.", "instructionRu": "Выберите форму множественного числа после zwei.",
+      "stimulus": "Auf dem Tisch liegt ein Buch. Im Regal stehen zwei ______.",
+      "answer": "Bücher",
+      "distractors": [
+        {"text": "Buch", "reasonRu": "Buch — форма единственного числа, а после zwei требуется множественное."},
+        {"text": "Buche", "reasonRu": "Buche означает бук, дерево, и не является множественным числом слова Buch в этом значении."},
+        {"text": "Büchers", "reasonRu": "Формы Büchers в стандартном немецком склонении существительного Buch нет."}
+      ],
+      "explanation": "The plural of Buch is Bücher.",
+      "explanationRu": "Множественное число слова Buch — Bücher.",
+      "targetConstruct": "high-frequency irregular plural Buch–Bücher", "targetConstructRu": "частотное нерегулярное множественное число Buch–Bücher",
+      "canDoRu": "Может употребить распространённое существительное во множественном числе."
+    },
+    {
+      "skill": "vocabulary", "format": "multiple-choice",
+      "scenario": "Naming a healthcare job", "scenarioRu": "Название медицинской профессии",
+      "prompt": "Choose Frau Neumann’s job from the description.", "instructionRu": "Выберите профессию госпожи Нойман по описанию.",
+      "stimulus": "Frau Neumann arbeitet im Krankenhaus. Sie untersucht kranke Menschen und gibt ihnen Medikamente. Sie ist ______.",
+      "answer": "Ärztin",
+      "distractors": [
+        {"text": "Lehrerin", "reasonRu": "Lehrerin преподаёт, обычно в школе, а не обследует пациентов и назначает лекарства."},
+        {"text": "Verkäuferin", "reasonRu": "Verkäuferin продаёт товары и не соответствует описанным медицинским обязанностям."},
+        {"text": "Köchin", "reasonRu": "Köchin готовит еду, а не обследует больных и не назначает им лекарства."}
+      ],
+      "explanation": "A woman who examines ill people and gives medical treatment is an Ärztin.",
+      "explanationRu": "Женщина, которая обследует больных и назначает лечение, — Ärztin.",
+      "targetConstruct": "basic profession vocabulary: Ärztin", "targetConstructRu": "базовая лексика профессий: Ärztin",
+      "canDoRu": "Может определить распространённую профессию по простому описанию работы."
+    },
+    {
+      "skill": "reading", "format": "multiple-choice",
+      "scenario": "Reading a personal profile", "scenarioRu": "Чтение личного профиля",
+      "prompt": "Choose the statement that matches the profile.", "instructionRu": "Выберите утверждение, соответствующее профилю.",
+      "stimulus": "Ich heiße Nora, bin 28 Jahre alt und wohne in Hamburg. Ich arbeite als Lehrerin. Am Wochenende spiele ich gern Tennis.",
+      "answer": "Nora ist 28, lebt in Hamburg und arbeitet als Lehrerin.",
+      "distractors": [
+        {"text": "Nora ist 38 und arbeitet als Ärztin in Berlin.", "reasonRu": "Возраст, профессия и город противоречат профилю."},
+        {"text": "Nora wohnt in Hamburg und spielt jeden Arbeitstag Tennis.", "reasonRu": "Город верен, но теннис указан как занятие по выходным, а не каждый рабочий день."},
+        {"text": "Nora ist Lehrerin, aber ihr Alter und ihr Wohnort stehen nicht im Text.", "reasonRu": "В профиле прямо указаны 28 лет и Гамбург."}
+      ],
+      "explanation": "The profile explicitly gives Nora’s age, city, and profession.",
+      "explanationRu": "Профиль прямо сообщает возраст Норы, город и профессию.",
+      "targetConstruct": "integrating three explicit facts from a short profile", "targetConstructRu": "объединение трёх явных фактов из короткого профиля",
+      "canDoRu": "Может понять основные сведения короткого личного профиля."
+    },
+    {
+      "skill": "pragmatics", "format": "multiple-choice",
+      "scenario": "Leaving a callback message", "scenarioRu": "Сообщение с просьбой перезвонить",
+      "prompt": "Choose the phone message that gives a name and a clear callback request.", "instructionRu": "Выберите телефонное сообщение, содержащее имя и ясную просьбу перезвонить.",
+      "stimulus": "Herr Klein ist nicht da. Sie möchten, dass er Sie anruft. Was sagen Sie?",
+      "answer": "Guten Tag, hier ist Sara Wolf. Kann Herr Klein mich bitte zurückrufen?",
+      "distractors": [
+        {"text": "Guten Tag, hier ist Sara Wolf. Herr Klein soll mich bitte nicht anrufen.", "reasonRu": "Сообщение называет звонящую, но прямо отменяет требуемый обратный звонок."},
+        {"text": "Kann Herr Klein mich bitte zurückrufen? Meinen Namen nenne ich nicht.", "reasonRu": "Просьба перезвонить есть, однако без имени господин Кляйн не знает, кому именно звонить."},
+        {"text": "Guten Tag, ich bin Sara Wolf. Wann kommt Herr Klein wieder ins Büro?", "reasonRu": "Звонящая представляется, но спрашивает о возвращении и не оставляет просьбу перезвонить."}
+      ],
+      "explanation": "The message identifies the caller and politely asks Herr Klein to call back.",
+      "explanationRu": "Сообщение называет звонящего и вежливо просит господина Кляйна перезвонить.",
+      "targetConstruct": "simple phone identification plus callback request", "targetConstructRu": "простое представление по телефону и просьба перезвонить",
+      "canDoRu": "Может оставить короткое понятное сообщение с просьбой перезвонить."
+    },
+    {
+      "skill": "grammar", "format": "gap-fill",
+      "scenario": "Asking when a course starts", "scenarioRu": "Вопрос о времени начала курса",
+      "prompt": "Choose the question word that asks for a time.", "instructionRu": "Выберите вопросительное слово для запроса времени.",
+      "stimulus": "— ______ beginnt der Kurs? — Um neun Uhr.",
+      "answer": "Wann",
+      "distractors": [
+        {"text": "Wer", "reasonRu": "Wer спрашивает о человеке, а ответ сообщает время."},
+        {"text": "Wo", "reasonRu": "Wo спрашивает о месте, а Um neun Uhr отвечает на вопрос когда."},
+        {"text": "Was", "reasonRu": "Was спрашивает о предмете или действии, а здесь требуется время начала."}
+      ],
+      "explanation": "Wann asks when something happens and matches the answer Um neun Uhr.",
+      "explanationRu": "Wann спрашивает, когда происходит событие, и соответствует ответу Um neun Uhr.",
+      "targetConstruct": "basic temporal question word wann", "targetConstructRu": "базовое вопросительное слово времени wann",
+      "canDoRu": "Может задать простой вопрос о времени события."
+    },
+    {
+      "skill": "vocabulary", "format": "multiple-choice",
+      "scenario": "Naming a daily morning action", "scenarioRu": "Название ежедневного утреннего действия",
+      "prompt": "Choose the daily-routine verb described.", "instructionRu": "Выберите глагол повседневного действия по описанию.",
+      "stimulus": "Jeden Morgen verlasse ich um sieben Uhr mein Bett. Ich muss um sieben Uhr ______.",
+      "answer": "aufstehen",
+      "distractors": [
+        {"text": "einkaufen", "reasonRu": "Einkaufen означает делать покупки, а не покидать кровать утром."},
+        {"text": "anrufen", "reasonRu": "Anrufen означает звонить кому-либо и не соответствует описанию подъёма."},
+        {"text": "kochen", "reasonRu": "Kochen означает готовить еду; это действие не выражает выход из кровати."}
+      ],
+      "explanation": "Aufstehen means getting up or leaving bed.",
+      "explanationRu": "Aufstehen означает вставать, то есть покидать кровать.",
+      "targetConstruct": "basic daily-routine vocabulary: aufstehen", "targetConstructRu": "базовая лексика распорядка дня: aufstehen",
+      "canDoRu": "Может назвать распространённое действие утреннего распорядка."
+    },
+    {
+      "skill": "reading", "format": "multiple-choice",
+      "scenario": "Following two everyday errands", "scenarioRu": "Понимание последовательности двух бытовых поручений",
+      "prompt": "Choose the order in which the errands should be done.", "instructionRu": "Выберите порядок выполнения поручений.",
+      "stimulus": "Bitte geh zuerst zur Apotheke und hol meine Medikamente. Kauf danach in der Bäckerei ein Brot.",
+      "answer": "Zuerst Medikamente holen, danach Brot kaufen.",
+      "distractors": [
+        {"text": "Zuerst Brot kaufen, danach Medikamente holen.", "reasonRu": "Вариант меняет порядок: zuerst относится к аптеке и лекарствам."},
+        {"text": "Nur Brot kaufen und nicht zur Apotheke gehen.", "reasonRu": "Поручение включает и аптеку, и пекарню."},
+        {"text": "Zuerst zur Schule gehen und danach Kaffee trinken.", "reasonRu": "Школа и кофе в записке не упоминаются."}
+      ],
+      "explanation": "Zuerst assigns the pharmacy task first, and danach assigns the bakery task second.",
+      "explanationRu": "Zuerst ставит аптеку и лекарства первым действием, а danach — покупку хлеба вторым.",
+      "targetConstruct": "ordering two explicit errands from sequencing markers", "targetConstructRu": "упорядочивание двух явных поручений по маркерам последовательности",
+      "canDoRu": "Может выполнить два простых поручения в указанном порядке."
+    }
+  ]
+}

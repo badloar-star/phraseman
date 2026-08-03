@@ -304,7 +304,18 @@ describe('AI publication lifecycle gate', () => {
     expect(canPublishTournamentTask({
       ...approved,
       mode: 'translate_build',
-      payload: { phrase: 'Я здесь', wordBank: ['I', 'am', 'here'], correctTokens: ['I', 'am', 'here'] },
+      // зачем 2026-08-03: строгий контракт translate_build (tournament_core)
+      // требует correctTokenCount И ровно ОДНУ ловушку в wordBank — клиент
+      // обязан знать число плиток ответа, а лишнее слово делает задание
+      // осмысленным. Фикстура писалась до этого правила (wordBank совпадал с
+      // ответом = ноль ловушек); боевой пул контракту соответствует —
+      // проверено 200/200 заданий, у всех ровно 1 ловушка.
+      payload: {
+        phrase: 'Я здесь',
+        wordBank: ['I', 'am', 'here', 'there'],
+        correctTokens: ['I', 'am', 'here'],
+        correctTokenCount: 3,
+      },
       explanation: {
         ruleNote: 'Здесь нужна связка I am и наречие here.',
         example: 'I am here now. — Я сейчас здесь.',

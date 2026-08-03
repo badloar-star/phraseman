@@ -11,10 +11,8 @@ const indexSource = fs.readFileSync(path.join(surface, 'index.html'), 'utf8');
 
 function loadI18n(): any {
   const sandbox: Record<string, unknown> = {};
-  for (const filename of ['i18n.locales.js', 'i18n.js']) {
-    const absolute = path.join(surface, filename);
-    vm.runInNewContext(fs.readFileSync(absolute, 'utf8'), sandbox, { filename: absolute });
-  }
+  const absolute = path.join(surface, 'i18n.js');
+  vm.runInNewContext(fs.readFileSync(absolute, 'utf8'), sandbox, { filename: absolute });
   return sandbox.EnglishTestI18n;
 }
 
@@ -43,16 +41,23 @@ function contrast(foreground: string, background: string): number {
 }
 
 describe('English level test full UI audit contract', () => {
-  test('localizes the visible question context and instruction for all six UI languages', () => {
+  test('reduced motion removes delayed invisible animation states', () => {
+    const reducedMotion = cssSource.match(
+      /@media \(prefers-reduced-motion: reduce\)\s*\{\s*\*, \*::before, \*::after\s*\{([^}]+)\}/,
+    );
+    expect(reducedMotion).not.toBeNull();
+    expect(reducedMotion?.[1]).toContain('animation-delay: 0s !important');
+  });
+
+  test('localizes the visible question context and instruction for Russian and English', () => {
     const i18n = loadI18n();
+    expect(Array.from(i18n.UI_LOCALES)).toEqual(['ru', 'en']);
     for (const locale of i18n.UI_LOCALES) {
       expect(i18n.t(locale, 'question.context')).toEqual(expect.any(String));
       expect(i18n.t(locale, 'question.contextInstruction')).toEqual(expect.any(String));
     }
-    expect(i18n.t('de', 'question.contextInstruction')).toBe('Wähle die einzige Antwort, die zum Kontext passt.');
-    expect(i18n.t('es', 'question.context')).toBe('Contexto');
-    expect(i18n.t('it', 'question.context')).toBe('Contesto');
-    expect(i18n.t('fr', 'question.context')).toBe('Contexte');
+    expect(i18n.t('en', 'question.context')).toBe('Context');
+    expect(i18n.t('ru', 'question.context')).toBe('Контекст');
     expect(appSource).toContain("copy('question.contextInstruction')");
   });
 
@@ -108,10 +113,10 @@ describe('English level test full UI audit contract', () => {
     expect(appSource).toContain("url.searchParams.set('ui', uiLocale)");
   });
 
-  test('fully localizes Italian navigation and natural Spanish score summaries', () => {
+  test('fully localizes Russian navigation and English score summaries', () => {
     const i18n = loadI18n();
-    expect(i18n.t('it', 'header.brandHomeAria')).toBe('Phraseman — pagina iniziale');
-    expect(i18n.t('es', 'certificate.summary', { correct: 8, answered: 12 })).toBe('8 de 12 respuestas correctas');
+    expect(i18n.t('ru', 'header.brandHomeAria')).toBe('Phraseman — на главную');
+    expect(i18n.t('en', 'certificate.summary', { correct: 8, answered: 12 })).toBe('8 correct out of 12');
   });
 
   test('exposes certificate theme state and safely handles blocked popup windows', () => {
@@ -136,7 +141,7 @@ describe('English level test full UI audit contract', () => {
     expect(indexSource).toContain('Discover your language level and get a personal result.');
     expect(indexSource).not.toContain('<meta name="description" content="Бесплатная');
   });
-  test('offers the in-test error report form in all six interface languages', () => {
+  test('offers the in-test error report form in Russian and English', () => {
     const i18n = loadI18n();
     for (const locale of i18n.UI_LOCALES) {
       expect(i18n.t(locale, 'report.trigger')).not.toBe('report.trigger');
@@ -146,10 +151,7 @@ describe('English level test full UI audit contract', () => {
       expect(i18n.t(locale, 'report.successTitle')).not.toBe('report.successTitle');
     }
     expect(i18n.t('ru', 'report.trigger')).toBe('Заметили ошибку?');
-    expect(i18n.t('de', 'report.trigger')).toBe('Fehler entdeckt?');
-    expect(i18n.t('es', 'report.trigger')).toBe('¿Has visto un error?');
-    expect(i18n.t('it', 'report.trigger')).toBe('Hai notato un errore?');
-    expect(i18n.t('fr', 'report.trigger')).toBe('Vous avez remarqué une erreur ?');
+    expect(i18n.t('en', 'report.trigger')).toBe('Noticed an error?');
   });
 
   test('keeps the report trigger at the bottom of active tests and submits only to the same-origin API', () => {

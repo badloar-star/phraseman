@@ -14,10 +14,8 @@
   const STORE_URL_ANDROID = 'https://play.google.com/store/apps/details?id=app.phraseman';
   const STORE_URL_DESKTOP = '/download/';
 
-  // зачем: владелец 2026-08-01/02 — общий счётчик "X учеников" был одним
-  // числом на все 5 языков и включал легаси-базу 124000 для английского
-  // (историческая точка ДО введения счётчика) — обе вещи нечестные. Все
-  // языки честно с 0, реальные завершения хранит сервер. Держим базу в паре
+  // зачем: после карантина языковых тестов публичный счётчик относится только
+  // к английскому тесту. Реальные завершения хранит сервер. Держим базу в паре
   // с сервером (functions-english-test/completion_counter.js BASELINE_COMPLETED_BY_LANGUAGE).
   const SOCIAL_PROOF_BASELINE_BY_LANGUAGE = { en: 0, de: 0, fr: 0, it: 0, es: 0 };
   function socialProofBaseline(language) {
@@ -323,7 +321,9 @@
       bankVersion,
       attemptToken,
       dataText: buildReportQuestionText(q, displayedQuestion),
-      userAnswer: selectedAnswerIndex >= 0 ? q.options[selectedAnswerIndex] : '',
+      userAnswer: Number.isInteger(selectedAnswerIndex) && selectedAnswerIndex >= 0
+        ? q.options[selectedAnswerIndex]
+        : '',
     });
     const modal = el(`
       <div class="elt-report-modal" role="dialog" aria-modal="true" aria-labelledby="reportTitle" aria-describedby="reportSubtitle">
@@ -440,13 +440,11 @@
     return COMPLETION_PENDING_PREFIX + completionId;
   }
 
-  // зачем: очередь хранит язык вместе с completionId, чтобы count_complete,
-  // отправленный ПОЗЖЕ (после релоада/восстановления сети), считал завершение
-  // в счётчик ТОГО языка, на котором тест реально проходили, а не текущего
-  // selectedTestLanguage на лендинге в момент флаша. Легаси-значение '1'
-  // (записанное до этой правки) — единственный язык, который тогда существовал.
+  // Legacy array entries predate multilingual tests and are known-English.
+  // Explicit keyed entries keep their stored language so quarantined language
+  // completions can be discarded instead of corrupting the English counter.
   function normalizeCompletionLanguage(value) {
-    return isAllowedTestLanguage(value) ? value : 'en';
+    return hasI18n && EnglishTestI18n.TEST_LANGUAGES.includes(value) ? value : null;
   }
 
   function migrateLegacyCompletionOutbox() {
@@ -485,15 +483,25 @@
   function pendingCompletions() {
     migrateLegacyCompletionOutbox();
     const pending = new Map(
-      [...completionMemoryOutbox].filter(([completionId]) => !acceptedCompletionIds.has(completionId)),
+      [...completionMemoryOutbox].filter(([completionId, language]) => (
+        normalizeCompletionLanguage(language) !== null && !acceptedCompletionIds.has(completionId)
+      )),
     );
     try {
+      const storedKeys = [];
       for (let index = 0; index < localStorage.length; index += 1) {
         const key = localStorage.key(index);
-        if (typeof key !== 'string' || !key.startsWith(COMPLETION_PENDING_PREFIX)) continue;
+        if (typeof key === 'string' && key.startsWith(COMPLETION_PENDING_PREFIX)) storedKeys.push(key);
+      }
+      for (const key of storedKeys) {
         const completionId = key.slice(COMPLETION_PENDING_PREFIX.length);
         if (COMPLETION_ID_PATTERN.test(completionId) && !acceptedCompletionIds.has(completionId)) {
-          pending.set(completionId, normalizeCompletionLanguage(localStorage.getItem(key)));
+          const language = normalizeCompletionLanguage(localStorage.getItem(key));
+          if (language) {
+            pending.set(completionId, language);
+          } else {
+            localStorage.removeItem(key);
+          }
         }
       }
     } catch (e) {
@@ -510,6 +518,7 @@
     if (typeof completionId !== 'string' || !COMPLETION_ID_PATTERN.test(completionId)) return false;
     if (acceptedCompletionIds.has(completionId)) return false;
     const language = normalizeCompletionLanguage(testLanguage);
+    if (!language) return false;
     migrateLegacyCompletionOutbox();
     completionMemoryOutbox.set(completionId, language);
     try {
@@ -592,8 +601,7 @@
 
   // зачем: владельцу мешала двухфазная анимация счётчика — сначала докрутка до
   // заглушки, пауза, потом второй прогон до серверного числа. Храним последнее
-  // реальное значение ПО КАЖДОМУ ЯЗЫКУ и целимся сразу в него: один плавный
-  // заход, без «прыжка» на число другого языка при переключении на лендинге.
+  // реальное значение и целимся сразу в него: один плавный заход без скачка.
   const COMPLETED_CACHE_KEY = 'english_test_completed_cache_by_language_v1';
   let bestCompletedByLanguage = { ...SOCIAL_PROOF_BASELINE_BY_LANGUAGE };
   let completedFetchedAt = 0;

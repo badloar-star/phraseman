@@ -36,7 +36,7 @@ test("level-test assets use one release stamp and bank URLs use each bankVersion
   const clientDir = path.join(__dirname, "..", "knowly-www", "english-level-test");
   const html = fs.readFileSync(path.join(clientDir, "index.html"), "utf8");
   const i18n = fs.readFileSync(path.join(clientDir, "i18n.js"), "utf8");
-  const releaseStamp = "20260802-2";
+  const releaseStamp = "20260803-1";
   for (const asset of ["styles.css", "engine.js", "i18n.locales.js", "i18n.js", "certificate.js", "app.js"]) {
     assert.match(html, new RegExp(`\\./${asset.replaceAll('.', '\\.') }\\?v=${releaseStamp}`));
   }

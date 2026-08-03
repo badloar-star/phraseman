@@ -1,0 +1,1169 @@
+{
+  "schemaVersion": 1,
+  "language": "it",
+  "level": "C1",
+  "status": "authoring",
+  "publishable": false,
+  "items": [
+    {
+      "skill": "vocabulary",
+      "format": "multiple-choice",
+      "scenario": "Defining institutional accountability",
+      "scenarioRu": "Определение институциональной подотчётности",
+      "prompt": "Choose the expression for the obligation to explain decisions and answer for their consequences.",
+      "instructionRu": "Выберите выражение для обязанности объяснять решения и отвечать за их последствия.",
+      "stimulus": "La direzione deve motivare le decisioni, rendere verificabili i criteri usati e rispondere delle conseguenze davanti all'organo di controllo. Si tratta dell'______.",
+      "answer": "obbligo di rendere conto",
+      "distractors": [
+        {
+          "text": "semplice trasparenza informativa",
+          "reasonRu": "Прозрачность охватывает доступность информации, но не обязательно обязанность отвечать за последствия."
+        },
+        {
+          "text": "responsabilità operativa senza spiegazioni",
+          "reasonRu": "Операционная ответственность может закреплять задачи, но формулировка прямо исключает требуемое объяснение решений."
+        },
+        {
+          "text": "riservatezza delle decisioni",
+          "reasonRu": "Riservatezza ограничивает раскрытие информации и противоположна проверяемому обоснованию перед контролем."
+        }
+      ],
+      "explanation": "Obbligo di rendere conto combines explanation, answerability, and consequence ownership, which is broader than transparency alone.",
+      "explanationRu": "Obbligo di rendere conto объединяет объяснение, обязанность отвечать и принятие последствий, что шире одной прозрачности.",
+      "targetConstruct": "institutional distinction among accountability, operational responsibility, answerability, and transparency",
+      "targetConstructRu": "институциональное различение подотчётности, операционной ответственности, обязанности отвечать и прозрачности",
+      "canDoRu": "Может точно назвать обязанность института объяснять решения и отвечать за последствия."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Recovering a qualified thesis",
+      "scenarioRu": "Восстановление квалифицированного тезиса",
+      "prompt": "Choose the formulation that captures the author's overall position and its limitation.",
+      "instructionRu": "Выберите формулировку, передающую общую позицию автора и её ограничение.",
+      "stimulus": "Sarebbe semplicistico considerare ogni standard una minaccia al giudizio professionale. Requisiti minimi ben progettati possono rendere visibili le situazioni in cui una deviazione è davvero necessaria. È vero che alcuni protocolli finiscono per irrigidire il lavoro; ciò non dimostra però che lo standard sia inutile. Uno standard efficace non sostituisce il giudizio: obbliga a motivare le eccezioni.",
+      "answer": "Standard utili rendono motivate le eccezioni senza abolire il giudizio.",
+      "distractors": [
+        {
+          "text": "Ogni standard elimina necessariamente il giudizio professionale.",
+          "reasonRu": "Именно это безусловное утверждение автор считает упрощённым."
+        },
+        {
+          "text": "Poiché alcuni protocolli sono rigidi, tutti i requisiti minimi vanno aboliti.",
+          "reasonRu": "Автор отделяет дефект отдельных протоколов от полезности стандартов вообще."
+        },
+        {
+          "text": "Il giudizio è legittimo solo quando non devia mai dallo standard.",
+          "reasonRu": "Отклонения допускаются, если они мотивированы."
+        }
+      ],
+      "explanation": "The text supports standards as scaffolding for accountable exceptions while conceding that rigid implementations can restrict judgement.",
+      "explanationRu": "Текст поддерживает стандарты как основу для обоснованных исключений, признавая, что жёсткая реализация может ограничивать суждение.",
+      "targetConstruct": "qualified thesis recovery across concession, distinction, and final reformulation",
+      "targetConstructRu": "восстановление квалифицированного тезиса через уступку, различение и финальную переформулировку",
+      "canDoRu": "Может восстановить позицию автора, распределённую между уступкой и итоговым уточнением."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "Reframing a polarised staffing dispute",
+      "scenarioRu": "Переформулирование поляризованного спора о персонале",
+      "prompt": "Choose the response that identifies shared criteria and testable options.",
+      "instructionRu": "Выберите ответ, который выделяет общие критерии и проверяемые варианты.",
+      "stimulus": "Un gruppo sostiene: «Serve assumere subito altro personale». L'altro replica: «Il personale attuale basta; il problema è solo l'organizzazione». Entrambi vogliono ridurre ritardi ed errori, ma discutono per etichette.",
+      "answer": "Obiettivo comune; misurare carico e tempi, testando un'altra organizzazione.",
+      "distractors": [
+        {
+          "text": "Decidiamo quale gruppo è più competente senza misurare il lavoro.",
+          "reasonRu": "Ответ переводит спор на статус участников и не проверяет ни одну причинную гипотезу."
+        },
+        {
+          "text": "Assumiamo subito e consideriamo falsa per definizione ogni spiegazione organizzativa.",
+          "reasonRu": "Реплика выбирает одну сторону до проверки общего критерия."
+        },
+        {
+          "text": "Non assumiamo mai e vietiamo qualsiasi cambiamento organizzativo.",
+          "reasonRu": "Ответ одновременно закрывает оба проверяемых пути и не решает общую цель."
+        }
+      ],
+      "explanation": "The response replaces identity positions with shared outcomes, distinct causal hypotheses, comparable measures, and a bounded organisational test.",
+      "explanationRu": "Ответ заменяет позиционные ярлыки общей целью, отдельными причинными гипотезами, сопоставимыми показателями и ограниченным тестом организации.",
+      "targetConstruct": "polarisation repair through shared criteria, separated hypotheses, measurement, and bounded test",
+      "targetConstructRu": "снятие поляризации через общие критерии, разделённые гипотезы, измерение и ограниченный тест",
+      "canDoRu": "Может превратить позиционный спор в проверку конкретных объяснений."
+    },
+    {
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "scenario": "Reporting a counterfactual past decision",
+      "scenarioRu": "Передача контрфактического прошлого решения",
+      "prompt": "Choose the sentence with coherent reported perspective and anteriority.",
+      "instructionRu": "Выберите предложение с согласованной косвенной перспективой и предшествованием.",
+      "stimulus": "La testimone disse: «Se mi avessero informata prima, avrei votato diversamente». Il verbale riferisce la sua affermazione senza confermarla.",
+      "answer": "Disse che, se informata prima, avrebbe votato diversamente.",
+      "distractors": [
+        {
+          "text": "La testimone disse che, se la informavano prima, voterà diversamente.",
+          "reasonRu": "Imperfetto indicativo и futuro не сохраняют контрфактическое прошлое."
+        },
+        {
+          "text": "La testimone disse che, se l'avrebbero informata, avesse votato diversamente.",
+          "reasonRu": "Condizionale и congiuntivo поменяны местами: условию нужен trapassato congiuntivo, следствию condizionale passato."
+        },
+        {
+          "text": "La testimone disse che era stata informata e aveva votato diversamente.",
+          "reasonRu": "Вариант превращает нереализованное условие в подтверждённый факт."
+        }
+      ],
+      "explanation": "The embedded counterfactual preserves congiuntivo trapassato in the condition and condizionale passato in the result.",
+      "explanationRu": "Вложенная контрфактическая конструкция сохраняет congiuntivo trapassato в условии и condizionale passato в результате.",
+      "targetConstruct": "counterfactual anteriority under past reported perspective",
+      "targetConstructRu": "контрфактическое предшествование внутри прошлой косвенной перспективы",
+      "canDoRu": "Может точно передать чужое контрфактическое рассуждение о прошлом."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Assessing causal evidence",
+      "scenarioRu": "Оценка причинных данных",
+      "prompt": "Which conclusion is best supported by the design?",
+      "instructionRu": "Какой вывод лучше всего поддерживается дизайном?",
+      "stimulus": "Duecento pratiche comparabili sono state assegnate casualmente al vecchio o al nuovo modulo. Gli operatori hanno ricevuto la stessa formazione e non sapevano quale ipotesi fosse favorita. Il nuovo modulo ha ridotto il tempo medio senza aumentare gli errori. Una variazione stagionale ha interessato entrambi i gruppi nello stesso periodo.",
+      "answer": "Assegnazione casuale sostiene un contributo causale del modulo.",
+      "distractors": [
+        {
+          "text": "La sola successione temporale dimostra la causalità, indipendentemente dall'assegnazione.",
+          "reasonRu": "Доказательная сила исходит не просто из времени, а из случайного сопоставимого сравнения."
+        },
+        {
+          "text": "La stagione spiega necessariamente tutta la differenza, pur avendo colpito entrambi i gruppi.",
+          "reasonRu": "Общий сезонный фактор не объясняет различие между группами в одном периоде."
+        },
+        {
+          "text": "Lo studio non contiene alcuna informazione causale perché ogni confronto è sempre soltanto correlazione.",
+          "reasonRu": "Случайное распределение специально усиливает причинную интерпретацию в рамках исследования."
+        }
+      ],
+      "explanation": "Random assignment, matched training, and concurrent comparison reduce major alternatives; the conclusion remains bounded to the study context.",
+      "explanationRu": "Случайное распределение, одинаковое обучение и одновременное сравнение уменьшают основные альтернативы; вывод остаётся ограниченным условиями исследования.",
+      "targetConstruct": "causal inference from random assignment, controlled conditions, and bounded scope",
+      "targetConstructRu": "причинный вывод по случайному распределению, контролируемым условиям и ограниченной области",
+      "canDoRu": "Может отличить сильные причинные данные от простой временной последовательности."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "Refusing retrospective approval",
+      "scenarioRu": "Отказ в заднем одобрении",
+      "prompt": "Choose the refusal that preserves the record and offers a lawful repair path.",
+      "instructionRu": "Выберите отказ, который сохраняет достоверность записи и предлагает законный путь исправления.",
+      "stimulus": "Un collega chiede di firmare oggi un'autorizzazione con la data della settimana scorsa, quando il lavoro era già iniziato senza approvazione. È possibile fare una ratifica trasparente con la data reale e una verifica aggiuntiva.",
+      "answer": "No retrodatazione: ratifica oggi e verifica aggiuntiva.",
+      "distractors": [
+        {
+          "text": "Retrodatto la firma, purché nessuno controlli il registro.",
+          "reasonRu": "Ответ сознательно создаёт ложную запись и зависит от сокрытия."
+        },
+        {
+          "text": "Cancello ogni documento relativo al lavoro già svolto.",
+          "reasonRu": "Удаление уничтожает доказательную цепочку вместо прозрачного исправления."
+        },
+        {
+          "text": "Rifiuto qualsiasi soluzione, anche la ratifica lecita con data reale.",
+          "reasonRu": "Такой абсолютный отказ не использует доступный законный путь ремонта."
+        }
+      ],
+      "explanation": "The response refuses false dating, preserves the actual sequence, and uses a transparent ratification with required safeguards.",
+      "explanationRu": "Ответ отвергает ложную дату, сохраняет реальную последовательность и использует прозрачную ратификацию с гарантиями.",
+      "targetConstruct": "retrospective-approval refusal with truthful record, transparent ratification, and safeguard",
+      "targetConstructRu": "отказ в заднем одобрении с правдивой записью, прозрачной ратификацией и гарантией",
+      "canDoRu": "Может отказать в искажении записи и предложить законное исправление."
+    },
+    {
+      "skill": "vocabulary",
+      "format": "multiple-choice",
+      "scenario": "Identifying a limited concession",
+      "scenarioRu": "Определение ограниченной уступки",
+      "prompt": "Which term best describes the author's move?",
+      "instructionRu": "Какой термин лучше всего описывает ход автора?",
+      "stimulus": "L'autrice riconosce che l'obiezione è valida in un caso ristretto, ma sostiene che non modifica la tesi generale.",
+      "answer": "L'autrice fa una concessione limitata all'obiezione.",
+      "distractors": [
+        {
+          "text": "Ritira completamente la tesi.",
+          "reasonRu": "Общий тезис прямо сохраняется, признаётся только узкий случай."
+        },
+        {
+          "text": "Formula una riserva sulla propria disponibilità futura.",
+          "reasonRu": "Речь идёт о логической силе возражения, а не о личной доступности."
+        },
+        {
+          "text": "Ammette che ogni parte dell'obiezione è definitivamente provata.",
+          "reasonRu": "Признание ограничено одним случаем и не распространяется на всё возражение."
+        }
+      ],
+      "explanation": "A limited concession grants a bounded point without abandoning the broader thesis.",
+      "explanationRu": "Ограниченная уступка признаёт узкий пункт, не отказываясь от более общего тезиса.",
+      "targetConstruct": "distinction among concession, reservation, qualification, admission, and withdrawal",
+      "targetConstructRu": "различение уступки, оговорки, квалификации, признания и отзыва тезиса",
+      "canDoRu": "Может точно определить, насколько автор уступает оппоненту."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Resolving abstract nominal reference",
+      "scenarioRu": "Разрешение абстрактной именной отсылки",
+      "prompt": "What does tale omission refer to?",
+      "instructionRu": "К чему относится tale omissione?",
+      "stimulus": "L'ufficio ha pubblicato i criteri usati per selezionare i progetti, ma non ha indicato come fossero stati ponderati. Questa informazione era essenziale per capire perché due proposte simili avessero ricevuto esiti diversi. Tale omissione non rende falsi i criteri pubblicati, ma impedisce di ricostruire la decisione.",
+      "answer": "Alla mancata indicazione del peso attribuito ai diversi criteri.",
+      "distractors": [
+        {
+          "text": "Alla pubblicazione dei criteri stessi, che erano stati resi accessibili e correttamente descritti dall’ufficio prima della selezione dei progetti.",
+          "reasonRu": "Публикация состоялась; omissione касается недостающего способа взвешивания."
+        },
+        {
+          "text": "Alla falsità ormai dimostrata di tutti i criteri pubblicati, che secondo il testo non avrebbero avuto alcun rapporto con le decisioni effettivamente prese.",
+          "reasonRu": "Текст прямо говорит, что пропуск не делает опубликованные критерии ложными."
+        },
+        {
+          "text": "Alla somiglianza tra le due proposte.",
+          "reasonRu": "Сходство создаёт вопрос, но не является пропущенной информацией."
+        }
+      ],
+      "explanation": "The demonstrative nominal points back to the missing weighting method, the immediately identified essential information.",
+      "explanationRu": "Указательная именная группа отсылает к отсутствующему способу взвешивания — только что названной существенной информации.",
+      "targetConstruct": "abstract nominal-reference resolution across administrative discourse",
+      "targetConstructRu": "разрешение абстрактной именной отсылки в административном дискурсе",
+      "canDoRu": "Может точно восстановить абстрактный референт между предложениями."
+    },
+    {
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "scenario": "Reporting a doubted earlier claim",
+      "scenarioRu": "Передача сомнительного более раннего утверждения",
+      "prompt": "Choose the sentence with coherent mood and temporal layering.",
+      "instructionRu": "Выберите предложение с согласованным наклонением и временными слоями.",
+      "stimulus": "Il direttore negò di aver saputo prima della riunione che il fornitore avesse già ritirato l'offerta. L'autrice del rapporto dubita della sua negazione.",
+      "answer": "L'autrice dubita che il direttore abbia detto la verità quando negò di sapere che il fornitore avesse già ritirato l'offerta.",
+      "distractors": [
+        {
+          "text": "L'autrice dubita che il direttore ha detto la verità quando negava che il fornitore ritira domani l'offerta.",
+          "reasonRu": "После dubita che нужен congiuntivo, а domani и настоящее разрушают предшествующее прошлое."
+        },
+        {
+          "text": "L'autrice è certa che il direttore dicesse la verità e che l'offerta non fosse mai esistita.",
+          "reasonRu": "Вариант меняет сомнение на уверенность и добавляет отсутствие оферты, которого нет."
+        },
+        {
+          "text": "Il direttore dubita l'autrice che avrebbe ritirando l'offerta.",
+          "reasonRu": "Роли, управление и глагольная форма ненормативны."
+        }
+      ],
+      "explanation": "Abbia detto is governed by present doubt; negò anchors the past denial; avesse ritirato marks the supplier's still earlier completed action.",
+      "explanationRu": "Abbia detto зависит от нынешнего сомнения; negò задаёт прошлое отрицание; avesse ritirato обозначает ещё более раннее завершённое действие поставщика.",
+      "targetConstruct": "deep indirect-speech mood control with present evaluation, past report, and prior completed event",
+      "targetConstructRu": "контроль наклонения в глубокой косвенной речи с нынешней оценкой, прошлым сообщением и предшествующим действием",
+      "canDoRu": "Может согласовать несколько голосов и временных уровней в косвенной речи."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "Synthesising opposing institutional positions",
+      "scenarioRu": "Синтез противоположных институциональных позиций",
+      "prompt": "Choose the synthesis that represents both positions accurately without treating unequal evidence as equal.",
+      "instructionRu": "Выберите синтез, точно представляющий обе позиции без ложного уравнивания доказательств.",
+      "stimulus": "Il comitato tecnico sostiene che il sistema supera tutti i test di sicurezza previsti. Il gruppo utenti riconosce questi test, ma documenta barriere di accesso non incluse nei criteri tecnici. I test sono verificati; le segnalazioni di accesso provengono da 40 casi documentati.",
+      "answer": "Sicurezza confermata, accessibilità no: aggiungere una verifica specifica.",
+      "distractors": [
+        {
+          "text": "Poiché i test sono verificati, le barriere documentate non possono esistere.",
+          "reasonRu": "Безопасность по текущим критериям не измеряет доступность и не отменяет отдельные случаи."
+        },
+        {
+          "text": "Poiché esistono segnalazioni, tutti i test di sicurezza sono falsi.",
+          "reasonRu": "Данные пользователей относятся к другой размерности и не опровергают результаты тестов безопасности."
+        },
+        {
+          "text": "Le due parti esprimono soltanto opinioni prive di qualsiasi evidenza.",
+          "reasonRu": "Одна сторона имеет проверенные тесты, другая — 40 документированных случаев; доказательная база есть у обеих, но по разным вопросам."
+        }
+      ],
+      "explanation": "The synthesis preserves the verified technical result, identifies the unmeasured accessibility dimension, and creates a decision that addresses both without false equivalence.",
+      "explanationRu": "Синтез сохраняет проверенный технический результат, выделяет неизмеренную доступность и формирует решение, учитывающее обе размерности без ложного уравнивания.",
+      "targetConstruct": "institutional synthesis separating evidence domains and avoiding false equivalence",
+      "targetConstructRu": "институциональный синтез с разделением областей доказательств и без ложной эквивалентности",
+      "canDoRu": "Может объединить конфликтующие позиции, точно разделив, что доказывает каждая сторона."
+    },
+    {
+      "skill": "vocabulary",
+      "format": "multiple-choice",
+      "scenario": "Interpreting restrained viability wording",
+      "scenarioRu": "Интерпретация сдержанной оценки жизнеспособности",
+      "prompt": "Choose the interpretation that preserves the restrained meaning.",
+      "instructionRu": "Выберите интерпретацию, сохраняющую сдержанный смысл.",
+      "stimulus": "Alla luce dei costi non ancora verificati, la proposta non appare necessariamente sostenibile nel medio periodo.",
+      "answer": "Sostenibilità incerta: i costi non verificati non la garantiscono.",
+      "distractors": [
+        {
+          "text": "La proposta è definitivamente insostenibile in ogni scenario.",
+          "reasonRu": "Non necessariamente sostenibile не означает категорически невозможную устойчивость."
+        },
+        {
+          "text": "La proposta è certamente sostenibile e i costi sono già confermati.",
+          "reasonRu": "Фраза сохраняет неопределённость именно из-за непроверенных расходов."
+        },
+        {
+          "text": "La sostenibilità non ha alcun rapporto con i costi citati.",
+          "reasonRu": "Вводная формула прямо связывает осторожную оценку с непроверенными расходами."
+        }
+      ],
+      "explanation": "Non necessariamente sostenibile with appare withholds both certainty and categorical rejection.",
+      "explanationRu": "Non necessariamente sostenibile с appare не даёт ни уверенного подтверждения, ни категорического отказа.",
+      "targetConstruct": "restrained formal viability phrase preserving uncertainty without categorical rejection",
+      "targetConstructRu": "сдержанная формальная оценка жизнеспособности с неопределённостью без категорического отказа",
+      "canDoRu": "Может точно понимать осторожную отрицательную оценку без её усиления."
+    },
+    {
+      "skill": "vocabulary",
+      "format": "multiple-choice",
+      "scenario": "Amending an existing regulation",
+      "scenarioRu": "Внесение изменений в действующее положение",
+      "prompt": "Which verb precisely describes changing selected provisions while keeping the regulation in force?",
+      "instructionRu": "Какой глагол точно обозначает изменение отдельных положений при сохранении нормы в силе?",
+      "stimulus": "L'autorità mantiene il regolamento, ma modifica gli articoli sulle scadenze e aggiunge una nuova procedura di controllo.",
+      "answer": "L'autorità emenda alcuni articoli del regolamento.",
+      "distractors": [
+        {
+          "text": "L'autorità abroga interamente il regolamento.",
+          "reasonRu": "Abrogare означает отменить норму, тогда как основная структура сохраняется."
+        },
+        {
+          "text": "L'autorità deroga al regolamento in un singolo caso senza modificarne il testo.",
+          "reasonRu": "Derogare означает отступить от нормы в конкретной области, а здесь меняется сам текст."
+        },
+        {
+          "text": "L'autorità consolida testi diversi senza cambiare alcuna disposizione.",
+          "reasonRu": "Консолидация объединяет тексты, но по условию отдельные статьи содержательно изменяются."
+        }
+      ],
+      "explanation": "Emendare modifies selected provisions while leaving the instrument in force.",
+      "explanationRu": "Emendare означает изменить отдельные положения, сохранив нормативный акт в силе.",
+      "targetConstruct": "policy-action distinction among amending, consolidating, derogating from, and repealing",
+      "targetConstructRu": "различение внесения поправок, консолидации, отступления и отмены нормы",
+      "canDoRu": "Может точно назвать способ изменения нормативного текста."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "Interrupting a harmful generalisation",
+      "scenarioRu": "Прерывание вредного обобщения",
+      "prompt": "Choose the intervention that protects the targeted people and returns discussion to evidence.",
+      "instructionRu": "Выберите вмешательство, которое защищает затронутых людей и возвращает разговор к данным.",
+      "stimulus": "Durante una riunione qualcuno dice: «I nuovi assunti non sono affidabili; ogni errore viene sempre da loro». Nel gruppo sono presenti due nuovi assunti. I dati disponibili attribuiscono gli ultimi errori a cause diverse.",
+      "answer": "Fermiamoci: accusare i nuovi assunti senza dati è ingiusto. Analizziamo errori, processi e cause documentate, caso per caso.",
+      "distractors": [
+        {
+          "text": "Lasciamo continuare l’accusa e verifichiamo solo più tardi se qualcuno si è offeso, senza esaminare dati, processi o cause concrete.",
+          "reasonRu": "Вред продолжается в присутствии затронутых людей, хотя утверждение уже не поддерживается данными."
+        },
+        {
+          "text": "Rispondiamo che tutti i dipendenti esperti sono sempre incompetenti.",
+          "reasonRu": "Обратное групповое обобщение повторяет ту же ошибку и усиливает конфликт."
+        },
+        {
+          "text": "Evitiamo sia le persone sia i dati e cambiamo argomento.",
+          "reasonRu": "Ответ не защищает затронутых, не исправляет утверждение и не возвращает обсуждение к причинам ошибок."
+        }
+      ],
+      "explanation": "The intervention stops the group attribution, names its interpersonal harm and evidential failure, and redirects to case-level process evidence.",
+      "explanationRu": "Вмешательство останавливает групповую атрибуцию, называет межличностный вред и доказательный дефект и переводит разговор к данным по отдельным случаям.",
+      "targetConstruct": "harmful-generalisation interruption with protection, boundary, and evidence-based redirection",
+      "targetConstructRu": "прерывание вредного обобщения с защитой, границей и возвратом к доказательствам",
+      "canDoRu": "Может безопасно остановить вредное обобщение и вернуть обсуждение к фактам."
+    },
+    {
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "scenario": "Expressing a free-relative concession",
+      "scenarioRu": "Выражение уступки со свободным относительным оборотом",
+      "prompt": "Choose the grammatically complete sentence.",
+      "instructionRu": "Выберите грамматически завершённое предложение.",
+      "stimulus": "Non importa quale persona prenderà la decisione: dovrà motivarla pubblicamente.",
+      "answer": "Chiunque prenda la decisione dovrà motivarla pubblicamente.",
+      "distractors": [
+        {
+          "text": "Chiunque prende la decisione dovrà motivarla pubblicamente.",
+          "reasonRu": "В обобщённой неопределённой свободной относительной конструкции после chiunque нормативно требуется congiuntivo prenda."
+        },
+        {
+          "text": "Chiunque prenderebbe la decisione, dovesse motivarla pubblicamente.",
+          "reasonRu": "Condizionale и congiuntivo не образуют здесь нормативную структуру."
+        },
+        {
+          "text": "Qualunque la persona prende, la decisione motivare pubblicamente.",
+          "reasonRu": "Согласование, порядок слов и личные формы отсутствуют."
+        }
+      ],
+      "explanation": "Chiunque plus present subjunctive creates an indefinite free relative meaning whoever makes the decision.",
+      "explanationRu": "Chiunque с congiuntivo presente образует неопределённую свободную относительную конструкцию «кто бы ни принял решение».",
+      "targetConstruct": "chiunque free relative with present subjunctive and future consequence",
+      "targetConstructRu": "свободная относительная конструкция chiunque с congiuntivo presente и будущим следствием",
+      "canDoRu": "Может выразить обязанность независимо от того, кто станет субъектом действия."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Separating four voices",
+      "scenarioRu": "Разделение четырёх голосов",
+      "prompt": "Choose the interpretation that attributes each claim correctly.",
+      "instructionRu": "Выберите интерпретацию, правильно распределяющую каждое утверждение.",
+      "stimulus": "Il ministro dichiara: «La misura è pienamente efficace». Il rapporto tecnico osserva che i risultati preliminari sono positivi, ma non ancora conclusivi. L'autore dell'articolo ritiene quindi prematuro parlare di piena efficacia. Aggiunge che, se il prossimo controllo confermasse il trend, una valutazione più forte sarebbe giustificata.",
+      "answer": "La piena efficacia è l'affermazione del ministro; il rapporto qualifica i dati come preliminari; l'autore giudica prematura la certezza e formula una valutazione più forte solo come ipotesi condizionata.",
+      "distractors": [
+        {
+          "text": "Il rapporto tecnico conferma già in modo conclusivo la piena efficacia.",
+          "reasonRu": "Отчёт прямо называет данные предварительными и неокончательными."
+        },
+        {
+          "text": "L'autore sostiene che nessun futuro dato potrebbe rafforzare la valutazione.",
+          "reasonRu": "Он допускает более сильную оценку при подтверждающем следующем контроле."
+        },
+        {
+          "text": "Tutte le frasi appartengono al ministro e hanno lo stesso grado di certezza.",
+          "reasonRu": "Текст явно разводит министра, отчёт, автора и условный гипотетический голос."
+        }
+      ],
+      "explanation": "The passage assigns distinct evidential commitments to minister, technical report, author, and hypothetical future confirmation.",
+      "explanationRu": "Текст приписывает разные степени обязательства министру, техническому отчёту, автору и гипотетическому будущему подтверждению.",
+      "targetConstruct": "voice and commitment tracking across quotation, institutional report, author stance, and hypothesis",
+      "targetConstructRu": "отслеживание голосов и обязательств между цитатой, институциональным отчётом, авторской позицией и гипотезой",
+      "canDoRu": "Может различать несколько голосов и степени уверенности в одном тексте."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "Reporting a material forecast error",
+      "scenarioRu": "Сообщение о существенной ошибке прогноза",
+      "prompt": "Choose the update with ownership, uncertainty, scenarios, and decision impact.",
+      "instructionRu": "Выберите сообщение с ответственностью, неопределённостью, сценариями и влиянием на решение.",
+      "stimulus": "Hai scoperto che la previsione dei ricavi usava due volte lo stesso ordine. La stima è troppo alta, ma l'importo esatto dipende ancora da tre contratti non confermati. Il consiglio decide domani il budget.",
+      "answer": "La previsione contiene un doppio conteggio e mi assumo la responsabilità di correggerla. L’entità dipende da tre contratti: oggi presenterò tre scenari; domani non usate la vecchia cifra.",
+      "distractors": [
+        {
+          "text": "La previsione è forse un po’ diversa, ma oggi il consiglio può usare tranquillamente la cifra precedente senza conoscere i tre contratti, i nuovi scenari, la responsabilità della correzione o l’effetto preciso del doppio conteggio sulla decisione di domani.",
+          "reasonRu": "Ответ скрывает существенный известный дефект и позволяет использовать недостоверную сумму."
+        },
+        {
+          "text": "L’intero progetto è certamente fallito e tutti i ricavi futuri saranno pari a zero: annulliamo subito ogni decisione senza verificare i tre contratti, ricostruire il doppio conteggio o presentare scenari alternativi al consiglio.",
+          "reasonRu": "Двойной счёт завышает прогноз, но не доказывает нулевой доход или провал проекта."
+        },
+        {
+          "text": "Non dirò chi ha preparato la stima né quando arriverà una correzione.",
+          "reasonRu": "Отсутствуют ответственность, срок, сценарии и подготовка решения."
+        }
+      ],
+      "explanation": "The response owns the error, states what is known and unknown, provides bounded scenarios and timing, and protects the pending decision.",
+      "explanationRu": "Ответ принимает ошибку, разделяет известное и неизвестное, задаёт сценарии и срок и защищает предстоящее решение.",
+      "targetConstruct": "material forecast-error disclosure with ownership, source of uncertainty, scenarios, and decision protection",
+      "targetConstructRu": "раскрытие существенной ошибки прогноза с ответственностью, источником неопределённости, сценариями и защитой решения",
+      "canDoRu": "Может ответственно сообщить об ошибке прогноза до важного решения."
+    },
+    {
+      "skill": "vocabulary",
+      "format": "multiple-choice",
+      "scenario": "Evaluating a measurement tool",
+      "scenarioRu": "Оценка инструмента измерения",
+      "prompt": "Which property is demonstrated?",
+      "instructionRu": "Какое свойство продемонстрировано?",
+      "stimulus": "Lo stesso questionario, somministrato due volte a distanza di pochi giorni senza cambiamenti reali, produce quasi gli stessi risultati. Non sappiamo ancora se misuri davvero la competenza che dichiara di misurare.",
+      "answer": "È affidabile, ma la validità non è ancora dimostrata.",
+      "distractors": [
+        {
+          "text": "È valido per definizione perché produce risultati simili.",
+          "reasonRu": "Повторяемость поддерживает надёжность, но не доказывает измерение нужной конструкции."
+        },
+        {
+          "text": "È rappresentativo dell'intera popolazione perché è stato ripetuto due volte.",
+          "reasonRu": "Репрезентативность относится к выборке, а не к повторяемости инструмента."
+        },
+        {
+          "text": "È sensibile a ogni piccolo cambiamento perché i risultati non cambiano mai.",
+          "reasonRu": "Отсутствие изменений без реального изменения не доказывает чувствительность к малым настоящим изменениям."
+        }
+      ],
+      "explanation": "Stable repeated scores support reliability; validity requires evidence that the intended competence is actually measured.",
+      "explanationRu": "Стабильные повторные результаты поддерживают надёжность; валидность требует доказательства измерения заявленной компетенции.",
+      "targetConstruct": "measurement distinction among reliability, validity, representativeness, and sensitivity",
+      "targetConstructRu": "различение надёжности, валидности, репрезентативности и чувствительности измерения",
+      "canDoRu": "Может точно различать свойства измерительного инструмента."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Limiting a longitudinal-study conclusion",
+      "scenarioRu": "Ограничение вывода продольного исследования",
+      "prompt": "Choose the strongest conclusion licensed by the study.",
+      "instructionRu": "Выберите самый сильный вывод, допустимый по исследованию.",
+      "stimulus": "Per dodici settimane sono stati seguiti volontari di due imprese che avevano scelto di usare un nuovo metodo. I loro risultati medi sono migliorati. Non c'era assegnazione casuale, non sono state osservate altre imprese e non sappiamo se l'effetto duri oltre le dodici settimane.",
+      "answer": "Associazione nel campione volontario e nelle dodici settimane osservate.",
+      "distractors": [
+        {
+          "text": "Il metodo causa un miglioramento permanente in ogni impresa.",
+          "reasonRu": "Нет случайного распределения, охват ограничен двумя компаниями, а долговечность не измерена."
+        },
+        {
+          "text": "Lo studio dimostra che il metodo non ha alcun effetto sui volontari.",
+          "reasonRu": "У наблюдаемых добровольцев средние результаты улучшились."
+        },
+        {
+          "text": "L'effetto oltre un anno è più forte di quello delle prime dodici settimane.",
+          "reasonRu": "Период после двенадцати недель вообще не наблюдался."
+        }
+      ],
+      "explanation": "The conclusion retains observed group, association wording, two-company setting, and twelve-week period without causal or durable overreach.",
+      "explanationRu": "Вывод сохраняет наблюдаемую группу, формулировку связи, две компании и двенадцать недель без причинного или долговременного преувеличения.",
+      "targetConstruct": "maximum licensed conclusion under selection, setting, duration, and causal limits",
+      "targetConstructRu": "максимально допустимый вывод при ограничениях отбора, условий, длительности и причинности",
+      "canDoRu": "Может выбрать самый сильный вывод, не выходящий за границы узкого исследования."
+    },
+    {
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "scenario": "Foregrounding the cost issue",
+      "scenarioRu": "Выдвижение вопроса расходов в фокус",
+      "prompt": "Choose the focus construction that preserves the original proposition.",
+      "instructionRu": "Выберите фокусную конструкцию, сохраняющую исходное утверждение.",
+      "stimulus": "Affermazione di base: I costi richiedono ancora una verifica più precisa.",
+      "answer": "Quanto ai costi, serve una verifica più precisa.",
+      "distractors": [
+        {
+          "text": "Quanto ai costi, sono già stati verificati definitivamente.",
+          "reasonRu": "Фокусная рамка возможна, но содержание меняет необходимость проверки на полную подтверждённость."
+        },
+        {
+          "text": "I costi quanto richiedono ai ancora verificare precisa.",
+          "reasonRu": "Слова не образуют нормативную фокусную или основную конструкцию."
+        },
+        {
+          "text": "Non i costi, ma ogni altra questione è verificata.",
+          "reasonRu": "Вариант меняет область и полярность утверждения вместо перераспределения фокуса."
+        }
+      ],
+      "explanation": "Quanto a foregrounds the topic while preserving the claim that further verification is needed.",
+      "explanationRu": "Quanto a выдвигает тему, сохраняя утверждение о необходимости дальнейшей проверки.",
+      "targetConstruct": "quanto a topic-focus construction without truth-conditional change",
+      "targetConstructRu": "тематически-фокусная конструкция quanto a без изменения условий истинности",
+      "canDoRu": "Может перераспределить информационный фокус без изменения содержания."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "Repairing a false dilemma",
+      "scenarioRu": "Исправление ложной дилеммы",
+      "prompt": "Choose the response that offers a viable third option with safeguards and an explicit trade-off.",
+      "instructionRu": "Выберите ответ с выполнимым третьим вариантом, гарантиями и явным компромиссом.",
+      "stimulus": "In riunione si dice: «O pubblichiamo domani tutti i numeri non ancora verificati, oppure non informiamo affatto il pubblico». Una parte dei dati è già verificata.",
+      "answer": "Domani pubblichiamo i dati verificati e indichiamo la data prevista per integrare le parti ancora aperte: informiamo tempestivamente, rinunciando per ora alla completezza.",
+      "distractors": [
+        {
+          "text": "Le due opzioni estreme sono le sole logicamente possibili: o pubblichiamo immediatamente ogni dato, anche se non verificato, oppure rinunciamo per sempre a comunicare qualsiasi informazione, senza considerare soluzioni intermedie.",
+          "reasonRu": "Условие допускает частичную проверенную публикацию с маркировкой границ."
+        },
+        {
+          "text": "Pubblichiamo domani anche i dati non verificati senza indicare le aree aperte, la data dell’integrazione o il rischio di informare il pubblico in modo incompleto.",
+          "reasonRu": "Ответ выбирает одну крайность и представляет непроверенное как факт."
+        },
+        {
+          "text": "Non comunichiamo alcun dato finché ogni dettaglio non sarà completo, senza considerare il costo dell’attesa, una pubblicazione parziale o una data per l’integrazione.",
+          "reasonRu": "Реплика усиливает вторую крайность до бессрочной закрытости."
+        }
+      ],
+      "explanation": "The third option separates verified from pending information and states the trade-off between immediate completeness and reliability.",
+      "explanationRu": "Третий вариант отделяет проверенную информацию от ожидающей проверки и называет компромисс немедленной полноты и надёжности.",
+      "targetConstruct": "false-dilemma repair through third option, safeguards, timing, and explicit trade-off",
+      "targetConstructRu": "исправление ложной дилеммы через третий вариант, гарантии, срок и явный компромисс",
+      "canDoRu": "Может выйти из ложного выбора с реалистичным и честным третьим вариантом."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Reconstructing a corrected chronology",
+      "scenarioRu": "Восстановление исправленной хронологии",
+      "prompt": "Choose the only sequence consistent with all corrections and relative markers.",
+      "instructionRu": "Выберите единственную последовательность, согласующуюся со всеми исправлениями и относительными маркерами.",
+      "stimulus": "La verifica non iniziò lunedì, come indicava il primo verbale, bensì il venerdì precedente. Il risultato provvisorio fu inviato martedì. Solo dopo che l'ufficio lo ebbe integrato mercoledì, la direzione prese la decisione giovedì.",
+      "answer": "Inizio venerdì — risultato martedì — integrazione mercoledì — decisione giovedì.",
+      "distractors": [
+        {
+          "text": "Inizio lunedì — decisione martedì — integrazione mercoledì — risultato giovedì.",
+          "reasonRu": "Вариант сохраняет исправленную ошибочную дату и переставляет решение перед дополнением."
+        },
+        {
+          "text": "Risultato venerdì — inizio martedì — decisione mercoledì — integrazione giovedì.",
+          "reasonRu": "Проверка началась в пятницу, а результат отправили только во вторник."
+        },
+        {
+          "text": "Inizio venerdì — integrazione martedì — risultato mercoledì — decisione giovedì.",
+          "reasonRu": "Дополнение последовало после отправки предварительного результата, а не до него."
+        }
+      ],
+      "explanation": "The correction moves the start to the preceding Friday; the later explicit order remains Tuesday, Wednesday, Thursday.",
+      "explanationRu": "Исправление переносит начало на предыдущую пятницу; далее явный порядок остаётся вторник, среда, четверг.",
+      "targetConstruct": "chronology reconstruction across correction, anteriority, and subsequent events",
+      "targetConstructRu": "восстановление хронологии с учётом исправления, предшествования и последующих событий",
+      "canDoRu": "Может точно восстановить порядок событий после исправления исходной версии."
+    },
+    {
+      "skill": "vocabulary",
+      "format": "multiple-choice",
+      "scenario": "Classifying the end of a permit",
+      "scenarioRu": "Классификация прекращения разрешения",
+      "prompt": "Which term describes the permit ending automatically because its stated period has elapsed?",
+      "instructionRu": "Какой термин обозначает автоматическое прекращение разрешения из-за истечения установленного срока?",
+      "stimulus": "L'autorizzazione era valida fino al 30 giugno. Nessuna autorità l'ha ritirata o annullata; dal 1º luglio non produce più effetti perché il termine previsto è trascorso.",
+      "answer": "L'autorizzazione è scaduta alla fine del termine previsto.",
+      "distractors": [
+        {
+          "text": "L'autorizzazione è stata revocata.",
+          "reasonRu": "Revoca требует акта отзыва компетентным органом, которого здесь не было."
+        },
+        {
+          "text": "L'autorizzazione è stata annullata per un vizio originario.",
+          "reasonRu": "Никакой первоначальный дефект или решение об аннулировании не описаны."
+        },
+        {
+          "text": "L'autorizzazione è stata sospesa temporaneamente.",
+          "reasonRu": "Срок действия закончился, а не временно поставлен на паузу с возможным возобновлением."
+        }
+      ],
+      "explanation": "Scadenza follows automatically from the elapsed validity period, unlike revocation, annulment, or suspension.",
+      "explanationRu": "Scadenza наступает автоматически после истечения срока, в отличие от отзыва, аннулирования или приостановки.",
+      "targetConstruct": "administrative distinction among expiry, revocation, annulment, and suspension",
+      "targetConstructRu": "административное различение истечения срока, отзыва, аннулирования и приостановки",
+      "canDoRu": "Может точно назвать причину прекращения действия разрешения."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "Assigning accountability after shared failure",
+      "scenarioRu": "Распределение ответственности после общего сбоя",
+      "prompt": "Choose the response that acknowledges shared causes without diffusing individual duties.",
+      "instructionRu": "Выберите ответ, который признаёт общие причины, не размывая индивидуальные обязанности.",
+      "stimulus": "Dopo una pubblicazione tardiva, il responsabile dice: «Abbiamo sbagliato tutti, quindi non ha senso attribuire compiti specifici». Le interfacce erano poco chiare, ma ogni fase aveva un referente.",
+      "answer": "Le interfacce sono una causa comune, ma ogni referente documenti oggi la propria fase; domani il responsabile assegni le correzioni.",
+      "distractors": [
+        {
+          "text": "Poiché le interfacce sono una causa comune, nessuno deve documentare la propria fase e il responsabile non deve assegnare correzioni o scadenze.",
+          "reasonRu": "Общая системная причина не отменяет конкретные обязанности по этапам."
+        },
+        {
+          "text": "Giulia è l'unica colpevole e le interfacce non hanno avuto alcun ruolo.",
+          "reasonRu": "Ответ без данных сводит общий и распределённый сбой к одному человеку."
+        },
+        {
+          "text": "Parliamo genericamente di collaborazione senza nominare azioni o scadenze.",
+          "reasonRu": "Реплика сохраняет размытость и не создаёт проверяемой ответственности."
+        }
+      ],
+      "explanation": "The response separates the shared process defect from each owned corrective action and deadline.",
+      "explanationRu": "Ответ отделяет общий дефект процесса от персонально закреплённых исправлений и сроков.",
+      "targetConstruct": "shared-cause acknowledgement with non-diffused individual accountability",
+      "targetConstructRu": "признание общей причины без размывания индивидуальной ответственности",
+      "canDoRu": "Может обсуждать общий провал без поиска козла отпущения и без размывания обязанностей."
+    },
+    {
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "scenario": "Marking a regretted prior action",
+      "scenarioRu": "Обозначение предшествующего действия, о котором сожалеют",
+      "prompt": "Choose the correct past infinitive under same-subject control.",
+      "instructionRu": "Выберите правильный infinito passato при общем субъекте.",
+      "stimulus": "La portavoce si rammarica. Non ha indicato prima i limiti dei dati.",
+      "answer": "Si rammarica di non aver indicato prima i limiti dei dati.",
+      "distractors": [
+        {
+          "text": "La portavoce si rammarica di non indicare avuto prima i limiti.",
+          "reasonRu": "Infinito passato образуется aver + participio, а не переставленной последовательностью."
+        },
+        {
+          "text": "La portavoce si rammarica che non aver indicato i limiti.",
+          "reasonRu": "После che требуется личная форма придаточного; инфинитивная конструкция здесь незавершена."
+        },
+        {
+          "text": "La portavoce si rammarica di non avendo indicato prima i limiti.",
+          "reasonRu": "После di требуется infinito, а не gerundio avendo."
+        }
+      ],
+      "explanation": "With the same understood subject, di non aver indicato compactly marks the regretted action as anterior.",
+      "explanationRu": "При общем подразумеваемом субъекте di non aver indicato компактно маркирует действие как предшествующее и вызывающее сожаление.",
+      "targetConstruct": "past infinitive for anteriority under controlled same-subject reference",
+      "targetConstructRu": "infinito passato для предшествования при контролируемом общем субъекте",
+      "canDoRu": "Может компактно выразить сожаление о собственном прошлом действии."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Inferring audience and institutional risk",
+      "scenarioRu": "Определение адресата и институционального риска",
+      "prompt": "Choose the best inference about audience and the risk shaping the cautious wording.",
+      "instructionRu": "Выберите лучший вывод об адресате и риске, определяющем осторожную формулировку.",
+      "stimulus": "Nota interna: gli elementi disponibili non giustificano ancora una posizione pubblica definitiva. Prima della diffusione occorre verificare se il calcolo regge anche sotto le ipotesi non controllate. Fino ad allora si raccomanda di non dichiarare né l'assenza del problema né una violazione accertata.",
+      "answer": "Per decisori: evitare una posizione esterna su basi incerte.",
+      "distractors": [
+        {
+          "text": "È una guida per principianti che spiega soltanto come eseguire il calcolo.",
+          "reasonRu": "Текст регулирует решение о внешней позиции, а не обучает процедуре вычисления."
+        },
+        {
+          "text": "È già un comunicato pubblico che dichiara l'assenza del problema.",
+          "reasonRu": "Автор прямо рекомендует не объявлять ни отсутствие проблемы, ни нарушение."
+        },
+        {
+          "text": "Chiede ai ricercatori di ignorare per sempre ogni ipotesi non verificata.",
+          "reasonRu": "Непроверенные предпосылки требуют дополнительной проверки, а не вечного игнорирования."
+        }
+      ],
+      "explanation": "References to internal note, public position, and diffusion place the text before external communication and reveal commitment risk.",
+      "explanationRu": "Упоминания внутренней записки, публичной позиции и распространения помещают текст до внешней коммуникации и показывают риск институционального обязательства.",
+      "targetConstruct": "audience and institutional-risk inference from cautious pre-publication metadiscourse",
+      "targetConstructRu": "вывод об адресате и институциональном риске по осторожному метадискурсу до публикации",
+      "canDoRu": "Может понять, кому и зачем адресован осторожный служебный текст."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "Correcting a senior factual error",
+      "scenarioRu": "Исправление фактической ошибки руководителя",
+      "prompt": "Choose the correction combining evidence, face-saving, and decision relevance.",
+      "instructionRu": "Выберите корректировку, сочетающую доказательства, сохранение лица и значимость для решения.",
+      "stimulus": "La direttrice afferma: «Tutte e tre le sedi hanno superato il controllo». Il rapporto confermato indica che la sede Nord deve ancora ripetere una prova. La decisione riguarda l'autorizzazione comune.",
+      "answer": "Mi permetto di precisare: secondo il rapporto confermato, due sedi hanno superato il controllo, mentre la sede Nord deve ripetere una prova. Per rilasciare l’autorizzazione comune, dobbiamo quindi escludere la sede Nord oppure rinviare la decisione.",
+      "distractors": [
+        {
+          "text": "È falso; evidentemente non ha letto con attenzione il rapporto e non merita ulteriori spiegazioni. Respingo quindi la sua affermazione senza citare i risultati delle tre sedi, la prova da ripetere al Nord o le opzioni disponibili per l’autorizzazione comune.",
+          "reasonRu": "Факт исправляется с личным унижением и без связи с решением."
+        },
+        {
+          "text": "Ha certamente ragione: dichiariamo che tutte le sedi hanno superato il controllo e rilasciamo subito l’autorizzazione comune, senza menzionare la prova mancante della sede Nord, il contenuto del rapporto confermato né le conseguenze di quella verifica ancora incompleta.",
+          "reasonRu": "Ответ скрывает существенное подтверждённое расхождение."
+        },
+        {
+          "text": "Il rapporto conferma che tutte e tre le sedi hanno superato il controllo; autorizziamole insieme senza ricordare la prova che Nord deve ancora ripetere.",
+          "reasonRu": "Непройденная проверка прямо влияет на общую выдачу разрешения."
+        }
+      ],
+      "explanation": "The correction cites the current report, avoids personal blame, and states two concrete consequences for the decision.",
+      "explanationRu": "Корректировка ссылается на актуальный отчёт, избегает личного обвинения и называет два последствия для решения.",
+      "targetConstruct": "evidence-based upward correction with face-saving and decision relevance",
+      "targetConstructRu": "доказательная корректировка руководителя с сохранением лица и привязкой к решению",
+      "canDoRu": "Может тактично исправить значимую ошибку старшего коллеги."
+    },
+    {
+      "skill": "vocabulary",
+      "format": "multiple-choice",
+      "scenario": "Interpreting a legal-administrative formula",
+      "scenarioRu": "Интерпретация юридико-административной формулы",
+      "prompt": "Choose the paraphrase that preserves the scope of the formal expression.",
+      "instructionRu": "Выберите перефразирование, сохраняющее область действия формального выражения.",
+      "stimulus": "Il contributo sarà versato entro giugno, fatto salvo l'obbligo del beneficiario di restituire le somme non documentate.",
+      "answer": "Il pagamento resta previsto, senza pregiudicare l'obbligo di restituire le somme prive di giustificazione.",
+      "distractors": [
+        {
+          "text": "Il pagamento avverrà solo dopo che ogni somma sarà stata restituita.",
+          "reasonRu": "Фраза превращает сохранённую обязанность в предварительное условие выплаты."
+        },
+        {
+          "text": "Con il pagamento viene cancellato l'obbligo di documentare le spese.",
+          "reasonRu": "Fatto salvo сохраняет обязанность, а не отменяет её."
+        },
+        {
+          "text": "La restituzione sostituisce definitivamente il versamento del contributo.",
+          "reasonRu": "В тексте выплата и возможный возврат сосуществуют, а не заменяют друг друга."
+        }
+      ],
+      "explanation": "Fatto salvo preserves the repayment duty while leaving the announced payment in force.",
+      "explanationRu": "Fatto salvo сохраняет обязанность возврата, не отменяя объявленную выплату.",
+      "targetConstruct": "scope-preserving interpretation of the formal formula fatto salvo",
+      "targetConstructRu": "интерпретация формулы fatto salvo с сохранением области действия обязательств",
+      "canDoRu": "Может точно интерпретировать формальную оговорку, сохраняющую отдельное обязательство."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Detecting evaluative framing",
+      "scenarioRu": "Распознавание оценочного фрейминга",
+      "prompt": "Choose the explanation of how the two headlines frame the same result.",
+      "instructionRu": "Выберите объяснение, как два заголовка по-разному подают один результат.",
+      "stimulus": "Entrambi i titoli descrivono lo stesso sondaggio: 74% favorevole. Titolo A: «Una netta maggioranza sostiene la proposta». Titolo B: «Più di una persona su quattro non sostiene la proposta».",
+      "answer": "A enfatizza la maggioranza, B la minoranza; percentuale invariata.",
+      "distractors": [
+        {
+          "text": "I titoli riportano due sondaggi incompatibili con percentuali diverse.",
+          "reasonRu": "74% поддержки и примерно 26% неподдержки — дополняющие части одного результата."
+        },
+        {
+          "text": "Solo B contiene una scelta valutativa, perché maggioranza è sempre un termine privo di cornice.",
+          "reasonRu": "Выдвижение большинства как фокуса тоже направляет интерпретацию."
+        },
+        {
+          "text": "Sostegno e mancato sostegno non possono essere misurati nello stesso sondaggio.",
+          "reasonRu": "Две доли являются совместимыми частями одного распределения."
+        }
+      ],
+      "explanation": "The factual result is unchanged; each headline foregrounds a different complementary share.",
+      "explanationRu": "Фактический результат не меняется; каждый заголовок выдвигает другую дополняющую долю.",
+      "targetConstruct": "rhetorical framing through selective foregrounding without factual alteration",
+      "targetConstructRu": "риторический фрейминг через выборочный фокус без изменения фактов",
+      "canDoRu": "Может отделить фактический показатель от рамки его представления."
+    },
+    {
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "scenario": "Reporting an unconfirmed past claim",
+      "scenarioRu": "Передача неподтверждённого сообщения о прошлом",
+      "prompt": "Choose the construction that attributes the report without speaker confirmation.",
+      "instructionRu": "Выберите конструкцию, передающую сообщение без подтверждения говорящим.",
+      "stimulus": "Secondo alcune fonti, ma senza conferma indipendente, il ministro ha consegnato i documenti lunedì.",
+      "answer": "Si dice che il ministro abbia consegnato i documenti lunedì.",
+      "distractors": [
+        {
+          "text": "È certo che il ministro ha consegnato i documenti lunedì.",
+          "reasonRu": "Фраза превращает неподтверждённое сообщение в уверенный факт."
+        },
+        {
+          "text": "Il ministro consegnerà sicuramente i documenti lunedì prossimo.",
+          "reasonRu": "Вариант меняет прошлое событие на уверенное будущее."
+        },
+        {
+          "text": "Si dice il ministro avere consegnava i documenti.",
+          "reasonRu": "Структура и глагольная форма ненормативны."
+        }
+      ],
+      "explanation": "Impersonal si dice che plus subjunctive attributes the claim to unspecified sources and withholds speaker endorsement.",
+      "explanationRu": "Безличное si dice che с congiuntivo приписывает утверждение неопределённым источникам и не подтверждает его от лица говорящего.",
+      "targetConstruct": "reportive impersonal construction with subjunctive and withheld speaker commitment",
+      "targetConstructRu": "репортивная безличная конструкция с congiuntivo и снятым обязательством говорящего",
+      "canDoRu": "Может грамматически отделить пересказ сообщения от подтверждённого факта."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "Making a vague commitment accountable",
+      "scenarioRu": "Преобразование расплывчатого обещания в проверяемое",
+      "prompt": "Choose the follow-up that establishes owner, deliverable, deadline, and confirmation.",
+      "instructionRu": "Выберите уточнение с исполнителем, результатом, сроком и подтверждением.",
+      "stimulus": "Alla fine della riunione si dice: «Ci occuperemo presto delle domande ancora aperte».",
+      "answer": "Confermiamo: Giada risponde alle tre domande evidenziate nel documento condiviso entro giovedì alle 16 e segnala qui il completamento; Paolo controlla le fonti entro mercoledì sera.",
+      "distractors": [
+        {
+          "text": "Prima o poi qualcuno si occuperà di qualcosa.",
+          "reasonRu": "Не определены исполнитель, результат, срок и подтверждение."
+        },
+        {
+          "text": "Giada dovrebbe pensarci presto, se avrà tempo.",
+          "reasonRu": "Назван человек, но работа и срок неопределённы, а обязательство условно."
+        },
+        {
+          "text": "Rispondiamo entro giovedì.",
+          "reasonRu": "Есть действие и срок, но нет владельца, точного объёма и подтверждения завершения."
+        }
+      ],
+      "explanation": "The follow-up names who does what, where, by when, in what dependency order, and how completion is confirmed.",
+      "explanationRu": "Уточнение называет кто, что, где и к какому сроку делает, в каком порядке и как подтверждает завершение.",
+      "targetConstruct": "accountable commitment with owner, deliverable, deadline, dependency, and confirmation",
+      "targetConstructRu": "проверяемое обязательство с исполнителем, результатом, сроком, зависимостью и подтверждением",
+      "canDoRu": "Может превращать неопределённые договорённости в конкретные обязательства."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Locating exact expert disagreement",
+      "scenarioRu": "Определение точного расхождения экспертов",
+      "prompt": "Choose the statement that separates shared evidence from disagreement.",
+      "instructionRu": "Выберите утверждение, отделяющее общие данные от расхождения.",
+      "stimulus": "Entrambe le esperte accettano che gli errori siano diminuiti dal 9% al 6% dopo l'introduzione del controllo. Serra attribuisce il calo soprattutto al controllo. Neri ritiene possibile tale contributo, ma sottolinea che nello stesso periodo i casi più complessi sono stati trasferiti altrove.",
+      "answer": "Calo condiviso; dubbia la causa: controllo o casi complessi trasferiti.",
+      "distractors": [
+        {
+          "text": "Entrambe negano che gli errori siano diminuiti.",
+          "reasonRu": "Обе принимают снижение с 9% до 6% как наблюдаемый факт."
+        },
+        {
+          "text": "Entrambe attribuiscono tutto il calo esclusivamente al trasferimento dei casi.",
+          "reasonRu": "Serra считает основным фактором контроль, а Neri оставляет вклад контроля возможным."
+        },
+        {
+          "text": "Discutono soltanto se 6 sia maggiore di 9.",
+          "reasonRu": "Спор касается причинной атрибуции, а не математического направления."
+        }
+      ],
+      "explanation": "The descriptive decline is shared; the experts differ over causal attribution under a changed case mix.",
+      "explanationRu": "Описательное снижение является общим; эксперты расходятся в причинной атрибуции при изменившемся составе дел.",
+      "targetConstruct": "expert-account comparison by shared result and exact attribution disagreement",
+      "targetConstructRu": "сравнение экспертных позиций по общему результату и точному расхождению в атрибуции",
+      "canDoRu": "Может точно локализовать расхождение в сложной экспертной дискуссии."
+    },
+    {
+      "skill": "vocabulary",
+      "format": "multiple-choice",
+      "scenario": "Selecting formal institutional collocations",
+      "scenarioRu": "Выбор формальных институциональных сочетаний",
+      "prompt": "Choose the sentence with standard formal collocations.",
+      "instructionRu": "Выберите предложение с нормативными формальными словосочетаниями.",
+      "stimulus": "Servono le combinazioni consuete per rischio, prova, politica e responsabilità.",
+      "answer": "Dobbiamo valutare il rischio, fornire prove solide, riesaminare la politica e assumerci la responsabilità.",
+      "distractors": [
+        {
+          "text": "Dobbiamo fare il rischio, costruire prove, guardare la politica e portare la responsabilità.",
+          "reasonRu": "Существительные понятны, но глагольные сочетания не соответствуют точному формальному регистру."
+        },
+        {
+          "text": "Dobbiamo raccontare il rischio, vincere prove, ascoltare la politica e dormire la responsabilità.",
+          "reasonRu": "Все сочетания семантически ненормативны."
+        },
+        {
+          "text": "Dobbiamo firmare il rischio, spostare prove, bere la politica e rispondere la responsabilità.",
+          "reasonRu": "Глаголы не сочетаются с существительными в требуемых значениях."
+        }
+      ],
+      "explanation": "Valutare il rischio, fornire prove, riesaminare una politica, and assumersi la responsabilità are established formal collocations.",
+      "explanationRu": "Valutare il rischio, fornire prove, riesaminare una politica и assumersi la responsabilità — устойчивые формальные сочетания.",
+      "targetConstruct": "formal collocational precision for risk, evidence, policy review, and accountability",
+      "targetConstructRu": "точность формальных сочетаний для риска, доказательств, пересмотра политики и ответственности",
+      "canDoRu": "Может уверенно выбирать нормативные сочетания профессионального регистра."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "De-escalating a complaint with a false premise",
+      "scenarioRu": "Снижение напряжения в жалобе с ложной предпосылкой",
+      "prompt": "Choose the reply that recognises harm without accepting the inaccurate premise.",
+      "instructionRu": "Выберите ответ, признающий вред без принятия неверной предпосылки.",
+      "stimulus": "Una cliente scrive: «Avete eliminato apposta il mio reclamo per nascondere l'errore». Il registro mostra che il reclamo è rimasto salvato, ma una classificazione errata lo ha reso invisibile per due giorni.",
+      "answer": "Capisco perché la scomparsa sia sembrata intenzionale, e due giorni di invisibilità non sono accettabili. Il registro mostra che il reclamo non è stato eliminato, ma classificato nella sezione sbagliata. Lo ripristiniamo oggi e verifichiamo come segnalare subito errori simili.",
+      "distractors": [
+        {
+          "text": "Si sbaglia: nulla è stato cancellato, quindi non c'è stato alcun danno.",
+          "reasonRu": "Предпосылка исправляется, но реальный двухдневный сбой и его влияние обесцениваются."
+        },
+        {
+          "text": "Sì, lo abbiamo eliminato apposta, anche se il registro dimostra il contrario.",
+          "reasonRu": "Ответ принимает ложное обвинение, противоречащее доказательствам."
+        },
+        {
+          "text": "Gli errori tecnici capitano; non discuteremo le sue preoccupazioni.",
+          "reasonRu": "Реплика оборонительна, не признаёт вред и не предлагает ремонта."
+        }
+      ],
+      "explanation": "The reply validates the experience, corrects mechanism and intent using evidence, and provides repair and prevention.",
+      "explanationRu": "Ответ признаёт пережитый вред, доказательно исправляет механизм и намерение и предлагает ремонт и профилактику.",
+      "targetConstruct": "complaint de-escalation without conceding false premise or dismissing real harm",
+      "targetConstructRu": "снижение напряжения без принятия ложной предпосылки и обесценивания реального вреда",
+      "canDoRu": "Может уважительно исправить ложное обвинение, сохранив признание проблемы."
+    },
+    {
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "scenario": "Conceding plausibility while limiting evidence",
+      "scenarioRu": "Признание правдоподобия при ограничении доказательств",
+      "prompt": "Choose the grammatically complete concessive construction.",
+      "instructionRu": "Выберите грамматически завершённую уступительную конструкцию.",
+      "stimulus": "L'ipotesi è plausibile. Tuttavia, non è ancora sostenuta da prove sufficienti.",
+      "answer": "Per quanto l’ipotesi sia plausibile, non è ancora sostenuta da prove sufficienti.",
+      "distractors": [
+        {
+          "text": "Per quanto l'ipotesi è plausibile, non è ancora provata.",
+          "reasonRu": "После per quanto в этой уступительной конструкции требуется congiuntivo sia."
+        },
+        {
+          "text": "Per quanto sia plausibile l'ipotesi, ma non è ancora sostenuta da prove sufficienti.",
+          "reasonRu": "Главная часть грамматически незавершена, а ma избыточно дублирует уступку."
+        },
+        {
+          "text": "Quanto per l'ipotesi plausibile essere, non sostenuta prove.",
+          "reasonRu": "Порядок и личные формы не образуют нормативного предложения."
+        }
+      ],
+      "explanation": "Per quanto introduces a concessive clause with subjunctive sia, followed by a complete main clause.",
+      "explanationRu": "Per quanto вводит уступительное придаточное с congiuntivo sia, за которым следует полная главная часть.",
+      "targetConstruct": "per quanto concessive with subjunctive and complete clause structure",
+      "targetConstructRu": "уступительная конструкция per quanto с congiuntivo и полной структурой",
+      "canDoRu": "Может грамматически признать правдоподобие, сохранив доказательное ограничение."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Applying a nested policy exception",
+      "scenarioRu": "Применение вложенного исключения из правила",
+      "prompt": "Choose the case that satisfies the rule and every condition of its exception.",
+      "instructionRu": "Выберите случай, который соответствует правилу и всем условиям исключения.",
+      "stimulus": "L'accesso ai dati grezzi richiede l'approvazione preventiva del responsabile. In emergenza è ammesso un accesso provvisorio senza approvazione, purché il responsabile sia avvisato subito e l'uso venga registrato entro 24 ore. La deroga non si applica ai dati sanitari.",
+      "answer": "Durante un guasto urgente, un'analista consulta dati tecnici, avvisa subito il responsabile e registra l'accesso entro 24 ore.",
+      "distractors": [
+        {
+          "text": "Durante un’emergenza sanitaria, un medico consulta senza approvazione dati clinici grezzi, informa subito il responsabile e registra correttamente l’accesso il giorno successivo entro il limite delle 24 ore.",
+          "reasonRu": "Исключение прямо не распространяется на медицинские данные."
+        },
+        {
+          "text": "Un'analista consulta dati tecnici non urgenti e avvisa il responsabile dopo 24 ore.",
+          "reasonRu": "Нет чрезвычайной ситуации, а уведомление не является немедленным."
+        },
+        {
+          "text": "Durante un guasto, un'analista consulta dati tecnici ma non registra l'uso perché ha avvisato subito.",
+          "reasonRu": "Немедленное уведомление не отменяет обязательную регистрацию в течение 24 часов."
+        }
+      ],
+      "explanation": "The case is urgent, excludes health data, provides immediate notice, and satisfies the 24-hour logging condition.",
+      "explanationRu": "Случай срочный, не затрагивает медицинские данные, включает немедленное уведомление и регистрацию в течение 24 часов.",
+      "targetConstruct": "scope tracking across a general rule, cumulative exception conditions, and an exclusion",
+      "targetConstructRu": "отслеживание области действия общего правила, совокупных условий исключения и запрета",
+      "canDoRu": "Может применить правило с несколькими совместными условиями и отдельным исключением."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "Structuring a reversible decision under uncertainty",
+      "scenarioRu": "Структурирование обратимого решения в условиях неопределённости",
+      "prompt": "Choose the proposal that turns uncertainty into a bounded, accountable decision.",
+      "instructionRu": "Выберите предложение, превращающее неопределённость в ограниченное и подотчётное решение.",
+      "stimulus": "La direzione deve decidere oggi se introdurre un nuovo sistema. I dati indicano un possibile vantaggio, ma manca la verifica sulla sicurezza in condizioni di picco. Rinviare di tre mesi ha un costo; un avvio totale sarebbe difficile da revocare.",
+      "answer": "Pilota reversibile sul 10% per quattro settimane: Marta monitora la sicurezza, fermiamo alla soglia concordata e decidiamo il 5 settembre sui dati.",
+      "distractors": [
+        {
+          "text": "Avviamo subito il sistema su tutti i casi: Marta non deve monitorare la sicurezza, non definiamo soglie di arresto e decidiamo l’estensione dopo che sarà irreversibile.",
+          "reasonRu": "Полный труднообратимый запуск не ограничивает риск и не задаёт критерии остановки."
+        },
+        {
+          "text": "Rinviamo senza scadenza finché non avremo la certezza assoluta, senza nominare un responsabile, fissare indicatori di sicurezza o stabilire una data per la decisione.",
+          "reasonRu": "Предложение требует недостижимой абсолютной уверенности и не управляет стоимостью ожидания."
+        },
+        {
+          "text": "Facciamo una piccola prova e poi vedremo come va.",
+          "reasonRu": "Нет срока, владельца, порога остановки, измерений и даты решения."
+        }
+      ],
+      "explanation": "The proposal bounds exposure and time, assigns monitoring, defines a stop rule, and schedules an evidence-based decision.",
+      "explanationRu": "Предложение ограничивает масштаб и срок, назначает мониторинг, задаёт правило остановки и дату решения по данным.",
+      "targetConstruct": "reversible decision design with bounded exposure, owner, monitoring, stop rule, and review date",
+      "targetConstructRu": "проектирование обратимого решения с ограниченным масштабом, владельцем, мониторингом, правилом остановки и датой пересмотра",
+      "canDoRu": "Может превратить сложную неопределённость в ограниченное, проверяемое и обратимое решение."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Evaluating a satisfaction trend under attrition",
+      "scenarioRu": "Оценка динамики удовлетворённости при выбытии участников",
+      "prompt": "Choose the conclusion warranted by the response-rate and composition evidence.",
+      "instructionRu": "Выберите вывод, обоснованный данными о доле ответивших и составе выборки.",
+      "stimulus": "La soddisfazione dichiarata sale dal 68% all'81%. Nello stesso periodo il tasso di risposta scende dal 72% al 31% e l'analisi mostra che gli utenti che avevano aperto un reclamo hanno risposto molto meno degli altri. Il rapporto conclude che il servizio è certamente migliorato.",
+      "answer": "L'aumento può riflettere un miglioramento, ma il forte calo delle risposte e la perdita selettiva degli utenti insoddisfatti impediscono di attribuirglielo con certezza.",
+      "distractors": [
+        {
+          "text": "L'aumento di tredici punti dimostra da solo un miglioramento certo.",
+          "reasonRu": "Вывод игнорирует резкое снижение отклика и систематическое выбытие недовольных."
+        },
+        {
+          "text": "Il servizio è certamente peggiorato perché ha risposto meno della metà degli utenti.",
+          "reasonRu": "Низкий отклик создаёт неопределённость, но сам по себе не доказывает ухудшение."
+        },
+        {
+          "text": "La diversa composizione non conta, purché la percentuale finale sia superiore.",
+          "reasonRu": "Изменение состава напрямую влияет на сопоставимость процентов."
+        }
+      ],
+      "explanation": "Selective non-response can raise the observed satisfaction rate even without an equivalent population-level improvement.",
+      "explanationRu": "Избирательный неответ может повысить наблюдаемую удовлетворённость без равного улучшения во всей совокупности.",
+      "targetConstruct": "multi-step inference about attrition, selection bias, and limits of before-after comparison",
+      "targetConstructRu": "многошаговый вывод о выбытии, смещении отбора и пределах сравнения до и после",
+      "canDoRu": "Может ограничить причинный вывод при резком изменении отклика и состава выборки."
+    },
+    {
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "scenario": "Giving calibrated agreement",
+      "scenarioRu": "Выражение калиброванного согласия",
+      "prompt": "Choose the response that accepts the practical conclusion while limiting evidential scope.",
+      "instructionRu": "Выберите ответ, принимающий практический вывод, но ограничивающий область доказательств.",
+      "stimulus": "Dopo un test riuscito di quattro settimane in un piccolo gruppo, un collega afferma: «È provato che il modello funzionerà per sempre in tutta l'azienda». Tu sostieni un'estensione graduale, non questa certezza.",
+      "answer": "Sono favorevole a un’estensione graduale, ma un test di quattro settimane su un piccolo gruppo non dimostra effetti permanenti in tutta l’azienda.",
+      "distractors": [
+        {
+          "text": "Concordo completamente: un piccolo test prova l'effetto permanente ovunque.",
+          "reasonRu": "Ответ принимает слишком сильное обобщение без оговорок."
+        },
+        {
+          "text": "Il test non dice assolutamente nulla, quindi non va esteso in alcun modo.",
+          "reasonRu": "Реплика необоснованно обнуляет положительный сигнал и отвергает осторожное расширение."
+        },
+        {
+          "text": "Concordo solo perché il modello mi piace personalmente.",
+          "reasonRu": "Ответ подменяет доказательства личным предпочтением и не ограничивает область вывода."
+        }
+      ],
+      "explanation": "The response supports the decision warranted by the pilot while rejecting claims beyond its sample, duration, and setting.",
+      "explanationRu": "Ответ поддерживает решение, оправданное пилотом, но отвергает выводы за пределами выборки, длительности и условий.",
+      "targetConstruct": "calibrated agreement separating decision support from evidential overreach",
+      "targetConstructRu": "калиброванное согласие с разделением поддержки решения и доказательного преувеличения",
+      "canDoRu": "Может согласиться с выводом ровно в границах, поддерживаемых данными."
+    },
+    {
+      "skill": "reading",
+      "format": "multiple-choice",
+      "scenario": "Calibrating a claim from qualified evidence",
+      "scenarioRu": "Калибровка вывода по оговорённым данным",
+      "prompt": "Choose the summary that preserves the author's degree of confidence and limitations.",
+      "instructionRu": "Выберите резюме, сохраняющее степень уверенности автора и ограничения.",
+      "stimulus": "Dopo l'introduzione della procedura, i ritardi registrati sono diminuiti. Tuttavia, il periodo osservato è breve, i ricorsi non sono inclusi e due uffici hanno applicato anche altre misure. I risultati sono promettenti, ma non bastano ancora a dimostrare un effetto stabile e attribuibile alla sola procedura.",
+      "answer": "I dati iniziali sono compatibili con un beneficio, ma durata, copertura e interventi concomitanti impediscono per ora una conclusione causale e stabile.",
+      "distractors": [
+        {
+          "text": "La procedura ha dimostrato definitivamente di eliminare i ritardi in tutti gli uffici.",
+          "reasonRu": "Текст прямо ограничивает устойчивость, охват и причинную атрибуцию."
+        },
+        {
+          "text": "Poiché esistono limiti, i dati dimostrano che la procedura non ha alcun effetto.",
+          "reasonRu": "Ограничения ослабляют вывод, но не доказывают отсутствие эффекта."
+        },
+        {
+          "text": "Le altre misure confermano che ogni riduzione dipende esclusivamente dalla procedura.",
+          "reasonRu": "Сопутствующие меры мешают, а не помогают приписать эффект одной процедуре."
+        }
+      ],
+      "explanation": "The author treats the signal as promising while withholding stable causal attribution because of explicit design limits.",
+      "explanationRu": "Автор считает сигнал обнадёживающим, но не делает устойчивого причинного вывода из-за явных ограничений дизайна.",
+      "targetConstruct": "stance reconstruction across supportive evidence, methodological limitations, and calibrated causal language",
+      "targetConstructRu": "восстановление позиции по поддерживающим данным, ограничениям метода и калиброванной причинной формулировке",
+      "canDoRu": "Может сохранить авторскую степень уверенности и пределы причинного вывода."
+    },
+    {
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "scenario": "Linking unreal past cause to past and present results",
+      "scenarioRu": "Связь нереального прошлого условия с прошлым и нынешним результатами",
+      "prompt": "Choose the correct mixed conditional.",
+      "instructionRu": "Выберите правильное смешанное условное предложение.",
+      "stimulus": "In realtà l'avviso non è stato inoltrato. Ieri la direzione ha deciso male e oggi il gruppo è ancora impreparato.",
+      "answer": "Se l'avviso fosse stato inoltrato, ieri la direzione avrebbe deciso diversamente e oggi il gruppo sarebbe più preparato.",
+      "distractors": [
+        {
+          "text": "Se l'avviso veniva inoltrato, ieri la direzione deciderà diversamente e oggi era preparata.",
+          "reasonRu": "Наклонения и времена не выражают контрфактическое прошлое и нынешний результат."
+        },
+        {
+          "text": "Se l'avviso sarebbe stato inoltrato, la direzione avesse deciso e il gruppo sarà preparato.",
+          "reasonRu": "Condizionale и congiuntivo распределены неверно, а будущее не передаёт нынешнее контрфактическое состояние."
+        },
+        {
+          "text": "Se l'avviso fosse inoltrare, la direzione avrebbe decidendo e il gruppo è preparato.",
+          "reasonRu": "Неличные формы грамматически ненормативны, а настоящее indicativo утверждает ложный факт."
+        }
+      ],
+      "explanation": "Fosse stato inoltrato marks the unreal past condition, avrebbe deciso the past consequence, and sarebbe più preparato the present result.",
+      "explanationRu": "Fosse stato inoltrato выражает нереальное прошлое условие, avrebbe deciso — прошлое следствие, sarebbe più preparato — нынешний результат.",
+      "targetConstruct": "mixed conditional with unreal past condition, past consequence, and present result",
+      "targetConstructRu": "смешанное условное предложение с нереальным прошлым условием, прошлым и настоящим следствиями",
+      "canDoRu": "Может связать нереализованное прошлое условие с последствиями в разных временных планах."
+    }
+  ]
+}

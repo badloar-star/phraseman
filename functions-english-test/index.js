@@ -37,6 +37,8 @@ const ALLOWED_ORIGINS = [
   'https://phraseman-ea0b3.web.app',
 ];
 
+const TEST_LANGUAGES = ['en', 'de', 'fr', 'it', 'es'];
+const UI_LOCALES = ['ru', 'en', 'de', 'es', 'it', 'fr'];
 const BANK_VERSION = '2026-07-22.4';
 const MAX_BODY_BYTES = 32768;
 const RATE_LIMIT_WINDOW_MS = 3600000; // 1 hour
@@ -78,17 +80,20 @@ function normalizeBankVersion(value) {
 }
 
 function normalizeTestLanguage(value) {
-  return ['en', 'de', 'fr', 'it', 'es'].includes(value) ? value : 'en';
+  return value === undefined ? 'en' : TEST_LANGUAGES.includes(value) ? value : null;
 }
 
 function normalizeUiLocale(value) {
-  return ['ru', 'en', 'de', 'es', 'it', 'fr'].includes(value) ? value : 'en';
+  return value === undefined ? 'en' : UI_LOCALES.includes(value) ? value : null;
 }
 
 function normalizeAnalyticsDimensions(body) {
+  const testLanguage = normalizeTestLanguage(body.testLanguage);
+  const uiLocale = normalizeUiLocale(body.uiLocale);
+  if (!testLanguage || !uiLocale) return null;
   return {
-    testLanguage: normalizeTestLanguage(body.testLanguage),
-    uiLocale: normalizeUiLocale(body.uiLocale),
+    testLanguage,
+    uiLocale,
   };
 }
 
@@ -226,6 +231,7 @@ function mergeProgressResponses(existingResponses, payload) {
 function normalizeAnalyticsAction(action, body) {
   if (!body || typeof body !== 'object' || Array.isArray(body)) return null;
   const dimensions = normalizeAnalyticsDimensions(body);
+  if (!dimensions) return null;
   switch (action) {
     case 'landing':
     case 'certificate':
@@ -285,6 +291,12 @@ function normalizeAnalyticsAction(action, body) {
     default:
       return null;
   }
+}
+
+function isReleasedAnalyticsAttempt(attempt) {
+  return !!attempt
+    && typeof attempt === 'object'
+    && (!Object.prototype.hasOwnProperty.call(attempt, 'testLanguage') || TEST_LANGUAGES.includes(attempt.testLanguage));
 }
 
 /** Куда ведёт кнопка. cert_modal шлётся из окна сертификата (app.js:967). */
@@ -793,7 +805,7 @@ exports.adminEnglishTestAnalytics = onCall({
   const { period = 28, force = false } = request.data || {};
   const days = [7, 28, 90].includes(period) ? period : 28;
 
-  const cacheKey = `analytics_${days}`;
+  const cacheKey = `analytics_released_v1_${days}`;
   const cacheRef = db.collection('english_test_cache').doc(cacheKey);
 
   if (!force) {
@@ -816,7 +828,8 @@ exports.adminEnglishTestAnalytics = onCall({
     .limit(5000)
     .get();
 
-  const attempts = attemptsSnap.docs.map((d) => d.data());
+  const queriedAttemptCount = attemptsSnap.docs.length;
+  const attempts = attemptsSnap.docs.map((d) => d.data()).filter(isReleasedAnalyticsAttempt);
 
   // Funnel
   const funnel = {
@@ -868,7 +881,7 @@ exports.adminEnglishTestAnalytics = onCall({
     period: days,
     generatedAtMs: Date.now(),
     cachedAtMs: Date.now(),
-    truncated: attempts.length >= 5000,
+    truncated: queriedAttemptCount >= 5000,
     funnel,
     levels,
     totalAttempts: attempts.length,

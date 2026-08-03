@@ -5,14 +5,13 @@ const path = require("node:path");
 const vm = require("node:vm");
 
 const appPath = require.resolve("../knowly-www/english-level-test/app.js");
-const i18nLocalesPath = path.join(path.dirname(appPath), "i18n.locales.js");
 const i18nPath = path.join(path.dirname(appPath), "i18n.js");
+const i18nLocalesPath = path.join(path.dirname(appPath), "i18n.locales.js");
 const htmlPath = path.join(path.dirname(appPath), "index.html");
-const i18nLocalesSource = fs.readFileSync(i18nLocalesPath, "utf8");
 
 function loadI18nRegistry() {
   const context = vm.createContext({ URL, URLSearchParams });
-  vm.runInContext(i18nLocalesSource, context, { filename: i18nLocalesPath });
+  vm.runInContext(fs.readFileSync(i18nLocalesPath, "utf8"), context, { filename: i18nLocalesPath });
   vm.runInContext(fs.readFileSync(i18nPath, "utf8"), context, { filename: i18nPath });
   return context.EnglishTestI18n;
 }
@@ -66,7 +65,7 @@ function loadHooks({ fetchImpl, storage = memoryStorage(), uiLocale = "ru", test
     },
   };
   context.globalThis = context;
-  vm.runInNewContext(i18nLocalesSource, context, { filename: i18nLocalesPath });
+  vm.runInNewContext(fs.readFileSync(i18nLocalesPath, "utf8"), context, { filename: i18nLocalesPath });
   vm.runInNewContext(fs.readFileSync(i18nPath, "utf8"), context, { filename: i18nPath });
   vm.runInNewContext(source, context, { filename: appPath });
   return { hooks: context.__counterHooks, storage };
@@ -83,7 +82,7 @@ test("completion POST is sent even when analytics consent is false and carries t
       };
     },
   });
-  hooks.setState({ consent: false, attemptToken: "a".repeat(48), attemptTestLanguage: "de" });
+  hooks.setState({ consent: false, attemptToken: "a".repeat(48), attemptTestLanguage: "en" });
   hooks.reportTestCompletion();
   await hooks.flushCompletionOutbox();
   assert.equal(requests.length, 1);
@@ -92,7 +91,7 @@ test("completion POST is sent even when analytics consent is false and carries t
   assert.deepEqual(body, {
     action: "count_complete",
     completionId: "a".repeat(48),
-    testLanguage: "de",
+    testLanguage: "en",
   });
 });
 
@@ -102,7 +101,7 @@ test("outbox keeps a pending completion after network failure", async () => {
       throw new Error("offline");
     },
   });
-  hooks.queueCompletion("b".repeat(48), "fr");
+  hooks.queueCompletion("b".repeat(48), "en");
   await hooks.flushCompletionOutbox();
   assert.deepEqual(Array.from(hooks.getPendingIdsForTest()), ["b".repeat(48)]);
 });
@@ -116,7 +115,7 @@ test("outbox removes a pending completion only after an accepted or duplicate 2x
       json: async () => ({ ok: true, completed: 1, duplicate: true }),
     }),
   });
-  hooks.queueCompletion("c".repeat(48), "es");
+  hooks.queueCompletion("c".repeat(48), "en");
   await hooks.flushCompletionOutbox();
   assert.equal(
     storage.keys().some((key) => key.includes("c".repeat(48))),
@@ -199,6 +198,31 @@ test("legacy array outbox migrates to per-completion keys without dropping IDs",
       .length,
     2,
   );
+});
+
+test("released non-English completion entries are delivered in their own language buckets", async () => {
+  const completionId = "4".repeat(48);
+  const secondCompletionId = "6".repeat(48);
+  const storage = memoryStorage({
+    [`english_test_completion_pending_v1:${completionId}`]: "de",
+    [`english_test_completion_pending_v1:${secondCompletionId}`]: "fr",
+  });
+  let requestCount = 0;
+  const { hooks } = loadHooks({
+    storage,
+    fetchImpl: async () => {
+      requestCount += 1;
+      return { ok: true, json: async () => ({ ok: true, completed: 1, duplicate: false }) };
+    },
+  });
+
+  await hooks.flushCompletionOutbox();
+
+  assert.equal(requestCount, 2);
+  assert.equal(storage.value(`english_test_completion_pending_v1:${completionId}`), undefined);
+  assert.equal(storage.value(`english_test_completion_pending_v1:${secondCompletionId}`), undefined);
+  assert.deepEqual(Array.from(hooks.getPendingIdsForTest()), []);
+  assert.equal(hooks.queueCompletion("5".repeat(48), "fr"), true);
 });
 
 test("accepted legacy completion is not requeued when legacy persistence and removal fail", async () => {
@@ -285,9 +309,9 @@ test("late counter updates fetch completedByLanguage and retain the active UI lo
   }
 });
 
-test("a non-English selected language shows its own honest count from the same GET response, not the English number", async () => {
+test("the multilingual client retains every released completion bucket", async () => {
   const { hooks } = loadHooks({
-    testLanguage: "de",
+    testLanguage: "en",
     fetchImpl: async () => ({ ok: true, json: async () => ({ ok: true, completedByLanguage: { en: 124500, de: 12, fr: 0, it: 0, es: 0 } }) }),
   });
   const counter = { textContent: "0" };
@@ -295,8 +319,7 @@ test("a non-English selected language shows its own honest count from the same G
   const landing = { isConnected: true, querySelector(selector) { return selector === "#proofCounter" ? counter : wrapper; } };
   hooks.activateLandingForTest(landing);
   await hooks.refreshLandingCounter(landing);
-  assert.equal(Number(counter.textContent.replace(/\D/g, "")), 12);
-  // JSON round-trip strips the vm cross-realm prototype so deepEqual compares plain data.
+  assert.equal(Number(counter.textContent.replace(/\D/g, "")), 124500);
   assert.deepEqual(JSON.parse(JSON.stringify(hooks.readBestCompletedByLanguage())), { en: 124500, de: 12, fr: 0, it: 0, es: 0 });
 });
 
@@ -350,7 +373,7 @@ test("landing copy describes completed tests and uses one unified asset revision
     const bank = JSON.parse(fs.readFileSync(path.join(path.dirname(appPath), "data", `questions.${code}.json`), "utf8"));
     assert.equal(i18n.TESTS[code].bankUrl, `./data/questions.${code}.json?v=${bank.bankVersion}`);
   }
-  const releaseStamp = "20260802-2";
+  const releaseStamp = "20260803-1";
   const scripts = [...html.matchAll(/<script src="([^"]+)"><\/script>/g)].map((match) => match[1]);
   const expectedScripts = [
     `./engine.js?v=${releaseStamp}`,

@@ -4,13 +4,9 @@ import { existsSync, readFileSync, statSync, writeFileSync, mkdirSync } from 'no
 import { dirname, join } from 'node:path';
 
 export const LEVELS = Object.freeze(['A1', 'A2', 'B1', 'B2', 'C1', 'C2']);
-export const LANGUAGES = Object.freeze(['en', 'de', 'fr', 'it', 'es']);
+export const LANGUAGES = Object.freeze(['en']);
 export const DIALECTS = Object.freeze({
   en: Object.freeze(['neutral', 'british', 'american']),
-  de: Object.freeze(['standard']),
-  fr: Object.freeze(['standard']),
-  it: Object.freeze(['standard']),
-  es: Object.freeze(['standard']),
 });
 
 const DIFFICULTY_RANGES = Object.freeze({

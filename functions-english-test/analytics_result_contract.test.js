@@ -52,15 +52,15 @@ function loadActionNormalizer() {
   });
   const normalizeTestLanguage = loadOptionalFunction(
     'normalizeTestLanguage',
-    (value) => ['en', 'de', 'fr', 'it', 'es'].includes(value) ? value : 'en',
+    (value) => value === undefined ? 'en' : value === 'en' ? 'en' : null,
   );
   const normalizeUiLocale = loadOptionalFunction(
     'normalizeUiLocale',
-    (value) => ['ru', 'en', 'de', 'es', 'it', 'fr'].includes(value) ? value : 'en',
+    (value) => value === undefined ? 'en' : ['ru', 'en'].includes(value) ? value : null,
   );
-  const normalizeAnalyticsDimensions = (body) => ({
-    testLanguage: normalizeTestLanguage(body?.testLanguage),
-    uiLocale: normalizeUiLocale(body?.uiLocale),
+  const normalizeAnalyticsDimensions = loadFunction('normalizeAnalyticsDimensions', {
+    normalizeTestLanguage,
+    normalizeUiLocale,
   });
   return loadFunction('normalizeAnalyticsAction', {
     normalizeAnalyticsDimensions,
@@ -197,17 +197,19 @@ test('attempt bank version is strictly normalized and bounded before persistence
 
 test('shared question identity validator accepts only supported language IDs and bounded positions', () => {
   const normalizeQuestionIdentity = loadFunction('normalizeQuestionIdentity');
-  for (const testLanguage of ['en', 'de', 'fr', 'it', 'es']) {
-    assert.deepEqual(
-      plain(normalizeQuestionIdentity({
-        questionId: `${testLanguage}-c2-040`,
-        position: 20,
-        prompt: 'raw text',
-        profile: { name: 'PII' },
-      })),
-      { questionId: `${testLanguage}-c2-040`, position: 20 },
-    );
-  }
+  assert.deepEqual(
+    plain(normalizeQuestionIdentity({
+      questionId: 'en-c2-040',
+      position: 20,
+      prompt: 'raw text',
+      profile: { name: 'PII' },
+    })),
+    { questionId: 'en-c2-040', position: 20 },
+  );
+  assert.deepEqual(
+    plain(normalizeQuestionIdentity({ questionId: 'de-c2-040', position: 20 })),
+    { questionId: 'de-c2-040', position: 20 },
+  );
 
   const invalid = [
     {},

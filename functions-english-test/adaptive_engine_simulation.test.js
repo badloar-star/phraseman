@@ -6,7 +6,7 @@ const test = require('node:test');
 require(path.join(__dirname, '..', 'knowly-www', 'english-level-test', 'engine.js'));
 
 const { Engine, seededRandom } = globalThis.EnglishTestEngine;
-const LANGUAGES = ['en', 'de', 'fr', 'it', 'es'];
+const LANGUAGES = ['en'];
 const banks = Object.fromEntries(LANGUAGES.map((language) => [language, JSON.parse(fs.readFileSync(
   path.join(__dirname, 'data', `questions.${language}.json`),
   'utf8',

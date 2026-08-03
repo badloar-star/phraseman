@@ -218,6 +218,7 @@ function WeakSpotCard({ stat, lang, t, f, router, resolvedPersonalTrainings, per
         <View style={[styles.queueIcon, { backgroundColor: softBg }]}>
           <Ionicons name="pulse" size={18} color={accent} />
         </View>
+        {/* eslint-disable-next-line text-integrity/no-unsafe-text-truncation -- однострочность названия — прямое решение владельца (см. зачем-комментарий выше) */}
         <Text
           style={{ flex: 1, minWidth: 0, color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '800' }}
           numberOfLines={1}

@@ -201,7 +201,7 @@ describe('personal plan listen-build live route', () => {
 
     expect(source).toContain('buildWords.length >= item.targetWords.length');
     expect(source).toContain('disabled={saving || buildWords.length !== item.targetWords.length}');
-    expect(source).toContain('normalizePlanAnswer(answer) === normalizePlanAnswer(item.correctAnswer)');
+    expect(source).toContain('isCorrectAnswer(answer, item.correctAnswer)');
     expect(source).toContain("mistakeTags: isCorrect ? [] : ['listen_build']");
   });
 

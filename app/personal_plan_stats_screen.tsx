@@ -2,6 +2,7 @@ import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Reanimated, { runOnJS, useSharedValue } from 'react-native-reanimated';
 import { Animated, Easing, Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { FlowText } from '../components/text-integrity/FlowText';
 import TapScale from '../components/TapScale';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import TopFadeMask from '../components/TopFadeMask';
@@ -495,7 +496,8 @@ export default function PersonalPlanStatsScreen() {
                       color={chrome.accent}
                     />
                   </View>
-                  <Text style={[styles.weakLabel, { color: chrome.text }]} numberOfLines={2}>{row.label}</Text>
+                  {/* зачем: text-integrity — название слабого места переносится, ряд растёт. */}
+                  <FlowText testID={`plan-weak-label-${row.id}`} provenance="authored" style={[styles.weakLabel, { color: chrome.text }]}>{row.label}</FlowText>
                   <Text style={[styles.weakCount, { color: chrome.muted }]}>{row.wrongCount} {row.wrongCount === 1 ? 'промах' : 'промаха'}</Text>
                 </View>
               ))}

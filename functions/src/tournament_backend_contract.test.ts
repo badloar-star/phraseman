@@ -98,7 +98,7 @@ describe('tournament backend hardening source contracts', () => {
     expect(source).toContain('TOURNAMENT_REVIEW_RETENTION_MS = 24 * 60 * 60 * 1000');
     expect(source).toContain('TOURNAMENT_PRIVATE_EVIDENCE_RETENTION_MS = 7 * 24 * 60 * 60 * 1000');
     expect(source).toContain('reviewRetentionUntilMs');
-    expect(source).toContain('tx.set(secretRef, { expireAt: evidenceExpireAt }, { merge: true })');
+    expect(source).toContain('tx.set(retainedSecretRefs[index], { expireAt: evidenceExpireAt }, { merge: true })');
     expect(source).not.toContain('for (const secretRef of secretRefsToDelete) tx.delete(secretRef)');
     expect(source).toContain("throw new HttpsError('failed-precondition', 'tournament_review_expired')");
     expect(source).toContain('export async function cleanupExpiredTournamentReviewEvidence');

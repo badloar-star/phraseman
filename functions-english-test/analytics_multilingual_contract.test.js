@@ -8,6 +8,8 @@ const source = fs.readFileSync(path.join(__dirname, 'index.js'), 'utf8');
 const appPath = path.join(__dirname, '..', 'knowly-www', 'english-level-test', 'app.js');
 const appSource = fs.readFileSync(appPath, 'utf8');
 const DEFAULT_BANK_VERSION = '2026-07-22.4';
+const TEST_LANGUAGES = ['en', 'de', 'fr', 'it', 'es'];
+const UI_LOCALES = ['ru', 'en', 'de', 'es', 'it', 'fr'];
 
 function plain(value) {
   return JSON.parse(JSON.stringify(value));
@@ -41,19 +43,20 @@ function loadOptionalFunction(name, fallback, context = {}) {
 }
 
 function referenceTestLanguage(value) {
-  return ['en', 'de', 'fr', 'it', 'es'].includes(value) ? value : 'en';
+  return value === undefined ? 'en' : TEST_LANGUAGES.includes(value) ? value : null;
 }
 
 function referenceUiLocale(value) {
-  return ['ru', 'en', 'de', 'es', 'it', 'fr'].includes(value) ? value : 'en';
+  return value === undefined ? 'en' : UI_LOCALES.includes(value) ? value : null;
 }
 
 function loadServerContract() {
   const normalizeTestLanguage = loadOptionalFunction(
     'normalizeTestLanguage',
     referenceTestLanguage,
+    { TEST_LANGUAGES },
   );
-  const normalizeUiLocale = loadOptionalFunction('normalizeUiLocale', referenceUiLocale);
+  const normalizeUiLocale = loadOptionalFunction('normalizeUiLocale', referenceUiLocale, { UI_LOCALES });
   const normalizeBankVersion = loadFunction('normalizeBankVersion', {
     BANK_VERSION: DEFAULT_BANK_VERSION,
   });
@@ -62,9 +65,9 @@ function loadServerContract() {
     normalizeQuestionIdentity,
   });
   const normalizeCompletedResult = loadFunction('normalizeCompletedResult');
-  const normalizeAnalyticsDimensions = (body) => ({
-    testLanguage: normalizeTestLanguage(body?.testLanguage),
-    uiLocale: normalizeUiLocale(body?.uiLocale),
+  const normalizeAnalyticsDimensions = loadFunction('normalizeAnalyticsDimensions', {
+    normalizeTestLanguage,
+    normalizeUiLocale,
   });
   const normalizeAnalyticsAction = loadFunction('normalizeAnalyticsAction', {
     normalizeAnalyticsAction: undefined,
@@ -112,36 +115,39 @@ function validResult() {
   };
 }
 
-test('server language and locale normalizers allowlist supported dimensions with English fallback', () => {
-  const normalizeTestLanguage = loadFunction('normalizeTestLanguage');
-  const normalizeUiLocale = loadFunction('normalizeUiLocale');
+test('server accepts five released tests and six interface locales', () => {
+  const normalizeTestLanguage = loadFunction('normalizeTestLanguage', { TEST_LANGUAGES });
+  const normalizeUiLocale = loadFunction('normalizeUiLocale', { UI_LOCALES });
 
-  assert.equal(normalizeTestLanguage('de'), 'de');
-  assert.equal(normalizeTestLanguage('xx'), 'en');
+  assert.equal(normalizeTestLanguage(undefined), 'en');
+  assert.equal(normalizeTestLanguage('en'), 'en');
+  for (const language of TEST_LANGUAGES) assert.equal(normalizeTestLanguage(language), language);
+  assert.equal(normalizeTestLanguage('xx'), null);
   assert.equal(normalizeUiLocale('ru'), 'ru');
-  assert.equal(normalizeUiLocale('fr'), 'fr');
-  assert.equal(normalizeUiLocale('pt'), 'en');
+  assert.equal(normalizeUiLocale('en'), 'en');
+  for (const locale of UI_LOCALES) assert.equal(normalizeUiLocale(locale), locale);
+  assert.equal(normalizeUiLocale('pt'), null);
 });
 
 test('normalizer mutation checks reject unsupported language and locale values', () => {
   const testLanguageMutant = source.replace(
-    "return ['en', 'de', 'fr', 'it', 'es'].includes(value) ? value : 'en';",
-    "return value === 'xx' ? 'xx' : 'en';",
+    "return value === undefined ? 'en' : TEST_LANGUAGES.includes(value) ? value : null;",
+    "return value === 'xx' ? 'xx' : value === undefined ? 'en' : null;",
   );
   const uiLocaleMutant = source.replace(
-    "return ['ru', 'en', 'de', 'es', 'it', 'fr'].includes(value) ? value : 'en';",
-    "return value === 'pt' ? 'pt' : 'en';",
+    "return value === undefined ? 'en' : UI_LOCALES.includes(value) ? value : null;",
+    "return value === 'pt' ? 'pt' : value === undefined ? 'en' : null;",
   );
   assert.notEqual(testLanguageMutant, source, 'test-language mutation must apply');
   assert.notEqual(uiLocaleMutant, source, 'UI-locale mutation must apply');
 
   assert.throws(() => {
-    const normalizeTestLanguage = loadFunction('normalizeTestLanguage', {}, testLanguageMutant);
-    assert.equal(normalizeTestLanguage('xx'), 'en');
+    const normalizeTestLanguage = loadFunction('normalizeTestLanguage', { TEST_LANGUAGES }, testLanguageMutant);
+    assert.equal(normalizeTestLanguage('xx'), null);
   });
   assert.throws(() => {
-    const normalizeUiLocale = loadFunction('normalizeUiLocale', {}, uiLocaleMutant);
-    assert.equal(normalizeUiLocale('pt'), 'en');
+    const normalizeUiLocale = loadFunction('normalizeUiLocale', { UI_LOCALES }, uiLocaleMutant);
+    assert.equal(normalizeUiLocale('pt'), null);
   });
 });
 
@@ -162,7 +168,7 @@ test('legacy English start, view, progress, and complete bodies remain valid wit
   assert.equal(actions[0].payload.bankVersion, '2026-08-01.7');
 });
 
-test('normalized multilingual events carry only allowlisted analytics dimensions', () => {
+test('released multilingual analytics events retain their dimensions and unsupported values fail closed', () => {
   const { normalizeAnalyticsAction } = loadServerContract();
   const cases = [
     ['landing', { testLanguage: 'de', uiLocale: 'ru' }],
@@ -174,31 +180,33 @@ test('normalized multilingual events carry only allowlisted analytics dimensions
   ];
 
   const normalized = cases.map(([action, body]) => normalizeAnalyticsAction(action, body));
-  for (const event of normalized) assert.notEqual(event, null);
-  assert.deepEqual(normalized.map((event) => plain({
-    action: event.action,
-    testLanguage: event.payload.testLanguage,
-    uiLocale: event.payload.uiLocale,
-  })), [
-    { action: 'landing', testLanguage: 'de', uiLocale: 'ru' },
-    { action: 'start', testLanguage: 'de', uiLocale: 'ru' },
-    { action: 'view', testLanguage: 'fr', uiLocale: 'ru' },
-    { action: 'progress', testLanguage: 'it', uiLocale: 'en' },
-    { action: 'complete', testLanguage: 'es', uiLocale: 'ru' },
-    { action: 'certificate', testLanguage: 'de', uiLocale: 'ru' },
-  ]);
-  assert.equal(Object.hasOwn(normalized.at(-1).payload, 'name'), false);
+  for (const [index, event] of normalized.entries()) {
+    assert.notEqual(event, null);
+    assert.equal(event.payload.testLanguage, cases[index][1].testLanguage);
+    assert.equal(event.payload.uiLocale, cases[index][1].uiLocale);
+  }
 
   const unsupported = normalizeAnalyticsAction('start', {
     bankVersion: '2026-08-01.7',
     testLanguage: 'xx',
     uiLocale: 'pt',
   });
-  assert.deepEqual(plain(unsupported.payload), {
+  assert.equal(unsupported, null);
+  assert.notEqual(normalizeAnalyticsAction('start', {
     bankVersion: '2026-08-01.7',
     testLanguage: 'en',
-    uiLocale: 'en',
-  });
+    uiLocale: 'fr',
+  }), null);
+});
+
+test('admin analytics includes every released language and legacy attempts', () => {
+  const isReleasedAnalyticsAttempt = loadFunction('isReleasedAnalyticsAttempt', { TEST_LANGUAGES });
+  for (const language of TEST_LANGUAGES) assert.equal(isReleasedAnalyticsAttempt({ testLanguage: language }), true);
+  assert.equal(isReleasedAnalyticsAttempt({}), true);
+  assert.equal(isReleasedAnalyticsAttempt({ testLanguage: 'xx' }), false);
+
+  const adminSource = source.slice(source.indexOf('exports.adminEnglishTestAnalytics'));
+  assert.match(adminSource, /`analytics_released_v1_\$\{days\}`/);
 });
 
 test('new attempts persist normalized dimensions and submitted normalized bank version without PII', async () => {
@@ -238,7 +246,7 @@ test('new attempts persist normalized dimensions and submitted normalized bank v
 
   await getOrCreateAttempt('token', 'client', 'secret', {
     bankVersion: '2026-08-01.7',
-    testLanguage: 'de',
+    testLanguage: 'en',
     uiLocale: 'ru',
     source: 'landing',
     userAgent: 'test',
@@ -247,7 +255,7 @@ test('new attempts persist normalized dimensions and submitted normalized bank v
   });
 
   assert.equal(storedAttempt.bankVersion, '2026-08-01.7');
-  assert.equal(storedAttempt.testLanguage, 'de');
+  assert.equal(storedAttempt.testLanguage, 'en');
   assert.equal(storedAttempt.uiLocale, 'ru');
   assert.equal(Object.hasOwn(storedAttempt, 'name'), false);
   assert.equal(Object.hasOwn(storedAttempt, 'prompt'), false);
@@ -316,7 +324,7 @@ test('client analytics appends selected or frozen test language and UI locale wi
   const harness = loadClientApiHarness();
   harness.api.setState({
     consent: true,
-    selectedTestLanguage: 'fr',
+    selectedTestLanguage: 'en',
     attemptTestLanguage: null,
     uiLocale: 'ru',
     lastCertName: 'Ada Lovelace',
@@ -326,8 +334,8 @@ test('client analytics appends selected or frozen test language and UI locale wi
 
   harness.api.setState({
     consent: true,
-    selectedTestLanguage: 'es',
-    attemptTestLanguage: 'de',
+    selectedTestLanguage: 'en',
+    attemptTestLanguage: 'en',
     uiLocale: 'en',
     lastCertName: 'Grace Hopper',
     currentQuestion: { prompt: 'Another raw question' },
@@ -343,7 +351,7 @@ test('client analytics appends selected or frozen test language and UI locale wi
   }), {
     action: 'start',
     bankVersion: '2026-08-01.7',
-    testLanguage: 'fr',
+    testLanguage: 'en',
     uiLocale: 'ru',
   });
   assert.deepEqual(plain({
@@ -352,7 +360,7 @@ test('client analytics appends selected or frozen test language and UI locale wi
     uiLocale: bodies[1].uiLocale,
   }), {
     action: 'certificate',
-    testLanguage: 'de',
+    testLanguage: 'en',
     uiLocale: 'en',
   });
   for (const body of bodies) {
@@ -375,8 +383,8 @@ test('client mutation check detects certificate-name and raw-question leakage', 
     const harness = loadClientApiHarness(mutant);
     harness.api.setState({
       consent: true,
-      selectedTestLanguage: 'fr',
-      attemptTestLanguage: 'de',
+      selectedTestLanguage: 'en',
+      attemptTestLanguage: 'en',
       uiLocale: 'ru',
       lastCertName: 'Ada Lovelace',
       currentQuestion: { prompt: 'Raw selected question text' },
@@ -560,14 +568,14 @@ function loadApiHandlerHarness() {
 test('landing or view creation reconciles the first legitimate start bank version exactly once', async () => {
   const harness = loadApiHandlerHarness();
   for (const [initialAction, initialFields] of [
-    ['landing', { testLanguage: 'de', uiLocale: 'ru' }],
-    ['view', { questionId: 'de-a1-001', position: 1, testLanguage: 'de', uiLocale: 'ru' }],
+    ['landing', { testLanguage: 'en', uiLocale: 'ru' }],
+    ['view', { questionId: 'en-a1-001', position: 1, testLanguage: 'en', uiLocale: 'ru' }],
   ]) {
     const token = `race-${initialAction}`;
     assert.equal((await harness.request(initialAction, token, initialFields)).statusCode, 200);
     assert.equal((await harness.request('start', token, {
       bankVersion: '2026-08-01.7',
-      testLanguage: 'de',
+      testLanguage: 'en',
       uiLocale: 'ru',
     })).statusCode, 200);
     assert.equal(harness.readAttempt(token).bankVersion, '2026-08-01.7');
@@ -579,27 +587,27 @@ test('landing or view creation reconciles the first legitimate start bank versio
 
     assert.equal((await harness.request('start', token, {
       bankVersion: '2026-08-01.99',
-      testLanguage: 'de',
+      testLanguage: 'en',
       uiLocale: 'ru',
     })).statusCode, 400);
     assert.equal(harness.readAttempt(token).bankVersion, '2026-08-01.7');
   }
 });
 
-test('handler binds every event and question ID to the frozen attempt language', async () => {
+test('handler binds every event and question ID to the frozen English attempt language', async () => {
   const harness = loadApiHandlerHarness();
-  const token = 'frozen-de';
+  const token = 'frozen-en';
   assert.equal((await harness.request('start', token, {
-    bankVersion: '2026-08-01.7', testLanguage: 'de', uiLocale: 'ru',
+    bankVersion: '2026-08-01.7', testLanguage: 'en', uiLocale: 'ru',
   })).statusCode, 200);
   assert.equal((await harness.request('view', token, {
-    questionId: 'de-a1-001', position: 1, testLanguage: 'de', uiLocale: 'ru',
+    questionId: 'en-a1-001', position: 1, testLanguage: 'en', uiLocale: 'ru',
   })).statusCode, 200);
-  assert.deepEqual(harness.readAttempt(token).questionSequence, ['de-a1-001']);
+  assert.deepEqual(harness.readAttempt(token).questionSequence, ['en-a1-001']);
 
   for (const fields of [
-    { questionId: 'fr-a1-002', position: 2, testLanguage: 'de', uiLocale: 'ru' },
-    { questionId: 'en-a1-002', position: 2, testLanguage: 'de', uiLocale: 'ru' },
+    { questionId: 'fr-a1-002', position: 2, testLanguage: 'fr', uiLocale: 'ru' },
+    { questionId: 'de-a1-002', position: 2, testLanguage: 'de', uiLocale: 'ru' },
   ]) {
     const before = harness.readAttempt(token);
     assert.equal((await harness.request('view', token, fields)).statusCode, 400);
@@ -635,17 +643,17 @@ test('complete persists only the six-field result while dimensions remain at att
   const harness = loadApiHandlerHarness();
   const token = 'result-shape';
   assert.equal((await harness.request('start', token, {
-    bankVersion: '2026-08-01.7', testLanguage: 'de', uiLocale: 'ru',
+    bankVersion: '2026-08-01.7', testLanguage: 'en', uiLocale: 'ru',
   })).statusCode, 200);
   assert.equal((await harness.request('complete', token, {
-    testLanguage: 'de',
+    testLanguage: 'en',
     uiLocale: 'en',
     result: validResult(),
   })).statusCode, 200);
 
   const attempt = harness.readAttempt(token);
   assert.deepEqual(attempt.result, validResult());
-  assert.equal(attempt.testLanguage, 'de');
+  assert.equal(attempt.testLanguage, 'en');
   assert.equal(attempt.uiLocale, 'ru');
   assert.equal(Object.hasOwn(attempt.result, 'testLanguage'), false);
   assert.equal(Object.hasOwn(attempt.result, 'uiLocale'), false);

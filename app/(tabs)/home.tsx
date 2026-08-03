@@ -24,6 +24,7 @@ import BouncyScrollView from '../../components/BouncyScrollView';
 import { useTopFadeScroll } from '../../components/TopFadeScrollContext';
 import { checkLeagueOnAppOpen, clearPendingResult, loadPendingResult, LEAGUES, LeagueResult, GroupMember, clubTierShortName, getLeagueResultSignature, tryAcquireLeagueResultModal, markLeagueResultShown } from '../league_engine';
 import LeagueResultModal from '../LeagueResultModal';
+import { SeasonPassTodayCard } from '../../components/SeasonPassTodayCard';
 import { DebugLogger } from '../debug-logger';
 import { getMyWeekPoints, checkStreakLossPending, getWeekKey } from '../hall_of_fame_utils';
 import { getLocalDayKey, isSameLocalOrUtcDay } from '../local_date';
@@ -3289,6 +3290,19 @@ export default function HomeScreen() {
                   </View>
                 </TouchableOpacity>
               </>
+              {/* зачем: владелец — плашка «Сезон» тем же полотном под «Целью лиги»,
+                  открывает /season_pass. Season Pass утверждён (docs/plans/
+                  2026-08-03-season-pass-gift-catalog.ru.md); экран пока витрина
+                  (жёсткий гейт владельца — выдача включится, когда все подарки
+                  станут рабочими). */}
+              <SeasonPassTodayCard
+                lang={lang}
+                panelTextColor={homeThemePanelText}
+                panelMutedColor={homeThemePanelMuted}
+                accentColor={t.accent}
+                trackColor={leagueBonusPalette.track}
+                hairlineColor={isLightTheme ? 'rgba(0,0,0,0.10)' : 'rgba(255,255,255,0.08)'}
+              />
             </LinearGradient>
           </View>
 

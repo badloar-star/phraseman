@@ -12,30 +12,30 @@ const {
 
 function validPayload(overrides = {}) {
   return {
-    questionId: 'de-b1-014',
+    questionId: 'en-b1-014',
     position: 7,
-    testLanguage: 'de',
-    uiLocale: 'fr',
+    testLanguage: 'en',
+    uiLocale: 'ru',
     bankVersion: '2026-07-22.4',
-    comment: 'La traduction semble incorrecte.',
-    dataText: 'Context: At the station\nQuestion: Choose the correct answer.\nA. seit\nB. vor',
-    userAnswer: 'A. seit',
+    comment: 'Кажется, в вопросе есть ошибка.',
+    dataText: 'Context: At the station\nQuestion: Choose the correct answer.\nA. since\nB. ago',
+    userAnswer: 'A. since',
     clientHash: 'a'.repeat(48),
     attemptToken: 'b'.repeat(48),
     ...overrides,
   };
 }
 
-test('accepts a bounded multilingual site report and strips unknown fields', () => {
+test('accepts a bounded English-test site report and strips unknown fields', () => {
   assert.deepEqual(normalizeSiteReportPayload(validPayload({ admin: true })), {
-    questionId: 'de-b1-014',
+    questionId: 'en-b1-014',
     position: 7,
-    testLanguage: 'de',
-    uiLocale: 'fr',
+    testLanguage: 'en',
+    uiLocale: 'ru',
     bankVersion: '2026-07-22.4',
-    comment: 'La traduction semble incorrecte.',
-    dataText: 'Context: At the station\nQuestion: Choose the correct answer.\nA. seit\nB. vor',
-    userAnswer: 'A. seit',
+    comment: 'Кажется, в вопросе есть ошибка.',
+    dataText: 'Context: At the station\nQuestion: Choose the correct answer.\nA. since\nB. ago',
+    userAnswer: 'A. since',
     clientHash: 'a'.repeat(48),
     attemptToken: 'b'.repeat(48),
   });
@@ -44,7 +44,8 @@ test('accepts a bounded multilingual site report and strips unknown fields', () 
 test('rejects malformed identities, short comments, and unsupported locales', () => {
   const invalid = [
     validPayload({ questionId: 'raw-question' }),
-    validPayload({ questionId: 'de-b1-014', testLanguage: 'fr' }),
+    validPayload({ testLanguage: 'fr' }),
+    validPayload({ questionId: 'de-b1-014' }),
     validPayload({ position: 0 }),
     validPayload({ position: 21 }),
     validPayload({ comment: 'x'.repeat(SITE_REPORT_COMMENT_MIN_LENGTH - 1) }),
@@ -77,12 +78,12 @@ test('builds an admin-compatible error_reports document with an explicit site ma
   assert.equal(doc.screen, 'Сайт · языковой тест');
   assert.equal(doc.userName, 'Сайт');
   assert.equal(doc.category, 'free_text');
-  assert.equal(doc.dataId, 'de-b1-014');
+  assert.equal(doc.dataId, 'en-b1-014');
   assert.equal(doc.status, 'new');
   assert.equal(doc.fixed, false);
   assert.equal(doc.createdAtMs, 1_722_600_000_000);
   assert.match(doc.copyText, /source:\s+site/);
-  assert.match(doc.copyText, /questionId:\s+de-b1-014/);
+  assert.match(doc.copyText, /questionId:\s+en-b1-014/);
   assert.ok(!Object.hasOwn(doc, 'clientHash'));
   assert.ok(!Object.hasOwn(doc, 'attemptToken'));
 });

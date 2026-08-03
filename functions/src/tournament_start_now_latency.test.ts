@@ -224,14 +224,18 @@ describe('tournamentStartNow latency controls', () => {
     )).rejects.toThrow('tournament_pool_migrating');
   });
 
-  it('passes the full generation and revision token at exactly all five room writer call sites', () => {
+  // зачем 2026-08-03: смысл проверки прежний — КАЖДОЕ место, которое пишет
+  // комнату, обязано сверить поколение пула внутри транзакции. Изменилась
+  // только форма токена: россыпь generation:/revision: заменена целостным
+  // resources.barrierToken, который вдобавок несёт хеш exposure-раскладки,
+  // поэтому ловит и смену бакетов между чтением пула и коммитом комнаты.
+  it('passes the whole barrier token at exactly all five room writer call sites', () => {
     const calls = Array.from(source.matchAll(
       /await assertTournamentPoolCommitAllowed\(([\s\S]*?)\n\s*\);/g,
     ));
     expect(calls).toHaveLength(5);
     for (const call of calls) {
-      expect(call[1]).toContain('generation: resources.taskPoolGeneration');
-      expect(call[1]).toContain('revision: resources.taskPoolRevision');
+      expect(call[1]).toContain('resources.barrierToken');
     }
   });
 
@@ -334,8 +338,15 @@ describe('tournamentStartNow latency controls', () => {
     expect(start).toContain('currentEconomySnap');
     expect(start).not.toContain('tx.set(userRef');
     expect(start).not.toContain('FieldValue.increment(-');
-    expect(start).toContain('generation: resources.taskPoolGeneration');
-    expect(start).toContain('revision: resources.taskPoolRevision');
+    // зачем 2026-08-03: раньше поколение пула сверялось двумя россыпью полями
+    // (generation:/revision:). Теперь это целостный barrierToken, который
+    // сверяется ВНУТРИ транзакции через assertTournamentPoolCommitAllowed —
+    // защита строже прежней: кроме поколения и ревизии токен несёт хеш
+    // exposure-раскладки, поэтому смена бакетов между чтением пула и коммитом
+    // комнаты тоже ловится (aborted: tournament_pool_generation_changed).
+    expect(start).toContain('assertTournamentPoolCommitAllowed(');
+    expect(start).toContain('resources.barrierToken');
+    expect(start).toContain('taskPoolGeneration');
   });
 
   it('plans a zero-economy joined room with 15 bots and one authoritative human', () => {

@@ -85,14 +85,25 @@ export function peekSeasonPassProgress(): SeasonPassProgress {
 }
 
 export async function hydrateSeasonPassProgress(): Promise<SeasonPassProgress> {
+  // зачем: last-write-guard — если между стартом чтения диска и его завершением
+  // addSeasonPassXp успел поднять кэш в памяти (юзер закончил урок и вернулся на
+  // home одновременно), диск не должен откатывать прогресс-бар назад. Диск
+  // побеждает только если он реально свежее (или другой сезон уже начался).
+  const beforeSeasonId = cache?.seasonId;
+  const beforeXp = cache?.xp ?? -1;
   try {
     const raw = await AsyncStorage.getItem(STORAGE_KEY);
     const parsed: Stored | null = raw ? JSON.parse(raw) : null;
-    // guard-ok: это сезонный счётчик, а не баланс — обнуление при смене квартала
-    // и есть контракт сезона (user_total_xp/жемчуг не затрагиваются вообще).
-    cache = parsed && parsed.seasonId === getSeasonPassSeasonId()
+    const fromDisk = parsed && parsed.seasonId === getSeasonPassSeasonId()
       ? { seasonId: parsed.seasonId, xp: Math.max(0, Math.floor(Number(parsed.xp) || 0)) }
       : freshStored();
+    // guard-ok: это сезонный счётчик, а не баланс — обнуление при смене квартала
+    // и есть контракт сезона (user_total_xp/жемчуг не затрагиваются вообще).
+    // Ветка ниже — не «понижение», а отказ применить УСТАРЕВШЕЕ чтение поверх
+    // уже более свежей записи того же сезона; при смене сезона диск всегда побеждает.
+    cache = (fromDisk.seasonId === beforeSeasonId && fromDisk.xp < beforeXp)
+      ? cache
+      : fromDisk;
   } catch {
     cache = cache ?? freshStored();
   }

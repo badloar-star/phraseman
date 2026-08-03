@@ -63,58 +63,43 @@ const KEY = "test-hmac-key-with-enough-entropy";
 const IP = "203.0.113.10";
 const ID_A = "a".repeat(48);
 const ID_B = "b".repeat(48);
+const ZERO_BY_LANGUAGE = { en: 0, de: 0, fr: 0, it: 0, es: 0 };
 
-test("normalizes missing, invalid, and fractional totals per language, all languages honestly starting at zero", () => {
+test("normalizes missing, invalid, and fractional English totals from zero", () => {
   const { BASELINE_COMPLETED, BASELINE_COMPLETED_BY_LANGUAGE, normalizeCompleted, normalizeCompletedByLanguage } = subject();
   // зачем: владелец 2026-08-02 — старая база 124000 для английского (легаси-точка
   // ДО введения счётчика) тоже нечестная. Все языки равны, база всех — 0.
   assert.equal(BASELINE_COMPLETED, 0);
-  assert.deepEqual(BASELINE_COMPLETED_BY_LANGUAGE, { en: 0, de: 0, fr: 0, it: 0, es: 0 });
+  assert.deepEqual(BASELINE_COMPLETED_BY_LANGUAGE, ZERO_BY_LANGUAGE);
   for (const value of [undefined, null, NaN, Infinity, -1, "7"]) {
     assert.equal(normalizeCompleted(value), 0);
   }
   assert.equal(normalizeCompleted(321), 321);
 
-  assert.deepEqual(normalizeCompletedByLanguage(undefined), { en: 0, de: 0, fr: 0, it: 0, es: 0 });
+  assert.deepEqual(normalizeCompletedByLanguage(undefined), ZERO_BY_LANGUAGE);
   assert.deepEqual(
     normalizeCompletedByLanguage({ en: 42, de: -1, fr: 7, it: NaN, es: "9" }),
     { en: 42, de: 0, fr: 7, it: 0, es: 0 },
   );
 });
 
-test("first unique completion for any language starts at one, no language gets a head start", async () => {
+test("first unique English completion starts at one", async () => {
   const { countCompletion } = subject();
-  for (const language of ["en", "de", "fr", "it", "es"]) {
-    const db = new FakeFirestore();
-    const result = await countCompletion({
-      db,
-      completionId: ID_A,
-      testLanguage: language,
-      ipAddress: IP,
-      hmacKey: KEY,
-      nowMs: 1000,
-    });
-    assert.deepEqual(result, { completed: 1, duplicate: false });
-    const totals = db.docs.get("english_test_public/totals");
-    assert.equal(totals.completed, 1);
-    assert.deepEqual(totals.completedByLanguage, {
-      en: language === "en" ? 1 : 0,
-      de: language === "de" ? 1 : 0,
-      fr: language === "fr" ? 1 : 0,
-      it: language === "it" ? 1 : 0,
-      es: language === "es" ? 1 : 0,
-    });
-  }
+  const db = new FakeFirestore();
+  const result = await countCompletion({
+    db, completionId: ID_A, testLanguage: "en", ipAddress: IP, hmacKey: KEY, nowMs: 1000,
+  });
+  assert.deepEqual(result, { completed: 1, duplicate: false });
+  assert.deepEqual(db.docs.get("english_test_public/totals"), {
+    completed: 1,
+    completedByLanguage: { ...ZERO_BY_LANGUAGE, en: 1 },
+  });
 });
 
 test("legacy total is preserved as English until the per-language map exists", async () => {
   const { countCompletion, normalizeCompletedByLanguage } = subject();
   assert.deepEqual(normalizeCompletedByLanguage(undefined, 124000), {
-    en: 124000,
-    de: 0,
-    fr: 0,
-    it: 0,
-    es: 0,
+    ...ZERO_BY_LANGUAGE, en: 124000,
   });
 
   const db = new FakeFirestore({
@@ -123,30 +108,28 @@ test("legacy total is preserved as English until the per-language map exists", a
   const result = await countCompletion({
     db,
     completionId: ID_A,
-    testLanguage: "de",
+    testLanguage: "en",
     ipAddress: IP,
     hmacKey: KEY,
     nowMs: 1000,
   });
 
-  assert.deepEqual(result, { completed: 1, duplicate: false });
+  assert.deepEqual(result, { completed: 124001, duplicate: false });
   assert.deepEqual(db.docs.get("english_test_public/totals"), {
     completed: 124001,
-    completedByLanguage: { en: 124000, de: 1, fr: 0, it: 0, es: 0 },
+    completedByLanguage: { ...ZERO_BY_LANGUAGE, en: 124001 },
   });
 });
 
-test("each language accumulates independently and an unknown language falls back to English", async () => {
+test("released-language completions accumulate in independent buckets", async () => {
   const { countCompletion } = subject();
   const db = new FakeFirestore();
-  await countCompletion({ db, completionId: "1".repeat(48), testLanguage: "de", ipAddress: IP, hmacKey: KEY, nowMs: 1000 });
-  await countCompletion({ db, completionId: "2".repeat(48), testLanguage: "de", ipAddress: IP, hmacKey: KEY, nowMs: 1001 });
-  await countCompletion({ db, completionId: "3".repeat(48), testLanguage: "fr", ipAddress: IP, hmacKey: KEY, nowMs: 1002 });
-  const unknown = await countCompletion({ db, completionId: "4".repeat(48), testLanguage: "xx", ipAddress: IP, hmacKey: KEY, nowMs: 1003 });
-  assert.equal(unknown.completed, 1); // unrecognized language normalizes to 'en'
+  await countCompletion({ db, completionId: "1".repeat(48), testLanguage: "en", ipAddress: IP, hmacKey: KEY, nowMs: 1000 });
+  await countCompletion({ db, completionId: "2".repeat(48), testLanguage: "en", ipAddress: IP, hmacKey: KEY, nowMs: 1001 });
+  await countCompletion({ db, completionId: "3".repeat(48), testLanguage: "de", ipAddress: IP, hmacKey: KEY, nowMs: 1002 });
   const totals = db.docs.get("english_test_public/totals");
-  assert.deepEqual(totals.completedByLanguage, { en: 1, de: 2, fr: 1, it: 0, es: 0 });
-  assert.equal(totals.completed, 1 + 2 + 1);
+  assert.deepEqual(totals.completedByLanguage, { ...ZERO_BY_LANGUAGE, en: 2, de: 1 });
+  assert.equal(totals.completed, 3);
 });
 
 test("duplicate completion returns the current count without incrementing or consuming rate limit", async () => {
@@ -253,7 +236,7 @@ test("invalid completion payloads are rejected before any Firestore transaction 
   for (const payload of invalidPayloads)
     assert.equal(isValidCompletionPayload(payload), false);
   assert.equal(
-    isValidCompletionPayload({ action: "count_complete", completionId: "a".repeat(48), testLanguage: "es" }),
+    isValidCompletionPayload({ action: "count_complete", completionId: "a".repeat(48), testLanguage: "en" }),
     true,
   );
 
@@ -268,6 +251,17 @@ test("invalid completion payloads are rejected before any Firestore transaction 
       nowMs: 1000,
     }),
     /completionId/,
+  );
+  await assert.rejects(
+    countCompletion({
+      db,
+      completionId: ID_A,
+      testLanguage: "xx",
+      ipAddress: IP,
+      hmacKey: KEY,
+      nowMs: 1000,
+    }),
+    /testLanguage/,
   );
   assert.equal(db.transactionCount, 0);
   assert.equal(db.writeCount, 0);

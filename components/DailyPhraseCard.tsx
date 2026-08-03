@@ -71,6 +71,7 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
   const [phrase, setPhrase] = useState<DailyPhrase | null>(() => (
     getTodayPhraseSyncForTarget(studyTarget, lang)
   ));
+  const [homeQuestAnswered, setHomeQuestAnswered] = useState(false);
   const [detailsVisible, setDetailsVisible] = useState(false);
   const [questAnswered, setQuestAnswered] = useState(false);
   const [showQuestExplanation, setShowQuestExplanation] = useState(false);
@@ -154,6 +155,20 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
     explanationAnim.setValue(0);
     successAnim.setValue(0);
   }, [phrase?.id, shakeAnim, explanationAnim, successAnim]);
+
+  // зачем: владелец — кнопка "Проверить себя" на плашке хоума должна пропадать
+  // сразу после ответа на квиз дня, не дожидаясь повторного открытия шторки.
+  useEffect(() => {
+    setHomeQuestAnswered(false);
+    if (!dailyPhraseGateOpen || !phrase) return;
+    let cancelled = false;
+    const phraseId = phrase.id || phrase.date;
+    const date = phrase.date || phrase.scheduledDate || new Date().toISOString().split('T')[0]!;
+    hasDailyPhraseQuestAnswered({ phraseId, date })
+      .then((answered) => { if (!cancelled && answered) setHomeQuestAnswered(true); })
+      .catch(() => {});
+    return () => { cancelled = true; };
+  }, [dailyPhraseGateOpen, phrase?.id, phrase?.date, phrase?.scheduledDate]);
 
   useEffect(() => {
     const opened = detailsVisible && !wasDetailsVisibleRef.current;
@@ -473,6 +488,7 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
     setSelectedQuestOptionId(optionId);
     setQuestAnswered(true);
     setQuestPreviouslyAnswered(false);
+    setHomeQuestAnswered(true);
     revealQuestExplanation();
     markDailyPhraseQuestAnswered({ phraseId, date }).catch(() => {});
 
@@ -499,7 +515,7 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
       <Pressable
         onPress={openDetails}
         accessibilityRole="button"
-        accessibilityLabel={homeAdditional ? `${title}. ${phrase.english}. ${homeActionLabel}` : title}
+        accessibilityLabel={homeAdditional ? `${title}. ${phrase.english}.${homeQuestAnswered ? '' : ` ${homeActionLabel}`}` : title}
         style={({ pressed }) => [
           homeAdditional ? styles.homeAdditionalEditorial : styles.plaque,
           !homeAdditional && {
@@ -542,11 +558,13 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
                 <Text style={[styles.homeAdditionalPhrase, { color: chrome.phrase, fontSize: Math.max(22, f.bodyLg), lineHeight: Math.round(Math.max(22, f.bodyLg) * 1.3) }]}>
                   {phrase.english}
                 </Text>
-                <View style={[styles.homeAdditionalAction, { backgroundColor: chrome.actionBg }]}>
-                  <Text style={[styles.homeAdditionalActionText, { color: chrome.actionText, fontSize: Math.max(13, f.label) }]}>
-                    {homeActionLabel}
-                  </Text>
-                </View>
+                {!homeQuestAnswered && (
+                  <View style={[styles.homeAdditionalAction, { backgroundColor: chrome.actionBg }]}>
+                    <Text style={[styles.homeAdditionalActionText, { color: chrome.actionText, fontSize: Math.max(13, f.label) }]}>
+                      {homeActionLabel}
+                    </Text>
+                  </View>
+                )}
               </>
             ) : (
               <>

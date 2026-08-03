@@ -502,25 +502,14 @@ export default function TournamentsScreen() {
     && !windowPlayed
     && (windowOpen || (secondsToStart > 0 && joinOpensInSec === 0));
 
-  /**
-   * зачем 2026-07-27 (владелец): «сделай, чтобы без расписания было доступно
-   * начать игру в турнире в любое время» и «убери ограничение на количество
-   * игр в слот». Вход больше не упирается ни в окно, ни в «уже играли»: когда
-   * штатное окно закрыто, сервер собирает ОБЫЧНУЮ комнату по требованию
-   * (tournamentStartNow) — те же задания, боты, раунды и награды.
-   *
-   * Расписание при этом живо: пока окно идёт, играем именно комнату слота,
-   * чтобы игроки попадали друг к другу, а не расходились по личным комнатам.
-   */
-  // Fail closed: only the literal admin/server release flag may override a live
-  // schedule window. When it is absent or false, the paid scheduled route below
-  // remains unchanged. This keeps temporary QA access removable without a build.
-  const testModeReleaseActive = schedule?.testingEnabled === true;
-  // зачем 2026-08-03 (владелец, релизное решение): турниры ТОЛЬКО по
-  // расписанию. Мгновенная комната вне окна («играть в любое время»,
-  // решение 2026-07-27) отменена для игроков — она остаётся только за
-  // дев-кнопкой (testingEnabled из админки), чтобы владелец мог собрать
-  // тестовую комнату вне расписания и проверить все функции перед релизом.
+  // зачем 2026-08-03 (владелец, релизное решение, дословно): «турниры ТОЛЬКО
+  // по расписанию, которое включается в админке» + «В ДЕВ кнопка дев создаёт
+  // мне тестовую комнату вне расписания прямо сейчас». Поэтому два слоя:
+  // __DEV__ — кнопка существует только в дев-сборке, боевой билд её не
+  // содержит ни при каком флаге; testingEnabled из админки — рубильник,
+  // которым владелец включает тестовый вход без пересборки. Прежние
+  // мгновенные комнаты вне окна для игроков (решение 2026-07-27) отменены.
+  const testModeReleaseActive = __DEV__ && schedule?.testingEnabled === true;
   const instantEntry = testModeReleaseActive;
   // The released test surface is always free; production keeps the configured price.
   const effectiveEntryGems = testModeReleaseActive ? 0 : entryGems;

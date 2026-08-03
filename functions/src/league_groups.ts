@@ -3,6 +3,16 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { isVipActive, resolvePremiumAccess, resolveIsLifetimePlan } from './premium_status';
+import {
+  SHARED_POOL_MARKER,
+  chooseSharedPoolRoom,
+  countRealMembers,
+  isSharedPoolEnabled,
+  isSharedPoolWeekId,
+  leagueRoomMatches,
+  sharedPoolDocId,
+} from './league_shared_pool';
+import { padRoomWithGhosts } from './league_ghosts';
 
 const GROUP_SIZE = 30;
 const MAX_LEAGUE_ID = 11;
@@ -29,6 +39,7 @@ type MemberData = {
   isLifetime?: boolean;
   streak?: number;
   totalXp?: number;
+  leagueId?: number;
   leagueBoostMultiplier?: number;
   leagueBoostExpiresAt?: number;
 };
@@ -423,6 +434,23 @@ async function findGroupWithSpace(
   return candidates[0]?.id ?? null;
 }
 
+/**
+ * Комнаты сводного пула недели. Equality-only запрос (weekId + pool) не требует
+ * композитного индекса; комнат за неделю единицы, limit — страховка.
+ */
+async function fetchSharedPoolRooms(
+  db: FirebaseFirestore.Firestore,
+  weekId: string,
+): Promise<{ id: string; data: FirebaseFirestore.DocumentData }[]> {
+  const snap = await db
+    .collection('league_groups')
+    .where('weekId', '==', weekId)
+    .where('pool', '==', SHARED_POOL_MARKER)
+    .limit(25)
+    .get();
+  return snap.docs.map((doc) => ({ id: doc.id, data: doc.data() }));
+}
+
 async function findExistingGroupForUser(
   db: FirebaseFirestore.Firestore,
   weekId: string,
@@ -495,6 +523,7 @@ async function hideDuplicateMemberships(
       batch.set(doc.ref, {
         members,
         memberCount: countMembers({ members }),
+        realMemberCount: countRealMembers(members),
         updatedAt: now,
         identityCanonicalizedAt: now,
       }, { merge: true });
@@ -563,6 +592,10 @@ export const leagueJoinOrUpdateGroup = onCall(HOT_CALLABLE_OPTIONS, async (reque
     lbSnap?.data(),
   );
   Object.assign(member, authoritativeFields);
+  // зачем: в сводном пуле комната общая на все лиги, поэтому личная лига живёт
+  // в записи участника. Пишет её только сервер из авторитетного резолва —
+  // телу запроса это поле не доверяем (sanitizeMember его не пропускает).
+  member.leagueId = leagueId;
   const leaderboardProjection = leaderboardProjectionForMember(weekId, authoritativeFields, lbSnap?.data());
 
   let groupId: string | null = null;
@@ -573,8 +606,17 @@ export const leagueJoinOrUpdateGroup = onCall(HOT_CALLABLE_OPTIONS, async (reque
     if (savedSnap?.exists && savedSnap.data()?.members?.[stableUid]) groupId = savedGroupId;
   }
 
+  // зачем: с недели SHARED_POOL_START_WEEK все реальные игроки собираются в
+  // общий пул недели (решение владельца 2026-08-03: ~18 активных на 12 лиг,
+  // полупустые комнаты и «одни и те же лица»). Kill-switch в remote_config
+  // выключает только НОВУЮ расстановку — уже сидящие в пуле продолжают
+  // обновляться через pool-aware leagueRoomMatches ниже.
+  const sharedPool = isSharedPoolWeekId(weekId) && await isSharedPoolEnabled(db);
+
   if (!groupId) {
-    groupId = await findExistingGroupForUser(db, weekId, leagueId, stableUid);
+    groupId = sharedPool
+      ? chooseSharedPoolRoom(await fetchSharedPoolRooms(db, weekId), stableUid)
+      : await findExistingGroupForUser(db, weekId, leagueId, stableUid);
     shouldCleanupDuplicates = Boolean(groupId);
   }
 
@@ -584,12 +626,12 @@ export const leagueJoinOrUpdateGroup = onCall(HOT_CALLABLE_OPTIONS, async (reque
       const [snap, freshLbSnap] = await Promise.all([tx.get(ref), tx.get(lbRef)]);
       if (!snap.exists) throw new HttpsError('not-found', 'league_group_not_found');
       const data = snap.data() || {};
-      if (data.weekId !== weekId || readInt(data.leagueId) !== leagueId) throw new HttpsError('permission-denied', 'room_mismatch');
+      if (!leagueRoomMatches(data, weekId, leagueId)) throw new HttpsError('permission-denied', 'room_mismatch');
       const currentWeekPoints = getAuthoritativeLeagueWeekPoints(userSnap?.data(), freshLbSnap.data(), weekId);
       const currentMember = { ...member, points: currentWeekPoints };
       const members = { ...(data.members || {}) };
       members[stableUid] = mergeCurrentWeekMember(members[stableUid], currentMember);
-      tx.set(ref, { members, memberCount: countMembers({ members }), updatedAt: Date.now() }, { merge: true });
+      tx.set(ref, { members, memberCount: countMembers({ members }), realMemberCount: countRealMembers(members), updatedAt: Date.now() }, { merge: true });
       tx.set(lbRef, {
         groupId,
         groupWeekId: weekId,
@@ -603,6 +645,82 @@ export const leagueJoinOrUpdateGroup = onCall(HOT_CALLABLE_OPTIONS, async (reque
     return { ok: true, groupId, weekId, leagueId };
   }
 
+  if (sharedPool) {
+    // Пула ещё нет — создаём с детерминированным id: гонка двух создателей
+    // упирается в tx.create (ALREADY_EXISTS), проигравший на следующем круге
+    // находит комнату победителя и вступает в неё. Комната рождается сразу
+    // дозаполненной жителями — первый игрок понедельника видит полную комнату.
+    const isAlreadyExists = (e: unknown): boolean =>
+      (e as { code?: number | string })?.code === 6
+      || /already.?exists/i.test(String((e as Error)?.message ?? ''));
+    for (let attempt = 0; attempt < 4; attempt++) {
+      const rooms = await fetchSharedPoolRooms(db, weekId);
+      const candidate = chooseSharedPoolRoom(rooms, stableUid);
+      if (candidate) {
+        let joined = false;
+        await db.runTransaction(async (tx) => {
+          const ref = db.collection('league_groups').doc(candidate);
+          const [snap, freshLbSnap] = await Promise.all([tx.get(ref), tx.get(lbRef)]);
+          if (!snap.exists) return;
+          const data = snap.data() || {};
+          if (!leagueRoomMatches(data, weekId, leagueId)) return;
+          const currentWeekPoints = getAuthoritativeLeagueWeekPoints(userSnap?.data(), freshLbSnap.data(), weekId);
+          const members = { ...(data.members || {}) };
+          members[stableUid] = mergeCurrentWeekMember(members[stableUid], { ...member, points: currentWeekPoints });
+          tx.set(ref, { members, memberCount: countMembers({ members }), realMemberCount: countRealMembers(members), updatedAt: Date.now() }, { merge: true });
+          tx.set(lbRef, {
+            groupId: candidate,
+            groupWeekId: weekId,
+            leagueId,
+            ...leaderboardProjectionForMember(weekId, { ...authoritativeFields, points: currentWeekPoints }, freshLbSnap.data()),
+          }, { merge: true });
+          joined = true;
+        });
+        if (joined) {
+          await cleanupDuplicateMembershipsBestEffort(db, weekId, stableUid, candidate);
+          return { ok: true, groupId: candidate, weekId, leagueId };
+        }
+        continue;
+      }
+      const poolRoomId = attempt < 3
+        ? sharedPoolDocId(weekId, rooms.length + 1)
+        : makeGroupDocId(weekId, 0, stableUid); // страховка от вечного конфликта id
+      try {
+        await db.runTransaction(async (tx) => {
+          const ref = db.collection('league_groups').doc(poolRoomId);
+          const freshLbSnap = await tx.get(lbRef);
+          const currentWeekPoints = getAuthoritativeLeagueWeekPoints(userSnap?.data(), freshLbSnap.data(), weekId);
+          const seeded = padRoomWithGhosts(
+            { [stableUid]: { ...member, points: currentWeekPoints } },
+            weekId,
+            Date.now(),
+          );
+          tx.create(ref, {
+            weekId,
+            leagueId: 0,
+            pool: SHARED_POOL_MARKER,
+            memberCount: countMembers({ members: seeded }),
+            realMemberCount: countRealMembers(seeded),
+            createdAt: Date.now(),
+            updatedAt: Date.now(),
+            members: seeded,
+          });
+          tx.set(lbRef, {
+            groupId: poolRoomId,
+            groupWeekId: weekId,
+            leagueId,
+            ...leaderboardProjectionForMember(weekId, { ...authoritativeFields, points: currentWeekPoints }, freshLbSnap.data()),
+          }, { merge: true });
+        });
+        await cleanupDuplicateMembershipsBestEffort(db, weekId, stableUid, poolRoomId);
+        return { ok: true, groupId: poolRoomId, weekId, leagueId };
+      } catch (e: unknown) {
+        if (!isAlreadyExists(e)) throw e;
+      }
+    }
+    throw new HttpsError('aborted', 'shared_pool_join_conflict');
+  }
+
   for (let attempt = 0; attempt < 4; attempt++) {
     const candidate = await findGroupWithSpace(db, weekId, leagueId, stableUid);
     if (!candidate) break;
@@ -612,13 +730,13 @@ export const leagueJoinOrUpdateGroup = onCall(HOT_CALLABLE_OPTIONS, async (reque
       const [snap, freshLbSnap] = await Promise.all([tx.get(ref), tx.get(lbRef)]);
       if (!snap.exists) return;
       const data = snap.data() || {};
-      if (data.weekId !== weekId || readInt(data.leagueId) !== leagueId) return;
+      if (!leagueRoomMatches(data, weekId, leagueId)) return;
       const currentWeekPoints = getAuthoritativeLeagueWeekPoints(userSnap?.data(), freshLbSnap.data(), weekId);
       const currentMember = { ...member, points: currentWeekPoints };
       const members = { ...(data.members || {}) };
       if (!members[stableUid] && countMembers({ members }) >= GROUP_SIZE) return;
       members[stableUid] = mergeCurrentWeekMember(members[stableUid], currentMember);
-      tx.set(ref, { members, memberCount: countMembers({ members }), updatedAt: Date.now() }, { merge: true });
+      tx.set(ref, { members, memberCount: countMembers({ members }), realMemberCount: countRealMembers(members), updatedAt: Date.now() }, { merge: true });
       tx.set(lbRef, {
         groupId: candidate,
         groupWeekId: weekId,
@@ -780,7 +898,9 @@ async function activateLeagueGroupBoostForStableUid(db: FirebaseFirestore.Firest
     const [groupSnap, userSnap] = await Promise.all([tx.get(groupRef), tx.get(userRef)]);
     if (!groupSnap.exists) throw new HttpsError('not-found', 'league-group-not-found');
     const groupData = groupSnap.data() || {};
-    if (groupData.weekId !== groupWeekId || readInt(groupData.leagueId, 0) !== leagueId) {
+    // зачем: в сводном пуле leagueId документа (0) ≠ личной лиге покупателя —
+    // сверяем комнату pool-aware, иначе буст в пуле был бы невозможен.
+    if (!leagueRoomMatches(groupData, groupWeekId, leagueId)) {
       throw new HttpsError('permission-denied', 'room-mismatch');
     }
     const members = groupData.members && typeof groupData.members === 'object'

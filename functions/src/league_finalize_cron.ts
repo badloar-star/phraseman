@@ -20,6 +20,7 @@
 
 import * as admin from 'firebase-admin';
 import { onSchedule } from 'firebase-functions/v2/scheduler';
+import { isGhostMemberEntry } from './league_shared_pool';
 
 const CLUBS_MAX_ID = 11;
 const LEAGUE_RESULT_ZONE_RATIO = 0.15;
@@ -92,41 +93,60 @@ type MemberResult = {
 };
 
 export function computeGroupResults(
-  members: Record<string, { points?: unknown; uid?: unknown }>,
+  members: Record<string, { points?: unknown; uid?: unknown; leagueId?: unknown; isGhost?: unknown }>,
   leagueId: number,
   xpPromotion: XpPromotionConfig,
 ): Record<string, MemberResult> {
-  const entries = Object.entries(members)
+  // зачем (сводный пул, 2026-08-03): комната может быть общей на все лиги и
+  // содержать «жителей» (league_ghosts). Личная лига берётся из записи
+  // участника (members.{uid}.leagueId), для легаси-комнат — из leagueId
+  // документа. Жители видны в отображаемом ранге, но НЕ занимают зоны
+  // повышения/понижения и не получают документов итогов — награды и переходы
+  // считаются только среди реальных игроков (решение владельца).
+  const visible = Object.entries(members)
     .filter(([, m]) => (m as Record<string, unknown>)?.identityHidden !== true)
-    .map(([uid, m]) => ({
-      uid,
-      points: Math.max(0, Math.trunc(Number((m as Record<string, unknown>).points ?? 0)) || 0),
-    }))
+    .map(([uid, m]) => {
+      const raw = m as Record<string, unknown>;
+      const memberLeagueRaw = Math.trunc(Number(raw.leagueId));
+      return {
+        uid,
+        isGhost: isGhostMemberEntry(uid, raw),
+        leagueId: Number.isFinite(memberLeagueRaw) && memberLeagueRaw >= 0 && memberLeagueRaw <= CLUBS_MAX_ID
+          ? memberLeagueRaw
+          : Math.max(0, Math.min(CLUBS_MAX_ID, leagueId)),
+        points: Math.max(0, Math.trunc(Number(raw.points ?? 0)) || 0),
+      };
+    })
     .sort((a, b) => b.points - a.points || a.uid.localeCompare(b.uid));
 
-  const total = entries.length;
-  const zoneSize = getLeagueResultZoneSize(total);
+  const real = visible.filter((entry) => !entry.isGhost);
+  const total = visible.length;
+  const realTotal = real.length;
+  const zoneSize = getLeagueResultZoneSize(realTotal);
   const results: Record<string, MemberResult> = {};
 
-  entries.forEach((e) => {
-    const rank = 1 + entries.filter((candidate) => candidate.points > e.points).length;
-    const bottomRank = 1 + entries.filter((candidate) => candidate.points < e.points).length;
+  real.forEach((e) => {
+    // Отображаемый ранг честен к экрану (включает жителей); зоны — только
+    // по реальным, чтобы жители не блокировали и не раздавали переходы.
+    const rank = 1 + visible.filter((candidate) => candidate.points > e.points).length;
+    const realRank = 1 + real.filter((candidate) => candidate.points > e.points).length;
+    const realBottomRank = 1 + real.filter((candidate) => candidate.points < e.points).length;
     // XP-режим (зеркало app/league_engine.ts:710-717): повышение по набранным
     // очкам, БЕЗ понижения — чтобы сервер совпал с клиентским бейджем «Переход».
     // Иначе — обычный rank-режим (топ-15% ↑, низ-15% ↓).
     const promoted = xpPromotion.enabled
-      ? e.points >= xpPromotion.threshold && leagueId < CLUBS_MAX_ID
-      : total >= 2 && rank <= zoneSize && leagueId < CLUBS_MAX_ID;
+      ? e.points >= xpPromotion.threshold && e.leagueId < CLUBS_MAX_ID
+      : realTotal >= 2 && realRank <= zoneSize && e.leagueId < CLUBS_MAX_ID;
     const demoted = xpPromotion.enabled
       ? false
-      : total >= 2 && bottomRank <= zoneSize && leagueId > 0 && !promoted;
+      : realTotal >= 2 && realBottomRank <= zoneSize && e.leagueId > 0 && !promoted;
     results[e.uid] = {
       rank,
       total,
       promoted,
       demoted,
-      prevLeagueId: leagueId,
-      newLeagueId: promoted ? leagueId + 1 : demoted ? leagueId - 1 : leagueId,
+      prevLeagueId: e.leagueId,
+      newLeagueId: promoted ? e.leagueId + 1 : demoted ? e.leagueId - 1 : e.leagueId,
       points: e.points,
     };
   });

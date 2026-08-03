@@ -58,18 +58,58 @@ describe('Legacy agent collections stay closed to clients even after the code wa
 
 describe('New Jarvis collections are equally closed to direct client access', () => {
   // зачем: новый слой обязан наследовать то же правило — данные решений,
-  // истории бизнеса и агрегата уроков читаются ТОЛЬКО через callable.
+  // истории бизнеса и агрегата уроков читаются ТОЛЬКО через callable, ИЛИ
+  // admin читает напрямую, а пишет только сервер (журналы/бюджет/выключатель —
+  // владельцу нужно видеть их в панели без отдельного callable на каждый).
+  //
+  // зачем extractRuleBlock, а не искать паттерн по всему файлу целиком: старый
+  // способ (несвязанный [\s\S]*? от заголовка блока до первого совпадения
+  // ГДЕ УГОДНО дальше в файле) давал ложное совпадение — регекс перепрыгивал
+  // закрывающую `}` нужного блока и находил `allow read, write: if false;`
+  // в СЛЕДУЮЩЕМ, не связанном с проверяемой коллекцией блоке. Обнаружено на
+  // jarvis_approval_audit: её реальное правило (read: if isAdmin(); write: if
+  // false — раздельно) под старый паттерн не подходит вообще, но тест всё
+  // равно проходил зелёным. extractRuleBlock ограничивает поиск текстом
+  // СТРОГО между открывающей `{` этого match и следующим top-level `match `.
+  function extractRuleBlock(collection: string): string | null {
+    const opening = new RegExp(`match\\s*\\/${collection}\\/\\{[^}]*\\}\\s*\\{`).exec(rules);
+    if (!opening) return null;
+    const start = opening.index + opening[0].length;
+    const nextMatchIdx = rules.indexOf('match ', start);
+    return rules.slice(start, nextMatchIdx === -1 ? rules.length : nextMatchIdx);
+  }
+
   const JARVIS_COLLECTIONS = [
     'business_tier_history', 'business_tier_peak', 'lesson_stats',
     // Журнал подтверждений: admin читает, пишет только сервер.
     'jarvis_approval_audit',
+    // Выключатель Джарвиса: то же — admin читает режим, пишет только сервер.
+    'jarvis_control',
+    // Счётчик трат на LLM: то же самое разделение прав.
+    'jarvis_llm_budget',
   ] as const;
 
-  test.each(JARVIS_COLLECTIONS)('%s is not readable straight from the browser', (collection) => {
-    const hasExplicitDeny = new RegExp(
-      `match\\s+\\/${collection}\\/\\{[^}]+\\}\\s*\\{[\\s\\S]*?allow\\s+read\\s*,\\s*write\\s*:\\s*if\\s+false\\s*;[\\s\\S]*?\\}`,
-    ).test(rules);
+  test.each(JARVIS_COLLECTIONS)('%s is not readable/writable straight from the browser', (collection) => {
+    const block = extractRuleBlock(collection);
     const excludedFromCatchAll = rules.includes(`collection != '${collection}'`);
-    expect(hasExplicitDeny || excludedFromCatchAll).toBe(true);
+    if (block === null) {
+      // Нет отдельного match-блока — обязана быть исключена из общего catch-all.
+      expect(excludedFromCatchAll).toBe(true);
+      return;
+    }
+    const fullyClosed = /allow\s+read\s*,\s*write\s*:\s*if\s+false\s*;/.test(block);
+    // Раздельная запись: admin читает, запись закрыта отдельной строкой.
+    const adminReadOnly = /allow\s+read\s*:\s*if\s+isAdmin\s*\(\s*\)\s*;/.test(block)
+      && /allow\s+write\s*:\s*if\s+false\s*;/.test(block);
+    expect(fullyClosed || adminReadOnly || excludedFromCatchAll).toBe(true);
+  });
+
+  test('extractRuleBlock does not leak into the next match block — regression for the bug above', () => {
+    // зачем: доказать, что чинили именно ЭТУ ошибку, а не просто ослабили тест.
+    // jarvis_control реально НЕ содержит "allow read, write: if false" —
+    // старый regex ошибочно находил это в СЛЕДУЮЩЕМ блоке файла.
+    const block = extractRuleBlock('jarvis_control');
+    expect(block).not.toBeNull();
+    expect(block).not.toMatch(/allow\s+read\s*,\s*write\s*:\s*if\s+false\s*;/);
   });
 });

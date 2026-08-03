@@ -22,6 +22,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { useRouter } from 'expo-router';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import * as Haptics from 'expo-haptics';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
@@ -44,8 +45,10 @@ import {
   type TournamentV2,
 } from '../components/tournament/tournament_theme';
 import { TournamentEdgeState } from '../components/tournament/TournamentEdgeState';
-import { TournamentBackdrop } from '../components/tournament/TournamentBackdrop';
-import { tournamentAvatarLevel } from '../components/tournament/tournament_avatars';
+import { TournamentBackdrop, TournamentPodiumArt } from '../components/tournament/TournamentBackdrop';
+import { tournamentAvatarLevel, tournamentAvatarValue } from '../components/tournament/tournament_avatars';
+import { tournamentBotCardInfo } from '../components/tournament/tournament_bot_card';
+import UnifiedPlayerModal, { type PlayerInfo } from '../components/PlayerProfileModal';
 import {
   invalidateSeasonStandingsCache,
   hasAuthoritativeTournamentResults,
@@ -73,6 +76,9 @@ type Winner = {
   score: number;
   place: number;
   rewardGems: number;
+  /** Нужен, чтобы карточка бота собиралась локально, без похода в Firestore. */
+  isBot: boolean;
+  isYou: boolean;
 };
 
 // зачем 2026-07-27 (владелец): блок PRIZES удалён целиком. В нём были
@@ -105,15 +111,18 @@ function sharedPlace(players: readonly RoomPlayer[], index: number): number {
  * его. Строим пьедестал сразу — сервер потом уточняет места и выплаты, и это
  * уточнение не меняет геометрию (места те же, добавляются только жемчужины).
  */
-function buildPodium(players: readonly RoomPlayer[], P: TournamentV2): Winner[] {
+function buildPodium(players: readonly RoomPlayer[], P: TournamentV2, myId: string | null): Winner[] {
   if (players.length === 0) return [];
   const ordered = orderTournamentPlayersForDisplay(players);
   const top = ordered.slice(0, 3).map((player, index) => ({
     id: player.id,
     name: player.name || 'Игрок',
-    // зачем: был эмодзи-фолбэк '🙂' — approved AvatarView сам рисует дефолтный
-    // LevelBadge, если avatar пуст/невалиден, эмодзи-костыль не нужен.
-    avatar: player.avatar || '',
+    // зачем 2026-08-03 (владелец: «рандомные боты не могут получить уровень выше
+    // 50 и аватарку выше 50»): аватар прогоняется через tournamentAvatarValue —
+    // он и клампит уровневый аватар бота к TOURNAMENT_BOT_MAX_LEVEL. Раньше на
+    // пьедестале стоял сырой player.avatar, поэтому кап, работавший в лобби,
+    // здесь не действовал и бот мог красоваться аватаром 90-го уровня.
+    avatar: tournamentAvatarValue({ id: player.id, isBot: player.isBot, avatar: player.avatar }),
     aura: player.aura,
     // зачем: было хардкод-hex '#8AB49A' — фолбэк-цвет аватара теперь берётся
     // из общего токен-набора режима (тот же тон, что P.muted).
@@ -121,6 +130,8 @@ function buildPodium(players: readonly RoomPlayer[], P: TournamentV2): Winner[] 
     score: Number(player.score ?? 0),
     place: sharedPlace(ordered, index),
     rewardGems: player.forfeitedAtMs === undefined ? Math.max(0, player.rewardGems ?? 0) : 0,
+    isBot: player.isBot === true,
+    isYou: Boolean(myId) && player.id === myId,
   }));
   // Порядок колонн: серебро, золото, бронза.
   return [top[1], top[0], top[2]].filter((winner): winner is Winner => Boolean(winner));
@@ -139,6 +150,82 @@ export default function TournamentResultsScreen() {
   // Финальный экран закрывается прямо в меню турниров. Предыдущие раунды и
   // межраундовые таблицы не являются допустимой точкой возврата.
   const closeResults = useCallback(() => closeTournamentFlow(router), [router]);
+
+  /**
+   * Карточка игрока по тапу на пьедестале.
+   *
+   * зачем 2026-08-03 (владелец: «на пьедестале надо чтобы каждый юзер был
+   * кликабельным и его карточка открывалась»): пьедестал был мёртвой картинкой,
+   * хотя точно такой же тап уже работал в лобби и в таблице сезона. Берём тот
+   * же UnifiedPlayerModal и тот же tournamentBotCardInfo, а не пишем третью
+   * версию карточки.
+   *
+   * Firebase-экономия: у бота карточка собирается ЛОКАЛЬНО из его id, без
+   * единого чтения. Для живого игрока модалка сама доуточняет профиль по uid.
+   */
+  const [selectedPlayer, setSelectedPlayer] = useState<PlayerInfo | null>(null);
+  const closePlayer = useCallback(() => setSelectedPlayer(null), []);
+  const [myProfile, setMyProfile] = useState<{
+    name: string; avatar: string; frame: string; totalXP: number;
+    streak: number | null; leagueId: number | undefined;
+  }>(() => ({ name: 'Я', avatar: '', frame: '', totalXP: 0, streak: null, leagueId: undefined }));
+  useEffect(() => {
+    let alive = true;
+    void AsyncStorage.multiGet(['user_name', 'user_avatar', 'user_frame', 'user_total_xp', 'streak_count', 'league_state_v3'])
+      .then((pairs: readonly (readonly [string, string | null])[]) => {
+        if (!alive) return;
+        const map = new Map(pairs.map(([key, value]) => [key, value ?? '']));
+        let leagueId: number | undefined;
+        try {
+          const rawLeague = map.get('league_state_v3');
+          if (rawLeague) leagueId = Number((JSON.parse(rawLeague) as { leagueId?: number }).leagueId);
+        } catch { /* лига не критична для карточки */ }
+        setMyProfile({
+          name: (map.get('user_name') ?? '').trim() || 'Я',
+          avatar: (map.get('user_avatar') ?? '').trim(),
+          frame: (map.get('user_frame') ?? '').trim(),
+          totalXP: Number(map.get('user_total_xp') ?? 0) || 0,
+          streak: Number(map.get('streak_count') ?? 0) || 0,
+          leagueId: Number.isFinite(leagueId) ? leagueId : undefined,
+        });
+      })
+      .catch(() => {});
+    return () => { alive = false; };
+  }, []);
+
+  const openWinner = useCallback((winner: Winner) => {
+    if (winner.isBot) {
+      setSelectedPlayer(tournamentBotCardInfo({
+        uid: winner.id,
+        name: winner.name,
+        avatar: winner.avatar,
+        aura: winner.aura,
+      }));
+      return;
+    }
+    if (winner.isYou) {
+      setSelectedPlayer({
+        name: winner.name,
+        points: myProfile.totalXP,
+        totalXp: myProfile.totalXP,
+        isMe: true,
+        avatar: myProfile.avatar || winner.avatar,
+        aura: winner.aura,
+        streak: myProfile.streak,
+        leagueId: myProfile.leagueId,
+      });
+      return;
+    }
+    setSelectedPlayer({
+      name: winner.name,
+      points: 0,
+      isMe: false,
+      uid: winner.id,
+      avatar: winner.avatar,
+      aura: winner.aura,
+      streak: null,
+    });
+  }, [myProfile]);
 
   const { room, status, freshSnapshot, retry } = useTournamentRoom(roomId, runtimeActive);
   /**
@@ -207,7 +294,7 @@ export default function TournamentResultsScreen() {
 
   const { themeMode } = useTheme();
   const players = room?.players ?? [];
-  const podium = useMemo(() => buildPodium(players, P), [players]);
+  const podium = useMemo(() => buildPodium(players, P, myId), [players, P, myId]);
 
   /**
    * Реальная экономика турнира вместо захардкоженных «50/25/10».
@@ -408,14 +495,20 @@ export default function TournamentResultsScreen() {
 
         {/* Подиум */}
         <V2Card pad={20}>
-          <View style={styles.podium}>
-            {podium.map((winner) => (
-              <PodiumColumn
-                key={winner.id}
-                winner={winner}
-                gems={winner.rewardGems}
-              />
-            ))}
+          <View style={styles.podiumStage}>
+            <View pointerEvents="none" style={styles.podiumArtClip}>
+              <TournamentPodiumArt style={styles.podiumThemeArt} />
+            </View>
+            <View style={styles.podium}>
+              {podium.map((winner) => (
+                <PodiumColumn
+                  key={winner.id}
+                  winner={winner}
+                  gems={winner.rewardGems}
+                  onPress={openWinner}
+                />
+              ))}
+            </View>
           </View>
 
           {/* Деньги показаны как один проверяемый путь, а не как несколько
@@ -526,6 +619,20 @@ export default function TournamentResultsScreen() {
           router.push('/collectibles_screen' as any);
         }}
       />
+      {/* Карточка игрока по тапу на пьедестале — тот же компонент, что в лобби,
+          друзьях и лигах. */}
+      <UnifiedPlayerModal
+        player={selectedPlayer}
+        myInfo={{
+          name: myProfile.name,
+          avatar: myProfile.avatar,
+          frame: myProfile.frame,
+          totalXP: myProfile.totalXP,
+          streak: myProfile.streak,
+          leagueId: myProfile.leagueId,
+        }}
+        onClose={closePlayer}
+      />
       {/* Салют за призовое место. Слой не перехватывает тапы. */}
       <TournamentFxHost ref={fxRef} width={fxSize.width} height={fxSize.height} />
     </View>
@@ -537,8 +644,8 @@ export default function TournamentResultsScreen() {
 const PODIUM_HEIGHT: Record<number, number> = { 1: 96, 2: 72, 3: 60 };
 
 const PodiumColumn = memo(function PodiumColumn({
-  winner, gems = 0,
-}: { winner: Winner; gems?: number }) {
+  winner, gems = 0, onPress,
+}: { winner: Winner; gems?: number; onPress?: (winner: Winner) => void }) {
   const P = useTournamentPalette();
   const styles = React.useMemo(() => makeStyles(P), [P]);
   const { themeMode } = useTheme();
@@ -609,7 +716,16 @@ const PodiumColumn = memo(function PodiumColumn({
   const gemsStyle = useAnimatedStyle(() => ({ transform: [{ scale: 0.9 + gemsScale.value * 0.1 }] }));
 
   return (
-    <View style={styles.podiumColumn}>
+    // зачем 2026-08-03 (владелец: «на пьедестале надо чтобы каждый юзер был
+    // кликабельным и его карточка открывалась»): колонка была статичной. TapScale
+    // даёт тот же отклик на нажатие, что и остальные кликабельные места турнира.
+    <TapScale
+      style={styles.podiumColumn}
+      onPress={onPress ? () => onPress(winner) : undefined}
+      disabled={!onPress}
+      accessibilityRole="button"
+      accessibilityLabel={`${winner.name}, ${winner.place} место. Открыть карточку игрока`}
+    >
       {/* Награда призёра: настоящая сумма с сервера, а не выдуманная. */}
       {gems > 0 ? (
         <Animated.View style={[styles.podiumGems, gemsStyle]}>
@@ -665,7 +781,7 @@ const PodiumColumn = memo(function PodiumColumn({
         {/* eslint-disable-next-line text-integrity/no-unsafe-text-truncation -- цифра внутри ступени пьедестала фиксированной высоты */}
         <Text style={styles.podiumPlace} allowFontScaling={false}>{winner.place}</Text>
       </Animated.View>
-    </View>
+    </TapScale>
   );
 });
 
@@ -680,7 +796,10 @@ const makeStyles = (P: TournamentV2) => StyleSheet.create({
   title: { fontSize: 30, fontWeight: '900', color: P.text, letterSpacing: -0.8 },
   subtitle: { ...type.body, color: P.muted, marginTop: 6 },
 
-  podium: { flexDirection: 'row', alignItems: 'flex-end', gap: 8 },
+  podiumStage: { position: 'relative', paddingTop: 14 },
+  podiumArtClip: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 176, overflow: 'hidden' },
+  podiumThemeArt: { position: 'absolute', left: 0, right: 0, bottom: 0, width: undefined, height: 176, opacity: 0.18 },
+  podium: { zIndex: 1, flexDirection: 'row', alignItems: 'flex-end', gap: 8 },
   podiumColumn: { flex: 1, alignItems: 'center' },
   crown: { fontSize: 26, marginBottom: 2 },
   crownSpacer: { height: 28 },

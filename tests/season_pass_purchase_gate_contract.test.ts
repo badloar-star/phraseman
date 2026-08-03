@@ -19,25 +19,29 @@ const SOURCE = fs.readFileSync(
   'utf8',
 );
 
-describe('гейт покупки: без пропуска не выдаётся НИЧЕГО', () => {
-  test('обе линии закрыты одним признаком владения пропуском', () => {
-    // Раньше было `!isPassLane || laneUnlockedForPass` — бесплатная линия
-    // раздавалась любому. Теперь пропуск это вход в обе линии.
-    expect(SOURCE).toContain('const laneUnlocked = laneUnlockedForPass;');
-    expect(SOURCE).not.toContain('const laneUnlocked = !isPassLane || laneUnlockedForPass;');
+// зачем 2026-08-03 (владелец, дословно: «250 СТОИТ ВХОД ДЛЯ ВСЕХ И ДЛЯ ФРИ И
+// ДЛЯ ПРЕМИУМ! просто фри таер будет получать только подарки слева, а плюс
+// таер будет получать и слева и справа»): прежний контракт фиксировал модель
+// `isPremium || passOwned` — подписка ЗАМЕНЯЛА покупку. Это и прятало кнопку
+// «250» у премиума. Теперь осей две и они независимы, тест сторожит обе.
+describe('гейт покупки: вход — только за деньги, ширина выдачи — по тиру', () => {
+  test('вход в дорожку даёт ТОЛЬКО покупка, подписка его не заменяет', () => {
+    expect(SOURCE).toContain('const passBought = passOwned;');
+    // Ключевая защита денег: premium не должен вновь стать входным билетом.
+    expect(SOURCE).not.toContain('const laneUnlockedForPass = isPremium || passOwned;');
+  });
+
+  test('правая линия — привилегия Plus, но работает только после покупки', () => {
+    expect(SOURCE).toContain('const passLaneAllowed = isPremium;');
+    expect(SOURCE).toContain('const laneUnlocked = passBought && (!isPassLane || passLaneAllowed);');
   });
 
   test('забрать награду можно только при открытом доступе', () => {
     expect(SOURCE).toContain('const claimable = laneUnlocked && reached && !isClaimed;');
   });
 
-  test('замок висит на обеих линиях, а не только на платной', () => {
-    expect(SOURCE).toContain('{!laneUnlockedForPass && (');
-    expect(SOURCE).not.toContain('{isPassLane && !laneUnlockedForPass && (');
-  });
-
-  test('доступ даёт покупка ИЛИ премиум — других путей нет', () => {
-    expect(SOURCE).toContain('const laneUnlockedForPass = isPremium || passOwned;');
+  test('замок висит на каждой недоступной игроку линии', () => {
+    expect(SOURCE).toContain('{!laneUnlocked && (');
   });
 });
 
@@ -55,20 +59,36 @@ describe('закрытый подарок объясняет причину', ()
     // Путь «хочу этот подарок» → покупка в один тап, без поиска кнопки внизу.
     const handler = SOURCE.slice(
       SOURCE.indexOf('const onLockedRewardPress'),
-      SOURCE.indexOf('const onLockedRewardPress') + 900,
+      SOURCE.indexOf('const onBuyConfirm'),
     );
     expect(handler).toContain('setBuyConfirmVisible(true)');
   });
 
+  test('купившему фри правая линия предлагает Plus, а не вторую покупку', () => {
+    // зачем: пропуск у него уже есть — окно «Купить за 250» читалось бы как
+    // поломка. Развилка обязана вести в витрину подписки.
+    const handler = SOURCE.slice(
+      SOURCE.indexOf('const onLockedRewardPress'),
+      SOURCE.indexOf('const onBuyConfirm'),
+    );
+    expect(handler).toContain('if (passBought && isPassLane && !passLaneAllowed) {');
+    expect(handler).toContain("pathname: '/premium_modal'");
+  });
+
   test('закрытая плитка доступна скринридеру с понятной подписью', () => {
-    expect(SOURCE).toContain("accessibilityLabel: 'Нужен пропуск сезона, чтобы забрать подарок'");
+    // Подписи две — по той же развилке, что и тост.
+    expect(SOURCE).toContain("'Нужен пропуск сезона, чтобы забрать подарок'");
+    expect(SOURCE).toContain("'Правая линия подарков доступна с Plus'");
   });
 });
 
 describe('кнопка покупки', () => {
-  test('кнопка есть и показывается, пока пропуск не открыт', () => {
+  test('кнопка есть и показывается ВСЕМ, пока пропуск не куплен', () => {
+    // Владелец: «250 стоит вход для всех». Премиум тоже обязан видеть цену —
+    // раньше условие пряталось за laneUnlockedForPass и у подписчика кнопки
+    // не было вовсе, хотя дорожка ему тоже не открыта без покупки.
     expect(SOURCE).toContain('testID="season-pass-buy"');
-    expect(SOURCE).toContain('{!laneUnlockedForPass && (');
+    expect(SOURCE).toContain('{!passBought && (');
   });
 
   test('цена видна на кнопке', () => {

@@ -237,8 +237,31 @@ export default function SeasonPassScreen() {
    * поломка. Объясняем причину и сразу открываем окно покупки — путь от
    * «хочу этот подарок» до покупки в один тап, без поиска кнопки внизу.
    */
-  const onLockedRewardPress = useCallback(() => {
+  /*
+   * зачем 2026-08-03 (владелец: «фри таер получает только слева, плюс и слева и
+   * справа»): причин закрытия теперь ДВЕ, и лечатся они по-разному. Игроку без
+   * пропуска нужна покупка. А купивший фри упирается в правую линию — ему
+   * предлагать покупку нельзя: пропуск у него уже есть, второй раз не продать,
+   * и окно «Купить за 250» читалось бы как поломка. Ему нужен Plus.
+   */
+  const onLockedRewardPress = useCallback((isPassLane: boolean) => {
     hapticTap();
+    if (passBought && isPassLane && !passLaneAllowed) {
+      emitAppEvent('action_toast', actionToastTri('info', {
+        ru: 'Правая линия подарков — для Plus',
+        uk: 'Права лінія подарунків — для Plus',
+        es: 'La vía derecha de regalos es para Plus',
+        'pt-BR': 'A trilha direita de presentes é para o Plus',
+        vi: 'Nhánh quà bên phải dành cho Plus',
+        id: 'Jalur hadiah kanan untuk Plus',
+        tr: 'Sağdaki hediye hattı Plus için',
+        pl: 'Prawa ścieżka prezentów jest dla Plus',
+      }));
+      // Тот же вход в витрину подписки, что у остальных экранов: контекст
+      // говорит воронке, ОТКУДА пришёл игрок и что ему обещать.
+      router.push({ pathname: '/premium_modal', params: { context: 'season_pass_lane', source: 'season_pass_lane' } } as never);
+      return;
+    }
     emitAppEvent('action_toast', actionToastTri('info', {
       ru: 'Нужен пропуск сезона, чтобы забирать подарки',
       uk: 'Потрібна перепустка сезону, щоб забирати подарунки',
@@ -251,7 +274,7 @@ export default function SeasonPassScreen() {
     }));
     if (buying) return;
     setBuyConfirmVisible(true);
-  }, [buying]);
+  }, [buying, passBought, passLaneAllowed, router]);
 
   const onBuyConfirm = useCallback(async () => {
     if (buying) return;
@@ -362,9 +385,11 @@ export default function SeasonPassScreen() {
       : locked
         ? {
           activeOpacity: 0.85,
-          onPress: onLockedRewardPress,
+          onPress: () => onLockedRewardPress(isPassLane),
           accessibilityRole: 'button' as const,
-          accessibilityLabel: 'Нужен пропуск сезона, чтобы забрать подарок',
+          accessibilityLabel: passBought && isPassLane && !passLaneAllowed
+            ? 'Правая линия подарков доступна с Plus'
+            : 'Нужен пропуск сезона, чтобы забрать подарок',
           testID: `season-pass-locked-${side}-${level}`,
         }
         : {};

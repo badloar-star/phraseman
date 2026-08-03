@@ -20,6 +20,7 @@ import type { Lang } from '../constants/i18n';
 import { emitAppEvent } from './events';
 import { getCanonicalUserId } from './user_id_policy';
 import { addWeeklyXp } from './weekly_xp';
+import { addSeasonPassXp } from './season_pass_model';
 import { consumeLeagueChestXpOverrideMultiplier, peekLeagueChestXpOverrideMultiplier } from './services/league_chest_rewards';
 import { boonXpMultiplierContribution } from './boons/boon_effects_xp';
 import { refreshWeeklyRecapNotificationAfterXpChange } from './notifications';
@@ -597,6 +598,9 @@ export const registerXP = async (
       await addWeeklyXp(finalDelta);
       if (!isXpAccountGenerationCurrent(accountToken)) return false;
       weeklyXpWritten = true;
+      // зачем: Season Pass (владелец, 2026-08-03) — прогресс пропуска идёт от того же
+      // earned-XP, что и weekly_xp; сбой сезонного счётчика не должен ронять начисление XP.
+      void addSeasonPassXp(finalDelta).catch(() => {});
     }
     return isXpAccountGenerationCurrent(accountToken);
     });

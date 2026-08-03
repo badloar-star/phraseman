@@ -42,6 +42,8 @@ export type AppEventMap = {
   remote_config_changed: undefined;
   /** «Сундук недели» (mystery_monday) забран — плашка TodaysBoonStrip должна сразу сменить текст на «уже открыт». */
   mystery_chest_claimed: undefined;
+  /** Сезонный XP пропуска изменился (registerXP → addSeasonPassXp) — обновить плашку «Сезон» и экран дорожки. */
+  season_pass_xp_changed: { totalXp: number };
   /** «Сокровищница»: инвентарь карточек изменился (дроп/restore) — обновить счётчики и сетки. */
   collectibles_changed: undefined;
   /** После успешного signInWithProvider — обновить секцию "Аккаунт" в Settings, etc. */

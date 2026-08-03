@@ -67,28 +67,71 @@ describe('speed-match security contract', () => {
     expect(JSON.stringify(publicTask)).not.toContain('correctIndex');
   });
 
-  it('journals retries and subtracts one star per unique wrong attempt down to zero', () => {
+  // зачем 2026-08-03 (владелец: «убрать штраф»): раньше тест назывался
+  // «subtracts one star per unique wrong attempt» и требовал 3⭐/2⭐/1⭐/0⭐ по
+  // числу промахов. Правило отменено: награда за пары — это «сколько правильно,
+  // столько звёзд», а промах уже наказан тем, что пара не засчитана. Двойное
+  // наказание вдобавок усиливало прод-баг с откатом поля: игрок повторно тапал
+  // откатившиеся пары, и его же за это штрафовали.
+  //
+  // Журналирование промахов ОСТАЁТСЯ — оно защищает от перебора вариантов и
+  // нужно разбору; проверяем, что счётчик честен и идемпотентен.
+  it('journals unique wrong attempts without taking stars away', () => {
     const task = speedTask();
     const wrong = applySpeedMatchAttempt(task, undefined, 0, 1);
     expect(wrong).toMatchObject({ correct: false, progress: { wrongAttempts: 1 } });
     const replay = applySpeedMatchAttempt(task, wrong.progress, 0, 1);
     expect(replay.progress.wrongAttempts).toBe(1);
-    for (const [wrongAttempts, expectedStars] of [[0, 3], [1, 2], [2, 1], [3, 0]] as const) {
-      let progress = undefined;
-      for (let selectedIndex = 1; selectedIndex <= wrongAttempts; selectedIndex += 1) {
-        progress = applySpeedMatchAttempt(task, progress, 0, selectedIndex).progress;
+    // Промахи делаем по паре 5 индексами, которые ей не подходят, а собираем
+    // ВСЕ шесть пар. Награда обязана быть одинаковой при любом числе промахов.
+    const scoreWithWrongAttempts = (wrongAttempts: number): number => {
+      let progress = applySpeedMatchAttempt(task, undefined, 5, 0).progress;
+      for (let selectedIndex = 1; selectedIndex < wrongAttempts; selectedIndex += 1) {
+        progress = applySpeedMatchAttempt(task, progress, 5, selectedIndex).progress;
       }
-      progress = applySpeedMatchAttempt(task, progress, 0, 0).progress;
-      for (let pairIndex = 1; pairIndex < 6; pairIndex += 1) {
+      for (let pairIndex = 0; pairIndex < 6; pairIndex += 1) {
         progress = applySpeedMatchAttempt(task, progress, pairIndex, pairIndex).progress;
       }
-
+      expect(progress.wrongAttempts).toBe(wrongAttempts);
+      expect(progress.matchedIndexes).toEqual([0, 1, 2, 3, 4, 5]);
       const applied = applyTournamentSubmission(room(), {
         playerId: 'human-1', roundNo: 1, receivedAtMs: 1_100,
         answers: [{ taskId: task.taskId, answer: { selectedIndexes: [0, 1, 2, 3, 4, 5] } }],
         tasks: [task], speedMatchProgress: { [task.taskId]: progress },
       });
-      expect(applied.result).toMatchObject({ correct: 1, roundScore: expectedStars });
+      expect(applied.result).toMatchObject({ correct: 1 });
+      return applied.result.roundScore;
+    };
+
+    const clean = scoreWithWrongAttempts(1);
+    for (const wrongAttempts of [2, 3, 4] as const) {
+      expect(scoreWithWrongAttempts(wrongAttempts)).toBe(clean);
+    }
+  });
+
+  // зачем 2026-08-03 (владелец: «после ответа не считает правильно звёзды,
+  // показывает максимум 4»): неполное поле обязано оплачиваться по числу
+  // собранных пар, а не обнуляться. Именно этот путь чинит автоотправка по
+  // таймауту на экране раунда — без неё частичный результат вообще не доезжал
+  // до сервера.
+  it('частично собранное поле оплачивается по числу пар', () => {
+    const task = speedTask();
+    for (const matched of [1, 2, 3, 4, 5] as const) {
+      // Первая пара создаёт журнал, остальные его дополняют — прогресс здесь
+      // всегда определён, поэтому тип сужается без `undefined`.
+      let progress = applySpeedMatchAttempt(task, undefined, 0, 0).progress;
+      for (let pairIndex = 1; pairIndex < matched; pairIndex += 1) {
+        progress = applySpeedMatchAttempt(task, progress, pairIndex, pairIndex).progress;
+      }
+      const selectedIndexes = Array.from({ length: 6 }, (_, pairIndex) => (
+        pairIndex < matched ? pairIndex : -1
+      ));
+      const applied = applyTournamentSubmission(room(), {
+        playerId: 'human-1', roundNo: 1, receivedAtMs: 1_100,
+        answers: [{ taskId: task.taskId, answer: { selectedIndexes } }],
+        tasks: [task], speedMatchProgress: { [task.taskId]: progress },
+      });
+      expect(applied.result.roundScore).toBe(matched);
     }
   });
 

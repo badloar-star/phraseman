@@ -93,4 +93,49 @@ describe('поле пар: собранная карточка гаснет, а 
     expect(pressable).toContain('accessibilityElementsHidden={hidden}');
     expect(pressable).toContain('disabled={disabled || hidden}');
   });
+
+  /**
+   * КОРЕНЬ бага «пары откатываются, звёзд максимум 4» (владелец 2026-08-03:
+   * «сегодня пытались исправить 10 раз и не исправили»).
+   *
+   * По истечении 30 секунд экран помечал задание закрытым, но НЕ отправлял
+   * собранные пары. Сервер же считает звёзды за раунд только когда пришли
+   * чеки по ВСЕМ заданиям (hasCompleteReceiptSet) — без чека по парам не
+   * досчитывался весь раунд, и собранное выглядело как несделанное.
+   */
+  describe('таймаут поля пар не теряет собранное', () => {
+    const TIMEOUT_EFFECT = section(
+      ROUND_SOURCE,
+      '// Время вышло — пропуск, серия обнуляется.',
+      '// Сервер перевёл комнату дальше',
+    );
+
+    test('по истечении времени собранные пары уходят на сервер', () => {
+      expect(TIMEOUT_EFFECT).toContain("question.kind === 'match'");
+      expect(TIMEOUT_EFFECT).toContain('finishMatchEarlyRef.current?.()');
+      // Отправка обязана идти ДО пометки задания закрытым: markTaskResolved
+      // закрывает окно ответа, после него слать уже нечего. Сравниваем позиции
+      // самих ВЫЗОВОВ (с точным аргументом), а не первое упоминание имени —
+      // оно встречается и в пояснительных комментариях выше.
+      expect(TIMEOUT_EFFECT.indexOf('finishMatchEarlyRef.current?.()'))
+        .toBeLessThan(TIMEOUT_EFFECT.indexOf('markTaskResolved(question.taskId)'));
+    });
+
+    test('автоотправка не зависит от matchStatus напрямую', () => {
+      // Прямая зависимость пересоздавала бы таймаут-эффект на КАЖДОЙ собранной
+      // паре — ровно та нестабильность, из-за которой баг и жил.
+      expect(ROUND_SOURCE).toContain('const finishMatchEarlyRef = useRef<(() => void) | null>(null)');
+      expect(ROUND_SOURCE).toContain('finishMatchEarlyRef.current = submitMatchProgress');
+    });
+
+    test('автоотправка молчит — звук тапа только у кнопки «Готово»', () => {
+      const submitProgress = section(
+        ROUND_SOURCE,
+        'const submitMatchProgress = useCallback',
+        'const finishMatchEarly = useCallback',
+      );
+      expect(submitProgress).not.toContain('fk.tap()');
+      expect(ROUND_SOURCE).toMatch(/const finishMatchEarly = useCallback\(\(\) => \{[\s\S]*?fk\.tap\(\);/);
+    });
+  });
 });

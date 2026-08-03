@@ -330,6 +330,12 @@ export default function TournamentRoundScreen() {
   const [confirmedMatchPairs, setConfirmedMatchPairs] = useState<ReadonlySet<number>>(() => new Set());
   const pendingMatchPairsRef = useRef(new Set<string>());
   const activeMatchSelectionsRef = useRef(new Map<number, number>());
+  // зачем 2026-08-03: таймаут-эффекту нужно отправить собранные пары, но
+  // finishMatchEarly зависит от matchStatus, который меняется на КАЖДОЙ паре.
+  // Прямая зависимость пересоздавала бы таймаут-эффект по ходу сборки поля —
+  // ровно тот класс нестабильности, из-за которого баг и жил. Ref даёт эффекту
+  // всегда свежую функцию, не входя в его список зависимостей.
+  const finishMatchEarlyRef = useRef<(() => void) | null>(null);
   const fxRef = useRef<TournamentFxApi>(null);
   const starCounterRef = useRef<View>(null);
   const streakPillRef = useRef<View>(null);
@@ -1131,9 +1137,15 @@ export default function TournamentRoundScreen() {
    * Отправляем ровно подтверждённые пары; неподтверждённые уходят как -1 и
    * сервер их не засчитывает — врать в свою пользу кнопка не может.
    */
-  const finishMatchEarly = useCallback(() => {
+  /**
+   * Отправка собранного поля БЕЗ звука тапа.
+   *
+   * зачем 2026-08-03: этим же путём уходит автоотправка по истечении времени,
+   * а там уже звучит сигнал таймера — второй звук в тот же кадр читался бы как
+   * «игрок что-то нажал», хотя он ничего не нажимал.
+   */
+  const submitMatchProgress = useCallback(() => {
     if (!question || question.kind !== 'match' || phase !== 'question') return;
-    fk.tap();
     const selectedIndexes = question.matchPairs?.map((_, pairIndex) => (
       matchStatus[pairIndex]?.verdict === 'correct' && confirmedMatchPairs.has(pairIndex)
         ? matchStatus[pairIndex]?.selectedIndex ?? -1
@@ -1141,6 +1153,17 @@ export default function TournamentRoundScreen() {
     )) ?? [];
     void submitCurrentTaskAnswer(question, { selectedIndexes });
   }, [confirmedMatchPairs, matchStatus, phase, question, submitCurrentTaskAnswer]);
+
+  const finishMatchEarly = useCallback(() => {
+    if (!question || question.kind !== 'match' || phase !== 'question') return;
+    fk.tap();
+    submitMatchProgress();
+  }, [phase, question, submitMatchProgress]);
+
+  // Таймаут-эффект берёт функцию отсюда, чтобы не зависеть от matchStatus.
+  useEffect(() => {
+    finishMatchEarlyRef.current = submitMatchProgress;
+  }, [submitMatchProgress]);
 
   /** Сколько пар уже подтверждено сервером — по ним считается награда. */
   const confirmedMatchCount = question?.kind === 'match'
@@ -1173,6 +1196,28 @@ export default function TournamentRoundScreen() {
     // зачем: истечение времени — это исход задания, а не просто смена фазы;
     // без звука пропуск по таймауту ощущался как «экран сам перещёлкнулся».
     playTimerExpired();
+    /**
+     * КОРЕНЬ бага «собранные пары откатываются и звёзд максимум 4»
+     * (владелец 2026-08-03: «сегодня пытались исправить 10 раз и не исправили»).
+     *
+     * Здесь стоял только markTaskResolved — задание помечалось закрытым, но
+     * ОТВЕТ НА СЕРВЕР НЕ УХОДИЛ. Для choice/translate это верно (нечего слать),
+     * а для пар игрок к этому моменту уже собрал часть поля, и она просто
+     * исчезала. Дальше срабатывал второй, невидимый эффект: сервер считает
+     * звёзды за раунд ТОЛЬКО когда пришли чеки по ВСЕМ четырём заданиям
+     * (hasCompleteReceiptSet в tournaments.ts). Нет чека по парам — не
+     * считается весь раунд целиком, поэтому звёзды «застревали» на числе,
+     * набранном в предыдущих заданиях, а поле выглядело так, будто игрок на
+     * него не отвечал.
+     *
+     * Прошлые попытки искали гонку с сервером и правили внешний вид карточки —
+     * то есть лечили симптом. Теперь по истечении времени отправляем ровно то,
+     * что собрано: «сколько правильно — столько звёзд» работает и при неполном
+     * поле, а раунд получает недостающий чек и досчитывается.
+     */
+    if (question.kind === 'match') {
+      finishMatchEarlyRef.current?.();
+    }
     markTaskResolved(question.taskId);
     setPicked(null);
     setPhase('feedback');

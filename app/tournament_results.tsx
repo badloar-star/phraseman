@@ -91,8 +91,20 @@ function sharedPlace(players: readonly RoomPlayer[], index: number): number {
   return typeof resultPlace === 'number' && resultPlace > 0 ? resultPlace : index + 1;
 }
 
+/**
+ * Тройка призёров для пьедестала.
+ *
+ * зачем 2026-08-03 (владелец: «в конце турнира турнирная таблица с пьедесталом
+ * тоже не сразу грузится, должна сразу»): здесь стоял ранний выход по
+ * hasAuthoritativeTournamentResults — пока сервер не проставил resultPlace ВСЕМ
+ * игрокам, функция возвращала пустой массив, и пьедестал буквально отсутствовал
+ * на экране, а затем «прорастал». Но очки к этому моменту уже финальные:
+ * порядок мест из них выводится точно так же, а resultPlace лишь подтверждает
+ * его. Строим пьедестал сразу — сервер потом уточняет места и выплаты, и это
+ * уточнение не меняет геометрию (места те же, добавляются только жемчужины).
+ */
 function buildPodium(players: readonly RoomPlayer[], P: TournamentV2): Winner[] {
-  if (!hasAuthoritativeTournamentResults(players)) return [];
+  if (players.length === 0) return [];
   const ordered = orderTournamentPlayersForDisplay(players);
   const top = ordered.slice(0, 3).map((player, index) => ({
     id: player.id,

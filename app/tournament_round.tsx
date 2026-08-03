@@ -147,7 +147,21 @@ type Question = {
    */
   matchOptions?: string[];
   answerFingerprints?: string[];
+  /**
+   * Сложность задания 1..3 — множитель награды.
+   *
+   * зачем 2026-08-03: звёзды больше не зависят от места в гонке, поэтому их
+   * можно посчитать локально в момент тапа и показать без ожидания сети.
+   * Формула обязана совпадать с серверной (tournamentStarsForDifficulty).
+   */
+  difficulty?: number;
 };
+
+/** Клиентская копия серверной шкалы: 3⭐ за сложность 1, 4⭐ за 2, 5⭐ за 3. */
+function starsForDifficulty(difficulty: number | undefined): number {
+  const level = Math.min(3, Math.max(1, Math.trunc(Number(difficulty ?? 1)) || 1));
+  return 3 + (level - 1);
+}
 
 function localAnswerVerdict(
   roomId: string | null,
@@ -181,6 +195,7 @@ function taskToQuestions(task: PublicTask): Question[] {
       taskId: task.taskId, mode: task.mode, kind: 'choice', prompt: 'Что это значит?', phrase, options,
       wordBank: [], requiredTokenCount: 0, itemIndex: 0, itemCount: 1,
       answerFingerprints: task.answerFingerprints,
+      difficulty: task.difficulty,
     }];
   }
   if (task.kind === 'match' && task.mode === 'speed_match') {
@@ -208,6 +223,7 @@ function taskToQuestions(task: PublicTask): Question[] {
         ? (payload.rightOptions as string[])
         : undefined,
       answerFingerprints: task.answerFingerprints,
+      difficulty: task.difficulty,
     }];
   }
   if (task.kind === 'translate' && task.mode === 'translate_build') {
@@ -223,6 +239,7 @@ function taskToQuestions(task: PublicTask): Question[] {
       taskId: task.taskId, mode: task.mode, kind: 'translate', prompt: 'Собери фразу', phrase,
       options: [], wordBank, requiredTokenCount, itemIndex: 0, itemCount: 1,
       answerFingerprints: task.answerFingerprints,
+      difficulty: task.difficulty,
     }];
   }
   return [];
@@ -298,9 +315,9 @@ export default function TournamentRoundScreen() {
   // неверный выбор за правильный. До следующего submit показываем последнее
   // подтверждённое сервером значение, не прогноз.
   const [myId, setMyId] = useState<string | null>(() => peekStableId());
-  // Match rounds start perfect; every incorrect attempt removes one star permanently,
-  // while the row itself remains available so the player can correct it.
-  const [matchStars, setMatchStars] = useState(3);
+  // зачем 2026-08-03 (владелец): пары зарабатываются, а не теряются — счётчик
+  // растёт на каждой верно собранной паре и равен числу звёзд за задание.
+  const [matchStars, setMatchStars] = useState(0);
   const [matchStatus, setMatchStatus] = useState<Record<number, MatchStatus>>({});
   const [confirmedMatchPairs, setConfirmedMatchPairs] = useState<ReadonlySet<number>>(() => new Set());
   const pendingMatchPairsRef = useRef(new Set<string>());
@@ -339,7 +356,30 @@ export default function TournamentRoundScreen() {
     [myId, room?.players],
   );
   const streak = Math.max(0, Math.trunc(Number(authoritativePlayer?.streak ?? 0)));
-  const stars = Math.max(0, Math.trunc(Number(authoritativePlayer?.score ?? 0)));
+  const serverStars = Math.max(0, Math.trunc(Number(authoritativePlayer?.score ?? 0)));
+  /**
+   * Счётчик звёзд растёт в момент тапа, а не по приходу снапшота.
+   *
+   * зачем 2026-08-03 (владелец: «анимация начисления звёзд должна быть
+   * мгновенной сразу»): счётчик читал только серверный score, поэтому пилюля
+   * в шапке дёргалась через сотни миллисекунд после ответа. Держим локальную
+   * надбавку за задания, которые сервер ещё не подтвердил, и гасим её ровно
+   * тогда, когда снапшот эти звёзды уже учёл.
+   *
+   * Гонка: снапшот приходит асинхронно и может относиться к состоянию ДО
+   * нашего ответа. Поэтому надбавка снимается не по времени, а по факту —
+   * когда score вырос минимум на неё (см. эффект ниже).
+   */
+  const [pendingStars, setPendingStars] = useState<{ baseline: number; amount: number } | null>(null);
+  const stars = serverStars + (pendingStars && serverStars < pendingStars.baseline + pendingStars.amount
+    ? pendingStars.amount
+    : 0);
+
+  useEffect(() => {
+    if (!pendingStars) return;
+    // Сервер догнал (или перегнал) локальный прогноз — надбавка больше не нужна.
+    if (serverStars >= pendingStars.baseline + pendingStars.amount) setPendingStars(null);
+  }, [pendingStars, serverStars]);
 
   const activeRoundNo = useMemo(() => {
     const match = /^round([1-4])$/.exec(room?.state ?? '');
@@ -592,7 +632,7 @@ export default function TournamentRoundScreen() {
     setFeedbackZeroScoreReason(null);
     setFeedbackExplanation(null);
     setFeedbackCorrectIndex(null);
-    setMatchStars(3);
+    setMatchStars(0);
     setMatchStatus({});
     setConfirmedMatchPairs(new Set());
     pendingMatchPairsRef.current.clear();
@@ -715,6 +755,33 @@ export default function TournamentRoundScreen() {
     return () => clearTimeout(id);
   }, [phase, questionTiming, readingEndsAtMs, runtimeActive]);
 
+  /**
+   * Полёт звёзд от карточки ответа к счётчику в шапке.
+   *
+   * зачем 2026-08-03 (владелец: «анимация начисления звёзд должна быть
+   * мгновенной сразу»): flyStar жил в TournamentFx, но в турнирном раунде не
+   * вызывался НИ РАЗУ — начисление не было видно вообще, число просто
+   * подменялось после ответа сервера. Запускаем полёт в момент тапа: сколько
+   * звёзд начислено, столько глифов и летит.
+   *
+   * measureInWindow асинхронна, но это не задерживает награду: число уже
+   * нарисовано состоянием, полёт — только украшение поверх.
+   */
+  const flyStarsToCounter = useCallback((amount: number) => {
+    if (reduceMotion || amount <= 0) return;
+    const counter = starCounterRef.current;
+    if (!counter || !fxRef.current) return;
+    counter.measureInWindow((x, y, width, height) => {
+      if (!screenMountedRef.current || !fxRef.current) return;
+      const to = { x: x + width / 2, y: y + height / 2 };
+      // Старт — из центра экрана, где игрок только что нажал ответ.
+      const from = { x: fxSize.width / 2, y: fxSize.height * 0.62 };
+      for (let index = 0; index < Math.min(5, amount); index += 1) {
+        fxRef.current?.flyStar(from, to, P.gold);
+      }
+    });
+  }, [P.gold, fxSize.height, fxSize.width, reduceMotion]);
+
   const feedbackAdvanceAtMs = feedbackEndsAtMs;
   const scheduleFeedbackAdvance = useCallback(() => {
     if (advanceRef.current) clearTimeout(advanceRef.current);
@@ -789,7 +856,22 @@ export default function TournamentRoundScreen() {
     // абсолютной границе фидбэка; отправка ответа его больше не трогает.
     setPhase('feedback');
     setFeedbackCorrect(optimisticCorrect);
-    setFeedbackEarnedStars(null);
+    // зачем 2026-08-03 (владелец: «когда отвечаешь, анимация начисления звёзд
+    // должна быть мгновенной сразу»): здесь стоял setFeedbackEarnedStars(null) —
+    // число звёзд появлялось только после ответа сервера, то есть награда
+    // «догоняла» тап на задержке сети. Теперь она детерминирована (скорость из
+    // формулы убрана), поэтому считаем её локально по той же шкале, что и
+    // сервер, и рисуем в том же кадре. Серверный ответ ниже её лишь
+    // подтверждает — при совпадении игрок не увидит никакого скачка.
+    const optimisticStars = optimisticCorrect === true
+      ? starsForDifficulty(task.difficulty)
+      : optimisticCorrect === false ? 0 : null;
+    setFeedbackEarnedStars(optimisticStars);
+    if (optimisticStars && optimisticStars > 0) {
+      // Счётчик в шапке растёт в этом же кадре; снапшот потом подтвердит.
+      setPendingStars({ baseline: serverStars, amount: optimisticStars });
+      flyStarsToCounter(optimisticStars);
+    }
     setFeedbackZeroScoreReason(null);
     setFeedbackExplanation(null);
     setFeedbackCorrectIndex(null);
@@ -812,7 +894,17 @@ export default function TournamentRoundScreen() {
       }
       if (!screenMountedRef.current || activeTaskSubmissionRef.current !== submissionToken) return;
       setFeedbackCorrect(result.correct);
-      setFeedbackEarnedStars(result.earnedStars);
+      // зачем 2026-08-03: локальный прогноз уже нарисован в момент тапа и в
+      // норме совпадает с сервером (формула одна и та же). Обновляем только
+      // при реальном расхождении, иначе повторный setState на том же числе
+      // перезапускал бы анимацию счётчика и давал видимый «дребезг».
+      setFeedbackEarnedStars((current) => (
+        current === result.earnedStars ? current : result.earnedStars
+      ));
+      // Прогноз разошёлся с сервером — снимаем надбавку, авторитет у снапшота.
+      if (optimisticStars !== null && optimisticStars !== result.earnedStars) {
+        setPendingStars(null);
+      }
       setFeedbackZeroScoreReason(result.zeroScoreReason);
       setFeedbackExplanation(result.explanation);
       setFeedbackCorrectIndex(typeof result.correctIndex === 'number' ? result.correctIndex : null);
@@ -830,7 +922,8 @@ export default function TournamentRoundScreen() {
         pendingTaskSubmissionsRef.current.delete(task.taskId);
       }
     }
-  }, [index, markTaskResolved, questionTiming, retry, roomId, roundKey, roundNo, scheduleFeedbackAdvance]);
+  }, [flyStarsToCounter, index, markTaskResolved, questionTiming, retry, roomId, roundKey, roundNo,
+    scheduleFeedbackAdvance, serverStars]);
 
   /**
    * зачем 2026-08-02: здесь жили finishEarly и флаг finishing — обработчик
@@ -909,9 +1002,11 @@ export default function TournamentRoundScreen() {
           if (isCorrect) {
             setConfirmedMatchPairs((current) => new Set(current).add(pairIndex));
             fk.correct();
+            // Та же шкала, что и в быстрой ветке: верная пара = +1 звезда.
+            setMatchStars((value) => value + 1);
+            flyStarsToCounter(1);
           } else {
             fk.wrong();
-            setMatchStars((value) => Math.max(0, value - 1));
           }
           return isCorrect ? 'correct' : 'wrong';
         } catch {
@@ -930,9 +1025,14 @@ export default function TournamentRoundScreen() {
     }));
     if (localCorrect) {
       fk.correct();
+      // зачем 2026-08-03 (владелец: «задания типа пары надо считать сколько
+      // юзер ответил правильно — 1 правильно, 1 звезда»): счётчик стартовал с 3
+      // и УМЕНЬШАЛСЯ за ошибки, то есть показывал штраф, а не заработок. Теперь
+      // растёт на каждой верной паре — ровно то число, что начислит сервер.
+      setMatchStars((value) => value + 1);
+      flyStarsToCounter(1);
     } else {
       fk.wrong();
-      setMatchStars((value) => Math.max(0, value - 1));
     }
 
     void waitForTournamentAnswerWindow(questionTiming)
@@ -973,7 +1073,7 @@ export default function TournamentRoundScreen() {
       });
 
     return Promise.resolve(localVerdict);
-  }, [answerSelectionActive, question, questionKey, questionTiming, roomId, roundNo, matchStatus]);
+  }, [answerSelectionActive, flyStarsToCounter, question, questionKey, questionTiming, roomId, roundNo, matchStatus]);
 
   const matchComplete = question?.kind === 'match'
     && question.matchPairs?.every((_, pairIndex) => (
@@ -987,6 +1087,36 @@ export default function TournamentRoundScreen() {
     )) ?? [];
     void submitCurrentTaskAnswer(question, { selectedIndexes });
   }, [confirmedMatchPairs, matchComplete, matchStatus, phase, question, submitCurrentTaskAnswer]);
+
+  /**
+   * «Готово» в задании с парами — досрочная фиксация ответа.
+   *
+   * зачем 2026-08-03 (владелец: «кнопка готова должна быть когда он закончил»):
+   * раньше задание уходило на сервер ТОЛЬКО когда собрано всё поле целиком
+   * (matchComplete), поэтому игрок, собравший часть пар, был обязан досиживать
+   * таймер — а по новому правилу частичный результат уже стоит звёзд. Кнопка
+   * отправляет то, что собрано, и не ждёт остатка.
+   *
+   * Отправляем ровно подтверждённые пары; неподтверждённые уходят как -1 и
+   * сервер их не засчитывает — врать в свою пользу кнопка не может.
+   */
+  const finishMatchEarly = useCallback(() => {
+    if (!question || question.kind !== 'match' || phase !== 'question') return;
+    fk.tap();
+    const selectedIndexes = question.matchPairs?.map((_, pairIndex) => (
+      matchStatus[pairIndex]?.verdict === 'correct' && confirmedMatchPairs.has(pairIndex)
+        ? matchStatus[pairIndex]?.selectedIndex ?? -1
+        : -1
+    )) ?? [];
+    void submitCurrentTaskAnswer(question, { selectedIndexes });
+  }, [confirmedMatchPairs, matchStatus, phase, question, submitCurrentTaskAnswer]);
+
+  /** Сколько пар уже подтверждено сервером — по ним считается награда. */
+  const confirmedMatchCount = question?.kind === 'match'
+    ? (question.matchPairs ?? []).filter((_, pairIndex) => (
+      matchStatus[pairIndex]?.verdict === 'correct' && confirmedMatchPairs.has(pairIndex)
+    )).length
+    : 0;
 
   // зачем: последние секунды слышно, а не только видно — TimerRing красит
   // кольцо на `seconds <= 5`, звук берём с того же порога, чтобы картинка и
@@ -1168,13 +1298,34 @@ export default function TournamentRoundScreen() {
 
         {/* Варианты, сборка фразы или пары на скорость. */}
         {question.kind === 'match' ? (
-          <MatchBoard
-            matchPairs={question.matchPairs ?? []}
-            matchOptions={question.matchOptions}
-            status={matchStatus}
-            disabled={!answerSelectionActive}
-            onSelect={answerMatch}
-          />
+          <>
+            <MatchBoard
+              matchPairs={question.matchPairs ?? []}
+              matchOptions={question.matchOptions}
+              status={matchStatus}
+              disabled={!answerSelectionActive}
+              onSelect={answerMatch}
+            />
+            {/* зачем 2026-08-03 (владелец: «кнопка готова должна быть когда он
+                закончил»): пока поле не собрано целиком, игрок ждал таймер зря —
+                частично собранные пары уже стоят звёзд. Кнопка появляется, как
+                только есть что засчитывать, и подписана числом, чтобы решение
+                «жать или добирать» принималось без догадок. */}
+            {answerSelectionActive && confirmedMatchCount > 0 ? (
+              <Animated.View entering={reduceMotion ? undefined : FadeInDown.duration(v2motion.fast)}>
+                <Pressable
+                  onPress={finishMatchEarly}
+                  style={styles.matchDoneButton}
+                  accessibilityRole="button"
+                  accessibilityLabel={`Готово, засчитать ${confirmedMatchCount} звёзд`}
+                >
+                  <Text style={styles.matchDoneText}>
+                    Готово · {confirmedMatchCount} {confirmedMatchCount === 1 ? 'звезда' : 'звёзд'}
+                  </Text>
+                </Pressable>
+              </Animated.View>
+            ) : null}
+          </>
         ) : question.kind === 'translate' ? (
           <WordBank
             key={question.taskId}
@@ -1413,6 +1564,7 @@ const MatchCard = memo(function MatchCard({
   disabled,
   reduceMotion,
   onPress,
+  side,
 }: {
   label: string;
   accessibilityLabel: string;
@@ -1423,6 +1575,16 @@ const MatchCard = memo(function MatchCard({
   disabled: boolean;
   reduceMotion: boolean;
   onPress: () => void;
+  /**
+   * Какой язык в карточке: изучаемый ('prompt') или родной ('translation').
+   *
+   * зачем 2026-08-03 (владелец: «в турнирах два языка одним шрифтом и цветом в
+   * заданиях, то надо исправить»): обе колонки красились одним стилем, поэтому
+   * английское слово и перевод читались как один поток и глазу не за что было
+   * зацепиться. Различаем тоном и весом — изучаемый язык ведёт, перевод
+   * поддерживает. Обводки не используем: они запрещены правилами проекта.
+   */
+  side: 'prompt' | 'translation';
 }) {
   const P = useTournamentPalette();
   const styles = React.useMemo(() => makeStyles(P), [P]);
@@ -1477,6 +1639,8 @@ const MatchCard = memo(function MatchCard({
     >
       <TournamentTwoLineText style={[
         styles.strictMatchText,
+        // Изучаемый язык ведёт весом и полным тоном, перевод звучит тише.
+        side === 'translation' && styles.strictMatchTextTranslation,
         selected && styles.strictMatchTextSelected,
         wrong && styles.strictMatchTextWrong,
         resolvingCorrect && styles.strictMatchTextCorrect,
@@ -1602,6 +1766,7 @@ const StrictMatchBoard = memo(function StrictMatchBoard({
           return (
             <Animated.View key={`left:${pair.prompt}:${index}`} entering={reduceMotion ? undefined : FadeInDown.delay(index * 40).duration(260)} style={styles.matchSlot}>
               <MatchCard
+                side="prompt"
                 label={pair.prompt}
                 accessibilityLabel={`Английское слово: ${pair.prompt}`}
                 selected={selected}
@@ -1627,6 +1792,7 @@ const StrictMatchBoard = memo(function StrictMatchBoard({
           return (
             <Animated.View key={`right:${option}:${index}`} entering={reduceMotion ? undefined : FadeInDown.delay(index * 40).duration(260)} style={styles.matchSlot}>
               <MatchCard
+                side="translation"
                 label={option}
                 accessibilityLabel={`Перевод: ${option}`}
                 selected={selected}
@@ -1833,6 +1999,27 @@ const makeStyles = (P: TournamentPalette) => StyleSheet.create({
   strictMatchCardWrong: { backgroundColor: P.dangerSoft, shadowColor: P.danger },
   strictMatchCardCorrect: { backgroundColor: P.accent, shadowColor: P.accent },
   strictMatchText: { color: P.text, fontSize: 15, fontWeight: '800', textAlign: 'center' },
+  /**
+   * Родной язык — тише изучаемого.
+   *
+   * зачем 2026-08-03 (владелец: «два языка одним шрифтом и цветом — надо
+   * исправить»): различаем тоном и весом, а не обводкой (обводки контейнеров
+   * запрещены) и не размером (одинаковая высота карточек держит сетку поля).
+   * P.muted — тот же токен, которым проект глушит вторичный текст, поэтому
+   * контраст остаётся читаемым в любой теме.
+   */
+  strictMatchTextTranslation: { color: P.muted, fontWeight: '600' },
+  // Кнопка досрочной фиксации пар. Разделение тоном, без обводки.
+  matchDoneButton: {
+    marginTop: 12,
+    minHeight: 52,
+    borderRadius: radius.md,
+    backgroundColor: P.accent,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 18,
+  },
+  matchDoneText: { fontSize: 16, fontWeight: '900', color: P.accentText },
   strictMatchTextSelected: { color: P.text, backgroundColor: 'transparent' },
   strictMatchTextWrong: { color: P.danger },
   strictMatchTextCorrect: { color: P.accentText },

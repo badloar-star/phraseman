@@ -60,6 +60,7 @@ import {
   planBotJoinTimes,
   planTournamentHumanLobbyJoin,
   planTournamentCancellation,
+  countCorrectMatchPairs,
   planTournamentFinalization,
   resolveSeasonEntryName,
   resolveTournamentPlayerProfile,
@@ -3049,6 +3050,12 @@ export async function tournamentSubmitTaskAnswerTransaction(
       ?? answerRanksByPlayer[input.stableUid]?.[input.taskId];
     const penaltyStars = task.mode === 'speed_match' ? progress?.wrongAttempts ?? 0 : 0;
     const timing = round.taskSchedule?.find((entry) => entry.taskId === input.taskId);
+    // зачем 2026-08-03: награда больше не зависит от места в гонке — только от
+    // самого ответа и сложности задания, поэтому клиент вправе нарисовать её
+    // мгновенно, а этот расчёт лишь подтверждает уже показанное число.
+    const matchItems = task.mode === 'speed_match' && Array.isArray(task.payload?.items)
+      ? task.payload.items as unknown[]
+      : null;
     const earnedStars = scoreAnswer({
       correct: currentReceipt.correct,
       elapsedMs: Math.max(0, currentReceipt.receivedAtMs - (timing?.readingEndsAtMs ?? timing?.startsAtMs ?? currentReceipt.receivedAtMs)),
@@ -3056,6 +3063,11 @@ export async function tournamentSubmitTaskAnswerTransaction(
         - (timing?.readingEndsAtMs ?? timing?.startsAtMs ?? currentReceipt.receivedAtMs)),
       streakBefore: 0,
       isVoice: task.isVoice === true,
+      difficulty: task.difficulty,
+      ...(matchItems ? {
+        matchedPairs: countCorrectMatchPairs(task, answer),
+        totalPairs: matchItems.length,
+      } : {}),
       answerRank,
       penaltyStars,
     });

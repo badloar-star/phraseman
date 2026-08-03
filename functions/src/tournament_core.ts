@@ -122,8 +122,18 @@ export const TOURNAMENT_BOT_JOIN_SPREAD_MAX_MS = 30 * 1000;
 export const TOURNAMENT_BOT_FIRST_WAVE = 0;
 export const TOURNAMENT_CANCEL_COMPENSATION_GEMS = 3; // «за ожидание» (§2)
 export const TOURNAMENT_TABLE_DISPLAY_MS = 5 * 1000;
-/** Short result reveal before an all-real-submitted round may advance early. */
-export const TOURNAMENT_EARLY_ADVANCE_DELAY_MS = 2 * 1000;
+/**
+ * Пауза перед ранним завершением раунда, когда ВСЕ живые игроки уже ответили.
+ *
+ * зачем 2026-08-03 (владелец: «когда мы попадаем на турнирную таблицу, то мы
+ * видим только свои очки, а остальные не видим — а потом оно обновляется, но мы
+ * должны видеть сразу»): чужие очки и результаты ботов дописываются именно на
+ * этом переходе, поэтому две секунды ожидания игрок видел как таблицу с одной
+ * заполненной строкой. 250 мс всё ещё покрывают долёт последних квитанций
+ * (их отдельно страхует TOURNAMENT_TASK_SUBMISSION_GRACE_MS), но воспринимаются
+ * как мгновенный переход.
+ */
+export const TOURNAMENT_EARLY_ADVANCE_DELAY_MS = 250;
 /** Golden Plan [6]/[122]: network-only receive grace; no speed benefit is earned inside it. */
 export const TOURNAMENT_TASK_SUBMISSION_GRACE_MS = 1_500;
 /** Server-authored prompt-only phase before interaction becomes eligible. */
@@ -468,6 +478,15 @@ export type TournamentPlayer = {
   rewardGems?: number;
   /** Серия правильных ответов без ошибок (для стрик-множителя). */
   streak: number;
+  /**
+   * Суммарное время ответов за турнир, мс. Тай-брейк при равных звёздах.
+   *
+   * зачем 2026-08-03: звёзды перестали зависеть от скорости, поэтому равные
+   * суммы стали частыми. Поле разводит равных, но в награду не входит и
+   * игроку как число не показывается. Отсутствует у комнат, сыгранных до
+   * этой правки — там тай-брейк молча вырождается в прежний порядок по id.
+   */
+  answerTimeMs?: number;
   /** Серия неверных ответов без правильного — переносится между раундами для камбэка. */
   missStreak?: number;
   /** Билет возвращён при отмене (только живые). */
@@ -534,6 +553,8 @@ export type TournamentRoundResult = {
   missStreakBefore?: number;
   /** Original round clock anchor retained across the following table/final state. */
   roundStartedAtMs?: number;
+  /** Время ответов за этот раунд, мс — вклад игрока в тай-брейк по скорости. */
+  answerTimeMs?: number;
   timedOut?: boolean;
 };
 
@@ -1541,33 +1562,81 @@ export const TOURNAMENT_MAX_SPEED_BONUS_RATIO = 0.4;
 export const TOURNAMENT_STREAK_X15_THRESHOLD = 3;
 export const TOURNAMENT_STREAK_X2_THRESHOLD = 5;
 
-// ── Звёзды (владелец 2026-07-27) ────────────────────────────────────────────
+// ── Звёзды (владелец 2026-08-03) ────────────────────────────────────────────
 //
-// Правило владельца дословно: «кто первый ответил — тот три звезды получит,
-// кто второй — две, кто третий и все остальные — одну». Серии правильных и
-// ошибочных ответов отслеживаются для состояния игрока, но не меняют награду.
+// зачем: скорость УБРАНА из награды целиком. Раньше звёзды были чистой гонкой
+// (1-й ответивший 3⭐, 2-й 2⭐, остальные 1⭐), из-за чего число звёзд физически
+// не существовало в момент тапа — сервер обязан был сперва увидеть, кто успел
+// раньше. Экран поэтому показывал награду только после ответа сети, и владелец
+// справедливо потребовал: «начисление звёзд должно быть мгновенным сразу».
 //
-// Скорость меряется НЕ секундами, а МЕСТОМ среди правильно ответивших в этом
-// задании — это прямое соревнование между игроками, и одинаковых сумм почти не
-// бывает. Неправильный ответ = 0 звёзд.
+// Новое правило владельца дословно: «правильный ответ должен давать 3 звезды,
+// ошибочный 0 звёзд; задания типа пары надо считать сколько юзер ответил
+// правильно — сколько правильно, столько звёзд».
+//
+// Награда теперь зависит ТОЛЬКО от собственного ответа игрока и сложности
+// задания, то есть известна в момент тапа и рисуется без ожидания сети.
+// Гонку сохраняет тай-брейк по времени (TOURNAMENT_TIEBREAK_WEIGHT), а не
+// сами звёзды: при равных звёздах выше тот, кто отвечал быстрее.
 
-/** Первый правильный ответ в задании. */
+/** База за верный ответ на задание сложности 1. */
+export const TOURNAMENT_STAR_BASE = 3;
+/**
+ * Надбавка за сложность: difficulty 1 → 3⭐, 2 → 4⭐, 3 → 5⭐.
+ *
+ * зачем (владелец 2026-08-03, «надо придумать за что начислять звёзды вместо
+ * скорости»): difficulty 1..3 уже размечена в каждом задании и уже управляет
+ * подбором заданий по раундам (tournamentDifficultyForExposureRound), поэтому
+ * шкала не требует ни нового поля, ни правки контента. Турнир при этом
+ * остаётся гонкой: 4-й раунд на сложности 3 весит заметно больше первого.
+ */
+export const TOURNAMENT_STAR_PER_DIFFICULTY = 1;
+
+/**
+ * Исторические константы гонки. Живой скоринг их больше НЕ использует —
+ * оставлены, чтобы пересчёт уже сыгранных комнат оставался читаемым.
+ */
 export const TOURNAMENT_STAR_FIRST = 3;
-/** Второй правильный ответ. */
 export const TOURNAMENT_STAR_SECOND = 2;
-/** Третий и все последующие правильные ответы. */
 export const TOURNAMENT_STAR_REST = 1;
 /**
- * Тай-брейка НЕТ: звёзды целые, ничьи разрешены честно.
+ * Тай-брейк по времени: звёзды целые, но равенство разводится скоростью.
  *
- * зачем (владелец 2026-07-27): сначала обсуждали дробную добавку за скорость,
- * но владелец справедливо возразил: «если у одного 70 звёзд и у другого 70, то
- * будут возмущения — почему ему больше, а мне меньше». Поэтому при равных
- * звёздах игроки ДЕЛЯТ место, а их призовые доли складываются и делятся
- * поровну (см. tournamentPayouts). Скорость влияет на сами звёзды — быстрый
- * ответ даёт +1 ⭐, — и этого достаточно, чтобы награждать темп.
+ * зачем (владелец 2026-08-03): владелец выбрал «скорость = тай-брейк». Вес 0
+ * означал бы честные ничьи, но без скорости в награде одинаковых сумм стало
+ * бы слишком много и турнир перестал бы быть гонкой. Вес НЕ добавляется к
+ * видимым звёздам — он только упорядочивает равных (см. tournamentPayouts),
+ * поэтому игрок никогда не видит дробное число.
  */
-export const TOURNAMENT_TIEBREAK_WEIGHT = 0;
+export const TOURNAMENT_TIEBREAK_WEIGHT = 1;
+
+/** Звёзды за задание сложности d при полностью верном ответе. */
+export function tournamentStarsForDifficulty(difficulty: number | undefined): number {
+  const level = Math.min(3, Math.max(1, Math.trunc(Number(difficulty ?? 1)) || 1));
+  return TOURNAMENT_STAR_BASE + (level - 1) * TOURNAMENT_STAR_PER_DIFFICULTY;
+}
+
+/**
+ * Сколько пар из задания speed_match игрок сопоставил верно.
+ *
+ * зачем (владелец 2026-08-03): verifyTournamentAnswer для пар работает по
+ * принципу «всё или ничего» — одна ошибка обнуляла всё задание. Владелец
+ * потребовал частичный зачёт: «1 правильно — 1 звезда». Считаем по тем же
+ * данным, что уже приходят с клиента (selectedIndexes) или журналируются
+ * сервером (matchedIndexes), без нового формата ответа.
+ */
+export function countCorrectMatchPairs(task: TournamentTask, answer: unknown): number {
+  const items = Array.isArray(task.payload?.items)
+    ? task.payload.items as Record<string, unknown>[]
+    : [];
+  if (items.length === 0 || !isRecord(answer)) return 0;
+  const selected = Array.isArray(answer.selectedIndexes) ? answer.selectedIndexes : null;
+  if (!selected) return 0;
+  return items.reduce((total, item, itemIndex) => {
+    const picked = selected[itemIndex];
+    return Number.isInteger(picked) && picked === item.correctIndex ? total + 1 : total;
+  }, 0);
+}
 
 export type ScoreInput = {
   correct: boolean;
@@ -1580,17 +1649,25 @@ export type ScoreInput = {
   isVoice: boolean;
   baseScore?: number;
   /**
-   * Место среди ПРАВИЛЬНО ответивших на это задание: 1 = ответил первым.
-   *
-   * зачем (владелец 2026-07-27): «кто первый ответил — тот три звезды, кто
-   * второй — две, кто третий и остальные — одну». Скорость меряется местом в
-   * гонке, а не секундами: это прямое соревнование и почти исключает ничьи.
+   * Место среди ПРАВИЛЬНО ответивших. Награду больше НЕ определяет (владелец
+   * 2026-08-03 убрал скорость из звёзд), но остаётся в разборе и в тай-брейке.
    */
   answerRank?: number;
   /** Серия ОШИБОК до этого ответа; не меняет турнирные звёзды. */
   missStreakBefore?: number;
-  /** Mode-specific deduction applied after the rank award, bounded at zero. */
+  /** Mode-specific deduction applied after the base award, bounded at zero. */
   penaltyStars?: number;
+  /** Сложность задания 1..3 — единственный множитель награды. */
+  difficulty?: number;
+  /**
+   * Пары speed_match: сколько сопоставлено верно и сколько всего.
+   *
+   * зачем (владелец 2026-08-03): «сколько правильно, столько звёзд». Задание
+   * перестаёт быть «всё или ничего», поэтому награда считается по долям, а не
+   * по флагу correct.
+   */
+  matchedPairs?: number;
+  totalPairs?: number;
 };
 
 export function serverBoundedElapsedMs(input: {
@@ -1607,34 +1684,40 @@ export function serverBoundedElapsedMs(input: {
 }
 
 /**
- * Звёзды за один ответ. МАКСИМУМ 3 (решение владельца 2026-07-27).
+ * Звёзды за один ответ. Зависят ТОЛЬКО от самого ответа и сложности задания.
  *
- * зачем: старая формула (база 100 × голос 1.5 × скорость 1.4 × стрик 2 = 420
- * за задание) давала до ~10 000 очков за турнир — владелец увидел «4474» и
- * справедливо сказал, что таких чисел быть не должно. Новая шкала читаемая:
- * первый правильный получает 3⭐, второй — 2⭐, третий и последующие — 1⭐.
- * Стрики и камбэки эту шкалу не повышают.
- * Максимум за турнир при 4 раундах × 4 задания = 48 звёзд.
+ * зачем (владелец 2026-08-03): «правильный ответ должен давать 3 звезды,
+ * ошибочный 0 звёзд», «задания типа пары надо считать сколько юзер ответил
+ * правильно — сколько правильно, столько звёзд». Прежняя шкала считала место
+ * в гонке (3⭐/2⭐/1⭐), поэтому награда не существовала до ответа сервера и
+ * экран не мог показать её мгновенно. Теперь результат детерминирован в момент
+ * тапа, и клиент рисует то же число, что потом подтвердит сервер.
  *
- * Ничьи РАЗРЕШЕНЫ: одинаковые звёзды = одинаковое место, а призовые доли таких
- * игроков складываются и делятся поровну (см. tournamentPayouts). Владелец:
- * «если у одного 70 звёзд и у другого 70 — будут возмущения, почему ему больше;
- * пусть начисляется поровну».
+ * Шкала: 3⭐ за сложность 1, 4⭐ за 2, 5⭐ за 3 (tournamentStarsForDifficulty).
+ * Пары начисляются подолям: matchedPairs / totalPairs от той же суммы, минимум
+ * 1⭐ за каждую верную пару.
  *
- * @param input.answerRank место среди ПРАВИЛЬНО ответивших на это задание:
- *   1 = ответил первым (3⭐), 2 = вторым (2⭐), 3+ = остальные (1⭐).
- *   Не передан — считаем как «остальные»: одиночная игра не даёт форы.
+ * Ничьи разводит тай-брейк по времени, а не сами звёзды: видимое число всегда
+ * целое (см. TOURNAMENT_TIEBREAK_WEIGHT).
  */
 export function scoreAnswer(input: ScoreInput): number {
-  if (!input.correct) return 0;
+  const full = tournamentStarsForDifficulty(input.difficulty);
+  const penalty = Math.max(0, Math.trunc(input.penaltyStars ?? 0));
 
-  const rank = Math.max(1, Math.trunc(input.answerRank ?? Number.MAX_SAFE_INTEGER));
-  const stars = rank === 1
-    ? TOURNAMENT_STAR_FIRST
-    : rank === 2
-      ? TOURNAMENT_STAR_SECOND
-      : TOURNAMENT_STAR_REST;
-  return Math.max(0, stars - Math.max(0, Math.trunc(input.penaltyStars ?? 0)));
+  // Пары: частичный зачёт. Одна верная пара — минимум одна звезда, полностью
+  // собранное поле — полная награда за сложность.
+  const totalPairs = Math.max(0, Math.trunc(input.totalPairs ?? 0));
+  if (totalPairs > 0) {
+    const matched = Math.min(totalPairs, Math.max(0, Math.trunc(input.matchedPairs ?? 0)));
+    if (matched === 0) return 0;
+    const stars = matched === totalPairs
+      ? full
+      : Math.max(matched, Math.round((full * matched) / totalPairs));
+    return Math.max(0, stars - penalty);
+  }
+
+  if (!input.correct) return 0;
+  return Math.max(0, full - penalty);
 }
 
 /** Итог раунда: очки и новая серия. Неверный ответ сбрасывает серию. */
@@ -1795,6 +1878,18 @@ export function applyTournamentSubmission(
   const isCorrect = (taskId: string, task: TournamentTask | undefined): boolean => {
     return !!task && verifyTournamentAnswer(task, effectiveAnswer(taskId, task));
   };
+  // зачем 2026-08-03: пары считаются подолям («сколько правильно — столько
+  // звёзд»), поэтому для них награда идёт не от флага correct, а от числа
+  // сопоставленных пар. Для остальных режимов totalPairs = 0 и работает
+  // обычная ветка «верно/неверно».
+  const matchPairsOf = (taskId: string, task: TournamentTask | undefined) => {
+    if (task?.mode !== 'speed_match') return { matchedPairs: undefined, totalPairs: undefined };
+    const items = Array.isArray(task.payload?.items) ? task.payload.items : [];
+    return {
+      matchedPairs: countCorrectMatchPairs(task, effectiveAnswer(taskId, task)),
+      totalPairs: items.length,
+    };
+  };
   const inputs: ScoreInput[] = room.rounds[roundIndex].taskIds.map((taskId) => {
     const task = taskMap.get(taskId);
     const correct = isCorrect(taskId, task);
@@ -1804,6 +1899,8 @@ export function applyTournamentSubmission(
       maxMs: maxMsPerTask,
       streakBefore: 0,
       isVoice: task?.isVoice === true,
+      difficulty: task?.difficulty,
+      ...matchPairsOf(taskId, task),
       answerRank: correct
         ? answerRanks?.[taskId]
           ?? nextCorrectAnswerRank(room.rounds[roundIndex], taskId, submission.playerId)
@@ -1842,6 +1939,8 @@ export function applyTournamentSubmission(
         maxMs: maxMsPerTask,
         streakBefore: 0,
         isVoice: task?.isVoice === true,
+        difficulty: task?.difficulty,
+        ...matchPairsOf(taskId, task),
         answerRank,
         penaltyStars,
       }),
@@ -1861,59 +1960,42 @@ export function applyTournamentSubmission(
     streakBefore,
     missStreakBefore,
     roundStartedAtMs,
+    answerTimeMs: elapsedMs * room.rounds[roundIndex].taskIds.length,
   };
-  let players = room.players.map((entry, index) => index === playerIndex
+  // зачем 2026-08-03 (владелец выбрал «скорость = тай-брейк»): звёзды больше не
+  // зависят от темпа, поэтому одинаковых сумм стало заметно больше. Копим
+  // суммарное время ответов, чтобы при равных звёздах выше вставал тот, кто
+  // отвечал быстрее. На видимое число звёзд это не влияет.
+  const players = room.players.map((entry, index) => index === playerIndex
     ? {
       ...entry,
       score: entry.score - (replacingTimedOut ? existing.roundScore : 0) + scored.roundScore,
       streak: scored.streakAfter,
       missStreak: scored.missStreakAfter,
+      answerTimeMs: Math.max(0, entry.answerTimeMs ?? 0)
+        - (replacingTimedOut ? existing.answerTimeMs ?? 0 : 0)
+        + elapsedMs * room.rounds[roundIndex].taskIds.length,
     }
     : { ...entry });
   const rounds = room.rounds.map((entry, index) => index === roundIndex
     ? { ...entry, results: { ...(entry.results || {}), [submission.playerId]: result } }
     : { ...entry, results: { ...(entry.results || {}) } });
-  // A player can finish the round before another player whose earlier receipts
-  // deserve a better per-task rank. Reconcile every receipt-backed result in the
-  // same room transaction so finalization order can never mint the stars.
-  if (submission.answerRanksByPlayer) {
-    for (const [resultPlayerId, storedResult] of Object.entries(rounds[roundIndex].results)) {
-      const canonicalRanks = submission.answerRanksByPlayer[resultPlayerId];
-      if (!canonicalRanks || !storedResult.review?.length) continue;
-      const canReconcile = storedResult.review.every((entry) => (
-        !entry.correct || entry.starsAwarded !== undefined || resultPlayerId === submission.playerId
-      ));
-      if (!canReconcile) continue;
-      let reconciledScore = 0;
-      const reconciledReview = storedResult.review.map((entry) => {
-        if (!entry.correct) return entry;
-        const answerRank = canonicalRanks[entry.taskId];
-        if (answerRank === undefined) return entry;
-        const starsAwarded = scoreAnswer({
-          correct: true,
-          elapsedMs: 0,
-          maxMs: 1,
-          streakBefore: 0,
-          isVoice: false,
-          answerRank,
-          penaltyStars: entry.penaltyStars ?? 0,
-        });
-        reconciledScore += starsAwarded;
-        return { ...entry, answerRank, starsAwarded };
-      });
-      const scoreDelta = reconciledScore - storedResult.roundScore;
-      rounds[roundIndex].results[resultPlayerId] = {
-        ...storedResult,
-        roundScore: reconciledScore,
-        review: reconciledReview,
-      };
-      if (scoreDelta !== 0) {
-        players = players.map((entry) => entry.id === resultPlayerId
-          ? { ...entry, score: entry.score + scoreDelta }
-          : entry);
-      }
-    }
-  }
+  /**
+   * зачем 2026-08-03: здесь жил блок «reconcile» — он пересчитывал звёзды всех
+   * уже сохранённых результатов раунда, когда приходил чужой ответ с более
+   * ранней квитанцией. Он существовал ТОЛЬКО потому, что награда зависела от
+   * места в гонке: игрок, закончивший первым, мог «занять» чужие 3⭐, и порядок
+   * прихода приходилось пересчитывать задним числом.
+   *
+   * Владелец 2026-08-03 убрал скорость из награды: звёзды теперь зависят лишь
+   * от собственного ответа и сложности задания, поэтому чужая квитанция не
+   * может изменить уже начисленное. Блок не просто стал лишним — он был бы
+   * ВРЕДЕН: пересчитывал бы через scoreAnswer без difficulty и без пар,
+   * то есть затирал бы верные значения базовыми 3⭐.
+   *
+   * Здесь же исчезла причина существования answerRanksByPlayer как источника
+   * очков; ранг остаётся только пометкой в разборе.
+   */
   const allRealSubmitted = players.filter((entry) => !entry.isBot)
     .every((entry) => !!rounds[roundIndex].results[entry.id]);
   return {
@@ -2713,8 +2795,24 @@ export function legacyTournamentRecoveryAction(
   return room.stateDeadlineAtMs <= nowMs ? 'advance' : 'wait';
 }
 
+/** Тай-брейк по времени: 0 = не отвечал, такие уходят в конец равной группы. */
+function tournamentAnswerTimeRank(player: TournamentPlayer): number {
+  const value = Number(player.answerTimeMs ?? 0);
+  return Number.isFinite(value) && value > 0 ? value : Number.MAX_SAFE_INTEGER;
+}
+
+/**
+ * Делят ли игроки одно место.
+ *
+ * зачем 2026-08-03: раньше равенство определялось только очками. Владелец
+ * выбрал «скорость = тай-брейк», поэтому равные звёзды делят место лишь когда
+ * совпало и суммарное время ответов — иначе быстрый обязан стоять выше.
+ * Комнаты без answerTimeMs (сыграны до правки) дают равное время у всех и
+ * ведут себя ровно как прежде.
+ */
 function tournamentPlayersSharePlacement(a: TournamentPlayer, b: TournamentPlayer): boolean {
   return a.score === b.score
+    && tournamentAnswerTimeRank(a) === tournamentAnswerTimeRank(b)
     && (a.forfeitedAtMs !== undefined) === (b.forfeitedAtMs !== undefined);
 }
 
@@ -2726,6 +2824,8 @@ export function computePlacements(players: TournamentPlayer[]): {
   const standings = players.slice().sort((a, b) => (
     Number(a.forfeitedAtMs !== undefined) - Number(b.forfeitedAtMs !== undefined)
     || b.score - a.score
+    // Равные звёзды разводит темп: меньше суммарное время — выше место.
+    || tournamentAnswerTimeRank(a) - tournamentAnswerTimeRank(b)
     || a.id.localeCompare(b.id)
   ));
   let sharedPlace = 0;
@@ -2967,11 +3067,18 @@ const BOT_AVATAR_AURAS = [
   'aura-coral', 'aura-prism', 'aura-lagoon', 'aura-sunset',
 ] as const;
 
+/**
+ * зачем (владелец 2026-08-03): боты не должны выглядеть выше 50 уровня.
+ * Числовой avatarEmoji — это уровневый аватар, клиент показывает его номер
+ * как уровень рамки; раньше генератор давал 1..60 и боты «носили» 51–60.
+ */
+export const TOURNAMENT_BOT_MAX_LEVEL = 50;
+
 function botAvatarVisual(rand: () => number): { avatarEmoji: string; avatarAura?: string } {
   const usesShopAvatar = rand() < 0.12;
   const avatarEmoji = usesShopAvatar
     ? `custom:custom-gen-${String(41 + Math.floor(rand() * 22)).padStart(2, '0')}:${BOT_AVATAR_GRADIENTS[Math.floor(rand() * BOT_AVATAR_GRADIENTS.length)]}:${rand() < 0.5 ? 'black' : 'white'}`
-    : String(1 + Math.floor(rand() * 60));
+    : String(1 + Math.floor(rand() * TOURNAMENT_BOT_MAX_LEVEL));
   const avatarAura = rand() < 0.05
     ? BOT_AVATAR_AURAS[Math.floor(rand() * BOT_AVATAR_AURAS.length)]
     : undefined;
@@ -3023,12 +3130,24 @@ export function simulateBotAnswers(bot: BotProfile, params: {
   return tasks.map((task) => {
     const correct = rand() < bot.winRate;
     const speedFactor = 0.3 + (1 - bot.winRate) * 0.4 + rand() * 0.2;
+    // зачем 2026-08-03: звёзды теперь зависят от сложности задания, а в парах —
+    // от числа верно сопоставленных. Бот обязан считаться по той же шкале, что
+    // и человек, иначе таблица сравнивала бы разные валюты.
+    const pairCount = task.mode === 'speed_match' && Array.isArray(task.payload?.items)
+      ? task.payload.items.length
+      : 0;
     return {
       correct,
       elapsedMs: Math.round(maxMsPerTask * Math.min(0.95, speedFactor)),
       maxMs: maxMsPerTask,
       streakBefore: 0, // реальная серия считается в scoreRound
       isVoice: task.isVoice,
+      difficulty: task.difficulty,
+      ...(pairCount > 0 ? {
+        // Верный «ответ» бота = собрал всё поле; неверный — доля пар по его winRate.
+        matchedPairs: correct ? pairCount : Math.floor(rand() * pairCount),
+        totalPairs: pairCount,
+      } : {}),
     };
   });
 }

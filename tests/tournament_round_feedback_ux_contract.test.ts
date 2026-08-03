@@ -229,7 +229,15 @@ describe('tournament question feedback UX', () => {
     expect(client).toContain("zeroScoreReason: null | 'incorrect_answer' | 'speed_match_penalty';");
     expect(client).toContain('correctIndex?: number;');
     expect(round).toContain("feedbackCorrect === true ? 'Правильно!' : 'Почти!'");
-    expect(round).toContain('setFeedbackEarnedStars(result.earnedStars);');
+    // зачем 2026-08-03 (владелец: «анимация начисления звёзд должна быть
+    // мгновенной сразу»): здесь сторожилась строка
+    // `setFeedbackEarnedStars(result.earnedStars);` — она фиксировала ровно то
+    // поведение, на которое пожаловался владелец: число звёзд появлялось ТОЛЬКО
+    // из ответа сервера. Скорость убрана из награды, поэтому звёзды считаются
+    // локально в момент тапа, а серверный ответ их лишь сверяет. Контракт стал
+    // строже: требуем и мгновенный расчёт, и тихую сверку без «дребезга».
+    expect(round).toContain('starsForDifficulty(task.difficulty)');
+    expect(round).toMatch(/setFeedbackEarnedStars\(\(current\) => \([\s\S]*current === result\.earnedStars \? current : result\.earnedStars/);
     expect(round).toContain('setFeedbackCorrectIndex(typeof result.correctIndex');
     // зачем 2026-08-02: переменная переименована в optionIndex вместе с фиксом
     // подмены ответа из кэша. Контракт прежний: плитка красится СРАЗУ, до сети.

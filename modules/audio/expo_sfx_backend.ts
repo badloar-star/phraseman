@@ -65,13 +65,43 @@ export class ExpoSfxBackend {
       // Здесь ждать нечем — API синхронный, поэтому повторяем play() по статусу,
       // пока плеер не сообщит, что действительно поехал.
       let retriedAfterLoad = false;
+      // зачем 2026-08-03 (владелец: «звук таймера был только в первом раунде
+      // турнира, дальше вообще ни разу»): у expo-audio на Android didJustFinish
+      // читается напрямую из ref.playbackState == STATE_ENDED — это НЕ разовое
+      // событие «доиграл», а живой снимок состояния плеера (см. AudioPlayer.kt,
+      // currentStatus()). Второй и каждый следующий play() того же закэшированного
+      // события переиспользует плеер, который после первого проигрывания застыл
+      // в STATE_ENDED. seekTo(0) командует ExoPlayer'у выйти из этого состояния
+      // АСИНХРОННО (свой поток декодера), а play() зовётся синхронно следующей
+      // строкой. Первый же статус, долетевший до JS раньше, чем ExoPlayer
+      // фактически сменил playbackState, всё ещё честно репортит ENDED —
+      // didJustFinish=true СРАЗУ после play(), звук помечается сыгранным
+      // мгновенно и не звучит. Раунд 1 не задет: свежесозданный плеер стартует в
+      // STATE_IDLE, а не в ENDED, гонки нет.
+      //
+      // ПРЕДОХРАНИТЕЛЬ: рантайм может вообще не присылать `playing` (уже было
+      // известно ДО этой правки, см. исходный коммент ниже) — если ждать его
+      // безусловно, один такой рантайм навсегда блокирует onEnded, и арбитр
+      // зависает с занятым слотом навечно (хуже исходного бага: тот молчал
+      // максимум durationMs). Поэтому недоверие к раннему ENDED ограничено
+      // коротким окном retryWindowMs — это то же самое окно, которое ниже даёт
+      // повторной попытке play() шанс реально стартовать. Если оно истекло,
+      // ENDED принимается как есть, будто предохранителя не было вовсе.
+      let sawPlaying = false;
+      const playStartedAtMs = Date.now();
+      const RETRY_WINDOW_MS = 400;
       const subscription = player.addListener('playbackStatusUpdate', (status) => {
         if (this.current?.player !== player) return;
 
+        if (status.playing === true) sawPlaying = true;
+        const withinRetryWindow = Date.now() - playStartedAtMs < RETRY_WINDOW_MS;
+
         // Завершение обрабатываем ВСЕГДА и первым делом: рантайм может не
         // присылать `playing`, и привязка finish к «мы видели старт» подвесила бы
-        // арбитра с вечно занятым слотом.
-        if (status.didJustFinish) {
+        // арбитра с вечно занятым слотом. Исключение — ложный ENDED от
+        // переиспользуемого плеера в первые RETRY_WINDOW_MS после play(), пока
+        // ещё не видели ни одного playing:true (см. коммент выше).
+        if (status.didJustFinish && (sawPlaying || !withinRetryWindow)) {
           this.current.subscription?.remove();
           this.current = null;
           onEnded();
@@ -79,8 +109,9 @@ export class ExpoSfxBackend {
         }
 
         // Загрузился, но не играет — значит ранний play() пропал (Android
-        // ExoPlayer ещё декодировал файл). Повторяем ровно один раз по
-        // готовности: без этого первый запрос каждого звука всегда немой.
+        // ExoPlayer ещё декодировал файл, либо это тот самый ложный ENDED на
+        // переиспользуемом плеере). Повторяем ровно один раз по готовности:
+        // без этого первый запрос каждого звука всегда немой.
         if (!retriedAfterLoad && status.isLoaded && status.playing === false) {
           retriedAfterLoad = true;
           try { player.play(); } catch {}

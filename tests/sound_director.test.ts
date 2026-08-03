@@ -25,9 +25,9 @@ class FakeBackend implements SfxPlaybackBackend {
   dispose() { this.disposeCount += 1; }
 }
 
-function makePlayer(): SfxPlayerLike & { emitEnded: () => void; calls: string[] } {
+function makePlayer(): SfxPlayerLike & { emitPlaying: () => void; emitEnded: () => void; calls: string[] } {
   const calls: string[] = [];
-  let listener: ((status: { didJustFinish?: boolean }) => void) | null = null;
+  let listener: ((status: { didJustFinish?: boolean; playing?: boolean }) => void) | null = null;
   return {
     volume: 1,
     play: () => calls.push('play'),
@@ -38,6 +38,10 @@ function makePlayer(): SfxPlayerLike & { emitEnded: () => void; calls: string[] 
       listener = callback;
       return { remove: () => { listener = null; } };
     },
+    // зачем: honest playback always reports `playing:true` before it ends —
+    // this is the real-world sequence, distinct from the replay-race guard
+    // covered in the dedicated test below.
+    emitPlaying: () => listener?.({ playing: true }),
     emitEnded: () => listener?.({ didJustFinish: true }),
     calls,
   };
@@ -104,6 +108,7 @@ describe('ExpoSfxBackend', () => {
 
     expect(backend.play('pm.learn.correct', 1, 0.42, ended)).toBe(true);
     expect(player.volume).toBe(0.42);
+    player.emitPlaying();
     player.emitEnded();
     expect(ended).toHaveBeenCalledTimes(1);
 
@@ -146,8 +151,85 @@ describe('ExpoSfxBackend', () => {
     emit({ isLoaded: true, playing: false });
     expect(calls.filter((c) => c === 'play')).toHaveLength(2);
 
-    // Завершение по-прежнему освобождает слот арбитра.
+    // Реально заиграл, затем честно доиграл — освобождает слот арбитра.
+    emit({ playing: true });
     emit({ didJustFinish: true });
     expect(ended).toHaveBeenCalledTimes(1);
+  });
+
+  // зачем 2026-08-03 (владелец: «звук таймера был только в первом раунде
+  // турнира, дальше вообще ни разу»): корень — expo-audio на Android читает
+  // didJustFinish напрямую из playbackState (см. AudioPlayer.kt, currentStatus:
+  // "didJustFinish" to (ref.playbackState == Player.STATE_ENDED)), а не как
+  // разовое событие. Переиспользуемый закэшированный плеер после первого
+  // проигрывания застревает в STATE_ENDED; seekTo(0) выводит его из этого
+  // состояния асинхронно, а play() зовётся синхронно следом — первый статус
+  // может долететь до JS раньше, чем ExoPlayer фактически сменил состояние,
+  // всё ещё честно репортя ENDED. Без защиты onEnded срабатывал мгновенно на
+  // втором и каждом следующем воспроизведении того же события, звук не звучал.
+  test('ignores a false didJustFinish from a reused player before it ever played', () => {
+    type Status = { didJustFinish?: boolean; playing?: boolean };
+    const listeners: ((status: Status) => void)[] = [];
+    const emit = (status: Status) => listeners.forEach((l) => l(status));
+    const player: SfxPlayerLike = {
+      volume: 1,
+      play: () => {},
+      pause: () => {},
+      seekTo: () => {},
+      remove: () => {},
+      addListener: (_event, callback) => {
+        listeners.push(callback);
+        return { remove: () => { listeners.length = 0; } };
+      },
+    };
+
+    const backend = new ExpoSfxBackend(() => player, 2);
+    const ended = jest.fn();
+    backend.play('pm.learn.timer_warning', 1, 0.34, ended);
+
+    // Ложный ENDED от переиспользуемого плеера, ДО первого настоящего playing.
+    emit({ didJustFinish: true });
+    expect(ended).not.toHaveBeenCalled();
+
+    // Реальный старт добирается позже — теперь настоящее завершение доверяем.
+    emit({ playing: true });
+    emit({ didJustFinish: true });
+    expect(ended).toHaveBeenCalledTimes(1);
+  });
+
+  // зачем: если рантайм НИКОГДА не шлёт playing (уже известный случай —
+  // см. соседний тест выше про плеер, который «может не присылать playing»),
+  // недоверие к ENDED не должно длиться вечно: иначе арбитр зависает с занятым
+  // слотом навсегда, что хуже исходного бага. Окно ограничено реальным
+  // временем (Date.now()), не поддельными часами арбитра — это таймаут именно
+  // нативного плеера, а не игровой логики.
+  test('accepts didJustFinish without ever seeing playing once the retry window elapses', () => {
+    jest.useFakeTimers();
+    try {
+      type Status = { didJustFinish?: boolean; playing?: boolean };
+      const listeners: ((status: Status) => void)[] = [];
+      const emit = (status: Status) => listeners.forEach((l) => l(status));
+      const player: SfxPlayerLike = {
+        volume: 1,
+        play: () => {},
+        pause: () => {},
+        seekTo: () => {},
+        remove: () => {},
+        addListener: (_event, callback) => {
+          listeners.push(callback);
+          return { remove: () => { listeners.length = 0; } };
+        },
+      };
+
+      const backend = new ExpoSfxBackend(() => player, 2);
+      const ended = jest.fn();
+      backend.play('pm.learn.timer_warning', 1, 0.34, ended);
+
+      jest.advanceTimersByTime(500);
+      emit({ didJustFinish: true });
+      expect(ended).toHaveBeenCalledTimes(1);
+    } finally {
+      jest.useRealTimers();
+    }
   });
 });

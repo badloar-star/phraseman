@@ -54,11 +54,16 @@ function LeagueHotHoursChipComponent({ text, palette }: LeagueHotHoursChipProps)
     };
   }, [shouldAnimate, pulse]);
 
+  // зачем: на светлой теме бледно-красная плашка под обводкой не читалась.
+  // Плотная заливка тоном (и без обводки — запрет владельца) даёт тот же
+  // «горячий» сигнал, но чип видно на любом фоне.
+  const chipFill = palette.isLight ? 'rgba(176,58,68,0.14)' : 'rgba(255,91,108,0.2)';
+
   return (
     <Animated.View
       testID="league-hot-hours-chip"
       accessibilityLabel={text}
-      style={[styles.chip, { backgroundColor: 'rgba(255,91,108,0.2)', borderColor: 'rgba(255,91,108,0.5)', transform: [{ scale: pulse }] }]}
+      style={[styles.chip, { backgroundColor: chipFill, transform: [{ scale: pulse }] }]}
     >
       <Ionicons name="flame" size={13} color={palette.negative} />
       <Text style={[styles.text, { color: palette.negative }]}>{text}</Text>
@@ -74,7 +79,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 5,
     borderRadius: 999,
-    borderWidth: 1,
     paddingHorizontal: 10,
     paddingVertical: 6,
   },

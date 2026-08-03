@@ -52,7 +52,7 @@ function LeagueBonusMissionComponent({ model, lang, palette, giftImage, renderCo
             percent={model.percent}
             size={78}
             strokeWidth={6}
-            trackColor={model.canClaim ? 'rgba(7,17,10,0.18)' : palette.elevated}
+            trackColor={model.canClaim ? 'rgba(7,17,10,0.18)' : (palette.isLight ? palette.bone : palette.elevated)}
             fillColor={model.canClaim ? palette.accentText : palette.warning}
             testID="league-chest-ring"
           >

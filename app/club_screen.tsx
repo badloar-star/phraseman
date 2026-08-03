@@ -56,7 +56,7 @@ import { getTitleString } from '../constants/titles';
 
 import { getMyWeekPoints } from './hall_of_fame_utils';
 import { getCanonicalUserId } from './user_id_policy';
-import { getXPProgress, getLevelFromXP, screenTextOnGradient, type ThemeMode } from '../constants/theme';
+import { getXPProgress, getLevelFromXP, isLightThemeMode, screenTextOnGradient, type ThemeMode } from '../constants/theme';
 import { monoIcon } from '../constants/monoIcon';
 import { getLeagueBonusPalette } from '../constants/leagueBonusPalette';
 import { getLeagueBonusGiftImage } from '../constants/leagueBonusGiftImages';
@@ -1237,18 +1237,30 @@ export default function ClubScreen() {
     }
   }, [activeGroupBoost, arenaClubStableUid, groupBoostLikeBusy, groupBoostLikeTotal, groupBoostLikedToday, showLeagueToast, userName]);
 
+  // зачем: владелец не смог разобрать экран Лиги в светлой теме — вся сцена
+  // была рассчитана на тёмный фон. На светлой теме меняем три вещи:
+  // 1) поверхности разводим по тону (карточка светлее фона, вложенный блок
+  //    темнее её) — иначе #E1E5DC на #F0F1EC сливается в одно пятно;
+  // 2) статусные цвета берём тёмные: жёлтый #FFD43B на белом даёт ~1.4:1,
+  //    зелёный #34C759 — ~2.2:1, оба ниже порога читаемости;
+  // 3) отдаём компонентам флаг isLight + тон «кости», чтобы подиум, лучи
+  //    прожекторов и скелет не рисовались белым по белому.
+  const hubIsLight = isLightThemeMode(themeMode);
   const hubPalette = useMemo<LeagueHubPalette>(() => ({
-    surface: glassFill(t.bgSurface, 0.78),
-    elevated: glassFill(t.bgCard, 0.72),
+    surface: hubIsLight ? t.bgCard : glassFill(t.bgSurface, 0.78),
+    elevated: hubIsLight ? t.bgSurface : glassFill(t.bgCard, 0.72),
     text: t.textPrimary,
     muted: t.textMuted,
     accent: t.accent,
     accentText: t.correctText,
     outline: t.border,
-    positive: monoIcon(themeMode, '#34C759'),
-    negative: monoIcon(themeMode, '#FF5B6C'),
-    warning: monoIcon(themeMode, '#FFD43B'),
-  }), [t, themeMode]);
+    positive: monoIcon(themeMode, hubIsLight ? '#1F7A44' : '#34C759'),
+    negative: monoIcon(themeMode, hubIsLight ? '#B03A44' : '#FF5B6C'),
+    warning: monoIcon(themeMode, hubIsLight ? '#8A6410' : '#FFD43B'),
+    isLight: hubIsLight,
+    bone: hubIsLight ? 'rgba(23,32,29,0.09)' : 'rgba(255,255,255,0.07)',
+    boneShine: hubIsLight ? 'rgba(23,32,29,0.04)' : 'rgba(255,255,255,0.16)',
+  }), [hubIsLight, t, themeMode]);
   const hubBonusMissionModel = useMemo(() => buildLeagueBonusMissionModel({
     progress: leagueChestProgress,
     goal: leagueChestGoal,

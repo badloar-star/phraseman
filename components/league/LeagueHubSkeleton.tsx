@@ -31,8 +31,11 @@ const PODIUM_PLACES = [2, 1, 3] as const;
 
 function LeagueHubSkeletonComponent({ palette, rows = 5 }: LeagueHubSkeletonProps) {
   // Кость чуть темнее поверхности карточки — тон, а не обводка (запрет владельца).
-  const bone = 'rgba(255,255,255,0.07)';
-  const shine = 'rgba(255,255,255,0.16)';
+  // зачем: на светлой теме белые кости были невидимы на белом фоне — экран
+  // выглядел пустым, ровно тот баг «ничего не видно», с которого начали.
+  // Тон берём из палитры: тёмный на светлой теме, светлый на тёмной.
+  const bone = palette.bone;
+  const shine = palette.boneShine;
 
   return (
     <View testID="league-hub-skeleton" accessibilityElementsHidden importantForAccessibility="no-hide-descendants">

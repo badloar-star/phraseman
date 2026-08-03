@@ -32,10 +32,25 @@ interface LeagueArenaSceneProps {
   chestReady: boolean;
 }
 
-const STEP_COLORS: Record<number, { colors: [string, string]; border: string; text: string }> = {
-  1: { colors: ['rgba(255,212,59,0.42)', 'rgba(255,212,59,0.06)'], border: 'rgba(255,212,59,0.32)', text: '#FFD43B' },
-  2: { colors: ['rgba(201,212,220,0.3)', 'rgba(201,212,220,0.05)'], border: 'rgba(201,212,220,0.24)', text: '#C9D4DC' },
-  3: { colors: ['rgba(210,154,106,0.32)', 'rgba(210,154,106,0.05)'], border: 'rgba(210,154,106,0.26)', text: '#D29A6A' },
+// `ring` — только кольцо аватара (не контейнер), ступень отделяется тоном.
+type StepStyle = { colors: [string, string]; ring: string; text: string };
+
+const STEP_COLORS: Record<number, StepStyle> = {
+  1: { colors: ['rgba(255,212,59,0.42)', 'rgba(255,212,59,0.06)'], ring: 'rgba(255,212,59,0.32)', text: '#FFD43B' },
+  2: { colors: ['rgba(201,212,220,0.3)', 'rgba(201,212,220,0.05)'], ring: 'rgba(201,212,220,0.24)', text: '#C9D4DC' },
+  3: { colors: ['rgba(210,154,106,0.32)', 'rgba(210,154,106,0.05)'], ring: 'rgba(210,154,106,0.26)', text: '#D29A6A' },
+};
+
+/**
+ * зачем: на светлой теме ступени подиума были почти невидимы — прозрачное
+ * золото/серебро на белом фоне и цифры #FFD43B/#C9D4DC с контрастом ~1.4:1.
+ * Здесь те же три металла, но насыщенные и с тёмным текстом: ступень
+ * читается как плотная плашка тоном, без обводки.
+ */
+const STEP_COLORS_LIGHT: Record<number, StepStyle> = {
+  1: { colors: ['#F2D584', '#E3BB4E'], ring: 'rgba(138,100,16,0.42)', text: '#5E4206' },
+  2: { colors: ['#DAE1E7', '#BFCAD3'], ring: 'rgba(61,75,84,0.34)', text: '#33404A' },
+  3: { colors: ['#E9C6A4', '#D5A97C'], ring: 'rgba(107,67,34,0.36)', text: '#5C3819' },
 };
 const STEP_HEIGHT: Record<number, number> = { 1: 74, 2: 54, 3: 42 };
 
@@ -53,11 +68,18 @@ const CONFETTI_DOTS = [
 const BEAM_W = 150;
 const BEAM_H = 290;
 
-function ArenaBeam({ rotate, opacity, side }: {
+function ArenaBeam({ rotate, opacity, side, isLight }: {
   rotate: Animated.AnimatedInterpolation<string>;
   opacity: Animated.AnimatedInterpolation<number>;
   side: 'left' | 'right';
+  isLight: boolean;
 }) {
+  // зачем: белый луч #FFF6CF на светлом фоне давал грязное жёлтое пятно по
+  // краям сцены вместо света. На светлой теме прожектор работает наоборот —
+  // мягкой тенью тёплого тона, поэтому конус темнее фона, а не светлее.
+  const beamColor = isLight ? '#8A6410' : '#FFF6CF';
+  const beamTop = isLight ? '0.16' : '0.5';
+  const beamMid = isLight ? '0.05' : '0.14';
   return (
     <Animated.View
       pointerEvents="none"
@@ -66,9 +88,9 @@ function ArenaBeam({ rotate, opacity, side }: {
       <Svg width={BEAM_W} height={BEAM_H}>
         <Defs>
           <SvgLinearGradient id={`arenaBeam-${side}`} x1="0" y1="0" x2="0" y2="1">
-            <Stop offset="0" stopColor="#FFF6CF" stopOpacity="0.5" />
-            <Stop offset="0.55" stopColor="#FFF6CF" stopOpacity="0.14" />
-            <Stop offset="1" stopColor="#FFF6CF" stopOpacity="0" />
+            <Stop offset="0" stopColor={beamColor} stopOpacity={beamTop} />
+            <Stop offset="0.55" stopColor={beamColor} stopOpacity={beamMid} />
+            <Stop offset="1" stopColor={beamColor} stopOpacity="0" />
           </SvgLinearGradient>
         </Defs>
         <Polygon
@@ -172,8 +194,8 @@ function LeagueArenaSceneComponent({ lang, palette, leagueName, participantLabel
     >
       {!reduceMotion ? (
         <View pointerEvents="none" style={StyleSheet.absoluteFill}>
-          <ArenaBeam side="left" rotate={beamLRotate} opacity={beamLOpacity} />
-          <ArenaBeam side="right" rotate={beamRRotate} opacity={beamROpacity} />
+          <ArenaBeam side="left" rotate={beamLRotate} opacity={beamLOpacity} isLight={palette.isLight} />
+          <ArenaBeam side="right" rotate={beamRRotate} opacity={beamROpacity} isLight={palette.isLight} />
         </View>
       ) : null}
 
@@ -205,7 +227,7 @@ function LeagueArenaSceneComponent({ lang, palette, leagueName, participantLabel
       <View style={styles.podiumRow}>
         {podium.map(({ member, place }, idx) => {
           const first = place === 1;
-          const colors = STEP_COLORS[place];
+          const colors = palette.isLight ? STEP_COLORS_LIGHT[place] : STEP_COLORS[place];
           const displayName = leaguePublicName(member.name, member.uid ?? member.botId ?? member.name);
           const crowned = hasCrown(member.uid);
           return (
@@ -224,7 +246,7 @@ function LeagueArenaSceneComponent({ lang, palette, leagueName, participantLabel
                   {first && crowned ? (
                     <Animated.Text style={[styles.crown, { transform: [{ translateY: crownY }, { rotate: crownRotate }] }]}>👑</Animated.Text>
                   ) : null}
-                  <View style={[styles.avatarRing, first && styles.avatarRingWinner, { borderColor: first ? 'rgba(255,212,59,0.65)' : colors.border }]}>
+                  <View style={[styles.avatarRing, first && styles.avatarRingWinner, { borderColor: first ? (palette.isLight ? 'rgba(138,100,16,0.55)' : 'rgba(255,212,59,0.65)') : colors.ring }]}>
                     {renderAvatar(member, first ? 62 : 52)}
                   </View>
                 </View>
@@ -237,7 +259,7 @@ function LeagueArenaSceneComponent({ lang, palette, leagueName, participantLabel
                 ) : null}
                 <LinearGradient
                   colors={colors.colors}
-                  style={[styles.step, { height: STEP_HEIGHT[place], borderColor: colors.border }]}
+                  style={[styles.step, { height: STEP_HEIGHT[place] }]}
                 >
                   <Text style={[styles.stepNum, { color: colors.text }]}>{place}</Text>
                 </LinearGradient>
@@ -293,6 +315,7 @@ const styles = StyleSheet.create({
   personPoints: { fontSize: 10, fontWeight: '800', marginTop: 1 },
   mePill: { marginTop: 4, minHeight: 20, borderRadius: 10, paddingHorizontal: 7, alignItems: 'center', justifyContent: 'center' },
   mePillText: { fontSize: 9, fontWeight: '900' },
-  step: { width: '100%', marginTop: 9, borderRadius: 12, borderBottomWidth: 0, borderWidth: 1, alignItems: 'center', paddingTop: 7 },
+  // Ступень разделяется тоном градиента, без обводки (правило владельца).
+  step: { width: '100%', marginTop: 9, borderRadius: 12, alignItems: 'center', paddingTop: 7 },
   stepNum: { fontSize: 15, fontWeight: '900' },
 });

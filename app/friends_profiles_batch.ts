@@ -39,6 +39,9 @@ export interface FriendProfileBatchRecord {
   frame: string;
   aura: string;
   profileCardLevel: number;
+  /** null = сервер не знает цепочку. Карточка тогда не рисует «0», а прячет строку. */
+  streak: number | null;
+  leagueId: number;
   isPremium: boolean;
   isVip: boolean;
   isLifetime: boolean;

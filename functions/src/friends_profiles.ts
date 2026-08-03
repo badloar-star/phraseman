@@ -34,6 +34,9 @@ export interface FriendPublicProfile {
   frame: string;
   aura: string;
   profileCardLevel: number;
+  /** Цепочка дней. null = писатель её не проставил (не путать с честным нулём). */
+  streak: number | null;
+  leagueId: number;
   isPremium: boolean;
   isVip: boolean;
   isLifetime: boolean;
@@ -70,26 +73,47 @@ function str(v: unknown): string {
   return typeof v === 'string' ? v : '';
 }
 
+/** Отличает «поля нет» от честного нуля: карточка не должна врать про цепочку. */
+function numOrNull(v: unknown): number | null {
+  if (v === null || v === undefined) return null;
+  const n = Number(v);
+  return Number.isFinite(n) ? Math.max(0, Math.floor(n)) : null;
+}
+
 type DocData = Record<string, unknown> | undefined;
 
 /** Сборка публичного профиля из leaderboard + arena_profiles (приоритет leaderboard). */
-function buildFriendProfile(uid: string, lb: DocData, arena: DocData): FriendPublicProfile | null {
+export function buildFriendProfile(uid: string, lb: DocData, arena: DocData): FriendPublicProfile | null {
   if (!lb && !arena) return null;
-  const displayName = str(lb?.displayName) || str(lb?.name) || str(arena?.displayName) || '';
-  const totalXp = num(lb?.totalXp ?? lb?.user_total_xp ?? arena?.totalXp ?? arena?.user_total_xp);
-  const profileCardLevel = num(lb?.courseProfileCardLevel ?? arena?.courseProfileCardLevel);
+  // зачем (2026-08-03): карточка чужого игрока всегда показывала 0 опыта и Lv.1.
+  // Причина — рассинхрон имён полей: writer (functions/src/sync_leaderboard.ts +
+  // firestore_leaderboard.ts) кладёт в leaderboard/{uid} общий XP в поле `points`,
+  // имя в `name`, уровень карточки в `profileCardLevel`. Читатель же спрашивал
+  // `totalXp`/`courseProfileCardLevel`/`courseProfileCardFrame`, которых в
+  // документе нет вовсе → num(undefined) = 0. Молчаливая ложь: профиль
+  // возвращался «валидным», но пустым. Канонические ключи теперь идут ПЕРВЫМИ,
+  // а прежние оставлены как запасной вариант для документов старых схем.
+  const displayName = str(lb?.name) || str(lb?.displayName) || str(arena?.displayName) || str(arena?.name) || '';
+  const totalXp = num(
+    lb?.points ?? lb?.totalXp ?? lb?.user_total_xp ?? arena?.points ?? arena?.totalXp ?? arena?.user_total_xp,
+  );
+  const profileCardLevel = num(
+    lb?.profileCardLevel ?? lb?.courseProfileCardLevel ?? arena?.profileCardLevel ?? arena?.courseProfileCardLevel,
+  );
   const profile: FriendPublicProfile = {
     uid,
     displayName,
     totalXp,
     level: getLevelFromXP(totalXp),
     avatar: str(lb?.avatar ?? arena?.avatar),
-    frame: str(lb?.courseProfileCardFrame ?? arena?.courseProfileCardFrame),
-    aura: str(lb?.courseProfileCardAura ?? arena?.courseProfileCardAura),
+    frame: str(lb?.frame ?? lb?.courseProfileCardFrame ?? arena?.frame ?? arena?.courseProfileCardFrame),
+    aura: str(lb?.aura ?? lb?.courseProfileCardAura ?? arena?.aura ?? arena?.courseProfileCardAura),
     profileCardLevel,
-    isPremium: lb?.courseIsPremium === true || lb?.isPremium === true || arena?.courseIsPremium === true,
-    isVip: lb?.courseIsVip === true || lb?.isVip === true || arena?.courseIsVip === true,
-    isLifetime: lb?.courseIsLifetime === true || lb?.isLifetime === true || arena?.courseIsLifetime === true,
+    streak: numOrNull(lb?.streak ?? arena?.streak),
+    leagueId: num(lb?.leagueId ?? arena?.leagueId),
+    isPremium: lb?.isPremium === true || lb?.courseIsPremium === true || arena?.isPremium === true || arena?.courseIsPremium === true,
+    isVip: lb?.isVip === true || lb?.courseIsVip === true || arena?.isVip === true || arena?.courseIsVip === true,
+    isLifetime: lb?.isLifetime === true || lb?.courseIsLifetime === true || arena?.isLifetime === true || arena?.courseIsLifetime === true,
   };
   if (!profile.displayName && profile.totalXp <= 0 && !profile.avatar && profile.profileCardLevel <= 0) {
     return null;

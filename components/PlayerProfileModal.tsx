@@ -52,6 +52,7 @@ import { CLOUD_SYNC_ENABLED, ENABLE_PROFILE_CARD, IS_EXPO_GO } from '../app/conf
 import { readLifetimeProfileStatsCache, loadLifetimeProfileStats } from '../app/lifetime_profile_stats';
 import { syncToCloud } from '../app/cloud_sync';
 import { deleteFriend, sendFriendRequest, subscribeToFriends } from '../app/firestore_friend_requests';
+import { fetchFriendProfilesBatch } from '../app/friends_profiles_batch';
 import { invalidateFriendsActivityCache } from '../app/firestore_friend_activity';
 import {
   fetchActivityLikeTotal,
@@ -76,8 +77,12 @@ import { onAppEvent } from '../app/events';
 import {
   loadSeasonCosmetics,
   peekSeasonCosmetics,
-  SEASON1_FRAME_ID,
 } from '../app/season_cosmetics';
+import {
+  resolveProfileCardDisplayLevel,
+  resolveSeasonProfileFrameVisible,
+  SEASON1_FRAME_ID,
+} from '../app/season_cosmetics_model';
 import {
   fxKindForProfileCard,
   getNextProfileCardLevel,
@@ -121,6 +126,12 @@ export interface PlayerInfo {
   profileCardTheme?: string;
   profileCardMotion?: string;
   profileCardPublicFocus?: string;
+  /** Public status reward decorating the complete profile-card sheet. */
+  seasonProfileFrameId?: string;
+  /** DEV Settings only: visual level preview; never changes purchase/storage state. */
+  devProfileCardLevelOverride?: number;
+  /** DEV Settings only: compare the real card with/without the seasonal frame. */
+  devSeasonProfileFrameEnabled?: boolean;
 }
 
 interface MyInfo {
@@ -300,12 +311,19 @@ function PlayerProfileModalBody({
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const isMe = player.isMe;
+  const devSeasonFrameOverride = __DEV__ ? player.devSeasonProfileFrameEnabled : undefined;
+  const hasDevProfileCardLevelOverride = __DEV__ && player.devProfileCardLevelOverride !== undefined;
   const [friendRequestBusy, setFriendRequestBusy] = useState(false);
   const [friendUids, setFriendUids] = useState<Set<string>>(() => new Set());
   const [friendRequestSentUids, setFriendRequestSentUids] = useState<Set<string>>(() => new Set());
   const [removeFriendConfirmOpen, setRemoveFriendConfirmOpen] = useState(false);
   const [hasSeasonProfileFrame, setHasSeasonProfileFrame] = useState(
-    () => isMe && peekSeasonCosmetics().frames.includes(SEASON1_FRAME_ID),
+    () => resolveSeasonProfileFrameVisible({
+      isMe,
+      ownedFrameIds: peekSeasonCosmetics().frames,
+      publicFrameId: player.seasonProfileFrameId,
+      devOverride: devSeasonFrameOverride,
+    }),
   );
   const [profileCardSnapshot, setProfileCardSnapshot] = useState<ProfileCardSnapshot>(() => normalizeProfileCardSnapshotForLevel(player));
   const [cardStats, setCardStats] = useState<ProfileCardStats | null>(null);
@@ -326,8 +344,18 @@ function PlayerProfileModalBody({
   const likeInFlightRef = useRef(false);
   const profileCardLevel = profileCardSnapshot.level;
   const [remoteCrown, setRemoteCrown] = useState<{ expiresAt: number; crownCount: number }>(() => ({ expiresAt: 0, crownCount: 0 }));
-  const playerPoints = Number.isFinite(Number(player.points)) ? Math.max(0, Math.floor(Number(player.points))) : null;
-  const totalXp = isMe ? myInfo.totalXP : (resolvedTotalXp ?? player.totalXp ?? playerPoints ?? null);
+  // зачем (2026-08-03): `points` у чужого игрока — витринное поле вызывающего
+  // экрана (в лиге это НЕДЕЛЬНЫЕ очки, в лобби турнира — заглушка 0, пока не
+  // долетел батч профилей). Считать его общим опытом нельзя: именно отсюда
+  // бралась «0 опыта, Lv.1» на карточке живого игрока. Ноль как источник уровня
+  // теперь не принимаем — берём только явно положительное значение, иначе ждём
+  // настоящий totalXp (resolvedTotalXp/leaderboard) и показываем skeleton.
+  const rawPoints = Math.floor(Number(player.points));
+  const playerPoints = Number.isFinite(rawPoints) && rawPoints > 0 ? rawPoints : null;
+  const playerTotalXp = Number.isFinite(Number(player.totalXp))
+    ? Math.max(0, Math.floor(Number(player.totalXp)))
+    : null;
+  const totalXp = isMe ? myInfo.totalXP : (resolvedTotalXp ?? playerTotalXp ?? playerPoints ?? null);
   const safeTotalXp = totalXp ?? 0;
   const displayXp = isMe ? myInfo.totalXP : (totalXp ?? 0);
   const xp = displayXp;
@@ -347,8 +375,16 @@ function PlayerProfileModalBody({
   // при активном премиум-доступе (showPremium), иначе плашки нет вовсе.
   const [myIsLifetime, setMyIsLifetime] = useState(false);
   useEffect(() => {
+    if (devSeasonFrameOverride !== undefined) {
+      setHasSeasonProfileFrame(devSeasonFrameOverride);
+      return undefined;
+    }
     if (!isMe) {
-      setHasSeasonProfileFrame(false);
+      setHasSeasonProfileFrame(resolveSeasonProfileFrameVisible({
+        isMe: false,
+        ownedFrameIds: [],
+        publicFrameId: player.seasonProfileFrameId,
+      }));
       return undefined;
     }
 
@@ -366,7 +402,7 @@ function PlayerProfileModalBody({
       cancelled = true;
       subscription.remove();
     };
-  }, [isMe]);
+  }, [devSeasonFrameOverride, isMe, player.seasonProfileFrameId]);
 
   useEffect(() => {
     if (!isMe) return;
@@ -381,7 +417,11 @@ function PlayerProfileModalBody({
   // Всё ВИЗУАЛЬНОЕ рисуем от displayCardLevel (уровень превью, если оно активно),
   // а логика покупки/кнопки живёт на настоящем profileCardLevel.
   const nextRealLevel = getNextProfileCardLevel(profileCardLevel);
-  const displayCardLevel: ProfileCardLevel = isMe && previewLevel !== null ? previewLevel : profileCardLevel;
+  const displayCardLevel = normalizeProfileCardLevel(resolveProfileCardDisplayLevel({
+    realLevel: profileCardLevel,
+    inCardPreviewLevel: isMe ? previewLevel : null,
+    devOverride: __DEV__ ? player.devProfileCardLevelOverride : undefined,
+  }));
   const displaySnapshot: ProfileCardSnapshot = displayCardLevel === profileCardSnapshot.level
     ? profileCardSnapshot
     : normalizeProfileCardSnapshotForLevel({ profileCardLevel: displayCardLevel });
@@ -577,7 +617,11 @@ function PlayerProfileModalBody({
     setCardStats(null);
     // Свою карточку грузим всегда (нужно для превью будущих уровней), чужую — только
     // если её уровень реально открывает блоки.
-    if (!isMe && profileCardLevel < 2) {
+    const needsRemoteFrame = !isMe
+      && devSeasonFrameOverride === undefined
+      && player.seasonProfileFrameId === undefined;
+    const needsRemoteStats = !isMe && profileCardLevel >= 2;
+    if (!isMe && !needsRemoteStats && !needsRemoteFrame) {
       return () => { cancelled = true; };
     }
     if (isMe) {
@@ -607,25 +651,37 @@ function PlayerProfileModalBody({
     }
     const publicIds = Array.from(new Set([player.friendUid, player.uid].filter(Boolean) as string[]));
     void (async () => {
+      let statsApplied = false;
       for (const id of publicIds) {
         try {
           const snap = await firestore().collection('public_profiles').doc(id).get();
           if (cancelled) return;
           if (!snap.exists) continue;
           const d = (snap.data() ?? {}) as Record<string, unknown>;
-          setCardStats({
-            wordsLearned: readPublicCardStatNumber(d.cardWordsLearned),
-            phrasesLearned: readPublicCardStatNumber(d.cardPhrasesLearned),
-            appDays: readPublicCardStatNumber(d.cardAppDays),
-            longestStreak: readPublicCardStatNumber(d.cardLongestStreak),
-            legendNo: readPublicCardStatNumber(d.profileCardLegendNo),
-          });
-          return;
+          if (needsRemoteStats && !statsApplied) {
+            statsApplied = true;
+            setCardStats({
+              wordsLearned: readPublicCardStatNumber(d.cardWordsLearned),
+              phrasesLearned: readPublicCardStatNumber(d.cardPhrasesLearned),
+              appDays: readPublicCardStatNumber(d.cardAppDays),
+              longestStreak: readPublicCardStatNumber(d.cardLongestStreak),
+              legendNo: readPublicCardStatNumber(d.profileCardLegendNo),
+            });
+          }
+          if (!needsRemoteFrame) return;
+          const publicFrameId = typeof d.seasonProfileFrameId === 'string'
+            ? d.seasonProfileFrameId
+            : '';
+          if (publicFrameId === SEASON1_FRAME_ID) {
+            setHasSeasonProfileFrame(true);
+            return;
+          }
         } catch { /* пробуем следующий id */ }
       }
+      if (!cancelled && needsRemoteFrame) setHasSeasonProfileFrame(false);
     })();
     return () => { cancelled = true; };
-  }, [isMe, profileCardLevel, player.friendUid, player.uid]);
+  }, [devSeasonFrameOverride, isMe, player.friendUid, player.seasonProfileFrameId, player.uid, profileCardLevel]);
 
   // «Морф» при каждой смене отображаемого уровня: фон/эффекты проявляются заново,
   // шторка едва заметно пружинит масштабом.
@@ -645,20 +701,21 @@ function PlayerProfileModalBody({
   // Панель превью выезжает снизу при входе в режим превью и уезжает при выходе.
   useEffect(() => {
     Animated.timing(previewPanelAnim, {
-      toValue: isMe && previewLevel !== null ? 1 : 0,
+      toValue: isMe && !hasDevProfileCardLevelOverride && previewLevel !== null ? 1 : 0,
       duration: 260,
       easing: Easing.out(Easing.cubic),
       useNativeDriver: true,
     }).start();
-  }, [isMe, previewLevel, previewPanelAnim]);
+  }, [hasDevProfileCardLevelOverride, isMe, previewLevel, previewPanelAnim]);
 
   // Тап по круглой кнопке: карточка ПРЯМО ЗДЕСЬ преображается в следующий уровень
   // (никакого отдельного экрана). Повторные тапы листают уровни дальше до V,
   // после V — возврат к настоящей карточке.
   const handleUpgradeButtonTap = useCallback(() => {
+    if (hasDevProfileCardLevelOverride) return;
     hapticTap();
     setPreviewLevel((prev) => (prev === null ? getNextProfileCardLevel(profileCardLevel) : getNextProfileCardLevel(prev)));
-  }, [profileCardLevel]);
+  }, [hasDevProfileCardLevelOverride, profileCardLevel]);
 
   const handleExitPreview = useCallback(() => {
     hapticTap();
@@ -666,7 +723,7 @@ function PlayerProfileModalBody({
   }, []);
 
   const handleBuyPreviewedLevel = useCallback(async () => {
-    if (upgradeBusy || previewLevel === null || nextRealLevel === null || previewLevel !== nextRealLevel) return;
+    if (hasDevProfileCardLevelOverride || upgradeBusy || previewLevel === null || nextRealLevel === null || previewLevel !== nextRealLevel) return;
     hapticTap();
     setUpgradeBusy(true);
     try {
@@ -734,7 +791,7 @@ function PlayerProfileModalBody({
     } finally {
       setUpgradeBusy(false);
     }
-  }, [lang, nextRealLevel, onClose, onFriendRequestToast, previewLevel, router, upgradeBusy]);
+  }, [hasDevProfileCardLevelOverride, lang, nextRealLevel, onClose, onFriendRequestToast, previewLevel, router, upgradeBusy]);
 
   useEffect(() => {
     setFriendRequestBusy(false);
@@ -1054,6 +1111,12 @@ function PlayerProfileModalBody({
   }, [canLike, likeTargetUid, likedThisProfile, myInfo.name, lang, onFriendRequestToast]);
 
   const compactXp = formatProfileCompactNumber(xp);
+  // зачем (2026-08-03): опыт чужого игрока может быть ещё не известен (батч
+  // профилей/leaderboard в полёте). Печатать в этом случае «0» и «Lv.1» —
+  // враньё: владелец видел живого игрока с нулями. Показываем skeleton той же
+  // геометрии (первый кадр = финальный, layout не прыгает), а как только
+  // приходит настоящее число — плитки заполняются.
+  const xpUnknown = !isMe && totalXp === null;
   const profileChainLabel = triLang(lang as Lang, {
     ru: 'цепочка',
     uk: 'ланцюжок',
@@ -1181,7 +1244,7 @@ function PlayerProfileModalBody({
             />
           </Pressable>
         ) : null}
-        {isMe && ENABLE_PROFILE_CARD && nextRealLevel !== null ? (
+        {isMe && !hasDevProfileCardLevelOverride && ENABLE_PROFILE_CARD && nextRealLevel !== null ? (
           // Круглая кнопка апгрейда на СВОЕЙ карточке: тап преображает карточку в
           // превью следующего уровня ПРЯМО НА МЕСТЕ, повторные тапы листают до V.
           // AURORA: стеклянный круг, кромка и стрелка в акценте СЛЕДУЮЩЕГО уровня
@@ -1286,7 +1349,7 @@ function PlayerProfileModalBody({
         <ScrollView
           bounces={false}
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={{ paddingHorizontal: 18, paddingTop: 14, paddingBottom: Math.max(96, bottomInset + 72) + (isMe && previewLevel !== null ? 112 : 0) }}
+          contentContainerStyle={{ paddingHorizontal: 18, paddingTop: 14, paddingBottom: Math.max(96, bottomInset + 72) + (isMe && !hasDevProfileCardLevelOverride && previewLevel !== null ? 112 : 0) }}
         >
         <View style={{ width: 40, height: 4, borderRadius: 2, backgroundColor: prestigeActive ? cardVisual.accentStrong : t.border, alignSelf: 'center', marginBottom: 20 }} />
         <View style={{ alignItems: 'center', marginTop: 6, marginBottom: 18 }}>
@@ -1417,7 +1480,7 @@ function PlayerProfileModalBody({
           {[
             {
               key: 'xp',
-              value: compactXp,
+              value: xpUnknown ? null : compactXp,
               label: triLang(lang as Lang, {
                 ru: 'опыт',
                 uk: 'досвід',
@@ -1432,7 +1495,7 @@ function PlayerProfileModalBody({
             },
             {
               key: 'level',
-              value: `Lv.${level}`,
+              value: xpUnknown ? null : `Lv.${level}`,
               label: triLang(lang as Lang, {
                 ru: 'уровень',
                 uk: 'рівень',
@@ -1447,7 +1510,9 @@ function PlayerProfileModalBody({
             },
             {
               key: 'streak',
-              value: String(streak ?? 0),
+              // Цепочку показываем только когда она реально известна: жёсткий
+              // `?? 0` рисовал ноль и тем, у кого цепочка просто не пришла.
+              value: streak === null ? (xpUnknown ? null : '0') : String(streak),
               label: profileChainLabel,
               color: t.textPrimary,
             },
@@ -1473,20 +1538,28 @@ function PlayerProfileModalBody({
                     кегль с tabular-nums: цифры одной ширины, три колонки не
                     пляшут. text-integrity: clip запрещён (усечение без следа) —
                     аномально длинное значение получит честное многоточие. */}
-                <Text
-                  style={{
-                    color: metric.color,
-                    fontSize: 20,
-                    fontWeight: '800',
-                    width: '100%',
-                    textAlign: 'center',
-                    fontVariant: ['tabular-nums'],
-                  }}
-                  numberOfLines={1}
-                  maxFontSizeMultiplier={1.1}
-                >
-                  {metric.value}
-                </Text>
+                {metric.value === null ? (
+                  // Заглушка ровно под кегль 20/вес 800 — геометрия колонки та же,
+                  // поэтому подстановка настоящей цифры не двигает лейаут.
+                  <View style={{ height: 24, alignItems: 'center', justifyContent: 'center' }}>
+                    <SkeletonBlock width={46} height={18} borderRadius={5} />
+                  </View>
+                ) : (
+                  <Text
+                    style={{
+                      color: metric.color,
+                      fontSize: 20,
+                      fontWeight: '800',
+                      width: '100%',
+                      textAlign: 'center',
+                      fontVariant: ['tabular-nums'],
+                    }}
+                    numberOfLines={1}
+                    maxFontSizeMultiplier={1.1}
+                  >
+                    {metric.value}
+                  </Text>
+                )}
               </View>
               <Text
                 style={{ color: t.textMuted, fontSize: 9.5, fontWeight: '600', letterSpacing: 1.1, textTransform: 'uppercase', marginTop: 3 }}
@@ -1891,7 +1964,7 @@ function PlayerProfileModalBody({
           </View>
         )}
         </ScrollView>
-        {isMe && previewLevel !== null && (
+        {isMe && !hasDevProfileCardLevelOverride && previewLevel !== null && (
           // Панель превью: карточка выше уже преобразилась в выбранный уровень —
           // здесь имя уровня, выход из превью и покупка СЛЕДУЮЩЕГО уровня.
           // Плавающая скруглённая панель без обводок — часть модала, а не «приклейка».
@@ -2113,11 +2186,20 @@ function PlayerProfileModal({ player, myInfo, onClose }: Props) {
     // уже дал значение синхронно при инициализации state, держим его видимым, пока
     // фоновый пересчёт ниже не подтвердит/обновит актуальное значение.
     if (!multipliers) setMultipliers(peekLastMultiplierBreakdown());
-    const initialTotalXp = Number.isFinite(Number(player.totalXp))
+    // зачем (2026-08-03): `points` для ЧУЖОГО игрока — витринное число вызывающего
+    // экрана (недельные очки в лиге, заглушка 0 в лобби турнира). Раньше оно
+    // попадало сюда как стартовый «общий опыт», а дальше стояло Math.max(...) —
+    // и ноль намертво фиксировался как правда ещё до ответа leaderboard.
+    // Теперь для чужой карточки стартуем только с явного totalXp.
+    const numericTotalXp = Number.isFinite(Number(player.totalXp))
       ? Math.max(0, Math.floor(Number(player.totalXp)))
-      : Number.isFinite(Number(player.points))
-        ? Math.max(0, Math.floor(Number(player.points)))
-        : null;
+      : null;
+    const numericPoints = Number.isFinite(Number(player.points))
+      ? Math.max(0, Math.floor(Number(player.points)))
+      : null;
+    const initialTotalXp = player.isMe
+      ? (numericTotalXp ?? numericPoints)
+      : numericTotalXp;
     setResolvedTotalXp(initialTotalXp);
 
     if (player.isMe) {
@@ -2160,6 +2242,25 @@ function PlayerProfileModal({ player, myInfo, onClose }: Props) {
               }
             }
             if (bestTotalXp !== null) setResolvedTotalXp(bestTotalXp);
+            // зачем (2026-08-03): документа leaderboard/{uid} может не быть — он
+            // живёт под firebaseAuthUid, а на руках stableId (или наоборот).
+            // Раньше карточка в этом случае молча оставалась на нуле и зависела
+            // от того, успел ли ВЫЗЫВАЮЩИЙ экран сделать префетч. Теперь модалка
+            // сама добирает профиль тем же батч-хелпером (TTL-кэш 5 мин + dedupe,
+            // на одну карточку это максимум один callable, обычно ноль).
+            if (bestTotalXp !== null || !CLOUD_SYNC_ENABLED || IS_EXPO_GO) return;
+            void fetchFriendProfilesBatch(lbDocIds)
+              .then((profiles) => {
+                if (cancelled) return;
+                for (const id of lbDocIds) {
+                  const fetched = profiles[id];
+                  if (fetched && fetched.totalXp > 0) {
+                    setResolvedTotalXp(fetched.totalXp);
+                    return;
+                  }
+                }
+              })
+              .catch(() => {});
           })
           .catch(() => {});
       }

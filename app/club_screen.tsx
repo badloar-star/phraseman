@@ -1261,6 +1261,15 @@ export default function ClubScreen() {
     bone: hubIsLight ? 'rgba(23,32,29,0.09)' : 'rgba(255,255,255,0.07)',
     boneShine: hubIsLight ? 'rgba(23,32,29,0.04)' : 'rgba(255,255,255,0.16)',
   }), [hubIsLight, t, themeMode]);
+  // зачем: чипы шапки «+10% XP» и «6д 11ч» брали цвет жёстко (#47C870/#FFD43B)
+  // мимо палитры хаба и на светлой теме были нечитаемы: жёлтый на белом даёт
+  // ~1.4:1, зелёный ~2.2:1, а заливка в 12–14% превращала их в бледные пятна.
+  // Текст и иконка теперь идут из hubPalette (там уже есть тёмные варианты),
+  // а подложка на светлой теме плотнее — чтобы чип читался как плашка.
+  const hubChipFill = useMemo(() => (hubIsLight
+    ? { bonus: 'rgba(31,122,68,0.14)', countdown: 'rgba(138,100,16,0.14)', urgent: 'rgba(176,58,68,0.14)' }
+    : { bonus: 'rgba(71,200,112,0.14)', countdown: 'rgba(255,212,59,0.12)', urgent: 'rgba(255,91,108,0.14)' }
+  ), [hubIsLight]);
   const hubBonusMissionModel = useMemo(() => buildLeagueBonusMissionModel({
     progress: leagueChestProgress,
     goal: leagueChestGoal,
@@ -1487,17 +1496,17 @@ export default function ClubScreen() {
         </TapScale>
         <View style={{ flex: 1 }} />
         {leagueBonusPct > 0 ? (
-          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5, backgroundColor: 'rgba(71,200,112,0.14)', borderRadius: 999, paddingHorizontal: 10, paddingVertical: 6 }}>
-            <Ionicons name="flash" size={12} color={monoIcon(themeMode, '#47C870')} />
-            <Text style={{ color: monoIcon(themeMode, '#47C870'), fontSize: f.caption, fontWeight: '900' }}>+{leagueBonusPct}% XP</Text>
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5, backgroundColor: hubChipFill.bonus, borderRadius: 999, paddingHorizontal: 10, paddingVertical: 6 }}>
+            <Ionicons name="flash" size={12} color={hubPalette.positive} />
+            <Text style={{ color: hubPalette.positive, fontSize: f.caption, fontWeight: '900' }}>+{leagueBonusPct}% XP</Text>
           </View>
         ) : null}
         {weekCountdown.hot ? (
           <LeagueHotHoursChip text={weekCountdown.text} palette={hubPalette} />
         ) : (
-        <View testID="league-week-countdown" style={{ flexDirection: 'row', alignItems: 'center', gap: 5, backgroundColor: weekCountdown.urgent ? 'rgba(255,91,108,0.14)' : 'rgba(255,212,59,0.12)', borderRadius: 999, paddingHorizontal: 10, paddingVertical: 6 }}>
-          <Ionicons name="hourglass-outline" size={12} color={weekCountdown.urgent ? monoIcon(themeMode, '#FF5B6C') : monoIcon(themeMode, '#FFD43B')} />
-          <Text style={{ color: weekCountdown.urgent ? monoIcon(themeMode, '#FF5B6C') : monoIcon(themeMode, '#FFD43B'), fontSize: f.caption, fontWeight: '900' }}>{weekCountdown.text}</Text>
+        <View testID="league-week-countdown" style={{ flexDirection: 'row', alignItems: 'center', gap: 5, backgroundColor: weekCountdown.urgent ? hubChipFill.urgent : hubChipFill.countdown, borderRadius: 999, paddingHorizontal: 10, paddingVertical: 6 }}>
+          <Ionicons name="hourglass-outline" size={12} color={weekCountdown.urgent ? hubPalette.negative : hubPalette.warning} />
+          <Text style={{ color: weekCountdown.urgent ? hubPalette.negative : hubPalette.warning, fontSize: f.caption, fontWeight: '900' }}>{weekCountdown.text}</Text>
         </View>
         )}
       </View>
@@ -1535,15 +1544,13 @@ export default function ClubScreen() {
               borderRadius: 14,
               paddingHorizontal: 14,
               paddingVertical: 11,
-              backgroundColor: 'rgba(52, 199, 89, 0.12)',
-              borderWidth: 0,
-              borderColor: 'rgba(52, 199, 89, 0.34)',
+              backgroundColor: hubChipFill.bonus,
               flexDirection: 'row',
               alignItems: 'center',
               gap: 9,
             }}
           >
-            <Ionicons name="trending-up" size={18} color={monoIcon(themeMode, '#34C759')} />
+            <Ionicons name="trending-up" size={18} color={hubPalette.positive} />
             <Text style={{ color: t.textPrimary, fontSize: f.caption, lineHeight: Math.max(16, f.caption + 4), fontWeight: '800', flex: 1 }}>
               {leagueXpPromotionBannerText(lang, leagueXpPromotionThreshold)}
             </Text>

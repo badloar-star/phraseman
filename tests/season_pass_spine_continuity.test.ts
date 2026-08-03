@@ -30,6 +30,8 @@ import {
   spineBottomHalfPath,
   spineFullRowPath,
   spineTopHalfPath,
+  spineTrackPath,
+  spineTrackProgressPath,
   spineWaveOffsetForKind,
 } from '../app/season_pass_spine';
 import { SEASON_TRACK } from '../app/season_pass_track_config';
@@ -138,5 +140,78 @@ describe('хребет сезонной дорожки', () => {
     // без случайного дребезга между перерендерами.
     expect(spineWaveOffsetForKind('pearls')).toBe(spineWaveOffsetForKind('pearls'));
     expect(spineWaveOffsetForKind(undefined)).toBe(0);
+  });
+});
+
+/**
+ * зачем 2026-08-03 (владелец, СНОВА со скриншотом — «линия прерывается на
+ * КАЖДОМ подарке» — уже ПОСЛЕ того, как spineFullRowPath сделала гладкой
+ * геометрию ВНУТРИ одной строки): экран рисовал хребет как 60 независимых
+ * <Svg>-полотен, по одному на renderItem FlatList. Даже с идеально гладкой
+ * кривой внутри каждого полотна между СОСЕДНИМИ SVG-канвасами нет физической
+ * связи — разный антиалиасинг края, округление субпикселей соседних View,
+ * непредсказуемый порядок монтирования строк. Линия читалась рваной не из-за
+ * формулы (та была верна для КАЖДОЙ отдельной строки), а потому что кривых
+ * было 60, а не 1.
+ *
+ * spineTrackPath — доказательство того, что теперь линия ФИЗИЧЕСКИ одна: если
+ * весь путь через N узлов даёт РОВНО одну команду `M`, разрыва между строками
+ * не может быть в принципе — SVG не умеет прерывать одну незакрытую кривую
+ * посередине без явной новой M.
+ */
+describe('единое SVG-полотно хребта на всю дорожку (spineTrackPath)', () => {
+  const CX2 = NODE_COLUMN_WIDTH / 2;
+  const offsets = SEASON_TRACK.map((_, index) => offsetOf(index));
+
+  test('путь через ВСЮ дорожку — РОВНО одна команда M (физически одна линия, не N склеек)', () => {
+    const full = spineTrackPath(CX2, ROW_HEIGHT, offsets);
+    expect(moveCommandCount(full)).toBe(1);
+  });
+
+  test('каждый сегмент валиден: путь начинается с M и не обрывается на полпути', () => {
+    const full = spineTrackPath(CX2, ROW_HEIGHT, offsets);
+    expect(full.trim().startsWith('M')).toBe(true);
+    // Одна C-команда — это 3 пары координат (6 чисел); полный путь должен
+    // состоять из целого числа таких троек плюс начальный M x y.
+    const numbers = full.match(/-?\d+(?:\.\d+)?/g) ?? [];
+    expect((numbers.length - 2) % 6).toBe(0);
+  });
+
+  test('пустой массив узлов не крашит — возвращает пустую строку', () => {
+    expect(spineTrackPath(CX2, ROW_HEIGHT, [])).toBe('');
+  });
+
+  test('один узел — валидный путь без сегментов между несуществующими соседями', () => {
+    const single = spineTrackPath(CX2, ROW_HEIGHT, [offsets[0]]);
+    expect(single.trim().startsWith('M')).toBe(true);
+    expect(moveCommandCount(single)).toBe(1);
+  });
+
+  test('золотая обрезка (progress) — тоже ОДНА команда M, останавливается на пройденном уровне', () => {
+    const reachedLevel = Math.min(5, offsets.length - 1);
+    const gold = spineTrackProgressPath(CX2, ROW_HEIGHT, offsets, reachedLevel);
+    expect(moveCommandCount(gold)).toBe(1);
+    expect(gold.trim().startsWith('M')).toBe(true);
+  });
+
+  test('золотая обрезка на уровне 0 — пусто (ничего не пройдено)', () => {
+    expect(spineTrackProgressPath(CX2, ROW_HEIGHT, offsets, 0)).toBe('');
+  });
+
+  test('золотая обрезка не длиннее серого пути и заканчивается РАНЬШЕ или на нём же', () => {
+    const reachedLevel = Math.min(10, offsets.length - 1);
+    const gold = spineTrackProgressPath(CX2, ROW_HEIGHT, offsets, reachedLevel);
+    const full = spineTrackPath(CX2, ROW_HEIGHT, offsets);
+    expect(gold.length).toBeLessThanOrEqual(full.length);
+  });
+
+  test('X-координаты не выходят за колонку узла — как и в построчной версии', () => {
+    const limit = NODE_COLUMN_WIDTH / 2 - 4;
+    const full = spineTrackPath(CX2, ROW_HEIGHT, offsets);
+    const coordinates = full.match(/-?\d+(?:\.\d+)?/g) ?? [];
+    coordinates.forEach((value, position) => {
+      if (position % 2 !== 0) return;
+      expect(Math.abs(Number(value) - CX2)).toBeLessThanOrEqual(limit);
+    });
   });
 });

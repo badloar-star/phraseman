@@ -118,3 +118,75 @@ export function spineFullRowPath(
   const control = cx + (curOffset + nextOffset) / 2;
   return `M ${from} 0 C ${from} ${halfH * 0.5}, ${mid} ${halfH * 0.5}, ${mid} ${halfH} C ${mid} ${halfH * 1.5}, ${control} ${halfH * 1.5}, ${mid} ${rowHeight}`;
 }
+
+/**
+ * ВЕСЬ хребет дорожки — ОДИН path через N узлов, один `M`, одна непрерывная
+ * цепочка `C`-команд без единого разрыва.
+ *
+ * зачем 2026-08-03 (владелец: «линия прерывается на каждом подарке», реальный
+ * скриншот с 5 видимыми разрывами ровно на границах строк): spineFullRowPath
+ * чинила гладкость ВНУТРИ одной строки, но экран рисовал 60 независимых
+ * `<Svg>` — по одному на строку `FlatList`. Между соседними SVG-полотнами нет
+ * физической связи: разный антиалиасинг края канваса, округление субпикселей
+ * разных `View`, порядок монтирования строк — линия читалась как рваная НЕ
+ * из-за формулы кривой (та была верна), а потому что кривых было 60, а не 1.
+ * Единственный способ получить ФИЗИЧЕСКИ одну линию — вынести её из построчного
+ * renderItem в единое полотно на всю прокручиваемую высоту дорожки.
+ *
+ * `offsets[i]` — боковое смещение узла i (см. spineWaveOffsetForKind).
+ * Строка i идёт от Y=i*rowHeight до Y=(i+1)*rowHeight, тем же построением, что
+ * и spineFullRowPath: конец сегмента — X ЭТОГО узла, следующий control-point
+ * начинается ровно оттуда же — стыки совпадают по построению, а не по числам.
+ */
+export function spineTrackPath(
+  cx: number,
+  rowHeight: number,
+  offsets: readonly number[],
+): string {
+  if (offsets.length === 0) return '';
+  const halfH = rowHeight / 2;
+  const firstX = cx + offsets[0];
+  let d = `M ${firstX} 0`;
+  for (let i = 0; i < offsets.length; i += 1) {
+    const top = i * rowHeight;
+    const mid = cx + offsets[i];
+    const nextOffset = i + 1 < offsets.length ? offsets[i + 1] : offsets[i];
+    const control = cx + (offsets[i] + nextOffset) / 2;
+    const bottom = (i + 1) * rowHeight;
+    d += ` C ${mid} ${top + halfH * 0.5}, ${mid} ${top + halfH * 0.5}, ${mid} ${top + halfH}`;
+    d += ` C ${mid} ${top + halfH * 1.5}, ${control} ${top + halfH * 1.5}, ${control} ${bottom}`;
+  }
+  return d;
+}
+
+/**
+ * Тот же путь, ОБРЕЗАННЫЙ на конкретном уровне прогресса — для золотой
+ * подсветки «пройденного» участка. `reachedLevel` — индекс последнего
+ * пройденного узла (0 = ничего не пройдено, узел 0 ещё не тронут).
+ * Останавливается РОВНО в X узла reachedLevel (середина его строки) — та же
+ * точка, где рисуется кружок уровня, а не на границе строки.
+ */
+export function spineTrackProgressPath(
+  cx: number,
+  rowHeight: number,
+  offsets: readonly number[],
+  reachedLevel: number,
+): string {
+  const lastIndex = Math.max(0, Math.min(reachedLevel, offsets.length - 1));
+  if (reachedLevel <= 0 || offsets.length === 0) return '';
+  const halfH = rowHeight / 2;
+  const firstX = cx + offsets[0];
+  let d = `M ${firstX} 0`;
+  for (let i = 0; i <= lastIndex; i += 1) {
+    const top = i * rowHeight;
+    const mid = cx + offsets[i];
+    d += ` C ${mid} ${top + halfH * 0.5}, ${mid} ${top + halfH * 0.5}, ${mid} ${top + halfH}`;
+    if (i < lastIndex) {
+      const nextOffset = offsets[i + 1];
+      const control = cx + (offsets[i] + nextOffset) / 2;
+      const bottom = (i + 1) * rowHeight;
+      d += ` C ${mid} ${top + halfH * 1.5}, ${control} ${top + halfH * 1.5}, ${control} ${bottom}`;
+    }
+  }
+  return d;
+}

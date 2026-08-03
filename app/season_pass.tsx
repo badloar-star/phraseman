@@ -34,9 +34,8 @@ import {
   type SeasonPassProgress,
 } from './season_pass_model';
 import {
-  spineBottomHalfPath,
-  spineFullRowPath,
-  spineTopHalfPath,
+  spineTrackPath,
+  spineTrackProgressPath,
   spineWaveOffsetForKind,
 } from './season_pass_spine';
 import {
@@ -59,13 +58,16 @@ export const SEASON_REWARD_ART_SIZE = 58;
 export const SEASON_AURA_ART_SIZE = 64;
 const NODE_COLUMN_WIDTH = 56;
 const SPINE_WIDTH = 4;
-// зачем: владелец — «искривление на разных типах подарков» вместо прямой линии,
-// которая к тому же рвалась на стыках строк (два отдельных прямоугольных сегмента
-// в соседних View, шов между ними). Один SVG-путь на строку от края до края
-// заменяет оба прямоугольника: разрыв исчезает физически, а изгиб детерминирован
-// по kind награды — один и тот же подарок всегда даёт одну и ту же волну, не
-// случайный дребезг между перерендерами.
-// Геометрия хребта живёт в season_pass_spine.ts — чистом модуле без импортов
+// зачем 2026-08-03 (владелец — «искривление на разных типах подарков» вместо
+// прямой линии; ПОВТОРНО, со скриншотом реальных разрывов на КАЖДОМ подарке):
+// первая версия рисовала SVG-путь НА СТРОКУ — 60 независимых <Svg>-полотен по
+// одному на renderItem FlatList. Даже с идеально гладкой кривой ВНУТРИ каждого
+// полотна между соседними канвасами нет физической связи (антиалиасинг края
+// каждого SVG, округление субпикселей соседних View) — линия читалась рваной
+// не из-за формулы, а из-за того, что кривых было 60. Хребет теперь рисуется
+// ОДНИМ SVG-полотном на всю прокручиваемую высоту дорожки (trackSpine ниже,
+// второй элемент ListHeaderComponent) — физически одна кривая, а не 60 склеек.
+// Геометрия живёт в season_pass_spine.ts — чистом модуле без импортов
 // React Native, чтобы её можно было проверить тестом (экран тянет
 // react-native-svg и в jest не поднимается).
 // зачем: владелец, 2026-08-03 — финальное решение: 250 жемчужин ДЛЯ ВСЕХ (не
@@ -369,67 +371,20 @@ export default function SeasonPassScreen() {
     );
   }, [claimed, laneUnlockedForPass, lang, onClaimReward, onLockedRewardPress, pearlIcon, seasonId, t, themeMode]);
 
-  const renderItem = useCallback(({ item, index }: ListRenderItemInfo<SeasonTrackNode>) => {
+  const renderItem = useCallback(({ item }: ListRenderItemInfo<SeasonTrackNode>) => {
     const reached = progress.level >= item.level;
     const isCurrent = progress.level + 1 === item.level;
-    const isLast = index === SEASON_TRACK.length - 1;
-    const prevNode = index > 0 ? SEASON_TRACK[index - 1] : undefined;
-    const nextNode = !isLast ? SEASON_TRACK[index + 1] : undefined;
-    // Изгиб каждой точки — по kind её ГЛАВНОЙ (pass, иначе free) награды. Общая
+    // Изгиб узла — по kind его ГЛАВНОЙ (pass, иначе free) награды. Общая
     // амплитуда ограничена padding'ом узла (NODE_COLUMN_WIDTH=56, узел до 36px),
-    // так что кривая никогда не наезжает на боковые карточки.
+    // так что кривая никогда не наезжает на боковые карточки. Сама линия
+    // хребта здесь больше НЕ рисуется — она единым SVG-полотном лежит под
+    // FlatList (см. trackSpine ниже); строка рисует только кружок с номером,
+    // позиционированный ровно на эту же кривую тем же curOffset.
     const curOffset = spineWaveOffsetForKind(item.pass?.kind ?? item.free?.kind);
-    const prevOffset = prevNode ? spineWaveOffsetForKind(prevNode.pass?.kind ?? prevNode.free?.kind) : curOffset;
-    const nextOffset = nextNode ? spineWaveOffsetForKind(nextNode.pass?.kind ?? nextNode.free?.kind) : curOffset;
-    const cx = NODE_COLUMN_WIDTH / 2;
-    const halfH = ROW_HEIGHT / 2;
-    const topReached = progress.level >= item.level - 1;
-    const bottomReached = reached;
     return (
       <View style={{ height: ROW_HEIGHT, flexDirection: 'row', alignItems: 'stretch', gap: 8, paddingHorizontal: 14 }}>
         {renderReward(item.free, 'free', reached, item.level)}
         <View style={{ width: NODE_COLUMN_WIDTH, alignItems: 'center', justifyContent: 'center' }}>
-          {/* Хребет: ОДНА гладкая SVG-кривая через ВСЮ строку (spineFullRowPath —
-              один M и одна непрерывная цепочка C-команд, а не конкатенация двух
-              самостоятельных M-путей). зачем 2026-08-03 (владелец, скриншот
-              крашa RNSVGPathParser + «линия уводит в сторону у узла»): склейка
-              spineTopHalfPath + spineBottomHalfPath через пробел давала ДВА
-              independent subpath в одной d-строке — на стыке (ровно в точке
-              узла) кривизна разрывалась изломом. А spineBottomHalfPath сама по
-              себе (золотая подсветка ниже) начиналась с `C` без `M` — невалидный
-              path, на котором крашился нативный парсер iOS. Обе причины закрыты
-              в season_pass_spine.ts; узел просто рисуется поверх середины —
-              линия физически цела и гладка под ним. */}
-          <Svg width={NODE_COLUMN_WIDTH} height={ROW_HEIGHT} viewBox={`0 0 ${NODE_COLUMN_WIDTH} ${ROW_HEIGHT}`} style={{ position: 'absolute', top: 0, left: 0 }}>
-            <Path
-              d={spineFullRowPath(cx, halfH, ROW_HEIGHT, prevOffset, curOffset, nextOffset)}
-              stroke={t.bgSurface}
-              strokeWidth={SPINE_WIDTH}
-              strokeLinecap="round"
-              fill="none"
-            />
-            {/* Пройденный участок поверх серой подложки, ТЕМИ ЖЕ формулами —
-                золото перекрашивает часть кривой, а не рисует другую геометрию,
-                поэтому цветной и серый куски никогда не расходятся по форме. */}
-            {index > 0 && topReached && (
-              <Path
-                d={spineTopHalfPath(cx, halfH, prevOffset, curOffset)}
-                stroke={t.gold}
-                strokeWidth={SPINE_WIDTH}
-                strokeLinecap="round"
-                fill="none"
-              />
-            )}
-            {!isLast && bottomReached && (
-              <Path
-                d={spineBottomHalfPath(cx, halfH, ROW_HEIGHT, curOffset, nextOffset)}
-                stroke={t.gold}
-                strokeWidth={SPINE_WIDTH}
-                strokeLinecap="round"
-                fill="none"
-              />
-            )}
-          </Svg>
           <View style={{
             width: isCurrent ? 36 : 30,
             height: isCurrent ? 36 : 30,
@@ -458,6 +413,55 @@ export default function SeasonPassScreen() {
   const getItemLayout = useCallback((_: unknown, index: number) => (
     { length: ROW_HEIGHT, offset: ROW_HEIGHT * index, index }
   ), []);
+
+  // Смещения узлов ВСЕЙ дорожки — по kind, не зависит от прогресса игрока,
+  // считается один раз за жизнь экрана (SEASON_TRACK — статичная константа).
+  const spineOffsets = useMemo(
+    () => (SEASON_TRACK as SeasonTrackNode[]).map((n) => spineWaveOffsetForKind(n.pass?.kind ?? n.free?.kind)),
+    [],
+  );
+  const spineCx = NODE_COLUMN_WIDTH / 2;
+  const spineTrackHeight = ROW_HEIGHT * spineOffsets.length;
+  const spineGrayPath = useMemo(
+    () => spineTrackPath(spineCx, ROW_HEIGHT, spineOffsets),
+    [spineCx, spineOffsets],
+  );
+  const spineGoldPath = useMemo(
+    () => spineTrackProgressPath(spineCx, ROW_HEIGHT, spineOffsets, progress.level),
+    [spineCx, spineOffsets, progress.level],
+  );
+  // Единое SVG-полотно хребта — ОДНА линия на всю прокручиваемую высоту
+  // дорожки, а не по одной на строку (см. комментарий у SPINE_WIDTH выше:
+  // построчные полотна физически не могут дать сплошную линию). Вставлено
+  // ВТОРЫМ элементом ListHeaderComponent через Fragment: нулевой высоты в
+  // потоке (height:0, overflow:visible), поэтому его Y=0 совпадает ровно с
+  // Y=0 первого узла данных, независимо от содержимого/высоты `header` above.
+  //
+  // X-позиция колонки узла НЕ константа в пикселях — ширина боковых карточек
+  // (flex:1) зависит от фактической ширины экрана, которую нельзя вычислить
+  // заранее в JS. Вместо абсолютного `left` в пикселях контейнер повторяет
+  // ТУ ЖЕ flex-структуру строки (paddingHorizontal 14, row, gap 8, flex:1 по
+  // бокам, NODE_COLUMN_WIDTH по центру) — flexbox гарантированно вычисляет
+  // одинаковую ширину для одинаковой структуры, поэтому колонка здесь
+  // совпадает по X с колонкой узла в каждой реальной строке БЕЗ измерения.
+  const trackSpine = useMemo(() => (
+    <View style={{ height: 0, overflow: 'visible' }} pointerEvents="none">
+      <View style={{ flexDirection: 'row', gap: 8, paddingHorizontal: 14 }}>
+        <View style={{ flex: 1 }} />
+        <Svg
+          width={NODE_COLUMN_WIDTH}
+          height={spineTrackHeight}
+          viewBox={`0 0 ${NODE_COLUMN_WIDTH} ${spineTrackHeight}`}
+        >
+          <Path d={spineGrayPath} stroke={t.bgSurface} strokeWidth={SPINE_WIDTH} strokeLinecap="round" fill="none" />
+          {spineGoldPath ? (
+            <Path d={spineGoldPath} stroke={t.gold} strokeWidth={SPINE_WIDTH} strokeLinecap="round" fill="none" />
+          ) : null}
+        </Svg>
+        <View style={{ flex: 1 }} />
+      </View>
+    </View>
+  ), [spineGoldPath, spineGrayPath, spineTrackHeight, t.bgSurface, t.gold]);
 
   const header = useMemo(() => (
     <View style={{ paddingHorizontal: 16, paddingBottom: 6 }}>
@@ -549,10 +553,21 @@ export default function SeasonPassScreen() {
         keyExtractor={(n) => String(n.level)}
         renderItem={renderItem}
         getItemLayout={getItemLayout}
-        ListHeaderComponent={header}
+        ListHeaderComponent={
+          <>
+            {header}
+            {trackSpine}
+          </>
+        }
         initialNumToRender={10}
         windowSize={7}
-        removeClippedSubviews
+        // зачем 2026-08-03: trackSpine — элемент height:0 в потоке с реальным
+        // визуальным контентом высотой на ВСЮ дорожку (overflow за пределы
+        // заявленной высоты). removeClippedSubviews на Android умеет отклипать
+        // (unmount) содержимое ListHeaderComponent, выходящее за его заявленные
+        // границы, при скролле — это дало бы «линия обрывается» СНОВА, но уже
+        // по причине рантайм-оптимизации, не архитектуры. 60 строк — не тот
+        // объём, где эта оптимизация ощутимо нужна; отключено ради надёжности.
         contentContainerStyle={{ paddingTop: insets.top + 12, paddingBottom: 120 }}
         showsVerticalScrollIndicator={false}
       />

@@ -44,6 +44,7 @@ export type AppEventMap = {
   mystery_chest_claimed: undefined;
   /** Сезонный XP пропуска изменился (registerXP → addSeasonPassXp) — обновить плашку «Сезон» и экран дорожки. */
   season_pass_xp_changed: { totalXp: number };
+  season_pass_gift_inventory_changed: undefined;
   /** «Сокровищница»: инвентарь карточек изменился (дроп/restore) — обновить счётчики и сетки. */
   collectibles_changed: undefined;
   /** После успешного signInWithProvider — обновить секцию "Аккаунт" в Settings, etc. */

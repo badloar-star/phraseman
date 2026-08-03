@@ -1,11 +1,13 @@
 // ════════════════════════════════════════════════════════════════════════════
 // season_pass.tsx — экран дорожки Season Pass (макет «Причал»: две линии наград,
-// хребет прогресса по центру). Этап-витрина: прогресс уровня считается по-настоящему
-// (season_pass_model ← registerXP), выдача наград и покупка дорожки включаются
-// в день старта сезона серверными callable (жёсткий гейт владельца: подарок без
-// рабочего пути использования в продовую дорожку не попадает).
-// зачем: владелец — «на главной плашка, она открывает сезон»; экран обязан жить
-// уже сейчас, честно говоря, когда начнётся выдача.
+// хребет прогресса по центру). Прогресс уровня считается по-настоящему
+// (season_pass_model ← registerXP). Клейм (владелец, 2026-08-03: «каждый подарок
+// обязан быть рабочим») — локальный: пройденный уровень кладёт подарок в
+// season_pass_gift_inventory.ts, открывается SeasonGiftModal с «Позже/Применить».
+// Серверная синхронизация клеймов (реплей на смене устройства/переустановке) —
+// следующий этап, отдельно от того, работает ли подарок физически сегодня.
+// Покупка платной дорожки остаётся витриной — это ДЕНЬГИ, не подарок, ей
+// нужна server-side проверка перед включением (см. кнопку «Открыть пропуск» ниже).
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { FlatList, Image, Text, TouchableOpacity, View, type ListRenderItemInfo } from 'react-native';
@@ -24,6 +26,7 @@ import TapScale from '../components/TapScale';
 import {
   hydrateSeasonPassProgress,
   peekSeasonPassProgress,
+  getSeasonPassSeasonId,
   SEASON_PASS_LEVELS,
   seasonPassDaysLeft,
   type SeasonPassProgress,
@@ -36,6 +39,8 @@ import {
   type SeasonTrackNode,
 } from './season_pass_track_config';
 import SeasonAuraRing from '../components/SeasonAuraRing';
+import SeasonGiftModal from '../components/SeasonGiftModal';
+import { addSeasonPassGift, loadPendingSeasonPassGiftCount } from './season_pass_gift_inventory';
 
 const ROW_HEIGHT = 96;
 const NODE_COLUMN_WIDTH = 56;
@@ -70,15 +75,26 @@ export default function SeasonPassScreen() {
   const router = useRouter();
   const insets = useStableSafeAreaInsets();
   const [progress, setProgress] = useState<SeasonPassProgress>(peekSeasonPassProgress);
+  const [pendingGiftCount, setPendingGiftCount] = useState(0);
+  const [openReward, setOpenReward] = useState<{ reward: SeasonReward; giftId: string } | null>(null);
+  const [claimedLevels, setClaimedLevels] = useState<ReadonlySet<number>>(() => new Set());
+
+  const refreshPendingGiftCount = useCallback(() => {
+    loadPendingSeasonPassGiftCount().then(setPendingGiftCount).catch(() => {});
+  }, []);
 
   useEffect(() => {
     let alive = true;
     hydrateSeasonPassProgress().then((p) => { if (alive) setProgress(p); });
-    const sub = onAppEvent('season_pass_xp_changed', () => {
+    refreshPendingGiftCount();
+    const subXp = onAppEvent('season_pass_xp_changed', () => {
       if (alive) setProgress(peekSeasonPassProgress());
     });
-    return () => { alive = false; sub.remove(); };
-  }, []);
+    const subGifts = onAppEvent('season_pass_gift_inventory_changed', () => {
+      if (alive) refreshPendingGiftCount();
+    });
+    return () => { alive = false; subXp.remove(); subGifts.remove(); };
+  }, [refreshPendingGiftCount]);
 
   const daysLeft = seasonPassDaysLeft();
   const pearlIcon = pearlIconForTheme(themeMode);
@@ -102,6 +118,19 @@ export default function SeasonPassScreen() {
     }));
   }, []);
 
+  const onClaimReward = useCallback(async (reward: SeasonReward, level: number) => {
+    hapticTap();
+    const seasonId = getSeasonPassSeasonId();
+    const gift = await addSeasonPassGift(seasonId, level, 'free', reward.kind, reward.amount);
+    setClaimedLevels((prev) => {
+      const next = new Set(prev);
+      next.add(level);
+      return next;
+    });
+    refreshPendingGiftCount();
+    setOpenReward({ reward, giftId: gift.id });
+  }, [refreshPendingGiftCount]);
+
   const renderReward = useCallback((reward: SeasonReward | undefined, side: 'free' | 'pass', reached: boolean, level: number) => {
     // Пустая сторона — прозрачный заполнитель ТОЙ ЖЕ формы, что и карточка,
     // чтобы высота строки была одинаковой независимо от того, где лежит награда
@@ -112,8 +141,17 @@ export default function SeasonPassScreen() {
       + (reward.kind === 'aura_stage' ? ` ${['I', 'II', 'III', 'IV'][Math.max(0, (reward.amount ?? 1) - 1)]}` : '')
       + (reward.kind === 'plus_days' || reward.kind === 'xp_bank' ? ` ${reward.amount ?? ''}` : '');
     const isPassLane = side === 'pass';
+    // Клейм работает только на free-линии: платная не выдаётся без покупки
+    // (кнопка «Открыть пропуск» ниже пока витрина — платить реально нельзя,
+    // значит и выдавать нельзя, иначе подарок пришёл бы бесплатно мимо кассы).
+    const claimed = claimedLevels.has(level);
+    const claimable = !isPassLane && reached && !claimed;
+    const Wrapper = claimable ? TouchableOpacity : View;
+    const wrapperProps = claimable
+      ? { activeOpacity: 0.85, onPress: () => onClaimReward(reward, level), accessibilityRole: 'button' as const, testID: `season-pass-claim-${level}` }
+      : {};
     return (
-      <View style={{
+      <Wrapper {...wrapperProps} style={{
         flex: 1,
         alignSelf: 'stretch',
         flexDirection: 'row',
@@ -122,7 +160,7 @@ export default function SeasonPassScreen() {
         borderRadius: 16,
         paddingHorizontal: 10,
         backgroundColor: isPassLane ? t.goldBg : t.bgCard,
-        opacity: reached ? 1 : 0.72,
+        opacity: reached ? (claimed && !isPassLane ? 0.55 : 1) : 0.72,
       }}>
         {reward.kind === 'pearls'
           ? (<View style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}>
@@ -157,9 +195,12 @@ export default function SeasonPassScreen() {
         >
           {reward.kind === 'pearls' ? '' : label}
         </FlowText>
-      </View>
+        {claimable && (
+          <Ionicons name="checkmark-circle-outline" size={18} color={t.textOnCard} />
+        )}
+      </Wrapper>
     );
-  }, [lang, pearlIcon, t]);
+  }, [claimedLevels, lang, onClaimReward, pearlIcon, t]);
 
   const renderItem = useCallback(({ item, index }: ListRenderItemInfo<SeasonTrackNode>) => {
     const reached = progress.level >= item.level;
@@ -216,7 +257,7 @@ export default function SeasonPassScreen() {
 
   const header = useMemo(() => (
     <View style={{ paddingHorizontal: 16, paddingBottom: 6 }}>
-      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 4 }}>
+      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }}>
         <TapScale
           onPress={() => safeRouterBack(router)}
           accessibilityLabel={triLang(lang, {
@@ -228,6 +269,26 @@ export default function SeasonPassScreen() {
         >
           <Ionicons name="chevron-back" size={24} color={t.textPrimary} />
         </TapScale>
+        {/* зачем: владелец — та же кнопка «Подарки», что на статистике (правый
+            верхний угол, круглая 44×44, бейдж-счётчик), теперь и на сезоне. */}
+        <TouchableOpacity
+          testID="season-pass-header-gifts"
+          activeOpacity={0.82}
+          accessibilityRole="button"
+          accessibilityLabel={triLang(lang, {
+            ru: 'Подарки', uk: 'Подарунки', es: 'Regalos', 'pt-BR': 'Presentes',
+            vi: 'Quà tặng', id: 'Hadiah', tr: 'Hediyeler', pl: 'Prezenty',
+          })}
+          onPress={() => { hapticTap(); router.push('/level_gifts_inventory' as any); }}
+          style={{ width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgCard }}
+        >
+          <Ionicons name="gift-outline" size={20} color={pendingGiftCount > 0 ? t.gold : t.textMuted} />
+          {pendingGiftCount > 0 && (
+            <View style={{ position: 'absolute', top: 4, right: 4, minWidth: 16, height: 16, borderRadius: 8, paddingHorizontal: 4, alignItems: 'center', justifyContent: 'center', backgroundColor: t.gold }}>
+              <Text style={{ color: t.textOnGold, fontSize: 9, fontWeight: '900' }}>{pendingGiftCount}</Text>
+            </View>
+          )}
+        </TouchableOpacity>
       </View>
       <View style={{ flexDirection: 'row', alignItems: 'baseline', justifyContent: 'space-between' }}>
         <Text style={{ color: t.textPrimary, fontSize: Math.max(24, f.h1), fontWeight: '900', letterSpacing: -0.3 }}>
@@ -290,7 +351,7 @@ export default function SeasonPassScreen() {
         </Text>
       </View>
     </View>
-  ), [daysLeft, f.h1, lang, pct, progress.intoLevelXp, progress.level, progress.levelCostXp, router, t]);
+  ), [daysLeft, f.h1, lang, pct, pendingGiftCount, progress.intoLevelXp, progress.level, progress.levelCostXp, router, t]);
 
   return (
     <View style={{ flex: 1, backgroundColor: t.bgPrimary }}>
@@ -335,6 +396,12 @@ export default function SeasonPassScreen() {
           </Text>
         </TouchableOpacity>
       </View>
+      <SeasonGiftModal
+        visible={openReward != null}
+        reward={openReward?.reward ?? null}
+        giftId={openReward?.giftId ?? null}
+        onClose={() => setOpenReward(null)}
+      />
     </View>
   );
 }

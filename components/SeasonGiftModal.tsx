@@ -36,9 +36,10 @@ async function applyImmediateEffect(reward: SeasonReward): Promise<boolean> {
       await applyTurboRegenOverride();
       return true;
     case 'league_boost':
-      // TODO(владелец каталога, §1.2): нужен id 'x2_eod_pass' («до конца дня»),
-      // сейчас ближайший существующий вариант — 1 час, честно, не выдаём больше.
-      await activateLeagueBoost('x2_1h');
+      // 'x2_eod_pass' — очки лиги ×2 до ближайшей локальной полуночи (владелец,
+      // каталог §1.2 «до конца дня»), длительность пересчитывается динамически
+      // в activateLeagueBoost, costShards=0 (уже оплачено уровнем сезона).
+      await activateLeagueBoost('x2_eod_pass');
       return true;
     default:
       return false;

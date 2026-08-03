@@ -47,6 +47,7 @@ import {
 } from '../components/tournament/TournamentFx';
 import { radius, type, useTournamentPalette, v2motion, type TournamentPalette} from '../components/tournament/tournament_theme';
 import { TournamentEdgeState } from '../components/tournament/TournamentEdgeState';
+import { TournamentBackdrop } from '../components/tournament/TournamentBackdrop';
 import { TournamentRoundIntro } from '../components/tournament/TournamentRoundIntro';
 import {
       canRetryTournamentTaskAnswer, forfeitTournament, getOrCreateTournamentTaskIdempotencyKey,
@@ -81,6 +82,13 @@ const SPEED_MATCH_PAIRS = 6;
 const MATCH_SELECT_MS = 110;
 const MATCH_CORRECT_POP_MS = 120;
 const MATCH_CORRECT_FADE_MS = 150;
+/**
+ * Прозрачность УЖЕ СОБРАННОЙ пары (владелец 2026-08-03: «должны просто стать
+ * неактивные», а не исчезать). Не ноль: карточка обязана остаться видимой на
+ * своём месте, иначе поле дёргается, а запоздавшее подтверждение сервера
+ * выглядит как «слово вернулось».
+ */
+const MATCH_SOLVED_OPACITY = 0.28;
 const MATCH_WRONG_TONE_MS = 200;
 const LETTERS = ['A', 'B', 'C', 'D'] as const;
 const OWNER_APPROVED_TOURNAMENT_MODES = new Set([
@@ -370,16 +378,39 @@ export default function TournamentRoundScreen() {
    * нашего ответа. Поэтому надбавка снимается не по времени, а по факту —
    * когда score вырос минимум на неё (см. эффект ниже).
    */
+  /**
+   * зачем 2026-08-03 (владелец: «счёт изменяется только 1 раз в первом задании
+   * каждого раунда и счёт не отображает актуальное состояние»): здесь лежала
+   * ОДНА надбавка {baseline, amount}. На втором задании раунда setPendingStars
+   * ПЕРЕЗАПИСЫВАЛ её новым baseline, снятым уже после первого ответа, — прирост
+   * за первое задание при этом терялся, если сервер ещё не успел его учесть.
+   * Внешне это и выглядело как «счётчик дёрнулся один раз и замер».
+   *
+   * Теперь копим СУММУ неподтверждённых звёзд от одной опорной точки. Опора —
+   * серверный счёт на момент ПЕРВОГО неподтверждённого ответа; сколько бы
+   * заданий игрок ни решил подряд, каждое добавляет свои звёзды к сумме.
+   */
   const [pendingStars, setPendingStars] = useState<{ baseline: number; amount: number } | null>(null);
-  const stars = serverStars + (pendingStars && serverStars < pendingStars.baseline + pendingStars.amount
-    ? pendingStars.amount
-    : 0);
+  // Показываем максимум из «сервер» и «опора + локальный прирост»: поздний
+  // снапшот с бо́льшим счётом никогда не откатывает цифру назад, а локальный
+  // прогноз никогда не занижает подтверждённое сервером значение.
+  const stars = pendingStars
+    ? Math.max(serverStars, pendingStars.baseline + pendingStars.amount)
+    : serverStars;
 
   useEffect(() => {
     if (!pendingStars) return;
     // Сервер догнал (или перегнал) локальный прогноз — надбавка больше не нужна.
     if (serverStars >= pendingStars.baseline + pendingStars.amount) setPendingStars(null);
   }, [pendingStars, serverStars]);
+
+  /** Накопить локальные звёзды поверх уже ожидающих, не теряя предыдущие. */
+  const addPendingStars = useCallback((amount: number) => {
+    if (amount <= 0) return;
+    setPendingStars((current) => (current
+      ? { baseline: current.baseline, amount: current.amount + amount }
+      : { baseline: serverStars, amount }));
+  }, [serverStars]);
 
   const activeRoundNo = useMemo(() => {
     const match = /^round([1-4])$/.exec(room?.state ?? '');
@@ -1209,6 +1240,7 @@ export default function TournamentRoundScreen() {
   if (!question) {
     return (
       <View style={[styles.root, styles.introRoot]}>
+        <TournamentBackdrop variant="play" />
         <Text style={styles.introMode}>Готовим вопросы…</Text>
       </View>
     );
@@ -1223,6 +1255,7 @@ export default function TournamentRoundScreen() {
           ? prev : { width, height }));
       }}
     >
+      <TournamentBackdrop variant="play" />
       {/* зачем 2026-07-27 (владелец: «почему всё так высоко задрано вверх, а
           внизу куча пустого пространства»): контент лип к верху, а низ экрана
           пустовал. Теперь высота распределена — вопрос занимает свою долю и
@@ -1267,7 +1300,14 @@ export default function TournamentRoundScreen() {
           </View>
           <View style={styles.statsSpacer} />
           <V2StreakPill ref={streakPillRef} streak={streak} />
-          <V2Counter ref={starCounterRef} value={question.kind === 'match' ? matchStars : stars} tone="stars" />
+          {/* зачем 2026-08-03 (владелец: «счёт не отображает актуальное состояние,
+              он всегда начинается с нуля»): в режиме пар счётчик показывал
+              matchStars — ЛОКАЛЬНЫЙ счётчик собранных пар этого задания, который
+              стартует с нуля. Общий счёт турнира при этом исчезал с экрана, и
+              игрок видел «0» вместо накопленных звёзд. Счётчик в шапке всегда
+              показывает ОБЩИЙ счёт (серверный + неподтверждённые локальные);
+              прогресс внутри поля пар виден по самим карточкам. */}
+          <V2Counter ref={starCounterRef} value={stars} tone="stars" />
         </View>
 
         {/* Вопрос.
@@ -1589,11 +1629,23 @@ const MatchCard = memo(function MatchCard({
   const P = useTournamentPalette();
   const styles = React.useMemo(() => makeStyles(P), [P]);
   const scale = useSharedValue(1);
-  const opacity = useSharedValue(hidden ? 0 : 1);
+  /**
+   * зачем 2026-08-03 (владелец: «в задании пары при соединении слова исчезают
+   * совсем, а должны просто стать неактивные, но затем они возвращаются»):
+   * решённая карточка уходила в opacity 0 — то есть ПРОПАДАЛА с поля. Пустое
+   * место сбивало с толку, а когда серверное подтверждение запаздывало или
+   * отпадало, карточка «воскресала» на прежнем месте — самый неприятный эффект,
+   * потому что доска выглядела сломанной.
+   *
+   * Решённая пара теперь ГАСНЕТ до приглушённого состояния, но остаётся на
+   * месте: поле не дёргается, игрок видит, что уже собрано, и возвращать
+   * нечего — карточка никуда не девалась.
+   */
+  const opacity = useSharedValue(hidden ? MATCH_SOLVED_OPACITY : 1);
 
   useEffect(() => {
     if (hidden) {
-      opacity.value = withTiming(0, { duration: 0 });
+      opacity.value = withTiming(MATCH_SOLVED_OPACITY, { duration: reduceMotion ? 0 : MATCH_CORRECT_FADE_MS });
       return;
     }
     if (!resolvingCorrect) {
@@ -1602,7 +1654,7 @@ const MatchCard = memo(function MatchCard({
       return;
     }
     if (reduceMotion) {
-      opacity.value = withTiming(0, { duration: 0 });
+      opacity.value = withTiming(MATCH_SOLVED_OPACITY, { duration: 0 });
       return;
     }
     scale.value = withSequence(
@@ -1612,7 +1664,7 @@ const MatchCard = memo(function MatchCard({
     );
     opacity.value = withDelay(
       MATCH_CORRECT_POP_MS,
-      withTiming(0, { duration: MATCH_CORRECT_FADE_MS }),
+      withTiming(MATCH_SOLVED_OPACITY, { duration: MATCH_CORRECT_FADE_MS }),
     );
   }, [hidden, opacity, reduceMotion, resolvingCorrect, scale]);
 

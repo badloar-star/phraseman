@@ -144,8 +144,24 @@ export const TOURNAMENT_FINAL_DISPLAY_MS = 5 * 1000;
 export const TOURNAMENT_RESULTS_DISPLAY_MS = 5 * 1000;
 export const TOURNAMENT_REWARD_CLAIM_WINDOW_MS = 24 * 60 * 60 * 1000;
 export const TOURNAMENT_ROOM_TTL_MS = 7 * 24 * 60 * 60 * 1000;
-/** Server-owned 3-2-1 boundary; task time begins only after it elapses. */
-export const TOURNAMENT_ROUND_INTRO_MS = 3_000;
+/**
+ * Server-owned 3-2-1 boundary; task time begins only after it elapses.
+ *
+ * зачем 2026-08-03 (владелец: «пропал отсчёт 3 2 1 при начале турнира и после
+ * таблицы результатов»): окно было ровно 3000 мс — РОВНО столько, сколько
+ * занимает сам отсчёт, без единого запаса. Но клиент не может начать рисовать
+ * в тот же миг: сервер ставит state='roundN' и introEndsAtMs = now + 3с одной
+ * транзакцией, а до первого кадра экрана раунда успевают пройти доставка
+ * снапшота, монтирование роутером и построение расписания. Эта фора съедала
+ * 1–3 секунды окна, поэтому игрок видел «2… 1», «1» или вообще ничего.
+ *
+ * 4500 мс — то же самое видимое «3 · 2 · 1» плюс 1.5 с запаса на дорогу.
+ * Время на ЗАДАНИЯ при этом НЕ страдает: stateDeadlineAtMs считается ОТ
+ * introEndsAtMs (см. tournamentRoundTimingWindow), то есть окно ответа не
+ * сокращается — сдвигается только общий старт, одинаково для всех 16
+ * участников, поэтому синхронность раунда сохраняется.
+ */
+export const TOURNAMENT_ROUND_INTRO_MS = 4_500;
 
 /**
  * Задержка старта дев-комнаты (кнопка владельца «сыграть с ботами сейчас»).
@@ -1724,7 +1740,22 @@ export function scoreAnswer(input: ScoreInput): number {
     const matched = Math.min(totalPairs, Math.max(0, Math.trunc(input.matchedPairs ?? 0)));
     if (matched === 0) return 0;
     const completionBonus = matched === totalPairs ? Math.max(0, full - TOURNAMENT_STAR_BASE) : 0;
-    return Math.max(0, matched + completionBonus - penalty);
+    /**
+     * зачем 2026-08-03 (владелец: «убрать штраф»): здесь вычитался
+     * `penalty` — по звезде за КАЖДЫЙ ошибочный тап (wrongAttempts из
+     * серверного журнала). Это прямо противоречило правилу «сколько правильно —
+     * столько звёзд»: игрок, собравший все шесть пар, но промахнувшийся по
+     * дороге, получал меньше того, кто собрал столько же с первого раза, и
+     * видимое число расходилось с числом собранных пар.
+     *
+     * Хуже того, штраф усиливал главный баг: после отката поля игрок повторно
+     * тапал уже собранные пары, эти тапы журналировались как ошибки, и награда
+     * падала ещё ниже — игрока наказывали за сбой приложения.
+     *
+     * Правильность здесь уже учтена самим `matched`: неверный тап просто не
+     * добавляет пару. Отдельный вычет был двойным наказанием.
+     */
+    return matched + completionBonus;
   }
 
   if (!input.correct) return 0;

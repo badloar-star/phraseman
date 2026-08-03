@@ -1116,7 +1116,12 @@ function PlayerProfileModalBody({
   // враньё: владелец видел живого игрока с нулями. Показываем skeleton той же
   // геометрии (первый кадр = финальный, layout не прыгает), а как только
   // приходит настоящее число — плитки заполняются.
-  const xpUnknown = !isMe && totalXp === null;
+  // зачем (2026-08-03): skeleton был ВЕЧНЫМ. У новичка (турнирное лобби, Lv.1)
+  // опыт честно равен нулю: сервер отдаёт профиль с totalXp: 0 либо null, а
+  // клиент считал такой ответ «не знаю» и ждал число, которое никогда не
+  // придёт. Теперь ожидание конечно: как только сеть отработала
+  // (xpResolutionSettled), показываем настоящий 0 и Lv.1 вместо пульсации.
+  const xpUnknown = !isMe && totalXp === null && !xpResolutionSettled;
   const profileChainLabel = triLang(lang as Lang, {
     ru: 'цепочка',
     uk: 'ланцюжок',
@@ -2125,6 +2130,11 @@ function PlayerProfileModal({ player, myInfo, onClose }: Props) {
   // синхронных данных для него в приложении не существует.
   const [multipliers, setMultipliers] = useState<MultiplierBreakdown | null>(() => peekLastMultiplierBreakdown());
   const [resolvedTotalXp, setResolvedTotalXp] = useState<number | null>(null);
+  // зачем (2026-08-03): «вечный скелет» на карточке игрока из турнира. Флаг
+  // отмечает, что сетевое доразрешение опыта ЗАВЕРШИЛОСЬ (успехом или пустым
+  // ответом) — без него у skeleton не было условия выхода вообще, и он
+  // крутился до закрытия модалки.
+  const [xpResolutionSettled, setXpResolutionSettled] = useState(false);
   const [friendToast, setFriendToast] = useState<string | null>(null);
   const [friendToastType, setFriendToastType] = useState<'error' | 'info'>('info');
 
@@ -2167,6 +2177,7 @@ function PlayerProfileModal({ player, myInfo, onClose }: Props) {
     // резолвленный снимок, чтобы следующее открытие сразу отрисовалось финальным
     // состоянием (см. peekLastMultiplierBreakdown выше), а не снова со skeleton.
     setResolvedTotalXp(null);
+    setXpResolutionSettled(false);
     setFriendToast(null);
   }, [player, slideAnim, fadeAnim]);
 
@@ -2201,6 +2212,9 @@ function PlayerProfileModal({ player, myInfo, onClose }: Props) {
       ? (numericTotalXp ?? numericPoints)
       : numericTotalXp;
     setResolvedTotalXp(initialTotalXp);
+    // Своей карточке и карточке с уже готовым опытом ждать нечего — ожидание
+    // закрыто сразу, skeleton не показывается вовсе.
+    setXpResolutionSettled(player.isMe || initialTotalXp !== null);
 
     if (player.isMe) {
       void getCurrentMultiplierBreakdown().then((m) => {
@@ -2248,21 +2262,34 @@ function PlayerProfileModal({ player, myInfo, onClose }: Props) {
             // от того, успел ли ВЫЗЫВАЮЩИЙ экран сделать префетч. Теперь модалка
             // сама добирает профиль тем же батч-хелпером (TTL-кэш 5 мин + dedupe,
             // на одну карточку это максимум один callable, обычно ноль).
-            if (bestTotalXp !== null || !CLOUD_SYNC_ENABLED || IS_EXPO_GO) return;
+            if (bestTotalXp !== null || !CLOUD_SYNC_ENABLED || IS_EXPO_GO) {
+              setXpResolutionSettled(true);
+              return;
+            }
             void fetchFriendProfilesBatch(lbDocIds)
               .then((profiles) => {
                 if (cancelled) return;
                 for (const id of lbDocIds) {
                   const fetched = profiles[id];
-                  if (fetched && fetched.totalXp > 0) {
-                    setResolvedTotalXp(fetched.totalXp);
+                  // зачем (2026-08-03): было `fetched.totalXp > 0` — профиль
+                  // новичка с честным нулём отбрасывался как «пустой», и
+                  // карточка навсегда оставалась в skeleton. Ноль — валидный
+                  // ответ; «не знаю» — это только отсутствие профиля (null).
+                  if (fetched) {
+                    setResolvedTotalXp(Math.max(0, Math.floor(fetched.totalXp)));
                     return;
                   }
                 }
               })
-              .catch(() => {});
+              .catch(() => {})
+              // Сеть отработала — ожидание закрыто в любом исходе, включая
+              // «профиля нет вовсе»: тогда честно показываем 0 / Lv.1.
+              .finally(() => { if (!cancelled) setXpResolutionSettled(true); });
           })
-          .catch(() => {});
+          .catch(() => { if (!cancelled) setXpResolutionSettled(true); });
+      } else {
+        // Нет uid (бот, локальный профиль) — доразрешать нечего, ждать незачем.
+        setXpResolutionSettled(true);
       }
     });
     return () => {
@@ -2294,6 +2321,7 @@ function PlayerProfileModal({ player, myInfo, onClose }: Props) {
             player={player}
             myInfo={myInfo}
             resolvedTotalXp={resolvedTotalXp}
+            xpResolutionSettled={xpResolutionSettled}
             slideAnim={slideAnim}
             fadeAnim={fadeAnim}
             shimmerAnim={shimmerAnim}

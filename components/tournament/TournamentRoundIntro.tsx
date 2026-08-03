@@ -31,6 +31,7 @@ import { useRuntimeActive } from '../../hooks/use_runtime_active';
 import { resolveTournamentIntroCountdownValue, tournamentNow } from '../../app/tournament_client';
 import { FlowText } from '../text-integrity/FlowText';
 import { useTournamentPalette, v2motion } from './tournament_theme';
+import { TournamentBackdrop } from './TournamentBackdrop';
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
@@ -96,6 +97,7 @@ export const TournamentRoundIntro = memo(function TournamentRoundIntro({
 
   return (
     <View style={styles.root}>
+      <TournamentBackdrop variant="play" />
       <Text style={styles.round}>Раунд {roundNo}</Text>
       <Text style={styles.mode}>{modeLabel}</Text>
 

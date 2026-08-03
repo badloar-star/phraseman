@@ -223,6 +223,21 @@ export function getSeasonSecretAuraAsset(themeMode: ThemeMode): SeasonAuraAsset 
   return SEASON_SECRET_AURA_ASSETS[seasonArtTheme(themeMode)];
 }
 
+/** Resolves the canonical `user_avatar_aura` value to its layered season art. */
+export function getSeasonAuraAssetForAvatarId(
+  auraId: string | null | undefined,
+  themeMode: ThemeMode,
+): SeasonAuraAsset | undefined {
+  switch (auraId) {
+    case 'aura-season-1-stage-1': return getSeasonAuraStageAsset(1, themeMode);
+    case 'aura-season-1-stage-2': return getSeasonAuraStageAsset(2, themeMode);
+    case 'aura-season-1-stage-3': return getSeasonAuraStageAsset(3, themeMode);
+    case 'aura-season-1-stage-4': return getSeasonAuraStageAsset(4, themeMode);
+    case 'aura-season-1-secret': return getSeasonSecretAuraAsset(themeMode);
+    default: return undefined;
+  }
+}
+
 const N = (level: number, free?: SeasonReward, pass?: SeasonReward): SeasonTrackNode => ({ level, free, pass });
 const P = (amount: number): SeasonReward => ({ kind: 'pearls', amount });
 

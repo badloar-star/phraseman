@@ -531,18 +531,29 @@ export default function TournamentsScreen() {
     && !windowPlayed
     && (windowOpen || (secondsToStart > 0 && joinOpensInSec === 0));
 
-  // зачем 2026-08-03 (владелец, релизное решение, дословно): «турниры ТОЛЬКО
-  // по расписанию, которое включается в админке» + «В ДЕВ кнопка дев создаёт
-  // мне тестовую комнату вне расписания прямо сейчас». Поэтому два слоя:
-  // __DEV__ — кнопка существует только в дев-сборке, боевой билд её не
-  // содержит ни при каком флаге; testingEnabled из админки — рубильник,
-  // которым владелец включает тестовый вход без пересборки. Прежние
-  // мгновенные комнаты вне окна для игроков (решение 2026-07-27) отменены.
-  const testModeReleaseActive = __DEV__ && schedule?.testingEnabled === true;
+  // зачем 2026-08-03 (владелец, дословно): «турнир должен выглядеть точно так
+  // же как без дев, но в нём должна быть кнопка ДЕВ; по нажатию у меня
+  // появляется доступный турнир вне расписания. А если просто "сейчас
+  // турниров нет" — кнопка обязана быть недоступной».
+  //
+  // Поэтому дев-режим НЕ включён по умолчанию даже в дев-сборке: экран
+  // открывается ровно в том виде, что увидит игрок (кнопка «Играть» гаснет вне
+  // окна). Отдельная кнопка ДЕВ — явный переключатель: пока владелец её не
+  // нажал, поведение боевое; нажал — появляется мгновенный турнир вне
+  // расписания. Боевой билд не содержит ни кнопки, ни этой ветки (__DEV__).
+  const [devUnlocked, setDevUnlocked] = useState(false);
+  const testModeReleaseActive = __DEV__ && devUnlocked;
   const instantEntry = testModeReleaseActive;
   // The released test surface is always free; production keeps the configured price.
   const effectiveEntryGems = testModeReleaseActive ? 0 : entryGems;
   const notEnoughGems = coins < effectiveEntryGems;
+
+  // Переключатель дев-турнира: чистое локальное состояние, мгновенный отклик —
+  // сети здесь нет вовсе, поэтому кнопка «Играть» оживает в том же кадре.
+  const toggleDevUnlocked = useCallback(() => {
+    setJoinError('');
+    setDevUnlocked((on) => !on);
+  }, []);
 
   const openConfirm = useCallback(() => { setJoinError(''); setConfirmVisible(true); }, []);
   // Магазин жемчужин — тот же экран, куда ведёт баланс на Главной.
@@ -847,11 +858,26 @@ export default function TournamentsScreen() {
                       : 'Сейчас турниров нет'}
               </V2Cta>
             )}
-            {/* зачем 2026-07-27 (владелец: «убирай дев полностью»): дев-кнопка
-                «Турнир с ботами» удалена. Она была костылём, пока обычный вход
-                работал только по расписанию; теперь вход в турнир доступен в
-                любое время, и отдельная дев-ветка только маскировала бы баги
-                боевого пути — тестировать надо ровно то, что увидит игрок. */}
+            {/* зачем 2026-08-03 (владелец: «немедленно добавь кнопку ДЕВ; по
+                нажатию кнопка "играть сейчас" становится доступной, а если
+                просто "сейчас турниров нет" — кнопка обязана быть недоступной»).
+                Кнопки нет в боевом билде: вся ветка снята на этапе сборки
+                (__DEV__), поэтому игрок её не увидит ни при каком флаге. */}
+            {__DEV__ ? (
+              <TapScale
+                onPress={toggleDevUnlocked}
+                accessibilityRole="button"
+                accessibilityState={{ selected: devUnlocked }}
+                accessibilityLabel={devUnlocked
+                  ? 'Выключить тестовый турнир вне расписания'
+                  : 'Включить тестовый турнир вне расписания'}
+                style={[styles.devToggle, devUnlocked && styles.devToggleOn]}
+              >
+                <Text style={[styles.devToggleText, devUnlocked && { color: P.okInk }]}>
+                  {devUnlocked ? 'ДЕВ · турнир доступен' : 'ДЕВ · включить турнир'}
+                </Text>
+              </TapScale>
+            ) : null}
           </V2Card>
         </Animated.View>
 
@@ -1249,7 +1275,10 @@ const makeStyles = (P: TournamentV2) => StyleSheet.create({
   sectionKicker: { marginTop: 6, marginLeft: 4 },
 
   heroMaskBig: { height: 70, marginTop: 8 },
-  heroMaskMid: { height: 40, marginTop: 8 },
+  // зачем: «Сейчас турниров нет» не влезает в 32кегль на одну строку и
+  // обрезалось справа — маска была под ровно одну строку (height: 40).
+  // Даём вторую строку вместо обрезки текста.
+  heroMaskMid: { height: 82, marginTop: 8 },
   heroMaskInner: { flex: 1, backgroundColor: 'transparent', justifyContent: 'center' },
   heroBig: {
     fontSize: 62,
@@ -1265,6 +1294,20 @@ const makeStyles = (P: TournamentV2) => StyleSheet.create({
   ctaCoin: { width: 16, height: 16 },
   ctaPriceText: { fontSize: 17, fontWeight: '900', fontVariant: ['tabular-nums'] },
   devCta: { marginTop: 12 },
+  // Дев-переключатель: отделяется ТОНОМ, без обводки (правило владельца).
+  // Выключен — тихая подложка, чтобы не спорить с боевой кнопкой входа;
+  // включён — акцентная заливка, видно с одного взгляда, что режим активен.
+  devToggle: {
+    marginTop: 10,
+    minHeight: 44,
+    borderRadius: radius.sm,
+    backgroundColor: P.card,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 16,
+  },
+  devToggleOn: { backgroundColor: P.accentSoft },
+  devToggleText: { fontSize: 14, fontWeight: '800', color: P.muted },
 
   timeline: { flexDirection: 'row', alignItems: 'center', paddingHorizontal: 8 },
   tlNode: { alignItems: 'center', gap: 7 },

@@ -518,6 +518,12 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
         accessibilityLabel={homeAdditional ? `${title}. ${phrase.english}.${homeQuestAnswered ? '' : ` ${homeActionLabel}`}` : title}
         style={({ pressed }) => [
           homeAdditional ? styles.homeAdditionalEditorial : styles.plaque,
+          // зачем: владелец (2026-08-03) — «Фраза дня» на главной должна
+          // читаться как свой отдельный контейнер, а не голый текст на фоне
+          // экрана. Заливка — тот же тихий тон иконки-чипа (rgba ~0.13-0.15
+          // на тему), никакой рамки: подложка едва заметна и скруглена, без
+          // borderWidth (запрет владельца на контуры вокруг блоков).
+          homeAdditional && { backgroundColor: chrome.iconBg },
           !homeAdditional && {
             backgroundColor: chrome.colors[1] || t.bgCard,
             borderColor: chrome.border,
@@ -876,8 +882,9 @@ const styles = StyleSheet.create({
     maxWidth: '90%',
     marginTop: 10,
     marginBottom: 16,
-    paddingHorizontal: 12,
-    paddingVertical: 10,
+    borderRadius: 20,
+    paddingHorizontal: 18,
+    paddingVertical: 14,
   },
   pressed: {
     opacity: 0.78,

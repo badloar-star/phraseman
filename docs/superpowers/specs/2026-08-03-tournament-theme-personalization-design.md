@@ -5,6 +5,10 @@
 **Status:** approved by owner
 **Surface:** every player-facing Tournament screen and shared Tournament UI component
 
+> **Owner override (2026-08-03):** ship only `backdrop` and `podium`. Decorative
+> `header` and `ornament` layers, assets, mappings, and screen placements are removed.
+> Any older four-slot wording below is historical and superseded by this override.
+
 ## Goal
 
 Remove the empty, generic appearance from the Tournament flow. Every selectable app theme must give the Tournament its own authored environment, materials, silhouettes, decorative language, and celebration treatment. This is not a recolor of one common composition.

@@ -290,9 +290,6 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, initSrs, onUpdate, onRese
   const [btnStates, setBtnStates] = useState<BtnState[]>(['idle', 'idle', 'idle', 'idle']);
   const [phase, setPhase] = useState<'answering' | 'feedback'>('answering');
   const [feedbackCorrect, setFeedbackCorrect] = useState(true);
-  // [FeedbackKit] Локальная серия подряд-верных ОТВЕТОВ по формам (для лесенки
-  // комбо/стингеров) — только ощущения, экономику/SRS не трогает.
-  const fkComboRef = useRef(0);
   // [FeedbackKit] Мини-победа «Глагол освоен»: показываем формы освоенного
   // глагола (base–past–part). null = скрыта; ставится при чистом проходе глагола.
   const [learnedBurst, setLearnedBurst] = useState<{ base: string; past: string; pp: string } | null>(null);
@@ -440,13 +437,9 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, initSrs, onUpdate, onRese
     if (voiceOut) speakAudio(word, speechRate, { language: 'en-US' });
 
     if (isCorrect) {
-      // [FeedbackKit] Ранее: hapticSuccess + correct-звук. fk.correct даёт тот же
-      // haptic + тёплый «дин-дон»; fk.combo — лесенку нот/стингеры серии.
-      fkComboRef.current += 1;
-      fk.verdict({ correct: true, combo: fkComboRef.current });
+      // [FeedbackKit] fk.correct даёт haptic + тёплый «дин-дон».
+      fk.verdict({ correct: true });
     } else {
-      // [FeedbackKit] Обрыв заметной серии → «шипение остывания», иначе мягкий «туп».
-      fkComboRef.current = 0;
       fk.verdict({ correct: false });
       hadErrorThisVerb.current = true;
       shakyThisVerb.current = true;

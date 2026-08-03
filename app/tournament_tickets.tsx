@@ -13,6 +13,7 @@ import { FlowText } from '../components/text-integrity/FlowText';
 import Animated, { FadeInDown, ZoomIn } from 'react-native-reanimated';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { Card, Cta, Sheet } from '../components/tournament/tournament_ui';
+import { TournamentBackdrop } from '../components/tournament/TournamentBackdrop';
 import { T, radius, type } from '../components/tournament/tournament_theme';
 import { loadWeeklyBankInfo, type WeeklyBankInfo } from './tournament_client';
 
@@ -57,6 +58,7 @@ export default function TournamentTicketsScreen() {
 
   return (
     <View style={styles.root}>
+      <TournamentBackdrop variant="tickets" />
       <ScrollView
         contentContainerStyle={[
           styles.content,

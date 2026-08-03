@@ -1153,7 +1153,7 @@ export default function ShardsShopScreen() {
     pl: 'Monety wiedzy',
   });
   const heroSub = triLang(lang, {
-    ru: 'Трать жемчуг на вызовы, клуб и всё, что нужно прямо сейчас.',
+    ru: 'Трать жемчуг на вызовы, лигу и всё, что нужно прямо сейчас.',
     uk: 'Один пакет — більше дій: бонуси, клуб і швидкі покупки в застосунку.',
     es: 'Un paquete, más acciones: bonificaciones, club y compras rápidas en la app.',
     'pt-BR': 'Um pacote, mais ações: bônus, clube e compras rápidas no app.',
@@ -1650,7 +1650,10 @@ export default function ShardsShopScreen() {
 
   return (
     <ScreenGradient>
-      <SafeAreaView style={{ flex: 1 }}>
+      {/* зачем: без edges SafeAreaView держал отступ и снизу — список «Карточек» упирался
+          выше физического низа экрана. Экран вне таб-навигатора, снизу ничего не перекрывает,
+          поэтому нижний край отдаём контенту; сверху статус-бар обходим как прежде. */}
+      <SafeAreaView style={{ flex: 1 }} edges={['top', 'left', 'right']}>
         <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} />
         <ContentWrap>
           {/** width: 100% — инакше на Android з zIndex/elevation ряд табів міг зхлопуватись по висоті */}
@@ -1874,14 +1877,14 @@ export default function ShardsShopScreen() {
             * Обе вкладки по-прежнему смонтированы всегда (display:none) — это сохраняет
             * состояние картинок и убирает «моргание» при переключении.
             */}
-          <View style={{ flex: 1, display: shopTab === 'paid' ? 'flex' : 'none' }}>
+          <View style={{ flex: 1, display: shopTab === 'paid' ? 'flex' : 'none', backgroundColor: 'transparent' }}>
             <FlashList
-              style={{ flex: 1 }}
+              style={{ flex: 1, backgroundColor: 'transparent' }}
               data={marketPacks}
               keyExtractor={(item) => `mkt_${item.id}`}
               extraData={marketListExtraData}
               showsVerticalScrollIndicator={false}
-              contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 40, paddingTop: 2 }}
+              contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 40 + insets.bottom, paddingTop: 2 }}
               ListHeaderComponent={
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 14 }}>
                   <View style={{ flex: 1, height: 1, backgroundColor: t.border }} />
@@ -1970,8 +1973,15 @@ export default function ShardsShopScreen() {
             * (display:none, а не размонтирование) — сохраняются картинки и анимации,
             * нет «моргания». На скрытой вкладке лупы стоят: см. active-пропсы ниже.
             */}
+          {/* зачем: BouncyScrollView прячет через display:none только ВНУТРЕННИЙ ScrollView, а его
+              обёртка GestureWrap рендерится как <Animated.View style={{ flex: 1 }}> и остаётся в
+              раскладке даже на скрытой вкладке. Из-за этого на вкладке «Карточки» в колонке было
+              ДВА flex:1-сиблинга (список + невидимая обёртка «Жемчуга»), Yoga делила высоту 50/50,
+              и нижняя половина экрана была мёртвой белой зоной (замер: список получал 321px вместо
+              ~670px). Гасим всю вкладку целиком внешним View — скрытая вкладка выпадает из layout. */}
+          <View style={{ flex: 1, display: shopTab === 'catalog' ? 'flex' : 'none' }}>
           <BouncyScrollView
-            style={{ zIndex: 0, display: shopTab === 'catalog' ? 'flex' : 'none' }}
+            style={{ zIndex: 0 }}
             decelerationRate="normal"
             contentContainerStyle={{
               paddingHorizontal: 16,
@@ -2119,6 +2129,7 @@ export default function ShardsShopScreen() {
               </>
             </View>
           </BouncyScrollView>
+          </View>
         </ContentWrap>
       </SafeAreaView>
       {cardPackPaywallModal}

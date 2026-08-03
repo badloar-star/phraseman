@@ -34,8 +34,6 @@ export const SOUND_MOTION: Readonly<Partial<Record<SoundEventId, SoundMotionProf
   'pm.learn.hint_reveal': { audibleMs: 47, attackMs: 0, hits: [], shape: 'perc', bright: 0.91 },
   'pm.learn.timer_warning': { audibleMs: 63, attackMs: 47, hits: [16], shape: 'perc', bright: 0.73 },
   'pm.learn.timer_expired': { audibleMs: 563, attackMs: 47, hits: [47, 109, 266, 328], shape: 'multi', bright: 0.40 },
-  'pm.learn.combo_5': { audibleMs: 219, attackMs: 141, hits: [63, 141], shape: 'double', bright: 0.95 },
-  'pm.learn.combo_10': { audibleMs: 375, attackMs: 78, hits: [78, 141, 266], shape: 'triple', bright: 0.04 },
   'pm.voice.record_ready': { audibleMs: 125, attackMs: 109, hits: [109], shape: 'perc', bright: 0.89 },
   'pm.voice.turn_ready': { audibleMs: 219, attackMs: 0, hits: [203], shape: 'perc', bright: 0.71 },
   'pm.voice.no_speech': { audibleMs: 109, attackMs: 0, hits: [], shape: 'perc', bright: 0.41 },

@@ -36,6 +36,7 @@ import {
   type TournamentV2,
 } from '../components/tournament/tournament_theme';
 import { V2Card, V2Counter, V2Cta } from '../components/tournament/tournament_v2_ui';
+import { TournamentBackdrop } from '../components/tournament/TournamentBackdrop';
 import { StarGlyph } from '../components/tournament/TournamentFx';
 import { TournamentAudioButton } from '../components/tournament/TournamentAudioButton';
 import {
@@ -111,6 +112,7 @@ export default function TournamentReviewScreen() {
 
   return (
     <View style={styles.root}>
+      <TournamentBackdrop variant="review" />
       <ScrollView
         contentContainerStyle={[
           styles.content,

@@ -15,6 +15,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
 import { Cta } from './tournament_ui';
 import { T, radius, type, useTournamentPalette, type TournamentPalette} from './tournament_theme';
+import { TournamentBackdrop } from './TournamentBackdrop';
 
 export type EdgeKind = 'offline' | 'preseason' | 'cancelled' | 'alreadyIn' | 'emptyPool';
 
@@ -68,6 +69,7 @@ export const TournamentEdgeState = memo(function TournamentEdgeState({
 
   return (
     <Animated.View entering={FadeIn.duration(200)} style={styles.root}>
+      <TournamentBackdrop variant="edge" />
       <Text style={styles.icon}>{copy.icon}</Text>
       <Text style={styles.title}>{copy.title}</Text>
       <Text style={styles.body}>{copy.body}</Text>

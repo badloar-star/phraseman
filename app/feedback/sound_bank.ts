@@ -7,8 +7,6 @@ import type { SoundEventId } from '../../modules/audio/sound_events';
 
 const LEGACY_SOUND_EVENTS = {
   correct: 'pm.learn.correct',
-  crack: 'pm.learn.combo_5',
-  thunder: 'pm.learn.combo_10',
   star_1: 'pm.complete.star_1',
   star_2: 'pm.complete.star_2',
   star_3: 'pm.complete.star_3',

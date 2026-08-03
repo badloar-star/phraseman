@@ -71,6 +71,46 @@
 
 Контракт защищён тестом `tests/admin_single_surface_contract.test.ts`.
 
+## ⛔ App Check для админки — НЕ ВКЛЮЧАТЬ БЕЗ СЛОВА ВЛАДЕЛЬЦА (2026-08-03, КРИТИЧНО)
+
+**Требование владельца: НИКОГДА не включать App Check на админских функциях, пока
+владелец САМ ЯВНО этого не потребует.** Не «заодно», не «для безопасности», не «раз уж
+чиню рядом». Только прямое распоряжение.
+
+Что именно запрещено (любой пункт = нарушение требования):
+
+- вернуть `enforceAppCheck: true` в `ADMIN_SENSITIVE_WRITE_OPTIONS`
+  (`functions/src/callable_options.ts`);
+- выставить env-переменную `ENFORCE_APP_CHECK_ADMIN=true`;
+- рассчитывать `ENFORCE_APP_CHECK_ADMIN` через `appCheckGroup()` — он наследует
+  глобальный `ENFORCE_APP_CHECK`, и общий раскат снова убьёт админку;
+- убрать флаговый ранний `return` из `requireAdminAppCheck()`.
+
+**История (почему правило жёсткое).** 2026-08-01 коммитом `58023df0f` в опции
+захардкодили `enforceAppCheck: true`, а в `admin/v2/legacy.html` вписали reCAPTCHA
+Enterprise site key `6LfteFAt...`. Но шаг 1 из
+`docs/reports/APP_CHECK_ENABLEMENT_PLAN_2026-06-13.md` (создать ключ в Firebase Console —
+ручное действие) выполнен НЕ был. Google этот ключ не признаёт: живая проверка на
+проде возвращает `Invalid site key or not loaded in api.js`. Значит админка физически
+не может получить App Check-токен, а сервер его требовал → Firebase рубил **все ~30
+админских функций** (выдача Plus, бан, удаление, награды, лиги, рефералы, конфиги)
+кодом `unauthenticated` ещё до входа в тело функции. Владелец двое суток не мог выдать
+Plus. Симптом в UI: «Plus не выдан: Unauthenticated».
+
+**Защита не падает.** Каждая админская функция отдельно требует custom claim
+`admin: true` в Firebase Auth токене (см. `actor()` в
+`functions/src/admin_access_controls.ts`) — без него вызов отклоняется
+`permission-denied`. App Check был вторым слоем против ботов, а не основным замком.
+
+**Когда владелец разрешит включить** — порядок обязателен: (1) создать настоящий
+reCAPTCHA Enterprise-ключ в Google Cloud и зарегистрировать веб-приложение в Firebase
+App Check; (2) прописать ключ в `admin/v2/legacy.html`; (3) убедиться в браузере, что
+`grecaptcha.enterprise.execute()` возвращает токен без ошибки; (4) только потом
+`ENFORCE_APP_CHECK_ADMIN=true`.
+
+Сторож: `functions/src/admin_sensitive_writes.test.ts` — краснеет при хардкоде энфорса
+и при наследовании глобального флага.
+
 ## Admin UI Bible
 
 - Before changing `admin/v2/legacy.html`, admin navigation, admin controls, banners, update modals, remote-config panels, or any new admin screen, read `docs/design/ADMIN_UI_BIBLE.md` first and follow it as the source of truth.

@@ -88,8 +88,6 @@ const PREVIEW: Partial<Record<SoundEventId, PreviewSpec>> = {
   'pm.learn.hint_reveal': { kind: 'toast', type: 'info', text: '💡 Подсказка открыта', soundEventId: 'pm.learn.hint_reveal' },
   'pm.learn.timer_warning': { kind: 'toast', type: 'warning', text: '⏳ Осталось 5 секунд', soundEventId: 'pm.learn.timer_warning' },
   'pm.learn.timer_expired': { kind: 'toast', type: 'warning', text: '⏰ Время вышло', soundEventId: 'pm.learn.timer_expired' },
-  'pm.learn.combo_5': { kind: 'toast', type: 'reward', text: '🔥 Серия из 5!', soundEventId: 'pm.learn.combo_5' },
-  'pm.learn.combo_10': { kind: 'toast', type: 'reward', text: '🔥 Серия из 10!', soundEventId: 'pm.learn.combo_10' },
 
   'pm.voice.record_ready': { kind: 'toast', type: 'info', text: '🎤 Говори', soundEventId: 'pm.voice.record_ready' },
   'pm.voice.turn_ready': { kind: 'toast', type: 'info', text: '💬 Твой ход', soundEventId: 'pm.voice.turn_ready' },

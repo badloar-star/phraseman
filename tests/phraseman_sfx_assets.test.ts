@@ -22,12 +22,14 @@ function loadSpecs(): AssetSpec[] {
 }
 
 describe('Phraseman canonical SFX assets', () => {
-  test('maps 39 enabled semantic events to unique safe bundle destinations', () => {
+  // зачем 2026-08-03: было 39 — pm.learn.combo_5/combo_10 убраны вместе с
+  // эффектом серии 5/10 (владелец: «убрать полностью»), осталось 37.
+  test('maps 37 enabled semantic events to unique safe bundle destinations', () => {
     expect(existsSync(SCRIPT)).toBe(true);
     const specs = loadSpecs();
     const enabled = specs.filter((spec) => spec.enabled);
 
-    expect(enabled).toHaveLength(39);
+    expect(enabled).toHaveLength(37);
     expect(new Set(specs.map((spec) => spec.eventId)).size).toBe(specs.length);
     expect(new Set(enabled.map((spec) => spec.destination)).size).toBe(enabled.length);
 

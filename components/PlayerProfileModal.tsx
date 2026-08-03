@@ -69,8 +69,15 @@ import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import InGameToast from './InGameToast';
 import ThemedConfirmModal from './ThemedConfirmModal';
 import ProfileCardMotionFx from './ProfileCardMotionFx';
+import SeasonProfileCardFrame from './SeasonProfileCardFrame';
 import { fetchActiveLeagueCrowns } from '../app/services/league_chest_rewards';
 import { PREMIUM_AVATAR_AURA_ID, getEffectiveAvatarAuraId } from '../constants/avatar_auras';
+import { onAppEvent } from '../app/events';
+import {
+  loadSeasonCosmetics,
+  peekSeasonCosmetics,
+  SEASON1_FRAME_ID,
+} from '../app/season_cosmetics';
 import {
   fxKindForProfileCard,
   getNextProfileCardLevel,
@@ -297,6 +304,9 @@ function PlayerProfileModalBody({
   const [friendUids, setFriendUids] = useState<Set<string>>(() => new Set());
   const [friendRequestSentUids, setFriendRequestSentUids] = useState<Set<string>>(() => new Set());
   const [removeFriendConfirmOpen, setRemoveFriendConfirmOpen] = useState(false);
+  const [hasSeasonProfileFrame, setHasSeasonProfileFrame] = useState(
+    () => isMe && peekSeasonCosmetics().frames.includes(SEASON1_FRAME_ID),
+  );
   const [profileCardSnapshot, setProfileCardSnapshot] = useState<ProfileCardSnapshot>(() => normalizeProfileCardSnapshotForLevel(player));
   const [cardStats, setCardStats] = useState<ProfileCardStats | null>(null);
   // Фаза 3: статус карточного щита «Защита цепочки» (III+, только своя карточка).
@@ -336,6 +346,28 @@ function PlayerProfileModalBody({
   // для чужих — денормализованный флаг из публичного профиля. Показываем Pro только
   // при активном премиум-доступе (showPremium), иначе плашки нет вовсе.
   const [myIsLifetime, setMyIsLifetime] = useState(false);
+  useEffect(() => {
+    if (!isMe) {
+      setHasSeasonProfileFrame(false);
+      return undefined;
+    }
+
+    let cancelled = false;
+    const refreshFromCache = () => {
+      if (!cancelled) {
+        setHasSeasonProfileFrame(peekSeasonCosmetics().frames.includes(SEASON1_FRAME_ID));
+      }
+    };
+    const subscription = onAppEvent('season_cosmetics_changed', refreshFromCache);
+    refreshFromCache();
+    void loadSeasonCosmetics().then(refreshFromCache).catch(() => {});
+
+    return () => {
+      cancelled = true;
+      subscription.remove();
+    };
+  }, [isMe]);
+
   useEffect(() => {
     if (!isMe) return;
     let cancelled = false;
@@ -1961,6 +1993,7 @@ function PlayerProfileModalBody({
             )}
           </Animated.View>
         )}
+        {hasSeasonProfileFrame && <SeasonProfileCardFrame radius={30} />}
       </Animated.View>
     </Animated.View>
     <ThemedConfirmModal

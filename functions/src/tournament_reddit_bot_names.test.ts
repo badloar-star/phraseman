@@ -134,8 +134,16 @@ describe('tournament Reddit bot names', () => {
     expect(auras.length).toBeGreaterThanOrEqual(3);
     expect(auras.length).toBeLessThanOrEqual(12);
     expect(auras.length).toBeLessThan(shopAvatars.length);
+    // Порог 80→70 (2026-08-03): кап уровня ботов ≤50 сжал пул уровневых
+    // аватаров с 60 до 50 значений, уникальных комбинаций на 200 профилей
+    // стало 75. Смысл стража прежний — боты не вырождаются в горстку близнецов.
     expect(new Set(profiles.map((profile) => `${profile.avatarEmoji}|${profile.avatarAura ?? ''}`)).size)
-      .toBeGreaterThanOrEqual(80);
+      .toBeGreaterThanOrEqual(70);
+    // Владелец 2026-08-03: бот не может выглядеть выше 50 уровня.
+    for (const profile of levelAvatars) {
+      expect(Number(profile.avatarEmoji)).toBeGreaterThanOrEqual(1);
+      expect(Number(profile.avatarEmoji)).toBeLessThanOrEqual(50);
+    }
   });
 
   test('normalizes accepted legacy emoji profiles to the current rare visual mix', () => {

@@ -17,13 +17,38 @@ import {
 } from '../../constants/custom_avatars';
 
 /** FNV-1a: стабильный хэш строки → uint32. Без Math.random — воспроизводимо. */
-function fnv1a(text: string): number {
+export function fnv1a(text: string): number {
   let hash = 0x811c9dc5;
   for (let i = 0; i < text.length; i++) {
     hash ^= text.charCodeAt(i);
     hash = Math.imul(hash, 0x01000193);
   }
   return hash >>> 0;
+}
+
+/**
+ * зачем (владелец 2026-08-03): боты не выглядят выше 50 уровня. Числовой
+ * аватар — это уровневый аватар, его номер читается как уровень. Сервер уже
+ * генерит ≤50, но комнаты, созданные ДО деплоя functions, ещё несут 51–60 —
+ * клиент детерминированно заворачивает их в 1..50 (у всех зрителей одинаково).
+ */
+export const TOURNAMENT_BOT_MAX_LEVEL = 50;
+
+/**
+ * зачем: единственное место с формулой обёртки уровня 1..50 — раньше она была
+ * продублирована здесь и в tournament_bot_card.ts, что грозило рассинхроном
+ * при будущей правке капа (аудит 2026-08-03).
+ */
+export function wrapBotLevel(index: number): number {
+  return index <= TOURNAMENT_BOT_MAX_LEVEL
+    ? index
+    : 1 + ((index - 1) % TOURNAMENT_BOT_MAX_LEVEL);
+}
+
+function clampBotLevelAvatar(raw: string): string {
+  const index = Number(raw);
+  if (!Number.isInteger(index) || index < 1) return raw;
+  return index <= TOURNAMENT_BOT_MAX_LEVEL ? raw : String(wrapBotLevel(index));
 }
 
 type TournamentPlayerLike = {
@@ -40,7 +65,8 @@ type TournamentPlayerLike = {
 export function tournamentAvatarValue(player: TournamentPlayerLike): string {
   const raw = player.avatar ?? '';
   const isAppValue = /^\d+$/.test(raw) || isCustomAvatarValue(raw);
-  if (isAppValue) return raw;
+  // Бот с уровневым аватаром — под кап 50; настоящий юзер — как есть.
+  if (isAppValue) return player.isBot ? clampBotLevelAvatar(raw) : raw;
   if (!player.isBot) return '1'; // юзер без аватара — базовый, не эмодзи
 
   const h = fnv1a(player.id);
@@ -49,7 +75,7 @@ export function tournamentAvatarValue(player: TournamentPlayerLike): string {
     const grad = CUSTOM_AVATAR_GRADIENTS[(h >>> 7) % CUSTOM_AVATAR_GRADIENTS.length];
     return makeCustomAvatarValue(def.id, grad.id, (h & 2) === 0 ? 'black' : 'white');
   }
-  return String(1 + ((h >>> 2) % AVATARS.length));
+  return String(1 + ((h >>> 2) % Math.min(AVATARS.length, TOURNAMENT_BOT_MAX_LEVEL)));
 }
 
 /** Numeric level avatar to use as the first-frame image fallback. */
@@ -57,9 +83,4 @@ export function tournamentAvatarLevel(avatar: string | null | undefined): number
   if (!avatar || !/^\d+$/.test(avatar)) return undefined;
   const level = Number(avatar);
   return Number.isInteger(level) && level >= 1 && level <= AVATARS.length ? level : undefined;
-}
-
-/** Уровень бота для рамки/материала аватара — стабильный, правдоподобный (3..42). */
-export function tournamentBotLevel(botId: string): number {
-  return 3 + (fnv1a(botId) % 40);
 }

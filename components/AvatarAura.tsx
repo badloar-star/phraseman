@@ -1,9 +1,12 @@
 import React, { memo, useEffect, useRef } from 'react';
 import { Animated, AppState, Easing, View, type ViewStyle } from 'react-native';
 import { getAvatarAuraById } from '../constants/avatar_auras';
+import { getSeasonAuraAssetForAvatarId } from '../app/season_pass_track_config';
 import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { LinearGradient as ExpoLinearGradient } from './SafeLinearGradient';
+import { useTheme } from './ThemeContext';
+import SeasonAuraRing from './SeasonAuraRing';
 
 type Props = {
   auraId?: string | null;
@@ -15,13 +18,20 @@ type Props = {
   ownerActive?: boolean;
 };
 
+// The raster ring's transparent centre is ~70% of its canvas. At 1.42× the
+// avatar diameter, that opening matches the avatar instead of swallowing it.
+const SEASON_AURA_RING_SCALE = 1.42;
+const SEASON_AURA_LAYOUT_GUTTER = 12;
+
 function AvatarAura({ auraId, size, children, style, animate = true, ownerActive }: Props) {
   const aura = getAvatarAuraById(auraId);
+  const { themeMode } = useTheme();
+  const seasonAsset = getSeasonAuraAssetForAvatarId(aura?.id, themeMode);
   const auraPhase = useRef(new Animated.Value(0)).current;
   const isFocused = useIsScreenFocused();
   const reduceMotion = useReduceMotion();
   const runtimeActive = isFocused && (ownerActive ?? true);
-  const shouldAnimate = animate && runtimeActive && !reduceMotion && size >= 42 && aura !== undefined;
+  const shouldAnimate = animate && runtimeActive && !reduceMotion && size >= 42 && aura !== undefined && seasonAsset === undefined;
 
   useEffect(() => {
     if (!shouldAnimate) {
@@ -61,6 +71,45 @@ function AvatarAura({ auraId, size, children, style, animate = true, ownerActive
     return (
       <View style={[{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }, style]}>
         {children}
+      </View>
+    );
+  }
+
+  if (seasonAsset) {
+    const outer = size + SEASON_AURA_LAYOUT_GUTTER;
+    const ringSize = Math.round(size * SEASON_AURA_RING_SCALE);
+    return (
+      <View
+        style={[
+          {
+            width: outer,
+            height: outer,
+            alignItems: 'center',
+            justifyContent: 'center',
+            overflow: 'visible',
+          },
+          style,
+        ]}
+      >
+        <View
+          pointerEvents="none"
+          style={{
+            position: 'absolute',
+            width: ringSize,
+            height: ringSize,
+            left: (outer - ringSize) / 2,
+            top: (outer - ringSize) / 2,
+          }}
+        >
+          <SeasonAuraRing
+            asset={seasonAsset}
+            size={ringSize}
+            active={animate && runtimeActive}
+          />
+        </View>
+        <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
+          {children}
+        </View>
       </View>
     );
   }

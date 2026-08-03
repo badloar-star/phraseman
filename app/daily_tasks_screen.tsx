@@ -2188,6 +2188,18 @@ export default function DailyTasksScreen() {
     const snapshotVisible = isDailyTasksScreenSnapshotVisible(loadedCacheKey, renderCacheKey);
     const tasks = snapshotVisible ? taskState : EMPTY_DAILY_TASKS;
     const progress = snapshotVisible ? progressState : EMPTY_DAILY_PROGRESS;
+    // зачем: useFocusEffect ниже раньше держал tasks.length в зависимостях, поэтому
+    // каждый setTasks() внутри refreshTasksAndProgress (даже вызванный ИЗ ТОГО ЖЕ
+    // эффекта) менял tasks.length и синхронно перезапускал сам эффект ПОКА экран
+    // сфокусирован (см. useFocusEffect реализацию: navigation.isFocused() перевызывает
+    // callback на каждое изменение deps, а не только на реальный фокус). Новый вызов
+    // refreshTasksAndProgress мог не найти ещё не закоммиченный warm-снапшот и выставить
+    // loadingTasks=true ПОСЛЕ того, как предыдущий вызов уже отрисовал 4 задания —
+    // список пуст не был, но visibleLoadingTasks=true прятал и скелетон (tasks.length
+    // уже не 0), и реальные карточки. Ref читает актуальную длину без завязки эффекта
+    // на собственный результат.
+    const tasksLengthRef = useRef(tasks.length);
+    tasksLengthRef.current = tasks.length;
     /** Опрос за осколки как 4-е задание: активен ли сегодня и пройден ли он.
         Когда активен — набор = 3 обычных + опрос, награда за любые 3 из 4. */
     const surveyScope = renderToken.phase === 'active' && renderToken.stableId
@@ -2509,10 +2521,12 @@ export default function DailyTasksScreen() {
     useFocusEffect(useCallback(() => {
         // Показываем скелетоны только если ещё нет загруженных заданий: при первом
         // входе/холодном старте — да; при возврате на экран с уже готовым списком
-        // не мигаем (список перерисуется тихо).
-        setLoadingTasks((prev) => (tasks.length === 0 ? true : prev));
+        // не мигаем (список перерисуется тихо). Читаем длину из ref (не из deps) —
+        // иначе setTasks() внутри refreshTasksAndProgress сам являлся бы триггером
+        // повторного вызова этого же эффекта, см. комментарий у tasksLengthRef выше.
+        setLoadingTasks((prev) => (tasksLengthRef.current === 0 ? true : prev));
         refreshTasksAndProgress();
-    }, [refreshTasksAndProgress, tasks.length]));
+    }, [refreshTasksAndProgress]));
     useEffect(() => {
         const sub = onAppEvent('daily_task_reward_claimed', () => { refreshTasksAndProgress(true); reloadAllDoneStreak(); });
         return () => sub.remove();

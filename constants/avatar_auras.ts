@@ -16,6 +16,13 @@ export const PREMIUM_AVATAR_AURA_ID = PLUS_AVATAR_AURA_ID;
 export const VIP_AVATAR_AURA_ID = PLUS_AVATAR_AURA_ID;
 /** Аура «Нимб» — синее дышащее свечение. Выдаётся только вручную из админки бета-тестерам. */
 export const BETA_NIMBUS_AURA_ID = 'aura-nimbus';
+export const SEASON_AVATAR_AURA_IDS = [
+  'aura-season-1-stage-1',
+  'aura-season-1-stage-2',
+  'aura-season-1-stage-3',
+  'aura-season-1-stage-4',
+  'aura-season-1-secret',
+] as const;
 
 export type AvatarAuraEffect =
   | 'flame'
@@ -69,6 +76,11 @@ export const AVATAR_AURAS: AvatarAuraDef[] = [
   { id: 'aura-lagoon', nameRu: 'Лагуна', nameUk: 'Лагуна', nameEs: 'Laguna', namePtBr: 'Lagoa', nameVi: 'Đầm phá', nameId: 'Laguna', nameTr: 'Lagün', namePl: 'Laguna', color: '#2DD4BF', color2: '#60A5FA', color3: '#FDE68A', softColor: 'rgba(45,212,191,0.22)' },
   { id: 'aura-sunset', nameRu: 'Закат', nameUk: 'Захід', nameEs: 'Ocaso', namePtBr: 'Pôr do sol', nameVi: 'Hoàng hôn', nameId: 'Senja', nameTr: 'Gün batımı', namePl: 'Zachód', color: '#FB7185', color2: '#FDBA74', color3: '#818CF8', softColor: 'rgba(251,113,133,0.22)' },
   { id: BETA_NIMBUS_AURA_ID, nameRu: 'Нимб', nameUk: 'Німб', nameEs: 'Nimbo', namePtBr: 'Nimbo', nameVi: 'Hào quang', nameId: 'Nimbus', nameTr: 'Hâle', namePl: 'Nimb', color: '#38BDF8', color2: '#7DD3FC', color3: '#E0F2FE', softColor: 'rgba(56,189,248,0.30)', rewardOnly: true, effect: 'nimbus' },
+  { id: SEASON_AVATAR_AURA_IDS[0], nameRu: 'Пульс I', nameUk: 'Пульс I', nameEs: 'Pulso I', namePtBr: 'Pulso I', nameVi: 'Nhịp I', nameId: 'Denyut I', nameTr: 'Nabız I', namePl: 'Puls I', color: '#22D3EE', color2: '#67E8F9', color3: '#0EA5E9', softColor: 'rgba(34,211,238,0.24)', rewardOnly: true },
+  { id: SEASON_AVATAR_AURA_IDS[1], nameRu: 'Поток II', nameUk: 'Потік II', nameEs: 'Flujo II', namePtBr: 'Fluxo II', nameVi: 'Dòng chảy II', nameId: 'Arus II', nameTr: 'Akış II', namePl: 'Przepływ II', color: '#6366F1', color2: '#22D3EE', color3: '#4338CA', softColor: 'rgba(99,102,241,0.24)', rewardOnly: true },
+  { id: SEASON_AVATAR_AURA_IDS[2], nameRu: 'Спектр III', nameUk: 'Спектр III', nameEs: 'Espectro III', namePtBr: 'Espectro III', nameVi: 'Quang phổ III', nameId: 'Spektrum III', nameTr: 'Spektrum III', namePl: 'Spektrum III', color: '#8B5CF6', color2: '#22D3EE', color3: '#6D28D9', softColor: 'rgba(139,92,246,0.24)', rewardOnly: true },
+  { id: SEASON_AVATAR_AURA_IDS[3], nameRu: 'Импульс IV', nameUk: 'Імпульс IV', nameEs: 'Impulso IV', namePtBr: 'Impulso IV', nameVi: 'Xung lực IV', nameId: 'Impuls IV', nameTr: 'İtki IV', namePl: 'Impuls IV', color: '#D946EF', color2: '#22D3EE', color3: '#7C3AED', softColor: 'rgba(217,70,239,0.24)', rewardOnly: true },
+  { id: SEASON_AVATAR_AURA_IDS[4], nameRu: 'Секретная', nameUk: 'Секретна', nameEs: 'Secreta', namePtBr: 'Secreta', nameVi: 'Bí mật', nameId: 'Rahasia', nameTr: 'Gizli', namePl: 'Sekretna', color: '#C026D3', color2: '#F0ABFC', color3: '#7E22CE', softColor: 'rgba(192,38,211,0.26)', rewardOnly: true },
 ];
 
 const LEGACY_AURA_ID_ALIASES: Readonly<Record<string, string>> = {

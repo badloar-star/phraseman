@@ -76,7 +76,6 @@ import DailyPhraseCard from '../../components/DailyPhraseCard';
 import { readPersonalPlanSnapshot, readPersonalPlanState, type PersonalPlanHomeSnapshot } from '../personal_plan_state';
 import { activatePendingPersonalPlanAfterPremium, readPendingPersonalPlanActivation } from '../personal_plan_activation';
 import { getVerifiedRealPremiumStatus } from '../premium_guard';
-import ReportErrorButton from '../../components/ReportErrorButton';
 import SaveProgressBanner from '../../components/SaveProgressBanner';
 import GoldBevel from '../../components/GoldBevel';
 import { useOverlayVisible } from '../../components/OverlayArbiter';
@@ -3271,25 +3270,13 @@ export default function HomeScreen() {
 
           </Animated.View>
 
-          {/* ── ФРАЗА ДНЯ + ПОДВАЛ ── */}
+          {/* ── ФРАЗА ДНЯ ── */}
+          {/* зачем: владелец (2026-08-03) — убрана кнопка «Нашёл ошибку?» с
+              главного экрана; репорт с этого экрана был низкой ценности, а
+              визуально это лишний пункт в подвале. Другие экраны кнопку не
+              теряют — правка точечная, только home. */}
           <Animated.View style={sectionStyle(5)}>
-          <>
           <DailyPhraseCard variant="homeAdditional" />
-          </>
-
-          {/* Подвал */}
-          <View style={{ alignItems: 'center', paddingVertical: 24, marginTop: 0 }}>
-            <ReportErrorButton screen="home" dataId="home_main" dataText={triLang(lang, {
-                ru: 'Главный экран',
-                uk: 'Головний екран',
-                es: 'Pantalla de inicio',
-                'pt-BR': "Tela inicial",
-                vi: "Màn hình chính",
-                id: "Layar beranda",
-                tr: "Ana ekran",
-                pl: "Ekran główny",
-            })}/>
-          </View>
           </Animated.View>
           </>)}
 

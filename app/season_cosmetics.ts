@@ -80,6 +80,17 @@ const addUnique = (list: string[], v: string): string[] => (list.includes(v) ? l
 export const grantSeasonFrame = (id: string = SEASON1_FRAME_ID) =>
   mutate((s) => ({ ...s, frames: addUnique(s.frames, id) }));
 
+/** DEV/admin preview only: equip or remove the Season 1 full profile-card frame. */
+export function devSetSeasonFrameEnabled(enabled: boolean): Promise<SeasonCosmeticsState> {
+  if (!__DEV__) return loadSeasonCosmetics();
+  return mutate((s) => ({
+    ...s,
+    frames: enabled
+      ? addUnique(s.frames, SEASON1_FRAME_ID)
+      : s.frames.filter((id) => id !== SEASON1_FRAME_ID),
+  }));
+}
+
 export const grantSeasonNickColor = (color: string = SEASON1_NICK_COLOR) =>
   mutate((s) => ({ ...s, nickColors: addUnique(s.nickColors, color), activeNickColor: s.activeNickColor ?? color }));
 

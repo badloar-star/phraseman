@@ -28,8 +28,8 @@ export const ASSET_SPECS = Object.freeze([
   asset('pm.learn.hint_reveal', 'learning', 'pm_learn_hint_reveal_glass_a_v1'),
   asset('pm.learn.timer_warning', 'learning', 'pm_learn_timer_warning_tactile_b_v1'),
   asset('pm.learn.timer_expired', 'learning', 'pm_learn_timer_expired_glass_a_v1'),
-  asset('pm.learn.combo_5', 'learning', 'pm_learn_combo_5_tactile_b_v1'),
-  asset('pm.learn.combo_10', 'learning', 'pm_learn_combo_10_tactile_b_v1'),
+  // зачем 2026-08-03: pm.learn.combo_5/combo_10 убраны — эффект серии 5/10
+  // (звук+вибрация) удалён из приложения целиком (владелец: «убрать полностью»).
 
   asset('pm.voice.record_ready', 'voice', 'pm_voice_record_ready_tactile_b_v1'),
   asset('pm.voice.turn_ready', 'voice', 'm_voice_turn_ready_tactile_b_v1'),

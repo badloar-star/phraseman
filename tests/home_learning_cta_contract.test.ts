@@ -14,6 +14,32 @@ describe('home learning CTA contract', () => {
     expect(source).toContain("router.push({ pathname: '/lesson_menu', params: { id: lastLesson.id } } as any)");
   });
 
+  it('uses dedicated per-theme art for the last-lesson card', () => {
+    const cardStart = source.indexOf('testID="home-continue-lesson"');
+    const cardEnd = source.indexOf('{/* Домашние подсказки:', cardStart);
+    const cardSource = source.slice(cardStart, cardEnd);
+    const assetPath = path.join(process.cwd(), 'app', 'home_last_lesson_assets.ts');
+
+    expect(source).toContain("import { getHomeLastLessonImage } from '../home_last_lesson_assets';");
+    expect(source).toContain('const lastLessonImage = getHomeLastLessonImage(themeMode);');
+    expect(cardSource).toContain('source={lastLessonImage}');
+    expect(cardSource).not.toContain('source={menuImages.lesson}');
+    expect(cardSource).not.toContain('align="center"');
+    expect(fs.existsSync(assetPath)).toBe(true);
+
+    const assetSource = fs.readFileSync(assetPath, 'utf8');
+
+    let totalAssetBytes = 0;
+    for (const theme of ['indigo', 'sagePorcelain', 'midnight', 'ember', 'aurora', 'volt', 'forest', 'coral', 'gold']) {
+      const fileName = `home-last-lesson-${theme}.webp`;
+      const filePath = path.join(process.cwd(), 'assets', 'images', 'home_last_lesson', fileName);
+      expect(assetSource).toContain(fileName);
+      expect(fs.existsSync(filePath)).toBe(true);
+      totalAssetBytes += fs.statSync(filePath).size;
+    }
+    expect(totalAssetBytes).toBeLessThanOrEqual(150_000);
+  });
+
   // зачем: плитка быстрого старта «Уроки» открывает полный список уроков —
   // push-маршрут /lessons_list, заменивший убранный таб с книжкой.
   it('opens the full lessons list from the quick-start tile', () => {

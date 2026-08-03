@@ -24,7 +24,6 @@ export type SoundRequestOptions = Readonly<{
 
 export type LearningVerdictRequest = Readonly<{
   correct: boolean;
-  combo?: number;
   completesUnit?: boolean;
   completionEvent?: Extract<SoundEventId, `pm.complete.${string}`>;
   scope?: string;
@@ -69,16 +68,13 @@ export class SoundArbiter {
   }
 
   requestLearningVerdict(request: LearningVerdictRequest): SoundDecision {
-    let eventId: SoundEventId;
-    if (request.completesUnit) {
-      eventId = request.completionEvent ?? 'pm.complete.micro';
-    } else if (request.correct && request.combo && request.combo >= 10) {
-      eventId = 'pm.learn.combo_10';
-    } else if (request.correct && request.combo && request.combo >= 5) {
-      eventId = 'pm.learn.combo_5';
-    } else {
-      eventId = request.correct ? 'pm.learn.correct' : 'pm.learn.needs_work';
-    }
+    // зачем 2026-08-03 (владелец: «убрать эффект серии полностью»): раньше
+    // серия 5/10 подменяла обычный correct-звук на отдельные combo_5/combo_10
+    // (молния). Эффект убран целиком — вердикт всегда звучит как обычный
+    // верный/неверный ответ, независимо от длины серии.
+    const eventId: SoundEventId = request.completesUnit
+      ? (request.completionEvent ?? 'pm.complete.micro')
+      : (request.correct ? 'pm.learn.correct' : 'pm.learn.needs_work');
     return this.request(eventId, { scope: request.scope, dedupeKey: request.dedupeKey });
   }
 

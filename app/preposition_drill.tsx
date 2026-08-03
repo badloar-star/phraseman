@@ -112,9 +112,6 @@ export default function PrepositionDrillScreen() {
   const [selected, setSelected] = useState<string | null>(null);
   const [isCorrect, setIsCorrect] = useState(false);
   const [correctCount, setCorrectCount] = useState(0);
-  // [FeedbackKit] Локальная серия подряд-верных ответов (лесенка комбо) — только
-  // ощущения; экономику/прогресс не трогает. + мини-победа на финал прогона.
-  const fkComboRef = useRef(0);
   const [victoryShown, setVictoryShown] = useState(false);
   const victoryFiredRef = useRef(false);
   const [answeredIds, setAnsweredIds] = useState<string[]>([]);
@@ -416,12 +413,10 @@ export default function PrepositionDrillScreen() {
     setSelected(option);
     setIsCorrect(ok);
     speakSentenceEn(item.sentenceTemplate, item.correct);
-    // [FeedbackKit] Вердикт ответа (звук+вибра). Ранее: hapticSuccess+correct /
-    // hapticError. fk.correct/fk.wrong дают тот же haptic + тёплый/мягкий звук,
-    // fk.combo — лесенку серии. Экономика/прогресс ниже считаются как раньше.
+    // [FeedbackKit] Вердикт ответа (звук+вибра). fk.correct/fk.wrong дают тот же
+    // haptic + тёплый/мягкий звук. Экономика/прогресс ниже считаются как раньше.
     if (ok) {
-      fkComboRef.current += 1;
-      fk.verdict({ correct: true, combo: fkComboRef.current });
+      fk.verdict({ correct: true });
       showXpToast(POINTS_PER_CORRECT);
       setCorrectCount(v => v + 1);
       const nextAnswered = answeredIds.includes(item.id) ? answeredIds : [...answeredIds, item.id];
@@ -447,8 +442,6 @@ export default function PrepositionDrillScreen() {
         .then(r => setXpToastAmount(r.finalDelta))
         .catch(() => {});
     } else {
-      // [FeedbackKit] Обрыв заметной серии → «шипение остывания», иначе мягкий «туп».
-      fkComboRef.current = 0;
       fk.verdict({ correct: false });
       const nextAnswered = answeredIds.includes(item.id) ? answeredIds : [...answeredIds, item.id];
       const nextWrong = wrongIds.includes(item.id) ? wrongIds : [...wrongIds, item.id];
@@ -485,8 +478,7 @@ export default function PrepositionDrillScreen() {
     setSelected(null);
     setIsCorrect(false);
     setCorrectCount(0);
-    // [FeedbackKit] Новый прогон — сброс серии и разрешение показать финал снова.
-    fkComboRef.current = 0;
+    // [FeedbackKit] Новый прогон — разрешение показать финал снова.
     victoryFiredRef.current = false;
     setVictoryShown(false);
   };
@@ -498,8 +490,7 @@ export default function PrepositionDrillScreen() {
     setSelected(null);
     setIsCorrect(false);
     setCorrectCount(0);
-    // [FeedbackKit] Новый прогон — сброс серии и разрешение показать финал снова.
-    fkComboRef.current = 0;
+    // [FeedbackKit] Новый прогон — разрешение показать финал снова.
     victoryFiredRef.current = false;
     setVictoryShown(false);
   };

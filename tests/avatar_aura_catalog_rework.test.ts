@@ -19,6 +19,11 @@ const RETAINED_AURA_IDS = [
   'aura-lagoon',
   'aura-sunset',
   'aura-nimbus',
+  'aura-season-1-stage-1',
+  'aura-season-1-stage-2',
+  'aura-season-1-stage-3',
+  'aura-season-1-stage-4',
+  'aura-season-1-secret',
 ] as const;
 
 const REMOVED_AURA_IDS = [
@@ -30,7 +35,7 @@ const REMOVED_AURA_IDS = [
 ] as const;
 
 describe('avatar aura catalog rework', () => {
-  it('keeps one Plus, one Pro, eight shard products, and Nimbus in the active catalog', () => {
+  it('keeps the active shop, Nimbus, and five Season 1 reward auras in one catalog', () => {
     expect(AVATAR_AURAS.map((aura) => aura.id)).toEqual(RETAINED_AURA_IDS);
     expect(AVATAR_AURAS.some((aura) => aura.unlockLevel !== undefined)).toBe(false);
   });

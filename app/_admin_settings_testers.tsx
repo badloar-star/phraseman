@@ -20,7 +20,6 @@ import type { ThemeMode } from '../constants/theme';
 import { configureAccordionLayout } from '../constants/layoutAnimation';
 import { AVATARS, unlockAllFrames } from '../constants/avatars';
 import AvatarView from '../components/AvatarView';
-import AvatarAura from '../components/AvatarAura';
 import CustomAvatarBadge from '../components/CustomAvatarBadge';
 import { hapticTap as doHaptic } from '../hooks/use-haptics';
 import { unlockAllAchievements, ALL_ACHIEVEMENTS, devSeedAchievementsSmoke } from './achievements';
@@ -68,7 +67,9 @@ import {
   PROFILE_CARD_MOTION_KEY,
   PROFILE_CARD_PUBLIC_FOCUS_KEY,
   PROFILE_CARD_THEME_KEY,
+  type ProfileCardLevel,
 } from './profile_card_system';
+import { devSetSeasonFrameEnabled } from './season_cosmetics';
 import { actionToastTri, emitAppEvent } from './events';
 import { getFreeDialogsLifetime, isAiDialogEnabled } from './ai_dialog_flags';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
@@ -124,14 +125,14 @@ import { checkCoachToastNeededWithAnalytics, type CoachToastDecision } from './c
 import CoachToast from '../components/CoachToast';
 import { injectMockLeaderboardStats, clearMockLeaderboardStats } from './leaderboard_stats';
 import RewardStackV2 from '../components/reward_v2/RewardStackV2';
-import { AVATAR_AURAS, USER_AVATAR_AURA_KEY } from '../constants/avatar_auras';
+import { AVATAR_AURAS, NO_AVATAR_AURA_ID, USER_AVATAR_AURA_KEY } from '../constants/avatar_auras';
 import {
   CUSTOM_AVATAR_GIFT_ONLY,
   CUSTOM_AVATAR_SHOP,
   customAvatarNameForLang,
 } from '../constants/custom_avatars';
 import { getCanonicalUserId } from './user_id_policy';
-import { accountLocalDataKeysForToday, ensureAnonUser, ensureStableAuthLinkForStableId, FRENCH_TARGET_SYNC_KEYS } from './cloud_sync';
+import { accountLocalDataKeysForToday, ensureAnonUser, ensureStableAuthLinkForStableId, FRENCH_TARGET_SYNC_KEYS, syncToCloud } from './cloud_sync';
 import {
   levelExamKey,
   lastOpenedLessonKey,
@@ -198,6 +199,7 @@ const AppInfoDialog = {
 
 const ADMIN_ONBOARDING_FLOW_VERSION_KEY = 'onboarding_flow_version_v1';
 const ADMIN_ONBOARDING_FLOW_VERSION = 'clean_midnight_aha_flow_2026_07_02b';
+const SEASON_FRAME_PREVIEW_LEVELS: readonly ProfileCardLevel[] = [0, 1, 2, 3, 4, 5];
 
 /**
  * Человеко-читаемая причина, почему конверсионный пуш не запланировался.
@@ -489,7 +491,27 @@ const PREMIUM_PREVIEW_CONTEXTS: { label: string; sub: string; params: Record<str
   },
 ];
 
-function AdminCosmeticsPreview({ f }: { f: any }) {
+function AdminCosmeticsPreview({
+  f,
+  activeAuraId,
+  applyingAuraId,
+  seasonFramePreviewBusy,
+  onApplyAura,
+  onClearAura,
+  onOpenProfile,
+  onPreviewSeasonFrame,
+  onDisableSeasonFrame,
+}: {
+  f: any;
+  activeAuraId: string | null;
+  applyingAuraId: string | null;
+  seasonFramePreviewBusy: ProfileCardLevel | 'disabled' | null;
+  onApplyAura: (auraId: string) => void;
+  onClearAura: () => void;
+  onOpenProfile: () => void;
+  onPreviewSeasonFrame: (level: ProfileCardLevel) => void;
+  onDisableSeasonFrame: () => void;
+}) {
   const renderCustomAvatarPreview = (
     avatar: (typeof CUSTOM_AVATAR_SHOP)[number],
     tag: string,
@@ -572,6 +594,9 @@ function AdminCosmeticsPreview({ f }: { f: any }) {
       <Text style={{ color: ADMIN_TEXT, fontSize: 15, fontWeight: '900', marginTop: 18, marginBottom: 10 }}>
         Ауры
       </Text>
+      <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: 12, lineHeight: 17, marginBottom: 10 }}>
+        Нажми на ауру: она применится к текущему аккаунту и сразу откроется на настоящей карточке профиля.
+      </Text>
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10 }}>
         {AVATAR_AURAS.map((aura) => {
           const previewLevel = aura.unlockLevel || (aura.premiumOnly ? 60 : 50);
@@ -581,34 +606,124 @@ function AdminCosmeticsPreview({ f }: { f: any }) {
               ? 'Premium'
               : 'Магазин';
           return (
-            <View
+            <TouchableOpacity
               key={`admin-aura-${aura.id}`}
+              testID={`admin-apply-aura-${aura.id}`}
+              accessibilityRole="button"
+              accessibilityLabel={`Применить ауру ${aura.nameRu}`}
+              accessibilityHint="Сохранит ауру на текущем аккаунте и откроет настоящую карточку профиля. Отменить можно кнопкой «Без ауры»."
+              disabled={applyingAuraId !== null}
+              activeOpacity={0.72}
+              onPress={() => onApplyAura(aura.id)}
               style={{
                 width: 92,
-                minHeight: 116,
+                minHeight: 124,
                 alignItems: 'center',
                 justifyContent: 'center',
                 borderRadius: 10,
-                borderWidth: 1,
-                borderColor: ACCENT_BORDER_SOFT,
+                borderWidth: activeAuraId === aura.id ? 2 : 1,
+                borderColor: activeAuraId === aura.id ? ACCENT : ACCENT_BORDER_SOFT,
                 backgroundColor: ADMIN_SURFACE_ELEVATED,
                 paddingVertical: 9,
                 paddingHorizontal: 6,
+                opacity: applyingAuraId !== null && applyingAuraId !== aura.id ? 0.56 : 1,
               }}
             >
-              <AvatarAura auraId={aura.id} size={56}>
-                <AvatarView avatar={String(previewLevel)} level={previewLevel} size={56} />
-              </AvatarAura>
+              <AvatarView
+                avatar={String(previewLevel)}
+                level={previewLevel}
+                auraId={aura.id}
+                size={52}
+                animateAura={activeAuraId === aura.id}
+              />
               <Text style={{ color: ADMIN_TEXT, fontSize: 10, fontWeight: '900', marginTop: 7 }} numberOfLines={1}>
                 {aura.nameRu}
               </Text>
               <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: f.caption, fontWeight: '800', marginTop: 2 }} numberOfLines={1}>
-                {unlockLabel}
+                {applyingAuraId === aura.id ? 'Применяю…' : activeAuraId === aura.id ? 'Активна' : unlockLabel}
               </Text>
-            </View>
+            </TouchableOpacity>
           );
         })}
       </View>
+      <View style={{ flexDirection: 'row', gap: 10, marginTop: 14 }}>
+        <TouchableOpacity
+          testID="admin-clear-account-aura"
+          accessibilityRole="button"
+          accessibilityHint="Отключит выбранную ауру на текущем аккаунте и покажет результат на карточке профиля."
+          disabled={applyingAuraId !== null}
+          onPress={onClearAura}
+          style={{ minHeight: 44, flex: 1, borderRadius: 10, borderWidth: 1, borderColor: ACCENT_BORDER_SOFT, alignItems: 'center', justifyContent: 'center' }}
+        >
+          <Text style={{ color: ADMIN_TEXT, fontSize: 12, fontWeight: '800' }}>Без ауры</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          testID="admin-open-account-profile-card"
+          accessibilityRole="button"
+          accessibilityHint="Откроет настоящую карточку текущего аккаунта с сохранённым аватаром и аурой."
+          onPress={onOpenProfile}
+          style={{ minHeight: 44, flex: 1, borderRadius: 10, backgroundColor: ACCENT_DARK, alignItems: 'center', justifyContent: 'center' }}
+        >
+          <Text style={{ color: ADMIN_TEXT, fontSize: 12, fontWeight: '900' }}>Моя карточка</Text>
+        </TouchableOpacity>
+      </View>
+
+      <Text style={{ color: ADMIN_TEXT, fontSize: 15, fontWeight: '900', marginTop: 22, marginBottom: 6 }}>
+        Рамка «Визитка» — все уровни
+      </Text>
+      <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: 12, lineHeight: 17, marginBottom: 10 }}>
+        Рамка накладывается на внешний контур настоящей карточки. Уровень аккаунта и покупки не изменяются.
+      </Text>
+      <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
+        {SEASON_FRAME_PREVIEW_LEVELS.map((level) => (
+          <TouchableOpacity
+            key={`season-frame-level-${level}`}
+            testID={`admin-preview-season-frame-level-${level}`}
+            accessibilityRole="button"
+            accessibilityLabel={`Проверить рамку Визитки на уровне ${level}`}
+            accessibilityHint="Временно включает сезонную рамку и открывает настоящую карточку профиля на выбранном визуальном уровне."
+            disabled={seasonFramePreviewBusy !== null}
+            activeOpacity={0.76}
+            onPress={() => onPreviewSeasonFrame(level)}
+            style={{
+              width: 68,
+              minHeight: 48,
+              borderRadius: 10,
+              borderWidth: 1,
+              borderColor: ACCENT_BORDER_SOFT,
+              backgroundColor: ADMIN_SURFACE_ELEVATED,
+              alignItems: 'center',
+              justifyContent: 'center',
+              opacity: seasonFramePreviewBusy !== null && seasonFramePreviewBusy !== level ? 0.55 : 1,
+            }}
+          >
+            <Text style={{ color: ADMIN_TEXT, fontSize: 12, fontWeight: '900' }}>
+              {seasonFramePreviewBusy === level ? 'Открываю…' : `Ур. ${level}`}
+            </Text>
+          </TouchableOpacity>
+        ))}
+      </View>
+      <TouchableOpacity
+        testID="admin-preview-season-frame-disabled"
+        accessibilityRole="button"
+        accessibilityLabel="Открыть Визитку без сезонной рамки"
+        accessibilityHint="Снимает тестовую сезонную рамку с аккаунта и открывает карточку для сравнения."
+        disabled={seasonFramePreviewBusy !== null}
+        onPress={onDisableSeasonFrame}
+        style={{
+          minHeight: 44,
+          marginTop: 10,
+          borderRadius: 10,
+          borderWidth: 1,
+          borderColor: ACCENT_BORDER_SOFT,
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Text style={{ color: ADMIN_TEXT, fontSize: 12, fontWeight: '800' }}>
+          {seasonFramePreviewBusy === 'disabled' ? 'Открываю…' : 'Без рамки — сравнить'}
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -708,6 +823,9 @@ export default function SettingsTestersFunctions() {
     leagueId: 3,
     streak: null as number | null,
   });
+  const [activeAccountAuraId, setActiveAccountAuraId] = useState<string | null>(null);
+  const [applyingAccountAuraId, setApplyingAccountAuraId] = useState<string | null>(null);
+  const [seasonFramePreviewBusy, setSeasonFramePreviewBusy] = useState<ProfileCardLevel | 'disabled' | null>(null);
   const [updateModalVisible, setUpdateModalVisible] = useState(false);
   const [notifPermissionPreviewVisible, setNotifPermissionPreviewVisible] = useState(false);
   const [certificatePreviewVisible, setCertificatePreviewVisible] = useState(false);
@@ -965,7 +1083,10 @@ export default function SettingsTestersFunctions() {
     router.push('/club_screen' as any);
   }, [router]);
 
-  const openProfileCardCrownPreview = useCallback(async () => {
+  const openCurrentAccountProfilePreview = useCallback(async (
+    withLeagueCrown: boolean,
+    profileCardLevelOverride?: ProfileCardLevel,
+  ) => {
     const rows = await AsyncStorage.multiGet([
       'user_name',
       'user_total_xp',
@@ -1006,14 +1127,101 @@ export default function SettingsTestersFunctions() {
       uid,
       friendUid: uid,
       isPremium: false,
-      leagueCrownExpiresAt: Date.now() + 7 * 24 * 60 * 60 * 1000,
-      leagueCrownCount: 3,
-      profileCardLevel: parseInt(map.get(PROFILE_CARD_LEVEL_KEY) || '0', 10) || 0,
+      ...(withLeagueCrown ? {
+        leagueCrownExpiresAt: Date.now() + 7 * 24 * 60 * 60 * 1000,
+        leagueCrownCount: 3,
+      } : {}),
+      profileCardLevel: profileCardLevelOverride ?? (parseInt(map.get(PROFILE_CARD_LEVEL_KEY) || '0', 10) || 0),
       profileCardTheme: map.get(PROFILE_CARD_THEME_KEY) || 'classic',
       profileCardMotion: map.get(PROFILE_CARD_MOTION_KEY) || 'none',
       profileCardPublicFocus: map.get(PROFILE_CARD_PUBLIC_FOCUS_KEY) || 'balanced',
     });
   }, []);
+
+  const openProfileCardCrownPreview = useCallback(
+    () => openCurrentAccountProfilePreview(true),
+    [openCurrentAccountProfilePreview],
+  );
+
+  useEffect(() => {
+    let mounted = true;
+    void AsyncStorage.getItem(USER_AVATAR_AURA_KEY).then((stored) => {
+      if (mounted) setActiveAccountAuraId(stored?.trim() || null);
+    });
+    return () => { mounted = false; };
+  }, []);
+
+  const applyAuraToCurrentAccount = useCallback(async (auraId: string) => {
+    if (applyingAccountAuraId !== null) return;
+    setApplyingAccountAuraId(auraId);
+    try {
+      await AsyncStorage.setItem(USER_AVATAR_AURA_KEY, auraId);
+      setActiveAccountAuraId(auraId);
+      emitAppEvent('xp_changed');
+      // The local account is authoritative for this dev action. Network sync is
+      // best-effort so an offline tester still sees the real profile immediately.
+      void syncPublicProfileSnapshot({ reason: 'display_change', aura: auraId }).catch(() => {});
+      void syncToCloud({ forceNow: true }).catch(() => {});
+      await openCurrentAccountProfilePreview(false);
+    } catch {
+      emitAppEvent('action_toast', actionToastTri('error', {
+        ru: 'Не удалось применить ауру к аккаунту',
+        uk: 'Не вдалося застосувати ауру до акаунта',
+        es: 'No se pudo aplicar el aura a la cuenta',
+        'pt-BR': 'Não foi possível aplicar a aura à conta',
+        vi: 'Không thể áp dụng hào quang cho tài khoản',
+        id: 'Aura tidak dapat diterapkan ke akun',
+        tr: 'Aura hesaba uygulanamadı',
+        pl: 'Nie udało się zastosować aury na koncie',
+      }));
+    } finally {
+      setApplyingAccountAuraId(null);
+    }
+  }, [applyingAccountAuraId, openCurrentAccountProfilePreview]);
+
+  const previewSeasonFrameForLevel = useCallback(async (level: ProfileCardLevel) => {
+    if (seasonFramePreviewBusy !== null) return;
+    setSeasonFramePreviewBusy(level);
+    try {
+      await devSetSeasonFrameEnabled(true);
+      await openCurrentAccountProfilePreview(false, level);
+    } catch {
+      emitAppEvent('action_toast', actionToastTri('error', {
+        ru: 'Не удалось открыть рамку Визитки',
+        uk: 'Не вдалося відкрити рамку Візитки',
+        es: 'No se pudo abrir el marco de la tarjeta',
+        'pt-BR': 'Não foi possível abrir a moldura do cartão',
+        vi: 'Không thể mở khung thẻ hồ sơ',
+        id: 'Bingkai kartu profil tidak dapat dibuka',
+        tr: 'Profil kartı çerçevesi açılamadı',
+        pl: 'Nie udało się otworzyć ramki wizytówki',
+      }));
+    } finally {
+      setSeasonFramePreviewBusy(null);
+    }
+  }, [openCurrentAccountProfilePreview, seasonFramePreviewBusy]);
+
+  const disableSeasonFramePreview = useCallback(async () => {
+    if (seasonFramePreviewBusy !== null) return;
+    setSeasonFramePreviewBusy('disabled');
+    try {
+      await devSetSeasonFrameEnabled(false);
+      await openCurrentAccountProfilePreview(false);
+    } catch {
+      emitAppEvent('action_toast', actionToastTri('error', {
+        ru: 'Не удалось снять рамку Визитки',
+        uk: 'Не вдалося зняти рамку Візитки',
+        es: 'No se pudo quitar el marco de la tarjeta',
+        'pt-BR': 'Não foi possível remover a moldura do cartão',
+        vi: 'Không thể tháo khung thẻ hồ sơ',
+        id: 'Bingkai kartu profil tidak dapat dilepas',
+        tr: 'Profil kartı çerçevesi kaldırılamadı',
+        pl: 'Nie udało się zdjąć ramki wizytówki',
+      }));
+    } finally {
+      setSeasonFramePreviewBusy(null);
+    }
+  }, [openCurrentAccountProfilePreview, seasonFramePreviewBusy]);
 
   const loadTrainerDebugState = async () => {
     const raw = await AsyncStorage.getItem(DAILY_FREE_SESSION_KEY);
@@ -2572,6 +2780,27 @@ export default function SettingsTestersFunctions() {
             </TouchableOpacity>
           </View>
           </>)}
+
+          <AccordionSection
+            id="cosmetics_preview"
+            icon="color-palette-outline"
+            title="Косметика аккаунта — аватары и ауры"
+            badge={AVATAR_AURAS.length}
+            open={openSection === 'cosmetics_preview'}
+            onToggle={toggleSection}
+          >
+            <AdminCosmeticsPreview
+              f={f}
+              activeAuraId={activeAccountAuraId}
+              applyingAuraId={applyingAccountAuraId}
+              seasonFramePreviewBusy={seasonFramePreviewBusy}
+              onApplyAura={(auraId) => { void applyAuraToCurrentAccount(auraId); }}
+              onClearAura={() => { void applyAuraToCurrentAccount(NO_AVATAR_AURA_ID); }}
+              onOpenProfile={() => { void openCurrentAccountProfilePreview(false); }}
+              onPreviewSeasonFrame={(level) => { void previewSeasonFrameForLevel(level); }}
+              onDisableSeasonFrame={() => { void disableSeasonFramePreview(); }}
+            />
+          </AccordionSection>
 
           {/* ── НОВЫЕ ПЕЙВОЛЫ A/B/C (макеты для ревью) ── */}
           <AccordionSection

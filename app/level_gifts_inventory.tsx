@@ -85,7 +85,7 @@ const dualPartLabel = (
  * состояние — угловым бейджем, вся информация — в модалке по нажатию.
  * Никаких подписей-расшифровок внутри плитки (запрет владельца).
  */
-const GiftTile = memo(function GiftTile({ item, size, lang, themeMode, nameColor, isLight, surface, onPress, onExpired }: {
+const GiftTile = memo(function GiftTile({ item, size, lang, themeMode, nameColor, isLight, surface, themeAccent, themeGold, onPress, onExpired }: {
   item: PendingLevelGiftInventoryItem;
   size: number;
   lang: Parameters<typeof giftTitleForLang>[1];
@@ -94,6 +94,16 @@ const GiftTile = memo(function GiftTile({ item, size, lang, themeMode, nameColor
   isLight: boolean;
   /** Две нижние ступени градиента плитки — из токенов активной темы. */
   surface: [string, string];
+  /**
+   * Акцент и золото АКТИВНОЙ темы.
+   *
+   * зачем 2026-08-03 (владелец: «сделай под каждую тему свои цвета и форму
+   * градиента»): цвет подарка считался тремя захардкоженными hex и был
+   * одинаков во всех 13 темах. Теперь палитру задаёт тема, а редкость меняет
+   * плотность и угол — см. gift_gradient_palette.ts.
+   */
+  themeAccent: string;
+  themeGold: string;
   onPress: (item: PendingLevelGiftInventoryItem) => void;
   onExpired: () => void;
 }) {
@@ -523,6 +533,8 @@ export default function LevelGiftsInventoryScreen() {
                     size={tileSize}
                     lang={lang}
                     themeMode={themeMode}
+                    themeAccent={t.accent}
+                    themeGold={t.gold}
                     nameColor={t.textPrimary}
                     isLight={isLight}
                     surface={[t.bgCard, t.bgSurface]}

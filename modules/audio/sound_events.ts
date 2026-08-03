@@ -51,8 +51,6 @@ export const SOUND_EVENTS = Object.freeze({
   // повторных запросов внутри одной секунды по-прежнему схлопывается.
   'pm.learn.timer_warning': event(require('../../assets/audio/sfx/v1/learning/pm_learn_timer_warning_v1.wav'), 0.34, 62, 700, 240, 'learning'),
   'pm.learn.timer_expired': event(require('../../assets/audio/sfx/v1/learning/pm_learn_timer_expired_v1.wav'), 0.32, 66, 700, 420, 'learning'),
-  'pm.learn.combo_5': event(require('../../assets/audio/sfx/v1/learning/pm_learn_combo_5_v1.wav'), 0.46, 76, 2200, 660, 'learning'),
-  'pm.learn.combo_10': event(require('../../assets/audio/sfx/v1/learning/pm_learn_combo_10_v1.wav'), 0.52, 82, 4500, 880, 'learning'),
 
   'pm.voice.record_ready': event(require('../../assets/audio/sfx/v1/voice/pm_voice_record_ready_v1.wav'), 0.40, 95, 450, 220, 'voice', { platform: 'ios' }),
   'pm.voice.turn_ready': event(require('../../assets/audio/sfx/v1/voice/pm_voice_turn_ready_v1.wav'), 0.34, 82, 700, 300, 'voice'),

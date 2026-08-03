@@ -81,12 +81,13 @@ describe('SoundArbiter', () => {
   });
 
   test('selects exactly one semantic learning verdict', () => {
-    expect(setup().arbiter.requestLearningVerdict({ correct: true, combo: 5 })).toMatchObject({
-      kind: 'play', eventId: 'pm.learn.combo_5',
+    // зачем 2026-08-03 (владелец: «убрать эффект серии полностью»): комбо-звуки
+    // combo_5/combo_10 удалены — вердикт больше не зависит от длины серии.
+    expect(setup().arbiter.requestLearningVerdict({ correct: true })).toMatchObject({
+      kind: 'play', eventId: 'pm.learn.correct',
     });
     expect(setup().arbiter.requestLearningVerdict({
       correct: true,
-      combo: 10,
       completesUnit: true,
       completionEvent: 'pm.complete.session',
     })).toMatchObject({ kind: 'play', eventId: 'pm.complete.session' });

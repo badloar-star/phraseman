@@ -63,7 +63,8 @@
         "assets/images/streak_overlays/*.webp",
         "assets/images/theo/*",
         "assets/images/weekly_boon_icons/png/**/*",
-        "assets/images/trainer_theme_icons/**/*.webp"
+        "assets/images/trainer_theme_icons/**/*.webp",
+        "assets/images/tournament/themes/**/*.webp"
       ]
     },
     "android": {

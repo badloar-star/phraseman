@@ -132,8 +132,6 @@ const EVENT_TITLE: Partial<Record<SoundEventId, string>> = {
   'pm.learn.hint_reveal': 'Открыта подсказка',
   'pm.learn.timer_warning': 'Время на исходе',
   'pm.learn.timer_expired': 'Время вышло',
-  'pm.learn.combo_5': 'Серия из 5',
-  'pm.learn.combo_10': 'Серия из 10',
   'pm.voice.record_ready': 'Запись началась',
   'pm.voice.turn_ready': 'Твоя очередь говорить',
   'pm.voice.no_speech': 'Речь не распознана',

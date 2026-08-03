@@ -44,7 +44,7 @@ const SERVER_CONSUMABLE_KINDS: ReadonlySet<SeasonReward['kind']> = new Set([
   'collection_magnet', 'tournament_ticket',
 ]);
 
-type Tri = Record<Lang, string>;
+export type Tri = Record<Lang, string>;
 const T = (ru: string, uk: string, es: string, ptBR: string, vi: string, id: string, tr: string, pl: string): Tri =>
   ({ ru, uk, es, 'pt-BR': ptBR, vi, id, tr, pl });
 

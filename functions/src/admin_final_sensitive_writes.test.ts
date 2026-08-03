@@ -80,7 +80,11 @@ describe('final sensitive admin write normalizers', () => {
     })).toThrow(HttpsError);
   });
 
-  test('fails closed for missing App Check, support role, stale revision and replay mismatch', () => {
+  // зачем (владелец, 2026-08-03): App Check для админки выключен до явного разрешения
+  // владельца (см. AGENTS.md «App Check для админки — НЕ ВКЛЮЧАТЬ»), поэтому отсутствие
+  // request.app больше НЕ является причиной отказа. Права по-прежнему проверяются строго:
+  // роль/claim admin остаются fail-closed — их проверки ниже не ослаблены.
+  test('fails closed for support role, stale revision and replay mismatch', () => {
     expect(typeof config.requireAdminConfigActor).toBe('function');
     expect(typeof config.assertExpectedAdminConfigRevision).toBe('function');
     expect(typeof config.assertAdminConfigReplay).toBe('function');
@@ -88,7 +92,9 @@ describe('final sensitive admin write normalizers', () => {
     if (!config.requireAdminConfigActor || !config.assertExpectedAdminConfigRevision || !config.assertAdminConfigReplay || !league.requireAdminLeagueActor) return;
     const support = { app: {}, auth: { uid: 'support-1', token: { admin: true, adminRole: 'support' } } };
     const owner = { app: {}, auth: { uid: 'owner-1', token: { admin: true } } };
-    expect(() => config.requireAdminConfigActor({ auth: owner.auth })).toThrow(HttpsError);
+    // Без App Check-токена вызов ПРОХОДИТ (энфорс выключен по требованию владельца),
+    // но владелец всё равно опознаётся как owner — замок держится на claim admin.
+    expect(config.requireAdminConfigActor({ auth: owner.auth })).toMatchObject({ actorUid: 'owner-1', role: 'owner' });
     expect(() => config.requireAdminConfigActor(support)).toThrow(HttpsError);
     expect(config.requireAdminConfigActor(owner)).toMatchObject({ actorUid: 'owner-1', role: 'owner' });
     expect(() => league.requireAdminLeagueActor(support)).toThrow(HttpsError);

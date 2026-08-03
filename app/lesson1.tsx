@@ -63,7 +63,6 @@ import { useHintRevealCue } from '../hooks/use-hint-reveal-cue';
 import fk from './feedback/feedback_kit';
 import { comboLevelFor } from './feedback/combo_engine';
 import ComboRing from '../components/feedback/ComboRing';
-import LightningOverlay, { type LightningOverlayHandle } from '../components/feedback/LightningOverlay';
 import { recordMistake } from './active_recall';
 import { logMistake } from './mistake_log';
 import { resolvePhraseMistakeToken } from './mistake_token_resolver';
@@ -2172,9 +2171,6 @@ export default function LessonScreen() {
   const userNameRef      = useRef<string | null>(null); // кешируем имя чтобы не читать AsyncStorage на каждый ответ
   // [COMBO] Отображаемое значение комбо для UI-бейджа. Обновляется в setState.
   const [comboCount, setComboCount] = useState(0);
-  // [FeedbackKit] Императивный ref молнии серии (5/10). Оверлей смонтирован поверх
-  // корневого контейнера экрана; сам гасится при blur (Perf Bible).
-  const lightningRef = useRef<LightningOverlayHandle>(null);
   const [xpToastAmount, setXpToastAmount] = useState(0);
   const [xpToastVisible, setXpToastVisible] = useState(false);
   const xpToastAnim = useRef(new Animated.Value(0)).current;
@@ -3274,10 +3270,7 @@ export default function LessonScreen() {
     // выше — здесь только «мягкость». fk сам уважает тумблеры звука/вибры.
     if (isRight) {
       // correctStreakRef уже инкрементирован в блоке XP выше.
-      fk.verdict({ correct: true, combo: correctStreakRef.current, surface: 'lesson' });
-      // Молния через экран на порогах 5 (одиночная) и 10 (двойной удар).
-      if (correctStreakRef.current === 5) lightningRef.current?.strike(false);
-      else if (correctStreakRef.current === 10) lightningRef.current?.strike(true);
+      fk.verdict({ correct: true });
     } else {
       fk.verdict({ correct: false });
     }
@@ -4040,11 +4033,6 @@ export default function LessonScreen() {
                 lessonHintSupportBlocked={lessonHintSupportBlocked}
                   />
         </SafeAreaView>
-
-        {/* [FeedbackKit] Молния серии поверх всего экрана (absolute fill,
-            pointerEvents none внутри). Рисует только при strike() на 5/10;
-            edge-glow по уровню серии; сама гаснет при blur (Perf Bible). */}
-        <LightningOverlay ref={lightningRef} level={comboLevelFor(comboCount)} />
 
         {/* ── Medal tier toast (premium) ── */}
         {medalToast && (

@@ -414,11 +414,18 @@ const STREAK_FREEZE_ICON_SOURCE_PROMPTS: Record<ThemeMode, string> = {
   minimalDark: 'assets/images/streak_icons/sources/2026-07-26-theme-refresh/indigo-atlas-source.png',
   business: 'assets/images/streak_icons/sources/streak-freeze-business-dalle-source.png',
   businessLight: 'generated:scripts/generate_business_line_icons.mjs',
-  sagePorcelain: '.codex-tmp/celadon-assets/sources/streak/streak-freeze-sagePorcelain.png',
-  midnight: 'assets/images/cinema_dalle_sources/midnight-object-rewards-dalle.png#streak-icons',
-  ember: 'assets/images/cinema_dalle_sources/ember-object-rewards-dalle.png#streak-icons',
-  aurora: 'assets/images/cinema_dalle_sources/aurora-object-rewards-dalle.png#streak-icons',
-  volt: 'assets/images/cinema_dalle_sources/volt-object-rewards-dalle.png#streak-icons',
+  // зачем: путь на .codex-tmp/ был мёртвой ссылкой — эта папка в .gitignore
+  // и на других машинах/CI её просто нет. Сам webp уже лежит в assets/ и
+  // грузится через require() ниже; эта строка — только справка "откуда взят
+  // исходник", реального рантайм-эффекта не имеет.
+  sagePorcelain: 'not-tracked-in-repo:source-was-in-.codex-tmp',
+  // зачем: cinema_dalle_sources/ (черновики генерации) вынесены из assets/ —
+  // готовые webp-иконки лежат в assets/images/streak_icons/<тема>/ и грузятся
+  // через require() ниже, эта строка — только справка "откуда взят исходник".
+  midnight: 'moved-out-of-assets:cinema_dalle_sources/midnight-object-rewards-dalle.png#streak-icons',
+  ember: 'moved-out-of-assets:cinema_dalle_sources/ember-object-rewards-dalle.png#streak-icons',
+  aurora: 'moved-out-of-assets:cinema_dalle_sources/aurora-object-rewards-dalle.png#streak-icons',
+  volt: 'moved-out-of-assets:cinema_dalle_sources/volt-object-rewards-dalle.png#streak-icons',
   candyBlue: 'assets/images/streak_icons/sources/2026-07-26-theme-refresh/indigo-atlas-source.png',
   indigo: 'assets/images/streak_icons/sources/2026-07-26-theme-refresh/indigo-atlas-source.png',
 };

@@ -23,6 +23,7 @@ import TapScale from '../components/TapScale';
 import AvatarView from '../components/AvatarView';
 import UnifiedPlayerModal, { type PlayerInfo } from '../components/PlayerProfileModal';
 import { Card } from '../components/tournament/tournament_ui';
+import { TournamentBackdrop } from '../components/tournament/TournamentBackdrop';
 import { TimeLeft, useCountdown } from '../components/tournament/TournamentCountdown';
 import {
   loadSeasonStandings,
@@ -148,6 +149,7 @@ export default function TournamentSeasonScreen() {
 
   return (
     <View style={styles.root}>
+      <TournamentBackdrop variant="season" />
       <ScrollView
         contentContainerStyle={[
           styles.content,

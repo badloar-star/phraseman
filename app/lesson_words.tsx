@@ -2732,10 +2732,6 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
   const sessionTouchedRef = useRef(false);
   // Счётчик ошибок на слово в этой сессии (для порога тренера: 2+ ошибки → активация)
   const wordMistakeCountRef = useRef<Record<string, number>>({});
-  // [FeedbackKit] Локальная серия подряд-верных ответов ТОЛЬКО для ощущений
-  // (лесенка комбо/стингеры). НЕ участвует в экономике/XP — те считаются выше
-  // по своим правилам. Свой счётчик, т.к. в lesson_words нет combo-формулы.
-  const fkComboRef = useRef(0);
   // [FeedbackKit] Показ VictoryBurst на финал сессии — один раз (guard от
   // повторного показа при ре-рендерах, пока allDone держится true).
   const [victoryShown, setVictoryShown] = useState(false);
@@ -2925,19 +2921,12 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
     setChosen(opt);
     const isRight = isLessonWordOptionCorrect(opt, current.correctOption);
     const wordEn = current.word.en;
-    // [FeedbackKit] Серия ДО обновления этим ответом — нужна, чтобы отличить
-    // обрыв заметной серии (comboBreak) от обычной ошибки (wrong). Только для
-    // ОЩУЩЕНИЙ; экономика/прогресс ниже её не читают.
-    const fkStreakBefore = fkComboRef.current;
     // Результат ответа в момент выбора: успех на верном, ошибка на неверном.
-    // [FeedbackKit] Ранее: hapticSuccess/hapticError + correct-звук; теперь
-    // fk.correct/fk.wrong дают тот же haptic + тёплый «дин-дон»/мягкий «туп».
+    // [FeedbackKit] fk.correct/fk.wrong дают тот же haptic + тёплый «дин-дон»/мягкий «туп».
     if (voiceOut) speakAudio(wordEn, speechRate, { language: 'en-US' });
     if (isRight) {
-      fkComboRef.current = fkStreakBefore + 1;
-      fk.verdict({ correct: true, combo: fkComboRef.current });
+      fk.verdict({ correct: true });
     } else {
-      fkComboRef.current = 0;
       fk.verdict({ correct: false });
     }
     if (isRight) {
@@ -3097,9 +3086,7 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
     setCoachToast(null);
     wrongMistakesRef.current = [];
     locked.current = false;
-    // [FeedbackKit] Новый прогон — сбрасываем серию ощущений и разрешаем показать
-    // финальную мини-победу снова.
-    fkComboRef.current = 0;
+    // [FeedbackKit] Новый прогон — разрешаем показать финальную мини-победу снова.
     victoryFiredRef.current = false;
     setVictoryShown(false);
   };

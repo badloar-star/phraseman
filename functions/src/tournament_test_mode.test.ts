@@ -37,16 +37,22 @@ const schedule = (overrides: Partial<TournamentScheduleConfig> = {}): Tournament
 });
 
 describe('temporary tournament testing mode', () => {
-  it('fails closed unless the deployed release explicitly includes test mode', () => {
+  // зачем 2026-08-03 (владелец): дев-кнопка держится только на клиентском
+  // __DEV__ (боевой билд не показывает её ни при каком условии) — требовать
+  // ЕЩЁ отдельный деплой функций с особой env-переменной было лишним трением
+  // для собственного тестирования владельца. Гейт снят на любом деплое;
+  // тестовая комната остаётся иммутабельно нулевой по экономике независимо
+  // от этого — см. тесты admission/economy ниже.
+  it('is always enabled — no separate release deploy required for the dev surface', () => {
     const runtime = require('./tournaments') as {
-      tournamentTestModeReleaseEnabled?: (env: NodeJS.ProcessEnv) => boolean;
+      tournamentTestModeReleaseEnabled?: () => boolean;
     };
     const gate = runtime.tournamentTestModeReleaseEnabled;
     expect(gate).toBeDefined();
     if (!gate) return;
-    expect(gate({})).toBe(false);
-    expect(gate({ PHRASEMAN_TOURNAMENT_TEST_MODE_RELEASE: 'true' })).toBe(false);
-    expect(gate({ PHRASEMAN_TOURNAMENT_TEST_MODE_RELEASE: '1' })).toBe(true);
+    // Функция больше не принимает env вовсе — гейт снят безусловно.
+    expect(gate.length).toBe(0);
+    expect(gate()).toBe(true);
   });
 
   it('normalizes testingEnabled fail-closed and accepts only literal true', () => {

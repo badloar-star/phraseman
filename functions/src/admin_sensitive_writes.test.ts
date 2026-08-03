@@ -5,7 +5,20 @@ import { HttpsError } from 'firebase-functions/v2/https';
 const read = (name: string): string => fs.readFileSync(path.join(__dirname, name), 'utf8');
 
 describe('critical admin write boundaries', () => {
-  it('hard-enforces App Check and exposes a fail-closed runtime guard', () => {
+  // зачем (владелец, 2026-08-03): App Check для админки ДОЛЖЕН оставаться выключенным,
+  // пока владелец сам явно не разрешит его включить. Ключ reCAPTCHA Enterprise в Google
+  // не заведён (шаг 1 APP_CHECK_ENABLEMENT_PLAN не выполнен), поэтому любой энфорс рубит
+  // ВСЕ ~30 админских функций кодом unauthenticated — инцидент «Plus не выдан».
+  // Этот тест — сторож: он краснеет, если кто-то снова захардкодит enforce.
+  it('keeps admin App Check OFF by default and never hardcodes enforcement', () => {
+    // Смотрим на КОД, а не на текст (в комментарии выше по файлу фраза
+    // `enforceAppCheck: true` упоминается как описание починенного инцидента).
+    const source = read('callable_options.ts')
+      .replace(/\/\*[\s\S]*?\*\//g, '')
+      .replace(/\/\/[^\n]*/g, '');
+    expect(source).not.toMatch(/enforceAppCheck:\s*true/);
+    expect(source).toContain('ENFORCE_APP_CHECK_ADMIN');
+
     const options = require('./callable_options') as {
       ADMIN_SENSITIVE_WRITE_OPTIONS?: Readonly<{ region: string; enforceAppCheck: boolean }>;
       requireAdminAppCheck?: (request: { app?: unknown }) => void;
@@ -13,13 +26,61 @@ describe('critical admin write boundaries', () => {
 
     expect(options.ADMIN_SENSITIVE_WRITE_OPTIONS).toEqual({
       region: 'us-central1',
-      enforceAppCheck: true,
+      enforceAppCheck: false,
     });
     const requireAdminAppCheck = options.requireAdminAppCheck;
     expect(typeof requireAdminAppCheck).toBe('function');
     if (!requireAdminAppCheck) return;
-    expect(() => requireAdminAppCheck({})).toThrow(HttpsError);
+    // Пока флаг выключен — гард обязан пропускать запрос без App Check-токена,
+    // иначе выключение энфорса не работает (ровно этим и падала выдача Plus).
+    expect(() => requireAdminAppCheck({})).not.toThrow();
     expect(() => requireAdminAppCheck({ app: {} })).not.toThrow();
+  });
+
+  // зачем (владелец, 2026-08-03): «никогда не включать App Check, пока сам не скажу».
+  // Глобальный раскат ENFORCE_APP_CHECK=true не имеет права утащить админку за собой —
+  // иначе требование нарушается побочным эффектом чужой задачи.
+  it('never inherits the global App Check rollout flag', () => {
+    jest.resetModules();
+    const previousGlobal = process.env.ENFORCE_APP_CHECK;
+    const previousAdmin = process.env.ENFORCE_APP_CHECK_ADMIN;
+    process.env.ENFORCE_APP_CHECK = 'true';
+    delete process.env.ENFORCE_APP_CHECK_ADMIN;
+    try {
+      const mod = require('./callable_options') as {
+        ADMIN_SENSITIVE_WRITE_OPTIONS?: Readonly<{ enforceAppCheck: boolean }>;
+        ENFORCE_APP_CHECK?: boolean;
+      };
+      expect(mod.ENFORCE_APP_CHECK).toBe(true);
+      expect(mod.ADMIN_SENSITIVE_WRITE_OPTIONS?.enforceAppCheck).toBe(false);
+    } finally {
+      if (previousGlobal === undefined) delete process.env.ENFORCE_APP_CHECK;
+      else process.env.ENFORCE_APP_CHECK = previousGlobal;
+      if (previousAdmin === undefined) delete process.env.ENFORCE_APP_CHECK_ADMIN;
+      else process.env.ENFORCE_APP_CHECK_ADMIN = previousAdmin;
+      jest.resetModules();
+    }
+  });
+
+  it('still fails closed once the owner explicitly enables the admin flag', () => {
+    jest.resetModules();
+    const previous = process.env.ENFORCE_APP_CHECK_ADMIN;
+    process.env.ENFORCE_APP_CHECK_ADMIN = 'true';
+    try {
+      const enabled = require('./callable_options') as {
+        ADMIN_SENSITIVE_WRITE_OPTIONS?: Readonly<{ region: string; enforceAppCheck: boolean }>;
+        requireAdminAppCheck?: (request: { app?: unknown }) => void;
+      };
+      expect(enabled.ADMIN_SENSITIVE_WRITE_OPTIONS?.enforceAppCheck).toBe(true);
+      // зачем: сверяем по сообщению, а не по конструктору — jest.resetModules()
+      // поднимает ВТОРОЙ экземпляр firebase-functions, и его HttpsError !== импортированного.
+      expect(() => enabled.requireAdminAppCheck?.({})).toThrow('app_check_required');
+      expect(() => enabled.requireAdminAppCheck?.({ app: {} })).not.toThrow();
+    } finally {
+      if (previous === undefined) delete process.env.ENFORCE_APP_CHECK_ADMIN;
+      else process.env.ENFORCE_APP_CHECK_ADMIN = previous;
+      jest.resetModules();
+    }
   });
 
   it.each([

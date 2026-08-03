@@ -385,25 +385,27 @@ export default function SeasonPassScreen() {
       <View style={{ height: ROW_HEIGHT, flexDirection: 'row', alignItems: 'stretch', gap: 8, paddingHorizontal: 14 }}>
         {renderReward(item.free, 'free', reached, item.level)}
         <View style={{ width: NODE_COLUMN_WIDTH, alignItems: 'center', justifyContent: 'center' }}>
-          <View style={{
-            width: isCurrent ? 36 : 30,
-            height: isCurrent ? 36 : 30,
-            borderRadius: 18,
-            alignItems: 'center',
-            justifyContent: 'center',
-            backgroundColor: reached ? t.gold : isCurrent ? t.accentBg : t.bgSurface,
-            zIndex: 2,
-            transform: [{ translateX: curOffset }],
-          }}>
-            <Text style={{
-              color: reached ? t.textOnGold : isCurrent ? t.accent : t.textMuted,
-              fontSize: isCurrent ? 14 : 12,
-              fontWeight: '900',
-              fontVariant: ['tabular-nums'],
-            }}>
-              {item.level}
-            </Text>
-          </View>
+          {/* зачем 2026-08-03 (владелец: «уберите с полоски цифры они не
+              нужны») — номер уровня убран из маркера: кружок остаётся чистой
+              точкой на линии прогресса, сам номер и так виден в карточке
+              заголовка выше («Уровень N из 60»), дублировать не нужно. */}
+          <View
+            accessibilityLabel={triLang(lang, {
+              ru: `Уровень ${item.level}`, uk: `Рівень ${item.level}`, es: `Nivel ${item.level}`,
+              'pt-BR': `Nível ${item.level}`, vi: `Cấp ${item.level}`, id: `Level ${item.level}`,
+              tr: `Seviye ${item.level}`, pl: `Poziom ${item.level}`,
+            })}
+            style={{
+              width: isCurrent ? 36 : 30,
+              height: isCurrent ? 36 : 30,
+              borderRadius: 18,
+              alignItems: 'center',
+              justifyContent: 'center',
+              backgroundColor: reached ? t.gold : isCurrent ? t.accentBg : t.bgSurface,
+              zIndex: 2,
+              transform: [{ translateX: curOffset }],
+            }}
+          />
         </View>
         {renderReward(item.pass, 'pass', reached, item.level)}
       </View>

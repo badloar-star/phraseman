@@ -6,6 +6,7 @@ module.exports = {
   testMatch: [
     '<rootDir>/tests/text_integrity_primitives.test.tsx',
     '<rootDir>/tests/daily_tasks_text_integrity_render.test.tsx',
+    '<rootDir>/tests/daily_tasks_screen_loading_race_contract.test.tsx',
     '<rootDir>/tests/survey_daily_challenge_render.test.tsx',
     '<rootDir>/tests/survey_screen_submission_behavior.test.tsx',
     '<rootDir>/tests/registration_prompt_modal_lifecycle.test.ts',

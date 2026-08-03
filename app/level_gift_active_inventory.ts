@@ -78,6 +78,23 @@ const ARENA_GIFT_BONUS_KEY = 'arena_daily_gift_bonus_v1';
 const CHAIN_SHIELD_KEY = 'chain_shield';
 const WAGER_DISCOUNT_KEY = 'wager_discount';
 const CLUB_GIFT_BOOST_KEY = 'club_gift_free_boost_v1';
+/**
+ * Ключи СЕЗОННЫХ наград.
+ *
+ * зачем 2026-08-03 (владелец: «подарки я применил, а они в разделе активные не
+ * появились»): сезонные подарки пишут не в канал level-gift, а в собственные
+ * ключи (см. season_reward_apply.ts, league_personal_boosts.ts,
+ * boon_effects_energy.ts). Раздел их не читал, поэтому применённый буст лиги,
+ * золотой урок и второе дыхание были невидимы.
+ *
+ * Значения продублированы строками намеренно: импорт из league_personal_boosts
+ * и boon_effects_energy втянул бы в этот модуль движок лиг и бонусов дня со
+ * всеми их зависимостями, а нужны только имена ключей. Расхождение поймает
+ * тест, который сверяет эти строки с местами записи.
+ */
+const LEAGUE_PERSONAL_BOOST_KEY = 'league_personal_boost_v1';
+const SEASON_GOLDEN_LESSON_KEY = 'season_golden_lesson_v1';
+const BOON_ENERGY_OVERRIDE_KEY = 'boon_energy_override_v1';
 
 const todayIso = (nowMs: number): string => new Date(nowMs).toISOString().slice(0, 10);
 
@@ -578,6 +595,106 @@ export const loadActiveLevelGiftInventory = async (
       }),
       desc: friendGiftLabel(gift, lang),
       accent: '#EAB308',
+      hint: hintAutoWorks(lang),
+    });
+  }
+
+  /**
+   * СЕЗОННЫЕ награды.
+   *
+   * зачем 2026-08-03 (владелец: «подарки я применил, а они в разделе активные
+   * не появились»): раздел читал фиксированный список ключей канала level-gift,
+   * а сезонные награды пишут в СВОИ ключи. Совпадали только двое — банк опыта и
+   * тотем клуба, и то случайно: они переиспользуют канал уровневых подарков.
+   * Буст лиги, золотой урок и второе дыхание были невидимы полностью — игрок
+   * применял подарок, эффект работал, но подтверждения этому не было нигде.
+   *
+   * Читаем те же ключи, куда пишет season_reward_apply.ts, — источник правды
+   * один, дублирования состояния нет.
+   */
+  const [leagueBoostRaw, goldenLessonRaw, turboRegenRaw] = await Promise.all([
+    AsyncStorage.getItem(LEAGUE_PERSONAL_BOOST_KEY),
+    AsyncStorage.getItem(SEASON_GOLDEN_LESSON_KEY),
+    AsyncStorage.getItem(BOON_ENERGY_OVERRIDE_KEY),
+  ]);
+
+  // Буст лиги: у него СВОЙ срок (до конца дня либо длительность буста), поэтому
+  // 72-часовой TTL к нему не применяем — показываем настоящий expiresAt.
+  const leagueBoost = parseJson<{ id?: string; multiplier?: number; expiresAt?: number }>(leagueBoostRaw);
+  const leagueBoostExpiresAt = Math.max(0, Math.floor(Number(leagueBoost?.expiresAt) || 0));
+  if (leagueBoostExpiresAt > nowMs) {
+    const multiplier = Math.max(1, Number(leagueBoost?.multiplier) || 2);
+    active.push({
+      key: 'league_personal_boost',
+      expiresAtMs: leagueBoostExpiresAt,
+      iconGiftId: focusRewardIconForMultiplier(multiplier),
+      title: triLang(lang, {
+        ru: `Буст лиги ×${multiplier}`, uk: `Буст ліги ×${multiplier}`, es: `Impulso de liga ×${multiplier}`,
+        'pt-BR': `Impulso de liga ×${multiplier}`, vi: `Tăng tốc giải ×${multiplier}`,
+        id: `Dorongan liga ×${multiplier}`, tr: `Lig desteği ×${multiplier}`, pl: `Boost ligi ×${multiplier}`,
+      }),
+      desc: triLang(lang, {
+        ru: 'очки лиги идут вдвойне', uk: 'очки ліги йдуть удвічі', es: 'los puntos de liga se duplican',
+        'pt-BR': 'os pontos da liga dobram', vi: 'điểm giải đấu nhân đôi', id: 'poin liga berlipat ganda',
+        tr: 'lig puanları iki katı', pl: 'punkty ligi podwójnie',
+      }),
+      accent: '#38BDF8',
+      hint: hintAutoWorks(lang),
+    });
+  }
+
+  // Золотой урок: заряд без своего срока — 72ч от первого показа, как у банка XP.
+  const goldenCharges = Math.max(0, Math.floor(
+    Number((parseJson<{ remaining?: number }>(goldenLessonRaw))?.remaining) || 0,
+  ));
+  const goldenLifetime = resolveFirstSeenLifetime('golden_lesson', goldenCharges > 0, SEASON_GOLDEN_LESSON_KEY);
+  if (goldenCharges > 0 && goldenLifetime && !goldenLifetime.expired) {
+    active.push({
+      key: 'season_golden_lesson',
+      expiresAtMs: goldenLifetime.expiresAtMs,
+      // Множитель ×3 — та же иконка усиленного опыта, что у бонуса ×2.
+      iconGiftId: focusRewardIconForMultiplier(3),
+      title: triLang(lang, {
+        ru: 'Золотой урок', uk: 'Золотий урок', es: 'Lección dorada', 'pt-BR': 'Lição dourada',
+        vi: 'Bài học vàng', id: 'Pelajaran emas', tr: 'Altın ders', pl: 'Złota lekcja',
+      }),
+      desc: goldenCharges > 1
+        ? triLang(lang, {
+            ru: `${goldenCharges} урока с ×3 опыта`, uk: `${goldenCharges} уроки з ×3 досвіду`,
+            es: `${goldenCharges} lecciones con ×3 XP`, 'pt-BR': `${goldenCharges} lições com ×3 XP`,
+            vi: `${goldenCharges} bài học ×3 XP`, id: `${goldenCharges} pelajaran ×3 XP`,
+            tr: `${goldenCharges} ders ×3 XP`, pl: `${goldenCharges} lekcje z ×3 XP`,
+          })
+        : triLang(lang, {
+            ru: 'следующий урок даст ×3 опыта', uk: 'наступний урок дасть ×3 досвіду',
+            es: 'la próxima lección dará ×3 XP', 'pt-BR': 'a próxima lição dará ×3 XP',
+            vi: 'bài học tới nhận ×3 XP', id: 'pelajaran berikutnya ×3 XP',
+            tr: 'sonraki ders ×3 XP verir', pl: 'następna lekcja da ×3 XP',
+          }),
+      accent: '#F59E0B',
+      hint: hintAutoWorks(lang),
+    });
+  }
+
+  // Второе дыхание: ускоренное восстановление энергии со своим сроком.
+  const turboRegen = parseJson<{ expiresAt?: number; intervalMs?: number }>(turboRegenRaw);
+  const turboExpiresAt = Math.max(0, Math.floor(Number(turboRegen?.expiresAt) || 0));
+  if (turboExpiresAt > nowMs) {
+    active.push({
+      key: 'turbo_regen',
+      expiresAtMs: turboExpiresAt,
+      iconGiftId: energyRewardIconForAmount(1),
+      title: triLang(lang, {
+        ru: 'Второе дыхание', uk: 'Друге дихання', es: 'Segundo aliento', 'pt-BR': 'Segundo fôlego',
+        vi: 'Hồi phục nhanh', id: 'Napas kedua', tr: 'İkinci nefes', pl: 'Drugi oddech',
+      }),
+      desc: triLang(lang, {
+        ru: 'энергия восстанавливается быстрее', uk: 'енергія відновлюється швидше',
+        es: 'la energía se recupera más rápido', 'pt-BR': 'a energia recarrega mais rápido',
+        vi: 'năng lượng hồi nhanh hơn', id: 'energi pulih lebih cepat',
+        tr: 'enerji daha hızlı doluyor', pl: 'energia regeneruje się szybciej',
+      }),
+      accent: '#22D3EE',
       hint: hintAutoWorks(lang),
     });
   }

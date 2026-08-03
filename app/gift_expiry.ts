@@ -22,7 +22,11 @@ export const GIFT_EXPIRY_WARN_MS = 6 * 60 * 60 * 1000;
 /** Карта «вид бонуса → мс первого показа» для бонусов без собственного срока. */
 export const GIFT_FIRST_SEEN_KEY = 'gift_first_seen_v1';
 
-export type GiftFirstSeenKind = 'xp_bank' | 'wager_discount' | 'club_boost';
+// зачем 2026-08-03 (владелец: «подарки применил, а в активных не появились»):
+// добавлен golden_lesson. У «Золотого урока» нет собственного срока — это заряд
+// на следующий урок, поэтому ему, как банку XP и скидке пари, отсчитывается 72ч
+// от первого показа в разделе «Активные».
+export type GiftFirstSeenKind = 'xp_bank' | 'wager_discount' | 'club_boost' | 'golden_lesson';
 
 export type GiftFirstSeenMap = Partial<Record<GiftFirstSeenKind, number>>;
 

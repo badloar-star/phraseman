@@ -612,7 +612,12 @@ const TOURNAMENT_BUCKETED_EXPOSURE_BUCKET_COUNTS: Readonly<Record<string, number
   fill_gap: 13,
   find_oddity: 10,
   translate_build: 38,
-  speed_match: 10,
+  // зачем 2026-08-03: speed_match пересобран из словарных слов (фикс «максимум
+  // 3 слова», коммит 347f8eb29) — заданий стало 192, бакетов 5 вместо 10.
+  // Эта константа обязана совпадать с exposureBucketCounts в барьере
+  // (tournamentPrivateState/task_pool_generation_v1), иначе parseReady…Token
+  // бросает tournament_pool_barrier_invalid и вход в турниры умирает целиком.
+  speed_match: 5,
 });
 const TOURNAMENT_BUCKETED_EXPOSURE_BUCKET_DWELL_DAYS: Readonly<Record<string, number>> = Object.freeze({
   guess_phrase: 14,
@@ -1577,11 +1582,18 @@ export async function tournamentJoinTransaction(
       throw new HttpsError('failed-precondition', 'slot_already_played');
     }
 
+    // зачем 2026-08-03 (владелец: «билет стоит 3 жемчужины, 1 билет в неделю
+    // бесплатно»): бесплатный вход — это ПРОПУСК списания, а не отдельный
+    // баланс билетов (billet-баланс лишнее поле и лишний риск рассинхрона
+    // с shards). Маркер живёт в том же профиле, что и slot-лимит выше —
+    // ноль дополнительных чтений в транзакции.
+    const freeEntryAvailable = admissionMode === 'scheduled'
+      && sanitizeString(user.tournament_free_entry_week_id, 32) !== weekId;
     const gemsBefore = readGemBalance(user.shards);
-    if (gemsBefore < entryGems) {
+    if (!freeEntryAvailable && gemsBefore < entryGems) {
       throw new HttpsError('failed-precondition', 'not_enough_gems');
     }
-    const contribution = entryGems;
+    const contribution = freeEntryAvailable ? 0 : entryGems;
     const player: TournamentPlayer = {
       id: stableUid,
       isBot: false,
@@ -1649,10 +1661,12 @@ export async function tournamentJoinTransaction(
     }
     // зачем: списываем жемчужины из профиля (то же поле shards, что и везде
     // в игре), а весь взнос кладём в банк турнира — комната сама посчитает,
-    // сколько уйдёт призёрам и сколько в недельный банк.
+    // сколько уйдёт призёрам и сколько в недельный банк. Бесплатный вход
+    // недели жемчужины не трогает, только ставит маркер использования.
     if (admissionMode === 'scheduled') {
       tx.set(userRef, {
-        shards: admin.firestore.FieldValue.increment(-entryGems),
+        ...(freeEntryAvailable ? {} : { shards: admin.firestore.FieldValue.increment(-entryGems) }),
+        ...(freeEntryAvailable ? { tournament_free_entry_week_id: weekId } : {}),
         tournament_last_slot_key: slotKey,
         tournament_last_slot_room_id: room.roomId,
         updatedAt: nowMs,
@@ -1778,10 +1792,16 @@ export async function tournamentLeaveTransaction(
 
     const user = userSnap.data() || {};
     const clearsSlotMarker = sanitizeString(user.tournament_last_slot_room_id, 160) === roomId;
+    // зачем 2026-08-03: игрок вошёл бесплатным недельным билетом (contribution=0,
+    // shards не списаны) и вышел до старта — маркер надо снять, иначе выход из
+    // лобби без единой сыгранной игры молча съедал бы бесплатный вход на неделю.
+    const usedFreeEntry = recordedContribution === 0
+      && sanitizeString(user.tournament_free_entry_week_id, 32) === tournamentWeekId(room.startsAt);
     tx.set(userRef, {
       ...(refundedGems > 0
         ? { shards: admin.firestore.FieldValue.increment(refundedGems) }
         : {}),
+      ...(usedFreeEntry ? { tournament_free_entry_week_id: admin.firestore.FieldValue.delete() } : {}),
       ...(clearsSlotMarker
         ? {
           tournament_last_slot_key: admin.firestore.FieldValue.delete(),

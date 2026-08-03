@@ -516,7 +516,12 @@ export default function TournamentsScreen() {
   // schedule window. When it is absent or false, the paid scheduled route below
   // remains unchanged. This keeps temporary QA access removable without a build.
   const testModeReleaseActive = schedule?.testingEnabled === true;
-  const instantEntry = testModeReleaseActive || !joinWindowOpen;
+  // зачем 2026-08-03 (владелец, релизное решение): турниры ТОЛЬКО по
+  // расписанию. Мгновенная комната вне окна («играть в любое время»,
+  // решение 2026-07-27) отменена для игроков — она остаётся только за
+  // дев-кнопкой (testingEnabled из админки), чтобы владелец мог собрать
+  // тестовую комнату вне расписания и проверить все функции перед релизом.
+  const instantEntry = testModeReleaseActive;
   // The released test surface is always free; production keeps the configured price.
   const effectiveEntryGems = testModeReleaseActive ? 0 : entryGems;
   const notEnoughGems = coins < effectiveEntryGems;
@@ -793,12 +798,13 @@ export default function TournamentsScreen() {
                 // делать. Теперь она всегда живая: не хватает — ведём в
                 // магазин, где проблему можно решить в один тап.
                 //
-                // зачем 2026-07-27 (владелец: играть в любое время, без лимита
-                // на слот): кнопка больше не гаснет вне окна и не гаснет после
-                // отыгранного турнира — вне окна вход идёт в комнату, которую
-                // сервер соберёт по требованию. Мёртвых состояний не осталось.
+                // зачем 2026-08-03 (владелец, релизное решение): турниры только
+                // по расписанию — вне окна кнопка честно гаснет («Сейчас
+                // турниров нет»), а не собирает мгновенную комнату. Тест-режим
+                // из админки остаётся живым всегда — это дев-кнопка владельца.
                 onPress={notEnoughGems ? goToShop : openConfirm}
-                right={!notEnoughGems ? (
+                disabled={!testModeReleaseActive && !joinWindowOpen && !notEnoughGems}
+                right={!notEnoughGems && (testModeReleaseActive || joinWindowOpen) ? (
                   <View style={styles.ctaPrice}>
                     <Image
                       source={coinIconForBalance(effectiveEntryGems, themeMode)}
@@ -814,18 +820,12 @@ export default function TournamentsScreen() {
                   </View>
                 ) : undefined}
               >
-                {/* зачем 2026-07-27 (владелец: играть в любое время, без
-                    лимита на слот): состояний осталось два. «Скоро откроем»,
-                    «Вы уже играли» и отсчёт до открытия входа убраны — они
-                    описывали запреты, которых больше нет, и врали бы игроку.
-                    Вне окна расписания подпись честно говорит «сейчас»: турнир
-                    соберётся по нажатию. */}
                 {notEnoughGems
                   ? `Пополнить · нужно ещё ${effectiveEntryGems - coins}`
                   : testModeReleaseActive ? 'Играть сейчас · тест'
                     : joinWindowOpen
                       ? 'Играть'
-                      : 'Играть сейчас'}
+                      : 'Сейчас турниров нет'}
               </V2Cta>
             )}
             {/* зачем 2026-07-27 (владелец: «убирай дев полностью»): дев-кнопка

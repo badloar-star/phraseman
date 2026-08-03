@@ -460,12 +460,13 @@ describe('экраны режима «Турниры»', () => {
     expect(home).not.toContain('kind="offline"');
     expect(home).not.toContain('kind="preseason"');
     expect(home).not.toContain('TournamentSkeleton />');
-    // Без расписания — «Скоро», а не 00:00 и не заглушка.
-    // зачем 2026-07-27: тексты hero переехали в app/tournament_hero_copy.ts
-    // (пять состояний окна вместо двух — в JSX не помещалась лестница
-    // тернарников). Правило то же, изменился только адрес.
+    // Без расписания — честная пауза «Сейчас турниров нет», а не 00:00,
+    // не заглушка и не мёртвый призыв играть.
+    // зачем 2026-08-03 (владелец, релизное решение): турниры только по
+    // расписанию; прежний текст «ИГРАЙТЕ СЕЙЧАС» для пустого расписания
+    // отменён вместе с мгновенными комнатами вне окна.
     const heroCopy = read('app/tournament_hero_copy.ts');
-    expect(heroCopy).toContain('первый турнир готовится');
+    expect(heroCopy).toContain('Сейчас турниров нет');
     expect(home).toContain('resolveTournamentHeroCopy');
   });
 

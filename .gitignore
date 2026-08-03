@@ -161,6 +161,7 @@ functions/scripts/diag_*
 # Next.js, and ad-hoc QA scripts. Keep app source and docs visible.
 /coverage/
 /.codex-tmp/
+**/.codex-tmp/
 /.artifacts/
 /.logs/
 /tmp/

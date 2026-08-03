@@ -57,6 +57,17 @@ export const SEASON_REWARD_ART_KINDS = [
 export type SeasonRewardArtKind = typeof SEASON_REWARD_ART_KINDS[number];
 type SeasonArtTheme = 'light' | 'dark';
 
+/**
+ * Season 1 decorates the existing user-card shell; it is not a replacement card
+ * and not an avatar ring. These are the same Azure tokens used by the real
+ * profile-card visual in profile_card_system.ts.
+ */
+export const SEASON_PROFILE_CARD_FRAME_COLORS = {
+  highlight: '#A9CBFF',
+  main: '#5AA6FF',
+  deep: '#2E7BFF',
+} as const;
+
 const SEASON_REWARD_ICON_SOURCES: Readonly<Record<SeasonArtTheme, Readonly<Record<SeasonRewardArtKind, ImageSourcePropType>>>> = {
   light: {
     battery: require('../assets/images/season/rewards/light/battery.webp'),

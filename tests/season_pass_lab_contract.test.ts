@@ -43,17 +43,43 @@ describe('Season Pass admin lab', () => {
     expect(aura).toContain('visibleLayers.particles !== false');
   });
 
-  it('explains and renders the frame as a full user card called Visiting Card', () => {
+  it('explains and renders the frame around the existing user card', () => {
     const lab = read('app/_admin_season_pass_lab.tsx');
+    const config = read('app/season_pass_track_config.ts');
     const track = read('app/season_pass.tsx');
     const modal = read('components/SeasonGiftModal.tsx');
 
-    expect(lab).toContain("getSeasonRewardIcon('frame', themeMode)");
+    expect(config).toContain('SEASON_PROFILE_CARD_FRAME_COLORS');
+    expect(config).toContain("highlight: '#A9CBFF'");
+    expect(config).toContain("main: '#5AA6FF'");
+    expect(config).toContain("deep: '#2E7BFF'");
+    expect(lab).toContain('SEASON_PROFILE_CARD_FRAME_COLORS');
+    expect(lab).toContain('testID="season-visiting-card-frame"');
+    expect(lab).not.toContain("getSeasonRewardIcon('frame', themeMode)");
     expect(lab).toContain('Визитка');
     expect(lab).toContain('Вся пользовательская карточка');
     expect(lab).toContain('Без рамки');
     expect(track).toContain("frame:             { ru: 'Визитка'");
     expect(modal).toContain("title: T('Визитка'");
     expect(modal).not.toContain('вокруг твоего аватара');
+  });
+
+  it('uses a transparent icon that contains only the same blue card frame', async () => {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const sharp = require('sharp') as typeof import('sharp');
+
+    for (const theme of ['light', 'dark'] as const) {
+      const relativePath = `assets/images/season/rewards/${theme}/frame.webp`;
+      const image = sharp(path.join(ROOT, relativePath));
+      const metadata = await image.metadata();
+      expect(metadata.width).toBe(512);
+      expect(metadata.height).toBe(320);
+      expect(metadata.hasAlpha).toBe(true);
+
+      const { data, info } = await image.ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+      const alphaAt = (x: number, y: number) => data[(y * info.width + x) * info.channels + 3];
+      expect(alphaAt(256, 160)).toBeLessThanOrEqual(8);
+      expect(alphaAt(256, 22)).toBeGreaterThanOrEqual(150);
+    }
   });
 });

@@ -2,7 +2,6 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 import React, { useMemo, useState } from 'react';
 import {
-  Image,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -13,8 +12,8 @@ import {
 import SeasonAuraRing, { type SeasonAuraVisibleLayers } from '../components/SeasonAuraRing';
 import {
   getSeasonAuraStageAsset,
-  getSeasonRewardIcon,
   getSeasonSecretAuraAsset,
+  SEASON_PROFILE_CARD_FRAME_COLORS,
 } from './season_pass_track_config';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import type { ThemeMode } from '../constants/theme';
@@ -62,8 +61,6 @@ function SegmentedButton({
 }
 
 function VisitingCard({ theme, framed }: { theme: ArtTheme; framed: boolean }) {
-  const themeMode: ThemeMode = theme === 'light' ? 'sagePorcelain' : 'midnight';
-  const frameSource = getSeasonRewardIcon('frame', themeMode);
   const light = theme === 'light';
 
   return (
@@ -75,8 +72,26 @@ function VisitingCard({ theme, framed }: { theme: ArtTheme; framed: boolean }) {
         !framed && { borderColor: light ? '#D8DDE2' : '#31435C', borderWidth: 1 },
       ]}
     >
-      {framed && frameSource ? (
-        <Image source={frameSource} resizeMode="stretch" style={StyleSheet.absoluteFill} accessible={false} />
+      {framed ? (
+        <View
+          pointerEvents="none"
+          testID="season-visiting-card-frame"
+          style={[
+            StyleSheet.absoluteFill,
+            styles.seasonCardFrame,
+            {
+              borderColor: SEASON_PROFILE_CARD_FRAME_COLORS.main,
+              shadowColor: SEASON_PROFILE_CARD_FRAME_COLORS.deep,
+            },
+          ]}
+        >
+          <View
+            style={[
+              styles.seasonCardFrameHighlight,
+              { borderColor: SEASON_PROFILE_CARD_FRAME_COLORS.highlight },
+            ]}
+          />
+        </View>
       ) : null}
       <View style={styles.cardContent}>
         <View style={[styles.avatar, { backgroundColor: light ? '#DCEFEA' : '#123B63' }]}>
@@ -301,6 +316,8 @@ const styles = StyleSheet.create({
   visitingTitleWrap: { minWidth: 88 },
   cardStage: { paddingVertical: 10, alignItems: 'center' },
   visitingCard: { width: '100%', maxWidth: 512, aspectRatio: 1.6, borderRadius: 18, overflow: 'hidden', justifyContent: 'center' },
+  seasonCardFrame: { borderRadius: 18, borderWidth: 3, shadowOpacity: 0.7, shadowRadius: 10, shadowOffset: { width: 0, height: 0 }, elevation: 8, zIndex: 5 },
+  seasonCardFrameHighlight: { position: 'absolute', top: 4, right: 4, bottom: 4, left: 4, borderRadius: 13, borderWidth: StyleSheet.hairlineWidth, opacity: 0.72 },
   cardContent: { flexDirection: 'row', alignItems: 'center', paddingHorizontal: '11%', paddingTop: '3%', gap: 10 },
   avatar: { width: 54, height: 54, borderRadius: 27, alignItems: 'center', justifyContent: 'center' },
   avatarText: { fontSize: 24, fontWeight: '900' },

@@ -2101,6 +2101,12 @@ service cloud.firestore {
       allow read: if isAdmin();
       allow write: if false;
     }
+    // Кэш идемпотентности обогатителя: строго служебные данные (хеш решения →
+    // резервация/результат), владельцу здесь смотреть нечего — narrative он
+    // видит через саму сводку/панель, а не через этот internal-кэш.
+    match /jarvis_llm_enrichment_cache/{document=**} {
+      allow read, write: if false;
+    }
     match /agent_observation_receipts/{document=**} {
       allow read, write: if false;
     }

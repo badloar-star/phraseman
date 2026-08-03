@@ -10,7 +10,8 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { FlatList, Image, Text, TouchableOpacity, View, type ListRenderItemInfo } from 'react-native';
 import { FlowText } from '../components/text-integrity/FlowText';
-import { Stack } from 'expo-router';
+import { Stack, useRouter } from 'expo-router';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
@@ -18,6 +19,8 @@ import { triLang, type Lang } from '../constants/i18n';
 import { actionToastTri, emitAppEvent, onAppEvent } from './events';
 import { hapticTap } from '../hooks/use-haptics';
 import { pearlIconForTheme } from './coin_icons';
+import { safeRouterBack } from './navigation_back';
+import TapScale from '../components/TapScale';
 import {
   hydrateSeasonPassProgress,
   peekSeasonPassProgress,
@@ -33,6 +36,8 @@ import {
 } from './season_pass_track_config';
 
 const ROW_HEIGHT = 96;
+const NODE_COLUMN_WIDTH = 56;
+const SPINE_WIDTH = 4;
 const SEASON_PASS_PRICE_PEARLS = 250;
 
 const REWARD_LABELS: Record<SeasonReward['kind'], Record<Lang, string>> = {
@@ -60,6 +65,7 @@ const REWARD_LABELS: Record<SeasonReward['kind'], Record<Lang, string>> = {
 export default function SeasonPassScreen() {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
+  const router = useRouter();
   const insets = useStableSafeAreaInsets();
   const [progress, setProgress] = useState<SeasonPassProgress>(peekSeasonPassProgress);
 
@@ -95,7 +101,10 @@ export default function SeasonPassScreen() {
   }, []);
 
   const renderReward = useCallback((reward: SeasonReward | undefined, side: 'free' | 'pass', reached: boolean, level: number) => {
-    if (!reward) return <View style={{ flex: 1 }} />;
+    // Пустая сторона — прозрачный заполнитель ТОЙ ЖЕ формы, что и карточка,
+    // чтобы высота строки была одинаковой независимо от того, где лежит награда
+    // (макет: узкая колонка с одной картой, вторая половина строки пуста).
+    if (!reward) return <View style={{ flex: 1, alignSelf: 'stretch' }} />;
     const icon = SEASON_REWARD_ICONS[reward.kind];
     const label = REWARD_LABELS[reward.kind][lang]
       + (reward.kind === 'aura_stage' ? ` ${['I', 'II', 'III', 'IV'][Math.max(0, (reward.amount ?? 1) - 1)]}` : '')
@@ -104,12 +113,12 @@ export default function SeasonPassScreen() {
     return (
       <View style={{
         flex: 1,
+        alignSelf: 'stretch',
         flexDirection: 'row',
         alignItems: 'center',
         gap: 8,
         borderRadius: 16,
         paddingHorizontal: 10,
-        paddingVertical: 8,
         backgroundColor: isPassLane ? t.goldBg : t.bgCard,
         opacity: reached ? 1 : 0.72,
       }}>
@@ -132,13 +141,31 @@ export default function SeasonPassScreen() {
     );
   }, [lang, pearlIcon, t]);
 
-  const renderItem = useCallback(({ item }: ListRenderItemInfo<SeasonTrackNode>) => {
+  const renderItem = useCallback(({ item, index }: ListRenderItemInfo<SeasonTrackNode>) => {
     const reached = progress.level >= item.level;
     const isCurrent = progress.level + 1 === item.level;
+    const isLast = index === SEASON_TRACK.length - 1;
     return (
-      <View style={{ height: ROW_HEIGHT, flexDirection: 'row', alignItems: 'center', gap: 8, paddingHorizontal: 14 }}>
+      <View style={{ height: ROW_HEIGHT, flexDirection: 'row', alignItems: 'stretch', gap: 8, paddingHorizontal: 14 }}>
         {renderReward(item.free, 'free', reached, item.level)}
-        <View style={{ width: 40, alignItems: 'center' }}>
+        <View style={{ width: NODE_COLUMN_WIDTH, alignItems: 'center', justifyContent: 'center' }}>
+          {/* Хребет: сегмент СВЕРХУ узла (кроме первой строки) и СНИЗУ (кроме
+              последней), пройденный участок закрашен акцентом — та же идея,
+              что .a-spine i в макете, но реализована по сегментам под FlatList. */}
+          {index > 0 && (
+            <View style={{
+              position: 'absolute', top: 0, left: '50%', marginLeft: -SPINE_WIDTH / 2,
+              width: SPINE_WIDTH, height: ROW_HEIGHT / 2, borderRadius: SPINE_WIDTH / 2,
+              backgroundColor: progress.level >= item.level - 1 ? t.gold : t.bgSurface,
+            }} />
+          )}
+          {!isLast && (
+            <View style={{
+              position: 'absolute', bottom: 0, left: '50%', marginLeft: -SPINE_WIDTH / 2,
+              width: SPINE_WIDTH, height: ROW_HEIGHT / 2, borderRadius: SPINE_WIDTH / 2,
+              backgroundColor: reached ? t.gold : t.bgSurface,
+            }} />
+          )}
           <View style={{
             width: isCurrent ? 36 : 30,
             height: isCurrent ? 36 : 30,
@@ -146,6 +173,7 @@ export default function SeasonPassScreen() {
             alignItems: 'center',
             justifyContent: 'center',
             backgroundColor: reached ? t.gold : isCurrent ? t.accentBg : t.bgSurface,
+            zIndex: 2,
           }}>
             <Text style={{
               color: reached ? t.textOnGold : isCurrent ? t.accent : t.textMuted,
@@ -168,6 +196,19 @@ export default function SeasonPassScreen() {
 
   const header = useMemo(() => (
     <View style={{ paddingHorizontal: 16, paddingBottom: 6 }}>
+      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 4 }}>
+        <TapScale
+          onPress={() => safeRouterBack(router)}
+          accessibilityLabel={triLang(lang, {
+            ru: 'Назад', uk: 'Назад', es: 'Atrás', 'pt-BR': 'Voltar',
+            vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
+          })}
+          accessibilityRole="button"
+          style={{ width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center' }}
+        >
+          <Ionicons name="chevron-back" size={24} color={t.textPrimary} />
+        </TapScale>
+      </View>
       <View style={{ flexDirection: 'row', alignItems: 'baseline', justifyContent: 'space-between' }}>
         <Text style={{ color: t.textPrimary, fontSize: Math.max(24, f.h1), fontWeight: '900', letterSpacing: -0.3 }}>
           {triLang(lang, {
@@ -229,7 +270,7 @@ export default function SeasonPassScreen() {
         </Text>
       </View>
     </View>
-  ), [daysLeft, f.h1, lang, pct, progress.intoLevelXp, progress.level, progress.levelCostXp, t]);
+  ), [daysLeft, f.h1, lang, pct, progress.intoLevelXp, progress.level, progress.levelCostXp, router, t]);
 
   return (
     <View style={{ flex: 1, backgroundColor: t.bgPrimary }}>

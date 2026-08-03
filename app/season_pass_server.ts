@@ -46,7 +46,14 @@ export async function seasonClaimRewardOnServer(params: {
   side: 'free' | 'pass';
   kind: SeasonRewardKind;
   amount?: number;
-  totalXp: number;
+  /**
+   * Снимок прогресса на момент клейма — аудит серверной выдачи.
+   *
+   * зачем 2026-08-03: поле звалось totalXp, но с переводом дорожки на турнирные
+   * звёзды (владелец) в него кладётся другая валюта. Имя обязано соответствовать
+   * содержимому, иначе серверные логи и разбор спорных выдач врут.
+   */
+  totalStars: number;
 }): Promise<SeasonClaimResponse | null> {
   return call<SeasonClaimResponse>('seasonClaimReward', {
     seasonId: getSeasonPassSeasonId(),

@@ -42,8 +42,14 @@ export type AppEventMap = {
   remote_config_changed: undefined;
   /** «Сундук недели» (mystery_monday) забран — плашка TodaysBoonStrip должна сразу сменить текст на «уже открыт». */
   mystery_chest_claimed: undefined;
-  /** Сезонный XP пропуска изменился (registerXP → addSeasonPassXp) — обновить плашку «Сезон» и экран дорожки. */
-  season_pass_xp_changed: { totalXp: number };
+  /**
+   * Сезонные ЗВЁЗДЫ пропуска изменились — обновить экран дорожки.
+   *
+   * зачем 2026-08-03 (владелец: «сезон очки капали не за опыт а за звёзды»):
+   * событие звалось season_pass_xp_changed и приходило из registerXP на любое
+   * начисление опыта. Теперь источник один — завершённый турнирный раунд.
+   */
+  season_pass_stars_changed: { totalStars: number };
   season_pass_gift_inventory_changed: undefined;
   season_cosmetics_changed: undefined;
   /** Платная дорожка сезона куплена/разблокирована — экран дорожки открывает pass-клеймы. */

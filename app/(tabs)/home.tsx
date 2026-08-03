@@ -24,7 +24,6 @@ import BouncyScrollView from '../../components/BouncyScrollView';
 import { useTopFadeScroll } from '../../components/TopFadeScrollContext';
 import { checkLeagueOnAppOpen, clearPendingResult, loadPendingResult, LEAGUES, LeagueResult, GroupMember, clubTierShortName, getLeagueResultSignature, tryAcquireLeagueResultModal, markLeagueResultShown } from '../league_engine';
 import LeagueResultModal from '../LeagueResultModal';
-import { SeasonPassTodayCard } from '../../components/SeasonPassTodayCard';
 import { DebugLogger } from '../debug-logger';
 import { getMyWeekPoints, checkStreakLossPending, getWeekKey } from '../hall_of_fame_utils';
 import { getLocalDayKey, isSameLocalOrUtcDay } from '../local_date';
@@ -102,6 +101,7 @@ import { FOREGROUND_CLOUD_REFRESH_DELAY_MS, FOREGROUND_LIGHT_REFRESH_DELAY_MS, g
 import { fetchActiveLeagueCrowns, fetchLeagueBonusProgressSnapshot, getLeagueChestGoal } from '../services/league_chest_rewards';
 import { getCachedLeagueStateSync } from '../league_open_cache_policy';
 import { getHomeMenuImages } from '../home_menu_icons';
+import { getHomeLastLessonImage } from '../home_last_lesson_assets';
 import { isStreakFreezeActiveToday } from '../streak_freeze';
 import { isStudyTargetSourceUiLang } from '../study_target_lang_dev';
 import {
@@ -2496,6 +2496,7 @@ export default function HomeScreen() {
     const renderNewHome = () => {
         const { level, progress } = getXPProgress(totalXP);
         const menuImages = getHomeMenuImages(themeMode);
+        const lastLessonImage = getHomeLastLessonImage(themeMode);
         const homeQuickRowPad = 8;
         const homeQuickRowGap = 14;
         const homeQuickTileWidth = Math.floor((SCREEN_W - homeQuickRowPad * 2 - homeQuickRowGap * 2) / 3);
@@ -2593,8 +2594,9 @@ export default function HomeScreen() {
             ? Math.min(100, Math.round((homeLeagueChest.progress / Math.max(1, homeLeagueChest.goal)) * 100))
             : 0;
         const homeLeagueChestReady = homeLeagueChestPct >= 100;
+        // зачем: полоса прогресса лиги убрана с главной (2026-08-03), градиент
+        // заливки больше не нужен — остался только цвет процента.
         const homeLeagueChestAccent = homeLeagueChestReady ? leagueBonusPalette.readyAccent : leagueBonusPalette.accent;
-        const homeLeagueChestFill = homeLeagueChestReady ? leagueBonusPalette.readyFill : leagueBonusPalette.fill;
         const openHomeProfile = () => {
             hapticTap();
             setHomeProfilePlayer({
@@ -3046,15 +3048,12 @@ export default function HomeScreen() {
                 {isGoldTheme && <GoldBevel radius={20} intensity="quiet"/>}
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 12, minHeight: 72 }}>
                   <View style={{ width: 64, height: 64, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                    <LightSketchMenuImage source={menuImages.lesson} width={64} height={64} lighten={false} align={getHomeMenuIconAlignment(themeMode, 'lesson')} contentFit="contain" cachePolicy="memory-disk"/>
+                    <LightSketchMenuImage source={lastLessonImage} width={64} height={64} lighten={false} contentFit="contain" cachePolicy="memory-disk"/>
                   </View>
-                  <View style={{ flex: 1, minWidth: 0, gap: 7 }}>
+                  <View style={{ flex: 1, minWidth: 0 }}>
                     <FlowText testID="home-continue-lesson-title" provenance="authored" style={{ color: homeThemePanelText, fontSize: Math.max(15, f.body), fontWeight: '700' }}>
                       {lastLesson.name}
                     </FlowText>
-                    <View style={{ height: 5, borderRadius: 3, overflow: 'hidden', backgroundColor: isLightTheme ? 'rgba(0,0,0,0.10)' : 'rgba(255,255,255,0.10)' }}>
-                      <View style={{ height: '100%', width: `${Math.min(100, Math.max(0, Math.round((lastLesson.progress / 50) * 100)))}%` as any, backgroundColor: t.correct, borderRadius: 3 }}/>
-                    </View>
                   </View>
                   <View style={{ minWidth: 30, alignItems: 'flex-end', flexShrink: 0 }}>
                     <Text style={{ color: homeThemePanelMuted, fontSize: 13, fontWeight: '700', fontVariant: ['tabular-nums'] /* guard-ok: правый счётчик прогресса, тот же паттерн что «0/4» у «Вызовов дня» */ }}>
@@ -3234,43 +3233,37 @@ export default function HomeScreen() {
                   <View style={{ width: 64, height: 64, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                     <Image source={leagueBonusGiftImage} style={{ width: 64, height: 64 }} contentFit="contain" accessible={false}/>
                   </View>
-                  <View style={{ flex: 1, minWidth: 0, gap: 7 }}>
+                  {/* зачем: владелец (2026-08-03) — строка на главной про саму лигу,
+                      а не про цель: заголовок «Лига · <название>», полоса прогресса
+                      убрана (прогресс живёт на экране лиги). Процент справа оставлен —
+                      это единственный оставшийся индикатор. */}
+                  <View style={{ flex: 1, minWidth: 0 }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
                       <FlowText testID="home-league-goal-title" provenance="authored" style={{ flex: 1, color: homeThemePanelText, fontSize: Math.max(15, f.body), fontWeight: '700' }}>
                         {triLang(lang, {
-                          ru: 'Цель лиги',
-                          uk: 'Ціль ліги',
-                          es: 'Meta de liga',
-                          'pt-BR': 'Meta da liga',
-                          vi: 'Mục tiêu giải đấu',
-                          id: 'Target liga',
-                          tr: 'Lig hedefi',
-                          pl: 'Cel ligi',
+                          ru: 'Лига',
+                          uk: 'Ліга',
+                          es: 'Liga',
+                          'pt-BR': 'Liga',
+                          vi: 'Giải đấu',
+                          id: 'Liga',
+                          tr: 'Lig',
+                          pl: 'Liga',
                         })} · {homeLeagueChest.leagueName}
                       </FlowText>
                       <Text style={{ color: homeLeagueChestAccent, fontSize: 15, fontWeight: '900', fontVariant: ['tabular-nums'] }}>
                         {homeLeagueChestPct}%
                       </Text>
                     </View>
-                    <View style={{ height: 8, borderRadius: 5, overflow: 'hidden', backgroundColor: leagueBonusPalette.track }}>
-                      <LinearGradient colors={homeLeagueChestFill} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{ height: '100%', width: `${homeLeagueChestPct}%` as any, borderRadius: 5 }}/>
-                    </View>
                   </View>
                 </TouchableOpacity>
               </>
-              {/* зачем: владелец — плашка «Сезон» тем же полотном под «Целью лиги»,
-                  открывает /season_pass. Season Pass утверждён (docs/plans/
-                  2026-08-03-season-pass-gift-catalog.ru.md); экран пока витрина
-                  (жёсткий гейт владельца — выдача включится, когда все подарки
-                  станут рабочими). */}
-              <SeasonPassTodayCard
-                lang={lang}
-                panelTextColor={homeThemePanelText}
-                panelMutedColor={homeThemePanelMuted}
-                accentColor={t.accent}
-                trackColor={leagueBonusPalette.track}
-                hairlineColor={isLightTheme ? 'rgba(0,0,0,0.10)' : 'rgba(255,255,255,0.08)'}
-              />
+              {/* зачем 2026-08-03 (владелец: «сезон с главной надо перенести в
+                  турнир»): здесь стояла плашка «Сезон» (SeasonPassTodayCard),
+                  открывавшая /season_pass. Сезон переехал в хаб турниров, потому
+                  что дорожка теперь качается ТОЛЬКО турнирными звёздами — вход с
+                  главной обещал бы прогресс за обычную учёбу, которого больше
+                  нет. Точка входа одна: вкладка «Турниры». */}
             </LinearGradient>
           </View>
 

@@ -44,6 +44,7 @@ import {
   type TournamentV2,
 } from '../components/tournament/tournament_theme';
 import { TournamentEdgeState } from '../components/tournament/TournamentEdgeState';
+import { TournamentBackdrop } from '../components/tournament/TournamentBackdrop';
 import { tournamentAvatarLevel } from '../components/tournament/tournament_avatars';
 import {
   invalidateSeasonStandingsCache,
@@ -55,6 +56,7 @@ import {
   useTournamentRoom,
   type RoomPlayer,
 } from './tournament_client';
+import { creditTournamentStarsToSeason } from './season_pass_model';
 import { getStableId, peekStableId } from './stable_id';
 import { useLocalSearchParams } from 'expo-router';
 import { closeTournamentFlow } from './tournament_navigation';
@@ -281,6 +283,29 @@ export default function TournamentResultsScreen() {
   }, [runtimeActive, freshSnapshot, won]);
 
   /**
+   * Звёзды турнира идут в дорожку сезона.
+   *
+   * зачем 2026-08-03 (владелец: «сезон очки капали не за опыт а за звёзды»):
+   * это ЕДИНСТВЕННАЯ точка начисления сезонного прогресса. Берём итог отсюда, а
+   * не из экрана раунда, потому что здесь счёт уже финальный и подтверждён
+   * сервером — начислять по ходу игры значило бы двигать дорожку на числах,
+   * которые ещё могут измениться при досчёте раунда.
+   *
+   * Ждём freshSnapshot: кэшированный снапшот Firestore может нести устаревший
+   * счёт. Идемпотентность держит creditTournamentStarsToSeason по roomId —
+   * возврат на экран из разбора не начислит второй раз.
+   */
+  useEffect(() => {
+    if (!runtimeActive || !freshSnapshot || !roomId) return;
+    const earned = Math.max(0, Math.trunc(Number(me?.score ?? 0)));
+    if (earned <= 0) return;
+    void creditTournamentStarsToSeason(roomId, earned).catch(() => {
+      // Сбой сезонного счётчика не должен ломать экран итогов: жемчужины,
+      // подиум и разбор от него не зависят.
+    });
+  }, [freshSnapshot, me?.score, roomId, runtimeActive]);
+
+  /**
    * Забрать награду.
    *
    * зачем: сервер идемпотентен (повторный вызов не выдаёт приз дважды), но
@@ -349,6 +374,7 @@ export default function TournamentResultsScreen() {
           ? prev : { width, height }));
       }}
     >
+      <TournamentBackdrop variant="results" />
       <ScrollView
         contentContainerStyle={[
           styles.content,

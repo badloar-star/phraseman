@@ -61,6 +61,12 @@ import {
   type SeasonStandings,
   type WeeklyBankInfo,
 } from '../tournament_client';
+import {
+  hydrateSeasonPassProgress,
+  peekSeasonPassProgress,
+  SEASON_PASS_LEVELS,
+  type SeasonPassProgress,
+} from '../season_pass_model';
 import { resolveTournamentWindowState } from '../tournament_window_state';
 import { resolveTournamentHeroCopy } from '../tournament_hero_copy';
 import {
@@ -69,6 +75,7 @@ import {
   rememberPlayedWindow,
 } from '../tournament_played_window';
 import { Sheet } from '../../components/tournament/tournament_ui';
+import { TournamentBackdrop } from '../../components/tournament/TournamentBackdrop';
 import { useCountdown } from '../../components/tournament/TournamentCountdown';
 import {
   METAL,
@@ -408,6 +415,28 @@ export default function TournamentsScreen() {
     void loadPlayedWindowStartMs().then(setPlayedWindowStartMs).catch(() => {});
   }, []);
 
+  /**
+   * Прогресс квартального пропуска для карточки внизу хаба.
+   *
+   * зачем 2026-08-03: синхронный peek даёт финальную геометрию с первого кадра
+   * (Performance Bible — никакого default-then-patch), гидрация с диска догоняет
+   * фоном. Событие ловим, потому что игрок возвращается сюда сразу после итогов
+   * турнира, где звёзды уже начислены, — карточка обязана показать новое число
+   * без перезахода на вкладку.
+   */
+  const [seasonPass, setSeasonPass] = useState<SeasonPassProgress>(peekSeasonPassProgress);
+  useEffect(() => {
+    let alive = true;
+    void hydrateSeasonPassProgress().then((p) => { if (alive) setSeasonPass(p); }).catch(() => {});
+    const sub = onAppEvent('season_pass_stars_changed', () => {
+      if (alive) setSeasonPass(peekSeasonPassProgress());
+    });
+    return () => { alive = false; sub.remove(); };
+  }, []);
+  const seasonPassPct = seasonPass.levelCostStars > 0
+    ? Math.min(100, Math.round((seasonPass.intoLevelStars / seasonPass.levelCostStars) * 100))
+    : 100;
+
   const daySlotList = useMemo(() => enabledSlots(schedule?.slots ?? []), [schedule]);
 
   /**
@@ -704,6 +733,7 @@ export default function TournamentsScreen() {
 
   return (
     <View style={styles.root}>
+      <TournamentBackdrop variant="hub" />
       {/* Дыхание фона: мягкий свет акцента сверху — глубина без обводок. */}
       <LinearGradient
         colors={[P.sheen, 'transparent']}
@@ -955,6 +985,40 @@ export default function TournamentsScreen() {
         {/* зачем 2026-07-27 (владелец): без стрелки — просто кнопка «Таблица сезона». */}
         <TapScale onPress={() => router.push('/tournament_season')} style={styles.seasonMore}>
           <FlowText testID="tournaments-season-more" provenance="authored" style={styles.seasonMoreText}>Таблица сезона</FlowText>
+        </TapScale>
+
+        {/* зачем 2026-08-03 (владелец: «сезон с главной надо перенести в турнир»):
+            вход в квартальную дорожку переехал сюда с главной. Здесь ему и место:
+            дорожка качается только турнирными звёздами, поэтому открывать её из
+            учебного экрана значило бы обещать прогресс за уроки, которого нет.
+            Прогресс показан числом уровня и полосой — игрок видит, далеко ли до
+            следующей награды, ещё до перехода. */}
+        <TapScale
+          testID="tournaments-season-pass-open"
+          onPress={() => router.push('/season_pass')}
+          style={styles.seasonPassCard}
+          accessibilityRole="button"
+          accessibilityLabel={`Пропуск сезона, уровень ${seasonPass.level} из ${SEASON_PASS_LEVELS}`}
+        >
+          <View style={styles.seasonPassHeader}>
+            <FlowText testID="tournaments-season-pass-title" provenance="authored" style={styles.seasonPassTitle}>
+              Пропуск сезона
+            </FlowText>
+            <View style={styles.rowStars}>
+              <StarGlyph size={13} color={P.gold} />
+              <FlowText testID="tournaments-season-pass-level" provenance="authored" style={styles.rowStarsText}>
+                {seasonPass.level}/{SEASON_PASS_LEVELS}
+              </FlowText>
+            </View>
+          </View>
+          <View style={styles.seasonPassTrack}>
+            <View style={[styles.seasonPassFill, { width: `${seasonPassPct}%` }]} />
+          </View>
+          <FlowText testID="tournaments-season-pass-next" provenance="authored" style={styles.seasonPassHint}>
+            {seasonPass.level >= SEASON_PASS_LEVELS
+              ? 'Сезон пройден полностью'
+              : `${seasonPass.intoLevelStars} из ${seasonPass.levelCostStars} звёзд до уровня ${seasonPass.level + 1}`}
+          </FlowText>
         </TapScale>
       </BouncyScrollView>
 
@@ -1243,6 +1307,20 @@ const makeStyles = (P: TournamentV2) => StyleSheet.create({
     paddingVertical: 12,
   },
   seasonMoreText: { fontSize: 15, fontWeight: '800', color: P.muted, flexShrink: 1 },
+
+  // Карточка квартального пропуска. Разделение тоном и скруглением, без обводок.
+  seasonPassCard: {
+    backgroundColor: P.card,
+    borderRadius: radius.md,
+    paddingHorizontal: 14,
+    paddingVertical: 14,
+    gap: 10,
+  },
+  seasonPassHeader: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 10 },
+  seasonPassTitle: { fontSize: 16, fontWeight: '900', color: P.text, flexShrink: 1 },
+  seasonPassTrack: { height: 8, borderRadius: 4, overflow: 'hidden', backgroundColor: P.bg },
+  seasonPassFill: { height: '100%', borderRadius: 4, backgroundColor: P.gold },
+  seasonPassHint: { fontSize: 13, fontWeight: '700', color: P.muted }, // guard-ok: живой индикатор прогресса под полосой («12 из 65 звёзд до уровня 4»), числа меняются после каждого турнира — не расшифровка названия карточки
   // зачем: пустая таблица в начале недели — нормальное состояние (боты в
   // рейтинг не идут), текст объясняет это вместо заглушки с выдуманными людьми.
   seasonEmpty: {

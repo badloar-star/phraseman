@@ -726,6 +726,12 @@ const PodiumColumn = memo(function PodiumColumn({
       accessibilityRole="button"
       accessibilityLabel={`${winner.name}, ${winner.place} место. Открыть карточку игрока`}
     >
+      {/* зачем 2026-08-03: TapScale заворачивает детей в собственный Animated.View
+          без стилей. Внутри podiumColumn с alignItems:'center' этот слой схлопывался
+          по ширине самого широкого ребёнка (ника), и ступень с width:'100%' мерила
+          100% от ника, а не от колонки — тумбы превращались в узкие полоски разной
+          ширины. Растягиваем слой сами: ширина ступени снова равна ширине колонки. */}
+      <View style={styles.podiumColumnInner}>
       {/* Награда призёра: настоящая сумма с сервера, а не выдуманная. */}
       {gems > 0 ? (
         <Animated.View style={[styles.podiumGems, gemsStyle]}>
@@ -781,6 +787,7 @@ const PodiumColumn = memo(function PodiumColumn({
         {/* eslint-disable-next-line text-integrity/no-unsafe-text-truncation -- цифра внутри ступени пьедестала фиксированной высоты */}
         <Text style={styles.podiumPlace} allowFontScaling={false}>{winner.place}</Text>
       </Animated.View>
+      </View>
     </TapScale>
   );
 });
@@ -801,6 +808,9 @@ const makeStyles = (P: TournamentV2) => StyleSheet.create({
   podiumThemeArt: { position: 'absolute', left: 0, right: 0, bottom: 0, width: undefined, height: 176, opacity: 0.18 },
   podium: { zIndex: 1, flexDirection: 'row', alignItems: 'flex-end', gap: 8 },
   podiumColumn: { flex: 1, alignItems: 'center' },
+  // Внутренний слой TapScale: занимает всю колонку, центрируя содержимое.
+  // Без него ступень (width:'100%') меряется от ника, а не от колонки.
+  podiumColumnInner: { alignSelf: 'stretch', alignItems: 'center' },
   crown: { fontSize: 26, marginBottom: 2 },
   crownSpacer: { height: 28 },
   podiumAvatar: {
@@ -819,7 +829,8 @@ const makeStyles = (P: TournamentV2) => StyleSheet.create({
     shadowOffset: { width: 0, height: 0 },
     elevation: 8,
   },
-  podiumName: { fontSize: 14, fontWeight: '800', color: P.text, marginTop: 8 },
+  // maxWidth:'100%' — длинный ник не растягивает колонку и не лезет на соседа.
+  podiumName: { fontSize: 14, fontWeight: '800', color: P.text, marginTop: 8, maxWidth: '100%', textAlign: 'center' },
   podiumScoreRow: { flexDirection: 'row', alignItems: 'center', gap: 5, marginTop: 2 },
   podiumScore: { ...type.label, fontWeight: '600', color: P.muted, marginTop: 2, fontVariant: ['tabular-nums'] },
   podiumBlock: {

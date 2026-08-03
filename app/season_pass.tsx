@@ -34,10 +34,10 @@ import {
   type SeasonPassProgress,
 } from './season_pass_model';
 import {
-  SEASON_AURA_STAGE_ASSETS,
-  SEASON_REWARD_ICONS,
-  SEASON_SECRET_AURA_ASSET,
   SEASON_TRACK,
+  getSeasonAuraStageAsset,
+  getSeasonRewardIcon,
+  getSeasonSecretAuraAsset,
   type SeasonReward,
   type SeasonTrackNode,
 } from './season_pass_track_config';
@@ -46,8 +46,11 @@ import SeasonGiftModal from '../components/SeasonGiftModal';
 import { addSeasonPassGift, loadPendingSeasonPassGiftCount } from './season_pass_gift_inventory';
 import { seasonBuyPassOnServer, seasonClaimRewardOnServer } from './season_pass_server';
 import { getShardsBalance, loadShardsFromCloud } from './shards_system';
+import { getVerifiedPremiumAccessStatus } from './premium_guard';
 
-const ROW_HEIGHT = 96;
+const ROW_HEIGHT = 108;
+export const SEASON_REWARD_ART_SIZE = 58;
+export const SEASON_AURA_ART_SIZE = 64;
 const NODE_COLUMN_WIDTH = 56;
 const SPINE_WIDTH = 4;
 // зачем: владелец — «искривление на разных типах подарков» вместо прямой линии,
@@ -63,8 +66,10 @@ function spineWaveOffsetForKind(kind: string | undefined): number {
   for (let i = 0; i < kind.length; i++) hash = (hash * 31 + kind.charCodeAt(i)) | 0;
   return ((hash % 100) / 100) * SPINE_WAVE_AMPLITUDE * 2 - SPINE_WAVE_AMPLITUDE;
 }
-// зачем: владелец, 2026-08-03 — цена поднята с 250 до 350 (его прямое решение).
-const SEASON_PASS_PRICE_PEARLS = 350;
+// зачем: владелец, 2026-08-03 — финальное решение: 250 жемчужин ДЛЯ ВСЕХ (не
+// 350). Разница между фри и премиум не в цене, а в том, что премиум получает
+// платную линию БЕСПЛАТНО льготой подписки — покупка ему просто не показывается.
+const SEASON_PASS_PRICE_PEARLS = 250;
 
 const REWARD_LABELS: Record<SeasonReward['kind'], Record<Lang, string>> = {
   pearls:            { ru: 'Жемчужины', uk: 'Перлини', es: 'Perlas', 'pt-BR': 'Pérolas', vi: 'Ngọc trai', id: 'Mutiara', tr: 'İnciler', pl: 'Perły' },
@@ -104,6 +109,11 @@ export default function SeasonPassScreen() {
   const [openReward, setOpenReward] = useState<{ reward: SeasonReward; giftId: string } | null>(null);
   const [claimed, setClaimed] = useState<ClaimedMap>({});
   const [passOwned, setPassOwned] = useState(false);
+  // зачем: владелец, 2026-08-03 — «пропуск 250 для всех, но премиум хапает
+  // обе стороны, фри только фри». Pro/Plus получает pass-линию БЕСПЛАТНО как
+  // льготу подписки (не покупает отдельно), фри-юзер для той же линии обязан
+  // купить пропуск — laneUnlocked ниже читает ЭТОТ флаг, не passOwned одному.
+  const [isPremium, setIsPremium] = useState(false);
   const [buying, setBuying] = useState(false);
   const [buyConfirmVisible, setBuyConfirmVisible] = useState(false);
   const [userName, setUserName] = useState<string | null>(null);
@@ -134,20 +144,27 @@ export default function SeasonPassScreen() {
       } catch { /* то же */ }
       setUserName(pairs[2]?.[1] ?? null);
     }).catch(() => {});
-    const subXp = onAppEvent('season_pass_xp_changed', () => {
+    getVerifiedPremiumAccessStatus().then((active) => { if (alive) setIsPremium(active); }).catch(() => {});
+    const subStars = onAppEvent('season_pass_stars_changed', () => {
       if (alive) setProgress(peekSeasonPassProgress());
     });
     const subGifts = onAppEvent('season_pass_gift_inventory_changed', () => {
       if (alive) refreshPendingGiftCount();
     });
-    return () => { alive = false; subXp.remove(); subGifts.remove(); };
+    const subPremium = onAppEvent('premium_access_changed', ({ active }) => {
+      if (alive) setIsPremium(active);
+    });
+    return () => { alive = false; subStars.remove(); subGifts.remove(); subPremium.remove(); };
   }, [refreshPendingGiftCount]);
 
   const daysLeft = seasonPassDaysLeft();
   const pearlIcon = pearlIconForTheme(themeMode);
-  const pct = progress.levelCostXp > 0
-    ? Math.min(100, Math.round((progress.intoLevelXp / progress.levelCostXp) * 100))
+  const pct = progress.levelCostStars > 0
+    ? Math.min(100, Math.round((progress.intoLevelStars / progress.levelCostStars) * 100))
     : 100;
+  // Pro/Plus владеет обеими линиями наград БЕЗ покупки (владелец: «премиум
+  // хапает обе стороны, фри только фри») — покупка за 250 актуальна лишь фри.
+  const laneUnlockedForPass = isPremium || passOwned;
 
   const persistClaims = useCallback((next: ClaimedMap) => {
     AsyncStorage.setItem(CLAIMED_LEVELS_KEY, JSON.stringify(next)).catch(() => {});
@@ -220,26 +237,26 @@ export default function SeasonPassScreen() {
     // Серверная фиксация клейма (идемпотентна): pearls/plus_days выдаёт сервер,
     // статусы дублируются в облачный снапшот для переезда на новое устройство.
     void seasonClaimRewardOnServer({
-      level, side, kind: reward.kind, amount: reward.amount, totalXp: progress.totalXp,
+      level, side, kind: reward.kind, amount: reward.amount, totalStars: progress.totalStars,
     }).then((res) => {
       if (res?.ok && reward.kind === 'pearls') void loadShardsFromCloud().catch(() => {});
     });
-  }, [claimed, persistClaims, progress.totalXp, refreshPendingGiftCount, seasonId]);
+  }, [claimed, persistClaims, progress.totalStars, refreshPendingGiftCount, seasonId]);
 
   const renderReward = useCallback((reward: SeasonReward | undefined, side: 'free' | 'pass', reached: boolean, level: number) => {
     // Пустая сторона — прозрачный заполнитель ТОЙ ЖЕ формы, что и карточка,
     // чтобы высота строки была одинаковой независимо от того, где лежит награда
     // (макет: узкая колонка с одной картой, вторая половина строки пуста).
     if (!reward) return <View style={{ flex: 1, alignSelf: 'stretch' }} />;
-    const icon = SEASON_REWARD_ICONS[reward.kind];
+    const icon = getSeasonRewardIcon(reward.kind, themeMode);
     const label = REWARD_LABELS[reward.kind][lang]
       + (reward.kind === 'aura_stage' ? ` ${['I', 'II', 'III', 'IV'][Math.max(0, (reward.amount ?? 1) - 1)]}` : '')
       + (reward.kind === 'plus_days' || reward.kind === 'xp_bank' ? ` ${reward.amount ?? ''}` : '');
     const isPassLane = side === 'pass';
-    // Платная линия клеймится ТОЛЬКО после покупки (passOwned) — выдавать её
-    // бесплатно значило бы дыру мимо кассы; до покупки на плитке замочек.
+    // Платная линия клеймится после покупки ИЛИ автоматом для Premium (владелец:
+    // «премиум хапает обе стороны, фри только фри») — до этого на плитке замочек.
     const isClaimed = !!claimed[`${seasonId}:${level}:${side}`];
-    const laneUnlocked = !isPassLane || passOwned;
+    const laneUnlocked = !isPassLane || laneUnlockedForPass;
     const claimable = laneUnlocked && reached && !isClaimed;
     const Wrapper = claimable ? TouchableOpacity : View;
     const wrapperProps = claimable
@@ -249,11 +266,14 @@ export default function SeasonPassScreen() {
       <Wrapper {...wrapperProps} style={{
         flex: 1,
         alignSelf: 'stretch',
-        flexDirection: 'row',
+        flexDirection: 'column',
         alignItems: 'center',
-        gap: 8,
+        justifyContent: 'center',
+        gap: 2,
         borderRadius: 16,
-        paddingHorizontal: 10,
+        paddingHorizontal: 8,
+        paddingVertical: 6,
+        position: 'relative',
         backgroundColor: isPassLane ? t.goldBg : t.bgCard,
         opacity: reached ? (isClaimed ? 0.55 : 1) : 0.72,
       }}>
@@ -267,14 +287,15 @@ export default function SeasonPassScreen() {
                 // season_finale = финальный вихрь (стадия IV), aura_secret —
                 // пурпурный эксклюзив уровня 50; общую корону не показываем.
                 const asset = reward.kind === 'aura_secret'
-                  ? SEASON_SECRET_AURA_ASSET
-                  : SEASON_AURA_STAGE_ASSETS[
-                    reward.kind === 'season_finale' ? 3 : Math.max(0, Math.min(3, (reward.amount ?? 1) - 1))
-                  ];
+                  ? getSeasonSecretAuraAsset(themeMode)
+                  : getSeasonAuraStageAsset(
+                    reward.kind === 'season_finale' ? 4 : (reward.amount ?? 1),
+                    themeMode,
+                  );
                 return (
                   <SeasonAuraRing
                     source={asset.source}
-                    size={38}
+                    size={SEASON_AURA_ART_SIZE}
                     pulse={asset.pulse}
                     spin={asset.spin}
                     pulseDurationMs={asset.pulseMs}
@@ -283,24 +304,24 @@ export default function SeasonPassScreen() {
                 );
               })()
             : icon
-              ? <Image source={icon} style={{ width: 34, height: 34 }} resizeMode="contain" accessible={false} />
+              ? <Image source={icon} style={{ width: SEASON_REWARD_ART_SIZE, height: SEASON_REWARD_ART_SIZE }} resizeMode="contain" accessible={false} />
               : null}
         <FlowText
           testID={`season-pass-reward-label-${level}-${side}`}
           provenance="authored"
-          style={{ flex: 1, color: t.textOnCard, fontSize: 11.5, fontWeight: '700', lineHeight: 14 }}
+          style={{ color: t.textOnCard, fontSize: 11.2, fontWeight: '800', lineHeight: 13.5, textAlign: 'center' }}
         >
           {reward.kind === 'pearls' ? '' : label}
         </FlowText>
         {claimable && (
-          <Ionicons name="checkmark-circle-outline" size={18} color={t.textOnCard} />
+          <Ionicons name="checkmark-circle-outline" size={18} color={t.textOnCard} style={{ position: 'absolute', top: 7, right: 7 }} />
         )}
-        {isPassLane && !passOwned && (
-          <Ionicons name="lock-closed" size={14} color={t.textMuted} />
+        {isPassLane && !laneUnlockedForPass && (
+          <Ionicons name="lock-closed" size={14} color={t.textMuted} style={{ position: 'absolute', top: 8, right: 8 }} />
         )}
       </Wrapper>
     );
-  }, [claimed, lang, onClaimReward, passOwned, pearlIcon, seasonId, t]);
+  }, [claimed, laneUnlockedForPass, lang, onClaimReward, pearlIcon, seasonId, t, themeMode]);
 
   const renderItem = useCallback(({ item, index }: ListRenderItemInfo<SeasonTrackNode>) => {
     const reached = progress.level >= item.level;
@@ -322,25 +343,36 @@ export default function SeasonPassScreen() {
       <View style={{ height: ROW_HEIGHT, flexDirection: 'row', alignItems: 'stretch', gap: 8, paddingHorizontal: 14 }}>
         {renderReward(item.free, 'free', reached, item.level)}
         <View style={{ width: NODE_COLUMN_WIDTH, alignItems: 'center', justifyContent: 'center' }}>
-          {/* Хребет: ОДНА непрерывная SVG-кривая на строку (не два прямоугольника
-              со швом на стыке — прежняя причина видимого разрыва линии). Верхняя
-              половина идёт от X-изгиба предыдущего узла к текущему, нижняя — от
-              текущего к следующему; оба конца совпадают с соседними строками
-              математически (тот же spineWaveOffsetForKind), не только визуально. */}
-          <Svg width={NODE_COLUMN_WIDTH} height={ROW_HEIGHT} style={{ position: 'absolute', top: 0, left: 0 }}>
-            {index > 0 && (
+          {/* Хребет: ОДНА непрерывная SVG-кривая через ВСЮ строку (не два отдельных
+              Path сверху/снизу узла — та версия визуально рвалась на стыке узла:
+              две независимые кривые, встречавшиеся ровно в точке узла, но узел
+              поверх неё (zIndex:2) перекрывал место стыка, и глаз читал разрыв).
+              Теперь один Path от верхнего края строки до нижнего, узел просто
+              рисуется поверх её середины — линия физически цела под ним. */}
+          <Svg width={NODE_COLUMN_WIDTH} height={ROW_HEIGHT} viewBox={`0 0 ${NODE_COLUMN_WIDTH} ${ROW_HEIGHT}`} style={{ position: 'absolute', top: 0, left: 0 }}>
+            <Path
+              d={`M ${cx + prevOffset} 0 C ${cx + prevOffset} ${halfH * 0.5}, ${cx + curOffset} ${halfH * 0.5}, ${cx + curOffset} ${halfH} S ${cx + nextOffset} ${halfH * 1.5}, ${cx + nextOffset} ${ROW_HEIGHT}`}
+              stroke={t.bgSurface}
+              strokeWidth={SPINE_WIDTH}
+              strokeLinecap="round"
+              fill="none"
+            />
+            {/* Пройденный участок поверх серой подложки, тем же путём — золото
+                просто перекрашивает часть кривой, а не рисует другую геометрию,
+                поэтому цветной и серый куски НИКОГДА не расходятся по форме. */}
+            {index > 0 && topReached && (
               <Path
-                d={`M ${cx + prevOffset} 0 Q ${cx + curOffset} ${halfH * 0.6} ${cx + curOffset} ${halfH}`}
-                stroke={topReached ? t.gold : t.bgSurface}
+                d={`M ${cx + prevOffset} 0 C ${cx + prevOffset} ${halfH * 0.5}, ${cx + curOffset} ${halfH * 0.5}, ${cx + curOffset} ${halfH}`}
+                stroke={t.gold}
                 strokeWidth={SPINE_WIDTH}
                 strokeLinecap="round"
                 fill="none"
               />
             )}
-            {!isLast && (
+            {!isLast && bottomReached && (
               <Path
-                d={`M ${cx + curOffset} ${halfH} Q ${cx + curOffset} ${halfH * 1.4} ${cx + nextOffset} ${ROW_HEIGHT}`}
-                stroke={bottomReached ? t.gold : t.bgSurface}
+                d={`M ${cx + curOffset} ${halfH} S ${cx + nextOffset} ${halfH * 1.5}, ${cx + nextOffset} ${ROW_HEIGHT}`}
+                stroke={t.gold}
                 strokeWidth={SPINE_WIDTH}
                 strokeLinecap="round"
                 fill="none"
@@ -440,28 +472,12 @@ export default function SeasonPassScreen() {
             })}
           </Text>
           <Text style={{ color: t.textPrimary, fontSize: 13, fontWeight: '800', fontVariant: ['tabular-nums'] }}>
-            {progress.intoLevelXp}/{progress.levelCostXp} XP
+            {progress.intoLevelStars}/{progress.levelCostStars} ⭐
           </Text>
         </View>
         <View style={{ height: 10, borderRadius: 6, overflow: 'hidden', backgroundColor: t.bgSurface }}>
           <View style={{ height: '100%', width: `${pct}%`, borderRadius: 6, backgroundColor: t.gold }} />
         </View>
-      </View>
-      {/* зачем: честность до старта — выдача наград включается серверным этапом,
-          экран не притворяется, что «Забрать» уже работает (гейт владельца). */}
-      <View style={{ marginTop: 10, borderRadius: 16, backgroundColor: t.accentBg, paddingHorizontal: 14, paddingVertical: 11 }}>
-        <Text style={{ color: t.textOnCard, fontSize: 13, fontWeight: '700', lineHeight: 18 }}>
-          {triLang(lang, {
-            ru: 'Очки капают за любые занятия. Дошёл до уровня — забирай награду с дорожки.',
-            uk: 'Бали крапають за будь-які заняття. Дійшов до рівня — забирай нагороду з доріжки.',
-            es: 'Ganas puntos con cada práctica. Al llegar a un nivel, reclama tu recompensa.',
-            'pt-BR': 'Você ganha pontos praticando. Ao alcançar um nível, resgate a recompensa.',
-            vi: 'Điểm tích lũy từ mọi buổi học. Đạt cấp là nhận thưởng trên lộ trình.',
-            id: 'Poin mengalir dari setiap latihan. Capai level, klaim hadiahnya.',
-            tr: 'Her çalışmadan puan gelir. Seviyeye ulaşınca ödülünü al.',
-            pl: 'Punkty lecą za każdą naukę. Osiągniesz poziom — odbierz nagrodę.',
-          })}
-        </Text>
       </View>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 6, marginTop: 16, marginBottom: 2 }}>
         <Text /* guard-ok: заголовок КОЛОНКИ дорожки (шапка таблицы над рядами наград), не подпись под названием экрана */ style={{ color: t.textMuted, fontSize: 12, fontWeight: '800', letterSpacing: 0.4 }}>
@@ -472,7 +488,7 @@ export default function SeasonPassScreen() {
         </Text>
       </View>
     </View>
-  ), [daysLeft, f.h1, lang, pct, pendingGiftCount, progress.intoLevelXp, progress.level, progress.levelCostXp, router, t]);
+  ), [daysLeft, f.h1, lang, pct, pendingGiftCount, progress.intoLevelStars, progress.level, progress.levelCostStars, router, t]);
 
   return (
     <View style={{ flex: 1, backgroundColor: t.bgPrimary }}>
@@ -489,9 +505,11 @@ export default function SeasonPassScreen() {
         contentContainerStyle={{ paddingTop: insets.top + 12, paddingBottom: 120 }}
         showsVerticalScrollIndicator={false}
       />
-      {!passOwned && (
+      {/* Кнопка покупки скрыта у Premium — платная линия уже открыта льготой
+          подписки, показывать «купить» за то, что и так бесплатно, — плохой UX. */}
+      {!laneUnlockedForPass && (
         <View style={{ position: 'absolute', left: 0, right: 0, bottom: 0, paddingHorizontal: 16, paddingBottom: insets.bottom + 14, paddingTop: 10 }}>
-          <TouchableOpacity
+          <TouchableOpacity /* guard-ok: видимый текст «Открыть пропуск 250» внутри — реальный лейбл, не декоративная кнопка */
             testID="season-pass-buy"
             activeOpacity={0.85}
             onPress={onBuyPress}

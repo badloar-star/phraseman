@@ -46,7 +46,10 @@ export default function ReferralHowSheet({ visible, onClose }: ReferralHowSheetP
   const rules: readonly string[] = [
     L('Сколько друзей оформит подписку — столько ключей ты получишь.', 'Скільки друзів оформить підписку — стільки ключів ти отримаєш.', 'Recibes una llave por cada amigo que compre la suscripción.', 'Você recebe uma chave por cada amigo que assinar.', 'Bạn nhận một chìa khóa cho mỗi người bạn mua gói.', 'Kamu dapat satu kunci untuk setiap teman yang berlangganan.', 'Abone olan her arkadaş için bir anahtar kazanırsın.', 'Dostajesz klucz za każdego znajomego, który kupi subskrypcję.'),
     L('Выигрыш суммируется с текущим сроком Plus.', 'Виграш додається до поточного строку Plus.', 'El premio se suma a tu período Plus actual.', 'O prêmio é somado ao período Plus atual.', 'Phần thưởng được cộng vào thời hạn Plus hiện tại.', 'Hadiah ditambahkan ke masa Plus saat ini.', 'Ödül mevcut Plus sürene eklenir.', 'Nagroda dodaje się do obecnego okresu Plus.'),
-    L('Результат определяет сервер.', 'Результат визначає сервер.', 'El servidor determina el resultado.', 'O servidor determina o resultado.', 'Máy chủ xác định kết quả.', 'Server menentukan hasilnya.', 'Sonucu sunucu belirler.', 'Wynik ustala serwer.'),
+    // зачем: владелец (2026-08-03) — «результат определяет сервер» читалось как
+    // «крутилка ненастоящая, всё решено заранее». Смысл тот же (исход честный и
+    // не подкручивается), но на языке игрока: приз выпадает случайно.
+    L('Приз выпадает случайно — шанс есть у каждого ключа.', 'Приз випадає випадково — шанс є в кожного ключа.', 'El premio es aleatorio: cada llave tiene su oportunidad.', 'O prêmio é aleatório: cada chave tem sua chance.', 'Phần thưởng là ngẫu nhiên — mỗi chìa khóa đều có cơ hội.', 'Hadiah acak — setiap kunci punya peluang.', 'Ödül rastgele — her anahtarın şansı var.', 'Nagroda jest losowa — każdy klucz ma szansę.'),
   ];
 
   return (

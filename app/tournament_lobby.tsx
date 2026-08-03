@@ -23,17 +23,20 @@ import * as Haptics from 'expo-haptics';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
-import { Sheet } from '../components/tournament/tournament_ui';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import AvatarView from '../components/AvatarView';
+import UnifiedPlayerModal, { type PlayerInfo } from '../components/PlayerProfileModal';
+import { tournamentBotCardInfo } from '../components/tournament/tournament_bot_card';
+import { fetchFriendProfilesBatch, type FriendProfileBatchRecord } from './friends_profiles_batch';
 import {
   V2Card,
   V2Counter,
-  V2Cta,
   V2Segments,
 } from '../components/tournament/tournament_v2_ui';
 import { tournamentAvatarLevel, tournamentAvatarValue } from '../components/tournament/tournament_avatars';
 import { T, formatTimeLeft, hexToRgba, radius, type, useTournamentPalette, type TournamentPalette} from '../components/tournament/tournament_theme';
 import { TournamentEdgeState } from '../components/tournament/TournamentEdgeState';
+import { TournamentBackdrop } from '../components/tournament/TournamentBackdrop';
 import { TournamentFxHost, type TournamentFxApi } from '../components/tournament/TournamentFx';
 import {
   isRoundState, leaveTournament, resolveTournamentLobbyRoute, resolveTournamentRoomIdParam,
@@ -57,25 +60,17 @@ const REACTIONS = ['👍', '🔥', '😎', '⚔️', '🍀'] as const;
 
 type Seat = {
   id: number;
+  /** Стабильный id игрока комнаты: p_… у ботов, stable uid у людей. */
+  uid: string;
+  isBot: boolean;
   name: string;
   /** Значение для AvatarView: индекс или custom:... — НЕ эмодзи. */
   avatar: string;
   aura?: string;
   color: string;
   streak: number;
-  rank: string;
-  winRate: number;
-  played: number;
   isYou?: boolean;
 };
-
-/** Ранг по числу сыгранных турниров — сервер его не считает, это витрина. */
-function rankForPlayed(played: number): string {
-  if (played >= 300) return 'Легенда';
-  if (played >= 120) return 'Мастер';
-  if (played >= 40) return 'Знаток';
-  return 'Ученик';
-}
 
 /**
  * Игроки комнаты → места сетки.
@@ -97,23 +92,19 @@ function rankForPlayed(played: number): string {
  * присутствующими всегда — иначе лобби таких комнат осталось бы пустым.
  */
 function mapPlayersToSeats(players: readonly RoomPlayer[], myId: string | null): Seat[] {
-  return players.slice(0, SEATS).map((player, index) => {
-    const played = Number((player as { played?: number }).played ?? 0);
-    return {
-      id: index + 1,
-      name: player.name || 'Игрок',
-      // зачем 2026-07-27: было эмодзи-«лицо» — правило владельца требует
-      // НАСТОЯЩИЕ аватары приложения (те же, что в лигах и друзьях).
-      avatar: tournamentAvatarValue({ id: player.id, isBot: player.isBot, avatar: player.avatar }),
-      aura: player.aura,
-      color: player.color || '#8AB49A',
-      streak: Number(player.streak ?? 0),
-      rank: rankForPlayed(played),
-      winRate: Math.round(Number((player as { botWinRate?: number }).botWinRate ?? 0) * 100) || 0,
-      played,
-      isYou: Boolean(myId) && player.id === myId,
-    };
-  });
+  return players.slice(0, SEATS).map((player, index) => ({
+    id: index + 1,
+    uid: player.id,
+    isBot: Boolean(player.isBot),
+    name: player.name || 'Игрок',
+    // зачем 2026-07-27: было эмодзи-«лицо» — правило владельца требует
+    // НАСТОЯЩИЕ аватары приложения (те же, что в лигах и друзьях).
+    avatar: tournamentAvatarValue({ id: player.id, isBot: player.isBot, avatar: player.avatar }),
+    aura: player.aura,
+    color: player.color || '#8AB49A',
+    streak: Number(player.streak ?? 0),
+    isYou: Boolean(myId) && player.id === myId,
+  }));
 }
 
 type LobbyBotArrival = NonNullable<Room['lobbyEvents']>[number];
@@ -197,7 +188,9 @@ export default function TournamentLobbyScreen() {
   const runtimeActive = useRuntimeActive();
 
   const { room, status, freshSnapshot, secondsLeft, retry } = useTournamentRoom(roomId, runtimeActive);
-  const [selected, setSelected] = useState<Seat | null>(null);
+  // Карточка участника — ШТАТНАЯ PlayerProfileModal (владелец 2026-08-03:
+  // «не процент побед, а обычная карточка как у всех юзеров»).
+  const [selectedPlayer, setSelectedPlayer] = useState<PlayerInfo | null>(null);
   const leavingRef = useRef(false);
   const [myId, setMyId] = useState<string | null>(null);
   // authUid нужен, чтобы не проигрывать СВОЮ реакцию дважды: один раз
@@ -273,6 +266,100 @@ export default function TournamentLobbyScreen() {
     () => seats.find((seat) => seat.isYou)?.name ?? 'Игрок',
     [seats],
   );
+
+  /**
+   * Свой профиль для карточки — из локального снимка, без сети (паттерн 1:1
+   * как в tournament_season.tsx). Нужен модалке для isMe-карточки и сравнения.
+   */
+  const [myProfile, setMyProfile] = useState<{
+    name: string; avatar: string; frame: string; totalXP: number;
+    streak: number | null; leagueId: number | undefined;
+  }>(() => ({ name: 'Я', avatar: '', frame: '', totalXP: 0, streak: null, leagueId: undefined }));
+  useEffect(() => {
+    let alive = true;
+    void AsyncStorage.multiGet(['user_name', 'user_avatar', 'user_frame', 'user_total_xp', 'streak_count', 'league_state_v3'])
+      .then((pairs: readonly (readonly [string, string | null])[]) => {
+        if (!alive) return;
+        const map = new Map(pairs.map(([key, value]) => [key, value ?? '']));
+        let leagueId: number | undefined;
+        try {
+          const rawLeague = map.get('league_state_v3');
+          if (rawLeague) leagueId = Number((JSON.parse(rawLeague) as { leagueId?: number }).leagueId);
+        } catch { /* лига не критична для карточки */ }
+        setMyProfile({
+          name: (map.get('user_name') ?? '').trim() || 'Я',
+          avatar: (map.get('user_avatar') ?? '').trim(),
+          frame: (map.get('user_frame') ?? '').trim(),
+          totalXP: Number(map.get('user_total_xp') ?? 0) || 0,
+          streak: Number(map.get('streak_count') ?? 0) || 0,
+          leagueId: Number.isFinite(leagueId) ? leagueId : undefined,
+        });
+      })
+      .catch(() => {});
+    return () => { alive = false; };
+  }, []);
+
+  /**
+   * Реальные соперники (не боты): их честный профиль (уровень/премиум)
+   * подтягиваем ОДНИМ батчем заранее, чтобы карточка по тапу открылась сразу
+   * с настоящими цифрами. В обычной комнате людей 0–2, чаще всего вызова нет
+   * вовсе; хелпер держит TTL-кэш 5 минут и никогда не бросает.
+   */
+  const strangerUidsKey = useMemo(
+    () => seats.filter((seat) => !seat.isBot && !seat.isYou).map((seat) => seat.uid).sort().join(','),
+    [seats],
+  );
+  const [strangerProfiles, setStrangerProfiles] = useState<Record<string, FriendProfileBatchRecord | null>>({});
+  useEffect(() => {
+    if (!strangerUidsKey) return;
+    let cancelled = false;
+    void fetchFriendProfilesBatch(strangerUidsKey.split(',')).then((profiles) => {
+      if (!cancelled) setStrangerProfiles((prev) => ({ ...prev, ...profiles }));
+    });
+    return () => { cancelled = true; };
+  }, [strangerUidsKey]);
+
+  /**
+   * Тап по месту → штатная карточка. Открытие МГНОВЕННОЕ (Optimistic UI):
+   * бот собирается детерминированно без сети; человек — из префетча, а модалка
+   * сама доуточнит опыт по uid фоном.
+   */
+  const openSeat = useCallback((seat: Seat) => {
+    if (seat.isBot) {
+      setSelectedPlayer(tournamentBotCardInfo(seat));
+      return;
+    }
+    if (seat.isYou) {
+      setSelectedPlayer({
+        name: seat.name,
+        points: myProfile.totalXP,
+        totalXp: myProfile.totalXP,
+        isMe: true,
+        avatar: myProfile.avatar || seat.avatar,
+        aura: seat.aura,
+        streak: myProfile.streak,
+        leagueId: myProfile.leagueId,
+      });
+      return;
+    }
+    const known = strangerProfiles[seat.uid];
+    setSelectedPlayer({
+      name: seat.name,
+      points: known?.totalXp ?? 0,
+      totalXp: known?.totalXp,
+      isMe: false,
+      uid: seat.uid,
+      avatar: known?.avatar || seat.avatar,
+      aura: seat.aura,
+      streak: null,
+      isPremium: known?.isPremium,
+      isVip: known?.isVip,
+      isLifetime: known?.isLifetime,
+      profileCardLevel: known?.profileCardLevel,
+    });
+  }, [myProfile, strangerProfiles]);
+  const closePlayer = useCallback(() => setSelectedPlayer(null), []);
+
   const joined = seats.length;
   const full = joined >= SEATS;
   const secondsToStart = secondsLeft;
@@ -392,6 +479,7 @@ export default function TournamentLobbyScreen() {
           ? prev : { width, height }));
       }}
     >
+      <TournamentBackdrop variant="lobby" />
       <ScrollView
         contentContainerStyle={[
           styles.content,
@@ -414,13 +502,23 @@ export default function TournamentLobbyScreen() {
         </View>
         <Text style={styles.leaveError} />
 
-        {/* Статус сбора + таймер */}
+        {/* Статус сбора + таймер.
+            зачем 2026-08-03 (владелец: «собрались уже все, написано „все на
+            месте“, но я висел на этом экране дольше — попал на первое задание,
+            осталось 3 секунды»): таймер прятался по `!full` — как только
+            занимались все 16 мест (в том числе ботами), надпись менялась на
+            «Все на месте» и цифра исчезала ПОЛНОСТЬЮ, хотя переход в раунд
+            решает не заполненность мест, а серверный stateDeadlineAtMs (интро/
+            отсчёт лобби), который истекает позже. Игрок терял единственный
+            ориентир именно в конце ожидания. Секунды из secondsToStart считает
+            useTournamentRoom от того же дедлайна всё время — просто рисуем его,
+            пока отсчёт идёт, а не пока места свободны. */}
         <V2Card pad={20}>
           <View style={styles.statusRow}>
             <Text style={[styles.statusText, { color: full ? P.accent : P.text }]}>
               {full ? 'Все на месте' : 'Собираем игроков'}
             </Text>
-            {!full ? (
+            {secondsToStart > 0 ? (
               /* зачем: text-integrity — масштабирование шрифта не отключаем;
                  таймер в гибком ряду, при крупном шрифте ряд растёт. */
               <FlowText testID="lobby-status-timer" provenance="authored" style={styles.statusTimer}>
@@ -455,7 +553,7 @@ export default function TournamentLobbyScreen() {
             return (
               <View key={`seat-${index}`} style={styles.seatSlot}>
                 {seat ? (
-                  <SeatCard seat={seat} onPress={() => setSelected(seat)} />
+                  <SeatCard seat={seat} onPress={() => openSeat(seat)} />
                 ) : (
                   <View style={styles.seatEmpty} />
                 )}
@@ -489,39 +587,24 @@ export default function TournamentLobbyScreen() {
           реакции всех 16 участников поднимаются по своим дорожкам. */}
       <TournamentFxHost ref={fxRef} width={fxSize.width} height={fxSize.height} />
 
-      {/* Профиль игрока (макет 08) */}
-      <Sheet visible={!!selected} onClose={() => setSelected(null)}>
-        {selected ? (
-          <>
-            <View style={styles.profileAvatar}>
-              <AvatarView avatar={selected.avatar} level={tournamentAvatarLevel(selected.avatar)} auraId={selected.aura} size={72} animateAura={false} />
-            </View>
-            <Text style={styles.profileName}>{selected.name}</Text>
-            <Text style={styles.profileRank}>{selected.rank}</Text>
-            <View style={styles.profileStats}>
-              <ProfileStat label="Побед" value={`${selected.winRate}%`} />
-              <ProfileStat label="Турниров" value={String(selected.played)} />
-              <ProfileStat label="Серия" value={selected.streak ? `${selected.streak} 🔥` : '—'} />
-            </View>
-            {!selected.isYou ? <V2Cta tone="ghost" onPress={() => setSelected(null)}>В друзья</V2Cta> : null}
-          </>
-        ) : null}
-      </Sheet>
+      {/* Карточка участника — ШТАТНАЯ, как в друзьях/лигах/сезоне (владелец
+          2026-08-03: «не процент побед, а обычная карточка как у всех юзеров»).
+          Боту собирается детерминированная «биография» без единого запроса. */}
+      <UnifiedPlayerModal
+        player={selectedPlayer}
+        myInfo={{
+          name: myProfile.name,
+          avatar: myProfile.avatar,
+          frame: myProfile.frame,
+          totalXP: myProfile.totalXP,
+          streak: myProfile.streak,
+          leagueId: myProfile.leagueId,
+        }}
+        onClose={closePlayer}
+      />
     </View>
   );
 }
-
-const ProfileStat = memo(function ProfileStat({ label, value }: { label: string; value: string }) {
-  const P = useTournamentPalette();
-  const styles = React.useMemo(() => makeStyles(P), [P]);
-  return (
-    <View style={styles.profileStat}>
-      {/* зачем: text-integrity — стат в колонке-карточке, масштабирование не режем. */}
-      <FlowText testID="lobby-profile-stat-value" provenance="authored" style={styles.profileStatValue}>{value}</FlowText>
-      <Text style={styles.profileStatLabel}>{label}</Text>
-    </View>
-  );
-});
 
 const SeatCard = memo(function SeatCard({ seat, onPress }: { seat: Seat; onPress: () => void }) {
   const P = useTournamentPalette();
@@ -658,20 +741,4 @@ const makeStyles = (P: TournamentPalette) => StyleSheet.create({
     justifyContent: 'center',
   },
   reactionEmoji: { fontSize: 24 },
-
-  profileAvatar: {
-    alignSelf: 'center',
-    width: 72,
-    height: 72,
-    borderRadius: 999,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  profileEmoji: { fontSize: 34 },
-  profileName: { fontSize: 22, fontWeight: '900', color: P.text, textAlign: 'center', marginTop: 12 },
-  profileRank: { ...type.body, color: P.muted, textAlign: 'center', marginTop: 4 },
-  profileStats: { flexDirection: 'row', gap: 10, marginTop: 20, marginBottom: 20 },
-  profileStat: { flex: 1, alignItems: 'center', paddingVertical: 14, borderRadius: radius.md, backgroundColor: P.card },
-  profileStatValue: { fontSize: 20, fontWeight: '900', color: P.text, fontVariant: ['tabular-nums'] },
-  profileStatLabel: { ...type.label, fontWeight: '600', color: P.muted, marginTop: 4 },
 });

@@ -29,6 +29,7 @@ import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { LinearGradient } from 'expo-linear-gradient';
 import AvatarView from '../components/AvatarView';
 import {
+  formatTimeLeft,
   METAL,
   motion,
   placeColor,
@@ -41,6 +42,7 @@ import { StarGlyph } from '../components/tournament/TournamentFx';
 import { V2Counter } from '../components/tournament/tournament_v2_ui';
 import { tournamentAvatarLevel, tournamentAvatarValue } from '../components/tournament/tournament_avatars';
 import { TournamentEdgeState } from '../components/tournament/TournamentEdgeState';
+import { TournamentBackdrop } from '../components/tournament/TournamentBackdrop';
 import {
   hasTournamentTableSettledScores, isRoundState, orderTournamentPlayersForDisplay, resolveTournamentDisplayRoundNo, resolveTournamentRoomIdParam, shouldTableEnterRound, tournamentSharedPlacement, useTournamentRoom, type RoomPlayer } from './tournament_client';
 import { getStableId } from './stable_id';
@@ -208,6 +210,7 @@ export default function TournamentTableScreen() {
 
   return (
     <View style={styles.root}>
+      <TournamentBackdrop variant="table" />
       <View style={[styles.header, { paddingTop: insets.top + 12 }]}>
         <View style={styles.headerText}>
           <Text style={styles.title}>{spectating ? 'Смотрим турнир' : 'Таблица'}</Text>
@@ -248,13 +251,27 @@ export default function TournamentTableScreen() {
         ))}
       </ScrollView>
 
-      <Text style={[styles.hint, { paddingBottom: insets.bottom + 12 }]}>
-        {!scoresSettled
-          ? `Ждём остальных · ${secondsLeft}`
-          : spectating
-          ? (isFinal ? 'Финал — считаем итоги…' : `${liveLabel} · ${secondsLeft}`)
-          : (isFinal ? 'Считаем итоги…' : `Следующий раунд через ${secondsLeft}`)}
-      </Text>
+      {/* зачем 2026-08-03 (владелец: «на турнирной таблице надо точно показать
+          таймер сколько ещё ждать»): секунды уже считались верно — сервер сам
+          сокращает stateDeadlineAtMs, как только все живые игроки ответили
+          (см. allRealSubmitted/TOURNAMENT_EARLY_ADVANCE_DELAY_MS в
+          tournament_core.ts), поэтому secondsLeft не отстаёт и не забегает
+          вперёд. Проблема была в подаче: число слитно с текстом одной мелкой
+          строкой у самого низа экрана — легко не заметить. Таймер вынесен
+          крупной отдельной строкой, тем же языком, что statusTimer в лобби и
+          TimerRing в раунде задания. */}
+      <View style={[styles.hintRow, { paddingBottom: insets.bottom + 12 }]}>
+        <Text style={styles.hint}>
+          {!scoresSettled
+            ? 'Ждём остальных'
+            : spectating
+            ? (isFinal ? 'Финал — считаем итоги…' : liveLabel)
+            : (isFinal ? 'Считаем итоги…' : 'Следующий раунд через')}
+        </Text>
+        {(!scoresSettled || !isFinal) ? (
+          <Text style={styles.hintTimer}>{formatTimeLeft(secondsLeft)}</Text>
+        ) : null}
+      </View>
     </View>
   );
 }
@@ -455,5 +472,12 @@ const makeStyles = (P: TournamentV2) => StyleSheet.create({
     fontVariant: ['tabular-nums'],
   },
 
-  hint: { textAlign: 'center', ...type.body, color: P.ghost, marginTop: 18 },
+  hint: { textAlign: 'center', ...type.body, color: P.ghost },
+  hintRow: { alignItems: 'center', marginTop: 18, gap: 4 },
+  hintTimer: {
+    fontSize: 30,
+    fontWeight: '900',
+    color: P.text,
+    fontVariant: ['tabular-nums'],
+  },
 });

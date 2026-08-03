@@ -52,6 +52,14 @@ describe('tournament full-lobby immediate start contract', () => {
   it('has no disabled start CTA and never shows a zero timer after all sixteen are visible', () => {
     expect(lobby).not.toContain("'Начинаем'");
     expect(lobby).not.toMatch(/<V2Cta\s+disabled/);
-    expect(lobby).toContain('{!full ? (');
+    // зачем 2026-08-03 (владелец: «собрались уже все, написано „все на месте“,
+    // но я висел на этом экране дольше — попал на первое задание, осталось
+    // 3 секунды»): таймер раньше прятался по заполненности мест (!full), хотя
+    // переход решает серверный дедлайн лобби, а не число занятых сидений —
+    // игрок терял ориентир именно в конце ожидания. Условие сменилось на
+    // secondsToStart > 0: таймер живёт пока идёт реальный отсчёт, и по
+    // построению не может показать 0 — сильнее прежней гарантии этого теста.
+    expect(lobby).toContain('{secondsToStart > 0 ? (');
+    expect(lobby).not.toMatch(/\{!full \? \(/);
   });
 });

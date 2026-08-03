@@ -182,6 +182,17 @@ export default function LevelGiftsInventoryScreen() {
   const [multiplierBreakdown, setMultiplierBreakdown] = useState<MultiplierBreakdown | null>(null);
   const [userName, setUserName] = useState('');
   const [selected, setSelected] = useState<PendingLevelGiftInventoryItem | null>(null);
+  /**
+   * Вкладка раздела подарков.
+   *
+   * зачем 2026-08-03 (владелец: «подарки после активации просто исчезают… я хочу
+   * видеть в этом же разделе подраздел активные, и там пусть показываются все
+   * активные… когда заходим в раздел подарки, то видим вкладку инвентарь, а
+   * рядом кнопка переключает на активированные»): всё лежало в одном списке —
+   * неоткрытые подарки и уже действующие бонусы вперемешку, поэтому после
+   * применения подарок будто пропадал. Теперь это два явных раздела.
+   */
+  const [tab, setTab] = useState<'inventory' | 'active'>('inventory');
   const emptyGiftSurface = [giftTone(t.accent, '26'), t.bgCard, t.bgPrimary] as [string, string, string];
   const isLight = isLightThemeMode(themeMode);
   // зачем: точный пиксельный размер плитки вместо %/flexGrow — гарантирует
@@ -301,10 +312,48 @@ export default function LevelGiftsInventoryScreen() {
               </LinearGradient>
             </View>
             <View testID="level-gifts-inventory" style={{ gap: 10 }}>
-              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900', paddingHorizontal: 2 }}>
-                {triLang(lang, { ru: 'Подарки', uk: 'Подарунки', es: 'Regalos', 'pt-BR': 'Presentes', vi: 'Quà tặng', id: 'Hadiah', tr: 'Hediyeler', pl: 'Prezenty' })}
-              </Text>
-            {activeItems.length > 0 && (
+              {/* Переключатель разделов: слева неоткрытые подарки, справа уже
+                  действующие бонусы со своими таймерами. Счётчик на вкладке
+                  сразу говорит, есть ли там что-то, — без лишнего переключения. */}
+              <View style={{ flexDirection: 'row', gap: 8, paddingHorizontal: 2 }}>
+                {([
+                  { key: 'inventory' as const, label: triLang(lang, { ru: 'Инвентарь', uk: 'Інвентар', es: 'Inventario', 'pt-BR': 'Inventário', vi: 'Kho quà', id: 'Inventaris', tr: 'Envanter', pl: 'Ekwipunek' }), count: items.length },
+                  { key: 'active' as const, label: triLang(lang, { ru: 'Активные', uk: 'Активні', es: 'Activos', 'pt-BR': 'Ativos', vi: 'Đang bật', id: 'Aktif', tr: 'Aktif', pl: 'Aktywne' }), count: activeItems.length },
+                ]).map((entry) => {
+                  const isActiveTab = tab === entry.key;
+                  return (
+                    <TapScale
+                      key={entry.key}
+                      testID={`level-gifts-tab-${entry.key}`}
+                      onPress={() => { hapticTap(); setTab(entry.key); }}
+                      accessibilityRole="button"
+                      accessibilityState={{ selected: isActiveTab }}
+                      style={{
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        gap: 6,
+                        borderRadius: 999,
+                        paddingHorizontal: 14,
+                        paddingVertical: 8,
+                        // Разделяем тоном, без обводок: активная вкладка плотнее.
+                        backgroundColor: isActiveTab ? giftTone(t.accent, '2E') : t.bgSurface,
+                      }}
+                    >
+                      <Text style={{ color: isActiveTab ? t.accent : t.textMuted, fontSize: f.body, fontWeight: '900' }}>
+                        {entry.label}
+                      </Text>
+                      {entry.count > 0 && (
+                        <View style={{ minWidth: 20, height: 20, borderRadius: 10, paddingHorizontal: 6, alignItems: 'center', justifyContent: 'center', backgroundColor: isActiveTab ? t.accent : giftTone(t.textMuted, '33') }}>
+                          <Text /* guard-ok: счётчик-бейдж внутри вкладки (число подарков), а не подпись-расшифровка под названием */ style={{ color: isActiveTab ? t.bgPrimary : t.textMuted, fontSize: 11, fontWeight: '900', fontVariant: ['tabular-nums'] }}>
+                            {entry.count}
+                          </Text>
+                        </View>
+                      )}
+                    </TapScale>
+                  );
+                })}
+              </View>
+            {tab === 'active' && activeItems.length > 0 && (
               <View style={{ gap: 10 }}>
                 {activeItems.map((gift) => {
                   const chipStyle = {
@@ -320,7 +369,11 @@ export default function LevelGiftsInventoryScreen() {
                   };
                   const chipInner = (
                     <LinearGradient colors={[giftTone(gift.accent, '24'), t.bgCard, t.bgSurface]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={chipStyle}>
-                      <View pointerEvents="none" style={{ position: 'absolute', top: 0, left: 14, right: 14, height: 1, backgroundColor: giftTone(gift.accent, '66'), opacity: 0.8 }} />
+                      {/* зачем 2026-08-03 (владелец: «карточка горизонтальная
+                          (бонус), там жёлтая полоска наверху — удали её»):
+                          здесь была декоративная линия height:1 цветом акцента
+                          поверх карточки. Она не несла смысла и читалась как
+                          случайная царапина на градиенте. */}
                       <View style={{ width: 44, height: 44, borderRadius: 15, alignItems: 'center', justifyContent: 'center', backgroundColor: giftTone(gift.accent, '28') }}>
                         <Image source={getLevelGiftRewardIcon(gift.iconGiftId, themeMode)} style={{ width: 38, height: 38 }} contentFit="contain" />
                       </View>
@@ -384,8 +437,45 @@ export default function LevelGiftsInventoryScreen() {
                 })}
               </View>
             )}
-            {items.length === 0 ? (
-              activeItems.length > 0 ? null : (
+            {/* Пустая вкладка «Активные»: объясняем, что сюда попадает, а не
+                показываем голый экран. */}
+            {tab === 'active' && activeItems.length === 0 ? (
+              <LinearGradient
+                colors={emptyGiftSurface}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+                style={{ borderRadius: 22, padding: 22, borderWidth: 0, alignItems: 'center' }}
+              >
+                <View style={{ width: 58, height: 58, borderRadius: 18, alignItems: 'center', justifyContent: 'center', backgroundColor: `${t.accent}24`, marginBottom: 12 }}>
+                  <Ionicons name="flash-outline" size={28} color={t.accent} />
+                </View>
+                <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '900', textAlign: 'center' }}>
+                  {triLang(lang, {
+                    ru: 'Сейчас ничего не действует',
+                    uk: 'Зараз нічого не діє',
+                    es: 'Nada activo ahora',
+                    'pt-BR': 'Nada ativo agora',
+                    vi: 'Hiện chưa có hiệu lực',
+                    id: 'Belum ada yang aktif',
+                    tr: 'Şu anda aktif bir şey yok',
+                    pl: 'Nic teraz nie działa',
+                  })}
+                </Text>
+                <Text style={{ color: t.textMuted, fontSize: f.body, lineHeight: f.body + 6, textAlign: 'center', marginTop: 8 }}>
+                  {triLang(lang, {
+                    ru: 'Применённые бонусы появятся здесь со своим таймером: множители опыта, буст лиги, подарки друзей.',
+                    uk: 'Застосовані бонуси з’являться тут із таймером: множники досвіду, буст ліги, подарунки друзів.',
+                    es: 'Los bonos aplicados aparecerán aquí con su temporizador: multiplicadores, impulso de liga, regalos de amigos.',
+                    'pt-BR': 'Os bônus aplicados aparecerão aqui com seu tempo: multiplicadores, impulso de liga, presentes de amigos.',
+                    vi: 'Các ưu đãi đã dùng sẽ hiện ở đây kèm đồng hồ đếm ngược.',
+                    id: 'Bonus yang dipakai akan muncul di sini dengan pengatur waktunya.',
+                    tr: 'Kullanılan bonuslar süreleriyle birlikte burada görünür.',
+                    pl: 'Użyte bonusy pojawią się tutaj z własnym licznikiem czasu.',
+                  })}
+                </Text>
+              </LinearGradient>
+            ) : null}
+            {tab === 'inventory' && items.length === 0 ? (
               <LinearGradient
                 colors={emptyGiftSurface}
                 start={{ x: 0, y: 0 }}
@@ -420,8 +510,9 @@ export default function LevelGiftsInventoryScreen() {
                   })}
                 </Text>
               </LinearGradient>
-              )
-            ) : (
+            ) : null}
+            {/* Сетка неоткрытых подарков — только на вкладке «Инвентарь». */}
+            {tab === 'inventory' && items.length > 0 ? (
               <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: TILE_GRID_GAP }}>
                 {items.map((item) => (
                   <GiftTile
@@ -440,7 +531,7 @@ export default function LevelGiftsInventoryScreen() {
                   />
                 ))}
               </View>
-            )}
+            ) : null}
             </View>
             <View style={{ height: 8 }} />
           </BouncyScrollView>

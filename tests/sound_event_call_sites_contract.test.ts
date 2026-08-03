@@ -137,4 +137,16 @@ describe('semantic sound event call sites', () => {
       expect(consumers.length).toBeGreaterThan(0);
     }
   });
+
+  // зачем 2026-08-03 (владелец: «тики звучат непонятно как — то в середине
+  // раунда, то в конце»): кулдаун timer_warning был 1200 мс — ДЛИННЕЕ
+  // секундного шага отсчёта — и глотал каждый второй тик: 5-3-1 вместо
+  // 5-4-3-2-1 в турнире и диагностике, «3…1» без «2» в арене. Кулдаун обязан
+  // оставаться ниже секунды: он гасит только дребезг повторных запросов
+  // внутри секунды, а честная секундная каденция слышна целиком.
+  test('timer warning cooldown never swallows the once-per-second countdown', () => {
+    const { cooldownMs } = SOUND_EVENTS['pm.learn.timer_warning'];
+    expect(cooldownMs).toBeGreaterThan(0);
+    expect(cooldownMs).toBeLessThan(1000);
+  });
 });

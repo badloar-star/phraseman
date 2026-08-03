@@ -44,7 +44,12 @@ export const SOUND_EVENTS = Object.freeze({
   'pm.learn.correct': event(require('../../assets/audio/sfx/v1/learning/pm_learn_correct_v1.wav'), 0.42, 70, 160, 380, 'learning'),
   'pm.learn.needs_work': event(require('../../assets/audio/sfx/v1/learning/pm_learn_needs_work_v1.wav'), 0.28, 68, 220, 320, 'learning'),
   'pm.learn.hint_reveal': event(require('../../assets/audio/sfx/v1/learning/pm_learn_hint_reveal_v1.wav'), 0.30, 38, 500, 340, 'learning'),
-  'pm.learn.timer_warning': event(require('../../assets/audio/sfx/v1/learning/pm_learn_timer_warning_v1.wav'), 0.34, 62, 1200, 240, 'learning'),
+  // зачем 2026-08-03 (владелец: «тики звучат непонятно как — то в середине
+  // раунда, то в конце»): кулдаун 1200 мс был ДЛИННЕЕ секундного шага отсчёта
+  // и глотал каждый второй тик — 5-3-1 вместо 5-4-3-2-1 в турнире, «3…1» без
+  // «2» в арене. 700 мс: секундная каденция проходит целиком, а дребезг
+  // повторных запросов внутри одной секунды по-прежнему схлопывается.
+  'pm.learn.timer_warning': event(require('../../assets/audio/sfx/v1/learning/pm_learn_timer_warning_v1.wav'), 0.34, 62, 700, 240, 'learning'),
   'pm.learn.timer_expired': event(require('../../assets/audio/sfx/v1/learning/pm_learn_timer_expired_v1.wav'), 0.32, 66, 700, 420, 'learning'),
   'pm.learn.combo_5': event(require('../../assets/audio/sfx/v1/learning/pm_learn_combo_5_v1.wav'), 0.46, 76, 2200, 660, 'learning'),
   'pm.learn.combo_10': event(require('../../assets/audio/sfx/v1/learning/pm_learn_combo_10_v1.wav'), 0.52, 82, 4500, 880, 'learning'),

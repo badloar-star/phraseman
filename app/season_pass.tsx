@@ -10,7 +10,8 @@
 // нужна server-side проверка перед включением (см. кнопку «Открыть пропуск» ниже).
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { FlatList, Image, Text, TouchableOpacity, View, type ListRenderItemInfo } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { ActivityIndicator, FlatList, Image, Modal, Text, TouchableOpacity, View, type ListRenderItemInfo } from 'react-native';
 import { FlowText } from '../components/text-integrity/FlowText';
 import { Stack, useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -34,6 +35,7 @@ import {
 import {
   SEASON_AURA_STAGE_ASSETS,
   SEASON_REWARD_ICONS,
+  SEASON_SECRET_AURA_ASSET,
   SEASON_TRACK,
   type SeasonReward,
   type SeasonTrackNode,
@@ -41,11 +43,14 @@ import {
 import SeasonAuraRing from '../components/SeasonAuraRing';
 import SeasonGiftModal from '../components/SeasonGiftModal';
 import { addSeasonPassGift, loadPendingSeasonPassGiftCount } from './season_pass_gift_inventory';
+import { seasonBuyPassOnServer, seasonClaimRewardOnServer } from './season_pass_server';
+import { getShardsBalance, loadShardsFromCloud } from './shards_system';
 
 const ROW_HEIGHT = 96;
 const NODE_COLUMN_WIDTH = 56;
 const SPINE_WIDTH = 4;
-const SEASON_PASS_PRICE_PEARLS = 250;
+// зачем: владелец, 2026-08-03 — цена поднята с 250 до 350 (его прямое решение).
+const SEASON_PASS_PRICE_PEARLS = 350;
 
 const REWARD_LABELS: Record<SeasonReward['kind'], Record<Lang, string>> = {
   pearls:            { ru: 'Жемчужины', uk: 'Перлини', es: 'Perlas', 'pt-BR': 'Pérolas', vi: 'Ngọc trai', id: 'Mutiara', tr: 'İnciler', pl: 'Perły' },
@@ -57,7 +62,8 @@ const REWARD_LABELS: Record<SeasonReward['kind'], Record<Lang, string>> = {
   turbo_regen:       { ru: 'Второе дыхание', uk: 'Друге дихання', es: 'Segundo aliento', 'pt-BR': 'Segundo fôlego', vi: 'Hồi phục nhanh', id: 'Napas kedua', tr: 'İkinci nefes', pl: 'Drugi oddech' },
   tournament_ticket: { ru: 'Билет на турнир', uk: 'Квиток на турнір', es: 'Entrada al torneo', 'pt-BR': 'Ingresso do torneio', vi: 'Vé giải đấu', id: 'Tiket turnamen', tr: 'Turnuva bileti', pl: 'Bilet na turniej' },
   time_machine:      { ru: 'Машина времени', uk: 'Машина часу', es: 'Máquina del tiempo', 'pt-BR': 'Máquina do tempo', vi: 'Cỗ máy thời gian', id: 'Mesin waktu', tr: 'Zaman makinesi', pl: 'Wehikuł czasu' },
-  friend_battery:    { ru: 'Заряд другу', uk: 'Заряд другові', es: 'Carga para amigo', 'pt-BR': 'Carga para amigo', vi: 'Tặng bạn năng lượng', id: 'Energi untuk teman', tr: 'Arkadaşa şarj', pl: 'Energia dla znajomego' },
+  friend_shield:     { ru: 'Щит другу', uk: 'Щит другові', es: 'Escudo a un amigo', 'pt-BR': 'Escudo a um amigo', vi: 'Khiên cho bạn', id: 'Perisai untuk teman', tr: 'Arkadaşa kalkan', pl: 'Tarcza dla znajomego' },
+  aura_secret:       { ru: 'Секретная аура', uk: 'Секретна аура', es: 'Aura secreta', 'pt-BR': 'Aura secreta', vi: 'Hào quang bí mật', id: 'Aura rahasia', tr: 'Gizli aura', pl: 'Sekretna aura' },
   choice_3:          { ru: 'Выбор из трёх', uk: 'Вибір із трьох', es: 'Elige una de tres', 'pt-BR': 'Escolha uma de três', vi: 'Chọn một trong ba', id: 'Pilih satu dari tiga', tr: 'Üçten birini seç', pl: 'Wybór z trzech' },
   xp_bank:           { ru: 'Банк опыта', uk: 'Банк досвіду', es: 'Banco de XP', 'pt-BR': 'Banco de XP', vi: 'Ngân hàng XP', id: 'Bank XP', tr: 'XP bankası', pl: 'Bank XP' },
   plus_days:         { ru: 'Дни Plus', uk: 'Дні Plus', es: 'Días Plus', 'pt-BR': 'Dias Plus', vi: 'Ngày Plus', id: 'Hari Plus', tr: 'Plus günleri', pl: 'Dni Plus' },
@@ -69,6 +75,11 @@ const REWARD_LABELS: Record<SeasonReward['kind'], Record<Lang, string>> = {
   season_finale:     { ru: 'Финал сезона', uk: 'Фінал сезону', es: 'Final de temporada', 'pt-BR': 'Final da temporada', vi: 'Chung kết mùa', id: 'Final musim', tr: 'Sezon finali', pl: 'Finał sezonu' },
 };
 
+const CLAIMED_LEVELS_KEY = 'season_pass_claimed_v1';
+const PASS_OWNED_KEY = 'season_pass_owned_v1';
+
+type ClaimedMap = Record<string, true>; // `${seasonId}:${level}:${side}`
+
 export default function SeasonPassScreen() {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
@@ -77,7 +88,13 @@ export default function SeasonPassScreen() {
   const [progress, setProgress] = useState<SeasonPassProgress>(peekSeasonPassProgress);
   const [pendingGiftCount, setPendingGiftCount] = useState(0);
   const [openReward, setOpenReward] = useState<{ reward: SeasonReward; giftId: string } | null>(null);
-  const [claimedLevels, setClaimedLevels] = useState<ReadonlySet<number>>(() => new Set());
+  const [claimed, setClaimed] = useState<ClaimedMap>({});
+  const [passOwned, setPassOwned] = useState(false);
+  const [buying, setBuying] = useState(false);
+  const [buyConfirmVisible, setBuyConfirmVisible] = useState(false);
+  const [userName, setUserName] = useState<string | null>(null);
+
+  const seasonId = getSeasonPassSeasonId();
 
   const refreshPendingGiftCount = useCallback(() => {
     loadPendingSeasonPassGiftCount().then(setPendingGiftCount).catch(() => {});
@@ -87,6 +104,22 @@ export default function SeasonPassScreen() {
     let alive = true;
     hydrateSeasonPassProgress().then((p) => { if (alive) setProgress(p); });
     refreshPendingGiftCount();
+    // Персистентные клеймы + владение пропуском + ник (для превью финала).
+    AsyncStorage.multiGet([CLAIMED_LEVELS_KEY, PASS_OWNED_KEY, 'user_name']).then((pairs) => {
+      if (!alive) return;
+      try {
+        const claimedRaw = pairs[0]?.[1];
+        if (claimedRaw) setClaimed(JSON.parse(claimedRaw) as ClaimedMap);
+      } catch { /* повреждённый кэш клеймов не должен ронять экран */ }
+      try {
+        const ownedRaw = pairs[1]?.[1];
+        if (ownedRaw) {
+          const parsed = JSON.parse(ownedRaw) as { seasonId?: string };
+          setPassOwned(parsed?.seasonId === getSeasonPassSeasonId());
+        }
+      } catch { /* то же */ }
+      setUserName(pairs[2]?.[1] ?? null);
+    }).catch(() => {});
     const subXp = onAppEvent('season_pass_xp_changed', () => {
       if (alive) setProgress(peekSeasonPassProgress());
     });
@@ -102,34 +135,82 @@ export default function SeasonPassScreen() {
     ? Math.min(100, Math.round((progress.intoLevelXp / progress.levelCostXp) * 100))
     : 100;
 
-  // зачем: покупка включается серверным этапом в день старта сезона; кнопка живая
-  // (не disabled — правило UX), тап честно объясняет когда. Мгновенный отклик тостом.
-  const onBuyPress = useCallback(() => {
-    hapticTap();
-    emitAppEvent('action_toast', actionToastTri('info', {
-      ru: 'Продажа пропуска откроется в день старта сезона',
-      uk: 'Продаж перепустки відкриється в день старту сезону',
-      es: 'La venta del pase abrirá el día del inicio de temporada',
-      'pt-BR': 'A venda do passe abre no dia de início da temporada',
-      vi: 'Vé mùa sẽ mở bán vào ngày khai mạc',
-      id: 'Penjualan pass dibuka pada hari mulai musim',
-      tr: 'Bilet satışı sezon başlangıç günü açılır',
-      pl: 'Sprzedaż przepustki ruszy w dniu startu sezonu',
-    }));
+  const persistClaims = useCallback((next: ClaimedMap) => {
+    AsyncStorage.setItem(CLAIMED_LEVELS_KEY, JSON.stringify(next)).catch(() => {});
   }, []);
 
-  const onClaimReward = useCallback(async (reward: SeasonReward, level: number) => {
+  // ── Покупка платной дорожки (350 жемчужин, владелец 2026-08-03) ──────────
+  // Optimistic: локальная проверка баланса → мгновенный unlock → серверная
+  // транзакция seasonBuyPass; при отказе сервера откат + понятный тост.
+  const onBuyPress = useCallback(() => {
     hapticTap();
-    const seasonId = getSeasonPassSeasonId();
-    const gift = await addSeasonPassGift(seasonId, level, 'free', reward.kind, reward.amount);
-    setClaimedLevels((prev) => {
-      const next = new Set(prev);
-      next.add(level);
-      return next;
-    });
+    if (passOwned || buying) return;
+    setBuyConfirmVisible(true);
+  }, [buying, passOwned]);
+
+  const onBuyConfirm = useCallback(async () => {
+    if (buying) return;
+    hapticTap();
+    const balance = await getShardsBalance();
+    if (balance < SEASON_PASS_PRICE_PEARLS) {
+      setBuyConfirmVisible(false);
+      emitAppEvent('action_toast', actionToastTri('warning', {
+        ru: `Не хватает жемчужин: нужно ${SEASON_PASS_PRICE_PEARLS}`,
+        uk: `Бракує перлин: потрібно ${SEASON_PASS_PRICE_PEARLS}`,
+        es: `Faltan perlas: se necesitan ${SEASON_PASS_PRICE_PEARLS}`,
+        'pt-BR': `Faltam pérolas: são necessárias ${SEASON_PASS_PRICE_PEARLS}`,
+        vi: `Thiếu ngọc trai: cần ${SEASON_PASS_PRICE_PEARLS}`,
+        id: `Mutiara kurang: perlu ${SEASON_PASS_PRICE_PEARLS}`,
+        tr: `İnci yetersiz: ${SEASON_PASS_PRICE_PEARLS} gerekli`,
+        pl: `Za mało pereł: potrzeba ${SEASON_PASS_PRICE_PEARLS}`,
+      }));
+      router.push('/shards_shop' as never);
+      return;
+    }
+    setBuying(true);
+    setBuyConfirmVisible(false);
+    // Optimistic unlock — дорожка открывается сразу, двойной тап отсечён buying.
+    setPassOwned(true);
+    const res = await seasonBuyPassOnServer();
+    if (res?.ok || res?.alreadyOwned) {
+      await AsyncStorage.setItem(PASS_OWNED_KEY, JSON.stringify({ seasonId, purchasedAt: Date.now() })).catch(() => {});
+      emitAppEvent('season_pass_plus_changed', undefined);
+      // Сервер списал жемчуг — синхронизируем локальный кэш его балансом.
+      void loadShardsFromCloud().catch(() => {});
+    } else {
+      setPassOwned(false); // откат optimistic-разблокировки
+      emitAppEvent('action_toast', actionToastTri(res?.error === 'insufficient_shards' ? 'warning' : 'error', {
+        ru: res?.error === 'insufficient_shards' ? 'Сервер: жемчужин недостаточно' : 'Покупка не прошла — попробуй ещё раз',
+        uk: res?.error === 'insufficient_shards' ? 'Сервер: перлин недостатньо' : 'Покупка не пройшла — спробуй ще раз',
+        es: res?.error === 'insufficient_shards' ? 'Servidor: perlas insuficientes' : 'La compra falló, inténtalo de nuevo',
+        'pt-BR': res?.error === 'insufficient_shards' ? 'Servidor: pérolas insuficientes' : 'A compra falhou, tente novamente',
+        vi: res?.error === 'insufficient_shards' ? 'Máy chủ: không đủ ngọc' : 'Mua thất bại — thử lại',
+        id: res?.error === 'insufficient_shards' ? 'Server: mutiara kurang' : 'Pembelian gagal — coba lagi',
+        tr: res?.error === 'insufficient_shards' ? 'Sunucu: inci yetersiz' : 'Satın alma başarısız — tekrar dene',
+        pl: res?.error === 'insufficient_shards' ? 'Serwer: za mało pereł' : 'Zakup nie powiódł się — spróbuj ponownie',
+      }));
+    }
+    setBuying(false);
+  }, [buying, router, seasonId]);
+
+  const onClaimReward = useCallback(async (reward: SeasonReward, level: number, side: 'free' | 'pass') => {
+    hapticTap();
+    const key = `${seasonId}:${level}:${side}`;
+    if (claimed[key]) return; // защита от двойного тапа/гонки
+    const nextClaimed: ClaimedMap = { ...claimed, [key]: true };
+    setClaimed(nextClaimed);
+    persistClaims(nextClaimed);
+    const gift = await addSeasonPassGift(seasonId, level, side, reward.kind, reward.amount);
     refreshPendingGiftCount();
     setOpenReward({ reward, giftId: gift.id });
-  }, [refreshPendingGiftCount]);
+    // Серверная фиксация клейма (идемпотентна): pearls/plus_days выдаёт сервер,
+    // статусы дублируются в облачный снапшот для переезда на новое устройство.
+    void seasonClaimRewardOnServer({
+      level, side, kind: reward.kind, amount: reward.amount, totalXp: progress.totalXp,
+    }).then((res) => {
+      if (res?.ok && reward.kind === 'pearls') void loadShardsFromCloud().catch(() => {});
+    });
+  }, [claimed, persistClaims, progress.totalXp, refreshPendingGiftCount, seasonId]);
 
   const renderReward = useCallback((reward: SeasonReward | undefined, side: 'free' | 'pass', reached: boolean, level: number) => {
     // Пустая сторона — прозрачный заполнитель ТОЙ ЖЕ формы, что и карточка,
@@ -141,14 +222,14 @@ export default function SeasonPassScreen() {
       + (reward.kind === 'aura_stage' ? ` ${['I', 'II', 'III', 'IV'][Math.max(0, (reward.amount ?? 1) - 1)]}` : '')
       + (reward.kind === 'plus_days' || reward.kind === 'xp_bank' ? ` ${reward.amount ?? ''}` : '');
     const isPassLane = side === 'pass';
-    // Клейм работает только на free-линии: платная не выдаётся без покупки
-    // (кнопка «Открыть пропуск» ниже пока витрина — платить реально нельзя,
-    // значит и выдавать нельзя, иначе подарок пришёл бы бесплатно мимо кассы).
-    const claimed = claimedLevels.has(level);
-    const claimable = !isPassLane && reached && !claimed;
+    // Платная линия клеймится ТОЛЬКО после покупки (passOwned) — выдавать её
+    // бесплатно значило бы дыру мимо кассы; до покупки на плитке замочек.
+    const isClaimed = !!claimed[`${seasonId}:${level}:${side}`];
+    const laneUnlocked = !isPassLane || passOwned;
+    const claimable = laneUnlocked && reached && !isClaimed;
     const Wrapper = claimable ? TouchableOpacity : View;
     const wrapperProps = claimable
-      ? { activeOpacity: 0.85, onPress: () => onClaimReward(reward, level), accessibilityRole: 'button' as const, testID: `season-pass-claim-${level}` }
+      ? { activeOpacity: 0.85, onPress: () => onClaimReward(reward, level, side), accessibilityRole: 'button' as const, testID: `season-pass-claim-${side}-${level}` }
       : {};
     return (
       <Wrapper {...wrapperProps} style={{
@@ -160,20 +241,22 @@ export default function SeasonPassScreen() {
         borderRadius: 16,
         paddingHorizontal: 10,
         backgroundColor: isPassLane ? t.goldBg : t.bgCard,
-        opacity: reached ? (claimed && !isPassLane ? 0.55 : 1) : 0.72,
+        opacity: reached ? (isClaimed ? 0.55 : 1) : 0.72,
       }}>
         {reward.kind === 'pearls'
           ? (<View style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}>
               <Image source={pearlIcon} style={{ width: 20, height: 20 }} resizeMode="contain" accessible={false} />
               <Text style={{ color: t.textOnCard, fontSize: 14, fontWeight: '800', fontVariant: ['tabular-nums'] }}>{reward.amount}</Text>
             </View>)
-          : reward.kind === 'aura_stage' || reward.kind === 'season_finale'
+          : reward.kind === 'aura_stage' || reward.kind === 'season_finale' || reward.kind === 'aura_secret'
             ? (() => {
-                // season_finale = утверждённый финальный вихрь (та же ассет, что
-                // и стадия IV) — уровень 60 не должен показывать общую корону.
-                const asset = SEASON_AURA_STAGE_ASSETS[
-                  reward.kind === 'season_finale' ? 3 : Math.max(0, Math.min(3, (reward.amount ?? 1) - 1))
-                ];
+                // season_finale = финальный вихрь (стадия IV), aura_secret —
+                // пурпурный эксклюзив уровня 50; общую корону не показываем.
+                const asset = reward.kind === 'aura_secret'
+                  ? SEASON_SECRET_AURA_ASSET
+                  : SEASON_AURA_STAGE_ASSETS[
+                    reward.kind === 'season_finale' ? 3 : Math.max(0, Math.min(3, (reward.amount ?? 1) - 1))
+                  ];
                 return (
                   <SeasonAuraRing
                     source={asset.source}
@@ -198,9 +281,12 @@ export default function SeasonPassScreen() {
         {claimable && (
           <Ionicons name="checkmark-circle-outline" size={18} color={t.textOnCard} />
         )}
+        {isPassLane && !passOwned && (
+          <Ionicons name="lock-closed" size={14} color={t.textMuted} />
+        )}
       </Wrapper>
     );
-  }, [claimedLevels, lang, onClaimReward, pearlIcon, t]);
+  }, [claimed, lang, onClaimReward, passOwned, pearlIcon, seasonId, t]);
 
   const renderItem = useCallback(({ item, index }: ListRenderItemInfo<SeasonTrackNode>) => {
     const reached = progress.level >= item.level;
@@ -331,14 +417,14 @@ export default function SeasonPassScreen() {
       <View style={{ marginTop: 10, borderRadius: 16, backgroundColor: t.accentBg, paddingHorizontal: 14, paddingVertical: 11 }}>
         <Text style={{ color: t.textOnCard, fontSize: 13, fontWeight: '700', lineHeight: 18 }}>
           {triLang(lang, {
-            ru: 'Витрина сезона. Очки уже копятся за занятия, выдача наград откроется в день старта.',
-            uk: 'Вітрина сезону. Бали вже накопичуються, видача нагород відкриється в день старту.',
-            es: 'Vista previa. Los puntos ya cuentan; las recompensas se entregan desde el día de inicio.',
-            'pt-BR': 'Prévia. Os pontos já contam; as recompensas abrem no dia de início.',
-            vi: 'Bản xem trước. Điểm đã được tính; phần thưởng mở vào ngày khai mạc.',
-            id: 'Pratinjau. Poin sudah dihitung; hadiah dibuka pada hari mulai.',
-            tr: 'Ön izleme. Puanlar sayılıyor; ödüller başlangıç günü açılır.',
-            pl: 'Podgląd. Punkty już się liczą; nagrody ruszą w dniu startu.',
+            ru: 'Очки капают за любые занятия. Дошёл до уровня — забирай награду с дорожки.',
+            uk: 'Бали крапають за будь-які заняття. Дійшов до рівня — забирай нагороду з доріжки.',
+            es: 'Ganas puntos con cada práctica. Al llegar a un nivel, reclama tu recompensa.',
+            'pt-BR': 'Você ganha pontos praticando. Ao alcançar um nível, resgate a recompensa.',
+            vi: 'Điểm tích lũy từ mọi buổi học. Đạt cấp là nhận thưởng trên lộ trình.',
+            id: 'Poin mengalir dari setiap latihan. Capai level, klaim hadiahnya.',
+            tr: 'Her çalışmadan puan gelir. Seviyeye ulaşınca ödülünü al.',
+            pl: 'Punkty lecą za każdą naukę. Osiągniesz poziom — odbierz nagrodę.',
           })}
         </Text>
       </View>
@@ -368,38 +454,88 @@ export default function SeasonPassScreen() {
         contentContainerStyle={{ paddingTop: insets.top + 12, paddingBottom: 120 }}
         showsVerticalScrollIndicator={false}
       />
-      <View style={{ position: 'absolute', left: 0, right: 0, bottom: 0, paddingHorizontal: 16, paddingBottom: insets.bottom + 14, paddingTop: 10 }}>
-        <TouchableOpacity
-          testID="season-pass-buy"
-          activeOpacity={0.85}
-          onPress={onBuyPress}
-          accessibilityRole="button"
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: 8,
-            borderRadius: 18,
-            paddingVertical: 16,
-            backgroundColor: t.gold,
-          }}
-        >
-          <Text style={{ color: t.textOnGold, fontSize: 16, fontWeight: '900' }}>
-            {triLang(lang, {
-              ru: 'Открыть пропуск', uk: 'Відкрити перепустку', es: 'Abrir pase', 'pt-BR': 'Abrir passe',
-              vi: 'Mở vé mùa', id: 'Buka pass', tr: 'Bileti aç', pl: 'Otwórz przepustkę',
-            })}
-          </Text>
-          <Image source={pearlIcon} style={{ width: 18, height: 18 }} resizeMode="contain" accessible={false} />
-          <Text style={{ color: t.textOnGold, fontSize: 16, fontWeight: '900', fontVariant: ['tabular-nums'] }}>
-            {SEASON_PASS_PRICE_PEARLS}
-          </Text>
-        </TouchableOpacity>
-      </View>
+      {!passOwned && (
+        <View style={{ position: 'absolute', left: 0, right: 0, bottom: 0, paddingHorizontal: 16, paddingBottom: insets.bottom + 14, paddingTop: 10 }}>
+          <TouchableOpacity
+            testID="season-pass-buy"
+            activeOpacity={0.85}
+            onPress={onBuyPress}
+            accessibilityRole="button"
+            accessibilityState={{ busy: buying }}
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: 8,
+              borderRadius: 18,
+              paddingVertical: 16,
+              backgroundColor: t.gold,
+              opacity: buying ? 0.7 : 1,
+            }}
+          >
+            {buying ? <ActivityIndicator size="small" color={t.textOnGold} /> : null}
+            <Text style={{ color: t.textOnGold, fontSize: 16, fontWeight: '900' }}>
+              {triLang(lang, {
+                ru: 'Открыть пропуск', uk: 'Відкрити перепустку', es: 'Abrir pase', 'pt-BR': 'Abrir passe',
+                vi: 'Mở vé mùa', id: 'Buka pass', tr: 'Bileti aç', pl: 'Otwórz przepustkę',
+              })}
+            </Text>
+            <Image source={pearlIcon} style={{ width: 18, height: 18 }} resizeMode="contain" accessible={false} />
+            <Text style={{ color: t.textOnGold, fontSize: 16, fontWeight: '900', fontVariant: ['tabular-nums'] }}>
+              {SEASON_PASS_PRICE_PEARLS}
+            </Text>
+          </TouchableOpacity>
+        </View>
+      )}
+      {/* Подтверждение покупки: цена + что даёт, кнопки «Позже»/«Купить». */}
+      <Modal visible={buyConfirmVisible} transparent animationType="fade" onRequestClose={() => setBuyConfirmVisible(false)}>
+        <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.62)', alignItems: 'center', justifyContent: 'center', paddingHorizontal: 24 }}>
+          <View style={{ width: '100%', maxWidth: 360, borderRadius: 26, backgroundColor: t.bgCard, padding: 24, alignItems: 'center', gap: 14 }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+              <Image source={pearlIcon} style={{ width: 40, height: 40 }} resizeMode="contain" accessible={false} />
+              <Text style={{ color: t.textPrimary, fontSize: 30, fontWeight: '900', fontVariant: ['tabular-nums'] }}>{SEASON_PASS_PRICE_PEARLS}</Text>
+            </View>
+            <Text style={{ color: t.textPrimary, fontSize: 18, fontWeight: '900', textAlign: 'center' }}>
+              {triLang(lang, {
+                ru: 'Открыть платную дорожку?', uk: 'Відкрити платну доріжку?', es: '¿Abrir la vía de pago?',
+                'pt-BR': 'Abrir a trilha paga?', vi: 'Mở nhánh trả phí?', id: 'Buka jalur berbayar?',
+                tr: 'Ücretli hattı aç?', pl: 'Otworzyć płatną ścieżkę?',
+              })}
+            </Text>
+            <Text style={{ color: t.textSecond, fontSize: 14, fontWeight: '600', textAlign: 'center', lineHeight: 20 }}>
+              {triLang(lang, {
+                ru: 'Все золотые награды сезона станут доступны — включая уже пройденные уровни.',
+                uk: 'Усі золоті нагороди сезону стануть доступні — включно з уже пройденими рівнями.',
+                es: 'Todas las recompensas doradas quedarán disponibles, incluidos los niveles ya superados.',
+                'pt-BR': 'Todas as recompensas douradas ficarão disponíveis, incluindo níveis já concluídos.',
+                vi: 'Mọi phần thưởng vàng của mùa sẽ mở — kể cả các cấp đã qua.',
+                id: 'Semua hadiah emas musim terbuka — termasuk level yang sudah dilewati.',
+                tr: 'Sezonun tüm altın ödülleri açılır — geçilen seviyeler dahil.',
+                pl: 'Wszystkie złote nagrody sezonu będą dostępne — także zdobyte poziomy.',
+              })}
+            </Text>
+            <View style={{ flexDirection: 'row', gap: 10, width: '100%' }}>
+              <TouchableOpacity activeOpacity={0.85} accessibilityRole="button" onPress={() => { hapticTap(); setBuyConfirmVisible(false); }}
+                style={{ flex: 1, borderRadius: 16, paddingVertical: 14, alignItems: 'center', backgroundColor: t.bgSurface }}>
+                <Text style={{ color: t.textPrimary, fontSize: 15, fontWeight: '800' }}>
+                  {triLang(lang, { ru: 'Позже', uk: 'Пізніше', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti', tr: 'Daha sonra', pl: 'Później' })}
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity testID="season-pass-buy-confirm" activeOpacity={0.85} accessibilityRole="button" onPress={onBuyConfirm}
+                style={{ flex: 1, borderRadius: 16, paddingVertical: 14, alignItems: 'center', backgroundColor: t.gold }}>
+                <Text style={{ color: t.textOnGold, fontSize: 15, fontWeight: '900' }}>
+                  {triLang(lang, { ru: 'Купить', uk: 'Купити', es: 'Comprar', 'pt-BR': 'Comprar', vi: 'Mua', id: 'Beli', tr: 'Satın al', pl: 'Kup' })}
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </Modal>
       <SeasonGiftModal
         visible={openReward != null}
         reward={openReward?.reward ?? null}
         giftId={openReward?.giftId ?? null}
+        userName={userName}
         onClose={() => setOpenReward(null)}
       />
     </View>

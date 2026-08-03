@@ -623,6 +623,9 @@ export { friendsGetProfiles } from './friends_profiles';
 // Authenticated, server-authoritative one-time onboarding access grant.
 export { introFullAccessClaim } from './gift_access';
 
+// ── Season Pass: клеймы, расходники, щит другу, покупка платной дорожки ──
+export { seasonClaimReward, seasonRedeemConsumable, seasonSendFriendShield, seasonBuyPass } from './season_pass';
+
 // ── Админ-callables раздела «Рефералы» (гейт custom claim admin) ──
 export {
   adminRevokeReferralAttribution,

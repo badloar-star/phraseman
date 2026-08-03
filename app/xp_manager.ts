@@ -21,6 +21,7 @@ import { emitAppEvent } from './events';
 import { getCanonicalUserId } from './user_id_policy';
 import { addWeeklyXp } from './weekly_xp';
 import { addSeasonPassXp } from './season_pass_model';
+import { consumeSeasonGoldenLessonMultiplier, peekSeasonGoldenLessonCharges } from './season_reward_apply';
 import { consumeLeagueChestXpOverrideMultiplier, peekLeagueChestXpOverrideMultiplier } from './services/league_chest_rewards';
 import { boonXpMultiplierContribution } from './boons/boon_effects_xp';
 import { refreshWeeklyRecapNotificationAfterXpChange } from './notifications';
@@ -472,8 +473,20 @@ export const registerXP = async (
       const cardM = await readProfileCardXpMultiplier();
       if (!isXpAccountGenerationCurrent(accountToken)) return staleResult();
 
+      // И) Season Pass «Золотой урок» (владелец 2026-08-03): ×3 на ВЕСЬ следующий
+      // урок — peek на каждом ответе урока, заряд списывается на lesson_complete
+      // (иначе первый же ответ съел бы заряд, а «урок» = все ответы + завершение).
+      const isLessonXp = source === 'lesson_answer' || source === 'lesson_complete';
+      const goldenCharges = isLessonXp ? await peekSeasonGoldenLessonCharges() : 0;
+      const goldenLessonM = goldenCharges > 0 ? 3 : 1;
+      if (source === 'lesson_complete' && goldenCharges > 0) {
+        // guard-ok: декремент ЗАРЯДА расходника (season_golden_lesson_v1.remaining),
+        // не баланс/XP юзера — тот же класс, что remainingUses у xp_boost сундука.
+        void consumeSeasonGoldenLessonMultiplier().catch(() => {});
+      }
+
       totalMultiplier = sanitizeLocalXpMultiplier(
-        1 + (clubM - 1) + (streakM - 1) + (comebackM - 1) + (lessonDiffM - 1) + (giftM - 1) + (leagueBoostM - 1) + (leagueGroupBoostM - 1) + (leagueChestM - 1) + boonXpContribution + (cardM - 1) + (hotHoursM - 1),
+        1 + (clubM - 1) + (streakM - 1) + (comebackM - 1) + (lessonDiffM - 1) + (giftM - 1) + (leagueBoostM - 1) + (leagueGroupBoostM - 1) + (leagueChestM - 1) + boonXpContribution + (cardM - 1) + (hotHoursM - 1) + (goldenLessonM - 1),
       );
       finalDelta = sanitizeLocalXpAmount(Math.round(amount * totalMultiplier));
       appliedDelta = finalDelta;

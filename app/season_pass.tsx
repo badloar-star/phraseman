@@ -29,11 +29,13 @@ import {
   type SeasonPassProgress,
 } from './season_pass_model';
 import {
+  SEASON_AURA_STAGE_ASSETS,
   SEASON_REWARD_ICONS,
   SEASON_TRACK,
   type SeasonReward,
   type SeasonTrackNode,
 } from './season_pass_track_config';
+import SeasonAuraRing from '../components/SeasonAuraRing';
 
 const ROW_HEIGHT = 96;
 const NODE_COLUMN_WIDTH = 56;
@@ -127,9 +129,27 @@ export default function SeasonPassScreen() {
               <Image source={pearlIcon} style={{ width: 20, height: 20 }} resizeMode="contain" accessible={false} />
               <Text style={{ color: t.textOnCard, fontSize: 14, fontWeight: '800', fontVariant: ['tabular-nums'] }}>{reward.amount}</Text>
             </View>)
-          : icon
-            ? <Image source={icon} style={{ width: 34, height: 34 }} resizeMode="contain" accessible={false} />
-            : null}
+          : reward.kind === 'aura_stage' || reward.kind === 'season_finale'
+            ? (() => {
+                // season_finale = утверждённый финальный вихрь (та же ассет, что
+                // и стадия IV) — уровень 60 не должен показывать общую корону.
+                const asset = SEASON_AURA_STAGE_ASSETS[
+                  reward.kind === 'season_finale' ? 3 : Math.max(0, Math.min(3, (reward.amount ?? 1) - 1))
+                ];
+                return (
+                  <SeasonAuraRing
+                    source={asset.source}
+                    size={38}
+                    pulse={asset.pulse}
+                    spin={asset.spin}
+                    pulseDurationMs={asset.pulseMs}
+                    spinDurationMs={asset.spinMs}
+                  />
+                );
+              })()
+            : icon
+              ? <Image source={icon} style={{ width: 34, height: 34 }} resizeMode="contain" accessible={false} />
+              : null}
         <FlowText
           testID={`season-pass-reward-label-${level}-${side}`}
           provenance="authored"

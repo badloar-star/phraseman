@@ -55,6 +55,24 @@ export const SEASON_REWARD_ICONS: Partial<Record<SeasonRewardKind, ImageSourcePr
 // TODO(владелец): часть иконок временно переиспользована (магнит/билет/машина
 // времени и др.) — уникальные генерятся Кодексом отдельным заходом.
 
+/**
+ * Ауры сезона — утверждённые кольца (владелец, 2026-08-03: «окей оставляем»).
+ * Индекс = стадия-1 (stage 1 → [0], ..., stage 4/финал → [3]).
+ * pulse/spin — параметры из season_status_rewards.template.html (--pd/--sd).
+ */
+export const SEASON_AURA_STAGE_ASSETS: readonly {
+  source: ImageSourcePropType;
+  pulse: boolean;
+  spin: boolean;
+  pulseMs: number;
+  spinMs: number;
+}[] = [
+  { source: require('../assets/images/season/aura_stage1.webp'), pulse: true,  spin: false, pulseMs: 8600, spinMs: 0 },
+  { source: require('../assets/images/season/aura_stage2.webp'), pulse: true,  spin: false, pulseMs: 9200, spinMs: 0 },
+  { source: require('../assets/images/season/aura_stage3.webp'), pulse: true,  spin: true,  pulseMs: 8800, spinMs: 30000 },
+  { source: require('../assets/images/season/aura_final.webp'),  pulse: true,  spin: true,  pulseMs: 8400, spinMs: 26000 },
+];
+
 const N = (level: number, free?: SeasonReward, pass?: SeasonReward): SeasonTrackNode => ({ level, free, pass });
 const P = (amount: number): SeasonReward => ({ kind: 'pearls', amount });
 

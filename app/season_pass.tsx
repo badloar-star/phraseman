@@ -98,8 +98,13 @@ const SPINE_WIDTH = 4;
 // React Native, чтобы её можно было проверить тестом (экран тянет
 // react-native-svg и в jest не поднимается).
 // зачем: владелец, 2026-08-03 — финальное решение: 250 жемчужин ДЛЯ ВСЕХ (не
-// 350). Разница между фри и премиум не в цене, а в том, что премиум получает
-// платную линию БЕСПЛАТНО льготой подписки — покупка ему просто не показывается.
+// 350). Пропуск покупают ОБА тира, подписка вход не заменяет.
+//
+// зачем (уточнение того же дня): здесь стояло «премиум получает платную линию
+// бесплатно — покупка ему просто не показывается». Это описание УСТАРЕЛО и
+// противоречило коду: ровно тот баг («плашка 250 у меня пропала») починен ниже,
+// кнопка скрывается только у уже купивших. Подписка расширяет ШИРИНУ выдачи
+// (Plus забирает обе линии), но не отменяет саму покупку.
 const SEASON_PASS_PRICE_PEARLS = 250;
 
 const REWARD_LABELS: Record<SeasonReward['kind'], Record<Lang, string>> = {
@@ -220,7 +225,11 @@ export default function SeasonPassScreen() {
     AsyncStorage.setItem(CLAIMED_LEVELS_KEY, JSON.stringify(next)).catch(() => {});
   }, []);
 
-  // ── Покупка платной дорожки (350 жемчужин, владелец 2026-08-03) ──────────
+  // ── Покупка пропуска сезона (SEASON_PASS_PRICE_PEARLS, одна цена для всех) ──
+  // зачем 2026-08-03: в заголовке стояло «платной дорожки (350 жемчужин)» —
+  // оба факта устарели. Цена 250 и одинакова для фри и Plus, а «платной
+  // дорожки» в интерфейсе нет: колонки называются ПРОПУСК и ПЛЮС ПРОПУСК.
+  // Цену не дублируем числом — читаем из константы, чтобы снова не разошлось.
   // Optimistic: локальная проверка баланса → мгновенный unlock → серверная
   // транзакция seasonBuyPass; при отказе сервера откат + понятный тост.
   const onBuyPress = useCallback(() => {
@@ -730,24 +739,46 @@ export default function SeasonPassScreen() {
               <Image source={pearlIcon} style={{ width: 40, height: 40 }} resizeMode="contain" accessible={false} />
               <Text style={{ color: t.textPrimary, fontSize: 30, fontWeight: '900', fontVariant: ['tabular-nums'] }}>{SEASON_PASS_PRICE_PEARLS}</Text>
             </View>
+            {/* зачем 2026-08-03 (владелец: «купить платную дорожку — неактуальный
+                текст, он не отображает суть; пропуск покупают и премиум и фри»):
+                «платная дорожка» — внутренний термин, которого нет в интерфейсе:
+                колонки называются ПРОПУСК и ПЛЮС ПРОПУСК, а покупка одна и та же
+                для обоих тиров. Слово «платная» вдобавок противопоставляло
+                платное бесплатному, хотя бесплатной линии больше нет. */}
             <Text style={{ color: t.textPrimary, fontSize: 18, fontWeight: '900', textAlign: 'center' }}>
               {triLang(lang, {
-                ru: 'Открыть платную дорожку?', uk: 'Відкрити платну доріжку?', es: '¿Abrir la vía de pago?',
-                'pt-BR': 'Abrir a trilha paga?', vi: 'Mở nhánh trả phí?', id: 'Buka jalur berbayar?',
-                tr: 'Ücretli hattı aç?', pl: 'Otworzyć płatną ścieżkę?',
+                ru: 'Купить пропуск сезона?', uk: 'Купити перепустку сезону?', es: '¿Comprar el pase de temporada?',
+                'pt-BR': 'Comprar o passe da temporada?', vi: 'Mua vé mùa?', id: 'Beli pass musim?',
+                tr: 'Sezon bileti alınsın mı?', pl: 'Kupić przepustkę sezonu?',
               })}
             </Text>
+            {/* зачем: старый текст обещал «ВСЕ золотые награды» любому покупателю,
+                но правая (золотая) линия — привилегия Plus и остаётся запертой
+                даже после покупки (passLaneAllowed = isPremium). Для игрока без
+                подписки это было ложное обещание перед тратой 250 жемчужин.
+                Теперь каждый тир видит ровно то, что получит. */}
             <Text style={{ color: t.textSecond, fontSize: 14, fontWeight: '600', textAlign: 'center', lineHeight: 20 }}>
-              {triLang(lang, {
-                ru: 'Все золотые награды сезона станут доступны — включая уже пройденные уровни.',
-                uk: 'Усі золоті нагороди сезону стануть доступні — включно з уже пройденими рівнями.',
-                es: 'Todas las recompensas doradas quedarán disponibles, incluidos los niveles ya superados.',
-                'pt-BR': 'Todas as recompensas douradas ficarão disponíveis, incluindo níveis já concluídos.',
-                vi: 'Mọi phần thưởng vàng của mùa sẽ mở — kể cả các cấp đã qua.',
-                id: 'Semua hadiah emas musim terbuka — termasuk level yang sudah dilewati.',
-                tr: 'Sezonun tüm altın ödülleri açılır — geçilen seviyeler dahil.',
-                pl: 'Wszystkie złote nagrody sezonu będą dostępne — także zdobyte poziomy.',
-              })}
+              {passLaneAllowed
+                ? triLang(lang, {
+                  ru: 'Откроются обе линии наград — включая уровни, которые вы уже прошли.',
+                  uk: 'Відкриються обидві лінії нагород — включно з рівнями, які ви вже пройшли.',
+                  es: 'Se abrirán ambas líneas de recompensas, incluidos los niveles ya superados.',
+                  'pt-BR': 'As duas trilhas de recompensas serão abertas, incluindo níveis já concluídos.',
+                  vi: 'Cả hai hàng phần thưởng sẽ mở — kể cả các cấp bạn đã qua.',
+                  id: 'Kedua jalur hadiah terbuka — termasuk level yang sudah kamu lewati.',
+                  tr: 'Her iki ödül hattı da açılır — geçtiğiniz seviyeler dahil.',
+                  pl: 'Otworzą się obie linie nagród — także poziomy już zdobyte.',
+                })
+                : triLang(lang, {
+                  ru: 'Откроется линия «Пропуск» — включая уровни, которые вы уже прошли. Золотая линия открывается с Plus.',
+                  uk: 'Відкриється лінія «Перепустка» — включно з рівнями, які ви вже пройшли. Золота лінія відкривається з Plus.',
+                  es: 'Se abrirá la línea «Pase», incluidos los niveles ya superados. La línea dorada se abre con Plus.',
+                  'pt-BR': 'A trilha «Passe» será aberta, incluindo níveis já concluídos. A trilha dourada abre com Plus.',
+                  vi: 'Hàng «Vé mùa» sẽ mở — kể cả các cấp bạn đã qua. Hàng vàng mở cùng Plus.',
+                  id: 'Jalur «Pass» terbuka — termasuk level yang sudah kamu lewati. Jalur emas terbuka dengan Plus.',
+                  tr: '«Bilet» hattı açılır — geçtiğiniz seviyeler dahil. Altın hat Plus ile açılır.',
+                  pl: 'Otworzy się linia «Przepustka» — także poziomy już zdobyte. Złota linia otwiera się z Plus.',
+                })}
             </Text>
             <View style={{ flexDirection: 'row', gap: 10, width: '100%' }}>
               <TouchableOpacity activeOpacity={0.85} accessibilityRole="button" onPress={() => { hapticTap(); setBuyConfirmVisible(false); }}

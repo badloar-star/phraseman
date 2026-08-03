@@ -382,6 +382,14 @@ function DailyTaskRewardToast() {
   const queueRef = useRef<DailyTaskRewardToastItem[]>([]);
   const claimingRef = useRef(false);
   const inFlightClaimKeysRef = useRef<Set<string>>(new Set());
+  /** Ключ тоста, для которого звук и вибрация уже отыграли.
+   *
+   *  зачем: эффект показа зависит от `overlayVisible`, а слот арбитра у
+   *  транзиентных тостов отбирается сторожем в пользу ждущего оверлея и потом
+   *  возвращается. Без этой отметки каждое возвращение видимости при ТОМ ЖЕ
+   *  тосте просило звук заново — один звук сам собой отбивал серию повторов
+   *  (тот же класс бага закрыт в AchievementToast). */
+  const cuedToastKeyRef = useRef<string | null>(null);
 
   const finishCurrent = useCallback(() => {
     const next = queueRef.current.shift() ?? null;
@@ -397,6 +405,10 @@ function DailyTaskRewardToast() {
 
     activeRef.current = null;
     activeKeyRef.current = null;
+    // Очередь пуста — снимаем отметку отклика, чтобы та же задача в новом показе
+    // снова прозвучала. Сброс привязан к смене тоста, а не к потере видимости:
+    // слот арбитр отбирает и возвращает по ходу показа.
+    cuedToastKeyRef.current = null;
     setToast(null);
     setOverlayWanted(false);
   }, []);
@@ -607,12 +619,17 @@ function DailyTaskRewardToast() {
       ]).start();
     });
 
-    hapticSuccess();
-    soundDirector.request('pm.social.quest_complete', {
-      scope: 'daily-task-reward',
-      dedupeKey: `${toast.studyTarget ?? 'default'}:${toast.taskId}`,
-      deferAfterVoice: true,
-    });
+    // Отклик — РОВНО один раз на тост: повторный вход в эффект при том же
+    // тосте (арбитр вернул слот после выселения) звук не переигрывает.
+    if (cuedToastKeyRef.current !== itemKey(toast)) {
+      cuedToastKeyRef.current = itemKey(toast);
+      hapticSuccess();
+      soundDirector.request('pm.social.quest_complete', {
+        scope: 'daily-task-reward',
+        dedupeKey: `${toast.studyTarget ?? 'default'}:${toast.taskId}`,
+        deferAfterVoice: true,
+      });
+    }
     timerRef.current = setTimeout(() => dismissCurrent(), AUTO_DISMISS_MS);
 
     return () => {

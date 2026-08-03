@@ -70,6 +70,17 @@ function AchievementToast() {
    *  JSApplicationIllegalArgumentException. */
   const rafInRef      = useRef<number | null>(null);
   const scheduledStateUpdatesRef = useRef<ScheduledAnimatedStateUpdate[]>([]);
+  /** id тоста, для которого звук и вибрация уже отыграли.
+   *
+   *  зачем: владелец слышал, как один и тот же звук сам повторялся 4-5 раз с
+   *  интервалом ~секунду, уже после закрытия окна. Причина: эффект ниже зависит
+   *  от `toastOverlayVisible`, а слот арбитра у транзиентных тостов отбирается
+   *  сторожем (isForceEvictable) в пользу ждущего actionToast и потом
+   *  возвращается. Каждое возвращение видимости при ТОМ ЖЕ currentToast
+   *  перезапускало эффект и просило звук заново; cooldown события (1.6-1.8с у
+   *  reward/success) глушил часть попыток, а остальные пролезали — отсюда и
+   *  «раз в секунду». Звук привязан к тосту, а не к видимости слота. */
+  const cuedToastIdRef = useRef<string | null>(null);
   const [modalVisible, setModalVisible] = useState(false);
   const [displayedToast, setDisplayedToast] = useState<typeof currentToast>(null);
   const [toastImageFailed, setToastImageFailed] = useState(false);
@@ -136,6 +147,15 @@ function AchievementToast() {
     })
   ).current;
 
+  // Тост ушёл из очереди — снимаем отметку «отклик уже отыграл». Сброс привязан
+  // ИМЕННО к исчезновению тоста, а не к потере видимости: слот у тоста арбитр
+  // отбирает и возвращает по ходу показа, и сброс по видимости вернул бы
+  // повторяющийся звук. Сводный тост живёт под постоянным id — без этого сброса
+  // его второй показ за сессию остался бы немым.
+  useEffect(() => {
+    if (!currentToast) cuedToastIdRef.current = null;
+  }, [currentToast]);
+
   useEffect(() => {
     if (!currentToast || !toastOverlayVisible) {
       // Toast was dismissed externally — ensure we hide
@@ -165,13 +185,18 @@ function AchievementToast() {
       // Обновить отображаемый тост (без прохода через null — нет мигания)
       setDisplayedToast(currentToast);
 
-      // Вибрация
-      hapticSuccess();
-      soundDirector.request('pm.reward.achievement', {
-        scope: 'achievement-toast',
-        dedupeKey: currentToast.id,
-        deferAfterVoice: true,
-      });
+      // Вибрация и звук — РОВНО один раз на тост. Повторный вход в эффект при
+      // том же достижении (арбитр вернул слот после выселения) отклик не даёт:
+      // иначе один звук сам собой отбивал серию с интервалом ~секунду.
+      if (cuedToastIdRef.current !== currentToast.id) {
+        cuedToastIdRef.current = currentToast.id;
+        hapticSuccess();
+        soundDirector.request('pm.reward.achievement', {
+          scope: 'achievement-toast',
+          dedupeKey: currentToast.id,
+          deferAfterVoice: true,
+        });
+      }
 
       // Пометить как notified. У сводки гасим ВСЮ свёрнутую пачку разом — иначе
       // следующий flushPending поднял бы те же достижения снова и лента вернулась бы.

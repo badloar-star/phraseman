@@ -41,6 +41,13 @@ export interface BuildTelegramDigestInput {
   readonly decisions: readonly Decision[];
   readonly appTier: AppTier;
   readonly departmentErrors: readonly Department[];
+  /**
+   * narrative LLM-обогатителя по contentHash решения. Необязательная
+   * надстройка: без карты (или без записи для конкретного решения) вывод
+   * не меняется ни на символ — обогатитель может быть отключён, упасть в
+   * бюджет или ещё не успеть отработать, и дайджест обязан остаться прежним.
+   */
+  readonly narrativeByHash?: ReadonlyMap<string, string>;
 }
 
 function escapeHtml(value: string): string {
@@ -93,6 +100,8 @@ export function buildTelegramDigest(input: BuildTelegramDigestInput): string {
     lines.push(clean(decision.finding));
     const recommendation = clean(decision.recommendation);
     if (recommendation) lines.push(`→ ${recommendation}`);
+    const narrative = input.narrativeByHash?.get(decision.contentHash);
+    if (narrative) lines.push(clean(narrative));
     lines.push('');
   }
 

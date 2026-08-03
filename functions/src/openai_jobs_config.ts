@@ -21,8 +21,8 @@ const CONFIG_COLLECTION = 'admin_runtime_config';
 const CONFIG_DOC = 'openai_jobs';
 
 /** Идентификаторы джобов. dialog здесь — ТОЛЬКО для kill-switch (модель/квоты у него свой док). */
-export type OpenAiJob = 'weekly' | 'stats' | 'explain' | 'dialog' | 'choice' | 'compass' | 'quiz' | 'digest' | 'support' | 'content_factory' | 'image_assets' | 'tournament';
-export const OPENAI_JOBS: readonly OpenAiJob[] = ['weekly', 'stats', 'explain', 'dialog', 'choice', 'compass', 'quiz', 'digest', 'support', 'content_factory', 'image_assets', 'tournament'];
+export type OpenAiJob = 'weekly' | 'stats' | 'explain' | 'dialog' | 'choice' | 'compass' | 'quiz' | 'digest' | 'support' | 'content_factory' | 'image_assets' | 'tournament' | 'jarvis';
+export const OPENAI_JOBS: readonly OpenAiJob[] = ['weekly', 'stats', 'explain', 'dialog', 'choice', 'compass', 'quiz', 'digest', 'support', 'content_factory', 'image_assets', 'tournament', 'jarvis'];
 
 export const ALLOWED_JOB_MODELS = [
   'gpt-4.1-nano',
@@ -71,6 +71,10 @@ const JOB_DEFAULTS: Record<OpenAiJob, JobDefaults> = {
   // (генерация + до 2 починок), т.е. фактический потолок запросов = 3×кап.
   // Реальные траты по токенам видны в дашборде (tournament_ai_billing).
   tournament: { model: 'gpt-4.1-mini', globalDailyCap: 300 },
+  // LLM-обогатитель Джарвиса: один прогон в сутки (крон 06:00), решений
+  // мало (максимум по одному на департамент) — кап символический, реальный
+  // денежный потолок держит отдельный технический бюджет (jarvis/llm_budget.ts).
+  jarvis: { model: 'gpt-4.1-nano', globalDailyCap: 20 },
 };
 
 export interface JobConfig {

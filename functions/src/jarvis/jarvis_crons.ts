@@ -1,7 +1,15 @@
 import * as admin from 'firebase-admin';
+import { defineSecret } from 'firebase-functions/params';
 import { onSchedule } from 'firebase-functions/v2/scheduler';
 import { logger } from 'firebase-functions';
 import { ADMIN_ALERT_BOT_TOKEN, sendTelegramAlert } from '../admin_alerts';
+import { openAiChat } from '../explain/explain_provider';
+import { assertJobEnabled, resolveJobConfig } from '../openai_jobs_config';
+import { enrichDecisionsWithNarrative, type EnricherDependencies } from './llm_enricher';
+import { estimateEnrichmentCostUsd, actualEnrichmentCostUsd } from './llm_enricher_cost';
+import { checkAndReserveBudget, recordActualSpend } from './llm_budget';
+import { reserveEnrichmentSlot, recordEnrichmentResult } from './llm_enrichment_cache';
+import type { Decision } from './decision';
 import { buildTelegramDigest } from './telegram_digest';
 import { JARVIS_APPROVAL_COLLECTION } from './approval_store';
 import { JARVIS_APPROVAL_AUDIT_COLLECTION } from './approval_audit';
@@ -50,6 +58,8 @@ import { readPeakTier } from './business_tier_history_store';
 
 const REGION = 'us-central1';
 
+const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
+
 const DEPARTMENTS_SCHEDULE_OPTIONS = {
   schedule: 'every day 06:00',
   timeZone: 'UTC',
@@ -61,8 +71,44 @@ const DEPARTMENTS_SCHEDULE_OPTIONS = {
   // ботом, что и остальные алерты — своей инфраструктуры Джарвис не заводит.
   // зачем второй секрет: без него не собрать кнопки — там Telegram id
   // владельца, к которому привязывается каждый токен подтверждения.
-  secrets: [ADMIN_ALERT_BOT_TOKEN, JARVIS_TELEGRAM_CONFIG],
+  // зачем третий секрет: LLM-обогатитель использует уже существующий ключ
+  // OpenAI (тот же, что digest/explain/weekly) — отдельного ключа не заводим.
+  secrets: [ADMIN_ALERT_BOT_TOKEN, JARVIS_TELEGRAM_CONFIG, OPENAI_API_KEY],
 };
+
+/**
+ * Реальные зависимости обогатителя. Собраны здесь, а не внутри llm_enricher.ts,
+ * чтобы сам обогатитель оставался чистой функцией без Firestore/OpenAI внутри —
+ * тестируется подстановкой фейковых deps (см. llm_enricher.test.ts).
+ */
+function buildEnricherDependencies(db: FirebaseFirestore.Firestore, model: string): EnricherDependencies {
+  return {
+    checkBudget: (input) => checkAndReserveBudget({ db, nowMs: input.nowMs, estimatedCostUsd: input.estimatedCostUsd }),
+    reserveSlot: (input) => reserveEnrichmentSlot({ db, contentHash: input.contentHash, nowMs: input.nowMs }),
+    generateNarrative: async (prompt) => {
+      const apiKey = OPENAI_API_KEY.value().trim();
+      if (!apiKey) throw new Error('OPENAI_API_KEY not configured');
+      const result = await openAiChat({
+        apiKey,
+        model,
+        messages: [
+          { role: 'system', content: prompt.system },
+          { role: 'user', content: prompt.user },
+        ],
+        maxTokens: 300,
+        temperature: 0.3,
+      });
+      return { text: result.text, promptTokens: result.promptTokens, completionTokens: result.completionTokens };
+    },
+    recordSpend: (input) => recordActualSpend({ db, nowMs: input.nowMs, actualCostUsd: input.actualCostUsd }),
+    recordResult: (input) => recordEnrichmentResult({
+      db, contentHash: input.contentHash, narrative: input.narrative, nowMs: input.nowMs,
+    }),
+    estimateCostUsd: estimateEnrichmentCostUsd,
+    actualCostUsd: actualEnrichmentCostUsd,
+    nowMs: () => Date.now(),
+  };
+}
 
 /**
  * зачем на час позже департаментов: точка истории должна лечь после того,
@@ -263,10 +309,15 @@ export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTION
   const worthSending = canNotify(control) && notifyVerdict.send;
   let telegramSent = false;
   if (worthSending) {
+    // зачем обогащать только здесь, а не раньше: если тихие часы/лимит/
+    // выключатель всё равно погасят отправку, платить LLM за narrative,
+    // который никто не увидит, бессмысленно.
+    const narrativeByHash = await buildNarrativeMap(db, decisions);
     const text = buildTelegramDigest({
       decisions,
       appTier: snapshot.appTier,
       departmentErrors: snapshot.departmentErrors,
+      narrativeByHash,
     });
     // зачем два пути: кнопки требуют секрета с Telegram id владельца. Пока он
     // не задан, сводка обязана приходить всё равно — просто без кнопок.
@@ -313,6 +364,33 @@ export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTION
     logger.warn('jarvis_daily_departments: token purge failed', error);
   });
 });
+
+/**
+ * Строит narrative для digest поверх готовых decisions. НИКОГДА не бросает
+ * и не меняет decisions/severity/пороги — при любой ошибке (в том числе
+ * выключен джоб владельцем через openAiJobsConfig) возвращает пустую карту,
+ * и buildTelegramDigest выдаёт ровно тот же текст, что без обогатителя.
+ */
+async function buildNarrativeMap(
+  db: FirebaseFirestore.Firestore,
+  decisions: readonly Decision[],
+): Promise<Map<string, string>> {
+  const narrativeByHash = new Map<string, string>();
+  try {
+    const config = await resolveJobConfig(db, 'jarvis');
+    assertJobEnabled(config, 'jarvis');
+    const enriched = await enrichDecisionsWithNarrative(
+      { decisions },
+      buildEnricherDependencies(db, config.model),
+    );
+    for (const item of enriched) {
+      if (item.narrative) narrativeByHash.set(item.decision.contentHash, item.narrative);
+    }
+  } catch (error) {
+    logger.warn('jarvis_daily_departments: enrichment skipped', error);
+  }
+  return narrativeByHash;
+}
 
 /**
  * Читает недавние отклонения из журнала подтверждений (бриф в181-190:

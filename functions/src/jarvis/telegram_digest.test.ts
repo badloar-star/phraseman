@@ -77,4 +77,37 @@ describe('Jarvis telegram digest — short, honest, safe to render as HTML', () 
     const text = buildTelegramDigest({ decisions: many, appTier: 'mature', departmentErrors: [] });
     expect(text.length).toBeLessThan(4096);
   });
+
+  test('with no narrativeByHash map, output is byte-identical to before the enricher existed', () => {
+    // зачем: обогатитель — необязательная надстройка. Без него дайджест не
+    // должен меняться ни на символ, иначе панель и Telegram могли бы разойтись.
+    const list = [decision({ contentHash: 'h1' } as Partial<Decision>)];
+    const withoutMap = buildTelegramDigest({ decisions: list, appTier: 'growth', departmentErrors: [] });
+    const withEmptyMap = buildTelegramDigest({
+      decisions: list, appTier: 'growth', departmentErrors: [], narrativeByHash: new Map(),
+    });
+    expect(withEmptyMap).toBe(withoutMap);
+  });
+
+  test('appends the narrative for a decision found by its contentHash', () => {
+    const list = [decision({ contentHash: 'h1' } as Partial<Decision>)];
+    const text = buildTelegramDigest({
+      decisions: list,
+      appTier: 'growth',
+      departmentErrors: [],
+      narrativeByHash: new Map([['h1', 'Связный пересказ от LLM.']]),
+    });
+    expect(text).toContain('Связный пересказ от LLM.');
+  });
+
+  test('a narrative is escaped just like any other free text field', () => {
+    const list = [decision({ contentHash: 'h1' } as Partial<Decision>)];
+    const text = buildTelegramDigest({
+      decisions: list,
+      appTier: 'growth',
+      departmentErrors: [],
+      narrativeByHash: new Map([['h1', 'Опасно <script>alert(1)</script>']]),
+    });
+    expect(text).not.toContain('<script>');
+  });
 });

@@ -64,7 +64,6 @@ import {
 import {
   hydrateSeasonPassProgress,
   peekSeasonPassProgress,
-  SEASON_PASS_LEVELS,
   type SeasonPassProgress,
 } from '../season_pass_model';
 import { resolveTournamentWindowState } from '../tournament_window_state';

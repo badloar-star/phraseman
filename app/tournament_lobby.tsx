@@ -47,6 +47,7 @@ import {
 import { getStableId } from './stable_id';
 import { useLocalSearchParams } from 'expo-router';
 import { orderVisibleLobbyPlayers } from './tournament_lobby_seats';
+import { tournamentPrizeForecast } from './tournament_prize_forecast';
 import {
   cancelTournamentEntryTransition,
   markTournamentEntryTransitionAdvanced,
@@ -112,9 +113,19 @@ type LobbyBotArrival = NonNullable<Room['lobbyEvents']>[number];
 const AnimatedBankAmount = memo(function AnimatedBankAmount({
   amount,
   events,
+  onDisplayAmountChange,
 }: {
   amount: number;
   events: readonly LobbyBotArrival[];
+  /**
+   * зачем 2026-08-03 (владелец: «места пусть сразу показывают точные цифры
+   * жемчугов, тоже анимированно»): банк доезжает до новой суммы КАСКАДОМ, по
+   * одному прибытию. Если бы места считались от итогового `amount`, они
+   * прыгнули бы к финалу мгновенно, пока банк ещё едет, — на экране виднелось
+   * бы «банк 40, а первому месту 38» (арифметика не сходится, доверие падает).
+   * Отдаём наружу ТЕКУЩУЮ показанную сумму, чтобы места шли с банком в ногу.
+   */
+  onDisplayAmountChange?: (amount: number) => void;
 }) {
   const P = useTournamentPalette();
   const styles = React.useMemo(() => makeStyles(P), [P]);
@@ -123,6 +134,11 @@ const AnimatedBankAmount = memo(function AnimatedBankAmount({
   const [displayAmount, setDisplayAmount] = useState(amount);
   const seenEventIdsRef = useRef(new Set<string>());
   const initializedRef = useRef(false);
+  // Ref, а не зависимость эффекта: коллбэк из родителя может пересоздаваться
+  // на каждом рендере, и каскад перезапускался бы с середины.
+  const notifyRef = useRef(onDisplayAmountChange);
+  useEffect(() => { notifyRef.current = onDisplayAmountChange; }, [onDisplayAmountChange]);
+  useEffect(() => { notifyRef.current?.(displayAmount); }, [displayAmount]);
 
   useEffect(() => {
     if (!initializedRef.current) {
@@ -169,6 +185,57 @@ const AnimatedBankAmount = memo(function AnimatedBankAmount({
     >
       <Text style={styles.bankAmountSlot}>{displayAmount}</Text>
       <Text style={styles.bankUnit}>жемчужин</Text>
+    </Animated.View>
+  );
+});
+
+const PRIZE_PLACE_LABELS = ['1 место', '2 место', '3 место'] as const;
+
+/**
+ * Награда за место в жемчужинах — вместо процентов.
+ *
+ * зачем 2026-08-03 (владелец: «места пусть вместо процентов сразу показывают
+ * точные цифры жемчугов»): «60%» не отвечает на вопрос «сколько я получу».
+ * Игрок не держит банк в голове и не умножает в уме, пока идёт отсчёт лобби.
+ *
+ * Цифра растёт вместе с банком, поэтому у экрана появляется причинно-
+ * следственная связь: подошёл соперник → банк потяжелел → МОЯ награда выросла.
+ * Это и есть мотив дождаться полной комнаты.
+ */
+const AnimatedPrizePlace = memo(function AnimatedPrizePlace({
+  label,
+  gems,
+}: {
+  label: string;
+  gems: number;
+}) {
+  const P = useTournamentPalette();
+  const styles = React.useMemo(() => makeStyles(P), [P]);
+  const reduceMotion = useReduceMotion();
+  const pulse = useSharedValue(1);
+  const previousGemsRef = useRef(gems);
+
+  useEffect(() => {
+    const grew = gems > previousGemsRef.current;
+    previousGemsRef.current = gems;
+    // Пульсируем ТОЛЬКО на росте: возврат игрока из лобби уменьшает банк, и
+    // подсвечивать потерю той же радостной анимацией было бы издевательством.
+    if (!grew || reduceMotion) return;
+    // Мягче банка (1.04 против 1.06): банк — солист, места ему подпевают.
+    // Одинаковая амплитуда превратила бы карточку в дрожащую мозаику.
+    pulse.value = withSequence(withTiming(1.04, { duration: 110 }), withTiming(1, { duration: 190 }));
+  }, [gems, pulse, reduceMotion]);
+
+  const animatedStyle = useAnimatedStyle(() => ({ transform: [{ scale: pulse.value }] }));
+  return (
+    <Animated.View style={[styles.bankShare, animatedStyle]}>
+      <Text style={styles.bankShareLabel}>{label}</Text>
+      <Text
+        style={styles.bankShareGems}
+        accessibilityLabel={`${label}: ${gems} жемчужин`}
+      >
+        {gems}
+      </Text>
     </Animated.View>
   );
 });
@@ -343,15 +410,21 @@ export default function TournamentLobbyScreen() {
       return;
     }
     const known = strangerProfiles[seat.uid];
+    // зачем (2026-08-03): раньше здесь стояло `points: known?.totalXp ?? 0` —
+    // пока батч профилей не долетел, карточка утверждала «0 опыта, Lv.1» как
+    // факт. Теперь при отсутствии профиля поля остаются undefined, и модалка
+    // показывает skeleton, а не выдуманный ноль. Цепочку/лигу тоже берём с
+    // сервера: жёсткий `streak: null` обнулял огонёк даже у активных игроков.
     setSelectedPlayer({
-      name: seat.name,
+      name: known?.displayName || seat.name,
       points: known?.totalXp ?? 0,
       totalXp: known?.totalXp,
       isMe: false,
       uid: seat.uid,
       avatar: known?.avatar || seat.avatar,
-      aura: seat.aura,
-      streak: null,
+      aura: known?.aura || seat.aura,
+      streak: known?.streak ?? (seat.streak > 0 ? seat.streak : null),
+      leagueId: known?.leagueId,
       isPremium: known?.isPremium,
       isVip: known?.isVip,
       isLifetime: known?.isLifetime,
@@ -363,7 +436,23 @@ export default function TournamentLobbyScreen() {
   const joined = seats.length;
   const full = joined >= SEATS;
   const secondsToStart = secondsLeft;
-  const bankGems = Math.max(0, Math.trunc(Number(room?.potGems ?? 0)));
+  // potGems — БАНК КОМНАТЫ с сервера, а не баланс игрока: экран только рисует
+  // пришедшее значение, кошелёк пользователя тут не трогается.
+  const bankGems = Math.max(0, Math.trunc(Number(room?.potGems ?? 0))); // guard-ok
+  /**
+   * Банк, который СЕЙЧАС виден на экране (каскад ещё может ехать), и награды,
+   * посчитанные ровно от него.
+   *
+   * зачем 2026-08-03: держим единый источник для обеих цифр — иначе банк и
+   * места на одном кадре показывали бы разные состояния одной и той же суммы.
+   * Стартуем с bankGems, чтобы первый кадр уже был правильным (Performance
+   * Bible: никакого «сначала ноль, потом прыжок»).
+   */
+  const [displayedBankGems, setDisplayedBankGems] = useState(bankGems);
+  const prizeForecast = useMemo(
+    () => tournamentPrizeForecast(displayedBankGems),
+    [displayedBankGems],
+  );
 
   const leaveLobby = useCallback(() => {
     if (leavingRef.current) return;
@@ -528,12 +617,19 @@ export default function TournamentLobbyScreen() {
           </View>
           <View style={styles.bankRow}>
             <Text style={styles.bankLabel}>Общий банк</Text>
-            <AnimatedBankAmount amount={bankGems} events={room?.lobbyEvents ?? []} />
+            <AnimatedBankAmount
+              amount={bankGems}
+              events={room?.lobbyEvents ?? []}
+              onDisplayAmountChange={setDisplayedBankGems}
+            />
           </View>
-          <View style={styles.bankShares} accessibilityLabel="Доли призёров: 60, 25 и 15 процентов">
-            <Text style={styles.bankShare}>1 место · 60%</Text>
-            <Text style={styles.bankShare}>2 место · 25%</Text>
-            <Text style={styles.bankShare}>3 место · 15%</Text>
+          {/* зачем 2026-08-03 (владелец): вместо «60% / 25% / 15%» — сколько
+              жемчужин реально получит каждый призёр. Проценты требовали от
+              игрока считать в уме от банка, который он видит первый раз. */}
+          <View style={styles.bankShares}>
+            {PRIZE_PLACE_LABELS.map((label, index) => (
+              <AnimatedPrizePlace key={label} label={label} gems={prizeForecast[index]} />
+            ))}
           </View>
           {/* Сегменты V2 вместо сплошной шкалы: каждый сегмент — четверть
               комнаты, заполняется отдельно, видно динамику сбора. */}
@@ -693,12 +789,34 @@ const makeStyles = (P: TournamentPalette) => StyleSheet.create({
     gap: 6,
     marginTop: 10,
   },
+  // Плашка места: подпись сверху, награда снизу. Тон и вес разводят их по
+  // иерархии — цифра ведёт, подпись поясняет. Разделителей и обводок нет:
+  // блоки отделяет только ритм отступов (правило владельца).
   bankShare: {
     flex: 1,
+    alignItems: 'center',
+    gap: 2,
+    // Геометрия фиксирована с первого кадра: цифра меняется от 0 до сотен,
+    // и без запаса по высоте карточка «дышала» бы при каждом прибытии.
+    minHeight: 34,
+  },
+  // guard-ok: это НЕ подпись-расшифровка под названием, а сам ярлык места.
+  // Без «1 место» цифра «38» не читается вообще; тут подпись несёт смысл,
+  // а не поясняет самодостаточный заголовок.
+  bankShareLabel: {
     color: P.muted,
-    fontSize: 11,
+    fontSize: 11, // guard-ok
     fontWeight: '700',
     textAlign: 'center',
+  },
+  // Награда — то, ради чего игрок ждёт: цвет акцента и вес выше подписи.
+  // tabular-nums держит ширину цифр при смене 9 → 16 → 38.
+  bankShareGems: {
+    color: P.accent,
+    fontSize: 15,
+    fontWeight: '900',
+    textAlign: 'center',
+    fontVariant: ['tabular-nums'],
   },
   progressTrack: {
     height: 8,

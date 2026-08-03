@@ -525,12 +525,23 @@ describe('экраны режима «Турниры»', () => {
     expect(leaveBlock).toContain('myId ?? await getStableId().catch(() => null)');
     expect(leaveBlock).toContain('resolveTournamentExitStatus(roomId, exitPlayerId)');
     expect(leaveBlock).toContain("pathname: '/tournament_lobby'");
-    expect(lobby).toContain('60%');
-    expect(lobby).toContain('25%');
-    expect(lobby).toContain('15%');
+    // зачем 2026-08-03 (владелец: «места пусть вместо процентов сразу
+    // показывают точные цифры жемчугов, тоже анимированно»): проценты в лобби
+    // запрещены — игрок не считает доли от банка в уме, ему нужна награда.
+    expect(lobby).not.toContain('1 место · 60%');
+    expect(lobby).not.toContain('2 место · 25%');
+    expect(lobby).not.toContain('3 место · 15%');
+    expect(lobby).toContain('tournamentPrizeForecast');
+    expect(lobby).toContain('AnimatedPrizePlace');
+    // Награда считается от ТЕКУЩЕЙ показанной суммы банка, а не от итоговой:
+    // иначе места прыгнули бы к финалу, пока каскад банка ещё едет.
+    expect(lobby).toContain('onDisplayAmountChange={setDisplayedBankGems}');
+    expect(lobby).toMatch(/tournamentPrizeForecast\(displayedBankGems\)/);
     expect(lobby).toContain('useReduceMotion');
     expect(lobby).toContain('withTiming');
     expect(lobby).toMatch(/bankAmountSlot:\s*\{[^}]*minWidth:[^}]*fontVariant:\s*\['tabular-nums'\]/s);
+    // Цифра награды не должна дёргаться по ширине при 9 → 16 → 38.
+    expect(lobby).toMatch(/bankShareGems:\s*\{[^}]*fontVariant:\s*\['tabular-nums'\]/s);
   });
 
   it('подтверждённый выход из активного раунда закрывает экран до сетевого ответа', () => {

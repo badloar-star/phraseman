@@ -35,6 +35,8 @@ export interface SeasonTrackNode { level: number; free?: SeasonReward; pass?: Se
 // Жемчуг остаётся системной тематической иконкой из coin_icons. Все остальные
 // предметные награды получают собственный DALL·E-ассет в двух семействах:
 // sagePorcelain → light, все остальные ThemeMode → dark.
+// Арт-контракт владельца: современные дизайнерские collectible-charms с сильным
+// силуэтом; без fantasy/RPG, золотой филиграни, гербов, крыльев и драгоценных камней.
 export const SEASON_REWARD_ART_KINDS = [
   'battery',
   'league_boost',

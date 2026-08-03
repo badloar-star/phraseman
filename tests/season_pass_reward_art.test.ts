@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import crypto from 'crypto';
 
 const ROOT = path.resolve(__dirname, '..');
 const read = (relativePath: string): string => fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
@@ -44,6 +45,41 @@ describe('Season Pass reward art', () => {
 
     expect(config).toContain('export function getSeasonRewardIcon(');
     expect(config).toContain("isLightThemeMode(themeMode) ? 'light' : 'dark'");
+  });
+
+  it('ships the redesigned collectible set as compact transparent and non-duplicated WebP art', async () => {
+    // The card frame has its own 512×320 geometry; the other rewards share a
+    // square slot so their visual scale stays stable on the Season Pass track.
+    const redesignedKinds = REWARD_KINDS.filter((kind) => kind !== 'frame');
+    const hashes = new Set<string>();
+
+    for (const theme of ['light', 'dark'] as const) {
+      for (const kind of redesignedKinds) {
+        const relativePath = `assets/images/season/rewards/${theme}/${kind}.webp`;
+        const absolutePath = path.join(ROOT, relativePath);
+        const file = fs.readFileSync(absolutePath);
+        const hash = crypto.createHash('sha256').update(file).digest('hex');
+        expect(hashes.has(hash)).toBe(false);
+        hashes.add(hash);
+        expect(file.byteLength).toBeLessThan(60_000);
+
+        // eslint-disable-next-line @typescript-eslint/no-require-imports
+        const sharp = require('sharp') as typeof import('sharp');
+        const image = sharp(file);
+        const metadata = await image.metadata();
+        expect(metadata.format).toBe('webp');
+        expect(metadata.width).toBe(256);
+        expect(metadata.height).toBe(256);
+        expect(metadata.hasAlpha).toBe(true);
+
+        const { data, info } = await image.ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+        const alphaAt = (x: number, y: number) => data[(y * info.width + x) * info.channels + 3];
+        expect(alphaAt(0, 0)).toBeLessThanOrEqual(8);
+        expect(alphaAt(255, 255)).toBeLessThanOrEqual(8);
+      }
+    }
+
+    expect(hashes.size).toBe(redesignedKinds.length * 2);
   });
 
   it('wires three independent light and dark layers for every aura', () => {

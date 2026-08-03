@@ -41,16 +41,21 @@ import {
   type ActiveLevelGiftInventoryItem,
 } from './level_gift_active_inventory';
 import { getCurrentMultiplierBreakdown, type MultiplierBreakdown } from './xp_manager';
+import {
+  giftGradientAlpha,
+  giftGradientBaseColor,
+  giftGradientShape,
+  type GiftRarity,
+} from './gift_gradient_palette';
+import type { ThemeMode } from '../constants/theme';
 
-const giftAccent = (rarity: string): string =>
-  rarity === 'epic' ? '#FFD700' : rarity === 'rare' ? '#60A5FA' : '#D6B85C';
-
-// зачем: акценты редкости придуманы под тёмный фон — золото #FFD700 и
-// песочный #D6B85C на белом дают ~1.4:1 и не читаются (владелец не смог
-// разобрать надписи на скриншоте светлой темы). Тёмные аналоги тех же
-// металлов держат ту же смысловую разницу редкостей, но с контрастом.
-const giftAccentLight = (rarity: string): string =>
-  rarity === 'epic' ? '#8A6410' : rarity === 'rare' ? '#2C5EA8' : '#6B5A2E';
+// зачем 2026-08-03 (владелец: «полностью измени цвета градиентов подарков,
+// сделай под каждую тему свои цвета и форму градиента»): здесь жили giftAccent
+// и giftAccentLight — по три захардкоженных hex на тёмные и светлые темы
+// (#FFD700 / #60A5FA / #D6B85C и их тёмные аналоги). Эти шесть цветов
+// показывались во ВСЕХ 13 темах, поэтому подарки всюду выглядели чужеродно, а
+// тема на них не влияла вообще. Палитра переехала в gift_gradient_palette.ts:
+// цвет берётся из токенов активной темы, редкость меняет плотность и угол.
 
 // зачем: владелец попросил сетку как в «Темах интерфейса» — те же зазор,
 // паддинг и 3 плитки в ряд, чтобы ритм сеток по приложению был единым
@@ -115,7 +120,13 @@ const GiftTile = memo(function GiftTile({ item, size, lang, themeMode, nameColor
         ? 'rare'
         : 'common'
     : primaryGift.rarity;
-  const accent = isLight ? giftAccentLight(strongestRarity) : giftAccent(strongestRarity);
+  // зачем 2026-08-03 (владелец: «сделай под каждую тему свои цвета и форму
+  // градиента»): было `isLight ? giftAccentLight(rarity) : giftAccent(rarity)` —
+  // три захардкоженных hex на все 13 тем. Теперь семейство цвета задаёт тема, а
+  // редкость меняет плотность заливки и угол градиента.
+  const accent = giftGradientBaseColor(themeMode as ThemeMode, strongestRarity as GiftRarity, themeAccent, themeGold);
+  const gradientAlpha = giftGradientAlpha(strongestRarity as GiftRarity, isLight);
+  const gradientShape = giftGradientShape(strongestRarity as GiftRarity);
   const shardAmount = item.kind === 'single' ? giftShardAmount(item.gift.id) : 0;
   const rowKey = item.kind === 'single' && item.dualPart
     ? `${item.kind}-${item.level}-${item.dualPart}`
@@ -148,9 +159,9 @@ const GiftTile = memo(function GiftTile({ item, size, lang, themeMode, nameColor
         style={{ borderRadius: 22 }}
       >
         <LinearGradient
-          colors={[giftTone(accent, isLight ? '1F' : '2E'), surface[0], surface[1]] as [string, string, string]}
-          start={{ x: 0.15, y: 0 }}
-          end={{ x: 0.85, y: 1 }}
+          colors={[giftTone(accent, gradientAlpha), surface[0], surface[1]] as [string, string, string]}
+          start={gradientShape.start}
+          end={gradientShape.end}
           style={{ width: size, height: size, borderRadius: 22, overflow: 'hidden', alignItems: 'center', justifyContent: 'center' }}
         >
           <Image

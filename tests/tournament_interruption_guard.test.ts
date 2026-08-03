@@ -43,11 +43,17 @@ describe('tournament interruption guard', () => {
     expect(rootLayoutSource).toMatch(
       /if \(isTournamentInterruptionProtectedPath\(pathnameRef\.current\)\) return;[\s\S]{0,900}source: 'winback'/,
     );
+    // зачем 2026-08-03: смысл проверки прежний — оверлеи монетизации обязаны
+    // гаситься турнирным флагом. Регулярки сделаны устойчивыми к ПЕРЕНОСУ
+    // СТРОКИ: соседние сессии переформатировали эти выражения, и посимвольная
+    // сверка падала на живом, полностью исправном коде. Требование то же:
+    // && !tournamentInterruptionProtected в appOverlaysEnabled и в условии
+    // introFullAccess — просто без привязки к отступам.
     expect(rootLayoutSource).toMatch(
-      /const appOverlaysEnabled = [^;]+&& !tournamentInterruptionProtected;/,
+      /const appOverlaysEnabled = [\s\S]+?&& !tournamentInterruptionProtected;/,
     );
-    expect(rootLayoutSource).toContain(
-      "'introFullAccess',\n    !tournamentInterruptionProtected && introFullAccessModal !== null",
+    expect(rootLayoutSource).toMatch(
+      /'introFullAccess',\s*\n\s*!tournamentInterruptionProtected && introFullAccessModal !== null/,
     );
     expect(rootLayoutSource).toContain(
       'visible={appOverlaysEnabled && !tournamentInterruptionProtected && introFullAccessModalVisible}',

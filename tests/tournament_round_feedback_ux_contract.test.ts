@@ -84,11 +84,18 @@ describe('tournament question feedback UX', () => {
     expect(round).not.toContain('seconds={secondsLeft ?? answerWindowSeconds}');
   });
 
-  test('question TimerRing shows a numeric countdown only for the final five seconds', () => {
+  // зачем 2026-08-03 (требование владельца): цифра на таймере видна ВСЕГДА,
+  // а красным становится только на последних пяти секундах. Требование
+  // «цифры только 5 секунд» завела соседняя сессия 2026-08-01 внутри коммита
+  // 61a58ad14 — она изменила код и подогнала контракт под себя, оставив
+  // встречный (и утверждённый по макетам) tournament_round_visual_fidelity
+  // падать: тот прямо запрещает `{low ? <Text`. Держим одну правду.
+  test('question TimerRing always shows the countdown, red only in the final five seconds', () => {
     const timerRing = section(countdown, 'export const TimerRing', 'const makeStyles');
 
     expect(timerRing).toContain('const low = seconds <= 5');
-    expect(timerRing).toContain('{low ? <Text');
+    expect(timerRing).toContain('<Text style={[styles.ringText, low && styles.ringTextLow]}>');
+    expect(timerRing).not.toContain('{low ? <Text');
     expect(timerRing).toContain('Math.ceil(seconds)');
     expect(timerRing).toContain('styles.ringText');
     expect(timerRing).toContain('accessibilityRole="timer"');
@@ -122,10 +129,13 @@ describe('tournament question feedback UX', () => {
     expect(round).toMatch(/const goNext[\s\S]*activeTaskSubmissionRef\.current = null/);
   });
 
-  test('question timer is a stable ring and shows digits only for the final five seconds', () => {
+  // зачем 2026-08-03 (требование владельца): см. соседний тест выше — цифра
+  // видна всегда, красной становится только на последних пяти секундах.
+  test('question timer is a stable ring and always shows the digits', () => {
     expect(round).toContain('const answerWindowSeconds =');
     expect(round).toContain('<TimerRing seconds={displayedSecondsLeft} total={answerWindowSeconds} />');
-    expect(countdown).toContain("{low ? <Text");
+    expect(countdown).toContain('<Text style={[styles.ringText, low && styles.ringTextLow]}>');
+    expect(countdown).not.toContain("{low ? <Text");
   });
 
   test('choice and phrase verdicts paint from room fingerprints before any network await', () => {

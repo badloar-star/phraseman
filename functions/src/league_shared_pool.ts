@@ -7,8 +7,12 @@
 // С недели SHARED_POOL_START_WEEK все реальные игроки собираются в ОДНУ
 // комнату недели (переполнение сверх 30 владелец разрешил явно). Личная лига
 // каждого хранится в его записи участника (members.{uid}.leagueId) и живёт
-// по старым правилам ±1 за неделю. Пустоту до полной комнаты добивают
-// «жители» (league_ghosts.ts).
+// по старым правилам ±1 за неделю — это и есть «умное слияние»: рядом сидят
+// игроки разных лиг, но каждый повышается/понижается от СВОЕЙ.
+//
+// Без ботов-заполнителей (владелец, 2026-08-03): пусть комната сама
+// дорастает реальными вступлениями — не плодим отдельный крон/генератор/тесты
+// ради косметики.
 //
 // Kill-switch: remote_config/app → bools.league_shared_pool_enabled=false
 // выключает НОВУЮ расстановку в пул без деплоя. Уже сидящие в пуле продолжают
@@ -18,11 +22,8 @@
 
 export const SHARED_POOL_MARKER = 'shared_v1';
 export const SHARED_POOL_START_WEEK = '2026-W33';
-/** Мягкий лимит РЕАЛЬНЫХ игроков в пуле; сверх него открывается вторая комната. */
+/** Мягкий лимит участников пула; сверх него открывается вторая комната. */
 export const SHARED_POOL_REAL_SOFT_CAP = 50;
-/** До скольких видимых участников (реальные + жители) дозаполняется комната. */
-export const SHARED_POOL_TARGET_VISIBLE = 28;
-export const GHOST_UID_PREFIX = 'ghost_';
 
 const SHARED_POOL_FLAG_TTL_MS = 5 * 60 * 1000;
 
@@ -70,26 +71,12 @@ export function sharedPoolDocId(weekId: string, index1based: number): string {
   return `pool_${weekId}_${String(Math.max(1, Math.trunc(index1based))).padStart(2, '0')}`;
 }
 
-export function isGhostMemberEntry(uid: string, member: unknown): boolean {
-  if (uid.startsWith(GHOST_UID_PREFIX)) return true;
-  return !!member && typeof member === 'object' && (member as Record<string, unknown>).isGhost === true;
-}
-
 type MembersMap = Record<string, Record<string, unknown>> | undefined | null;
 
-function memberEntries(members: MembersMap): Array<[string, Record<string, unknown>]> {
-  if (!members || typeof members !== 'object') return [];
-  return Object.entries(members).filter(([, m]) => m?.identityHidden !== true);
-}
-
-/** Видимые участники: реальные + жители (для memberCount и отображения). */
-export function countVisibleMembers(members: MembersMap): number {
-  return memberEntries(members).length;
-}
-
-/** Только реальные игроки — по ним считается soft cap и зоны повышения. */
-export function countRealMembers(members: MembersMap): number {
-  return memberEntries(members).filter(([uid, m]) => !isGhostMemberEntry(uid, m)).length;
+/** Участники комнаты (для memberCount, soft cap и отображения). */
+export function countMembers(members: MembersMap): number {
+  if (!members || typeof members !== 'object') return 0;
+  return Object.values(members).filter((m) => m?.identityHidden !== true).length;
 }
 
 /**
@@ -110,7 +97,7 @@ export function leagueRoomMatches(
 
 /**
  * Выбор пула из списка комнат недели: сперва комната, где я уже есть,
- * затем первая по порядку id с реальными < soft cap, иначе null (создать новую).
+ * затем первая по порядку id с местом < soft cap, иначе null (создать новую).
  */
 export function chooseSharedPoolRoom(
   rooms: Array<{ id: string; data: FirebaseFirestore.DocumentData }>,
@@ -122,7 +109,7 @@ export function chooseSharedPoolRoom(
     if (members && Object.prototype.hasOwnProperty.call(members, stableUid)) return room.id;
   }
   for (const room of sorted) {
-    if (countRealMembers(room.data?.members as MembersMap) < SHARED_POOL_REAL_SOFT_CAP) return room.id;
+    if (countMembers(room.data?.members as MembersMap) < SHARED_POOL_REAL_SOFT_CAP) return room.id;
   }
   return null;
 }

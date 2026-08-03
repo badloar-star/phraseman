@@ -6,13 +6,11 @@ import { isVipActive, resolvePremiumAccess, resolveIsLifetimePlan } from './prem
 import {
   SHARED_POOL_MARKER,
   chooseSharedPoolRoom,
-  countRealMembers,
   isSharedPoolEnabled,
   isSharedPoolWeekId,
   leagueRoomMatches,
   sharedPoolDocId,
 } from './league_shared_pool';
-import { padRoomWithGhosts } from './league_ghosts';
 
 const GROUP_SIZE = 30;
 const MAX_LEAGUE_ID = 11;
@@ -523,7 +521,6 @@ async function hideDuplicateMemberships(
       batch.set(doc.ref, {
         members,
         memberCount: countMembers({ members }),
-        realMemberCount: countRealMembers(members),
         updatedAt: now,
         identityCanonicalizedAt: now,
       }, { merge: true });
@@ -631,7 +628,7 @@ export const leagueJoinOrUpdateGroup = onCall(HOT_CALLABLE_OPTIONS, async (reque
       const currentMember = { ...member, points: currentWeekPoints };
       const members = { ...(data.members || {}) };
       members[stableUid] = mergeCurrentWeekMember(members[stableUid], currentMember);
-      tx.set(ref, { members, memberCount: countMembers({ members }), realMemberCount: countRealMembers(members), updatedAt: Date.now() }, { merge: true });
+      tx.set(ref, { members, memberCount: countMembers({ members }), updatedAt: Date.now() }, { merge: true });
       tx.set(lbRef, {
         groupId,
         groupWeekId: weekId,
@@ -648,8 +645,7 @@ export const leagueJoinOrUpdateGroup = onCall(HOT_CALLABLE_OPTIONS, async (reque
   if (sharedPool) {
     // Пула ещё нет — создаём с детерминированным id: гонка двух создателей
     // упирается в tx.create (ALREADY_EXISTS), проигравший на следующем круге
-    // находит комнату победителя и вступает в неё. Комната рождается сразу
-    // дозаполненной жителями — первый игрок понедельника видит полную комнату.
+    // находит комнату победителя и вступает в неё.
     const isAlreadyExists = (e: unknown): boolean =>
       (e as { code?: number | string })?.code === 6
       || /already.?exists/i.test(String((e as Error)?.message ?? ''));
@@ -667,7 +663,7 @@ export const leagueJoinOrUpdateGroup = onCall(HOT_CALLABLE_OPTIONS, async (reque
           const currentWeekPoints = getAuthoritativeLeagueWeekPoints(userSnap?.data(), freshLbSnap.data(), weekId);
           const members = { ...(data.members || {}) };
           members[stableUid] = mergeCurrentWeekMember(members[stableUid], { ...member, points: currentWeekPoints });
-          tx.set(ref, { members, memberCount: countMembers({ members }), realMemberCount: countRealMembers(members), updatedAt: Date.now() }, { merge: true });
+          tx.set(ref, { members, memberCount: countMembers({ members }), updatedAt: Date.now() }, { merge: true });
           tx.set(lbRef, {
             groupId: candidate,
             groupWeekId: weekId,
@@ -690,17 +686,12 @@ export const leagueJoinOrUpdateGroup = onCall(HOT_CALLABLE_OPTIONS, async (reque
           const ref = db.collection('league_groups').doc(poolRoomId);
           const freshLbSnap = await tx.get(lbRef);
           const currentWeekPoints = getAuthoritativeLeagueWeekPoints(userSnap?.data(), freshLbSnap.data(), weekId);
-          const seeded = padRoomWithGhosts(
-            { [stableUid]: { ...member, points: currentWeekPoints } },
-            weekId,
-            Date.now(),
-          );
+          const seeded = { [stableUid]: { ...member, points: currentWeekPoints } };
           tx.create(ref, {
             weekId,
             leagueId: 0,
             pool: SHARED_POOL_MARKER,
             memberCount: countMembers({ members: seeded }),
-            realMemberCount: countRealMembers(seeded),
             createdAt: Date.now(),
             updatedAt: Date.now(),
             members: seeded,
@@ -736,7 +727,7 @@ export const leagueJoinOrUpdateGroup = onCall(HOT_CALLABLE_OPTIONS, async (reque
       const members = { ...(data.members || {}) };
       if (!members[stableUid] && countMembers({ members }) >= GROUP_SIZE) return;
       members[stableUid] = mergeCurrentWeekMember(members[stableUid], currentMember);
-      tx.set(ref, { members, memberCount: countMembers({ members }), realMemberCount: countRealMembers(members), updatedAt: Date.now() }, { merge: true });
+      tx.set(ref, { members, memberCount: countMembers({ members }), updatedAt: Date.now() }, { merge: true });
       tx.set(lbRef, {
         groupId: candidate,
         groupWeekId: weekId,

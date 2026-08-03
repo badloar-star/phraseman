@@ -8,12 +8,12 @@ jest.mock('firebase-functions/v2/scheduler', () => ({
 
 import { computeGroupResults } from './league_finalize_cron';
 
-// Сводный пул: комната общая (leagueId документа = 0), личная лига в записи
-// участника, жители не получают итогов и не занимают зоны переходов.
-describe('league finalization for the shared weekly pool', () => {
+// Сводный пул: одна комната содержит игроков разных личных лиг (умное
+// слияние). Каждый повышается/понижается от СВОЕЙ лиги, а не от лиги комнаты.
+describe('league finalization for the shared weekly pool (smart merge)', () => {
   const rankMode = { enabled: false, threshold: 1000 };
 
-  it('promotes and demotes each real member relative to their OWN league', () => {
+  it('promotes and demotes each member relative to their OWN league', () => {
     const results = computeGroupResults({
       grinder: { uid: 'grinder', points: 900, leagueId: 7 },
       middle: { uid: 'middle', points: 400, leagueId: 3 },
@@ -24,30 +24,6 @@ describe('league finalization for the shared weekly pool', () => {
     expect(results.middle).toMatchObject({ promoted: false, demoted: false, prevLeagueId: 3, newLeagueId: 3 });
     // Низ зоны, но лига 0 вниз не понижается.
     expect(results.newbie).toMatchObject({ promoted: false, demoted: false, prevLeagueId: 0, newLeagueId: 0 });
-  });
-
-  it('never writes results for ghosts and never lets them occupy promotion zones', () => {
-    const members: Record<string, { uid: string; points: number; leagueId?: number; isGhost?: boolean }> = {
-      real1: { uid: 'real1', points: 500, leagueId: 2 },
-      real2: { uid: 'real2', points: 100, leagueId: 2 },
-    };
-    for (let i = 0; i < 26; i++) {
-      members[`ghost_2026-W33_${String(i).padStart(2, '0')}`] = {
-        uid: `ghost_2026-W33_${String(i).padStart(2, '0')}`,
-        points: 1000 + i, // жители впереди всех по очкам
-        isGhost: true,
-      };
-    }
-    const results = computeGroupResults(members, 0, rankMode);
-
-    expect(Object.keys(results).sort()).toEqual(['real1', 'real2']);
-    // Зона: 15% от 2 реальных = 1 слот; лидер реальных повышается, даже если
-    // все жители впереди него по очкам.
-    expect(results.real1.promoted).toBe(true);
-    expect(results.real2.demoted).toBe(true);
-    // Отображаемый ранг честен к экрану: жители в нём учитываются.
-    expect(results.real1.rank).toBe(27);
-    expect(results.real1.total).toBe(28);
   });
 
   it('keeps legacy per-league rooms byte-compatible (no leagueId on members)', () => {

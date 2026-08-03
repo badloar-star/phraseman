@@ -4,8 +4,7 @@ import {
   SHARED_POOL_START_WEEK,
   chooseSharedPoolRoom,
   compareWeekIds,
-  countRealMembers,
-  countVisibleMembers,
+  countMembers,
   isSharedPoolWeekId,
   isoWeekStartMs,
   leagueRoomMatches,
@@ -39,15 +38,13 @@ describe('league shared pool helpers', () => {
     expect(/^[A-Za-z0-9._-]{2,180}$/.test(sharedPoolDocId('2026-W33', 1))).toBe(true);
   });
 
-  it('counts real members excluding ghosts and hidden entries', () => {
+  it('counts members excluding hidden entries', () => {
     const members = {
       real1: { points: 10 },
       real2: { points: 5, identityHidden: true },
-      'ghost_2026-W33_00': { points: 50, isGhost: true },
-      flagged: { points: 3, isGhost: true },
+      real3: { points: 3 },
     };
-    expect(countVisibleMembers(members)).toBe(3);
-    expect(countRealMembers(members)).toBe(1);
+    expect(countMembers(members)).toBe(2);
   });
 
   it('matches pool rooms for any personal league, legacy rooms only for their own', () => {
@@ -72,24 +69,12 @@ describe('league shared pool helpers', () => {
     expect(chooseSharedPoolRoom([other, mine], 'newcomer')).toBe('pool_2026-W33_01');
   });
 
-  it('skips rooms at the real soft cap and asks for a new one when all are full', () => {
+  it('skips rooms at the soft cap and asks for a new one when all are full', () => {
     const fullMembers: Record<string, { points: number }> = {};
     for (let i = 0; i < SHARED_POOL_REAL_SOFT_CAP; i++) fullMembers[`u${i}`] = { points: i };
     const fullRoom = { id: 'pool_2026-W33_01', data: { members: fullMembers } };
     expect(chooseSharedPoolRoom([fullRoom], 'newcomer')).toBe(null);
-    // Жители не занимают реальные слоты: комната с 27 гостами и одним реальным открыта.
-    const ghostHeavy = {
-      id: 'pool_2026-W33_02',
-      data: {
-        members: {
-          real: { points: 1 },
-          ...Object.fromEntries(Array.from({ length: 27 }, (_, i) => [
-            `ghost_2026-W33_${String(i).padStart(2, '0')}`,
-            { points: 100, isGhost: true },
-          ])),
-        },
-      },
-    };
-    expect(chooseSharedPoolRoom([fullRoom, ghostHeavy], 'newcomer')).toBe('pool_2026-W33_02');
+    const openRoom = { id: 'pool_2026-W33_02', data: { members: { real: { points: 1 } } } };
+    expect(chooseSharedPoolRoom([fullRoom, openRoom], 'newcomer')).toBe('pool_2026-W33_02');
   });
 });

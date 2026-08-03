@@ -153,7 +153,6 @@ const { profileCardUpgrade } = require('./profile_card_upgrade');
 const { submitUserIdea, adminListUserIdeas, adminDecideUserIdea, adminDraftIdeaDecision } = require('./user_ideas');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { leagueFinalizeCron } = require('./league_finalize_cron');
-const { leagueGhostTickCron } = require('./league_ghosts');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
   notifyOnFriendRequestCreated,
@@ -287,7 +286,6 @@ exports.adminListUserIdeas = adminListUserIdeas;
 exports.adminDecideUserIdea = adminDecideUserIdea;
 exports.adminDraftIdeaDecision = adminDraftIdeaDecision;
 exports.leagueFinalizeCron = leagueFinalizeCron;
-exports.leagueGhostTickCron = leagueGhostTickCron;
 
 // ─── Leaderboard percentile stats cron ──────────────────────────────────────
 // Runs daily. Computes p1-p99 thresholds for XP, streak and recent activity.

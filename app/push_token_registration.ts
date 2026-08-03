@@ -148,7 +148,10 @@ export async function registerPushTokenForServerPush(lang: string): Promise<bool
 }
 
 /** Пользовательский выбор для СЕРВЕРНЫХ пушей: false = этот тип не слать. */
-export type ServerPushPrefs = { streak: boolean; offers: boolean };
+// зачем (2026-08-03): добавлен league — под этой категорией живёт серверный пуш
+// «турнир начинается» (tournament_start_push.ts). Без зеркала сервер слал бы его
+// юзеру, который выключил «Лигу» в разделе уведомлений.
+export type ServerPushPrefs = { streak: boolean; offers: boolean; league: boolean };
 
 /** Локальный кэш последних записанных префов — чтобы не писать в Firestore повторно. */
 const PUSH_PREFS_LOCAL_KEY = 'server_push_prefs_last_written';
@@ -170,12 +173,12 @@ export async function updateServerPushPrefs(prefs: ServerPushPrefs): Promise<voi
     const linkOk = await ensureStableAuthLinkForStableId(stableId).catch(() => false);
     if (!linkOk) return;
 
-    const cacheKey = `${stableId}:${prefs.streak ? 1 : 0}${prefs.offers ? 1 : 0}`;
+    const cacheKey = `${stableId}:${prefs.streak ? 1 : 0}${prefs.offers ? 1 : 0}${prefs.league ? 1 : 0}`;
     const lastWritten = await AsyncStorage.getItem(PUSH_PREFS_LOCAL_KEY);
     if (lastWritten === cacheKey) return;
 
     await db.collection('users').doc(stableId).set(
-      { pushPrefs: { streak: prefs.streak, offers: prefs.offers } },
+      { pushPrefs: { streak: prefs.streak, offers: prefs.offers, league: prefs.league } },
       { merge: true },
     );
     await AsyncStorage.setItem(PUSH_PREFS_LOCAL_KEY, cacheKey);

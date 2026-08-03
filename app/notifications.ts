@@ -1362,6 +1362,9 @@ export const saveNotifPrefs = async (p: NotifPrefs): Promise<void> => {
     .then(({ updateServerPushPrefs }) => updateServerPushPrefs({
       streak: normalized.master && normalized.categories.streak,
       offers: normalized.master && normalized.categories.offers,
+      // зачем: под «Лигой» живёт и серверный пуш «турнир начинается» —
+      // без зеркала выключенная категория не остановила бы его.
+      league: normalized.master && normalized.categories.league,
     }))
     .catch(() => {});
 };
@@ -2579,6 +2582,14 @@ export const setupNotificationTapHandler = (
           // Тап по «подарок сгорит» ведёт прямо к сгорающему — в раздел подарков.
           scheduleNav(() => {
             router.push('/level_gifts_inventory' as any);
+          });
+          break;
+        case 'tournament_starting':
+          // зачем: ведём на вкладку турниров, а НЕ прямо в лобби по roomId —
+          // вход требует билета и проверок, которые живут на вкладке. Прыжок в
+          // лобби мимо них упёрся бы в ошибку вместо игры.
+          scheduleNav(() => {
+            router.push('/(tabs)/tournaments' as any);
           });
           break;
         default:

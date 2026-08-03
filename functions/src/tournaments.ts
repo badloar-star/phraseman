@@ -8,6 +8,7 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { onSchedule } from 'firebase-functions/v2/scheduler';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
+import { isLobbyOpeningNow, runTournamentStartPush } from './tournament_start_push';
 import {
   TOURNAMENT_REDDIT_BOT_PERSONA_SEED,
   TOURNAMENT_REDDIT_BOT_PROFILE_IDS,
@@ -1414,6 +1415,19 @@ export const tournamentCreateRooms = onSchedule(
       const startsAt = slotStartMs(dateKey, slot.localTime, slot.timezone);
       if (nowMs < startsAt - TOURNAMENT_CREATE_AHEAD_MS || nowMs >= startsAt) continue;
       const roomId = tournamentRoomId(slot.slotId, slot.timezone, dateKey);
+      // зачем (владелец, 2026-08-03): турниры не слали ни одного уведомления —
+      // человек узнавал о старте постфактум. Шлём в момент открытия лобби, чтобы
+      // пуш и возможность зайти совпали. Отдельного крона нет намеренно: этот и
+      // так ходит раз в 5 минут и уже держит расписание — лишних чтений ноль.
+      if (isLobbyOpeningNow(nowMs, startsAt, TOURNAMENT_LOBBY_OPEN_MS)) {
+        try {
+          const pushSummary = await runTournamentStartPush(roomId, nowMs);
+          console.log('[tournaments] start push', JSON.stringify({ roomId, ...pushSummary }));
+        } catch (e) {
+          // Пуш — не критичный путь: турнир должен создаться и пройти в любом случае.
+          console.error('[tournaments] start push failed', { roomId }, e);
+        }
+      }
       const curated = await loadCuratedForRoom(db, roomId, resources.tasks);
       const roomPool = curated ? [...resources.tasks, ...curated.extraTasks] : resources.tasks;
       if (!buildRounds(roomId, roomPool, curated?.rounds)) {

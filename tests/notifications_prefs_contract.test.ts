@@ -89,8 +89,18 @@ describe('зеркало pushPrefs для серверных пушей', () => 
   it('клиент пишет pushPrefs с кэшем (1 write на смену настройки)', () => {
     const src = appSource('app/push_token_registration.ts');
     expect(src).toContain('export async function updateServerPushPrefs');
-    expect(src).toContain('pushPrefs: { streak: prefs.streak, offers: prefs.offers }');
+    // зачем: категории перечислены поимённо — забыть зеркалить новую значит
+    // молча слать серверный пуш тому, кто её выключил (так и было с league
+    // до 2026-08-03, когда под ней появился пуш «турнир начинается»).
+    expect(src).toContain('pushPrefs: { streak: prefs.streak, offers: prefs.offers, league: prefs.league }');
     expect(src).toContain('PUSH_PREFS_LOCAL_KEY');
+  });
+
+  it('сервер уважает pushPrefs.league перед пушем о старте турнира', () => {
+    const src = appSource('functions/src/tournament_start_push.ts');
+    expect(src).toContain("if (u.pushPrefs?.league === false) return false;");
+    // Поле обязано быть в проекции скана, иначе придёт пустым и фильтр не сработает.
+    expect(src).toContain("'pushPrefs'");
   });
 
   it('сервер уважает pushPrefs.streak и проецирует поле в скане', () => {

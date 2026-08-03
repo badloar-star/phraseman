@@ -278,6 +278,9 @@ export default function TournamentsScreen() {
   const [bankVisible, setBankVisible] = useState(false);
   const openBank = useCallback(() => setBankVisible(true), []);
   const closeBank = useCallback(() => setBankVisible(false), []);
+  // зачем: кнопка «назад» в шапке хаба. Турниры — вкладка, а не пуш-экран: стека
+  // может не быть вовсе, поэтому replace на home, а не router.back().
+  const goHome = useCallback(() => router.replace('/(tabs)/home' as any), [router]);
 
   const [schedule, setSchedule] = useState<ScheduleConfig | null>(null);
   const entryGems = schedule?.entryGems ?? DEFAULT_ENTRY_GEMS;
@@ -761,8 +764,20 @@ export default function TournamentsScreen() {
         // только верхнюю маску (onScrollMaskOnly), таббар остаётся развёрнутым.
         onScroll={topFadeScroll?.onScrollMaskOnly}
       >
-        {/* Шапка главного таба: название · звёзды сезона · жемчужины. */}
+        {/* Шапка главного таба: назад · название · звёзды сезона · жемчужины. */}
         <View style={styles.header}>
+          {/* зачем: владелец просил выход на главную прямо из хаба — турниры это вкладка,
+              поэтому не router.back() (стека может не быть, кинуло бы в случайный экран),
+              а replace на home. Вид 1:1 с кнопкой из shards_shop: круг 46, chevron-back. */}
+          <TapScale
+            testID="tournaments-back"
+            onPress={goHome}
+            accessibilityRole="button"
+            accessibilityLabel="На главную"
+            style={styles.backButton}
+          >
+            <Ionicons name="chevron-back" size={26} color={P.text} />
+          </TapScale>
           <FlowText testID="tournaments-title" provenance="authored" style={styles.title}>Турниры</FlowText>
           <View style={styles.headerRight}>
             <V2Counter value={myStars} tone="stars" />
@@ -805,9 +820,17 @@ export default function TournamentsScreen() {
               P={P}
               styles={styles}
             />
-            <FlowText testID="tournaments-hero-sub" provenance="authored" style={styles.heroSub}>
-              {hero.sub}
-            </FlowText>
+            {/* зачем 2026-08-03 (владелец убрал подпись под таймером): пустой
+                sub не рендерим — иначе под цифрами осталась бы дыра в 18px от
+                marginBottom. Отступ до кнопки держит spacer той же высоты,
+                поэтому геометрия карточки не прыгает между состояниями. */}
+            {hero.sub ? (
+              <FlowText testID="tournaments-hero-sub" provenance="authored" style={styles.heroSub}>
+                {hero.sub}
+              </FlowText>
+            ) : (
+              <View style={styles.heroSubSpacer} />
+            )}
 
             {live ? (
               <V2Cta
@@ -946,7 +969,9 @@ export default function TournamentsScreen() {
                   />
                 </View>
               </View>
-              <FlowText testID="tournaments-bank-when" provenance="authored" style={styles.bankWhen}>топ-3{'\n'}в понедельник</FlowText>
+              {/* зачем 2026-08-03 (владелец): подпись «топ-3 в понедельник»
+                  убрана — условия розыгрыша живут в шторке банка, на карточке
+                  остаются только сумма и шеврон. */}
               {/* Шеврон — единственный намёк, что карточку можно открыть. */}
               <Ionicons name="chevron-forward" size={18} color={P.ghost} />
             </View>
@@ -954,10 +979,9 @@ export default function TournamentsScreen() {
           </TapScale>
         </Animated.View>
 
-        {/* Сезон: полосы-рейтинги — длина по звёздам, оттенок активной темы */}
-        <FlowText testID="tournaments-season-kicker" provenance="authored" style={[styles.kicker, styles.sectionKicker]}>
-          Сезон · мои звёзды {myStars}
-        </FlowText>
+        {/* Сезон: полосы-рейтинги — длина по звёздам, оттенок активной темы.
+            зачем 2026-08-03 (владелец): заголовок «Сезон · мои звёзды N» убран —
+            своя строка рейтинга и так подсвечена, а число дублировало её. */}
         {seasonTop.length > 0 ? (
           <View style={styles.seasonList}>
             {seasonTop.map((leader, index) => {
@@ -1024,27 +1048,25 @@ export default function TournamentsScreen() {
           onPress={() => router.push('/season_pass')}
           style={styles.seasonPassCard}
           accessibilityRole="button"
-          accessibilityLabel={`Пропуск сезона, уровень ${seasonPass.level} из ${SEASON_PASS_LEVELS}`}
+          accessibilityLabel="Награды сезона"
         >
+          {/* зачем 2026-08-03 (владелец: «убери вообще 1/60 цифры и переименуй
+              в награды сезона»): счётчик уровня в шапке дублировал полосу под
+              ним и читался как «1 из 60» — то есть как почти пустой прогресс,
+              хотя карточка ведёт к витрине наград. Осталось название и полоса;
+              конкретный уровень и пороги живут на самой дорожке. */}
           <View style={styles.seasonPassHeader}>
             <FlowText testID="tournaments-season-pass-title" provenance="authored" style={styles.seasonPassTitle}>
-              Пропуск сезона
+              Награды сезона
             </FlowText>
-            <View style={styles.rowStars}>
-              <StarGlyph size={13} color={P.gold} />
-              <FlowText testID="tournaments-season-pass-level" provenance="authored" style={styles.rowStarsText}>
-                {seasonPass.level}/{SEASON_PASS_LEVELS}
-              </FlowText>
-            </View>
           </View>
           <View style={styles.seasonPassTrack}>
             <View style={[styles.seasonPassFill, { width: `${seasonPassPct}%` }]} />
           </View>
-          <FlowText testID="tournaments-season-pass-next" provenance="authored" style={styles.seasonPassHint}>
-            {seasonPass.level >= SEASON_PASS_LEVELS
-              ? 'Сезон пройден полностью'
-              : `${seasonPass.intoLevelStars} из ${seasonPass.levelCostStars} звёзд до уровня ${seasonPass.level + 1}`}
-          </FlowText>
+          {/* зачем 2026-08-03 (владелец): строка «N из N звёзд до уровня N»
+              убрана — прогресс читается по полосе и счётчику уровня в шапке
+              карточки. Финальное «Сезон пройден полностью» тоже уходит: это
+              была та же строка, показывать одну без другой нельзя. */}
         </TapScale>
       </BouncyScrollView>
 
@@ -1257,6 +1279,19 @@ const makeStyles = (P: TournamentV2) => StyleSheet.create({
   content: { paddingHorizontal: 16, gap: 14 },
 
   header: { flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 2 },
+  // зачем: круг 46 — тот же размер, что в shards_shop, но у chevron-back внутри глифа
+  // есть пустое поле слева, поэтому −10 по левому краю ставит иконку оптически на ту же
+  // вертикаль, что заголовок, а не с провалом. gap шапки съедаем тем же приёмом справа.
+  backButton: {
+    width: 46,
+    height: 46,
+    borderRadius: 23,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: P.elev,
+    marginLeft: -10,
+    marginRight: -4,
+  },
   title: { fontSize: 24, fontWeight: '900', letterSpacing: -0.3, color: P.text },
   headerRight: { marginLeft: 'auto', flexDirection: 'row', gap: 8, alignItems: 'center' },
   coinIcon: { width: 15, height: 15 },
@@ -1272,7 +1307,6 @@ const makeStyles = (P: TournamentV2) => StyleSheet.create({
   // появляется не всегда, и текст не должен «прыгать» при её отсутствии.
   kickerRow: { flexDirection: 'row', alignItems: 'center', gap: 7, marginBottom: 2 },
   liveDot: { width: 8, height: 8, borderRadius: 4 },
-  sectionKicker: { marginTop: 6, marginLeft: 4 },
 
   heroMaskBig: { height: 70, marginTop: 8 },
   // зачем: «Сейчас турниров нет» не влезает в 32кегль на одну строку и
@@ -1290,6 +1324,10 @@ const makeStyles = (P: TournamentV2) => StyleSheet.create({
   },
   heroMid: { fontSize: 32, lineHeight: 38, fontWeight: '900', letterSpacing: -0.8, color: '#000' },
   heroSub: { fontSize: 14, fontWeight: '700', color: P.muted, marginTop: 2, marginBottom: 18 },
+  // зачем 2026-08-03: подпись под таймером убрана владельцем, но воздух между
+  // цифрами и кнопкой нужен прежний — держим ровно marginBottom от heroSub,
+  // высоту самой строки не резервируем (текста там больше нет).
+  heroSubSpacer: { height: 18 },
   ctaPrice: { flexDirection: 'row', alignItems: 'center', gap: 4 },
   ctaCoin: { width: 16, height: 16 },
   ctaPriceText: { fontSize: 17, fontWeight: '900', fontVariant: ['tabular-nums'] },
@@ -1332,7 +1370,6 @@ const makeStyles = (P: TournamentV2) => StyleSheet.create({
   bankValueRow: { flexDirection: 'row', alignItems: 'center', gap: 7, marginTop: 2 },
   bankValue: { fontSize: 24, fontWeight: '900', color: P.text, fontVariant: ['tabular-nums'] },
   bankCoin: { width: 16, height: 16 },
-  bankWhen: { fontSize: 12, fontWeight: '700', color: P.ghost, textAlign: 'right' },
 
   seasonList: { gap: 8 },
   place: { width: 24, textAlign: 'center', fontSize: 14, fontWeight: '900', color: P.ghost, fontVariant: ['tabular-nums'] },
@@ -1363,7 +1400,6 @@ const makeStyles = (P: TournamentV2) => StyleSheet.create({
   seasonPassTitle: { fontSize: 16, fontWeight: '900', color: P.text, flexShrink: 1 },
   seasonPassTrack: { height: 8, borderRadius: 4, overflow: 'hidden', backgroundColor: P.bg },
   seasonPassFill: { height: '100%', borderRadius: 4, backgroundColor: P.gold },
-  seasonPassHint: { fontSize: 13, fontWeight: '700', color: P.muted }, // guard-ok: живой индикатор прогресса под полосой («12 из 65 звёзд до уровня 4»), числа меняются после каждого турнира — не расшифровка названия карточки
   // зачем: пустая таблица в начале недели — нормальное состояние (боты в
   // рейтинг не идут), текст объясняет это вместо заглушки с выдуманными людьми.
   seasonEmpty: {

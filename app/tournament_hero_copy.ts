@@ -95,7 +95,11 @@ export function resolveTournamentHeroCopy(input: TournamentHeroInput): Tournamen
     return {
       kicker: input.nextSlotDisplayTime ? `Сегодня · ${input.nextSlotDisplayTime}` : 'Скоро',
       value: formatTimeLeft(input.secondsToShow),
-      sub: '16 игроков · 4 раунда · около 7 минут',
+      // зачем 2026-08-03 (владелец): подпись «16 игроков · 4 раунда · около 7
+      // минут» убрана — под таймером остаётся только сам отсчёт, без служебной
+      // расшифровки. Пустая строка, а не удаление поля: тип и остальные
+      // состояния hero не трогаем.
+      sub: '',
       big: true,
       tone: 'idle',
       pulsing: false,

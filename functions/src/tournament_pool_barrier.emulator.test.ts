@@ -68,7 +68,7 @@ describe('tournament task-pool migration barrier', () => {
     expect((await roomRef.get()).exists).toBe(false);
   });
 
-  test('accepts a bucketed v8 barrier token so rooms can actually be created', async () => {
+  test('accepts a bucketed v9 barrier token so rooms can actually be created', async () => {
     // зачем 2026-08-02 (владелец: «турниры не работают»): это был ПРОДОВЫЙ
     // блокер. Пул хранил из токена только generation+revision, и все пять
     // вызовов assertTournamentPoolCommitAllowed собирали из них НЕПОЛНЫЙ токен.
@@ -83,17 +83,20 @@ describe('tournament task-pool migration barrier', () => {
     const roomRef = db.collection(core.TOURNAMENT_ROOMS_COLLECTION)
       .doc(`bucketed-pool-room-${process.pid}`);
     const exposureBucketCounts = {
-      guess_phrase: 30,
+      // зачем 2026-08-03: v9 ужесточил дистракторы guess_phrase — 36 бакетов
+      // вместо 30. Значение обязано совпадать с production-хардкодом
+      // TOURNAMENT_BUCKETED_EXPOSURE_BUCKET_COUNTS в tournaments.ts.
+      guess_phrase: 36,
       fill_gap: 13,
       find_oddity: 10,
       translate_build: 38,
-      speed_match: 10,
+      speed_match: 5,
     };
     const exposureLayoutHash = 'a'.repeat(64);
     await barrierRef.set({
       kind: core.TOURNAMENT_POOL_BARRIER_KIND,
       state: 'ready',
-      generation: 'tpool_20260801_v8',
+      generation: 'tpool_20260801_v9',
       revision: 10,
       exposureBucketCounts,
       exposureLayoutHash,
@@ -102,7 +105,7 @@ describe('tournament task-pool migration barrier', () => {
     // Токен ровно в том виде, в каком его теперь несёт пул: целиком, а не
     // пересобранный из двух полей.
     const fullToken = {
-      generation: 'tpool_20260801_v8',
+      generation: 'tpool_20260801_v9',
       revision: 10,
       exposureBucketCounts,
       exposureLayoutHash,
@@ -110,7 +113,7 @@ describe('tournament task-pool migration barrier', () => {
 
     await db.runTransaction(async (tx) => {
       const generation = await runtime.assertTournamentPoolCommitAllowed(tx, db, fullToken);
-      expect(generation).toBe('tpool_20260801_v8');
+      expect(generation).toBe('tpool_20260801_v9');
       tx.create(roomRef, { roomId: roomRef.id, state: 'scheduled', taskPoolGeneration: generation });
     });
     expect((await roomRef.get()).exists).toBe(true);

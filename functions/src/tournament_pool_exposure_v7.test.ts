@@ -6,14 +6,17 @@ import {
 } from './tournaments';
 
 const BUCKETED_COUNTS = Object.freeze({
-  guess_phrase: 30,
+  // зачем 2026-08-03: v9 ужесточил дистракторы guess_phrase — 1433 задания
+  // вместо 1200, 36 бакетов вместо 30. Значение обязано совпадать с
+  // production-хардкодом TOURNAMENT_BUCKETED_EXPOSURE_BUCKET_COUNTS в
+  // tournaments.ts.
+  guess_phrase: 36,
   fill_gap: 13,
   find_oddity: 10,
   translate_build: 38,
   // зачем 2026-08-03: speed_match пересобран из словарных слов (фикс
   // «максимум 3 слова», коммит 347f8eb29) — 192 задания вместо 400, 5
-  // бакетов вместо 10. Значение обязано совпадать с production-хардкодом
-  // TOURNAMENT_BUCKETED_EXPOSURE_BUCKET_COUNTS в tournaments.ts.
+  // бакетов вместо 10.
   speed_match: 5,
 });
 

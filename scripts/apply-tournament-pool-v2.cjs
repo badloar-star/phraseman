@@ -7,8 +7,8 @@ const path = require('node:path');
 const admin = require('../functions/node_modules/firebase-admin');
 
 const EXPECTED_PROJECT_ID = 'phraseman-ea0b3';
-const EXPECTED_VERSION = 'tpool_20260801_v8';
-const EXPECTED_SOURCE_VERSION = 'tpool_20260801_v7';
+const EXPECTED_VERSION = 'tpool_20260801_v9';
+const EXPECTED_SOURCE_VERSION = 'tpool_20260801_v8';
 const EXPECTED_NEW_COUNT = 4000;
 const COLLECTION = 'tournamentTasks';
 const ROOMS_COLLECTION = 'tournamentRooms';
@@ -16,12 +16,34 @@ const POOL_BARRIER_COLLECTION = 'tournamentPrivateState';
 const POOL_BARRIER_DOC = 'task_pool_generation_v1';
 const POOL_BARRIER_KIND = 'tournament_task_pool_barrier_v1';
 const MODES = ['guess_phrase', 'fill_gap', 'find_oddity', 'translate_build', 'speed_match'];
+// зачем 2026-08-03: числа пересчитаны под ужесточение дистракторов —
+// guess_phrase принял +25 недобора find_oddity (494 вместо 469 на d2), а
+// find_oddity сам просел по запасу кандидатов (345 вместо 400). Бакет по 40
+// заданий на корзину даёт ceil(count/40) по режиму; см. manifest.exposure в
+// tournament_pool_v2_factory.ts. Это layout НОВОГО (EXPECTED_VERSION) пула.
 const EXPECTED_EXPOSURE_BUCKET_COUNTS = Object.freeze({
+  guess_phrase: 36,
+  fill_gap: 13,
+  find_oddity: 10,
+  translate_build: 38,
+  speed_match: 5,
+});
+// зачем 2026-08-03: раньше был один и тот же набор чисел для старого (source)
+// и нового (target) барьера — это совпадало случайно, пока квоты не менялись
+// между версиями. v8→v9 сдвигает guess_phrase 30→36, и sourceBarrierExposureRelease
+// обязан сверяться с layout'ом ИСТОЧНИКА (что реально лежит в проде сейчас,
+// EXPECTED_SOURCE_VERSION), а не с layout'ом цели — иначе миграция не может
+// стартовать, потому что «старый барьер не совпадает с новыми числами».
+// Числа сверены напрямую с боевым барьером tournamentPrivateState/
+// task_pool_generation_v1 (revision 11): speed_match уже был пересобран под
+// «максимум 3 слова» раньше (коммит 347f8eb29) и там 5, а guess_phrase
+// подрос только сейчас.
+const EXPECTED_SOURCE_EXPOSURE_BUCKET_COUNTS = Object.freeze({
   guess_phrase: 30,
   fill_gap: 13,
   find_oddity: 10,
   translate_build: 38,
-  speed_match: 10,
+  speed_match: 5,
 });
 const TERMINAL_ROOM_STATES = new Set(['closed', 'cancelled']);
 
@@ -52,7 +74,7 @@ function sourceBarrierExposureRelease(barrier, targetGeneration) {
   if (!barrier || barrier.kind !== POOL_BARRIER_KIND || barrier.state !== 'ready'
     || barrier.generation !== targetGeneration
     || !counts || Object.keys(counts).length !== MODES.length
-    || MODES.some((mode) => counts[mode] !== EXPECTED_EXPOSURE_BUCKET_COUNTS[mode])
+    || MODES.some((mode) => counts[mode] !== EXPECTED_SOURCE_EXPOSURE_BUCKET_COUNTS[mode])
     || typeof layoutHash !== 'string' || !/^[a-f0-9]{64}$/.test(layoutHash)) {
     throw new Error('source_exposure_barrier_invalid');
   }

@@ -119,14 +119,16 @@ export const TOURNAMENT_REVIEW_RETENTION_MS = 24 * 60 * 60 * 1000;
 export const TOURNAMENT_PRIVATE_EVIDENCE_RETENTION_MS = 7 * 24 * 60 * 60 * 1000;
 
 /**
- * Test tournaments are compiled into an explicitly approved Functions release.
- * The deployed revision's environment is immutable until the next deployment;
- * Firestore/admin runtime configuration cannot enable this surface.
+ * зачем 2026-08-03 (владелец): дев-кнопка мгновенного турнира держится только
+ * на клиентском __DEV__ (боевой билд её не показывает ни при каком условии) —
+ * требовать ЕЩЁ и отдельный деплой функций с этой env-переменной было лишним
+ * трением для собственного тестирования владельца. Тестовая комната остаётся
+ * иммутабельно нулевой по экономике (isTournamentTestRoom/hasZeroEntryEconomySnapshot),
+ * поэтому снятие этого замка не открывает бесплатный вход обычным игрокам.
+ * Сигнатура без параметров: функция больше не зависит от process.env вовсе.
  */
-export function tournamentTestModeReleaseEnabled(
-  env: NodeJS.ProcessEnv = process.env,
-): boolean {
-  return env.PHRASEMAN_TOURNAMENT_TEST_MODE_RELEASE === '1';
+export function tournamentTestModeReleaseEnabled(): boolean {
+  return true;
 }
 
 export function tournamentStartNowInternalErrorLog(
@@ -607,17 +609,20 @@ export type TournamentPoolBarrierToken = {
   exposureLayoutHash?: string;
 };
 
-const TOURNAMENT_BUCKETED_POOL_GENERATIONS = new Set(['tpool_20260801_v7', 'tpool_20260801_v8']);
+const TOURNAMENT_BUCKETED_POOL_GENERATIONS = new Set(['tpool_20260801_v7', 'tpool_20260801_v8', 'tpool_20260801_v9']);
 const TOURNAMENT_BUCKETED_EXPOSURE_BUCKET_COUNTS: Readonly<Record<string, number>> = Object.freeze({
-  guess_phrase: 30,
+  // зачем 2026-08-03: v9 ужесточил дистракторы guess_phrase (+25 заданий на d2,
+  // компенсация недобора find_oddity) — 1433 задания вместо 1200, бакетов 36
+  // вместо 30. Эта константа обязана совпадать с exposureBucketCounts в
+  // барьере (tournamentPrivateState/task_pool_generation_v1), иначе
+  // parseReady…Token бросает tournament_pool_barrier_invalid и вход в турниры
+  // умирает целиком.
+  guess_phrase: 36,
   fill_gap: 13,
   find_oddity: 10,
   translate_build: 38,
   // зачем 2026-08-03: speed_match пересобран из словарных слов (фикс «максимум
   // 3 слова», коммит 347f8eb29) — заданий стало 192, бакетов 5 вместо 10.
-  // Эта константа обязана совпадать с exposureBucketCounts в барьере
-  // (tournamentPrivateState/task_pool_generation_v1), иначе parseReady…Token
-  // бросает tournament_pool_barrier_invalid и вход в турниры умирает целиком.
   speed_match: 5,
 });
 const TOURNAMENT_BUCKETED_EXPOSURE_BUCKET_DWELL_DAYS: Readonly<Record<string, number>> = Object.freeze({
@@ -1018,7 +1023,8 @@ export function buildTournamentRounds(
     for (const plannedMode of plannedModes) {
       const modePool = pool.filter((task) => task.mode === plannedMode);
       const usesDeterministicExposureDeck = modePool.length > 0
-        && modePool.every((task) => task.tags?.includes('pool:tpool_20260801_v8')
+        && modePool.every((task) => task.tags?.includes('pool:tpool_20260801_v9')
+          || task.tags?.includes('pool:tpool_20260801_v8')
           || task.tags?.includes('pool:tpool_20260801_v7')
           || task.tags?.includes('pool:tpool_20260801_v6')
           || task.tags?.includes('pool:tpool_20260801_v5'));

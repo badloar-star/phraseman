@@ -105,10 +105,10 @@ function selectCompleteTournamentTaskIds(
 }
 
 describe('new deterministic tournament pool v2', () => {
-  test('builds the approved reachable 4000-task v8 pool with exact quality-first cell quotas', () => {
+  test('builds the approved reachable 4000-task v9 pool with exact quality-first cell quotas', () => {
     const result = buildProductionSizedPool();
 
-    expect(NEW_TOURNAMENT_POOL_VERSION).toBe('tpool_20260801_v8');
+    expect(NEW_TOURNAMENT_POOL_VERSION).toBe('tpool_20260801_v9');
     expect(result.manifest.poolVersion).toBe(NEW_TOURNAMENT_POOL_VERSION);
     expect(result.tasks).toHaveLength(4000);
     expect(new Set(result.tasks.map((task) => task.taskId)).size).toBe(4000);
@@ -116,13 +116,18 @@ describe('new deterministic tournament pool v2', () => {
     expect(new Set(result.tasks.map(punctuationInsensitiveTaskSignature)).size).toBe(4000);
     expect(result.manifest.counts).toEqual({
       'guess_phrase:1': 470,
-      'guess_phrase:2': 469,
+      // +25 к d2 — это недобор find_oddity, переехавший в режим с самым
+      // большим запасом кандидатов (2026-08-03, ужесточение дистракторов).
+      'guess_phrase:2': 494,
       'guess_phrase:3': 469,
       'fill_gap:1': 160,
       'fill_gap:2': 180,
       'fill_gap:3': 160,
-      'find_oddity:1': 200,
-      'find_oddity:2': 200,
+      // «Нормальные» варианты find_oddity стали близнецами самой фразы, а не
+      // чужими фразами дня: запас кандидатов упал до d1=176/d2=265, квоты
+      // опущены под реальную ёмкость. d3 не берём — раунды 1-3 его не выбирают.
+      'find_oddity:1': 130,
+      'find_oddity:2': 245,
       'translate_build:1': 400,
       'translate_build:2': 700,
       'translate_build:3': 400,
@@ -150,7 +155,7 @@ describe('new deterministic tournament pool v2', () => {
     const { tasks } = buildProductionSizedPool();
 
     for (const task of tasks) {
-      expect(task.taskId).toMatch(/^tp2_20260801_v8_/);
+      expect(task.taskId).toMatch(/^tp2_20260801_v9_/);
       expect(APPROVED_MODES).toContain(task.mode as typeof APPROVED_MODES[number]);
       expect(task.isVoice).toBe(false);
       expect(task.verified).toBe(true);

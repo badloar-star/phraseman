@@ -12,7 +12,12 @@ import {
 } from './tournament_task_factory';
 import { requiredCells } from './tournament_pool_plan';
 
-export const NEW_TOURNAMENT_POOL_VERSION = 'tpool_20260801_v8' as const;
+// зачем 2026-08-03: версия поднята с v8 на v9 — прод уже содержит v8 со
+// СТАРЫМИ дистракторами (чужие фразы дня), а новый набор taskId (twin
+// distractors) частично совпадает со старыми id той же версии. Апдейт версии
+// гарантирует, что все 4000 id новые и apply-скрипт не путает частичное
+// совпадение с переходом версий.
+export const NEW_TOURNAMENT_POOL_VERSION = 'tpool_20260801_v9' as const;
 export const NEW_TOURNAMENT_POOL_CELL_QUOTAS: Readonly<Record<string, number>> = Object.freeze({
   // зачем 2026-08-02: «Пары на скорость» перешли на словарь дня (плитка ≤3
   // слов), а словарь беднее фраз — режим даёт 192 задания вместо 400.
@@ -21,14 +26,25 @@ export const NEW_TOURNAMENT_POOL_CELL_QUOTAS: Readonly<Record<string, number>> =
   // трогать нельзя — задания раздаются корзинами по 40 со сменой раз в N дней,
   // и ПЛОТНО набитая корзина не успевает прокрутиться целиком: часть заданий
   // не попадёт к игрокам вообще (translate_build при 1560 терял 35 штук).
+  // зачем 2026-08-03: +25 к d2 — это недобор find_oddity (см. ниже), который
+  // физически некуда положить внутри самого режима. guess_phrase:2 держит 1593
+  // кандидата при квоте 469, так что запас берётся отсюда без риска shortfall.
   'guess_phrase:1': 470,
-  'guess_phrase:2': 469,
+  'guess_phrase:2': 494,
   'guess_phrase:3': 469,
   'fill_gap:1': 160,
   'fill_gap:2': 180,
   'fill_gap:3': 160,
-  'find_oddity:1': 200,
-  'find_oddity:2': 200,
+  // зачем 2026-08-03: «нормальные» варианты в find_oddity стали близнецами самой
+  // фразы, а не чужими фразами дня, — запас кандидатов честно упал. Замер по
+  // боевому контенту (tournamentPoolCandidateCapacity): d1=176, d2=265, d3=136.
+  // Режим играется только в раундах 1-3, где ROUND_DIFFICULTIES даёт сложности
+  // 1 и 2, поэтому d3 брать НЕЛЬЗЯ: задания сгенерировались бы, но ни одна
+  // комната их не выбрала бы, и аудит достижимости упал бы на
+  // exposure_unreachable. Берём с запасом под колебания контента: 375 вместо
+  // прежних 400, недостающие 25 ушли в guess_phrase:2 (см. выше).
+  'find_oddity:1': 130,
+  'find_oddity:2': 245,
   'translate_build:1': 400,
   'translate_build:2': 700,
   'translate_build:3': 400,
@@ -393,7 +409,7 @@ function taskId(mode: NewPoolMode, difficulty: number, identity: string): string
     translate_build: 'build',
     speed_match: 'pairs',
   };
-  return `tp2_20260801_v8_${shortMode[mode]}_d${difficulty}_${sha256(`${NEW_TOURNAMENT_POOL_VERSION}:${identity}`).slice(0, 20)}`;
+  return `tp2_20260801_v9_${shortMode[mode]}_d${difficulty}_${sha256(`${NEW_TOURNAMENT_POOL_VERSION}:${identity}`).slice(0, 20)}`;
 }
 
 function tags(day: SourceDay): string[] {
@@ -480,29 +496,107 @@ function completeGap(gapPhrase: string, option: string): string {
   return gapPhrase.replace('___', option);
 }
 
+/**
+ * Дистрактор-близнец: та же фраза, в которой ИСПОРЧЕНО ровно одно слово.
+ *
+ * зачем 2026-08-03 (владелец: «каждый дистрактор должен быть дистрактором, а не
+ * фразой, которая и близко не подходит»): guess_phrase и find_oddity раньше
+ * брали неправильные варианты из usablePairs(day) — то есть из ПРОИЗВОЛЬНЫХ
+ * других фраз того же дня. Замер по боевому контенту: 35% дистракторов не имели
+ * с правильным ответом ни одного общего слова, у find_oddity — 42%. Игрок
+ * читал русскую подсказку, находил единственный вариант «про то же самое» и
+ * жал, не вчитываясь. Теперь неправильные варианты вырастают ИЗ ответа: тот же
+ * костяк слов, та же длина, отличие в одной форме — выбрать можно только читая.
+ */
+type TwinDistractor = {
+  readonly text: string;
+  readonly original: string;
+  readonly replacement: string;
+  readonly grammarRole: StrictGrammarRole;
+};
+
+function twinDistractors(phrase: SourcePhrase, seed: string): TwinDistractor[] {
+  const english = String(phrase.english ?? '').trim();
+  const tokens = phraseTokens(english);
+  const correctTokens = new Set(tokens.map(normalize));
+  const twins: TwinDistractor[] = [];
+  const seen = new Set<string>();
+
+  // Грамматические мутации идут первыми: они однозначно неверны по правилу,
+  // а не по вкусу — это требование «только грамматически НЕВЕРНЫЕ варианты».
+  for (const mutation of strictGrammarMutations(phrase)) {
+    const key = normalize(mutation.mutatedPhrase);
+    if (key === normalize(english) || seen.has(key)) continue;
+    seen.add(key);
+    twins.push({
+      text: mutation.mutatedPhrase,
+      original: mutation.original,
+      replacement: mutation.replacement,
+      grammarRole: mutation.grammarRole,
+    });
+  }
+
+  // Лексические подмены авторских дистракторов: слово того же класса на том же
+  // месте. Фраза остаётся той же длины и формы, но перестаёт значить нужное.
+  for (const [wordIndex, word] of (phrase.words ?? []).entries()) {
+    const original = String(word.text ?? '').trim();
+    if (!isSingleLexicalWord(original)) continue;
+    const matches = tokens.filter((token) => normalize(token) === normalize(original));
+    if (matches.length !== 1) continue;
+    const values = Array.from(new Map((word.distractors ?? [])
+      .map((value) => String(value ?? '').trim())
+      .filter((value) => isSingleLexicalWord(value)
+        && normalize(value) !== normalize(original)
+        && !correctTokens.has(normalize(value)))
+      .map((value) => [normalize(value), value])).values());
+    for (const value of stableShuffle(values, `${seed}:twin:${wordIndex}:${original}`)) {
+      const mutated = replaceAuthoredWord(english, original, value);
+      if (!mutated) continue;
+      const key = normalize(mutated);
+      if (key === normalize(english) || seen.has(key)) continue;
+      seen.add(key);
+      twins.push({
+        text: mutated,
+        original,
+        replacement: value,
+        grammarRole: 'lexical_meaning',
+      });
+    }
+  }
+
+  return twins.filter((twin) => within(twin.text, TOURNAMENT_TASK_LIMITS.optionBytes));
+}
+
 function buildGuessTask(day: SourceDay, phrase: SourcePhrase): NewTournamentTask | null {
   const pair = authoredPair(phrase);
   if (!pair || !within(pair.en, TOURNAMENT_TASK_LIMITS.optionBytes)) return null;
-  const distractors = stableShuffle(usablePairs(day), `guess:${pair.id}`)
-    .filter((candidate) => candidate.id !== pair.id
-      && normalize(candidate.en) !== normalize(pair.en)
-      && within(candidate.en, TOURNAMENT_TASK_LIMITS.optionBytes))
-    .filter((candidate, index, all) => all.findIndex((entry) => normalize(entry.en) === normalize(candidate.en)) === index)
+  // зачем: дистракторы строятся от самого ответа минимальными искажениями, а не
+  // выбираются из чужих фраз дня. Порядок стабилен по seed — генерация
+  // детерминирована и воспроизводима.
+  const twins = stableShuffle(twinDistractors(phrase, `guess:${pair.id}`), `guess-twins:${pair.id}`)
+    .filter((twin) => passesAuditedContentGate(twin.text, pair.ru))
     .slice(0, 3);
-  if (distractors.length !== 3) return null;
-  const optionPairs = stableShuffle([pair, ...distractors], `guess-options:${pair.id}`);
-  const options = optionPairs.map((option) => option.en);
-  const correctIndex = optionPairs.findIndex((option) => option.id === pair.id);
+  if (twins.length !== 3) return null;
+  const optionRecords = stableShuffle([
+    { text: pair.en, correct: true, twin: null as TwinDistractor | null },
+    ...twins.map((twin) => ({ text: twin.text, correct: false, twin })),
+  ], `guess-options:${pair.id}`);
+  const options = optionRecords.map((option) => option.text);
+  if (new Set(options.map(normalize)).size !== options.length) return null;
+  const correctIndex = optionRecords.findIndex((option) => option.correct);
   const prompt = truncateToBytes(`Вы хотите сказать: «${withoutTerminalPunctuation(pair.ru)}». Какую английскую реплику выберете?`, TOURNAMENT_TASK_LIMITS.phraseBytes);
   const explanation: TournamentTaskExplanation = {
-    ruleNote: truncateToBytes(`«${withoutTerminalPunctuation(pair.en)}» точно передаёт мысль «${withoutTerminalPunctuation(pair.ru)}». Здесь решает смысл, а не удача на четырёх кнопках.`, TOURNAMENT_TASK_LIMITS.explanationBytes),
+    ruleNote: truncateToBytes(`«${withoutTerminalPunctuation(pair.en)}» точно передаёт мысль «${withoutTerminalPunctuation(pair.ru)}». Остальные три варианта отличаются одним словом — и именно оно всё ломает.`, TOURNAMENT_TASK_LIMITS.explanationBytes),
     example: truncateToBytes(`${pair.en} — ${pair.ru}`, TOURNAMENT_TASK_LIMITS.explanationBytes),
-    wrongOptionReasons: optionPairs.map((option) => option.id === pair.id
+    wrongOptionReasons: optionRecords.map((option) => option.correct || !option.twin
       ? ''
-      : truncateToBytes(`«${option.en}» означает «${withoutTerminalPunctuation(option.ru)}», поэтому мысль «${withoutTerminalPunctuation(pair.ru)}» не передаёт.`, TOURNAMENT_TASK_LIMITS.explanationBytes)),
+      // зачем: разбор обязан цитировать вариант ЦЕЛИКОМ — экран разбора ищет
+      // объяснение по тексту плитки, а не по изменённому слову. Контракт
+      // стережёт tournament_pool_v2_factory.test.ts («option-specific trap reason»).
+      : truncateToBytes(`«${option.text}» — здесь «${option.twin.replacement}» вместо «${option.twin.original}»: ${strictGrammarRoleNote(option.twin.grammarRole)}. Правильно «${withoutTerminalPunctuation(pair.en)}».`, TOURNAMENT_TASK_LIMITS.explanationBytes)),
   };
   return baseTask(day, 'guess_phrase', `guess:${day.planId}:${day.dayIndex}:${pair.id}`,
-    [pair.id, ...optionPairs.filter((option) => option.id !== pair.id).map((option) => option.id)], {
+    [pair.id], {
       phrase: prompt,
       options,
       correctIndex,
@@ -861,6 +955,69 @@ function buildUnambiguousFillGapCandidates(day: SourceDay, phrase: SourcePhrase)
     });
 }
 
+/**
+ * Корректные близнецы авторской фразы для «найди ошибку».
+ *
+ * зачем 2026-08-03: варианты-обманки обязаны быть БЕЗУПРЕЧНЫМИ английскими
+ * фразами, иначе верных ответов станет два и задание сломается. Поэтому здесь
+ * разрешены только замены, где корректность не зависит от остального
+ * предложения: личное имя/существительное после артикля не трогаем, а меняем
+ * наречия и прилагательные — части речи, свободные по позиции. Слот мутации
+ * исключён: его правильная форма и есть проверяемая.
+ */
+const FREE_SUBSTITUTION_PARTS = new Set(['adverb', 'adjective', 'noun']);
+
+/**
+ * Артикль перед словом делает замену небезопасной: «a apple» ломает правило
+ * a/an, и «корректный» вариант оказался бы вторым верным ответом на вопрос
+ * «найди ошибку». Существительные меняем только там, где артикля нет.
+ */
+const ARTICLE_TOKENS = new Set(['a', 'an', 'the', 'one']);
+
+function correctTwinVariants(
+  phrase: SourcePhrase,
+  mutation: StrictGrammarMutation,
+  seed: string,
+): string[] {
+  const english = String(phrase.english ?? '').trim();
+  const tokens = phraseTokens(english);
+  const correctTokens = new Set(tokens.map(normalize));
+  const variants: string[] = [];
+  const seen = new Set<string>([normalize(english), normalize(mutation.mutatedPhrase)]);
+
+  for (const [wordIndex, word] of (phrase.words ?? []).entries()) {
+    const original = String(word.text ?? '').trim();
+    const partOfSpeech = String(word.partOfSpeech ?? '').trim();
+    if (!FREE_SUBSTITUTION_PARTS.has(partOfSpeech) || !isSingleLexicalWord(original)) continue;
+    // Слот, который проверяется мутацией, обязан остаться нетронутым.
+    if (normalize(original) === normalize(mutation.original)) continue;
+    const occurrences = tokens
+      .map((token, index) => (normalize(token) === normalize(original) ? index : -1))
+      .filter((index) => index >= 0);
+    if (occurrences.length !== 1) continue;
+    // Существительное под артиклем не трогаем: смена слова может нарушить a/an
+    // и породить второй «неправильный» вариант вместо одного проверяемого.
+    if (partOfSpeech === 'noun'
+      && ARTICLE_TOKENS.has(normalize(tokens[occurrences[0] - 1] ?? ''))) continue;
+    const values = Array.from(new Map((word.distractors ?? [])
+      .map((value) => String(value ?? '').trim())
+      .filter((value) => isSingleLexicalWord(value)
+        && normalize(value) !== normalize(original)
+        && !correctTokens.has(normalize(value)))
+      .map((value) => [normalize(value), value])).values());
+    for (const value of stableShuffle(values, `${seed}:free:${wordIndex}:${original}`)) {
+      const variant = replaceAuthoredWord(english, original, value);
+      if (!variant) continue;
+      const key = normalize(variant);
+      if (seen.has(key) || !within(variant, TOURNAMENT_TASK_LIMITS.optionBytes)) continue;
+      seen.add(key);
+      variants.push(variant);
+    }
+  }
+
+  return stableShuffle(variants, `${seed}:free-order`);
+}
+
 function buildOddityTask(
   day: SourceDay,
   phrase: SourcePhrase,
@@ -868,28 +1025,31 @@ function buildOddityTask(
 ): NewTournamentTask | null {
   const pair = authoredPair(phrase);
   if (!pair || !passesAuditedContentGate(mutation.mutatedPhrase, pair.ru)) return null;
-  const natural = stableShuffle(usablePairs(day), `oddity:${pair.id}`)
-    .filter((candidate) => candidate.id !== pair.id
-      && within(candidate.en, TOURNAMENT_TASK_LIMITS.optionBytes)
-      && normalize(candidate.en) !== normalize(mutation.mutatedPhrase))
-    .filter((candidate, index, all) => all.findIndex((entry) => normalize(entry.en) === normalize(candidate.en)) === index)
-    .slice(0, 3);
-  if (natural.length !== 3) return null;
+  // зачем 2026-08-03: три «нормальных» варианта раньше брались из чужих фраз дня
+  // — сломанную было видно по одной лишь смене темы, читать не требовалось.
+  // Теперь это ВАРИАЦИИ ТОЙ ЖЕ фразы: сама авторская фраза плюс её корректные
+  // перефразировки-близнецы. Отличить можно только по грамматике.
+  const naturalVariants = correctTwinVariants(phrase, mutation, `oddity:${pair.id}`);
+  if (naturalVariants.length < 2) return null;
   const optionRecords = stableShuffle([
-    { id: pair.id, text: mutation.mutatedPhrase, ru: pair.ru, odd: true },
-    ...natural.map((candidate) => ({ id: candidate.id, text: candidate.en, ru: candidate.ru, odd: false })),
+    { text: mutation.mutatedPhrase, ru: pair.ru, odd: true },
+    { text: pair.en, ru: pair.ru, odd: false },
+    ...naturalVariants.slice(0, 2).map((text) => ({ text, ru: pair.ru, odd: false })),
   ], `oddity-options:${pair.id}`);
   const options = optionRecords.map((option) => option.text);
+  if (new Set(options.map(normalize)).size !== options.length) return null;
   const correctIndex = optionRecords.findIndex((option) => option.odd);
   const explanation: TournamentTaskExplanation = {
     ruleNote: truncateToBytes(`«${withoutTerminalPunctuation(mutation.mutatedPhrase)}» — ловушка: ${strictGrammarRoleNote(mutation.grammarRole)}. Если сохраняем смысл авторской фразы, исправляем её так: «${withoutTerminalPunctuation(pair.en)}».`, TOURNAMENT_TASK_LIMITS.explanationBytes),
     example: truncateToBytes(`${pair.en} — ${pair.ru}`, TOURNAMENT_TASK_LIMITS.explanationBytes),
     wrongOptionReasons: optionRecords.map((option) => option.odd
       ? ''
-      : truncateToBytes(`«${option.text}» — нормальная фраза со смыслом «${withoutTerminalPunctuation(option.ru)}»; исправлять нужно «${withoutTerminalPunctuation(mutation.mutatedPhrase)}».`, TOURNAMENT_TASK_LIMITS.explanationBytes)),
+      // зачем: вариант цитируется БЕЗ обрезки пунктуации — экран разбора
+      // сопоставляет объяснение с плиткой по точному тексту варианта.
+      : truncateToBytes(`«${option.text}» построена верно, исправлять её не нужно; ошибка в «${withoutTerminalPunctuation(mutation.mutatedPhrase)}».`, TOURNAMENT_TASK_LIMITS.explanationBytes)),
   };
   return baseTask(day, 'find_oddity', `odd:${day.planId}:${day.dayIndex}:${pair.id}:${mutation.replacement}`,
-    [pair.id, ...optionRecords.filter((option) => option.id !== pair.id).map((option) => option.id)], {
+    [pair.id], {
       phrase: 'Найдите фразу, которую нужно исправить.',
       options,
       correctIndex,
@@ -904,8 +1064,39 @@ type AuthoredTrap = {
   readonly grammarRole: StrictGrammarRole;
 };
 
+/**
+ * Ловушка в банке слов обязана КОНКУРИРОВАТЬ с конкретным словом ответа.
+ *
+ * зачем 2026-08-03: раньше сюда проходило любое авторское слово-дистрактор, и
+ * 462 задания из 1500 получали ловушку из другой темы («Nice to meet you.» +
+ * «forget»). Такую плитку игрок отбрасывает не думая. Родство считаем по форме:
+ * общий корень или расстояние редактирования в один-два шага — «has» против
+ * «have», «Is» против «Are».
+ */
+function isFormRelatedToken(token: string, trap: string): boolean {
+  const a = normalize(token);
+  const b = normalize(trap);
+  if (!a || !b || a === b) return false;
+  const shortest = Math.min(a.length, b.length);
+  const prefix = Math.max(3, Math.ceil(shortest * 0.6));
+  if (shortest >= 3 && a.slice(0, prefix) === b.slice(0, prefix)) return true;
+  if (Math.abs(a.length - b.length) > 2) return false;
+  let previous = Array.from({ length: b.length + 1 }, (_unused, index) => index);
+  for (let i = 1; i <= a.length; i += 1) {
+    const current = [i];
+    for (let j = 1; j <= b.length; j += 1) {
+      current[j] = a[i - 1] === b[j - 1]
+        ? previous[j - 1]
+        : 1 + Math.min(previous[j - 1], previous[j], current[j - 1]);
+    }
+    previous = current;
+  }
+  return previous[b.length] <= 2;
+}
+
 function authoredLexicalTraps(phrase: SourcePhrase): AuthoredTrap[] {
-  const correctTokens = new Set(phraseTokens(String(phrase.english ?? '')).map(normalize));
+  const answerTokens = phraseTokens(String(phrase.english ?? ''));
+  const correctTokens = new Set(answerTokens.map(normalize));
   const traps: AuthoredTrap[] = [];
   for (const word of phrase.words ?? []) {
     const original = String(word.text ?? '').trim();
@@ -916,7 +1107,8 @@ function authoredLexicalTraps(phrase: SourcePhrase): AuthoredTrap[] {
       .filter((value) => isSingleLexicalWord(value)
         && within(value, TOURNAMENT_TASK_LIMITS.tokenBytes)
         && normalize(value) !== normalize(original)
-        && !correctTokens.has(normalize(value)))
+        && !correctTokens.has(normalize(value))
+        && answerTokens.some((token) => isFormRelatedToken(token, value)))
       .map((value) => [normalize(value), value])).values());
     for (const value of stableShuffle(
       values,
@@ -1268,6 +1460,25 @@ function selectDiverseCandidates(
   return selected;
 }
 
+/**
+ * Сколько кандидатов даёт контент по каждой ячейке «режим:сложность».
+ *
+ * зачем 2026-08-03: квоты в NEW_TOURNAMENT_POOL_CELL_QUOTAS обязаны опираться на
+ * реальный запас, иначе генерация падает через shortfall уже на боевом объёме.
+ * Ужесточение правил для дистракторов сокращает запас, и подбирать числа
+ * вслепую — значит ронять сборку.
+ */
+export function tournamentPoolCandidateCapacity(
+  days: readonly SourceDay[],
+): Record<string, number> {
+  const counts: Record<string, number> = {};
+  for (const candidate of allCandidates(days)) {
+    const key = `${candidate.task.mode}:${candidate.task.difficulty}`;
+    counts[key] = (counts[key] ?? 0) + 1;
+  }
+  return counts;
+}
+
 function allCandidates(days: readonly SourceDay[]): PoolCandidate[] {
   const candidates: PoolCandidate[] = [];
   const sortedDays = [...days].sort((left, right) => (
@@ -1304,7 +1515,12 @@ function allCandidates(days: readonly SourceDay[]): PoolCandidate[] {
         original: mutation.original,
         grammarRole: mutation.grammarRole,
       })));
+      // зачем 2026-08-03: и грамматические, и лексические ловушки проходят один
+      // фильтр родства с ответом — плитка обязана конкурировать со словом
+      // фразы, а не выделяться как явно чужая.
+      const answerTokens = phraseTokens(String(phrase.english ?? ''));
       const translationTraps = [...safeTraps, ...authoredLexicalTraps(phrase)]
+        .filter((trap) => answerTokens.some((token) => isFormRelatedToken(token, trap.value)))
         .filter((trap, index, all) => all.findIndex((candidate) => (
           normalize(candidate.value) === normalize(trap.value)
           && normalize(candidate.original) === normalize(trap.original)

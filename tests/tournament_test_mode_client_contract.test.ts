@@ -14,7 +14,12 @@ describe('tournament temporary test-mode client contract', () => {
   // остаются отменены — это правило только для дев-сборки владельца.
   it('keeps the dev test surface behind __DEV__ only, no admin flag needed', () => {
     expect(source).toContain('testingEnabled?: boolean');
-    expect(source).toContain('const testModeReleaseActive = __DEV__;');
+    // зачем 2026-08-03: к __DEV__ добавился второй замок devUnlocked (0305463cb) —
+    // дев-вход открывается не на всякой дев-сборке, а только после явной
+    // разблокировки. Правило «в боевом билде кнопки нет ни при каком условии»
+    // от этого не слабеет: __DEV__ остаётся обязательным множителем, поэтому
+    // сторожим именно его наличие, а не точную форму выражения.
+    expect(source).toMatch(/const testModeReleaseActive = __DEV__(\s*&&\s*devUnlocked)?;/);
     expect(source).toContain('const instantEntry = testModeReleaseActive;');
     expect(source).toContain('const effectiveEntryGems = testModeReleaseActive ? 0 : entryGems;');
     expect(source).toContain("testModeReleaseActive ? 'Играть сейчас · тест'");
@@ -29,7 +34,12 @@ describe('tournament temporary test-mode client contract', () => {
   });
 
   it('production route is schedule-only: outside the window the button is dead honest', () => {
-    expect(source).toContain('const testModeReleaseActive = __DEV__;');
+    // зачем 2026-08-03: к __DEV__ добавился второй замок devUnlocked (0305463cb) —
+    // дев-вход открывается не на всякой дев-сборке, а только после явной
+    // разблокировки. Правило «в боевом билде кнопки нет ни при каком условии»
+    // от этого не слабеет: __DEV__ остаётся обязательным множителем, поэтому
+    // сторожим именно его наличие, а не точную форму выражения.
+    expect(source).toMatch(/const testModeReleaseActive = __DEV__(\s*&&\s*devUnlocked)?;/);
     expect(source).toContain('const instantEntry = testModeReleaseActive;');
     expect(source).toContain('const effectiveEntryGems = testModeReleaseActive ? 0 : entryGems;');
     expect(source).toMatch(/: joinWindowOpen\s*\? 'Играть'\s*: 'Сейчас турниров нет'/);

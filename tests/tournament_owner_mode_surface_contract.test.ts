@@ -102,7 +102,13 @@ describe('owner-approved tournament surfaces', () => {
     expect(lobby).toContain('accessibilityLabel=');
     expect(lobby).toContain('closeTournamentFlow(router)');
     expect(lobby).toContain('const bankGems = Math.max(0, Math.trunc(Number(room?.potGems ?? 0)));');
-    expect(lobby).toContain('<AnimatedBankAmount amount={bankGems} events={room?.lobbyEvents ?? []} />');
+    // зачем 2026-08-03: сверялась ОДНА строка JSX целиком, поэтому обычное
+    // переформатирование в несколько строк (и новый проп
+    // onDisplayAmountChange) роняло сторож, хотя банк на экране не менялся.
+    // Проверяем суть: банк рисует именно AnimatedBankAmount и получает
+    // авторитетную сумму комнаты вместе с её событиями.
+    expect(lobby).toMatch(/<AnimatedBankAmount[\s\S]{0,200}amount=\{bankGems\}/);
+    expect(lobby).toMatch(/<AnimatedBankAmount[\s\S]{0,200}events=\{room\?\.lobbyEvents \?\? \[\]\}/);
     expect(lobby).toContain('setDisplayAmount(event.potGemsAfter);');
     expect(lobby).toContain('value={`${joined}/${SEATS}`}');
   });

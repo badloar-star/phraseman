@@ -155,11 +155,31 @@ describe('пары: сколько верных — столько звёзд', 
     }
   });
 
-  test('штраф за ошибочные тапы вычитается, но не уводит ниже нуля', () => {
+  /**
+   * зачем 2026-08-03: тест требовал вычитать штраф за ошибочные тапы из награды
+   * за пары, но владелец это правило ОТМЕНИЛ («убрать штраф», см. комментарий у
+   * scoreAnswer в tournament_core.ts): в поле пар действует «сколько правильно —
+   * столько звёзд», а неверный тап и так не добавляет пару. Тест остался от
+   * прежней шкалы и падал на верном коде — сторож обязан охранять текущее
+   * правило, а не отменённое.
+   *
+   * Штраф продолжает жить для ОБЫЧНЫХ заданий (ветка без totalPairs) — это и
+   * закреплено ниже, чтобы отмена штрафа в парах не расползлась на всё
+   * остальное незаметно.
+   */
+  test('в поле пар штраф за ошибочные тапы НЕ вычитается (правило «сколько верных пар — столько звёзд»)', () => {
     const clean = answer({ difficulty: 1, matchedPairs: 6, totalPairs: 6 });
     const punished = answer({ difficulty: 1, matchedPairs: 6, totalPairs: 6, penaltyStars: 2 });
-    expect(punished).toBe(clean - 2);
-    expect(answer({ difficulty: 1, matchedPairs: 6, totalPairs: 6, penaltyStars: 99 })).toBe(0);
+    expect(punished).toBe(clean);
+    // Частично собранное поле тоже не наказывается за промахи по дороге.
+    expect(answer({ difficulty: 1, matchedPairs: 4, totalPairs: 6, penaltyStars: 99 }))
+      .toBe(answer({ difficulty: 1, matchedPairs: 4, totalPairs: 6 }));
+  });
+
+  test('в обычном задании штраф вычитается, но не уводит ниже нуля', () => {
+    const clean = answer({ correct: true, difficulty: 1 });
+    expect(answer({ correct: true, difficulty: 1, penaltyStars: 2 })).toBe(clean - 2);
+    expect(answer({ correct: true, difficulty: 1, penaltyStars: 99 })).toBe(0);
   });
 
   test('поле пар не может дать больше звёзд, чем в нём пар плюс надбавка', () => {

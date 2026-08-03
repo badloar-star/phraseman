@@ -11,7 +11,13 @@ describe('tournament speed-match round', () => {
     expect(source).toContain("task.kind === 'match'");
     expect(source).toContain('items.length !== SPEED_MATCH_PAIRS');
     expect(source).toContain('MatchBoard');
-    expect(source).toContain('setMatchStars((value) => Math.max(0, value - 1))');
+    // зачем 2026-08-03: тест требовал УМЕНЬШАЮЩИЙСЯ счётчик звёзд
+    // (`Math.max(0, value - 1)`) — шкалу «начал с 3 и теряешь за ошибки».
+    // Владелец её отменил: «сколько правильно ответил — столько звёзд», поэтому
+    // счётчик теперь РАСТЁТ на каждой верной паре и совпадает с числом, которое
+    // потом начислит сервер. Сторожим текущее правило, а не отменённое.
+    expect(source).toContain('setMatchStars((value) => value + 1)');
+    expect(source).not.toContain('setMatchStars((value) => Math.max(0, value - 1))');
     expect(source).toContain('setMatchStatus');
     expect(source).toContain('submitSpeedMatchAttempt(roomId, roundNo, question.taskId, pairIndex, selectedIndex)');
     expect(source).toContain('answerFingerprints');

@@ -292,11 +292,14 @@ describe('полный разбор для новых комнат', () => {
   });
 });
 
-// зачем 2026-07-27: шкала звёзд переписана по правилам владельца — «кто первый
-// ответил, тот три звезды, кто второй — две, кто третий и остальные — одну».
-// Стрики и камбэки сохраняются как состояние, но не повышают звёзды. Старые тесты проверяли формулу «база 100 ×
-// скорость × стрик» (до 420 за задание) — она давала нечитаемые тысячи очков.
-describe('звёзды за ответ (владелец 2026-07-27)', () => {
+// зачем 2026-08-03: шкала звёзд снова переписана по правилу владельца —
+// «правильный ответ должен давать 3 звезды, ошибочный 0 звёзд». Прежняя шкала
+// (2026-07-27) зависела от МЕСТА в гонке: 3⭐ первому, 2⭐ второму, 1⭐ остальным —
+// поэтому награду нельзя было показать до ответа сервера, и экран не мог
+// нарисовать её мгновенно. Теперь результат детерминирован в момент тапа.
+// Тесты ниже сторожат ИМЕННО текущее правило: ни место (answerRank), ни серия
+// верных, ни серия промахов на награду не влияют.
+describe('звёзды за ответ (владелец 2026-08-03)', () => {
   const answer = (over: Partial<Parameters<typeof scoreAnswer>[0]> = {}) => scoreAnswer({
     correct: true, elapsedMs: 1_000, maxMs: 10_000, streakBefore: 0, isVoice: false, ...over,
   });
@@ -305,38 +308,38 @@ describe('звёзды за ответ (владелец 2026-07-27)', () => {
     expect(answer({ answerRank: 1 })).toBe(3);
   });
 
-  it('второй правильный ответ — 2 звезды', () => {
-    expect(answer({ answerRank: 2 })).toBe(2);
+  it('второй правильный ответ — те же 3 звезды, место больше не влияет', () => {
+    expect(answer({ answerRank: 2 })).toBe(3);
   });
 
-  it('третий и все последующие — 1 звезда', () => {
-    expect(answer({ answerRank: 3 })).toBe(1);
-    expect(answer({ answerRank: 16 })).toBe(1);
+  it('третий и все последующие — те же 3 звезды', () => {
+    expect(answer({ answerRank: 3 })).toBe(3);
+    expect(answer({ answerRank: 16 })).toBe(3);
   });
 
-  it('без ранга (одиночная игра) форы нет — 1 звезда', () => {
-    expect(answer()).toBe(1);
+  it('без ранга (одиночная игра) — те же 3 звезды', () => {
+    expect(answer()).toBe(3);
   });
 
   it('неверный ответ — ноль, сколько бы ни было серии', () => {
     expect(answer({ correct: false, answerRank: 1, streakBefore: 9 })).toBe(0);
   });
 
-  it('never promotes rank 2 or rank 3+ for a correct-answer streak', () => {
-    expect(answer({ answerRank: 2, streakBefore: 99 })).toBe(2);
-    expect(answer({ answerRank: 3, streakBefore: 99 })).toBe(1);
+  it('серия верных ответов не меняет награду — она всегда 3 звезды', () => {
+    expect(answer({ answerRank: 2, streakBefore: 99 })).toBe(3);
+    expect(answer({ answerRank: 3, streakBefore: 99 })).toBe(3);
     expect(answer({ answerRank: 1, streakBefore: 2 })).toBe(3);
   });
 
-  it('never promotes rank 2 or rank 3+ after any miss streak', () => {
-    expect(answer({ answerRank: 2, missStreakBefore: 99 })).toBe(2);
-    expect(answer({ answerRank: 3, missStreakBefore: 99 })).toBe(1);
+  it('серия ошибок не меняет награду за верный ответ', () => {
+    expect(answer({ answerRank: 2, missStreakBefore: 99 })).toBe(3);
+    expect(answer({ answerRank: 3, missStreakBefore: 99 })).toBe(3);
   });
 
-  it('keeps the exact 3/2/1 rank scale when both streak counters are high', () => {
+  it('оба счётчика серий не влияют на награду ни при каком месте', () => {
     expect(answer({ answerRank: 1, streakBefore: 3, missStreakBefore: 3 })).toBe(3);
-    expect(answer({ answerRank: 2, streakBefore: 3, missStreakBefore: 3 })).toBe(2);
-    expect(answer({ answerRank: 3, streakBefore: 3, missStreakBefore: 3 })).toBe(1);
+    expect(answer({ answerRank: 2, streakBefore: 3, missStreakBefore: 3 })).toBe(3);
+    expect(answer({ answerRank: 3, streakBefore: 3, missStreakBefore: 3 })).toBe(3);
   });
 
   it('scoreRound копит серию и сбрасывает её на ошибке', () => {
@@ -344,15 +347,16 @@ describe('звёзды за ответ (владелец 2026-07-27)', () => {
       correct, elapsedMs: 1_000, maxMs: 10_000, streakBefore: 0, isVoice: false, answerRank: 3,
     }));
     const { roundScore, streakAfter } = scoreRound(answers);
-    expect(roundScore).toBe(4);
+    // Четыре верных ответа по 3 звезды: место и серия на награду не влияют.
+    expect(roundScore).toBe(12);
     expect(streakAfter).toBe(1);
   });
 
-  it('scoreRound does not promote a correct answer after three misses', () => {
+  it('scoreRound даёт верному ответу полные 3 звезды даже после трёх промахов', () => {
     const answers = [false, false, false, true].map((correct) => ({
       correct, elapsedMs: 1_000, maxMs: 10_000, streakBefore: 0, isVoice: false, answerRank: 3,
     }));
-    expect(scoreRound(answers).roundScore).toBe(1);
+    expect(scoreRound(answers).roundScore).toBe(3);
   });
 });
 
@@ -518,10 +522,15 @@ describe('prizes / placements (§7)', () => {
       roomId: 'bot-places', slotId: 'daily', seed: 'bot-places', state: 'results', startsAt: 0,
       stateStartedAtMs: 0, stateDeadlineAtMs: 1, players, rounds: [], version: 0, createdAtMs: 0,
     }, 2);
+    // зачем 2026-08-03: взнос вырос с 3 до 5 жемчужин (b2e8c7268) — приз
+    // лучшего живого игрока вырос вместе с банком комнаты. Места и то, что
+    // доли ботов уходят в недельный банк, правило не меняет.
     expect(finalized.playerEffects.map((effect) => [
       effect.playerId, effect.place, effect.reward.gems,
-    ])).toEqual([['u1', 2, 3], ['u2', 4, 0], ['u3', 5, 0]]);
-    expect(finalized.weeklyBankGems).toBe(12);
+    ])).toEqual([['u1', 2, 5], ['u2', 4, 0], ['u3', 5, 0]]);
+    // Банк комнаты 5 живых × 5 = 25; единственный призёр-человек забирает 5,
+    // доли ботов и неразданные места оседают в недельном банке.
+    expect(finalized.weeklyBankGems).toBe(20);
   });
 });
 
@@ -1203,7 +1212,10 @@ describe('transaction plan semantics', () => {
       playerId: 'u3', roundNo: 1, answers: answer, tasks, receivedAtMs: 2_200,
     });
 
-    expect(third.room.players.map((candidate: TournamentPlayer) => candidate.score)).toEqual([3, 2, 1]);
+    // зачем 2026-08-03: раньше здесь ожидалось [3, 2, 1] — награда по МЕСТУ в
+    // гонке. Правило владельца сменилось на «правильный ответ = 3 звезды», и
+    // порядок ответа больше не влияет: все трое отвечают верно и получают по 3.
+    expect(third.room.players.map((candidate: TournamentPlayer) => candidate.score)).toEqual([3, 3, 3]);
   });
 
   it('does not let an earlier wrong submission consume a correct-answer rank', () => {
@@ -1474,14 +1486,18 @@ describe('transaction plan semantics', () => {
     const replay = plans.planTournamentFinalization(first.room, 4_000);
     expect(first.receiptId).toBe('tournament_finalize_room-race');
     expect(first.playerEffects).toHaveLength(2);
-    // Приз считается от банка комнаты: 2 живых × 3 = 6, минус 20% в недельный
-    // банк = 5 призёрам, 60/25/15 → победителю 4. Билетов больше нет.
+    // зачем 2026-08-03: взнос вырос с 3 до 5 жемчужин (b2e8c7268), поэтому
+    // арифметика приза сместилась. Приз считается от банка комнаты:
+    // 2 живых × 5 = 10, минус 20% в недельный банк = 8 призёрам,
+    // 60/25/15 → победителю 5. Билетов больше нет.
     expect(first.playerEffects[0]).toMatchObject({
       playerId: 'u1', seasonPoints: 25, tournamentsPlayed: 1, won: true,
-      reward: { gems: 4, tickets: 0 },
+      reward: { gems: 5, tickets: 0 },
     });
-    // В недельный банк уходит доля турнира.
-    expect(first.weeklyBankGems).toBe(1);
+    // В недельный банк уходит доля турнира (20% от 10 = 2) ПЛЮС остаток от
+    // округления призовых долей вниз — призёр здесь один, поэтому 25% и 15%
+    // никому не достаются и тоже оседают в банке.
+    expect(first.weeklyBankGems).toBe(3);
     expect(replay).toMatchObject({ alreadyFinalized: true, playerEffects: [] });
   });
 });

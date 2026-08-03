@@ -2739,6 +2739,36 @@ function tournamentSubmissionIdempotencyKeyHash(key: string | undefined): string
   return key ? createHash('sha256').update(key).digest('hex') : undefined;
 }
 
+/**
+ * зачем 2026-08-03 (инцидент «пары не засчитались, а в логах пусто»):
+ * HttpsError, брошенный из v2 onCall, в Cloud Logging НЕ попадает — остаётся
+ * пустая строка severity=ERROR без причины. Поэтому каждый отказ горячего
+ * пути пар пишем сами, явным console.error.
+ *
+ * PII не логируем: игрок обозначается коротким хешем stableUid, а не самим
+ * идентификатором и тем более не именем — правило «наружу только количества».
+ * Объём: строка пишется ТОЛЬКО при отказе, на успешном тапе логов нет, поэтому
+ * на стоимость логов нормальная игра не влияет.
+ */
+function logSpeedMatchRejection(
+  reason: string,
+  input: { roomId: string; roundNo: number; taskId: string; stableUid: string; pairIndex: number; selectedIndex: number },
+  receivedAtMs: number,
+  details: Record<string, unknown>,
+): void {
+  console.error('[tournaments] speed_match rejected', JSON.stringify({
+    reason,
+    roomId: input.roomId,
+    roundNo: input.roundNo,
+    taskId: input.taskId,
+    pairIndex: input.pairIndex,
+    selectedIndex: input.selectedIndex,
+    player: tournamentHash32(input.stableUid).toString(36),
+    receivedAtMs,
+    ...details,
+  }));
+}
+
 export async function tournamentSpeedMatchAttemptTransaction(
   db: FirebaseFirestore.Firestore,
   input: {
@@ -2772,6 +2802,10 @@ export async function tournamentSpeedMatchAttemptTransaction(
       && room.state === stateAfterTournamentDeadline(activeState);
     if (!activeState || (room.state !== activeState && !withinFollowingState)
       || !round?.taskIds.includes(input.taskId)) {
+      logSpeedMatchRejection('round_not_active', input, receivedAtMs, {
+        roomState: room.state, expectedState: activeState, replacingTimedOut,
+        roundFound: !!round, taskInRound: !!round?.taskIds.includes(input.taskId),
+      });
       throw new HttpsError('failed-precondition', 'round_not_active');
     }
     try {
@@ -2780,13 +2814,28 @@ export async function tournamentSpeedMatchAttemptTransaction(
         throw new Error('round_deadline_elapsed');
       }
     } catch (error) {
-      throw new HttpsError('failed-precondition', error instanceof Error ? error.message : 'task_deadline_elapsed');
+      const reason = error instanceof Error ? error.message : 'task_deadline_elapsed';
+      const timing = round.taskSchedule?.find((entry) => entry.taskId === input.taskId);
+      logSpeedMatchRejection(reason, input, receivedAtMs, {
+        roomState: room.state,
+        stateDeadlineAtMs: room.stateDeadlineAtMs,
+        taskStartsAtMs: timing?.startsAtMs,
+        taskDeadlineAtMs: timing?.deadlineAtMs,
+        answerDeadlineAtMs: timing?.answerDeadlineAtMs,
+      });
+      throw new HttpsError('failed-precondition', reason);
     }
     if (!room.players.some((player) => !player.isBot && player.id === input.stableUid)) {
+      logSpeedMatchRejection('not_in_room', input, receivedAtMs, {
+        roomState: room.state, playerCount: room.players.length,
+      });
       throw new HttpsError('permission-denied', 'not_in_room');
     }
     const task = parseTask(taskSnap);
     if (!task || task.mode !== 'speed_match') {
+      logSpeedMatchRejection('speed_match_task_unavailable', input, receivedAtMs, {
+        taskExists: taskSnap.exists, parsed: !!task, mode: task?.mode ?? taskSnap.get('mode'),
+      });
       throw new HttpsError('failed-precondition', 'speed_match_task_unavailable');
     }
     let outcome;
@@ -2794,7 +2843,20 @@ export async function tournamentSpeedMatchAttemptTransaction(
       outcome = applySpeedMatchAttempt(
         task, readSpeedMatchProgress(progressSnap.data()), input.pairIndex, input.selectedIndex,
       );
-    } catch {
+    } catch (error) {
+      // зачем 2026-08-03 (инцидент «пары не засчитались, а логи пустые»):
+      // здесь стоял голый catch{}. HttpsError в v2 onCall НЕ пишется в журнал,
+      // поэтому в Cloud Logging оставались пустые E-строки, и причину отказа
+      // приходилось воспроизводить руками по документам комнаты. Настоящая
+      // ошибка валидатора теперь видна сразу — вместе с размерностями доски.
+      const items = Array.isArray(task.payload.items) ? task.payload.items : [];
+      const validation = validateTournamentTask(task);
+      logSpeedMatchRejection('speed_match_attempt_invalid', input, receivedAtMs, {
+        cause: error instanceof Error ? error.message : String(error),
+        itemsLength: items.length,
+        verified: task.verified,
+        validation: validation.ok ? `ok:${validation.kind}` : validation.reason,
+      });
       throw new HttpsError('invalid-argument', 'speed_match_attempt_invalid');
     }
     tx.set(progressRef, {

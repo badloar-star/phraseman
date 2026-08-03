@@ -113,7 +113,6 @@ import DailyTasksFirstVisitModal from '../components/DailyTasksFirstVisitModal';
 import GlobalShardsEarnedHost from '../components/GlobalShardsEarnedHost';
 import EntitlementExpiredHost from '../components/EntitlementExpiredHost';
 import GlobalFriendGiftHost from '../components/GlobalFriendGiftHost';
-import GlobalCompassSocialHost from '../components/GlobalCompassSocialHost';
 import ReferralWelcomeHost from '../components/ReferralWelcomeHost';
 import OnboardingWelcomeHost from '../components/OnboardingWelcomeHost';
 import MysteryMondayHost from '../components/MysteryMondayHost';
@@ -3413,7 +3412,6 @@ export default function RootLayout() {
                     <PerfectWeekHost />
                     <BoonActivatedHost />
                     <GlobalFriendGiftHost />
-                    <GlobalCompassSocialHost />
                     <StreakRiskToastHost />
                     <BillingIssueToastHost />
                     <ThemedBlockingAlertHost />

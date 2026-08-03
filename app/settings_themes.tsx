@@ -143,7 +143,11 @@ const ThemeTile = memo(function ThemeTile({ option, label, nameColor, locked, ap
           end={{ x: 0.85, y: 1 }}
           style={[styles.tile, { width: size, height: size }]}
         >
-          <Image source={THEME_ICONS[option.mode]} style={styles.icon} contentFit="contain" accessible={false} />
+          {/* зачем: владелец явно попросил иконку НА ВЕСЬ квадрат, не мелкий
+              кружок в центре — absoluteFill растягивает картинку на всю
+              плитку, tile уже overflow:'hidden' со скруглением, так что
+              иконка обрежется точно по форме карточки. */}
+          <Image source={THEME_ICONS[option.mode]} style={StyleSheet.absoluteFillObject} contentFit="cover" accessible={false} />
           {locked ? (
             <PlusBadge themeMode={option.mode} size="sm" style={styles.lockBadge} />
           ) : applied ? (
@@ -363,10 +367,6 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  icon: {
-    width: '46%',
-    height: '46%',
   },
   lockBadge: {
     position: 'absolute',

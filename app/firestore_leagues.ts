@@ -588,8 +588,11 @@ export async function getOrCreateLeagueGroup(
     getVerifiedVipStatus().catch(() => false),
     isLifetimePlanLocal().catch(() => false),
   ]);
-  // «Pro» = lifetime только при активном премиум-доступе (иначе Plus/без плашки).
-  const memberLifetime = memberPremium && memberLifetimeRaw;
+  // «Pro» = lifetime только при активном доступе (иначе Plus/без плашки).
+  // зачем: доступ бывает и безденежным (сертификат «Pro — навсегда», промокод,
+  // бессрочная выдача) — там memberPremium=false, но Pro-аура положена
+  // (владелец, 2026-08-03). Истёкший lifetime по-прежнему не даёт плашку.
+  const memberLifetime = (memberPremium || memberVip) && memberLifetimeRaw;
   const memberStreak   = streakRaw  ? parseInt(streakRaw, 10) : 0;
   const memberTotalXp  = totalXpRaw ? parseInt(totalXpRaw, 10) || 0 : 0;
   const memberProfileCardLevel = normalizeProfileCardLevel(cardLevelRaw);
@@ -1040,7 +1043,8 @@ async function _doUpdateGroupPoints(
       isLifetimePlanLocal().catch(() => false),
     ]);
     if (!isCurrent()) return;
-    const memberLifetime = memberPremium && memberLifetimeRaw;
+    // зачем: см. выше — безденежный пожизненный доступ тоже даёт Pro-ауру.
+    const memberLifetime = (memberPremium || memberVip) && memberLifetimeRaw;
     const memberTotalXp = totalXpRaw ? parseInt(totalXpRaw, 10) || 0 : 0;
     const memberName = (nameRaw ?? '').trim();
     const member = withoutUndefinedFields({

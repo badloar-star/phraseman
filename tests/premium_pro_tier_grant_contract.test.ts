@@ -86,6 +86,7 @@ describe('Pro tier covers granted lifetime access, not only store purchases', ()
       vip_active: 'true',
       vip_plan: 'promo_lifetime',
       vip_until: '0',
+      vip_admin_override: 'true',
     });
     await expect(guard.isLifetimePlanLocal()).resolves.toBe(true);
   });
@@ -97,6 +98,7 @@ describe('Pro tier covers granted lifetime access, not only store purchases', ()
       vip_active: 'true',
       vip_plan: 'admin_vip',
       vip_until: '0',
+      vip_admin_override: 'true',
     });
     await expect(guard.isLifetimePlanLocal()).resolves.toBe(true);
   });
@@ -106,6 +108,7 @@ describe('Pro tier covers granted lifetime access, not only store purchases', ()
       vip_active: 'true',
       vip_plan: 'admin_vip',
       vip_until: String(Date.now() + 30 * 24 * HOUR_MS),
+      vip_admin_override: 'true',
     });
     await expect(guard.isLifetimePlanLocal()).resolves.toBe(false);
   });
@@ -118,6 +121,7 @@ describe('Pro tier covers granted lifetime access, not only store purchases', ()
         vip_active: 'true',
         vip_plan: plan,
         vip_until: String(Date.now() + 72 * HOUR_MS),
+        vip_admin_override: 'true',
       });
       await expect(guard.isLifetimePlanLocal()).resolves.toBe(false);
     }

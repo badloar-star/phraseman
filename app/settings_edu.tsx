@@ -6,13 +6,11 @@ import BouncyScrollView from '../components/BouncyScrollView';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
 import CustomSwitch from '../components/CustomSwitch';
-import CompassDepthSurface from '../components/CompassDepthSurface';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import SectionSheetHeader from '../components/SectionSheetHeader';
 import { useTheme } from '../components/ThemeContext';
 import { useAudio } from '../hooks/use-audio';
-import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 import {
   applyUserSettingsNow,
   getUserSettingsSnapshot,
@@ -39,7 +37,6 @@ type RowKey = Exclude<keyof UserSettings, 'speechRate' | 'speechVoiceId'>;
 export default function SettingsEdu() {
   const router = useRouter();
   const { theme: t, themeMode } = useTheme();
-  const isCompassTheme = false;
   const { lang, s: loc } = useLang();
   const { speak: speakAudio, stop: stopAudio } = useAudio();
   const [s, setS] = useState<UserSettings>(() => getUserSettingsSnapshot());
@@ -172,28 +169,15 @@ export default function SettingsEdu() {
               return (
                 <View
                   key={row.key}
-                  style={[
-                    {
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                      paddingHorizontal: 20,
-                      paddingVertical: 16,
-                      borderBottomWidth: isCompassTheme ? 0 : 0.5,
-                      borderBottomColor: t.border,
-                    },
-                    isCompassTheme && {
-                      marginHorizontal: 16,
-                      marginVertical: 4,
-                      borderRadius: 8,
-                      borderWidth: 0,
-                      borderColor: COMPASS_RICH.hairlineQuiet,
-                      backgroundColor: COMPASS_RICH.charcoalRaised,
-                      overflow: 'hidden',
-                    },
-                    isCompassTheme && compassShadow(1),
-                  ]}
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    paddingHorizontal: 20,
+                    paddingVertical: 16,
+                    borderBottomWidth: 0.5,
+                    borderBottomColor: t.border,
+                  }}
                 >
-                  {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
                   <View style={{ flex: 1, marginRight: 12 }}>
                     <Text style={{ color: t.textPrimary, fontSize: 16, fontWeight: '500' }}>
                       {row.label}
@@ -209,26 +193,13 @@ export default function SettingsEdu() {
 
             {
               <View
-                style={[
-                  {
-                    paddingHorizontal: 20,
-                    paddingVertical: 16,
-                    borderBottomWidth: isCompassTheme ? 0 : 0.5,
-                    borderBottomColor: t.border,
-                  },
-                  isCompassTheme && {
-                    marginHorizontal: 16,
-                    marginVertical: 4,
-                    borderRadius: 8,
-                    borderWidth: 0,
-                    borderColor: COMPASS_RICH.hairlineQuiet,
-                    backgroundColor: COMPASS_RICH.charcoalRaised,
-                    overflow: 'hidden',
-                  },
-                  isCompassTheme && compassShadow(1),
-                ]}
+                style={{
+                  paddingHorizontal: 20,
+                  paddingVertical: 16,
+                  borderBottomWidth: 0.5,
+                  borderBottomColor: t.border,
+                }}
               >
-                {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 }}>
                   <Text style={{ color: t.textPrimary, fontSize: 16, fontWeight: '500' }}>
                     {loc.edu.speed}

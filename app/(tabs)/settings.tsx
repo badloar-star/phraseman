@@ -32,7 +32,6 @@ import {
 } from '../../components/settings/SettingsGroup';
 import { useTopFadeScroll } from '../../components/TopFadeScrollContext';
 import DeleteAccountConfirmModal from '../../components/DeleteAccountConfirmModal';
-import CompassDepthSurface from '../../components/CompassDepthSurface';
 import { scheduleDailyReminder, cancelAllNotifications, loadNotificationSettings } from '../notifications';
 import { DebugLogger } from '../debug-logger';
 import { useLang } from '../../components/LangContext';
@@ -63,7 +62,6 @@ import StudyLanguagePicker from '../../components/settings/StudyLanguagePicker';
 import { triLang, type Lang } from '../../constants/i18n';
 import type { ThemeMode } from '../../constants/theme';
 import { SETTINGS_TESTERS_ROUTE } from '../../constants/devRoutes';
-import { COMPASS_RICH, compassShadow } from '../../constants/compassTheme';
 import { getLinkedAuthInfo, signOutAndWipeForAccountSwitch, type LinkedAuth } from '../auth_provider';
 import { reserveNameDetailed, warmNameAvailabilityAuth } from '../firestore_leaderboard';
 import { syncMyLeagueMemberProfileNow } from '../firestore_leagues';
@@ -277,7 +275,6 @@ export default function SettingsMain() {
   const tabContentBottomPad = useTabContentBottomPad();
   const router = useRouter();
   const { theme: t, isDark, themeMode, fontSize, setFontSize, f, isFlat: isFlatUi } = useTheme();
-  const isCompassTheme = false;
   /**
    * Ocean / Sakura — это «светлые карточки на тёмном цветном фоне». Темы
    * рассчитаны на отрисовку контента ВНУТРИ светлой карточки (`t.bgCard`),
@@ -292,10 +289,10 @@ export default function SettingsMain() {
   const screenMuted = t.textMuted;
   const screenGhost = t.textGhost;
   const settingsSurface = SETTINGS_SURFACES[themeMode];
-  const settingsPanelBg = isCompassTheme ? COMPASS_RICH.charcoalRaised : settingsSurface.panel;
-  const settingsChipBg = isCompassTheme ? COMPASS_RICH.charcoalRaised : settingsSurface.chip;
-  const settingsBorder = isCompassTheme ? COMPASS_RICH.hairlineQuiet : settingsSurface.border;
-  const settingsDivider = isCompassTheme ? COMPASS_RICH.hairlineQuiet : settingsSurface.divider;
+  const settingsPanelBg = settingsSurface.panel;
+  const settingsChipBg = settingsSurface.chip;
+  const settingsBorder = settingsSurface.border;
+  const settingsDivider = settingsSurface.divider;
   const screenBorder = settingsBorder;
   /**
    * Settings-плашки отделены от tabbar chrome: как в Telegram, это один спокойный
@@ -511,7 +508,7 @@ export default function SettingsMain() {
   useEffect(() => {
     if (nameModal) warmNameAvailabilityAuth();
   }, [nameModal]);
-  const { isPremium, isVip, hasPremiumAccess, isIntroFullAccess, introFullAccessEndsAt } = usePremium();
+  const { isPremium, isVip, isPro, hasPremiumAccess, isIntroFullAccess, introFullAccessEndsAt } = usePremium();
   const initialSettingsMessageOwnerRef = useRef(captureAccountGeneration().stableId ?? '');
   const [settingsMessageOwner, setSettingsMessageOwner] = useState(initialSettingsMessageOwnerRef.current);
   const [settingsMessageSelection, setSettingsMessageSelection] = useState<SettingsMessageSlotSelection>(() => (
@@ -1052,9 +1049,15 @@ export default function SettingsMain() {
     }
   };
 
+  // зачем: владелец (2026-08-03) — тир берём из isPro, а не из локального
+  // premium_plan: пожизненный доступ бывает и безденежным (сертификат «Pro —
+  // навсегда», промокод, бессрочная выдача из админки), и раньше такой человек
+  // видел «Plus активирован» вопреки тому, что написано на его сертификате.
+  const tierName = isPro ? 'Pro' : 'Plus';
+
   const vipExpiryText = vipUntilMs > 0
     ? `${L('Действует до', 'Діє до', 'Active until', 'Ativo até', 'Có hiệu lực đến', 'Aktif sampai', 'Bitiş', 'Ważne do')} ${formatDateTimeShort(vipUntilMs)}`
-    : L('Plus без срока окончания', 'Plus без дати завершення', 'Plus has no end date', 'Plus sem data de término', 'Plus không có ngày kết thúc', 'Plus tanpa tanggal akhir', 'Plus bitiş tarihi yok', 'Plus bez daty zakończenia');
+    : L(`${tierName} без срока окончания`, `${tierName} без дати завершення`, `${tierName} has no end date`, `${tierName} sem data de término`, `${tierName} không có ngày kết thúc`, `${tierName} tanpa tanggal akhir`, `${tierName} bitiş tarihi yok`, `${tierName} bez daty zakończenia`);
 
   const vipAccessTitle = (() => {
     switch (vipPlan) {
@@ -1069,10 +1072,13 @@ export default function SettingsMain() {
         return L('Plus за идею', 'Plus за ідею', 'Plus for an idea', 'Plus por ideia', 'Plus cho ý tưởng', 'Plus untuk ide', 'Fikir Plus', 'Plus za pomysł');
       case 'telegram_tester':
         return L('Тестерский Plus', 'Тестерський Plus', 'Tester Plus', 'Plus de testador', 'Plus thử nghiệm', 'Plus tester', 'Test Plus', 'Tester Plus');
+      // зачем: бессрочная выдача из админки — это Pro (владелец, 2026-08-03),
+      // а срочная остаётся Plus. Отдельного плана у админки нет: и месяц, и
+      // «бессрочно» пишут admin_vip, поэтому тир берём из общего tierName.
       case 'admin_vip':
-        return L('Выданный Plus', 'Виданий Plus', 'Granted Plus', 'Plus concedido', 'Plus được cấp', 'Plus diberikan', 'Verilen Plus', 'Przyznany Plus');
+        return L(`Выданный ${tierName}`, `Виданий ${tierName}`, `Granted ${tierName}`, `${tierName} concedido`, `${tierName} được cấp`, `${tierName} diberikan`, `Verilen ${tierName}`, `Przyznany ${tierName}`);
       default:
-        return L('Дополнительный Plus-доступ', 'Додатковий Plus-доступ', 'Extra Plus access', 'Acesso Plus extra', 'Quyền Plus bổ sung', 'Akses Plus tambahan', 'Ek Plus erişimi', 'Dodatkowy dostęp Plus');
+        return L(`Дополнительный ${tierName}-доступ`, `Додатковий ${tierName}-доступ`, `Extra ${tierName} access`, `Acesso ${tierName} extra`, `Quyền ${tierName} bổ sung`, `Akses ${tierName} tambahan`, `Ek ${tierName} erişimi`, `Dodatkowy dostęp ${tierName}`);
     }
   })();
 
@@ -1105,7 +1111,7 @@ export default function SettingsMain() {
   // зачем: подпись-расшифровка под названием убрана (запрет владельца + чистота
   // референса) — ряд Plus однострочный; при активном Plus справа короткий план.
   const plusRowLabel = hasPremiumAccess
-    ? `${premiumPlan === 'lifetime' ? 'Pro' : 'Plus'} ${L('активирован', 'активовано', 'activo', 'ativado', 'đã kích hoạt', 'aktif', 'aktif', 'aktywne')} ✓`
+    ? `${tierName} ${L('активирован', 'активовано', 'activo', 'ativado', 'đã kích hoạt', 'aktif', 'aktif', 'aktywne')} ✓`
     : 'Phraseman Plus';
   const plusRowValue = hasPremiumAccess && isPremium
     ? (premiumPlan === 'yearly'
@@ -1176,13 +1182,11 @@ export default function SettingsMain() {
               marginTop: 12,
               paddingVertical: 6,
               paddingHorizontal: 12,
-              borderRadius: isCompassTheme ? 8 : 16,
-              backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : settingsPanelBg,
+              borderRadius: 16,
+              backgroundColor: settingsPanelBg,
               overflow: 'hidden',
-              ...(isCompassTheme ? compassShadow(1) : {}),
             }}
           >
-            {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
             {plusAccessDetails.map((detail, index) => (
               <View
                 key={detail.key}
@@ -1192,7 +1196,7 @@ export default function SettingsMain() {
                   alignItems: 'center',
                   paddingVertical: 10,
                   borderTopWidth: index === 0 ? 0 : 0.5,
-                  borderTopColor: isCompassTheme ? COMPASS_RICH.hairline : settingsDivider,
+                  borderTopColor: settingsDivider,
                 }}
               >
                 <View
@@ -1202,18 +1206,18 @@ export default function SettingsMain() {
                     borderRadius: 17,
                     alignItems: 'center',
                     justifyContent: 'center',
-                    backgroundColor: isCompassTheme ? COMPASS_RICH.charcoal : t.bgSurface,
+                    backgroundColor: t.bgSurface,
                     marginRight: 10,
                   }}
                 >
-                  <Ionicons name={detail.icon} size={18} color={isCompassTheme ? COMPASS_RICH.champagne : t.accent} />
+                  <Ionicons name={detail.icon} size={18} color={t.accent} />
                 </View>
                 <View style={{ flex: 1, minWidth: 0 }}>
                   {/* зачем: вес 900/700 кричал — выравниваем с типографикой рядов (600/400). */}
                   <Text
                     testID={detail.titleTestID}
                     style={{
-                      color: isCompassTheme ? COMPASS_RICH.cream : t.textPrimary,
+                      color: t.textPrimary,
                       fontSize: f.caption,
                       fontWeight: '600',
                     }}
@@ -1223,7 +1227,7 @@ export default function SettingsMain() {
                   <Text
                     testID={detail.subtitleTestID}
                     style={{
-                      color: isCompassTheme ? COMPASS_RICH.textMuted : t.textSecond,
+                      color: t.textSecond,
                       fontSize: f.caption,
                       lineHeight: 18,
                       marginTop: 2,
@@ -1263,16 +1267,14 @@ export default function SettingsMain() {
             onPress={() => goHome()}
             style={{
               width: 36, height: 36,
-              borderRadius: isCompassTheme ? 8 : 18,
+              borderRadius: 18,
               backgroundColor: settingsPanelBg,
               borderWidth: 0,
               borderColor: 'transparent',
               justifyContent: 'center', alignItems: 'center',
               marginRight: 12, flexShrink: 0, overflow: 'hidden',
-              ...(isCompassTheme ? compassShadow(1) : {}),
             }}
           >
-            {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
             <Ionicons name="chevron-back" size={20} color={chipTextOff} />
           </TouchableOpacity>
           <Text style={{ color: screenPrimary, fontSize: f.h2 + 6, fontWeight: 'bold', flex: 1 }}>
@@ -1408,10 +1410,8 @@ export default function SettingsMain() {
               borderRadius: 16,
               overflow: 'hidden',
               backgroundColor: settingsPanelBg,
-              ...(isCompassTheme ? compassShadow(1) : {}),
             }}
           >
-            {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
             <ReferralInviteBannerArt />
             <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 14, paddingVertical: 12, gap: 10 }}>
               <View style={{ flex: 1, minWidth: 0 }}>
@@ -1447,12 +1447,12 @@ export default function SettingsMain() {
               activeTarget={studyTarget}
               labelFontSize={f.caption}
               palette={{
-                surfaceOn: isCompassTheme ? COMPASS_RICH.champagne : chipSurfaceOn,
-                surfaceOff: isCompassTheme ? COMPASS_RICH.charcoalRaised : chipSurfaceOff,
-                borderOn: isCompassTheme ? COMPASS_RICH.hairlineStrong : (isGradientLight ? chipSurfaceOn : t.accent),
-                borderOff: isCompassTheme ? COMPASS_RICH.hairlineQuiet : chipBorderOff,
-                textOn: isCompassTheme ? COMPASS_RICH.textDark : chipTextOn,
-                textOff: isCompassTheme ? screenPrimary : chipTextOff,
+                surfaceOn: chipSurfaceOn,
+                surfaceOff: chipSurfaceOff,
+                borderOn: isGradientLight ? chipSurfaceOn : t.accent,
+                borderOff: chipBorderOff,
+                textOn: chipTextOn,
+                textOff: chipTextOff,
                 badge: t.accent,
               }}
               onSwitched={loadStudyTarget}
@@ -1851,17 +1851,15 @@ export default function SettingsMain() {
               {
                 width: '100%',
                 maxWidth: 380,
-                backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
-                borderRadius: isCompassTheme ? 10 : 16,
+                backgroundColor: t.bgCard,
+                borderRadius: 16,
                 padding: 20,
                 borderWidth: 0,
                 borderColor: 'transparent',
                 overflow: 'hidden',
               },
-              isCompassTheme && compassShadow(3),
             ]}
           >
-            {isCompassTheme ? <CompassDepthSurface radius={10} selected /> : null}
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', marginBottom: 8 }}>
               {L('Аккаунт', 'Акаунт', 'Cuenta', 'Conta', 'Tài khoản', 'Akun', 'Hesap', 'Konto')}
             </Text>
@@ -1933,17 +1931,15 @@ export default function SettingsMain() {
               {
                 width: '100%',
                 maxWidth: 380,
-                backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
-                borderRadius: isCompassTheme ? 10 : 16,
+                backgroundColor: t.bgCard,
+                borderRadius: 16,
                 padding: 20,
                 borderWidth: 0,
                 borderColor: 'transparent',
                 overflow: 'hidden',
               },
-              isCompassTheme && compassShadow(3),
             ]}
           >
-            {isCompassTheme ? <CompassDepthSurface radius={10} selected /> : null}
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', marginBottom: 12 }}>
               {L('Сменить аккаунт?', 'Змінити акаунт?', '¿Cambiar de cuenta?', 'Trocar de conta?', 'Đổi tài khoản?', 'Ganti akun?', 'Hesap değiştirilsin mi?', 'Zmienić konto?')}
             </Text>
@@ -2174,18 +2170,16 @@ export default function SettingsMain() {
               {
                 width: '100%',
                 maxWidth: 280,
-                backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
-                borderRadius: isCompassTheme ? 10 : 16,
+                backgroundColor: t.bgCard,
+                borderRadius: 16,
                 padding: 28,
                 borderWidth: 0,
                 borderColor: 'transparent',
                 alignItems: 'center',
                 overflow: 'hidden',
               },
-              isCompassTheme && compassShadow(3),
             ]}
           >
-            {isCompassTheme ? <CompassDepthSurface radius={10} selected /> : null}
             <Ionicons name="shield-checkmark" size={28} color={t.correct} />
             <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', marginTop: 16, textAlign: 'center' }}>
               {L('Аккаунт', 'Акаунт', 'Cuenta', 'Conta', 'Tài khoản', 'Akun', 'Hesap', 'Konto')}
@@ -2214,30 +2208,28 @@ export default function SettingsMain() {
                 {
                   width: '80%',
                   minWidth: 280,
-                  backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
-                  borderRadius: isCompassTheme ? 10 : 16,
+                  backgroundColor: t.bgCard,
+                  borderRadius: 16,
                   padding: 24,
                   borderWidth: 0,
                   borderColor: 'transparent',
                   overflow: 'hidden',
                 },
-                isCompassTheme && compassShadow(3),
               ]}
             >
-            {isCompassTheme ? <CompassDepthSurface radius={10} selected /> : null}
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '600', marginBottom: 16 }}>
               {L('Изменить имя', 'Змінити ім\'я', 'Cambiar nombre', 'Alterar nome', 'Đổi tên', 'Ubah nama', 'Adı değiştir', 'Zmień nazwę')}
             </Text>
             <TextInput
               accessibilityLabel={L('Имя профиля', 'Ім\'я профілю', 'Nombre de perfil', 'Nome do perfil', 'Tên hồ sơ', 'Nama profil', 'Profil adı', 'Nazwa profilu')}
               style={{
-                backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalSoft : t.bgPrimary,
+                backgroundColor: t.bgPrimary,
                 color: t.textPrimary,
                 fontSize: f.h2,
                 padding: 14,
-                borderRadius: isCompassTheme ? 8 : 10,
+                borderRadius: 10,
                 borderWidth: 1,
-                borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
+                borderColor: t.border,
                 marginBottom: 20,
               }}
               value={newName}
@@ -2258,19 +2250,17 @@ export default function SettingsMain() {
                   {
                     flex: 1,
                     padding: 12,
-                    borderRadius: isCompassTheme ? 8 : 10,
+                    borderRadius: 10,
                     borderWidth: 0,
                     borderColor: 'transparent',
                     alignItems: 'center',
-                    backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgSurface,
+                    backgroundColor: t.bgSurface,
                     opacity: nameSaving ? 0.6 : 1,
                     overflow: 'hidden',
                   },
-                  isCompassTheme && compassShadow(1),
                 ]}
                 onPress={() => { if (nameSaving) return; doHaptic(); closeNameModal(); }}
               >
-                {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
                 <Text style={{ color: t.textMuted, fontSize: f.body }} numberOfLines={1}>{L('Отмена', 'Скасувати', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj')}</Text>
               </TouchableOpacity>
               <TouchableOpacity
@@ -2280,8 +2270,8 @@ export default function SettingsMain() {
                   {
                     flex: 1,
                     padding: 12,
-                    borderRadius: isCompassTheme ? 8 : 10,
-                    backgroundColor: isCompassTheme ? COMPASS_RICH.champagne : t.accent,
+                    borderRadius: 10,
+                    backgroundColor: t.accent,
                     borderWidth: 0,
                     borderColor: 'transparent',
                     alignItems: 'center',
@@ -2290,21 +2280,19 @@ export default function SettingsMain() {
                     opacity: nameSaving ? 0.82 : 1,
                     overflow: 'hidden',
                   },
-                  isCompassTheme && compassShadow(1),
                 ]}
                 onPress={() => { if (nameSaving) return; doHaptic(); void saveName(); }}
               >
-                {isCompassTheme ? <CompassDepthSurface radius={8} cream /> : null}
                 <View style={{ minHeight: 22, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, maxWidth: '100%' }}>
                   {nameSaving ? (
-                    <ActivityIndicator size="small" color={isCompassTheme ? COMPASS_RICH.textDark : t.correctText} />
+                    <ActivityIndicator size="small" color={t.correctText} />
                   ) : null}
                   {/* зачем: динамическое сжатие шрифта убрано (запрещённый паттерн) — статично
                       уменьшен размер (было до 15, стало до 13), чтобы длинные варианты перевода
                       («Kaydediliyor», «Zapisywanie») влезали в flex:1-кнопку рядом с индикатором
                       без ужимания на рендере, guard-ok */}
                   <Text
-                    style={{ color: isCompassTheme ? COMPASS_RICH.textDark : t.correctText, fontSize: Math.min(f.body, 13), fontWeight: '700', flexShrink: 1 }}
+                    style={{ color: t.correctText, fontSize: Math.min(f.body, 13), fontWeight: '700', flexShrink: 1 }}
                     numberOfLines={1}
                   >
                     {nameSaving

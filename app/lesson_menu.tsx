@@ -51,8 +51,6 @@ import { getCourseLevelForLesson, getPreviousCourseLevel } from './course_levels
 import { getLessonScreenPrimed, primeLessonScreenFromStorage } from './lesson_screen_bootstrap';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
 import GoldBevel from '../components/GoldBevel';
-import CompassDepthSurface from '../components/CompassDepthSurface';
-import { COMPASS_GRADIENTS, COMPASS_RICH, COMPASS_SURFACE_LOCATIONS, compassShadow } from '../constants/compassTheme';
 import { lessonCefrLabelForStudyTarget, lessonNamesForStudyTarget } from './lesson_titles_for_study_target';
 import { frenchLessonRuntimeAvailableForTarget } from './french_content_source_gate';
 import { lessonSupportContentAvailableForTarget } from './lesson_support_target_gate';
@@ -290,7 +288,6 @@ export default function LessonMenu() {
   // CEFR-тона (~2:1 на фарфоре); светлая ветка теперь живая, тона — тёмные sage.
   const isLightTheme = isLightThemeMode(themeMode);
   const isGoldTheme = themeMode === 'gold';
-  const isCompassTheme = false;
   const { s, lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const { energy, bonusEnergy, isUnlimited: menuEnergyUnlimited, energyReady: menuEnergyReady } = useEnergy();
@@ -1206,23 +1203,22 @@ export default function LessonMenu() {
         {/* Заглушка */}
         <View style={{flex:1,justifyContent:'center',alignItems:'center',paddingHorizontal:32}}>
           <LinearGradient
-            colors={isGoldTheme ? GOLD_GRADIENTS.raisedTile : isCompassTheme ? COMPASS_GRADIENTS.raisedTile : [t.bgCard, t.bgCard, t.bgCard]}
-            locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined}
+            colors={isGoldTheme ? GOLD_GRADIENTS.raisedTile : [t.bgCard, t.bgCard, t.bgCard]}
+            locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 1 }}
             style={{
-            width:90,height:90,borderRadius:isCompassTheme ? 16 : 45,
-            backgroundColor:isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
-            borderWidth: 0,borderColor:isGoldTheme ? GOLD_RICH.hairline : isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border,
+            width:90,height:90,borderRadius:45,
+            backgroundColor:t.bgCard,
+            borderWidth: 0,borderColor:isGoldTheme ? GOLD_RICH.hairline : t.border,
             justifyContent:'center',alignItems:'center',
             marginBottom:24,
             shadowColor:'#000',shadowOffset:{width:0,height:4},shadowOpacity:0.2,shadowRadius:8,elevation:6,
             overflow:'hidden',
-            ...(isGoldTheme ? goldShadow(2) : isCompassTheme ? compassShadow(2) : {}),
+            ...(isGoldTheme ? goldShadow(2) : {}),
           }}>
             {isGoldTheme && <GoldBevel radius={45} intensity="normal" />}
-            {isCompassTheme && <CompassDepthSurface radius={16} selected />}
-            <Ionicons name={lockedIcon} size={40} color={isGoldTheme ? GOLD_RICH.champagne : isCompassTheme ? COMPASS_RICH.champagne : t.textMuted}/>
+            <Ionicons name={lockedIcon} size={40} color={isGoldTheme ? GOLD_RICH.champagne : t.textMuted}/>
           </LinearGradient>
           <Text style={{color:t.heroTextPrimary,fontSize:f.h2,fontWeight:'700',textAlign:'center',marginBottom:12}}>
             {lockedTitle}
@@ -1400,42 +1396,38 @@ export default function LessonMenu() {
               />
             ) : item.pct !== undefined ? (
               <LinearGradient
-                colors={isGoldTheme ? GOLD_GRADIENTS.mutedPanel : isCompassTheme ? COMPASS_GRADIENTS.recessedPanel : [t.bgSurface, t.bgSurface, t.bgSurface]}
-                locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined}
+                colors={isGoldTheme ? GOLD_GRADIENTS.mutedPanel : [t.bgSurface, t.bgSurface, t.bgSurface]}
+                locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 1 }}
                 style={{
-                width:44,height:44,borderRadius:isCompassTheme ? 9 : 22,
-                backgroundColor:isCompassTheme ? COMPASS_RICH.charcoal : t.bgSurface,
-                borderWidth:0,borderColor:isGoldTheme ? GOLD_RICH.hairlineQuiet : isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
+                width:44,height:44,borderRadius:22,
+                backgroundColor:t.bgSurface,
+                borderWidth:0,borderColor:isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border,
                 overflow:'hidden',
               }}>
                 {isGoldTheme && <GoldBevel radius={22} intensity="quiet" />}
-                {isCompassTheme && <CompassDepthSurface radius={9} quiet />}
               </LinearGradient>
             ) : (
               <LinearGradient
                 colors={isGoldTheme
                   ? (item.disabled || item.unavailable ? GOLD_GRADIENTS.mutedPanel : GOLD_GRADIENTS.raisedTile)
-                  : isCompassTheme
-                    ? ((item.disabled || item.unavailable) ? COMPASS_GRADIENTS.recessedPanel : COMPASS_GRADIENTS.raisedTile)
                   : [((item.disabled || item.unavailable) ? t.bgPrimary : t.bgSurface), ((item.disabled || item.unavailable) ? t.bgPrimary : t.bgSurface), ((item.disabled || item.unavailable) ? t.bgPrimary : t.bgSurface)]}
-                locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined}
+                locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 1 }}
                 style={{
-                width:44,height:44,borderRadius:isCompassTheme ? 9 : 22,
-                backgroundColor: isCompassTheme ? ((item.disabled || item.unavailable) ? COMPASS_RICH.charcoal : COMPASS_RICH.charcoalRaised) : (item.disabled || item.unavailable) ? t.bgPrimary : t.bgSurface,
+                width:44,height:44,borderRadius:22,
+                backgroundColor: (item.disabled || item.unavailable) ? t.bgPrimary : t.bgSurface,
                 borderTopWidth:0, borderLeftWidth:0,
                 borderRightWidth:0, borderBottomWidth:0,
-                borderTopColor:isGoldTheme ? GOLD_RICH.hairlineStrong : isCompassTheme ? COMPASS_RICH.edgeLight : t.borderHighlight, borderLeftColor:isGoldTheme ? GOLD_RICH.hairline : isCompassTheme ? COMPASS_RICH.hairline : t.borderHighlight,
-                borderRightColor:isGoldTheme ? GOLD_RICH.hairlineQuiet : isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border, borderBottomColor:isGoldTheme ? GOLD_RICH.hairlineDark : isCompassTheme ? COMPASS_RICH.edgeShade : t.border,
+                borderTopColor:isGoldTheme ? GOLD_RICH.hairlineStrong : t.borderHighlight, borderLeftColor:isGoldTheme ? GOLD_RICH.hairline : t.borderHighlight,
+                borderRightColor:isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border, borderBottomColor:isGoldTheme ? GOLD_RICH.hairlineDark : t.border,
                 justifyContent:'center', alignItems:'center',
                 overflow:'hidden',
               }}>
                 {isGoldTheme && <GoldBevel radius={22} intensity={(item.disabled || item.unavailable) ? 'quiet' : 'normal'} />}
-                {isCompassTheme && <CompassDepthSurface radius={9} quiet={item.disabled || item.unavailable} />}
-                <Ionicons name={item.icon} size={22} color={(item.disabled || item.unavailable) ? t.textGhost : isGoldTheme ? GOLD_RICH.champagne : isCompassTheme ? COMPASS_RICH.champagne : t.textSecond}/>
+                <Ionicons name={item.icon} size={22} color={(item.disabled || item.unavailable) ? t.textGhost : isGoldTheme ? GOLD_RICH.champagne : t.textSecond}/>
               </LinearGradient>
             )}
             <View style={{flex:1}}>
@@ -1453,14 +1445,14 @@ export default function LessonMenu() {
       {lessonPrepHintVisible && canShowLessonPrepHint && !isLessonLocked ? (
         <View testID="lesson-menu-prep-hint" style={{ paddingHorizontal: 16, marginTop: 12 }}>
           <LinearGradient
-            colors={isGoldTheme ? GOLD_GRADIENTS.mutedPanel : isCompassTheme ? COMPASS_GRADIENTS.recessedPanel : ['rgba(255,255,255,0.070)', 'rgba(255,255,255,0.045)', 'rgba(255,255,255,0.035)']}
-            locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined}
+            colors={isGoldTheme ? GOLD_GRADIENTS.mutedPanel : ['rgba(255,255,255,0.070)', 'rgba(255,255,255,0.045)', 'rgba(255,255,255,0.035)']}
+            locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 1 }}
             style={{
-              borderRadius: isCompassTheme ? 10 : 18,
+              borderRadius: 18,
               borderWidth: 0,
-              borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
+              borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border,
               paddingHorizontal: 16,
               paddingVertical: 14,
               flexDirection: 'row',
@@ -1470,23 +1462,22 @@ export default function LessonMenu() {
             }}
           >
             {isGoldTheme && <GoldBevel radius={18} intensity="quiet" />}
-            {isCompassTheme && <CompassDepthSurface radius={10} quiet />}
             <View
               style={{
                 width: 34,
                 height: 34,
-                borderRadius: isCompassTheme ? 8 : 17,
+                borderRadius: 17,
                 alignItems: 'center',
                 justifyContent: 'center',
-                backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : isGoldTheme ? 'rgba(232,195,108,0.10)' : t.bgSurface,
+                backgroundColor: isGoldTheme ? 'rgba(232,195,108,0.10)' : t.bgSurface,
                 borderWidth: 0,
-                borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
+                borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border,
               }}
             >
               <Ionicons
                 name="information-circle-outline"
                 size={20}
-                color={isGoldTheme ? GOLD_RICH.champagne : isCompassTheme ? COMPASS_RICH.champagne : t.accent}
+                color={isGoldTheme ? GOLD_RICH.champagne : t.accent}
               />
             </View>
             <Text style={{ flex: 1, color: t.heroTextMuted, fontSize: f.sub, lineHeight: 20 }}>
@@ -1505,42 +1496,38 @@ export default function LessonMenu() {
           <View style={{flex:1, justifyContent:'flex-end'}}>
             <Pressable onPress={(e) => e.stopPropagation()}>
               <LinearGradient
-                colors={isGoldTheme ? GOLD_GRADIENTS.premiumPanel : isCompassTheme ? COMPASS_GRADIENTS.premiumPanel : [t.bgCard, t.bgCard, t.bgCard]}
-                locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined}
+                colors={isGoldTheme ? GOLD_GRADIENTS.premiumPanel : [t.bgCard, t.bgCard, t.bgCard]}
+                locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 1 }}
                 style={{
-                backgroundColor:isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
-                borderTopLeftRadius:isCompassTheme ? 14 : 24, borderTopRightRadius:isCompassTheme ? 14 : 24,
+                backgroundColor:t.bgCard,
+                borderTopLeftRadius:24, borderTopRightRadius:24,
                 padding:28, paddingBottom:40,
-                borderTopWidth:0.5, borderColor:isGoldTheme ? GOLD_RICH.hairlineStrong : isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border,
+                borderTopWidth:0.5, borderColor:isGoldTheme ? GOLD_RICH.hairlineStrong : t.border,
                 alignItems:'center',
                 overflow:'hidden',
-                ...(isCompassTheme ? compassShadow(3) : {}),
               }}>
                 {isGoldTheme && <GoldBevel radius={24} intensity="strong" />}
-                {isCompassTheme && <CompassDepthSurface radius={14} selected />}
                 <LinearGradient
-                  colors={isGoldTheme ? GOLD_GRADIENTS.raisedTile : isCompassTheme ? COMPASS_GRADIENTS.raisedTile : [t.bgSurface, t.bgSurface, t.bgSurface]}
-                  locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined}
+                  colors={isGoldTheme ? GOLD_GRADIENTS.raisedTile : [t.bgSurface, t.bgSurface, t.bgSurface]}
+                  locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
                   start={{ x: 0, y: 0 }}
                   end={{ x: 1, y: 1 }}
                   style={{
                     width: 64,
                     height: 64,
-                    borderRadius: isCompassTheme ? 12 : 32,
+                    borderRadius: 32,
                     alignItems: 'center',
                     justifyContent: 'center',
                     marginBottom: 16,
                     borderWidth: 0,
-                    borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border,
+                    borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : t.border,
                     overflow: 'hidden',
-                    ...(isCompassTheme ? compassShadow(1) : {}),
                   }}
                 >
                   {isGoldTheme && <GoldBevel radius={32} intensity="normal" />}
-                  {isCompassTheme && <CompassDepthSurface radius={12} />}
-                  <Ionicons name="lock-closed" size={30} color={isGoldTheme ? GOLD_RICH.champagne : isCompassTheme ? COMPASS_RICH.champagne : t.textMuted} />
+                  <Ionicons name="lock-closed" size={30} color={isGoldTheme ? GOLD_RICH.champagne : t.textMuted} />
                 </LinearGradient>
                 <Text style={{color:t.textPrimary, fontSize:f.h2, fontWeight:'700', textAlign:'center', marginBottom:12}}>
                   {triLang(lang, {
@@ -1559,12 +1546,11 @@ export default function LessonMenu() {
                 </Text>
                 <TapScale scaleTo={0.96}
                   style={{
-                    backgroundColor:isCompassTheme ? COMPASS_RICH.champagne : t.accent,
-                    borderRadius:isCompassTheme ? 9 : 14, padding:16, width:'100%', alignItems:'center',
+                    backgroundColor:t.accent,
+                    borderRadius:14, padding:16, width:'100%', alignItems:'center',
                     overflow:'hidden',
                     borderWidth: 0,
-                    borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent',
-                    ...(isCompassTheme ? compassShadow(1) : {}),
+                    borderColor: 'transparent',
                   }}
                   onPress={() => {
                     hapticTap();
@@ -1577,8 +1563,7 @@ export default function LessonMenu() {
                       <GoldBevel radius={14} intensity="strong" />
                     </>
                   )}
-                  {isCompassTheme && <CompassDepthSurface radius={9} cream />}
-                  <Text style={{color:isCompassTheme ? COMPASS_RICH.textDark : t.correctText, fontSize:f.body, fontWeight:'700'}}>
+                  <Text style={{color:t.correctText, fontSize:f.body, fontWeight:'700'}}>
                     {triLang(lang, {
   ru: 'Понимаю',
   uk: 'Розумію',

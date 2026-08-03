@@ -21,8 +21,6 @@ import { router } from 'expo-router';
 import { emitAppEvent } from '../app/events';
 import { markAccountDeletedNoticePending } from '../app/account_deleted_notice';
 import { soundDirector } from '../modules/audio/sound_director';
-import CompassDepthSurface from './CompassDepthSurface';
-import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 
 type Props = {
   visible: boolean;
@@ -48,7 +46,6 @@ const ACCOUNT_DELETE_DISMISS_SETTLE_MS = 360;
 function DeleteAccountConfirmModal({ visible, onRequestClose }: Props) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
-  const isCompassTheme = false;
   const L = useCallback((copy: DeleteAccountCopy) => triLang(lang, {
     ru: copy.ru,
     uk: copy.uk,
@@ -261,14 +258,13 @@ function DeleteAccountConfirmModal({ visible, onRequestClose }: Props) {
         style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.7)', justifyContent: 'center', alignItems: 'center' }}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       >
-        <View style={{ width: '88%', maxWidth: 420, maxHeight: '90%', backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderRadius: isCompassTheme ? 14 : 16, overflow: 'hidden', borderWidth: 0, borderColor: isCompassTheme ? COMPASS_RICH.copper : 'transparent', ...(isCompassTheme ? compassShadow(3) : null) }}>
-          {isCompassTheme && <CompassDepthSurface radius={14} selected />}
+        <View style={{ width: '88%', maxWidth: 420, maxHeight: '90%', backgroundColor: t.bgCard, borderRadius: 16, overflow: 'hidden', borderWidth: 0, borderColor: 'transparent' }}>
           <ScrollView
             keyboardShouldPersistTaps="handled"
             showsVerticalScrollIndicator={false}
             contentContainerStyle={{ padding: 24 }}
           >
-          <Text style={{ color: isCompassTheme ? COMPASS_RICH.peach : t.wrong, fontSize: f.h2, fontWeight: '700', marginBottom: 8 }}>
+          <Text style={{ color: t.wrong, fontSize: f.h2, fontWeight: '700', marginBottom: 8 }}>
             {L({
               ru: 'Удалить аккаунт?',
               uk: 'Видалити акаунт?',
@@ -368,7 +364,7 @@ function DeleteAccountConfirmModal({ visible, onRequestClose }: Props) {
               {item}
             </Text>
           ))}
-          <Text style={{ color: isCompassTheme ? COMPASS_RICH.peach : t.wrong, fontSize: f.caption, fontWeight: '600', marginTop: 10, marginBottom: 16, lineHeight: 20 }}>
+          <Text style={{ color: t.wrong, fontSize: f.caption, fontWeight: '600', marginTop: 10, marginBottom: 16, lineHeight: 20 }}>
             {L({
               ru: '⚠️ Удаление аккаунта не отменяет подписку автоматически. Подписку нужно отменить в App Store или Google Play.',
               uk: '⚠️ Видалення акаунта не скасовує підписку автоматично. Підписку потрібно скасувати в App Store або Google Play.',
@@ -407,13 +403,13 @@ function DeleteAccountConfirmModal({ visible, onRequestClose }: Props) {
           <TextInput
             testID="delete-account-confirm-input"
             style={{
-              backgroundColor: isCompassTheme ? COMPASS_RICH.charcoal : t.bgPrimary,
+              backgroundColor: t.bgPrimary,
               color: t.textPrimary,
               fontSize: f.body,
               padding: 12,
-              borderRadius: isCompassTheme ? 9 : 10,
+              borderRadius: 10,
               borderWidth: 0,
-              borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
+              borderColor: t.border,
               marginBottom: 20,
               outlineStyle: 'none' as any,
             }}
@@ -453,7 +449,7 @@ function DeleteAccountConfirmModal({ visible, onRequestClose }: Props) {
               выглядела мёртвой. Убираем перехват целиком: пусть каждая кнопка
               получает своё касание сама, как и положено. */}
           <View
-            style={{ flexDirection: 'row', gap: 12, paddingHorizontal: 24, paddingTop: 12, paddingBottom: 24, borderTopWidth: 1, borderTopColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border, backgroundColor: isCompassTheme ? COMPASS_RICH.charcoal : 'transparent' }}
+            style={{ flexDirection: 'row', gap: 12, paddingHorizontal: 24, paddingTop: 12, paddingBottom: 24, borderTopWidth: 1, borderTopColor: t.border, backgroundColor: 'transparent' }}
           >
             <Pressable
               testID="delete-account-cancel"
@@ -462,18 +458,16 @@ function DeleteAccountConfirmModal({ visible, onRequestClose }: Props) {
               style={({ pressed }) => ({
                 flex: 1,
                 padding: 12,
-                borderRadius: isCompassTheme ? 9 : 10,
+                borderRadius: 10,
                 borderWidth: 0,
-                borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
+                borderColor: t.border,
                 alignItems: 'center',
-                backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : 'transparent',
+                backgroundColor: 'transparent',
                 overflow: 'hidden',
-                ...(isCompassTheme ? compassShadow(1) : null),
                 opacity: deleting ? 0.45 : pressed ? 0.75 : 1,
               })}
               onPress={handleCancel}
             >
-              {isCompassTheme && <CompassDepthSurface radius={9} quiet />}
               <Text style={{ color: t.textMuted, fontSize: f.body }}>{L({
                 ru: 'Отмена',
                 uk: 'Скасувати',
@@ -508,22 +502,16 @@ function DeleteAccountConfirmModal({ visible, onRequestClose }: Props) {
               style={({ pressed }) => ({
                 flex: 1,
                 padding: 12,
-                borderRadius: isCompassTheme ? 9 : 10,
+                borderRadius: 10,
                 alignItems: 'center',
-                backgroundColor: isCompassTheme
-                  ? deleteConfirmMatches
-                    ? COMPASS_RICH.copper
-                    : COMPASS_RICH.charcoalSoft
-                  : deleteConfirmMatches ? t.wrong : t.bgSurface,
+                backgroundColor: deleteConfirmMatches ? t.wrong : t.bgSurface,
                 borderWidth: 0,
-                borderColor: isCompassTheme ? (deleteConfirmMatches ? COMPASS_RICH.copper : COMPASS_RICH.hairlineQuiet) : 'transparent',
+                borderColor: 'transparent',
                 overflow: 'hidden',
-                ...(isCompassTheme ? compassShadow(deleteConfirmMatches ? 2 : 1) : null),
                 opacity: deleting ? 0.78 : deleteConfirmMatches ? (pressed ? 0.82 : 1) : 0.35,
               })}
               onPress={handleConfirmDelete}
             >
-              {isCompassTheme && <CompassDepthSurface radius={9} selected={deleteConfirmMatches} quiet={!deleteConfirmMatches} />}
               <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
                 <Text style={{ color: '#fff', fontSize: f.body, fontWeight: '700', opacity: deleting ? 0.72 : 1 }}>
                   {deleting

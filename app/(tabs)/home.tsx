@@ -37,7 +37,6 @@ import { consumeCelebration, getPendingCelebrationMarker, getPendingCelebrationV
 import { consumeVipCelebration, getPendingVipCelebrationMarker, isVipCelebrationPending } from '../vip_celebration_state';
 import PremiumCelebrationModal from '../../components/PremiumCelebrationModal';
 import VipCelebrationModal from '../../components/VipCelebrationModal';
-import { CompassBriefingHost } from '../compass';
 import { getTodayKey, getTodayTasksSafe, loadTodayProgress, TaskProgress } from '../daily_tasks';
 import { getXPProgress, getLevelFromXP, getNextEnergyUnlockLevel, type ThemeMode } from '../../constants/theme';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../../constants/goldTheme';
@@ -81,7 +80,6 @@ import { getVerifiedRealPremiumStatus } from '../premium_guard';
 import ReportErrorButton from '../../components/ReportErrorButton';
 import SaveProgressBanner from '../../components/SaveProgressBanner';
 import GoldBevel from '../../components/GoldBevel';
-import CompassBevel from '../../components/CompassBevel';
 import { useOverlayVisible } from '../../components/OverlayArbiter';
 import { useEnergy } from '../../components/EnergyContext';
 import { computeAllPercentiles } from '../leaderboard_stats';
@@ -115,7 +113,6 @@ import {
 import { lessonNamesForStudyTarget } from '../lesson_titles_for_study_target';
 import { dailyTasksAchievementAllDoneStreakKey, lastOpenedLessonKey, lessonProgressKey } from '../target_storage_keys';
 import { getStreakFireIconVariant, getStreakFreezeIconVariant } from '../../constants/streakIconAssets';
-import { COMPASS_GRADIENTS, COMPASS_RICH, COMPASS_SURFACE_LOCATIONS, compassShadow } from '../../constants/compassTheme';
 import { themedToastChrome } from '../../constants/themedToastChrome';
 import { themedWeekDot } from '../../constants/weekDotTheme';
 import { isSurveyCloudEnabled, fetchActiveSurveyWithRetry } from '../survey_client';
@@ -754,21 +751,12 @@ export default function HomeScreen() {
     const isSketchLightTheme = themeMode === 'sagePorcelain';
     const isLightTheme = isSketchLightTheme;
     const isGoldTheme = themeMode === 'gold';
-    const isCompassTheme = false;
     const goldMetal = GOLD_RICH.metalGold;
     const goldBright = GOLD_RICH.champagne;
     const goldHairline = GOLD_RICH.hairline;
     const goldSoftBg = 'rgba(214,179,90,0.055)';
     const goldIconPlateBg = 'rgba(246,227,161,0.026)';
     const goldPanelBg = 'rgba(10,10,10,0.72)';
-    const compassPanel = COMPASS_GRADIENTS.premiumPanel;
-    const compassTile = COMPASS_GRADIENTS.raisedTile;
-    const compassHairline = COMPASS_RICH.hairline;
-    const compassHairlineStrong = COMPASS_RICH.hairlineStrong;
-    const compassPanelBg = 'rgba(24,24,25,0.92)';
-    const compassIconPlateBg = 'rgba(255,230,181,0.08)';
-    const compassSubtleTrack = 'rgba(255,230,181,0.10)';
-    const compassHomeRadius = 10;
     const goldPanelRaisedBg = 'rgba(17,17,17,0.68)';
     const goldPremiumPanel = ['rgba(29,26,18,0.74)', 'rgba(13,12,10,0.64)', 'rgba(4,4,3,0.52)'] as [
         string,
@@ -791,28 +779,22 @@ export default function HomeScreen() {
     const sketchHomePanelGradient = [t.bgCard, t.bgSurface] as [string, string];
     const homeThemePanelGradient = isGoldTheme
         ? goldPremiumPanel
-        : isCompassTheme
-            ? compassPanel
-            : isPaperHomeTheme
-                ? sketchHomePanelGradient
-                : t.cardGradient;
+        : isPaperHomeTheme
+            ? sketchHomePanelGradient
+            : t.cardGradient;
     const homeThemePanelBorder = isGoldTheme
         ? GOLD_RICH.hairlineStrong
-        : isCompassTheme
-            ? compassHairlineStrong
-            : isPaperHomeTheme
-                ? lightPanelBorder
-                : 'rgba(103,153,229,0.26)';
+        : isPaperHomeTheme
+            ? lightPanelBorder
+            : 'rgba(103,153,229,0.26)';
     const homeThemePanelText = isPaperHomeTheme ? '#171615' : t.textPrimary;
     const homeThemePanelMuted = isPaperHomeTheme ? '#48443C' : t.textMuted;
     const homeThemePanelAccent = isPaperHomeTheme ? t.accent : (isLightTheme ? t.textSecond : t.gold);
     const homeThemeIconPlateBg = isGoldTheme
         ? 'rgba(18,14,8,0.92)'
-        : isCompassTheme
-            ? '#10100C'
-            : isPaperHomeTheme
-                ? lightPanelIconBg
-                : 'rgba(40,47,58,0.96)';
+        : isPaperHomeTheme
+            ? lightPanelIconBg
+            : 'rgba(40,47,58,0.96)';
     const homeThemeChevronBg = isGoldTheme ? goldSoftBg : isPaperHomeTheme ? lightPanelChevronBg : 'rgba(255,255,255,0.09)';
     const homeThemeTrackBg = isPaperHomeTheme ? t.bgSurface2 : 'rgba(83,96,116,0.72)';
     const energyEmptyTint = isSketchLightTheme
@@ -868,9 +850,10 @@ export default function HomeScreen() {
     const langRef = useRef(lang);
     useEffect(() => { langRef.current = lang; }, [lang]);
     // зачем: с 2026-08-02 плановая карточка на главной заменена карточкой последнего
-    // урока, значения ниже в рендере не читаются. Машинерия (state + события +
-    // запись в снапшот) сохранена: она держит кэш плана тёплым для CompassBriefingHost
-    // и других экранов, её сторожит tests/home_learning_cta_contract.test.ts.
+    // урока, значения ниже в рендере ЭТОГО экрана не читаются. Машинерия (state +
+    // события + запись в снапшот) сохранена: она держит кэш плана тёплым для других
+    // экранов (например /personal_plan читает его через peekHomeScreenHydration),
+    // её сторожит tests/home_learning_cta_contract.test.ts.
     const [personalPlanSnapshot, setPersonalPlanSnapshot] = useState<PersonalPlanHomeSnapshot | null>(() => hh?.personalPlanSnapshot ?? null);
     const [, setHasActivePersonalPlanState] = useState(() => !!hh?.personalPlanSnapshot);
     const refreshDailyTaskSummary = useCallback(async () => {
@@ -1493,16 +1476,6 @@ export default function HomeScreen() {
     useEffect(() => {
         homeFeatureTipCardWasVisibleRef.current = homeFeatureTipCardVisible;
     }, [homeFeatureTipCardVisible]);
-    // Открыть «Личный план» с проверкой доступа: фри без премиума → пейвол (не сам план).
-    // Сам экран плана тоже защищён входным замком — это лишь чтобы не мелькал экран.
-    const openPersonalPlan = useCallback(() => {
-        hapticTap();
-        if (planAccess) {
-            router.push('/personal_plan' as any);
-        } else {
-            router.push({ pathname: '/premium_modal', params: { context: 'personal_plan' } } as any);
-        }
-    }, [planAccess, router]);
     // Debounce-флаг: если loadData уже выполняется — не запускаем повторно.
     // Устраняет 3 одновременных вызова (focusTick + activeIdx + AppState) при возврате на главную.
     // needsReloadRef: если вызов был пропущен во время загрузки — повторим после завершения.
@@ -2611,7 +2584,7 @@ export default function HomeScreen() {
         const eliteCardScale = eliteStatusEntrance.interpolate({ inputRange: [0, 1], outputRange: [0.985, 1] });
         const homeHeaderShardIconSource = coinIconForBalance(shardsBalance, themeMode);
         const homeHeaderShardIconSize = 34;
-        const homeHeaderShardIconWidth = isCompassTheme ? 42 : homeHeaderShardIconSize;
+        const homeHeaderShardIconWidth = homeHeaderShardIconSize;
         // Компактная энергия: ОДНА иконка + «3/5» цифрами (вместо ряда иконок) —
         // освобождает место, вся шапка помещается в один ряд.
         const homeEnergyIconSize = 30;
@@ -2659,13 +2632,13 @@ export default function HomeScreen() {
                 style={{ width: 48, height: 46, alignItems: 'center', justifyContent: 'center' }}
             >
                 <View style={{ width: 44, height: 38, alignItems: 'center', justifyContent: 'center' }}>
-                    <Ionicons name="person-circle-outline" size={30} color={isGoldTheme ? GOLD_RICH.paleGold : isCompassTheme ? COMPASS_RICH.champagne : t.accent} />
+                    <Ionicons name="person-circle-outline" size={30} color={isGoldTheme ? GOLD_RICH.paleGold : t.accent} />
                 </View>
             </TouchableOpacity>
         );
         const showHomeFeatureTipCard = homeFeatureTipsHydrated && homeOnboardingDone && !homeFeatureTipsDone && homeFeatureTips.length > 0;
         const currentHomeFeatureTip = homeFeatureTips[clampHomeFeatureTipIndex(homeFeatureTipIndex, homeFeatureTips.length)] ?? homeFeatureTips[0];
-        const homeFeatureTipAccent = isGoldTheme ? GOLD_RICH.champagne : isCompassTheme ? '#F2C48D' : t.accent;
+        const homeFeatureTipAccent = isGoldTheme ? GOLD_RICH.champagne : t.accent;
         const showHomeFeatureTipTapHint = homeFeatureTipIndex === 0;
         const homeFeatureTipHintOpacity = homeFeatureTipHintPulse.interpolate({ inputRange: [0, 1], outputRange: [0.72, 0.98] });
         const homeFeatureTipHintScale = homeFeatureTipHintPulse.interpolate({ inputRange: [0, 1], outputRange: [1, 1.035] });
@@ -2969,9 +2942,8 @@ export default function HomeScreen() {
           <Animated.View style={sectionStyle(1)}>
           {/* Герой: серия + уровень + XP + неделя (вернул владелец) — тап открывает статистику */}
           <TouchableOpacity testID="home-stats-card" activeOpacity={0.88} onPress={() => { hapticTap(); nav.push('/streak_stats'); }} style={[{ marginHorizontal: 8, marginBottom: 12 }, isGoldTheme ? goldShadow(3) : null]} accessibilityRole="button" accessibilityLabel={s.home.statsCardTitle} accessibilityHint={s.home.statsPulseHint}>
-            <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 1, y: 1 }} end={{ x: 0, y: 0 }} style={{ borderRadius: isGoldTheme ? 18 : isCompassTheme ? compassHomeRadius : 24, borderWidth: 0, borderColor: 'transparent', padding: 18, minHeight: HOME_STATS_CARD_MIN_HEIGHT, overflow: 'hidden' }}>
+            <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 1, y: 1 }} end={{ x: 0, y: 0 }} style={{ borderRadius: isGoldTheme ? 18 : 24, borderWidth: 0, borderColor: 'transparent', padding: 18, minHeight: HOME_STATS_CARD_MIN_HEIGHT, overflow: 'hidden' }}>
               {isGoldTheme && <GoldBevel radius={18} intensity="strong"/>}
-              {isCompassTheme && <CompassBevel radius={compassHomeRadius} intensity="strong"/>}
               {renderHomeHeroStatus()}
             </LinearGradient>
           </TouchableOpacity>
@@ -2995,8 +2967,8 @@ export default function HomeScreen() {
               {visibleQuickItems.map((item, index) => {
                 const tileOpacity = eliteQuickTileEntrance[index] ?? eliteStatusEntrance;
                 const tileY = tileOpacity.interpolate({ inputRange: [0, 1], outputRange: [10, 0] });
-                const tilePanelBg = isGoldTheme ? goldPanelBg : isCompassTheme ? compassPanelBg : isPaperHomeTheme ? lightPanelBg : 'rgba(255,255,255,0.055)';
-                const tileIconBg = isGoldTheme ? goldIconPlateBg : isCompassTheme ? compassIconPlateBg : isPaperHomeTheme ? lightPanelIconBg : 'rgba(255,255,255,0.045)';
+                const tilePanelBg = isGoldTheme ? goldPanelBg : isPaperHomeTheme ? lightPanelBg : 'rgba(255,255,255,0.055)';
+                const tileIconBg = isGoldTheme ? goldIconPlateBg : isPaperHomeTheme ? lightPanelIconBg : 'rgba(255,255,255,0.045)';
                 return (
                   <Animated.View key={item.key} style={{ flex: 1, opacity: tileOpacity, transform: [{ translateY: tileY }] }}>
                     <TouchableOpacity
@@ -3008,16 +2980,15 @@ export default function HomeScreen() {
                       onPress={item.onPress}
                       style={{
                         flex: 1,
-                        borderRadius: isGoldTheme ? 14 : isCompassTheme ? compassHomeRadius : 18,
+                        borderRadius: isGoldTheme ? 14 : 18,
                         overflow: 'hidden',
                         backgroundColor: tilePanelBg,
                         borderWidth: isPaperHomeTheme ? 1 : 0,
                         borderColor: isPaperHomeTheme ? homeThemePanelBorder : 'transparent',
-                        ...(isGoldTheme ? goldShadow(1) : isCompassTheme ? compassShadow(1) : {}),
+                        ...(isGoldTheme ? goldShadow(1) : {}),
                       }}>
-                      <View style={{ flex: 1, minHeight: homeQuickIconPlateSize + 52, borderRadius: isGoldTheme ? 14 : isCompassTheme ? compassHomeRadius : 18, paddingHorizontal: 10, paddingVertical: 13, alignItems: 'center', gap: 6 }}>
+                      <View style={{ flex: 1, minHeight: homeQuickIconPlateSize + 52, borderRadius: isGoldTheme ? 14 : 18, paddingHorizontal: 10, paddingVertical: 13, alignItems: 'center', gap: 6 }}>
                         {isGoldTheme && <GoldBevel radius={14} intensity="quiet"/>}
-                        {isCompassTheme && <CompassBevel radius={compassHomeRadius} intensity="quiet"/>}
                         <View style={{
                           width: homeQuickIconPlateSize,
                           height: homeQuickIconPlateSize,
@@ -3071,9 +3042,8 @@ export default function HomeScreen() {
               }}
               style={[{ marginHorizontal: 8, marginBottom: 12, borderRadius: 20, overflow: 'hidden' }, isGoldTheme ? goldShadow(1) : null]}
             >
-              <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ borderRadius: 20, paddingHorizontal: 16, overflow: 'hidden' }}>
+              <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ borderRadius: 20, paddingHorizontal: 16, overflow: 'hidden' }}>
                 {isGoldTheme && <GoldBevel radius={20} intensity="quiet"/>}
-                {isCompassTheme && <CompassBevel radius={compassHomeRadius} intensity="quiet"/>}
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 12, minHeight: 72 }}>
                   <View style={{ width: 64, height: 64, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                     <LightSketchMenuImage source={menuImages.lesson} width={64} height={64} lighten={false} align={getHomeMenuIconAlignment(themeMode, 'lesson')} contentFit="contain" cachePolicy="memory-disk"/>
@@ -3102,7 +3072,7 @@ export default function HomeScreen() {
               {/* стопка как у Bevel: под текущей подсказкой виден край следующей */}
               {clampHomeFeatureTipIndex(homeFeatureTipIndex, homeFeatureTips.length) < homeFeatureTips.length - 1 && (
                 <Animated.View pointerEvents="none" style={{ position: 'absolute', left: 14, right: 14, top: 12, bottom: -8, borderRadius: isGoldTheme ? 18 : 24, overflow: 'hidden', opacity: homeFeatureTipStackOpacity, transform: [{ translateY: homeFeatureTipStackTranslate }] }}>
-                  <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ flex: 1 }}/>
+                  <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ flex: 1 }}/>
                 </Animated.View>
               )}
             <Animated.View style={{ transform: [{ scale: homeFeatureTipCardScale }] }}>
@@ -3118,19 +3088,19 @@ export default function HomeScreen() {
               onTouchEnd={handleHomeFeatureTipTouchEnd}
               onTouchCancel={handleHomeFeatureTipTouchCancel}
               style={{
-                borderRadius: isGoldTheme ? 18 : isCompassTheme ? compassHomeRadius : 24,
+                borderRadius: isGoldTheme ? 18 : 24,
                 overflow: 'hidden',
-                ...(isGoldTheme ? goldShadow(1) : isCompassTheme ? compassShadow(1) : {}),
+                ...(isGoldTheme ? goldShadow(1) : {}),
               }}
             >
               <LinearGradient
                 colors={homeThemePanelGradient}
-                locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined}
+                locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 1 }}
                 style={{
                   minHeight: 124,
-                  borderRadius: isGoldTheme ? 18 : isCompassTheme ? compassHomeRadius : 24,
+                  borderRadius: isGoldTheme ? 18 : 24,
                   borderWidth: 0,
                   borderColor: 'transparent',
                   paddingHorizontal: 18,
@@ -3139,7 +3109,6 @@ export default function HomeScreen() {
                 }}
               >
                 {isGoldTheme && <GoldBevel radius={18} intensity="strong"/>}
-                {isCompassTheme && <CompassBevel radius={compassHomeRadius} intensity="strong"/>}
                 <View style={[StyleSheet.absoluteFillObject, { opacity: isGoldTheme ? 0.11 : 0.08, backgroundColor: homeFeatureTipAccent }]} pointerEvents="none"/>
                 <TapScale onPress={() => { hapticTap(); completeHomeFeatureTips(); }} accessibilityLabel="qa-home-tips-close" style={{ position: 'absolute', top: 10, right: 10, width: 32, height: 32, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.25)', zIndex: 5 }}>
                   <Ionicons name="close" size={16} color={homeThemePanelMuted}/>
@@ -3224,9 +3193,8 @@ export default function HomeScreen() {
               отсюда ушла: её вход — кольцо и Компас. Уроки ушли следом
               (2026-07-26): их вход — таббар и плитки быстрого доступа. */}
           <View style={[{ marginHorizontal: 8, marginBottom: 12, borderRadius: 20, overflow: 'hidden' }, isGoldTheme ? goldShadow(1) : null]}>
-            <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ borderRadius: 20, paddingHorizontal: 16, overflow: 'hidden' }}>
+            <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ borderRadius: 20, paddingHorizontal: 16, overflow: 'hidden' }}>
               {isGoldTheme && <GoldBevel radius={20} intensity="quiet"/>}
-              {isCompassTheme && <CompassBevel radius={compassHomeRadius} intensity="quiet"/>}
               {/* зачем: владелец (2026-07-26) — строка «Уроки» убрана из полотна
                   «Сегодня»: вход в уроки уже есть в таббаре и в плитках быстрого
                   доступа, третья копия только удлиняла блок. «Сегодня» теперь про
@@ -3351,8 +3319,8 @@ export default function HomeScreen() {
         ? energyTTAnchor.x + energyTTAnchor.w / 2
         : energyTooltipLeftClamped + 28;
     const energyArrowLeft = Math.min(ENERGY_TOOLTIP_W - 26, Math.max(12, Math.round(energyIconCenterX - energyTooltipLeftClamped - 7)));
-    const titleModalButtonBorderColor = isGoldTheme ? GOLD_RICH.hairlineStrong : isCompassTheme ? compassHairlineStrong : (isLightTheme ? 'rgba(202,138,4,0.32)' : 'rgba(252,211,77,0.42)');
-    const titleModalButtonBg = isGoldTheme ? 'rgba(246,227,161,0.13)' : isCompassTheme ? 'rgba(242,196,141,0.12)' : (isLightTheme ? 'rgba(202,138,4,0.12)' : 'rgba(252,211,77,0.13)');
+    const titleModalButtonBorderColor = isGoldTheme ? GOLD_RICH.hairlineStrong : (isLightTheme ? 'rgba(202,138,4,0.32)' : 'rgba(252,211,77,0.42)');
+    const titleModalButtonBg = isGoldTheme ? 'rgba(246,227,161,0.13)' : (isLightTheme ? 'rgba(202,138,4,0.12)' : 'rgba(252,211,77,0.13)');
     // Кэш вне рендера (см. computeHomeTitles): при неизменных входах — ноль работы.
     const { allTitles, earnedTitles, currentTitleKey } = computeHomeTitles({
         level,
@@ -3566,7 +3534,7 @@ export default function HomeScreen() {
                     {titleModalSubtitle}
                   </Text>
                 </View>
-                <TouchableOpacity activeOpacity={0.75} onPress={() => setTitleModalVisible(false)} accessibilityRole="button" accessibilityLabel="Close" style={{ width: 44, height: 44, borderRadius: isCompassTheme ? compassHomeRadius : 22, alignItems: 'center', justifyContent: 'center', backgroundColor: isGoldTheme ? 'rgba(246,227,161,0.10)' : isCompassTheme ? COMPASS_RICH.wash : t.bgSurface2, borderWidth: 0, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : isCompassTheme ? compassHairline : t.border }}>
+                <TouchableOpacity activeOpacity={0.75} onPress={() => setTitleModalVisible(false)} accessibilityRole="button" accessibilityLabel="Close" style={{ width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center', backgroundColor: isGoldTheme ? 'rgba(246,227,161,0.10)' : t.bgSurface2, borderWidth: 0, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border }}>
                   <Ionicons name="close" size={22} color={t.textPrimary}/>
                 </TouchableOpacity>
               </View>
@@ -3667,7 +3635,6 @@ export default function HomeScreen() {
                 // Очистку AsyncStorage делаем фоном — её результат на UI не влияет.
                 void clearPendingResult();
             }}/>)}
-      <CompassBriefingHost onStartDay={openPersonalPlan} />
       {/* Приветствие-знакомство со спотлайт-подсветкой блоков — один раз при первом входе. */}
     </View>);
 }

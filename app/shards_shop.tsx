@@ -49,8 +49,6 @@ import PressableScale from '../components/PressableScale';
 import { ENABLE_DEV_TOOLS } from './config';
 import GoldBevel from '../components/GoldBevel';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
-import CompassBevel from '../components/CompassBevel';
-import { COMPASS_GRADIENTS, COMPASS_RICH, COMPASS_SURFACE_LOCATIONS, compassShadow } from '../constants/compassTheme';
 import { addShardsRaw, getShardAchievementEligibleBalance, getShardsBalance, loadShardsFromCloud, peekLastKnownShardsBalance } from './shards_system';
 import { SHARDS_PACKS, totalShardsFromPack, type ShardsPack } from './shards_shop_catalog';
 import { safeRouterBack } from './navigation_back';
@@ -660,15 +658,10 @@ export default function ShardsShopScreen() {
   const router = useRouter();
   const { theme: t, f, isDark, themeMode, statusBarLight } = useTheme();
   const isGoldTheme = themeMode === 'gold';
-  const isCompassTheme = false;
-  const shopRadius = isCompassTheme ? 10 : 16;
-  const shopSmallRadius = isCompassTheme ? 7 : 12;
-  const shopIconRadius = isCompassTheme ? 9 : 14;
-  const shopAccent = isCompassTheme ? COMPASS_RICH.champagne : t.accent;
-  const shopAccentSoft = isCompassTheme ? COMPASS_RICH.cream : t.accent;
-  const shopAccentBorder = isCompassTheme ? COMPASS_RICH.hairlineStrong : `${t.accent}40`;
-  const shopCardBg = isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard;
-  const shopSurfaceBg = isCompassTheme ? COMPASS_RICH.charcoalSoft : t.bgSurface;
+  const shopRadius = 16;
+  const shopSmallRadius = 12;
+  const shopCardBg = t.bgCard;
+  const shopSurfaceBg = t.bgSurface;
   const { width: winW, contentMaxW, insets } = useScreen();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
@@ -846,11 +839,11 @@ export default function ShardsShopScreen() {
     }, [router]),
   );
 
-  const cardShadow = useMemo(() => isCompassTheme ? compassShadow(2) : getVolumetricShadow(themeMode, t, 2), [isCompassTheme, themeMode, t]);
+  const cardShadow = useMemo(() => getVolumetricShadow(themeMode, t, 2), [themeMode, t]);
   // зачем: тень кнопки в карточке набора раньше считалась инлайном на каждый рендер —
   // новый объект каждый раз ломал бы memo у MarketPackCard и заставлял перерисовывать
   // весь список при любом обновлении экрана (баланс, таб, загрузка).
-  const packCtaShadow = useMemo(() => isCompassTheme ? compassShadow(1) : getVolumetricShadow(themeMode, t, 1), [isCompassTheme, themeMode, t]);
+  const packCtaShadow = useMemo(() => getVolumetricShadow(themeMode, t, 1), [themeMode, t]);
 
   /**
    * Сигнал перерисовки строк списка наборов.
@@ -1498,21 +1491,21 @@ export default function ShardsShopScreen() {
     });
     const paywallMood = isPaywallAtmosphereMode(themeMode);
     const rowHeight = 54;
-    const rowRadius = isCompassTheme ? 8 : 12;
-    const rowBg = isGoldTheme || isCompassTheme
+    const rowRadius = 12;
+    const rowBg = isGoldTheme
       ? 'transparent'
       : paywallMood
         ? 'rgba(12, 16, 18, 0.78)'
         : t.bgCard;
     const borderColor = isBest
-      ? (isGoldTheme ? GOLD_RICH.hairlineStrong : isCompassTheme ? COMPASS_RICH.hairlineStrong : `${t.gold}55`)
+      ? (isGoldTheme ? GOLD_RICH.hairlineStrong : `${t.gold}55`)
       : isPopular
-        ? (isGoldTheme ? GOLD_RICH.hairline : isCompassTheme ? COMPASS_RICH.hairline : `${t.accent}50`)
+        ? (isGoldTheme ? GOLD_RICH.hairline : `${t.accent}50`)
         : paywallMood
           ? (isGoldTheme ? GOLD_RICH.hairlineQuiet : `${t.accent}22`)
-          : isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border;
+          : t.border;
     const leftColor = isPopular || isBest
-      ? (isCompassTheme ? COMPASS_RICH.champagne : isGoldTheme ? GOLD_RICH.champagne : t.textPrimary)
+      ? (isGoldTheme ? GOLD_RICH.champagne : t.textPrimary)
       : t.textPrimary;
     const rightColor = canPurchase ? t.textPrimary : t.textMuted;
     const rowIconSize = pack.id === 'starter' ? 30 : pack.id === 'pro' ? 38 : 34;
@@ -1565,19 +1558,6 @@ export default function ShardsShopScreen() {
                 <GoldBevel radius={rowRadius} intensity={isBest || isPopular ? 'strong' : 'normal'} />
               </>
             )}
-            {isCompassTheme && (
-              <>
-                <LinearGradient
-                  pointerEvents="none"
-                  colors={isBest || isPopular ? COMPASS_GRADIENTS.selectedTile : COMPASS_GRADIENTS.raisedTile}
-                  locations={COMPASS_SURFACE_LOCATIONS}
-                  start={{ x: 0, y: 0 }}
-                  end={{ x: 1, y: 1 }}
-                  style={StyleSheet.absoluteFill}
-                />
-                <CompassBevel radius={rowRadius} intensity={isBest || isPopular ? 'strong' : 'normal'} />
-              </>
-            )}
             <View
               style={{
                 minHeight: rowHeight,
@@ -1628,9 +1608,7 @@ export default function ShardsShopScreen() {
                         borderRadius: 8,
                         backgroundColor: isGoldTheme
                           ? `${t.gold}26`
-                          : isCompassTheme
-                            ? `${t.accent}22`
-                            : `${t.accent}1f`,
+                          : `${t.accent}1f`,
                         borderWidth: 0,
                         borderColor: isGoldTheme ? `${t.gold}66` : `${t.accent}55`,
                       }}
@@ -1692,13 +1670,13 @@ export default function ShardsShopScreen() {
                 style={{
                   width: 46,
                   height: 46,
-                  borderRadius: isCompassTheme ? 9 : 23,
+                  borderRadius: 23,
                   alignItems: 'center',
                   justifyContent: 'center',
                   backgroundColor: shopSurfaceBg,
                   borderWidth: 0,
-                  borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
-                  ...(isCompassTheme ? compassShadow(1) : getVolumetricShadow(themeMode, t, 1)),
+                  borderColor: t.border,
+                  ...getVolumetricShadow(themeMode, t, 1),
                 }}
               >
                 <Ionicons name="chevron-back" size={26} color={t.textPrimary} />
@@ -1719,11 +1697,11 @@ export default function ShardsShopScreen() {
               </Text>
             </View>
             <LinearGradient
-              colors={isGoldTheme ? GOLD_GRADIENTS.raisedTile : isCompassTheme ? COMPASS_GRADIENTS.raisedTile : [`${t.accent}35`, `${t.accent}10`]}
-              locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined}
+              colors={isGoldTheme ? GOLD_GRADIENTS.raisedTile : [`${t.accent}35`, `${t.accent}10`]}
+              locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 1 }}
-              style={{ borderRadius: isCompassTheme ? 10 : 18, padding: 1 }}
+              style={{ borderRadius: 18, padding: 1 }}
             >
               <View
                 style={{
@@ -1732,16 +1710,15 @@ export default function ShardsShopScreen() {
                   gap: 6,
                   paddingHorizontal: 12,
                   paddingVertical: 8,
-                  borderRadius: isCompassTheme ? 9 : 17,
-                  backgroundColor: isGoldTheme || isCompassTheme ? 'transparent' : t.bgCard,
+                  borderRadius: 17,
+                  backgroundColor: isGoldTheme ? 'transparent' : t.bgCard,
                   borderWidth: 0,
-                  borderColor: isGoldTheme ? GOLD_RICH.hairline : isCompassTheme ? COMPASS_RICH.hairlineQuiet : `${t.accent}30`,
+                  borderColor: isGoldTheme ? GOLD_RICH.hairline : `${t.accent}30`,
                   minWidth: 96,
                   justifyContent: 'center',
                 }}
               >
                 {isGoldTheme && <GoldBevel radius={17} intensity="normal" />}
-                {isCompassTheme && <CompassBevel radius={9} intensity="normal" />}
                 <Image source={coinIconForBalance(balance, themeMode)} style={{ width: 24, height: 24 }} contentFit="contain" accessibilityLabel={triLang(lang, { ru: `Баланс: ${balance} жемчужин`, uk: `Баланс: ${balance} перлин`, es: `Saldo: ${balance} perlas`, 'pt-BR': `Saldo: ${balance} pérolas`, vi: `Số dư: ${balance} ngọc trai`, id: `Saldo: ${balance} mutiara`, tr: `Bakiye: ${balance} inci`, pl: `Saldo: ${balance} pereł` })} />
                 <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '900' }}>{balance}</Text>
                 {/* Бейдж активного 48-год подарунка — лише на вкладці «Картки», бо тільки там його можна обміняти. */}
@@ -1805,18 +1782,15 @@ export default function ShardsShopScreen() {
                         minHeight: 46,
                         paddingVertical: 12,
                         paddingHorizontal: 12,
-                        borderRadius: isCompassTheme ? 9 : 999,
+                        borderRadius: 999,
                         alignItems: 'center',
                         justifyContent: 'center',
-                        backgroundColor: isCompassTheme
-                          ? active ? COMPASS_RICH.washStrong : COMPASS_RICH.charcoalRaised
-                          : active ? `${t.accent}1C` : t.bgSurface,
+                        backgroundColor: active ? `${t.accent}1C` : t.bgSurface,
                         borderWidth: 0,
-                        borderColor: isCompassTheme ? (active ? COMPASS_RICH.hairlineStrong : COMPASS_RICH.hairlineQuiet) : active ? `${t.accent}55` : t.border,
-                        ...(active ? (isCompassTheme ? compassShadow(1) : getVolumetricShadow(themeMode, t, 1)) : {}),
+                        borderColor: active ? `${t.accent}55` : t.border,
+                        ...(active ? getVolumetricShadow(themeMode, t, 1) : {}),
                       }}
                     >
-                      {isCompassTheme ? <CompassBevel radius={9} intensity={active ? 'strong' : 'normal'} /> : null}
                       <Text
                         style={{
                           fontSize: typeof f.caption === 'number' && f.caption > 0 ? f.caption : 13,
@@ -1861,17 +1835,17 @@ export default function ShardsShopScreen() {
                     minHeight: 46,
                     paddingVertical: 12,
                     paddingHorizontal: 14,
-                    borderRadius: isCompassTheme ? 9 : 999,
+                    borderRadius: 999,
                     alignItems: 'center',
                     justifyContent: 'center',
                     flexDirection: 'row',
                     gap: 6,
-                    backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgSurface,
+                    backgroundColor: t.bgSurface,
                     borderWidth: 0,
-                    borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
+                    borderColor: t.border,
                   }}
                 >
-                  <Ionicons name="swap-horizontal" size={16} color={isCompassTheme ? COMPASS_RICH.champagne : t.accent} accessibilityElementsHidden importantForAccessibility="no" />
+                  <Ionicons name="swap-horizontal" size={16} color={t.accent} accessibilityElementsHidden importantForAccessibility="no" />
                   <Text style={{ fontSize: typeof f.caption === 'number' && f.caption > 0 ? f.caption : 13, lineHeight: 18, fontWeight: '800', color: t.textPrimary, letterSpacing: 0.2 }} numberOfLines={1}>
                     {triLang(lang, {
                       ru: 'Биржа',
@@ -2015,28 +1989,27 @@ export default function ShardsShopScreen() {
             <RNAnim.View
               style={{
                 marginBottom: 16,
-                borderRadius: isCompassTheme ? 11 : 25,
-                borderWidth: isPaywallAtmosphereMode(themeMode) || isCompassTheme ? 1 : 0,
-                borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : isPaywallAtmosphereMode(themeMode) ? `${t.accent}28` : 'transparent',
+                borderRadius: 25,
+                borderWidth: isPaywallAtmosphereMode(themeMode) ? 1 : 0,
+                borderColor: isPaywallAtmosphereMode(themeMode) ? `${t.accent}28` : 'transparent',
                 opacity: heroEnt,
                 transform: [{ translateY: heroY }],
               }}
             >
-              <View style={{ position: 'relative', borderRadius: isCompassTheme ? 10 : 24, overflow: 'hidden', ...cardShadow }}>
-                <LinearGradient colors={(isCompassTheme ? COMPASS_GRADIENTS.premiumPanel : t.cardGradient) as any} locations={isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ padding: 20 }}>
-                  {isCompassTheme ? <CompassBevel radius={10} intensity="strong" /> : null}
-                  <View style={{ position: 'absolute', top: -40, right: -30, width: 140, height: 140, borderRadius: 70, backgroundColor: isCompassTheme ? COMPASS_RICH.wash : `${t.accent}12` }} />
-                  <View style={{ position: 'absolute', bottom: -50, left: -20, width: 120, height: 120, borderRadius: 60, backgroundColor: isCompassTheme ? COMPASS_RICH.copperWash : `${t.gold}10` }} />
+              <View style={{ position: 'relative', borderRadius: 24, overflow: 'hidden', ...cardShadow }}>
+                <LinearGradient colors={t.cardGradient as any} locations={undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ padding: 20 }}>
+                  <View style={{ position: 'absolute', top: -40, right: -30, width: 140, height: 140, borderRadius: 70, backgroundColor: `${t.accent}12` }} />
+                  <View style={{ position: 'absolute', bottom: -50, left: -20, width: 120, height: 120, borderRadius: 60, backgroundColor: `${t.gold}10` }} />
                   <View style={{ flexDirection: 'row', alignItems: 'center', gap: 16 }}>
                     <PulsingShardFrame width={72} height={72} borderRadius={22} big active={shopTab === 'catalog'}>
                       <View
                         style={{
                           width: 72,
                           height: 72,
-                          borderRadius: isCompassTheme ? 10 : 22,
-                          backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : isPaywallAtmosphereMode(themeMode) ? `${SHARD_TEAL}15` : `${t.bgSurface}cc`,
+                          borderRadius: 22,
+                          backgroundColor: isPaywallAtmosphereMode(themeMode) ? `${SHARD_TEAL}15` : `${t.bgSurface}cc`,
                           borderWidth: 0,
-                          borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : isPaywallAtmosphereMode(themeMode) ? `${SHARD_TEAL}45` : `${t.accent}40`,
+                          borderColor: isPaywallAtmosphereMode(themeMode) ? `${SHARD_TEAL}45` : `${t.accent}40`,
                           alignItems: 'center',
                           justifyContent: 'center',
                         }}

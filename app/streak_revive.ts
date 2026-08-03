@@ -164,13 +164,15 @@ const yesterdayKey = (): string => getLocalYesterdayKey();
  * не делать, last_active останется 2+ дня назад и следующий же XP-вызов снова
  * обнулит только что восстановленную цепочку.
  */
-export async function reviveStreak(): Promise<ReviveResult> {
+export async function reviveStreak(opts?: { free?: boolean }): Promise<ReviveResult> {
   try {
     const offer = await getReviveOffer();
     if (!offer) return { ok: false, reason: 'no_offer' };
-    const cost = offer.costShards;
+    // зачем: Season Pass «Машина времени» (владелец, каталог §1.8) чинит вчерашнюю
+    // дыру БЕСПЛАТНО — подарок уже оплачен уровнем сезона, жемчуг не списываем.
+    const cost = opts?.free ? 0 : offer.costShards;
 
-    const spent = await spendShards(cost, 'streak_revive');
+    const spent = cost === 0 ? true : await spendShards(cost, 'streak_revive');
     if (!spent) return { ok: false, reason: 'insufficient_shards' };
 
     try {

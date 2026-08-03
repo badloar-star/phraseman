@@ -79,13 +79,6 @@ export type RemoteBoolKey =
   | 'explain_enabled'
   | 'ideas_enabled'
   | 'ai_global_disable'
-  | 'compass_enabled'
-  | 'compass_ai_voice_enabled'
-  | 'compass_deep_dive_enabled'
-  | 'compass_lesson_invite_enabled'
-  | 'compass_economy_enabled'
-  | 'compass_retention_enabled'
-  | 'compass_topic_map_enabled'
   | 'maintenance_banner'
   | 'maintenance_block'
   // Legacy remote flag kept for compatibility with already-published configs.
@@ -336,19 +329,6 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   // Это НАД-флаг: перекрывает compass_enabled/explain_enabled и т.д. Сервер тоже
   // уважает его (aiGloballyDisabled в functions) — клиентский гейт нельзя обойти.
   ai_global_disable: false,
-  // ── Компас (глобальный обучающий оркестратор) ──────────────────────────────
-  // compass_enabled — ГЛАВНЫЙ выключатель всей фичи. Дефолт TRUE = kill-switch:
-  // Компас включён из коробки; админ-тумблер в «Пульте» может мгновенно выключить
-  // его у всех без релиза (onSnapshot), и НИЧЕГО в основном приложении не страдает
-  // — весь код Компаса изолирован в app/compass/ и за этим флагом. Под-флаги ниже
-  // — точечные рычаги отдельных крыльев (работают только при главном compass_enabled).
-  compass_enabled: true,
-  compass_ai_voice_enabled: true,
-  compass_deep_dive_enabled: true,
-  compass_lesson_invite_enabled: true,
-  compass_economy_enabled: true,
-  compass_retention_enabled: true,
-  compass_topic_map_enabled: true,
   // Режим обслуживания (управляется из «Пульта»). Дефолт FALSE — приложение
   // работает. banner = мягкая плашка сверху; block = жёсткий полноэкранный
   // блок-экран. Включается у всех живьём (onSnapshot), без релиза.
@@ -978,22 +958,10 @@ export const isTopHelpersEnabled = () => getRemoteBool('top_helpers_enabled');
 export const isIntroFullAccessEnabled = () => getRemoteBool('intro_full_access_enabled');
 
 /**
- * Компас — ГЛАВНЫЙ выключатель всей фичи. Дефолт false (sell-switch). Если false —
- * весь Компас отсутствует, основное приложение работает как раньше. Под-флаги ниже
- * имеют силу ТОЛЬКО когда главный включён (см. app/compass/compass_flags.ts).
- */
-/**
  * Глобальный рубильник всего ИИ. TRUE = весь ИИ выключен (ручные вызовы → забавная
  * заглушка, фоновые → тихо no-op). Это НАД-флаг: все ИИ-геттеры ниже уважают его.
  */
 export const isAiGloballyDisabled = () => getRemoteBool('ai_global_disable');
-export const isCompassEnabled = () => getRemoteBool('compass_enabled') && !isAiGloballyDisabled();
-export const isCompassAiVoiceEnabled = () => getRemoteBool('compass_ai_voice_enabled') && !isAiGloballyDisabled();
-export const isCompassDeepDiveEnabled = () => getRemoteBool('compass_deep_dive_enabled');
-export const isCompassLessonInviteEnabled = () => getRemoteBool('compass_lesson_invite_enabled');
-export const isCompassEconomyEnabled = () => getRemoteBool('compass_economy_enabled');
-export const isCompassRetentionEnabled = () => getRemoteBool('compass_retention_enabled');
-export const isCompassTopicMapEnabled = () => getRemoteBool('compass_topic_map_enabled');
 /** Режим обслуживания: мягкий баннер / жёсткий блок-экран. */
 export const isMaintenanceBanner = () => getRemoteBool('maintenance_banner');
 export const isMaintenanceBlock = () => getRemoteBool('maintenance_block');

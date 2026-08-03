@@ -205,17 +205,45 @@ export async function isTesterNoLimitsActive(): Promise<boolean> {
 }
 
 /**
- * Локальный план — это разовая покупка «Навсегда» (non-consumable)?
+ * Пожизненный VIP-грант — это тоже Pro?
+ *
+ * зачем: владелец (2026-08-03) — получатель сертификата «Phraseman Pro — навсегда»
+ * видел в настройках «Plus активирован», потому что Pro определялся ТОЛЬКО по
+ * `premium_plan='lifetime'` (его пишет стор), а безденежные каналы пишут `vip_plan`.
+ * Сертификат обещает Pro на самом бланке — расхождение читалось как обман.
+ *
+ * Признаки пожизненного гранта:
+ *  • `promo_lifetime` — промокод/сертификат «навсегда» (promo_codes.ts пишет явно);
+ *  • любой активный VIP без даты окончания (`vip_until <= 0`) — так админка выдаёт
+ *    бессрочный доступ. Отдельного плана у неё нет: и месяц, и «бессрочно» пишут
+ *    `admin_vip`, поэтому единственный доступный различитель — отсутствие срока.
+ * Срочный VIP (месяц, рефералка, опрос) остаётся Plus.
+ */
+function isLifetimeVipValues(values: Readonly<Record<string, string>> | null): boolean {
+  if (!values) return false;
+  const state = getVipProgressState(values);
+  if (!state?.active) return false;
+  if (state.plan === 'promo_lifetime') return true;
+  return state.untilMs <= 0;
+}
+
+/**
+ * Локальный план — пожизненный доступ, который показывается как «Pro»?
  *
  * Видимое имя такого доступа — «Pro» (синяя палитра), в отличие от рекуррентного
- * Plus. Источник правды — ключ `premium_plan` в AsyncStorage: его пишет
- * persistStorePremiumLocally при подтверждении покупки/восстановления. VIP-гранты
- * (опрос/рефералка/админка/промо) пишут `vip_plan`, а НЕ `premium_plan='lifetime'`,
- * поэтому такой юзер остаётся Plus. Чистое чтение флага, без сетевых запросов.
+ * Plus. Два равноправных источника: разовая покупка «Навсегда» в сторе
+ * (`premium_plan='lifetime'`, пишет persistStorePremiumLocally) и пожизненный
+ * VIP-грант (сертификат/промокод «навсегда», бессрочная выдача из админки).
+ * Чистое чтение локального состояния, без сетевых запросов.
  */
 export async function isLifetimePlanLocal(): Promise<boolean> {
   const plan = await AsyncStorage.getItem('premium_plan').catch(() => null);
-  return String(plan ?? '').trim().toLowerCase() === 'lifetime';
+  if (String(plan ?? '').trim().toLowerCase() === 'lifetime') return true;
+  const generation = captureAccountGeneration();
+  if (!accountGenerationIsCurrent(generation)) return false;
+  const vipValues = await readVipSnapshotForGeneration(generation).catch(() => null);
+  if (!accountGenerationIsCurrent(generation)) return false;
+  return isLifetimeVipValues(vipValues);
 }
 
 /**

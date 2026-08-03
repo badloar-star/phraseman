@@ -23,10 +23,8 @@ import { usePremium } from '../components/PremiumContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
-import CompassDepthSurface from '../components/CompassDepthSurface';
 import { triLang, type Lang, type PlannedInterfaceLang } from '../constants/i18n';
 import { POS_ANALYTICS_AUDIT_ROUTE } from '../constants/devRoutes';
-import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 import { hapticTap } from '../hooks/use-haptics';
 import { ENABLE_DEV_TOOLS } from './config';
 import {
@@ -164,8 +162,6 @@ function ProgressBar({ pct }: { pct: number }) {
 function InsightRow({ insight }: { insight: PersonalInsight }) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
-  const isCompassTheme = false;
-  const rowRadius = isCompassTheme ? 8 : 14;
   const text = triLang(lang, {
     ru: insight.ru,
     uk: insight.uk,
@@ -209,8 +205,7 @@ function CategoryRow({
 }) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
-  const isCompassTheme = false;
-  const rowRadius = isCompassTheme ? 8 : 14;
+  const rowRadius = 14;
   const categoryCopy = CATEGORY_LABELS[stat.category] ?? CATEGORY_LABELS.other;
   const label = triLang(lang, {
     ru: categoryCopy.ru,
@@ -280,17 +275,15 @@ function CategoryRow({
         style={[
           styles.catRow,
           {
-            backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
-            borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
+            backgroundColor: t.bgCard,
+            borderColor: t.border,
             borderRadius: rowRadius,
             overflow: 'hidden',
           },
-          isCompassTheme && compassShadow(1),
         ]}
         onPress={openDiagnosis}
         activeOpacity={0.86}
       >
-        {isCompassTheme ? <CompassDepthSurface radius={rowRadius} quiet /> : null}
         {inner}
       </TouchableOpacity>
     ) : (
@@ -298,15 +291,13 @@ function CategoryRow({
         style={[
           styles.catRow,
           {
-            backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
-            borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
+            backgroundColor: t.bgCard,
+            borderColor: t.border,
             borderRadius: rowRadius,
             overflow: 'hidden',
           },
-          isCompassTheme && compassShadow(1),
         ]}
       >
-        {isCompassTheme ? <CompassDepthSurface radius={rowRadius} quiet /> : null}
         {inner}
       </View>
     )
@@ -342,23 +333,20 @@ function LessonRow({ stat, studyTarget }: { stat: LessonMistakeStat; studyTarget
   const { lang } = useLang();
   const name = phraseAnalyticsLessonTitle(stat, lang, studyTarget);
   const pctOpacity = stat.pct >= 25 ? 1 : stat.pct >= 12 ? 0.75 : 0.45;
-  const isCompassTheme = false;
-  const rowRadius = isCompassTheme ? 8 : 14;
+  const rowRadius = 14;
 
   return (
     <View
       style={[
         styles.catRow,
         {
-          backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
-          borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
+          backgroundColor: t.bgCard,
+          borderColor: t.border,
           borderRadius: rowRadius,
           overflow: 'hidden',
         },
-        isCompassTheme && compassShadow(1),
       ]}
     >
-      {isCompassTheme ? <CompassDepthSurface radius={rowRadius} quiet /> : null}
       <View style={styles.catMeta}>
         <Text style={[styles.catPctBig, { color: t.textPrimary, opacity: pctOpacity, fontSize: f.h2 }]}>
           {stat.pct}
@@ -388,7 +376,6 @@ export default function PhraseAnalyticsScreen() {
   const router = useRouter();
   const { theme: t, f, themeMode } = useTheme();
   const isLightGate = false;
-  const isCompassTheme = false;
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const sourceLocale = isStudyTargetSourceUiLang(lang) ? lang : 'ru';
@@ -507,15 +494,13 @@ export default function PhraseAnalyticsScreen() {
                 style={[
                   styles.gateCard,
                   {
-                    backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : isLightGate ? t.bgCard : GATE_LUX.panelDark,
-                    borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : isLightGate ? t.border : GATE_LUX.panelBorder,
-                    borderRadius: isCompassTheme ? 10 : 22,
+                    backgroundColor: isLightGate ? t.bgCard : GATE_LUX.panelDark,
+                    borderColor: isLightGate ? t.border : GATE_LUX.panelBorder,
+                    borderRadius: 22,
                     overflow: 'hidden',
                   },
-                  isCompassTheme && compassShadow(3),
                 ]}
               >
-                {isCompassTheme ? <CompassDepthSurface radius={10} selected /> : null}
                 {/* Icon + title */}
                 <View style={styles.gateHeader}>
                   <LinearGradient
@@ -569,24 +554,15 @@ export default function PhraseAnalyticsScreen() {
                 <TouchableOpacity
                   onPress={() => { hapticTap(); router.push({ pathname: '/premium_modal', params: { context: 'patterns' } } as any); }}
                   activeOpacity={0.88}
-                  style={[
-                    styles.gateBtn,
-                    isCompassTheme && {
-                      borderRadius: 9,
-                      borderColor: COMPASS_RICH.hairlineStrong,
-                      backgroundColor: COMPASS_RICH.champagne,
-                    },
-                    isCompassTheme && compassShadow(1),
-                  ]}
+                  style={styles.gateBtn}
                 >
-                  {isCompassTheme ? <CompassDepthSurface radius={9} cream /> : null}
                   <LinearGradient
-                    colors={isCompassTheme ? [COMPASS_RICH.cream, COMPASS_RICH.champagne] : ['#6b5420', '#9a7b32', '#c9a227', '#9a7b32', '#6b5420']}
-                    locations={isCompassTheme ? [0, 1] : [0, 0.25, 0.5, 0.75, 1]}
+                    colors={['#6b5420', '#9a7b32', '#c9a227', '#9a7b32', '#6b5420']}
+                    locations={[0, 0.25, 0.5, 0.75, 1]}
                     start={{ x: 0, y: 0.5 }} end={{ x: 1, y: 0.5 }}
-                    style={[styles.gateBtnInner, isCompassTheme && { borderRadius: 9 }]}
+                    style={styles.gateBtnInner}
                   >
-                    <Text style={[styles.gateBtnText, { fontSize: f.body }, isCompassTheme && { color: COMPASS_RICH.textDark }]}>
+                    <Text style={[styles.gateBtnText, { fontSize: f.body }]}>
                       {triLang(lang, { ru: 'Открыть аналитику', uk: 'Відкрити аналітику', es: 'Abrir analítica', 'pt-BR': 'Abrir analítica', vi: 'Mở phân tích', id: 'Buka analitik', tr: 'Analizi aç', pl: 'Otwórz analitykę' })}
                     </Text>
                   </LinearGradient>
@@ -673,14 +649,12 @@ export default function PhraseAnalyticsScreen() {
                     style={[
                       styles.insightBlock,
                       {
-                        backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
-                        borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
-                        borderRadius: isCompassTheme ? 8 : 14,
+                        backgroundColor: t.bgCard,
+                        borderColor: t.border,
+                        borderRadius: 14,
                       },
-                      isCompassTheme && compassShadow(1),
                     ]}
                   >
-                    {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
                     {data.insights.map((ins, i) => (
                       <InsightRow key={i} insight={ins} />
                     ))}
@@ -694,13 +668,12 @@ export default function PhraseAnalyticsScreen() {
                 style={[
                   styles.tabs,
                   {
-                    backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalSoft : t.bgSurface,
-                    borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent',
+                    backgroundColor: t.bgSurface,
+                    borderColor: 'transparent',
                     borderWidth: 0,
-                    borderRadius: isCompassTheme ? 8 : 12,
+                    borderRadius: 12,
                     overflow: 'hidden',
                   },
-                  isCompassTheme && compassShadow(1),
                 ]}
               >
                 {tabs.map(({ key, label }) => (
@@ -709,14 +682,12 @@ export default function PhraseAnalyticsScreen() {
                     onPress={() => { hapticTap(); setTab(key); }}
                     style={[
                       styles.tabItem,
-                      isCompassTheme && { borderRadius: 7, overflow: 'hidden' },
                       tab === key && {
-                        backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : t.bgCard,
+                        backgroundColor: t.bgCard,
                       },
                     ]}
                     activeOpacity={0.75}
                   >
-                    {isCompassTheme && tab === key ? <CompassDepthSurface radius={7} quiet /> : null}
                     <Text style={[
                       styles.tabText,
                       { fontSize: f.sub },
@@ -767,16 +738,14 @@ export default function PhraseAnalyticsScreen() {
                       style={[
                         styles.phraseRow,
                         {
-                          backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
-                          borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
-                          borderRadius: isCompassTheme ? 8 : 14,
+                          backgroundColor: t.bgCard,
+                          borderColor: t.border,
+                          borderRadius: 14,
                           overflow: 'hidden',
                         },
-                        isCompassTheme && compassShadow(1),
                       ]}
                     >
-                      {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
-                      <View style={[styles.phraseBadge, { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalSoft : t.bgSurface }]}>
+                      <View style={[styles.phraseBadge, { backgroundColor: t.bgSurface }]}>
                         <Text style={[styles.phraseBadgeText, { color: t.textPrimary, fontSize: f.label }]}>×{count}</Text>
                       </View>
                       <View style={{ flex: 1 }}>

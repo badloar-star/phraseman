@@ -7,20 +7,17 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
 import SectionSheetHeader from '../components/SectionSheetHeader';
-import CompassDepthSurface from '../components/CompassDepthSurface';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { coerceInterfaceLang, getVisibleInterfaceLanguageOptions } from '../constants/i18n';
 import { IS_STORE_RELEASE } from './config';
-import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 import { safeRouterBack } from './navigation_back';
 
 export default function SettingsLanguage() {
   const router = useRouter();
   const { theme: t, themeMode } = useTheme();
   const { lang, setLang, s } = useLang();
-  const isCompassTheme = false;
 
   return (
     <ScreenGradient>
@@ -50,24 +47,20 @@ export default function SettingsLanguage() {
                     hapticTap();
                     void setLang(interfaceCode);
                   }}
-                  style={[
-                    {
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                      paddingHorizontal: 14,
-                      paddingVertical: 14,
-                      borderRadius: isCompassTheme ? 8 : 14,
-                      borderWidth: 0,
-                      borderColor: isCompassTheme ? (active ? COMPASS_RICH.hairlineStrong : COMPASS_RICH.hairlineQuiet) : active ? t.accent : t.border,
-                      backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
-                      marginBottom: 10,
-                      opacity: enabled ? 1 : 0.42,
-                      overflow: 'hidden',
-                    },
-                    isCompassTheme && compassShadow(active ? 2 : 1),
-                  ]}
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    paddingHorizontal: 14,
+                    paddingVertical: 14,
+                    borderRadius: 14,
+                    borderWidth: 0,
+                    borderColor: active ? t.accent : t.border,
+                    backgroundColor: t.bgCard,
+                    marginBottom: 10,
+                    opacity: enabled ? 1 : 0.42,
+                    overflow: 'hidden',
+                  }}
                 >
-                  {isCompassTheme ? <CompassDepthSurface radius={8} selected={active} quiet={!active} /> : null}
                   <Text style={{ flex: 1, color: t.textPrimary, fontSize: 15, fontWeight: active ? '800' : '600' }}>
                     {item.native}
                   </Text>

@@ -38,11 +38,9 @@ import { trackEvent } from './analytics';
 import ScreenGradient from '../components/ScreenGradient';
 import { TrainerLoadingView, TrainerErrorView } from '../components/TrainerLoadStates';
 import ContentWrap from '../components/ContentWrap';
-import CompassDepthSurface from '../components/CompassDepthSurface';
 import GradientProgressBar from '../components/GradientProgressBar';
 import { triLang } from '../constants/i18n';
 import { screenTextOnGradient } from '../constants/theme';
-import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 import { statsThemeAccent, statsThemeSoftBg } from '../constants/statsThemeChrome';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import DuoPressable from '../components/DuoPressable';
@@ -122,7 +120,6 @@ const WORD_BANK_TILE_ENTERING = FadeInUp.springify().damping(12).stiffness(180);
 
 function WordBankMode({ item, onResult, onAdvance, speakAnswer }: WordBankProps) {
   const { theme: t, f, themeMode } = useTheme();
-  const isCompassTheme = false;
   const accent = statsThemeAccent(themeMode);
   const answerSoftBg = statsThemeSoftBg(themeMode, 'strong');
   const { lang } = useLang();
@@ -223,23 +220,22 @@ function WordBankMode({ item, onResult, onAdvance, speakAnswer }: WordBankProps)
     ? t.correctBg
     : feedback === 'wrong'
       ? t.wrongBg
-      : isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgSurface;
+      : t.bgSurface;
   const checkBtnBg = feedback === 'correct'
     ? t.correctBg
     : feedback === 'wrong'
       ? t.wrongBg
-      : canCheck ? (isCompassTheme ? COMPASS_RICH.champagne : accent) : t.bgSurface;
+      : canCheck ? accent : t.bgSurface;
   const checkBtnColor = feedback === 'correct'
     ? t.correct
     : feedback === 'wrong'
       ? t.wrong
-      : canCheck ? (isCompassTheme ? COMPASS_RICH.textDark : t.correctText) : t.textMuted;
+      : canCheck ? t.correctText : t.textMuted;
 
   return (
     <View style={{ flex: 1, gap: 14, position: 'relative' }}>
       {/* Перевод — карточка-задание */}
-      <View style={[styles.promptCard, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderWidth: 0, borderRadius: isCompassTheme ? 9 : 20, overflow: isCompassTheme ? 'hidden' : 'visible' }]}>
-        {isCompassTheme ? <CompassDepthSurface radius={9} quiet /> : null}
+      <View style={[styles.promptCard, { backgroundColor: t.bgCard, borderWidth: 0, borderRadius: 20, overflow: 'visible' }]}>
         <Text style={[styles.promptTag, { color: t.textGhost, fontSize: f.label - 1 }]}>
           {triLang(lang, {
             ru: 'Составь фразу',
@@ -260,10 +256,8 @@ function WordBankMode({ item, onResult, onAdvance, speakAnswer }: WordBankProps)
       {/* Зона ответа — отдельная поверхность; плитки влетают с пружинкой */}
       <Animated.View style={[
         styles.answerZone,
-        isCompassTheme && compassShadow(2),
-        { backgroundColor: zoneBg, borderWidth: 0, borderRadius: isCompassTheme ? 10 : 18, overflow: isCompassTheme ? 'hidden' : 'visible', transform: [{ translateX: shakeAnim }] },
+        { backgroundColor: zoneBg, borderWidth: 0, borderRadius: 18, overflow: 'visible', transform: [{ translateX: shakeAnim }] },
       ]}>
-        {isCompassTheme ? <CompassDepthSurface radius={10} selected={feedback !== 'none'} quiet={feedback === 'none'} /> : null}
         {visibleSelected.length === 0
           ? speakingResult
             ? <Text style={{ color: speakingResult.passed ? t.correct : t.wrong, fontSize: f.bodyLg, fontWeight: '800', textAlign: 'center' }}>
@@ -287,9 +281,8 @@ function WordBankMode({ item, onResult, onAdvance, speakAnswer }: WordBankProps)
                 <Reanimated.View key={tile.slot} entering={WORD_BANK_TILE_ENTERING}>
                   <TouchableOpacity
                     onPress={() => tapSelected(tile)}
-                    style={[styles.tile, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : answerSoftBg, borderRadius: isCompassTheme ? 8 : 11, overflow: isCompassTheme ? 'hidden' : 'visible' }]}
+                    style={[styles.tile, { backgroundColor: answerSoftBg, borderRadius: 11, overflow: 'visible' }]}
                   >
-                    {isCompassTheme ? <CompassDepthSurface radius={8} selected /> : null}
                     <Text style={[styles.tileText, { color: t.textPrimary, fontSize: f.body, fontWeight: '800' }]}>{tile.text}{index === visibleSelected.length - 1 ? terminalPunctuation : ''}</Text>
                   </TouchableOpacity>
                 </Reanimated.View>
@@ -332,13 +325,12 @@ function WordBankMode({ item, onResult, onAdvance, speakAnswer }: WordBankProps)
               edgeColor={on ? t.accent : 'rgba(0,0,0,0.30)'}
               style={[
                 styles.tile,
-                isCompassTheme && compassShadow(1),
                 {
-                  backgroundColor: on ? t.accent : (isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgSurface2),
+                  backgroundColor: on ? t.accent : t.bgSurface2,
                   borderColor: 'transparent',
                   borderWidth: 0,
-                      borderRadius: isCompassTheme ? 8 : 11,
-                      overflow: isCompassTheme ? 'hidden' : 'visible',
+                      borderRadius: 11,
+                      overflow: 'visible',
                     },
                     committedTileStyle,
                     previewed && { opacity: 0.18 },
@@ -348,7 +340,6 @@ function WordBankMode({ item, onResult, onAdvance, speakAnswer }: WordBankProps)
                 tapBank(tile);
               }}
             >
-              {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
               <Text style={[styles.tileText, { color: on ? t.correctText : t.textPrimary, fontSize: f.body, fontWeight: on ? '700' : '600' }]}>{tile.text}</Text>
             </DuoPressable>
           );
@@ -391,13 +382,12 @@ function WordBankMode({ item, onResult, onAdvance, speakAnswer }: WordBankProps)
             style={[styles.checkBtn, {
               backgroundColor: checkBtnBg,
               borderWidth: 0,
-              borderRadius: isCompassTheme ? 9 : 14,
-              overflow: isCompassTheme ? 'hidden' : 'visible',
+              borderRadius: 14,
+              overflow: 'visible',
               opacity: canCheck || feedback !== 'none' ? 1 : 0.4,
               marginTop: 'auto',
             }]}
           >
-            {isCompassTheme ? <CompassDepthSurface radius={9} cream={canCheck} quiet={!canCheck} /> : null}
         <Text style={[styles.checkBtnText, { color: checkBtnColor, fontSize: f.body }]}>
           {feedback === 'wrong'
               ? triLang(lang, { ru: 'Неверно', uk: 'Невірно', es: 'Incorrecto', 'pt-BR': 'Incorreto', vi: 'Sai rồi', id: 'Salah', tr: 'Yanlış', pl: 'Niepoprawnie' })
@@ -467,7 +457,6 @@ interface FillGapProps {
 
 function FillGapMode({ item, onResult, onAdvance, speakAnswer }: FillGapProps) {
   const { theme: t, f, themeMode } = useTheme();
-  const isCompassTheme = false;
   const accent = statsThemeAccent(themeMode);
   const { playCorrect } = useCorrectSound();
   const { lang } = useLang();
@@ -542,8 +531,7 @@ function FillGapMode({ item, onResult, onAdvance, speakAnswer }: FillGapProps) {
     <View style={{ flex: 1, gap: 14 }}>
       {/* Фраза крупно, пропуск светится; при ошибке — мягкая тряска */}
       <Reanimated.View style={shakeStyle}>
-        <View style={[styles.gapCard, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderWidth: 0, borderRadius: isCompassTheme ? 9 : 20, overflow: isCompassTheme ? 'hidden' : 'visible' }]}>
-          {isCompassTheme ? <CompassDepthSurface radius={9} quiet /> : null}
+        <View style={[styles.gapCard, { backgroundColor: t.bgCard, borderWidth: 0, borderRadius: 20, overflow: 'visible' }]}>
           <Text style={[styles.promptTag, { color: t.textGhost, fontSize: f.label - 1 }]}>
             {triLang(lang, {
               ru: 'Вставь пропущенное слово',
@@ -579,12 +567,12 @@ function FillGapMode({ item, onResult, onAdvance, speakAnswer }: FillGapProps) {
           const isChosen = chosen === opt;
           const isCorrect = opt.toLowerCase() === errorWord.toLowerCase();
           const on = flashKey === opt;
-          let bg = on ? t.accent : (isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgSurface2);
+          let bg = on ? t.accent : t.bgSurface2;
           let tc = on ? t.correctText : t.textPrimary;
           let opacity = 1;
-          if (isChosen && feedback === 'correct') { bg = isCompassTheme ? COMPASS_RICH.washStrong : t.correctBg; tc = isCompassTheme ? COMPASS_RICH.champagne : t.correct; }
-          if (isChosen && feedback === 'wrong')   { bg = isCompassTheme ? COMPASS_RICH.copperWash : t.wrongBg; tc = isCompassTheme ? COMPASS_RICH.peach : t.wrong; }
-          if (!isChosen && feedback !== 'none' && isCorrect) { bg = isCompassTheme ? COMPASS_RICH.washStrong : t.correctBg; tc = isCompassTheme ? COMPASS_RICH.champagne : t.correct; }
+          if (isChosen && feedback === 'correct') { bg = t.correctBg; tc = t.correct; }
+          if (isChosen && feedback === 'wrong')   { bg = t.wrongBg; tc = t.wrong; }
+          if (!isChosen && feedback !== 'none' && isCorrect) { bg = t.correctBg; tc = t.correct; }
           if (feedback !== 'none' && !isChosen && !isCorrect) opacity = 0.58;
           return (
             <DuoPressable
@@ -596,12 +584,11 @@ function FillGapMode({ item, onResult, onAdvance, speakAnswer }: FillGapProps) {
               wrapStyle={styles.chipWrap}
               style={[
                 styles.chip,
-                isCompassTheme && compassShadow(feedback === 'none' ? 1 : 2),
                 {
                   backgroundColor: bg,
                   borderWidth: 0,
-                  borderRadius: isCompassTheme ? 9 : 13,
-                  overflow: isCompassTheme ? 'hidden' : 'visible',
+                  borderRadius: 13,
+                  overflow: 'visible',
                   opacity,
                 },
               ]}
@@ -612,7 +599,6 @@ function FillGapMode({ item, onResult, onAdvance, speakAnswer }: FillGapProps) {
                 pick(opt);
               }}
             >
-              {isCompassTheme ? <CompassDepthSurface radius={9} selected={feedback !== 'none' && (isChosen || isCorrect)} quiet={feedback === 'none'} /> : null}
               <Text style={{ color: tc, fontSize: f.body, fontWeight: '800' }}>{opt}</Text>
             </DuoPressable>
           );
@@ -622,7 +608,7 @@ function FillGapMode({ item, onResult, onAdvance, speakAnswer }: FillGapProps) {
       {/* Микро-подсказка после ответа: честные данные — фраза целиком + её перевод.
           Поля «объяснение правила» в TrainerItem нет — ничего не выдумываем. */}
       {feedback !== 'none' ? (
-        <Reanimated.View entering={FadeInDown.duration(220)} style={[styles.noteRow, { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalSoft : t.bgSurface, marginTop: 'auto' }]}>
+        <Reanimated.View entering={FadeInDown.duration(220)} style={[styles.noteRow, { backgroundColor: t.bgSurface, marginTop: 'auto' }]}>
           <Ionicons name="bulb-outline" size={16} color={accent} />
           <View style={{ flex: 1, minWidth: 0 }}>
             <Text style={{ color: t.textPrimary, fontSize: f.caption - 1, fontWeight: '700' }}>{phrase}</Text>
@@ -656,7 +642,6 @@ export default function TrainerPhrasesSession() {
   const router = useRouter();
   const params = useLocalSearchParams<TrainerPlanTaskRouteParams>();
   const { theme: t, f, themeMode } = useTheme();
-  const isCompassTheme = false;
   const accent = statsThemeAccent(themeMode);
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const { lang } = useLang();
@@ -975,7 +960,6 @@ export default function TrainerPhrasesSession() {
                 accessibilityLabel="Сообщить об ошибке во фразе"
                 style={[
                   { width: 36, height: 36, borderRadius: 18, backgroundColor: t.bgCard, marginLeft: 8 },
-                  isCompassTheme && { borderRadius: 9, backgroundColor: COMPASS_RICH.charcoalRaised, borderColor: COMPASS_RICH.hairline, ...compassShadow(1) },
                 ]}
               />
             ) : null}
@@ -985,7 +969,7 @@ export default function TrainerPhrasesSession() {
           <View style={styles.progressRow}>
             <GradientProgressBar
               progress={deck.length > 0 ? current / deck.length : 0}
-              accent={isCompassTheme ? COMPASS_RICH.champagne : accent}
+              accent={accent}
               height={6}
               style={styles.progressBarFlex}
             />

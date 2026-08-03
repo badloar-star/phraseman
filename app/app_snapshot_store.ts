@@ -29,6 +29,13 @@ export interface AppSnapshotProfile extends AppSnapshotMeta {
   premiumActive: boolean;
   premiumPlan?: string;
   vipActive: boolean;
+  /**
+   * Активный VIP-грант без даты окончания (сертификат/промокод «навсегда»,
+   * бессрочная выдача из админки) — такой доступ показывается как «Pro».
+   * зачем: снапшот должен знать тир на первом кадре, иначе плашка моргает
+   * «Plus» → «Pro» после reload().
+   */
+  vipLifetime?: boolean;
 }
 
 export interface AppSnapshotProgress extends AppSnapshotMeta {

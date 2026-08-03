@@ -155,7 +155,11 @@ function snapshotVipActive(): boolean {
 }
 function snapshotProActive(): boolean {
   const profile = getAppSnapshot().profile;
-  return profile?.premiumActive === true && profile?.premiumPlan === 'lifetime';
+  if (profile?.premiumActive === true && profile?.premiumPlan === 'lifetime') return true;
+  // зачем: без этой ветки безденежный Pro (сертификат/промокод «навсегда»,
+  // бессрочная выдача) моргал бы «Plus» на первом кадре и переключался на «Pro»
+  // только после reload() — снапшот обязан знать тот же тир, что и runReload.
+  return profile?.vipActive === true && profile?.vipLifetime === true;
 }
 
 export function PremiumProvider({ children }: { children: React.ReactNode }) {
@@ -266,7 +270,12 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
     if (!isReloadCurrent()) return;
     const effectivePremium = !noPremiumTester && (realPremium || testerNoLimits);
     const effectiveVip = !noPremiumTester && vip;
-    const effectivePro = !noPremiumTester && realPremium && lifetimePlan;
+    // зачем: владелец (2026-08-03) — Pro даёт и безденежный пожизненный доступ
+    // (сертификат «Pro — навсегда», промокод, бессрочная выдача из админки), а не
+    // только покупка. Раньше здесь стояло realPremium && lifetimePlan, поэтому у
+    // владельца сертификата не было ни надписи Pro, ни про-ауры у других игроков.
+    // isLifetimePlanLocal уже требует активный источник (стор ИЛИ активный VIP).
+    const effectivePro = !noPremiumTester && (realPremium || effectiveVip) && lifetimePlan;
     const effectiveVerifiedAccess = !noPremiumTester && verifiedAccess;
     setIsPremium(effectivePremium);
     setIsVip(effectiveVip);

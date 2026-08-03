@@ -45,6 +45,9 @@ export type AppEventMap = {
   /** Сезонный XP пропуска изменился (registerXP → addSeasonPassXp) — обновить плашку «Сезон» и экран дорожки. */
   season_pass_xp_changed: { totalXp: number };
   season_pass_gift_inventory_changed: undefined;
+  season_cosmetics_changed: undefined;
+  /** Платная дорожка сезона куплена/разблокирована — экран дорожки открывает pass-клеймы. */
+  season_pass_plus_changed: undefined;
   /** «Сокровищница»: инвентарь карточек изменился (дроп/restore) — обновить счётчики и сетки. */
   collectibles_changed: undefined;
   /** После успешного signInWithProvider — обновить секцию "Аккаунт" в Settings, etc. */

@@ -254,9 +254,14 @@ async function syncPublicProfileSnapshotUnsafe(
   // автоматически денормализуют актуальный флаг без протаскивания его через каждый
   // вызов. Денормализуем только при активном премиум-доступе: истёкший lifetime не
   // должен оставлять «Pro»-плашку у чужих.
-  const rawLifetime = input.isLifetime ?? (isPremium ? await isLifetimePlanLocal().catch(() => cache.isLifetime ?? false) : false);
+  // зачем: владелец (2026-08-03) — Pro бывает и безденежным (сертификат
+  // «Pro — навсегда», промокод, бессрочная выдача), там isPremium=false.
+  // Раньше гейт стоял только на isPremium и такой человек терял Pro-ауру
+  // в чужих профилях. Истёкший доступ по-прежнему плашку не оставляет.
+  const hasPaidOrGrantedAccess = isPremium || isVip;
+  const rawLifetime = input.isLifetime ?? (hasPaidOrGrantedAccess ? await isLifetimePlanLocal().catch(() => cache.isLifetime ?? false) : false);
   if (!isCurrent()) return;
-  const isLifetime = isPremium && rawLifetime;
+  const isLifetime = hasPaidOrGrantedAccess && rawLifetime;
 
   const displayHash = stableStringify({
     name,

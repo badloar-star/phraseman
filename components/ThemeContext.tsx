@@ -4,7 +4,6 @@ import { useWindowDimensions } from 'react-native';
 import { DARK, GOLD, CORAL, MINIMAL_DARK, MIDNIGHT, EMBER, AURORA, VOLT, BUSINESS, BUSINESS_LIGHT, CANDY_BLUE, INDIGO, SAGE_PORCELAIN, Theme, ThemeMode, isLightThemeMode } from '../constants/theme';
 import { sagePorcelainShadow } from '../constants/sagePorcelainChrome';
 import { goldShadow } from '../constants/goldTheme';
-import { compassShadow } from '../constants/compassTheme';
 import { cinemaShadow, isCinemaMode } from '../constants/cinemaThemes';
 import { computeUiScale } from '../constants/layout-scale';
 import { DEV_MODE, ENABLE_DEV_TOOLS } from '../app/config';
@@ -117,7 +116,6 @@ export const getVolumetricShadow = (
 ) => {
   if (themeMode === 'gold') return goldShadow(level);
   if (themeMode === 'sagePorcelain') return sagePorcelainShadow(level);
-  if (false) return compassShadow(level);
   if (isCinemaMode(themeMode)) return cinemaShadow(level);
   return {
     shadowColor:   '#000000',
@@ -395,11 +393,10 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const ds = useMemo(() => {
     const px = (n: number) => Math.max(2, Math.round(n * uiScale));
     const isLuxuryTheme = effectiveThemeMode === 'gold';
-    const isCompassTheme = false;
     const radiusBase = isFlat
       // IG-плоскость: меньше скругления, плашки компактнее.
       ? { md: 8, lg: 10, xl: 12, xxl: 16 }
-      : isLuxuryTheme || isCompassTheme
+      : isLuxuryTheme
         ? { md: 10, lg: 12, xl: 14, xxl: 18 }
         : { md: 12, lg: 16, xl: 20, xxl: 24 };
     const noShadow = {

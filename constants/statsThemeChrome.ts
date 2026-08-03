@@ -1,5 +1,4 @@
 import { GOLD_RICH } from './goldTheme';
-import { COMPASS_RICH } from './compassTheme';
 import {
   AURORA,
   BUSINESS,
@@ -231,19 +230,11 @@ export function statsThemeSoftBg(themeMode: ThemeMode, strength: 'quiet' | 'norm
 }
 
 export function statsBorder(themeMode: ThemeMode, _tone: StatsChromeTone, strength: 'soft' | 'medium' | 'strong' = 'medium'): string {
-  if (false) {
-    return strength === 'strong'
-      ? COMPASS_RICH.hairlineStrong
-      : strength === 'soft'
-        ? COMPASS_RICH.hairlineQuiet
-        : COMPASS_RICH.hairline;
-  }
   const alpha = strength === 'strong' ? 'B8' : strength === 'soft' ? '59' : '7A';
   return alphaColor(statsThemeAccent(themeMode), alpha);
 }
 
 export function statsHairline(themeMode: ThemeMode, _tone: StatsChromeTone): string {
-  if (false) return COMPASS_RICH.hairlineQuiet;
   return alphaColor(statsThemeAccent(themeMode), '3D');
 }
 
@@ -253,15 +244,6 @@ export function statsSoftBg(themeMode: ThemeMode, tone: StatsChromeTone, strengt
 }
 
 export function statsGlowStyle(themeMode: ThemeMode, _tone: StatsChromeTone, strength: 'soft' | 'medium' = 'soft') {
-  if (false) {
-    return {
-      shadowColor: '#000000',
-      shadowOpacity: strength === 'medium' ? 0.46 : 0.34,
-      shadowRadius: strength === 'medium' ? 18 : 12,
-      shadowOffset: { width: 0, height: strength === 'medium' ? 7 : 5 },
-      elevation: strength === 'medium' ? 9 : 6,
-    };
-  }
   return {
     shadowColor: statsThemeAccent(themeMode),
     shadowOpacity: strength === 'medium' ? 0.22 : 0.14,

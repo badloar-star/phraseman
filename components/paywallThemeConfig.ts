@@ -13,7 +13,6 @@
 // Compass и Gold используют свои rich-палитры из констант.
 // ════════════════════════════════════════════════════════════════════════════
 import type { ThemeMode } from '../constants/theme';
-import { COMPASS_RICH } from '../constants/compassTheme';
 import { GOLD_RICH } from '../constants/goldTheme';
 
 export interface ThemePaywallConfig {

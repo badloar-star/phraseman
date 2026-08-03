@@ -111,6 +111,13 @@ function buildProfileSnapshot(
 ): AppSnapshotProfile {
   const totalXp = readInt(values.get('user_total_xp'));
   const vipUntil = Number(vipSnapshot?.vip_until ?? '0') || 0;
+  // зачем: пожизненный VIP-грант (сертификат «Pro — навсегда», промокод,
+  // бессрочная выдача из админки) не имеет даты окончания — vip_until = 0.
+  // Без этого признака он читался как «срок истёк» и на первом кадре терял и
+  // доступ, и тир Pro. Зеркалит isLifetimeVipValues в premium_guard.ts.
+  const vipPlanRaw = String(vipSnapshot?.vip_plan ?? '').trim().toLowerCase();
+  const vipGranted = readBool(vipSnapshot?.vip_active) || !!vipPlanRaw;
+  const vipLifetime = vipGranted && vipUntil <= 0;
   const name = values.get('user_name')?.trim() || '';
   const avatar = values.get('user_avatar')?.trim() || '1';
   const frame = values.get('user_frame')?.trim() || '';
@@ -127,7 +134,8 @@ function buildProfileSnapshot(
     level: getLevelFromXP(totalXp),
     premiumActive: readBool(values.get('premium_active')),
     premiumPlan: values.get('premium_plan')?.trim().toLowerCase() || undefined,
-    vipActive: vipUntil > now,
+    vipActive: vipUntil > now || vipLifetime,
+    vipLifetime,
   };
 }
 

@@ -16,12 +16,13 @@ export type SeasonRewardKind =
   | 'turbo_regen'       // энергия восстанавливается ×2 до конца дня
   | 'tournament_ticket' // вход в турнир без ставки
   | 'time_machine'      // чинит вчерашнюю дыру серии
-  | 'friend_battery'    // отправить другу заряд энергии
+  | 'friend_shield'     // отправить другу щит серии (+1 день chain_shield)
   | 'choice_3'          // выбор: батарея / буст лиги / жемчуг
   | 'xp_bank'           // ×2 на следующие amount XP
-  | 'plus_days'         // дни Plus (Pro получает жемчуг по курсу рулетки)
+  | 'plus_days'         // дни Plus (VIP-канал, Pro получает жемчуг по курсу рулетки)
   | 'frame'             // рамка профиля сезона
   | 'aura_stage'        // стадия ауры (amount = 1..4, 4 = финальный вихрь)
+  | 'aura_secret'       // секретная пурпурная аура — эксклюзив уровня 50
   | 'nick_color'        // цвет ника сезона
   | 'custom_avatar'     // кастомный аватар
   | 'card_pack'         // фирменный набор карточек навсегда
@@ -41,7 +42,7 @@ export const SEASON_REWARD_ICONS: Partial<Record<SeasonRewardKind, ImageSourcePr
   turbo_regen: require('../assets/images/season/reward_battery.webp'),
   tournament_ticket: require('../assets/images/season/reward_crown.webp'),
   time_machine: require('../assets/images/season/reward_golden_lesson.webp'),
-  friend_battery: require('../assets/images/season/reward_battery.webp'),
+  friend_shield: require('../assets/images/season/reward_battery.webp'),
   choice_3: require('../assets/images/season/reward_chest.webp'),
   xp_bank: require('../assets/images/season/reward_golden_lesson.webp'),
   plus_days: require('../assets/images/season/reward_league_boost.webp'),
@@ -73,6 +74,12 @@ export const SEASON_AURA_STAGE_ASSETS: readonly {
   { source: require('../assets/images/season/aura_final.webp'),  pulse: true,  spin: true,  pulseMs: 8400, spinMs: 26000 },
 ];
 
+/** Секретная пурпурная аура — эксклюзив 50 уровня (владелец, 2026-08-03). */
+export const SEASON_SECRET_AURA_ASSET = {
+  source: require('../assets/images/season/aura_secret.webp'),
+  pulse: true, spin: true, pulseMs: 8800, spinMs: 24000,
+} as const;
+
 const N = (level: number, free?: SeasonReward, pass?: SeasonReward): SeasonTrackNode => ({ level, free, pass });
 const P = (amount: number): SeasonReward => ({ kind: 'pearls', amount });
 
@@ -100,7 +107,7 @@ export const SEASON_TRACK: readonly SeasonTrackNode[] = [
   N(16, { kind: 'battery' }),
   N(17, undefined,                          { kind: 'tournament_ticket' }),
   N(18, { kind: 'golden_lesson' }),
-  N(19, { kind: 'friend_battery' }),
+  N(19, { kind: 'friend_shield' }),
   N(20, undefined,                          { kind: 'nick_color' }),
   N(21, P(2)),
   N(22, undefined,                          { kind: 'choice_3' }),
@@ -129,9 +136,11 @@ export const SEASON_TRACK: readonly SeasonTrackNode[] = [
   N(45, undefined,                          { kind: 'card_pack' }),
   N(46, { kind: 'battery' }),
   N(47, undefined,                          { kind: 'collection_magnet' }),
-  N(48, { kind: 'friend_battery' }),
+  N(48, { kind: 'friend_shield' }),
   N(49, undefined,                          P(25)),
-  N(50, undefined,                          P(40)),
+  // зачем: слот 50 (владелец, 2026-08-03) — секретная пурпурная аура, эксклюзив
+  // именно этого уровня: не выдаётся больше нигде и никогда, статус «дошедшего».
+  N(50, undefined,                          { kind: 'aura_secret' }),
   N(51, undefined,                          { kind: 'time_machine' }),
   N(52, undefined,                          { kind: 'league_boost' }),
   N(53, undefined,                          { kind: 'tournament_ticket' }),

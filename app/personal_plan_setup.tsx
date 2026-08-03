@@ -17,7 +17,7 @@ import { getPersonalPlanArt } from './personal_plan_art';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { queuePendingPersonalPlanActivation, readPendingPersonalPlanActivation } from './personal_plan_activation';
 import { usePremium } from '../components/PremiumContext';
-import { canActivatePlan } from './compass/compass_access';
+import { shouldGateFeature } from './feature_gates';
 import {
   PERSONAL_PLAN_SETUP_GOALS,
   PERSONAL_PLAN_SETUP_LEVELS,
@@ -28,6 +28,18 @@ import {
 } from './personal_plan_recommendation';
 
 type Step = 'goal' | 'level' | 'minutes' | 'result' | 'all';
+
+/**
+ * Премиум-гейт запуска персонального плана. Раньше жил в удалённом
+ * app/compass/compass_access.ts (папка «Compass» была лишь местом хранения,
+ * само правило не зависело от ассистента Compass и всегда действовало —
+ * это починка дыры монетизации: план — Premium-фича, без доступа должен
+ * вести на пейвол, а не активироваться бесплатно). Логика 1-в-1 сохранена
+ * здесь после удаления ассистента: делегируем в тот же shouldGateFeature.
+ */
+function canActivatePlan(input: { hasPremiumAccess: boolean }): boolean {
+  return !shouldGateFeature('personal_plan', input.hasPremiumAccess);
+}
 
 const PLAN_IDS: PersonalPlanId[] = ['voyazh', 'mitap', 'gavan', 'impuls', 'echo'];
 const TOTAL_STEPS = 4;

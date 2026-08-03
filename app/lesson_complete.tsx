@@ -61,9 +61,7 @@ import { COURSE_LEVEL_RANGES, getCourseLevelForLesson } from './course_levels';
 import RegistrationPromptModal from '../components/RegistrationPromptModal';
 import ReviewPromptModal from '../components/ReviewPromptModal';
 import CoachToast from '../components/CoachToast';
-import CompassDepthSurface from '../components/CompassDepthSurface';
 import { useOverlayVisible } from '../components/OverlayArbiter';
-import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 import { AUTH_PROMPT_SHOWN_KEY, getLinkedAuthInfo } from './auth_provider';
 import { buildCelebrationShareBody } from './celebration_share_messages';
 import { buildLessonShareMessage } from './lesson_share';
@@ -159,27 +157,24 @@ function ReviewModal({ visible, context, t, f, themeMode, bottomInset, lang, onC
   };
 
   if (!visible || !variant) return null;
-  const isCompassTheme = false;
-  const panelRadius = isCompassTheme ? 14 : 24;
-  const buttonRadius = isCompassTheme ? 9 : 14;
+  const panelRadius = 24;
+  const buttonRadius = 14;
 
   return (
     <Modal transparent animationType="none" visible={visible} onRequestClose={handleNo}>
       <Animated.View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: 'flex-end', opacity: fadeAnim }}>
         <Pressable style={{ flex: 1 }} onPress={handleNo} />
         <View style={{
-          backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
+          backgroundColor: t.bgCard,
           borderTopLeftRadius: panelRadius,
           borderTopRightRadius: panelRadius,
           padding: 28,
           paddingBottom: Math.max(40, bottomInset + 20),
           borderTopWidth: 0.5,
-          borderColor: isCompassTheme ? COMPASS_RICH.hairline : t.border,
+          borderColor: t.border,
           alignItems: 'center',
           overflow: 'hidden',
-          ...(isCompassTheme ? compassShadow(3) : null),
         }}>
-          {isCompassTheme && <CompassDepthSurface radius={panelRadius} selected />}
           {step === 'ask' ? (
             <>
               <Text style={{ fontSize: 36, marginBottom: 14 }}>{variant.emoji}</Text>
@@ -194,45 +189,41 @@ function ReviewModal({ visible, context, t, f, themeMode, bottomInset, lang, onC
                   style={{
                     flex: 1,
                     minHeight: 52,
-                    backgroundColor: isCompassTheme ? COMPASS_RICH.charcoal : t.bgSurface,
+                    backgroundColor: t.bgSurface,
                     borderRadius: buttonRadius,
                     paddingVertical: 14,
                     paddingHorizontal: 12,
                     justifyContent: 'center',
                     alignItems: 'center',
                     borderWidth: 0,
-                    borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
+                    borderColor: t.border,
                     overflow: 'hidden',
-                    ...(isCompassTheme ? compassShadow(1) : null),
                   }}
                   onPress={handleNo}
                 >
-                  {isCompassTheme && <CompassDepthSurface radius={buttonRadius} quiet />}
                   <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '600', textAlign: 'center' }}>{variant.btnNo}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={{
                     flex: 1,
                     minHeight: 52,
-                    backgroundColor: isCompassTheme ? COMPASS_RICH.champagne : t.correct,
+                    backgroundColor: t.correct,
                     borderRadius: buttonRadius,
                     paddingVertical: 14,
                     paddingHorizontal: 36,
                     justifyContent: 'center',
                     alignItems: 'center',
                     borderWidth: 0,
-                    borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent',
+                    borderColor: 'transparent',
                     overflow: 'hidden',
                     position: 'relative',
-                    ...(isCompassTheme ? compassShadow(1) : null),
                   }}
                   onPress={handleYes}
                 >
-                  {isCompassTheme && <CompassDepthSurface radius={buttonRadius} cream />}
                   <View style={{ alignItems: 'center', justifyContent: 'center', width: '100%' }}>
                     <Text
                       style={{
-                        color: isCompassTheme ? COMPASS_RICH.textDark : t.correctText,
+                        color: t.correctText,
                         fontSize: f.body,
                         fontWeight: '700',
                         lineHeight: f.body * 1.15,
@@ -300,7 +291,6 @@ function AchievementNotifModal({ notif, lang, t, f, themeMode, lessonId, lessonS
   const dismiss = () => {
     Animated.timing(opacity, { toValue: 0, duration: 200, useNativeDriver: true }).start(onDismiss);
   };
-  const isCompassTheme = false;
 
   const MEDAL_IMAGES: Record<string, any> = {
     bronze: require('../assets/images/levels/bronza.webp'),
@@ -413,33 +403,29 @@ function AchievementNotifModal({ notif, lang, t, f, themeMode, lessonId, lessonS
       <Pressable style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }} onPress={dismiss} />
       <Animated.View style={{
         transform: [{ translateY }],
-        backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
-        borderRadius: isCompassTheme ? 14 : 28, padding: 28, marginHorizontal: 24,
+        backgroundColor: t.bgCard,
+        borderRadius: 28, padding: 28, marginHorizontal: 24,
         alignItems: 'center', width: '100%', maxWidth: 360,
-        borderWidth: 0, borderColor: isCompassTheme ? COMPASS_RICH.hairline : t.textSecond + '44',
+        borderWidth: 0, borderColor: t.textSecond + '44',
         overflow: 'hidden',
-        ...(isCompassTheme ? compassShadow(3) : { shadowColor: '#000', shadowOpacity: 0.4, shadowRadius: 24, elevation: 20 }),
+        shadowColor: '#000', shadowOpacity: 0.4, shadowRadius: 24, elevation: 20,
       }}>
-        {isCompassTheme && <CompassDepthSurface radius={14} selected />}
         {/* Icon / Image */}
         {notif.kind === 'medal' && notif.medalTier && MEDAL_IMAGES[notif.medalTier] && (
           <Image source={MEDAL_IMAGES[notif.medalTier]} style={{ width: 90, height: 90 }} contentFit="contain" />
         )}
         {notif.kind === 'lesson_unlock' && (
-          <View style={{ width: 80, height: 80, borderRadius: isCompassTheme ? 12 : 40, backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalWarm : t.accentBg, justifyContent: 'center', alignItems: 'center', marginBottom: 4, borderWidth: 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent', overflow: 'hidden' }}>
-            {isCompassTheme && <CompassDepthSurface radius={12} selected />}
+          <View style={{ width: 80, height: 80, borderRadius: 40, backgroundColor: t.accentBg, justifyContent: 'center', alignItems: 'center', marginBottom: 4, borderWidth: 0, borderColor: 'transparent', overflow: 'hidden' }}>
             <Text style={{ fontSize: 40 }}>🔓</Text>
           </View>
         )}
         {notif.kind === 'level_exam_unlock' && (
-          <View style={{ width: 80, height: 80, borderRadius: isCompassTheme ? 12 : 40, backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalWarm : t.bgSurface, justifyContent: 'center', alignItems: 'center', marginBottom: 4, borderWidth: 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent', overflow: 'hidden' }}>
-            {isCompassTheme && <CompassDepthSurface radius={12} selected />}
+          <View style={{ width: 80, height: 80, borderRadius: 40, backgroundColor: t.bgSurface, justifyContent: 'center', alignItems: 'center', marginBottom: 4, borderWidth: 0, borderColor: 'transparent', overflow: 'hidden' }}>
             <Text style={{ fontSize: 40 }}>📋</Text>
           </View>
         )}
         {notif.kind === 'lingman_exam_unlock' && (
-          <View style={{ width: 80, height: 80, borderRadius: isCompassTheme ? 12 : 40, backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalWarm : t.correctBg, justifyContent: 'center', alignItems: 'center', marginBottom: 4, borderWidth: 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent', overflow: 'hidden' }}>
-            {isCompassTheme && <CompassDepthSurface radius={12} selected />}
+          <View style={{ width: 80, height: 80, borderRadius: 40, backgroundColor: t.correctBg, justifyContent: 'center', alignItems: 'center', marginBottom: 4, borderWidth: 0, borderColor: 'transparent', overflow: 'hidden' }}>
             <Text style={{ fontSize: 40 }}>🎓</Text>
           </View>
         )}
@@ -463,21 +449,19 @@ function AchievementNotifModal({ notif, lang, t, f, themeMode, lessonId, lessonS
             alignItems: 'center',
             gap: 8,
             marginTop: 18,
-            backgroundColor: isCompassTheme ? COMPASS_RICH.charcoal : t.bgSurface,
-            borderRadius: isCompassTheme ? 9 : 14,
+            backgroundColor: t.bgSurface,
+            borderRadius: 14,
             paddingHorizontal: 18,
             paddingVertical: 10,
             borderWidth: 0,
-            borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent',
+            borderColor: 'transparent',
             overflow: 'hidden',
-            ...(isCompassTheme ? compassShadow(1) : null),
           }}
           onPress={async () => {
             hapticTap();
             await Share.share({ message: shareMessage() }).catch(() => {});
           }}
         >
-          {isCompassTheme && <CompassDepthSurface radius={9} quiet />}
           <Ionicons name="share-outline" size={18} color={t.textSecond} />
           <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '600' }}>
             {triLang(lang, { ru: 'Поделиться', uk: 'Поділитися', es: 'Compartir', 'pt-BR': 'Compartilhar', vi: 'Chia sẻ', id: 'Bagikan', tr: 'Paylaş', pl: 'Udostępnij' })}
@@ -489,18 +473,16 @@ function AchievementNotifModal({ notif, lang, t, f, themeMode, lessonId, lessonS
           onPress={() => { hapticTap(); dismiss(); }}
           style={{
             marginTop: 14,
-            backgroundColor: isCompassTheme ? COMPASS_RICH.champagne : t.accent,
-            borderRadius: isCompassTheme ? 9 : 16,
+            backgroundColor: t.accent,
+            borderRadius: 16,
             paddingHorizontal: 40,
             paddingVertical: 12,
             borderWidth: 0,
-            borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent',
+            borderColor: 'transparent',
             overflow: 'hidden',
-            ...(isCompassTheme ? compassShadow(1) : null),
           }}
         >
-          {isCompassTheme && <CompassDepthSurface radius={9} cream />}
-          <Text style={{ color: isCompassTheme ? COMPASS_RICH.textDark : t.correctText, fontWeight: '800', fontSize: f.bodyLg }}>
+          <Text style={{ color: t.correctText, fontWeight: '800', fontSize: f.bodyLg }}>
             {triLang(lang, { ru: 'Отлично!', uk: 'Чудово!', es: '¡Genial!', 'pt-BR': 'Ótimo!', vi: 'Tuyệt!', id: 'Bagus!', tr: 'Harika!', pl: 'Świetnie!' })}
           </Text>
         </TouchableOpacity>
@@ -523,7 +505,6 @@ export default function LessonComplete() {
   const softUpsellAccountScope = studyTarget === 'es'
     ? ''
     : lessonSoftUpsellPersistenceScope(softUpsellAccountToken);
-  const isCompassTheme = false;
   const params = useLocalSearchParams<{
     id: string;
     unlocked?: string;
@@ -1282,18 +1263,16 @@ export default function LessonComplete() {
           zIndex: 10,
           width: 36,
           height: 36,
-          borderRadius: isCompassTheme ? 9 : 18,
-          backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
+          borderRadius: 18,
+          backgroundColor: t.bgCard,
           borderWidth: 0,
-          borderColor: isCompassTheme ? COMPASS_RICH.hairline : t.border,
+          borderColor: t.border,
           justifyContent: 'center',
           alignItems: 'center',
           overflow: 'hidden',
-          ...(isCompassTheme ? compassShadow(1) : null),
         }}
       >
-        {isCompassTheme && <CompassDepthSurface radius={9} quiet />}
-        <Ionicons name="chevron-back" size={20} color={isCompassTheme ? COMPASS_RICH.champagne : t.textPrimary} />
+        <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
       </TapScale>
       )}
       <ContentWrap>
@@ -1339,28 +1318,24 @@ export default function LessonComplete() {
           {/* Бонус +500 */}
           <View style={{
             flexDirection: 'row', alignItems: 'center', gap: 8,
-            backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalWarm : t.correctBg, borderRadius: isCompassTheme ? 9 : 14,
+            backgroundColor: t.correctBg, borderRadius: 14,
             paddingHorizontal: 18, paddingVertical: 12,
-            borderWidth: 1, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.correct, marginBottom: 20,
+            borderWidth: 1, borderColor: t.correct, marginBottom: 20,
             overflow: 'hidden',
-            ...(isCompassTheme ? compassShadow(1) : null),
           }}>
-            {isCompassTheme && <CompassDepthSurface radius={9} selected />}
-            <Ionicons name="star" size={20} color={isCompassTheme ? COMPASS_RICH.cream : t.correct} />
-            <Text style={{ color: isCompassTheme ? COMPASS_RICH.cream : t.correct, fontSize: 18, fontWeight: '700' }}>{c.bonus}</Text>
+            <Ionicons name="star" size={20} color={t.correct} />
+            <Text style={{ color: t.correct, fontSize: 18, fontWeight: '700' }}>{c.bonus}</Text>
           </View>
 
           {/* Совет отдохнуть */}
           <View style={{
-            backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderRadius: isCompassTheme ? 10 : 14,
-            padding: 16, borderWidth: 0, borderColor: isCompassTheme ? COMPASS_RICH.hairline : t.border,
+            backgroundColor: t.bgCard, borderRadius: 14,
+            padding: 16, borderWidth: 0, borderColor: t.border,
             width: '100%', marginBottom: 36,
             flexDirection: 'row', alignItems: 'center', gap: 12,
             overflow: 'hidden',
-            ...(isCompassTheme ? compassShadow(1) : null),
           }}>
-            {isCompassTheme && <CompassDepthSurface radius={10} quiet />}
-            <Ionicons name="cafe-outline" size={24} color={isCompassTheme ? COMPASS_RICH.champagne : t.textSecond} />
+            <Ionicons name="cafe-outline" size={24} color={t.textSecond} />
             <Text style={{ color: t.textMuted, fontSize: 15, lineHeight: 22, flex: 1 }}>
               {c.rest}
             </Text>
@@ -1389,18 +1364,17 @@ export default function LessonComplete() {
           {lessonId < 32 && !showPremiumBanner && (
             <DuoPressable
               testID="lesson-complete-next-lesson"
-              edgeColor={isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border}
+              edgeColor={t.border}
               wrapStyle={{ marginBottom: 12 }}
               style={{
-                width: '100%', backgroundColor: isCompassTheme ? COMPASS_RICH.champagne : t.bgSurface,
-                borderRadius: isCompassTheme ? 9 : 16, padding: 18,
-                borderWidth: 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border,
+                width: '100%', backgroundColor: t.bgSurface,
+                borderRadius: 16, padding: 18,
+                borderWidth: 0, borderColor: t.border,
                 overflow: 'hidden',
               }}
               onPress={goNext}
             >
-              {isCompassTheme && <CompassDepthSurface radius={9} cream />}
-              <Text style={{ color: isCompassTheme ? COMPASS_RICH.textDark : t.textPrimary, fontSize: 18, fontWeight: '700' }}>
+              <Text style={{ color: t.textPrimary, fontSize: 18, fontWeight: '700' }}>
                 {c.nextLesson} {lessonId + 1} →
               </Text>
             </DuoPressable>
@@ -1420,14 +1394,13 @@ export default function LessonComplete() {
                 activeOpacity={0.88}
                 style={{
                   width: '100%',
-                  borderRadius: isCompassTheme ? 10 : 16,
+                  borderRadius: 16,
                   padding: 18,
                   alignItems: 'center',
-                  backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalWarm : t.textSecond,
+                  backgroundColor: t.textSecond,
                   borderWidth: 0,
-                  borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.gold + '55',
+                  borderColor: t.gold + '55',
                   overflow: 'hidden',
-                  ...(isCompassTheme ? compassShadow(2) : null),
                 }}
                 onPress={() => {
                   hapticTap();
@@ -1443,11 +1416,10 @@ export default function LessonComplete() {
                   } as any);
                 }}
               >
-                {isCompassTheme && <CompassDepthSurface radius={10} selected />}
-                <Text style={{ color: isCompassTheme ? COMPASS_RICH.champagne : t.gold, fontSize: f.caption, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 0.8, marginBottom: 4 }}>
+                <Text style={{ color: t.gold, fontSize: f.caption, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 0.8, marginBottom: 4 }}>
                   {triLang(lang, { ru: '🔓 Следующий урок закрыт', uk: '🔓 Наступний урок закрито', es: '🔓 La siguiente lección está bloqueada', 'pt-BR': '🔓 Próxima lição bloqueada', vi: '🔓 Bài tiếp theo đã bị khóa', id: '🔓 Pelajaran berikutnya terkunci', tr: '🔓 Sonraki ders kilitli', pl: '🔓 Następna lekcja jest zablokowana' })}
                 </Text>
-                <Text style={{ color: isCompassTheme ? COMPASS_RICH.cream : t.correctText, fontSize: 17, fontWeight: '800', textAlign: 'center', marginBottom: 2 }}>
+                <Text style={{ color: t.correctText, fontSize: 17, fontWeight: '800', textAlign: 'center', marginBottom: 2 }}>
                   {triLang(lang, { ru: 'Открыть Plus — продолжить →', uk: 'Відкрити Plus — продовжити →', es: 'Abrir Plus — continuar →', 'pt-BR': 'Abrir Plus — continuar →', vi: 'Mở Plus — tiếp tục →', id: 'Buka Plus — lanjutkan →', tr: 'Plus aç — devam et →', pl: 'Otwórz Plus — kontynuuj →' })}
                 </Text>
               </TouchableOpacity>
@@ -1473,22 +1445,21 @@ export default function LessonComplete() {
               «пустую» плитку. Акцент сохраняем через accent-кромку, рамку и иконку. */}
           <DuoPressable
             testID="lesson-complete-repeat"
-            edgeColor={isCompassTheme ? COMPASS_RICH.hairline : t.accent}
+            edgeColor={t.accent}
             disabled={repeatOpening}
             accessibilityState={{ busy: repeatOpening }}
             pressedExternally={repeatOpening}
             wrapStyle={{ marginBottom: 14, opacity: repeatOpening ? 0.72 : 1 }}
             style={{
-              width: '100%', backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
-              borderRadius: isCompassTheme ? 9 : 16, padding: 16,
-              borderWidth: 0, borderColor: isCompassTheme ? COMPASS_RICH.hairline : t.accent,
+              width: '100%', backgroundColor: t.bgCard,
+              borderRadius: 16, padding: 16,
+              borderWidth: 0, borderColor: t.accent,
               flexDirection: 'row', justifyContent: 'center', gap: 8,
               overflow: 'hidden',
             }}
             onPress={handleRepeatLesson}
           >
-            {isCompassTheme && <CompassDepthSurface radius={9} selected />}
-            <Text style={{ color: isCompassTheme ? COMPASS_RICH.champagne : t.textPrimary, fontSize: 16, fontWeight: '600' }}>
+            <Text style={{ color: t.textPrimary, fontSize: 16, fontWeight: '600' }}>
               ↺ {c.repeatLesson}
             </Text>
           </DuoPressable>
@@ -1501,10 +1472,10 @@ export default function LessonComplete() {
               gap: 8,
               padding: 12,
               marginTop: 4,
-              borderRadius: isCompassTheme ? 9 : 0,
-              backgroundColor: isCompassTheme ? COMPASS_RICH.charcoal : 'transparent',
+              borderRadius: 0,
+              backgroundColor: 'transparent',
               borderWidth: 0,
-              borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent',
+              borderColor: 'transparent',
               overflow: 'hidden',
             }}
             onPress={async () => {
@@ -1518,9 +1489,8 @@ export default function LessonComplete() {
               await Share.share({ message: msg }).catch(() => {});
             }}
           >
-            {isCompassTheme && <CompassDepthSurface radius={9} quiet />}
-            <Ionicons name="share-outline" size={18} color={isCompassTheme ? COMPASS_RICH.champagne : t.textSecond} />
-            <Text style={{ color: isCompassTheme ? COMPASS_RICH.textMuted : t.textSecond, fontSize: 15 }}>
+            <Ionicons name="share-outline" size={18} color={t.textSecond} />
+            <Text style={{ color: t.textSecond, fontSize: 15 }}>
               {c.shareResult}
             </Text>
           </TouchableOpacity>
@@ -1529,15 +1499,14 @@ export default function LessonComplete() {
             testID="lesson-complete-back-home"
             style={{
               padding: 14,
-              borderRadius: isCompassTheme ? 9 : 0,
-              backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : 'transparent',
+              borderRadius: 0,
+              backgroundColor: 'transparent',
               borderWidth: 0,
-              borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent',
+              borderColor: 'transparent',
               overflow: 'hidden',
             }}
             onPress={() => { hapticTap(); router.replace('/(tabs)/home' as any); }}
           >
-            {isCompassTheme && <CompassDepthSurface radius={9} quiet />}
             <Text style={{ color: t.textMuted, fontSize: 16 }}>{c.backHome}</Text>
           </TouchableOpacity>
         </Animated.View>

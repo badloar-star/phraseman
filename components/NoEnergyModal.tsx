@@ -29,8 +29,6 @@ import { navigateAfterModalClose } from '../app/safe_modal_navigation';
 import { shouldRenderNoEnergyModal } from '../app/services/no_energy_modal_visibility';
 import { triLang, type Lang } from '../constants/i18n';
 import type { ThemeMode } from '../constants/theme';
-import CompassDepthSurface from './CompassDepthSurface';
-import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 import { soundDirector } from '../modules/audio/sound_director';
 
 import { noAndroidOutline } from '../constants/androidGlow';
@@ -233,9 +231,8 @@ function NoEnergyModal({
   const { theme: t, themeMode, f } = useTheme();
   const art = NO_ENERGY_MODAL_CHROME[themeMode] ?? NO_ENERGY_MODAL_CHROME.dark;
   const graphiteRadius = themeMode === 'minimalDark';
-  const isCompassTheme = false;
-  const modalRadius = isCompassTheme ? 10 : graphiteRadius ? 8 : 22;
-  const buttonRadius = isCompassTheme ? 9 : graphiteRadius ? 6 : 14;
+  const modalRadius = graphiteRadius ? 8 : 22;
+  const buttonRadius = graphiteRadius ? 6 : 14;
   const paywallCardBg = t.bgCard;
   const { energy, bonusEnergy, maxEnergy, isUnlimited, reload } = useEnergy();
   const { hasPremiumAccess } = usePremium();
@@ -424,16 +421,15 @@ function NoEnergyModal({
           style={[
             styles.card,
             {
-              backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : paywallCardBg,
+              backgroundColor: paywallCardBg,
               opacity: cardOp,
               transform: [{ scale: cardScale }],
-              shadowColor: isCompassTheme ? '#000' : art.glow,
-              shadowOpacity: isCompassTheme ? 0.52 : 0.45,
-              shadowRadius: isCompassTheme ? 18 : 24,
-              borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : art.borderColor,
+              shadowColor: art.glow,
+              shadowOpacity: 0.45,
+              shadowRadius: 24,
+              borderColor: art.borderColor,
               borderRadius: modalRadius,
             },
-            isCompassTheme && compassShadow(3),
           ]}
         >
           <LinearGradient
@@ -450,8 +446,6 @@ function NoEnergyModal({
             style={styles.cardGlow}
             pointerEvents="none"
           />
-          {isCompassTheme ? <CompassDepthSurface radius={modalRadius} selected /> : null}
-
           {/* Hero icon: молния с pulse-масштабом */}
           <Animated.View
             style={[

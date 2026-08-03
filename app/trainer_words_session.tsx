@@ -24,12 +24,10 @@ import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
-import CompassDepthSurface from '../components/CompassDepthSurface';
 import GradientProgressBar from '../components/GradientProgressBar';
 import { TrainerLoadingView, TrainerErrorView } from '../components/TrainerLoadStates';
 import { triLang } from '../constants/i18n';
 import { screenTextOnGradient } from '../constants/theme';
-import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 import { statsThemeAccent, statsThemeSoftBg } from '../constants/statsThemeChrome';
 import type { ThemeMode } from '../constants/theme';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
@@ -86,7 +84,6 @@ interface SwipeCardProps {
 function SwipeCard({ card, onSwipe, isTop, swipeOutRef, themeMode, onSpeakWord }: SwipeCardProps) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
-  const isCompassTheme = false;
   const accent = statsThemeAccent(themeMode);
   const position = useRef(new Animated.ValueXY()).current;
 
@@ -165,17 +162,14 @@ function SwipeCard({ card, onSwipe, isTop, swipeOutRef, themeMode, onSpeakWord }
     <Animated.View
       style={[
         styles.card,
-        isCompassTheme && compassShadow(3),
         {
-          backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
-          borderRadius: isCompassTheme ? 12 : 24,
-          overflow: isCompassTheme ? 'hidden' : 'visible',
+          backgroundColor: t.bgCard,
+          borderRadius: 24,
         },
         cardStyle,
       ]}
       {...(isTop ? panResponder.panHandlers : {})}
     >
-      {isCompassTheme ? <CompassDepthSurface radius={12} selected /> : null}
       {/* Озвучка — всегда справа вверху */}
       <TouchableOpacity
         accessibilityRole="button"
@@ -256,7 +250,6 @@ export default function TrainerWordsSession() {
   const router = useRouter();
   const params = useLocalSearchParams<TrainerPlanTaskRouteParams>();
   const { theme: t, f, themeMode } = useTheme();
-  const isCompassTheme = false;
   const accent = statsThemeAccent(themeMode);
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const { lang } = useLang();
@@ -553,9 +546,7 @@ export default function TrainerWordsSession() {
           <View style={styles.deckContainer}>
             {/* Показываем следующую карточку под текущей */}
             {deck[current + 1] && (
-              <View style={[styles.card, styles.cardBack, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalSoft : t.bgCard, borderRadius: isCompassTheme ? 12 : 24, overflow: isCompassTheme ? 'hidden' : 'visible' }]}>
-                {isCompassTheme ? <CompassDepthSurface radius={12} quiet /> : null}
-              </View>
+              <View style={[styles.card, styles.cardBack, { backgroundColor: t.bgCard, borderRadius: 24 }]} />
             )}
             {deck[current] && (
               <SwipeCard

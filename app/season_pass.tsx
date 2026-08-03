@@ -87,7 +87,7 @@ const REWARD_LABELS: Record<SeasonReward['kind'], Record<Lang, string>> = {
   choice_3:          { ru: 'Выбор из трёх', uk: 'Вибір із трьох', es: 'Elige una de tres', 'pt-BR': 'Escolha uma de três', vi: 'Chọn một trong ba', id: 'Pilih satu dari tiga', tr: 'Üçten birini seç', pl: 'Wybór z trzech' },
   xp_bank:           { ru: 'Банк опыта', uk: 'Банк досвіду', es: 'Banco de XP', 'pt-BR': 'Banco de XP', vi: 'Ngân hàng XP', id: 'Bank XP', tr: 'XP bankası', pl: 'Bank XP' },
   plus_days:         { ru: 'Дни Plus', uk: 'Дні Plus', es: 'Días Plus', 'pt-BR': 'Dias Plus', vi: 'Ngày Plus', id: 'Hari Plus', tr: 'Plus günleri', pl: 'Dni Plus' },
-  frame:             { ru: 'Рамка профиля', uk: 'Рамка профілю', es: 'Marco de perfil', 'pt-BR': 'Moldura de perfil', vi: 'Khung hồ sơ', id: 'Bingkai profil', tr: 'Profil çerçevesi', pl: 'Ramka profilu' },
+  frame:             { ru: 'Визитка', uk: 'Візитка', es: 'Tarjeta de perfil', 'pt-BR': 'Cartão de perfil', vi: 'Thẻ hồ sơ', id: 'Kartu profil', tr: 'Profil kartı', pl: 'Wizytówka' },
   aura_stage:        { ru: 'Аура · стадия', uk: 'Аура · стадія', es: 'Aura · etapa', 'pt-BR': 'Aura · estágio', vi: 'Hào quang · cấp', id: 'Aura · tahap', tr: 'Aura · aşama', pl: 'Aura · etap' },
   nick_color:        { ru: 'Цвет ника', uk: 'Колір ніка', es: 'Color del nombre', 'pt-BR': 'Cor do nome', vi: 'Màu biệt danh', id: 'Warna nama', tr: 'Takma ad rengi', pl: 'Kolor nicku' },
   custom_avatar:     { ru: 'Кастомный аватар', uk: 'Кастомний аватар', es: 'Avatar personalizado', 'pt-BR': 'Avatar personalizado', vi: 'Ảnh đại diện riêng', id: 'Avatar kustom', tr: 'Özel avatar', pl: 'Własny awatar' },

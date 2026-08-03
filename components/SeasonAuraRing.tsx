@@ -4,9 +4,17 @@ import type { SeasonAuraAsset } from '../app/season_pass_track_config';
 import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 
+export type SeasonAuraVisibleLayers = Readonly<{
+  base?: boolean;
+  flow?: boolean;
+  particles?: boolean;
+}>;
+
 interface Props {
   asset: SeasonAuraAsset;
   size: number;
+  active?: boolean;
+  visibleLayers?: SeasonAuraVisibleLayers;
 }
 
 function rotation(value: Animated.Value, reverse: boolean) {
@@ -16,10 +24,10 @@ function rotation(value: Animated.Value, reverse: boolean) {
   });
 }
 
-function SeasonAuraRing({ asset, size }: Props) {
+function SeasonAuraRing({ asset, size, active = true, visibleLayers = {} }: Props) {
   const isFocused = useIsScreenFocused();
   const reduceMotion = useReduceMotion();
-  const shouldAnimate = isFocused && !reduceMotion;
+  const shouldAnimate = active && isFocused && !reduceMotion;
   const breath = useRef(new Animated.Value(0)).current;
   const baseTurn = useRef(new Animated.Value(0)).current;
   const flowTurn = useRef(new Animated.Value(0)).current;
@@ -78,39 +86,45 @@ function SeasonAuraRing({ asset, size }: Props) {
 
   return (
     <View style={{ width: size, height: size }} accessible={false}>
-      <Animated.Image
-        source={asset.baseSource}
-        resizeMode="contain"
-        style={[
-          layerStyle,
-          {
-            opacity: baseOpacity,
-            transform: [{ scale: baseScale }, { rotate: rotation(baseTurn, false) }],
-          },
-        ]}
-      />
-      <Animated.Image
-        source={asset.flowSource}
-        resizeMode="contain"
-        style={[
-          layerStyle,
-          {
-            opacity: flowOpacity,
-            transform: [{ scale: flowScale }, { rotate: rotation(flowTurn, asset.flowReverse) }],
-          },
-        ]}
-      />
-      <Animated.Image
-        source={asset.particlesSource}
-        resizeMode="contain"
-        style={[
-          layerStyle,
-          {
-            opacity: particlesOpacity,
-            transform: [{ scale: particlesScale }, { rotate: rotation(particlesTurn, asset.particlesReverse) }],
-          },
-        ]}
-      />
+      {visibleLayers.base !== false ? (
+        <Animated.Image
+          source={asset.baseSource}
+          resizeMode="contain"
+          style={[
+            layerStyle,
+            {
+              opacity: baseOpacity,
+              transform: [{ scale: baseScale }, { rotate: rotation(baseTurn, false) }],
+            },
+          ]}
+        />
+      ) : null}
+      {visibleLayers.flow !== false ? (
+        <Animated.Image
+          source={asset.flowSource}
+          resizeMode="contain"
+          style={[
+            layerStyle,
+            {
+              opacity: flowOpacity,
+              transform: [{ scale: flowScale }, { rotate: rotation(flowTurn, asset.flowReverse) }],
+            },
+          ]}
+        />
+      ) : null}
+      {visibleLayers.particles !== false ? (
+        <Animated.Image
+          source={asset.particlesSource}
+          resizeMode="contain"
+          style={[
+            layerStyle,
+            {
+              opacity: particlesOpacity,
+              transform: [{ scale: particlesScale }, { rotate: rotation(particlesTurn, asset.particlesReverse) }],
+            },
+          ]}
+        />
+      ) : null}
     </View>
   );
 }

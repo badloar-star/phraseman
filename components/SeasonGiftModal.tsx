@@ -103,8 +103,8 @@ const MODAL_COPY: Record<SeasonReward['kind'], { title: Tri; desc: Tri }> = {
     desc: T('Полный доступ Plus: безлимит энергии и всё остальное — уже включено.', 'Повний доступ Plus: безліміт енергії і все інше — вже увімкнено.', 'Acceso Plus completo: energía ilimitada y más.', 'Acesso Plus completo: energia ilimitada e mais.', 'Toàn quyền Plus: năng lượng không giới hạn.', 'Akses Plus penuh: energi tanpa batas.', 'Tam Plus erişimi: sınırsız enerji.', 'Pełny dostęp Plus: nielimitowana energia.'),
   },
   frame: {
-    title: T('Рамка профиля', 'Рамка профілю', 'Marco de perfil', 'Moldura de perfil', 'Khung hồ sơ', 'Bingkai profil', 'Profil çerçevesi', 'Ramka profilu'),
-    desc: T('Сезонная кайма вокруг твоего аватара — навсегда твоя.', 'Сезонна облямівка навколо твого аватара — назавжди твоя.', 'Borde de temporada alrededor de tu avatar, tuyo para siempre.', 'Borda de temporada no seu avatar, sua para sempre.', 'Viền mùa quanh avatar — mãi mãi của bạn.', 'Bingkai musim di avatarmu — selamanya milikmu.', 'Avatarında sezon çerçevesi — sonsuza dek senin.', 'Sezonowa ramka wokół awatara — na zawsze Twoja.'),
+    title: T('Визитка', 'Візитка', 'Tarjeta de perfil', 'Cartão de perfil', 'Thẻ hồ sơ', 'Kartu profil', 'Profil kartı', 'Wizytówka'),
+    desc: T('Сезонное оформление всей твоей пользовательской карточки — навсегда твоё.', 'Сезонне оформлення всієї твоєї картки користувача — назавжди твоє.', 'Diseño de temporada para toda tu tarjeta de usuario, tuyo para siempre.', 'Visual de temporada para todo o seu cartão de usuário, seu para sempre.', 'Thiết kế mùa cho toàn bộ thẻ người dùng — mãi mãi của bạn.', 'Tampilan musim untuk seluruh kartu penggunamu — selamanya milikmu.', 'Tüm kullanıcı kartın için sezon tasarımı — sonsuza dek senin.', 'Sezonowy wygląd całej Twojej karty użytkownika — na zawsze Twój.'),
   },
   aura_stage: {
     title: T('Аура сезона', 'Аура сезону', 'Aura de temporada', 'Aura da temporada', 'Hào quang mùa', 'Aura musim', 'Sezon aurası', 'Aura sezonu'),

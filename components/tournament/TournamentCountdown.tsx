@@ -141,7 +141,7 @@ export const TimerRing = memo(function TimerRing({ seconds, total, size = 44 }: 
           fill={low ? P.danger : P.accent}
         />
       </Svg>
-      {low ? <Text style={[styles.ringText, styles.ringTextLow]}>{Math.ceil(seconds)}</Text> : null}
+      <Text style={[styles.ringText, low && styles.ringTextLow]}>{Math.ceil(seconds)}</Text>
     </View>
   );
 });

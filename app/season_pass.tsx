@@ -35,6 +35,7 @@ import {
 } from './season_pass_model';
 import {
   spineBottomHalfPath,
+  spineFullRowPath,
   spineTopHalfPath,
   spineWaveOffsetForKind,
 } from './season_pass_spine';
@@ -388,15 +389,20 @@ export default function SeasonPassScreen() {
       <View style={{ height: ROW_HEIGHT, flexDirection: 'row', alignItems: 'stretch', gap: 8, paddingHorizontal: 14 }}>
         {renderReward(item.free, 'free', reached, item.level)}
         <View style={{ width: NODE_COLUMN_WIDTH, alignItems: 'center', justifyContent: 'center' }}>
-          {/* Хребет: ОДНА непрерывная SVG-кривая через ВСЮ строку (не два отдельных
-              Path сверху/снизу узла — та версия визуально рвалась на стыке узла:
-              две независимые кривые, встречавшиеся ровно в точке узла, но узел
-              поверх неё (zIndex:2) перекрывал место стыка, и глаз читал разрыв).
-              Теперь один Path от верхнего края строки до нижнего, узел просто
-              рисуется поверх её середины — линия физически цела под ним. */}
+          {/* Хребет: ОДНА гладкая SVG-кривая через ВСЮ строку (spineFullRowPath —
+              один M и одна непрерывная цепочка C-команд, а не конкатенация двух
+              самостоятельных M-путей). зачем 2026-08-03 (владелец, скриншот
+              крашa RNSVGPathParser + «линия уводит в сторону у узла»): склейка
+              spineTopHalfPath + spineBottomHalfPath через пробел давала ДВА
+              independent subpath в одной d-строке — на стыке (ровно в точке
+              узла) кривизна разрывалась изломом. А spineBottomHalfPath сама по
+              себе (золотая подсветка ниже) начиналась с `C` без `M` — невалидный
+              path, на котором крашился нативный парсер iOS. Обе причины закрыты
+              в season_pass_spine.ts; узел просто рисуется поверх середины —
+              линия физически цела и гладка под ним. */}
           <Svg width={NODE_COLUMN_WIDTH} height={ROW_HEIGHT} viewBox={`0 0 ${NODE_COLUMN_WIDTH} ${ROW_HEIGHT}`} style={{ position: 'absolute', top: 0, left: 0 }}>
             <Path
-              d={spineTopHalfPath(cx, halfH, prevOffset, curOffset) + ' ' + spineBottomHalfPath(cx, halfH, ROW_HEIGHT, curOffset, nextOffset)}
+              d={spineFullRowPath(cx, halfH, ROW_HEIGHT, prevOffset, curOffset, nextOffset)}
               stroke={t.bgSurface}
               strokeWidth={SPINE_WIDTH}
               strokeLinecap="round"

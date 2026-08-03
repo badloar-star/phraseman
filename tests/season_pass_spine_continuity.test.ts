@@ -1,5 +1,6 @@
 // ════════════════════════════════════════════════════════════════════════════
-// season_pass_spine_continuity.test.ts — хребет дорожки обязан быть сплошным.
+// season_pass_spine_continuity.test.ts — хребет дорожки обязан быть сплошным
+// И не крашить нативный SVG-парсер.
 //
 // зачем 2026-08-03 (владелец, со скриншотом: «эта линия должна быть сплошная и
 // непрерывная»): строка дорожки рисовала кривую prevOffset → curOffset →
@@ -7,11 +8,27 @@
 // начиналась со своего prevOffset — X узла над ней. Эти координаты не
 // совпадали, и на каждом стыке строк линия скакала вбок на 10-17 px.
 //
-// Тест проверяет не картинку, а ГЕОМЕТРИЮ: конец строки N обязан совпадать с
-// началом строки N+1 для любой последовательности наград.
+// зачем 2026-08-03 (владелец, скриншот РЕАЛЬНОГО краша приложения:
+// «UnexpectedData: C 17.28 81, 19.68 81, 17.28 108» в RNSVGPathParser): прошлая
+// версия этого теста ТРЕБОВАЛА, чтобы spineBottomHalfPath начиналась с `C` без
+// `M` (`bottom.trim().startsWith('C')`) — то есть зафиксировала баг как
+// контракт, а не поймала его. spineBottomHalfPath используется в
+// season_pass.tsx И самостоятельно (золотая подсветка «пройденного низа»
+// строки, отдельный <Path>), а path без ведущего moveto — синтаксически
+// невалиден для RNSVGPathParser: он требует `M` первой командой и крашится,
+// если её нет. Браузерный парсер такое прощает (продолжение subpath), нативный
+// iOS — нет. Отсюда и разрыв на два симптома: видимый на скриншоте «излом у
+// узла» (конкатенация двух M-путей — два independent subpath без общей
+// касательной) и полный краш экрана (spineBottomHalfPath в одиночку).
+//
+// Тест проверяет: (1) каждый path валиден САМ ПО СЕБЕ — начинается с `M`;
+// (2) геометрию — конец строки N обязан совпадать с началом строки N+1 для
+// любой последовательности наград; (3) что склеенный путь строки — ОДНА
+// гладкая кривая (spineFullRowPath), а не два независимых subpath.
 // ════════════════════════════════════════════════════════════════════════════
 import {
   spineBottomHalfPath,
+  spineFullRowPath,
   spineTopHalfPath,
   spineWaveOffsetForKind,
 } from '../app/season_pass_spine';
@@ -36,19 +53,29 @@ function pathEndX(d: string): number {
   return Number(numbers[numbers.length - 2]);
 }
 
+/**
+ * Число команд `M` (moveto) в path-строке — количество независимых subpath.
+ * Гладкая непрерывная кривая обязана иметь РОВНО ОДНУ.
+ */
+function moveCommandCount(d: string): number {
+  return (d.match(/M/g) ?? []).length;
+}
+
 /** Смещение узла дорожки — та же формула, что в рендере строки. */
 function offsetOf(index: number): number {
   const node = SEASON_TRACK[index];
   return spineWaveOffsetForKind(node?.pass?.kind ?? node?.free?.kind);
 }
 
-function rowPath(index: number): { top: string; bottom: string; full: string } {
+function rowGeometry(index: number) {
   const prevOffset = index > 0 ? offsetOf(index - 1) : offsetOf(index);
   const curOffset = offsetOf(index);
   const nextOffset = index < SEASON_TRACK.length - 1 ? offsetOf(index + 1) : curOffset;
-  const top = spineTopHalfPath(CX, HALF_H, prevOffset, curOffset);
-  const bottom = spineBottomHalfPath(CX, HALF_H, ROW_HEIGHT, curOffset, nextOffset);
-  return { top, bottom, full: `${top} ${bottom}` };
+  return {
+    top: spineTopHalfPath(CX, HALF_H, prevOffset, curOffset),
+    bottom: spineBottomHalfPath(CX, HALF_H, ROW_HEIGHT, curOffset, nextOffset),
+    full: spineFullRowPath(CX, HALF_H, ROW_HEIGHT, prevOffset, curOffset, nextOffset),
+  };
 }
 
 describe('хребет сезонной дорожки', () => {
@@ -56,32 +83,39 @@ describe('хребет сезонной дорожки', () => {
     expect(SEASON_TRACK.length).toBeGreaterThan(1);
   });
 
+  test('КАЖДЫЙ path валиден сам по себе — начинается с M (иначе краш RNSVGPathParser)', () => {
+    // Это ловит именно класс бага из краш-лога: spineBottomHalfPath
+    // используется в season_pass.tsx как САМОСТОЯТЕЛЬНЫЙ d золотой подсветки,
+    // а не только как хвост склейки. Без своего M она невалидна.
+    for (let index = 0; index < SEASON_TRACK.length; index += 1) {
+      const { top, bottom, full } = rowGeometry(index);
+      expect(top.trim().startsWith('M')).toBe(true);
+      expect(bottom.trim().startsWith('M')).toBe(true);
+      expect(full.trim().startsWith('M')).toBe(true);
+    }
+  });
+
+  test('строка целиком — ОДНА гладкая кривая, не два независимых subpath', () => {
+    // зачем: конкатенация двух M-путей визуально давала излом ровно в точке
+    // узла (две независимые касательные вместо одной). spineFullRowPath строит
+    // путь с ОДНИМ M и общей симметричной точкой — гладкость по построению.
+    for (let index = 0; index < SEASON_TRACK.length; index += 1) {
+      expect(moveCommandCount(rowGeometry(index).full)).toBe(1);
+    }
+  });
+
   test('верхняя и нижняя половины строки стыкуются в узле', () => {
     for (let index = 0; index < SEASON_TRACK.length; index += 1) {
-      const { top, bottom } = rowPath(index);
-      // Низ продолжает верх командой C без нового M — значит физически
-      // начинается ровно там, где кончился верх.
-      expect(bottom.trim().startsWith('C')).toBe(true);
+      const { top } = rowGeometry(index);
       expect(pathEndX(top)).toBeCloseTo(CX + offsetOf(index), 5);
     }
   });
 
   test('КОНЕЦ строки совпадает с НАЧАЛОМ следующей — линия не рвётся', () => {
     for (let index = 0; index < SEASON_TRACK.length - 1; index += 1) {
-      const current = rowPath(index);
-      const next = rowPath(index + 1);
-      const endX = pathEndX(current.full);
-      const startX = pathStartX(next.full);
+      const endX = pathEndX(rowGeometry(index).full);
+      const startX = pathStartX(rowGeometry(index + 1).full);
       expect(endX).toBeCloseTo(startX, 5);
-    }
-  });
-
-  test('золотая (пройденная) часть повторяет геометрию серой подложки', () => {
-    // Иначе цветной и серый куски разойдутся по форме и дадут двойную линию.
-    for (let index = 0; index < SEASON_TRACK.length; index += 1) {
-      const { top, bottom, full } = rowPath(index);
-      expect(full).toContain(top);
-      expect(full).toContain(bottom);
     }
   });
 
@@ -89,7 +123,7 @@ describe('хребет сезонной дорожки', () => {
     // Полуширина колонки 28; линия толщиной 4 не должна касаться карточек наград.
     const limit = NODE_COLUMN_WIDTH / 2 - 4;
     for (let index = 0; index < SEASON_TRACK.length; index += 1) {
-      const coordinates = rowPath(index).full.match(/-?\d+(?:\.\d+)?/g) ?? [];
+      const coordinates = rowGeometry(index).full.match(/-?\d+(?:\.\d+)?/g) ?? [];
       // Чётные позиции — X, нечётные — Y; проверяем только X.
       coordinates.forEach((value, position) => {
         if (position % 2 !== 0) return;

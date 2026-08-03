@@ -42,6 +42,9 @@ export function spineWaveOffsetForKind(kind: string | undefined): number {
  * начиналась со своего prevOffset — X узла над ней. Эти координаты не
  * совпадали, и на каждом стыке строк линия скакала вбок на 10-17 px (проверено
  * численно на реальных наградах дорожки) — владелец видел это как разрывы.
+ *
+ * Всегда начинается со своего `M` — используется и как самостоятельный path
+ * (золотая подсветка), и как первый сегмент общей строки в spineFullRowPath.
  */
 export function spineTopHalfPath(
   cx: number,
@@ -60,6 +63,17 @@ export function spineTopHalfPath(
  * Следующая строка стартует ровно отсюда (её prevOffset — это наш curOffset),
  * поэтому стык совпадает ПО ПОСТРОЕНИЮ, а не по совпадению чисел. nextOffset
  * задаёт лишь направление изгиба, но не конечную точку.
+ *
+ * зачем 2026-08-03 (владелец, краш RNSVGPathParser «UnexpectedData: C 17.28 81,
+ * 19.68 81, 17.28 108»): раньше строка начиналась сразу с `C`, без `M`. Пока
+ * она склеивалась с spineTopHalfPath через пробел в одну d-строку, это молча
+ * читалось как продолжение уже открытого subpath. Но эта же функция
+ * используется и САМОСТОЯТЕЛЬНО (золотая подсветка «пройденного низа» —
+ * season_pass.tsx рисует её отдельным <Path>) — там `d` целиком равен этой
+ * строке, а path без ведущего moveto синтаксически невалиден. RNSVGPathParser
+ * (в отличие от браузерного парсера) на это падает крашем, а не молча
+ * игнорирует команду. Явный `M` в начало делает функцию валидной ВСЕГДА,
+ * независимо от того, используют её отдельно или как часть большей строки.
  */
 export function spineBottomHalfPath(
   cx: number,
@@ -70,5 +84,37 @@ export function spineBottomHalfPath(
 ): string {
   const from = cx + curOffset;
   const control = cx + (curOffset + nextOffset) / 2;
-  return `C ${from} ${halfH * 1.5}, ${control} ${halfH * 1.5}, ${from} ${rowHeight}`;
+  return `M ${from} ${halfH} C ${from} ${halfH * 1.5}, ${control} ${halfH * 1.5}, ${from} ${rowHeight}`;
+}
+
+/**
+ * Вся строка целиком — ОДНА гладкая кривая от верхнего края до нижнего, с
+ * ОДНИМ `M` и одной непрерывной цепочкой команд. Замена ручной конкатенации
+ * `spineTopHalfPath + ' ' + spineBottomHalfPath` в родителе.
+ *
+ * зачем 2026-08-03 (владелец, скриншот: линия «уводит в сторону» ровно в точке
+ * узла): конкатенация двух самостоятельных M-путей — это ДВА отдельных subpath
+ * в одной d-строке, а не один гладкий контур. Формально не крашится (второй
+ * `M` валиден), но между ними нет непрерывности кривизны: первый subpath
+ * подходит к точке узла своей касательной, второй уходит от неё уже другой —
+ * визуально это читается как излом/скачок ровно там, где рисуется узел.
+ * Здесь — одна кривая через симметричную точку (halfH), поэтому касательная
+ * в halfH одна и та же по построению, а не по совпадению чисел.
+ */
+export function spineFullRowPath(
+  cx: number,
+  halfH: number,
+  rowHeight: number,
+  prevOffset: number,
+  curOffset: number,
+  nextOffset: number,
+): string {
+  // зачем: конец строки ОБЯЗАН быть в X ЭТОГО узла (curOffset), не соседнего —
+  // именно этот X читает prevOffset следующей строки. nextOffset задаёт только
+  // control-point (направление изгиба второй половины), а не конечную точку;
+  // так же было устроено в spineBottomHalfPath ДО объединения в одну кривую.
+  const from = cx + prevOffset;
+  const mid = cx + curOffset;
+  const control = cx + (curOffset + nextOffset) / 2;
+  return `M ${from} 0 C ${from} ${halfH * 0.5}, ${mid} ${halfH * 0.5}, ${mid} ${halfH} C ${mid} ${halfH * 1.5}, ${control} ${halfH * 1.5}, ${mid} ${rowHeight}`;
 }

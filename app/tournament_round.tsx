@@ -29,6 +29,22 @@ import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { useTimerTickCue } from '../hooks/use-timer-tick-cue';
 import { fk } from './feedback/feedback_kit';
+
+/**
+ * зачем 2026-08-04 (владелец: «звуки в турнире работают рандомно и через
+ * раз»): общий на всё приложение лимит арбитра — 2 звука/сек, рассчитан на
+ * редкие события одиночного урока. В турнире тап по паре, вердикт ответа и
+ * тик таймера легко случаются в одну секунду — часть звуков молча гасла.
+ * Свой scope с приподнятым лимитом только для турнирного экрана: остальные
+ * экраны (диагностика, экзамен, флеш-арена) продолжают жить с исходной
+ * защитой от спама.
+ */
+const TOURNAMENT_SOUND_SCOPE = 'tournament-round';
+const TOURNAMENT_SOUND_RATE_LIMIT = { maxStarts: 5, windowMs: 1000 };
+const TOURNAMENT_SOUND_OPTIONS = {
+  scope: TOURNAMENT_SOUND_SCOPE,
+  rateLimit: TOURNAMENT_SOUND_RATE_LIMIT,
+} as const;
 import { TimerRing } from '../components/tournament/TournamentCountdown';
 import { Sheet } from '../components/tournament/tournament_ui';
 import {
@@ -66,6 +82,8 @@ import { getStableId, peekStableId } from './stable_id';
 import { answerFingerprint } from './tournament_answer_fingerprint';
 import { actionToastTri, emitAppEvent } from './events';
 import { closeTournamentFlow } from './tournament_navigation';
+import { triLang, type Lang } from '../constants/i18n';
+import { useLang } from '../components/LangContext';
 
 // зачем 2026-07-27 (владелец: «4 вопроса в раунде»): здесь лежала третья
 // версия одного и того же числа — сервер собирал 6 заданий, а клиент считал 5.
@@ -99,13 +117,16 @@ const OWNER_APPROVED_TOURNAMENT_MODES = new Set([
   'speed_match',
 ]);
 const CHOICE_MODES = new Set(['guess_phrase', 'fill_gap', 'find_oddity']);
-const MODE_LABELS: Record<string, string> = {
-  guess_phrase: 'Живая ситуация',
-  fill_gap: 'Пропущенное слово',
-  find_oddity: 'Так не говорят',
-  translate_build: 'Собери фразу',
-  speed_match: 'Пары на скорость',
-};
+/** Человеческие названия режимов — локализованы под текущий язык интерфейса. */
+function modeLabelsFor(lang: Lang): Record<string, string> {
+  return {
+    guess_phrase: triLang(lang, { ru: 'Живая ситуация', uk: 'Жива ситуація', es: 'Situación real', 'pt-BR': 'Situação real', vi: 'Tình huống thực tế', id: 'Situasi nyata', tr: 'Gerçek durum', pl: 'Prawdziwa sytuacja' }),
+    fill_gap: triLang(lang, { ru: 'Пропущенное слово', uk: 'Пропущене слово', es: 'Palabra faltante', 'pt-BR': 'Palavra faltante', vi: 'Từ còn thiếu', id: 'Kata yang hilang', tr: 'Eksik kelime', pl: 'Brakujące słowo' }),
+    find_oddity: triLang(lang, { ru: 'Так не говорят', uk: 'Так не кажуть', es: 'Así no se dice', 'pt-BR': 'Não se diz assim', vi: 'Không nói như vậy', id: 'Tidak diucapkan seperti itu', tr: 'Böyle söylenmez', pl: 'Tak się nie mówi' }),
+    translate_build: triLang(lang, { ru: 'Собери фразу', uk: 'Збери фразу', es: 'Arma la frase', 'pt-BR': 'Monte a frase', vi: 'Ghép câu', id: 'Susun frasa', tr: 'Cümleyi oluştur', pl: 'Ułóż zdanie' }),
+    speed_match: triLang(lang, { ru: 'Пары на скорость', uk: 'Пари на швидкість', es: 'Parejas contrarreloj', 'pt-BR': 'Pares contra o tempo', vi: 'Ghép cặp tốc độ', id: 'Pasangan kecepatan', tr: 'Hız çiftleri', pl: 'Pary na czas' }),
+  };
+}
 
 type MatchPair = { prompt: string; options: string[] };
 type MatchStatus = { verdict: 'correct' | 'wrong'; selectedIndex: number };
@@ -192,7 +213,7 @@ function localAnswerVerdict(
  * Исторические режимы могут оставаться в старых документах для аудита, но
  * активный игровой экран их не интерпретирует и не показывает.
  */
-function taskToQuestions(task: PublicTask): Question[] {
+function taskToQuestions(task: PublicTask, lang: Lang): Question[] {
   const payload = task.payload ?? {};
   if (!OWNER_APPROVED_TOURNAMENT_MODES.has(task.mode)) return [];
   if (task.kind === 'choice' && CHOICE_MODES.has(task.mode)) {
@@ -200,7 +221,7 @@ function taskToQuestions(task: PublicTask): Question[] {
     const phrase = String(payload.phrase ?? '');
     if (!phrase || options.length < 2) return [];
     return [{
-      taskId: task.taskId, mode: task.mode, kind: 'choice', prompt: 'Что это значит?', phrase, options,
+      taskId: task.taskId, mode: task.mode, kind: 'choice', prompt: triLang(lang, { ru: 'Что это значит?', uk: 'Що це означає?', es: '¿Qué significa esto?', 'pt-BR': 'O que isso significa?', vi: 'Điều này có nghĩa là gì?', id: 'Apa artinya ini?', tr: 'Bu ne anlama geliyor?', pl: 'Co to znaczy?' }), phrase, options,
       wordBank: [], requiredTokenCount: 0, itemIndex: 0, itemCount: 1,
       answerFingerprints: task.answerFingerprints,
       difficulty: task.difficulty,
@@ -219,7 +240,9 @@ function taskToQuestions(task: PublicTask): Question[] {
       taskId: task.taskId,
       mode: task.mode,
       kind: 'match',
-      prompt: String(payload.prompt ?? 'Соедини пары'),
+      prompt: typeof payload.prompt === 'string' && payload.prompt
+        ? payload.prompt
+        : triLang(lang, { ru: 'Соедини пары', uk: 'З’єднай пари', es: 'Empareja', 'pt-BR': 'Combine os pares', vi: 'Ghép cặp', id: 'Cocokkan pasangan', tr: 'Çiftleri eşleştir', pl: 'Połącz pary' }),
       phrase: '',
       options: [],
       wordBank: [],
@@ -244,7 +267,7 @@ function taskToQuestions(task: PublicTask): Question[] {
     const phrase = String(payload.phrase ?? '');
     if (!phrase || wordBank.length < 2 || requiredTokenCount < 2 || requiredTokenCount > wordBank.length) return [];
     return [{
-      taskId: task.taskId, mode: task.mode, kind: 'translate', prompt: 'Собери фразу', phrase,
+      taskId: task.taskId, mode: task.mode, kind: 'translate', prompt: triLang(lang, { ru: 'Собери фразу', uk: 'Збери фразу', es: 'Arma la frase', 'pt-BR': 'Monte a frase', vi: 'Ghép câu', id: 'Susun frasa', tr: 'Cümleyi oluştur', pl: 'Ułóż zdanie' }), phrase,
       options: [], wordBank, requiredTokenCount, itemIndex: 0, itemCount: 1,
       answerFingerprints: task.answerFingerprints,
       difficulty: task.difficulty,
@@ -295,6 +318,8 @@ const waitForTournamentAnswerWindow = async (
 };
 
 export default function TournamentRoundScreen() {
+  const { lang } = useLang();
+  const MODE_LABELS = useMemo(() => modeLabelsFor(lang), [lang]);
   const P = useTournamentPalette();
   const styles = React.useMemo(() => makeStyles(P), [P]);
   const router = useRouter();
@@ -303,7 +328,16 @@ export default function TournamentRoundScreen() {
   const roomId = resolveTournamentRoomIdParam(params.roomId);
   const runtimeActive = useRuntimeActive();
   const reduceMotion = useReduceMotion();
-  const { playTimerTick, playTimerExpired } = useTimerTickCue();
+  const { playTimerTick, playTimerExpired } = useTimerTickCue({
+    scope: TOURNAMENT_SOUND_SCOPE,
+    rateLimit: TOURNAMENT_SOUND_RATE_LIMIT,
+    // зачем 2026-08-04 (владелец: «звуки в турнире работают рандомно и через
+    // раз», после поднятия rateLimit): тик — самый низкоприоритетный звук
+    // экрана (62 против 68-70 у вердиктов), поэтому именно он чаще всего
+    // молча проигрывает конкуренцию за единственный активный слот. Один
+    // отложенный шанс сразу после освобождения слота вместо тишины.
+    queueIfBusy: true,
+  });
 
   const { room, status, freshSnapshot, secondsLeft: stateSecondsLeft, retry } = useTournamentRoom(roomId, runtimeActive);
   const { incoming: incomingReactions, consume: consumeReaction } = useTournamentReactions(roomId, runtimeActive);
@@ -323,9 +357,6 @@ export default function TournamentRoundScreen() {
   // неверный выбор за правильный. До следующего submit показываем последнее
   // подтверждённое сервером значение, не прогноз.
   const [myId, setMyId] = useState<string | null>(() => peekStableId());
-  // зачем 2026-08-03 (владелец): пары зарабатываются, а не теряются — счётчик
-  // растёт на каждой верно собранной паре и равен числу звёзд за задание.
-  const [matchStars, setMatchStars] = useState(0);
   const [matchStatus, setMatchStatus] = useState<Record<number, MatchStatus>>({});
   const [confirmedMatchPairs, setConfirmedMatchPairs] = useState<ReadonlySet<number>>(() => new Set());
   const pendingMatchPairsRef = useRef(new Set<string>());
@@ -430,8 +461,8 @@ export default function TournamentRoundScreen() {
 
   const questions = useMemo(() => {
     const tasks = activeRound?.tasks ?? [];
-    return tasks.flatMap(taskToQuestions);
-  }, [activeRound?.tasks]);
+    return tasks.flatMap((task) => taskToQuestions(task, lang));
+  }, [activeRound?.tasks, lang]);
 
   const total = questions.length || QUESTIONS_PER_ROUND;
   const scheduleNowMs = tournamentNow();
@@ -669,7 +700,6 @@ export default function TournamentRoundScreen() {
     setFeedbackZeroScoreReason(null);
     setFeedbackExplanation(null);
     setFeedbackCorrectIndex(null);
-    setMatchStars(0);
     setMatchStatus({});
     setConfirmedMatchPairs(new Set());
     pendingMatchPairsRef.current.clear();
@@ -857,6 +887,11 @@ export default function TournamentRoundScreen() {
         ru: 'Не удалось синхронизировать выход. Проверьте интернет',
         uk: 'Не вдалося синхронізувати вихід. Перевірте інтернет',
         es: 'No se pudo sincronizar la salida. Comprueba Internet',
+        'pt-BR': 'Não foi possível sincronizar a saída. Verifique a internet',
+        vi: 'Không thể đồng bộ việc rời đi. Kiểm tra kết nối mạng',
+        id: 'Gagal menyinkronkan keluar. Periksa internet',
+        tr: 'Çıkış senkronize edilemedi. İnterneti kontrol edin',
+        pl: 'Nie udało się zsynchronizować wyjścia. Sprawdź internet',
       }));
       // Результат турнира сервер-авторитетный: если подтверждённый выход не
       // записался, возвращаем живой раунд вместо пустого/ложного лобби.
@@ -906,7 +941,14 @@ export default function TournamentRoundScreen() {
     setFeedbackEarnedStars(optimisticStars);
     if (optimisticStars && optimisticStars > 0) {
       // Счётчик в шапке растёт в этом же кадре; снапшот потом подтвердит.
-      setPendingStars({ baseline: serverStars, amount: optimisticStars });
+      //
+      // зачем 2026-08-04 (владелец: «то не начисляет вообще звёзды за
+      // правильный ответ»): здесь стоял setPendingStars со СВЕЖИМ baseline —
+      // ровно тот баг, который комментарий выше описывает как исправленный.
+      // На втором задании раунда опора снималась уже после первого ответа, и
+      // если сервер его ещё не учёл, прирост за первое задание терялся. Копим
+      // сумму через addPendingStars от ОДНОЙ опорной точки.
+      addPendingStars(optimisticStars);
       flyStarsToCounter(optimisticStars);
     }
     setFeedbackZeroScoreReason(null);
@@ -945,8 +987,8 @@ export default function TournamentRoundScreen() {
       setFeedbackZeroScoreReason(result.zeroScoreReason);
       setFeedbackExplanation(result.explanation);
       setFeedbackCorrectIndex(typeof result.correctIndex === 'number' ? result.correctIndex : null);
-      if (result.correct) fk.correct();
-      else fk.wrong();
+      if (result.correct) fk.correct(TOURNAMENT_SOUND_OPTIONS);
+      else fk.wrong(TOURNAMENT_SOUND_OPTIONS);
     } catch {
       if (!screenMountedRef.current || activeTaskSubmissionRef.current !== submissionToken) return;
       // Never turn transport latency into visible gameplay state or paint an
@@ -959,8 +1001,8 @@ export default function TournamentRoundScreen() {
         pendingTaskSubmissionsRef.current.delete(task.taskId);
       }
     }
-  }, [flyStarsToCounter, index, markTaskResolved, questionTiming, retry, roomId, roundKey, roundNo,
-    scheduleFeedbackAdvance, serverStars]);
+  }, [addPendingStars, flyStarsToCounter, index, markTaskResolved, questionTiming, retry, roomId,
+    roundKey, roundNo, scheduleFeedbackAdvance]);
 
   /**
    * зачем 2026-08-02: здесь жили finishEarly и флаг finishing — обработчик
@@ -1038,12 +1080,17 @@ export default function TournamentRoundScreen() {
           }));
           if (isCorrect) {
             setConfirmedMatchPairs((current) => new Set(current).add(pairIndex));
-            fk.correct();
+            fk.correct(TOURNAMENT_SOUND_OPTIONS);
             // Та же шкала, что и в быстрой ветке: верная пара = +1 звезда.
-            setMatchStars((value) => value + 1);
+            // зачем 2026-08-04 (владелец: «развалилось: было 25 звёзд, появилось
+            // слева ещё 3, теперь у меня 25 и 3 отдельно»): звезда ЛЕТЕЛА к
+            // счётчику, но в сам счётчик не попадала — надбавка копилась только
+            // для одиночных заданий, а пары её не трогали. Игрок видел анимацию
+            // «+1» и неизменное число рядом, то есть два счёта одновременно.
+            addPendingStars(1);
             flyStarsToCounter(1);
           } else {
-            fk.wrong();
+            fk.wrong(TOURNAMENT_SOUND_OPTIONS);
           }
           return isCorrect ? 'correct' : 'wrong';
         } catch {
@@ -1061,15 +1108,17 @@ export default function TournamentRoundScreen() {
       [pairIndex]: { verdict: localVerdict, selectedIndex },
     }));
     if (localCorrect) {
-      fk.correct();
+      fk.correct(TOURNAMENT_SOUND_OPTIONS);
       // зачем 2026-08-03 (владелец: «задания типа пары надо считать сколько
       // юзер ответил правильно — 1 правильно, 1 звезда»): счётчик стартовал с 3
       // и УМЕНЬШАЛСЯ за ошибки, то есть показывал штраф, а не заработок. Теперь
       // растёт на каждой верной паре — ровно то число, что начислит сервер.
-      setMatchStars((value) => value + 1);
+      // зачем 2026-08-04: см. ветку выше — без этого звезда летела к счётчику,
+      // но не прибавлялась к нему, и общий счёт «отставал» от анимации.
+      addPendingStars(1);
       flyStarsToCounter(1);
     } else {
-      fk.wrong();
+      fk.wrong(TOURNAMENT_SOUND_OPTIONS);
     }
 
     void waitForTournamentAnswerWindow(questionTiming)
@@ -1110,7 +1159,8 @@ export default function TournamentRoundScreen() {
       });
 
     return Promise.resolve(localVerdict);
-  }, [answerSelectionActive, flyStarsToCounter, question, questionKey, questionTiming, roomId, roundNo, matchStatus]);
+  }, [addPendingStars, answerSelectionActive, flyStarsToCounter, question, questionKey,
+    questionTiming, roomId, roundNo, matchStatus]);
 
   const matchComplete = question?.kind === 'match'
     && question.matchPairs?.every((_, pairIndex) => (
@@ -1267,7 +1317,7 @@ export default function TournamentRoundScreen() {
   }
 
   if (phase === 'intro' && showLocalIntro) {
-    const modeLabel = MODE_LABELS[questions[0]?.mode ?? ''] ?? 'Турнирный раунд';
+    const modeLabel = MODE_LABELS[questions[0]?.mode ?? ''] ?? triLang(lang, { ru: 'Турнирный раунд', uk: 'Турнірний раунд', es: 'Ronda del torneo', 'pt-BR': 'Rodada do torneio', vi: 'Vòng đấu giải', id: 'Ronde turnamen', tr: 'Turnuva turu', pl: 'Runda turnieju' });
     return (
       <TournamentRoundIntro
         roundNo={roundNo}
@@ -1309,6 +1359,7 @@ export default function TournamentRoundScreen() {
           дышать на больших экранах и скроллиться на маленьких. */}
       <ScrollView
         ref={scrollRef}
+        decelerationRate="fast"
         contentContainerStyle={[
           styles.content,
           { paddingTop: insets.top + 8, paddingBottom: 12 },
@@ -1326,10 +1377,10 @@ export default function TournamentRoundScreen() {
             onPress={() => { fk.tap(); setForfeitConfirmVisible(true); }}
             style={styles.forfeitButton}
             accessibilityRole="button"
-            accessibilityLabel="Выйти из текущего турнира"
-            accessibilityHint="Потребуется подтверждение; взнос не возвращается"
+            accessibilityLabel={triLang(lang, { ru: 'Выйти из текущего турнира', uk: 'Вийти з поточного турніру', es: 'Salir del torneo actual', 'pt-BR': 'Sair do torneio atual', vi: 'Rời giải đấu hiện tại', id: 'Keluar dari turnamen saat ini', tr: 'Mevcut turnuvadan çık', pl: 'Opuść bieżący turniej' })}
+            accessibilityHint={triLang(lang, { ru: 'Потребуется подтверждение; взнос не возвращается', uk: 'Знадобиться підтвердження; внесок не повертається', es: 'Se pedirá confirmación; la entrada no se reembolsa', 'pt-BR': 'Será necessária confirmação; a taxa não é reembolsada', vi: 'Cần xác nhận; phí không được hoàn lại', id: 'Perlu konfirmasi; biaya masuk tidak dikembalikan', tr: 'Onay gerekecek; giriş ücreti iade edilmez', pl: 'Będzie wymagane potwierdzenie; opłata nie jest zwracana' })}
           >
-            <Text style={styles.forfeitButtonText}>Выйти</Text>
+            <Text style={styles.forfeitButtonText}>{triLang(lang, { ru: 'Выйти', uk: 'Вийти', es: 'Salir', 'pt-BR': 'Sair', vi: 'Rời đi', id: 'Keluar', tr: 'Çık', pl: 'Wyjdź' })}</Text>
           </Pressable>
           <Text style={styles.progressLabel}>
             Вопрос {index + 1} <Text style={styles.progressLabelDim}>из {total}</Text>
@@ -1346,12 +1397,12 @@ export default function TournamentRoundScreen() {
           <View style={styles.statsSpacer} />
           <V2StreakPill ref={streakPillRef} streak={streak} />
           {/* зачем 2026-08-03 (владелец: «счёт не отображает актуальное состояние,
-              он всегда начинается с нуля»): в режиме пар счётчик показывал
-              matchStars — ЛОКАЛЬНЫЙ счётчик собранных пар этого задания, который
+              он всегда начинается с нуля»): в режиме пар счётчик в шапке раньше
+              показывал ЛОКАЛЬНЫЙ счётчик собранных пар этого задания, который
               стартует с нуля. Общий счёт турнира при этом исчезал с экрана, и
               игрок видел «0» вместо накопленных звёзд. Счётчик в шапке всегда
-              показывает ОБЩИЙ счёт (серверный + неподтверждённые локальные);
-              прогресс внутри поля пар виден по самим карточкам. */}
+              показывает ОБЩИЙ счёт (серверный + неподтверждённые локальные через
+              addPendingStars); прогресс внутри поля пар виден по самим карточкам. */}
           <V2Counter ref={starCounterRef} value={stars} tone="stars" />
         </View>
 
@@ -1390,6 +1441,7 @@ export default function TournamentRoundScreen() {
               status={matchStatus}
               disabled={!answerSelectionActive}
               onSelect={answerMatch}
+              lang={lang}
             />
             {/* зачем 2026-08-03 (владелец: «кнопка готова должна быть когда он
                 закончил»): пока поле не собрано целиком, игрок ждал таймер зря —
@@ -1402,10 +1454,28 @@ export default function TournamentRoundScreen() {
                   onPress={finishMatchEarly}
                   style={styles.matchDoneButton}
                   accessibilityRole="button"
-                  accessibilityLabel={`Готово, засчитать ${confirmedMatchCount} звёзд`}
+                  accessibilityLabel={triLang(lang, {
+                      ru: `Готово, засчитать ${confirmedMatchCount} звёзд`,
+                      uk: `Готово, зарахувати ${confirmedMatchCount} зірок`,
+                      es: `Listo, contabilizar ${confirmedMatchCount} estrellas`,
+                      'pt-BR': `Concluído, contabilizar ${confirmedMatchCount} estrelas`,
+                      vi: `Xong, tính ${confirmedMatchCount} sao`,
+                      id: `Selesai, hitung ${confirmedMatchCount} bintang`,
+                      tr: `Bitti, ${confirmedMatchCount} yıldız say`,
+                      pl: `Gotowe, zalicz ${confirmedMatchCount} gwiazdek`,
+                  })}
                 >
                   <Text style={styles.matchDoneText}>
-                    Готово · {confirmedMatchCount} {confirmedMatchCount === 1 ? 'звезда' : 'звёзд'}
+                    {triLang(lang, {
+                        ru: `Готово · ${confirmedMatchCount} ${confirmedMatchCount === 1 ? 'звезда' : 'звёзд'}`,
+                        uk: `Готово · ${confirmedMatchCount} зірок`,
+                        es: `Listo · ${confirmedMatchCount} estrellas`,
+                        'pt-BR': `Concluído · ${confirmedMatchCount} estrelas`,
+                        vi: `Xong · ${confirmedMatchCount} sao`,
+                        id: `Selesai · ${confirmedMatchCount} bintang`,
+                        tr: `Bitti · ${confirmedMatchCount} yıldız`,
+                        pl: `Gotowe · ${confirmedMatchCount} gwiazdek`,
+                    })}
                   </Text>
                 </Pressable>
               </Animated.View>
@@ -1420,6 +1490,7 @@ export default function TournamentRoundScreen() {
             disabled={!answerSelectionActive}
             correct={feedbackCorrect}
             onSubmit={answerTranslate}
+            lang={lang}
           />
         ) : (
           <View style={styles.options}>
@@ -1435,6 +1506,7 @@ export default function TournamentRoundScreen() {
                 displayedCorrect={feedbackCorrect}
                 authoritativeCorrectIndex={feedbackCorrectIndex}
                 onPress={answer}
+                lang={lang}
               />
             ))}
           </View>
@@ -1461,11 +1533,15 @@ export default function TournamentRoundScreen() {
                     color: feedbackCorrect ? P.accentText : P.danger,
                   }]}
                 >
-                  {feedbackCorrect === true ? 'Правильно!' : 'Почти!'}
+                  {feedbackCorrect === true
+                      ? triLang(lang, { ru: 'Правильно!', uk: 'Правильно!', es: '¡Correcto!', 'pt-BR': 'Correto!', vi: 'Đúng rồi!', id: 'Benar!', tr: 'Doğru!', pl: 'Poprawnie!' })
+                      : triLang(lang, { ru: 'Почти!', uk: 'Майже!', es: '¡Casi!', 'pt-BR': 'Quase!', vi: 'Gần đúng!', id: 'Hampir!', tr: 'Neredeyse!', pl: 'Prawie!' })}
                 </TournamentTwoLineText>
                 {feedbackEarnedStars !== null ? (
                   <Text style={styles.feedbackSub}>
-                    {feedbackEarnedStars > 0 ? `+${feedbackEarnedStars} звёзд` : '0 звёзд'}
+                    {feedbackEarnedStars > 0
+                        ? triLang(lang, { ru: `+${feedbackEarnedStars} звёзд`, uk: `+${feedbackEarnedStars} зірок`, es: `+${feedbackEarnedStars} estrellas`, 'pt-BR': `+${feedbackEarnedStars} estrelas`, vi: `+${feedbackEarnedStars} sao`, id: `+${feedbackEarnedStars} bintang`, tr: `+${feedbackEarnedStars} yıldız`, pl: `+${feedbackEarnedStars} gwiazdek` })
+                        : triLang(lang, { ru: '0 звёзд', uk: '0 зірок', es: '0 estrellas', 'pt-BR': '0 estrelas', vi: '0 sao', id: '0 bintang', tr: '0 yıldız', pl: '0 gwiazdek' })}
                   </Text>
                 ) : null}
                 {/* зачем 2026-08-02 (владелец: «убери блок с объяснением ошибки
@@ -1496,14 +1572,14 @@ export default function TournamentRoundScreen() {
           pointerEvents=none внутри — тапы проходят сквозь него к вариантам. */}
       <TournamentFxHost ref={fxRef} width={fxSize.width} height={fxSize.height} />
       <Sheet visible={forfeitConfirmVisible} onClose={() => setForfeitConfirmVisible(false)}>
-        <Text style={styles.forfeitTitle}>Выйти из турнира?</Text>
+        <Text style={styles.forfeitTitle}>{triLang(lang, { ru: 'Выйти из турнира?', uk: 'Вийти з турніру?', es: '¿Salir del torneo?', 'pt-BR': 'Sair do torneio?', vi: 'Rời khỏi giải đấu?', id: 'Keluar dari turnamen?', tr: 'Turnuvadan çıkılsın mı?', pl: 'Opuścić turniej?' })}</Text>
         <Text style={styles.forfeitText}>
-          Вы покинете текущий турнир и потеряете возможность получить награду.
+          {triLang(lang, { ru: 'Вы покинете текущий турнир и потеряете возможность получить награду.', uk: 'Ви покинете поточний турнір і втратите можливість отримати нагороду.', es: 'Saldrás del torneo actual y perderás la oportunidad de obtener una recompensa.', 'pt-BR': 'Você sairá do torneio atual e perderá a chance de ganhar uma recompensa.', vi: 'Bạn sẽ rời khỏi giải đấu hiện tại và mất cơ hội nhận phần thưởng.', id: 'Anda akan keluar dari turnamen saat ini dan kehilangan kesempatan mendapatkan hadiah.', tr: 'Mevcut turnuvadan çıkacak ve ödül kazanma fırsatını kaybedeceksin.', pl: 'Opuścisz bieżący turniej i stracisz szansę na nagrodę.' })}
         </Text>
-        <Text style={styles.forfeitWarning}>Взнос не возвращается.</Text>
+        <Text style={styles.forfeitWarning}>{triLang(lang, { ru: 'Взнос не возвращается.', uk: 'Внесок не повертається.', es: 'La entrada no se reembolsa.', 'pt-BR': 'A taxa não é reembolsada.', vi: 'Phí không được hoàn lại.', id: 'Biaya masuk tidak dikembalikan.', tr: 'Giriş ücreti iade edilmez.', pl: 'Opłata nie jest zwracana.' })}</Text>
         <View style={styles.forfeitActions}>
-          <V2Cta tone="ghost" onPress={() => setForfeitConfirmVisible(false)}>Остаться</V2Cta>
-          <V2Cta tone="ghost" onPress={confirmForfeit}>Подтвердить выход</V2Cta>
+          <V2Cta tone="ghost" onPress={() => setForfeitConfirmVisible(false)}>{triLang(lang, { ru: 'Остаться', uk: 'Залишитися', es: 'Quedarse', 'pt-BR': 'Ficar', vi: 'Ở lại', id: 'Tetap tinggal', tr: 'Kal', pl: 'Zostań' })}</V2Cta>
+          <V2Cta tone="ghost" onPress={confirmForfeit}>{triLang(lang, { ru: 'Подтвердить выход', uk: 'Підтвердити вихід', es: 'Confirmar salida', 'pt-BR': 'Confirmar saída', vi: 'Xác nhận rời đi', id: 'Konfirmasi keluar', tr: 'Çıkışı onayla', pl: 'Potwierdź wyjście' })}</V2Cta>
         </View>
       </Sheet>
     </View>
@@ -1513,7 +1589,7 @@ export default function TournamentRoundScreen() {
 // ── Вариант ответа ──────────────────────────────────────────────────────────
 
 const OptionRow = memo(function OptionRow({
-  letter, text, index, picked, revealed, disabled, displayedCorrect, authoritativeCorrectIndex, onPress,
+  letter, text, index, picked, revealed, disabled, displayedCorrect, authoritativeCorrectIndex, onPress, lang,
 }: {
   letter: string;
   text: string;
@@ -1524,6 +1600,7 @@ const OptionRow = memo(function OptionRow({
   displayedCorrect: boolean | null;
   authoritativeCorrectIndex: number | null;
   onPress: (index: number) => void;
+  lang: Lang;
 }) {
   const P = useTournamentPalette();
   const styles = React.useMemo(() => makeStyles(P), [P]);
@@ -1543,7 +1620,9 @@ const OptionRow = memo(function OptionRow({
     ? displayedCorrect ? 'ok' : 'bad'
     : revealed && !isPicked ? 'dim' : 'idle';
   const answerState = revealed && isPicked && displayedCorrect !== null
-    ? displayedCorrect ? ', ответ верный' : ', ответ не подошёл'
+    ? (displayedCorrect
+        ? triLang(lang, { ru: ', ответ верный', uk: ', відповідь правильна', es: ', respuesta correcta', 'pt-BR': ', resposta correta', vi: ', câu trả lời đúng', id: ', jawaban benar', tr: ', cevap doğru', pl: ', odpowiedź poprawna' })
+        : triLang(lang, { ru: ', ответ не подошёл', uk: ', відповідь неправильна', es: ', respuesta incorrecta', 'pt-BR': ', resposta incorreta', vi: ', câu trả lời không đúng', id: ', jawaban tidak tepat', tr: ', cevap yanlış', pl: ', odpowiedź niepoprawna' }))
     : '';
 
   return (
@@ -1553,7 +1632,16 @@ const OptionRow = memo(function OptionRow({
       selected={isPicked}
       disabled={disabled || revealed}
       onPress={() => onPress(index)}
-      accessibilityLabel={`Вариант ${letter}: ${text}${answerState}`}
+      accessibilityLabel={triLang(lang, {
+          ru: `Вариант ${letter}: ${text}${answerState}`,
+          uk: `Варіант ${letter}: ${text}${answerState}`,
+          es: `Opción ${letter}: ${text}${answerState}`,
+          'pt-BR': `Opção ${letter}: ${text}${answerState}`,
+          vi: `Lựa chọn ${letter}: ${text}${answerState}`,
+          id: `Pilihan ${letter}: ${text}${answerState}`,
+          tr: `Seçenek ${letter}: ${text}${answerState}`,
+          pl: `Opcja ${letter}: ${text}${answerState}`,
+      })}
       left={(
         <View style={[
             styles.optionLetter,
@@ -1582,13 +1670,14 @@ const OptionRow = memo(function OptionRow({
 });
 
 const MatchBoard = memo(function MatchBoard({
-  matchPairs, matchOptions, status, disabled, onSelect,
+  matchPairs, matchOptions, status, disabled, onSelect, lang,
 }: {
   matchPairs: MatchPair[];
   matchOptions?: string[];
   status: Record<number, MatchStatus>;
   disabled: boolean;
   onSelect: (pairIndex: number, selectedIndex: number) => Promise<'correct' | 'wrong' | 'rejected'>;
+  lang: Lang;
 }) {
   const P = useTournamentPalette();
   const styles = React.useMemo(() => makeStyles(P), [P]);
@@ -1598,7 +1687,7 @@ const MatchBoard = memo(function MatchBoard({
   // переноса 07 всегда общая правая колонка из шести карточек.
   if (!matchOptions || matchOptions.length !== matchPairs.length) {
     return (
-      <View style={styles.matchBoard} accessibilityLabel="Шесть пар слов на скорость">
+      <View style={styles.matchBoard} accessibilityLabel={triLang(lang, { ru: 'Шесть пар слов на скорость', uk: 'Шість пар слів на швидкість', es: 'Seis pares de palabras contrarreloj', 'pt-BR': 'Seis pares de palavras contra o tempo', vi: 'Sáu cặp từ tính giờ', id: 'Enam pasangan kata kecepatan', tr: 'Hız için altı kelime çifti', pl: 'Sześć par słów na czas' })}>
         {matchPairs.map((pair, pairIndex) => {
           const pairStatus = status[pairIndex];
           return (
@@ -1636,6 +1725,7 @@ const MatchBoard = memo(function MatchBoard({
     status={status}
     disabled={disabled}
     onSelect={onSelect}
+    lang={lang}
   />;
 });
 
@@ -1747,13 +1837,14 @@ const MatchCard = memo(function MatchCard({
 });
 
 const StrictMatchBoard = memo(function StrictMatchBoard({
-  matchPairs, matchOptions, status, disabled, onSelect,
+  matchPairs, matchOptions, status, disabled, onSelect, lang,
 }: {
   matchPairs: MatchPair[];
   matchOptions: string[];
   status: Record<number, MatchStatus>;
   disabled: boolean;
   onSelect: (pairIndex: number, selectedIndex: number) => Promise<'correct' | 'wrong' | 'rejected'>;
+  lang: Lang;
 }) {
   const P = useTournamentPalette();
   const styles = React.useMemo(() => makeStyles(P), [P]);
@@ -1853,7 +1944,7 @@ const StrictMatchBoard = memo(function StrictMatchBoard({
   }, [disabled, pendingTuple, reserveTuple, reservedRight]);
 
   return (
-    <View style={styles.strictMatchBoard} accessibilityLabel="Поле пар: английские слова и переводы">
+    <View style={styles.strictMatchBoard} accessibilityLabel={triLang(lang, { ru: 'Поле пар: английские слова и переводы', uk: 'Поле пар: англійські слова та переклади', es: 'Tablero de parejas: palabras en inglés y traducciones', 'pt-BR': 'Quadro de pares: palavras em inglês e traduções', vi: 'Bảng ghép cặp: từ tiếng Anh và bản dịch', id: 'Papan pasangan: kata bahasa Inggris dan terjemahan', tr: 'Eşleştirme tahtası: İngilizce kelimeler ve çeviriler', pl: 'Plansza par: angielskie słowa i tłumaczenia' })}>
       <View style={styles.strictMatchColumn}>
         {matchPairs.map((pair, index) => {
           const matched = status[index]?.verdict === 'correct';
@@ -1865,7 +1956,7 @@ const StrictMatchBoard = memo(function StrictMatchBoard({
               <MatchCard
                 side="prompt"
                 label={pair.prompt}
-                accessibilityLabel={`Английское слово: ${pair.prompt}`}
+                accessibilityLabel={triLang(lang, { ru: `Английское слово: ${pair.prompt}`, uk: `Англійське слово: ${pair.prompt}`, es: `Palabra en inglés: ${pair.prompt}`, 'pt-BR': `Palavra em inglês: ${pair.prompt}`, vi: `Từ tiếng Anh: ${pair.prompt}`, id: `Kata bahasa Inggris: ${pair.prompt}`, tr: `İngilizce kelime: ${pair.prompt}`, pl: `Angielskie słowo: ${pair.prompt}` })}
                 selected={selected}
                 wrong={isWrong}
                 resolvingCorrect={resolvingCorrect}
@@ -1891,7 +1982,7 @@ const StrictMatchBoard = memo(function StrictMatchBoard({
               <MatchCard
                 side="translation"
                 label={option}
-                accessibilityLabel={`Перевод: ${option}`}
+                accessibilityLabel={triLang(lang, { ru: `Перевод: ${option}`, uk: `Переклад: ${option}`, es: `Traducción: ${option}`, 'pt-BR': `Tradução: ${option}`, vi: `Bản dịch: ${option}`, id: `Terjemahan: ${option}`, tr: `Çeviri: ${option}`, pl: `Tłumaczenie: ${option}` })}
                 selected={selected}
                 wrong={isWrong}
                 resolvingCorrect={resolvingCorrect}
@@ -1909,7 +2000,7 @@ const StrictMatchBoard = memo(function StrictMatchBoard({
 });
 
 const WordBank = memo(function WordBank({
-  wordBank, requiredTokenCount, revealed, disabled, correct, onSubmit,
+  wordBank, requiredTokenCount, revealed, disabled, correct, onSubmit, lang,
 }: {
   wordBank: string[];
   requiredTokenCount: number;
@@ -1917,6 +2008,7 @@ const WordBank = memo(function WordBank({
   disabled: boolean;
   correct: boolean | null;
   onSubmit: (tokens: string[]) => void;
+  lang: Lang;
 }) {
   const P = useTournamentPalette();
   const styles = React.useMemo(() => makeStyles(P), [P]);
@@ -1962,7 +2054,7 @@ const WordBank = memo(function WordBank({
             <V2Chip
               onPress={() => returnWord(slotIndex)}
               disabled={disabled || revealed}
-              accessibilityLabel={`Убрать слово ${word}`}
+              accessibilityLabel={triLang(lang, { ru: `Убрать слово ${word}`, uk: `Прибрати слово ${word}`, es: `Quitar la palabra ${word}`, 'pt-BR': `Remover a palavra ${word}`, vi: `Xóa từ ${word}`, id: `Hapus kata ${word}`, tr: `${word} kelimesini kaldır`, pl: `Usuń słowo ${word}` })}
               verdict={correct === true ? 'ok' : correct === false ? 'bad' : 'idle'}
             >
               <TournamentTwoLineText style={[
@@ -1985,7 +2077,7 @@ const WordBank = memo(function WordBank({
                 <V2Chip
                   onPress={() => takeWord(position)}
                   disabled={disabled || revealed}
-                  accessibilityLabel={`Слово ${word}`}
+                  accessibilityLabel={triLang(lang, { ru: `Слово ${word}`, uk: `Слово ${word}`, es: `Palabra ${word}`, 'pt-BR': `Palavra ${word}`, vi: `Từ ${word}`, id: `Kata ${word}`, tr: `${word} kelimesi`, pl: `Słowo ${word}` })}
                 >
                   <TournamentTwoLineText style={styles.bankChipText}>{word}</TournamentTwoLineText>
                 </V2Chip>

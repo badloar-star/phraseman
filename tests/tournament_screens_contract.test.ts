@@ -699,7 +699,9 @@ describe('экраны режима «Турниры»', () => {
   it('клиент принимает только пять утверждённых режимов', () => {
     const round = read('app/tournament_round.tsx');
     expect(round).toContain('taskToQuestions');
-    expect(round).toMatch(/flatMap\(taskToQuestions\)/);
+    // зачем: taskToQuestions теперь принимает lang (i18n-аудит) — вызывается
+    // через обёртку, а не передаётся напрямую в flatMap.
+    expect(round).toMatch(/flatMap\(\(task\) => taskToQuestions\(task, lang\)\)/);
     expect(round).toContain('OWNER_APPROVED_TOURNAMENT_MODES');
     expect(round).toContain("'speed_match'");
     expect(round).not.toContain('time_attack');

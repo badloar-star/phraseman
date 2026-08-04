@@ -228,7 +228,11 @@ describe('tournament question feedback UX', () => {
     expect(client).toContain('earnedStars: number;');
     expect(client).toContain("zeroScoreReason: null | 'incorrect_answer' | 'speed_match_penalty';");
     expect(client).toContain('correctIndex?: number;');
-    expect(round).toContain("feedbackCorrect === true ? 'Правильно!' : 'Почти!'");
+    // зачем: вердикт локализован через triLang (i18n-аудит) — RU остаётся
+    // источником правды для формулировки «Почти!» (правило владельца), но
+    // выбор ветки теперь идёт через словарь, а не голый тернарник.
+    expect(round).toMatch(/feedbackCorrect === true\s*\n?\s*\?\s*triLang\(lang,\s*\{\s*ru:\s*'Правильно!'/);
+    expect(round).toContain("'Почти!'");
     // зачем 2026-08-03 (владелец: «анимация начисления звёзд должна быть
     // мгновенной сразу»): здесь сторожилась строка
     // `setFeedbackEarnedStars(result.earnedStars);` — она фиксировала ровно то

@@ -17,7 +17,9 @@ describe('aggregate tournament review contract', () => {
     const screen = read('app/tournament_review.tsx');
 
     expect(client).toContain('timedOut?: true;');
-    expect(screen).toContain("item.correct ? 'верно' : item.timedOut ? 'Не успел' : 'мимо'");
+    // зачем: вердикт локализован через triLang (i18n-аудит) — проверяем ветку
+    // item.timedOut в тексте, а не дословный русский результат.
+    expect(screen).toMatch(/item\.correct\s*\n?\s*\?[\s\S]{0,400}item\.timedOut/);
   });
 
   it('types and renders time-attack parts with correct, wrong, and skipped states', () => {
@@ -25,11 +27,13 @@ describe('aggregate tournament review contract', () => {
     const screen = read('app/tournament_review.tsx');
 
     expect(client).toContain('aggregateItems?: AggregateReviewItem[];');
-    expect(screen).toContain("time_attack: 'Серия на время'");
+    // зачем: названия режимов локализованы через modeLabelFor(mode, lang) —
+    // проверяем сам ключ словаря, а не дословный русский текст.
+    expect(screen).toContain('time_attack: triLang(lang,');
     expect(screen).toContain('AggregateReviewRows');
-    expect(screen).toContain("label={part.selectedIndex === null ? 'Пропущено' : part.correct ? 'Верно' : 'Ошибка'}");
+    expect(screen).toMatch(/part\.selectedIndex === null[\s\S]{0,300}part\.correct/);
     expect(screen).toContain('item.aggregateItems ? (');
-    expect(screen).toContain('Детали серии не сохранены для этого турнира.');
+    expect(screen).toContain('Деталі серії не збережені для цього турніру.');
   });
 
   it('keeps the approved mode labels and renders explicit speed-match pairs', () => {
@@ -39,11 +43,11 @@ describe('aggregate tournament review contract', () => {
     expect(client).toContain('export type SpeedMatchReviewPair');
     expect(client).toContain('speedMatchPairs?: SpeedMatchReviewPair[];');
     for (const mode of ['listen_choose', 'sound_contrast', 'listen_build', 'speed_match']) {
-      expect(screen).toContain(`${mode}: '`);
+      expect(screen).toContain(`${mode}: triLang(lang,`);
     }
     expect(screen).toContain('SpeedMatchReviewPairs');
-    expect(screen).toContain('english || `Пара ${index + 1}`');
-    expect(screen).toContain("label={pair.selectedRussian === null ? 'Пропущено' : pair.correct ? 'Ваш ответ' : 'Ваш ответ — ошибка'}");
-    expect(screen).toContain('label="Правильная пара"');
+    expect(screen).toMatch(/pair\.english \|\| triLang\(lang,/);
+    expect(screen).toMatch(/pair\.selectedRussian === null[\s\S]{0,300}pair\.correct/);
+    expect(screen).toMatch(/label=\{triLang\(lang,\s*\{\s*ru:\s*'Правильная пара'/);
   });
 });

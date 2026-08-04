@@ -47,17 +47,23 @@ import {
   type ReviewItem,
   type SpeedMatchReviewPair,
 } from './tournament_client';
+import { triLang, type Lang } from '../constants/i18n';
+import { useLang } from '../components/LangContext';
 
-/** Человеческие названия режимов — те же, что видит владелец в админке. */
-const MODE_LABEL: Record<string, string> = {
-  listen_choose: 'Выбор на слух',
-  sound_contrast: 'Пары звуков',
-  listen_build: 'Диктант',
-  time_attack: 'Серия на время',
-  speed_match: 'Пары на скорость',
-};
+/** Человеческие названия режимов — локализованы под текущий язык интерфейса. */
+function modeLabelFor(mode: string, lang: Lang): string {
+  const labels: Record<string, ReturnType<typeof triLang<{ ru: string; uk: string; es: string }>>> = {
+    listen_choose: triLang(lang, { ru: 'Выбор на слух', uk: 'Вибір на слух', es: 'Elegir de oído', 'pt-BR': 'Escolher de ouvido', vi: 'Chọn theo âm thanh', id: 'Pilih berdasarkan suara', tr: 'Kulaktan seçim', pl: 'Wybór ze słuchu' }),
+    sound_contrast: triLang(lang, { ru: 'Пары звуков', uk: 'Пари звуків', es: 'Pares de sonidos', 'pt-BR': 'Pares de sons', vi: 'Cặp âm thanh', id: 'Pasangan suara', tr: 'Ses çiftleri', pl: 'Pary dźwięków' }),
+    listen_build: triLang(lang, { ru: 'Диктант', uk: 'Диктант', es: 'Dictado', 'pt-BR': 'Ditado', vi: 'Chính tả', id: 'Dikte', tr: 'Dikte', pl: 'Dyktando' }),
+    time_attack: triLang(lang, { ru: 'Серия на время', uk: 'Серія на час', es: 'Serie contrarreloj', 'pt-BR': 'Série contra o tempo', vi: 'Chuỗi tính giờ', id: 'Rentetan waktu', tr: 'Zamana karşı seri', pl: 'Seria na czas' }),
+    speed_match: triLang(lang, { ru: 'Пары на скорость', uk: 'Пари на швидкість', es: 'Parejas contrarreloj', 'pt-BR': 'Pares contra o tempo', vi: 'Ghép cặp tốc độ', id: 'Pasangan kecepatan', tr: 'Hız çiftleri', pl: 'Pary na czas' }),
+  };
+  return labels[mode] ?? mode;
+}
 
 export default function TournamentReviewScreen() {
+  const { lang } = useLang();
   const P = useTournamentPalette();
   const styles = useMemo(() => makeStyles(P), [P]);
   const router = useRouter();
@@ -124,13 +130,13 @@ export default function TournamentReviewScreen() {
           <TapScale
             onPress={goBack}
             accessibilityRole="button"
-            accessibilityLabel="Назад"
+            accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
             style={styles.backButton}
           >
             <Ionicons name="chevron-back" size={24} color={P.text} />
           </TapScale>
           {/* зачем: text-integrity — масштабирование шрифта не отключаем, шапка гибкая. */}
-          <FlowText testID="review-title" provenance="authored" style={styles.title}>Разбор</FlowText>
+          <FlowText testID="review-title" provenance="authored" style={styles.title}>{triLang(lang, { ru: 'Разбор', uk: 'Розбір', es: 'Revisión', 'pt-BR': 'Revisão', vi: 'Xem lại', id: 'Tinjauan', tr: 'İnceleme', pl: 'Przegląd' })}</FlowText>
           <View style={styles.headerRight}>
             <V2Counter value={`${correctCount}/${total || '—'}`} tone="stars" />
           </View>
@@ -138,12 +144,12 @@ export default function TournamentReviewScreen() {
 
         {failed ? (
           <V2Card pad={22}>
-            <Text style={styles.emptyTitle}>Разбор недоступен</Text>
+            <Text style={styles.emptyTitle}>{triLang(lang, { ru: 'Разбор недоступен', uk: 'Розбір недоступний', es: 'Revisión no disponible', 'pt-BR': 'Revisão indisponível', vi: 'Không có bản xem lại', id: 'Tinjauan tidak tersedia', tr: 'İnceleme kullanılamıyor', pl: 'Przegląd niedostępny' })}</Text>
             <Text style={styles.emptyText}>
-              Он появляется после окончания турнира и только для его участников.
+              {triLang(lang, { ru: 'Он появляется после окончания турнира и только для его участников.', uk: 'Він з’являється після завершення турніру і лише для його учасників.', es: 'Aparece después de que termina el torneo y solo para sus participantes.', 'pt-BR': 'Aparece depois que o torneio termina e apenas para seus participantes.', vi: 'Nó xuất hiện sau khi giải đấu kết thúc và chỉ dành cho người tham gia.', id: 'Ini muncul setelah turnamen berakhir dan hanya untuk pesertanya.', tr: 'Turnuva bittikten sonra ve yalnızca katılımcılar için görünür.', pl: 'Pojawia się po zakończeniu turnieju i tylko dla jego uczestników.' })}
             </Text>
             <View style={styles.emptyAction}>
-              <V2Cta tone="ghost" onPress={goBack}>К турнирам</V2Cta>
+              <V2Cta tone="ghost" onPress={goBack}>{triLang(lang, { ru: 'К турнирам', uk: 'До турнірів', es: 'A los torneos', 'pt-BR': 'Para os torneios', vi: 'Đến giải đấu', id: 'Ke turnamen', tr: 'Turnuvalara git', pl: 'Do turniejów' })}</V2Cta>
             </View>
           </V2Card>
         ) : items === null ? (
@@ -154,9 +160,9 @@ export default function TournamentReviewScreen() {
           </View>
         ) : total === 0 ? (
           <V2Card pad={22}>
-            <Text style={styles.emptyTitle}>Ответов нет</Text>
+            <Text style={styles.emptyTitle}>{triLang(lang, { ru: 'Ответов нет', uk: 'Відповідей немає', es: 'Sin respuestas', 'pt-BR': 'Sem respostas', vi: 'Không có câu trả lời', id: 'Tidak ada jawaban', tr: 'Cevap yok', pl: 'Brak odpowiedzi' })}</Text>
             <Text style={styles.emptyText}>
-              В этом турнире вы не успели ответить ни на один вопрос.
+              {triLang(lang, { ru: 'В этом турнире вы не успели ответить ни на один вопрос.', uk: 'У цьому турнірі ви не встигли відповісти на жодне питання.', es: 'En este torneo no llegaste a responder ninguna pregunta.', 'pt-BR': 'Neste torneio, você não conseguiu responder nenhuma pergunta.', vi: 'Trong giải đấu này, bạn chưa kịp trả lời câu hỏi nào.', id: 'Dalam turnamen ini, Anda belum sempat menjawab satu pun pertanyaan.', tr: 'Bu turnuvada hiçbir soruyu yanıtlayamadın.', pl: 'W tym turnieju nie zdążyłeś odpowiedzieć na żadne pytanie.' })}
             </Text>
           </V2Card>
         ) : (
@@ -167,8 +173,8 @@ export default function TournamentReviewScreen() {
             <View style={styles.summary}>
               <Text style={styles.summaryText}>
                 {mistakes === 0
-                  ? 'Все ответы верные'
-                  : `Ошибок: ${mistakes} — нажмите задание, чтобы разобрать`}
+                  ? triLang(lang, { ru: 'Все ответы верные', uk: 'Усі відповіді правильні', es: 'Todas las respuestas son correctas', 'pt-BR': 'Todas as respostas estão corretas', vi: 'Tất cả câu trả lời đều đúng', id: 'Semua jawaban benar', tr: 'Tüm cevaplar doğru', pl: 'Wszystkie odpowiedzi są poprawne' })
+                  : triLang(lang, { ru: `Ошибок: ${mistakes} — нажмите задание, чтобы разобрать`, uk: `Помилок: ${mistakes} — натисніть завдання, щоб розібрати`, es: `Errores: ${mistakes} — toca una pregunta para revisarla`, 'pt-BR': `Erros: ${mistakes} — toque na pergunta para revisar`, vi: `Lỗi: ${mistakes} — nhấn vào câu hỏi để xem lại`, id: `Kesalahan: ${mistakes} — ketuk soal untuk meninjau`, tr: `Hatalar: ${mistakes} — incelemek için soruya dokun`, pl: `Błędy: ${mistakes} — dotknij zadanie, aby przejrzeć` })}
               </Text>
             </View>
             {ordered.map((item, index) => (
@@ -181,6 +187,7 @@ export default function TournamentReviewScreen() {
                   number={index + 1}
                   expanded={openIndex === index}
                   onToggle={() => toggleCard(index)}
+                  lang={lang}
                 />
               </Animated.View>
             ))}
@@ -194,13 +201,14 @@ export default function TournamentReviewScreen() {
 // ── Карточка одного вопроса ─────────────────────────────────────────────────
 
 const ReviewCard = memo(function ReviewCard({
-  item, number, expanded, onToggle,
+  item, number, expanded, onToggle, lang,
 }: {
   item: ReviewItem;
   /** Номер задания в турнире — тот же, что был в игре. */
   number: number;
   expanded: boolean;
   onToggle: () => void;
+  lang: Lang;
 }) {
   const P = useTournamentPalette();
   const styles = useMemo(() => makeStyles(P), [P]);
@@ -212,8 +220,7 @@ const ReviewCard = memo(function ReviewCard({
    */
   const headline = item.phrase?.trim()
     || item.aggregatePrompt?.trim()
-    || MODE_LABEL[item.mode]
-    || item.mode;
+    || modeLabelFor(item.mode, lang);
 
   const isAudio = item.mode === 'listen_choose'
     || item.mode === 'sound_contrast'
@@ -236,8 +243,19 @@ const ReviewCard = memo(function ReviewCard({
         onPress={onToggle}
         accessibilityRole="button"
         accessibilityState={{ expanded }}
-        accessibilityLabel={`Задание ${number}. ${headline}. ${item.correct ? 'Верно' : 'Ошибка'}`}
-        accessibilityHint={expanded ? 'Свернуть задание' : 'Развернуть задание'}
+        accessibilityLabel={triLang(lang, {
+            ru: `Задание ${number}. ${headline}. ${item.correct ? 'Верно' : 'Ошибка'}`,
+            uk: `Завдання ${number}. ${headline}. ${item.correct ? 'Правильно' : 'Помилка'}`,
+            es: `Pregunta ${number}. ${headline}. ${item.correct ? 'Correcto' : 'Incorrecto'}`,
+            'pt-BR': `Pergunta ${number}. ${headline}. ${item.correct ? 'Correto' : 'Incorreto'}`,
+            vi: `Câu ${number}. ${headline}. ${item.correct ? 'Đúng' : 'Sai'}`,
+            id: `Soal ${number}. ${headline}. ${item.correct ? 'Benar' : 'Salah'}`,
+            tr: `Soru ${number}. ${headline}. ${item.correct ? 'Doğru' : 'Yanlış'}`,
+            pl: `Zadanie ${number}. ${headline}. ${item.correct ? 'Poprawnie' : 'Błąd'}`,
+        })}
+        accessibilityHint={expanded
+            ? triLang(lang, { ru: 'Свернуть задание', uk: 'Згорнути завдання', es: 'Contraer la pregunta', 'pt-BR': 'Recolher a pergunta', vi: 'Thu gọn câu hỏi', id: 'Ciutkan soal', tr: 'Soruyu daralt', pl: 'Zwiń zadanie' })
+            : triLang(lang, { ru: 'Развернуть задание', uk: 'Розгорнути завдання', es: 'Expandir la pregunta', 'pt-BR': 'Expandir a pergunta', vi: 'Mở rộng câu hỏi', id: 'Perluas soal', tr: 'Soruyu genişlet', pl: 'Rozwiń zadanie' })}
         style={styles.cardTop}
       >
         <Text style={styles.cardNumber}>{number}</Text>
@@ -251,7 +269,11 @@ const ReviewCard = memo(function ReviewCard({
             color={item.correct ? P.accent : P.danger}
           />
           <Text style={[styles.verdictText, { color: item.correct ? P.accent : P.danger }]}>
-            {item.correct ? 'верно' : item.timedOut ? 'Не успел' : 'мимо'}
+            {item.correct
+                ? triLang(lang, { ru: 'верно', uk: 'правильно', es: 'correcto', 'pt-BR': 'correto', vi: 'đúng', id: 'benar', tr: 'doğru', pl: 'poprawnie' })
+                : item.timedOut
+                  ? triLang(lang, { ru: 'Не успел', uk: 'Не встиг', es: 'Se acabó el tiempo', 'pt-BR': 'O tempo acabou', vi: 'Hết giờ', id: 'Waktu habis', tr: 'Süre doldu', pl: 'Nie zdążono' })
+                  : triLang(lang, { ru: 'мимо', uk: 'повз', es: 'incorrecto', 'pt-BR': 'incorreto', vi: 'sai', id: 'salah', tr: 'yanlış', pl: 'błąd' })}
           </Text>
         </View>
         <Ionicons
@@ -266,18 +288,18 @@ const ReviewCard = memo(function ReviewCard({
       {/* Режим виден только внутри: в свёрнутом виде его место занимает фраза,
           ради которой плашку и открывают. */}
       <FlowText testID="review-mode-label" provenance="authored" style={styles.mode}>
-        {MODE_LABEL[item.mode] || item.mode}
+        {modeLabelFor(item.mode, lang)}
       </FlowText>
 
       {item.speedMatchPairs ? (
-        <SpeedMatchReviewPairs pairs={item.speedMatchPairs} styles={styles} P={P} />
+        <SpeedMatchReviewPairs pairs={item.speedMatchPairs} styles={styles} P={P} lang={lang} />
       ) : item.aggregateItems ? (
         <>
           {item.aggregatePrompt ? <Text style={styles.phrase}>{item.aggregatePrompt}</Text> : null}
-          <AggregateReviewRows parts={item.aggregateItems} styles={styles} P={P} />
+          <AggregateReviewRows parts={item.aggregateItems} styles={styles} P={P} lang={lang} />
         </>
       ) : isAggregateMode ? (
-        <Text style={styles.skipped}>Детали серии не сохранены для этого турнира.</Text>
+        <Text style={styles.skipped}>{triLang(lang, { ru: 'Детали серии не сохранены для этого турнира.', uk: 'Деталі серії не збережені для цього турніру.', es: 'Los detalles de la serie no se guardaron para este torneo.', 'pt-BR': 'Os detalhes da série não foram salvos para este torneio.', vi: 'Chi tiết chuỗi không được lưu cho giải đấu này.', id: 'Detail rentetan tidak disimpan untuk turnamen ini.', tr: 'Bu turnuva için seri detayları kaydedilmedi.', pl: 'Szczegóły serii nie zostały zapisane dla tego turnieju.' })}</Text>
       ) : (
         <>
       {/* В аудио-задании после турнира текст УЖЕ можно показать — игра
@@ -295,18 +317,24 @@ const ReviewCard = memo(function ReviewCard({
         <View style={styles.answers}>
           {givenTokens && givenTokens.length > 0 ? (
             <AnswerRow
-              label="Вы собрали"
+              label={triLang(lang, { ru: 'Вы собрали', uk: 'Ви зібрали', es: 'Armaste', 'pt-BR': 'Você montou', vi: 'Bạn đã ghép', id: 'Anda menyusun', tr: 'Oluşturduğun', pl: 'Ułożyłeś' })}
               value={givenTokens.join(' ')}
               tone={item.correct ? 'ok' : 'bad'}
               styles={styles}
               P={P}
             />
           ) : (
-            <AnswerRow label="Вы собрали" value="— не успели" tone="muted" styles={styles} P={P} />
+            <AnswerRow
+              label={triLang(lang, { ru: 'Вы собрали', uk: 'Ви зібрали', es: 'Armaste', 'pt-BR': 'Você montou', vi: 'Bạn đã ghép', id: 'Anda menyusun', tr: 'Oluşturduğun', pl: 'Ułożyłeś' })}
+              value={triLang(lang, { ru: '— не успели', uk: '— не встигли', es: '— no llegaste a tiempo', 'pt-BR': '— não deu tempo', vi: '— không kịp', id: '— tidak sempat', tr: '— yetişemedin', pl: '— nie zdążyłeś' })}
+              tone="muted"
+              styles={styles}
+              P={P}
+            />
           )}
           {!item.correct && item.correctTokens.length > 0 ? (
             <AnswerRow
-              label="Правильно"
+              label={triLang(lang, { ru: 'Правильно', uk: 'Правильно', es: 'Correcto', 'pt-BR': 'Correto', vi: 'Đúng', id: 'Benar', tr: 'Doğru', pl: 'Poprawnie' })}
               value={item.correctTokens.join(' ')}
               tone="ok"
               styles={styles}
@@ -325,7 +353,11 @@ const ReviewCard = memo(function ReviewCard({
             return (
               <AnswerRow
                 key={`${option}-${index}`}
-                label={isGiven ? 'Ваш ответ' : isCorrect ? 'Правильно' : ''}
+                label={isGiven
+                    ? triLang(lang, { ru: 'Ваш ответ', uk: 'Ваша відповідь', es: 'Tu respuesta', 'pt-BR': 'Sua resposta', vi: 'Câu trả lời của bạn', id: 'Jawabanmu', tr: 'Cevabın', pl: 'Twoja odpowiedź' })
+                    : isCorrect
+                      ? triLang(lang, { ru: 'Правильно', uk: 'Правильно', es: 'Correcto', 'pt-BR': 'Correto', vi: 'Đúng', id: 'Benar', tr: 'Doğru', pl: 'Poprawnie' })
+                      : ''}
                 value={option}
                 tone={tone}
                 styles={styles}
@@ -334,7 +366,7 @@ const ReviewCard = memo(function ReviewCard({
             );
           })}
           {givenIndex === undefined || givenIndex === null || givenIndex < 0 ? (
-            <Text style={styles.skipped}>Ответа не было — время вышло</Text>
+            <Text style={styles.skipped}>{triLang(lang, { ru: 'Ответа не было — время вышло', uk: 'Відповіді не було — час вийшов', es: 'No hubo respuesta: se acabó el tiempo', 'pt-BR': 'Não houve resposta: o tempo acabou', vi: 'Không có câu trả lời — hết giờ', id: 'Tidak ada jawaban — waktu habis', tr: 'Cevap verilmedi — süre doldu', pl: 'Nie było odpowiedzi — czas minął' })}</Text>
           ) : null}
         </View>
       )}
@@ -346,7 +378,7 @@ const ReviewCard = memo(function ReviewCard({
           прятать от неё разбор второй раз бессмысленно: показываем сразу. */}
       {item.explanation ? (
         <View style={styles.explanation}>
-          <Text style={styles.explanationTitle}>Разбор</Text>
+          <Text style={styles.explanationTitle}>{triLang(lang, { ru: 'Разбор', uk: 'Розбір', es: 'Explicación', 'pt-BR': 'Explicação', vi: 'Giải thích', id: 'Penjelasan', tr: 'Açıklama', pl: 'Wyjaśnienie' })}</Text>
           <Text style={styles.explanationText}>{item.explanation.ruleNote}</Text>
           <Text style={styles.exampleText}>{item.explanation.example}</Text>
           {!item.correct && typeof givenIndex === 'number'
@@ -362,30 +394,36 @@ const ReviewCard = memo(function ReviewCard({
 });
 
 const AggregateReviewRows = memo(function AggregateReviewRows({
-  parts, styles, P,
+  parts, styles, P, lang,
 }: {
   parts: AggregateReviewItem[];
   styles: ReturnType<typeof makeStyles>;
   P: TournamentV2;
+  lang: Lang;
 }) {
+  const noAnswer = triLang(lang, { ru: '— нет ответа', uk: '— немає відповіді', es: '— sin respuesta', 'pt-BR': '— sem resposta', vi: '— không có câu trả lời', id: '— tidak ada jawaban', tr: '— cevap yok', pl: '— brak odpowiedzi' });
   return (
     <View style={styles.aggregateRows}>
       {parts.map((part, index) => {
-        const selectedValue = part.selectedIndex === null ? '— нет ответа' : part.options[part.selectedIndex] ?? '— нет ответа';
+        const selectedValue = part.selectedIndex === null ? noAnswer : part.options[part.selectedIndex] ?? noAnswer;
         const correctValue = part.correctIndex === null ? null : part.options[part.correctIndex] ?? null;
         const tone = part.selectedIndex === null ? 'muted' : part.correct ? 'ok' : 'bad';
         return (
           <View key={`${part.prompt}-${index}`} style={styles.aggregatePart}>
-            <Text style={styles.aggregatePrompt}>{part.prompt || `Часть ${index + 1}`}</Text>
+            <Text style={styles.aggregatePrompt}>{part.prompt || triLang(lang, { ru: `Часть ${index + 1}`, uk: `Частина ${index + 1}`, es: `Parte ${index + 1}`, 'pt-BR': `Parte ${index + 1}`, vi: `Phần ${index + 1}`, id: `Bagian ${index + 1}`, tr: `Bölüm ${index + 1}`, pl: `Część ${index + 1}` })}</Text>
             <AnswerRow
-              label={part.selectedIndex === null ? 'Пропущено' : part.correct ? 'Верно' : 'Ошибка'}
+              label={part.selectedIndex === null
+                  ? triLang(lang, { ru: 'Пропущено', uk: 'Пропущено', es: 'Omitido', 'pt-BR': 'Ignorado', vi: 'Đã bỏ qua', id: 'Dilewati', tr: 'Atlandı', pl: 'Pominięto' })
+                  : part.correct
+                    ? triLang(lang, { ru: 'Верно', uk: 'Правильно', es: 'Correcto', 'pt-BR': 'Correto', vi: 'Đúng', id: 'Benar', tr: 'Doğru', pl: 'Poprawnie' })
+                    : triLang(lang, { ru: 'Ошибка', uk: 'Помилка', es: 'Error', 'pt-BR': 'Erro', vi: 'Sai', id: 'Salah', tr: 'Hata', pl: 'Błąd' })}
               value={selectedValue}
               tone={tone}
               styles={styles}
               P={P}
             />
             {!part.correct && correctValue ? (
-              <AnswerRow label="Правильно" value={correctValue} tone="ok" styles={styles} P={P} />
+              <AnswerRow label={triLang(lang, { ru: 'Правильно', uk: 'Правильно', es: 'Correcto', 'pt-BR': 'Correto', vi: 'Đúng', id: 'Benar', tr: 'Doğru', pl: 'Poprawnie' })} value={correctValue} tone="ok" styles={styles} P={P} />
             ) : null}
             {part.explanation ? (
               <View style={styles.partExplanation}>
@@ -405,26 +443,32 @@ const AggregateReviewRows = memo(function AggregateReviewRows({
 });
 
 const SpeedMatchReviewPairs = memo(function SpeedMatchReviewPairs({
-  pairs, styles, P,
+  pairs, styles, P, lang,
 }: {
   pairs: SpeedMatchReviewPair[];
   styles: ReturnType<typeof makeStyles>;
   P: TournamentV2;
+  lang: Lang;
 }) {
+  const noAnswer = triLang(lang, { ru: '— нет ответа', uk: '— немає відповіді', es: '— sin respuesta', 'pt-BR': '— sem resposta', vi: '— không có câu trả lời', id: '— tidak ada jawaban', tr: '— cevap yok', pl: '— brak odpowiedzi' });
   return (
     <View style={styles.aggregateRows}>
       {pairs.map((pair, index) => (
         <View key={`${pair.english}-${index}`} style={styles.aggregatePart}>
-          <Text style={styles.aggregatePrompt}>{pair.english || `Пара ${index + 1}`}</Text>
+          <Text style={styles.aggregatePrompt}>{pair.english || triLang(lang, { ru: `Пара ${index + 1}`, uk: `Пара ${index + 1}`, es: `Par ${index + 1}`, 'pt-BR': `Par ${index + 1}`, vi: `Cặp ${index + 1}`, id: `Pasangan ${index + 1}`, tr: `Çift ${index + 1}`, pl: `Para ${index + 1}` })}</Text>
           <AnswerRow
-            label={pair.selectedRussian === null ? 'Пропущено' : pair.correct ? 'Ваш ответ' : 'Ваш ответ — ошибка'}
-            value={pair.selectedRussian ?? '— нет ответа'}
+            label={pair.selectedRussian === null
+                ? triLang(lang, { ru: 'Пропущено', uk: 'Пропущено', es: 'Omitido', 'pt-BR': 'Ignorado', vi: 'Đã bỏ qua', id: 'Dilewati', tr: 'Atlandı', pl: 'Pominięto' })
+                : pair.correct
+                  ? triLang(lang, { ru: 'Ваш ответ', uk: 'Ваша відповідь', es: 'Tu respuesta', 'pt-BR': 'Sua resposta', vi: 'Câu trả lời của bạn', id: 'Jawabanmu', tr: 'Cevabın', pl: 'Twoja odpowiedź' })
+                  : triLang(lang, { ru: 'Ваш ответ — ошибка', uk: 'Ваша відповідь — помилка', es: 'Tu respuesta: incorrecta', 'pt-BR': 'Sua resposta: incorreta', vi: 'Câu trả lời của bạn — sai', id: 'Jawabanmu — salah', tr: 'Cevabın — hatalı', pl: 'Twoja odpowiedź — błędna' })}
+            value={pair.selectedRussian ?? noAnswer}
             tone={pair.selectedRussian === null ? 'muted' : pair.correct ? 'ok' : 'bad'}
             styles={styles}
             P={P}
           />
           {!pair.correct ? (
-            <AnswerRow label="Правильная пара" value={pair.correctRussian} tone="ok" styles={styles} P={P} />
+            <AnswerRow label={triLang(lang, { ru: 'Правильная пара', uk: 'Правильна пара', es: 'Par correcto', 'pt-BR': 'Par correto', vi: 'Cặp đúng', id: 'Pasangan yang benar', tr: 'Doğru çift', pl: 'Poprawna para' })} value={pair.correctRussian} tone="ok" styles={styles} P={P} />
           ) : null}
           {pair.explanation ? (
             <View style={styles.partExplanation}>

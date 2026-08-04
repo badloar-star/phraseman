@@ -23,7 +23,12 @@ import {
 export const LEAGUE_CROWN_NICK_COLOR = '#16B7D9';
 export const LEAGUE_CHEST_SHARDS_REWARD = 30;
 export const LEAGUE_CHEST_ENERGY_MS = 5 * 60 * 1000;
-export const LEAGUE_CHEST_BASE_GOAL = 200_000;
+// зачем (владелец 2026-08-04): порог поднят с 200 000 до 400 000, потому что
+// опыт жителей теперь идёт в общую цель (~159 000 за неделю с 28 жителями) и
+// прежняя цель закрывалась бы сама. Значение обязано совпадать с серверным
+// LEAGUE_CHEST_BASE_GOAL в functions/src/league_chest.ts, иначе клиент покажет
+// «готово», а сервер откажет в выдаче.
+export const LEAGUE_CHEST_BASE_GOAL = 400_000;
 export const LEAGUE_CHEST_GOAL_STEP = 20_000;
 export const LEAGUE_GOLD_THEME_UNLOCK_KEY = 'league_gold_theme_unlocked_v1';
 export const LEAGUE_GOLD_THEME_UNLOCK_AT_KEY = 'league_gold_theme_unlocked_at';

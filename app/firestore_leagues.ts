@@ -112,6 +112,31 @@ function countMembersInData(data: any): number {
   return Object.values(m).filter((member: any) => member?.identityHidden !== true).length;
 }
 
+/**
+ * Сколько ЖИВЫХ игроков в комнате — вместимость и «одиночество» считаются
+ * только по ним.
+ *
+ * зачем (аудит 2026-08-04): комнаты дозаполняются синтетическими жителями до
+ * 28 участников. Если считать их занятыми местами, ломаются сразу два
+ * механизма и оба — в сторону возврата болезни, которую жители лечат:
+ *   • findGroupIdWithSpace счёл бы комнату «1 живой + 28 жителей» полной и
+ *     отправил следующего человека создавать НОВУЮ комнату-одиночку;
+ *   • tryRelocateSoloToSharedGroup сравнивает число участников с 1, чтобы
+ *     понять «человек сидит один» — с жителями там 29, и переселение
+ *     одиночек к людям перестало бы срабатывать вообще.
+ * Живые обязаны собираться вместе; жители лишь заполняют фон.
+ * Зеркало серверного countLiveMembers (functions/src/league_residents.ts).
+ */
+function countLiveMembersInData(data: any): number {
+  const m = data?.members;
+  if (!m || typeof m !== 'object') return 0;
+  return Object.entries(m).filter(([uid, member]: [string, any]) => (
+    member?.identityHidden !== true
+    && member?.isResident !== true
+    && !String(uid).startsWith('res_')
+  )).length;
+}
+
 /** Firestore числа + надёжное сравнение id клуба (избегаем рассинхрона 0 / long / int). */
 function normLeagueIdData(v: unknown, defaultValue: number = 0): number {
   const n = Number(v);
@@ -384,7 +409,8 @@ async function findGroupIdWithSpace(
       if (!idOk(doc.id)) continue;
       const d = doc.data();
       if (normLeagueIdData(d.leagueId) !== normLeagueIdData(leagueId)) continue;
-      const n = countMembersInData(d);
+      // Вместимость — по живым: жители мест не занимают (см. countLiveMembersInData).
+      const n = countLiveMembersInData(d);
       if (n >= GROUP_SIZE) continue;
       if (d.members?.[myUid]) return doc.id;
       return doc.id;
@@ -417,7 +443,9 @@ async function findGroupIdWithSpace(
     if (!idOk(doc.id)) continue;
     const d = doc.data();
     if (normLeagueIdData(d.leagueId) !== normLeagueIdData(leagueId)) continue;
-    const n = countMembersInData(d);
+    // Вместимость — по живым: иначе комната «1 человек + 28 жителей» считалась
+    // бы полной и следующий игрок плодил бы новую одиночку.
+    const n = countLiveMembersInData(d);
     if (n >= GROUP_SIZE) continue;
     if (d.members?.[myUid]) return doc.id;
     candidates.push({ id: doc.id, n });
@@ -442,7 +470,10 @@ async function tryRelocateSoloToSharedGroup(
   const fromSnap = await gRef(fromGroupId).get();
   if (!fromSnap.exists) return null;
   const sData = fromSnap.data() ?? {};
-  if (countMembersInData(sData) !== 1 || !sData.members?.[uid]) return null;
+  // «Сольник» = один ЖИВОЙ в комнате. С жителями всего участников 29, и старое
+  // сравнение с 1 не срабатывало бы никогда — переселение одиночек к людям
+  // умерло бы молча, а живые остались размазаны по разным комнатам.
+  if (countLiveMembersInData(sData) !== 1 || !sData.members?.[uid]) return null;
 
   const toId = await findGroupIdWithSpace(db, weekId, leagueId, uid, fromGroupId);
   if (!toId || toId === fromGroupId) return null;
@@ -1203,6 +1234,12 @@ function mapLeagueMembersToGroupList(
         profileCardPublicFocus: normalizeProfileCardPublicFocus(m.profileCardPublicFocus),
         streak: m.streak ?? undefined,
         totalXp: m.totalXp ?? undefined,
+        // зачем (аудит 2026-08-04): метка синтетического жителя обязана
+        // доезжать до движка лиг — по ней calculateResult исключает его из
+        // подсчёта ранга и зон перехода, как это делает сервер. Без метки
+        // остаётся только префикс uid, а он мог бы не совпасть при смене
+        // формата и клиент молча разошёлся бы с сервером в итогах недели.
+        isResident: m.isResident === true || String(key).startsWith('res_'),
         leagueBoostMultiplier: boostLive ? mult : undefined,
         leagueBoostExpiresAt: boostLive ? until : undefined,
       } as GroupMember;

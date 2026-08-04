@@ -29,7 +29,8 @@ describe('league chest goal', () => {
       },
     });
 
-    expect(snapshot).toMatchObject({ leaguePoints: 205_000, arenaBonus: 10_000, progress: 215_000, goal: 220_000, ready: false });
+    // goal = 400k база + 20k за лигу 1 (владелец поднял базу 2026-08-04).
+    expect(snapshot).toMatchObject({ leaguePoints: 205_000, arenaBonus: 10_000, progress: 215_000, goal: 420_000, ready: false });
   });
 
   it('rejects an arena document from another league context instead of mixing snapshots', () => {
@@ -58,17 +59,20 @@ describe('league chest goal', () => {
     expect(reserveLeagueBonusNotice(reservations, otherUserKey)).toBe(true);
   });
 
-  it('starts copper league at 200k XP and adds 20k per league', () => {
-    expect(LEAGUE_CHEST_BASE_GOAL).toBe(200_000);
+  // зачем 2026-08-04 (владелец): база поднята 200k → 400k. Комнаты теперь
+  // дозаполняются жителями, их опыт идёт в общую цель (~159k за неделю с 28
+  // жителями), и прежний порог закрывался бы почти без участия человека.
+  it('starts copper league at 400k XP and adds 20k per league', () => {
+    expect(LEAGUE_CHEST_BASE_GOAL).toBe(400_000);
     expect(LEAGUE_CHEST_GOAL_STEP).toBe(20_000);
-    expect(getLeagueChestGoal(0)).toBe(200_000);
-    expect(getLeagueChestGoal(1)).toBe(220_000);
-    expect(getLeagueChestGoal(5)).toBe(300_000);
+    expect(getLeagueChestGoal(0)).toBe(400_000);
+    expect(getLeagueChestGoal(1)).toBe(420_000);
+    expect(getLeagueChestGoal(5)).toBe(500_000);
   });
 
   it('falls back to copper goal for invalid league ids', () => {
-    expect(getLeagueChestGoal(null)).toBe(200_000);
-    expect(getLeagueChestGoal(-3)).toBe(200_000);
-    expect(getLeagueChestGoal(Number.NaN)).toBe(200_000);
+    expect(getLeagueChestGoal(null)).toBe(400_000);
+    expect(getLeagueChestGoal(-3)).toBe(400_000);
+    expect(getLeagueChestGoal(Number.NaN)).toBe(400_000);
   });
 });

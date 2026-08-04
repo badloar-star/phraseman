@@ -17,7 +17,12 @@ const GOLD_DUPLICATE_SHARDS = 0;
 const AURA_DUPLICATE_SHARDS = 0;
 const AVATAR_DUPLICATE_SHARDS = 0;
 const ENERGY_MS = 5 * 60 * 1000;
-const LEAGUE_CHEST_BASE_GOAL = 200_000;
+// зачем (владелец 2026-08-04): комнаты дозаполняются жителями, и их опыт по
+// решению владельца засчитывается в общую цель. Замер показал: 28 жителей дают
+// ~159 000 XP за неделю, то есть прежний порог 200 000 закрывался бы почти без
+// участия человека и сундук перестал бы быть достижением. Владелец поднял базу
+// до 400 000; шаг за лигу прежний.
+const LEAGUE_CHEST_BASE_GOAL = 400_000;
 const LEAGUE_CHEST_GOAL_STEP = 20_000;
 const CROWN_AURA = 'league_chest_crown';
 const CROWN_NICK_COLOR = '#16B7D9';

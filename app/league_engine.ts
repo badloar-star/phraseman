@@ -327,6 +327,14 @@ export interface GroupMember {
   uid?:      string;
   botId?:    string;
   isBot?:    boolean;
+  /**
+   * Синтетический «житель», дозаполняющий комнату (владелец 2026-08-04).
+   * В таблице виден как обычный игрок, но в НАГРАДАХ не участвует: сервер
+   * (league_finalize_cron) считает ранги и зоны перехода только среди живых,
+   * и клиент обязан считать так же — иначе покажет один результат, а сервер
+   * запишет другой.
+   */
+  isResident?: boolean;
   isPremium?: boolean;
   isVip?: boolean;
   isLifetime?: boolean;
@@ -399,6 +407,17 @@ export const LEAGUE_RESULT_ZONE_RATIO = 0.15;
 export const getLeagueResultZoneSize = (total: number): number => (
   total >= 2 ? Math.max(1, Math.round(total * LEAGUE_RESULT_ZONE_RATIO)) : 0
 );
+
+/**
+ * Житель ли этот участник комнаты — зеркало серверного isResidentMember
+ * (functions/src/league_residents.ts). Проверяем и метку, и префикс uid:
+ * метка может отсутствовать в старых снапшотах комнаты, лежащих в кэше.
+ */
+export const isResidentGroupMember = (member: GroupMember | null | undefined): boolean => {
+  if (!member) return false;
+  if (member.isResident === true) return true;
+  return typeof member.uid === 'string' && member.uid.startsWith('res_');
+};
 
 const normalizeMemberName = (name?: string | null): string =>
   String(name ?? '').replace(/\s+/g, ' ').trim().toLowerCase();
@@ -764,6 +783,12 @@ export const calculateResult = (state: LeagueState, myWeekPoints: number): Leagu
   const normalizedGroup = ensureCurrentUserInGroup(state.group, '', myWeekPoints, null);
   const updated = normalizedGroup
     .map(m => m.isMe ? { ...m, points: myWeekPoints } : m)
+    // зачем (аудит 2026-08-04): жители дозаполняют комнату визуально, но в
+    // наградах не участвуют. Сервер (computeGroupResults) считает ранг и зоны
+    // перехода ТОЛЬКО среди живых — клиент обязан считать так же, иначе
+    // покажет «Переход», а сервер запишет другое место. Плюс жители раздували
+    // бы total, сдвигая границы топ-15%/низ-15% для живых.
+    .filter(m => !isResidentGroupMember(m))
     .sort((a, b) => b.points - a.points);
 
   const total        = updated.length;

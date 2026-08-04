@@ -54,7 +54,14 @@ describe('пьедестал кликабелен', () => {
 
   test('пьедестал знает, кто бот и кто ты сам', () => {
     // Без этих полей нельзя выбрать правильный источник карточки.
-    expect(RESULTS_SOURCE).toContain('isBot: player.isBot === true');
+    //
+    // зачем (2026-08-04): здесь стояло дословное `isBot: player.isBot === true`
+    // — и контракт охранял РОВНО ту строку, из-за которой бот на пьедестале
+    // считался живым: сервер вырезает isBot из публичного документа
+    // (publicTournamentPlayer), поэтому прямое чтение поля всегда давало false,
+    // а карточка бота показывала выдуманные «0 опыта / Lv.1». Проверяем смысл
+    // («экран определяет бота»), а не букву конкретной реализации.
+    expect(RESULTS_SOURCE).toContain('isBot: isTournamentBotPlayer(player)');
     expect(RESULTS_SOURCE).toContain('isYou: Boolean(myId) && player.id === myId');
   });
 });

@@ -785,7 +785,7 @@ function LifetimePathLineChart({ days, loading, scrollRef, chartTheme, plotFutur
             marginBottom: 4,
             paddingTop: 4,
         }}>
-      <ScrollView ref={scrollRef ?? undefined} decelerationRate="normal" horizontal showsHorizontalScrollIndicator onLayout={() => scrollRef?.current?.scrollTo?.({ x: 0, y: 0, animated: false })}>
+      <ScrollView ref={scrollRef ?? undefined} decelerationRate="fast" horizontal showsHorizontalScrollIndicator onLayout={() => scrollRef?.current?.scrollTo?.({ x: 0, y: 0, animated: false })}>
         <View>
           <Svg width={chartW} height={LIFETIME_LINE_PLOT_H}>
             {[0, 1, 2, 3, 4].map((g) => {
@@ -1467,7 +1467,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
                 <View style={{ width: 42, height: 5, backgroundColor: statsHairline(themeMode, 'wager'), borderRadius: 3 }}/>
               </View>
 
-              <ScrollView decelerationRate="normal" showsVerticalScrollIndicator={false} nestedScrollEnabled keyboardShouldPersistTaps="handled" contentContainerStyle={{ paddingBottom: bottomInset + 36 }}>
+              <ScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} nestedScrollEnabled keyboardShouldPersistTaps="handled" contentContainerStyle={{ paddingBottom: bottomInset + 36 }}>
               {/* Header */}
               <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 4 }}>
                 <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '900', flex: 1 }}>
@@ -1624,9 +1624,12 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
                               </Text>
                             </>) : (<Text style={{ color: t.textGhost, fontSize: 11, fontWeight: '700', marginTop: 2 }}>
                               {triLang(lang, {
-                            ru: `Нужно ещё ${deficit} мон.`,
-                            uk: `Ще ${deficit} мон.`,
-                            es: `Faltan ${deficit} mon.`,
+                            // зачем: валюта во всём экране называется «жемчужины/перлини»,
+                            // а тут стояло «мон.» — обрубок от «монет». Владелец не понял,
+                            // чего именно не хватает. Пишем валюту тем же словом, что и рядом.
+                            ru: `Нужно ещё ${deficit} жемчужин`,
+                            uk: `Ще ${deficit} перлин`,
+                            es: `Faltan ${deficit} perlas`,
                             'pt-BR': `Faltam ${deficit} pérolas`,
                             vi: `Còn thiếu ${deficit} ngọc trai`,
                             id: `Kurang ${deficit} mutiara`,
@@ -2895,14 +2898,17 @@ function WeekAnalyticsCard({
     const progressParts: string[] = [];
     if (weekDeltaMinutes !== null && Math.abs(weekDeltaMinutes) >= 5) {
         progressParts.push(triLang(lang, {
+            // зачем: фраза сравнивает с прошлой неделей, но «чем за предыдущие 7 дней»
+            // было только в ru — остальные языки обрывались на «На 53 хв більше»
+            // и не говорили, БОЛЬШЕ ЧЕГО. Дописываем базу сравнения во все локали.
             ru: `На ${humanMinutes(Math.abs(weekDeltaMinutes), lang)} ${weekDeltaMinutes > 0 ? 'больше' : 'меньше'}, чем за предыдущие 7 дней`,
-            uk: `На ${humanMinutes(Math.abs(weekDeltaMinutes), lang)} ${weekDeltaMinutes > 0 ? 'більше' : 'менше'}`,
-            es: `${humanMinutes(Math.abs(weekDeltaMinutes), lang)} ${weekDeltaMinutes > 0 ? 'más' : 'menos'}`,
-            'pt-BR': `${humanMinutes(Math.abs(weekDeltaMinutes), lang)} ${weekDeltaMinutes > 0 ? 'a mais' : 'a menos'}`,
-            vi: `${weekDeltaMinutes > 0 ? 'Nhiều hơn' : 'Ít hơn'} ${humanMinutes(Math.abs(weekDeltaMinutes), lang)}`,
-            id: `${humanMinutes(Math.abs(weekDeltaMinutes), lang)} ${weekDeltaMinutes > 0 ? 'lebih banyak' : 'lebih sedikit'}`,
-            tr: `${humanMinutes(Math.abs(weekDeltaMinutes), lang)} ${weekDeltaMinutes > 0 ? 'fazla' : 'az'}`,
-            pl: `O ${humanMinutes(Math.abs(weekDeltaMinutes), lang)} ${weekDeltaMinutes > 0 ? 'więcej' : 'mniej'}`,
+            uk: `На ${humanMinutes(Math.abs(weekDeltaMinutes), lang)} ${weekDeltaMinutes > 0 ? 'більше' : 'менше'}, ніж за попередні 7 днів`,
+            es: `${humanMinutes(Math.abs(weekDeltaMinutes), lang)} ${weekDeltaMinutes > 0 ? 'más' : 'menos'} que los 7 días anteriores`,
+            'pt-BR': `${humanMinutes(Math.abs(weekDeltaMinutes), lang)} ${weekDeltaMinutes > 0 ? 'a mais' : 'a menos'} que nos 7 dias anteriores`,
+            vi: `${weekDeltaMinutes > 0 ? 'Nhiều hơn' : 'Ít hơn'} ${humanMinutes(Math.abs(weekDeltaMinutes), lang)} so với 7 ngày trước đó`,
+            id: `${humanMinutes(Math.abs(weekDeltaMinutes), lang)} ${weekDeltaMinutes > 0 ? 'lebih banyak' : 'lebih sedikit'} dari 7 hari sebelumnya`,
+            tr: `Önceki 7 güne göre ${humanMinutes(Math.abs(weekDeltaMinutes), lang)} ${weekDeltaMinutes > 0 ? 'fazla' : 'az'}`,
+            pl: `O ${humanMinutes(Math.abs(weekDeltaMinutes), lang)} ${weekDeltaMinutes > 0 ? 'więcej' : 'mniej'} niż przez poprzednie 7 dni`,
         }));
     }
     return (
@@ -3941,7 +3947,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
         </View>
       ) : null}
       <BouncyWrap>
-      <Reanimated.ScrollView ref={scrollRef} decelerationRate="normal" bounces alwaysBounceVertical overScrollMode="always" pointerEvents={statsReady ? 'auto' : 'none'} style={{ opacity: statsReady ? 1 : 0 }} contentContainerStyle={{ padding: 16, paddingBottom: embedded ? 140 : 16 }} showsVerticalScrollIndicator={false} onScroll={onAnimatedScroll} scrollEventThrottle={16}>
+      <Reanimated.ScrollView ref={scrollRef} decelerationRate="fast" bounces alwaysBounceVertical overScrollMode="always" pointerEvents={statsReady ? 'auto' : 'none'} style={{ opacity: statsReady ? 1 : 0 }} contentContainerStyle={{ padding: 16, paddingBottom: embedded ? 140 : 16 }} showsVerticalScrollIndicator={false} onScroll={onAnimatedScroll} scrollEventThrottle={16}>
         <View style={{ gap: 12 }}>
         <Reanimated.View entering={FadeInDown.duration(420).delay(0)}>
           <StatsCardArtSurface
@@ -4568,7 +4574,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                   </Text>
                 </TouchableOpacity>
               </View>
-              <ScrollView key={dailyChartTab} ref={chartScrollRef} decelerationRate="normal" horizontal showsHorizontalScrollIndicator indicatorStyle="white" onLayout={() => chartScrollRef.current?.scrollToEnd?.({ animated: false })} contentContainerStyle={{ flexDirection: 'row', alignItems: 'flex-end', gap: 3, paddingBottom: 12 }}>
+              <ScrollView key={dailyChartTab} ref={chartScrollRef} decelerationRate="fast" horizontal showsHorizontalScrollIndicator indicatorStyle="white" onLayout={() => chartScrollRef.current?.scrollToEnd?.({ animated: false })} contentContainerStyle={{ flexDirection: 'row', alignItems: 'flex-end', gap: 3, paddingBottom: 12 }}>
                 {dailyChartTab === 'xp'
                         ? chartDays.map((d, i) => {
                             const barH = d.points > 0 ? Math.max((d.points / maxAllPts) * CHART_H, 8) : 5;

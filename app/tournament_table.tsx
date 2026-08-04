@@ -40,7 +40,7 @@ import {
 } from '../components/tournament/tournament_theme';
 import { StarGlyph } from '../components/tournament/TournamentFx';
 import { V2Counter } from '../components/tournament/tournament_v2_ui';
-import { tournamentAvatarLevel, tournamentAvatarValue } from '../components/tournament/tournament_avatars';
+import { isTournamentBotPlayer, tournamentAvatarLevel, tournamentAvatarValue } from '../components/tournament/tournament_avatars';
 import { TournamentEdgeState } from '../components/tournament/TournamentEdgeState';
 import { TournamentBackdrop } from '../components/tournament/TournamentBackdrop';
 import {
@@ -98,7 +98,9 @@ function mapPlayersToRows(
     // НАСТОЯЩИЕ аватары приложения. Ботам они выдаются детерминированно.
     avatar: tournamentAvatarValue({ id: player.id, isBot: player.isBot, avatar: player.avatar }),
     aura: player.aura,
-    isBot: player.isBot === true,
+    // зачем (2026-08-04): сервер вырезает isBot из публичного документа —
+    // прямое чтение поля всегда давало false (см. isTournamentBotPlayer).
+    isBot: isTournamentBotPlayer(player),
     color: player.color || '#8AB49A',
     score: Number(player.score ?? 0),
     streak: Number(player.streak ?? 0),

@@ -58,6 +58,28 @@ type TournamentPlayerLike = {
 };
 
 /**
+ * Бот ли этот участник комнаты — с точки зрения КЛИЕНТА.
+ *
+ * зачем (2026-08-04, владелец: «карточки ботов всегда показывают 0 опыта и
+ * 1 уровень»): клиент проверял `player.isBot`, но сервер вырезает это поле из
+ * публичного документа комнаты намеренно (publicTournamentPlayer в
+ * functions/src/tournaments.ts) — чтобы по нему нельзя было отличить бота от
+ * живого. В итоге у КАЖДОГО бота на клиенте `isBot === undefined`, тап уходил
+ * в ветку «живой незнакомец», карточка искала профиль в leaderboard по id
+ * бота, не находила его никогда и печатала выдуманные «0 опыта / Lv.1».
+ * Детерминированная биография бота (tournament_bot_card.ts) не вызывалась ВООБЩЕ.
+ *
+ * Признак — формат id: живого сажают под его stableUid, бота — всегда под
+ * `p_<hash36>` (см. buildBotPlayers/fillRoomWithBots). Это единственное, что
+ * реально доезжает до клиента. `isBot` остаётся приоритетным на случай старых
+ * комнат, где поле ещё лежит в документе.
+ */
+export function isTournamentBotPlayer(player: TournamentPlayerLike): boolean {
+  if (typeof player.isBot === 'boolean') return player.isBot;
+  return /^p_[0-9a-z]+$/.test(player.id);
+}
+
+/**
  * Значение для AvatarView. Юзер — как есть (его настоящий аватар).
  * Бот с новым серверным app-avatar — как есть. Для старого эмодзи-профиля
  * остаётся детерминированный fallback из наборов приложения.
@@ -65,9 +87,13 @@ type TournamentPlayerLike = {
 export function tournamentAvatarValue(player: TournamentPlayerLike): string {
   const raw = player.avatar ?? '';
   const isAppValue = /^\d+$/.test(raw) || isCustomAvatarValue(raw);
+  // зачем (2026-08-04): было прямое чтение player.isBot, которого в публичном
+  // документе комнаты нет вовсе → бот считался живым, и кап 50 уровня на его
+  // аватаре не срабатывал ВООБЩЕ (боты снова «носили» 51–60). Единый предикат.
+  const isBot = isTournamentBotPlayer(player);
   // Бот с уровневым аватаром — под кап 50; настоящий юзер — как есть.
-  if (isAppValue) return player.isBot ? clampBotLevelAvatar(raw) : raw;
-  if (!player.isBot) return '1'; // юзер без аватара — базовый, не эмодзи
+  if (isAppValue) return isBot ? clampBotLevelAvatar(raw) : raw;
+  if (!isBot) return '1'; // юзер без аватара — базовый, не эмодзи
 
   const h = fnv1a(player.id);
   if (h % 3 === 0 && CUSTOM_AVATARS.length > 0) {

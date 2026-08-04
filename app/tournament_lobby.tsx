@@ -33,7 +33,7 @@ import {
   V2Counter,
   V2Segments,
 } from '../components/tournament/tournament_v2_ui';
-import { tournamentAvatarLevel, tournamentAvatarValue } from '../components/tournament/tournament_avatars';
+import { isTournamentBotPlayer, tournamentAvatarLevel, tournamentAvatarValue } from '../components/tournament/tournament_avatars';
 import { T, formatTimeLeft, hexToRgba, radius, type, useTournamentPalette, type TournamentPalette} from '../components/tournament/tournament_theme';
 import { TournamentEdgeState } from '../components/tournament/TournamentEdgeState';
 import { TournamentBackdrop } from '../components/tournament/TournamentBackdrop';
@@ -96,7 +96,11 @@ function mapPlayersToSeats(players: readonly RoomPlayer[], myId: string | null):
   return players.slice(0, SEATS).map((player, index) => ({
     id: index + 1,
     uid: player.id,
-    isBot: Boolean(player.isBot),
+    // зачем (2026-08-04): было Boolean(player.isBot) — сервер вырезает isBot из
+    // публичного документа, поэтому здесь у КАЖДОГО бота выходило false. Тап
+    // уходил в ветку «живой незнакомец», и карточка бота показывала 0 опыта и
+    // Lv.1. Определяем бота по формату id (см. isTournamentBotPlayer).
+    isBot: isTournamentBotPlayer(player),
     name: player.name || 'Игрок',
     // зачем 2026-07-27: было эмодзи-«лицо» — правило владельца требует
     // НАСТОЯЩИЕ аватары приложения (те же, что в лигах и друзьях).

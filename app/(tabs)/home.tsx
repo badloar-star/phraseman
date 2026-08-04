@@ -2496,6 +2496,12 @@ export default function HomeScreen() {
         const { level, progress } = getXPProgress(totalXP);
         const menuImages = getHomeMenuImages(themeMode);
         const lastLessonImage = getHomeLastLessonImage(themeMode);
+        // зачем: имя урока раньше «запекалось» в состояние lastLesson при монтировании
+        // и после смены языка интерфейса оставалось на старом языке (укр. экран —
+        // русское название). Резолвим по текущему lang в рендере, как lessons.tsx.
+        const lastLessonName = lastLesson == null
+            ? ''
+            : (lessonNamesForStudyTarget(lang, studyTarget)[lastLesson.id - 1] ?? lastLesson.name);
         const homeQuickRowPad = 8;
         const homeQuickRowGap = 14;
         const homeQuickTileWidth = Math.floor((SCREEN_W - homeQuickRowPad * 2 - homeQuickRowGap * 2) / 3);
@@ -2880,7 +2886,7 @@ export default function HomeScreen() {
                   {s.home.statsPulseHint}
                 </Animated.Text>)}
             </Animated.View>);
-        return (<BouncyScrollView ref={homeScrollRef} scrollEnabled={pageScrollEnabled} showsVerticalScrollIndicator={false} decelerationRate="normal" onScroll={topFadeScroll?.onScroll} scrollEventThrottle={16} contentContainerStyle={{ paddingBottom: tabContentBottomPad, marginTop: -4 }}>
+        return (<BouncyScrollView ref={homeScrollRef} scrollEnabled={pageScrollEnabled} showsVerticalScrollIndicator={false} decelerationRate="fast" onScroll={topFadeScroll?.onScroll} scrollEventThrottle={16} contentContainerStyle={{ paddingBottom: tabContentBottomPad, marginTop: -4 }}>
 
           {/* ХЕДЕР: один ряд. Слева — осколки + бюст (карточка профиля).
               Справа — энергия (1 иконка + цифры), видео, чаты, колокольчик (единый центр событий и сообщений команды).
@@ -3032,7 +3038,7 @@ export default function HomeScreen() {
               testID="home-continue-lesson"
               accessible={true}
               accessibilityRole="button"
-              accessibilityLabel={`${s.home.continueBtn}: ${lastLesson.name}`}
+              accessibilityLabel={`${s.home.continueBtn}: ${lastLessonName}`}
               activeOpacity={0.82}
               onPress={() => {
                 hapticTap();
@@ -3051,7 +3057,7 @@ export default function HomeScreen() {
                   </View>
                   <View style={{ flex: 1, minWidth: 0 }}>
                     <FlowText testID="home-continue-lesson-title" provenance="authored" style={{ color: homeThemePanelText, fontSize: Math.max(15, f.body), fontWeight: '700' }}>
-                      {lastLesson.name}
+                      {lastLessonName}
                     </FlowText>
                   </View>
                   <View style={{ minWidth: 30, alignItems: 'flex-end', flexShrink: 0 }}>
@@ -3525,7 +3531,7 @@ export default function HomeScreen() {
                 </Text>
               </View>
 
-              <ScrollView decelerationRate="normal" style={{ maxHeight: Math.min(SCREEN_H * 0.52, 430) }} nestedScrollEnabled keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 2 }}>
+              <ScrollView decelerationRate="fast" style={{ maxHeight: Math.min(SCREEN_H * 0.52, 430) }} nestedScrollEnabled keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 2 }}>
                 {visibleTitles.map((item) => {
                     const titleColor = isLightTheme ? item.colorLight : item.colorDark;
                     return (<TouchableOpacity key={item.key} activeOpacity={0.84} onPress={() => selectHomeTitle(item)} accessibilityRole="button" accessibilityState={{ disabled: !item.unlocked, selected: item.current }} style={{ minHeight: 62, borderRadius: 15, padding: 12, marginBottom: 8, flexDirection: 'row', alignItems: 'center', gap: 11, backgroundColor: item.current ? titleModalButtonBg : (isGoldTheme ? 'rgba(255,255,255,0.045)' : t.bgSurface), borderWidth: 1, borderColor: item.current ? titleModalButtonBorderColor : (isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border) }}>

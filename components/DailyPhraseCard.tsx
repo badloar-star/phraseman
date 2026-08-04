@@ -14,6 +14,8 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { useGlobalSearchParams } from 'expo-router';
 import { useAudio } from '../hooks/use-audio';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
+import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
+import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import { syncWidgetData } from '../app/widget_bridge';
 import { dailyPhraseChromeFor } from '../app/daily_phrase_chrome';
 import { LinearGradient } from './SafeLinearGradient';
@@ -52,6 +54,9 @@ import TonalSurface from './TonalSurface';
 // Chrome (per-theme palette) now lives in app/daily_phrase_chrome.ts so the
 // home/lock-screen widget can render the identical look. See that file.
 
+// зачем: старт позиции листа под экраном для slide-up bottom sheet (владелец, 2026-08-04).
+const SHEET_SLIDE_DISTANCE = 420;
+
 interface Props {
   userLevel?: number;
   variant?: 'default' | 'homeAdditional';
@@ -63,6 +68,9 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
   const { studyTarget } = useStudyTarget();
   const { speak } = useAudio();
   const reduceMotion = useReduceMotion();
+  // зачем: модалка «Фраза дня» стала bottom sheet — низ должен уважать home indicator/nav bar.
+  const insets = useStableSafeAreaInsets();
+  const sheetBottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const params = useGlobalSearchParams<{ openPhrase?: string; play?: string }>();
   const dailyPhraseGateOpen = dailyPhraseContentAvailableForTarget(studyTarget);
   const homeAdditional = variant === 'homeAdditional';
@@ -188,10 +196,11 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
     }
 
     modalEntranceAnim.setValue(0);
+    // зачем: bottom sheet — тот же iOS-drawer easing, что и в ExplainSheet, лист едет снизу.
     const entrance = Animated.timing(modalEntranceAnim, {
       toValue: 1,
       duration: 220,
-      easing: Easing.out(Easing.cubic),
+      easing: Easing.bezier(0.32, 0.72, 0, 1),
       useNativeDriver: true,
     });
     entrance.start();
@@ -475,8 +484,23 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
 
   const closeDetails = () => {
     modalEntranceAnim.stopAnimation();
-    setDetailsVisible(false);
-    resetQuest();
+    // зачем: bottom sheet должен уезжать вниз перед закрытием, а не исчезать
+    // мгновенно — иначе шторка выглядит как обрыв, а не как выезд/уезд.
+    if (reduceMotion) {
+      setDetailsVisible(false);
+      resetQuest();
+      return;
+    }
+    Animated.timing(modalEntranceAnim, {
+      toValue: 0,
+      duration: 180,
+      easing: Easing.in(Easing.cubic),
+      useNativeDriver: true,
+    }).start(({ finished }) => {
+      if (!finished) return;
+      setDetailsVisible(false);
+      resetQuest();
+    });
   };
 
   const handleQuestOptionPress = (optionId: string) => {
@@ -604,9 +628,8 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
               styles.sheet,
               {
                 backgroundColor: t.bgCard,
-                borderColor: t.border,
                 shadowColor: t.accent,
-                opacity: modalEntranceAnim,
+                paddingBottom: 16 + sheetBottomInset,
               },
               {
                 transform: [
@@ -614,13 +637,7 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
                   {
                     translateY: modalEntranceAnim.interpolate({
                       inputRange: [0, 1],
-                      outputRange: [14, 0],
-                    }),
-                  },
-                  {
-                    scale: modalEntranceAnim.interpolate({
-                      inputRange: [0, 1],
-                      outputRange: [0.985, 1],
+                      outputRange: [SHEET_SLIDE_DISTANCE, 0],
                     }),
                   },
                 ],
@@ -628,6 +645,9 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
             ]}
           >
             <TonalSurface pointerEvents="none" radius={24} tone="raised" style={StyleSheet.absoluteFillObject} />
+            <View style={styles.grabber} pointerEvents="none">
+              <View style={[styles.grabberPill, { backgroundColor: t.border }]} />
+            </View>
             {questAnswered && selectedQuestCorrect && !questPreviouslyAnswered && (
               <Animated.View
                 pointerEvents="none"
@@ -671,37 +691,69 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
                   {phrase.english}
                 </Text>
               </View>
-              {showQuestExplanation && (
+              {/* зачем 2026-08-04 (владелец: «убери нижнюю зону, где текст
+                  уходит под безопасную зону, а кнопку сохранить перенеси вверх
+                  слева от кнопки озвучить»): закладка жила в отдельной полосе
+                  под скроллом — она съедала высоту листа и на телефонах с
+                  большим домашним индикатором подъезжала под safe area. В шапке
+                  бокс закладки 36×36 совпадает с соседними круглыми кнопками.
+                  Кнопки собраны в свой ряд с шагом 6: общий gap шапки (12) на
+                  трёх иконках отъедал ширину у фразы. */}
+              <View style={styles.sheetActions}>
+                {questAnswered && phrase.allowSave !== false && (
+                  <AddToFlashcard
+                    en={phrase.english}
+                    ru={phrase.meaning}
+                    uk={phrase.meaning_uk}
+                    es={phrase.meaning_es}
+                    sourceLocales={flashcardSourceLocales}
+                    source="daily_phrase"
+                    sourceId={phrase.id || phrase.date}
+                    studyTarget={studyTarget}
+                    size={24}
+                    literalRu={phrase.literal}
+                    literalUk={phrase.literal_uk}
+                    literalEs={phrase.literal_es}
+                    explanationRu={phrase.meaning}
+                    explanationUk={phrase.meaning_uk}
+                    explanationEs={phrase.meaning_es}
+                    exampleRu={phrase.text}
+                    exampleUk={phrase.text_uk}
+                    exampleEs={phrase.text_es}
+                  />
+                )}
+                {showQuestExplanation && (
+                  <Pressable
+                    onPress={() => { const en = phrase.english?.trim(); if (en) speak(en); }}
+                    hitSlop={8}
+                    accessibilityRole="button"
+                    accessibilityLabel={triLang(lang, {
+                      uk: 'Озвучити', ru: 'Озвучить', es: 'Reproducir',
+                      'pt-BR': 'Reproduzir', vi: 'Phát', id: 'Putar', tr: 'Seslendir', pl: 'Odtwórz',
+                    })}
+                    style={({ pressed }) => [
+                      styles.closeButton,
+                      { backgroundColor: t.bgSurface2 },
+                      pressed && styles.pressed,
+                    ]}
+                  >
+                    <Ionicons name="volume-high" size={20} color={t.accent} />
+                  </Pressable>
+                )}
                 <Pressable
-                  onPress={() => { const en = phrase.english?.trim(); if (en) speak(en); }}
+                  onPress={closeDetails}
                   hitSlop={8}
                   accessibilityRole="button"
-                  accessibilityLabel={triLang(lang, {
-                    uk: 'Озвучити', ru: 'Озвучить', es: 'Reproducir',
-                    'pt-BR': 'Reproduzir', vi: 'Phát', id: 'Putar', tr: 'Seslendir', pl: 'Odtwórz',
-                  })}
+                  accessibilityLabel="Close"
                   style={({ pressed }) => [
                     styles.closeButton,
                     { backgroundColor: t.bgSurface2 },
                     pressed && styles.pressed,
                   ]}
                 >
-                  <Ionicons name="volume-high" size={20} color={t.accent} />
+                  <Ionicons name="close" size={20} color={t.textMuted} />
                 </Pressable>
-              )}
-              <Pressable
-                onPress={closeDetails}
-                hitSlop={8}
-                accessibilityRole="button"
-                accessibilityLabel="Close"
-                style={({ pressed }) => [
-                  styles.closeButton,
-                  { backgroundColor: t.bgSurface2 },
-                  pressed && styles.pressed,
-                ]}
-              >
-                <Ionicons name="close" size={20} color={t.textMuted} />
-              </Pressable>
+              </View>
             </View>
 
             <ScrollView
@@ -823,30 +875,6 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
               )}
             </ScrollView>
 
-            {questAnswered && phrase.allowSave !== false && (
-              <View style={[styles.saveRow, { borderTopColor: t.border }]}>
-                <AddToFlashcard
-                  en={phrase.english}
-                  ru={phrase.meaning}
-                  uk={phrase.meaning_uk}
-                  es={phrase.meaning_es}
-                  sourceLocales={flashcardSourceLocales}
-                  source="daily_phrase"
-                  sourceId={phrase.id || phrase.date}
-                  studyTarget={studyTarget}
-                  size={24}
-                  literalRu={phrase.literal}
-                  literalUk={phrase.literal_uk}
-                  literalEs={phrase.literal_es}
-                  explanationRu={phrase.meaning}
-                  explanationUk={phrase.meaning_uk}
-                  explanationEs={phrase.meaning_es}
-                  exampleRu={phrase.text}
-                  exampleUk={phrase.text_uk}
-                  exampleEs={phrase.text_es}
-                />
-              </View>
-            )}
           </Animated.View>
         </View>
       </Modal>
@@ -994,8 +1022,7 @@ const styles = StyleSheet.create({
   },
   modalRoot: {
     flex: 1,
-    justifyContent: 'center',
-    padding: 18,
+    justifyContent: 'flex-end',
   },
   backdrop: {
     ...StyleSheet.absoluteFillObject,
@@ -1003,14 +1030,26 @@ const styles = StyleSheet.create({
   },
   sheet: {
     width: '100%',
-    maxHeight: '84%',
-    borderRadius: 22,
+    maxHeight: '86%',
+    borderTopLeftRadius: 24,
+    borderTopRightRadius: 24,
     borderWidth: 0,
     overflow: 'hidden',
+    paddingTop: 6,
     shadowOpacity: 0.22,
     shadowRadius: 24,
-    shadowOffset: { width: 0, height: 12 },
+    shadowOffset: { width: 0, height: -8 },
     ...noAndroidOutline,
+  },
+  grabber: {
+    alignItems: 'center',
+    paddingVertical: 8,
+  },
+  grabberPill: {
+    width: 44,
+    height: 5,
+    borderRadius: 3,
+    opacity: 0.9,
   },
   successOverlay: {
     position: 'absolute',
@@ -1069,6 +1108,11 @@ const styles = StyleSheet.create({
   sheetPhrase: {
     fontWeight: '900',
     lineHeight: 28,
+  },
+  sheetActions: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
   },
   closeButton: {
     width: 36,
@@ -1193,15 +1237,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   explanationWrap: {
-    gap: 12,
-  },
-  saveRow: {
-    borderTopWidth: 1,
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
     gap: 12,
   },
 });

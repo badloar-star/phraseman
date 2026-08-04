@@ -25,10 +25,11 @@ export interface ActiveLevelGiftInventoryItem {
   desc: string;
   accent: string;
   /**
-   * Короткая подпись «что это / где применить». Для пассивных бонусов — «работает
-   * автоматически», для ваучеров — куда идти, чтобы потратить.
+   * зачем 2026-08-04 (владелец: «убери подписи со всех подарков вообще»):
+   * поле hint («Работает автоматически», «Опыт удвоится сам…») удалено —
+   * карточка теперь = название + одна строка сути. Куда идти за ручным
+   * бонусом, показывает стрелка справа (actionRoute).
    */
-  hint?: string;
   /**
    * Маршрут перехода по тапу (только для бонусов, которые нужно применить вручную:
    * ваучер набора → витрина карточек, буст лиги → лига). Пассивные бонусы route не имеют.
@@ -168,18 +169,6 @@ const friendGiftLabel = (gift: StoredFriendGiftInventoryItem, lang: Lang): strin
   return gift.giftLabelRu || gift.giftLabel || gift.giftId;
 };
 
-/** Подпись для пассивных бонусов: применяются сами, без действий пользователя. */
-const hintAutoWorks = (lang: Lang): string => triLang(lang, {
-  ru: 'Работает автоматически',
-  uk: 'Працює автоматично',
-  es: 'Funciona automáticamente',
-  'pt-BR': 'Funciona automaticamente',
-  vi: 'Tự động áp dụng',
-  id: 'Berjalan otomatis',
-  tr: 'Otomatik çalışır',
-  pl: 'Działa automatycznie',
-});
-
 export const loadActiveLevelGiftInventory = async (
   lang: Lang,
   nowMs: number = Date.now(),
@@ -273,16 +262,6 @@ export const loadActiveLevelGiftInventory = async (
     pl: `jeszcze na ${xpRemaining} XP`,
   }),
       accent: '#FACC15',
-      hint: triLang(lang, {
-        ru: 'Опыт удвоится сам во время обучения',
-        uk: 'Досвід подвоїться сам під час навчання',
-        es: 'El XP se duplica solo mientras estudias',
-        'pt-BR': 'O XP dobra sozinho enquanto você estuda',
-        vi: 'XP tự động nhân đôi khi bạn học',
-        id: 'XP otomatis berlipat saat belajar',
-        tr: 'Öğrenirken XP kendiliğinden ikiye katlanır',
-        pl: 'XP podwaja się sam podczas nauki',
-      }),
     });
   }
 
@@ -303,7 +282,6 @@ export const loadActiveLevelGiftInventory = async (
   }),
       desc: `×${multiplier.toFixed(multiplier % 1 === 0 ? 0 : 2)} · ${formatMsLeft(multiplierMs, lang)}`,
       accent: '#60A5FA',
-      hint: hintAutoWorks(lang),
     });
   }
 
@@ -332,16 +310,6 @@ export const loadActiveLevelGiftInventory = async (
     pl: `+${bonusEnergyAmount} do północy`,
   }),
       accent: '#34D399',
-      hint: triLang(lang, {
-        ru: 'Дополнительная энергия уже добавлена',
-        uk: 'Додаткова енергія вже додана',
-        es: 'La energía extra ya está añadida',
-        'pt-BR': 'A energia extra já foi adicionada',
-        vi: 'Năng lượng thêm đã được cộng',
-        id: 'Energi tambahan sudah ditambahkan',
-        tr: 'Ek enerji zaten eklendi',
-        pl: 'Dodatkowa energia jest już dodana',
-      }),
     });
   }
 
@@ -360,16 +328,6 @@ export const loadActiveLevelGiftInventory = async (
   }),
       desc: formatPackHoursLeft(Number(packTrial.expiresAt), nowMs, lang),
       accent: '#A78BFA',
-      hint: triLang(lang, {
-        ru: 'Заберите набор бесплатно: Карточки → Витрина',
-        uk: 'Заберіть набір безкоштовно: Картки → Вітрина',
-        es: 'Consigue un pack gratis: Tarjetas → Vitrina',
-        'pt-BR': 'Pegue um pacote grátis: Cartões → Vitrine',
-        vi: 'Nhận gói miễn phí: Thẻ → Gian hàng',
-        id: 'Ambil paket gratis: Kartu → Etalase',
-        tr: 'Bir paketi ücretsiz al: Kartlar → Vitrin',
-        pl: 'Odbierz pakiet za darmo: Karty → Witryna',
-      }),
       actionRoute: '/flashcards',
     });
   }
@@ -399,16 +357,6 @@ export const loadActiveLevelGiftInventory = async (
     pl: `+${arenaExtra} pojedynków dziś`,
   }),
       accent: '#FB923C',
-      hint: triLang(lang, {
-        ru: 'Лишние матчи уже доступны в Арене',
-        uk: 'Додаткові матчі вже доступні в Арені',
-        es: 'Los duelos extra ya están en la Arena',
-        'pt-BR': 'Os duelos extras já estão na Arena',
-        vi: 'Trận thêm đã có sẵn trong Đấu trường',
-        id: 'Duel ekstra sudah tersedia di Arena',
-        tr: 'Ekstra düellolar Arena’da hazır',
-        pl: 'Dodatkowe mecze są już w Arenie',
-      }),
     });
   }
 
@@ -436,16 +384,6 @@ export const loadActiveLevelGiftInventory = async (
     pl: `${hintsToday} na dziś`,
   }),
       accent: '#FDE047',
-      hint: triLang(lang, {
-        ru: 'Подсказки доступны прямо в уроке',
-        uk: 'Підказки доступні прямо в уроці',
-        es: 'Las pistas están disponibles en la lección',
-        'pt-BR': 'As dicas estão disponíveis na lição',
-        vi: 'Gợi ý có sẵn ngay trong bài học',
-        id: 'Petunjuk tersedia langsung di pelajaran',
-        tr: 'İpuçları derste kullanılabilir',
-        pl: 'Podpowiedzi są dostępne w lekcji',
-      }),
     });
   }
 
@@ -485,16 +423,6 @@ export const loadActiveLevelGiftInventory = async (
     pl: `${remainingShieldDays} dni`,
   }),
       accent: '#38BDF8',
-      hint: triLang(lang, {
-        ru: 'Пропуск дня не прервёт цепочку',
-        uk: 'Пропуск дня не перерве ланцюжок',
-        es: 'Saltarte un día no rompe tu racha',
-        'pt-BR': 'Pular um dia não quebra sua sequência',
-        vi: 'Bỏ lỡ một ngày không làm đứt chuỗi',
-        id: 'Melewatkan satu hari tidak memutus rentetan',
-        tr: 'Bir günü kaçırmak seriyi bozmaz',
-        pl: 'Pominięcie dnia nie przerwie serii',
-      }),
     });
   }
 
@@ -514,16 +442,6 @@ export const loadActiveLevelGiftInventory = async (
   }),
       desc: `-${Math.round(wagerDiscount * 100)}%`,
       accent: '#F472B6',
-      hint: triLang(lang, {
-        ru: 'Скидка применится при следующем пари',
-        uk: 'Знижка застосується при наступному парі',
-        es: 'El descuento se aplica en tu próxima apuesta',
-        'pt-BR': 'O desconto vale na sua próxima aposta',
-        vi: 'Giảm giá áp dụng cho lần cược tới',
-        id: 'Diskon berlaku pada taruhan berikutnya',
-        tr: 'İndirim bir sonraki bahiste geçerli',
-        pl: 'Zniżka zadziała przy następnym zakładzie',
-      }),
     });
   }
 
@@ -554,16 +472,6 @@ export const loadActiveLevelGiftInventory = async (
     pl: '1 darmowa aktywacja',
   }),
       accent: '#2DD4BF',
-      hint: triLang(lang, {
-        ru: 'Включите бесплатно: Лига → Совместный буст',
-        uk: 'Увімкніть безкоштовно: Ліга → Спільний буст',
-        es: 'Actívalo gratis: Liga → Boost conjunto',
-        'pt-BR': 'Ative grátis: Liga → Boost conjunto',
-        vi: 'Bật miễn phí: Giải đấu → Boost chung',
-        id: 'Aktifkan gratis: Liga → Boost bersama',
-        tr: 'Ücretsiz aç: Lig → Ortak boost',
-        pl: 'Włącz za darmo: Liga → Wspólny boost',
-      }),
       actionRoute: '/club_screen',
     });
   }
@@ -595,7 +503,6 @@ export const loadActiveLevelGiftInventory = async (
       }),
       desc: friendGiftLabel(gift, lang),
       accent: '#EAB308',
-      hint: hintAutoWorks(lang),
     });
   }
 
@@ -639,7 +546,6 @@ export const loadActiveLevelGiftInventory = async (
         tr: 'lig puanları iki katı', pl: 'punkty ligi podwójnie',
       }),
       accent: '#38BDF8',
-      hint: hintAutoWorks(lang),
     });
   }
 
@@ -672,7 +578,6 @@ export const loadActiveLevelGiftInventory = async (
             tr: 'sonraki ders ×3 XP verir', pl: 'następna lekcja da ×3 XP',
           }),
       accent: '#F59E0B',
-      hint: hintAutoWorks(lang),
     });
   }
 
@@ -695,7 +600,6 @@ export const loadActiveLevelGiftInventory = async (
         tr: 'enerji daha hızlı doluyor', pl: 'energia regeneruje się szybciej',
       }),
       accent: '#22D3EE',
-      hint: hintAutoWorks(lang),
     });
   }
 

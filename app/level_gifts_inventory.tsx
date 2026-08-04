@@ -302,7 +302,7 @@ export default function LevelGiftsInventoryScreen() {
             </Text>
           </View>
 
-          <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ padding: 16, gap: 12 }} showsVerticalScrollIndicator={false} scrollEventThrottle={16}>
+          <BouncyScrollView decelerationRate="fast" contentContainerStyle={{ padding: 16, gap: 12 }} showsVerticalScrollIndicator={false} scrollEventThrottle={16}>
             <View testID="level-gifts-bonus-of-day" style={{ gap: 8 }}>
               <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900', paddingHorizontal: 2 }}>
                 {triLang(lang, { ru: 'Бонус дня', uk: 'Бонус дня', es: 'Bono del día', 'pt-BR': 'Bônus do dia', vi: 'Ưu đãi hôm nay', id: 'Bonus hari ini', tr: 'Günün bonusu', pl: 'Bonus dnia' })}
@@ -420,11 +420,12 @@ export default function LevelGiftsInventoryScreen() {
                         <Text style={{ color: t.textMuted, fontSize: f.sub, lineHeight: f.sub + 4, marginTop: 2 }}>
                           {gift.desc}
                         </Text>
-                        {!!gift.hint && (
-                          <Text style={{ color: gift.actionRoute ? gift.accent : t.textMuted, fontSize: f.sub - 1, lineHeight: f.sub + 3, marginTop: 3, fontWeight: gift.actionRoute ? '800' : '400' }}>
-                            {gift.hint}
-                          </Text>
-                        )}
+                        {/* зачем 2026-08-04 (владелец: «убери подписи, только
+                            название и сколько ещё опыта»): третья строка-хинт
+                            («Работает автоматически», «Опыт удвоится сам…»)
+                            ничего не добавляла к названию и делала карточку
+                            выше на строку. Для кликабельных подарков путь
+                            подсказывает стрелка справа. */}
                       </View>
                       <View style={{ alignItems: 'flex-end', gap: 4 }}>
                         <View style={{ borderRadius: 999, paddingHorizontal: 9, paddingVertical: 5, backgroundColor: giftTone(gift.accent, '1F') }}>

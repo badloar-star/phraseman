@@ -89,6 +89,8 @@ describe('New Jarvis collections are equally closed to direct client access', ()
     'jarvis_llm_budget',
     // Кэш идемпотентности обогатителя: полностью закрыт, даже admin не читает.
     'jarvis_llm_enrichment_cache',
+    // Раздел «Планы»: закрыт от браузера, читается/пишется только через admin-callable.
+    'jarvis_plans',
   ] as const;
 
   test.each(JARVIS_COLLECTIONS)('%s is not readable/writable straight from the browser', (collection) => {

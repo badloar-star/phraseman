@@ -2107,6 +2107,12 @@ service cloud.firestore {
     match /jarvis_llm_enrichment_cache/{document=**} {
       allow read, write: if false;
     }
+    // Раздел «Планы»: постоянный архив находок Джарвиса. Владелец читает и
+    // управляет статусом (resolved/archived) через admin-callable — тот
+    // проверяет adminRole сам, прямой доступ из браузера не нужен.
+    match /jarvis_plans/{document=**} {
+      allow read, write: if false;
+    }
     match /agent_observation_receipts/{document=**} {
       allow read, write: if false;
     }

@@ -9,6 +9,7 @@ import { enrichDecisionsWithNarrative, type EnricherDependencies } from './llm_e
 import { estimateEnrichmentCostUsd, actualEnrichmentCostUsd } from './llm_enricher_cost';
 import { checkAndReserveBudget, recordActualSpend } from './llm_budget';
 import { reserveEnrichmentSlot, recordEnrichmentResult } from './llm_enrichment_cache';
+import { upsertPlan } from './jarvis_plans_store';
 import type { Decision } from './decision';
 import { buildTelegramDigest } from './telegram_digest';
 import { JARVIS_APPROVAL_COLLECTION } from './approval_store';
@@ -286,6 +287,15 @@ export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTION
     rejectedHashes: recentRejections,
     nowMs,
   });
+
+  // зачем сохранять планы ДО проверки тихих часов/выключателя: раздел
+  // «Планы» в админке — постоянный архив находок, он не должен зависеть от
+  // того, дошло ли сообщение в Telegram. Владелец 2026-08-04: находки видны
+  // только секунду во всплывающем сообщении, негде читать их полностью —
+  // здесь они сохраняются навсегда, независимо от уведомления.
+  await Promise.all(decisions.map((decision) => upsertPlan({ db, decision, nowMs }).catch((error: unknown) => {
+    logger.warn('jarvis_daily_departments: plan upsert failed', { department: decision.department, error });
+  })));
 
   // зачем молчать, когда всё чисто: ежедневное «всё хорошо» приучает не
   // читать сообщения, и настоящая находка потеряется среди них. Пишем только

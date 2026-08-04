@@ -73,6 +73,7 @@ export { buildAllDepartmentsSnapshot } from './all_departments_snapshot';
 export type { AllDepartmentsSnapshot, BuildAllDepartmentsSnapshotInput, DepartmentSnapshotLike } from './all_departments_snapshot';
 
 export { jarvisGetAllDecisions, jarvisGetApprovalAudit } from './all_departments_callables';
+export { jarvisGetPlans, jarvisSetPlanStatus, jarvisDeletePlan } from './jarvis_plans_callables';
 
 // ── Департамент «Контент» (четвёртый, завершает Р5) ────────────────────────
 export { runContentDepartment, LOW_SCORE_THRESHOLD } from './content_department';

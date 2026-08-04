@@ -12,7 +12,8 @@ import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { withExplainCallableTimeout } from './explain_callable_timeout';
 import { aiOffline, AiOfflineError } from './ai_kill_switch_copy';
 import { readExplainLocalCache, writeExplainLocalCache } from './explain_local_cache';
-import { warmAiFunction, withAiCallableRetry } from './ai_callable_resilience';
+import { warmAiFunction, withAiCallableRetry, aiAttemptTimeoutMs } from './ai_callable_resilience';
+import { EXPLAIN_CALLABLE_TIMEOUT_MS } from './explain_callable_timeout';
 
 const FUNCTIONS_REGION = 'us-central1';
 const explainPhraseInFlight = new Map<string, Promise<ExplainPhraseResponse>>();
@@ -104,8 +105,15 @@ export async function callExplainPhrase(
     // зачем: холодный старт (minInstances: 0) изредка отбивается Cloud Run как
     // «no available instance» — пользователь видел ошибку на ровном месте.
     // Повтор идемпотентен: объяснение фразы ничего не списывает при неудаче.
+    // Вторая попытка ждёт вдвое меньше: инстанс уже разбужен первой, и длинное
+    // окно там ничего не спасает — зато без укорочения общее ожидание перед
+    // показом ошибки складывалось бы в ~72 секунды.
     const res = await withAiCallableRetry(
-      () => withExplainCallableTimeout(fn(req), 'explainPhrase'),
+      (attempt) => withExplainCallableTimeout(
+        fn(req),
+        'explainPhrase',
+        aiAttemptTimeoutMs(EXPLAIN_CALLABLE_TIMEOUT_MS, attempt),
+      ),
       { label: 'explainPhrase', onRetryStart: options?.onRetryStart },
     );
     if (res.data.status === 'ok') {

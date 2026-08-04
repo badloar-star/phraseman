@@ -138,6 +138,15 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
     warmExplainMistake();
   }, [active, phraseKey]);
 
+  // Сторож размонтажа. Проверки phraseKeyRef ловят СМЕНУ фразы, но не уход с
+  // экрана: при размонтировании ref сохраняет прежнее значение, условие пройдёт,
+  // и поздний onRetryStart дёрнул бы setState на мёртвом компоненте.
+  const mountedRef = useRef(true);
+  useEffect(() => {
+    mountedRef.current = true;
+    return () => { mountedRef.current = false; };
+  }, []);
+
   // Тик подписи под скелетоном. Живёт ровно пока идёт ожидание: два таймера на
   // весь цикл, оба гасятся при уходе — фоновых таймеров экран не оставляет.
   useEffect(() => {
@@ -193,7 +202,7 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
           // не дожидаясь пятисекундного порога. Про сам сбой пользователю не
           // сообщаем: через секунду он, скорее всего, получит нормальный разбор.
           onRetryStart: () => {
-            if (phraseKeyRef.current === requestKey) setWaitStage('working');
+            if (mountedRef.current && phraseKeyRef.current === requestKey) setWaitStage('working');
           },
         });
         if (phraseKeyRef.current !== requestKey) return; // phrase changed — discard.
@@ -244,7 +253,7 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
     try {
       const res = await callExplainMistake(buildArgs('eli5'), {
         onRetryStart: () => {
-          if (phraseKeyRef.current === requestKey) setWaitStage('working');
+          if (mountedRef.current && phraseKeyRef.current === requestKey) setWaitStage('working');
         },
       });
       if (phraseKeyRef.current !== requestKey) return;

@@ -12,6 +12,8 @@
  */
 import {
   isColdStartLike,
+  isDefinitelyNotStarted,
+  aiAttemptTimeoutMs,
   withAiCallableRetry,
   shouldWarmNow,
   warmAiFunction,
@@ -31,6 +33,15 @@ describe('isColdStartLike — граница безопасного повтор
     ['обрыв сети RN', 'Network request failed'],
   ])('повторяет: %s', (_case, message) => {
     expect(isColdStartLike(new Error(message))).toBe(true);
+  });
+
+  it('таймаут разрешён только идемпотентным вызовам, но НЕ списывающим', () => {
+    // Разбор аудита 2026-08-04: таймаут ≠ «сервер не начал». Запрос мог дойти,
+    // снять квоту и генерировать ответ. Для explainPhrase/explainMistake повтор
+    // безвреден, для premiumDialogSend — это второе списание.
+    const timeout = new Error('explain_callable_timeout');
+    expect(isColdStartLike(timeout)).toBe(true);
+    expect(isDefinitelyNotStarted(timeout)).toBe(false);
   });
 
   it.each([
@@ -58,7 +69,68 @@ describe('isColdStartLike — граница безопасного повтор
   });
 });
 
+describe('isDefinitelyNotStarted — защита списывающих вызовов', () => {
+  /**
+   * Дефект, найденный аудитом 2026-08-04: premiumDialogSend списывает дневную
+   * квоту (enforceDailyQuota) ДО обращения к OpenAI. Повтор по таймауту снял бы
+   * вторую единицу и отправил сообщение дважды. Серверный откат квоты спасает
+   * только от сбоя провайдера — при клиентском таймауте сервер завершается
+   * УСПЕШНО и ничего не откатывает.
+   */
+  it.each([
+    ['отказ Cloud Run на входе', 'no available instance'],
+    ['сервис не поднят', 'functions/unavailable'],
+    ['сеть не поднялась', 'Network request failed'],
+    ['обрыв соединения', 'ECONNRESET'],
+  ])('разрешает повтор: %s', (_case, message) => {
+    expect(isDefinitelyNotStarted(new Error(message))).toBe(true);
+  });
+
+  it.each([
+    ['клиентский таймаут — запрос мог дойти', 'explain_callable_timeout'],
+    ['серверный дедлайн — функция могла отработать', 'deadline-exceeded'],
+    ['внутренняя ошибка — тело функции выполнялось', 'functions/internal'],
+    ['квота исчерпана', 'dialog_premium_cap'],
+  ])('ЗАПРЕЩАЕТ повтор: %s', (_case, message) => {
+    expect(isDefinitelyNotStarted(new Error(message))).toBe(false);
+  });
+});
+
+describe('aiAttemptTimeoutMs — ожидание не растягивается вдвое', () => {
+  /**
+   * Дефект, найденный аудитом 2026-08-04: без укорочения худший случай был
+   * 35с + 1.6с + 35с ≈ 72 секунды до показа ошибки — пользователь решил бы,
+   * что приложение умерло.
+   */
+  it('первая попытка ждёт полное окно', () => {
+    expect(aiAttemptTimeoutMs(35000, 1)).toBe(35000);
+  });
+
+  it('вторая попытка ждёт вдвое меньше', () => {
+    expect(aiAttemptTimeoutMs(35000, 2)).toBe(17500);
+  });
+
+  it('суммарное ожидание остаётся в разумных рамках (< 55 секунд)', () => {
+    const RETRY_PAUSE_MS = 1600;
+    const worstCase = aiAttemptTimeoutMs(35000, 1) + RETRY_PAUSE_MS + aiAttemptTimeoutMs(35000, 2);
+    expect(worstCase).toBeLessThan(55000);
+  });
+});
+
 describe('withAiCallableRetry', () => {
+  it('сообщает фабрике номер попытки — иначе таймаут не укоротить', () => {
+    const attempts: number[] = [];
+    const call = jest.fn((attempt: 1 | 2) => {
+      attempts.push(attempt);
+      return attempt === 1
+        ? Promise.reject(new Error('no available instance'))
+        : Promise.resolve('ok');
+    });
+    return withAiCallableRetry(call, { label: 'x', retryDelayMs: 0 }).then(() => {
+      expect(attempts).toEqual([1, 2]);
+    });
+  });
+
   it('не трогает сеть повторно, когда первый вызов удался', async () => {
     const call = jest.fn().mockResolvedValue('ok');
     await expect(withAiCallableRetry(call, { label: 'x', retryDelayMs: 0 })).resolves.toBe('ok');

@@ -4,7 +4,8 @@ import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { withExplainCallableTimeout } from './explain_callable_timeout';
 import { aiOffline, AiOfflineError } from './ai_kill_switch_copy';
 import { readExplainLocalCache, writeExplainLocalCache } from './explain_local_cache';
-import { warmAiFunction, withAiCallableRetry } from './ai_callable_resilience';
+import { warmAiFunction, withAiCallableRetry, aiAttemptTimeoutMs } from './ai_callable_resilience';
+import { EXPLAIN_CALLABLE_TIMEOUT_MS } from './explain_callable_timeout';
 
 const FUNCTIONS_REGION = 'us-central1';
 const explainMistakeInFlight = new Map<string, Promise<ExplainMistakeResponse>>();
@@ -115,8 +116,13 @@ export async function callExplainMistake(
     // зачем: холодный старт (minInstances: 0) изредка отбивается Cloud Run как
     // «no available instance». Повтор идемпотентен: неудавшийся разбор ничего
     // не списал (серверный кап считается уже после входа в тело функции).
+    // Вторая попытка ждёт вдвое меньше — см. aiAttemptTimeoutMs.
     const res = await withAiCallableRetry(
-      () => withExplainCallableTimeout(fn(req), 'explainMistake'),
+      (attempt) => withExplainCallableTimeout(
+        fn(req),
+        'explainMistake',
+        aiAttemptTimeoutMs(EXPLAIN_CALLABLE_TIMEOUT_MS, attempt),
+      ),
       { label: 'explainMistake', onRetryStart: options?.onRetryStart },
     );
     if (res.data.ok && res.data.text.trim()) {

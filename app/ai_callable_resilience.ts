@@ -43,17 +43,48 @@ const WARM_TTL_MS = 9 * 60 * 1000;
  * permission-denied, failed-precondition, invalid-argument — там повтор либо
  * бесполезен, либо вреден (второе списание). Также не повторяем 'internal':
  * сервер уже вошёл в тело функции и мог потратить деньги на OpenAI.
+ *
+ * ⚠️ ГРАНИЦА ДВУХ КЛАССОВ (важно, разбор аудита 2026-08-04):
+ * таймаут — это НЕ «сервер не начал». Таймаут означает «мы не знаем, что там
+ * происходит»: запрос мог дойти, списать квоту и в этот момент генерировать
+ * ответ. Для идемпотентных вызовов (объяснение, разбор — они только читают и
+ * кэшируют) повтор по таймауту безвреден. Для вызовов, которые СПИСЫВАЮТ
+ * (premiumDialogSend списывает дневную квоту ДО обращения к OpenAI, см.
+ * functions/src/premium_dialog.ts → enforceDailyQuota), повтор по таймауту
+ * снял бы квоту второй раз — там нужен isDefinitelyNotStarted().
  */
 export function isColdStartLike(error: unknown): boolean {
+  if (isDefinitelyNotStarted(error)) return true;
+
   const code = String((error as { code?: unknown })?.code ?? '').toLowerCase();
   const message = String((error as { message?: unknown })?.message ?? error ?? '').toLowerCase();
   const text = `${code} ${message}`;
 
-  // Явные признаки «инстанса не было» и обрыва до обработки.
-  if (text.includes('no available instance')) return true;
-  if (text.includes('unavailable')) return true;
+  // Неопределённость: сервер мог уже работать. Повторять можно ТОЛЬКО там, где
+  // повторный вызов ничего не списывает.
   if (text.includes('deadline-exceeded')) return true;
   if (text.includes('explain_callable_timeout')) return true;
+  return false;
+}
+
+/**
+ * Строгая проверка: сервер ГАРАНТИРОВАННО не начал обработку — инстанса не было
+ * или соединение не поднялось. Побочных эффектов быть не могло даже теоретически.
+ *
+ * зачем: для не-идемпотентных вызовов (отправка сообщения в диалоге) это
+ * единственное безопасное условие повтора. Всё, что «возможно, дошло», здесь
+ * отсекается — лучше показать пользователю честную ошибку, чем молча списать
+ * вторую единицу дневной квоты.
+ */
+export function isDefinitelyNotStarted(error: unknown): boolean {
+  const code = String((error as { code?: unknown })?.code ?? '').toLowerCase();
+  const message = String((error as { message?: unknown })?.message ?? error ?? '').toLowerCase();
+  const text = `${code} ${message}`;
+
+  // Ровно та ошибка из алерта Cloud Monitoring: Cloud Run отказал на входе.
+  if (text.includes('no available instance')) return true;
+  // Инстанса нет / сервис не поднят — запрос отклонён до тела функции.
+  if (text.includes('unavailable')) return true;
   // Сетевые обрывы RN/Firebase SDK до установления соединения.
   if (text.includes('network request failed')) return true;
   if (text.includes('econnreset') || text.includes('etimedout')) return true;
@@ -80,6 +111,17 @@ export interface AiCallableRetryOptions {
 }
 
 /**
+ * Насколько короче ждать на ВТОРОЙ попытке (доля от обычного таймаута).
+ *
+ * зачем (разбор аудита 2026-08-04): без этого худший случай складывался в
+ * 35с (таймаут) + 1.6с (пауза) + 35с (второй таймаут) ≈ 72 секунды до показа
+ * ошибки. Столько ждать нельзя — пользователь решит, что приложение умерло.
+ * На повторе инстанс уже разбужен первой попыткой, поэтому либо ответ придёт
+ * быстро, либо не придёт вовсе: длинное окно там ничего не спасает.
+ */
+export const AI_RETRY_TIMEOUT_FACTOR = 0.5;
+
+/**
  * Выполняет вызов и при «холодном» сбое ОДИН раз тихо повторяет его.
  *
  * Ровно один повтор, а не экспоненциальный backoff: второй холодный старт
@@ -87,24 +129,33 @@ export interface AiCallableRetryOptions {
  * дальнейшие попытки только тянут ожидание и жгут деньги.
  *
  * `call` — фабрика, а не готовый промис: повтор обязан создать НОВЫЙ вызов,
- * переиспользовать отклонённый промис нельзя.
+ * переиспользовать отклонённый промис нельзя. В неё передаётся номер попытки
+ * (1 или 2), чтобы вызывающий мог укоротить таймаут второй попытки.
  */
 export async function withAiCallableRetry<T>(
-  call: () => Promise<T>,
+  call: (attempt: 1 | 2) => Promise<T>,
   options: AiCallableRetryOptions,
 ): Promise<T> {
   const shouldRetry = options.shouldRetry ?? isColdStartLike;
   const retryDelayMs = options.retryDelayMs ?? RETRY_DELAY_MS;
 
   try {
-    return await call();
+    return await call(1);
   } catch (error) {
     if (!shouldRetry(error)) throw error;
     options.onRetryStart?.();
     await delay(retryDelayMs);
     // Второй сбой уходит наверх как есть — UI показывает честную ошибку.
-    return call();
+    return call(2);
   }
+}
+
+/**
+ * Таймаут для попытки: вторая ждёт вдвое меньше первой.
+ * Держим общее ожидание в разумных рамках — см. AI_RETRY_TIMEOUT_FACTOR.
+ */
+export function aiAttemptTimeoutMs(baseMs: number, attempt: 1 | 2): number {
+  return attempt === 1 ? baseMs : Math.round(baseMs * AI_RETRY_TIMEOUT_FACTOR);
 }
 
 // ── Прогрев по намерению ────────────────────────────────────────────────────

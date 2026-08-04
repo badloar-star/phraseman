@@ -3,6 +3,14 @@
 // not discarded locally as a timeout; truly stalled requests still recover.
 const DEFAULT_EXPLAIN_CALLABLE_TIMEOUT_MS = 35000;
 
+/**
+ * Базовый таймаут, экспортируемый для расчёта укороченного окна ПОВТОРНОЙ
+ * попытки (app/ai_callable_resilience.ts → aiAttemptTimeoutMs).
+ * зачем: без укорочения два полных окна подряд складывались бы в ~72 секунды
+ * ожидания перед показом ошибки.
+ */
+export const EXPLAIN_CALLABLE_TIMEOUT_MS = DEFAULT_EXPLAIN_CALLABLE_TIMEOUT_MS;
+
 export class ExplainCallableTimeoutError extends Error {
   readonly code = 'explain_callable_timeout';
 

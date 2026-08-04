@@ -11,8 +11,16 @@ import {
   AiOfflineError,
   AI_GLOBAL_BUDGET_ERROR_CODE,
 } from './ai_kill_switch_copy';
-import { warmAiFunction, withAiCallableRetry, isColdStartLike } from './ai_callable_resilience';
-import { withExplainCallableTimeout } from './explain_callable_timeout';
+import {
+  warmAiFunction,
+  withAiCallableRetry,
+  isDefinitelyNotStarted,
+  aiAttemptTimeoutMs,
+} from './ai_callable_resilience';
+import {
+  withExplainCallableTimeout,
+  EXPLAIN_CALLABLE_TIMEOUT_MS,
+} from './explain_callable_timeout';
 
 const FUNCTIONS_REGION = 'us-central1';
 const premiumDialogSendInFlight = new Map<string, Promise<PremiumDialogResponse>>();
@@ -304,16 +312,25 @@ export async function callPremiumDialogSend(
     // (minInstances: 0) сообщение просто не отправлялось, и пользователь видел
     // ошибку. Сторож нужен и сам по себе: без него зависший вызов висел бы вечно.
     //
-    // ОСТОРОЖНО с идемпотентностью: этот вызов тратит квоту и пишет историю
-    // диалога, поэтому повторяем ТОЛЬКО сбои, при которых сервер заведомо не
-    // начал работу (инстанса не было / соединение не поднялось). Отсюда явный
-    // isColdStartLike вместо более широких условий: лимиты, отказы доступа и
-    // 'internal' повторять нельзя — это был бы второй списанный ответ.
+    // ⚠️ ОСТОРОЖНО с идемпотентностью (разбор аудита 2026-08-04): этот вызов
+    // списывает дневную квоту (functions/src/premium_dialog.ts →
+    // enforceDailyQuota) ДО обращения к OpenAI. Поэтому здесь строгая проверка
+    // isDefinitelyNotStarted, а НЕ общая isColdStartLike.
+    //
+    // Разница принципиальная: общая проверка повторяет и по ТАЙМАУТУ, а таймаут
+    // означает «мы не знаем, что там» — запрос мог дойти, снять квоту и в этот
+    // момент генерировать ответ. Повтор снял бы вторую единицу и отправил
+    // сообщение дважды. Здесь повторяем ровно те сбои, где сервер гарантированно
+    // не начал работу; на таймауте показываем честную ошибку с кнопкой повтора.
     const res = await withAiCallableRetry(
-      () => withExplainCallableTimeout(fn(req), 'premiumDialogSend'),
+      (attempt) => withExplainCallableTimeout(
+        fn(req),
+        'premiumDialogSend',
+        aiAttemptTimeoutMs(EXPLAIN_CALLABLE_TIMEOUT_MS, attempt),
+      ),
       {
         label: 'premiumDialogSend',
-        shouldRetry: isColdStartLike,
+        shouldRetry: isDefinitelyNotStarted,
         onRetryStart: options?.onRetryStart,
       },
     );
@@ -392,7 +409,11 @@ export async function callPremiumDialogReview(
     );
     // Идемпотентно: разбор только читает транскрипт и ничего не списывает.
     const res = await withAiCallableRetry(
-      () => withExplainCallableTimeout(fn(req), 'premiumDialogReview'),
+      (attempt) => withExplainCallableTimeout(
+        fn(req),
+        'premiumDialogReview',
+        aiAttemptTimeoutMs(EXPLAIN_CALLABLE_TIMEOUT_MS, attempt),
+      ),
       { label: 'premiumDialogReview' },
     );
     return res.data;
@@ -454,8 +475,15 @@ export async function callPremiumDialogTranslate(
     );
     // Идемпотентно: перевод кэшируется на сервере, лимит «3 на диалог» держит
     // вызывающий экран локально — повтор упавшего вызова его не тратит.
+    // База 25с, а не общие 35с: у premiumDialogTranslate серверный
+    // timeoutSeconds всего 20 (functions/src/premium_dialog.ts) — ждать сильно
+    // дольше сервера бессмысленно, он к тому моменту уже сдался.
     const res = await withAiCallableRetry(
-      () => withExplainCallableTimeout(fn(req), 'premiumDialogTranslate'),
+      (attempt) => withExplainCallableTimeout(
+        fn(req),
+        'premiumDialogTranslate',
+        aiAttemptTimeoutMs(25000, attempt),
+      ),
       { label: 'premiumDialogTranslate' },
     );
     return res.data;

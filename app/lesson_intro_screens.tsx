@@ -17,6 +17,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import TapScale from '../components/TapScale';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme, getVolumetricShadow } from '../components/ThemeContext';
+import { isLightThemeMode } from '../constants/theme';
 import { useLang } from '../components/LangContext';
 import { triLang, type Lang } from '../constants/i18n';
 import ScreenGradient from '../components/ScreenGradient';
@@ -118,7 +119,10 @@ function IntroBlockCard({
   const kind: LessonIntroBlockKind = richKindToLegacyKind(data.kind) ?? KIND_BY_INDEX[index] ?? 'tip';
   const km = KIND_MAP[kind];
   const accent = km.color(t);
-  const isLight = false;
+  // зачем: был мёртвый стаб `= false` — формула «Do / Does + хто + дія?» и
+  // остальные rich-тона (formula/code) всегда красились «под тёмный фон»
+  // (#C4B5FD и т.п.), из-за чего в «Нефрите» текст не читался на светлой карточке.
+  const isLight = isLightThemeMode(themeMode);
 
   const defaultTitle = defaultKindTitle(km, lang, studyTarget);
   const localizedTitle = richTitle(data, lang, studyTarget);
@@ -386,7 +390,8 @@ export default function LessonIntroScreens({
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const { height: screenH } = useWindowDimensions();
-  const isLight = false;
+  // зачем: см. комментарий у isLight в IntroBlockCard — тот же мёртвый стаб.
+  const isLight = isLightThemeMode(themeMode);
 
   const totalBlocks = introScreens.length;
   const [revealedCount, setRevealedCount] = useState(1); // первый блок виден сразу
@@ -759,7 +764,7 @@ export default function LessonIntroScreens({
         >
           <BouncyScrollView
             ref={scrollRef}
-            decelerationRate="normal"
+            decelerationRate="fast"
             contentContainerStyle={[styles.scrollContent, { paddingTop: scrollTopPadding }]}
             showsVerticalScrollIndicator
             keyboardShouldPersistTaps="handled"

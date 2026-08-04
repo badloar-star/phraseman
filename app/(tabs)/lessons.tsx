@@ -590,15 +590,14 @@ const LessonCard = React.memo(function LessonCard({
                         ? <Ionicons name="checkmark-circle" size={18} color={isGoldTheme ? lessonAccent : isCoralTheme ? 'rgba(255,236,230,0.86)' : lessonAccent} style={LESSON_CARD_ACCENT_TEXT_SHADOW}/>
                         : progPct > 0
                             ? (<Text style={{
-                                    color: isGoldTheme
-                                        ? (isComplete ? goldBright : textMuted)
-                                        :
-                                            isCoralTheme
-                                                ? (isComplete ? '#FFF8F4' : 'rgba(255,236,230,0.82)')
-                                                : (isComplete ? lessonAccent : rgbaHexCached(lessonAccent, 0.82)),
+                                    // зачем: процент красился в rgbaHex(lessonAccent) — а lessonAccent === bg
+                                    // карточки, то есть цветом фона по фону: читалась только чёрная тень
+                                    // под глифом («размыто» на всех темах). Берём тот же контрастный цвет,
+                                    // что и метка «УРОК N» слева, и тень оставляем лишь светлому тексту.
+                                    color: useDarkMetaText ? LESSON_CARD_OPEN_META_TEXT : lessonMetaColor,
                                      fontSize: f.label,
                                      fontWeight: '800',
-                                     ...LESSON_CARD_ACCENT_TEXT_SHADOW,
+                                     ...(useDarkMetaText ? {} : LESSON_CARD_ACCENT_TEXT_SHADOW),
                                  }} maxFontSizeMultiplier={1}>
                               {progPct}%
                             </Text>)
@@ -1424,7 +1423,7 @@ return (<LessonCard key={`l-${num}`}
         onScrollEndDrag={handleLessonsScrollEnd}
         onMomentumScrollEnd={handleLessonsScrollEnd}
         contentContainerStyle={{ paddingBottom: listBottomPad }}
-        decelerationRate="normal"
+        decelerationRate="fast"
         bounces
         alwaysBounceVertical
         overScrollMode="always"

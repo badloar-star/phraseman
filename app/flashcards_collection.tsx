@@ -42,6 +42,7 @@ import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useTheme } from '../components/ThemeContext';
 import { triLang, type Lang } from '../constants/i18n';
+import { isLightThemeMode } from '../constants/theme';
 import { FLASHCARDS_MARKET_DEV_ROUTE } from '../constants/devRoutes';
 import { getCardPackPaywallTheme, getCommunityUgcPackPaywallTheme } from './flashcards/cardPackPaywallTheme';
 import { Flashcard, loadFlashcards, removeFlashcard, saveFlashcards } from '../hooks/use-flashcards';
@@ -296,7 +297,10 @@ export default function FlashcardsScreen() {
   const effectiveOs = useEffectivePlatformOS();
   useEffect(() => () => { stopAudio(); }, [stopAudio]);
   const { theme: t, f, themeMode, statusBarLight, uiScale } = useTheme();
-  const isLightTheme = false;
+  // зачем: был мёртвый стаб `= false` — светлые ветки ниже (тема пака, альфа
+  // градиента карточки) никогда не срабатывали, и в «Нефрите» карточка идиомы
+  // оставалась тёмной с нечитаемым текстом. Флаг считаем от реальной темы.
+  const isLightTheme = isLightThemeMode(themeMode);
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const flashcardsTarget = flashcardsCacheTarget(studyTarget);

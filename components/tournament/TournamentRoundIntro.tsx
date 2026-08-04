@@ -32,6 +32,8 @@ import { resolveTournamentIntroCountdownValue, tournamentNow } from '../../app/t
 import { FlowText } from '../text-integrity/FlowText';
 import { useTournamentPalette, v2motion } from './tournament_theme';
 import { TournamentBackdrop } from './TournamentBackdrop';
+import { triLang, type Lang } from '../../constants/i18n';
+import { useLang } from '../LangContext';
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
@@ -61,6 +63,7 @@ type Props = {
 export const TournamentRoundIntro = memo(function TournamentRoundIntro({
   roundNo, modeLabel, introEndsAtMs, onDone,
 }: Props) {
+  const { lang } = useLang();
   const P = useTournamentPalette();
   const styles = React.useMemo(() => makeStyles(P), [P]);
   const runtimeActive = useRuntimeActive();
@@ -98,12 +101,12 @@ export const TournamentRoundIntro = memo(function TournamentRoundIntro({
   return (
     <View style={styles.root}>
       <TournamentBackdrop variant="play" />
-      <Text style={styles.round}>Раунд {roundNo}</Text>
+      <Text style={styles.round}>{triLang(lang, { ru: `Раунд ${roundNo}`, uk: `Раунд ${roundNo}`, es: `Ronda ${roundNo}`, 'pt-BR': `Rodada ${roundNo}`, vi: `Vòng ${roundNo}`, id: `Ronde ${roundNo}`, tr: `Tur ${roundNo}`, pl: `Runda ${roundNo}` })}</Text>
       <Text style={styles.mode}>{modeLabel}</Text>
 
       <View style={styles.ringBox}>
         <CountRing key={count} palette={P} active={runtimeActive} durationMs={nextTickDelayMs} />
-        <CountDigit key={`d${count}`} value={count} styles={styles} />
+        <CountDigit key={`d${count}`} value={count} lang={lang} styles={styles} />
       </View>
     </View>
   );
@@ -165,8 +168,8 @@ const CountRing = memo(function CountRing({
 
 /** Цифра: приходит с перелётом, уходит вверх растворяясь. */
 const CountDigit = memo(function CountDigit({
-  value, styles,
-}: { value: number; styles: ReturnType<typeof makeStyles> }) {
+  value, lang, styles,
+}: { value: number; lang: Lang; styles: ReturnType<typeof makeStyles> }) {
   const scale = useSharedValue(0.6);
   const opacity = useSharedValue(0);
 
@@ -199,7 +202,7 @@ const CountDigit = memo(function CountDigit({
           без фикс-размеров, крупная цифра при большом системном шрифте просто
           растёт поверх декоративного кольца, ничего не клипается. */}
       <FlowText testID="tournament-intro-digit" provenance="authored" style={styles.digit}>
-        {value > 0 ? value : 'Старт'}
+        {value > 0 ? value : triLang(lang, { ru: 'Старт', uk: 'Старт', es: 'Ya', 'pt-BR': 'Já', vi: 'Bắt đầu', id: 'Mulai', tr: 'Başla', pl: 'Start' })}
       </FlowText>
     </Animated.View>
   );

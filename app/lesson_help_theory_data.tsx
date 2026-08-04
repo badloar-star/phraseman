@@ -2528,7 +2528,7 @@ const THEORY: Record<number, TheoryContent> = {
       t={t}
       f={f}
       text={isUK
-        ? 'Ці блоки краще вчити не окремими словами, а цілими шматками: get home, want help, keep money, carry cash, check bills.'
+        ? 'Ці блоки краще вчити не окремими словами, а цілими зворотами: get home, want help, keep money, carry cash, check bills.'
         : 'Эти блоки лучше учить не отдельными словами, а цельными кусками: get home, want help, keep money, carry cash, check bills.'
       }
     />,

@@ -113,7 +113,7 @@ function verbPatternStep(input: {
         .filter((option) => option !== input.correctAnswer)
         .map((option) => [option, withEs(input.wrong[option] ?? tri(
           `Почти. Здесь нужен готовый кусок с ${input.correctAnswer}.`,
-          `Майже. Тут потрібен готовий шматок з ${input.correctAnswer}.`,
+          `Майже. Тут потрібен готовий зворот з ${input.correctAnswer}.`,
           `Casi. Aqui necesitas el bloque con ${input.correctAnswer}.`,
         ), esFeedback)]),
     ),
@@ -181,7 +181,7 @@ export const PREPOSITION_COMMON_VERB_PATTERNS_TRAINING: DiagnosisTraining = {
   ),
   diagnosisText: tri(
     'Похоже, ты переводишь маленькое слово отдельно. Поэтому появляются listen music, wait me, depend from, look on. В английском такие куски лучше хранить целиком: listen to music, wait for me, depend on the weather, look at the screen.',
-    'Схоже, ти перекладаєш маленьке слово окремо. Тому зʼявляються listen music, wait me, depend from, look on. В англійській такі шматки краще зберігати цілими: listen to music, wait for me, depend on the weather, look at the screen.',
+    'Схоже, ти перекладаєш маленьке слово окремо. Тому зʼявляються listen music, wait me, depend from, look on. В англійській такі звороти краще зберігати цілими: listen to music, wait for me, depend on the weather, look at the screen.',
     'Parece que traduces la palabra pequena por separado. Por eso aparecen listen music, wait me, depend from, look on. En ingles conviene guardar estos bloques enteros: listen to music, wait for me, depend on the weather, look at the screen.',
     {
       'pt-BR': 'Parece que você traduz a palavrinha separadamente. Por isso aparecem listen music, wait me, depend from, look on. Em inglês, é melhor guardar esses blocos inteiros: listen to music, wait for me, depend on the weather, look at the screen.',
@@ -193,7 +193,7 @@ export const PREPOSITION_COMMON_VERB_PATTERNS_TRAINING: DiagnosisTraining = {
   ),
   mentalModel: tri(
     'Не держи listen отдельно и to отдельно. Держи один кусок: listen to. То же самое: wait for, depend on, look at, talk to, think about, ask for, believe in.',
-    'Не тримай listen окремо і to окремо. Тримай один шматок: listen to. Так само: wait for, depend on, look at, talk to, think about, ask for, believe in.',
+    'Не тримай listen окремо і to окремо. Тримай один зворот: listen to. Так само: wait for, depend on, look at, talk to, think about, ask for, believe in.',
     'No guardes listen y to por separado. Guarda un solo bloque: listen to. Igual con wait for, depend on, look at, talk to, think about, ask for, believe in.',
     {
       'pt-BR': 'Não guarde listen separado de to. Guarde um bloco: listen to. O mesmo vale para wait for, depend on, look at, talk to, think about, ask for, believe in.',
@@ -241,7 +241,7 @@ export const PREPOSITION_COMMON_VERB_PATTERNS_TRAINING: DiagnosisTraining = {
       'Think about = думати про тему: think about your answer.',
       'Ask for = просити щось: ask for help.',
       'Believe in = вірити в людину, ідею або себе: believe in yourself.',
-      'Головна звичка: вчити не маленьке слово окремо, а весь готовий шматок.',
+      'Головна звичка: вчити не маленьке слово окремо, а весь готовий зворот.',
     ],
     es: [
       'Listen to = escuchar a alguien o algo: listen to music, listen to me.',
@@ -333,7 +333,7 @@ export const PREPOSITION_COMMON_VERB_PATTERNS_TRAINING: DiagnosisTraining = {
       id: 'Saya mendengarkan musik setiap hari.',
       tr: 'Her gün müzik dinlerim.',
       pl: 'Słucham muzyki codziennie.',
-      why: tri('Кусок хранится целиком: listen to music.', 'Шматок зберігається цілим: listen to music.', 'Guarda el bloque entero: listen to music.'),
+      why: tri('Кусок хранится целиком: listen to music.', 'Зворот зберігається цілим: listen to music.', 'Guarda el bloque entero: listen to music.'),
     },
     {
       en: 'Please wait for me.',
@@ -357,7 +357,7 @@ export const PREPOSITION_COMMON_VERB_PATTERNS_TRAINING: DiagnosisTraining = {
       id: 'Itu tergantung pada cuaca.',
       tr: 'Bu hava durumuna bağlı.',
       pl: 'To zależy od pogody.',
-      why: tri('Русский подсказывает "от", но английский кусок: depend on.', 'Українська підказує "від", але англійський шматок: depend on.', 'La traduccion puede sugerir from, pero el bloque ingles es depend on.'),
+      why: tri('Русский подсказывает "от", но английский кусок: depend on.', 'Українська підказує "від", але англійський зворот: depend on.', 'La traduccion puede sugerir from, pero el bloque ingles es depend on.'),
     },
     {
       en: 'Look at the screen.',
@@ -444,7 +444,7 @@ export const PREPOSITION_COMMON_VERB_PATTERNS_TRAINING: DiagnosisTraining = {
       type: 'warning',
       text: tri(
         'Самые липкие ошибки: listen music, wait me, depend from, look on. Исправляем их короткими готовыми кусками.',
-        'Найлипкіші помилки: listen music, wait me, depend from, look on. Виправляємо їх короткими готовими шматками.',
+        'Найлипкіші помилки: listen music, wait me, depend from, look on. Виправляємо їх короткими готовими зворотами.',
         'Errores pegajosos: listen music, wait me, depend from, look on. Los corregimos con bloques cortos ya listos.',
       ),
     },
@@ -460,15 +460,15 @@ export const PREPOSITION_COMMON_VERB_PATTERNS_TRAINING: DiagnosisTraining = {
       translation: tri('Я слушаю музыку каждый день.', 'Я слухаю музику щодня.', 'I listen to music every day.'),
       options: ['to', 'for', 'on', 'at'],
       correctAnswer: 'to',
-      correctFeedback: tri('Да. Готовый кусок: listen to music.', 'Так. Готовий шматок: listen to music.', 'Yes. Ready chunk: listen to music.'),
+      correctFeedback: tri('Да. Готовый кусок: listen to music.', 'Так. Готовий зворот: listen to music.', 'Yes. Ready chunk: listen to music.'),
       wrong: {
         for: tri('Listen for бывает, когда ты прислушиваешься и ждёшь звук. Здесь обычное "слушаю музыку": listen to music.', 'Listen for буває, коли ти прислухаєшся і чекаєш звук. Тут звичайне "слухаю музику": listen to music.', 'Listen for can mean listening for an expected sound. Here use listen to music.'),
-        on: tri('Listen on music не работает. Нужен готовый кусок listen to music.', 'Listen on music не працює. Потрібен готовий шматок listen to music.', 'Listen on music does not work. Use listen to music.'),
+        on: tri('Listen on music не работает. Нужен готовый кусок listen to music.', 'Listen on music не працює. Потрібен готовий зворот listen to music.', 'Listen on music does not work. Use listen to music.'),
         at: tri('Listen at music не работает. После listen здесь нужен хвост to: listen to music.', 'Listen at music не працює. Після listen тут потрібен хвіст to: listen to music.', 'Listen at music does not work. Use listen to music.'),
       },
       retryFeedback: [
         tri('Не переводи маленькое слово отдельно.', 'Не перекладай маленьке слово окремо.', 'Do not translate the small word alone.'),
-        tri('Держи кусок: listen to.', 'Тримай шматок: listen to.', 'Keep the chunk: listen to.'),
+        tri('Держи кусок: listen to.', 'Тримай зворот: listen to.', 'Keep the chunk: listen to.'),
         tri('С музыкой: listen to music.', 'З музикою: listen to music.', 'With music: listen to music.'),
         tri('Ответ: I listen to music every day.', 'Відповідь: I listen to music every day.', 'Answer: I listen to music every day.'),
       ],
@@ -487,14 +487,14 @@ export const PREPOSITION_COMMON_VERB_PATTERNS_TRAINING: DiagnosisTraining = {
       correctAnswer: 'for',
       correctFeedback: tri('Да. Подождать меня: wait for me.', 'Так. Почекати мене: wait for me.', 'Yes. Wait for me.'),
       wrong: {
-        to: tri('Wait to me не работает. Когда ждёшь человека, нужен готовый кусок wait for me.', 'Wait to me не працює. Коли чекаєш людину, потрібен готовий шматок wait for me.', 'Wait to me does not work. Use wait for me.'),
+        to: tri('Wait to me не работает. Когда ждёшь человека, нужен готовый кусок wait for me.', 'Wait to me не працює. Коли чекаєш людину, потрібен готовий зворот wait for me.', 'Wait to me does not work. Use wait for me.'),
         on: tri('Wait on бывает в других смыслах. Нейтральное "подожди меня": wait for me.', 'Wait on буває в інших значеннях. Нейтральне "почекай мене": wait for me.', 'Wait on has other uses. Here use wait for me.'),
         at: tri('Wait at нужен с местом: wait at the station. Здесь человек: wait for me.', 'Wait at потрібен із місцем: wait at the station. Тут людина: wait for me.', 'Wait at goes with a place. For a person, use wait for me.'),
       },
       retryFeedback: [
         tri('Кого ждём?', 'Кого чекаємо?', 'Who are we waiting for?'),
         tri('Человека: for me.', 'Людину: for me.', 'A person: for me.'),
-        tri('Готовый кусок: wait for me.', 'Готовий шматок: wait for me.', 'Ready chunk: wait for me.'),
+        tri('Готовый кусок: wait for me.', 'Готовий зворот: wait for me.', 'Ready chunk: wait for me.'),
         tri('Ответ: Please wait for me.', 'Відповідь: Please wait for me.', 'Answer: Please wait for me.'),
       ],
       fallbackExplanation: tri('Ждать человека: wait for me.', 'Чекати людину: wait for me.', 'Wait for a person: wait for me.'),
@@ -519,7 +519,7 @@ export const PREPOSITION_COMMON_VERB_PATTERNS_TRAINING: DiagnosisTraining = {
       retryFeedback: [
         tri('Ждём что?', 'Чекаємо що?', 'Waiting for what?'),
         tri('Автобус.', 'Автобус.', 'The bus.'),
-        tri('Готовый кусок: waiting for the bus.', 'Готовий шматок: waiting for the bus.', 'Ready chunk: waiting for the bus.'),
+        tri('Готовый кусок: waiting for the bus.', 'Готовий зворот: waiting for the bus.', 'Ready chunk: waiting for the bus.'),
         tri('Ответ: We are waiting for the bus.', 'Відповідь: We are waiting for the bus.', 'Answer: We are waiting for the bus.'),
       ],
       fallbackExplanation: tri('Ждать автобус: wait for the bus.', 'Чекати автобус: wait for the bus.', 'Wait for the bus.'),
@@ -532,22 +532,22 @@ export const PREPOSITION_COMMON_VERB_PATTERNS_TRAINING: DiagnosisTraining = {
       targetSkill: 'depend_on',
       teachingText: tri(
         'Здесь перевод особенно обманывает: по-русски "зависит от", но английский кусок - depend on.',
-        'Тут переклад особливо обманює: українською "залежить від", але англійський шматок - depend on.',
+        'Тут переклад особливо обманює: українською "залежить від", але англійський зворот - depend on.',
         'Translation is especially tricky here: English uses depend on.',
       ),
       sentence: 'It depends ___ the weather.',
       translation: tri('Это зависит от погоды.', 'Це залежить від погоди.', 'It depends on the weather.'),
       options: ['from', 'on', 'at', 'to'],
       correctAnswer: 'on',
-      correctFeedback: tri('Да. Несмотря на "от", английский кусок: depend on.', 'Так. Попри "від", англійський шматок: depend on.', 'Yes. Despite translation, the English chunk is depend on.'),
+      correctFeedback: tri('Да. Несмотря на "от", английский кусок: depend on.', 'Так. Попри "від", англійський зворот: depend on.', 'Yes. Despite translation, the English chunk is depend on.'),
       wrong: {
         from: tri('Вот ловушка. Русский тянет к from, но английский говорит depend on.', 'Ось пастка. Українська тягне до from, але англійська каже depend on.', 'This is the trap. Translation suggests from, but English uses depend on.'),
-        at: tri('Depend at не работает. Нужен кусок depend on.', 'Depend at не працює. Потрібен шматок depend on.', 'Depend at does not work. Use depend on.'),
-        to: tri('Depend to не работает. Готовый кусок: depend on.', 'Depend to не працює. Готовий шматок: depend on.', 'Depend to does not work. Use depend on.'),
+        at: tri('Depend at не работает. Нужен кусок depend on.', 'Depend at не працює. Потрібен зворот depend on.', 'Depend at does not work. Use depend on.'),
+        to: tri('Depend to не работает. Готовый кусок: depend on.', 'Depend to не працює. Готовий зворот: depend on.', 'Depend to does not work. Use depend on.'),
       },
       retryFeedback: [
         tri('Не верь переводу "от".', 'Не вір перекладу "від".', 'Do not trust the direct translation.'),
-        tri('Английский кусок: depend on.', 'Англійський шматок: depend on.', 'English chunk: depend on.'),
+        tri('Английский кусок: depend on.', 'Англійський зворот: depend on.', 'English chunk: depend on.'),
         tri('С погодой: depends on the weather.', 'З погодою: depends on the weather.', 'With weather: depends on the weather.'),
         tri('Ответ: It depends on the weather.', 'Відповідь: It depends on the weather.', 'Answer: It depends on the weather.'),
       ],
@@ -561,7 +561,7 @@ export const PREPOSITION_COMMON_VERB_PATTERNS_TRAINING: DiagnosisTraining = {
       targetSkill: 'look_at',
       teachingText: tri(
         'Look at и look for - разные куски. Look at - направить взгляд. Look for - искать.',
-        'Look at і look for - різні шматки. Look at - спрямувати погляд. Look for - шукати.',
+        'Look at і look for - різні звороти. Look at - спрямувати погляд. Look for - шукати.',
         'Look at and look for are different chunks. Look at = direct your eyes. Look for = search.',
       ),
       sentence: 'Look ___ the screen.',
@@ -577,7 +577,7 @@ export const PREPOSITION_COMMON_VERB_PATTERNS_TRAINING: DiagnosisTraining = {
       retryFeedback: [
         tri('Ты ищешь экран или смотришь на него?', 'Ти шукаєш екран чи дивишся на нього?', 'Are you searching for the screen or looking at it?'),
         tri('Смотришь на него.', 'Дивишся на нього.', 'Looking at it.'),
-        tri('Готовый кусок: look at the screen.', 'Готовий шматок: look at the screen.', 'Ready chunk: look at the screen.'),
+        tri('Готовый кусок: look at the screen.', 'Готовий зворот: look at the screen.', 'Ready chunk: look at the screen.'),
         tri('Ответ: Look at the screen.', 'Відповідь: Look at the screen.', 'Answer: Look at the screen.'),
       ],
       fallbackExplanation: tri('Смотреть на экран: look at the screen.', 'Дивитися на екран: look at the screen.', 'Look at the screen.'),
@@ -600,13 +600,13 @@ export const PREPOSITION_COMMON_VERB_PATTERNS_TRAINING: DiagnosisTraining = {
       correctFeedback: tri('Да. Искать ключи: looking for my keys.', 'Так. Шукати ключі: looking for my keys.', 'Yes. Search for keys: looking for my keys.'),
       wrong: {
         at: tri('Look at - смотреть на ключи, если они перед тобой. Но здесь ты их ищешь: look for.', 'Look at - дивитися на ключі, якщо вони перед тобою. Але тут ти їх шукаєш: look for.', 'Look at means look at keys if they are in front of you. Here you search: look for.'),
-        to: tri('Looking to my keys не даёт смысл "ищу". Нужен кусок looking for my keys.', 'Looking to my keys не дає сенс "шукаю". Потрібен шматок looking for my keys.', 'Looking to my keys does not mean search. Use looking for my keys.'),
-        on: tri('Looking on my keys не даёт смысл "ищу". Нужен кусок looking for.', 'Looking on my keys не дає сенс "шукаю". Потрібен шматок looking for.', 'Looking on my keys does not mean search. Use looking for.'),
+        to: tri('Looking to my keys не даёт смысл "ищу". Нужен кусок looking for my keys.', 'Looking to my keys не дає сенс "шукаю". Потрібен зворот looking for my keys.', 'Looking to my keys does not mean search. Use looking for my keys.'),
+        on: tri('Looking on my keys не даёт смысл "ищу". Нужен кусок looking for.', 'Looking on my keys не дає сенс "шукаю". Потрібен зворот looking for.', 'Looking on my keys does not mean search. Use looking for.'),
       },
       retryFeedback: [
         tri('Смысл: искать.', 'Сенс: шукати.', 'Meaning: search.'),
         tri('Искать = look for.', 'Шукати = look for.', 'Search = look for.'),
-        tri('Готовый кусок: looking for my keys.', 'Готовий шматок: looking for my keys.', 'Ready chunk: looking for my keys.'),
+        tri('Готовый кусок: looking for my keys.', 'Готовий зворот: looking for my keys.', 'Ready chunk: looking for my keys.'),
         tri('Ответ: I am looking for my keys.', 'Відповідь: I am looking for my keys.', 'Answer: I am looking for my keys.'),
       ],
       fallbackExplanation: tri('Искать ключи: looking for my keys.', 'Шукати ключі: looking for my keys.', 'Looking for my keys.'),
@@ -629,13 +629,13 @@ export const PREPOSITION_COMMON_VERB_PATTERNS_TRAINING: DiagnosisTraining = {
       correctFeedback: tri('Да. Человек, с кем говорим: talk to you.', 'Так. Людина, з ким говоримо: talk to you.', 'Yes. The person you speak with: talk to you.'),
       wrong: {
         for: tri('Talk for you может значить "говорить за тебя". Здесь нужно поговорить с тобой: talk to you.', 'Talk for you може означати "говорити за тебе". Тут треба поговорити з тобою: talk to you.', 'Talk for you can mean speak for you. Here use talk to you.'),
-        on: tri('Talk on you не работает для "поговорить с тобой". Нужен кусок talk to you.', 'Talk on you не працює для "поговорити з тобою". Потрібен шматок talk to you.', 'Talk on you does not work here. Use talk to you.'),
+        on: tri('Talk on you не работает для "поговорить с тобой". Нужен кусок talk to you.', 'Talk on you не працює для "поговорити з тобою". Потрібен зворот talk to you.', 'Talk on you does not work here. Use talk to you.'),
         at: tri('Talk at someone звучит как говорить на человека, без нормального диалога. Нейтрально: talk to you.', 'Talk at someone звучить як говорити на людину, без нормального діалогу. Нейтрально: talk to you.', 'Talk at someone sounds one-way. Neutral: talk to you.'),
       },
       retryFeedback: [
         tri('С кем говорим?', 'З ким говоримо?', 'Who are we talking to?'),
         tri('С тобой: to you.', 'З тобою: to you.', 'To you.'),
-        tri('Готовый кусок: talk to you.', 'Готовий шматок: talk to you.', 'Ready chunk: talk to you.'),
+        tri('Готовый кусок: talk to you.', 'Готовий зворот: talk to you.', 'Ready chunk: talk to you.'),
         tri('Ответ: I need to talk to you.', 'Відповідь: I need to talk to you.', 'Answer: I need to talk to you.'),
       ],
       fallbackExplanation: tri('Поговорить с человеком: talk to you.', 'Поговорити з людиною: talk to you.', 'Talk to you.'),
@@ -658,13 +658,13 @@ export const PREPOSITION_COMMON_VERB_PATTERNS_TRAINING: DiagnosisTraining = {
       correctFeedback: tri('Да. Тема мысли: think about your answer.', 'Так. Тема думки: think about your answer.', 'Yes. Topic of thought: think about your answer.'),
       wrong: {
         to: tri('Think to your answer не работает. Тема мысли идёт через about: think about your answer.', 'Think to your answer не працює. Тема думки йде через about: think about your answer.', 'Think to your answer does not work. Use think about.'),
-        for: tri('Think for бывает в других кусках, но "подумай о" здесь: think about.', 'Think for буває в інших шматках, але "подумай про" тут: think about.', 'Think for has other uses. Here use think about.'),
-        at: tri('Think at не работает для темы мысли. Нужен кусок think about.', 'Think at не працює для теми думки. Потрібен шматок think about.', 'Think at does not work for a topic. Use think about.'),
+        for: tri('Think for бывает в других кусках, но "подумай о" здесь: think about.', 'Think for буває в інших зворотух, але "подумай про" тут: think about.', 'Think for has other uses. Here use think about.'),
+        at: tri('Think at не работает для темы мысли. Нужен кусок think about.', 'Think at не працює для теми думки. Потрібен зворот think about.', 'Think at does not work for a topic. Use think about.'),
       },
       retryFeedback: [
         tri('О чём думаем?', 'Про що думаємо?', 'What are we thinking about?'),
         tri('О твоём ответе.', 'Про твою відповідь.', 'Your answer.'),
-        tri('Готовый кусок: think about your answer.', 'Готовий шматок: think about your answer.', 'Ready chunk: think about your answer.'),
+        tri('Готовый кусок: think about your answer.', 'Готовий зворот: think about your answer.', 'Ready chunk: think about your answer.'),
         tri('Ответ: Think about your answer.', 'Відповідь: Think about your answer.', 'Answer: Think about your answer.'),
       ],
       fallbackExplanation: tri('Думать о теме: think about your answer.', 'Думати про тему: think about your answer.', 'Think about your answer.'),
@@ -687,13 +687,13 @@ export const PREPOSITION_COMMON_VERB_PATTERNS_TRAINING: DiagnosisTraining = {
       correctFeedback: tri('Да. Проблема здесь тема разговора: talked about the problem.', 'Так. Проблема тут тема розмови: talked about the problem.', 'Yes. The problem is the topic: talked about the problem.'),
       wrong: {
         to: tri('Talk to нужен для человека. Проблема здесь тема: talk about the problem.', 'Talk to потрібен для людини. Проблема тут тема: talk about the problem.', 'Talk to is for a person. Here the problem is the topic: talk about.'),
-        for: tri('Talk for не передаёт "о проблеме". Нужен кусок talk about.', 'Talk for не передає "про проблему". Потрібен шматок talk about.', 'Talk for does not mean about a problem. Use talk about.'),
+        for: tri('Talk for не передаёт "о проблеме". Нужен кусок talk about.', 'Talk for не передає "про проблему". Потрібен зворот talk about.', 'Talk for does not mean about a problem. Use talk about.'),
         at: tri('Talk at the problem не работает. О теме говорим через about.', 'Talk at the problem не працює. Про тему говоримо через about.', 'Talk at the problem does not work. Use talk about.'),
       },
       retryFeedback: [
         tri('О чём говорили?', 'Про що говорили?', 'What did we talk about?'),
         tri('О проблеме.', 'Про проблему.', 'The problem.'),
-        tri('Готовый кусок: talked about the problem.', 'Готовий шматок: talked about the problem.', 'Ready chunk: talked about the problem.'),
+        tri('Готовый кусок: talked about the problem.', 'Готовий зворот: talked about the problem.', 'Ready chunk: talked about the problem.'),
         tri('Ответ: We talked about the problem.', 'Відповідь: We talked about the problem.', 'Answer: We talked about the problem.'),
       ],
       fallbackExplanation: tri('Говорить о теме: talk about the problem.', 'Говорити про тему: talk about the problem.', 'Talk about the problem.'),
@@ -715,14 +715,14 @@ export const PREPOSITION_COMMON_VERB_PATTERNS_TRAINING: DiagnosisTraining = {
       correctAnswer: 'for',
       correctFeedback: tri('Да. Просить помощи: ask for help.', 'Так. Просити допомоги: ask for help.', 'Yes. Request help: ask for help.'),
       wrong: {
-        to: tri('Ask to help - другой кусок. Просить помощь: ask for help.', 'Ask to help - інший шматок. Просити допомогу: ask for help.', 'Ask to help is another chunk. Request help: ask for help.'),
+        to: tri('Ask to help - другой кусок. Просить помощь: ask for help.', 'Ask to help - інший зворот. Просити допомогу: ask for help.', 'Ask to help is another chunk. Request help: ask for help.'),
         about: tri('Ask about значит спрашивать о теме. Здесь она просила помощь: ask for help.', 'Ask about означає питати про тему. Тут вона просила допомогу: ask for help.', 'Ask about means ask about a topic. Here she requested help: ask for help.'),
-        at: tri('Ask at help не работает. Нужен кусок ask for help.', 'Ask at help не працює. Потрібен шматок ask for help.', 'Ask at help does not work. Use ask for help.'),
+        at: tri('Ask at help не работает. Нужен кусок ask for help.', 'Ask at help не працює. Потрібен зворот ask for help.', 'Ask at help does not work. Use ask for help.'),
       },
       retryFeedback: [
         tri('Она спрашивала о помощи или просила помощь?', 'Вона питала про допомогу чи просила допомогу?', 'Did she ask about help or request help?'),
         tri('Просила.', 'Просила.', 'Requested.'),
-        tri('Готовый кусок: ask for help.', 'Готовий шматок: ask for help.', 'Ready chunk: ask for help.'),
+        tri('Готовый кусок: ask for help.', 'Готовий зворот: ask for help.', 'Ready chunk: ask for help.'),
         tri('Ответ: She asked for help.', 'Відповідь: She asked for help.', 'Answer: She asked for help.'),
       ],
       fallbackExplanation: tri('Просить помощь: ask for help.', 'Просити допомогу: ask for help.', 'Ask for help.'),
@@ -735,7 +735,7 @@ export const PREPOSITION_COMMON_VERB_PATTERNS_TRAINING: DiagnosisTraining = {
       targetSkill: 'believe_in',
       teachingText: tri(
         'Believe in - верить в человека, идею или себя. Это тоже готовый кусок.',
-        'Believe in - вірити в людину, ідею або себе. Це теж готовий шматок.',
+        'Believe in - вірити в людину, ідею або себе. Це теж готовий зворот.',
         'Believe in = have faith in someone, something, or yourself.',
       ),
       sentence: 'You have to believe ___ yourself.',
@@ -744,14 +744,14 @@ export const PREPOSITION_COMMON_VERB_PATTERNS_TRAINING: DiagnosisTraining = {
       correctAnswer: 'in',
       correctFeedback: tri('Да. Верить в себя: believe in yourself.', 'Так. Вірити в себе: believe in yourself.', 'Yes. Believe in yourself.'),
       wrong: {
-        to: tri('Believe to yourself не работает. Готовый кусок: believe in yourself.', 'Believe to yourself не працює. Готовий шматок: believe in yourself.', 'Believe to yourself does not work. Use believe in yourself.'),
-        for: tri('Believe for yourself не передаёт "верить в себя". Нужен кусок believe in yourself.', 'Believe for yourself не передає "вірити в себе". Потрібен шматок believe in yourself.', 'Believe for yourself does not mean believe in yourself.'),
-        at: tri('Believe at yourself не работает. Нужен кусок believe in.', 'Believe at yourself не працює. Потрібен шматок believe in.', 'Believe at yourself does not work. Use believe in.'),
+        to: tri('Believe to yourself не работает. Готовый кусок: believe in yourself.', 'Believe to yourself не працює. Готовий зворот: believe in yourself.', 'Believe to yourself does not work. Use believe in yourself.'),
+        for: tri('Believe for yourself не передаёт "верить в себя". Нужен кусок believe in yourself.', 'Believe for yourself не передає "вірити в себе". Потрібен зворот believe in yourself.', 'Believe for yourself does not mean believe in yourself.'),
+        at: tri('Believe at yourself не работает. Нужен кусок believe in.', 'Believe at yourself не працює. Потрібен зворот believe in.', 'Believe at yourself does not work. Use believe in.'),
       },
       retryFeedback: [
         tri('Во что верить?', 'У що вірити?', 'Believe in what?'),
         tri('В себя.', 'У себе.', 'Yourself.'),
-        tri('Готовый кусок: believe in yourself.', 'Готовий шматок: believe in yourself.', 'Ready chunk: believe in yourself.'),
+        tri('Готовый кусок: believe in yourself.', 'Готовий зворот: believe in yourself.', 'Ready chunk: believe in yourself.'),
         tri('Ответ: You have to believe in yourself.', 'Відповідь: You have to believe in yourself.', 'Answer: You have to believe in yourself.'),
       ],
       fallbackExplanation: tri('Верить в себя: believe in yourself.', 'Вірити в себе: believe in yourself.', 'Believe in yourself.'),
@@ -775,12 +775,12 @@ export const PREPOSITION_COMMON_VERB_PATTERNS_TRAINING: DiagnosisTraining = {
       wrong: {
         for: tri('Ask for the price может значить попросить назвать цену. Здесь именно спросил о цене: asked about the price.', 'Ask for the price може означати попросити назвати ціну. Тут саме запитав про ціну: asked about the price.', 'Ask for the price can mean request the price. For the topic, use asked about the price.'),
         to: tri('Asked to the price не работает. О теме вопроса: asked about the price.', 'Asked to the price не працює. Про тему питання: asked about the price.', 'Asked to the price does not work. Use asked about the price.'),
-        at: tri('Asked at the price не работает. Нужен кусок asked about the price.', 'Asked at the price не працює. Потрібен шматок asked about the price.', 'Asked at the price does not work. Use asked about the price.'),
+        at: tri('Asked at the price не работает. Нужен кусок asked about the price.', 'Asked at the price не працює. Потрібен зворот asked about the price.', 'Asked at the price does not work. Use asked about the price.'),
       },
       retryFeedback: [
         tri('Он просил цену или спрашивал о цене?', 'Він просив ціну чи питав про ціну?', 'Did he request the price or ask about it?'),
         tri('Спрашивал о цене.', 'Питав про ціну.', 'Asked about it.'),
-        tri('Готовый кусок: asked about the price.', 'Готовий шматок: asked about the price.', 'Ready chunk: asked about the price.'),
+        tri('Готовый кусок: asked about the price.', 'Готовий зворот: asked about the price.', 'Ready chunk: asked about the price.'),
         tri('Ответ: He asked about the price.', 'Відповідь: He asked about the price.', 'Answer: He asked about the price.'),
       ],
       fallbackExplanation: tri('Спросить о цене: ask about the price.', 'Запитати про ціну: ask about the price.', 'Ask about the price.'),
@@ -793,7 +793,7 @@ export const PREPOSITION_COMMON_VERB_PATTERNS_TRAINING: DiagnosisTraining = {
       targetSkill: 'mixed_listen_wait',
       teachingText: tri(
         'Собираем два самых частых куска: listen to и wait for.',
-        'Збираємо два найчастіші шматки: listen to і wait for.',
+        'Збираємо два найчастіші звороти: listen to і wait for.',
         'Combine two frequent chunks: listen to and wait for.',
       ),
       sentence: 'Choose the correct pair.',
@@ -802,13 +802,13 @@ export const PREPOSITION_COMMON_VERB_PATTERNS_TRAINING: DiagnosisTraining = {
       correctAnswer: 'listen to music / wait for me',
       correctFeedback: tri('Да. Listen to music. Wait for me.', 'Так. Listen to music. Wait for me.', 'Yes. Listen to music. Wait for me.'),
       wrong: {
-        'listen music / wait me': tri('В обеих фразах пропали хвосты. Нужны куски listen to и wait for.', 'В обох фразах зникли хвости. Потрібні шматки listen to і wait for.', 'Both chunks are missing the small word: listen to and wait for.'),
+        'listen music / wait me': tri('В обеих фразах пропали хвосты. Нужны куски listen to и wait for.', 'В обох фразах зникли хвости. Потрібні звороти listen to і wait for.', 'Both chunks are missing the small word: listen to and wait for.'),
         'listen for music / wait to me': tri('Listen for имеет другой смысл, а wait to me не работает. Нужна пара listen to / wait for.', 'Listen for має інший сенс, а wait to me не працює. Потрібна пара listen to / wait for.', 'Listen for has another meaning, and wait to me does not work. Use listen to / wait for.'),
         'listen at music / wait on me': tri('Listen at music не работает. Wait on me не нейтрально для "подожди меня". Нужна пара listen to / wait for.', 'Listen at music не працює. Wait on me не нейтрально для "почекай мене". Потрібна пара listen to / wait for.', 'Listen at music does not work. Use listen to / wait for.'),
       },
       retryFeedback: [
-        tri('Первый кусок: listen to.', 'Перший шматок: listen to.', 'First chunk: listen to.'),
-        tri('Второй кусок: wait for.', 'Другий шматок: wait for.', 'Second chunk: wait for.'),
+        tri('Первый кусок: listen to.', 'Перший зворот: listen to.', 'First chunk: listen to.'),
+        tri('Второй кусок: wait for.', 'Другий зворот: wait for.', 'Second chunk: wait for.'),
         tri('Итого: listen to music / wait for me.', 'Разом: listen to music / wait for me.', 'Together: listen to music / wait for me.'),
         tri('Ответ: listen to music / wait for me.', 'Відповідь: listen to music / wait for me.', 'Answer: listen to music / wait for me.'),
       ],
@@ -831,13 +831,13 @@ export const PREPOSITION_COMMON_VERB_PATTERNS_TRAINING: DiagnosisTraining = {
       correctAnswer: 'depend on the situation / look at the screen',
       correctFeedback: tri('Да. Depend on. Look at.', 'Так. Depend on. Look at.', 'Yes. Depend on. Look at.'),
       wrong: {
-        'depend from the situation / look on the screen': tri('По-русски тянет к "from", но английский кусок depend on. Смотреть на экран: look at.', 'Українською тягне до "from", але англійський шматок depend on. Дивитися на екран: look at.', 'Translation suggests from, but English uses depend on. Looking at a screen = look at.'),
+        'depend from the situation / look on the screen': tri('По-русски тянет к "from", но английский кусок depend on. Смотреть на экран: look at.', 'Українською тягне до "from", але англійський зворот depend on. Дивитися на екран: look at.', 'Translation suggests from, but English uses depend on. Looking at a screen = look at.'),
         'depend to the situation / look for the screen': tri('Depend to не работает. Look for значит искать экран, а не смотреть на экран.', 'Depend to не працює. Look for означає шукати екран, а не дивитися на екран.', 'Depend to does not work. Look for means search, not look at.'),
         'depend at the situation / look to the screen': tri('Depend at не работает. Look to the screen не даёт обычный смысл "смотреть на экран".', 'Depend at не працює. Look to the screen не дає звичайний сенс "дивитися на екран".', 'Depend at does not work. Look to the screen does not mean look at the screen here.'),
       },
       retryFeedback: [
-        tri('Первый кусок: depend on.', 'Перший шматок: depend on.', 'First chunk: depend on.'),
-        tri('Второй кусок: look at.', 'Другий шматок: look at.', 'Second chunk: look at.'),
+        tri('Первый кусок: depend on.', 'Перший зворот: depend on.', 'First chunk: depend on.'),
+        tri('Второй кусок: look at.', 'Другий зворот: look at.', 'Second chunk: look at.'),
         tri('Итого: depend тянет on, а look в значении "смотреть на" тянет at.', 'Разом: depend тягне on, а look у значенні "дивитися на" тягне at.', 'Together: depend on the situation / look at the screen.'),
         tri('Ответ держится на двух связках: depend on для зависимости и look at для взгляда на экран.', 'Відповідь тримається на двох звʼязках: depend on для залежності і look at для погляду на екран.', 'Answer: depend on the situation / look at the screen.'),
       ],
@@ -866,7 +866,7 @@ export const PREPOSITION_COMMON_VERB_PATTERNS_TRAINING: DiagnosisTraining = {
       correctFeedback: tri('Да. Listen to, wait for, talk to.', 'Так. Listen to, wait for, talk to.', 'Yes. Listen to, wait for, talk to.'),
       wrong: {
         'I listened him, waited him, and talked him.': tri('После listen, wait и talk здесь нужны маленькие хвосты: to, for, to.', 'Після listen, wait і talk тут потрібні маленькі хвости: to, for, to.', 'After listen, wait, and talk, you need: to, for, to.'),
-        'I listened at him, waited to him, and talked for him.': tri('Хвосты выбраны неверно. Нужны куски: listened to, waited for, talked to.', 'Хвости обрані неправильно. Потрібні шматки: listened to, waited for, talked to.', 'The small words are wrong. Use listened to, waited for, talked to.'),
+        'I listened at him, waited to him, and talked for him.': tri('Хвосты выбраны неверно. Нужны куски: listened to, waited for, talked to.', 'Хвости обрані неправильно. Потрібні звороти: listened to, waited for, talked to.', 'The small words are wrong. Use listened to, waited for, talked to.'),
         'I listened for him, waited at him, and talked on him.': tri('Listen for, wait at и talk on дают другие или неправильные смыслы. Нужна базовая цепочка: listened to, waited for, talked to.', 'Listen for, wait at і talk on дають інші або неправильні сенси. Потрібен базовий ланцюжок: listened to, waited for, talked to.', 'Listen for, wait at, and talk on have other or wrong meanings. Use listened to, waited for, talked to.'),
       },
       retryFeedback: [
@@ -908,17 +908,17 @@ export const PREPOSITION_COMMON_VERB_PATTERNS_TRAINING: DiagnosisTraining = {
     ),
     depth2: tri(
       'Не выбирай по переводу. Выбирай по готовому куску.',
-      'Не обирай за перекладом. Обирай за готовим шматком.',
+      'Не обирай за перекладом. Обирай за готовим зворотом.',
       'No elijas por traduccion. Elige por el bloque fijo.',
     ),
     depth3: tri(
       'Сравни ошибку и нормальный кусок: listen music -> listen to music.',
-      'Порівняй помилку і нормальний шматок: listen music -> listen to music.',
+      'Порівняй помилку і нормальний зворот: listen music -> listen to music.',
       'Compara el error y el bloque normal: listen music -> listen to music.',
     ),
     depth4: tri(
       'Почти подсказка: система покажет нужный готовый кусок.',
-      'Майже підказка: система покаже потрібний готовий шматок.',
+      'Майже підказка: система покаже потрібний готовий зворот.',
       'Casi una pista: el sistema muestra el bloque necesario.',
     ),
   },
@@ -927,7 +927,7 @@ export const PREPOSITION_COMMON_VERB_PATTERNS_TRAINING: DiagnosisTraining = {
       action: 'show_simplified_rule_card',
       card: tri(
         'Стоп. Не переводим маленькое слово отдельно. Вспоминаем кусок: listen to, wait for, depend on, look at, talk to, think about, ask for, believe in.',
-        'Стоп. Не перекладаємо маленьке слово окремо. Згадуємо шматок: listen to, wait for, depend on, look at, talk to, think about, ask for, believe in.',
+        'Стоп. Не перекладаємо маленьке слово окремо. Згадуємо зворот: listen to, wait for, depend on, look at, talk to, think about, ask for, believe in.',
         'Para. No traduzcas la palabra pequena por separado. Recuerda el bloque: listen to, wait for, depend on, look at, talk to, think about, ask for, believe in.',
       ),
     },
@@ -935,7 +935,7 @@ export const PREPOSITION_COMMON_VERB_PATTERNS_TRAINING: DiagnosisTraining = {
       action: 'show_chunk_hint_then_retry',
       card: tri(
         'Подсказка: сначала система покажет действие, потом готовые куски рядом с ним.',
-        'Підказка: спочатку система покаже дію, потім готові шматки поруч із нею.',
+        'Підказка: спочатку система покаже дію, потім готові звороти поруч із нею.',
         'Pista: primero el sistema muestra la accion y despues los bloques fijos que van con ella.',
       ),
     },
@@ -943,7 +943,7 @@ export const PREPOSITION_COMMON_VERB_PATTERNS_TRAINING: DiagnosisTraining = {
       action: 'switch_to_guided_mode',
       card: tri(
         'Режим с подсказками: выбираем не правило, а готовый речевой кусок.',
-        'Режим із підказками: обираємо не правило, а готовий мовний шматок.',
+        'Режим із підказками: обираємо не правило, а готовий мовний зворот.',
         'Modo guiado: elegimos el bloque de habla ya listo, no una regla suelta.',
       ),
     },
@@ -954,21 +954,21 @@ export const PREPOSITION_COMMON_VERB_PATTERNS_TRAINING: DiagnosisTraining = {
     tasks: [
       {
         id: 'guided_verb_prep_001',
-        prompt: tri('Какой кусок звучит нормально?', 'Який шматок звучить нормально?', 'Que bloque suena normal?'),
+        prompt: tri('Какой кусок звучит нормально?', 'Який зворот звучить нормально?', 'Que bloque suena normal?'),
         options: ['listen to music', 'listen music'],
         correctIndex: 0,
         thenReturnToExerciseId: 'verb_prep_easy_001',
       },
       {
         id: 'guided_verb_prep_002',
-        prompt: tri('Какой кусок для "подожди меня"?', 'Який шматок для "почекай мене"?', 'Que bloque significa "esperame"?'),
+        prompt: tri('Какой кусок для "подожди меня"?', 'Який зворот для "почекай мене"?', 'Que bloque significa "esperame"?'),
         options: ['wait for me', 'wait to me'],
         correctIndex: 0,
         thenReturnToExerciseId: 'verb_prep_easy_002',
       },
       {
         id: 'guided_verb_prep_003',
-        prompt: tri('Какой кусок после depend?', 'Який шматок після depend?', 'Que bloque va con depend?'),
+        prompt: tri('Какой кусок после depend?', 'Який зворот після depend?', 'Que bloque va con depend?'),
         options: ['depend from', 'depend on'],
         correctIndex: 1,
         thenReturnToExerciseId: 'verb_prep_contrast_001',

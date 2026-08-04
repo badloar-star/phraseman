@@ -107,7 +107,7 @@ function retry(correct: string, clue: TriText): [TriText, TriText, TriText, TriT
 function defaultWrong(correct: string): TriText {
   return tri(
     `Почти. Смысл фразы просит другой кусок будущего. Здесь нужно: ${correct}.`,
-    `Майже. Сенс фрази просить інший шматок майбутнього. Тут потрібно: ${correct}.`,
+    `Майже. Сенс фрази просить інший зворот майбутнього. Тут потрібно: ${correct}.`,
     `Casi. Este sentido pide: ${correct}.`,
   );
 }
@@ -370,7 +370,7 @@ export const FUTURE_WILL_GOING_TO_TRAINING: DiagnosisTraining = {
       correctFeedback: tri('Да. Это обещание помочь: I will help you.', 'Так. Це обіцянка допомогти: I will help you.', 'Yes. This is a promise: I will help you.'),
       wrong: {
         'am going': tri('Am going без to звучит незаконченно. Можно I am going to help, но для обещания здесь естественнее I will help.', 'Am going без to звучить незавершено. Можна I am going to help, але для обіцянки тут природніше I will help.', 'Am going is incomplete here.'),
-        'going to': tri('Нельзя I going to help. Нужен кусок I am going to help, но для обещания здесь лучше will.', 'Не можна I going to help. Потрібен шматок I am going to help, але для обіцянки тут краще will.', 'I going to help is incomplete.'),
+        'going to': tri('Нельзя I going to help. Нужен кусок I am going to help, но для обещания здесь лучше will.', 'Не можна I going to help. Потрібен зворот I am going to help, але для обіцянки тут краще will.', 'I going to help is incomplete.'),
         'will to': tri('После will не ставим to. Нужно will help, не will to help.', 'Після will не ставимо to. Потрібно will help, не will to help.', 'Use will help, not will to help.'),
       },
       clue: tri('Обещание помочь = will.', 'Обіцянка допомогти = will.', 'Promise = will.'),
@@ -424,7 +424,7 @@ export const FUTURE_WILL_GOING_TO_TRAINING: DiagnosisTraining = {
       correctFeedback: tri('Да. Это уже звучит как план на вечер: I am going to study tonight.', 'Так. Це вже звучить як план на вечір: I am going to study tonight.', 'Yes. This sounds planned.'),
       wrong: {
         will: tri('Will возможно, если ты решаешь прямо сейчас. Но "собираюсь сегодня вечером" звучит как план, поэтому I am going to study.', 'Will можливе, якщо ти вирішуєш прямо зараз. Але "збираюся сьогодні ввечері" звучить як план, тому I am going to study.', 'Will would sound like a decision now.'),
-        'going to': tri('Нельзя I going to study. Нужен полный кусок: I am going to study.', 'Не можна I going to study. Потрібен повний шматок: I am going to study.', 'Use I am going to study.'),
+        'going to': tri('Нельзя I going to study. Нужен полный кусок: I am going to study.', 'Не можна I going to study. Потрібен повний зворот: I am going to study.', 'Use I am going to study.'),
         'am going': tri('Am going без to study звучит незаконченно. Нужно I am going to study.', 'Am going без to study звучить незавершено. Потрібно I am going to study.', 'Use I am going to study.'),
       },
       clue: tri('Готовый план = am going to.', 'Готовий план = am going to.', 'Existing plan = am going to.'),
@@ -439,9 +439,9 @@ export const FUTURE_WILL_GOING_TO_TRAINING: DiagnosisTraining = {
       translation: tri('Она собирается начать новый курс.', 'Вона збирається почати новий курс.', 'She is going to start a new course.'),
       options: ['is going to', 'are going to', 'going to', 'will to'],
       correctAnswer: 'is going to',
-      correctFeedback: tri('Да. С she нужен кусок is going to: she is going to start.', 'Так. З she потрібен шматок is going to: she is going to start.', 'Yes. Use she is going to start.'),
+      correctFeedback: tri('Да. С she нужен кусок is going to: she is going to start.', 'Так. З she потрібен зворот is going to: she is going to start.', 'Yes. Use she is going to start.'),
       wrong: {
-        'are going to': tri('Для she нужна форма с is, а не are. Смысл плана правильный, сломан только кусок перед going to.', 'Для she потрiбна форма з is, а не are. Сенс плану правильний, зламаний лише шматок перед going to.', 'Use is going to with she.'),
+        'are going to': tri('Для she нужна форма с is, а не are. Смысл плана правильный, сломан только кусок перед going to.', 'Для she потрiбна форма з is, а не are. Сенс плану правильний, зламаний лише зворот перед going to.', 'Use is going to with she.'),
         'going to': tri('Не хватает маленькой, но обязательной части перед going to. Без нее фраза звучит неполной.', 'Бракує маленької, але обовʼязкової частини перед going to. Без неї фраза звучить неповною.', 'Use she is going to start.'),
         'will to': tri('Will to start неправильно. Если will, то will start. Но по смыслу здесь план: is going to start.', 'Will to start неправильно. Якщо will, то will start. Але за сенсом тут план: is going to start.', 'Use is going to start here.'),
       },
@@ -511,13 +511,13 @@ export const FUTURE_WILL_GOING_TO_TRAINING: DiagnosisTraining = {
       translation: tri('Выбери правильное предложение.', 'Обери правильне речення.', 'Choose the correct sentence.'),
       options: ['I am going to study tonight.', 'I going to study tonight.', 'I am going study tonight.', 'I will to study tonight.'],
       correctAnswer: 'I am going to study tonight.',
-      correctFeedback: tri('Да. Полный кусок: I am going to study tonight.', 'Так. Повний шматок: I am going to study tonight.', 'Yes. Full chunk: I am going to study tonight.'),
+      correctFeedback: tri('Да. Полный кусок: I am going to study tonight.', 'Так. Повний зворот: I am going to study tonight.', 'Yes. Full chunk: I am going to study tonight.'),
       wrong: {
         'I going to study tonight.': tri('Не хватает am: I am going to study tonight.', 'Бракує am: I am going to study tonight.', 'Missing am.'),
         'I am going study tonight.': tri('Не хватает to: I am going to study tonight.', 'Бракує to: I am going to study tonight.', 'Missing to.'),
         'I will to study tonight.': tri('После will не ставим to. Но по смыслу здесь план, поэтому I am going to study tonight.', 'Після will не ставимо to. Але за сенсом тут план, тому I am going to study tonight.', 'Use I am going to study tonight.'),
       },
-      clue: tri('Для плана нужен полный кусок I am going to study.', 'Для плану потрібен повний шматок I am going to study.', 'For a plan, use I am going to study.'),
+      clue: tri('Для плана нужен полный кусок I am going to study.', 'Для плану потрібен повний зворот I am going to study.', 'For a plan, use I am going to study.'),
       focusWords: ['I am going to study'],
     }),
     futureStep({
@@ -640,7 +640,7 @@ export const FUTURE_WILL_GOING_TO_TRAINING: DiagnosisTraining = {
         'I am will call you later, but I am going study tonight.': tri('Am will call неправильно. Во второй части не хватает to: I am going to study.', 'Am will call неправильно. У другій частині бракує to: I am going to study.', 'Use I will call / I am going to study.'),
         'I will calling you later, but I am going to studying tonight.': tri('После will и going to действие остается в обычной форме: call / study. Не добавляй -ing.', 'Пiсля will i going to дiя лишається у звичайнiй формi: call / study. Не додавай -ing.', 'Use call and study.'),
       },
-      clue: tri('Собери два куска: will call + am going to study.', 'Збери два шматки: will call + am going to study.', 'Build two chunks: will call + am going to study.'),
+      clue: tri('Собери два куска: will call + am going to study.', 'Збери два звороти: will call + am going to study.', 'Build two chunks: will call + am going to study.'),
       focusWords: ['will call', 'am going to study'],
     }),
   ],
@@ -666,7 +666,7 @@ export const FUTURE_WILL_GOING_TO_TRAINING: DiagnosisTraining = {
   adaptiveFeedbackPolicy: {
     maxDepth: 4,
     depth1: tri('Показываем смысл будущего: решение сейчас, обещание, прогноз, план или признаки.', 'Показуємо сенс майбутнього: рішення зараз, обіцянка, прогноз, план чи ознаки.', 'Mostramos primero el sentido futuro.'),
-    depth2: tri('Показываем готовый кусок: will call или am/is/are going to study.', 'Показуємо готовий шматок: will call або am/is/are going to study.', 'Mostramos el bloque correcto.'),
+    depth2: tri('Показываем готовый кусок: will call или am/is/are going to study.', 'Показуємо готовий зворот: will call або am/is/are going to study.', 'Mostramos el bloque correcto.'),
     depth3: tri('Проверяем частую поломку: нет will to, нет I going to.', 'Перевіряємо часту поломку: немає will to, немає I going to.', 'Revisamos formas rotas comunes.'),
     depth4: tri('Даем почти готовый ответ и возвращаем в упражнение.', 'Даємо майже готову відповідь і повертаємо у вправу.', 'Damos casi la respuesta y repetimos.'),
   },
@@ -691,7 +691,7 @@ export const FUTURE_WILL_GOING_TO_TRAINING: DiagnosisTraining = {
       action: 'switch_to_guided_mode',
       card: tri(
         'Режим подсказки: сначала выбери смысл, потом собери кусок will или am/is/are going to.',
-        'Режим підказки: спочатку обери сенс, потім збери шматок will або am/is/are going to.',
+        'Режим підказки: спочатку обери сенс, потім збери зворот will або am/is/are going to.',
         'Modo guiado: primero sentido, luego bloque.',
       ),
     },

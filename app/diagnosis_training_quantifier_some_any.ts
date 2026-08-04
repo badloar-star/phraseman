@@ -178,7 +178,7 @@ function makeStep(input: {
     ),
     microTask: tri(
       'Выбери естественный кусок: some, any, no, something или anything.',
-      'Обери природний шматок: some, any, no, something або anything.',
+      'Обери природний зворот: some, any, no, something або anything.',
       'Choose the natural chunk: some, any, no, something, or anything.',
       {
         'pt-BR': 'Escolha o trecho natural: some, any, no, something ou anything.',

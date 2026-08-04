@@ -30,7 +30,7 @@ const CONTRAST = ['to + base verb', 'verb-ing', 'want to', 'need to', 'decide to
 
 const MODEL = tri(
   'В английском первое действие часто управляет вторым. Одна группа просит кусок с to, другая группа просит форму с -ing. Поэтому учим не отдельное слово, а готовую связку.',
-  'В англійській перша дія часто керує другою. Одна група просить шматок із to, інша група просить форму з -ing. Тому вчимо не окреме слово, а готову звʼязку.',
+  'В англійській перша дія часто керує другою. Одна група просить зворот із to, інша група просить форму з -ing. Тому вчимо не окреме слово, а готову звʼязку.',
   'En ingles, la primera accion suele controlar la segunda. Un grupo pide to, otro grupo pide -ing. Por eso aprendemos la combinacion completa: want to learn, enjoy learning.',
   {
     'pt-BR': 'Em inglês, a primeira ação muitas vezes controla a segunda. Um grupo pede um bloco com to, outro grupo pede a forma com -ing. Por isso, aprendemos a combinação inteira, não uma palavra isolada.',
@@ -87,7 +87,7 @@ function retry(correct: string, clue: TriText): [TriText, TriText, TriText, TriT
   return [
     tri(
       'Сначала найди первое действие. Именно оно подсказывает, будет дальше кусок с to или форма с -ing.',
-      'Спочатку знайди першу дію. Саме вона підказує, буде далі шматок із to чи форма з -ing.',
+      'Спочатку знайди першу дію. Саме вона підказує, буде далі зворот із to чи форма з -ing.',
       'Primero encuentra la primera accion.',
     ),
     clue,
@@ -107,7 +107,7 @@ function retry(correct: string, clue: TriText): [TriText, TriText, TriText, TriT
 function defaultWrong(correct: string): TriText {
   return tri(
     `Почти. Первый глагол просит другой готовый кусок. Здесь нужно: ${correct}.`,
-    `Майже. Перше дієслово просить інший готовий шматок. Тут потрібно: ${correct}.`,
+    `Майже. Перше дієслово просить інший готовий зворот. Тут потрібно: ${correct}.`,
     `Casi. El primer verbo pide: ${correct}.`,
   );
 }
@@ -138,7 +138,7 @@ function infGerStep(input: {
     explanationBlock: withEs(MODEL, esFeedback),
     microTask: tri(
       'Выбери форму второго действия: кусок с to или кусок с -ing.',
-      'Обери форму другої дії: шматок із to або шматок із -ing.',
+      'Обери форму другої дії: зворот із to або зворот із -ing.',
       'Elige la forma de la segunda accion.',
     ),
     sentence: input.sentence,
@@ -369,7 +369,7 @@ export const INFINITIVE_VS_GERUND_BASIC_TRAINING: DiagnosisTraining = {
       correctAnswer: 'to learn',
       correctFeedback: tri('Да. Готовая связка: want to learn.', 'Так. Готова звʼязка: want to learn.', 'Yes. Chunk: want to learn.'),
       wrong: {
-        learning: tri('Want learning здесь не работает. После want нужен кусок want to learn.', 'Want learning тут не працює. Після want потрібен шматок want to learn.', 'Use want to learn.'),
+        learning: tri('Want learning здесь не работает. После want нужен кусок want to learn.', 'Want learning тут не працює. Після want потрібен зворот want to learn.', 'Use want to learn.'),
         learn: tri('После want не хватает to. Нормально: want to learn.', 'Після want бракує to. Нормально: want to learn.', 'Use want to learn.'),
         'to learning': tri('To learning ломает связку. Нормально: to learn.', 'To learning ламає звʼязку. Нормально: to learn.', 'Use to learn.'),
       },
@@ -403,7 +403,7 @@ export const INFINITIVE_VS_GERUND_BASIC_TRAINING: DiagnosisTraining = {
       translation: tri('Они хотят помочь нам.', 'Вони хочуть допомогти нам.', 'They want to help us.'),
       options: ['to help', 'helping', 'help', 'to helping'],
       correctAnswer: 'to help',
-      correctFeedback: tri('Да. После want нужен кусок to help.', 'Так. Після want потрібен шматок to help.', 'Yes. Want to help.'),
+      correctFeedback: tri('Да. После want нужен кусок to help.', 'Так. Після want потрібен зворот to help.', 'Yes. Want to help.'),
       wrong: {
         helping: tri('Want helping здесь не работает. Нужно want to help.', 'Want helping тут не працює. Потрібно want to help.', 'Use want to help.'),
         help: tri('После want не хватает to: want to help.', 'Після want бракує to: want to help.', 'Use want to help.'),
@@ -421,7 +421,7 @@ export const INFINITIVE_VS_GERUND_BASIC_TRAINING: DiagnosisTraining = {
       translation: tri('Они решили начать снова.', 'Вони вирішили почати знову.', 'They decided to start again.'),
       options: ['to start', 'starting', 'start', 'to starting'],
       correctAnswer: 'to start',
-      correctFeedback: tri('Да. После decided нужен кусок to start.', 'Так. Після decided потрібен шматок to start.', 'Yes. Decided to start.'),
+      correctFeedback: tri('Да. После decided нужен кусок to start.', 'Так. Після decided потрібен зворот to start.', 'Yes. Decided to start.'),
       wrong: {
         starting: tri('Decided starting звучит сломанно. Нужно decided to start.', 'Decided starting звучить зламано. Потрібно decided to start.', 'Use decided to start.'),
         start: tri('После decided не хватает to: decided to start.', 'Після decided бракує to: decided to start.', 'Use decided to start.'),
@@ -439,7 +439,7 @@ export const INFINITIVE_VS_GERUND_BASIC_TRAINING: DiagnosisTraining = {
       translation: tri('Мы планируем учиться сегодня вечером.', 'Ми плануємо вчитися сьогодні ввечері.', 'We plan to study tonight.'),
       options: ['to study', 'studying', 'study', 'to studying'],
       correctAnswer: 'to study',
-      correctFeedback: tri('Да. После plan нужен кусок to study.', 'Так. Після plan потрібен шматок to study.', 'Yes. Plan to study.'),
+      correctFeedback: tri('Да. После plan нужен кусок to study.', 'Так. Після plan потрібен зворот to study.', 'Yes. Plan to study.'),
       wrong: {
         studying: tri('Plan studying здесь не работает. Нужно plan to study.', 'Plan studying тут не працює. Потрібно plan to study.', 'Use plan to study.'),
         study: tri('После plan не хватает to: plan to study.', 'Після plan бракує to: plan to study.', 'Use plan to study.'),
@@ -457,7 +457,7 @@ export const INFINITIVE_VS_GERUND_BASIC_TRAINING: DiagnosisTraining = {
       translation: tri('Он согласился помочь мне.', 'Він погодився допомогти мені.', 'He agreed to help me.'),
       options: ['to help', 'helping', 'help', 'to helping'],
       correctAnswer: 'to help',
-      correctFeedback: tri('Да. После agreed нужен кусок to help.', 'Так. Після agreed потрібен шматок to help.', 'Yes. Agreed to help.'),
+      correctFeedback: tri('Да. После agreed нужен кусок to help.', 'Так. Після agreed потрібен зворот to help.', 'Yes. Agreed to help.'),
       wrong: {
         helping: tri('Agreed helping неправильно. Нужно agreed to help.', 'Agreed helping неправильно. Потрібно agreed to help.', 'Use agreed to help.'),
         help: tri('После agreed не хватает to: agreed to help.', 'Після agreed бракує to: agreed to help.', 'Use agreed to help.'),
@@ -475,7 +475,7 @@ export const INFINITIVE_VS_GERUND_BASIC_TRAINING: DiagnosisTraining = {
       translation: tri('Мне нравится учить новые слова.', 'Мені подобається вчити нові слова.', 'I enjoy learning new words.'),
       options: ['to learn', 'learning', 'learn', 'to learning'],
       correctAnswer: 'learning',
-      correctFeedback: tri('Да. После enjoy нужен кусок learning: enjoy learning.', 'Так. Після enjoy потрібен шматок learning: enjoy learning.', 'Yes. Enjoy learning.'),
+      correctFeedback: tri('Да. После enjoy нужен кусок learning: enjoy learning.', 'Так. Після enjoy потрібен зворот learning: enjoy learning.', 'Yes. Enjoy learning.'),
       wrong: {
         'to learn': tri('Enjoy to learn здесь не работает. После enjoy нужен learning.', 'Enjoy to learn тут не працює. Після enjoy потрібен learning.', 'Use learning.'),
         learn: tri('Enjoy learn звучит сломанно. Нужно enjoy learning.', 'Enjoy learn звучить зламано. Потрібно enjoy learning.', 'Use enjoy learning.'),

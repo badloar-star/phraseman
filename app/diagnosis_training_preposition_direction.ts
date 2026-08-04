@@ -132,7 +132,7 @@ function directionStep(input: {
         .filter((option) => option !== input.correctAnswer)
         .map((option) => [option, withEs(input.wrong[option] ?? tri(
           `Почти. Здесь нужен готовый кусок: ${input.correctAnswer}.`,
-          `Майже. Тут потрібен готовий шматок: ${input.correctAnswer}.`,
+          `Майже. Тут потрібен готовий зворот: ${input.correctAnswer}.`,
           `Casi. Aqui necesitas el bloque: ${input.correctAnswer}.`,
         ), esFeedback)]),
     ),
@@ -188,7 +188,7 @@ export const PREPOSITION_DIRECTION_TRAINING: DiagnosisTraining = {
   ),
   shortDiagnosis: tri(
     'Ты видишь знакомое слово, но выбираешь не тот маленький кусок: to home, on вместо onto, from вместо out of.',
-    'Ти бачиш знайоме слово, але обираєш не той маленький шматок: to home, on замість onto, from замість out of.',
+    'Ти бачиш знайоме слово, але обираєш не той маленький зворот: to home, on замість onto, from замість out of.',
     'Conoces las palabras, pero eliges el bloque pequeno equivocado: to home, on en vez de onto, from en vez de out of.',
     {
       'pt-BR': 'Você reconhece a palavra, mas escolhe o bloco pequeno errado: to home, on em vez de onto, from em vez de out of.',
@@ -439,12 +439,12 @@ export const PREPOSITION_DIRECTION_TRAINING: DiagnosisTraining = {
       wrong: {
         into: tri('Into значит внутрь. На работу как к месту: to work.', 'Into означає всередину. На роботу як до місця: to work.', 'Into means inside. A place goal needs to work.'),
         from: tri('From отвечает "откуда". Здесь стрелка идёт к работе: to work.', 'From відповідає "звідки". Тут стрілка йде до роботи: to work.', 'From shows where from. Here the arrow goes to work.'),
-        home: tri('Home работает без to после go/come, но work так не работает. Нужен кусок to work.', 'Home працює без to після go/come, але work так не працює. Потрібен шматок to work.', 'Home can work without to after go/come, but work needs to work.'),
+        home: tri('Home работает без to после go/come, но work так не работает. Нужен кусок to work.', 'Home працює без to після go/come, але work так не працює. Потрібен зворот to work.', 'Home can work without to after go/come, but work needs to work.'),
       },
       retryFeedback: [
         tri('Сначала найди цель движения.', 'Спочатку знайди ціль руху.', 'First find the goal.'),
         tri('Если цель - место, обычно нужен to.', 'Якщо ціль - місце, зазвичай потрібне to.', 'If the goal is a place, use to.'),
-        tri('Готовый кусок: go to work.', 'Готовий шматок: go to work.', 'Ready chunk: go to work.'),
+        tri('Готовый кусок: go to work.', 'Готовий зворот: go to work.', 'Ready chunk: go to work.'),
         tri('Ответ: I am going to work.', 'Відповідь: I am going to work.', 'Answer: I am going to work.'),
       ],
       fallbackExplanation: tri('To показывает движение к месту: to work.', 'To показує рух до місця: to work.', 'To shows movement to a place: to work.'),
@@ -469,10 +469,10 @@ export const PREPOSITION_DIRECTION_TRAINING: DiagnosisTraining = {
       retryFeedback: [
         tri('Куда едем?', 'Куди їдемо?', 'Where are we driving?'),
         tri('К городу как цели: to Dublin.', 'До міста як цілі: to Dublin.', 'To a city as a goal: to Dublin.'),
-        tri('Готовый кусок: drive to Dublin.', 'Готовий шматок: drive to Dublin.', 'Ready chunk: drive to Dublin.'),
+        tri('Готовый кусок: drive to Dublin.', 'Готовий зворот: drive to Dublin.', 'Ready chunk: drive to Dublin.'),
         tri('Ответ: We drove to Dublin.', 'Відповідь: We drove to Dublin.', 'Answer: We drove to Dublin.'),
       ],
-      fallbackExplanation: tri('Если город - цель движения, базовый кусок: to Dublin.', 'Якщо місто - ціль руху, базовий шматок: to Dublin.', 'If the city is the goal, use to Dublin.'),
+      fallbackExplanation: tri('Если город - цель движения, базовый кусок: to Dublin.', 'Якщо місто - ціль руху, базовий зворот: to Dublin.', 'If the city is the goal, use to Dublin.'),
       focusWords: ['to Dublin'],
     }),
     directionStep({
@@ -489,14 +489,14 @@ export const PREPOSITION_DIRECTION_TRAINING: DiagnosisTraining = {
       translation: tri('Я пришёл домой поздно.', 'Я прийшов додому пізно.', 'I came home late.'),
       options: ['home', 'to home', 'in home', 'at home'],
       correctAnswer: 'home',
-      correctFeedback: tri('Да. После came здесь нужен готовый кусок came home.', 'Так. Після came тут потрібен готовий шматок came home.', 'Yes. After came, use came home.'),
+      correctFeedback: tri('Да. После came здесь нужен готовый кусок came home.', 'Так. Після came тут потрібен готовий зворот came home.', 'Yes. After came, use came home.'),
       wrong: {
         'to home': tri('Липкая ошибка: to home. После go/come слово home обычно идёт без to: came home.', 'Липка помилка: to home. Після go/come слово home зазвичай іде без to: came home.', 'Sticky mistake: to home. After go/come, home is usually without to: came home.'),
         'in home': tri('In home звучит как место внутри. Здесь направление домой: came home.', 'In home звучить як місце всередині. Тут напрямок додому: came home.', 'In home sounds like location inside. Here it is came home.'),
         'at home': tri('At home значит "дома", где человек уже находится. Здесь он пришёл домой: came home.', 'At home означає "вдома", де людина вже є. Тут він прийшов додому: came home.', 'At home means location. Here he came home.'),
       },
       retryFeedback: [
-        tri('Запомни как цельный кусок: come home.', 'Запамʼятай як цілий шматок: come home.', 'Remember it as one chunk: come home.'),
+        tri('Запомни как цельный кусок: come home.', 'Запамʼятай як цілий зворот: come home.', 'Remember it as one chunk: come home.'),
         tri('Не came to home.', 'Не came to home.', 'Not came to home.'),
         tri('Home уже показывает направление.', 'Home уже показує напрямок.', 'Home already shows the destination.'),
         tri('Ответ: I came home late.', 'Відповідь: I came home late.', 'Answer: I came home late.'),
@@ -521,7 +521,7 @@ export const PREPOSITION_DIRECTION_TRAINING: DiagnosisTraining = {
       correctFeedback: tri('Да. Она входит внутрь комнаты: into the room.', 'Так. Вона заходить усередину кімнати: into the room.', 'Yes. She moves inside the room: into the room.'),
       wrong: {
         in: tri('In часто значит "уже внутри": I am in the room. Здесь есть вход внутрь, поэтому into the room.', 'In часто означає "вже всередині": I am in the room. Тут є вхід усередину, тому into the room.', 'In often means already inside: I am in the room. Here there is movement inside: into the room.'),
-        to: tri('To доведёт до комнаты, но не покажет вход внутрь. Нужен кусок into the room.', 'To доведе до кімнати, але не покаже вхід усередину. Потрібен шматок into the room.', 'To gets to the room, but does not show going inside. Use into the room.'),
+        to: tri('To доведёт до комнаты, но не покажет вход внутрь. Нужен кусок into the room.', 'To доведе до кімнати, але не покаже вхід усередину. Потрібен зворот into the room.', 'To gets to the room, but does not show going inside. Use into the room.'),
         from: tri('From значит "из/откуда". Здесь она входит внутрь: into.', 'From означає "з/звідки". Тут вона заходить усередину: into.', 'From means where from. Here she goes inside: into.'),
       },
       retryFeedback: [
@@ -556,10 +556,10 @@ export const PREPOSITION_DIRECTION_TRAINING: DiagnosisTraining = {
       retryFeedback: [
         tri('Куда попадает человек?', 'Куди потрапляє людина?', 'Where does the person get?'),
         tri('Внутрь машины.', 'Всередину машини.', 'Inside the car.'),
-        tri('Готовый кусок: get into the car.', 'Готовий шматок: get into the car.', 'Ready chunk: get into the car.'),
+        tri('Готовый кусок: get into the car.', 'Готовий зворот: get into the car.', 'Ready chunk: get into the car.'),
         tri('Ответ: He got into the car.', 'Відповідь: He got into the car.', 'Answer: He got into the car.'),
       ],
-      fallbackExplanation: tri('Для движения внутрь машины нужен кусок into the car.', 'Для руху всередину машини потрібен шматок into the car.', 'For movement inside a car, use into the car.'),
+      fallbackExplanation: tri('Для движения внутрь машины нужен кусок into the car.', 'Для руху всередину машини потрібен зворот into the car.', 'For movement inside a car, use into the car.'),
       focusWords: ['into the car'],
     }),
     directionStep({
@@ -585,7 +585,7 @@ export const PREPOSITION_DIRECTION_TRAINING: DiagnosisTraining = {
       retryFeedback: [
         tri('Ключи оказываются где?', 'Ключі опиняються де?', 'Where do the keys end up?'),
         tri('Внутри сумки.', 'Усередині сумки.', 'Inside the bag.'),
-        tri('Готовый кусок: into your bag.', 'Готовий шматок: into your bag.', 'Ready chunk: into your bag.'),
+        tri('Готовый кусок: into your bag.', 'Готовий зворот: into your bag.', 'Ready chunk: into your bag.'),
         tri('Ответ: Put the keys into your bag.', 'Відповідь: Put the keys into your bag.', 'Answer: Put the keys into your bag.'),
       ],
       fallbackExplanation: tri('Внутрь сумки как движение: into your bag.', 'Усередину сумки як рух: into your bag.', 'Movement inside the bag: into your bag.'),
@@ -614,7 +614,7 @@ export const PREPOSITION_DIRECTION_TRAINING: DiagnosisTraining = {
       retryFeedback: [
         tri('Куда движется телефон?', 'Куди рухається телефон?', 'Where does the phone move?'),
         tri('На поверхность стола.', 'На поверхню столу.', 'Onto the table surface.'),
-        tri('Готовый кусок: onto the table.', 'Готовий шматок: onto the table.', 'Ready chunk: onto the table.'),
+        tri('Готовый кусок: onto the table.', 'Готовий зворот: onto the table.', 'Ready chunk: onto the table.'),
         tri('Ответ: Put the phone onto the table.', 'Відповідь: Put the phone onto the table.', 'Answer: Put the phone onto the table.'),
       ],
       fallbackExplanation: tri('Для движения на поверхность используем onto: onto the table.', 'Для руху на поверхню використовуємо onto: onto the table.', 'For movement onto a surface, use onto: onto the table.'),
@@ -627,7 +627,7 @@ export const PREPOSITION_DIRECTION_TRAINING: DiagnosisTraining = {
       targetSkill: 'jump_onto_sofa',
       teachingText: tri(
         'Когда кто-то прыгает и приземляется на поверхности, нужен кусок с onto.',
-        'Коли хтось стрибає і приземляється на поверхні, потрібен шматок з onto.',
+        'Коли хтось стрибає і приземляється на поверхні, потрібен зворот з onto.',
         'When someone jumps and lands on a surface, use onto.',
       ),
       sentence: 'The cat jumped ___ the sofa.',
@@ -643,7 +643,7 @@ export const PREPOSITION_DIRECTION_TRAINING: DiagnosisTraining = {
       retryFeedback: [
         tri('Куда приземляется кот?', 'Куди приземляється кіт?', 'Where does the cat land?'),
         tri('На поверхность дивана.', 'На поверхню дивана.', 'Onto the sofa surface.'),
-        tri('Готовый кусок: jumped onto the sofa.', 'Готовий шматок: jumped onto the sofa.', 'Ready chunk: jumped onto the sofa.'),
+        tri('Готовый кусок: jumped onto the sofa.', 'Готовий зворот: jumped onto the sofa.', 'Ready chunk: jumped onto the sofa.'),
         tri('Ответ: The cat jumped onto the sofa.', 'Відповідь: The cat jumped onto the sofa.', 'Answer: The cat jumped onto the sofa.'),
       ],
       fallbackExplanation: tri('Прыжок на поверхность: onto the sofa.', 'Стрибок на поверхню: onto the sofa.', 'A jump onto a surface: onto the sofa.'),
@@ -667,12 +667,12 @@ export const PREPOSITION_DIRECTION_TRAINING: DiagnosisTraining = {
       wrong: {
         into: tri('Into - внутрь. На стул как на поверхность: onto.', 'Into - всередину. На стілець як на поверхню: onto.', 'Into means inside. Onto means onto a surface.'),
         from: tri('From говорит, откуда движение. Здесь важно, куда кладут: onto the chair.', 'From каже, звідки рух. Тут важливо, куди кладуть: onto the chair.', 'From shows where from. Here it goes onto the chair.'),
-        at: tri('At не даёт движения на поверхность. Нужен кусок onto the chair.', 'At не дає руху на поверхню. Потрібен шматок onto the chair.', 'At does not show movement onto a surface. Use onto the chair.'),
+        at: tri('At не даёт движения на поверхность. Нужен кусок onto the chair.', 'At не дає руху на поверхню. Потрібен зворот onto the chair.', 'At does not show movement onto a surface. Use onto the chair.'),
       },
       retryFeedback: [
         tri('Что происходит с сумкой?', 'Що відбувається із сумкою?', 'What happens to the bag?'),
         tri('Она ложится на поверхность стула.', 'Вона лягає на поверхню стільця.', 'It moves onto the chair surface.'),
-        tri('Готовый кусок: onto the chair.', 'Готовий шматок: onto the chair.', 'Ready chunk: onto the chair.'),
+        tri('Готовый кусок: onto the chair.', 'Готовий зворот: onto the chair.', 'Ready chunk: onto the chair.'),
         tri('Ответ: She put her bag onto the chair.', 'Відповідь: She put her bag onto the chair.', 'Answer: She put her bag onto the chair.'),
       ],
       fallbackExplanation: tri('Движение на поверхность: onto the chair.', 'Рух на поверхню: onto the chair.', 'Movement onto a surface: onto the chair.'),
@@ -701,7 +701,7 @@ export const PREPOSITION_DIRECTION_TRAINING: DiagnosisTraining = {
       retryFeedback: [
         tri('Задай вопрос: куда или откуда?', 'Постав питання: куди чи звідки?', 'Ask: where to or where from?'),
         tri('Здесь откуда: из Дублина.', 'Тут звідки: з Дубліна.', 'Here it is where from: from Dublin.'),
-        tri('Готовый кусок: came from Dublin.', 'Готовий шматок: came from Dublin.', 'Ready chunk: came from Dublin.'),
+        tri('Готовый кусок: came from Dublin.', 'Готовий зворот: came from Dublin.', 'Ready chunk: came from Dublin.'),
         tri('Ответ: He came from Dublin.', 'Відповідь: He came from Dublin.', 'Answer: He came from Dublin.'),
       ],
       fallbackExplanation: tri('Откуда началось движение: from Dublin.', 'Звідки почався рух: from Dublin.', 'Starting point: from Dublin.'),
@@ -714,7 +714,7 @@ export const PREPOSITION_DIRECTION_TRAINING: DiagnosisTraining = {
       targetSkill: 'out_of_car',
       teachingText: tri(
         'Для выхода из машины базовый кусок - get out of the car. Не out from.',
-        'Для виходу з машини базовий шматок - get out of the car. Не out from.',
+        'Для виходу з машини базовий зворот - get out of the car. Не out from.',
         'For leaving a car, the basic chunk is get out of the car. Not out from.',
       ),
       sentence: 'Get ___ the car.',
@@ -723,14 +723,14 @@ export const PREPOSITION_DIRECTION_TRAINING: DiagnosisTraining = {
       correctAnswer: 'out of',
       correctFeedback: tri('Да. Ты внутри машины и выходишь наружу: out of the car.', 'Так. Ти всередині машини і виходиш назовні: out of the car.', 'Yes. You move from inside the car to outside: out of the car.'),
       wrong: {
-        'out from': tri('Вот типичная ловушка: out from. Для машины лучше готовый кусок out of the car.', 'Ось типова пастка: out from. Для машини краще готовий шматок out of the car.', 'Typical trap: out from. For a car, use out of the car.'),
+        'out from': tri('Вот типичная ловушка: out from. Для машины лучше готовый кусок out of the car.', 'Ось типова пастка: out from. Для машини краще готовий зворот out of the car.', 'Typical trap: out from. For a car, use out of the car.'),
         from: tri('From может показывать старт, но для выхода изнутри машины нужен out of the car.', 'From може показувати старт, але для виходу зсередини машини потрібне out of the car.', 'From can show a starting point, but leaving inside a car is out of the car.'),
         into: tri('Into the car - сесть внутрь. Здесь обратное: out of the car.', 'Into the car - сісти всередину. Тут навпаки: out of the car.', 'Into the car means get inside. Here it is out of the car.'),
       },
       retryFeedback: [
         tri('Ты внутри или снаружи?', 'Ти всередині чи зовні?', 'Are you inside or outside?'),
         tri('Внутри, и выходишь наружу.', 'Всередині, і виходиш назовні.', 'Inside, moving outside.'),
-        tri('Готовый кусок: get out of the car.', 'Готовий шматок: get out of the car.', 'Ready chunk: get out of the car.'),
+        tri('Готовый кусок: get out of the car.', 'Готовий зворот: get out of the car.', 'Ready chunk: get out of the car.'),
         tri('Ответ: Get out of the car.', 'Відповідь: Get out of the car.', 'Answer: Get out of the car.'),
       ],
       fallbackExplanation: tri('Изнутри наружу: out of the car.', 'Зсередини назовні: out of the car.', 'From inside to outside: out of the car.'),
@@ -752,7 +752,7 @@ export const PREPOSITION_DIRECTION_TRAINING: DiagnosisTraining = {
       correctAnswer: 'out of',
       correctFeedback: tri('Да. Комната - внутреннее место, и она выходит наружу: out of the room.', 'Так. Кімната - внутрішнє місце, і вона виходить назовні: out of the room.', 'Yes. A room is an inside space, and she comes out of it.'),
       wrong: {
-        from: tri('From показывает откуда, но для выхода изнутри комнаты естественный кусок: out of the room.', 'From показує звідки, але для виходу зсередини кімнати природний шматок: out of the room.', 'From shows where from, but leaving inside a room is out of the room.'),
+        from: tri('From показывает откуда, но для выхода изнутри комнаты естественный кусок: out of the room.', 'From показує звідки, але для виходу зсередини кімнати природний зворот: out of the room.', 'From shows where from, but leaving inside a room is out of the room.'),
         into: tri('Into the room - войти в комнату. Здесь наоборот: out of the room.', 'Into the room - зайти в кімнату. Тут навпаки: out of the room.', 'Into the room means go inside. Here it is out of the room.'),
         onto: tri('Onto - на поверхность. Комната здесь внутреннее место: out of the room.', 'Onto - на поверхню. Кімната тут внутрішнє місце: out of the room.', 'Onto means onto a surface. A room is an inside space: out of the room.'),
       },
@@ -854,7 +854,7 @@ export const PREPOSITION_DIRECTION_TRAINING: DiagnosisTraining = {
       wrong: {
         'He got from the car, went in the room, and put the phone into the table.': tri(
           'Здесь ломаются все три стрелки. Нужны готовые куски: out of the car, into the room, onto the table.',
-          'Тут ламаються всі три стрілки. Потрібні готові шматки: out of the car, into the room, onto the table.',
+          'Тут ламаються всі три стрілки. Потрібні готові звороти: out of the car, into the room, onto the table.',
           'All three arrows break here. Use out of the car, into the room, onto the table.',
         ),
         'He got to the car, went to the room, and put the phone from the table.': tri(
@@ -918,7 +918,7 @@ export const PREPOSITION_DIRECTION_TRAINING: DiagnosisTraining = {
     ),
     depth4: tri(
       'Почти подсказка: выбери готовый кусок по стрелке, не по русскому "в/на/из".',
-      'Майже підказка: обери готовий шматок за стрілкою, не за українським "в/на/з".',
+      'Майже підказка: обери готовий зворот за стрілкою, не за українським "в/на/з".',
       'Casi una pista: elige el bloque listo por la flecha, no por traduccion.',
     ),
   },
@@ -943,7 +943,7 @@ export const PREPOSITION_DIRECTION_TRAINING: DiagnosisTraining = {
       action: 'switch_to_guided_mode',
       card: tri(
         'Переходим в режим с подсказками: сначала смысл стрелки, потом готовый английский кусок.',
-        'Переходимо в режим із підказками: спочатку сенс стрілки, потім готовий англійський шматок.',
+        'Переходимо в режим із підказками: спочатку сенс стрілки, потім готовий англійський зворот.',
         'Modo guiado: primero el sentido de la flecha, despues el bloque ingles listo.',
       ),
     },

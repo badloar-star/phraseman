@@ -428,6 +428,26 @@ export default function TournamentsScreen() {
   const screenFocused = useIsFocused();
   const runtimeActive = useRuntimeActive(screenFocused);
 
+  // зачем 2026-08-04 (владелец: «в админке включено весь день, а в приложении
+  // всё ещё "сейчас турниров нет"»): loadSchedule() кэширует снимок на 6 часов
+  // в памяти модуля (SCHEDULE_TTL_MS) — экономия чтений оправдана, расписание
+  // почти не меняется, НО именно поэтому владелец не видит свой тумблер сразу.
+  // Первый показ экрана уже грузит расписание эффектом выше (с таймаутом и
+  // офлайн-заглушкой) — здесь только ВОЗВРАТЫ на экран: пропускаем фокус при
+  // маунте (isFirstFocusRef) и на каждый повторный форсируем force=true.
+  // 1 лишнее чтение раз в фокус, не за кадр — цена ничтожна рядом с честным
+  // статусом турнира.
+  const isFirstFocusRef = useRef(true);
+  useEffect(() => {
+    if (!screenFocused) return;
+    if (isFirstFocusRef.current) { isFirstFocusRef.current = false; return; }
+    let alive = true;
+    void loadSchedule(true)
+      .then((value) => { if (alive) setSchedule((value as ScheduleConfig | null) ?? { slots: [] }); })
+      .catch(() => {});
+    return () => { alive = false; };
+  }, [screenFocused]);
+
   const { room } = useTournamentRoom(roomId, runtimeActive);
 
   /**

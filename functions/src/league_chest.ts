@@ -1,6 +1,7 @@
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK } from './callable_options';
+import { isResidentMember } from './league_residents';
 
 const REGION = 'us-central1';
 const MS_WEEK = 7 * 24 * 60 * 60 * 1000;
@@ -468,6 +469,11 @@ export const leagueChestClaim = onCall({ region: REGION, enforceAppCheck: ENFORC
         uid,
         name: sanitizeString(m?.name, 48) || 'Player',
         points: Math.max(0, readInt(m?.points, 0)),
+        // зачем (владелец 2026-08-04): опыт жителей засчитывается в общую цель
+        // недели — это его явное решение. Но корону забрать они не могут:
+        // корона пишется в league_crowns и в профиль победителя, у жителя
+        // профиля не существует. Поэтому метку тащим до выбора победителя.
+        isResident: isResidentMember(uid, m),
       }))
       .filter((m) => !!m.uid);
     if (!members.some((m) => m.uid === stableUid)) {
@@ -489,7 +495,9 @@ export const leagueChestClaim = onCall({ region: REGION, enforceAppCheck: ENFORC
     const completedInMs = groupCreatedAt > 0 ? Math.max(0, firstReachedAt - groupCreatedAt) : null;
 
     members.sort((a, b) => b.points - a.points || a.uid.localeCompare(b.uid));
-    const winner = members[0];
+    // Корону получает лучший ЖИВОЙ игрок. Житель на первом месте — обычная
+    // ситуация (они растут круглосуточно), но награда обязана достаться человеку.
+    const winner = members.find((m) => !m.isResident);
     const crown = winner
       ? {
         uid: winner.uid,

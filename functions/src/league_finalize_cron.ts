@@ -20,6 +20,7 @@
 
 import * as admin from 'firebase-admin';
 import { onSchedule } from 'firebase-functions/v2/scheduler';
+import { withoutResidents } from './league_residents';
 
 const CLUBS_MAX_ID = 11;
 const LEAGUE_RESULT_ZONE_RATIO = 0.15;
@@ -96,7 +97,13 @@ export function computeGroupResults(
   leagueId: number,
   xpPromotion: XpPromotionConfig,
 ): Record<string, MemberResult> {
-  const entries = Object.entries(members)
+  // зачем (владелец 2026-08-04): жители дозаполняют комнату визуально, но в
+  // НАГРАДАХ их быть не должно — ни итогов недели, ни повышения/понижения.
+  // Отсекаем их до подсчёта, иначе они бы ещё и раздували total, сдвигая зоны
+  // топ-15%/низ-15% для живых игроков (живой мог бы вылететь из-за соседства
+  // с ботами). Ранг живого считается только среди живых.
+  const liveMembers = withoutResidents(members as Record<string, Record<string, unknown>>);
+  const entries = Object.entries(liveMembers)
     .filter(([, m]) => (m as Record<string, unknown>)?.identityHidden !== true)
     .map(([uid, m]) => ({
       uid,

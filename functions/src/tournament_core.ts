@@ -20,6 +20,13 @@ import {
   type OwnerApprovedTournamentMode,
 } from './tournament_mode_contract';
 import { REDDIT_BOT_NAMES } from './tournament_reddit_bot_names';
+// Общий реестр персонажей: уровень/аватар бота турнира обязан совпадать с тем,
+// что тот же персонаж показывает в лиге (владелец 2026-08-04).
+import {
+  residentAvatar,
+  residentLevelFromXp,
+  residentTotalXpAt,
+} from './synthetic_residents';
 
 // ── Коллекции ───────────────────────────────────────────────────────────────
 
@@ -185,6 +192,8 @@ export type TournamentSlotConfig = {
 
 export type TournamentScheduleConfig = {
   slots: TournamentSlotConfig[];
+  /** Server-controlled all-day access; old app builds ignore the field and use the effective 00:00 slot. */
+  allDayEnabled?: boolean;
   /** Temporary server-authoritative access gate for free, on-demand test rooms. */
   testingEnabled?: boolean;
   /** Один бесплатный вход в неделю для всех (§4). */
@@ -201,6 +210,7 @@ export const DEFAULT_TOURNAMENT_SCHEDULE: TournamentScheduleConfig = Object.free
   ],
   freeWeeklyEntry: true,
   ticketGemValue: 10,
+  allDayEnabled: false,
 });
 
 export function normalizeTournamentSchedule(raw: unknown): TournamentScheduleConfig {
@@ -240,6 +250,7 @@ export function normalizeTournamentSchedule(raw: unknown): TournamentScheduleCon
   }
   return {
     slots,
+    allDayEnabled: data.allDayEnabled === true,
     freeWeeklyEntry: data.freeWeeklyEntry === true,
     ticketGemValue: Math.max(0, Math.trunc(Number(data.ticketGemValue)) || 0),
     ...(data.testingEnabled === true ? { testingEnabled: true } : {}),
@@ -294,7 +305,11 @@ export function tournamentEconomySnapshotForMode(
   const economy = normalizeTournamentEconomy(raw);
   return testMode
     ? Object.freeze({ ...economy, entryGems: 0, botEntryGems: 0 })
-    : Object.freeze({ ...economy, entryGems: DEFAULT_TOURNAMENT_ECONOMY.entryGems });
+    : Object.freeze({
+      ...economy,
+      entryGems: DEFAULT_TOURNAMENT_ECONOMY.entryGems,
+      botEntryGems: DEFAULT_TOURNAMENT_ECONOMY.botEntryGems,
+    });
 }
 
 /**
@@ -3117,11 +3132,32 @@ const BOT_AVATAR_AURAS = [
  */
 export const TOURNAMENT_BOT_MAX_LEVEL = 50;
 
-function botAvatarVisual(rand: () => number): { avatarEmoji: string; avatarAura?: string } {
+/**
+ * Визуал бота.
+ *
+ * зачем (владелец 2026-08-04): раньше уровневый аватар выбирался СЛУЧАЙНО
+ * (1..50) и ни с чем не был связан. Тот же персонаж в лиге имел аватар по
+ * своему опыту — и владелец справедливо возразил: «будет неправильно, если они
+ * будут замечены в двух разных местах с разным опытом и уровнем и аватаром».
+ * Теперь номер аватара берётся из ОБЩЕГО реестра (synthetic_residents.ts) —
+ * это уровень персонажа на текущий момент, тот же самый, что видно в лиге.
+ *
+ * Меньшинство ботов носит купленный shop-аватар: он уровня не сообщает, и
+ * карточка в таком случае читает уровень из реестра напрямую.
+ */
+function botAvatarVisual(
+  rand: () => number,
+  index: number,
+  nowMs: number,
+): { avatarEmoji: string; avatarAura?: string } {
   const usesShopAvatar = rand() < 0.12;
+  // Розыгрыш legacy-номера уровня сохранён в потоке, хотя значение больше не
+  // используется: без него последующие rand() сдвинулись бы и у всех ботов
+  // разом поменялись бы shop-аватары и ауры.
+  rand();
   const avatarEmoji = usesShopAvatar
     ? `custom:custom-gen-${String(41 + Math.floor(rand() * 22)).padStart(2, '0')}:${BOT_AVATAR_GRADIENTS[Math.floor(rand() * BOT_AVATAR_GRADIENTS.length)]}:${rand() < 0.5 ? 'black' : 'white'}`
-    : String(1 + Math.floor(rand() * TOURNAMENT_BOT_MAX_LEVEL));
+    : residentAvatar(residentLevelFromXp(residentTotalXpAt(index, nowMs)));
   const avatarAura = rand() < 0.05
     ? BOT_AVATAR_AURAS[Math.floor(rand() * BOT_AVATAR_AURAS.length)]
     : undefined;
@@ -3129,7 +3165,7 @@ function botAvatarVisual(rand: () => number): { avatarEmoji: string; avatarAura?
 }
 
 /** winRate: среднее двух равномерных — треугольное распределение 0.15–0.85. */
-export function generateBotProfile(index: number, seed: string): BotProfile {
+export function generateBotProfile(index: number, seed: string, nowMs = Date.now()): BotProfile {
   const rand = tournamentPrng(`${seed}:bot:${index}`);
   // The approved 200-profile seed maps 1:1 to the reviewed multilingual corpus.
   // Larger developer-only seeds wrap deterministically without changing IDs.
@@ -3137,7 +3173,11 @@ export function generateBotProfile(index: number, seed: string): BotProfile {
   // Consume the legacy avatar draw so rank/color/difficulty stay byte-for-byte
   // stable, while avatar variety evolves on an independent deterministic stream.
   rand();
-  const visual = botAvatarVisual(tournamentPrng(`${seed}:bot:${index}:visual-v2`));
+  const visual = botAvatarVisual(
+    tournamentPrng(`${seed}:bot:${index}:visual-v2`),
+    index,
+    nowMs,
+  );
   const rank = BOT_RANKS[Math.floor(rand() * BOT_RANKS.length)];
   const color = BOT_COLORS[Math.floor(rand() * BOT_COLORS.length)];
   const titlesCount = rand() < 0.4 ? 1 : 0;

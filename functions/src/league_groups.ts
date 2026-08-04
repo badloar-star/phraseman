@@ -3,6 +3,11 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { isVipActive, resolvePremiumAccess, resolveIsLifetimePlan } from './premium_status';
+import {
+  countLiveMembers,
+  countVisibleMembers as countVisibleRoomMembers,
+  fillRoomWithResidents,
+} from './league_residents';
 
 const GROUP_SIZE = 30;
 const MAX_LEAGUE_ID = 11;
@@ -245,6 +250,16 @@ function getWeekId(at = new Date()): string {
   return `${date.getUTCFullYear()}-W${String(weekNum).padStart(2, '0')}`;
 }
 
+/**
+ * Начало текущей ISO-недели (понедельник 00:00 UTC) — база недельных очков
+ * жителя. Зеркало currentWeekStartMs из league_residents_cron.ts.
+ */
+function weekStartMs(nowMs = Date.now()): number {
+  const now = new Date(nowMs);
+  const daysSinceMonday = (now.getUTCDay() + 6) % 7;
+  return Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() - daysSinceMonday);
+}
+
 function makeGroupDocId(weekId: string, leagueId: number, uid: string): string {
   const safeUid = uid.replace(/[^A-Za-z0-9_-]/g, '').slice(0, 16) || 'user';
   return `${weekId}_${leagueId}_${Date.now()}_${safeUid}_${Math.random().toString(36).slice(2, 8)}`;
@@ -255,6 +270,21 @@ function countMembers(data: FirebaseFirestore.DocumentData | undefined): number 
   return members && typeof members === 'object'
     ? Object.values(members).filter((m) => (m as Record<string, unknown>)?.identityHidden !== true).length
     : 0;
+}
+
+/**
+ * Сколько ЖИВЫХ игроков в комнате — вместимость считается только по ним.
+ *
+ * зачем (владелец 2026-08-04, критично): жители дозаполняют комнату до 28. Если
+ * считать их занятыми местами, то findGroupWithSpace увидит «комната полна» и
+ * отправит следующего живого игрока создавать НОВУЮ пустую комнату — то есть
+ * снова расплодит одиночек, ровно ту болезнь, которую жители и лечат. Живые
+ * обязаны собираться вместе; жители лишь заполняют оставшийся фон.
+ */
+function countLiveRoomMembers(data: FirebaseFirestore.DocumentData | undefined): number {
+  const members = data?.members;
+  if (!members || typeof members !== 'object') return 0;
+  return countLiveMembers(members as Record<string, Record<string, unknown>>);
 }
 
 function sanitizeMember(raw: Record<string, unknown>, stableUid: string): MemberData {
@@ -384,6 +414,9 @@ async function findGroupWithSpace(
   stableUid: string,
 ): Promise<string | null> {
   try {
+    // liveMemberCount пишется кроном жителей и транзакциями входа. Индекс по
+    // memberCount оставлен как запасной путь для комнат, которых крон ещё не
+    // касался (поле там отсутствует — такие комнаты доберёт broad-скан ниже).
     const snap = await db
       .collection('league_groups')
       .where('weekId', '==', weekId)
@@ -395,7 +428,8 @@ async function findGroupWithSpace(
     for (const doc of snap.docs) {
       const data = doc.data();
       if (readInt(data.leagueId) !== leagueId) continue;
-      const n = countMembers(data);
+      // Вместимость — по живым: жители не занимают мест (см. countLiveRoomMembers).
+      const n = countLiveRoomMembers(data);
       if (n >= GROUP_SIZE) continue;
       if (data.members?.[stableUid]) return doc.id;
       return doc.id;
@@ -415,7 +449,9 @@ async function findGroupWithSpace(
   for (const doc of broad.docs) {
     const data = doc.data();
     if (readInt(data.leagueId) !== leagueId) continue;
-    const n = countMembers(data);
+    // guard-ok: чтений Firestore в цикле нет — data() берётся из уже
+    // загруженного снапшота broad-запроса, дополнительных обращений не будет.
+    const n = countLiveRoomMembers(data);
     if (data.members?.[stableUid]) return doc.id;
     if (n < GROUP_SIZE) candidates.push({ id: doc.id, n });
   }
@@ -589,7 +625,15 @@ export const leagueJoinOrUpdateGroup = onCall(HOT_CALLABLE_OPTIONS, async (reque
       const currentMember = { ...member, points: currentWeekPoints };
       const members = { ...(data.members || {}) };
       members[stableUid] = mergeCurrentWeekMember(members[stableUid], currentMember);
-      tx.set(ref, { members, memberCount: countMembers({ members }), updatedAt: Date.now() }, { merge: true });
+      // Комната могла быть создана до внедрения жителей — дозаполняем при первом
+      // же заходе владельца/игрока, не дожидаясь крона.
+      const withResidents = fillRoomWithResidents(members, groupId as string, weekStartMs(), Date.now());
+      tx.set(ref, {
+        members: withResidents,
+        memberCount: countVisibleRoomMembers(withResidents),
+        liveMemberCount: countLiveMembers(withResidents),
+        updatedAt: Date.now(),
+      }, { merge: true });
       tx.set(lbRef, {
         groupId,
         groupWeekId: weekId,
@@ -616,9 +660,19 @@ export const leagueJoinOrUpdateGroup = onCall(HOT_CALLABLE_OPTIONS, async (reque
       const currentWeekPoints = getAuthoritativeLeagueWeekPoints(userSnap?.data(), freshLbSnap.data(), weekId);
       const currentMember = { ...member, points: currentWeekPoints };
       const members = { ...(data.members || {}) };
-      if (!members[stableUid] && countMembers({ members }) >= GROUP_SIZE) return;
+      // Вместимость — по живым: жители мест не занимают и уступают человеку.
+      if (!members[stableUid] && countLiveMembers(members) >= GROUP_SIZE) return;
       members[stableUid] = mergeCurrentWeekMember(members[stableUid], currentMember);
-      tx.set(ref, { members, memberCount: countMembers({ members }), updatedAt: Date.now() }, { merge: true });
+      // зачем (владелец 2026-08-04): крон жителей ходит раз в 6 часов, а комната
+      // нужна полной ПРЯМО СЕЙЧАС — иначе вошедший увидит «Упс, ты здесь один»
+      // до следующего запуска. Подселяем в той же транзакции.
+      const withResidents = fillRoomWithResidents(members, candidate, weekStartMs(), Date.now());
+      tx.set(ref, {
+        members: withResidents,
+        memberCount: countVisibleRoomMembers(withResidents),
+        liveMemberCount: countLiveMembers(withResidents),
+        updatedAt: Date.now(),
+      }, { merge: true });
       tx.set(lbRef, {
         groupId: candidate,
         groupWeekId: weekId,
@@ -636,13 +690,19 @@ export const leagueJoinOrUpdateGroup = onCall(HOT_CALLABLE_OPTIONS, async (reque
   const newGroupId = makeGroupDocId(weekId, leagueId, stableUid);
   await db.runTransaction(async (tx) => {
     const ref = db.collection('league_groups').doc(newGroupId);
+    // зачем (владелец 2026-08-04): ИМЕННО ЗДЕСЬ рождалась комната-одиночка со
+    // скриншота — «Медная лига, 1 участник, Упс, ты здесь один». Новая комната
+    // сразу создаётся заполненной жителями, пустой она не существует ни секунды.
+    const now = Date.now();
+    const members = fillRoomWithResidents({ [stableUid]: member }, newGroupId, weekStartMs(now), now);
     tx.create(ref, {
       weekId,
       leagueId,
-      memberCount: 1,
-      createdAt: Date.now(),
-      updatedAt: Date.now(),
-      members: { [stableUid]: member },
+      memberCount: countVisibleRoomMembers(members),
+      liveMemberCount: countLiveMembers(members),
+      createdAt: now,
+      updatedAt: now,
+      members,
     });
     tx.set(lbRef, { groupId: newGroupId, groupWeekId: weekId, leagueId, ...leaderboardProjection }, { merge: true });
   });

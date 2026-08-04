@@ -52,6 +52,13 @@ import { CLOUD_SYNC_ENABLED, ENABLE_PROFILE_CARD, IS_EXPO_GO } from '../app/conf
 import { readLifetimeProfileStatsCache, loadLifetimeProfileStats } from '../app/lifetime_profile_stats';
 import { syncToCloud } from '../app/cloud_sync';
 import { deleteFriend, sendFriendRequest, subscribeToFriends } from '../app/firestore_friend_requests';
+import {
+  hasSyntheticFriendRequest,
+  isSyntheticUid,
+  loadSyntheticFriendRequests,
+  peekSyntheticFriendRequests,
+  rememberSyntheticFriendRequest,
+} from '../app/synthetic_friend_requests';
 import { fetchFriendProfilesBatch } from '../app/friends_profiles_batch';
 import { invalidateFriendsActivityCache } from '../app/firestore_friend_activity';
 import {
@@ -205,6 +212,8 @@ const AURORA_GLASS = {
   chipBg: 'rgba(255,255,255,0.055)',
   chipBorder: 'rgba(255,255,255,0.07)',
   inkSoft: '#C9CBD6',
+  inkPrimary: '#F4F5F8',
+  inkMuted: '#9799A6',
 } as const;
 
 /**
@@ -318,7 +327,12 @@ function PlayerProfileModalBody({
   const hasDevProfileCardLevelOverride = __DEV__ && player.devProfileCardLevelOverride !== undefined;
   const [friendRequestBusy, setFriendRequestBusy] = useState(false);
   const [friendUids, setFriendUids] = useState<Set<string>>(() => new Set());
-  const [friendRequestSentUids, setFriendRequestSentUids] = useState<Set<string>>(() => new Set());
+  // зачем (владелец 2026-08-04): заявки к синтетическим персонажам живут только
+  // на устройстве. Инициализируем состояние из локального кэша СИНХРОННО, иначе
+  // кнопка мигнёт «Добавить в друзья» на первом кадре и юзер заметит подвох.
+  const [friendRequestSentUids, setFriendRequestSentUids] = useState<Set<string>>(
+    () => new Set(peekSyntheticFriendRequests()),
+  );
   const [removeFriendConfirmOpen, setRemoveFriendConfirmOpen] = useState(false);
   const [hasSeasonProfileFrame, setHasSeasonProfileFrame] = useState(
     () => resolveSeasonProfileFrameVisible({
@@ -468,6 +482,10 @@ function PlayerProfileModalBody({
     void (async () => {
       const uid = player.friendUid || player.uid || (isMe ? await getCanonicalUserId() : '');
       if (!uid || cancelled) return;
+      // зачем (владелец 2026-08-04): у синтетического персонажа нет документов в
+      // Firestore — запрос лайков вернул бы пустоту и стоил бы чтений на каждом
+      // открытии карточки. Показываем 0 лайков, как у человека без активности.
+      if (isSyntheticUid(uid)) return;
       const [total, likeState] = await Promise.all([
         fetchActivityLikeTotal(uid),
         isMe ? Promise.resolve(null) : fetchTodayActivityLikeState().catch(() => null),
@@ -496,6 +514,13 @@ function PlayerProfileModalBody({
   const glassChromeBg = auroraGlass ? AURORA_GLASS.chromeBg : t.bgSurface;
   const glassChipBg = auroraGlass ? AURORA_GLASS.chipBg : t.bgCard;
   const activeMultiplierColor = isLightThemeMode(themeMode) ? t.accent : '#35D07F';
+  // зачем: в светлой теме t.textPrimary/textMuted/textSecond — тёмные (для светлого фона
+  // приложения), но эти панели на престижной карточке лежат на тёмном AURORA-стекле
+  // независимо от темы — тёмный текст на тёмной карточке становится нечитаемым.
+  // Те же панели, что решают фон (glassPanel/glassChromeBg), решают и чернила текста.
+  const inkPrimary = auroraGlass ? AURORA_GLASS.inkPrimary : t.textPrimary;
+  const inkSecond = auroraGlass ? AURORA_GLASS.inkSoft : t.textSecond;
+  const inkMuted = auroraGlass ? AURORA_GLASS.inkMuted : t.textMuted;
 
   // зачем: владелец не терпит обводок контейнеров — разделяем тоном/тенью/фоном
   // (хендоф docs/cards-redesign §0.D, приоритет над рамками из HTML-макета).
@@ -799,10 +824,36 @@ function PlayerProfileModalBody({
   useEffect(() => {
     setFriendRequestBusy(false);
     setRemoveFriendConfirmOpen(false);
-    setFriendRequestSentUids(new Set());
+    // зачем (владелец 2026-08-04): сброс в ПУСТОЕ множество стирал отметку
+    // «заявка отправлена» у синтетических персонажей при каждом открытии другой
+    // карточки — кнопка возвращалась в исходное состояние и выдавала обман.
+    // Заявки к живым по-прежнему сбрасываются (правду о них приносит сервер),
+    // а локальные к жителям/ботам сохраняются.
+    setFriendRequestSentUids(new Set(peekSyntheticFriendRequests()));
     setPreviewLevel(null);
     setUpgradeBusy(false);
   }, [player.uid, player.friendUid]);
+
+  // Локальный список заявок к синтетическим персонажам переживает перезапуск
+  // приложения: подтягиваем его с диска и доливаем в состояние.
+  useEffect(() => {
+    let cancelled = false;
+    void loadSyntheticFriendRequests().then((stored) => {
+      if (cancelled || stored.size === 0) return;
+      setFriendRequestSentUids((prev) => {
+        const next = new Set(prev);
+        let added = false;
+        stored.forEach((uid) => {
+          if (!next.has(uid)) {
+            next.add(uid);
+            added = true;
+          }
+        });
+        return added ? next : prev;
+      });
+    });
+    return () => { cancelled = true; };
+  }, []);
 
   useEffect(() => {
     if (!showAddFriend) {
@@ -841,6 +892,15 @@ function PlayerProfileModalBody({
       }),
       'info',
     );
+    // зачем (владелец 2026-08-04): житель лиги / бот турнира — не настоящий
+    // аккаунт, отправлять ему заявку некуда. Запоминаем факт отправки локально:
+    // кнопка навсегда останется «Заявка отправлена», как у живого человека,
+    // который её не принял. В сеть не уходит ничего — ни записи, ни чтения.
+    if (isSyntheticUid(targetUid)) {
+      rememberSyntheticFriendRequest(targetUid);
+      setFriendRequestBusy(false);
+      return;
+    }
     try {
       const result = await sendFriendRequest(targetUid);
       if (result === 'sent') {
@@ -1422,7 +1482,7 @@ function PlayerProfileModalBody({
           )}
           {!hasLeagueCrown && (
           <Text style={memberNameStatusStyle(
-            { fontSize: 26, fontWeight: '700', color: t.textPrimary },
+            { fontSize: 26, fontWeight: '700', color: inkPrimary },
             { isPremium: showPremium, isVip: showVip, themeMode },
           )}>
             {player.name}
@@ -1468,7 +1528,7 @@ function PlayerProfileModalBody({
               // чуть более плотная подложка (0.06 → 0.10), разделение то же.
               backgroundColor: auroraGlass ? 'rgba(255,255,255,0.10)' : t.bgSurface,
             }}>
-              <Text style={{ color: auroraGlass ? AURORA_GLASS.inkSoft : t.textSecond, fontSize: 11.5, fontWeight: '600' }}>
+              <Text style={{ color: inkSecond, fontSize: 11.5, fontWeight: '600' }}>
                 {getTitleString(level, lang)}
               </Text>
             </View>
@@ -1514,7 +1574,7 @@ function PlayerProfileModalBody({
                 tr: "seviye",
                 pl: "poziom",
               }),
-              color: t.textPrimary,
+              color: inkPrimary,
             },
             {
               key: 'streak',
@@ -1522,7 +1582,7 @@ function PlayerProfileModalBody({
               // `?? 0` рисовал ноль и тем, у кого цепочка просто не пришла.
               value: streak === null ? (xpUnknown ? null : '0') : String(streak),
               label: profileChainLabel,
-              color: t.textPrimary,
+              color: inkPrimary,
             },
           ].map((metric, idx) => (
             <View
@@ -1570,7 +1630,7 @@ function PlayerProfileModalBody({
                 )}
               </View>
               <Text
-                style={{ color: t.textMuted, fontSize: 9.5, fontWeight: '600', letterSpacing: 1.1, textTransform: 'uppercase', marginTop: 3 }}
+                style={{ color: inkMuted, fontSize: 9.5, fontWeight: '600', letterSpacing: 1.1, textTransform: 'uppercase', marginTop: 3 }}
                 numberOfLines={1}
               >
                 {metric.label}
@@ -1624,7 +1684,7 @@ function PlayerProfileModalBody({
               size={16}
               color={monoIcon(themeMode, '#FF2D55')}
             />
-            <Text style={{ color: t.textPrimary, fontSize: 13.5, fontWeight: '800' }} numberOfLines={1}>
+            <Text style={{ color: inkPrimary, fontSize: 13.5, fontWeight: '800' }} numberOfLines={1}>
               {activityLikeTotal.toLocaleString()}
             </Text>
           </View>
@@ -1647,7 +1707,7 @@ function PlayerProfileModalBody({
               ? <Image source={club.imageUri} style={{ width: 28, height: 28, borderRadius: 6 }} contentFit="contain" accessibilityLabel="Иконка лиги" />
               : <Ionicons name={club.ionIcon as any} size={26} color={monoIcon(themeMode, club.color)} />
             }
-            <Text style={{ color: t.textPrimary, fontSize: 13.5, fontWeight: '700', flex: 1, minWidth: 0 }} numberOfLines={1}>
+            <Text style={{ color: inkPrimary, fontSize: 13.5, fontWeight: '700', flex: 1, minWidth: 0 }} numberOfLines={1}>
               {clubTierShortName(club, lang as Lang)}
             </Text>
           </View>
@@ -1681,7 +1741,7 @@ function PlayerProfileModalBody({
             paddingHorizontal: 14, paddingVertical: 13, marginBottom: 14,
           }}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 9 }}>
-              <Text style={{ color: t.textMuted, fontSize: 10.5, fontWeight: '700', letterSpacing: 1, textTransform: 'uppercase' }}>
+              <Text style={{ color: inkMuted, fontSize: 10.5, fontWeight: '700', letterSpacing: 1, textTransform: 'uppercase' }}>
                 {triLang(lang as Lang, {
                   ru: 'Модификаторы XP',
                   uk: 'Модифікатори XP',
@@ -1693,7 +1753,7 @@ function PlayerProfileModalBody({
                   pl: "Modyfikatory XP",
                 })}
               </Text>
-              <Text style={{ color: multipliers.total > 1 ? activeMultiplierColor : t.textMuted, fontWeight: '800', fontSize: 19 }}>
+              <Text style={{ color: multipliers.total > 1 ? activeMultiplierColor : inkMuted, fontWeight: '800', fontSize: 19 }}>
                 ×{multipliers.total.toFixed(2)}
               </Text>
             </View>
@@ -1701,7 +1761,7 @@ function PlayerProfileModalBody({
               {multipliers.clubM > 1 && (
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: glassChipBg, borderRadius: 8, paddingHorizontal: 9, paddingVertical: 5 }}>
                   <Text style={{ fontSize: 13 }}>🏛️</Text>
-                  <Text style={{ color: t.textSecond, fontSize: 11 }}>
+                  <Text style={{ color: inkSecond, fontSize: 11 }}>
                     {triLang(lang as Lang, {
                       ru: 'Лига',
                       uk: 'Ліга',
@@ -1718,7 +1778,7 @@ function PlayerProfileModalBody({
               {multipliers.streakM > 1 && (
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: glassChipBg, borderRadius: 8, paddingHorizontal: 9, paddingVertical: 5 }}>
                   <Text style={{ fontSize: 13 }}>🔥</Text>
-                  <Text style={{ color: t.textSecond, fontSize: 11 }}>
+                  <Text style={{ color: inkSecond, fontSize: 11 }}>
                     {triLang(lang as Lang, {
                       ru: 'Цепочка',
                       uk: 'Стрік',
@@ -1735,7 +1795,7 @@ function PlayerProfileModalBody({
               {multipliers.comebackM > 1 && (
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: glassChipBg, borderRadius: 8, paddingHorizontal: 9, paddingVertical: 5 }}>
                   <Text style={{ fontSize: 13 }}>⚡</Text>
-                  <Text style={{ color: t.textSecond, fontSize: 11 }}>
+                  <Text style={{ color: inkSecond, fontSize: 11 }}>
                     {triLang(lang as Lang, {
                       ru: 'Камбэк',
                       uk: 'Повернення',
@@ -1752,7 +1812,7 @@ function PlayerProfileModalBody({
               {multipliers.leagueBoostM > 1 && (
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: glassChipBg, borderRadius: 8, paddingHorizontal: 9, paddingVertical: 5 }}>
                   <Text style={{ fontSize: 13 }}>XP</Text>
-                  <Text style={{ color: t.textSecond, fontSize: 11 }}>
+                  <Text style={{ color: inkSecond, fontSize: 11 }}>
                     {triLang(lang as Lang, {
                       ru: 'Буст лиги',
                       uk: 'Буст ліги',
@@ -1769,7 +1829,7 @@ function PlayerProfileModalBody({
               {multipliers.leagueGroupBoostM > 1 && (
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: glassChipBg, borderRadius: 8, paddingHorizontal: 9, paddingVertical: 5 }}>
                   <Text style={{ fontSize: 13 }}>XP</Text>
-                  <Text style={{ color: t.textSecond, fontSize: 11 }}>
+                  <Text style={{ color: inkSecond, fontSize: 11 }}>
                     {triLang(lang as Lang, {
                       ru: 'Общий буст лиги',
                       uk: 'Спільний буст ліги',
@@ -1786,7 +1846,7 @@ function PlayerProfileModalBody({
               {multipliers.giftM > 1 && (
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: glassChipBg, borderRadius: 8, paddingHorizontal: 9, paddingVertical: 5 }}>
                   <Text style={{ fontSize: 13 }}>🎁</Text>
-                  <Text style={{ color: t.textSecond, fontSize: 11 }}>
+                  <Text style={{ color: inkSecond, fontSize: 11 }}>
                     {triLang(lang as Lang, {
                       ru: 'Подарок',
                       uk: 'Подарунок',
@@ -1803,7 +1863,7 @@ function PlayerProfileModalBody({
               {multipliers.cardM > 1 && (
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: glassChipBg, borderRadius: 8, paddingHorizontal: 9, paddingVertical: 5 }}>
                   <Text style={{ fontSize: 13 }}>✦</Text>
-                  <Text style={{ color: t.textSecond, fontSize: 11 }}>
+                  <Text style={{ color: inkSecond, fontSize: 11 }}>
                     {triLang(lang as Lang, {
                       ru: 'Карточка',
                       uk: 'Картка',
@@ -1818,7 +1878,7 @@ function PlayerProfileModalBody({
                 </View>
               )}
               {multipliers.total === 1 && (
-                <Text style={{ color: t.textMuted, fontSize: f.sub }}>
+                <Text style={{ color: inkMuted, fontSize: f.sub }}>
                   {triLang(lang as Lang, {
                     ru: 'Нет активных бонусов',
                     uk: 'Немає активних бонусів',
@@ -1854,10 +1914,10 @@ function PlayerProfileModalBody({
                   <Ionicons name="book" size={16} color={monoIcon(themeMode, cardVisual.accent)} />
                 </View>
                 <View style={{ flex: 1, minWidth: 0 }}>
-                  <Text style={{ color: t.textPrimary, fontSize: 14, fontWeight: '700' }}>
+                  <Text style={{ color: inkPrimary, fontSize: 14, fontWeight: '700' }}>
                     {(cardStats?.wordsLearned ?? 0).toLocaleString()} · {(cardStats?.phrasesLearned ?? 0).toLocaleString()}
                   </Text>
-                  <Text style={{ color: t.textMuted, fontSize: 10, marginTop: 1 }}>
+                  <Text style={{ color: inkMuted, fontSize: 10, marginTop: 1 }}>
                     {triLang(lang as Lang, {
                       ru: 'выучено: слова · фразы',
                       uk: 'вивчено: слова · фрази',
@@ -1885,7 +1945,7 @@ function PlayerProfileModalBody({
                   <Ionicons name="shield-checkmark" size={16} color={monoIcon(themeMode, cardVisual.accent)} />
                 </View>
                 <View style={{ flex: 1, minWidth: 0 }}>
-                  <Text style={{ color: t.textPrimary, fontSize: 14, fontWeight: '700' }}>
+                  <Text style={{ color: inkPrimary, fontSize: 14, fontWeight: '700' }}>
                     {triLang(lang as Lang, {
                       ru: 'Защита цепочки',
                       uk: 'Захист ланцюжка',
@@ -1897,7 +1957,7 @@ function PlayerProfileModalBody({
                       pl: 'Ochrona serii',
                     })}
                   </Text>
-                  <Text style={{ color: t.textMuted, fontSize: 10, marginTop: 1 }}>
+                  <Text style={{ color: inkMuted, fontSize: 10, marginTop: 1 }}>
                     {cardShieldStatusText}
                   </Text>
                 </View>
@@ -1916,10 +1976,10 @@ function PlayerProfileModalBody({
                   <Ionicons name="compass" size={16} color={monoIcon(themeMode, cardVisual.accent)} />
                 </View>
                 <View style={{ flex: 1, minWidth: 0 }}>
-                  <Text style={{ color: t.textPrimary, fontSize: 14, fontWeight: '700' }}>
+                  <Text style={{ color: inkPrimary, fontSize: 14, fontWeight: '700' }}>
                     {(cardStats?.appDays ?? 0).toLocaleString()} · 🔥{(cardStats?.longestStreak ?? 0).toLocaleString()}
                   </Text>
-                  <Text style={{ color: t.textMuted, fontSize: 10, marginTop: 1 }}>
+                  <Text style={{ color: inkMuted, fontSize: 10, marginTop: 1 }}>
                     {triLang(lang as Lang, {
                       ru: 'дней в Phraseman · рекордная серия',
                       uk: 'днів у Phraseman · рекордна серія',
@@ -2018,7 +2078,7 @@ function PlayerProfileModalBody({
                 onPress={handleExitPreview}
                 hitSlop={{ top: 10, right: 10, bottom: 10, left: 10 }}
               >
-                <Ionicons name="close" size={18} color={t.textMuted} />
+                <Ionicons name="close" size={18} color={AURORA_GLASS.inkMuted} />
               </TouchableOpacity>
             </View>
             {previewLevel === nextRealLevel ? (
@@ -2056,7 +2116,7 @@ function PlayerProfileModalBody({
               </TouchableOpacity>
             ) : (
               <View style={{ borderRadius: 14, paddingVertical: 13, alignItems: 'center', backgroundColor: 'rgba(255,255,255,0.07)' }}>
-                <Text style={{ color: t.textMuted, fontSize: f.body, fontWeight: '800' }}>
+                <Text style={{ color: AURORA_GLASS.inkMuted, fontSize: f.body, fontWeight: '800' }}>
                   {nextRealLevel !== null
                     ? triLang(lang as Lang, {
                         ru: `Сначала уровень ${profileCardLevelRoman(nextRealLevel)}`,
@@ -2243,7 +2303,10 @@ function PlayerProfileModal({ player, myInfo, onClose }: Props) {
 
     const task: { cancel: () => void } = InteractionManager.runAfterInteractions(() => {
       if (cancelled) return;
-      if (player.uid) {
+      // Синтетический персонаж: документа leaderboard у него нет и быть не может.
+      // Запрос вернул бы пустоту, обнулив уже показанный опыт из реестра, — и
+      // стоил бы чтения на каждое открытие карточки (владелец 2026-08-04).
+      if (player.uid && !isSyntheticUid(player.uid)) {
         const lbDocIds = Array.from(new Set([player.friendUid, player.uid].filter(Boolean) as string[]));
         Promise.all(lbDocIds.map((id) => firestore().collection('leaderboard').doc(id).get().catch(() => null)))
           .then((lbSnaps) => {

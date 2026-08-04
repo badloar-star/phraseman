@@ -55,6 +55,8 @@ import {
 import { actionToastTri, emitAppEvent } from './events';
 import { closeTournamentFlow } from './tournament_navigation';
 import { refreshShardsBalanceFromCloudAuthoritative } from './shards_system';
+import { triLang, type Lang } from '../constants/i18n';
+import { useLang } from '../components/LangContext';
 
 const SEATS = 16;
 const REACTIONS = ['👍', '🔥', '😎', '⚔️', '🍀'] as const;
@@ -92,7 +94,8 @@ type Seat = {
  * Игроки без joinAtMs (старые комнаты, созданные до этой правки) считаются
  * присутствующими всегда — иначе лобби таких комнат осталось бы пустым.
  */
-function mapPlayersToSeats(players: readonly RoomPlayer[], myId: string | null): Seat[] {
+function mapPlayersToSeats(players: readonly RoomPlayer[], myId: string | null, lang: Lang): Seat[] {
+  const fallbackName = triLang(lang, { ru: 'Игрок', uk: 'Гравець', es: 'Jugador', 'pt-BR': 'Jogador', vi: 'Người chơi', id: 'Pemain', tr: 'Oyuncu', pl: 'Gracz' });
   return players.slice(0, SEATS).map((player, index) => ({
     id: index + 1,
     uid: player.id,
@@ -101,7 +104,7 @@ function mapPlayersToSeats(players: readonly RoomPlayer[], myId: string | null):
     // уходил в ветку «живой незнакомец», и карточка бота показывала 0 опыта и
     // Lv.1. Определяем бота по формату id (см. isTournamentBotPlayer).
     isBot: isTournamentBotPlayer(player),
-    name: player.name || 'Игрок',
+    name: player.name || fallbackName,
     // зачем 2026-07-27: было эмодзи-«лицо» — правило владельца требует
     // НАСТОЯЩИЕ аватары приложения (те же, что в лигах и друзьях).
     avatar: tournamentAvatarValue({ id: player.id, isBot: player.isBot, avatar: player.avatar }),
@@ -118,6 +121,7 @@ const AnimatedBankAmount = memo(function AnimatedBankAmount({
   amount,
   events,
   onDisplayAmountChange,
+  lang,
 }: {
   amount: number;
   events: readonly LobbyBotArrival[];
@@ -130,6 +134,7 @@ const AnimatedBankAmount = memo(function AnimatedBankAmount({
    * Отдаём наружу ТЕКУЩУЮ показанную сумму, чтобы места шли с банком в ногу.
    */
   onDisplayAmountChange?: (amount: number) => void;
+  lang: Lang;
 }) {
   const P = useTournamentPalette();
   const styles = React.useMemo(() => makeStyles(P), [P]);
@@ -185,15 +190,21 @@ const AnimatedBankAmount = memo(function AnimatedBankAmount({
     <Animated.View
       style={[styles.bankAmountWrap, animatedStyle]}
       accessibilityLiveRegion="polite"
-      accessibilityLabel={`Банк турнира: ${amount} жемчужин`}
+      accessibilityLabel={triLang(lang, { ru: `Банк турнира: ${amount} жемчужин`, uk: `Банк турніру: ${amount} перлин`, es: `Bote del torneo: ${amount} perlas`, 'pt-BR': `Prêmio do torneio: ${amount} pérolas`, vi: `Quỹ giải đấu: ${amount} ngọc trai`, id: `Hadiah turnamen: ${amount} mutiara`, tr: `Turnuva ödülü: ${amount} inci`, pl: `Pula turnieju: ${amount} pereł` })}
     >
       <Text style={styles.bankAmountSlot}>{displayAmount}</Text>
-      <Text style={styles.bankUnit}>жемчужин</Text>
+      <Text style={styles.bankUnit}>{triLang(lang, { ru: 'жемчужин', uk: 'перлин', es: 'perlas', 'pt-BR': 'pérolas', vi: 'ngọc trai', id: 'mutiara', tr: 'inci', pl: 'pereł' })}</Text>
     </Animated.View>
   );
 });
 
-const PRIZE_PLACE_LABELS = ['1 место', '2 место', '3 место'] as const;
+function prizePlaceLabels(lang: Lang): readonly string[] {
+  return [
+    triLang(lang, { ru: '1 место', uk: '1 місце', es: '1er lugar', 'pt-BR': '1º lugar', vi: 'Hạng 1', id: 'Peringkat 1', tr: '1. sıra', pl: '1. miejsce' }),
+    triLang(lang, { ru: '2 место', uk: '2 місце', es: '2º lugar', 'pt-BR': '2º lugar', vi: 'Hạng 2', id: 'Peringkat 2', tr: '2. sıra', pl: '2. miejsce' }),
+    triLang(lang, { ru: '3 место', uk: '3 місце', es: '3er lugar', 'pt-BR': '3º lugar', vi: 'Hạng 3', id: 'Peringkat 3', tr: '3. sıra', pl: '3. miejsce' }),
+  ];
+}
 
 /**
  * Награда за место в жемчужинах — вместо процентов.
@@ -209,9 +220,11 @@ const PRIZE_PLACE_LABELS = ['1 место', '2 место', '3 место'] as c
 const AnimatedPrizePlace = memo(function AnimatedPrizePlace({
   label,
   gems,
+  lang,
 }: {
   label: string;
   gems: number;
+  lang: Lang;
 }) {
   const P = useTournamentPalette();
   const styles = React.useMemo(() => makeStyles(P), [P]);
@@ -236,7 +249,7 @@ const AnimatedPrizePlace = memo(function AnimatedPrizePlace({
       <Text style={styles.bankShareLabel}>{label}</Text>
       <Text
         style={styles.bankShareGems}
-        accessibilityLabel={`${label}: ${gems} жемчужин`}
+        accessibilityLabel={triLang(lang, { ru: `${label}: ${gems} жемчужин`, uk: `${label}: ${gems} перлин`, es: `${label}: ${gems} perlas`, 'pt-BR': `${label}: ${gems} pérolas`, vi: `${label}: ${gems} ngọc trai`, id: `${label}: ${gems} mutiara`, tr: `${label}: ${gems} inci`, pl: `${label}: ${gems} pereł` })}
       >
         {gems}
       </Text>
@@ -245,6 +258,7 @@ const AnimatedPrizePlace = memo(function AnimatedPrizePlace({
 });
 
 export default function TournamentLobbyScreen() {
+  const { lang } = useLang();
   const P = useTournamentPalette();
   const styles = React.useMemo(() => makeStyles(P), [P]);
   const router = useRouter();
@@ -329,15 +343,17 @@ export default function TournamentLobbyScreen() {
   const seats = useMemo(
     // tournamentNow(): часы сервера — иначе при сбитых часах устройства лобби
     // показало бы всех сразу или не показало никого.
-    () => mapPlayersToSeats(orderVisibleLobbyPlayers(roomPlayers ?? [], tournamentNow()), myId),
-    [roomPlayers, myId, lobbyTick],
+    () => mapPlayersToSeats(orderVisibleLobbyPlayers(roomPlayers ?? [], tournamentNow()), myId, lang),
+    [roomPlayers, myId, lobbyTick, lang],
   );
+  const fallbackPlayerName = triLang(lang, { ru: 'Игрок', uk: 'Гравець', es: 'Jugador', 'pt-BR': 'Jogador', vi: 'Người chơi', id: 'Pemain', tr: 'Oyuncu', pl: 'Gracz' });
   // Имя для реакции: как игрок подписан в этой комнате.
   const myName = useMemo(
-    () => seats.find((seat) => seat.isYou)?.name ?? 'Игрок',
-    [seats],
+    () => seats.find((seat) => seat.isYou)?.name ?? fallbackPlayerName,
+    [seats, fallbackPlayerName],
   );
 
+  const fallbackMeName = triLang(lang, { ru: 'Я', uk: 'Я', es: 'Yo', 'pt-BR': 'Eu', vi: 'Tôi', id: 'Saya', tr: 'Ben', pl: 'Ja' });
   /**
    * Свой профиль для карточки — из локального снимка, без сети (паттерн 1:1
    * как в tournament_season.tsx). Нужен модалке для isMe-карточки и сравнения.
@@ -345,7 +361,7 @@ export default function TournamentLobbyScreen() {
   const [myProfile, setMyProfile] = useState<{
     name: string; avatar: string; frame: string; totalXP: number;
     streak: number | null; leagueId: number | undefined;
-  }>(() => ({ name: 'Я', avatar: '', frame: '', totalXP: 0, streak: null, leagueId: undefined }));
+  }>(() => ({ name: fallbackMeName, avatar: '', frame: '', totalXP: 0, streak: null, leagueId: undefined }));
   useEffect(() => {
     let alive = true;
     void AsyncStorage.multiGet(['user_name', 'user_avatar', 'user_frame', 'user_total_xp', 'streak_count', 'league_state_v3'])
@@ -358,7 +374,7 @@ export default function TournamentLobbyScreen() {
           if (rawLeague) leagueId = Number((JSON.parse(rawLeague) as { leagueId?: number }).leagueId);
         } catch { /* лига не критична для карточки */ }
         setMyProfile({
-          name: (map.get('user_name') ?? '').trim() || 'Я',
+          name: (map.get('user_name') ?? '').trim() || fallbackMeName,
           avatar: (map.get('user_avatar') ?? '').trim(),
           frame: (map.get('user_frame') ?? '').trim(),
           totalXP: Number(map.get('user_total_xp') ?? 0) || 0,
@@ -368,7 +384,9 @@ export default function TournamentLobbyScreen() {
       })
       .catch(() => {});
     return () => { alive = false; };
-  }, []);
+    // зачем: fallback-имя «Я» зависит от lang — та же поправка, что уже была
+    // сделана в tournament_season.tsx для этого класса бага.
+  }, [fallbackMeName]);
 
   /**
    * Реальные соперники (не боты): их честный профиль (уровень/премиум)
@@ -485,11 +503,21 @@ export default function TournamentLobbyScreen() {
             ru: 'Турнир уже начался — участие осталось активным',
             uk: 'Турнір уже почався — участь залишилася активною',
             es: 'El torneo ya empezó; la participación sigue activa',
+            'pt-BR': 'O torneio já começou — a participação permaneceu ativa',
+            vi: 'Giải đấu đã bắt đầu — bạn vẫn đang tham gia',
+            id: 'Turnamen sudah dimulai — keikutsertaan tetap aktif',
+            tr: 'Turnuva zaten başladı — katılımın aktif kaldı',
+            pl: 'Turniej już się rozpoczął — udział pozostał aktywny',
           }
           : {
             ru: 'Не удалось синхронизировать выход. Проверьте интернет',
             uk: 'Не вдалося синхронізувати вихід. Перевірте інтернет',
             es: 'No se pudo sincronizar la salida. Comprueba Internet',
+            'pt-BR': 'Não foi possível sincronizar a saída. Verifique a internet',
+            vi: 'Không thể đồng bộ việc rời đi. Kiểm tra kết nối mạng',
+            id: 'Gagal menyinkronkan keluar. Periksa internet',
+            tr: 'Çıkış senkronize edilemedi. İnterneti kontrol edin',
+            pl: 'Nie udało się zsynchronizować wyjścia. Sprawdź internet',
           }));
         // Участие осталось серверно-активным: возвращаем маршрут, чтобы игрок
         // мог продолжить или повторить выход, а не оставался в пустом меню.
@@ -585,12 +613,12 @@ export default function TournamentLobbyScreen() {
             onPress={leaveLobby}
             style={styles.exitButton}
             accessibilityRole="button"
-            accessibilityLabel="Выйти из лобби"
-            accessibilityHint="Вы покинете турнир; списанный взнос вернётся автоматически"
+            accessibilityLabel={triLang(lang, { ru: 'Выйти из лобби', uk: 'Вийти з лобі', es: 'Salir de la sala', 'pt-BR': 'Sair da sala', vi: 'Rời phòng chờ', id: 'Keluar dari lobi', tr: 'Lobiden çık', pl: 'Opuść lobby' })}
+            accessibilityHint={triLang(lang, { ru: 'Вы покинете турнир; списанный взнос вернётся автоматически', uk: 'Ви покинете турнір; списаний внесок повернеться автоматично', es: 'Saldrás del torneo; la entrada cobrada se devolverá automáticamente', 'pt-BR': 'Você sairá do torneio; a taxa cobrada será devolvida automaticamente', vi: 'Bạn sẽ rời giải đấu; phí đã trừ sẽ được hoàn tự động', id: 'Anda akan keluar dari turnamen; biaya masuk akan dikembalikan otomatis', tr: 'Turnuvadan çıkacaksın; kesilen giriş ücreti otomatik iade edilir', pl: 'Opuścisz turniej; pobrana opłata wróci automatycznie' })}
           >
-            <Text style={styles.exitButtonText}>Выйти</Text>
+            <Text style={styles.exitButtonText}>{triLang(lang, { ru: 'Выйти', uk: 'Вийти', es: 'Salir', 'pt-BR': 'Sair', vi: 'Rời đi', id: 'Keluar', tr: 'Çık', pl: 'Wyjdź' })}</Text>
           </Pressable>
-          <Text style={styles.title}>Лобби</Text>
+          <Text style={styles.title}>{triLang(lang, { ru: 'Лобби', uk: 'Лобі', es: 'Sala', 'pt-BR': 'Sala', vi: 'Phòng chờ', id: 'Lobi', tr: 'Lobi', pl: 'Lobby' })}</Text>
           <V2Counter value={`${joined}/${SEATS}`} tone={full ? 'gems' : 'plain'} />
         </View>
         <Text style={styles.leaveError} />
@@ -609,7 +637,9 @@ export default function TournamentLobbyScreen() {
         <V2Card pad={20}>
           <View style={styles.statusRow}>
             <Text style={[styles.statusText, { color: full ? P.accent : P.text }]}>
-              {full ? 'Все на месте' : 'Собираем игроков'}
+              {full
+                  ? triLang(lang, { ru: 'Все на месте', uk: 'Всі на місці', es: 'Todos listos', 'pt-BR': 'Todos prontos', vi: 'Tất cả đã sẵn sàng', id: 'Semua sudah siap', tr: 'Herkes hazır', pl: 'Wszyscy na miejscu' })
+                  : triLang(lang, { ru: 'Собираем игроков', uk: 'Збираємо гравців', es: 'Reuniendo jugadores', 'pt-BR': 'Reunindo jogadores', vi: 'Đang tập hợp người chơi', id: 'Mengumpulkan pemain', tr: 'Oyuncular toplanıyor', pl: 'Zbieramy graczy' })}
             </Text>
             {secondsToStart > 0 ? (
               /* зачем: text-integrity — масштабирование шрифта не отключаем;
@@ -620,19 +650,20 @@ export default function TournamentLobbyScreen() {
             ) : null}
           </View>
           <View style={styles.bankRow}>
-            <Text style={styles.bankLabel}>Общий банк</Text>
+            <Text style={styles.bankLabel}>{triLang(lang, { ru: 'Общий банк', uk: 'Загальний банк', es: 'Bote total', 'pt-BR': 'Prêmio total', vi: 'Tổng quỹ', id: 'Total hadiah', tr: 'Toplam ödül', pl: 'Łączna pula' })}</Text>
             <AnimatedBankAmount
               amount={bankGems}
               events={room?.lobbyEvents ?? []}
               onDisplayAmountChange={setDisplayedBankGems}
+              lang={lang}
             />
           </View>
           {/* зачем 2026-08-03 (владелец): вместо «60% / 25% / 15%» — сколько
               жемчужин реально получит каждый призёр. Проценты требовали от
               игрока считать в уме от банка, который он видит первый раз. */}
           <View style={styles.bankShares}>
-            {PRIZE_PLACE_LABELS.map((label, index) => (
-              <AnimatedPrizePlace key={label} label={label} gems={prizeForecast[index]} />
+            {prizePlaceLabels(lang).map((label, index) => (
+              <AnimatedPrizePlace key={label} label={label} gems={prizeForecast[index]} lang={lang} />
             ))}
           </View>
           {/* Сегменты V2 вместо сплошной шкалы: каждый сегмент — четверть
@@ -653,7 +684,7 @@ export default function TournamentLobbyScreen() {
             return (
               <View key={`seat-${index}`} style={styles.seatSlot}>
                 {seat ? (
-                  <SeatCard seat={seat} onPress={() => openSeat(seat)} />
+                  <SeatCard seat={seat} onPress={() => openSeat(seat)} lang={lang} />
                 ) : (
                   <View style={styles.seatEmpty} />
                 )}
@@ -671,7 +702,7 @@ export default function TournamentLobbyScreen() {
                 onPress={() => sendReaction(emoji)}
                 style={styles.reactionButton}
                 accessibilityRole="button"
-                accessibilityLabel={`Отправить реакцию ${emoji}`}
+                accessibilityLabel={triLang(lang, { ru: `Отправить реакцию ${emoji}`, uk: `Надіслати реакцію ${emoji}`, es: `Enviar reacción ${emoji}`, 'pt-BR': `Enviar reação ${emoji}`, vi: `Gửi phản ứng ${emoji}`, id: `Kirim reaksi ${emoji}`, tr: `${emoji} tepkisini gönder`, pl: `Wyślij reakcję ${emoji}` })}
               >
                 <Text style={styles.reactionEmoji}>{emoji}</Text>
               </Pressable>
@@ -706,7 +737,7 @@ export default function TournamentLobbyScreen() {
   );
 }
 
-const SeatCard = memo(function SeatCard({ seat, onPress }: { seat: Seat; onPress: () => void }) {
+const SeatCard = memo(function SeatCard({ seat, onPress, lang }: { seat: Seat; onPress: () => void; lang: Lang }) {
   const P = useTournamentPalette();
   const styles = React.useMemo(() => makeStyles(P), [P]);
   return (
@@ -715,7 +746,7 @@ const SeatCard = memo(function SeatCard({ seat, onPress }: { seat: Seat; onPress
         onPress={onPress}
         style={[styles.seat, seat.isYou && styles.seatYou]}
         accessibilityRole="button"
-        accessibilityLabel={`Профиль ${seat.name}`}
+        accessibilityLabel={triLang(lang, { ru: `Профиль ${seat.name}`, uk: `Профіль ${seat.name}`, es: `Perfil de ${seat.name}`, 'pt-BR': `Perfil de ${seat.name}`, vi: `Hồ sơ của ${seat.name}`, id: `Profil ${seat.name}`, tr: `${seat.name} profili`, pl: `Profil ${seat.name}` })}
       >
         <AvatarView avatar={seat.avatar} level={tournamentAvatarLevel(seat.avatar)} auraId={seat.aura} size={44} animateAura={false} />
         {seat.streak > 0 ? <Text style={styles.seatStreak}>🔥</Text> : null}

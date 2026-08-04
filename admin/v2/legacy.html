@@ -1072,6 +1072,14 @@
     .admin-login-google:active { transform: translateY(0); box-shadow: none; }
     .admin-login-google:disabled { cursor: wait; transform: none; opacity: 0.72; }
     .admin-login-google svg { flex-shrink: 0; }
+    .admin-login-switch-account {
+      width: 100%; margin-top: 10px; padding: 8px 10px; background: transparent;
+      color: var(--acc-soft); opacity: 0.68; border: none; border-radius: 8px;
+      font-size: 12.5px; font-weight: 600; cursor: pointer; text-transform: none;
+      transition: opacity 0.15s ease, background 0.15s ease;
+    }
+    .admin-login-switch-account:hover { opacity: 1; background: rgba(255,255,255,0.06); }
+    .admin-login-switch-account:disabled { cursor: wait; opacity: 0.4; }
 
     /* === Panels inside admin-app keep content readable on the clean background === */
     .stat-card, .reports-toolbar { backdrop-filter: blur(3px); }
@@ -5206,6 +5214,14 @@
       onclick="if(typeof window._pmAdminGoogleSignIn==='function'){window._pmAdminGoogleSignIn();}">
       <svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6C44.21 38.18 48 31.75 48 24c0-0.19-.01-0.37-0.02-0.55z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
       <span data-i18n-es="Entrar con Google">Войти с Google</span>
+    </button>
+    <!-- зачем: Google иногда молча подставляет последний активный аккаунт браузера
+         вместо диалога выбора (prompt: select_account это не гарантирует), и вход
+         падает redirect_uri_mismatch на чужом аккаунте. Явная кнопка форсирует показ
+         выбора через accounts.google.com/Logout перед повторным входом. -->
+    <button type="button" class="admin-login-switch-account" id="admin-signin-switch"
+      onclick="if(typeof window._pmAdminGoogleSwitchAccount==='function'){window._pmAdminGoogleSwitchAccount();}">
+      Войти под другим аккаунтом
     </button>
   </div>
 </div>
@@ -13657,8 +13673,19 @@
   // storage handoff when a web.app page uses the default firebaseapp.com
   // authDomain. Desktop popup auth and non-Hosting/local environments stay
   // unchanged.
-  function applyAdminSameOriginAuthDomain(config, hostname) {
+  //
+  // зачем (2026-08-04): подмена authDomain на web.app применяется ТОЛЬКО на
+  // телефоне. На десктопе popup уходил на web.app/__/auth/handler, а этот
+  // redirect_uri не зарегистрирован в OAuth-клиенте Google Cloud, поэтому вход
+  // падал «Ошибка 400: redirect_uri_mismatch» и владелец терял доступ. Проблема
+  // всплывала не сразу: пока жила сохранённая сессия, код входа не запускался.
+  // Штатный firebaseapp.com в OAuth-клиенте прописан всегда — десктоп идёт туда.
+  function applyAdminSameOriginAuthDomain(config, hostname, isMobile) {
     if (!config || typeof config !== 'object') return config;
+    const mobile = typeof isMobile === 'boolean'
+      ? isMobile
+      : /Android|iPhone|iPad|iPod|Mobile/i.test(String(globalThis.navigator?.userAgent || ''));
+    if (!mobile) return config;
     const projectId = typeof config.projectId === 'string' ? config.projectId.trim() : '';
     const currentHostname = typeof hostname === 'string'
       ? hostname.trim().toLowerCase().replace(/\.$/, '')
@@ -13671,13 +13698,13 @@
   async function resolveFirebaseConfig() {
     const injected = globalThis.PHR_MAN_FIREBASE_CONFIG;
     if (injected && typeof injected === 'object') {
-      return applyAdminSameOriginAuthDomain(injected, globalThis.location?.hostname);
+      return applyAdminSameOriginAuthDomain(injected, globalThis.location?.hostname, isMobileAdminBrowser());
     }
     const response = await fetch('/__/firebase/init.json', { cache: 'no-store', credentials: 'same-origin' });
     if (!response.ok) throw new Error('firebase_hosting_config_unavailable');
     const config = await response.json();
     if (!config || typeof config !== 'object' || !config.projectId) throw new Error('firebase_hosting_config_invalid');
-    return applyAdminSameOriginAuthDomain(config, globalThis.location?.hostname);
+    return applyAdminSameOriginAuthDomain(config, globalThis.location?.hostname, isMobileAdminBrowser());
   }
 
   const app = initializeApp(await resolveFirebaseConfig());
@@ -14373,6 +14400,28 @@
   }
 
   window._pmAdminGoogleSignIn = handleAdminGoogleSignIn;
+
+  // зачем: если Google уже держит активную сессию другого аккаунта в этом
+  // браузере, prompt:'select_account' иногда всё равно проваливается сразу в
+  // неё и падает redirect_uri_mismatch, минуя экран выбора. Открываем
+  // Google Logout в отдельном окне, чтобы явно разорвать эту SSO-сессию перед
+  // повторным входом — тогда Google гарантированно спросит, под кем войти.
+  window._pmAdminGoogleSwitchAccount = async function adminGoogleSwitchAccount() {
+    setLoginError('');
+    const switchBtn = document.getElementById('admin-signin-switch');
+    if (switchBtn) switchBtn.disabled = true;
+    setAdminSignInBusy(true, 'ВЫХОДИМ ИЗ ТЕКУЩЕГО АККАУНТА...');
+    try {
+      const logoutWin = window.open('https://accounts.google.com/Logout', '_blank', 'width=1,height=1,left=-1000,top=-1000');
+      await new Promise((resolve) => setTimeout(resolve, 1200));
+      try { logoutWin?.close(); } catch (_) { /* окно могло не открыться из-за блокировщика */ }
+    } catch (e) {
+      console.warn('admin google logout before switch', e);
+    } finally {
+      if (switchBtn) switchBtn.disabled = false;
+    }
+    await handleAdminGoogleSignIn();
+  };
 
   window.adminSignOut = function adminSignOut() {
     setLoginError('');
@@ -38723,6 +38772,22 @@
     }
   };
 
+  window.tnPreviewAllDay = function tnPreviewAllDay(input) {
+    const enabled = input?.checked === true;
+    const status = document.getElementById('tn-all-day-status');
+    if (status) {
+      status.textContent = enabled ? 'Активно весь день' : 'По расписанию';
+      status.style.background = enabled ? '#4ade80' : '#27272f';
+      status.style.color = enabled ? '#07110A' : '#cbd5e1';
+    }
+    document.querySelectorAll('.tn-slot, .tn-slot-time').forEach((control) => {
+      control.disabled = enabled;
+      if (control.classList?.contains('tn-slot')) {
+        control.style.cursor = enabled ? 'not-allowed' : 'pointer';
+      }
+    });
+  };
+
   window.tnLoadSchedule = async function tnLoadSchedule() {
     const box = document.getElementById('tn-schedule');
     if (!box) return;
@@ -38740,19 +38805,30 @@
         { slotId: 'daily_1900', localTime: '19:00', ticketsRequired: 1, enabled: false },
         { slotId: 'daily_2100', localTime: '21:00', ticketsRequired: 1, enabled: false },
       ];
+      const allDayEnabled = d.allDayEnabled === true;
+      const allDayControl = `<div style="background:#15151f;border-radius:8px;padding:14px 16px;margin-bottom:12px;display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+        <div style="flex:1;min-width:240px">
+          <div style="font-size:14px;font-weight:800;color:#f8fafc;margin-bottom:4px">Активно весь день</div>
+          <div id="tn-all-day-help" style="font-size:12.5px;line-height:1.5;color:#9ca3af">Игроки смогут начать турнир в любое время. Таймер пропадёт, кнопка «Играть» будет доступна весь день. Обновление приложения не нужно; после выключения вернётся сохранённое расписание.</div>
+        </div>
+        <label title="Включает турниры для всех игроков на весь день. Применяется с сервера; отменяется этим же переключателем и сохранением расписания." style="display:flex;align-items:center;gap:10px;min-height:44px;cursor:pointer;user-select:none">
+          <input type="checkbox" id="tn-all-day" aria-describedby="tn-all-day-help" onchange="tnPreviewAllDay(this)" ${allDayEnabled ? 'checked' : ''} style="width:20px;height:20px;cursor:pointer" />
+          <span id="tn-all-day-status" style="border-radius:999px;padding:5px 10px;font-size:12px;font-weight:800;background:${allDayEnabled ? '#4ade80' : '#27272f'};color:${allDayEnabled ? '#07110A' : '#cbd5e1'}">${allDayEnabled ? 'Активно весь день' : 'По расписанию'}</span>
+        </label>
+      </div>`;
 
-      box.innerHTML = slots.map((s) => {
+      box.innerHTML = allDayControl + slots.map((s) => {
         const time = /^\d{2}:\d{2}$/.test(String(s.localTime || '')) ? s.localTime : '12:00';
         const tickets = Number(s.ticketsRequired) > 0 ? Number(s.ticketsRequired) : 1;
         return `<div style="display:flex;align-items:center;gap:14px;padding:10px 0">
-          <input type="checkbox" class="tn-slot" data-slot="${escapeHtml(s.slotId)}" data-tickets="${tickets}" ${s.enabled ? 'checked' : ''} style="width:18px;height:18px;cursor:pointer" />
-          <input type="time" class="tn-slot-time" data-slot="${escapeHtml(s.slotId)}" value="${escapeHtml(time)}" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#fafafa;padding:6px 10px;font-size:15px;font-weight:700" />
+          <input type="checkbox" class="tn-slot" data-slot="${escapeHtml(s.slotId)}" data-tickets="${tickets}" ${s.enabled ? 'checked' : ''} ${allDayEnabled ? 'disabled' : ''} aria-label="Включить турнир ${escapeHtml(time)}" style="width:18px;height:18px;cursor:${allDayEnabled ? 'not-allowed' : 'pointer'}" />
+          <input type="time" class="tn-slot-time" data-slot="${escapeHtml(s.slotId)}" value="${escapeHtml(time)}" ${allDayEnabled ? 'disabled' : ''} aria-label="Время турнира ${escapeHtml(s.slotId)}" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#fafafa;padding:6px 10px;font-size:15px;font-weight:700" />
           <span style="font-size:13px;color:#6b7280">вход ${tickets} 🎟</span>
-          <span style="font-size:13px;color:${s.enabled ? '#4ade80' : '#6b7280'}">${s.enabled ? 'Турнир идёт' : 'Выключен'}</span>
+          <span style="font-size:13px;color:${allDayEnabled ? '#9ca3af' : (s.enabled ? '#4ade80' : '#6b7280')}">${allDayEnabled ? 'Вернётся после выключения режима на весь день' : (s.enabled ? 'Турнир идёт' : 'Выключен')}</span>
         </div>`;
       }).join('')
         + `<div style="margin-top:14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">
-            <button type="button" onclick="tnSaveSchedule()" style="background:#4338ca;border:1px solid #6366f1;color:#fff;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">Сохранить расписание</button>
+            <button type="button" onclick="tnSaveSchedule()" title="Сохранит выбранный режим для всех игроков. Изменение применяется без обновления приложения; отменить можно здесь же." style="background:#4338ca;border:1px solid #6366f1;color:#fff;padding:10px 16px;min-height:44px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">Сохранить расписание</button>
             <span style="font-size:12px;color:#6b7280">Время московское</span>
             <span style="font-size:12px;color:#9ca3af">Тестовые турниры доступны только в специальных сборках и не включаются из админки.</span>
           </div>`;
@@ -38781,12 +38857,22 @@
     const badTime = slots.find(s => !/^\d{2}:\d{2}$/.test(s.localTime));
     if (badTime) { showToast('Время слота указано неверно — нужен формат ЧЧ:ММ', 'warn'); return; }
 
-    const turningOn = slots.some(s => s.enabled);
-    if (turningOn && !confirm('Включить турниры для живых игроков?')) return;
+    const allDayEnabled = document.getElementById('tn-all-day')?.checked === true;
+    const turningOn = allDayEnabled || slots.some(s => s.enabled);
+    const confirmation = allDayEnabled
+      ? 'Включить турниры для всех игроков на весь день? Таймер пропадёт, а кнопка «Играть» станет доступна в любое время.'
+      : 'Сохранить обычное расписание турниров для живых игроков?';
+    if (turningOn && !confirm(confirmation)) return;
     try {
       _fnTnSetSchedule = tnFn(_fnTnSetSchedule, 'adminSetTournamentSchedule');
-      await _fnTnSetSchedule({ slots, timezone: 'Europe/Moscow', freeWeeklyEntry: true, ticketGemValue: 5 });
-      showToast('Расписание сохранено', 'ok');
+      await _fnTnSetSchedule({ slots, timezone: 'Europe/Moscow', freeWeeklyEntry: true, ticketGemValue: 5, allDayEnabled });
+      if (typeof logAction === 'function') {
+        void logAction('tournament_schedule_update', 'tournamentSchedule/config', {
+          allDayEnabled,
+          enabledSlots: slots.filter(s => s.enabled).map(s => s.slotId),
+        });
+      }
+      showToast(allDayEnabled ? 'Турниры активны весь день' : 'Расписание сохранено', 'ok');
       await window.tnLoadSchedule();
     } catch (e) {
       showToast('Не удалось сохранить: ' + tnError(e), 'err');

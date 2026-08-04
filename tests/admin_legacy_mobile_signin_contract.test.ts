@@ -41,7 +41,12 @@ describe('admin legacy mobile sign-in contract', () => {
     expect(adminHtml).toContain('const _adminRedirectSignInReady');
   });
 
-  it('uses the Firebase Hosting origin for mobile redirect state on web.app', () => {
+  // зачем: 2026-08-04 владелец потерял вход с ДЕСКТОПА — «Ошибка 400:
+  // redirect_uri_mismatch». Подмена authDomain на web.app применялась всегда, и
+  // popup уходил на web.app/__/auth/handler, которого нет в OAuth-клиенте Google
+  // Cloud. Баг спал, пока жила сохранённая сессия. Подмена нужна только телефону
+  // (third-party storage handoff), десктоп обязан идти через firebaseapp.com.
+  it('rewrites the authDomain only for mobile redirect sign-in', () => {
     const helperSource = extractBracedBlock(
       adminHtml,
       'function applyAdminSameOriginAuthDomain',
@@ -50,20 +55,33 @@ describe('admin legacy mobile sign-in contract', () => {
 
     const applyAdminSameOriginAuthDomain = new Function(
       `${helperSource}; return applyAdminSameOriginAuthDomain;`,
-    )() as (config: Record<string, unknown>, hostname: string) => Record<string, unknown>;
+    )() as (
+      config: Record<string, unknown>,
+      hostname: string,
+      isMobile?: boolean,
+    ) => Record<string, unknown>;
 
     const hostedConfig = {
       projectId: 'phraseman-ea0b3',
       authDomain: 'phraseman-ea0b3.firebaseapp.com',
       apiKey: 'public-web-config-key',
     };
-    expect(applyAdminSameOriginAuthDomain(hostedConfig, 'phraseman-ea0b3.web.app')).toEqual({
-      ...hostedConfig,
-      authDomain: 'phraseman-ea0b3.web.app',
-    });
-    expect(applyAdminSameOriginAuthDomain(hostedConfig, 'localhost')).toBe(hostedConfig);
+
+    // Телефон на web.app — подмена нужна, иначе redirect-вход теряет сессию.
+    expect(
+      applyAdminSameOriginAuthDomain(hostedConfig, 'phraseman-ea0b3.web.app', true),
+    ).toEqual({ ...hostedConfig, authDomain: 'phraseman-ea0b3.web.app' });
+
+    // Десктоп на том же домене — конфиг обязан остаться нетронутым.
+    expect(
+      applyAdminSameOriginAuthDomain(hostedConfig, 'phraseman-ea0b3.web.app', false),
+    ).toBe(hostedConfig);
+
+    expect(applyAdminSameOriginAuthDomain(hostedConfig, 'localhost', true)).toBe(hostedConfig);
+    expect(applyAdminSameOriginAuthDomain(hostedConfig, 'localhost', false)).toBe(hostedConfig);
+
     expect(adminHtml).toContain(
-      'applyAdminSameOriginAuthDomain(config, globalThis.location?.hostname)',
+      'applyAdminSameOriginAuthDomain(config, globalThis.location?.hostname, isMobileAdminBrowser())',
     );
   });
 

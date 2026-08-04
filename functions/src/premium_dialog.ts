@@ -603,6 +603,17 @@ export const premiumDialogSend = onCall({
     throw new HttpsError('unauthenticated', 'auth_required');
   }
 
+  // Прогрев инстанса (см. app/ai_callable_resilience.ts). Выходим САМЫМ первым
+  // делом — до Firestore, до гейтов, до OpenAI и ДО валидации mode/userText
+  // (у ping'а их нет, иначе он получил бы invalid-argument).
+  // зачем: у функции minInstances: 0 (осознанная экономия, сторож
+  // ai_functions_warm_instance_contract). Клиент будит инстанс, пока пользователь
+  // печатает первое сообщение, — отправка попадает на тёплый сервер. Ping ОБЯЗАН
+  // быть бесплатным: ниже идут чтения Firestore, лимиты диалогов и запись истории.
+  if ((request.data as { warmupPing?: unknown } | null)?.warmupPing === true) {
+    return { ok: true, assistantMessage: '', remainingQuota: 0, model: 'warmup-ping' };
+  }
+
   const apiKey = text(OPENAI_API_KEY.value() || process.env.OPENAI_API_KEY, 300);
   if (!apiKey) {
     console.error('premium_dialog rejected', { reason: 'openai_key_missing' });

@@ -12,6 +12,7 @@ import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { withExplainCallableTimeout } from './explain_callable_timeout';
 import { aiOffline, AiOfflineError } from './ai_kill_switch_copy';
 import { readExplainLocalCache, writeExplainLocalCache } from './explain_local_cache';
+import { warmAiFunction, withAiCallableRetry } from './ai_callable_resilience';
 
 const FUNCTIONS_REGION = 'us-central1';
 const explainPhraseInFlight = new Map<string, Promise<ExplainPhraseResponse>>();
@@ -52,8 +53,37 @@ export interface ExplainPhraseResponse {
   fromCache: boolean;
 }
 
+/** Необязательные крючки вызова: UI подменяет подпись под скелетоном на повторе. */
+export interface CallExplainPhraseOptions {
+  /** Дёргается, когда первый вызов не удался и пошёл тихий повтор. */
+  onRetryStart?: () => void;
+}
+
+/**
+ * Прогрев инстанса explainPhrase. Зовётся при ОТКРЫТИИ карточки фразы — пока
+ * пользователь читает, инстанс просыпается, и нажатие «объясни» попадает на
+ * тёплый сервер.
+ *
+ * зачем: у функции minInstances: 0 (владелец не платит за тёплый инстанс,
+ * сторож ai_functions_warm_instance_contract). Прогрев переносит холодный старт
+ * в паузу, когда человек и так занят. Ничего не стоит: сервер отвечает на ping
+ * до Firestore и OpenAI, инстанс гаснет сам.
+ *
+ * Никогда не бросает — вызывать через `void`.
+ */
+export function warmExplainPhrase(): void {
+  void warmAiFunction('explainPhrase', async () => {
+    await initFirebaseAppCheckIfAvailable().catch(() => {});
+    const fn = httpsCallable(getFunctions(getApp(), FUNCTIONS_REGION), 'explainPhrase');
+    return fn({ warmupPing: true });
+  });
+}
+
 /** Запросить объяснение фразы. App Check инициализируется первым (как в ai_dialog_client). */
-export async function callExplainPhrase(req: ExplainPhraseRequest): Promise<ExplainPhraseResponse> {
+export async function callExplainPhrase(
+  req: ExplainPhraseRequest,
+  options?: CallExplainPhraseOptions,
+): Promise<ExplainPhraseResponse> {
   const key = explainPhraseRequestKey(req);
   const localCached = await readExplainLocalCache({ kind: 'phrase', key });
   if (localCached?.status === 'ok') {
@@ -71,7 +101,13 @@ export async function callExplainPhrase(req: ExplainPhraseRequest): Promise<Expl
       getFunctions(getApp(), FUNCTIONS_REGION),
       'explainPhrase',
     );
-    const res = await withExplainCallableTimeout(fn(req), 'explainPhrase');
+    // зачем: холодный старт (minInstances: 0) изредка отбивается Cloud Run как
+    // «no available instance» — пользователь видел ошибку на ровном месте.
+    // Повтор идемпотентен: объяснение фразы ничего не списывает при неудаче.
+    const res = await withAiCallableRetry(
+      () => withExplainCallableTimeout(fn(req), 'explainPhrase'),
+      { label: 'explainPhrase', onRetryStart: options?.onRetryStart },
+    );
     if (res.data.status === 'ok') {
       void writeExplainLocalCache({ kind: 'phrase', key }, {
         text: res.data.text,

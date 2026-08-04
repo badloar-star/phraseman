@@ -1,6 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import { callExplainMistake } from './ai_mistake_explain_client';
+import { callExplainMistake, warmExplainMistake } from './ai_mistake_explain_client';
+import {
+  aiMistakeWaitLine,
+  AI_WAIT_SECOND_STAGE_MS,
+  AI_WAIT_THIRD_STAGE_MS,
+  type AiWaitStage,
+} from './ai_wait_copy';
+import { asLang } from './explain_phrase_request';
 import {
   hasShownAiMistakeLimitNoticeToday,
   markAiMistakeLimitNoticeShownToday,
@@ -51,6 +58,11 @@ export interface UseMistakeExplainResult {
   aiMistakeState: AiMistakeCardState;
   aiMistakeText: string | null;
   aiMistakeRemaining: number | null;
+  /**
+   * Подпись под скелетоном на время ожидания. Меняется по мере ожидания, чтобы
+   * затянувшийся ответ не читался как зависание (см. app/ai_wait_copy.ts).
+   */
+  aiMistakeWaitLine: string;
   /** Retry the inline breakdown (also the card's onExplain). */
   explain: () => void;
   /** Props for <MistakeEli5Modal> + the card's onOpenSimple. */
@@ -94,6 +106,11 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
   const [eli5Text, setEli5Text] = useState<string | null>(null);
   const eli5InFlightRef = useRef(false);
 
+  // Стадия ожидания для подписи под скелетоном. Отдельный state, а не таймер в
+  // компоненте: карточка ре-рендерится и без нас, а тик должен идти ровно пока
+  // мы ждём ответ. 'retried' взводит тихий повтор — тогда ожидание уже долгое.
+  const [waitStage, setWaitStage] = useState<AiWaitStage>('start');
+
   // Mirror of phraseKey, read inside async callbacks to drop stale responses
   // (user moved to another phrase before the answer arrived).
   const phraseKeyRef = useRef(phraseKey);
@@ -108,7 +125,31 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
     setEli5State('idle');
     setEli5Text(null);
     eli5InFlightRef.current = false;
+    setWaitStage('start');
   }, [phraseKey, active]);
+
+  // Прогрев инстанса в момент ошибки — ДО того, как понадобится разбор.
+  // зачем: у explainMistake minInstances: 0 (владелец не платит за тёплый
+  // инстанс). Пока пользователь смотрит на свой неверный ответ, инстанс успевает
+  // проснуться, и разбор приходит без паузы. Внутри стоит TTL — на серии ошибок
+  // подряд сеть дёргается не чаще раза в 9 минут.
+  useEffect(() => {
+    if (!active) return;
+    warmExplainMistake();
+  }, [active, phraseKey]);
+
+  // Тик подписи под скелетоном. Живёт ровно пока идёт ожидание: два таймера на
+  // весь цикл, оба гасятся при уходе — фоновых таймеров экран не оставляет.
+  useEffect(() => {
+    const busy = aiMistakeState === 'loading' || eli5State === 'loading';
+    if (!busy) return;
+    const toWorking = setTimeout(() => setWaitStage('working'), AI_WAIT_SECOND_STAGE_MS);
+    const toLong = setTimeout(() => setWaitStage('long'), AI_WAIT_THIRD_STAGE_MS);
+    return () => {
+      clearTimeout(toWorking);
+      clearTimeout(toLong);
+    };
+  }, [aiMistakeState, eli5State]);
 
   const buildArgs = useCallback(
     (variant: 'full' | 'eli5') => {
@@ -145,8 +186,16 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
       }
       setAiMistakeState('loading');
       setAiMistakeText(null);
+      setWaitStage('start');
       try {
-        const res = await callExplainMistake(buildArgs('full'));
+        const res = await callExplainMistake(buildArgs('full'), {
+          // Тихий повтор пошёл — ожидание уже долгое, подпись переводим сразу,
+          // не дожидаясь пятисекундного порога. Про сам сбой пользователю не
+          // сообщаем: через секунду он, скорее всего, получит нормальный разбор.
+          onRetryStart: () => {
+            if (phraseKeyRef.current === requestKey) setWaitStage('working');
+          },
+        });
         if (phraseKeyRef.current !== requestKey) return; // phrase changed — discard.
         setAiMistakeText(res.text);
         setAiMistakeRemaining(typeof res.remainingQuota === 'number' ? res.remainingQuota : null);
@@ -191,8 +240,13 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
     const requestKey = phraseKey;
     setEli5State('loading');
     setEli5Text(null);
+    setWaitStage('start');
     try {
-      const res = await callExplainMistake(buildArgs('eli5'));
+      const res = await callExplainMistake(buildArgs('eli5'), {
+        onRetryStart: () => {
+          if (phraseKeyRef.current === requestKey) setWaitStage('working');
+        },
+      });
       if (phraseKeyRef.current !== requestKey) return;
       setEli5Text(res.text);
       setEli5State('ready');
@@ -221,6 +275,7 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
         : aiMistakeState,
     aiMistakeText,
     aiMistakeRemaining,
+    aiMistakeWaitLine: aiMistakeWaitLine(asLang(interfaceLang), waitStage),
     explain: () => void explain(true),
     eli5: {
       open: eli5Open,

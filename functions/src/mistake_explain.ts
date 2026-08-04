@@ -611,6 +611,23 @@ export const explainMistake = onCall({
 }, async (request): Promise<ExplainMistakeResponse> => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
 
+  // Прогрев инстанса (см. app/ai_callable_resilience.ts). Выходим САМЫМ первым
+  // делом — до Firestore, до гейтов, до OpenAI.
+  // зачем: у функции minInstances: 0 (осознанная экономия, сторож
+  // ai_functions_warm_instance_contract). Клиент будит инстанс, пока пользователь
+  // читает свою ошибку, — реальный разбор попадает на тёплый сервер. Ping ОБЯЗАН
+  // быть бесплатным: ниже идут чтения Firestore и списание дневного капа.
+  if ((request.data as { warmupPing?: unknown } | null)?.warmupPing === true) {
+    return {
+      ok: true,
+      text: '',
+      remainingQuota: 0,
+      model: 'warmup-ping',
+      fromCache: false,
+      variant: 'full',
+    };
+  }
+
   const data = (request.data ?? {}) as ExplainMistakeRequest;
   const payload = sanitizePayload(data);
 

@@ -21,6 +21,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import { trackEvent } from '../app/analytics';
 import { isExplainEnabled } from '../app/explain_phrase_flags';
 import { asLang } from '../app/explain_phrase_request';
+import { warmExplainPhrase } from '../app/explain_phrase_client';
 import ExplainSheet from './ExplainSheet';
 
 interface Props {
@@ -51,6 +52,16 @@ function ExplainButton({ phraseEn, phraseMeaning, lang, style }: Props) {
   // Флаг OFF → фича полностью скрыта.
   if (!enabled) return null;
 
+  // зачем: будим Cloud Run по КАСАНИЮ, до отпускания пальца. У explainPhrase
+  // minInstances: 0 (владелец не платит за тёплый инстанс), поэтому первый за
+  // долгое время вызов ждал бы холодного старта 2–5 сек. Между нажатием и
+  // выездом шторки есть ~300 мс анимации плюс время на чтение заголовка — их
+  // хватает, чтобы инстанс проснулся, и объяснение приходит почти мгновенно.
+  // Внутри стоит TTL: серия тапов подряд разбудит сервер один раз за 9 минут.
+  const handleWarm = () => {
+    warmExplainPhrase();
+  };
+
   const handleOpen = () => {
     hapticTap();
     void trackEvent('explain_sheet_opened', { lang: effLang });
@@ -61,6 +72,7 @@ function ExplainButton({ phraseEn, phraseMeaning, lang, style }: Props) {
     <>
       <TouchableOpacity
         onPress={handleOpen}
+        onPressIn={handleWarm}
         activeOpacity={0.8}
         style={[styles.trigger, { backgroundColor: t.bgSurface2, borderColor: t.border }, style]}
         accessibilityRole="button"

@@ -4,6 +4,7 @@ import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { withExplainCallableTimeout } from './explain_callable_timeout';
 import { aiOffline, AiOfflineError } from './ai_kill_switch_copy';
 import { readExplainLocalCache, writeExplainLocalCache } from './explain_local_cache';
+import { warmAiFunction, withAiCallableRetry } from './ai_callable_resilience';
 
 const FUNCTIONS_REGION = 'us-central1';
 const explainMistakeInFlight = new Map<string, Promise<ExplainMistakeResponse>>();
@@ -58,7 +59,35 @@ function explainMistakeRequestKey(req: ExplainMistakeRequest): string {
   });
 }
 
-export async function callExplainMistake(req: ExplainMistakeRequest): Promise<ExplainMistakeResponse> {
+/** Необязательные крючки вызова: UI подменяет подпись под скелетоном на повторе. */
+export interface CallExplainMistakeOptions {
+  /** Дёргается, когда первый вызов не удался и пошёл тихий повтор. */
+  onRetryStart?: () => void;
+}
+
+/**
+ * Прогрев инстанса explainMistake. Зовётся В МОМЕНТ ОШИБКИ пользователя — пока
+ * он смотрит на свой неверный ответ, инстанс просыпается, и разбор приходит
+ * без паузы.
+ *
+ * зачем: у функции minInstances: 0 (владелец не платит за тёплый инстанс,
+ * сторож ai_functions_warm_instance_contract). Здесь окно прогрева самое
+ * надёжное: между ошибкой и появлением разбора всегда есть пара секунд.
+ *
+ * Никогда не бросает — вызывать через `void`.
+ */
+export function warmExplainMistake(): void {
+  void warmAiFunction('explainMistake', async () => {
+    await initFirebaseAppCheckIfAvailable().catch(() => {});
+    const fn = httpsCallable(getFunctions(getApp(), FUNCTIONS_REGION), 'explainMistake');
+    return fn({ warmupPing: true });
+  });
+}
+
+export async function callExplainMistake(
+  req: ExplainMistakeRequest,
+  options?: CallExplainMistakeOptions,
+): Promise<ExplainMistakeResponse> {
   const key = explainMistakeRequestKey(req);
   const localCached = await readExplainLocalCache({ kind: 'mistake', key });
   if (localCached?.status === 'ok') {
@@ -83,7 +112,13 @@ export async function callExplainMistake(req: ExplainMistakeRequest): Promise<Ex
       getFunctions(getApp(), FUNCTIONS_REGION),
       'explainMistake',
     );
-    const res = await withExplainCallableTimeout(fn(req), 'explainMistake');
+    // зачем: холодный старт (minInstances: 0) изредка отбивается Cloud Run как
+    // «no available instance». Повтор идемпотентен: неудавшийся разбор ничего
+    // не списал (серверный кап считается уже после входа в тело функции).
+    const res = await withAiCallableRetry(
+      () => withExplainCallableTimeout(fn(req), 'explainMistake'),
+      { label: 'explainMistake', onRetryStart: options?.onRetryStart },
+    );
     if (res.data.ok && res.data.text.trim()) {
       void writeExplainLocalCache({ kind: 'mistake', key }, {
         text: res.data.text,

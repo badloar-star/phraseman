@@ -56,6 +56,7 @@ import {
   callPremiumDialogSend,
   callPremiumDialogTranslate,
   callPremiumDialogReview,
+  warmPremiumDialog,
   classifyPremiumDialogError,
   getPremiumDialogErrorMessage,
   type DialogChatTurn,
@@ -224,6 +225,18 @@ export default function AiDialogSession() {
     void trackEvent('paywall_shown', { context: 'dialog_limit', source: 'ai_dialog_direct_entry' });
     router.replace({ pathname: '/premium_modal', params: { context: 'dialog_limit' } } as never);
   }, [accessResolved, aiDialogGateOpen, dialogAccess, router]);
+
+  // зачем: будим Cloud Run при входе в диалог. У premiumDialogSend
+  // minInstances: 0 (владелец не платит за тёплый инстанс), поэтому первая
+  // отправка ждала бы холодного старта 2–5 сек — а собеседник, который «думает»
+  // пять секунд перед первой репликой, ощущается сломанным. Пока пользователь
+  // читает приветствие и печатает, инстанс успевает подняться.
+  // Греем ТОЛЬКО после подтверждения доступа: у кого диалог закрыт пейволом,
+  // тот его не откроет, и прогрев был бы вызовом впустую.
+  useEffect(() => {
+    if (!accessResolved || !dialogAccess) return;
+    warmPremiumDialog();
+  }, [accessResolved, dialogAccess]);
 
   // Имя собеседника для шапки-мессенджера: достаём из persona, иначе пусто.
   const personaName = useMemo(() => extractPersonaName(scenario.persona), [scenario.persona]);
@@ -1581,7 +1594,7 @@ export default function AiDialogSession() {
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
           keyboardVerticalOffset={8}
         >
-          <ScrollView ref={scrollRef} style={{ flex: 1 }} contentContainerStyle={{ paddingHorizontal: 12, paddingVertical: 16 }}>
+          <ScrollView ref={scrollRef} decelerationRate="fast" style={{ flex: 1 }} contentContainerStyle={{ paddingHorizontal: 12, paddingVertical: 16 }}>
             {messages.map((m, i) => {
               const isUser = m.role === 'user';
               // Анимируем появление ТОЛЬКО для приходящих позже реплик. Самое первое

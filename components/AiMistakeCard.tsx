@@ -21,6 +21,12 @@ type AiMistakeCardProps = {
   onExplain: () => void;
   onOpenSimple?: () => void;
   /**
+   * Подпись под скелетоном на время ожидания (см. app/ai_wait_copy.ts). Меняется
+   * по мере ожидания, чтобы затянувшийся ответ не читался как зависание.
+   * Не передана — скелетон показывается молча, как раньше.
+   */
+  waitLine?: string;
+  /**
    * Правильный (целевой) ответ и неправильный ответ юзера. Нужны кнопке «Непонятно объяснили»,
    * чтобы жалоба попала в ТУ ЖЕ кэш-запись разбора (mistake_explanations per-(target,userAnswer,lang)).
    * Если не переданы — кнопка репорта не показывается (старые вызовы остаются как были).
@@ -37,6 +43,7 @@ export default function AiMistakeCard({
   onOpenSimple,
   targetAnswer,
   userAnswer,
+  waitLine,
 }: AiMistakeCardProps) {
   const { theme: t, f } = useTheme();
   const isBusy = state === 'loading';
@@ -115,6 +122,18 @@ export default function AiMistakeCard({
           <SkeletonBlock width="94%" height={13} borderRadius={6} />
           <SkeletonBlock width="80%" height={13} borderRadius={6} />
           <SkeletonBlock width="88%" height={13} borderRadius={6} />
+          {/* зачем: холодный старт ИИ-функции (minInstances: 0 — владелец не платит
+              за тёплый инстанс) изредка растягивает ожидание до нескольких секунд.
+              Молчащий скелетон столько времени читается как зависание, поэтому под
+              ним идёт живая подпись. Высота строки зарезервирована всегда, даже
+              когда подписи нет: иначе её появление сдвигало бы карточку. */}
+          <View style={styles.waitLineRow}>
+            {waitLine ? (
+              <Text style={{ color: t.textSecond, fontSize: f.label }} numberOfLines={1}>
+                {waitLine}
+              </Text>
+            ) : null}
+          </View>
         </View>
       ) : isReadyExplanation && readyBlocks.length ? (
         <View style={styles.semanticBlocks}>
@@ -223,6 +242,12 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     paddingVertical: 4,
     gap: 8,
+  },
+  // Место под ждущую подпись держим всегда — стабильная геометрия первого кадра
+  // (AGENTS.md → Layout stability): текст появляется, карточка не дёргается.
+  waitLineRow: {
+    justifyContent: 'center',
+    minHeight: 18,
   },
   semanticBlocks: {
     alignSelf: 'stretch',

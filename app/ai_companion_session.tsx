@@ -39,6 +39,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import { useAudio } from '../hooks/use-audio';
 import {
   callPremiumDialogSend,
+  warmPremiumDialog,
   getPremiumDialogErrorMessage,
   type DialogChatTurn,
   type DialogMemory,
@@ -77,6 +78,18 @@ export default function AiCompanionSession() {
     void trackEvent('paywall_shown', { context: 'dialog_limit', source: 'ai_companion_direct_entry' });
     router.replace({ pathname: '/premium_modal', params: { context: 'dialog_limit' } } as never);
   }, [accessResolved, aiDialogGateOpen, dialogAccess, router]);
+
+  // зачем: будим Cloud Run при входе к компаньону. У premiumDialogSend
+  // minInstances: 0 (владелец не платит за тёплый инстанс) — без прогрева первая
+  // реплика ждала бы холодного старта 2–5 сек. Здесь окно особенно удобное:
+  // приветствие локальное и показано сразу, пользователь читает его и печатает
+  // ответ, а инстанс в это время поднимается.
+  // Греем ТОЛЬКО после подтверждения доступа — иначе будили бы сервер тем, кого
+  // тут же уводит пейвол.
+  useEffect(() => {
+    if (!accessResolved || !dialogAccess) return;
+    warmPremiumDialog();
+  }, [accessResolved, dialogAccess]);
 
   // Приветствие собеседника присутствует с первого кадра (ленивый инициализатор),
   // а не ставится эффектом — иначе при гонке/двойном маунте первой реплики нет.
@@ -271,7 +284,7 @@ export default function AiCompanionSession() {
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
           keyboardVerticalOffset={8}
         >
-          <ScrollView ref={scrollRef} style={{ flex: 1 }} contentContainerStyle={{ padding: 16 }}>
+          <ScrollView ref={scrollRef} decelerationRate="fast" style={{ flex: 1 }} contentContainerStyle={{ padding: 16 }}>
             {messages.map((m, i) => {
               const isUser = m.role === 'user';
               return (

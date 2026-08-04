@@ -115,6 +115,18 @@ export const explainPhrase = onCall({
   // 1. Auth gate — identity NEVER from body.
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
 
+  // Прогрев инстанса (см. app/ai_callable_resilience.ts). Выходим САМЫМ первым
+  // делом — до Firestore, до гейтов, до OpenAI.
+  // зачем: у функции minInstances: 0 (осознанная экономия, сторож
+  // ai_functions_warm_instance_contract). Клиент будит инстанс заранее, пока
+  // пользователь читает карточку, — тогда реальный вызов попадает на тёплый
+  // сервер. Ping ОБЯЗАН быть бесплатным: ниже по коду идут чтения Firestore и
+  // списание дневного free-капа, и прогрев не имеет права ни платить за них,
+  // ни тратить квоту пользователя.
+  if ((request.data as { warmupPing?: unknown } | null)?.warmupPing === true) {
+    return { ok: true, text: '', status: 'pending', fromCache: false };
+  }
+
   const apiKey = asText(OPENAI_API_KEY.value() || process.env.OPENAI_API_KEY, 300);
   if (!apiKey) throw new HttpsError('failed-precondition', 'openai_key_missing');
 

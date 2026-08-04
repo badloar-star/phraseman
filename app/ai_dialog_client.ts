@@ -11,6 +11,8 @@ import {
   AiOfflineError,
   AI_GLOBAL_BUDGET_ERROR_CODE,
 } from './ai_kill_switch_copy';
+import { warmAiFunction, withAiCallableRetry, isColdStartLike } from './ai_callable_resilience';
+import { withExplainCallableTimeout } from './explain_callable_timeout';
 
 const FUNCTIONS_REGION = 'us-central1';
 const premiumDialogSendInFlight = new Map<string, Promise<PremiumDialogResponse>>();
@@ -252,7 +254,36 @@ function premiumDialogSendRequestKey(req: PremiumDialogRequest): string {
   });
 }
 
-export async function callPremiumDialogSend(req: PremiumDialogRequest): Promise<PremiumDialogResponse> {
+/** Необязательные крючки вызова: UI подменяет подпись под индикатором на повторе. */
+export interface CallPremiumDialogSendOptions {
+  /** Дёргается, когда первый вызов не удался и пошёл тихий повтор. */
+  onRetryStart?: () => void;
+}
+
+/**
+ * Прогрев инстанса premiumDialogSend. Зовётся при ОТКРЫТИИ экрана диалога —
+ * пока пользователь читает приветствие и печатает первое сообщение (5–15 сек),
+ * инстанс просыпается, и отправка идёт на тёплый сервер.
+ *
+ * зачем: у функции minInstances: 0 (владелец не платит за тёплый инстанс,
+ * сторож ai_functions_warm_instance_contract). Из трёх ИИ-функций у диалога
+ * задержка ощущается сильнее всего — собеседник, который «думает» 5 секунд
+ * перед первой репликой, читается как зависший.
+ *
+ * Никогда не бросает — вызывать через `void`.
+ */
+export function warmPremiumDialog(): void {
+  void warmAiFunction('premiumDialogSend', async () => {
+    await initFirebaseAppCheckIfAvailable().catch(() => {});
+    const fn = httpsCallable(getFunctions(getApp(), FUNCTIONS_REGION), 'premiumDialogSend');
+    return fn({ warmupPing: true });
+  });
+}
+
+export async function callPremiumDialogSend(
+  req: PremiumDialogRequest,
+  options?: CallPremiumDialogSendOptions,
+): Promise<PremiumDialogResponse> {
   // Глобальный рубильник ИИ: не бьём сеть, сразу бросаем — вызывающий UI
   // покажет забавную заглушку (ручной вызов) или тихо скроет (авто-вызов).
   if (aiOffline()) throw new AiOfflineError();
@@ -269,7 +300,23 @@ export async function callPremiumDialogSend(req: PremiumDialogRequest): Promise<
       getFunctions(getApp(), FUNCTIONS_REGION),
       'premiumDialogSend',
     );
-    const res = await fn(req);
+    // зачем: раньше здесь не было НИ таймаута, НИ повтора — при холодном старте
+    // (minInstances: 0) сообщение просто не отправлялось, и пользователь видел
+    // ошибку. Сторож нужен и сам по себе: без него зависший вызов висел бы вечно.
+    //
+    // ОСТОРОЖНО с идемпотентностью: этот вызов тратит квоту и пишет историю
+    // диалога, поэтому повторяем ТОЛЬКО сбои, при которых сервер заведомо не
+    // начал работу (инстанса не было / соединение не поднялось). Отсюда явный
+    // isColdStartLike вместо более широких условий: лимиты, отказы доступа и
+    // 'internal' повторять нельзя — это был бы второй списанный ответ.
+    const res = await withAiCallableRetry(
+      () => withExplainCallableTimeout(fn(req), 'premiumDialogSend'),
+      {
+        label: 'premiumDialogSend',
+        shouldRetry: isColdStartLike,
+        onRetryStart: options?.onRetryStart,
+      },
+    );
     return res.data;
   })().finally(() => {
     premiumDialogSendInFlight.delete(key);
@@ -343,7 +390,11 @@ export async function callPremiumDialogReview(
       getFunctions(getApp(), FUNCTIONS_REGION),
       'premiumDialogReview',
     );
-    const res = await fn(req);
+    // Идемпотентно: разбор только читает транскрипт и ничего не списывает.
+    const res = await withAiCallableRetry(
+      () => withExplainCallableTimeout(fn(req), 'premiumDialogReview'),
+      { label: 'premiumDialogReview' },
+    );
     return res.data;
   })().finally(() => {
     premiumDialogReviewInFlight.delete(key);
@@ -401,7 +452,12 @@ export async function callPremiumDialogTranslate(
       getFunctions(getApp(), FUNCTIONS_REGION),
       'premiumDialogTranslate',
     );
-    const res = await fn(req);
+    // Идемпотентно: перевод кэшируется на сервере, лимит «3 на диалог» держит
+    // вызывающий экран локально — повтор упавшего вызова его не тратит.
+    const res = await withAiCallableRetry(
+      () => withExplainCallableTimeout(fn(req), 'premiumDialogTranslate'),
+      { label: 'premiumDialogTranslate' },
+    );
     return res.data;
   })().finally(() => {
     premiumDialogTranslateInFlight.delete(key);

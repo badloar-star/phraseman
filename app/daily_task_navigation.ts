@@ -166,11 +166,15 @@ export async function navigateDailyTask({ lang, router, studyTarget, task }: Nav
         const sorted = [...LESSONS_WITH_IRREGULAR_VERBS].sort((a, b) => a - b);
         verbLessonId = sorted[0] ?? 1;
       }
-      openVocabularyOrFrenchGate('irregular_verbs', { pathname: '/lesson_irregular_verbs', params: { id: verbLessonId } });
+      // autoPractice=1 — см. words_learned: задание выполняется и повтором пройденного.
+      openVocabularyOrFrenchGate('irregular_verbs', { pathname: '/lesson_irregular_verbs', params: { id: verbLessonId, autoPractice: '1' } });
       break;
     }
     case 'words_learned':
-      openVocabularyOrFrenchGate('lesson_words', { pathname: '/lesson_words', params: { id: lessonId } });
+      // зачем: задание дня выполняется и повтором уже пройденного. autoPractice=1
+      // говорит экрану сразу собрать очередь из всех слов урока, если учить нечего,
+      // — иначе пользователь упирался в «Всё выучено» и задание висело невыполнимым.
+      openVocabularyOrFrenchGate('lesson_words', { pathname: '/lesson_words', params: { id: lessonId, autoPractice: '1' } });
       break;
     case 'open_theory':
       if (!lessonSupportContentAvailableForTarget(studyTarget, 'lesson_theory', lessonId)) {

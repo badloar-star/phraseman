@@ -108,6 +108,78 @@ describe('Jarvis quality department — a decision per fetch round', () => {
   });
 });
 
+/**
+ * зачем этот блок (владелец 2026-08-04): Джарвис называл «репортами» и
+ * автоматические краши из app_errors, и жалобы живых людей из user_reports,
+ * и советовал «откатить релиз» на технические логи. Владелец: «это
+ * автоматические краши/логи, не жалобы» — источники обязаны звучать по-разному.
+ */
+describe('Jarvis quality department — жалобы людей и автоматические краши это РАЗНЫЕ находки', () => {
+  const SPIKE = (category: string, screen: string) =>
+    Array.from({ length: 20 }, () => ({ category, screen, createdAtMs: 5_000 }));
+
+  test('скачок в app_errors описывается как технические ошибки, а не как жалобы людей', () => {
+    const result = runQualityDepartment({
+      fetches: [
+        fetchResult({ sourceId: 'error_reports', state: 'empty' }),
+        fetchResult({ sourceId: 'user_reports', state: 'empty' }),
+        fetchResult({ sourceId: 'app_errors', rows: SPIKE('unknown', 'friends') }),
+      ],
+      trigger: 'scheduled',
+      nowMs: 10_000,
+    });
+    expect(result.decisions).toHaveLength(1);
+    const [decision] = result.decisions;
+    // Автоматические краши НЕ должны называться жалобами/репортами пользователей.
+    expect(decision.finding).toMatch(/ошиб|сбо|краш/i);
+    expect(decision.finding).not.toMatch(/жалоб/i);
+    expect(decision.question).not.toMatch(/жалоб/i);
+  });
+
+  test('скачок в user_reports описывается как жалобы людей', () => {
+    const result = runQualityDepartment({
+      fetches: [
+        fetchResult({ sourceId: 'error_reports', state: 'empty' }),
+        fetchResult({ sourceId: 'user_reports', rows: SPIKE('bug', 'lesson') }),
+        fetchResult({ sourceId: 'app_errors', state: 'empty' }),
+      ],
+      trigger: 'scheduled',
+      nowMs: 10_000,
+    });
+    expect(result.decisions).toHaveLength(1);
+    expect(result.decisions[0].finding).toMatch(/жалоб/i);
+  });
+
+  test('технический скачок не советует откатывать релиз вслепую', () => {
+    const result = runQualityDepartment({
+      fetches: [
+        fetchResult({ sourceId: 'error_reports', state: 'empty' }),
+        fetchResult({ sourceId: 'user_reports', state: 'empty' }),
+        fetchResult({ sourceId: 'app_errors', rows: SPIKE('unknown', 'friends') }),
+      ],
+      trigger: 'scheduled',
+      nowMs: 10_000,
+    });
+    // зачем: «откатить» на автоматических логах — совет вслепую. Сначала надо
+    // посмотреть, что это за ошибка, а не откатывать рабочий релиз.
+    expect(result.decisions[0].recommendation).not.toMatch(/^Откатить/i);
+  });
+
+  test('категория "unknown" не выдаётся за осмысленную категорию жалобы', () => {
+    const result = runQualityDepartment({
+      fetches: [
+        fetchResult({ sourceId: 'error_reports', state: 'empty' }),
+        fetchResult({ sourceId: 'user_reports', state: 'empty' }),
+        fetchResult({ sourceId: 'app_errors', rows: SPIKE('unknown', 'friends') }),
+      ],
+      trigger: 'scheduled',
+      nowMs: 10_000,
+    });
+    // «репортов категории "unknown"» — бессмысленная для владельца формулировка.
+    expect(result.decisions[0].finding).not.toMatch(/категории "unknown"/i);
+  });
+});
+
 test('aggregateQualityRows stays the single source of truth for counting', () => {
   expect(aggregateQualityRows(CRASH_ROWS).totalCount).toBe(20);
 });

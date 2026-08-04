@@ -37,6 +37,26 @@ interface Spike {
   readonly category: string;
   readonly screen: string;
   readonly count: number;
+  /** Откуда пришёл скачок — определяет ВСЕ формулировки решения. */
+  readonly sourceId: FetchQualitySourceResult['sourceId'];
+}
+
+/**
+ * Жалобы живых людей или автоматическая телеметрия.
+ *
+ * зачем (владелец 2026-08-04): Джарвис называл «жалобами» и «репортами»
+ * автоматические краши из app_errors и советовал откатить релиз на
+ * технических логах. Владелец: «это автоматические краши/логи, не жалобы».
+ * user_reports пишет человек через форму жалобы, app_errors — само
+ * приложение при сбое. Это разные сигналы и требуют разных действий.
+ */
+function isHumanComplaintSource(sourceId: FetchQualitySourceResult['sourceId']): boolean {
+  return sourceId === 'user_reports';
+}
+
+/** Категория 'unknown' — это отсутствие категории, а не её название. */
+function hasMeaningfulCategory(category: string): boolean {
+  return category !== 'unknown';
 }
 
 /**
@@ -59,20 +79,34 @@ function findTopSpike(fetches: readonly FetchQualitySourceResult[], appTier: App
       if (count < threshold) continue;
       if (best && count <= best.count) continue;
       const [category, screen] = key.split('::');
-      best = { category, screen, count };
+      best = { category, screen, count, sourceId: fetch.sourceId };
     }
   }
   return best;
 }
 
+/** «на экране "friends"» — только если экран реально известен. */
+function screenSuffix(screen: string): string {
+  return screen === 'unknown' ? '' : ` на экране "${screen}"`;
+}
+
 function buildFindingText(spike: Spike | null, fetches: readonly FetchQualitySourceResult[]): string {
   if (spike) {
-    return `За последние сутки замечено ${spike.count} репортов категории "${spike.category}" на экране "${spike.screen}" — это выше обычного фона.`;
+    const where = screenSuffix(spike.screen);
+    // зачем разные слова: «жалоба» подразумевает живого недовольного человека,
+    // «сбой» — техническую запись от самого приложения. Смешивать нельзя:
+    // владелец принимает по ним разные решения.
+    if (isHumanComplaintSource(spike.sourceId)) {
+      const what = hasMeaningfulCategory(spike.category) ? ` категории "${spike.category}"` : '';
+      return `За последние сутки поступило ${spike.count} жалоб${what}${where} — это выше обычного фона.`;
+    }
+    const what = hasMeaningfulCategory(spike.category) ? ` типа "${spike.category}"` : '';
+    return `За последние сутки приложение записало ${spike.count} технических ошибок${what}${where} — это выше обычного фона. Записал сам код при сбое, никто из людей об этом не сообщал.`;
   }
   const total = fetches.reduce((sum, fetch) => sum + aggregateQualityRows(fetch.rows).totalCount, 0);
   return total > 0
-    ? `За последние сутки поступило ${total} репортов, без явного скачка по одной категории или экрану.`
-    : 'За последние сутки новых репортов о качестве не поступало.';
+    ? `За последние сутки поступило ${total} записей о качестве, без явного скачка по одной категории или экрану.`
+    : 'За последние сутки новых записей о качестве не поступало.';
 }
 
 export function runQualityDepartment(input: RunQualityDepartmentInput): RunQualityDepartmentResult {
@@ -95,9 +129,29 @@ export function runQualityDepartment(input: RunQualityDepartmentInput): RunQuali
   if (!shouldDecide) return { decisions: [] };
 
   const finding = buildFindingText(spike, input.fetches);
+  const isHuman = spike ? isHumanComplaintSource(spike.sourceId) : false;
+  const where = spike ? screenSuffix(spike.screen) : '';
+  const categoryPart = spike && hasMeaningfulCategory(spike.category) ? ` "${spike.category}"` : '';
+
   const question = input.question ?? (spike
-    ? `Растут ли жалобы категории "${spike.category}" на экране "${spike.screen}"?`
+    ? (isHuman
+      ? `Растут ли жалобы${categoryPart}${where}?`
+      : `Почему выросло число технических ошибок${categoryPart}${where}?`)
     : 'Есть ли аномалии в качестве за последние сутки?');
+
+  // зачем разные варианты действий: на жалобы людей осмысленно откатывать
+  // недавнее изменение — они приходят на конкретную регрессию. На автоматические
+  // ошибки откат вслепую опасен: сначала надо увидеть, ЧТО за ошибка, иначе
+  // откатывается рабочий релиз из-за давно существующего фонового сбоя.
+  const spikeOptions = isHuman
+    ? [
+      { title: 'Откатить последнее изменение на этом экране', cost: 1, risk: 'low' as const },
+      { title: 'Точечно исправить причину без отката', cost: 5, risk: 'medium' as const },
+    ]
+    : [
+      { title: 'Посмотреть текст ошибок и найти причину', cost: 2, risk: 'low' as const },
+      { title: 'Откатить последнее изменение на этом экране', cost: 1, risk: 'medium' as const },
+    ];
 
   const decision = buildDecision({
     department: 'quality',
@@ -106,22 +160,29 @@ export function runQualityDepartment(input: RunQualityDepartmentInput): RunQuali
     question,
     finding,
     hypothesis: spike
-      ? `Вероятная причина — недавнее изменение на экране "${spike.screen}", затрагивающее категорию "${spike.category}".`
+      ? (isHuman
+        ? `Вероятная причина — недавнее изменение${where}, которое мешает людям.`
+        : `Вероятная причина — сбой в коде${where}. Пока неизвестно, замечают ли его пользователи: автоматическая ошибка не всегда видна на экране.`)
       : 'Недостаточно данных для гипотезы.',
     options: spike
-      ? [
-        { title: 'Откатить последнее изменение на этом экране', cost: 1, risk: 'low' },
-        { title: 'Точечно исправить причину без отката', cost: 5, risk: 'medium' },
-      ]
+      ? spikeOptions
       : [
         { title: 'Продолжить наблюдение без вмешательства', cost: 0, risk: 'low' },
         { title: 'Запросить у владельца дополнительный контекст', cost: 0, risk: 'low' },
       ],
-    recommendation: spike ? 'Откатить последнее изменение на этом экране' : 'Продолжить наблюдение без вмешательства',
-    risk: spike ? 'Откат может вернуть ранее исправленную проблему' : 'Пропустить начало скачка, если он появится позже',
-    cost: spike ? 1 : 0,
+    recommendation: spike
+      ? (isHuman ? 'Откатить последнее изменение на этом экране' : 'Посмотреть текст ошибок и найти причину')
+      : 'Продолжить наблюдение без вмешательства',
+    risk: spike
+      ? (isHuman
+        ? 'Откат может вернуть ранее исправленную проблему'
+        : 'Ошибки могут оказаться фоновыми и давно существующими — откат вслепую сломал бы рабочий релиз')
+      : 'Пропустить начало скачка, если он появится позже',
+    cost: spike ? (isHuman ? 1 : 2) : 0,
     successMetric: spike
-      ? `Число репортов категории "${spike.category}" на экране "${spike.screen}" возвращается к фоновому уровню`
+      ? (isHuman
+        ? `Число жалоб${categoryPart}${where} возвращается к фоновому уровню`
+        : `Число технических ошибок${categoryPart}${where} возвращается к фоновому уровню`)
       : 'Отсутствие новых скачков в следующем суточном снапшоте',
     rollback: 'Вернуть предыдущую сборку экрана',
     evidence,

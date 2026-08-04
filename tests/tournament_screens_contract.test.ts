@@ -193,7 +193,10 @@ describe('экраны режима «Турниры»', () => {
     expect(table).not.toContain('visibleRows');
     expect(table).toContain('<ScrollView');
     expect(table).toContain('rows.map((row, index)');
-    expect(table).toContain('accessibilityLabel="Все участники турнира"');
+    // зачем: accessibilityLabel локализован через triLang (i18n-аудит), русский
+    // текст больше не зашит напрямую в JSX — проверяем сам факт локализованной
+    // подписи (ключи ru/uk присутствуют), а не конкретную строку.
+    expect(table).toMatch(/accessibilityLabel=\{triLang\(lang,\s*\{\s*ru:\s*'Все участники турнира',\s*uk:\s*'Всі учасники турніру'/);
   });
 
   it('турнирные экраны отображают серверные ауры вокруг аватаров', () => {
@@ -576,16 +579,52 @@ describe('экраны режима «Турниры»', () => {
     expect(lobby).toContain('zero test-mode delta keeps digits');
   });
 
-  it('результаты объясняют путь денег от общего банка до выплаты игрока', () => {
+  it('результаты показывают только выплату игрока, без бухгалтерии банка', () => {
+    // зачем 2026-08-04 (владелец: «убери вообще вот этот блок общий банк, ваша
+    // доля и т.д. — это мусор»): раньше тест охранял ИМЕННО эту таблицу — банк,
+    // отчисление в недельный фонд, призовой фонд дня, доли мест. Владелец её
+    // удалил целиком, экран показывает одно число — награду игрока.
     const results = read('app/tournament_results.tsx');
-    for (const label of ['Общий банк', 'В недельный банк', 'Призовой фонд дня', 'Ваша доля']) {
-      expect(results).toContain(label);
+    for (const removed of ['Общий банк', 'В недельный банк', 'Призовой фонд дня', 'Ваша доля', '60 / 25 / 15']) {
+      expect(results).not.toContain(removed);
     }
-    expect(results).toContain('const totalPot');
-    expect(results).toContain('const weeklyBankGems');
     expect(results).toContain('const myPrizeGems');
     expect(results).toContain('rewardGems');
-    expect(results).toContain('60 / 25 / 15');
+  });
+
+  it('награда игрока — жемчужины без подписи-расшифровки, пустая награда без давления', () => {
+    // зачем 2026-08-04 (владелец): «начислена сервером» была подписью-
+    // расшифровкой под заголовком — запрещённый паттерн владельца. «Ваша
+    // награда» раньше показывала ОЧКИ вместо приза — теперь ровно rewardGems.
+    const results = read('app/tournament_results.tsx');
+    // Проверяем UI-строку в кавычках, а не комментарии: файл объясняет ПОЧЕМУ
+    // подписи больше нет, и это объяснение законно упоминает старый текст.
+    expect(results).not.toContain("'начислена сервером'");
+    expect(results).not.toContain('rewardSub:');
+    expect(results).toContain('myPrizeGems > 0');
+    expect(results).toContain('В этот раз без жемчужин — получится в следующий');
+  });
+
+  it('индикатор звёзд сезона виден в шапке результатов, звёзды под ником убраны', () => {
+    // зачем 2026-08-04 (владелец): «вместо звёздочек должно на этом экране
+    // показывать, сколько жемчужин каждый получил» + «в правом верхнем углу
+    // просто как везде индикатор звёздочек». Источник звёзд — тот же
+    // peekSeasonPassProgress, что на вкладке турниров, не отдельный счётчик.
+    const results = read('app/tournament_results.tsx');
+    expect(results).toContain('results-season-stars');
+    expect(results).toContain('peekSeasonPassProgress');
+    expect(results).toContain('seasonPass.totalStars');
+    expect(results).not.toContain('podiumScoreRow');
+  });
+
+  it('жемчужины и звёзды докручиваются анимированным счётчиком, не появляются готовым числом', () => {
+    // зачем 2026-08-04 (владелец: «начисление звёзд и начисление жемчугов
+    // должно быть анимированно, они должны цифры увеличить с анимацией»).
+    const results = read('app/tournament_results.tsx');
+    expect(results).toContain('function useCountUp(');
+    expect(results).toContain('useCountUp(gems, gemsStartDelay)');
+    expect(results).toContain('useCountUp(seasonStars, 200)');
+    expect(results).toContain('useCountUp(myPrizeGems, 500, hasFinalResults)');
   });
 
   it('переходы между этапами делает сервер, а не локальный таймер', () => {

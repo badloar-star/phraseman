@@ -26,7 +26,8 @@ import { useLang } from './LangContext';
 import { triLang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
 import { pearlIconForTheme } from '../app/coin_icons';
-import type { SeasonReward } from '../app/season_pass_track_config';
+import { SEASON_AURA_STAGE_NAMES, seasonAuraStageIndex, type SeasonReward } from '../app/season_pass_track_config';
+import { seasonPassStarsToUnlockLevel } from '../app/season_pass_model';
 import { SEASON_MODAL_COPY, renderSeasonRewardArt, type Tri } from './SeasonGiftModal';
 
 export type SeasonRewardCardStatus = 'claimable' | 'claimed' | 'locked' | 'upcoming';
@@ -34,87 +35,16 @@ export type SeasonRewardCardStatus = 'claimable' | 'claimed' | 'locked' | 'upcom
 /**
  * Описания-ВИТРИНЫ: что награда сделает, если её получить.
  *
- * зачем 2026-08-04: SEASON_MODAL_COPY.desc написан для момента ВЫДАЧИ и говорит
- * в прошедшем времени — «Уже на твоём балансе», «Заряд ждёт своего часа»,
- * «Полный доступ Plus — уже включено». В клейм-модалке это правда. Но эта
- * модалка открывается и на НЕЗАРАБОТАННОЙ карточке, и там тот же текст врёт:
- * игрок ничего не получил, а интерфейс уверяет, что жемчужины уже начислены.
- * Поэтому у витрины свой текст в будущем времени — тон тот же, обещание честное.
- * Награды, чей desc и так нейтрален (описывает эффект, а не факт выдачи),
- * здесь не дублируются: fallback ниже берёт исходный desc.
+ * зачем 2026-08-04: после переписи SEASON_MODAL_COPY.desc на живой,
+ * будущевременной тон («Звенят в кошельке, ждут своего магазина», «Красит ник
+ * в бирюзу и вешает титул») он одинаково честен что в просмотре незаработанной
+ * карточки, что до клейма — своего текста здесь больше не требуется, fallback
+ * ниже всегда берёт SEASON_MODAL_COPY.desc. Карта пуста намеренно: как только
+ * появится kind, чей desc снова станет говорить о свершившемся факте
+ * («уже на счету», «титул присвоен»), сюда добавляется override в будущем
+ * времени — тот же приём, что раньше был у pearls/nick_color.
  */
-const PREVIEW_DESC: Partial<Record<SeasonReward['kind'], Tri>> = {
-  pearls: {
-    ru: 'Упадут на баланс — потратишь в магазине и на бусты.',
-    uk: 'Впадуть на баланс — витратиш у магазині та на бусти.',
-    es: 'Irán a tu saldo: para la tienda y los impulsos.',
-    'pt-BR': 'Vão para o seu saldo — para a loja e impulsos.',
-    vi: 'Sẽ vào số dư — dùng ở cửa hàng và tăng tốc.',
-    id: 'Akan masuk saldo — buat toko dan boost.',
-    tr: 'Bakiyene eklenecek — mağaza ve destekler için.',
-    pl: 'Trafią na konto — na sklep i boosty.',
-  },
-  golden_lesson: {
-    ru: 'Один урок принесёт ×3 опыта. Выбирать будешь с умом.',
-    uk: 'Один урок принесе ×3 досвіду. Обиратимеш з розумом.',
-    es: 'Una lección dará ×3 XP. Habrá que elegir bien.',
-    'pt-BR': 'Uma lição dará ×3 XP. Vai ter que escolher bem.',
-    vi: 'Một bài học sẽ cho ×3 XP. Chọn kỹ nhé.',
-    id: 'Satu pelajaran memberi ×3 XP. Pilih baik-baik.',
-    tr: 'Bir ders ×3 XP verecek. İyi seçmek gerek.',
-    pl: 'Jedna lekcja da ×3 XP. Trzeba wybrać mądrze.',
-  },
-  plus_days: {
-    ru: 'Включит полный Plus: безлимит энергии и всё остальное.',
-    uk: 'Увімкне повний Plus: безліміт енергії і все інше.',
-    es: 'Activará Plus completo: energía ilimitada y más.',
-    'pt-BR': 'Ativará o Plus completo: energia ilimitada e mais.',
-    vi: 'Sẽ bật Plus đầy đủ: năng lượng không giới hạn.',
-    id: 'Akan mengaktifkan Plus penuh: energi tanpa batas.',
-    tr: 'Tam Plus açacak: sınırsız enerji.',
-    pl: 'Włączy pełny Plus: nielimitowana energia.',
-  },
-  frame: {
-    ru: 'Сезонное оформление всей карточки профиля — останется навсегда.',
-    uk: 'Сезонне оформлення всієї картки профілю — лишиться назавжди.',
-    es: 'Diseño de temporada para tu tarjeta: tuyo para siempre.',
-    'pt-BR': 'Visual de temporada para o seu cartão: seu para sempre.',
-    vi: 'Thiết kế mùa cho thẻ hồ sơ — giữ mãi mãi.',
-    id: 'Tampilan musim untuk kartu profil — selamanya milikmu.',
-    tr: 'Kartın için sezon tasarımı — sonsuza dek senin.',
-    pl: 'Sezonowy wygląd karty profilu — zostanie na zawsze.',
-  },
-  card_pack: {
-    ru: 'Откроет фирменный набор «Peaky Blinders» — навсегда.',
-    uk: 'Відкриє фірмовий набір «Peaky Blinders» — назавжди.',
-    es: 'Desbloqueará el set «Peaky Blinders» para siempre.',
-    'pt-BR': 'Desbloqueará o pacote «Peaky Blinders» para sempre.',
-    vi: 'Sẽ mở khóa bộ «Peaky Blinders» vĩnh viễn.',
-    id: 'Akan membuka paket «Peaky Blinders» selamanya.',
-    tr: '«Peaky Blinders» paketini sonsuza dek açacak.',
-    pl: 'Odblokuje zestaw «Peaky Blinders» na zawsze.',
-  },
-  custom_avatar: {
-    ru: 'Добавит новый стиль в твою коллекцию аватаров.',
-    uk: 'Додасть новий стиль до твоєї колекції аватарів.',
-    es: 'Añadirá un nuevo estilo a tu colección de avatares.',
-    'pt-BR': 'Adicionará um novo estilo à sua coleção de avatares.',
-    vi: 'Sẽ thêm kiểu mới vào bộ sưu tập avatar.',
-    id: 'Akan menambah gaya baru ke koleksi avatarmu.',
-    tr: 'Avatar koleksiyonuna yeni bir stil ekleyecek.',
-    pl: 'Doda nowy styl do kolekcji awatarów.',
-  },
-  aura_stage: {
-    ru: 'Откроет новую стадию свечения — носить можно любую из открытых.',
-    uk: 'Відкриє нову стадію світіння — носити можна будь-яку з відкритих.',
-    es: 'Abrirá una nueva etapa de brillo: llevarás la que quieras.',
-    'pt-BR': 'Abrirá um novo estágio de brilho: use o que quiser.',
-    vi: 'Sẽ mở cấp hào quang mới — đeo cấp nào tùy bạn.',
-    id: 'Akan membuka tahap aura baru — pakai yang mana saja.',
-    tr: 'Yeni bir aura aşaması açacak — istediğini takarsın.',
-    pl: 'Otworzy nowy etap aury — nosisz dowolny odblokowany.',
-  },
-};
+const PREVIEW_DESC: Partial<Record<SeasonReward['kind'], Tri>> = {};
 
 interface Props {
   visible: boolean;
@@ -138,6 +68,7 @@ export default function SeasonRewardInfoModal({ visible, reward, level, side, st
     () => renderSeasonRewardArt(reward, themeMode, t, pearlIcon),
     [pearlIcon, reward, t, themeMode],
   );
+  const starsToUnlock = seasonPassStarsToUnlockLevel(level);
 
   if (!reward) return null;
   const copy = SEASON_MODAL_COPY[reward.kind];
@@ -160,7 +91,14 @@ export default function SeasonRewardInfoModal({ visible, reward, level, side, st
           </View>
 
           <Text style={{ color: t.textPrimary, fontSize: 19, fontWeight: '900', textAlign: 'center' }}>
-            {triLang(lang, copy.title)}
+            {/* зачем 2026-08-04 (владелец: «аура ... стадия ее надо название
+                добавить»): copy.title у aura_stage один на все 4 стадии
+                («Аура сезона») — просмотровая модалка не говорила, какая
+                именно стадия открыта. Имя + номер — тот же текст, что и на
+                плитке дорожки (season_pass.tsx) и в клейм-модалке. */}
+            {reward.kind === 'aura_stage'
+              ? `${SEASON_AURA_STAGE_NAMES[lang][seasonAuraStageIndex(reward.amount)]} ${['I', 'II', 'III', 'IV'][seasonAuraStageIndex(reward.amount)]}`
+              : triLang(lang, copy.title)}
           </Text>
 
           {/* Уже забранную награду описываем как факт (copy.desc — «уже на
@@ -183,12 +121,18 @@ export default function SeasonRewardInfoModal({ visible, reward, level, side, st
 
           {status === 'upcoming' && (
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-              <Ionicons name="lock-closed-outline" size={14} color={t.textMuted} />
-              <Text /* guard-ok: самостоятельный статус-индикатор доступности («когда откроется»), не подпись-расшифровка под заголовком модалки — тот же паттерн, что и блок «Уже забрано» чуть выше */ style={{ color: t.textMuted, fontSize: 13, fontWeight: '700' }}>
+              <Ionicons name="star" size={14} color={t.textMuted} />
+              {/* зачем 2026-08-04 (владелец: «исправь "откроется на уровне" на
+                  нужно накопить звёзд, как в других игровых механиках»): номер
+                  уровня ничего не говорил игроку — на карточке цена подарка уже
+                  давно считается в звёздах (seasonPassStarsToUnlockLevel), эта
+                  подсказка была последним местом, где ещё жил абстрактный
+                  уровень вместо реальной цены. */}
+              <Text /* guard-ok: самостоятельный статус-индикатор доступности («сколько ещё нужно»), не подпись-расшифровка под заголовком модалки — тот же паттерн, что и блок «Уже забрано» чуть выше */ style={{ color: t.textMuted, fontSize: 13, fontWeight: '700' }}>
                 {triLang(lang, {
-                  ru: `Откроется на уровне ${level}`, uk: `Відкриється на рівні ${level}`, es: `Se abre en el nivel ${level}`,
-                  'pt-BR': `Abre no nível ${level}`, vi: `Mở khóa ở cấp ${level}`, id: `Terbuka di level ${level}`,
-                  tr: `Seviye ${level}'de açılır`, pl: `Odblokuje się na poziomie ${level}`,
+                  ru: `Нужно накопить ${starsToUnlock} ⭐`, uk: `Потрібно назбирати ${starsToUnlock} ⭐`, es: `Necesitas ${starsToUnlock} ⭐`,
+                  'pt-BR': `Precisa juntar ${starsToUnlock} ⭐`, vi: `Cần tích ${starsToUnlock} ⭐`, id: `Perlu kumpulkan ${starsToUnlock} ⭐`,
+                  tr: `${starsToUnlock} ⭐ toplaman gerekiyor`, pl: `Potrzebujesz ${starsToUnlock} ⭐`,
                 })}
               </Text>
             </View>

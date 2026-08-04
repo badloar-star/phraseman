@@ -48,6 +48,8 @@ import {
 import { getStableId } from './stable_id';
 import { useLocalSearchParams } from 'expo-router';
 import { closeTournamentFlow } from './tournament_navigation';
+import { triLang, type Lang } from '../constants/i18n';
+import { useLang } from '../components/LangContext';
 
 /** Ступень оттенка акцента для полосы-рейтинга (прозрачность = насыщенность). */
 function barTint(hex: string, alpha: number): string {
@@ -87,13 +89,15 @@ function mapPlayersToRows(
   players: readonly RoomPlayer[],
   myId: string | null,
   previousPlaces: Map<string, number>,
+  lang: Lang,
 ): Row[] {
   const ordered = orderTournamentPlayersForDisplay(players);
+  const fallbackName = triLang(lang, { ru: 'Игрок', uk: 'Гравець', es: 'Jugador', 'pt-BR': 'Jogador', vi: 'Người chơi', id: 'Pemain', tr: 'Oyuncu', pl: 'Gracz' });
   return ordered.map((player, index) => {
     const place = tournamentSharedPlacement(ordered, index);
     return ({
     id: player.id,
-    name: player.name || 'Игрок',
+    name: player.name || fallbackName,
     // зачем 2026-07-27: было эмодзи-«лицо» — правило владельца требует
     // НАСТОЯЩИЕ аватары приложения. Ботам они выдаются детерминированно.
     avatar: tournamentAvatarValue({ id: player.id, isBot: player.isBot, avatar: player.avatar }),
@@ -113,6 +117,7 @@ function mapPlayersToRows(
 }
 
 export default function TournamentTableScreen() {
+  const { lang } = useLang();
   const P = useTournamentPalette();
   const styles = React.useMemo(() => makeStyles(P), [P]);
   const router = useRouter();
@@ -149,8 +154,8 @@ export default function TournamentTableScreen() {
   const roundNo = resolveTournamentDisplayRoundNo(room?.state, completedRound);
 
   const rows = useMemo(
-    () => mapPlayersToRows(room?.players ?? [], myId, previousPlacesRef.current),
-    [room?.players, myId],
+    () => mapPlayersToRows(room?.players ?? [], myId, previousPlacesRef.current, lang),
+    [room?.players, myId, lang],
   );
 
   // Запоминаем позиции ПОСЛЕ отрисовки — для следующего показа таблицы.
@@ -193,7 +198,9 @@ export default function TournamentTableScreen() {
   const maxScore = rows[0]?.score || 1;
   const isFinal = roundNo >= TOTAL_ROUNDS;
   // Зрителю показываем, что происходит прямо сейчас: идёт раунд или пауза.
-  const liveLabel = isRoundState(room?.state) ? `Раунд ${roundNo} идёт` : 'Перерыв';
+  const liveLabel = isRoundState(room?.state)
+    ? triLang(lang, { ru: `Раунд ${roundNo} идёт`, uk: `Раунд ${roundNo} триває`, es: `Ronda ${roundNo} en curso`, 'pt-BR': `Rodada ${roundNo} em andamento`, vi: `Vòng ${roundNo} đang diễn ra`, id: `Ronde ${roundNo} berlangsung`, tr: `Tur ${roundNo} sürüyor`, pl: `Runda ${roundNo} trwa` })
+    : triLang(lang, { ru: 'Перерыв', uk: 'Перерва', es: 'Descanso', 'pt-BR': 'Intervalo', vi: 'Giải lao', id: 'Jeda', tr: 'Ara', pl: 'Przerwa' });
 
   if (status === 'offline') {
     return (
@@ -215,8 +222,12 @@ export default function TournamentTableScreen() {
       <TournamentBackdrop variant="table" />
       <View style={[styles.header, { paddingTop: insets.top + 12 }]}>
         <View style={styles.headerText}>
-          <Text style={styles.title}>{spectating ? 'Смотрим турнир' : 'Таблица'}</Text>
-          <Text style={styles.subtitle}>Раунд {roundNo} из {TOTAL_ROUNDS}</Text>
+          <Text style={styles.title}>
+            {spectating
+                ? triLang(lang, { ru: 'Смотрим турнир', uk: 'Дивимось турнір', es: 'Viendo el torneo', 'pt-BR': 'Assistindo ao torneio', vi: 'Đang xem giải đấu', id: 'Menonton turnamen', tr: 'Turnuvayı izliyoruz', pl: 'Oglądamy turniej' })
+                : triLang(lang, { ru: 'Таблица', uk: 'Таблиця', es: 'Tabla', 'pt-BR': 'Tabela', vi: 'Bảng xếp hạng', id: 'Papan peringkat', tr: 'Tablo', pl: 'Tabela' })}
+          </Text>
+          <Text style={styles.subtitle}>{triLang(lang, { ru: `Раунд ${roundNo} из ${TOTAL_ROUNDS}`, uk: `Раунд ${roundNo} з ${TOTAL_ROUNDS}`, es: `Ronda ${roundNo} de ${TOTAL_ROUNDS}`, 'pt-BR': `Rodada ${roundNo} de ${TOTAL_ROUNDS}`, vi: `Vòng ${roundNo}/${TOTAL_ROUNDS}`, id: `Ronde ${roundNo} dari ${TOTAL_ROUNDS}`, tr: `Tur ${roundNo}/${TOTAL_ROUNDS}`, pl: `Runda ${roundNo} z ${TOTAL_ROUNDS}` })}</Text>
         </View>
         {/* Зритель не играет — своих очков у него нет, показываем лидера.
             Счётчик в языке V2: пилюля со звездой и bump при изменении. */}
@@ -239,7 +250,7 @@ export default function TournamentTableScreen() {
         contentContainerStyle={[styles.listContent, { height: listHeight }]}
         showsVerticalScrollIndicator
         nestedScrollEnabled
-        accessibilityLabel="Все участники турнира"
+        accessibilityLabel={triLang(lang, { ru: 'Все участники турнира', uk: 'Всі учасники турніру', es: 'Todos los participantes del torneo', 'pt-BR': 'Todos os participantes do torneio', vi: 'Tất cả người tham gia giải đấu', id: 'Semua peserta turnamen', tr: 'Turnuvadaki tüm katılımcılar', pl: 'Wszyscy uczestnicy turnieju' })}
       >
         {rows.map((row, index) => (
           <TableRow
@@ -250,6 +261,7 @@ export default function TournamentTableScreen() {
             previousLayoutIndex={previousVisibleIndexesRef.current.get(row.id) ?? index}
             maxScore={maxScore}
             scoresSettled={scoresSettled}
+            lang={lang}
           />
         ))}
       </ScrollView>
@@ -266,10 +278,12 @@ export default function TournamentTableScreen() {
       <View style={[styles.hintRow, { paddingBottom: insets.bottom + 12 }]}>
         <Text style={styles.hint}>
           {!scoresSettled
-            ? 'Ждём остальных'
+            ? triLang(lang, { ru: 'Ждём остальных', uk: 'Чекаємо на інших', es: 'Esperando a los demás', 'pt-BR': 'Esperando os outros', vi: 'Đang chờ những người khác', id: 'Menunggu yang lain', tr: 'Diğerleri bekleniyor', pl: 'Czekamy na resztę' })
             : spectating
-            ? (isFinal ? 'Финал — считаем итоги…' : liveLabel)
-            : (isFinal ? 'Считаем итоги…' : 'Следующий раунд через')}
+            ? (isFinal ? triLang(lang, { ru: 'Финал — считаем итоги…', uk: 'Фінал — рахуємо підсумки…', es: 'Final: calculando resultados…', 'pt-BR': 'Final: calculando resultados…', vi: 'Chung kết — đang tính kết quả…', id: 'Final — menghitung hasil…', tr: 'Final — sonuçlar hesaplanıyor…', pl: 'Finał — liczymy wyniki…' }) : liveLabel)
+            : (isFinal
+                ? triLang(lang, { ru: 'Считаем итоги…', uk: 'Рахуємо підсумки…', es: 'Calculando resultados…', 'pt-BR': 'Calculando resultados…', vi: 'Đang tính kết quả…', id: 'Menghitung hasil…', tr: 'Sonuçlar hesaplanıyor…', pl: 'Liczymy wyniki…' })
+                : triLang(lang, { ru: 'Следующий раунд через', uk: 'Наступний раунд через', es: 'Próxima ronda en', 'pt-BR': 'Próxima rodada em', vi: 'Vòng tiếp theo sau', id: 'Ronde berikutnya dalam', tr: 'Sonraki tur', pl: 'Następna runda za' }))}
         </Text>
         {(!scoresSettled || !isFinal) ? (
           <Text style={styles.hintTimer}>{formatTimeLeft(secondsLeft)}</Text>
@@ -282,9 +296,10 @@ export default function TournamentTableScreen() {
 // ── Строка таблицы ──────────────────────────────────────────────────────────
 
 const TableRow = memo(function TableRow({
-  row, place, layoutIndex, previousLayoutIndex, maxScore, scoresSettled,
+  row, place, layoutIndex, previousLayoutIndex, maxScore, scoresSettled, lang,
 }: {
   row: Row;
+  lang: Lang;
   /**
    * Досчитан ли раунд сервером.
    *
@@ -385,7 +400,7 @@ const TableRow = memo(function TableRow({
           объясняет. Теперь появляется на подлёте строки к новому месту. */}
       {overtook ? (
         <Animated.View entering={FadeIn.delay(320).duration(200)} style={styles.overtakeChip}>
-          <Text style={styles.overtakeText}>обгон</Text>
+          <Text style={styles.overtakeText}>{triLang(lang, { ru: 'обгон', uk: 'обгін', es: 'adelanto', 'pt-BR': 'ultrapassou', vi: 'vượt lên', id: 'menyalip', tr: 'geçti', pl: 'wyprzedzenie' })}</Text>
         </Animated.View>
       ) : null}
 

@@ -24,6 +24,7 @@ import { actionToastTri, emitAppEvent, onAppEvent } from './events';
 import { hapticTap } from '../hooks/use-haptics';
 import { pearlIconForTheme } from './coin_icons';
 import { safeRouterBack } from './navigation_back';
+import { softShadow } from '../constants/androidGlow';
 import TapScale from '../components/TapScale';
 import {
   hydrateSeasonPassProgress,
@@ -40,9 +41,11 @@ import {
 } from './season_pass_spine';
 import {
   SEASON_TRACK,
+  SEASON_AURA_STAGE_NAMES,
   getSeasonAuraStageAsset,
   getSeasonRewardIcon,
   getSeasonSecretAuraAsset,
+  seasonAuraStageIndex,
   type SeasonReward,
   type SeasonTrackNode,
 } from './season_pass_track_config';
@@ -61,7 +64,11 @@ const ROW_HEIGHT = 108;
 // нему: шаг узлов хребта считается из ROW_HEIGHT, и любое изменение высоты
 // строки увело бы линию от карточек.
 const ROW_GAP = 14;
-export const SEASON_REWARD_ART_SIZE = 58;
+// зачем 2026-08-04 (владелец: «иконки увеличить в 2 раза», уточнено — 116px не
+// влезает в ROW_HEIGHT=108, зафиксированную геометрией волнистой линии
+// прогресса; согласован умеренный рост ~1.3×, который держит текущую высоту
+// строки): было 58, физический потолок слота внутри строки — не более ~76.
+export const SEASON_REWARD_ART_SIZE = 76;
 /**
  * Реальный размер картинки внутри слота награды — с полями по краям.
  *
@@ -77,12 +84,14 @@ export const SEASON_REWARD_ART_SIZE = 58;
  * SEASON_REWARD_ART_SIZE.
  */
 export const SEASON_REWARD_ART_INNER = Math.round(SEASON_REWARD_ART_SIZE * 0.86);
-export const SEASON_AURA_ART_SIZE = 64;
+// зачем 2026-08-04: растёт вместе с SEASON_REWARD_ART_SIZE в том же масштабе
+// (~1.3×), чтобы аура и обычные арты остались одного визуального веса.
+export const SEASON_AURA_ART_SIZE = 84;
 // зачем 2026-08-03 (владелец: «иконка жемчужа слишком маленькая»): монета
 // жемчужин стоит В СТРОКЕ с числом, а не одна на всю плитку, поэтому её размер
 // чуть меньше сплошного арта — так пара «иконка + количество» целиком влезает
 // в ширину карточки и не жмёт число.
-export const SEASON_PEARL_ART_SIZE = 44;
+export const SEASON_PEARL_ART_SIZE = 58;
 const NODE_COLUMN_WIDTH = 56;
 const SPINE_WIDTH = 4;
 // зачем 2026-08-03 (владелец — «искривление на разных типах подарков» вместо
@@ -129,6 +138,9 @@ const REWARD_LABELS: Record<SeasonReward['kind'], Record<Lang, string>> = {
   card_pack:         { ru: 'Набор карточек', uk: 'Набір карток', es: 'Set de tarjetas', 'pt-BR': 'Pacote de cartões', vi: 'Bộ thẻ', id: 'Paket kartu', tr: 'Kart paketi', pl: 'Zestaw fiszek' },
   season_finale:     { ru: 'Финал сезона', uk: 'Фінал сезону', es: 'Final de temporada', 'pt-BR': 'Final da temporada', vi: 'Chung kết mùa', id: 'Final musim', tr: 'Sezon finali', pl: 'Finał sezonu' },
 };
+
+// SEASON_AURA_STAGE_NAMES живёт в season_pass_track_config.ts — общий источник
+// для экрана дорожки И обеих модалок (клейм + просмотр), см. импорт выше.
 
 const CLAIMED_LEVELS_KEY = 'season_pass_claimed_v1';
 const PASS_OWNED_KEY = 'season_pass_owned_v1';
@@ -355,8 +367,16 @@ export default function SeasonPassScreen() {
     // (макет: узкая колонка с одной картой, вторая половина строки пуста).
     if (!reward) return <View style={{ flex: 1, alignSelf: 'stretch' }} />;
     const icon = getSeasonRewardIcon(reward.kind, themeMode);
-    const label = REWARD_LABELS[reward.kind][lang]
-      + (reward.kind === 'aura_stage' ? ` ${['I', 'II', 'III', 'IV'][Math.max(0, (reward.amount ?? 1) - 1)]}` : '')
+    // зачем 2026-08-04 (владелец: «аура глубина у нее названия и стадия ее
+    // надо название добавить»): было «Аура · стадія II» — номер без имени,
+    // непонятно, что это за свечение. Собственное имя стадии (SEASON_AURA_STAGE_NAMES)
+    // встаёт ПЕРЕД римской цифрой, а не вместо неё — цифра всё ещё нужна, чтобы
+    // соотнести карточку с прогресс-хребтом («стадия II» видна и там, и тут).
+    const auraStageIndex = seasonAuraStageIndex(reward.amount);
+    const label = (reward.kind === 'aura_stage'
+      ? SEASON_AURA_STAGE_NAMES[lang][auraStageIndex]
+      : REWARD_LABELS[reward.kind][lang])
+      + (reward.kind === 'aura_stage' ? ` ${['I', 'II', 'III', 'IV'][auraStageIndex]}` : '')
       + (reward.kind === 'plus_days' || reward.kind === 'xp_bank' ? ` ${reward.amount ?? ''}` : '');
     const isPassLane = side === 'pass';
     const isClaimed = !!claimed[`${seasonId}:${level}:${side}`];
@@ -424,23 +444,36 @@ export default function SeasonPassScreen() {
         ? `season-pass-claim-${side}-${level}`
         : locked ? `season-pass-locked-${side}-${level}` : `season-pass-info-${side}-${level}`,
     };
+    // зачем 2026-08-04 (владелец: «звёздочки должны быть под контейнером, а не
+    // в контейнере»): порог цены раньше был третьим ярусом ВНУТРИ плитки — тот
+    // же фон, что у названия и арта. Теперь плитка (TouchableOpacity, только
+    // фон+арт+название) и цена (Text) — два раздельных слоя одной колонки:
+    // цена больше не толкает геометрию карточки и читается как подпись К ней,
+    // а не часть заполненной поверхности.
     return (
+      <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'column', alignItems: 'center', gap: 3 }}>
       <TouchableOpacity {...wrapperProps} style={{
-        flex: 1,
-        alignSelf: 'stretch',
+        width: '100%',
+        flexGrow: 1,
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        // зачем 2026-08-03: строка порога звёзд добавила карточке третий ярус
-        // (арт → название → цена), а высота плитки уменьшилась на ROW_GAP.
-        // Вертикальные отступы ужаты, чтобы содержимое влезало без обрезки —
-        // ужимать ШРИФТ (adjustsFontSizeToFit) на коротких подписях нельзя.
         gap: 1,
         borderRadius: 16,
         paddingHorizontal: 8,
         paddingVertical: 4,
         position: 'relative',
-        backgroundColor: isPassLane ? t.goldBg : t.bgCard,
+        backgroundColor: isPassLane ? t.goldBg : t.bgSurface,
+        // зачем 2026-08-04 (владелец: «строго цвета контейнеров изменить чтобы
+        // лучше выделялись на фоне белом»): на светлых темах (sagePorcelain
+        // bgCard #FCFDF9 против bgPrimary #F0F1EC, businessLight — оба #FFFFFF)
+        // карточка и фон экрана визуально сливались в одно пятно. bgSurface
+        // темнее bgCard в каждой теме — уже даёт тон без обводки (запрет
+        // владельца на borderWidth/borderColor), а мягкая тень поверх достаёт
+        // контраст и на плоских белых темах, где даже bgSurface почти не
+        // отличается от фона. softShadow держит Android без квадратов вокруг
+        // скругления (см. constants/androidGlow.ts).
+        ...softShadow({ color: t.cardShadow, radius: 8, opacity: 0.18, offsetY: 3, backgroundColor: isPassLane ? t.goldBg : t.bgSurface, elevation: 3 }),
         opacity: reached ? (isClaimed ? 0.55 : 1) : 0.72,
       }}>
         {/* зачем 2026-08-03 (владелец: «иконка жемчужа слишком маленькая»):
@@ -523,12 +556,24 @@ export default function SeasonPassScreen() {
         >
           {reward.kind === 'pearls' ? '' : label}
         </FlowText>
-        {/* зачем 2026-08-03 (владелец: «просто возле каждого подарка показывай
-            сколько звёзд надо набрать чтобы он открылся»): порог заменил
-            прогресс-полоску уровня. Число накопительное — сравнивается напрямую
-            с общим счётом звёзд в шапке. У уже открытого подарка порог гаснет
-            до галочки: цена выполнена, повторять её незачем. */}
-        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 3, marginTop: 1 }}>
+        {claimable && (
+          <Ionicons name="checkmark-circle-outline" size={18} color={t.textOnCard} style={{ position: 'absolute', top: 7, right: 7 }} />
+        )}
+        {/* Замок висит на КАЖДОЙ линии, которая этому игроку недоступна: без
+            пропуска — на обеих, у фри с пропуском — только на правой. */}
+        {!laneUnlocked && (
+          <Ionicons name="lock-closed" size={14} color={t.textMuted} style={{ position: 'absolute', top: 8, right: 8 }} />
+        )}
+      </TouchableOpacity>
+        {/* зачем 2026-08-04 (владелец: «звёздочки должны быть под контейнером,
+            а не в контейнере»): порог цены раньше стоял третьим ярусом ВНУТРИ
+            плитки — тот же фон, что у названия и арта, вплотную под подписью.
+            Теперь это отдельная строка ПОД плиткой, без фона: читается как
+            цена ЭТОЙ карточки, а не часть заполненной поверхности. Число
+            накопительное — сравнивается напрямую с общим счётом звёзд в
+            шапке. У уже открытого подарка порог гаснет до галочки: цена
+            выполнена, повторять её незачем. */}
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 3 }} pointerEvents="none">
           {reached ? (
             <Ionicons name="checkmark" size={12} color={t.textMuted} />
           ) : (
@@ -540,15 +585,7 @@ export default function SeasonPassScreen() {
             </Text>
           )}
         </View>
-        {claimable && (
-          <Ionicons name="checkmark-circle-outline" size={18} color={t.textOnCard} style={{ position: 'absolute', top: 7, right: 7 }} />
-        )}
-        {/* Замок висит на КАЖДОЙ линии, которая этому игроку недоступна: без
-            пропуска — на обеих, у фри с пропуском — только на правой. */}
-        {!laneUnlocked && (
-          <Ionicons name="lock-closed" size={14} color={t.textMuted} style={{ position: 'absolute', top: 8, right: 8 }} />
-        )}
-      </TouchableOpacity>
+      </View>
     );
   }, [claimed, lang, onClaimReward, onLockedRewardPress, passBought, passLaneAllowed, pearlIcon, seasonId, t, themeMode]);
 
@@ -725,13 +762,18 @@ export default function SeasonPassScreen() {
         }
         initialNumToRender={10}
         windowSize={7}
-        // зачем 2026-08-03: trackSpine — элемент height:0 в потоке с реальным
-        // визуальным контентом высотой на ВСЮ дорожку (overflow за пределы
-        // заявленной высоты). removeClippedSubviews на Android умеет отклипать
-        // (unmount) содержимое ListHeaderComponent, выходящее за его заявленные
-        // границы, при скролле — это дало бы «линия обрывается» СНОВА, но уже
-        // по причине рантайм-оптимизации, не архитектуры. 60 строк — не тот
-        // объём, где эта оптимизация ощутимо нужна; отключено ради надёжности.
+        // зачем 2026-08-04 (владелец: «полоска при скролле внизу исчезает»):
+        // комментарий ниже уже ПРЕДУПРЕЖДАЛ об этом риске, но проп никогда не
+        // был реально выставлен — remove­ClippedSubviews на Android включён по
+        // умолчанию для FlatList/VirtualizedList. trackSpine — элемент
+        // height:0 в потоке с реальным визуальным контентом высотой на ВСЮ
+        // дорожку (overflow за пределы заявленной height:0). Как только его
+        // заявленные (нулевые) границы уезжают за пределы окна отрисовки при
+        // скролле вниз, Android физически отклипывает (unmount) весь View —
+        // золотая линия прогресса пропадает, хотя JS-состояние не менялось.
+        // 60 строк — не тот объём, где эта оптимизация ощутимо нужна;
+        // отключаем явно вместо того, чтобы полагаться на дефолт.
+        removeClippedSubviews={false}
         contentContainerStyle={{ paddingTop: insets.top + 12, paddingBottom: 120 }}
         showsVerticalScrollIndicator={false}
       />
@@ -793,34 +835,9 @@ export default function SeasonPassScreen() {
                 tr: 'Sezon bileti alınsın mı?', pl: 'Kupić przepustkę sezonu?',
               })}
             </Text>
-            {/* зачем: старый текст обещал «ВСЕ золотые награды» любому покупателю,
-                но правая (золотая) линия — привилегия Plus и остаётся запертой
-                даже после покупки (passLaneAllowed = isPremium). Для игрока без
-                подписки это было ложное обещание перед тратой 250 жемчужин.
-                Теперь каждый тир видит ровно то, что получит. */}
-            <Text style={{ color: t.textSecond, fontSize: 14, fontWeight: '600', textAlign: 'center', lineHeight: 20 }}>
-              {passLaneAllowed
-                ? triLang(lang, {
-                  ru: 'Откроются обе линии наград — включая уровни, которые вы уже прошли.',
-                  uk: 'Відкриються обидві лінії нагород — включно з рівнями, які ви вже пройшли.',
-                  es: 'Se abrirán ambas líneas de recompensas, incluidos los niveles ya superados.',
-                  'pt-BR': 'As duas trilhas de recompensas serão abertas, incluindo níveis já concluídos.',
-                  vi: 'Cả hai hàng phần thưởng sẽ mở — kể cả các cấp bạn đã qua.',
-                  id: 'Kedua jalur hadiah terbuka — termasuk level yang sudah kamu lewati.',
-                  tr: 'Her iki ödül hattı da açılır — geçtiğiniz seviyeler dahil.',
-                  pl: 'Otworzą się obie linie nagród — także poziomy już zdobyte.',
-                })
-                : triLang(lang, {
-                  ru: 'Откроется линия «Пропуск» — включая уровни, которые вы уже прошли. Золотая линия открывается с Plus.',
-                  uk: 'Відкриється лінія «Перепустка» — включно з рівнями, які ви вже пройшли. Золота лінія відкривається з Plus.',
-                  es: 'Se abrirá la línea «Pase», incluidos los niveles ya superados. La línea dorada se abre con Plus.',
-                  'pt-BR': 'A trilha «Passe» será aberta, incluindo níveis já concluídos. A trilha dourada abre com Plus.',
-                  vi: 'Hàng «Vé mùa» sẽ mở — kể cả các cấp bạn đã qua. Hàng vàng mở cùng Plus.',
-                  id: 'Jalur «Pass» terbuka — termasuk level yang sudah kamu lewati. Jalur emas terbuka dengan Plus.',
-                  tr: '«Bilet» hattı açılır — geçtiğiniz seviyeler dahil. Altın hat Plus ile açılır.',
-                  pl: 'Otworzy się linia «Przepustka» — także poziomy już zdobyte. Złota linia otwiera się z Plus.',
-                })}
-            </Text>
+            {/* зачем 2026-08-04 (владелец: «убери текст объясняющий вообще, оставь
+                только купить пропуск сезона»): пояснение про линии наград убрано,
+                заголовок самодостаточен. */}
             <View style={{ flexDirection: 'row', gap: 10, width: '100%' }}>
               <TouchableOpacity activeOpacity={0.85} accessibilityRole="button" onPress={() => { hapticTap(); setBuyConfirmVisible(false); }}
                 style={{ flex: 1, borderRadius: 16, paddingVertical: 14, alignItems: 'center', backgroundColor: t.bgSurface }}>

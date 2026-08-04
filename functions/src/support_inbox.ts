@@ -19,6 +19,8 @@
 import * as admin from 'firebase-admin';
 import { createHash, randomBytes, randomUUID } from 'crypto';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
+import { onDocumentCreated } from 'firebase-functions/v2/firestore';
+import { logger } from 'firebase-functions';
 import { defineSecret } from 'firebase-functions/params';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import { openAiChat } from './explain/explain_provider';
@@ -26,6 +28,11 @@ import { resolveJobConfig, assertJobEnabled } from './openai_jobs_config';
 import { createAuditRecord } from './admin/audit_contract';
 import { hasPermission, type AdminPermission } from './admin/permissions';
 import { hasAdminRole, type AdminRole } from './admin/roles';
+import { ADMIN_ALERT_BOT_TOKEN, sendTelegramAlert } from './admin_alerts';
+import { decideSpamAction, buildSpamTriagePrompt, parseSpamVerdict } from './jarvis/support_spam_triage';
+import { buildNewMailAlertText } from './jarvis/support_inbox_alert';
+import { checkAndReserveBudget, recordActualSpend } from './jarvis/llm_budget';
+import { estimateEnrichmentCostUsd, actualEnrichmentCostUsd } from './jarvis/llm_enricher_cost';
 import {
   SUPPORT_REPLY_CONFIRMATION_TTL_MS,
   buildPreparedSupportReply,
@@ -1846,6 +1853,123 @@ export const adminSupportSetStatus = onCall(
       });
     });
     return { ok: true, status };
+  },
+);
+
+// ── Триггер: новое письмо → спам-фильтр → черновик → уведомление в Telegram ────
+/**
+ * зачем (владелец 2026-08-04): раньше Джарвис только СЧИТАЛ письма в очереди
+ * и не отличал спам от реальных обращений — владелец видел ложную тревогу
+ * «14 писем ждут ответа», хотя очередь была пуста. Теперь при каждом новом
+ * письме: (1) явный спам архивируется автоматически, ничего не присылая;
+ * (2) настоящее обращение получает подготовленный ИИ-черновик и уходит
+ * владельцу в Telegram текстом письма + готовым ответом — читать остаётся
+ * только реальные вопросы пользователей, не рекламу/уведомления сервисов.
+ *
+ * зачем ТОЛЬКО архивировать явный спам, не отправлять его в Telegram и не
+ * трогать сомнительное: владелец 2026-08-04 — «архивировать только очевидный
+ * спам, сомнительное оставлять». Ошибочно заархивированное письмо клиента
+ * потеряется навсегда, поэтому decideSpamAction архивирует только при
+ * высокой уверенности модели (SPAM_ARCHIVE_MIN_CONFIDENCE).
+ */
+export const supportInboxOnNewMail = onDocumentCreated(
+  {
+    document: `${INBOX_COLLECTION}/{messageDocId}`,
+    region: REGION,
+    secrets: [ADMIN_ALERT_BOT_TOKEN, SUPPORT_OPENAI_API_KEY],
+  },
+  async (event) => {
+    const snap = event.data;
+    if (!snap) return;
+    const messageDocId = snap.id;
+    const doc = snap.data() as SupportInboxDoc;
+    // Технический спам (рассылки/автоответы) classifyEmail уже пометил при
+    // приёме — не тратим LLM-вызов на то, что и так не должно попасть в очередь.
+    if (doc.mailCategory === 'automated') return;
+
+    const db = admin.firestore();
+    const nowMs = Date.now();
+    const systemActor: SupportAdminContext = { actorUid: 'jarvis_support_triage', role: 'admin' };
+
+    let apiKey = '';
+    try {
+      apiKey = readOpenAiKey();
+    } catch {
+      // Ключ не настроен — письмо остаётся в обычной очереди без уведомления,
+      // владелец увидит его в админке как раньше.
+      logger.warn('support_inbox_triage: OPENAI_API_KEY not configured, skipping');
+      return;
+    }
+
+    const budgetVerdict = await checkAndReserveBudget({ db, nowMs, estimatedCostUsd: estimateEnrichmentCostUsd() });
+    if (!budgetVerdict.allowed) {
+      logger.warn('support_inbox_triage: budget exhausted, falling back to plain notify', { reason: budgetVerdict.reason });
+      // Бюджет исчерпан — не значит «молчать»: письмо реального человека
+      // всё равно не должно потеряться, просто без черновика и без спам-фильтра.
+      const text = buildNewMailAlertText({
+        fromEmail: doc.fromEmail, subject: doc.subject, bodyText: doc.bodyText, draftReply: null,
+      });
+      await sendTelegramAlert(ADMIN_ALERT_BOT_TOKEN.value(), text);
+      return;
+    }
+
+    try {
+      const prompt = buildSpamTriagePrompt({ subject: doc.subject, bodyText: doc.bodyText, fromEmail: doc.fromEmail });
+      const spamResult = await openAiChat({
+        apiKey, model: 'gpt-4.1-nano',
+        messages: [{ role: 'system', content: prompt.system }, { role: 'user', content: prompt.user }],
+        maxTokens: 150, temperature: 0,
+      });
+      await recordActualSpend({
+        db, nowMs,
+        actualCostUsd: actualEnrichmentCostUsd({ promptTokens: spamResult.promptTokens, completionTokens: spamResult.completionTokens }),
+      });
+      const verdict = parseSpamVerdict(spamResult.text);
+      const action = decideSpamAction(verdict);
+
+      if (action === 'archive') {
+        const messageRef = db.collection(INBOX_COLLECTION).doc(messageDocId);
+        const nowIso = new Date().toISOString();
+        await db.runTransaction(async (tx) => {
+          tx.set(messageRef, { status: 'archived' }, { merge: true });
+          writeSupportAudit(tx, db, {
+            action: 'support.inbox.status', actor: systemActor, entityId: messageDocId,
+            requestId: `jarvis-spam-${messageDocId}`,
+            beforeState: 'new', afterState: 'archived',
+            reason: `Jarvis auto-archived spam: ${verdict?.reason ?? 'unknown'}`,
+            timestamp: nowIso,
+          });
+        });
+        logger.info('support_inbox_triage: archived spam', { messageDocId, confidence: verdict?.confidence });
+        return;
+      }
+
+      // Не спам (или сомнительно) — готовим черновик и уведомляем владельца.
+      const cfg = await resolveJobConfig(db, 'support');
+      let draftReply: string | null = null;
+      if (hasUsableBody(doc)) {
+        try {
+          assertJobEnabled(cfg, 'support');
+          draftReply = await generateDraftForDoc(apiKey, cfg.model, doc);
+          await saveGeneratedSupportDraft(db, messageDocId, draftReply, systemActor, `jarvis-draft-${messageDocId}`);
+        } catch (error) {
+          logger.warn('support_inbox_triage: draft generation failed', error);
+        }
+      }
+
+      const text = buildNewMailAlertText({
+        fromEmail: doc.fromEmail, subject: doc.subject, bodyText: doc.bodyText, draftReply,
+      });
+      await sendTelegramAlert(ADMIN_ALERT_BOT_TOKEN.value(), text);
+    } catch (error) {
+      // Триаж не должен молча проглотить письмо: любая непредвиденная ошибка —
+      // отправляем как есть, без черновика, лучше лишнее уведомление, чем тишина.
+      logger.error('support_inbox_triage: unexpected failure, notifying plainly', error);
+      const text = buildNewMailAlertText({
+        fromEmail: doc.fromEmail, subject: doc.subject, bodyText: doc.bodyText, draftReply: null,
+      });
+      await sendTelegramAlert(ADMIN_ALERT_BOT_TOKEN.value(), text).catch(() => undefined);
+    }
   },
 );
 

@@ -409,6 +409,7 @@ export {
   adminSupportResolveReplyDelivery,
   adminSupportSaveSignature,
   adminSupportSetStatus,
+  supportInboxOnNewMail,
 } from './support_inbox';
 
 // ── Ответы на репорты: персональное уведомление + клейм осколков + ИИ-черновик ─

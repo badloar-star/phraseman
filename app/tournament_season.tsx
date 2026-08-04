@@ -35,6 +35,8 @@ import {
   type SeasonStandings,
 } from './tournament_client';
 import { placeColor, radius, type, useTournamentPalette, type TournamentPalette} from '../components/tournament/tournament_theme';
+import { triLang, type Lang } from '../constants/i18n';
+import { useLang } from '../components/LangContext';
 
 /**
  * зачем 2026-07-27: экран показывал ВЫДУМАННЫЙ топ-8 (КубокБарон, МолнияPRO…)
@@ -54,6 +56,7 @@ function avatarFor(entry: SeasonEntry): string {
 }
 
 export default function TournamentSeasonScreen() {
+  const { lang } = useLang();
   const P = useTournamentPalette();
   const styles = React.useMemo(() => makeStyles(P), [P]);
   const router = useRouter();
@@ -98,7 +101,7 @@ export default function TournamentSeasonScreen() {
    */
   const [selectedPlayer, setSelectedPlayer] = useState<PlayerInfo | null>(null);
   const [myProfile, setMyProfile] = useState<{ name: string; avatar: string; frame: string; totalXP: number }>(
-    () => ({ name: 'Я', avatar: '1', frame: '', totalXP: 0 }),
+    () => ({ name: triLang(lang, { ru: 'Я', uk: 'Я', es: 'Yo', 'pt-BR': 'Eu', vi: 'Tôi', id: 'Saya', tr: 'Ben', pl: 'Ja' }), avatar: '1', frame: '', totalXP: 0 }),
   );
 
   useEffect(() => {
@@ -110,7 +113,7 @@ export default function TournamentSeasonScreen() {
         if (!alive) return;
         const map = new Map(pairs.map(([key, value]) => [key, value ?? '']));
         setMyProfile({
-          name: (map.get('user_name') ?? '').trim() || 'Я',
+          name: (map.get('user_name') ?? '').trim() || triLang(lang, { ru: 'Я', uk: 'Я', es: 'Yo', 'pt-BR': 'Eu', vi: 'Tôi', id: 'Saya', tr: 'Ben', pl: 'Ja' }),
           avatar: (map.get('user_avatar') ?? '').trim() || '1',
           frame: (map.get('user_frame') ?? '').trim(),
           totalXP: Number(map.get('user_total_xp') ?? 0) || 0,
@@ -118,7 +121,10 @@ export default function TournamentSeasonScreen() {
       })
       .catch(() => {});
     return () => { alive = false; };
-  }, []);
+    // зачем: fallback-имя «Я» зависит от lang — без него в deps смена языка,
+    // пока экран остаётся смонтированным, не долетала бы до fallback (тот же
+    // класс бага, что уже был исправлен в home.tsx/streak_stats.tsx).
+  }, [lang]);
 
   const openPlayer = useCallback((entry: SeasonEntry) => {
     setSelectedPlayer({
@@ -163,24 +169,26 @@ export default function TournamentSeasonScreen() {
           <TapScale
             onPress={goBack}
             accessibilityRole="button"
-            accessibilityLabel="Назад"
+            accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
             style={styles.backButton}
           >
             <Ionicons name="chevron-back" size={24} color={P.text} />
           </TapScale>
-          <Text style={styles.title}>Сезон</Text>
+          <Text style={styles.title}>{triLang(lang, { ru: 'Сезон', uk: 'Сезон', es: 'Temporada', 'pt-BR': 'Temporada', vi: 'Mùa giải', id: 'Musim', tr: 'Sezon', pl: 'Sezon' })}</Text>
         </View>
 
         {/* Отсчёт до сброса */}
         <Card tone="elev" pad={22}>
           <Text style={[styles.resetKicker, urgent && { color: P.danger }]}>
-            {urgent ? 'Сезон почти закончился' : 'До конца сезона'}
+            {urgent
+                ? triLang(lang, { ru: 'Сезон почти закончился', uk: 'Сезон майже закінчився', es: 'La temporada casi termina', 'pt-BR': 'A temporada está quase acabando', vi: 'Mùa giải sắp kết thúc', id: 'Musim hampir berakhir', tr: 'Sezon neredeyse bitti', pl: 'Sezon prawie się skończył' })
+                : triLang(lang, { ru: 'До конца сезона', uk: 'До кінця сезону', es: 'Hasta el fin de temporada', 'pt-BR': 'Até o fim da temporada', vi: 'Đến khi kết thúc mùa giải', id: 'Menuju akhir musim', tr: 'Sezon sonuna kadar', pl: 'Do końca sezonu' })}
           </Text>
           <View style={styles.resetTimer}>
             <TimeLeft seconds={secondsToReset} size={44} color={urgent ? P.danger : P.text} />
           </View>
           {toPrize > 0 ? (
-            <Text style={styles.resetHint}>До призовой тройки — {toPrize} очков</Text>
+            <Text style={styles.resetHint}>{triLang(lang, { ru: `До призовой тройки — ${toPrize} очков`, uk: `До призової трійки — ${toPrize} очок`, es: `Para el podio: ${toPrize} puntos`, 'pt-BR': `Para o pódio: ${toPrize} pontos`, vi: `Còn ${toPrize} điểm để vào top 3`, id: `${toPrize} poin lagi menuju 3 besar`, tr: `Podyuma ${toPrize} puan kaldı`, pl: `Do podium — ${toPrize} punktów` })}</Text>
           ) : null}
         </Card>
 
@@ -196,6 +204,7 @@ export default function TournamentSeasonScreen() {
                   row={row}
                   place={index + 1}
                   isYou={row.uid === me?.uid}
+                  lang={lang}
                   // Свою строку открывать незачем — это профиль игрока, а не свой.
                   onPress={row.uid === me?.uid ? undefined : openPlayer}
                 />
@@ -207,18 +216,17 @@ export default function TournamentSeasonScreen() {
           // computePlacements), поэтому в начале недели таблица ЧЕСТНО пуста.
           // Пустое состояние обязано учить интерфейсу, а не говорить «пусто».
           <Card tone="elev" pad={22}>
-            <FlowText testID="season-empty-title" provenance="authored" style={styles.emptyTitle}>Неделя только началась</FlowText>
+            <FlowText testID="season-empty-title" provenance="authored" style={styles.emptyTitle}>{triLang(lang, { ru: 'Неделя только началась', uk: 'Тиждень тільки почався', es: 'La semana recién empieza', 'pt-BR': 'A semana está apenas começando', vi: 'Tuần mới vừa bắt đầu', id: 'Minggu baru saja dimulai', tr: 'Hafta yeni başladı', pl: 'Tydzień dopiero się zaczął' })}</FlowText>
             <Text style={styles.emptyText}>
-              Таблица пока пустая — и это ваш шанс. Сыграйте турнир, и ваше имя
-              окажется здесь первым.
+              {triLang(lang, { ru: 'Таблица пока пустая — и это ваш шанс. Сыграйте турнир, и ваше имя окажется здесь первым.', uk: 'Таблиця поки порожня — і це ваш шанс. Зіграйте турнір, і ваше ім’я опиниться тут першим.', es: 'La tabla está vacía por ahora, y esa es tu oportunidad. Juega un torneo y tu nombre será el primero aquí.', 'pt-BR': 'A tabela ainda está vazia — e essa é a sua chance. Jogue um torneio e seu nome será o primeiro aqui.', vi: 'Bảng xếp hạng hiện đang trống — đây là cơ hội của bạn. Chơi một giải đấu và tên bạn sẽ là người đầu tiên xuất hiện.', id: 'Papan peringkat masih kosong — ini kesempatanmu. Mainkan turnamen dan namamu akan menjadi yang pertama di sini.', tr: 'Tablo şu an boş — bu senin şansın. Bir turnuva oyna, adın burada ilk sırada olsun.', pl: 'Tabela jest jeszcze pusta — to twoja szansa. Zagraj w turniej, a twoje imię pojawi się tu jako pierwsze.' })}
             </Text>
             <TapScale
               onPress={goBack}
               accessibilityRole="button"
-              accessibilityLabel="К турнирам"
+              accessibilityLabel={triLang(lang, { ru: 'К турнирам', uk: 'До турнірів', es: 'A los torneos', 'pt-BR': 'Para os torneios', vi: 'Đến giải đấu', id: 'Ke turnamen', tr: 'Turnuvalara git', pl: 'Do turniejów' })}
               style={styles.emptyCta}
             >
-              <FlowText testID="season-empty-cta" provenance="authored" style={styles.emptyCtaText}>К турнирам</FlowText>
+              <FlowText testID="season-empty-cta" provenance="authored" style={styles.emptyCtaText}>{triLang(lang, { ru: 'К турнирам', uk: 'До турнірів', es: 'A los torneos', 'pt-BR': 'Para os torneios', vi: 'Đến giải đấu', id: 'Ke turnamen', tr: 'Turnuvalara git', pl: 'Do turniejów' })}</FlowText>
             </TapScale>
           </Card>
         ) : (
@@ -234,7 +242,7 @@ export default function TournamentSeasonScreen() {
             видит себя, не прокручивая таблицу до конца. */}
         {pinnedMe ? (
           <View style={styles.pinnedWrap}>
-            <SeasonRowItem row={pinnedMe} place={0} isYou />
+            <SeasonRowItem row={pinnedMe} place={0} isYou lang={lang} />
           </View>
         ) : null}
       </ScrollView>
@@ -256,14 +264,24 @@ export default function TournamentSeasonScreen() {
 }
 
 const SeasonRowItem = memo(function SeasonRowItem({
-  row, place, isYou, onPress,
-}: { row: SeasonEntry; place: number; isYou?: boolean; onPress?: (row: SeasonEntry) => void }) {
+  row, place, isYou, onPress, lang,
+}: { row: SeasonEntry; place: number; isYou?: boolean; onPress?: (row: SeasonEntry) => void; lang: Lang }) {
   const P = useTournamentPalette();
   const styles = React.useMemo(() => makeStyles(P), [P]);
   const handlePress = useCallback(() => onPress?.(row), [onPress, row]);
+  const youWord = triLang(lang, { ru: 'Вы', uk: 'Ви', es: 'Tú', 'pt-BR': 'Você', vi: 'Bạn', id: 'Anda', tr: 'Sen', pl: 'Ty' });
   const accessibilityLabel =
     // Читалке нужна связная фраза: колонки по отдельности звучат как набор цифр.
-    `${place > 0 ? `Место ${place}. ` : ''}${isYou ? 'Вы' : row.name}, ${row.points} очков${onPress ? '. Открыть карточку' : ''}`;
+    triLang(lang, {
+        ru: `${place > 0 ? `Место ${place}. ` : ''}${isYou ? youWord : row.name}, ${row.points} очков${onPress ? '. Открыть карточку' : ''}`,
+        uk: `${place > 0 ? `Місце ${place}. ` : ''}${isYou ? youWord : row.name}, ${row.points} очок${onPress ? '. Відкрити картку' : ''}`,
+        es: `${place > 0 ? `Puesto ${place}. ` : ''}${isYou ? youWord : row.name}, ${row.points} puntos${onPress ? '. Abrir tarjeta' : ''}`,
+        'pt-BR': `${place > 0 ? `Posição ${place}. ` : ''}${isYou ? youWord : row.name}, ${row.points} pontos${onPress ? '. Abrir cartão' : ''}`,
+        vi: `${place > 0 ? `Hạng ${place}. ` : ''}${isYou ? youWord : row.name}, ${row.points} điểm${onPress ? '. Mở hồ sơ' : ''}`,
+        id: `${place > 0 ? `Peringkat ${place}. ` : ''}${isYou ? youWord : row.name}, ${row.points} poin${onPress ? '. Buka kartu' : ''}`,
+        tr: `${place > 0 ? `${place}. sıra. ` : ''}${isYou ? youWord : row.name}, ${row.points} puan${onPress ? '. Kartı aç' : ''}`,
+        pl: `${place > 0 ? `Miejsce ${place}. ` : ''}${isYou ? youWord : row.name}, ${row.points} punktów${onPress ? '. Otwórz kartę' : ''}`,
+    });
 
   // зачем 2026-07-27: строка РИСУЕТСЯ этим View, а не самим TapScale. TapScale
   // кладёт детей в свой внутренний Animated.View и вешает style только на
@@ -281,7 +299,7 @@ const SeasonRowItem = memo(function SeasonRowItem({
       </View>
       {/* eslint-disable-next-line text-integrity/no-unsafe-text-truncation -- ник в строке рейтинга: перенос сломал бы фиксированную высоту ряда (карточка 56) */}
       <Text style={[styles.name, isYou && { color: P.accent }]} numberOfLines={1}>
-        {isYou ? 'Вы' : row.name}
+        {isYou ? youWord : row.name}
       </Text>
       <FlowText testID="season-row-points" provenance="authored" style={styles.points}>{row.points}</FlowText>
     </View>

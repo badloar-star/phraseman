@@ -1,85 +1,77 @@
-# Season Pass Theme Backgrounds — Design
+# Season Pass Fixed Theme Backgrounds — Design
 
 Date: 2026-08-04
 Status: approved by owner
 
 ## Goal
 
-Give the Season Rewards track a unique background for every interface theme. The background must make the left lane read as the Free side and the right lane read as the Plus side while following the existing uneven central spine exactly.
+Give the Season Rewards screen one high-detail, continuous, fixed background for every interface theme. The reward list scrolls above the artwork; the artwork never tiles, repeats, jumps, or exposes a transition seam.
 
 ## Scope
 
 - Target screen: `app/season_pass.tsx`.
-- Preserve all 60 rewards, their order, cards, labels, thresholds, claim behavior, purchase behavior, scrolling, and progress rendering.
-- Add one unique generated background kit for every `ThemeMode`: `dark`, `gold`, `coral`, `minimalDark`, `midnight`, `ember`, `aurora`, `volt`, `business`, `businessLight`, `candyBlue`, `indigo`, and `sagePorcelain`.
-- Do not reuse or alias another theme's background.
+- Preserve all rewards, cards, labels, thresholds, claims, purchase behavior, scrolling, modals, and accessibility behavior.
+- Replace the existing 26 scrolling Free/Plus tiles with 13 newly generated portrait backgrounds: one distinct asset for every `ThemeMode`.
+- The supported modes are `dark`, `gold`, `coral`, `minimalDark`, `midnight`, `ember`, `aurora`, `volt`, `business`, `businessLight`, `candyBlue`, `indigo`, and `sagePorcelain`.
+- No theme may reuse or alias another theme's background.
 
-## Existing Geometry Contract
+## Visual Contract
 
-The divider is the existing season spine, not a new decorative approximation:
+Each asset is one unified portrait composition:
 
-- row height: 142 px;
-- central node column: 56 px;
-- spine center: the physical horizontal center of the track;
-- maximum lateral wave amplitude: 8 px;
-- curve: the cubic Bézier path returned by `spineTrackPath()`;
-- track length: 60 rows, or 8520 px before overscan;
-- top overscan: `insets.top + 420`;
-- bottom overscan: 220 px.
+- Left / Free: quieter material, fewer highlights, restrained detail, and lower perceived value.
+- Right / Plus: richer material, premium lighting, denser but controlled detail, and gold-compatible highlights.
+- Center: a soft transition band with no hard raster seam. The live gold SVG spine sits over this band and remains the semantic boundary.
+- Top: enough calm contrast for the status bar and season header.
+- Whole canvas: continuous material and lighting with no horizontal bands, panel borders, tile edges, repeated motifs, or abrupt texture changes.
+- No text, letters, numbers, logos, badges, controls, fake cards, or baked divider line.
 
-The raster art must not contain a baked-in divider. A baked curve would drift on different device widths and would not remain synchronized with the scroll coordinate system. The runtime uses the same path data as the visible spine to define the semantic boundary between the two visual zones.
-
-## Visual Direction
-
-Each theme kit is a two-zone, text-free background:
-
-- Left / Free: restrained theme material, low-density particles, quieter lighting, modest reward motifs, and lower visual energy.
-- Right / Plus: richer material, brighter premium lighting, gold-compatible highlights, denser reward particles, crystals or treasure energy, and visibly higher perceived value.
-- Center: a calm transition area so the 56 px node column and the ±8 px spine remain legible.
-- No words, letters, numbers, logos, badges, UI controls, or fake reward cards in the generated raster.
-
-The art supports the existing cards rather than competing with them. Theme-aware overlays keep reward names, star thresholds, locks, and icons readable in both light and dark themes.
+The `ember` theme is explicitly non-volcanic: warm amber glass, dark plum, smoked bronze, and soft mineral light are allowed; fire, flames, lava, sparks, embers, magma, glowing cracks, and burnt landscapes are forbidden.
 
 ## Asset Contract
 
-- Static local WebP assets only.
-- Every file is referenced through a literal `require()` before it is accepted into `assets/images/**`.
-- All 13 theme keys have distinct files and distinct content hashes.
-- Generated sources and intermediate crops remain outside the bundled asset tree.
-- Final bundled images are compressed WebP; no speculative variants are shipped.
+- Source generation target: full portrait image, 1024 × 1536 or larger.
+- Final bundled asset: 1024 × 1536 WebP, high-quality compression (target quality 80–84).
+- One literal static `require()` per theme in `app/season_pass_theme_backgrounds.ts`.
+- Generated originals and QA sheets stay outside `assets/images/**`; only final compressed WebP files are bundled.
+- All 13 content hashes must be distinct.
+- No 2×2 atlases, quadrant crops, upscaled 512 px halves, or repeatable tiles.
+
+At a 390 px mobile viewport, the 1024 px source width provides more than 2.6 source pixels per logical point before device scaling, avoiding the previous low-resolution appearance.
 
 ## Rendering Architecture
 
-1. A typed theme-to-background registry returns the exact asset for the active `ThemeMode`.
-2. The background is mounted in the same FlatList coordinate system as the season spine.
-3. The Free and Plus visual zones are separated using geometry derived from the same `spineTrackPath()` inputs used by the visible line.
-4. The existing gray/gold progress spine remains on top and unchanged in behavior.
-5. Reward rows, hit targets, accessibility labels, header, purchase sheet, and modals remain above the decorative background.
-6. Decorative imagery is hidden from accessibility services and never intercepts touches.
+1. The registry returns one `ImageSourcePropType` for the active theme.
+2. One decorative React Native `Image` is mounted as an absolute-fill child of the screen root, before the `FlatList`.
+3. The image uses `resizeMode="cover"`, does not intercept touches, is hidden from accessibility, and remains fixed while the list scrolls.
+4. A restrained theme-color scrim may sit above the image when needed for header and label contrast.
+5. The long SVG track no longer contains image patterns, clip paths, or repeated raster fills. It keeps only the exact continuous gold spine and progress geometry above the fixed artwork.
+6. Reward content and all interactive UI remain above both decorative layers.
 
 ## Performance and Accessibility
 
-- Do not mount a generated image per reward card.
-- Reuse a bounded background surface or repeatable texture strategy instead of decoding a full 8520 px bitmap.
-- Keep the current 44 px minimum interactive targets and existing accessibility roles/labels.
-- Use theme-aware scrims where required so normal text retains at least 4.5:1 contrast.
-- The background has no semantic accessibility content.
+- Decode exactly one 1024 × 1536 WebP for the active theme, not one image per reward and not an 8520 px bitmap.
+- Theme switches replace the single image through the existing static registry.
+- Decorative image and scrim use `pointerEvents="none"` and are not announced by accessibility services.
+- Existing 44 px minimum touch targets and accessibility labels remain unchanged.
+- Cards retain opaque or translucent theme surfaces sufficient for readable text; the background never becomes the only indicator of Free versus Plus.
 
 ## Verification
 
-- Contract test covers all 13 `ThemeMode` keys with no fallback aliases.
-- Contract test proves all assets are statically required and files exist.
-- Hash check proves all 13 final backgrounds are distinct.
-- Existing spine continuity tests remain green.
-- Season pass source contract confirms the background is decorative, non-interactive, and rendered beneath the spine and reward content.
-- Focused TypeScript/test gates run without updating snapshots or rewriting source.
-- Visual inspection covers at least one dark theme, one light theme, one cinema theme, and both business themes at a narrow mobile width.
+- TDD contract first fails against the old `{ free, plus }` registry and SVG patterns.
+- Registry contract proves exactly 13 literal full-screen asset requires with no aliases.
+- Image metadata contract proves WebP, 1024 × 1536, bounded compressed size, and distinct hashes.
+- Screen contract proves the absolute image renders before `FlatList`, uses `resizeMode="cover"`, is non-interactive, and no longer uses SVG image patterns for the background.
+- Existing spine continuity tests prove the divider still extends through top and bottom overscan as one path.
+- Visual QA checks every theme at full size, with special rejection rules for seams, low-detail/upscaled appearance, text artifacts, and forbidden fire/lava imagery in `ember`.
 
 ## Acceptance Criteria
 
-1. The left side reads immediately as Free and the right side as Plus without relying only on the column labels.
-2. The visual boundary follows the existing uneven spine rather than a straight or baked raster split.
-3. Every interface theme has its own recognizable background.
-4. Reward cards and text remain legible and fully interactive.
-5. No existing season-pass functionality is removed or changed.
-6. Bundled assets are wired, compressed, unique, and free of unused source files.
+1. The artwork does not move when rewards scroll.
+2. No horizontal or central raster seam is visible anywhere on the screen.
+3. The background appears continuous from the first visible pixel to the last.
+4. Free reads calmer on the left and Plus reads richer on the right.
+5. All 13 themes have distinct, full-resolution artwork.
+6. `ember` contains no fire or lava family imagery.
+7. The continuous gold divider remains visible from the beginning to the end of the reward track.
+8. No existing season-pass functionality is removed.

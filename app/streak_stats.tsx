@@ -3150,6 +3150,17 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
     const [days, setDays] = useState<DayData[]>(() => labelCachedDayRows(_sc.days, wdays));
     const [allDays, setAllDays] = useState<DayData[]>(() => labelCachedDayRows(_sc.allDays, wdays));
     const [allTimeDays, setAllTimeDays] = useState<TimeDayData[]>(() => labelCachedTimeDayRows(_sc.allTimeDays, wdays));
+    // зачем: shortLabel («Ср», «Чт»...) «запекался» в состояние один раз и обновлялся
+    // только через useFocusEffect (уход с экрана и возврат). Если язык меняется, пока
+    // экран статистики остаётся смонтированным, дни недели оставались на старом языке —
+    // тот же класс бага, что и в home.tsx. Релейблим уже загруженные данные локально,
+    // без похода в сеть — дёшево и мгновенно.
+    useEffect(() => {
+        setDays((prev) => prev.map((row) => ({ ...row, shortLabel: wdays[new Date(`${row.date}T12:00:00`).getDay()] ?? row.shortLabel })));
+        setAllDays((prev) => prev.map((row) => ({ ...row, shortLabel: wdays[new Date(`${row.date}T12:00:00`).getDay()] ?? row.shortLabel })));
+        setAllTimeDays((prev) => prev.map((row) => ({ ...row, shortLabel: wdays[new Date(`${row.date}T12:00:00`).getDay()] ?? row.shortLabel })));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [lang]);
     const [totalStreak, setTotalStreak] = useState(_sc.totalStreak);
     const [bestStreak, setBestStreak] = useState(_sc.bestStreak);
     const [totalXP, setTotalXP] = useState(_sc.totalXP);

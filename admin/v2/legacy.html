@@ -9903,6 +9903,10 @@
        2026-08-03 — Джарвис теряется среди других переключателей, это
        центральная система мониторинга и заслуживает своё место в навигации. -->
   <div class="tab" onclick="switchTab('jarvis')" style="background:rgba(167,139,250,0.14);border:1px solid rgba(167,139,250,0.4);color:#a78bfa;font-weight:700">🧠 Джарвис</div>
+  <!-- зачем отдельно от вкладки «Джарвис»: владелец 2026-08-04 — находки
+       видны секунду в Telegram и негде их читать полностью. «Планы» —
+       постоянный архив, живёт своей жизнью независимо от уведомлений. -->
+  <div class="tab" onclick="switchTab('jarvis-plans')" style="background:rgba(96,165,250,0.14);border:1px solid rgba(96,165,250,0.4);color:#60a5fa;font-weight:700">📋 Планы</div>
   <div class="tab" onclick="switchTab('overview')" data-i18n-es="Overview">Overview</div>
   <div class="tab" onclick="switchTab('daily-digest')" title="Сводка от прошлого открытия: сравнения, продуктовые выводы, риски и действия" style="background:rgba(139,124,255,0.14);border:1px solid rgba(139,124,255,0.4);color:#c4b5fd;font-weight:700">🌅 Дайджест</div>
   <div class="tab" onclick="switchTab('mod-queue')" style="background:rgba(108,71,255,0.12);border:1px solid rgba(108,71,255,0.35);color:#c4b5fd;font-weight:700">🛡 Очередь</div>
@@ -10560,6 +10564,45 @@
 
     <div id="jarvis-decisions" style="margin-top:14px;display:flex;flex-direction:column;gap:10px"></div>
     <div id="jarvis-audit-log" style="margin-top:10px;display:none;flex-direction:column;gap:6px"></div>
+  </div>
+</div>
+
+<!-- JARVIS PLANS TAB — постоянный архив находок, независимо от Telegram
+     (владелец 2026-08-04). -->
+<div id="tab-jarvis-plans" class="reports-tab">
+  <section class="admin-overview-hero" style="margin-bottom:18px">
+    <div>
+      <div class="admin-overview-title">📋 Планы</div>
+      <div class="admin-overview-sub" style="color:#9ca3af;font-size:13px;margin-top:4px">
+        Все находки Джарвиса навсегда — читаются здесь полностью, независимо от того, что пришло в Telegram.
+      </div>
+    </div>
+  </section>
+
+  <div class="cp-card">
+    <div class="cp-card-title" style="color:#60a5fa">📋 Планы Джарвиса</div>
+    <div class="cp-card-sub">
+      Каждая находка сохраняется здесь навсегда. Помечайте решённые, архивируйте неактуальные,
+      копируйте текст одним кликом — для себя или чтобы переслать разработчику.
+    </div>
+    <div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:8px;align-items:center">
+      <span id="jarvis-plans-status" class="cp-status-chip">Загрузка…</span>
+      <button type="button" class="cp-btn" onclick="loadJarvisPlans(true)" style="background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px">🔄 Обновить</button>
+      <!-- зачем «скопировать все» отдельной кнопкой: владелец 2026-08-04 —
+           хочет разом переслать всю сводку разработчику/себе в заметки,
+           не копируя план за планом. -->
+      <button type="button" class="cp-btn" onclick="copyAllJarvisPlans()" style="background:#1f2937;border:1px solid #374151;color:#a1a1aa;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px">📋 Скопировать все</button>
+    </div>
+
+    <div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:11px">
+      <span style="color:#6b7280">Показать:</span>
+      <button type="button" class="jf-plans-filter-btn" data-status="open" onclick="renderFilteredJarvisPlans('open')" style="background:none;border:none;color:#e2e8f0;cursor:pointer;padding:3px 6px">Открытые</button>
+      <button type="button" class="jf-plans-filter-btn" data-status="resolved" onclick="renderFilteredJarvisPlans('resolved')" style="background:none;border:none;color:#4ade80;cursor:pointer;padding:3px 6px">Решённые</button>
+      <button type="button" class="jf-plans-filter-btn" data-status="archived" onclick="renderFilteredJarvisPlans('archived')" style="background:none;border:none;color:#94a3b8;cursor:pointer;padding:3px 6px">Архив</button>
+      <button type="button" class="jf-plans-filter-btn" data-status="" onclick="renderFilteredJarvisPlans(null)" style="background:none;border:none;color:#6b7280;cursor:pointer;padding:3px 6px">Все</button>
+    </div>
+
+    <div id="jarvis-plans-list" style="margin-top:14px;display:flex;flex-direction:column;gap:10px"></div>
   </div>
 </div>
 
@@ -14159,6 +14202,21 @@
     }
     return _fnJarvisGetBusinessTier;
   }
+  let _fnJarvisGetPlans = null;
+  function getJarvisGetPlansCallable() {
+    if (!_fnJarvisGetPlans) _fnJarvisGetPlans = httpsCallable(functionsUs, 'jarvisGetPlans');
+    return _fnJarvisGetPlans;
+  }
+  let _fnJarvisSetPlanStatus = null;
+  function getJarvisSetPlanStatusCallable() {
+    if (!_fnJarvisSetPlanStatus) _fnJarvisSetPlanStatus = httpsCallable(functionsUs, 'jarvisSetPlanStatus');
+    return _fnJarvisSetPlanStatus;
+  }
+  let _fnJarvisDeletePlan = null;
+  function getJarvisDeletePlanCallable() {
+    if (!_fnJarvisDeletePlan) _fnJarvisDeletePlan = httpsCallable(functionsUs, 'jarvisDeletePlan');
+    return _fnJarvisDeletePlan;
+  }
   let _fnJarvisRunBusinessTierBackfill = null;
   function getJarvisRunBusinessTierBackfillCallable() {
     if (!_fnJarvisRunBusinessTierBackfill) {
@@ -14253,7 +14311,7 @@
   }
 
   const ADMIN_DEFAULT_TAB = 'control-panel';
-  const ADMIN_TAB_KEYS = ['control-panel','jarvis','onboarding-screens','onboarding-sources','safety-flags','age-consent','compliance-radar','daily-digest','gmail-support','overview','mod-queue','ideas','analytics','openai-budget','app-health','users','testers','reports','emails','website-inbox','user-reports','explain-reports','explain-cache','compass','ban-list','premium','vip','plus-radar','promo-codes','gift-certificates','cancel-surveys','surveys','review-promo','referrals','app-messages','helpers-board','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','push-notify','clubs','tournaments','archive','audit','ops-log','remote-config','paywall-ab','v2-generator','alerts'];
+  const ADMIN_TAB_KEYS = ['control-panel','jarvis','jarvis-plans','onboarding-screens','onboarding-sources','safety-flags','age-consent','compliance-radar','daily-digest','gmail-support','overview','mod-queue','ideas','analytics','openai-budget','app-health','users','testers','reports','emails','website-inbox','user-reports','explain-reports','explain-cache','compass','ban-list','premium','vip','plus-radar','promo-codes','gift-certificates','cancel-surveys','surveys','review-promo','referrals','app-messages','helpers-board','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','push-notify','clubs','tournaments','archive','audit','ops-log','remote-config','paywall-ab','v2-generator','alerts'];
 
   function isAdminSwitchableTab(tab) {
     return ADMIN_TAB_KEYS.includes(tab) && tab !== 'testers';
@@ -27164,6 +27222,145 @@
       btn.style.opacity = isActive ? '1' : '.55';
       btn.style.fontWeight = isActive ? '800' : '600';
     });
+  };
+
+  // ── Раздел «Планы» — постоянный архив находок Джарвиса (владелец 2026-08-04) ──
+  let _jarvisPlansAll = [];
+  let _jarvisPlansFilter = 'open';
+
+  function jarvisPlanText(plan) {
+    // зачем текстовая версия отдельно от HTML-рендера: копирование должно
+    // давать чистый читаемый текст (для пересылки разработчику/себе в
+    // заметки), а не HTML-разметку карточки.
+    const meta = JF_DEPARTMENT_META[plan.department] || { title: plan.department };
+    const lines = [
+      meta.title + ' — ' + plan.question,
+      '',
+      'Находка: ' + plan.finding,
+      'Гипотеза: ' + plan.hypothesis,
+      'Рекомендация: ' + plan.recommendation,
+      'Риск: ' + plan.risk,
+      'Как проверить успех: ' + plan.successMetric,
+      'Откат: ' + plan.rollback,
+    ];
+    if (plan.narrative) lines.push('', plan.narrative);
+    return lines.join('\n');
+  }
+
+  function jarvisPlanStatusLabel(status) {
+    if (status === 'resolved') return 'Решено';
+    if (status === 'archived') return 'В архиве';
+    return 'Открыто';
+  }
+
+  function renderJarvisPlanCard(plan) {
+    const meta = JF_DEPARTMENT_META[plan.department] || { title: plan.department, accentRgb: '148,163,184' };
+    const box = document.createElement('div');
+    box.style.cssText = 'padding:12px 14px;border-radius:10px;background:rgba(' + meta.accentRgb + ',0.06);';
+    const detailsId = 'jp-details-' + plan.id;
+    box.innerHTML =
+      '<div style="display:flex;align-items:flex-start;gap:8px;flex-wrap:wrap;cursor:pointer" onclick="toggleJarvisPlanDetails(\'' + plan.id + '\')">' +
+        '<span class="cp-status-chip" data-type="info" style="background:rgba(' + meta.accentRgb + ',0.16);color:rgb(' + meta.accentRgb + ')">' + escapeHtml(meta.title) + '</span>' +
+        '<div style="font-weight:800;color:#e2e8f0;font-size:13.5px;flex:1;min-width:0">' + escapeHtml(plan.question) + '</div>' +
+        '<span class="cp-status-chip" data-type="' + (plan.status === 'resolved' ? 'success' : plan.status === 'archived' ? '' : 'info') + '">' + jarvisPlanStatusLabel(plan.status) + '</span>' +
+      '</div>' +
+      '<div style="margin-top:6px;color:#cbd5e1;font-size:12.5px;line-height:1.5">' + escapeHtml(plan.finding) + '</div>' +
+      '<div id="' + detailsId + '" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.06)">' +
+        '<div style="color:#93c5fd;font-size:12.5px;margin-bottom:6px"><b>Гипотеза:</b> ' + escapeHtml(plan.hypothesis) + '</div>' +
+        '<div style="color:#93c5fd;font-size:12.5px;margin-bottom:6px"><b>Рекомендация:</b> ' + escapeHtml(plan.recommendation) + '</div>' +
+        '<div style="color:#fca5a5;font-size:12.5px;margin-bottom:6px"><b>Риск:</b> ' + escapeHtml(plan.risk) + '</div>' +
+        '<div style="color:#a1a1aa;font-size:12.5px;margin-bottom:6px"><b>Как понять, что помогло:</b> ' + escapeHtml(plan.successMetric) + '</div>' +
+        '<div style="color:#a1a1aa;font-size:12.5px;margin-bottom:6px"><b>Откат:</b> ' + escapeHtml(plan.rollback) + '</div>' +
+        (plan.narrative ? '<div style="margin-top:8px;padding:10px;border-radius:8px;background:rgba(255,255,255,0.03);color:#e2e8f0;font-size:12.5px;line-height:1.55">' + escapeHtml(plan.narrative) + '</div>' : '') +
+        '<div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:8px">' +
+          '<button type="button" class="cp-btn" onclick="copyOneJarvisPlan(\'' + plan.id + '\')" style="background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:7px 12px;border-radius:7px;cursor:pointer;font-size:12px">📋 Скопировать</button>' +
+          (plan.status !== 'resolved' ? '<button type="button" class="cp-btn" onclick="setJarvisPlanStatus(\'' + plan.id + '\',\'resolved\')" style="background:#1f2937;border:1px solid #374151;color:#4ade80;padding:7px 12px;border-radius:7px;cursor:pointer;font-size:12px">✅ Решено</button>' : '') +
+          (plan.status !== 'archived' ? '<button type="button" class="cp-btn" onclick="setJarvisPlanStatus(\'' + plan.id + '\',\'archived\')" style="background:#1f2937;border:1px solid #374151;color:#94a3b8;padding:7px 12px;border-radius:7px;cursor:pointer;font-size:12px">🗄 Архивировать</button>' : '') +
+          (plan.status !== 'open' ? '<button type="button" class="cp-btn" onclick="setJarvisPlanStatus(\'' + plan.id + '\',\'open\')" style="background:#1f2937;border:1px solid #374151;color:#60a5fa;padding:7px 12px;border-radius:7px;cursor:pointer;font-size:12px">↩ Вернуть в открытые</button>' : '') +
+          '<button type="button" class="cp-btn" onclick="deleteJarvisPlan(\'' + plan.id + '\')" style="background:#1f2937;border:1px solid #374151;color:#f87171;padding:7px 12px;border-radius:7px;cursor:pointer;font-size:12px">🗑 Удалить</button>' +
+        '</div>' +
+      '</div>' +
+      '<div style="margin-top:6px;font-size:11px;color:#6b7280">Нажмите, чтобы развернуть полностью</div>';
+    return box;
+  }
+
+  window.toggleJarvisPlanDetails = function(id) {
+    const el = document.getElementById('jp-details-' + id);
+    if (el) el.style.display = el.style.display === 'none' ? 'block' : 'none';
+  };
+
+  window.renderFilteredJarvisPlans = function(nextFilter) {
+    _jarvisPlansFilter = nextFilter;
+    const container = document.getElementById('jarvis-plans-list');
+    if (!container) return;
+    container.innerHTML = '';
+    const shown = _jarvisPlansFilter ? _jarvisPlansAll.filter((p) => p.status === _jarvisPlansFilter) : _jarvisPlansAll;
+    if (!shown.length) {
+      container.innerHTML = '<div style="color:#6b7280;font-size:12px;padding:6px 2px">Ничего нет в этом разделе.</div>';
+    } else {
+      shown.forEach((plan) => container.appendChild(renderJarvisPlanCard(plan)));
+    }
+    document.querySelectorAll('.jf-plans-filter-btn').forEach((btn) => {
+      const isActive = (btn.dataset.status || null) === _jarvisPlansFilter;
+      btn.style.opacity = isActive ? '1' : '.55';
+      btn.style.fontWeight = isActive ? '800' : '600';
+    });
+  };
+
+  window.loadJarvisPlans = async function(manualRefresh) {
+    jfSetStatusChip('jarvis-plans-status', 'loading', manualRefresh ? 'Обновляем…' : 'Загрузка…');
+    try {
+      const result = await getJarvisGetPlansCallable()({});
+      _jarvisPlansAll = (result.data && result.data.plans) || [];
+      // зачем сортировать по updatedAtMs desc: свежие находки должны быть
+      // видны первыми, а не потеряны среди старых решённых записей.
+      _jarvisPlansAll.sort((a, b) => (b.updatedAtMs || 0) - (a.updatedAtMs || 0));
+      window.renderFilteredJarvisPlans(_jarvisPlansFilter);
+      jfSetStatusChip('jarvis-plans-status', 'success', 'Загружено · ' + _jarvisPlansAll.length + ' планов');
+    } catch (e) {
+      jfSetStatusChip('jarvis-plans-status', 'error', 'Ошибка: ' + (e && e.message ? e.message : e));
+    }
+  };
+
+  window.copyOneJarvisPlan = function(id) {
+    const plan = _jarvisPlansAll.find((p) => p.id === id);
+    if (!plan) return;
+    navigator.clipboard.writeText(jarvisPlanText(plan))
+      .then(() => showToast('Скопировано', 'ok'))
+      .catch(() => showToast('Не удалось скопировать', 'err'));
+  };
+
+  window.copyAllJarvisPlans = function() {
+    const shown = _jarvisPlansFilter ? _jarvisPlansAll.filter((p) => p.status === _jarvisPlansFilter) : _jarvisPlansAll;
+    if (!shown.length) { showToast('Нечего копировать', 'err'); return; }
+    const text = shown.map(jarvisPlanText).join('\n\n───────────────\n\n');
+    navigator.clipboard.writeText(text)
+      .then(() => showToast('Скопировано ' + shown.length + ' планов', 'ok'))
+      .catch(() => showToast('Не удалось скопировать', 'err'));
+  };
+
+  window.setJarvisPlanStatus = async function(id, status) {
+    try {
+      await getJarvisSetPlanStatusCallable()({ id, status });
+      const plan = _jarvisPlansAll.find((p) => p.id === id);
+      if (plan) plan.status = status;
+      window.renderFilteredJarvisPlans(_jarvisPlansFilter);
+      showToast('Готово', 'ok');
+    } catch (e) {
+      showToast('Ошибка: ' + (e && e.message ? e.message : e), 'err');
+    }
+  };
+
+  window.deleteJarvisPlan = async function(id) {
+    if (!window.confirm('Удалить этот план навсегда?')) return;
+    try {
+      await getJarvisDeletePlanCallable()({ id });
+      _jarvisPlansAll = _jarvisPlansAll.filter((p) => p.id !== id);
+      window.renderFilteredJarvisPlans(_jarvisPlansFilter);
+      showToast('Удалено', 'ok');
+    } catch (e) {
+      showToast('Ошибка: ' + (e && e.message ? e.message : e), 'err');
+    }
   };
 
   const JF_DEPARTMENT_META = {

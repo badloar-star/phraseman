@@ -693,10 +693,17 @@ export default function SeasonPassScreen() {
     <View style={{ height: 0, overflow: 'visible' }} pointerEvents="none">
       <View style={{ flexDirection: 'row', gap: 8, paddingHorizontal: 14 }}>
         <View style={{ flex: 1 }} />
+        {/* зачем 2026-08-04: полотно поднято на величину верхнего оверскана
+            отрицательным marginTop, а его viewBox начинается в том же
+            отрицательном Y. Две величины гасят друг друга: точка Y=0 пути
+            (первый узел) остаётся ровно там, где была до правки, а всё, что
+            выше неё, рисуется поверх шапки и уходит за верх экрана. Так линия
+            «приходит сверху», не сдвинув ни одной награды. */}
         <Svg
           width={NODE_COLUMN_WIDTH}
-          height={spineTrackHeight}
-          viewBox={`0 0 ${NODE_COLUMN_WIDTH} ${spineTrackHeight}`}
+          height={spineCanvasHeight}
+          viewBox={`0 ${-spineOverscanTop} ${NODE_COLUMN_WIDTH} ${spineCanvasHeight}`}
+          style={{ marginTop: -spineOverscanTop }}
         >
           <Path d={spineGrayPath} stroke={t.bgSurface} strokeWidth={SPINE_WIDTH} strokeLinecap="round" fill="none" />
           {spineGoldPath ? (
@@ -706,7 +713,7 @@ export default function SeasonPassScreen() {
         <View style={{ flex: 1 }} />
       </View>
     </View>
-  ), [spineGoldPath, spineGrayPath, spineTrackHeight, t.bgSurface, t.gold]);
+  ), [spineCanvasHeight, spineGoldPath, spineGrayPath, spineOverscanTop, t.bgSurface, t.gold]);
 
   const header = useMemo(() => (
     <View style={{ paddingHorizontal: 16, paddingBottom: 6 }}>

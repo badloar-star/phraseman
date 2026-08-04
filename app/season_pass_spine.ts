@@ -142,11 +142,22 @@ export function spineTrackPath(
   cx: number,
   rowHeight: number,
   offsets: readonly number[],
+  overscanTop = 0,
+  overscanBottom = 0,
 ): string {
   if (offsets.length === 0) return '';
   const halfH = rowHeight / 2;
   const firstX = cx + offsets[0];
-  let d = `M ${firstX} 0`;
+  // зачем 2026-08-04 (владелец: «полоса не должна начинаться под словами
+  // ПРОПУСК, пусть уходит вверх за сейф-зону и вниз — будто бесконечная»):
+  // хребет начинался ровно в Y=0 первого узла, то есть у него был видимый
+  // ТОРЕЦ прямо под шапкой — линия читалась как отрезок с началом и концом,
+  // а не как дорожка, уходящая за экран. Оверскан — прямые продолжения в ТОМ
+  // ЖЕ X, что и крайние узлы: вверх из первого, вниз из последнего. Прямые, а
+  // не кривые, потому что за пределами дорожки нет узла, к которому изгибаться,
+  // и любая волна там читалась бы как ложный узел. X не меняется — контракт
+  // «линия не вылезает за колонку» остаётся выполнен по построению.
+  let d = overscanTop > 0 ? `M ${firstX} ${-overscanTop} L ${firstX} 0` : `M ${firstX} 0`;
   for (let i = 0; i < offsets.length; i += 1) {
     const top = i * rowHeight;
     const mid = cx + offsets[i];
@@ -155,6 +166,16 @@ export function spineTrackPath(
     const bottom = (i + 1) * rowHeight;
     d += ` C ${mid} ${top + halfH * 0.5}, ${mid} ${top + halfH * 0.5}, ${mid} ${top + halfH}`;
     d += ` C ${mid} ${top + halfH * 1.5}, ${control} ${top + halfH * 1.5}, ${control} ${bottom}`;
+  }
+  if (overscanBottom > 0) {
+    // Хвост вниз продолжается из ФАКТИЧЕСКОЙ конечной точки последнего
+    // сегмента (control последней строки), а не из cx + offsets[last]: иначе
+    // между кривой и хвостом был бы скачок вбок — ровно тот класс разрыва,
+    // который чинили выше.
+    const lastOffset = offsets[offsets.length - 1];
+    const lastX = cx + lastOffset;
+    const endY = offsets.length * rowHeight;
+    d += ` L ${lastX} ${endY + overscanBottom}`;
   }
   return d;
 }
@@ -165,18 +186,25 @@ export function spineTrackPath(
  * пройденного узла (0 = ничего не пройдено, узел 0 ещё не тронут).
  * Останавливается РОВНО в X узла reachedLevel (середина его строки) — та же
  * точка, где рисуется кружок уровня, а не на границе строки.
+ *
+ * зачем 2026-08-04: `overscanTop` повторяет верхний хвост серого пути. Золото
+ * лежит ПОВЕРХ серого и начинается в той же точке, поэтому без хвоста серый
+ * торчал бы над золотым на всю высоту оверскана — над шапкой висел бы тусклый
+ * огрызок. Нижнего хвоста здесь нет и быть не должно: золото обязано
+ * обрываться ровно на достигнутом уровне, это и есть индикатор прогресса.
  */
 export function spineTrackProgressPath(
   cx: number,
   rowHeight: number,
   offsets: readonly number[],
   reachedLevel: number,
+  overscanTop = 0,
 ): string {
   const lastIndex = Math.max(0, Math.min(reachedLevel, offsets.length - 1));
   if (reachedLevel <= 0 || offsets.length === 0) return '';
   const halfH = rowHeight / 2;
   const firstX = cx + offsets[0];
-  let d = `M ${firstX} 0`;
+  let d = overscanTop > 0 ? `M ${firstX} ${-overscanTop} L ${firstX} 0` : `M ${firstX} 0`;
   for (let i = 0; i <= lastIndex; i += 1) {
     const top = i * rowHeight;
     const mid = cx + offsets[i];

@@ -215,3 +215,72 @@ describe('единое SVG-полотно хребта на всю дорожк�
     });
   });
 });
+
+/**
+ * зачем 2026-08-04 (владелец: «полоса посредине не должна начинаться под
+ * словами ПРОПУСК — пусть идёт в самый верх, заходит за сейф-зоны сверху и
+ * снизу, будто бесконечная, конец не видно»): у хребта было ДВА видимых торца
+ * — сверху он начинался ровно под шапкой колонок, снизу обрывался на последней
+ * награде. Оверскан — прямые продолжения за пределы дорожки в X крайних узлов.
+ *
+ * Сторож нужен именно здесь, потому что оверскан легко «починить» обратно в
+ * ноль (например, убрав аргументы при рефакторинге вызова) — и торцы вернутся
+ * молча, без падения любого другого теста: путь останется валидным и гладким.
+ */
+describe('оверскан хребта — линия уходит за экран, торцы не видны', () => {
+  const CX3 = NODE_COLUMN_WIDTH / 2;
+  const offsets = SEASON_TRACK.map((_, index) => offsetOf(index));
+  const OVERSCAN_TOP = 470;
+  const OVERSCAN_BOTTOM = 220;
+
+  test('серый путь начинается ВЫШЕ дорожки — в отрицательном Y, а не в нуле', () => {
+    const d = spineTrackPath(CX3, ROW_HEIGHT, offsets, OVERSCAN_TOP, OVERSCAN_BOTTOM);
+    const startY = Number(/^M\s+[-\d.]+\s+(-?[\d.]+)/.exec(d.trim())![1]);
+    expect(startY).toBe(-OVERSCAN_TOP);
+  });
+
+  test('серый путь заканчивается НИЖЕ последней награды на величину хвоста', () => {
+    const d = spineTrackPath(CX3, ROW_HEIGHT, offsets, OVERSCAN_TOP, OVERSCAN_BOTTOM);
+    const numbers = d.match(/-?\d+(?:\.\d+)?/g)!;
+    const endY = Number(numbers[numbers.length - 1]);
+    expect(endY).toBe(offsets.length * ROW_HEIGHT + OVERSCAN_BOTTOM);
+  });
+
+  test('оверскан НЕ ломает главный контракт — путь остаётся ОДНОЙ линией', () => {
+    const d = spineTrackPath(CX3, ROW_HEIGHT, offsets, OVERSCAN_TOP, OVERSCAN_BOTTOM);
+    expect(moveCommandCount(d)).toBe(1);
+    expect(d.trim().startsWith('M')).toBe(true);
+  });
+
+  test('хвосты идут ПРЯМО в X крайних узлов — не вылезают за колонку', () => {
+    // Прямая, а не кривая: за пределами дорожки нет узла, к которому
+    // изгибаться, и любая волна там читалась бы как ложный узел.
+    const limit = NODE_COLUMN_WIDTH / 2 - 4;
+    const d = spineTrackPath(CX3, ROW_HEIGHT, offsets, OVERSCAN_TOP, OVERSCAN_BOTTOM);
+    for (const pair of d.matchAll(/(-?[\d.]+)\s+(-?[\d.]+)/g)) {
+      expect(Math.abs(Number(pair[1]) - CX3)).toBeLessThanOrEqual(limit);
+    }
+  });
+
+  test('золотой путь получает ВЕРХНИЙ хвост — иначе серый торчит над ним у шапки', () => {
+    const gold = spineTrackProgressPath(CX3, ROW_HEIGHT, offsets, 5, OVERSCAN_TOP);
+    const startY = Number(/^M\s+[-\d.]+\s+(-?[\d.]+)/.exec(gold.trim())![1]);
+    expect(startY).toBe(-OVERSCAN_TOP);
+    expect(moveCommandCount(gold)).toBe(1);
+  });
+
+  test('золотой путь НЕ получает нижний хвост — прогресс обязан обрываться на уровне', () => {
+    // Иначе золото уехало бы за конец дорожки и «пройденным» выглядел бы весь
+    // сезон независимо от реального уровня игрока.
+    const gold = spineTrackProgressPath(CX3, ROW_HEIGHT, offsets, 5, OVERSCAN_TOP);
+    const numbers = gold.match(/-?\d+(?:\.\d+)?/g)!;
+    const endY = Number(numbers[numbers.length - 1]);
+    expect(endY).toBeLessThan(offsets.length * ROW_HEIGHT);
+  });
+
+  test('без аргументов оверскана поведение прежнее — старые вызовы не сломаны', () => {
+    const plain = spineTrackPath(CX3, ROW_HEIGHT, offsets);
+    expect(/^M\s+[-\d.]+\s+0\s/.test(plain.trim())).toBe(true);
+    expect(plain.includes('L')).toBe(false);
+  });
+});

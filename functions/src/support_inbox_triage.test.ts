@@ -152,6 +152,18 @@ describe('supportInboxOnNewMail — full trigger wiring, not just its pure parts
     expect(registration?.options.document).toBe('support_inbox/{messageDocId}');
   });
 
+  // зачем: index.ts экспортирует supportInboxOnNewMail по имени — если
+  // support_inbox.ts когда-нибудь переименует экспорт, index.ts продолжит
+  // компилироваться (require в других местах не типизирован так же строго),
+  // но реальный триггер тихо перестанет существовать. Явно проверяем именно
+  // то имя, которое реэкспортирует index.ts.
+  test('exports the exact function name index.ts re-exports', () => {
+    expect(typeof supportInboxOnNewMail).toBe('function');
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const mod = require('./support_inbox');
+    expect(Object.prototype.hasOwnProperty.call(mod, 'supportInboxOnNewMail')).toBe(true);
+  });
+
   test('skips technical spam already classified as automated — no LLM call at all', async () => {
     await supportInboxOnNewMail(makeEvent('m1', {
       fromEmail: 'newsletter@shop.example', subject: 'Sale', bodyText: 'Buy now', mailCategory: 'automated',

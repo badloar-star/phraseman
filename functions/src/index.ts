@@ -154,6 +154,8 @@ const { submitUserIdea, adminListUserIdeas, adminDecideUserIdea, adminDraftIdeaD
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { leagueFinalizeCron } = require('./league_finalize_cron');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+const { leagueResidentsTickCron } = require('./league_residents_cron');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
   notifyOnFriendRequestCreated,
   notifyOnFriendAccepted,
@@ -286,6 +288,8 @@ exports.adminListUserIdeas = adminListUserIdeas;
 exports.adminDecideUserIdea = adminDecideUserIdea;
 exports.adminDraftIdeaDecision = adminDraftIdeaDecision;
 exports.leagueFinalizeCron = leagueFinalizeCron;
+// Жители лиг: раз в 6 часов растёт их опыт/уровень/аватар (владелец 2026-08-04).
+exports.leagueResidentsTickCron = leagueResidentsTickCron;
 
 // ─── Leaderboard percentile stats cron ──────────────────────────────────────
 // Runs daily. Computes p1-p99 thresholds for XP, streak and recent activity.
@@ -409,6 +413,8 @@ export {
   adminSupportResolveReplyDelivery,
   adminSupportSaveSignature,
   adminSupportSetStatus,
+  // Триггер спам-триажа/уведомлений Джарвиса — покрыт support_inbox_triage.test.ts
+  // (мокает Firestore/OpenAI/Telegram и вызывает реальный хендлер напрямую).
   supportInboxOnNewMail,
 } from './support_inbox';
 

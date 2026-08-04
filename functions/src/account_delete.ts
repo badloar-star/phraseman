@@ -7,6 +7,9 @@ import {
   accountDeletePermanentDenialId,
   enqueueAccountDeletionJob,
 } from './account_delete_job';
+// Префикс синтетических жителей: комната без ЖИВЫХ считается пустой и удаляется,
+// иначе после ухода последнего человека остался бы призрак из ботов.
+import { RESIDENT_UID_PREFIX } from './league_residents';
 
 const REGION = 'us-central1';
 const DELETE_BATCH_LIMIT = 100;
@@ -729,8 +732,19 @@ async function removeFromLeagueGroups(
       const members = data.members && typeof data.members === 'object' ? data.members as Record<string, unknown> : {};
       const hadMember = Object.prototype.hasOwnProperty.call(members, stableUid);
       const nextCount = Math.max(0, Object.keys(members).length - (hadMember ? 1 : 0));
+      // зачем (аудит 2026-08-04): комнаты дозаполняются синтетическими жителями.
+      // Раньше «остался 0 участников» означало пустую комнату, и она удалялась.
+      // Теперь после ухода последнего ЖИВОГО в документе остаётся ~27 жителей,
+      // nextCount = 27, и комната-призрак навсегда оседала бы в базе (мусор +
+      // деньги за хранение и за то, что её продолжает обходить крон жителей).
+      // Решает судьбу документа число живых, а не общее число ключей.
+      const nextLiveCount = Object.entries(members).filter(([uid, member]) => (
+        uid !== stableUid
+        && !uid.startsWith(RESIDENT_UID_PREFIX)
+        && (member as Record<string, unknown>)?.isResident !== true
+      )).length;
       if (!hadMember && nextCount > 0) continue;
-      if (nextCount <= 0) {
+      if (nextLiveCount <= 0) {
         batch.delete(doc.ref);
         stats.docsDeleted += 1;
         madeProgress = true;
@@ -741,6 +755,8 @@ async function removeFromLeagueGroups(
           admin.firestore.FieldValue.delete(),
           'memberCount',
           nextCount,
+          'liveMemberCount',
+          nextLiveCount,
           'updatedAt',
           Date.now(),
         );

@@ -5,6 +5,8 @@ import { createAuditRecord } from './admin/audit_contract';
 import { hasPermission, roleFromAdminToken } from './admin/permissions';
 import { type AdminRole } from './admin/roles';
 import { ADMIN_SENSITIVE_WRITE_OPTIONS, requireAdminAppCheck } from './callable_options';
+// Вместимость комнаты считается по живым: жители мест не занимают.
+import { RESIDENT_UID_PREFIX } from './league_residents';
 
 type Row = Record<string, unknown>;
 const ID_RE = /^[A-Za-z0-9._-]{2,180}$/;
@@ -103,6 +105,25 @@ function visibleMemberCount(members: Row): number {
   return Object.values(members).filter((value) => record(value) && value.identityHidden !== true).length;
 }
 
+/**
+ * Сколько ЖИВЫХ игроков в комнате — вместимость считается только по ним.
+ *
+ * зачем (аудит 2026-08-04): комнаты дозаполняются синтетическими жителями до
+ * 28 участников. Если считать их занятыми местами, перенос игрока админом
+ * ломается: все комнаты целевой лиги выглядят полными (28 ≥ 30 быстро
+ * достигается), кандидат не находится и каждый перенос плодит НОВУЮ комнату,
+ * а при явном указании — падает с 'target_league_group_full'.
+ * Зеркало серверного countLiveMembers (functions/src/league_residents.ts).
+ */
+function liveMemberCount(members: Row): number {
+  return Object.entries(members).filter(([uid, value]) => (
+    record(value)
+    && value.identityHidden !== true
+    && value.isResident !== true
+    && !String(uid).startsWith(RESIDENT_UID_PREFIX)
+  )).length;
+}
+
 function leagueState(members: Row, movedUid: string): Row[] {
   return Object.entries(members)
     .filter(([, value]) => record(value) && value.identityHidden !== true)
@@ -168,7 +189,9 @@ export const adminMoveLeagueUser = onCall(ADMIN_SENSITIVE_WRITE_OPTIONS, async (
   const currentWeek = weekId();
   const candidates = await db.collection('league_groups').where('leagueId', '==', input.targetLeague).where('weekId', '==', currentWeek).limit(51).get();
   if (candidates.size > 50) throw new HttpsError('resource-exhausted', 'too_many_target_league_groups_retry_with_migration');
-  const candidate = candidates.docs.find((snap) => snap.id !== input.groupId && visibleMemberCount(record(snap.data().members) ? snap.data().members : {}) < MAX_GROUP_SIZE);
+  // Вместимость — по живым: иначе комната с 28 жителями считалась бы полной и
+  // каждый админский перенос плодил бы новую пустую комнату.
+  const candidate = candidates.docs.find((snap) => snap.id !== input.groupId && liveMemberCount(record(snap.data().members) ? snap.data().members : {}) < MAX_GROUP_SIZE);
   const suffix = createHash('sha256').update(input.idempotencyKey).digest('hex').slice(0, 12);
   const targetGroupId = candidate?.id ?? `${currentWeek}_${input.targetLeague}_admin_${suffix}`;
   const oldGroupRef = db.collection('league_groups').doc(input.groupId);
@@ -189,7 +212,7 @@ export const adminMoveLeagueUser = onCall(ADMIN_SENSITIVE_WRITE_OPTIONS, async (
     const target = targetSnap.exists ? (targetSnap.data() ?? {}) : {};
     if (targetSnap.exists && (Number(target.leagueId) !== input.targetLeague || text(target.weekId, 16) !== currentWeek)) throw new HttpsError('aborted', 'target_league_group_changed');
     const targetMembers = record(target.members) ? { ...target.members } : {};
-    if (!targetMembers[input.uid] && visibleMemberCount(targetMembers) >= MAX_GROUP_SIZE) throw new HttpsError('resource-exhausted', 'target_league_group_full');
+    if (!targetMembers[input.uid] && liveMemberCount(targetMembers) >= MAX_GROUP_SIZE) throw new HttpsError('resource-exhausted', 'target_league_group_full');
     const leaderboard = leaderboardSnap.data() ?? {};
     const user = userSnap.data() ?? {};
     const resolved = resolveAuthoritativeLeaguePoints(leaderboard, user, previousMember, currentWeek, text(oldGroup.weekId, 16));

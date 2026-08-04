@@ -287,16 +287,34 @@ export function residentLevelFromXp(totalXp: number): number {
  * живут поколения 0..3, раскладки накладываются и появляются двойники — замер
  * дал 184 уникальных имени на 200 слотов. Блоки убирают наложение полностью.
  */
-const RESIDENT_NAMES_PER_SLOT = 4;
+// Блок 2 = 100 слотов, у каждого своя пара имён (по одному на поколение).
+//
+// зачем именно 2 (замеры на боевых данных 2026-08-04): число слотов задаёт,
+// насколько расходятся составы разных комнат, и упирается в размер корпуса.
+//   • блок 4 (50 слотов)  — 23 общих имени из 28 у двух соседних лиг;
+//   • блок 1 (200 слотов) — имена начинают коллидировать по корпусу (150/200
+//     уникальных), потому что сдвиг поколения накладывается на чужие слоты;
+//   • блок 2 (100 слотов) — уникальность имён держится на любом горизонте, а
+//     реальные комнаты владельца разошлись до 0 совпадений.
+//
+// ОГРАНИЧЕНИЕ, которое числами не лечится: корпус в 200 имён мал для большого
+// числа комнат (40 комнат × 28 = 1120 персонажемест). Пока комнат немного,
+// пересечения редки; при росте базы корпус нужно расширять — это единственное
+// настоящее решение, см. REDDIT_BOT_NAMES.
+const RESIDENT_NAMES_PER_SLOT = 2;
+
 
 /** Сколько слотов обслуживает корпус имён при выбранном размере блока. */
 export const RESIDENT_SLOT_COUNT = Math.floor(RESIDENT_POPULATION / RESIDENT_NAMES_PER_SLOT);
 
 export function residentName(index: number, nowMs = RESIDENT_EPOCH_MS): string {
   const { generation } = residentGeneration(index, nowMs);
-  // Смена поколения = другой человек, значит и другой ник — но строго внутри
-  // блока этого слота.
   const slot = ((index % RESIDENT_SLOT_COUNT) + RESIDENT_SLOT_COUNT) % RESIDENT_SLOT_COUNT;
+  // Каждому слоту принадлежит СВОЙ блок имён, и поколение выбирает имя только
+  // внутри него. Так отображение слот → имя остаётся взаимно однозначным при
+  // любых поколениях: двух одинаковых ников в комнате быть не может, даже
+  // когда рядом живут персонажи разных поколений (замер 2026-08-04: сквозной
+  // сдвиг по всему корпусу такую гарантию ломал).
   const withinBlock = generation % RESIDENT_NAMES_PER_SLOT;
   return REDDIT_BOT_NAMES[slot * RESIDENT_NAMES_PER_SLOT + withinBlock];
 }
@@ -310,14 +328,92 @@ export function residentAvatar(level: number): string {
   return String(Math.max(1, Math.min(RESIDENT_MAX_LEVEL, level)));
 }
 
+/** Сутки в миллисекундах — шаг роста серии. */
+const RESIDENT_DAY_MS = 24 * 60 * 60 * 1000;
+
+/** Потолок серии. Дальше персонаж всё равно сбросится — это лишь защита. */
+export const RESIDENT_STREAK_MAX = 60;
+
+/** Больше трёх сбросов в календарный месяц персонаж не делает (владелец). */
+export const RESIDENT_STREAK_MAX_RESETS_PER_MONTH = 3;
+
+/** Номер календарного месяца от эпохи 1970 — общий счётчик для UTC-даты. */
+function monthIndexOf(ms: number): number {
+  const d = new Date(ms);
+  return d.getUTCFullYear() * 12 + d.getUTCMonth();
+}
+
+/** Первый день (в днях от 1970) указанного календарного месяца. */
+function monthStartDay(monthIndex: number): number {
+  const year = Math.floor(monthIndex / 12);
+  const month = monthIndex - year * 12;
+  return Math.floor(Date.UTC(year, month, 1) / RESIDENT_DAY_MS);
+}
+
+/** Сколько дней в этом календарном месяце. */
+function daysInMonth(monthIndex: number): number {
+  return monthStartDay(monthIndex + 1) - monthStartDay(monthIndex);
+}
+
 /**
- * Серия дней. Детерминирована по индексу и НЕ растёт бесконечно: у трети
- * персонажей ноль (как у живых), у остальных 1..34 — тот же диапазон, что
- * использовала карточка бота турнира до объединения.
+ * Дни этого месяца, в которые персонаж срывает серию.
+ *
+ * зачем (владелец 2026-08-04): «в рандомные дни сбрасывалась на 0 и дальше +1
+ * в день, не более 3 сбросов в месяц». Число сбросов и сами дни выводятся из
+ * хэша (индекс, месяц) — значит они стабильны: один и тот же персонаж у всех
+ * зрителей и при любом пересчёте срывается в одни и те же даты, хранить это
+ * нигде не нужно. Разным месяцам достаётся разный рисунок срывов.
  */
-export function residentStreak(index: number): number {
-  const hash = residentHash(`${index}:streak`);
-  return hash % 100 < 30 ? 0 : 1 + ((hash >>> 7) % 34);
+function residentResetDaysInMonth(index: number, monthIndex: number): number[] {
+  const total = daysInMonth(monthIndex);
+  const start = monthStartDay(monthIndex);
+  const seed = residentHash(`${index}:${monthIndex}:resets`);
+  // 0..3 сброса: часть месяцев персонаж проходит вообще без срывов.
+  const count = seed % (RESIDENT_STREAK_MAX_RESETS_PER_MONTH + 1);
+  const days: number[] = [];
+  for (let i = 0; i < count; i++) {
+    const dayOfMonth = residentHash(`${index}:${monthIndex}:reset:${i}`) % total;
+    const day = start + dayOfMonth;
+    // Два сброса могли выпасть на один день — это просто один сброс.
+    if (!days.includes(day)) days.push(day);
+  }
+  return days.sort((a, b) => a - b);
+}
+
+/**
+ * Серия дней персонажа на момент nowMs — ЖИВАЯ величина, а не константа.
+ *
+ * зачем (владелец 2026-08-04): «у всех ботов цепочка всегда 0 — исправь, чтобы
+ * цепочка показывалась рандомно, в рандомные дни сбрасывалась на 0 и дальше
+ * +1 в день, не более 3 сбросов в месяц». Раньше серия была одним числом из
+ * хэша: она не двигалась ни через день, ни через месяц, и вдобавок у трети
+ * персонажей была намертво нулевой — именно эти нули владелец и видел.
+ *
+ * Теперь серия = сколько дней прошло с последнего срыва. Она растёт на +1
+ * каждые сутки сама собой (функция от времени, никаких записей в базу), в день
+ * срыва показывает 0 и со следующего дня считает заново. Ноль поэтому виден
+ * ровно один день — как у живого игрока, который пропустил занятие.
+ *
+ * Отсчёт не уходит раньше «регистрации» текущего поколения: новичок не может
+ * иметь серию длиннее собственной жизни в приложении.
+ */
+export function residentStreakAt(index: number, nowMs: number, signupMs: number): number {
+  const today = Math.floor(nowMs / RESIDENT_DAY_MS);
+  const signupDay = Math.floor(signupMs / RESIDENT_DAY_MS);
+  // Ищем ближайший срыв не дальше потолка серии: заглядывать глубже незачем,
+  // всё равно обрежется по RESIDENT_STREAK_MAX.
+  const earliestDay = Math.max(signupDay, today - RESIDENT_STREAK_MAX);
+  let lastResetDay = -1;
+  const fromMonth = monthIndexOf(earliestDay * RESIDENT_DAY_MS);
+  const toMonth = monthIndexOf(today * RESIDENT_DAY_MS);
+  for (let month = fromMonth; month <= toMonth; month++) {
+    for (const day of residentResetDaysInMonth(index, month)) {
+      if (day >= earliestDay && day <= today && day > lastResetDay) lastResetDay = day;
+    }
+  }
+  if (lastResetDay === today) return 0;
+  const since = lastResetDay >= 0 ? today - lastResetDay : today - signupDay;
+  return Math.max(0, Math.min(RESIDENT_STREAK_MAX, since));
 }
 
 export type ResidentProfile = {
@@ -332,7 +428,7 @@ export type ResidentProfile = {
 
 /** Полный профиль персонажа на момент nowMs — единая точка сборки. */
 export function residentProfileAt(index: number, nowMs: number): ResidentProfile {
-  const { generation } = residentGeneration(index, nowMs);
+  const { generation, signupMs } = residentGeneration(index, nowMs);
   const totalXp = residentTotalXpAt(index, nowMs);
   const level = residentLevelFromXp(totalXp);
   return {
@@ -342,7 +438,8 @@ export function residentProfileAt(index: number, nowMs: number): ResidentProfile
     level,
     avatar: residentAvatar(level),
     // Серия тоже своя у каждого поколения — иначе новый персонаж унаследовал бы
-    // чужой стрик и это не сошлось бы с его нулевым опытом.
-    streak: residentStreak(index * 64 + generation),
+    // чужой стрик и это не сошлось бы с его нулевым опытом. signupMs текущего
+    // поколения не даёт серии оказаться длиннее жизни персонажа.
+    streak: residentStreakAt(index * 64 + generation, nowMs, signupMs),
   };
 }

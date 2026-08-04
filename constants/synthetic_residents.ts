@@ -181,9 +181,76 @@ export function residentXpForLevel(level: number, seed: string): number {
   return start + Math.floor(span * progress);
 }
 
-export function residentStreak(index: number): number {
-  const hash = residentHash(`${index}:streak`);
-  return hash % 100 < 30 ? 0 : 1 + ((hash >>> 7) % 34);
+// ── Серия дней ──────────────────────────────────────────────────────────────
+// Зеркало functions/src/synthetic_residents.ts — держать в синхроне: житель
+// лиги (сервер) и бот турнира (клиент) обязаны показывать одну и ту же серию.
+
+/** Сутки в миллисекундах — шаг роста серии. */
+const RESIDENT_DAY_MS = 24 * 60 * 60 * 1000;
+
+/** Потолок серии. Дальше персонаж всё равно сбросится — это лишь защита. */
+export const RESIDENT_STREAK_MAX = 60;
+
+/** Больше трёх сбросов в календарный месяц персонаж не делает (владелец). */
+export const RESIDENT_STREAK_MAX_RESETS_PER_MONTH = 3;
+
+/** Номер календарного месяца от эпохи 1970 — общий счётчик для UTC-даты. */
+function monthIndexOf(ms: number): number {
+  const d = new Date(ms);
+  return d.getUTCFullYear() * 12 + d.getUTCMonth();
+}
+
+/** Первый день (в днях от 1970) указанного календарного месяца. */
+function monthStartDay(monthIndex: number): number {
+  const year = Math.floor(monthIndex / 12);
+  const month = monthIndex - year * 12;
+  return Math.floor(Date.UTC(year, month, 1) / RESIDENT_DAY_MS);
+}
+
+/** Сколько дней в этом календарном месяце. */
+function daysInMonth(monthIndex: number): number {
+  return monthStartDay(monthIndex + 1) - monthStartDay(monthIndex);
+}
+
+/** Дни этого месяца, в которые персонаж срывает серию (0..3 штуки). */
+function residentResetDaysInMonth(index: number, monthIndex: number): number[] {
+  const total = daysInMonth(monthIndex);
+  const start = monthStartDay(monthIndex);
+  const seed = residentHash(`${index}:${monthIndex}:resets`);
+  const count = seed % (RESIDENT_STREAK_MAX_RESETS_PER_MONTH + 1);
+  const days: number[] = [];
+  for (let i = 0; i < count; i++) {
+    const dayOfMonth = residentHash(`${index}:${monthIndex}:reset:${i}`) % total;
+    const day = start + dayOfMonth;
+    if (!days.includes(day)) days.push(day);
+  }
+  return days.sort((a, b) => a - b);
+}
+
+/**
+ * Серия дней персонажа на момент nowMs — ЖИВАЯ величина, а не константа.
+ *
+ * зачем (владелец 2026-08-04): «у всех ботов цепочка всегда 0 — исправь, чтобы
+ * показывалась рандомно, в рандомные дни сбрасывалась на 0 и дальше +1 в день,
+ * не более 3 сбросов в месяц». Серия = дни с последнего срыва: растёт сама по
+ * времени, ноль виден ровно один день (день срыва). Хранить нечего — это
+ * чистая функция, все зрители видят одно и то же.
+ */
+export function residentStreakAt(index: number, nowMs: number, signupMs: number): number {
+  const today = Math.floor(nowMs / RESIDENT_DAY_MS);
+  const signupDay = Math.floor(signupMs / RESIDENT_DAY_MS);
+  const earliestDay = Math.max(signupDay, today - RESIDENT_STREAK_MAX);
+  let lastResetDay = -1;
+  const fromMonth = monthIndexOf(earliestDay * RESIDENT_DAY_MS);
+  const toMonth = monthIndexOf(today * RESIDENT_DAY_MS);
+  for (let month = fromMonth; month <= toMonth; month++) {
+    for (const day of residentResetDaysInMonth(index, month)) {
+      if (day >= earliestDay && day <= today && day > lastResetDay) lastResetDay = day;
+    }
+  }
+  if (lastResetDay === today) return 0;
+  const since = lastResetDay >= 0 ? today - lastResetDay : today - signupDay;
+  return Math.max(0, Math.min(RESIDENT_STREAK_MAX, since));
 }
 
 export type ResidentProfile = {
@@ -199,7 +266,7 @@ export type ResidentProfile = {
  * документа комнаты (там оно уже есть), а корпус имён на клиенте не нужен.
  */
 export function residentProfileAt(index: number, nowMs: number): ResidentProfile {
-  const { generation } = residentGeneration(index, nowMs);
+  const { generation, signupMs } = residentGeneration(index, nowMs);
   const totalXp = residentTotalXpAt(index, nowMs);
   const level = residentLevelFromXp(totalXp);
   return {

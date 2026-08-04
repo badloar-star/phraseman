@@ -25,6 +25,7 @@ import { useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import * as Haptics from 'expo-haptics';
+import { soundDirector } from '../modules/audio/sound_director';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import TapScale from '../components/TapScale';
@@ -46,7 +47,7 @@ import {
 } from '../components/tournament/tournament_theme';
 import { TournamentEdgeState } from '../components/tournament/TournamentEdgeState';
 import { TournamentBackdrop, TournamentPodiumArt } from '../components/tournament/TournamentBackdrop';
-import { tournamentAvatarLevel, tournamentAvatarValue } from '../components/tournament/tournament_avatars';
+import { isTournamentBotPlayer, tournamentAvatarLevel, tournamentAvatarValue } from '../components/tournament/tournament_avatars';
 import { tournamentBotCardInfo } from '../components/tournament/tournament_bot_card';
 import UnifiedPlayerModal, { type PlayerInfo } from '../components/PlayerProfileModal';
 import {
@@ -59,7 +60,13 @@ import {
   useTournamentRoom,
   type RoomPlayer,
 } from './tournament_client';
-import { creditTournamentStarsToSeason } from './season_pass_model';
+import {
+  creditTournamentStarsToSeason,
+  hydrateSeasonPassProgress,
+  peekSeasonPassProgress,
+  type SeasonPassProgress,
+} from './season_pass_model';
+import { onAppEvent } from './events';
 import { getStableId, peekStableId } from './stable_id';
 import { useLocalSearchParams } from 'expo-router';
 import { closeTournamentFlow } from './tournament_navigation';
@@ -130,7 +137,10 @@ function buildPodium(players: readonly RoomPlayer[], P: TournamentV2, myId: stri
     score: Number(player.score ?? 0),
     place: sharedPlace(ordered, index),
     rewardGems: player.forfeitedAtMs === undefined ? Math.max(0, player.rewardGems ?? 0) : 0,
-    isBot: player.isBot === true,
+    // зачем (2026-08-04): было player.isBot === true, но сервер вырезает isBot
+    // из публичного документа — на пьедестале бот считался живым, и его
+    // карточка показывала выдуманные 0 опыта / Lv.1 вместо биографии.
+    isBot: isTournamentBotPlayer(player),
     isYou: Boolean(myId) && player.id === myId,
   }));
   // Порядок колонн: серебро, золото, бронза.
@@ -300,7 +310,7 @@ export default function TournamentResultsScreen() {
    * Реальная экономика турнира вместо захардкоженных «50/25/10».
    *
    * зачем 2026-07-27 (владелец): сервер платит долю ФАКТИЧЕСКОГО банка — при
-   * 16 игроках по 3 жемчужины это 48, из них 20% в недельный банк, а призёрам
+   * 16 игроках по 5 жемчужин это 80, из них 20% в недельный банк, а призёрам
    * 39 в долях 60/25/15 → 24/9/6. Числа приходят в комнате (prizeGems,
    * prizePoolGems). Фолбэк по долям нужен для старых комнат, финализированных
    * до этой правки: там полей ещё нет, но банк можно восстановить из potGems.
@@ -364,10 +374,56 @@ export default function TournamentResultsScreen() {
     return () => clearTimeout(timer);
   }, [runtimeActive, freshSnapshot, won, fxSize, P.gold, P.accent, P.okGradA, P.text]);
 
+  /**
+   * Финал турнира звучит — как повышение и понижение лиги.
+   *
+   * зачем 2026-08-04 (владелец: «когда турнир завершён и там пьедестал, надо
+   * звук подключить, как в повышении лиги»): подиум был немым — конфетти и
+   * хаптика есть, а итог не слышен. Берём готовые лиговые звуки: у турнира
+   * зарезервированы pm.arena.victory/defeat, но WAV к ним не залит, и арбитр
+   * дропает их с reason:'missing' — подключение «правильного» события дало бы
+   * ровно тишину.
+   *
+   * Призёру топ-3 с наградой — pm.league.promoted, остальным участникам —
+   * pm.league.demoted (решение владельца). Зрители и те, кто снялся, молчат:
+   * myPlace === 0 означает «меня нет в финальной таблице».
+   *
+   * Исход озвучиваем РОВНО один раз за комнату (outcomeSoundedRef). Одного
+   * dedupeKey мало: снапшот может прийти с финальной таблицей раньше, чем
+   * сервер досчитает награду, и won переключится false → true. Тогда игрок
+   * услышал бы сначала звук проигрыша, а следом победный — ключи-то разные.
+   * Ref же держит и возврат с экрана разбора: эффект перезапустится молча.
+   *
+   * Ожидание награды у призёра ограничено 1200 мс. Если сервер награду так и
+   * не проставил, экран всё равно звучит — молчащий подиум хуже, чем звук по
+   * месту. Задержка не блокирует ни подиум, ни конфетти: они уже на экране.
+   */
+  const outcomeSoundedRef = useRef(false);
+  useEffect(() => { outcomeSoundedRef.current = false; }, [roomId]);
+
   useEffect(() => {
-    if (!runtimeActive || !freshSnapshot || !won) return;
-    void Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-  }, [runtimeActive, freshSnapshot, won]);
+    if (!runtimeActive || !freshSnapshot || !hasFinalResults) return;
+    if (outcomeSoundedRef.current) return;
+    const participated = myPlace > 0 && me?.forfeitedAtMs === undefined;
+    if (!participated) return;
+
+    const playOutcome = (isWin: boolean): void => {
+      if (outcomeSoundedRef.current) return;
+      outcomeSoundedRef.current = true;
+      if (isWin) void Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+      soundDirector.request(isWin ? 'pm.league.promoted' : 'pm.league.demoted', {
+        scope: 'tournament-results',
+        dedupeKey: `${roomId ?? 'room'}:outcome`,
+      });
+    };
+
+    // Призёр без досчитанной награды: даём серверу дойти, но не бесконечно.
+    if (myPlace <= 3 && !won) {
+      const timer = setTimeout(() => playOutcome(false), 1200);
+      return () => clearTimeout(timer);
+    }
+    playOutcome(won);
+  }, [runtimeActive, freshSnapshot, hasFinalResults, myPlace, me?.forfeitedAtMs, won, roomId]);
 
   /**
    * Звёзды турнира идут в дорожку сезона.

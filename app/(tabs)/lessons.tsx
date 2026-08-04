@@ -454,8 +454,17 @@ const LessonCard = React.memo(function LessonCard({
 }: LessonCardProps) {
     const isSagePorcelainCard = _themeMode === 'sagePorcelain';
     const lockedCardHasLightFill = _themeMode === 'sagePorcelain';
+    // зачем: 100% прогресс заливает ВСЮ ширину карточки светлым градиентом
+    // [bg, lightenHex(bg,1.28)] — там, где стоит «УРОК N»/чек, фон точно светлый.
     const useFilledMetaText = isComplete && showLessonProgressFill;
-    const useDarkMetaText = useFilledMetaText || (!isGoldTheme && !isCoralTheme && isUnlocked);
+    // зачем (аудит-фикс): было `!isGoldTheme && !isCoralTheme && isUnlocked` —
+    // включало тёмный текст (#07110A, без тени) на ЛЮБОЙ разблокированной не-gold/
+    // coral теме, включая indigo/dark/midnight и т.п. Но базовый градиент карточки
+    // там ВСЕГДА тёмный (см. cardLayerStyle ниже) — тёмный текст без тени на нём
+    // давал контраст ~1.0-1.3:1 (норма 4.5). Только sagePorcelain реально светлая;
+    // остальные темы получают тёмный текст лишь когда прогресс-фон под ним
+    // гарантированно светлый (100%, см. useFilledMetaText выше).
+    const useDarkMetaText = isSagePorcelainCard || useFilledMetaText;
     return (<Animated.View style={{
             marginTop: 5,
             marginHorizontal: 14,
@@ -1278,7 +1287,11 @@ const lessonMetaColor = isSagePorcelainTheme
                 : 'rgba(255,255,255,0.30)'
             : isCoralTheme
                 ? 'rgba(255,214,204,0.72)'
-                : LESSON_CARD_OPEN_META_TEXT;
+                // зачем (аудит-фикс): было LESSON_CARD_OPEN_META_TEXT (#07110A, тёмный) —
+                // на разблокированной незалитой карточке фон здесь ВСЕГДА тёмный градиент
+                // (см. lessonTextColor выше, тот же случай даёт rgba(255,255,255,0.97)).
+                // Тёмный текст без тени на тёмном фоне давал контраст ~1:1.
+                : 'rgba(255,255,255,0.97)';
 return (<LessonCard key={`l-${num}`}
     num={num} name={name} isUnlocked={isUnlocked} bg={bg} darkBg={darkBg}
     progPct={progPct} isComplete={isComplete} isCurrent={isCurrent}

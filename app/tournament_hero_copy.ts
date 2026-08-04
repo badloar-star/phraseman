@@ -31,7 +31,7 @@ export type TournamentHeroCopy = {
 
 export type TournamentHeroInput = {
   /** Фаза окна (см. resolveTournamentWindowState). */
-  phase: 'countdown' | 'open' | 'played' | 'idle';
+  phase: 'countdown' | 'open' | 'played' | 'all_day' | 'idle';
   /** Я прямо сейчас в идущем турнире (комната в раунде). */
   live: boolean;
   /** Номер текущего раунда для live. */
@@ -60,6 +60,22 @@ export function resolveTournamentHeroCopy(input: TournamentHeroInput): Tournamen
       kicker: 'Вы в турнире',
       value: `Раунд ${Math.max(1, input.roundNo)} из 4`,
       sub: `${input.playersInRoom} игроков · банк комнаты ${input.playersInRoom * input.entryGems}`,
+      big: false,
+      tone: 'live',
+      pulsing: true,
+    };
+  }
+
+  // зачем 2026-08-04 (владелец: «если в админке включено весь день турниры, то
+  // должно показывать не "сейчас турниров нет", а "турниры весь день"», «сделай
+  // чтобы пользователи могли заходить сколько угодно турниров на протяжении
+  // дня»): владелец включил режим без расписания — таймера нет никогда, вход
+  // живой круглые сутки, тон тот же «событие», что у обычного открытого окна.
+  if (input.phase === 'all_day') {
+    return {
+      kicker: 'Турниры',
+      value: 'ВЕСЬ ДЕНЬ',
+      sub: 'заходите и играйте в любое время · без ограничений',
       big: false,
       tone: 'live',
       pulsing: true,

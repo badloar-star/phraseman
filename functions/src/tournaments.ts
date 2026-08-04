@@ -101,6 +101,10 @@ import {
   tournamentPayouts,
   tournamentPot,
 } from './tournament_economy';
+import {
+  TOURNAMENT_ALL_DAY_SLOT_ID,
+  tournamentAllDayRoomId,
+} from './tournament_all_day';
 
 const REGION = 'us-central1';
 const ROOM_SCAN_LIMIT = 50;
@@ -394,6 +398,31 @@ function tournamentProfileHint(value: unknown): Row {
 function readInt(value: unknown, fallback = 0): number {
   const parsed = Math.trunc(Number(value));
   return Number.isFinite(parsed) ? parsed : fallback;
+}
+
+/**
+ * Сезонный билет турнира (Season Pass, kind tournament_ticket) — читает и
+ * проверяет `progress.season_tournament_ticket_v1`, написанное
+ * seasonRedeemConsumable (functions/src/season_pass.ts). До этой функции
+ * поле писалось, но нигде не читалось — билет выдавался и физически терялся.
+ *
+ * зачем 2026-08-04 (владелец: «когда юзер получит билет то у него появится
+ * ассет... и его следующий турнир вход будет бесплатным для него, но в банк
+ * добавится с него 5 жемчужин всё равно»): нужен персональный флаг, отдельный
+ * от общего недельного freeEntryAvailable — план владельца зафиксирован в
+ * docs/plans/2026-08-03-season-pass-gift-catalog.ru.md §1.7.
+ */
+function readActiveTournamentTicket(user: Row): boolean {
+  const raw = user.progress && typeof user.progress === 'object'
+    ? (user.progress as Row).season_tournament_ticket_v1
+    : undefined;
+  if (typeof raw !== 'string' || !raw) return false;
+  try {
+    const parsed = JSON.parse(raw) as { usesLeft?: unknown; expiresAt?: unknown };
+    return readInt(parsed.usesLeft, 0) > 0 && readInt(parsed.expiresAt, 0) > Date.now();
+  } catch {
+    return false;
+  }
 }
 
 function timestampMs(value: unknown): number {
@@ -1599,21 +1628,45 @@ export async function tournamentJoinTransaction(
     // ключом dev-…, поэтому ВТОРОЙ тестовый турнир за день всегда упирался в
     // этот же slotKey и войти было нельзя. Дев-комнату из лимита исключаем —
     // она не влияет ни на банк недели, ни на сезонный рейтинг.
-    if (admissionMode === 'scheduled' && sanitizeString(user.tournament_last_slot_key, 200) === slotKey) {
+    // зачем 2026-08-04 (владелец: «сделай чтобы пользователи могли заходить
+    // сколько угодно турниров на протяжении дня весь день»): all-day комната
+    // получает admissionMode 'scheduled' (её единственный слот числится
+    // enabled в config.slots — см. tournamentRoomAdmissionMode), но у неё нет
+    // понятия «слот в день»: room.slotId — это ВСЕГДА TOURNAMENT_ALL_DAY_SLOT_ID,
+    // один и тот же для любой комнаты за сутки (roomId ротируется каждые 30с,
+    // slotId — нет). Без этого исключения ПЕРВЫЙ вход писал slotKey в профиль,
+    // и КАЖДЫЙ следующий вход в тот же день падал slot_already_played — прямая
+    // противоположность требованию «без ограничений». Дев-комнаты уже
+    // исключены тем же способом чуть выше по истории этого файла.
+    if (admissionMode === 'scheduled' && room.slotId !== TOURNAMENT_ALL_DAY_SLOT_ID
+      && sanitizeString(user.tournament_last_slot_key, 200) === slotKey) {
       throw new HttpsError('failed-precondition', 'slot_already_played');
     }
 
-    // зачем 2026-08-03 (владелец: «билет стоит 3 жемчужины, 1 билет в неделю
+    // зачем 2026-08-03 (владелец: «билет стоит 5 жемчужин, 1 билет в неделю
     // бесплатно»): бесплатный вход — это ПРОПУСК списания, а не отдельный
     // баланс билетов (billet-баланс лишнее поле и лишний риск рассинхрона
     // с shards). Маркер живёт в том же профиле, что и slot-лимит выше —
     // ноль дополнительных чтений в транзакции.
     const freeEntryAvailable = admissionMode === 'scheduled'
       && sanitizeString(user.tournament_free_entry_week_id, 32) !== weekId;
+    // зачем 2026-08-04 (владелец: «когда юзер получит билет, следующий вход
+    // будет бесплатным для него, но в банк добавится с него 5 жемчужин всё
+    // равно»): сезонный билет (Season Pass, tournament_ticket) — ОТДЕЛЬНЫЙ от
+    // недельного freeEntryAvailable флаг. Проверяется только если недельный
+    // бесплатный вход уже потрачен — иначе игрок сжигал бы редкий подарок там,
+    // где и так ничего не платил. usesTicket гасится ниже в ЭТОЙ ЖЕ транзакции
+    // (readActiveTournamentTicket выше — та же атомарность, что и у
+    // freeEntryAvailable, повторный клик не даёт два бесплатных входа).
+    const usesTicket = admissionMode === 'scheduled'
+      && !freeEntryAvailable
+      && readActiveTournamentTicket(user);
     const gemsBefore = readGemBalance(user.shards);
-    if (!freeEntryAvailable && gemsBefore < entryGems) {
+    if (!freeEntryAvailable && !usesTicket && gemsBefore < entryGems) {
       throw new HttpsError('failed-precondition', 'not_enough_gems');
     }
+    // Билет освобождает ИГРОКА от оплаты, но банк турнира получает свой взнос
+    // как обычно — контрибуция считается ОТДЕЛЬНО от того, платит ли игрок.
     const contribution = freeEntryAvailable ? 0 : entryGems;
     const player: TournamentPlayer = {
       id: stableUid,
@@ -1635,6 +1688,9 @@ export async function tournamentJoinTransaction(
         ticketsSpent: 0,
         bankContributionGems: contribution,
         weekId,
+        // зачем 2026-08-04: банк получил contribution, но эти жемчужины не
+        // были списаны у игрока — leave-транзакция не должна их "возвращать".
+        ...(usesTicket ? { seasonTicketUsed: true } : {}),
       },
     };
     let joinPlan: ReturnType<typeof planTournamentHumanLobbyJoin>;
@@ -1684,10 +1740,17 @@ export async function tournamentJoinTransaction(
     // в игре), а весь взнос кладём в банк турнира — комната сама посчитает,
     // сколько уйдёт призёрам и сколько в недельный банк. Бесплатный вход
     // недели жемчужины не трогает, только ставит маркер использования.
+    //
+    // зачем 2026-08-04 (владелец): сезонный билет (usesTicket) точно так же
+    // не списывает shards у игрока, но НЕ ставит недельный маркер
+    // tournament_free_entry_week_id — это отдельная, персональная льгота,
+    // billet гасится своим собственным полем. Банк при этом получает свои
+    // 5 жемчужин (contribution выше не зависит от usesTicket).
     if (admissionMode === 'scheduled') {
       tx.set(userRef, {
-        ...(freeEntryAvailable ? {} : { shards: admin.firestore.FieldValue.increment(-entryGems) }),
+        ...((freeEntryAvailable || usesTicket) ? {} : { shards: admin.firestore.FieldValue.increment(-entryGems) }),
         ...(freeEntryAvailable ? { tournament_free_entry_week_id: weekId } : {}),
+        ...(usesTicket ? { 'progress.season_tournament_ticket_v1': admin.firestore.FieldValue.delete() } : {}),
         tournament_last_slot_key: slotKey,
         tournament_last_slot_room_id: room.roomId,
         updatedAt: nowMs,
@@ -1699,7 +1762,7 @@ export async function tournamentJoinTransaction(
     const retainedLobbyEvents = joinPlan.displacedBotPlayerId
       ? priorLobbyEvents.filter((event) => event.playerId !== joinPlan.displacedBotPlayerId)
       : priorLobbyEvents;
-    let eventPot = lobbyBasePot + (admissionMode === 'scheduled' ? entryGems : 0);
+    let eventPot = lobbyBasePot + (admissionMode === 'scheduled' ? contribution : 0);
     const lobbyEvents = retainedLobbyEvents.map((event) => {
       eventPot += Math.max(0, event.potDeltaGems);
       return { ...event, potGemsAfter: eventPot };
@@ -1737,7 +1800,7 @@ export async function tournamentJoinTransaction(
       joined: true,
       roomId,
       entryGems,
-      gemsLeft: gemsBefore - entryGems,
+      gemsLeft: gemsBefore - contribution,
       startImmediately: fillsLastSeat,
       // serverNowMs — сэмпл серверных часов для клиента (см. tournamentStartNow).
       serverNowMs: Date.now(),
@@ -1791,7 +1854,13 @@ export async function tournamentLeaveTransaction(
     const testMode = isTournamentTestRoom(room);
     const frozenEconomy = tournamentEconomySnapshotForMode(room.economySnapshot, testMode);
     const recordedContribution = Math.max(0, readInt(player.entry?.bankContributionGems, 0));
-    const refundedGems = frozenEconomy.entryGems === 0
+    // зачем 2026-08-04 (владелец, Season Pass tournament_ticket): банк получил
+    // полный взнос при входе по билету (bankContributionGems = entryGems), но
+    // игрок эти жемчужины никогда не платил — возвращать ему нечего. Обычный
+    // платный вход (seasonTicketUsed не установлен) продолжает работать как
+    // раньше.
+    const enteredWithSeasonTicket = player.entry?.seasonTicketUsed === true;
+    const refundedGems = frozenEconomy.entryGems === 0 || enteredWithSeasonTicket
       ? 0
       : Math.min(recordedContribution, frozenEconomy.entryGems);
     const potGems = Math.max(0, readGemBalance(roomSnap.data()?.potGems) - refundedGems);
@@ -1983,14 +2052,29 @@ function parseTournamentRoomId(
  */
 async function createTournamentShardRoom(
   db: FirebaseFirestore.Firestore,
-  input: { slotId: string; timezone: string; dateKey: string; shard: number },
+  input: {
+    slotId: string;
+    timezone: string;
+    dateKey: string;
+    shard: number;
+    roomIdOverride?: string;
+    startsAtOverrideMs?: number;
+    requireAllDay?: boolean;
+  },
 ): Promise<boolean> {
   const { slotId, timezone, dateKey, shard } = input;
   const nowMs = Date.now();
   let startsAt = 0;
   let baseTicketsRequired = 1;
 
-  if (shard <= 0) {
+  if (input.requireAllDay) {
+    const config = await loadScheduleConfig(db);
+    const slot = config.slots.find((candidate) => candidate.slotId === slotId && candidate.enabled);
+    if (config.allDayEnabled !== true || !slot || !input.roomIdOverride
+      || !input.startsAtOverrideMs || input.startsAtOverrideMs <= nowMs) return false;
+    startsAt = input.startsAtOverrideMs;
+    baseTicketsRequired = slot.ticketsRequired;
+  } else if (shard <= 0) {
     // зачем 2026-07-27 (владелец: «турнир попытка войти дала ошибку»): комнату
     // шарда 0 создаёт ТОЛЬКО крон tournamentCreateRooms раз в 5 минут. Игрок,
     // нажавший «Играть» до его тика, упирался в room_not_found — вход был
@@ -2016,7 +2100,7 @@ async function createTournamentShardRoom(
   // Вход закрывается в момент старта — опоздавшему новый шард не поможет.
   if (startsAt <= 0 || nowMs >= startsAt) return false;
 
-  const roomId = tournamentRoomId(slotId, timezone, dateKey, shard);
+  const roomId = input.roomIdOverride ?? tournamentRoomId(slotId, timezone, dateKey, shard);
   const roomRef = db.collection(TOURNAMENT_ROOMS_COLLECTION).doc(roomId);
   const [resources, economySnap] = await Promise.all([
     loadResourcePool(db),
@@ -2066,6 +2150,7 @@ async function createTournamentShardRoom(
     if (botPlan.players.length !== TOURNAMENT_ROOM_SIZE - 1) {
       throw new HttpsError('failed-precondition', 'not_enough_bots');
     }
+    const lobbyEvents = botArrivalPotEvents(botPlan.players, 0, economySnapshot.botEntryGems);
     tx.create(roomRef, {
       economySnapshot,
       roomId,
@@ -2077,6 +2162,8 @@ async function createTournamentShardRoom(
       state: 'lobby',
       startsAt,
       players: botPlan.players.map(publicTournamentPlayer),
+      potGems: lobbyEvents.at(-1)?.potGemsAfter ?? 0,
+      lobbyEvents,
       rounds,
       participantAuthUids: [],
       participantAuthUidsComplete: true,
@@ -2220,6 +2307,34 @@ export const tournamentJoin = onCall({ ...HOT_CALLABLE_OPTIONS, enforceAppCheck:
     const code = error instanceof Error ? error.message : String(error);
     console.warn(`[tournaments] join failed: ${code} (${where}, room=${roomId})`);
   };
+
+  // Режим «активно весь день» должен работать в уже выпущенном приложении.
+  // Старый клиент видит эффективный слот 00:00 и 24-часовое окно, поэтому
+  // таймер скрыт и кнопка жива. Присланный им roomId указывает на следующий
+  // календарный слот; сервер намеренно заменяет его на обычную ПЛАТНУЮ комнату,
+  // собранную сейчас. testMode=false и tournamentJoinTransaction сохраняют
+  // списание, бесплатный недельный вход, банк и лимит один турнир в день.
+  const config = await loadScheduleConfig(db);
+  if (config.allDayEnabled === true) {
+    const slot = config.slots.find((candidate) => (
+      candidate.slotId === TOURNAMENT_ALL_DAY_SLOT_ID && candidate.enabled
+    ));
+    if (!slot) throw new HttpsError('failed-precondition', 'tournament_config_disabled');
+    const nowMs = Date.now();
+    const allDayRoomId = tournamentAllDayRoomId(nowMs, slot.timezone);
+    const created = await createTournamentShardRoom(db, {
+      slotId: slot.slotId,
+      timezone: slot.timezone,
+      dateKey: dateKeyInTimezone(nowMs, slot.timezone),
+      shard: 0,
+      roomIdOverride: allDayRoomId,
+      startsAtOverrideMs: nowMs + TOURNAMENT_ROOM_GATHER_MS + TOURNAMENT_BOT_FILL_WINDOW_MS,
+      requireAllDay: true,
+    });
+    if (!created) throw new HttpsError('failed-precondition', 'tournament_config_disabled');
+    return tournamentJoinTransaction(db, { ...joinIdentity, roomId: allDayRoomId, nowMs })
+      .catch((error) => { logJoinFailure(error, 'all_day'); throw error; });
+  }
 
   // зачем 2026-07-27: крон tournamentCreateRooms создаёт комнату ПУСТОЙ (rounds
   // [], ready false) — заданиями и ботами её наполняет уже другой крон. Вход
@@ -3147,11 +3262,30 @@ export async function tournamentSubmitTaskAnswerTransaction(
       isVoice: task.isVoice === true,
       difficulty: task.difficulty,
       ...(matchItems ? {
-        matchedPairs: countCorrectMatchPairs(task, answer),
+        // зачем 2026-08-04 (владелец: «у меня 25 и 3 отдельно, но в турнирной
+        // таблице считается только 25»): здесь стоял сырой клиентский `answer`,
+        // а финализация раунда (applyTournamentSubmission) считает ту же
+        // награду по СЕРВЕРНОМУ журналу тапов. Два источника истины на одно
+        // начисление и расходились: шапка показывала одно число, таблица
+        // хранила другое. Хуже того, клиентский массив ничем не подтверждён —
+        // присланный «все шесть верны» засчитывался целиком, из-за чего
+        // неверно собранное поле давало полную награду.
+        //
+        // Журнал авторитетен: каждая его запись — тап, проверенный сервером в
+        // applySpeedMatchAttempt. Ответ клиента остаётся только фолбэком для
+        // старых комнат, где журнала ещё нет.
+        matchedPairs: countCorrectMatchPairs(
+          task,
+          progress ? { selectedIndexes: progress.matchedIndexes } : answer,
+        ),
         totalPairs: matchItems.length,
       } : {}),
       answerRank,
-      penaltyStars,
+      // зачем 2026-08-04: для пар scoreAnswer штраф больше не вычитает
+      // (владелец: «убрать штраф»), но передача ненулевого значения делала два
+      // расчёта награды формально разными и мешала их сверять. Штраф остаётся
+      // только в zeroScoreReason ниже — как объяснение, а не как вычет.
+      penaltyStars: matchItems ? 0 : penaltyStars,
     });
     const selectedIndex = answer && typeof answer === 'object'
       ? readInt((answer as Row).selectedIndex, -1)

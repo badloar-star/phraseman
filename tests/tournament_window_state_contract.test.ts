@@ -79,6 +79,44 @@ describe('окно турниров: я уже отыграл', () => {
   });
 });
 
+describe('окно турниров: режим «активно весь день» (владелец 2026-08-04)', () => {
+  it('allDayEnabled даёт фазу all_day без таймера и без окна', () => {
+    const state = resolveTournamentWindowState({
+      windowStartsMs: starts,
+      nowMs: NOON,
+      allDayEnabled: true,
+    });
+    expect(state.phase).toBe('all_day');
+    expect(state.secondsToShow).toBe(0);
+    expect(state.secondsToWindowEnd).toBe(0);
+    expect(state.activeWindowStartMs).toBe(0);
+  });
+
+  it('all_day побеждает даже пустое расписание — не idle', () => {
+    const state = resolveTournamentWindowState({ windowStartsMs: [], nowMs: NOON, allDayEnabled: true });
+    expect(state.phase).toBe('all_day');
+  });
+
+  it('playedWindowStartMs не переводит all_day в played — лимита «раз в окно» нет', () => {
+    const state = resolveTournamentWindowState({
+      windowStartsMs: starts,
+      nowMs: NOON,
+      playedWindowStartMs: NOON,
+      allDayEnabled: true,
+    });
+    expect(state.phase).toBe('all_day');
+  });
+
+  it('выключили режим — расписание считается как обычно', () => {
+    const state = resolveTournamentWindowState({
+      windowStartsMs: starts,
+      nowMs: NOON + 5 * MIN,
+      allDayEnabled: false,
+    });
+    expect(state.phase).toBe('open');
+  });
+});
+
 describe('окно турниров: крайние случаи', () => {
   it('пустое расписание не ломает экран', () => {
     const state = resolveTournamentWindowState({ windowStartsMs: [], nowMs: NOON });

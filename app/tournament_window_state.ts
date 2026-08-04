@@ -28,6 +28,11 @@ export type TournamentWindowPhase =
   | 'open'
   /** Окно идёт, но я в нём уже отыграл — считаем до следующего. */
   | 'played'
+  /**
+   * Владелец включил «активно весь день» — окон-точек нет вовсе, вход живой
+   * круглые сутки, лимита «один вход в окно» тоже нет (окна как такового нет).
+   */
+  | 'all_day'
   /** Расписание пустое или ещё не загрузилось. */
   | 'idle';
 
@@ -53,6 +58,15 @@ export type TournamentWindowInput = {
    * tournament_last_slot_key). 0 — не играл.
    */
   playedWindowStartMs?: number;
+  /**
+   * зачем 2026-08-04 (владелец: «сделай чтобы пользователи могли заходить
+   * сколько угодно турниров на протяжении дня весь день»): флаг из
+   * tournamentSchedule/config.allDayEnabled. Сервер в этом режиме уже принимает
+   * вход в любой момент суток (functions/src/tournaments.ts: tournamentJoin
+   * подменяет roomId на живую all-day комнату сам) — клиенту остаётся не
+   * блокировать кнопку своей логикой «одно окно раз в день».
+   */
+  allDayEnabled?: boolean;
 };
 
 /**
@@ -79,6 +93,16 @@ function findNextWindow(starts: readonly number[], nowMs: number): number {
 const toSeconds = (ms: number): number => Math.max(0, Math.round(ms / 1000));
 
 export function resolveTournamentWindowState(input: TournamentWindowInput): TournamentWindowState {
+  // зачем 2026-08-04 (владелец): режим «весь день» — не окно с началом и
+  // концом, а его отсутствие. Считать его как обычный слот (localTime 00:00)
+  // ломается сразу после полуночи: старт уже в прошлом, следующего слота на
+  // сегодня нет — findLiveWindow/findNextWindow оба дают 0, и экран решает,
+  // что расписание пустое (phase 'idle', «Сейчас турниров нет»), хотя сервер
+  // готов принять вход в любую секунду суток. Выходим раньше общей логики.
+  if (input.allDayEnabled) {
+    return { phase: 'all_day', secondsToShow: 0, secondsToWindowEnd: 0, activeWindowStartMs: 0 };
+  }
+
   const windowMs = input.entryWindowMs && input.entryWindowMs > 0
     ? input.entryWindowMs
     : FALLBACK_ENTRY_WINDOW_MS;

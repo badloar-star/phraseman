@@ -89,6 +89,27 @@ describe('hero: я в турнире прямо сейчас', () => {
   });
 });
 
+describe('hero: режим «активно весь день» (владелец 2026-08-04)', () => {
+  /**
+   * зачем: «если в админке включено весь день турниры, должно показывать не
+   * "сейчас турниров нет", а "турниры весь день"». Тон — как у открытого
+   * окна (событие, а не служебный статус): вход живой ровно так же.
+   */
+  it('говорит «весь день», а не «турниров нет»', () => {
+    const copy = resolveTournamentHeroCopy({ ...base, phase: 'all_day' });
+    expect(copy.value).toBe('ВЕСЬ ДЕНЬ');
+    expect(copy.value).not.toBe('Сейчас турниров нет');
+    expect(copy.tone).toBe('live');
+    expect(copy.pulsing).toBe(true);
+  });
+
+  it('без таймера — цифр отсчёта тут не бывает', () => {
+    const copy = resolveTournamentHeroCopy({ ...base, phase: 'all_day' });
+    expect(copy.big).toBe(false);
+    expect(copy.value).not.toMatch(/^\d/);
+  });
+});
+
 describe('hero: расписания ещё нет', () => {
   /**
    * зачем 2026-08-03 (владелец, релизное решение): турниры ТОЛЬКО по

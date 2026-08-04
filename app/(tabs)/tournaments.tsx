@@ -66,10 +66,6 @@ import {
   peekSeasonPassProgress,
   type SeasonPassProgress,
 } from '../season_pass_model';
-// зачем 2026-08-03 (владелец: «верни иконку, там был ассет иконка для наград
-// сезона»): у карточки на вкладке турниров медаль берёт тот же арт, что плитка
-// набора наград на самой дорожке — узнаваемая связь «эта плашка ведёт туда».
-import { getSeasonRewardIcon } from '../season_pass_track_config';
 import { resolveTournamentWindowState } from '../tournament_window_state';
 import { resolveTournamentHeroCopy } from '../tournament_hero_copy';
 import {
@@ -79,6 +75,7 @@ import {
 } from '../tournament_played_window';
 import { Sheet } from '../../components/tournament/tournament_ui';
 import { TournamentBackdrop } from '../../components/tournament/TournamentBackdrop';
+import { getTournamentThemeAssets } from '../../components/tournament/tournament_theme_assets';
 import { useCountdown } from '../../components/tournament/TournamentCountdown';
 import {
   METAL,
@@ -132,7 +129,18 @@ type ScheduleSlot = {
   enabled?: boolean;
   startsAtMs?: number;
 };
-type ScheduleConfig = { slots: ScheduleSlot[]; entryGems?: number; testingEnabled?: boolean };
+// зачем 2026-08-04 (владелец: «если в админке включено весь день турниры, то
+// должно показывать не "сейчас турниров нет", а "турниры весь день"»): сервер
+// уже полностью поддерживает этот режим (tournamentJoin переписывает roomId на
+// живую all-day комнату сам, см. functions/src/tournaments.ts) — документ
+// tournamentSchedule/config давно содержит allDayEnabled, просто клиентский
+// тип его не объявлял, и экран решал, что расписание пустое.
+type ScheduleConfig = {
+  slots: ScheduleSlot[];
+  entryGems?: number;
+  testingEnabled?: boolean;
+  allDayEnabled?: boolean;
+};
 
 /**
  * Момент сегодняшнего старта слота — В ТАЙМЗОНЕ СЛОТА, а не устройства.
@@ -231,7 +239,7 @@ function pickLiveSlot(slots: ScheduleSlot[]): (ScheduleSlot & { startsAtMs: numb
     .pop() ?? null;
 }
 
-const DEFAULT_ENTRY_GEMS = 3;
+const DEFAULT_ENTRY_GEMS = 5;
 /**
  * Запасные значения на случай, если банк ещё не загрузился. Как только приходит
  * ответ tournamentWeeklyBankInfo, используются СЕРВЕРНЫЕ числа — на клиенте
@@ -286,7 +294,7 @@ export default function TournamentsScreen() {
   const goHome = useCallback(() => router.replace('/(tabs)/home' as any), [router]);
 
   const [schedule, setSchedule] = useState<ScheduleConfig | null>(null);
-  const entryGems = schedule?.entryGems ?? DEFAULT_ENTRY_GEMS;
+  const entryGems = schedule?.entryGems ?? bankInfo?.entryGems ?? DEFAULT_ENTRY_GEMS;
 
   useEffect(() => {
     // Расписание меняется раз в недели — снимок, не подписка (экономия чтений).
@@ -380,11 +388,25 @@ export default function TournamentsScreen() {
   // Поэтому слушаем комнату недавно стартовавшего слота, если он есть, и
   // только иначе — комнату ближайшего будущего.
   const watchSlot = useMemo(() => pickLiveSlot(schedule?.slots ?? []) ?? nextSlot, [schedule, nextSlot]);
+  /**
+   * зачем 2026-08-04 (аудит all-day режима): в обычном расписании roomId
+   * зрителя честно предсказуем — tournamentRoomId(slotId, tz, dateKey) даёт
+   * ТУ ЖЕ комнату, что создаёт сервер по тому же слоту. В all-day режиме
+   * сервер комнату НЕ предсказывает — tournamentAllDayRoomId(nowMs, timezone)
+   * в functions/src/tournament_all_day.ts перевычисляет её каждые 30 секунд
+   * по хэшу от текущего времени, и клиент физически не может воспроизвести
+   * этот хэш без node:crypto и без риска разойтись с серверными часами.
+   * Раньше здесь тихо подписывались на ЗАВЕДОМО чужую/устаревшую комнату —
+   * статус «Вы в турнире» никогда не срабатывал для all-day, и слушатель
+   * Firestore висел зря. Честнее не подписываться вовсе: свой текущий матч
+   * игрок открывает через параметры навигации при входе (enterLobby), это
+   * НЕ зависит от roomId здесь и не ломается.
+   */
   const roomId = useMemo(() => {
-    if (!watchSlot) return null;
+    if (!watchSlot || schedule?.allDayEnabled === true) return null;
     const timezone = watchSlot.timezone || 'Europe/Moscow';
     return tournamentRoomId(watchSlot.slotId, timezone, tournamentDateKey(timezone, new Date(tournamentNow())));
-  }, [watchSlot]);
+  }, [watchSlot, schedule?.allDayEnabled]);
   // Комната, в которую реально идёт вход (будущий слот) — она же для лобби.
   const joinRoomId = useMemo(() => {
     if (!nextSlot) return null;
@@ -442,10 +464,9 @@ export default function TournamentsScreen() {
   const seasonPassPct = seasonPass.levelCostStars > 0
     ? Math.min(100, Math.round((seasonPass.intoLevelStars / seasonPass.levelCostStars) * 100))
     : 100;
-  // зачем: require-источник арта постоянен, но getSeasonRewardIcon дёргает
-  // словарь на каждый рендер — мемо держит одну ссылку и не гоняет expo-image
-  // на перерисовках тикающего отсчёта (он ре-рендерит экран раз в секунду).
-  const seasonPassMedalIcon = useMemo(() => getSeasonRewardIcon('card_pack', themeMode), [themeMode]);
+  // зачем: держим один статический набор арта активной темы и не пересчитываем
+  // require-источники на каждом секундном тике экрана турниров.
+  const tournamentThemeAssets = useMemo(() => getTournamentThemeAssets(themeMode), [themeMode]);
 
   const daySlotList = useMemo(() => enabledSlots(schedule?.slots ?? []), [schedule]);
 
@@ -478,12 +499,17 @@ export default function TournamentsScreen() {
       nowMs: tournamentNow(),
       entryWindowMs: bankInfo?.entryWindowMs,
       playedWindowStartMs,
+      allDayEnabled: schedule?.allDayEnabled === true,
     }),
     // tick заставляет пересчитать состояние по ходу времени (см. ниже).
-    [windowStartsMs, bankInfo?.entryWindowMs, playedWindowStartMs, tick],
+    [windowStartsMs, bankInfo?.entryWindowMs, playedWindowStartMs, tick, schedule?.allDayEnabled],
   );
 
-  const startsAt = room?.startsAt ?? nextSlot?.startsAtMs ?? 0;
+  const windowAllDay = windowState.phase === 'all_day';
+  // Без расписания у all-day нет «своего» старта — nextSlot.startsAtMs здесь
+  // фиктивный (полночь + 24ч, запасной вариант pickNextSlot), реальный таймер
+  // сбил бы игрока с толку. Держим отсчёт только за пределами этого режима.
+  const startsAt = windowAllDay ? 0 : (room?.startsAt ?? nextSlot?.startsAtMs ?? 0);
   // Третий секундный таймер хаба — тоже под гвардом видимости. useCountdown
   // считает от целевого момента, а не накопительно, поэтому после паузы
   // отсчёт возвращается сразу с ВЕРНЫМ числом, без отставания.
@@ -537,9 +563,15 @@ export default function TournamentsScreen() {
    * Отыграл в этом окне — кнопка гаснет: сервер всё равно ответит
    * slot_already_played, и живая кнопка была бы обманом.
    */
+  // зачем 2026-08-04 (владелец: «сделай чтобы пользователи могли заходить
+  // сколько угодно турниров на протяжении дня весь день»): в all-day режиме
+  // нет ни «окна», ни лимита «один вход на окно» — сервер уже принимает вход
+  // в любую секунду суток (см. комментарий у windowAllDay выше и
+  // tournamentJoin в functions/src/tournaments.ts). windowPlayed здесь всегда
+  // false (resolveTournamentWindowState не помечает 'all_day' как played), но
+  // проверка явная — читателю не нужно держать это в голове.
   const joinWindowOpen = Boolean(joinRoomId)
-    && !windowPlayed
-    && (windowOpen || (secondsToStart > 0 && joinOpensInSec === 0));
+    && (windowAllDay || (!windowPlayed && (windowOpen || (secondsToStart > 0 && joinOpensInSec === 0))));
 
   // зачем 2026-08-03 (владелец, дословно): «турнир должен выглядеть точно так
   // же как без дев, но в нём должна быть кнопка ДЕВ; по нажатию у меня
@@ -630,7 +662,14 @@ export default function TournamentsScreen() {
       // зачем 2026-07-27 (владелец: «убери ограничение на количество игр в
       // слот»): для мгновенного турнира окно НЕ помечается — иначе один прогон
       // закрывал бы кнопку на всё окно, а играть можно сколько угодно раз.
-      const playedWindow = instantEntry
+      //
+      // зачем 2026-08-04 (владелец: «заходить сколько угодно турниров на
+      // протяжении дня весь день»): та же логика для all-day — nextSlot тут
+      // фиктивный placeholder (pickNextSlot подставляет полночь + 24ч, раз
+      // слот 'all_day' с localTime 00:00 всегда «уже начался»), а не реальный
+      // старт окна. Пометить его как playedWindow означало бы закрыть кнопку
+      // клиентской логикой сразу после первого же турнира за день.
+      const playedWindow = instantEntry || windowAllDay
         ? 0
         : windowState.activeWindowStartMs || nextSlot?.startsAtMs || 0;
       if (playedWindow) {
@@ -662,7 +701,11 @@ export default function TournamentsScreen() {
       // зачем: сервер — истина. Если он говорит «в этом окне уже играл» (а
       // локальная память об этом не знала, например после переустановки),
       // догоняем состояние, чтобы кнопка не звала жать повторно.
-      if (code.includes('slot_already_played')) {
+      //
+      // зачем 2026-08-04: сервер физически не присылает slot_already_played в
+      // all-day режиме (requireAllDay пускает без лимита) — windowAllDay здесь
+      // на случай будущих серверных правок, а не наблюдаемый сегодня баг.
+      if (code.includes('slot_already_played') && !windowAllDay) {
         const playedWindow = windowState.activeWindowStartMs || nextSlot?.startsAtMs || 0;
         if (playedWindow) {
           setPlayedWindowStartMs(playedWindow);
@@ -763,10 +806,13 @@ export default function TournamentsScreen() {
   return (
     <View style={styles.root}>
       <TournamentBackdrop variant="hub" />
-      {/* Дыхание фона: мягкий свет акцента сверху — глубина без обводок. */}
+      {/* Дыхание фона: мягкий свет акцента сверху — глубина без обводок.
+          зачем 2026-08-04 (владелец: «верхняя сейф-зона другого цвета»):
+          свет начинается ПОД сейф-зоной, иначе он подкрашивал статус-бар и
+          верх хаба не совпадал с фоном темы. */}
       <LinearGradient
         colors={[P.sheen, 'transparent']}
-        style={styles.sheen}
+        style={[styles.sheen, { top: insets.top }]}
         pointerEvents="none"
       />
       <BouncyScrollView
@@ -919,8 +965,12 @@ export default function TournamentsScreen() {
           </V2Card>
         </Animated.View>
 
-        {/* Таймлайн слотов дня: точки вместо плиток — читается за взгляд */}
-        {daySlotList.length > 0 ? (
+        {/* Таймлайн слотов дня: точки вместо плиток — читается за взгляд.
+            зачем 2026-08-04 (аудит all-day режима): daySlotList не пуст и в
+            all-day (синтетический слот 'all_day' с localTime 00:00) — без
+            этой проверки под «ВЕСЬ ДЕНЬ · без ограничений» повисала бы одна
+            одинокая точка «00:00», будто расписание всё же существует. */}
+        {!windowAllDay && daySlotList.length > 0 ? (
           <View style={styles.timeline}>
             {daySlotList.map((slot, index) => {
               const isNext = slot.slotId === nextSlot?.slotId;
@@ -962,14 +1012,14 @@ export default function TournamentsScreen() {
           >
             <V2Card pad={18}>
             <View style={styles.bankRow}>
-              <LinearGradient
-                colors={METAL.gold}
-                start={{ x: 0.15, y: 0 }}
-                end={{ x: 0.85, y: 1 }}
-                style={styles.bankMedal}
-              >
-                <Ionicons name="trophy" size={20} color={METAL.ink} />
-              </LinearGradient>
+              <Image
+                source={tournamentThemeAssets.weeklyBank}
+                style={styles.tournamentRewardIconArt}
+                contentFit="contain"
+                accessible={false}
+                accessibilityElementsHidden
+                importantForAccessibility="no"
+              />
               <View style={styles.bankBody}>
                 <FlowText testID="tournaments-bank-kicker" provenance="authored" style={styles.kicker}>Банк недели</FlowText>
                 <View style={styles.bankValueRow}>
@@ -1011,22 +1061,14 @@ export default function TournamentsScreen() {
           >
             <V2Card pad={18}>
               <View style={styles.bankRow}>
-                <LinearGradient
-                  colors={METAL.gold}
-                  start={{ x: 0.15, y: 0 }}
-                  end={{ x: 0.85, y: 1 }}
-                  style={styles.bankMedal}
-                >
-                  {/* Арт наград сезона внутри той же золотой медали, что у банка. */}
-                  <Image
-                    source={seasonPassMedalIcon}
-                    style={styles.seasonPassMedalArt}
-                    contentFit="contain"
-                    accessible={false}
-                    accessibilityElementsHidden
-                    importantForAccessibility="no"
-                  />
-                </LinearGradient>
+                <Image
+                  source={tournamentThemeAssets.seasonRewards}
+                  style={styles.tournamentRewardIconArt}
+                  contentFit="contain"
+                  accessible={false}
+                  accessibilityElementsHidden
+                  importantForAccessibility="no"
+                />
                 <View style={styles.bankBody}>
                   {/* зачем 2026-08-03 (владелец: «убери вообще 1/60 цифры и
                       переименуй в награды сезона»): счётчик уровня дублировал
@@ -1184,11 +1226,16 @@ export default function TournamentsScreen() {
       <Sheet visible={confirmVisible} onClose={closeConfirm}>
         <FlowText testID="tournaments-join-title" provenance="authored" style={styles.sheetTitle}>Вход в турнир</FlowText>
         {/* зачем 2026-07-27: при входе вне окна время слота показывать нельзя —
-            турнир начнётся сейчас, а не в 15:20, и подпись бы врала. */}
+            турнир начнётся сейчас, а не в 15:20, и подпись бы врала.
+            зачем 2026-08-04 (аудит all-day режима): nextSlot в all-day не null
+            (pickNextSlot подставляет фиктивный слот-плейсхолдер 00:00) — без
+            явной проверки шторка написала бы «Сегодня · 00:00», хотя вход
+            происходит прямо сейчас, тем же паттерном, что уже есть для
+            instantEntry чуть выше. */}
         <Text style={styles.sheetSub}>
           {testModeReleaseActive
             ? 'Тестовый вход · бесплатно · 16 игроков'
-            : instantEntry
+            : instantEntry || windowAllDay
               ? 'Начнём сразу · 16 игроков'
               : nextSlot
                 ? `Сегодня · ${nextSlot.displayTime} · 16 игроков`
@@ -1312,7 +1359,8 @@ const HeroValue = memo(function HeroValue({
 
 const makeStyles = (P: TournamentV2) => StyleSheet.create({
   root: { flex: 1, backgroundColor: P.bg },
-  sheen: { position: 'absolute', left: 0, right: 0, top: 0, height: 260 },
+  // top задаётся инлайном из сейф-зоны — свет не заходит на статус-бар.
+  sheen: { position: 'absolute', left: 0, right: 0, height: 260 },
   content: { paddingHorizontal: 16, gap: 14 },
 
   header: { flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 2 },
@@ -1342,7 +1390,9 @@ const makeStyles = (P: TournamentV2) => StyleSheet.create({
   },
   // Строка статуса с точкой «в эфире». gap вместо отступа у точки — она
   // появляется не всегда, и текст не должен «прыгать» при её отсутствии.
-  kickerRow: { flexDirection: 'row', alignItems: 'center', gap: 7, marginBottom: 2 },
+  // зачем: владелец попросил центрировать таймер турнира — раньше строка
+  // "СЕГОДНЯ · 12:00" и крупные цифры лепились к левому краю карточки.
+  kickerRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 7, marginBottom: 2 },
   liveDot: { width: 8, height: 8, borderRadius: 4 },
 
   heroMaskBig: { height: 70, marginTop: 8 },
@@ -1350,7 +1400,11 @@ const makeStyles = (P: TournamentV2) => StyleSheet.create({
   // обрезалось справа — маска была под ровно одну строку (height: 40).
   // Даём вторую строку вместо обрезки текста.
   heroMaskMid: { height: 82, marginTop: 8 },
-  heroMaskInner: { flex: 1, backgroundColor: 'transparent', justifyContent: 'center' },
+  // зачем: alignItems центрирует маску по ширине текста — безопасно, пока
+  // градиент HeroValue строго вертикальный (x: 0.5 → x: 0.5). Если его
+  // сделают диагональным/горизонтальным, разная ширина масок у "59:26" и
+  // "Сейчас турниров нет" даст им разные цветовые переходы.
+  heroMaskInner: { flex: 1, backgroundColor: 'transparent', justifyContent: 'center', alignItems: 'center' },
   heroBig: {
     fontSize: 62,
     lineHeight: 66,
@@ -1358,9 +1412,10 @@ const makeStyles = (P: TournamentV2) => StyleSheet.create({
     letterSpacing: -1.6,
     color: '#000',
     fontVariant: ['tabular-nums'],
+    textAlign: 'center',
   },
-  heroMid: { fontSize: 32, lineHeight: 38, fontWeight: '900', letterSpacing: -0.8, color: '#000' },
-  heroSub: { fontSize: 14, fontWeight: '700', color: P.muted, marginTop: 2, marginBottom: 18 },
+  heroMid: { fontSize: 32, lineHeight: 38, fontWeight: '900', letterSpacing: -0.8, color: '#000', textAlign: 'center' },
+  heroSub: { fontSize: 14, fontWeight: '700', color: P.muted, marginTop: 2, marginBottom: 18, textAlign: 'center' },
   // зачем 2026-08-03: подпись под таймером убрана владельцем, но воздух между
   // цифрами и кнопкой нужен прежний — держим ровно marginBottom от heroSub,
   // высоту самой строки не резервируем (текста там больше нет).
@@ -1434,9 +1489,9 @@ const makeStyles = (P: TournamentV2) => StyleSheet.create({
   // карточки имели одинаковую внутреннюю вертикаль.
   seasonPassTrack: { height: 8, borderRadius: 4, overflow: 'hidden', backgroundColor: P.bg, marginTop: 8 },
   seasonPassFill: { height: '100%', borderRadius: 4, backgroundColor: P.gold },
-  // Арт внутри золотой медали 42px: 26 оставляет золотое кольцо по краю, как у
-  // trophy-глифа банка (20 при том же круге) — пара медалей смотрится ровной.
-  seasonPassMedalArt: { width: 26, height: 26 },
+  // Крупный тематический арт без подложки: самостоятельный силуэт остаётся
+  // главным визуальным якорем карточки и не теряет детали на небольшом экране.
+  tournamentRewardIconArt: { width: 58, height: 58 },
   // зачем: пустая таблица в начале недели — нормальное состояние (боты в
   // рейтинг не идут), текст объясняет это вместо заглушки с выдуманными людьми.
   seasonEmpty: {

@@ -22,7 +22,9 @@ describe('personal plan setup theme contract', () => {
   it('asks for daily time during plan setup and activates the plan with that selected load', () => {
     // Ф5: шаг «фокус» убран — тема выбирает план один-к-одному, поток 3 вопроса.
     expect(source).toContain("type Step = 'goal' | 'level' | 'minutes' | 'result' | 'all'");
-    expect(source).toContain('PERSONAL_PLAN_SETUP_MINUTES');
+    // зачем: константа стала функцией personalPlanSetupMinutes(lang) — заголовки
+    // и подписи локализованы через triLang (i18n-аудит).
+    expect(source).toContain('function personalPlanSetupMinutes(lang: Lang)');
     expect(source).toContain('const [selectedMinutes, setSelectedMinutes]');
     expect(source).toContain('setStep(\'minutes\')');
     expect(source).toContain('minutesPerDay: selectedMinutes');

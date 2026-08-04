@@ -2215,6 +2215,7 @@ export default function PersonalPlanExerciseScreen() {
           state={mistakeExplain.aiMistakeState}
           explanation={mistakeExplain.aiMistakeText}
           remaining={mistakeExplain.aiMistakeRemaining}
+          waitLine={mistakeExplain.aiMistakeWaitLine}
           onExplain={mistakeExplain.explain}
           targetAnswer={mistakeTargetAnswer}
           userAnswer={mistakeUserAnswer}
@@ -2824,6 +2825,7 @@ export default function PersonalPlanExerciseScreen() {
                     state={mistakeExplain.aiMistakeState}
                     explanation={mistakeExplain.aiMistakeText}
                     remaining={mistakeExplain.aiMistakeRemaining}
+                    waitLine={mistakeExplain.aiMistakeWaitLine}
                     onExplain={mistakeExplain.explain}
                     targetAnswer={mistakeTargetAnswer}
                     userAnswer={mistakeUserAnswer}

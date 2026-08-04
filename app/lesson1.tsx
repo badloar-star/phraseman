@@ -1333,6 +1333,7 @@ const LessonContent = React.memo(function LessonContent({
                     state={aiMistakeState}
                     explanation={aiMistakeText}
                     remaining={aiMistakeRemaining}
+                    waitLine={mistakeExplain.aiMistakeWaitLine}
                     onExplain={explainCurrentMistake}
                     onOpenSimple={openEli5Modal}
                     targetAnswer={aiMistakeTargetLine}

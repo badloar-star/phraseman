@@ -238,7 +238,9 @@ describe('экраны режима «Турниры»', () => {
   it('результаты закрываются только крестиком в меню турниров', () => {
     const results = read('app/tournament_results.tsx');
     expect(results).toContain('const closeResults = useCallback(() => closeTournamentFlow(router)');
-    expect(results).toContain('accessibilityLabel="Закрыть"');
+    // зачем: accessibilityLabel локализован через triLang (i18n-аудит), русский
+    // текст больше не зашит напрямую в JSX — проверяем наличие ru/uk ключей.
+    expect(results).toMatch(/accessibilityLabel=\{triLang\(lang,\s*\{\s*ru:\s*'Закрыть',\s*uk:\s*'Закрити'/);
     expect(results).toContain('<Ionicons name="close"');
     expect(results).not.toContain('>На главную</V2Cta>');
   });
@@ -783,7 +785,9 @@ describe('tournament results navigation', () => {
   it('closes directly to the tournament menu instead of navigating back to the table', () => {
     const results = read('app/tournament_results.tsx');
     expect(results).toContain('const closeResults = useCallback(() => closeTournamentFlow(router), [router]);');
-    expect(results).toContain('accessibilityLabel="Закрыть"');
+    // зачем: accessibilityLabel локализован через triLang (i18n-аудит), русский
+    // текст больше не зашит напрямую в JSX — проверяем наличие ru/uk ключей.
+    expect(results).toMatch(/accessibilityLabel=\{triLang\(lang,\s*\{\s*ru:\s*'Закрыть',\s*uk:\s*'Закрити'/);
     expect(results).toContain('onPress={closeResults}');
     expect(results).toContain('<Ionicons name="close"');
     expect(results).not.toContain('safeRouterBack');
@@ -815,5 +819,22 @@ describe('режим зрителя (2026-07-26)', () => {
   it('правильные ответы зрителю недоступны', () => {
     // taskSecrets закрыты для всех, включая участников.
     expect(rules).toMatch(/taskSecrets\/\{taskId\}[\s\S]{0,120}allow read, write: if false/);
+  });
+
+  /**
+   * зачем 2026-08-04 (аудит all-day режима): roomId зрителя строился клиентской
+   * формулой tournamentRoomId(slotId, tz, dateKey) — верно для обычного
+   * расписания (сервер создаёт ТУ ЖЕ комнату по тому же слоту), но неверно для
+   * all-day: там сервер перевычисляет комнату каждые 30 секунд по хэшу от
+   * текущего времени (tournamentAllDayRoomId в
+   * functions/src/tournament_all_day.ts) — клиент физически не может её
+   * угадать без node:crypto и без риска разойтись с серверными часами. Без
+   * этой проверки экран тихо подписывался на чужую/устаревшую комнату: статус
+   * «Вы в турнире» никогда не срабатывал для all-day, а слушатель Firestore
+   * висел зря (Firebase-экономия). Правильный контракт — НЕ подписываться,
+   * когда предсказать комнату нельзя, а не подписаться на неверную.
+   */
+  it('в all-day режиме зритель не подписывается на непредсказуемую комнату', () => {
+    expect(home).toContain("if (!watchSlot || schedule?.allDayEnabled === true) return null;");
   });
 });

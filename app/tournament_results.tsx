@@ -73,6 +73,8 @@ import { closeTournamentFlow } from './tournament_navigation';
 import CollectibleDropModal from '../components/CollectibleDropModal';
 import { useOverlayVisible } from '../components/OverlayArbiter';
 import { maybeRollCollectibleDrop, type CollectibleDropOutcome } from './collectibles/storage';
+import { triLang, type Lang } from '../constants/i18n';
+import { useLang } from '../components/LangContext';
 
 type Winner = {
   id: string;
@@ -118,12 +120,13 @@ function sharedPlace(players: readonly RoomPlayer[], index: number): number {
  * его. Строим пьедестал сразу — сервер потом уточняет места и выплаты, и это
  * уточнение не меняет геометрию (места те же, добавляются только жемчужины).
  */
-function buildPodium(players: readonly RoomPlayer[], P: TournamentV2, myId: string | null): Winner[] {
+function buildPodium(players: readonly RoomPlayer[], P: TournamentV2, myId: string | null, lang: Lang): Winner[] {
   if (players.length === 0) return [];
   const ordered = orderTournamentPlayersForDisplay(players);
+  const fallbackName = triLang(lang, { ru: 'Игрок', uk: 'Гравець', es: 'Jugador', 'pt-BR': 'Jogador', vi: 'Người chơi', id: 'Pemain', tr: 'Oyuncu', pl: 'Gracz' });
   const top = ordered.slice(0, 3).map((player, index) => ({
     id: player.id,
-    name: player.name || 'Игрок',
+    name: player.name || fallbackName,
     // зачем 2026-08-03 (владелец: «рандомные боты не могут получить уровень выше
     // 50 и аватарку выше 50»): аватар прогоняется через tournamentAvatarValue —
     // он и клампит уровневый аватар бота к TOURNAMENT_BOT_MAX_LEVEL. Раньше на
@@ -147,7 +150,52 @@ function buildPodium(players: readonly RoomPlayer[], P: TournamentV2, myId: stri
   return [top[1], top[0], top[2]].filter((winner): winner is Winner => Boolean(winner));
 }
 
+/**
+ * Счётчик, который «докручивается» до цели, а не появляется готовым числом.
+ *
+ * зачем 2026-08-04 (владелец: «начисление звёзд и начисление жемчугов должно
+ * быть анимированно, они должны цифры увеличить с анимацией»): такой отсчёт уже
+ * жил внутри колонки подиума, но был вшит в неё намертво. Награда игрока и
+ * индикатор звёзд требовали ровно того же поведения — вынесено в общий хук,
+ * чтобы не появилось три расходящиеся копии одной анимации.
+ *
+ * Считаем в JS-состоянии, а не в shared value: рисуем ЦЕЛЫЕ жемчужины и звёзды,
+ * дробных не бывает. Шагов не больше 24 и всего ~440 мс — интервал живёт только
+ * пока экран открыт и на производительность не влияет.
+ *
+ * Гонок нет: цель меняется (сервер досчитал награду) → эффект перезапускается,
+ * старый интервал снимается в cleanup, и позднее значение не затирает свежее.
+ */
+function useCountUp(target: number, startDelayMs: number, enabled = true): number {
+  const [shown, setShown] = useState(0);
+
+  useEffect(() => {
+    if (!enabled || target <= 0) { setShown(0); return; }
+    const steps = Math.min(target, 24);
+    const stepMs = Math.max(22, Math.round(440 / steps));
+    let done = 0;
+    let interval: ReturnType<typeof setInterval> | null = null;
+
+    const startTimer = setTimeout(() => {
+      interval = setInterval(() => {
+        done += 1;
+        // Последний шаг обязан дать РОВНО target: округление не должно врать.
+        setShown(done >= steps ? target : Math.round((target * done) / steps));
+        if (done >= steps && interval) { clearInterval(interval); interval = null; }
+      }, stepMs);
+    }, startDelayMs);
+
+    return () => {
+      clearTimeout(startTimer);
+      if (interval) clearInterval(interval);
+    };
+  }, [target, startDelayMs, enabled]);
+
+  return shown;
+}
+
 export default function TournamentResultsScreen() {
+  const { lang } = useLang();
   const P = useTournamentPalette();
   const styles = React.useMemo(() => makeStyles(P), [P]);
   const router = useRouter();
@@ -175,10 +223,11 @@ export default function TournamentResultsScreen() {
    */
   const [selectedPlayer, setSelectedPlayer] = useState<PlayerInfo | null>(null);
   const closePlayer = useCallback(() => setSelectedPlayer(null), []);
+  const fallbackMeName = triLang(lang, { ru: 'Я', uk: 'Я', es: 'Yo', 'pt-BR': 'Eu', vi: 'Tôi', id: 'Saya', tr: 'Ben', pl: 'Ja' });
   const [myProfile, setMyProfile] = useState<{
     name: string; avatar: string; frame: string; totalXP: number;
     streak: number | null; leagueId: number | undefined;
-  }>(() => ({ name: 'Я', avatar: '', frame: '', totalXP: 0, streak: null, leagueId: undefined }));
+  }>(() => ({ name: fallbackMeName, avatar: '', frame: '', totalXP: 0, streak: null, leagueId: undefined }));
   useEffect(() => {
     let alive = true;
     void AsyncStorage.multiGet(['user_name', 'user_avatar', 'user_frame', 'user_total_xp', 'streak_count', 'league_state_v3'])
@@ -191,7 +240,7 @@ export default function TournamentResultsScreen() {
           if (rawLeague) leagueId = Number((JSON.parse(rawLeague) as { leagueId?: number }).leagueId);
         } catch { /* лига не критична для карточки */ }
         setMyProfile({
-          name: (map.get('user_name') ?? '').trim() || 'Я',
+          name: (map.get('user_name') ?? '').trim() || fallbackMeName,
           avatar: (map.get('user_avatar') ?? '').trim(),
           frame: (map.get('user_frame') ?? '').trim(),
           totalXP: Number(map.get('user_total_xp') ?? 0) || 0,
@@ -201,7 +250,9 @@ export default function TournamentResultsScreen() {
       })
       .catch(() => {});
     return () => { alive = false; };
-  }, []);
+    // зачем: fallback-имя «Я» зависит от lang — та же поправка, что уже была
+    // сделана в tournament_season.tsx/tournament_lobby.tsx.
+  }, [fallbackMeName]);
 
   const openWinner = useCallback((winner: Winner) => {
     if (winner.isBot) {
@@ -304,24 +355,14 @@ export default function TournamentResultsScreen() {
 
   const { themeMode } = useTheme();
   const players = room?.players ?? [];
-  const podium = useMemo(() => buildPodium(players, P, myId), [players, P, myId]);
+  const podium = useMemo(() => buildPodium(players, P, myId, lang), [players, P, myId, lang]);
 
-  /**
-   * Реальная экономика турнира вместо захардкоженных «50/25/10».
-   *
-   * зачем 2026-07-27 (владелец): сервер платит долю ФАКТИЧЕСКОГО банка — при
-   * 16 игроках по 5 жемчужин это 80, из них 20% в недельный банк, а призёрам
-   * 39 в долях 60/25/15 → 24/9/6. Числа приходят в комнате (prizeGems,
-   * prizePoolGems). Фолбэк по долям нужен для старых комнат, финализированных
-   * до этой правки: там полей ещё нет, но банк можно восстановить из potGems.
-   */
-  const prizePool = useMemo(() => {
-    if (typeof room?.prizePoolGems === 'number') return Math.max(0, room.prizePoolGems);
-    const pot = Math.max(0, room?.potGems ?? 0);
-    return pot > 0 ? Math.floor(pot * 0.8) : 0;
-  }, [room?.prizePoolGems, room?.potGems]);
-  const totalPot = Math.max(0, Math.trunc(room?.potGems ?? prizePool));
-  const weeklyBankGems = Math.max(0, totalPot - prizePool);
+  // зачем 2026-08-04 (владелец: «убери вообще вот этот блок общий банк, ваша
+  // доля и т.д. — это мусор»): здесь считались totalPot / prizePool /
+  // weeklyBankGems — бухгалтерия турнира для удалённой таблицы под подиумом.
+  // Игроку важна только его выплата (myPrizeGems ниже) и жемчужины призёров над
+  // никами — они приходят из room.players[].rewardGems напрямую, банк для этого
+  // не нужен.
 
   const standings = useMemo(
     () => orderTournamentPlayersForDisplay(players),
@@ -482,16 +523,50 @@ export default function TournamentResultsScreen() {
       .catch(() => {});
   }, [runtimeActive, freshSnapshot, roomId, room, room?.state, myPlace]);
 
+  /**
+   * Индикатор звёзд сезона в шапке.
+   *
+   * зачем 2026-08-04 (владелец: «в правом верхнем углу просто как везде
+   * индикатор звёздочек»): берём ТОТ ЖЕ источник, что вкладка турниров и экран
+   * сезона — peek синхронно на первом кадре (Performance Bible: без
+   * default-then-patch и без нуля-который-прыгнет), гидрация с диска догоняет
+   * фоном, событие ловит начисление за только что сыгранный турнир.
+   *
+   * Firebase-экономия: чтений нет вообще — счётчик локальный (AsyncStorage).
+   */
+  const [seasonPass, setSeasonPass] = useState<SeasonPassProgress>(peekSeasonPassProgress);
+  useEffect(() => {
+    let alive = true;
+    void hydrateSeasonPassProgress().then((p) => { if (alive) setSeasonPass(p); }).catch(() => {});
+    const sub = onAppEvent('season_pass_stars_changed', () => {
+      if (alive) setSeasonPass(peekSeasonPassProgress());
+    });
+    return () => { alive = false; sub.remove(); };
+  }, []);
+  const seasonStars = seasonPass.totalStars;
+  // Звёзды докручиваются вместе с подиумом; награда игрока — следом за ним.
+  const shownSeasonStars = useCountUp(seasonStars, 200);
+  const shownPrizeGems = useCountUp(myPrizeGems, 500, hasFinalResults);
+
   const share = useCallback(async () => {
     void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     try {
       await Share.share({
-        message: `Я обыграл ${beaten} игроков в турнире Phraseman! Сможешь меня победить?`,
+        message: triLang(lang, {
+            ru: `Я обыграл ${beaten} игроков в турнире Phraseman! Сможешь меня победить?`,
+            uk: `Я переміг ${beaten} гравців у турнірі Phraseman! Зможеш мене перемогти?`,
+            es: `¡Vencí a ${beaten} jugadores en el torneo de Phraseman! ¿Puedes ganarme?`,
+            'pt-BR': `Venci ${beaten} jogadores no torneio do Phraseman! Consegue me vencer?`,
+            vi: `Tôi đã đánh bại ${beaten} người chơi trong giải đấu Phraseman! Bạn có thể thắng tôi không?`,
+            id: `Saya mengalahkan ${beaten} pemain di turnamen Phraseman! Bisakah kamu mengalahkan saya?`,
+            tr: `Phraseman turnuvasında ${beaten} oyuncuyu yendim! Beni yenebilir misin?`,
+            pl: `Pokonałem ${beaten} graczy w turnieju Phraseman! Dasz radę mnie pokonać?`,
+        }),
       });
     } catch {
       // Пользователь закрыл шторку — это не ошибка.
     }
-  }, [beaten]);
+  }, [beaten, lang]);
 
   if (status === 'offline') {
     return (
@@ -531,21 +606,41 @@ export default function TournamentResultsScreen() {
           <TapScale
             onPress={closeResults}
             accessibilityRole="button"
-            accessibilityLabel="Закрыть"
+            accessibilityLabel={triLang(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}
             style={styles.backButton}
           >
             <Ionicons name="close" size={24} color={P.text} />
           </TapScale>
+          {/* зачем 2026-08-04 (владелец: «в правом верхнем углу просто как везде
+              индикатор звёздочек, чтобы видеть, сколько звёздочек ты набрал»):
+              звёзды ушли из-под ников на подиуме, и итог сезона стало негде
+              увидеть. Индикатор тот же, что на вкладке турниров, и цифра
+              докручивается до нового значения — видно, что турнир её поднял. */}
+          <View style={styles.headerStars}>
+            <StarGlyph size={14} color={P.gold} />
+            <FlowText
+              testID="results-season-stars"
+              provenance="authored"
+              style={styles.headerStarsText}
+              accessibilityLabel={triLang(lang, { ru: `Звёзд за сезон: ${seasonStars}`, uk: `Зірок за сезон: ${seasonStars}`, es: `Estrellas de la temporada: ${seasonStars}`, 'pt-BR': `Estrelas da temporada: ${seasonStars}`, vi: `Sao mùa giải: ${seasonStars}`, id: `Bintang musim: ${seasonStars}`, tr: `Sezon yıldızları: ${seasonStars}`, pl: `Gwiazdki sezonu: ${seasonStars}` })}
+            >
+              {shownSeasonStars}
+            </FlowText>
+          </View>
         </View>
 
         <Animated.View entering={FadeInDown.duration(280)} style={styles.titleBlock}>
           <Text style={styles.title}>
-            {won ? '🏆 Победа!' : 'Турнир завершён'}
+            {won
+                ? triLang(lang, { ru: '🏆 Победа!', uk: '🏆 Перемога!', es: '🏆 ¡Victoria!', 'pt-BR': '🏆 Vitória!', vi: '🏆 Chiến thắng!', id: '🏆 Menang!', tr: '🏆 Zafer!', pl: '🏆 Zwycięstwo!' })
+                : triLang(lang, { ru: 'Турнир завершён', uk: 'Турнір завершено', es: 'Torneo terminado', 'pt-BR': 'Torneio encerrado', vi: 'Giải đấu đã kết thúc', id: 'Turnamen selesai', tr: 'Turnuva sona erdi', pl: 'Turniej zakończony' })}
           </Text>
           <Text style={styles.subtitle}>
             {won
-              ? `Вы обыграли ${beaten} игроков`
-              : myPlace > 0 ? `Ваше место: ${myPlace}` : 'Результаты считаются…'}
+              ? triLang(lang, { ru: `Вы обыграли ${beaten} игроков`, uk: `Ви перемогли ${beaten} гравців`, es: `Venciste a ${beaten} jugadores`, 'pt-BR': `Você venceu ${beaten} jogadores`, vi: `Bạn đã thắng ${beaten} người chơi`, id: `Anda mengalahkan ${beaten} pemain`, tr: `${beaten} oyuncuyu yendin`, pl: `Pokonałeś ${beaten} graczy` })
+              : myPlace > 0
+                ? triLang(lang, { ru: `Ваше место: ${myPlace}`, uk: `Ваше місце: ${myPlace}`, es: `Tu puesto: ${myPlace}`, 'pt-BR': `Sua posição: ${myPlace}`, vi: `Hạng của bạn: ${myPlace}`, id: `Peringkat Anda: ${myPlace}`, tr: `Sıralaman: ${myPlace}`, pl: `Twoje miejsce: ${myPlace}` })
+                : triLang(lang, { ru: 'Результаты считаются…', uk: 'Результати рахуються…', es: 'Calculando resultados…', 'pt-BR': 'Calculando resultados…', vi: 'Đang tính kết quả…', id: 'Menghitung hasil…', tr: 'Sonuçlar hesaplanıyor…', pl: 'Liczymy wyniki…' })}
           </Text>
         </Animated.View>
 
@@ -562,67 +657,26 @@ export default function TournamentResultsScreen() {
                   winner={winner}
                   gems={winner.rewardGems}
                   onPress={openWinner}
+                  lang={lang}
                 />
               ))}
             </View>
           </View>
 
-          {/* Деньги показаны как один проверяемый путь, а не как несколько
-              несвязанных чисел. Источник всех значений — финальная room.
-
-              зачем 2026-08-02 (владелец: «на экране результатов сначала
-              показывает у всех 0, а потом обновляется»): экран открывается на
-              состоянии results, а суммы сервер проставляет в rewards. До этого
-              момента здесь честно стояли нули — и игрок видел «0 жемчужин»,
-              которые через секунду прыгали на реальные. Пока цифр нет,
-              показываем прочерк: место под них уже занято (геометрия та же),
-              но ложного значения нет. */}
-          <View style={styles.bankBreakdown}>
-            <View style={styles.bankRow}>
-              <Text style={styles.bankLabel}>Общий банк</Text>
-              <Text style={styles.bankAmount}>
-                {hasFinalResults ? `${totalPot} жемч.` : '—'}
-              </Text>
-            </View>
-            <View style={styles.bankRow}>
-              <Text style={styles.bankLabel}>В недельный банк</Text>
-              <Text style={styles.bankAmountSecondary}>
-                {hasFinalResults ? `− ${weeklyBankGems} жемч.` : '—'}
-              </Text>
-            </View>
-            <View style={styles.bankRow}>
-              <View style={styles.bankLabelGroup}>
-                <Text style={styles.bankLabelStrong}>Призовой фонд дня</Text>
-                <Text style={styles.bankHint}>Доли мест: 60 / 25 / 15</Text>
-              </View>
-              <Text style={styles.bankAmount}>
-                {hasFinalResults ? `${prizePool} жемч.` : '—'}
-              </Text>
-            </View>
-            <View style={styles.playerShareRow}>
-              <View style={styles.bankLabelGroup}>
-                <Text style={styles.playerShareLabel}>Ваша доля</Text>
-                <Text style={styles.bankHint}>
-                  {hasFinalResults ? `Серверная выплата: ${myPrizeGems}` : 'Считаем выплату'}
-                </Text>
-              </View>
-              <View style={styles.bankValue}>
-                <Text style={styles.playerShareAmount}>
-                  {hasFinalResults ? myPrizeGems : '—'}
-                </Text>
-                <Image
-                  source={pearlIconForTheme(themeMode)}
-                  style={styles.bankPearl}
-                  contentFit="contain"
-                  accessibilityLabel={`Ваша доля: ${myPrizeGems} жемчужин`}
-                />
-              </View>
-            </View>
-          </View>
         </V2Card>
 
+        {/* Награда игрока.
 
-        {/* Награда игрока */}
+            зачем 2026-08-04 (владелец: «убери вообще вот этот блок общий банк,
+            ваша доля и т.д. — это мусор», «а „ваша награда“ вообще убери, не
+            надо показывать», «внизу написано ваша награда и там жемчужины»):
+            над подиумом стояла бухгалтерия турнира — банк, отчисление в
+            недельный фонд, призовой фонд дня, доли мест — четыре числа, из
+            которых игроку важно ровно одно. Ниже была вторая карточка «Ваша
+            награда», которая показывала… ОЧКИ, а не награду, да ещё с подписью
+            «начислена сервером». Теперь одна строка и одно число: сколько
+            жемчужин ты унёс. Подпись-расшифровка под заголовком запрещена
+            правилом владельца, поэтому «начислена сервером» не вернулась. */}
         <V2Card pad={20}>
           <View style={styles.rewardRow}>
             {/* зачем: было хардкод-hex фолбэк-цвета + эмодзи-аватар — теперь
@@ -631,17 +685,30 @@ export default function TournamentResultsScreen() {
               <AvatarView avatar={me?.avatar ?? ''} level={tournamentAvatarLevel(me?.avatar)} auraId={me?.aura} size={40} animateAura={false} />
             </View>
             <View style={styles.rewardBody}>
-              <Text style={styles.rewardTitle}>Ваша награда</Text>
-              <Text style={styles.rewardSub}>
-                {me?.forfeitedAtMs !== undefined ? 'выход из турнира — без приза' : 'начислена сервером'}
+              <Text style={styles.rewardTitle}>{triLang(lang, { ru: 'Ваша награда', uk: 'Ваша нагорода', es: 'Tu recompensa', 'pt-BR': 'Sua recompensa', vi: 'Phần thưởng của bạn', id: 'Hadiahmu', tr: 'Ödülün', pl: 'Twoja nagroda' })}</Text>
+            </View>
+            {/* Пустая награда — не провал, а приглашение вернуться: числа нет,
+                вместо него спокойная строка без давления (решение владельца:
+                «если ничего не заработал, то без давления»). */}
+            {myPrizeGems > 0 ? (
+              <View style={styles.rewardValueBox}>
+                <FlowText testID="results-reward-value" provenance="authored" style={styles.rewardValue}>
+                  {shownPrizeGems}
+                </FlowText>
+                <Image
+                  source={pearlIconForTheme(themeMode)}
+                  style={styles.rewardPearl}
+                  contentFit="contain"
+                  accessibilityLabel={triLang(lang, { ru: `Ваша награда: ${myPrizeGems} жемчужин`, uk: `Ваша нагорода: ${myPrizeGems} перлин`, es: `Tu recompensa: ${myPrizeGems} perlas`, 'pt-BR': `Sua recompensa: ${myPrizeGems} pérolas`, vi: `Phần thưởng của bạn: ${myPrizeGems} ngọc trai`, id: `Hadiahmu: ${myPrizeGems} mutiara`, tr: `Ödülün: ${myPrizeGems} inci`, pl: `Twoja nagroda: ${myPrizeGems} pereł` })}
+                />
+              </View>
+            ) : (
+              <Text style={styles.rewardEmpty}>
+                {hasFinalResults
+                    ? triLang(lang, { ru: 'В этот раз без жемчужин — получится в следующий', uk: 'Цього разу без перлин — вийде наступного разу', es: 'Esta vez sin perlas: la próxima lo lograrás', 'pt-BR': 'Desta vez sem pérolas: da próxima você consegue', vi: 'Lần này chưa có ngọc trai — lần sau nhé', id: 'Kali ini belum dapat mutiara — lain kali pasti', tr: 'Bu sefer inci yok — bir dahakine olur', pl: 'Tym razem bez pereł — następnym razem się uda' })
+                    : triLang(lang, { ru: 'Считаем награду', uk: 'Рахуємо нагороду', es: 'Calculando la recompensa', 'pt-BR': 'Calculando a recompensa', vi: 'Đang tính phần thưởng', id: 'Menghitung hadiah', tr: 'Ödül hesaplanıyor', pl: 'Liczymy nagrodę' })}
               </Text>
-            </View>
-            <View style={styles.rewardValueBox}>
-              <FlowText testID="results-reward-value" provenance="authored" style={styles.rewardValue}>
-                {me ? me.score : 0}
-              </FlowText>
-              <Text style={styles.rewardValueLabel}>очков</Text>
-            </View>
+            )}
           </View>
         </V2Card>
 
@@ -652,16 +719,16 @@ export default function TournamentResultsScreen() {
             closeTournamentFlow, что и крестик. Тон ghost: главное действие
             здесь — поделиться победой, выход не должен перетягивать взгляд. */}
         <View style={styles.actions}>
-          <V2Cta onPress={share}>Поделиться 📤</V2Cta>
+          <V2Cta onPress={share}>{triLang(lang, { ru: 'Поделиться 📤', uk: 'Поділитися 📤', es: 'Compartir 📤', 'pt-BR': 'Compartilhar 📤', vi: 'Chia sẻ 📤', id: 'Bagikan 📤', tr: 'Paylaş 📤', pl: 'Udostępnij 📤' })}</V2Cta>
           {roomId ? (
             <V2Cta
               tone="ghost"
               onPress={() => router.push({ pathname: '/tournament_review', params: { roomId } } as any)}
             >
-              Разобрать ответы
+              {triLang(lang, { ru: 'Разобрать ответы', uk: 'Розібрати відповіді', es: 'Revisar respuestas', 'pt-BR': 'Revisar respostas', vi: 'Xem lại câu trả lời', id: 'Tinjau jawaban', tr: 'Cevapları incele', pl: 'Przejrzyj odpowiedzi' })}
             </V2Cta>
           ) : null}
-          <V2Cta tone="ghost" onPress={closeResults}>Готово</V2Cta>
+          <V2Cta tone="ghost" onPress={closeResults}>{triLang(lang, { ru: 'Готово', uk: 'Готово', es: 'Listo', 'pt-BR': 'Concluído', vi: 'Xong', id: 'Selesai', tr: 'Tamam', pl: 'Gotowe' })}</V2Cta>
         </View>
       </ScrollView>
 
@@ -700,8 +767,8 @@ export default function TournamentResultsScreen() {
 const PODIUM_HEIGHT: Record<number, number> = { 1: 96, 2: 72, 3: 60 };
 
 const PodiumColumn = memo(function PodiumColumn({
-  winner, gems = 0, onPress,
-}: { winner: Winner; gems?: number; onPress?: (winner: Winner) => void }) {
+  winner, gems = 0, onPress, lang,
+}: { winner: Winner; gems?: number; onPress?: (winner: Winner) => void; lang: Lang }) {
   const P = useTournamentPalette();
   const styles = React.useMemo(() => makeStyles(P), [P]);
   const { themeMode } = useTheme();
@@ -714,12 +781,14 @@ const PodiumColumn = memo(function PodiumColumn({
    * Счётчик жемчужин над аватаром: число отсчитывается от нуля.
    *
    * зачем 2026-07-27 (владелец): «три отдельных счёта, у каждого своё
-   * количество, анимированно счётчик начисляет». Считаем в JS-состоянии, а не
-   * в shared value: нужно рисовать ЦЕЛЫЕ жемчужины, дробных не бывает.
-   * Интервал редкий (~28 кадров на всю анимацию) и живёт только пока экран
-   * открыт — на производительность не влияет.
+   * количество, анимированно счётчик начисляет». Сама механика отсчёта переехала
+   * в общий useCountUp — тот же счёт нужен награде игрока и звёздам сезона.
+   *
+   * Жемчужины «долетают» из-под подиума, поэтому старт ждёт пружину аватара:
+   * иначе цифра тикала бы в пустоту, пока колонка ещё едет вверх.
    */
-  const [shownGems, setShownGems] = useState(0);
+  const gemsStartDelay = first ? 430 : winner.place === 2 ? 300 : 370;
+  const shownGems = useCountUp(gems, gemsStartDelay);
 
   // зачем 2026-08-01 (аудит турнира): порядок событий сохранён (серебро →
   // бронза → золото → корона → награда), но каждая пауза сжата примерно вдвое.
@@ -738,34 +807,14 @@ const PodiumColumn = memo(function PodiumColumn({
     }
   }, [first, winner.place, avatarY, crownScale]);
 
+  // Пилюля «подпрыгивает» ровно в момент, когда цифра начинает расти.
   useEffect(() => {
-    if (gems <= 0) { setShownGems(0); return; }
-    // Жемчужины «долетают» из банка под подиумом — стартуем после аватара.
-    // зачем 2026-08-01 (аудит турнира): было 900 мс старта + ~700 мс тиканья —
-    // до финальной цифры награды проходило больше полутора секунд. Счётчик
-    // по-прежнему стартует ПОСЛЕ аватара (иначе жемчужины летят в пустоту), но
-    // ждёт ровно столько, сколько нужно пружине аватара.
-    const startDelay = (first ? 430 : winner.place === 2 ? 300 : 370);
-    const steps = Math.min(gems, 24);
-    const stepMs = Math.max(22, Math.round(440 / steps));
-    let done = 0;
-    let interval: ReturnType<typeof setInterval> | null = null;
-
-    const startTimer = setTimeout(() => {
+    if (gems <= 0) return;
+    const timer = setTimeout(() => {
       gemsScale.value = withSequence(withSpring(1.18, motion.popIn), withSpring(1, motion.popIn));
-      interval = setInterval(() => {
-        done += 1;
-        // Последний шаг обязан дать РОВНО gems: округление не должно врать.
-        setShownGems(done >= steps ? gems : Math.round((gems * done) / steps));
-        if (done >= steps && interval) { clearInterval(interval); interval = null; }
-      }, stepMs);
-    }, startDelay);
-
-    return () => {
-      clearTimeout(startTimer);
-      if (interval) clearInterval(interval);
-    };
-  }, [gems, first, winner.place, gemsScale]);
+    }, gemsStartDelay);
+    return () => clearTimeout(timer);
+  }, [gems, gemsStartDelay, gemsScale]);
 
   const avatarStyle = useAnimatedStyle(() => ({ transform: [{ translateY: avatarY.value }] }));
   const crownStyle = useAnimatedStyle(() => ({ transform: [{ scale: crownScale.value }] }));
@@ -780,7 +829,16 @@ const PodiumColumn = memo(function PodiumColumn({
       onPress={onPress ? () => onPress(winner) : undefined}
       disabled={!onPress}
       accessibilityRole="button"
-      accessibilityLabel={`${winner.name}, ${winner.place} место. Открыть карточку игрока`}
+      accessibilityLabel={triLang(lang, {
+          ru: `${winner.name}, ${winner.place} место. Открыть карточку игрока`,
+          uk: `${winner.name}, ${winner.place} місце. Відкрити картку гравця`,
+          es: `${winner.name}, puesto ${winner.place}. Abrir tarjeta de jugador`,
+          'pt-BR': `${winner.name}, posição ${winner.place}. Abrir cartão do jogador`,
+          vi: `${winner.name}, hạng ${winner.place}. Mở hồ sơ người chơi`,
+          id: `${winner.name}, peringkat ${winner.place}. Buka kartu pemain`,
+          tr: `${winner.name}, ${winner.place}. sıra. Oyuncu kartını aç`,
+          pl: `${winner.name}, miejsce ${winner.place}. Otwórz kartę gracza`,
+      })}
     >
       {/* зачем 2026-08-03: TapScale заворачивает детей в собственный Animated.View
           без стилей. Внутри podiumColumn с alignItems:'center' этот слой схлопывался
@@ -796,7 +854,7 @@ const PodiumColumn = memo(function PodiumColumn({
             source={pearlIconForTheme(themeMode)}
             style={styles.podiumGemsPearl}
             contentFit="contain"
-            accessibilityLabel={`Награда: ${gems} жемчужин`}
+            accessibilityLabel={triLang(lang, { ru: `Награда: ${gems} жемчужин`, uk: `Нагорода: ${gems} перлин`, es: `Recompensa: ${gems} perlas`, 'pt-BR': `Recompensa: ${gems} pérolas`, vi: `Phần thưởng: ${gems} ngọc trai`, id: `Hadiah: ${gems} mutiara`, tr: `Ödül: ${gems} inci`, pl: `Nagroda: ${gems} pereł` })}
           />
         </Animated.View>
       ) : (
@@ -821,12 +879,13 @@ const PodiumColumn = memo(function PodiumColumn({
         </View>
       </Animated.View>
 
+      {/* зачем 2026-08-04 (владелец: «вместо звёздочек должно на этом экране
+          показывать, сколько жемчужин каждый получил»): под ником стоял счёт
+          звёзд (★54) — он дублировал шапку и спорил с главной цифрой колонны.
+          Награда призёра теперь единственное число рядом с ником: сколько
+          жемчужин человек унёс. Общий счёт звёзд виден индикатором в шапке. */}
       {/* eslint-disable-next-line text-integrity/no-unsafe-text-truncation -- ник под фигурой пьедестала: перенос сдвинул бы высоту ступени */}
       <Text style={styles.podiumName} numberOfLines={1}>{winner.name}</Text>
-      <View style={styles.podiumScoreRow}>
-        <StarGlyph size={13} color={P.gold} />
-        <FlowText testID="results-podium-score" provenance="authored" style={styles.podiumScore}>{winner.score}</FlowText>
-      </View>
 
       {/* зачем: пьедестал — металл с тёплым бликом (три стопа), а не плоская
           заливка с эмодзи-медалью. Награда должна читаться материалом. */}
@@ -886,9 +945,17 @@ const makeStyles = (P: TournamentV2) => StyleSheet.create({
     elevation: 8,
   },
   // maxWidth:'100%' — длинный ник не растягивает колонку и не лезет на соседа.
-  podiumName: { fontSize: 14, fontWeight: '800', color: P.text, marginTop: 8, maxWidth: '100%', textAlign: 'center' },
-  podiumScoreRow: { flexDirection: 'row', alignItems: 'center', gap: 5, marginTop: 2 },
-  podiumScore: { ...type.label, fontWeight: '600', color: P.muted, marginTop: 2, fontVariant: ['tabular-nums'] },
+  // marginBottom добирает высоту удалённой строки со счётом звёзд: без него
+  // ступени подиума поднялись бы на ~18 pt и композиция «съехала» бы вверх.
+  podiumName: {
+    fontSize: 14,
+    fontWeight: '800',
+    color: P.text,
+    marginTop: 8,
+    marginBottom: 18,
+    maxWidth: '100%',
+    textAlign: 'center',
+  },
   podiumBlock: {
     width: '100%',
     marginTop: 10,
@@ -905,9 +972,8 @@ const makeStyles = (P: TournamentV2) => StyleSheet.create({
   },
   podiumPlace: { fontSize: 20 },
 
-  // ── Награды призёров и банк турнира ──────────────────────────────────────
-  // зачем: блок выдуманных призов удалён, вместо него счётчик над аватаром и
-  // банк под подиумом. Разделение тоном и скруглением — без обводок.
+  // ── Награды призёров ──────────────────────────────────────────────────────
+  // зачем: блок выдуманных призов удалён, вместо него счётчик над аватаром.
   podiumGems: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -927,77 +993,40 @@ const makeStyles = (P: TournamentV2) => StyleSheet.create({
   // Место под счётчик у непризовых колонн — подиум не «прыгает».
   podiumGemsSpacer: { height: 26 },
 
-  bankBreakdown: {
-    marginTop: 16,
-    padding: 14,
-    borderRadius: radius.md,
-    backgroundColor: P.elev2,
-    gap: 10,
-  },
-  bankRow: {
+  // ── Индикатор звёзд сезона (шапка) ───────────────────────────────────────
+  headerStars: {
+    marginLeft: 'auto',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    minHeight: 28,
-    gap: 12,
+    gap: 5,
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    borderRadius: 999,
+    backgroundColor: P.elev2,
   },
-  bankLabelGroup: { flex: 1, gap: 2 },
-  bankLabel: { ...type.label, color: P.muted, flex: 1 },
-  bankLabelStrong: { ...type.label, color: P.text, fontWeight: '800' },
-  bankHint: { fontSize: 11, color: P.muted, fontWeight: '600', fontVariant: ['tabular-nums'] },
-  bankValue: { flexDirection: 'row', alignItems: 'center', gap: 6 },
-  bankAmount: {
-    minWidth: 78,
-    textAlign: 'right',
-    fontSize: 16,
-    fontWeight: '900',
+  headerStarsText: {
+    fontSize: 14,
+    fontWeight: '800',
     color: P.text,
     fontVariant: ['tabular-nums'],
   },
-  bankAmountSecondary: {
-    minWidth: 78,
-    textAlign: 'right',
-    fontSize: 15,
-    fontWeight: '800',
-    color: P.muted,
-    fontVariant: ['tabular-nums'],
-  },
-  bankPearl: { width: 18, height: 18 },
-  playerShareRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    minHeight: 52,
-    gap: 12,
-    marginTop: 2,
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-    borderRadius: radius.sm,
-    backgroundColor: P.accentSoft,
-  },
-  playerShareLabel: { fontSize: 14, fontWeight: '900', color: P.text },
-  playerShareAmount: {
-    minWidth: 28,
-    textAlign: 'right',
-    fontSize: 22,
-    fontWeight: '900',
-    color: P.accent,
-    fontVariant: ['tabular-nums'],
-  },
 
+  // ── Награда игрока ────────────────────────────────────────────────────────
   rewardRow: { flexDirection: 'row', alignItems: 'center', gap: 14 },
   rewardAvatar: { width: 52, height: 52, borderRadius: 999, alignItems: 'center', justifyContent: 'center' },
   rewardBody: { flex: 1 },
   rewardTitle: { fontSize: 17, fontWeight: '800', color: P.text },
-  rewardSub: { ...type.label, fontWeight: '600', color: P.muted, marginTop: 3 },
-  rewardValueBox: { alignItems: 'flex-end' },
+  rewardValueBox: { flexDirection: 'row', alignItems: 'center', gap: 6 },
   rewardValue: {
     fontSize: 26,
     fontWeight: '900',
     color: P.accent,
     fontVariant: ['tabular-nums'],
   },
-  rewardValueLabel: { ...type.label, fontWeight: '600', color: P.muted, marginTop: 2 },
+  rewardPearl: { width: 22, height: 22 },
+  // Без давления (владелец): спокойная строка вместо нуля, помещается в
+  // ширину карточки рядом с аватаром и заголовком.
+  rewardEmpty: { ...type.label, fontWeight: '600', color: P.muted, maxWidth: 150, textAlign: 'right' },
 
   actions: { gap: 10, marginTop: 4 },
 });

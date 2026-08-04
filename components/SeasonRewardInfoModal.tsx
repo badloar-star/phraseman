@@ -27,9 +27,94 @@ import { triLang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
 import { pearlIconForTheme } from '../app/coin_icons';
 import type { SeasonReward } from '../app/season_pass_track_config';
-import { SEASON_MODAL_COPY, renderSeasonRewardArt } from './SeasonGiftModal';
+import { SEASON_MODAL_COPY, renderSeasonRewardArt, type Tri } from './SeasonGiftModal';
 
 export type SeasonRewardCardStatus = 'claimable' | 'claimed' | 'locked' | 'upcoming';
+
+/**
+ * Описания-ВИТРИНЫ: что награда сделает, если её получить.
+ *
+ * зачем 2026-08-04: SEASON_MODAL_COPY.desc написан для момента ВЫДАЧИ и говорит
+ * в прошедшем времени — «Уже на твоём балансе», «Заряд ждёт своего часа»,
+ * «Полный доступ Plus — уже включено». В клейм-модалке это правда. Но эта
+ * модалка открывается и на НЕЗАРАБОТАННОЙ карточке, и там тот же текст врёт:
+ * игрок ничего не получил, а интерфейс уверяет, что жемчужины уже начислены.
+ * Поэтому у витрины свой текст в будущем времени — тон тот же, обещание честное.
+ * Награды, чей desc и так нейтрален (описывает эффект, а не факт выдачи),
+ * здесь не дублируются: fallback ниже берёт исходный desc.
+ */
+const PREVIEW_DESC: Partial<Record<SeasonReward['kind'], Tri>> = {
+  pearls: {
+    ru: 'Упадут на баланс — потратишь в магазине и на бусты.',
+    uk: 'Впадуть на баланс — витратиш у магазині та на бусти.',
+    es: 'Irán a tu saldo: para la tienda y los impulsos.',
+    'pt-BR': 'Vão para o seu saldo — para a loja e impulsos.',
+    vi: 'Sẽ vào số dư — dùng ở cửa hàng và tăng tốc.',
+    id: 'Akan masuk saldo — buat toko dan boost.',
+    tr: 'Bakiyene eklenecek — mağaza ve destekler için.',
+    pl: 'Trafią na konto — na sklep i boosty.',
+  },
+  golden_lesson: {
+    ru: 'Один урок принесёт ×3 опыта. Выбирать будешь с умом.',
+    uk: 'Один урок принесе ×3 досвіду. Обиратимеш з розумом.',
+    es: 'Una lección dará ×3 XP. Habrá que elegir bien.',
+    'pt-BR': 'Uma lição dará ×3 XP. Vai ter que escolher bem.',
+    vi: 'Một bài học sẽ cho ×3 XP. Chọn kỹ nhé.',
+    id: 'Satu pelajaran memberi ×3 XP. Pilih baik-baik.',
+    tr: 'Bir ders ×3 XP verecek. İyi seçmek gerek.',
+    pl: 'Jedna lekcja da ×3 XP. Trzeba wybrać mądrze.',
+  },
+  plus_days: {
+    ru: 'Включит полный Plus: безлимит энергии и всё остальное.',
+    uk: 'Увімкне повний Plus: безліміт енергії і все інше.',
+    es: 'Activará Plus completo: energía ilimitada y más.',
+    'pt-BR': 'Ativará o Plus completo: energia ilimitada e mais.',
+    vi: 'Sẽ bật Plus đầy đủ: năng lượng không giới hạn.',
+    id: 'Akan mengaktifkan Plus penuh: energi tanpa batas.',
+    tr: 'Tam Plus açacak: sınırsız enerji.',
+    pl: 'Włączy pełny Plus: nielimitowana energia.',
+  },
+  frame: {
+    ru: 'Сезонное оформление всей карточки профиля — останется навсегда.',
+    uk: 'Сезонне оформлення всієї картки профілю — лишиться назавжди.',
+    es: 'Diseño de temporada para tu tarjeta: tuyo para siempre.',
+    'pt-BR': 'Visual de temporada para o seu cartão: seu para sempre.',
+    vi: 'Thiết kế mùa cho thẻ hồ sơ — giữ mãi mãi.',
+    id: 'Tampilan musim untuk kartu profil — selamanya milikmu.',
+    tr: 'Kartın için sezon tasarımı — sonsuza dek senin.',
+    pl: 'Sezonowy wygląd karty profilu — zostanie na zawsze.',
+  },
+  card_pack: {
+    ru: 'Откроет фирменный набор «Peaky Blinders» — навсегда.',
+    uk: 'Відкриє фірмовий набір «Peaky Blinders» — назавжди.',
+    es: 'Desbloqueará el set «Peaky Blinders» para siempre.',
+    'pt-BR': 'Desbloqueará o pacote «Peaky Blinders» para sempre.',
+    vi: 'Sẽ mở khóa bộ «Peaky Blinders» vĩnh viễn.',
+    id: 'Akan membuka paket «Peaky Blinders» selamanya.',
+    tr: '«Peaky Blinders» paketini sonsuza dek açacak.',
+    pl: 'Odblokuje zestaw «Peaky Blinders» na zawsze.',
+  },
+  custom_avatar: {
+    ru: 'Добавит новый стиль в твою коллекцию аватаров.',
+    uk: 'Додасть новий стиль до твоєї колекції аватарів.',
+    es: 'Añadirá un nuevo estilo a tu colección de avatares.',
+    'pt-BR': 'Adicionará um novo estilo à sua coleção de avatares.',
+    vi: 'Sẽ thêm kiểu mới vào bộ sưu tập avatar.',
+    id: 'Akan menambah gaya baru ke koleksi avatarmu.',
+    tr: 'Avatar koleksiyonuna yeni bir stil ekleyecek.',
+    pl: 'Doda nowy styl do kolekcji awatarów.',
+  },
+  aura_stage: {
+    ru: 'Откроет новую стадию свечения — носить можно любую из открытых.',
+    uk: 'Відкриє нову стадію світіння — носити можна будь-яку з відкритих.',
+    es: 'Abrirá una nueva etapa de brillo: llevarás la que quieras.',
+    'pt-BR': 'Abrirá um novo estágio de brilho: use o que quiser.',
+    vi: 'Sẽ mở cấp hào quang mới — đeo cấp nào tùy bạn.',
+    id: 'Akan membuka tahap aura baru — pakai yang mana saja.',
+    tr: 'Yeni bir aura aşaması açacak — istediğini takarsın.',
+    pl: 'Otworzy nowy etap aury — nosisz dowolny odblokowany.',
+  },
+};
 
 interface Props {
   visible: boolean;
@@ -78,8 +163,10 @@ export default function SeasonRewardInfoModal({ visible, reward, level, side, st
             {triLang(lang, copy.title)}
           </Text>
 
+          {/* Уже забранную награду описываем как факт (copy.desc — «уже на
+              балансе»), ещё не полученную — как обещание (PREVIEW_DESC). */}
           <Text style={{ color: t.textSecond, fontSize: 14, fontWeight: '600', textAlign: 'center', lineHeight: 20 }}>
-            {triLang(lang, copy.desc)}
+            {triLang(lang, status === 'claimed' ? copy.desc : (PREVIEW_DESC[reward.kind] ?? copy.desc))}
           </Text>
 
           {status === 'claimed' && (

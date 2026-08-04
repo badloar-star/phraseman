@@ -46,9 +46,28 @@ describe('гейт покупки: вход — только за деньги, 
 });
 
 describe('закрытый подарок объясняет причину', () => {
+  // зачем 2026-08-04 (владелец: «я говорил разработать модалы для КАЖДОГО
+  // подарка, и открыть модал можно даже когда оно ещё недоступно»): прежний
+  // контракт сторожил буквальную реализацию `const Wrapper = claimable ||
+  // locked ? TouchableOpacity : View` — то есть требовал, чтобы недостигнутая
+  // и уже забранная плитки оставались НЕнажимаемым View. Само намерение
+  // («закрытая плитка не молчит») не отменено, а расширено: нажимается ЛЮБАЯ
+  // карточка в любом статусе, потому что смотреть описание можно всегда.
+  // Тест теперь сторожит правило, а не форму кода.
   test('плитка закрытой награды нажимается, а не молчит', () => {
     expect(SOURCE).toContain('const locked = !laneUnlocked && reached && !isClaimed;');
-    expect(SOURCE).toContain('const Wrapper = claimable || locked ? TouchableOpacity : View;');
+    // Немого View на карточке награды больше нет ни в одном статусе.
+    expect(SOURCE).not.toMatch(/const Wrapper\s*=/);
+  });
+
+  test('описание подарка открывается в ЛЮБОМ статусе, включая недоступный', () => {
+    // Статус вычисляется для всех четырёх случаев и уезжает в модалку —
+    // «ещё не заработал» тоже обязан открываться, иначе игрок не увидит,
+    // ради чего копить звёзды.
+    expect(SOURCE).toMatch(/status: SeasonRewardCardStatus = claimable/);
+    expect(SOURCE).toContain("isClaimed ? 'claimed' : locked ? 'locked' : 'upcoming'");
+    expect(SOURCE).toContain('setOpenInfoReward({ reward, level, side, status })');
+    expect(SOURCE).toContain('<SeasonRewardInfoModal');
   });
 
   test('тап объясняет, что нужен пропуск', () => {
@@ -57,11 +76,23 @@ describe('закрытый подарок объясняет причину', ()
 
   test('тап по закрытому подарку сразу ведёт к покупке', () => {
     // Путь «хочу этот подарок» → покупка в один тап, без поиска кнопки внизу.
+    // Тап теперь открывает описание, а кнопка «Нужен пропуск» внутри него
+    // зовёт тот же onLockedRewardPress — развилка покупки не потерялась.
     const handler = SOURCE.slice(
       SOURCE.indexOf('const onLockedRewardPress'),
       SOURCE.indexOf('const onBuyConfirm'),
     );
     expect(handler).toContain('setBuyConfirmVisible(true)');
+    expect(SOURCE).toContain('onNeedPass={');
+    expect(SOURCE).toMatch(/onNeedPass=\{[\s\S]{0,220}onLockedRewardPress\(/);
+  });
+
+  test('просмотр описания сам по себе НИЧЕГО не выдаёт', () => {
+    // Деньги: модалка read-only. Клейм обязан идти только через onClaim,
+    // под теми же условиями claimable, а не срабатывать от открытия окна.
+    expect(SOURCE).toMatch(/onClaim=\{[\s\S]{0,200}onClaimReward\(reward, level, side\)/);
+    // Открытие описания — чистый setState без записи в инвентарь.
+    expect(SOURCE).not.toMatch(/setOpenInfoReward\([\s\S]{0,120}addSeasonPassGift/);
   });
 
   test('купившему фри правая линия предлагает Plus, а не вторую покупку', () => {

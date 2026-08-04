@@ -388,22 +388,44 @@ export default function SeasonPassScreen() {
      * пропуск, а достижимость уровня подсказывает, стоит ли покупать сейчас.
      */
     const locked = !laneUnlocked && reached && !isClaimed;
-    const Wrapper = claimable || locked ? TouchableOpacity : View;
-    const wrapperProps = claimable
-      ? { activeOpacity: 0.85, onPress: () => onClaimReward(reward, level, side), accessibilityRole: 'button' as const, testID: `season-pass-claim-${side}-${level}` }
-      : locked
-        ? {
-          activeOpacity: 0.85,
-          onPress: () => onLockedRewardPress(isPassLane),
-          accessibilityRole: 'button' as const,
-          accessibilityLabel: passBought && isPassLane && !passLaneAllowed
-            ? 'Правая линия подарков доступна с Plus'
-            : 'Нужен пропуск сезона, чтобы забрать подарок',
-          testID: `season-pass-locked-${side}-${level}`,
-        }
-        : {};
+    /**
+     * зачем 2026-08-03 (владелец: «модалы для КАЖДОГО подарка, и открыть модал
+     * можно даже когда оно ещё недоступно, с прикольными текстами»): раньше
+     * тап вёл себя тремя разными способами — сразу забирал (claimable), кидал
+     * тост (locked) или молчал вообще (claimed / ещё не достигнутый уровень).
+     * Немой тап читался как поломка: игрок не мог посмотреть, что его ждёт
+     * впереди. Теперь вход ЕДИНЫЙ — любая карточка в любом статусе открывает
+     * описание, а действие («Забрать» / «Нужен пропуск») живёт кнопкой ВНУТРИ
+     * модалки, а не побочным эффектом тапа. Клейм остаётся под теми же
+     * условиями: смотреть можно всё, забрать — только заслуженное.
+     */
+    const status: SeasonRewardCardStatus = claimable
+      ? 'claimable'
+      : isClaimed ? 'claimed' : locked ? 'locked' : 'upcoming';
+    const wrapperProps = {
+      activeOpacity: 0.85,
+      // Открытие описания — чистый setState, без сети и записи: мгновенный
+      // отклик на тап независимо от статуса карточки.
+      onPress: () => { hapticTap(); setOpenInfoReward({ reward, level, side, status }); },
+      accessibilityRole: 'button' as const,
+      // Метка нужна КАЖДОЙ карточке: у жемчужин подпись пустая (её место
+      // занимает выросшая иконка), и без label скринридер объявил бы кнопку
+      // безымянной. Название награды + статус — то, что игрок хочет услышать.
+      accessibilityLabel: `${reward.kind === 'pearls' ? `${reward.amount} ${REWARD_LABELS.pearls[lang]}` : label}. ${
+        claimable ? 'Можно забрать'
+          : isClaimed ? 'Уже забрано'
+            : locked
+              ? (passBought && isPassLane && !passLaneAllowed
+                ? 'Правая линия подарков доступна с Plus'
+                : 'Нужен пропуск сезона, чтобы забрать подарок')
+              : `Откроется при ${starsToUnlock} звёздах`
+      }`,
+      testID: claimable
+        ? `season-pass-claim-${side}-${level}`
+        : locked ? `season-pass-locked-${side}-${level}` : `season-pass-info-${side}-${level}`,
+    };
     return (
-      <Wrapper {...wrapperProps} style={{
+      <TouchableOpacity {...wrapperProps} style={{
         flex: 1,
         alignSelf: 'stretch',
         flexDirection: 'column',
@@ -475,10 +497,29 @@ export default function SeasonPassScreen() {
                 </View>
               )
               : null}
+        {/* зачем 2026-08-04 (владелец, со скриншотами: «А ПОЧЕМУ НЕТ НАЗВАНИЙ»):
+            у части карточек подпись пропадала совсем. Причина — не пустой
+            текст, а обрезка: длинные названия («Магнит коллекции», «Кастомний
+            аватар», «Тотем клубу») не влезают в одну строку 11.2pt, переносятся
+            на вторую и выдавливаются третьим ярусом карточки (порог звёзд).
+            minHeight в ДВЕ строки (13.5 × 2) резервирует место заранее: место
+            под вторую строку есть всегда, поэтому она не выталкивается и
+            подпись видна целиком. Побочно это даёт стабильную геометрию —
+            высота одинакова у коротких и длинных названий, плитки не пляшут
+            по вертикали. Обрезать текст здесь запрещено намеренно: FlowText
+            не пропускает numberOfLines (см. UnsafeNativeTextProp), лечим
+            только вёрсткой, без ужимания шрифта. */}
         <FlowText
           testID={`season-pass-reward-label-${level}-${side}`}
           provenance="authored"
-          style={{ color: t.textOnCard, fontSize: 11.2, fontWeight: '800', lineHeight: 13.5, textAlign: 'center' }}
+          style={{
+            color: t.textOnCard,
+            fontSize: 11.2,
+            fontWeight: '800',
+            lineHeight: 13.5,
+            textAlign: 'center',
+            minHeight: reward.kind === 'pearls' ? 0 : 27,
+          }}
         >
           {reward.kind === 'pearls' ? '' : label}
         </FlowText>
@@ -507,7 +548,7 @@ export default function SeasonPassScreen() {
         {!laneUnlocked && (
           <Ionicons name="lock-closed" size={14} color={t.textMuted} style={{ position: 'absolute', top: 8, right: 8 }} />
         )}
-      </Wrapper>
+      </TouchableOpacity>
     );
   }, [claimed, lang, onClaimReward, onLockedRewardPress, passBought, passLaneAllowed, pearlIcon, seasonId, t, themeMode]);
 
@@ -803,6 +844,34 @@ export default function SeasonPassScreen() {
         giftId={openReward?.giftId ?? null}
         userName={userName}
         onClose={() => setOpenReward(null)}
+      />
+      {/* Просмотровая модалка «что это такое» — открывается тапом по ЛЮБОЙ
+          карточке, включая ещё не заработанные. Ничего не выдаёт сама:
+          «Забрать» переводит в клейм-модалку, «Нужен пропуск» — в покупку.
+
+          зачем 2026-08-04 (владелец, со скриншотами: «А ПОЧЕМУ НЕТ НАЗВАНИЙ И
+          ЦВЕТА И ТД!?! КАК ПОНЯТЬ ЧТО ЭТ!?» — «Візитка… что визитка?», «Колір
+          ніка… ага… какой»): модалка и тексты SEASON_MODAL_COPY были написаны
+          целиком, и ответы на эти вопросы в них уже лежали («оформление всей
+          карточки», «бирюза сезона»), состояние openInfoReward заводилось тапом
+          по карточке — но САМ КОМПОНЕНТ в дерево не попадал. Тап менял state,
+          на экране не происходило НИЧЕГО, и узнать, что за награда, было
+          физически негде: на плитке помещается только короткое название.
+          Это единственная точка, где игрок читает описание — не удалять при
+          рефакторинге экрана, иначе баг возвращается молча. */}
+      <SeasonRewardInfoModal
+        visible={openInfoReward != null}
+        reward={openInfoReward?.reward ?? null}
+        level={openInfoReward?.level ?? 0}
+        side={openInfoReward?.side ?? 'free'}
+        status={openInfoReward?.status ?? 'upcoming'}
+        onClose={() => setOpenInfoReward(null)}
+        onClaim={(reward, level, side) => { setOpenInfoReward(null); void onClaimReward(reward, level, side); }}
+        onNeedPass={() => {
+          const isPassLane = openInfoReward?.side === 'pass';
+          setOpenInfoReward(null);
+          onLockedRewardPress(!!isPassLane);
+        }}
       />
     </View>
   );

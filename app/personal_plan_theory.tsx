@@ -14,6 +14,8 @@ import { contentDayToLessonIntroScreens } from './plan_content_runtime_adapter';
 import ReportErrorButton from '../components/ReportErrorButton';
 import { getPlanById, type PersonalPlanId } from './personal_plan_catalog';
 import { openPersonalPlanTask } from './personal_plan_navigation';
+import { triLang } from '../constants/i18n';
+import { useLang } from '../components/LangContext';
 
 function firstParam(value: string | string[] | undefined): string {
   return Array.isArray(value) ? value[0] : (value ?? '');
@@ -27,6 +29,7 @@ function firstParam(value: string | string[] | undefined): string {
 export default function PersonalPlanTheoryScreen() {
   const router = useRouter();
   const params = useLocalSearchParams();
+  const { lang } = useLang();
   const { theme: t } = useTheme();
   const insets = useStableSafeAreaInsets();
 
@@ -116,7 +119,7 @@ export default function PersonalPlanTheoryScreen() {
         {resolved ? (
           <View style={styles.center}>
             <Ionicons name="book-outline" size={40} color={t.textMuted} />
-            <Text style={[styles.emptyText, { color: t.textMuted }]}>Теория для этого дня скоро появится</Text>
+            <Text style={[styles.emptyText, { color: t.textMuted }]}>{triLang(lang, { ru: 'Теория для этого дня скоро появится', uk: 'Теорія для цього дня скоро з’явиться', es: 'La teoría de este día llegará pronto', 'pt-BR': 'A teoria deste dia chegará em breve', vi: 'Lý thuyết cho ngày này sẽ sớm có', id: 'Teori untuk hari ini akan segera hadir', tr: 'Bu günün teorisi yakında gelecek', pl: 'Teoria na ten dzień pojawi się wkrótce' })}</Text>
           </View>
         ) : null}
       </View>

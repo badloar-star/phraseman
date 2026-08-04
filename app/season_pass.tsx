@@ -49,6 +49,7 @@ import {
   type SeasonReward,
   type SeasonTrackNode,
 } from './season_pass_track_config';
+import PlusBadge from '../components/PlusBadge';
 import SeasonAuraRing from '../components/SeasonAuraRing';
 import SeasonGiftModal from '../components/SeasonGiftModal';
 import SeasonRewardInfoModal, { type SeasonRewardCardStatus } from '../components/SeasonRewardInfoModal';
@@ -642,14 +643,37 @@ export default function SeasonPassScreen() {
     [],
   );
   const spineCx = NODE_COLUMN_WIDTH / 2;
+  // зачем 2026-08-04 (владелец: «полоса посредине не должна начинаться под
+  // словами ПРОПУСК — пусть идёт в самый верх, заходит за сейф-зону сверху и
+  // снизу, будто она бесконечная, конец не видно»): хребет рисовался ровно от
+  // Y=0 первого узла до Y последнего, поэтому у него были ДВА видимых торца —
+  // сверху обрубок начинался прямо под шапкой колонок, снизу линия кончалась
+  // на последней награде. Дорожка читалась как отрезок, а не как бесконечный
+  // путь, уходящий за экран.
+  //
+  // Оверскан сверху обязан перекрыть ВСЁ, что может оказаться выше первого
+  // узла: шапку экрана (заголовок + строка уровня + строка колонок), верхний
+  // paddingTop списка вместе с insets.top, и ещё запас на bounce-прокрутку
+  // вверх — иначе при оттягивании списка вниз торец линии выедет из-под шапки
+  // и станет виден. Считается от РЕАЛЬНОГО инсета, а не константой в пикселях:
+  // на устройствах с большой чёлкой шапка физически выше.
+  const spineOverscanTop = insets.top + 420;
+  // Снизу достаточно короткого хвоста: под последней наградой идёт
+  // paddingBottom 120 списка и плашка покупки — линия уходит под них и её
+  // конец не виден ни при каком положении скролла.
+  const spineOverscanBottom = 220;
   const spineTrackHeight = ROW_HEIGHT * spineOffsets.length;
+  // Полотно физически выше дорожки на обе величины оверскана, а его viewBox
+  // начинается в отрицательном Y — так координаты САМОЙ дорожки остаются
+  // прежними (Y=0 = первый узел), и ни одна строка никуда не поехала.
+  const spineCanvasHeight = spineOverscanTop + spineTrackHeight + spineOverscanBottom;
   const spineGrayPath = useMemo(
-    () => spineTrackPath(spineCx, ROW_HEIGHT, spineOffsets),
-    [spineCx, spineOffsets],
+    () => spineTrackPath(spineCx, ROW_HEIGHT, spineOffsets, spineOverscanTop, spineOverscanBottom),
+    [spineCx, spineOffsets, spineOverscanTop, spineOverscanBottom],
   );
   const spineGoldPath = useMemo(
-    () => spineTrackProgressPath(spineCx, ROW_HEIGHT, spineOffsets, progress.level),
-    [spineCx, spineOffsets, progress.level],
+    () => spineTrackProgressPath(spineCx, ROW_HEIGHT, spineOffsets, progress.level, spineOverscanTop),
+    [spineCx, spineOffsets, progress.level, spineOverscanTop],
   );
   // Единое SVG-полотно хребта — ОДНА линия на всю прокручиваемую высоту
   // дорожки, а не по одной на строку (см. комментарий у SPINE_WIDTH выше:
@@ -760,12 +784,18 @@ export default function SeasonPassScreen() {
         <Text /* guard-ok: заголовок КОЛОНКИ дорожки (шапка таблицы над рядами наград), не подпись под названием экрана */ style={{ color: t.textMuted, fontSize: 12, fontWeight: '800', letterSpacing: 0.4 }}>
           {triLang(lang, { ru: 'ПРОПУСК', uk: 'ПЕРЕПУСТКА', es: 'PASE', 'pt-BR': 'PASSE', vi: 'VÉ MÙA', id: 'PASS', tr: 'BİLET', pl: 'PRZEPUSTKA' })}
         </Text>
-        <Text style={{ color: t.gold, fontSize: 12, fontWeight: '800', letterSpacing: 0.4 }}>
-          {triLang(lang, { ru: 'ПЛЮС ПРОПУСК', uk: 'ПЛЮС ПЕРЕПУСТКА', es: 'PASE PLUS', 'pt-BR': 'PASSE PLUS', vi: 'VÉ MÙA PLUS', id: 'PASS PLUS', tr: 'PLUS BİLET', pl: 'PLUS PRZEPUSTKA' })}
-        </Text>
+        {/* зачем 2026-08-04 (владелец: «просто плашка Plus золотая, она
+            используется много где в приложении»): золотой ТЕКСТ «ПЛЮС ПРОПУСК»
+            был локальной самоделкой — восемь переводов ради названия тира, и
+            выглядел он не так, как Plus на остальных экранах. Ставим тот же
+            PlusBadge, что на уроках/карточках/задачах: один язык (имя подписки
+            не переводится), один вид премиума во всём приложении. */}
+        <PlusBadge themeMode={themeMode} size="sm" testID="season-pass-lane-plus-badge" />
       </View>
     </View>
-  ), [f.h1, lang, pendingGiftCount, progress.level, progress.totalStars, router, t]);
+    // зачем: themeMode читается бейджем Plus (у business-темы свой цвет текста) —
+    // без него шапка осталась бы в мемо со старой темой после переключения.
+  ), [f.h1, lang, pendingGiftCount, progress.level, progress.totalStars, router, t, themeMode]);
 
   return (
     <View style={{ flex: 1, backgroundColor: t.bgPrimary }}>

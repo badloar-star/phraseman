@@ -2,7 +2,7 @@
 // tournament_tickets.tsx — билеты турниров (макеты 36-38).
 //
 // зачем: билет — не отдельный баланс, а витрина входа (владелец 2026-08-03:
-// «билет стоит 3 жемчужины, 1 билет в неделю можно получить бесплатно»).
+// «билет стоит 5 жемчужин, 1 билет в неделю можно получить бесплатно»).
 // Число билетов = жемчужины ÷ цена входа + бесплатный недельный вход,
 // оба числа приходят с сервера вместе с банком недели (0 доп. чтений).
 // ═══════════════════════════════════════════════════════════════════════════
@@ -16,20 +16,26 @@ import { Card, Cta, Sheet } from '../components/tournament/tournament_ui';
 import { TournamentBackdrop } from '../components/tournament/TournamentBackdrop';
 import { T, radius, type } from '../components/tournament/tournament_theme';
 import { loadWeeklyBankInfo, type WeeklyBankInfo } from './tournament_client';
+import { triLang, type Lang } from '../constants/i18n';
+import { useLang } from '../components/LangContext';
 
-const DEFAULT_ENTRY_GEMS = 3;
+const DEFAULT_ENTRY_GEMS = 5;
 
 type Source = { icon: string; title: string; hint: string; ready?: boolean };
 
 /** Источники жемчужин, из которых складываются билеты — спека §4. */
-const SOURCES: Source[] = [
-  { icon: '🎁', title: 'Подарок за уровень', hint: 'каждый новый уровень', ready: true },
-  { icon: '🔥', title: 'Серия 7 дней', hint: 'осталось 3 дня' },
-  { icon: '🎡', title: 'Награда за друга', hint: 'пригласи — получите оба', ready: true },
-];
+function sourcesForLang(lang: Lang): Source[] {
+  return [
+    { icon: '🎁', title: triLang(lang, { ru: 'Подарок за уровень', uk: 'Подарунок за рівень', es: 'Regalo por nivel', 'pt-BR': 'Presente por nível', vi: 'Quà tặng theo cấp độ', id: 'Hadiah per level', tr: 'Seviye hediyesi', pl: 'Prezent za poziom' }), hint: triLang(lang, { ru: 'каждый новый уровень', uk: 'кожен новий рівень', es: 'cada nivel nuevo', 'pt-BR': 'a cada novo nível', vi: 'mỗi cấp độ mới', id: 'setiap level baru', tr: 'her yeni seviyede', pl: 'każdy nowy poziom' }), ready: true },
+    { icon: '🔥', title: triLang(lang, { ru: 'Серия 7 дней', uk: 'Серія 7 днів', es: 'Racha de 7 días', 'pt-BR': 'Sequência de 7 dias', vi: 'Chuỗi 7 ngày', id: 'Rentetan 7 hari', tr: '7 günlük seri', pl: 'Seria 7 dni' }), hint: triLang(lang, { ru: 'осталось 3 дня', uk: 'залишилось 3 дні', es: 'quedan 3 días', 'pt-BR': 'faltam 3 dias', vi: 'còn 3 ngày', id: 'tersisa 3 hari', tr: '3 gün kaldı', pl: 'zostały 3 dni' }) },
+    { icon: '🎡', title: triLang(lang, { ru: 'Награда за друга', uk: 'Нагорода за друга', es: 'Recompensa por amigo', 'pt-BR': 'Recompensa por amigo', vi: 'Phần thưởng bạn bè', id: 'Hadiah teman', tr: 'Arkadaş ödülü', pl: 'Nagroda za znajomego' }), hint: triLang(lang, { ru: 'пригласи — получите оба', uk: 'запроси — отримаєте обидва', es: 'invita y ambos ganan', 'pt-BR': 'convide e os dois ganham', vi: 'mời bạn — cả hai đều nhận', id: 'undang — kalian berdua dapat', tr: 'davet et — ikiniz de kazanın', pl: 'zaproś — oboje dostajecie' }), ready: true },
+  ];
+}
 
 export default function TournamentTicketsScreen() {
+  const { lang } = useLang();
   const insets = useStableSafeAreaInsets();
+  const SOURCES = useMemo(() => sourcesForLang(lang), [lang]);
 
   // зачем: peek — синхронный первый кадр из кэша loadWeeklyBankInfo (тот же
   // источник, что и лобби), без «сначала пусто, потом появилось».
@@ -68,7 +74,7 @@ export default function TournamentTicketsScreen() {
       >
         {/* Инвентарь */}
         <Card tone="elev" pad={24}>
-          <Text style={styles.kicker}>Ваши билеты</Text>
+          <Text style={styles.kicker}>{triLang(lang, { ru: 'Ваши билеты', uk: 'Ваші квитки', es: 'Tus entradas', 'pt-BR': 'Seus ingressos', vi: 'Vé của bạn', id: 'Tiketmu', tr: 'Biletlerin', pl: 'Twoje bilety' })}</Text>
 
           <View style={styles.ticketRow}>
             {visualTickets.map((index) => (
@@ -76,19 +82,21 @@ export default function TournamentTicketsScreen() {
                 key={index}
                 entering={ZoomIn.delay(index * 70).springify().damping(14).stiffness(190)}
               >
-                <TicketCard />
+                <TicketCard lang={lang} />
               </Animated.View>
             ))}
-            {tickets === 0 ? <Text style={styles.emptyTickets}>Пока пусто</Text> : null}
+            {tickets === 0 ? <Text style={styles.emptyTickets}>{triLang(lang, { ru: 'Пока пусто', uk: 'Поки що порожньо', es: 'Aún vacío', 'pt-BR': 'Ainda vazio', vi: 'Hiện đang trống', id: 'Masih kosong', tr: 'Henüz boş', pl: 'Na razie pusto' })}</Text> : null}
           </View>
 
           {/* зачем: text-integrity — масштабирование шрифта не отключаем; строка
               в карточке-колонке, при крупном шрифте просто переносится. */}
           <FlowText testID="tickets-count" provenance="authored" style={styles.count}>
-            У вас {tickets} <Text style={styles.countIcon}>🎟</Text>
+            {triLang(lang, { ru: `У вас ${tickets}`, uk: `У вас ${tickets}`, es: `Tienes ${tickets}`, 'pt-BR': `Você tem ${tickets}`, vi: `Bạn có ${tickets}`, id: `Kamu punya ${tickets}`, tr: `${tickets} adet var`, pl: `Masz ${tickets}` })} <Text style={styles.countIcon}>🎟</Text>
           </FlowText>
           <Text style={styles.countHint}>
-            {tickets > 0 ? `хватит на ${tickets} ${plural(tickets)}` : 'нужен хотя бы один'}
+            {tickets > 0
+                ? triLang(lang, { ru: `хватит на ${tickets} ${pluralRuTournaments(tickets)}`, uk: `вистачить на ${tickets} турнірів`, es: `alcanza para ${tickets} torneos`, 'pt-BR': `dá para ${tickets} torneios`, vi: `đủ cho ${tickets} giải đấu`, id: `cukup untuk ${tickets} turnamen`, tr: `${tickets} turnuvaya yeter`, pl: `starczy na ${tickets} turniejów` })
+                : triLang(lang, { ru: 'нужен хотя бы один', uk: 'потрібен хоча б один', es: 'necesitas al menos uno', 'pt-BR': 'você precisa de pelo menos um', vi: 'cần ít nhất một vé', id: 'butuh setidaknya satu', tr: 'en az bir tane gerekli', pl: 'potrzebny jest przynajmniej jeden' })}
           </Text>
         </Card>
 
@@ -97,21 +105,23 @@ export default function TournamentTicketsScreen() {
           <View style={styles.vipRow}>
             <Text style={styles.vipIcon}>{freeEntryAvailable ? '🆓' : '✅'}</Text>
             <View style={styles.vipBody}>
-              <Text style={styles.vipTitle}>Бесплатный вход недели</Text>
+              <Text style={styles.vipTitle}>{triLang(lang, { ru: 'Бесплатный вход недели', uk: 'Безкоштовний вхід тижня', es: 'Entrada gratis de la semana', 'pt-BR': 'Entrada grátis da semana', vi: 'Lượt vào miễn phí trong tuần', id: 'Masuk gratis minggu ini', tr: 'Haftanın ücretsiz girişi', pl: 'Darmowe wejście tygodnia' })}</Text>
               <Text style={styles.vipHint}>
-                {freeEntryAvailable ? 'ещё не использован — доступен сейчас' : 'уже использован на этой неделе'}
+                {freeEntryAvailable
+                    ? triLang(lang, { ru: 'ещё не использован — доступен сейчас', uk: 'ще не використаний — доступний зараз', es: 'aún sin usar: disponible ahora', 'pt-BR': 'ainda não usado: disponível agora', vi: 'chưa dùng — hiện đang khả dụng', id: 'belum digunakan — tersedia sekarang', tr: 'henüz kullanılmadı — şimdi mevcut', pl: 'jeszcze nieużyte — dostępne teraz' })
+                    : triLang(lang, { ru: 'уже использован на этой неделе', uk: 'вже використаний цього тижня', es: 'ya usado esta semana', 'pt-BR': 'já usado esta semana', vi: 'đã dùng trong tuần này', id: 'sudah digunakan minggu ini', tr: 'bu hafta zaten kullanıldı', pl: 'już wykorzystane w tym tygodniu' })}
               </Text>
             </View>
           </View>
         </Card>
 
-        <Cta onPress={openHowTo}>Как получить ещё</Cta>
+        <Cta onPress={openHowTo}>{triLang(lang, { ru: 'Как получить ещё', uk: 'Як отримати ще', es: 'Cómo conseguir más', 'pt-BR': 'Como conseguir mais', vi: 'Cách nhận thêm', id: 'Cara mendapatkan lagi', tr: 'Nasıl daha fazla kazanılır', pl: 'Jak zdobyć więcej' })}</Cta>
 
         {/* Источники */}
         <View style={styles.sources}>
           {SOURCES.map((source, index) => (
             <Animated.View key={source.title} entering={FadeInDown.delay(index * 50).duration(220)}>
-              <SourceRow source={source} />
+              <SourceRow source={source} lang={lang} />
             </Animated.View>
           ))}
         </View>
@@ -120,19 +130,19 @@ export default function TournamentTicketsScreen() {
       {/* Как получить билеты (макет 37) — шторка вместо отдельного экрана:
           список источников короткий, лишний переход тут только мешает. */}
       <Sheet visible={howToVisible} onClose={closeHowTo}>
-        <Text style={styles.sheetTitle}>Как получить билеты</Text>
+        <Text style={styles.sheetTitle}>{triLang(lang, { ru: 'Как получить билеты', uk: 'Як отримати квитки', es: 'Cómo conseguir entradas', 'pt-BR': 'Como conseguir ingressos', vi: 'Cách nhận vé', id: 'Cara mendapatkan tiket', tr: 'Nasıl bilet kazanılır', pl: 'Jak zdobyć bilety' })}</Text>
         <View style={styles.sheetSources}>
           {SOURCES.map((source) => (
-            <SourceRow key={source.title} source={source} />
+            <SourceRow key={source.title} source={source} lang={lang} />
           ))}
         </View>
-        <Cta ghost onPress={closeHowTo}>Понятно</Cta>
+        <Cta ghost onPress={closeHowTo}>{triLang(lang, { ru: 'Понятно', uk: 'Зрозуміло', es: 'Entendido', 'pt-BR': 'Entendi', vi: 'Đã hiểu', id: 'Mengerti', tr: 'Anladım', pl: 'Rozumiem' })}</Cta>
       </Sheet>
     </View>
   );
 }
 
-function plural(count: number): string {
+function pluralRuTournaments(count: number): string {
   const mod10 = count % 10;
   const mod100 = count % 100;
   if (mod10 === 1 && mod100 !== 11) return 'турнир';
@@ -141,18 +151,18 @@ function plural(count: number): string {
 }
 
 /** Билет с «надрезами» по бокам — как настоящий отрывной талон. */
-const TicketCard = memo(function TicketCard() {
+const TicketCard = memo(function TicketCard({ lang }: { lang: Lang }) {
   return (
     <View style={styles.ticket}>
       <View style={[styles.notch, styles.notchLeft]} />
       <View style={[styles.notch, styles.notchRight]} />
       <Text style={styles.ticketIcon}>🎟</Text>
-      <Text style={styles.ticketLabel}>вход</Text>
+      <Text style={styles.ticketLabel}>{triLang(lang, { ru: 'вход', uk: 'вхід', es: 'entrada', 'pt-BR': 'entrada', vi: 'vào', id: 'masuk', tr: 'giriş', pl: 'wejście' })}</Text>
     </View>
   );
 });
 
-const SourceRow = memo(function SourceRow({ source }: { source: Source }) {
+const SourceRow = memo(function SourceRow({ source, lang }: { source: Source; lang: Lang }) {
   return (
     <View style={styles.source}>
       <View style={styles.sourceInnerLight} pointerEvents="none" />
@@ -161,7 +171,7 @@ const SourceRow = memo(function SourceRow({ source }: { source: Source }) {
         <Text style={styles.sourceTitle}>{source.title}</Text>
         <Text style={styles.sourceHint}>{source.hint}</Text>
       </View>
-      {source.ready ? <Text style={styles.sourceReady}>готово</Text> : null}
+      {source.ready ? <Text style={styles.sourceReady}>{triLang(lang, { ru: 'готово', uk: 'готово', es: 'listo', 'pt-BR': 'pronto', vi: 'đã xong', id: 'siap', tr: 'hazır', pl: 'gotowe' })}</Text> : null}
     </View>
   );
 });

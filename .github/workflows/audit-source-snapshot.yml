@@ -1,0 +1,34 @@
+name: Export audit source snapshot
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - audit/remove-french-runtime-fixes-2026-08-05
+
+permissions:
+  contents: read
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Collect tracked text sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p snapshot
+          git ls-files -z \
+            | python3 -c 'import sys; data=sys.stdin.buffer.read().split(b"\0"); allowed=(b".ts",b".tsx",b".js",b".jsx",b".mjs",b".cjs",b".json",b".yml",b".yaml",b".md",b".html",b".rules"); sys.stdout.buffer.write(b"\0".join(p for p in data if p and (p.endswith(allowed) or p in (b"package.json",b"tsconfig.json"))) + b"\0")' \
+            | tar --null -T - -czf snapshot/phraseman-text-sources.tar.gz
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: phraseman-text-sources
+          path: snapshot/phraseman-text-sources.tar.gz
+          retention-days: 3

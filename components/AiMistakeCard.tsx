@@ -10,6 +10,7 @@ import { aiPersonalLimitToast } from '../app/ai_kill_switch_copy';
 import LearningSemanticBlock from './LearningSemanticBlock';
 import { buildMistakeExplanationBlocks } from '../app/explanation_presentation';
 import AiBadge from './AiBadge';
+import { FlowText } from './text-integrity/FlowText';
 
 export type AiMistakeCardState = 'hidden' | 'idle' | 'loading' | 'ready' | 'error' | 'limit';
 
@@ -131,9 +132,13 @@ export default function AiMistakeCard({
               когда подписи нет: иначе её появление сдвигало бы карточку. */}
           <View style={styles.waitLineRow}>
             {waitLine ? (
-              <Text style={{ color: t.textSecond, fontSize: f.label }} numberOfLines={1}>
+              <FlowText
+                testID="ai-mistake-wait-line"
+                provenance="authored"
+                style={{ color: t.textSecond, fontSize: f.label }}
+              >
                 {waitLine}
-              </Text>
+              </FlowText>
             ) : null}
           </View>
         </View>

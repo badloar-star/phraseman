@@ -11,7 +11,7 @@ import type { StudyTarget } from './study_target';
 export type StudyTargetLang = StudyTarget | 'es';
 export type StudyTargetSourceUiLang = Extract<Lang, 'ru' | 'uk'>;
 
-export const DEV_STUDY_TARGET_LANGS = ['en', 'es', 'fr'] as const satisfies readonly StudyTargetLang[];
+export const DEV_STUDY_TARGET_LANGS = ['en', 'es'] as const satisfies readonly StudyTargetLang[];
 
 const STORAGE_KEY = 'dev_study_target_lang';
 
@@ -36,12 +36,10 @@ const SOURCE_UI_STUDY_TARGET_LABELS: Record<StudyTargetSourceUiLang, Record<Stud
   ru: {
     en: 'Английский',
     es: 'Испанский',
-    fr: 'Французский',
   },
   uk: {
     en: 'Англійська',
     es: 'Іспанська',
-    fr: 'Французька',
   },
 };
 

@@ -28,12 +28,8 @@ const StudyTargetContext = createContext<Ctx>({
 
 // B3 (PERF_MASTER_PLAN): peek последнего известного 'study_target_v1' из
 // app_snapshot_bootstrap.ts (см. peekStudyTargetRaw/writePeekStudyTargetRaw).
-// getStoredStudyTarget() применяет source-locale правило (только ru/uk хранят
-// нестандартный target, иначе всегда DEFAULT_STUDY_TARGET='en') — воспроизводим
-// то же правило здесь синхронно, используя переданный uiLang (который сам уже
-// peek-гидратирован через LangContext.initialLangFromPeekOrDevice). Dev-режим
-// (ENABLE_DEV_STUDY_TARGET_LANG, es/fr override) НЕ трогаем — он остаётся только
-// через refresh() ниже, как и раньше; peek только про production-путь.
+// Production target теперь один — английский; dev-испанский по-прежнему
+// поднимается только через refresh() и не попадает в production snapshot.
 function initialStudyTargetFromPeek(uiLang: Lang): StudyTargetLang {
   if (!isStudyTargetSourceLocale(uiLang)) return DEFAULT_STUDY_TARGET;
   const raw = peekStudyTargetRaw();
@@ -49,10 +45,6 @@ export function StudyTargetProvider({ children }: { children: React.ReactNode })
       const devTarget = await getDevStudyTargetLang(lang);
       if (devTarget === 'es') {
         setStudyTarget('es');
-        return;
-      }
-      if (devTarget === 'fr') {
-        setStudyTarget('fr');
         return;
       }
     }

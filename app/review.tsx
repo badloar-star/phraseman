@@ -95,7 +95,7 @@ import { englishRecallSurface } from './phrase_target_utils';
 import { checkCoachToastNeededWithAnalytics, type CoachToastDecision } from './coach_toast_trigger';
 import type { PhraseMistakeInput } from './phrase_analytics';
 import CoachToast from '../components/CoachToast';
-import { frenchTrainerGateCopy, srsReviewContentAvailableForTarget } from './trainer_target_gate';
+import { srsReviewContentAvailableForTarget } from './trainer_target_gate';
 import { markPersonalPlanTaskCompleted } from './personal_plan_progress';
 import { resolvePersonalPracticeSeededDuePhrases } from './personal_plan_practice_seeded_gate';
 import BouncyScrollView from '../components/BouncyScrollView';
@@ -651,7 +651,7 @@ export default function ReviewScreen() {
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
-  const srsReviewGateOpen = srsReviewContentAvailableForTarget(studyTarget);
+  void srsReviewContentAvailableForTarget(studyTarget);
   const { playCorrect } = useCorrectSound();
   const { speakAnswer } = useSpeakAnswer();
   const { flashKey, flash } = useWordFlash();
@@ -745,6 +745,8 @@ export default function ReviewScreen() {
   const [items,   setItems]   = useState<RecallItem[]>([]);
   const [index,   setIndex]   = useState(0);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
+  const [loadAttempt, setLoadAttempt] = useState(0);
   const [done,      setDone]      = useState(false);
   const [correct,   setCorrect]   = useState(0);
   const [wrong,     setWrong]     = useState(0);
@@ -851,12 +853,20 @@ export default function ReviewScreen() {
     cardStartTime.current = Date.now();
   }, [params.trainerMode, lang, studyTarget, resultAnim, burnTextOp, burnCardScale]);
 
-  // Загружаем фразы для повторения сегодня (один раз при монтировании)
+  // Загружаем фразы для повторения сегодня. Ошибка чтения не должна
+  // оставлять пользователя на вечном скелетоне: показываем честный retry-state.
   useEffect(() => {
     const timerRef = autoTimer;
+    let cancelled = false;
+    setLoading(true);
+    setLoadError(false);
     AsyncStorage.getItem(REVIEW_BURN_HINT_SHOWN_KEY)
-      .then(v => setBurnHintSeen(v === '1'))
-      .catch(() => setBurnHintSeen(true));
+      .then(v => {
+        if (!cancelled) setBurnHintSeen(v === '1');
+      })
+      .catch(() => {
+        if (!cancelled) setBurnHintSeen(true);
+      });
     // Когда запускаем из trainer.tsx с trainerMode — используем getTrainerItems.
     // Стандартный /review без params грузит «due» с commitSessionOverflow.
     const itemsPromise = params.trainerMode
@@ -867,33 +877,48 @@ export default function ReviewScreen() {
             requiredPhraseCount: planPracticeRequiredPhrases,
           })
         : getDueItems(SESSION_LIMIT, { commitSessionOverflow: true }, studyTarget);
-    itemsPromise.then(due => {
-      setItems(due);
-      setLoading(false);
-      if (due.length > 0) {
-        loadCard(due[0], 0, due);
-        if (!reviewSessionStartedRef.current) {
-          reviewSessionStartedAtRef.current = Date.now();
-          reviewSessionStartedRef.current = true;
-          plannedItemCountRef.current = due.length;
-          void trackEvent('learning_review_session_start', {
-            schema_version: 1,
-            event_id: `${reviewSessionIdRef.current}:start`,
-            review_session_id: reviewSessionIdRef.current,
-            study_target: studyTarget,
-            review_mode: trainerMode,
-            planned_item_count: due.length,
-            occurred_at_ms: reviewSessionStartedAtRef.current,
-          });
+    itemsPromise
+      .then(due => {
+        if (cancelled) return;
+        setItems(due);
+        setIndex(0);
+        setLoading(false);
+        if (due.length > 0) {
+          loadCard(due[0], 0, due);
+          if (!reviewSessionStartedRef.current) {
+            reviewSessionStartedAtRef.current = Date.now();
+            reviewSessionStartedRef.current = true;
+            plannedItemCountRef.current = due.length;
+            void trackEvent('learning_review_session_start', {
+              schema_version: 1,
+              event_id: `${reviewSessionIdRef.current}:start`,
+              review_session_id: reviewSessionIdRef.current,
+              study_target: studyTarget,
+              review_mode: trainerMode,
+              planned_item_count: due.length,
+              occurred_at_ms: reviewSessionStartedAtRef.current,
+            });
+          }
         }
-      }
-    });
-    AsyncStorage.getItem('user_name').then(n => { userNameRef.current = n; }).catch(() => {});
+      })
+      .catch(() => {
+        if (cancelled) return;
+        setItems([]);
+        setLoadError(true);
+        setLoading(false);
+      });
+    AsyncStorage.getItem('user_name')
+      .then(n => {
+        if (!cancelled) userNameRef.current = n;
+      })
+      .catch(() => {});
     return () => {
+      cancelled = true;
       const timer = timerRef.current;
       if (timer) clearTimeout(timer);
     };
-  }, [loadCard, params.trainerMode, planPracticeRequiredPhrases, planPracticeTaskId, trainerLessonId, trainerCategory, trainerMode, studyTarget]);
+  }, [loadAttempt, loadCard, params.trainerMode, planPracticeRequiredPhrases, planPracticeTaskId, trainerLessonId, trainerCategory, trainerMode, studyTarget]);
+
 
   useEffect(() => () => {
     if (!reviewSessionStartedRef.current || reviewSessionCompletedRef.current) return;
@@ -1362,9 +1387,8 @@ export default function ReviewScreen() {
     );
   }
 
-  // ─── Нечего повторять ─────────────────────────────────────────────────────
-  if (items.length === 0) {
-    const sourceGateCopy = frenchTrainerGateCopy(lang);
+  // ─── Ошибка загрузки ─────────────────────────────────────────────────────
+  if (loadError) {
     return (
       <ScreenGradient>
       <SafeAreaView style={{ flex: 1 }}>
@@ -1374,41 +1398,95 @@ export default function ReviewScreen() {
           </TapScale>
           <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '700' }}>
             {triLang(lang, {
-              ru: 'Повторение',
-              uk: 'Повторення',
-              es: 'Repaso',
-              'pt-BR': "Revisão",
-              vi: "Ôn tập",
-              id: "Ulangan",
-              tr: "Tekrar",
-              pl: "Powtórka",
+              ru: 'Повторение', uk: 'Повторення', es: 'Repaso', 'pt-BR': 'Revisão',
+              vi: 'Ôn tập', id: 'Ulangan', tr: 'Tekrar', pl: 'Powtórka',
+            })}
+          </Text>
+        </View>
+        <View testID="review-load-error" style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 32 }}>
+          <Ionicons name="cloud-offline-outline" size={54} color={sx.muted} />
+          <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '700', textAlign: 'center', marginTop: 16 }}>
+            {triLang(lang, {
+              ru: 'Не удалось загрузить повторение',
+              uk: 'Не вдалося завантажити повторення',
+              es: 'No se pudo cargar el repaso',
+              'pt-BR': 'Não foi possível carregar a revisão',
+              vi: 'Không tải được phần ôn tập',
+              id: 'Ulangan tidak dapat dimuat',
+              tr: 'Tekrar yüklenemedi',
+              pl: 'Nie udało się wczytać powtórki',
+            })}
+          </Text>
+          <Text style={{ color: sx.muted, fontSize: f.body, textAlign: 'center', marginTop: 8, lineHeight: 22 }}>
+            {triLang(lang, {
+              ru: 'Прогресс не изменён. Проверь соединение и попробуй снова.',
+              uk: 'Прогрес не змінено. Перевір з’єднання та спробуй ще раз.',
+              es: 'Tu progreso no cambió. Revisa la conexión e inténtalo de nuevo.',
+              'pt-BR': 'Seu progresso não mudou. Verifique a conexão e tente novamente.',
+              vi: 'Tiến độ chưa thay đổi. Hãy kiểm tra kết nối rồi thử lại.',
+              id: 'Progres tidak berubah. Periksa koneksi lalu coba lagi.',
+              tr: 'İlerlemen değişmedi. Bağlantıyı kontrol edip tekrar dene.',
+              pl: 'Postęp się nie zmienił. Sprawdź połączenie i spróbuj ponownie.',
+            })}
+          </Text>
+          <TouchableOpacity
+            testID="review-load-retry"
+            onPress={() => setLoadAttempt((value) => value + 1)}
+            style={{ marginTop: 28, backgroundColor: t.accent, borderRadius: 14, paddingHorizontal: 28, paddingVertical: 14 }}
+          >
+            <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '700' }}>
+              {triLang(lang, {
+                ru: 'Попробовать снова', uk: 'Спробувати ще раз', es: 'Intentar de nuevo',
+                'pt-BR': 'Tentar novamente', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie',
+              })}
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </SafeAreaView>
+      </ScreenGradient>
+    );
+  }
+
+  // ─── Нечего повторять ─────────────────────────────────────────────────────
+  if (items.length === 0) {
+    return (
+      <ScreenGradient>
+      <SafeAreaView style={{ flex: 1 }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', padding: 16, gap: 12 }}>
+          <TapScale onPress={() => safeRouterBack(router)} style={{ padding: 4 }}>
+            <Ionicons name="chevron-back" size={26} color={sx.primary} />
+          </TapScale>
+          <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '700' }}>
+            {triLang(lang, {
+              ru: 'Повторение', uk: 'Повторення', es: 'Repaso', 'pt-BR': 'Revisão',
+              vi: 'Ôn tập', id: 'Ulangan', tr: 'Tekrar', pl: 'Powtórka',
             })}
           </Text>
         </View>
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 32 }}>
-          <Text style={{ fontSize: 56, marginBottom: 16 }}>{srsReviewGateOpen ? '✅' : '🔒'}</Text>
+          <Text style={{ fontSize: 56, marginBottom: 16 }}>✅</Text>
           <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '700', textAlign: 'center' }}>
-            {!srsReviewGateOpen ? sourceGateCopy.title : triLang(lang, {
+            {triLang(lang, {
               ru: 'Нечего повторять!',
               uk: 'Нічого повторювати!',
               es: '¡Nada que repasar por ahora!',
-              'pt-BR': "Nada para revisar!",
-              vi: "Chưa có gì để ôn!",
-              id: "Belum ada yang perlu diulas!",
-              tr: "Tekrar edecek bir şey yok!",
-              pl: "Nie ma teraz nic do powtórki!",
+              'pt-BR': 'Nada para revisar!',
+              vi: 'Chưa có gì để ôn!',
+              id: 'Belum ada yang perlu diulas!',
+              tr: 'Tekrar edecek bir şey yok!',
+              pl: 'Nie ma teraz nic do powtórki!',
             })}
           </Text>
           <Text style={{ color: sx.muted, fontSize: f.body, textAlign: 'center', marginTop: 8, lineHeight: 22 }}>
-            {!srsReviewGateOpen ? sourceGateCopy.body : triLang(lang, {
+            {triLang(lang, {
               ru: 'Допускай ошибки в уроках — они появятся здесь для повторения',
-              uk: 'Допускай помилки в уроках — вони з\'являться тут для повторення',
+              uk: 'Допускай помилки в уроках — вони з'являться тут для повторення',
               es: 'Si te equivocas en las lecciones, aquí aparecerán frases para repasar.',
-              'pt-BR': "Cometa erros nas aulas: eles aparecerão aqui para revisão.",
-              vi: "Nếu bạn mắc lỗi trong bài học, các lỗi đó sẽ xuất hiện ở đây để ôn lại.",
-              id: "Jika kamu membuat kesalahan di pelajaran, kesalahan itu akan muncul di sini untuk diulas.",
-              tr: "Derslerde hata yaptığında, tekrar için burada görünecekler.",
-              pl: "Gdy popełnisz błędy w lekcjach, pojawią się tutaj do powtórki.",
+              'pt-BR': 'Cometa erros nas aulas: eles aparecerão aqui para revisão.',
+              vi: 'Nếu bạn mắc lỗi trong bài học, các lỗi đó sẽ xuất hiện ở đây để ôn lại.',
+              id: 'Jika kamu membuat kesalahan di pelajaran, kesalahan itu akan muncul di sini untuk diulas.',
+              tr: 'Derslerde hata yaptığında, tekrar için burada görünecekler.',
+              pl: 'Gdy popełnisz błędy w lekcjach, pojawią się tutaj do powtórki.',
             })}
           </Text>
           <TouchableOpacity
@@ -1417,14 +1495,8 @@ export default function ReviewScreen() {
           >
             <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '700' }}>
               {triLang(lang, {
-                ru: 'Назад',
-                uk: 'Назад',
-                es: 'Volver',
-                'pt-BR': "Voltar",
-                vi: "Quay lại",
-                id: "Kembali",
-                tr: "Geri",
-                pl: "Wstecz",
+                ru: 'Назад', uk: 'Назад', es: 'Volver', 'pt-BR': 'Voltar',
+                vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
               })}
             </Text>
           </TouchableOpacity>

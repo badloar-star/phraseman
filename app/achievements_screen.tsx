@@ -1161,11 +1161,15 @@ function AchievementModal({
                     onPress={() => {
                       if (shardClaimTapGuardRef.current) return;
                       shardClaimTapGuardRef.current = true;
-                      onShardClaimed(achievement.id);
-                      void hapticSuccess();
-                      void claimAchievementShardReward(achievement.id).finally(() => {
-                        shardClaimTapGuardRef.current = false;
-                      });
+                      void claimAchievementShardReward(achievement.id)
+                        .then((claimed) => {
+                          if (!claimed) return;
+                          onShardClaimed(achievement.id);
+                          void hapticSuccess();
+                        })
+                        .finally(() => {
+                          shardClaimTapGuardRef.current = false;
+                        });
                     }}
                     style={{
                       backgroundColor: t.correct,

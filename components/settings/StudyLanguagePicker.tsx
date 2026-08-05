@@ -35,7 +35,6 @@ const RELEASE_LANGUAGE_FLAG_ASSETS: Record<'en', ImageSourcePropType> = {
 };
 
 const DEV_LANGUAGE_FLAG_ASSETS: Partial<Record<StudyTargetLang, ImageSourcePropType>> = {
-  fr: require('../../assets/images/language_flags/language_fr_dev.webp'),
   es: require('../../assets/images/language_flags/language_es_dev.webp'),
 };
 

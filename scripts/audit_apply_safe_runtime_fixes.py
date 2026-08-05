@@ -1,0 +1,498 @@
+from pathlib import Path
+
+
+def replace_once(path: str, old: str, new: str) -> None:
+    file = Path(path)
+    text = file.read_text(encoding='utf-8')
+    count = text.count(old)
+    if count != 1:
+        raise RuntimeError(f'{path}: expected one exact match, found {count}')
+    file.write_text(text.replace(old, new, 1), encoding='utf-8')
+
+
+def replace_between(path: str, start: str, end: str, replacement: str) -> None:
+    file = Path(path)
+    text = file.read_text(encoding='utf-8')
+    start_index = text.find(start)
+    if start_index < 0:
+        raise RuntimeError(f'{path}: start marker not found: {start[:80]}')
+    end_index = text.find(end, start_index + len(start))
+    if end_index < 0:
+        raise RuntimeError(f'{path}: end marker not found: {end[:80]}')
+    file.write_text(text[:start_index] + replacement + text[end_index:], encoding='utf-8')
+
+
+# French flag asset was removed with the French content tree.
+replace_once(
+    'components/settings/StudyLanguagePicker.tsx',
+    "  fr: require('../../assets/images/language_flags/language_fr_dev.webp'),\n",
+    '',
+)
+
+# Achievement UI may only show success after the wallet claim confirms it.
+replace_once(
+    'app/achievements_screen.tsx',
+    """                    onPress={() => {
+                      if (shardClaimTapGuardRef.current) return;
+                      shardClaimTapGuardRef.current = true;
+                      onShardClaimed(achievement.id);
+                      void hapticSuccess();
+                      void claimAchievementShardReward(achievement.id).finally(() => {
+                        shardClaimTapGuardRef.current = false;
+                      });
+                    }}
+""",
+    """                    onPress={() => {
+                      if (shardClaimTapGuardRef.current) return;
+                      shardClaimTapGuardRef.current = true;
+                      void claimAchievementShardReward(achievement.id)
+                        .then((claimed) => {
+                          if (!claimed) return;
+                          onShardClaimed(achievement.id);
+                          void hapticSuccess();
+                        })
+                        .finally(() => {
+                          shardClaimTapGuardRef.current = false;
+                        });
+                    }}
+""",
+)
+
+# Review no longer imports French-only copy.
+replace_once(
+    'app/review.tsx',
+    "import { frenchTrainerGateCopy, srsReviewContentAvailableForTarget } from './trainer_target_gate';\n",
+    "import { srsReviewContentAvailableForTarget } from './trainer_target_gate';\n",
+)
+replace_once(
+    'app/review.tsx',
+    "  const srsReviewGateOpen = srsReviewContentAvailableForTarget(studyTarget);\n",
+    "  void srsReviewContentAvailableForTarget(studyTarget);\n",
+)
+replace_once(
+    'app/review.tsx',
+    """  const [items,   setItems]   = useState<RecallItem[]>([]);
+  const [index,   setIndex]   = useState(0);
+  const [loading, setLoading] = useState(true);
+""",
+    """  const [items,   setItems]   = useState<RecallItem[]>([]);
+  const [index,   setIndex]   = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
+  const [loadAttempt, setLoadAttempt] = useState(0);
+""",
+)
+
+review_load = """  // Загружаем фразы для повторения сегодня. Ошибка чтения не должна
+  // оставлять пользователя на вечном скелетоне: показываем честный retry-state.
+  useEffect(() => {
+    const timerRef = autoTimer;
+    let cancelled = false;
+    setLoading(true);
+    setLoadError(false);
+    AsyncStorage.getItem(REVIEW_BURN_HINT_SHOWN_KEY)
+      .then(v => {
+        if (!cancelled) setBurnHintSeen(v === '1');
+      })
+      .catch(() => {
+        if (!cancelled) setBurnHintSeen(true);
+      });
+    // Когда запускаем из trainer.tsx с trainerMode — используем getTrainerItems.
+    // Стандартный /review без params грузит «due» с commitSessionOverflow.
+    const itemsPromise = params.trainerMode
+      ? getTrainerItems(trainerMode, SESSION_LIMIT, trainerLessonId, trainerCategory, studyTarget)
+      : planPracticeTaskId
+        ? resolvePersonalPracticeSeededDuePhrases({
+            studyTarget,
+            requiredPhraseCount: planPracticeRequiredPhrases,
+          })
+        : getDueItems(SESSION_LIMIT, { commitSessionOverflow: true }, studyTarget);
+    itemsPromise
+      .then(due => {
+        if (cancelled) return;
+        setItems(due);
+        setIndex(0);
+        setLoading(false);
+        if (due.length > 0) {
+          loadCard(due[0], 0, due);
+          if (!reviewSessionStartedRef.current) {
+            reviewSessionStartedAtRef.current = Date.now();
+            reviewSessionStartedRef.current = true;
+            plannedItemCountRef.current = due.length;
+            void trackEvent('learning_review_session_start', {
+              schema_version: 1,
+              event_id: `${reviewSessionIdRef.current}:start`,
+              review_session_id: reviewSessionIdRef.current,
+              study_target: studyTarget,
+              review_mode: trainerMode,
+              planned_item_count: due.length,
+              occurred_at_ms: reviewSessionStartedAtRef.current,
+            });
+          }
+        }
+      })
+      .catch(() => {
+        if (cancelled) return;
+        setItems([]);
+        setLoadError(true);
+        setLoading(false);
+      });
+    AsyncStorage.getItem('user_name')
+      .then(n => {
+        if (!cancelled) userNameRef.current = n;
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+      const timer = timerRef.current;
+      if (timer) clearTimeout(timer);
+    };
+  }, [loadAttempt, loadCard, params.trainerMode, planPracticeRequiredPhrases, planPracticeTaskId, trainerLessonId, trainerCategory, trainerMode, studyTarget]);
+"""
+replace_between(
+    'app/review.tsx',
+    '  // Загружаем фразы для повторения сегодня (один раз при монтировании)\n  useEffect(() => {',
+    '\n\n  useEffect(() => () => {',
+    review_load,
+)
+
+review_empty = """  // ─── Ошибка загрузки ─────────────────────────────────────────────────────
+  if (loadError) {
+    return (
+      <ScreenGradient>
+      <SafeAreaView style={{ flex: 1 }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', padding: 16, gap: 12 }}>
+          <TapScale onPress={() => safeRouterBack(router)} style={{ padding: 4 }}>
+            <Ionicons name="chevron-back" size={26} color={sx.primary} />
+          </TapScale>
+          <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '700' }}>
+            {triLang(lang, {
+              ru: 'Повторение', uk: 'Повторення', es: 'Repaso', 'pt-BR': 'Revisão',
+              vi: 'Ôn tập', id: 'Ulangan', tr: 'Tekrar', pl: 'Powtórka',
+            })}
+          </Text>
+        </View>
+        <View testID="review-load-error" style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 32 }}>
+          <Ionicons name="cloud-offline-outline" size={54} color={sx.muted} />
+          <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '700', textAlign: 'center', marginTop: 16 }}>
+            {triLang(lang, {
+              ru: 'Не удалось загрузить повторение',
+              uk: 'Не вдалося завантажити повторення',
+              es: 'No se pudo cargar el repaso',
+              'pt-BR': 'Não foi possível carregar a revisão',
+              vi: 'Không tải được phần ôn tập',
+              id: 'Ulangan tidak dapat dimuat',
+              tr: 'Tekrar yüklenemedi',
+              pl: 'Nie udało się wczytać powtórki',
+            })}
+          </Text>
+          <Text style={{ color: sx.muted, fontSize: f.body, textAlign: 'center', marginTop: 8, lineHeight: 22 }}>
+            {triLang(lang, {
+              ru: 'Прогресс не изменён. Проверь соединение и попробуй снова.',
+              uk: 'Прогрес не змінено. Перевір з’єднання та спробуй ще раз.',
+              es: 'Tu progreso no cambió. Revisa la conexión e inténtalo de nuevo.',
+              'pt-BR': 'Seu progresso não mudou. Verifique a conexão e tente novamente.',
+              vi: 'Tiến độ chưa thay đổi. Hãy kiểm tra kết nối rồi thử lại.',
+              id: 'Progres tidak berubah. Periksa koneksi lalu coba lagi.',
+              tr: 'İlerlemen değişmedi. Bağlantıyı kontrol edip tekrar dene.',
+              pl: 'Postęp się nie zmienił. Sprawdź połączenie i spróbuj ponownie.',
+            })}
+          </Text>
+          <TouchableOpacity
+            testID="review-load-retry"
+            onPress={() => setLoadAttempt((value) => value + 1)}
+            style={{ marginTop: 28, backgroundColor: t.accent, borderRadius: 14, paddingHorizontal: 28, paddingVertical: 14 }}
+          >
+            <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '700' }}>
+              {triLang(lang, {
+                ru: 'Попробовать снова', uk: 'Спробувати ще раз', es: 'Intentar de nuevo',
+                'pt-BR': 'Tentar novamente', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie',
+              })}
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </SafeAreaView>
+      </ScreenGradient>
+    );
+  }
+
+  // ─── Нечего повторять ─────────────────────────────────────────────────────
+  if (items.length === 0) {
+    return (
+      <ScreenGradient>
+      <SafeAreaView style={{ flex: 1 }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', padding: 16, gap: 12 }}>
+          <TapScale onPress={() => safeRouterBack(router)} style={{ padding: 4 }}>
+            <Ionicons name="chevron-back" size={26} color={sx.primary} />
+          </TapScale>
+          <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '700' }}>
+            {triLang(lang, {
+              ru: 'Повторение', uk: 'Повторення', es: 'Repaso', 'pt-BR': 'Revisão',
+              vi: 'Ôn tập', id: 'Ulangan', tr: 'Tekrar', pl: 'Powtórka',
+            })}
+          </Text>
+        </View>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 32 }}>
+          <Text style={{ fontSize: 56, marginBottom: 16 }}>✅</Text>
+          <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '700', textAlign: 'center' }}>
+            {triLang(lang, {
+              ru: 'Нечего повторять!',
+              uk: 'Нічого повторювати!',
+              es: '¡Nada que repasar por ahora!',
+              'pt-BR': 'Nada para revisar!',
+              vi: 'Chưa có gì để ôn!',
+              id: 'Belum ada yang perlu diulas!',
+              tr: 'Tekrar edecek bir şey yok!',
+              pl: 'Nie ma teraz nic do powtórki!',
+            })}
+          </Text>
+          <Text style={{ color: sx.muted, fontSize: f.body, textAlign: 'center', marginTop: 8, lineHeight: 22 }}>
+            {triLang(lang, {
+              ru: 'Допускай ошибки в уроках — они появятся здесь для повторения',
+              uk: 'Допускай помилки в уроках — вони з\'являться тут для повторення',
+              es: 'Si te equivocas en las lecciones, aquí aparecerán frases para repasar.',
+              'pt-BR': 'Cometa erros nas aulas: eles aparecerão aqui para revisão.',
+              vi: 'Nếu bạn mắc lỗi trong bài học, các lỗi đó sẽ xuất hiện ở đây để ôn lại.',
+              id: 'Jika kamu membuat kesalahan di pelajaran, kesalahan itu akan muncul di sini untuk diulas.',
+              tr: 'Derslerde hata yaptığında, tekrar için burada görünecekler.',
+              pl: 'Gdy popełnisz błędy w lekcjach, pojawią się tutaj do powtórki.',
+            })}
+          </Text>
+          <TouchableOpacity
+            onPress={() => safeRouterBack(router)}
+            style={{ marginTop: 32, backgroundColor: t.accent, borderRadius: 14, paddingHorizontal: 28, paddingVertical: 14 }}
+          >
+            <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '700' }}>
+              {triLang(lang, {
+                ru: 'Назад', uk: 'Назад', es: 'Volver', 'pt-BR': 'Voltar',
+                vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
+              })}
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </SafeAreaView>
+      </ScreenGradient>
+    );
+  }
+
+"""
+replace_between(
+    'app/review.tsx',
+    '  // ─── Нечего повторять ─────────────────────────────────────────────────────\n',
+    '  // ─── Сессия завершена ─────────────────────────────────────────────────────\n',
+    review_empty,
+)
+
+# Personal-plan completion only renders success after durable state save.
+replace_once(
+    'app/personal_plan_complete.tsx',
+    """  const [view, setView] = useState<CompleteView | null>(null);
+  const [starting, setStarting] = useState(false);
+""",
+    """  const [view, setView] = useState<CompleteView | null>(null);
+  const [starting, setStarting] = useState(false);
+  const [loadError, setLoadError] = useState(false);
+  const [loadAttempt, setLoadAttempt] = useState(0);
+  const [startError, setStartError] = useState(false);
+""",
+)
+
+plan_effect = """  useEffect(() => {
+    let cancelled = false;
+    setLoadError(false);
+    void (async () => {
+      try {
+        const state = await readAnyPersonalPlanState();
+        if (!state) {
+          if (!cancelled) {
+            markNextNavigationAsReplace();
+            router.replace('/(tabs)/home' as any);
+          }
+          return;
+        }
+        const plan = getPlanById(state.planId);
+        const completedTasks = await readCompletedPlanTasks();
+        const summary = buildPersonalPlanCompletionSummary(plan, state, completedTasks);
+        const nextPlan = getPlanById(recommendNextPlanAfter(state.planId));
+        // Победный экран честен только после успешного сохранения completed.
+        if (state.status === 'active') await completePersonalPlan();
+        if (!cancelled) setView({ summary, nextPlan });
+      } catch {
+        if (!cancelled) setLoadError(true);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [loadAttempt, router]);
+"""
+replace_between(
+    'app/personal_plan_complete.tsx',
+    '  useEffect(() => {',
+    '\n\n  const startNextPlan',
+    plan_effect,
+)
+
+start_next = """  const startNextPlan = async () => {
+    if (!view || starting) return;
+    setStarting(true);
+    setStartError(false);
+    try {
+      await activatePersonalPlan({
+        planId: view.nextPlan.id,
+        minutesPerDay: getPlanDefaultMinutes(view.nextPlan.id),
+      });
+      // Свапаем экран завершения на новый план. Пометка replace убирает экран
+      // завершения из честного стека — иначе «назад» из плана вернул бы на него.
+      markNextNavigationAsReplace();
+      router.replace('/personal_plan' as any);
+    } catch {
+      setStartError(true);
+    } finally {
+      setStarting(false);
+    }
+  };
+"""
+replace_between(
+    'app/personal_plan_complete.tsx',
+    '  const startNextPlan = async () => {',
+    '\n\n  const goHome',
+    start_next,
+)
+
+load_error_view = """  if (loadError) {
+    return (
+      <ScreenGradient>
+        <View testID="personal-plan-complete-load-error" style={[styles.safe, { paddingTop: insets.top, alignItems: 'center', gap: 14 }]}>
+          <Ionicons name="cloud-offline-outline" size={54} color={t.textMuted} />
+          <Text style={{ color: t.textPrimary, fontSize: 22, fontWeight: '800', textAlign: 'center' }}>
+            {triLang(lang, {
+              ru: 'Не удалось сохранить завершение маршрута',
+              uk: 'Не вдалося зберегти завершення маршруту',
+              es: 'No se pudo guardar la ruta completada',
+              'pt-BR': 'Não foi possível salvar a rota concluída',
+              vi: 'Không lưu được việc hoàn thành lộ trình',
+              id: 'Penyelesaian rute tidak dapat disimpan',
+              tr: 'Rota tamamlanması kaydedilemedi',
+              pl: 'Nie udało się zapisać ukończenia trasy',
+            })}
+          </Text>
+          <Text style={{ color: t.textMuted, fontSize: 15, lineHeight: 22, textAlign: 'center' }}>
+            {triLang(lang, {
+              ru: 'Твой прогресс не потерян. Попробуй сохранить ещё раз.',
+              uk: 'Твій прогрес не втрачено. Спробуй зберегти ще раз.',
+              es: 'Tu progreso no se perdió. Intenta guardarlo otra vez.',
+              'pt-BR': 'Seu progresso não foi perdido. Tente salvar novamente.',
+              vi: 'Tiến độ của bạn không bị mất. Hãy thử lưu lại.',
+              id: 'Progresmu tidak hilang. Coba simpan lagi.',
+              tr: 'İlerlemen kaybolmadı. Tekrar kaydetmeyi dene.',
+              pl: 'Twój postęp nie zginął. Spróbuj zapisać ponownie.',
+            })}
+          </Text>
+          <TouchableOpacity
+            testID="personal-plan-complete-load-retry"
+            style={[styles.primary, { backgroundColor: t.accent, marginTop: 6 }]}
+            onPress={() => setLoadAttempt((value) => value + 1)}
+          >
+            <Text style={[styles.primaryText, { color: t.correctText }]}>
+              {triLang(lang, {
+                ru: 'Попробовать снова', uk: 'Спробувати ще раз', es: 'Intentar de nuevo',
+                'pt-BR': 'Tentar novamente', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie',
+              })}
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.secondary} onPress={() => {
+            markNextNavigationAsReplace();
+            router.replace('/(tabs)/home' as any);
+          }}>
+            <Text style={[styles.secondaryText, { color: t.textGhost }]}>
+              {triLang(lang, { ru: 'На главную', uk: 'На головну', es: 'Inicio', 'pt-BR': 'Início', vi: 'Trang chủ', id: 'Beranda', tr: 'Ana sayfa', pl: 'Strona główna' })}
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </ScreenGradient>
+    );
+  }
+
+"""
+replace_once(
+    'app/personal_plan_complete.tsx',
+    '  if (!view) {\n',
+    load_error_view + '  if (!view) {\n',
+)
+
+replace_once(
+    'app/personal_plan_complete.tsx',
+    """            </TouchableOpacity>
+
+            <TouchableOpacity
+              testID="personal-plan-complete-later"
+""",
+    """            </TouchableOpacity>
+            {startError && (
+              <Text testID="personal-plan-complete-start-error" style={{ color: t.wrong, fontSize: 14, lineHeight: 20, textAlign: 'center', marginTop: 10 }}>
+                {triLang(lang, {
+                  ru: 'Не удалось начать новый маршрут. Попробуй ещё раз.',
+                  uk: 'Не вдалося почати новий маршрут. Спробуй ще раз.',
+                  es: 'No se pudo iniciar la nueva ruta. Inténtalo de nuevo.',
+                  'pt-BR': 'Não foi possível iniciar a nova rota. Tente novamente.',
+                  vi: 'Không thể bắt đầu lộ trình mới. Hãy thử lại.',
+                  id: 'Rute baru tidak dapat dimulai. Coba lagi.',
+                  tr: 'Yeni rota başlatılamadı. Tekrar dene.',
+                  pl: 'Nie udało się rozpocząć nowej trasy. Spróbuj ponownie.',
+                })}
+              </Text>
+            )}
+
+            <TouchableOpacity
+              testID="personal-plan-complete-later"
+""",
+)
+
+# Source-level regression guards: these run without mounting native screens.
+Path('tests/runtime_failure_states_contract.test.ts').write_text(
+    """import fs from 'node:fs';
+import path from 'node:path';
+
+const root = path.resolve(__dirname, '..');
+const read = (file: string) => fs.readFileSync(path.join(root, file), 'utf8');
+
+describe('runtime failure-state contracts', () => {
+  test('achievement claim updates success UI only after a confirmed claim', () => {
+    const source = read('app/achievements_screen.tsx');
+    const claimIndex = source.indexOf('claimAchievementShardReward(achievement.id)');
+    const confirmedIndex = source.indexOf('if (!claimed) return;', claimIndex);
+    const uiIndex = source.indexOf('onShardClaimed(achievement.id);', claimIndex);
+    expect(claimIndex).toBeGreaterThanOrEqual(0);
+    expect(confirmedIndex).toBeGreaterThan(claimIndex);
+    expect(uiIndex).toBeGreaterThan(confirmedIndex);
+  });
+
+  test('review load rejection leaves the skeleton and exposes retry', () => {
+    const source = read('app/review.tsx');
+    expect(source).toContain('setLoadError(true);');
+    expect(source).toContain('testID="review-load-error"');
+    expect(source).toContain('testID="review-load-retry"');
+    expect(source).toContain('setLoadAttempt((value) => value + 1)');
+  });
+
+  test('personal-plan completion is not marked successful after a swallowed save error', () => {
+    const source = read('app/personal_plan_complete.tsx');
+    expect(source).toContain("if (state.status === 'active') await completePersonalPlan();");
+    expect(source).not.toContain('completePersonalPlan().catch(() => {})');
+    expect(source).toContain('testID="personal-plan-complete-load-error"');
+    expect(source).toContain('testID="personal-plan-complete-load-retry"');
+  });
+
+  test('active study target registry no longer exposes French', () => {
+    const production = read('app/study_target.ts');
+    const dev = read('app/study_target_lang_dev.ts');
+    expect(production).toContain("export type StudyTarget = 'en';");
+    expect(production).not.toContain("| 'fr'");
+    expect(dev).toContain("DEV_STUDY_TARGET_LANGS = ['en', 'es']");
+    expect(dev).not.toContain("fr: 'Французский'");
+  });
+});
+""",
+    encoding='utf-8',
+)

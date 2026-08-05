@@ -1,0 +1,117 @@
+name: Audit French removal inventory
+
+on:
+  push:
+    branches:
+      - audit/remove-french-runtime-fixes-2026-08-05
+  pull_request:
+    branches:
+      - feature/referral-roulette
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Build French removal inventory
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts
+
+          git ls-files \
+            | grep -Ei '(^|/)[^/]*(french|gustav|(^|[_-])fr([_.-]|$))[^/]*($|/)' \
+            | sort -u \
+            > artifacts/french-path-matches.txt || true
+
+          git grep -Il -E 'French|french|FRENCH|studyTarget.{0,80}["'"']fr["'"']|storageStudyTarget.{0,80}["'"']fr["'"']|lesson_progress_v2::fr|targetKey\([^\n]*["'"']fr["'"']' \
+            -- app components constants functions/src admin scripts tests docs specs content assets package.json 2>/dev/null \
+            | sort -u \
+            > artifacts/french-content-matches.txt || true
+
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          def rows(name):
+              path = Path('artifacts') / name
+              if not path.exists():
+                  return []
+              return [line.strip() for line in path.read_text(encoding='utf-8').splitlines() if line.strip()]
+
+          path_matches = rows('french-path-matches.txt')
+          content_matches = rows('french-content-matches.txt')
+          all_matches = sorted(set(path_matches) | set(content_matches))
+
+          protected_prefixes = (
+              'app/premium', 'app/paywall', 'app/revenuecat', 'app/auth',
+              'functions/src/premium', 'functions/src/revenuecat', 'functions/src/auth',
+          )
+          protected_names = {
+              'app/cloud_sync.ts',
+              'app/account_generation.ts',
+              'app/user_id_policy.ts',
+              'components/PremiumContext.tsx',
+          }
+          protected = sorted(
+              p for p in all_matches
+              if p in protected_names or p.startswith(protected_prefixes)
+          )
+          removable_candidates = sorted(set(all_matches) - set(protected))
+
+          payload = {
+              'pathMatches': path_matches,
+              'contentMatches': content_matches,
+              'allMatches': all_matches,
+              'protectedFinanceAuthFiles': protected,
+              'removableCandidates': removable_candidates,
+              'counts': {
+                  'pathMatches': len(path_matches),
+                  'contentMatches': len(content_matches),
+                  'allMatches': len(all_matches),
+                  'protectedFinanceAuthFiles': len(protected),
+                  'removableCandidates': len(removable_candidates),
+              },
+          }
+          Path('artifacts/french-inventory.json').write_text(
+              json.dumps(payload, ensure_ascii=False, indent=2) + '\n',
+              encoding='utf-8',
+          )
+
+          lines = [
+              '# French removal inventory',
+              '',
+              f"- Path matches: {len(path_matches)}",
+              f"- Content matches: {len(content_matches)}",
+              f"- Unique matches: {len(all_matches)}",
+              f"- Protected finance/auth files: {len(protected)}",
+              f"- Removable candidates: {len(removable_candidates)}",
+              '',
+              '## Protected finance/auth files',
+              '',
+              *[f'- `{p}`' for p in protected],
+              '',
+              '## Removable candidates',
+              '',
+              *[f'- `{p}`' for p in removable_candidates],
+              '',
+          ]
+          Path('artifacts/french-inventory.md').write_text('\n'.join(lines), encoding='utf-8')
+          PY
+
+          cat artifacts/french-inventory.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload inventory
+        uses: actions/upload-artifact@v4
+        with:
+          name: french-removal-inventory
+          path: artifacts/
+          retention-days: 7

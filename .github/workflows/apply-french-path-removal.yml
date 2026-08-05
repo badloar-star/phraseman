@@ -1,0 +1,50 @@
+name: Apply French path removal
+
+on:
+  push:
+    branches:
+      - audit/remove-french-runtime-fixes-2026-08-05
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: apply-french-path-removal
+  cancel-in-progress: false
+
+jobs:
+  remove:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: audit/remove-french-runtime-fixes-2026-08-05
+          fetch-depth: 1
+
+      - name: Remove French-owned files
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          git ls-files \
+            | grep -Ei '(^|/)[^/]*(french|gustav|(^|[_-])fr([_.-]|$))[^/]*($|/)' \
+            | grep -Ev '^\.github/workflows/(audit-french-inventory|apply-french-path-removal)\.yml$' \
+            | grep -Ev '^(app|functions/src|tests)/(premium|paywall|revenuecat|auth|account)' \
+            | sort -u \
+            > /tmp/french-paths-to-remove.txt || true
+
+          count="$(wc -l < /tmp/french-paths-to-remove.txt | tr -d ' ')"
+          echo "French-owned paths selected: ${count}"
+          if [ "${count}" = "0" ]; then
+            exit 0
+          fi
+
+          git rm --pathspec-from-file=/tmp/french-paths-to-remove.txt
+
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'chore: remove French content and Gustav pipeline'
+          git push origin HEAD:audit/remove-french-runtime-fixes-2026-08-05

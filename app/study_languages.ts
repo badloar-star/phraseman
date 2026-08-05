@@ -17,11 +17,10 @@ import type { Lang } from '../constants/i18n';
 import { ENABLE_DEV_STUDY_TARGET_LANG } from './config';
 import { setStoredStudyTarget } from './study_target';
 import { emitDevStudyTargetChanged, setDevStudyTargetLang, type StudyTargetLang } from './study_target_lang_dev';
-import { prefetchAndRecordStudyTargetServerPack } from './study_target_server_prefetch';
 import { shouldGateFeature } from './feature_gates';
 
-/** Все возможные коды языка обучения (включая dev-испанский). */
-const KNOWN_STUDY_LANGUAGE_CODES = ['en', 'fr', 'es'] as const;
+/** Все поддерживаемые коды языка обучения (включая dev-испанский). */
+const KNOWN_STUDY_LANGUAGE_CODES = ['en', 'es'] as const;
 
 export function isKnownStudyLanguage(value: unknown): value is StudyTargetLang {
   return typeof value === 'string'
@@ -104,8 +103,8 @@ export function shouldGateExtraLanguage(params: {
   hasPremiumAccess: boolean;
 }): boolean {
   const { target, startedLanguages, hasPremiumAccess } = params;
-  if (startedLanguages.includes(target)) return false; // уже учит — не гейтим
-  if (startedLanguages.length < FREE_STUDY_LANGUAGE_LIMIT) return false; // первый язык бесплатно
+  if (startedLanguages.includes(target)) return false;
+  if (startedLanguages.length < FREE_STUDY_LANGUAGE_LIMIT) return false;
   return shouldGateFeature('extra_languages', hasPremiumAccess);
 }
 
@@ -138,16 +137,12 @@ export async function getLanguageProfile(target: StudyTargetLang): Promise<Langu
 
 /**
  * Единая процедура активации языка обучения (настройки + language_welcome).
- * Повторяет проверенную логику плашек настроек: dev-испанский идёт через
- * dev-канал, продовые языки — через setStoredStudyTarget + префетч контент-пака
- * для французского. Отмечает язык начатым.
+ * Dev-испанский идёт через dev-канал; production-цель остаётся английской.
+ * Отмечает язык начатым.
  */
 export async function applyStudyLanguageSelection(code: StudyTargetLang, uiLang: Lang): Promise<void> {
-  if (ENABLE_DEV_STUDY_TARGET_LANG && (code === 'es' || code === 'fr')) {
+  if (ENABLE_DEV_STUDY_TARGET_LANG && code === 'es') {
     await setDevStudyTargetLang(code, uiLang);
-    if (code === 'fr') {
-      void prefetchAndRecordStudyTargetServerPack('fr', uiLang).catch(() => {});
-    }
   } else {
     await setStoredStudyTarget('en', uiLang);
     if (ENABLE_DEV_STUDY_TARGET_LANG) {

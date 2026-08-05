@@ -2695,6 +2695,25 @@ export default function SettingsTestersFunctions() {
         <AdminNavContext.Provider value={{ chapter: navChapter, query: navQuery }}>
         <ScrollView testID="screen-settings-testers" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 60, paddingTop: 12 }} style={{ backgroundColor: ADMIN_BG }}>
           {/* Новые разделы админки — всегда в САМОМ ВЕРХУ (правило владельца). */}
+          {/* зачем 2026-08-04 (владелец: «добавь экран билетов чтоб посмотреть
+              как выглядит»): экран /tournament_tickets — витрина сезонного
+              билета турнира (Season Pass tournament_ticket), реального
+              инвентаря нет, обычный переход роутером. */}
+          {/* guard-ok: без borderWidth/borderColor — фон+скругление вместо
+              обводки (запрет владельца), соседние карточки этого dev-файла
+              используют устаревший стиль с рамкой, не копирую его дальше. */}
+          <View style={{ marginHorizontal: 12, marginBottom: 10, borderRadius: 14, backgroundColor: ADMIN_SURFACE, overflow: 'hidden' }}>
+            <ButtonRow
+              testID="admin-section-tournament-tickets"
+              icon="ticket-outline"
+              label="🎟️ Экран билетов турнира"
+              sub="Витрина /tournament_tickets — посмотреть как выглядит"
+              onPress={() => router.push('/tournament_tickets' as any)}
+              t={t}
+              f={f}
+              doHaptic={doHaptic}
+            />
+          </View>
           <View style={{ marginHorizontal: 12, marginBottom: 10, borderRadius: 14, borderWidth: 1, borderColor: ACCENT_BORDER, backgroundColor: ADMIN_SURFACE, overflow: 'hidden' }}>
             <ButtonRow
               testID="admin-section-tasks-surveys"

@@ -24,7 +24,7 @@
 // глушит сеть для синтетических uid (isSyntheticUid).
 // ═══════════════════════════════════════════════════════════════════════════
 
-import { residentStreak, residentXpForLevel } from '../../constants/synthetic_residents';
+import { residentStreakAt, residentXpForLevel } from '../../constants/synthetic_residents';
 import { fnv1a, TOURNAMENT_BOT_MAX_LEVEL, wrapBotLevel } from './tournament_avatars';
 import type { PlayerInfo } from '../PlayerProfileModal';
 
@@ -71,7 +71,23 @@ export function tournamentBotCardInfo(seat: BotSeatLike): PlayerInfo {
   const totalXp = residentXpForLevel(level, seat.uid);
   // Серия: у трети персонажей ноль (как у живых), у остальных 1..34 дня.
   // Формула общая с реестром — житель и бот считают серию одинаково.
-  const streak = residentStreak(fnv1a(seat.uid) % 200);
+  // зачем (владелец 2026-08-04): «цепочка всегда 0 — сделай чтобы показывалась
+  // рандомно, в рандомные дни сбрасывалась на 0 и дальше +1 в день, не более 3
+  // сбросов в месяц». Серия теперь функция времени: растёт сама каждые сутки и
+  // обнуляется только в свой день срыва. Индекс персонажа сюда намеренно не
+  // передаётся (поле, которого нет у живых, выдало бы бота), поэтому сид —
+  // uid, как и у остального в этой карточке.
+  //
+  // «Дата регистрации» для ограничения серии выводится из уровня: серия не
+  // может быть длиннее стажа. На 1 уровне это ~7 дней, дальше с запасом выше
+  // потолка серии — то есть ограничение реально работает только у новичков,
+  // которые иначе показали бы 60-дневную серию при неделе в приложении.
+  const tenureDays = 7 + level * 12;
+  const streak = residentStreakAt(
+    fnv1a(seat.uid) % 200,
+    Date.now(),
+    Date.now() - tenureDays * 24 * 60 * 60 * 1000,
+  );
   return {
     name: seat.name,
     points: totalXp,

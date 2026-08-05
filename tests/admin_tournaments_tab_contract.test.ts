@@ -48,7 +48,7 @@ function runTab() {
         ] } };
       }
       if (name === 'adminGetTournamentSchedule') {
-        return { data: { slots: [{ slotId: 'daily_1200', localTime: '12:00', timezone: 'Europe/Moscow', ticketsRequired: 1, enabled: false }] } };
+        return { data: { allDayEnabled: true, slots: [{ slotId: 'daily_1200', localTime: '12:00', timezone: 'Europe/Moscow', ticketsRequired: 1, enabled: false }] } };
       }
       if (name === 'adminGenerateTournamentTasks') {
         return { data: { stats: { produced: 10, phrasesSeen: 5 }, written: 10, keptPublished: 3, samples: [] } };
@@ -70,6 +70,7 @@ function runTab() {
     },
     functionsUs: {},
     showToast: (message: string) => { calls.push({ toast: message }); },
+    logAction: async () => undefined,
     escapeHtml: (value: unknown) => String(value ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;'),
     confirm: () => true,
     open: (url: string) => { calls.push({ name: 'window.open', payload: { url } }); },
@@ -248,6 +249,24 @@ describe('вкладка «Турниры» в админке', () => {
     expect(scheduleBlock).not.toMatch(/hour:\s*Number/);
     expect(scheduleBlock).not.toMatch(/minute:\s*Number/);
     expect(html).not.toContain('data-hour=');
+  });
+
+  it('режим «Активно весь день» виден, объясняет эффект и уходит на сервер', async () => {
+    const { sandbox, calls, elements } = runTab();
+    elements['tn-all-day'] = {
+      id: 'tn-all-day', checked: true, disabled: false,
+      innerHTML: '', textContent: '', querySelector: () => null,
+    };
+
+    await (sandbox.tnLoadSchedule as () => Promise<void>)();
+    expect(String(elements['tn-schedule']?.innerHTML ?? '')).toContain('Активно весь день');
+    expect(String(elements['tn-schedule']?.innerHTML ?? '')).toMatch(/таймер/i);
+    expect(String(elements['tn-schedule']?.innerHTML ?? '')).toContain('tnPreviewAllDay(this)');
+    expect(typeof sandbox.tnPreviewAllDay).toBe('function');
+
+    await (sandbox.tnSaveSchedule as () => Promise<void>)();
+    const save = calls.find((call) => call.name === 'adminSetTournamentSchedule');
+    expect(save?.payload?.allDayEnabled).toBe(true);
   });
 
   it('ИИ-генератор: функции объявлены, разметка на месте', () => {

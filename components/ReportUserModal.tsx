@@ -11,7 +11,7 @@ interface Props {
   visible: boolean;
   reportedUid: string;
   reportedName: string;
-  screen: 'leaderboard' | 'arena';
+  screen: 'leaderboard' | 'arena' | 'profile';
   lang: Lang;
   onClose: () => void;
   previewOnly?: boolean;

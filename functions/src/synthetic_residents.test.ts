@@ -19,8 +19,12 @@ import {
   residentProfileAt,
   residentTickGain,
   residentTotalXpAt,
+  residentStreakAt,
+  RESIDENT_STREAK_MAX,
+  RESIDENT_STREAK_MAX_RESETS_PER_MONTH,
   residentXpGainedBetween,
 } from './synthetic_residents';
+import { residentStreakAt as clientResidentStreakAt } from '../../constants/synthetic_residents';
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 
@@ -179,5 +183,72 @@ describe('synthetic residents — правила владельца', () => {
   it('слотов хватает, чтобы заполнить комнату лиги без повторов', () => {
     // Комната дозаполняется до 28 участников — блоков имён должно хватать.
     expect(RESIDENT_SLOT_COUNT).toBeGreaterThanOrEqual(28);
+  });
+});
+
+// ── Серия дней ──────────────────────────────────────────────────────────────
+// Правило владельца (2026-08-04): «цепочка у ботов всегда 0 — исправь, чтобы
+// показывалась рандомно, в рандомные дни сбрасывалась на 0 и дальше +1 в день,
+// не более 3 сбросов в месяц». До этого серия была одним числом из хэша: она
+// не двигалась во времени, а у трети персонажей была намертво нулевой.
+describe('synthetic residents — серия дней', () => {
+  const LONG_SIGNUP = Date.UTC(2024, 0, 1);
+
+  it('растёт ровно на +1 в день, пока не случился срыв', () => {
+    for (let index = 0; index < 30; index++) {
+      let prev = residentStreakAt(index, RESIDENT_EPOCH_MS, LONG_SIGNUP);
+      for (let day = 1; day <= 120; day++) {
+        const cur = residentStreakAt(index, RESIDENT_EPOCH_MS + day * DAY_MS, LONG_SIGNUP);
+        // Либо срыв (0), либо ровно +1, либо упор в потолок.
+        const ok = cur === 0 || cur === prev + 1 || (cur === RESIDENT_STREAK_MAX && prev === RESIDENT_STREAK_MAX);
+        expect({ index, day, prev, cur, ok }).toEqual({ index, day, prev, cur, ok: true });
+        prev = cur;
+      }
+    }
+  });
+
+  it('срывов не больше трёх за календарный месяц', () => {
+    for (let index = 0; index < 60; index++) {
+      for (let month = 0; month < 12; month++) {
+        const start = Date.UTC(2026, month, 1);
+        const end = Date.UTC(2026, month + 1, 1);
+        let resets = 0;
+        for (let t = start; t < end; t += DAY_MS) {
+          if (residentStreakAt(index, t, LONG_SIGNUP) === 0) resets++;
+        }
+        expect(resets).toBeLessThanOrEqual(RESIDENT_STREAK_MAX_RESETS_PER_MONTH);
+      }
+    }
+  });
+
+  it('ноль виден только в день срыва, а не постоянно у трети персонажей', () => {
+    // Регрессия, ради которой всё и переписано: старая формула держала ~30%
+    // персонажей на нуле НАВСЕГДА, и владелец видел комнату с нулями.
+    const room = Array.from(
+      { length: 28 },
+      (_, slot) => residentProfileAt(slot, RESIDENT_EPOCH_MS).streak,
+    );
+    const zeros = room.filter((v) => v === 0).length;
+    expect(zeros).toBeLessThanOrEqual(4);
+    // И разброс живой, а не одно значение на всех.
+    expect(new Set(room).size).toBeGreaterThanOrEqual(10);
+  });
+
+  it('серия не длиннее стажа персонажа в приложении', () => {
+    // Новичок, зарегистрированный 5 дней назад, не может показать 40 дней
+    // серии — это выдало бы подделку.
+    for (let index = 0; index < 40; index++) {
+      const streak = residentStreakAt(index, RESIDENT_EPOCH_MS, RESIDENT_EPOCH_MS - 5 * DAY_MS);
+      expect(streak).toBeLessThanOrEqual(5);
+    }
+  });
+
+  it('клиентское зеркало считает серию так же, как сервер', () => {
+    // Житель лиги (сервер) и бот турнира (клиент) — один и тот же персонаж:
+    // разойтись в цифре они не имеют права.
+    for (let index = 0; index < 200; index++) {
+      expect(clientResidentStreakAt(index, RESIDENT_EPOCH_MS, LONG_SIGNUP))
+        .toBe(residentStreakAt(index, RESIDENT_EPOCH_MS, LONG_SIGNUP));
+    }
   });
 });

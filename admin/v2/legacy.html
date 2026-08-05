@@ -24579,6 +24579,8 @@
       const total = Number(overview.consent?.total || 0);
       const brackets = overview.consent?.brackets || {};
       const consent = overview.consent?.analytics || {};
+      const aiExplain = overview.consent?.aiExplain || {};
+      const aiDialog = overview.consent?.aiDialog || {};
       const pct = (n) => total ? Math.round(n / total * 100) : 0;
       const countEl = document.getElementById('ac-count');
       if (countEl) countEl.textContent = `${total} текущих снимков канонических идентичностей`;
@@ -24600,6 +24602,18 @@
           ${card('Разрешили', consent.granted, '#4ade80')}
           ${card('Отказались', consent.denied, '#93c5fd')}
           ${card('Не выбрали', consent.unset, '#9ca3af')}
+        </div>
+        <div style="margin:18px 0 10px;font-weight:700;opacity:.85">Согласие на AI-разбор ошибок</div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          ${card('Включили', aiExplain.granted, '#4ade80')}
+          ${card('Отказались', aiExplain.denied, '#93c5fd')}
+          ${card('Не выбрали', aiExplain.unset, '#9ca3af')}
+        </div>
+        <div style="margin:18px 0 10px;font-weight:700;opacity:.85">Согласие на AI-диалоги</div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          ${card('Включили', aiDialog.granted, '#4ade80')}
+          ${card('Отказались', aiDialog.denied, '#93c5fd')}
+          ${card('Не выбрали', aiDialog.unset, '#9ca3af')}
         </div>
         <div style="margin-top:14px;font-size:12px;opacity:.65" title="Документ user_consents перезаписывается по stable UID и не является счётчиком установок, новых пользователей или событий">Один текущий снимок на каноническую идентичность. Это не установки, не новые пользователи и не события. Исторические first/current cohort здесь не показаны: сервер их отдельно не агрегирует.</div>`;
       window._ageConsentLoaded = true;

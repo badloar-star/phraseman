@@ -32,6 +32,7 @@ import {
   spineTopHalfPath,
   spineTrackPath,
   spineTrackProgressPath,
+  spineTrackRegionPaths,
   spineWaveOffsetForKind,
 } from '../app/season_pass_spine';
 import { SEASON_TRACK } from '../app/season_pass_track_config';
@@ -282,5 +283,39 @@ describe('оверскан хребта — линия уходит за экр�
     const plain = spineTrackPath(CX3, ROW_HEIGHT, offsets);
     expect(/^M\s+[-\d.]+\s+0\s/.test(plain.trim())).toBe(true);
     expect(plain.includes('L')).toBe(false);
+  });
+});
+
+describe('Free/Plus background regions share the exact season spine', () => {
+  const width = 390;
+  const offsets = SEASON_TRACK.map((_, index) => offsetOf(index));
+  const overscanTop = 420;
+  const overscanBottom = 220;
+
+  test('the region divider is byte-identical to the main spineTrackPath', () => {
+    const regions = spineTrackRegionPaths(width, ROW_HEIGHT, offsets, overscanTop, overscanBottom);
+    expect(regions.divider).toBe(
+      spineTrackPath(width / 2, ROW_HEIGHT, offsets, overscanTop, overscanBottom),
+    );
+  });
+
+  test('Free closes at the left edge and Plus closes at the right edge', () => {
+    const regions = spineTrackRegionPaths(width, ROW_HEIGHT, offsets, overscanTop, overscanBottom);
+    expect(regions.free).toContain('L 0');
+    expect(regions.plus).toContain(`L ${width}`);
+    expect(regions.free.endsWith(' Z')).toBe(true);
+    expect(regions.plus.endsWith(' Z')).toBe(true);
+  });
+
+  test.each([
+    [0, offsets],
+    [-1, offsets],
+    [width, []],
+  ] as const)('invalid geometry emits no SVG path (width=%s)', (invalidWidth, invalidOffsets) => {
+    expect(spineTrackRegionPaths(invalidWidth, ROW_HEIGHT, invalidOffsets, overscanTop, overscanBottom)).toEqual({
+      divider: '',
+      free: '',
+      plus: '',
+    });
   });
 });

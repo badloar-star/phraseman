@@ -9,6 +9,8 @@ import {
   type TournamentTask,
 } from './tournament_core';
 
+const tournamentRuntime = require('./tournaments') as Record<string, unknown>;
+
 const speedTask = (count = 6): TournamentTask => {
   const pairs = [
     ['ticket', 'билет'],
@@ -67,23 +69,21 @@ describe('speed-match security contract', () => {
     expect(JSON.stringify(publicTask)).not.toContain('correctIndex');
   });
 
-  // зачем 2026-08-03 (владелец: «убрать штраф»): раньше тест назывался
-  // «subtracts one star per unique wrong attempt» и требовал 3⭐/2⭐/1⭐/0⭐ по
-  // числу промахов. Правило отменено: награда за пары — это «сколько правильно,
-  // столько звёзд», а промах уже наказан тем, что пара не засчитана. Двойное
-  // наказание вдобавок усиливало прод-баг с откатом поля: игрок повторно тапал
-  // откатившиеся пары, и его же за это штрафовали.
-  //
-  // Журналирование промахов ОСТАЁТСЯ — оно защищает от перебора вариантов и
-  // нужно разбору; проверяем, что счётчик честен и идемпотентен.
-  it('journals unique wrong attempts without taking stars away', () => {
+  // Владелец 2026-08-04: неверная пара снимает одну звезду, но остаётся
+  // доступной для повторного выбора; верная фиксируется. Серверный журнал
+  // делает штраф идемпотентным и не позволяет повторному тапу списать ещё раз.
+  it('deducts one star per unique wrong attempt while keeping the pair retryable', () => {
     const task = speedTask();
     const wrong = applySpeedMatchAttempt(task, undefined, 0, 1);
     expect(wrong).toMatchObject({ correct: false, progress: { wrongAttempts: 1 } });
+    expect(wrong.progress.matchedIndexes[0]).toBe(-1);
+    const corrected = applySpeedMatchAttempt(task, wrong.progress, 0, 0);
+    expect(corrected).toMatchObject({ correct: true, progress: { wrongAttempts: 1 } });
+    expect(corrected.progress.matchedIndexes[0]).toBe(0);
     const replay = applySpeedMatchAttempt(task, wrong.progress, 0, 1);
     expect(replay.progress.wrongAttempts).toBe(1);
-    // Промахи делаем по паре 5 индексами, которые ей не подходят, а собираем
-    // ВСЕ шесть пар. Награда обязана быть одинаковой при любом числе промахов.
+    // Промахи делаем по паре 5 индексами, которые ей не подходят, а затем
+    // собираем все шесть пар. Каждый уникальный промах обязан снять одну звезду.
     const scoreWithWrongAttempts = (wrongAttempts: number): number => {
       let progress = applySpeedMatchAttempt(task, undefined, 5, 0).progress;
       for (let selectedIndex = 1; selectedIndex < wrongAttempts; selectedIndex += 1) {
@@ -103,10 +103,61 @@ describe('speed-match security contract', () => {
       return applied.result.roundScore;
     };
 
-    const clean = scoreWithWrongAttempts(1);
+    const onePenalty = scoreWithWrongAttempts(1);
     for (const wrongAttempts of [2, 3, 4] as const) {
-      expect(scoreWithWrongAttempts(wrongAttempts)).toBe(clean);
+      expect(scoreWithWrongAttempts(wrongAttempts)).toBe(onePenalty - (wrongAttempts - 1));
     }
+  });
+
+  it('deducts a wrong attempt before the first correct pair without taking total score below zero', () => {
+    const task = speedTask();
+    const progress = applySpeedMatchAttempt(task, undefined, 0, 1).progress;
+    const startingRoom = room();
+    startingRoom.players[0].score = 5;
+    const applied = applyTournamentSubmission(startingRoom, {
+      playerId: 'human-1', roundNo: 1, receivedAtMs: 1_100,
+      answers: [{ taskId: task.taskId, answer: { selectedIndexes: Array(6).fill(-1) } }],
+      tasks: [task], speedMatchProgress: { [task.taskId]: progress },
+    });
+
+    expect(applied.result.roundScore).toBe(-1);
+    expect(applied.room.players[0].score).toBe(4);
+
+    startingRoom.players[0].score = 0;
+    const clamped = applyTournamentSubmission(startingRoom, {
+      playerId: 'human-1', roundNo: 1, receivedAtMs: 1_100,
+      answers: [{ taskId: task.taskId, answer: { selectedIndexes: Array(6).fill(-1) } }],
+      tasks: [task], speedMatchProgress: { [task.taskId]: progress },
+    });
+    expect(clamped.room.players[0].score).toBe(0);
+  });
+
+  it('encodes the attempt journal without Firestore-forbidden nested arrays and reads it back', () => {
+    const encode = tournamentRuntime.encodeSpeedMatchProgressForFirestore as
+      | ((progress: ReturnType<typeof applySpeedMatchAttempt>['progress']) => Record<string, unknown>)
+      | undefined;
+    const decode = tournamentRuntime.readSpeedMatchProgress as
+      | ((data: Record<string, unknown>) => ReturnType<typeof applySpeedMatchAttempt>['progress'] | undefined)
+      | undefined;
+    expect(typeof encode).toBe('function');
+    expect(typeof decode).toBe('function');
+
+    const task = speedTask();
+    const progress = applySpeedMatchAttempt(task, undefined, 0, 1).progress;
+    const encoded = encode!(progress);
+
+    const containsNestedArray = (value: unknown, parentIsArray = false): boolean => {
+      if (Array.isArray(value)) {
+        if (parentIsArray) return true;
+        return value.some((entry) => containsNestedArray(entry, true));
+      }
+      if (!value || typeof value !== 'object') return false;
+      return Object.values(value as Record<string, unknown>)
+        .some((entry) => containsNestedArray(entry, false));
+    };
+
+    expect(containsNestedArray(encoded)).toBe(false);
+    expect(decode!({ kind: 'speed_match_attempt_v1', ...encoded })).toEqual(progress);
   });
 
   // зачем 2026-08-03 (владелец: «после ответа не считает правильно звёзды,

@@ -105,10 +105,10 @@ function selectCompleteTournamentTaskIds(
 }
 
 describe('new deterministic tournament pool v2', () => {
-  test('builds the approved reachable 4000-task v9 pool with exact quality-first cell quotas', () => {
+  test('builds the approved reachable 4000-task v10 pool with exact quality-first cell quotas', () => {
     const result = buildProductionSizedPool();
 
-    expect(NEW_TOURNAMENT_POOL_VERSION).toBe('tpool_20260801_v9');
+    expect(NEW_TOURNAMENT_POOL_VERSION).toBe('tpool_20260801_v10');
     expect(result.manifest.poolVersion).toBe(NEW_TOURNAMENT_POOL_VERSION);
     expect(result.tasks).toHaveLength(4000);
     expect(new Set(result.tasks.map((task) => task.taskId)).size).toBe(4000);
@@ -118,7 +118,8 @@ describe('new deterministic tournament pool v2', () => {
       'guess_phrase:1': 470,
       // +25 к d2 — это недобор find_oddity, переехавший в режим с самым
       // большим запасом кандидатов (2026-08-03, ужесточение дистракторов).
-      'guess_phrase:2': 494,
+      // +60 сверху (2026-08-04) — наречия ушли из безопасных замен find_oddity.
+      'guess_phrase:2': 554,
       'guess_phrase:3': 469,
       'fill_gap:1': 160,
       'fill_gap:2': 180,
@@ -126,8 +127,10 @@ describe('new deterministic tournament pool v2', () => {
       // «Нормальные» варианты find_oddity стали близнецами самой фразы, а не
       // чужими фразами дня: запас кандидатов упал до d1=176/d2=265, квоты
       // опущены под реальную ёмкость. d3 не берём — раунды 1-3 его не выбирают.
-      'find_oddity:1': 130,
-      'find_oddity:2': 245,
+      // 2026-08-04: наречия ушли из безопасных замен — запас упал ещё раз до
+      // d1=116/d2=215, квоты опущены до 110/205.
+      'find_oddity:1': 110,
+      'find_oddity:2': 205,
       'translate_build:1': 400,
       'translate_build:2': 700,
       'translate_build:3': 400,
@@ -155,7 +158,7 @@ describe('new deterministic tournament pool v2', () => {
     const { tasks } = buildProductionSizedPool();
 
     for (const task of tasks) {
-      expect(task.taskId).toMatch(/^tp2_20260801_v9_/);
+      expect(task.taskId).toMatch(/^tp2_20260801_v10_/);
       expect(APPROVED_MODES).toContain(task.mode as typeof APPROVED_MODES[number]);
       expect(task.isVoice).toBe(false);
       expect(task.verified).toBe(true);
@@ -423,6 +426,45 @@ describe('new deterministic tournament pool v2', () => {
     }
   });
 
+  // зачем 2026-08-04 (владелец: скриншот «I ate a big breakfast soon» — среди
+  // вариантов find_oddity оказалось два грамматически неверных вместо одного).
+  // correctTwinVariants подставляла авторские дистракторы наречий («yesterday»
+  // → «soon») как «безупречные» варианты, но база не различает наречия времени
+  // и образа действия — подмена рвала согласование времени с глаголом. Тест
+  // ловит регресс, если наречия снова попадут в FREE_SUBSTITUTION_PARTS.
+  test('oddity twin options never swap an adverb from the authored phrase', () => {
+    const phrases = sourcePhraseMap();
+    const tasks = buildProductionSizedPool().tasks.filter((task) => task.mode === 'find_oddity');
+    expect(tasks.length).toBeGreaterThan(0);
+
+    const offenders: Array<{ taskId: string; original: string; option: string }> = [];
+    for (const task of tasks) {
+      const source = phrases.get(primaryPhraseKey(task));
+      if (!source) continue;
+      const sourceTokens = phraseTokens(source.english);
+      const options = task.payload.options as string[];
+      const correctAnswer = String(task.payload.correctAnswer);
+
+      for (const option of options) {
+        // Только «правильные» варианты нас интересуют — не сама мутация-ловушка
+        // и не сама авторская фраза (это не замена, а исходник).
+        if (option === correctAnswer || option === source.english) continue;
+        const optionTokens = phraseTokens(option);
+        if (optionTokens.length !== sourceTokens.length) continue;
+        const diffIndex = sourceTokens.findIndex((token, index) => token.toLocaleLowerCase('en')
+          !== optionTokens[index]?.toLocaleLowerCase('en'));
+        if (diffIndex < 0) continue;
+        const originalWord = sourceTokens[diffIndex].toLocaleLowerCase('en');
+        const authoredWord = source.words?.find((word) => word.text.toLocaleLowerCase('en') === originalWord);
+        if (authoredWord?.partOfSpeech === 'adverb') {
+          offenders.push({ taskId: task.taskId, original: source.english, option });
+        }
+      }
+    }
+    expect(offenders.slice(0, 10)).toEqual([]);
+    expect(offenders).toHaveLength(0);
+  }, 600_000);
+
   test('all non-speed tasks resolve to authored phrases and phrase-builder never clones a primary phrase', () => {
     const phrases = sourcePhraseMap();
     const tasks = buildProductionSizedPool().tasks.filter((task) => task.mode !== 'speed_match');
@@ -513,7 +555,11 @@ describe('new deterministic tournament pool v2', () => {
       }
     }
 
-    expect(oddityParts.size).toBeGreaterThanOrEqual(5);
+    // зачем 2026-08-04: наречия ушли из безопасных замен find_oddity (см.
+    // correctTwinVariants), квоты d1/d2 сжались вслед за упавшим запасом —
+    // порог опущен с 5 до 4 категорий части речи мутации, это честное
+    // следствие меньшего пула, а не потеря разнообразия ошибок внутри него.
+    expect(oddityParts.size).toBeGreaterThanOrEqual(4);
     expect(Math.max(...oddityParts.values())).toBeLessThanOrEqual(140);
     expect(translateParts.size).toBeGreaterThanOrEqual(10);
     expect(Math.max(...translateParts.values())).toBeLessThanOrEqual(750);
@@ -801,14 +847,21 @@ describe('new deterministic tournament pool v2', () => {
     expect(Math.min(...tasks.map((task) => exposure.get(task.taskId) ?? 0))).toBeGreaterThan(0);
   });
 
-  test('runtime passes consumed v8 ids separately instead of shrinking the calendar deck', () => {
+  test('runtime passes consumed ids separately instead of shrinking the calendar deck', () => {
     const source = require('node:fs').readFileSync(`${__dirname}/tournaments.ts`, 'utf8');
     const core = require('node:fs').readFileSync(`${__dirname}/tournament_core.ts`, 'utf8');
     const start = source.indexOf('export function buildTournamentRounds');
     const end = source.indexOf('\nexport ', start + 1);
     const implementation = source.slice(start, end < 0 ? undefined : end);
-    expect(implementation).toContain("task.tags?.includes('pool:tpool_20260801_v8')");
-    expect(core).toContain("'pool:tpool_20260801_v8'");
+    // зачем 2026-08-04: раньше сверялись с жёстким списком версий
+    // ('pool:tpool_20260801_v8' и т.д.) — v10 в него не попал, и ротация/дедуп
+    // тихо выключались. Теперь обе стороны (рантайм и тестовая фабрика)
+    // используют один и тот же паттерн-по-формату из tournament_core.ts —
+    // тест проверяет, что обе стороны ссылаются на общую проверку, а не на
+    // захардкоженный список версий.
+    expect(implementation).toContain('TOURNAMENT_EXPOSURE_TAG_PATTERN');
+    expect(implementation).not.toMatch(/'pool:tpool_20260801_v\d+'/);
+    expect(core).toContain('TOURNAMENT_EXPOSURE_TAG_PATTERN = /^pool:tpool_20260801_v\\d+$/');
     expect(implementation).toContain('pool: usesDeterministicExposureDeck');
     expect(implementation).toContain('excludedTaskIds: usesDeterministicExposureDeck ? usedTaskIds : undefined');
   });

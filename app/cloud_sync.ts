@@ -617,26 +617,36 @@ function isLearningV2AccountLocalKey(key: string): boolean {
     || LEARNING_V2_ACCOUNT_LOCAL_KEY_PREFIXES.some((prefix) => key.startsWith(prefix));
 }
 
-async function listLearningV2AccountLocalKeys(): Promise<string[]> {
+async function listAllAccountLocalStorageKeys(): Promise<string[]> {
   try {
-    return Array.from(new Set([
-      ...LEARNING_V2_ACCOUNT_LOCAL_FIXED_KEYS,
-      ...(await AsyncStorage.getAllKeys()).filter(isLearningV2AccountLocalKey),
-    ]));
+    return [...await AsyncStorage.getAllKeys()];
   } catch (e) {
     if (typeof __DEV__ !== 'undefined' && __DEV__) {
-      console.warn('[cloud_sync] Learning V2 account key scan failed', e);
+      console.warn('[cloud_sync] account-local key scan failed', e);
     }
+    // Preserve the established fail-closed error contract used by account
+    // switch and clean-install recovery callers.
     throw new Error('learning_v2_account_key_scan_failed');
   }
 }
 
+function learningV2AccountLocalKeysFrom(allKeys: readonly string[]): string[] {
+  return Array.from(new Set([
+    ...LEARNING_V2_ACCOUNT_LOCAL_FIXED_KEYS,
+    ...allKeys.filter(isLearningV2AccountLocalKey),
+  ]));
+}
+
+async function listLearningV2AccountLocalKeys(): Promise<string[]> {
+  return learningV2AccountLocalKeysFrom(await listAllAccountLocalStorageKeys());
+}
+
 async function collectAccountLocalDataKeys(): Promise<string[]> {
-  const vipSnapshotKeys = (await AsyncStorage.getAllKeys()).filter(isVipSnapshotStorageKey);
+  const allKeys = await listAllAccountLocalStorageKeys();
   return Array.from(new Set([
     ...accountLocalDataKeysForToday(),
-    ...await listLearningV2AccountLocalKeys(),
-    ...vipSnapshotKeys,
+    ...learningV2AccountLocalKeysFrom(allKeys),
+    ...allKeys.filter(isVipSnapshotStorageKey),
   ]));
 }
 

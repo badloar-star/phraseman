@@ -17,10 +17,10 @@ const SELECTABLE_THEMES = [
   'gold',
 ] as const;
 
-const SLOTS = ['backdrop', 'podium'] as const;
+const SLOTS = ['backdrop', 'podium', 'weekly-bank', 'season-rewards'] as const;
 
 describe('Tournament per-theme visual kits', () => {
-  it('wires only backdrop and podium assets for every selectable theme', () => {
+  it('wires backdrop, podium, weekly-bank, and season-rewards assets for every selectable theme', () => {
     const source = read('components/tournament/tournament_theme_assets.ts');
 
     for (const theme of SELECTABLE_THEMES) {
@@ -60,6 +60,21 @@ describe('Tournament per-theme visual kits', () => {
     expect(source).not.toContain('TournamentThemeArt');
   });
 
+  it('renders the weekly bank and season rewards cards with the active theme kit', () => {
+    const source = read('app/(tabs)/tournaments.tsx');
+
+    expect(source).toContain('getTournamentThemeAssets(themeMode)');
+    expect(source).toContain('source={tournamentThemeAssets.weeklyBank}');
+    expect(source).toContain('source={tournamentThemeAssets.seasonRewards}');
+    expect(source).toContain('tournamentRewardIconArt: { width: 58, height: 58 }');
+    expect(source).not.toMatch(
+      /<LinearGradient[\s\S]{0,420}source=\{tournamentThemeAssets\.weeklyBank\}/,
+    );
+    expect(source).not.toMatch(
+      /<LinearGradient[\s\S]{0,420}source=\{tournamentThemeAssets\.seasonRewards\}/,
+    );
+  });
+
   it('keeps the round loading state themed and bundles every kit for first launch', () => {
     const roundSource = read('app/tournament_round.tsx');
     const appConfig = read('app.json');
@@ -73,7 +88,6 @@ describe('Tournament per-theme visual kits', () => {
     'app/(tabs)/tournaments.tsx',
     'app/tournament_lobby.tsx',
     'app/tournament_season.tsx',
-    'app/tournament_tickets.tsx',
   ])('%s does not render decorative header or ornament theme art', (file) => {
     const source = read(file);
     expect(source).not.toContain('TournamentThemeArt');
@@ -90,14 +104,12 @@ describe('Tournament per-theme visual kits', () => {
   });
 
   it.each([
-    ['app/(tabs)/tournaments.tsx', 'hub'],
     ['app/tournament_lobby.tsx', 'lobby'],
     ['app/tournament_round.tsx', 'play'],
     ['app/tournament_table.tsx', 'table'],
     ['app/tournament_results.tsx', 'results'],
     ['app/tournament_review.tsx', 'review'],
     ['app/tournament_season.tsx', 'season'],
-    ['app/tournament_tickets.tsx', 'tickets'],
     ['components/tournament/TournamentEdgeState.tsx', 'edge'],
   ])('%s uses the %s Tournament backdrop variant', (file, variant) => {
     const source = read(file);
@@ -105,10 +117,18 @@ describe('Tournament per-theme visual kits', () => {
     expect(source).toContain(`<TournamentBackdrop variant="${variant}" />`);
   });
 
+  it('keeps the main Tournament hub free of generated background art', () => {
+    const source = read('app/(tabs)/tournaments.tsx');
+    expect(source).not.toContain('TournamentBackdrop');
+    expect(source).not.toContain('<TournamentBackdrop variant="hub" />');
+  });
+
   it('ships a compact, correctly sized WebP set with alpha on overlay slots', async () => {
     const expectedDimensions = {
       backdrop: [512, 768],
       podium: [512, 320],
+      'weekly-bank': [256, 256],
+      'season-rewards': [256, 256],
     } as const;
     let totalBytes = 0;
 
@@ -120,7 +140,7 @@ describe('Tournament per-theme visual kits', () => {
         const metadata = await sharp(file).metadata();
         totalBytes += stat.size;
         expect([metadata.width, metadata.height]).toEqual(expectedDimensions[slot]);
-        if (slot === 'podium') {
+        if (slot !== 'backdrop') {
           expect(metadata.hasAlpha).toBe(true);
           const { data, info } = await sharp(file).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
           let visiblePixels = 0;
@@ -128,7 +148,7 @@ describe('Tournament per-theme visual kits', () => {
             if (data[index] > 8) visiblePixels += 1;
           }
           const coverage = visiblePixels / (info.width * info.height);
-          expect(coverage).toBeLessThanOrEqual(0.72);
+          expect(coverage).toBeLessThanOrEqual(slot === 'podium' ? 0.72 : 0.68);
           const corners = [
             3,
             (info.width - 1) * 4 + 3,

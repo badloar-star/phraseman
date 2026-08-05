@@ -32,6 +32,7 @@ import {
 } from '../../components/settings/SettingsGroup';
 import { useTopFadeScroll } from '../../components/TopFadeScrollContext';
 import DeleteAccountConfirmModal from '../../components/DeleteAccountConfirmModal';
+import ThemedConfirmModal from '../../components/ThemedConfirmModal';
 import { scheduleDailyReminder, cancelAllNotifications, loadNotificationSettings } from '../notifications';
 import { DebugLogger } from '../debug-logger';
 import { useLang } from '../../components/LangContext';
@@ -67,7 +68,7 @@ import { reserveNameDetailed, warmNameAvailabilityAuth } from '../firestore_lead
 import { syncMyLeagueMemberProfileNow } from '../firestore_leagues';
 import { enqueueThemedBlockingInfoAlert } from '../themed_blocking_alert_queue';
 import { navigateAfterModalClose } from '../safe_modal_navigation';
-import { isIdeasEnabled, isPromoCodesEnabled, isTopHelpersEnabled } from '../remote_flags';
+import { isIdeasEnabled, isTopHelpersEnabled } from '../remote_flags';
 import { useReferralRoulettePolicy } from '../referral_roulette_flag';
 import { getClaimableReferralState } from '../referral_vip';
 import { captureAccountGeneration, isCurrentAccountGeneration } from '../account_generation';
@@ -562,10 +563,6 @@ export default function SettingsMain() {
   const [vipPlan, setVipPlan] = useState('');
   const [vipUntilMs, setVipUntilMs] = useState(0);
   const [ideasOn, setIdeasOn] = useState(isIdeasEnabled());
-  // The row must not be inserted into an already visible Settings screen. The
-  // persisted Remote Config cache is primed before tabs render; live changes
-  // take effect on the next Settings mount.
-  const [promoCodesOn] = useState(isPromoCodesEnabled());
   /** зачем: единый ряд «Ввести код» вверху настроек переключается между
    *  реферальным и промокодом одним тумблером внутри той же карточки —
    *  тип берём не из отдельного экрана, а из этого локального состояния. */
@@ -629,6 +626,9 @@ export default function SettingsMain() {
   }, []);
   const [accountModalVisible, setAccountModalVisible] = useState(false);
   const [deleteAccountModalVisible, setDeleteAccountModalVisible] = useState(false);
+  // зачем: владелец просил предупреждать ПЕРЕД открытием почты — письма приходили
+  // без ника, а почта не привязана к аккаунту, и поддержка не могла найти профиль.
+  const [supportHintVisible, setSupportHintVisible] = useState(false);
   /**
    * UI state для flow "Сменить аккаунт" (Variant 2):
    *   'idle'        — пользователь нигде не нажал
@@ -1250,7 +1250,7 @@ export default function SettingsMain() {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: tabContentBottomPad, paddingTop: insets.top }}
         keyboardShouldPersistTaps="handled"
-        decelerationRate="normal"
+        decelerationRate="fast"
         scrollEventThrottle={16}
         bounces
         alwaysBounceVertical
@@ -1302,20 +1302,25 @@ export default function SettingsMain() {
             />
           </View>
         ) : null}
-        {promoCodesOn ? (
-          <SettingsGroup marginTop={12} surfaceColor={settingsPanelBg} borderColor={settingsBorder} dividerColor={settingsDivider}>
-            <SettingsRow
-              testID="settings-promo-code-row"
-              icon="ticket-outline"
-              color="purple"
-              label={L('Ввести промокод', 'Ввести промокод', 'Introducir código', 'Inserir código', 'Nhập mã', 'Masukkan kode', 'Kodu gir', 'Wpisz kod')}
-              onPress={() => {
-                doHaptic();
-                router.push({ pathname: '/promo_code_entry', params: { source: 'settings' } } as any);
-              }}
-            />
-          </SettingsGroup>
-        ) : null}
+        {/* зачем 2026-08-04 (владелец: «кнопка должна быть всегда там без
+            исключений, на всех устройствах»): раньше ряд зависел от remote-
+            флага promo_codes_enabled из Firestore — на свежем устройстве без
+            сети (или до первой синхронизации) флаг не успевал подтянуться и
+            падал на дефолт false, кнопка пропадала. Ввод промокода — не
+            эксперимент, который нужно выключать по кнопке админки, поэтому
+            ряд теперь безусловный, без зависимости от сети вообще. */}
+        <SettingsGroup marginTop={12} surfaceColor={settingsPanelBg} borderColor={settingsBorder} dividerColor={settingsDivider}>
+          <SettingsRow
+            testID="settings-promo-code-row"
+            icon="ticket-outline"
+            color="purple"
+            label={L('Ввести промокод', 'Ввести промокод', 'Introducir código', 'Inserir código', 'Nhập mã', 'Masukkan kode', 'Kodu gir', 'Wpisz kod')}
+            onPress={() => {
+              doHaptic();
+              router.push({ pathname: '/promo_code_entry', params: { source: 'settings' } } as any);
+            }}
+          />
+        </SettingsGroup>
         {/*
           зачем: «Ввести код» — отдельная карточка под Plus (как «Enter referral
           code» в референсе Bevel). Один ряд с переключателем «реферальный /
@@ -1727,9 +1732,7 @@ export default function SettingsMain() {
             label={L('Написать в поддержку', 'Написати в підтримку', 'Escribir a soporte', 'Escrever para o suporte', 'Liên hệ hỗ trợ', 'Tulis ke dukungan', 'Desteğe yaz', 'Napisz do pomocy')}
             onPress={() => {
               doHaptic();
-              void Linking.openURL(
-                'mailto:support.phraseman@gmail.com?subject=' + encodeURIComponent('Phraseman'),
-              );
+              setSupportHintVisible(true);
             }}
           />
           {/* зачем: владелец попросил ряд «Оценить в сторе» как в референсе Bevel
@@ -1842,6 +1845,71 @@ export default function SettingsMain() {
       <DeleteAccountConfirmModal
         visible={deleteAccountModalVisible}
         onRequestClose={() => setDeleteAccountModalVisible(false)}
+      />
+
+      {/* зачем: письма в поддержку приходили без ника, а почта не привязана к
+          аккаунту — найти профиль было невозможно. Просим описать проблему и
+          указать ник, а сам ник заранее подставляем в тело письма (он уже есть
+          в локальном состоянии — ни одного лишнего чтения Firestore), чтобы
+          его нельзя было забыть; пользователь видит его в письме и может
+          поправить. Модалку закрываем ДО openURL: почта уезжает на системный
+          экран, и возврат на уже закрытую модалку выглядит чище. */}
+      <ThemedConfirmModal
+        visible={supportHintVisible}
+        testIDPrefix="settings-support-hint"
+        title={L(
+          'Как нам быстрее вам помочь',
+          'Як нам швидше вам допомогти',
+          'Cómo ayudarte más rápido',
+          'Como te ajudar mais rápido',
+          'Cách chúng tôi giúp bạn nhanh hơn',
+          'Cara kami membantu lebih cepat',
+          'Sana daha hızlı nasıl yardım ederiz',
+          'Jak szybciej ci pomóc',
+        )}
+        message={L(
+          'Расскажите о проблеме подробно: что происходит, когда началось, на каком экране.\n\nИ напишите свой ник из приложения — почта не связана с аккаунтом, поэтому без ника мы не найдём ваши данные.',
+          'Розкажіть про проблему докладно: що відбувається, коли почалося, на якому екрані.\n\nІ напишіть свій нік із застосунку — пошта не пов’язана з акаунтом, тому без ніка ми не знайдемо ваші дані.',
+          'Cuéntanos el problema en detalle: qué pasa, cuándo empezó y en qué pantalla.\n\nY escribe tu apodo de la app: el correo no está vinculado a la cuenta, así que sin él no podremos encontrar tus datos.',
+          'Conte o problema em detalhes: o que acontece, quando começou e em qual tela.\n\nE escreva seu apelido do app: o e-mail não está ligado à conta, então sem ele não conseguiremos encontrar seus dados.',
+          'Hãy mô tả chi tiết vấn đề: chuyện gì xảy ra, bắt đầu khi nào, ở màn hình nào.\n\nVà hãy ghi biệt danh của bạn trong ứng dụng — email không liên kết với tài khoản, nên nếu thiếu nó chúng tôi sẽ không tìm được dữ liệu của bạn.',
+          'Ceritakan masalahnya secara detail: apa yang terjadi, kapan mulai, di layar mana.\n\nDan tulis nama panggilanmu di aplikasi — email tidak terhubung dengan akun, jadi tanpa itu kami tidak bisa menemukan datamu.',
+          'Sorunu ayrıntılı anlat: ne oluyor, ne zaman başladı, hangi ekranda.\n\nVe uygulamadaki takma adını yaz — e-posta hesaba bağlı değil, o yüzden takma ad olmadan verilerini bulamayız.',
+          'Opisz problem szczegółowo: co się dzieje, kiedy się zaczęło, na którym ekranie.\n\nI napisz swój nick z aplikacji — poczta nie jest powiązana z kontem, więc bez nicka nie znajdziemy twoich danych.',
+        )}
+        confirmLabel={L(
+          'Понятно, писать',
+          'Зрозуміло, писати',
+          'Entendido, escribir',
+          'Entendi, escrever',
+          'Đã hiểu, viết thư',
+          'Paham, tulis',
+          'Anladım, yaz',
+          'Jasne, piszę',
+        )}
+        cancelLabel={L('Отмена', 'Скасувати', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj')}
+        onCancel={() => setSupportHintVisible(false)}
+        onConfirm={() => {
+          setSupportHintVisible(false);
+          const nick = userName.trim();
+          const nickLine = L(
+            'Мой ник в приложении: ',
+            'Мій нік у застосунку: ',
+            'Mi apodo en la app: ',
+            'Meu apelido no app: ',
+            'Biệt danh của tôi trong ứng dụng: ',
+            'Nama panggilan saya di aplikasi: ',
+            'Uygulamadaki takma adım: ',
+            'Mój nick w aplikacji: ',
+          );
+          const body = `\n\n${nickLine}${nick}\n`;
+          void Linking.openURL(
+            'mailto:support.phraseman@gmail.com?subject=' +
+              encodeURIComponent('Phraseman') +
+              '&body=' +
+              encodeURIComponent(body),
+          );
+        }}
       />
 
       <Modal visible={accountModalVisible} transparent animationType="fade" onRequestClose={() => setAccountModalVisible(false)}>

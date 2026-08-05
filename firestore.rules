@@ -1387,11 +1387,16 @@ service cloud.firestore {
     }
 
     // ── Возраст + согласия (для accountability/учёта в админке) ──
-    // Документ ключуется stableId; владелец (его authUid привязан к users/{stableId})
-    // может писать свой; читать агрегаты — только admin.
+    // Документ ключуется stableId; владелец может читать свой, читать агрегаты —
+    // только admin. Запись — ТОЛЬКО через Cloud Functions (Admin SDK, которые
+    // правила не ограничивают): record_age_consent_snapshot.ts,
+    // record_ai_consent_factory.ts (aiExplainConsent/aiDialogConsent). Клиент
+    // никогда не пишет сюда напрямую — этот документ служит датой/фактом
+    // согласия пользователя (accountability), поэтому его нельзя переписать
+    // прямым вызовом Firestore SDK в обход валидации на сервере.
     match /user_consents/{userId} {
       allow read: if isAdmin() || isOwner(userId) || stableUserMatchesAuth(userId);
-      allow write: if isOwner(userId) || stableUserMatchesAuth(userId);
+      allow write: if false;
     }
 
     // â”€â”€ Community pack reports (UGC content moderation, Apple Guideline 1.2) â”€â”€

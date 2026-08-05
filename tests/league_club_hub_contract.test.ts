@@ -55,6 +55,15 @@ describe('league club hub composition', () => {
     expect(files).toContain('accentText');
   });
 
+  it('keeps the compact quick-stats strip on the responsive fast deceleration, not the sluggish RN default', () => {
+    // зачем: аудит скорости скролла (2026-08-04) заменил decelerationRate="normal"
+    // на "fast" по всему приложению, включая эту горизонтальную ленту статистики
+    // лиги. Тест ловит регрессию, если кто-то добавит "normal" сюда заново.
+    const stats = read('components/league/LeagueQuickStats.tsx');
+    expect(stats).toContain('decelerationRate="fast"');
+    expect(stats).not.toContain('decelerationRate="normal"');
+  });
+
   it('composes the hub from cached league state and virtualizes the member list', () => {
     const screen = read('app/club_screen.tsx');
     expect(screen).toContain('leaguePublicName');

@@ -9,6 +9,7 @@ import AiLimitUpsellCard from './AiLimitUpsellCard';
 import { aiPersonalLimitToast } from '../app/ai_kill_switch_copy';
 import LearningSemanticBlock from './LearningSemanticBlock';
 import { buildMistakeExplanationBlocks } from '../app/explanation_presentation';
+import AiBadge from './AiBadge';
 
 export type AiMistakeCardState = 'hidden' | 'idle' | 'loading' | 'ready' | 'error' | 'limit';
 
@@ -110,10 +111,11 @@ export default function AiMistakeCard({
         <View style={[styles.icon, { backgroundColor: t.accent + '18' }]}>
           <Ionicons name="bulb-outline" size={20} color={t.accent} />
         </View>
-        <View style={styles.headerText}>
+        <View style={[styles.headerText, styles.headerTextRow]}>
           <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }} numberOfLines={1}>
             {title}
           </Text>
+          <AiBadge />
         </View>
       </View>
 
@@ -230,6 +232,11 @@ const styles = StyleSheet.create({
   headerText: {
     flex: 1,
     minWidth: 0,
+  },
+  headerTextRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
   },
   icon: {
     alignItems: 'center',

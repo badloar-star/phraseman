@@ -24,6 +24,7 @@ import {
 } from '../components/tournament/tournament_avatars';
 import { tournamentBotCardInfo } from '../components/tournament/tournament_bot_card';
 import { getLevelFromXP } from '../constants/theme';
+import { isSyntheticUid } from '../app/synthetic_friend_requests';
 
 /** Игрок ровно в том виде, в каком его отдаёт сервер: БЕЗ isBot. */
 const publicBot = { id: 'p_1kx9d2', name: 'quiet_hunter', avatar: '34' };
@@ -64,7 +65,13 @@ describe('tournament bot identity survives the public document (owner 2026-08-04
     expect(getLevelFromXP(card.totalXp ?? 0)).toBe(34);
     // Именно это владелец видел на экране — регрессия должна ронять тест.
     expect(getLevelFromXP(card.totalXp ?? 0)).not.toBe(1);
-    expect(card.uid).toBeUndefined(); // без похода в leaderboard
+    // зачем (владелец 2026-08-04, решение поменялось внутри того же дня): uid
+    // бота теперь СОЗНАТЕЛЬНО кладётся в карточку — иначе на ней не было бы
+    // кнопки «в друзья» и бот отличался бы от живого игрока. Защита от похода
+    // в leaderboard/лайки живёт не в отсутствии uid, а в isSyntheticUid()
+    // (PlayerProfileModal глушит там все сетевые запросы для p_-id).
+    expect(card.uid).toBe(publicBot.id);
+    expect(isSyntheticUid(card.uid)).toBe(true);
   });
 
   test('кап 50 уровня на аватаре бота работает без isBot в документе', () => {

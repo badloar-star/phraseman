@@ -1084,7 +1084,7 @@ function AchievementModal({
           <View style={{ backgroundColor: t.bgCard, borderRadius: 24, width: '100%', maxHeight: modalMaxHeight, overflow: 'hidden', position: 'relative' }}>
             <ScrollView
               keyboardShouldPersistTaps="handled"
-              decelerationRate="normal"
+              decelerationRate="fast"
               showsVerticalScrollIndicator
               contentContainerStyle={{ padding: modalPad, alignItems: 'center', gap: 12 }}
             >

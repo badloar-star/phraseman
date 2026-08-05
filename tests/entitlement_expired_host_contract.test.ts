@@ -54,9 +54,20 @@ describe('EntitlementExpiredHost contract', () => {
     expect(hostSrc).toContain('WAS_ACTIVE_KEY');
     expect(hostSrc).toContain('SHOW_COOLDOWN_MS');
     expect(hostSrc).toContain('hasAnyPlusAccess');
-    expect(hostSrc).toContain('await AsyncStorage.removeItem(WAS_ACTIVE_KEY[k]).catch(() => {})');
+    expect(hostSrc).toContain('accountEntitlementStorageKey');
+    expect(hostSrc).toContain('await AsyncStorage.removeItem(wasActiveKey).catch(() => {})');
     // Второй кандидат не перетирает первого в одной сессии.
     expect(hostSrc).toContain('prev ?? k');
+  });
+
+  it('waits for an active account generation and rejects stale entitlement checks', () => {
+    // Early boot returns false from premium_guard while stable identity is still
+    // uninitialized. That is "not ready", not a verified Plus expiration.
+    expect(hostSrc).toContain('captureAccountGeneration');
+    expect(hostSrc).toContain('subscribeAccountGeneration');
+    expect(hostSrc).toContain("accountGeneration.phase !== 'active'");
+    expect(hostSrc).toContain('!accountGeneration.stableId');
+    expect(hostSrc).toContain('isCurrentAccountGeneration');
   });
 
   it('keeps full locale coverage for renewal copy', () => {

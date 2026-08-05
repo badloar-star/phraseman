@@ -17,7 +17,14 @@ import { requiredCells } from './tournament_pool_plan';
 // distractors) частично совпадает со старыми id той же версии. Апдейт версии
 // гарантирует, что все 4000 id новые и apply-скрипт не путает частичное
 // совпадение с переходом версий.
-export const NEW_TOURNAMENT_POOL_VERSION = 'tpool_20260801_v9' as const;
+//
+// зачем 2026-08-04: версия поднята с v9 на v10 — исключение наречий из
+// FREE_SUBSTITUTION_PARTS (см. correctTwinVariants) меняет СОДЕРЖИМОЕ части
+// find_oddity заданий (какие «правильные»-подсказки показываются) при тех же
+// id внутри v9, а часть заданий вовсе пропадает (запас твин-вариантов упал
+// ниже 2). Прод ещё не видел apply с v9 — тем не менее держим то же правило,
+// что и в переходе v8→v9: смена контента при тех же id требует новой версии.
+export const NEW_TOURNAMENT_POOL_VERSION = 'tpool_20260801_v10' as const;
 export const NEW_TOURNAMENT_POOL_CELL_QUOTAS: Readonly<Record<string, number>> = Object.freeze({
   // зачем 2026-08-02: «Пары на скорость» перешли на словарь дня (плитка ≤3
   // слов), а словарь беднее фраз — режим даёт 192 задания вместо 400.
@@ -29,8 +36,12 @@ export const NEW_TOURNAMENT_POOL_CELL_QUOTAS: Readonly<Record<string, number>> =
   // зачем 2026-08-03: +25 к d2 — это недобор find_oddity (см. ниже), который
   // физически некуда положить внутри самого режима. guess_phrase:2 держит 1593
   // кандидата при квоте 469, так что запас берётся отсюда без риска shortfall.
+  // зачем 2026-08-04: +60 сверху — наречия ушли из FREE_SUBSTITUTION_PARTS
+  // (см. correctTwinVariants), find_oddity:1/2 потеряли ещё часть запаса
+  // (см. комментарий ниже). guess_phrase:2 держит запас на порядок больше
+  // квоты, поэтому и вторая порция недобора уходит сюда же.
   'guess_phrase:1': 470,
-  'guess_phrase:2': 494,
+  'guess_phrase:2': 554,
   'guess_phrase:3': 469,
   'fill_gap:1': 160,
   'fill_gap:2': 180,
@@ -43,8 +54,20 @@ export const NEW_TOURNAMENT_POOL_CELL_QUOTAS: Readonly<Record<string, number>> =
   // комната их не выбрала бы, и аудит достижимости упал бы на
   // exposure_unreachable. Берём с запасом под колебания контента: 375 вместо
   // прежних 400, недостающие 25 ушли в guess_phrase:2 (см. выше).
-  'find_oddity:1': 130,
-  'find_oddity:2': 245,
+  //
+  // зачем 2026-08-04 (владелец: «I ate a big breakfast soon» — второй неверный
+  // вариант среди подсказок find_oddity): наречия исключены из безопасных
+  // замен в correctTwinVariants — база дистракторов не различает наречия
+  // времени/образа действия, и подмена рвала согласование времени с глаголом.
+  // Запас честно упал ещё раз: d1=176→116, d2=265→215 (tournamentPoolCandidateCapacity).
+  // Квоты снижены МИНИМАЛЬНО (110/205, а не 105/195) — «730 дней ротации
+  // корзин» тест показал, что урезание запаса бьёт не по общему счёту, а по
+  // ротации ЭКСПОЗИЦИИ (selectTournamentExposureDeck крутит контейнер
+  // диффикалти-2 по дням/комнатам-шардам последовательно, а не случайно), и
+  // при более жёстком запасе day-бакеты периодически не могли докрутить до
+  // раунда 3. Недостающие 60 ушли в guess_phrase:2 (см. выше).
+  'find_oddity:1': 110,
+  'find_oddity:2': 205,
   'translate_build:1': 400,
   'translate_build:2': 700,
   'translate_build:3': 400,
@@ -409,7 +432,7 @@ function taskId(mode: NewPoolMode, difficulty: number, identity: string): string
     translate_build: 'build',
     speed_match: 'pairs',
   };
-  return `tp2_20260801_v9_${shortMode[mode]}_d${difficulty}_${sha256(`${NEW_TOURNAMENT_POOL_VERSION}:${identity}`).slice(0, 20)}`;
+  return `tp2_20260801_v10_${shortMode[mode]}_d${difficulty}_${sha256(`${NEW_TOURNAMENT_POOL_VERSION}:${identity}`).slice(0, 20)}`;
 }
 
 function tags(day: SourceDay): string[] {
@@ -962,10 +985,18 @@ function buildUnambiguousFillGapCandidates(day: SourceDay, phrase: SourcePhrase)
  * фразами, иначе верных ответов станет два и задание сломается. Поэтому здесь
  * разрешены только замены, где корректность не зависит от остального
  * предложения: личное имя/существительное после артикля не трогаем, а меняем
- * наречия и прилагательные — части речи, свободные по позиции. Слот мутации
+ * прилагательные — единственная часть речи, свободная по позиции и не
+ * завязанная на согласование с остальным предложением. Слот мутации
  * исключён: его правильная форма и есть проверяемая.
+ *
+ * зачем 2026-08-04 (владелец: скриншот с «I ate a big breakfast soon»):
+ * наречия убраны из безопасных замен. База дистракторов не различает наречия
+ * времени/образа действия/частоты («yesterday» → «soon», «loudly», «always»
+ * в одном списке) — вставка невпопад сама по себе рвёт согласование времени
+ * с глаголом («ate ... soon»), и «правильный» вариант оказывался вторым
+ * неверным вместо одного проверяемого.
  */
-const FREE_SUBSTITUTION_PARTS = new Set(['adverb', 'adjective', 'noun']);
+const FREE_SUBSTITUTION_PARTS = new Set(['adjective', 'noun']);
 
 /**
  * Артикль перед словом делает замену небезопасной: «a apple» ломает правило

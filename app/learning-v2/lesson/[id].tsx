@@ -18,6 +18,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { getStableId } from '../../../app/stable_id';
 import { ensureAccountGeneration, isCurrentAccountGeneration } from '../../../app/account_generation';
+import { useIsScreenFocused } from '../../../hooks/use_is_screen_focused';
 import { useStableSafeAreaInsets } from '../../../app/stable_safe_area_metrics';
 import { buildLesson1LegacyV2SourcePayload } from '../../../modules/learning-v2/content/legacy_lesson_payload';
 import { lesson1MapInputFromProgress } from '../../../modules/learning-v2/map/lesson1_map_progress_adapter';
@@ -32,8 +33,13 @@ const fallbackModel = buildLessonMapModel({ lessonId: 1, completedSessionIds: []
 function Node({ node, onPress }: { node: LessonMapNode; onPress: (node: LessonMapNode) => void }) {
   const reducedMotion = useReducedMotion();
   const halo = useSharedValue(node.state === 'current' ? 0.7 : 0);
+  // зачем: AppState один ловит только сворачивание всего приложения, а не уход
+  // с этой карты урока на другой экран внутри приложения (freezeOnBlur глушит
+  // рендер, но не сам withRepeat) — добавлен useIsScreenFocused по эталону
+  // components/AvatarAura.tsx, иначе гало крутится в фоне и греет телефон.
+  const isFocused = useIsScreenFocused();
   useEffect(() => {
-    if (node.state !== 'current' || reducedMotion) { halo.value = node.state === 'current' ? 0.7 : 0; return; }
+    if (node.state !== 'current' || reducedMotion || !isFocused) { halo.value = node.state === 'current' && isFocused ? 0.7 : 0; return; }
     const update = () => {
       halo.value = AppState.currentState === 'active'
         ? withRepeat(withSequence(withTiming(1, { duration: 1200, easing: Easing.inOut(Easing.ease), reduceMotion: ReduceMotion.System }), withTiming(.55, { duration: 1200, easing: Easing.inOut(Easing.ease), reduceMotion: ReduceMotion.System })), -1, false)
@@ -41,7 +47,7 @@ function Node({ node, onPress }: { node: LessonMapNode; onPress: (node: LessonMa
     };
     update(); const subscription = AppState.addEventListener('change', update);
     return () => { subscription.remove(); halo.value = 0; };
-  }, [halo, node.state, reducedMotion]);
+  }, [halo, node.state, reducedMotion, isFocused]);
   const haloStyle = useAnimatedStyle(() => ({ opacity: halo.value, transform: [{ scale: 1 + halo.value * .14 }] }));
   const size = node.state === 'current' ? 76 : node.state === 'next' ? 62 : node.state === 'completed' ? 58 : 60;
   const locked = node.state === 'locked';
@@ -83,7 +89,7 @@ export default function LearningV2LessonMap() {
     setSelected(node);
   };
   return <View style={styles.screen}>
-    <ScrollView contentContainerStyle={[styles.scroll, { paddingTop: insets.top + 12, paddingBottom: insets.bottom + 104 }]}>
+    <ScrollView decelerationRate="fast" contentContainerStyle={[styles.scroll, { paddingTop: insets.top + 12, paddingBottom: insets.bottom + 104 }]}>
       <View style={styles.header}><Pressable accessibilityRole="button" accessibilityLabel="Назад" hitSlop={10} onPress={() => router.back()} style={styles.headerButton}><Ionicons name="chevron-back" size={24} color="#F4F6F8" /></Pressable><View accessibilityLabel="Общий баланс звёзд появится после подключения V2-кошелька" style={styles.wallet}><Ionicons name="star" size={16} color="#F5C84C" /><Text style={styles.walletText}>—</Text></View></View>
       <Text style={styles.eyebrow}>УРОК 1 · A1</Text><Text style={styles.title}>Знакомство</Text><Text style={styles.canDo}>Ты сможешь представиться и сказать простые фразы о себе.</Text>
       <View style={styles.tools}><Pressable accessibilityRole="button" accessibilityLabel="Открыть словарь урока" onPress={() => setSelected('dictionary')} style={styles.tool}><Ionicons name="book-outline" size={18} color="#D9E2EC" /><Text style={styles.toolText}>Словарь · {payload.vocabulary.length}</Text></Pressable><Pressable accessibilityRole="button" accessibilityLabel="Открыть теорию урока" onPress={() => setSelected('theory')} style={styles.tool}><Ionicons name="bulb-outline" size={18} color="#D9E2EC" /><Text style={styles.toolText}>Теория</Text></Pressable></View>

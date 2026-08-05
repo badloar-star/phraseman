@@ -356,7 +356,7 @@ export function rewardModalBackdropGradientColors(themeMode: ThemeMode): [string
     case 'indigo':
       return ['#1C1B2E', '#14131F', '#040309'];
     case 'sagePorcelain':
-      return ['#F0F1EC', '#FCFDF9', '#E1E5DC'];
+      return ['#DCE1D8', '#FCFDF9', '#CDD5C7'];
     case 'dark':
     default:
       return ['#0F2718', '#07110C', '#020503'];

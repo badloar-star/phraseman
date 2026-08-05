@@ -120,7 +120,10 @@ export async function loadPublishedCommunityMarketPacks(studyTarget?: RuntimeStu
       .filter(Boolean) as FlashcardMarketPack[];
     list.sort(sortCommunityMarketPacksByRating);
     return list.slice(0, 40);
-  } catch {
+  } catch (e) {
+    // зачем: вкладка «Сообщество» тихо показывала пустой список без единой
+    // подсказки в логах — владелец видел 0 наборов при 2 published в базе.
+    if (__DEV__) console.warn('[communityFirestore] loadPublishedCommunityMarketPacks failed', e);
     return [];
   }
 }
@@ -144,7 +147,8 @@ export async function loadAuthorCommunityPacksPendingUpdate(
       if (m) out.push(m);
     }
     return out;
-  } catch {
+  } catch (e) {
+    if (__DEV__) console.warn('[communityFirestore] loadAuthorCommunityPacksPendingUpdate failed', e);
     return [];
   }
 }
@@ -325,7 +329,8 @@ export async function fetchCommunityPackMeta(
     const snap = await firestore().collection(COMMUNITY_PACKS_COLLECTION).doc(packId).get();
     if (!snap.exists) return null;
     return mapCommunityPackDocToMarket(packId, snap.data() as Record<string, unknown>, { forCatalog: false, studyTarget });
-  } catch {
+  } catch (e) {
+    if (__DEV__) console.warn('[communityFirestore] fetchCommunityPackMeta failed', packId, e);
     return null;
   }
 }

@@ -173,7 +173,7 @@ expoAutolinking.useExpoModules()
   it('keeps non-runtime build inputs out of the EAS upload archive', () => {
     const easIgnore = read('.easignore');
     for (const pattern of [
-      'content/',
+      '/content/',
       '.shots/',
       '.eas-logs/',
       'test-results/',
@@ -182,5 +182,16 @@ expoAutolinking.useExpoModules()
     ]) {
       expect(easIgnore.split(/\r?\n/)).toContain(pattern);
     }
+    expect(easIgnore.split(/\r?\n/)).not.toContain('content/');
+  });
+
+  it('configures the ignored local service account for non-interactive Android submission', () => {
+    const eas = JSON.parse(read('eas.json')) as {
+      submit?: { production?: { android?: { serviceAccountKeyPath?: string } } };
+    };
+    expect(eas.submit?.production?.android?.serviceAccountKeyPath).toBe('./service-account.json');
+
+    const easIgnore = read('.easignore').split(/\r?\n/);
+    expect(easIgnore).toContain('service-account.json');
   });
 });

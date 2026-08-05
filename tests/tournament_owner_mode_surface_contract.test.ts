@@ -101,15 +101,21 @@ describe('owner-approved tournament surfaces', () => {
     expect(lobby).toContain('onPress={leaveLobby}');
     expect(lobby).toContain('accessibilityLabel=');
     expect(lobby).toContain('closeTournamentFlow(router)');
-    expect(lobby).toContain('const bankGems = Math.max(0, Math.trunc(Number(room?.potGems ?? 0)));');
+    // зачем 2026-08-04 (владелец: «в лобби ещё ни бота ни юзера, а счётчик
+    // сразу набрался 75»): сторож требовал `bankGems = room.potGems` дословно —
+    // ровно ту строку, которая и показывала полный банк над пустой сеткой.
+    // Сервер кладёт взносы всех 15 ботов в комнату при её создании, поэтому
+    // сырой potGems НЕ является тем, что игрок должен видеть на первой секунде.
+    // Охраняем суть, а не механику: банк считается по времени прихода, теми же
+    // часами, что и места, и остаётся ограничен авторитетной суммой комнаты.
+    expect(lobby).toContain('lobbyPotGemsAtTime(');
+    expect(lobby).toMatch(/lobbyPotGemsAtTime\([\s\S]{0,160}room\?\.potGems/);
+    expect(lobby).toMatch(/lobbyPotGemsAtTime\([\s\S]{0,160}room\?\.lobbyEvents \?\? \[\]/);
+    expect(lobby).toMatch(/lobbyPotGemsAtTime\([\s\S]{0,160}tournamentNow\(\)/);
     // зачем 2026-08-03: сверялась ОДНА строка JSX целиком, поэтому обычное
     // переформатирование в несколько строк (и новый проп
     // onDisplayAmountChange) роняло сторож, хотя банк на экране не менялся.
-    // Проверяем суть: банк рисует именно AnimatedBankAmount и получает
-    // авторитетную сумму комнаты вместе с её событиями.
     expect(lobby).toMatch(/<AnimatedBankAmount[\s\S]{0,200}amount=\{bankGems\}/);
-    expect(lobby).toMatch(/<AnimatedBankAmount[\s\S]{0,200}events=\{room\?\.lobbyEvents \?\? \[\]\}/);
-    expect(lobby).toContain('setDisplayAmount(event.potGemsAfter);');
     expect(lobby).toContain('value={`${joined}/${SEATS}`}');
   });
 });

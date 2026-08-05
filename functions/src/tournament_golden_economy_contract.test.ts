@@ -97,7 +97,7 @@ describe('Golden Plan tournament economy contracts', () => {
     expect(result.carryOver).toBe(0);
   });
 
-  it('keeps bot podium places and sends their exact shares to the weekly bank using the room snapshot', () => {
+  it('keeps bot podium places and pins every paid seat to the current five-gem contract', () => {
     const players = [
       player('bot-first', 400, true),
       player('human-second', 300),
@@ -120,22 +120,25 @@ describe('Golden Plan tournament economy contracts', () => {
       changedAdminEconomy,
     );
 
-    // зачем 2026-08-03 (владелец поднял вход до 5): 3 живых × 5 + бот × 3 = 18.
-    // Бот считается по СНАПШОТУ комнаты (в нём осталась старая цена 3) — именно
-    // это и проверяет тест: снапшот авторитетнее текущего конфига админки.
-    expect(plan.room.potGems).toBe(18);
-    // Призовой фонд вырос вместе с банком: 18 − 20% = 15, доли 60/25/15.
-    expect(plan.room.prizeGems).toEqual([10, 3, 2]);
+    // Все четыре места вносят по 5: удалённый старый botEntryGems=3 больше не
+    // занижает банк относительно цены, которую платит живой игрок.
+    expect(plan.room.potGems).toBe(20);
+    // 20 − 20% = 16, доли 60/25/15 с целочисленным остатком победителю.
+    expect(plan.room.prizeGems).toEqual([10, 4, 2]);
     expect(plan.playerEffects.map(({ playerId, place, reward }) => [playerId, place, reward.gems]))
       .toEqual([
         // Живые призёры получают больше вместе с ростом банка; бот на первом
-        // месте своей доли не забирает — она уходит в недельный банк.
-        ['human-second', 2, 3],
+        // месте своей доли не забирает — приз бота просто НЕ выплачивается.
+        ['human-second', 2, 4],
         ['human-third', 3, 2],
         ['human-fourth', 4, 0],
       ]);
-    // 20% банка (3) + невостребованная доля бота-победителя (10) = 13.
-    expect(plan.weeklyBankGems).toBe(13);
+    // зачем (владелец 2026-08-04, аудит «банк растёт огромными количествами»):
+    // раньше сюда добавлялась невостребованная доля бота-победителя (10), и
+    // банк недели раздувался почти до 100% банка комнаты в комнатах, где боты
+    // занимают большинство мест. Теперь строго 20% (4) — приз бота никуда не
+    // уходит и не создаётся из воздуха, просто не выплачивается никому.
+    expect(plan.weeklyBankGems).toBe(4);
 
     const replay = planTournamentFinalization(plan.room, 3_000, changedAdminEconomy);
     expect(replay.alreadyFinalized).toBe(true);

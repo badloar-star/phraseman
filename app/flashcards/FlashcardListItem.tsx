@@ -871,7 +871,7 @@ function FlashcardListItemImpl({
               )}
               <ScrollView
                 style={{ maxHeight: frontTextMaxH, width: '100%' }}
-                decelerationRate="normal"
+                decelerationRate="fast"
                 contentContainerStyle={{
                   paddingHorizontal: 2,
                   paddingVertical: 2,

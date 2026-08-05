@@ -104,4 +104,74 @@ describe('SoundArbiter', () => {
     expect(arbiter.hasActiveSound()).toBe(false);
     expect(arbiter.request('pm.system.warning')).toEqual({ kind: 'drop', reason: 'disabled' });
   });
+
+  /**
+   * зачем 2026-08-04 (владелец: «звуки в турнире работают рандомно и через
+   * раз»): общий лимит 2/сек рассчитан на редкие события одиночного урока. В
+   * турнире тап по паре, вердикт и тик таймера легитимно случаются чаще —
+   * scoped rateLimit даёт турнирному экрану свой бюджет, не трогая остальные.
+   */
+  describe('scoped rateLimit overrides the shared 2-per-second budget', () => {
+    test('a scope with rateLimit gets its own higher budget', () => {
+      const { arbiter, clock } = setup();
+      const opts = { scope: 'tournament-round', rateLimit: { maxStarts: 5, windowMs: 1000 } };
+      // Пять разных событий подряд в ту же секунду — все play, третье уже
+      // превысило бы общий лимит 2/сек, если бы шло через общий трекер.
+      expect(arbiter.request('pm.learn.correct', opts).kind).toBe('play');
+      arbiter.finishActive();
+      clock.advance(10);
+      expect(arbiter.request('pm.learn.needs_work', opts).kind).toBe('play');
+      arbiter.finishActive();
+      clock.advance(10);
+      expect(arbiter.request('pm.learn.timer_warning', opts).kind).toBe('play');
+      arbiter.finishActive();
+      clock.advance(10);
+      expect(arbiter.request('pm.system.warning', opts).kind).toBe('play');
+      arbiter.finishActive();
+      clock.advance(10);
+      expect(arbiter.request('pm.system.info', opts).kind).toBe('play');
+      arbiter.finishActive();
+      clock.advance(10);
+      // Шестое в то же окно — бюджет scope исчерпан.
+      expect(arbiter.request('pm.system.error_recoverable', opts)).toEqual({ kind: 'drop', reason: 'rate-limit' });
+    });
+
+    test('a scoped budget does not weaken the shared budget for other scopes', () => {
+      const { arbiter, clock } = setup();
+      const scoped = { scope: 'tournament-round', rateLimit: { maxStarts: 5, windowMs: 1000 } };
+      // Burn through the tournament scope's raised budget with five distinct
+      // events (each event also has its own cooldown, so reusing one event
+      // would falsely fail on that cooldown rather than the rate limit).
+      const scopedEvents = [
+        'pm.learn.correct', 'pm.learn.needs_work', 'pm.learn.timer_warning',
+        'pm.system.warning', 'pm.system.info',
+      ] as const;
+      for (const eventId of scopedEvents) {
+        expect(arbiter.request(eventId, scoped).kind).toBe('play');
+        arbiter.finishActive();
+        clock.advance(10);
+      }
+      // An unrelated caller with NO scope still hits the original 2-per-second
+      // shared limit — the raised tournament budget must not leak into it.
+      expect(arbiter.request('pm.system.success').kind).toBe('play');
+      arbiter.finishActive();
+      clock.advance(10);
+      expect(arbiter.request('pm.system.error_recoverable').kind).toBe('play');
+      arbiter.finishActive();
+      clock.advance(10);
+      expect(arbiter.request('pm.system.destructive_done')).toEqual({ kind: 'drop', reason: 'rate-limit' });
+    });
+
+    test('without rateLimit, a scope still falls back to the shared 2-per-second budget', () => {
+      const { arbiter, clock } = setup();
+      expect(arbiter.request('pm.learn.correct', { scope: 'phase-timer' }).kind).toBe('play');
+      arbiter.finishActive();
+      clock.advance(10);
+      expect(arbiter.request('pm.learn.needs_work', { scope: 'phase-timer' }).kind).toBe('play');
+      arbiter.finishActive();
+      clock.advance(10);
+      expect(arbiter.request('pm.system.warning', { scope: 'phase-timer' }))
+        .toEqual({ kind: 'drop', reason: 'rate-limit' });
+    });
+  });
 });

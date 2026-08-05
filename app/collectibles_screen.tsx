@@ -402,7 +402,7 @@ function CardDetailModal({
             </TapScale>
           </View>
 
-          <ScrollView contentContainerStyle={{ padding: 18, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
+          <ScrollView decelerationRate="fast" contentContainerStyle={{ padding: 18, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
             <CollectibleArtFrame
               cardId={card.id}
               svg={card.svg}

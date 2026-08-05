@@ -8,6 +8,7 @@ import { SoundDirector, type SfxPlaybackBackend } from '@/modules/audio/sound_di
 class FakeClock implements SoundClock {
   nowMs = 0;
   now = () => this.nowMs;
+  advance(ms: number) { this.nowMs += ms; }
 }
 
 class FakeBackend implements SfxPlaybackBackend {
@@ -79,6 +80,92 @@ describe('SoundDirector', () => {
     director.setVoiceActive(false);
     director.setRecordingActive(true);
     expect(backend.stopCount).toBe(2);
+  });
+
+  /**
+   * зачем 2026-08-04 (владелец: «звуки в турнире работают рандомно и через
+   * раз», после того как rateLimit уже поднят): тик таймера (приоритет 62) и
+   * вердикт ответа (68-70) конкурируют не только за бюджет запросов в
+   * секунду, но и за ЕДИНСТВЕННЫЙ активный слот воспроизведения. Без
+   * queueIfBusy низкоприоритетный тик молча пропадает, если совпал с ещё
+   * играющим вердиктом — совпадение по времени выглядит как случайность.
+   */
+  describe('queueIfBusy retries a priority-dropped request once the busy slot frees up', () => {
+    test('without queueIfBusy, a lower-priority request during playback is lost for good', () => {
+      jest.useFakeTimers();
+      try {
+        const backend = new FakeBackend();
+        const clock = new FakeClock();
+        const director = new SoundDirector(backend, new SoundArbiter(clock));
+
+        // pm.learn.correct (priority 70, 380ms) занимает слот.
+        expect(director.request('pm.learn.correct').kind).toBe('play');
+        // pm.learn.timer_warning (priority 62) конкурирует за слот и проигрывает.
+        expect(director.request('pm.learn.timer_warning')).toEqual({ kind: 'drop', reason: 'priority' });
+
+        clock.advance(400);
+        jest.advanceTimersByTime(1000);
+        // Без queueIfBusy повторной попытки не было — тик безвозвратно потерян.
+        expect(backend.plays.map((p) => p.eventId)).toEqual(['pm.learn.correct']);
+      } finally {
+        jest.useRealTimers();
+      }
+    });
+
+    test('with queueIfBusy, the dropped request plays once the active sound ends', () => {
+      jest.useFakeTimers();
+      try {
+        const backend = new FakeBackend();
+        const clock = new FakeClock();
+        const director = new SoundDirector(backend, new SoundArbiter(clock));
+
+        expect(director.request('pm.learn.correct').kind).toBe('play');
+        expect(director.request('pm.learn.timer_warning', { queueIfBusy: true }))
+          .toMatchObject({ kind: 'drop', reason: 'priority' });
+
+        // durationMs('pm.learn.correct') = 380ms — до этого момента слот занят.
+        clock.advance(379);
+        jest.advanceTimersByTime(379);
+        expect(backend.plays.map((p) => p.eventId)).toEqual(['pm.learn.correct']);
+
+        clock.advance(1);
+        jest.advanceTimersByTime(1);
+        expect(backend.plays.map((p) => p.eventId)).toEqual(['pm.learn.correct', 'pm.learn.timer_warning']);
+      } finally {
+        jest.useRealTimers();
+      }
+    });
+
+    test('a higher-priority sound can still preempt normally — queueIfBusy does not change that', () => {
+      const backend = new FakeBackend();
+      const clock = new FakeClock();
+      const director = new SoundDirector(backend, new SoundArbiter(clock));
+
+      expect(director.request('pm.learn.hint_reveal', { queueIfBusy: true }).kind).toBe('play');
+      // pm.system.error_recoverable (higher priority) preempts immediately —
+      // no retry needed, no drop happens in the first place.
+      expect(director.request('pm.system.error_recoverable')).toMatchObject({ kind: 'play', preempt: true });
+      expect(backend.plays.map((p) => p.eventId)).toEqual(['pm.learn.hint_reveal', 'pm.system.error_recoverable']);
+    });
+
+    test('going silent (setEffectsEnabled false) before the retry fires cancels it', () => {
+      jest.useFakeTimers();
+      try {
+        const backend = new FakeBackend();
+        const clock = new FakeClock();
+        const director = new SoundDirector(backend, new SoundArbiter(clock));
+
+        director.request('pm.learn.correct');
+        director.request('pm.learn.timer_warning', { queueIfBusy: true });
+        director.setEffectsEnabled(false);
+
+        clock.advance(400);
+        jest.advanceTimersByTime(1000);
+        expect(backend.plays.map((p) => p.eventId)).toEqual(['pm.learn.correct']);
+      } finally {
+        jest.useRealTimers();
+      }
+    });
   });
 });
 

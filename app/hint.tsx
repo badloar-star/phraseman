@@ -1544,7 +1544,7 @@ export default function HintScreen() {
           </Text>
         </View>
       </View>
-      <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ padding: 16, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
+      <BouncyScrollView decelerationRate="fast" contentContainerStyle={{ padding: 16, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
         {frenchHintCopy ? (
           <TonalSurface radius={16} style={{ borderWidth: 0, borderColor: t.border, padding: 18, gap: 12 }}>
             <View style={{ alignSelf: 'center', width: 64, height: 64, borderRadius: 32, backgroundColor: t.bgSurface, borderWidth: 0, borderColor: t.border, alignItems: 'center', justifyContent: 'center' }}>

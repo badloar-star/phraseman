@@ -10,11 +10,11 @@ import {
     HOME_FEATURE_TIPS_MAX_REPLAYS,
 } from '../app/home_feature_tips';
 
-const TIP_COUNT = 14;
+const TIP_COUNT = 12;
 const ALL_SETS = [0, 1, 2, 3, 4, 5] as const;
 
 describe('home_feature_tips', () => {
-    it('каждый набор содержит все 14 карточек с заголовком, текстом и иконкой', () => {
+    it('каждый набор содержит все 12 карточек с заголовком, текстом и иконкой', () => {
         for (const set of ALL_SETS) {
             const tips = buildHomeFeatureTips('ru', set);
             expect(tips).toHaveLength(TIP_COUNT);

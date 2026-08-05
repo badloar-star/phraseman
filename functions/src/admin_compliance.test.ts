@@ -10,9 +10,16 @@ import {
 describe('admin compliance pure contracts', () => {
   test('derives missing consent states and legacy open flags by subtraction', () => {
     expect(deriveComplianceCounts({ consentTotal: 10, adult: 4, teenSafe: 2, under13: 1,
-      analyticsGranted: 3, analyticsDenied: 2, safetyTotal: 9, safetyHandled: 4,
+      analyticsGranted: 3, analyticsDenied: 2, aiExplainGranted: 1, aiExplainDenied: 1,
+      aiDialogGranted: 2, aiDialogDenied: 1,
+      safetyTotal: 9, safetyHandled: 4,
       minorTotal: 5, minorHandled: 2 })).toMatchObject({
-      consent: { brackets: { unknown: 3 }, analytics: { unset: 5 } },
+      consent: {
+        brackets: { unknown: 3 },
+        analytics: { granted: 3, denied: 2, unset: 5 },
+        aiExplain: { granted: 1, denied: 1, unset: 8 },
+        aiDialog: { granted: 2, denied: 1, unset: 7 },
+      },
       safety: { open: 5, minor: { open: 3 } },
       jurisdiction: { status: 'unavailable_not_collected' }, complete: true,
     });

@@ -119,7 +119,7 @@ export function assertNoSemanticClash(): string[] {
 }
 
 /** Светлые поверхности, на которых живёт теория (карточки светлых тем). */
-const LIGHT_SURFACES = ['#FCFDF9', '#FFFFFF', '#F0FAFF', '#F0F1EC', '#E1E5DC'] as const;
+const LIGHT_SURFACES = ['#FCFDF9', '#FFFFFF', '#F0FAFF', '#DCE1D8', '#E1E5DC'] as const;
 const AA_TEXT = 4.5;
 
 function relativeLuminance(hex: string): number {

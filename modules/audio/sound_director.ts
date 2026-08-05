@@ -21,6 +21,11 @@ export interface SfxPlaybackBackend {
 
 export class SoundDirector {
   private deferredTimer: ReturnType<typeof setTimeout> | null = null;
+  // зачем 2026-08-04: отдельный от deferredTimer таймер — priority-конфликт
+  // между двумя обычными эффектами не имеет отношения к голосовым паузам
+  // (setVoiceActive), и делить с ними один таймер значило бы, что голосовое
+  // событие могло бы затереть уже запланированный ретрай тика таймера.
+  private priorityRetryTimer: ReturnType<typeof setTimeout> | null = null;
 
   constructor(
     private readonly backend: SfxPlaybackBackend,
@@ -30,6 +35,9 @@ export class SoundDirector {
   request(eventId: SoundEventId, options: SoundRequestOptions = {}): SoundDecision {
     const decision = this.arbiter.request(eventId, options);
     this.execute(decision);
+    if (decision.kind === 'drop' && decision.reason === 'priority' && decision.retryAtMs !== undefined) {
+      this.schedulePriorityRetry(eventId, options, decision.retryAtMs);
+    }
     return decision;
   }
 
@@ -43,6 +51,7 @@ export class SoundDirector {
     this.arbiter.setEffectsEnabled(enabled);
     if (!enabled) {
       this.clearDeferredTimer();
+      this.clearPriorityRetryTimer();
       this.backend.stop();
     }
   }
@@ -51,6 +60,7 @@ export class SoundDirector {
     this.arbiter.setVoiceActive(active);
     if (active) {
       this.clearDeferredTimer();
+      this.clearPriorityRetryTimer();
       this.backend.stop();
     } else {
       this.scheduleDeferredFlush();
@@ -61,12 +71,14 @@ export class SoundDirector {
     this.arbiter.setRecordingActive(active);
     if (active) {
       this.clearDeferredTimer();
+      this.clearPriorityRetryTimer();
       this.backend.stop();
     }
   }
 
   dispose(): void {
     this.clearDeferredTimer();
+    this.clearPriorityRetryTimer();
     this.arbiter.setEffectsEnabled(false);
     this.backend.dispose();
   }
@@ -106,6 +118,31 @@ export class SoundDirector {
   private clearDeferredTimer(): void {
     if (this.deferredTimer) clearTimeout(this.deferredTimer);
     this.deferredTimer = null;
+  }
+
+  /**
+   * зачем 2026-08-04: один повторный шанс сразу после того, как занятый слот
+   * освобождается. queueIfBusy отключён на ретрае намеренно — если слот опять
+   * занят чем-то новым, тик просто пропускается вместо цепочки ретраев,
+   * которая рисковала бы догнать следующий тик и звучать вперемешку.
+   */
+  private schedulePriorityRetry(
+    eventId: SoundEventId,
+    options: SoundRequestOptions,
+    retryAtMs: number,
+  ): void {
+    this.clearPriorityRetryTimer();
+    const delay = this.arbiter.delayUntil(retryAtMs);
+    this.priorityRetryTimer = setTimeout(() => {
+      this.priorityRetryTimer = null;
+      const decision = this.arbiter.request(eventId, { ...options, queueIfBusy: false });
+      this.execute(decision);
+    }, delay);
+  }
+
+  private clearPriorityRetryTimer(): void {
+    if (this.priorityRetryTimer) clearTimeout(this.priorityRetryTimer);
+    this.priorityRetryTimer = null;
   }
 }
 

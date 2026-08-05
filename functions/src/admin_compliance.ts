@@ -43,6 +43,8 @@ function requireAdmin(request: { app?: unknown; auth?: { uid?: string; token?: u
 export function deriveComplianceCounts(input: {
   consentTotal: number; adult: number; teenSafe: number; under13: number;
   analyticsGranted: number; analyticsDenied: number;
+  aiExplainGranted: number; aiExplainDenied: number;
+  aiDialogGranted: number; aiDialogDenied: number;
   safetyTotal: number; safetyHandled: number; minorTotal: number; minorHandled: number;
 }) {
   const nonNegative = (value: number) => Math.max(0, Math.trunc(Number(value) || 0));
@@ -52,6 +54,10 @@ export function deriveComplianceCounts(input: {
   const under13 = nonNegative(input.under13);
   const granted = nonNegative(input.analyticsGranted);
   const denied = nonNegative(input.analyticsDenied);
+  const aiExplainGranted = nonNegative(input.aiExplainGranted);
+  const aiExplainDenied = nonNegative(input.aiExplainDenied);
+  const aiDialogGranted = nonNegative(input.aiDialogGranted);
+  const aiDialogDenied = nonNegative(input.aiDialogDenied);
   const safetyTotal = nonNegative(input.safetyTotal);
   const safetyHandled = Math.min(safetyTotal, nonNegative(input.safetyHandled));
   const minorTotal = nonNegative(input.minorTotal);
@@ -61,6 +67,16 @@ export function deriveComplianceCounts(input: {
       total,
       brackets: { adult, teen_safe: teenSafe, under13, unknown: Math.max(0, total - adult - teenSafe - under13) },
       analytics: { granted, denied, unset: Math.max(0, total - granted - denied) },
+      aiExplain: {
+        granted: aiExplainGranted,
+        denied: aiExplainDenied,
+        unset: Math.max(0, total - aiExplainGranted - aiExplainDenied),
+      },
+      aiDialog: {
+        granted: aiDialogGranted,
+        denied: aiDialogDenied,
+        unset: Math.max(0, total - aiDialogGranted - aiDialogDenied),
+      },
     },
     safety: {
       total: safetyTotal, handled: safetyHandled, open: safetyTotal - safetyHandled,
@@ -120,14 +136,18 @@ async function complianceOverview(db: FirebaseFirestore.Firestore) {
   const safety = db.collection(SAFETY);
   const minor = (bracket: string) => safety.where('ageBracket', '==', bracket);
   const [consentTotal, adult, teenSafe, under13, analyticsGranted, analyticsDenied,
+    aiExplainGranted, aiExplainDenied, aiDialogGranted, aiDialogDenied,
     safetyTotal, safetyHandled, teenTotal, under13Total, teenHandled, under13Handled] = await Promise.all([
     count(consents), count(consents.where('ageBracket', '==', 'adult')),
     count(consents.where('ageBracket', '==', 'teen_safe')), count(consents.where('ageBracket', '==', 'under13')),
     count(consents.where('analyticsConsent', '==', 'granted')), count(consents.where('analyticsConsent', '==', 'denied')),
+    count(consents.where('aiExplainConsent', '==', 'granted')), count(consents.where('aiExplainConsent', '==', 'denied')),
+    count(consents.where('aiDialogConsent', '==', 'granted')), count(consents.where('aiDialogConsent', '==', 'denied')),
     count(safety), count(safety.where('handled', '==', true)), count(minor('teen_safe')), count(minor('under13')),
     count(minor('teen_safe').where('handled', '==', true)), count(minor('under13').where('handled', '==', true)),
   ]);
   return deriveComplianceCounts({ consentTotal, adult, teenSafe, under13, analyticsGranted, analyticsDenied,
+    aiExplainGranted, aiExplainDenied, aiDialogGranted, aiDialogDenied,
     safetyTotal, safetyHandled, minorTotal: teenTotal + under13Total, minorHandled: teenHandled + under13Handled });
 }
 

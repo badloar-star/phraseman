@@ -62,7 +62,7 @@ const THEME_BLOOMS: Record<ThemeMode, BloomSpec> = {
   business: { bloomA: '#000000', bloomB: '#000000' },
   // «Бизнес светлый»: тёплый бумажный блум без цвета.
   businessLight: { bloomA: '#FFFFFF', bloomB: '#FFFFFF' },
-  sagePorcelain: { bloomA: '#D9E9E1', bloomB: '#F0F1EC' },
+  sagePorcelain: { bloomA: '#D9E9E1', bloomB: '#DCE1D8' },
   midnight: { bloomA: CINEMA.midnight.bloomA, bloomB: CINEMA.midnight.bloomB },
   ember: { bloomA: CINEMA.ember.bloomA, bloomB: CINEMA.ember.bloomB },
   aurora: { bloomA: CINEMA.aurora.bloomA, bloomB: CINEMA.aurora.bloomB },

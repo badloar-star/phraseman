@@ -27,6 +27,7 @@ import LessonArtBackdrop from '../components/LessonArtBackdrop';
 import { hapticTap } from '../hooks/use-haptics';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
+import { soundDirector } from '../modules/audio/sound_director';
 import { MOTION_SCALE } from '../constants/motion';
 import type { LessonIntroExample, LessonIntroScreen, LessonIntroBlockKind } from './lesson_data_types';
 import type { StudyTargetLang } from './study_target_lang_dev';
@@ -419,6 +420,13 @@ export default function LessonIntroScreens({
   const handleBlockLayout = useCallback((index: number, y: number) => {
     blockYRef.current[index] = y;
   }, []);
+
+  // зачем: тихая атмосферная подложка на первый показ интро урока — играет
+  // синхронно с уже существующим header-fade ниже, один раз на lessonId
+  // (dedupeKey гарантирует, что повторный mount того же урока не переиграет).
+  useEffect(() => {
+    soundDirector.request('pm.lesson.begin', { scope: 'lesson-intro', dedupeKey: String(lessonId) });
+  }, [lessonId]);
 
   // Появление header + лёгкое «оживление» контейнера на mount — медленный, дорогой фейд
   useEffect(() => {

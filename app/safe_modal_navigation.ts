@@ -1,6 +1,9 @@
-import { InteractionManager, Platform } from 'react-native';
+import { InteractionManager } from 'react-native';
 
 type NavigateFn = () => void;
+
+/** Matches the proven native-to-native handoff gap used by OverlayArbiter. */
+export const NATIVE_MODAL_DISMISS_GAP_MS = 360;
 
 /**
  * Close a native RN Modal first, then navigate.
@@ -9,7 +12,7 @@ type NavigateFn = () => void;
  */
 export function navigateAfterModalClose(onClose: () => void, navigate: NavigateFn, delayMs = 120): void {
   onClose();
-  const wait = Platform.OS === 'ios' ? Math.max(delayMs, 160) : delayMs;
+  const wait = Math.max(delayMs, NATIVE_MODAL_DISMISS_GAP_MS);
   InteractionManager.runAfterInteractions(() => {
     setTimeout(navigate, wait);
   });

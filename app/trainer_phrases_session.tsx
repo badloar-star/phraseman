@@ -43,6 +43,8 @@ import { triLang } from '../constants/i18n';
 import { screenTextOnGradient } from '../constants/theme';
 import { statsThemeAccent, statsThemeSoftBg } from '../constants/statsThemeChrome';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
+import { useEnergy } from '../components/EnergyContext';
+import NoEnergyModal from '../components/NoEnergyModal';
 import DuoPressable from '../components/DuoPressable';
 import { useWordFlash } from '../hooks/use-word-flash';
 import { useCorrectSound } from '../hooks/use-correct-sound';
@@ -653,6 +655,13 @@ export default function TrainerPhrasesSession() {
   // useAudio внутри карточки обрывал бы TTS-фразу на полуслове. Здесь же хук
   // переживает смену карточек, поэтому фраза доигрывает до конца.
   const { speakAnswer } = useSpeakAnswer();
+  // зачем: владелец попросил, чтобы ошибки в «Моя практика» тратили энергию и
+  // блокировали экран при 0 — точно так же, как в уроках (lesson1.tsx/review.tsx).
+  // Премиум/тестер обходят списание внутри spendOne (isUnlimited).
+  const { energy, bonusEnergy, isUnlimited: energyUnlimited, spendOne, energyReady } = useEnergy();
+  const energyRef = useRef({ energy, bonusEnergy, energyUnlimited });
+  useEffect(() => { energyRef.current = { energy, bonusEnergy, energyUnlimited }; }, [energy, bonusEnergy, energyUnlimited]);
+  const [noEnergyModalOpen, setNoEnergyModalOpen] = useState(false);
 
   // зачем: юзер жаловался, что «отработка ошибок» открывается через скелет «Загружаем…».
   // Экран практики на каждом фокусе прогревает кэш (prefetchTrainerPracticeSnapshot), поэтому
@@ -704,6 +713,21 @@ export default function TrainerPhrasesSession() {
     params.planTrainerTask,
     params.requiredItems,
   ]);
+
+  // зачем: аудит нашёл, что закрытие модала тапом мимо/кнопкой «назад» на Android (в
+  // отличие от «Позже» → onGotIt, который уводит с экрана) оставляет пользователя тут же
+  // с энергией 0 — а любое следующее обновление EnergyContext (сворачивание/разворачивание,
+  // тик восстановления, бонус/премиум-событие) заново открывает уже закрытый модал.
+  const energyGateDismissedRef = useRef(false);
+  // Гейт на входе: энергия уже на нуле до первого ответа — сразу блокирующий модал,
+  // как в lesson1.tsx (entryEnergyGateLessonRef). energyReady ждёт первого live-чтения,
+  // чтобы не мигнуть модалом на дефолтных значениях контекста при холодном старте.
+  useEffect(() => {
+    if (!energyReady || energyUnlimited) return;
+    if (energy + bonusEnergy > 0) return;
+    if (energyGateDismissedRef.current) return;
+    setNoEnergyModalOpen(true);
+  }, [energyReady, energy, bonusEnergy, energyUnlimited]);
 
   useEffect(() => {
     let cancelled = false;
@@ -803,13 +827,35 @@ export default function TrainerPhrasesSession() {
         updates.push({ type: 'recall_answers', increment: 1 });
         updates.push({ type: card.item.queue === 'arena' ? 'trainer_arena' : 'trainer_phrases', increment: 1 });
         checkAchievements({ type: 'trainer_correct', correct: 1, studyTarget }).catch(() => {});
+      } else if (!energyRef.current.energyUnlimited) {
+        // При ОШИБКЕ тратим энергию — та же механика, что в review.tsx/lesson1.tsx.
+        // Ответ уже засчитан выше; модал догоняет с задержкой (даёт красному фидбэку
+        // отыграть), totalBefore/After читаем из ref — без stale closure.
+        const totalBefore = energyRef.current.energy + energyRef.current.bonusEnergy;
+        spendOne().then((success) => {
+          if (!success) return;
+          // зачем: аудит нашёл, что дневное задание «потрать энергию» (es1-es4, до 66 XP)
+          // никогда не засчитывалось из этого экрана — lesson1.tsx/review.tsx шлют этот
+          // инкремент, а «Моя практика» — нет. Квест молча не продвигался у части юзеров.
+          updateMultipleTaskProgress([{ type: 'energy_spend', increment: 1 }], { studyTarget }).catch(() => {});
+          setTimeout(() => {
+            const totalAfter = energyRef.current.energy + energyRef.current.bonusEnergy;
+            if (totalBefore > 0 && totalAfter <= 0) setNoEnergyModalOpen(true);
+          }, 800);
+        }).catch(() => {});
       }
       if (updates.length > 0) updateMultipleTaskProgress(updates, { studyTarget }).catch(() => {});
     })().catch(() => {});
-  }, [deck, current, studyTarget]);
+  }, [deck, current, studyTarget, spendOne]);
 
   const handleAdvance = useCallback(async () => {
     if (advancingRef.current) return;
+    // зачем: аудит нашёл, что «Далее» не проверял noEnergyModalOpen — ответ, обнуливший
+    // энергию, засчитывался мгновенно, а модал открывается с задержкой ~800мс (см.
+    // handleResult), и за это окно пользователь успевал перейти на новый, полностью
+    // отвечаемый вопрос ДО появления блокировки. pendingResultRef её не покрывает —
+    // это fire-and-forget цепочка spendOne().then(...setTimeout...), не awaited-промис.
+    if (noEnergyModalOpen) return;
     advancingRef.current = true;
     await pendingResultRef.current;
     const next = current + 1;
@@ -829,7 +875,7 @@ export default function TrainerPhrasesSession() {
       setCurrent(next);
     }
     advancingRef.current = false;
-  }, [deck.length, current, correct, wrong, studyTarget]);
+  }, [deck.length, current, correct, wrong, studyTarget, noEnergyModalOpen]);
 
   useEffect(() => {
     if (!done || !planTrainerContext.taskId || planTrainerCompletionTracked.current) return;
@@ -981,7 +1027,7 @@ export default function TrainerPhrasesSession() {
           </View>
 
           <BouncyScrollView
-            decelerationRate="normal"
+            decelerationRate="fast"
             contentContainerStyle={{ padding: 16, paddingTop: 8, flexGrow: 1 }}
             keyboardShouldPersistTaps="handled"
             showsVerticalScrollIndicator={false}
@@ -998,6 +1044,11 @@ export default function TrainerPhrasesSession() {
           </BouncyScrollView>
         </ContentWrap>
       </SafeAreaView>
+      <NoEnergyModal
+        visible={noEnergyModalOpen}
+        onClose={() => { energyGateDismissedRef.current = true; setNoEnergyModalOpen(false); }}
+        onGotIt={() => { setNoEnergyModalOpen(false); safeRouterBack(router, planTrainerContext.taskId ? '/personal_plan' as any : '/trainer' as any); }}
+      />
     </ScreenGradient>
   );
 }

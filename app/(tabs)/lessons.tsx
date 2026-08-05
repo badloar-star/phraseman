@@ -454,9 +454,20 @@ const LessonCard = React.memo(function LessonCard({
 }: LessonCardProps) {
     const isSagePorcelainCard = _themeMode === 'sagePorcelain';
     const lockedCardHasLightFill = _themeMode === 'sagePorcelain';
-    // зачем: 100% прогресс заливает ВСЮ ширину карточки светлым градиентом
-    // [bg, lightenHex(bg,1.28)] — там, где стоит «УРОК N»/чек, фон точно светлый.
-    const useFilledMetaText = isComplete && showLessonProgressFill;
+    // зачем: 100% прогресс заливает ВСЮ ширину карточки градиентом [bg, lightenHex(bg,1.28)] —
+    // текст «УРОК N» стоит у левого края (start x:0), т.е. фактически на САМОМ bg без lighten.
+    // Аудит нашёл пограничный случай: midnight B2 (тон 0.92, bg #9B54EB) даёт тёмному тексту
+    // #07110A контраст 4.445:1 — чуть ниже нормы AA 4.5:1. Порог по luminance страхует именно
+    // эти редкие тёмно-фиолетовые/тёмно-синие bg: тёмный текст включаем только если сам bg
+    // светлее условной границы (≈0.5 relative luminance), иначе остаётся светлый вариант.
+    const bgLuminance = (() => {
+        const r = parseInt(bg.slice(1, 3), 16) / 255;
+        const g = parseInt(bg.slice(3, 5), 16) / 255;
+        const b2 = parseInt(bg.slice(5, 7), 16) / 255;
+        const ch = (v: number) => (v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4));
+        return 0.2126 * ch(r) + 0.7152 * ch(g) + 0.0722 * ch(b2);
+    })();
+    const useFilledMetaText = isComplete && showLessonProgressFill && bgLuminance > 0.45;
     // зачем (аудит-фикс): было `!isGoldTheme && !isCoralTheme && isUnlocked` —
     // включало тёмный текст (#07110A, без тени) на ЛЮБОЙ разблокированной не-gold/
     // coral теме, включая indigo/dark/midnight и т.п. Но базовый градиент карточки

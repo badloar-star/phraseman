@@ -434,7 +434,7 @@ export default function FlashcardsArenaScreen() {
       outputRange: [0, -6, 5, -3, 0],
     });
     return (
-      <ScrollView contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: Math.max(insets.bottom, 16) + 24 }}>
+      <ScrollView decelerationRate="fast" contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: Math.max(insets.bottom, 16) + 24 }}>
         {/* Вопрос (макет `.qz-q`): 20px/800, без обводки — §0.D. */}
         <View style={{ borderRadius: 18, paddingVertical: 22, paddingHorizontal: 18, backgroundColor: t.bgSurface, marginBottom: 14 }}>
           <Text style={{ color: t.textPrimary, fontSize: 20, fontWeight: '800', letterSpacing: -0.3, lineHeight: 28, textAlign: 'center' }}>
@@ -496,7 +496,7 @@ export default function FlashcardsArenaScreen() {
   };
 
   const renderDone = () => (
-    <ScrollView contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: Math.max(insets.bottom, 16) + 24 }}>
+    <ScrollView decelerationRate="fast" contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: Math.max(insets.bottom, 16) + 24 }}>
       {/* Счёт (макет `.res-score`): 64px/900, дробь 26px приглушённая. */}
       <View style={{ alignItems: 'center', marginTop: 26, marginBottom: 10 }}>
         <Text style={{ color: t.textPrimary, fontSize: 64, fontWeight: '900', letterSpacing: -2, fontVariant: ['tabular-nums'] }}>

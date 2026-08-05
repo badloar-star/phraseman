@@ -235,7 +235,7 @@ export default function PersonalPlanRuntimeDevScreen() {
           </View>
         </View>
 
-        <ScrollView decelerationRate="normal" showsVerticalScrollIndicator={false} contentContainerStyle={styles.scroll}>
+        <ScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} contentContainerStyle={styles.scroll}>
           <View style={styles.dayRow}>
             {dayChoices.map((choice) => {
               const active = choice === selectedDayIndex;

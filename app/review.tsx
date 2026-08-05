@@ -1677,7 +1677,7 @@ export default function ReviewScreen() {
 
       <BouncyScrollView
         contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: (isPlanPracticeTask ? 6 : 32) + bottomInset }}
-        decelerationRate="normal"
+        decelerationRate="fast"
         keyboardShouldPersistTaps="handled"
         scrollEnabled={!isPlanPracticeTask}
         showsVerticalScrollIndicator={false}

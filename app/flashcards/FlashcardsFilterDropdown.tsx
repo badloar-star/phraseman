@@ -50,7 +50,7 @@ export default function FlashcardsFilterDropdown({
           ...noAndroidOutline,
         }}
       >
-        <ScrollView decelerationRate="normal" bounces={false} showsVerticalScrollIndicator={false} style={{ borderRadius: 14, overflow: 'hidden' }}>
+        <ScrollView decelerationRate="fast" bounces={false} showsVerticalScrollIndicator={false} style={{ borderRadius: 14, overflow: 'hidden' }}>
           <TouchableOpacity
             onPress={() => onSelect('all')}
             style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 16, paddingVertical: 12 }}

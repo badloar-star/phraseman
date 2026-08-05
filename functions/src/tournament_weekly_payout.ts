@@ -18,18 +18,19 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import {
   TOURNAMENT_BANK_COLLECTION,
-  TOURNAMENT_ENTRY_WINDOW_MS,
   TOURNAMENT_LOBBY_OPEN_MS,
   TOURNAMENT_SEASONS_COLLECTION,
   TOURNAMENT_SEASON_ENTRIES_SUBCOLLECTION,
   tournamentWeekId,
 } from './tournament_core';
+import { tournamentEntryWindowMsFromEconomy } from './tournament_all_day';
 import {
   normalizeTournamentEconomy,
   weeklyBankPayouts,
   type WeeklyStanding,
 } from './tournament_economy';
 import { buildUserNotification, userNotificationRef } from './user_notifications';
+import { parseActiveTournamentTicket } from './tournaments';
 
 const REGION = 'us-central1';
 const TOURNAMENT_SCHEDULE_COLLECTION = 'tournamentSchedule';
@@ -306,6 +307,11 @@ export const tournamentWeeklyBankInfo = onCall(
     const userData = userSnap.data() || {};
     const gemBalance = Math.max(0, readInt(userData.shards, 0));
     const freeEntryAvailable = String(userData.tournament_free_entry_week_id ?? '') !== currentWeek;
+    // зачем 2026-08-04 (владелец: Season Pass tournament_ticket — «появится
+    // ассет в разделе турнир в правом углу»): та же userSnap, что и
+    // freeEntryAvailable выше — ноль лишних чтений. Клиент рисует бейдж по
+    // этому полю (app/(tabs)/tournaments.tsx).
+    const seasonTicketAvailable = parseActiveTournamentTicket(userData) !== null;
 
     // Моя доля прошлой недели — если раздача уже прошла.
     const winners = Array.isArray(lastSnap.data()?.winners) ? lastSnap.data()!.winners : [];
@@ -325,13 +331,14 @@ export const tournamentWeeklyBankInfo = onCall(
       // зачем 2026-07-27 (владелец): слот — это ОКНО в полчаса, внутри которого
       // можно зайти, а не одна точка старта. Без этого числа экран показывал
       // мёртвый 00:00 всё окно вместо честного статуса «турниры идут».
-      entryWindowMs: TOURNAMENT_ENTRY_WINDOW_MS,
+      entryWindowMs: tournamentEntryWindowMsFromEconomy(economySnap.data()),
       /** Серверные часы: клиент сверяет свои и не врёт при сбитом времени. */
       serverNowMs: nowMs,
-      /** Цена входа (владелец: «билет стоит 3 жемчужины») — экран билетов считает от неё. */
+      /** Цена входа (владелец: «билет стоит 5 жемчужин») — экран билетов считает от неё. */
       entryGems: economy.entryGems,
       gemBalance,
       freeEntryAvailable,
+      seasonTicketAvailable,
       lastWeek: {
         weekId: lastWeek,
         paidOut: Boolean(lastSnap.data()?.paidOutAtMs),

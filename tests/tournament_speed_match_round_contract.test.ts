@@ -11,13 +11,11 @@ describe('tournament speed-match round', () => {
     expect(source).toContain("task.kind === 'match'");
     expect(source).toContain('items.length !== SPEED_MATCH_PAIRS');
     expect(source).toContain('MatchBoard');
-    // зачем 2026-08-03: тест требовал УМЕНЬШАЮЩИЙСЯ счётчик звёзд
-    // (`Math.max(0, value - 1)`) — шкалу «начал с 3 и теряешь за ошибки».
-    // Владелец её отменил: «сколько правильно ответил — столько звёзд», поэтому
-    // счётчик теперь РАСТЁТ на каждой верной паре и совпадает с числом, которое
-    // потом начислит сервер. Сторожим текущее правило, а не отменённое.
-    expect(source).toContain('setMatchStars((value) => value + 1)');
-    expect(source).not.toContain('setMatchStars((value) => Math.max(0, value - 1))');
+    // Владелец 2026-08-04: правильная пара сразу добавляет звезду, неверная
+    // снимает одну, а сервер затем подтверждает либо корректирует прогноз.
+    expect(source).toContain('const optimisticStarDelta = localCorrect ? 1 : -1;');
+    expect(source).toContain('addPendingStars(optimisticStarDelta);');
+    expect(source).toContain('result.penaltyApplied ? -1 : 0');
     expect(source).toContain('setMatchStatus');
     expect(source).toContain('submitSpeedMatchAttempt(roomId, roundNo, question.taskId, pairIndex, selectedIndex)');
     expect(source).toContain('answerFingerprints');
@@ -26,6 +24,17 @@ describe('tournament speed-match round', () => {
     expect(answerMatch).toMatch(/const localCorrect = localAnswerVerdict\([\s\S]*setMatchStatus\([\s\S]*submitSpeedMatchAttempt/);
     expect(answerMatch.indexOf('setMatchStatus')).toBeLessThan(answerMatch.indexOf('submitSpeedMatchAttempt'));
     expect(answerMatch).toContain('return Promise.resolve(localVerdict);');
+  });
+
+  it('locks a correct pair after server confirmation but releases a wrong pair for retry', () => {
+    const answerMatch = source.slice(source.indexOf('const answerMatch'), source.indexOf('const matchComplete'));
+    const strictBoard = source.slice(source.indexOf('const StrictMatchBoard'), source.indexOf('const WordBank'));
+
+    expect(answerMatch).toContain('if (isCorrect) next.add(pairIndex);');
+    expect(answerMatch).toContain("delete next[pairIndex]");
+    expect(strictBoard).toContain("status[index]?.verdict === 'correct'");
+    expect(strictBoard).toContain("if (verdict === 'wrong')");
+    expect(strictBoard).toContain('clearTupleSelection(tuple);');
   });
 
   it('reserves an immutable tuple and resolves its color from the immediate local verdict', () => {

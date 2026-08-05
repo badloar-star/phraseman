@@ -806,6 +806,40 @@ ${indent}}`,
     ]);
   });
 
+  test('user_consents keeps owner/admin read but denies every browser write (accountability record)', () => {
+    // Документ хранит ФАКТ и ДАТУ согласия пользователя (analytics/AI-explain/
+    // AI-dialog/age-bracket) — если клиент мог бы переписать его напрямую через
+    // Firestore SDK, документ переставал бы годиться как доказательство согласия.
+    // Запись разрешена ТОЛЬКО через Cloud Functions (Admin SDK, ниже) — см. также
+    // app/ai_explain_consent.ts / app/ai_dialog_consent.ts комментарии.
+    const blocks = exactRootMatchBlocks('user_consents/{userId}');
+    expect(blocks).toHaveLength(1);
+    expect(activeAllowLines(blocks[0])).toEqual([
+      'allow read: if isAdmin() || isOwner(userId) || stableUserMatchesAuth(userId);',
+      'allow write: if false;',
+    ]);
+  });
+
+  test('user_consents writers (age bracket, AI-explain, AI-dialog consent) all use the Admin SDK path', () => {
+    // Admin SDK bypasses firestore.rules entirely — this is what keeps these
+    // callables working even though the rule above denies every client write.
+    for (const file of [
+      'functions/src/record_age_consent_snapshot.ts',
+      'functions/src/record_ai_consent_factory.ts',
+    ]) {
+      const source = readFileSync(path.join(process.cwd(), file), 'utf8');
+      expect(source).toContain("import * as admin from 'firebase-admin';");
+      expect(source).toContain('admin.firestore()');
+    }
+    // record_ai_explain_consent.ts / record_ai_dialog_consent.ts are thin
+    // wrappers around record_ai_consent_factory.ts — confirm they route through
+    // it rather than writing user_consents some other way.
+    const explainCallable = readFileSync(path.join(process.cwd(), 'functions/src/record_ai_explain_consent.ts'), 'utf8');
+    expect(explainCallable).toContain("createRecordAiConsentCallable('aiExplainConsent')");
+    const dialogCallable = readFileSync(path.join(process.cwd(), 'functions/src/record_ai_dialog_consent.ts'), 'utf8');
+    expect(dialogCallable).toContain("createRecordAiConsentCallable('aiDialogConsent')");
+  });
+
   test('auth_links server writes remain on the Admin SDK path', () => {
     const authIdentity = readFileSync(path.join(process.cwd(), 'functions/src/auth_identity.ts'), 'utf8');
     expect(authIdentity).toContain("import * as admin from 'firebase-admin';");

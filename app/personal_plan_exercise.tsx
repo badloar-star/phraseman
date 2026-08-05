@@ -30,6 +30,7 @@ import { personalPlanPromptForLang } from './personal_plan_prompt_locale';
 import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 import { awardPlanTaskCompletion } from './personal_plan_xp';
 import AiMistakeCard from '../components/AiMistakeCard';
+import AiExplainConsentModal from '../components/AiExplainConsentModal';
 import { useMistakeExplain } from './use_mistake_explain';
 import { useAudio } from '../hooks/use-audio';
 import {
@@ -48,6 +49,9 @@ import {
 import { isSpeakingEnabled } from './remote_flags';
 import { useCorrectSound } from '../hooks/use-correct-sound';
 import { hapticError, hapticSuccess, hapticTap, hapticWarning } from '../hooks/use-haptics';
+import { useEnergy } from '../components/EnergyContext';
+import NoEnergyModal from '../components/NoEnergyModal';
+import { updateMultipleTaskProgress } from './daily_tasks';
 import { useRecordStartCue } from '../hooks/use-record-start-cue';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { VoiceEqualizer } from './voice_equalizer';
@@ -460,6 +464,7 @@ function PlanPronunciationRecorder({
   onScored,
   onScoringChange,
   onBlocked,
+  energyBlocked = false,
 }: {
   accent: string;
   actionText: string;
@@ -471,6 +476,10 @@ function PlanPronunciationRecorder({
   onScoringChange: (scoring: boolean) => void;
   /** Speech can't run here (no recognizer / mic denied) → host lets the user advance. */
   onBlocked: (blocked: PronunciationBlock) => void;
+  /** зачем: аудит нашёл, что запись голоса не проверяла noEnergyModalOpen — пользователь
+      мог продолжать записывать/пересдавать произношение под уже открытым блокирующим
+      окном «нет энергии». Хост передаёт своё noEnergyModalOpen сюда. */
+  energyBlocked?: boolean;
 }) {
   const { speak: speakFallbackAudio, stop: stopAudio } = useAudio();
   const runtimeActive = useRuntimeActive();
@@ -1444,7 +1453,7 @@ function PlanPronunciationRecorder({
           // Прослушивание фразы — НЕ обязательно: юзер может произнести сразу, если хочет.
           // Единственное ограничение — нельзя говорить, ПОКА звучит фраза (микрофон поймал бы
           // озвучку), поэтому блокируем только на время проигрывания target-аудио.
-          enabled={!pronunciationSpeakingTarget && !preparingModel && (!pronunciationScoring || pronunciationPreparing || pronunciationListening)}
+          enabled={!energyBlocked && !pronunciationSpeakingTarget && !preparingModel && (!pronunciationScoring || pronunciationPreparing || pronunciationListening)}
           preparing={pronunciationPreparing}
           listening={pronunciationListening}
           accent={accent}
@@ -1867,6 +1876,13 @@ export default function PersonalPlanExerciseScreen() {
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const { playCorrect } = useCorrectSound();
+  // зачем: владелец попросил, чтобы ошибки в персональных заданиях тратили энергию и
+  // блокировали экран при 0 — точно так же, как в уроках (lesson1.tsx/review.tsx).
+  // Премиум/тестер обходят списание внутри spendOne (isUnlimited).
+  const { energy, bonusEnergy, isUnlimited: energyUnlimited, spendOne, energyReady } = useEnergy();
+  const energyRef = useRef({ energy, bonusEnergy, energyUnlimited });
+  useEffect(() => { energyRef.current = { energy, bonusEnergy, energyUnlimited }; }, [energy, bonusEnergy, energyUnlimited]);
+  const [noEnergyModalOpen, setNoEnergyModalOpen] = useState(false);
   const fadeScrollY = useRef(new Animated.Value(0)).current;
   const handleExerciseScroll = useCallback((e: any) => {
     fadeScrollY.setValue(e?.nativeEvent?.contentOffset?.y ?? 0);
@@ -1884,10 +1900,51 @@ export default function PersonalPlanExerciseScreen() {
     return () => sub.remove();
   }, [router]);
 
+  // зачем: аудит нашёл, что закрытие модала тапом мимо/кнопкой «назад» на Android (в
+  // отличие от «Позже», который уводит с экрана через onGotIt) оставляет пользователя
+  // на этом же экране с энергией 0 — а любое следующее обновление EnergyContext
+  // (сворачивание/разворачивание приложения, тик восстановления, бонус/премиум-событие)
+  // заново триггерит гейт и открывает модал снова, хотя пользователь его уже закрыл.
+  // energyGateDismissedRef — «уже показывали и закрыли на этом заходе экрана», сбрасывается
+  // только при реальном размонтировании (новый заход на экран — новый шанс показать).
+  const energyGateDismissedRef = useRef(false);
+  // Гейт на входе: энергия уже на нуле до первого ответа — сразу блокирующий модал,
+  // как в lesson1.tsx (entryEnergyGateLessonRef). energyReady ждёт первого live-чтения,
+  // чтобы не мигнуть модалом на дефолтных значениях контекста при холодном старте.
+  useEffect(() => {
+    if (!energyReady || energyUnlimited) return;
+    if (energy + bonusEnergy > 0) return;
+    if (energyGateDismissedRef.current) return;
+    setNoEnergyModalOpen(true);
+  }, [energyReady, energy, bonusEnergy, energyUnlimited]);
+
   const params = useLocalSearchParams();
   const { theme: t, themeMode, f } = useTheme();
   const { studyTarget } = useStudyTarget();
   const { lang } = useLang();
+  // Общий путь траты энергии за ошибку в задании — та же механика, что в
+  // review.tsx/lesson1.tsx. Ответ к этому моменту уже засчитан вызывающей стороной;
+  // модал догоняет с задержкой (даёт красному фидбэку отыграть), totalBefore/After
+  // читаем из energyRef — без stale closure. Один хелпер на все режимы упражнения
+  // (выбор, listen-build, recall, произношение), чтобы не дублировать в 4 местах.
+  // зачем: объявлен ПОСЛЕ useStudyTarget() — деп-массив [spendOne, studyTarget]
+  // читает studyTarget в момент выполнения тела компонента, а не только внутри
+  // колбэка, поэтому TS требует объявления до использования (TS2448/TS2454).
+  const spendEnergyOnMistake = useCallback(() => {
+    if (energyRef.current.energyUnlimited) return;
+    const totalBefore = energyRef.current.energy + energyRef.current.bonusEnergy;
+    spendOne().then((success) => {
+      if (!success) return;
+      // зачем: аудит нашёл, что дневное задание «потрать энергию» (es1-es4, до 66 XP)
+      // никогда не засчитывалось из личных заданий — lesson1.tsx/review.tsx шлют этот
+      // инкремент, а этот экран — нет. Квест молча не продвигался у части юзеров.
+      updateMultipleTaskProgress([{ type: 'energy_spend', increment: 1 }], { studyTarget }).catch(() => {});
+      setTimeout(() => {
+        const totalAfter = energyRef.current.energy + energyRef.current.bonusEnergy;
+        if (totalBefore > 0 && totalAfter <= 0) setNoEnergyModalOpen(true);
+      }, 800);
+    }).catch(() => {});
+  }, [spendOne, studyTarget]);
   const isGold = themeMode === 'gold';
   const accent = isGold ? '#FFE8A8' : t.accent;
   const actionText = isGold ? '#1B1205' : '#08110C';
@@ -1958,8 +2015,13 @@ export default function PersonalPlanExerciseScreen() {
   const chrome = useMemo(() => chromeForExerciseType(currentExerciseType), [currentExerciseType]);
   const chromeTitle = lang === 'es' ? chrome.titleEs : chrome.title;
   const handlePronunciationScored = useCallback((result: PlanPronunciationScoringResult) => {
+    // зачем: аудит нашёл, что запись, начатая ДО открытия модала «нет энергии», всё
+    // равно долетает до onScored (та же гонка, что со свайпом в trainer_words_session) —
+    // не даём такой попытке списать ещё одну единицу энергии задним числом.
+    if (noEnergyModalOpen) return;
     setPronunciationScore(result);
-  }, []);
+    if (!result.passed) spendEnergyOnMistake();
+  }, [spendEnergyOnMistake, noEnergyModalOpen]);
 
   useEffect(() => {
     if (!isRecallMode) {
@@ -2234,7 +2296,7 @@ export default function PersonalPlanExerciseScreen() {
   ) : null;
 
   const submit = async (answer: string) => {
-    if (!item || !session || done) return;
+    if (!item || !session || done || noEnergyModalOpen) return;
     if (!('correctAnswer' in item)) return;
     const isCorrect = answer === item.correctAnswer;
     const attempt = beginPersonalPlanChoiceAttempt(choiceAttemptStateRef.current, {
@@ -2256,6 +2318,7 @@ export default function PersonalPlanExerciseScreen() {
     }
 
     if (attempt.shouldPersist) {
+      if (!isCorrect) spendEnergyOnMistake();
       await submitAndStorePlanExerciseAnswer(session, {
         result: isCorrect ? 'correct' : 'wrong',
         contentUnitId: item.id,
@@ -2276,13 +2339,24 @@ export default function PersonalPlanExerciseScreen() {
   };
 
   const submitListenBuild = async () => {
-    if (!item || !session || saving || done || !isListenBuildMode || !isPersonalPlanListenBuildItem(item)) return;
+    if (!item || !session || saving || done || noEnergyModalOpen || !isListenBuildMode || !isPersonalPlanListenBuildItem(item)) return;
     const answer = buildWords.join(' ');
     // зачем: raw normalizePlanAnswer (lowercase+trim only) не раскрывала сокращения —
     // "I am Anna" засчитывался неверным против цели "I'm Anna." (репорт юзера 2026-07-20,
     // impuls_d3_p1). isCorrectAnswer — общий пайплайн (сокращения, BrE/AmE, пунктуация),
     // тот же что и в lesson1/review_evaluator.
     const isCorrect = isCorrectAnswer(answer, item.correctAnswer);
+    // зачем: аудит нашёл, что кнопка «Попробовать ещё раз» просто чистит поле ввода на
+    // ТОМ ЖЕ вопросе — без дедупа энергия списывалась за каждую повторную неверную
+    // попытку одного задания (в отличие от submit(), где beginPersonalPlanChoiceAttempt
+    // уже ограничивает трату одним разом на itemKey). Общий ref с submit() безопасен —
+    // ключ включает item.id, второй режим для того же id одновременно не активен.
+    const attempt = beginPersonalPlanChoiceAttempt(choiceAttemptStateRef.current, {
+      itemKey: `${routeTaskKey}::${item.id}`,
+      isCorrect,
+    });
+    choiceAttemptStateRef.current = attempt.state;
+    if (!attempt.accepted) return;
     setSaving(true);
     setSelected(answer);
     setLastResult(isCorrect ? 'correct' : 'wrong');
@@ -2290,7 +2364,10 @@ export default function PersonalPlanExerciseScreen() {
       hapticSuccess();
       playCorrect();
       speakCurrentPhrase();
-    } else hapticError();
+    } else {
+      hapticError();
+      if (attempt.shouldPersist) spendEnergyOnMistake();
+    }
 
     await submitAndStorePlanExerciseAnswer(session, {
       result: isCorrect ? 'correct' : 'wrong',
@@ -2311,13 +2388,21 @@ export default function PersonalPlanExerciseScreen() {
   };
 
   const submitRecall = async () => {
-    if (!item || !session || saving || done || !isRecallMode || !('targetText' in item)) return;
+    if (!item || !session || saving || done || noEnergyModalOpen || !isRecallMode || !('targetText' in item)) return;
     const evaluation = evaluateRecallAnswer(
       typedAnswer,
       item.targetText,
       'alternatives' in item ? item.alternatives : undefined,
     );
     const isCorrect = evaluation.ok;
+    // зачем: тот же дедуп попыток, что в submitListenBuild — «Попробовать ещё раз» не
+    // должно списывать энергию повторно за один и тот же вопрос (аудит).
+    const attempt = beginPersonalPlanChoiceAttempt(choiceAttemptStateRef.current, {
+      itemKey: `${routeTaskKey}::${item.id}`,
+      isCorrect,
+    });
+    choiceAttemptStateRef.current = attempt.state;
+    if (!attempt.accepted) return;
     setSaving(true);
     setSelected(typedAnswer.trim());
     setLastResult(isCorrect ? 'correct' : 'wrong');
@@ -2325,7 +2410,10 @@ export default function PersonalPlanExerciseScreen() {
       hapticSuccess();
       playCorrect();
       speakCurrentPhrase();
-    } else hapticError();
+    } else {
+      hapticError();
+      if (attempt.shouldPersist) spendEnergyOnMistake();
+    }
 
     await submitAndStorePlanExerciseAnswer(session, {
       result: isCorrect ? 'correct' : 'wrong',
@@ -2428,7 +2516,7 @@ export default function PersonalPlanExerciseScreen() {
   };
 
   const completePronunciation = async () => {
-    if (!item || !session || saving || done || !('targetText' in item)) return;
+    if (!item || !session || saving || done || noEnergyModalOpen || !('targetText' in item)) return;
     // Normal path: completion is gated on a real on-device score that reached the
     // pass threshold. Escape hatch: when speech genuinely can't run here (no
     // recognizer on the device, or the user declined mic access), we let the
@@ -2524,7 +2612,7 @@ export default function PersonalPlanExerciseScreen() {
           trackColor={t.bgSurface2 ?? 'rgba(255,255,255,0.10)'}
         />
 
-        <BouncyScrollView contentContainerStyle={[styles.scroll, { paddingBottom: Math.max(34, bottomInset + 24) }]} showsVerticalScrollIndicator={false} onScroll={handleExerciseScroll} scrollEventThrottle={16}>
+        <BouncyScrollView decelerationRate="fast" contentContainerStyle={[styles.scroll, { paddingBottom: Math.max(34, bottomInset + 24) }]} showsVerticalScrollIndicator={false} onScroll={handleExerciseScroll} scrollEventThrottle={16}>
           {!item || !modeReady ? (
             <PlanExerciseFeedbackSurface
               tone="blocked"
@@ -2700,6 +2788,7 @@ export default function PersonalPlanExerciseScreen() {
                 onScored={handlePronunciationScored}
                 onScoringChange={setPronunciationScoring}
                 onBlocked={setPronunciationBlocked}
+                energyBlocked={noEnergyModalOpen}
               />
 
               {/* Кнопку «Дальше/Продолжить» показываем ТОЛЬКО когда есть что
@@ -2910,6 +2999,17 @@ export default function PersonalPlanExerciseScreen() {
           actionText={actionText}
           mutedText={t.textMuted}
           surfaceColor={t.bgCard}
+        />
+        <NoEnergyModal
+          visible={noEnergyModalOpen}
+          onClose={() => { energyGateDismissedRef.current = true; setNoEnergyModalOpen(false); }}
+          onGotIt={() => { setNoEnergyModalOpen(false); safeRouterBack(router, '/personal_plan'); }}
+        />
+        <AiExplainConsentModal
+          visible={mistakeExplain.consentGate.visible}
+          lang={lang}
+          onAccept={mistakeExplain.consentGate.onAccept}
+          onDecline={mistakeExplain.consentGate.onDecline}
         />
       </LinearGradient>
     </View>

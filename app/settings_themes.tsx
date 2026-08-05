@@ -264,7 +264,7 @@ export default function SettingsThemes() {
           {/* зачем: владелец попросил КРУПНЫЕ квадраты — боковой паддинг экрана
               уменьшен (GRID_SCREEN_PAD), чтобы отдать эту ширину самим плиткам,
               а не воздуху по краям (3 в ряд остаются, но каждая заметно больше). */}
-          <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ paddingHorizontal: GRID_SCREEN_PAD, paddingTop: 12, paddingBottom: 16 }} scrollEventThrottle={16}>
+          <BouncyScrollView decelerationRate="fast" contentContainerStyle={{ paddingHorizontal: GRID_SCREEN_PAD, paddingTop: 12, paddingBottom: 16 }} scrollEventThrottle={16}>
             <View style={styles.grid}>
               {THEME_OPTIONS.filter(item => !item.rewardOnly || DEV_THEME_UNLOCKS || (item.mode === 'gold' && isGoldThemeUnlocked)).map(item => {
                 const locked = !!item.premiumOnly && !isPremium && !DEV_THEME_UNLOCKS

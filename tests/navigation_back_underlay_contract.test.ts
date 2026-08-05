@@ -39,6 +39,7 @@ describe('navigation back underlay', () => {
       'ideas_submit',
       'settings_testers',
       'top_helpers',
+      'tournament_tickets',
       'account_details',
       'referrals',
       'promo_code_entry',

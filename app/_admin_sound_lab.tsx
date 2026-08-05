@@ -49,6 +49,7 @@ import { SOUND_MOTION, type SoundMotionProfile } from '../modules/audio/sound_mo
 
 /** Порядок групп — как в каталоге, чтобы лаборатория читалась вместе с ним. */
 const FAMILY_ORDER: readonly SoundFamily[] = [
+  'app',
   'learning',
   'voice',
   'completion',
@@ -62,6 +63,7 @@ const FAMILY_ORDER: readonly SoundFamily[] = [
 ];
 
 const FAMILY_TITLE: Record<SoundFamily, string> = {
+  app: 'Приложение',
   learning: 'Учёба',
   voice: 'Голос и запись',
   completion: 'Завершение',
@@ -75,6 +77,7 @@ const FAMILY_TITLE: Record<SoundFamily, string> = {
 };
 
 const FAMILY_ICON: Record<SoundFamily, string> = {
+  app: 'sparkles-outline',
   learning: 'school-outline',
   voice: 'mic-outline',
   completion: 'checkmark-done-outline',

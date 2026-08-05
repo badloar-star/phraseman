@@ -1491,8 +1491,14 @@ describe('transaction plan semantics', () => {
     // 2 живых × 5 = 10, минус 20% в недельный банк = 8 призёрам,
     // 60/25/15 → победителю 5. Билетов больше нет.
     expect(first.playerEffects[0]).toMatchObject({
-      playerId: 'u1', seasonPoints: 25, tournamentsPlayed: 1, won: true,
+      playerId: 'u1', seasonPoints: 25, roundStars: 100, tournamentsPlayed: 1, won: true,
       reward: { gems: 5, tickets: 0 },
+    });
+    // roundStars — реальный счёт игрока (player.score), НЕ очки места
+    // (seasonPoints): второе место получает меньше очков, но может набрать
+    // больше звёзд, чем первое — лобби обязано показывать честный счёт.
+    expect(first.playerEffects[1]).toMatchObject({
+      playerId: 'u2', seasonPoints: 15, roundStars: 50,
     });
     // В недельный банк уходит доля турнира (20% от 10 = 2) ПЛЮС остаток от
     // округления призовых долей вниз — призёр здесь один, поэтому 25% и 15%

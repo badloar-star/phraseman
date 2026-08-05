@@ -260,7 +260,6 @@ export default function TournamentTableScreen() {
             layoutIndex={index}
             previousLayoutIndex={previousVisibleIndexesRef.current.get(row.id) ?? index}
             maxScore={maxScore}
-            scoresSettled={scoresSettled}
             lang={lang}
           />
         ))}
@@ -296,21 +295,10 @@ export default function TournamentTableScreen() {
 // ── Строка таблицы ──────────────────────────────────────────────────────────
 
 const TableRow = memo(function TableRow({
-  row, place, layoutIndex, previousLayoutIndex, maxScore, scoresSettled, lang,
+  row, place, layoutIndex, previousLayoutIndex, maxScore, lang,
 }: {
   row: Row;
   lang: Lang;
-  /**
-   * Досчитан ли раунд сервером.
-   *
-   * зачем 2026-08-03 (владелец: «когда мы на турнирной таблице, мы видим
-   * сначала нули, а я сказал показывать актуальную инфу вместо нулей»): пока
-   * комната не вышла из round{N}, чужие результаты ещё не применены и score у
-   * них РЕАЛЬНО равен нулю. Рисовать этот ноль — врать: у игрока не «ноль
-   * звёзд», его результат просто ещё не пришёл. Показываем тире вместо цифры,
-   * а как только сервер досчитал — настоящее число без всякой перезагрузки.
-   */
-  scoresSettled: boolean;
   place: number;
   layoutIndex: number;
   previousLayoutIndex: number;
@@ -329,11 +317,14 @@ const TableRow = memo(function TableRow({
   const revealScale = useSharedValue(1);
 
   const overtook = row.prevPlace > place;
-  // Пока чужие результаты не досчитаны, полоса не изображает «нулевой» рейтинг:
-  // держим её на минимуме, чтобы длина не врала вместе с цифрой.
-  const fillRatio = scoresSettled || row.isYou
-    ? Math.max(0.12, row.score / maxScore)
-    : 0.12;
+  // зачем 2026-08-04 (владелец: «таблица не должна показывать нули — сразу
+  // живое количество»): сервер пишет score каждого игрока в момент его
+  // ответа (см. tournament_core.ts — score растёт построчно, не пакетом в
+  // конце раунда), так что это уже настоящее текущее число, а не заглушка.
+  // Раньше здесь держали полосу на минимуме и рисовали тире, пока раунд не
+  // «досчитан» — то есть врали временной задержкой там, где сервер давно
+  // сказал правду.
+  const fillRatio = Math.max(0.12, row.score / maxScore);
 
   // зачем 2026-08-01 (аудит турнира): было 420 + index*30 — последняя из 16
   // строк начинала переезд только через 870 мс, и почти секунду таблица
@@ -407,13 +398,10 @@ const TableRow = memo(function TableRow({
       <View style={styles.scoreRow}>
         <StarGlyph size={13} color={P.gold} />
         {/* eslint-disable-next-line text-integrity/no-unsafe-text-truncation -- Animated.Text: счёт анимируется при обгоне, FlowText не оборачивает анимируемый текст */}
-        <Animated.Text
-          style={[styles.score, !scoresSettled && !row.isYou && styles.scorePending]}
-          allowFontScaling={false}
-        >
-          {/* Свой результат известен всегда — он посчитан локально в раунде.
-              Чужие до финализации показываем тире, а не лживым нулём. */}
-          {scoresSettled || row.isYou ? row.score : '—'}
+        <Animated.Text style={styles.score} allowFontScaling={false}>
+          {/* Живой счёт с сервера — растёт по мере ответов игроков, показываем
+              сразу без тире и без ожидания «финализации» раунда. */}
+          {row.score}
         </Animated.Text>
       </View>
     </Animated.View>
@@ -506,10 +494,6 @@ const makeStyles = (P: TournamentV2) => StyleSheet.create({
     color: P.text,
     fontVariant: ['tabular-nums'],
   },
-  // Тире вместо ещё не досчитанного результата — тише обычной цифры, чтобы
-  // читалось как «ждём», а не как настоящий счёт.
-  scorePending: { color: P.ghost },
-
   hint: { textAlign: 'center', ...type.body, color: P.ghost },
   hintRow: { alignItems: 'center', marginTop: 18, gap: 4 },
   hintTimer: {

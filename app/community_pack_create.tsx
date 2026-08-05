@@ -904,7 +904,7 @@ export default function CommunityPackCreateScreen() {
           <BouncyScrollView
             ref={scrollViewRef}
             style={{ flex: 1 }}
-            decelerationRate="normal"
+            decelerationRate="fast"
             keyboardShouldPersistTaps="handled"
             keyboardDismissMode={effectiveOs === 'ios' ? 'interactive' : 'on-drag'}
             onScroll={(e) => {
@@ -1066,7 +1066,7 @@ export default function CommunityPackCreateScreen() {
 
                 <ScrollView
                   horizontal
-                  decelerationRate="normal"
+                  decelerationRate="fast"
                   showsHorizontalScrollIndicator={false}
                   contentContainerStyle={styles.cardBackThumbRow}
                   keyboardShouldPersistTaps="handled"

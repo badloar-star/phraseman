@@ -141,7 +141,7 @@ assets/audio/personal-plans-runtime/
 assets/images/collectibles/dalli/
 
 # Non-runtime authoring, diagnostics, and local test artifacts
-content/
+/content/
 .shots/
 .eas-logs/
 test-results/

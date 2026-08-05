@@ -7,7 +7,12 @@ const path = require('node:path');
 const admin = require('../functions/node_modules/firebase-admin');
 
 const EXPECTED_PROJECT_ID = 'phraseman-ea0b3';
-const EXPECTED_VERSION = 'tpool_20260801_v9';
+// зачем 2026-08-04: цель миграции — v10, не v9. v9 существовал только в коде
+// (correctTwinVariants с наречиями в безопасных заменах) и НИКОГДА не
+// применялся в проде — прод остаётся на v8, поэтому EXPECTED_SOURCE_VERSION
+// и EXPECTED_SOURCE_EXPOSURE_BUCKET_COUNTS ниже не трогаем: они сверены с
+// боевым барьером и остаются валидными как есть.
+const EXPECTED_VERSION = 'tpool_20260801_v10';
 const EXPECTED_SOURCE_VERSION = 'tpool_20260801_v8';
 const EXPECTED_NEW_COUNT = 4000;
 const COLLECTION = 'tournamentTasks';
@@ -21,10 +26,15 @@ const MODES = ['guess_phrase', 'fill_gap', 'find_oddity', 'translate_build', 'sp
 // find_oddity сам просел по запасу кандидатов (345 вместо 400). Бакет по 40
 // заданий на корзину даёт ceil(count/40) по режиму; см. manifest.exposure в
 // tournament_pool_v2_factory.ts. Это layout НОВОГО (EXPECTED_VERSION) пула.
+//
+// зачем 2026-08-04: наречия ушли из безопасных замен find_oddity (см.
+// tournament_pool_v2_factory.ts, correctTwinVariants) — запас кандидатов
+// просел ещё раз (300 вместо 375), недобор ушёл в guess_phrase (1508 вместо
+// 1433). Бакеты пересчитаны: ceil(300/40)=8, ceil(1508/40)=38.
 const EXPECTED_EXPOSURE_BUCKET_COUNTS = Object.freeze({
-  guess_phrase: 36,
+  guess_phrase: 38,
   fill_gap: 13,
-  find_oddity: 10,
+  find_oddity: 8,
   translate_build: 38,
   speed_match: 5,
 });

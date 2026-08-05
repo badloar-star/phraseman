@@ -399,8 +399,10 @@ export default function LevelGiftsInventoryScreen() {
                     borderRadius: 18,
                     paddingVertical: 11,
                     paddingHorizontal: 12,
+                    // зачем 2026-08-04: borderWidth уже 0 (разделяем тоном, не
+                    // обводкой), а borderColor остался висеть мёртвым — убран,
+                    // чтобы случайное возвращение ширины не вернуло рамку.
                     borderWidth: 0,
-                    borderColor: `${gift.accent}70`,
                     overflow: 'hidden' as const,
                   };
                   const chipInner = (
@@ -517,7 +519,7 @@ export default function LevelGiftsInventoryScreen() {
                 colors={emptyGiftSurface}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 1 }}
-                style={{ borderRadius: 22, padding: 22, borderWidth: 0, borderColor: `${t.accent}55`, alignItems: 'center' }}
+                style={{ borderRadius: 22, padding: 22, borderWidth: 0, alignItems: 'center' }}
               >
                 <View style={{ width: 58, height: 58, borderRadius: 18, alignItems: 'center', justifyContent: 'center', backgroundColor: `${t.accent}24`, marginBottom: 12 }}>
                   <Ionicons name="gift-outline" size={28} color={t.accent} />

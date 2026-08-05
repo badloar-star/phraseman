@@ -1228,7 +1228,13 @@ export function submitSpeedMatchAttempt(
   pairIndex: number,
   selectedIndex: number,
 ) {
-  return callFunction<{ ok: boolean; correct: boolean; completed: boolean; wrongAttempts: number }>(
+  return callFunction<{
+    ok: boolean;
+    correct: boolean;
+    completed: boolean;
+    wrongAttempts: number;
+    penaltyApplied: boolean;
+  }>(
     'tournamentSubmitSpeedMatchAttempt',
     { roomId, roundNo, taskId, pairIndex, selectedIndex },
   );
@@ -1278,12 +1284,19 @@ export type WeeklyBankInfo = {
   entryWindowMs?: number;
   /** Часы сервера в момент ответа — база для честного отсчёта. */
   serverNowMs?: number;
-  /** Цена входа в жемчужинах (владелец: «билет стоит 3 жемчужины»). */
+  /** Цена входа в жемчужинах (владелец: «билет стоит 5 жемчужин»). */
   entryGems?: number;
   /** Баланс жемчужин игрока — источник для витрины билетов. */
   gemBalance?: number;
   /** Бесплатный вход этой недели ещё не использован. */
   freeEntryAvailable?: boolean;
+  /**
+   * зачем 2026-08-04 (владелец: Season Pass tournament_ticket — «появится
+   * ассет в разделе турнир в правом углу»): активный сезонный билет — вход
+   * без списания жемчужин у игрока (банк получает свою долю всё равно, см.
+   * functions/src/tournaments.ts tournamentJoinTransaction).
+   */
+  seasonTicketAvailable?: boolean;
   lastWeek: { weekId: string; paidOut: boolean; myPlace: number; myGems: number };
 };
 
@@ -1392,6 +1405,8 @@ export type SeasonEntry = {
   uid: string;
   name: string;
   points: number;
+  /** Реальные звёзды, набранные за неделю (сумма player.score по турнирам). Для лобби — points остаётся очками места и используется для сортировки/призов. */
+  starsTotal: number;
   /** Аватар из профиля игрока; у старых записей может отсутствовать. */
   avatar?: string;
   // ── Поля для карточки игрока (пишутся при финализации турнира) ────────────
@@ -1477,6 +1492,7 @@ export async function loadSeasonStandings(force = false): Promise<SeasonStanding
         uid: doc.id,
         name: String(data.name ?? 'Игрок'),
         points: Math.max(0, Math.trunc(Number(data.points) || 0)),
+        starsTotal: Math.max(0, Math.trunc(Number(data.starsTotal) || 0)),
         avatar: typeof data.avatar === 'string' ? data.avatar : undefined,
       };
     });
@@ -1496,6 +1512,7 @@ export async function loadSeasonStandings(force = false): Promise<SeasonStanding
           uid: myUid,
           name: String(data.name ?? 'Вы'),
           points: Math.max(0, Math.trunc(Number(data.points) || 0)),
+          starsTotal: Math.max(0, Math.trunc(Number(data.starsTotal) || 0)),
           avatar: typeof data.avatar === 'string' ? data.avatar : undefined,
         };
         myPlace = 0;

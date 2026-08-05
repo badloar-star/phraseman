@@ -256,7 +256,10 @@ describe('tournament question feedback UX', () => {
 
   test('FeedbackKit keeps tournament sound and haptic settings independent', () => {
     expect(round).toContain("import { fk } from './feedback/feedback_kit'");
-    expect(round).toMatch(/if \(result\.correct\) fk\.correct\(\);\s*else fk\.wrong\(\);/);
+    // зачем 2026-08-04: звук турнира глушился общим лимитом 2/сек — фикс
+    // передаёт scoped-опции (TOURNAMENT_SOUND_OPTIONS) в каждый вызов fk,
+    // регекс должен допускать аргумент, а не требовать пустые скобки.
+    expect(round).toMatch(/if \(result\.correct\) fk\.correct\([^)]*\);\s*else fk\.wrong\([^)]*\);/);
     expect(round).not.toContain("from 'expo-haptics'");
   });
 

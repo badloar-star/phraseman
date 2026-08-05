@@ -65,19 +65,29 @@ function PressableScale({
   }, [opacity, scale]);
 
   const pressIn = useCallback(() => {
-    // Haptic в onPressIn — даёт Taptic Engine ~50ms форы (warm-up до реального tap)
-    if (!silent && !unavailable && withHaptic) hapticTap();
-    if (unavailable) return;
-    if (reduceMotion) {
-      Animated.timing(opacity, { toValue: 0.82, duration: 70, useNativeDriver: true }).start();
+    // зачем: владелец жаловался на «микрозадержку при нажатии на любую кнопку».
+    // Причина — hapticTap() стоял ПЕРВЫМ: это async-функция, но до первого await
+    // она идёт синхронно по JS-потоку и дёргает нативный модуль через мост, а на
+    // холодном старте (кэш настройки ещё не прогрет) добавляет поход в
+    // AsyncStorage. Всё это откладывало старт визуальной анимации на тот самый
+    // ощутимый миг. Теперь порядок обратный: сначала кадр (то, что видит глаз),
+    // хаптик догоняет следом — Taptic Engine всё равно получает свою фору,
+    // потому что onPressIn срабатывает задолго до onPress.
+    if (unavailable) {
+      if (!silent && withHaptic) hapticTap();
       return;
     }
-    Animated.spring(scale, {
-      toValue: pressedScale,
-      useNativeDriver: true,
-      friction: MOTION_SPRING_LEGACY.micro.friction,
-      tension: MOTION_SPRING_LEGACY.micro.tension,
-    }).start();
+    if (reduceMotion) {
+      Animated.timing(opacity, { toValue: 0.82, duration: 70, useNativeDriver: true }).start();
+    } else {
+      Animated.spring(scale, {
+        toValue: pressedScale,
+        useNativeDriver: true,
+        friction: MOTION_SPRING_LEGACY.press.friction,
+        tension: MOTION_SPRING_LEGACY.press.tension,
+      }).start();
+    }
+    if (!silent && !unavailable && withHaptic) hapticTap();
   }, [opacity, pressedScale, reduceMotion, scale, silent, unavailable, withHaptic]);
 
   const pressOut = useCallback(() => {
@@ -88,8 +98,8 @@ function PressableScale({
     Animated.spring(scale, {
       toValue: 1,
       useNativeDriver: true,
-      friction: MOTION_SPRING_LEGACY.micro.friction,
-      tension: MOTION_SPRING_LEGACY.micro.tension,
+      friction: MOTION_SPRING_LEGACY.press.friction,
+      tension: MOTION_SPRING_LEGACY.press.tension,
     }).start();
   }, [opacity, reduceMotion, scale]);
 

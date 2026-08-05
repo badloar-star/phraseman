@@ -31,13 +31,14 @@ The `ember` theme is explicitly non-volcanic: warm amber glass, dark plum, smoke
 ## Asset Contract
 
 - Source generation target: full portrait image, 1024 × 1536 or larger.
-- Final bundled asset: 1024 × 1536 WebP, high-quality compression (target quality 80–84).
+- Final bundled asset: 768 × 1152 WebP at quality 40, encoded directly from the 1024 × 1536 PNG source.
+- The complete 13-theme bundled set must not exceed 500,000 bytes; no single theme may exceed 110,000 bytes.
 - One literal static `require()` per theme in `app/season_pass_theme_backgrounds.ts`.
 - Generated originals and QA sheets stay outside `assets/images/**`; only final compressed WebP files are bundled.
 - All 13 content hashes must be distinct.
 - No 2×2 atlases, quadrant crops, upscaled 512 px halves, or repeatable tiles.
 
-At a 390 px mobile viewport, the 1024 px source width provides more than 2.6 source pixels per logical point before device scaling, avoiding the previous low-resolution appearance.
+At a 390 px mobile viewport, the 768 px bundled width provides almost 2 source pixels per logical point. The original 1024 × 1536 PNG sources remain outside the bundle for future re-encoding without generational loss.
 
 ## Rendering Architecture
 
@@ -50,7 +51,7 @@ At a 390 px mobile viewport, the 1024 px source width provides more than 2.6 sou
 
 ## Performance and Accessibility
 
-- Decode exactly one 1024 × 1536 WebP for the active theme, not one image per reward and not an 8520 px bitmap.
+- Decode exactly one 768 × 1152 WebP for the active theme, not one image per reward and not an 8520 px bitmap.
 - Theme switches replace the single image through the existing static registry.
 - Decorative image and scrim use `pointerEvents="none"` and are not announced by accessibility services.
 - Existing 44 px minimum touch targets and accessibility labels remain unchanged.
@@ -60,7 +61,7 @@ At a 390 px mobile viewport, the 1024 px source width provides more than 2.6 sou
 
 - TDD contract first fails against the old `{ free, plus }` registry and SVG patterns.
 - Registry contract proves exactly 13 literal full-screen asset requires with no aliases.
-- Image metadata contract proves WebP, 1024 × 1536, bounded compressed size, and distinct hashes.
+- Image metadata contract proves WebP, 768 × 1152, a 500,000-byte total budget, a 110,000-byte per-file ceiling, and distinct hashes.
 - Screen contract proves the absolute image renders before `FlatList`, uses `resizeMode="cover"`, is non-interactive, and no longer uses SVG image patterns for the background.
 - Existing spine continuity tests prove the divider still extends through top and bottom overscan as one path.
 - Visual QA checks every theme at full size, with special rejection rules for seams, low-detail/upscaled appearance, text artifacts, and forbidden fire/lava imagery in `ember`.

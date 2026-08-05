@@ -50,6 +50,7 @@ import { safeRouterBack } from './navigation_back';
 import { trackEvent } from './analytics';
 import { triLang } from '../constants/i18n';
 import { aiDialogContentAvailableForTarget, frenchAiDialogGateCopy } from './ai_dialog_target_gate';
+import AiDialogConsentGate from './ai_dialog_consent_gate';
 
 const DEFAULT_CEFR = 'A2';
 const LOCAL_COMPANION_GREETING = 'Let\'s practice in English! What did you do today?';
@@ -61,7 +62,7 @@ interface UiMessage {
   text: string;
 }
 
-export default function AiCompanionSession() {
+function AiCompanionSession() {
   const { theme: t, f } = useTheme();
   const { hasPremiumAccess, accessResolved } = usePremium();
   // Доступ к «ИИ-диалогам» с учётом «Пульта» (см. ai_dialog_session.tsx).
@@ -514,5 +515,15 @@ export default function AiCompanionSession() {
         </KeyboardAvoidingView>
       </SafeAreaView>
     </ScreenGradient>
+  );
+}
+
+// зачем: тот же явный opt-in, что у ai_dialog_session.tsx — общий gate,
+// т.к. это тот же тип фичи (AI-диалог) с той же формулировкой согласия.
+export default function AiCompanionSessionRoute() {
+  return (
+    <AiDialogConsentGate>
+      <AiCompanionSession />
+    </AiDialogConsentGate>
   );
 }

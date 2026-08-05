@@ -64,7 +64,7 @@ import { buildActiveSurveyDailyChallenge, buildServerConfirmedLegacyCompletion, 
 import { beginSurveyDailyTaskRequest, commitSurveyDailyTaskRequest, peekSurveyDailyTask, type SurveyDailyTaskScope } from './survey_daily_task_cache';
 import { primeSurvey } from './survey_handoff';
 import { getCanonicalUserId } from './user_id_policy';
-import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
+import { captureAccountGeneration, isCurrentAccountGeneration, subscribeAccountGeneration } from './account_generation';
 import { accountScopeKey } from './account_scope_key';
 import {
     beginDailyTasksScreenRequest,
@@ -2166,6 +2166,7 @@ export default function DailyTasksScreen() {
     const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
     const isGoldTheme = themeMode === 'gold';
     const isBusinessTheme = themeMode === 'business' || themeMode === 'businessLight';
+    const isSagePorcelainTheme = themeMode === 'sagePorcelain';
     const goldAccent = GOLD_RICH.metalGold;
     const goldHairline = GOLD_RICH.hairline;
     const rewardActionBg = isGoldTheme ? GOLD_RICH.paleGold : t.correct;
@@ -2527,6 +2528,37 @@ export default function DailyTasksScreen() {
         setLoadingTasks((prev) => (tasksLengthRef.current === 0 ? true : prev));
         refreshTasksAndProgress();
     }, [refreshTasksAndProgress]));
+    // зачем: аудит зависшего 0/0 (2026-08-04, женщина оплатила Plus и не увидела
+    // «Вызовы дня») — refreshTasksAndProgress молча return'ится (строка ~2378), если
+    // смена «поколения аккаунта» (вход/merge/restore) произошла МЕЖДУ рендером,
+    // зафиксировавшим renderAccountScope, и запуском async-замыкания. loadingTasks
+    // к этому моменту уже true (useFocusEffect выше), и без ретрая скелетон висит
+    // вечно до размонтирования экрана.
+    // Вызывать refreshTasksAndProgress() прямо из колбэка подписки НЕЛЬЗЯ: колбэк
+    // держит то же устаревшее замыкание (renderAccountScope из ПРЕЖНЕГО рендера),
+    // поэтому проверка на строке ~2378 внутри него снова тихо провалится. Вместо
+    // этого форсируем ре-рендер счётчиком — на следующем рендере renderAccountScope
+    // пересчитается из актуального captureAccountGeneration(), refreshTasksAndProgress
+    // пересоздастся с верным замыканием, и уже отдельный эффект ниже (реагирующий на
+    // сам renderAccountScope) безопасно её вызовет.
+    const [accountGenerationBumpTick, setAccountGenerationBumpTick] = useState(0);
+    useEffect(() => {
+        const sub = subscribeAccountGeneration((token) => {
+            if (token.phase !== 'active') return;
+            setAccountGenerationBumpTick((v) => v + 1);
+        });
+        return () => sub.remove();
+    }, []);
+    const accountGenerationBumpTickRef = useRef(accountGenerationBumpTick);
+    useEffect(() => {
+        // Пропускаем маунт и повторные ре-рендеры с тем же tick (см. tasksLengthRef
+        // выше — тот же паттерн: ref, а не deps, чтобы не перезапускаться от setState
+        // внутри refreshTasksAndProgress).
+        if (accountGenerationBumpTickRef.current === accountGenerationBumpTick) return;
+        accountGenerationBumpTickRef.current = accountGenerationBumpTick;
+        refreshTasksAndProgress();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [accountGenerationBumpTick]);
     useEffect(() => {
         const sub = onAppEvent('daily_task_reward_claimed', () => { refreshTasksAndProgress(true); reloadAllDoneStreak(); });
         return () => sub.remove();
@@ -2791,10 +2823,10 @@ export default function DailyTasksScreen() {
     // выглядела активной при невыполненных заданиях и молча не срабатывала.
     const trioActionBg = trioClaimButtonEnabled
         ? rewardActionBg
-        : (isGoldTheme ? GOLD_RICH.bronzeWash : 'rgba(255,255,255,0.10)');
+        : (isGoldTheme ? GOLD_RICH.bronzeWash : isSagePorcelainTheme ? 'rgba(39,84,64,0.10)' : 'rgba(255,255,255,0.10)');
     const trioActionText = trioClaimButtonEnabled
         ? rewardActionText
-        : (isGoldTheme ? t.textMuted : 'rgba(255,255,255,0.45)');
+        : (isGoldTheme || isSagePorcelainTheme ? t.textMuted : 'rgba(255,255,255,0.45)');
     // Счётчик и знаменатель учитывают опрос как 4-е задание, когда он активен.
     const handleTaskNav = async (task: DailyTask) => {
         if (!dailyTaskAvailableForStudyTarget(task, studyTarget)) {
@@ -3141,7 +3173,7 @@ export default function DailyTasksScreen() {
         </Animated.View>)}
 
       <BouncyWrap>
-      <Reanimated.ScrollView decelerationRate="normal" bounces alwaysBounceVertical overScrollMode="always" style={{ flex: 1 }} contentContainerStyle={{ padding: 16, gap: 12, paddingBottom: 28 + bottomInset }} showsVerticalScrollIndicator keyboardShouldPersistTaps="handled" onScroll={onAnimatedScroll} scrollEventThrottle={16}>
+      <Reanimated.ScrollView decelerationRate="fast" bounces alwaysBounceVertical overScrollMode="always" style={{ flex: 1 }} contentContainerStyle={{ padding: 16, gap: 12, paddingBottom: 28 + bottomInset }} showsVerticalScrollIndicator keyboardShouldPersistTaps="handled" onScroll={onAnimatedScroll} scrollEventThrottle={16}>
 
         {/* Skeleton-заглушки: пока идёт первая загрузка набора и реальных карточек ещё
             нет — показываем shimmer-плашки в форме taskCard (как «прогружается» лента
@@ -3220,18 +3252,18 @@ export default function DailyTasksScreen() {
           testID="daily-bonus"
           title={bonusTitle}
           description={bonusDescription}
-          titleColor={isGoldTheme ? t.textPrimary : '#FFFFFF'}
-          descriptionColor={isGoldTheme ? t.textMuted : 'rgba(255,255,255,0.62)'}
-          surfaceColor={isGoldTheme ? GOLD_RICH.wash : 'rgba(15,14,18,0.90)'}
+          titleColor={isGoldTheme || isSagePorcelainTheme ? t.textPrimary : '#FFFFFF'}
+          descriptionColor={isGoldTheme ? t.textMuted : isSagePorcelainTheme ? t.textSecond : 'rgba(255,255,255,0.62)'}
+          surfaceColor={isGoldTheme ? GOLD_RICH.wash : isSagePorcelainTheme ? 'rgba(247,250,246,0.92)' : 'rgba(15,14,18,0.90)'}
           borderColor={trioShardsClaimed ? t.border : trioClaimButtonEnabled ? (isGoldTheme ? goldHairline : bonusAccent + '80') : (isGoldTheme ? goldHairline : bonusAccent + '44')}
           outerStyle={[dailyTaskStyles.bonusCard, isGoldTheme ? { borderRadius: 16 } : null, isGoldTheme ? goldShadow(trioClaimButtonEnabled ? 2 : 1) : null]}
           titleTextProps={{ style: { fontSize: f.body, fontWeight: '800' } }}
           descriptionTextProps={{ style: { fontSize: f.caption, lineHeight: f.caption * 1.35, fontWeight: '400' } }}
           icon={<Image source={oskolokImageForPackShards(trioRewardCount)} style={{ width: 24, height: 24, opacity: trioShardsClaimed ? 0.55 : trioClaimButtonEnabled ? 1 : 0.72 }} contentFit="contain" />}
-          progress={<View style={[dailyTaskStyles.taskProgressTrack, isGoldTheme ? { backgroundColor: 'rgba(0,0,0,0.34)', borderWidth: 0, borderColor: GOLD_RICH.hairlineQuiet } : null]}><View style={{ height: '100%', width: `${dailyCounts.total ? Math.min((dailyCounts.done / dailyCounts.total) * 100, 100) : 0}%` as any, backgroundColor: trioShardsClaimed ? (isGoldTheme ? 'rgba(159,122,45,0.30)' : 'rgba(255,255,255,0.25)') : bonusAccent, borderRadius: 999 }} /></View>}
+          progress={<View style={[dailyTaskStyles.taskProgressTrack, isGoldTheme ? { backgroundColor: 'rgba(0,0,0,0.34)', borderWidth: 0, borderColor: GOLD_RICH.hairlineQuiet } : isSagePorcelainTheme ? { backgroundColor: 'rgba(39,84,64,0.12)' } : null]}><View style={{ height: '100%', width: `${dailyCounts.total ? Math.min((dailyCounts.done / dailyCounts.total) * 100, 100) : 0}%` as any, backgroundColor: trioShardsClaimed ? (isGoldTheme ? 'rgba(159,122,45,0.30)' : isSagePorcelainTheme ? 'rgba(39,84,64,0.24)' : 'rgba(255,255,255,0.25)') : bonusAccent, borderRadius: 999 }} /></View>}
           action={!trioShardsClaimed ? { label: `${bonusClaimLabel} ${trioRewardCount}`, accessibilityLabel: bonusClaimAccessibilityLabel, labelProps: { style: { fontSize: Math.min(f.sub, 13), fontWeight: '900' } }, onPress: handleClaimTrioShards, foregroundColor: trioActionText, backgroundColor: trioActionBg, disabled: !trioClaimButtonEnabled, loading: trioClaimBusy, icon: <Image source={oskolokImageForPackShards(trioRewardCount)} style={{ width: 14, height: 14, opacity: trioClaimButtonEnabled ? 1 : 0.5 }} contentFit="contain" /> } : undefined}
           claimed={trioShardsClaimed}
-          claimedIndicator={<View style={[dailyTaskStyles.compactIconButton, { backgroundColor: isGoldTheme ? GOLD_RICH.bronzeWash : 'rgba(255,255,255,0.06)' }]}><Ionicons name="checkmark-circle" size={18} color={isGoldTheme ? goldAccent : 'rgba(255,255,255,0.5)'} /></View>}
+          claimedIndicator={<View style={[dailyTaskStyles.compactIconButton, { backgroundColor: isGoldTheme ? GOLD_RICH.bronzeWash : isSagePorcelainTheme ? 'rgba(39,84,64,0.10)' : 'rgba(255,255,255,0.06)' }]}><Ionicons name="checkmark-circle" size={18} color={isGoldTheme ? goldAccent : isSagePorcelainTheme ? t.textMuted : 'rgba(255,255,255,0.5)'} /></View>}
         />)}
 
 
@@ -3253,7 +3285,7 @@ export default function DailyTasksScreen() {
             const { title: taskTitle, desc: taskDesc } = localizedDailyTaskStrings(lang, task);
             const isPremiumTask = PREMIUM_TASK_TYPES.has(task.type);
             const achievementIcon = getDailyTaskAchievementIcon(task.id);
-            const taskCardArt = dailyTaskBackgroundArt(task.type);
+            const taskCardArt = dailyTaskBackgroundArt(task.type, themeMode);
             // зачем: см. DAILY_TASK_META_ICON_FALLBACK — без него мета-задания рендерили пустую картинку.
             const metaIconFallback = achievementIcon ? undefined : DAILY_TASK_META_ICON_FALLBACK[task.type];
             const taskAccent = isGoldTheme
@@ -3266,7 +3298,7 @@ export default function DailyTasksScreen() {
             const taskFillColor = isGoldTheme
                 ? taskAccent
                 : `${taskAccent}${completed || claimed ? '34' : '18'}`;
-            const taskTrackColor = isGoldTheme ? 'rgba(12,10,8,0.78)' : isBusinessTheme ? 'rgba(13,13,13,0.92)' : 'rgba(15,14,18,0.90)';
+            const taskTrackColor = isGoldTheme ? 'rgba(12,10,8,0.78)' : isSagePorcelainTheme ? 'rgba(247,250,246,0.94)' : isBusinessTheme ? 'rgba(13,13,13,0.92)' : 'rgba(15,14,18,0.90)';
             const taskHairline = isGoldTheme ? goldHairline : `${taskAccent}${completed || claimed ? '8A' : '70'}`;
             const taskSurfaceGlow = isGoldTheme ? GOLD_RICH.wash : `${taskAccent}14`;
             const claimLabel = triLang(lang, {
@@ -3288,8 +3320,8 @@ export default function DailyTasksScreen() {
                 testID={`daily-task-${task.id}`}
                 title={taskTitle}
                 description=""
-                titleColor={isGoldTheme ? t.textPrimary : '#FFFFFF'}
-                descriptionColor={isGoldTheme ? t.textSecond : 'rgba(255,255,255,0.78)'}
+                titleColor={isGoldTheme || isSagePorcelainTheme ? t.textPrimary : '#FFFFFF'}
+                descriptionColor={isGoldTheme || isSagePorcelainTheme ? t.textSecond : 'rgba(255,255,255,0.78)'}
                 surfaceColor={taskTrackColor}
                 borderColor={taskHairline}
                 accentColor={taskAccent}
@@ -3303,9 +3335,10 @@ export default function DailyTasksScreen() {
                     // guard-ok: decorative — card Pressable already carries title+description as its accessibilityLabel.
                     : <Image source={achievementIcon} style={dailyTaskStyles.taskCapsuleHeroIcon} contentFit="contain" accessible={false} />}
                 background={<>
+                  {isSagePorcelainTheme && taskCardArt ? <Image source={taskCardArt} style={dailyTaskStyles.taskPortalArt} contentFit="cover" contentPosition="right center" accessible={false} /> : null}
                   <View pointerEvents="none" style={[dailyTaskStyles.taskCapsuleFill, taskFillSizeStyle, { backgroundColor: taskFillColor }]} />
                   <View pointerEvents="none" style={[dailyTaskStyles.taskCapsuleGlow, { backgroundColor: taskSurfaceGlow }]} />
-                  {taskCardArt ? <Image source={taskCardArt} style={dailyTaskStyles.taskPortalArt} contentFit="contain" contentPosition="right center" accessible={false} /> : null}
+                  {!isSagePorcelainTheme && taskCardArt ? <Image source={taskCardArt} style={dailyTaskStyles.taskPortalArt} contentFit="contain" contentPosition="right center" accessible={false} /> : null}
                   <View pointerEvents="none" style={[dailyTaskStyles.taskCapsuleAccentBar, { backgroundColor: taskAccent }]} />
                   {/* зачем: п.2 — «done/total» переехал с отдельного мета-ряда под карточкой
                       прямо на карточку (бейдж в правом верхнем углу), т.к. заливка карточки
@@ -3324,8 +3357,8 @@ export default function DailyTasksScreen() {
                 // колонка не должна оставаться пустой (иначе выполненный вызов
                 // выглядит как невыполненный, пока не доедет ответ сервера).
                 claimed={claimed || completed}
-                claimedIndicator={<View style={[dailyTaskStyles.compactIconButton, { backgroundColor: isGoldTheme ? GOLD_RICH.bronzeWash : 'rgba(255,255,255,0.06)' }]}><Ionicons name="checkmark-circle" size={18} color={isGoldTheme ? goldAccent : 'rgba(255,255,255,0.5)'} /></View>}
-                reroll={!completed && !claimed && rerollsLeft > 0 ? { accessibilityLabel: rerollLabel, onPress: () => { hapticTap(); setRerollConfirm({ task }); }, icon: <Ionicons name="refresh" size={22} color={isGoldTheme ? goldAccent : 'rgba(255,255,255,0.62)'} /> } : undefined}
+                claimedIndicator={<View style={[dailyTaskStyles.compactIconButton, { backgroundColor: isGoldTheme ? GOLD_RICH.bronzeWash : isSagePorcelainTheme ? 'rgba(39,84,64,0.10)' : 'rgba(255,255,255,0.06)' }]}><Ionicons name="checkmark-circle" size={18} color={isGoldTheme ? goldAccent : isSagePorcelainTheme ? t.textMuted : 'rgba(255,255,255,0.5)'} /></View>}
+                reroll={!completed && !claimed && rerollsLeft > 0 ? { accessibilityLabel: rerollLabel, onPress: () => { hapticTap(); setRerollConfirm({ task }); }, icon: <Ionicons name="refresh" size={22} color={isGoldTheme ? goldAccent : isSagePorcelainTheme ? t.textMuted : 'rgba(255,255,255,0.62)'} /> } : undefined}
                 premium={isPremiumTask ? <Animated.View pointerEvents="box-none" style={{ position: 'absolute', bottom: -1, right: -1, zIndex: 10, transform: [{ scale: premiumPulse }], opacity: premiumSparkle.interpolate({ inputRange: [0, 1], outputRange: [0.86, 1] }), borderBottomRightRadius: 18, borderTopLeftRadius: 10, overflow: 'hidden' }}><PlusBadge themeMode={themeMode} size="sm" /></Animated.View> : undefined}
               />
               {/* зачем: п.1 — убран отдельный трек прогресса (taskProgressTrack) и повторный
@@ -3388,7 +3421,7 @@ export default function DailyTasksScreen() {
             const modalAccent = isGoldTheme
                 ? goldTaskAccent(taskToStart.type, { completed: false, claimed: false })
                 : dailyTaskAccentHex(t, taskToStart.type);
-            const modalArtwork = dailyTaskBackgroundArt(taskToStart.type);
+            const modalArtwork = dailyTaskBackgroundArt(taskToStart.type, themeMode);
             const modalIcon = getDailyTaskAchievementIcon(taskToStart.id);
             return <View style={[dailyTaskStyles.questSheet, { backgroundColor: t.bgCard, borderColor: t.border }]}> 
               <View style={[dailyTaskStyles.questSheetHandle, { backgroundColor: t.border }]} />

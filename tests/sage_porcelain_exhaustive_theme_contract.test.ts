@@ -50,8 +50,8 @@ describe('Sage Porcelain exhaustive visual coverage', () => {
 
     for (const source of [plan, stats]) {
       expect(source).toContain("if (themeMode === 'sagePorcelain')");
-      expect(source).toContain("bg: ['#F0F1EC', '#E1E5DC', '#D1D9D1']");
-      expect(source).toContain("card: ['#FCFDF9', '#F0F1EC']");
+      expect(source).toContain("bg: ['#DCE1D8', '#CDD5C7', '#BFC8B8']");
+      expect(source).toContain("card: ['#FCFDF9', '#DCE1D8']");
       expect(source).toContain("accent: '#315F50'");
       expect(source).toContain("border: '#CFD6CE'");
       expect(source).toContain("text: '#17201D'");
@@ -59,7 +59,7 @@ describe('Sage Porcelain exhaustive visual coverage', () => {
       expect(source).toContain("accentSoft: '#D9E9E1'");
     }
 
-    expect(plan).toContain("hero: ['#E1E5DC', '#F0F1EC']");
+    expect(plan).toContain("hero: ['#E1E5DC', '#DCE1D8']");
     expect(plan).toContain("ghost: '#61706A'");
     expect(plan).toContain("buttonText: '#FFFFFF'");
   });

@@ -82,6 +82,7 @@ import {
   tournamentRoundTimingWindow,
   tournamentRoomId,
   tournamentWeekId,
+  TOURNAMENT_EXPOSURE_TAG_PATTERN,
   validateTournamentFillMutation,
   validateTournamentTask,
   validateTournamentTaskForNewRoom,
@@ -338,14 +339,36 @@ function canonicalTournamentReceiptRanks(
   return ranks;
 }
 
-function readSpeedMatchProgress(data: FirebaseFirestore.DocumentData | undefined): SpeedMatchAttemptProgress | undefined {
+export function readSpeedMatchProgress(data: FirebaseFirestore.DocumentData | undefined): SpeedMatchAttemptProgress | undefined {
   if (!data || data.kind !== 'speed_match_attempt_v1') return undefined;
+  const matchedIndexes = Array.isArray(data.matchedIndexes)
+    ? data.matchedIndexes.map((value: unknown) => readInt(value, -1))
+    : [];
+  const firestoreRows = data.triedIndexesByPair && typeof data.triedIndexesByPair === 'object'
+    ? data.triedIndexesByPair as Record<string, unknown>
+    : null;
   return {
-    matchedIndexes: Array.isArray(data.matchedIndexes) ? data.matchedIndexes.map((value: unknown) => readInt(value, -1)) : [],
+    matchedIndexes,
     triedIndexes: Array.isArray(data.triedIndexes)
       ? data.triedIndexes.map((row: unknown) => Array.isArray(row) ? row.map((value) => readInt(value, -1)) : [])
-      : [],
+      : Array.from({ length: matchedIndexes.length }, (_, index) => {
+        const row = firestoreRows?.[String(index)];
+        return Array.isArray(row) ? row.map((value) => readInt(value, -1)) : [];
+      }),
     wrongAttempts: Math.max(0, readInt(data.wrongAttempts, 0)),
+  };
+}
+
+/** Firestore rejects arrays that directly contain arrays; store retry rows in a map instead. */
+export function encodeSpeedMatchProgressForFirestore(
+  progress: SpeedMatchAttemptProgress,
+): { matchedIndexes: number[]; triedIndexesByPair: Record<string, number[]>; wrongAttempts: number } {
+  return {
+    matchedIndexes: [...progress.matchedIndexes],
+    triedIndexesByPair: Object.fromEntries(
+      progress.triedIndexes.map((row, index) => [String(index), [...row]]),
+    ),
+    wrongAttempts: progress.wrongAttempts,
   };
 }
 const PLAYER_COLORS = ['#47C870', '#FFC800', '#FF5B6C', '#16B7D9', '#B78CFF', '#FF9F43'] as const;
@@ -384,7 +407,7 @@ const ACTIVE_DEADLINE_STATES: TournamentState[] = [
   'round3', 'table3', 'round4', 'final', 'results', 'rewards',
 ];
 
-type Row = Record<string, unknown>;
+export type Row = Record<string, unknown>;
 type AdvanceOutcome = 'advanced' | 'finalize' | 'cancel_players' | 'cancel_resources' | 'cancel_legacy' | 'waiting' | 'stale' | 'skip';
 
 function sanitizeString(value: unknown, max: number): string {
@@ -412,17 +435,28 @@ function readInt(value: unknown, fallback = 0): number {
  * от общего недельного freeEntryAvailable — план владельца зафиксирован в
  * docs/plans/2026-08-03-season-pass-gift-catalog.ru.md §1.7.
  */
-function readActiveTournamentTicket(user: Row): boolean {
+/**
+ * Разобранный сезонный билет турнира, только если он реально активен.
+ * Экспортируется — tournament_weekly_payout.ts переиспользует для витрины
+ * (тот же документ users/{uid} читается им в той же транзакции банка).
+ */
+export function parseActiveTournamentTicket(user: Row): { expiresAt: number } | null {
   const raw = user.progress && typeof user.progress === 'object'
     ? (user.progress as Row).season_tournament_ticket_v1
     : undefined;
-  if (typeof raw !== 'string' || !raw) return false;
+  if (typeof raw !== 'string' || !raw) return null;
   try {
     const parsed = JSON.parse(raw) as { usesLeft?: unknown; expiresAt?: unknown };
-    return readInt(parsed.usesLeft, 0) > 0 && readInt(parsed.expiresAt, 0) > Date.now();
+    const expiresAt = readInt(parsed.expiresAt, 0);
+    if (readInt(parsed.usesLeft, 0) > 0 && expiresAt > Date.now()) return { expiresAt };
+    return null;
   } catch {
-    return false;
+    return null;
   }
+}
+
+function readActiveTournamentTicket(user: Row): boolean {
+  return parseActiveTournamentTicket(user) !== null;
 }
 
 function timestampMs(value: unknown): number {
@@ -1052,12 +1086,11 @@ export function buildTournamentRounds(
     const selected: TournamentTask[] = [];
     for (const plannedMode of plannedModes) {
       const modePool = pool.filter((task) => task.mode === plannedMode);
+      // зачем 2026-08-04: раньше был жёсткий перечень версий пула (v5..v9) —
+      // v10 забыли добавить, ротация/дедуп тихо выключались в бою (см. тот же
+      // класс бага в tournament_core.ts, TOURNAMENT_EXPOSURE_TAG_PATTERN).
       const usesDeterministicExposureDeck = modePool.length > 0
-        && modePool.every((task) => task.tags?.includes('pool:tpool_20260801_v9')
-          || task.tags?.includes('pool:tpool_20260801_v8')
-          || task.tags?.includes('pool:tpool_20260801_v7')
-          || task.tags?.includes('pool:tpool_20260801_v6')
-          || task.tags?.includes('pool:tpool_20260801_v5'));
+        && modePool.every((task) => task.tags?.some((tag) => TOURNAMENT_EXPOSURE_TAG_PATTERN.test(tag)));
       const picked = selectRoundTasks({
         pool: usesDeterministicExposureDeck
           ? modePool
@@ -1887,11 +1920,19 @@ export async function tournamentLeaveTransaction(
     // лобби без единой сыгранной игры молча съедал бы бесплатный вход на неделю.
     const usedFreeEntry = recordedContribution === 0
       && sanitizeString(user.tournament_free_entry_week_id, 32) === tournamentWeekId(room.startsAt);
+    // зачем 2026-08-04 (владелец, симметрично usedFreeEntry выше): вышел до
+    // старта — билет не потрачен впустую, возвращаем usesLeft. join-транзакция
+    // уже стёрла исходный expiresAt (FieldValue.delete), поэтому билету даётся
+    // свежий 72ч срок — щедрое округление в пользу игрока (не его вина, что
+    // он вышел до старта), а не попытка точно восстановить удалённое поле.
     tx.set(userRef, {
       ...(refundedGems > 0
         ? { shards: admin.firestore.FieldValue.increment(refundedGems) }
         : {}),
       ...(usedFreeEntry ? { tournament_free_entry_week_id: admin.firestore.FieldValue.delete() } : {}),
+      ...(enteredWithSeasonTicket
+        ? { 'progress.season_tournament_ticket_v1': JSON.stringify({ usesLeft: 1, expiresAt: nowMs + 72 * 60 * 60 * 1000 }) }
+        : {}),
       ...(clearsSlotMarker
         ? {
           tournament_last_slot_key: admin.firestore.FieldValue.delete(),
@@ -2953,10 +2994,11 @@ export async function tournamentSpeedMatchAttemptTransaction(
       });
       throw new HttpsError('failed-precondition', 'speed_match_task_unavailable');
     }
+    const previousProgress = readSpeedMatchProgress(progressSnap.data());
     let outcome;
     try {
       outcome = applySpeedMatchAttempt(
-        task, readSpeedMatchProgress(progressSnap.data()), input.pairIndex, input.selectedIndex,
+        task, previousProgress, input.pairIndex, input.selectedIndex,
       );
     } catch (error) {
       // зачем 2026-08-03 (инцидент «пары не засчитались, а логи пустые»):
@@ -2976,7 +3018,7 @@ export async function tournamentSpeedMatchAttemptTransaction(
     }
     tx.set(progressRef, {
       kind: 'speed_match_attempt_v1', taskId: input.taskId, playerId: input.stableUid,
-      roundNo: input.roundNo, ...outcome.progress, updatedAtMs: receivedAtMs,
+      roundNo: input.roundNo, ...encodeSpeedMatchProgressForFirestore(outcome.progress), updatedAtMs: receivedAtMs,
       // зачем 2026-08-02 (аудит стоимости): TTL сразу при создании — см.
       // submissionEvidenceExpireAt в tournamentSubmitTaskAnswerTransaction.
       // Закрытие комнаты больше не переписывает эти документы пачкой.
@@ -2987,6 +3029,7 @@ export async function tournamentSpeedMatchAttemptTransaction(
     return {
       ok: true, correct: outcome.correct, completed: outcome.completed,
       wrongAttempts: outcome.progress.wrongAttempts,
+      penaltyApplied: outcome.progress.wrongAttempts > (previousProgress?.wrongAttempts ?? 0),
     };
   });
 }
@@ -3281,11 +3324,9 @@ export async function tournamentSubmitTaskAnswerTransaction(
         totalPairs: matchItems.length,
       } : {}),
       answerRank,
-      // зачем 2026-08-04: для пар scoreAnswer штраф больше не вычитает
-      // (владелец: «убрать штраф»), но передача ненулевого значения делала два
-      // расчёта награды формально разными и мешала их сверять. Штраф остаётся
-      // только в zeroScoreReason ниже — как объяснение, а не как вычет.
-      penaltyStars: matchItems ? 0 : penaltyStars,
+      // В speed_match серверный журнал считает только уникальные промахи:
+      // каждый из них снимает одну звезду, повторный тап не штрафует снова.
+      penaltyStars,
     });
     const selectedIndex = answer && typeof answer === 'object'
       ? readInt((answer as Row).selectedIndex, -1)
@@ -3629,6 +3670,10 @@ export async function tournamentFinalizeTransaction(
         ...(profileXp > 0 ? { totalXp: profileXp } : {}),
         hotStreak,
         points: Math.max(0, readInt(season.points, 0)) + effect.seasonPoints,
+        // зачем: владелец хочет в лобби реальный счёт звёзд игрока за неделю,
+        // а не очки места (points) — они остаются отдельно для сортировки
+        // таблицы и расчёта призов.
+        starsTotal: Math.max(0, readInt(season.starsTotal, 0)) + effect.roundStars,
         tournamentsPlayed: Math.max(0, readInt(season.tournamentsPlayed, 0)) + 1,
         bestPlace: season.bestPlace ? Math.min(readInt(season.bestPlace, effect.place), effect.place) : effect.place,
         updatedAt: nowMs,

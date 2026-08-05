@@ -456,7 +456,7 @@ function TrainerScreenInner() {
           </View>
 
           <BouncyWrap>
-          <ScrollView decelerationRate="normal" bounces alwaysBounceVertical overScrollMode="always" contentContainerStyle={{ padding: 16, gap: 12, paddingBottom: 30 }} showsVerticalScrollIndicator={false} onScroll={onBouncyScroll} scrollEventThrottle={16}>
+          <ScrollView decelerationRate="fast" bounces alwaysBounceVertical overScrollMode="always" contentContainerStyle={{ padding: 16, gap: 12, paddingBottom: 30 }} showsVerticalScrollIndicator={false} onScroll={onBouncyScroll} scrollEventThrottle={16}>
             {!trainerSessionEnabled && (<View style={[styles.card, { backgroundColor: t.bgCard, borderWidth: 0, borderRadius: 18 }]}>
                 <View style={styles.queueIcon}>
                   <Ionicons name="lock-closed-outline" size={22} color={isGoldTheme ? GOLD_RICH.metalGold : t.textMuted}/>

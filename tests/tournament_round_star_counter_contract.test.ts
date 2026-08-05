@@ -53,13 +53,21 @@ describe('счётчик звёзд в шапке раунда', () => {
     expect(adder).toContain('baseline: current.baseline');
   });
 
+  test('неверная пара сразу уменьшает общий счёт на одну звезду', () => {
+    const adder = section(ROUND_SOURCE, 'const addPendingStars', '}, [serverStars]);');
+    expect(adder).not.toContain('if (amount <= 0) return');
+    expect(ROUND_SOURCE).toContain('addPendingStars(-1)');
+    expect(ROUND_SOURCE).toMatch(/Math\.max\(0, pendingStars\.baseline \+ pendingStars\.amount\)/);
+  });
+
   test('поздний снапшот не откатывает цифру назад', () => {
     // Гонка: снапшот может относиться к состоянию ДО ответа игрока.
     expect(ROUND_SOURCE).toContain('Math.max(serverStars, pendingStars.baseline + pendingStars.amount)');
   });
 
   test('надбавка гасится, когда сервер её подтвердил', () => {
-    expect(ROUND_SOURCE).toMatch(/serverStars >= pendingStars\.baseline \+ pendingStars\.amount/);
+    expect(ROUND_SOURCE).toContain('serverStars >= target');
+    expect(ROUND_SOURCE).toContain('serverStars <= target');
   });
 });
 

@@ -28,6 +28,7 @@ import {
   validateTournamentTaskForNewRoom,
   type TournamentTask,
 } from './tournament_core';
+import { buildTournamentScheduleWrite } from './tournament_all_day';
 import {
   GENERATABLE_KINDS,
   generateTournamentTasks,
@@ -241,6 +242,7 @@ export type ScheduleRequest = {
   readonly freeWeeklyEntry: boolean;
   readonly ticketGemValue: number;
   readonly testingEnabled: boolean;
+  readonly allDayEnabled: boolean;
 };
 
 /** Валидна ли IANA-таймзона — той же проверкой, что делает сервер комнат. */
@@ -256,7 +258,7 @@ function isValidTimezone(timezone: string): boolean {
 export function parseScheduleRequest(data: unknown): ScheduleRequest {
   const record = onlyKeys(
     data,
-    ['slots', 'timezone', 'freeWeeklyEntry', 'ticketGemValue', 'testingEnabled'],
+    ['slots', 'timezone', 'freeWeeklyEntry', 'ticketGemValue', 'testingEnabled', 'allDayEnabled'],
     'tournament_schedule_invalid',
   );
   const slotsRaw = record.slots;
@@ -268,7 +270,8 @@ export function parseScheduleRequest(data: unknown): ScheduleRequest {
   }
 
   const ticketGemValue = record.ticketGemValue === undefined ? 0 : Number(record.ticketGemValue);
-  if (!Number.isSafeInteger(ticketGemValue) || ticketGemValue < 0 || ticketGemValue > 1_000) {
+  if (!Number.isSafeInteger(ticketGemValue) || ticketGemValue < 0 || ticketGemValue > 1_000
+    || (record.allDayEnabled !== undefined && typeof record.allDayEnabled !== 'boolean')) {
     throw new HttpsError('invalid-argument', 'tournament_schedule_invalid');
   }
 
@@ -305,6 +308,7 @@ export function parseScheduleRequest(data: unknown): ScheduleRequest {
     freeWeeklyEntry: record.freeWeeklyEntry === true,
     ticketGemValue,
     testingEnabled: record.testingEnabled === true,
+    allDayEnabled: record.allDayEnabled === true,
   });
 }
 
@@ -1256,7 +1260,7 @@ export const adminSetTournamentSchedule = onCall(
 
     // Предохранитель: не даём включить слот при пустом пуле — комнаты будут
     // создаваться и тут же отменяться, списывая билеты и возвращая их обратно.
-    if (params.slots.some((slot) => slot.enabled)) {
+    if (params.allDayEnabled || params.slots.some((slot) => slot.enabled)) {
       // guard-ok: агрегат count(), документы не читаются
       const readyCells = await loadEligibleTournamentCellCounts(db.collection(TOURNAMENT_TASKS_COLLECTION));
       if (!poolIsTournamentReady(readyCells)) {
@@ -1272,19 +1276,15 @@ export const adminSetTournamentSchedule = onCall(
     // slotId/localTime/timezone/ticketsRequired/enabled + freeWeeklyEntry и
     // ticketGemValue на верхнем уровне. Любое расхождение = слот молча
     // отбрасывается планировщиком и турнир не стартует.
-    await ref.set({
-      slots: params.slots.map((slot) => ({
-        slotId: slot.slotId,
-        localTime: slot.localTime,
-        timezone: slot.timezone,
-        ticketsRequired: slot.ticketsRequired,
-        enabled: slot.enabled,
-      })),
-      freeWeeklyEntry: params.freeWeeklyEntry,
-      ticketGemValue: params.ticketGemValue,
-      testingEnabled: params.testingEnabled,
-      updatedAtMs: Date.now(),
-    }, { merge: true });
+    const write = buildTournamentScheduleWrite(params, Date.now());
+    const batch = db.batch();
+    batch.set(ref, write.config, { merge: true });
+    batch.set(
+      db.collection(TOURNAMENT_SCHEDULE_COLLECTION).doc('economy'),
+      write.economy,
+      { merge: true },
+    );
+    await batch.commit();
 
     return { ok: true, slots: params.slots.length };
   },
@@ -1304,8 +1304,11 @@ export const adminGetTournamentSchedule = onCall(
     return {
       ok: true,
       exists: true,
-      slots: Array.isArray(data.slots) ? data.slots : [],
+      slots: data.allDayEnabled === true && Array.isArray(data.scheduledSlots)
+        ? data.scheduledSlots
+        : (Array.isArray(data.slots) ? data.slots : []),
       timezone: typeof data.timezone === 'string' ? data.timezone : 'Europe/Moscow',
+      allDayEnabled: data.allDayEnabled === true,
       testingEnabled: data.testingEnabled === true,
       updatedAtMs: Number(data.updatedAtMs ?? 0),
     };

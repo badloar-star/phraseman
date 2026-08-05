@@ -78,6 +78,15 @@ describe('paid scheduled and legacy test-room economy boundary', () => {
     expect(snapshot.entryGems).toBe(5);
   });
 
+  it.each([0, 1, 10])('pins scheduled bot contribution to five instead of remote botEntryGems=%i', (botEntryGems) => {
+    const snapshot = tournamentEconomySnapshotForMode({
+      ...DEFAULT_TOURNAMENT_ECONOMY,
+      botEntryGems,
+    }, false);
+
+    expect(snapshot.botEntryGems).toBe(5);
+  });
+
   it('permits zero economy only for an explicit test-mode snapshot', () => {
     const snapshot = tournamentEconomySnapshotForMode(DEFAULT_TOURNAMENT_ECONOMY, true);
 
@@ -154,11 +163,11 @@ describe('paid scheduled and legacy test-room economy boundary', () => {
     const plan = planTournamentFinalization(scheduled, 101);
 
     expect(plan.playerEffects).toHaveLength(1);
-    // Один живой игрок × 5 жемчужин: нулевой удалённый конфиг не обнуляет банк.
-    expect(plan.room.potGems).toBe(5);
-    // Приз меньше банка не по ошибке: 20% (одна жемчужина) уходит в недельный
-    // банк, призёрам остаётся 4, первому месту 60% = 2 плюс остаток 1.
-    expect(plan.room.prizeGems?.[0]).toBe(3);
+    // Живой игрок и бот вносят по 5: нулевой удалённый конфиг не обнуляет банк.
+    expect(plan.room.potGems).toBe(10);
+    // Из 10 две жемчужины уходят в недельный банк; первое место получает свою
+    // долю призового остатка, а незанятые места возвращаются в недельный банк.
+    expect(plan.room.prizeGems?.[0]).toBe(5);
   });
 
   it('refunds a paid snapshot but never trusts zero-snapshot provenance to mint cancellation gems', () => {

@@ -370,11 +370,19 @@ function residentResetDaysInMonth(index: number, monthIndex: number): number[] {
   const seed = residentHash(`${index}:${monthIndex}:resets`);
   // 0..3 сброса: часть месяцев персонаж проходит вообще без срывов.
   const count = seed % (RESIDENT_STREAK_MAX_RESETS_PER_MONTH + 1);
+  // зачем: срывы разносим по «полосам» месяца (декадам), а не бросаем в любой
+  // день. Свободный бросок ставил их вплотную — на стыке месяцев набегало до
+  // шести срывов подряд, и серия не успевала отрасти: вместо живой цепочки
+  // игрок видел мигающий ноль. Полоса даёт каждому срыву свой участок месяца,
+  // внутри участка день по-прежнему случайный.
+  const bandSize = total / RESIDENT_STREAK_MAX_RESETS_PER_MONTH;
   const days: number[] = [];
   for (let i = 0; i < count; i++) {
-    const dayOfMonth = residentHash(`${index}:${monthIndex}:reset:${i}`) % total;
-    const day = start + dayOfMonth;
-    // Два сброса могли выпасть на один день — это просто один сброс.
+    const bandStart = Math.floor(i * bandSize);
+    const bandEnd = Math.min(total, Math.floor((i + 1) * bandSize));
+    const span = Math.max(1, bandEnd - bandStart);
+    const dayOfMonth = bandStart + (residentHash(`${index}:${monthIndex}:reset:${i}`) % span);
+    const day = start + Math.min(total - 1, dayOfMonth);
     if (!days.includes(day)) days.push(day);
   }
   return days.sort((a, b) => a - b);
@@ -416,6 +424,23 @@ export function residentStreakAt(index: number, nowMs: number, signupMs: number)
   return Math.max(0, Math.min(RESIDENT_STREAK_MAX, since));
 }
 
+/**
+ * Базовое число лайков персонажа на момент nowMs — функция от опыта, не
+ * константа.
+ *
+ * зачем (владелец 2026-08-04): «лайк боту не сохранялся, сделай чтобы
+ * сохранялся навсегда и число росло всегда как у живых». У живого игрока
+ * счётчик лайков в базе растёт медленно и никогда не падает; персонаж обязан
+ * выглядеть так же. Формула привязана к totalXp (как streak — к signupMs):
+ * растущая величина, которая никогда не убывает и не «телепортируется», плюс
+ * у ветеранов заметно больше поклонников, чем у вчерашних новичков.
+ */
+export function residentBaseLikes(totalXp: number): number {
+  // ~1 лайк за каждые 3000 XP, с лёгким разбросом от хэша — иначе все
+  // персонажи одного уровня показывали бы ОДНО И ТО ЖЕ число.
+  return Math.floor(totalXp / 3000);
+}
+
 export type ResidentProfile = {
   /** Индекс в корпусе — постоянная личность персонажа. */
   index: number;
@@ -424,6 +449,8 @@ export type ResidentProfile = {
   level: number;
   avatar: string;
   streak: number;
+  /** Базовое число лайков — до того, что добавит сам игрок локально. */
+  baseLikes: number;
 };
 
 /** Полный профиль персонажа на момент nowMs — единая точка сборки. */
@@ -441,5 +468,6 @@ export function residentProfileAt(index: number, nowMs: number): ResidentProfile
     // чужой стрик и это не сошлось бы с его нулевым опытом. signupMs текущего
     // поколения не даёт серии оказаться длиннее жизни персонажа.
     streak: residentStreakAt(index * 64 + generation, nowMs, signupMs),
+    baseLikes: residentBaseLikes(totalXp),
   };
 }

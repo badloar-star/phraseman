@@ -88,6 +88,7 @@ import { buildSpeakingStartOptions } from './speaking_recognition_options';
 import { TranscriptAccumulator } from './speaking_transcript_accumulator';
 import { useRecordStartCue } from '../hooks/use-record-start-cue';
 import { useTurnReadyCue } from '../hooks/use-turn-ready-cue';
+import AiDialogConsentGate from './ai_dialog_consent_gate';
 
 import { noAndroidOutline } from '../constants/androidGlow';
 const RECOMMENDED_EXCHANGES = 8;
@@ -187,7 +188,7 @@ function dialogRetryLabel(lang: Lang): string {
   });
 }
 
-export default function AiDialogSession() {
+function AiDialogSession() {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
@@ -2837,5 +2838,17 @@ export default function AiDialogSession() {
         </KeyboardAvoidingView>
       </SafeAreaView>
     </ScreenGradient>
+  );
+}
+
+// зачем: явное согласие на AI-диалоги (владелец) — экран даже не монтируется,
+// пока пользователь не подтвердил, что его сообщения уйдут в OpenAI. Gate живёт
+// снаружи, а не внутри компонента: внутри слишком много точек отправки
+// (обычный send + разговорный режим), одна внешняя точка входа надёжнее.
+export default function AiDialogSessionRoute() {
+  return (
+    <AiDialogConsentGate>
+      <AiDialogSession />
+    </AiDialogConsentGate>
   );
 }

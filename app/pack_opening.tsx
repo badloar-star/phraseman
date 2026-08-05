@@ -47,6 +47,7 @@ import {
 import BouncyScrollView from '../components/BouncyScrollView';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
+import { soundDirector } from '../modules/audio/sound_director';
 
 const { width: WIN_W, height: WIN_H } = Dimensions.get('window');
 
@@ -473,12 +474,20 @@ export default function PackOpeningScreen() {
     };
   }, [packId, lang, officialPacksEnabled, communityPacksEnabled, studyTarget]);
 
+  // зачем: лёгкое предвкушение на входе в экран, до первого флипа — карточки
+  // уже загружены и видны закрытыми, но ещё ничего не открыто.
+  useEffect(() => {
+    if (cards.length === 0 || flippedSet.size > 0) return;
+    soundDirector.request('pm.reward.pack_reveal_start', { scope: 'pack-opening', dedupeKey: packId });
+  }, [cards.length, flippedSet.size, packId]);
+
   // ── Конфетті + помітка про церемонію коли всі відкриті ─────────────────────
   useEffect(() => {
     if (cards.length === 0) return;
     if (flippedSet.size < cards.length) return;
     setShowConfetti(true);
     void hapticSuccess();
+    soundDirector.request('pm.reward.pack_complete', { scope: 'pack-opening', dedupeKey: packId });
     void markPackCeremoniallyOpened(packId, studyTarget);
     const timer = setTimeout(() => setShowConfetti(false), 3500);
     return () => clearTimeout(timer);
@@ -660,7 +669,7 @@ export default function PackOpeningScreen() {
 
       {/* Сітка карточок */}
       <BouncyScrollView
-        decelerationRate="normal"
+        decelerationRate="fast"
         contentContainerStyle={{
           paddingHorizontal: H_PADDING,
           paddingTop: 12,

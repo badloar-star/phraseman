@@ -480,8 +480,18 @@ export const INDIGO = {
   bgGradient: ['#14131F', '#0C0B16', '#010102'] as unknown as [string, string],
 };
 
+// зачем 2026-08-04 (владелец: «в светлой теме фон должен быть темнее даже на
+// главной и на других страницах» — заметно, тёплый серо-зелёный, не белый):
+// bgPrimary был #F0F1EC (L≈0.94) — практически неотличим от bgCard #FCFDF9
+// (L≈0.98), карточки/плашки тонули в фоне. Затемняем bgPrimary к #DCE1D8
+// (сдвиг в сторону accent #315F50, шалфейный тон темы, не серый нейтрал),
+// bgCard/bgSurface остаются светлыми — контраст карточка/фон вырос заметно.
 export const SAGE_PORCELAIN = {
-  bgPrimary:'#F0F1EC', bgCard:'#FCFDF9', bgSurface:'#E1E5DC', bgSurface2:'#D1D9D1', textPrimary:'#17201D', textOnCard:'#17201D', textSecond:'#3C5A50', textMuted:'#52605A', textGhost:'#61706A', heroTextPrimary:'#17201D', heroTextMuted:'#52605A', border:'#CFD6CE', borderLight:'#BDC8BD', correct:'#2F6F4F', correctBg:'#DCEADF', wrong:'#A8464D', wrongBg:'#F2DFE0', gold:'#8B6320', goldBg:'#EEE5D1', textOnGold:'#FFFFFF', accent:'#315F50', accentBg:'#D9E9E1', correctText:'#FFFFFF', shadowDark:'#23322B', shadowLight:'rgba(252,253,249,0.78)', borderHighlight:'rgba(252,253,249,0.92)', isGlowEnabled:false, isGlossEnabled:false, btnShadow:'#264A3F', cardShadow:'rgba(35,50,43,0.14)', glow:'rgba(49,95,80,0.10)', cardGradient:['#FCFDF9','#F5F7F2'] as [string,string], bgGradient:['#F7F8F4','#E7EAE3'] as [string,string]
+  // зачем 2026-08-04: textGhost был #61706A (AA-контраст ровно на грани старого
+  // светлого bgPrimary #F0F1EC). На новом тёмном bgPrimary #DCE1D8 контраст
+  // упал ниже 4.5:1 (WCAG AA) — затемнили до #4E5D55 (5.23:1), та же серо-
+  // зелёная семья, видимый сдвиг минимален.
+  bgPrimary:'#DCE1D8', bgCard:'#FCFDF9', bgSurface:'#E1E5DC', bgSurface2:'#D1D9D1', textPrimary:'#17201D', textOnCard:'#17201D', textSecond:'#3C5A50', textMuted:'#52605A', textGhost:'#4E5D55', heroTextPrimary:'#17201D', heroTextMuted:'#52605A', border:'#CFD6CE', borderLight:'#BDC8BD', correct:'#2F6F4F', correctBg:'#DCEADF', wrong:'#A8464D', wrongBg:'#F2DFE0', gold:'#8B6320', goldBg:'#EEE5D1', textOnGold:'#FFFFFF', accent:'#315F50', accentBg:'#D9E9E1', correctText:'#FFFFFF', shadowDark:'#23322B', shadowLight:'rgba(252,253,249,0.78)', borderHighlight:'rgba(252,253,249,0.92)', isGlowEnabled:false, isGlossEnabled:false, btnShadow:'#264A3F', cardShadow:'rgba(35,50,43,0.14)', glow:'rgba(49,95,80,0.10)', cardGradient:['#FCFDF9','#F5F7F2'] as [string,string], bgGradient:['#E7EAE2','#D2D9CC'] as [string,string]
 };
 
 export type ThemeMode = 'dark' | 'gold' | 'coral' | 'minimalDark' | 'midnight' | 'ember' | 'aurora' | 'volt' | 'business' | 'businessLight' | 'candyBlue' | 'indigo' | 'sagePorcelain';

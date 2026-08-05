@@ -347,7 +347,7 @@ export default function ManageSubscription() {
   return (
     <LinearGradient colors={chrome.bgColors} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }} style={S.root}>
       <SafeAreaView style={S.safe}>
-        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={S.scroll}>
+        <ScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} contentContainerStyle={S.scroll}>
           <PaywallCloseButton onPress={() => { hapticTap(); safeRouterBack(router, closeFallback); }} chrome={chrome} />
 
           <View style={[S.statusBadge, { backgroundColor: `${chrome.tc.heroAccent}1A`, borderColor: `${chrome.tc.heroAccent}40` }]}>

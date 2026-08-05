@@ -60,7 +60,7 @@ export default function PrivacyScreen() {
             </TouchableOpacity>
           )}
         />
-        <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ padding: 20, paddingBottom: 60 }} scrollEventThrottle={16}>
+        <BouncyScrollView decelerationRate="fast" contentContainerStyle={{ padding: 20, paddingBottom: 60 }} scrollEventThrottle={16}>
           {PRIVACY_EN.map((s, i) => (
                 <View key={i} style={{ marginBottom: 20 }}>
                   <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', marginBottom: 6 }}>

@@ -14,12 +14,40 @@ export type SoundDropReason =
 export type SoundDecision =
   | { kind: 'play'; eventId: SoundEventId; requestId: number; preempt: boolean }
   | { kind: 'defer'; eventId: SoundEventId; expiresAt: number }
-  | { kind: 'drop'; reason: SoundDropReason };
+  | { kind: 'drop'; reason: SoundDropReason; retryAtMs?: number };
 
 export type SoundRequestOptions = Readonly<{
   scope?: string;
   dedupeKey?: string;
   deferAfterVoice?: boolean;
+  /**
+   * Overrides the shared 2-per-second start budget for this specific scope.
+   *
+   * зачем 2026-08-04 (владелец: «звуки в турнире работают рандомно и через
+   * раз»): MAX_STARTS_PER_WINDOW=2/1000ms был рассчитан на редкие события
+   * одиночного урока. В турнире (особенно в pairs-режиме на скорость) один
+   * тап по паре, вердикт и тик таймера легко случаются в одну секунду —
+   * третий/четвёртый звук молча гасился тем же общим лимитом. Приподнять
+   * лимит нужно ТОЛЬКО для турнирного scope, не для всего приложения:
+   * остальные экраны продолжают жить с исходной защитой от звукового спама.
+   */
+  rateLimit?: { maxStarts: number; windowMs: number };
+  /**
+   * Retry this request once, right after the currently playing sound ends,
+   * instead of dropping it silently on a 'priority' collision.
+   *
+   * зачем 2026-08-04 (владелец: «звуки в турнире работают рандомно и через
+   * раз», после того как rateLimit уже поднят): тик таймера (приоритет 62)
+   * и вердикт ответа (correct=70/needs_work=68) конкурируют не только за
+   * бюджет запросов в секунду, но и за ЕДИНСТВЕННЫЙ активный слот
+   * воспроизведения. Если тик выпал ровно в окно, пока доигрывает вердикт
+   * (320-380мс), он проигрывал молча по причине 'priority' — совпадение по
+   * времени выглядело как случайность. queueIfBusy не меняет саму приоритетную
+   * модель (более важный звук по-прежнему может её прервать преемптом), а
+   * лишь даёт менее приоритетному ОДИН шанс сыграть заново сразу после того,
+   * как текущий слот освободится — вместо немого исчезновения.
+   */
+  queueIfBusy?: boolean;
 }>;
 
 export type LearningVerdictRequest = Readonly<{
@@ -60,6 +88,13 @@ export class SoundArbiter {
   private starts: number[] = [];
   private lastStartedByEvent = new Map<SoundEventId, number>();
   private lastStartedByDedupeKey = new Map<string, number>();
+  /**
+   * Отдельные окна для scope с собственным rateLimit (см. SoundRequestOptions).
+   * Не смешиваются с общим `starts` — иначе поднятие лимита для одного scope
+   * (турнир) ослабило бы защиту от спама и для всех остальных экранов,
+   * которые используют тот же общий SoundArbiter.
+   */
+  private startsByScope = new Map<string, number[]>();
 
   constructor(private readonly clock: SoundClock = systemSoundClock) {}
 
@@ -124,6 +159,11 @@ export class SoundArbiter {
     return Math.max(0, this.voiceQuietUntil - this.clock.now());
   }
 
+  /** Delay in ms, in this arbiter's own clock, from now until an absolute retryAtMs. */
+  delayUntil(retryAtMs: number): number {
+    return Math.max(0, retryAtMs - this.clock.now());
+  }
+
   private decide(
     eventId: SoundEventId,
     options: SoundRequestOptions,
@@ -158,14 +198,27 @@ export class SoundArbiter {
       return { kind: 'drop', reason: 'cooldown' };
     }
 
-    this.pruneStarts(now);
-    if (this.starts.length >= MAX_STARTS_PER_WINDOW) {
-      return { kind: 'drop', reason: 'rate-limit' };
+    const scopedStarts = options.rateLimit && options.scope
+      ? this.pruneScopedStarts(options.scope, options.rateLimit.windowMs, now)
+      : null;
+    if (scopedStarts) {
+      if (scopedStarts.length >= options.rateLimit!.maxStarts) {
+        return { kind: 'drop', reason: 'rate-limit' };
+      }
+    } else {
+      this.pruneStarts(now);
+      if (this.starts.length >= MAX_STARTS_PER_WINDOW) {
+        return { kind: 'drop', reason: 'rate-limit' };
+      }
     }
 
     const preempt = this.active !== null;
     if (this.active && definition.priority <= this.active.priority) {
-      return { kind: 'drop', reason: 'priority' };
+      return {
+        kind: 'drop',
+        reason: 'priority',
+        ...(options.queueIfBusy ? { retryAtMs: this.active.endsAt } : {}),
+      };
     }
 
     const requestId = ++this.requestSequence;
@@ -175,7 +228,8 @@ export class SoundArbiter {
       priority: definition.priority,
       endsAt: now + definition.durationMs,
     };
-    this.starts.push(now);
+    if (scopedStarts) scopedStarts.push(now);
+    else this.starts.push(now);
     this.lastStartedByEvent.set(eventId, now);
     if (dedupeKey) this.lastStartedByDedupeKey.set(dedupeKey, now);
     return { kind: 'play', eventId, requestId, preempt };
@@ -189,6 +243,13 @@ export class SoundArbiter {
     }
     const selected = this.deferred ?? { eventId, options, createdAt: now, expiresAt };
     return { kind: 'defer', eventId: selected.eventId, expiresAt: selected.expiresAt };
+  }
+
+  private pruneScopedStarts(scope: string, windowMs: number, now: number): number[] {
+    const pruned = (this.startsByScope.get(scope) ?? [])
+      .filter((startedAt) => now - startedAt < windowMs);
+    this.startsByScope.set(scope, pruned);
+    return pruned;
   }
 
   private pruneStarts(now: number): void {

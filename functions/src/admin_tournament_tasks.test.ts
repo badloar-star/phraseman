@@ -122,6 +122,12 @@ describe('разбор расписания', () => {
     expect(parseScheduleRequest({ slots: [slot()], testingEnabled: true }).testingEnabled).toBe(true);
   });
 
+  it('принимает явный режим «активно весь день» и не включает его по умолчанию', () => {
+    expect(parseScheduleRequest({ slots: [slot()], allDayEnabled: true }).allDayEnabled).toBe(true);
+    expect(parseScheduleRequest({ slots: [slot()] }).allDayEnabled).toBe(false);
+    expectRejected(() => parseScheduleRequest({ slots: [slot()], allDayEnabled: 'true' }));
+  });
+
   it('требует localTime в формате ЧЧ:ММ — hour/minute сервер не понимает', () => {
     // Регрессия: первая версия админки слала hour+minute, сервер молча
     // отбрасывал такие слоты и расписание не запускало ни одного турнира.

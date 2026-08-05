@@ -1319,7 +1319,7 @@ export default function LessonMenu() {
       </View>
 
       <BouncyWrap>
-      <ScrollView decelerationRate="normal" bounces alwaysBounceVertical overScrollMode="always" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 24 }} onScroll={onBouncyScroll} scrollEventThrottle={16}>
+      <ScrollView decelerationRate="fast" bounces alwaysBounceVertical overScrollMode="always" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 24 }} onScroll={onBouncyScroll} scrollEventThrottle={16}>
       {/* Тема урока */}
       <Text style={{color:t.heroTextMuted,fontSize: f.bodyLg,textAlign:'center',marginTop:20,marginHorizontal:30,lineHeight:24}}>
         {lessonName}

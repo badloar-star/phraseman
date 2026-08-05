@@ -62,6 +62,7 @@ import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { useHintRevealCue } from '../hooks/use-hint-reveal-cue';
 import fk from './feedback/feedback_kit';
 import { comboLevelFor } from './feedback/combo_engine';
+import { soundDirector } from '../modules/audio/sound_director';
 import ComboRing from '../components/feedback/ComboRing';
 import { recordMistake } from './active_recall';
 import { logMistake } from './mistake_log';
@@ -127,6 +128,7 @@ import ReportErrorButton from '../components/ReportErrorButton';
 import ExplainSheet from '../components/ExplainSheet';
 import AiMistakeCard from '../components/AiMistakeCard';
 import MistakeEli5Modal from '../components/MistakeEli5Modal';
+import AiExplainConsentModal from '../components/AiExplainConsentModal';
 import MedalToast from '../components/MedalToast';
 import NoEnergyModal from '../components/NoEnergyModal';
 import { openLessonGateByRuntime, shouldBlockLessonAccess } from './lesson_premium_gate';
@@ -1157,7 +1159,7 @@ const LessonContent = React.memo(function LessonContent({
           paddingBottom: linkedSliceCompact ? 4 + bottomInset : (status === 'result' ? 100 + bottomInset : 8 + bottomInset),
           flexGrow: linkedSliceCompact ? 0 : undefined,
         }}
-        decelerationRate="normal"
+        decelerationRate="fast"
         keyboardShouldPersistTaps="handled"
         scrollEnabled={!linkedSliceCompact}
         showsVerticalScrollIndicator={false}
@@ -1962,6 +1964,13 @@ const LessonContent = React.memo(function LessonContent({
           onRetry={mistakeExplain.eli5.onRetry}
         />
 
+        <AiExplainConsentModal
+          visible={mistakeExplain.consentGate.visible}
+          lang={lang}
+          onAccept={mistakeExplain.consentGate.onAccept}
+          onDecline={mistakeExplain.consentGate.onDecline}
+        />
+
     </KeyboardAvoidingView>
 
     </>
@@ -2172,6 +2181,9 @@ export default function LessonScreen() {
   const userNameRef      = useRef<string | null>(null); // кешируем имя чтобы не читать AsyncStorage на каждый ответ
   // [COMBO] Отображаемое значение комбо для UI-бейджа. Обновляется в setState.
   const [comboCount, setComboCount] = useState(0);
+  // зачем: звук комбо должен играть только на ПЕРЕСЕЧЕНИЕ порога (3/5/10),
+  // не на каждый верный ответ внутри уровня — сравниваем с предыдущим уровнем.
+  const comboLevelRef = useRef(0);
   const [xpToastAmount, setXpToastAmount] = useState(0);
   const [xpToastVisible, setXpToastVisible] = useState(false);
   const xpToastAnim = useRef(new Animated.Value(0)).current;
@@ -3147,6 +3159,11 @@ export default function LessonScreen() {
       correctStreakRef.current += 1;
       todayAnswersRef.current += 1;
       setComboCount(correctStreakRef.current);
+      const newComboLevel = comboLevelFor(correctStreakRef.current);
+      if (newComboLevel > comboLevelRef.current) {
+        soundDirector.request('pm.learn.combo_up', { scope: 'lesson-combo' });
+      }
+      comboLevelRef.current = newComboLevel;
       const lessonUpdates: Parameters<typeof updateMultipleTaskProgress>[0] = [
         { type: 'correct_streak' },
         { type: 'lesson_no_mistakes' },
@@ -3215,6 +3232,7 @@ export default function LessonScreen() {
       }
     } else {
       correctStreakRef.current = 0;
+      comboLevelRef.current = 0;
       setComboCount(0);
       todayAnswersRef.current += 1;
       if (!isReplayRef.current) {

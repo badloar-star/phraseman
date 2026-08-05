@@ -7,7 +7,10 @@ const AUDIT_PATH = path.join(ROOT, 'docs', 'reports', 'user_error_reports_audit_
 const AUDIT_MARKDOWN_PATH = path.join(ROOT, 'docs', 'reports', 'user_error_reports_audit_2026-07-10.md');
 const BATCH_PATH = path.join(ROOT, 'replies_batch_2026-07-10.json');
 const FINAL_BATCH_PATH = path.join(ROOT, 'replies_batch_2026-07-10_final.json');
-const ADMIN_PATH = path.join(ROOT, 'admin', 'index.html');
+// зачем: admin/index.html — замороженный редирект-заглушка (AGENTS.md), живая админка
+// с PREPARED_REPORT_REPLIES это admin/v2/legacy.html — иначе сгенерированные черновики
+// уходят в мёртвый файл и не появляются в реальной админке.
+const ADMIN_PATH = path.join(ROOT, 'admin', 'v2', 'legacy.html');
 const CHECK_ONLY = process.argv.includes('--check');
 
 const FINAL_AUDIT_BY_REPORT_NO = {
@@ -216,7 +219,7 @@ if (CHECK_ONLY) {
   if (fs.readFileSync(AUDIT_MARKDOWN_PATH, 'utf8') !== expected.auditMarkdownText) failures.push('docs/reports/user_error_reports_audit_2026-07-10.md');
   if (fs.readFileSync(BATCH_PATH, 'utf8') !== expected.batchText) failures.push('replies_batch_2026-07-10.json');
   if (fs.readFileSync(FINAL_BATCH_PATH, 'utf8') !== expected.finalBatchText) failures.push('replies_batch_2026-07-10_final.json');
-  if (fs.readFileSync(ADMIN_PATH, 'utf8') !== expected.adminText) failures.push('admin/index.html');
+  if (fs.readFileSync(ADMIN_PATH, 'utf8') !== expected.adminText) failures.push('admin/v2/legacy.html');
   if (failures.length) {
     console.error(`Support copy is out of sync: ${failures.join(', ')}`);
     process.exit(1);

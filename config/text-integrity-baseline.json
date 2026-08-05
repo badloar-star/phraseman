@@ -2132,6 +2132,63 @@
       }
     },
     {
+      "file": "app/tournament_results.tsx",
+      "ownerName": "PodiumColumn",
+      "ownerPath": "PodiumColumn",
+      "ancestorPath": [
+        "TapScale",
+        "View",
+        "Animated.View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "font-scaling-disabled",
+      "prop": "allowFontScaling",
+      "value": "false",
+      "testID": null,
+      "fingerprint": "3d16528d2101e8438f9bdf3742fa2302bd8547425cfe4c2964b7b68f7c5f55b7",
+      "count": 1,
+      "lineHints": [
+        788
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "tournament-avatar-fixed-geometry",
+      "reason": "Decorative digit inside a fixed-size podium step shape, not reader-facing prose",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "owner-2026-08-02-tournament-avatar-plan-fixed-geometry",
+        "scope": "reviewed-fixed-geometry"
+      }
+    },
+    {
+      "file": "app/tournament_results.tsx",
+      "ownerName": "PodiumColumn",
+      "ownerPath": "PodiumColumn",
+      "ancestorPath": [
+        "TapScale",
+        "View",
+        "Text"
+      ],
+      "tag": "Text",
+      "kind": "truncation",
+      "prop": "numberOfLines",
+      "value": "1",
+      "testID": null,
+      "fingerprint": "3e6f884ab488d6cdfa28fffd5e3bb0e088eb79ad97ef06d71a0ce756e270ad50",
+      "count": 1,
+      "lineHints": [
+        769
+      ],
+      "intendedMode": "temporary-exception",
+      "owner": "tournament-avatar-fixed-geometry",
+      "reason": "Nickname under a fixed-height podium step — wrapping would shift step height",
+      "expiryMilestone": "text-integrity-residual-closeout",
+      "exception": {
+        "approvedBy": "owner-2026-08-02-tournament-avatar-plan-fixed-geometry",
+        "scope": "reviewed-fixed-geometry"
+      }
+    },
+    {
       "file": "app/diagnostic_test.tsx",
       "ownerName": "DiagnosticTest",
       "ownerPath": "DiagnosticTest",
@@ -2951,33 +3008,6 @@
       }
     },
     {
-      "file": "app/compass/compass_stats_block.tsx",
-      "ownerName": "Stat",
-      "ownerPath": "Stat",
-      "ancestorPath": [
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "586f436ce609d0df8762ab345d2678e2b8e6ebeb7d3d1bb484a2724e6b8024e8",
-      "count": 1,
-      "lineHints": [
-        100
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "app/diagnostic_test.tsx",
       "ownerName": "DiagnosticTest",
       "ownerPath": "DiagnosticTest",
@@ -3181,36 +3211,6 @@
         467,
         659,
         758
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "app/_admin_settings_testers.tsx",
-      "ownerName": "AdminCosmeticsPreview",
-      "ownerPath": "AdminCosmeticsPreview",
-      "ancestorPath": [
-        "View",
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "61e771a9ab069df3791fc9fd31fc897c9ea92ad828e2c3c8c2a8d30feb5362cb",
-      "count": 2,
-      "lineHints": [
-        602,
-        605
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -6168,36 +6168,6 @@
       }
     },
     {
-      "file": "app/compass/compass_stats_block.tsx",
-      "ownerName": "CompassStatsBlock",
-      "ownerPath": "CompassStatsBlock",
-      "ancestorPath": [
-        "View",
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "b9c4186eaf0965a097a26d676618f461efeba0a4666612bddddabec7f210a67f",
-      "count": 2,
-      "lineHints": [
-        80,
-        86
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "app/personal_plan_dev.tsx",
       "ownerName": "PersonalPlanDevScreen",
       "ownerPath": "PersonalPlanDevScreen",
@@ -8257,36 +8227,6 @@
       }
     },
     {
-      "file": "app/compass/compass_day_closing_panel.tsx",
-      "ownerName": "DayClosingPanel",
-      "ownerPath": "DayClosingPanel",
-      "ancestorPath": [
-        "View",
-        "TouchableOpacity",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "2",
-      "testID": null,
-      "fingerprint": "4361abebe88133f8fd5a5e2d50cb23cd7f2f937952c9a5069c3e1f45ce86b88c",
-      "count": 2,
-      "lineHints": [
-        406,
-        409
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "tournament-avatar-fixed-geometry",
-      "reason": "Focus body renders a variable-length generated phrase (can include a user's in-course phrase); two-line cap protects the fixed focus-row layout",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "owner-2026-08-02-tournament-avatar-plan-fixed-geometry",
-        "scope": "reviewed-fixed-geometry"
-      }
-    },
-    {
       "file": "app/tournament_season.tsx",
       "ownerName": "SeasonRowItem",
       "ownerPath": "SeasonRowItem",
@@ -8390,61 +8330,6 @@
       "intendedMode": "temporary-exception",
       "owner": "tournament-avatar-fixed-geometry",
       "reason": "Explicit tournament fixed-geometry product contract: question/answer copy capped at two rendered lines; full text exposed via accessibility label",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "owner-2026-08-02-tournament-avatar-plan-fixed-geometry",
-        "scope": "reviewed-fixed-geometry"
-      }
-    },
-    {
-      "file": "app/tournament_results.tsx",
-      "ownerName": "PodiumColumn",
-      "ownerPath": "PodiumColumn",
-      "ancestorPath": [
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "8a7543230f09e2e69e88a289f1b5787464e6c1982ac2d4fe509e46dadd98bb89",
-      "count": 1,
-      "lineHints": [
-        602
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "tournament-avatar-fixed-geometry",
-      "reason": "Nickname under a fixed-height podium step — wrapping would shift step height",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "owner-2026-08-02-tournament-avatar-plan-fixed-geometry",
-        "scope": "reviewed-fixed-geometry"
-      }
-    },
-    {
-      "file": "app/tournament_results.tsx",
-      "ownerName": "PodiumColumn",
-      "ownerPath": "PodiumColumn",
-      "ancestorPath": [
-        "View",
-        "Animated.View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "font-scaling-disabled",
-      "prop": "allowFontScaling",
-      "value": "false",
-      "testID": null,
-      "fingerprint": "8cae23f3a36e5d2e41a4ffc5aac3d6013715a5d481dcfb1753e29daec528a234",
-      "count": 1,
-      "lineHints": [
-        621
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "tournament-avatar-fixed-geometry",
-      "reason": "Decorative digit inside a fixed-size podium step shape, not reader-facing prose",
       "expiryMilestone": "text-integrity-residual-closeout",
       "exception": {
         "approvedBy": "owner-2026-08-02-tournament-avatar-plan-fixed-geometry",
@@ -8570,35 +8455,6 @@
       }
     },
     {
-      "file": "app/compass/compass_day_closing_panel.tsx",
-      "ownerName": "DayClosingPanel",
-      "ownerPath": "DayClosingPanel",
-      "ancestorPath": [
-        "View",
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "2",
-      "testID": null,
-      "fingerprint": "b7354f5edc576ab8b65e9bd4ced9cbc2ff519521bd97a8be4618eb3ec7df573b",
-      "count": 1,
-      "lineHints": [
-        384
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "tournament-avatar-fixed-geometry",
-      "reason": "Metric label in a fixed-width column of the day-closing highlight row",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "owner-2026-08-02-tournament-avatar-plan-fixed-geometry",
-        "scope": "reviewed-fixed-geometry"
-      }
-    },
-    {
       "file": "app/flashcards_swipe.tsx",
       "ownerName": "renderPlay",
       "ownerPath": "FlashcardsSwipeScreen>renderPlay",
@@ -8707,35 +8563,6 @@
       "intendedMode": "temporary-exception",
       "owner": "tournament-avatar-fixed-geometry",
       "reason": "Reanimated.Text collapsing header title — FlowText does not wrap Reanimated text components",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "owner-2026-08-02-tournament-avatar-plan-fixed-geometry",
-        "scope": "reviewed-fixed-geometry"
-      }
-    },
-    {
-      "file": "app/compass/compass_day_closing_panel.tsx",
-      "ownerName": "DayClosingPanel",
-      "ownerPath": "DayClosingPanel",
-      "ancestorPath": [
-        "View",
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "ed3af1a79894a6c0f7efe10844c7dba820ea16d8cc99b42234271542e619d2bb",
-      "count": 1,
-      "lineHints": [
-        380
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "tournament-avatar-fixed-geometry",
-      "reason": "Metric value in a fixed-width column of the day-closing highlight row",
       "expiryMilestone": "text-integrity-residual-closeout",
       "exception": {
         "approvedBy": "owner-2026-08-02-tournament-avatar-plan-fixed-geometry",

@@ -20,6 +20,14 @@ import {
 } from './ai_kill_switch_copy';
 import type { AiMistakeCardState } from '../components/AiMistakeCard';
 import { hapticTap } from '../hooks/use-haptics';
+import {
+  hasAiExplainConsentDecision,
+  isAiExplainConsentGranted,
+  isAiExplainConsentHydrated,
+  recordAiExplainConsentToCloud,
+  setAiExplainConsent,
+  subscribeAiExplainConsent,
+} from './ai_explain_consent';
 
 /**
  * Shared orchestration for the AI mistake breakdown (inline `AiMistakeCard`) and
@@ -74,6 +82,17 @@ export interface UseMistakeExplainResult {
     onClose: () => void;
     onRetry: () => void;
   };
+  /**
+   * Props for <AiExplainConsentModal>. Shown ONCE, before the very first
+   * autoload of the inline breakdown, when the user has no consent decision
+   * yet. Accepting resumes the normal autoload for THIS mistake; declining
+   * keeps aiMistakeState at 'hidden' (card doesn't render at all).
+   */
+  consentGate: {
+    visible: boolean;
+    onAccept: () => void;
+    onDecline: () => void;
+  };
 }
 
 /** Серверный дневной free-кап ИИ-разборов ('explain_free_daily_limit'). */
@@ -106,6 +125,14 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
   const [eli5Text, setEli5Text] = useState<string | null>(null);
   const eli5InFlightRef = useRef(false);
 
+  // Explicit opt-in gate (юридическое требование, см. app/ai_explain_consent.ts).
+  const [consentGateVisible, setConsentGateVisible] = useState(false);
+  // Форс-тик, которым subscribeAiExplainConsent будит consent-эффект ниже —
+  // сама подписка не хранит нужное нам значение (нам важен факт гидрации, не
+  // конкретное consent-состояние), поэтому это просто счётчик перерисовки.
+  const [forceConsentRecheckTick, setForceConsentRecheckTick] = useState(0);
+  useEffect(() => subscribeAiExplainConsent(() => setForceConsentRecheckTick((n) => n + 1)), []);
+
   // Стадия ожидания для подписи под скелетоном. Отдельный state, а не таймер в
   // компоненте: карточка ре-рендерится и без нас, а тик должен идти ровно пока
   // мы ждём ответ. 'retried' взводит тихий повтор — тогда ожидание уже долгое.
@@ -126,6 +153,7 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
     setEli5Text(null);
     eli5InFlightRef.current = false;
     setWaitStage('start');
+    setConsentGateVisible(false); // на новой фразе gate переоткроется автозагрузкой, если решения всё ещё нет.
   }, [phraseKey, active]);
 
   // Прогрев инстанса в момент ошибки — ДО того, как понадобится разбор.
@@ -184,7 +212,10 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
 
   const explain = useCallback(
     async (withHaptic = true) => {
-      if (!active || aiMistakeState === 'loading') return;
+      // Гейт согласия — реальная блокировка сети, не только рендера. Без него
+      // нажатие «Попробовать снова» на карточке в error-состоянии (или гонка с
+      // отозванным consent) всё равно ушло бы в сеть с текстом ответа юзера.
+      if (!active || aiMistakeState === 'loading' || !isAiExplainConsentGranted()) return;
       if (withHaptic) hapticTap();
       const requestKey = phraseKey;
       if (await hasShownAiMistakeLimitNoticeToday()) {
@@ -240,7 +271,7 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
   );
 
   const openEli5 = useCallback(async () => {
-    if (!active) return;
+    if (!active || !isAiExplainConsentGranted()) return; // defensive: кнопка и так не рендерится без согласия.
     hapticTap();
     setEli5Open(true);
     if (eli5State === 'ready' && eli5Text) return;
@@ -271,15 +302,56 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
     }
   }, [active, eli5State, eli5Text, phraseKey, buildArgs]);
 
-  // Auto-load the inline breakdown once when it becomes relevant.
+  // Auto-load the inline breakdown once when it becomes relevant — но только
+  // если согласие уже дано. Нет решения ещё → показываем модалку согласия
+  // ВМЕСТО автозагрузки (карточка остаётся 'hidden', ничего не рендерится до
+  // ответа пользователя). Отказ → gate закрывается, карточка не грузится.
+  //
+  // isAiExplainConsentHydrated() — защита от гонки холодного старта: bootstrap
+  // гидрирует consent максимум 350мс (Promise.race в _layout.tsx), но НЕ ждёт
+  // его — если урок открылся раньше, consentMemory ещё на дефолте 'unset', и
+  // уже согласившемуся пользователю зря показало бы повторный gate. forceConsentRecheck
+  // (через subscribeAiExplainConsent выше) перезапускает этот эффект, когда
+  // гидрация фактически завершится, даже если значение не изменилось.
   useEffect(() => {
     if (!active || aiMistakeState !== 'idle') return;
+    if (!isAiExplainConsentHydrated()) return;
+    if (!hasAiExplainConsentDecision()) {
+      setConsentGateVisible(true);
+      return;
+    }
+    if (!isAiExplainConsentGranted()) return; // denied — карточка не рендерится вовсе.
     void explain(false);
-  }, [active, phraseKey, aiMistakeState, explain]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [active, phraseKey, aiMistakeState, explain, forceConsentRecheckTick]);
+
+  const onConsentAccept = useCallback(() => {
+    setConsentGateVisible(false);
+    void setAiExplainConsent('granted').then(() => {
+      void recordAiExplainConsentToCloud();
+    });
+    // Согласие не должно «съесть» текущую ошибку — грузим разбор сразу же.
+    void explain(false);
+  }, [explain]);
+
+  const onConsentDecline = useCallback(() => {
+    setConsentGateVisible(false);
+    void setAiExplainConsent('denied').then(() => {
+      void recordAiExplainConsentToCloud();
+    });
+  }, []);
+
+  // Без явного 'granted' карточка не рендерится вовсе — не 'idle' с пустым
+  // плейсхолдером, а именно 'hidden'. Раньше здесь возвращался сырой aiMistakeState,
+  // который на denied/ещё-нет-решения оставался 'idle', и AiMistakeCard (рендерит
+  // всё, кроме 'hidden') рисовал пустую карточку с «мёртвой» кнопкой повтора —
+  // разбор, которого пользователь не разрешал, физически никогда не пришёл бы.
+  const consentBlocksCard = active && !isAiExplainConsentGranted();
 
   return {
-    aiMistakeState:
-      active && aiMistakeState === 'idle' && peekAiMistakeLimitNoticeShownToday()
+    aiMistakeState: consentBlocksCard
+      ? 'hidden'
+      : active && aiMistakeState === 'idle' && peekAiMistakeLimitNoticeShownToday()
         ? 'hidden'
         : aiMistakeState,
     aiMistakeText,
@@ -293,6 +365,11 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
       onOpen: () => void openEli5(),
       onClose: () => setEli5Open(false),
       onRetry: () => void openEli5(),
+    },
+    consentGate: {
+      visible: consentGateVisible,
+      onAccept: onConsentAccept,
+      onDecline: onConsentDecline,
     },
   };
 }

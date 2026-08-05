@@ -162,7 +162,7 @@ export default function ConsentReverifyHost({ forceVisible, onForceClose }: Cons
     >
       <View style={styles.overlay}>
         <View style={[styles.box, { backgroundColor: cc.box }]}>
-          <ScrollView keyboardShouldPersistTaps="handled">
+          <ScrollView decelerationRate="fast" keyboardShouldPersistTaps="handled">
             <Text style={[styles.title, { color: cc.title }]}>{copy.title}</Text>
             <Text style={[styles.intro, { color: cc.body }]}>{copy.intro}</Text>
 

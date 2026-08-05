@@ -546,6 +546,16 @@ export type TournamentEntryProvenance = {
   ticketsSpent: number;
   bankContributionGems: number;
   weekId: string;
+  /**
+   * зачем 2026-08-04 (владелец: Season Pass tournament_ticket — «вход
+   * бесплатный для игрока, но в банк добавится 5 жемчужин всё равно»):
+   * bankContributionGems тут ПОЛНАЯ цена (банк получает свою долю), но эти
+   * жемчужины не были списаны у игрока — их нельзя возвращать при выходе
+   * из лобби, как обычный refund. Опционально, отсутствует у старых записей
+   * и у обычных платных/бесплатных недельных входов — там refund работает
+   * как раньше (см. tournamentLeaveTransaction).
+   */
+  seasonTicketUsed?: boolean;
 };
 
 export type TournamentRoundResult = {
@@ -1686,7 +1696,7 @@ export type ScoreInput = {
   answerRank?: number;
   /** Серия ОШИБОК до этого ответа; не меняет турнирные звёзды. */
   missStreakBefore?: number;
-  /** Mode-specific deduction applied after the base award, bounded at zero. */
+  /** Mode-specific deduction applied after the base award. */
   penaltyStars?: number;
   /** Сложность задания 1..3 — единственный множитель награды. */
   difficulty?: number;
@@ -1753,24 +1763,14 @@ export function scoreAnswer(input: ScoreInput): number {
   const totalPairs = Math.max(0, Math.trunc(input.totalPairs ?? 0));
   if (totalPairs > 0) {
     const matched = Math.min(totalPairs, Math.max(0, Math.trunc(input.matchedPairs ?? 0)));
-    if (matched === 0) return 0;
     const completionBonus = matched === totalPairs ? Math.max(0, full - TOURNAMENT_STAR_BASE) : 0;
     /**
-     * зачем 2026-08-03 (владелец: «убрать штраф»): здесь вычитался
-     * `penalty` — по звезде за КАЖДЫЙ ошибочный тап (wrongAttempts из
-     * серверного журнала). Это прямо противоречило правилу «сколько правильно —
-     * столько звёзд»: игрок, собравший все шесть пар, но промахнувшийся по
-     * дороге, получал меньше того, кто собрал столько же с первого раза, и
-     * видимое число расходилось с числом собранных пар.
-     *
-     * Хуже того, штраф усиливал главный баг: после отката поля игрок повторно
-     * тапал уже собранные пары, эти тапы журналировались как ошибки, и награда
-     * падала ещё ниже — игрока наказывали за сбой приложения.
-     *
-     * Правильность здесь уже учтена самим `matched`: неверный тап просто не
-     * добавляет пару. Отдельный вычет был двойным наказанием.
+     * зачем 2026-08-04 (владелец: «при неправильном ответе пусть отнимает
+     * 1 звезду, но не фиксирует»): каждая уникальная неверная попытка уменьшает
+     * турнирный счёт, а верная пара остаётся навсегда зафиксированной. Значение
+     * задания может быть отрицательным; общий счёт игрока ниже нуля не уйдёт.
      */
-    return matched + completionBonus;
+    return matched + completionBonus - penalty;
   }
 
   if (!input.correct) return 0;
@@ -2026,7 +2026,7 @@ export function applyTournamentSubmission(
   const players = room.players.map((entry, index) => index === playerIndex
     ? {
       ...entry,
-      score: entry.score - (replacingTimedOut ? existing.roundScore : 0) + scored.roundScore,
+      score: Math.max(0, entry.score - (replacingTimedOut ? existing.roundScore : 0) + scored.roundScore),
       streak: scored.streakAfter,
       missStreak: scored.missStreakAfter,
       answerTimeMs: Math.max(0, entry.answerTimeMs ?? 0)
@@ -2366,6 +2366,8 @@ export type TournamentFinalizationPlan = {
     playerId: string;
     place: number;
     seasonPoints: number;
+    /** Настоящие звёзды, набранные игроком в этом турнире (player.score) — для честного счётчика в лобби, отдельно от очков места. */
+    roundStars: number;
     tournamentsPlayed: 1;
     won: boolean;
     reward: TournamentRewardPlan;
@@ -2431,9 +2433,18 @@ export function planTournamentFinalization(
     player.id,
     positionalPayouts[index] ?? { position: index + 1, place: index + 1, gems: 0 },
   ]));
-  const botPrizeGems = standings.reduce((total, player) => (
-    player.isBot ? total + (payoutByPlayerId.get(player.id)?.gems ?? 0) : total
-  ), 0);
+  // зачем (владелец 2026-08-04, аудит «банк растёт огромными количествами»):
+  // раньше ЛЮБОЙ приз бота (не только топ-3) целиком уходил в недельный банк.
+  // В комнате на 16 мест с 1 живым игроком боты занимают почти все места и
+  // забирают почти весь призовой фонд — соло-тест переливал в банк 100% банка
+  // комнаты вместо заявленных 20%. Замер: комната на 80 жемчужин, весь банк
+  // (80 из 80) утёк в недельный фонд за один розыгрыш.
+  //
+  // Решение владельца: банк недели — строго 20% + неразыгранные места, без
+  // добавки от призов ботов. Приз бота просто НЕ выплачивается никому (боту
+  // платить некуда) и остаётся внутри banked toPrizes — не создаётся из
+  // воздуха и не улетает в банк, тот факт что его никто не забрал уже учтён
+  // в 20%, которые списаны с total ДО раздачи мест.
   const forfeitedPrizeGems = standings.reduce((total, player) => (
     !player.isBot && player.forfeitedAtMs !== undefined
       ? total + (payoutByPlayerId.get(player.id)?.gems ?? 0)
@@ -2446,6 +2457,7 @@ export function planTournamentFinalization(
       playerId: player.id,
       place,
       seasonPoints: forfeited ? TOURNAMENT_SEASON_POINTS.participation : seasonPointsForPlace(place),
+      roundStars: Math.max(0, player.score),
       tournamentsPlayed: 1 as const,
       won: !forfeited && place === 1,
       reward: forfeited ? tournamentRewardPlan(Number.MAX_SAFE_INTEGER) : tournamentRewardPlan(place, [{
@@ -2466,8 +2478,10 @@ export function planTournamentFinalization(
     receiptId,
     alreadyFinalized: false,
     playerEffects,
-    // Сколько уходит в недельный банк: доля с турнира + неразыгранные места.
-    weeklyBankGems: pot.toWeeklyBank + basePayout.unclaimedToWeekly + botPrizeGems + forfeitedPrizeGems,
+    // Сколько уходит в недельный банк: строго 20% с турнира + неразыгранные
+    // места (форфейт). Приз бота НЕ добавляется — иначе банк раздувался бы до
+    // 100% в комнатах, где боты занимают почти все места (см. комментарий выше).
+    weeklyBankGems: pot.toWeeklyBank + basePayout.unclaimedToWeekly + forfeitedPrizeGems,
     room: {
       ...room,
       players: finalizedPlayers,
@@ -2585,13 +2599,20 @@ export type TaskSelectionParams = {
   modeKind: 'single' | 'mix';
 };
 
-const TOURNAMENT_EXPOSURE_TAGS = [
-  'pool:tpool_20260801_v5',
-  'pool:tpool_20260801_v6',
-  'pool:tpool_20260801_v7',
-  'pool:tpool_20260801_v8',
-  'pool:tpool_20260801_v9',
-] as const;
+/**
+ * зачем 2026-08-04: раньше это был жёстко перечисленный список версий
+ * (v5..v9), который апдейтили вручную при каждом бампе NEW_TOURNAMENT_POOL_VERSION
+ * в tournament_pool_v2_factory.ts. v10 забыли добавить — exposureTag не находился,
+ * selectTournamentExposureDeck молча возвращал null для КАЖДОГО режима и раунда,
+ * и выбор скатывался в seededShuffle(...).slice(0, count) без учёта
+ * excludedTaskIds: раунды одной комнаты могли получить один и тот же taskId.
+ * По формату боевого тега (tags() в tournament_pool_v2_factory.ts) сборка
+ * автоматически ловит любую версию пула — новый бамп версии больше не может
+ * тихо выключить ротацию/дедуп. Экспортирована: tournaments.ts (buildTournamentRounds)
+ * держит собственную копию той же проверки для боевого рантайма и раньше страдала
+ * от того же класса бага со своим отдельным жёстким списком v5-v9.
+ */
+export const TOURNAMENT_EXPOSURE_TAG_PATTERN = /^pool:tpool_20260801_v\d+$/;
 
 type TournamentRoomDeckPosition = {
   readonly dayOrdinal: number;
@@ -2641,8 +2662,9 @@ function selectTournamentExposureDeck(
   excludedTaskIds: TaskSelectionParams['excludedTaskIds'],
 ): TournamentTask[] | null {
   if (candidates.length === 0) return null;
-  const exposureTag = TOURNAMENT_EXPOSURE_TAGS.find((tag) => (
-    candidates.every((task) => task.tags?.includes(tag))
+  const firstTags = candidates[0].tags ?? [];
+  const exposureTag = firstTags.find((tag) => (
+    TOURNAMENT_EXPOSURE_TAG_PATTERN.test(tag) && candidates.every((task) => task.tags?.includes(tag))
   ));
   if (!exposureTag) return null;
   const roomPosition = tournamentRoomDeckPosition(roomId);

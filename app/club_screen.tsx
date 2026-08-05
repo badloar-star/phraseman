@@ -1521,7 +1521,7 @@ export default function ClubScreen() {
         maxToRenderPerBatch={10}
         windowSize={7}
         scrollEnabled
-        decelerationRate="normal"
+        decelerationRate="fast"
         bounces
         alwaysBounceVertical
         overScrollMode="always"

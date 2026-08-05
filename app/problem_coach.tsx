@@ -625,7 +625,7 @@ export default function ProblemCoach() {
     <ScreenGradient>
       <SafeAreaView style={styles.root}>
         {renderHeader()}
-        <BouncyScrollView decelerationRate="normal" contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false} scrollEventThrottle={16}>
+        <BouncyScrollView decelerationRate="fast" contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false} scrollEventThrottle={16}>
           <ContentWrap>
             {stage === 'intro' && renderIntro()}
             {stage === 'practice' && renderPractice()}

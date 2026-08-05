@@ -1,5 +1,6 @@
 import { tournamentBotCardInfo } from '../components/tournament/tournament_bot_card';
 import { getLevelFromXP } from '../constants/theme';
+import { isSyntheticUid } from '../app/synthetic_friend_requests';
 
 describe('tournament bot profile card info (owner 2026-08-03)', () => {
   test('card level exactly matches the bot level avatar', () => {
@@ -29,8 +30,12 @@ describe('tournament bot profile card info (owner 2026-08-03)', () => {
     const first = tournamentBotCardInfo({ uid: 'p_abc123', name: 'quiet_hunter', avatar: '23', aura: 'aura-mint' });
     const second = tournamentBotCardInfo({ uid: 'p_abc123', name: 'quiet_hunter', avatar: '23', aura: 'aura-mint' });
     expect(second).toEqual(first);
-    // Без uid: модалка не ходит в leaderboard/лайки и не показывает «в друзья».
-    expect(first.uid).toBeUndefined();
+    // зачем (владелец 2026-08-04, решение поменялось после этого теста): uid
+    // бота теперь СОЗНАТЕЛЬНО есть в карточке — иначе не было бы кнопки
+    // «в друзья» и бот отличался бы от живого игрока. От похода в
+    // leaderboard/лайки защищает isSyntheticUid(), а не отсутствие uid.
+    expect(first.uid).toBe('p_abc123');
+    expect(isSyntheticUid(first.uid)).toBe(true);
     expect(first.friendUid).toBeUndefined();
     expect(first.isMe).toBe(false);
     expect(first.avatar).toBe('23');

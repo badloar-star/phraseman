@@ -31,6 +31,8 @@ import { screenTextOnGradient } from '../constants/theme';
 import { statsThemeAccent, statsThemeSoftBg } from '../constants/statsThemeChrome';
 import type { ThemeMode } from '../constants/theme';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
+import { useEnergy } from '../components/EnergyContext';
+import NoEnergyModal from '../components/NoEnergyModal';
 import {
   getCachedDueItems,
   getDueItems,
@@ -258,6 +260,13 @@ export default function TrainerWordsSession() {
   const trainerGateOpen = trainerSessionContentAvailableForTarget(studyTarget);
   const { playCorrect } = useCorrectSound();
   const { speakAnswer } = useSpeakAnswer();
+  // зачем: владелец попросил, чтобы ошибки в «Моя практика» тратили энергию и
+  // блокировали экран при 0 — точно так же, как в уроках (lesson1.tsx/review.tsx).
+  // Премиум/тестер обходят списание внутри spendOne (isUnlimited).
+  const { energy, bonusEnergy, isUnlimited: energyUnlimited, spendOne, energyReady } = useEnergy();
+  const energyRef = useRef({ energy, bonusEnergy, energyUnlimited });
+  useEffect(() => { energyRef.current = { energy, bonusEnergy, energyUnlimited }; }, [energy, bonusEnergy, energyUnlimited]);
+  const [noEnergyModalOpen, setNoEnergyModalOpen] = useState(false);
 
   const warmDeckRef = useRef<WordSessionCard[] | null>(
     !trainerGateOpen || params.planTaskId || params.planTrainerTask
@@ -297,6 +306,21 @@ export default function TrainerWordsSession() {
   ]);
   // Ref к функции swipeOut текущей карточки — для кнопок
   const swipeOutRef = useRef<((dir: 'right' | 'left') => void) | null>(null);
+
+  // зачем: аудит нашёл, что закрытие модала тапом мимо/кнопкой «назад» на Android (в
+  // отличие от «Позже» → onGotIt, который уводит с экрана) оставляет пользователя тут же
+  // с энергией 0 — а любое следующее обновление EnergyContext (сворачивание/разворачивание,
+  // тик восстановления, бонус/премиум-событие) заново открывает уже закрытый модал.
+  const energyGateDismissedRef = useRef(false);
+  // Гейт на входе: энергия уже на нуле до первого свайпа — сразу блокирующий модал,
+  // как в lesson1.tsx (entryEnergyGateLessonRef). energyReady ждёт первого live-чтения,
+  // чтобы не мигнуть модалом на дефолтных значениях контекста при холодном старте.
+  useEffect(() => {
+    if (!energyReady || energyUnlimited) return;
+    if (energy + bonusEnergy > 0) return;
+    if (energyGateDismissedRef.current) return;
+    setNoEnergyModalOpen(true);
+  }, [energyReady, energy, bonusEnergy, energyUnlimited]);
 
   useEffect(() => {
     let cancelled = false;
@@ -366,6 +390,11 @@ export default function TrainerWordsSession() {
   const handleSwipe = useCallback(async (answeredCorrectly: boolean) => {
     const card = deck[current];
     if (!card) return;
+    // зачем: аудит нашёл, что PanResponder-жест, начатый ДО открытия NoEnergyModal
+    // (палец уже двигался в момент ~800мс задержки после ошибки, обнулившей энергию),
+    // долетал до конца и звал handleSwipe под уже показанным/показывающимся модалом —
+    // повторное списание и переход дальше по колоде под блокирующим окном.
+    if (noEnergyModalOpen) return;
 
     const nextCorrect = correct + (answeredCorrectly ? 1 : 0);
     const nextWrong = wrong + (answeredCorrectly ? 0 : 1);
@@ -384,6 +413,22 @@ export default function TrainerWordsSession() {
       updates.push({ type: 'recall_answers', increment: 1 });
       updates.push({ type: 'trainer_words', increment: 1 });
       checkAchievements({ type: 'trainer_correct', correct: 1, studyTarget }).catch(() => {});
+    } else if (!energyRef.current.energyUnlimited) {
+      // При ОШИБКЕ тратим энергию — та же механика, что в review.tsx/lesson1.tsx.
+      // Ответ уже засчитан выше; модал догоняет с задержкой (даёт красному фидбэку
+      // карточки отыграть), totalBefore/After читаем из ref — без stale closure.
+      const totalBefore = energyRef.current.energy + energyRef.current.bonusEnergy;
+      spendOne().then((success) => {
+        if (!success) return;
+        // зачем: аудит нашёл, что дневное задание «потрать энергию» (es1-es4, до 66 XP)
+        // никогда не засчитывалось из этого экрана — lesson1.tsx/review.tsx шлют этот
+        // инкремент, а «Моя практика» — нет. Квест молча не продвигался у части юзеров.
+        updateMultipleTaskProgress([{ type: 'energy_spend', increment: 1 }], { studyTarget }).catch(() => {});
+        setTimeout(() => {
+          const totalAfter = energyRef.current.energy + energyRef.current.bonusEnergy;
+          if (totalBefore > 0 && totalAfter <= 0) setNoEnergyModalOpen(true);
+        }, 800);
+      }).catch(() => {});
     }
 
     const next = current + 1;
@@ -401,13 +446,14 @@ export default function TrainerWordsSession() {
       setCurrent(next);
     }
     if (updates.length > 0) updateMultipleTaskProgress(updates, { studyTarget }).catch(() => {});
-  }, [deck, current, correct, wrong, studyTarget, playCorrect, speakAnswer]);
+  }, [deck, current, correct, wrong, studyTarget, playCorrect, speakAnswer, spendOne, noEnergyModalOpen]);
 
   const handleButton = useCallback((dir: 'right' | 'left') => {
+    if (noEnergyModalOpen) return;
     // Результат (success/error) даёт swipeOut при оценке ответа — отдельный
     // tap убран, иначе складывался с сигналом результата в один сильный удар.
     swipeOutRef.current?.(dir);
-  }, []);
+  }, [noEnergyModalOpen]);
 
   useEffect(() => {
     if (!done || !planTrainerContext.taskId || planTrainerCompletionTracked.current) return;
@@ -553,7 +599,7 @@ export default function TrainerWordsSession() {
                 key={current}
                 card={deck[current]}
                 onSwipe={handleSwipe}
-                isTop
+                isTop={!noEnergyModalOpen}
                 swipeOutRef={swipeOutRef}
                 themeMode={themeMode}
                 onSpeakWord={() => { hapticTap(); void speakAnswer(deck[current].item.key, studyTarget); }}
@@ -601,6 +647,11 @@ export default function TrainerWordsSession() {
 
         </ContentWrap>
       </SafeAreaView>
+      <NoEnergyModal
+        visible={noEnergyModalOpen}
+        onClose={() => { energyGateDismissedRef.current = true; setNoEnergyModalOpen(false); }}
+        onGotIt={() => { setNoEnergyModalOpen(false); safeRouterBack(router, planTrainerContext.taskId ? '/personal_plan' as any : '/trainer' as any); }}
+      />
     </ScreenGradient>
   );
 }

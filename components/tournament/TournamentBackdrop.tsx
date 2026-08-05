@@ -19,6 +19,7 @@ import Animated, {
 import { LinearGradient } from 'expo-linear-gradient';
 
 import { useIsScreenFocused } from '../../hooks/use_is_screen_focused';
+import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import { useTheme } from '../ThemeContext';
 import { getTournamentThemeAssets } from './tournament_theme_assets';
 import { useTournamentPalette } from './tournament_theme';
@@ -65,6 +66,13 @@ export const TournamentBackdrop = memo(function TournamentBackdrop({ variant }: 
   const P = useTournamentPalette();
   const assets = useMemo(() => getTournamentThemeAssets(themeMode), [themeMode]);
   const focused = useIsScreenFocused();
+  // зачем 2026-08-04 (владелец: «в турнире верхняя сейф-зона другого цвета —
+  // убрать, чтобы совпадала с фоном страницы темы»): арт-бэкдроп и sheen
+  // раньше шли от самого верха экрана, а градиент выходил на чистый P.bg
+  // только к низу — из-за этого полоса статус-бара всегда была светлее/
+  // цветнее фона темы. Теперь сейф-зона закрыта сплошным P.bg, а арт
+  // начинается ПОД ней, поэтому верх любого экрана турнира = bgPrimary темы.
+  const insets = useStableSafeAreaInsets();
   const [appState, setAppState] = useState<AppStateStatus>(AppState.currentState);
   const [reduceMotion, setReduceMotion] = useState<boolean | null>(null);
   const breathe = useSharedValue(0);
@@ -123,26 +131,35 @@ export const TournamentBackdrop = memo(function TournamentBackdrop({ variant }: 
       accessibilityElementsHidden
       style={StyleSheet.absoluteFill}
     >
-      <Image
-        source={assets.backdrop}
-        resizeMode="cover"
-        style={[styles.backdrop, quiet && styles.quietBackdrop]}
-      />
-      <LinearGradient
-        colors={quiet
-          ? [P.bgGradA, `${P.bg}F2`, P.bg]
-          : [`${P.bg}22`, `${P.bg}B8`, P.bg]}
-        locations={[0, 0.58, 1]}
-        style={StyleSheet.absoluteFill}
-      />
-      {motionCapable ? (
-        <Animated.View style={[styles.light, { backgroundColor: P.sheen }, lightStyle]} />
-      ) : null}
+      {/* Арт и все переливы живут ПОД сейф-зоной — верх остаётся чистым фоном темы. */}
+      <View style={[styles.artLayer, { top: insets.top }]}>
+        <Image
+          accessible={false} // guard-ok: декоративный фон режима, смысл несёт контент поверх
+          source={assets.backdrop}
+          resizeMode="cover"
+          style={[styles.backdrop, quiet && styles.quietBackdrop]}
+        />
+        <LinearGradient
+          colors={quiet
+            ? [P.bgGradA, `${P.bg}F2`, P.bg]
+            : [`${P.bg}22`, `${P.bg}B8`, P.bg]}
+          locations={[0, 0.58, 1]}
+          style={StyleSheet.absoluteFill}
+        />
+        {motionCapable ? (
+          <Animated.View style={[styles.light, { backgroundColor: P.sheen }, lightStyle]} />
+        ) : null}
+      </View>
+      {/* Сплошная шапка ровно в цвет страницы: статус-бар не отличается от фона. */}
+      <View style={[styles.safeTopCap, { height: insets.top, backgroundColor: P.bg }]} />
     </View>
   );
 });
 
 const styles = StyleSheet.create({
+  // Слой арта: прижат к низу и краям, сверху отступает на высоту сейф-зоны.
+  artLayer: { position: 'absolute', left: 0, right: 0, bottom: 0, overflow: 'hidden' },
+  safeTopCap: { position: 'absolute', top: 0, left: 0, right: 0 },
   backdrop: {
     ...StyleSheet.absoluteFillObject,
     width: undefined,

@@ -546,7 +546,7 @@ export default function PrepositionDrillScreen() {
               <BouncyScrollView
                 ref={scrollRef}
                 style={{ flex: 1 }}
-                decelerationRate="normal"
+                decelerationRate="fast"
                 contentContainerStyle={{ paddingBottom: scrollBottomPad }}
                 keyboardShouldPersistTaps="handled"
                 nestedScrollEnabled

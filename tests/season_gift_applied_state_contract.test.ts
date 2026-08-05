@@ -83,12 +83,25 @@ describe('тексты есть у КАЖДОГО подарка', () => {
 });
 
 describe('качество текстов', () => {
+  // зачем 2026-08-04 (владелец: «тексты неправильные, не отображают суть»):
+  // тест требовал буквально «72» у ВСЕХ трёх наград, но их реальные сроки
+  // разные и НИ ОДИН не 72 часа — league_boost живёт до локальной полуночи
+  // (league_personal_boosts.ts: x2_eod_pass, durationMs = msUntilLocalMidnight),
+  // collection_magnet — 24 часа с активации (functions/src/season_pass.ts:159),
+  // turbo_regen — до конца текущих UTC-суток (boon_effects_energy.ts:36-38).
+  // Старый тест закреплял неверный текст как правильный. Теперь проверяем
+  // ФАКТ («названа хоть какая-то длительность»), а не конкретное число.
   test('у бонусов со сроком названа длительность', () => {
     // Владелец: «действует столько-то». Проверяем те, у которых срок реален.
-    for (const kind of ['league_boost', 'collection_magnet', 'turbo_regen']) {
+    const expectedDurationHint: Record<string, RegExp> = {
+      league_boost: /сегодняшнего дня/,
+      collection_magnet: /24 час/,
+      turbo_regen: /сегодняшнего дня/,
+    };
+    for (const [kind, hint] of Object.entries(expectedDurationHint)) {
       const applied = /applied: T\((.*)\),/.exec(giftBlock(kind));
       expect(applied).not.toBeNull();
-      expect(applied![1]).toMatch(/72/);
+      expect(applied![1]).toMatch(hint);
     }
   });
 

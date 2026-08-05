@@ -56,7 +56,7 @@ describe('sage porcelain modal, reward, and paywall chrome', () => {
     expect(rewardModalSoftSurface('sagePorcelain', SAGE_PORCELAIN)).toBe('#E1E5DC');
     expect(rewardModalPrimaryButtonColors('sagePorcelain')).toEqual(['#315F50', '#315F50']);
     expect(rewardModalPrimaryButtonText('sagePorcelain')).toBe('#FFFFFF');
-    expect(rewardModalBackdropGradientColors('sagePorcelain')).toEqual(['#F0F1EC', '#FCFDF9', '#E1E5DC']);
+    expect(rewardModalBackdropGradientColors('sagePorcelain')).toEqual(['#DCE1D8', '#FCFDF9', '#CDD5C7']);
     expect(rewardModalPanelGradientColors('sagePorcelain')).toEqual(['#FCFDF9', '#F5F7F2', '#E7EAE3']);
     expect(rewardModalScrimColors('sagePorcelain', 'regular')).toEqual(['rgba(23,32,29,0.26)', 'rgba(23,32,29,0.26)', 'rgba(23,32,29,0.26)']);
     expect(rewardModalScrimColors('sagePorcelain', 'strong')).toEqual(['rgba(23,32,29,0.38)', 'rgba(23,32,29,0.38)', 'rgba(23,32,29,0.38)']);

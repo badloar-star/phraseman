@@ -20,9 +20,20 @@
  */
 import * as haptics from './haptics';
 import { soundDirector } from '../../modules/audio/sound_director';
+import type { SoundRequestOptions } from '../../modules/audio/sound_arbiter';
 
 export type MilestoneKind = 'star1' | 'star2' | 'star3' | 'medal' | 'chord';
 export type FeedbackSurface = 'lesson' | 'practice';
+
+/**
+ * зачем 2026-08-04 (владелец: «звуки в турнире работают рандомно и через
+ * раз»): correct()/wrong() раньше не принимали никаких опций, поэтому все
+ * вызовы (сейчас — только из турнира) делили общий на всё приложение лимит
+ * звуков 2/сек. В турнире несколько источников (тап, вердикт, тик таймера)
+ * легитимно случаются в одну секунду. rateLimit опционален — без него
+ * поведение не меняется ни для одного существующего вызова.
+ */
+export type VerdictSoundOptions = Pick<SoundRequestOptions, 'scope' | 'rateLimit'>;
 
 export interface VerdictOptions {
   correct: boolean;
@@ -47,8 +58,8 @@ export const fk = {
   },
 
   /** Верный ответ: тёплый «дин-дон» + success haptic. */
-  correct(): void {
-    soundDirector.request('pm.learn.correct');
+  correct(options?: VerdictSoundOptions): void {
+    soundDirector.request('pm.learn.correct', options);
     haptics.correct();
   },
 
@@ -56,8 +67,8 @@ export const fk = {
    * Ошибка: по просьбе пользователя ЗВУК неправильного ответа убран совсем —
    * остаётся только error-хаптика (мягкая вибрация, НЕ «бззз»).
    */
-  wrong(): void {
-    soundDirector.request('pm.learn.needs_work');
+  wrong(options?: VerdictSoundOptions): void {
+    soundDirector.request('pm.learn.needs_work', options);
     haptics.wrong();
   },
 

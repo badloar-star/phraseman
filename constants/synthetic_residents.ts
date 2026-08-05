@@ -218,10 +218,16 @@ function residentResetDaysInMonth(index: number, monthIndex: number): number[] {
   const start = monthStartDay(monthIndex);
   const seed = residentHash(`${index}:${monthIndex}:resets`);
   const count = seed % (RESIDENT_STREAK_MAX_RESETS_PER_MONTH + 1);
+  // Срывы разносим по полосам месяца — иначе на стыке месяцев они вставали
+  // вплотную и серия не успевала отрасти (см. комментарий в серверной копии).
+  const bandSize = total / RESIDENT_STREAK_MAX_RESETS_PER_MONTH;
   const days: number[] = [];
   for (let i = 0; i < count; i++) {
-    const dayOfMonth = residentHash(`${index}:${monthIndex}:reset:${i}`) % total;
-    const day = start + dayOfMonth;
+    const bandStart = Math.floor(i * bandSize);
+    const bandEnd = Math.min(total, Math.floor((i + 1) * bandSize));
+    const span = Math.max(1, bandEnd - bandStart);
+    const dayOfMonth = bandStart + (residentHash(`${index}:${monthIndex}:reset:${i}`) % span);
+    const day = start + Math.min(total - 1, dayOfMonth);
     if (!days.includes(day)) days.push(day);
   }
   return days.sort((a, b) => a - b);
@@ -253,12 +259,18 @@ export function residentStreakAt(index: number, nowMs: number, signupMs: number)
   return Math.max(0, Math.min(RESIDENT_STREAK_MAX, since));
 }
 
+/** Базовое число лайков — зеркало серверного residentBaseLikes. */
+export function residentBaseLikes(totalXp: number): number {
+  return Math.floor(totalXp / 3000);
+}
+
 export type ResidentProfile = {
   index: number;
   totalXp: number;
   level: number;
   avatar: string;
   streak: number;
+  baseLikes: number;
 };
 
 /**
@@ -274,6 +286,7 @@ export function residentProfileAt(index: number, nowMs: number): ResidentProfile
     totalXp,
     level,
     avatar: residentAvatar(level),
-    streak: residentStreak(index * 64 + generation),
+    streak: residentStreakAt(index * 64 + generation, nowMs, signupMs),
+    baseLikes: residentBaseLikes(totalXp),
   };
 }

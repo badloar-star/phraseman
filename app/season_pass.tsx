@@ -11,7 +11,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { ActivityIndicator, FlatList, Image, Modal, Text, TouchableOpacity, View, type ListRenderItemInfo } from 'react-native';
+import { ActivityIndicator, FlatList, Image, Modal, StyleSheet, Text, TouchableOpacity, View, useWindowDimensions, type ListRenderItemInfo } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 import { FlowText } from '../components/text-integrity/FlowText';
 import { Stack, useRouter } from 'expo-router';
@@ -25,6 +25,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import { pearlIconForTheme } from './coin_icons';
 import { safeRouterBack } from './navigation_back';
 import { softShadow } from '../constants/androidGlow';
+import { LinearGradient } from '../components/SafeLinearGradient';
 import TapScale from '../components/TapScale';
 import {
   hydrateSeasonPassProgress,
@@ -35,8 +36,8 @@ import {
   type SeasonPassProgress,
 } from './season_pass_model';
 import {
-  spineTrackPath,
   spineTrackProgressPath,
+  spineTrackRegionPaths,
   spineWaveOffsetForKind,
 } from './season_pass_spine';
 import {
@@ -57,6 +58,8 @@ import { addSeasonPassGift, loadPendingSeasonPassGiftCount } from './season_pass
 import { seasonBuyPassOnServer, seasonClaimRewardOnServer } from './season_pass_server';
 import { getShardsBalance, loadShardsFromCloud } from './shards_system';
 import { getVerifiedPremiumAccessStatus } from './premium_guard';
+import { getSeasonPassThemeBackground } from './season_pass_theme_backgrounds';
+import { seasonRewardGradient, seasonRewardOnGradientColor } from '../constants/seasonPassRewardGradients';
 
 // зачем 2026-08-04 (владелец: «звёздочки должны быть под контейнером», «иконки
 // увеличить»; независимый аудит нашёл, что обе правки вместе не влезали в
@@ -169,6 +172,7 @@ type ClaimedMap = Record<string, true>; // `${seasonId}:${level}:${side}`
 
 export default function SeasonPassScreen() {
   const { theme: t, f, themeMode } = useTheme();
+  const { width: screenWidth } = useWindowDimensions();
   const { lang } = useLang();
   const router = useRouter();
   const insets = useStableSafeAreaInsets();
@@ -195,6 +199,11 @@ export default function SeasonPassScreen() {
   const [userName, setUserName] = useState<string | null>(null);
 
   const seasonId = getSeasonPassSeasonId();
+  const seasonBackground = useMemo(() => getSeasonPassThemeBackground(themeMode), [themeMode]);
+  // Нефритовый исходник уже светлый и малоконтрастный. Остальные тематические
+  // иллюстрации намеренно оставляем лишь как едва заметную фактуру: награды,
+  // подписи и центральная дорожка должны визуально находиться выше фона.
+  const seasonBackgroundScrimOpacity = themeMode === 'sagePorcelain' ? 0.3 : 0.82;
 
   const refreshPendingGiftCount = useCallback(() => {
     loadPendingSeasonPassGiftCount().then(setPendingGiftCount).catch(() => {});
@@ -470,6 +479,25 @@ export default function SeasonPassScreen() {
     // фон+арт+название) и цена (Text) — два раздельных слоя одной колонки:
     // цена больше не толкает геометрию карточки и читается как подпись К ней,
     // а не часть заполненной поверхности.
+    // зачем 2026-08-04 (владелец, со скриншотом: «контейнеры подарков
+    // сливаются с фоном, добавь туда градиенты в каждую тему уникальные,
+    // плюс контейнеры отличаются от обычных»): карточка красилась в
+    // t.bgSurface — плоский тон, чуть темнее bgCard, этого не хватало
+    // особенно на светлых темах (виден на скриншоте: sagePorcelain). Общий
+    // t.cardGradient не годится заменой — он сам почти белый-в-белый на
+    // businessLight/sagePorcelain (задуман для других мест приложения, не
+    // для этой карточки). seasonRewardGradient() — отдельная палитра именно
+    // под эту карточку, с гарантированным контрастом к bgPrimary КАЖДОЙ темы
+    // (см. constants/seasonPassRewardGradients.ts) — так карточка подарка
+    // становится узнаваемо иным элементом, а не разновидностью обычной
+    // плитки с фоном bgSurface.
+    // Pass-линия — градиент в полную силу (премиум, ярче). Free-линия —
+    // тот же градиент вполовину непрозрачности поверх непрозрачного
+    // bgSurface2: узнаваемо «та же тема», но заметно тише pass — сохраняет
+    // иерархию free/premium, которая раньше держалась на goldBg vs bgSurface.
+    const passGradientColors = seasonRewardGradient(themeMode);
+    const onRewardColor = seasonRewardOnGradientColor(themeMode);
+    const cardOpaqueBase = isPassLane ? passGradientColors[1] : t.bgSurface2;
     return (
       <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'column', alignItems: 'center', gap: 3 }}>
       <TouchableOpacity {...wrapperProps} style={{
@@ -483,19 +511,27 @@ export default function SeasonPassScreen() {
         paddingHorizontal: 8,
         paddingVertical: 4,
         position: 'relative',
-        backgroundColor: isPassLane ? t.goldBg : t.bgSurface,
-        // зачем 2026-08-04 (владелец: «строго цвета контейнеров изменить чтобы
-        // лучше выделялись на фоне белом»): на светлых темах (sagePorcelain
-        // bgCard #FCFDF9 против bgPrimary #F0F1EC, businessLight — оба #FFFFFF)
-        // карточка и фон экрана визуально сливались в одно пятно. bgSurface
-        // темнее bgCard в каждой теме — уже даёт тон без обводки (запрет
-        // владельца на borderWidth/borderColor), а мягкая тень поверх достаёт
-        // контраст и на плоских белых темах, где даже bgSurface почти не
-        // отличается от фона. softShadow держит Android без квадратов вокруг
-        // скругления (см. constants/androidGlow.ts).
-        ...softShadow({ color: t.cardShadow, radius: 8, opacity: 0.18, offsetY: 3, backgroundColor: isPassLane ? t.goldBg : t.bgSurface, elevation: 3 }),
+        overflow: 'hidden',
+        // Непрозрачная база ПОД градиентом — не декоративный слой, а нужна
+        // Android'у: elevation берёт форму outline из непрозрачного
+        // background-drawable (см. constants/androidGlow.ts), а LinearGradient
+        // рисуется дочерним слоем и сам по себе для outline «невидим». Без
+        // этой подложки на Android карточка получила бы квадратный ореол
+        // вокруг скруглённых углов вместо мягкой тени.
+        backgroundColor: cardOpaqueBase,
+        ...softShadow({ color: t.cardShadow, radius: 8, opacity: 0.18, offsetY: 3, backgroundColor: cardOpaqueBase, elevation: 3 }),
         opacity: reached ? (isClaimed ? 0.55 : 1) : 0.72,
       }}>
+        <LinearGradient
+          pointerEvents="none"
+          colors={passGradientColors as [string, string]}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          style={[
+            StyleSheet.absoluteFillObject,
+            !isPassLane && { opacity: 0.5 },
+          ]}
+        />
         {/* зачем 2026-08-03 (владелец: «иконка жемчужа слишком маленькая»):
             иконка была 20×20 при артах соседних подарков 58–64 — жемчужины
             читались как мелочь на фоне остальных наград. Теперь монета того же
@@ -505,7 +541,7 @@ export default function SeasonPassScreen() {
         {reward.kind === 'pearls'
           ? (<View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
               <Image source={pearlIcon} style={{ width: SEASON_PEARL_ART_SIZE, height: SEASON_PEARL_ART_SIZE }} resizeMode="contain" accessible={false} />
-              <Text style={{ color: t.textOnCard, fontSize: 18, fontWeight: '800', fontVariant: ['tabular-nums'] }}>{reward.amount}</Text>
+              <Text style={{ color: onRewardColor, fontSize: 18, fontWeight: '800', fontVariant: ['tabular-nums'] }}>{reward.amount}</Text>
             </View>)
           : reward.kind === 'aura_stage' || reward.kind === 'season_finale' || reward.kind === 'aura_secret'
             ? (() => {
@@ -566,7 +602,7 @@ export default function SeasonPassScreen() {
           testID={`season-pass-reward-label-${level}-${side}`}
           provenance="authored"
           style={{
-            color: t.textOnCard,
+            color: onRewardColor,
             fontSize: 11.2,
             fontWeight: '800',
             lineHeight: 13.5,
@@ -577,12 +613,17 @@ export default function SeasonPassScreen() {
           {reward.kind === 'pearls' ? '' : label}
         </FlowText>
         {claimable && (
-          <Ionicons name="checkmark-circle-outline" size={18} color={t.textOnCard} style={{ position: 'absolute', top: 7, right: 7 }} />
+          <Ionicons name="checkmark-circle-outline" size={18} color={onRewardColor} style={{ position: 'absolute', top: 7, right: 7 }} />
         )}
         {/* Замок висит на КАЖДОЙ линии, которая этому игроку недоступна: без
-            пропуска — на обеих, у фри с пропуском — только на правой. */}
+            пропуска — на обеих, у фри с пропуском — только на правой.
+            зачем 2026-08-04: t.textMuted подобран под старый фон bgSurface —
+            на новом градиенте (особенно тёмном) он может потеряться так же,
+            как терялась вся карточка. onRewardColor гарантированно контрастен
+            к ЭТОМУ фону; лёгкая прозрачность оставляет замок визуально
+            вторичным (не спорит с чек-марком/названием), не жертвуя видимостью. */}
         {!laneUnlocked && (
-          <Ionicons name="lock-closed" size={14} color={t.textMuted} style={{ position: 'absolute', top: 8, right: 8 }} />
+          <Ionicons name="lock-closed" size={14} color={onRewardColor} style={{ position: 'absolute', top: 8, right: 8, opacity: 0.72 }} />
         )}
       </TouchableOpacity>
         {/* зачем 2026-08-04 (владелец: «звёздочки должны быть под контейнером,
@@ -642,7 +683,6 @@ export default function SeasonPassScreen() {
     () => (SEASON_TRACK as SeasonTrackNode[]).map((n) => spineWaveOffsetForKind(n.pass?.kind ?? n.free?.kind)),
     [],
   );
-  const spineCx = NODE_COLUMN_WIDTH / 2;
   // зачем 2026-08-04 (владелец: «полоса посредине не должна начинаться под
   // словами ПРОПУСК — пусть идёт в самый верх, заходит за сейф-зону сверху и
   // снизу, будто она бесконечная, конец не видно»): хребет рисовался ровно от
@@ -667,13 +707,13 @@ export default function SeasonPassScreen() {
   // начинается в отрицательном Y — так координаты САМОЙ дорожки остаются
   // прежними (Y=0 = первый узел), и ни одна строка никуда не поехала.
   const spineCanvasHeight = spineOverscanTop + spineTrackHeight + spineOverscanBottom;
-  const spineGrayPath = useMemo(
-    () => spineTrackPath(spineCx, ROW_HEIGHT, spineOffsets, spineOverscanTop, spineOverscanBottom),
-    [spineCx, spineOffsets, spineOverscanTop, spineOverscanBottom],
+  const backgroundRegions = useMemo(
+    () => spineTrackRegionPaths(screenWidth, ROW_HEIGHT, spineOffsets, spineOverscanTop, spineOverscanBottom),
+    [screenWidth, spineOffsets, spineOverscanTop, spineOverscanBottom],
   );
   const spineGoldPath = useMemo(
-    () => spineTrackProgressPath(spineCx, ROW_HEIGHT, spineOffsets, progress.level, spineOverscanTop),
-    [spineCx, spineOffsets, progress.level, spineOverscanTop],
+    () => spineTrackProgressPath(screenWidth / 2, ROW_HEIGHT, spineOffsets, progress.level, spineOverscanTop),
+    [screenWidth, spineOffsets, progress.level, spineOverscanTop],
   );
   // Единое SVG-полотно хребта — ОДНА линия на всю прокручиваемую высоту
   // дорожки, а не по одной на строку (см. комментарий у SPINE_WIDTH выше:
@@ -691,8 +731,7 @@ export default function SeasonPassScreen() {
   // совпадает по X с колонкой узла в каждой реальной строке БЕЗ измерения.
   const trackSpine = useMemo(() => (
     <View style={{ height: 0, overflow: 'visible' }} pointerEvents="none">
-      <View style={{ flexDirection: 'row', gap: 8, paddingHorizontal: 14 }}>
-        <View style={{ flex: 1 }} />
+      <>
         {/* зачем 2026-08-04: полотно поднято на величину верхнего оверскана
             отрицательным marginTop, а его viewBox начинается в том же
             отрицательном Y. Две величины гасят друг друга: точка Y=0 пути
@@ -700,20 +739,22 @@ export default function SeasonPassScreen() {
             выше неё, рисуется поверх шапки и уходит за верх экрана. Так линия
             «приходит сверху», не сдвинув ни одной награды. */}
         <Svg
-          width={NODE_COLUMN_WIDTH}
+          width={screenWidth}
           height={spineCanvasHeight}
-          viewBox={`0 ${-spineOverscanTop} ${NODE_COLUMN_WIDTH} ${spineCanvasHeight}`}
+          viewBox={`0 ${-spineOverscanTop} ${screenWidth} ${spineCanvasHeight}`}
           style={{ marginTop: -spineOverscanTop }}
         >
-          <Path d={spineGrayPath} stroke={t.bgSurface} strokeWidth={SPINE_WIDTH} strokeLinecap="round" fill="none" />
+          {/* Полный золотой разделитель остаётся видимым на любом фоне от
+              верхнего до нижнего оверскана. Прогресс поверх него сохраняет
+              прежнюю геометрию, но больше не оставляет светлый «обрыв». */}
+          <Path d={backgroundRegions.divider} stroke={t.gold} strokeWidth={SPINE_WIDTH} strokeLinecap="round" fill="none" />
           {spineGoldPath ? (
             <Path d={spineGoldPath} stroke={t.gold} strokeWidth={SPINE_WIDTH} strokeLinecap="round" fill="none" />
           ) : null}
         </Svg>
-        <View style={{ flex: 1 }} />
-      </View>
+      </>
     </View>
-  ), [spineCanvasHeight, spineGoldPath, spineGrayPath, spineOverscanTop, t.bgSurface, t.gold]);
+  ), [backgroundRegions, screenWidth, spineCanvasHeight, spineGoldPath, spineOverscanTop, t.gold]);
 
   const header = useMemo(() => (
     <View style={{ paddingHorizontal: 16, paddingBottom: 6 }}>
@@ -807,6 +848,25 @@ export default function SeasonPassScreen() {
   return (
     <View style={{ flex: 1, backgroundColor: t.bgPrimary }}>
       <Stack.Screen options={{ headerShown: false }} />
+      {/* One fixed full-screen image: reward rows scroll above it, while the
+          artwork never tiles or exposes horizontal transition seams. */}
+      <Image
+        testID="season-pass-fixed-background"
+        source={seasonBackground}
+        resizeMode="cover"
+        accessible={false}
+        // зачем: react-native Image не принимает pointerEvents ни как проп,
+        // ни в style (TS2769 в обоих случаях) — но он и не нужен: это первый
+        // ребёнок View, весь интерактивный контент (FlatList и т.д.) рисуется
+        // позже в том же родителе и уже поэтому лежит выше в z-порядке, тапы
+        // до фона физически не доходят.
+        style={{ position: 'absolute', top: 0, right: 0, bottom: 0, left: 0, width: '100%', height: '100%' }}
+      />
+      <View
+        pointerEvents="none"
+        accessible={false}
+        style={{ position: 'absolute', top: 0, right: 0, bottom: 0, left: 0, backgroundColor: t.bgPrimary, opacity: seasonBackgroundScrimOpacity }}
+      />
       <FlatList
         data={SEASON_TRACK as SeasonTrackNode[]}
         keyExtractor={(n) => String(n.level)}

@@ -6,6 +6,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 import type { ImageSourcePropType } from 'react-native';
 import { isLightThemeMode, type ThemeMode } from '../constants/theme';
+import type { Lang } from '../constants/i18n';
 
 export type SeasonRewardKind =
   | 'pearls'            // жемчужины, amount
@@ -203,6 +204,37 @@ export function getSeasonAuraStageAsset(stage: number, themeMode: ThemeMode): Se
   return SEASON_AURA_STAGE_ASSETS[seasonArtTheme(themeMode)][index];
 }
 
+/**
+ * зачем 2026-08-04 (владелец, со скриншотом «Аура стадия .. ок»: у стадии
+ * ауры нет собственного имени, только римская цифра): каждая стадия — это
+ * реально разный ассет с разной скоростью пульса и вращения (см.
+ * SEASON_AURA_STAGE_ASSETS выше: пульс ускоряется 7200→4800мс, вращение
+ * 28000→16000мс от стадии I к IV), но на плитке и в модалках это было видно
+ * ТОЛЬКО как номер — «Аура · стадія II» ничего не говорит о том, что это за
+ * аура. Имена подобраны по той же нарастающей интенсивности, что и сам
+ * ассет: I — едва тлеет, IV — уже вихрь (отсюда и season_finale =
+ * «финальный вихрь», следующая ступень после IV).
+ *
+ * Живёт здесь, а не в season_pass.tsx: и экран дорожки, и обе модалки
+ * (SeasonGiftModal — клейм, SeasonRewardInfoModal — просмотр) должны
+ * называть стадию одинаково, а не по-разному в трёх местах.
+ */
+export const SEASON_AURA_STAGE_NAMES: Record<Lang, readonly [string, string, string, string]> = {
+  ru: ['Тление', 'Разгорание', 'Полыхание', 'Вихрь'],
+  uk: ['Тління', 'Розгоряння', 'Полум\'я', 'Вихор'],
+  es: ['Rescoldo', 'Llama', 'Incandescencia', 'Vórtice'],
+  'pt-BR': ['Brasa', 'Chama', 'Incandescência', 'Vórtice'],
+  vi: ['Âm ỉ', 'Bùng cháy', 'Rực sáng', 'Xoáy lốc'],
+  id: ['Bara', 'Nyala', 'Berpijar', 'Pusaran'],
+  tr: ['Köz', 'Alev', 'Kızıllık', 'Girdap'],
+  pl: ['Żar', 'Płomień', 'Blask', 'Wir'],
+};
+
+/** Индекс стадии 0..3 из amount (1..4), с защитой от выхода за границы. */
+export function seasonAuraStageIndex(amount: number | undefined): 0 | 1 | 2 | 3 {
+  return Math.max(0, Math.min(3, Math.round(amount ?? 1) - 1)) as 0 | 1 | 2 | 3;
+}
+
 /** Секретная пурпурная аура — эксклюзив 50 уровня (владелец, 2026-08-03). */
 const SEASON_SECRET_AURA_ASSETS: Readonly<Record<SeasonArtTheme, SeasonAuraAsset>> = {
   light: {
@@ -247,15 +279,27 @@ const P = (amount: number): SeasonReward => ({ kind: 'pearls', amount });
  * ~85% от цены 250); free-жемчуг 12; дни Plus на 12 и 33.
  */
 export const SEASON_TRACK: readonly SeasonTrackNode[] = [
-  N(1,  { kind: 'xp_bank', amount: 75 }),
+  // зачем 2026-08-04 (владелец: «банк опыта первый 75 исправь на 1500 и
+  // следующие соответственно чтобы была ценность»): 75/100/150 XP — меньше
+  // одного пройденного урока, подарок ощущался как ничто на фоне соседних
+  // наград (пропуск турнира, дни Plus). Новая база 1500/2000/3000 держит ТОТ
+  // ЖЕ относительный рост между ступенями (×1.33, ×1.5), что и раньше, просто
+  // на порядок, где число реально что-то весит. amount зачисляется НАПРЯМУЮ в
+  // XP-банк (season_reward_apply.ts → creditXpBank), без множителей — то, что
+  // здесь написано, игрок и получит.
+  N(1,  { kind: 'xp_bank', amount: 1500 }),
   N(2,  undefined,                          { kind: 'frame' }),
+  // зачем 2026-08-04 (владелец: «жемчужины для фри — первый 2, второй 4 и так
+  // далее»): 6 подарков-жемчужин бесплатной линии (ур. 3/9/21/31/43/55) были
+  // одинаковыми — 2 каждый раз, без чувства прогресса. Теперь удвоение на
+  // каждый следующий: 2→4→8→16→32→64.
   N(3,  P(2)),
   N(4,  { kind: 'golden_lesson' }),
   N(5,  undefined,                          P(15)),
   N(6,  { kind: 'battery' }),
   N(7,  { kind: 'turbo_regen' }),
   N(8,  undefined,                          { kind: 'league_boost' }),
-  N(9,  P(2)),
+  N(9,  P(4)),
   N(10, undefined,                          { kind: 'aura_stage', amount: 1 }),
   N(11, undefined,                          { kind: 'collection_magnet' }),
   N(12, { kind: 'plus_days', amount: 3 }),
@@ -267,7 +311,7 @@ export const SEASON_TRACK: readonly SeasonTrackNode[] = [
   N(18, { kind: 'golden_lesson' }),
   N(19, { kind: 'friend_shield' }),
   N(20, undefined,                          { kind: 'nick_color' }),
-  N(21, P(2)),
+  N(21, P(8)),
   N(22, undefined,                          { kind: 'choice_3' }),
   N(23, undefined,                          P(20)),
   N(24, undefined,                          { kind: 'league_boost' }),
@@ -276,8 +320,8 @@ export const SEASON_TRACK: readonly SeasonTrackNode[] = [
   N(27, { kind: 'turbo_regen' }),
   N(28, { kind: 'golden_lesson' }),
   N(29, undefined,                          { kind: 'collection_magnet' }),
-  N(30, { kind: 'xp_bank', amount: 100 },   { kind: 'custom_avatar' }),
-  N(31, P(2)),
+  N(30, { kind: 'xp_bank', amount: 2000 },  { kind: 'custom_avatar' }),
+  N(31, P(16)),
   N(32, undefined,                          P(25)),
   N(33, { kind: 'plus_days', amount: 7 }),
   N(34, { kind: 'choice_3' }),
@@ -289,7 +333,7 @@ export const SEASON_TRACK: readonly SeasonTrackNode[] = [
   N(40, undefined,                          { kind: 'aura_stage', amount: 3 }),
   N(41, undefined,                          P(25)),
   N(42, { kind: 'turbo_regen' }),
-  N(43, P(2)),
+  N(43, P(32)),
   N(44, { kind: 'golden_lesson' }),
   N(45, undefined,                          { kind: 'card_pack' }),
   N(46, { kind: 'battery' }),
@@ -303,10 +347,10 @@ export const SEASON_TRACK: readonly SeasonTrackNode[] = [
   N(52, undefined,                          { kind: 'league_boost' }),
   N(53, undefined,                          { kind: 'tournament_ticket' }),
   N(54, { kind: 'golden_lesson' }),
-  N(55, P(2)),
+  N(55, P(64)),
   N(56, { kind: 'turbo_regen' }),
   N(57, undefined,                          P(40)),
   N(58, { kind: 'golden_lesson' },          { kind: 'collection_magnet' }),
   N(59, { kind: 'choice_3' }),
-  N(60, { kind: 'xp_bank', amount: 150 },   { kind: 'season_finale' }),
+  N(60, { kind: 'xp_bank', amount: 3000 },  { kind: 'season_finale' }),
 ] as const;

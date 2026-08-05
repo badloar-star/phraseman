@@ -39,6 +39,7 @@ import { V2Card, V2Counter, V2Cta } from '../components/tournament/tournament_v2
 import { TournamentBackdrop } from '../components/tournament/TournamentBackdrop';
 import { StarGlyph } from '../components/tournament/TournamentFx';
 import { TournamentAudioButton } from '../components/tournament/TournamentAudioButton';
+import ReportErrorButton from '../components/ReportErrorButton';
 import {
   loadRoundReview,
   peekRoundReview,
@@ -238,7 +239,13 @@ const ReviewCard = memo(function ReviewCard({
   return (
     <V2Card pad={18} style={styles.card}>
       {/* Свёрнутая плашка: номер задания, фраза и итог. Вся строка — цель
-          нажатия, а не маленькая стрелка: попасть пальцем должно быть легко. */}
+          нажатия, а не маленькая стрелка: попасть пальцем должно быть легко.
+          зачем 2026-08-04 (владелец: «напротив каждого задания флажок чтобы
+          пожаловаться на конкретное»): флажок — ОТДЕЛЬНЫЙ сосед справа от
+          TapScale (не внутри неё), иначе тап по флажку разворачивал/сворачивал
+          бы всю карточку вместо открытия своей модалки — два независимых
+          жеста на одной строке требуют разных touch-таргетов. */}
+      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
       <TapScale
         onPress={onToggle}
         accessibilityRole="button"
@@ -256,7 +263,7 @@ const ReviewCard = memo(function ReviewCard({
         accessibilityHint={expanded
             ? triLang(lang, { ru: 'Свернуть задание', uk: 'Згорнути завдання', es: 'Contraer la pregunta', 'pt-BR': 'Recolher a pergunta', vi: 'Thu gọn câu hỏi', id: 'Ciutkan soal', tr: 'Soruyu daralt', pl: 'Zwiń zadanie' })
             : triLang(lang, { ru: 'Развернуть задание', uk: 'Розгорнути завдання', es: 'Expandir la pregunta', 'pt-BR': 'Expandir a pergunta', vi: 'Mở rộng câu hỏi', id: 'Perluas soal', tr: 'Soruyu genişlet', pl: 'Rozwiń zadanie' })}
-        style={styles.cardTop}
+        style={[styles.cardTop, { flex: 1 }]}
       >
         <Text style={styles.cardNumber}>{number}</Text>
         <FlowText testID="review-card-headline" provenance="external" style={styles.cardHeadline}>
@@ -282,6 +289,16 @@ const ReviewCard = memo(function ReviewCard({
           color={P.ghost}
         />
       </TapScale>
+      <ReportErrorButton
+        testID={`tournament-review-flag-${item.taskId}`}
+        variant="icon-flag"
+        screen="tournament_review"
+        dataId={`tournament_task_${item.taskId}`}
+        dataText={headline}
+        userAnswer={givenTokens && givenTokens.length > 0 ? givenTokens.join(' ') : undefined}
+        style={{ marginLeft: 4 }}
+      />
+      </View>
 
       {!expanded ? null : (
         <>

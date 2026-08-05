@@ -352,10 +352,9 @@ export default function TournamentRoundScreen() {
   const [feedbackCorrectIndex, setFeedbackCorrectIndex] = useState<number | null>(null);
   const [forfeitConfirmVisible, setForfeitConfirmVisible] = useState(false);
   const forfeitingRef = useRef(false);
-  // Звёзды и серия — только из серверного snapshot. Публичное задание не
-  // содержит ключ ответа, поэтому любой локальный инкремент на тап выдавал бы
-  // неверный выбор за правильный. До следующего submit показываем последнее
-  // подтверждённое сервером значение, не прогноз.
+  // Базовый счёт и серия приходят из серверного snapshot. Для speed_match
+  // подписанные отпечатки позволяют сразу показать +1/-1; pendingStars держит
+  // этот прогноз до подтверждения сервера и откатывает его при сетевой ошибке.
   const [myId, setMyId] = useState<string | null>(() => peekStableId());
   const [matchStatus, setMatchStatus] = useState<Record<number, MatchStatus>>({});
   const [confirmedMatchPairs, setConfirmedMatchPairs] = useState<ReadonlySet<number>>(() => new Set());
@@ -432,21 +431,29 @@ export default function TournamentRoundScreen() {
   // снапшот с бо́льшим счётом никогда не откатывает цифру назад, а локальный
   // прогноз никогда не занижает подтверждённое сервером значение.
   const stars = pendingStars
-    ? Math.max(serverStars, pendingStars.baseline + pendingStars.amount)
+    ? pendingStars.amount >= 0
+      ? Math.max(serverStars, pendingStars.baseline + pendingStars.amount)
+      : Math.min(serverStars, Math.max(0, pendingStars.baseline + pendingStars.amount))
     : serverStars;
 
   useEffect(() => {
     if (!pendingStars) return;
     // Сервер догнал (или перегнал) локальный прогноз — надбавка больше не нужна.
-    if (serverStars >= pendingStars.baseline + pendingStars.amount) setPendingStars(null);
+    const target = Math.max(0, pendingStars.baseline + pendingStars.amount);
+    if ((pendingStars.amount > 0 && serverStars >= target)
+      || (pendingStars.amount < 0 && serverStars <= target)
+      || pendingStars.amount === 0) setPendingStars(null);
   }, [pendingStars, serverStars]);
 
   /** Накопить локальные звёзды поверх уже ожидающих, не теряя предыдущие. */
   const addPendingStars = useCallback((amount: number) => {
-    if (amount <= 0) return;
-    setPendingStars((current) => (current
-      ? { baseline: current.baseline, amount: current.amount + amount }
-      : { baseline: serverStars, amount }));
+    if (amount === 0) return;
+    setPendingStars((current) => {
+      const next = current
+        ? { baseline: current.baseline, amount: current.amount + amount }
+        : { baseline: serverStars, amount };
+      return next.amount === 0 ? null : next;
+    });
   }, [serverStars]);
 
   const activeRoundNo = useMemo(() => {
@@ -1090,6 +1097,7 @@ export default function TournamentRoundScreen() {
             addPendingStars(1);
             flyStarsToCounter(1);
           } else {
+            if (result.penaltyApplied) addPendingStars(-1);
             fk.wrong(TOURNAMENT_SOUND_OPTIONS);
           }
           return isCorrect ? 'correct' : 'wrong';
@@ -1103,10 +1111,12 @@ export default function TournamentRoundScreen() {
     }
 
     const localVerdict = localCorrect ? 'correct' : 'wrong';
+    const optimisticStarDelta = localCorrect ? 1 : -1;
     setMatchStatus((current) => ({
       ...current,
       [pairIndex]: { verdict: localVerdict, selectedIndex },
     }));
+    addPendingStars(optimisticStarDelta);
     if (localCorrect) {
       fk.correct(TOURNAMENT_SOUND_OPTIONS);
       // зачем 2026-08-03 (владелец: «задания типа пары надо считать сколько
@@ -1115,7 +1125,6 @@ export default function TournamentRoundScreen() {
       // растёт на каждой верной паре — ровно то число, что начислит сервер.
       // зачем 2026-08-04: см. ветку выше — без этого звезда летела к счётчику,
       // но не прибавлялась к нему, и общий счёт «отставал» от анимации.
-      addPendingStars(1);
       flyStarsToCounter(1);
     } else {
       fk.wrong(TOURNAMENT_SOUND_OPTIONS);
@@ -1127,6 +1136,8 @@ export default function TournamentRoundScreen() {
         if (!screenMountedRef.current || activeQuestionKeyRef.current !== attemptQuestionKey
           || activeMatchSelectionsRef.current.get(pairIndex) !== selectedIndex) return;
         const isCorrect = result.correct === true;
+        const authoritativeStarDelta = isCorrect ? 1 : result.penaltyApplied ? -1 : 0;
+        addPendingStars(authoritativeStarDelta - optimisticStarDelta);
         setConfirmedMatchPairs((current) => {
           const next = new Set(current);
           if (isCorrect) next.add(pairIndex);
@@ -1153,6 +1164,7 @@ export default function TournamentRoundScreen() {
             return next;
           });
         }
+        addPendingStars(-optimisticStarDelta);
       })
       .finally(() => {
         pendingMatchPairsRef.current.delete(attemptKey);

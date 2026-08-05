@@ -59,6 +59,14 @@ import {
   peekSyntheticFriendRequests,
   rememberSyntheticFriendRequest,
 } from '../app/synthetic_friend_requests';
+import {
+  hasLikedSyntheticToday,
+  loadSyntheticActivityLikes,
+  syntheticLikesAddedByMe,
+  toggleSyntheticLike,
+} from '../app/synthetic_activity_likes';
+import { residentBaseLikes } from '../constants/synthetic_residents';
+import ReportUserModal from './ReportUserModal';
 import { fetchFriendProfilesBatch } from '../app/friends_profiles_batch';
 import { invalidateFriendsActivityCache } from '../app/firestore_friend_activity';
 import {
@@ -334,6 +342,11 @@ function PlayerProfileModalBody({
     () => new Set(peekSyntheticFriendRequests()),
   );
   const [removeFriendConfirmOpen, setRemoveFriendConfirmOpen] = useState(false);
+  // зачем (владелец, обязательное требование сторов — report-abuse для UGC-ников,
+  // Apple Guideline 1.2): жалоба на ник доступна с ЛЮБОЙ чужой карточки, не
+  // только с leaderboard/arena, откуда её раньше можно было вызвать только
+  // на бумаге — сам ReportUserModal существовал, но нигде не был подключён.
+  const [reportUserOpen, setReportUserOpen] = useState(false);
   const [hasSeasonProfileFrame, setHasSeasonProfileFrame] = useState(
     () => resolveSeasonProfileFrameVisible({
       isMe,
@@ -456,7 +469,10 @@ function PlayerProfileModalBody({
   const rawProfileCardLevel = player.profileCardLevel;
 
   useEffect(() => {
-    if (!crownUid) {
+    // зачем: у бота/жителя лиги (isSyntheticUid) документа корон в Firestore
+    // нет и быть не может — запрос лишь тратил бы чтение впустую (аудит
+    // 2026-08-04, найдено при проверке нового контракта uid бота).
+    if (!crownUid || isSyntheticUid(crownUid)) {
       setRemoteCrown({ expiresAt: 0, crownCount: 0 });
       return;
     }
@@ -482,10 +498,22 @@ function PlayerProfileModalBody({
     void (async () => {
       const uid = player.friendUid || player.uid || (isMe ? await getCanonicalUserId() : '');
       if (!uid || cancelled) return;
-      // зачем (владелец 2026-08-04): у синтетического персонажа нет документов в
-      // Firestore — запрос лайков вернул бы пустоту и стоил бы чтений на каждом
-      // открытии карточки. Показываем 0 лайков, как у человека без активности.
-      if (isSyntheticUid(uid)) return;
+      // зачем (владелец 2026-08-04): «лайк боту не сохранялся, сделай чтобы
+      // сохранялся навсегда и число росло всегда как у живых». У синтетического
+      // персонажа нет документов в Firestore (сеть для него намеренно заглушена
+      // — аудит 2026-08-04), поэтому число собирается из двух локальных частей:
+      // растущей базы (функция от его опыта, как у живого игрока со стажем) и
+      // лайков, поставленных этим устройством, которые хранятся навсегда.
+      if (isSyntheticUid(uid)) {
+        await loadSyntheticActivityLikes();
+        if (cancelled) return;
+        const base = residentBaseLikes(player.totalXp ?? player.points ?? 0);
+        setActivityLikeTotal(base + syntheticLikesAddedByMe(uid));
+        setTodayLike(hasLikedSyntheticToday(uid)
+          ? { date: todayActivityLikeDateKeyUtc(), targetUid: uid, eventId: PROFILE_LIKE_EVENT_ID }
+          : null);
+        return;
+      }
       const [total, likeState] = await Promise.all([
         fetchActivityLikeTotal(uid),
         isMe ? Promise.resolve(null) : fetchTodayActivityLikeState().catch(() => null),
@@ -645,10 +673,16 @@ function PlayerProfileModalBody({
     setCardStats(null);
     // Свою карточку грузим всегда (нужно для превью будущих уровней), чужую — только
     // если её уровень реально открывает блоки.
+    // зачем: у бота/жителя лиги (isSyntheticUid) документа public_profiles нет
+    // и быть не может — оба флага гасим, иначе каждое открытие карточки тратило
+    // бы чтение впустую (аудит 2026-08-04, найдено при проверке нового контракта
+    // uid бота).
+    const isSynthetic = isSyntheticUid(player.uid) || isSyntheticUid(player.friendUid);
     const needsRemoteFrame = !isMe
+      && !isSynthetic
       && devSeasonFrameOverride === undefined
       && player.seasonProfileFrameId === undefined;
-    const needsRemoteStats = !isMe && profileCardLevel >= 2;
+    const needsRemoteStats = !isMe && !isSynthetic && profileCardLevel >= 2;
     if (!isMe && !needsRemoteStats && !needsRemoteFrame) {
       return () => { cancelled = true; };
     }
@@ -1108,6 +1142,19 @@ function PlayerProfileModalBody({
       });
     }
 
+    // зачем (владелец 2026-08-04): «поставка боту лайка не сохранялась,
+    // сделай чтобы лайк боту сохранялся у него навсегда и число росло всегда
+    // как у живых». Синтетическому персонажу некуда слать сетевой вызов — он
+    // сохраняется на устройство и остаётся, даже если приложение закрыть.
+    // Отклика от сервера ждать не нужно, поэтому просто выходим после
+    // оптимистичного апдейта выше — откат тут в принципе невозможен.
+    if (isSyntheticUid(likeTargetUid)) {
+      toggleSyntheticLike(likeTargetUid, !wasLiked);
+      likeInFlightRef.current = false;
+      setLikeBusy(false);
+      return;
+    }
+
     const action = wasLiked
       ? removeFriendActivityLike({ targetUid: likeTargetUid })
       : sendFriendActivityLike({ targetUid: likeTargetUid, senderDisplayName: myInfo.name });
@@ -1310,6 +1357,51 @@ function PlayerProfileModalBody({
               size={22}
               color={isAlreadyFriend ? (t.wrong ?? t.accent) : t.accent}
             />
+          </Pressable>
+        ) : null}
+        {!isMe && (player.friendUid || player.uid) ? (
+          // зачем (владелец, обязательное требование сторов — report-abuse для
+          // UGC-ников): жалоба доступна на ЛЮБОЙ чужой карточке, не только
+          // друзей — ник виден и незнакомцам. Без uid жаловаться некуда
+          // (submitUserReport требует reportedUid), кнопку тогда не показываем.
+          // Позиция под кнопкой друга, если она есть, иначе под крестиком.
+          <Pressable
+            testID="player-profile-report-user"
+            onPress={() => {
+              hapticTap();
+              setReportUserOpen(true);
+            }}
+            style={{
+              position: 'absolute',
+              top: PROFILE_HEADER_ACTION_TOP + (PROFILE_HEADER_ACTION_SIZE + PROFILE_HEADER_ACTION_GAP) * (showAddFriend ? 2 : 1),
+              right: PROFILE_HEADER_ACTION_RIGHT,
+              zIndex: 30,
+              width: PROFILE_HEADER_ACTION_SIZE,
+              height: PROFILE_HEADER_ACTION_SIZE,
+              borderRadius: PROFILE_HEADER_ACTION_SIZE / 2,
+              backgroundColor: glassChromeBg,
+              alignItems: 'center',
+              justifyContent: 'center',
+              overflow: 'visible',
+              shadowColor: '#000',
+              shadowOpacity: 0.32,
+              shadowRadius: 8,
+              shadowOffset: { width: 0, height: 3 },
+              elevation: 5,
+            }}
+            accessibilityRole="button"
+            accessibilityLabel={triLang(lang as Lang, {
+              ru: 'Пожаловаться на ник',
+              uk: 'Поскаржитися на нік',
+              es: 'Denunciar apodo',
+              'pt-BR': 'Denunciar apelido',
+              vi: 'Báo cáo biệt danh',
+              id: 'Laporkan nama panggilan',
+              tr: 'Takma adı şikayet et',
+              pl: 'Zgłoś nick',
+            })}
+          >
+            <Ionicons name="flag-outline" size={20} color={t.textSecond} />
           </Pressable>
         ) : null}
         {isMe && !hasDevProfileCardLevelOverride && ENABLE_PROFILE_CARD && nextRealLevel !== null ? (
@@ -2173,6 +2265,14 @@ function PlayerProfileModalBody({
       confirmVariant="default"
       onCancel={() => setRemoveFriendConfirmOpen(false)}
       onConfirm={handleRemoveFriendConfirm}
+    />
+    <ReportUserModal
+      visible={reportUserOpen}
+      reportedUid={player.friendUid || player.uid || ''}
+      reportedName={player.name}
+      screen="profile"
+      lang={lang as Lang}
+      onClose={() => setReportUserOpen(false)}
     />
     </>
   );

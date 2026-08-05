@@ -24,4 +24,12 @@ describe('manage subscription repeat purchase guard', () => {
     expect(alreadyActiveGuard).toBeGreaterThan(preflight);
     expect(purchaseCall).toBeGreaterThan(alreadyActiveGuard);
   });
+
+  it('keeps the screen scroll on the responsive fast deceleration, not the sluggish RN default', () => {
+    // зачем: аудит скорости скролла (2026-08-04) заменил decelerationRate="normal"
+    // на "fast" по всему приложению, включая этот экран. Тест ловит регрессию,
+    // если кто-то добавит "normal" сюда заново.
+    expect(screenSource).toContain('decelerationRate="fast"');
+    expect(screenSource).not.toContain('decelerationRate="normal"');
+  });
 });

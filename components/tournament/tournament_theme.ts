@@ -238,7 +238,12 @@ export function tournamentV2FromTheme(t: Theme, themeMode?: ThemeMode): Tourname
     chipGradB: mixHex(accent, t.bgCard, 0.07),
     chipEdge: shade(t.bgCard, 0.45),
     chipHi: 'rgba(255,255,255,0.12)',
-    surfaceGradA: mixHex(accent, t.bgSurface, 0.1),
+    // зачем 2026-08-04 (владелец: «над словом ТУРНИРЫ цвет резко отличается»):
+    // на тёмных темах bgCard и bgSurface почти одинаково тёмные — диагональный
+    // surface-градиент читается как лёгкое дыхание. На sagePorcelain bgSurface
+    // (#E1E5DC, заметно серее) даёт видимый шов у верхнего края карточки, где
+    // как раз сидит киккер «ТУРНИРЫ». Держим оба стопа в семье bgCard.
+    surfaceGradA: isSagePorcelain ? mixHex(accent, t.bgCard, 0.06) : mixHex(accent, t.bgSurface, 0.1),
     surfaceGradB: shade(t.bgCard, 0.94),
     ctaGradA: tint(accent, 0.22),
     ctaGradB: shade(accent, 0.94),

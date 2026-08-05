@@ -520,6 +520,8 @@ export { siteStatsTrack } from './site_stats';
 
 export { recordOnboardingFunnelEvent, adminGetOnboardingFunnel } from './onboarding_funnel';
 export { recordAgeConsentSnapshot } from './record_age_consent_snapshot';
+export { recordAiExplainConsent } from './record_ai_explain_consent';
+export { recordAiDialogConsent } from './record_ai_dialog_consent';
 
 export { revenueCatShardsWebhook } from './revenuecat_shards';
 export { revenueCatPremiumReconcileMine } from './revenuecat_reconcile';

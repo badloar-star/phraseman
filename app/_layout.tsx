@@ -94,6 +94,8 @@ import {
 } from './notifications';
 import { initRevenueCat } from './revenuecat_init';
 import { hydrateAnalyticsConsentFromStorage } from './analytics_consent';
+import { hydrateAiExplainConsentFromStorage } from './ai_explain_consent';
+import { hydrateAiDialogConsentFromStorage } from './ai_dialog_consent';
 import { hydrateAgeGateFromStorage } from './age_gate';
 import { prefetchMarketplacePacks } from './flashcards/marketplace';
 import { syncPublicProfileSnapshot } from './public_profile_snapshot';
@@ -2442,6 +2444,11 @@ function AppContent() {
         // Согласие на аналитику — гидрируем ДО первого события, чтобы гейт
         // (firebase.ts logEvent / posthog capture) работал с первого кадра.
         hydrateAnalyticsConsentFromStorage().catch(() => {}),
+        // Согласие на AI-разбор ошибок — гидрируем ДО первого урока, чтобы
+        // use_mistake_explain.ts не мигал с idle → gate на первом кадре.
+        hydrateAiExplainConsentFromStorage().catch(() => {}),
+        // Согласие на AI-диалоги — гидрируем ДО первого входа в диалог.
+        hydrateAiDialogConsentFromStorage().catch(() => {}),
         // Возрастная группа — для безопасного режима (фичи-гейты) с первого кадра.
         hydrateAgeGateFromStorage().catch(() => {}),
       ]);
@@ -2764,6 +2771,15 @@ function AppContent() {
     setFirstContentReady(true);
     router.replace('/(tabs)/home' as any);
     setTimeout(() => router.replace('/(tabs)/home' as any), 120);
+    // зачем: тёплое приветствие строго один раз за жизнь аккаунта — не
+    // используем onboarding_done как гард, т.к. handleOnboardingPersonalPlanPaywall
+    // (ниже) удаляет его и прогоняет ветку плана повторно в той же установке.
+    void (async () => {
+      const alreadyWelcomed = await AsyncStorage.getItem('pm_app_welcome_played_v1').catch(() => null);
+      if (alreadyWelcomed === '1') return;
+      await AsyncStorage.setItem('pm_app_welcome_played_v1', '1').catch(() => {});
+      soundDirector.request('pm.app.welcome', { scope: 'onboarding-welcome' });
+    })();
     // Снимаем оверлей онбординга ПОСЛЕ того, как replace на /home закоммитится. Иначе,
     // если под оверлеем активен маршрут пейвола (план-ветка: handleOnboardingPersonalPlanPaywall
     // делает router.replace('/paywall_*')), при мгновенном setShow(false) пейвол мелькает один
@@ -2784,7 +2800,9 @@ function AppContent() {
     })();
     const showIntroGift = !hasPaidOrVipAfterOnboarding && await shouldShowIntroFullAccessWelcome().catch(() => false);
     if (showIntroGift) {
-      setTimeout(() => setIntroFullAccessModal('welcome'), 320);
+      // зачем: было 320ms — pm.app.welcome (2.3s, играет выше) не успевал
+      // отзвучать до открытия модалки, получалось два «приветствия» подряд.
+      setTimeout(() => setIntroFullAccessModal('welcome'), 1800);
     }
   }, [armPostOnboardingGoldBridge, hasVerifiedRealPremiumOrVip, router]);
 
@@ -3073,6 +3091,7 @@ function AppContent() {
       <Stack.Screen name="league_screen" />
       <Stack.Screen name="club_screen" />
       <Stack.Screen name="top_helpers" options={SECTION_SHEET_STACK_OPTIONS} />
+      <Stack.Screen name="tournament_tickets" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Screen name="streak_stats" />
       <Stack.Screen name="diagnostic_test" />
       <Stack.Screen name="exam" options={{ freezeOnBlur: false }} />

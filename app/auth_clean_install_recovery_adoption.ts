@@ -22,6 +22,7 @@ import { syncRevenueCatIdentity } from './revenuecat_init';
 import { loadShardsFromCloud } from './shards_system';
 import { getStableId, setStableId } from './stable_id';
 import { beginCleanInstallRecoveryTransition } from './auth_clean_install_recovery_transition';
+import { emitAppEvent } from './events';
 
 export const AUTH_CLEAN_INSTALL_ADOPTION_KEY = 'auth_clean_install_recovery_adoption_v1';
 
@@ -270,6 +271,13 @@ async function finishTargetAdoption(
   if (!await clearJournalIfExact(completedRaw)) {
     return { result: 'quarantined', reason: 'adoption_journal_changed' };
   }
+  // зачем: аудит зависшего Plus (2026-08-04) — beginPremiumAccountTransition() выше
+  // сбрасывает PremiumContext в false и держит его так, пока не придёт
+  // 'auth_provider_linked' (обычный вход его шлёт, этот путь — нет). Без эмита
+  // syncRevenueCatIdentity() внутри finishTargetAdoption уже мог записать реальный
+  // премиум в AsyncStorage, а экран всё равно показывал бы пейвол до следующего
+  // случайного триггера reload() (сворачивание/покупка/перезапуск).
+  emitAppEvent('auth_provider_linked');
   return { result: 'completed' };
 }
 

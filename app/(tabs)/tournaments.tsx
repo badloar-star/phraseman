@@ -42,6 +42,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import { useRuntimeActive } from '../../hooks/use_runtime_active';
 import TapScale from '../../components/TapScale';
+import ReportErrorButton from '../../components/ReportErrorButton';
 import { useTopFadeScroll } from '../../components/TopFadeScrollContext';
 import BouncyScrollView from '../../components/BouncyScrollView';
 import { useTheme } from '../../components/ThemeContext';
@@ -73,8 +74,13 @@ import {
   peekPlayedWindowStartMs,
   rememberPlayedWindow,
 } from '../tournament_played_window';
+import {
+  loadTournamentWelcomeSeen,
+  markTournamentWelcomeSeen,
+  peekTournamentWelcomeSeen,
+} from '../tournament_welcome_seen';
 import { Sheet } from '../../components/tournament/tournament_ui';
-import { TournamentBackdrop } from '../../components/tournament/TournamentBackdrop';
+import { TournamentWelcomeModal } from '../../components/tournament/TournamentWelcomeModal';
 import { getTournamentThemeAssets } from '../../components/tournament/tournament_theme_assets';
 import { useCountdown } from '../../components/tournament/TournamentCountdown';
 import {
@@ -113,6 +119,7 @@ import {
 import { closeTournamentFlow } from '../tournament_navigation';
 import { actionToastTri, emitAppEvent, onAppEvent } from '../events';
 import { getStableId } from '../stable_id';
+import { useTabNav } from '../TabContext';
 
 // зачем 2026-07-27: хаб турниров стал push-экраном (релиз без турниров), и
 // гвардом видимости работает честный фокус экрана — контекст табов ему больше
@@ -283,6 +290,16 @@ export default function TournamentsScreen() {
   const deferredBalanceRefreshRef = useRef(false);
   const [joinError, setJoinError] = useState('');
   const [weeklyPrize, setWeeklyPrize] = useState<{ place: number; gems: number } | null>(null);
+  // зачем 2026-08-04 (владелец: «первый раз открыл турниры — красивый
+  // анимированный модал, один раз после онбординга и больше никогда, у
+  // старых игроков тоже»): ИСХОДНОЕ состояние — всегда false (скрыт). Ставился
+  // в true через peek(), который на холодном старте всегда возвращал null →
+  // false → «не видел» → модал лез поверх экрана КАЖДЫЙ запуск и глушил тапы/
+  // скролл под собой невидимым Modal-оверлеем (аудит, инцидент 2026-08-04).
+  // Показывать модал теперь может только подтверждённый ответ из AsyncStorage
+  // (эффект ниже), peek используется только чтобы не дёргать эффект впустую,
+  // если флаг уже точно true в памяти этой же сессии.
+  const [welcomeVisible, setWelcomeVisible] = useState(false);
   // зачем 2026-07-27: карточка банка была мёртвой — игрок видел цифру 338 и не
   // мог узнать, как её делят и где он сам. Тап открывает шторку (владелец
   // выбрал шторку, а не отдельный экран: не уводит с хаба).
@@ -427,6 +444,61 @@ export default function TournamentsScreen() {
    */
   const screenFocused = useIsFocused();
   const runtimeActive = useRuntimeActive(screenFocused);
+  // зачем 2026-08-04 (инцидент: модал приветствия вылезал на ГЛАВНОЙ и глушил
+  // экран): турниры давно вернули в таббар (TABS в (tabs)/_layout.tsx), а
+  // соседние табы ФОНОВО ПРЕМАУНТЯТСЯ через ~160-500мс после открытия главной
+  // (ENABLE_BACKGROUND_TAB_PREMOUNT, BACKGROUND_TAB_PREMOUNT_ORDER=[1,2,3]) —
+  // ради мгновенного первого открытия таба. useIsFocused() в expo-router
+  // считает сфокусированным весь route-стек `(tabs)`, а не конкретный таб
+  // внутри свайпера, поэтому screenFocused=true уже во время премаунта, пока
+  // пользователь физически смотрит на главную. Комментарий выше про
+  // «useIsFocused честный, потому что это push-экран» устарел ещё когда
+  // турниры вернули в таббар — сам он неверный, но чинить весь файл вне
+  // рамок этой задачи. runtimeOwnerId — то, чем friends.tsx/settings.tsx уже
+  // отличают «мой таб реально на экране» от «весь (tabs)-стек в фокусе».
+  const { runtimeOwnerId } = useTabNav();
+  const tournamentsTabVisible = runtimeOwnerId === 'tournaments';
+
+  // зачем 2026-08-04 (фикс после аудита — было инвертировано, см. комментарий
+  // у welcomeVisible выше): модал стартует СКРЫТЫМ и включается только этим
+  // эффектом, только когда AsyncStorage подтвердил seen === false. peek()
+  // здесь — короткое замыкание: если в ЭТОЙ ЖЕ сессии уже точно знаем true
+  // (например, юзер закрыл модал, ушёл со экрана и тут же вернулся), не гоняем
+  // повторный async round-trip и не мигаем состоянием.
+  // зачем weeklyPrize !== null 2026-08-04 (аудит): шторка недельного приза
+  // открывается своим независимым эффектом на монтировании (см. loadWeeklyBankInfo
+  // выше) — оба эффекта могут захотеть открыться на одном и том же первом
+  // кадре. Модал приветствия ждёт, пока шторка приза закроется (эффект
+  // перезапускается по [weeklyPrize]), а не лезет вторым Modal поверх первого —
+  // на iOS второй Modal может перехватить жесты у первого (см. safe_modal_navigation.ts).
+  useEffect(() => {
+    if (!tournamentsTabVisible || weeklyPrize !== null) return;
+    if (peekTournamentWelcomeSeen() === true) return;
+    let alive = true;
+    void loadTournamentWelcomeSeen().then((seen) => {
+      if (alive) setWelcomeVisible(!seen);
+    });
+    return () => { alive = false; };
+  }, [tournamentsTabVisible, weeklyPrize]);
+
+  // зачем 2026-08-04 (инцидент: уход с турниров на другой таб намертво вешал
+  // приложение — Android): react-freeze (TabPane в (tabs)/_layout.tsx)
+  // ЗАМОРАЖИВАЕТ ТОЛЬКО РЕНДЕР React-дерева ушедшего таба, а react-native
+  // Modal рисует себя отдельным нативным окном ПОВЕРХ всего приложения —
+  // Freeze его не убирает. Если welcomeVisible оставался true в момент ухода
+  // с таба (пользователь не успел/не стал жать «Понятно», а просто
+  // переключился), невидимый Modal оставался смонтирован и перехватывал
+  // ВСЕ жесты во всём приложении, включая другие табы — экран «намертво».
+  // Явно гасим модал программно при потере видимости таба, не полагаясь
+  // только на явное закрытие пользователем.
+  useEffect(() => {
+    if (!tournamentsTabVisible) setWelcomeVisible(false);
+  }, [tournamentsTabVisible]);
+
+  const closeWelcome = useCallback(() => {
+    setWelcomeVisible(false);
+    void markTournamentWelcomeSeen();
+  }, []);
 
   // зачем 2026-08-04 (владелец: «в админке включено весь день, а в приложении
   // всё ещё "сейчас турниров нет"»): loadSchedule() кэширует снимок на 6 часов
@@ -803,7 +875,9 @@ export default function TournamentsScreen() {
   const myPlace = standings?.myPlace ?? 0;
   // Своя строка идёт отдельно, если я не в показанной тройке.
   const myRowSeparate = me && myPlace > SEASON_HUB_TOP ? me : myPlace === 0 ? me : null;
-  const myStars = me?.points ?? 0;
+  // зачем: в лобби показываем ЧЕСТНЫЙ счёт звёзд (starsTotal), а не очки места
+  // (points) — они остаются только для сортировки таблицы/расчёта призов.
+  const myStars = me?.starsTotal ?? 0;
   const topStars = Math.max(1, seasonTop[0]?.points ?? 1);
 
   /**
@@ -825,11 +899,14 @@ export default function TournamentsScreen() {
 
   return (
     <View style={styles.root}>
-      <TournamentBackdrop variant="hub" />
+      {/* зачем 2026-08-04: полоса над «ТУРНИРЫ» — фикс НЕ здесь (см. правку в
+          app/(tabs)/_layout.tsx TabScaffold). Этот View стартует уже НИЖЕ
+          insets.top (общая таб-оболочка сдвигает контент своим paddingTop),
+          поэтому плашка safe-зоны отсюда физически не могла достать до
+          настоящей дыры над статус-баром — она красила уже прокрашенную
+          область внутри экрана, а не саму дыру. */}
       {/* Дыхание фона: мягкий свет акцента сверху — глубина без обводок.
-          зачем 2026-08-04 (владелец: «верхняя сейф-зона другого цвета»):
-          свет начинается ПОД сейф-зоной, иначе он подкрашивал статус-бар и
-          верх хаба не совпадал с фоном темы. */}
+          Начинается ПОД сейф-зоной, иначе подкрашивал бы статус-бар другим тоном. */}
       <LinearGradient
         colors={[P.sheen, 'transparent']}
         style={[styles.sheen, { top: insets.top }]}
@@ -861,6 +938,24 @@ export default function TournamentsScreen() {
           </TapScale>
           <FlowText testID="tournaments-title" provenance="authored" style={styles.title}>Турниры</FlowText>
           <View style={styles.headerRight}>
+            {/* зачем 2026-08-04 (владелец: Season Pass tournament_ticket —
+                «появится ассет в разделе турнир в правом углу»): раньше билет
+                выдавался сервером и физически терялся — вход в турнир его
+                никогда не читал (см. functions/src/tournaments.ts). Теперь
+                вход учитывает билет, а бейдж — единственная видимая игроку
+                подсказка «у тебя есть бесплатный вход», без него подарок
+                выглядел бы как ничего не изменившее событие. */}
+            {bankInfo?.seasonTicketAvailable ? (
+              <TapScale
+                testID="tournaments-season-ticket-badge"
+                onPress={() => router.push('/tournament_tickets' as any)}
+                accessibilityRole="button"
+                accessibilityLabel="Есть бесплатный билет на турнир"
+                style={styles.ticketBadge}
+              >
+                <Ionicons name="ticket" size={18} color={P.gold} />
+              </TapScale>
+            ) : null}
             <V2Counter value={myStars} tone="stars" />
             <V2Counter
               value={coins}
@@ -1133,7 +1228,7 @@ export default function TournamentsScreen() {
                   </Text>
                   <View style={styles.rowStars}>
                     <StarGlyph size={13} color={P.gold} />
-                    <FlowText testID="tournaments-row-stars" provenance="authored" style={styles.rowStarsText}>{leader.points}</FlowText>
+                    <FlowText testID="tournaments-row-stars" provenance="authored" style={styles.rowStarsText}>{leader.starsTotal}</FlowText>
                   </View>
                 </V2RatingRow>
               );
@@ -1150,7 +1245,7 @@ export default function TournamentsScreen() {
                 <View style={styles.rowStars}>
                   <StarGlyph size={13} color={P.gold} />
                   <FlowText testID="tournaments-my-stars" provenance="authored" style={styles.rowStarsText}>
-                    {myRowSeparate.points}
+                    {myRowSeparate.starsTotal}
                   </FlowText>
                 </View>
               </V2RatingRow>
@@ -1166,6 +1261,17 @@ export default function TournamentsScreen() {
         <TapScale onPress={() => router.push('/tournament_season')} style={styles.seasonMore}>
           <FlowText testID="tournaments-season-more" provenance="authored" style={styles.seasonMoreText}>Таблица сезона</FlowText>
         </TapScale>
+
+        {/* зачем 2026-08-04 (владелец: «в раздел экран турниров в самом низу
+            добавить кнопку нашли ошибку»): та же переиспользуемая кнопка,
+            что уже стоит на других экранах приложения — общий канал репортов
+            (submitClientReport → error_report), не новая механика. */}
+        <ReportErrorButton
+          testID="tournaments-report-error"
+          screen="tournaments"
+          dataId="tournaments_hub"
+          style={styles.reportError}
+        />
 
       </BouncyScrollView>
 
@@ -1285,6 +1391,9 @@ export default function TournamentsScreen() {
           <V2Cta tone="ghost" onPress={closeConfirm}>Отмена</V2Cta>
         </View>
       </Sheet>
+
+      {/* Приветствие раздела — один раз в жизни установки, см. tournament_welcome_seen.ts */}
+      <TournamentWelcomeModal visible={welcomeVisible} onClose={closeWelcome} />
     </View>
   );
 }
@@ -1378,7 +1487,15 @@ const HeroValue = memo(function HeroValue({
 });
 
 const makeStyles = (P: TournamentV2) => StyleSheet.create({
-  root: { flex: 1, backgroundColor: P.bg },
+  // зачем 2026-08-04 (владелец: «фон турниров отличается от друзей/настроек/
+  // главной, привести к единому стандарту во всех темах»): экран уже сидит
+  // внутри общего ScreenGradient (тот же artBackdrop="home" из _layout.tsx,
+  // что и у остальных табов) — там уже нарисован фон+орбы+блум активной темы.
+  // Опаковый P.bg здесь полностью перекрывал этот общий слой своим плоским
+  // цветом, поэтому турниры визуально не были похожи ни на одну тему. Друзья/
+  // настройки/уроки держат корневой View прозрачным (testID="screen-friends"
+  // и т.п. без backgroundColor) — делаем так же.
+  root: { flex: 1, backgroundColor: 'transparent' },
   // top задаётся инлайном из сейф-зоны — свет не заходит на статус-бар.
   sheen: { position: 'absolute', left: 0, right: 0, height: 260 },
   content: { paddingHorizontal: 16, gap: 14 },
@@ -1400,6 +1517,17 @@ const makeStyles = (P: TournamentV2) => StyleSheet.create({
   title: { fontSize: 24, fontWeight: '900', letterSpacing: -0.3, color: P.text },
   headerRight: { marginLeft: 'auto', flexDirection: 'row', gap: 8, alignItems: 'center' },
   coinIcon: { width: 15, height: 15 },
+  // зачем 2026-08-04: тот же язык пилюль, что у V2Counter (goldSoft — акцент
+  // «звёзд»/премии), круглая форма — отличает бейдж от прямоугольных пилюль
+  // счётчиков, читается как отдельный статус, а не как ещё одно число.
+  ticketBadge: {
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: P.goldSoft,
+  },
 
   kicker: {
     fontSize: 13,
@@ -1499,6 +1627,7 @@ const makeStyles = (P: TournamentV2) => StyleSheet.create({
     paddingVertical: 12,
   },
   seasonMoreText: { fontSize: 15, fontWeight: '800', color: P.muted, flexShrink: 1 },
+  reportError: { alignItems: 'center', alignSelf: 'center', paddingTop: 4, paddingBottom: 8 },
 
   // Карточка наград сезона живёт в общей оболочке V2Card рядом с банком недели,
   // поэтому своей подложки у неё больше нет — только внутренняя типографика.

@@ -105,7 +105,10 @@ function buildReportDoc(
       reportedUid,
       reportedName: text(payload.reportedName, 120),
       reason: enumText(payload.reason, ['offensive_nickname'] as const, 'offensive_nickname'),
-      screen: enumText(payload.screen, ['leaderboard', 'arena'] as const, 'leaderboard'),
+      // зачем: карточка игрока открывается из >5 экранов (друзья, клуб, турнир,
+      // главная) — 'profile' покрывает всё, что не leaderboard/arena, вместо
+      // молчаливого fallback на 'leaderboard' в админской статистике жалоб.
+      screen: enumText(payload.screen, ['leaderboard', 'arena', 'profile'] as const, 'leaderboard'),
       reporterUid: stableUid,
       reporterAuthUid: authUid,
       reporterName: text(payload.reporterName, 120) || 'unknown',

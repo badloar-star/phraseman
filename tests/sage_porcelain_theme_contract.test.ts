@@ -19,13 +19,13 @@ function contrastRatio(foreground: string, background: string): number {
 describe('Sage Porcelain theme contract', () => {
   it('uses the approved primary palette tokens', () => {
     expect(SAGE_PORCELAIN).toMatchObject({
-      bgPrimary: '#F0F1EC',
+      bgPrimary: '#DCE1D8',
       bgCard: '#FCFDF9',
       textPrimary: '#17201D',
       textOnCard: '#17201D',
       textSecond: '#3C5A50',
       textMuted: '#52605A',
-      textGhost: '#61706A',
+      textGhost: '#4E5D55',
       accent: '#315F50',
       correct: '#2F6F4F',
       wrong: '#A8464D',

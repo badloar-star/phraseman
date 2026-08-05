@@ -124,6 +124,17 @@ describe('tournament backend hardening source contracts', () => {
     expect(admin).not.toContain('const testingEnabled =');
   });
 
+  it('adds and returns only the amount actually charged for a scheduled entry', () => {
+    const joinStart = source.indexOf('export async function tournamentJoinTransaction');
+    const joinEnd = source.indexOf('export async function tournamentLeaveTransaction', joinStart);
+    const joinBlock = source.slice(joinStart, joinEnd);
+
+    expect(joinBlock).toContain("lobbyBasePot + (admissionMode === 'scheduled' ? contribution : 0)");
+    expect(joinBlock).toContain('gemsLeft: gemsBefore - contribution');
+    expect(joinBlock).not.toContain("lobbyBasePot + (admissionMode === 'scheduled' ? entryGems : 0)");
+    expect(joinBlock).not.toContain('gemsLeft: gemsBefore - entryGems');
+  });
+
   it('exports a server-authoritative first-answer callable backed by private receipts', () => {
     expect(source).toContain('export const tournamentSubmitTaskAnswer = onCall');
     expect(source).toContain('export async function tournamentSubmitTaskAnswerTransaction');

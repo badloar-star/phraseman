@@ -46,7 +46,10 @@ import {
   type RoomPlayer, type Room } from './tournament_client';
 import { getStableId } from './stable_id';
 import { useLocalSearchParams } from 'expo-router';
-import { orderVisibleLobbyPlayers } from './tournament_lobby_seats';
+import { lobbyPotGemsAtTime, orderVisibleLobbyPlayers } from './tournament_lobby_seats';
+import { pearlIconForTheme } from './coin_icons';
+import { useTheme } from '../components/ThemeContext';
+import { Image } from 'expo-image'; // guard-ok: жемчужина декоративная, число рядом — реальный индикатор
 import { tournamentPrizeForecast } from './tournament_prize_forecast';
 import {
   cancelTournamentEntryTransition,
@@ -115,16 +118,17 @@ function mapPlayersToSeats(players: readonly RoomPlayer[], myId: string | null, 
   }));
 }
 
-type LobbyBotArrival = NonNullable<Room['lobbyEvents']>[number];
-
 const AnimatedBankAmount = memo(function AnimatedBankAmount({
   amount,
-  events,
   onDisplayAmountChange,
   lang,
 }: {
+  /**
+   * Банк на ТЕКУЩУЮ секунду — уже отфильтрованный по времени прихода
+   * (lobbyPotGemsAtTime). Компонент только рисует и пульсирует; решение
+   * «чей взнос уже виден» принимается выше, там же, где рассаживаются места.
+   */
   amount: number;
-  events: readonly LobbyBotArrival[];
   /**
    * зачем 2026-08-03 (владелец: «места пусть сразу показывают точные цифры
    * жемчугов, тоже анимированно»): банк доезжает до новой суммы КАСКАДОМ, по
@@ -138,10 +142,14 @@ const AnimatedBankAmount = memo(function AnimatedBankAmount({
 }) {
   const P = useTournamentPalette();
   const styles = React.useMemo(() => makeStyles(P), [P]);
+  const { themeMode } = useTheme();
+  const pearlIcon = React.useMemo(() => pearlIconForTheme(themeMode), [themeMode]);
   const reduceMotion = useReduceMotion();
   const pulse = useSharedValue(1);
   const [displayAmount, setDisplayAmount] = useState(amount);
-  const seenEventIdsRef = useRef(new Set<string>());
+  // Ref, а не displayAmount в зависимостях: эффект должен реагировать на приход
+  // новой суммы, а не перезапускаться от собственного setState.
+  const displayAmountRef = useRef(amount);
   const initializedRef = useRef(false);
   // Ref, а не зависимость эффекта: коллбэк из родителя может пересоздаваться
   // на каждом рендере, и каскад перезапускался бы с середины.
@@ -149,41 +157,31 @@ const AnimatedBankAmount = memo(function AnimatedBankAmount({
   useEffect(() => { notifyRef.current = onDisplayAmountChange; }, [onDisplayAmountChange]);
   useEffect(() => { notifyRef.current?.(displayAmount); }, [displayAmount]);
 
+  /**
+   * зачем 2026-08-04: раньше здесь жил КАСКАД — банк приезжал из сервера сразу
+   * полным (все 15 взносов ботов), и экран разбирал его на шаги сам, по
+   * `lobbyEvents`. С этого дня `amount` уже приходит посекундно (см.
+   * lobbyPotGemsAtTime): он растёт ровно на один взнос в момент, когда бот
+   * реально садится за стол. Второй каскад поверх первого показывал бы отставшую
+   * цифру и рассинхронил бы банк с сеткой мест — тем самым «арифметика не
+   * сходится», от которого каскад и защищал.
+   *
+   * Остаётся ПУЛЬС на рост: он и создаёт ощущение «подошёл соперник → банк
+   * потяжелел». На уменьшении (игрок вышел из лобби, сервер вернул взнос) не
+   * пульсируем — радостная анимация на потере выглядела бы издевательством.
+   */
   useEffect(() => {
+    const previous = displayAmountRef.current;
+    displayAmountRef.current = amount;
+    setDisplayAmount(amount);
     if (!initializedRef.current) {
-      events.forEach((event) => seenEventIdsRef.current.add(event.eventId));
+      // Первый кадр — не анимация, а факт: сумма просто есть (layout stability).
       initializedRef.current = true;
-      setDisplayAmount(amount);
       return;
     }
-    const arrivals = events
-      .filter((event) => event.kind === 'bot_arrival' && !seenEventIdsRef.current.has(event.eventId))
-      .sort((left, right) => left.atMs - right.atMs);
-    if (arrivals.length === 0) {
-      setDisplayAmount(amount);
-      return;
-    }
-    arrivals.forEach((event) => seenEventIdsRef.current.add(event.eventId));
-    // зачем 2026-08-01 (аудит турнира): шаг был фиксированные 360 мс, поэтому
-    // пачка из 15 прибытий растягивала показ банка на ~5 секунд — всё это время
-    // цифра на экране была заведомо устаревшей. Теперь у каскада есть ПОТОЛОК:
-    // сколько бы событий ни пришло разом, последняя цифра встаёт на место не
-    // позже CASCADE_BUDGET_MS. Пересчёт по одному сохранён — он и создаёт
-    // ощущение, что соперники подходят по одному, а не появляются пачкой.
-    const CASCADE_BUDGET_MS = 900;
-    const stepMs = Math.min(160, Math.floor(CASCADE_BUDGET_MS / Math.max(1, arrivals.length)));
-    const timers = arrivals.map((event, index) => setTimeout(() => {
-      // `potGemsAfter` is authoritative. A zero test-mode delta keeps digits
-      // unchanged rather than inventing a bank gain.
-      setDisplayAmount(event.potGemsAfter);
-      if (reduceMotion) {
-        pulse.value = 1;
-      } else {
-        pulse.value = withSequence(withTiming(1.06, { duration: 120 }), withTiming(1, { duration: 180 }));
-      }
-    }, index * stepMs));
-    return () => timers.forEach(clearTimeout);
-  }, [amount, events, pulse, reduceMotion]);
+    if (amount <= previous || reduceMotion) return;
+    pulse.value = withSequence(withTiming(1.06, { duration: 120 }), withTiming(1, { duration: 180 }));
+  }, [amount, pulse, reduceMotion]);
 
   const animatedStyle = useAnimatedStyle(() => ({ transform: [{ scale: pulse.value }] }));
   return (
@@ -193,7 +191,17 @@ const AnimatedBankAmount = memo(function AnimatedBankAmount({
       accessibilityLabel={triLang(lang, { ru: `Банк турнира: ${amount} жемчужин`, uk: `Банк турніру: ${amount} перлин`, es: `Bote del torneo: ${amount} perlas`, 'pt-BR': `Prêmio do torneio: ${amount} pérolas`, vi: `Quỹ giải đấu: ${amount} ngọc trai`, id: `Hadiah turnamen: ${amount} mutiara`, tr: `Turnuva ödülü: ${amount} inci`, pl: `Pula turnieju: ${amount} pereł` })}
     >
       <Text style={styles.bankAmountSlot}>{displayAmount}</Text>
-      <Text style={styles.bankUnit}>{triLang(lang, { ru: 'жемчужин', uk: 'перлин', es: 'perlas', 'pt-BR': 'pérolas', vi: 'ngọc trai', id: 'mutiara', tr: 'inci', pl: 'pereł' })}</Text>
+      {/* зачем 2026-08-04 (владелец: «ассет жемчужин должен быть там же возле
+          цифры»): слово «жемчужин» занимало место валюты. Иконка читается
+          мгновенно и на любом языке, а строка перестаёт скакать по ширине при
+          переключении локали. Доступность держит accessibilityLabel выше —
+          картинка декоративная, озвучивается полная фраза с числом. */}
+      <Image
+        source={pearlIcon}
+        style={styles.bankPearl}
+        contentFit="contain"
+        accessible={false}
+      />
     </Animated.View>
   );
 });
@@ -458,9 +466,26 @@ export default function TournamentLobbyScreen() {
   const joined = seats.length;
   const full = joined >= SEATS;
   const secondsToStart = secondsLeft;
-  // potGems — БАНК КОМНАТЫ с сервера, а не баланс игрока: экран только рисует
-  // пришедшее значение, кошелёк пользователя тут не трогается.
-  const bankGems = Math.max(0, Math.trunc(Number(room?.potGems ?? 0))); // guard-ok
+  /**
+   * potGems — БАНК КОМНАТЫ с сервера, а не баланс игрока: экран только рисует
+   * пришедшее значение, кошелёк пользователя тут не трогается.
+   *
+   * зачем 2026-08-04 (владелец: «в лобби ещё ни бота ни юзера, а счётчик сразу
+   * набрался 75, а должно появляться вместе с подключением бота и юзера +5»):
+   * сервер кладёт в комнату взносы всех 15 ботов сразу при её создании, поэтому
+   * `room.potGems` с первой секунды равен финальным 75. Места при этом
+   * фильтруются по joinAtMs и подходят по одному — банк обязан идти с ними в
+   * ногу. Считаем по тем же часам (tournamentNow), что и сетка мест, и по тем
+   * же lobbyTick — иначе цифра замирала бы между обновлениями комнаты.
+   */
+  const bankGems = useMemo(
+    () => lobbyPotGemsAtTime(
+      Number(room?.potGems ?? 0),
+      room?.lobbyEvents ?? [],
+      tournamentNow(),
+    ),
+    [room?.potGems, room?.lobbyEvents, lobbyTick],
+  );
   /**
    * Банк, который СЕЙЧАС виден на экране (каскад ещё может ехать), и награды,
    * посчитанные ровно от него.
@@ -653,7 +678,6 @@ export default function TournamentLobbyScreen() {
             <Text style={styles.bankLabel}>{triLang(lang, { ru: 'Общий банк', uk: 'Загальний банк', es: 'Bote total', 'pt-BR': 'Prêmio total', vi: 'Tổng quỹ', id: 'Total hadiah', tr: 'Toplam ödül', pl: 'Łączna pula' })}</Text>
             <AnimatedBankAmount
               amount={bankGems}
-              events={room?.lobbyEvents ?? []}
               onDisplayAmountChange={setDisplayedBankGems}
               lang={lang}
             />
@@ -806,7 +830,10 @@ const makeStyles = (P: TournamentPalette) => StyleSheet.create({
   },
   bankRow: { flexDirection: 'row', alignItems: 'center', marginTop: 14 },
   bankLabel: { color: P.muted, fontSize: 13, fontWeight: '700', flex: 1 },
-  bankAmountWrap: { flexDirection: 'row', alignItems: 'baseline', gap: 5 },
+  // зачем 2026-08-04: было alignItems 'baseline' под текстовую подпись
+  // «жемчужин». У картинки базовой линии нет — по baseline иконка «тонет»
+  // под цифры. Центрируем: жемчужина встаёт ровно по оптической середине числа.
+  bankAmountWrap: { flexDirection: 'row', alignItems: 'center', gap: 5 },
   // Фиксированный цифровой слот + tabular nums сохраняют геометрию при
   // авторитетном обновлении банка из snapshot комнаты.
   bankAmountSlot: {
@@ -817,7 +844,10 @@ const makeStyles = (P: TournamentPalette) => StyleSheet.create({
     fontWeight: '900',
     fontVariant: ['tabular-nums'],
   },
-  bankUnit: { color: P.muted, fontSize: 12, fontWeight: '700' },
+  // Размер под кегль числа (20): жемчужина читается как единица измерения
+  // рядом с цифрой, а не как отдельная иконка-кнопка. Геометрия фиксированная —
+  // ряд не дёргается, когда банк растёт с 5 до 75 (layout stability).
+  bankPearl: { width: 18, height: 18 },
   bankShares: {
     flexDirection: 'row',
     justifyContent: 'space-between',

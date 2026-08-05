@@ -21,6 +21,7 @@ import {
   tournamentAvatarValue,
 } from '../components/tournament/tournament_avatars';
 import { TOTAL_XP_FOR_LEVEL } from '../constants/theme';
+import { isSyntheticUid } from '../app/synthetic_friend_requests';
 
 const RESULTS_SOURCE = fs.readFileSync(
   path.join(__dirname, '..', 'app', 'tournament_results.tsx'),
@@ -90,10 +91,13 @@ describe('кап уровня и аватара бота', () => {
 });
 
 describe('карточка бота заполнена, а не пустая', () => {
+  // uid в формате реального сервера (p_ + toString(36), см. functions/src/tournaments.ts) —
+  // фикстура с подчёркиванием (p_bot_N) не проходила isSyntheticUid и маскировала бы
+  // регрессию в защите от сетевых запросов.
   const sample = Array.from({ length: 60 }, (_, index) => tournamentBotCardInfo({
-    uid: `p_bot_${index}`,
+    uid: `p_bot${index}`,
     name: `Бот ${index}`,
-    avatar: tournamentAvatarValue({ id: `p_bot_${index}`, isBot: true }),
+    avatar: tournamentAvatarValue({ id: `p_bot${index}`, isBot: true }),
   }));
 
   test('у бота НЕ нулевой опыт', () => {
@@ -132,10 +136,13 @@ describe('карточка бота заполнена, а не пустая', (
   });
 
   test('бот не выдаёт себя за живого игрока', () => {
-    // Без uid модалка не пойдёт в Firestore за несуществующим профилем.
+    // зачем (владелец 2026-08-04, решение поменялось после этого теста): uid
+    // бота теперь есть в карточке (иначе не было бы кнопки «в друзья»), а от
+    // похода в Firestore за несуществующим профилем защищает isSyntheticUid().
     sample.forEach((info) => {
       expect(info.isMe).toBe(false);
-      expect(info.uid).toBeUndefined();
+      expect(info.uid).toBeTruthy();
+      expect(isSyntheticUid(info.uid)).toBe(true);
     });
   });
 });

@@ -1276,7 +1276,7 @@ export default function LessonComplete() {
       </TapScale>
       )}
       <ContentWrap>
-      <BouncyScrollView testID="lesson-complete-screen" decelerationRate="normal" contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', padding: 30 }} showsVerticalScrollIndicator={false}>
+      <BouncyScrollView testID="lesson-complete-screen" decelerationRate="fast" contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', padding: 30 }} showsVerticalScrollIndicator={false}>
 
         {/* Анимированная медаль */}
         <Animated.View style={{

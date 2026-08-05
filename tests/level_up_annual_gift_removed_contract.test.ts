@@ -13,6 +13,7 @@ const SOURCE_ROOTS = [
   'functions/src',
   'admin/v2',
 ] as const;
+const RELEASE_CONFIG_FILES = ['app.json', 'eas.json', 'package.json'] as const;
 const SOURCE_EXTENSIONS = new Set(['.cjs', '.html', '.js', '.jsx', '.mjs', '.ts', '.tsx']);
 
 const REMOVED_PATHS = [
@@ -38,6 +39,11 @@ const FORBIDDEN_SOURCE_PATTERNS = [
   /LevelUpAnnualGift/,
   /levelUpAnnualGift/,
   /18 месяцев Premium/i,
+  /Premium на 18 месяцев/i,
+  /18 месяцев Plus/i,
+  /Plus на 18 месяцев/i,
+  /18 months? (?:of )?(?:Premium|Plus)/i,
+  /(?:Premium|Plus) for 18 months?/i,
   /18 месяцев за цену (?:года|12 месяцев)/i,
   /Получить 18 месяцев/i,
   /\+6 месяцев к годовому доступу/i,
@@ -68,6 +74,7 @@ describe('removed level-up annual Premium gift offer', () => {
   test('has no feature identifiers, route, or approved offer copy in runtime, admin, or Functions source', () => {
     const offenders = SOURCE_ROOTS
       .flatMap(listSourceFiles)
+      .concat(RELEASE_CONFIG_FILES)
       .flatMap((relativePath) => {
         const source = readFileSync(path.join(ROOT, relativePath), 'utf8');
         return FORBIDDEN_SOURCE_PATTERNS

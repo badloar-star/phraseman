@@ -744,7 +744,7 @@ function AppMessagesInbox({
           <Text style={[styles.emptyBody, { color: chrome.muted }]}>{copy.emptyBody}</Text>
         </View>
       ) : (
-        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.listContent}>
+        <ScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} contentContainerStyle={styles.listContent}>
           {messages.map((message) => {
             const messageRead = !message.unread;
             const text = pickAppMessageText(message, lang);
@@ -980,7 +980,7 @@ function AppMessagesInbox({
             <Ionicons name="chevron-back" size={22} color={chrome.text} />
           </TouchableOpacity>
         </View>
-        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.detailContent}>
+        <ScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} contentContainerStyle={styles.detailContent}>
           <Text style={[styles.detailDate, { color: chrome.soft }]}>{formatMessageDate(selected.createdAtMs)}</Text>
           <Text style={[styles.detailTitle, { color: chrome.text }]}>{text.title}</Text>
           <Text style={[styles.detailBody, { color: chrome.muted }]}>{text.body}</Text>

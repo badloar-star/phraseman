@@ -18,13 +18,13 @@ const MISSING_EVENTS: SoundEventId[] = [
 ];
 
 describe('semantic sound event catalog', () => {
-  test('types every manifest event and enables exactly the supplied 39 assets', () => {
+  test('types every manifest event and enables exactly the supplied 44 assets', () => {
     const ids = Object.keys(SOUND_EVENTS) as SoundEventId[];
     const enabled = ids.filter((id) => SOUND_EVENTS[id].source !== null);
     const disabled = ids.filter((id) => SOUND_EVENTS[id].source === null);
 
-    expect(ids).toHaveLength(48);
-    expect(enabled).toHaveLength(39);
+    expect(ids).toHaveLength(53);
+    expect(enabled).toHaveLength(44);
     expect(disabled).toEqual(MISSING_EVENTS);
     enabled.forEach((id) => expect(SOUND_EVENTS[id].source).toBeTruthy());
   });

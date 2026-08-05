@@ -33,7 +33,7 @@ export const submitUserReport = async (params: {
   reportedUid: string;
   reportedName: string;
   reason: UserReportReason;
-  screen: 'leaderboard' | 'arena';
+  screen: 'leaderboard' | 'arena' | 'profile';
 }): Promise<'sent' | 'throttled' | 'failed'> => {
   const now = Date.now();
   if (await isReportThrottled(now)) return 'throttled';

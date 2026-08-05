@@ -193,6 +193,42 @@ export function spineTrackPath(
  * огрызок. Нижнего хвоста здесь нет и быть не должно: золото обязано
  * обрываться ровно на достигнутом уровне, это и есть индикатор прогресса.
  */
+export type SpineTrackRegionPaths = Readonly<{
+  divider: string;
+  free: string;
+  plus: string;
+}>;
+
+/**
+ * Closes the existing season spine to the screen edges so the same curve can
+ * separate the decorative Free and Plus background fills.
+ *
+ * The divider comes directly from spineTrackPath(), not from a second BÃ©zier
+ * implementation. A later geometry change therefore moves the visible line
+ * and both background regions together.
+ */
+export function spineTrackRegionPaths(
+  width: number,
+  rowHeight: number,
+  offsets: readonly number[],
+  overscanTop = 0,
+  overscanBottom = 0,
+): SpineTrackRegionPaths {
+  if (!Number.isFinite(width) || width <= 0 || !Number.isFinite(rowHeight) || rowHeight <= 0 || offsets.length === 0) {
+    return { divider: '', free: '', plus: '' };
+  }
+
+  const divider = spineTrackPath(width / 2, rowHeight, offsets, overscanTop, overscanBottom);
+  const top = -Math.max(0, overscanTop);
+  const bottom = offsets.length * rowHeight + Math.max(0, overscanBottom);
+
+  return {
+    divider,
+    free: `${divider} L 0 ${bottom} L 0 ${top} Z`,
+    plus: `${divider} L ${width} ${bottom} L ${width} ${top} Z`,
+  };
+}
+
 export function spineTrackProgressPath(
   cx: number,
   rowHeight: number,

@@ -354,7 +354,7 @@ export default function FlashcardsHubScreen() {
         <View style={styles.scrollRegion}>
           <BouncyScrollView
             style={styles.scrollView}
-            decelerationRate="normal"
+            decelerationRate="fast"
             contentContainerStyle={[
               styles.scrollContent,
               { paddingBottom: scrollBottomPadding },

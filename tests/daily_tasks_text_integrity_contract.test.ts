@@ -58,10 +58,19 @@ test('daily quest visuals keep category backgrounds while generated task art sta
   expect(firstVisitModal).toContain('getDailyTaskAchievementIcon(task.id)');
   expect(iconRegistry).not.toContain('export const DAILY_TASK_ACHIEVEMENT_ICONS');
   expect(screen).toContain('taskCapsuleHeroIcon');
-  expect(screen).toContain('dailyTaskBackgroundArt(task.type)');
+  expect(screen).toContain('dailyTaskBackgroundArt(task.type, themeMode)');
+  expect(screen).toContain('dailyTaskBackgroundArt(taskToStart.type, themeMode)');
   expect(screen).toContain('taskPortalArt');
   expect(screen).not.toContain('getDailyTaskArtwork');
   expect(screen).not.toContain('artwork={');
   expect(component).not.toContain('artwork?: ReactNode');
   expect(component).not.toContain('copyWithArtwork');
+});
+
+test('sagePorcelain uses light task and bonus chrome without changing other theme branches', () => {
+  expect(screen).toContain("const isSagePorcelainTheme = themeMode === 'sagePorcelain'");
+  expect(screen).toContain('isSagePorcelainTheme ? t.textPrimary');
+  expect(screen).toContain("isSagePorcelainTheme ? 'rgba(247,250,246,0.94)'");
+  expect(screen).toContain("isSagePorcelainTheme ? 'rgba(247,250,246,0.92)'");
+  expect(screen).toContain("isBusinessTheme ? 'rgba(13,13,13,0.92)' : 'rgba(15,14,18,0.90)'");
 });

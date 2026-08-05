@@ -2366,7 +2366,7 @@ export default function FlashcardsSwipeScreen() {
   const renderSelect = () => (
     <View style={styles.selectRoot}>
     <Animated.ScrollView
-      decelerationRate="normal"
+      decelerationRate="fast"
       scrollEventThrottle={16}
       onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: topFadeScrollY } } }], { useNativeDriver: true })}
       contentContainerStyle={[

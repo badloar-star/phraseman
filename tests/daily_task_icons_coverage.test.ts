@@ -10,6 +10,8 @@ import {
 const iconDir = path.join(__dirname, '..', 'assets', 'images', 'daily_task_icons');
 const activeIconDir = path.join(iconDir, 'by_id');
 const backgroundDir = path.join(__dirname, '..', 'assets', 'images', 'daily_task_card_art');
+const sagePorcelainBackgroundDir = path.join(backgroundDir, 'sagePorcelain');
+const backgroundRegistrySource = fs.readFileSync(path.join(__dirname, '..', 'app', 'daily_task_background_art.ts'), 'utf8');
 const dailyTasksSource = fs.readFileSync(path.join(__dirname, '..', 'app', 'daily_tasks.ts'), 'utf8');
 const nonQuestIconFiles = ['survey.webp'];
 const tierCatalogLiteral = dailyTasksSource.match(
@@ -62,6 +64,26 @@ describe('daily task icon coverage', () => {
       const meta = await sharp(file).metadata();
       expect(meta).toMatchObject({ format: 'webp', width: 768, height: 256 });
       expect(fs.statSync(file).size).toBeLessThanOrEqual(8_000);
+    }
+  });
+
+  it('keeps a complete compressed and unique light background set for sagePorcelain', async () => {
+    expect(fs.readdirSync(sagePorcelainBackgroundDir).filter((file) => file.endsWith('.webp')).sort())
+      .toEqual(backgroundFiles);
+
+    const hashes = new Set<string>();
+    for (const name of backgroundFiles) {
+      const file = path.join(sagePorcelainBackgroundDir, name);
+      const meta = await sharp(file).metadata();
+      expect(meta).toMatchObject({ format: 'webp', width: 768, height: 256 });
+      expect(fs.statSync(file).size).toBeLessThanOrEqual(80_000);
+      hashes.add(createHash('sha256').update(fs.readFileSync(file)).digest('hex'));
+    }
+    expect(hashes.size).toBe(backgroundFiles.length);
+
+    expect(backgroundRegistrySource).toContain("themeMode === 'sagePorcelain'");
+    for (const name of backgroundFiles) {
+      expect(backgroundRegistrySource).toContain(`daily_task_card_art/sagePorcelain/${name}`);
     }
   });
 });

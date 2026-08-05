@@ -38,6 +38,7 @@ import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import LearningSemanticBlock from './LearningSemanticBlock';
 import { buildMistakeExplanationBlocks } from '../app/explanation_presentation';
 import TonalSurface from './TonalSurface';
+import AiBadge from './AiBadge';
 
 export type MistakeEli5State = 'idle' | 'loading' | 'ready' | 'error';
 
@@ -230,9 +231,12 @@ function MistakeEli5Modal({ visible, onClose, lang, state, text, onRetry }: Prop
             <View style={[styles.grabberPill, { backgroundColor: t.border }]} />
           </View>
           <View style={styles.header}>
-            <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h3 }]}>
-              {title}
-            </Text>
+            <View style={styles.titleRow}>
+              <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h3 }]}>
+                {title}
+              </Text>
+              <AiBadge />
+            </View>
             <Pressable
               onPress={dismissSheet}
               hitSlop={8}
@@ -346,6 +350,12 @@ const styles = StyleSheet.create({
     flex: 1,
     fontWeight: '900',
     lineHeight: 28,
+  },
+  titleRow: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
   },
   closeBtn: {
     width: 36,

@@ -49,6 +49,7 @@ import { getLevelFromXP, getXPProgress, isLightThemeMode, type ThemeMode } from 
 import { monoIcon, MONO_ICON } from '../../constants/monoIcon';
 import { triLang, type Lang } from '../../constants/i18n';
 import { hapticTap } from '../../hooks/use-haptics';
+import { soundDirector } from '../../modules/audio/sound_director';
 import { useTabContentBottomPad } from '../../hooks/use-tab-content-bottom-pad';
 import { useRuntimeActive } from '../../hooks/use_runtime_active';
 import {
@@ -2828,6 +2829,9 @@ export default function FriendsTabScreen() {
     setRequests(prev => prev.filter(item => item.fromUid !== request.fromUid));
     if (!hadFriend) {
       setFriends(prev => prev.some(friend => friend.uid === request.fromUid) ? prev : [...prev, optimisticFriend]);
+      // зачем: лёгкий социальный сигнал «теперь вы друзья» — играет сразу,
+      // оптимистично, как и локальное добавление в список выше.
+      soundDirector.request('pm.social.friend_added', { scope: 'friends' });
     }
     acceptFriendRequest(request.fromUid)
       .then(() => {
@@ -3317,7 +3321,7 @@ export default function FriendsTabScreen() {
     showsVerticalScrollIndicator: false,
     keyboardShouldPersistTaps: 'handled' as const,
     contentContainerStyle: { paddingBottom: tabContentBottomPad, paddingHorizontal: PX, paddingTop: insets.top },
-    decelerationRate: 'normal' as const,
+    decelerationRate: 'fast' as const,
     scrollEventThrottle: 16,
     bounces: true,
     alwaysBounceVertical: true,

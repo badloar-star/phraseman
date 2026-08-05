@@ -32,10 +32,58 @@ jobs:
             | sort -u \
             > artifacts/french-path-matches.txt || true
 
-          git grep -Il -E 'French|french|FRENCH|studyTarget.{0,80}["'"']fr["'"']|storageStudyTarget.{0,80}["'"']fr["'"']|lesson_progress_v2::fr|targetKey\([^\n]*["'"']fr["'"']' \
-            -- app components constants functions/src admin scripts tests docs specs content assets package.json 2>/dev/null \
-            | sort -u \
-            > artifacts/french-content-matches.txt || true
+          python3 - <<'PY'
+          import json
+          import re
+          import subprocess
+          from pathlib import Path
+
+          tracked = subprocess.check_output(['git', 'ls-files', '-z']).decode('utf-8').split('\0')
+          tracked = [path for path in tracked if path]
+
+          patterns = [
+              re.compile(r'French|french|FRENCH'),
+              re.compile(r'["\']fr["\']'),
+              re.compile(r'::fr::'),
+              re.compile(r'fr-FR'),
+              re.compile(r'lesson_data_fr'),
+              re.compile(r'lesson_intro_screens_fr'),
+              re.compile(r'FrenchStudyTarget'),
+              re.compile(r'FRENCH_[A-Z0-9_]'),
+          ]
+          text_suffixes = {
+              '.ts', '.tsx', '.js', '.jsx', '.mjs', '.cjs', '.json', '.md', '.txt',
+              '.html', '.css', '.scss', '.yml', '.yaml', '.psv', '.csv', '.xml', '.toml',
+              '.rules', '.sh', '.py', '.gradle', '.properties', '.plist', '.lock',
+          }
+
+          content_matches = []
+          match_reasons = {}
+          for raw_path in tracked:
+              path = Path(raw_path)
+              if path.suffix.lower() not in text_suffixes and path.name not in {'package.json', 'package-lock.json'}:
+                  continue
+              try:
+                  if path.stat().st_size > 12 * 1024 * 1024:
+                      continue
+                  text = path.read_text(encoding='utf-8')
+              except (OSError, UnicodeDecodeError):
+                  continue
+              reasons = [pattern.pattern for pattern in patterns if pattern.search(text)]
+              if reasons:
+                  content_matches.append(raw_path)
+                  match_reasons[raw_path] = reasons
+
+          content_matches = sorted(set(content_matches))
+          Path('artifacts/french-content-matches.txt').write_text(
+              ''.join(f'{path}\n' for path in content_matches),
+              encoding='utf-8',
+          )
+          Path('artifacts/french-content-reasons.json').write_text(
+              json.dumps(match_reasons, ensure_ascii=False, indent=2) + '\n',
+              encoding='utf-8',
+          )
+          PY
 
           python3 - <<'PY'
           import json
@@ -54,16 +102,18 @@ jobs:
           protected_prefixes = (
               'app/premium', 'app/paywall', 'app/revenuecat', 'app/auth',
               'functions/src/premium', 'functions/src/revenuecat', 'functions/src/auth',
+              'tests/premium', 'tests/paywall', 'tests/revenuecat', 'tests/auth',
           )
           protected_names = {
               'app/cloud_sync.ts',
               'app/account_generation.ts',
               'app/user_id_policy.ts',
+              'app/revenuecat_init.ts',
               'components/PremiumContext.tsx',
           }
           protected = sorted(
-              p for p in all_matches
-              if p in protected_names or p.startswith(protected_prefixes)
+              path for path in all_matches
+              if path in protected_names or path.startswith(protected_prefixes)
           )
           removable_candidates = sorted(set(all_matches) - set(protected))
 
@@ -97,11 +147,11 @@ jobs:
               '',
               '## Protected finance/auth files',
               '',
-              *[f'- `{p}`' for p in protected],
+              *[f'- `{path}`' for path in protected],
               '',
               '## Removable candidates',
               '',
-              *[f'- `{p}`' for p in removable_candidates],
+              *[f'- `{path}`' for path in removable_candidates],
               '',
           ]
           Path('artifacts/french-inventory.md').write_text('\n'.join(lines), encoding='utf-8')

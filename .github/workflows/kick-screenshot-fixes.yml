@@ -2,7 +2,7 @@ name: Kick screenshot fixes validator
 
 on:
   pull_request_target:
-    types: [edited]
+    types: [edited, ready_for_review]
 
 permissions:
   actions: write

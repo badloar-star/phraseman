@@ -1,6 +1,7 @@
 import { emitAppEvent } from '../events';
 import { logCardPackPurchasedShards } from '../firebase';
 import { addShardsRaw, getShardsBalance, spendShards } from '../shards_system';
+import { reconcileShardsBeforePurchase } from '../shards_purchase_reconcile';
 import { trackCardPackPurchase } from '../user_stats';
 import {
   addOwnedPackId,
@@ -50,7 +51,9 @@ export async function purchaseCardPackWithShards(
   }
   const owned = await loadOwnedPackIds(studyTarget);
   if (owned.includes(pack.id)) return 'already_owned';
-  const balance = await getShardsBalance();
+  // UI мог уже показать офлайн/отложенное начисление, которое ещё не дошло
+  // до серверного кошелька. Сначала проигрываем очередь и перечитываем облако.
+  const balance = await reconcileShardsBeforePurchase();
   if (balance < pack.priceShards) return 'insufficient';
   const ok = await spendShards(pack.priceShards, 'card_pack');
   if (!ok) {

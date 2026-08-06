@@ -5,6 +5,8 @@ import type { Lang } from '../../constants/i18n';
 import { purchaseCardPackWithShards, redeemPackGiftVoucher } from './cardPackShardPurchase';
 import { isPackCeremoniallyOpened } from './openedPacksTracker';
 import { navigateAfterModalClose } from '../safe_modal_navigation';
+import { emitAppEvent } from '../events';
+import { reconcileShardsBeforePurchase } from '../shards_purchase_reconcile';
 import type { RuntimeStudyTarget } from '../target_storage_keys';
 
 type Routerish = { push: (h: any) => void };
@@ -48,10 +50,11 @@ export function useCardPackShardPaywall(args: {
     onPurchaseEnd,
     onCommunityPackHiddenOnDevice,
   } = args;
-  const [paywall, setPaywall] = useState<{ pack: FlashcardMarketPack; mode: 'confirm' | 'insufficient' | 'voucher' } | null>(null);
+  const [paywall, setPaywall] = useState<{ pack: FlashcardMarketPack; mode: 'confirm' | 'insufficient' | 'voucher'; verifiedBalance: number } | null>(null);
   const [purchasing, setPurchasing] = useState(false);
   const purchasingRef = useRef(false);
   const paywallRef = useRef(paywall);
+  const balanceRefreshIdRef = useRef(0);
   paywallRef.current = paywall;
 
   const openPaywall = useCallback(
@@ -65,7 +68,24 @@ export function useCardPackShardPaywall(args: {
         : balance < pack.priceShards
         ? 'insufficient'
         : 'confirm';
-      setPaywall({ pack, mode });
+      const refreshId = ++balanceRefreshIdRef.current;
+      setPaywall({ pack, mode, verifiedBalance: balance });
+      // Модалка открывается сразу, затем сверяет локальный и серверный кошелёк.
+      // Если локаль была занижена/завышена, режим меняется без повторного входа.
+      void reconcileShardsBeforePurchase().then((freshBalance) => {
+        if (refreshId !== balanceRefreshIdRef.current || purchasingRef.current) return;
+        emitAppEvent('shards_balance_updated', { balance: freshBalance });
+        setPaywall((prev) => {
+          if (!prev || prev.pack.id !== pack.id) return prev;
+          const freshVoucherEligible = hasVoucher && (!prev.pack.isCommunityUgc || hasCommunityVoucher);
+          const freshMode: 'voucher' | 'confirm' | 'insufficient' = freshVoucherEligible
+            ? 'voucher'
+            : freshBalance < prev.pack.priceShards
+              ? 'insufficient'
+              : 'confirm';
+          return { ...prev, mode: freshMode, verifiedBalance: freshBalance };
+        });
+      }).catch(() => {});
     },
     [balance, hasCommunityVoucher, hasVoucher, purchasing],
   );
@@ -80,13 +100,14 @@ export function useCardPackShardPaywall(args: {
         : balance < prev.pack.priceShards
           ? 'insufficient'
           : 'confirm';
-      if (prev.mode === desiredMode) return prev;
-      return { ...prev, mode: desiredMode };
+      if (prev.mode === desiredMode && prev.verifiedBalance === balance) return prev;
+      return { ...prev, mode: desiredMode, verifiedBalance: balance };
     });
   }, [balance, hasCommunityVoucher, hasVoucher]);
 
   const closePaywall = useCallback(() => {
     if (purchasing) return;
+    balanceRefreshIdRef.current += 1;
     setPaywall(null);
   }, [purchasing]);
 
@@ -120,10 +141,13 @@ export function useCardPackShardPaywall(args: {
           setPaywall(null);
         }
       } else if (r === 'insufficient') {
-        // Локальный баланс был завышен (рассинхрон с облаком). spendShards уже
-        // выровнял его — переключаем модалку в режим «не хватает» вместо тихого
-        // отказа, чтобы юзер не жал «Купить» по кругу.
-        setPaywall((prev) => (prev ? { ...prev, mode: 'insufficient' } : prev));
+        // Сервер авторитетен. Ещё раз согласуем баланс и показываем точное число,
+        // чтобы пользователь не нажимал «Купить» по кругу со старым значением.
+        const freshBalance = await reconcileShardsBeforePurchase();
+        emitAppEvent('shards_balance_updated', { balance: freshBalance });
+        setPaywall((prev) => (prev
+          ? { ...prev, mode: 'insufficient', verifiedBalance: freshBalance }
+          : prev));
       } else if (r === 'no_voucher' || r === 'redeem_failed') {
         // The voucher expired or the server could not confirm it. The redeem helper
         // emits the visible error; close the stale confirmation instead of leaving a
@@ -150,7 +174,7 @@ export function useCardPackShardPaywall(args: {
         visible
         mode={paywall.mode}
         pack={paywall.pack}
-        balance={balance}
+        balance={paywall.verifiedBalance}
         lang={lang}
         studyTarget={studyTarget}
         purchasing={purchasing}

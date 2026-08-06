@@ -3,6 +3,7 @@ import auth from '@react-native-firebase/auth';
 import { actionToastTri, emitAppEvent } from '../events';
 import { getCanonicalUserId } from '../user_id_policy';
 import { replaceShardsBalanceLocal } from '../shards_system';
+import { reconcileShardsBeforePurchase } from '../shards_purchase_reconcile';
 import { packTitleForInterface, type FlashcardMarketPack } from '../flashcards/marketplace';
 import type { CardPackShardPurchaseResult } from '../flashcards/cardPackShardPurchase';
 import {
@@ -35,8 +36,8 @@ export async function ensureFirebaseUserSignedInForCallable(): Promise<boolean> 
   }
 }
 
-function formatCommunityPurchaseError(e: unknown): Parameters<typeof actionToastTri>[1] {
-  const raw = (() => {
+function communityPurchaseErrorText(e: unknown): string {
+  return (() => {
     if (e == null) return '';
     if (typeof e === 'string') return e;
     if (typeof e === 'object') {
@@ -52,6 +53,17 @@ function formatCommunityPurchaseError(e: unknown): Parameters<typeof actionToast
     }
     return String(e);
   })();
+}
+
+function isInsufficientCommunityPurchaseError(e: unknown): boolean {
+  const lower = communityPurchaseErrorText(e).toLowerCase();
+  return lower.includes('insufficient')
+    || lower.includes('недостаточ')
+    || lower.includes('недостатн');
+}
+
+function formatCommunityPurchaseError(e: unknown): Parameters<typeof actionToastTri>[1] {
+  const raw = communityPurchaseErrorText(e);
   const lower = raw.toLowerCase();
   if (lower.includes('unauthenticated') || lower.includes('auth required')) {
     return {
@@ -154,6 +166,10 @@ export async function purchaseCommunityPackWithShards(
     return 'spend_failed';
   }
 
+  // Community callable проверяет только серверный кошелёк. Перед ним нужно
+  // дослать законные pending-начисления, которые уже видны локально.
+  await reconcileShardsBeforePurchase();
+
   try {
     const res = await callCommunityPurchasePack({
       buyerStableId,
@@ -200,6 +216,11 @@ export async function purchaseCommunityPackWithShards(
     }));
     return 'ok';
   } catch (e: unknown) {
+    if (isInsufficientCommunityPurchaseError(e)) {
+      const freshBalance = await reconcileShardsBeforePurchase();
+      emitAppEvent('shards_balance_updated', { balance: freshBalance });
+      return 'insufficient';
+    }
     emitAppEvent('action_toast', actionToastTri('error', formatCommunityPurchaseError(e)));
     return 'spend_failed';
   }

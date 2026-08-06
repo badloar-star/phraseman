@@ -1,0 +1,181 @@
+name: Validate screenshot fixes PR
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, ready_for_review]
+    branches:
+      - feature/referral-roulette
+
+permissions:
+  contents: write
+
+concurrency:
+  group: validate-screenshot-pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  validate-and-rewrite:
+    if: >-
+      github.event.pull_request.number == 17 &&
+      github.event.pull_request.head.ref == 'audit/screenshot-fixes-2026-08-06' &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      AUDIT_BRANCH: audit/screenshot-fixes-2026-08-06
+      BASE_SHA: 9629139925eaab85368fb7f26d9824003bd4ff7a
+      COMPLETE_PATCH_SHA256: 0f8ab9ac7caf30be3c3ab201e2a2df394275f85650958ee2ea3a36208684682b
+      NODE_OPTIONS: --max-old-space-size=6144
+    steps:
+      - name: Checkout PR head
+        uses: actions/checkout@v4
+        with:
+          ref: audit/screenshot-fixes-2026-08-06
+          fetch-depth: 0
+
+      - name: Preserve and verify complete audited patch
+        shell: bash
+        run: |
+          set -euo pipefail
+          original_head="$(git rev-parse HEAD)"
+          echo "ORIGINAL_HEAD=$original_head" >> "$GITHUB_ENV"
+          git merge-base --is-ancestor "$BASE_SHA" HEAD
+          cat .audit/screenshot-fixes.patch.b64.* \
+            | base64 --decode \
+            | gzip --decompress \
+            > /tmp/screenshot-fixes.patch
+          base64 --decode .audit/screenshot-fixes-new-files.patch.b64 \
+            | gzip --decompress \
+            >> /tmp/screenshot-fixes.patch
+          echo "$COMPLETE_PATCH_SHA256  /tmp/screenshot-fixes.patch" | sha256sum --check
+
+      - name: Reset temporary history and apply product patch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git reset --hard "$BASE_SHA"
+          git clean -ffd
+          git apply --check /tmp/screenshot-fixes.patch
+          git apply /tmp/screenshot-fixes.patch
+          git diff --check
+
+      - name: Enforce exact product scope
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat > /tmp/expected-code.txt <<'EOF'
+          app/(tabs)/home.tsx
+          app/club_screen.tsx
+          app/daily_task_navigation.ts
+          app/daily_tasks.ts
+          app/daily_tasks_es_locale.ts
+          app/daily_tasks_screen.tsx
+          app/home_last_lesson_resolver.ts
+          app/home_screen_hydration.ts
+          app/lesson1.tsx
+          app/personal_plan_exercise.tsx
+          app/personal_plan_progress.ts
+          app/plan_content_runtime_adapter.ts
+          app/review.tsx
+          app/trainer_phrases_session.tsx
+          app/trainer_words_session.tsx
+          tests/daily_quests_active_catalog_contract.test.ts
+          tests/daily_task_reroll.test.ts
+          tests/daily_tasks_active_executability_contract.test.ts
+          tests/daily_tasks_claim.test.ts
+          tests/daily_tasks_completed_card_stability.test.ts
+          tests/daily_tasks_inflight_progress.test.ts
+          tests/daily_tasks_language_availability.test.ts
+          tests/daily_tasks_recall_availability.test.ts
+          tests/daily_tasks_safe_fallback.test.ts
+          tests/daily_tasks_screen_cache.test.ts
+          tests/daily_tasks_trainer_availability.test.ts
+          tests/home_runtime_truth_contract.test.ts
+          tests/league_focus_refresh_contract.test.ts
+          tests/lesson_completion_daily_task_delivery_contract.test.ts
+          tests/personal_plan_completion_persistence_contract.test.ts
+          tests/plan_content_runtime_adapter.test.ts
+          tests/plan_content_screenshot_phrase_integrity.test.ts
+          tests/trainer_entrypoint_reservation.test.ts
+          EOF
+          sed -i 's/^          //' /tmp/expected-code.txt
+          sort -o /tmp/expected-code.txt /tmp/expected-code.txt
+          git diff --name-only "$BASE_SHA" | sort > /tmp/actual-code.txt
+          diff -u /tmp/expected-code.txt /tmp/actual-code.txt
+          if grep -Ei '(^|/)(premium|revenuecat|paywall|purchase|subscription|auth|account)' /tmp/actual-code.txt; then
+            echo 'Protected Premium/auth/account path changed' >&2
+            exit 1
+          fi
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate TypeScript lint text and secrets
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run assets:verify:boons
+          npx tsc --noEmit
+          npx eslint \
+            'app/(tabs)/home.tsx' app/club_screen.tsx app/daily_task_navigation.ts \
+            app/daily_tasks.ts app/daily_tasks_es_locale.ts app/daily_tasks_screen.tsx \
+            app/home_last_lesson_resolver.ts app/home_screen_hydration.ts app/lesson1.tsx \
+            app/personal_plan_exercise.tsx app/personal_plan_progress.ts \
+            app/plan_content_runtime_adapter.ts app/review.tsx \
+            app/trainer_phrases_session.tsx app/trainer_words_session.tsx
+          npm run text-integrity:audit
+          npm run scan:secrets
+
+      - name: Run focused regression tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx jest --no-cache --runInBand --runTestsByPath \
+            tests/daily_quests_active_catalog_contract.test.ts \
+            tests/daily_task_reroll.test.ts \
+            tests/daily_tasks_active_executability_contract.test.ts \
+            tests/daily_tasks_claim.test.ts \
+            tests/daily_tasks_completed_card_stability.test.ts \
+            tests/daily_tasks_inflight_progress.test.ts \
+            tests/daily_tasks_language_availability.test.ts \
+            tests/daily_tasks_recall_availability.test.ts \
+            tests/daily_tasks_safe_fallback.test.ts \
+            tests/daily_tasks_screen_cache.test.ts \
+            tests/daily_tasks_trainer_availability.test.ts \
+            tests/home_runtime_truth_contract.test.ts \
+            tests/league_focus_refresh_contract.test.ts \
+            tests/lesson_completion_daily_task_delivery_contract.test.ts \
+            tests/personal_plan_completion_persistence_contract.test.ts \
+            tests/plan_content_runtime_adapter.test.ts \
+            tests/plan_content_screenshot_phrase_integrity.test.ts \
+            tests/trainer_entrypoint_reservation.test.ts
+
+      - name: Validate Cloud Functions
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd functions
+          npm ci
+          npm run build
+          npm test -- --runInBand
+
+      - name: Commit product-only tree and replace temporary PR head
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add -A
+          git diff --cached --check
+          git diff --cached --name-only | sort > /tmp/staged-code.txt
+          diff -u /tmp/expected-code.txt /tmp/staged-code.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'fix: repair screenshot-reported learning flows'
+          git push \
+            --force-with-lease="refs/heads/$AUDIT_BRANCH:$ORIGINAL_HEAD" \
+            origin "HEAD:refs/heads/$AUDIT_BRANCH"

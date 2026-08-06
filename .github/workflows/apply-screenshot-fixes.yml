@@ -1,4 +1,4 @@
-name: Apply screenshot-reported runtime fixes
+name: Apply screenshot-reported runtime fixes v4
 
 on:
   push:
@@ -10,13 +10,13 @@ permissions:
   contents: write
 
 concurrency:
-  group: audit-screenshot-fixes-2026-08-06
+  group: audit-screenshot-fixes-v4-2026-08-06
   cancel-in-progress: false
 
 jobs:
   validate-and-commit:
     if: github.actor != 'github-actions[bot]'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     timeout-minutes: 120
     env:
       BASE_SHA: 9629139925eaab85368fb7f26d9824003bd4ff7a
@@ -29,7 +29,7 @@ jobs:
           ref: audit/screenshot-fixes-2026-08-06
           fetch-depth: 0
 
-      - name: Verify isolated starting state
+      - name: Verify exact temporary payload
         shell: bash
         run: |
           set -euo pipefail
@@ -68,10 +68,8 @@ jobs:
           code=$?
           set -e
           echo "$code" > artifacts/tsc-base.exit
-          if [ "$code" -eq 124 ] || [ "$code" -eq 137 ]; then
-            echo "Baseline TypeScript timed out or was killed" >&2
-            exit 1
-          fi
+          test "$code" -ne 124
+          test "$code" -ne 137
 
       - name: Decode and apply audited patch
         shell: bash
@@ -88,7 +86,7 @@ jobs:
           rm -f .github/workflows/apply-screenshot-fixes.yml
           git diff --check
 
-      - name: Enforce exact code scope
+      - name: Enforce exact product scope
         shell: bash
         run: |
           set -euo pipefail
@@ -131,12 +129,12 @@ jobs:
           sort -o /tmp/expected-code.txt /tmp/expected-code.txt
           git diff --name-only "$BASE_SHA" | sort > /tmp/actual-code.txt
           diff -u /tmp/expected-code.txt /tmp/actual-code.txt
-          if grep -Ei '(^|/)(premium|revenuecat|paywall|subscription|auth|account)' /tmp/actual-code.txt; then
+          if grep -Ei '(^|/)(premium|revenuecat|paywall|purchase|subscription|auth|account)' /tmp/actual-code.txt; then
             echo 'Protected Premium/auth/account path changed' >&2
             exit 1
           fi
 
-      - name: Verify syntax and changed-file lint
+      - name: Lint changed source files
         shell: bash
         run: |
           set -euo pipefail
@@ -166,10 +164,8 @@ jobs:
           code=$?
           set -e
           echo "$code" > artifacts/tsc-patched.exit
-          if [ "$code" -eq 124 ] || [ "$code" -eq 137 ]; then
-            echo "Patched TypeScript timed out or was killed" >&2
-            exit 1
-          fi
+          test "$code" -ne 124
+          test "$code" -ne 137
 
       - name: Reject new TypeScript diagnostics
         shell: bash
@@ -196,20 +192,14 @@ jobs:
           patched = normalized('artifacts/tsc-patched.log')
           new = sorted(patched - base)
           Path('artifacts/tsc-new-diagnostics.txt').write_text('\n'.join(new), encoding='utf-8')
-          print({
-              'base_exit': base_exit,
-              'patched_exit': patched_exit,
-              'base_diagnostics': len(base),
-              'patched_diagnostics': len(patched),
-              'new_diagnostics': len(new),
-          })
+          print({'base_exit': base_exit, 'patched_exit': patched_exit, 'new': len(new)})
           if base_exit == 0 and patched_exit != 0:
-              raise SystemExit('TypeScript was clean before the patch and is failing after it')
+              raise SystemExit('TypeScript became red after patch')
           if new:
               raise SystemExit('Patch introduced new TypeScript diagnostics')
           PY
 
-      - name: Verify generated assets and text integrity
+      - name: Verify assets text and secrets
         shell: bash
         run: |
           set -euo pipefail
@@ -243,19 +233,20 @@ jobs:
             --json --outputFile=artifacts/focused-jest.json \
             > artifacts/focused-jest.log 2>&1
 
-      - name: Validate Cloud Functions remain buildable
+      - name: Validate Cloud Functions
         shell: bash
         run: |
           set -euo pipefail
           cd functions
           npm ci
           npm run build
+          npm test -- --runInBand
 
       - name: Upload validation evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: screenshot-fixes-validation
+          name: screenshot-fixes-validation-v4
           path: artifacts
           retention-days: 7
 
@@ -269,5 +260,5 @@ jobs:
           diff -u /tmp/expected-code.txt /tmp/staged-code.txt
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'fix: repair plan, daily challenges and learning progress'
+          git commit -m 'fix: repair screenshot-reported learning flows'
           git push origin HEAD:audit/screenshot-fixes-2026-08-06

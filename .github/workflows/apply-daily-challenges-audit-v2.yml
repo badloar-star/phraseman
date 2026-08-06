@@ -1,0 +1,331 @@
+name: Apply daily challenges audit v2
+
+on:
+  push:
+    branches:
+      - audit/daily-challenges-2026-08-06
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: audit-daily-challenges-2026-08-06-v2
+  cancel-in-progress: false
+
+jobs:
+  validate-and-commit:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      BASE_SHA: 57216c95f5b2fcbbbd52e2206135953596511f64
+      PATCH_FILE: .audit/daily-challenges-2026-08-06.patch
+      PATCH_PART1: .audit/daily-challenges-2026-08-06.patch.part1
+      PATCH_PART2: .audit/daily-challenges-2026-08-06.patch.part2
+      PATCH_PART3: .audit/daily-challenges-2026-08-06.patch.part3
+      OLD_WORKFLOW: .github/workflows/apply-daily-challenges-audit.yml
+      WORKFLOW_FILE: .github/workflows/apply-daily-challenges-audit-v2.yml
+      PATCH_SHA256: e1fcf6ea3cc36d4008e03c64b318b5f106a013847bd4c8497c2b1f78e4e25594
+      JEST_SHARDS: 12
+      NODE_OPTIONS: --max-old-space-size=5500
+    steps:
+      - name: Checkout isolated audit branch
+        uses: actions/checkout@v4
+        with:
+          ref: audit/daily-challenges-2026-08-06
+          fetch-depth: 0
+
+      - name: Verify isolated starting state
+        shell: bash
+        run: |
+          set -euo pipefail
+          git merge-base --is-ancestor "$BASE_SHA" HEAD
+          for file in "$PATCH_FILE" "$PATCH_PART1" "$PATCH_PART2" "$PATCH_PART3" "$OLD_WORKFLOW" "$WORKFLOW_FILE"; do
+            test -f "$file"
+          done
+          test "$(git hash-object "$PATCH_FILE")" = "395a25dd810c8f2791facaf3558c5d886819b183"
+          test "$(git hash-object "$PATCH_PART1")" = "7ba3057fe894d3c61066fef68a822f89ea1508b7"
+          test "$(git hash-object "$PATCH_PART2")" = "54fd7b44a2dd543974c6b42ae69a78772409466d"
+          test "$(git hash-object "$PATCH_PART3")" = "96624f10cb4549021e1d1f865858eb1c2a955f24"
+          git diff --name-only "$BASE_SHA"...HEAD | sort > /tmp/preflight-paths.txt
+          printf '%s\n' "$PATCH_FILE" "$PATCH_PART1" "$PATCH_PART2" "$PATCH_PART3" "$OLD_WORKFLOW" "$WORKFLOW_FILE" | sort > /tmp/preflight-allowed.txt
+          diff -u /tmp/preflight-allowed.txt /tmp/preflight-paths.txt
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install root dependencies
+        run: npm ci
+
+      - name: Prepare audit helpers
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/base artifacts/patched
+          cat > /tmp/run-jest-shards.sh <<'SH'
+          #!/usr/bin/env bash
+          set -euo pipefail
+          label="$1"
+          count="$2"
+          mkdir -p "artifacts/$label"
+          for shard in $(seq 1 "$count"); do
+            echo "[$label] Jest shard $shard/$count"
+            set +e
+            npx jest --testPathPattern=tests/ --no-cache --runInBand \
+              --shard="$shard/$count" --json \
+              --outputFile="artifacts/$label/root-jest-$shard.json" \
+              > "artifacts/$label/root-jest-$shard.log" 2>&1
+            code=$?
+            set -e
+            echo "$code" > "artifacts/$label/root-jest-$shard.exit"
+            test -s "artifacts/$label/root-jest-$shard.json"
+          done
+          SH
+          chmod +x /tmp/run-jest-shards.sh
+
+      - name: Capture baseline TypeScript diagnostics
+        shell: bash
+        run: |
+          set -euo pipefail
+          set +e
+          npx tsc --noEmit --pretty false > artifacts/base/typecheck.log 2>&1
+          code=$?
+          set -e
+          echo "$code" > artifacts/base/typecheck.exit
+
+      - name: Run baseline root Jest in bounded shards
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run assets:verify:boons
+          /tmp/run-jest-shards.sh base "$JEST_SHARDS"
+
+      - name: Apply audited patch
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat "$PATCH_FILE" "$PATCH_PART1" "$PATCH_PART2" "$PATCH_PART3" \
+            | base64 --decode | gzip --decompress > /tmp/daily-challenges-2026-08-06.patch
+          echo "$PATCH_SHA256  /tmp/daily-challenges-2026-08-06.patch" | sha256sum --check
+          git apply --check /tmp/daily-challenges-2026-08-06.patch
+          git apply /tmp/daily-challenges-2026-08-06.patch
+          rm -f "$PATCH_FILE" "$PATCH_PART1" "$PATCH_PART2" "$PATCH_PART3" "$OLD_WORKFLOW" "$WORKFLOW_FILE"
+          git diff --check
+
+      - name: Enforce exact code scope
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat > /tmp/allowed-code-paths.txt <<'EOF'
+          app/daily_task_navigation.ts
+          app/daily_tasks.ts
+          app/daily_tasks_es_locale.ts
+          app/daily_tasks_screen.tsx
+          app/review.tsx
+          app/trainer_phrases_session.tsx
+          app/trainer_words_session.tsx
+          tests/daily_quests_active_catalog_contract.test.ts
+          tests/daily_task_reroll.test.ts
+          tests/daily_tasks_active_executability_contract.test.ts
+          tests/daily_tasks_claim.test.ts
+          tests/daily_tasks_completed_card_stability.test.ts
+          tests/daily_tasks_inflight_progress.test.ts
+          tests/daily_tasks_language_availability.test.ts
+          tests/daily_tasks_recall_availability.test.ts
+          tests/daily_tasks_safe_fallback.test.ts
+          tests/daily_tasks_screen_cache.test.ts
+          tests/daily_tasks_trainer_availability.test.ts
+          tests/trainer_entrypoint_reservation.test.ts
+          EOF
+          sed -i 's/^          //' /tmp/allowed-code-paths.txt
+          sort -o /tmp/allowed-code-paths.txt /tmp/allowed-code-paths.txt
+          git diff --name-only "$BASE_SHA" | sort > /tmp/actual-code-paths.txt
+          diff -u /tmp/allowed-code-paths.txt /tmp/actual-code-paths.txt
+          if grep -Ei '(^|/)(premium|revenuecat|paywall|purchase|subscription|auth|account)' /tmp/actual-code-paths.txt; then
+            echo 'Protected Premium/auth/account path changed' >&2
+            exit 1
+          fi
+
+      - name: Verify French is absent from daily challenge scope
+        shell: bash
+        run: |
+          set -euo pipefail
+          mapfile -t files < /tmp/actual-code-paths.txt
+          if grep -InE '(French|french|FRENCH|Француз|француз|::fr::)' "${files[@]}"; then
+            echo 'French residue remains in daily challenge scope' >&2
+            exit 1
+          fi
+
+      - name: Lint changed source files
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx eslint \
+            app/daily_task_navigation.ts \
+            app/daily_tasks.ts \
+            app/daily_tasks_es_locale.ts \
+            app/daily_tasks_screen.tsx \
+            app/review.tsx \
+            app/trainer_phrases_session.tsx \
+            app/trainer_words_session.tsx
+
+      - name: Text integrity
+        run: npm run text-integrity:audit
+
+      - name: Secret scan
+        run: npm run scan:secrets
+
+      - name: Focused daily challenge tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx jest --no-cache --runInBand --runTestsByPath \
+            tests/daily_quests_active_catalog_contract.test.ts \
+            tests/daily_task_reroll.test.ts \
+            tests/daily_tasks_active_executability_contract.test.ts \
+            tests/daily_tasks_claim.test.ts \
+            tests/daily_tasks_completed_card_stability.test.ts \
+            tests/daily_tasks_inflight_progress.test.ts \
+            tests/daily_tasks_language_availability.test.ts \
+            tests/daily_tasks_recall_availability.test.ts \
+            tests/daily_tasks_safe_fallback.test.ts \
+            tests/daily_tasks_screen_cache.test.ts \
+            tests/daily_tasks_trainer_availability.test.ts \
+            tests/trainer_entrypoint_reservation.test.ts \
+            --json --outputFile=artifacts/patched/focused-jest.json \
+            > artifacts/patched/focused-jest.log 2>&1
+
+      - name: Capture patched TypeScript diagnostics
+        shell: bash
+        run: |
+          set -euo pipefail
+          set +e
+          npx tsc --noEmit --pretty false > artifacts/patched/typecheck.log 2>&1
+          code=$?
+          set -e
+          echo "$code" > artifacts/patched/typecheck.exit
+
+      - name: Reject new TypeScript diagnostics
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          import re
+          from pathlib import Path
+
+          pattern = re.compile(r'^(.*?)(?:\(\d+,\d+\)|:\d+:\d+)\s*-?\s*error\s+(TS\d+):\s*(.*)$')
+
+          def diagnostics(path: str):
+              result = set()
+              for raw in Path(path).read_text(encoding='utf-8', errors='replace').splitlines():
+                  line = raw.replace('\x1b', '')
+                  match = pattern.match(line)
+                  if match:
+                      result.add((match.group(1).strip(), match.group(2), match.group(3).strip()))
+              return result
+
+          base = diagnostics('artifacts/base/typecheck.log')
+          patched = diagnostics('artifacts/patched/typecheck.log')
+          new = sorted(patched - base)
+          report = {
+              'base_diagnostics': len(base),
+              'patched_diagnostics': len(patched),
+              'new_diagnostics': new,
+          }
+          Path('artifacts/typecheck-comparison.json').write_text(
+              json.dumps(report, ensure_ascii=False, indent=2), encoding='utf-8'
+          )
+          print(json.dumps(report, ensure_ascii=False, indent=2))
+          if new:
+              raise SystemExit('Patched branch introduced new TypeScript diagnostics')
+          PY
+
+      - name: Run patched root Jest in bounded shards
+        shell: bash
+        run: /tmp/run-jest-shards.sh patched "$JEST_SHARDS"
+
+      - name: Reject new root Jest failures
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import glob
+          import json
+          from pathlib import Path
+
+          def load_many(pattern):
+              rows = []
+              for path in sorted(glob.glob(pattern)):
+                  rows.extend(json.loads(Path(path).read_text(encoding='utf-8')).get('testResults', []))
+              if not rows:
+                  raise SystemExit(f'No Jest JSON files matched {pattern}')
+              return rows
+
+          def failed_suites(rows):
+              return {row.get('name', '') for row in rows if row.get('status') == 'failed'}
+
+          def failed_tests(rows):
+              result = set()
+              for suite in rows:
+                  for assertion in suite.get('assertionResults', []):
+                      if assertion.get('status') == 'failed':
+                          result.add(f"{suite.get('name', '')}::{assertion.get('fullName', assertion.get('title', ''))}")
+              return result
+
+          base_rows = load_many('artifacts/base/root-jest-*.json')
+          patched_rows = load_many('artifacts/patched/root-jest-*.json')
+          base_suites = failed_suites(base_rows)
+          patched_suites = failed_suites(patched_rows)
+          base_tests = failed_tests(base_rows)
+          patched_tests = failed_tests(patched_rows)
+          report = {
+              'base_failed_suites': len(base_suites),
+              'patched_failed_suites': len(patched_suites),
+              'new_failed_suites': sorted(patched_suites - base_suites),
+              'base_failed_tests': len(base_tests),
+              'patched_failed_tests': len(patched_tests),
+              'new_failed_tests': sorted(patched_tests - base_tests),
+          }
+          Path('artifacts/jest-baseline-comparison.json').write_text(
+              json.dumps(report, ensure_ascii=False, indent=2), encoding='utf-8'
+          )
+          print(json.dumps(report, ensure_ascii=False, indent=2))
+          if report['new_failed_suites'] or report['new_failed_tests']:
+              raise SystemExit('Patched branch introduced new Jest failures')
+          PY
+
+      - name: Validate Cloud Functions remain healthy
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd functions
+          npm ci
+          npm run build
+          npm test -- --runInBand
+
+      - name: Upload audit evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: daily-challenges-audit-v2-evidence
+          path: artifacts
+          retention-days: 7
+
+      - name: Commit validated code only
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f "$PATCH_FILE" "$PATCH_PART1" "$PATCH_PART2" "$PATCH_PART3" "$OLD_WORKFLOW" "$WORKFLOW_FILE"
+          git add -A
+          git diff --cached --check
+          git diff --cached --name-only | sort > /tmp/actual-final-paths.txt
+          diff -u /tmp/allowed-code-paths.txt /tmp/actual-final-paths.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'fix: make daily challenges executable and route-safe'
+          git push origin HEAD:audit/daily-challenges-2026-08-06

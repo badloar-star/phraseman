@@ -172,11 +172,6 @@ export async function navigateDailyTask({ lang, router, studyTarget, task }: Nav
       router.push('/referrals' as any);
       break;
 
-    case 'polyglot_day':
-      // Старое сохранение удалённого типа получает безопасный выход в список уроков.
-      router.replace('/lessons_list' as any);
-      break;
-
     case 'streak_freeze_use':
       router.push('/streak_stats' as any);
       break;

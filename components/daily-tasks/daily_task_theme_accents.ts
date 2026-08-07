@@ -37,7 +37,6 @@ const ACCENT_SLOT_TYPES: ReadonlySet<TaskType> = new Set([
   'trainer_phrases',
   // «Гринд»-челленджи второго поколения.
   'revision_lesson',
-  'polyglot_day',
 ]);
 
 /** Точность и идеальные серии — слот «правильно» темы. */

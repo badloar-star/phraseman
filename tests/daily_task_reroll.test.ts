@@ -91,19 +91,6 @@ describe('daily_task_reroll', () => {
     expect(mockStorage.shards_balance).toBe(balanceAfterFirst);
   });
 
-  it('does not write French reroll state when no verified replacement is available', async () => {
-    const tasks = await getTodayTasksSafe('fr');
-    const target = tasks[0]!.id;
-    const r = await rerollDailyTask(target, 'fr');
-
-    expect(r).toEqual({ ok: false, reason: 'no_candidates' });
-    expect(mockStorage.daily_tasks_reroll_v1).toBeUndefined();
-    expect(mockStorage[`daily_tasks_${getTodayKey()}`]).toBeUndefined();
-    expect(mockStorage[dailyTasksRerollKey('fr')]).toBeUndefined();
-
-    await expect(getDailyRerollsLeftToday('fr')).resolves.toBe(DAILY_TASK_REROLL_MAX_PER_DAY);
-    await expect(getDailyRerollsLeftToday()).resolves.toBe(DAILY_TASK_REROLL_MAX_PER_DAY);
-  });
 
   it('rejects when daily limit reached', async () => {
     const tasks = await getTodayTasksSafe();

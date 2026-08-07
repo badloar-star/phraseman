@@ -103,7 +103,7 @@ const formatHms = (totalSeconds: number): string => {
     return `${hh}:${mm}:${ss}`;
 };
 
-// зачем: 11 мета-типов задач (early_all_done…mentor_friend) не имеют .webp в
+// Мета-типы задач не имеют отдельных .webp в achievement-наборе.
 // getDailyTaskAchievementIcon — achievementIcon
 // резолвился в undefined и карточка рендерила пустой Image. Вместо генерации новых
 // растровых ассетов — используем Ionicons (тот же single-color line-стиль, что и
@@ -113,7 +113,6 @@ const DAILY_TASK_META_ICON_FALLBACK: Partial<Record<TaskType, keyof typeof Ionic
     last_chance: 'hourglass-outline',
     comeback_lesson: 'flame-outline',
     revision_lesson: 'refresh-circle-outline',
-    polyglot_day: 'globe-outline',
     perfect_big_lesson: 'ribbon-outline',
     streak_freeze_use: 'shield-checkmark-outline',
     weekend_marathon: 'flag-outline',
@@ -1895,51 +1894,6 @@ const getDailyTaskUiMeta = (type: TaskType, lang: Lang): DailyTaskUiMeta => {
             minutes: '5-10 мин',
             icon: 'time',
             tone: '#47C870',
-        },
-        polyglot_day: {
-            stage: triLang(lang, {
-                ru: 'Языки',
-                uk: 'Мови',
-                es: 'Idiomas',
-                'pt-BR': "Idiomas",
-                vi: "Ngôn ngữ",
-                id: "Bahasa",
-                tr: "Diller",
-                pl: "Języki",
-            }),
-            label: triLang(lang, {
-                ru: 'Полиглот',
-                uk: 'Поліглот',
-                es: 'Políglota',
-                'pt-BR': "Poliglota",
-                vi: "Đa ngôn ngữ",
-                id: "Poliglot",
-                tr: "Poliglot",
-                pl: "Poliglota",
-            }),
-            reason: triLang(lang, {
-                ru: 'Позанимайся и в английском, и во французском сегодня.',
-                uk: 'Позаймайся і англійською, і французькою сьогодні.',
-                es: 'Estudia inglés y francés hoy.',
-                'pt-BR': "Estude inglês e francês hoje.",
-                vi: "Học cả tiếng Anh và tiếng Pháp hôm nay.",
-                id: "Belajar Inggris dan Prancis hari ini.",
-                tr: "Bugün hem İngilizce hem Fransızca çalış.",
-                pl: "Ucz się dziś angielskiego i francuskiego.",
-            }),
-            cta: triLang(lang, {
-                ru: 'К урокам',
-                uk: 'До уроків',
-                es: 'A lecciones',
-                'pt-BR': "Às lições",
-                vi: "Đến bài học",
-                id: "Ke pelajaran",
-                tr: "Derslere",
-                pl: "Do lekcji",
-            }),
-            minutes: '10-15 мин',
-            icon: 'earth',
-            tone: '#38BDF8',
         },
         perfect_big_lesson: {
             stage: triLang(lang, {

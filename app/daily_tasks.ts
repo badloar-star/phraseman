@@ -1,6 +1,6 @@
 // ════════════════════════════════════════════════════════════════════════════
 // daily_tasks.ts — Ежедневные задания
-// Хранение: English legacy 'daily_tasks_YYYY-MM-DD'; French scoped через dailyTasksProgressKey(day, 'fr').
+// Хранение: дневной прогресс через dailyTasksProgressKey(day, studyTarget).
 // ════════════════════════════════════════════════════════════════════════════
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getVerifiedPremiumStatus } from './premium_guard';
@@ -22,7 +22,6 @@ import {
   lessonLastCompletedAtKey,
   lessonPassCountKey,
   lessonWordsKey,
-  storageStudyTarget,
   type RuntimeStudyTarget,
 } from './target_storage_keys';
 
@@ -89,7 +88,6 @@ export type MetaTaskType =
   | 'last_chance'         // выполнить любое другое задание в 23:00–00:00 UTC
   | 'comeback_lesson'     // урок в день возвращения после 3+ дней перерыва
   | 'revision_lesson'     // повторить урок, пройденный 7+ дней назад
-  | 'polyglot_day'        // активность и в EN, и во FR за один день
   | 'perfect_big_lesson'  // урок от 20 фраз без единой ошибки
   | 'streak_freeze_use'   // использовать заморозку стрика
   | 'weekend_marathon'    // 2 урока в выходной (добавляется 4-м заданием в сб/вс)
@@ -1534,16 +1532,6 @@ const ALL_TASKS: DailyTask[] = [
     descTr:'Hafızanı tazele: 7+ gün önceki bir dersi tekrar et.',
     descPl:'Odśwież pamięć: powtórz lekcję sprzed 7+ dni.',
     descUK:'Освіжи пам\'ять: повтори урок, який проходив 7+ днів тому.' },
-  { id:'pg1', type:'polyglot_day', icon:'🌍', target:2, xp:96,
-    titleRU:'Полиглот', titleUK:'Поліглот',
-    titlePtBr:'Poliglota', titleVi:'Đa ngôn ngữ', titleId:'Poliglot', titleTr:'Poliglot', titlePl:'Poliglota',
-    descRU:'Позанимайся и в английском, и во французском сегодня.',
-    descPtBr:'Estude inglês e francês hoje.',
-    descVi:'Học cả tiếng Anh và tiếng Pháp hôm nay.',
-    descId:'Belajar bahasa Inggris dan Prancis hari ini.',
-    descTr:'Bugün hem İngilizce hem Fransızca çalış.',
-    descPl:'Ucz się dziś angielskiego i francuskiego.',
-    descUK:'Позаймайся і англійською, і французькою сьогодні.' },
   { id:'pbl1', type:'perfect_big_lesson', icon:'🔪', target:1, xp:84,
     titleRU:'Хирург', titleUK:'Хірург',
     titlePtBr:'Cirurgião', titleVi:'Bác sĩ phẫu thuật', titleId:'Dokter bedah', titleTr:'Cerrah', titlePl:'Chirurg',
@@ -1636,7 +1624,7 @@ const DAILY_SETS_TIER1: string[][] = [
   ['da7','ta8','fv6'],         // день 23
   ['da8','es3','fv7'],         // день 24
   ['da1','lnm6','mf1'],       // день 25
-  ['fs3','ta9','pbl1'],       // день 26 — polyglot_day пока скрыт: второй язык ещё недоступен
+  ['fs3','ta9','pbl1'],       // день 26
   ['da3','tp1','pbl2'],         // день 27
   ['da4','dl1','pbl3'],         // день 28
   ['da1','fs1','dl2'],       // день 29
@@ -1703,7 +1691,7 @@ const DAILY_SETS_TIER3: string[][] = [
   ['sf1','lnm5','mf1'],      // день 25 — streak_freeze_use
   ['da2','ta5','pbl1'],         // день 26
   ['da4','dl2','ra2'],       // день 28 — 2 матча в Арене + ≥1 победа
-  ['lnm5','fs3','dl4'],       // день 29 — polyglot_day пока скрыт: второй язык ещё недоступен
+  ['lnm5','fs3','dl4'],       // день 29
   ['da6','ra3','ta10'],         // день 30
 ];
 
@@ -1923,53 +1911,6 @@ const WORDS_FALLBACKS: Record<string, string> = {
   wl1: 'ra1', wl2: 'ra1', wl3: 'ra1',
   wl4: 'ra1', wl5: 'ra1', wl6: 'ra1', wl7: 'ra1',
 };
-
-export const FRENCH_UNAVAILABLE_DAILY_TASK_TYPES: ReadonlySet<TaskType> = new Set([
-  'quiz_hard',
-  'quiz_score',
-  'quiz_easy',
-  'quiz_medium',
-  'quiz_perfect',
-  'quiz_hard_perfect',
-  'words_learned',
-  'verb_learned',
-  'daily_phrase_read',
-  'daily_phrase_save',
-  'diagnostic_complete',
-]);
-
-/**
- * Задания, которые требуют ещё не выпущенной возможности. Не показываем их
- * пользователям до запуска второго языка, но сохраняем данные для возврата.
- */
-export const TEMPORARILY_UNAVAILABLE_DAILY_TASK_TYPES: ReadonlySet<TaskType> = new Set([
-  'polyglot_day',
-]);
-
-export const FRENCH_LESSON_CONTENT_DAILY_TASK_TYPES: ReadonlySet<TaskType> = new Set([
-  'daily_active',
-  'total_answers',
-  'correct_streak',
-  'lesson_no_mistakes',
-  'different_lessons',
-  'lesson_complete',
-  'morning_session',
-  'evening_session',
-  'energy_spend',
-  'flashcard_save',
-  'recall_session',
-  'recall_answers',
-  'recall_perfect',
-  'trainer_words',
-  'trainer_phrases',
-  'trainer_arena',
-  'revision_lesson',
-  'perfect_big_lesson',
-]);
-
-export const FRENCH_THEORY_DAILY_TASK_TYPES: ReadonlySet<TaskType> = new Set([
-  'open_theory',
-]);
 
 // Замены для заданий, недоступных по игровому уровню.
 // зачем: пусто — все прежние записи вели с удалённых квизов на удалённые квизы.
@@ -2398,7 +2339,6 @@ const TASK_TYPE_CATEGORY: Record<TaskType, DailyTaskCategory> = {
   last_chance: 'engage',
   weekend_marathon: 'engage',
   revision_lesson: 'engage',
-  polyglot_day: 'engage',
   streak_freeze_use: 'engage',
   comeback_lesson: 'engage',
   perfect_big_lesson: 'perfect',
@@ -2406,21 +2346,18 @@ const TASK_TYPE_CATEGORY: Record<TaskType, DailyTaskCategory> = {
 };
 
 export function dailyTaskAvailableForStudyTarget(
-  taskOrType: DailyTask | TaskType,
-  studyTarget?: RuntimeStudyTarget,
+  _taskOrType: DailyTask | TaskType,
+  _studyTarget?: RuntimeStudyTarget,
 ): boolean {
-  const type = typeof taskOrType === 'string' ? taskOrType : taskOrType.type;
-  if (storageStudyTarget(studyTarget) === 'fr' && FRENCH_UNAVAILABLE_DAILY_TASK_TYPES.has(type)) {
-    return false;
-  }
-  return !TEMPORARILY_UNAVAILABLE_DAILY_TASK_TYPES.has(type);
+  // Каталог приложения теперь одноязычный: языковых runtime-исключений нет.
+  return true;
 }
 
 export function filterDailyTasksForStudyTarget(
   tasks: DailyTask[],
-  studyTarget?: RuntimeStudyTarget,
+  _studyTarget?: RuntimeStudyTarget,
 ): DailyTask[] {
-  return tasks.filter((task) => dailyTaskAvailableForStudyTarget(task, studyTarget));
+  return [...tasks];
 }
 
 /**
@@ -3113,39 +3050,10 @@ export const saveTodayProgress = async (
   }
 };
 
-// ── Мета-задания дня (early_all_done / last_chance / polyglot_day) ───────
+// ── Мета-задания дня (early_all_done / last_chance) ─────────────────
 const META_DAILY_TASK_TYPES: ReadonlySet<TaskType> = new Set([
-  'early_all_done', 'last_chance', 'polyglot_day',
+  'early_all_done', 'last_chance',
 ]);
-
-/** Общий (unscoped) ключ полиглот-дня: какие языки уже были активны сегодня. */
-const POLYGLOT_DAY_STORAGE_KEY = 'daily_polyglot_v1';
-
-type PolyglotDayState = { day: string; targets: string[] };
-
-const loadPolyglotDayState = async (): Promise<PolyglotDayState> => {
-  try {
-    const raw = await AsyncStorage.getItem(POLYGLOT_DAY_STORAGE_KEY);
-    const parsed = raw ? JSON.parse(raw) : null;
-    if (parsed && parsed.day === getTodayKey() && Array.isArray(parsed.targets)) {
-      return {
-        day: parsed.day,
-        targets: parsed.targets.filter((t: unknown): t is string => typeof t === 'string'),
-      };
-    }
-  } catch {
-    // fall through — сбрасываем на новый день
-  }
-  return { day: getTodayKey(), targets: [] };
-};
-
-const savePolyglotDayState = async (state: PolyglotDayState): Promise<void> => {
-  try {
-    await AsyncStorage.setItem(POLYGLOT_DAY_STORAGE_KEY, JSON.stringify(state));
-  } catch (e) {
-    if (__DEV__) console.warn('[daily_tasks]', e);
-  }
-};
 
 type MetaDailyTaskEvaluation = {
   progress: TaskProgress[];
@@ -3153,22 +3061,16 @@ type MetaDailyTaskEvaluation = {
 };
 
 /**
- * Пост-проход после обычных инкрементов прогресса (в updateTaskProgress и
- * updateMultipleTaskProgress, до записи):
- * — polyglot_day: daily_active/lesson_complete отмечают язык в общем ключе дня,
- *   прогресс (в скоупе вызывающего target) = числу разных языков (max 2);
- * — last_chance: в этом же обновлении завершилось ЛЮБОЕ ДРУГОЕ задание и сейчас
- *   23:00–00:00 UTC;
- * — early_all_done: все ОСТАЛЬНЫЕ задания дня выполнены и локальный час < 12.
- * Прогресс мета-заданий пишется напрямую (не через updateTaskProgress), поэтому
- * рекурсии нет. Ничего не делает, если в сегодняшнем списке нет мета-типов.
+ * Пост-проход после обычных инкрементов прогресса, до записи:
+ * — last_chance: в этом же обновлении завершилось любое другое задание и
+ *   сейчас 23:00–00:00 UTC;
+ * — early_all_done: все остальные задания дня выполнены и локальный час < 12.
+ * Прогресс мета-заданий пишется напрямую, поэтому рекурсии нет.
  */
 const evaluateMetaDailyTasks = async (
   tasks: DailyTask[],
   progress: TaskProgress[],
-  updates: readonly { type: TaskType; increment?: number }[],
   justCompletedTaskIds: readonly string[],
-  studyTarget?: RuntimeStudyTarget,
 ): Promise<MetaDailyTaskEvaluation> => {
   if (!tasks.some((task) => META_DAILY_TASK_TYPES.has(task.type))) {
     return { progress, newlyCompletedTaskIds: [] };
@@ -3179,41 +3081,18 @@ const evaluateMetaDailyTasks = async (
     next = next.map((row) => (row.taskId === taskId ? mutate(row) : row));
   };
 
-  // polyglot_day: отмечаем язык активности в общем ключе дня.
-  const incrementedTypes = new Set(
-    updates.filter((u) => (u.increment ?? 1) > 0).map((u) => u.type),
-  );
-  if (incrementedTypes.has('daily_active') || incrementedTypes.has('lesson_complete')) {
-    const polyglotTasks = tasks.filter((task) => task.type === 'polyglot_day');
-    if (polyglotTasks.length > 0) {
-      const state = await loadPolyglotDayState();
-      const target = storageStudyTarget(studyTarget);
-      if (!state.targets.includes(target)) state.targets.push(target);
-      await savePolyglotDayState(state);
-      const distinct = Math.min(2, new Set(state.targets).size);
-      for (const task of polyglotTasks) {
-        const row = next.find((r) => r.taskId === task.id);
-        if (!row || row.completed) continue;
-        const current = Math.min(task.target, Math.max(row.current, distinct));
-        const completed = current >= task.target;
-        applyRow(task.id, (r) => ({ ...r, current, completed }));
-        if (completed) newlyCompleted.push(task.id);
-      }
-    }
-  }
-
-  // last_chance: любое ДРУГОЕ задание завершено в 23:00–00:00 UTC.
+  // last_chance: любое другое задание завершено в 23:00–00:00 UTC.
   if (new Date().getUTCHours() === 23) {
     const justCompletedOther = justCompletedTaskIds.some((id) => {
-      const task = tasks.find((t) => t.id === id);
-      return !!task && task.type !== 'last_chance';
+      const task = tasks.find((candidate) => candidate.id === id);
+      return Boolean(task) && task!.type !== 'last_chance';
     });
     if (justCompletedOther) {
       for (const task of tasks) {
         if (task.type !== 'last_chance') continue;
-        const row = next.find((r) => r.taskId === task.id);
+        const row = next.find((candidate) => candidate.taskId === task.id);
         if (!row || row.completed) continue;
-        applyRow(task.id, (r) => ({ ...r, current: task.target, completed: true }));
+        applyRow(task.id, (current) => ({ ...current, current: task.target, completed: true }));
         newlyCompleted.push(task.id);
       }
     }
@@ -3223,15 +3102,15 @@ const evaluateMetaDailyTasks = async (
   if (new Date().getHours() < 12) {
     for (const task of tasks) {
       if (task.type !== 'early_all_done') continue;
-      const row = next.find((r) => r.taskId === task.id);
+      const row = next.find((candidate) => candidate.taskId === task.id);
       if (!row || row.completed) continue;
       const allOthersDone = tasks.every((other) => {
         if (other.id === task.id) return true;
-        const otherRow = next.find((r) => r.taskId === other.id);
+        const otherRow = next.find((candidate) => candidate.taskId === other.id);
         return otherRow?.completed === true || otherRow?.claimed === true;
       });
       if (!allOthersDone) continue;
-      applyRow(task.id, (r) => ({ ...r, current: task.target, completed: true }));
+      applyRow(task.id, (current) => ({ ...current, current: task.target, completed: true }));
       newlyCompleted.push(task.id);
     }
   }
@@ -3262,9 +3141,9 @@ export const updateTaskProgress = async (
     return { ...p, current: newCurrent, completed: nowCompleted };
   });
 
-  // Мета-постпроход (early_all_done / last_chance / polyglot_day) — из того же
+  // Мета-постпроход (early_all_done / last_chance) — из того же
   // снапшота прогресса, отдельных трекинг-вызовов не требует.
-  const meta = await evaluateMetaDailyTasks(tasks, updated, [{ type, increment }], completedTaskIds, studyTarget);
+  const meta = await evaluateMetaDailyTasks(tasks, updated, completedTaskIds);
   await saveTodayProgress(meta.progress, studyTarget);
   for (const taskId of completedTaskIds) {
     emitDailyTaskCompleted(taskId, studyTarget);
@@ -3472,9 +3351,9 @@ export const updateMultipleTaskProgress = async (
         });
       }
 
-      // Мета-постпроход (early_all_done / last_chance / polyglot_day) — до записи,
+      // Мета-постпроход (early_all_done / last_chance) — до записи,
       // чтобы сохранить одним махом вместе с обычными инкрементами.
-      const meta = await evaluateMetaDailyTasks(tasks, progress, updates, [...completedTaskIds], opts?.studyTarget);
+      const meta = await evaluateMetaDailyTasks(tasks, progress, [...completedTaskIds]);
       progress = meta.progress;
       meta.newlyCompletedTaskIds.forEach((taskId) => completedTaskIds.add(taskId));
 

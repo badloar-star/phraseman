@@ -2,7 +2,15 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import auth from '@react-native-firebase/auth';
 import { actionToastTri, emitAppEvent } from '../events';
 import { getCanonicalUserId } from '../user_id_policy';
-import { replaceShardsBalanceLocal } from '../shards_system';
+import {
+  getShardsBalance,
+  refreshShardsBalanceFromCloudAuthoritative,
+  replaceShardsBalanceLocal,
+} from '../shards_system';
+import {
+  emitShardPurchaseSyncPendingToast,
+  reconcileShardsBeforePurchase,
+} from '../shards_purchase_reconcile';
 import { packTitleForInterface, type FlashcardMarketPack } from '../flashcards/marketplace';
 import type { CardPackShardPurchaseResult } from '../flashcards/cardPackShardPurchase';
 import {
@@ -33,6 +41,36 @@ export async function ensureFirebaseUserSignedInForCallable(): Promise<boolean> 
   } catch {
     return false;
   }
+}
+
+function communityPurchaseErrorText(e: unknown): string {
+  if (e == null) return '';
+  if (typeof e === 'string') return e;
+  if (typeof e === 'object') {
+    const o = e as {
+      message?: string;
+      nativeErrorMessage?: string;
+      code?: string;
+      details?: unknown;
+      userInfo?: { message?: string };
+    };
+    const details = typeof o.details === 'string'
+      ? o.details
+      : o.details && typeof o.details === 'object'
+        ? JSON.stringify(o.details)
+        : '';
+    return [o.message, o.nativeErrorMessage, o.userInfo?.message, o.code, details]
+      .filter((value): value is string => typeof value === 'string' && value.trim().length > 0)
+      .join(' ');
+  }
+  return String(e);
+}
+
+function isInsufficientCommunityPurchaseError(e: unknown): boolean {
+  const lower = communityPurchaseErrorText(e).toLowerCase();
+  return lower.includes('insufficient')
+    || lower.includes('недостаточ')
+    || lower.includes('недостатн');
 }
 
 function formatCommunityPurchaseError(e: unknown): Parameters<typeof actionToastTri>[1] {
@@ -154,6 +192,12 @@ export async function purchaseCommunityPackWithShards(
     return 'spend_failed';
   }
 
+  const reconciliation = await reconcileShardsBeforePurchase();
+  if (reconciliation.status !== 'ready') {
+    emitShardPurchaseSyncPendingToast();
+    return 'wallet_sync_pending';
+  }
+
   try {
     const res = await callCommunityPurchasePack({
       buyerStableId,
@@ -200,6 +244,16 @@ export async function purchaseCommunityPackWithShards(
     }));
     return 'ok';
   } catch (e: unknown) {
+    if (isInsufficientCommunityPurchaseError(e)) {
+      // После server insufficient не используем обычный restore: он способен
+      // протолкнуть свежую локальную метку вверх. Forced server read только
+      // зеркалирует авторитетный кошелёк на устройство.
+      const authoritativeBalance = await refreshShardsBalanceFromCloudAuthoritative();
+      const freshBalance = authoritativeBalance
+        ?? await getShardsBalance().catch(() => reconciliation.balance);
+      emitAppEvent('shards_balance_updated', { balance: freshBalance });
+      return 'insufficient';
+    }
     emitAppEvent('action_toast', actionToastTri('error', formatCommunityPurchaseError(e)));
     return 'spend_failed';
   }

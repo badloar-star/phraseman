@@ -33,7 +33,7 @@ import { getCardShadow, useTheme } from '../components/ThemeContext';
 import { screenTextOnGradient, ThemeMode } from '../constants/theme';
 import { isCorrectAnswer, normalizeLessonAssemblyAnswer } from '../constants/contractions';
 import { checkAchievements } from './achievements';
-import { getTodayKey, pruneDatedDailyTasksStorageKeys, resetAndUpdateTaskProgress, updateMultipleTaskProgress, updateTaskProgress } from './daily_tasks';
+import { deliverDailyTaskProgressEvent, getTodayKey, pruneDatedDailyTasksStorageKeys, resetAndUpdateTaskProgress, updateMultipleTaskProgress, updateTaskProgress } from './daily_tasks';
 import { daysSinceLastActive } from './boons/comeback';
 import { bumpStatsDaily } from './stats_daily_breakdown';
 import { getCurrentMultiplierBreakdown, getLessonDifficultyMultiplier, registerXP } from './xp_manager';
@@ -2214,7 +2214,8 @@ export default function LessonScreen() {
     () => isLessonScreenPrimedThisSession(lessonStorageId, LESSON_DATA.length, effectiveTotal)
   );
   // Ref для хранения колбека после закрытия модалки (навигация на lesson_complete)
-  const cycleEndCallbackRef = useRef<(() => void) | null>(null);
+  const cycleEndCallbackRef = useRef<(() => void | Promise<void>) | null>(null);
+  const cycleEndContinueInFlightRef = useRef(false);
 
   const fadeAnim    = useRef(new Animated.Value(0)).current;
   const toastAnim   = useRef(new Animated.Value(0)).current;
@@ -3434,10 +3435,25 @@ export default function LessonScreen() {
           lessonFinishUpdates.push({ type: 'revision_lesson', increment: 1 });
         }
         void AsyncStorage.setItem(finishedAtKey, finishTodayKey).catch(() => {});
-        updateMultipleTaskProgress(
-          lessonFinishUpdates,
-          { studyTarget: studyTargetRef.current },
-        ).catch(() => {});
+        const finishDailyTaskEventId = [
+  'lesson-finish',
+  finishTodayKey,
+  safeProgressEventPart(studyTargetRef.current),
+  safeProgressEventPart(lessonId),
+  safeProgressEventPart(nextAttemptId),
+].join(':');
+const startLessonFinishDelivery = () => deliverDailyTaskProgressEvent(
+  finishDailyTaskEventId,
+  lessonFinishUpdates,
+  { studyTarget: studyTargetRef.current },
+);
+let lessonFinishDeliveryPromise = startLessonFinishDelivery();
+void lessonFinishDeliveryPromise.catch((deliveryError) => {
+  void trackFeatureError('lesson', 'daily_task_delivery', deliveryError, {
+    lessonId,
+    finishDailyTaskEventId,
+  }, 'lesson1');
+});
         void bumpStatsDaily('lessons_completed', 1, studyTargetRef.current);
 
         let coachRouteParams = {};
@@ -3461,10 +3477,39 @@ export default function LessonScreen() {
           });
         };
 
-        const hasErrors = np.some(x => x !== 'correct' && x !== 'replay_correct');
-        cycleEndCallbackRef.current = navigate;
-        setCycleEndHasErrors(hasErrors);
-        setShowCycleEndModal(true);
+        const finalizeLessonCompletion = async () => {
+  try {
+    try {
+      await lessonFinishDeliveryPromise;
+    } catch {
+      // The first attempt starts while the learner reads the completion modal.
+      // A failed Continue performs one explicit retry with the same event id.
+      lessonFinishDeliveryPromise = startLessonFinishDelivery();
+      await lessonFinishDeliveryPromise;
+    }
+  } catch (deliveryError) {
+    void trackFeatureError('lesson', 'daily_task_delivery_retry', deliveryError, {
+      lessonId,
+      finishDailyTaskEventId,
+    }, 'lesson1');
+    emitAppEvent('action_toast', {
+      type: 'error',
+      messageRu: 'Урок завершён, но вызовы не сохранились. Нажми «Продолжить» ещё раз.',
+      messageUk: 'Урок завершено, але виклики не збереглися. Натисни «Продовжити» ще раз.',
+      messageEs: 'La lección terminó, pero los desafíos no se guardaron. Pulsa «Continuar» otra vez.',
+    });
+    return;
+  }
+  setShowCycleEndModal(false);
+  cycleEndCallbackRef.current = null;
+  navigate();
+};
+
+const hasErrors = np.some(x => x !== 'correct' && x !== 'replay_correct');
+cycleEndContinueInFlightRef.current = false;
+cycleEndCallbackRef.current = finalizeLessonCompletion;
+setCycleEndHasErrors(hasErrors);
+setShowCycleEndModal(true);
         } catch (e) {
           void trackFeatureError('lesson', 'complete', e, { lessonId }, 'lesson1');
           // Fallback: navigate to lesson_complete even if tracking fails
@@ -4125,10 +4170,13 @@ export default function LessonScreen() {
       t={t}
       f={f}
       onClose={() => {
-        setShowCycleEndModal(false);
-        cycleEndCallbackRef.current?.();
-        cycleEndCallbackRef.current = null;
-      }}
+  const callback = cycleEndCallbackRef.current;
+  if (!callback || cycleEndContinueInFlightRef.current) return;
+  cycleEndContinueInFlightRef.current = true;
+  void Promise.resolve(callback()).finally(() => {
+    cycleEndContinueInFlightRef.current = false;
+  });
+}}
     />
     </>
   );

@@ -53,7 +53,7 @@ async function resolveAccessibleIrregularVerbLesson(
 
 export async function navigateDailyTask({ lang, router, studyTarget, task }: NavigateDailyTaskInput): Promise<void> {
   // lang остаётся частью публичного контракта, чтобы существующие entry points не
-  // расходились по сигнатуре. Маршрутизация больше не содержит French-specific UI.
+  // расходились по сигнатуре. Языковых специальных веток здесь больше нет.
   void lang;
 
   if (!dailyTaskAvailableForStudyTarget(task, studyTarget)) {
@@ -173,7 +173,7 @@ export async function navigateDailyTask({ lang, router, studyTarget, task }: Nav
       break;
 
     case 'polyglot_day':
-      // Legacy-сохранение старого типа не должно вести в несуществующий French flow.
+      // Старое сохранение удалённого типа получает безопасный выход в список уроков.
       router.replace('/lessons_list' as any);
       break;
 

@@ -4,6 +4,7 @@ import {
   getDailyRerollsLeftToday,
   getTodayKey,
   getTodayTasksSafe,
+  loadTodayProgress,
   DAILY_TASK_REROLL_COST_SHARDS,
   DAILY_TASK_REROLL_MAX_PER_DAY,
 } from '../app/daily_tasks';
@@ -151,4 +152,87 @@ describe('daily_task_reroll', () => {
     // Старая запись игнорируется — лимит снова полный
     expect(left).toBe(DAILY_TASK_REROLL_MAX_PER_DAY);
   });
+
+  it('does not mutate progress when the authoritative reroll state write fails', async () => {
+    const tasks = await getTodayTasksSafe();
+    const target = tasks[0]!.id;
+    const progressKey = dailyTasksProgressKey(getTodayKey());
+    const rerollKey = dailyTasksRerollKey();
+    const originalProgress = JSON.stringify(tasks.map((task) => ({
+      taskId: task.id, current: 0, completed: false, claimed: false,
+    })));
+    mockStorage[progressKey] = originalProgress;
+    (AsyncStorage.setItem as jest.Mock).mockImplementation((key: string, value: string) => {
+      if (key === rerollKey) return Promise.reject(new Error('disk_full'));
+      mockStorage[key] = value;
+      return Promise.resolve();
+    });
+
+    await expect(rerollDailyTask(target)).resolves.toEqual({ ok: false, reason: 'unknown' });
+    expect(mockStorage[rerollKey]).toBeUndefined();
+    expect(mockStorage[progressKey]).toBe(originalProgress);
+  });
+
+  it('rejects a reroll when read-after-write cannot prove the mapping persisted', async () => {
+    const tasks = await getTodayTasksSafe();
+    const target = tasks[0]!.id;
+    const progressKey = dailyTasksProgressKey(getTodayKey());
+    const rerollKey = dailyTasksRerollKey();
+    const originalProgress = JSON.stringify(tasks.map((task) => ({
+      taskId: task.id, current: 0, completed: false, claimed: false,
+    })));
+    mockStorage[progressKey] = originalProgress;
+    (AsyncStorage.setItem as jest.Mock).mockImplementation((key: string, value: string) => {
+      if (key === rerollKey) return Promise.resolve();
+      mockStorage[key] = value;
+      return Promise.resolve();
+    });
+
+    await expect(rerollDailyTask(target)).resolves.toEqual({ ok: false, reason: 'unknown' });
+    expect(mockStorage[rerollKey]).toBeUndefined();
+    expect(mockStorage[progressKey]).toBe(originalProgress);
+  });
+
+  it('keeps a verified reroll successful when only derived progress persistence fails', async () => {
+    const tasks = await getTodayTasksSafe();
+    const target = tasks[0]!.id;
+    const progressKey = dailyTasksProgressKey(getTodayKey());
+    const rerollKey = dailyTasksRerollKey();
+    const originalProgress = JSON.stringify(tasks.map((task) => ({
+      taskId: task.id, current: 0, completed: false, claimed: false,
+    })));
+    mockStorage[progressKey] = originalProgress;
+    let rerollCommitted = false;
+    (AsyncStorage.setItem as jest.Mock).mockImplementation((key: string, value: string) => {
+      if (key === rerollKey) {
+        mockStorage[key] = value;
+        rerollCommitted = true;
+        return Promise.resolve();
+      }
+      if (key === progressKey && rerollCommitted) {
+        return Promise.reject(new Error('progress_write_failed'));
+      }
+      mockStorage[key] = value;
+      return Promise.resolve();
+    });
+
+    const result = await rerollDailyTask(target);
+    expect(result.ok).toBe(true);
+    if (!result.ok) throw new Error('expected successful reroll');
+    expect(JSON.parse(mockStorage[rerollKey]!).replacements[target]).toBe(result.newTaskId);
+    expect(mockStorage[progressKey]).toBe(originalProgress);
+
+    (AsyncStorage.setItem as jest.Mock).mockImplementation((key: string, value: string) => {
+      mockStorage[key] = value;
+      return Promise.resolve();
+    });
+    const tasksAfter = await getTodayTasksSafe();
+    expect(tasksAfter.some((task) => task.id === target)).toBe(false);
+    expect(tasksAfter.some((task) => task.id === result.newTaskId)).toBe(true);
+    const repaired = await loadTodayProgress(tasksAfter);
+    expect(repaired.find((row) => row.taskId === result.newTaskId)).toMatchObject({
+      current: 0, completed: false, claimed: false,
+    });
+  });
+
 });

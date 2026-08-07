@@ -1,0 +1,222 @@
+name: Apply durable Daily Challenge reroll v3 sparse
+
+on:
+  push:
+    branches:
+      - fix/daily-reroll-durability-2026-08-07
+
+permissions:
+  contents: write
+
+concurrency:
+  group: apply-daily-reroll-durability-v3
+  cancel-in-progress: false
+
+jobs:
+  patch-and-verify:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Sparse checkout exact branch
+        uses: actions/checkout@v4
+        with:
+          ref: fix/daily-reroll-durability-2026-08-07
+          fetch-depth: 1
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /.audit/
+            /.github/workflows/
+            /app/
+            /components/
+            /constants/
+            /contexts/
+            /hooks/
+            /services/
+            /utils/
+            /tests/
+            /package.json
+            /package-lock.json
+            /jest.config.js
+            /jest.setup.js
+            /babel.config.js
+            /tsconfig.json
+
+      - name: Verify and apply exact audited product patch
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git hash-object app/daily_tasks.ts)" = "fe200d04a19e4c3d6537732620bbf2ff91cbf8d9"
+          test "$(git hash-object tests/daily_task_reroll.test.ts)" = "677c0d90c58c7e9e8280a29dfd29d48a673ff8b6"
+          base64 --decode .audit/daily-reroll-durability.patch.gz.b64 | gzip --decompress > /tmp/daily-reroll-durability.patch
+          echo "2ec5df44c490c1ac3906154bc594289bafd9fced2a2bebba92369a3d854e7abb  /tmp/daily-reroll-durability.patch" | sha256sum --check
+          git apply --check /tmp/daily-reroll-durability.patch
+          git apply /tmp/daily-reroll-durability.patch
+
+      - name: Add focused runtime regressions
+        shell: bash
+        run: |
+          set -euo pipefail
+          python <<'PY'
+          from pathlib import Path
+
+          path = Path('tests/daily_task_reroll.test.ts')
+          source = path.read_text()
+          import_marker = "  getTodayTasksSafe,\n  DAILY_TASK_REROLL_COST_SHARDS,"
+          if source.count(import_marker) != 1:
+              raise SystemExit('reroll test import marker drifted')
+          source = source.replace(
+              import_marker,
+              "  getTodayTasksSafe,\n  loadTodayProgress,\n  DAILY_TASK_REROLL_COST_SHARDS,",
+              1,
+          )
+
+          tests = r'''
+
+            it('does not mutate progress when the authoritative reroll state write fails', async () => {
+              const tasks = await getTodayTasksSafe();
+              const target = tasks[0]!.id;
+              const progressKey = dailyTasksProgressKey(getTodayKey());
+              const rerollKey = dailyTasksRerollKey();
+              const originalProgress = JSON.stringify(tasks.map((task) => ({
+                taskId: task.id, current: 0, completed: false, claimed: false,
+              })));
+              mockStorage[progressKey] = originalProgress;
+              (AsyncStorage.setItem as jest.Mock).mockImplementation((key: string, value: string) => {
+                if (key === rerollKey) return Promise.reject(new Error('disk_full'));
+                mockStorage[key] = value;
+                return Promise.resolve();
+              });
+
+              await expect(rerollDailyTask(target)).resolves.toEqual({ ok: false, reason: 'unknown' });
+              expect(mockStorage[rerollKey]).toBeUndefined();
+              expect(mockStorage[progressKey]).toBe(originalProgress);
+            });
+
+            it('rejects a reroll when read-after-write cannot prove the mapping persisted', async () => {
+              const tasks = await getTodayTasksSafe();
+              const target = tasks[0]!.id;
+              const progressKey = dailyTasksProgressKey(getTodayKey());
+              const rerollKey = dailyTasksRerollKey();
+              const originalProgress = JSON.stringify(tasks.map((task) => ({
+                taskId: task.id, current: 0, completed: false, claimed: false,
+              })));
+              mockStorage[progressKey] = originalProgress;
+              (AsyncStorage.setItem as jest.Mock).mockImplementation((key: string, value: string) => {
+                if (key === rerollKey) return Promise.resolve();
+                mockStorage[key] = value;
+                return Promise.resolve();
+              });
+
+              await expect(rerollDailyTask(target)).resolves.toEqual({ ok: false, reason: 'unknown' });
+              expect(mockStorage[rerollKey]).toBeUndefined();
+              expect(mockStorage[progressKey]).toBe(originalProgress);
+            });
+
+            it('keeps a verified reroll successful when only derived progress persistence fails', async () => {
+              const tasks = await getTodayTasksSafe();
+              const target = tasks[0]!.id;
+              const progressKey = dailyTasksProgressKey(getTodayKey());
+              const rerollKey = dailyTasksRerollKey();
+              const originalProgress = JSON.stringify(tasks.map((task) => ({
+                taskId: task.id, current: 0, completed: false, claimed: false,
+              })));
+              mockStorage[progressKey] = originalProgress;
+              let rerollCommitted = false;
+              (AsyncStorage.setItem as jest.Mock).mockImplementation((key: string, value: string) => {
+                if (key === rerollKey) {
+                  mockStorage[key] = value;
+                  rerollCommitted = true;
+                  return Promise.resolve();
+                }
+                if (key === progressKey && rerollCommitted) {
+                  return Promise.reject(new Error('progress_write_failed'));
+                }
+                mockStorage[key] = value;
+                return Promise.resolve();
+              });
+
+              const result = await rerollDailyTask(target);
+              expect(result.ok).toBe(true);
+              if (!result.ok) throw new Error('expected successful reroll');
+              expect(JSON.parse(mockStorage[rerollKey]!).replacements[target]).toBe(result.newTaskId);
+              expect(mockStorage[progressKey]).toBe(originalProgress);
+
+              (AsyncStorage.setItem as jest.Mock).mockImplementation((key: string, value: string) => {
+                mockStorage[key] = value;
+                return Promise.resolve();
+              });
+              const tasksAfter = await getTodayTasksSafe();
+              expect(tasksAfter.some((task) => task.id === target)).toBe(false);
+              expect(tasksAfter.some((task) => task.id === result.newTaskId)).toBe(true);
+              const repaired = await loadTodayProgress(tasksAfter);
+              expect(repaired.find((row) => row.taskId === result.newTaskId)).toMatchObject({
+                current: 0, completed: false, claimed: false,
+              });
+            });
+          '''.replace('            ', '')
+
+          end = source.rfind('\n});')
+          if end < 0:
+              raise SystemExit('reroll test suite end marker missing')
+          source = source[:end] + tests + source[end:]
+          path.write_text(source)
+          PY
+
+      - name: Static and parse validation
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --check
+          test "$(git hash-object app/daily_tasks.ts)" = "cf12500135b3b1185f1c483ae72dec7cac23f9da"
+          test "$(git hash-object tests/daily_task_reroll_durability_contract.test.ts)" = "671acbe62010cb8d59e6cd6cc67f675b818ab814"
+          python <<'PY'
+          from pathlib import Path
+          source = Path('app/daily_tasks.ts').read_text()
+          test_source = Path('tests/daily_task_reroll.test.ts').read_text()
+          assert 'const loadRerollStateStrict' in source
+          assert 'daily_task_reroll_state_not_persisted' in source
+          assert 'writeDerivedRerollProgressBestEffort' in source
+          assert 'await saveRerollState(' not in source
+          assert 'does not mutate progress when the authoritative reroll state write fails' in test_source
+          assert 'read-after-write cannot prove the mapping persisted' in test_source
+          assert 'only derived progress persistence fails' in test_source
+          PY
+          npx --yes esbuild@0.25.8 app/daily_tasks.ts --bundle --loader:.ts=ts --format=esm --outfile=/tmp/daily_tasks.js --external:'*'
+          npx --yes esbuild@0.25.8 tests/daily_task_reroll.test.ts --bundle --loader:.ts=ts --format=cjs --outfile=/tmp/reroll_test.js --external:'*'
+          npx --yes esbuild@0.25.8 tests/daily_task_reroll_durability_contract.test.ts --bundle --loader:.ts=ts --format=cjs --outfile=/tmp/reroll_contract.js --external:'*'
+
+      - name: Install dependencies for focused Jest
+        run: npm ci --ignore-scripts --no-audit --no-fund
+
+      - name: Run focused Jest
+        run: |
+          npx jest --no-cache --runInBand --runTestsByPath \
+            tests/daily_task_reroll.test.ts \
+            tests/daily_task_reroll_durability_contract.test.ts
+
+      - name: Commit product-only result and remove temporary files
+        shell: bash
+        run: |
+          set -euo pipefail
+          git rm .github/workflows/apply-daily-reroll-durability.yml
+          git rm .github/workflows/apply-daily-reroll-durability-v2.yml
+          git rm .github/workflows/apply-daily-reroll-durability-v3.yml
+          git rm .audit/daily-reroll-durability.patch.gz.b64
+          git add app/daily_tasks.ts tests/daily_task_reroll.test.ts tests/daily_task_reroll_durability_contract.test.ts
+          git diff --cached --check
+          git diff --cached --name-only \
+            | grep -v '^.github/workflows/apply-daily-reroll-durability' \
+            | grep -v '^.audit/daily-reroll-durability.patch.gz.b64$' \
+            | sort > /tmp/actual.txt
+          printf '%s\n' \
+            app/daily_tasks.ts \
+            tests/daily_task_reroll.test.ts \
+            tests/daily_task_reroll_durability_contract.test.ts \
+            | sort > /tmp/expected.txt
+          diff -u /tmp/expected.txt /tmp/actual.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'fix: make Daily Challenge rerolls durable'
+          git push origin HEAD:fix/daily-reroll-durability-2026-08-07

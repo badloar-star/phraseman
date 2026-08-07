@@ -33,7 +33,9 @@ export type NextPlanTask = {
   planInstanceId: string;
 };
 
-const UNKNOWN_MATERIAL_IS_AVAILABLE = Number.MAX_SAFE_INTEGER;
+// Заведомо выше любого реального дневного requirement, но сумма трёх trainer-
+// очередей остаётся безопасным целым числом.
+const UNKNOWN_MATERIAL_IS_AVAILABLE = 1_000_000;
 const sessionCompletedTaskKeys = new Set<string>();
 
 function rememberSessionCompletion(key: string): void {

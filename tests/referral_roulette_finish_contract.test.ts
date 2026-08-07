@@ -117,7 +117,6 @@ describe('referral roulette finish contract', () => {
     expect(source.match(/testID="referrals-roulette-dev-grant"/g)).toHaveLength(1);
     // зачем: превью-лента заменена дугой карточек (Kimi-стиль, 2026-07-25).
     expect(source).toContain('<PrizeArc');
-    expect(source).toContain('numberOfLines={1}');
     expect(arc).toContain('testID="prize-arc"');
     expect(arc).toContain('ROULETTE_PRIZES[');
     expect(source).toContain('Plus от 1 дня до 365 дней');

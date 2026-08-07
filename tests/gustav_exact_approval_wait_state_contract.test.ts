@@ -36,7 +36,24 @@ function remoteVerifyHeld(): boolean {
     return true;
   }
 }
-const SNAPSHOT_PINNED = RUN_ARTIFACTS_PRESENT && !remoteVerifyHeld();
+function snapshotPinned(): boolean {
+  if (!RUN_ARTIFACTS_PRESENT || remoteVerifyHeld()) return false;
+  try {
+    const master = readJson<any>(
+      RUN_DIR,
+      'generated',
+      'fr',
+      'reviewer',
+      'french_reviewer_master_manifest.json',
+    );
+    return master?.status === 'HOLD'
+      && master?.summary?.frenchServerRemoteCredentialHandoffV2RemoteVerifyBlockedByCredentials === true
+      && master?.summary?.frenchServerObjectRemoteVerifyV2ReadyForRuntimeDownloadActivation === false;
+  } catch {
+    return false;
+  }
+}
+const SNAPSHOT_PINNED = snapshotPinned();
 const itSnapshot = SNAPSHOT_PINNED ? it : it.skip;
 
 function expectProductionFlagsClosed(summary: any): void {

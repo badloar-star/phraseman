@@ -28,11 +28,11 @@ describe('tournament pool migration scripts', () => {
   const apply = loadScript('apply-tournament-pool-v2.cjs');
   const rollback = loadScript('rollback-tournament-pool-v2.cjs');
 
-  test('pins both directions to the v9 pool and defaults to preflight-only', () => {
-    expect(apply.EXPECTED_VERSION).toBe('tpool_20260801_v9');
+  test('pins both directions to the v10 pool and defaults to preflight-only', () => {
+    expect(apply.EXPECTED_VERSION).toBe('tpool_20260801_v10');
     expect(apply.EXPECTED_SOURCE_VERSION).toBe('tpool_20260801_v8');
     expect(apply.EXPECTED_NEW_COUNT).toBe(4000);
-    expect(rollback.EXPECTED_VERSION).toBe('tpool_20260801_v9');
+    expect(rollback.EXPECTED_VERSION).toBe('tpool_20260801_v10');
     expect(apply.resolveApplyIntent([], {})).toBe(false);
     expect(apply.resolveApplyIntent([], { PHRASEMAN_TOURNAMENT_POOL_V8_APPLY: '1' })).toBe(false);
     expect(() => apply.resolveApplyIntent(['--apply'], {})).toThrow('apply_guard_missing');
@@ -295,12 +295,12 @@ describe('tournament pool migration scripts', () => {
       kind: 'tournament_pool_v2_replacement_dry_run_v1',
       projectId: 'phraseman-ea0b3',
       generated: {
-        poolVersion: 'tpool_20260801_v9',
+        poolVersion: 'tpool_20260801_v10',
         taskCount: 4000,
         exposure: {
           bucketMaxTasks: 40,
           modeBucketCounts: {
-            guess_phrase: 36, fill_gap: 13, find_oddity: 10, translate_build: 38, speed_match: 5,
+            guess_phrase: 38, fill_gap: 13, find_oddity: 8, translate_build: 38, speed_match: 5,
           },
           bucketSizes: {},
         },
@@ -361,7 +361,7 @@ describe('tournament pool migration scripts', () => {
       migrationId: 'some-other-owner',
       exposure: {
         modeBucketCounts: {
-          guess_phrase: 36, fill_gap: 13, find_oddity: 10, translate_build: 38, speed_match: 5,
+          guess_phrase: 38, fill_gap: 13, find_oddity: 8, translate_build: 38, speed_match: 5,
         },
         bucketSizes: {},
       },
@@ -373,7 +373,7 @@ describe('tournament pool migration scripts', () => {
       migrationId: 'apply:manifest-sha',
       exposure: {
         modeBucketCounts: {
-          guess_phrase: 36, fill_gap: 13, find_oddity: 10, translate_build: 38, speed_match: 5,
+          guess_phrase: 38, fill_gap: 13, find_oddity: 8, translate_build: 38, speed_match: 5,
         },
         bucketSizes: {},
       },
@@ -383,7 +383,7 @@ describe('tournament pool migration scripts', () => {
       generation: apply.EXPECTED_VERSION,
       revision: 9,
       exposureBucketCounts: {
-        guess_phrase: 36, fill_gap: 13, find_oddity: 10, translate_build: 38, speed_match: 5,
+        guess_phrase: 38, fill_gap: 13, find_oddity: 8, translate_build: 38, speed_match: 5,
       },
     });
     expect(barrier).not.toHaveProperty('migrationId');

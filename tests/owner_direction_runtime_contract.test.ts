@@ -117,6 +117,7 @@ describe('owner runtime direction contract', () => {
       'app/lesson1.tsx': 2,
       'app/lesson_complete.tsx': 1,
       'app/premium_revenuecat_state.ts': 1,
+      'app/season_reward_apply.ts': 1,
       // Покупка уровня карточки прямо из модала профиля (превью-на-месте, 2026-07-05):
       // смена вида публичная — бейдж в списках должен обновиться немедленно.
       'components/PlayerProfileModal.tsx': 1,
@@ -198,6 +199,7 @@ describe('owner runtime direction contract', () => {
       'app/visible_wall_clock.ts': 3,
       // Конечный 16мс XP count-up (1200мс), очищается при завершении и unmount.
       'components/DialogVictoryCelebration.tsx': 1,
+      'components/GiftExpiryCountdown.tsx': 1,
       // Три внутренних scheduler-тика одного shared countdown store; подписчики
       // не создают свои интервалы, а последний unsubscribe останавливает clock.
       'components/energy_countdown_clock.ts': 3,
@@ -406,14 +408,16 @@ describe('owner runtime direction contract', () => {
     expect(client).toContain('progressOwnerKey(PROGRESS_EVENT_QUEUE_KEY, stableId)');
     expect(client).toContain('await enqueue(event);');
     expect(client).not.toContain('JSON.stringify(queue.slice(0, 100))');
-    expect(client).toContain('let flushInFlight: Promise<number> | null = null');
-    expect(client).toContain('if (flushInFlight) return flushInFlight');
+    expect(client).toContain('flushInFlight: Promise<number> | null;');
+    expect(client).toContain('if (state.flushInFlight) return state.flushInFlight');
     expect(client).toContain('await enqueue(event).catch(() => {})');
     expect(client).toContain('await mirrorProgressResultToLocal(res.data)');
     expect(client).toContain("const PROGRESS_MIGRATION_BASELINE_KEY = 'progress_server_snapshot_baseline_v1'");
     expect(client).toContain('export async function prepareProgressMigrationSnapshot()');
 
-    expect(xpManager).toContain('let _xpLock: Promise<unknown> = Promise.resolve()');
+    expect(xpManager).toContain('const xpQueueByAccount = new Map<string, XpQueueEntry>()');
+    expect(xpManager).toContain('function enqueueXpOperation<T>(');
+    expect(xpManager).toContain('const previous = xpQueueByAccount.get(key)?.tail ?? Promise.resolve()');
     expect(xpManager).toContain('submitProgressEventOptimistically(progressEventRequest, progressEventMigrationSnapshot, progressEventLogLabel)');
     expect(xpManager).toContain('await reserveLocalProgressEvent(progressEventRequest?.eventId)');
     expect(xpManager).toContain('markCloudSyncPending();');
@@ -569,8 +573,7 @@ describe('owner runtime direction contract', () => {
     expect(winback).not.toContain('AsyncStorage.getItem(LAST_ACTIVE_KEY)');
     expect(winback).not.toContain('AsyncStorage.getItem(WINBACK_SHOWN_AT_KEY)');
 
-    expect(review).toContain('const [[, sessRaw], [, lastRaw], [, ratedRaw], [, showCountRaw]] = await AsyncStorage.multiGet([');
-    expect(review).toContain('KEY_SESSIONS');
+    expect(review).toContain('const [[, lastRaw], [, ratedRaw], [, showCountRaw]] = await AsyncStorage.multiGet([');
     expect(review).toContain('KEY_LAST_PROMPTED');
     expect(review).toContain('KEY_RATED');
     expect(review).toContain('KEY_SHOW_COUNT');
@@ -713,7 +716,7 @@ describe('owner runtime direction contract', () => {
 
     expect(shardsSystem).toContain('type ReplaceShardBalanceOptions = {');
     expect(shardsSystem).toContain('const serverUpdatedAtMs = parseUpdatedAtMs(options?.updatedAtMs)');
-    expect(shardsSystem).toContain('if (currentMeta && currentMeta.updatedAtMs > serverUpdatedAtMs) return;');
+    expect(shardsSystem).toContain("if (currentMeta && currentMeta.updatedAtMs > serverUpdatedAtMs) return 'already-newer';");
     expect(shardsSystem).toContain('await persistLocalBalance(n, meta)');
     expect(shardsSystem).toContain('const mirrorServerShardBalanceLocal = async (');
     expect(shardsSystem).toContain('const mirrorOutcome = await mirrorServerShardBalanceLocal(');

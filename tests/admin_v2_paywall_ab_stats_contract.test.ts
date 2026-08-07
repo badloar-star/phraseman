@@ -27,7 +27,7 @@ describe('Admin v2 paywall variant stats panel', () => {
 
     expect(core).toContain('function renderPaywallAbWorkflow()');
     expect(core).toContain('function renderPaywallAbStats()');
-    expect(core).toContain('${renderPaywallAbWorkflow()}\n    ${renderPaywallAbStats()}');
+    expect(core).toMatch(/\$\{renderPaywallAbWorkflow\(\)\}\s+\$\{renderPaywallAbStats\(\)\}/);
     expect(core).toContain('Статистика вариантов');
     expect(core).toContain('function defaultPaywallAbStatsState()');
     expect(core).toContain('paywallAbStats: defaultPaywallAbStatsState()');

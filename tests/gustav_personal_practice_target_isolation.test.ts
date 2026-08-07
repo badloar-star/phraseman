@@ -48,6 +48,10 @@ import {
 import { checkCoachToastNeeded, checkCoachToastNeededWithAnalytics } from '../app/coach_toast_trigger';
 import { getAllDiagnosisTrainingsForTarget, getDiagnosisTrainingForTarget } from '../app/diagnosis_trainings';
 import { FRENCH_CONTENT_SOURCE_GATE } from '../app/french_content_source_gate';
+import {
+  __resetAccountGenerationForTests,
+  ensureAccountGeneration,
+} from '../app/account_generation';
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('../app/config', () => ({ IS_EXPO_GO: true, CLOUD_SYNC_ENABLED: false }));
@@ -58,6 +62,8 @@ const ROOT = path.join(__dirname, '..');
 
 beforeEach(() => {
   jest.clearAllMocks();
+  __resetAccountGenerationForTests();
+  ensureAccountGeneration('gustav-personal-practice-test');
   Object.keys(mockStorage).forEach((key) => delete mockStorage[key]);
   (AsyncStorage.getItem as jest.Mock).mockImplementation((key: string) =>
     Promise.resolve(mockStorage[key] ?? null),
@@ -104,7 +110,7 @@ describe('Gustav personal practice target isolation', () => {
     expect(adminSource).toContain('const diagnosisDevBlocked = !personalPracticeCoachEnabled');
     // зачем: ассерт убран — проверял код, снятый вместе с квизами/Ареной (в репо его нет).
     expect(adminSource).toContain('if (diagnosisDevBlocked) {');
-    expect(adminSource).toContain('openDiagnosisDevRoute(category, microDiagnosisId)');
+    expect(adminSource).toContain('/problem_coach?category=${category}&microDiagnosisId=${microDiagnosisId}');
     expect(trainerSource).toContain('personalPracticeCoachEnabledForTarget(studyTarget)');
     expect(trainerSource).toContain('devSeedTrainer(studyTarget)');
     expect(trainerSource).toContain('personalTrainingEnabled={personalPracticeCoachEnabled}');
@@ -133,7 +139,7 @@ describe('Gustav personal practice target isolation', () => {
     expect(problemCoachSource).toContain('}, studyTarget)');
     expect(phrasesTrainerSource).toContain('const trainerGateOpen = trainerSessionContentAvailableForTarget(studyTarget)');
     expect(phrasesTrainerSource).toContain('if (!trainerGateOpen)');
-    expect(phrasesTrainerSource).toContain('setDeck(buildDeck(items))');
+    expect(phrasesTrainerSource).toContain('setDeck(buildTrainerSessionDeck(items))');
     expect(lessonWordsSource).toContain("checkCoachToastNeededWithAnalytics(wrongMistakesRef.current, studyTarget, lang === 'uk' ? 'uk' : 'ru')");
     expect(coachToastSource).toContain("storageStudyTarget(studyTarget) === 'fr'");
     expect(coachToastSource).toContain('computeFrenchPhraseAnalytics({ sourceLocale })');

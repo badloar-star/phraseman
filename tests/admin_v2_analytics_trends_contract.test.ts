@@ -636,7 +636,7 @@ describe('Admin v2 paywall analytics category contract', () => {
 
   test('quietly refreshes only the Overview scope through the existing TTL cache', () => {
     const quietLoad = core.match(
-      /function maybeLoadOverviewAnalyticsTrends\(\) \{([\s\S]*?)\n\}/,
+      /async function loadOverviewAnalyticsTrends\(\) \{([\s\S]*?)\n\}/,
     )?.[1] || '';
     expect(quietLoad).toContain("state.route !== 'overview'");
     expect(quietLoad).toContain("state.analyticsTrends.overview.status === 'loading'");
@@ -650,9 +650,9 @@ describe('Admin v2 paywall analytics category contract', () => {
   });
 
   test('guards quiet Overview completion and chart mounts by request, auth, route and render generation', () => {
-    expect(core).toMatch(/maybeLoadOverviewAnalyticsTrends[\s\S]*isCurrentAnalyticsTrendRequest\('overview', token\.generation\)/);
-    expect(core).toMatch(/maybeLoadOverviewAnalyticsTrends[\s\S]*authStillValid\(token\.authGeneration, 'money\.read'\)/);
-    expect(core).toMatch(/maybeLoadOverviewAnalyticsTrends[\s\S]*state\.route === 'overview'[\s\S]*renderCurrentPage\(\)/);
+    expect(core).toMatch(/loadOverviewAnalyticsTrends[\s\S]*isCurrentAnalyticsTrendRequest\('overview', token\.generation\)/);
+    expect(core).toMatch(/loadOverviewAnalyticsTrends[\s\S]*authStillValid\(token\.authGeneration, 'money\.read'\)/);
+    expect(core).toMatch(/loadOverviewAnalyticsTrends[\s\S]*state\.route === 'overview'[\s\S]*renderCurrentPage\(\)/);
     expect(core).toContain("capturedRenderGeneration !== renderGeneration || state.route !== 'overview'");
     expect(core).toMatch(/createOverviewPaymentChartDescriptors[\s\S]*mountPaywallAnalyticsChartsWhenCurrent/);
   });

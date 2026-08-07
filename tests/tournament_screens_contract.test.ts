@@ -569,16 +569,15 @@ describe('экраны режима «Турниры»', () => {
     expect(forfeitBlock).toContain("pathname: '/tournament_round'");
   });
 
-  it('анимирует только новые серверские bot_arrival события банка без выдуманного прироста', () => {
+  it('derives the live lobby bank from server bot-arrival timing without a second client cascade', () => {
     const lobby = read('app/tournament_lobby.tsx');
     const client = read('app/tournament_client.ts');
 
     expect(client).toContain("kind: 'bot_arrival';");
     expect(client).toContain('potDeltaGems: number;');
-    expect(lobby).toContain("event.kind === 'bot_arrival'");
-    expect(lobby).toContain('seenEventIdsRef');
-    expect(lobby).toContain('setDisplayAmount(event.potGemsAfter);');
-    expect(lobby).toContain('zero test-mode delta keeps digits');
+    expect(lobby).toContain('lobbyPotGemsAtTime(');
+    expect(lobby).toContain('room?.lobbyEvents ?? []');
+    expect(lobby).not.toContain('seenEventIdsRef');
   });
 
   it('результаты показывают только выплату игрока, без бухгалтерии банка', () => {

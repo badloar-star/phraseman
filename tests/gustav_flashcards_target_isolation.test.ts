@@ -581,7 +581,7 @@ describe('Gustav flashcards target isolation', () => {
     expect(lifetimeSource).toContain('lessonProgressKey(lessonId, studyTarget)');
     expect(lifetimeSource).toContain('lessonWordsKey(id, studyTarget)');
     expect(lifetimeSource).toContain('readCustomCards(studyTarget)');
-    expect(levelGiftSource).toContain('setRandomPackGiftTrial48h(\n          opts?.studyTarget,\n          grant.voucherId,');
+    expect(levelGiftSource).toMatch(/setRandomPackGiftTrial48h\(\s*opts\?\.studyTarget,\s*grant\.voucherId,/);
     expect(levelGiftSource).toContain('studyTarget: storageStudyTarget(studyTarget)');
     expect(levelGiftSource).toContain('flashcardsOfficialPacksAvailableForTarget(studyTarget)');
     expect(levelGiftSource).toContain('allowedPackId: receipt.allowedPackId');

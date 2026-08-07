@@ -116,7 +116,7 @@ describe('leaderboard identity and weekly league membership contract', () => {
     expect(identity).toContain('async function cleanupSiblingStableIdentityDuplicates');
     expect(identity).toContain('linkedStableId === stableId');
     expect(identity).toContain("where('firebaseAuthUid', '==', authUid)");
-    expect(identity).toContain('requestedUserData.identityHidden === true');
+    expect(identity).toContain('userData.identityHidden === true');
     expect(identity).not.toContain('tx.delete(legacyLbRef)');
     expect(identity).not.toContain('nameRef.delete()');
     expect(identity).not.toContain('batch.delete(doc.ref)');

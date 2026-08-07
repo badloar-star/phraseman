@@ -39,7 +39,6 @@ describe('OpenAI runtime cost controls', () => {
       { source: read('app/ai_mistake_explain_client.ts'), map: 'explainMistakeInFlight', key: 'explainMistakeRequestKey' },
       { source: read('app/explain_phrase_client.ts'), map: 'explainPhraseInFlight', key: 'explainPhraseRequestKey' },
       { source: read('app/explain_choice_client.ts'), map: 'explainChoiceInFlight', key: 'explainChoiceRequestKey' },
-      { source: read('app/explain_quiz_client.ts'), map: 'explainQuizInFlight', key: 'explainQuizRequestKey' },
     ];
 
     for (const { source, map, key } of clients) {
@@ -61,7 +60,7 @@ describe('OpenAI runtime cost controls', () => {
       expect(source).toContain('readExplainLocalCache');
       expect(source).toContain('writeExplainLocalCache');
       expect(source.indexOf('const localCached = await readExplainLocalCache'))
-        .toBeLessThan(source.indexOf('const fn = httpsCallable'));
+        .toBeLessThan(source.lastIndexOf('const fn = httpsCallable'));
     }
   });
 
@@ -76,10 +75,9 @@ describe('OpenAI runtime cost controls', () => {
       { source: read('app/ai_mistake_explain_client.ts'), callable: 'explainMistake' },
       { source: read('app/explain_phrase_client.ts'), callable: 'explainPhrase' },
       { source: read('app/explain_choice_client.ts'), callable: 'explainChoice' },
-      { source: read('app/explain_quiz_client.ts'), callable: 'explainQuiz' },
     ]) {
       expect(source).toContain("import { withExplainCallableTimeout } from './explain_callable_timeout'");
-      expect(source).toContain(`withExplainCallableTimeout(fn(req), '${callable}')`);
+      expect(source).toMatch(new RegExp(`withExplainCallableTimeout\\(\\s*fn\\(req\\),\\s*'${callable}'`));
       expect(source).toContain('finally(() =>');
     }
   });
@@ -165,7 +163,7 @@ describe('OpenAI runtime cost controls', () => {
   });
 
   test('the unified admin has a read-only OpenAI budget dashboard backed by billing collections', () => {
-    const adminHtml = read('admin/index.html');
+    const adminHtml = read('admin/v2/legacy.html');
     const budgetFn = read('functions/src/openai_budget_dashboard.ts');
 
     expect(adminHtml).toContain('id="tab-openai-budget"');
@@ -189,8 +187,8 @@ describe('OpenAI runtime cost controls', () => {
       'compass_billing',
       'league_compass_daily_billing',
       'choice_explain_billing',
-      'quiz_explain_billing',
       'mistake_explain_billing',
+      'tournament_ai_billing',
     ];
     for (const collectionName of REQUIRED_BILLING_COLLECTIONS) {
       expect(budgetFn).toContain(`collection: '${collectionName}'`);

@@ -232,7 +232,7 @@ describe('вкладка «Турниры» в админке', () => {
   it('раздел отнесён к соревновательной группе, а не к диагностике', () => {
     const start = html.indexOf('const ADMIN_TAB_GROUPS');
     const groups = html.slice(start, start + 2600);
-    expect(groups).toMatch(/tournaments:\s*'arena'/);
+    expect(groups).toMatch(/tournaments:\s*'community'/);
   });
 
   it('расписание шлёт слоты в формате сервера, а не hour/minute', () => {

@@ -23,6 +23,7 @@ import {
   invalidatePremiumCache,
 } from '../app/premium_guard';
 import { navigateAfterModalClose } from '../app/safe_modal_navigation';
+import { useReferralRouletteEnabled } from '../app/referral_roulette_flag';
 import { useLang } from './LangContext';
 import { useOverlayVisible } from './OverlayArbiter';
 import RewardCardV2 from './reward_v2/RewardCardV2';
@@ -123,6 +124,7 @@ function EntitlementExpiredHost() {
   const { lang } = useLang();
   const router = useRouter();
   const pathname = usePathname();
+  const rouletteOn = useReferralRouletteEnabled();
   const pathnameRef = useRef(pathname);
   pathnameRef.current = pathname;
   const tournamentInterruptionProtected = isTournamentInterruptionProtectedPath(pathname);
@@ -293,6 +295,7 @@ function EntitlementExpiredHost() {
   if (!kind || !overlayVisible) return null;
 
   const tx = TEXTS[lang] ?? TEXTS.ru;
+  const normalizedKind = kind === 'vip' && !rouletteOn ? 'premium' : kind;
 
   return (
     <RewardCardV2
@@ -306,7 +309,7 @@ function EntitlementExpiredHost() {
       ctaLabel={tx.cta}
       onCta={() => {
         if (isTournamentInterruptionProtectedPath(pathnameRef.current)) return;
-        const context = kind === 'premium' ? 'premium_expired' : 'vip_expired';
+        const context = normalizedKind === 'premium' ? 'premium_expired' : 'vip_expired';
         navigateAfterModalClose(markShownAndClose, () => {
           if (isTournamentInterruptionProtectedPath(pathnameRef.current)) return;
           router.push({
@@ -318,14 +321,14 @@ function EntitlementExpiredHost() {
       /** зачем: владелец (2026-08-02, вариант А) — второй путь с карточки: позвать
           друга (/referrals). Друг оформит Plus/Pro → пригласившему придёт «Награда
           за друга». Продление остаётся главным CTA, реферал — tonal-кнопкой ниже. */
-      secondaryLabel={tx.invite}
-      onSecondary={() => {
+      secondaryLabel={rouletteOn ? tx.invite : undefined}
+      onSecondary={rouletteOn ? () => {
         if (isTournamentInterruptionProtectedPath(pathnameRef.current)) return;
         navigateAfterModalClose(markShownAndClose, () => {
           if (isTournamentInterruptionProtectedPath(pathnameRef.current)) return;
           router.push({ pathname: '/referrals' } as never);
         });
-      }}
+      } : undefined}
       ghostLabel={tx.ghost}
       onGhost={markShownAndClose}
       /** Карточка продления: тап по фону = «Позже», не CTA. */

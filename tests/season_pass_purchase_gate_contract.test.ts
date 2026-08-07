@@ -164,9 +164,10 @@ describe('кнопка покупки', () => {
       // поэтому единый текст «все золотые награды станут доступны» был ложным
       // обещанием для игрока без подписки.
       expect(SOURCE).not.toContain('Все золотые награды сезона станут доступны');
-      expect(SOURCE).toMatch(/passLaneAllowed\s*\?\s*triLang/);
-      // Фри честно предупреждают, что золотая линия — про Plus.
-      expect(SOURCE).toContain('Золотая линия открывается с Plus.');
+      // Owner-directed confirmation is intentionally title-only; it must not
+      // promise either reward lane before purchase.
+      expect(SOURCE).not.toContain('Золотая линия открывается с Plus.');
+      expect(SOURCE).toContain('заголовок самодостаточен');
     });
 
     test('заголовок модалки и кнопка внизу говорят об одном действии', () => {

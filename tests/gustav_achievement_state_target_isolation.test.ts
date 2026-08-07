@@ -26,10 +26,16 @@ import {
   trainerAchievementCorrectStreakKey,
   trainerAchievementPerfectSessionCountKey,
 } from '../app/target_storage_keys';
+import {
+  __resetAccountGenerationForTests,
+  ensureAccountGeneration,
+} from '../app/account_generation';
 
 describe('Gustav achievement state target isolation', () => {
   beforeEach(() => {
     (AsyncStorage as any).__reset?.();
+    __resetAccountGenerationForTests();
+    ensureAccountGeneration('gustav-achievement-target-test');
     (globalThis as any).__DEV__ = true;
     jest.clearAllMocks();
   });

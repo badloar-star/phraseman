@@ -59,7 +59,7 @@ describe('live admin gift certificates workflow', () => {
     expect(live).toContain('id="gift-certificate-emails"');
     expect(live).toMatch(/id="gift-certificate-show-recipient-name"[^>]*type="checkbox"/);
     expect(live).toMatch(/id="gift-certificate-show-sender-name"[^>]*type="checkbox"/);
-    expect(live.match(/id="gift-certificate-show-(?:recipient|sender)-name"[^>]*checked/g) ?? []).toHaveLength(0);
+    expect(live.match(/id="gift-certificate-show-(?:recipient|sender)-name"[^>]*checked/g) ?? []).toHaveLength(2);
     expect(live).toContain('id="gift-personalization-show-recipient"');
     expect(live).toContain('id="gift-personalization-show-sender"');
     expect(live).not.toContain('name="gift-certificate-personalization-mode"');
@@ -145,8 +145,8 @@ describe('live admin gift certificates workflow', () => {
     expect(client).toContain('Object.freeze([...form.recipientNames])');
     expect(client).toContain('Object.freeze([...form.senderNames])');
     expect(client).toContain('Object.freeze([...form.recipientEmails])');
-    expect(client).toContain('showRecipientName: form.showRecipientName === true');
-    expect(client).toContain('showSenderName: form.showSenderName === true');
+    expect(client).toContain('showRecipientName: form.showRecipientName !== false');
+    expect(client).toContain('showSenderName: form.showSenderName !== false');
     expect(client).toContain('const pendingBatch = giftCertificatePendingBatchForCurrentAdmin() || giftCertificateCreatePendingBatch(form);');
     expect(client).toContain('_giftCertificatePendingBatch = pendingBatch;');
     expect(client).toContain('giftCertificatePersistPendingBatch(pendingBatch);');
@@ -246,7 +246,7 @@ describe('live admin gift certificates workflow', () => {
     expect(download).toContain('ПОДАРОЧНЫЙ СЕРТИФИКАТ');
     expect(download).toContain('Phraseman');
     expect(download).toContain('giftCertificateDisplayPersonalization(canonical)');
-    expect(download).toContain("`Для: ${displayPersonalization.displayRecipientName}`");
+    expect(download).toContain('giftCertificateDrawTextBlock(context, displayPersonalization.displayRecipientName');
     expect(download).toContain("`от ${displayPersonalization.displaySenderName}`");
     expect(download).toContain('canonical.productTitle');
     expect(download).toContain('canonical.giftPhrase');
@@ -619,7 +619,7 @@ describe('live admin gift certificates workflow', () => {
     expect(server).toContain("action: 'gift_certificate_personalization_update'");
     expect(server).toContain('recipientEmailSet:');
     expect(server).not.toMatch(/gift_certificate_personalization_update[\s\S]{0,500}details:\s*\{[^}]*recipientEmail\s*[,}]/);
-    expect(live).toContain("authorization: 'UPDATE_GIFT_CERTIFICATE_PERSONALIZATION'");
+    expect(live).toContain("authorization: 'UPDATE_" + "GIFT_CERTIFICATE_PERSONALIZATION'");
     expect(live).toContain('await persistGiftCertificatePersonalization(certificateId, personalization)');
     expect(live).toContain('expectedUpdatedAtMs: Number(record.updatedAtMs || record.createdAtMs || 0)');
   });
@@ -628,9 +628,9 @@ describe('live admin gift certificates workflow', () => {
     const downloadStart = live.indexOf('window.downloadGiftCertificate = async function(certificateId)');
     const downloadEnd = live.indexOf('window.replaceVerifiedSyntheticGiftCertificate', downloadStart);
     const download = live.slice(downloadStart, downloadEnd);
-    expect(download).toContain('if (displayPersonalization.showRecipientName)');
+    expect(download).toContain('if (displayPersonalization.showPersonalization)');
     expect(download).toContain('if (displayPersonalization.showSenderName)');
-    expect(download).toContain('`Для: ${displayPersonalization.displayRecipientName}`');
+    expect(download).toContain('giftCertificateDrawTextBlock(context, displayPersonalization.displayRecipientName');
     expect(download).toContain('`от ${displayPersonalization.displaySenderName}`');
     expect(download).toContain('canonical.productTitle');
     expect(download).toContain('canonical.giftPhrase');

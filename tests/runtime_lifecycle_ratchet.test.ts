@@ -156,6 +156,7 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
   // (status?.playing && isFocused), а reduce-motion дополнительно глушит пульс.
   // Токены перепломбированы на новый гард, без ослабления.
   'components/tournament/TournamentAudioButton.tsx': runtime('Audio pulse runs only while the clip plays on a focused foreground screen with reduced motion off.', ['status?.playing === true && isFocused', 'if (!isPlaying || reducedMotion)', 'pulse.value = 1']),
+  'components/tournament/TournamentBackdrop.tsx': guarded('Tournament backdrop breathing runs only on a focused foreground screen and respects reduced motion.'),
   // зачем 2026-08-03: components/today/TodayAmbientCompass.tsx снят с учёта —
   // экран «Сегодня» удалён целиком вместе с его фоновой анимацией.
 };

@@ -1749,11 +1749,8 @@ function runProtocolCheck() {
     if (!frenchGate.includes(token)) failures.push(`French source gate missing ${token}`);
   }
 
-  const quizGatePath = path.join(ROOT, 'app', 'quiz_target_gate.ts');
-  const quizGate = fs.existsSync(quizGatePath) ? readText(quizGatePath) : '';
-  for (const token of ['french_quiz_question_bank', 'french_quiz_distractor_review', 'ru_uk_quiz_prompt_review']) {
-    if (!quizGate.includes(token)) failures.push(`Quiz target gate missing ${token}`);
-  }
+  // The client quiz target gate was retired with the quiz/Arena surfaces. The
+  // source-evidence contract remains authoritative in french_content_source_gate.
 
   const packagePath = path.join(ROOT, 'package.json');
   const pkg = JSON.parse(readText(packagePath));

@@ -1,0 +1,385 @@
+name: One-time sanitized Vitalii account diagnostic
+
+on:
+  push:
+    branches:
+      - 'agent/diagnose-vitalii-account-20260807'
+    paths:
+      - '.github/workflows/diagnose-vitalii-account.yml'
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: diagnose-vitalii-account-20260807
+  cancel-in-progress: true
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      FIREBASE_PROJECT_ID: phraseman-ea0b3
+
+    steps:
+      - name: Check out diagnostic branch
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Discover Firebase Admin credential
+        id: firebase-auth
+        env:
+          REPO_SECRETS_JSON: ${{ toJSON(secrets) }}
+          REPO_VARS_JSON: ${{ toJSON(vars) }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import base64, json, os, re, sys
+          from pathlib import Path
+
+          def read_map(name):
+              try:
+                  value = json.loads(os.environ.get(name, '{}'))
+              except Exception:
+                  return {}
+              return value if isinstance(value, dict) else {}
+
+          secrets = read_map('REPO_SECRETS_JSON')
+          variables = read_map('REPO_VARS_JSON')
+          credential = Path(os.environ['RUNNER_TEMP']) / 'firebase-admin-credential.json'
+
+          for key, value in secrets.items():
+              if not value:
+                  continue
+              candidates = [str(value)]
+              try:
+                  candidates.append(base64.b64decode(''.join(str(value).split()), validate=True).decode('utf-8'))
+              except Exception:
+                  pass
+              for candidate in candidates:
+                  try:
+                      data = json.loads(candidate)
+                  except Exception:
+                      continue
+                  if not isinstance(data, dict):
+                      continue
+                  kind = data.get('type')
+                  project = data.get('project_id') or data.get('quota_project_id')
+                  if kind in {'service_account', 'external_account', 'authorized_user'} and (not project or project == 'phraseman-ea0b3'):
+                      credential.write_text(candidate, encoding='utf-8')
+                      with open(os.environ['GITHUB_ENV'], 'a', encoding='utf-8') as env:
+                          env.write(f'GOOGLE_APPLICATION_CREDENTIALS={credential}\n')
+                      with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as out:
+                          out.write('mode=adc\n')
+                      print(f'Firebase Admin credential found in secret {key} ({kind}); value not printed.')
+                      sys.exit(0)
+
+          merged = {**variables, **secrets}
+          provider = next((str(v) for k, v in merged.items() if v and re.search(r'WORKLOAD.*IDENTITY.*PROVIDER|WIF.*PROVIDER', k, re.I)), '')
+          account = next((str(v) for k, v in merged.items() if v and re.search(r'(WORKLOAD|WIF|DEPLOY).*SERVICE.*ACCOUNT|SERVICE.*ACCOUNT.*EMAIL', k, re.I)), '')
+          if provider and account:
+              with open(os.environ['GITHUB_ENV'], 'a', encoding='utf-8') as env:
+                  env.write(f'WIF_PROVIDER={provider}\nWIF_SERVICE_ACCOUNT={account}\n')
+              with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as out:
+                  out.write('mode=wif\n')
+              print('Firebase Admin will use Workload Identity Federation.')
+              sys.exit(0)
+
+          print('No Firebase Admin-capable credential was found.', file=sys.stderr)
+          sys.exit(31)
+          PY
+
+      - name: Authenticate through Workload Identity
+        if: steps.firebase-auth.outputs.mode == 'wif'
+        uses: google-github-actions/auth@v3
+        with:
+          workload_identity_provider: ${{ env.WIF_PROVIDER }}
+          service_account: ${{ env.WIF_SERVICE_ACCOUNT }}
+
+      - name: Run read-only Firestore and Auth diagnostic
+        shell: bash
+        run: |
+          set -euo pipefail
+          work="$RUNNER_TEMP/vitalii-account-diagnostic"
+          mkdir -p "$work"
+          cd "$work"
+          npm init -y >/dev/null
+          npm install --no-audit --no-fund firebase-admin@13.4.0 >/dev/null
+
+          cat > diagnose.cjs <<'NODE'
+          const admin = require('firebase-admin');
+          const crypto = require('crypto');
+
+          admin.initializeApp({
+            credential: admin.credential.applicationDefault(),
+            projectId: process.env.FIREBASE_PROJECT_ID || 'phraseman-ea0b3',
+          });
+
+          const db = admin.firestore();
+          const auth = admin.auth();
+          const NEEDLES = ['vitalii', 'vitaliy', 'vitali', 'виталий', 'virchyk', 'вирчик'];
+
+          function norm(value) {
+            return String(value ?? '').normalize('NFKC').trim().toLocaleLowerCase('en-US');
+          }
+
+          function matches(value) {
+            const n = norm(value);
+            return n && NEEDLES.some((needle) => n.includes(needle));
+          }
+
+          function shortId(value) {
+            const s = String(value ?? '').replace(/[^a-zA-Z0-9]/g, '');
+            return s ? s.slice(-6).toLowerCase() : 'none';
+          }
+
+          function fingerprint(value) {
+            const s = String(value ?? '');
+            return crypto.createHash('sha256').update(s).digest('hex').slice(0, 12);
+          }
+
+          function token(value) {
+            return `${fingerprint(value)}#${shortId(value)}`;
+          }
+
+          function asIso(value) {
+            if (!value) return null;
+            try {
+              if (typeof value.toDate === 'function') return value.toDate().toISOString();
+              if (value instanceof Date) return value.toISOString();
+              if (typeof value === 'number') return new Date(value).toISOString();
+              if (typeof value === 'string') return value;
+            } catch {}
+            return String(value);
+          }
+
+          function num(value) {
+            const n = Number(value);
+            return Number.isFinite(n) ? n : 0;
+          }
+
+          function collectStrings(value, path = '', depth = 0, out = []) {
+            if (depth > 4 || value == null) return out;
+            if (typeof value === 'string') {
+              out.push({ path, value });
+              return out;
+            }
+            if (Array.isArray(value)) {
+              for (let i = 0; i < Math.min(value.length, 20); i += 1) {
+                collectStrings(value[i], `${path}[${i}]`, depth + 1, out);
+              }
+              return out;
+            }
+            if (typeof value === 'object') {
+              for (const [key, child] of Object.entries(value)) {
+                if (/email|token|phone|address/i.test(key)) continue;
+                collectStrings(child, path ? `${path}.${key}` : key, depth + 1, out);
+              }
+            }
+            return out;
+          }
+
+          function candidateNames(data) {
+            const p = data?.progress && typeof data.progress === 'object' ? data.progress : {};
+            const direct = [
+              p.user_name,
+              p.displayName,
+              p.name,
+              data.user_name,
+              data.displayName,
+              data.name,
+              data.username,
+            ].filter((v) => typeof v === 'string' && v.trim());
+            const discovered = collectStrings(data)
+              .filter((row) => /(^|\.)(user_name|username|displayName|name)$/i.test(row.path))
+              .map((row) => row.value);
+            return [...new Set([...direct, ...discovered])];
+          }
+
+          function topNumericCounters(progress) {
+            if (!progress || typeof progress !== 'object') return [];
+            return Object.entries(progress)
+              .map(([key, value]) => [key, num(value)])
+              .filter(([key, value]) => value > 0 && !/at$|time|timestamp|date|period_start|expires|ends/i.test(key))
+              .sort((a, b) => b[1] - a[1])
+              .slice(0, 14)
+              .map(([key, value]) => `${key}=${value}`);
+          }
+
+          function summarizeUser(id, data) {
+            const p = data?.progress && typeof data.progress === 'object' ? data.progress : {};
+            const names = candidateNames(data).filter(matches);
+            const xp = Math.max(num(p.user_total_xp), num(p.total_xp), num(data.totalXP), num(data.xp));
+            const streak = Math.max(num(p.streak_count), num(p.current_streak), num(p.streak), num(data.streak));
+            const levelStored = Math.max(num(p.level), num(data.level));
+            const firebaseAuthUid = typeof data.firebaseAuthUid === 'string' ? data.firebaseAuthUid : null;
+            return {
+              id,
+              token: token(id),
+              matchedNames: names,
+              xp,
+              levelStored,
+              streak,
+              shards: Math.max(num(data.shards), num(p.shards), num(p.shards_balance)),
+              firebaseAuthUid,
+              firebaseAuthToken: firebaseAuthUid ? token(firebaseAuthUid) : null,
+              linkedAuthProviders: data.linkedAuth && typeof data.linkedAuth === 'object' ? Object.keys(data.linkedAuth) : [],
+              identityHidden: data.identityHidden === true,
+              canonicalStableToken: data.canonicalStableId ? token(data.canonicalStableId) : null,
+              createdAt: asIso(data.created_at || data.createdAt),
+              updatedAt: asIso(data.updatedAt || p.updatedAt || data.lastActivityAt || p.last_activity_at),
+              progressKeyCount: Object.keys(p).length,
+              topCounters: topNumericCounters(p),
+              raw: data,
+            };
+          }
+
+          async function authSummary(uid) {
+            if (!uid) return { exists: false };
+            try {
+              const user = await auth.getUser(uid);
+              return {
+                exists: true,
+                disabled: !!user.disabled,
+                anonymous: (user.providerData || []).length === 0,
+                providerIds: [...new Set((user.providerData || []).map((row) => row.providerId))],
+                createdAt: user.metadata?.creationTime || null,
+                lastSignInAt: user.metadata?.lastSignInTime || null,
+              };
+            } catch (error) {
+              return { exists: false, code: error?.code || String(error) };
+            }
+          }
+
+          async function printCandidate(candidate, index) {
+            const authInfo = await authSummary(candidate.firebaseAuthUid);
+            let sameAuth = [];
+            if (candidate.firebaseAuthUid) {
+              const snap = await db.collection('users').where('firebaseAuthUid', '==', candidate.firebaseAuthUid).limit(20).get();
+              sameAuth = snap.docs.map((doc) => {
+                const p = doc.data()?.progress || {};
+                return {
+                  token: token(doc.id),
+                  xp: Math.max(num(p.user_total_xp), num(p.total_xp)),
+                  names: candidateNames(doc.data()).filter(matches),
+                  sameDocument: doc.id === candidate.id,
+                };
+              });
+            }
+
+            const links = await db.collection('auth_links').where('stable_id', '==', candidate.id).limit(20).get();
+            const linkSummary = links.docs.map((doc) => {
+              const d = doc.data() || {};
+              return {
+                linkToken: token(doc.id),
+                provider: d.provider || null,
+                stableToken: d.stable_id ? token(d.stable_id) : null,
+                linkedAt: asIso(d.linkedAt),
+                lastSignInAt: asIso(d.lastSignInAt),
+              };
+            });
+
+            console.log(`\n[CANDIDATE ${index + 1}] ${candidate.token}`);
+            console.log(JSON.stringify({
+              matchedNames: candidate.matchedNames,
+              xp: candidate.xp,
+              levelStored: candidate.levelStored,
+              streak: candidate.streak,
+              shards: candidate.shards,
+              firebaseAuthToken: candidate.firebaseAuthToken,
+              linkedAuthProviders: candidate.linkedAuthProviders,
+              identityHidden: candidate.identityHidden,
+              canonicalStableToken: candidate.canonicalStableToken,
+              createdAt: candidate.createdAt,
+              updatedAt: candidate.updatedAt,
+              progressKeyCount: candidate.progressKeyCount,
+              topCounters: candidate.topCounters,
+              firebaseAuth: authInfo,
+              userDocsWithSameFirebaseAuthUid: sameAuth,
+              authLinksPointingHere: linkSummary,
+            }, null, 2));
+          }
+
+          async function main() {
+            console.log('=== Phraseman read-only account diagnostic: nickname Vitalii ===');
+            console.log(`project=${process.env.FIREBASE_PROJECT_ID || 'phraseman-ea0b3'}; generatedAt=${new Date().toISOString()}`);
+            console.log('Privacy: document IDs and auth UIDs are represented only as one-way fingerprints plus a short suffix. Emails and tokens are never printed.');
+
+            const usersSnap = await db.collection('users').get();
+            console.log(`usersScanned=${usersSnap.size}`);
+
+            const candidates = [];
+            for (const doc of usersSnap.docs) {
+              const data = doc.data() || {};
+              const strings = collectStrings(data);
+              if (candidateNames(data).some(matches) || strings.some((row) => matches(row.value))) {
+                candidates.push(summarizeUser(doc.id, data));
+              }
+            }
+
+            candidates.sort((a, b) => b.xp - a.xp || String(b.updatedAt || '').localeCompare(String(a.updatedAt || '')));
+            console.log(`matchingUserDocuments=${candidates.length}`);
+
+            for (let i = 0; i < candidates.length; i += 1) {
+              await printCandidate(candidates[i], i);
+            }
+
+            console.log('\n[NAME_INDEX LOOKUPS]');
+            for (const key of ['vitalii', 'vitaliy', 'vitali', 'vitalii virchyk', 'виталий']) {
+              const snap = await db.collection('name_index').doc(key).get();
+              if (!snap.exists) continue;
+              const d = snap.data() || {};
+              console.log(JSON.stringify({
+                key,
+                ownerToken: token(d.stable_id || d.ownerId || d.uid || d.userId || ''),
+                fields: Object.keys(d).sort(),
+                updatedAt: asIso(d.updatedAt || d.reservedAt || d.createdAt),
+              }));
+            }
+
+            console.log('\n[LIKELY INTERPRETATION]');
+            if (candidates.length === 0) {
+              console.log('No users document containing the nickname/name hints was found. The exact in-app bug-report code or account UID will be required.');
+            } else {
+              const high = candidates.filter((c) => c.xp >= 10000);
+              const empty = candidates.filter((c) => c.xp < 1000);
+              console.log(`highProgressCandidates=${high.length}; emptyOrNewCandidates=${empty.length}`);
+              if (high.length === 1) {
+                const c = high[0];
+                if (c.firebaseAuthUid) {
+                  console.log(`The strongest candidate is ${c.token} with xp=${c.xp}. It is pinned to Firebase Auth ${c.firebaseAuthToken}; compare auth lastSignInAt/links above. A stale pin can block restore after an auth-session change, matching the known OlgaZ incident.`);
+                } else {
+                  console.log(`The strongest candidate is ${c.token} with xp=${c.xp} and no firebaseAuthUid pin. Restore failure is more likely a stable_id/account-switch problem than a Firestore owner mismatch.`);
+                }
+              }
+              if (high.length >= 1 && empty.length >= 1) {
+                console.log('Both a high-progress and a near-empty matching document exist, which strongly suggests an account split or login to a newly created identity.');
+              }
+            }
+          }
+
+          main()
+            .then(() => process.exit(0))
+            .catch((error) => {
+              console.error('FATAL_DIAGNOSTIC_ERROR', error?.stack || error);
+              process.exit(1);
+            });
+          NODE
+
+          node diagnose.cjs | tee vitalii-diagnostic.txt
+          cp vitalii-diagnostic.txt "$GITHUB_WORKSPACE/vitalii-diagnostic.txt"
+
+      - name: Upload sanitized diagnostic report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: vitalii-account-diagnostic-sanitized
+          path: vitalii-diagnostic.txt
+          if-no-files-found: warn
+          retention-days: 1

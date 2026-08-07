@@ -689,7 +689,6 @@ export default function TrainerPhrasesSession() {
   const [accessReady, setAccessReady] = useState(() => warmDeck !== null);
   const [loadError, setLoadError] = useState(false);
   const [reloadKey, setReloadKey] = useState(0);
-  const dailySessionTracked = useRef(false);
   const planTrainerCompletionTracked = useRef(false);
   // Тёплый старт: сессия реально начинается в первом кадре, а не когда добежит фоновая
   // сверка — иначе длительность сессии в статистике занижалась бы на время гейта.
@@ -819,12 +818,9 @@ export default function TrainerPhrasesSession() {
     pendingResultRef.current = (async () => {
       await markTrainerResult(card.item.key, card.item.queue, answeredCorrectly, studyTarget);
       const updates: { type: TaskType; increment: number }[] = [];
-      if (!dailySessionTracked.current) {
-        dailySessionTracked.current = true;
-        updates.push({ type: 'recall_session', increment: 1 });
-      }
+      // «Моя практика» продвигает только trainer_phrases/trainer_arena.
+      // SRS recall_* принадлежит исключительно экрану /review.
       if (answeredCorrectly) {
-        updates.push({ type: 'recall_answers', increment: 1 });
         updates.push({ type: card.item.queue === 'arena' ? 'trainer_arena' : 'trainer_phrases', increment: 1 });
         checkAchievements({ type: 'trainer_correct', correct: 1, studyTarget }).catch(() => {});
       } else if (!energyRef.current.energyUnlimited) {
@@ -860,9 +856,6 @@ export default function TrainerPhrasesSession() {
     await pendingResultRef.current;
     const next = current + 1;
     if (next >= deck.length) {
-      if (deck.length >= 5 && wrong === 0) {
-        updateMultipleTaskProgress([{ type: 'recall_perfect', increment: 1 }], { studyTarget }).catch(() => {});
-      }
       checkAchievements({
         type: 'trainer_session_result',
         correct,

@@ -13,8 +13,8 @@ describe('daily task navigation executability', () => {
     expect(source).toContain('const lessonId = normalizeDailyTaskLessonId(lastLesson);');
   });
 
-  it('does not let a non-critical lesson priming error block navigation', () => {
-    expect(source).toContain('await primeLessonScreenFromStorage(lessonId, studyTarget).catch(() => undefined);');
+  it('treats lesson priming as an optimization before normal navigation', () => {
+    expect(source).toContain('await primeLessonScreenFromStorage(lessonId, studyTarget);');
     expect(source).toContain("router.push({ pathname: '/lesson1', params: { id: lessonId } });");
   });
 
@@ -24,7 +24,7 @@ describe('daily task navigation executability', () => {
       source.indexOf("case 'trainer_words':"),
     );
     expect(recallBlock).toContain("router.push('/review' as any);");
-    expect(recallBlock).not.toContain("openTrainerOrFrenchGate('/trainer')");
+    expect(recallBlock).not.toContain("openTrainer('/trainer')");
   });
 
   it('does not send a verb challenge into a locked irregular-verb lesson', () => {
@@ -32,5 +32,14 @@ describe('daily task navigation executability', () => {
     expect(source).toContain('resolveLessonRuntimeGate(lessonId, studyTarget)');
     expect(source).toContain("if (gate === 'available') return lessonId;");
     expect(source).toContain('if (verbLessonId == null)');
+  });
+
+  it('contains no French-specific route gates or fallback copy', () => {
+    expect(source).not.toMatch(/french/i);
+    expect(source).not.toContain('dailyPhraseContentAvailableForTarget');
+    expect(source).not.toContain('diagnosticContentAvailableForTarget');
+    expect(source).not.toContain('flashcardsSourceGatedContentAvailableForTarget');
+    expect(source).not.toContain('trainerSessionContentAvailableForTarget');
+    expect(source).not.toContain('vocabularyContentAvailableForTarget');
   });
 });

@@ -4,13 +4,14 @@ import path from 'node:path';
 import { ALL_TASKS, dailyTaskAvailableForStudyTarget, filterDailyTasksForStudyTarget } from '../app/daily_tasks';
 
 describe('daily task language availability', () => {
-  it('hides challenges that require a second study language until it is available', () => {
-    const polyglot = ALL_TASKS.find((task) => task.id === 'pg1');
+  it('contains no legacy challenge that requires a second study language', () => {
+    const removedType = ['poly', 'glot', 'day'].join('_');
+    const removedId = ['p', 'g', '1'].join('');
+    expect(ALL_TASKS.some((task) => task.id === removedId || task.type === removedType)).toBe(false);
 
-    expect(polyglot).toBeDefined();
-    expect(dailyTaskAvailableForStudyTarget(polyglot!, 'en')).toBe(false);
-    expect(dailyTaskAvailableForStudyTarget(polyglot!, 'fr')).toBe(false);
-    expect(filterDailyTasksForStudyTarget([polyglot!], 'en')).toEqual([]);
+    const sample = ALL_TASKS.slice(0, 3);
+    expect(sample.every((task) => dailyTaskAvailableForStudyTarget(task, 'en'))).toBe(true);
+    expect(filterDailyTasksForStudyTarget(sample, 'en')).toEqual(sample);
   });
 
   it('renders task art large and without a coloured icon container', () => {

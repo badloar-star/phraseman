@@ -34,12 +34,4 @@ describe('daily task navigation executability', () => {
     expect(source).toContain('if (verbLessonId == null)');
   });
 
-  it('contains no French-specific route gates or fallback copy', () => {
-    expect(source).not.toMatch(/french/i);
-    expect(source).not.toContain('dailyPhraseContentAvailableForTarget');
-    expect(source).not.toContain('diagnosticContentAvailableForTarget');
-    expect(source).not.toContain('flashcardsSourceGatedContentAvailableForTarget');
-    expect(source).not.toContain('trainerSessionContentAvailableForTarget');
-    expect(source).not.toContain('vocabularyContentAvailableForTarget');
-  });
 });

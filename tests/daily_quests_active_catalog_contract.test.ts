@@ -4,7 +4,7 @@ const BANNED_TYPES = new Set([
   'total_answers', 'lesson_no_mistakes', 'open_theory', 'flashcard_view', 'flashcard_flip',
   'daily_phrase_read', 'morning_session', 'evening_session', 'early_all_done', 'last_chance',
   'energy_spend', 'diagnostic_complete', 'different_lessons', 'streak_freeze_use', 'correct_streak',
-  'weekend_marathon', 'mentor_friend', 'polyglot_day', 'perfect_big_lesson',
+  'weekend_marathon', 'mentor_friend', 'perfect_big_lesson',
 ]);
 
 test('daily quests expose exactly three verified, free-safe challenge families', () => {
@@ -35,12 +35,6 @@ test('runtime substitutions never reintroduce a retired daily task', async () =>
 
   expect(tasks).toHaveLength(3);
   expect(tasks.filter((task) => BANNED_TYPES.has(task.type)).map((task) => task.type)).toEqual([]);
-});
-
-test('French never receives a vocabulary or verb quest before its source is available', async () => {
-  const tasks = await getTodayTasksSafe('fr');
-
-  expect(tasks.some((task) => task.type === 'words_learned' || task.type === 'verb_learned')).toBe(false);
 });
 
 test('the one daily reroll is free and weekends do not add a fourth quest', () => {

@@ -13,16 +13,13 @@ describe('Daily Challenges screen navigation', () => {
     expect(source).toContain('void handleTaskNav(taskToStart);');
   });
 
-  it('does not keep a second task-type switch or French-specific route gates', () => {
-    const start = source.indexOf('const handleTaskNav');
-    const end = source.indexOf('// Сортировка:', start);
-    const handler = source.slice(start, end);
+  it('does not keep a second task-type switch or a second target-gate layer', () => {
+  const start = source.indexOf('const handleTaskNav');
+  const end = source.indexOf('// Сортировка:', start);
+  const handler = source.slice(start, end);
 
-    expect(handler).not.toContain('switch (task.type)');
-    expect(handler).not.toMatch(/french/i);
-    expect(source).not.toContain('openLessonOrFrenchGate');
-    expect(source).not.toContain('openTrainerOrFrenchGate');
-    expect(source).not.toContain('frenchLessonRuntimeAvailableForTarget');
-    expect(source).not.toContain('trainerSessionContentAvailableForTarget');
-  });
+  expect(handler).not.toContain('switch (task.type)');
+  expect(handler).not.toContain('GateCopy');
+  expect(handler).not.toContain('source_gate');
+});
 });

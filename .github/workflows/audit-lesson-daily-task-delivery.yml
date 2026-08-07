@@ -1,0 +1,44 @@
+name: Audit lesson Daily Challenge delivery
+
+on:
+  push:
+    branches:
+      - audit/lesson-daily-task-delivery-2026-08-07
+
+permissions:
+  contents: read
+
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: audit/lesson-daily-task-delivery-2026-08-07
+          fetch-depth: 1
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /app/
+            /tests/
+            /components/
+            /constants/
+            /hooks/
+            /lib/
+            /modules/
+
+      - name: Inventory delivery, retry, navigation, and pending journals
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo '===== DAILY TASK UPDATES IN LESSON ====='
+          git grep -n -I -E 'updateMultipleTaskProgress|updateTaskProgress|resetAndUpdateTaskProgress' -- app/lesson1.tsx app/lesson_complete.tsx app/lesson_menu.tsx || true
+          echo '===== LESSON COMPLETION / NAVIGATION ====='
+          git grep -n -I -E 'lesson_complete|lesson_no_mistakes|different_lessons|router\.(push|replace)|dismissTo|markPersonalPlanTaskCompleted' -- app/lesson1.tsx app/lesson_complete.tsx app/lesson_menu.tsx | tail -n 250 || true
+          echo '===== SWALLOWED SECOND RETRY ====='
+          git grep -n -I -E 'catch\(\(\) => \{\}\)|catch\(\(\) => undefined\)|retry|pending.*daily|daily.*pending' -- app/lesson1.tsx app/lesson_complete.tsx app/daily_tasks.ts tests | tail -n 350 || true
+          echo '===== EXISTING DURABILITY/JOURNAL HELPERS ====='
+          git grep -n -I -E 'pending.*event|event.*pending|delivery|journal|replay.*daily|daily.*replay|outbox|enqueue' -- app tests | head -n 500 || true
+          echo '===== RELEVANT TEST FILES ====='
+          find tests -maxdepth 1 -type f | grep -Ei 'lesson.*daily|daily.*lesson|delivery|durab|completion' | sort || true

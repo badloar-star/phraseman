@@ -128,6 +128,13 @@ export function useCardPackShardPaywall(args: {
         } else {
           setPaywall(null);
         }
+      } else if (r === 'wallet_sync_pending') {
+        // Replay мог успеть обновить локальный баланс прямо во время нажатия.
+        // Обновляем число в открытой модалке, но не закрываем её: повтор безопасен.
+        const freshBalance = await getShardsBalance().catch(() => balance);
+        setPaywall((prev) => (prev
+          ? { ...prev, displayedBalance: freshBalance }
+          : prev));
       } else if (r === 'insufficient') {
         // Official spend и community reconcile уже попытались зеркалировать
         // авторитетный server balance. Показываем перечитанное число.

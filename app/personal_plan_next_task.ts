@@ -56,9 +56,12 @@ function taskHasAvailableMaterial(
 
 /**
  * Найти первое незавершённое задание текущего дня плана, исключая только что
- * закрытое (по taskId). Все due-counts читаются из AsyncStorage параллельно —
- * это быстро (без сети). Возвращает null, если активного плана нет или заданий
- * дня больше не осталось.
+ * закрытое (по taskId). Все due-counts читаются параллельно.
+ *
+ * Ошибка любого обязательного источника намеренно пробрасывается вызывающему.
+ * Нельзя превращать сбой чтения в «0 карточек»: тогда экран делает ложный вывод,
+ * что заданий больше нет, показывает завершение маршрута или снова выбирает уже
+ * выполненное упражнение. Вызывающий обязан показать retry-state.
  */
 export async function resolveNextPlanTask(input: {
   completedTaskId: string;
@@ -70,10 +73,14 @@ export async function resolveNextPlanTask(input: {
   const plan = getPlanById(state.planId);
   const [completedTasks, duePracticeCount, trainerCounts, duePlanTrainerWeakSpotCount, dueFlashcardsCount] = await Promise.all([
     readCompletedPlanTasks(),
-    countDueItemsToday(input.studyTarget).catch(() => 0),
-    getTrainerCounts(input.studyTarget).catch(() => ({ words: 0, phrases: 0, arena: 0 } as Record<string, number>)),
-    resolvePersonalPlanTrainerWeakSpotDueCount({ planInstanceId: state.planInstanceId, mode: 'weak', studyTarget: input.studyTarget }).catch(() => 0),
-    resolvePersonalPlanFlashcardsReviewCount(input.studyTarget).catch(() => 0),
+    countDueItemsToday(input.studyTarget),
+    getTrainerCounts(input.studyTarget),
+    resolvePersonalPlanTrainerWeakSpotDueCount({
+      planInstanceId: state.planInstanceId,
+      mode: 'weak',
+      studyTarget: input.studyTarget,
+    }),
+    resolvePersonalPlanFlashcardsReviewCount(input.studyTarget),
   ]);
   const dueTrainerCount = (trainerCounts.words ?? 0) + (trainerCounts.phrases ?? 0) + (trainerCounts.arena ?? 0);
 
@@ -91,8 +98,9 @@ export async function resolveNextPlanTask(input: {
   const isDone = (task: PlanDailyTask): boolean =>
     Boolean(completedTasks[planTaskCompletionKey(state.planInstanceId, task.id)]);
 
-  // Первое незавершённое задание дня, кроме только что закрытого (на случай,
-  // если completed ещё не успел записаться — не зацикливаемся на том же).
+  // Первое незавершённое задание дня, кроме только что закрытого. Исключение
+  // completedTaskId остаётся дополнительной защитой от повторного открытия того
+  // же упражнения, но не подменяет проверяемую запись completedTasks.
   const candidates = visibleTasksForMinutes(
     runtime.visibleDay,
     state.minutesPerDay,

@@ -5,7 +5,6 @@ import {
   emitShardPurchaseSyncPendingToast,
   reconcileShardsBeforePurchase,
 } from '../shards_purchase_reconcile';
-import { newShardOpId } from '../shards_delta_queue';
 import { trackCardPackPurchase } from '../user_stats';
 import {
   addOwnedPackId,
@@ -34,6 +33,15 @@ export type CardPackShardPurchaseResult =
   | 'already_owned'
   | 'source_gated';
 export type CardPackVoucherRedeemResult = 'ok' | 'no_voucher' | 'already_owned' | 'source_gated' | 'redeem_failed';
+
+function cardPackPurchaseOpId(packId: string, studyTarget?: RuntimeStudyTarget): string {
+  const target = storageStudyTarget(studyTarget);
+  const safePackId = String(packId ?? '')
+    .trim()
+    .replace(/[^A-Za-z0-9_-]/g, '_')
+    .slice(0, 56);
+  return `card_pack:${target}:${safePackId}`;
+}
 
 function emitSourceGatedPackToast(): void {
   emitAppEvent('action_toast', {
@@ -70,10 +78,13 @@ export async function purchaseCardPackWithShards(
     return 'wallet_sync_pending';
   }
   const balance = reconciliation.balance;
+  // Один и тот же набор получает стабильный account-scoped opId. Если приложение
+  // закрылось после серверного списания, но до локальной записи ownership, повтор
+  // подтвердит уже применённое списание вместо второго списания.
   const spendResult = await spendShardsIdempotent(
     pack.priceShards,
     'card_pack',
-    newShardOpId(),
+    cardPackPurchaseOpId(pack.id, studyTarget),
   );
   if (spendResult === 'insufficient') {
     const balanceAfter = await getShardsBalance();
@@ -89,17 +100,19 @@ export async function purchaseCardPackWithShards(
     });
     return 'spend_failed';
   }
-  // зачем (НАЙДЕНО АУДИТОМ 2026-07-25): монеты ниже списаны строкой выше. Если
-  // выдача пака упадёт (AsyncStorage.setItem бросает при заполненном диске ―
-  // saveOwnedPackIds его не ловит), юзер оставался А�ЕЗ ДЕНЕГ И БЕЗ ПАКА, без отката. Возвращаем монеты и честно говорим, что покупка не прошла.
-  // Причина 'card_pack_refund' в списке исключений перка ―"��аче бонус карточки IV+ начислил бы +5% сверх возврата, и юзер вышел бы в плюс.
+  // зачем (НАЙДЕНО АУДИТОМ 2026-07-25): монеты уже списаны строкой выше. Если
+  // выдача пака упадёт (AsyncStorage.setItem бросает при заполненном диске —
+  // saveOwnedPackIds его не ловит), юзер оставался БЕЗ ДЕНЕГ И БЕЗ ПАКА, без
+  // отката. Возвращаем монеты и честно говорим, что покупка не прошла.
+  // Причина 'card_pack_refund' в списке исключений перка — иначе бонус
+  // карточки IV+ начислил бы +5% сверх возврата, и юзер вышел бы в плюс.
   try {
     await addOwnedPackId(pack.id, studyTarget);
   } catch {
     try {
       await addShardsRaw(pack.priceShards, 'card_pack_refund');
     } catch {
-      // Возврат тоже не прошёл — �олчать нельзя, но и упасть нельзя.
+      // Возврат тоже не прошёл — молчать нельзя, но и упасть нельзя.
       // Баланс сверится с облаком при следующем входе (источник истины там).
     }
     const balanceBack = await getShardsBalance().catch(() => balance);
@@ -113,7 +126,7 @@ export async function purchaseCardPackWithShards(
     });
     return 'spend_failed';
   }
-  // Кэш карточек — �е критичен: пак уже в «Моих», список подтянется при входе.
+  // Кэш карточек — не критичен: пак уже в «Моих», список подтянется при входе.
   await primeMarketplaceBuiltCardsCacheFromOwnedStorage(studyTarget).catch(() => {});
   const nb = await getShardsBalance();
   emitAppEvent('shards_balance_updated', { balance: nb });

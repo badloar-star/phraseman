@@ -1,6 +1,11 @@
 import { emitAppEvent } from '../events';
 import { logCardPackPurchasedShards } from '../firebase';
-import { addShardsRaw, getShardsBalance, spendShards } from '../shards_system';
+import { addShardsRaw, getShardsBalance, spendShardsIdempotent } from '../shards_system';
+import {
+  emitShardPurchaseSyncPendingToast,
+  reconcileShardsBeforePurchase,
+} from '../shards_purchase_reconcile';
+import { newShardOpId } from '../shards_delta_queue';
 import { trackCardPackPurchase } from '../user_stats';
 import {
   addOwnedPackId,
@@ -21,7 +26,13 @@ import { callFlashcardPackGiftRedeem } from '../community_packs/functionsClient'
 import { getCanonicalUserId } from '../user_id_policy';
 import { storageStudyTarget } from '../target_storage_keys';
 
-export type CardPackShardPurchaseResult = 'ok' | 'insufficient' | 'spend_failed' | 'already_owned' | 'source_gated';
+export type CardPackShardPurchaseResult =
+  | 'ok'
+  | 'insufficient'
+  | 'wallet_sync_pending'
+  | 'spend_failed'
+  | 'already_owned'
+  | 'source_gated';
 export type CardPackVoucherRedeemResult = 'ok' | 'no_voucher' | 'already_owned' | 'source_gated' | 'redeem_failed';
 
 function emitSourceGatedPackToast(): void {
@@ -50,17 +61,26 @@ export async function purchaseCardPackWithShards(
   }
   const owned = await loadOwnedPackIds(studyTarget);
   if (owned.includes(pack.id)) return 'already_owned';
-  const balance = await getShardsBalance();
-  if (balance < pack.priceShards) return 'insufficient';
-  const ok = await spendShards(pack.priceShards, 'card_pack');
-  if (!ok) {
-    // spendShards сверяет локальный баланс с облачным (источник истины). Если после
-    // неудачи баланс реально меньше цены — это «не хватает», а не сбой списания.
+  // Не блокируем покупку по одному локальному snapshot: он может быть ниже
+  // облачного либо уже включать pending-начисление. Сначала завершаем очередь,
+  // затем окончательное решение всё равно принимает server-authoritative spend.
+  const reconciliation = await reconcileShardsBeforePurchase();
+  if (reconciliation.status !== 'ready') {
+    emitShardPurchaseSyncPendingToast();
+    return 'wallet_sync_pending';
+  }
+  const balance = reconciliation.balance;
+  const spendResult = await spendShardsIdempotent(
+    pack.priceShards,
+    'card_pack',
+    newShardOpId(),
+  );
+  if (spendResult === 'insufficient') {
     const balanceAfter = await getShardsBalance();
-    if (balanceAfter < pack.priceShards) {
-      emitAppEvent('shards_balance_updated', { balance: balanceAfter });
-      return 'insufficient';
-    }
+    emitAppEvent('shards_balance_updated', { balance: balanceAfter });
+    return 'insufficient';
+  }
+  if (spendResult === 'failed') {
     emitAppEvent('action_toast', {
       type: 'error',
       messageRu: 'Жемчужины не списались. Попробуй ещё раз.',

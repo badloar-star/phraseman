@@ -61,7 +61,7 @@ const existingTasksByType = (types: Iterable<TaskType>): DailyTask[] => (
 );
 
 describe('Gustav French daily task target filter', () => {
-  it('keeps English-shaped daily task types visible for French dev while route handlers source-gate risky content', () => {
+  it('keeps live source-gated daily task types visible for French without restoring retired challenges', () => {
     const unavailable = existingTasksByType(FRENCH_UNAVAILABLE_DAILY_TASK_TYPES);
     const sourceGatedTypes = [
       ...FRENCH_LESSON_CONTENT_DAILY_TASK_TYPES,
@@ -70,23 +70,24 @@ describe('Gustav French daily task target filter', () => {
     const sourceGated = existingTasksByType(sourceGatedTypes);
     const targetScoped = [...unavailable, ...sourceGated];
 
-    expect(unavailable.map((task) => task.type)).toEqual(
-      expect.arrayContaining([...FRENCH_UNAVAILABLE_DAILY_TASK_TYPES]),
-    );
+    expect(unavailable.map((task) => task.type)).toEqual(expect.arrayContaining(
+      [...FRENCH_UNAVAILABLE_DAILY_TASK_TYPES].filter(hasTaskType),
+    ));
     expect(sourceGated.map((task) => task.type)).toEqual(expect.arrayContaining(
       sourceGatedTypes.filter(hasTaskType),
     ));
     expect(FRENCH_LESSON_CONTENT_DAILY_TASK_TYPES).toContain('daily_active');
     expect(targetScoped.every((task) => dailyTaskAvailableForStudyTarget(task, 'en'))).toBe(true);
     expect(targetScoped.every((task) => dailyTaskAvailableForStudyTarget(task, 'es'))).toBe(true);
-    expect(targetScoped.every((task) => dailyTaskAvailableForStudyTarget(task, 'fr'))).toBe(true);
-    expect(dailyTaskAvailableForStudyTarget(byId('dp1'), 'fr')).toBe(true);
-    expect(dailyTaskAvailableForStudyTarget(byId('dw1'), 'fr')).toBe(true);
+    expect(unavailable.every((task) => !dailyTaskAvailableForStudyTarget(task, 'fr'))).toBe(true);
+    expect(sourceGated.every((task) => dailyTaskAvailableForStudyTarget(task, 'fr'))).toBe(true);
+    expect(dailyTaskAvailableForStudyTarget(byId('dpr1'), 'fr')).toBe(false);
+    expect(dailyTaskAvailableForStudyTarget(byId('dps1'), 'fr')).toBe(false);
     expect(dailyTaskAvailableForStudyTarget(byId('inv1'), 'fr')).toBe(true);
   });
 
-  it('keeps the French daily task list full without replacing English-shaped challenge slots', () => {
-    const original = [byId('qe1'), byId('dc1'), byId('vl1'), byId('dpr1'), byId('da1')];
+  it('keeps the French daily task list full without replacing live challenge slots', () => {
+    const original = [byId('da1'), byId('ta1'), byId('cs1'), byId('lnm1'), byId('inv1')];
     const filtered = filterDailyTasksForStudyTarget(original, 'fr');
 
     expect(filtered).toHaveLength(original.length);
@@ -96,7 +97,7 @@ describe('Gustav French daily task target filter', () => {
     expect(filtered.map((task) => task.type)).toEqual(original.map((task) => task.type));
   });
 
-  it('keeps every quiz/challenge daily task type visible for French while quiz content stays source-gated', () => {
+  it('does not resurrect retired quiz/challenge daily task types for French', () => {
     const quizChallengeTypes: TaskType[] = [
       'quiz_easy',
       'quiz_medium',
@@ -108,10 +109,9 @@ describe('Gustav French daily task target filter', () => {
     const challengeTasks = existingTasksByType(quizChallengeTypes);
     const filtered = filterDailyTasksForStudyTarget(challengeTasks, 'fr');
 
-    expect(challengeTasks.map((task) => task.type)).toEqual(expect.arrayContaining(quizChallengeTypes));
-    expect(filtered).toHaveLength(challengeTasks.length);
-    expect(filtered.map((task) => task.id)).toEqual(challengeTasks.map((task) => task.id));
-    expect(filtered.every((task) => dailyTaskAvailableForStudyTarget(task, 'fr'))).toBe(true);
+    expect(challengeTasks).toEqual([]);
+    expect(filtered).toEqual([]);
+    expect(ALL_TASKS.every((task) => !quizChallengeTypes.includes(task.type))).toBe(true);
   });
 
   it('wires home and the daily task screen to the active study target', () => {
@@ -126,13 +126,11 @@ describe('Gustav French daily task target filter', () => {
     expect(home).toContain('visibleQuickItems');
     expect(home).toContain('const visibleQuickItems = quickItems');
     // зачем: ассерт убран — проверял код, снятый вместе с квизами/Ареной (в репо его нет).
-    expect(home).toContain('visibleActivityQuickItems');
-    expect(home).toContain('const visibleActivityQuickItems = activityQuickItems');
-    expect(home).toContain("testID={`home-activity-${item.key}`}");
-    expect(home).toContain("key: 'attest'");
+    expect(home).not.toContain('const visibleActivityQuickItems = activityQuickItems');
+    expect(home).toContain('testID="home-activity-daily"');
+    expect(home).not.toContain("key: 'attest'");
     expect(home).not.toContain("activityQuickItems.filter((item) => item.key !== 'attest')");
     expect(home).toContain('<DailyPhraseCard variant="homeAdditional" />');
-    expect(home).toContain(': <DailyPhraseCard />}');
     expect(home).not.toContain("studyTarget !== 'fr' && <DailyPhraseCard");
     expect(home).not.toContain("studyTarget !== 'fr' ? <DailyPhraseCard");
 
@@ -149,14 +147,14 @@ describe('Gustav French daily task target filter', () => {
     expect(dailyScreen).toContain('rerollDailyTask(target.id, studyTarget)');
     expect(dailyScreen).toContain('dailyTaskAvailableForStudyTarget(task, studyTarget)');
     expect(dailyScreen).toContain('primeLessonScreenFromStorage(lessonId, studyTarget)');
-    expect(dailyScreen).toContain('quizNavLevelKey(studyTarget)');
+    expect(dailyScreen).not.toContain('quizNavLevelKey(studyTarget)');
 
     const dailyNavigation = fs.readFileSync(path.join(repoRoot, 'app', 'daily_task_navigation.ts'), 'utf8');
     expect(dailyNavigation).toContain('dailyTaskAvailableForStudyTarget(task, studyTarget)');
-    expect(dailyNavigation).toContain('const openQuizOrFrenchGate = async (level: \'easy\' | \'medium\' | \'hard\')');
-    expect(dailyNavigation).toContain('if (!quizContentAvailableForTarget(studyTarget))');
-    expect(dailyNavigation).toContain('router.replace(\'/quizzes_screen\' as any)');
-    expect(dailyNavigation).toContain('await AsyncStorage.setItem(quizNavLevelKey(studyTarget), level)');
+    expect(dailyNavigation).not.toContain('openQuizOrFrenchGate');
+    expect(dailyNavigation).not.toContain('quizContentAvailableForTarget');
+    expect(dailyNavigation).not.toContain("router.replace('/quizzes_screen' as any)");
+    expect(dailyNavigation).not.toContain('quizNavLevelKey(studyTarget)');
     expect(dailyNavigation).not.toContain("AsyncStorage.setItem('quiz_nav_level'");
 
     expect(layout).toContain('primeAllLessonsFromStorageOnAppLaunch(studyTarget)');

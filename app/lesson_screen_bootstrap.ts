@@ -161,15 +161,20 @@ export async function primeLessonScreenFromStorage(
   lessonId: number,
   studyTarget?: RuntimeStudyTarget,
 ): Promise<void> {
-  if (lessonId < 1) return;
-  const [[, ci], [, order], [, prog], [, override]] = await AsyncStorage.multiGet([
-    lessonSessionKey(lessonId, 'cellIndex', studyTarget),
-    lessonSessionKey(lessonId, 'phraseOrder', studyTarget),
-    lessonProgressKey(lessonId, studyTarget),
-    lessonSessionKey(lessonId, 'errorReplayOverride', studyTarget),
-  ]);
-  applyPrimedFromStorageStrings(lessonId, ci, order, prog, override, studyTarget);
-  publishLessonPrimeSummary(studyTarget);
+  if (!Number.isInteger(lessonId) || lessonId < 1 || lessonId > LESSON_ID_MAX) return;
+  try {
+    const [[, ci], [, order], [, prog], [, override]] = await AsyncStorage.multiGet([
+      lessonSessionKey(lessonId, 'cellIndex', studyTarget),
+      lessonSessionKey(lessonId, 'phraseOrder', studyTarget),
+      lessonProgressKey(lessonId, studyTarget),
+      lessonSessionKey(lessonId, 'errorReplayOverride', studyTarget),
+    ]);
+    applyPrimedFromStorageStrings(lessonId, ci, order, prog, override, studyTarget);
+    publishLessonPrimeSummary(studyTarget);
+  } catch {
+    // Priming is an optimization only. Callers must still be able to navigate to
+    // the lesson; the lesson screen performs its own authoritative storage load.
+  }
 }
 
 export function getLessonScreenPrimed(lessonId: LessonStorageId, studyTarget?: RuntimeStudyTarget): Primed | null {

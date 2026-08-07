@@ -39,7 +39,9 @@ describe('card-pack pearl balance reconciliation', () => {
 
     expect(purchase).toContain('await reconcileShardsBeforePurchase()');
     expect(purchase).toContain('await spendShardsIdempotent(');
-    expect(purchase).toContain('newShardOpId()');
+    expect(purchase).toContain('cardPackPurchaseOpId(pack.id, studyTarget)');
+    expect(source).toContain('function cardPackPurchaseOpId(');
+    expect(source).not.toContain('newShardOpId()');
     expect(purchase).toContain("spendResult === 'insufficient'");
     expect(purchase).not.toContain("if (balance < pack.priceShards) return 'insufficient';");
     expect(purchase).toContain("return 'wallet_sync_pending';");

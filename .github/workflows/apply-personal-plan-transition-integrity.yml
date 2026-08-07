@@ -1,0 +1,307 @@
+name: Apply Personal Plan transition integrity fix
+
+on:
+  push:
+    branches:
+      - fix/personal-plan-transition-integrity-2026-08-07
+
+permissions:
+  contents: write
+
+concurrency:
+  group: apply-personal-plan-transition-integrity
+  cancel-in-progress: false
+
+jobs:
+  patch-and-verify:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Sparse checkout exact branch
+        uses: actions/checkout@v4
+        with:
+          ref: fix/personal-plan-transition-integrity-2026-08-07
+          fetch-depth: 1
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /.github/workflows/
+            /app/
+            /components/
+            /constants/
+            /contexts/
+            /hooks/
+            /services/
+            /utils/
+            /tests/
+            /package.json
+            /package-lock.json
+            /jest.config.js
+            /jest.setup.js
+            /babel.config.js
+            /tsconfig.json
+
+      - name: Apply narrow transition patch
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git hash-object app/personal_plan_exercise.tsx)" = "10779f10d52299eeb166a1dc5e48a1b21ef86d9d"
+          python <<'PY'
+          from pathlib import Path
+
+          path = Path('app/personal_plan_exercise.tsx')
+          source = path.read_text()
+
+          import_marker = "import { updateMultipleTaskProgress } from './daily_tasks';\n"
+          if source.count(import_marker) != 1:
+              raise SystemExit('events import marker drifted')
+          source = source.replace(
+              import_marker,
+              import_marker + "import { actionToastTri, emitAppEvent } from './events';\n",
+              1,
+          )
+
+          state_marker = "  const [advancing, setAdvancing] = useState(false);\n"
+          if source.count(state_marker) != 1:
+              raise SystemExit('advancing state marker drifted')
+          source = source.replace(
+              state_marker,
+              state_marker
+              + "  // Синхронный lock закрывает окно двойного тапа до следующего React render.\n"
+              + "  const advancingRef = useRef(false);\n"
+              + "  // XP/resume side-effects запускаются один раз, даже если загрузка следующего шага требует retry.\n"
+              + "  const completionSideEffectsStartedRef = useRef(false);\n",
+              1,
+          )
+
+          reset_marker = "    setCompleted(false);\n    setAdvancing(false);\n    setTypedAnswer('');\n"
+          if source.count(reset_marker) != 1:
+              raise SystemExit('route reset marker drifted')
+          source = source.replace(
+              reset_marker,
+              "    setCompleted(false);\n"
+              "    advancingRef.current = false;\n"
+              "    completionSideEffectsStartedRef.current = false;\n"
+              "    setAdvancing(false);\n"
+              "    setTypedAnswer('');\n",
+              1,
+          )
+
+          done_marker = "  const done = !advancing && (completed || (correctIds.length >= targetCorrect && items.length > 0 && !lastResult));\n"
+          if source.count(done_marker) != 1:
+              raise SystemExit('done-state marker drifted')
+          source = source.replace(
+              done_marker,
+              "  // Финал дня разрешён только после успешного persisted completion + успешного resolver result `null`.\n"
+              "  const done = !advancing && completed;\n",
+              1,
+          )
+
+          start_marker = "  const finishTaskAndAdvance = async (practicedPhraseIds: string[]) => {"
+          end_marker = "\n  const next = async () => {"
+          start = source.find(start_marker)
+          end = source.find(end_marker, start)
+          if start < 0 or end <= start:
+              raise SystemExit('finishTaskAndAdvance markers drifted')
+
+          replacement = '''  const finishTaskAndAdvance = async (practicedPhraseIds: string[]): Promise<boolean> => {
+            // React state обновляется асинхронно: ref должен захватиться до первого await,
+            // иначе два быстрых тапа запускают две completion-записи и две replace-навигации.
+            if (advancingRef.current) return false;
+            advancingRef.current = true;
+            setAdvancing(true);
+
+            try {
+              // Это критическая запись. Ошибка не должна маскироваться под успешно
+              // закрытое задание или «день завершён».
+              await markPersonalPlanTaskCompleted({
+                taskId: planTaskId,
+                planId,
+                planInstanceId,
+                studyTarget,
+                dayIndex,
+              });
+            } catch {
+              advancingRef.current = false;
+              setAdvancing(false);
+              if (!isPronunciationMode) setLastResult('correct');
+              emitAppEvent('action_toast', actionToastTri('error', {
+                ru: 'Не удалось сохранить выполнение задания. Нажми «Дальше» ещё раз.',
+                uk: 'Не вдалося зберегти виконання завдання. Натисни «Далі» ще раз.',
+                es: 'No se pudo guardar la tarea. Pulsa «Siguiente» otra vez.',
+                'pt-BR': 'Não foi possível salvar a tarefa. Toque em “Avançar” novamente.',
+                vi: 'Không thể lưu nhiệm vụ. Hãy nhấn “Tiếp” lần nữa.',
+                id: 'Tugas tidak dapat disimpan. Ketuk “Lanjut” sekali lagi.',
+                tr: 'Görev kaydedilemedi. “Devam” düğmesine tekrar dokun.',
+                pl: 'Nie udało się zapisać zadania. Naciśnij „Dalej” ponownie.',
+              }));
+              return false;
+            }
+
+            // Некритические метрики запускаются только после подтверждённой записи и
+            // только один раз на текущий routeTaskKey. Повтор resolver не дублирует их.
+            if (!completionSideEffectsStartedRef.current) {
+              completionSideEffectsStartedRef.current = true;
+              void awardPlanTaskCompletion({
+                lang,
+                studyTarget,
+                practicedPhraseIds,
+                phrasesPracticed: practicedPhraseIds.length,
+                planInstanceId,
+                planTaskId,
+              }).catch(() => undefined);
+              void clearPlanTaskProgress(planInstanceId, planTaskId).catch(() => undefined);
+            }
+
+            let nextTask;
+            try {
+              nextTask = await resolveNextPlanTask({ completedTaskId: planTaskId, studyTarget });
+            } catch {
+              // Ошибка чтения очереди не равна «следующих заданий нет».
+              advancingRef.current = false;
+              setAdvancing(false);
+              if (!isPronunciationMode) setLastResult('correct');
+              emitAppEvent('action_toast', actionToastTri('error', {
+                ru: 'Задание сохранено, но следующий шаг не загрузился. Нажми «Дальше» ещё раз.',
+                uk: 'Завдання збережено, але наступний крок не завантажився. Натисни «Далі» ще раз.',
+                es: 'La tarea se guardó, pero el siguiente paso no cargó. Pulsa «Siguiente» otra vez.',
+                'pt-BR': 'A tarefa foi salva, mas o próximo passo não carregou. Toque em “Avançar” novamente.',
+                vi: 'Nhiệm vụ đã được lưu nhưng bước tiếp theo chưa tải. Hãy nhấn “Tiếp” lần nữa.',
+                id: 'Tugas tersimpan, tetapi langkah berikutnya gagal dimuat. Ketuk “Lanjut” lagi.',
+                tr: 'Görev kaydedildi ancak sonraki adım yüklenemedi. “Devam”a tekrar dokun.',
+                pl: 'Zadanie zapisano, ale kolejny krok się nie wczytał. Naciśnij „Dalej” ponownie.',
+              }));
+              return false;
+            }
+
+            if (nextTask) {
+              // Lock остаётся закрытым до replace/смены routeTaskKey.
+              openPersonalPlanTask(router, nextTask.plan, nextTask.day, nextTask.task, nextTask.planInstanceId, 'replace');
+              return true;
+            }
+
+            // Только успешный resolver result `null` означает настоящий финал дня.
+            advancingRef.current = false;
+            setAdvancing(false);
+            setCompleted(true);
+            return true;
+          };
+          '''.replace('          ', '')
+          source = source[:start] + replacement + source[end:]
+
+          next_marker = "  const next = async () => {\n    if (!item) return;\n"
+          if source.count(next_marker) != 1:
+              raise SystemExit('next guard marker drifted')
+          source = source.replace(
+              next_marker,
+              "  const next = async () => {\n    if (!item || advancingRef.current) return;\n",
+              1,
+          )
+
+          pronunciation_marker = "  const completePronunciation = async () => {\n    if (!item || !session || saving || done || noEnergyModalOpen || !('targetText' in item)) return;\n"
+          if source.count(pronunciation_marker) != 1:
+              raise SystemExit('pronunciation guard marker drifted')
+          source = source.replace(
+              pronunciation_marker,
+              "  const completePronunciation = async () => {\n"
+              "    if (advancingRef.current || !item || !session || saving || done || noEnergyModalOpen || !('targetText' in item)) return;\n",
+              1,
+          )
+
+          path.write_text(source)
+
+          Path('tests/personal_plan_transition_integrity_contract.test.ts').write_text("""import fs from 'fs';
+          import path from 'path';
+
+          const ROOT = path.resolve(__dirname, '..');
+          const source = fs
+            .readFileSync(path.join(ROOT, 'app/personal_plan_exercise.tsx'), 'utf8')
+            .replace(/\\r\\n/g, '\\n');
+
+          function transitionBody(): string {
+            const start = source.indexOf('const finishTaskAndAdvance');
+            const end = source.indexOf('const next = async', start);
+            expect(start).toBeGreaterThanOrEqual(0);
+            expect(end).toBeGreaterThan(start);
+            return source.slice(start, end);
+          }
+
+          describe('Personal Plan transition integrity', () => {
+            it('uses an immediate ref lock against double completion/navigation', () => {
+              const body = transitionBody();
+              expect(source).toContain('const advancingRef = useRef(false);');
+              expect(body).toContain('if (advancingRef.current) return false;');
+              expect(body).toContain('advancingRef.current = true;');
+              expect(source).toContain('if (!item || advancingRef.current) return;');
+              expect(source).toContain('if (advancingRef.current || !item || !session');
+            });
+
+            it('does not swallow critical completion persistence failures', () => {
+              const body = transitionBody();
+              expect(body).toContain('await markPersonalPlanTaskCompleted({');
+              expect(body).not.toContain('markPersonalPlanTaskCompleted({\\n      taskId: planTaskId,\\n      planId,\\n      planInstanceId,\\n      studyTarget,\\n      dayIndex,\\n    }).catch');
+              expect(body).toContain('Не удалось сохранить выполнение задания');
+            });
+
+            it('does not translate resolver failure into a false day completion', () => {
+              const body = transitionBody();
+              expect(body).toContain('nextTask = await resolveNextPlanTask({ completedTaskId: planTaskId, studyTarget });');
+              expect(body).not.toContain('resolveNextPlanTask({ completedTaskId: planTaskId, studyTarget }).catch(() => null)');
+              expect(body).toContain('Только успешный resolver result `null` означает настоящий финал дня.');
+              expect(source).toContain('const done = !advancing && completed;');
+            });
+
+            it('starts non-critical completion side effects only once per route task', () => {
+              const body = transitionBody();
+              expect(source).toContain('const completionSideEffectsStartedRef = useRef(false);');
+              expect(body).toContain('if (!completionSideEffectsStartedRef.current)');
+              expect(body).toContain('completionSideEffectsStartedRef.current = true;');
+              expect(source).toContain('completionSideEffectsStartedRef.current = false;');
+            });
+          });
+          """.replace('          ', ''))
+          PY
+
+      - name: Static, parse, and focused regression validation
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --check
+          python <<'PY'
+          from pathlib import Path
+          source = Path('app/personal_plan_exercise.tsx').read_text()
+          assert "import { actionToastTri, emitAppEvent } from './events';" in source
+          assert 'const advancingRef = useRef(false);' in source
+          assert 'const completionSideEffectsStartedRef = useRef(false);' in source
+          assert 'const done = !advancing && completed;' in source
+          assert 'resolveNextPlanTask({ completedTaskId: planTaskId, studyTarget }).catch(() => null)' not in source
+          assert 'markPersonalPlanTaskCompleted({' in source
+          PY
+          npx --yes esbuild@0.25.8 app/personal_plan_exercise.tsx --bundle --loader:.tsx=tsx --format=esm --outfile=/tmp/personal_plan_exercise.js --external:'*'
+          npx --yes esbuild@0.25.8 tests/personal_plan_transition_integrity_contract.test.ts --bundle --loader:.ts=ts --format=cjs --outfile=/tmp/personal_plan_transition_test.js --external:'*'
+          npm ci --ignore-scripts --no-audit --no-fund
+          npx jest --no-cache --runInBand --runTestsByPath \
+            tests/personal_plan_transition_integrity_contract.test.ts \
+            tests/personal_plan_completion_persistence_contract.test.ts \
+            tests/personal_plan_next_task_error_contract.test.ts
+
+      - name: Commit product-only result and remove workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git rm .github/workflows/apply-personal-plan-transition-integrity.yml
+          git add app/personal_plan_exercise.tsx tests/personal_plan_transition_integrity_contract.test.ts
+          git diff --cached --check
+          git diff --cached --name-only \
+            | grep -v '^.github/workflows/apply-personal-plan-transition-integrity.yml$' \
+            | sort > /tmp/actual.txt
+          printf '%s\n' \
+            app/personal_plan_exercise.tsx \
+            tests/personal_plan_transition_integrity_contract.test.ts \
+            | sort > /tmp/expected.txt
+          diff -u /tmp/expected.txt /tmp/actual.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'fix: make Personal Plan task transitions durable'
+          git push origin HEAD:fix/personal-plan-transition-integrity-2026-08-07

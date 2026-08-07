@@ -16,7 +16,10 @@ import {
   buildTodayPlanRuntime,
   readPersonalPlanState,
 } from './personal_plan_state';
-import { planTaskCompletionKey, readCompletedPlanTasks } from './personal_plan_progress';
+import {
+  planTaskCompletionKey,
+  readCompletedPlanTasksStrict,
+} from './personal_plan_progress';
 import { countDueItemsToday } from './active_recall';
 import { getTrainerCounts } from './trainer_store';
 import { resolvePersonalPlanTrainerWeakSpotDueCount } from './personal_plan_trainer_weak_spot_gate';
@@ -29,6 +32,16 @@ export type NextPlanTask = {
   task: PlanDailyTask;
   planInstanceId: string;
 };
+
+const UNKNOWN_MATERIAL_IS_AVAILABLE = Number.MAX_SAFE_INTEGER;
+const sessionCompletedTaskKeys = new Set<string>();
+
+function rememberSessionCompletion(key: string): void {
+  // Защита от бесконечного роста в очень долгой сессии. Текущий ключ добавляется
+  // после очистки, поэтому антицикл для только что завершённого задания сохраняется.
+  if (sessionCompletedTaskKeys.size >= 1024) sessionCompletedTaskKeys.clear();
+  sessionCompletedTaskKeys.add(key);
+}
 
 function taskHasAvailableMaterial(
   task: PlanDailyTask,
@@ -56,12 +69,12 @@ function taskHasAvailableMaterial(
 
 /**
  * Найти первое незавершённое задание текущего дня плана, исключая только что
- * закрытое (по taskId). Все due-counts читаются параллельно.
+ * закрытое (по taskId).
  *
- * Ошибка любого обязательного источника намеренно пробрасывается вызывающему.
- * Нельзя превращать сбой чтения в «0 карточек»: тогда экран делает ложный вывод,
- * что заданий больше нет, показывает завершение маршрута или снова выбирает уже
- * выполненное упражнение. Вызывающий обязан показать retry-state.
+ * Важный fail-safe: ошибка чтения очереди НЕ превращается в ноль. Ноль означал
+ * «материала нет» и мог ложно завершить день. При неизвестном количестве мы
+ * считаем материал потенциально доступным и открываем следующий экран — уже он
+ * покажет собственный retry-state, если источник действительно недоступен.
  */
 export async function resolveNextPlanTask(input: {
   completedTaskId: string;
@@ -71,8 +84,11 @@ export async function resolveNextPlanTask(input: {
   if (!state) return null;
 
   const plan = getPlanById(state.planId);
-  const [completedTasks, duePracticeCount, trainerCounts, duePlanTrainerWeakSpotCount, dueFlashcardsCount] = await Promise.all([
-    readCompletedPlanTasks(),
+  const completedKey = planTaskCompletionKey(state.planInstanceId, input.completedTaskId);
+  rememberSessionCompletion(completedKey);
+
+  const [completedResult, practiceResult, trainerResult, weakSpotResult, flashcardsResult] = await Promise.allSettled([
+    readCompletedPlanTasksStrict(),
     countDueItemsToday(input.studyTarget),
     getTrainerCounts(input.studyTarget),
     resolvePersonalPlanTrainerWeakSpotDueCount({
@@ -82,6 +98,24 @@ export async function resolveNextPlanTask(input: {
     }),
     resolvePersonalPlanFlashcardsReviewCount(input.studyTarget),
   ]);
+
+  const completedTasks = completedResult.status === 'fulfilled' ? completedResult.value : {};
+  const duePracticeCount = practiceResult.status === 'fulfilled'
+    ? practiceResult.value
+    : UNKNOWN_MATERIAL_IS_AVAILABLE;
+  const trainerCounts = trainerResult.status === 'fulfilled'
+    ? trainerResult.value
+    : {
+        words: UNKNOWN_MATERIAL_IS_AVAILABLE,
+        phrases: UNKNOWN_MATERIAL_IS_AVAILABLE,
+        arena: UNKNOWN_MATERIAL_IS_AVAILABLE,
+      };
+  const duePlanTrainerWeakSpotCount = weakSpotResult.status === 'fulfilled'
+    ? weakSpotResult.value
+    : UNKNOWN_MATERIAL_IS_AVAILABLE;
+  const dueFlashcardsCount = flashcardsResult.status === 'fulfilled'
+    ? flashcardsResult.value
+    : UNKNOWN_MATERIAL_IS_AVAILABLE;
   const dueTrainerCount = (trainerCounts.words ?? 0) + (trainerCounts.phrases ?? 0) + (trainerCounts.arena ?? 0);
 
   const runtime = buildTodayPlanRuntime({
@@ -95,26 +129,40 @@ export async function resolveNextPlanTask(input: {
     dueFlashcardsCount,
   });
 
-  const isDone = (task: PlanDailyTask): boolean =>
-    Boolean(completedTasks[planTaskCompletionKey(state.planInstanceId, task.id)]);
+  const isDone = (task: PlanDailyTask): boolean => {
+    const key = planTaskCompletionKey(state.planInstanceId, task.id);
+    return Boolean(completedTasks[key]) || sessionCompletedTaskKeys.has(key);
+  };
 
-  // Первое незавершённое задание дня, кроме только что закрытого. Исключение
-  // completedTaskId остаётся дополнительной защитой от повторного открытия того
-  // же упражнения, но не подменяет проверяемую запись completedTasks.
-  const candidates = visibleTasksForMinutes(
+  const visible = visibleTasksForMinutes(
     runtime.visibleDay,
     state.minutesPerDay,
     99,
     { planTrainerWeakSpotAvailable: duePlanTrainerWeakSpotCount > 0 },
-  ).filter((task) => taskHasAvailableMaterial(
-    task,
-    duePracticeCount,
-    trainerCounts.words ?? 0,
-    dueTrainerCount,
-    duePlanTrainerWeakSpotCount,
-    dueFlashcardsCount,
+  );
+  const currentIndex = visible.findIndex((task) => task.id === input.completedTaskId);
+  const ordered = currentIndex >= 0
+    ? [...visible.slice(currentIndex + 1), ...visible.slice(0, currentIndex)]
+    : visible;
+
+  // Если persisted completion-map не прочитался, не оборачиваемся к заданиям,
+  // стоявшим ДО текущего: именно такое оборачивание создавало цикл A → B → A.
+  const eligibleOrder = completedResult.status === 'rejected' && currentIndex >= 0
+    ? visible.slice(currentIndex + 1)
+    : ordered;
+
+  const next = eligibleOrder.find((task) => (
+    task.id !== input.completedTaskId
+    && !isDone(task)
+    && taskHasAvailableMaterial(
+      task,
+      duePracticeCount,
+      trainerCounts.words ?? 0,
+      dueTrainerCount,
+      duePlanTrainerWeakSpotCount,
+      dueFlashcardsCount,
+    )
   ));
-  const next = candidates.find((task) => task.id !== input.completedTaskId && !isDone(task));
   if (!next) return null;
 
   return {

@@ -1,0 +1,186 @@
+name: Remove second-language Daily Challenge runtime v3
+
+on:
+  push:
+    branches:
+      - chore/remove-second-language-daily-challenge-2026-08-07
+
+permissions:
+  contents: write
+
+concurrency:
+  group: remove-second-language-daily-challenge-v3
+  cancel-in-progress: false
+
+jobs:
+  remove-and-verify:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Sparse checkout exact branch and validator parent
+        uses: actions/checkout@v4
+        with:
+          ref: chore/remove-second-language-daily-challenge-2026-08-07
+          fetch-depth: 5
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /.github/workflows/
+            /app/
+            /components/
+            /constants/
+            /contexts/
+            /hooks/
+            /services/
+            /utils/
+            /tests/
+            /lib/
+            /modules/
+            /package.json
+            /package-lock.json
+            /jest.config.js
+            /jest.setup.js
+            /babel.config.js
+            /tsconfig.json
+
+      - name: Recover audited apply step and update stale contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          git show d6fb1ecf5ea19e86271a5f38c9b9786e0cf631a8:.github/workflows/remove-second-language-daily-challenge.yml > /tmp/original-validator.yml
+          python <<'PY'
+          from pathlib import Path
+
+          lines = Path('/tmp/original-validator.yml').read_text().splitlines()
+          step = next(i for i, line in enumerate(lines) if line.strip() == '- name: Verify source blobs and remove the runtime slice')
+          run_line = next(i for i in range(step + 1, len(lines)) if lines[i].strip() == 'run: |')
+          end = next(i for i in range(run_line + 1, len(lines)) if lines[i].startswith('      - name:'))
+          command = '\n'.join(
+              line[10:] if line.startswith('          ') else line
+              for line in lines[run_line + 1:end]
+          ) + '\n'
+
+          block_start = command.index("screen_test_path = Path('tests/daily_tasks_screen_navigation_contract.test.ts')")
+          end_marker = 'screen_test_path.write_text(screen_test.replace(old_screen_test, new_screen_test, 1))'
+          block_end = command.index(end_marker, block_start) + len(end_marker)
+          replacement = '''screen_test_path = Path('tests/daily_tasks_screen_navigation_contract.test.ts')
+          screen_test = screen_test_path.read_text()
+          test_start = screen_test.find("  it('does not keep a second task-type switch")
+          test_end = screen_test.find("\\n  });", test_start)
+          if test_start < 0 or test_end <= test_start:
+              raise SystemExit('screen navigation contract marker drifted')
+          test_end += len("\\n  });")
+          new_screen_test = """  it('does not keep a second task-type switch or a second target-gate layer', () => {
+            const start = source.indexOf('const handleTaskNav');
+            const end = source.indexOf('// Сортировка:', start);
+            const handler = source.slice(start, end);
+
+            expect(handler).not.toContain('switch (task.type)');
+            expect(handler).not.toContain('GateCopy');
+            expect(handler).not.toContain('source_gate');
+          });"""
+          screen_test_path.write_text(screen_test[:test_start] + new_screen_test + screen_test[test_end:])'''.replace('          ', '')
+          command = command[:block_start] + replacement + command[block_end:]
+          Path('/tmp/apply-product.sh').write_text(command)
+          PY
+          bash /tmp/apply-product.sh
+
+          python <<'PY'
+          from pathlib import Path
+          path = Path('tests/daily_task_reroll.test.ts')
+          source = path.read_text()
+          start = source.find("\n  it('does not write French reroll state")
+          end = source.find("\n  it('rejects when daily limit reached'", start)
+          if start < 0 or end <= start:
+              raise SystemExit('obsolete reroll target test marker drifted')
+          path.write_text(source[:start] + '\n' + source[end:])
+          PY
+
+      - name: Verify complete removal and parse touched source
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --check
+          if git grep -n -I -E 'polyglot_day|daily_polyglot_v1|(^|[^A-Za-z0-9_])pg1([^A-Za-z0-9_]|$)|FRENCH_UNAVAILABLE_DAILY_TASK_TYPES|FRENCH_LESSON_CONTENT_DAILY_TASK_TYPES|FRENCH_THEORY_DAILY_TASK_TYPES' -- app components tests; then
+            echo 'Removed Daily Challenge runtime still referenced' >&2
+            exit 1
+          fi
+          if grep -Ei 'French|француз|français' \
+            app/daily_tasks.ts \
+            app/daily_tasks_es_locale.ts \
+            app/daily_tasks_screen.tsx \
+            app/daily_task_navigation.ts \
+            components/daily-tasks/daily_task_theme_accents.ts \
+            tests/daily_quests_active_catalog_contract.test.ts \
+            tests/daily_tasks_language_availability.test.ts \
+            tests/daily_task_navigation_executability_contract.test.ts \
+            tests/daily_tasks_screen_navigation_contract.test.ts \
+            tests/daily_task_reroll.test.ts; then
+            echo 'Language-specific Daily Challenge text remains' >&2
+            exit 1
+          fi
+          python <<'PY'
+          from pathlib import Path
+          source = Path('app/daily_tasks.ts').read_text()
+          assert source.count('evaluateMetaDailyTasks(tasks, updated, completedTaskIds)') == 1
+          assert source.count('evaluateMetaDailyTasks(tasks, progress, [...completedTaskIds])') == 1
+          assert 'storageStudyTarget' not in source
+          assert 'const META_DAILY_TASK_TYPES' in source
+          PY
+          npx --yes esbuild@0.25.8 app/daily_tasks.ts --bundle --loader:.ts=ts --format=esm --outfile=/tmp/daily_tasks.js --external:'*'
+          npx --yes esbuild@0.25.8 app/daily_tasks_screen.tsx --bundle --loader:.tsx=tsx --format=esm --outfile=/tmp/daily_tasks_screen.js --external:'*'
+          npx --yes esbuild@0.25.8 app/daily_task_navigation.ts --bundle --loader:.ts=ts --format=esm --outfile=/tmp/daily_task_navigation.js --external:'*'
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts --no-audit --no-fund
+
+      - name: Run focused Daily Challenge regression suites
+        run: |
+          npx jest --no-cache --runInBand --runTestsByPath \
+            tests/daily_quests_active_catalog_contract.test.ts \
+            tests/daily_tasks_language_availability.test.ts \
+            tests/daily_task_navigation_executability_contract.test.ts \
+            tests/daily_tasks_screen_navigation_contract.test.ts \
+            tests/daily_task_reroll.test.ts \
+            tests/daily_tasks_claim.test.ts
+
+      - name: Commit product-only result and remove workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git rm .github/workflows/remove-second-language-daily-challenge-v3.yml
+          git add \
+            app/daily_tasks.ts \
+            app/daily_tasks_es_locale.ts \
+            app/daily_tasks_screen.tsx \
+            app/daily_task_navigation.ts \
+            components/daily-tasks/daily_task_theme_accents.ts \
+            tests/daily_quests_active_catalog_contract.test.ts \
+            tests/daily_tasks_language_availability.test.ts \
+            tests/daily_task_navigation_executability_contract.test.ts \
+            tests/daily_tasks_screen_navigation_contract.test.ts \
+            tests/daily_task_reroll.test.ts \
+            tests/gustav_french_daily_tasks_target_filter.test.ts
+          git diff --cached --check
+          git diff --cached --name-only \
+            | grep -v '^.github/workflows/remove-second-language-daily-challenge-v3.yml$' \
+            | sort > /tmp/actual.txt
+          printf '%s\n' \
+            app/daily_task_navigation.ts \
+            app/daily_tasks.ts \
+            app/daily_tasks_es_locale.ts \
+            app/daily_tasks_screen.tsx \
+            components/daily-tasks/daily_task_theme_accents.ts \
+            tests/daily_quests_active_catalog_contract.test.ts \
+            tests/daily_task_navigation_executability_contract.test.ts \
+            tests/daily_task_reroll.test.ts \
+            tests/daily_tasks_language_availability.test.ts \
+            tests/daily_tasks_screen_navigation_contract.test.ts \
+            tests/gustav_french_daily_tasks_target_filter.test.ts \
+            | sort > /tmp/expected.txt
+          diff -u /tmp/expected.txt /tmp/actual.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'chore: remove second-language Daily Challenge runtime'
+          git push origin HEAD:chore/remove-second-language-daily-challenge-2026-08-07

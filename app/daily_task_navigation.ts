@@ -1,24 +1,16 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Platform } from 'react-native';
 
 import type { Lang } from '../constants/i18n';
 import type { RuntimeStudyTarget } from './target_storage_keys';
 import { dailyTaskAvailableForStudyTarget, type DailyTask } from './daily_tasks';
-import { dailyPhraseContentAvailableForTarget, frenchDailyPhraseGateCopy } from './daily_phrase_target_gate';
-import { diagnosticContentAvailableForTarget, frenchDiagnosticGateCopy } from './diagnostic_target_gate';
-import { emitAppEvent } from './events';
-import { flashcardsSourceGatedContentAvailableForTarget, frenchFlashcardsGateCopy } from './flashcards_target_gate';
-import { frenchLessonRuntimeAvailableForTarget } from './french_content_source_gate';
 import { LESSONS_WITH_IRREGULAR_VERBS } from './irregular_verbs_data';
 import { resolveLessonRuntimeGate } from './lesson_premium_gate';
 import { primeLessonScreenFromStorage } from './lesson_screen_bootstrap';
-import { lessonSupportContentAvailableForTarget } from './lesson_support_target_gate';
+import { emitAppEvent } from './events';
 import { getVerifiedPremiumStatus } from './premium_guard';
 import type { TrainerSessionRoute } from './trainer_session';
 import { startReservedTrainerSession } from './trainer_session_navigation';
-import { frenchTrainerGateCopy, trainerSessionContentAvailableForTarget } from './trainer_target_gate';
-import { lastOpenedLessonKey, storageStudyTarget } from './target_storage_keys';
-import { frenchVocabularyGateCopy, vocabularyContentAvailableForTarget, type VocabularyGateSurface } from './vocabulary_target_gate';
+import { lastOpenedLessonKey } from './target_storage_keys';
 
 type DailyTaskRouter = {
   push: (route: any) => void;
@@ -60,6 +52,10 @@ async function resolveAccessibleIrregularVerbLesson(
 }
 
 export async function navigateDailyTask({ lang, router, studyTarget, task }: NavigateDailyTaskInput): Promise<void> {
+  // lang остаётся частью публичного контракта, чтобы существующие entry points не
+  // расходились по сигнатуре. Маршрутизация больше не содержит French-specific UI.
+  void lang;
+
   if (!dailyTaskAvailableForStudyTarget(task, studyTarget)) {
     router.replace('/lessons_list' as any);
     return;
@@ -68,65 +64,14 @@ export async function navigateDailyTask({ lang, router, studyTarget, task }: Nav
   const lastLesson = await AsyncStorage.getItem(lastOpenedLessonKey(studyTarget));
   const lessonId = normalizeDailyTaskLessonId(lastLesson);
 
-  const openLessonOrFrenchGate = async () => {
-    if (!frenchLessonRuntimeAvailableForTarget(studyTarget, lessonId)) {
-      emitAppEvent('action_toast', {
-        type: 'info',
-        messageRu: 'French урок ещё на source gate. English фразы не будут открыты как замена.',
-        messageUk: 'French урок ще на source gate. English фрази не відкриватимуться як заміна.',
-        messageEs: 'French lesson is still behind source gate.',
-      });
-      router.replace('/lessons_list' as any);
-      return;
-    }
-    // Priming — только ускорение. Ошибка кэша не должна делать дневное задание
-    // ненажимаемым: сам экран урока имеет собственные loading/error состояния.
-    await primeLessonScreenFromStorage(lessonId, studyTarget).catch(() => undefined);
+  const openLesson = async (): Promise<void> => {
+    // Priming — только ускорение. Сам helper fail-open, а экран урока выполняет
+    // собственную authoritative загрузку.
+    await primeLessonScreenFromStorage(lessonId, studyTarget);
     router.push({ pathname: '/lesson1', params: { id: lessonId } });
   };
 
-  const openDiagnosticOrFrenchGate = () => {
-    if (!diagnosticContentAvailableForTarget(studyTarget)) {
-      const copy = frenchDiagnosticGateCopy(lang);
-      emitAppEvent('action_toast', {
-        type: 'info',
-        messageRu: copy.title,
-        messageUk: copy.title,
-        messageEs: 'French diagnostic is still behind source gate.',
-      });
-      router.replace('/lessons_list' as any);
-      return;
-    }
-    router.push('/diagnostic_test');
-  };
-
-  const openVocabularyOrFrenchGate = (surface: VocabularyGateSurface, route: any) => {
-    if (!vocabularyContentAvailableForTarget(studyTarget, surface)) {
-      const copy = frenchVocabularyGateCopy(surface, lang);
-      emitAppEvent('action_toast', {
-        type: 'info',
-        messageRu: copy.title,
-        messageUk: copy.title,
-        messageEs: 'French vocabulary is still behind source gate.',
-      });
-      router.replace({ pathname: '/lessons_list', params: { id: lessonId } });
-      return;
-    }
-    router.push(route);
-  };
-
-  const openTrainerOrFrenchGate = async (route: '/trainer' | TrainerSessionRoute) => {
-    if (!trainerSessionContentAvailableForTarget(studyTarget)) {
-      const copy = frenchTrainerGateCopy(lang);
-      emitAppEvent('action_toast', {
-        type: 'info',
-        messageRu: copy.title,
-        messageUk: copy.title,
-        messageEs: 'French trainer is still behind source gate.',
-      });
-      router.replace('/lessons_list' as any);
-      return;
-    }
+  const openTrainer = async (route: '/trainer' | TrainerSessionRoute): Promise<void> => {
     if (route === '/trainer') {
       router.push(route);
       return;
@@ -140,38 +85,11 @@ export async function navigateDailyTask({ lang, router, studyTarget, task }: Nav
     });
   };
 
-  const openFlashcardsOrFrenchGate = () => {
-    if (!flashcardsSourceGatedContentAvailableForTarget(storageStudyTarget(studyTarget), 'system_cards')) {
-      const copy = frenchFlashcardsGateCopy(lang);
-      emitAppEvent('action_toast', {
-        type: 'info',
-        messageRu: copy.title,
-        messageUk: copy.title,
-        messageEs: 'French flashcards are still behind source gate.',
-      });
-      router.replace('/lessons_list' as any);
-      return;
-    }
-    router.push('/flashcards');
-  };
-
-  const openDailyPhraseOrFrenchGate = () => {
-    if (!dailyPhraseContentAvailableForTarget(studyTarget)) {
-      const copy = frenchDailyPhraseGateCopy(lang);
-      emitAppEvent('action_toast', {
-        type: 'info',
-        messageRu: copy.title,
-        messageUk: copy.title,
-        messageEs: 'French daily phrase is still behind source gate.',
-      });
-    }
-    router.replace('/(tabs)/home');
-  };
-
   switch (task.type) {
     case 'different_lessons':
       router.replace('/lessons_list' as any);
       break;
+
     case 'total_answers':
     case 'correct_streak':
     case 'lesson_no_mistakes':
@@ -186,8 +104,9 @@ export async function navigateDailyTask({ lang, router, studyTarget, task }: Nav
     case 'revision_lesson':
     case 'perfect_big_lesson':
     case 'comeback_lesson':
-      await openLessonOrFrenchGate();
+      await openLesson();
       break;
+
     case 'verb_learned': {
       const verbLessonId = await resolveAccessibleIrregularVerbLesson(lessonId, studyTarget);
       if (verbLessonId == null) {
@@ -200,69 +119,70 @@ export async function navigateDailyTask({ lang, router, studyTarget, task }: Nav
         router.replace('/lessons_list' as any);
         break;
       }
-      // autoPractice=1 — задание выполняется и повтором пройденного.
-      openVocabularyOrFrenchGate('irregular_verbs', { pathname: '/lesson_irregular_verbs', params: { id: verbLessonId, autoPractice: '1' } });
+      router.push({
+        pathname: '/lesson_irregular_verbs',
+        params: { id: verbLessonId, autoPractice: '1' },
+      });
       break;
     }
+
     case 'words_learned':
-      // Задание дня выполняется и повтором уже пройденного. autoPractice=1
-      // говорит экрану собрать очередь из слов урока, если учить нечего.
-      openVocabularyOrFrenchGate('lesson_words', { pathname: '/lesson_words', params: { id: lessonId, autoPractice: '1' } });
+      router.push({
+        pathname: '/lesson_words',
+        params: { id: lessonId, autoPractice: '1' },
+      });
       break;
+
     case 'open_theory':
-      if (!lessonSupportContentAvailableForTarget(studyTarget, 'lesson_theory', lessonId)) {
-        emitAppEvent('action_toast', {
-          type: 'info',
-          messageRu: 'French теория откроется после source gate. English theory не подставляется.',
-          messageUk: 'French теорія відкриється після source gate. English theory не підставляється.',
-          messageEs: 'French theory is still behind source gate.',
-        });
-        router.replace('/lessons_list' as any);
-        break;
-      }
       router.push({ pathname: '/lesson_help', params: { id: lessonId } });
       break;
+
     case 'flashcard_view':
     case 'flashcard_save':
     case 'flashcard_flip':
-      openFlashcardsOrFrenchGate();
+      router.push('/flashcards');
       break;
+
     case 'recall_session':
     case 'recall_answers':
     case 'recall_perfect':
       // Эти задания измеряют SRS-очередь `/review`, а не «Мою практику».
-      // Старый маршрут `/trainer` мог открыть другую очередь и оставить вызов невыполнимым.
       router.push('/review' as any);
       break;
+
     case 'trainer_words':
-      await openTrainerOrFrenchGate('/trainer_words_session');
+      await openTrainer('/trainer_words_session');
       break;
+
     case 'trainer_phrases':
-      await openTrainerOrFrenchGate('/trainer_phrases_session');
+      await openTrainer('/trainer_phrases_session');
       break;
+
     case 'daily_phrase_read':
     case 'daily_phrase_save':
-      openDailyPhraseOrFrenchGate();
+      router.replace('/(tabs)/home');
       break;
+
     case 'diagnostic_complete':
-      openDiagnosticOrFrenchGate();
+      router.push('/diagnostic_test');
       break;
+
     case 'invite_friend':
-      // Отдельный экран приглашения удалён — вся рефералка живёт на /referrals.
-      router.push('/referrals' as any);
-      break;
-    case 'polyglot_day':
-      // Legacy task: пока он существует в старом сохранённом наборе, даём безопасный выход.
-      router.replace('/lessons_list' as any);
-      break;
-    case 'streak_freeze_use':
-      router.push('/streak_stats' as any);
-      break;
     case 'mentor_friend':
       router.push('/referrals' as any);
       break;
+
+    case 'polyglot_day':
+      // Legacy-сохранение старого типа не должно вести в несуществующий French flow.
+      router.replace('/lessons_list' as any);
+      break;
+
+    case 'streak_freeze_use':
+      router.push('/streak_stats' as any);
+      break;
+
     default:
-      await openLessonOrFrenchGate();
+      await openLesson();
       break;
   }
 }

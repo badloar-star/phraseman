@@ -5,6 +5,7 @@ import {
   emitShardPurchaseSyncPendingToast,
   reconcileShardsBeforePurchase,
 } from '../shards_purchase_reconcile';
+import { newShardOpId } from '../shards_delta_queue';
 import { trackCardPackPurchase } from '../user_stats';
 import {
   addOwnedPackId,
@@ -33,15 +34,6 @@ export type CardPackShardPurchaseResult =
   | 'already_owned'
   | 'source_gated';
 export type CardPackVoucherRedeemResult = 'ok' | 'no_voucher' | 'already_owned' | 'source_gated' | 'redeem_failed';
-
-function cardPackPurchaseOpId(packId: string, studyTarget?: RuntimeStudyTarget): string {
-  const target = storageStudyTarget(studyTarget);
-  const safePackId = String(packId ?? '')
-    .trim()
-    .replace(/[^A-Za-z0-9_-]/g, '_')
-    .slice(0, 56);
-  return `card_pack:${target}:${safePackId}`;
-}
 
 function emitSourceGatedPackToast(): void {
   emitAppEvent('action_toast', {
@@ -78,13 +70,10 @@ export async function purchaseCardPackWithShards(
     return 'wallet_sync_pending';
   }
   const balance = reconciliation.balance;
-  // Один и тот же набор получает стабильный account-scoped opId. Если приложение
-  // закрылось после серверного списания, но до локальной записи ownership, повтор
-  // подтвердит уже применённое списание вместо второго списания.
   const spendResult = await spendShardsIdempotent(
     pack.priceShards,
     'card_pack',
-    cardPackPurchaseOpId(pack.id, studyTarget),
+    newShardOpId(),
   );
   if (spendResult === 'insufficient') {
     const balanceAfter = await getShardsBalance();

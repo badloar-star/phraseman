@@ -1,0 +1,214 @@
+name: One-time Vitalii Firebase diagnostic
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - '.github/workflows/diag-vitalii-master.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      FIREBASE_PROJECT_ID: phraseman-ea0b3
+    steps:
+      - name: Discover Firebase Admin credential
+        env:
+          REPO_SECRETS_JSON: ${{ toJSON(secrets) }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import base64, json, os, sys
+          from pathlib import Path
+          try:
+              secrets = json.loads(os.environ.get('REPO_SECRETS_JSON', '{}'))
+          except Exception:
+              secrets = {}
+          out = Path(os.environ['RUNNER_TEMP']) / 'firebase-admin.json'
+          for key, value in secrets.items():
+              if not value:
+                  continue
+              candidates = [str(value)]
+              try:
+                  candidates.append(base64.b64decode(''.join(str(value).split()), validate=True).decode('utf-8'))
+              except Exception:
+                  pass
+              for raw in candidates:
+                  try:
+                      data = json.loads(raw)
+                  except Exception:
+                      continue
+                  if not isinstance(data, dict):
+                      continue
+                  if data.get('type') == 'service_account' and data.get('project_id') == 'phraseman-ea0b3':
+                      out.write_text(raw, encoding='utf-8')
+                      with open(os.environ['GITHUB_ENV'], 'a', encoding='utf-8') as fh:
+                          fh.write(f'GOOGLE_APPLICATION_CREDENTIALS={out}\n')
+                      print(f'Using service-account credential from secret {key}; secret value is not printed.')
+                      sys.exit(0)
+          print('No phraseman-ea0b3 service-account credential found in repository secrets.', file=sys.stderr)
+          sys.exit(31)
+          PY
+
+      - name: Read Firestore and Firebase Auth (sanitized output only)
+        shell: bash
+        run: |
+          set -euo pipefail
+          work="$RUNNER_TEMP/vitalii-diag"
+          mkdir -p "$work"
+          cd "$work"
+          npm init -y >/dev/null
+          npm install --no-audit --no-fund firebase-admin@13.4.0 >/dev/null
+          cat > diag.cjs <<'NODE'
+          const admin = require('firebase-admin');
+          const crypto = require('crypto');
+          admin.initializeApp({ credential: admin.credential.applicationDefault(), projectId: 'phraseman-ea0b3' });
+          const db = admin.firestore();
+          const auth = admin.auth();
+          const needles = ['vitalii', 'vitaliy', 'vitali', 'виталий', 'virchyk', 'вирчик'];
+          const norm = (v) => String(v ?? '').normalize('NFKC').trim().toLocaleLowerCase('en-US');
+          const hit = (v) => needles.some((n) => norm(v).includes(n));
+          const n = (v) => Number.isFinite(Number(v)) ? Number(v) : 0;
+          const fp = (v) => crypto.createHash('sha256').update(String(v ?? '')).digest('hex').slice(0, 12);
+          const suffix = (v) => String(v ?? '').replace(/[^a-zA-Z0-9]/g, '').slice(-6).toLowerCase();
+          const token = (v) => `${fp(v)}#${suffix(v) || 'none'}`;
+          const iso = (v) => {
+            if (!v) return null;
+            try { if (typeof v.toDate === 'function') return v.toDate().toISOString(); } catch {}
+            try { if (v instanceof Date) return v.toISOString(); } catch {}
+            return String(v);
+          };
+          function strings(value, path = '', depth = 0, out = []) {
+            if (depth > 4 || value == null) return out;
+            if (typeof value === 'string') { out.push([path, value]); return out; }
+            if (Array.isArray(value)) {
+              value.slice(0, 20).forEach((x, i) => strings(x, `${path}[${i}]`, depth + 1, out));
+              return out;
+            }
+            if (typeof value === 'object') {
+              Object.entries(value).forEach(([k, x]) => {
+                if (!/email|phone|token|address/i.test(k)) strings(x, path ? `${path}.${k}` : k, depth + 1, out);
+              });
+            }
+            return out;
+          }
+          function names(d) {
+            const p = d.progress && typeof d.progress === 'object' ? d.progress : {};
+            return [...new Set([
+              p.user_name, p.displayName, p.name, d.user_name, d.displayName, d.name, d.username,
+              ...strings(d).filter(([path]) => /(^|\.)(user_name|username|displayName|name)$/i.test(path)).map(([, value]) => value),
+            ].filter((v) => typeof v === 'string' && v.trim()))];
+          }
+          function topCounters(p) {
+            return Object.entries(p || {})
+              .map(([k, v]) => [k, n(v)])
+              .filter(([k, v]) => v > 0 && !/at$|time|timestamp|date|expires|ends|period_start/i.test(k))
+              .sort((a, b) => b[1] - a[1])
+              .slice(0, 15)
+              .map(([k, v]) => `${k}=${v}`);
+          }
+          async function authInfo(uid) {
+            if (!uid) return { exists: false };
+            try {
+              const u = await auth.getUser(uid);
+              return {
+                exists: true,
+                anonymous: (u.providerData || []).length === 0,
+                providers: [...new Set((u.providerData || []).map((x) => x.providerId))],
+                createdAt: u.metadata.creationTime || null,
+                lastSignInAt: u.metadata.lastSignInTime || null,
+                disabled: !!u.disabled,
+              };
+            } catch (e) { return { exists: false, code: e.code || String(e) }; }
+          }
+          async function main() {
+            console.log('=== READ-ONLY VITALII ACCOUNT DIAGNOSTIC ===');
+            console.log(`generatedAt=${new Date().toISOString()}`);
+            console.log('IDs are one-way fingerprints + six-character suffixes; emails and secrets are not printed.');
+            const snap = await db.collection('users').get();
+            console.log(`usersScanned=${snap.size}`);
+            const matches = [];
+            for (const doc of snap.docs) {
+              const d = doc.data() || {};
+              if (!names(d).some(hit) && !strings(d).some(([, value]) => hit(value))) continue;
+              const p = d.progress && typeof d.progress === 'object' ? d.progress : {};
+              matches.push({
+                id: doc.id,
+                stableToken: token(doc.id),
+                matchedNames: names(d).filter(hit),
+                xp: Math.max(n(p.user_total_xp), n(p.total_xp), n(d.totalXP), n(d.xp)),
+                levelStored: Math.max(n(p.level), n(d.level)),
+                streak: Math.max(n(p.streak_count), n(p.current_streak), n(p.streak), n(d.streak)),
+                shards: Math.max(n(d.shards), n(p.shards), n(p.shards_balance)),
+                firebaseAuthUid: typeof d.firebaseAuthUid === 'string' ? d.firebaseAuthUid : null,
+                linkedProviders: d.linkedAuth && typeof d.linkedAuth === 'object' ? Object.keys(d.linkedAuth) : [],
+                identityHidden: d.identityHidden === true,
+                canonicalStableToken: d.canonicalStableId ? token(d.canonicalStableId) : null,
+                createdAt: iso(d.created_at || d.createdAt),
+                updatedAt: iso(d.updatedAt || p.updatedAt || d.lastActivityAt || p.last_activity_at),
+                progressKeyCount: Object.keys(p).length,
+                topCounters: topCounters(p),
+              });
+            }
+            matches.sort((a, b) => b.xp - a.xp);
+            console.log(`matchingUserDocuments=${matches.length}`);
+            for (let i = 0; i < matches.length; i += 1) {
+              const c = matches[i];
+              const links = await db.collection('auth_links').where('stable_id', '==', c.id).limit(20).get();
+              let sameAuth = [];
+              if (c.firebaseAuthUid) {
+                const owned = await db.collection('users').where('firebaseAuthUid', '==', c.firebaseAuthUid).limit(20).get();
+                sameAuth = owned.docs.map((doc) => {
+                  const p = doc.data().progress || {};
+                  return { token: token(doc.id), xp: Math.max(n(p.user_total_xp), n(p.total_xp)), sameDocument: doc.id === c.id };
+                });
+              }
+              console.log(`\n[CANDIDATE ${i + 1}]`);
+              console.log(JSON.stringify({
+                stableToken: c.stableToken,
+                matchedNames: c.matchedNames,
+                xp: c.xp,
+                levelStored: c.levelStored,
+                streak: c.streak,
+                shards: c.shards,
+                firebaseAuthToken: c.firebaseAuthUid ? token(c.firebaseAuthUid) : null,
+                firebaseAuth: await authInfo(c.firebaseAuthUid),
+                linkedProviders: c.linkedProviders,
+                authLinks: links.docs.map((doc) => {
+                  const d = doc.data() || {};
+                  return { linkToken: token(doc.id), provider: d.provider || null, linkedAt: iso(d.linkedAt), lastSignInAt: iso(d.lastSignInAt) };
+                }),
+                userDocsWithSameFirebaseAuthUid: sameAuth,
+                identityHidden: c.identityHidden,
+                canonicalStableToken: c.canonicalStableToken,
+                createdAt: c.createdAt,
+                updatedAt: c.updatedAt,
+                progressKeyCount: c.progressKeyCount,
+                topCounters: c.topCounters,
+              }, null, 2));
+            }
+            console.log('\n[NAME INDEX]');
+            for (const key of ['vitalii', 'vitaliy', 'vitali', 'vitalii virchyk', 'виталий']) {
+              const s = await db.collection('name_index').doc(key).get();
+              if (!s.exists) continue;
+              const d = s.data() || {};
+              console.log(JSON.stringify({ key, ownerToken: token(d.stable_id || d.ownerId || d.uid || d.userId || ''), fields: Object.keys(d).sort() }));
+            }
+            const high = matches.filter((x) => x.xp >= 10000);
+            const low = matches.filter((x) => x.xp < 1000);
+            console.log('\n[SUMMARY]');
+            console.log(`highProgressCandidates=${high.length}; lowProgressCandidates=${low.length}`);
+            if (high.length === 1 && high[0].firebaseAuthUid) {
+              console.log(`Strongest candidate ${high[0].stableToken} has xp=${high[0].xp} and is pinned to auth ${token(high[0].firebaseAuthUid)}. If the current phone has a new anonymous auth uid, this stale pin blocks cloud restore exactly like the known OlgaZ incident.`);
+            }
+            if (high.length && low.length) console.log('High-progress and near-empty matching docs coexist: likely account split/new identity.');
+            if (!matches.length) console.log('No nickname match. Ask the user for the in-app bug-report code/UID to identify the account exactly.');
+          }
+          main().then(() => process.exit(0)).catch((e) => { console.error('FATAL', e.stack || e); process.exit(1); });
+          NODE
+          node diag.cjs

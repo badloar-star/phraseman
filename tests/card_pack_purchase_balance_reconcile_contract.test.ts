@@ -69,5 +69,6 @@ describe('card-pack pearl balance reconciliation', () => {
     expect(source).toContain('displayedBalance: number');
     expect(source).toContain('balance={paywall.displayedBalance}');
     expect(source).toContain("mode: 'insufficient', displayedBalance: freshBalance");
+    expect(source).toContain("r === 'wallet_sync_pending'");
   });
 });

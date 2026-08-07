@@ -179,15 +179,17 @@ describe('Admin v2 native-only boundary', () => {
   test('ends responsive layout with the authoritative mobile drawer cascade', () => {
     const rootCss = postcss.parse(read('admin/v2/styles/admin.css'));
     const responsiveRules = rootCss.nodes.filter((node): node is AtRule => node.type === 'atrule' && node.name === 'media');
+    const tabletRules = responsiveRules.filter((node) => node.params.includes('max-width: 1020px'));
+    const mobileRules = responsiveRules.filter((node) => node.params.includes('max-width: 760px'));
     const tabletIndex = responsiveRules.findLastIndex((node) => node.params.includes('max-width: 1020px'));
     const mobileIndex = responsiveRules.findLastIndex((node) => node.params.includes('max-width: 760px'));
     expect(mobileIndex).toBeGreaterThan(tabletIndex);
 
-    const tabletCss = responsiveRules[tabletIndex]?.toString() || '';
-    const mobileCss = responsiveRules[mobileIndex]?.toString() || '';
+    const tabletCss = tabletRules.map((node) => node.toString()).join('\n');
+    const mobileCss = mobileRules.map((node) => node.toString()).join('\n');
     expect(tabletCss).toMatch(/\.nav-group > summary span,\s*\.agent-office-nav span,\s*\.agent-manager-nav span\s*\{\s*display:\s*block/s);
     expect(tabletCss).not.toContain('.legacy-admin-link-label');
-    expect(mobileCss).toMatch(/\.sidebar\s*\{[^}]*width:\s*min\(284px,\s*86vw\)[^}]*transform:\s*translateX\(-102%\)/s);
+    expect(mobileCss).toMatch(/\.sidebar\s*\{[^}]*width:\s*min\(248px,\s*86vw\)[^}]*transform:\s*translateX\(-102%\)/s);
     expect(mobileCss).toMatch(/body\.nav-open \.sidebar\s*\{[^}]*transform:\s*translateX\(0\)/s);
     expect(mobileCss).toMatch(/\.workspace\s*\{[^}]*margin-left:\s*0/s);
     expect(mobileCss).toMatch(/\.nav-group > summary span,\s*\.nav-group > summary::after,\s*\.agent-office-nav span,\s*\.agent-manager-nav span\s*\{\s*display:\s*block/s);

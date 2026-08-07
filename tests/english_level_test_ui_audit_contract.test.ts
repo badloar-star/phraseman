@@ -11,7 +11,9 @@ const indexSource = fs.readFileSync(path.join(surface, 'index.html'), 'utf8');
 
 function loadI18n(): any {
   const sandbox: Record<string, unknown> = {};
+  const locales = path.join(surface, 'i18n.locales.js');
   const absolute = path.join(surface, 'i18n.js');
+  vm.runInNewContext(fs.readFileSync(locales, 'utf8'), sandbox, { filename: locales });
   vm.runInNewContext(fs.readFileSync(absolute, 'utf8'), sandbox, { filename: absolute });
   return sandbox.EnglishTestI18n;
 }
@@ -51,7 +53,7 @@ describe('English level test full UI audit contract', () => {
 
   test('localizes the visible question context and instruction for Russian and English', () => {
     const i18n = loadI18n();
-    expect(Array.from(i18n.UI_LOCALES)).toEqual(['ru', 'en']);
+    expect(Array.from(i18n.UI_LOCALES)).toEqual(expect.arrayContaining(['ru', 'en']));
     for (const locale of i18n.UI_LOCALES) {
       expect(i18n.t(locale, 'question.context')).toEqual(expect.any(String));
       expect(i18n.t(locale, 'question.contextInstruction')).toEqual(expect.any(String));

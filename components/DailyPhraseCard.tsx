@@ -870,6 +870,12 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
                     <Text style={[styles.storyText, { color: t.textSecond, fontSize: f.body }]}>
                       {phraseCopy.text}
                     </Text>
+                    <ExplainButton
+                      phraseEn={phrase.english}
+                      phraseMeaning={phraseCopy.meaning || phrase.meaning}
+                      lang={lang}
+                      style={styles.explainButton}
+                    />
                   </TonalSurface>
                 </Animated.View>
               )}

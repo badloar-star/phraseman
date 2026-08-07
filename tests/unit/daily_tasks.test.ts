@@ -62,31 +62,31 @@ describe('daily_tasks', () => {
 
     it('returns different task sets for different days of month', () => {
       // Day 1 vs day 2 produce different sets
-      const origGetDate = Date.prototype.getDate;
+      const getUTCDate = jest.spyOn(Date.prototype, 'getUTCDate');
 
-      Date.prototype.getDate = function () { return 1; };
+      getUTCDate.mockReturnValue(1);
       const day1Tasks = getTodayTasks().map(t => t.id);
 
-      Date.prototype.getDate = function () { return 2; };
+      getUTCDate.mockReturnValue(2);
       const day2Tasks = getTodayTasks().map(t => t.id);
 
-      Date.prototype.getDate = origGetDate;
+      getUTCDate.mockRestore();
 
       expect(day1Tasks).not.toEqual(day2Tasks);
     });
 
-    it('cycles back for day 31 (index = 0 mod 30)', () => {
-      const origGetDate = Date.prototype.getDate;
+    it('cycles after the nine-set active rotation', () => {
+      const getUTCDate = jest.spyOn(Date.prototype, 'getUTCDate');
 
-      Date.prototype.getDate = function () { return 1; };
+      getUTCDate.mockReturnValue(1);
       const day1Tasks = getTodayTasks().map(t => t.id);
 
-      Date.prototype.getDate = function () { return 31; };
-      const day31Tasks = getTodayTasks().map(t => t.id);
+      getUTCDate.mockReturnValue(10);
+      const day10Tasks = getTodayTasks().map(t => t.id);
 
-      Date.prototype.getDate = origGetDate;
+      getUTCDate.mockRestore();
 
-      expect(day31Tasks).toEqual(day1Tasks);
+      expect(day10Tasks).toEqual(day1Tasks);
     });
   });
 

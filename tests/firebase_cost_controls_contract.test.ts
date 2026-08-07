@@ -257,8 +257,9 @@ describe('Firebase cost controls', () => {
     expect(premiumDialogSource).toContain('ENFORCE_APP_CHECK_OPENAI');
     expect(explainPhraseSource).toContain('ENFORCE_APP_CHECK_OPENAI');
 
-    expect(indexSource).toContain("req.headers['x-firebase-appcheck']");
-    expect(indexSource).toContain('admin.appCheck().verifyToken(appCheckToken)');
+    // The only manually verified HTTP endpoint was Arena's question timeout;
+    // the endpoint was deleted with Arena, so it must not be reintroduced.
+    expect(indexSource).not.toContain('export const questionTimeout = functions.https.onRequest');
   });
 
   it('keeps second-layer cost guards for low-value reads and callables', () => {
@@ -268,7 +269,7 @@ describe('Firebase cost controls', () => {
     const indexes = read('firestore.indexes.json');
 
     expect(dailyPhraseSource).toContain("where('scheduledDate', '==', date)");
-    expect(dailyPhraseSource).toContain("where('scheduledDate', '==', today)");
+    expect(dailyPhraseSource.match(/where\('scheduledDate', '==', date\)/g)).toHaveLength(1);
     expect(dailyPhraseSource).toContain('REMOTE_DAILY_PHRASE_QUERY_LIMIT = 10');
     expect(dailyPhraseSource).not.toContain('.limit(500)');
     expect(indexes).toContain('"collectionGroup": "daily_phrases"');
@@ -286,14 +287,15 @@ describe('Firebase cost controls', () => {
     expect((leagueSource.match(/repairLinks: false/g) ?? []).length).toBeGreaterThanOrEqual(4);
   });
 
-  it('lets live progress events qualify referrals before removing the broad users trigger', () => {
+  it('keeps referral qualification tied to verified premium purchase instead of lesson progress', () => {
     const referralSource = read('functions/src/referral.ts');
     const progressSource = read('functions/src/progress_events.ts');
 
     expect(referralSource).toContain('export async function markRefereeQualified');
-    expect(progressSource).toContain("import { markRefereeQualified } from './referral'");
-    expect(progressSource).toContain('shouldQualifyReferralFromProgressEvent(event)');
-    expect(progressSource).toContain('await markRefereeQualified(db, stableUid)');
+    expect(referralSource).toContain("qualifiedBy: 'premium_purchase'");
+    expect(progressSource).not.toContain("import { markRefereeQualified } from './referral'");
+    expect(progressSource).not.toContain('shouldQualifyReferralFromProgressEvent(event)');
+    expect(progressSource).not.toContain('await markRefereeQualified(db, stableUid)');
   });
 
   it('retires broad users document triggers from source exports and safe deploys', () => {
@@ -311,11 +313,13 @@ describe('Firebase cost controls', () => {
     // который hosting раздаёт из admin/v2/legacy.html (единственная рабочая
     // админка, см. CLAUDE.md). Проверяем канонические VIP-записи в живом файле.
     const adminSource = read('admin/v2/legacy.html');
+    const accessSource = read('functions/src/admin_access_controls.ts');
 
-    expect(adminSource).toContain('resolveAdminVipWriteTarget');
-    expect(adminSource).toContain('identityHidden: data.identityHidden === true');
-    expect(adminSource).toContain('canonicalStableId: data.canonicalStableId || null');
-    expect(adminSource).toContain('requestedUid: uid');
-    expect(adminSource.split("updateDoc(doc(db, 'users', writeUid)").length - 1).toBeGreaterThanOrEqual(3);
+    expect(adminSource).toContain('getAdminGrantAccessCallable');
+    expect(adminSource).toContain("uid, kind: 'vip', active: true");
+    expect(adminSource).toMatch(/uid,\s*kind:\s*'vip',\s*active:\s*false/);
+    expect(accessSource).toContain('resolveCanonicalAdminAccessTarget(tx, db, input.uid)');
+    expect(accessSource).toContain('tx.update(target.ref');
+    expect(accessSource).toContain('requestedUid: input.uid');
   });
 });

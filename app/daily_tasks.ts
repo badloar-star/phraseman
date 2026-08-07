@@ -2192,28 +2192,88 @@ export const seedDailyTasksAdminPack = async (
 
 const emptyRerollState = (): RerollState => ({ dayKey: getTodayKey(), replacements: {} });
 
+const parseRerollState = (raw: string | null): RerollState => {
+  if (!raw) return emptyRerollState();
+  const parsed: unknown = JSON.parse(raw);
+  if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+    throw new Error('invalid_daily_task_reroll_state');
+  }
+  const candidate = parsed as Partial<RerollState>;
+  // Сутки кончились — вчерашняя запись семантически равна пустой сегодняшней.
+  if (candidate.dayKey !== getTodayKey()) return emptyRerollState();
+  if (!candidate.replacements || typeof candidate.replacements !== 'object' || Array.isArray(candidate.replacements)) {
+    throw new Error('invalid_daily_task_reroll_replacements');
+  }
+  const replacements: Record<string, string> = {};
+  for (const [oldTaskId, newTaskId] of Object.entries(candidate.replacements)) {
+    if (!oldTaskId.trim() || typeof newTaskId !== 'string' || !newTaskId.trim()) {
+      throw new Error('invalid_daily_task_reroll_entry');
+    }
+    replacements[oldTaskId] = newTaskId;
+  }
+  return { dayKey: candidate.dayKey, replacements };
+};
+
+/** Critical reader: a storage/JSON failure must not look like an unused reroll allowance. */
+const loadRerollStateStrict = async (studyTarget?: RuntimeStudyTarget): Promise<RerollState> => (
+  parseRerollState(await AsyncStorage.getItem(dailyTasksRerollKey(studyTarget)))
+);
+
+/** Tolerant reader for non-mutating UI paths. The locked commit always rechecks strictly. */
 const loadRerollStateRaw = async (studyTarget?: RuntimeStudyTarget): Promise<RerollState> => {
   try {
-    const raw = await AsyncStorage.getItem(dailyTasksRerollKey(studyTarget));
-    if (!raw) return emptyRerollState();
-    const parsed = JSON.parse(raw) as RerollState;
-    // Сутки кончились — стираем замены, иначе вчерашние ID попадут в сегодняшнюю тройку.
-    if (!parsed || parsed.dayKey !== getTodayKey()) return emptyRerollState();
-    if (!parsed.replacements || typeof parsed.replacements !== 'object') return emptyRerollState();
-    return parsed;
+    return await loadRerollStateStrict(studyTarget);
   } catch {
     return emptyRerollState();
   }
 };
 
-const saveRerollState = async (
+const saveRerollStateStrict = async (
   state: RerollState,
   studyTarget?: RuntimeStudyTarget,
 ): Promise<void> => {
+  const key = dailyTasksRerollKey(studyTarget);
+  const serialized = JSON.stringify(state);
+  await AsyncStorage.setItem(key, serialized);
+  const verified = await AsyncStorage.getItem(key);
+  if (verified !== serialized) {
+    throw new Error('daily_task_reroll_state_not_persisted');
+  }
+};
+
+/**
+ * Progress is a derived cache: the reroll mapping is the only source of truth.
+ * Once that mapping is durably verified, a progress-write failure must not turn a
+ * successful reroll into a false error. loadTodayProgress() can reconstruct the
+ * missing replacement row on the next refresh.
+ *
+ * Caller owns withStorageLock.
+ */
+const writeDerivedRerollProgressBestEffort = async (
+  todayKey: string,
+  oldTaskIds: readonly string[],
+  replacementTasks: readonly DailyTask[],
+  studyTarget?: RuntimeStudyTarget,
+): Promise<void> => {
+  const key = dailyTasksProgressKey(todayKey, studyTarget);
   try {
-    await AsyncStorage.setItem(dailyTasksRerollKey(studyTarget), JSON.stringify(state));
-  } catch (e) {
-    if (__DEV__) console.warn('[daily_tasks]', e);
+    const raw = await AsyncStorage.getItem(key);
+    const parsed: unknown = raw ? JSON.parse(raw) : [];
+    if (!Array.isArray(parsed)) throw new Error('invalid_daily_task_progress_for_reroll');
+    const oldIds = new Set(oldTaskIds);
+    const filtered = (parsed as TaskProgress[]).filter((row) => !oldIds.has(row.taskId));
+    const seeded = replacementTasks.map((task): TaskProgress => (
+      task.type === 'arena_plays_wins_combo'
+        ? reconcileArenaComboRow(task, undefined)
+        : { taskId: task.id, current: 0, completed: false, claimed: false }
+    ));
+    const serialized = JSON.stringify([...filtered, ...seeded]);
+    await AsyncStorage.setItem(key, serialized);
+    const verified = await AsyncStorage.getItem(key);
+    if (verified !== serialized) throw new Error('daily_task_reroll_progress_not_persisted');
+    void pruneDatedDailyTasksStorageKeys([key]).catch(() => {});
+  } catch (error) {
+    DebugLogger.error('daily_tasks:writeDerivedRerollProgressBestEffort', error, 'warning');
   }
 };
 
@@ -2374,6 +2434,20 @@ const applyRerollReplacements = (ids: string[], replacements: Record<string, str
     return ALL_TASKS.find((t) => t.id === r) ? r : id;
   });
 
+/**
+ * Runtime fallbacks (level, Premium, empty queues, retired tasks) can replace the
+ * original daily id before the user taps reroll. Apply the same authoritative
+ * mapping once more to the fully resolved visible list, otherwise a reroll of a
+ * fallback card disappears after refresh/restart.
+ */
+const applyRerollReplacementsToResolvedTasks = (
+  tasks: DailyTask[],
+  replacements: Record<string, string>,
+): DailyTask[] => applyRerollReplacements(
+  tasks.map((task) => task.id),
+  replacements,
+).map((id, index) => ALL_TASKS.find((task) => task.id === id) ?? tasks[index]!);
+
 export type RerollFailReason =
   | 'limit_reached'
   | 'task_already_completed'
@@ -2502,33 +2576,26 @@ export const rerollDailyTask = async (taskId: string, studyTarget?: RuntimeStudy
     const todayKey = getTodayKey();
     // Прежнее значение ключа запоминаем, чтобы при неудачном списании вернуть ИМЕННО его:
     // повторный реролл уже заменённого задания иначе потерял бы свою законную замену.
-    const reserved = await withStorageLock(async (): Promise<boolean> => {
-      const state = await loadRerollStateRaw(studyTarget);
-      const replacements = state.replacements ?? {};
-      // Повторный реролл того же задания заменяет свою же запись — лимит не тратится дважды.
+    const committed = await withStorageLock(async (): Promise<boolean> => {
+      // Critical mutation path: never convert a read/parse failure into an empty
+      // allowance, otherwise a damaged storage read could grant a second reroll.
+      const state = await loadRerollStateStrict(studyTarget);
+      const replacements = state.replacements;
       const isReplacingOwnEntry = Object.prototype.hasOwnProperty.call(replacements, taskId);
       if (!isReplacingOwnEntry && Object.keys(replacements).length >= DAILY_TASK_REROLL_MAX_PER_DAY) {
         return false;
       }
-      await saveRerollState({ dayKey: todayKey, replacements: { ...replacements, [taskId]: candidate.id } }, studyTarget);
+
+      // The verified mapping is authoritative. Derived progress is repaired in the
+      // same lock when possible, but its failure cannot invalidate this committed reroll.
+      await saveRerollStateStrict({
+        dayKey: todayKey,
+        replacements: { ...replacements, [taskId]: candidate.id },
+      }, studyTarget);
+      await writeDerivedRerollProgressBestEffort(todayKey, [taskId], [candidate], studyTarget);
       return true;
     });
-    if (!reserved) return { ok: false, reason: 'limit_reached' };
-
-    // Замена бесплатная: резерв сразу обнуляет прогресс старой карточки.
-    await withStorageLock(async () => {
-      const key = dailyTasksProgressKey(todayKey, studyTarget);
-      const raw = await AsyncStorage.getItem(key);
-      const arr: TaskProgress[] = raw ? (JSON.parse(raw) as TaskProgress[]) : [];
-      const filtered = Array.isArray(arr) ? arr.filter((p) => p.taskId !== taskId) : [];
-      const seed: TaskProgress =
-        candidate.type === 'arena_plays_wins_combo'
-          ? reconcileArenaComboRow(candidate, undefined)
-          : { taskId: candidate.id, current: 0, completed: false, claimed: false };
-      filtered.push(seed);
-      await AsyncStorage.setItem(key, JSON.stringify(filtered));
-      void pruneDatedDailyTasksStorageKeys([key]).catch(() => {});
-    });
+    if (!committed) return { ok: false, reason: 'limit_reached' };
 
     emitAppEvent('daily_task_rerolled', { oldTaskId: taskId, newTaskId: candidate.id });
     return { ok: true, newTaskId: candidate.id, cost: DAILY_TASK_REROLL_COST_SHARDS };
@@ -2770,10 +2837,11 @@ export const getTodayTasksSafe = async (studyTarget?: RuntimeStudyTarget): Promi
   const hasVerbTask = result.some(t => t.type === 'verb_learned');
   if (!hasVerbTask) {
     result = await replaceConditionallyUnavailableDailyTasks(result, isPremium, studyTarget);
-    return ensureDailyTaskBaseCount(
+    const finalized = ensureDailyTaskBaseCount(
       filterDailyTasksForStudyTarget(replaceRetiredQuizArenaTasks(result), studyTarget),
       studyTarget,
     );
+    return applyRerollReplacementsToResolvedTasks(finalized, rerollState.replacements);
   }
 
   const raw = await AsyncStorage.getItem(irregularVerbsGlobalKey(studyTarget));
@@ -2792,10 +2860,11 @@ export const getTodayTasksSafe = async (studyTarget?: RuntimeStudyTarget): Promi
   });
 
   result = await replaceConditionallyUnavailableDailyTasks(result, isPremium, studyTarget);
-  return ensureDailyTaskBaseCount(
+  const finalized = ensureDailyTaskBaseCount(
     filterDailyTasksForStudyTarget(replaceRetiredQuizArenaTasks(result), studyTarget),
     studyTarget,
   );
+  return applyRerollReplacementsToResolvedTasks(finalized, rerollState.replacements);
 };
 
 const STORAGE_PREFIX = 'daily_tasks_';
@@ -2842,26 +2911,25 @@ export const rerollTodayDailyTaskSet = async (
       usedIds.push(candidate.id);
     }
 
-    await withStorageLock(async () => {
-      const state = await loadRerollStateRaw(studyTarget);
-      await saveRerollState({
-        dayKey: getTodayKey(),
+    const todayKey = getTodayKey();
+    const committed = await withStorageLock(async (): Promise<boolean> => {
+      const state = await loadRerollStateStrict(studyTarget);
+      if (Object.keys(state.replacements).length >= DAILY_TASK_REROLL_MAX_PER_DAY) {
+        return false;
+      }
+      await saveRerollStateStrict({
+        dayKey: todayKey,
         replacements: { ...state.replacements, ...replacements },
       }, studyTarget);
-
-      const key = dailyTasksProgressKey(getTodayKey(), studyTarget);
-      const raw = await AsyncStorage.getItem(key);
-      const arr: TaskProgress[] = raw ? (JSON.parse(raw) as TaskProgress[]) : [];
-      const oldIds = new Set(tasks.map((task) => task.id));
-      const filtered = Array.isArray(arr) ? arr.filter((p) => !oldIds.has(p.taskId)) : [];
-      const seeded = replacementTasks.map((task) => (
-        task.type === 'arena_plays_wins_combo'
-          ? reconcileArenaComboRow(task, undefined)
-          : { taskId: task.id, current: 0, completed: false, claimed: false }
-      ));
-      await AsyncStorage.setItem(key, JSON.stringify([...filtered, ...seeded]));
-      void pruneDatedDailyTasksStorageKeys([key]).catch(() => {});
+      await writeDerivedRerollProgressBestEffort(
+        todayKey,
+        tasks.map((task) => task.id),
+        replacementTasks,
+        studyTarget,
+      );
+      return true;
     });
+    if (!committed) return { ok: false, reason: 'limit_reached' };
 
     emitAppEvent('daily_tasks_set_rerolled', {
       oldTaskIds: tasks.map((task) => task.id),

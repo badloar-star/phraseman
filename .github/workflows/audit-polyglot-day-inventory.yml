@@ -1,0 +1,44 @@
+name: Audit polyglot-day and French Daily Challenge remnants
+
+on:
+  push:
+    branches:
+      - audit/polyglot-day-inventory-2026-08-07
+
+permissions:
+  contents: read
+
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: audit/polyglot-day-inventory-2026-08-07
+          fetch-depth: 1
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /app/
+            /components/
+            /constants/
+            /contexts/
+            /hooks/
+            /tests/
+            /package.json
+            /package-lock.json
+            /tsconfig.json
+
+      - name: Exact active-reference inventory
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo '===== POLYGLOT / PG1 / STORAGE ====='
+          git grep -n -I -E 'polyglot_day|daily_polyglot_v1|(^|[^A-Za-z0-9_])pg1([^A-Za-z0-9_]|$)' -- app components constants contexts hooks tests || true
+          echo '===== FRENCH DAILY-TASK SYMBOLS ====='
+          git grep -n -I -E 'FRENCH_UNAVAILABLE_DAILY_TASK_TYPES|French.*Daily|french.*Daily|daily.*French|French-specific|French flow' -- app components constants contexts hooks tests || true
+          echo '===== META TASK TYPES / META EVALUATION ====='
+          git grep -n -I -E 'MetaTaskType|evaluateMetaDailyTasks|META_TASK|meta.*daily' -- app/daily_tasks.ts app/daily_tasks_screen.tsx tests || true
+          echo '===== FILES WITH MATCHES ====='
+          { git grep -l -I -E 'polyglot_day|daily_polyglot_v1|(^|[^A-Za-z0-9_])pg1([^A-Za-z0-9_]|$)|FRENCH_UNAVAILABLE_DAILY_TASK_TYPES' -- app components constants contexts hooks tests || true; } | sort -u

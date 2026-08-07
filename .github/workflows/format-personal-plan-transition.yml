@@ -1,0 +1,74 @@
+name: Format Personal Plan transition block
+
+on:
+  push:
+    branches:
+      - fix/personal-plan-transition-integrity-2026-08-07
+
+permissions:
+  contents: write
+
+jobs:
+  format-and-verify:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/personal-plan-transition-integrity-2026-08-07
+          fetch-depth: 1
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /.github/workflows/
+            /app/personal_plan_exercise.tsx
+            /tests/personal_plan_transition_integrity_contract.test.ts
+            /tsconfig.json
+
+      - name: Indent only the audited transition function
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git hash-object app/personal_plan_exercise.tsx)" = "65b37c817241cbdd35128cf9effac7b2304c719a"
+          python <<'PY'
+          from pathlib import Path
+          path = Path('app/personal_plan_exercise.tsx')
+          source = path.read_text()
+          start_marker = '  const finishTaskAndAdvance = async (practicedPhraseIds: string[]): Promise<boolean> => {'
+          end_marker = '\n\n  const next = async () => {'
+          start = source.index(start_marker)
+          end = source.index(end_marker, start)
+          block = source[start:end]
+          lines = block.splitlines()
+          if lines[0] != start_marker:
+              raise SystemExit('transition start drifted')
+          if not any(line == '};' for line in lines):
+              raise SystemExit('transition closing marker drifted')
+          formatted = '\n'.join([lines[0], *[('  ' + line) if line else line for line in lines[1:]]])
+          source = source[:start] + formatted + source[end:]
+          path.write_text(source)
+          PY
+          git diff --check
+          python <<'PY'
+          from pathlib import Path
+          source = Path('app/personal_plan_exercise.tsx').read_text()
+          assert '\n    // React state обновляется асинхронно' in source
+          assert '\n  };\n\n  const next = async () => {' in source
+          assert '\n  // React state обновляется асинхронно' not in source
+          PY
+          npx --yes esbuild@0.25.8 app/personal_plan_exercise.tsx --bundle --loader:.tsx=tsx --format=esm --outfile=/tmp/personal_plan_exercise.js --external:'*'
+
+      - name: Commit product-only formatting
+        shell: bash
+        run: |
+          set -euo pipefail
+          git rm .github/workflows/format-personal-plan-transition.yml
+          git add app/personal_plan_exercise.tsx
+          git diff --cached --check
+          git diff --cached --name-only | grep -v '^.github/workflows/format-personal-plan-transition.yml$' > /tmp/files.txt
+          test "$(cat /tmp/files.txt)" = "app/personal_plan_exercise.tsx"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'style: align Personal Plan transition block'
+          git push origin HEAD:fix/personal-plan-transition-integrity-2026-08-07

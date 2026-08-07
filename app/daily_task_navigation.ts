@@ -10,6 +10,7 @@ import { emitAppEvent } from './events';
 import { flashcardsSourceGatedContentAvailableForTarget, frenchFlashcardsGateCopy } from './flashcards_target_gate';
 import { frenchLessonRuntimeAvailableForTarget } from './french_content_source_gate';
 import { LESSONS_WITH_IRREGULAR_VERBS } from './irregular_verbs_data';
+import { resolveLessonRuntimeGate } from './lesson_premium_gate';
 import { primeLessonScreenFromStorage } from './lesson_screen_bootstrap';
 import { lessonSupportContentAvailableForTarget } from './lesson_support_target_gate';
 import { getVerifiedPremiumStatus } from './premium_guard';
@@ -25,6 +26,8 @@ type DailyTaskRouter = {
 };
 
 const dailyTaskTrainerSessionLock = { current: false };
+const MIN_LESSON_ID = 1;
+const MAX_LESSON_ID = 32;
 
 type NavigateDailyTaskInput = {
   lang: Lang;
@@ -33,6 +36,29 @@ type NavigateDailyTaskInput = {
   task: DailyTask;
 };
 
+export function normalizeDailyTaskLessonId(raw: string | null | undefined): number {
+  const parsed = Number.parseInt(String(raw ?? ''), 10);
+  return Number.isInteger(parsed) && parsed >= MIN_LESSON_ID && parsed <= MAX_LESSON_ID
+    ? parsed
+    : MIN_LESSON_ID;
+}
+
+async function resolveAccessibleIrregularVerbLesson(
+  preferredLessonId: number,
+  studyTarget?: RuntimeStudyTarget,
+): Promise<number | null> {
+  const sorted = [...LESSONS_WITH_IRREGULAR_VERBS].sort((a, b) => a - b);
+  const candidates = sorted.includes(preferredLessonId)
+    ? [preferredLessonId, ...sorted.filter((id) => id !== preferredLessonId)]
+    : sorted;
+
+  for (const lessonId of candidates) {
+    const gate = await resolveLessonRuntimeGate(lessonId, studyTarget).catch(() => 'progress_required' as const);
+    if (gate === 'available') return lessonId;
+  }
+  return null;
+}
+
 export async function navigateDailyTask({ lang, router, studyTarget, task }: NavigateDailyTaskInput): Promise<void> {
   if (!dailyTaskAvailableForStudyTarget(task, studyTarget)) {
     router.replace('/lessons_list' as any);
@@ -40,7 +66,7 @@ export async function navigateDailyTask({ lang, router, studyTarget, task }: Nav
   }
 
   const lastLesson = await AsyncStorage.getItem(lastOpenedLessonKey(studyTarget));
-  const lessonId = parseInt(lastLesson || '1', 10);
+  const lessonId = normalizeDailyTaskLessonId(lastLesson);
 
   const openLessonOrFrenchGate = async () => {
     if (!frenchLessonRuntimeAvailableForTarget(studyTarget, lessonId)) {
@@ -53,7 +79,9 @@ export async function navigateDailyTask({ lang, router, studyTarget, task }: Nav
       router.replace('/lessons_list' as any);
       return;
     }
-    await primeLessonScreenFromStorage(lessonId, studyTarget);
+    // Priming — только ускорение. Ошибка кэша не должна делать дневное задание
+    // ненажимаемым: сам экран урока имеет собственные loading/error состояния.
+    await primeLessonScreenFromStorage(lessonId, studyTarget).catch(() => undefined);
     router.push({ pathname: '/lesson1', params: { id: lessonId } });
   };
 
@@ -161,19 +189,24 @@ export async function navigateDailyTask({ lang, router, studyTarget, task }: Nav
       await openLessonOrFrenchGate();
       break;
     case 'verb_learned': {
-      let verbLessonId = lessonId;
-      if (!LESSONS_WITH_IRREGULAR_VERBS.has(verbLessonId)) {
-        const sorted = [...LESSONS_WITH_IRREGULAR_VERBS].sort((a, b) => a - b);
-        verbLessonId = sorted[0] ?? 1;
+      const verbLessonId = await resolveAccessibleIrregularVerbLesson(lessonId, studyTarget);
+      if (verbLessonId == null) {
+        emitAppEvent('action_toast', {
+          type: 'info',
+          messageRu: 'Сначала открой урок с неправильными глаголами.',
+          messageUk: 'Спочатку відкрий урок із неправильними дієсловами.',
+          messageEs: 'Primero desbloquea una lección con verbos irregulares.',
+        });
+        router.replace('/lessons_list' as any);
+        break;
       }
-      // autoPractice=1 — см. words_learned: задание выполняется и повтором пройденного.
+      // autoPractice=1 — задание выполняется и повтором пройденного.
       openVocabularyOrFrenchGate('irregular_verbs', { pathname: '/lesson_irregular_verbs', params: { id: verbLessonId, autoPractice: '1' } });
       break;
     }
     case 'words_learned':
-      // зачем: задание дня выполняется и повтором уже пройденного. autoPractice=1
-      // говорит экрану сразу собрать очередь из всех слов урока, если учить нечего,
-      // — иначе пользователь упирался в «Всё выучено» и задание висело невыполнимым.
+      // Задание дня выполняется и повтором уже пройденного. autoPractice=1
+      // говорит экрану собрать очередь из слов урока, если учить нечего.
       openVocabularyOrFrenchGate('lesson_words', { pathname: '/lesson_words', params: { id: lessonId, autoPractice: '1' } });
       break;
     case 'open_theory':
@@ -197,7 +230,9 @@ export async function navigateDailyTask({ lang, router, studyTarget, task }: Nav
     case 'recall_session':
     case 'recall_answers':
     case 'recall_perfect':
-      await openTrainerOrFrenchGate('/trainer');
+      // Эти задания измеряют SRS-очередь `/review`, а не «Мою практику».
+      // Старый маршрут `/trainer` мог открыть другую очередь и оставить вызов невыполнимым.
+      router.push('/review' as any);
       break;
     case 'trainer_words':
       await openTrainerOrFrenchGate('/trainer_words_session');
@@ -213,19 +248,17 @@ export async function navigateDailyTask({ lang, router, studyTarget, task }: Nav
       openDiagnosticOrFrenchGate();
       break;
     case 'invite_friend':
-      // зачем: отдельный экран приглашения удалён — вся рефералка живёт на /referrals.
+      // Отдельный экран приглашения удалён — вся рефералка живёт на /referrals.
       router.push('/referrals' as any);
       break;
     case 'polyglot_day':
-      // Программного переключателя языка в проде нет (French включается в настройках) —
-      // ведём в список уроков, где пользователь выберет урок второго языка.
+      // Legacy task: пока он существует в старом сохранённом наборе, даём безопасный выход.
       router.replace('/lessons_list' as any);
       break;
     case 'streak_freeze_use':
       router.push('/streak_stats' as any);
       break;
     case 'mentor_friend':
-      // Как invite_friend: единый экран рефералов.
       router.push('/referrals' as any);
       break;
     default:

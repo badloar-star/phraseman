@@ -52,21 +52,18 @@ describe('Gustav French diagnostic target gate', () => {
     );
     expect(source).toContain("void trackFeatureBlocked('diagnostic', 'start', 'french_diagnostic_source_gate'");
     expect(source).toContain("void trackFeatureBlocked('diagnostic', 'restart', 'french_diagnostic_source_gate'");
-    expect(runtimeSource).toContain("ensureFrenchRemoteQuizRows(sourceLocaleInput)");
-    expect(runtimeSource).toContain("getCachedFrenchRemoteQuizRows('easy'");
-    expect(runtimeSource).toContain("getCachedFrenchRemoteQuizRows('medium'");
-    expect(runtimeSource).toContain("getCachedFrenchRemoteQuizRows('hard'");
+    expect(runtimeSource).toContain('The retired Quiz payload was the only remote source for French diagnostic');
+    expect(runtimeSource).toMatch(/loadFrenchRemoteDiagnosticQuestions[\s\S]*?return \[\];/);
     expect(runtimeSource).not.toContain('ACTIVE_DIAGNOSTIC_POOL');
   });
 
-  it('keeps the home diagnostic entry visible for French with the diagnostic runtime open', () => {
+  it('keeps the retired invisible home diagnostic row removed', () => {
     const home = fs.readFileSync(path.join(ROOT, 'app', '(tabs)', 'home.tsx'), 'utf8');
 
-    expect(home).toContain("key: 'attest'");
-    expect(home).toContain("path: '/diagnostic_test' as const");
-    expect(home).toContain('const visibleActivityQuickItems = activityQuickItems');
-    expect(home).toContain('testID={`home-activity-${item.key}`}');
-    expect(home).not.toContain("activityQuickItems.filter((item) => item.key !== 'attest')");
+    expect(home).not.toContain("key: 'attest'");
+    expect(home).not.toContain('const activityQuickItems =');
+    expect(home).toContain('activityQuickItems /');
+    expect(home).toContain('visibleActivityQuickItems / themedClubIcon');
     expect(diagnosticContentAvailableForTarget('fr')).toBe(true);
   });
 
@@ -78,7 +75,7 @@ describe('Gustav French diagnostic target gate', () => {
     expect(source).toContain('if (!diagnosticContentAvailableForTarget(studyTarget)) {');
     expect(source).toContain('const copy = frenchDiagnosticGateCopy(lang);');
     expect(source).toContain("messageEs: 'French diagnostic is still behind source gate.'");
-    expect(source).toContain("case 'diagnostic_complete':\n                openDiagnosticOrFrenchGate();");
+    expect(source).toMatch(/case 'diagnostic_complete':\s+openDiagnosticOrFrenchGate\(\);/);
 
     const diagnosticCase = source.slice(source.indexOf("case 'diagnostic_complete':"), source.indexOf("case 'invite_friend':"));
     expect(diagnosticCase).not.toContain("router.push('/diagnostic_test')");

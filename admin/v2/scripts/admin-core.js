@@ -6828,7 +6828,7 @@ async function handleAction(action, target) {
       actionCodes,
     };
     if (planSourceHashAlreadyLinked(sourceHash)) return setMessage('План по этому сигналу уже создан. Обновите список планов.', 'warning');
-    // зачем: однокликовость — сохраняется только структурированный черновик плана
+    if (!globalThis.confirm('Создать план на сервере?')) return;
     return runBusy(async () => {
       await actions.createPlan(input);
       state.digestPlanDraft = null;

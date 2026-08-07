@@ -318,6 +318,21 @@ Safe decision needed:
 - Decide whether mastery replay is a dormant legacy contract, or whether a real UI entry point/listener must be restored.
 - Because this touches lesson progress semantics, do not add or remove behavior without explicit owner approval.
 
+### Owner review: `season_pass_plus_changed`
+
+Emitter:
+
+- `app/season_pass.tsx`: emits after the local Plus state changes on the Season Pass screen.
+
+Observed state:
+
+- No runtime `onAppEvent` or direct `DeviceEventEmitter` listener is currently mounted.
+- The emitting screen updates its own state directly, so this event is a compatibility hook rather than the owner of the visible update.
+
+Safe decision needed:
+
+- Keep the dormant hook documented until an owner approves either a cross-screen consumer or removal from the typed event contract.
+
 ## Existing tests and guardrails
 
 Directly relevant tests:

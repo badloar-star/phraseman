@@ -11,10 +11,12 @@ const INTENTIONAL_EMIT_ONLY_EVENTS = new Set([
   'bug_hunt_eligible_check',
   'energy_purchased_shards',
   'lesson_replay_started',
+  'season_pass_plus_changed',
 ]);
 
 const INTENTIONAL_DIRECT_EVENT_LISTENERS = new Set([
   'auth_provider_linked @ app/(tabs)/settings.tsx',
+  'auth_provider_linked @ app/account_details.tsx',
   'auth_provider_linked @ components/SaveProgressBanner.tsx',
   'energy_reload @ components/EnergyContext.tsx',
   'intro_full_access_changed @ app/(tabs)/settings.tsx',
@@ -31,6 +33,7 @@ const INTENTIONAL_DIRECT_EVENT_LISTENERS = new Set([
   'xp_changed @ app/(tabs)/home.tsx',
   'xp_changed @ components/SaveProgressBanner.tsx',
   'xp_updated @ components/SaveProgressBanner.tsx',
+  'account_deleted @ components/SaveProgressBanner.tsx',
 ]);
 
 const INTENTIONAL_OVERLAY_KEYS_WITHOUT_LITERAL_OWNER = new Set([
@@ -39,6 +42,14 @@ const INTENTIONAL_OVERLAY_KEYS_WITHOUT_LITERAL_OWNER = new Set([
   // Current runtime path converts shards_earned -> action_toast in GlobalShardsEarnedHost.
   // Keep this key documented until an owner approves removal from overlay_arbiter_core.
   'shardsEarned',
+  // Retired or dynamically-owned surfaces remain in the arbiter contract until
+  // an owner approves removing their compatibility keys.
+  'arenaInvite',
+  'arenaRoomConfirm',
+  'coinsMigration',
+  'compassBriefing',
+  'matchFoundToast',
+  'matchFoundToastScreen',
 ]);
 
 type SourceFile = {

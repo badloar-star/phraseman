@@ -2445,87 +2445,87 @@ export default function PersonalPlanExerciseScreen() {
   // и СРАЗУ открыть следующее задание дня (без модала «Задание закрыто»). Если
   // следующего нет — оставляем экран, чтобы показался финал дня (done-плашка).
   const finishTaskAndAdvance = async (practicedPhraseIds: string[]): Promise<boolean> => {
-  // React state обновляется асинхронно: ref должен захватиться до первого await,
-  // иначе два быстрых тапа запускают две completion-записи и две replace-навигации.
-  if (advancingRef.current) return false;
-  advancingRef.current = true;
-  setAdvancing(true);
+    // React state обновляется асинхронно: ref должен захватиться до первого await,
+    // иначе два быстрых тапа запускают две completion-записи и две replace-навигации.
+    if (advancingRef.current) return false;
+    advancingRef.current = true;
+    setAdvancing(true);
 
-  try {
-    // Это критическая запись. Ошибка не должна маскироваться под успешно
-    // закрытое задание или «день завершён».
-    await markPersonalPlanTaskCompleted({
-      taskId: planTaskId,
-      planId,
-      planInstanceId,
-      studyTarget,
-      dayIndex,
-    });
-  } catch {
+    try {
+      // Это критическая запись. Ошибка не должна маскироваться под успешно
+      // закрытое задание или «день завершён».
+      await markPersonalPlanTaskCompleted({
+        taskId: planTaskId,
+        planId,
+        planInstanceId,
+        studyTarget,
+        dayIndex,
+      });
+    } catch {
+      advancingRef.current = false;
+      setAdvancing(false);
+      if (!isPronunciationMode) setLastResult('correct');
+      emitAppEvent('action_toast', actionToastTri('error', {
+        ru: 'Не удалось сохранить выполнение задания. Нажми «Дальше» ещё раз.',
+        uk: 'Не вдалося зберегти виконання завдання. Натисни «Далі» ще раз.',
+        es: 'No se pudo guardar la tarea. Pulsa «Siguiente» otra vez.',
+        'pt-BR': 'Não foi possível salvar a tarefa. Toque em “Avançar” novamente.',
+        vi: 'Không thể lưu nhiệm vụ. Hãy nhấn “Tiếp” lần nữa.',
+        id: 'Tugas tidak dapat disimpan. Ketuk “Lanjut” sekali lagi.',
+        tr: 'Görev kaydedilemedi. “Devam” düğmesine tekrar dokun.',
+        pl: 'Nie udało się zapisać zadania. Naciśnij „Dalej” ponownie.',
+      }));
+      return false;
+    }
+
+    // Некритические метрики запускаются только после подтверждённой записи и
+    // только один раз на текущий routeTaskKey. Повтор resolver не дублирует их.
+    if (!completionSideEffectsStartedRef.current) {
+      completionSideEffectsStartedRef.current = true;
+      void awardPlanTaskCompletion({
+        lang,
+        studyTarget,
+        practicedPhraseIds,
+        phrasesPracticed: practicedPhraseIds.length,
+        planInstanceId,
+        planTaskId,
+      }).catch(() => undefined);
+      void clearPlanTaskProgress(planInstanceId, planTaskId).catch(() => undefined);
+    }
+
+    let nextTask;
+    try {
+      nextTask = await resolveNextPlanTask({ completedTaskId: planTaskId, studyTarget });
+    } catch {
+      // Ошибка чтения очереди не равна «следующих заданий нет».
+      advancingRef.current = false;
+      setAdvancing(false);
+      if (!isPronunciationMode) setLastResult('correct');
+      emitAppEvent('action_toast', actionToastTri('error', {
+        ru: 'Задание сохранено, но следующий шаг не загрузился. Нажми «Дальше» ещё раз.',
+        uk: 'Завдання збережено, але наступний крок не завантажився. Натисни «Далі» ще раз.',
+        es: 'La tarea se guardó, pero el siguiente paso no cargó. Pulsa «Siguiente» otra vez.',
+        'pt-BR': 'A tarefa foi salva, mas o próximo passo não carregou. Toque em “Avançar” novamente.',
+        vi: 'Nhiệm vụ đã được lưu nhưng bước tiếp theo chưa tải. Hãy nhấn “Tiếp” lần nữa.',
+        id: 'Tugas tersimpan, tetapi langkah berikutnya gagal dimuat. Ketuk “Lanjut” lagi.',
+        tr: 'Görev kaydedildi ancak sonraki adım yüklenemedi. “Devam”a tekrar dokun.',
+        pl: 'Zadanie zapisano, ale kolejny krok się nie wczytał. Naciśnij „Dalej” ponownie.',
+      }));
+      return false;
+    }
+
+    if (nextTask) {
+      // Lock остаётся закрытым до replace/смены routeTaskKey.
+      openPersonalPlanTask(router, nextTask.plan, nextTask.day, nextTask.task, nextTask.planInstanceId, 'replace');
+      return true;
+    }
+
+    // Только успешный resolver result `null` означает настоящий финал дня.
     advancingRef.current = false;
     setAdvancing(false);
-    if (!isPronunciationMode) setLastResult('correct');
-    emitAppEvent('action_toast', actionToastTri('error', {
-      ru: 'Не удалось сохранить выполнение задания. Нажми «Дальше» ещё раз.',
-      uk: 'Не вдалося зберегти виконання завдання. Натисни «Далі» ще раз.',
-      es: 'No se pudo guardar la tarea. Pulsa «Siguiente» otra vez.',
-      'pt-BR': 'Não foi possível salvar a tarefa. Toque em “Avançar” novamente.',
-      vi: 'Không thể lưu nhiệm vụ. Hãy nhấn “Tiếp” lần nữa.',
-      id: 'Tugas tidak dapat disimpan. Ketuk “Lanjut” sekali lagi.',
-      tr: 'Görev kaydedilemedi. “Devam” düğmesine tekrar dokun.',
-      pl: 'Nie udało się zapisać zadania. Naciśnij „Dalej” ponownie.',
-    }));
-    return false;
-  }
-
-  // Некритические метрики запускаются только после подтверждённой записи и
-  // только один раз на текущий routeTaskKey. Повтор resolver не дублирует их.
-  if (!completionSideEffectsStartedRef.current) {
-    completionSideEffectsStartedRef.current = true;
-    void awardPlanTaskCompletion({
-      lang,
-      studyTarget,
-      practicedPhraseIds,
-      phrasesPracticed: practicedPhraseIds.length,
-      planInstanceId,
-      planTaskId,
-    }).catch(() => undefined);
-    void clearPlanTaskProgress(planInstanceId, planTaskId).catch(() => undefined);
-  }
-
-  let nextTask;
-  try {
-    nextTask = await resolveNextPlanTask({ completedTaskId: planTaskId, studyTarget });
-  } catch {
-    // Ошибка чтения очереди не равна «следующих заданий нет».
-    advancingRef.current = false;
-    setAdvancing(false);
-    if (!isPronunciationMode) setLastResult('correct');
-    emitAppEvent('action_toast', actionToastTri('error', {
-      ru: 'Задание сохранено, но следующий шаг не загрузился. Нажми «Дальше» ещё раз.',
-      uk: 'Завдання збережено, але наступний крок не завантажився. Натисни «Далі» ще раз.',
-      es: 'La tarea se guardó, pero el siguiente paso no cargó. Pulsa «Siguiente» otra vez.',
-      'pt-BR': 'A tarefa foi salva, mas o próximo passo não carregou. Toque em “Avançar” novamente.',
-      vi: 'Nhiệm vụ đã được lưu nhưng bước tiếp theo chưa tải. Hãy nhấn “Tiếp” lần nữa.',
-      id: 'Tugas tersimpan, tetapi langkah berikutnya gagal dimuat. Ketuk “Lanjut” lagi.',
-      tr: 'Görev kaydedildi ancak sonraki adım yüklenemedi. “Devam”a tekrar dokun.',
-      pl: 'Zadanie zapisano, ale kolejny krok się nie wczytał. Naciśnij „Dalej” ponownie.',
-    }));
-    return false;
-  }
-
-  if (nextTask) {
-    // Lock остаётся закрытым до replace/смены routeTaskKey.
-    openPersonalPlanTask(router, nextTask.plan, nextTask.day, nextTask.task, nextTask.planInstanceId, 'replace');
+    setCompleted(true);
     return true;
-  }
-
-  // Только успешный resolver result `null` означает настоящий финал дня.
-  advancingRef.current = false;
-  setAdvancing(false);
-  setCompleted(true);
-  return true;
-};
+  };
 
   const next = async () => {
     if (!item || advancingRef.current) return;

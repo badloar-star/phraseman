@@ -19,7 +19,7 @@ describe('admin VIP survey preview', () => {
   it('seeds a local-only inbox notification and returns the admin to Home', () => {
     expect(surveySection).toContain('admin-preview-vip-survey-notification');
     expect(surveySection).toContain('onSeedInboxPreview');
-    expect(screen).toContain('onSeedInboxPreview={() => { void showVipSurveyNotificationPreview(); }}');
+    expect(screen).toContain('onSeedInboxPreview={showVipSurveyNotificationPreview}');
     expect(screen).toContain('seedLocalVipSurveyTestMessage');
     expect(screen).toContain('vipSurveyPreviewBusyRef');
     expect(screen).toContain('navigateHomeAfterVipSurveySeed');

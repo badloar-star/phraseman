@@ -79,8 +79,8 @@ describe('statistics tonal hierarchy contract', () => {
     expect(giftAction).toContain('borderWidth: 0');
     expect(giftAction).not.toContain('borderWidth: 1');
     expect(giftAction).not.toContain('borderColor:');
-    expect(giftAction).toContain("statsSoftBg(themeMode, 'multipliers', 'strong')");
-    expect(giftAction).toContain("statsSoftBg(themeMode, 'multipliers', 'quiet')");
+    expect(giftAction).toContain('statsCardGradient(t)');
+    expect(giftAction).toContain("statsGlowStyle(themeMode, 'streak')");
   });
 
   it('gives statistics cards semantic tonal gradients without realtime blur', () => {

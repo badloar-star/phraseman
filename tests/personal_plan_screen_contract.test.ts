@@ -36,7 +36,7 @@ describe('personal plan screen contract', () => {
     expect(navSource).toContain("pathname: '/lesson_menu'");
     expect(navSource).toContain("pathname: '/lesson1'");
     expect(navSource).toContain("pathname: '/personal_plan_exercise'");
-    expect(navSource).toContain("pathname: '/quizzes_screen'");
+    expect(navSource).not.toContain("pathname: '/quizzes_screen'");
     expect(source).toContain('openPersonalPlanTask(router, loaded.plan, loaded.runtime.visibleDay, task, loaded.state.planInstanceId)');
   });
 
@@ -53,13 +53,13 @@ describe('personal plan screen contract', () => {
   });
   it('shows progress for the currently visible task slice', () => {
     expect(source).toContain('const visibleProgressPct = visibleTasks.length > 0');
-    expect(source).toContain('<ProgressRing pct={visibleProgressPct} chrome={chrome} />');
+    expect(source).toContain('<ProgressRing pct={visibleProgressPct} chrome={chrome} lang={lang} />');
     expect(source).toContain('{visibleProgressPct}%');
   });
 
   it('renders the active day in a compact progress hero without a competing day rail', () => {
     expect(source).toContain('function ProgressRing');
-    expect(source).toContain('<Text style={[styles.heroStatValue, { color: chrome.text }]} numberOfLines={1} maxFontSizeMultiplier={1.2}>День {day.dayIndex}</Text>');
+    expect(source).toContain("ru: `День ${day.dayIndex}`");
     expect(source).toContain('{plan.horizonWeeks * 7} дней');
     expect(source).not.toContain('dayRailRef');
   });

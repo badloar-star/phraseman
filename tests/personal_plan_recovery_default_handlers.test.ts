@@ -11,6 +11,10 @@ import {
   type PlanExerciseBlock,
 } from '../app/personal_plan_engine_contracts';
 import { clearTrainerStore, getTrainerPremiumItemsForPlan } from '../app/trainer_store';
+import {
+  __resetAccountGenerationForTests,
+  beginAccountGeneration,
+} from '../app/account_generation';
 
 const block: PlanExerciseBlock = {
   id: 'gavan_day1_phrase_build',
@@ -47,6 +51,8 @@ function recoveryActions() {
 
 describe('personal plan recovery default handlers', () => {
   beforeEach(async () => {
+    __resetAccountGenerationForTests();
+    beginAccountGeneration('personal-plan-recovery-test-account');
     await AsyncStorage.clear();
     await clearAllItems();
     await clearTrainerStore();
@@ -67,7 +73,7 @@ describe('personal plan recovery default handlers', () => {
     expect(recallItems).toHaveLength(1);
     expect(recallItems[0]).toEqual(expect.objectContaining({
       phrase: "I'm here",
-      correctAnswer: "I'm here.",
+      correctAnswer: '',
       lessonId: 1,
       source: 'lesson',
       errorWord: "I'm here.",

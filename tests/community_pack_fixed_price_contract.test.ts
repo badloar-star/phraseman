@@ -121,7 +121,7 @@ describe('community pack fixed price contract', () => {
       expect(body).toContain('amount: communityPurchaseDisplayPrice(p)');
       expect(body).not.toContain('p.refundedAmountShards');
     });
-    expect(ugcRenderBodies).toHaveLength(2);
+    expect(ugcRenderBodies).toHaveLength(1);
     ugcRenderBodies.forEach((body) => {
       expect(body).toContain("p.authorStableId || p.sellerStableId || p.sellerUid || ''");
       expect(body).toContain("const seller = p.authorStableId || p.sellerStableId || p.sellerUid || '?'");

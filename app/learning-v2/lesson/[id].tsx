@@ -20,6 +20,7 @@ import { getStableId } from '../../../app/stable_id';
 import { ensureAccountGeneration, isCurrentAccountGeneration } from '../../../app/account_generation';
 import { useIsScreenFocused } from '../../../hooks/use_is_screen_focused';
 import { useStableSafeAreaInsets } from '../../../app/stable_safe_area_metrics';
+import { safeRouterBack } from '../../../app/navigation_back';
 import { buildLesson1LegacyV2SourcePayload } from '../../../modules/learning-v2/content/legacy_lesson_payload';
 import { lesson1MapInputFromProgress } from '../../../modules/learning-v2/map/lesson1_map_progress_adapter';
 import { buildLessonMapModel, type LessonMapNode } from '../../../modules/learning-v2/map/lesson_map_model';
@@ -90,7 +91,7 @@ export default function LearningV2LessonMap() {
   };
   return <View style={styles.screen}>
     <ScrollView decelerationRate="fast" contentContainerStyle={[styles.scroll, { paddingTop: insets.top + 12, paddingBottom: insets.bottom + 104 }]}>
-      <View style={styles.header}><Pressable accessibilityRole="button" accessibilityLabel="Назад" hitSlop={10} onPress={() => router.back()} style={styles.headerButton}><Ionicons name="chevron-back" size={24} color="#F4F6F8" /></Pressable><View accessibilityLabel="Общий баланс звёзд появится после подключения V2-кошелька" style={styles.wallet}><Ionicons name="star" size={16} color="#F5C84C" /><Text style={styles.walletText}>—</Text></View></View>
+      <View style={styles.header}><Pressable accessibilityRole="button" accessibilityLabel="Назад" hitSlop={10} onPress={() => safeRouterBack(router, '/lessons_list')} style={styles.headerButton}><Ionicons name="chevron-back" size={24} color="#F4F6F8" /></Pressable><View accessibilityLabel="Общий баланс звёзд появится после подключения V2-кошелька" style={styles.wallet}><Ionicons name="star" size={16} color="#F5C84C" /><Text style={styles.walletText}>—</Text></View></View>
       <Text style={styles.eyebrow}>УРОК 1 · A1</Text><Text style={styles.title}>Знакомство</Text><Text style={styles.canDo}>Ты сможешь представиться и сказать простые фразы о себе.</Text>
       <View style={styles.tools}><Pressable accessibilityRole="button" accessibilityLabel="Открыть словарь урока" onPress={() => setSelected('dictionary')} style={styles.tool}><Ionicons name="book-outline" size={18} color="#D9E2EC" /><Text style={styles.toolText}>Словарь · {payload.vocabulary.length}</Text></Pressable><Pressable accessibilityRole="button" accessibilityLabel="Открыть теорию урока" onPress={() => setSelected('theory')} style={styles.tool}><Ionicons name="bulb-outline" size={18} color="#D9E2EC" /><Text style={styles.toolText}>Теория</Text></Pressable></View>
       <Text accessibilityLabel={`Пройдено ${completeCount} из 12`} style={styles.progress}>{completeCount} из 12 сессий</Text>

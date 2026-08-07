@@ -18,7 +18,7 @@ describe('retained tabs runtime work contract', () => {
     );
     expect(source).toContain('const checkGenerationRef = useRef(0);');
     expect(source).toContain('if (checkInFlightRef.current) {');
-    expect(source).toContain('dirtyRef.current = true;\n      return checkInFlightRef.current;');
+    expect(source).toMatch(/dirtyRef\.current = true;\s+return checkInFlightRef\.current;/);
     expect(source).toContain("DeviceEventEmitter.addListener('account_deleted'");
   });
 
@@ -61,7 +61,7 @@ describe('retained tabs runtime work contract', () => {
     expect(source).toContain('const requestDailyTaskSummaryRefresh = () => {');
     expect(source).toContain('homeDailySummaryDirtyRef.current = true;');
     expect(source).toContain('if (homeDataDirtyRef.current) {');
-    expect(source).toContain('homeDailySummaryDirtyRef.current = false;\n            loadData();\n            return;');
+    expect(source).toMatch(/homeDailySummaryDirtyRef\.current = false;\s+loadData\(\);\s+return;/);
     expect(source).toContain('if (!homeDailySummaryDirtyRef.current) return;');
     expect(source).toContain('<SaveProgressBanner ownerActive={homeRuntimeActive} />');
     expect(source).toContain('shardsDirtyRef.current = true;');

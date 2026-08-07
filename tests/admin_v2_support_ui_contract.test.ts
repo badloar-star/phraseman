@@ -76,7 +76,7 @@ describe('Admin v2 support inbox UI contract', () => {
     expect(core).toContain("admin: new Set(['users.read', 'money.read', 'money.manual_access.write', 'content.read', 'content.draft.write', 'content.publish', 'application.config.write', 'campaigns.read', 'campaigns.write', 'briefing.read', 'briefing.generate', ...SUPPORT_OPERATOR_PERMISSIONS, 'support.reply.resolve_ambiguous'");
     expect(core).toContain("support: new Set(['users.read', 'diagnostics.read', ...SUPPORT_OPERATOR_PERMISSIONS");
     expect(core).toContain("analyst: new Set(['users.read', 'money.read', 'content.read', 'campaigns.read', 'briefing.read', 'reports.read', 'diagnostics.read'])");
-    expect(core).toContain("moderator: new Set(['users.read', 'reports.read', 'reports.status.write'])");
+    expect(core).toContain("moderator: new Set(['users.read', 'reports.read', 'reports.status.write', ...IDEA_OPERATOR_PERMISSIONS])");
     expect(core).toContain("const canResolve = state.authorized && can('support.reply.resolve_ambiguous') && !state.busy;");
     expect(support).toContain("disabledWhenUnauthorized('support.inbox.read')");
     expect(support).toContain("disabledWhenUnauthorized('support.inbox.pull')");

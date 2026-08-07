@@ -224,6 +224,7 @@ function AiDialogSession() {
   useEffect(() => {
     if (!accessResolved || !aiDialogGateOpen || dialogAccess) return;
     void trackEvent('paywall_shown', { context: 'dialog_limit', source: 'ai_dialog_direct_entry' });
+    markNextNavigationAsReplace();
     router.replace({ pathname: '/premium_modal', params: { context: 'dialog_limit' } } as never);
   }, [accessResolved, aiDialogGateOpen, dialogAccess, router]);
 
@@ -820,6 +821,7 @@ function AiDialogSession() {
       if (!dialogAccess) {
         void trackEvent('ai_dialog_limit_hit', { scenarioId: scenario.id, reason: 'plus_required' });
         void trackEvent('paywall_shown', { context: 'dialog_limit' });
+        markNextNavigationAsReplace();
         router.replace({ pathname: '/premium_modal', params: { context: 'dialog_limit' } } as never);
         return;
       }
@@ -961,6 +963,7 @@ function AiDialogSession() {
     hapticTap();
     if (!dialogAccess) {
       void trackEvent('paywall_shown', { context: 'dialog_limit', source: 'ai_dialog_retry' });
+      markNextNavigationAsReplace();
       router.replace({ pathname: '/premium_modal', params: { context: 'dialog_limit' } } as never);
       return;
     }

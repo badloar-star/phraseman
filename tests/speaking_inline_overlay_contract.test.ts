@@ -122,7 +122,7 @@ describe('inline speaking surface contract', () => {
   });
 
   it('keeps the live equalizer but removes the redundant hold instruction while listening', () => {
-    expect(panel).toContain("case 'listening':\n        return '';");
+    expect(panel).toMatch(/case 'listening':\s+return '';/);
     expect(panel).not.toContain('Говори… отпусти, когда закончишь');
   });
 

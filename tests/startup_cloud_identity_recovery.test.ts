@@ -113,9 +113,9 @@ describe('startup cloud identity recovery regression', () => {
   });
 
   it.each([
-    ['components/PremiumContext.tsx', premiumContext, 6],
+    ['components/PremiumContext.tsx', premiumContext, 4],
     ['app/vip_survey.ts', vipSurvey, 1],
-    ['app/_admin_settings_testers.tsx', adminTesters, 1],
+    ['app/_admin_settings_testers.tsx', adminTesters, 2],
   ])('handles every fire-and-forget public-profile sync in %s', (_path, source, expectedCount) => {
     const calls = source.match(/void syncPublicProfileSnapshot\(/g) ?? [];
     const handled = source.match(/void syncPublicProfileSnapshot\([\s\S]*?\)\.catch\(\(\) => \{\}\);/g) ?? [];

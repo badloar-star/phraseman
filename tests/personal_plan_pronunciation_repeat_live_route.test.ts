@@ -130,7 +130,7 @@ describe('personal plan pronunciation-repeat live route', () => {
     expect(source).toContain("if (Platform.OS === 'android') playFallbackAudio();");
     // Прослушивание фразы НЕ обязательно — запись доступна сразу; блок пока звучит
     // target, пока качается whisper-модель (hold-режим), и во время оценки.
-    expect(source).toContain('enabled={!pronunciationSpeakingTarget');
+    expect(source).toContain('enabled={!energyBlocked && !pronunciationSpeakingTarget');
     // Фраза скрыта по буквам (маска '_') и раскрывается пословно по мере того,
     // как юзер её правильно произнёс — ответ не виден заранее.
     expect(source).toContain("tok.replace(/[\\p{L}\\p{N}]/gu, '_')");

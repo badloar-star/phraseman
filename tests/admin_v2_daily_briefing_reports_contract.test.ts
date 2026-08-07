@@ -51,7 +51,7 @@ describe('admin v2 daily briefing and report center', () => {
     expect(core).toContain('data-action="draft-report-reply"');
     expect(core).toContain('data-action="send-report-reply"');
     expect(core).toContain('data-action="load-report-next"');
-    expect(core).toContain('sendReportReply({ reportCollection: source, reportId, title, body, shards })');
+    expect(core).toContain('sendReportReply({ reportCollection: source, reportId, title, body, resolution, coins })');
     expect(core).not.toContain('sendReportReply({ uid:');
     expect(reportsServer).toContain("where('createdAtMs', '>=', sinceMs).orderBy('createdAtMs', 'desc').limit(scanLimit)");
     expect(reportsServer.indexOf("orderBy('createdAtMs', 'desc').limit(scanLimit)")).toBeLessThan(reportsServer.indexOf('.filter((doc) => matchesReportFilters'));

@@ -63,8 +63,7 @@ describe('paywall navigation and scroll smoothness contract', () => {
     const layout = readAppFile('_layout.tsx');
 
     expect(layout).toContain("<Stack.Screen name=\"premium_modal\"");
-    expect(layout).toContain("presentation: 'transparentModal'");
-    expect(layout).toContain("contentStyle: { backgroundColor: '#111827' }");
+    expect(layout).toContain('<Stack.Screen name="premium_modal" options={SECTION_SHEET_STACK_OPTIONS} />');
   });
 
   it('shows paywall content on the first modal frame without an inner JS entrance animation', () => {
@@ -82,7 +81,7 @@ describe('paywall navigation and scroll smoothness contract', () => {
     const purchase = readAppFile('paywall_purchase.ts');
     const nav = readAppFile('navigation_back.ts');
 
-    expect(purchase).toContain('dismissPaywallModal(router)');
+    expect(purchase).toContain('dismissPaywallModal(router,');
     expect(nav).toContain('export function dismissPaywallModal');
     expect(nav).toContain('router.dismiss(1)');
   });

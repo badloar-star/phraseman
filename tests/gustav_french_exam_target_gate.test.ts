@@ -65,7 +65,8 @@ describe('Gustav French exam target gate', () => {
       levelExamSource.indexOf("if (accessState !== 'allowed')"),
     );
 
-    expect(runtimeSource).toContain('ensureFrenchRemoteQuizRows');
+    expect(runtimeSource).toContain('French exams previously reused the retired Quiz delivery surface');
+    expect(runtimeSource).toMatch(/loadFrenchRemoteFinalExamQuestions[\s\S]*?return \[\];/);
     expect(runtimeSource).toContain('loadFrenchRemoteFinalExamQuestions');
     expect(runtimeSource).toContain('loadFrenchRemoteLevelExamQuestions');
     expect(runtimeSource).toContain("type?: 'choice4'");

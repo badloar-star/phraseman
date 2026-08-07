@@ -27,7 +27,8 @@ describe('Admin v2 independent content stage shell', () => {
   });
 
   test('offers all V2 independent generators and every lesson-derived stage', () => {
-    for (const label of ['Уроки', 'Квизы', 'Вызовы', 'Карточки', 'План урока', 'Фразы', 'Словарь', 'Неправильные глаголы', 'Предлоги', 'Теория']) expect(page).toContain(label);
+    for (const label of ['Уроки', 'Вызовы', 'Карточки', 'План урока', 'Фразы', 'Словарь', 'Неправильные глаголы', 'Предлоги', 'Теория']) expect(page).toContain(label);
+    expect(page).not.toContain("{ id: 'quizzes'");
     expect(core).toContain("import { renderContentGeneratorShell } from './content-factory/renderers.js'");
     expect(core).toContain("if (action === 'create-content-stage')");
     expect(core).toContain("if (action === 'load-content-stages')");
@@ -73,7 +74,7 @@ describe('Admin v2 independent content stage shell', () => {
     expect(page).toContain('Пачка вопросов всегда содержит ровно 10 элементов');
     expect(page).toContain('Не подключено к приложению');
     expect(page).toContain('только черновик, не подключено к приложению');
-    expect(core).toContain("questionBatchKind === 'quiz_questions' ? 'quiz_topic' : 'challenge_topic'");
+    expect(core).toContain("questionBatchKind !== 'challenge_questions'");
     expect(core).toContain('count: 10, revision, prerequisiteStageIds: [prerequisiteTopicStageId]');
     expect(controller).toContain('capability?.count?.fixed');
   });

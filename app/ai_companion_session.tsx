@@ -46,7 +46,7 @@ import {
 } from './ai_dialog_client';
 import { buildCompanionMemory } from './ai_companion_memory';
 import { parseKeyPhrases, stripMarkers } from './ai_dialog_markup';
-import { safeRouterBack } from './navigation_back';
+import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { trackEvent } from './analytics';
 import { triLang } from '../constants/i18n';
 import { aiDialogContentAvailableForTarget, frenchAiDialogGateCopy } from './ai_dialog_target_gate';
@@ -77,6 +77,7 @@ function AiCompanionSession() {
   useEffect(() => {
     if (!accessResolved || !aiDialogGateOpen || dialogAccess) return;
     void trackEvent('paywall_shown', { context: 'dialog_limit', source: 'ai_companion_direct_entry' });
+    markNextNavigationAsReplace();
     router.replace({ pathname: '/premium_modal', params: { context: 'dialog_limit' } } as never);
   }, [accessResolved, aiDialogGateOpen, dialogAccess, router]);
 
@@ -144,6 +145,7 @@ function AiCompanionSession() {
       if (!dialogAccess) {
         void trackEvent('ai_dialog_limit_hit', { scenarioId: 'companion', reason: 'plus_required' });
         void trackEvent('paywall_shown', { context: 'dialog_limit' });
+        markNextNavigationAsReplace();
         router.replace({ pathname: '/premium_modal', params: { context: 'dialog_limit' } } as never);
         return;
       }

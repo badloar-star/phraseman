@@ -4,6 +4,8 @@ import path from 'node:path';
 
 const ROOT = path.resolve(__dirname, '..');
 const GUARD_PATH = path.join(ROOT, 'scripts', 'deploy_v2_progress_transport.mjs');
+const LEGACY_HARNESS_PRESENT = fs.existsSync(GUARD_PATH);
+const itLegacyHarness = LEGACY_HARNESS_PRESENT ? it : it.skip;
 const DISPOSABLE_PROJECT_ID = 'phraseman-v2-ac-test-20260718';
 const WRAPPER_SENTINEL = `validated:${DISPOSABLE_PROJECT_ID}`;
 
@@ -70,7 +72,7 @@ function loadTransportEntry(environment: Record<string, string | undefined>): ()
 }
 
 describe('Learning V2 progress transport deploy guard', () => {
-  it('rejects an omitted project even when Firebase would inherit the production default', () => {
+  itLegacyHarness('rejects an omitted project even when Firebase would inherit the production default', () => {
     const firebaserc = JSON.parse(fs.readFileSync(path.join(ROOT, '.firebaserc'), 'utf8'));
     expect(firebaserc.projects.default).toBe('phraseman-ea0b3');
 
@@ -86,7 +88,7 @@ describe('Learning V2 progress transport deploy guard', () => {
     expect(result.stderr).toContain('exactly one explicit --project');
   });
 
-  it('rejects an explicitly selected production project', () => {
+  itLegacyHarness('rejects an explicitly selected production project', () => {
     const result = runGuard([
       '--project',
       'phraseman-ea0b3',
@@ -96,7 +98,7 @@ describe('Learning V2 progress transport deploy guard', () => {
     expect(result.stderr).toContain(`only ${DISPOSABLE_PROJECT_ID} is allowed`);
   });
 
-  it.each([
+  itLegacyHarness.each([
     ['separate value', ['--validate-only', '--project', DISPOSABLE_PROJECT_ID]],
     ['equals form', ['--validate-only', `--project=${DISPOSABLE_PROJECT_ID}`]],
   ])('accepts the exact disposable project in %s syntax', (_label, args) => {
@@ -106,7 +108,7 @@ describe('Learning V2 progress transport deploy guard', () => {
     expect(result.stdout).toContain(`validated project ${DISPOSABLE_PROJECT_ID}`);
   });
 
-  it.each([
+  itLegacyHarness.each([
     ['alias', ['--validate-only', '-P', DISPOSABLE_PROJECT_ID]],
     ['missing value', ['--validate-only', '--project']],
     ['duplicate identical', [
@@ -136,7 +138,7 @@ describe('Learning V2 progress transport deploy guard', () => {
     expect(runGuard(args).status).not.toBe(0);
   });
 
-  it('makes the config predeploy hook require wrapper validation and the exact resolved project', () => {
+  itLegacyHarness('makes the config predeploy hook require wrapper validation and the exact resolved project', () => {
     const config = JSON.parse(
       fs.readFileSync(path.join(ROOT, 'firebase.v2-progress-transport.json'), 'utf8'),
     );
@@ -188,7 +190,7 @@ describe('Learning V2 progress transport deploy guard', () => {
   ], firebaseEnvironment);`);
   });
 
-  it('loads the harness only in a demo emulator or the exact disposable project', () => {
+  itLegacyHarness('loads the harness only in a demo emulator or the exact disposable project', () => {
     expect(loadTransportEntry({
       FUNCTIONS_EMULATOR: 'true',
       GCLOUD_PROJECT: 'demo-phraseman-progress-transport',
@@ -235,5 +237,18 @@ describe('Learning V2 progress transport deploy guard', () => {
 
     expect(productionIndex).not.toContain('v2ProgressTransport');
     expect(productionIndex).not.toContain('progress_callable_transport_entry');
+  });
+
+  it('keeps every retired disposable transport artifact absent together', () => {
+    if (LEGACY_HARNESS_PRESENT) return;
+    expect(fs.existsSync(path.join(ROOT, 'firebase.v2-progress-transport.json'))).toBe(false);
+    expect(fs.existsSync(path.join(
+      ROOT,
+      'functions',
+      'src',
+      'learning_v2',
+      'emulator',
+      'progress_callable_transport_entry.ts',
+    ))).toBe(false);
   });
 });

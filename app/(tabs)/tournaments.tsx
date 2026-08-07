@@ -925,7 +925,7 @@ export default function TournamentsScreen() {
         {/* Шапка главного таба: назад · название · звёзды сезона · жемчужины. */}
         <View style={styles.header}>
           {/* зачем: владелец просил выход на главную прямо из хаба — турниры это вкладка,
-              поэтому не router.back() (стека может не быть, кинуло бы в случайный экран),
+              поэтому не нативный back (стека может не быть, кинуло бы в случайный экран),
               а replace на home. Вид 1:1 с кнопкой из shards_shop: круг 46, chevron-back. */}
           <TapScale
             testID="tournaments-back"

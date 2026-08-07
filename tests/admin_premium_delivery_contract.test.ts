@@ -15,9 +15,9 @@ describe('admin premium delivery contract', () => {
   const authIdentityFn = fs.readFileSync(path.join(process.cwd(), 'functions', 'src', 'auth_identity.ts'), 'utf8');
 
   it('links stable users to Firebase auth before reading admin premium from Firestore', () => {
-    const restoreStart = cloudSync.indexOf('export async function restoreAndMigrateFromCloud');
+    const restoreStart = cloudSync.indexOf('async function restoreAndMigrateFromCloudResult');
     const getUserDoc = cloudSync.indexOf("db.collection('users').doc(uid).get()", restoreStart);
-    const linkCall = cloudSync.indexOf('ensureStableAuthLinkForStableId(uid)', restoreStart);
+    const linkCall = cloudSync.indexOf('ensureStableAuthLinkForStableIdDetailed(uid)', restoreStart);
 
     expect(restoreStart).toBeGreaterThan(-1);
     expect(linkCall).toBeGreaterThan(restoreStart);
@@ -41,7 +41,7 @@ describe('admin premium delivery contract', () => {
     expect(listenerBody).toContain("stableLink?.failure === 'stable_id_mismatch'");
     expect(listenerBody.indexOf('stableLink.stableUid !== uid')).toBeLessThan(listenerBody.indexOf('.onSnapshot('));
     expect(listenerBody).toContain('scheduleRetry');
-    expect(listenerBody).toContain('2_500');
+    expect(premiumContext).toContain('const PREMIUM_LISTENER_RETRY_BACKOFF_MS = [2_500, 10_000, 30_000');
   });
 
   it('lets PremiumProvider use the cloud-backed access guard before showing no-access state', () => {
@@ -116,7 +116,7 @@ describe('admin premium delivery contract', () => {
 
   it('preserves provider-linked ownership without allowing unknown auth mismatches', () => {
     expect(authIdentityFn).toContain('const hasProviderLink');
-    expect(authIdentityFn).toContain('if (!canonicalLinkConflicts && linkedAuthUid === authUid) return;');
+    expect(authIdentityFn).toContain('if (!canonicalLinkConflicts && userAuthUid === authUid)');
     expect(authIdentityFn).not.toContain('if (!hasProviderLink) return;');
     expect(authIdentityFn).toContain("throw new HttpsError('permission-denied', 'stable_id_mismatch')");
   });

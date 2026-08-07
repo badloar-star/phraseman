@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import firestore from '@react-native-firebase/firestore';
 import {
   __cloudSyncTestHooks,
   accountLocalDataKeysForToday,
@@ -9,6 +10,10 @@ import {
   SYNC_KEYS,
   wipeLocalAccountData,
 } from '../app/cloud_sync';
+import {
+  getAppSnapshot,
+  resetAppSnapshotForAccountSwitch,
+} from '../app/app_snapshot_store';
 import * as DailyTasks from '../app/daily_tasks';
 
 (globalThis as typeof globalThis & { __DEV__?: boolean }).__DEV__ = true;
@@ -82,6 +87,104 @@ import {
 const makeCloudUserDoc = (progress: Record<string, unknown>) => ({
   exists: true,
   data: () => ({ progress }),
+});
+
+const firestoreRestoreTestHarness = firestore as unknown as {
+  __resetTestState?: () => void;
+  __testState?: {
+    runTransactionCalls: number;
+    userDocPaths: string[];
+  };
+};
+const asyncStorageGetItemMock = AsyncStorage.getItem as jest.MockedFunction<
+  typeof AsyncStorage.getItem
+>;
+const asyncStorageMultiSetMock = AsyncStorage.multiSet as jest.MockedFunction<
+  typeof AsyncStorage.multiSet
+>;
+const defaultAsyncStorageGetItem = asyncStorageGetItemMock.getMockImplementation();
+const defaultAsyncStorageMultiSet = asyncStorageMultiSetMock.getMockImplementation();
+
+const resetAuthoritativeRestoreStorageMocks = () => {
+  asyncStorageGetItemMock.mockReset();
+  asyncStorageMultiSetMock.mockReset();
+  if (defaultAsyncStorageGetItem) {
+    asyncStorageGetItemMock.mockImplementation(defaultAsyncStorageGetItem);
+  }
+  if (defaultAsyncStorageMultiSet) {
+    asyncStorageMultiSetMock.mockImplementation(defaultAsyncStorageMultiSet);
+  }
+};
+
+const makeAuthoritativeCloudUserDoc = () => ({
+  exists: true,
+  data: () => ({
+    progressServerAuthoritative: true,
+    progress: {
+      user_name: 'Vitalii',
+      user_total_xp: '564776',
+      streak_count: '93',
+      last_active_date: '2026-07-14',
+    },
+  }),
+});
+
+describe('authoritative restore snapshot fallback', () => {
+  beforeEach(() => {
+    resetAuthoritativeRestoreStorageMocks();
+    (AsyncStorage as any).__reset?.();
+    firestoreRestoreTestHarness.__resetTestState?.();
+    resetAppSnapshotForAccountSwitch();
+  });
+
+  afterEach(() => {
+    resetAuthoritativeRestoreStorageMocks();
+    resetAppSnapshotForAccountSwitch();
+  });
+
+  const expectAuthoritativeSnapshotWithoutFirestoreWrite = () => {
+    expect(getAppSnapshot()).toMatchObject({
+      profile: {
+        source: 'live',
+        name: 'Vitalii',
+        totalXp: 564776,
+        level: 50,
+      },
+      progress: {
+        source: 'live',
+        streak: 93,
+      },
+    });
+    expect(firestoreRestoreTestHarness.__testState?.userDocPaths).toEqual([]);
+    expect(firestoreRestoreTestHarness.__testState?.runTransactionCalls).toBe(0);
+  };
+
+  it('projects cloud XP and streak when persisted progress reads fail', async () => {
+    asyncStorageGetItemMock.mockImplementation(async (key) => {
+      if (key === 'user_total_xp') throw new Error('SQLITE_FULL');
+      return defaultAsyncStorageGetItem ? defaultAsyncStorageGetItem(key) : null;
+    });
+
+    await expect(
+      __cloudSyncTestHooks.applyRestoreFromUserDoc(makeAuthoritativeCloudUserDoc()),
+    ).rejects.toThrow('SQLITE_FULL');
+
+    expectAuthoritativeSnapshotWithoutFirestoreWrite();
+  });
+
+  it('projects cloud XP and streak before a persisted restore write fails', async () => {
+    await AsyncStorage.multiSet([
+      ['user_total_xp', '0'],
+      ['streak_count', '0'],
+    ]);
+    asyncStorageMultiSetMock.mockRejectedValueOnce(new Error('SQLITE_FULL'));
+
+    await expect(
+      __cloudSyncTestHooks.applyRestoreFromUserDoc(makeAuthoritativeCloudUserDoc()),
+    ).rejects.toThrow('SQLITE_FULL');
+
+    expectAuthoritativeSnapshotWithoutFirestoreWrite();
+  });
 });
 
 describe('mergeDailyTasksProgressForRestore', () => {

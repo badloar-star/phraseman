@@ -1,4 +1,5 @@
 import { useRef, useSyncExternalStore } from 'react';
+import { getLevelFromXP } from '../constants/theme';
 import type { FriendEntry, FriendRequestEntry } from './firestore_friend_requests';
 import type { CustomizationSnapshot } from './customization_snapshot';
 
@@ -163,6 +164,79 @@ export function patchAppSnapshot(patchOrFn: Patch): void {
   if (!patch || !shallowPatchChanged(snapshot, patch)) return;
   snapshot = { ...snapshot, ...patch };
   emitSnapshotChanged();
+}
+
+const AUTHORITATIVE_TOTAL_XP_MAX = 1_000_000_000;
+const AUTHORITATIVE_STREAK_MAX = 100_000;
+
+function authoritativeNonNegativeInt(value: unknown, maximum: number): number | null | undefined {
+  if (value === null || value === undefined) return undefined;
+  if (typeof value !== 'number' && typeof value !== 'string') return null;
+  if (typeof value === 'string' && value.trim() === '') return null;
+  const parsed = Number(value);
+  if (!Number.isSafeInteger(parsed) || parsed < 0 || parsed > maximum) return null;
+  return parsed;
+}
+
+function authoritativeString(value: unknown): string {
+  return typeof value === 'string' ? value.trim() : '';
+}
+
+/**
+ * Keeps the visible profile usable when AsyncStorage cannot persist a validated
+ * server-authoritative restore (for example Android SQLITE_FULL). This is an
+ * in-memory UI projection only; it never writes local storage or Firestore.
+ */
+export function patchAppSnapshotFromAuthoritativeCloudProgress(
+  root: Record<string, unknown>,
+  now: number = Date.now(),
+): boolean {
+  if (root.progressServerAuthoritative !== true) return false;
+  const rawProgress = root.progress;
+  if (!rawProgress || typeof rawProgress !== 'object' || Array.isArray(rawProgress)) return false;
+  const progress = rawProgress as Record<string, unknown>;
+  const totalXp = authoritativeNonNegativeInt(progress.user_total_xp, AUTHORITATIVE_TOTAL_XP_MAX);
+  const streak = authoritativeNonNegativeInt(progress.streak_count, AUTHORITATIVE_STREAK_MAX);
+  if (totalXp === null || streak === null) return false;
+  if (totalXp === undefined && streak === undefined) return false;
+
+  const currentProfile = snapshot.profile;
+  const currentProgress = snapshot.progress;
+  const patch: Partial<AppSnapshot> = {};
+  if (totalXp !== undefined) {
+    patch.profile = {
+      source: 'live',
+      updatedAt: now,
+      name: authoritativeString(progress.user_name) || currentProfile?.name || '',
+      avatar: authoritativeString(progress.user_avatar)
+        || authoritativeString(root.user_avatar)
+        || currentProfile?.avatar
+        || '1',
+      frame: authoritativeString(progress.user_avatar_frame)
+        || authoritativeString(progress.user_frame)
+        || authoritativeString(root.user_avatar_frame)
+        || currentProfile?.frame
+        || '',
+      aura: currentProfile?.aura,
+      totalXp,
+      level: getLevelFromXP(totalXp),
+      premiumActive: currentProfile?.premiumActive ?? false,
+      premiumPlan: currentProfile?.premiumPlan,
+      vipActive: currentProfile?.vipActive ?? false,
+      vipLifetime: currentProfile?.vipLifetime,
+    };
+  }
+  if (streak !== undefined) {
+    patch.progress = {
+      source: 'live',
+      updatedAt: now,
+      streak,
+      shards: currentProgress?.shards ?? 0,
+      studyTarget: currentProgress?.studyTarget ?? 'en',
+    };
+  }
+  patchAppSnapshot(patch);
+  return true;
 }
 
 export function resetAppSnapshotForAccountSwitch(): void {

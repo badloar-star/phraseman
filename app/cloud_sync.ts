@@ -46,6 +46,7 @@ import {
   withRestoreApplicationLock,
 } from './account_generation';
 import { resetAppSnapshotForAccountSwitch } from './app_snapshot_store';
+import { patchAppSnapshotFromAuthoritativeCloudProgress } from './app_snapshot_store';
 // зачем: сброс кэша множителей XP при смене аккаунта — см. resetMultiplierBreakdownCache
 // в xp_manager.ts (защита от утечки предыдущего аккаунта в PlayerProfileModal).
 import { resetMultiplierBreakdownCache } from './xp_manager';
@@ -2471,12 +2472,27 @@ async function applyRestoreFromUserDoc(
     'vip_admin_override', 'vip_admin_grant_at', 'vip_grant_at',
   ]);
 
-  const [localXPRaw, localStreakRaw, localLastActiveRaw, localStreakLastRaw] = await Promise.all([
-    AsyncStorage.getItem('user_total_xp'),
-    AsyncStorage.getItem('streak_count'),
-    AsyncStorage.getItem('last_active_date'),
-    AsyncStorage.getItem('streak_last_date'),
-  ]);
+  let localXPRaw: string | null;
+  let localStreakRaw: string | null;
+  let localLastActiveRaw: string | null;
+  let localStreakLastRaw: string | null;
+  try {
+    [localXPRaw, localStreakRaw, localLastActiveRaw, localStreakLastRaw] = await Promise.all([
+      AsyncStorage.getItem('user_total_xp'),
+      AsyncStorage.getItem('streak_count'),
+      AsyncStorage.getItem('last_active_date'),
+      AsyncStorage.getItem('streak_last_date'),
+    ]);
+  } catch (error) {
+    assertCurrent();
+    // If persisted reads are unavailable, the authenticated server ledger is
+    // the only validated display source. Hydrate memory, then preserve the
+    // existing restore failure so no caller mistakes persistence for success.
+    if (progressServerAuthoritative) {
+      patchAppSnapshotFromAuthoritativeCloudProgress(root);
+    }
+    throw error;
+  }
   assertCurrent();
   const localXP = parseProgressInt(localXPRaw);
   const cloudXP = parseProgressInt(cloudData['user_total_xp']);
@@ -2515,6 +2531,12 @@ async function applyRestoreFromUserDoc(
     || (shouldPreferCloudOnSuspiciousGap && !hasPendingProgressEvents)
     || cloudXP > localXP
     || (cloudXP === localXP && cloudStreak > localStreak);
+  if (shouldRestoreCloudProgress && progressServerAuthoritative) {
+    assertCurrent();
+    // Do this before AsyncStorage writes. SQLITE_FULL may reject persistence,
+    // but must not make intact server XP/streak render as Level 1 / zero days.
+    patchAppSnapshotFromAuthoritativeCloudProgress(root);
+  }
   if (!shouldRestoreCloudProgress) {
     const stickyKeys = [
       'premium_plan',

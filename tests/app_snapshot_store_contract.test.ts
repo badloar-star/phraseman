@@ -1,6 +1,7 @@
 import {
   APP_SNAPSHOT_RESOURCE_LIMITS,
   getAppSnapshot,
+  patchAppSnapshotFromAuthoritativeCloudProgress,
   patchAppSnapshot,
   pruneBoundedRecord,
   resolveHydratedProfileName,
@@ -125,6 +126,66 @@ describe('app snapshot store contract', () => {
 
     expect(resolveHydratedProfileName(200, 'Old name')).toBe('New name');
     expect(resolveHydratedProfileName(400, 'Newest storage name')).toBe('Newest storage name');
+  });
+
+  it('hydrates validated server-authoritative XP and streak without local persistence', () => {
+    patchAppSnapshotFromAuthoritativeCloudProgress({
+      progressServerAuthoritative: true,
+      progress: {
+        user_name: 'Vitalii',
+        user_avatar: '44',
+        user_avatar_frame: 'neural',
+        user_total_xp: '564776',
+        user_level: '50',
+        streak_count: '93',
+      },
+    }, 500);
+
+    expect(getAppSnapshot()).toMatchObject({
+      profile: {
+        source: 'live',
+        updatedAt: 500,
+        name: 'Vitalii',
+        avatar: '44',
+        frame: 'neural',
+        totalXp: 564776,
+        level: 50,
+      },
+      progress: {
+        source: 'live',
+        updatedAt: 500,
+        streak: 93,
+      },
+    });
+  });
+
+  it('rejects untrusted or malformed cloud progress instead of rendering defaults', () => {
+    expect(patchAppSnapshotFromAuthoritativeCloudProgress({
+      progressServerAuthoritative: false,
+      progress: { user_total_xp: '999999', streak_count: '999' },
+    }, 500)).toBe(false);
+    expect(patchAppSnapshotFromAuthoritativeCloudProgress({
+      progressServerAuthoritative: true,
+      progress: { user_total_xp: 'not-a-number', streak_count: '-4' },
+    }, 500)).toBe(false);
+    expect(getAppSnapshot()).toEqual({});
+  });
+
+  it('rejects authoritative XP and streak outside backend-safe bounds', () => {
+    const invalidProgressRows = [
+      { user_total_xp: '1000000001', streak_count: '93' },
+      { user_total_xp: '564776', streak_count: '100001' },
+      { user_total_xp: String(Number.MAX_SAFE_INTEGER + 1), streak_count: '93' },
+      { user_total_xp: '564776.5', streak_count: '93' },
+    ];
+
+    for (const progress of invalidProgressRows) {
+      expect(patchAppSnapshotFromAuthoritativeCloudProgress({
+        progressServerAuthoritative: true,
+        progress,
+      }, 500)).toBe(false);
+    }
+    expect(getAppSnapshot()).toEqual({});
   });
 
   it('prunes bounded records by ttl while retaining pinned keys', () => {

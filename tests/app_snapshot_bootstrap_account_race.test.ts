@@ -100,4 +100,20 @@ describe('app snapshot bootstrap account boundary', () => {
       }),
     }));
   });
+
+  it('does not publish zero/default profile data when the storage read fails', async () => {
+    const generation = await import('../app/account_generation');
+    generation.beginAccountGeneration('stable-storage-full');
+    storage.multiGet.mockImplementation(async (keys: string[]) => {
+      if (keys.includes('user_name')) {
+        throw new Error('database or disk is full (code 13 SQLITE_FULL)');
+      }
+      return keys.map((key) => [key, asyncStore[key] ?? null]);
+    });
+
+    const { primeAppSnapshotFromStorage } = await import('../app/app_snapshot_bootstrap');
+    await primeAppSnapshotFromStorage('en');
+
+    expect(patchAppSnapshot).not.toHaveBeenCalled();
+  });
 });

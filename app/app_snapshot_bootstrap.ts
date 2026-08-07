@@ -204,16 +204,23 @@ export async function primeAppSnapshotFromStorage(studyTarget?: RuntimeStudyTarg
     BOOT_LEAGUE_STATE_KEY,
     REFERRAL_STATE_STORAGE_KEY,
   ];
-  const [pairs, friends] = await Promise.all([
-    AsyncStorage.multiGet(keys).catch(() => [] as [string, string | null][]),
+  const [storageRead, friends] = await Promise.all([
+    AsyncStorage.multiGet(keys).then(
+      (pairs) => ({ ok: true as const, pairs }),
+      () => ({ ok: false as const, pairs: [] as [string, string | null][] }),
+    ),
     primeFriendsSnapshot(now),
     hydrateUserSettingsFromStorage().catch(() => {}),
-  ]).then(async ([storagePairs, friendsSnapshot]) => [
-    storagePairs,
+  ]).then(async ([storageResult, friendsSnapshot]) => [
+    storageResult,
     friendsSnapshot,
   ] as const);
 
   if (!isAccountCurrent()) return;
+  // A failed storage read is not an empty account. Publishing defaults here
+  // would render Level 1 / streak 0 and could be mistaken for real progress.
+  if (!storageRead.ok) return;
+  const pairs = storageRead.pairs;
   const values = mapPairs(pairs);
   writePeekAppLang(values.get(BOOT_LANG_KEY) ?? null);
   writePeekStudyTargetRaw(values.get(BOOT_STUDY_TARGET_KEY) ?? null);

@@ -37,7 +37,7 @@ const FUNCTION_FALLBACKS: Readonly<Partial<Record<FillGapCategory, readonly stri
   to_be: ['am', 'is', 'are', 'was', 'were', 'be', 'being', 'been'],
   modal: ['can', 'could', 'may', 'might', 'must', 'should', 'will', 'would'],
 };
-const CATEGORY_ALIASES: Readonly<Record<string, FillGapCategory>> = {
+const CATEGORY_ALIASES: ReadonlyMap<string, FillGapCategory> = new Map(Object.entries({
   verb: 'verb', verbs: 'verb', noun: 'noun', nouns: 'noun', adjective: 'adjective', adjectives: 'adjective',
   adverb: 'adverb', adverbs: 'adverb', 'phrasal particle': 'phrasal_particle', particle: 'phrasal_particle',
   preposition: 'preposition', prepositions: 'preposition', modal: 'modal', modals: 'modal',
@@ -45,7 +45,7 @@ const CATEGORY_ALIASES: Readonly<Record<string, FillGapCategory>> = {
   determiner: 'determiner', determiners: 'determiner', existential: 'existential', article: 'article', articles: 'article',
   'to be': 'to_be', be: 'to_be', number: 'number_time', time: 'number_time', 'number time': 'number_time',
   interjection: 'lexical_other', interjections: 'lexical_other', 'lexical other': 'lexical_other', other: 'lexical_other',
-};
+}) as [string, FillGapCategory][]);
 type IrregularFamily = Readonly<{
   base: string;
   thirdPerson: string;
@@ -90,14 +90,25 @@ const IRREGULAR_FAMILIES: readonly IrregularFamily[] = [
   ['put', 'puts', 'put', 'put', 'putting'], ['shut', 'shuts', 'shut', 'shut', 'shutting'], ['stick', 'sticks', 'stuck', 'stuck', 'sticking'],
   ['tear', 'tears', 'tore', 'torn', 'tearing'],
 ].map(([base, thirdPerson, past, participle, gerund]) => ({ base, thirdPerson, past, participle, gerund }));
-const IRREGULAR_LEMMA_FAMILIES: Readonly<Record<string, string>> = Object.fromEntries(
-  IRREGULAR_FAMILIES.flatMap(({ base, thirdPerson, past, participle, gerund }) =>
-    [...new Set([base, thirdPerson, past, participle, gerund])].map((form) => [form, base])),
-);
+export function buildIrregularLemmaFamilies(families: readonly IrregularFamily[]): ReadonlyMap<string, string> {
+  const familyByForm = new Map<string, string>();
+  for (const { base, thirdPerson, past, participle, gerund } of families) {
+    for (const form of new Set([base, thirdPerson, past, participle, gerund])) {
+      const existing = familyByForm.get(form);
+      if (existing && existing !== base) {
+        throw new Error(`Irregular form "${form}" maps to both "${existing}" and "${base}".`);
+      }
+      familyByForm.set(form, base);
+    }
+  }
+  return familyByForm;
+}
+const IRREGULAR_LEMMA_FAMILIES = buildIrregularLemmaFamilies(IRREGULAR_FAMILIES);
 // These strings are common non-verb words as well as irregular surfaces. Without
 // syntactic/semantic proof, neither a morphology nor a lexical-meaning claim is safe.
 const AMBIGUOUS_IRREGULAR_SURFACES = new Set([
   'found', 'saw', 'left', 'rose', 'fell', 'lay', 'read', 'lead', 'bound', 'wound', 'bore', 'rent', 'ground',
+  'axes', 'axe', 'axis',
 ]);
 
 function normalized(value: string): string {
@@ -107,9 +118,9 @@ function normalized(value: string): string {
 function categoryFor(word: SourceWord): FillGapCategory | null {
   const token = normalized(word.text);
   const pos = normalized(word.partOfSpeech).replace(/[_-]+/gu, ' ');
-  if (!pos || !CATEGORY_ALIASES[pos]) return null;
+  if (!pos || !CATEGORY_ALIASES.has(pos)) return null;
   if (pos === 'verb' && /^(am|is|are|was|were|be|being|been)$/u.test(token)) return 'to_be';
-  return CATEGORY_ALIASES[pos];
+  return CATEGORY_ALIASES.get(pos) ?? null;
 }
 
 function trapFor(category: FillGapCategory, correct: string, wrong: string): FillGapTrapType | null {
@@ -118,7 +129,8 @@ function trapFor(category: FillGapCategory, correct: string, wrong: string): Fil
   if (category === 'modal' || category === 'conjunction' || category === 'determiner'
     || category === 'existential' || category === 'article') return 'function_choice';
   if (category === 'to_be') return toBeTrap(correct, wrong);
-  if (category === 'verb' && (AMBIGUOUS_IRREGULAR_SURFACES.has(normalized(correct))
+  if (category === 'lexical_other' || category === 'number_time') return 'lexical_meaning';
+  if ((category === 'verb' || category === 'noun') && (AMBIGUOUS_IRREGULAR_SURFACES.has(normalized(correct))
     || AMBIGUOUS_IRREGULAR_SURFACES.has(normalized(wrong)))) return null;
   if (category === 'verb' && sameVerbStem(correct, wrong, true)) return 'morphology';
   if (category === 'noun' && sameVerbStem(correct, wrong, false)) return 'morphology';
@@ -127,12 +139,13 @@ function trapFor(category: FillGapCategory, correct: string, wrong: string): Fil
   return 'collocation';
 }
 
-function toBeTrap(correct: string, wrong: string): FillGapTrapType {
+function toBeTrap(correct: string, wrong: string): FillGapTrapType | null {
   const present = new Set(['am', 'is', 'are']);
   const past = new Set(['was', 'were']);
   const correctKey = normalized(correct);
   const wrongKey = normalized(wrong);
-  if ((present.has(correctKey) && present.has(wrongKey)) || (past.has(correctKey) && past.has(wrongKey))) return 'agreement';
+  if (present.has(correctKey) && present.has(wrongKey)) return 'agreement';
+  if (past.has(correctKey) && past.has(wrongKey)) return null;
   return 'morphology';
 }
 
@@ -143,7 +156,7 @@ function sameVerbStem(left: string, right: string, includeIrregular: boolean): b
 
 function lemmaKeys(value: string, includeIrregular: boolean): ReadonlySet<string> {
   const token = normalized(value);
-  const irregularFamily = includeIrregular ? IRREGULAR_LEMMA_FAMILIES[token] : undefined;
+  const irregularFamily = includeIrregular ? IRREGULAR_LEMMA_FAMILIES.get(token) : undefined;
   if (irregularFamily) return new Set([irregularFamily]);
   const keys = new Set<string>(token.length >= 3 ? [token] : []);
   const add = (form: string) => { if (form.length >= 3) keys.add(form); };
@@ -200,7 +213,13 @@ function isSafeOption(value: string, correct: string): boolean {
   return Math.abs([...value].length - [...correct].length) <= Math.max(3, Math.ceil([...correct].length / 2));
 }
 
-function reasonFor(value: string, correct: string, translation: string, trap: FillGapTrapType): string {
+function reasonFor(value: string, correct: string, translation: string, trap: FillGapTrapType, category: FillGapCategory): string {
+  if (trap === 'lexical_meaning' && category === 'number_time') {
+    return `“${value}” changes the authored number or time; use “${correct}” for “${translation}”.`;
+  }
+  if (trap === 'lexical_meaning' && category === 'lexical_other') {
+    return `“${value}” changes the authored communicative meaning; use “${correct}” for “${translation}”.`;
+  }
   const explanations: Record<FillGapTrapType, string> = {
     morphology: `“${value}” has the wrong form; use “${correct}” for the required inflection.`,
     lexical_meaning: `“${value}” is not “${correct}”, the token required by “${translation}”.`,
@@ -229,7 +248,7 @@ export function buildFillGapCandidates(day: SourceDay, phrase: SourcePhrase): re
   const translation = typeof phrase.meaning?.ru === 'string' ? phrase.meaning.ru.trim() : '';
   const tokens = authoredSentence.split(/\s+/);
   const lexicalIndices = tokens.map((token, index) => (TOKEN.test(lexicalToken(token)) ? index : -1)).filter((index) => index >= 0);
-  if (!authoredSentence || !translation || !Array.isArray(phrase.words) || !phrase.words.length
+  if (!authoredSentence || authoredSentence.includes('___') || !translation || !Array.isArray(phrase.words) || !phrase.words.length
     || lexicalIndices.length !== phraseTokens(authoredSentence).length) return [];
 
   const candidates: FillGapCandidate[] = [];
@@ -252,26 +271,34 @@ export function buildFillGapCandidates(day: SourceDay, phrase: SourcePhrase): re
     const deterministicFallbacks = category === 'verb'
       ? derivedVerbForms(correct)
       : (FUNCTION_FALLBACKS[category] ?? []);
-    for (const raw of [...word.distractors, ...deterministicFallbacks]) {
-      const value = raw;
+    let hasUnprovableAuthoredDistractor = false;
+    for (const { value, authored } of [
+      ...word.distractors.map((value: unknown) => ({ value: value as string, authored: true })),
+      ...deterministicFallbacks.map((value) => ({ value, authored: false })),
+    ]) {
       if (!isSafeOption(value, correct) || seen.has(normalized(value))) continue;
       const trapType = trapFor(category, correct, value);
-      if (!trapType) continue;
+      if (!trapType) {
+        if (authored) hasUnprovableAuthoredDistractor = true;
+        continue;
+      }
+      if (selected.length === 3) continue;
       const completedSentence = sentenceWith(tokens, index, replacementFor(tokens[index], value));
       if (completedSentence === authoredSentence) continue;
-      const reason = reasonFor(value, correct, translation, trapType);
+      const reason = reasonFor(value, correct, translation, trapType, category);
       if (!reason.includes(value) || !completedSentence.includes(value)
         || Buffer.byteLength(completedSentence, 'utf8') > TOURNAMENT_TASK_LIMITS.referenceBytes
         || Buffer.byteLength(reason, 'utf8') > TOURNAMENT_TASK_LIMITS.explanationBytes) continue;
       seen.add(normalized(value));
       selected.push({ value, trapType, completedSentence, reason });
-      if (selected.length === 3) break;
     }
-    if (selected.length !== 3) continue;
+    if (hasUnprovableAuthoredDistractor || selected.length !== 3) continue;
     const position = index === lexicalIndices[0] ? 'first'
       : index === lexicalIndices[lexicalIndices.length - 1] ? 'last' : 'middle';
     const prompt = sentenceWith(tokens, index, replacementFor(tokens[index], '___'));
-    if (prompt.replace('___', correct) !== authoredSentence) continue;
+    if (prompt.split('___').length !== 2) continue;
+    const [beforeBlank, afterBlank] = prompt.split('___');
+    if (`${beforeBlank}${correct}${afterBlank}` !== authoredSentence) continue;
     const candidate: FillGapCandidate = {
       correctToken: correct,
       category,

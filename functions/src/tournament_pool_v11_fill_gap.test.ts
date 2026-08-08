@@ -1,4 +1,4 @@
-import { buildFillGapCandidates, type FillGapCategory } from './tournament_pool_v11_fill_gap';
+import { buildFillGapCandidates, buildIrregularLemmaFamilies, type FillGapCategory } from './tournament_pool_v11_fill_gap';
 import { phraseTokens, type SourceDay, type SourcePhrase } from './tournament_task_factory';
 
 const day: SourceDay = {
@@ -64,12 +64,26 @@ describe('buildFillGapCandidates', () => {
     for (const category of expected) expect(candidates.map((item) => item.category)).toContain(category);
     expect(new Set(candidates.map((item) => item.position))).toEqual(new Set(['first', 'middle', 'last']));
     expect([...new Set(candidates.flatMap((item) => item.distractors.map((distractor) => distractor.trapType)))])
-      .toEqual(expect.arrayContaining(['morphology', 'government', 'collocation']));
+      .toEqual(expect.arrayContaining(['morphology', 'government', 'lexical_meaning']));
+    const expectedTraps: Readonly<Record<FillGapCategory, readonly string[]>> = {
+      verb: ['morphology', 'morphology', 'lexical_meaning'], noun: ['lexical_meaning', 'lexical_meaning', 'lexical_meaning'],
+      adjective: ['lexical_meaning', 'lexical_meaning', 'lexical_meaning'], adverb: ['lexical_meaning', 'lexical_meaning', 'lexical_meaning'],
+      phrasal_particle: ['government', 'government', 'government'], preposition: ['government', 'government', 'government'],
+      modal: ['function_choice', 'function_choice', 'function_choice'], pronoun: ['reference', 'reference', 'reference'],
+      conjunction: ['function_choice', 'function_choice', 'function_choice'], determiner: ['function_choice', 'function_choice', 'function_choice'],
+      existential: ['function_choice', 'function_choice', 'function_choice'], article: ['function_choice', 'function_choice', 'function_choice'],
+      to_be: ['agreement', 'agreement', 'morphology'], number_time: ['lexical_meaning', 'lexical_meaning', 'lexical_meaning'],
+      lexical_other: ['lexical_meaning', 'lexical_meaning', 'lexical_meaning'],
+    };
     for (const candidate of candidates) {
       expect(candidate.prompt.replace('___', candidate.correctToken)).toBe(candidate.authoredSentence);
       expect(candidate.correctToken.trim().split(/\s+/)).toHaveLength(1);
       expect(candidate.distractors).toHaveLength(3);
       expect(new Set([candidate.correctToken, ...candidate.distractors.map((item) => item.value)].map((item) => item.toLowerCase())).size).toBe(4);
+      expect(candidate.distractors.map((item) => item.trapType)).toEqual(expectedTraps[candidate.category]);
+      expect(candidate.prompt.split('___')).toHaveLength(2);
+      const [before, after] = candidate.prompt.split('___');
+      expect(`${before}${candidate.correctToken}${after}`).toBe(candidate.authoredSentence);
     }
   });
 
@@ -111,6 +125,50 @@ describe('buildFillGapCandidates', () => {
   it('rejects an unknown or empty part of speech instead of treating it as lexical_other', () => {
     expect(buildFillGapCandidates(day, phrase('unknown', 'They sleep now.', 'sleep', 'mystery', ['sleeps', 'slept', 'rest']))).toEqual([]);
     expect(buildFillGapCandidates(day, phrase('empty', 'They sleep now.', 'sleep', '', ['sleeps', 'slept', 'rest']))).toEqual([]);
+  });
+
+  it.each(['constructor', 'toString', '__proto__'])('rejects prototype part-of-speech aliases: %s', (partOfSpeech) => {
+    expect(buildFillGapCandidates(day, phrase('prototype-pos', 'They sleep now.', 'sleep', partOfSpeech, ['sleeps', 'slept', 'rest']))).toEqual([]);
+  });
+
+  it('uses lexical meaning traps, never collocation, for authored lexical-other and number options', () => {
+    const yes = buildFillGapCandidates(day, phrase('yes', 'Yes, we can.', 'Yes', 'interjection', ['No', 'Maybe', 'Later'])).at(0);
+    const seven = buildFillGapCandidates(day, phrase('seven', 'Meet at 7.', '7', 'number', ['6', '8', '9'])).at(0);
+
+    for (const candidate of [yes, seven]) {
+      expect(candidate).toBeDefined();
+      for (const distractor of candidate?.distractors ?? []) {
+        expect(distractor.trapType).toBe('lexical_meaning');
+        expect(distractor.reason).toContain(distractor.value);
+        expect(distractor.reason).toContain(candidate?.correctToken);
+        expect(distractor.reason).toContain('Контекст для проверки.');
+      }
+    }
+  });
+
+  it('rejects same-past to_be substitutions as unprovable', () => {
+    expect(buildFillGapCandidates(day, phrase(
+      'irrealis-were', 'If he were here.', 'were', 'to be', ['was', 'is', 'be'],
+    ))).toEqual([]);
+  });
+
+  it('rejects ambiguous axes, axe, and axis noun surfaces instead of typing a false inflection trap', () => {
+    expect(buildFillGapCandidates(day, phrase(
+      'ambiguous-axes', 'The axes are useful.', 'axes', 'noun', ['axe', 'axis', 'tools'],
+    ))).toEqual([]);
+  });
+
+  it('rejects authored sentences that already contain the fill-gap sentinel', () => {
+    expect(buildFillGapCandidates(day, phrase(
+      'authored-sentinel', 'Sleep ___ now.', 'Sleep', 'verb', ['sleeps', 'slept', 'rests'],
+    ))).toEqual([]);
+  });
+
+  it('rejects conflicting irregular family surfaces during registry construction', () => {
+    expect(() => buildIrregularLemmaFamilies([
+      { base: 'alpha', thirdPerson: 'shares', past: 'alphaed', participle: 'alphaed', gerund: 'alphaing' },
+      { base: 'beta', thirdPerson: 'shares', past: 'betaed', participle: 'betaed', gerund: 'betaing' },
+    ])).toThrow(/shares.*alpha.*beta/i);
   });
 
   it('rejects raw distractors that would need whitespace repair and malformed distractor collections', () => {
@@ -287,7 +345,7 @@ describe('buildFillGapCandidates', () => {
     }
   });
 
-  it('uses the nearest preceding pronoun for to_be agreement after fronted material', () => {
+  it('classifies a fronted-material same-tense to_be substitution as agreement', () => {
     const candidate = buildFillGapCandidates(day, phrase(
       'fronted-subject', 'Today he is ready.', 'is', 'to be', ['are', 'was', 'be'],
     )).at(0);

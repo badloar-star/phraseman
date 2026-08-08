@@ -25,8 +25,13 @@ type ClosedParenthetical = { start: number; end: number };
 const OPEN_TO_CLOSE: Readonly<Record<string, string>> = Object.freeze({ '(': ')', '[': ']', '{': '}' });
 const CLOSE_BRACKETS = new Set(Object.values(OPEN_TO_CLOSE));
 const TOP_LEVEL_SEPARATORS = new Set([',', ';', '/']);
-const EXACT_EDITORIAL_MARKER = /(^|[^\p{L}\p{M}])(?:sic|устар\.?|книжн\.?|ред\.?|разг\.?|букв\.?|перен\.?)(?=$|[^\p{L}\p{M}])/iu;
-const CYRILLIC_EDITORIAL_ABBREVIATION = /(^|[^\p{L}\p{M}])[\p{Script=Cyrillic}]{1,6}\.(?=$|[^\p{L}\p{M}])/u;
+/** Authoritative normalized source labels that are editorial metadata, never a gloss sense. */
+const EDITORIAL_SOURCE_LABELS = Object.freeze([
+  'sic', 'устар', 'устаревш', 'книжн', 'ред', 'разг', 'разговорн', 'букв', 'перен', 'ирон',
+  'прост', 'поэт', 'диал', 'неодобр', 'офиц', 'официальн', 'спец', 'жарг', 'простореч', 'редко',
+]);
+const EDITORIAL_SOURCE_LABEL_SET = new Set(EDITORIAL_SOURCE_LABELS);
+const SOURCE_LABEL_TOKEN = /(?:^|[^\p{L}\p{M}])([\p{L}\p{M}]+)\.?(?=$|[^\p{L}\p{M}])/gu;
 // Extracted annotations are deliberately plain prose: letters/numbers, whitespace,
 // and only ordinary dictionary punctuation. Tags, markup, and editorial abbreviations fail closed.
 const PLAIN_SENSE_ANNOTATION = /^[\p{L}\p{M}\p{N}\s.,;:/!?'"«»()[\]{}\-–—]+$/u;
@@ -53,11 +58,18 @@ function isForbiddenControl(codePoint: number): boolean {
 }
 
 function isEditorialFragment(value: string): boolean {
-  return EXACT_EDITORIAL_MARKER.test(value) || CYRILLIC_EDITORIAL_ABBREVIATION.test(value);
+  for (const match of value.matchAll(SOURCE_LABEL_TOKEN)) {
+    if (EDITORIAL_SOURCE_LABEL_SET.has(match[1].toLocaleLowerCase('ru'))) return true;
+  }
+  return false;
 }
 
 function hasLexicalContent(value: string): boolean {
   return /[\p{L}\p{N}]/u.test(value);
+}
+
+function hasSeparatorBoundary(value: string): boolean {
+  return /^[,;/]|[,;/]$/u.test(value);
 }
 
 function trimEndIndex(value: string, start: number, end: number): number {
@@ -145,6 +157,7 @@ export function parseDisplayGloss(raw: string): ParseResult {
   }
 
   const hintSegments = [extractedHint, ...segments.slice(1)].filter(Boolean);
+  if (hintSegments.some(hasSeparatorBoundary)) return { ok: false, reason: 'unsupported_editorial_fragment' };
   if (hintSegments.some((value) => !hasLexicalContent(value))) return { ok: false, reason: 'empty_sense' };
   const senseHint = hintSegments.join('; ');
   const displayWords = displayTranslation.trim().split(/\s+/u);

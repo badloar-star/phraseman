@@ -24,11 +24,11 @@ describe('parseDisplayGloss', () => {
   });
 
   it('preserves nested balanced brackets and their internal separators', () => {
-    expect(parseDisplayGloss('вещь (редко: предмет [старое/новое; пример, случай])')).toEqual({
+    expect(parseDisplayGloss('вещь (обычно: предмет [старое/новое; пример, случай])')).toEqual({
       ok: true,
       value: {
         displayTranslation: 'вещь',
-        senseHint: 'редко: предмет [старое/новое; пример, случай]',
+        senseHint: 'обычно: предмет [старое/новое; пример, случай]',
       },
     });
   });
@@ -116,6 +116,32 @@ describe('parseDisplayGloss', () => {
     });
   });
 
+  it.each([
+    ['слово.', { displayTranslation: 'слово.', senseHint: '' }],
+    ['машина.', { displayTranslation: 'машина.', senseHint: '' }],
+    ['слово (утро.)', { displayTranslation: 'слово', senseHint: 'утро.' }],
+  ] as const)('keeps ordinary Russian words with periods: %s', (raw, value) => {
+    expect(parseDisplayGloss(raw)).toEqual({ ok: true, value });
+  });
+
+  it.each([
+    'sic', 'устар', 'устаревш', 'книжн', 'ред', 'разг', 'разговорн', 'букв', 'перен', 'ирон', 'прост',
+    'поэт', 'диал', 'неодобр', 'офиц', 'официальн', 'спец', 'жарг', 'простореч', 'редко',
+  ])('rejects the authoritative editorial label: %s', (label) => {
+    expect(parseDisplayGloss(`слово (${label}.)`)).toEqual({
+      ok: false,
+      reason: 'unsupported_editorial_fragment',
+    });
+  });
+
+  it('rejects annotation and source separator boundary punctuation', () => {
+    expect(parseDisplayGloss('слово (значение;), иной')).toEqual({
+      ok: false,
+      reason: 'unsupported_editorial_fragment',
+    });
+    expect(parseDisplayGloss('слово, значение;')).toEqual({ ok: false, reason: 'empty_primary_sense' });
+  });
+
   it('rejects square and curly bracket structures retained in the display', () => {
     expect(parseDisplayGloss('слово[вариант]')).toEqual({ ok: false, reason: 'unsupported_editorial_fragment' });
     expect(parseDisplayGloss('слово{вариант}')).toEqual({ ok: false, reason: 'unsupported_editorial_fragment' });
@@ -123,7 +149,7 @@ describe('parseDisplayGloss', () => {
 
   it.each([
     ['слово (---)', 'empty_sense'],
-    ['слово (;;;)', 'empty_sense'],
+    ['слово (;;;)', 'unsupported_editorial_fragment'],
     ['слово, ---', 'empty_sense'],
     ['---', 'empty_primary_sense'],
   ] as const)('rejects punctuation-only emitted values: %s', (raw, reason) => {

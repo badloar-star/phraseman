@@ -16,7 +16,7 @@ const BASE_INPUT: CreateLevelExamAttemptInput = {
   level: 'A2',
   studyTarget: 'en',
   sourceLocale: 'ru',
-  blueprintVersion: 2,
+  blueprintVersion: 3,
   seed: 'seed-a2',
   orderedTaskIds: ['task-1', 'task-2'],
   scoredUnitIds: ['score-1', 'score-2'],
@@ -86,7 +86,7 @@ describe('level exam attempt state', () => {
       level: BASE_INPUT.level,
       studyTarget: BASE_INPUT.studyTarget,
       sourceLocale: BASE_INPUT.sourceLocale,
-      blueprintVersion: 2 as const,
+    blueprintVersion: 3 as const,
     };
 
     expect(restoreLevelExamAttempt(attempt, { ...context, nowMs: 100_000 }))
@@ -102,7 +102,7 @@ describe('level exam attempt state', () => {
       level: BASE_INPUT.level,
       studyTarget: BASE_INPUT.studyTarget,
       sourceLocale: BASE_INPUT.sourceLocale,
-      blueprintVersion: 2 as const,
+    blueprintVersion: 3 as const,
       nowMs: 100_000,
     };
 
@@ -111,6 +111,8 @@ describe('level exam attempt state', () => {
     expect(restoreLevelExamAttempt({ ...attempt, deadlineAtMs: Number.NaN }, context))
       .toEqual({ kind: 'quarantine', reason: 'invalid_snapshot' });
     expect(restoreLevelExamAttempt({ ...attempt, blueprintVersion: 1 } as never, context))
+      .toEqual({ kind: 'quarantine', reason: 'blueprint_mismatch' });
+    expect(restoreLevelExamAttempt({ ...attempt, blueprintVersion: 2 } as never, context))
       .toEqual({ kind: 'quarantine', reason: 'blueprint_mismatch' });
   });
 

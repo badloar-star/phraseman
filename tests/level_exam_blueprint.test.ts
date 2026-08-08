@@ -2,10 +2,10 @@ import { COURSE_LEVEL_RANGES, COURSE_LEVELS } from '../app/course_levels';
 import { buildLevelExamBlueprint } from '../app/level_exam_blueprint';
 import { getLessonData } from '../app/lesson_data_all';
 import type { LessonPhrase } from '../app/lesson_data_types';
-import { SOURCE_LOCALES, type SourceLocale } from '../app/source_locales';
+import type { SourceLocale } from '../app/source_locales';
 
 type FormatCounts = Record<
-  'context_choice' | 'phrase_builder' | 'meaning_choice' | 'speed_match',
+  'guess_phrase' | 'fill_gap' | 'find_oddity' | 'translate_build' | 'speed_match',
   number
 >;
 
@@ -20,9 +20,10 @@ function countScoredFormats(
     }
     return counts;
   }, {
-    context_choice: 0,
-    phrase_builder: 0,
-    meaning_choice: 0,
+    guess_phrase: 0,
+    fill_gap: 0,
+    find_oddity: 0,
+    translate_build: 0,
     speed_match: 0,
   });
 }
@@ -45,7 +46,7 @@ function canonicalSourceText(phrase: LessonPhrase, locale: SourceLocale): string
   if (locale === 'ru') return phrase.russian;
   if (locale === 'uk') return phrase.ukrainian || phrase.russian;
   if (locale === 'es') return phrase.spanish || phrase.sourceLocales?.es || phrase.russian;
-  return phrase.sourceLocales?.[locale] || phrase.russian || phrase.ukrainian;
+  return phrase.sourceLocales?.[locale] || '';
 }
 
 describe('level exam blueprint', () => {
@@ -60,10 +61,11 @@ describe('level exam blueprint', () => {
     expect(blueprint.scoredUnitIds).toHaveLength(30);
     expect(new Set(blueprint.scoredUnitIds).size).toBe(30);
     expect(countScoredFormats(blueprint)).toEqual({
-      context_choice: 8,
-      phrase_builder: 12,
-      meaning_choice: 6,
-      speed_match: 4,
+      guess_phrase: 6,
+      fill_gap: 6,
+      find_oddity: 6,
+      translate_build: 6,
+      speed_match: 6,
     });
   });
 
@@ -119,7 +121,7 @@ describe('level exam blueprint', () => {
     expect(changedPositions).toBeGreaterThanOrEqual(8);
   });
 
-  test.each(SOURCE_LOCALES)('%s uses complete canonical text and valid interactions', (sourceLocale) => {
+  test.each(['ru', 'uk', 'es'] as const)('%s uses complete canonical text and valid interactions', (sourceLocale) => {
     for (const level of COURSE_LEVELS) {
       const [from, to] = COURSE_LEVEL_RANGES[level];
       const canonicalPhrases = Array.from({ length: to - from + 1 }, (_, index) => from + index)
@@ -138,8 +140,8 @@ describe('level exam blueprint', () => {
 
       for (const task of blueprint.tasks) {
         if (task.format === 'speed_match') {
-          expect(new Set(task.pairs.map((pair) => normalized(pair.source))).size).toBe(4);
-          expect(new Set(task.pairs.map((pair) => normalized(pair.target))).size).toBe(4);
+          expect(new Set(task.pairs.map((pair) => normalized(pair.source))).size).toBe(6);
+          expect(new Set(task.pairs.map((pair) => normalized(pair.target))).size).toBe(6);
           for (const pair of task.pairs) {
             expect(canonicalSource).toContain(normalized(pair.source));
             expect(canonicalEnglish).toContain(normalized(pair.target));
@@ -150,14 +152,13 @@ describe('level exam blueprint', () => {
         expect(task.prompt.trim()).not.toBe('');
         expect(task.explanation.trim()).not.toBe('');
 
-        if (task.format === 'context_choice' || task.format === 'meaning_choice') {
+        if (task.format === 'guess_phrase' || task.format === 'fill_gap' || task.format === 'find_oddity') {
           expect(task.options).toHaveLength(4);
           expect(new Set(task.options.map((option) => normalized(option.text))).size).toBe(4);
           expect(task.options.filter((option) => option.id === task.correctOptionId)).toHaveLength(1);
           expect(task.options.some((option) => option.text.includes(':wrong-'))).toBe(false);
-          const canonicalSet = task.format === 'context_choice' ? canonicalEnglish : canonicalSource;
-          for (const option of task.options) expect(canonicalSet).toContain(normalized(option.text));
-        } else if (task.format === 'phrase_builder') {
+          if (task.format === 'guess_phrase') for (const option of task.options) expect(canonicalEnglish).toContain(normalized(option.text));
+        } else if (task.format === 'translate_build') {
           expect(task.tokens.length).toBeGreaterThanOrEqual(2);
           expect(new Set(task.tokens.map((token) => token.id))).toEqual(new Set(task.correctTokenIds));
           if (task.tokens.map((token) => token.id).join('|') !== task.correctTokenIds.join('|')) {
@@ -168,6 +169,12 @@ describe('level exam blueprint', () => {
 
       expect(shuffledBuilders).toBeGreaterThanOrEqual(6);
     }
+  });
+
+  test.each(['pt-BR', 'vi', 'id', 'tr', 'pl'] as const)('%s fails closed instead of falling back to Russian', (sourceLocale) => {
+    expect(() => buildLevelExamBlueprint({
+      level: 'A1', studyTarget: 'en', sourceLocale, seed: `missing-${sourceLocale}`,
+    })).toThrow(`level_exam_locale_content_missing:A1:${sourceLocale}`);
   });
 
   test.each(COURSE_LEVELS)('%s has unique tasks built only from canonical lesson content', (level) => {
@@ -195,9 +202,9 @@ describe('level exam blueprint', () => {
       expect(canonical).toBeDefined();
 
       let answer = '';
-      if (task.format === 'context_choice' || task.format === 'meaning_choice') {
+      if (task.format === 'guess_phrase' || task.format === 'fill_gap' || task.format === 'find_oddity') {
         answer = task.options.find((option) => option.id === task.correctOptionId)?.text || '';
-      } else if (task.format === 'phrase_builder') {
+      } else if (task.format === 'translate_build') {
         const tokenById = new Map(task.tokens.map((token) => [token.id, token.text]));
         answer = task.correctTokenIds.map((id) => tokenById.get(id)).join(' ');
         const canonicalWords = (canonical?.wordsEn?.length ? canonical.wordsEn : canonical?.words || [])
@@ -221,7 +228,7 @@ describe('level exam blueprint', () => {
         seed: `position-${level}-${seedIndex}`,
       });
       for (const task of blueprint.tasks) {
-        if (task.format === 'context_choice' || task.format === 'meaning_choice') {
+        if (task.format === 'guess_phrase' || task.format === 'fill_gap' || task.format === 'find_oddity') {
           positions.push(task.options.findIndex((option) => option.id === task.correctOptionId));
         }
       }

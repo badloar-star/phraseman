@@ -50,7 +50,6 @@ import LevelExamCountdown from './LevelExamCountdown';
 import LevelExamIntro from './LevelExamIntro';
 import LevelExamQuestionFrame from './LevelExamQuestionFrame';
 import LevelExamResult, { type LevelExamRewardState } from './LevelExamResult';
-import MeaningChoiceQuestion from './MeaningChoiceQuestion';
 import PhraseBuilderQuestion from './PhraseBuilderQuestion';
 import SpeedMatchQuestion from './SpeedMatchQuestion';
 
@@ -82,15 +81,21 @@ function scoreRange(blueprint: LevelExamBlueprint, taskIndex: number): { start: 
 
 function taskFormatLabel(task: LevelExamTask, lang: Lang): string {
   const labels = {
-    context_choice: { ru: 'Контекст', uk: 'Контекст', es: 'Contexto', 'pt-BR': 'Contexto', vi: 'Ngữ cảnh', id: 'Konteks', tr: 'Bağlam', pl: 'Kontekst' },
-    phrase_builder: { ru: 'Собери фразу', uk: 'Склади фразу', es: 'Construye la frase', 'pt-BR': 'Monte a frase', vi: 'Ghép câu', id: 'Susun frasa', tr: 'Cümleyi kur', pl: 'Ułóż zdanie' },
-    meaning_choice: { ru: 'Выбери смысл', uk: 'Обери значення', es: 'Elige el significado', 'pt-BR': 'Escolha o significado', vi: 'Chọn ý nghĩa', id: 'Pilih makna', tr: 'Anlamı seç', pl: 'Wybierz znaczenie' },
+    guess_phrase: { ru: 'Живая ситуация', uk: 'Жива ситуація', es: 'Situación real', 'pt-BR': 'Situação real', vi: 'Tình huống thực tế', id: 'Situasi nyata', tr: 'Gerçek durum', pl: 'Prawdziwa sytuacja' },
+    fill_gap: { ru: 'Пропущенное слово', uk: 'Пропущене слово', es: 'Palabra faltante', 'pt-BR': 'Palavra faltante', vi: 'Từ còn thiếu', id: 'Kata yang hilang', tr: 'Eksik kelime', pl: 'Brakujące słowo' },
+    find_oddity: { ru: 'Так не говорят', uk: 'Так не кажуть', es: 'Así no se dice', 'pt-BR': 'Não se diz assim', vi: 'Không nói như vậy', id: 'Tidak diucapkan seperti itu', tr: 'Böyle söylenmez', pl: 'Tak się nie mówi' },
+    translate_build: { ru: 'Собери фразу', uk: 'Збери фразу', es: 'Arma la frase', 'pt-BR': 'Monte a frase', vi: 'Ghép câu', id: 'Susun frasa', tr: 'Cümleyi oluştur', pl: 'Ułóż zdanie' },
     speed_match: { ru: 'Быстрые пары', uk: 'Швидкі пари', es: 'Pares rápidos', 'pt-BR': 'Pares rápidos', vi: 'Ghép cặp nhanh', id: 'Pasangan cepat', tr: 'Hızlı eşleştirme', pl: 'Szybkie pary' },
   } as const;
   return triLang(lang, labels[task.format]);
 }
 
 function taskPrompt(task: LevelExamTask, lang: Lang): string {
+  if (task.format === 'find_oddity') return triLang(lang, {
+    ru: 'Какая фраза составлена неправильно?', uk: 'Яку фразу складено неправильно?', es: '¿Qué frase está mal construida?',
+    'pt-BR': 'Qual frase está construída incorretamente?', vi: 'Câu nào được tạo không đúng?', id: 'Kalimat mana yang disusun salah?',
+    tr: 'Hangi cümle yanlış kurulmuş?', pl: 'Które zdanie jest zbudowane niepoprawnie?',
+  });
   if (task.format !== 'speed_match') return task.prompt;
   return triLang(lang, {
       ru: 'Соедини выражения с переводом', uk: 'З’єднай вирази з перекладом', es: 'Une cada expresión con su traducción',
@@ -115,6 +120,7 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
   const [starting, setStarting] = useState(false);
   const [noEnergy, setNoEnergy] = useState(false);
   const [exitConfirm, setExitConfirm] = useState(false);
+  const [contentUnavailable, setContentUnavailable] = useState(false);
   const attemptRef = useRef<LevelExamAttemptSnapshot | null>(null);
   const blueprintRef = useRef<LevelExamBlueprint | null>(null);
   const finishingRef = useRef(false);
@@ -180,7 +186,7 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
         payload: {
           level,
           studyTarget: 'en',
-          blueprintVersion: 2,
+          blueprintVersion: 3,
           pct: scored.pct,
           percent: scored.pct,
           passed: scored.passed,
@@ -235,7 +241,7 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
         level,
         studyTarget: 'en',
         sourceLocale: lang,
-        blueprintVersion: 2,
+        blueprintVersion: 3,
         nowMs: Date.now(),
       });
       if (decision.kind === 'quarantine') {
@@ -280,6 +286,21 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
     if (!ownerStableUid) return;
     setStarting(true);
     try {
+      const startedAtMs = Date.now();
+      const startToken = `${startedAtMs.toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
+      let nextBlueprint: LevelExamBlueprint;
+      try {
+        nextBlueprint = buildLevelExamBlueprint({
+          level,
+          studyTarget: 'en',
+          sourceLocale: lang,
+          seed: `${ownerStableUid}:${level}:${startToken}`,
+        });
+      } catch (error) {
+        setContentUnavailable(true);
+        void trackFeatureError('level_exam', 'content_unavailable', error, { level, lang }, 'level_exam_v3');
+        return;
+      }
       if (!isUnlimited && energy + bonusEnergy < ENERGY_COST) {
         setNoEnergy(true);
         return;
@@ -288,14 +309,6 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
         setNoEnergy(true);
         return;
       }
-      const startedAtMs = Date.now();
-      const startToken = `${startedAtMs.toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
-      const nextBlueprint = buildLevelExamBlueprint({
-        level,
-        studyTarget: 'en',
-        sourceLocale: lang,
-        seed: `${ownerStableUid}:${level}:${startToken}`,
-      });
       if (nextBlueprint.scoredUnitIds.length !== 30) throw new Error('level_exam_v2_score_units_invalid');
       const nextAttempt = createLevelExamAttempt({
         energySpent: true,
@@ -304,7 +317,7 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
         level,
         studyTarget: 'en',
         sourceLocale: lang,
-        blueprintVersion: 2,
+        blueprintVersion: 3,
         seed: nextBlueprint.seed,
         orderedTaskIds: nextBlueprint.tasks.map((task) => task.id),
         scoredUnitIds: [...nextBlueprint.scoredUnitIds],
@@ -366,7 +379,7 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
     setPhase('quiz');
   }, [storeAttempt]);
 
-  if (accessState === 'blocked' || identityUnavailable) {
+  if (accessState === 'blocked' || identityUnavailable || contentUnavailable) {
     return (
       <ScreenGradient artBackdrop="exam">
         <SafeAreaView style={styles.safeArea}>
@@ -374,7 +387,9 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
             <TonalSurface tone="raised" radius={ds.radius.xl} style={[styles.stateCard, { padding: ds.spacing.xl, gap: ds.spacing.md }]}> 
               <Ionicons name="lock-closed-outline" size={34} color={t.accent} />
               <Text accessibilityRole="header" style={{ color: t.textPrimary, fontSize: f.h2, fontFamily: ds.fontFamily, fontWeight: '900', textAlign: 'center' }}>
-                {identityUnavailable
+                {contentUnavailable
+                    ? triLang(lang, { ru: 'Экзамен для этого языка пока готовится. Энергия не списана.', uk: 'Іспит для цієї мови ще готується. Енергію не списано.', es: 'El examen para este idioma aún se está preparando. No se descontó energía.', 'pt-BR': 'O exame para este idioma ainda está sendo preparado. Nenhuma energia foi descontada.', vi: 'Bài thi cho ngôn ngữ này đang được chuẩn bị. Năng lượng chưa bị trừ.', id: 'Ujian untuk bahasa ini masih disiapkan. Energi tidak dikurangi.', tr: 'Bu dil için sınav hâlâ hazırlanıyor. Enerji düşülmedi.', pl: 'Egzamin dla tego języka jest jeszcze przygotowywany. Energia nie została pobrana.' })
+                    : identityUnavailable
                     ? triLang(lang, { ru: 'Не удалось подготовить сохранение попытки. Вернись и открой экзамен снова.', uk: 'Не вдалося підготувати збереження спроби. Повернися й відкрий іспит знову.', es: 'No se pudo preparar el guardado. Vuelve a abrir el examen.', 'pt-BR': 'Não foi possível preparar o salvamento. Abra o exame novamente.', vi: 'Không thể chuẩn bị lưu bài thi. Hãy mở lại bài thi.', id: 'Penyimpanan ujian belum siap. Buka kembali ujian.', tr: 'Sınav kaydı hazırlanamadı. Sınavı yeniden aç.', pl: 'Nie udało się przygotować zapisu. Otwórz egzamin ponownie.' })
                     : blockedText}
               </Text>
@@ -441,19 +456,17 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
   let content: React.ReactNode;
   let canContinue = false;
 
-  if (task.format === 'context_choice' || task.format === 'meaning_choice') {
+  if (task.format === 'guess_phrase' || task.format === 'fill_gap' || task.format === 'find_oddity') {
     const answer = attempt.answers[task.scoreUnitId];
     const selectedOptionId = answer?.kind === 'choice' ? answer.optionId : null;
     canContinue = selectedOptionId !== null;
     const choiceProps = { task, selectedOptionId, onSelect: (optionId: string) => updateAnswer(task.scoreUnitId, { kind: 'choice', optionId }) };
-    content = task.format === 'context_choice'
-      ? <ContextChoiceQuestion {...choiceProps} />
-      : <MeaningChoiceQuestion {...choiceProps} />;
-  } else if (task.format === 'phrase_builder') {
+    content = <ContextChoiceQuestion {...choiceProps} />;
+  } else if (task.format === 'translate_build') {
     const answer = attempt.answers[task.scoreUnitId];
-    const tokenIds = answer?.kind === 'phrase_builder' ? answer.tokenIds : [];
-    canContinue = tokenIds.length > 0;
-    content = <PhraseBuilderQuestion task={task} selectedTokenIds={tokenIds} onChange={(next) => updateAnswer(task.scoreUnitId, { kind: 'phrase_builder', tokenIds: next })} />;
+    const tokenIds = answer?.kind === 'translate_build' ? answer.tokenIds : [];
+    canContinue = tokenIds.length === task.correctTokenIds.length;
+    content = <PhraseBuilderQuestion task={task} selectedTokenIds={tokenIds} onChange={(next) => updateAnswer(task.scoreUnitId, { kind: 'translate_build', tokenIds: next })} />;
   } else if (isSpeedMatchTask(task)) {
     const matches = Object.fromEntries(task.pairs.flatMap((pair) => {
       const answer = attempt.answers[pair.scoreUnitId];
@@ -468,6 +481,7 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
   return (
     <>
       <LevelExamQuestionFrame
+        taskId={task.id}
         formatLabel={taskFormatLabel(task, lang)}
         prompt={taskPrompt(task, lang)}
         progressStart={range.start}

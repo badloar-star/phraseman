@@ -65,7 +65,7 @@ export function scoreLevelExam(
           correct: answer?.kind === 'speed_match' && answer.targetScoreUnitId === pair.scoreUnitId,
         });
       }
-    } else if (task.format === 'context_choice' || task.format === 'meaning_choice') {
+    } else if (task.format === 'guess_phrase' || task.format === 'fill_gap' || task.format === 'find_oddity') {
       const answer = answers[task.scoreUnitId];
       units.push({
         scoreUnitId: task.scoreUnitId,
@@ -73,13 +73,13 @@ export function scoreLevelExam(
         lessonId: task.lessonId,
         correct: answer?.kind === 'choice' && answer.optionId === task.correctOptionId,
       });
-    } else if (task.format === 'phrase_builder') {
+    } else if (task.format === 'translate_build') {
       const answer = answers[task.scoreUnitId];
       units.push({
         scoreUnitId: task.scoreUnitId,
         format: task.format,
         lessonId: task.lessonId,
-        correct: answer?.kind === 'phrase_builder' && sameStrings(answer.tokenIds, task.correctTokenIds),
+        correct: answer?.kind === 'translate_build' && sameStrings(answer.tokenIds, task.correctTokenIds),
       });
     }
   }
@@ -91,9 +91,10 @@ export function scoreLevelExam(
   }
 
   const byFormat = {
-    context_choice: { correct: 0, total: 0 },
-    phrase_builder: { correct: 0, total: 0 },
-    meaning_choice: { correct: 0, total: 0 },
+    guess_phrase: { correct: 0, total: 0 },
+    fill_gap: { correct: 0, total: 0 },
+    find_oddity: { correct: 0, total: 0 },
+    translate_build: { correct: 0, total: 0 },
     speed_match: { correct: 0, total: 0 },
   } satisfies Record<LevelExamFormat, { correct: number; total: number }>;
   const lessonTotals = new Map<number, { correct: number; total: number }>();

@@ -21,8 +21,8 @@ describe('level exam access check deadline', () => {
       'utf8',
     );
 
-    expect(source).toContain(
-      "accessState === 'allowed' && phase === 'loading' && !identityUnavailable",
-    );
+    expect(source).toContain("accessState === 'blocked' || identityUnavailable");
+    expect(source).toContain("accessState === 'checking' || phase === 'loading' || phase === 'intro'");
+    expect(source).not.toContain('Готовим экзамен');
   });
 });

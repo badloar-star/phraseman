@@ -27,7 +27,6 @@ describe('level exam question UI contract', () => {
     const files = [
       'ContextChoiceQuestion.tsx',
       'PhraseBuilderQuestion.tsx',
-      'MeaningChoiceQuestion.tsx',
       'SpeedMatchQuestion.tsx',
     ];
 
@@ -40,7 +39,13 @@ describe('level exam question UI contract', () => {
       expect(source).not.toMatch(/rgba?\(/i);
       expect(source).not.toMatch(/borderWidth\s*:/);
     }
-    expect(read('LevelExamV2.tsx')).not.toContain('<SpotErrorQuestion');
+    const route = read('LevelExamV2.tsx');
+    expect(route).not.toContain('<SpotErrorQuestion');
+    expect(route).not.toContain('MeaningChoiceQuestion');
+    expect(route).toContain("'guess_phrase'");
+    expect(route).toContain("'fill_gap'");
+    expect(route).toContain("'find_oddity'");
+    expect(route).toContain("'translate_build'");
   });
 
   it('keeps progress, timer, and one stable continuation action in the frame', () => {
@@ -50,6 +55,8 @@ describe('level exam question UI contract', () => {
     expect(frame).toContain('progressEnd');
     expect(frame).toContain('accessibilityState={{ disabled: !canContinue }}');
     expect(frame).toContain('decelerationRate="normal"');
+    expect(frame).toContain('SlideInRight');
+    expect(frame).toContain('SlideOutLeft');
     expect(frame).not.toMatch(/#[0-9a-f]{3,8}\b/i);
     expect(frame).not.toMatch(/rgba?\(/i);
     expect(frame).not.toMatch(/borderWidth\s*:/);

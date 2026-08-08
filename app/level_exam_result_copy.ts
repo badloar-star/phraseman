@@ -90,9 +90,10 @@ export function getLevelExamResultCopy(lang: Lang, { passed, neededForPass, ener
       vi: 'Xem lại kết quả', id: 'Tinjau hasil', tr: 'Sonucu incele', pl: 'Przejrzyj wynik',
     }),
     formatLabels: {
-      context_choice: triLang(lang, { ru: 'Контекст', uk: 'Контекст', es: 'Contexto', 'pt-BR': 'Contexto', vi: 'Ngữ cảnh', id: 'Konteks', tr: 'Bağlam', pl: 'Kontekst' }),
-      phrase_builder: triLang(lang, { ru: 'Сборка фраз', uk: 'Складання фраз', es: 'Frases', 'pt-BR': 'Frases', vi: 'Ghép câu', id: 'Susun frasa', tr: 'Cümle kurma', pl: 'Zdania' }),
-      meaning_choice: triLang(lang, { ru: 'Смысл', uk: 'Значення', es: 'Significado', 'pt-BR': 'Significado', vi: 'Ý nghĩa', id: 'Makna', tr: 'Anlam', pl: 'Znaczenie' }),
+      guess_phrase: triLang(lang, { ru: 'Ситуации', uk: 'Ситуації', es: 'Situaciones', 'pt-BR': 'Situações', vi: 'Tình huống', id: 'Situasi', tr: 'Durumlar', pl: 'Sytuacje' }),
+      fill_gap: triLang(lang, { ru: 'Пропуски', uk: 'Пропуски', es: 'Huecos', 'pt-BR': 'Lacunas', vi: 'Điền từ', id: 'Kata hilang', tr: 'Boşluklar', pl: 'Luki' }),
+      find_oddity: triLang(lang, { ru: 'Ошибки', uk: 'Помилки', es: 'Errores', 'pt-BR': 'Erros', vi: 'Lỗi', id: 'Kesalahan', tr: 'Hatalar', pl: 'Błędy' }),
+      translate_build: triLang(lang, { ru: 'Сборка фраз', uk: 'Складання фраз', es: 'Frases', 'pt-BR': 'Frases', vi: 'Ghép câu', id: 'Susun frasa', tr: 'Cümle kurma', pl: 'Zdania' }),
       speed_match: triLang(lang, { ru: 'Быстрые пары', uk: 'Швидкі пари', es: 'Pares', 'pt-BR': 'Pares', vi: 'Ghép cặp', id: 'Pasangan', tr: 'Eşleştirme', pl: 'Pary' }),
     },
   };

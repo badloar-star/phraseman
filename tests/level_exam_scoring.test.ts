@@ -21,11 +21,11 @@ function correctAnswers(): LevelExamAnswers {
           targetScoreUnitId: pair.scoreUnitId,
         };
       }
-    } else if (task.format === 'context_choice' || task.format === 'meaning_choice') {
+    } else if (task.format === 'guess_phrase' || task.format === 'fill_gap' || task.format === 'find_oddity') {
       answers[task.scoreUnitId] = { kind: 'choice', optionId: task.correctOptionId };
-    } else if (task.format === 'phrase_builder') {
+    } else if (task.format === 'translate_build') {
       answers[task.scoreUnitId] = {
-        kind: 'phrase_builder',
+        kind: 'translate_build',
         tokenIds: [...task.correctTokenIds],
       };
     }
@@ -56,10 +56,11 @@ describe('level exam scoring', () => {
       baseXp: 100,
     });
     expect(result.byFormat).toEqual({
-      context_choice: { correct: 8, total: 8 },
-      phrase_builder: { correct: 12, total: 12 },
-      meaning_choice: { correct: 6, total: 6 },
-      speed_match: { correct: 4, total: 4 },
+      guess_phrase: { correct: 6, total: 6 },
+      fill_gap: { correct: 6, total: 6 },
+      find_oddity: { correct: 6, total: 6 },
+      translate_build: { correct: 6, total: 6 },
+      speed_match: { correct: 6, total: 6 },
     });
     expect(result.byLesson.reduce((sum, lesson) => sum + lesson.total, 0)).toBe(30);
   });

@@ -56,7 +56,7 @@ describe('level exam attempt counter', () => {
       level: 'A2',
       studyTarget: 'en',
       sourceLocale: 'ru',
-      blueprintVersion: 2,
+      blueprintVersion: 3,
       seed: 'seed-a',
       orderedTaskIds: ['task-a'],
       scoredUnitIds: ['score-a'],

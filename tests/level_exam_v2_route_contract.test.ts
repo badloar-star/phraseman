@@ -22,7 +22,9 @@ describe('level exam v2 route contract', () => {
     expect(route).toContain('scoreLevelExam');
     expect(route).toContain('<ContextChoiceQuestion');
     expect(route).toContain('<PhraseBuilderQuestion');
-    expect(route).toContain('<MeaningChoiceQuestion');
+    expect(route).not.toContain('MeaningChoiceQuestion');
+    expect(route).toContain("task.format === 'guess_phrase' || task.format === 'fill_gap' || task.format === 'find_oddity'");
+    expect(route).toContain("task.format === 'translate_build'");
     expect(route).not.toContain('<SpotErrorQuestion');
     expect(route).toContain('<SpeedMatchQuestion');
   });
@@ -38,6 +40,17 @@ describe('level exam v2 route contract', () => {
     const route = read('components/level-exam/LevelExamV2.tsx');
     expect(route).not.toContain('Готовим экзамен');
     expect(route).toContain("const showIntro = accessState === 'checking' || phase === 'loading' || phase === 'intro'");
+  });
+
+  it('validates exam content before it can debit energy and gates unavailable locales visibly', () => {
+    const route = read('components/level-exam/LevelExamV2.tsx');
+    const start = route.indexOf('const startExam');
+    const build = route.indexOf('buildLevelExamBlueprint', start);
+    const debit = route.indexOf('await spendAmount(ENERGY_COST)', start);
+    expect(build).toBeGreaterThan(start);
+    expect(debit).toBeGreaterThan(build);
+    expect(route).toContain('setContentUnavailable(true)');
+    expect(route).toContain('Энергия не списана');
   });
 
   it('reads lesson boundaries from the canonical course map', () => {

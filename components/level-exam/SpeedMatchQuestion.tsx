@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated, { FadeInDown, useReducedMotion } from 'react-native-reanimated';
 
@@ -16,16 +16,23 @@ export default function SpeedMatchQuestion({ task, matches, onChange }: Props) {
   const { ds } = useTheme();
   const reduceMotion = useReducedMotion();
   const [activeSourceId, setActiveSourceId] = useState<string | null>(null);
+  const [wrongPair, setWrongPair] = useState<{ sourceId: string; targetId: string } | null>(null);
+  const wrongTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => () => { if (wrongTimer.current) clearTimeout(wrongTimer.current); }, []);
   const matchedTargets = useMemo(() => new Set(Object.values(matches)), [matches]);
   const sourcePairs = useMemo(() => (
     task.pairs.length > 1 ? [...task.pairs.slice(1), task.pairs[0]] : [...task.pairs]
   ), [task.pairs]);
   const chooseTarget = (targetId: string) => {
     if (!activeSourceId) return;
-    const next = { ...matches };
-    for (const [sourceId, matchedTarget] of Object.entries(next)) {
-      if (matchedTarget === targetId) delete next[sourceId];
+    if (activeSourceId !== targetId) {
+      const failed = { sourceId: activeSourceId, targetId };
+      setWrongPair(failed);
+      if (wrongTimer.current) clearTimeout(wrongTimer.current);
+      wrongTimer.current = setTimeout(() => setWrongPair(null), reduceMotion ? 0 : 240);
+      return;
     }
+    const next = { ...matches };
     next[activeSourceId] = targetId;
     onChange(next);
     setActiveSourceId(null);
@@ -39,7 +46,13 @@ export default function SpeedMatchQuestion({ task, matches, onChange }: Props) {
           const matched = Boolean(matches[pair.scoreUnitId]);
           return (
             <Animated.View key={pair.scoreUnitId} entering={reduceMotion ? undefined : FadeInDown.delay(sourcePairs.indexOf(pair) * 40).duration(260)}>
-              <V2Chip selected={active || matched} onPress={() => setActiveSourceId(pair.scoreUnitId)} accessibilityLabel={pair.target}>
+              <V2Chip
+                selected={active || matched}
+                verdict={wrongPair?.sourceId === pair.scoreUnitId ? 'bad' : matched ? 'ok' : 'idle'}
+                disabled={matched}
+                onPress={() => setActiveSourceId(pair.scoreUnitId)}
+                accessibilityLabel={pair.target}
+              >
                 {pair.target}
               </V2Chip>
             </Animated.View>
@@ -51,7 +64,13 @@ export default function SpeedMatchQuestion({ task, matches, onChange }: Props) {
           const matched = matchedTargets.has(pair.scoreUnitId);
           return (
             <Animated.View key={pair.scoreUnitId} entering={reduceMotion ? undefined : FadeInDown.delay(index * 40).duration(260)}>
-              <V2Chip selected={matched} onPress={() => chooseTarget(pair.scoreUnitId)} disabled={!activeSourceId} accessibilityLabel={pair.source}>
+              <V2Chip
+                selected={matched}
+                verdict={wrongPair?.targetId === pair.scoreUnitId ? 'bad' : matched ? 'ok' : 'idle'}
+                onPress={() => chooseTarget(pair.scoreUnitId)}
+                disabled={!activeSourceId || matched}
+                accessibilityLabel={pair.source}
+              >
                 {pair.source}
               </V2Chip>
             </Animated.View>

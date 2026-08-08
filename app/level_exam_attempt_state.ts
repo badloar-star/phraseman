@@ -3,7 +3,7 @@ import type { SourceLocale } from './source_locales';
 
 export type PersistedLevelExamAnswer =
   | { kind: 'choice'; optionId: string }
-  | { kind: 'phrase_builder'; tokenIds: string[] }
+  | { kind: 'translate_build'; tokenIds: string[] }
   | { kind: 'speed_match'; targetScoreUnitId: string }
   | { kind: 'skipped' };
 
@@ -17,7 +17,7 @@ export type LevelExamAttemptSnapshot = {
   level: LevelExamLevel;
   studyTarget: 'en';
   sourceLocale: SourceLocale;
-  blueprintVersion: 2;
+  blueprintVersion: 3;
   seed: string;
   orderedTaskIds: string[];
   scoredUnitIds: string[];
@@ -37,7 +37,7 @@ export type CreateLevelExamAttemptInput = {
   level: LevelExamLevel;
   studyTarget: 'en';
   sourceLocale: SourceLocale;
-  blueprintVersion: 2;
+  blueprintVersion: 3;
   seed: string;
   orderedTaskIds: string[];
   scoredUnitIds: string[];
@@ -50,7 +50,7 @@ export type RestoreLevelExamAttemptContext = {
   level: LevelExamLevel;
   studyTarget: 'en';
   sourceLocale: SourceLocale;
-  blueprintVersion: 2;
+  blueprintVersion: 3;
   nowMs: number;
 };
 
@@ -75,7 +75,7 @@ function isPersistedAnswer(value: unknown): value is PersistedLevelExamAnswer {
   const answer = value as Partial<PersistedLevelExamAnswer> & Record<string, unknown>;
   if (answer.kind === 'skipped') return true;
   if (answer.kind === 'choice') return typeof answer.optionId === 'string' && answer.optionId.trim() !== '';
-  if (answer.kind === 'phrase_builder') return Array.isArray(answer.tokenIds)
+  if (answer.kind === 'translate_build') return Array.isArray(answer.tokenIds)
     && answer.tokenIds.every((tokenId) => typeof tokenId === 'string' && tokenId.trim() !== '');
   if (answer.kind === 'speed_match') {
     return typeof answer.targetScoreUnitId === 'string' && answer.targetScoreUnitId.trim() !== '';
@@ -93,7 +93,7 @@ function isAttemptSnapshot(value: unknown): value is LevelExamAttemptSnapshot {
     || !['A1', 'A2', 'B1', 'B2'].includes(String(attempt.level))
     || attempt.studyTarget !== 'en'
     || typeof attempt.sourceLocale !== 'string'
-    || attempt.blueprintVersion !== 2
+    || attempt.blueprintVersion !== 3
     || typeof attempt.seed !== 'string' || attempt.seed.trim() === ''
     || !nonEmptyStrings(attempt.orderedTaskIds)
     || !nonEmptyStrings(attempt.scoredUnitIds)
@@ -121,7 +121,7 @@ export function parseLevelExamAttemptSnapshot(raw: unknown): LevelExamAttemptSna
 }
 
 function cloneAnswer(answer: PersistedLevelExamAnswer): PersistedLevelExamAnswer {
-  return answer.kind === 'phrase_builder' ? { ...answer, tokenIds: [...answer.tokenIds] } : { ...answer };
+  return answer.kind === 'translate_build' ? { ...answer, tokenIds: [...answer.tokenIds] } : { ...answer };
 }
 
 export function createLevelExamAttempt(input: CreateLevelExamAttemptInput): LevelExamAttemptSnapshot {

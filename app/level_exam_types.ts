@@ -4,9 +4,10 @@ import type { SourceLocale } from './source_locales';
 export type LevelExamLevel = CourseLevel;
 
 export type LevelExamFormat =
-  | 'context_choice'
-  | 'phrase_builder'
-  | 'meaning_choice'
+  | 'guess_phrase'
+  | 'fill_gap'
+  | 'find_oddity'
+  | 'translate_build'
   | 'speed_match';
 
 export type LevelExamOption = {
@@ -29,13 +30,13 @@ type LevelExamSingleScoreTaskBase = {
 };
 
 export type LevelExamChoiceTask = LevelExamSingleScoreTaskBase & {
-  format: 'context_choice' | 'meaning_choice';
+  format: 'guess_phrase' | 'fill_gap' | 'find_oddity';
   options: readonly LevelExamOption[];
   correctOptionId: string;
 };
 
 export type LevelExamPhraseBuilderTask = LevelExamSingleScoreTaskBase & {
-  format: 'phrase_builder';
+  format: 'translate_build';
   tokens: readonly LevelExamToken[];
   correctTokenIds: readonly string[];
 };
@@ -60,7 +61,7 @@ export type LevelExamTask =
   | LevelExamSpeedMatchTask;
 
 export type LevelExamBlueprint = {
-  version: 2;
+  version: 3;
   level: LevelExamLevel;
   studyTarget: 'en';
   sourceLocale: SourceLocale;

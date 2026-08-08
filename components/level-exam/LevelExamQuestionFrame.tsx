@@ -2,6 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import Animated, { Easing, SlideInRight, SlideOutLeft, useReducedMotion } from 'react-native-reanimated';
 
 import BouncyScrollView from '../BouncyScrollView';
 import ScreenGradient from '../ScreenGradient';
@@ -11,6 +12,7 @@ import TonalSurface from '../TonalSurface';
 import LevelExamTimer from './LevelExamTimer';
 
 type Props = {
+  taskId: string;
   formatLabel: string;
   prompt: string;
   progressStart: number;
@@ -27,6 +29,7 @@ type Props = {
 };
 
 export default function LevelExamQuestionFrame({
+  taskId,
   formatLabel,
   prompt,
   progressStart,
@@ -42,6 +45,7 @@ export default function LevelExamQuestionFrame({
   onExit,
 }: Props) {
   const { theme: t, f, ds } = useTheme();
+  const reduceMotion = useReducedMotion();
   const progress = Math.max(0, Math.min(1, progressEnd / total));
   const progressLabel = progressStart === progressEnd
     ? `${progressEnd}/${total}`
@@ -79,6 +83,11 @@ export default function LevelExamQuestionFrame({
           showsVerticalScrollIndicator={false}
           contentContainerStyle={[styles.content, { padding: ds.spacing.lg, gap: ds.spacing.lg }]}
         >
+          <Animated.View
+            key={taskId}
+            entering={reduceMotion ? undefined : SlideInRight.duration(320).easing(Easing.out(Easing.cubic))}
+            exiting={reduceMotion ? undefined : SlideOutLeft.duration(180).easing(Easing.in(Easing.cubic))}
+          >
           <Text
             accessibilityRole="header"
             style={{ color: t.textPrimary, fontSize: f.h1, fontFamily: ds.fontFamily, fontWeight: '900', lineHeight: f.h1 * 1.25 }}
@@ -88,6 +97,7 @@ export default function LevelExamQuestionFrame({
           <TonalSurface tone="card" radius={ds.radius.xl} style={{ padding: ds.spacing.lg }}>
             {children}
           </TonalSurface>
+          </Animated.View>
         </BouncyScrollView>
 
         <View style={[styles.footer, { padding: ds.spacing.lg, backgroundColor: t.bgCard }]}> 

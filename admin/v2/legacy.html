@@ -28171,6 +28171,32 @@
     return base;
   }
 
+  function ytcBootstrapLegacyConfig(config, texts) {
+    const draft = ytcNormalizeConfig(config);
+    if (draft.channels.length) return draft;
+    const legacy = texts && typeof texts === 'object' ? texts : {};
+    const youtubeChannelId = ytParseChannelId(legacy.youtube_channel_id);
+    if (!youtubeChannelId) return draft;
+    let pinnedVideos = [];
+    try {
+      const parsed = JSON.parse(String(legacy.youtube_pinned_videos || '') || '[]');
+      if (Array.isArray(parsed)) pinnedVideos = parsed.map(ytNormalizePin).filter(Boolean);
+    } catch (_) {}
+    draft.channels = [{
+      id: 'legacy-primary',
+      youtubeChannelId: youtubeChannelId,
+      enabled: true,
+      order: 0,
+      languageTags: ['en'],
+      ...(String(legacy.youtube_channel_name || '').trim() ? { displayNameOverride: String(legacy.youtube_channel_name).trim() } : {}),
+      ...(pinnedVideos.length ? { pinnedVideos: pinnedVideos } : {}),
+      playlistOverrides: {},
+      premiereOverrides: {},
+    }];
+    draft.localeDefaults = { ...draft.localeDefaults, en: 'legacy-primary' };
+    return draft;
+  }
+
   function ytcSelectedChannel() {
     const draft = window._youtubeCatalogDraft;
     if (!draft) return null;
@@ -28514,9 +28540,11 @@
       const response = await getAdminGetYoutubeCatalogWorkspaceCallable()({});
       const data = response && response.data;
       if (!data || data.ok !== true) throw new Error('Сервер вернул некорректную рабочую область.');
+      const remoteWorkspace = await loadAdminRemoteConfigWorkspace(false).catch(function() { return null; });
+      const legacyTexts = remoteWorkspace && remoteWorkspace.config && remoteWorkspace.config.texts;
       window._youtubeCatalogWorkspace = data;
       window._youtubeCatalogRevision = Number(data.config && data.config.revision || 0);
-      window._youtubeCatalogDraft = ytcNormalizeConfig(data.config);
+      window._youtubeCatalogDraft = ytcBootstrapLegacyConfig(data.config, legacyTexts);
       window._youtubeCatalogSelectedId = window._youtubeCatalogDraft.channels[0] ? window._youtubeCatalogDraft.channels[0].id : '';
       window._youtubeCatalogLoaded = true;
       ytcRenderWorkspace();

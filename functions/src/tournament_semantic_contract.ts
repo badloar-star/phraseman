@@ -9,7 +9,10 @@ export const TOURNAMENT_SEMANTIC_SCHEMA_VERSION = 'tournament-semantic-candidate
 export const TOURNAMENT_REVIEW_CONTRACT_VERSION = 'tournament-semantic-review-v1' as const;
 
 export type TournamentModeKind = OwnerApprovedTournamentMode;
-export type TournamentProvenanceKey = `${string}:${number}:${string}`;
+declare const TOURNAMENT_PROVENANCE_KEY_BRAND: unique symbol;
+export type TournamentProvenanceKey = string & {
+  readonly [TOURNAMENT_PROVENANCE_KEY_BRAND]: true;
+};
 
 export type FillGapTrapType =
   | 'morphology'
@@ -44,11 +47,12 @@ export type TournamentSemanticCandidateInput = {
   readonly prompt: string;
   readonly context: Readonly<Record<string, unknown>>;
   readonly reviewSubjects: readonly ReviewSubject[];
-  readonly provenanceKeys: readonly TournamentProvenanceKey[];
+  readonly provenanceKeys: readonly string[];
 };
 
-export type TournamentSemanticCandidate = TournamentSemanticCandidateInput & {
+export type TournamentSemanticCandidate = Omit<TournamentSemanticCandidateInput, 'provenanceKeys'> & {
   readonly schemaVersion: typeof TOURNAMENT_SEMANTIC_SCHEMA_VERSION;
+  readonly provenanceKeys: readonly TournamentProvenanceKey[];
   readonly semanticSignature: string;
   readonly contentSha256: string;
 };
@@ -79,6 +83,7 @@ export type CandidateRejectionReason =
   | 'subject_contract_invalid'
   | 'declared_key_invalid'
   | 'provenance_count_invalid'
+  | 'provenance_keys_invalid'
   | 'provenance_key_invalid'
   | 'provenance_key_duplicate'
   | 'semantic_signature_invalid'
@@ -114,6 +119,7 @@ const MAX_METADATA_BYTES = 2_048;
 const MAX_CONTEXT_BYTES = 4_096;
 const MAX_CONTEXT_DEPTH = 8;
 const MAX_CONTEXT_ENTRIES = 64;
+const MAX_CONTEXT_NODES = 130;
 const MAX_CONTEXT_KEY_BYTES = 128;
 const HASH_PATTERN = /^[a-f0-9]{64}$/;
 const PROVENANCE_PATTERN = /^[^:\s]+:\d+:[^:\s]+$/u;
@@ -153,7 +159,23 @@ function boundedString(value: unknown, maxBytes: number): value is string {
     && Buffer.byteLength(value, 'utf8') <= maxBytes;
 }
 
+export function parseTournamentProvenanceKey(value: string):
+  | { readonly ok: true; readonly value: TournamentProvenanceKey }
+  | { readonly ok: false; readonly reason: 'provenance_key_invalid' } {
+  if (!boundedString(value, PROVENANCE_KEY_BYTES) || !PROVENANCE_PATTERN.test(value)) {
+    return { ok: false, reason: 'provenance_key_invalid' };
+  }
+  return { ok: true, value: value as TournamentProvenanceKey };
+}
+
+export function createTournamentProvenanceKey(value: string): TournamentProvenanceKey {
+  const parsed = parseTournamentProvenanceKey(value);
+  if (!parsed.ok) throw new Error('invalid_tournament_provenance_key');
+  return parsed.value;
+}
+
 function hasCanonicalArrayShape(value: readonly unknown[]): boolean {
+  if (Object.getPrototypeOf(value) !== Array.prototype) return false;
   const ownKeys = Reflect.ownKeys(value);
   if (ownKeys.length !== value.length + 1) return false;
   const lengthDescriptor = Object.getOwnPropertyDescriptor(value, 'length');
@@ -169,14 +191,36 @@ function hasCanonicalArrayShape(value: readonly unknown[]): boolean {
   return true;
 }
 
-function isJsonValue(value: unknown, depth = 0): boolean {
-  if (value === null || typeof value === 'boolean' || typeof value === 'string') return true;
-  if (typeof value === 'number') return Number.isFinite(value);
-  if (depth >= MAX_CONTEXT_DEPTH) return false;
+type JsonTraversalState = {
+  readonly seen: WeakSet<object>;
+  nodes: number;
+  scalarBytes: number;
+};
+
+function addScalarBytes(state: JsonTraversalState, value: string): boolean {
+  state.scalarBytes += Buffer.byteLength(value, 'utf8');
+  return state.scalarBytes <= MAX_CONTEXT_BYTES;
+}
+
+function isJsonTree(value: unknown, depth: number, state: JsonTraversalState): boolean {
+  if (depth > MAX_CONTEXT_DEPTH) return false;
+  state.nodes += 1;
+  if (state.nodes > MAX_CONTEXT_NODES) return false;
+  if (value === null) return addScalarBytes(state, 'null');
+  if (typeof value === 'boolean') return addScalarBytes(state, value ? 'true' : 'false');
+  if (typeof value === 'string') return addScalarBytes(state, value);
+  if (typeof value === 'number') {
+    return Number.isFinite(value) && addScalarBytes(state, String(value));
+  }
+  if (!value || typeof value !== 'object') return false;
+  if (state.seen.has(value)) return false;
+  state.seen.add(value);
   if (Array.isArray(value)) {
     if (value.length > MAX_CONTEXT_ENTRIES || !hasCanonicalArrayShape(value)) return false;
     for (let index = 0; index < value.length; index += 1) {
-      if (!isJsonValue(value[index], depth + 1)) return false;
+      const descriptor = Object.getOwnPropertyDescriptor(value, String(index));
+      if (!descriptor || !('value' in descriptor)
+        || !isJsonTree(descriptor.value, depth + 1, state)) return false;
     }
     return true;
   }
@@ -184,7 +228,9 @@ function isJsonValue(value: unknown, depth = 0): boolean {
   const entries = canonicalRecordEntries(value);
   if (!entries || entries.length > MAX_CONTEXT_ENTRIES) return false;
   for (const [key, item] of entries) {
-    if (!boundedString(key, MAX_CONTEXT_KEY_BYTES) || !isJsonValue(item, depth + 1)) return false;
+    if (!boundedString(key, MAX_CONTEXT_KEY_BYTES)
+      || !addScalarBytes(state, key)
+      || !isJsonTree(item, depth + 1, state)) return false;
   }
   return true;
 }
@@ -270,8 +316,13 @@ function semanticHash(candidate: TournamentSemanticCandidate): string {
 }
 
 function validateContext(context: unknown): boolean {
-  return isRecord(context)
-    && isJsonValue(context)
+  if (!isRecord(context)) return false;
+  const state: JsonTraversalState = {
+    seen: new WeakSet<object>(),
+    nodes: 0,
+    scalarBytes: 0,
+  };
+  return isJsonTree(context, 0, state)
     && Buffer.byteLength(stableJson(context), 'utf8') <= MAX_CONTEXT_BYTES;
 }
 
@@ -369,6 +420,13 @@ function validateModeSubjects(
       || countRole(subjects, 'required') !== subjects.length - 1) {
       return 'subject_contract_invalid';
     }
+    const decoy = subjects.find((subject) => subject.declaredRole === 'decoy');
+    const requiredValues = new Set(subjects
+      .filter((subject) => subject.declaredRole === 'required')
+      .map((subject) => normalizedSubjectText(subject.text)));
+    if (decoy && requiredValues.has(normalizedSubjectText(decoy.text))) {
+      return 'subject_value_duplicate';
+    }
     return null;
   }
   if (subjects.length !== 6
@@ -398,26 +456,40 @@ function validateStructure(candidate: unknown): CandidateRejectionReason | null 
     || candidate.difficulty < 1 || candidate.difficulty > 3) return 'difficulty_invalid';
   if (!boundedString(candidate.prompt, TOURNAMENT_TASK_LIMITS.promptBytes)) return 'prompt_invalid';
   if (!validateContext(candidate.context)) return 'context_invalid';
-  if (!Array.isArray(candidate.reviewSubjects) || candidate.reviewSubjects.length === 0) {
+  if (!Array.isArray(candidate.reviewSubjects)
+    || !hasCanonicalArrayShape(candidate.reviewSubjects)
+    || candidate.reviewSubjects.length === 0) {
     return 'review_subjects_invalid';
   }
-  for (const subject of candidate.reviewSubjects) {
+  const subjects: ReviewSubject[] = [];
+  for (let index = 0; index < candidate.reviewSubjects.length; index += 1) {
+    const descriptor = Object.getOwnPropertyDescriptor(candidate.reviewSubjects, String(index));
+    if (!descriptor || !('value' in descriptor)) return 'review_subjects_invalid';
+    const subject = descriptor.value;
     const reason = validateSubject(subject);
     if (reason) return reason;
+    subjects.push(subject as ReviewSubject);
   }
-  const subjects = candidate.reviewSubjects as ReviewSubject[];
   const subjectIds = subjects.map((subject) => subject.subjectId.normalize('NFKC').toLocaleLowerCase('en'));
   if (new Set(subjectIds).size !== subjectIds.length) return 'subject_id_duplicate';
   const modeReason = validateModeSubjects(candidate.mode, subjects);
   if (modeReason) return modeReason;
-  if (!Array.isArray(candidate.provenanceKeys)
-    || candidate.provenanceKeys.length < 1 || candidate.provenanceKeys.length > 6) {
+  if (!Array.isArray(candidate.provenanceKeys)) return 'provenance_count_invalid';
+  if (!hasCanonicalArrayShape(candidate.provenanceKeys)) return 'provenance_keys_invalid';
+  if (candidate.provenanceKeys.length < 1 || candidate.provenanceKeys.length > 6) {
     return 'provenance_count_invalid';
   }
-  if (candidate.provenanceKeys.some((key) => (
-    !boundedString(key, PROVENANCE_KEY_BYTES) || !PROVENANCE_PATTERN.test(key)
-  ))) return 'provenance_key_invalid';
-  if (new Set(candidate.provenanceKeys).size !== candidate.provenanceKeys.length) {
+  const provenanceKeys: string[] = [];
+  for (let index = 0; index < candidate.provenanceKeys.length; index += 1) {
+    const descriptor = Object.getOwnPropertyDescriptor(candidate.provenanceKeys, String(index));
+    if (!descriptor || !('value' in descriptor)) return 'provenance_keys_invalid';
+    const key = descriptor.value;
+    if (!boundedString(key, PROVENANCE_KEY_BYTES) || !PROVENANCE_PATTERN.test(key)) {
+      return 'provenance_key_invalid';
+    }
+    provenanceKeys.push(key);
+  }
+  if (new Set(provenanceKeys).size !== provenanceKeys.length) {
     return 'provenance_key_duplicate';
   }
   return null;
@@ -430,14 +502,20 @@ function cloneJsonValue(value: unknown): unknown {
     }
     const clone: unknown[] = [];
     for (let index = 0; index < value.length; index += 1) {
-      clone.push(cloneJsonValue(value[index]));
+      const descriptor = Object.getOwnPropertyDescriptor(value, String(index));
+      if (!descriptor || !('value' in descriptor)) {
+        throw new Error('invalid_tournament_semantic_candidate:context_invalid');
+      }
+      clone.push(cloneJsonValue(descriptor.value));
     }
-    return clone;
+    return Object.freeze(clone);
   }
   if (isRecord(value)) {
     const entries = canonicalRecordEntries(value);
     if (!entries) throw new Error('invalid_tournament_semantic_candidate:context_invalid');
-    return Object.fromEntries(entries.map(([key, item]) => [key, cloneJsonValue(item)]));
+    return Object.freeze(Object.fromEntries(
+      entries.map(([key, item]) => [key, cloneJsonValue(item)]),
+    ));
   }
   return value;
 }
@@ -486,15 +564,31 @@ export function createTournamentSemanticCandidate(
     provenanceKeys: input.provenanceKeys,
     semanticSignature: '0'.repeat(64),
     contentSha256: '0'.repeat(64),
-  } satisfies TournamentSemanticCandidate;
+  };
   const rawStructureReason = validateStructure(rawCandidate);
   if (rawStructureReason) {
     throw new Error(`invalid_tournament_semantic_candidate:${rawStructureReason}`);
   }
 
-  const reviewSubjects = Object.freeze(input.reviewSubjects.map(cloneSubject));
-  const provenanceKeys = Object.freeze([...input.provenanceKeys]);
-  const context = Object.freeze(cloneJsonValue(input.context) as Readonly<Record<string, unknown>>);
+  const clonedSubjects: ReviewSubject[] = [];
+  for (let index = 0; index < input.reviewSubjects.length; index += 1) {
+    const descriptor = Object.getOwnPropertyDescriptor(input.reviewSubjects, String(index));
+    if (!descriptor || !('value' in descriptor)) {
+      throw new Error('invalid_tournament_semantic_candidate:review_subjects_invalid');
+    }
+    clonedSubjects.push(cloneSubject(descriptor.value as ReviewSubject));
+  }
+  const reviewSubjects = Object.freeze(clonedSubjects);
+  const clonedProvenanceKeys: TournamentProvenanceKey[] = [];
+  for (let index = 0; index < input.provenanceKeys.length; index += 1) {
+    const descriptor = Object.getOwnPropertyDescriptor(input.provenanceKeys, String(index));
+    if (!descriptor || !('value' in descriptor) || typeof descriptor.value !== 'string') {
+      throw new Error('invalid_tournament_semantic_candidate:provenance_keys_invalid');
+    }
+    clonedProvenanceKeys.push(createTournamentProvenanceKey(descriptor.value));
+  }
+  const provenanceKeys = Object.freeze(clonedProvenanceKeys);
+  const context = cloneJsonValue(input.context) as Readonly<Record<string, unknown>>;
   const unhashed = {
     schemaVersion: TOURNAMENT_SEMANTIC_SCHEMA_VERSION,
     candidateId: input.candidateId,

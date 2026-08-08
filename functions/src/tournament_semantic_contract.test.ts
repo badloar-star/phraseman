@@ -1,12 +1,55 @@
 import {
   TOURNAMENT_REVIEW_CONTRACT_VERSION,
   TOURNAMENT_SEMANTIC_SCHEMA_VERSION,
+  createTournamentProvenanceKey,
   createTournamentSemanticCandidate,
+  parseTournamentProvenanceKey,
   validateTournamentSemanticCandidate,
   type ReviewSubject,
+  type TournamentProvenanceKey,
   type TournamentSemanticCandidate,
   type TournamentSemanticCandidateInput,
 } from './tournament_semantic_contract';
+
+describe('tournament provenance keys', () => {
+  test('brands a valid canonical provenance key', () => {
+    const key: TournamentProvenanceKey = createTournamentProvenanceKey(
+      'route-a:4:phrase-connect',
+    );
+
+    expect(key).toBe('route-a:4:phrase-connect');
+    expect(parseTournamentProvenanceKey(key)).toEqual({ ok: true, value: key });
+  });
+
+  test.each([
+    '',
+    'route-a:-1:phrase-connect',
+    'route-a:1.5:phrase-connect',
+    ':1:phrase-connect',
+    'route-a:1:',
+    'route:a:1:phrase-connect',
+    'route-a:1:phrase:connect',
+  ])('rejects noncanonical provenance key %p', (value) => {
+    expect(parseTournamentProvenanceKey(value)).toEqual({
+      ok: false,
+      reason: 'provenance_key_invalid',
+    });
+    expect(() => createTournamentProvenanceKey(value))
+      .toThrow('invalid_tournament_provenance_key');
+  });
+
+  test('keeps candidate input ergonomic for readonly strings and output branded', () => {
+    const inputKeys: readonly string[] = ['route-a:4:phrase-connect'];
+    const input: TournamentSemanticCandidateInput = {
+      ...baseInput,
+      provenanceKeys: inputKeys,
+    };
+    const candidate = createTournamentSemanticCandidate(input);
+    const outputKey: TournamentProvenanceKey = candidate.provenanceKeys[0];
+
+    expect(outputKey).toBe(inputKeys[0]);
+  });
+});
 
 const correct: ReviewSubject = {
   subjectId: 'choice:connect',
@@ -68,9 +111,9 @@ function makeCandidate(
 
 function withCandidatePatch(
   candidate: TournamentSemanticCandidate,
-  patch: Partial<TournamentSemanticCandidate>,
+  patch: Partial<Record<keyof TournamentSemanticCandidate, unknown>>,
 ): TournamentSemanticCandidate {
-  return { ...candidate, ...patch };
+  return { ...candidate, ...patch } as TournamentSemanticCandidate;
 }
 
 function expectRejected(
@@ -85,6 +128,11 @@ class NonCanonicalRecord {
 }
 
 type HiddenStateKind = 'non-enumerable' | 'symbol' | 'accessor';
+type InvalidArrayStateKind = HiddenStateKind | 'extra-enumerable' | 'sparse';
+
+const EXPECTED_CONTEXT_MAX_BYTES = 4_096;
+const EXPECTED_CONTEXT_MAX_DEPTH = 8;
+const EXPECTED_CONTEXT_MAX_NODES = 130;
 
 function recordWithHiddenState(
   kind: HiddenStateKind,
@@ -126,6 +174,44 @@ function arrayWithHiddenState(kind: HiddenStateKind): unknown[] {
     configurable: true,
   });
   return values;
+}
+
+function arrayWithInvalidState<T>(values: readonly T[], kind: InvalidArrayStateKind): T[] {
+  if (kind === 'sparse') {
+    const sparse = Array<T>(values.length);
+    for (let index = 1; index < values.length; index += 1) sparse[index] = values[index];
+    return sparse;
+  }
+  const result = [...values];
+  if (kind === 'accessor') {
+    Object.defineProperty(result, '0', {
+      get: () => values[0], enumerable: true, configurable: true,
+    });
+  } else if (kind === 'symbol') {
+    Object.defineProperty(result, Symbol('hidden'), {
+      value: 'secret', enumerable: true, configurable: true,
+    });
+  } else {
+    Object.defineProperty(result, kind === 'non-enumerable' ? 'hidden' : 'extra', {
+      value: 'secret',
+      enumerable: kind === 'extra-enumerable',
+      configurable: true,
+    });
+  }
+  return result;
+}
+
+function nestedContext(depth: number): Readonly<Record<string, unknown>> {
+  let value: unknown = 'leaf';
+  for (let index = 0; index < depth; index += 1) value = { nested: value };
+  return value as Readonly<Record<string, unknown>>;
+}
+
+function nodeBudgetContext(addOneNode: boolean): Readonly<Record<string, unknown>> {
+  const groups = Array.from({ length: 64 }, (_, index) => (
+    index === 0 && addOneNode ? { value: null, extra: null } : { value: null }
+  ));
+  return { groups };
 }
 
 function oddityInput(): TournamentSemanticCandidateInput {
@@ -329,6 +415,39 @@ describe('tournament semantic candidate identity', () => {
 
     expect(presentationOnly.semanticSignature).toBe(first.semanticSignature);
     expect(presentationOnly.contentSha256).not.toBe(first.contentSha256);
+  });
+
+  test('pins the reviewed canonical hash vector', () => {
+    const candidate = makeCandidate();
+
+    expect({
+      contentSha256: candidate.contentSha256,
+      semanticSignature: candidate.semanticSignature,
+    }).toEqual({
+      contentSha256: 'eb89d56ccb69731f2ea327517b3ff272b0358fc8d037bcb582559efb3afbfd1f',
+      semanticSignature: 'e4032fb0ec1d5219100e2046c9e3d0d07b92763a6eecd864d4aa532a14699454',
+    });
+  });
+
+  test.each([
+    ['completedText', {
+      reviewSubjects: baseInput.reviewSubjects.map((subject, index) => (
+        index === 0 ? { ...subject, completedText: 'Please join the call.' } : subject
+      )),
+    }],
+    ['metadata', {
+      reviewSubjects: baseInput.reviewSubjects.map((subject, index) => (
+        index === 0 ? { ...subject, metadata: { sourceRole: 'answer', tokenIndex: '2' } } : subject
+      )),
+    }],
+    ['mode', { mode: 'guess_phrase' as const }],
+    ['difficulty', { difficulty: 3 as const }],
+  ])('changes both identities when %s changes', (_field, patch) => {
+    const first = makeCandidate();
+    const changed = makeCandidate(patch);
+
+    expect(changed.contentSha256).not.toBe(first.contentSha256);
+    expect(changed.semanticSignature).not.toBe(first.semanticSignature);
   });
 
   test.each([
@@ -737,6 +856,143 @@ describe('tournament semantic candidate validation', () => {
 
     expect(validateTournamentSemanticCandidate(candidate)).toEqual({ ok: true });
     expect(candidate.reviewSubjects.filter((subject) => subject.text === 'had')).toHaveLength(2);
+  });
+
+  test('rejects a translate_build decoy matching a normalized required token', () => {
+    const input = buildInput();
+    const reviewSubjects = input.reviewSubjects.map((subject) => (
+      subject.declaredRole === 'decoy' ? { ...subject, text: 'CONNECT' } : subject
+    ));
+
+    expect(() => createTournamentSemanticCandidate({ ...input, reviewSubjects }))
+      .toThrow('invalid_tournament_semantic_candidate:subject_value_duplicate');
+  });
+
+  test.each<InvalidArrayStateKind>([
+    'non-enumerable',
+    'symbol',
+    'accessor',
+    'extra-enumerable',
+    'sparse',
+  ])('rejects noncanonical reviewSubjects arrays carrying %s state', (kind) => {
+    const reviewSubjects = arrayWithInvalidState(baseInput.reviewSubjects, kind);
+    expect(() => makeCandidate({ reviewSubjects }))
+      .toThrow('invalid_tournament_semantic_candidate:review_subjects_invalid');
+  });
+
+  test.each<InvalidArrayStateKind>([
+    'non-enumerable',
+    'symbol',
+    'accessor',
+    'extra-enumerable',
+    'sparse',
+  ])('rejects noncanonical provenance arrays carrying %s state', (kind) => {
+    const provenanceKeys = arrayWithInvalidState(baseInput.provenanceKeys, kind);
+    expect(() => makeCandidate({ provenanceKeys }))
+      .toThrow('invalid_tournament_semantic_candidate:provenance_keys_invalid');
+  });
+
+  test('rejects post-creation noncanonical top-level arrays with field-specific reasons', () => {
+    const candidate = makeCandidate();
+    expectRejected(withCandidatePatch(candidate, {
+      reviewSubjects: arrayWithInvalidState(candidate.reviewSubjects, 'symbol'),
+    }), 'review_subjects_invalid');
+    expectRejected(withCandidatePatch(candidate, {
+      provenanceKeys: arrayWithInvalidState(candidate.provenanceKeys, 'sparse'),
+    }), 'provenance_keys_invalid');
+  });
+
+  test('rejects top-level array accessors without invoking getters', () => {
+    let getterCalls = 0;
+    const reviewSubjects = [...baseInput.reviewSubjects];
+    Object.defineProperty(reviewSubjects, '0', {
+      get: () => {
+        getterCalls += 1;
+        return baseInput.reviewSubjects[0];
+      },
+      enumerable: true,
+      configurable: true,
+    });
+
+    expect(() => makeCandidate({ reviewSubjects }))
+      .toThrow('invalid_tournament_semantic_candidate:review_subjects_invalid');
+    expect(getterCalls).toBe(0);
+  });
+
+  test('rejects direct and indirect context cycles', () => {
+    const direct: Record<string, unknown> = {};
+    direct.self = direct;
+    const first: Record<string, unknown> = {};
+    const second: Record<string, unknown> = { first };
+    first.second = second;
+
+    expect(() => makeCandidate({ context: direct }))
+      .toThrow('invalid_tournament_semantic_candidate:context_invalid');
+    expect(() => makeCandidate({ context: first }))
+      .toThrow('invalid_tournament_semantic_candidate:context_invalid');
+  });
+
+  test('rejects shared references and high-fan-out DAGs', () => {
+    const shared = { value: 'shared' };
+    expect(() => makeCandidate({ context: { left: shared, right: shared } }))
+      .toThrow('invalid_tournament_semantic_candidate:context_invalid');
+
+    const fanOut = Object.fromEntries(
+      Array.from({ length: 64 }, (_, index) => [`node${index}`, shared]),
+    );
+    expect(() => makeCandidate({ context: fanOut }))
+      .toThrow('invalid_tournament_semantic_candidate:context_invalid');
+  });
+
+  test('enforces cumulative context node budget at the exact boundary', () => {
+    const atBoundary = makeCandidate({ context: nodeBudgetContext(false) });
+    expect(validateTournamentSemanticCandidate(atBoundary)).toEqual({ ok: true });
+    expect(() => makeCandidate({ context: nodeBudgetContext(true) }))
+      .toThrow('invalid_tournament_semantic_candidate:context_invalid');
+    expect(EXPECTED_CONTEXT_MAX_NODES).toBe(130);
+  });
+
+  test('enforces context depth at the exact boundary', () => {
+    const atBoundary = makeCandidate({ context: nestedContext(EXPECTED_CONTEXT_MAX_DEPTH) });
+    expect(validateTournamentSemanticCandidate(atBoundary)).toEqual({ ok: true });
+    expect(() => makeCandidate({ context: nestedContext(EXPECTED_CONTEXT_MAX_DEPTH + 1) }))
+      .toThrow('invalid_tournament_semantic_candidate:context_invalid');
+  });
+
+  test('enforces serialized context bytes at the exact boundary', () => {
+    const overheadBytes = Buffer.byteLength(JSON.stringify({ value: '' }), 'utf8');
+    const atBoundary = makeCandidate({
+      context: { value: 'x'.repeat(EXPECTED_CONTEXT_MAX_BYTES - overheadBytes) },
+    });
+    expect(validateTournamentSemanticCandidate(atBoundary)).toEqual({ ok: true });
+    expect(() => makeCandidate({
+      context: { value: 'x'.repeat(EXPECTED_CONTEXT_MAX_BYTES - overheadBytes + 1) },
+    })).toThrow('invalid_tournament_semantic_candidate:context_invalid');
+  });
+
+  test('recursively freezes cloned context and all returned collection surfaces', () => {
+    const candidate = makeCandidate({
+      context: { nested: { values: [{ value: 'kept' }] } },
+    });
+    const nested = candidate.context.nested as { values: Array<{ value: string }> };
+
+    expect(Object.isFrozen(candidate)).toBe(true);
+    expect(Object.isFrozen(candidate.context)).toBe(true);
+    expect(Object.isFrozen(nested)).toBe(true);
+    expect(Object.isFrozen(nested.values)).toBe(true);
+    expect(Object.isFrozen(nested.values[0])).toBe(true);
+    expect(Object.isFrozen(candidate.reviewSubjects)).toBe(true);
+    expect(Object.isFrozen(candidate.reviewSubjects[0])).toBe(true);
+    expect(Object.isFrozen(candidate.reviewSubjects[0].metadata)).toBe(true);
+    expect(Object.isFrozen(candidate.provenanceKeys)).toBe(true);
+
+    expect(() => { nested.values[0].value = 'changed'; }).toThrow(TypeError);
+    expect(() => { nested.values.push({ value: 'changed' }); }).toThrow(TypeError);
+    expect(() => { (candidate.reviewSubjects as ReviewSubject[]).push(correct); }).toThrow(TypeError);
+    expect(() => {
+      Array.prototype.push.call(candidate.provenanceKeys, 'route-a:4:other');
+    }).toThrow(TypeError);
+    expect(validateTournamentSemanticCandidate(candidate)).toEqual({ ok: true });
   });
 
   test.each([

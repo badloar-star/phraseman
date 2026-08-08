@@ -364,7 +364,8 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
   }, [finishExam, storeAttempt]);
 
   if (accessState !== 'allowed' || phase === 'loading' || identityUnavailable) {
-    const checking = accessState === 'checking' || (phase === 'loading' && !identityUnavailable);
+    const checking = accessState === 'checking'
+      || (accessState === 'allowed' && phase === 'loading' && !identityUnavailable);
     return (
       <ScreenGradient artBackdrop="exam">
         <SafeAreaView style={styles.safeArea}>

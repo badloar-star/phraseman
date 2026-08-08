@@ -83,6 +83,16 @@ it('keeps the start action disabled when energy is insufficient', async () => {
   expect(onStart).not.toHaveBeenCalled();
 });
 
+it('keeps the CTA label and arrow in one horizontal row', async () => {
+  const view = await render(React.createElement(LevelExamIntro, baseProps));
+
+  expect(view.getByTestId('level-exam-start-content').props.style).toMatchObject({
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  });
+});
+
 it('uses theme tokens and tonal hierarchy without decorative outlines', () => {
   const source = fs.readFileSync(
     path.join(process.cwd(), 'components/level-exam/LevelExamIntro.tsx'),

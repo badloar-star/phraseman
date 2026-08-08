@@ -180,10 +180,15 @@ export default function LevelExamIntro({
               },
             ]}
           >
-            <Text style={{ color: disabled ? t.textMuted : t.correctText, fontSize: f.bodyLg, fontFamily: ds.fontFamily, fontWeight: '900' }}>
-              {copy.startCta}
-            </Text>
-            <Ionicons name="arrow-forward" size={20} color={disabled ? t.textMuted : t.correctText} />
+            <View testID="level-exam-start-content" style={styles.startButtonContent}>
+              <Text
+                numberOfLines={1}
+                style={{ color: disabled ? t.textMuted : t.correctText, fontSize: f.bodyLg, fontFamily: ds.fontFamily, fontWeight: '900', flexShrink: 1 }}
+              >
+                {copy.startCta}
+              </Text>
+              <Ionicons name="arrow-forward" size={20} color={disabled ? t.textMuted : t.correctText} />
+            </View>
           </TapScale>
         </BouncyScrollView>
       </SafeAreaView>
@@ -207,4 +212,5 @@ const styles = StyleSheet.create({
   rewardText: { flex: 1, gap: 3 },
   centerText: { textAlign: 'center' },
   startButton: { borderRadius: 18, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },
+  startButtonContent: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },
 });

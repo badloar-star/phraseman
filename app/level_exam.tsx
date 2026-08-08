@@ -479,6 +479,7 @@ const LX = {
 };
 
 const INTRO_Q_COUNT = 30;
+const LEVEL_EXAM_ACCESS_TIMEOUT_MS = 12_000;
 
 function FrenchLevelExamUnavailable({
   lang,
@@ -612,7 +613,8 @@ export default function LevelExam() {
     setAccessState('checking');
     setBlockedText('');
     setAccessBlockKind('level');
-    void (async () => {
+    let accessTimeout: ReturnType<typeof setTimeout> | null = null;
+    const accessCheck = (async () => {
       if (frenchExamBlocked) {
         if (!cancelled) {
           setAccessState('blocked');
@@ -685,7 +687,14 @@ export default function LevelExam() {
           }));
         setAccessState('blocked');
       }
-    })().catch(() => {
+    })();
+    const accessDeadline = new Promise<never>((_, reject) => {
+      accessTimeout = setTimeout(
+        () => reject(new Error('level_exam_access_timeout')),
+        LEVEL_EXAM_ACCESS_TIMEOUT_MS,
+      );
+    });
+    void Promise.race([accessCheck, accessDeadline]).catch(() => {
       if (!cancelled) {
         setAccessBlockKind('error');
         setBlockedText(triLang(lang, {
@@ -699,9 +708,16 @@ export default function LevelExam() {
           pl: "Nie udało się sprawdzić dostępu do testu. Spróbuj otworzyć go jeszcze raz.",
         }));
         setAccessState('blocked');
+        // Keep a late entitlement response from reopening or replacing the fail-closed state.
+        cancelled = true;
       }
+    }).finally(() => {
+      if (accessTimeout) clearTimeout(accessTimeout);
     });
-    return () => { cancelled = true; };
+    return () => {
+      cancelled = true;
+      if (accessTimeout) clearTimeout(accessTimeout);
+    };
   }, [frenchExamBlocked, lang, lvl, studyTarget]);
 
   const levelLabel = LEVEL_LABELS[lvl];

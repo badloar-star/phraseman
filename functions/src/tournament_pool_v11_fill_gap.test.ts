@@ -273,7 +273,10 @@ describe('buildFillGapCandidates', () => {
     ["Mary-Jane's", "Mary-Jane's ready.", 'existential'], ["O'Brien's", "O'Brien's ready.", 'verb'], ["O’Brien’s", "O’Brien’s ready.", 'to be'],
     ["R2-D2's", "R2-D2's ready.", 'verb'], ["R2-D2’s", "R2-D2’s ready.", 'to be'], ["Room7's", "Room7's ready.", 'existential'],
   ])('rejects open-world positive be-shaped contraction %s before POS mapping', (token, english, partOfSpeech) => {
-    expect(buildFillGapCandidates(day, phrase(`open-world-${token}`, english, token, partOfSpeech, ['is', 'are', 'be']))).toEqual([]);
+    // These are length-safe, distinct authored options, so only the contraction gate can reject this source.
+    expect(buildFillGapCandidates(day, phrase(
+      `open-world-${token}`, english, token, partOfSpeech, ['active', 'present', 'waiting'],
+    ))).toEqual([]);
   });
 
   it('canonicalizes irregular noun families before collision detection', () => {

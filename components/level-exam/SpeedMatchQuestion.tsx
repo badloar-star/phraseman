@@ -16,6 +16,9 @@ export default function SpeedMatchQuestion({ task, matches, onChange }: Props) {
   const { theme: t, f, ds } = useTheme();
   const [activeSourceId, setActiveSourceId] = useState<string | null>(null);
   const matchedTargets = useMemo(() => new Set(Object.values(matches)), [matches]);
+  const sourcePairs = useMemo(() => (
+    task.pairs.length > 1 ? [...task.pairs.slice(1), task.pairs[0]] : [...task.pairs]
+  ), [task.pairs]);
   const chooseTarget = (targetId: string) => {
     if (!activeSourceId) return;
     const next = { ...matches };
@@ -30,7 +33,7 @@ export default function SpeedMatchQuestion({ task, matches, onChange }: Props) {
   return (
     <View accessibilityLabel="Speed match" style={[styles.board, { gap: ds.spacing.md }]}> 
       <View style={[styles.column, { gap: ds.spacing.sm }]}> 
-        {task.pairs.map((pair) => {
+        {sourcePairs.map((pair) => {
           const active = activeSourceId === pair.scoreUnitId;
           const matched = Boolean(matches[pair.scoreUnitId]);
           return (

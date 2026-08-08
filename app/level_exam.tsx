@@ -51,6 +51,7 @@ import { canShowReview } from './review_utils';
 import ReviewPromptModal from '../components/ReviewPromptModal';
 import { monoIcon } from '../constants/monoIcon';
 import { soundDirector } from '../modules/audio/sound_director';
+import LevelExamV2 from '../components/level-exam/LevelExamV2';
 
 const safeLevelExamEventPart = (value: unknown, max = 60): string =>
   String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
@@ -906,6 +907,17 @@ export default function LevelExam() {
     }
     safeRouterBack(router, '/lessons_list' as any);
   }, [pct, router]);
+
+  if (!isFrenchExam && !frenchExamBlocked) {
+    return (
+      <LevelExamV2
+        level={lvl as CourseLevel}
+        lang={lang}
+        accessState={accessState}
+        blockedText={blockedText}
+      />
+    );
+  }
 
   if (frenchExamBlocked) {
     return (

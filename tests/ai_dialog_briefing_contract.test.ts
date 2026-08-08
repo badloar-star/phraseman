@@ -7,10 +7,12 @@ const routePath = path.resolve(__dirname, '../app/ai_dialog_briefing.tsx');
 describe('AiDialogBriefingScreen contract', () => {
   const source = () => fs.readFileSync(sourcePath, 'utf8');
 
-  it('uses localized scenario goal and first-prompt helpers with reduced-motion support', () => {
+  it('uses Russian briefing copy while retaining localized scenario fallback and reduced-motion support', () => {
     const content = source();
 
     expect(content).toContain("import { useReduceMotion } from '../hooks/use_reduce_motion';");
+    expect(content).toContain("import { aiDialogBriefingBody } from '../app/ai_dialog_briefing_copy';");
+    expect(content).toContain('aiDialogBriefingBody(scenario.id, lang)');
     expect(content).toContain('dialogScenarioGoal(scenario, lang)');
     expect(content).toContain('dialogScenarioNextStepHint(scenario, lang)');
     expect(content).toContain('reduceMotion ? undefined : FadeInDown');

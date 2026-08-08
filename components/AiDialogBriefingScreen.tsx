@@ -10,6 +10,7 @@ import {
   dialogScenarioTitle,
   type DialogScenario,
 } from '../app/ai_dialog_scenarios';
+import { aiDialogBriefingBody } from '../app/ai_dialog_briefing_copy';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
 import ScreenGradient from './ScreenGradient';
@@ -50,6 +51,7 @@ export default function AiDialogBriefingScreen({
   const { lang } = useLang();
   const reduceMotion = useReduceMotion();
   const copy = briefingCopy(lang);
+  const briefingBody = aiDialogBriefingBody(scenario.id, lang);
   const entering = reduceMotion ? undefined : FadeInDown.duration(280);
 
   return (
@@ -82,23 +84,33 @@ export default function AiDialogBriefingScreen({
               </Text>
             </View>
 
-            <View style={{ gap: ds.spacing.sm, padding: ds.spacing.lg, borderRadius: ds.radius.xl, backgroundColor: t.bgCard }}>
-              <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '700', letterSpacing: 0.8 }}>
-                {copy.goalLabel}
-              </Text>
-              <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '400', lineHeight: f.bodyLg + 8 }}>
-                {dialogScenarioGoal(scenario, lang)}
-              </Text>
-            </View>
+            {briefingBody ? (
+              <View style={{ padding: ds.spacing.lg, borderRadius: ds.radius.xl, backgroundColor: t.bgCard }}>
+                <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '400', lineHeight: f.bodyLg + 8 }}>
+                  {briefingBody}
+                </Text>
+              </View>
+            ) : (
+              <>
+                <View style={{ gap: ds.spacing.sm, padding: ds.spacing.lg, borderRadius: ds.radius.xl, backgroundColor: t.bgCard }}>
+                  <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '700', letterSpacing: 0.8 }}>
+                    {copy.goalLabel}
+                  </Text>
+                  <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '400', lineHeight: f.bodyLg + 8 }}>
+                    {dialogScenarioGoal(scenario, lang)}
+                  </Text>
+                </View>
 
-            <View style={{ gap: ds.spacing.sm, padding: ds.spacing.lg, borderRadius: ds.radius.xl, backgroundColor: t.bgSurface }}>
-              <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '700', letterSpacing: 0.8 }}>
-                {copy.firstPromptLabel}
-              </Text>
-              <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '400', lineHeight: f.bodyLg + 8 }}>
-                {dialogScenarioNextStepHint(scenario, lang)}
-              </Text>
-            </View>
+                <View style={{ gap: ds.spacing.sm, padding: ds.spacing.lg, borderRadius: ds.radius.xl, backgroundColor: t.bgSurface }}>
+                  <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '700', letterSpacing: 0.8 }}>
+                    {copy.firstPromptLabel}
+                  </Text>
+                  <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '400', lineHeight: f.bodyLg + 8 }}>
+                    {dialogScenarioNextStepHint(scenario, lang)}
+                  </Text>
+                </View>
+              </>
+            )}
 
             <PressableScale
               onPress={onStart}

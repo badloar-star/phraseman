@@ -14,7 +14,7 @@ let currentStableId: string | null = null;
 let currentPhase: AccountGenerationToken['phase'] = 'uninitialized';
 let restoreLockTail: Promise<void> = Promise.resolve();
 let accountTransitionLockTail: Promise<void> = Promise.resolve();
-const activeAccountTransitionLockLeases = new WeakSet<object>();
+let activeAccountTransitionLockLeases = new WeakSet<object>();
 const generationListeners = new Set<(token: AccountGenerationToken) => void>();
 
 const normalizedStableId = (value: string | null): string | null => value?.trim() || null;
@@ -175,5 +175,6 @@ export function __resetAccountGenerationForTests(): void {
   currentPhase = 'uninitialized';
   restoreLockTail = Promise.resolve();
   accountTransitionLockTail = Promise.resolve();
+  activeAccountTransitionLockLeases = new WeakSet<object>();
   generationListeners.clear();
 }

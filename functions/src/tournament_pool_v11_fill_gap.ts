@@ -107,6 +107,23 @@ export function buildIrregularLemmaFamilies(families: readonly IrregularFamily[]
   return familyByForm;
 }
 const IRREGULAR_LEMMA_FAMILIES = buildIrregularLemmaFamilies(IRREGULAR_FAMILIES);
+const ALTERNATE_VERB_FORM_FAMILIES = [
+  ['burned', 'burnt'], ['learned', 'learnt'], ['dreamed', 'dreamt'], ['spelled', 'spelt'], ['smelled', 'smelt'],
+  ['spoiled', 'spoilt'], ['kneeled', 'knelt'], ['leaped', 'leapt'], ['lighted', 'lit'],
+] as const;
+function buildAlternateVerbFormFamilies(families: readonly (readonly [string, string])[]): ReadonlyMap<string, string> {
+  const familyByForm = new Map<string, string>();
+  for (const [first, second] of families) {
+    const family = normalized(first);
+    for (const form of [first, second].map(normalized)) {
+      const existing = familyByForm.get(form);
+      if (existing && existing !== family) throw new Error(`Alternate verb form "${form}" maps to both "${existing}" and "${family}".`);
+      familyByForm.set(form, family);
+    }
+  }
+  return familyByForm;
+}
+const ALTERNATE_VERB_FORMS = buildAlternateVerbFormFamilies(ALTERNATE_VERB_FORM_FAMILIES);
 // These strings are common non-verb words as well as irregular surfaces. Without
 // syntactic/semantic proof, neither a morphology nor a lexical-meaning claim is safe.
 const AMBIGUOUS_INFLECTION_FAMILIES = [
@@ -206,6 +223,7 @@ function trapFor(category: FillGapCategory, correct: string, wrong: string, toke
   if (category === 'lexical_other' || category === 'number_time') return 'lexical_meaning';
   if (category === 'verb' && (AMBIGUOUS_IRREGULAR_SURFACES.has(normalized(correct))
     || AMBIGUOUS_IRREGULAR_SURFACES.has(normalized(wrong)))) return null;
+  if (category === 'verb' && alternateVerbFormFamily(correct) === alternateVerbFormFamily(wrong) && alternateVerbFormFamily(correct)) return null;
   if (category === 'verb' && sameIrregularVerbFamily(correct, wrong)) return 'morphology';
   if (category === 'verb' && generatedRegularMorphology) return 'morphology';
   if (category === 'verb' && IRREGULAR_LEMMA_FAMILIES.has(normalized(correct))) return 'lexical_meaning';
@@ -267,6 +285,10 @@ function sameIrregularVerbFamily(left: string, right: string): boolean {
   const leftFamily = IRREGULAR_LEMMA_FAMILIES.get(normalized(left));
   const rightFamily = IRREGULAR_LEMMA_FAMILIES.get(normalized(right));
   return Boolean(leftFamily && leftFamily === rightFamily);
+}
+
+function alternateVerbFormFamily(value: string): string | undefined {
+  return ALTERNATE_VERB_FORMS.get(normalized(value));
 }
 
 function potentialRegularVerbInflection(left: string, right: string): boolean {

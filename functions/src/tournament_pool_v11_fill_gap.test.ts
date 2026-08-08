@@ -442,6 +442,14 @@ describe('buildFillGapCandidates', () => {
     ))).toEqual([]);
   });
 
+  it.each([
+    ['burned', 'burnt'], ['learned', 'learnt'],
+  ])('rejects governed alternate verb form %s/%s without a lexical or morphology claim', (correct, wrong) => {
+    expect(buildFillGapCandidates(day, phrase(
+      `alternate-${correct}`, `They ${correct} it.`, correct, 'verb', [wrong, 'walked', 'talked'],
+    ))).toEqual([]);
+  });
+
   it('rejects the two-letter regular-looking up/upped authored pair', () => {
     expect(buildFillGapCandidates(day, phrase(
       'productive-upped', 'They upped it.', 'upped', 'verb', ['up', 'walk', 'talk'],

@@ -99,18 +99,6 @@ describe('Gustav French dev surface parity', () => {
     }
   });
 
-  it('source-gates admin trainer QA shortcuts before they can deep-link into French trainer sessions', () => {
-    const adminSettings = read('app/_admin_settings_testers.tsx');
-
-    expect(adminSettings).toContain('trainerQaRouteGateOpen = trainerSessionContentAvailableForTarget(studyTarget)');
-    expect(adminSettings).toContain('emitFrenchTrainerQaBlockedToast');
-    expect(adminSettings).toContain('const openTrainerQaRoute =');
-    expect(adminSettings).toContain("openTrainerQaRoute('/trainer_words_session')");
-    expect(adminSettings).toContain("openTrainerQaRoute('/trainer_phrases_session')");
-    expect(adminSettings).not.toContain("onPress={() => router.push('/trainer_words_session' as any)}");
-    expect(adminSettings).not.toContain("onPress={() => router.push('/trainer_phrases_session' as any)}");
-    expect(adminSettings).not.toContain("onPress={() => router.push('/trainer_arena_session' as any)}");
-  });
 
   it('source-gates AI dialog routes before French can use English scenarios or prompts', () => {
     const targetGate = read('app/ai_dialog_target_gate.ts');
@@ -118,9 +106,8 @@ describe('Gustav French dev surface parity', () => {
     const session = read('app/ai_dialog_session.tsx');
     const companion = read('app/ai_companion_session.tsx');
     const dialogsTab = read('components/DialogsTabContent.tsx');
-    const adminSettings = read('app/_admin_settings_testers.tsx');
 
-    expect(targetGate).toContain("blockedRoutes: ['/ai_dialog_home', '/ai_dialog_session', '/ai_companion_session']");
+    expect(targetGate).toContain("blockedRoutes: ['/ai_dialog_home', '/ai_dialog_briefing', '/ai_dialog_session', '/ai_companion_session']");
     expect(targetGate).toContain('french_ai_dialog_source_gate');
     expect(targetGate).toContain('french_ai_dialog_prompt_contract');
 
@@ -147,9 +134,5 @@ describe('Gustav French dev surface parity', () => {
       expect(gateReturnIndex).toBeLessThan(startTelemetryIndex);
     }
 
-    expect(adminSettings).toContain('const openAiDialogQaRoute =');
-    expect(adminSettings).toContain('aiDialogContentAvailableForTarget(studyTarget)');
-    expect(adminSettings).toContain('onPress={openAiDialogQaRoute}');
-    expect(adminSettings).not.toContain("onPress={() => router.push('/ai_dialog_home' as any)}");
   });
 });

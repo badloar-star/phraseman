@@ -35,7 +35,7 @@ export function aiDialogContentGateForTarget(studyTarget?: RuntimeStudyTarget): 
     enabled: false,
     studyTarget: 'fr',
     reason: 'french_ai_dialog_source_gate',
-    blockedRoutes: ['/ai_dialog_home', '/ai_dialog_session', '/ai_companion_session'],
+    blockedRoutes: ['/ai_dialog_home', '/ai_dialog_briefing', '/ai_dialog_session', '/ai_companion_session'],
     requiredEvidence: FRENCH_AI_DIALOG_REQUIRED_EVIDENCE,
   };
 }

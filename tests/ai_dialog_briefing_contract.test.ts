@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 
 const sourcePath = path.resolve(__dirname, '../components/AiDialogBriefingScreen.tsx');
+const routePath = path.resolve(__dirname, '../app/ai_dialog_briefing.tsx');
 
 describe('AiDialogBriefingScreen contract', () => {
   const source = () => fs.readFileSync(sourcePath, 'utf8');
@@ -29,5 +30,34 @@ describe('AiDialogBriefingScreen contract', () => {
 
     expect(content).not.toMatch(/scenario\.(?:persona|setting)\b/);
     expect(content).not.toContain('scenarioObjectives(');
+  });
+});
+
+describe('AI dialog briefing route contract', () => {
+  const source = () => fs.readFileSync(routePath, 'utf8');
+
+  it('fails closed for unavailable target content and unknown scenarios', () => {
+    const content = source();
+
+    expect(content).toContain('aiDialogContentAvailableForTarget(studyTarget)');
+    expect(content).toContain('frenchAiDialogGateCopy(lang)');
+    expect(content).toContain('getScenarioById(scenarioId)');
+    expect(content).not.toContain("getScenarioById('coffee')");
+    expect(content).not.toContain('ActivityIndicator');
+  });
+
+  it('marks the exact target and scenario before replacing into the AI-capable session', () => {
+    const content = source();
+
+    expect(content).toContain('markAiDialogIntroSeen(studyTarget, scenario.id)');
+    expect(content).toContain("pathname: '/ai_dialog_session'");
+    expect(content).toContain('scenarioId: scenario.id');
+  });
+
+  it('uses safe back navigation with the lessons tab as its recovery fallback', () => {
+    const content = source();
+
+    expect(content).toContain("safeRouterBack(router, '/(tabs)/lessons' as never)");
+    expect(content).not.toContain('router.back()');
   });
 });

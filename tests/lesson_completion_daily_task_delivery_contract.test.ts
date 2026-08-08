@@ -17,7 +17,8 @@ describe('lesson completion Daily Challenge delivery', () => {
     expect(prepare).toBeGreaterThanOrEqual(0);
     expect(progress).toBeGreaterThan(prepare);
     expect(finalize).toBeGreaterThan(progress);
-    expect(body).toContain('mergeProgressAtLeast(current, entry.targetRows)');
+    expect(body).toContain('deliveryTargetRowsForActiveTasks(entry, activeTaskIds)');
+    expect(body).toContain('completedTaskIds.filter(');
   });
 
   it('starts delivery while the completion modal is visible and retries the same event on Continue', () => {

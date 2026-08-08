@@ -15,10 +15,23 @@ import {
   TaskProgress,
   DailyTask,
 } from '../../app/daily_tasks';
+import { dailyTasksProgressKey } from '../../app/target_storage_keys';
 
 jest.mock('@react-native-async-storage/async-storage');
 
 const mockStorage = AsyncStorage as jest.Mocked<typeof AsyncStorage>;
+
+function installProgressStorage(initial: TaskProgress[]): void {
+  const values = new Map<string, string>([
+    [dailyTasksProgressKey(getTodayKey()), JSON.stringify(initial)],
+  ]);
+  mockStorage.getItem.mockImplementation((key: string) =>
+    Promise.resolve(values.get(key) ?? null));
+  mockStorage.setItem.mockImplementation((key: string, value: string) => {
+    values.set(key, value);
+    return Promise.resolve();
+  });
+}
 
 describe('daily_tasks', () => {
   beforeEach(() => {
@@ -157,8 +170,7 @@ describe('daily_tasks', () => {
       const initial: TaskProgress[] = tasks.map(t => ({
         taskId: t.id, current: 0, completed: false, claimed: false,
       }));
-      mockStorage.getItem.mockResolvedValue(JSON.stringify(initial));
-      mockStorage.setItem.mockResolvedValue(undefined);
+      installProgressStorage(initial);
 
       const { allProgress } = await updateTaskProgress(targetTask.type, targetTask.target);
 
@@ -173,8 +185,7 @@ describe('daily_tasks', () => {
       const initial: TaskProgress[] = tasks.map(t => ({
         taskId: t.id, current: 0, completed: false, claimed: false,
       }));
-      mockStorage.getItem.mockResolvedValue(JSON.stringify(initial));
-      mockStorage.setItem.mockResolvedValue(undefined);
+      installProgressStorage(initial);
 
       const { allProgress } = await updateTaskProgress(targetTask.type, targetTask.target * 10);
 
@@ -191,8 +202,7 @@ describe('daily_tasks', () => {
         { taskId: 'ta1', current: 0, completed: false, claimed: false },
         { taskId: 'cs1', current: 0, completed: false, claimed: false },
       ];
-      mockStorage.getItem.mockResolvedValue(JSON.stringify(initial));
-      mockStorage.setItem.mockResolvedValue(undefined);
+      installProgressStorage(initial);
 
       const { allProgress } = await updateTaskProgress('daily_active', 1);
 
@@ -215,8 +225,7 @@ describe('daily_tasks', () => {
       const initial: TaskProgress[] = tasks.map(t => ({
         taskId: t.id, current: 0, completed: false, claimed: false,
       }));
-      mockStorage.getItem.mockResolvedValue(JSON.stringify(initial));
-      mockStorage.setItem.mockResolvedValue(undefined);
+      installProgressStorage(initial);
 
       await expect(resetTaskProgress(tasks[0].type)).resolves.toBeUndefined();
     });
@@ -230,8 +239,7 @@ describe('daily_tasks', () => {
         completed: t.id === targetTask.id,
         claimed: false,
       }));
-      mockStorage.getItem.mockResolvedValue(JSON.stringify(initial));
-      mockStorage.setItem.mockResolvedValue(undefined);
+      installProgressStorage(initial);
 
       await resetTaskProgress(targetTask.type);
 
@@ -255,8 +263,7 @@ describe('daily_tasks', () => {
         completed: t.id === claimTarget.id,
         claimed: false,
       }));
-      mockStorage.getItem.mockResolvedValue(JSON.stringify(initial));
-      mockStorage.setItem.mockResolvedValue(undefined);
+      installProgressStorage(initial);
 
       await claimTask(claimTarget.id);
 
@@ -276,8 +283,7 @@ describe('daily_tasks', () => {
         completed: t.id === claimTarget.id,
         claimed: false,
       }));
-      mockStorage.getItem.mockResolvedValue(JSON.stringify(initial));
-      mockStorage.setItem.mockResolvedValue(undefined);
+      installProgressStorage(initial);
 
       await claimTask(claimTarget.id);
 

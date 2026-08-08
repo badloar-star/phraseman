@@ -3436,24 +3436,24 @@ export default function LessonScreen() {
         }
         void AsyncStorage.setItem(finishedAtKey, finishTodayKey).catch(() => {});
         const finishDailyTaskEventId = [
-  'lesson-finish',
-  finishTodayKey,
-  safeProgressEventPart(studyTargetRef.current),
-  safeProgressEventPart(lessonId),
-  safeProgressEventPart(nextAttemptId),
-].join(':');
-const startLessonFinishDelivery = () => deliverDailyTaskProgressEvent(
-  finishDailyTaskEventId,
-  lessonFinishUpdates,
-  { studyTarget: studyTargetRef.current },
-);
-let lessonFinishDeliveryPromise = startLessonFinishDelivery();
-void lessonFinishDeliveryPromise.catch((deliveryError) => {
-  void trackFeatureError('lesson', 'daily_task_delivery', deliveryError, {
-    lessonId,
-    finishDailyTaskEventId,
-  }, 'lesson1');
-});
+          'lesson-finish',
+          finishTodayKey,
+          safeProgressEventPart(studyTargetRef.current),
+          safeProgressEventPart(lessonId),
+          safeProgressEventPart(nextAttemptId),
+        ].join(':');
+        const startLessonFinishDelivery = () => deliverDailyTaskProgressEvent(
+          finishDailyTaskEventId,
+          lessonFinishUpdates,
+          { studyTarget: studyTargetRef.current },
+        );
+        let lessonFinishDeliveryPromise = startLessonFinishDelivery();
+        void lessonFinishDeliveryPromise.catch((deliveryError) => {
+          void trackFeatureError('lesson', 'daily_task_delivery', deliveryError, {
+            lessonId,
+            finishDailyTaskEventId,
+          }, 'lesson1');
+        });
         void bumpStatsDaily('lessons_completed', 1, studyTargetRef.current);
 
         let coachRouteParams = {};
@@ -3478,38 +3478,38 @@ void lessonFinishDeliveryPromise.catch((deliveryError) => {
         };
 
         const finalizeLessonCompletion = async () => {
-  try {
-    try {
-      await lessonFinishDeliveryPromise;
-    } catch {
-      // The first attempt starts while the learner reads the completion modal.
-      // A failed Continue performs one explicit retry with the same event id.
-      lessonFinishDeliveryPromise = startLessonFinishDelivery();
-      await lessonFinishDeliveryPromise;
-    }
-  } catch (deliveryError) {
-    void trackFeatureError('lesson', 'daily_task_delivery_retry', deliveryError, {
-      lessonId,
-      finishDailyTaskEventId,
-    }, 'lesson1');
-    emitAppEvent('action_toast', {
-      type: 'error',
-      messageRu: 'Урок завершён, но вызовы не сохранились. Нажми «Продолжить» ещё раз.',
-      messageUk: 'Урок завершено, але виклики не збереглися. Натисни «Продовжити» ще раз.',
-      messageEs: 'La lección terminó, pero los desafíos no se guardaron. Pulsa «Continuar» otra vez.',
-    });
-    return;
-  }
-  setShowCycleEndModal(false);
-  cycleEndCallbackRef.current = null;
-  navigate();
-};
+          try {
+            try {
+              await lessonFinishDeliveryPromise;
+            } catch {
+              // The first attempt starts while the learner reads the completion modal.
+              // A failed Continue performs one explicit retry with the same event id.
+              lessonFinishDeliveryPromise = startLessonFinishDelivery();
+              await lessonFinishDeliveryPromise;
+            }
+          } catch (deliveryError) {
+            void trackFeatureError('lesson', 'daily_task_delivery_retry', deliveryError, {
+              lessonId,
+              finishDailyTaskEventId,
+            }, 'lesson1');
+            emitAppEvent('action_toast', {
+              type: 'error',
+              messageRu: 'Урок завершён, но вызовы не сохранились. Нажми «Продолжить» ещё раз.',
+              messageUk: 'Урок завершено, але виклики не збереглися. Натисни «Продовжити» ще раз.',
+              messageEs: 'La lección terminó, pero los desafíos no se guardaron. Pulsa «Continuar» otra vez.',
+            });
+            return;
+          }
+          setShowCycleEndModal(false);
+          cycleEndCallbackRef.current = null;
+          navigate();
+        };
 
-const hasErrors = np.some(x => x !== 'correct' && x !== 'replay_correct');
-cycleEndContinueInFlightRef.current = false;
-cycleEndCallbackRef.current = finalizeLessonCompletion;
-setCycleEndHasErrors(hasErrors);
-setShowCycleEndModal(true);
+        const hasErrors = np.some(x => x !== 'correct' && x !== 'replay_correct');
+        cycleEndContinueInFlightRef.current = false;
+        cycleEndCallbackRef.current = finalizeLessonCompletion;
+        setCycleEndHasErrors(hasErrors);
+        setShowCycleEndModal(true);
         } catch (e) {
           void trackFeatureError('lesson', 'complete', e, { lessonId }, 'lesson1');
           // Fallback: navigate to lesson_complete even if tracking fails
@@ -4170,13 +4170,13 @@ setShowCycleEndModal(true);
       t={t}
       f={f}
       onClose={() => {
-  const callback = cycleEndCallbackRef.current;
-  if (!callback || cycleEndContinueInFlightRef.current) return;
-  cycleEndContinueInFlightRef.current = true;
-  void Promise.resolve(callback()).finally(() => {
-    cycleEndContinueInFlightRef.current = false;
-  });
-}}
+        const callback = cycleEndCallbackRef.current;
+        if (!callback || cycleEndContinueInFlightRef.current) return;
+        cycleEndContinueInFlightRef.current = true;
+        void Promise.resolve(callback()).finally(() => {
+          cycleEndContinueInFlightRef.current = false;
+        });
+      }}
     />
     </>
   );

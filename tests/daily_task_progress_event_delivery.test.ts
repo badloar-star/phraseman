@@ -123,4 +123,53 @@ describe('durable Daily Challenge progress events', () => {
     ])).resolves.toBe('applied');
     await expect(lessonCompleteProgress()).resolves.toBe(1);
   });
+
+  it('does not resurrect a journal target after the active task set changed', async () => {
+    const eventId = `lesson-finish:${getTodayKey()}:en:1:attempt_4`;
+    await deliverDailyTaskProgressEvent(eventId, [
+      { type: 'lesson_complete', increment: 1 },
+    ]);
+
+    delete storage[dailyTasksProgressKey(getTodayKey())];
+    storage[dailyTasksAdminOverrideKey()] = JSON.stringify({
+      dayKey: getTodayKey(),
+      taskIds: ['ra1'],
+    });
+
+    const tasks = await getTodayTasksSafe();
+    expect(tasks.map((task) => task.id)).toEqual(['ra1']);
+    const progress = await loadTodayProgress(tasks);
+    expect(progress.some((row) => row.taskId === 'da1')).toBe(false);
+    expect(progress.find((row) => row.taskId === 'ra1')).toMatchObject({
+      current: 0,
+      completed: false,
+      claimed: false,
+    });
+  });
+
+  it('fails closed instead of growing prepared delivery entries without a bound', async () => {
+    const progressKey = dailyTasksProgressKey(getTodayKey());
+    const deliveryKey = `${progressKey}::delivery_v1`;
+    (AsyncStorage.setItem as jest.Mock).mockImplementation((key: string, value: string) => {
+      if (key === progressKey) return Promise.reject(new Error('disk_full'));
+      storage[key] = value;
+      return Promise.resolve();
+    });
+
+    for (let index = 0; index < 64; index += 1) {
+      await expect(deliverDailyTaskProgressEvent(
+        `lesson-finish:${getTodayKey()}:en:1:capacity_${index}`,
+        [{ type: 'lesson_complete', increment: 1 }],
+      )).rejects.toThrow('disk_full');
+    }
+
+    await expect(deliverDailyTaskProgressEvent(
+      `lesson-finish:${getTodayKey()}:en:1:capacity_overflow`,
+      [{ type: 'lesson_complete', increment: 1 }],
+    )).rejects.toThrow('daily_task_progress_delivery_prepared_capacity_exceeded');
+
+    const journal = JSON.parse(storage[deliveryKey]);
+    expect(journal.entries).toHaveLength(64);
+    expect(journal.entries.every((entry: { status: string }) => entry.status === 'prepared')).toBe(true);
+  });
 });

@@ -54,8 +54,10 @@ describe('AI dialog briefing route contract', () => {
     const content = source();
 
     expect(content).toContain('markAiDialogIntroSeen(studyTarget, scenario.id)');
-    expect(content).toContain("pathname: '/ai_dialog_session'");
-    expect(content).toContain('scenarioId: scenario.id');
+    expect(content).toContain("import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';");
+    expect(content).toMatch(
+      /markNextNavigationAsReplace\(\);\s*router\.replace\(\{\s*pathname: '\/ai_dialog_session',\s*params: \{ scenarioId: scenario\.id \},\s*\} as never\);/,
+    );
   });
 
   it('uses safe back navigation with the lessons tab as its recovery fallback', () => {

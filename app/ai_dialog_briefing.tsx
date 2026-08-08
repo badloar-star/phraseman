@@ -17,7 +17,7 @@ import {
   aiDialogContentAvailableForTarget,
   frenchAiDialogGateCopy,
 } from './ai_dialog_target_gate';
-import { safeRouterBack } from './navigation_back';
+import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 
 type RecoveryScreenProps = {
   icon: keyof typeof Ionicons.glyphMap;
@@ -120,6 +120,7 @@ export default function AiDialogBriefingRoute() {
       onBack={goBack}
       onStart={() => {
         void markAiDialogIntroSeen(studyTarget, scenario.id);
+        markNextNavigationAsReplace();
         router.replace({
           pathname: '/ai_dialog_session',
           params: { scenarioId: scenario.id },

@@ -41,6 +41,12 @@ export type YoutubeChannelCatalog = {
   fetchedAt: string;
 };
 
+export async function fetchYoutubeCatalogManifestWithReader(
+  reader: YoutubeCatalogReader,
+): Promise<YoutubeCatalogManifest> {
+  return parseYoutubeCatalogManifest(await reader.get('youtube_catalog/public'));
+}
+
 function orderedByIds<T extends { id: string }>(items: T[], ids: string[]): T[] {
   const byId = new Map(items.map((item) => [item.id, item]));
   return ids.map((id) => byId.get(id)).filter((item): item is T => !!item);
@@ -55,7 +61,7 @@ export async function fetchYoutubeChannelCatalogWithReader(
   channelId: string,
   reader: YoutubeCatalogReader,
 ): Promise<YoutubeChannelCatalog> {
-  const manifest = parseYoutubeCatalogManifest(await reader.get('youtube_catalog/public'));
+  const manifest = await fetchYoutubeCatalogManifestWithReader(reader);
   if (!manifest.channels.some((channel) => channel.id === channelId)) {
     throw new Error('youtube_catalog_channel_missing');
   }
@@ -119,6 +125,10 @@ async function createFirestoreReader(): Promise<YoutubeCatalogReader> {
 
 export async function fetchYoutubeChannelCatalog(channelId: string): Promise<YoutubeChannelCatalog> {
   return fetchYoutubeChannelCatalogWithReader(channelId, await createFirestoreReader());
+}
+
+export async function fetchYoutubeCatalogManifest(): Promise<YoutubeCatalogManifest> {
+  return fetchYoutubeCatalogManifestWithReader(await createFirestoreReader());
 }
 
 export async function revalidateYoutubeChannelCatalog(options: {

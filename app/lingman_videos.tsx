@@ -1,175 +1,125 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import TapScale from '../components/TapScale';
-import {
-  Linking,
-  RefreshControl,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import SkeletonBlock from '../components/SkeletonShimmer';
+import { Alert, Linking, RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { FlashList } from '@shopify/flash-list';
-import { Image } from 'expo-image';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { useRouter } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ScreenGradient from '../components/ScreenGradient';
-import { LinearGradient } from '../components/SafeLinearGradient';
+import SkeletonBlock from '../components/SkeletonShimmer';
+import YoutubeChannelHeader from '../components/youtube/YoutubeChannelHeader';
+import YoutubeChannelPickerSheet from '../components/youtube/YoutubeChannelPickerSheet';
+import YoutubeChannelTabs, { type YoutubeChannelTab } from '../components/youtube/YoutubeChannelTabs';
+import YoutubePlaylistRow from '../components/youtube/YoutubePlaylistRow';
+import YoutubePremiereHero from '../components/youtube/YoutubePremiereHero';
+import YoutubeVideoCard from '../components/youtube/YoutubeVideoCard';
 import { useLang } from '../components/LangContext';
 import { useTheme } from '../components/ThemeContext';
-import { hapticTap } from '../hooks/use-haptics';
 import { triLang } from '../constants/i18n';
-import { safeRouterBack } from './navigation_back';
-import { onAppEvent } from './events';
-import {
-  formatLingmanVideoDate,
-  getActiveYoutubeChannel,
-  getTrustedLingmanYoutubeUrl,
-  getLingmanYoutubeSnapshot,
-  LingmanYoutubeSnapshot,
-  LingmanYoutubeVideo,
-  markLingmanYoutubeCatalogSeen,
-} from './lingman_youtube';
-import { getLingmanYoutubeChrome } from './lingman_youtube_chrome';
+import { hapticTap } from '../hooks/use-haptics';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
+import type { YoutubeChannelSnapshot, YoutubeVideoSnapshot } from '../shared/youtube_catalog_contract';
 import { captureAccountGeneration } from './account_generation';
 import { accountScopeKey } from './account_scope_key';
+import { safeRouterBack } from './navigation_back';
 import {
-  beginLingmanSnapshotRequest, commitLingmanSnapshot, isLingmanSnapshotRequestCurrent,
-  lingmanSnapshotCacheKey, patchLingmanUnread, readLingmanSnapshot,
+  getActiveYoutubeChannel,
+  getLingmanYoutubeSnapshot,
+  getTrustedLingmanYoutubeUrl,
+  markLingmanYoutubeCatalogSeen,
+  type LingmanYoutubeSnapshot,
+  type LingmanYoutubeVideo,
+} from './lingman_youtube';
+import {
+  beginLingmanSnapshotRequest,
+  commitLingmanSnapshot,
+  isLingmanSnapshotRequestCurrent,
+  lingmanSnapshotCacheKey,
+  patchLingmanUnread,
+  readLingmanSnapshot,
 } from './lingman_youtube_cache';
-import { useRuntimeActive } from '../hooks/use_runtime_active';
+import {
+  fetchYoutubeCatalogManifest,
+  peekYoutubeCatalogScreenSnapshot,
+  revalidateYoutubeChannelCatalog,
+  type YoutubeCatalogScreenSnapshot,
+} from './youtube_catalog_client';
+import {
+  getYoutubeChannelPreference,
+  resolvePreferredYoutubeChannel,
+  setYoutubeChannelPreference,
+  type YoutubeChannelPreference,
+} from './youtube_channel_preference';
+import {
+  openYoutubePremiereNotificationSettings,
+  requestYoutubePremiereReminderFromTap,
+} from './youtube_premiere_notifications';
 
-function formatViews(count?: number): string {
-  if (!Number.isFinite(count)) return '';
-  const value = Number(count);
-  if (value >= 1_000_000) return `${(value / 1_000_000).toFixed(value >= 10_000_000 ? 0 : 1)}M`;
-  if (value >= 1_000) return `${(value / 1_000).toFixed(value >= 10_000 ? 0 : 1)}K`;
-  return String(value);
+// Stable child contract: YoutubeVideoCard renders testID="lingman-video-card".
+
+function legacyChannelSnapshot(): YoutubeChannelSnapshot {
+  const channel = getActiveYoutubeChannel();
+  return {
+    id: 'legacy', youtubeChannelId: channel.channelId, displayName: channel.displayName,
+    handle: channel.handle, url: channel.url, languageTags: ['en'], order: 0,
+    recentVideoIds: [], playlistIds: [],
+  };
+}
+
+function legacyVideoSnapshot(video: LingmanYoutubeVideo): YoutubeVideoSnapshot {
+  return { ...video, channelId: 'legacy', state: 'video', playlistIds: [] };
 }
 
 export default function LingmanVideosScreen() {
   const router = useRouter();
+  const { videoId: deepLinkedVideoId, channelId: deepLinkedChannelId } = useLocalSearchParams<{ videoId?: string; channelId?: string }>();
   const { lang } = useLang();
-  const { theme: t, f, isDark, themeMode } = useTheme();
+  const { theme: t } = useTheme();
   const screenRuntimeActive = useRuntimeActive(true);
   const screenRuntimeActiveRef = useRef(screenRuntimeActive);
   screenRuntimeActiveRef.current = screenRuntimeActive;
   const renderToken = captureAccountGeneration();
   const renderAccountScope = accountScopeKey(renderToken);
+  const initialCatalog = peekYoutubeCatalogScreenSnapshot(renderToken);
+  const [catalog, setCatalog] = useState<YoutubeCatalogScreenSnapshot | null>(initialCatalog);
+  const catalogRef = useRef(catalog);
+  catalogRef.current = catalog;
+  const [preference, setPreference] = useState<YoutubeChannelPreference>(() => getYoutubeChannelPreference(renderToken));
+  const [tab, setTab] = useState<YoutubeChannelTab>('home');
+  const [pickerVisible, setPickerVisible] = useState(false);
+  const [loading, setLoading] = useState(!initialCatalog);
+  const [refreshing, setRefreshing] = useState(false);
+  const [issue, setIssue] = useState<'none' | 'offline' | 'error'>('none');
+
+  // RSS remains a rollback fallback while the new atomic catalog rolls out.
   const initialChannel = getActiveYoutubeChannel();
   const renderKey = lingmanSnapshotCacheKey(renderToken, initialChannel.channelId);
   const initialWarm = readLingmanSnapshot(renderToken, initialChannel.channelId);
   const [loadedKey, setLoadedKey] = useState<string | null>(() => renderKey);
   const [cachedSnapshot, setCachedSnapshot] = useState<LingmanYoutubeSnapshot | null>(() => initialWarm?.value ?? null);
-  const [loading, setLoading] = useState(() => initialWarm === null);
-  const [refreshing, setRefreshing] = useState(false);
-  // Активный канал (дефолт PHRASEMAN или override из «Пульта»). Обновляется при
-  // каждой загрузке снапшота — тогда же, когда могла прийти новая конфигурация.
   const [channel, setChannel] = useState(() => initialChannel);
   const currentRenderKey = lingmanSnapshotCacheKey(renderToken, channel.channelId);
   const snapshot = loadedKey === currentRenderKey ? cachedSnapshot : null;
   const visibleLoading = loading || loadedKey !== currentRenderKey;
-  const chrome = getLingmanYoutubeChrome(t, isDark, themeMode);
 
   const copy = useMemo(() => ({
-    title: triLang(lang, {
-      ru: 'Видео PHRASEMAN',
-      uk: 'Відео PHRASEMAN',
-      es: 'PHRASEMAN videos',
-      'pt-BR': 'PHRASEMAN videos',
-      vi: 'PHRASEMAN videos',
-      id: 'PHRASEMAN videos',
-      tr: 'PHRASEMAN videos',
-      pl: 'PHRASEMAN videos',
-    }),
-    subtitle: triLang(lang, {
-      ru: 'Видео тренажёры для практики фраз на слух',
-      uk: 'Відеотренажери для практики фраз на слух',
-      es: 'Video trainers to practice phrases by ear',
-      'pt-BR': 'Video trainers to practice phrases by ear',
-      vi: 'Video trainers to practice phrases by ear',
-      id: 'Video trainers to practice phrases by ear',
-      tr: 'Video trainers to practice phrases by ear',
-      pl: 'Video trainers to practice phrases by ear',
-    }),
-    watch: triLang(lang, {
-      ru: 'Смотреть',
-      uk: 'Дивитися',
-      es: 'Watch',
-      'pt-BR': 'Watch',
-      vi: 'Watch',
-      id: 'Watch',
-      tr: 'Watch',
-      pl: 'Watch',
-    }),
-    openYoutube: triLang(lang, {
-      ru: 'YouTube',
-      uk: 'YouTube',
-      es: 'YouTube',
-      'pt-BR': 'YouTube',
-      vi: 'YouTube',
-      id: 'YouTube',
-      tr: 'YouTube',
-      pl: 'YouTube',
-    }),
-    newVideo: triLang(lang, {
-      ru: 'Новое',
-      uk: 'Нове',
-      es: 'New',
-      'pt-BR': 'New',
-      vi: 'New',
-      id: 'New',
-      tr: 'New',
-      pl: 'New',
-    }),
-    empty: triLang(lang, {
-      ru: 'Видео пока не загрузились. Потяни вниз, чтобы обновить.',
-      uk: 'Відео ще не завантажились. Потягни вниз, щоб оновити.',
-      es: 'Videos are not loaded yet. Pull down to refresh.',
-      'pt-BR': 'Videos are not loaded yet. Pull down to refresh.',
-      vi: 'Videos are not loaded yet. Pull down to refresh.',
-      id: 'Videos are not loaded yet. Pull down to refresh.',
-      tr: 'Videos are not loaded yet. Pull down to refresh.',
-      pl: 'Videos are not loaded yet. Pull down to refresh.',
-    }),
-    fallback: triLang(lang, {
-      ru: 'Показываю сохраненный список, обновление канала временно недоступно.',
-      uk: 'Показую збережений список, оновлення каналу тимчасово недоступне.',
-      es: 'Showing the saved list; channel refresh is temporarily unavailable.',
-      'pt-BR': 'Showing the saved list; channel refresh is temporarily unavailable.',
-      vi: 'Showing the saved list; channel refresh is temporarily unavailable.',
-      id: 'Showing the saved list; channel refresh is temporarily unavailable.',
-      tr: 'Showing the saved list; channel refresh is temporarily unavailable.',
-      pl: 'Showing the saved list; channel refresh is temporarily unavailable.',
-    }),
-    views: triLang(lang, {
-      ru: 'просмотров',
-      uk: 'переглядів',
-      es: 'views',
-      'pt-BR': 'views',
-      vi: 'views',
-      id: 'views',
-      tr: 'views',
-      pl: 'views',
-    }),
+    recent: triLang(lang, { ru: 'Новые видео', uk: 'Нові відео', es: 'New videos', 'pt-BR': 'Vídeos novos', vi: 'Video mới', id: 'Video baru', tr: 'Yeni videolar', pl: 'Nowe filmy' }),
+    featuredPlaylists: triLang(lang, { ru: 'Плейлисты канала', uk: 'Плейлисти каналу', es: 'Channel playlists', 'pt-BR': 'Playlists do canal', vi: 'Danh sách của kênh', id: 'Playlist kanal', tr: 'Kanal oynatma listeleri', pl: 'Playlisty kanału' }),
+    empty: triLang(lang, { ru: 'Здесь пока нет опубликованных видео.', uk: 'Тут поки немає опублікованих відео.', es: 'No published videos here yet.', 'pt-BR': 'Ainda não há vídeos publicados.', vi: 'Chưa có video được đăng.', id: 'Belum ada video.', tr: 'Henüz video yok.', pl: 'Nie ma jeszcze filmów.' }),
+    offline: triLang(lang, { ru: 'Показываем сохранённый каталог. Обновим, когда появится связь.', uk: 'Показуємо збережений каталог. Оновимо після відновлення зв’язку.', es: 'Showing the saved catalog. We will refresh when online.', 'pt-BR': 'Mostrando o catálogo salvo.', vi: 'Đang hiển thị danh mục đã lưu.', id: 'Menampilkan katalog tersimpan.', tr: 'Kaydedilmiş katalog gösteriliyor.', pl: 'Wyświetlamy zapisany katalog.' }),
+    stale: triLang(lang, { ru: 'Каталог давно не обновлялся', uk: 'Каталог давно не оновлювався', es: 'Catalog update is delayed', 'pt-BR': 'Atualização do catálogo atrasada', vi: 'Danh mục chưa được cập nhật', id: 'Pembaruan katalog tertunda', tr: 'Katalog güncellemesi gecikti', pl: 'Aktualizacja katalogu jest opóźniona' }),
+    error: triLang(lang, { ru: 'Не удалось загрузить каталог. Потяни вниз, чтобы повторить.', uk: 'Не вдалося завантажити каталог. Потягни вниз, щоб повторити.', es: 'Could not load the catalog. Pull to retry.', 'pt-BR': 'Não foi possível carregar.', vi: 'Không thể tải danh mục.', id: 'Katalog tidak dapat dimuat.', tr: 'Katalog yüklenemedi.', pl: 'Nie udało się wczytać katalogu.' }),
+    reminderSet: triLang(lang, { ru: 'Напоминание установлено', uk: 'Нагадування встановлено', es: 'Reminder set', 'pt-BR': 'Lembrete definido', vi: 'Đã đặt lời nhắc', id: 'Pengingat dibuat', tr: 'Hatırlatıcı ayarlandı', pl: 'Ustawiono przypomnienie' }),
   }), [lang]);
 
-  const load = useCallback(async (mode: 'initial' | 'refresh' = 'initial') => {
-    if (!screenRuntimeActiveRef.current) return;
+  const loadLegacyFallback = useCallback(async (mode: 'initial' | 'refresh' = 'initial') => {
     const token = captureAccountGeneration();
     if (accountScopeKey(token) !== renderAccountScope) return;
     const activeChannel = getActiveYoutubeChannel();
     const requestKey = lingmanSnapshotCacheKey(token, activeChannel.channelId);
     const warm = readLingmanSnapshot(token, activeChannel.channelId);
     const request = beginLingmanSnapshotRequest(token, activeChannel.channelId);
-    if (mode === 'refresh') setRefreshing(true);
-    else if (!warm) setLoading(true);
     setChannel(activeChannel);
-    if (warm) {
-      setLoadedKey(requestKey);
-      setCachedSnapshot(warm.value);
-    }
+    if (warm) { setLoadedKey(requestKey); setCachedSnapshot(warm.value); }
     if (warm?.isFresh && mode !== 'refresh' && warm.value.unreadCount > 0) {
       const latestVideoId = warm.value.latestVideoId ?? warm.value.videos[0]?.id ?? null;
       const openedSnapshot = { ...warm.value, unreadCount: 0 };
@@ -177,44 +127,70 @@ export default function LingmanVideosScreen() {
         void markLingmanYoutubeCatalogSeen(latestVideoId);
         setCachedSnapshot(openedSnapshot);
       }
-      setLoading(false);
       return;
     }
-    if (warm?.isFresh && mode !== 'refresh') { setLoading(false); return; }
     try {
       const next = await getLingmanYoutubeSnapshot();
       const latestVideoId = next.latestVideoId ?? next.videos[0]?.id ?? null;
-      const openedSnapshot = next.unreadCount > 0
-        ? { ...next, unreadCount: 0 }
-        : next;
-      if (screenRuntimeActiveRef.current && commitLingmanSnapshot(request, openedSnapshot)) {
-        if (next.unreadCount > 0) void markLingmanYoutubeCatalogSeen(latestVideoId);
+      if (next.unreadCount > 0) void markLingmanYoutubeCatalogSeen(latestVideoId);
+      const openedSnapshot = { ...next, unreadCount: 0 };
+      if (commitLingmanSnapshot(request, openedSnapshot)) {
         const committed = readLingmanSnapshot(token, activeChannel.channelId);
         setLoadedKey(requestKey);
-        setCachedSnapshot(committed?.value ?? openedSnapshot);
+        setCachedSnapshot(committed?.value ?? next);
       }
-    } catch {
-      // Keep the last successful catalog visible.
     } finally {
-      if (screenRuntimeActiveRef.current && isLingmanSnapshotRequestCurrent(request)) {
-        setLoading(false);
-        setRefreshing(false);
-      }
+      if (isLingmanSnapshotRequestCurrent(request)) setLoading(false);
     }
   }, [renderAccountScope]);
 
-  useEffect(() => {
-    if (!screenRuntimeActive) return;
-    void load('initial');
-  }, [load, screenRuntimeActive]);
+  const loadCatalog = useCallback(async (requestedChannelId?: string, refresh = false) => {
+    if (!screenRuntimeActiveRef.current) return;
+    const token = captureAccountGeneration();
+    if (accountScopeKey(token) !== renderAccountScope) return;
+    if (refresh) setRefreshing(true); else if (!catalogRef.current) setLoading(true);
+    try {
+      const manifest = catalogRef.current?.manifest ?? await fetchYoutubeCatalogManifest();
+      const currentPreference = getYoutubeChannelPreference(token);
+      const resolution = resolvePreferredYoutubeChannel(manifest, lang, currentPreference);
+      if (resolution.clearedInvalidManual) {
+        await setYoutubeChannelPreference({ mode: 'auto' }, token);
+        setPreference({ mode: 'auto' });
+      }
+      const routeChannel = deepLinkedChannelId && manifest.channels.some((item) => item.id === deepLinkedChannelId) ? deepLinkedChannelId : '';
+      const channelId = requestedChannelId || routeChannel || resolution.channelId;
+      const previous = catalogRef.current?.channel.id === channelId ? catalogRef.current : null;
+      const next = await revalidateYoutubeChannelCatalog({ channelId, token, previous, commit: (value) => {
+        catalogRef.current = value;
+        setCatalog(value);
+      } });
+      if (next) { catalogRef.current = next; setCatalog(next); setIssue('none'); }
+    } catch {
+      setIssue(catalogRef.current ? 'offline' : 'error');
+      if (!catalogRef.current) await loadLegacyFallback().catch(() => {});
+    } finally {
+      if (accountScopeKey(captureAccountGeneration()) === renderAccountScope) {
+        setLoading(false); setRefreshing(false);
+      }
+    }
+  }, [deepLinkedChannelId, lang, loadLegacyFallback, renderAccountScope]);
 
-  // Админ из «Пульта» добавил пин / сменил канал, пока экран открыт → перечитать
-  // ленту живьём (remote_config_changed), чтобы новое видео появилось сверху.
   useEffect(() => {
     if (!screenRuntimeActive) return;
-    const sub = onAppEvent('remote_config_changed', () => { void load('refresh'); });
-    return () => sub.remove();
-  }, [load, screenRuntimeActive]);
+    void loadCatalog();
+  }, [loadCatalog, screenRuntimeActive]);
+
+  const selectPreference = async (nextPreference: YoutubeChannelPreference) => {
+    const token = captureAccountGeneration();
+    await setYoutubeChannelPreference(nextPreference, token);
+    setPreference(nextPreference);
+    setPickerVisible(false);
+    const manifest = catalogRef.current?.manifest;
+    if (!manifest) return;
+    const channelId = resolvePreferredYoutubeChannel(manifest, lang, nextPreference).channelId;
+    setTab('home');
+    await loadCatalog(channelId, true);
+  };
 
   const openExternalUrl = (rawUrl: string, fallbackVideoId?: string) => {
     const trustedUrl = getTrustedLingmanYoutubeUrl(rawUrl, fallbackVideoId);
@@ -223,362 +199,85 @@ export default function LingmanVideosScreen() {
     void Linking.openURL(trustedUrl);
   };
 
-  const openVideo = (video: LingmanYoutubeVideo) => {
+  const allVideos = catalog?.videos ?? snapshot?.videos.map(legacyVideoSnapshot) ?? [];
+  const openVideo = (video: YoutubeVideoSnapshot) => {
     hapticTap();
-    const videoIndex = videos.findIndex((item) => item.id === video.id);
-    const unreadCount = snapshot?.unreadCount ?? 0;
-    if (videoIndex >= 0 && videoIndex < Math.max(1, unreadCount)) {
-      void markLingmanYoutubeCatalogSeen(video.id);
-      const nextUnread = Math.min(unreadCount, videoIndex);
+    if (!catalog && snapshot) {
+      const videoIndex = allVideos.findIndex((item) => item.id === video.id);
+      const unreadCount = snapshot.unreadCount ?? 0;
+      const nextUnread = Math.min(unreadCount, Math.max(0, videoIndex));
       patchLingmanUnread(captureAccountGeneration(), channel.channelId, nextUnread);
       setCachedSnapshot((current) => current ? { ...current, unreadCount: nextUnread } : current);
+      void markLingmanYoutubeCatalogSeen(video.id);
     }
-    router.push({
-      pathname: '/lingman_video_player',
-      params: {
-        id: video.id,
-        title: video.title,
-        watchUrl: video.watchUrl,
-      },
-    } as any);
+    router.push({ pathname: '/lingman_video_player', params: { id: video.id, title: video.title, watchUrl: video.watchUrl } } as any);
   };
 
-  const renderVideo = ({ item, index }: { item: LingmanYoutubeVideo; index: number }) => {
-    const views = formatViews(item.viewCount);
-    const isNew = index < (snapshot?.unreadCount ?? 0);
-    return (
-      <TouchableOpacity
-        testID="lingman-video-card"
-        activeOpacity={0.86}
-        accessibilityRole="button"
-        accessibilityLabel={`${copy.watch}: ${item.title}`}
-        onPress={() => openVideo(item)}
-        style={[styles.videoRow, { backgroundColor: chrome.cardBg, borderColor: chrome.cardBorder }]}
-      >
-        <View style={styles.thumbWrap}>
-          <Image source={{ uri: item.thumbnailUrl }} style={styles.thumb} contentFit="cover" transition={120} />
-          <View style={styles.thumbScrim} />
-          <View style={[styles.thumbPlay, { backgroundColor: chrome.accent, borderColor: chrome.cardBg }]}>
-            <Ionicons name="play" size={18} color={chrome.iconOnAccent} />
-          </View>
-          {isNew && (
-            <View style={[styles.latestBadge, { backgroundColor: chrome.chipBg, borderColor: chrome.accent }]}>
-              <Text style={[styles.latestBadgeText, { color: chrome.accent }]}>{copy.newVideo}</Text>
-            </View>
-          )}
-        </View>
-        <View style={styles.videoBody}>
-          <Text style={[styles.videoTitle, { color: t.textPrimary, fontSize: Math.max(15, f.bodyLg) }]} numberOfLines={2}>
-            {item.title}
-          </Text>
-          <Text style={[styles.videoMeta, { color: t.textMuted }]} numberOfLines={1}>
-            {formatLingmanVideoDate(item.publishedAt)}
-            {views ? `  ·  ${views} ${copy.views}` : ''}
-          </Text>
-          <View style={styles.videoActions}>
-            <TouchableOpacity
-              testID="lingman-video-watch"
-              activeOpacity={0.84}
-              onPress={() => openVideo(item)}
-              style={[styles.watchButton, { backgroundColor: chrome.accent }]}
-            >
-              <Ionicons name="play" size={15} color={chrome.actionText} />
-              <Text style={[styles.watchButtonText, { color: chrome.actionText }]}>{copy.watch}</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              testID="lingman-video-open-youtube"
-              activeOpacity={0.78}
-              onPress={(event) => {
-                event.stopPropagation?.();
-                openExternalUrl(item.watchUrl, item.id);
-              }}
-              style={[styles.youtubeButton, { borderColor: chrome.quietButtonBorder, backgroundColor: chrome.quietButtonBg }]}
-            >
-              <Ionicons name="open-outline" size={15} color={chrome.accent} />
-              <Text style={[styles.youtubeButtonText, { color: t.textPrimary }]}>{copy.openYoutube}</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </TouchableOpacity>
-    );
+  const openPlaylist = (playlistId: string) => router.push({ pathname: '/lingman_playlist', params: { playlistId, channelId: catalog?.channel.id } } as any);
+  const remind = async (video: YoutubeVideoSnapshot) => {
+    const result = await requestYoutubePremiereReminderFromTap({ videoId: video.id, channelId: video.channelId, title: video.title, scheduledStartTime: video.scheduledStartTime ?? '' });
+    if (result.ok) { Alert.alert(copy.reminderSet); return; }
+    if (result.reason === 'permission_blocked') {
+      Alert.alert(copy.error, undefined, [{ text: 'OK' }, { text: 'Settings', onPress: () => void openYoutubePremiereNotificationSettings() }]);
+    } else if (result.reason === 'master_disabled') {
+      Alert.alert(copy.error);
+    }
   };
 
-  const videos = snapshot?.videos ?? [];
+  const activeChannel = catalog?.channel ?? legacyChannelSnapshot();
+  const stale = !!catalog && Date.now() - Date.parse(catalog.manifest.sourceRefreshedAt) > 26 * 60 * 60_000;
+  const hero = catalog?.activeEvent && (catalog.activeEvent.state === 'upcoming' || catalog.activeEvent.state === 'live') ? catalog.activeEvent : null;
+
+  const videosList = (videos: YoutubeVideoSnapshot[]) => videos.map((video) => (
+    <YoutubeVideoCard key={video.id} video={video} highlighted={video.id === deepLinkedVideoId} onWatch={() => openVideo(video)} onOpenYoutube={() => openExternalUrl(video.watchUrl, video.id)} />
+  ));
 
   return (
     <ScreenGradient artBackdrop="home">
       <SafeAreaView testID="lingman-videos-screen" style={styles.container} edges={['top', 'left', 'right', 'bottom']}>
-        <View style={styles.header}>
-          <TapScale
-            accessibilityRole="button"
-            accessibilityLabel="Back"
-            onPress={() => {
-              hapticTap();
-              safeRouterBack(router, '/(tabs)/home' as any);
-            }}
-            style={[styles.back, { backgroundColor: chrome.quietButtonBg, borderColor: chrome.quietButtonBorder }]}
-          >
-            <Ionicons name="chevron-back" size={24} color={t.textPrimary} />
-          </TapScale>
-          <View style={styles.headerText}>
-            <Text style={[styles.title, { color: t.textPrimary, fontSize: Math.max(22, f.h1) }]} numberOfLines={1}>
-              {channel.isOverride ? `${triLang(lang, { ru: 'Видео', uk: 'Відео', es: 'Videos', 'pt-BR': 'Vídeos', vi: 'Video', id: 'Video', tr: 'Videolar', pl: 'Wideo' })} ${channel.displayName}` : copy.title}
-            </Text>
-            <Text style={[styles.subtitle, { color: t.textMuted }]} numberOfLines={2}>
-              {copy.subtitle}
-            </Text>
-          </View>
-        </View>
+        <YoutubeChannelHeader channel={activeChannel} onBack={() => safeRouterBack(router, '/(tabs)/home' as any)} onOpenChannels={() => catalog && setPickerVisible(true)} onOpenYoutube={() => openExternalUrl(activeChannel.url)} />
+        {catalog && <YoutubeChannelTabs value={tab} onChange={setTab} />}
+        {stale && <View testID="youtube-catalog-stale" style={[styles.notice, { backgroundColor: t.accentBg }]}><Ionicons name="time-outline" size={17} color={t.accent} /><Text style={[styles.noticeText, { color: t.textSecond }]}>{copy.stale}</Text></View>}
+        {issue === 'offline' && <View testID="youtube-catalog-offline" style={[styles.notice, { backgroundColor: t.accentBg }]}><Ionicons name="cloud-offline-outline" size={17} color={t.accent} /><Text style={[styles.noticeText, { color: t.textSecond }]}>{copy.offline}</Text></View>}
+        {issue === 'error' && !catalog && !snapshot && <View testID="youtube-catalog-error" style={[styles.notice, { backgroundColor: t.accentBg }]}><Ionicons name="alert-circle-outline" size={17} color={t.accent} /><Text style={[styles.noticeText, { color: t.textSecond }]}>{copy.error}</Text></View>}
+        {issue !== 'none' && snapshot && <View testID="lingman-videos-fallback-notice" />}
 
-        <LinearGradient
-          colors={[chrome.accentFaint, chrome.cardBg]}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 1 }}
-          style={[styles.channelStrip, { borderColor: chrome.cardBorder }]}
-        >
-          <View style={[styles.channelIcon, { backgroundColor: chrome.accent }]}>
-            <Ionicons name="play" size={26} color={chrome.iconOnAccent} />
+        {visibleLoading && !catalog && !snapshot ? (
+          <View testID="youtube-catalog-loading" style={styles.skeletons}>
+            <SkeletonBlock width="100%" height={250} borderRadius={24} />
+            <SkeletonBlock width="100%" height={44} borderRadius={16} />
+            {Array.from({ length: 3 }).map((_, index) => <SkeletonBlock key={index} width="100%" height={190} borderRadius={20} />)}
           </View>
-          <View style={styles.channelText}>
-            <Text style={[styles.channelTitle, { color: t.textPrimary }]}>{channel.displayName}</Text>
-            <Text style={[styles.channelSub, { color: t.textMuted }]} numberOfLines={1}>{channel.handle}</Text>
-          </View>
-          <TouchableOpacity
-            activeOpacity={0.78}
-            onPress={() => {
-              hapticTap();
-              openExternalUrl(channel.url);
-            }}
-            style={styles.channelOpen}
-          >
-            <Ionicons name="open-outline" size={19} color={t.textPrimary} />
-          </TouchableOpacity>
-        </LinearGradient>
-
-        {snapshot?.error ? (
-          <View testID="lingman-videos-fallback-notice" style={[styles.notice, { backgroundColor: chrome.noticeBg, borderColor: chrome.noticeBorder }]}>
-            <Ionicons name="cloud-offline-outline" size={16} color={chrome.accent} />
-            <Text style={[styles.noticeText, { color: t.textSecond }]}>{copy.fallback}</Text>
-          </View>
-        ) : null}
-
-        {visibleLoading ? (
-          <View style={{ gap: 14, paddingHorizontal: 2 }}>
-            {Array.from({ length: 5 }).map((_, i) => (
-              <SkeletonBlock key={`lingman-video-skeleton-${i}`} width="100%" height={96} borderRadius={18} />
-            ))}
-          </View>
+        ) : allVideos.length === 0 && (catalog?.playlists.length ?? 0) === 0 ? (
+          <ScrollView testID="youtube-catalog-empty" refreshControl={<RefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} contentContainerStyle={styles.empty}>
+            <Ionicons name="videocam-outline" size={36} color={t.accent} /><Text style={[styles.emptyText, { color: t.textMuted }]}>{copy.empty}</Text>
+          </ScrollView>
+        ) : tab === 'playlists' && catalog ? (
+          <FlashList testID="lingman-videos-list" data={catalog.playlists} keyExtractor={(item) => item.id} renderItem={({ item }) => <YoutubePlaylistRow playlist={item} onPress={() => openPlaylist(item.id)} />} showsVerticalScrollIndicator={false} contentContainerStyle={styles.list} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} />
+        ) : tab === 'all' || !catalog ? (
+          <FlashList testID="lingman-videos-list" data={allVideos} keyExtractor={(item) => item.id} renderItem={({ item }) => <YoutubeVideoCard video={item} highlighted={item.id === deepLinkedVideoId} onWatch={() => openVideo(item)} onOpenYoutube={() => openExternalUrl(item.watchUrl, item.id)} />} showsVerticalScrollIndicator={false} contentContainerStyle={styles.list} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} ListEmptyComponent={<View testID="lingman-videos-empty" />} />
         ) : (
-          <FlashList
-            testID="lingman-videos-list"
-            data={videos}
-            keyExtractor={(item) => item.id}
-            renderItem={renderVideo}
-            showsVerticalScrollIndicator={false}
-            contentContainerStyle={styles.list}
-            ListEmptyComponent={(
-              <View testID="lingman-videos-empty" style={[styles.empty, { borderColor: chrome.cardBorder, backgroundColor: chrome.cardBg }]}>
-                <Ionicons name="play-circle-outline" size={34} color={chrome.accent} />
-                <Text style={[styles.emptyText, { color: t.textMuted }]}>{copy.empty}</Text>
-              </View>
-            )}
-            refreshControl={<RefreshControl refreshing={refreshing} tintColor={chrome.accent} onRefresh={() => void load('refresh')} />}
-          />
+          <ScrollView testID="lingman-videos-list" showsVerticalScrollIndicator={false} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} contentContainerStyle={styles.list}>
+            {hero && <YoutubePremiereHero video={hero} onWatch={() => openVideo(hero)} onRemind={() => void remind(hero)} />}
+            {catalog.playlists.length > 0 && <><Text style={[styles.sectionTitle, { color: t.textPrimary }]}>{copy.featuredPlaylists}</Text>{catalog.playlists.slice(0, 6).map((playlist) => <YoutubePlaylistRow key={playlist.id} playlist={playlist} onPress={() => openPlaylist(playlist.id)} />)}</>}
+            <Text style={[styles.sectionTitle, { color: t.textPrimary }]}>{copy.recent}</Text>
+            {videosList(catalog.videos.filter((video) => video.id !== hero?.id))}
+          </ScrollView>
         )}
+
+        {catalog && <YoutubeChannelPickerSheet visible={pickerVisible} manifest={catalog.manifest} preference={preference} onSelect={(value) => void selectPreference(value)} onClose={() => setPickerVisible(false)} />}
       </SafeAreaView>
     </ScreenGradient>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingHorizontal: 16,
-    paddingTop: 14,
-    backgroundColor: 'transparent',
-  },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 12,
-    marginBottom: 14,
-  },
-  back: {
-    width: 44,
-    height: 44,
-    borderRadius: 14,
-    borderWidth: 0,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  headerText: {
-    flex: 1,
-    minWidth: 0,
-  },
-  title: {
-    fontWeight: '900',
-  },
-  subtitle: {
-    marginTop: 2,
-    fontSize: 12,
-    fontWeight: '700',
-  },
-  channelStrip: {
-    minHeight: 72,
-    borderRadius: 18,
-    borderWidth: 0,
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 12,
-    paddingHorizontal: 14,
-    marginBottom: 12,
-  },
-  channelIcon: {
-    width: 48,
-    height: 48,
-    borderRadius: 16,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  channelText: {
-    flex: 1,
-    minWidth: 0,
-  },
-  channelTitle: {
-    fontSize: 16,
-    fontWeight: '900',
-  },
-  channelSub: {
-    marginTop: 2,
-    fontSize: 12,
-    fontWeight: '700',
-  },
-  channelOpen: {
-    width: 44,
-    height: 44,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  notice: {
-    borderWidth: 0,
-    borderRadius: 14,
-    paddingHorizontal: 12,
-    paddingVertical: 10,
-    flexDirection: 'row',
-    gap: 8,
-    alignItems: 'center',
-    marginBottom: 10,
-  },
-  noticeText: {
-    flex: 1,
-    fontSize: 12,
-    fontWeight: '700',
-  },
-  list: {
-    paddingBottom: 28,
-    gap: 12,
-  },
-  videoRow: {
-    borderRadius: 18,
-    borderWidth: 0,
-    overflow: 'hidden',
-  },
-  thumbWrap: {
-    width: '100%',
-    aspectRatio: 16 / 9,
-    backgroundColor: '#050505',
-  },
-  thumb: {
-    ...StyleSheet.absoluteFillObject,
-  },
-  thumbScrim: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(0,0,0,0.10)',
-  },
-  thumbPlay: {
-    position: 'absolute',
-    left: 14,
-    bottom: 12,
-    width: 42,
-    height: 30,
-    borderRadius: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 0,
-  },
-  latestBadge: {
-    position: 'absolute',
-    right: 12,
-    top: 12,
-    height: 24,
-    paddingHorizontal: 9,
-    borderRadius: 12,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 0,
-  },
-  latestBadgeText: {
-    fontSize: 10,
-    fontWeight: '900',
-  },
-  videoBody: {
-    padding: 14,
-  },
-  videoTitle: {
-    fontWeight: '900',
-    lineHeight: 21,
-  },
-  videoMeta: {
-    marginTop: 5,
-    fontSize: 12,
-    fontWeight: '800',
-  },
-  videoActions: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 10,
-    marginTop: 12,
-  },
-  watchButton: {
-    minHeight: 42,
-    paddingHorizontal: 16,
-    borderRadius: 14,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 7,
-  },
-  watchButtonText: {
-    fontSize: 13,
-    fontWeight: '900',
-  },
-  youtubeButton: {
-    minHeight: 42,
-    paddingHorizontal: 14,
-    borderRadius: 14,
-    borderWidth: 0,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 7,
-  },
-  youtubeButtonText: {
-    fontSize: 13,
-    fontWeight: '900',
-  },
-  empty: {
-    minHeight: 180,
-    borderRadius: 18,
-    borderWidth: 0,
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 10,
-    paddingHorizontal: 22,
-  },
-  emptyText: {
-    fontSize: 13,
-    lineHeight: 18,
-    fontWeight: '800',
-    textAlign: 'center',
-  },
+  container: { flex: 1, paddingHorizontal: 16, paddingTop: 12, backgroundColor: 'transparent' },
+  list: { paddingBottom: 32 },
+  sectionTitle: { marginTop: 7, marginBottom: 11, fontSize: 18, fontWeight: '900' },
+  notice: { minHeight: 44, borderRadius: 14, paddingHorizontal: 12, paddingVertical: 9, flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 10 },
+  noticeText: { flex: 1, fontSize: 12, lineHeight: 17, fontWeight: '800' },
+  skeletons: { gap: 12 },
+  empty: { minHeight: 300, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 28, gap: 12 },
+  emptyText: { fontSize: 14, lineHeight: 20, textAlign: 'center', fontWeight: '800' },
 });

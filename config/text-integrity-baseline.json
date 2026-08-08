@@ -3438,36 +3438,6 @@
       }
     },
     {
-      "file": "app/lingman_videos.tsx",
-      "ownerName": "LingmanVideosScreen",
-      "ownerPath": "LingmanVideosScreen",
-      "ancestorPath": [
-        "ScreenGradient",
-        "SafeAreaView",
-        "LinearGradient",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "66459de07408a784b102dabbf42829989395d53d3a745dd1d7de3d7fffc3fea3",
-      "count": 1,
-      "lineHints": [
-        344
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "app/streak_stats.tsx",
       "ownerName": "LearningCoachCard",
       "ownerPath": "LearningCoachCard",
@@ -4002,34 +3972,6 @@
       }
     },
     {
-      "file": "app/lingman_videos.tsx",
-      "ownerName": "renderVideo",
-      "ownerPath": "LingmanVideosScreen>renderVideo",
-      "ancestorPath": [
-        "TouchableOpacity",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "2",
-      "testID": null,
-      "fingerprint": "76fa4088f41e0c1c6cb0e070abd0c6ad62cbcd9ed01d4c1627ffc81119774600",
-      "count": 1,
-      "lineHints": [
-        271
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "app/lesson1.tsx",
       "ownerName": "LessonContent",
       "ownerPath": "LessonContent",
@@ -4078,34 +4020,6 @@
       "lineHints": [
         517,
         520
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "app/lingman_videos.tsx",
-      "ownerName": "renderVideo",
-      "ownerPath": "LingmanVideosScreen>renderVideo",
-      "ancestorPath": [
-        "TouchableOpacity",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "798eccc83e836fbfb28624e1cd699b0be142a53603bd07bee38c5ac92a1abcb8",
-      "count": 1,
-      "lineHints": [
-        274
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -5462,36 +5376,6 @@
       "count": 1,
       "lineHints": [
         63
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "app/lingman_videos.tsx",
-      "ownerName": "LingmanVideosScreen",
-      "ownerPath": "LingmanVideosScreen",
-      "ancestorPath": [
-        "ScreenGradient",
-        "SafeAreaView",
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "a261dc6ca3038600a9379c3ac7d88d9182e646fba3558b31aede224b8e901ea1",
-      "count": 1,
-      "lineHints": [
-        324
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -7169,36 +7053,6 @@
       "count": 1,
       "lineHints": [
         1749
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "app/lingman_videos.tsx",
-      "ownerName": "LingmanVideosScreen",
-      "ownerPath": "LingmanVideosScreen",
-      "ancestorPath": [
-        "ScreenGradient",
-        "SafeAreaView",
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "2",
-      "testID": null,
-      "fingerprint": "d98d6b0890b8a91a24afe9f1221333f19bb7fccade39d22dbd3e3f3ad2e139ff",
-      "count": 1,
-      "lineHints": [
-        327
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",

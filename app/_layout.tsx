@@ -3151,6 +3151,7 @@ function AppContent() {
       <Stack.Screen name="privacy_screen" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Screen name="terms_screen" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Screen name="lingman_videos" />
+      <Stack.Screen name="lingman_playlist" />
       <Stack.Screen name="lingman_video_player" />
       <Stack.Screen name="trainer" />
       <Stack.Screen name="trainer_plan_session" />

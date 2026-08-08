@@ -138,13 +138,25 @@ function boundedString(value: unknown, maxBytes: number): value is string {
     && Buffer.byteLength(value, 'utf8') <= maxBytes;
 }
 
+function hasCanonicalArrayShape(value: readonly unknown[]): boolean {
+  const keys = Object.keys(value);
+  if (keys.length !== value.length) return false;
+  for (let index = 0; index < value.length; index += 1) {
+    if (keys[index] !== String(index)) return false;
+  }
+  return true;
+}
+
 function isJsonValue(value: unknown, depth = 0): boolean {
   if (value === null || typeof value === 'boolean' || typeof value === 'string') return true;
   if (typeof value === 'number') return Number.isFinite(value);
   if (depth >= MAX_CONTEXT_DEPTH) return false;
   if (Array.isArray(value)) {
-    return value.length <= MAX_CONTEXT_ENTRIES
-      && value.every((item) => isJsonValue(item, depth + 1));
+    if (value.length > MAX_CONTEXT_ENTRIES || !hasCanonicalArrayShape(value)) return false;
+    for (let index = 0; index < value.length; index += 1) {
+      if (!isJsonValue(value[index], depth + 1)) return false;
+    }
+    return true;
   }
   if (!isRecord(value)) return false;
   const entries = Object.entries(value);
@@ -159,7 +171,14 @@ function stableJson(value: unknown): string {
     return JSON.stringify(value);
   }
   if (typeof value === 'number' && Number.isFinite(value)) return JSON.stringify(value);
-  if (Array.isArray(value)) return `[${value.map(stableJson).join(',')}]`;
+  if (Array.isArray(value)) {
+    if (!hasCanonicalArrayShape(value)) throw new Error('unsupported_canonical_json_array');
+    const items: string[] = [];
+    for (let index = 0; index < value.length; index += 1) {
+      items.push(stableJson(value[index]));
+    }
+    return `[${items.join(',')}]`;
+  }
   if (isRecord(value)) {
     return `{${Object.keys(value).sort().map((key) => (
       `${JSON.stringify(key)}:${stableJson(value[key])}`
@@ -378,7 +397,16 @@ function validateStructure(candidate: unknown): CandidateRejectionReason | null 
 }
 
 function cloneJsonValue(value: unknown): unknown {
-  if (Array.isArray(value)) return value.map(cloneJsonValue);
+  if (Array.isArray(value)) {
+    if (!hasCanonicalArrayShape(value)) {
+      throw new Error('invalid_tournament_semantic_candidate:context_invalid');
+    }
+    const clone: unknown[] = [];
+    for (let index = 0; index < value.length; index += 1) {
+      clone.push(cloneJsonValue(value[index]));
+    }
+    return clone;
+  }
   if (isRecord(value)) {
     return Object.fromEntries(Object.entries(value).map(([key, item]) => [key, cloneJsonValue(item)]));
   }

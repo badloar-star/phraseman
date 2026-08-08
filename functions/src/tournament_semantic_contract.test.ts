@@ -534,6 +534,63 @@ describe('tournament semantic candidate validation', () => {
   });
 
   test.each([
+    ['root-level property', (() => {
+      const values = Array<string>(1);
+      return { values };
+    })()],
+    ['nested property', (() => {
+      const values = Array<string>(2);
+      values[1] = 'present-after-hole';
+      return { nested: { values } };
+    })()],
+  ])('rejects sparse arrays in a context %s', (_location, context) => {
+    expect(() => makeCandidate({ context }))
+      .toThrow('invalid_tournament_semantic_candidate:context_invalid');
+  });
+
+  test.each([
+    ['root-level property', (() => {
+      const values = ['value'] as string[] & { extra?: string };
+      values.extra = 'not-an-array-index';
+      return { values };
+    })()],
+    ['nested property', (() => {
+      const values = [null] as Array<null> & { note?: string };
+      values.note = 'not-an-array-index';
+      return { nested: { values } };
+    })()],
+  ])('rejects arrays with enumerable extra properties in a context %s', (_location, context) => {
+    expect(() => makeCandidate({ context }))
+      .toThrow('invalid_tournament_semantic_candidate:context_invalid');
+  });
+
+  test('rejects post-creation mutations to sparse or extra-property arrays', () => {
+    const candidate = makeCandidate();
+    const sparse = Array<string>(1);
+    expectRejected(withCandidatePatch(candidate, { context: { values: sparse } }), 'context_invalid');
+
+    const withExtraProperty = ['value'] as string[] & { extra?: string };
+    withExtraProperty.extra = 'not-an-array-index';
+    expectRejected(withCandidatePatch(candidate, {
+      context: { values: withExtraProperty },
+    }), 'context_invalid');
+  });
+
+  test('accepts dense JSON arrays and hashes semantic differences distinctly', () => {
+    const candidates = [
+      makeCandidate({ context: { values: [] } }),
+      makeCandidate({ context: { values: [null] } }),
+      makeCandidate({ context: { values: [[null], ['value', 1, true]] } }),
+    ];
+
+    for (const candidate of candidates) {
+      expect(validateTournamentSemanticCandidate(candidate)).toEqual({ ok: true });
+    }
+    expect(new Set(candidates.map((candidate) => candidate.contentSha256)).size).toBe(3);
+    expect(new Set(candidates.map((candidate) => candidate.semanticSignature)).size).toBe(3);
+  });
+
+  test.each([
     ['English', 1, { text: 'English 1', completedText: 'Другой перевод' }],
     ['Russian', 1, { text: 'Different English', completedText: 'Перевод 1' }],
   ])('requires unique normalized %s sides for speed_match', (_side, index, patch) => {

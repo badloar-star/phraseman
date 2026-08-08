@@ -57,6 +57,9 @@ describe('level exam question UI contract', () => {
     expect(frame).toContain('decelerationRate="normal"');
     expect(frame).toContain('SlideInRight');
     expect(frame).toContain('SlideOutLeft');
+    expect(frame).not.toContain('TonalSurface tone="card"');
+    expect(frame).not.toContain('backgroundColor: t.bgCard');
+    expect(frame).not.toContain('name="arrow-forward"');
     expect(frame).not.toMatch(/#[0-9a-f]{3,8}\b/i);
     expect(frame).not.toMatch(/rgba?\(/i);
     expect(frame).not.toMatch(/borderWidth\s*:/);

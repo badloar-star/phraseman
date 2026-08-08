@@ -8,7 +8,6 @@ import BouncyScrollView from '../BouncyScrollView';
 import ScreenGradient from '../ScreenGradient';
 import TapScale from '../TapScale';
 import { useTheme } from '../ThemeContext';
-import TonalSurface from '../TonalSurface';
 import LevelExamTimer from './LevelExamTimer';
 
 type Props = {
@@ -94,13 +93,13 @@ export default function LevelExamQuestionFrame({
           >
             {prompt}
           </Text>
-          <TonalSurface tone="card" radius={ds.radius.xl} style={{ padding: ds.spacing.lg }}>
+          <View style={{ gap: ds.spacing.sm }}>
             {children}
-          </TonalSurface>
+          </View>
           </Animated.View>
         </BouncyScrollView>
 
-        <View style={[styles.footer, { padding: ds.spacing.lg, backgroundColor: t.bgCard }]}> 
+        <View style={[styles.footer, { paddingHorizontal: ds.spacing.lg, paddingVertical: ds.spacing.md }]}>
           <TapScale
             onPress={onContinue}
             disabled={!canContinue}
@@ -118,7 +117,6 @@ export default function LevelExamQuestionFrame({
             <Text style={{ color: canContinue ? t.correctText : t.textMuted, fontSize: f.bodyLg, fontFamily: ds.fontFamily, fontWeight: '900' }}>
               {continueLabel}
             </Text>
-            <Ionicons name="arrow-forward" size={20} color={canContinue ? t.correctText : t.textMuted} />
           </TapScale>
         </View>
       </SafeAreaView>

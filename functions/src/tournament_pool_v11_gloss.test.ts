@@ -105,6 +105,13 @@ describe('parseDisplayGloss', () => {
     });
   });
 
+  it('allows ordinary period-terminated trailing sense annotations', () => {
+    expect(parseDisplayGloss('слово (обычное значение.)')).toEqual({
+      ok: true,
+      value: { displayTranslation: 'слово', senseHint: 'обычное значение.' },
+    });
+  });
+
   it.each([
     'слово\u061C',
     'слово\u200E',
@@ -117,6 +124,10 @@ describe('parseDisplayGloss', () => {
     'слово\u200D',
     'слово\u2060',
     'слово\uFEFF',
+    'слово\u00AD',
+    'слово\u206A',
+    'слово\uFFF9',
+    `слово${String.fromCodePoint(0x1BCA0)}`,
   ])('rejects Unicode format controls: %s', (raw) => {
     expect(parseDisplayGloss(raw)).toEqual({ ok: false, reason: 'control_character' });
   });

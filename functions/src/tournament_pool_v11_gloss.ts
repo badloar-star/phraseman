@@ -27,7 +27,7 @@ const TOP_LEVEL_SEPARATORS = new Set([',', ';', '/']);
 const EDITORIAL_MARKER = /(^|[^\p{L}\p{M}])(?:sic|устар\.?|книжн\.?|ред\.?|разг\.?|букв\.?|перен\.?)(?=$|[^\p{L}\p{M}])/iu;
 // Extracted annotations are deliberately plain prose: letters/numbers, whitespace,
 // and only ordinary dictionary punctuation. Tags, markup, and editorial abbreviations fail closed.
-const PLAIN_SENSE_ANNOTATION = /^[\p{L}\p{M}\p{N}\s,;:/!?'"«»()[\]{}\-–—]+$/u;
+const PLAIN_SENSE_ANNOTATION = /^[\p{L}\p{M}\p{N}\s.,;:/!?'"«»()[\]{}\-–—]+$/u;
 
 function utf8Bytes(value: string): number {
   return Buffer.byteLength(value, 'utf8');
@@ -66,6 +66,7 @@ export function parseDisplayGloss(raw: string): ParseResult {
     if (codeUnit >= 0xD800 && codeUnit <= 0xDBFF) {
       const next = raw.charCodeAt(index + 1);
       if (index + 1 >= raw.length || next < 0xDC00 || next > 0xDFFF) return { ok: false, reason: 'invalid_unicode' };
+      if (/\p{Cf}/u.test(raw.slice(index, index + 2))) return { ok: false, reason: 'control_character' };
       index += 2;
       hasNonWhitespace = true;
       continue;
@@ -75,7 +76,7 @@ export function parseDisplayGloss(raw: string): ParseResult {
     const codePoint = raw.codePointAt(index);
     if (codePoint === undefined) return { ok: false, reason: 'invalid_unicode' };
     const char = String.fromCodePoint(codePoint);
-    if (isForbiddenControl(codePoint)) {
+    if (isForbiddenControl(codePoint) || /\p{Cf}/u.test(char)) {
       if (!hasNonWhitespace && /\s/u.test(char)) {
         index += char.length;
         continue;

@@ -244,6 +244,20 @@ describe('buildFillGapCandidates', () => {
     ))).toEqual([]);
   });
 
+  it.each([
+    ['cactus', 'cacti'], ['alumnus', 'alumni'],
+  ])('rejects the expanded governed irregular noun pair %s/%s in an isolated candidate probe', (singular, plural) => {
+    expect(buildFillGapCandidates(day, phrase(
+      `expanded-${plural}`, `The ${plural} arrive.`, plural, 'noun', [singular, 'dogs', 'cats'],
+    ))).toEqual([]);
+  });
+
+  it.each([
+    ["Anna's", "Anna's ready.", 'verb'], ["Anna\u2019s", "Anna\u2019s ready.", 'to be'],
+  ])('rejects open-world positive be-shaped contraction %s before POS mapping', (token, english, partOfSpeech) => {
+    expect(buildFillGapCandidates(day, phrase(`open-world-${token}`, english, token, partOfSpeech, ['is', 'are', 'be']))).toEqual([]);
+  });
+
   it('canonicalizes irregular noun families before collision detection', () => {
     expect(() => buildIrregularNounFamilies([
       ['alpha', 'SHARES'], ['beta', 'ＳＨＡＲＥＳ'],

@@ -67,6 +67,33 @@ function round(roundNo: number): Record<string, unknown> {
   };
 }
 
+function speedMatchTask(taskId: string): Record<string, unknown> {
+  const pairs = [
+    ['ticket', 'билет'],
+    ['hotel', 'отель'],
+    ['coffee', 'кофе'],
+    ['train', 'поезд'],
+    ['airport', 'аэропорт'],
+    ['passport', 'паспорт'],
+  ];
+  const rightOptions = pairs.map(([, translation]) => translation);
+  return {
+    taskId,
+    mode: 'speed_match',
+    isVoice: false,
+    difficulty: 1,
+    payload: {
+      prompt: 'Match the pairs',
+      rightOptions,
+      items: pairs.map(([prompt], correctIndex) => ({
+        prompt, options: rightOptions, correctIndex,
+      })),
+    },
+    tags: [],
+    verified: true,
+  };
+}
+
 describe('tournament submit atomicity at the scheduler deadline', () => {
   let app: App;
   let db: Firestore;
@@ -94,6 +121,205 @@ describe('tournament submit atomicity at the scheduler deadline', () => {
     expect(capture).toBeGreaterThan(-1);
     expect(transaction).toBeGreaterThan(capture);
     expect(submitSource.slice(transaction)).not.toContain('Date.now()');
+  });
+
+  test('persists speed-match taps in Firestore without nested arrays', async () => {
+    const roomId = `speed-match-firestore-${process.pid}`;
+    const taskId = `speed-match-firestore-task-${process.pid}`;
+    const stableUid = `speed-match-firestore-user-${process.pid}`;
+    const roomRef = db.collection('tournamentRooms').doc(roomId);
+    const task = speedMatchTask(taskId);
+    const timing = core.tournamentRoundTaskSchedule([task], 1_000)[0];
+    await Promise.all([
+      roomRef.set({
+        roomId, slotId: 'daily', seed: roomId, state: 'round1', startsAt: 1_000,
+        stateStartedAtMs: 1_000, stateDeadlineAtMs: timing.feedbackEndsAtMs,
+        players: [player(stableUid)],
+        rounds: [{ roundNo: 1, mode: 'speed_match', taskIds: [taskId], taskSchedule: [timing], results: {} }],
+        version: 0, createdAtMs: 1,
+      }),
+      roomRef.collection('taskSecrets').doc(taskId).set(task),
+    ]);
+
+    await expect(runtime.tournamentSpeedMatchAttemptTransaction(db, {
+      authUid: stableUid, stableUid, roomId, roundNo: 1, taskId,
+      pairIndex: 0, selectedIndex: 1, receivedAtMs: timing.readingEndsAtMs + 1,
+    })).resolves.toMatchObject({ correct: false, wrongAttempts: 1, penaltyApplied: true });
+    await expect(runtime.tournamentSpeedMatchAttemptTransaction(db, {
+      authUid: stableUid, stableUid, roomId, roundNo: 1, taskId,
+      pairIndex: 0, selectedIndex: 0, receivedAtMs: timing.readingEndsAtMs + 2,
+    })).resolves.toMatchObject({ correct: true, wrongAttempts: 1 });
+
+    const progressId = runtime.speedMatchAttemptDocId(1, taskId, stableUid) as unknown as string;
+    const progress = (await roomRef.collection('taskSecrets').doc(progressId).get()).data();
+    expect(progress).toMatchObject({
+      kind: 'speed_match_attempt_v1',
+      matchedIndexes: [0, -1, -1, -1, -1, -1],
+      triedIndexesByPair: { 0: [1], 1: [], 2: [], 3: [], 4: [], 5: [] },
+      wrongAttempts: 1,
+    });
+    expect(progress).not.toHaveProperty('triedIndexes');
+  });
+
+  test('finalizes a fully settled speed-match board immediately', async () => {
+    const roomId = `speed-match-complete-${process.pid}`;
+    const taskId = `speed-match-complete-task-${process.pid}`;
+    const stableUid = `speed-match-complete-user-${process.pid}`;
+    const roomRef = db.collection('tournamentRooms').doc(roomId);
+    const task = speedMatchTask(taskId);
+    const timing = core.tournamentRoundTaskSchedule([task], 1_000)[0];
+    await Promise.all([
+      roomRef.set({
+        roomId, slotId: 'daily', seed: roomId, state: 'round1', startsAt: 1_000,
+        stateStartedAtMs: 1_000, stateDeadlineAtMs: timing.feedbackEndsAtMs,
+        players: [player(stableUid)],
+        rounds: [{ roundNo: 1, mode: 'speed_match', taskIds: [taskId], taskSchedule: [timing], results: {} }],
+        version: 0, createdAtMs: 1,
+      }),
+      roomRef.collection('taskSecrets').doc(taskId).set(task),
+    ]);
+
+    for (let pairIndex = 0; pairIndex < 6; pairIndex += 1) {
+      await runtime.tournamentSpeedMatchAttemptTransaction(db, {
+        authUid: stableUid, stableUid, roomId, roundNo: 1, taskId,
+        pairIndex, selectedIndex: pairIndex,
+        receivedAtMs: timing.readingEndsAtMs + pairIndex + 1,
+      });
+    }
+    await expect(runtime.tournamentSubmitTaskAnswerTransaction(db, {
+      stableUid, roomId, roundNo: 1, taskId,
+      idempotencyKey: 'speed-match-complete-v1',
+      answer: { selectedIndexes: [0, 1, 2, 3, 4, 5] },
+      receivedAtMs: timing.readingEndsAtMs + 10,
+    })).resolves.toMatchObject({ correct: true, earnedStars: 6 });
+
+    const completed = (await roomRef.get()).data()!;
+    expect(completed.rounds[0].results[stableUid]).toMatchObject({
+      roundScore: 6,
+      submissionStatus: 'submitted',
+    });
+  });
+
+  test('does not freeze a partial speed-match receipt before an in-flight pair settles', async () => {
+    const roomId = `speed-match-receipt-race-${process.pid}`;
+    const taskId = `speed-match-receipt-race-task-${process.pid}`;
+    const stableUid = `speed-match-receipt-race-user-${process.pid}`;
+    const roomRef = db.collection('tournamentRooms').doc(roomId);
+    const task = speedMatchTask(taskId);
+    const timing = core.tournamentRoundTaskSchedule([task], 1_000)[0];
+    await Promise.all([
+      roomRef.set({
+        roomId, slotId: 'daily', seed: roomId, state: 'round1', startsAt: 1_000,
+        stateStartedAtMs: 1_000, stateDeadlineAtMs: timing.feedbackEndsAtMs,
+        players: [player(stableUid)],
+        rounds: [{ roundNo: 1, mode: 'speed_match', taskIds: [taskId], taskSchedule: [timing], results: {} }],
+        version: 0, createdAtMs: 1,
+      }),
+      roomRef.collection('taskSecrets').doc(taskId).set(task),
+    ]);
+
+    await runtime.tournamentSpeedMatchAttemptTransaction(db, {
+      authUid: stableUid, stableUid, roomId, roundNo: 1, taskId,
+      pairIndex: 0, selectedIndex: 0, receivedAtMs: timing.readingEndsAtMs + 1,
+    });
+    await expect(runtime.tournamentSubmitTaskAnswerTransaction(db, {
+      stableUid, roomId, roundNo: 1, taskId,
+      idempotencyKey: 'speed-match-receipt-race-v1',
+      answer: { selectedIndexes: [0, -1, -1, -1, -1, -1] },
+      receivedAtMs: timing.readingEndsAtMs + 2,
+    })).resolves.toMatchObject({ earnedStars: 1 });
+    expect((await roomRef.get()).data()?.rounds[0].results).toEqual({});
+
+    await runtime.tournamentSpeedMatchAttemptTransaction(db, {
+      authUid: stableUid, stableUid, roomId, roundNo: 1, taskId,
+      pairIndex: 1, selectedIndex: 1, receivedAtMs: timing.readingEndsAtMs + 3,
+    });
+    await expect(runtime.advanceRoomAtDeadline(db, roomRef, {
+      nowMs: () => timing.feedbackEndsAtMs,
+    })).resolves.toBe('advanced');
+    const completed = (await roomRef.get()).data()!;
+    expect(completed.rounds[0].results[stableUid]).toMatchObject({
+      roundScore: 2,
+      submissionStatus: 'submitted',
+    });
+  });
+
+  test('deadline credits authoritative speed-match progress even without a final client receipt', async () => {
+    const roomId = `speed-match-orphan-progress-${process.pid}`;
+    const taskId = `speed-match-orphan-progress-task-${process.pid}`;
+    const stableUid = `speed-match-orphan-progress-user-${process.pid}`;
+    const roomRef = db.collection('tournamentRooms').doc(roomId);
+    const task = speedMatchTask(taskId);
+    const timing = core.tournamentRoundTaskSchedule([task], 1_000)[0];
+    await Promise.all([
+      roomRef.set({
+        roomId, slotId: 'daily', seed: roomId, state: 'round1', startsAt: 1_000,
+        stateStartedAtMs: 1_000, stateDeadlineAtMs: timing.feedbackEndsAtMs,
+        players: [player(stableUid)],
+        rounds: [{ roundNo: 1, mode: 'speed_match', taskIds: [taskId], taskSchedule: [timing], results: {} }],
+        version: 0, createdAtMs: 1,
+      }),
+      roomRef.collection('taskSecrets').doc(taskId).set(task),
+    ]);
+
+    await runtime.tournamentSpeedMatchAttemptTransaction(db, {
+      authUid: stableUid, stableUid, roomId, roundNo: 1, taskId,
+      pairIndex: 0, selectedIndex: 0, receivedAtMs: timing.readingEndsAtMs + 1,
+    });
+    await runtime.tournamentSpeedMatchAttemptTransaction(db, {
+      authUid: stableUid, stableUid, roomId, roundNo: 1, taskId,
+      pairIndex: 1, selectedIndex: 1, receivedAtMs: timing.readingEndsAtMs + 2,
+    });
+    await expect(runtime.advanceRoomAtDeadline(db, roomRef, {
+      nowMs: () => timing.feedbackEndsAtMs,
+    })).resolves.toBe('advanced');
+
+    const completed = (await roomRef.get()).data()!;
+    expect(completed.rounds[0].results[stableUid]).toMatchObject({
+      roundScore: 2,
+      submissionStatus: 'submitted',
+      review: [{ taskId, starsAwarded: 2 }],
+    });
+    expect(completed.players[0].score).toBe(2);
+  });
+
+  test('deadline ignores speed-match evidence written outside the receive window', async () => {
+    const roomId = `speed-match-late-progress-${process.pid}`;
+    const taskId = `speed-match-late-progress-task-${process.pid}`;
+    const stableUid = `speed-match-late-progress-user-${process.pid}`;
+    const roomRef = db.collection('tournamentRooms').doc(roomId);
+    const task = speedMatchTask(taskId);
+    const timing = core.tournamentRoundTaskSchedule([task], 1_000)[0];
+    const progressId = runtime.speedMatchAttemptDocId(1, taskId, stableUid) as unknown as string;
+    await Promise.all([
+      roomRef.set({
+        roomId, slotId: 'daily', seed: roomId, state: 'round1', startsAt: 1_000,
+        stateStartedAtMs: 1_000, stateDeadlineAtMs: timing.feedbackEndsAtMs,
+        players: [player(stableUid)],
+        rounds: [{ roundNo: 1, mode: 'speed_match', taskIds: [taskId], taskSchedule: [timing], results: {} }],
+        version: 0, createdAtMs: 1,
+      }),
+      roomRef.collection('taskSecrets').doc(taskId).set(task),
+      roomRef.collection('taskSecrets').doc(progressId).set({
+        kind: 'speed_match_attempt_v1', taskId, playerId: stableUid, roundNo: 1,
+        matchedIndexes: [0, -1, -1, -1, -1, -1],
+        triedIndexesByPair: { 0: [], 1: [], 2: [], 3: [], 4: [], 5: [] },
+        wrongAttempts: 0,
+        // The last legal server receipt is feedbackStartsAtMs - 1.
+        updatedAtMs: timing.feedbackStartsAtMs,
+      }),
+    ]);
+
+    await expect(runtime.advanceRoomAtDeadline(db, roomRef, {
+      nowMs: () => timing.feedbackEndsAtMs,
+    })).resolves.toBe('advanced');
+    const completed = (await roomRef.get()).data()!;
+    expect(completed.rounds[0].results[stableUid]).toMatchObject({
+      roundScore: 0,
+      submissionStatus: 'timed_out',
+      timedOut: true,
+    });
+    expect(completed.players[0].score).toBe(0);
   });
 
   test('enforces each persisted task deadline with the exact 1.5 second receive grace', async () => {
@@ -239,13 +465,12 @@ describe('tournament submit atomicity at the scheduler deadline', () => {
     })).resolves.toEqual({ ...first, replay: true });
   });
 
-  test('awards per-task places from the private rank counter, not from rereading every rival receipt', async () => {
-    // зачем 2026-08-01 (аудит стоимости): место в задании (1-й = 3⭐, 2-й = 2⭐,
-    // остальные = 1⭐) раньше требовало прочитать квитанции ВСЕХ игроков по
-    // ВСЕМ заданиям раунда — 64 документа на каждый ответ. Теперь место берётся
-    // из счётчика в закрытой taskSecrets. Тест сторожит ровно то, что при этом
-    // не должно измениться: сами места, и то, что неверный ответ места не
-    // занимает и не сдвигает очередь для тех, кто ответил после него.
+  test('tracks per-task places privately without changing correctness-based stars', async () => {
+    // зачем 2026-08-01 (аудит стоимости): место в задании раньше требовало
+    // прочитать квитанции ВСЕХ игроков по ВСЕМ заданиям раунда — 64 документа
+    // на каждый ответ. Теперь место берётся из счётчика в закрытой taskSecrets.
+    // После правила владельца от 2026-08-03 место больше не меняет звёзды, но
+    // остаётся серверным тай-брейком. Неверный ответ не должен занимать место.
     const roomId = `rank-counter-${process.pid}`;
     const taskId = 'rank-counter-q1';
     const roomRef = db.collection('tournamentRooms').doc(roomId);
@@ -287,8 +512,8 @@ describe('tournament submit atomicity at the scheduler deadline', () => {
     expect(first).toMatchObject({ correct: true, earnedStars: 3 });
     // Неверный ответ не занимает место в очереди правильных.
     expect(wrong).toMatchObject({ correct: false, earnedStars: 0 });
-    expect(second).toMatchObject({ correct: true, earnedStars: 2 });
-    expect(third).toMatchObject({ correct: true, earnedStars: 1 });
+    expect(second).toMatchObject({ correct: true, earnedStars: 3 });
+    expect(third).toMatchObject({ correct: true, earnedStars: 3 });
 
     // Счётчик виден только серверу и считает ровно верные ответы.
     const counterId = runtime.tournamentTaskRankCounterDocId(1, taskId) as unknown as string;
@@ -528,7 +753,7 @@ describe('tournament submit atomicity at the scheduler deadline', () => {
       .toEqual([stableUid, zeroReceiptUid]);
   });
 
-  test('ranks each correct task by receipt time, with player id as the deterministic tie-break', async () => {
+  test('keeps receipt ranks as a deterministic tie-break without reducing stars', async () => {
     const roomId = `task-answer-rank-${process.pid}`;
     const taskIds = ['task-answer-rank-q1', 'task-answer-rank-q2'];
     const roomRef = db.collection('tournamentRooms').doc(roomId);
@@ -563,8 +788,8 @@ describe('tournament submit atomicity at the scheduler deadline', () => {
     await submit('rank-a', taskIds[1], 25_000); // Same q2 time: rank-a wins the stable id tie.
 
     const completed = (await roomRef.get()).data()!;
-    expect(completed.rounds[0].results['rank-a'].roundScore).toBe(5); // q1 second=2, q2 first=3
-    expect(completed.rounds[0].results['rank-b'].roundScore).toBe(5); // q1 first=3, q2 second=2
+    expect(completed.rounds[0].results['rank-a'].roundScore).toBe(6);
+    expect(completed.rounds[0].results['rank-b'].roundScore).toBe(6);
   });
 
   test('replays a transient batch retry once under the same key while still inside grace', async () => {

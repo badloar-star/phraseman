@@ -273,22 +273,33 @@ function tournamentReceiptRefsForRound(
   })));
 }
 
-function tournamentReceiptIsTimely(
+function tournamentTaskEvidenceIsTimely(
   round: TournamentRound,
-  receipt: TournamentTaskAnswerReceipt,
+  taskId: string,
+  receivedAtMs: number,
   fallbackDeadlineAtMs?: number,
 ): boolean {
   try {
     const scheduleEnforced = assertTournamentAnswersWithinTaskSchedule(
-      round, [receipt.taskId], receipt.receivedAtMs,
+      round, [taskId], receivedAtMs,
     );
     return scheduleEnforced || fallbackDeadlineAtMs === undefined
-      || receipt.receivedAtMs <= fallbackDeadlineAtMs;
+      || receivedAtMs <= fallbackDeadlineAtMs;
   } catch (error) {
     const message = error instanceof Error ? error.message : '';
     if (message === 'task_not_started' || message === 'task_deadline_elapsed') return false;
     throw error;
   }
+}
+
+function tournamentReceiptIsTimely(
+  round: TournamentRound,
+  receipt: TournamentTaskAnswerReceipt,
+  fallbackDeadlineAtMs?: number,
+): boolean {
+  return tournamentTaskEvidenceIsTimely(
+    round, receipt.taskId, receipt.receivedAtMs, fallbackDeadlineAtMs,
+  );
 }
 
 function canonicalTournamentReceiptRanks(
@@ -3233,12 +3244,26 @@ export async function tournamentSubmitTaskAnswerTransaction(
         }, { merge: true });
       }
     }
-    if (hasCompleteReceiptSet) {
-      const speedMatchProgress: Record<string, SpeedMatchAttemptProgress> = {};
-      round.taskIds.forEach((taskId, index) => {
-        const taskProgress = readSpeedMatchProgress(snapshots[attemptOffset + index].data());
-        if (taskProgress) speedMatchProgress[taskId] = taskProgress;
+    const speedMatchProgress: Record<string, SpeedMatchAttemptProgress> = {};
+    round.taskIds.forEach((taskId, index) => {
+      const taskProgress = readSpeedMatchProgress(snapshots[attemptOffset + index].data());
+      if (taskProgress) speedMatchProgress[taskId] = taskProgress;
+    });
+    // A partial speed-match receipt must not freeze an incomplete journal into
+    // the room result. A pair tap that was already in flight can commit a few
+    // milliseconds after the timeout receipt. Finalizing here would make that
+    // authoritative pair impossible to recover even though Firestore accepted
+    // it inside the receive window. Full boards are settled and may still take
+    // the fast path; partial boards are scored once at the round deadline.
+    const speedMatchJournalsSettled = round.taskIds.every((taskId, index) => {
+      const task = tasks[index] as TournamentTask;
+      if (task.mode !== 'speed_match') return true;
+      const taskProgress = speedMatchProgress[taskId];
+      return !!taskProgress && verifyTournamentAnswer(task, {
+        selectedIndexes: taskProgress.matchedIndexes,
       });
+    });
+    if (hasCompleteReceiptSet && speedMatchJournalsSettled) {
       const taskReceivedAtMs = Object.fromEntries(
         round.taskIds.map((taskId) => [taskId, receiptByTask.get(taskId)!.receivedAtMs]),
       );
@@ -3985,26 +4010,48 @@ export async function advanceRoomAtDeadline(
         const answerRanksByPlayer = canonicalTournamentReceiptRanks(
           deadlineRound, tasks, realPlayerIds, allReceipts, transitionAtMs,
         );
+        const taskById = new Map(tasks.map((task) => [task.taskId, task]));
         receiptSubmissions = Object.fromEntries(realPlayerIds.flatMap((playerId) => {
           const timelyReceipts = allReceipts.filter((receipt) => (
             receipt.playerId === playerId
             && tournamentReceiptIsTimely(deadlineRound, receipt, transitionAtMs)
           ));
-          if (timelyReceipts.length === 0) return [];
           const speedMatchProgress: Record<string, SpeedMatchAttemptProgress> = {};
+          const speedMatchReceivedAtMs: Record<string, number> = {};
           deadlineAttemptDescriptors.forEach((descriptor, index) => {
             if (descriptor.playerId !== playerId) return;
-            const progress = readSpeedMatchProgress(snapshots[attemptOffset + index].data());
-            if (progress) speedMatchProgress[descriptor.taskId] = progress;
+            const data = snapshots[attemptOffset + index].data();
+            const progress = readSpeedMatchProgress(data);
+            const task = taskById.get(descriptor.taskId);
+            const receivedAtMs = Number(data?.updatedAtMs);
+            if (!progress || task?.mode !== 'speed_match' || !Number.isFinite(receivedAtMs)
+              || !tournamentTaskEvidenceIsTimely(
+                deadlineRound, descriptor.taskId, receivedAtMs, transitionAtMs,
+              )) return;
+            speedMatchProgress[descriptor.taskId] = progress;
+            speedMatchReceivedAtMs[descriptor.taskId] = receivedAtMs;
           });
+          // The per-pair journal is already server-verified evidence. Treat it
+          // as a task receipt at the deadline even when the client's final
+          // submit was lost, rejected, or raced the last pair. Otherwise a
+          // player who only managed the pair task could still receive zero.
+          const answers = timelyReceipts.map((receipt) => ({
+            taskId: receipt.taskId,
+            answer: receipt.answer,
+          }));
+          const taskReceivedAtMs = Object.fromEntries(timelyReceipts.map((receipt) => [
+            receipt.taskId, receipt.receivedAtMs,
+          ]));
+          for (const [taskId, progress] of Object.entries(speedMatchProgress)) {
+            if (!Object.prototype.hasOwnProperty.call(taskReceivedAtMs, taskId)) {
+              answers.push({ taskId, answer: { selectedIndexes: progress.matchedIndexes } });
+              taskReceivedAtMs[taskId] = speedMatchReceivedAtMs[taskId];
+            }
+          }
+          if (answers.length === 0) return [];
           return [[playerId, {
-            answers: timelyReceipts.map((receipt) => ({
-              taskId: receipt.taskId,
-              answer: receipt.answer,
-            })),
-            taskReceivedAtMs: Object.fromEntries(timelyReceipts.map((receipt) => [
-              receipt.taskId, receipt.receivedAtMs,
-            ])),
+            answers,
+            taskReceivedAtMs,
             answerRanksByPlayer,
             speedMatchProgress,
           } satisfies TournamentDeadlineSubmission]];

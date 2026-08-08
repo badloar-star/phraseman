@@ -70,4 +70,18 @@ describe('tournament speed-match round', () => {
     expect(answerMatch).toContain('activeMatchSelectionsRef.current.set(pairIndex, selectedIndex);');
     expect(answerMatch).toContain('activeMatchSelectionsRef.current.get(pairIndex) !== selectedIndex');
   });
+
+  it('orders the final task receipt after every accepted pair request', () => {
+    const submitStart = source.indexOf('const submitMatchProgress');
+    const submitProgress = source.slice(
+      submitStart,
+      source.indexOf('const finishMatchEarly', submitStart),
+    );
+
+    expect(source).toContain('pendingMatchServerAttemptsRef');
+    expect(submitProgress).toContain('await Promise.allSettled(pendingServerAttempts);');
+    expect(submitProgress).toContain('await submitCurrentTaskAnswer(question, { selectedIndexes });');
+    expect(submitProgress.indexOf('Promise.allSettled'))
+      .toBeLessThan(submitProgress.indexOf('submitCurrentTaskAnswer'));
+  });
 });

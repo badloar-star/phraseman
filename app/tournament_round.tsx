@@ -360,12 +360,13 @@ export default function TournamentRoundScreen() {
   const [confirmedMatchPairs, setConfirmedMatchPairs] = useState<ReadonlySet<number>>(() => new Set());
   const pendingMatchPairsRef = useRef(new Set<string>());
   const activeMatchSelectionsRef = useRef(new Map<number, number>());
+  const pendingMatchServerAttemptsRef = useRef(new Set<Promise<unknown>>());
   // зачем 2026-08-03: таймаут-эффекту нужно отправить собранные пары, но
   // finishMatchEarly зависит от matchStatus, который меняется на КАЖДОЙ паре.
   // Прямая зависимость пересоздавала бы таймаут-эффект по ходу сборки поля —
   // ровно тот класс нестабильности, из-за которого баг и жил. Ref даёт эффекту
   // всегда свежую функцию, не входя в его список зависимостей.
-  const finishMatchEarlyRef = useRef<(() => void) | null>(null);
+  const finishMatchEarlyRef = useRef<(() => Promise<void>) | null>(null);
   const fxRef = useRef<TournamentFxApi>(null);
   const starCounterRef = useRef<View>(null);
   const streakPillRef = useRef<View>(null);
@@ -711,6 +712,7 @@ export default function TournamentRoundScreen() {
     setConfirmedMatchPairs(new Set());
     pendingMatchPairsRef.current.clear();
     activeMatchSelectionsRef.current.clear();
+    pendingMatchServerAttemptsRef.current.clear();
   }, [questionKey]);
 
   // Таймер задания читает только абсолютное серверное окно. Локальные часы
@@ -1074,7 +1076,7 @@ export default function TournamentRoundScreen() {
       return next;
     });
     if (localCorrect === null) {
-      return (async () => {
+      const serverAttempt = (async () => {
         try {
           await waitForTournamentAnswerWindow(questionTiming);
           const result = await submitSpeedMatchAttempt(roomId, roundNo, question.taskId, pairIndex, selectedIndex);
@@ -1108,6 +1110,11 @@ export default function TournamentRoundScreen() {
           pendingMatchPairsRef.current.delete(attemptKey);
         }
       })();
+      pendingMatchServerAttemptsRef.current.add(serverAttempt);
+      void serverAttempt.finally(() => {
+        pendingMatchServerAttemptsRef.current.delete(serverAttempt);
+      });
+      return serverAttempt;
     }
 
     const localVerdict = localCorrect ? 'correct' : 'wrong';
@@ -1130,7 +1137,7 @@ export default function TournamentRoundScreen() {
       fk.wrong(TOURNAMENT_SOUND_OPTIONS);
     }
 
-    void waitForTournamentAnswerWindow(questionTiming)
+    const serverAttempt = waitForTournamentAnswerWindow(questionTiming)
       .then(() => submitSpeedMatchAttempt(roomId, roundNo, question.taskId, pairIndex, selectedIndex))
       .then((result) => {
         if (!screenMountedRef.current || activeQuestionKeyRef.current !== attemptQuestionKey
@@ -1169,6 +1176,10 @@ export default function TournamentRoundScreen() {
       .finally(() => {
         pendingMatchPairsRef.current.delete(attemptKey);
       });
+    pendingMatchServerAttemptsRef.current.add(serverAttempt);
+    void serverAttempt.finally(() => {
+      pendingMatchServerAttemptsRef.current.delete(serverAttempt);
+    });
 
     return Promise.resolve(localVerdict);
   }, [addPendingStars, answerSelectionActive, flyStarsToCounter, question, questionKey,
@@ -1181,11 +1192,8 @@ export default function TournamentRoundScreen() {
 
   useEffect(() => {
     if (!matchComplete || phase !== 'question' || !question) return;
-    const selectedIndexes = question.matchPairs?.map((_, pairIndex) => (
-      matchStatus[pairIndex]?.selectedIndex ?? -1
-    )) ?? [];
-    void submitCurrentTaskAnswer(question, { selectedIndexes });
-  }, [confirmedMatchPairs, matchComplete, matchStatus, phase, question, submitCurrentTaskAnswer]);
+    void finishMatchEarlyRef.current?.();
+  }, [confirmedMatchPairs, matchComplete, matchStatus, phase, question]);
 
   /**
    * «Готово» в задании с парами — досрочная фиксация ответа.
@@ -1206,20 +1214,27 @@ export default function TournamentRoundScreen() {
    * а там уже звучит сигнал таймера — второй звук в тот же кадр читался бы как
    * «игрок что-то нажал», хотя он ничего не нажимал.
    */
-  const submitMatchProgress = useCallback(() => {
+  const submitMatchProgress = useCallback(async () => {
     if (!question || question.kind !== 'match' || phase !== 'question') return;
+    // A final task receipt must be ordered after every pair request that was
+    // already accepted from the UI. Otherwise the receipt transaction can
+    // read the previous journal revision and permanently miss the final pair.
+    const pendingServerAttempts = Array.from(pendingMatchServerAttemptsRef.current);
+    if (pendingServerAttempts.length > 0) {
+      await Promise.allSettled(pendingServerAttempts);
+    }
     const selectedIndexes = question.matchPairs?.map((_, pairIndex) => (
       matchStatus[pairIndex]?.verdict === 'correct' && confirmedMatchPairs.has(pairIndex)
         ? matchStatus[pairIndex]?.selectedIndex ?? -1
         : -1
     )) ?? [];
-    void submitCurrentTaskAnswer(question, { selectedIndexes });
+    await submitCurrentTaskAnswer(question, { selectedIndexes });
   }, [confirmedMatchPairs, matchStatus, phase, question, submitCurrentTaskAnswer]);
 
   const finishMatchEarly = useCallback(() => {
     if (!question || question.kind !== 'match' || phase !== 'question') return;
     fk.tap();
-    submitMatchProgress();
+    void submitMatchProgress();
   }, [phase, question, submitMatchProgress]);
 
   // Таймаут-эффект берёт функцию отсюда, чтобы не зависеть от matchStatus.
@@ -1278,7 +1293,7 @@ export default function TournamentRoundScreen() {
      * поле, а раунд получает недостающий чек и досчитывается.
      */
     if (question.kind === 'match') {
-      finishMatchEarlyRef.current?.();
+      void finishMatchEarlyRef.current?.();
     }
     markTaskResolved(question.taskId);
     setPicked(null);

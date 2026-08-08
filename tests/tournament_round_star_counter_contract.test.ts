@@ -132,7 +132,7 @@ describe('поле пар: собранная карточка гаснет, а 
     test('автоотправка не зависит от matchStatus напрямую', () => {
       // Прямая зависимость пересоздавала бы таймаут-эффект на КАЖДОЙ собранной
       // паре — ровно та нестабильность, из-за которой баг и жил.
-      expect(ROUND_SOURCE).toContain('const finishMatchEarlyRef = useRef<(() => void) | null>(null)');
+      expect(ROUND_SOURCE).toContain('const finishMatchEarlyRef = useRef<(() => Promise<void>) | null>(null)');
       expect(ROUND_SOURCE).toContain('finishMatchEarlyRef.current = submitMatchProgress');
     });
 

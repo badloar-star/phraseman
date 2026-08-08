@@ -157,10 +157,17 @@ describe('level exam blueprint', () => {
           expect(new Set(task.options.map((option) => normalized(option.text))).size).toBe(4);
           expect(task.options.filter((option) => option.id === task.correctOptionId)).toHaveLength(1);
           expect(task.options.some((option) => option.text.includes(':wrong-'))).toBe(false);
-          if (task.format === 'guess_phrase') for (const option of task.options) expect(canonicalEnglish).toContain(normalized(option.text));
+          if (task.format === 'guess_phrase' || task.format === 'find_oddity') {
+            const lessonEnglish = new Set(getLessonData(task.lessonId).map((phrase) => normalized(phrase.english)));
+            for (const option of task.options) {
+              if (task.format === 'find_oddity' && option.id === task.correctOptionId) continue;
+              expect(lessonEnglish).toContain(normalized(option.text));
+            }
+          }
         } else if (task.format === 'translate_build') {
           expect(task.tokens.length).toBeGreaterThanOrEqual(2);
-          expect(new Set(task.tokens.map((token) => token.id))).toEqual(new Set(task.correctTokenIds));
+          expect(task.correctTokenIds.every((id) => task.tokens.some((token) => token.id === id))).toBe(true);
+          expect(task.tokens.some((token) => token.isDistractor)).toBe(true);
           if (task.tokens.map((token) => token.id).join('|') !== task.correctTokenIds.join('|')) {
             shuffledBuilders += 1;
           }

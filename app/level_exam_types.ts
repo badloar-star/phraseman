@@ -18,6 +18,7 @@ export type LevelExamOption = {
 export type LevelExamToken = {
   id: string;
   text: string;
+  isDistractor?: boolean;
 };
 
 type LevelExamSingleScoreTaskBase = {

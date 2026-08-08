@@ -134,6 +134,36 @@ function shuffledWithoutIdentity<T extends { id: string }>(values: readonly T[],
     : result;
 }
 
+function builderTokens(reference: PhraseReference, taskId: string, seed: string): {
+  tokens: { id: string; text: string; isDistractor?: boolean }[];
+  correctTokenIds: string[];
+} {
+  const canonical = targetWords(reference.phrase).map((word, tokenIndex) => ({
+    id: `${taskId}:t${tokenIndex}`,
+    text: word.text,
+  }));
+  const correctText = new Set(canonical.map((token) => normalized(token.text)));
+  const decoys = targetWords(reference.phrase)
+    .flatMap((word) => word.distractors || [])
+    .map((text) => text.trim())
+    .filter((text) => /^[A-Za-z']+$/u.test(text) && !correctText.has(normalized(text)));
+  const uniqueDecoys = [...new Map(decoys.map((text) => [normalized(text), text])).values()].slice(0, 2);
+  return {
+    tokens: shuffledWithoutIdentity([
+      ...canonical,
+      ...uniqueDecoys.map((text, index) => ({ id: `${taskId}:d${index}`, text, isDistractor: true })),
+    ], `${seed}:${taskId}:tokens`),
+    correctTokenIds: canonical.map((token) => token.id),
+  };
+}
+
+function hasBuilderDistractor(reference: PhraseReference): boolean {
+  const correctText = new Set(targetWords(reference.phrase).map((word) => normalized(word.text)));
+  return targetWords(reference.phrase).some((word) => (word.distractors || []).some((text) => (
+    /^[A-Za-z']+$/u.test(text.trim()) && !correctText.has(normalized(text))
+  )));
+}
+
 export function buildLevelExamBlueprint(input: BuildLevelExamBlueprintInput): LevelExamBlueprint {
   const [fromLesson, toLesson] = COURSE_LEVEL_RANGES[input.level];
   const references: PhraseReference[] = [];
@@ -165,7 +195,12 @@ export function buildLevelExamBlueprint(input: BuildLevelExamBlueprintInput): Le
   };
 
   const tasks: LevelExamTask[] = [];
-  const allEnglish = references.map((item) => item.phrase.english.trim());
+  const englishByLesson = new Map<number, string[]>();
+  for (const reference of references) {
+    const list = englishByLesson.get(reference.lessonId) || [];
+    list.push(reference.phrase.english.trim());
+    englishByLesson.set(reference.lessonId, list);
+  }
 
   for (let index = 0; index < SINGLE_TASKS_PER_MODE; index += 1) {
     const reference = next();
@@ -174,7 +209,7 @@ export function buildLevelExamBlueprint(input: BuildLevelExamBlueprintInput): Le
       id, scoreUnitId: id, lessonId: reference.lessonId, phraseId: reference.phraseId,
       format: 'guess_phrase', prompt: reference.sourceText,
       explanation: `${reference.phrase.english.trim()} — ${reference.sourceText}`,
-      ...choiceOptions(id, reference.phrase.english.trim(), allEnglish, input.seed),
+      ...choiceOptions(id, reference.phrase.english.trim(), englishByLesson.get(reference.lessonId) || [], input.seed),
     } satisfies LevelExamChoiceTask);
   }
 
@@ -198,20 +233,20 @@ export function buildLevelExamBlueprint(input: BuildLevelExamBlueprintInput): Le
       id, scoreUnitId: id, lessonId: reference.lessonId, phraseId: reference.phraseId,
       format: 'find_oddity', prompt: 'Which sentence is not correct?',
       explanation: `${reference.phrase.english.trim()} — ${reference.sourceText}`,
-      ...choiceOptions(id, candidate.wrong, allEnglish.filter((value) => normalized(value) !== normalized(reference.phrase.english)), input.seed),
+      ...choiceOptions(id, candidate.wrong, (englishByLesson.get(reference.lessonId) || [])
+        .filter((value) => normalized(value) !== normalized(reference.phrase.english)), input.seed),
     } satisfies LevelExamChoiceTask);
   }
 
   for (let index = 0; index < SINGLE_TASKS_PER_MODE; index += 1) {
-    const reference = next((item) => targetWords(item.phrase).length >= 2);
+    const reference = next((item) => targetWords(item.phrase).length >= 2 && hasBuilderDistractor(item));
     const id = `${input.level}:translate_build:${reference.lessonId}:${reference.phraseId}`;
-    const canonical = targetWords(reference.phrase).map((word, tokenIndex) => ({ id: `${id}:t${tokenIndex}`, text: word.text }));
+    const tokenData = builderTokens(reference, id, input.seed);
     tasks.push({
       id, scoreUnitId: id, lessonId: reference.lessonId, phraseId: reference.phraseId,
       format: 'translate_build', prompt: reference.sourceText,
       explanation: `${reference.phrase.english.trim()} — ${reference.sourceText}`,
-      tokens: shuffledWithoutIdentity(canonical, `${input.seed}:${id}:tokens`),
-      correctTokenIds: canonical.map((token) => token.id),
+      ...tokenData,
     } satisfies LevelExamPhraseBuilderTask);
   }
 

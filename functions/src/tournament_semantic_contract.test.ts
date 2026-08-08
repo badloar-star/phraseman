@@ -80,6 +80,10 @@ function expectRejected(
   expect(validateTournamentSemanticCandidate(candidate)).toEqual({ ok: false, reason });
 }
 
+class NonCanonicalRecord {
+  readonly detail = 'value';
+}
+
 function oddityInput(): TournamentSemanticCandidateInput {
   return {
     ...baseInput,
@@ -440,6 +444,93 @@ describe('tournament semantic candidate validation', () => {
 
     expect(() => makeCandidate({ reviewSubjects }))
       .toThrow('invalid_tournament_semantic_candidate:subject_metadata_invalid');
+  });
+
+  test.each([
+    ['Map', new Map([['detail', 'value']])],
+    ['Date', new Date('2026-08-08T00:00:00.000Z')],
+    ['class instance', new NonCanonicalRecord()],
+    ['nested non-string value', { detail: { nested: 'value' } }],
+  ])('rejects non-plain %s subject metadata before cloning', (_shape, metadata) => {
+    const reviewSubjects = baseInput.reviewSubjects.map((subject, index) => (
+      index === 0 ? { ...subject, metadata: metadata as never } : subject
+    ));
+
+    expect(() => makeCandidate({ reviewSubjects }))
+      .toThrow('invalid_tournament_semantic_candidate:subject_metadata_invalid');
+  });
+
+  test.each([
+    ['Date', new Date('2026-08-08T00:00:00.000Z')],
+    ['Map', new Map([['key', 'value']])],
+    ['Set', new Set(['value'])],
+    ['class instance', new NonCanonicalRecord()],
+  ])('rejects a nested non-plain %s in context before cloning', (_shape, value) => {
+    expect(() => makeCandidate({ context: { nested: value } }))
+      .toThrow('invalid_tournament_semantic_candidate:context_invalid');
+  });
+
+  test.each([
+    ['undefined', undefined],
+    ['function', () => 'value'],
+    ['symbol', Symbol('value')],
+    ['bigint', 1n],
+    ['NaN', Number.NaN],
+    ['positive infinity', Number.POSITIVE_INFINITY],
+    ['negative infinity', Number.NEGATIVE_INFINITY],
+  ])('rejects non-JSON context value %s', (_shape, value) => {
+    expect(() => makeCandidate({ context: { invalid: value } }))
+      .toThrow('invalid_tournament_semantic_candidate:context_invalid');
+  });
+
+  test('accepts deterministic JSON data in plain and null-prototype records', () => {
+    const nullPrototypeMetadata = Object.assign(Object.create(null), {
+      sourceRole: 'answer',
+      tokenIndex: '1',
+    }) as Readonly<Record<string, string>>;
+    const nestedNullPrototype = Object.assign(Object.create(null), {
+      beta: [null, true, false, 42, 'value'],
+      alpha: { finite: 1.5 },
+    }) as Readonly<Record<string, unknown>>;
+    const nullPrototypeContext = Object.assign(Object.create(null), {
+      testedMeaning: 'Пожалуйста, подключитесь к звонку.',
+      nested: nestedNullPrototype,
+      authoredSentence: 'Please connect to the call.',
+    }) as Readonly<Record<string, unknown>>;
+    const nullPrototypeCandidate = makeCandidate({
+      context: nullPrototypeContext,
+      reviewSubjects: [
+        { ...correct, metadata: nullPrototypeMetadata },
+        ...distractors,
+      ],
+    });
+    const plainCandidate = makeCandidate({
+      context: {
+        authoredSentence: 'Please connect to the call.',
+        nested: { alpha: { finite: 1.5 }, beta: [null, true, false, 42, 'value'] },
+        testedMeaning: 'Пожалуйста, подключитесь к звонку.',
+      },
+      reviewSubjects: [
+        { ...correct, metadata: { tokenIndex: '1', sourceRole: 'answer' } },
+        ...distractors,
+      ],
+    });
+
+    expect(validateTournamentSemanticCandidate(nullPrototypeCandidate)).toEqual({ ok: true });
+    expect(nullPrototypeCandidate.contentSha256).toBe(plainCandidate.contentSha256);
+    expect(nullPrototypeCandidate.semanticSignature).toBe(plainCandidate.semanticSignature);
+  });
+
+  test('rejects post-creation candidates mutated with non-plain context or metadata', () => {
+    const candidate = makeCandidate();
+    expectRejected(withCandidatePatch(candidate, {
+      context: { nested: new Date('2026-08-08T00:00:00.000Z') },
+    }), 'context_invalid');
+
+    const reviewSubjects = candidate.reviewSubjects.map((subject, index) => (
+      index === 0 ? { ...subject, metadata: new Map([['detail', 'value']]) as never } : subject
+    ));
+    expectRejected(withCandidatePatch(candidate, { reviewSubjects }), 'subject_metadata_invalid');
   });
 
   test.each([

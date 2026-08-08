@@ -120,7 +120,9 @@ const PROVENANCE_PATTERN = /^[^:\s]+:\d+:[^:\s]+$/u;
 const FORBIDDEN_CONTROLS = /[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/u;
 
 function isRecord(value: unknown): value is Record<string, unknown> {
-  return !!value && typeof value === 'object' && !Array.isArray(value);
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return false;
+  const prototype = Object.getPrototypeOf(value);
+  return prototype === Object.prototype || prototype === null;
 }
 
 function hasOnlyKeys(value: Record<string, unknown>, allowed: readonly string[]): boolean {
@@ -405,6 +407,23 @@ export function createTournamentSemanticCandidate(
   if (!isRecord(input) || !hasOnlyKeys(input, [
     'candidateId', 'mode', 'difficulty', 'prompt', 'context', 'reviewSubjects', 'provenanceKeys',
   ])) throw new Error('invalid_tournament_semantic_candidate:candidate_fields_invalid');
+
+  const rawCandidate = {
+    schemaVersion: TOURNAMENT_SEMANTIC_SCHEMA_VERSION,
+    candidateId: input.candidateId,
+    mode: input.mode,
+    difficulty: input.difficulty,
+    prompt: input.prompt,
+    context: input.context,
+    reviewSubjects: input.reviewSubjects,
+    provenanceKeys: input.provenanceKeys,
+    semanticSignature: '0'.repeat(64),
+    contentSha256: '0'.repeat(64),
+  } satisfies TournamentSemanticCandidate;
+  const rawStructureReason = validateStructure(rawCandidate);
+  if (rawStructureReason) {
+    throw new Error(`invalid_tournament_semantic_candidate:${rawStructureReason}`);
+  }
 
   const reviewSubjects = Object.freeze(input.reviewSubjects.map(cloneSubject));
   const provenanceKeys = Object.freeze([...input.provenanceKeys]);

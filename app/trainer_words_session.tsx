@@ -283,7 +283,6 @@ export default function TrainerWordsSession() {
   const [loadError, setLoadError] = useState(false);
   const [reloadKey, setReloadKey] = useState(0);
   const allItemsRef = useRef<TrainerItem[]>(warmDeck?.map((card) => card.item) ?? []);
-  const dailySessionTracked = useRef(false);
   const planTrainerCompletionTracked = useRef(false);
   const sessionStartRef = useRef(0);
   const planTrainerContext = useMemo(() => readTrainerPlanTaskContext({
@@ -392,14 +391,11 @@ export default function TrainerWordsSession() {
 
     await markTrainerResult(card.item.key, 'words', answeredCorrectly, studyTarget);
     const updates: { type: TaskType; increment: number }[] = [];
-    if (!dailySessionTracked.current) {
-      dailySessionTracked.current = true;
-      updates.push({ type: 'recall_session', increment: 1 });
-    }
+    // «Моя практика» продвигает только собственный trainer_words-вызов.
+    // SRS recall_* принадлежит исключительно экрану /review.
     if (answeredCorrectly) {
       playCorrect();
       speakAnswer(card.item.key, studyTarget);
-      updates.push({ type: 'recall_answers', increment: 1 });
       updates.push({ type: 'trainer_words', increment: 1 });
       checkAchievements({ type: 'trainer_correct', correct: 1, studyTarget }).catch(() => {});
     } else if (!energyRef.current.energyUnlimited) {
@@ -422,7 +418,6 @@ export default function TrainerWordsSession() {
 
     const next = current + 1;
     if (next >= deck.length) {
-      if (deck.length >= 5 && nextWrong === 0) updates.push({ type: 'recall_perfect', increment: 1 });
       checkAchievements({
         type: 'trainer_session_result',
         correct: nextCorrect,

@@ -6,11 +6,11 @@ const completed = { ...active, phase: 'completed', survey: null } as const;
 
 beforeEach(resetSurveyDailyTaskCacheForTests);
 
-it('offers synchronous peek and expires after 60 seconds', () => {
+it('offers synchronous peek and expires after the 26-hour warm-cache window', () => {
   const request = beginSurveyDailyTaskRequest(scope, 1000);
   expect(commitSurveyDailyTaskRequest(scope, request, active, 1000)).toBe(true);
-  expect(peekSurveyDailyTask(scope, 60_999)).toEqual(active);
-  expect(peekSurveyDailyTask(scope, 61_001)).toBeNull();
+  expect(peekSurveyDailyTask(scope, 93_600_999)).toEqual(active);
+  expect(peekSurveyDailyTask(scope, 93_601_001)).toBeNull();
 });
 
 it('scopes entries by language, account, and captured day', () => {

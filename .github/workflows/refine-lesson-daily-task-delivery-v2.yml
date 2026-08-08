@@ -1,0 +1,316 @@
+name: Refine lesson Daily Challenge delivery v2
+
+on:
+  push:
+    branches:
+      - fix/lesson-daily-task-delivery-2026-08-07
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refine-lesson-daily-task-delivery-v2
+  cancel-in-progress: false
+
+jobs:
+  refine-and-verify:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Sparse checkout exact branch
+        uses: actions/checkout@v4
+        with:
+          ref: fix/lesson-daily-task-delivery-2026-08-07
+          fetch-depth: 2
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /.github/workflows/
+            /app/
+            /components/
+            /constants/
+            /contexts/
+            /hooks/
+            /services/
+            /utils/
+            /lib/
+            /modules/
+            /tests/
+            /package.json
+            /package-lock.json
+            /jest.config.js
+            /jest.setup.js
+            /babel.config.js
+            /tsconfig.json
+
+      - name: Filter stale targets and normalize audited blocks
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git hash-object app/daily_tasks.ts)" = "b2dcaaea10f70dc9f802546270d8906e04fb1447"
+          test "$(git hash-object app/lesson1.tsx)" = "97f5a31ac26ef8274dfa4070849edf59012274b5"
+          test "$(git hash-object tests/daily_task_progress_event_delivery.test.ts)" = "870818e227c8b9c85181c5d73f1643d87f0981db"
+          python <<'PY'
+          from pathlib import Path
+          import re
+          import textwrap
+
+          def block(text: str, indent: int) -> str:
+              raw = textwrap.dedent(text).strip('\n')
+              pad = ' ' * indent
+              return '\n'.join(pad + line if line else '' for line in raw.splitlines()) + '\n'
+
+          daily_path = Path('app/daily_tasks.ts')
+          daily = daily_path.read_text()
+
+          helper_start = daily.index('function mergeProgressDeliveryJournalTargets(')
+          helper_end = daily.index('\n\n/**\n * @param tasksForReconcile', helper_start)
+          helper = block('''
+          function deliveryTargetRowsForActiveTasks(
+            entry: DailyTaskProgressDeliveryEntry,
+            activeTaskIds: ReadonlySet<string>,
+          ): TaskProgress[] {
+            return entry.targetRows.filter((row) => activeTaskIds.has(row.taskId));
+          }
+
+          function mergeProgressDeliveryJournalTargets(
+            progress: readonly TaskProgress[],
+            journal: DailyTaskProgressDeliveryJournal,
+            activeTaskIds: ReadonlySet<string>,
+          ): TaskProgress[] {
+            return journal.entries.reduce(
+              (current, entry) => mergeProgressAtLeast(
+                current,
+                deliveryTargetRowsForActiveTasks(entry, activeTaskIds),
+              ),
+              [...progress],
+            );
+          }
+          ''', 0).rstrip('\n')
+          daily = daily[:helper_start] + helper + daily[helper_end:]
+
+          old_load = '    const reconciled = reconcileProgressToTasks(stored, tasks);\n    const recovered = mergeProgressDeliveryJournalTargets(reconciled, deliveryJournal);\n'
+          new_load = block('''
+          const reconciled = reconcileProgressToTasks(stored, tasks);
+          const activeTaskIds = new Set(tasks.map((task) => task.id));
+          const recovered = mergeProgressDeliveryJournalTargets(
+            reconciled,
+            deliveryJournal,
+            activeTaskIds,
+          );
+          ''', 4)
+          if daily.count(old_load) != 1:
+              raise SystemExit('delivery load recovery marker drifted')
+          daily = daily.replace(old_load, new_load, 1)
+
+          current_start = daily.index('    let current = mergeProgressDeliveryJournalTargets(')
+          current_end = daily.index('    let entry = journal.entries.find(', current_start)
+          current_block = block('''
+          const activeTaskIds = new Set(tasks.map((task) => task.id));
+          let current = mergeProgressDeliveryJournalTargets(
+            reconcileProgressToTasks(stored, tasks),
+            journal,
+            activeTaskIds,
+          );
+          ''', 4)
+          daily = daily[:current_start] + current_block + daily[current_end:]
+
+          old_apply = '    current = mergeProgressAtLeast(current, entry.targetRows);\n'
+          new_apply = block('''
+          current = mergeProgressAtLeast(
+            current,
+            deliveryTargetRowsForActiveTasks(entry, activeTaskIds),
+          );
+          ''', 4)
+          if daily.count(old_apply) != 1:
+              raise SystemExit('delivery target replay marker drifted')
+          daily = daily.replace(old_apply, new_apply, 1)
+
+          old_emit = '      completedTaskIdsToEmit = deliveredEntry.completedTaskIds;\n'
+          new_emit = block('''
+          completedTaskIdsToEmit = deliveredEntry.completedTaskIds.filter(
+            (taskId) => activeTaskIds.has(taskId),
+          );
+          ''', 6)
+          if daily.count(old_emit) != 1:
+              raise SystemExit('delivery completion emit marker drifted')
+          daily = daily.replace(old_emit, new_emit, 1)
+
+          daily, prepared_count = re.subn(
+              r"entries: compactDailyTaskProgressDeliveryEntries\(\[\n\s*\.\.\.journal\.entries\.filter\(\(candidate\) => candidate\.eventId !== normalizedEventId\),\n\s*entry,\n\s*\]\),",
+              "entries: compactDailyTaskProgressDeliveryEntries([\n          ...journal.entries.filter((candidate) => candidate.eventId !== normalizedEventId),\n          entry,\n        ]),",
+              daily,
+              count=1,
+          )
+          daily, delivered_count = re.subn(
+              r"entries: compactDailyTaskProgressDeliveryEntries\(\[\n\s*\.\.\.journal\.entries\.filter\(\(candidate\) => candidate\.eventId !== normalizedEventId\),\n\s*deliveredEntry,\n\s*\]\),",
+              "entries: compactDailyTaskProgressDeliveryEntries([\n          ...journal.entries.filter((candidate) => candidate.eventId !== normalizedEventId),\n          deliveredEntry,\n        ]),",
+              daily,
+              count=1,
+          )
+          if prepared_count != 1 or delivered_count != 1:
+              raise SystemExit('journal array formatting markers drifted')
+          daily_path.write_text(daily)
+
+          lesson_path = Path('app/lesson1.tsx')
+          lesson = lesson_path.read_text()
+
+          finish_start = lesson.index('        const finishDailyTaskEventId = [')
+          finish_end = lesson.index("        void bumpStatsDaily('lessons_completed', 1, studyTargetRef.current);", finish_start)
+          finish = block('''
+          const finishDailyTaskEventId = [
+            'lesson-finish',
+            finishTodayKey,
+            safeProgressEventPart(studyTargetRef.current),
+            safeProgressEventPart(lessonId),
+            safeProgressEventPart(nextAttemptId),
+          ].join(':');
+          const startLessonFinishDelivery = () => deliverDailyTaskProgressEvent(
+            finishDailyTaskEventId,
+            lessonFinishUpdates,
+            { studyTarget: studyTargetRef.current },
+          );
+          let lessonFinishDeliveryPromise = startLessonFinishDelivery();
+          void lessonFinishDeliveryPromise.catch((deliveryError) => {
+            void trackFeatureError('lesson', 'daily_task_delivery', deliveryError, {
+              lessonId,
+              finishDailyTaskEventId,
+            }, 'lesson1');
+          });
+          ''', 8)
+          lesson = lesson[:finish_start] + finish + lesson[finish_end:]
+
+          finalize_start = lesson.index('        const finalizeLessonCompletion = async () => {')
+          finalize_end = lesson.index('        } catch (e) {', finalize_start)
+          finalize = block('''
+          const finalizeLessonCompletion = async () => {
+            try {
+              try {
+                await lessonFinishDeliveryPromise;
+              } catch {
+                // The first attempt starts while the learner reads the completion modal.
+                // A failed Continue performs one explicit retry with the same event id.
+                lessonFinishDeliveryPromise = startLessonFinishDelivery();
+                await lessonFinishDeliveryPromise;
+              }
+            } catch (deliveryError) {
+              void trackFeatureError('lesson', 'daily_task_delivery_retry', deliveryError, {
+                lessonId,
+                finishDailyTaskEventId,
+              }, 'lesson1');
+              emitAppEvent('action_toast', {
+                type: 'error',
+                messageRu: 'Урок завершён, но вызовы не сохранились. Нажми «Продолжить» ещё раз.',
+                messageUk: 'Урок завершено, але виклики не збереглися. Натисни «Продовжити» ще раз.',
+                messageEs: 'La lección terminó, pero los desafíos no se guardaron. Pulsa «Continuar» otra vez.',
+              });
+              return;
+            }
+            setShowCycleEndModal(false);
+            cycleEndCallbackRef.current = null;
+            navigate();
+          };
+
+          const hasErrors = np.some(x => x !== 'correct' && x !== 'replay_correct');
+          cycleEndContinueInFlightRef.current = false;
+          cycleEndCallbackRef.current = finalizeLessonCompletion;
+          setCycleEndHasErrors(hasErrors);
+          setShowCycleEndModal(true);
+          ''', 8)
+          lesson = lesson[:finalize_start] + finalize + lesson[finalize_end:]
+
+          modal_start = lesson.index('    <LessonCycleEndModal\n')
+          close_start = lesson.index('      onClose={() => {', modal_start)
+          close_end = lesson.index('      }}\n    />', close_start) + len('      }}')
+          close = block('''
+          onClose={() => {
+            const callback = cycleEndCallbackRef.current;
+            if (!callback || cycleEndContinueInFlightRef.current) return;
+            cycleEndContinueInFlightRef.current = true;
+            void Promise.resolve(callback()).finally(() => {
+              cycleEndContinueInFlightRef.current = false;
+            });
+          }}
+          ''', 6).rstrip('\n')
+          lesson = lesson[:close_start] + close + lesson[close_end:]
+          lesson_path.write_text(lesson)
+
+          test_path = Path('tests/daily_task_progress_event_delivery.test.ts')
+          test_source = test_path.read_text()
+          insert = block('''
+          it('does not resurrect a journal target after the active task set changed', async () => {
+            const eventId = `lesson-finish:${getTodayKey()}:en:1:attempt_4`;
+            await deliverDailyTaskProgressEvent(eventId, [
+              { type: 'lesson_complete', increment: 1 },
+            ]);
+
+            delete storage[dailyTasksProgressKey(getTodayKey())];
+            storage[dailyTasksAdminOverrideKey()] = JSON.stringify({
+              dayKey: getTodayKey(),
+              taskIds: ['ta1'],
+            });
+
+            const tasks = await getTodayTasksSafe();
+            expect(tasks.map((task) => task.id)).toEqual(['ta1']);
+            const progress = await loadTodayProgress(tasks);
+            expect(progress.some((row) => row.taskId === 'da1')).toBe(false);
+            expect(progress.find((row) => row.taskId === 'ta1')).toMatchObject({
+              current: 0,
+              completed: false,
+              claimed: false,
+            });
+          });
+          ''', 2)
+          suite_end = test_source.rfind('\n});')
+          if suite_end < 0:
+              raise SystemExit('delivery test suite end marker missing')
+          test_path.write_text(test_source[:suite_end] + '\n' + insert + test_source[suite_end:])
+          PY
+
+      - name: Validate refined behavior
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --check
+          python <<'PY'
+          from pathlib import Path
+          daily = Path('app/daily_tasks.ts').read_text()
+          lesson = Path('app/lesson1.tsx').read_text()
+          assert 'deliveryTargetRowsForActiveTasks' in daily
+          assert daily.count('mergeProgressDeliveryJournalTargets(') == 3
+          assert 'completedTaskIds.filter(' in daily
+          assert '\n...journal.entries' not in daily
+          assert "\n          'lesson-finish'," in lesson
+          assert '\n        const finalizeLessonCompletion' in lesson
+          assert '\n        const callback = cycleEndCallbackRef.current;' in lesson
+          PY
+          npx --yes esbuild@0.25.8 app/daily_tasks.ts --bundle --loader:.ts=ts --format=esm --outfile=/tmp/daily_tasks.js --external:'*'
+          npx --yes esbuild@0.25.8 app/lesson1.tsx --bundle --loader:.tsx=tsx --format=esm --outfile=/tmp/lesson1.js --external:'*'
+          npm ci --ignore-scripts --no-audit --no-fund
+          npx jest --no-cache --runInBand --runTestsByPath \
+            tests/daily_task_progress_event_delivery.test.ts \
+            tests/lesson_completion_daily_task_delivery_contract.test.ts \
+            tests/daily_task_reroll.test.ts \
+            tests/daily_tasks_claim.test.ts
+
+      - name: Commit product-only refinement
+        shell: bash
+        run: |
+          set -euo pipefail
+          git rm .github/workflows/refine-lesson-daily-task-delivery-v2.yml
+          git add app/daily_tasks.ts app/lesson1.tsx tests/daily_task_progress_event_delivery.test.ts
+          git diff --cached --check
+          git diff --cached --name-only \
+            | grep -v '^.github/workflows/refine-lesson-daily-task-delivery-v2.yml$' \
+            | sort > /tmp/actual.txt
+          printf '%s\n' \
+            app/daily_tasks.ts \
+            app/lesson1.tsx \
+            tests/daily_task_progress_event_delivery.test.ts \
+            | sort > /tmp/expected.txt
+          diff -u /tmp/expected.txt /tmp/actual.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'fix: keep lesson delivery scoped to active challenges'
+          git push origin HEAD:fix/lesson-daily-task-delivery-2026-08-07

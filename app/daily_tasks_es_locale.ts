@@ -95,7 +95,6 @@ export const DAILY_TASK_STRINGS_ES: Record<string, DailyTaskSpanishStrings> = {
   pbl1: { title: 'Cirujano', desc: 'Completa una lección de 20+ frases sin un solo error.' },
   pbl2: { title: 'Impecable', desc: 'Lección larga (20+ frases) sin ningún error.' },
   pbl3: { title: 'Precisión de joyero', desc: 'Lección de 20+ frases sin un solo fallo.' },
-  pg1: { title: 'Políglota', desc: 'Estudia inglés y francés hoy.' },
   ra1: { title: 'Cinco repasados', desc: 'Consigue 5 respuestas correctas en Repaso.' },
   ra2: { title: 'Maestro del repaso', desc: 'Consigue 7 respuestas correctas en Repaso (una sesión completa).' },
   ra3: { title: 'Tres rápidos', desc: 'Acierta 3 respuestas en Repaso.' },

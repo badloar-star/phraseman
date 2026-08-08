@@ -239,11 +239,8 @@ function validateMetadata(metadata: unknown): boolean {
     && Buffer.byteLength(stableJson(metadata), 'utf8') <= MAX_METADATA_BYTES;
 }
 
-function normalizedSubjectValue(subject: ReviewSubject): string {
-  const parts = subject.kind === 'speed_pair'
-    ? [subject.text, subject.completedText ?? '']
-    : [subject.text];
-  return parts.join('\u0000').normalize('NFKC').replace(/\s+/gu, ' ').trim().toLocaleLowerCase('en');
+function normalizedSubjectText(value: string): string {
+  return value.normalize('NFKC').replace(/\s+/gu, ' ').trim().toLocaleLowerCase('en');
 }
 
 function validateSubject(subject: unknown): CandidateRejectionReason | null {
@@ -296,6 +293,8 @@ function validateModeSubjects(
     if (subjects.length !== 4 || subjects.some((subject) => subject.kind !== 'choice_option')) {
       return 'subject_contract_invalid';
     }
+    const values = subjects.map((subject) => normalizedSubjectText(subject.text));
+    if (new Set(values).size !== values.length) return 'subject_value_duplicate';
     const correctCount = countRole(subjects, 'correct');
     if (correctCount === 0) return 'declared_key_invalid';
     return correctCount === 1 && countRole(subjects, 'distractor') === 3
@@ -306,6 +305,8 @@ function validateModeSubjects(
     if (subjects.length !== 4 || subjects.some((subject) => subject.kind !== 'choice_option')) {
       return 'subject_contract_invalid';
     }
+    const values = subjects.map((subject) => normalizedSubjectText(subject.text));
+    if (new Set(values).size !== values.length) return 'subject_value_duplicate';
     const oddCount = countRole(subjects, 'odd');
     if (oddCount === 0) return 'declared_key_invalid';
     return oddCount === 1 && countRole(subjects, 'safe') === 3
@@ -328,6 +329,10 @@ function validateModeSubjects(
       || subject.declaredRole !== 'pair'
       || subject.completedText === undefined
     ))) return 'subject_contract_invalid';
+  const leftValues = subjects.map((subject) => normalizedSubjectText(subject.text));
+  const rightValues = subjects.map((subject) => normalizedSubjectText(subject.completedText as string));
+  if (new Set(leftValues).size !== leftValues.length
+    || new Set(rightValues).size !== rightValues.length) return 'subject_value_duplicate';
   return null;
 }
 
@@ -355,8 +360,6 @@ function validateStructure(candidate: unknown): CandidateRejectionReason | null 
   const subjects = candidate.reviewSubjects as ReviewSubject[];
   const subjectIds = subjects.map((subject) => subject.subjectId.normalize('NFKC').toLocaleLowerCase('en'));
   if (new Set(subjectIds).size !== subjectIds.length) return 'subject_id_duplicate';
-  const subjectValues = subjects.map(normalizedSubjectValue);
-  if (new Set(subjectValues).size !== subjectValues.length) return 'subject_value_duplicate';
   const modeReason = validateModeSubjects(candidate.mode, subjects);
   if (modeReason) return modeReason;
   if (!Array.isArray(candidate.provenanceKeys)
@@ -381,6 +384,9 @@ function cloneJsonValue(value: unknown): unknown {
 }
 
 function cloneSubject(subject: ReviewSubject): ReviewSubject {
+  if (subject.metadata !== undefined && !validateMetadata(subject.metadata)) {
+    throw new Error('invalid_tournament_semantic_candidate:subject_metadata_invalid');
+  }
   return Object.freeze({
     subjectId: subject.subjectId,
     kind: subject.kind,

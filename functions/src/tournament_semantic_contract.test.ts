@@ -429,6 +429,53 @@ describe('tournament semantic candidate validation', () => {
   });
 
   test.each([
+    ['array', ['bad']],
+    ['string', 'bad'],
+    ['null', null],
+    ['non-string value', { detail: 42 }],
+  ])('rejects malformed %s subject metadata instead of coercing it', (_shape, metadata) => {
+    const reviewSubjects = baseInput.reviewSubjects.map((subject, index) => (
+      index === 0 ? { ...subject, metadata: metadata as never } : subject
+    ));
+
+    expect(() => makeCandidate({ reviewSubjects }))
+      .toThrow('invalid_tournament_semantic_candidate:subject_metadata_invalid');
+  });
+
+  test.each([
+    ['English', 1, { text: 'English 1', completedText: 'Другой перевод' }],
+    ['Russian', 1, { text: 'Different English', completedText: 'Перевод 1' }],
+  ])('requires unique normalized %s sides for speed_match', (_side, index, patch) => {
+    const input = speedInput();
+    const reviewSubjects = input.reviewSubjects.map((subject, subjectIndex) => (
+      subjectIndex === index ? { ...subject, ...patch } : subject
+    ));
+
+    expect(() => createTournamentSemanticCandidate({ ...input, reviewSubjects }))
+      .toThrow('invalid_tournament_semantic_candidate:subject_value_duplicate');
+  });
+
+  test('allows repeated required token values in translate_build', () => {
+    const input = buildInput();
+    const repeatedRequired: ReviewSubject = {
+      subjectId: 'build:had-second',
+      kind: 'build_token',
+      declaredRole: 'required',
+      text: 'had',
+    };
+    const reviewSubjects = [
+      { ...input.reviewSubjects[0], text: 'had' },
+      repeatedRequired,
+      ...input.reviewSubjects.slice(1),
+    ];
+
+    const candidate = createTournamentSemanticCandidate({ ...input, reviewSubjects });
+
+    expect(validateTournamentSemanticCandidate(candidate)).toEqual({ ok: true });
+    expect(candidate.reviewSubjects.filter((subject) => subject.text === 'had')).toHaveLength(2);
+  });
+
+  test.each([
     ['guess_phrase cardinality', () => makeCandidate({ mode: 'guess_phrase' }), (subjects: readonly ReviewSubject[]) => subjects.slice(0, 3)],
     ['fill_gap kind', () => makeCandidate(), (subjects: readonly ReviewSubject[]) => subjects.map((subject, index) => (
       index === 3 ? { ...subject, kind: 'build_token' as const } : subject

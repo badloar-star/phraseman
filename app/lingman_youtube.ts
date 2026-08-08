@@ -1,6 +1,10 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { XMLParser } from 'fast-xml-parser';
 import {
+  parseYoutubeChannelId,
+  parseYoutubeHandle,
+} from '../shared/youtube_catalog_contract';
+import {
   getYoutubeChannelHandleOverride,
   getYoutubeChannelIdOverride,
   getYoutubeChannelNameOverride,
@@ -52,34 +56,9 @@ export type ActiveYoutubeChannel = {
   isOverride: boolean;
 };
 
-/**
- * Извлекает валидный YouTube channelId (UC + 22 символа base64url) из любого
- * ввода админа: голый id, ссылка на /channel/UC…, или строка, где он встречается.
- * Возвращает '' если канал-id не найден (тогда канал остаётся дефолтным).
- * Чистая функция — экспортируется для тестов и переиспользуется в админке.
- */
-export function parseYoutubeChannelId(raw: string | null | undefined): string {
-  const s = String(raw ?? '').trim();
-  if (!s) return '';
-  const match = s.match(/UC[0-9A-Za-z_-]{22}/);
-  return match ? match[0] : '';
-}
-
-/**
- * Нормализует @handle из ввода админа (ссылка /@name, "@name" или "name").
- * Возвращает '' если ничего вменяемого не нашлось. Без ведущего @.
- */
-export function parseYoutubeHandle(raw: string | null | undefined): string {
-  const s = String(raw ?? '').trim();
-  if (!s) return '';
-  // Ссылка вида youtube.com/@handle(/videos|/...) — берём сегмент после @.
-  const fromUrl = s.match(/youtube\.com\/@([0-9A-Za-z._-]+)/i);
-  if (fromUrl) return fromUrl[1];
-  // Голый "@handle" или "handle" (без пробелов и слешей).
-  const bare = s.replace(/^@/, '');
-  if (/^[0-9A-Za-z._-]+$/.test(bare)) return bare;
-  return '';
-}
+// Исторические импорты из app/lingman_youtube.ts сохраняются, но единственный
+// контракт парсинга теперь общий для мобильного клиента и Cloud Functions.
+export { parseYoutubeChannelId, parseYoutubeHandle };
 
 /**
  * Активный канал с учётом remote_config override. channelId-override обязателен

@@ -91,5 +91,25 @@ describe('parseDisplayGloss', () => {
       ok: false,
       reason: 'input_bytes_exceeded',
     });
+
+    const exactHintSegments = [...Array(31).fill('я'), 'x', 'y'];
+    const exactHint = exactHintSegments.join('; ');
+    const exactHintRaw = `a,${exactHintSegments.join(',')}`;
+    expect(Buffer.byteLength(exactHintRaw, 'utf8')).toBeLessThanOrEqual(TOURNAMENT_TASK_LIMITS.optionBytes);
+    expect(Buffer.byteLength(exactHint, 'utf8')).toBe(TOURNAMENT_TASK_LIMITS.optionBytes);
+    expect(parseDisplayGloss(exactHintRaw)).toEqual({
+      ok: true,
+      value: { displayTranslation: 'a', senseHint: exactHint },
+    });
+
+    const overHintSegments = [...Array(8).fill('я'), ...Array(33).fill('x')];
+    const overHint = overHintSegments.join('; ');
+    const overHintRaw = `a,${overHintSegments.join(',')}`;
+    expect(Buffer.byteLength(overHintRaw, 'utf8')).toBeLessThanOrEqual(TOURNAMENT_TASK_LIMITS.optionBytes);
+    expect(Buffer.byteLength(overHint, 'utf8')).toBe(TOURNAMENT_TASK_LIMITS.optionBytes + 1);
+    expect(parseDisplayGloss(overHintRaw)).toEqual({
+      ok: false,
+      reason: 'sense_hint_bytes_exceeded',
+    });
   });
 });

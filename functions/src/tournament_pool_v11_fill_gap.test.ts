@@ -21,24 +21,17 @@ function phrase(
 }
 
 describe('buildFillGapCandidates', () => {
-  it('never labels the grammatical alternative locks as agreement for She closes the door at night', () => {
+  it('fails closed on authored regular-verb lookalikes for She closes the door at night', () => {
     const source = phrase(
       'closes', 'She closes the door at night.', 'closes', 'verb', ['close', 'closed', 'locks'],
     );
 
-    const candidate = buildFillGapCandidates(day, source).find((item) => item.correctToken === 'closes');
-
-    expect(candidate).toBeDefined();
-    expect(candidate?.distractors).not.toContainEqual(expect.objectContaining({
-      value: 'locks', trapType: 'agreement',
-    }));
-    expect(candidate?.distractors.every((item) => item.reason.includes(item.value))).toBe(true);
-    expect(candidate?.distractors.every((item) => item.completedSentence.includes(item.value))).toBe(true);
+    expect(buildFillGapCandidates(day, source)).toEqual([]);
   });
 
   it('creates typed candidates across all supported categories with exact authored reconstruction', () => {
     const fixtures = [
-      phrase('verb', 'They cook dinner.', 'cook', 'verb', ['cooks', 'cooked', 'bake']),
+      phrase('verb', 'They make dinner.', 'make', 'verb', ['makes', 'made', 'cook']),
       phrase('noun', 'The cat sleeps.', 'cat', 'noun', ['dog', 'rat', 'bat']),
       phrase('adjective', 'A red car stopped.', 'red', 'adjective', ['big', 'old', 'new']),
       phrase('adverb', 'She sings loudly.', 'loudly', 'adverb', ['softly', 'badly', 'slowly']),
@@ -107,15 +100,10 @@ describe('buildFillGapCandidates', () => {
     expect(buildFillGapCandidates(day, phrase('duplicate', 'We walk home.', 'walk', 'verb', ['walked', 'WALKED', 'goes']))).toEqual([]);
   });
 
-  it('classifies closes versus close as morphology with a token-specific inflection reason', () => {
-    const candidate = buildFillGapCandidates(day, phrase(
+  it('rejects an authored closes versus close regular-verb pair without morphology guessing', () => {
+    expect(buildFillGapCandidates(day, phrase(
       'closes-close', 'She closes the door.', 'closes', 'verb', ['close', 'closed', 'locks'],
-    )).at(0);
-
-    expect(candidate?.distractors).toContainEqual(expect.objectContaining({
-      value: 'close', trapType: 'morphology',
-      reason: expect.stringMatching(/close.*closes.*inflection/i),
-    }));
+    ))).toEqual([]);
   });
 
   it('does not invent content-word distractors when authored evidence is short', () => {
@@ -362,13 +350,10 @@ describe('buildFillGapCandidates', () => {
     const running = buildFillGapCandidates(day, phrase(
       'running', 'They are running.', 'running', 'verb', ['run', 'runs', 'jogging'],
     )).at(0);
-    const plays = buildFillGapCandidates(day, phrase(
-      'plays', 'She plays now.', 'plays', 'verb', ['play', 'playing', 'played'],
-    )).at(0);
     const flies = buildFillGapCandidates(day, phrase(
       'flies', 'It flies high.', 'flies', 'verb', ['fly', 'soars', 'lands'],
     )).at(0);
-    for (const [candidate, values] of [[running, ['run', 'runs']], [plays, ['play', 'playing', 'played']], [flies, ['fly']]] as const) {
+    for (const [candidate, values] of [[running, ['run', 'runs']], [flies, ['fly']]] as const) {
       for (const value of values) {
         const distractor = candidate?.distractors.find((item) => item.value === value);
         expect(distractor).toEqual(expect.objectContaining({ trapType: 'morphology' }));
@@ -388,9 +373,9 @@ describe('buildFillGapCandidates', () => {
     ))).toEqual([]);
   });
 
-  it('fills a regular verb only with authored then derived same-lemma morphology forms', () => {
+  it('fills a regular verb only with explicitly generated same-lemma morphology forms', () => {
     const candidate = buildFillGapCandidates(day, phrase(
-      'play-fallback', 'They play outside.', 'play', 'verb', ['plays'],
+      'play-fallback', 'They play outside.', 'play', 'verb', [],
     )).at(0);
 
     expect(candidate?.distractors.map((item) => item.value)).toEqual(['plays', 'played', 'playing']);
@@ -422,7 +407,7 @@ describe('buildFillGapCandidates', () => {
     expect(are).toEqual(expect.objectContaining({ trapType: 'agreement' }));
   });
 
-  it('recognizes regular es morphology for verbs while rejecting unproved noun inflections', () => {
+  it('rejects authored regular es verb and noun inflections without lemma evidence', () => {
     const watches = buildFillGapCandidates(day, phrase(
       'watches', 'He watches birds.', 'watches', 'verb', ['watch', 'watched', 'looks'],
     )).at(0);
@@ -430,8 +415,16 @@ describe('buildFillGapCandidates', () => {
       'bus', 'A bus stops.', 'bus', 'noun', ['buses', 'car', 'van'],
     )).at(0);
 
-    expect(watches?.distractors.find((item) => item.value === 'watch')).toEqual(expect.objectContaining({ trapType: 'morphology' }));
+    expect(watches).toBeUndefined();
     expect(bus).toBeUndefined();
+  });
+
+  it.each([
+    ['singes', 'He singes wood.', 'sing'], ['hoped', 'She hoped today.', 'hop'],
+  ])('rejects speculative authored regular-verb neighbor %s/%s', (token, english, neighbor) => {
+    expect(buildFillGapCandidates(day, phrase(
+      `neighbor-${token}`, english, token, 'verb', [neighbor, 'walk', 'talk'],
+    ))).toEqual([]);
   });
 
   it('classifies bounded irregular do and go paradigm forms as morphology with form-specific reasons', () => {

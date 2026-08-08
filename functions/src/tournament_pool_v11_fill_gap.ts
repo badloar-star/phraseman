@@ -193,7 +193,7 @@ function governedCollocationFor(correct: string, wrong: string, tokens: readonly
   return null;
 }
 
-function trapFor(category: FillGapCategory, correct: string, wrong: string, tokens: readonly string[], blankIndex: number, governedCollocation: GovernedCollocationMatch | null): FillGapTrapType | null {
+function trapFor(category: FillGapCategory, correct: string, wrong: string, tokens: readonly string[], blankIndex: number, governedCollocation: GovernedCollocationMatch | null, generatedRegularMorphology: boolean): FillGapTrapType | null {
   if (category === 'verb' && governedCollocation?.kind === 'proven') return 'collocation';
   if (category === 'verb' && governedCollocation?.kind === 'unprovable') return null;
   if (category === 'preposition' || category === 'phrasal_particle') return 'government';
@@ -204,7 +204,10 @@ function trapFor(category: FillGapCategory, correct: string, wrong: string, toke
   if (category === 'lexical_other' || category === 'number_time') return 'lexical_meaning';
   if (category === 'verb' && (AMBIGUOUS_IRREGULAR_SURFACES.has(normalized(correct))
     || AMBIGUOUS_IRREGULAR_SURFACES.has(normalized(wrong)))) return null;
-  if (category === 'verb' && sameVerbStem(correct, wrong, true)) return 'morphology';
+  if (category === 'verb' && sameIrregularVerbFamily(correct, wrong)) return 'morphology';
+  if (category === 'verb' && generatedRegularMorphology) return 'morphology';
+  if (category === 'verb' && IRREGULAR_LEMMA_FAMILIES.has(normalized(correct))) return 'lexical_meaning';
+  if (category === 'verb' && potentialRegularVerbInflection(correct, wrong)) return null;
   if (category === 'noun' && potentialNounInflection(correct, wrong)) return null;
   if (category === 'verb') return 'lexical_meaning';
   if (category === 'noun' || category === 'adjective' || category === 'adverb') return 'lexical_meaning';
@@ -258,9 +261,15 @@ function toBeTrap(correct: string, wrong: string): FillGapTrapType | null {
   return 'morphology';
 }
 
-function sameVerbStem(left: string, right: string, includeIrregular: boolean): boolean {
-  const authored = lemmaKeys(left, includeIrregular);
-  return [...lemmaKeys(right, includeIrregular)].some((form) => authored.has(form));
+function sameIrregularVerbFamily(left: string, right: string): boolean {
+  const leftFamily = IRREGULAR_LEMMA_FAMILIES.get(normalized(left));
+  const rightFamily = IRREGULAR_LEMMA_FAMILIES.get(normalized(right));
+  return Boolean(leftFamily && leftFamily === rightFamily);
+}
+
+function potentialRegularVerbInflection(left: string, right: string): boolean {
+  const leftKeys = lemmaKeys(left, false);
+  return [...lemmaKeys(right, false)].some((form) => leftKeys.has(form));
 }
 
 function lemmaKeys(value: string, includeIrregular: boolean): ReadonlySet<string> {
@@ -390,7 +399,7 @@ export function buildFillGapCandidates(day: SourceDay, phrase: SourcePhrase): re
     ]) {
       if (!isSafeOption(value, correct) || seen.has(normalized(value))) continue;
       const governedCollocation = category === 'verb' ? governedCollocationFor(correct, value, tokens, index) : null;
-      const trapType = trapFor(category, correct, value, tokens, index, governedCollocation);
+      const trapType = trapFor(category, correct, value, tokens, index, governedCollocation, !authored && category === 'verb');
       if (!trapType) {
         if (authored) hasUnprovableAuthoredDistractor = true;
         continue;

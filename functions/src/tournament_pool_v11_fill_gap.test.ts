@@ -450,6 +450,16 @@ describe('buildFillGapCandidates', () => {
     ))).toEqual([]);
   });
 
+  it.each([
+    ['spilled', 'spilt'], ['dwelled', 'dwelt'], ['dived', 'dove'], ['sneaked', 'snuck'], ['pleaded', 'pled'],
+    ['proved', 'proven'], ['sowed', 'sown'], ['mowed', 'mown'], ['sawed', 'sawn'], ['got', 'gotten'],
+    ['showed', 'shown'], ['sewed', 'sewn'], ['waked', 'woke'], ['woke', 'woken'], ['fit', 'fitted'], ['forecast', 'forecasted'],
+  ])('rejects governed variant verb form %s/%s without morphology or lexical classification', (correct, wrong) => {
+    expect(buildFillGapCandidates(day, phrase(
+      `variant-${correct}-${wrong}`, `They ${correct} it.`, correct, 'verb', [wrong, 'walked', 'talked'],
+    ))).toEqual([]);
+  });
+
   it('rejects the two-letter regular-looking up/upped authored pair', () => {
     expect(buildFillGapCandidates(day, phrase(
       'productive-upped', 'They upped it.', 'upped', 'verb', ['up', 'walk', 'talk'],

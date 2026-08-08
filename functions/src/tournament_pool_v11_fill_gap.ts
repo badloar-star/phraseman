@@ -110,12 +110,15 @@ const IRREGULAR_LEMMA_FAMILIES = buildIrregularLemmaFamilies(IRREGULAR_FAMILIES)
 const ALTERNATE_VERB_FORM_FAMILIES = [
   ['burned', 'burnt'], ['learned', 'learnt'], ['dreamed', 'dreamt'], ['spelled', 'spelt'], ['smelled', 'smelt'],
   ['spoiled', 'spoilt'], ['kneeled', 'knelt'], ['leaped', 'leapt'], ['lighted', 'lit'],
+  ['spilled', 'spilt'], ['dwelled', 'dwelt'], ['dived', 'dove'], ['sneaked', 'snuck'], ['pleaded', 'pled'],
+  ['proved', 'proven'], ['sowed', 'sown'], ['mowed', 'mown'], ['sawed', 'sawn'], ['got', 'gotten'],
+  ['showed', 'shown'], ['sewed', 'sewn'], ['waked', 'woke', 'woken'], ['fit', 'fitted'], ['forecast', 'forecasted'],
 ] as const;
-function buildAlternateVerbFormFamilies(families: readonly (readonly [string, string])[]): ReadonlyMap<string, string> {
+function buildAlternateVerbFormFamilies(families: readonly (readonly string[])[]): ReadonlyMap<string, string> {
   const familyByForm = new Map<string, string>();
-  for (const [first, second] of families) {
-    const family = normalized(first);
-    for (const form of [first, second].map(normalized)) {
+  for (const forms of families) {
+    const family = normalized(forms[0] ?? '');
+    for (const form of forms.map(normalized)) {
       const existing = familyByForm.get(form);
       if (existing && existing !== family) throw new Error(`Alternate verb form "${form}" maps to both "${existing}" and "${family}".`);
       familyByForm.set(form, family);
@@ -223,7 +226,8 @@ function trapFor(category: FillGapCategory, correct: string, wrong: string, toke
   if (category === 'lexical_other' || category === 'number_time') return 'lexical_meaning';
   if (category === 'verb' && (AMBIGUOUS_IRREGULAR_SURFACES.has(normalized(correct))
     || AMBIGUOUS_IRREGULAR_SURFACES.has(normalized(wrong)))) return null;
-  if (category === 'verb' && alternateVerbFormFamily(correct) === alternateVerbFormFamily(wrong) && alternateVerbFormFamily(correct)) return null;
+  const alternateCorrectFamily = category === 'verb' ? alternateVerbFormFamily(correct) : undefined;
+  if (alternateCorrectFamily && alternateCorrectFamily === alternateVerbFormFamily(wrong)) return null;
   if (category === 'verb' && sameIrregularVerbFamily(correct, wrong)) return 'morphology';
   if (category === 'verb' && generatedRegularMorphology) return 'morphology';
   if (category === 'verb' && IRREGULAR_LEMMA_FAMILIES.has(normalized(correct))) return 'lexical_meaning';

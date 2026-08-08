@@ -138,7 +138,7 @@ const IRREGULAR_NOUN_FAMILIES = buildIrregularNounFamilies(IRREGULAR_NOUN_FAMILY
 const UNSUPPORTED_NEGATIVE_BE_CONTRACTIONS = new Set([
   "isn't", "isn\u2019t", "aren't", "aren\u2019t", "wasn't", "wasn\u2019t", "weren't", "weren\u2019t", "ain't", "ain\u2019t",
 ]);
-const POSITIVE_BE_CONTRACTION = /^(?:[\p{L}\p{M}]+['\u2019](?:s|m|re)|['\u2019](?:s|m|re))$/u;
+const POSITIVE_BE_CONTRACTION = /^(?:[\p{L}\p{M}]+(?:['\u2019-][\p{L}\p{M}]+)*['\u2019](?:s|m|re)|['\u2019](?:s|m|re))$/u;
 type GovernedCollocationRule = Readonly<{
   correctFamily: string;
   wrongFamily: string;
@@ -232,8 +232,18 @@ function potentialNounInflection(left: string, right: string): boolean {
   const leftIrregularFamily = IRREGULAR_NOUN_FAMILIES.get(normalized(left));
   const rightIrregularFamily = IRREGULAR_NOUN_FAMILIES.get(normalized(right));
   if (leftIrregularFamily && leftIrregularFamily === rightIrregularFamily) return true;
+  if (potentialLatinGreekNounInflection(normalized(left), normalized(right))) return true;
   const leftKeys = potentialNounInflectionKeys(left);
   return [...potentialNounInflectionKeys(right)].some((key) => leftKeys.has(key));
+}
+
+function potentialLatinGreekNounInflection(left: string, right: string): boolean {
+  const transformations: readonly (readonly [singular: string, plural: string])[] = [
+    ['um', 'a'], ['on', 'a'], ['us', 'i'], ['is', 'es'], ['ex', 'ices'], ['ix', 'ices'], ['a', 'ae'],
+  ];
+  return transformations.some(([singular, plural]) =>
+    (left.endsWith(singular) && `${left.slice(0, -singular.length)}${plural}` === right)
+    || (right.endsWith(singular) && `${right.slice(0, -singular.length)}${plural}` === left));
 }
 
 function toBeTrap(correct: string, wrong: string): FillGapTrapType | null {

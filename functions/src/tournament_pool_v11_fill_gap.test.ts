@@ -253,7 +253,16 @@ describe('buildFillGapCandidates', () => {
   });
 
   it.each([
+    ['bacterium', 'bacteria'], ['diagnosis', 'diagnoses'], ['matrix', 'matrices'],
+  ])('rejects generalized Latin or Greek noun pair %s/%s without a lexical claim', (singular, plural) => {
+    expect(buildFillGapCandidates(day, phrase(
+      `generalized-${plural}`, `The ${plural} arrive.`, plural, 'noun', [singular, 'dogs', 'cats'],
+    ))).toEqual([]);
+  });
+
+  it.each([
     ["Anna's", "Anna's ready.", 'verb'], ["Anna\u2019s", "Anna\u2019s ready.", 'to be'],
+    ["Mary-Jane's", "Mary-Jane's ready.", 'existential'], ["O'Brien's", "O'Brien's ready.", 'verb'], ["O’Brien’s", "O’Brien’s ready.", 'to be'],
   ])('rejects open-world positive be-shaped contraction %s before POS mapping', (token, english, partOfSpeech) => {
     expect(buildFillGapCandidates(day, phrase(`open-world-${token}`, english, token, partOfSpeech, ['is', 'are', 'be']))).toEqual([]);
   });

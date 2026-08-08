@@ -132,7 +132,7 @@ git commit -m "feat: define canonical tournament semantic candidates"
 ```ts
 expect(parseDisplayGloss('до полудня (утро, ночь)')).toEqual({
   ok: true,
-  value: { displayTranslation: 'до полудня (утро, ночь)', senseHint: '' },
+  value: { displayTranslation: 'до полудня', senseHint: 'утро, ночь' },
 });
 expect(parseDisplayGloss('простуда, холод')).toEqual({
   ok: true,
@@ -145,7 +145,7 @@ expect(parseDisplayGloss('до полудня (утро')).toEqual({
 expect(parseDisplayGloss(', холод')).toEqual({ ok: false, reason: 'empty_primary_sense' });
 ```
 
-Add cases for nested `()[]{}`, top-level semicolon/slash separators, editorial fragments, control characters, and maximum word/byte limits.
+Add cases for nested `()[]{}`, top-level semicolon/slash separators, editorial fragments, malformed markup, unpaired surrogates, Unicode format controls, and maximum word/byte limits. Assert the same whitespace-token word count used by `speedMatchTileWordCount` in the runtime: bracket contents do not reset or hide words. Make the raw-input byte cap larger than the display cap so every typed limit rejection remains reachable.
 
 - [ ] **Step 2: Run RED**
 
@@ -166,7 +166,7 @@ export function parseDisplayGloss(raw: string):
   | { ok: false; reason: GlossRejectionReason };
 ```
 
-Walk code points once, track bracket depth, and split only at approved top-level separators. Preserve commas inside balanced brackets. Do not silently delete unmatched punctuation or invent a translation.
+Apply the cheap raw-size guard first, then walk code points once, track bracket depth, and split only at approved top-level separators. Preserve nested content rather than truncating at an inner comma. Extract a trailing, whitespace-prefixed parenthetical sense annotation into `senseHint` as one intact value, then validate the display with the runtime's exact one-to-three whitespace-token rule. Accept only plain sense-annotation punctuation; reject editorial abbreviations, angle-bracket markup, unpaired surrogates, and invisible/bidirectional format controls. Do not silently delete unmatched punctuation or invent a translation.
 
 - [ ] **Step 4: Run GREEN and commit**
 

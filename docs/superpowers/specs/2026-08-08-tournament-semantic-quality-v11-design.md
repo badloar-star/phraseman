@@ -4,6 +4,8 @@
 
 Approved by the owner in this Codex task on 2026-08-08.
 
+Implementation clarification on 2026-08-08: the runtime-owned `speed_match` tile limit remains one to three whitespace-delimited words. A trailing parenthetical sense annotation is preserved intact in `senseHint`, not rendered inside the tile.
+
 The owner selected a production AI semantic judge on top of deterministic gates and approved:
 
 - two independent review passes before publication;
@@ -201,7 +203,10 @@ The manifest reports counts by part of speech, trap type, correct token, option 
 
 - translations use a dedicated clean display value instead of first-comma truncation;
 - gloss parsing respects balanced parentheses and top-level sense separators;
+- display word counting is exactly the runtime contract: one to three non-empty tokens separated by whitespace;
+- a trailing parenthetical sense annotation is extracted intact into `senseHint`; for example, `до полудня (утро, ночь)` becomes display `до полудня` with hint `утро, ночь`;
 - unmatched brackets, editorial fragments, and empty senses are rejected;
+- malformed markup, unpaired Unicode surrogates, and invisible or bidirectional format controls are rejected;
 - each pair includes part of speech and, when necessary, an example/sense hint for judge context;
 - all six pairs are semantically distinct within the board;
 - the judge confirms the chosen Russian display value for the authored word sense.

@@ -460,6 +460,18 @@ describe('buildFillGapCandidates', () => {
     ))).toEqual([]);
   });
 
+  it.each([
+    ['spell', 'spelt'], ['smell', 'smelt'], ['kneel', 'knelt'], ['light', 'lit'],
+    ['spill', 'spilt'], ['dwell', 'dwelt'], ['dive', 'dove'], ['sneak', 'snuck'], ['plead', 'pled'],
+    ['burn', 'burnt'], ['learn', 'learnt'], ['dream', 'dreamt'], ['spoil', 'spoilt'], ['leap', 'leapt'],
+    ['prove', 'proven'], ['sow', 'sown'], ['mow', 'mown'], ['saw', 'sawn'], ['get', 'gotten'],
+    ['show', 'shown'], ['sew', 'sewn'], ['wake', 'waked'], ['fit', 'fitted'], ['forecast', 'forecasted'],
+  ])('rejects canonical alternate-verb base %s with variant %s without a lexical or morphology claim', (base, variant) => {
+    expect(buildFillGapCandidates(day, phrase(
+      `alternate-base-${base}-${variant}`, `They ${base} it.`, base, 'verb', [variant, 'walked', 'talked'],
+    ))).toEqual([]);
+  });
+
   it('rejects the two-letter regular-looking up/upped authored pair', () => {
     expect(buildFillGapCandidates(day, phrase(
       'productive-upped', 'They upped it.', 'upped', 'verb', ['up', 'walk', 'talk'],

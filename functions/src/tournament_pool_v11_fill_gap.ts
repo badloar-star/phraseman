@@ -107,12 +107,18 @@ export function buildIrregularLemmaFamilies(families: readonly IrregularFamily[]
   return familyByForm;
 }
 const IRREGULAR_LEMMA_FAMILIES = buildIrregularLemmaFamilies(IRREGULAR_FAMILIES);
+// The first form is the canonical lemma. This intentionally overlaps the irregular
+// registry for governed variants such as get/got/gotten and wake/woke/woken:
+// alternate forms are unprovable and therefore take precedence in trapFor.
 const ALTERNATE_VERB_FORM_FAMILIES = [
-  ['burned', 'burnt'], ['learned', 'learnt'], ['dreamed', 'dreamt'], ['spelled', 'spelt'], ['smelled', 'smelt'],
-  ['spoiled', 'spoilt'], ['kneeled', 'knelt'], ['leaped', 'leapt'], ['lighted', 'lit'],
-  ['spilled', 'spilt'], ['dwelled', 'dwelt'], ['dived', 'dove'], ['sneaked', 'snuck'], ['pleaded', 'pled'],
-  ['proved', 'proven'], ['sowed', 'sown'], ['mowed', 'mown'], ['sawed', 'sawn'], ['got', 'gotten'],
-  ['showed', 'shown'], ['sewed', 'sewn'], ['waked', 'woke', 'woken'], ['fit', 'fitted'], ['forecast', 'forecasted'],
+  ['burn', 'burned', 'burnt'], ['learn', 'learned', 'learnt'], ['dream', 'dreamed', 'dreamt'],
+  ['spell', 'spelled', 'spelt'], ['smell', 'smelled', 'smelt'], ['spoil', 'spoiled', 'spoilt'],
+  ['kneel', 'kneeled', 'knelt'], ['leap', 'leaped', 'leapt'], ['light', 'lighted', 'lit'],
+  ['spill', 'spilled', 'spilt'], ['dwell', 'dwelled', 'dwelt'], ['dive', 'dived', 'dove'],
+  ['sneak', 'sneaked', 'snuck'], ['plead', 'pleaded', 'pled'], ['prove', 'proved', 'proven'],
+  ['sow', 'sowed', 'sown'], ['mow', 'mowed', 'mown'], ['saw', 'sawed', 'sawn'], ['get', 'got', 'gotten'],
+  ['show', 'showed', 'shown'], ['sew', 'sewed', 'sewn'], ['wake', 'waked', 'woke', 'woken'],
+  ['fit', 'fitted'], ['forecast', 'forecasted'],
 ] as const;
 function buildAlternateVerbFormFamilies(families: readonly (readonly string[])[]): ReadonlyMap<string, string> {
   const familyByForm = new Map<string, string>();

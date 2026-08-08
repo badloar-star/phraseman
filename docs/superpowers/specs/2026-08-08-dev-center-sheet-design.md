@@ -1,7 +1,7 @@
 # DEV Center Sheet Design
 
 **Date:** 2026-08-08
-**Status:** approved in visual and behavioral review
+**Status:** approved in visual and behavioral review; Plus simulation revision approved 2026-08-08
 **Scope:** Phraseman mobile development builds only
 
 ## Goal
@@ -70,12 +70,38 @@ The Plus override is stored locally and scoped to the active account identity. A
 The state model has three UI states:
 
 - `loading`: hydrate the account-scoped local override while preserving control geometry;
-- `enabled`: local DEV Plus is active for this account on this device;
-- `disabled`: no local DEV Plus override is active.
+- `granted`: locally present this account as Plus on this device;
+- `forced-free`: locally present this account as Free on this device. The neutral `inherit` value is represented by the genuine entitlement projection rather than a separate visible override state.
 
 Grant and revoke are idempotent. A successful change updates Premium context immediately through the existing access refresh/event path. A storage failure restores the previous visible state and shows an inline error. Account-generation changes discard stale async results and hydrate the override for the new owner.
 
-This override is an additive development-only access source. It does not rewrite paid Premium, VIP, intro access, tester flags, RevenueCat state, or cloud progress fields. Revoking the override removes only the local DEV source; genuine access remains authoritative.
+The override changes only the local effective presentation; it never rewrites paid Premium, VIP, intro access, tester flags, RevenueCat state, or cloud progress fields. Its three persisted values behave as follows:
+
+- `inherit`: use the genuine entitlement projection unchanged;
+- `granted`: locally present the active account as Plus (`isPremium=true`, `hasPremiumAccess=true`, `isVip=false`, `isPro=false`);
+- `removed`: locally present the active account as Free even when a genuine Plus/VIP/Pro entitlement exists.
+
+The genuine entitlement remains stored and authoritative outside the DEV projection. Switching the override back to `inherit` restores it without a purchase, revoke, cloud write, or RevenueCat call.
+
+### Celebration choice before grant
+
+Pressing `Выдать Plus` does not grant immediately. It expands a compact selector inside the Plus section, avoiding a nested modal and keeping the DEV list understandable. The selector offers the three existing production celebration variants:
+
+- green — `vip`, the legacy issued-Plus/VIP celebration;
+- yellow — `premium`, the subscription Plus celebration;
+- blue — `pro`, the Phraseman Pro celebration.
+
+Each choice shows both color and a text label. The blue choice is explicitly labelled as the Pro animation even though the resulting DEV access projection is Plus.
+
+The approved state sequence is:
+
+1. `idle` — no selector or celebration is active;
+2. `choosing-celebration` — the inline three-color selector is visible; cancelling returns to `idle` and grants nothing;
+3. `celebrating(variant)` — the existing `PremiumCelebrationModal` runs with the selected variant while no Plus override has yet been written;
+4. `granting` — only the celebration close callback writes `granted` and refreshes Premium context;
+5. success returns to the DEV sheet with an accessible confirmation; failure restores the previous override and shows an accessible inline error.
+
+`Снять Plus` does not show a celebration. It writes `removed`, refreshes Premium context, and immediately presents the active account as Free locally.
 
 ## Accessibility and motion
 
@@ -108,7 +134,10 @@ Add focused tests first and observe them fail before implementation:
 - Preview mode cannot reach XP, queue, gift, spin-claim, or server mutation code.
 - Milestone uses stronger finite choreography and both variants honor reduced motion.
 - Local Plus is account-scoped, idempotent, and isolated across account-generation changes.
-- Grant/revoke update the effective access source immediately without Firebase, RevenueCat, or admin callable usage.
+- `removed` forces the local effective projection to Free while leaving genuine entitlement storage unchanged.
+- Grant opens the inline green/yellow/blue selector, and selector cancellation writes no override.
+- Each selection reuses the existing `vip | premium | pro` celebration and writes `granted` only from its close callback.
+- Grant/revoke update the local effective access projection without Firebase, RevenueCat, tester flags, or admin callable usage.
 - Missing identity and storage errors produce accessible disabled/error states.
 
 Focused lint, TypeScript, contract tests, and the existing level-up/production guard tests decide completion. Existing failing level-up contracts discovered in the inherited working tree must be reconciled rather than weakened.

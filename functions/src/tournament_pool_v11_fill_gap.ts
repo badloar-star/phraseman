@@ -37,6 +37,8 @@ const FUNCTION_FALLBACKS: Readonly<Partial<Record<FillGapCategory, readonly stri
   to_be: ['am', 'is', 'are', 'was', 'were', 'be', 'being', 'been'],
   modal: ['can', 'could', 'may', 'might', 'must', 'should', 'will', 'would'],
 };
+// Exact reviewed bases only; no suffix heuristic may fabricate learner-facing morphology.
+const REGULAR_MORPHOLOGY_FALLBACK_BASES = new Set(['play']);
 const CATEGORY_ALIASES: ReadonlyMap<string, FillGapCategory> = new Map(Object.entries({
   verb: 'verb', verbs: 'verb', noun: 'noun', nouns: 'noun', adjective: 'adjective', adjectives: 'adjective',
   adverb: 'adverb', adverbs: 'adverb', 'phrasal particle': 'phrasal_particle', particle: 'phrasal_particle',
@@ -314,8 +316,7 @@ function lemmaKeys(value: string, includeIrregular: boolean): ReadonlySet<string
 function derivedVerbForms(correct: string): readonly string[] {
   const base = normalized(correct);
   // Only derive the fully regular vowel+y family; irregular and ambiguous verbs fail closed.
-  if (IRREGULAR_LEMMA_FAMILIES.has(base)) return [];
-  if (!/^[a-z]{3,}$/u.test(base) || !/[aeiou]y$/u.test(base)) return [];
+  if (IRREGULAR_LEMMA_FAMILIES.has(base) || !REGULAR_MORPHOLOGY_FALLBACK_BASES.has(base)) return [];
   return [`${base}s`, `${base}ed`, `${base}ing`];
 }
 

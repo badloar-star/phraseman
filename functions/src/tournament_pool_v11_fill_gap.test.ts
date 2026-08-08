@@ -384,6 +384,12 @@ describe('buildFillGapCandidates', () => {
     expect(buildFillGapCandidates(day, phrase('go-fallback', 'They go outside.', 'go', 'verb', []))).toEqual([]);
   });
 
+  it.each(['repay', 'prepay', 'underpay', 'overpay', 'gainsay', 'waylay'])('does not generate morphology fallbacks for ungoverned base %s', (token) => {
+    expect(buildFillGapCandidates(day, phrase(
+      `unguarded-fallback-${token}`, `They ${token} now.`, token, 'verb', [],
+    ))).toEqual([]);
+  });
+
   it('accepts combining-mark tokens with exact punctuation reconstruction while retaining NFKC duplicate rejection', () => {
     const decomposed = 'e\u0301lan';
     const source = phrase('combining', `An ${decomposed}.`, decomposed, 'noun', ['plan', 'clan', 'bean']);

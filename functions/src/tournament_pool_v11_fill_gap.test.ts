@@ -171,6 +171,35 @@ describe('buildFillGapCandidates', () => {
     ])).toThrow(/shares.*alpha.*beta/i);
   });
 
+  it('classifies an exact make-a-decision versus do-family substitution as collocation', () => {
+    const candidate = buildFillGapCandidates(day, phrase(
+      'made-decision', 'She made a decision.', 'made', 'verb', ['make', 'did', 'does'],
+    )).at(0);
+    const did = candidate?.distractors.find((item) => item.value === 'did');
+
+    expect(candidate).toBeDefined();
+    expect(did).toEqual(expect.objectContaining({ value: 'did', trapType: 'collocation' }));
+    expect(did?.reason).toContain('did');
+    expect(did?.reason).toContain('made');
+    expect(did?.reason).toContain('made a decision');
+  });
+
+  it('rejects ambiguous bases, base, and basis noun surfaces instead of typing a false inflection trap', () => {
+    expect(buildFillGapCandidates(day, phrase(
+      'ambiguous-bases', 'The bases are useful.', 'bases', 'noun', ['base', 'basis', 'tools'],
+    ))).toEqual([]);
+  });
+
+  it('canonicalizes registry forms before collision checks and runtime lookup', () => {
+    expect(() => buildIrregularLemmaFamilies([
+      { base: 'alpha', thirdPerson: 'SHARES', past: 'alphaed', participle: 'alphaed', gerund: 'alphaing' },
+      { base: 'beta', thirdPerson: 'ＳＨＡＲＥＳ', past: 'betaed', participle: 'betaed', gerund: 'betaing' },
+    ])).toThrow(/shares.*alpha.*beta/i);
+    expect(buildIrregularLemmaFamilies([
+      { base: 'ＭＡＫＥ', thirdPerson: 'ＭＡＫＥＳ', past: 'ＭＡＤＥ', participle: 'ＭＡＤＥ', gerund: 'ＭＡＫＩＮＧ' },
+    ]).get('makes')).toBe('make');
+  });
+
   it('rejects raw distractors that would need whitespace repair and malformed distractor collections', () => {
     expect(buildFillGapCandidates(day, phrase('spaces', 'They sleep now.', 'sleep', 'verb', [' sleeps', 'slept', 'rest']))).toEqual([]);
     const malformed = {

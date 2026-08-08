@@ -93,12 +93,13 @@ const IRREGULAR_FAMILIES: readonly IrregularFamily[] = [
 export function buildIrregularLemmaFamilies(families: readonly IrregularFamily[]): ReadonlyMap<string, string> {
   const familyByForm = new Map<string, string>();
   for (const { base, thirdPerson, past, participle, gerund } of families) {
-    for (const form of new Set([base, thirdPerson, past, participle, gerund])) {
+    const canonicalBase = normalized(base);
+    for (const form of new Set([base, thirdPerson, past, participle, gerund].map(normalized))) {
       const existing = familyByForm.get(form);
-      if (existing && existing !== base) {
-        throw new Error(`Irregular form "${form}" maps to both "${existing}" and "${base}".`);
+      if (existing && existing !== canonicalBase) {
+        throw new Error(`Irregular form "${form}" maps to both "${existing}" and "${canonicalBase}".`);
       }
-      familyByForm.set(form, base);
+      familyByForm.set(form, canonicalBase);
     }
   }
   return familyByForm;
@@ -106,10 +107,19 @@ export function buildIrregularLemmaFamilies(families: readonly IrregularFamily[]
 const IRREGULAR_LEMMA_FAMILIES = buildIrregularLemmaFamilies(IRREGULAR_FAMILIES);
 // These strings are common non-verb words as well as irregular surfaces. Without
 // syntactic/semantic proof, neither a morphology nor a lexical-meaning claim is safe.
-const AMBIGUOUS_IRREGULAR_SURFACES = new Set([
-  'found', 'saw', 'left', 'rose', 'fell', 'lay', 'read', 'lead', 'bound', 'wound', 'bore', 'rent', 'ground',
-  'axes', 'axe', 'axis',
-]);
+const AMBIGUOUS_INFLECTION_FAMILIES = [
+  ['found'], ['saw'], ['left'], ['rose'], ['fell'], ['lay'], ['read'], ['lead'], ['bound'], ['wound'], ['bore'], ['rent'], ['ground'],
+  ['axes', 'axe', 'axis'], ['bases', 'base', 'basis'],
+] as const;
+const AMBIGUOUS_IRREGULAR_SURFACES = new Set(AMBIGUOUS_INFLECTION_FAMILIES.flatMap((family) => family.map(normalized)));
+type GovernedCollocationRule = Readonly<{
+  correctFamily: string;
+  wrongFamily: string;
+  complement: readonly string[];
+}>;
+const GOVERNED_COLLOCATION_RULES: readonly GovernedCollocationRule[] = [
+  { correctFamily: 'make', wrongFamily: 'do', complement: ['a', 'decision'] },
+];
 
 function normalized(value: string): string {
   return value.normalize('NFKC').replace(/\s+/gu, ' ').trim().toLowerCase();
@@ -123,7 +133,24 @@ function categoryFor(word: SourceWord): FillGapCategory | null {
   return CATEGORY_ALIASES.get(pos) ?? null;
 }
 
-function trapFor(category: FillGapCategory, correct: string, wrong: string): FillGapTrapType | null {
+function verbFamily(value: string): string {
+  const token = normalized(value);
+  return IRREGULAR_LEMMA_FAMILIES.get(token) ?? token;
+}
+
+function governedCollocationFor(correct: string, wrong: string, tokens: readonly string[], blankIndex: number): string | null {
+  const correctFamily = verbFamily(correct);
+  const wrongFamily = verbFamily(wrong);
+  for (const rule of GOVERNED_COLLOCATION_RULES) {
+    if (correctFamily !== rule.correctFamily || wrongFamily !== rule.wrongFamily) continue;
+    const complement = tokens.slice(blankIndex + 1, blankIndex + 1 + rule.complement.length).map((token) => normalized(lexicalToken(token)));
+    if (rule.complement.every((token, index) => complement[index] === token)) return [normalized(correct), ...rule.complement].join(' ');
+  }
+  return null;
+}
+
+function trapFor(category: FillGapCategory, correct: string, wrong: string, tokens: readonly string[], blankIndex: number): FillGapTrapType | null {
+  if (category === 'verb' && governedCollocationFor(correct, wrong, tokens, blankIndex)) return 'collocation';
   if (category === 'preposition' || category === 'phrasal_particle') return 'government';
   if (category === 'pronoun') return 'reference';
   if (category === 'modal' || category === 'conjunction' || category === 'determiner'
@@ -213,12 +240,15 @@ function isSafeOption(value: string, correct: string): boolean {
   return Math.abs([...value].length - [...correct].length) <= Math.max(3, Math.ceil([...correct].length / 2));
 }
 
-function reasonFor(value: string, correct: string, translation: string, trap: FillGapTrapType, category: FillGapCategory): string {
+function reasonFor(value: string, correct: string, translation: string, trap: FillGapTrapType, category: FillGapCategory, authoredCollocation?: string): string {
   if (trap === 'lexical_meaning' && category === 'number_time') {
     return `“${value}” changes the authored number or time; use “${correct}” for “${translation}”.`;
   }
   if (trap === 'lexical_meaning' && category === 'lexical_other') {
     return `“${value}” changes the authored communicative meaning; use “${correct}” for “${translation}”.`;
+  }
+  if (trap === 'collocation' && authoredCollocation) {
+    return `“${value}” cannot replace “${correct}” in the authored collocation “${authoredCollocation}”.`;
   }
   const explanations: Record<FillGapTrapType, string> = {
     morphology: `“${value}” has the wrong form; use “${correct}” for the required inflection.`,
@@ -277,7 +307,8 @@ export function buildFillGapCandidates(day: SourceDay, phrase: SourcePhrase): re
       ...deterministicFallbacks.map((value) => ({ value, authored: false })),
     ]) {
       if (!isSafeOption(value, correct) || seen.has(normalized(value))) continue;
-      const trapType = trapFor(category, correct, value);
+      const authoredCollocation = category === 'verb' ? governedCollocationFor(correct, value, tokens, index) : null;
+      const trapType = trapFor(category, correct, value, tokens, index);
       if (!trapType) {
         if (authored) hasUnprovableAuthoredDistractor = true;
         continue;
@@ -285,7 +316,7 @@ export function buildFillGapCandidates(day: SourceDay, phrase: SourcePhrase): re
       if (selected.length === 3) continue;
       const completedSentence = sentenceWith(tokens, index, replacementFor(tokens[index], value));
       if (completedSentence === authoredSentence) continue;
-      const reason = reasonFor(value, correct, translation, trapType, category);
+      const reason = reasonFor(value, correct, translation, trapType, category, authoredCollocation ?? undefined);
       if (!reason.includes(value) || !completedSentence.includes(value)
         || Buffer.byteLength(completedSentence, 'utf8') > TOURNAMENT_TASK_LIMITS.referenceBytes
         || Buffer.byteLength(reason, 'utf8') > TOURNAMENT_TASK_LIMITS.explanationBytes) continue;

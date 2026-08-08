@@ -121,6 +121,8 @@ const IRREGULAR_NOUN_FAMILY_LIST: readonly IrregularNounFamily[] = [
   ['ox', 'oxen'], ['die', 'dice'], ['louse', 'lice'], ['quiz', 'quizzes'],
   ['cactus', 'cacti'], ['alumnus', 'alumni'], ['fungus', 'fungi'], ['nucleus', 'nuclei'], ['syllabus', 'syllabi'],
   ['radius', 'radii'], ['stimulus', 'stimuli'], ['focus', 'foci'], ['formula', 'formulae'], ['curriculum', 'curricula'],
+  ['corpus', 'corpora'], ['genus', 'genera'], ['opus', 'opera'], ['stoma', 'stomata'], ['viscus', 'viscera'],
+  ['memorandum', 'memoranda'], ['addendum', 'addenda'],
 ];
 export function buildIrregularNounFamilies(families: readonly IrregularNounFamily[]): ReadonlyMap<string, string> {
   const familyByForm = new Map<string, string>();
@@ -138,7 +140,7 @@ const IRREGULAR_NOUN_FAMILIES = buildIrregularNounFamilies(IRREGULAR_NOUN_FAMILY
 const UNSUPPORTED_NEGATIVE_BE_CONTRACTIONS = new Set([
   "isn't", "isn\u2019t", "aren't", "aren\u2019t", "wasn't", "wasn\u2019t", "weren't", "weren\u2019t", "ain't", "ain\u2019t",
 ]);
-const POSITIVE_BE_CONTRACTION = /^(?:[\p{L}\p{M}]+(?:['\u2019-][\p{L}\p{M}]+)*['\u2019](?:s|m|re)|['\u2019](?:s|m|re))$/u;
+const POSITIVE_BE_CONTRACTION = /^(?:[\p{L}\p{M}\p{N}]+(?:['\u2019-][\p{L}\p{M}\p{N}]+)*['\u2019](?:s|m|re)|['\u2019](?:s|m|re))$/u;
 type GovernedCollocationRule = Readonly<{
   correctFamily: string;
   wrongFamily: string;

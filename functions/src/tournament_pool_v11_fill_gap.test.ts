@@ -253,6 +253,14 @@ describe('buildFillGapCandidates', () => {
   });
 
   it.each([
+    ['corpus', 'corpora'], ['genus', 'genera'], ['opus', 'opera'],
+  ])('rejects governed noun exception %s/%s without a lexical claim', (singular, plural) => {
+    expect(buildFillGapCandidates(day, phrase(
+      `exception-${plural}`, `The ${plural} arrive.`, plural, 'noun', [singular, 'dogs', 'cats'],
+    ))).toEqual([]);
+  });
+
+  it.each([
     ['bacterium', 'bacteria'], ['diagnosis', 'diagnoses'], ['matrix', 'matrices'],
   ])('rejects generalized Latin or Greek noun pair %s/%s without a lexical claim', (singular, plural) => {
     expect(buildFillGapCandidates(day, phrase(
@@ -263,6 +271,7 @@ describe('buildFillGapCandidates', () => {
   it.each([
     ["Anna's", "Anna's ready.", 'verb'], ["Anna\u2019s", "Anna\u2019s ready.", 'to be'],
     ["Mary-Jane's", "Mary-Jane's ready.", 'existential'], ["O'Brien's", "O'Brien's ready.", 'verb'], ["O’Brien’s", "O’Brien’s ready.", 'to be'],
+    ["R2-D2's", "R2-D2's ready.", 'verb'], ["R2-D2’s", "R2-D2’s ready.", 'to be'], ["Room7's", "Room7's ready.", 'existential'],
   ])('rejects open-world positive be-shaped contraction %s before POS mapping', (token, english, partOfSpeech) => {
     expect(buildFillGapCandidates(day, phrase(`open-world-${token}`, english, token, partOfSpeech, ['is', 'are', 'be']))).toEqual([]);
   });

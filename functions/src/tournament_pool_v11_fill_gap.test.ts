@@ -157,4 +157,51 @@ describe('buildFillGapCandidates', () => {
   it('rejects a prompt beyond the tournament prompt byte limit', () => {
     expect(buildFillGapCandidates(day, phrase('prompt-bytes', `${'word '.repeat(130)}sleep.`, 'sleep', 'verb', ['sleeps', 'slept', 'rests']))).toEqual([]);
   });
+
+  it('classifies conservative verb and noun lemma variants as morphology with token-specific reasons', () => {
+    const running = buildFillGapCandidates(day, phrase(
+      'running', 'They are running.', 'running', 'verb', ['run', 'runs', 'jogging'],
+    )).at(0);
+    const plays = buildFillGapCandidates(day, phrase(
+      'plays', 'She plays now.', 'plays', 'verb', ['play', 'playing', 'played'],
+    )).at(0);
+    const flies = buildFillGapCandidates(day, phrase(
+      'flies', 'It flies high.', 'flies', 'verb', ['fly', 'soars', 'lands'],
+    )).at(0);
+    const cat = buildFillGapCandidates(day, phrase(
+      'cat-form', 'A cat sleeps.', 'cat', 'noun', ['cats', 'dog', 'rat'],
+    )).at(0);
+
+    for (const [candidate, values] of [[running, ['run', 'runs']], [plays, ['play', 'playing', 'played']], [flies, ['fly']], [cat, ['cats']]] as const) {
+      for (const value of values) {
+        const distractor = candidate?.distractors.find((item) => item.value === value);
+        expect(distractor).toEqual(expect.objectContaining({ trapType: 'morphology' }));
+        expect(distractor?.reason).toContain(value);
+        expect(distractor?.reason).toContain(candidate?.correctToken);
+        expect(distractor?.reason).toMatch(/form|inflection/i);
+      }
+    }
+  });
+
+  it('fills a regular verb only with authored then derived same-lemma morphology forms', () => {
+    const candidate = buildFillGapCandidates(day, phrase(
+      'play-fallback', 'They play outside.', 'play', 'verb', ['plays'],
+    )).at(0);
+
+    expect(candidate?.distractors.map((item) => item.value)).toEqual(['plays', 'played', 'playing']);
+    expect(candidate?.distractors.every((item) => item.trapType === 'morphology')).toBe(true);
+    expect(candidate?.distractors.some((item) => /walk|run/i.test(item.value))).toBe(false);
+    expect(buildFillGapCandidates(day, phrase('go-fallback', 'They go outside.', 'go', 'verb', []))).toEqual([]);
+  });
+
+  it('accepts combining-mark tokens with exact punctuation reconstruction while retaining NFKC duplicate rejection', () => {
+    const decomposed = 'e\u0301lan';
+    const source = phrase('combining', `An ${decomposed}.`, decomposed, 'noun', ['plan', 'clan', 'bean']);
+    const candidate = buildFillGapCandidates(day, source).at(0);
+
+    expect(phraseTokens(source.english)).toContain(decomposed);
+    expect(candidate?.correctToken).toBe(decomposed);
+    expect(candidate?.prompt.replace('___', candidate.correctToken ?? '')).toBe(source.english);
+    expect(buildFillGapCandidates(day, phrase('combining-duplicate', `An ${decomposed}.`, decomposed, 'noun', ['élan', 'plan', 'clan']))).toEqual([]);
+  });
 });

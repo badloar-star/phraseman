@@ -31,7 +31,7 @@ export type FillGapCandidate = {
   readonly requiresSemanticReview: true;
 };
 
-const TOKEN = /^[\p{L}\p{N}]+(?:['’-][\p{L}\p{N}]+)*$/u;
+const TOKEN = /^[\p{L}\p{M}\p{N}]+(?:['’-][\p{L}\p{M}\p{N}]+)*$/u;
 const FUNCTION_FALLBACKS: Readonly<Partial<Record<FillGapCategory, readonly string[]>>> = {
   article: ['a', 'an', 'the'],
   to_be: ['am', 'is', 'are', 'was', 'were', 'be', 'being', 'been'],
@@ -65,23 +65,45 @@ function trapFor(category: FillGapCategory, correct: string, wrong: string): Fil
   if (category === 'modal' || category === 'conjunction' || category === 'determiner'
     || category === 'existential' || category === 'article') return 'function_choice';
   if (category === 'to_be') return 'agreement';
-  if (category === 'verb' && sameVerbStem(correct, wrong)) return 'morphology';
+  if ((category === 'verb' || category === 'noun') && sameVerbStem(correct, wrong)) return 'morphology';
   if (category === 'verb') return 'lexical_meaning';
   if (category === 'noun' || category === 'adjective' || category === 'adverb') return 'lexical_meaning';
   return 'collocation';
 }
 
 function sameVerbStem(left: string, right: string): boolean {
-  const forms = (value: string): readonly string[] => {
-    const token = normalized(value);
-    const result = [token];
-    if (token.endsWith('ies')) result.push(`${token.slice(0, -3)}y`);
-    if (token.endsWith('s')) result.push(token.slice(0, -1));
-    if (token.endsWith('ed')) result.push(token.slice(0, -2), token.slice(0, -1));
-    return result.filter((form) => form.length >= 3);
-  };
-  const authored = new Set(forms(left));
-  return forms(right).some((form) => authored.has(form));
+  const authored = lemmaKeys(left);
+  return [...lemmaKeys(right)].some((form) => authored.has(form));
+}
+
+function lemmaKeys(value: string): ReadonlySet<string> {
+  const token = normalized(value);
+  const keys = new Set<string>(token.length >= 3 ? [token] : []);
+  const add = (form: string) => { if (form.length >= 3) keys.add(form); };
+  if (token.endsWith('ies')) add(`${token.slice(0, -3)}y`);
+  if (token.endsWith('s') && !token.endsWith('ss')) add(token.slice(0, -1));
+  if (token.endsWith('ing')) {
+    const root = token.slice(0, -3);
+    add(root);
+    if (root.length >= 2 && root.at(-1) === root.at(-2)) add(root.slice(0, -1));
+    if (root.endsWith('i')) add(`${root.slice(0, -1)}y`);
+    add(`${root}e`);
+  }
+  if (token.endsWith('ed')) {
+    const root = token.slice(0, -2);
+    add(root);
+    if (root.length >= 2 && root.at(-1) === root.at(-2)) add(root.slice(0, -1));
+    if (root.endsWith('i')) add(`${root.slice(0, -1)}y`);
+    add(`${root}e`);
+  }
+  return keys;
+}
+
+function derivedVerbForms(correct: string): readonly string[] {
+  const base = normalized(correct);
+  // Only derive the fully regular vowel+y family; irregular and ambiguous verbs fail closed.
+  if (!/^[a-z]{3,}$/u.test(base) || !/[aeiou]y$/u.test(base)) return [];
+  return [`${base}s`, `${base}ed`, `${base}ing`];
 }
 
 function sentenceWith(tokens: readonly string[], index: number, value: string): string {
@@ -89,12 +111,12 @@ function sentenceWith(tokens: readonly string[], index: number, value: string): 
 }
 
 function lexicalToken(value: string): string {
-  return value.replace(/^[^\p{L}\p{N}]+|[^\p{L}\p{N}'’-]+$/gu, '');
+  return value.replace(/^[^\p{L}\p{M}\p{N}]+|[^\p{L}\p{M}\p{N}'’-]+$/gu, '');
 }
 
 function replacementFor(rawToken: string, value: string): string {
   const start = rawToken.match(/^[^\p{L}\p{N}]*/u)?.[0] ?? '';
-  const end = rawToken.match(/[^\p{L}\p{N}'’-]*$/u)?.[0] ?? '';
+  const end = rawToken.match(/[^\p{L}\p{M}\p{N}'’-]*$/u)?.[0] ?? '';
   return `${start}${value}${end}`;
 }
 
@@ -155,7 +177,10 @@ export function buildFillGapCandidates(day: SourceDay, phrase: SourcePhrase): re
     if (!category) continue;
     const selected: FillGapDistractor[] = [];
     const seen = new Set([normalized(correct)]);
-    for (const raw of [...word.distractors, ...(FUNCTION_FALLBACKS[category] ?? [])]) {
+    const deterministicFallbacks = category === 'verb'
+      ? derivedVerbForms(correct)
+      : (FUNCTION_FALLBACKS[category] ?? []);
+    for (const raw of [...word.distractors, ...deterministicFallbacks]) {
       const value = raw;
       if (!isSafeOption(value, correct) || seen.has(normalized(value))) continue;
       const trapType = trapFor(category, correct, value);

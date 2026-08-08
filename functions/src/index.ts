@@ -475,6 +475,12 @@ export { jarvisDailyDepartmentsCron, jarvisDailyBusinessHistoryCron } from './ja
 // секрет JARVIS_TELEGRAM_CONFIG; вебхук ставится вручную по runbook.
 export { jarvisTelegramApprovalWebhook } from './jarvis';
 export { adminGetRemoteConfigWorkspace, adminPublishRemoteConfig } from './admin_remote_config';
+export {
+  youtubeCatalogSyncCron,
+  adminGetYoutubeCatalogWorkspace,
+  adminPublishYoutubeCatalogConfig,
+  adminRefreshYoutubeCatalog,
+} from './youtube_catalog';
 export { adminGetPaywallAbWorkspace, adminPublishPaywallAb } from './admin_paywall_ab';
 export { adminGetPaywallVariantStats } from './admin_paywall_variant_stats';
 export {

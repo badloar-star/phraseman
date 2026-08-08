@@ -34,4 +34,9 @@ describe('ai dialog intro seen', () => {
     (AsyncStorage.getItem as jest.Mock).mockRejectedValue(new Error('storage unavailable'));
     await expect(hasSeenAiDialogIntro('en', 'briefing')).resolves.toBe(false);
   });
+
+  it('swallows setItem rejection', async () => {
+    (AsyncStorage.setItem as jest.Mock).mockRejectedValue(new Error('storage unavailable'));
+    await expect(markAiDialogIntroSeen('en', 'coffee')).resolves.toBeUndefined();
+  });
 });

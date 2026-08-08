@@ -278,7 +278,7 @@ function potentialRegularVerbInflection(left: string, right: string): boolean {
   if (leftToken.endsWith('c') && canTakeCkSuffix(leftToken, rightToken)) return true;
   if (rightToken.endsWith('c') && canTakeCkSuffix(rightToken, leftToken)) return true;
   const [shorter, longer] = leftToken.length <= rightToken.length ? [leftToken, rightToken] : [rightToken, leftToken];
-  return shorter.length >= 3 && longer.startsWith(shorter) && longer.length - shorter.length <= 6;
+  return shorter.length >= 2 && longer.startsWith(shorter) && longer.length - shorter.length <= 6;
 }
 
 function lemmaKeys(value: string, includeIrregular: boolean): ReadonlySet<string> {
@@ -314,6 +314,7 @@ function lemmaKeys(value: string, includeIrregular: boolean): ReadonlySet<string
 function derivedVerbForms(correct: string): readonly string[] {
   const base = normalized(correct);
   // Only derive the fully regular vowel+y family; irregular and ambiguous verbs fail closed.
+  if (IRREGULAR_LEMMA_FAMILIES.has(base)) return [];
   if (!/^[a-z]{3,}$/u.test(base) || !/[aeiou]y$/u.test(base)) return [];
   return [`${base}s`, `${base}ed`, `${base}ing`];
 }

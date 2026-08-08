@@ -213,7 +213,7 @@ describe('buildFillGapCandidates', () => {
 
   it('keeps non-be contractions eligible for ordinary verb classification', () => {
     expect(buildFillGapCandidates(day, phrase(
-      'dont', "They don't know.", "don't", 'verb', ['does', 'did', 'do'],
+      'dont', "They don't know.", "don't", 'verb', ['active', 'present', 'waiting'],
     ))).toEqual(expect.arrayContaining([expect.objectContaining({ category: 'verb' })]));
   });
 
@@ -433,6 +433,18 @@ describe('buildFillGapCandidates', () => {
   ])('rejects productive but unproved regular verb pair %s/%s', (token, english, neighbor) => {
     expect(buildFillGapCandidates(day, phrase(
       `productive-${token}`, english, token, 'verb', [neighbor, 'walk', 'talk'],
+    ))).toEqual([]);
+  });
+
+  it('rejects the two-letter regular-looking up/upped authored pair', () => {
+    expect(buildFillGapCandidates(day, phrase(
+      'productive-upped', 'They upped it.', 'upped', 'verb', ['up', 'walk', 'talk'],
+    ))).toEqual([]);
+  });
+
+  it.each(['say', 'buy', 'pay'])('does not fabricate regular morphology fallbacks for irregular base %s', (token) => {
+    expect(buildFillGapCandidates(day, phrase(
+      `irregular-fallback-${token}`, `They ${token} now.`, token, 'verb', [],
     ))).toEqual([]);
   });
 

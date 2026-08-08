@@ -33,7 +33,7 @@ import type { LevelExamBlueprint, LevelExamLevel, LevelExamTask } from '../../ap
 import { levelExamKey } from '../../app/target_storage_keys';
 import { getCanonicalUserId } from '../../app/user_id_policy';
 import { saveExamProgress } from '../../app/medal_utils';
-import { getFirstLessonForLevel, getNextCourseLevel } from '../../app/course_levels';
+import { getFirstLessonForLevel, getLastLessonForLevel, getNextCourseLevel } from '../../app/course_levels';
 import { markPremiumCourseLevelReached, unlockLesson } from '../../app/lesson_lock_system';
 import { addShards, awardOneTime } from '../../app/shards_system';
 import { registerXP } from '../../app/xp_manager';
@@ -397,8 +397,8 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
         <LevelExamIntro
           lang={lang}
           level={level}
-          firstLesson={level === 'A1' ? 1 : level === 'A2' ? 13 : level === 'B1' ? 25 : 37}
-          lastLesson={level === 'A1' ? 12 : level === 'A2' ? 24 : level === 'B1' ? 36 : 48}
+          firstLesson={getFirstLessonForLevel(level)}
+          lastLesson={getLastLessonForLevel(level)}
           durationMinutes={level === 'A1' ? 12 : level === 'A2' ? 13 : level === 'B1' ? 14 : 15}
           energyCost={ENERGY_COST}
           availableEnergy={isUnlimited ? ENERGY_COST : energy + bonusEnergy}

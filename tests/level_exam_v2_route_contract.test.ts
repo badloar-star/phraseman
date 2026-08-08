@@ -39,4 +39,11 @@ describe('level exam v2 route contract', () => {
     expect(route).not.toContain('Готовим экзамен');
     expect(route).toContain("const showIntro = accessState === 'checking' || phase === 'loading' || phase === 'intro'");
   });
+
+  it('reads lesson boundaries from the canonical course map', () => {
+    const route = read('components/level-exam/LevelExamV2.tsx');
+    expect(route).toContain('getFirstLessonForLevel(level)');
+    expect(route).toContain('getLastLessonForLevel(level)');
+    expect(route).not.toContain("level === 'A1' ? 1 : level === 'A2' ? 13");
+  });
 });

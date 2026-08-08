@@ -5,7 +5,7 @@ import type { LessonPhrase } from '../app/lesson_data_types';
 import { SOURCE_LOCALES, type SourceLocale } from '../app/source_locales';
 
 type FormatCounts = Record<
-  'context_choice' | 'phrase_builder' | 'meaning_choice' | 'spot_error' | 'speed_match',
+  'context_choice' | 'phrase_builder' | 'meaning_choice' | 'speed_match',
   number
 >;
 
@@ -23,7 +23,6 @@ function countScoredFormats(
     context_choice: 0,
     phrase_builder: 0,
     meaning_choice: 0,
-    spot_error: 0,
     speed_match: 0,
   });
 }
@@ -62,9 +61,8 @@ describe('level exam blueprint', () => {
     expect(new Set(blueprint.scoredUnitIds).size).toBe(30);
     expect(countScoredFormats(blueprint)).toEqual({
       context_choice: 8,
-      phrase_builder: 8,
+      phrase_builder: 12,
       meaning_choice: 6,
-      spot_error: 4,
       speed_match: 4,
     });
   });
@@ -165,10 +163,6 @@ describe('level exam blueprint', () => {
           if (task.tokens.map((token) => token.id).join('|') !== task.correctTokenIds.join('|')) {
             shuffledBuilders += 1;
           }
-        } else if (task.format === 'spot_error') {
-          const errorToken = task.tokens.find((token) => token.id === task.errorTokenId);
-          expect(errorToken).toBeDefined();
-          expect(normalized(errorToken?.text || '')).not.toBe(normalized(task.correction));
         }
       }
 
@@ -176,7 +170,7 @@ describe('level exam blueprint', () => {
     }
   });
 
-  test.each(COURSE_LEVELS)('%s has unique tasks and exactly one changed token in every error task', (level) => {
+  test.each(COURSE_LEVELS)('%s has unique tasks built only from canonical lesson content', (level) => {
     const blueprint = buildLevelExamBlueprint({
       level,
       studyTarget: 'en',
@@ -209,15 +203,6 @@ describe('level exam blueprint', () => {
         const canonicalWords = (canonical?.wordsEn?.length ? canonical.wordsEn : canonical?.words || [])
           .map((word) => word.text);
         expect(task.correctTokenIds.map((id) => tokenById.get(id))).toEqual(canonicalWords);
-      } else if (task.format === 'spot_error') {
-        const canonicalWords = (canonical?.wordsEn?.length ? canonical.wordsEn : canonical?.words || [])
-          .map((word) => word.text);
-        expect(task.tokens).toHaveLength(canonicalWords.length);
-        const changed = task.tokens.filter((token, index) => normalized(token.text) !== normalized(canonicalWords[index] || ''));
-        expect(changed).toHaveLength(1);
-        expect(changed[0].id).toBe(task.errorTokenId);
-        expect(normalized(task.correction)).toBe(normalized(canonicalWords[task.tokens.indexOf(changed[0])]));
-        answer = task.correction;
       }
 
       const key = `${normalized(task.prompt)}|${normalized(answer)}`;

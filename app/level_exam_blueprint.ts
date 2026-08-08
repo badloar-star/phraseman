@@ -9,16 +9,13 @@ import type {
   LevelExamChoiceTask,
   LevelExamPhraseBuilderTask,
   LevelExamSpeedMatchPair,
-  LevelExamSpotErrorTask,
   LevelExamTask,
-  LevelExamToken,
 } from './level_exam_types';
 
 const SINGLE_FORMAT_COUNTS = {
   context_choice: 8,
-  phrase_builder: 8,
+  phrase_builder: 12,
   meaning_choice: 6,
-  spot_error: 4,
 } as const;
 
 const EXAM_DURATION_MS = {
@@ -35,12 +32,6 @@ type PhraseReference = {
   sourceText: string;
 };
 
-type ErrorMutation = {
-  tokens: LevelExamToken[];
-  errorTokenId: string;
-  correction: string;
-};
-
 function normalized(value: string): string {
   return value.trim().toLocaleLowerCase().replace(/\s+/g, ' ');
 }
@@ -55,33 +46,6 @@ function sourceTextForPhrase(phrase: LessonPhrase, locale: SourceLocale): string
 function targetWordsForPhrase(phrase: LessonPhrase): LessonWord[] {
   const words = phrase.wordsEn?.length ? phrase.wordsEn : phrase.words;
   return words.filter((word) => word.text.trim() !== '');
-}
-
-function mutationForPhrase(phrase: LessonPhrase, seed: string): ErrorMutation | null {
-  const words = targetWordsForPhrase(phrase);
-  const candidates = words.flatMap((word, index) => {
-    const correction = (word.correct || word.text).trim();
-    const distractors = word.distractors.filter((value) => {
-      const candidate = value.trim();
-      return candidate !== ''
-        && normalized(candidate) !== normalized(correction)
-        && /[\p{L}\p{N}]/u.test(candidate);
-    });
-    return distractors.length > 0 ? [{ index, correction, distractors }] : [];
-  });
-  if (candidates.length === 0) return null;
-  const rng = createLevelExamRng(seed);
-  const selected = candidates[Math.floor(rng() * candidates.length)];
-  const incorrect = selected.distractors[Math.floor(rng() * selected.distractors.length)];
-  const tokens = words.map((word, index) => ({
-    id: `${seed}:token:${index}`,
-    text: index === selected.index ? incorrect : word.text,
-  }));
-  return {
-    tokens,
-    errorTokenId: tokens[selected.index].id,
-    correction: selected.correction,
-  };
 }
 
 function shuffledWithoutIdentity<T extends { id: string }>(values: readonly T[], seed: string): T[] {
@@ -167,9 +131,6 @@ export function buildLevelExamBlueprint(
     for (let index = 0; index < count; index += 1) {
       const reference = nextReference((candidate) => {
         if (format === 'phrase_builder') return targetWordsForPhrase(candidate.phrase).length >= 2;
-        if (format === 'spot_error') {
-          return mutationForPhrase(candidate.phrase, `${input.seed}:probe:${candidate.lessonId}:${candidate.phraseId}`) !== null;
-        }
         return true;
       });
       const id = `${input.level}:${format}:${reference.lessonId}:${reference.phraseId}`;
@@ -196,15 +157,6 @@ export function buildLevelExamBlueprint(
           format,
           tokens: shuffledWithoutIdentity(canonicalTokens, `${input.seed}:${id}:tokens`),
           correctTokenIds: canonicalTokens.map((token) => token.id),
-        };
-        tasks.push(task);
-      } else {
-        const mutation = mutationForPhrase(reference.phrase, `${input.seed}:${id}:error`);
-        if (!mutation) throw new Error(`level_exam_error_mutation_missing:${id}`);
-        const task: LevelExamSpotErrorTask = {
-          ...base,
-          format: 'spot_error',
-          ...mutation,
         };
         tasks.push(task);
       }

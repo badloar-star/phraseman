@@ -81,14 +81,6 @@ export function scoreLevelExam(
         lessonId: task.lessonId,
         correct: answer?.kind === 'phrase_builder' && sameStrings(answer.tokenIds, task.correctTokenIds),
       });
-    } else if (task.format === 'spot_error') {
-      const answer = answers[task.scoreUnitId];
-      units.push({
-        scoreUnitId: task.scoreUnitId,
-        format: task.format,
-        lessonId: task.lessonId,
-        correct: answer?.kind === 'spot_error' && answer.tokenId === task.errorTokenId,
-      });
     }
   }
 
@@ -102,7 +94,6 @@ export function scoreLevelExam(
     context_choice: { correct: 0, total: 0 },
     phrase_builder: { correct: 0, total: 0 },
     meaning_choice: { correct: 0, total: 0 },
-    spot_error: { correct: 0, total: 0 },
     speed_match: { correct: 0, total: 0 },
   } satisfies Record<LevelExamFormat, { correct: number; total: number }>;
   const lessonTotals = new Map<number, { correct: number; total: number }>();

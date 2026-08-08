@@ -93,7 +93,6 @@ export function getLevelExamResultCopy(lang: Lang, { passed, neededForPass, ener
       context_choice: triLang(lang, { ru: 'Контекст', uk: 'Контекст', es: 'Contexto', 'pt-BR': 'Contexto', vi: 'Ngữ cảnh', id: 'Konteks', tr: 'Bağlam', pl: 'Kontekst' }),
       phrase_builder: triLang(lang, { ru: 'Сборка фраз', uk: 'Складання фраз', es: 'Frases', 'pt-BR': 'Frases', vi: 'Ghép câu', id: 'Susun frasa', tr: 'Cümle kurma', pl: 'Zdania' }),
       meaning_choice: triLang(lang, { ru: 'Смысл', uk: 'Значення', es: 'Significado', 'pt-BR': 'Significado', vi: 'Ý nghĩa', id: 'Makna', tr: 'Anlam', pl: 'Znaczenie' }),
-      spot_error: triLang(lang, { ru: 'Поиск ошибки', uk: 'Пошук помилки', es: 'Erro', 'pt-BR': 'Erro', vi: 'Tìm lỗi', id: 'Cari kesalahan', tr: 'Hatayı bul', pl: 'Błędy' }),
       speed_match: triLang(lang, { ru: 'Быстрые пары', uk: 'Швидкі пари', es: 'Pares', 'pt-BR': 'Pares', vi: 'Ghép cặp', id: 'Pasangan', tr: 'Eşleştirme', pl: 'Pary' }),
     },
   };

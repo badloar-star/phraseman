@@ -4,7 +4,6 @@ import type { SourceLocale } from './source_locales';
 export type PersistedLevelExamAnswer =
   | { kind: 'choice'; optionId: string }
   | { kind: 'phrase_builder'; tokenIds: string[] }
-  | { kind: 'spot_error'; tokenId: string }
   | { kind: 'speed_match'; targetScoreUnitId: string }
   | { kind: 'skipped' };
 
@@ -78,7 +77,6 @@ function isPersistedAnswer(value: unknown): value is PersistedLevelExamAnswer {
   if (answer.kind === 'choice') return typeof answer.optionId === 'string' && answer.optionId.trim() !== '';
   if (answer.kind === 'phrase_builder') return Array.isArray(answer.tokenIds)
     && answer.tokenIds.every((tokenId) => typeof tokenId === 'string' && tokenId.trim() !== '');
-  if (answer.kind === 'spot_error') return typeof answer.tokenId === 'string' && answer.tokenId.trim() !== '';
   if (answer.kind === 'speed_match') {
     return typeof answer.targetScoreUnitId === 'string' && answer.targetScoreUnitId.trim() !== '';
   }

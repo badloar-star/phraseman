@@ -124,39 +124,11 @@ export default function LevelExamIntro({
             </TonalSurface>
           </View>
 
-          <TonalSurface tone="card" radius={ds.radius.xl} style={{ padding: ds.spacing.lg, gap: ds.spacing.md }}>
-            <Text style={{ color: t.textPrimary, fontSize: f.h3, fontFamily: ds.fontFamily, fontWeight: '800' }}>
-              {copy.formatsLabel}
+          {bestScore !== null ? (
+            <Text style={[styles.bestResult, { color: t.textMuted, fontSize: f.caption, fontFamily: ds.fontFamily }]}>
+              {copy.bestResult}
             </Text>
-            <View style={[styles.formatWrap, { gap: ds.spacing.sm }]}> 
-              {copy.formats.map((format, index) => (
-                <View key={format} style={[styles.formatChip, { backgroundColor: t.bgSurface2, paddingHorizontal: ds.spacing.md }]}> 
-                  <Ionicons
-                    name={(['chatbubble-ellipses-outline', 'text-outline', 'language-outline', 'search-outline', 'swap-horizontal-outline'] as const)[index]}
-                    size={16}
-                    color={t.accent}
-                  />
-                  <Text style={{ color: t.textSecond, fontSize: f.caption, fontFamily: ds.fontFamily, fontWeight: '700' }}>
-                    {format}
-                  </Text>
-                </View>
-              ))}
-            </View>
-          </TonalSurface>
-
-          <TonalSurface tone="subtle" radius={ds.radius.lg} style={[styles.reward, { padding: ds.spacing.md }]}> 
-            <View style={[styles.rewardIcon, { backgroundColor: t.goldBg }]}> 
-              <Ionicons name="sparkles" size={20} color={t.gold} />
-            </View>
-            <View style={styles.rewardText}>
-              <Text style={{ color: t.textPrimary, fontSize: f.body, fontFamily: ds.fontFamily, fontWeight: '800' }}>
-                {copy.firstPassReward}
-              </Text>
-              <Text style={{ color: t.textMuted, fontSize: f.caption, fontFamily: ds.fontFamily }}>
-                {copy.bestResult}
-              </Text>
-            </View>
-          </TonalSurface>
+          ) : null}
 
           {!hasEnergy ? (
             <Text accessibilityRole="alert" style={[styles.centerText, { color: t.wrong, fontSize: f.caption, fontFamily: ds.fontFamily }]}>
@@ -205,11 +177,7 @@ const styles = StyleSheet.create({
   eyebrow: { alignSelf: 'flex-start', minHeight: 32, borderRadius: 16, paddingHorizontal: 12, flexDirection: 'row', alignItems: 'center', gap: 6 },
   metrics: { flexDirection: 'row', flexWrap: 'wrap' },
   metric: { minWidth: 140, flex: 1, gap: 8 },
-  formatWrap: { flexDirection: 'row', flexWrap: 'wrap' },
-  formatChip: { minHeight: 38, borderRadius: 19, flexDirection: 'row', alignItems: 'center', gap: 6 },
-  reward: { flexDirection: 'row', alignItems: 'center', gap: 12 },
-  rewardIcon: { width: 42, height: 42, borderRadius: 21, alignItems: 'center', justifyContent: 'center' },
-  rewardText: { flex: 1, gap: 3 },
+  bestResult: { textAlign: 'center' },
   centerText: { textAlign: 'center' },
   startButton: { borderRadius: 18, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },
   startButtonContent: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },

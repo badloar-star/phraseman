@@ -1,9 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { View } from 'react-native';
+import Animated, { FadeInDown, useReducedMotion } from 'react-native-reanimated';
 
 import type { LevelExamChoiceTask } from '../../app/level_exam_types';
-import TapScale from '../TapScale';
 import { useTheme } from '../ThemeContext';
+import { V2Chip } from '../tournament/tournament_v2_ui';
 
 type Props = {
   task: LevelExamChoiceTask;
@@ -12,31 +13,22 @@ type Props = {
 };
 
 export default function MeaningChoiceQuestion({ task, selectedOptionId, onSelect }: Props) {
-  const { theme: t, f, ds } = useTheme();
+  const { ds } = useTheme();
+  const reduceMotion = useReducedMotion();
   return (
     <View accessibilityLabel={task.prompt} style={[styles.grid, { gap: ds.spacing.sm }]}> 
-      {task.options.map((option) => {
+      {task.options.map((option, index) => {
         const selected = option.id === selectedOptionId;
         return (
-          <TapScale
-            key={option.id}
-            onPress={() => onSelect(option.id)}
-            accessibilityRole="radio"
-            accessibilityLabel={option.text}
-            accessibilityState={{ selected }}
-            style={[styles.tile, { backgroundColor: selected ? t.accentBg : t.bgSurface2, padding: ds.spacing.md }]}
-          >
-            <Text style={{ color: selected ? t.accent : t.textPrimary, fontSize: f.body, fontFamily: ds.fontFamily, fontWeight: selected ? '800' : '600', textAlign: 'center' }}>
+          <Animated.View key={option.id} entering={reduceMotion ? undefined : FadeInDown.delay(index * 40).duration(260)} style={{ flex: 1, minWidth: 130 }}>
+            <V2Chip block selected={selected} onPress={() => onSelect(option.id)} accessibilityLabel={option.text}>
               {option.text}
-            </Text>
-          </TapScale>
+            </V2Chip>
+          </Animated.View>
         );
       })}
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  grid: { flexDirection: 'row', flexWrap: 'wrap' },
-  tile: { minHeight: 82, minWidth: 130, flex: 1, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
-});
+const styles = { grid: { flexDirection: 'row', flexWrap: 'wrap' } } as const;

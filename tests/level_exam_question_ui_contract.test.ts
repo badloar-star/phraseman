@@ -23,23 +23,24 @@ describe('level exam question UI contract', () => {
     expect(getLevelExamTimerUrgency(10_000)).toBe('critical');
   });
 
-  it('ships all five distinct interactive formats', () => {
+  it('ships only the audited tournament-style interactive formats', () => {
     const files = [
       'ContextChoiceQuestion.tsx',
       'PhraseBuilderQuestion.tsx',
       'MeaningChoiceQuestion.tsx',
-      'SpotErrorQuestion.tsx',
       'SpeedMatchQuestion.tsx',
     ];
 
     for (const file of files) {
       const source = read(file);
       expect(source).toContain('accessibility');
-      expect(source).toContain('<TapScale');
+      expect(source).toContain('<V2Chip');
+      expect(source).toContain('FadeInDown');
       expect(source).not.toMatch(/#[0-9a-f]{3,8}\b/i);
       expect(source).not.toMatch(/rgba?\(/i);
       expect(source).not.toMatch(/borderWidth\s*:/);
     }
+    expect(read('LevelExamV2.tsx')).not.toContain('<SpotErrorQuestion');
   });
 
   it('keeps progress, timer, and one stable continuation action in the frame', () => {

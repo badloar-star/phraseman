@@ -1,10 +1,10 @@
-import { Ionicons } from '@expo/vector-icons';
 import React, { useMemo, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import Animated, { FadeInDown, useReducedMotion } from 'react-native-reanimated';
 
 import type { LevelExamSpeedMatchTask } from '../../app/level_exam_types';
-import TapScale from '../TapScale';
 import { useTheme } from '../ThemeContext';
+import { V2Chip } from '../tournament/tournament_v2_ui';
 
 type Props = {
   task: LevelExamSpeedMatchTask;
@@ -13,7 +13,8 @@ type Props = {
 };
 
 export default function SpeedMatchQuestion({ task, matches, onChange }: Props) {
-  const { theme: t, f, ds } = useTheme();
+  const { ds } = useTheme();
+  const reduceMotion = useReducedMotion();
   const [activeSourceId, setActiveSourceId] = useState<string | null>(null);
   const matchedTargets = useMemo(() => new Set(Object.values(matches)), [matches]);
   const sourcePairs = useMemo(() => (
@@ -37,39 +38,23 @@ export default function SpeedMatchQuestion({ task, matches, onChange }: Props) {
           const active = activeSourceId === pair.scoreUnitId;
           const matched = Boolean(matches[pair.scoreUnitId]);
           return (
-            <TapScale
-              key={pair.scoreUnitId}
-              onPress={() => setActiveSourceId(pair.scoreUnitId)}
-              accessibilityLabel={pair.source}
-              accessibilityHint="Select the phrase to match"
-              accessibilityState={{ selected: active }}
-              style={[styles.card, { backgroundColor: active || matched ? t.accentBg : t.bgSurface2, padding: ds.spacing.sm }]}
-            >
-              <Text style={{ color: active || matched ? t.accent : t.textPrimary, fontSize: f.body, fontFamily: ds.fontFamily, fontWeight: '700', textAlign: 'center' }}>
-                {pair.source}
-              </Text>
-            </TapScale>
+            <Animated.View key={pair.scoreUnitId} entering={reduceMotion ? undefined : FadeInDown.delay(sourcePairs.indexOf(pair) * 40).duration(260)}>
+              <V2Chip selected={active || matched} onPress={() => setActiveSourceId(pair.scoreUnitId)} accessibilityLabel={pair.target}>
+                {pair.target}
+              </V2Chip>
+            </Animated.View>
           );
         })}
       </View>
-      <Ionicons name="swap-horizontal" size={22} color={t.textMuted} />
       <View style={[styles.column, { gap: ds.spacing.sm }]}> 
-        {task.pairs.map((pair) => {
+        {task.pairs.map((pair, index) => {
           const matched = matchedTargets.has(pair.scoreUnitId);
           return (
-            <TapScale
-              key={pair.scoreUnitId}
-              onPress={() => chooseTarget(pair.scoreUnitId)}
-              disabled={!activeSourceId}
-              accessibilityLabel={pair.target}
-              accessibilityHint="Match with the selected phrase"
-              accessibilityState={{ disabled: !activeSourceId, selected: matched }}
-              style={[styles.card, { backgroundColor: matched ? t.accentBg : t.bgSurface2, padding: ds.spacing.sm }]}
-            >
-              <Text style={{ color: matched ? t.accent : t.textPrimary, fontSize: f.body, fontFamily: ds.fontFamily, fontWeight: '700', textAlign: 'center' }}>
-                {pair.target}
-              </Text>
-            </TapScale>
+            <Animated.View key={pair.scoreUnitId} entering={reduceMotion ? undefined : FadeInDown.delay(index * 40).duration(260)}>
+              <V2Chip selected={matched} onPress={() => chooseTarget(pair.scoreUnitId)} disabled={!activeSourceId} accessibilityLabel={pair.source}>
+                {pair.source}
+              </V2Chip>
+            </Animated.View>
           );
         })}
       </View>
@@ -78,7 +63,6 @@ export default function SpeedMatchQuestion({ task, matches, onChange }: Props) {
 }
 
 const styles = StyleSheet.create({
-  board: { flexDirection: 'row', alignItems: 'center' },
+  board: { flexDirection: 'row', alignItems: 'stretch' },
   column: { flex: 1 },
-  card: { minHeight: 64, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
 });

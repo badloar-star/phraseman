@@ -23,7 +23,7 @@ describe('level exam v2 route contract', () => {
     expect(route).toContain('<ContextChoiceQuestion');
     expect(route).toContain('<PhraseBuilderQuestion');
     expect(route).toContain('<MeaningChoiceQuestion');
-    expect(route).toContain('<SpotErrorQuestion');
+    expect(route).not.toContain('<SpotErrorQuestion');
     expect(route).toContain('<SpeedMatchQuestion');
   });
 
@@ -32,5 +32,11 @@ describe('level exam v2 route contract', () => {
     expect(route).not.toContain('showAnswer');
     expect(route).not.toContain('isOptCorrect');
     expect(route).toContain('scoredUnitIds.length !== 30');
+  });
+
+  it('opens directly on the intro without a separate preparation screen', () => {
+    const route = read('components/level-exam/LevelExamV2.tsx');
+    expect(route).not.toContain('Готовим экзамен');
+    expect(route).toContain("const showIntro = accessState === 'checking' || phase === 'loading' || phase === 'intro'");
   });
 });

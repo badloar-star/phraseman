@@ -7,7 +7,6 @@ export type LevelExamFormat =
   | 'context_choice'
   | 'phrase_builder'
   | 'meaning_choice'
-  | 'spot_error'
   | 'speed_match';
 
 export type LevelExamOption = {
@@ -41,13 +40,6 @@ export type LevelExamPhraseBuilderTask = LevelExamSingleScoreTaskBase & {
   correctTokenIds: readonly string[];
 };
 
-export type LevelExamSpotErrorTask = LevelExamSingleScoreTaskBase & {
-  format: 'spot_error';
-  tokens: readonly LevelExamToken[];
-  errorTokenId: string;
-  correction: string;
-};
-
 export type LevelExamSpeedMatchPair = {
   scoreUnitId: string;
   lessonId: number;
@@ -65,7 +57,6 @@ export type LevelExamSpeedMatchTask = {
 export type LevelExamTask =
   | LevelExamChoiceTask
   | LevelExamPhraseBuilderTask
-  | LevelExamSpotErrorTask
   | LevelExamSpeedMatchTask;
 
 export type LevelExamBlueprint = {

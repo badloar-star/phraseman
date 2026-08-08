@@ -53,7 +53,6 @@ import LevelExamResult, { type LevelExamRewardState } from './LevelExamResult';
 import MeaningChoiceQuestion from './MeaningChoiceQuestion';
 import PhraseBuilderQuestion from './PhraseBuilderQuestion';
 import SpeedMatchQuestion from './SpeedMatchQuestion';
-import SpotErrorQuestion from './SpotErrorQuestion';
 
 const ENERGY_COST = 5;
 
@@ -86,25 +85,18 @@ function taskFormatLabel(task: LevelExamTask, lang: Lang): string {
     context_choice: { ru: 'Контекст', uk: 'Контекст', es: 'Contexto', 'pt-BR': 'Contexto', vi: 'Ngữ cảnh', id: 'Konteks', tr: 'Bağlam', pl: 'Kontekst' },
     phrase_builder: { ru: 'Собери фразу', uk: 'Склади фразу', es: 'Construye la frase', 'pt-BR': 'Monte a frase', vi: 'Ghép câu', id: 'Susun frasa', tr: 'Cümleyi kur', pl: 'Ułóż zdanie' },
     meaning_choice: { ru: 'Выбери смысл', uk: 'Обери значення', es: 'Elige el significado', 'pt-BR': 'Escolha o significado', vi: 'Chọn ý nghĩa', id: 'Pilih makna', tr: 'Anlamı seç', pl: 'Wybierz znaczenie' },
-    spot_error: { ru: 'Найди ошибку', uk: 'Знайди помилку', es: 'Encuentra el error', 'pt-BR': 'Encontre o erro', vi: 'Tìm lỗi', id: 'Temukan kesalahan', tr: 'Hatayı bul', pl: 'Znajdź błąd' },
     speed_match: { ru: 'Быстрые пары', uk: 'Швидкі пари', es: 'Pares rápidos', 'pt-BR': 'Pares rápidos', vi: 'Ghép cặp nhanh', id: 'Pasangan cepat', tr: 'Hızlı eşleştirme', pl: 'Szybkie pary' },
   } as const;
   return triLang(lang, labels[task.format]);
 }
 
 function taskPrompt(task: LevelExamTask, lang: Lang): string {
-  if (task.format !== 'spot_error' && task.format !== 'speed_match') return task.prompt;
-  return task.format === 'spot_error'
-    ? triLang(lang, {
-      ru: 'Нажми на слово с ошибкой', uk: 'Натисни на слово з помилкою', es: 'Pulsa la palabra incorrecta',
-      'pt-BR': 'Toque na palavra incorreta', vi: 'Chạm vào từ sai', id: 'Ketuk kata yang salah',
-      tr: 'Hatalı kelimeye dokun', pl: 'Dotknij błędnego słowa',
-    })
-    : triLang(lang, {
+  if (task.format !== 'speed_match') return task.prompt;
+  return triLang(lang, {
       ru: 'Соедини выражения с переводом', uk: 'З’єднай вирази з перекладом', es: 'Une cada expresión con su traducción',
       'pt-BR': 'Ligue cada expressão à tradução', vi: 'Ghép cụm từ với bản dịch', id: 'Cocokkan frasa dengan terjemahan',
       tr: 'İfadeleri çevirileriyle eşleştir', pl: 'Połącz wyrażenia z tłumaczeniem',
-    });
+  });
 }
 
 export default function LevelExamV2({ level, lang, accessState, blockedText }: Props) {
@@ -374,29 +366,23 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
     setPhase('quiz');
   }, [storeAttempt]);
 
-  if (accessState !== 'allowed' || phase === 'loading' || identityUnavailable) {
-    const checking = accessState === 'checking'
-      || (accessState === 'allowed' && phase === 'loading' && !identityUnavailable);
+  if (accessState === 'blocked' || identityUnavailable) {
     return (
       <ScreenGradient artBackdrop="exam">
         <SafeAreaView style={styles.safeArea}>
           <View style={[styles.stateWrap, { padding: ds.spacing.xl }]}> 
             <TonalSurface tone="raised" radius={ds.radius.xl} style={[styles.stateCard, { padding: ds.spacing.xl, gap: ds.spacing.md }]}> 
-              <Ionicons name={checking ? 'hourglass-outline' : 'lock-closed-outline'} size={34} color={t.accent} />
+              <Ionicons name="lock-closed-outline" size={34} color={t.accent} />
               <Text accessibilityRole="header" style={{ color: t.textPrimary, fontSize: f.h2, fontFamily: ds.fontFamily, fontWeight: '900', textAlign: 'center' }}>
-                {checking
-                  ? triLang(lang, { ru: 'Готовим экзамен', uk: 'Готуємо іспит', es: 'Preparando el examen', 'pt-BR': 'Preparando o exame', vi: 'Đang chuẩn bị bài thi', id: 'Menyiapkan ujian', tr: 'Sınav hazırlanıyor', pl: 'Przygotowujemy egzamin' })
-                  : identityUnavailable
+                {identityUnavailable
                     ? triLang(lang, { ru: 'Не удалось подготовить сохранение попытки. Вернись и открой экзамен снова.', uk: 'Не вдалося підготувати збереження спроби. Повернися й відкрий іспит знову.', es: 'No se pudo preparar el guardado. Vuelve a abrir el examen.', 'pt-BR': 'Não foi possível preparar o salvamento. Abra o exame novamente.', vi: 'Không thể chuẩn bị lưu bài thi. Hãy mở lại bài thi.', id: 'Penyimpanan ujian belum siap. Buka kembali ujian.', tr: 'Sınav kaydı hazırlanamadı. Sınavı yeniden aç.', pl: 'Nie udało się przygotować zapisu. Otwórz egzamin ponownie.' })
                     : blockedText}
               </Text>
-              {!checking ? (
-                <TapScale onPress={() => safeRouterBack(router, '/lessons_list' as never)} accessibilityLabel="Back" style={[styles.stateButton, { backgroundColor: t.accent, minHeight: ds.buttonHeight }]}> 
+              <TapScale onPress={() => safeRouterBack(router, '/lessons_list' as never)} accessibilityLabel="Back" style={[styles.stateButton, { backgroundColor: t.accent, minHeight: ds.buttonHeight }]}>
                   <Text style={{ color: t.correctText, fontSize: f.body, fontFamily: ds.fontFamily, fontWeight: '900' }}>
                     {triLang(lang, { ru: 'К урокам', uk: 'До уроків', es: 'Ir a lecciones', 'pt-BR': 'Ir para as aulas', vi: 'Về bài học', id: 'Ke pelajaran', tr: 'Derslere git', pl: 'Do lekcji' })}
                   </Text>
-                </TapScale>
-              ) : null}
+              </TapScale>
             </TonalSurface>
           </View>
         </SafeAreaView>
@@ -404,7 +390,8 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
     );
   }
 
-  if (phase === 'intro') {
+  const showIntro = accessState === 'checking' || phase === 'loading' || phase === 'intro';
+  if (showIntro) {
     return (
       <>
         <LevelExamIntro
@@ -416,7 +403,7 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
           energyCost={ENERGY_COST}
           availableEnergy={isUnlimited ? ENERGY_COST : energy + bonusEnergy}
           bestScore={bestScore === null ? null : Math.round(bestScore * 0.3)}
-          starting={starting}
+          starting={starting || accessState === 'checking' || phase === 'loading'}
           onBack={() => safeRouterBack(router, '/lessons_list' as never)}
           onStart={startExam}
         />
@@ -467,11 +454,6 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
     const tokenIds = answer?.kind === 'phrase_builder' ? answer.tokenIds : [];
     canContinue = tokenIds.length > 0;
     content = <PhraseBuilderQuestion task={task} selectedTokenIds={tokenIds} onChange={(next) => updateAnswer(task.scoreUnitId, { kind: 'phrase_builder', tokenIds: next })} />;
-  } else if (task.format === 'spot_error') {
-    const answer = attempt.answers[task.scoreUnitId];
-    const selectedTokenId = answer?.kind === 'spot_error' ? answer.tokenId : null;
-    canContinue = selectedTokenId !== null;
-    content = <SpotErrorQuestion task={task} selectedTokenId={selectedTokenId} onSelect={(tokenId) => updateAnswer(task.scoreUnitId, { kind: 'spot_error', tokenId })} />;
   } else if (isSpeedMatchTask(task)) {
     const matches = Object.fromEntries(task.pairs.flatMap((pair) => {
       const answer = attempt.answers[pair.scoreUnitId];

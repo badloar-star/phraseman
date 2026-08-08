@@ -61,7 +61,8 @@ it('shows useful preparation details and guards the start action', async () => {
   expect(view.getByText('Финальная проверка A2')).toBeTruthy();
   expect(view.getByText('21 правильный ответ из 30')).toBeTruthy();
   expect(view.getByText('13 минут')).toBeTruthy();
-  expect(view.getByText('За первое успешное прохождение — 1 спин')).toBeTruthy();
+  expect(view.queryByText('Что будет внутри')).toBeNull();
+  expect(view.queryByText('За первое успешное прохождение — 1 спин')).toBeNull();
 
   const start = view.getByLabelText('Начать проверку −5 ⚡');
   await fireEvent.press(start);

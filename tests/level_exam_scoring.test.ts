@@ -28,8 +28,6 @@ function correctAnswers(): LevelExamAnswers {
         kind: 'phrase_builder',
         tokenIds: [...task.correctTokenIds],
       };
-    } else if (task.format === 'spot_error') {
-      answers[task.scoreUnitId] = { kind: 'spot_error', tokenId: task.errorTokenId };
     }
   }
   return answers;
@@ -44,7 +42,7 @@ function answersWithCorrectCount(count: number): LevelExamAnswers {
 }
 
 describe('level exam scoring', () => {
-  test('scores all five formats as exactly 30 independent units', () => {
+  test('scores the audited tournament-style formats as exactly 30 independent units', () => {
     const result = scoreLevelExam(BLUEPRINT, correctAnswers(), 'submitted');
 
     expect(result).toMatchObject({
@@ -59,9 +57,8 @@ describe('level exam scoring', () => {
     });
     expect(result.byFormat).toEqual({
       context_choice: { correct: 8, total: 8 },
-      phrase_builder: { correct: 8, total: 8 },
+      phrase_builder: { correct: 12, total: 12 },
       meaning_choice: { correct: 6, total: 6 },
-      spot_error: { correct: 4, total: 4 },
       speed_match: { correct: 4, total: 4 },
     });
     expect(result.byLesson.reduce((sum, lesson) => sum + lesson.total, 0)).toBe(30);

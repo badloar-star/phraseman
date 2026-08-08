@@ -1,10 +1,10 @@
-import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import Animated, { FadeInDown, useReducedMotion } from 'react-native-reanimated';
 
 import type { LevelExamPhraseBuilderTask } from '../../app/level_exam_types';
-import TapScale from '../TapScale';
 import { useTheme } from '../ThemeContext';
+import { V2Chip, V2ChipGhost } from '../tournament/tournament_v2_ui';
 
 type Props = {
   task: LevelExamPhraseBuilderTask;
@@ -13,36 +13,36 @@ type Props = {
 };
 
 export default function PhraseBuilderQuestion({ task, selectedTokenIds, onChange }: Props) {
-  const { theme: t, f, ds } = useTheme();
+  const { theme: t, ds } = useTheme();
+  const reduceMotion = useReducedMotion();
   const selected = selectedTokenIds.map((id) => task.tokens.find((token) => token.id === id)).filter(Boolean);
-  const available = task.tokens.filter((token) => !selectedTokenIds.includes(token.id));
   return (
     <View accessibilityLabel={task.prompt} style={{ gap: ds.spacing.lg }}>
       <View style={[styles.answer, { backgroundColor: t.bgSurface, padding: ds.spacing.md, gap: ds.spacing.sm }]}> 
-        {selected.length === 0 ? (
-          <Text style={{ color: t.textMuted, fontSize: f.body, fontFamily: ds.fontFamily }}>…</Text>
-        ) : selected.map((token, index) => token ? (
-          <TapScale
-            key={token.id}
-            onPress={() => onChange(selectedTokenIds.filter((_id, selectedIndex) => selectedIndex !== index))}
-            accessibilityLabel={`${token.text}, remove`}
-            style={[styles.token, { backgroundColor: t.accentBg, paddingHorizontal: ds.spacing.md }]}
-          >
-            <Text style={{ color: t.accent, fontSize: f.body, fontFamily: ds.fontFamily, fontWeight: '800' }}>{token.text}</Text>
-            <Ionicons name="close" size={15} color={t.accent} />
-          </TapScale>
+        {selected.map((token, index) => token ? (
+          <Animated.View key={token.id} entering={reduceMotion ? undefined : FadeInDown.duration(140)}>
+            <V2Chip
+              selected
+              onPress={() => onChange(selectedTokenIds.filter((_id, selectedIndex) => selectedIndex !== index))}
+              accessibilityLabel={`${token.text}, remove`}
+            >
+              {token.text}
+            </V2Chip>
+          </Animated.View>
         ) : null)}
       </View>
       <View style={[styles.bank, { gap: ds.spacing.sm }]}> 
-        {available.map((token) => (
-          <TapScale
-            key={token.id}
-            onPress={() => onChange([...selectedTokenIds, token.id])}
-            accessibilityLabel={`${token.text}, add`}
-            style={[styles.token, { backgroundColor: t.bgSurface2, paddingHorizontal: ds.spacing.md }]}
-          >
-            <Text style={{ color: t.textPrimary, fontSize: f.body, fontFamily: ds.fontFamily, fontWeight: '700' }}>{token.text}</Text>
-          </TapScale>
+        {task.tokens.map((token, index) => selectedTokenIds.includes(token.id) ? (
+          <V2ChipGhost key={token.id} label={token.text} />
+        ) : (
+          <Animated.View key={token.id} entering={reduceMotion ? undefined : FadeInDown.delay(index * 30).duration(180)}>
+            <V2Chip
+              onPress={() => onChange([...selectedTokenIds, token.id])}
+              accessibilityLabel={`${token.text}, add`}
+            >
+              {token.text}
+            </V2Chip>
+          </Animated.View>
         ))}
       </View>
     </View>
@@ -52,5 +52,4 @@ export default function PhraseBuilderQuestion({ task, selectedTokenIds, onChange
 const styles = StyleSheet.create({
   answer: { minHeight: 84, borderRadius: 18, flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center' },
   bank: { flexDirection: 'row', flexWrap: 'wrap' },
-  token: { minHeight: 44, borderRadius: 15, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 4 },
 });

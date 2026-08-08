@@ -246,4 +246,66 @@ describe('buildFillGapCandidates', () => {
       }
     }
   });
+
+  it('keeps governed irregular morphology exact instead of deriving do/go lookalike lemmas', () => {
+    const does = buildFillGapCandidates(day, phrase(
+      'does-lookalike', 'He does work.', 'does', 'verb', ['do', 'did', 'doe'],
+    )).at(0);
+    const goes = buildFillGapCandidates(day, phrase(
+      'goes-lookalike', 'She goes home.', 'goes', 'verb', ['go', 'went', 'goe'],
+    )).at(0);
+
+    for (const [candidate, morphology, lookalike] of [
+      [does, ['do', 'did'], 'doe'],
+      [goes, ['go', 'went'], 'goe'],
+    ] as const) {
+      expect(candidate).toBeDefined();
+      for (const value of morphology) {
+        expect(candidate?.distractors.find((item) => item.value === value)).toEqual(expect.objectContaining({
+          value, trapType: 'morphology',
+        }));
+      }
+      expect(candidate?.distractors.find((item) => item.value === lookalike)).toEqual(expect.objectContaining({
+        value: lookalike, trapType: 'lexical_meaning',
+      }));
+    }
+  });
+
+  it.each([
+    ['given', 'They have given help.', ['give', 'gave', 'giving']],
+    ['found', 'She found it.', ['find', 'finds', 'finding']],
+    ['told', 'They told us.', ['tell', 'tells', 'telling']],
+    ['heard', 'We heard music.', ['hear', 'hears', 'hearing']],
+  ])('classifies governed irregular family forms for %s as morphology', (token, english, distractors) => {
+    const candidate = buildFillGapCandidates(day, phrase(`irregular-${token}`, english, token, 'verb', distractors)).at(0);
+
+    expect(candidate).toBeDefined();
+    for (const value of distractors) {
+      expect(candidate?.distractors.find((item) => item.value === value)).toEqual(expect.objectContaining({
+        value, trapType: 'morphology',
+      }));
+    }
+  });
+
+  it('uses the nearest preceding pronoun for to_be agreement after fronted material', () => {
+    const candidate = buildFillGapCandidates(day, phrase(
+      'fronted-subject', 'Today he is ready.', 'is', 'to be', ['are', 'was', 'be'],
+    )).at(0);
+
+    expect(candidate).toBeDefined();
+    expect(candidate?.distractors.find((item) => item.value === 'are')).toEqual(expect.objectContaining({
+      value: 'are', trapType: 'agreement',
+    }));
+  });
+
+  it('fails closed to morphology when no provable to_be pronoun subject precedes the blank', () => {
+    const candidate = buildFillGapCandidates(day, phrase(
+      'no-subject', 'Today is ready.', 'is', 'to be', ['are', 'was', 'be'],
+    )).at(0);
+
+    expect(candidate).toBeDefined();
+    expect(candidate?.distractors.find((item) => item.value === 'are')).toEqual(expect.objectContaining({
+      value: 'are', trapType: 'morphology',
+    }));
+  });
 });

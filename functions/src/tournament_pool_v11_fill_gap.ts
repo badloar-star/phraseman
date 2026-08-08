@@ -46,34 +46,48 @@ const CATEGORY_ALIASES: Readonly<Record<string, FillGapCategory>> = {
   'to be': 'to_be', be: 'to_be', number: 'number_time', time: 'number_time', 'number time': 'number_time',
   interjection: 'lexical_other', interjections: 'lexical_other', 'lexical other': 'lexical_other', other: 'lexical_other',
 };
-// Bounded learner-facing irregular paradigms. This is deliberately an exact lookup, never a fuzzy guess.
-const IRREGULAR_LEMMA_FAMILIES: Readonly<Record<string, string>> = {
-  be: 'be', am: 'be', is: 'be', are: 'be', was: 'be', were: 'be', being: 'be', been: 'be',
-  do: 'do', does: 'do', did: 'do', done: 'do', doing: 'do',
-  go: 'go', goes: 'go', went: 'go', gone: 'go', going: 'go',
-  have: 'have', has: 'have', had: 'have', having: 'have',
-  say: 'say', says: 'say', said: 'say', saying: 'say',
-  make: 'make', makes: 'make', made: 'make', making: 'make',
-  take: 'take', takes: 'take', took: 'take', taken: 'take', taking: 'take',
-  come: 'come', comes: 'come', came: 'come', coming: 'come',
-  get: 'get', gets: 'get', got: 'get', gotten: 'get', getting: 'get',
-  see: 'see', sees: 'see', saw: 'see', seen: 'see', seeing: 'see',
-  eat: 'eat', eats: 'eat', ate: 'eat', eaten: 'eat', eating: 'eat',
-  run: 'run', runs: 'run', ran: 'run', running: 'run',
-  buy: 'buy', buys: 'buy', bought: 'buy', buying: 'buy',
-  bring: 'bring', brings: 'bring', brought: 'bring', bringing: 'bring',
-  think: 'think', thinks: 'think', thought: 'think', thinking: 'think',
-  know: 'know', knows: 'know', knew: 'know', known: 'know', knowing: 'know',
-  write: 'write', writes: 'write', wrote: 'write', written: 'write', writing: 'write',
-  speak: 'speak', speaks: 'speak', spoke: 'speak', spoken: 'speak', speaking: 'speak',
-  sleep: 'sleep', sleeps: 'sleep', slept: 'sleep', sleeping: 'sleep',
-  feel: 'feel', feels: 'feel', felt: 'feel', feeling: 'feel',
-  leave: 'leave', leaves: 'leave', left: 'leave', leaving: 'leave',
-  meet: 'meet', meets: 'meet', met: 'meet', meeting: 'meet',
-  teach: 'teach', teaches: 'teach', taught: 'teach', teaching: 'teach',
-  catch: 'catch', catches: 'catch', caught: 'catch', catching: 'catch',
-  choose: 'choose', chooses: 'choose', chose: 'choose', chosen: 'choose', choosing: 'choose',
-};
+type IrregularFamily = Readonly<{
+  base: string;
+  thirdPerson: string;
+  past: string;
+  participle: string;
+  gerund: string;
+}>;
+
+// Exact learner-vocabulary paradigms. A registered form gets only its family identity;
+// generic suffix stripping must never manufacture a neighbouring lemma such as does -> doe.
+const IRREGULAR_FAMILIES: readonly IrregularFamily[] = [
+  ['be', 'is', 'was', 'been', 'being'], ['do', 'does', 'did', 'done', 'doing'], ['go', 'goes', 'went', 'gone', 'going'],
+  ['have', 'has', 'had', 'had', 'having'], ['say', 'says', 'said', 'said', 'saying'], ['make', 'makes', 'made', 'made', 'making'],
+  ['take', 'takes', 'took', 'taken', 'taking'], ['come', 'comes', 'came', 'come', 'coming'], ['get', 'gets', 'got', 'gotten', 'getting'],
+  ['see', 'sees', 'saw', 'seen', 'seeing'], ['eat', 'eats', 'ate', 'eaten', 'eating'], ['run', 'runs', 'ran', 'run', 'running'],
+  ['bring', 'brings', 'brought', 'brought', 'bringing'], ['build', 'builds', 'built', 'built', 'building'], ['buy', 'buys', 'bought', 'bought', 'buying'],
+  ['catch', 'catches', 'caught', 'caught', 'catching'], ['choose', 'chooses', 'chose', 'chosen', 'choosing'], ['cost', 'costs', 'cost', 'cost', 'costing'],
+  ['cut', 'cuts', 'cut', 'cut', 'cutting'], ['deal', 'deals', 'dealt', 'dealt', 'dealing'], ['dig', 'digs', 'dug', 'dug', 'digging'],
+  ['draw', 'draws', 'drew', 'drawn', 'drawing'], ['drink', 'drinks', 'drank', 'drunk', 'drinking'], ['drive', 'drives', 'drove', 'driven', 'driving'],
+  ['fall', 'falls', 'fell', 'fallen', 'falling'], ['feed', 'feeds', 'fed', 'fed', 'feeding'], ['feel', 'feels', 'felt', 'felt', 'feeling'],
+  ['fight', 'fights', 'fought', 'fought', 'fighting'], ['fly', 'flies', 'flew', 'flown', 'flying'], ['forget', 'forgets', 'forgot', 'forgotten', 'forgetting'],
+  ['forgive', 'forgives', 'forgave', 'forgiven', 'forgiving'], ['freeze', 'freezes', 'froze', 'frozen', 'freezing'],
+  ['give', 'gives', 'gave', 'given', 'giving'], ['grow', 'grows', 'grew', 'grown', 'growing'], ['hear', 'hears', 'heard', 'heard', 'hearing'],
+  ['hold', 'holds', 'held', 'held', 'holding'], ['keep', 'keeps', 'kept', 'kept', 'keeping'], ['know', 'knows', 'knew', 'known', 'knowing'],
+  ['lead', 'leads', 'led', 'led', 'leading'], ['leave', 'leaves', 'left', 'left', 'leaving'], ['lend', 'lends', 'lent', 'lent', 'lending'],
+  ['lose', 'loses', 'lost', 'lost', 'losing'], ['mean', 'means', 'meant', 'meant', 'meaning'], ['meet', 'meets', 'met', 'met', 'meeting'],
+  ['pay', 'pays', 'paid', 'paid', 'paying'], ['read', 'reads', 'read', 'read', 'reading'], ['ride', 'rides', 'rode', 'ridden', 'riding'],
+  ['ring', 'rings', 'rang', 'rung', 'ringing'], ['rise', 'rises', 'rose', 'risen', 'rising'], ['find', 'finds', 'found', 'found', 'finding'],
+  ['tell', 'tells', 'told', 'told', 'telling'], ['sell', 'sells', 'sold', 'sold', 'selling'], ['send', 'sends', 'sent', 'sent', 'sending'],
+  ['set', 'sets', 'set', 'set', 'setting'], ['shake', 'shakes', 'shook', 'shaken', 'shaking'], ['shoot', 'shoots', 'shot', 'shot', 'shooting'],
+  ['show', 'shows', 'showed', 'shown', 'showing'], ['sing', 'sings', 'sang', 'sung', 'singing'], ['sit', 'sits', 'sat', 'sat', 'sitting'],
+  ['sleep', 'sleeps', 'slept', 'slept', 'sleeping'], ['speak', 'speaks', 'spoke', 'spoken', 'speaking'], ['spend', 'spends', 'spent', 'spent', 'spending'],
+  ['stand', 'stands', 'stood', 'stood', 'standing'], ['steal', 'steals', 'stole', 'stolen', 'stealing'], ['swim', 'swims', 'swam', 'swum', 'swimming'],
+  ['teach', 'teaches', 'taught', 'taught', 'teaching'], ['think', 'thinks', 'thought', 'thought', 'thinking'], ['throw', 'throws', 'threw', 'thrown', 'throwing'],
+  ['understand', 'understands', 'understood', 'understood', 'understanding'], ['wake', 'wakes', 'woke', 'woken', 'waking'],
+  ['wear', 'wears', 'wore', 'worn', 'wearing'], ['win', 'wins', 'won', 'won', 'winning'], ['write', 'writes', 'wrote', 'written', 'writing'],
+].map(([base, thirdPerson, past, participle, gerund]) => ({ base, thirdPerson, past, participle, gerund }));
+const IRREGULAR_LEMMA_FAMILIES: Readonly<Record<string, string>> = Object.fromEntries(
+  IRREGULAR_FAMILIES.flatMap(({ base, thirdPerson, past, participle, gerund }) =>
+    [...new Set([base, thirdPerson, past, participle, gerund])].map((form) => [form, base])),
+);
+const SUBJECT_PRONOUNS = new Set(['i', 'you', 'he', 'she', 'it', 'we', 'they']);
 
 function normalized(value: string): string {
   return value.normalize('NFKC').replace(/\s+/gu, ' ').trim().toLowerCase();
@@ -118,6 +132,16 @@ function toBeTrap(correct: string, wrong: string, subject?: string): FillGapTrap
   return 'morphology';
 }
 
+function nearestSubjectPronoun(tokens: readonly string[], lexicalIndices: readonly number[], blankIndex: number): string | undefined {
+  for (let position = lexicalIndices.length - 1; position >= 0; position -= 1) {
+    const tokenIndex = lexicalIndices[position];
+    if (tokenIndex >= blankIndex) continue;
+    const token = lexicalToken(tokens[tokenIndex]);
+    if (SUBJECT_PRONOUNS.has(normalized(token))) return token;
+  }
+  return undefined;
+}
+
 function sameVerbStem(left: string, right: string, includeIrregular: boolean): boolean {
   const authored = lemmaKeys(left, includeIrregular);
   return [...lemmaKeys(right, includeIrregular)].some((form) => authored.has(form));
@@ -125,9 +149,10 @@ function sameVerbStem(left: string, right: string, includeIrregular: boolean): b
 
 function lemmaKeys(value: string, includeIrregular: boolean): ReadonlySet<string> {
   const token = normalized(value);
+  const irregularFamily = includeIrregular ? IRREGULAR_LEMMA_FAMILIES[token] : undefined;
+  if (irregularFamily) return new Set([irregularFamily]);
   const keys = new Set<string>(token.length >= 3 ? [token] : []);
   const add = (form: string) => { if (form.length >= 3) keys.add(form); };
-  if (includeIrregular && IRREGULAR_LEMMA_FAMILIES[token]) keys.add(IRREGULAR_LEMMA_FAMILIES[token]);
   if (token.endsWith('ies')) add(`${token.slice(0, -3)}y`);
   if (token.endsWith('s') && !token.endsWith('ss')) add(token.slice(0, -1));
   if (token.endsWith('es')) {
@@ -230,8 +255,7 @@ export function buildFillGapCandidates(day: SourceDay, phrase: SourcePhrase): re
     if (!category) continue;
     const selected: FillGapDistractor[] = [];
     const seen = new Set([normalized(correct)]);
-    const subjectIndex = lexicalIndices.find((tokenIndex) => tokenIndex < index);
-    const subject = subjectIndex === undefined ? undefined : lexicalToken(tokens[subjectIndex]);
+    const subject = nearestSubjectPronoun(tokens, lexicalIndices, index);
     const deterministicFallbacks = category === 'verb'
       ? derivedVerbForms(correct)
       : (FUNCTION_FALLBACKS[category] ?? []);

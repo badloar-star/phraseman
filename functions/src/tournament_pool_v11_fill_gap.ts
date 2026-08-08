@@ -46,6 +46,34 @@ const CATEGORY_ALIASES: Readonly<Record<string, FillGapCategory>> = {
   'to be': 'to_be', be: 'to_be', number: 'number_time', time: 'number_time', 'number time': 'number_time',
   interjection: 'lexical_other', interjections: 'lexical_other', 'lexical other': 'lexical_other', other: 'lexical_other',
 };
+// Bounded learner-facing irregular paradigms. This is deliberately an exact lookup, never a fuzzy guess.
+const IRREGULAR_LEMMA_FAMILIES: Readonly<Record<string, string>> = {
+  be: 'be', am: 'be', is: 'be', are: 'be', was: 'be', were: 'be', being: 'be', been: 'be',
+  do: 'do', does: 'do', did: 'do', done: 'do', doing: 'do',
+  go: 'go', goes: 'go', went: 'go', gone: 'go', going: 'go',
+  have: 'have', has: 'have', had: 'have', having: 'have',
+  say: 'say', says: 'say', said: 'say', saying: 'say',
+  make: 'make', makes: 'make', made: 'make', making: 'make',
+  take: 'take', takes: 'take', took: 'take', taken: 'take', taking: 'take',
+  come: 'come', comes: 'come', came: 'come', coming: 'come',
+  get: 'get', gets: 'get', got: 'get', gotten: 'get', getting: 'get',
+  see: 'see', sees: 'see', saw: 'see', seen: 'see', seeing: 'see',
+  eat: 'eat', eats: 'eat', ate: 'eat', eaten: 'eat', eating: 'eat',
+  run: 'run', runs: 'run', ran: 'run', running: 'run',
+  buy: 'buy', buys: 'buy', bought: 'buy', buying: 'buy',
+  bring: 'bring', brings: 'bring', brought: 'bring', bringing: 'bring',
+  think: 'think', thinks: 'think', thought: 'think', thinking: 'think',
+  know: 'know', knows: 'know', knew: 'know', known: 'know', knowing: 'know',
+  write: 'write', writes: 'write', wrote: 'write', written: 'write', writing: 'write',
+  speak: 'speak', speaks: 'speak', spoke: 'speak', spoken: 'speak', speaking: 'speak',
+  sleep: 'sleep', sleeps: 'sleep', slept: 'sleep', sleeping: 'sleep',
+  feel: 'feel', feels: 'feel', felt: 'feel', feeling: 'feel',
+  leave: 'leave', leaves: 'leave', left: 'leave', leaving: 'leave',
+  meet: 'meet', meets: 'meet', met: 'meet', meeting: 'meet',
+  teach: 'teach', teaches: 'teach', taught: 'teach', teaching: 'teach',
+  catch: 'catch', catches: 'catch', caught: 'catch', catching: 'catch',
+  choose: 'choose', chooses: 'choose', chose: 'choose', chosen: 'choose', choosing: 'choose',
+};
 
 function normalized(value: string): string {
   return value.normalize('NFKC').replace(/\s+/gu, ' ').trim().toLowerCase();
@@ -65,7 +93,8 @@ function trapFor(category: FillGapCategory, correct: string, wrong: string, subj
   if (category === 'modal' || category === 'conjunction' || category === 'determiner'
     || category === 'existential' || category === 'article') return 'function_choice';
   if (category === 'to_be') return toBeTrap(correct, wrong, subject);
-  if ((category === 'verb' || category === 'noun') && sameVerbStem(correct, wrong)) return 'morphology';
+  if (category === 'verb' && sameVerbStem(correct, wrong, true)) return 'morphology';
+  if (category === 'noun' && sameVerbStem(correct, wrong, false)) return 'morphology';
   if (category === 'verb') return 'lexical_meaning';
   if (category === 'noun' || category === 'adjective' || category === 'adverb') return 'lexical_meaning';
   return 'collocation';
@@ -89,18 +118,23 @@ function toBeTrap(correct: string, wrong: string, subject?: string): FillGapTrap
   return 'morphology';
 }
 
-function sameVerbStem(left: string, right: string): boolean {
-  const authored = lemmaKeys(left);
-  return [...lemmaKeys(right)].some((form) => authored.has(form));
+function sameVerbStem(left: string, right: string, includeIrregular: boolean): boolean {
+  const authored = lemmaKeys(left, includeIrregular);
+  return [...lemmaKeys(right, includeIrregular)].some((form) => authored.has(form));
 }
 
-function lemmaKeys(value: string): ReadonlySet<string> {
+function lemmaKeys(value: string, includeIrregular: boolean): ReadonlySet<string> {
   const token = normalized(value);
   const keys = new Set<string>(token.length >= 3 ? [token] : []);
   const add = (form: string) => { if (form.length >= 3) keys.add(form); };
+  if (includeIrregular && IRREGULAR_LEMMA_FAMILIES[token]) keys.add(IRREGULAR_LEMMA_FAMILIES[token]);
   if (token.endsWith('ies')) add(`${token.slice(0, -3)}y`);
   if (token.endsWith('s') && !token.endsWith('ss')) add(token.slice(0, -1));
-  if (token.endsWith('es')) add(token.slice(0, -2));
+  if (token.endsWith('es')) {
+    const root = token.slice(0, -2);
+    if (root === 'do' || root === 'go') keys.add(root);
+    else add(root);
+  }
   if (token.endsWith('ing')) {
     const root = token.slice(0, -3);
     add(root);

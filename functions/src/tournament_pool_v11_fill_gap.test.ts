@@ -228,4 +228,22 @@ describe('buildFillGapCandidates', () => {
     expect(watches?.distractors.find((item) => item.value === 'watch')).toEqual(expect.objectContaining({ trapType: 'morphology' }));
     expect(bus?.distractors.find((item) => item.value === 'buses')).toEqual(expect.objectContaining({ trapType: 'morphology' }));
   });
+
+  it('classifies bounded irregular do and go paradigm forms as morphology with form-specific reasons', () => {
+    const does = buildFillGapCandidates(day, phrase(
+      'does', 'He does work.', 'does', 'verb', ['do', 'did', 'done'],
+    )).at(0);
+    const goes = buildFillGapCandidates(day, phrase(
+      'goes', 'She goes home.', 'goes', 'verb', ['go', 'went', 'gone'],
+    )).at(0);
+
+    for (const candidate of [does, goes]) {
+      for (const distractor of candidate?.distractors ?? []) {
+        expect(distractor.trapType).toBe('morphology');
+        expect(distractor.reason).toContain(distractor.value);
+        expect(distractor.reason).toContain(candidate?.correctToken);
+        expect(distractor.reason).toMatch(/form|tense|inflection/i);
+      }
+    }
+  });
 });

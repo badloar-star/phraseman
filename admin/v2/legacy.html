@@ -9384,6 +9384,7 @@
         audit: 'system',
         'ops-log': 'system',
         'remote-config': 'system',
+        'youtube-catalog': 'community',
         'paywall-ab': 'revenue',
         'v2-generator': 'community',
         alerts: 'system',
@@ -9943,6 +9944,7 @@
   <div class="tab" onclick="switchTab('app-messages')" data-i18n-es="Placas y mensajes">Плашки и сообщения</div>
   <div class="tab" onclick="switchTab('helpers-board')">🏆 Топ хелперов</div>
   <div class="tab" onclick="switchTab('remote-config')" data-i18n-es="Configuración remota">Remote Config</div>
+  <div class="tab" onclick="switchTab('youtube-catalog')" title="Каналы, плейлисты и премьеры YouTube">YouTube-каталог</div>
   <div class="tab" onclick="switchTab('paywall-ab')">🧪 Paywall A/B</div>
   <div class="tab" onclick="switchTab('v2-generator')" title="Learning V2: генерация юнита E1 — демо-банк, компиляция 12 сессий, QA и артефакт" style="background:rgba(129,140,248,0.12);border:1px solid rgba(129,140,248,0.4);color:#a5b4fc;font-weight:700">🧬 V2 Генератор</div>
   <div class="tab" onclick="switchTab('alerts')" data-i18n-es="Alertas">🔔 Alerts</div>
@@ -10951,7 +10953,7 @@
   </div>
 
   <!-- ══ 📺 YouTube-канал для экрана «Видео» / кнопки на главной ══ -->
-  <div style="max-width:920px;margin-top:26px;background:#11131c;border:1px solid #222633;border-radius:14px;padding:18px">
+  <div id="yt-legacy-channel-config" hidden aria-hidden="true" style="max-width:920px;margin-top:26px;background:#11131c;border:1px solid #222633;border-radius:14px;padding:18px">
     <h2 style="margin:0 0 6px;font-size:18px;font-weight:800;color:#fafafa">📺 YouTube-канал</h2>
     <p style="margin:0 0 14px;font-size:12.5px;color:#9ca3af;line-height:1.55">
       Какой канал показывать на экране «Видео» и на кнопке главной. Можно подключить <b>любой</b> канал
@@ -11018,6 +11020,111 @@
 </div>
 
 <!-- ══ Опросы за осколки (shard-survey) ══ -->
+<div id="tab-youtube-catalog" class="reports-tab" data-admin-category="content">
+  <style>
+    .ytc-shell{max-width:1240px;padding:2px 0 36px;color:#e4e4e7}
+    .ytc-header{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;margin-bottom:18px}
+    .ytc-eyebrow{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#a1a1aa;margin-bottom:6px}
+    .ytc-title{font-size:24px;line-height:1.15;color:#fafafa;margin:0 0 7px;font-weight:850}
+    .ytc-lead{max-width:710px;font-size:13px;line-height:1.55;color:#a1a1aa;margin:0}
+    .ytc-primary-action{flex:0 0 auto;min-height:42px;background:#e4e4e7;color:#18181b;border-color:#f4f4f5;font-weight:800}
+    .ytc-primary-action:hover{background:#fafafa;color:#09090b}
+    .ytc-state{display:none;padding:12px 14px;border-radius:10px;margin:0 0 14px;font-size:13px;line-height:1.5}
+    .ytc-state.is-visible{display:block}.ytc-state--loading{background:#18181b;color:#a1a1aa}.ytc-state--empty{background:#17201c;color:#86efac}.ytc-state--error{background:#2a1719;color:#fca5a5}
+    .ytc-status-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-bottom:16px}
+    .ytc-kpi{min-width:0;background:#18181b;border-radius:10px;padding:12px 13px}
+    .ytc-kpi-label{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:#71717a;margin-bottom:5px}.ytc-kpi-value{font-size:13px;font-weight:750;color:#f4f4f5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .ytc-layout{display:grid;grid-template-columns:280px minmax(0,1fr);gap:12px;align-items:start}
+    .ytc-pane{background:#18181b;border:1px solid rgba(228,228,231,.1);border-radius:12px;padding:14px}
+    .ytc-pane-title{font-size:14px;font-weight:800;color:#fafafa;margin:0}.ytc-pane-copy{font-size:12px;color:#8b8b94;line-height:1.45;margin-top:4px}
+    .ytc-pane-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}
+    .ytc-channel-list{display:flex;flex-direction:column;gap:6px}.ytc-channel{width:100%;text-align:left;padding:10px;border-radius:9px;background:#111216;border:1px solid transparent;color:#d4d4d8}
+    .ytc-channel.is-selected{border-color:#71717a;background:#202126;color:#fafafa}.ytc-channel small{display:block;color:#71717a;margin-top:3px;overflow:hidden;text-overflow:ellipsis}
+    .ytc-section{padding:14px 0;border-top:1px solid rgba(228,228,231,.09)}.ytc-section:first-child{border-top:0;padding-top:0}
+    .ytc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.ytc-grid--three{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .ytc-field{display:flex;flex-direction:column;gap:5px;font-size:11.5px;color:#a1a1aa;min-width:0}.ytc-field input,.ytc-field select,.ytc-field textarea{width:100%;min-width:0;background:#111216;border:1px solid #303038;border-radius:8px;color:#f4f4f5;padding:9px 10px;font:inherit}.ytc-field textarea{resize:vertical;min-height:74px}
+    .ytc-check{display:flex;align-items:center;gap:8px;font-size:12px;color:#d4d4d8;min-height:38px}.ytc-check input{width:auto}
+    .ytc-row-list{display:flex;flex-direction:column;gap:8px;margin-top:10px}.ytc-row{background:#111216;border-radius:10px;padding:11px}.ytc-row-head{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-bottom:9px}.ytc-row-id{font:12px ui-monospace,SFMono-Regular,Consolas,monospace;color:#d4d4d8}
+    .ytc-icon-btn{width:34px;height:34px;padding:0;display:inline-grid;place-items:center;color:#a1a1aa}.ytc-danger{color:#fca5a5;border-color:#593036;background:#241619}
+    .ytc-locale-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+    .ytc-footer{display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,.7fr);gap:12px;margin-top:12px}.ytc-preview{min-height:120px;white-space:pre-wrap;font:12px/1.55 ui-monospace,SFMono-Regular,Consolas,monospace;color:#d4d4d8;background:#111216;border-radius:9px;padding:12px}
+    .ytc-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:10px}.ytc-muted{font-size:12px;color:#71717a}.ytc-history{display:flex;flex-direction:column;gap:8px}.ytc-history-item{padding:9px 0;border-top:1px solid rgba(228,228,231,.08);font-size:12px;color:#a1a1aa}.ytc-history-item:first-child{border-top:0}
+    @media(max-width:1050px){.ytc-status-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.ytc-layout,.ytc-footer{grid-template-columns:1fr}.ytc-locale-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:680px){.ytc-header{flex-direction:column}.ytc-grid,.ytc-grid--three,.ytc-locale-grid{grid-template-columns:1fr}.ytc-primary-action{width:100%}}
+  </style>
+  <div class="ytc-shell">
+    <div class="ytc-header">
+      <div>
+        <div class="ytc-eyebrow">Контент · YouTube</div>
+        <h2 class="ytc-title">YouTube-каталог</h2>
+        <p class="ytc-lead">Управление каналами разных языков, разделами плейлистов и временными настройками премьер. Изменения сначала проверяются, затем публикуются одной ревизией.</p>
+      </div>
+      <button id="ytc-refresh" type="button" class="ytc-primary-action" onclick="window.refreshYoutubeCatalog()" title="Запросить свежие каналы, видео, плейлисты и статусы премьер из YouTube">Обновить из YouTube</button>
+    </div>
+    <div id="ytc-loading" class="ytc-state ytc-state--loading" role="status">Загружаем рабочую область каталога…</div>
+    <div id="ytc-empty" class="ytc-state ytc-state--empty">Каталог пока пуст. Добавьте первый канал и назначьте его языком по умолчанию.</div>
+    <div id="ytc-error" class="ytc-state ytc-state--error" role="alert"></div>
+    <div id="ytc-status-grid" class="ytc-status-grid" aria-label="Состояние синхронизации YouTube"></div>
+
+    <div class="ytc-layout">
+      <aside class="ytc-pane">
+        <div class="ytc-pane-head">
+          <div><h3 class="ytc-pane-title">Каналы</h3><div class="ytc-pane-copy">До 24 каналов</div></div>
+          <button id="ytc-add-channel" type="button" class="ytc-icon-btn" onclick="window.addYoutubeCatalogChannel()" aria-label="Добавить YouTube-канал" title="Добавить канал">＋</button>
+        </div>
+        <div id="ytc-channel-list" class="ytc-channel-list"></div>
+      </aside>
+
+      <main id="ytc-channel-editor" class="ytc-pane" aria-live="polite">
+        <section class="ytc-section">
+          <div class="ytc-pane-head"><div><h3 class="ytc-pane-title">Настройки канала</h3><div class="ytc-pane-copy">ID внутри приложения и официальный Channel ID YouTube</div></div><button id="ytc-remove-channel" type="button" class="ytc-icon-btn ytc-danger" onclick="window.removeYoutubeCatalogChannel()" aria-label="Удалить выбранный канал" title="Удалить канал">×</button></div>
+          <div class="ytc-grid">
+            <label class="ytc-field">Внутренний ID<input id="ytc-channel-id" type="text" data-ytc-channel-field="id" placeholder="english"></label>
+            <label class="ytc-field">YouTube Channel ID<input id="ytc-channel-youtube-id" type="text" data-ytc-channel-field="youtubeChannelId" placeholder="UC…" autocomplete="off"></label>
+            <label class="ytc-field">Название для приложения<input id="ytc-channel-name" type="text" data-ytc-channel-field="displayNameOverride" placeholder="Как на YouTube"></label>
+            <label class="ytc-field">Языки канала<input id="ytc-channel-locales" type="text" data-ytc-channel-field="languageTags" placeholder="en, es, pt-BR"></label>
+            <label class="ytc-field">Порядок<input id="ytc-channel-order" type="number" min="0" data-ytc-channel-field="order"></label>
+            <label class="ytc-check"><input id="ytc-channel-enabled" type="checkbox" data-ytc-channel-field="enabled"> Канал включён</label>
+          </div>
+        </section>
+
+        <section class="ytc-section">
+          <div class="ytc-pane-head"><div><h3 class="ytc-pane-title">Канал по языку пользователя</h3><div class="ytc-pane-copy">Если язык не найден, используется первый включённый канал</div></div></div>
+          <div id="ytc-locale-defaults" class="ytc-locale-grid"></div>
+        </section>
+
+        <section class="ytc-section">
+          <div class="ytc-pane-head"><div><h3 class="ytc-pane-title">Плейлисты</h3><div class="ytc-pane-copy">Переименуйте, скройте или поменяйте порядок разделов канала</div></div><button id="ytc-add-playlist" type="button" onclick="window.addYoutubeCatalogPlaylist()" title="Добавить настройку плейлиста">Добавить плейлист</button></div>
+          <div id="ytc-playlist-list" class="ytc-row-list"></div>
+          <span hidden>Скрыть плейлист</span><span hidden>Название плейлиста</span>
+        </section>
+
+        <section class="ytc-section">
+          <div class="ytc-pane-head"><div><h3 class="ytc-pane-title">Премьеры</h3><div class="ytc-pane-copy">Временные ручные правки для ожидаемых и активных премьер</div></div><button id="ytc-add-premiere" type="button" onclick="window.addYoutubeCatalogPremiere()" title="Добавить настройку премьеры">Добавить премьеру</button></div>
+          <div id="ytc-premiere-list" class="ytc-row-list"></div>
+          <span hidden>Время премьеры</span><span hidden>Срок действия</span><span hidden>Сбросить переопределение</span>
+        </section>
+      </main>
+    </div>
+
+    <div class="ytc-footer">
+      <section class="ytc-pane">
+        <div class="ytc-pane-head"><div><h3 class="ytc-pane-title">Проверка перед публикацией</h3><div class="ytc-pane-copy">Ошибки блокируют сохранение; предпросмотр не меняет данные</div></div></div>
+        <div id="ytc-preview" class="ytc-preview" aria-live="polite">Нажмите «Проверить», чтобы увидеть сводку.</div>
+        <label class="ytc-field" style="margin-top:10px">Причина изменения<textarea id="ytc-publish-reason" placeholder="Например: подключаем испанский канал"></textarea></label>
+        <div class="ytc-actions">
+          <button type="button" onclick="window.previewYoutubeCatalogConfig()" title="Проверить заполнение без сохранения">Проверить</button>
+          <button id="ytc-publish" type="button" onclick="window.publishYoutubeCatalogConfig()" title="Сохранить проверенную конфигурацию новой ревизией">Сохранить конфигурацию</button>
+          <span id="ytc-publish-status" class="ytc-muted" role="status"></span>
+        </div>
+      </section>
+      <section class="ytc-pane">
+        <div class="ytc-pane-head"><div><h3 class="ytc-pane-title">Последние изменения</h3><div class="ytc-pane-copy">Причина, автор и ревизия</div></div></div>
+        <div id="ytc-history" class="ytc-history"></div>
+      </section>
+    </div>
+  </div>
+</div>
 <div id="tab-surveys" class="reports-tab">
   <div style="max-width:980px;margin-bottom:16px">
     <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px">
@@ -14237,6 +14344,27 @@
       _fnAdminPublishRemoteConfig = httpsCallable(functionsUs, 'adminPublishRemoteConfig');
     }
     return _fnAdminPublishRemoteConfig;
+  }
+  let _fnAdminGetYoutubeCatalogWorkspace = null;
+  function getAdminGetYoutubeCatalogWorkspaceCallable() {
+    if (!_fnAdminGetYoutubeCatalogWorkspace) {
+      _fnAdminGetYoutubeCatalogWorkspace = httpsCallable(functionsUs, 'adminGetYoutubeCatalogWorkspace');
+    }
+    return _fnAdminGetYoutubeCatalogWorkspace;
+  }
+  let _fnAdminPublishYoutubeCatalogConfig = null;
+  function getAdminPublishYoutubeCatalogConfigCallable() {
+    if (!_fnAdminPublishYoutubeCatalogConfig) {
+      _fnAdminPublishYoutubeCatalogConfig = httpsCallable(functionsUs, 'adminPublishYoutubeCatalogConfig');
+    }
+    return _fnAdminPublishYoutubeCatalogConfig;
+  }
+  let _fnAdminRefreshYoutubeCatalog = null;
+  function getAdminRefreshYoutubeCatalogCallable() {
+    if (!_fnAdminRefreshYoutubeCatalog) {
+      _fnAdminRefreshYoutubeCatalog = httpsCallable(functionsUs, 'adminRefreshYoutubeCatalog');
+    }
+    return _fnAdminRefreshYoutubeCatalog;
   }
   function createAdminCommandId(prefix) {
     const bytes = new Uint8Array(16);
@@ -18497,6 +18625,9 @@
     if (tab === 'tournaments' && !window._tournamentsLoaded && typeof window.tnOpenTab === 'function') {
       void window.tnOpenTab();
     }
+    if (tab === 'youtube-catalog' && !window._youtubeCatalogLoaded && typeof window.loadYoutubeCatalogWorkspace === 'function') {
+      void window.loadYoutubeCatalogWorkspace(false);
+    }
     if (tab === 'overview' && typeof window.renderAdminOverview === 'function') {
       window.renderAdminOverview();
     }
@@ -19732,6 +19863,7 @@
     'review-promo': 'Plus survey',
     'app-messages': 'Плашки и сообщения',
     'remote-config': 'Remote Config',
+    'youtube-catalog': 'YouTube-каталог',
     'paywall-ab': 'Paywall A/B',
     'v2-generator': 'V2 Генератор',
     alerts: 'Alerts',
@@ -19828,6 +19960,7 @@
     audit: 'clipboard',
     'ops-log': 'terminal',
     'remote-config': 'sliders',
+    'youtube-catalog': 'message',
     'paywall-ab': 'flask',
     'v2-generator': 'flask',
     alerts: 'bell',
@@ -19898,6 +20031,7 @@
     audit: 'system',
     'ops-log': 'system',
     'remote-config': 'system',
+    'youtube-catalog': 'community',
     'paywall-ab': 'revenue',
     'v2-generator': 'community',
     alerts: 'system',
@@ -27983,6 +28117,472 @@
   // ── 📺 YouTube-канал (texts: youtube_channel_id/handle/name/url) ─────────────
   // Логика парсинга держится в синхроне с app/lingman_youtube.ts
   // (parseYoutubeChannelId / parseYoutubeHandle / getActiveYoutubeChannel).
+  /* YOUTUBE_CATALOG_ADMIN_START */
+  const YTC_LOCALES = ['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl', 'en'];
+  window._youtubeCatalogWorkspace = null;
+  window._youtubeCatalogDraft = null;
+  window._youtubeCatalogSelectedId = '';
+  window._youtubeCatalogRevision = 0;
+
+  function ytcNode(tag, className, value) {
+    const node = document.createElement(tag);
+    if (className) node.className = className;
+    if (value != null) node.textContent = String(value);
+    return node;
+  }
+
+  function ytcClone(value) {
+    return JSON.parse(JSON.stringify(value));
+  }
+
+  function ytcDefaultConfig() {
+    return {
+      schemaVersion: 1,
+      enabled: true,
+      channels: [],
+      localeDefaults: {},
+      updatedAt: new Date().toISOString(),
+      updatedBy: 'legacy-admin',
+    };
+  }
+
+  function ytcNormalizeConfig(raw) {
+    const base = raw && typeof raw === 'object' ? ytcClone(raw) : ytcDefaultConfig();
+    delete base.revision;
+    base.schemaVersion = 1;
+    base.enabled = base.enabled !== false;
+    base.channels = Array.isArray(base.channels) ? base.channels.map(function(channel, index) {
+      const item = channel && typeof channel === 'object' ? channel : {};
+      return {
+        id: String(item.id || ('channel-' + (index + 1))),
+        youtubeChannelId: String(item.youtubeChannelId || ''),
+        enabled: item.enabled !== false,
+        order: Number.isSafeInteger(Number(item.order)) && Number(item.order) >= 0 ? Number(item.order) : index,
+        languageTags: Array.isArray(item.languageTags) ? item.languageTags.map(String) : [],
+        ...(String(item.displayNameOverride || '').trim() ? { displayNameOverride: String(item.displayNameOverride).trim() } : {}),
+        ...(Array.isArray(item.pinnedVideos) ? { pinnedVideos: item.pinnedVideos } : {}),
+        playlistOverrides: item.playlistOverrides && typeof item.playlistOverrides === 'object' && !Array.isArray(item.playlistOverrides) ? item.playlistOverrides : {},
+        premiereOverrides: item.premiereOverrides && typeof item.premiereOverrides === 'object' && !Array.isArray(item.premiereOverrides) ? item.premiereOverrides : {},
+      };
+    }) : [];
+    base.localeDefaults = base.localeDefaults && typeof base.localeDefaults === 'object' && !Array.isArray(base.localeDefaults) ? base.localeDefaults : {};
+    base.updatedAt = String(base.updatedAt || new Date().toISOString());
+    base.updatedBy = String(base.updatedBy || 'legacy-admin');
+    return base;
+  }
+
+  function ytcSelectedChannel() {
+    const draft = window._youtubeCatalogDraft;
+    if (!draft) return null;
+    return draft.channels.find(function(channel) { return channel.id === window._youtubeCatalogSelectedId; }) || null;
+  }
+
+  function ytcShowState(id, visible, message) {
+    const element = document.getElementById(id);
+    if (!element) return;
+    if (message != null) element.textContent = String(message);
+    element.classList.toggle('is-visible', Boolean(visible));
+  }
+
+  function ytcFormatDate(value) {
+    const raw = value && typeof value === 'object' && Number.isFinite(Number(value.seconds))
+      ? Number(value.seconds) * 1000
+      : Number(value);
+    if (Number.isFinite(raw) && raw > 0) return new Date(raw).toLocaleString('ru-RU');
+    const parsed = Date.parse(String(value || ''));
+    return Number.isFinite(parsed) ? new Date(parsed).toLocaleString('ru-RU') : '—';
+  }
+
+  function ytcToLocalDateTime(value) {
+    const parsed = Date.parse(String(value || ''));
+    if (!Number.isFinite(parsed)) return '';
+    const date = new Date(parsed - new Date(parsed).getTimezoneOffset() * 60000);
+    return date.toISOString().slice(0, 16);
+  }
+
+  function ytcFromLocalDateTime(value) {
+    const parsed = Date.parse(String(value || ''));
+    return Number.isFinite(parsed) ? new Date(parsed).toISOString() : '';
+  }
+
+  function ytcSetButtonBusy(button, busy, busyLabel, readyLabel) {
+    if (!button) return;
+    button.disabled = Boolean(busy);
+    button.setAttribute('aria-busy', busy ? 'true' : 'false');
+    button.textContent = busy ? busyLabel : readyLabel;
+  }
+
+  function ytcRenderStatus() {
+    const box = document.getElementById('ytc-status-grid');
+    if (!box) return;
+    box.replaceChildren();
+    const workspace = window._youtubeCatalogWorkspace || {};
+    const sync = workspace.syncState || {};
+    const manifest = workspace.manifest || {};
+    const quotaDay = String(sync.searchBudgetUtcDay || 'сегодня');
+    const values = [
+      ['Активная версия', manifest.activeVersion || sync.lastSuccessfulVersion || '—'],
+      ['Последний успех', ytcFormatDate(sync.lastSuccessAtMs)],
+      ['Следующий запуск', ytcFormatDate(sync.nextRunAtMs)],
+      ['Search quota', String(Number(sync.searchCallsUsed || 0)) + '/80 · ' + quotaDay],
+      ['Последняя ошибка', sync.lastErrorCode || 'нет'],
+    ];
+    values.forEach(function(item) {
+      const card = ytcNode('div', 'ytc-kpi');
+      card.append(ytcNode('div', 'ytc-kpi-label', item[0]), ytcNode('div', 'ytc-kpi-value', item[1]));
+      card.title = String(item[1]);
+      box.append(card);
+    });
+  }
+
+  function ytcRenderChannelList() {
+    const box = document.getElementById('ytc-channel-list');
+    if (!box) return;
+    box.replaceChildren();
+    const draft = window._youtubeCatalogDraft;
+    const channels = draft ? draft.channels.slice().sort(function(a, b) { return a.order - b.order; }) : [];
+    channels.forEach(function(channel) {
+      const button = ytcNode('button', 'ytc-channel' + (channel.id === window._youtubeCatalogSelectedId ? ' is-selected' : ''));
+      button.type = 'button';
+      button.title = 'Открыть настройки канала ' + channel.id;
+      button.addEventListener('click', function() { window.selectYoutubeCatalogChannel(channel.id); });
+      const title = ytcNode('span', '', channel.displayNameOverride || channel.id || 'Без названия');
+      const meta = ytcNode('small', '', (channel.enabled ? 'Включён' : 'Выключен') + ' · ' + (channel.languageTags.join(', ') || 'языки не заданы'));
+      button.append(title, meta);
+      box.append(button);
+    });
+    ytcShowState('ytc-empty', Boolean(draft && draft.channels.length === 0));
+  }
+
+  function ytcField(labelText, type, value, onChange, options) {
+    const label = ytcNode('label', 'ytc-field', labelText);
+    const input = document.createElement('input');
+    input.type = type || 'text';
+    input.value = value == null ? '' : String(value);
+    if (options && options.placeholder) input.placeholder = options.placeholder;
+    if (options && options.min != null) input.min = String(options.min);
+    input.addEventListener(options && options.event === 'input' ? 'input' : 'change', function() { onChange(input.value); ytcWritePreview(false); });
+    label.append(input);
+    return label;
+  }
+
+  function ytcCheck(labelText, checked, onChange) {
+    const label = ytcNode('label', 'ytc-check');
+    const input = document.createElement('input');
+    input.type = 'checkbox';
+    input.checked = Boolean(checked);
+    input.addEventListener('change', function() { onChange(input.checked); ytcWritePreview(false); });
+    label.append(input, document.createTextNode(labelText));
+    return label;
+  }
+
+  function ytcRenameRecordKey(record, oldKey, nextKey) {
+    const clean = String(nextKey || '').trim();
+    if (!clean || clean === oldKey || Object.prototype.hasOwnProperty.call(record, clean)) return oldKey;
+    record[clean] = record[oldKey];
+    delete record[oldKey];
+    return clean;
+  }
+
+  function ytcRenderPlaylists(channel) {
+    const box = document.getElementById('ytc-playlist-list');
+    if (!box) return;
+    box.replaceChildren();
+    if (!channel) return;
+    const entries = Object.entries(channel.playlistOverrides || {});
+    if (!entries.length) box.append(ytcNode('div', 'ytc-muted', 'Ручных настроек пока нет. Плейлисты появятся после синхронизации автоматически.'));
+    entries.forEach(function(entry) {
+      let playlistId = entry[0];
+      const override = entry[1] || {};
+      const row = ytcNode('div', 'ytc-row');
+      const head = ytcNode('div', 'ytc-row-head');
+      const idInput = document.createElement('input');
+      idInput.className = 'ytc-row-id';
+      idInput.type = 'text';
+      idInput.value = playlistId;
+      idInput.title = 'ID плейлиста YouTube';
+      idInput.setAttribute('aria-label', 'ID плейлиста YouTube');
+      idInput.addEventListener('change', function() {
+        playlistId = ytcRenameRecordKey(channel.playlistOverrides, playlistId, idInput.value);
+        ytcRenderWorkspace();
+      });
+      const remove = ytcNode('button', 'ytc-icon-btn ytc-danger', '×');
+      remove.type = 'button'; remove.title = 'Удалить настройку плейлиста'; remove.setAttribute('aria-label', 'Удалить настройку плейлиста');
+      remove.addEventListener('click', function() { delete channel.playlistOverrides[playlistId]; ytcRenderWorkspace(); });
+      head.append(idInput, remove);
+      const grid = ytcNode('div', 'ytc-grid--three ytc-grid');
+      grid.append(
+        ytcField('Название плейлиста', 'text', override.titleOverride || '', function(value) { if (value.trim()) override.titleOverride = value.trim(); else delete override.titleOverride; }, { event: 'input' }),
+        ytcField('Порядок', 'number', override.order == null ? '' : override.order, function(value) { if (value === '') delete override.order; else override.order = Math.max(0, Math.floor(Number(value) || 0)); }, { min: 0 }),
+        ytcCheck('Скрыть плейлист', override.hidden === true, function(value) { if (value) override.hidden = true; else delete override.hidden; })
+      );
+      row.append(head, grid);
+      box.append(row);
+    });
+  }
+
+  function ytcRenderPremieres(channel) {
+    const box = document.getElementById('ytc-premiere-list');
+    if (!box) return;
+    box.replaceChildren();
+    if (!channel) return;
+    const entries = Object.entries(channel.premiereOverrides || {});
+    if (!entries.length) box.append(ytcNode('div', 'ytc-muted', 'Переопределений нет. Время и статус берутся напрямую из YouTube.'));
+    entries.forEach(function(entry) {
+      let videoId = entry[0];
+      const override = entry[1] || {};
+      const row = ytcNode('div', 'ytc-row');
+      const head = ytcNode('div', 'ytc-row-head');
+      const idInput = document.createElement('input');
+      idInput.className = 'ytc-row-id'; idInput.type = 'text'; idInput.value = videoId; idInput.title = 'ID видео премьеры'; idInput.setAttribute('aria-label', 'ID видео премьеры');
+      idInput.addEventListener('change', function() { videoId = ytcRenameRecordKey(channel.premiereOverrides, videoId, idInput.value); ytcRenderWorkspace(); });
+      const controls = ytcNode('div', 'ytc-actions');
+      const reset = ytcNode('button', 'ytc-icon-btn', '↺');
+      reset.type = 'button'; reset.title = 'Сбросить переопределение'; reset.setAttribute('aria-label', 'Сбросить переопределение премьеры');
+      reset.addEventListener('click', function() {
+        delete override.hidden; delete override.titleOverride; delete override.scheduledStartOverride;
+        override.expiresAt = new Date(Date.now() + 30 * 86400000).toISOString();
+        ytcRenderWorkspace();
+      });
+      const remove = ytcNode('button', 'ytc-icon-btn ytc-danger', '×');
+      remove.type = 'button'; remove.title = 'Удалить настройку премьеры'; remove.setAttribute('aria-label', 'Удалить настройку премьеры');
+      remove.addEventListener('click', function() { delete channel.premiereOverrides[videoId]; ytcRenderWorkspace(); });
+      controls.append(reset, remove); head.append(idInput, controls);
+      const grid = ytcNode('div', 'ytc-grid');
+      grid.append(
+        ytcField('Название премьеры', 'text', override.titleOverride || '', function(value) { if (value.trim()) override.titleOverride = value.trim(); else delete override.titleOverride; }, { event: 'input' }),
+        ytcField('Время премьеры', 'datetime-local', ytcToLocalDateTime(override.scheduledStartOverride), function(value) { const iso = ytcFromLocalDateTime(value); if (iso) override.scheduledStartOverride = iso; else delete override.scheduledStartOverride; }),
+        ytcField('Срок действия', 'datetime-local', ytcToLocalDateTime(override.expiresAt), function(value) { override.expiresAt = ytcFromLocalDateTime(value); }),
+        ytcCheck('Скрыть премьеру', override.hidden === true, function(value) { if (value) override.hidden = true; else delete override.hidden; })
+      );
+      row.append(head, grid); box.append(row);
+    });
+  }
+
+  function ytcRenderLocaleDefaults() {
+    const box = document.getElementById('ytc-locale-defaults');
+    const draft = window._youtubeCatalogDraft;
+    if (!box || !draft) return;
+    box.replaceChildren();
+    YTC_LOCALES.forEach(function(locale) {
+      const label = ytcNode('label', 'ytc-field', locale);
+      const select = document.createElement('select');
+      select.setAttribute('aria-label', 'Канал по умолчанию для ' + locale);
+      const empty = document.createElement('option'); empty.value = ''; empty.textContent = 'Не назначен'; select.append(empty);
+      draft.channels.forEach(function(channel) {
+        const option = document.createElement('option'); option.value = channel.id; option.textContent = (channel.displayNameOverride || channel.id) + (channel.enabled ? '' : ' · выключен'); select.append(option);
+      });
+      select.value = String(draft.localeDefaults[locale] || '');
+      select.addEventListener('change', function() { if (select.value) draft.localeDefaults[locale] = select.value; else delete draft.localeDefaults[locale]; ytcWritePreview(); });
+      label.append(select); box.append(label);
+    });
+  }
+
+  function ytcRenderHistory() {
+    const box = document.getElementById('ytc-history');
+    if (!box) return;
+    box.replaceChildren();
+    const history = Array.isArray(window._youtubeCatalogWorkspace && window._youtubeCatalogWorkspace.history) ? window._youtubeCatalogWorkspace.history.slice(0, 8) : [];
+    if (!history.length) { box.append(ytcNode('div', 'ytc-muted', 'История появится после первой публикации.')); return; }
+    history.forEach(function(item) {
+      const row = ytcNode('div', 'ytc-history-item');
+      row.append(ytcNode('div', '', 'Ревизия ' + String(item.revision == null ? '—' : item.revision) + ' · ' + ytcFormatDate(item.timestamp)));
+      row.append(ytcNode('div', 'ytc-muted', String(item.reason || 'Причина не указана') + ' · ' + String(item.actorUid || item.updatedBy || 'admin')));
+      box.append(row);
+    });
+  }
+
+  function ytcSetEditorValues(channel) {
+    const editor = document.getElementById('ytc-channel-editor');
+    if (editor) editor.style.opacity = channel ? '1' : '.55';
+    const values = {
+      'ytc-channel-id': channel ? channel.id : '',
+      'ytc-channel-youtube-id': channel ? channel.youtubeChannelId : '',
+      'ytc-channel-name': channel ? (channel.displayNameOverride || '') : '',
+      'ytc-channel-locales': channel ? channel.languageTags.join(', ') : '',
+      'ytc-channel-order': channel ? channel.order : '',
+    };
+    Object.entries(values).forEach(function(entry) { const el = document.getElementById(entry[0]); if (el) { el.value = entry[1]; el.disabled = !channel; } });
+    const enabled = document.getElementById('ytc-channel-enabled'); if (enabled) { enabled.checked = Boolean(channel && channel.enabled); enabled.disabled = !channel; }
+    const remove = document.getElementById('ytc-remove-channel'); if (remove) remove.disabled = !channel;
+  }
+
+  function ytcValidateConfig(config, requireReason) {
+    const errors = [];
+    if (!config || !Array.isArray(config.channels)) return ['Конфигурация не загружена.'];
+    if (config.channels.length > 24) errors.push('Можно подключить не больше 24 каналов.');
+    if (!config.channels.some(function(channel) { return channel.enabled; })) errors.push('Включите хотя бы один канал.');
+    const ids = new Set(); const youtubeIds = new Set();
+    config.channels.forEach(function(channel, index) {
+      const prefix = 'Канал ' + (index + 1) + ': ';
+      if (!/^[0-9A-Za-z_-]{1,80}$/.test(String(channel.id || ''))) errors.push(prefix + 'внутренний ID содержит недопустимые символы.');
+      else if (ids.has(channel.id)) errors.push(prefix + 'внутренний ID повторяется.'); else ids.add(channel.id);
+      if (!/^UC[0-9A-Za-z_-]{22}$/.test(String(channel.youtubeChannelId || ''))) errors.push(prefix + 'нужен Channel ID вида UC + 22 символа.');
+      else if (youtubeIds.has(channel.youtubeChannelId)) errors.push(prefix + 'YouTube Channel ID повторяется.'); else youtubeIds.add(channel.youtubeChannelId);
+      if (!Number.isSafeInteger(Number(channel.order)) || Number(channel.order) < 0) errors.push(prefix + 'порядок должен быть целым числом от 0.');
+      channel.languageTags.forEach(function(tag) { if (!/^[A-Za-z]{2,3}(?:-[A-Za-z0-9]{2,8})*$/.test(tag)) errors.push(prefix + 'язык «' + tag + '» записан неверно.'); });
+      Object.entries(channel.playlistOverrides || {}).forEach(function(entry) {
+        if (!/^[0-9A-Za-z_-]{10,100}$/.test(entry[0])) errors.push(prefix + 'неверный ID плейлиста «' + entry[0] + '».');
+      });
+      Object.entries(channel.premiereOverrides || {}).forEach(function(entry) {
+        if (!/^[0-9A-Za-z_-]{11}$/.test(entry[0])) errors.push(prefix + 'неверный ID видео премьеры «' + entry[0] + '».');
+        if (!Number.isFinite(Date.parse(String(entry[1] && entry[1].expiresAt || '')))) errors.push(prefix + 'для премьеры ' + entry[0] + ' нужен срок действия.');
+      });
+    });
+    Object.entries(config.localeDefaults || {}).forEach(function(entry) {
+      const found = config.channels.find(function(channel) { return channel.id === entry[1] && channel.enabled; });
+      if (!found) errors.push('Для языка ' + entry[0] + ' выбран отсутствующий или выключенный канал.');
+    });
+    if (config.channels.length && Object.keys(config.localeDefaults || {}).length === 0) errors.push('Назначьте канал хотя бы для одного языка.');
+    if (requireReason && !String(document.getElementById('ytc-publish-reason') && document.getElementById('ytc-publish-reason').value || '').trim()) errors.push('Укажите причину изменения.');
+    return errors;
+  }
+
+  function ytcWritePreview(requireReason) {
+    const box = document.getElementById('ytc-preview');
+    const draft = window._youtubeCatalogDraft;
+    if (!box || !draft) return [];
+    const errors = ytcValidateConfig(draft, Boolean(requireReason));
+    const enabled = draft.channels.filter(function(channel) { return channel.enabled; });
+    const playlistCount = draft.channels.reduce(function(sum, channel) { return sum + Object.keys(channel.playlistOverrides || {}).length; }, 0);
+    const premiereCount = draft.channels.reduce(function(sum, channel) { return sum + Object.keys(channel.premiereOverrides || {}).length; }, 0);
+    const lines = [
+      errors.length ? 'ПРОВЕРКА: есть ошибки' : 'ПРОВЕРКА: готово к публикации',
+      'Каналы: ' + draft.channels.length + ' · включено: ' + enabled.length,
+      'Языковые назначения: ' + Object.keys(draft.localeDefaults || {}).length,
+      'Правки плейлистов: ' + playlistCount + ' · премьер: ' + premiereCount,
+    ];
+    if (errors.length) { lines.push('', 'Исправьте:'); errors.forEach(function(error) { lines.push('• ' + error); }); }
+    else { lines.push('', 'Следующая ревизия: ' + (window._youtubeCatalogRevision + 1)); enabled.forEach(function(channel) { lines.push('• ' + channel.id + ' · ' + channel.languageTags.join(', ')); }); }
+    box.textContent = lines.join('\n');
+    return errors;
+  }
+
+  function ytcRenderWorkspace() {
+    const draft = window._youtubeCatalogDraft;
+    if (draft && !ytcSelectedChannel() && draft.channels.length) window._youtubeCatalogSelectedId = draft.channels[0].id;
+    const channel = ytcSelectedChannel();
+    ytcRenderStatus(); ytcRenderChannelList(); ytcSetEditorValues(channel); ytcRenderLocaleDefaults(); ytcRenderPlaylists(channel); ytcRenderPremieres(channel); ytcRenderHistory(); ytcWritePreview(false);
+  }
+
+  window.selectYoutubeCatalogChannel = function(id) {
+    window._youtubeCatalogSelectedId = String(id || '');
+    ytcRenderWorkspace();
+  };
+
+  window.addYoutubeCatalogChannel = function() {
+    const draft = window._youtubeCatalogDraft || ytcDefaultConfig();
+    window._youtubeCatalogDraft = draft;
+    if (draft.channels.length >= 24) { ytcShowState('ytc-error', true, 'Достигнут лимит: 24 канала.'); return; }
+    let number = draft.channels.length + 1; let id = 'channel-' + number;
+    while (draft.channels.some(function(channel) { return channel.id === id; })) { number += 1; id = 'channel-' + number; }
+    draft.channels.push({ id: id, youtubeChannelId: '', enabled: true, order: draft.channels.length, languageTags: [], playlistOverrides: {}, premiereOverrides: {} });
+    window._youtubeCatalogSelectedId = id; ytcShowState('ytc-error', false, ''); ytcRenderWorkspace();
+    const field = document.getElementById('ytc-channel-id'); if (field) field.focus();
+  };
+
+  window.removeYoutubeCatalogChannel = function() {
+    const draft = window._youtubeCatalogDraft; const selected = ytcSelectedChannel();
+    if (!draft || !selected || !confirm('Удалить канал «' + selected.id + '» из черновика?')) return;
+    draft.channels = draft.channels.filter(function(channel) { return channel !== selected; });
+    Object.keys(draft.localeDefaults).forEach(function(locale) { if (draft.localeDefaults[locale] === selected.id) delete draft.localeDefaults[locale]; });
+    window._youtubeCatalogSelectedId = draft.channels[0] ? draft.channels[0].id : ''; ytcRenderWorkspace();
+  };
+
+  window.addYoutubeCatalogPlaylist = function() {
+    const channel = ytcSelectedChannel(); if (!channel) return;
+    let suffix = 1; let id = '!playlist-' + suffix; while (channel.playlistOverrides[id]) { suffix += 1; id = '!playlist-' + suffix; }
+    channel.playlistOverrides[id] = {}; ytcRenderWorkspace();
+  };
+
+  window.addYoutubeCatalogPremiere = function() {
+    const channel = ytcSelectedChannel(); if (!channel) return;
+    let suffix = 1; let id = '!video-' + suffix; while (channel.premiereOverrides[id]) { suffix += 1; id = '!video-' + suffix; }
+    channel.premiereOverrides[id] = { expiresAt: new Date(Date.now() + 30 * 86400000).toISOString() }; ytcRenderWorkspace();
+  };
+
+  window.previewYoutubeCatalogConfig = function() {
+    const errors = ytcWritePreview(true);
+    const preview = document.getElementById('ytc-preview'); if (preview) preview.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    return errors.length === 0;
+  };
+
+  window.loadYoutubeCatalogWorkspace = async function(force) {
+    if (window._youtubeCatalogLoaded && !force) return;
+    ytcShowState('ytc-loading', true); ytcShowState('ytc-error', false, '');
+    try {
+      const response = await getAdminGetYoutubeCatalogWorkspaceCallable()({});
+      const data = response && response.data;
+      if (!data || data.ok !== true) throw new Error('Сервер вернул некорректную рабочую область.');
+      window._youtubeCatalogWorkspace = data;
+      window._youtubeCatalogRevision = Number(data.config && data.config.revision || 0);
+      window._youtubeCatalogDraft = ytcNormalizeConfig(data.config);
+      window._youtubeCatalogSelectedId = window._youtubeCatalogDraft.channels[0] ? window._youtubeCatalogDraft.channels[0].id : '';
+      window._youtubeCatalogLoaded = true;
+      ytcRenderWorkspace();
+    } catch (error) {
+      ytcShowState('ytc-error', true, 'Не удалось загрузить YouTube-каталог: ' + String(error && error.message || error));
+    } finally { ytcShowState('ytc-loading', false); }
+  };
+
+  window.publishYoutubeCatalogConfig = async function() {
+    const draft = window._youtubeCatalogDraft;
+    const reasonElement = document.getElementById('ytc-publish-reason');
+    const status = document.getElementById('ytc-publish-status');
+    const button = document.getElementById('ytc-publish');
+    if (!draft || !window.previewYoutubeCatalogConfig()) return;
+    const reason = String(reasonElement && reasonElement.value || '').trim();
+    const nextConfig = ytcClone(draft);
+    nextConfig.updatedAt = new Date().toISOString();
+    nextConfig.updatedBy = String(auth && auth.currentUser && auth.currentUser.uid || 'legacy-admin');
+    ytcSetButtonBusy(button, true, 'Сохраняем…', 'Сохранить конфигурацию'); if (status) status.textContent = 'Публикация новой ревизии…';
+    try {
+      const response = await getAdminPublishYoutubeCatalogConfigCallable()({ nextConfig: nextConfig, expectedRevision: window._youtubeCatalogRevision, reason: reason, requestId: createAdminCommandId('youtube_catalog_config_request'), idempotencyKey: createAdminCommandId('youtube_catalog_config_operation') });
+      const data = response && response.data; if (!data || data.ok !== true) throw new Error('Сервер не подтвердил публикацию.');
+      if (status) status.textContent = 'Сохранена ревизия ' + String(data.revision) + '.';
+      if (reasonElement) reasonElement.value = '';
+      window._youtubeCatalogLoaded = false; await window.loadYoutubeCatalogWorkspace(true); showToast('YouTube-каталог сохранён');
+    } catch (error) {
+      if (status) status.textContent = 'Ошибка: ' + String(error && error.message || error);
+      ytcShowState('ytc-error', true, 'Не удалось сохранить каталог: ' + String(error && error.message || error));
+    } finally { ytcSetButtonBusy(button, false, 'Сохраняем…', 'Сохранить конфигурацию'); }
+  };
+
+  window.refreshYoutubeCatalog = async function() {
+    const button = document.getElementById('ytc-refresh'); const reasonElement = document.getElementById('ytc-publish-reason');
+    const reason = String(reasonElement && reasonElement.value || '').trim() || 'Ручное обновление каталога из legacy-админки';
+    ytcSetButtonBusy(button, true, 'Обновляем…', 'Обновить из YouTube'); ytcShowState('ytc-error', false, '');
+    try {
+      const response = await getAdminRefreshYoutubeCatalogCallable()({ reason: reason, requestId: createAdminCommandId('youtube_catalog_refresh_request'), idempotencyKey: createAdminCommandId('youtube_catalog_refresh_operation') });
+      const data = response && response.data; if (!data || data.ok !== true) throw new Error('Обновление завершилось с кодом ' + String(data && data.code || 'unknown'));
+      window._youtubeCatalogLoaded = false; await window.loadYoutubeCatalogWorkspace(true); showToast('YouTube-каталог обновлён');
+    } catch (error) {
+      ytcShowState('ytc-error', true, 'Не удалось обновить YouTube-каталог: ' + String(error && error.message || error));
+    } finally { ytcSetButtonBusy(button, false, 'Обновляем…', 'Обновить из YouTube'); }
+  };
+
+  (function ytcBindStaticEditor() {
+    const fields = document.querySelectorAll('[data-ytc-channel-field]');
+    fields.forEach(function(input) {
+      const field = input.getAttribute('data-ytc-channel-field');
+      const eventName = input.type === 'checkbox' || field === 'id' ? 'change' : 'input';
+      input.addEventListener(eventName, function() {
+        const channel = ytcSelectedChannel(); const draft = window._youtubeCatalogDraft; if (!channel || !draft) return;
+        if (field === 'id') {
+          const oldId = channel.id; const nextId = String(input.value || '').trim(); channel.id = nextId; window._youtubeCatalogSelectedId = nextId;
+          Object.keys(draft.localeDefaults).forEach(function(locale) { if (draft.localeDefaults[locale] === oldId) draft.localeDefaults[locale] = nextId; });
+          ytcRenderWorkspace(); return;
+        }
+        if (field === 'enabled') channel.enabled = Boolean(input.checked);
+        else if (field === 'order') channel.order = Math.max(0, Math.floor(Number(input.value) || 0));
+        else if (field === 'languageTags') channel.languageTags = String(input.value || '').split(',').map(function(value) { return value.trim(); }).filter(Boolean);
+        else if (field === 'displayNameOverride') { const value = String(input.value || '').trim(); if (value) channel.displayNameOverride = value; else delete channel.displayNameOverride; }
+        else channel[field] = String(input.value || '').trim();
+        ytcWritePreview(false);
+      });
+    });
+  })();
+  /* YOUTUBE_CATALOG_ADMIN_END */
   function ytParseChannelId(raw) {
     const s = String(raw == null ? '' : raw).trim();
     if (!s) return '';

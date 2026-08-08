@@ -37,6 +37,10 @@ export interface ExplainMistakeRequest {
 export interface ExplainMistakeResponse {
   ok: true;
   text: string;
+  /** Present on new full responses so both UI variants can be prepared together. */
+  fullText?: string;
+  /** Present on new full responses; cached under the existing ELI5 request identity. */
+  eli5Text?: string;
   remainingQuota: number;
   model: string;
   fromCache?: boolean;
@@ -126,10 +130,21 @@ export async function callExplainMistake(
       { label: 'explainMistake', onRetryStart: options?.onRetryStart },
     );
     if (res.data.ok && res.data.text.trim()) {
-      void writeExplainLocalCache({ kind: 'mistake', key }, {
-        text: res.data.text,
-        status: 'ok',
-      });
+      const cacheWrites: Promise<void>[] = [
+        writeExplainLocalCache({ kind: 'mistake', key }, {
+          text: res.data.text,
+          status: 'ok',
+        }),
+      ];
+      const bundledEli5 = req.variant !== 'eli5' ? res.data.eli5Text?.trim() : '';
+      if (bundledEli5) {
+        const eli5Key = explainMistakeRequestKey({ ...req, variant: 'eli5' });
+        cacheWrites.push(writeExplainLocalCache({ kind: 'mistake', key: eli5Key }, {
+          text: bundledEli5,
+          status: 'ok',
+        }));
+      }
+      await Promise.all(cacheWrites);
     }
     return res.data;
   })().finally(() => {

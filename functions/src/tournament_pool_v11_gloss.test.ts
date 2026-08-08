@@ -124,6 +124,8 @@ describe('parseDisplayGloss', () => {
     'слово\u200D',
     'слово\u2060',
     'слово\uFEFF',
+    '\uFEFFслово',
+    '\uFEFF',
     'слово\u00AD',
     'слово\u206A',
     'слово\uFFF9',

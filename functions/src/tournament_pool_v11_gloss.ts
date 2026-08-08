@@ -76,7 +76,8 @@ export function parseDisplayGloss(raw: string): ParseResult {
     const codePoint = raw.codePointAt(index);
     if (codePoint === undefined) return { ok: false, reason: 'invalid_unicode' };
     const char = String.fromCodePoint(codePoint);
-    if (isForbiddenControl(codePoint) || /\p{Cf}/u.test(char)) {
+    if (/\p{Cf}/u.test(char)) return { ok: false, reason: 'control_character' };
+    if (isForbiddenControl(codePoint)) {
       if (!hasNonWhitespace && /\s/u.test(char)) {
         index += char.length;
         continue;

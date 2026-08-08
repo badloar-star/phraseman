@@ -3,6 +3,8 @@ import path from 'path';
 
 const sourcePath = path.resolve(__dirname, '../components/AiDialogBriefingScreen.tsx');
 const routePath = path.resolve(__dirname, '../app/ai_dialog_briefing.tsx');
+const dialogsTabPath = path.resolve(__dirname, '../components/DialogsTabContent.tsx');
+const scenarioTilePath = path.resolve(__dirname, '../components/DialogScenarioTile.tsx');
 
 describe('AiDialogBriefingScreen contract', () => {
   const source = () => fs.readFileSync(sourcePath, 'utf8');
@@ -61,5 +63,43 @@ describe('AI dialog briefing route contract', () => {
 
     expect(content).toContain("safeRouterBack(router, '/(tabs)/lessons' as never)");
     expect(content).not.toContain('router.back()');
+  });
+});
+
+describe('AI dialog catalog scenario-feed contract', () => {
+  const catalog = () => fs.readFileSync(dialogsTabPath, 'utf8');
+  const tile = () => fs.readFileSync(scenarioTilePath, 'utf8');
+
+  it('routes unlocked normal taps by the exact target/scenario intro state', () => {
+    const content = catalog();
+
+    expect(content).toContain("import { hasSeenAiDialogIntro } from '../app/ai_dialog_intro_seen';");
+    expect(content).toContain('await hasSeenAiDialogIntro(studyTarget, scenario.id)');
+    expect(content).toContain("pathname: seenIntro ? '/ai_dialog_session' : '/ai_dialog_briefing'");
+    expect(content).toContain('scenarioId: scenario.id');
+  });
+
+  it('keeps the normal destination decision behind the existing successful gates and lets long press force briefing', () => {
+    const content = catalog();
+
+    expect(content).toContain('const openScenarioDestination = useCallback');
+    expect(content).toContain('const openCourseScenario = useCallback');
+    expect(content).toContain('const openChallengeScenario = useCallback');
+    expect(content).toContain('openScenarioDestination(scenario, forceBriefing)');
+    expect(content).toContain('onLongPress: () => openCourseScenario(scenario, true)');
+    expect(content).toContain('onLongPress: () => openChallengeScenario(scenario, true)');
+  });
+
+  it('renders a concise borderless PressableScale tile with accessible long-press briefing and reduced-motion entrance', () => {
+    const content = tile();
+
+    expect(content).toContain("PressableScale } from './feedback/PressableScale';");
+    expect(content).toContain('delay(Math.min(index, 10) * 40)');
+    expect(content).toContain('reduceMotion ? undefined : FadeInDown');
+    expect(content).toContain('delayLongPress={550}');
+    expect(content).toContain('accessibilityHint');
+    expect(content).not.toContain('dialogScenarioGoal(');
+    expect(content).not.toContain('borderWidth');
+    expect(content).not.toContain('withRepeat(');
   });
 });

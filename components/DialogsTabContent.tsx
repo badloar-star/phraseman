@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 
 import { trackEvent as trackAiDialogEvent } from '../app/analytics';
+import { hasSeenAiDialogIntro } from '../app/ai_dialog_intro_seen';
 import { isScenarioLevelUnlocked, reachedCourseLevel } from '../app/ai_dialog_level_lock';
 import { getCompletedDialogIds } from '../app/dialogs_progress';
 import {
@@ -33,15 +34,13 @@ import {
 import { triLang } from '../constants/i18n';
 import { getLevelFromXP } from '../constants/theme';
 import { hapticTap } from '../hooks/use-haptics';
+import DialogScenarioTile from './DialogScenarioTile';
 import { useLang } from './LangContext';
 import { useFeatureAccess, usePremium } from './PremiumContext';
-import PlusBadge from './PlusBadge';
 import { useStudyTarget } from './StudyTargetContext';
 import { useTheme } from './ThemeContext';
 
 import { noAndroidOutline } from '../constants/androidGlow';
-const CARD_RADIUS = 16;
-
 // Статус карточки сценария — кодирует и подачу, и доступность.
 type ScenarioStatus = 'done' | 'available' | 'locked';
 
@@ -53,8 +52,8 @@ interface ScenarioVM {
   /** Текст-замок (для locked) — почему закрыто. */
   lockedText: string;
   onPress: () => void;
+  onLongPress: () => void;
 }
-
 interface DialogsTabContentProps {
   headerSlot?: React.ReactNode;
   bottomPadding?: number;
@@ -72,7 +71,7 @@ export default function DialogsTabContent({
   trackImpression = true,
   active = true,
 }: DialogsTabContentProps) {
-  const { theme: t, f, themeMode } = useTheme();
+  const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const dialogAccess = useFeatureAccess('ai_dialog');
   const { accessResolved } = usePremium();
@@ -167,8 +166,21 @@ export default function DialogsTabContent({
   const hasLockedCourseLevels = !dialogAccess;
   const accent = t.accent;
 
+  const openScenarioDestination = useCallback(
+    async (scenario: DialogScenario, forceBriefing = false) => {
+      const seenIntro = forceBriefing
+        ? false
+        : await hasSeenAiDialogIntro(studyTarget, scenario.id);
+      router.push({
+        pathname: seenIntro ? '/ai_dialog_session' : '/ai_dialog_briefing',
+        params: { scenarioId: scenario.id },
+      } as never);
+    },
+    [router, studyTarget],
+  );
+
   const openCourseScenario = useCallback(
-    (scenario: DialogScenario) => {
+    (scenario: DialogScenario, forceBriefing = false) => {
       if (!accessResolved) return;
       hapticTap();
       if (!aiDialogGateOpen) {
@@ -197,13 +209,13 @@ export default function DialogsTabContent({
         router.push({ pathname: '/premium_modal', params: { context: 'dialog_locked_level' } } as never);
         return;
       }
-      router.push({ pathname: '/ai_dialog_session', params: { scenarioId: scenario.id } } as never);
+      void openScenarioDestination(scenario, forceBriefing);
     },
-    [accessResolved, aiDialogGateOpen, dialogAccess, frenchGateCopy, reachedLevel, router],
+    [accessResolved, aiDialogGateOpen, dialogAccess, frenchGateCopy, openScenarioDestination, reachedLevel, router],
   );
 
   const openChallengeScenario = useCallback(
-    (scenario: DialogScenario) => {
+    (scenario: DialogScenario, forceBriefing = false) => {
       if (!accessResolved) return;
       hapticTap();
       if (!aiDialogGateOpen) {
@@ -251,9 +263,9 @@ export default function DialogsTabContent({
         );
         return;
       }
-      router.push({ pathname: '/ai_dialog_session', params: { scenarioId: scenario.id } } as never);
+      void openScenarioDestination(scenario, forceBriefing);
     },
-    [accessResolved, accountLevel, aiDialogGateOpen, dialogAccess, frenchGateCopy, lang, router],
+    [accessResolved, accountLevel, aiDialogGateOpen, dialogAccess, frenchGateCopy, lang, openScenarioDestination, router],
   );
 
   // ── View-model для активной вкладки ───────────────────────────────────────
@@ -287,6 +299,7 @@ export default function DialogsTabContent({
                   pl: `Otwiera się na poziomie ${scenario.cefr}`,
                 }),
             onPress: () => openCourseScenario(scenario),
+            onLongPress: () => openCourseScenario(scenario, true),
           };
         });
         const doneCount = scenarios.filter((s) => s.status === 'done').length;
@@ -331,6 +344,7 @@ export default function DialogsTabContent({
                 pl: `Otwiera się na poziomie konta ${requiredLevel}`,
               }),
           onPress: () => openChallengeScenario(scenario),
+          onLongPress: () => openChallengeScenario(scenario, true),
         };
       }),
     [accountLevel, completedIds, dialogAccess, lang, openChallengeScenario],
@@ -352,196 +366,47 @@ export default function DialogsTabContent({
   const renderScenarioCard = (vm: ScenarioVM, index: number) => {
     const { scenario, status, levelChip, lockedText } = vm;
     const locked = status === 'locked';
-    const done = status === 'done';
-    const plusLocked = locked && !dialogAccess;
+
     return (
-      <TouchableOpacity
+      <DialogScenarioTile
         key={scenario.id}
-        accessibilityRole="button"
+        index={index}
+        icon={scenario.icon}
+        title={dialogScenarioTitle(scenario, lang)}
+        levelChip={levelChip}
+        status={status}
+        lockedText={lockedText}
+        onPress={vm.onPress}
+        onLongPress={vm.onLongPress}
+        colors={{
+          accent: t.accent,
+          accentBg: t.accentBg,
+          bgCard: t.bgCard,
+          bgSurface: t.bgSurface,
+          textPrimary: t.textPrimary,
+          textMuted: t.textMuted,
+          correctText: t.correctText,
+        }}
+        fontSizes={{ body: f.body, label: f.label }}
         accessibilityLabel={
           locked
-            ? triLang(lang, {
-                ru: `${dialogScenarioTitle(scenario, lang)} — закрыто`,
-                uk: `${dialogScenarioTitle(scenario, lang)} — закрито`,
-                es: `${dialogScenarioTitle(scenario, lang)} — bloqueado`,
-                'pt-BR': `${dialogScenarioTitle(scenario, lang)} — bloqueado`,
-                vi: `${dialogScenarioTitle(scenario, lang)} — bị khóa`,
-                id: `${dialogScenarioTitle(scenario, lang)} — terkunci`,
-                tr: `${dialogScenarioTitle(scenario, lang)} — kilitli`,
-                pl: `${dialogScenarioTitle(scenario, lang)} — zablokowane`,
-              })
-            : triLang(lang, {
-                ru: `Открыть сценарий ${dialogScenarioTitle(scenario, lang)}`,
-                uk: `Відкрити сценарій ${dialogScenarioTitle(scenario, lang)}`,
-                es: `Abrir escenario ${dialogScenarioTitle(scenario, lang)}`,
-                'pt-BR': `Abrir cenário ${dialogScenarioTitle(scenario, lang)}`,
-                vi: `Mở kịch bản ${dialogScenarioTitle(scenario, lang)}`,
-                id: `Buka skenario ${dialogScenarioTitle(scenario, lang)}`,
-                tr: `${dialogScenarioTitle(scenario, lang)} senaryosunu aç`,
-                pl: `Otwórz scenariusz ${dialogScenarioTitle(scenario, lang)}`,
-              })
+            ? `${dialogScenarioTitle(scenario, lang)} — ${lockedText}`
+            : dialogScenarioTitle(scenario, lang)
         }
-        activeOpacity={0.84}
-        onPress={vm.onPress}
-        style={{
-          minHeight: 66,
-          marginTop: index === 0 ? 0 : 8,
-          marginHorizontal: 14,
-          borderRadius: CARD_RADIUS,
-          overflow: 'hidden',
-          backgroundColor: t.bgCard,
-          borderWidth: 0,
-          borderColor: done ? t.accent + '4D' : t.border,
-          paddingHorizontal: 13,
-          paddingVertical: 11,
-          flexDirection: 'row',
-          alignItems: 'center',
-          opacity: locked ? 0.5 : 1,
-          shadowColor: '#000',
-          shadowOffset: { width: 0, height: 2 },
-          shadowOpacity: locked ? 0 : 0.08,
-          shadowRadius: 6,
-          elevation: locked ? 0 : 2,
-        }}
-      >
-        {/* Иконка сценария + бейдж-галочка при «Пройдено» */}
-        <View
-          style={{
-            width: 44,
-            height: 44,
-            borderRadius: 13,
-            backgroundColor: t.bgSurface,
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginRight: 12,
-          }}
-        >
-          <Ionicons name={scenario.icon as never} size={22} color={locked ? t.textMuted : accent} />
-          {done && (
-            <View
-              style={{
-                position: 'absolute',
-                right: -3,
-                bottom: -3,
-                width: 17,
-                height: 17,
-                borderRadius: 9,
-                backgroundColor: accent,
-                alignItems: 'center',
-                justifyContent: 'center',
-                borderWidth: 0,
-                borderColor: t.bgCard,
-              }}
-            >
-              <Ionicons name="checkmark" size={10} color={t.correctText} />
-            </View>
-          )}
-        </View>
-
-        <View style={{ flex: 1, minWidth: 0 }}>
-          <Text
-            style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900' }}
-            numberOfLines={2}
-          >
-            {dialogScenarioTitle(scenario, lang)}
-          </Text>
-
-          {locked ? (
-            <Text
-              style={{
-                color: t.textMuted,
-                fontSize: f.label,
-                lineHeight: Math.round(f.label * 1.3),
-                marginTop: 4,
-              }}
-              numberOfLines={2}
-              maxFontSizeMultiplier={1.15}
-            >
-              {lockedText}
-            </Text>
-          ) : (
-            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 6, flexWrap: 'wrap' }}>
-              {done ? (
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    gap: 4,
-                    backgroundColor: t.accentBg,
-                    borderRadius: 8,
-                    paddingHorizontal: 8,
-                    paddingVertical: 2,
-                  }}
-                >
-                  <Ionicons name="checkmark-circle" size={12} color={accent} />
-                  <Text style={{ color: accent, fontSize: f.label, fontWeight: '900' }}>
-                    {triLang(lang, {
-                      ru: 'Пройдено',
-                      uk: 'Пройдено',
-                      es: 'Hecho',
-                      'pt-BR': 'Concluído',
-                      vi: 'Đã xong',
-                      id: 'Selesai',
-                      tr: 'Tamamlandı',
-                      pl: 'Ukończono',
-                    })}
-                  </Text>
-                </View>
-              ) : (
-                <>
-                  {/* Чип уровня — нейтральный, не зелёный «бейдж-выполнено». */}
-                  <View
-                    style={{
-                      backgroundColor: t.accentBg,
-                      borderRadius: 8,
-                      paddingHorizontal: 8,
-                      paddingVertical: 2,
-                    }}
-                  >
-                    <Text style={{ color: accent, fontSize: f.label, fontWeight: '900' }}>{levelChip}</Text>
-                  </View>
-                  <View
-                    style={{
-                      backgroundColor: t.bgSurface,
-                      borderRadius: 8,
-                      paddingHorizontal: 8,
-                      paddingVertical: 2,
-                    }}
-                  >
-                    <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '800' }}>
-                      {triLang(lang, {
-                        ru: 'Новое',
-                        uk: 'Нове',
-                        es: 'Nuevo',
-                        'pt-BR': 'Novo',
-                        vi: 'Mới',
-                        id: 'Baru',
-                        tr: 'Yeni',
-                        pl: 'Nowe',
-                      })}
-                    </Text>
-                  </View>
-                </>
-              )}
-            </View>
-          )}
-        </View>
-
-        {plusLocked ? (
-          <PlusBadge themeMode={themeMode} size="xs" style={{ marginLeft: 8 }} />
-        ) : (
-          <Ionicons
-            name={locked ? 'lock-closed' : 'chevron-forward'}
-            size={19}
-            color={locked ? accent : t.textSecond}
-            style={{ marginLeft: 8 }}
-          />
-        )}
-      </TouchableOpacity>
+        accessibilityHint={triLang(lang, {
+          ru: 'Нажмите и удерживайте, чтобы открыть вводную к сценарию.',
+          uk: 'Натисніть і утримуйте, щоб відкрити вступ до сценарію.',
+          es: 'Mantén pulsado para abrir la introducción del escenario.',
+          'pt-BR': 'Mantenha pressionado para abrir a introdução do cenário.',
+          vi: 'Nhấn giữ để mở phần giới thiệu kịch bản.',
+          id: 'Tekan dan tahan untuk membuka pengantar skenario.',
+          tr: 'Senaryo girişini açmak için basılı tutun.',
+          pl: 'Przytrzymaj, aby otworzyć wprowadzenie do scenariusza.',
+        })}
+      />
     );
   };
 
-  // ── Hero «Продолжить» ─────────────────────────────────────────────────────
   const renderHero = (vm: ScenarioVM) => {
     const { scenario, status } = vm;
     const kicker =

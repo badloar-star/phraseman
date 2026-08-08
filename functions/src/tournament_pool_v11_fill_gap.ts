@@ -118,6 +118,7 @@ const IRREGULAR_NOUN_FAMILY_LIST: readonly IrregularNounFamily[] = [
   ['thesis', 'theses'], ['phenomenon', 'phenomena'], ['criterion', 'criteria'], ['datum', 'data'], ['medium', 'media'],
   ['index', 'indices'], ['appendix', 'appendices'], ['leaf', 'leaves'], ['knife', 'knives'], ['life', 'lives'], ['wife', 'wives'],
   ['wolf', 'wolves'], ['calf', 'calves'], ['half', 'halves'], ['loaf', 'loaves'], ['shelf', 'shelves'], ['thief', 'thieves'],
+  ['ox', 'oxen'], ['die', 'dice'], ['louse', 'lice'], ['quiz', 'quizzes'],
 ];
 export function buildIrregularNounFamilies(families: readonly IrregularNounFamily[]): ReadonlyMap<string, string> {
   const familyByForm = new Map<string, string>();
@@ -132,12 +133,10 @@ export function buildIrregularNounFamilies(families: readonly IrregularNounFamil
   return familyByForm;
 }
 const IRREGULAR_NOUN_FAMILIES = buildIrregularNounFamilies(IRREGULAR_NOUN_FAMILY_LIST);
-const UNSUPPORTED_BE_CONTRACTIONS = new Set([
+const UNSUPPORTED_NEGATIVE_BE_CONTRACTIONS = new Set([
   "isn't", "isn\u2019t", "aren't", "aren\u2019t", "wasn't", "wasn\u2019t", "weren't", "weren\u2019t", "ain't", "ain\u2019t",
-  "i'm", "i\u2019m", "you're", "you\u2019re", "he's", "he\u2019s", "she's", "she\u2019s", "it's", "it\u2019s", "we're", "we\u2019re",
-  "they're", "they\u2019re", "there's", "there\u2019s", "here's", "here\u2019s", "that's", "that\u2019s", "what's", "what\u2019s",
-  "who's", "who\u2019s", "how's", "how\u2019s", "'s", "\u2019s", "'m", "\u2019m", "'re", "\u2019re",
 ]);
+const POSITIVE_BE_CONTRACTION = /^(?:(?:i|you|he|she|it|we|they|there|here|that|what|who|where|when|why|how)(?:['\u2019](?:s|m|re))|['\u2019](?:s|m|re))$/u;
 type GovernedCollocationRule = Readonly<{
   correctFamily: string;
   wrongFamily: string;
@@ -154,7 +153,7 @@ function normalized(value: string): string {
 
 function categoryFor(word: SourceWord): FillGapCategory | null {
   const token = normalized(word.text);
-  if (UNSUPPORTED_BE_CONTRACTIONS.has(token)) return null;
+  if (UNSUPPORTED_NEGATIVE_BE_CONTRACTIONS.has(token) || POSITIVE_BE_CONTRACTION.test(token)) return null;
   const pos = normalized(word.partOfSpeech).replace(/[_-]+/gu, ' ');
   const category = pos ? CATEGORY_ALIASES.get(pos) : undefined;
   if (!category) return null;

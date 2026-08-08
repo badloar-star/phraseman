@@ -229,6 +229,21 @@ describe('buildFillGapCandidates', () => {
     ))).toEqual(expect.arrayContaining([expect.objectContaining({ category: 'verb' })]));
   });
 
+  it.each([
+    ["where's", "Where's the book.", 'verb'], ["why's", "Why's it ready.", 'to be'], ["who're", "Who're ready.", 'existential'],
+    ["what're", "What're ready.", 'verb'], ["there're", "There're books.", 'to be'], ["where\u2019s", "Where\u2019s the book.", 'existential'],
+  ])('rejects bounded positive be contraction %s before POS mapping', (token, english, partOfSpeech) => {
+    expect(buildFillGapCandidates(day, phrase(`positive-${token}`, english, token, partOfSpeech, ['is', 'are', 'be']))).toEqual([]);
+  });
+
+  it.each([
+    ['ox', 'oxen'], ['die', 'dice'],
+  ])('rejects the governed irregular noun pair %s/%s in an isolated candidate probe', (singular, plural) => {
+    expect(buildFillGapCandidates(day, phrase(
+      `isolated-${plural}`, `The ${plural} arrive.`, plural, 'noun', [singular, 'dogs', 'cats'],
+    ))).toEqual([]);
+  });
+
   it('canonicalizes irregular noun families before collision detection', () => {
     expect(() => buildIrregularNounFamilies([
       ['alpha', 'SHARES'], ['beta', 'ＳＨＡＲＥＳ'],

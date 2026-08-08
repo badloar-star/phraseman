@@ -154,6 +154,7 @@ import { primeAppSnapshotFromStorage } from './app_snapshot_bootstrap';
 import { primeSurveyDailyTaskCacheFromStorage } from './survey_daily_task_cache';
 import { primeDailyTasksScreenSnapshotFromStorage } from './daily_tasks_screen_persist';
 import { primeScreenSnapshotsFromStorage } from './screen_snapshot_store';
+import { hydrateYoutubeChannelPreference } from './youtube_channel_preference';
 import { hydrateStatsCacheFromStorage } from './statsCache';
 import { primeTrainerPracticeSnapshotFromStorage } from './trainer_practice_persist';
 import { primeRemoteConfigCacheFromStorage } from './remote_config_client';
@@ -2425,6 +2426,7 @@ function AppContent() {
         // НИ ОДИН экран не показывал скелетон. Это ОДНО чтение диска на все экраны
         // сразу — в той же параллельной пачке, поэтому запуск не удлиняется.
         primeScreenSnapshotsFromStorage().catch(() => {}),
+        hydrateYoutubeChannelPreference().catch(() => {}),
         // зачем: кэш статистики УЖЕ лежал на диске, но поднимался только внутри
         // streak_stats.loadAll() — то есть после первого кадра, поэтому экран стрика
         // успевал показать скелетон на весь экран. Поднимаем здесь: к моменту тапа

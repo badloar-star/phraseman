@@ -1,4 +1,4 @@
-import { buildFillGapCandidates, buildIrregularLemmaFamilies, type FillGapCategory } from './tournament_pool_v11_fill_gap';
+import { buildFillGapCandidates, buildIrregularLemmaFamilies, buildIrregularNounFamilies, type FillGapCategory } from './tournament_pool_v11_fill_gap';
 import { phraseTokens, type SourceDay, type SourcePhrase } from './tournament_task_factory';
 
 const day: SourceDay = {
@@ -184,7 +184,7 @@ describe('buildFillGapCandidates', () => {
     expect(did?.reason).toContain('made a decision');
   });
 
-  it.each(['tree', 'table', 'support system'])('does not infer make-a-decision collocation beyond its exact complement boundary: %s', (suffix) => {
+  it.each(['tree', 'table', 'support system', 'maker', 'making'])('does not infer make-a-decision collocation beyond its exact complement boundary: %s', (suffix) => {
     const candidate = buildFillGapCandidates(day, phrase(
       `made-decision-${suffix.replace(/\s+/gu, '-')}`, `She made a decision ${suffix}.`, 'made', 'verb', ['make', 'did', 'does'],
     )).at(0);
@@ -195,6 +195,12 @@ describe('buildFillGapCandidates', () => {
     }));
   });
 
+  it.each(['yesterday', 'that mattered'])('rejects unparsed make-a-decision trailing material instead of labeling it lexical: %s', (suffix) => {
+    expect(buildFillGapCandidates(day, phrase(
+      `made-decision-unparsed-${suffix.replace(/\s+/gu, '-')}`, `She made a decision ${suffix}.`, 'made', 'verb', ['make', 'did', 'does'],
+    ))).toEqual([]);
+  });
+
   it('promotes uncontracted be forms from both verb aliases and rejects contracted be forms', () => {
     const pluralVerbAlias = buildFillGapCandidates(day, phrase(
       'verbs-are', 'They are ready.', 'are', 'verbs', ['is', 'am', 'be'],
@@ -203,6 +209,41 @@ describe('buildFillGapCandidates', () => {
     expect(pluralVerbAlias).toEqual(expect.objectContaining({ category: 'to_be' }));
     expect(buildFillGapCandidates(day, phrase(
       'contracted-be', "He isn't ready.", "isn't", 'verb', ['is', 'are', 'be'],
+    ))).toEqual([]);
+  });
+
+  it.each([
+    ["isn't", "He isn't ready.", 'existential'], ["aren't", "They aren't ready.", 'to be'], ["wasn't", "It wasn't ready.", 'verb'],
+    ["weren't", "They weren't ready.", 'verbs'], ["ain't", "It ain't ready.", 'verb'], ["I'm", "I'm ready.", 'to be'],
+    ["you're", "You're ready.", 'verb'], ["he's", "He's ready.", 'existential'], ["she's", "She's ready.", 'to be'],
+    ["it's", "It's ready.", 'verb'], ["we're", "We're ready.", 'verbs'], ["they're", "They're ready.", 'to be'],
+    ["there's", "There's a book.", 'existential'], ["here's", "Here's a book.", 'verb'], ["that's", "That's ready.", 'to be'],
+    ["what's", "What's ready.", 'verb'], ["who's", "Who's ready.", 'verbs'], ["how's", "How's it going.", 'existential'],
+  ])('rejects governed be contraction %s independently of its POS alias', (token, english, partOfSpeech) => {
+    expect(buildFillGapCandidates(day, phrase(`contracted-${token}`, english, token, partOfSpeech, ['is', 'are', 'be']))).toEqual([]);
+  });
+
+  it('keeps non-be contractions eligible for ordinary verb classification', () => {
+    expect(buildFillGapCandidates(day, phrase(
+      'dont', "They don't know.", "don't", 'verb', ['does', 'did', 'do'],
+    ))).toEqual(expect.arrayContaining([expect.objectContaining({ category: 'verb' })]));
+  });
+
+  it('canonicalizes irregular noun families before collision detection', () => {
+    expect(() => buildIrregularNounFamilies([
+      ['alpha', 'SHARES'], ['beta', 'ＳＨＡＲＥＳ'],
+    ])).toThrow(/shares.*alpha.*beta/i);
+  });
+
+  it.each([
+    ['axis', 'axes'], ['basis', 'bases'], ['child', 'children'], ['person', 'people'], ['man', 'men'], ['woman', 'women'],
+    ['tooth', 'teeth'], ['foot', 'feet'], ['mouse', 'mice'], ['goose', 'geese'], ['analysis', 'analyses'], ['crisis', 'crises'],
+    ['thesis', 'theses'], ['phenomenon', 'phenomena'], ['criterion', 'criteria'], ['datum', 'data'], ['medium', 'media'],
+    ['index', 'indices'], ['appendix', 'appendices'], ['leaf', 'leaves'], ['knife', 'knives'], ['life', 'lives'], ['wife', 'wives'],
+    ['wolf', 'wolves'], ['calf', 'calves'], ['half', 'halves'], ['loaf', 'loaves'], ['shelf', 'shelves'], ['thief', 'thieves'],
+  ])('rejects governed irregular noun pair %s/%s without inventing a typed inflection trap', (singular, plural) => {
+    expect(buildFillGapCandidates(day, phrase(
+      `noun-${plural}`, `The ${plural} arrive.`, plural, 'noun', [singular, 'dogs', 'cats'],
     ))).toEqual([]);
   });
 

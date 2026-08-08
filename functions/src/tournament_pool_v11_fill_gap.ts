@@ -111,6 +111,33 @@ const AMBIGUOUS_INFLECTION_FAMILIES = [
   ['found'], ['saw'], ['left'], ['rose'], ['fell'], ['lay'], ['read'], ['lead'], ['bound'], ['wound'], ['bore'], ['rent'], ['ground'],
 ] as const;
 const AMBIGUOUS_IRREGULAR_SURFACES = new Set(AMBIGUOUS_INFLECTION_FAMILIES.flatMap((family) => family.map(normalized)));
+type IrregularNounFamily = readonly [singular: string, plural: string];
+const IRREGULAR_NOUN_FAMILY_LIST: readonly IrregularNounFamily[] = [
+  ['axis', 'axes'], ['basis', 'bases'], ['child', 'children'], ['person', 'people'], ['man', 'men'], ['woman', 'women'],
+  ['tooth', 'teeth'], ['foot', 'feet'], ['mouse', 'mice'], ['goose', 'geese'], ['analysis', 'analyses'], ['crisis', 'crises'],
+  ['thesis', 'theses'], ['phenomenon', 'phenomena'], ['criterion', 'criteria'], ['datum', 'data'], ['medium', 'media'],
+  ['index', 'indices'], ['appendix', 'appendices'], ['leaf', 'leaves'], ['knife', 'knives'], ['life', 'lives'], ['wife', 'wives'],
+  ['wolf', 'wolves'], ['calf', 'calves'], ['half', 'halves'], ['loaf', 'loaves'], ['shelf', 'shelves'], ['thief', 'thieves'],
+];
+export function buildIrregularNounFamilies(families: readonly IrregularNounFamily[]): ReadonlyMap<string, string> {
+  const familyByForm = new Map<string, string>();
+  for (const [singular, plural] of families) {
+    const canonicalFamily = normalized(singular);
+    for (const form of [singular, plural].map(normalized)) {
+      const existing = familyByForm.get(form);
+      if (existing && existing !== canonicalFamily) throw new Error(`Irregular noun form "${form}" maps to both "${existing}" and "${canonicalFamily}".`);
+      familyByForm.set(form, canonicalFamily);
+    }
+  }
+  return familyByForm;
+}
+const IRREGULAR_NOUN_FAMILIES = buildIrregularNounFamilies(IRREGULAR_NOUN_FAMILY_LIST);
+const UNSUPPORTED_BE_CONTRACTIONS = new Set([
+  "isn't", "isn\u2019t", "aren't", "aren\u2019t", "wasn't", "wasn\u2019t", "weren't", "weren\u2019t", "ain't", "ain\u2019t",
+  "i'm", "i\u2019m", "you're", "you\u2019re", "he's", "he\u2019s", "she's", "she\u2019s", "it's", "it\u2019s", "we're", "we\u2019re",
+  "they're", "they\u2019re", "there's", "there\u2019s", "here's", "here\u2019s", "that's", "that\u2019s", "what's", "what\u2019s",
+  "who's", "who\u2019s", "how's", "how\u2019s", "'s", "\u2019s", "'m", "\u2019m", "'re", "\u2019re",
+]);
 type GovernedCollocationRule = Readonly<{
   correctFamily: string;
   wrongFamily: string;
@@ -119,6 +146,7 @@ type GovernedCollocationRule = Readonly<{
 const GOVERNED_COLLOCATION_RULES: readonly GovernedCollocationRule[] = [
   { correctFamily: 'make', wrongFamily: 'do', complement: ['a', 'decision'] },
 ];
+const DECISION_COMPOUND_CONTINUATIONS = new Set(['tree', 'table', 'support', 'system', 'maker', 'making']);
 
 function normalized(value: string): string {
   return value.normalize('NFKC').replace(/\s+/gu, ' ').trim().toLowerCase();
@@ -126,6 +154,7 @@ function normalized(value: string): string {
 
 function categoryFor(word: SourceWord): FillGapCategory | null {
   const token = normalized(word.text);
+  if (UNSUPPORTED_BE_CONTRACTIONS.has(token)) return null;
   const pos = normalized(word.partOfSpeech).replace(/[_-]+/gu, ' ');
   const category = pos ? CATEGORY_ALIASES.get(pos) : undefined;
   if (!category) return null;
@@ -140,21 +169,30 @@ function verbFamily(value: string): string {
   return IRREGULAR_LEMMA_FAMILIES.get(token) ?? token;
 }
 
-function governedCollocationFor(correct: string, wrong: string, tokens: readonly string[], blankIndex: number): string | null {
+type GovernedCollocationMatch =
+  | Readonly<{ kind: 'proven'; authoredCollocation: string }>
+  | Readonly<{ kind: 'definite_no_match' }>
+  | Readonly<{ kind: 'unprovable' }>;
+
+function governedCollocationFor(correct: string, wrong: string, tokens: readonly string[], blankIndex: number): GovernedCollocationMatch | null {
   const correctFamily = verbFamily(correct);
   const wrongFamily = verbFamily(wrong);
   for (const rule of GOVERNED_COLLOCATION_RULES) {
     if (correctFamily !== rule.correctFamily || wrongFamily !== rule.wrongFamily) continue;
     const complement = tokens.slice(blankIndex + 1).map((token) => normalized(lexicalToken(token)));
+    if (!rule.complement.every((token, index) => complement[index] === token)) continue;
     if (complement.length === rule.complement.length && rule.complement.every((token, index) => complement[index] === token)) {
-      return [normalized(correct), ...rule.complement].join(' ');
+      return { kind: 'proven', authoredCollocation: [normalized(correct), ...rule.complement].join(' ') };
     }
+    if (DECISION_COMPOUND_CONTINUATIONS.has(complement[rule.complement.length] ?? '')) return { kind: 'definite_no_match' };
+    return { kind: 'unprovable' };
   }
   return null;
 }
 
-function trapFor(category: FillGapCategory, correct: string, wrong: string, tokens: readonly string[], blankIndex: number): FillGapTrapType | null {
-  if (category === 'verb' && governedCollocationFor(correct, wrong, tokens, blankIndex)) return 'collocation';
+function trapFor(category: FillGapCategory, correct: string, wrong: string, tokens: readonly string[], blankIndex: number, governedCollocation: GovernedCollocationMatch | null): FillGapTrapType | null {
+  if (category === 'verb' && governedCollocation?.kind === 'proven') return 'collocation';
+  if (category === 'verb' && governedCollocation?.kind === 'unprovable') return null;
   if (category === 'preposition' || category === 'phrasal_particle') return 'government';
   if (category === 'pronoun') return 'reference';
   if (category === 'modal' || category === 'conjunction' || category === 'determiner'
@@ -190,6 +228,9 @@ function potentialNounInflectionKeys(value: string): ReadonlySet<string> {
 }
 
 function potentialNounInflection(left: string, right: string): boolean {
+  const leftIrregularFamily = IRREGULAR_NOUN_FAMILIES.get(normalized(left));
+  const rightIrregularFamily = IRREGULAR_NOUN_FAMILIES.get(normalized(right));
+  if (leftIrregularFamily && leftIrregularFamily === rightIrregularFamily) return true;
   const leftKeys = potentialNounInflectionKeys(left);
   return [...potentialNounInflectionKeys(right)].some((key) => leftKeys.has(key));
 }
@@ -335,8 +376,8 @@ export function buildFillGapCandidates(day: SourceDay, phrase: SourcePhrase): re
       ...deterministicFallbacks.map((value) => ({ value, authored: false })),
     ]) {
       if (!isSafeOption(value, correct) || seen.has(normalized(value))) continue;
-      const authoredCollocation = category === 'verb' ? governedCollocationFor(correct, value, tokens, index) : null;
-      const trapType = trapFor(category, correct, value, tokens, index);
+      const governedCollocation = category === 'verb' ? governedCollocationFor(correct, value, tokens, index) : null;
+      const trapType = trapFor(category, correct, value, tokens, index, governedCollocation);
       if (!trapType) {
         if (authored) hasUnprovableAuthoredDistractor = true;
         continue;
@@ -344,7 +385,8 @@ export function buildFillGapCandidates(day: SourceDay, phrase: SourcePhrase): re
       if (selected.length === 3) continue;
       const completedSentence = sentenceWith(tokens, index, replacementFor(tokens[index], value));
       if (completedSentence === authoredSentence) continue;
-      const reason = reasonFor(value, correct, translation, trapType, category, authoredCollocation ?? undefined);
+      const reason = reasonFor(value, correct, translation, trapType, category,
+        governedCollocation?.kind === 'proven' ? governedCollocation.authoredCollocation : undefined);
       if (!reason.includes(value) || !completedSentence.includes(value)
         || Buffer.byteLength(completedSentence, 'utf8') > TOURNAMENT_TASK_LIMITS.referenceBytes
         || Buffer.byteLength(reason, 'utf8') > TOURNAMENT_TASK_LIMITS.explanationBytes) continue;

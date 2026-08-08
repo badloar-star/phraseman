@@ -188,6 +188,7 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
         payload: {
           level,
           studyTarget: 'en',
+          blueprintVersion: 2,
           pct: scored.pct,
           percent: scored.pct,
           passed: scored.passed,
